@@ -5615,8 +5615,8 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float crossProductZ;
   
   floatResult = targetBuffer[4];
@@ -5625,11 +5625,11 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
   targetY = targetBuffer[5];
   bufferY = bufferSize[5];
   targetZ = targetBuffer[6];
-  floatResult8 = targetY * bufferZ - targetZ * bufferY;
+  FloatValue1 = targetY * bufferZ - targetZ * bufferY;
   bufferX = bufferSize[4];
-  floatResult9 = bufferX * targetZ - floatResult * bufferZ;
+  FloatValue2 = bufferX * targetZ - floatResult * bufferZ;
   crossProductZ = floatResult * bufferY - bufferX * targetY;
-  floatResult3 = floatResult9 * dataSource[5] + floatResult8 * dataSource[4] + crossProductZ * sourceZ;
+  floatResult3 = FloatValue2 * dataSource[5] + FloatValue1 * dataSource[4] + crossProductZ * sourceZ;
   if (floatResult3 != 0.0) {
     floatResult7 = dataSource[5] * dataSource[1] + dataSource[4] * *dataSource + sourceZ * dataSource[2];
     vectorComponentX = 1.0 / floatResult3;
@@ -5641,9 +5641,9 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
     floatResult0 = targetBuffer[4];
     floatResult1 = dataSource[4];
     floatResult2 = targetBuffer[4];
-    *uiContext = ((sourceZ * bufferY - dataSource[5] * bufferZ) * floatResult5 + floatResult7 * floatResult8 +
+    *uiContext = ((sourceZ * bufferY - dataSource[5] * bufferZ) * floatResult5 + floatResult7 * FloatValue1 +
                (dataSource[5] * targetZ - dataSource[6] * targetY) * floatResult6) * vectorComponentX;
-    uiContext[1] = ((sourceY * bufferZ - sourceZ2 * bufferX) * floatResult5 + floatResult7 * floatResult9 +
+    uiContext[1] = ((sourceY * bufferZ - sourceZ2 * bufferX) * floatResult5 + floatResult7 * FloatValue2 +
                  (sourceZ2 * floatResult0 - floatResult1 * targetZ) * floatResult6) * vectorComponentX;
     uiContext[2] = ((floatResult * bufferX - floatResult1 * bufferY) * floatResult5 + floatResult7 * crossProductZ +
                  (floatResult1 * targetY - floatResult * floatResult2) * floatResult6) * vectorComponentX;
@@ -10712,18 +10712,18 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     do {
       allocatedMemory0 = (longlong)((uiOperationResult5 + -1) % ProcessingResult2);
       if ((!IsGeometryValid) ||
-         ((floatResult9 = (pfloatResult1[-4] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-5]) -
+         ((FloatValue2 = (pfloatResult1[-4] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-5]) -
                     (localFloat21 - pfloatResult1[-4]) * (pfloatResult1[-5] - *(float *)(componentIndex + allocatedMemory0 * 8)),
-          floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
+          FloatValue2 <= unmodifiedXMM6_Da && (FloatValue2 < unmodifiedXMM6_Da)))) {
         IsGeometryValid = false;
       }
       else {
         IsGeometryValid = true;
       }
       if ((!IsGeometryValid) ||
-         ((floatResult9 = (pfloatResult1[-2] - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult5 % ProcessingResult2) * 8))                     (localFloat20 - pfloatResult1[-3]) -
+         ((FloatValue2 = (pfloatResult1[-2] - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult5 % ProcessingResult2) * 8))                     (localFloat20 - pfloatResult1[-3]) -
                     (localFloat21 - pfloatResult1[-2])                     (pfloatResult1[-3] - *(float *)(componentIndex + (longlong)(uiOperationResult5 % ProcessingResult2) * 8)),
-          floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
+          FloatValue2 <= unmodifiedXMM6_Da && (FloatValue2 < unmodifiedXMM6_Da)))) {
         IsGeometryValid = false;
       }
       else {
@@ -10731,9 +10731,9 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       }
       allocatedMemory0 = (longlong)((uiOperationResult5 + 1) % ProcessingResult2);
       if ((!IsGeometryValid) ||
-         ((floatResult9 = (*pfloatResult1 - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-1]) -
+         ((FloatValue2 = (*pfloatResult1 - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-1]) -
                     (localFloat21 - *pfloatResult1) * (pfloatResult1[-1] - *(float *)(componentIndex + allocatedMemory0 * 8)),
-          floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
+          FloatValue2 <= unmodifiedXMM6_Da && (FloatValue2 < unmodifiedXMM6_Da)))) {
         IsGeometryValid = false;
       }
       else {
@@ -10741,9 +10741,9 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       }
       allocatedMemory0 = (longlong)((uiOperationResult5 + 2) % ProcessingResult2);
       if ((!IsGeometryValid) ||
-         ((floatResult9 = (pfloatResult1[2] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[1]) -
+         ((FloatValue2 = (pfloatResult1[2] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[1]) -
                     (localFloat21 - pfloatResult1[2]) * (pfloatResult1[1] - *(float *)(componentIndex + allocatedMemory0 * 8)),
-          floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
+          FloatValue2 <= unmodifiedXMM6_Da && (FloatValue2 < unmodifiedXMM6_Da)))) {
         IsGeometryValid = false;
       }
       else {
@@ -10759,10 +10759,10 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     do {
       uiOperationResult8 = uiOperationResult8 + 1;
       if ((!IsGeometryValid) ||
-         ((floatResult9 = *(float *)(componentIndex + 4 + allocatedMemory7 * 8), floatResult = *(float *)(componentIndex + allocatedMemory7 * 8),
-          floatResult9 = (floatResult9 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult8 % ProcessingResult2) * 8))                    (localFloat20 - floatResult) -
-                   (localFloat21 - floatResult9) * (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult8 % ProcessingResult2) * 8))
-          , floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
+         ((FloatValue2 = *(float *)(componentIndex + 4 + allocatedMemory7 * 8), floatResult = *(float *)(componentIndex + allocatedMemory7 * 8),
+          FloatValue2 = (FloatValue2 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult8 % ProcessingResult2) * 8))                    (localFloat20 - floatResult) -
+                   (localFloat21 - FloatValue2) * (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult8 % ProcessingResult2) * 8))
+          , FloatValue2 <= unmodifiedXMM6_Da && (FloatValue2 < unmodifiedXMM6_Da)))) {
         IsGeometryValid = false;
       }
       else {
@@ -10812,7 +10812,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   }
   localFloat21 = BasePointer[-7];
   localFloat20 = BasePointer[-6];
-  floatResult9 = BasePointer[-5];
+  FloatValue2 = BasePointer[-5];
   floatResult = BasePointer[-3];
   processedFloat = BasePointer[-2];
   secondaryValue = BasePointer[-1];
@@ -10823,7 +10823,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
                BasePointer[-4] * 0.0 + *BasePointer;
   unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + localFloat21 * unmodifiedXMM14_Da + floatResult * 0.0 + localFloat6;
   unmodifiedR13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + localFloat20 * unmodifiedXMM14_Da + processedFloat * 0.0 + resultFloat;
-  unmodifiedR13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + floatResult9 * unmodifiedXMM14_Da + secondaryValue * 0.0 + localFloat8;
+  unmodifiedR13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + FloatValue2 * unmodifiedXMM14_Da + secondaryValue * 0.0 + localFloat8;
   return 1;
 }
 
@@ -10862,14 +10862,14 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   longlong EventHandle;
   longlong unmodifiedR15;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   float in_XMM5_Da;
   float unmodifiedXMM6_Da;
   float unmodifiedXMM7_Da;
   float unmodifiedXMM8_Da;
   float unmodifiedXMM9_Da;
   float unmodifiedXMM10_Da;
-  float floatResult9;
+  float FloatValue2;
   float unmodifiedXMM12_Da;
   float unmodifiedXMM12_Db;
   float unmodifiedXMM12_Dc;
@@ -10906,8 +10906,8 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     BasePointer[-0x19] = 3.4028235e+38;
     BasePointer[-0x16] = 0.0;
     BasePointer[-0x15] = 3.4028235e+38;
-    floatResult8 = unmodifiedXMM10_Da;
-    floatResult9 = unmodifiedXMM10_Da;
+    FloatValue1 = unmodifiedXMM10_Da;
+    FloatValue2 = unmodifiedXMM10_Da;
     stackParam00000050 = EventHandle;
     do {
       uStack0000000000000060 = *(UIDword *)((unmodifiedR15 - allocatedMemory5) + -4 + (longlong)pfloatResult0);
@@ -10925,29 +10925,29 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       BasePointer[-0x1c] = pfloatResult0[-1];
       BasePointer[-0x18] = *(float *)(allocatedMemory5 + allocatedMemory4 * 8);
       unmodifiedXMM10_Da = floatResult7;
-      if (floatResult8 <= floatResult7) {
-        unmodifiedXMM10_Da = floatResult8;
+      if (FloatValue1 <= floatResult7) {
+        unmodifiedXMM10_Da = FloatValue1;
       }
-      if (floatResult7 < floatResult8) {
+      if (floatResult7 < FloatValue1) {
         result1 = *(UIHandle *)(BasePointer + -0x20);
       }
       ProcessUIMatrixTransformation(BasePointer + -0x18,BasePointer + -0x1c,&stack0x00000040,&stack0x00000030,
                     BasePointer + -0x14);
-      floatResult8 = (BasePointer[-0xb] - BasePointer[-0x13]) * (BasePointer[-0xb] - BasePointer[-0x13]) +
+      FloatValue1 = (BasePointer[-0xb] - BasePointer[-0x13]) * (BasePointer[-0xb] - BasePointer[-0x13]) +
                (BasePointer[-0xc] - BasePointer[-0x14]) * (BasePointer[-0xc] - BasePointer[-0x14]) +
                (BasePointer[-10] - BasePointer[-0x12]) * (BasePointer[-10] - BasePointer[-0x12]);
-      floatResult7 = floatResult8;
-      if (floatResult9 <= floatResult8) {
-        floatResult7 = floatResult9;
+      floatResult7 = FloatValue1;
+      if (FloatValue2 <= FloatValue1) {
+        floatResult7 = FloatValue2;
       }
-      if (floatResult8 < floatResult9) {
+      if (FloatValue1 < FloatValue2) {
         TargetHandle = *(UIHandle *)(BasePointer + -0x14);
       }
       uiOperationResult6 = uiOperationResult6 + 1;
       pfloatResult0 = pfloatResult0 + 2;
       stackParam00000050 = stackParam00000050 + -1;
-      floatResult8 = unmodifiedXMM10_Da;
-      floatResult9 = floatResult7;
+      FloatValue1 = unmodifiedXMM10_Da;
+      FloatValue2 = floatResult7;
     } while (stackParam00000050 != 0);
     unmodifiedR12 = *(longlong *)(BasePointer + 0x40);
     unmodifiedR13 = *(float **)(BasePointer + 0x46);
@@ -10972,18 +10972,18 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     do {
       CharacterDataOffset = (longlong)((ProcessingResult3 + -1) % unmodifiedEBX);
       if ((!isCharacterMatch) ||
-         ((floatResult8 = (pfloatResult0[-4] - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[-5])
+         ((FloatValue1 = (pfloatResult0[-4] - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[-5])
                     - (unmodifiedXMM7_Da - pfloatResult0[-4]) * (pfloatResult0[-5] - *(float *)(allocatedMemory4 + CharacterDataOffset * 8))
-          , floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+          , FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         isCharacterMatch = false;
       }
       else {
         isCharacterMatch = true;
       }
       if ((!isCharacterMatch) ||
-         ((floatResult8 = (pfloatResult0[-2] - *(float *)(allocatedMemory4 + 4 + (longlong)(ProcessingResult3 % unmodifiedEBX) * 8))                     (in_XMM5_Da - pfloatResult0[-3]) -
+         ((FloatValue1 = (pfloatResult0[-2] - *(float *)(allocatedMemory4 + 4 + (longlong)(ProcessingResult3 % unmodifiedEBX) * 8))                     (in_XMM5_Da - pfloatResult0[-3]) -
                     (unmodifiedXMM7_Da - pfloatResult0[-2])                     (pfloatResult0[-3] - *(float *)(allocatedMemory4 + (longlong)(ProcessingResult3 % unmodifiedEBX) * 8)),
-          floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+          FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         isCharacterMatch = false;
       }
       else {
@@ -10991,9 +10991,9 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       }
       CharacterDataOffset = (longlong)((ProcessingResult3 + 1) % unmodifiedEBX);
       if ((!isCharacterMatch) ||
-         ((floatResult8 = (*pfloatResult0 - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[-1]) -
+         ((FloatValue1 = (*pfloatResult0 - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[-1]) -
                     (unmodifiedXMM7_Da - *pfloatResult0) * (pfloatResult0[-1] - *(float *)(allocatedMemory4 + CharacterDataOffset * 8)),
-          floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+          FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         isCharacterMatch = false;
       }
       else {
@@ -11001,9 +11001,9 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       }
       CharacterDataOffset = (longlong)((ProcessingResult3 + 2) % unmodifiedEBX);
       if ((!isCharacterMatch) ||
-         ((floatResult8 = (pfloatResult0[2] - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[1]) -
+         ((FloatValue1 = (pfloatResult0[2] - *(float *)(allocatedMemory4 + 4 + CharacterDataOffset * 8)) * (in_XMM5_Da - pfloatResult0[1]) -
                     (unmodifiedXMM7_Da - pfloatResult0[2]) * (pfloatResult0[1] - *(float *)(allocatedMemory4 + CharacterDataOffset * 8)),
-          floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+          FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         isCharacterMatch = false;
       }
       else {
@@ -11019,10 +11019,10 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     do {
       uiOperationResult6 = uiOperationResult6 + 1;
       if ((!isCharacterMatch) ||
-         ((floatResult8 = *(float *)(allocatedMemory4 + 4 + allocatedMemory5 * 8), floatResult9 = *(float *)(allocatedMemory4 + allocatedMemory5 * 8),
-          floatResult8 = (floatResult8 - *(float *)(allocatedMemory4 + 4 + (longlong)(uiOperationResult6 % unmodifiedEBX) * 8))                    (in_XMM5_Da - floatResult9) -
-                   (unmodifiedXMM7_Da - floatResult8)                    (floatResult9 - *(float *)(allocatedMemory4 + (longlong)(uiOperationResult6 % unmodifiedEBX) * 8)),
-          floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+         ((FloatValue1 = *(float *)(allocatedMemory4 + 4 + allocatedMemory5 * 8), FloatValue2 = *(float *)(allocatedMemory4 + allocatedMemory5 * 8),
+          FloatValue1 = (FloatValue1 - *(float *)(allocatedMemory4 + 4 + (longlong)(uiOperationResult6 % unmodifiedEBX) * 8))                    (in_XMM5_Da - FloatValue2) -
+                   (unmodifiedXMM7_Da - FloatValue1)                    (FloatValue2 - *(float *)(allocatedMemory4 + (longlong)(uiOperationResult6 % unmodifiedEBX) * 8)),
+          FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         isCharacterMatch = false;
       }
       else {
@@ -11034,26 +11034,26 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   if (isCharacterMatch) {
     if (*(char *)(BasePointer + 0x48) == '\0') {
       if ((unmodifiedXMM6_Da < unmodifiedXMM9_Da * unmodifiedXMM8_Da) ||
-         ((floatResult8 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < floatResult8 && (floatResult8 < 1e-05)))) {
+         ((FloatValue1 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < FloatValue1 && (FloatValue1 < 1e-05)))) {
         result1 = CONCAT44(fStack0000000000000034,fStack0000000000000030);
         if (ABS(unmodifiedXMM8_Da) < ABS(unmodifiedXMM9_Da)) {
           result1 = CONCAT44(fStack0000000000000044,fStack0000000000000040);
         }
       }
       else if (unmodifiedXMM8_Da <= unmodifiedXMM9_Da) {
-        floatResult8 = unmodifiedXMM9_Da / (unmodifiedXMM9_Da - unmodifiedXMM8_Da);
+        FloatValue1 = unmodifiedXMM9_Da / (unmodifiedXMM9_Da - unmodifiedXMM8_Da);
         BasePointer[0x40] =
-             (fStack0000000000000040 - fStack0000000000000030) * floatResult8 + fStack0000000000000030;
+             (fStack0000000000000040 - fStack0000000000000030) * FloatValue1 + fStack0000000000000030;
         BasePointer[0x41] =
-             (fStack0000000000000044 - fStack0000000000000034) * floatResult8 + fStack0000000000000034;
+             (fStack0000000000000044 - fStack0000000000000034) * FloatValue1 + fStack0000000000000034;
         result1 = *(UIHandle *)(BasePointer + 0x40);
       }
       else {
         BasePointer[0x40] =
-             (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / floatResult8) +
+             (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / FloatValue1) +
              fStack0000000000000040;
         BasePointer[0x41] =
-             (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / floatResult8) +
+             (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / FloatValue1) +
              fStack0000000000000044;
         result1 = *(UIHandle *)(BasePointer + 0x40);
       }
@@ -11070,8 +11070,8 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   else if (unmodifiedXMM13_Da * unmodifiedXMM13_Da <= unmodifiedXMM10_Da) {
     return 0;
   }
-  floatResult8 = BasePointer[-7];
-  floatResult9 = BasePointer[-6];
+  FloatValue1 = BasePointer[-7];
+  FloatValue2 = BasePointer[-6];
   floatResult7 = BasePointer[-5];
   localFloat2 = BasePointer[-3];
   resultValue = BasePointer[-2];
@@ -11081,8 +11081,8 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   resultFloat = BasePointer[3];
   *unmodifiedR13 = unmodifiedXMM12_Da * unmodifiedXMM15_Da + BasePointer[-8] * unmodifiedXMM14_Da +
                BasePointer[-4] * 0.0 + *BasePointer;
-  unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + floatResult8 * unmodifiedXMM14_Da + localFloat2 * 0.0 + secondaryValue;
-  unmodifiedR13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + floatResult9 * unmodifiedXMM14_Da + resultValue * 0.0 + localFloat6;
+  unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + FloatValue1 * unmodifiedXMM14_Da + localFloat2 * 0.0 + secondaryValue;
+  unmodifiedR13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + FloatValue2 * unmodifiedXMM14_Da + resultValue * 0.0 + localFloat6;
   unmodifiedR13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + floatResult7 * unmodifiedXMM14_Da + processedFloat * 0.0 + resultFloat;
   return 1;
 }
@@ -11117,7 +11117,7 @@ UIHandle ProcessUIRenderingPipeline(void)
   longlong EventHandle;
   int unmodifiedR15D;
   int uiOperationResult7;
-  float floatResult8;
+  float FloatValue1;
   float in_XMM5_Da;
   float unmodifiedXMM6_Da;
   float unmodifiedXMM7_Da;
@@ -11145,18 +11145,18 @@ UIHandle ProcessUIRenderingPipeline(void)
   do {
     allocatedMemory2 = (longlong)((uiOperationResult5 + -1) % unmodifiedEBX);
     if ((register9B == '\0') ||
-       ((floatResult8 = (pfloatResult3[-4] - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[-5]) -
+       ((FloatValue1 = (pfloatResult3[-4] - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[-5]) -
                   (unmodifiedXMM7_Da - pfloatResult3[-4]) * (pfloatResult3[-5] - *(float *)(componentIndex + allocatedMemory2 * 8)),
-        floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+        FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
       isCharacterMatch0 = false;
     }
     else {
       isCharacterMatch0 = true;
     }
     if ((!isCharacterMatch0) ||
-       ((floatResult8 = (pfloatResult3[-2] - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult5 % unmodifiedEBX) * 8))                   (in_XMM5_Da - pfloatResult3[-3]) -
+       ((FloatValue1 = (pfloatResult3[-2] - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult5 % unmodifiedEBX) * 8))                   (in_XMM5_Da - pfloatResult3[-3]) -
                   (unmodifiedXMM7_Da - pfloatResult3[-2])                   (pfloatResult3[-3] - *(float *)(componentIndex + (longlong)(uiOperationResult5 % unmodifiedEBX) * 8)),
-        floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+        FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
       isCharacterMatch0 = false;
     }
     else {
@@ -11164,9 +11164,9 @@ UIHandle ProcessUIRenderingPipeline(void)
     }
     allocatedMemory2 = (longlong)((uiOperationResult5 + 1) % unmodifiedEBX);
     if ((!isCharacterMatch0) ||
-       ((floatResult8 = (*pfloatResult3 - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[-1]) -
+       ((FloatValue1 = (*pfloatResult3 - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[-1]) -
                   (unmodifiedXMM7_Da - *pfloatResult3) * (pfloatResult3[-1] - *(float *)(componentIndex + allocatedMemory2 * 8)),
-        floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+        FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
       isCharacterMatch0 = false;
     }
     else {
@@ -11174,9 +11174,9 @@ UIHandle ProcessUIRenderingPipeline(void)
     }
     allocatedMemory2 = (longlong)((uiOperationResult5 + 2) % unmodifiedEBX);
     if ((!isCharacterMatch0) ||
-       ((floatResult8 = (pfloatResult3[2] - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[1]) -
+       ((FloatValue1 = (pfloatResult3[2] - *(float *)(componentIndex + 4 + allocatedMemory2 * 8)) * (in_XMM5_Da - pfloatResult3[1]) -
                   (unmodifiedXMM7_Da - pfloatResult3[2]) * (pfloatResult3[1] - *(float *)(componentIndex + allocatedMemory2 * 8)),
-        floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+        FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
       register9B = '\0';
     }
     else {
@@ -11191,10 +11191,10 @@ UIHandle ProcessUIRenderingPipeline(void)
     do {
       uiOperationResult7 = uiOperationResult7 + 1;
       if ((register9B == '\0') ||
-         ((floatResult8 = *(float *)(componentIndex + 4 + allocatedMemory6 * 8), floatResult = *(float *)(componentIndex + allocatedMemory6 * 8),
-          floatResult8 = (floatResult8 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult7 % unmodifiedEBX) * 8))                    (in_XMM5_Da - floatResult) -
-                   (unmodifiedXMM7_Da - floatResult8)                    (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult7 % unmodifiedEBX) * 8)),
-          floatResult8 <= unmodifiedXMM6_Da && (floatResult8 < unmodifiedXMM6_Da)))) {
+         ((FloatValue1 = *(float *)(componentIndex + 4 + allocatedMemory6 * 8), floatResult = *(float *)(componentIndex + allocatedMemory6 * 8),
+          FloatValue1 = (FloatValue1 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult7 % unmodifiedEBX) * 8))                    (in_XMM5_Da - floatResult) -
+                   (unmodifiedXMM7_Da - FloatValue1)                    (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult7 % unmodifiedEBX) * 8)),
+          FloatValue1 <= unmodifiedXMM6_Da && (FloatValue1 < unmodifiedXMM6_Da)))) {
         register9B = '\0';
       }
       else {
@@ -11209,34 +11209,34 @@ UIHandle ProcessUIRenderingPipeline(void)
     }
   }
   else if (*(char *)(BasePointer + 0x48) == '\0') {
-    floatResult8 = unmodifiedXMM9_Da * unmodifiedXMM8_Da;
-    if ((unmodifiedXMM6_Da < floatResult8) ||
-       ((floatResult8 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < floatResult8 && (floatResult8 < 1e-05)))) {
+    FloatValue1 = unmodifiedXMM9_Da * unmodifiedXMM8_Da;
+    if ((unmodifiedXMM6_Da < FloatValue1) ||
+       ((FloatValue1 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < FloatValue1 && (FloatValue1 < 1e-05)))) {
       if (ABS(unmodifiedXMM8_Da) < ABS(unmodifiedXMM9_Da)) {
         _fStack0000000000000030 = _fStack0000000000000040;
       }
     }
     else if (unmodifiedXMM8_Da <= unmodifiedXMM9_Da) {
-      floatResult8 = unmodifiedXMM9_Da - unmodifiedXMM8_Da;
+      FloatValue1 = unmodifiedXMM9_Da - unmodifiedXMM8_Da;
       BasePointer[0x40] =
-           (fStack0000000000000040 - fStack0000000000000030) * (unmodifiedXMM9_Da / floatResult8) +
+           (fStack0000000000000040 - fStack0000000000000030) * (unmodifiedXMM9_Da / FloatValue1) +
            fStack0000000000000030;
       BasePointer[0x41] =
-           (fStack0000000000000044 - fStack0000000000000034) * (unmodifiedXMM9_Da / floatResult8) +
+           (fStack0000000000000044 - fStack0000000000000034) * (unmodifiedXMM9_Da / FloatValue1) +
            fStack0000000000000034;
       _fStack0000000000000030 = *(UIHandle *)(BasePointer + 0x40);
     }
     else {
       BasePointer[0x40] =
-           (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / floatResult8) +
+           (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / FloatValue1) +
            fStack0000000000000040;
       BasePointer[0x41] =
-           (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / floatResult8) +
+           (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / FloatValue1) +
            fStack0000000000000044;
       _fStack0000000000000030 = *(UIHandle *)(BasePointer + 0x40);
     }
     *(UIHandle *)(BasePointer + 0x40) = _fStack0000000000000030;
-    localChar11 = CalculateUIComponentBounds(floatResult8,BasePointer + 0x40);
+    localChar11 = CalculateUIComponentBounds(FloatValue1,BasePointer + 0x40);
     if (localChar11 == '\0') {
       _fStack0000000000000030 = TargetHandle;
     }
@@ -11244,7 +11244,7 @@ UIHandle ProcessUIRenderingPipeline(void)
     unmodifiedXMM14_Da = BasePointer[0x40];
     unmodifiedXMM15_Da = BasePointer[0x41];
   }
-  floatResult8 = BasePointer[-7];
+  FloatValue1 = BasePointer[-7];
   floatResult = BasePointer[-6];
   resultValue = BasePointer[-5];
   processedFloat = BasePointer[-3];
@@ -11255,7 +11255,7 @@ UIHandle ProcessUIRenderingPipeline(void)
   localFloat9 = BasePointer[3];
   *unmodifiedR13 = unmodifiedXMM12_Da * unmodifiedXMM15_Da + BasePointer[-8] * unmodifiedXMM14_Da +
                BasePointer[-4] * 0.0 + *BasePointer;
-  unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + floatResult8 * unmodifiedXMM14_Da + processedFloat * 0.0 + resultFloat;
+  unmodifiedR13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + FloatValue1 * unmodifiedXMM14_Da + processedFloat * 0.0 + resultFloat;
   unmodifiedR13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + floatResult * unmodifiedXMM14_Da + secondaryValue * 0.0 + localFloat8;
   unmodifiedR13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + resultValue * unmodifiedXMM14_Da + localFloat6 * 0.0 + localFloat9;
   return 1;
@@ -11830,7 +11830,7 @@ LAB_180659b1a:
       floatResult5 = floatResult5 + floatResult6 * localFloat20;
     } while (uiElementIndex < (int)localFloat25);
   }
-  if (floatResult9 < 1.0) {
+  if (FloatValue2 < 1.0) {
     if (uiContext[0x1854] <= 1.0 && uiContext[0x1854] != 1.0) {
       localFloat25 = floatResult5 * vectorComponentX + uiContext[0xe];
       uiContext[0xe] = localFloat25;
@@ -11913,15 +11913,15 @@ LAB_180659b1a:
   localFloat23 = ABS(floatResult6);
   localFloat20 = vectorComponentX;
   if (0.001 <= localFloat23) {
-    floatResult8 = fStack_144;
+    FloatValue1 = fStack_144;
     if (floatResult6 < 0.0) {
-      floatResult8 = -fStack_144;
+      FloatValue1 = -fStack_144;
     }
     floatResult6 = 0.1;
     if ((0.1 <= localFloat23) && (floatResult6 = localFloat23, 0.5 <= localFloat23)) {
       floatResult6 = 0.5;
     }
-    floatResult6 = floatResult8 * floatResult6 * 12.0;
+    floatResult6 = FloatValue1 * floatResult6 * 12.0;
     if (ABS(floatResult6) <= localFloat23) {
       localFloat20 = uiContext[0x15] + floatResult6;
     }
@@ -12001,8 +12001,8 @@ LAB_18065a17c:
 LAB_18065a2e9:
   floatResult3 = uiContext[0x14];
   localFloat24 = 0.0;
-  fStack_124 = (1.0 - floatResult3) * (1.0 - floatResult9);
-  fStack_ec = (1.0 - floatResult9) * floatResult3;
+  fStack_124 = (1.0 - floatResult3) * (1.0 - FloatValue2);
+  fStack_ec = (1.0 - FloatValue2) * floatResult3;
   fStack_128 = (1.0 - localFloat25) * fStack_124;
   fStack_10c = (1.0 - vectorComponentX) * localFloat25 * fStack_124;
   fStack_108 = (1.0 - vectorComponentX) * fStack_128;
@@ -12027,16 +12027,16 @@ LAB_18065a2e9:
     localFloat25 = 2.0;
   }
   floatResult3 = uiContext[0x184a];
-  if (floatResult9 <= floatResult3) {
+  if (FloatValue2 <= floatResult3) {
     floatResult3 = floatResult3 - localFloat25 * fStack_144;
-    if (floatResult3 <= floatResult9) {
-      floatResult3 = floatResult9;
+    if (floatResult3 <= FloatValue2) {
+      floatResult3 = FloatValue2;
     }
   }
   else {
     floatResult3 = floatResult3 + localFloat25 * fStack_144;
-    if (floatResult9 <= floatResult3) {
-      floatResult3 = floatResult9;
+    if (FloatValue2 <= floatResult3) {
+      floatResult3 = FloatValue2;
     }
   }
   uiContext[0x184a] = floatResult3;
@@ -12262,7 +12262,7 @@ LAB_18065a765:
       }
                      WARNING: Subroutine does not return
       stackUInt180 = 0x18065aa9f;
-      fStack_110 = floatResult9;
+      fStack_110 = FloatValue2;
       fStack_fc = fStack_11c;
       fStack_f4 = fStack_124;
       fStack_f0 = fStack_124;
@@ -12309,8 +12309,8 @@ LAB_18065a765:
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   UIByte asemaphoreHandle2 [16];
@@ -12558,11 +12558,11 @@ LAB_180659b1a:
       (floatResult7 = unmodifiedXMM8_Da, unmodifiedXMM6_Da < EventHandle[0x14])))) {
     floatResult7 = unmodifiedXMM6_Da;
   }
-  floatResult8 = fStack0000000000000034 + fStack0000000000000034;
+  FloatValue1 = fStack0000000000000034 + fStack0000000000000034;
   floatResult5 = *EventHandle - EventHandle[1];
   floatResult2 = floatResult5;
-  if ((floatResult8 < ABS(floatResult5)) && (floatResult2 = floatResult8, floatResult5 < unmodifiedXMM6_Da)) {
-    floatResult2 = -floatResult8;
+  if ((FloatValue1 < ABS(floatResult5)) && (floatResult2 = FloatValue1, floatResult5 < unmodifiedXMM6_Da)) {
+    floatResult2 = -FloatValue1;
   }
   EventHandle[1] = EventHandle[1] + floatResult2;
   stackUInt8 = 0x180659d72;
@@ -12571,9 +12571,9 @@ LAB_180659b1a:
   if (floatResult5 <= 0.75) {
     floatResult5 = 0.75;
   }
-  floatResult8 = floatResult5 - EventHandle[0x16];
-  if (0.001 <= ABS(floatResult8)) {
-    floatResult5 = floatResult8 * fStack0000000000000034 + EventHandle[0x16];
+  FloatValue1 = floatResult5 - EventHandle[0x16];
+  if (0.001 <= ABS(FloatValue1)) {
+    floatResult5 = FloatValue1 * fStack0000000000000034 + EventHandle[0x16];
   }
   EventHandle[0x16] = floatResult5;
   if ((unmodifiedXMM9_Da <= unmodifiedXMM6_Da) || (EventHandle[0x1854] <= unmodifiedXMM6_Da)) {
@@ -12586,9 +12586,9 @@ LAB_180659b1a:
       result0 = (ulonglong)(uint)EventHandle[0x18];
       do {
         plocalFloat8 = psecondaryValue + 0x495;
-        floatResult8 = *psecondaryValue;
+        FloatValue1 = *psecondaryValue;
         psecondaryValue = psecondaryValue + 0x4d6;
-        floatResult5 = floatResult5 + *(float *)(**(longlong **)plocalFloat8 + 0x188) * floatResult8;
+        floatResult5 = floatResult5 + *(float *)(**(longlong **)plocalFloat8 + 0x188) * FloatValue1;
         result0 = result0 - 1;
       } while (result0 != 0);
     }
@@ -12596,10 +12596,10 @@ LAB_180659b1a:
     floatResult5 = (float)fmodf(fStack0000000000000034 / floatResult5 + EventHandle[0xf]);
     EventHandle[0xf] = floatResult5;
   }
-  floatResult8 = EventHandle[0x18];
+  FloatValue1 = EventHandle[0x18];
   uiCompareResult = 0;
   localFloat25 = unmodifiedXMM6_Da;
-  if (0 < (int)floatResult8) {
+  if (0 < (int)FloatValue1) {
     psecondaryValue = EventHandle + 0x1b;
     do {
       stackUInt8 = 0x180659e3d;
@@ -12608,7 +12608,7 @@ LAB_180659b1a:
       uiCompareResult = uiCompareResult + 1;
       psecondaryValue = psecondaryValue + 0x4d6;
       localFloat25 = localFloat25 + floatResult5;
-    } while (uiCompareResult < (int)floatResult8);
+    } while (uiCompareResult < (int)FloatValue1);
     localChar11 = *(char *)(BasePointer + 0xa0);
   }
   if (floatResult7 < unmodifiedXMM8_Da) {
@@ -12619,7 +12619,7 @@ LAB_180659b1a:
         EventHandle[0xe] = floatResult2 - unmodifiedXMM8_Da;
       }
     }
-    else if ((int)floatResult8 < 1) {
+    else if ((int)FloatValue1 < 1) {
       EventHandle[0xe] = unmodifiedXMM6_Da;
     }
     else {
@@ -12627,7 +12627,7 @@ LAB_180659b1a:
       if (*(char *)(EventHandle + 0x17) != '\0') {
         floatResult2 = -1.0;
       }
-      ContextHandleData = *(longlong *)(EventHandle + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
+      ContextHandleData = *(longlong *)(EventHandle + (longlong)(int)FloatValue1 * 0x4d6 + -0x26);
       stackUInt8 = 0x180659ea7;
       ContextHandleData = GetUIComponentHandle(*(UIHandle *)(ContextHandleData + 8));
       localLong7 = 0x14;
@@ -12644,14 +12644,14 @@ LAB_180659b1a:
            fStack0000000000000038 * fStack0000000000000038;
   floatResult5 = (float)(floatResult5 <= 1.1754944e-38) * 1.1754944e-38 + floatResult5;
   asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult5),ZEXT416((uint)floatResult5));
-  floatResult8 = asemaphoreHandle2._0_4_;
+  FloatValue1 = asemaphoreHandle2._0_4_;
   floatResult2 = unmodifiedXMM8_Da;
-  if (fStack000000000000003c * floatResult8 * 0.5 * (3.0 - floatResult5 * floatResult8 * floatResult8) < -0.2) {
+  if (fStack000000000000003c * FloatValue1 * 0.5 * (3.0 - floatResult5 * FloatValue1 * FloatValue1) < -0.2) {
     floatResult2 = unmodifiedXMM6_Da;
   }
   EventHandle[0x13] = floatResult2;
   floatResult5 = fStack0000000000000048;
-  floatResult8 = fStack000000000000004c;
+  FloatValue1 = fStack000000000000004c;
   if ((fStack0000000000000038 != unmodifiedXMM6_Da) || (fStack000000000000003c != unmodifiedXMM6_Da)) {
     if (unmodifiedXMM6_Da <= fStack0000000000000048 * fStack0000000000000038) {
       if (ABS(fStack0000000000000048) < ABS(fStack0000000000000038)) {
@@ -12663,28 +12663,28 @@ LAB_180659b1a:
     }
     if (unmodifiedXMM6_Da <= fStack000000000000003c * fStack000000000000004c) {
       if (ABS(fStack000000000000004c) < ABS(fStack000000000000003c)) {
-        floatResult8 = fStack000000000000003c;
+        FloatValue1 = fStack000000000000003c;
       }
     }
     else {
-      floatResult8 = fStack000000000000004c + fStack000000000000003c;
+      FloatValue1 = fStack000000000000004c + fStack000000000000003c;
     }
   }
   stackUInt8 = 0x18065a04d;
-  floatResult5 = (float)atan2f(-floatResult5,floatResult8);
+  floatResult5 = (float)atan2f(-floatResult5,FloatValue1);
   floatResult5 = ABS(floatResult5);
   if (1.5707964 < floatResult5) {
     floatResult5 = 3.1415927 - floatResult5;
   }
   floatResult5 = floatResult5 * 0.63661975;
   floatResult6 = (unmodifiedXMM8_Da - *(float *)(BasePointer + 0xc0)) * 0.3;
-  floatResult8 = unmodifiedXMM6_Da;
-  if ((floatResult6 + 0.05 <= floatResult5) && (floatResult8 = floatResult5, 0.95 - floatResult6 < floatResult5)) {
-    floatResult8 = unmodifiedXMM8_Da;
+  FloatValue1 = unmodifiedXMM6_Da;
+  if ((floatResult6 + 0.05 <= floatResult5) && (FloatValue1 = floatResult5, 0.95 - floatResult6 < floatResult5)) {
+    FloatValue1 = unmodifiedXMM8_Da;
   }
-  floatResult6 = floatResult8 - EventHandle[0x15];
+  floatResult6 = FloatValue1 - EventHandle[0x15];
   localFloat23 = ABS(floatResult6);
-  floatResult5 = floatResult8;
+  floatResult5 = FloatValue1;
   if (0.001 <= localFloat23) {
     floatResult3 = fStack0000000000000034;
     if (floatResult6 < unmodifiedXMM6_Da) {
@@ -12775,10 +12775,10 @@ LAB_18065a2e9:
   floatResult5 = EventHandle[0x14];
   fStack0000000000000054 = (unmodifiedXMM8_Da - floatResult5) * (unmodifiedXMM8_Da - floatResult7);
   floatResult6 = (unmodifiedXMM8_Da - floatResult2) * fStack0000000000000054;
-  fStack000000000000006c = (unmodifiedXMM8_Da - floatResult8) * floatResult2 * fStack0000000000000054;
-  localFloat25 = floatResult2 * fStack0000000000000054 * floatResult8;
-  localFloat23 = floatResult6 * floatResult8;
-  fStack0000000000000054 = fStack0000000000000054 * floatResult8;
+  fStack000000000000006c = (unmodifiedXMM8_Da - FloatValue1) * floatResult2 * fStack0000000000000054;
+  localFloat25 = floatResult2 * fStack0000000000000054 * FloatValue1;
+  localFloat23 = floatResult6 * FloatValue1;
+  fStack0000000000000054 = fStack0000000000000054 * FloatValue1;
   fStack0000000000000074 = localFloat25 * fStack0000000000000040;
   *(float *)(BasePointer + -0x7c) = fStack0000000000000054;
   *(float *)(BasePointer + -0x78) = fStack0000000000000054;
@@ -12836,23 +12836,23 @@ LAB_18065a2e9:
   do {
     floatResult3 = *(float *)(((longlong)afStack_60e8 - (longlong)EventHandle) + (longlong)psecondaryValue);
     vectorComponentX = floatResult3 - psecondaryValue[-10];
-    floatResult9 = ABS(vectorComponentX);
-    if (0.001 <= floatResult9) {
+    FloatValue2 = ABS(vectorComponentX);
+    if (0.001 <= FloatValue2) {
       localFloat20 = unmodifiedXMM8_Da;
       if (vectorComponentX < unmodifiedXMM6_Da) {
         localFloat20 = -1.0;
       }
-      if (0.05 <= floatResult9) {
-        if (0.5 <= floatResult9) {
-          floatResult9 = 0.5;
+      if (0.05 <= FloatValue2) {
+        if (0.5 <= FloatValue2) {
+          FloatValue2 = 0.5;
         }
       }
       else {
-        floatResult9 = 0.05;
+        FloatValue2 = 0.05;
       }
-      floatResult9 = floatResult9 * localFloat20 * fStack0000000000000034 * 6.0;
-      if (floatResult9 * localFloat20 <= localFloat20 * vectorComponentX) {
-        floatResult3 = psecondaryValue[-10] + floatResult9;
+      FloatValue2 = FloatValue2 * localFloat20 * fStack0000000000000034 * 6.0;
+      if (FloatValue2 * localFloat20 <= localFloat20 * vectorComponentX) {
+        floatResult3 = psecondaryValue[-10] + FloatValue2;
       }
     }
     psecondaryValue[-10] = floatResult3;
@@ -12879,11 +12879,11 @@ LAB_18065a5b3:
     }
 LAB_18065a5d3:
     vectorComponentX = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    floatResult9 = vectorComponentX - psecondaryValue[-9];
-    localFloat20 = ABS(floatResult9);
+    FloatValue2 = vectorComponentX - psecondaryValue[-9];
+    localFloat20 = ABS(FloatValue2);
     if (0.001 <= localFloat20) {
       localFloat21 = unmodifiedXMM8_Da;
-      if (floatResult9 < unmodifiedXMM6_Da) {
+      if (FloatValue2 < unmodifiedXMM6_Da) {
         localFloat21 = -1.0;
       }
       if (0.05 <= localFloat20) {
@@ -12895,7 +12895,7 @@ LAB_18065a5d3:
         localFloat20 = 0.05;
       }
       localFloat20 = localFloat20 * localFloat21 * fStack0000000000000034 * 6.0;
-      if (localFloat20 * localFloat21 <= localFloat21 * floatResult9) {
+      if (localFloat20 * localFloat21 <= localFloat21 * FloatValue2) {
         vectorComponentX = psecondaryValue[-9] + localFloat20;
       }
     }
@@ -12904,14 +12904,14 @@ LAB_18065a5d3:
     psecondaryValue[1] = vectorComponentX;
     if (2 < localInt9) {
       if (localInt9 < 7) {
-        floatResult9 = unmodifiedXMM8_Da - floatResult5;
+        FloatValue2 = unmodifiedXMM8_Da - floatResult5;
       }
       else {
-        floatResult9 = unmodifiedXMM6_Da;
+        FloatValue2 = unmodifiedXMM6_Da;
         if (localInt9 == 7) {
           if (*(char *)((longlong)EventHandle + 0x5d) == '\0') {
 LAB_18065a67b:
-            floatResult9 = floatResult5;
+            FloatValue2 = floatResult5;
           }
         }
         else {
@@ -12919,12 +12919,12 @@ LAB_18065a67b:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a67b;
         }
       }
-      vectorComponentX = floatResult9 * vectorComponentX;
+      vectorComponentX = FloatValue2 * vectorComponentX;
       psecondaryValue[1] = vectorComponentX;
     }
 LAB_18065a69c:
-    floatResult9 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    localFloat20 = floatResult9 - psecondaryValue[-8];
+    FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
+    localFloat20 = FloatValue2 - psecondaryValue[-8];
     localFloat21 = ABS(localFloat20);
     if (0.001 <= localFloat21) {
       localFloat24 = unmodifiedXMM8_Da;
@@ -12941,12 +12941,12 @@ LAB_18065a69c:
       }
       localFloat21 = localFloat21 * localFloat24 * fStack0000000000000034 * 6.0;
       if (localFloat21 * localFloat24 <= localFloat24 * localFloat20) {
-        floatResult9 = psecondaryValue[-8] + localFloat21;
+        FloatValue2 = psecondaryValue[-8] + localFloat21;
       }
     }
     localInt9 = uiCompareResult + 2;
-    psecondaryValue[-8] = floatResult9;
-    psecondaryValue[2] = floatResult9;
+    psecondaryValue[-8] = FloatValue2;
+    psecondaryValue[2] = FloatValue2;
     if (2 < localInt9) {
       if (localInt9 < 7) {
         localFloat20 = unmodifiedXMM8_Da - floatResult5;
@@ -12964,12 +12964,12 @@ LAB_18065a744:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a744;
         }
       }
-      floatResult9 = localFloat20 * floatResult9;
-      psecondaryValue[2] = floatResult9;
+      FloatValue2 = localFloat20 * FloatValue2;
+      psecondaryValue[2] = FloatValue2;
     }
 LAB_18065a765:
     uiCompareResult = uiCompareResult + 3;
-    floatResult7 = floatResult7 + floatResult3 + vectorComponentX + floatResult9;
+    floatResult7 = floatResult7 + floatResult3 + vectorComponentX + FloatValue2;
     psecondaryValue = psecondaryValue + 3;
     if (9 < uiCompareResult) {
       floatResult5 = EventHandle[0x1854];
@@ -12991,37 +12991,37 @@ LAB_18065a765:
           EventHandle[0x185d] = floatResult5 * EventHandle[0x185d];
         }
       }
-      floatResult5 = fStack000000000000006c - (unmodifiedXMM8_Da - floatResult8) * floatResult6;
-      floatResult8 = ((((localFloat23 + localFloat25) * fStack0000000000000040 + fStack0000000000000054) -
+      floatResult5 = fStack000000000000006c - (unmodifiedXMM8_Da - FloatValue1) * floatResult6;
+      FloatValue1 = ((((localFloat23 + localFloat25) * fStack0000000000000040 + fStack0000000000000054) -
                 fStack000000000000005c) - floatResult2) - fStack0000000000000054;
-      floatResult7 = floatResult5 * floatResult5 + floatResult8 * floatResult8;
+      floatResult7 = floatResult5 * floatResult5 + FloatValue1 * FloatValue1;
       floatResult7 = (float)(floatResult7 <= 1.1754944e-38) * 1.1754944e-38 + floatResult7;
       asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult7),ZEXT416((uint)floatResult7));
       floatResult2 = asemaphoreHandle2._0_4_;
       floatResult7 = floatResult2 * 0.5 * (3.0 - floatResult7 * floatResult2 * floatResult2);
       floatResult5 = floatResult7 * floatResult5;
-      floatResult7 = floatResult7 * floatResult8;
+      floatResult7 = floatResult7 * FloatValue1;
       _fStack0000000000000038 = CONCAT44(floatResult5,floatResult7);
       if (ABS(floatResult7 * EventHandle[0x185e] + floatResult5 * EventHandle[0x185f]) <= 0.999) {
-        floatResult8 = EventHandle[0x1855] - EventHandle[0x1856];
+        FloatValue1 = EventHandle[0x1855] - EventHandle[0x1856];
         localFloat25 = (((EventHandle[0x1858] + EventHandle[0x1857] + EventHandle[0x185b]) - EventHandle[0x1859])
                  - EventHandle[0x185a]) - EventHandle[0x185c];
-        floatResult7 = floatResult8 * floatResult8 + localFloat25 * localFloat25;
+        floatResult7 = FloatValue1 * FloatValue1 + localFloat25 * localFloat25;
         floatResult7 = (float)(floatResult7 <= 1.1754944e-38) * 1.1754944e-38 + floatResult7;
         asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult7),ZEXT416((uint)floatResult7));
         floatResult2 = asemaphoreHandle2._0_4_;
         floatResult5 = fStack0000000000000034 * 8.0;
         floatResult7 = floatResult2 * 0.5 * (3.0 - floatResult7 * floatResult2 * floatResult2);
         _fStack0000000000000038 =
-             CONCAT44(floatResult7 * floatResult8 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185f],
+             CONCAT44(floatResult7 * FloatValue1 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185f],
                       floatResult7 * localFloat25 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185e]);
         *(UIHandle *)(EventHandle + 0x185e) = _fStack0000000000000038;
         floatResult7 = EventHandle[0x185f];
         floatResult2 = EventHandle[0x185e];
         floatResult5 = floatResult2 * floatResult2 + floatResult7 * floatResult7;
         asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult5),ZEXT416((uint)floatResult5));
-        floatResult8 = asemaphoreHandle2._0_4_;
-        floatResult5 = floatResult8 * 0.5 * (3.0 - floatResult5 * floatResult8 * floatResult8);
+        FloatValue1 = asemaphoreHandle2._0_4_;
+        floatResult5 = FloatValue1 * 0.5 * (3.0 - floatResult5 * FloatValue1 * FloatValue1);
         EventHandle[0x185f] = floatResult5 * floatResult7;
         EventHandle[0x185e] = floatResult5 * floatResult2;
       }
@@ -13074,8 +13074,8 @@ LAB_18065a765:
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   UIByte asemaphoreHandle2 [16];
@@ -13322,11 +13322,11 @@ LAB_180659b1a:
       (floatResult7 = unmodifiedXMM8_Da, unmodifiedXMM6_Da < EventHandle[0x14])))) {
     floatResult7 = unmodifiedXMM6_Da;
   }
-  floatResult8 = fStack0000000000000034 + fStack0000000000000034;
+  FloatValue1 = fStack0000000000000034 + fStack0000000000000034;
   floatResult5 = *EventHandle - EventHandle[1];
   floatResult2 = floatResult5;
-  if ((floatResult8 < ABS(floatResult5)) && (floatResult2 = floatResult8, floatResult5 < unmodifiedXMM6_Da)) {
-    floatResult2 = -floatResult8;
+  if ((FloatValue1 < ABS(floatResult5)) && (floatResult2 = FloatValue1, floatResult5 < unmodifiedXMM6_Da)) {
+    floatResult2 = -FloatValue1;
   }
   EventHandle[1] = EventHandle[1] + floatResult2;
   stackUInt8 = 0x180659d72;
@@ -13335,9 +13335,9 @@ LAB_180659b1a:
   if (floatResult5 <= 0.75) {
     floatResult5 = 0.75;
   }
-  floatResult8 = floatResult5 - EventHandle[0x16];
-  if (0.001 <= ABS(floatResult8)) {
-    floatResult5 = floatResult8 * fStack0000000000000034 + EventHandle[0x16];
+  FloatValue1 = floatResult5 - EventHandle[0x16];
+  if (0.001 <= ABS(FloatValue1)) {
+    floatResult5 = FloatValue1 * fStack0000000000000034 + EventHandle[0x16];
   }
   EventHandle[0x16] = floatResult5;
   if ((unmodifiedXMM9_Da <= unmodifiedXMM6_Da) || (EventHandle[0x1854] <= unmodifiedXMM6_Da)) {
@@ -13350,9 +13350,9 @@ LAB_180659b1a:
       result0 = (ulonglong)(uint)EventHandle[0x18];
       do {
         plocalFloat8 = psecondaryValue + 0x495;
-        floatResult8 = *psecondaryValue;
+        FloatValue1 = *psecondaryValue;
         psecondaryValue = psecondaryValue + 0x4d6;
-        floatResult5 = floatResult5 + *(float *)(**(longlong **)plocalFloat8 + 0x188) * floatResult8;
+        floatResult5 = floatResult5 + *(float *)(**(longlong **)plocalFloat8 + 0x188) * FloatValue1;
         result0 = result0 - 1;
       } while (result0 != 0);
     }
@@ -13360,10 +13360,10 @@ LAB_180659b1a:
     floatResult5 = (float)fmodf(fStack0000000000000034 / floatResult5 + EventHandle[0xf]);
     EventHandle[0xf] = floatResult5;
   }
-  floatResult8 = EventHandle[0x18];
+  FloatValue1 = EventHandle[0x18];
   uiCompareResult = 0;
   localFloat25 = unmodifiedXMM6_Da;
-  if (0 < (int)floatResult8) {
+  if (0 < (int)FloatValue1) {
     psecondaryValue = EventHandle + 0x1b;
     do {
       stackUInt8 = 0x180659e3d;
@@ -13372,7 +13372,7 @@ LAB_180659b1a:
       uiCompareResult = uiCompareResult + 1;
       psecondaryValue = psecondaryValue + 0x4d6;
       localFloat25 = localFloat25 + floatResult5;
-    } while (uiCompareResult < (int)floatResult8);
+    } while (uiCompareResult < (int)FloatValue1);
     localChar11 = *(char *)(BasePointer + 0xa0);
   }
   if (floatResult7 < unmodifiedXMM8_Da) {
@@ -13383,7 +13383,7 @@ LAB_180659b1a:
         EventHandle[0xe] = floatResult2 - unmodifiedXMM8_Da;
       }
     }
-    else if ((int)floatResult8 < 1) {
+    else if ((int)FloatValue1 < 1) {
       EventHandle[0xe] = unmodifiedXMM6_Da;
     }
     else {
@@ -13391,7 +13391,7 @@ LAB_180659b1a:
       if (*(char *)(EventHandle + 0x17) != '\0') {
         floatResult2 = -1.0;
       }
-      ContextHandleData = *(longlong *)(EventHandle + (longlong)(int)floatResult8 * 0x4d6 + -0x26);
+      ContextHandleData = *(longlong *)(EventHandle + (longlong)(int)FloatValue1 * 0x4d6 + -0x26);
       stackUInt8 = 0x180659ea7;
       ContextHandleData = GetUIComponentHandle(*(UIHandle *)(ContextHandleData + 8));
       localLong7 = 0x14;
@@ -13408,14 +13408,14 @@ LAB_180659b1a:
            fStack0000000000000038 * fStack0000000000000038;
   floatResult5 = (float)(floatResult5 <= 1.1754944e-38) * 1.1754944e-38 + floatResult5;
   asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult5),ZEXT416((uint)floatResult5));
-  floatResult8 = asemaphoreHandle2._0_4_;
+  FloatValue1 = asemaphoreHandle2._0_4_;
   floatResult2 = unmodifiedXMM8_Da;
-  if (fStack000000000000003c * floatResult8 * 0.5 * (3.0 - floatResult5 * floatResult8 * floatResult8) < -0.2) {
+  if (fStack000000000000003c * FloatValue1 * 0.5 * (3.0 - floatResult5 * FloatValue1 * FloatValue1) < -0.2) {
     floatResult2 = unmodifiedXMM6_Da;
   }
   EventHandle[0x13] = floatResult2;
   floatResult5 = fStack0000000000000048;
-  floatResult8 = fStack000000000000004c;
+  FloatValue1 = fStack000000000000004c;
   if ((fStack0000000000000038 != unmodifiedXMM6_Da) || (fStack000000000000003c != unmodifiedXMM6_Da)) {
     if (unmodifiedXMM6_Da <= fStack0000000000000048 * fStack0000000000000038) {
       if (ABS(fStack0000000000000048) < ABS(fStack0000000000000038)) {
@@ -13427,28 +13427,28 @@ LAB_180659b1a:
     }
     if (unmodifiedXMM6_Da <= fStack000000000000003c * fStack000000000000004c) {
       if (ABS(fStack000000000000004c) < ABS(fStack000000000000003c)) {
-        floatResult8 = fStack000000000000003c;
+        FloatValue1 = fStack000000000000003c;
       }
     }
     else {
-      floatResult8 = fStack000000000000004c + fStack000000000000003c;
+      FloatValue1 = fStack000000000000004c + fStack000000000000003c;
     }
   }
   stackUInt8 = 0x18065a04d;
-  floatResult5 = (float)atan2f(-floatResult5,floatResult8);
+  floatResult5 = (float)atan2f(-floatResult5,FloatValue1);
   floatResult5 = ABS(floatResult5);
   if (1.5707964 < floatResult5) {
     floatResult5 = 3.1415927 - floatResult5;
   }
   floatResult5 = floatResult5 * 0.63661975;
   floatResult6 = (unmodifiedXMM8_Da - *(float *)(BasePointer + 0xc0)) * 0.3;
-  floatResult8 = unmodifiedXMM6_Da;
-  if ((floatResult6 + 0.05 <= floatResult5) && (floatResult8 = floatResult5, 0.95 - floatResult6 < floatResult5)) {
-    floatResult8 = unmodifiedXMM8_Da;
+  FloatValue1 = unmodifiedXMM6_Da;
+  if ((floatResult6 + 0.05 <= floatResult5) && (FloatValue1 = floatResult5, 0.95 - floatResult6 < floatResult5)) {
+    FloatValue1 = unmodifiedXMM8_Da;
   }
-  floatResult6 = floatResult8 - EventHandle[0x15];
+  floatResult6 = FloatValue1 - EventHandle[0x15];
   localFloat23 = ABS(floatResult6);
-  floatResult5 = floatResult8;
+  floatResult5 = FloatValue1;
   if (0.001 <= localFloat23) {
     floatResult3 = fStack0000000000000034;
     if (floatResult6 < unmodifiedXMM6_Da) {
@@ -13539,10 +13539,10 @@ LAB_18065a2e9:
   floatResult5 = EventHandle[0x14];
   fStack0000000000000054 = (unmodifiedXMM8_Da - floatResult5) * (unmodifiedXMM8_Da - floatResult7);
   floatResult6 = (unmodifiedXMM8_Da - floatResult2) * fStack0000000000000054;
-  fStack000000000000006c = (unmodifiedXMM8_Da - floatResult8) * floatResult2 * fStack0000000000000054;
-  localFloat25 = floatResult2 * fStack0000000000000054 * floatResult8;
-  localFloat23 = floatResult6 * floatResult8;
-  fStack0000000000000054 = fStack0000000000000054 * floatResult8;
+  fStack000000000000006c = (unmodifiedXMM8_Da - FloatValue1) * floatResult2 * fStack0000000000000054;
+  localFloat25 = floatResult2 * fStack0000000000000054 * FloatValue1;
+  localFloat23 = floatResult6 * FloatValue1;
+  fStack0000000000000054 = fStack0000000000000054 * FloatValue1;
   fStack0000000000000074 = localFloat25 * fStack0000000000000040;
   *(float *)(BasePointer + -0x7c) = fStack0000000000000054;
   *(float *)(BasePointer + -0x78) = fStack0000000000000054;
@@ -13600,23 +13600,23 @@ LAB_18065a2e9:
   do {
     floatResult3 = *(float *)(((longlong)afStack_60e8 - (longlong)EventHandle) + (longlong)psecondaryValue);
     vectorComponentX = floatResult3 - psecondaryValue[-10];
-    floatResult9 = ABS(vectorComponentX);
-    if (0.001 <= floatResult9) {
+    FloatValue2 = ABS(vectorComponentX);
+    if (0.001 <= FloatValue2) {
       localFloat20 = unmodifiedXMM8_Da;
       if (vectorComponentX < unmodifiedXMM6_Da) {
         localFloat20 = -1.0;
       }
-      if (0.05 <= floatResult9) {
-        if (0.5 <= floatResult9) {
-          floatResult9 = 0.5;
+      if (0.05 <= FloatValue2) {
+        if (0.5 <= FloatValue2) {
+          FloatValue2 = 0.5;
         }
       }
       else {
-        floatResult9 = 0.05;
+        FloatValue2 = 0.05;
       }
-      floatResult9 = floatResult9 * localFloat20 * fStack0000000000000034 * 6.0;
-      if (floatResult9 * localFloat20 <= localFloat20 * vectorComponentX) {
-        floatResult3 = psecondaryValue[-10] + floatResult9;
+      FloatValue2 = FloatValue2 * localFloat20 * fStack0000000000000034 * 6.0;
+      if (FloatValue2 * localFloat20 <= localFloat20 * vectorComponentX) {
+        floatResult3 = psecondaryValue[-10] + FloatValue2;
       }
     }
     psecondaryValue[-10] = floatResult3;
@@ -13643,11 +13643,11 @@ LAB_18065a5b3:
     }
 LAB_18065a5d3:
     vectorComponentX = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    floatResult9 = vectorComponentX - psecondaryValue[-9];
-    localFloat20 = ABS(floatResult9);
+    FloatValue2 = vectorComponentX - psecondaryValue[-9];
+    localFloat20 = ABS(FloatValue2);
     if (0.001 <= localFloat20) {
       localFloat21 = unmodifiedXMM8_Da;
-      if (floatResult9 < unmodifiedXMM6_Da) {
+      if (FloatValue2 < unmodifiedXMM6_Da) {
         localFloat21 = -1.0;
       }
       if (0.05 <= localFloat20) {
@@ -13659,7 +13659,7 @@ LAB_18065a5d3:
         localFloat20 = 0.05;
       }
       localFloat20 = localFloat20 * localFloat21 * fStack0000000000000034 * 6.0;
-      if (localFloat20 * localFloat21 <= localFloat21 * floatResult9) {
+      if (localFloat20 * localFloat21 <= localFloat21 * FloatValue2) {
         vectorComponentX = psecondaryValue[-9] + localFloat20;
       }
     }
@@ -13668,14 +13668,14 @@ LAB_18065a5d3:
     psecondaryValue[1] = vectorComponentX;
     if (2 < localInt9) {
       if (localInt9 < 7) {
-        floatResult9 = unmodifiedXMM8_Da - floatResult5;
+        FloatValue2 = unmodifiedXMM8_Da - floatResult5;
       }
       else {
-        floatResult9 = unmodifiedXMM6_Da;
+        FloatValue2 = unmodifiedXMM6_Da;
         if (localInt9 == 7) {
           if (*(char *)((longlong)EventHandle + 0x5d) == '\0') {
 LAB_18065a67b:
-            floatResult9 = floatResult5;
+            FloatValue2 = floatResult5;
           }
         }
         else {
@@ -13683,12 +13683,12 @@ LAB_18065a67b:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a67b;
         }
       }
-      vectorComponentX = floatResult9 * vectorComponentX;
+      vectorComponentX = FloatValue2 * vectorComponentX;
       psecondaryValue[1] = vectorComponentX;
     }
 LAB_18065a69c:
-    floatResult9 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    localFloat20 = floatResult9 - psecondaryValue[-8];
+    FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
+    localFloat20 = FloatValue2 - psecondaryValue[-8];
     localFloat21 = ABS(localFloat20);
     if (0.001 <= localFloat21) {
       localFloat24 = unmodifiedXMM8_Da;
@@ -13705,12 +13705,12 @@ LAB_18065a69c:
       }
       localFloat21 = localFloat21 * localFloat24 * fStack0000000000000034 * 6.0;
       if (localFloat21 * localFloat24 <= localFloat24 * localFloat20) {
-        floatResult9 = psecondaryValue[-8] + localFloat21;
+        FloatValue2 = psecondaryValue[-8] + localFloat21;
       }
     }
     localInt9 = uiCompareResult + 2;
-    psecondaryValue[-8] = floatResult9;
-    psecondaryValue[2] = floatResult9;
+    psecondaryValue[-8] = FloatValue2;
+    psecondaryValue[2] = FloatValue2;
     if (2 < localInt9) {
       if (localInt9 < 7) {
         localFloat20 = unmodifiedXMM8_Da - floatResult5;
@@ -13728,12 +13728,12 @@ LAB_18065a744:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a744;
         }
       }
-      floatResult9 = localFloat20 * floatResult9;
-      psecondaryValue[2] = floatResult9;
+      FloatValue2 = localFloat20 * FloatValue2;
+      psecondaryValue[2] = FloatValue2;
     }
 LAB_18065a765:
     uiCompareResult = uiCompareResult + 3;
-    floatResult7 = floatResult7 + floatResult3 + vectorComponentX + floatResult9;
+    floatResult7 = floatResult7 + floatResult3 + vectorComponentX + FloatValue2;
     psecondaryValue = psecondaryValue + 3;
     if (9 < uiCompareResult) {
       floatResult5 = EventHandle[0x1854];
@@ -13755,37 +13755,37 @@ LAB_18065a765:
           EventHandle[0x185d] = floatResult5 * EventHandle[0x185d];
         }
       }
-      floatResult5 = fStack000000000000006c - (unmodifiedXMM8_Da - floatResult8) * floatResult6;
-      floatResult8 = ((((localFloat23 + localFloat25) * fStack0000000000000040 + fStack0000000000000054) -
+      floatResult5 = fStack000000000000006c - (unmodifiedXMM8_Da - FloatValue1) * floatResult6;
+      FloatValue1 = ((((localFloat23 + localFloat25) * fStack0000000000000040 + fStack0000000000000054) -
                 fStack000000000000005c) - floatResult2) - fStack0000000000000054;
-      floatResult7 = floatResult5 * floatResult5 + floatResult8 * floatResult8;
+      floatResult7 = floatResult5 * floatResult5 + FloatValue1 * FloatValue1;
       floatResult7 = (float)(floatResult7 <= 1.1754944e-38) * 1.1754944e-38 + floatResult7;
       asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult7),ZEXT416((uint)floatResult7));
       floatResult2 = asemaphoreHandle2._0_4_;
       floatResult7 = floatResult2 * 0.5 * (3.0 - floatResult7 * floatResult2 * floatResult2);
       floatResult5 = floatResult7 * floatResult5;
-      floatResult7 = floatResult7 * floatResult8;
+      floatResult7 = floatResult7 * FloatValue1;
       _fStack0000000000000038 = CONCAT44(floatResult5,floatResult7);
       if (ABS(floatResult7 * EventHandle[0x185e] + floatResult5 * EventHandle[0x185f]) <= 0.999) {
-        floatResult8 = EventHandle[0x1855] - EventHandle[0x1856];
+        FloatValue1 = EventHandle[0x1855] - EventHandle[0x1856];
         localFloat25 = (((EventHandle[0x1858] + EventHandle[0x1857] + EventHandle[0x185b]) - EventHandle[0x1859])
                  - EventHandle[0x185a]) - EventHandle[0x185c];
-        floatResult7 = floatResult8 * floatResult8 + localFloat25 * localFloat25;
+        floatResult7 = FloatValue1 * FloatValue1 + localFloat25 * localFloat25;
         floatResult7 = (float)(floatResult7 <= 1.1754944e-38) * 1.1754944e-38 + floatResult7;
         asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult7),ZEXT416((uint)floatResult7));
         floatResult2 = asemaphoreHandle2._0_4_;
         floatResult5 = fStack0000000000000034 * 8.0;
         floatResult7 = floatResult2 * 0.5 * (3.0 - floatResult7 * floatResult2 * floatResult2);
         _fStack0000000000000038 =
-             CONCAT44(floatResult7 * floatResult8 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185f],
+             CONCAT44(floatResult7 * FloatValue1 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185f],
                       floatResult7 * localFloat25 * floatResult5 + (unmodifiedXMM8_Da - floatResult5) * EventHandle[0x185e]);
         *(UIHandle *)(EventHandle + 0x185e) = _fStack0000000000000038;
         floatResult7 = EventHandle[0x185f];
         floatResult2 = EventHandle[0x185e];
         floatResult5 = floatResult2 * floatResult2 + floatResult7 * floatResult7;
         asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult5),ZEXT416((uint)floatResult5));
-        floatResult8 = asemaphoreHandle2._0_4_;
-        floatResult5 = floatResult8 * 0.5 * (3.0 - floatResult5 * floatResult8 * floatResult8);
+        FloatValue1 = asemaphoreHandle2._0_4_;
+        floatResult5 = FloatValue1 * 0.5 * (3.0 - floatResult5 * FloatValue1 * FloatValue1);
         EventHandle[0x185f] = floatResult5 * floatResult7;
         EventHandle[0x185e] = floatResult5 * floatResult2;
       }
@@ -13853,8 +13853,8 @@ void RenderUIElement(UIHandle uiContext,uint dataSource,uint targetBuffer,UIHand
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   UIByte asemaphoreHandle2 [16];
@@ -14091,9 +14091,9 @@ LAB_180659b1a:
            fStack0000000000000038 * fStack0000000000000038;
   floatResult3 = (float)(floatResult3 <= 1.1754944e-38) * 1.1754944e-38 + floatResult3;
   asemaphoreHandle2 = rsqrtss(ZEXT416((uint)floatResult3),ZEXT416((uint)floatResult3));
-  floatResult8 = asemaphoreHandle2._0_4_;
+  FloatValue1 = asemaphoreHandle2._0_4_;
   floatResult2 = unmodifiedXMM8_Da;
-  if (fStack000000000000003c * floatResult8 * 0.5 * (3.0 - floatResult3 * floatResult8 * floatResult8) < -0.2) {
+  if (fStack000000000000003c * FloatValue1 * 0.5 * (3.0 - floatResult3 * FloatValue1 * FloatValue1) < -0.2) {
     floatResult2 = unmodifiedXMM6_Da;
   }
   EventHandle[0x13] = floatResult2;
@@ -14125,23 +14125,23 @@ LAB_180659b1a:
   }
   floatResult3 = floatResult3 * 0.63661975;
   vectorComponentX = (unmodifiedXMM8_Da - *(float *)(BasePointer + 0xc0)) * 0.3;
-  floatResult8 = unmodifiedXMM6_Da;
-  if ((vectorComponentX + 0.05 <= floatResult3) && (floatResult8 = floatResult3, 0.95 - vectorComponentX < floatResult3)) {
-    floatResult8 = unmodifiedXMM8_Da;
+  FloatValue1 = unmodifiedXMM6_Da;
+  if ((vectorComponentX + 0.05 <= floatResult3) && (FloatValue1 = floatResult3, 0.95 - vectorComponentX < floatResult3)) {
+    FloatValue1 = unmodifiedXMM8_Da;
   }
-  vectorComponentX = floatResult8 - EventHandle[0x15];
+  vectorComponentX = FloatValue1 - EventHandle[0x15];
   localFloat23 = ABS(vectorComponentX);
-  floatResult3 = floatResult8;
+  floatResult3 = FloatValue1;
   if (0.001 <= localFloat23) {
-    floatResult9 = param_6._4_4_;
+    FloatValue2 = param_6._4_4_;
     if (vectorComponentX < unmodifiedXMM6_Da) {
-      floatResult9 = -param_6._4_4_;
+      FloatValue2 = -param_6._4_4_;
     }
     vectorComponentX = 0.1;
     if ((0.1 <= localFloat23) && (vectorComponentX = localFloat23, 0.5 <= localFloat23)) {
       vectorComponentX = 0.5;
     }
-    vectorComponentX = floatResult9 * vectorComponentX * 12.0;
+    vectorComponentX = FloatValue2 * vectorComponentX * 12.0;
     if (ABS(vectorComponentX) <= localFloat23) {
       floatResult3 = EventHandle[0x15] + vectorComponentX;
     }
@@ -14220,10 +14220,10 @@ LAB_18065a2e9:
   floatResult5 = EventHandle[0x14];
   uiContext0._4_4_ = (unmodifiedXMM8_Da - floatResult5) * (unmodifiedXMM8_Da - floatResult6);
   floatResult3 = (unmodifiedXMM8_Da - floatResult2) * uiContext0._4_4_;
-  fStack000000000000006c = (unmodifiedXMM8_Da - floatResult8) * floatResult2 * uiContext0._4_4_;
-  floatResult2 = floatResult2 * uiContext0._4_4_ * floatResult8;
-  floatResult7 = floatResult3 * floatResult8;
-  uiContext0._4_4_ = uiContext0._4_4_ * floatResult8;
+  fStack000000000000006c = (unmodifiedXMM8_Da - FloatValue1) * floatResult2 * uiContext0._4_4_;
+  floatResult2 = floatResult2 * uiContext0._4_4_ * FloatValue1;
+  floatResult7 = floatResult3 * FloatValue1;
+  uiContext0._4_4_ = uiContext0._4_4_ * FloatValue1;
   fStack0000000000000074 = floatResult2 * (float)param_8;
   *(float *)(BasePointer + -0x7c) = uiContext0._4_4_;
   *(float *)(BasePointer + -0x78) = uiContext0._4_4_;
@@ -14280,23 +14280,23 @@ LAB_18065a2e9:
   do {
     vectorComponentX = *(float *)(((longlong)afStack_60e8 - (longlong)EventHandle) + (longlong)psecondaryValue);
     localFloat23 = vectorComponentX - psecondaryValue[-10];
-    floatResult9 = ABS(localFloat23);
-    if (0.001 <= floatResult9) {
+    FloatValue2 = ABS(localFloat23);
+    if (0.001 <= FloatValue2) {
       localFloat20 = unmodifiedXMM8_Da;
       if (localFloat23 < unmodifiedXMM6_Da) {
         localFloat20 = -1.0;
       }
-      if (0.05 <= floatResult9) {
-        if (0.5 <= floatResult9) {
-          floatResult9 = 0.5;
+      if (0.05 <= FloatValue2) {
+        if (0.5 <= FloatValue2) {
+          FloatValue2 = 0.5;
         }
       }
       else {
-        floatResult9 = 0.05;
+        FloatValue2 = 0.05;
       }
-      floatResult9 = floatResult9 * localFloat20 * param_6._4_4_ * 6.0;
-      if (floatResult9 * localFloat20 <= localFloat20 * localFloat23) {
-        vectorComponentX = psecondaryValue[-10] + floatResult9;
+      FloatValue2 = FloatValue2 * localFloat20 * param_6._4_4_ * 6.0;
+      if (FloatValue2 * localFloat20 <= localFloat20 * localFloat23) {
+        vectorComponentX = psecondaryValue[-10] + FloatValue2;
       }
     }
     psecondaryValue[-10] = vectorComponentX;
@@ -14323,11 +14323,11 @@ LAB_18065a5b3:
     }
 LAB_18065a5d3:
     localFloat23 = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    floatResult9 = localFloat23 - psecondaryValue[-9];
-    localFloat20 = ABS(floatResult9);
+    FloatValue2 = localFloat23 - psecondaryValue[-9];
+    localFloat20 = ABS(FloatValue2);
     if (0.001 <= localFloat20) {
       localFloat21 = unmodifiedXMM8_Da;
-      if (floatResult9 < unmodifiedXMM6_Da) {
+      if (FloatValue2 < unmodifiedXMM6_Da) {
         localFloat21 = -1.0;
       }
       if (0.05 <= localFloat20) {
@@ -14339,7 +14339,7 @@ LAB_18065a5d3:
         localFloat20 = 0.05;
       }
       localFloat20 = localFloat20 * localFloat21 * param_6._4_4_ * 6.0;
-      if (localFloat20 * localFloat21 <= localFloat21 * floatResult9) {
+      if (localFloat20 * localFloat21 <= localFloat21 * FloatValue2) {
         localFloat23 = psecondaryValue[-9] + localFloat20;
       }
     }
@@ -14348,14 +14348,14 @@ LAB_18065a5d3:
     psecondaryValue[1] = localFloat23;
     if (2 < localInt6) {
       if (localInt6 < 7) {
-        floatResult9 = unmodifiedXMM8_Da - floatResult5;
+        FloatValue2 = unmodifiedXMM8_Da - floatResult5;
       }
       else {
-        floatResult9 = unmodifiedXMM6_Da;
+        FloatValue2 = unmodifiedXMM6_Da;
         if (localInt6 == 7) {
           if (*(char *)((longlong)EventHandle + 0x5d) == '\0') {
 LAB_18065a67b:
-            floatResult9 = floatResult5;
+            FloatValue2 = floatResult5;
           }
         }
         else {
@@ -14363,12 +14363,12 @@ LAB_18065a67b:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a67b;
         }
       }
-      localFloat23 = floatResult9 * localFloat23;
+      localFloat23 = FloatValue2 * localFloat23;
       psecondaryValue[1] = localFloat23;
     }
 LAB_18065a69c:
-    floatResult9 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
-    localFloat20 = floatResult9 - psecondaryValue[-8];
+    FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)EventHandle) + (longlong)psecondaryValue);
+    localFloat20 = FloatValue2 - psecondaryValue[-8];
     localFloat21 = ABS(localFloat20);
     if (0.001 <= localFloat21) {
       localFloat24 = unmodifiedXMM8_Da;
@@ -14385,12 +14385,12 @@ LAB_18065a69c:
       }
       localFloat21 = localFloat21 * localFloat24 * param_6._4_4_ * 6.0;
       if (localFloat21 * localFloat24 <= localFloat24 * localFloat20) {
-        floatResult9 = psecondaryValue[-8] + localFloat21;
+        FloatValue2 = psecondaryValue[-8] + localFloat21;
       }
     }
     localInt6 = localInt9 + 2;
-    psecondaryValue[-8] = floatResult9;
-    psecondaryValue[2] = floatResult9;
+    psecondaryValue[-8] = FloatValue2;
+    psecondaryValue[2] = FloatValue2;
     if (2 < localInt6) {
       if (localInt6 < 7) {
         localFloat20 = unmodifiedXMM8_Da - floatResult5;
@@ -14408,12 +14408,12 @@ LAB_18065a744:
           if (*(char *)((longlong)EventHandle + 0x5d) != '\0') goto LAB_18065a744;
         }
       }
-      floatResult9 = localFloat20 * floatResult9;
-      psecondaryValue[2] = floatResult9;
+      FloatValue2 = localFloat20 * FloatValue2;
+      psecondaryValue[2] = FloatValue2;
     }
 LAB_18065a765:
     localInt9 = localInt9 + 3;
-    floatResult6 = floatResult6 + vectorComponentX + localFloat23 + floatResult9;
+    floatResult6 = floatResult6 + vectorComponentX + localFloat23 + FloatValue2;
     psecondaryValue = psecondaryValue + 3;
     if (9 < localInt9) {
       floatResult5 = EventHandle[0x1854];
@@ -14435,7 +14435,7 @@ LAB_18065a765:
           EventHandle[0x185d] = floatResult5 * EventHandle[0x185d];
         }
       }
-      floatResult3 = fStack000000000000006c - (unmodifiedXMM8_Da - floatResult8) * floatResult3;
+      floatResult3 = fStack000000000000006c - (unmodifiedXMM8_Da - FloatValue1) * floatResult3;
       localFloat25 = ((((floatResult7 + floatResult2) * (float)param_8 + uiContext0._4_4_) - uiContext1._4_4_) - localFloat25) -
                uiContext0._4_4_;
       floatResult6 = floatResult3 * floatResult3 + localFloat25 * localFloat25;
@@ -14512,14 +14512,14 @@ void UpdateUIElementState(void)
   float floatResult5;
   UIByte aTotalResult [16];
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   float unmodifiedXMM6_Da;
   float unmodifiedXMM7_Da;
   float unmodifiedXMM8_Da;
   float unmodifiedXMM9_Da;
   float unmodifiedXMM11_Da;
   float unmodifiedXMM12_Da;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float unmodifiedXMM13_Da;
   float unmodifiedXMM14_Da;
@@ -14572,15 +14572,15 @@ void UpdateUIElementState(void)
   floatResult7 = ABS(floatResult1);
   resultFloat = floatResult5;
   if (0.001 <= floatResult7) {
-    floatResult9 = fStack0000000000000034;
+    FloatValue2 = fStack0000000000000034;
     if (floatResult1 < unmodifiedXMM6_Da) {
-      floatResult9 = -fStack0000000000000034;
+      FloatValue2 = -fStack0000000000000034;
     }
     floatResult1 = 0.1;
     if ((0.1 <= floatResult7) && (floatResult1 = floatResult7, 0.5 <= floatResult7)) {
       floatResult1 = 0.5;
     }
-    floatResult1 = floatResult9 * floatResult1 * 12.0;
+    floatResult1 = FloatValue2 * floatResult1 * 12.0;
     if (ABS(floatResult1) <= floatResult7) {
       resultFloat = *(float *)(EventHandle + 0x54) + floatResult1;
     }
@@ -14659,10 +14659,10 @@ LAB_18065a17c:
 LAB_18065a2e9:
   resultFloat = *(float *)(EventHandle + 0x50);
   fStack0000000000000054 = (unmodifiedXMM8_Da - resultFloat) * (unmodifiedXMM8_Da - unmodifiedXMM13_Da);
-  floatResult9 = (unmodifiedXMM8_Da - unmodifiedXMM6_Da) * fStack0000000000000054;
+  FloatValue2 = (unmodifiedXMM8_Da - unmodifiedXMM6_Da) * fStack0000000000000054;
   fStack000000000000006c = (unmodifiedXMM8_Da - floatResult5) * unmodifiedXMM6_Da * fStack0000000000000054;
   floatResult7 = unmodifiedXMM6_Da * fStack0000000000000054 * floatResult5;
-  localFloat20 = floatResult9 * floatResult5;
+  localFloat20 = FloatValue2 * floatResult5;
   fStack0000000000000054 = fStack0000000000000054 * floatResult5;
   fStack0000000000000074 = floatResult7 * inputString;
   *(float *)(BasePointer + -0x7c) = fStack0000000000000054;
@@ -14812,9 +14812,9 @@ LAB_18065a69c:
     floatResult3 = floatResult2 - presultValue[-8];
     vectorComponentX = ABS(floatResult3);
     if (0.001 <= vectorComponentX) {
-      floatResult8 = unmodifiedXMM8_Da;
+      FloatValue1 = unmodifiedXMM8_Da;
       if (floatResult3 < unmodifiedXMM6_Da) {
-        floatResult8 = -1.0;
+        FloatValue1 = -1.0;
       }
       if (0.05 <= vectorComponentX) {
         if (0.5 <= vectorComponentX) {
@@ -14824,8 +14824,8 @@ LAB_18065a69c:
       else {
         vectorComponentX = 0.05;
       }
-      vectorComponentX = vectorComponentX * floatResult8 * fStack0000000000000034 * 6.0;
-      if (vectorComponentX * floatResult8 <= floatResult8 * floatResult3) {
+      vectorComponentX = vectorComponentX * FloatValue1 * fStack0000000000000034 * 6.0;
+      if (vectorComponentX * FloatValue1 <= FloatValue1 * floatResult3) {
         floatResult2 = presultValue[-8] + vectorComponentX;
       }
     }
@@ -14876,18 +14876,18 @@ LAB_18065a765:
           *(float *)(EventHandle + 0x6174) = localFloat8 * *(float *)(EventHandle + 0x6174);
         }
       }
-      floatResult9 = fStack000000000000006c - (unmodifiedXMM8_Da - floatResult5) * floatResult9;
+      FloatValue2 = fStack000000000000006c - (unmodifiedXMM8_Da - floatResult5) * FloatValue2;
       floatResult1 = ((((localFloat20 + floatResult7) * inputString + fStack0000000000000054) -
                 fStack000000000000005c) - floatResult1) - fStack0000000000000054;
-      resultFloat = floatResult9 * floatResult9 + floatResult1 * floatResult1;
+      resultFloat = FloatValue2 * FloatValue2 + floatResult1 * floatResult1;
       semaphoreHandle = (undefined3)((uint)allocationFlags >> 8);
       resultFloat = (float)CONCAT31(semaphoreHandle,resultFloat <= 1.1754944e-38) * 1.1754944e-38 + resultFloat;
       aTotalResult = rsqrtss(ZEXT416((uint)resultFloat),ZEXT416((uint)resultFloat));
       floatResult5 = aTotalResult._0_4_;
       resultFloat = floatResult5 * 0.5 * (3.0 - resultFloat * floatResult5 * floatResult5);
-      floatResult9 = resultFloat * floatResult9;
+      FloatValue2 = resultFloat * FloatValue2;
       resultFloat = resultFloat * floatResult1;
-      if (ABS(resultFloat * *(float *)(EventHandle + 0x6178) + floatResult9 * *(float *)(EventHandle + 0x617c)) <=
+      if (ABS(resultFloat * *(float *)(EventHandle + 0x6178) + FloatValue2 * *(float *)(EventHandle + 0x617c)) <=
           0.999) {
         floatResult1 = *(float *)(EventHandle + 0x6154) - *(float *)(EventHandle + 0x6158);
         floatResult7 = (((*(float *)(EventHandle + 0x6160) + *(float *)(EventHandle + 0x615c) +
@@ -14914,7 +14914,7 @@ LAB_18065a765:
         *(float *)(EventHandle + 0x6178) = floatResult1 * floatResult5;
       }
       else {
-        *(ulonglong *)(EventHandle + 0x6178) = CONCAT44(floatResult9,resultFloat);
+        *(ulonglong *)(EventHandle + 0x6178) = CONCAT44(FloatValue2,resultFloat);
       }
                      WARNING: Subroutine does not return
       stackUInt8 = 0x18065aa9f;
@@ -18195,8 +18195,8 @@ void TriggerUIUpdateCallback(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   UIByte in_XMM2 [16];
@@ -18227,24 +18227,24 @@ void TriggerUIUpdateCallback(void)
           floatResult5 = plocalFloat9[1];
           localFloat20 = plocalFloat9[2];
           localFloat2 = plocalFloat9[3];
-          floatResult9 = localFloat2 * localFloat2 + localFloat22 * localFloat22;
+          FloatValue2 = localFloat2 * localFloat2 + localFloat22 * localFloat22;
           localFloat21 = localFloat20 * localFloat20 + floatResult5 * floatResult5;
-          localFloat23 = floatResult9 + floatResult5 * floatResult5 + localFloat20 * localFloat20;
+          localFloat23 = FloatValue2 + floatResult5 * floatResult5 + localFloat20 * localFloat20;
           localFloat24 = localFloat21 + localFloat22 * localFloat22 + localFloat2 * localFloat2;
-          aProcessingStatus._4_4_ = floatResult9 + localFloat21 + 1.1754944e-38;
-          aProcessingStatus._0_4_ = localFloat21 + floatResult9 + 1.1754944e-38;
+          aProcessingStatus._4_4_ = FloatValue2 + localFloat21 + 1.1754944e-38;
+          aProcessingStatus._0_4_ = localFloat21 + FloatValue2 + 1.1754944e-38;
           aProcessingStatus._8_4_ = localFloat23 + 1.1754944e-38;
           aProcessingStatus._12_4_ = localFloat24 + 1.1754944e-38;
           in_XMM2 = rsqrtps(in_XMM2,aProcessingStatus);
           vectorComponentX = in_XMM2._0_4_;
           floatResult6 = in_XMM2._4_4_;
           floatResult7 = in_XMM2._8_4_;
-          floatResult8 = in_XMM2._12_4_;
+          FloatValue1 = in_XMM2._12_4_;
           plocalFloat9 = (float *)(BasePointer + 0x780 + (longlong)localChar7 * 0x10);
-          *plocalFloat9 = (3.0 - vectorComponentX * vectorComponentX * (localFloat21 + floatResult9)) * vectorComponentX * 0.5 * localFloat22;
-          plocalFloat9[1] = (3.0 - floatResult6 * floatResult6 * (floatResult9 + localFloat21)) * floatResult6 * 0.5 * floatResult5;
+          *plocalFloat9 = (3.0 - vectorComponentX * vectorComponentX * (localFloat21 + FloatValue2)) * vectorComponentX * 0.5 * localFloat22;
+          plocalFloat9[1] = (3.0 - floatResult6 * floatResult6 * (FloatValue2 + localFloat21)) * floatResult6 * 0.5 * floatResult5;
           plocalFloat9[2] = (3.0 - floatResult7 * floatResult7 * localFloat23) * floatResult7 * 0.5 * localFloat20;
-          plocalFloat9[3] = (3.0 - floatResult8 * floatResult8 * localFloat24) * floatResult8 * 0.5 * localFloat2;
+          plocalFloat9[3] = (3.0 - FloatValue1 * FloatValue1 * localFloat24) * FloatValue1 * 0.5 * localFloat2;
           localChar11 = *(char *)(BasePointer + 4000);
         }
         result2 = (ulonglong)(byte)(localChar7 + 1U);
@@ -18265,9 +18265,9 @@ void TriggerUIUpdateCallback(void)
           localFloat20 = *(float *)((longlong)(char)bVar8 * 0x1b0 + 0x38 +
                              *(longlong *)(SourceHandle + 0x140));
           localFloat21 = (floatResult5 * *pfloatResult + localFloat22 * pfloatResult[1]) * plocalFloat9[0x16];
-          floatResult9 = floatResult5 * pfloatResult[1] - localFloat22 * *pfloatResult;
-          plocalFloat9[-1] = (floatResult5 * localFloat21 - localFloat22 * floatResult9) * unmodifiedXMM10_Da + plocalFloat9[-1];
-          *plocalFloat9 = (floatResult5 * floatResult9 + localFloat22 * localFloat21) * unmodifiedXMM10_Da + *plocalFloat9;
+          FloatValue2 = floatResult5 * pfloatResult[1] - localFloat22 * *pfloatResult;
+          plocalFloat9[-1] = (floatResult5 * localFloat21 - localFloat22 * FloatValue2) * unmodifiedXMM10_Da + plocalFloat9[-1];
+          *plocalFloat9 = (floatResult5 * FloatValue2 + localFloat22 * localFloat21) * unmodifiedXMM10_Da + *plocalFloat9;
           plocalFloat9[1] = ((localFloat2 - localFloat20) * (plocalFloat9[0x16] + 1.0) * 0.5 + localFloat20) * unmodifiedXMM10_Da +
                       plocalFloat9[1];
         }
@@ -18285,9 +18285,9 @@ void TriggerUIUpdateCallback(void)
   localFloat2 = *(float *)(BasePointer + 0xf80);
   *(ulonglong *)(ContextHandle + 0x800) =
        *(ulonglong *)(ContextHandle + 0x800) | *(ulonglong *)(ContextHandle + 0x810);
-  floatResult9 = *(float *)(BasePointer + 0xf84);
+  FloatValue2 = *(float *)(BasePointer + 0xf84);
   *(float *)(ContextHandle + 0x1020) = localFloat2 * localFloat25 + *(float *)(ContextHandle + 0x1020);
-  *(float *)(ContextHandle + 0x1024) = *(float *)(ContextHandle + 0x1024) + floatResult9 * localFloat25;
+  *(float *)(ContextHandle + 0x1024) = *(float *)(ContextHandle + 0x1024) + FloatValue2 * localFloat25;
   *(float *)(ContextHandle + 0x1028) =
        (localFloat20 * localFloat25 + *(float *)(ContextHandle + 0x1028)) -
        (0.5 - (localFloat22 + floatResult5) * 0.25) * localFloat20 * localFloat25;
@@ -18303,18 +18303,18 @@ void TriggerUIUpdateCallback(void)
         fStack000000000000003c = plocalFloat9[3];
         plocalFloat9 = (float *)(ContextHandle + (result2 + 0x82) * 0x10);
         localFloat2 = plocalFloat9[1];
-        floatResult9 = plocalFloat9[2];
+        FloatValue2 = plocalFloat9[2];
         localFloat21 = plocalFloat9[3];
         vectorComponentX = *plocalFloat9 * localFloat22;
         floatResult6 = localFloat2 * floatResult5;
-        floatResult7 = floatResult9 * localFloat20;
-        floatResult8 = localFloat21 * fStack000000000000003c;
-        localFloat23 = floatResult8 + vectorComponentX;
+        floatResult7 = FloatValue2 * localFloat20;
+        FloatValue1 = localFloat21 * fStack000000000000003c;
+        localFloat23 = FloatValue1 + vectorComponentX;
         localFloat24 = floatResult7 + floatResult6;
         aLoopCounter._4_4_ = localFloat23 + localFloat24;
         aLoopCounter._0_4_ = localFloat24 + localFloat23;
         aLoopCounter._8_4_ = localFloat23 + floatResult6 + floatResult7;
-        aLoopCounter._12_4_ = localFloat24 + vectorComponentX + floatResult8;
+        aLoopCounter._12_4_ = localFloat24 + vectorComponentX + FloatValue1;
         localInt6 = movmskps((char)bVar8 * 2,aLoopCounter);
         if (localInt6 != 0) {
           localFloat22 = (float)((uint)localFloat22 ^ unmodifiedXMM9_Da);
@@ -18325,7 +18325,7 @@ void TriggerUIUpdateCallback(void)
         presultValue = (float *)(ContextHandle + (result2 + 0x82) * 0x10);
         *presultValue = *plocalFloat9 + localFloat25 * localFloat22;
         presultValue[1] = localFloat2 + localFloat25 * floatResult5;
-        presultValue[2] = floatResult9 + localFloat25 * localFloat20;
+        presultValue[2] = FloatValue2 + localFloat25 * localFloat20;
         presultValue[3] = localFloat21 + localFloat25 * fStack000000000000003c;
         *(ulonglong *)(ContextHandle + 0x800) =
              *(ulonglong *)(ContextHandle + 0x800) |
@@ -19218,8 +19218,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
   UIDword TotalResult;
   float extraout_XMM0_Da_03;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float resultValue6;
   UIByte asemaphoreHandle0 [16];
   UIByte asemaphoreHandle1 [16];
@@ -19369,7 +19369,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     pfloatResult3 = (float *)GetUIRenderBuffer(dataSource,uiContext5,semaphoreHandle);
     secondaryValue3 = *pfloatResult3;
     floatResult7 = pfloatResult3[1];
-    floatResult8 = pfloatResult3[2];
+    FloatValue1 = pfloatResult3[2];
     processedFloat0 = pfloatResult3[3];
     pfloatResult3 = (float *)GetUIRenderBuffer(dataSource,uiContext1,semaphoreHandle);
     resultValue7 = *pfloatResult3;
@@ -19380,28 +19380,28 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     localFloat62 = processedFloat1 * secondaryValue2 * -1.0 + resultValue7 * processedFloat8 * -1.0 + processedFloat9 * processedFloat4 + processedFloat5 * resultValue9;
     localFloat64 = processedFloat5 * processedFloat4 * -1.0 + resultValue7 * secondaryValue2 * -1.0 + processedFloat1 * processedFloat8 + processedFloat9 * resultValue9;
     localFloat66 = processedFloat9 * secondaryValue2 * 1.0 + resultValue7 * resultValue9 * 1.0 + processedFloat1 * processedFloat4 + processedFloat5 * processedFloat8;
-    fStack_124 = processedFloat0 * processedFloat8 * -1.0 + secondaryValue3 * processedFloat4 * -1.0 + floatResult7 * resultValue9 + floatResult8 * secondaryValue2
+    fStack_124 = processedFloat0 * processedFloat8 * -1.0 + secondaryValue3 * processedFloat4 * -1.0 + floatResult7 * resultValue9 + FloatValue1 * secondaryValue2
     ;
     astackUInt128 = (UIByte  [4])
-                  (processedFloat0 * secondaryValue2 * 1.0 + secondaryValue3 * resultValue9 * 1.0 + floatResult8 * processedFloat8 + floatResult7 * processedFloat4
+                  (processedFloat0 * secondaryValue2 * 1.0 + secondaryValue3 * resultValue9 * 1.0 + FloatValue1 * processedFloat8 + floatResult7 * processedFloat4
                   );
     stackUInt120._0_4_ =
-         floatResult7 * secondaryValue2 * -1.0 + secondaryValue3 * processedFloat8 * -1.0 + floatResult8 * resultValue9 + processedFloat0 * processedFloat4;
+         floatResult7 * secondaryValue2 * -1.0 + secondaryValue3 * processedFloat8 * -1.0 + FloatValue1 * resultValue9 + processedFloat0 * processedFloat4;
     stackUInt120._4_4_ =
-         floatResult8 * processedFloat4 * -1.0 + secondaryValue3 * secondaryValue2 * -1.0 + processedFloat0 * resultValue9 + floatResult7 * processedFloat8;
+         FloatValue1 * processedFloat4 * -1.0 + secondaryValue3 * secondaryValue2 * -1.0 + processedFloat0 * resultValue9 + floatResult7 * processedFloat8;
     secondaryValue3 = *param_6;
     floatResult7 = param_6[1];
-    floatResult8 = param_6[2];
+    FloatValue1 = param_6[2];
     processedFloat0 = param_6[3];
     localFloat68 = resultPointer * 0.33;
-    fStack_140 = processedFloat0 * processedFloat8 * -1.0 + secondaryValue3 * processedFloat4 * -1.0 + floatResult7 * resultValue9 + floatResult8 * secondaryValue2
+    fStack_140 = processedFloat0 * processedFloat8 * -1.0 + secondaryValue3 * processedFloat4 * -1.0 + floatResult7 * resultValue9 + FloatValue1 * secondaryValue2
     ;
-    fStack_148 = floatResult7 * secondaryValue2 * -1.0 + secondaryValue3 * processedFloat8 * -1.0 + floatResult8 * resultValue9 + processedFloat0 * processedFloat4
+    fStack_148 = floatResult7 * secondaryValue2 * -1.0 + secondaryValue3 * processedFloat8 * -1.0 + FloatValue1 * resultValue9 + processedFloat0 * processedFloat4
     ;
-    fStack_144 = floatResult8 * processedFloat4 * -1.0 + secondaryValue3 * secondaryValue2 * -1.0 + processedFloat0 * resultValue9 + floatResult7 * processedFloat8
+    fStack_144 = FloatValue1 * processedFloat4 * -1.0 + secondaryValue3 * secondaryValue2 * -1.0 + processedFloat0 * resultValue9 + floatResult7 * processedFloat8
     ;
     stackUInt178._0_4_ =
-         processedFloat0 * secondaryValue2 * 1.0 + secondaryValue3 * resultValue9 * 1.0 + floatResult8 * processedFloat8 + floatResult7 * processedFloat4;
+         processedFloat0 * secondaryValue2 * 1.0 + secondaryValue3 * resultValue9 * 1.0 + FloatValue1 * processedFloat8 + floatResult7 * processedFloat4;
     astackUInt158._4_4_ = fStack_148;
     astackUInt158._0_4_ = fStack_140;
     fStack_150 = fStack_144;
@@ -19416,7 +19416,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
              (secondaryValue7 * (float)stackUInt178 - secondaryValue5 * fStack_140);
     secondaryValue3 = secondaryValue7;
     floatResult7 = secondaryValue5;
-    floatResult8 = vectorComponentX;
+    FloatValue1 = vectorComponentX;
     processedFloat0 = secondaryValue4;
     fStack_13c = fStack_140;
     fStack_138 = fStack_144;
@@ -19427,7 +19427,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     stackUInt170._0_4_ = (float)stackUInt178;
     stackUInt170._4_4_ = (float)stackUInt178;
     if ((0.001 <= localFloat68) &&
-       (secondaryValue3 = processedFloat9, floatResult7 = resultValue7, floatResult8 = processedFloat1, processedFloat0 = processedFloat5, localFloat68 <= 0.999)) {
+       (secondaryValue3 = processedFloat9, floatResult7 = resultValue7, FloatValue1 = processedFloat1, processedFloat0 = processedFloat5, localFloat68 <= 0.999)) {
       secondaryValue3 = vectorComponentX * processedFloat1;
       floatResult7 = secondaryValue4 * processedFloat5;
       stackUIntf8 = 0xbf800000;
@@ -19466,11 +19466,11 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         asemaphoreHandle0 = rsqrtps(_astackUInt108,aresult0);
         vectorComponentX = asemaphoreHandle0._0_4_;
         secondaryValue4 = asemaphoreHandle0._4_4_;
-        floatResult8 = asemaphoreHandle0._8_4_;
+        FloatValue1 = asemaphoreHandle0._8_4_;
         processedFloat0 = asemaphoreHandle0._12_4_;
         secondaryValue3 = floatResult7 * (3.0 - vectorComponentX * vectorComponentX * (secondaryValue5 + secondaryValue7)) * vectorComponentX * 0.5;
         floatResult7 = processedFloat5 * (3.0 - secondaryValue4 * secondaryValue4 * (secondaryValue7 + secondaryValue5)) * secondaryValue4 * 0.5;
-        floatResult8 = processedFloat9 * (3.0 - floatResult8 * floatResult8 * resultValue7) * floatResult8 * 0.5;
+        FloatValue1 = processedFloat9 * (3.0 - FloatValue1 * FloatValue1 * resultValue7) * FloatValue1 * 0.5;
         processedFloat0 = localFloat68 * (3.0 - processedFloat0 * processedFloat0 * processedFloat1) * processedFloat0 * 0.5;
       }
       else {
@@ -19483,23 +19483,23 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         resultValue7 = extraout_XMM0_Da * (1.0 / floatResult7);
         secondaryValue3 = processedFloat0 * secondaryValue7 + resultValue7 * (float)astackUInt108;
         floatResult7 = processedFloat0 * secondaryValue5 + resultValue7 * fStack_104;
-        floatResult8 = processedFloat0 * vectorComponentX + resultValue7 * (float)stackUInt100;
+        FloatValue1 = processedFloat0 * vectorComponentX + resultValue7 * (float)stackUInt100;
         processedFloat0 = processedFloat0 * secondaryValue4 + resultValue7 * stackUInt100._4_4_;
       }
     }
     ProcessingResult1 = (int)pfloatResult3;
     astackUInt188._4_4_ = floatResult7;
     astackUInt188._0_4_ = secondaryValue3;
-    fStack_180 = floatResult8;
+    fStack_180 = FloatValue1;
     fStack_17c = processedFloat0;
     fStack_168 = resultPointer * 0.66;
-    resultValue7 = secondaryValue3 * (float)astackUInt158._0_4_ * 1.0 + floatResult8 * fStack_138 * 1.0 +
+    resultValue7 = secondaryValue3 * (float)astackUInt158._0_4_ * 1.0 + FloatValue1 * fStack_138 * 1.0 +
              (floatResult7 * (float)stackUInt178 - processedFloat0 * fStack_148);
     processedFloat1 = secondaryValue3 * (float)astackUInt158._4_4_ * 1.0 + processedFloat0 * fStack_134 * 1.0 +
-             (floatResult8 * stackUInt178._4_4_ - floatResult7 * fStack_144);
+             (FloatValue1 * stackUInt178._4_4_ - floatResult7 * fStack_144);
     processedFloat5 = secondaryValue3 * fStack_150 * 1.0 + floatResult7 * fStack_130 * 1.0 +
-             (processedFloat0 * (float)stackUInt170 - floatResult8 * fStack_140);
-    processedFloat9 = floatResult8 * fStack_14c * -1.0 + processedFloat0 * fStack_12c * -1.0 +
+             (processedFloat0 * (float)stackUInt170 - FloatValue1 * fStack_140);
+    processedFloat9 = FloatValue1 * fStack_14c * -1.0 + processedFloat0 * fStack_12c * -1.0 +
              (secondaryValue3 * stackUInt170._4_4_ - floatResult7 * fStack_13c);
     secondaryValue7 = localFloat61;
     secondaryValue5 = localFloat63;
@@ -19679,7 +19679,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       processedFloat7 = localFloat60;
       secondaryValue1 = localFloat64;
       secondaryValue8 = resultValue9;
-      floatResult9 = processedFloat4;
+      FloatValue2 = processedFloat4;
       resultValue6 = processedFloat8;
       floatResult5 = secondaryValue2;
       fStack_148 = localFloat66;
@@ -19687,17 +19687,17 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       fStack_140 = localFloat66;
       fStack_13c = localFloat62;
       if ((0.001 <= param_9) &&
-         (secondaryValue8 = secondaryValue0, floatResult9 = resultValue8, resultValue6 = processedFloat2, floatResult5 = processedFloat6, param_9 <= 0.999)) {
+         (secondaryValue8 = secondaryValue0, FloatValue2 = resultValue8, resultValue6 = processedFloat2, floatResult5 = processedFloat6, param_9 <= 0.999)) {
         secondaryValue8 = processedFloat8 * processedFloat2;
-        floatResult9 = secondaryValue2 * processedFloat6;
+        FloatValue2 = secondaryValue2 * processedFloat6;
         stackUInt118 = 0xbf800000;
         stackUInt114 = 0xbf800000;
         stackUInt110 = 0xbf800000;
         stackUInt10c = 0xbf800000;
         asemaphoreHandle6._0_4_ = secondaryValue8 + resultValue9 * secondaryValue0;
-        asemaphoreHandle6._4_4_ = floatResult9 + processedFloat4 * resultValue8;
+        asemaphoreHandle6._4_4_ = FloatValue2 + processedFloat4 * resultValue8;
         asemaphoreHandle6._8_4_ = secondaryValue8 + secondaryValue8;
-        asemaphoreHandle6._12_4_ = floatResult9 + floatResult9;
+        asemaphoreHandle6._12_4_ = FloatValue2 + FloatValue2;
         asemaphoreHandle7._4_12_ = asemaphoreHandle6._4_12_;
         asemaphoreHandle7._0_4_ = asemaphoreHandle6._0_4_ + asemaphoreHandle6._4_4_;
         stackUInt120 = 0x3f8000003f800000;
@@ -19711,14 +19711,14 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         stackUInt120._4_4_ = *(float *)(astackUInt128 + allocatedMemory + 0xc) * processedFloat6;
         if (0.9995 < ABS(asemaphoreHandle7._0_4_)) {
           secondaryValue8 = 1.0 - param_9;
-          floatResult9 = resultValue9 * secondaryValue8 + param_9 * (float)astackUInt128;
+          FloatValue2 = resultValue9 * secondaryValue8 + param_9 * (float)astackUInt128;
           processedFloat6 = processedFloat4 * secondaryValue8 + param_9 * fStack_124;
           secondaryValue0 = processedFloat8 * secondaryValue8 + param_9 * (float)stackUInt120;
           secondaryValue9 = secondaryValue2 * secondaryValue8 + param_9 * stackUInt120._4_4_;
-          resultValue9 = secondaryValue9 * secondaryValue9 + floatResult9 * floatResult9;
+          resultValue9 = secondaryValue9 * secondaryValue9 + FloatValue2 * FloatValue2;
           processedFloat4 = secondaryValue0 * secondaryValue0 + processedFloat6 * processedFloat6;
           resultValue8 = resultValue9 + processedFloat6 * processedFloat6 + secondaryValue0 * secondaryValue0;
-          processedFloat2 = processedFloat4 + floatResult9 * floatResult9 + secondaryValue9 * secondaryValue9;
+          processedFloat2 = processedFloat4 + FloatValue2 * FloatValue2 + secondaryValue9 * secondaryValue9;
           aeventTypeCode._4_4_ = resultValue9 + processedFloat4 + 1.1754944e-38;
           aeventTypeCode._0_4_ = processedFloat4 + resultValue9 + 1.1754944e-38;
           aeventTypeCode._8_4_ = resultValue8 + 1.1754944e-38;
@@ -19728,8 +19728,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
           secondaryValue2 = asemaphoreHandle0._4_4_;
           resultValue6 = asemaphoreHandle0._8_4_;
           floatResult5 = asemaphoreHandle0._12_4_;
-          secondaryValue8 = floatResult9 * (3.0 - processedFloat8 * processedFloat8 * (processedFloat4 + resultValue9)) * processedFloat8 * 0.5;
-          floatResult9 = processedFloat6 * (3.0 - secondaryValue2 * secondaryValue2 * (resultValue9 + processedFloat4)) * secondaryValue2 * 0.5;
+          secondaryValue8 = FloatValue2 * (3.0 - processedFloat8 * processedFloat8 * (processedFloat4 + resultValue9)) * processedFloat8 * 0.5;
+          FloatValue2 = processedFloat6 * (3.0 - secondaryValue2 * secondaryValue2 * (resultValue9 + processedFloat4)) * secondaryValue2 * 0.5;
           resultValue6 = secondaryValue0 * (3.0 - resultValue6 * resultValue6 * resultValue8) * resultValue6 * 0.5;
           floatResult5 = secondaryValue9 * (3.0 - floatResult5 * floatResult5 * processedFloat2) * floatResult5 * 0.5;
         }
@@ -19749,7 +19749,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
           processedFloat7 = fStack_150;
           secondaryValue1 = fStack_14c;
           secondaryValue8 = floatResult5 * resultValue9 + resultValue8 * (float)astackUInt128;
-          floatResult9 = floatResult5 * processedFloat4 + resultValue8 * fStack_124;
+          FloatValue2 = floatResult5 * processedFloat4 + resultValue8 * fStack_124;
           resultValue6 = floatResult5 * processedFloat8 + resultValue8 * (float)stackUInt120;
           floatResult5 = floatResult5 * secondaryValue2 + resultValue8 * stackUInt120._4_4_;
         }
@@ -19768,7 +19768,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       processedFloat8 = vectorComponentX;
       secondaryValue2 = secondaryValue4;
       fStack_138 = secondaryValue8;
-      fStack_134 = floatResult9;
+      fStack_134 = FloatValue2;
       fStack_130 = resultValue6;
       fStack_12c = floatResult5;
       if ((0.001 <= resultValue8) &&
@@ -19839,20 +19839,20 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       stackUInt170 = CONCAT44(secondaryValue2,processedFloat8);
       localFloat68 = param_9 * 0.33;
       resultValue9 = processedFloat0 * (float)astackUInt158._0_4_ * 1.0 + floatResult7 * fStack_148 * 1.0 +
-               (secondaryValue3 * localFloat60 - floatResult8 * (float)astackUInt108);
-      processedFloat4 = floatResult7 * (float)astackUInt158._4_4_ * 1.0 + floatResult8 * fStack_144 * 1.0 +
+               (secondaryValue3 * localFloat60 - FloatValue1 * (float)astackUInt108);
+      processedFloat4 = floatResult7 * (float)astackUInt158._4_4_ * 1.0 + FloatValue1 * fStack_144 * 1.0 +
                (secondaryValue3 * localFloat62 - processedFloat0 * fStack_104);
-      processedFloat8 = floatResult8 * fStack_150 * 1.0 + processedFloat0 * fStack_140 * 1.0 +
+      processedFloat8 = FloatValue1 * fStack_150 * 1.0 + processedFloat0 * fStack_140 * 1.0 +
                (secondaryValue3 * localFloat64 - floatResult7 * (float)stackUInt100);
-      secondaryValue2 = processedFloat0 * fStack_14c * -1.0 + floatResult8 * fStack_13c * -1.0 +
+      secondaryValue2 = processedFloat0 * fStack_14c * -1.0 + FloatValue1 * fStack_13c * -1.0 +
                (secondaryValue3 * localFloat66 - floatResult7 * stackUInt100._4_4_);
       secondaryValue7 = secondaryValue3;
       secondaryValue5 = floatResult7;
-      vectorComponentX = floatResult8;
+      vectorComponentX = FloatValue1;
       secondaryValue4 = processedFloat0;
       if ((0.001 <= localFloat68) &&
          (secondaryValue7 = secondaryValue2, secondaryValue5 = resultValue9, vectorComponentX = processedFloat4, secondaryValue4 = processedFloat8, localFloat68 <= 0.999)) {
-        secondaryValue7 = floatResult8 * processedFloat4;
+        secondaryValue7 = FloatValue1 * processedFloat4;
         secondaryValue5 = processedFloat0 * processedFloat8;
         stackUInt118 = 0xbf800000;
         stackUInt114 = 0xbf800000;
@@ -19876,11 +19876,11 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
           localFloat60 = 1.0 - localFloat68;
           secondaryValue3 = secondaryValue3 * localFloat60 + localFloat68 * secondaryValue7 * secondaryValue2;
           floatResult7 = floatResult7 * localFloat60 + localFloat68 * secondaryValue5 * resultValue9;
-          floatResult8 = floatResult8 * localFloat60 + localFloat68 * vectorComponentX * processedFloat4;
+          FloatValue1 = FloatValue1 * localFloat60 + localFloat68 * vectorComponentX * processedFloat4;
           processedFloat0 = processedFloat0 * localFloat60 + localFloat68 * secondaryValue4 * processedFloat8;
           secondaryValue5 = processedFloat0 * processedFloat0 + secondaryValue3 * secondaryValue3;
-          vectorComponentX = floatResult8 * floatResult8 + floatResult7 * floatResult7;
-          processedFloat8 = secondaryValue5 + floatResult7 * floatResult7 + floatResult8 * floatResult8;
+          vectorComponentX = FloatValue1 * FloatValue1 + floatResult7 * floatResult7;
+          processedFloat8 = secondaryValue5 + floatResult7 * floatResult7 + FloatValue1 * FloatValue1;
           secondaryValue2 = vectorComponentX + secondaryValue3 * secondaryValue3 + processedFloat0 * processedFloat0;
           aLoopCounter._4_4_ = secondaryValue5 + vectorComponentX + 1.1754944e-38;
           aLoopCounter._0_4_ = vectorComponentX + secondaryValue5 + 1.1754944e-38;
@@ -19893,7 +19893,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
           processedFloat4 = asemaphoreHandle0._12_4_;
           secondaryValue7 = secondaryValue3 * (3.0 - secondaryValue7 * secondaryValue7 * (vectorComponentX + secondaryValue5)) * secondaryValue7 * 0.5;
           secondaryValue5 = floatResult7 * (3.0 - secondaryValue4 * secondaryValue4 * (secondaryValue5 + vectorComponentX)) * secondaryValue4 * 0.5;
-          vectorComponentX = floatResult8 * (3.0 - resultValue9 * resultValue9 * processedFloat8) * resultValue9 * 0.5;
+          vectorComponentX = FloatValue1 * (3.0 - resultValue9 * resultValue9 * processedFloat8) * resultValue9 * 0.5;
           secondaryValue4 = processedFloat0 * (3.0 - processedFloat4 * processedFloat4 * secondaryValue2) * processedFloat4 * 0.5;
         }
         else {
@@ -19905,7 +19905,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
           localFloat60 = localFloat60 * (1.0 / localFloat62);
           secondaryValue7 = localFloat64 * secondaryValue3 + localFloat60 * secondaryValue7 * secondaryValue2;
           secondaryValue5 = localFloat64 * floatResult7 + localFloat60 * secondaryValue5 * resultValue9;
-          vectorComponentX = localFloat64 * floatResult8 + localFloat60 * vectorComponentX * processedFloat4;
+          vectorComponentX = localFloat64 * FloatValue1 + localFloat60 * vectorComponentX * processedFloat4;
           secondaryValue4 = localFloat64 * processedFloat0 + localFloat60 * secondaryValue4 * processedFloat8;
         }
       }
@@ -19962,13 +19962,13 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         secondaryValue2 = secondaryValue7;
         secondaryValue3 = secondaryValue5;
         floatResult7 = vectorComponentX;
-        floatResult8 = secondaryValue4;
+        FloatValue1 = secondaryValue4;
         fStack_148 = localFloat64;
         fStack_144 = localFloat64;
         fStack_140 = localFloat64;
         fStack_13c = localFloat68;
         if ((0.001 <= uiContext3) &&
-           (secondaryValue2 = resultValue7, secondaryValue3 = processedFloat0, floatResult7 = localFloat60, floatResult8 = localFloat62, uiContext3 <= 0.999))
+           (secondaryValue2 = resultValue7, secondaryValue3 = processedFloat0, floatResult7 = localFloat60, FloatValue1 = localFloat62, uiContext3 <= 0.999))
         {
           secondaryValue2 = vectorComponentX * localFloat60;
           secondaryValue3 = secondaryValue4 * localFloat62;
@@ -20009,34 +20009,34 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
             vectorComponentX = asemaphoreHandle0._0_4_;
             secondaryValue4 = asemaphoreHandle0._4_4_;
             floatResult7 = asemaphoreHandle0._8_4_;
-            floatResult8 = asemaphoreHandle0._12_4_;
+            FloatValue1 = asemaphoreHandle0._12_4_;
             secondaryValue2 = secondaryValue3 * (3.0 - vectorComponentX * vectorComponentX * (secondaryValue5 + secondaryValue7)) * vectorComponentX * 0.5;
             secondaryValue3 = processedFloat1 * (3.0 - secondaryValue4 * secondaryValue4 * (secondaryValue7 + secondaryValue5)) * secondaryValue4 * 0.5;
             floatResult7 = processedFloat5 * (3.0 - floatResult7 * floatResult7 * processedFloat0) * floatResult7 * 0.5;
-            floatResult8 = processedFloat9 * (3.0 - floatResult8 * floatResult8 * resultValue7) * floatResult8 * 0.5;
+            FloatValue1 = processedFloat9 * (3.0 - FloatValue1 * FloatValue1 * resultValue7) * FloatValue1 * 0.5;
           }
           else {
             resultValue9 = (float)acosf();
             processedFloat4 = (float)sinf();
-            floatResult8 = (float)sinf(resultValue9 - resultValue9 * uiContext3);
-            floatResult8 = floatResult8 * (1.0 / processedFloat4);
+            FloatValue1 = (float)sinf(resultValue9 - resultValue9 * uiContext3);
+            FloatValue1 = FloatValue1 * (1.0 / processedFloat4);
             ProcessingResult1 = sinf(resultValue9 * uiContext3);
             processedFloat0 = extraout_XMM0_Da_03 * (1.0 / processedFloat4);
             aLoopCounter6 = astackUInt108;
             resultValue9 = fStack_104;
             processedFloat4 = (float)stackUInt100;
             processedFloat8 = stackUInt100._4_4_;
-            secondaryValue2 = floatResult8 * secondaryValue7 + processedFloat0 * (float)astackUInt128;
-            secondaryValue3 = floatResult8 * secondaryValue5 + processedFloat0 * fStack_124;
-            floatResult7 = floatResult8 * vectorComponentX + processedFloat0 * (float)stackUInt120;
-            floatResult8 = floatResult8 * secondaryValue4 + processedFloat0 * stackUInt120._4_4_;
+            secondaryValue2 = FloatValue1 * secondaryValue7 + processedFloat0 * (float)astackUInt128;
+            secondaryValue3 = FloatValue1 * secondaryValue5 + processedFloat0 * fStack_124;
+            floatResult7 = FloatValue1 * vectorComponentX + processedFloat0 * (float)stackUInt120;
+            FloatValue1 = FloatValue1 * secondaryValue4 + processedFloat0 * stackUInt120._4_4_;
           }
         }
         uiContext3 = uiContext3 * 0.5;
         fStack_104 = secondaryValue3;
         astackUInt108 = (UIByte  [4])secondaryValue2;
         stackUInt100._0_4_ = floatResult7;
-        stackUInt100._4_4_ = floatResult8;
+        stackUInt100._4_4_ = FloatValue1;
         secondaryValue2 = localFloat61 * fStack_148 * 1.0;
         secondaryValue5 = localFloat65 * (float)aLoopCounter6 * 1.0 + secondaryValue2 +
                  (localFloat67 * localFloat66 - localFloat63 * (float)astackUInt158._0_4_);
@@ -20100,14 +20100,14 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
             else {
               secondaryValue2 = (float)acosf();
               floatResult7 = (float)sinf();
-              floatResult8 = (float)sinf(secondaryValue2 - secondaryValue2 * uiContext3);
-              floatResult8 = floatResult8 * (1.0 / floatResult7);
+              FloatValue1 = (float)sinf(secondaryValue2 - secondaryValue2 * uiContext3);
+              FloatValue1 = FloatValue1 * (1.0 / floatResult7);
               secondaryValue2 = (float)sinf(secondaryValue2 * uiContext3);
               secondaryValue2 = secondaryValue2 * (1.0 / floatResult7);
-              secondaryValue7 = floatResult8 * localFloat61 + secondaryValue2 * resultValue9 * secondaryValue7;
-              secondaryValue5 = floatResult8 * localFloat63 + secondaryValue2 * processedFloat4 * secondaryValue5;
-              vectorComponentX = floatResult8 * localFloat65 + secondaryValue2 * processedFloat8 * vectorComponentX;
-              secondaryValue4 = floatResult8 * localFloat67 + secondaryValue2 * secondaryValue3 * secondaryValue4;
+              secondaryValue7 = FloatValue1 * localFloat61 + secondaryValue2 * resultValue9 * secondaryValue7;
+              secondaryValue5 = FloatValue1 * localFloat63 + secondaryValue2 * processedFloat4 * secondaryValue5;
+              vectorComponentX = FloatValue1 * localFloat65 + secondaryValue2 * processedFloat8 * vectorComponentX;
+              secondaryValue4 = FloatValue1 * localFloat67 + secondaryValue2 * secondaryValue3 * secondaryValue4;
             }
           }
         }
@@ -23526,8 +23526,8 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
   UIByte aCounterResult [16];
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -23700,15 +23700,15 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
     floatResult3 = fStack_1d4 * fStack_1d4 + fStack_1d8 * fStack_1d8;
     fStack_1b8 = localFloat20 / SQRT(localFloat20 * localFloat20 + floatResult3);
     if (param_9 != '\0') {
-      floatResult8 = -(fStack_1d4 * localFloat20);
+      FloatValue1 = -(fStack_1d4 * localFloat20);
       floatResult7 = -(fStack_1d8 * localFloat20);
-      localFloat20 = floatResult3 * floatResult3 + floatResult7 * floatResult7 + floatResult8 * floatResult8;
+      localFloat20 = floatResult3 * floatResult3 + floatResult7 * floatResult7 + FloatValue1 * FloatValue1;
       aCounterResult = rsqrtss(ZEXT416((uint)localFloat20),ZEXT416((uint)localFloat20));
       floatResult6 = aCounterResult._0_4_;
-      floatResult9 = floatResult6 * 0.5 * (3.0 - localFloat20 * floatResult6 * floatResult6);
-      floatResult8 = floatResult9 * floatResult8;
-      floatResult7 = floatResult9 * floatResult7;
-      floatResult9 = floatResult9 * floatResult3;
+      FloatValue2 = floatResult6 * 0.5 * (3.0 - localFloat20 * floatResult6 * floatResult6);
+      FloatValue1 = FloatValue2 * FloatValue1;
+      floatResult7 = FloatValue2 * floatResult7;
+      FloatValue2 = FloatValue2 * floatResult3;
       astackUInt1a8 = ZEXT416(0);
       stackUInt198 = 0;
       stackUInt190 = 3;
@@ -23723,22 +23723,22 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
       if (result1 != 0) {
         do {
           allocatedMemory0 = *(longlong *)(astackUInt1a8._0_8_ + MaxProcessingCount);
-          *(float *)(allocatedMemory0 + 200) = floatResult8 * 0.15 + floatResult6;
+          *(float *)(allocatedMemory0 + 200) = FloatValue1 * 0.15 + floatResult6;
           *(float *)(allocatedMemory0 + 0xcc) = floatResult7 * 0.15 + floatResult3;
-          *(float *)(allocatedMemory0 + 0xd0) = floatResult9 * 0.15 + localFloat20;
+          *(float *)(allocatedMemory0 + 0xd0) = FloatValue2 * 0.15 + localFloat20;
           *(UIDword *)(allocatedMemory0 + 0xd4) = 0x7f7fffff;
-          *(float *)(allocatedMemory0 + 0xd8) = floatResult8;
+          *(float *)(allocatedMemory0 + 0xd8) = FloatValue1;
           *(float *)(allocatedMemory0 + 0xdc) = floatResult7;
-          *(float *)(allocatedMemory0 + 0xe0) = floatResult9;
+          *(float *)(allocatedMemory0 + 0xe0) = FloatValue2;
           *(UIDword *)(allocatedMemory0 + 0xe4) = 0x7f7fffff;
           eventTypeCode = (int)uVar8 + 1;
           uVar8 = (ulonglong)eventTypeCode;
           MaxProcessingCount = MaxProcessingCount + 8;
         } while ((ulonglong)(longlong)(int)eventTypeCode < result1);
       }
-      fStack_208 = floatResult8;
+      fStack_208 = FloatValue1;
       fStack_204 = floatResult7;
-      fStack_200 = floatResult9;
+      fStack_200 = FloatValue2;
       if (astackUInt1a8._0_8_ != 0) {
                      WARNING: Subroutine does not return
         DestroyUIComponent();
@@ -23747,21 +23747,21 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
     floatResult7 = fStack_1b8;
     floatResult6 = fStack_1d4;
     localFloat20 = fStack_1d8;
-    floatResult9 = SQRT(*(float *)(allocatedMemory + 0x70) * *(float *)(allocatedMemory + 0x70) +
+    FloatValue2 = SQRT(*(float *)(allocatedMemory + 0x70) * *(float *)(allocatedMemory + 0x70) +
                   *(float *)(allocatedMemory + 0x74) * *(float *)(allocatedMemory + 0x74) +
                   *(float *)(allocatedMemory + 0x78) * *(float *)(allocatedMemory + 0x78));
     floatResult3 = (float)asinf();
-    floatResult8 = -(floatResult3 * param_8);
+    FloatValue1 = -(floatResult3 * param_8);
     floatResult3 = -0.6;
-    if ((-0.6 <= floatResult8) && (floatResult3 = floatResult8, 0.6 <= floatResult8)) {
+    if ((-0.6 <= FloatValue1) && (floatResult3 = FloatValue1, 0.6 <= FloatValue1)) {
       floatResult3 = 0.6;
     }
     *(float *)(uiContext + 8) = floatResult3;
-    floatResult7 = floatResult9 * floatResult7;
+    floatResult7 = FloatValue2 * floatResult7;
     *(float *)(uiContext + 0xc) =
          (((*(float *)(uiContext + 0x34) - floatResult7 * *(float *)(uiContext + 0x3c)) +
           (*(float *)(uiContext + 0x2c) - floatResult7 * *(float *)(uiContext + 0x38))) * 0.5 * param_8) /
-         floatResult9;
+         FloatValue2;
     if (param_7 < '\0') {
       localFloat22 = -*(float *)(uiContext + 0x14);
       localFloat20 = vectorComponentX * -2.0;
@@ -23798,8 +23798,8 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
       else {
         floatResult7 = fStack_100 * fStack_100 + fStack_fc * fStack_fc;
         aCounterResult = rsqrtss(ZEXT416((uint)floatResult7),ZEXT416((uint)floatResult7));
-        floatResult8 = aCounterResult._0_4_;
-        floatResult7 = floatResult8 * 0.5 * (3.0 - floatResult7 * floatResult8 * floatResult8);
+        FloatValue1 = aCounterResult._0_4_;
+        floatResult7 = FloatValue1 * 0.5 * (3.0 - floatResult7 * FloatValue1 * FloatValue1);
         vectorComponentX = SQRT(floatResult3 * floatResult3 + vectorComponentX * vectorComponentX + localFloat23);
         floatResult3 = fStack_100 * floatResult7 * vectorComponentX;
         vectorComponentX = fStack_fc * floatResult7 * vectorComponentX;
@@ -23826,14 +23826,14 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
         aCounterResult = rsqrtss(ZEXT416((uint)floatResult3),ZEXT416((uint)floatResult3));
         vectorComponentX = aCounterResult._0_4_;
         floatResult3 = vectorComponentX * 0.5 * (3.0 - floatResult3 * vectorComponentX * vectorComponentX);
-        floatResult9 = floatResult3 * floatResult6;
-        floatResult8 = floatResult3 * localFloat20;
+        FloatValue2 = floatResult3 * floatResult6;
+        FloatValue1 = floatResult3 * localFloat20;
         floatResult7 = (fStack_1e8 + fStack_1f8) * 0.5 - fStack_1c8;
         localFloat23 = (fStack_1e4 + fStack_1f4) * 0.5 - fStack_1c4;
         localFloat21 = (fStack_1e0 + fStack_1f0) * 0.5 - fStack_118;
-        vectorComponentX = floatResult8 * localFloat23 + floatResult9 * floatResult7 + localFloat21 * floatResult3 * fStack_200;
-        floatResult7 = floatResult7 - vectorComponentX * floatResult9;
-        localFloat23 = localFloat23 - vectorComponentX * floatResult8;
+        vectorComponentX = FloatValue1 * localFloat23 + FloatValue2 * floatResult7 + localFloat21 * floatResult3 * fStack_200;
+        floatResult7 = floatResult7 - vectorComponentX * FloatValue2;
+        localFloat23 = localFloat23 - vectorComponentX * FloatValue1;
         localFloat21 = localFloat21 - vectorComponentX * floatResult3 * fStack_200;
         vectorComponentX = localFloat23 * localFloat23 + floatResult7 * floatResult7 + localFloat21 * localFloat21;
         aCounterResult = rsqrtss(ZEXT416((uint)vectorComponentX),ZEXT416((uint)vectorComponentX));
@@ -23843,7 +23843,7 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
         fStack_204 = localFloat20;
         vectorComponentX = (float)asinf();
         TempInt4 = -1;
-        if (floatResult7 * floatResult3 * floatResult8 - localFloat23 * floatResult3 * floatResult9 < 0.0) {
+        if (floatResult7 * floatResult3 * FloatValue1 - localFloat23 * floatResult3 * FloatValue2 < 0.0) {
           TempInt4 = 1;
         }
         param_8 = vectorComponentX * (float)TempInt4 * param_8;
@@ -72449,15 +72449,15 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
   longlong allocatedMemory5;
   longlong allocatedMemory6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   
   allocatedMemory4 = (longlong)targetBuffer;
   ProcessingResult2 = 0;
   floatResult7 = 0.0;
-  floatResult8 = 0.0;
-  floatResult9 = 0.0;
+  FloatValue1 = 0.0;
+  FloatValue2 = 0.0;
   localFloat20 = 0.0;
   if (0 < targetBuffer + -3) {
     uVar9 = (targetBuffer - 4U >> 2) + 1;
@@ -72472,14 +72472,14 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
       plocalFloat2 = pfloatResult0 + 3;
       pfloatResult0 = pfloatResult0 + 4;
       floatResult7 = floatResult7 + *pfloatResult * localFloat6;
-      floatResult8 = floatResult8 + pfloatResult[1] * *presultFloat;
-      floatResult9 = floatResult9 + pfloatResult[2] * *plocalFloat8;
+      FloatValue1 = FloatValue1 + pfloatResult[1] * *presultFloat;
+      FloatValue2 = FloatValue2 + pfloatResult[2] * *plocalFloat8;
       localFloat20 = localFloat20 + pfloatResult[3] * *plocalFloat2;
       result1 = result1 - 1;
     } while (result1 != 0);
   }
   allocatedMemory5 = (longlong)ProcessingResult2;
-  floatResult7 = floatResult7 + floatResult9 + floatResult8 + localFloat20;
+  floatResult7 = floatResult7 + FloatValue2 + FloatValue1 + localFloat20;
   if (allocatedMemory5 < allocatedMemory4) {
     if (3 < allocatedMemory4 - allocatedMemory5) {
       pfloatResult0 = dataSource + allocatedMemory5 + 1;
@@ -72490,13 +72490,13 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
         presultValue = (float *)(allocatedMemory6 + -4 + (longlong)pfloatResult0);
         pfloatResult = pfloatResult0 + -1;
         plocalFloat2 = (float *)((longlong)pfloatResult0 + allocatedMemory6);
-        floatResult8 = *pfloatResult0;
+        FloatValue1 = *pfloatResult0;
         pprocessedFloat = (float *)(allocatedMemory6 + 4 + (longlong)pfloatResult0);
         presultFloat = pfloatResult0 + 1;
         psecondaryValue = (float *)(allocatedMemory6 + 8 + (longlong)pfloatResult0);
         plocalFloat8 = pfloatResult0 + 2;
         pfloatResult0 = pfloatResult0 + 4;
-        floatResult7 = *presultValue * *pfloatResult + floatResult7 + *plocalFloat2 * floatResult8 + *pprocessedFloat * *presultFloat +
+        floatResult7 = *presultValue * *pfloatResult + floatResult7 + *plocalFloat2 * FloatValue1 + *pprocessedFloat * *presultFloat +
                  *psecondaryValue * *plocalFloat8;
         allocatedMemory3 = allocatedMemory3 + -1;
       } while (allocatedMemory3 != 0);
@@ -72506,9 +72506,9 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
       allocatedMemory4 = allocatedMemory4 - allocatedMemory5;
       do {
         pfloatResult = (float *)((longlong)pfloatResult0 + (uiContext - (longlong)dataSource));
-        floatResult8 = *pfloatResult0;
+        FloatValue1 = *pfloatResult0;
         pfloatResult0 = pfloatResult0 + 1;
-        floatResult7 = floatResult7 + *pfloatResult * floatResult8;
+        floatResult7 = floatResult7 + *pfloatResult * FloatValue1;
         allocatedMemory4 = allocatedMemory4 + -1;
       } while (allocatedMemory4 != 0);
     }
@@ -73100,7 +73100,7 @@ void UpdateUIAnimationState(longlong uiContext,UIHandle dataSource,longlong targ
   uiContext2[6] = *(UIHandle *)(EventDataIndex + 0x209c + uiContext);
   localFloat20 = *(float *)((longlong)uiContext2 + 4);
   CounterResult = result3;
-  floatResult8 = localFloat20;
+  FloatValue1 = localFloat20;
   do {
     IsMatchFound = uVar8 != 99;
     result = uVar8 + 1;
@@ -73108,23 +73108,23 @@ void UpdateUIAnimationState(longlong uiContext,UIHandle dataSource,longlong targ
     if (IsMatchFound) {
       uVar8 = result;
     }
-    floatResult9 = floatResult8;
+    FloatValue2 = FloatValue1;
     if (uVar8 == (longlong)*(int *)(uiBufferData + 0x2050)) break;
     EventOperationCount = EventOperationCount + 1;
     IndexResult = (int)CounterResult + 1;
     CounterResult = (ulonglong)IndexResult;
-    floatResult9 = *(float *)(uVar8 * 0x38 + 0x2070 + uiContext);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    FloatValue2 = *(float *)(uVar8 * 0x38 + 0x2070 + uiContext);
+    localFloat20 = localFloat20 + FloatValue2;
+    if (FloatValue2 <= FloatValue1) {
+      FloatValue2 = FloatValue1;
     }
-    floatResult8 = floatResult9;
+    FloatValue1 = FloatValue2;
   } while ((int)IndexResult < 3);
-  floatResult8 = localFloat20 / (float)EventOperationCount;
-  if (localFloat20 / (float)EventOperationCount <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+  FloatValue1 = localFloat20 / (float)EventOperationCount;
+  if (localFloat20 / (float)EventOperationCount <= FloatValue2 - 0.2) {
+    FloatValue1 = FloatValue2 - 0.2;
   }
-  *(float *)((longlong)uiContext2 + 4) = floatResult8;
+  *(float *)((longlong)uiContext2 + 4) = FloatValue1;
   *(int *)(uiBufferData + 0x2058) = *(int *)(uiBufferData + 0x2058) + resultPointer / (*(int *)(uiBufferData + 8) / 400);
   uiOperationResult6 = *(int *)(uiBufferData + 0x2058);
   localInt9 = *(int *)(uiBufferData + 0x2054);
@@ -73321,7 +73321,7 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackParam000000d8[6] = *(UIHandle *)(EventDataIndex + 0x209c + BasePointer);
   localFloat20 = *(float *)((longlong)stackParam000000d8 + 4);
   TotalResult = IndexResult;
-  floatResult8 = localFloat20;
+  FloatValue1 = localFloat20;
   do {
     IsMatchFound = uVar8 != 99;
     result = uVar8 + 1;
@@ -73329,23 +73329,23 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
     if (IsMatchFound) {
       uVar8 = result;
     }
-    floatResult9 = floatResult8;
+    FloatValue2 = FloatValue1;
     if (uVar8 == (longlong)*(int *)(BasePointer + 0x2050)) break;
     EventOperationCount = EventOperationCount + 1;
     CounterResult = (int)TotalResult + 1;
     TotalResult = (ulonglong)CounterResult;
-    floatResult9 = *(float *)(uVar8 * 0x38 + 0x2070 + BasePointer);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    FloatValue2 = *(float *)(uVar8 * 0x38 + 0x2070 + BasePointer);
+    localFloat20 = localFloat20 + FloatValue2;
+    if (FloatValue2 <= FloatValue1) {
+      FloatValue2 = FloatValue1;
     }
-    floatResult8 = floatResult9;
+    FloatValue1 = FloatValue2;
   } while ((int)CounterResult < 3);
-  floatResult8 = localFloat20 / (float)EventOperationCount;
-  if (localFloat20 / (float)EventOperationCount <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+  FloatValue1 = localFloat20 / (float)EventOperationCount;
+  if (localFloat20 / (float)EventOperationCount <= FloatValue2 - 0.2) {
+    FloatValue1 = FloatValue2 - 0.2;
   }
-  *(float *)((longlong)stackParam000000d8 + 4) = floatResult8;
+  *(float *)((longlong)stackParam000000d8 + 4) = FloatValue1;
   *(int *)(BasePointer + 0x2058) =
        *(int *)(BasePointer + 0x2058) + RegisterValue / (*(int *)(BasePointer + 8) / 400);
   ProcessingResult1 = *(int *)(BasePointer + 0x2058);
@@ -73442,8 +73442,8 @@ void FUN_1807079df(UIHandle uiContext,int dataSource)
   uint CounterResult;
   longlong RegisterPointer;
   bool IsMatchFound;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   UIDword uStack0000000000000028;
   UIDword uStack0000000000000030;
@@ -73504,7 +73504,7 @@ void FUN_1807079df(UIHandle uiContext,int dataSource)
   stackParam000000d8[6] = *(UIHandle *)(ContextHandleData + 0x209c + BasePointer);
   localFloat20 = *(float *)((longlong)stackParam000000d8 + 4);
   TotalResult = IndexResult;
-  floatResult8 = localFloat20;
+  FloatValue1 = localFloat20;
   do {
     IsMatchFound = result0 != 99;
     result = result0 + 1;
@@ -73512,23 +73512,23 @@ void FUN_1807079df(UIHandle uiContext,int dataSource)
     if (IsMatchFound) {
       result0 = result;
     }
-    floatResult9 = floatResult8;
+    FloatValue2 = FloatValue1;
     if (result0 == (longlong)*(int *)(BasePointer + 0x2050)) break;
     ProcessingResult1 = ProcessingResult1 + 1;
     CounterResult = (int)TotalResult + 1;
     TotalResult = (ulonglong)CounterResult;
-    floatResult9 = *(float *)(result0 * 0x38 + 0x2070 + BasePointer);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    FloatValue2 = *(float *)(result0 * 0x38 + 0x2070 + BasePointer);
+    localFloat20 = localFloat20 + FloatValue2;
+    if (FloatValue2 <= FloatValue1) {
+      FloatValue2 = FloatValue1;
     }
-    floatResult8 = floatResult9;
+    FloatValue1 = FloatValue2;
   } while ((int)CounterResult < 3);
-  floatResult8 = localFloat20 / (float)ProcessingResult1;
-  if (localFloat20 / (float)ProcessingResult1 <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+  FloatValue1 = localFloat20 / (float)ProcessingResult1;
+  if (localFloat20 / (float)ProcessingResult1 <= FloatValue2 - 0.2) {
+    FloatValue1 = FloatValue2 - 0.2;
   }
-  *(float *)((longlong)stackParam000000d8 + 4) = floatResult8;
+  *(float *)((longlong)stackParam000000d8 + 4) = FloatValue1;
   *(int *)(BasePointer + 0x2058) =
        *(int *)(BasePointer + 0x2058) + stackParam000000a0 / (*(int *)(BasePointer + 8) / 400);
   localInt9 = *(int *)(BasePointer + 0x2058);
@@ -73671,7 +73671,7 @@ void InitializeUILayoutSystem(void)
   stackParam000000d8[6] = *(UIHandle *)(ContextHandleData + 0x209c + BasePointer);
   localFloat20 = *(float *)((longlong)stackParam000000d8 + 4);
   TotalResult = IndexResult;
-  floatResult8 = localFloat20;
+  FloatValue1 = localFloat20;
   do {
     IsMatchFound = result0 != 99;
     result = result0 + 1;
@@ -73679,23 +73679,23 @@ void InitializeUILayoutSystem(void)
     if (IsMatchFound) {
       result0 = result;
     }
-    floatResult9 = floatResult8;
+    FloatValue2 = FloatValue1;
     if (result0 == (longlong)*(int *)(BasePointer + 0x2050)) break;
     ProcessingResult1 = ProcessingResult1 + 1;
     CounterResult = (int)TotalResult + 1;
     TotalResult = (ulonglong)CounterResult;
-    floatResult9 = *(float *)(result0 * 0x38 + 0x2070 + BasePointer);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    FloatValue2 = *(float *)(result0 * 0x38 + 0x2070 + BasePointer);
+    localFloat20 = localFloat20 + FloatValue2;
+    if (FloatValue2 <= FloatValue1) {
+      FloatValue2 = FloatValue1;
     }
-    floatResult8 = floatResult9;
+    FloatValue1 = FloatValue2;
   } while ((int)CounterResult < 3);
-  floatResult8 = localFloat20 / (float)ProcessingResult1;
-  if (localFloat20 / (float)ProcessingResult1 <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+  FloatValue1 = localFloat20 / (float)ProcessingResult1;
+  if (localFloat20 / (float)ProcessingResult1 <= FloatValue2 - 0.2) {
+    FloatValue1 = FloatValue2 - 0.2;
   }
-  *(float *)((longlong)stackParam000000d8 + 4) = floatResult8;
+  *(float *)((longlong)stackParam000000d8 + 4) = FloatValue1;
   *(int *)(BasePointer + 0x2058) =
        *(int *)(BasePointer + 0x2058) + RegisterValue / (*(int *)(BasePointer + 8) / 400);
   localInt9 = *(int *)(BasePointer + 0x2058);
@@ -74441,8 +74441,8 @@ void FUN_18070b6a0(longlong uiContext,UIHandle *dataSource,int targetBuffer)
   ulonglong IndexResult;
   uint CounterResult;
   bool IsMatchFound;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   ulonglong TotalResult;
   
@@ -74484,7 +74484,7 @@ void FUN_18070b6a0(longlong uiContext,UIHandle *dataSource,int targetBuffer)
   dataSource[6] = *(UIHandle *)(ContextHandleData + 0x209c + uiContext);
   localFloat20 = *(float *)((longlong)dataSource + 4);
   TotalResult = IndexResult;
-  floatResult8 = localFloat20;
+  FloatValue1 = localFloat20;
   do {
     IsMatchFound = result0 != 99;
     result = result0 + 1;
@@ -74492,23 +74492,23 @@ void FUN_18070b6a0(longlong uiContext,UIHandle *dataSource,int targetBuffer)
     if (IsMatchFound) {
       result0 = result;
     }
-    floatResult9 = floatResult8;
+    FloatValue2 = FloatValue1;
     if (result0 == (longlong)*(int *)(uiBufferData + 0x2050)) break;
     ProcessingResult1 = ProcessingResult1 + 1;
     CounterResult = (int)TotalResult + 1;
     TotalResult = (ulonglong)CounterResult;
-    floatResult9 = *(float *)(result0 * 0x38 + 0x2070 + uiContext);
-    localFloat20 = localFloat20 + floatResult9;
-    if (floatResult9 <= floatResult8) {
-      floatResult9 = floatResult8;
+    FloatValue2 = *(float *)(result0 * 0x38 + 0x2070 + uiContext);
+    localFloat20 = localFloat20 + FloatValue2;
+    if (FloatValue2 <= FloatValue1) {
+      FloatValue2 = FloatValue1;
     }
-    floatResult8 = floatResult9;
+    FloatValue1 = FloatValue2;
   } while ((int)CounterResult < 3);
-  floatResult8 = localFloat20 / (float)ProcessingResult1;
-  if (localFloat20 / (float)ProcessingResult1 <= floatResult9 - 0.2) {
-    floatResult8 = floatResult9 - 0.2;
+  FloatValue1 = localFloat20 / (float)ProcessingResult1;
+  if (localFloat20 / (float)ProcessingResult1 <= FloatValue2 - 0.2) {
+    FloatValue1 = FloatValue2 - 0.2;
   }
-  *(float *)((longlong)dataSource + 4) = floatResult8;
+  *(float *)((longlong)dataSource + 4) = FloatValue1;
   *(int *)(uiBufferData + 0x2058) = *(int *)(uiBufferData + 0x2058) + targetBuffer / (*(int *)(uiBufferData + 8) / 400);
   localInt9 = *(int *)(uiBufferData + 0x2058);
   localInt5 = *(int *)(uiBufferData + 0x2054);
@@ -77144,8 +77144,8 @@ void FUN_18070fe0f(void)
   int uiOperationResult6;
   longlong EventHandle;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float in_XMM3_Da;
   float in_XMM4_Da;
@@ -77248,14 +77248,14 @@ LAB_1807100a5:
       }
       while ((localInt7 = uiOperationResult5, uiOperationResult5 = ProcessingResult1, uiOperationResult5 < unmodifiedR13D &&
              (0.0 <= localFloat20 * pfloatResult[TempInt4]))) {
-        floatResult9 = ABS(pfloatResult[TempInt4]);
-        floatResult8 = floatResult7;
-        if (floatResult7 < floatResult9) {
-          floatResult8 = floatResult9;
+        FloatValue2 = ABS(pfloatResult[TempInt4]);
+        FloatValue1 = floatResult7;
+        if (floatResult7 < FloatValue2) {
+          FloatValue1 = FloatValue2;
         }
         TempInt4 = TempInt4 + uiOperationResult6;
-        bVar3 = floatResult9 <= floatResult7;
-        floatResult7 = floatResult8;
+        bVar3 = FloatValue2 <= floatResult7;
+        floatResult7 = FloatValue1;
         ProcessingResult1 = uiOperationResult5 + 1;
         if (bVar3) {
           uiOperationResult5 = localInt7;
@@ -77267,10 +77267,10 @@ LAB_1807100a5:
       else {
         bVar3 = true;
       }
-      floatResult8 = (floatResult7 - in_XMM4_Da) / (floatResult7 * floatResult7);
-      floatResult7 = floatResult8 * 1.0000002;
+      FloatValue1 = (floatResult7 - in_XMM4_Da) / (floatResult7 * floatResult7);
+      floatResult7 = FloatValue1 * 1.0000002;
       if (0.0 < localFloat20) {
-        floatResult7 = floatResult8 * -1.0000002;
+        floatResult7 = FloatValue1 * -1.0000002;
       }
       if (uiOperationResult4 < uiOperationResult5) {
         if (3 < uiOperationResult5 - uiOperationResult4) {
@@ -77304,7 +77304,7 @@ LAB_1807100a5:
       }
       if ((bVar3) && (1 < localInt7)) {
         localFloat20 = localFloat2 - *pfloatResult;
-        floatResult8 = localFloat20 / (float)localInt7;
+        FloatValue1 = localFloat20 / (float)localInt7;
         if (localInt6 < localInt7) {
           if (3 < localInt7 - localInt6) {
             localLong8 = (longlong)((localInt6 + 2) * uiOperationResult6);
@@ -77316,41 +77316,41 @@ LAB_1807100a5:
             uVar9 = (ulonglong)LoopCounter;
             localInt6 = localInt6 + LoopCounter * 4;
             do {
-              floatResult9 = (localFloat20 - floatResult8) + pfloatResult0[localLong8];
-              if (in_XMM4_Da <= floatResult9) {
-                floatResult9 = in_XMM4_Da;
+              FloatValue2 = (localFloat20 - FloatValue1) + pfloatResult0[localLong8];
+              if (in_XMM4_Da <= FloatValue2) {
+                FloatValue2 = in_XMM4_Da;
               }
-              if (floatResult9 < in_XMM3_Da) {
-                floatResult9 = in_XMM3_Da;
+              if (FloatValue2 < in_XMM3_Da) {
+                FloatValue2 = in_XMM3_Da;
               }
-              pfloatResult0[localLong8] = floatResult9;
-              localFloat20 = (localFloat20 - floatResult8) - floatResult8;
-              floatResult9 = localFloat20 + pfloatResult0[allocatedMemory2];
-              if (in_XMM4_Da <= floatResult9) {
-                floatResult9 = in_XMM4_Da;
+              pfloatResult0[localLong8] = FloatValue2;
+              localFloat20 = (localFloat20 - FloatValue1) - FloatValue1;
+              FloatValue2 = localFloat20 + pfloatResult0[allocatedMemory2];
+              if (in_XMM4_Da <= FloatValue2) {
+                FloatValue2 = in_XMM4_Da;
               }
-              if (floatResult9 < in_XMM3_Da) {
-                floatResult9 = in_XMM3_Da;
+              if (FloatValue2 < in_XMM3_Da) {
+                FloatValue2 = in_XMM3_Da;
               }
-              pfloatResult0[allocatedMemory2] = floatResult9;
-              localFloat20 = localFloat20 - floatResult8;
-              floatResult9 = localFloat20 + *pfloatResult0;
-              if (in_XMM4_Da <= floatResult9) {
-                floatResult9 = in_XMM4_Da;
+              pfloatResult0[allocatedMemory2] = FloatValue2;
+              localFloat20 = localFloat20 - FloatValue1;
+              FloatValue2 = localFloat20 + *pfloatResult0;
+              if (in_XMM4_Da <= FloatValue2) {
+                FloatValue2 = in_XMM4_Da;
               }
-              if (floatResult9 < in_XMM3_Da) {
-                floatResult9 = in_XMM3_Da;
+              if (FloatValue2 < in_XMM3_Da) {
+                FloatValue2 = in_XMM3_Da;
               }
-              *pfloatResult0 = floatResult9;
-              localFloat20 = localFloat20 - floatResult8;
-              floatResult9 = localFloat20 + pfloatResult0[allocatedMemory3];
+              *pfloatResult0 = FloatValue2;
+              localFloat20 = localFloat20 - FloatValue1;
+              FloatValue2 = localFloat20 + pfloatResult0[allocatedMemory3];
               if (in_XMM4_Da <= localFloat20 + pfloatResult0[allocatedMemory3]) {
-                floatResult9 = in_XMM4_Da;
+                FloatValue2 = in_XMM4_Da;
               }
-              if (floatResult9 < in_XMM3_Da) {
-                floatResult9 = in_XMM3_Da;
+              if (FloatValue2 < in_XMM3_Da) {
+                FloatValue2 = in_XMM3_Da;
               }
-              pfloatResult0[allocatedMemory3] = floatResult9;
+              pfloatResult0[allocatedMemory3] = FloatValue2;
               pfloatResult0 = pfloatResult0 + uiOperationResult6 * 4;
               uVar9 = uVar9 - 1;
             } while (uVar9 != 0);
@@ -77359,15 +77359,15 @@ LAB_1807100a5:
             pfloatResult0 = pfloatResult + localInt6 * uiOperationResult6;
             localLong8 = (longlong)(localInt7 - localInt6);
             do {
-              localFloat20 = localFloat20 - floatResult8;
-              floatResult9 = localFloat20 + *pfloatResult0;
+              localFloat20 = localFloat20 - FloatValue1;
+              FloatValue2 = localFloat20 + *pfloatResult0;
               if (in_XMM4_Da <= localFloat20 + *pfloatResult0) {
-                floatResult9 = in_XMM4_Da;
+                FloatValue2 = in_XMM4_Da;
               }
-              if (floatResult9 < in_XMM3_Da) {
-                floatResult9 = in_XMM3_Da;
+              if (FloatValue2 < in_XMM3_Da) {
+                FloatValue2 = in_XMM3_Da;
               }
-              *pfloatResult0 = floatResult9;
+              *pfloatResult0 = FloatValue2;
               pfloatResult0 = pfloatResult0 + BasePointer;
               localLong8 = localLong8 + -1;
             } while (localLong8 != 0);
@@ -78051,7 +78051,7 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
   UIHandle SourceHandle;
   int uiOperationResult7;
   UIHandle TargetHandle;
-  float *pfloatResult8;
+  float *pFloatValue1;
   ulonglong result9;
   int uiValidationResult0;
   longlong register10;
@@ -78103,7 +78103,7 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
   allocatedMemory4 = (longlong)(uiOperationResult6 >> 2);
   pfloatResult2 = dataSource + (iStack00000000000000a8 + -1) * stackParam000000b0;
   lStack0000000000000090 = (longlong)stackParam000000a0 >> 1;
-  pfloatResult8 = targetBuffer + lStack0000000000000090;
+  pFloatValue1 = targetBuffer + lStack0000000000000090;
   lStack0000000000000088 = *(longlong *)(uiBufferData + register10 * 2 + 2);
   psVar21 = *(short **)(lStack0000000000000088 + 0x30);
   semaphoreHandle3 = unmodifiedR12;
@@ -78121,8 +78121,8 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       processedFloat = plocalFloat25[allocatedMemory4 + -1];
       sVar7 = *psVar21;
       sVar8 = psVar21[1];
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = resultValue * localFloat2 + processedFloat * floatResult;
-      pfloatResult8[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = resultValue * localFloat2 + processedFloat * floatResult;
+      pFloatValue1[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = *dataSource;
       dataSource = dataSource + componentIndex4;
       localFloat2 = *pfloatResult2;
@@ -78130,16 +78130,16 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       resultValue = *plocalFloat25;
       processedFloat = plocalFloat25[allocatedMemory4];
       sVar7 = psVar21[2];
-      pfloatResult8[(longlong)(sVar8 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
-      pfloatResult8[sVar8 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar8 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
+      pFloatValue1[sVar8 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = *dataSource;
       localFloat2 = *pfloatResult2;
       resultValue = plocalFloat25[1];
       processedFloat = plocalFloat25[allocatedMemory4 + 1];
       sVar8 = psVar21[3];
       psVar21 = psVar21 + 4;
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
-      pfloatResult8[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
+      pFloatValue1[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = plocalFloat25[2];
       localFloat2 = plocalFloat25[allocatedMemory4 + 2];
       resultValue = dataSource[componentIndex4];
@@ -78147,8 +78147,8 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       dataSource = dataSource + componentIndex4 + componentIndex4;
       pfloatResult2 = pfloatResult2 + -componentIndex4 + -componentIndex4;
       plocalFloat25 = plocalFloat25 + 4;
-      pfloatResult8[(longlong)(sVar8 * 2) + 1] = localFloat2 * resultValue + floatResult * processedFloat;
-      pfloatResult8[sVar8 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
+      pFloatValue1[(longlong)(sVar8 * 2) + 1] = localFloat2 * resultValue + floatResult * processedFloat;
+      pFloatValue1[sVar8 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
       componentIndex7 = componentIndex7 + -1;
     } while (componentIndex7 != 0);
   }
@@ -78165,12 +78165,12 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       sVar7 = *psVar21;
       plocalFloat25 = plocalFloat25 + 1;
       psVar21 = psVar21 + 1;
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = floatResult * processedFloat + localFloat2 * resultValue;
-      pfloatResult8[sVar7 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = floatResult * processedFloat + localFloat2 * resultValue;
+      pFloatValue1[sVar7 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
       unmodifiedR12 = unmodifiedR12 - 1;
     } while (unmodifiedR12 != 0);
   }
-  FUN_18071fb70(lStack0000000000000088,pfloatResult8);
+  FUN_18071fb70(lStack0000000000000088,pFloatValue1);
   componentIndex7 = (longlong)iStack00000000000000a8;
   componentIndex4 = (longlong)((uiOperationResult6 >> 2) + 1) >> 1;
   pfloatResult2 = targetBuffer + lStack0000000000000090 + -2 + componentIndex7;
@@ -78184,52 +78184,52 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
     do {
       floatResult = plocalFloat25[-1];
       localFloat2 = plocalFloat25[allocatedMemory4 + -1];
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = pfloatResult2[1];
       secondaryValue = *pfloatResult2;
-      *pfloatResult8 = localFloat2 * *pfloatResult8 + floatResult * pfloatResult8[1];
-      pfloatResult2[1] = localFloat2 * pfloatResult8[1] - floatResult * resultValue;
+      *pFloatValue1 = localFloat2 * *pFloatValue1 + floatResult * pFloatValue1[1];
+      pfloatResult2[1] = localFloat2 * pFloatValue1[1] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory3];
       localFloat2 = *plocalFloat22;
       *pfloatResult2 = localFloat2 * secondaryValue + floatResult * processedFloat;
-      pfloatResult8[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
       floatResult = *plocalFloat25;
       localFloat2 = plocalFloat25[allocatedMemory4];
-      resultValue = pfloatResult8[2];
+      resultValue = pFloatValue1[2];
       processedFloat = pfloatResult2[-1];
       secondaryValue = pfloatResult2[-2];
-      pfloatResult8[2] = localFloat2 * pfloatResult8[2] + floatResult * pfloatResult8[3];
-      pfloatResult2[-1] = localFloat2 * pfloatResult8[3] - floatResult * resultValue;
+      pFloatValue1[2] = localFloat2 * pFloatValue1[2] + floatResult * pFloatValue1[3];
+      pfloatResult2[-1] = localFloat2 * pFloatValue1[3] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory3 + -1];
       localFloat2 = plocalFloat22[-1];
       pfloatResult2[-2] = localFloat2 * secondaryValue + floatResult * processedFloat;
-      pfloatResult8[3] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1[3] = localFloat2 * processedFloat - floatResult * secondaryValue;
       floatResult = plocalFloat25[1];
       localFloat2 = plocalFloat25[allocatedMemory4 + 1];
-      resultValue = pfloatResult8[4];
+      resultValue = pFloatValue1[4];
       processedFloat = pfloatResult2[-3];
       secondaryValue = pfloatResult2[-4];
-      pfloatResult8[4] = localFloat2 * pfloatResult8[4] + floatResult * pfloatResult8[5];
-      pfloatResult2[-3] = localFloat2 * pfloatResult8[5] - floatResult * resultValue;
+      pFloatValue1[4] = localFloat2 * pFloatValue1[4] + floatResult * pFloatValue1[5];
+      pfloatResult2[-3] = localFloat2 * pFloatValue1[5] - floatResult * resultValue;
       floatResult = plocalFloat22[-2];
       localFloat2 = plocalFloat22[allocatedMemory3 + -2];
       pfloatResult2[-4] = floatResult * secondaryValue + localFloat2 * processedFloat;
-      pfloatResult8[5] = floatResult * processedFloat - localFloat2 * secondaryValue;
+      pFloatValue1[5] = floatResult * processedFloat - localFloat2 * secondaryValue;
       floatResult = plocalFloat25[allocatedMemory4 + 2];
       localFloat2 = plocalFloat25[2];
       resultValue = pfloatResult2[-5];
-      processedFloat = pfloatResult8[6];
+      processedFloat = pFloatValue1[6];
       plocalFloat25 = plocalFloat25 + 4;
       secondaryValue = pfloatResult2[-6];
-      pfloatResult8[6] = floatResult * pfloatResult8[6] + localFloat2 * pfloatResult8[7];
-      pfloatResult2[-5] = floatResult * pfloatResult8[7] - localFloat2 * processedFloat;
+      pFloatValue1[6] = floatResult * pFloatValue1[6] + localFloat2 * pFloatValue1[7];
+      pfloatResult2[-5] = floatResult * pFloatValue1[7] - localFloat2 * processedFloat;
       floatResult = plocalFloat22[allocatedMemory3 + -3];
       localFloat2 = plocalFloat22[-3];
       plocalFloat22 = plocalFloat22 + -4;
       pfloatResult2[-6] = localFloat2 * secondaryValue + floatResult * resultValue;
       pfloatResult2 = pfloatResult2 + -8;
-      pfloatResult8[7] = localFloat2 * resultValue - floatResult * secondaryValue;
-      pfloatResult8 = pfloatResult8 + 8;
+      pFloatValue1[7] = localFloat2 * resultValue - floatResult * secondaryValue;
+      pFloatValue1 = pFloatValue1 + 8;
       allocatedMemory0 = allocatedMemory0 + -1;
     } while (allocatedMemory0 != 0);
   }
@@ -78241,24 +78241,24 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       floatResult = *plocalFloat25;
       localFloat2 = plocalFloat25[allocatedMemory4];
       plocalFloat25 = plocalFloat25 + 1;
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = pfloatResult2[1];
       secondaryValue = *pfloatResult2;
-      *pfloatResult8 = localFloat2 * *pfloatResult8 + floatResult * pfloatResult8[1];
-      pfloatResult2[1] = localFloat2 * pfloatResult8[1] - floatResult * resultValue;
+      *pFloatValue1 = localFloat2 * *pFloatValue1 + floatResult * pFloatValue1[1];
+      pfloatResult2[1] = localFloat2 * pFloatValue1[1] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory4 - componentIndex7];
       localFloat2 = *plocalFloat22;
       plocalFloat22 = plocalFloat22 + -1;
       *pfloatResult2 = localFloat2 * secondaryValue + floatResult * processedFloat;
       pfloatResult2 = pfloatResult2 + -2;
-      pfloatResult8[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
-      pfloatResult8 = pfloatResult8 + 2;
+      pFloatValue1[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1 = pFloatValue1 + 2;
       componentIndex4 = componentIndex4 + -1;
     } while (componentIndex4 != 0);
   }
   pfloatResult2 = targetBuffer + (longlong)stackParam000000a0 + -1;
   uiOperationResult6 = stackParam000000a0 / 2;
-  pfloatResult8 = bufferSize + (longlong)stackParam000000a0 + -1;
+  pFloatValue1 = bufferSize + (longlong)stackParam000000a0 + -1;
   plocalFloat25 = targetBuffer;
   plocalFloat22 = bufferSize;
   if (3 < uiOperationResult6) {
@@ -78268,7 +78268,7 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
     do {
       floatResult = *pfloatResult2;
       localFloat2 = *plocalFloat25;
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = *plocalFloat22;
       plocalFloat22 = plocalFloat22 + 4;
       secondaryValue = *(float *)((longlong)plocalFloat25 + (longlong)bufferSize + (4 - (longlong)targetBuffer));
@@ -78276,19 +78276,19 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
       *pfloatResult2 = processedFloat * localFloat2 + resultValue * floatResult;
       floatResult = pfloatResult2[-1];
       localFloat2 = plocalFloat25[1];
-      resultValue = pfloatResult8[-1];
+      resultValue = pFloatValue1[-1];
       processedFloat = *(float *)((longlong)plocalFloat25 + (longlong)bufferSize + (8 - (longlong)targetBuffer));
       plocalFloat25[1] = resultValue * localFloat2 - secondaryValue * floatResult;
       localFloat6 = pfloatResult2[-2];
       pfloatResult2[-1] = secondaryValue * localFloat2 + resultValue * floatResult;
       floatResult = plocalFloat25[2];
-      localFloat2 = pfloatResult8[-2];
+      localFloat2 = pFloatValue1[-2];
       plocalFloat25[2] = localFloat2 * floatResult - processedFloat * localFloat6;
       resultValue = pfloatResult2[-3];
       pfloatResult2[-2] = processedFloat * floatResult + localFloat2 * localFloat6;
       floatResult = plocalFloat25[3];
-      localFloat2 = pfloatResult8[-3];
-      pfloatResult8 = pfloatResult8 + -4;
+      localFloat2 = pFloatValue1[-3];
+      pFloatValue1 = pFloatValue1 + -4;
       processedFloat = *(float *)((longlong)bufferSize + (0xc - (longlong)targetBuffer) + (longlong)plocalFloat25);
       plocalFloat25[3] = localFloat2 * floatResult - processedFloat * resultValue;
       plocalFloat25 = plocalFloat25 + 4;
@@ -78298,7 +78298,7 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
     } while (semaphoreHandle3 != 0);
   }
   if ((int)unmodifiedR12 < uiOperationResult6) {
-    componentIndex6 = (longlong)pfloatResult8 - (longlong)pfloatResult2;
+    componentIndex6 = (longlong)pFloatValue1 - (longlong)pfloatResult2;
     allocatedMemory4 = (longlong)plocalFloat22 - (longlong)plocalFloat25;
     semaphoreHandle3 = (ulonglong)(uint)(uiOperationResult6 - (int)unmodifiedR12);
     do {
@@ -78344,7 +78344,7 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
   UIHandle SourceHandle;
   int uiOperationResult7;
   UIHandle TargetHandle;
-  float *pfloatResult8;
+  float *pFloatValue1;
   ulonglong result9;
   int uiValidationResult0;
   longlong register10;
@@ -78395,7 +78395,7 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
   allocatedMemory4 = (longlong)(uiOperationResult6 >> 2);
   pfloatResult2 = dataSource + (iStack00000000000000a8 + -1) * stackParam000000b0;
   lStack0000000000000090 = (longlong)stackParam000000a0 >> 1;
-  pfloatResult8 = ContextHandle + lStack0000000000000090;
+  pFloatValue1 = ContextHandle + lStack0000000000000090;
   lStack0000000000000088 = *(longlong *)(uiBufferData + register10 * 2 + 2);
   psVar21 = *(short **)(lStack0000000000000088 + 0x30);
   semaphoreHandle3 = unmodifiedR12;
@@ -78413,8 +78413,8 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       processedFloat = plocalFloat25[allocatedMemory4 + -1];
       sVar7 = *psVar21;
       sVar8 = psVar21[1];
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = resultValue * localFloat2 + processedFloat * floatResult;
-      pfloatResult8[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = resultValue * localFloat2 + processedFloat * floatResult;
+      pFloatValue1[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = *dataSource;
       dataSource = dataSource + componentIndex4;
       localFloat2 = *pfloatResult2;
@@ -78422,16 +78422,16 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       resultValue = *plocalFloat25;
       processedFloat = plocalFloat25[allocatedMemory4];
       sVar7 = psVar21[2];
-      pfloatResult8[(longlong)(sVar8 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
-      pfloatResult8[sVar8 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar8 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
+      pFloatValue1[sVar8 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = *dataSource;
       localFloat2 = *pfloatResult2;
       resultValue = plocalFloat25[1];
       processedFloat = plocalFloat25[allocatedMemory4 + 1];
       sVar8 = psVar21[3];
       psVar21 = psVar21 + 4;
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
-      pfloatResult8[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = processedFloat * floatResult + resultValue * localFloat2;
+      pFloatValue1[sVar7 * 2] = resultValue * floatResult - processedFloat * localFloat2;
       floatResult = plocalFloat25[2];
       localFloat2 = plocalFloat25[allocatedMemory4 + 2];
       resultValue = dataSource[componentIndex4];
@@ -78439,8 +78439,8 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       dataSource = dataSource + componentIndex4 + componentIndex4;
       pfloatResult2 = pfloatResult2 + -componentIndex4 + -componentIndex4;
       plocalFloat25 = plocalFloat25 + 4;
-      pfloatResult8[(longlong)(sVar8 * 2) + 1] = localFloat2 * resultValue + floatResult * processedFloat;
-      pfloatResult8[sVar8 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
+      pFloatValue1[(longlong)(sVar8 * 2) + 1] = localFloat2 * resultValue + floatResult * processedFloat;
+      pFloatValue1[sVar8 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
       componentIndex7 = componentIndex7 + -1;
     } while (componentIndex7 != 0);
   }
@@ -78457,12 +78457,12 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       sVar7 = *psVar21;
       plocalFloat25 = plocalFloat25 + 1;
       psVar21 = psVar21 + 1;
-      pfloatResult8[(longlong)(sVar7 * 2) + 1] = floatResult * processedFloat + localFloat2 * resultValue;
-      pfloatResult8[sVar7 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
+      pFloatValue1[(longlong)(sVar7 * 2) + 1] = floatResult * processedFloat + localFloat2 * resultValue;
+      pFloatValue1[sVar7 * 2] = floatResult * resultValue - localFloat2 * processedFloat;
       unmodifiedR12 = unmodifiedR12 - 1;
     } while (unmodifiedR12 != 0);
   }
-  FUN_18071fb70(lStack0000000000000088,pfloatResult8);
+  FUN_18071fb70(lStack0000000000000088,pFloatValue1);
   componentIndex7 = (longlong)iStack00000000000000a8;
   componentIndex4 = (longlong)((uiOperationResult6 >> 2) + 1) >> 1;
   pfloatResult2 = ContextHandle + lStack0000000000000090 + -2 + componentIndex7;
@@ -78476,52 +78476,52 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
     do {
       floatResult = plocalFloat25[-1];
       localFloat2 = plocalFloat25[allocatedMemory4 + -1];
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = pfloatResult2[1];
       secondaryValue = *pfloatResult2;
-      *pfloatResult8 = localFloat2 * *pfloatResult8 + floatResult * pfloatResult8[1];
-      pfloatResult2[1] = localFloat2 * pfloatResult8[1] - floatResult * resultValue;
+      *pFloatValue1 = localFloat2 * *pFloatValue1 + floatResult * pFloatValue1[1];
+      pfloatResult2[1] = localFloat2 * pFloatValue1[1] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory3];
       localFloat2 = *plocalFloat22;
       *pfloatResult2 = localFloat2 * secondaryValue + floatResult * processedFloat;
-      pfloatResult8[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
       floatResult = *plocalFloat25;
       localFloat2 = plocalFloat25[allocatedMemory4];
-      resultValue = pfloatResult8[2];
+      resultValue = pFloatValue1[2];
       processedFloat = pfloatResult2[-1];
       secondaryValue = pfloatResult2[-2];
-      pfloatResult8[2] = localFloat2 * pfloatResult8[2] + floatResult * pfloatResult8[3];
-      pfloatResult2[-1] = localFloat2 * pfloatResult8[3] - floatResult * resultValue;
+      pFloatValue1[2] = localFloat2 * pFloatValue1[2] + floatResult * pFloatValue1[3];
+      pfloatResult2[-1] = localFloat2 * pFloatValue1[3] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory3 + -1];
       localFloat2 = plocalFloat22[-1];
       pfloatResult2[-2] = localFloat2 * secondaryValue + floatResult * processedFloat;
-      pfloatResult8[3] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1[3] = localFloat2 * processedFloat - floatResult * secondaryValue;
       floatResult = plocalFloat25[1];
       localFloat2 = plocalFloat25[allocatedMemory4 + 1];
-      resultValue = pfloatResult8[4];
+      resultValue = pFloatValue1[4];
       processedFloat = pfloatResult2[-3];
       secondaryValue = pfloatResult2[-4];
-      pfloatResult8[4] = localFloat2 * pfloatResult8[4] + floatResult * pfloatResult8[5];
-      pfloatResult2[-3] = localFloat2 * pfloatResult8[5] - floatResult * resultValue;
+      pFloatValue1[4] = localFloat2 * pFloatValue1[4] + floatResult * pFloatValue1[5];
+      pfloatResult2[-3] = localFloat2 * pFloatValue1[5] - floatResult * resultValue;
       floatResult = plocalFloat22[-2];
       localFloat2 = plocalFloat22[allocatedMemory3 + -2];
       pfloatResult2[-4] = floatResult * secondaryValue + localFloat2 * processedFloat;
-      pfloatResult8[5] = floatResult * processedFloat - localFloat2 * secondaryValue;
+      pFloatValue1[5] = floatResult * processedFloat - localFloat2 * secondaryValue;
       floatResult = plocalFloat25[allocatedMemory4 + 2];
       localFloat2 = plocalFloat25[2];
       resultValue = pfloatResult2[-5];
-      processedFloat = pfloatResult8[6];
+      processedFloat = pFloatValue1[6];
       plocalFloat25 = plocalFloat25 + 4;
       secondaryValue = pfloatResult2[-6];
-      pfloatResult8[6] = floatResult * pfloatResult8[6] + localFloat2 * pfloatResult8[7];
-      pfloatResult2[-5] = floatResult * pfloatResult8[7] - localFloat2 * processedFloat;
+      pFloatValue1[6] = floatResult * pFloatValue1[6] + localFloat2 * pFloatValue1[7];
+      pfloatResult2[-5] = floatResult * pFloatValue1[7] - localFloat2 * processedFloat;
       floatResult = plocalFloat22[allocatedMemory3 + -3];
       localFloat2 = plocalFloat22[-3];
       plocalFloat22 = plocalFloat22 + -4;
       pfloatResult2[-6] = localFloat2 * secondaryValue + floatResult * resultValue;
       pfloatResult2 = pfloatResult2 + -8;
-      pfloatResult8[7] = localFloat2 * resultValue - floatResult * secondaryValue;
-      pfloatResult8 = pfloatResult8 + 8;
+      pFloatValue1[7] = localFloat2 * resultValue - floatResult * secondaryValue;
+      pFloatValue1 = pFloatValue1 + 8;
       allocatedMemory0 = allocatedMemory0 + -1;
     } while (allocatedMemory0 != 0);
   }
@@ -78533,24 +78533,24 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       floatResult = *plocalFloat25;
       localFloat2 = plocalFloat25[allocatedMemory4];
       plocalFloat25 = plocalFloat25 + 1;
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = pfloatResult2[1];
       secondaryValue = *pfloatResult2;
-      *pfloatResult8 = localFloat2 * *pfloatResult8 + floatResult * pfloatResult8[1];
-      pfloatResult2[1] = localFloat2 * pfloatResult8[1] - floatResult * resultValue;
+      *pFloatValue1 = localFloat2 * *pFloatValue1 + floatResult * pFloatValue1[1];
+      pfloatResult2[1] = localFloat2 * pFloatValue1[1] - floatResult * resultValue;
       floatResult = plocalFloat22[allocatedMemory4 - componentIndex7];
       localFloat2 = *plocalFloat22;
       plocalFloat22 = plocalFloat22 + -1;
       *pfloatResult2 = localFloat2 * secondaryValue + floatResult * processedFloat;
       pfloatResult2 = pfloatResult2 + -2;
-      pfloatResult8[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
-      pfloatResult8 = pfloatResult8 + 2;
+      pFloatValue1[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
+      pFloatValue1 = pFloatValue1 + 2;
       componentIndex4 = componentIndex4 + -1;
     } while (componentIndex4 != 0);
   }
   pfloatResult2 = ContextHandle + (longlong)stackParam000000a0 + -1;
   uiOperationResult6 = stackParam000000a0 / 2;
-  pfloatResult8 = bufferSize + (longlong)stackParam000000a0 + -1;
+  pFloatValue1 = bufferSize + (longlong)stackParam000000a0 + -1;
   plocalFloat25 = ContextHandle;
   plocalFloat22 = bufferSize;
   if (3 < uiOperationResult6) {
@@ -78560,7 +78560,7 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
     do {
       floatResult = *pfloatResult2;
       localFloat2 = *plocalFloat25;
-      resultValue = *pfloatResult8;
+      resultValue = *pFloatValue1;
       processedFloat = *plocalFloat22;
       plocalFloat22 = plocalFloat22 + 4;
       secondaryValue = *(float *)((longlong)plocalFloat25 + (longlong)bufferSize + (4 - (longlong)ContextHandle));
@@ -78568,19 +78568,19 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
       *pfloatResult2 = processedFloat * localFloat2 + resultValue * floatResult;
       floatResult = pfloatResult2[-1];
       localFloat2 = plocalFloat25[1];
-      resultValue = pfloatResult8[-1];
+      resultValue = pFloatValue1[-1];
       processedFloat = *(float *)((longlong)plocalFloat25 + (longlong)bufferSize + (8 - (longlong)ContextHandle));
       plocalFloat25[1] = resultValue * localFloat2 - secondaryValue * floatResult;
       localFloat6 = pfloatResult2[-2];
       pfloatResult2[-1] = secondaryValue * localFloat2 + resultValue * floatResult;
       floatResult = plocalFloat25[2];
-      localFloat2 = pfloatResult8[-2];
+      localFloat2 = pFloatValue1[-2];
       plocalFloat25[2] = localFloat2 * floatResult - processedFloat * localFloat6;
       resultValue = pfloatResult2[-3];
       pfloatResult2[-2] = processedFloat * floatResult + localFloat2 * localFloat6;
       floatResult = plocalFloat25[3];
-      localFloat2 = pfloatResult8[-3];
-      pfloatResult8 = pfloatResult8 + -4;
+      localFloat2 = pFloatValue1[-3];
+      pFloatValue1 = pFloatValue1 + -4;
       processedFloat = *(float *)((longlong)bufferSize + (0xc - (longlong)ContextHandle) + (longlong)plocalFloat25);
       plocalFloat25[3] = localFloat2 * floatResult - processedFloat * resultValue;
       plocalFloat25 = plocalFloat25 + 4;
@@ -78590,7 +78590,7 @@ void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float 
     } while (semaphoreHandle3 != 0);
   }
   if ((int)unmodifiedR12 < uiOperationResult6) {
-    componentIndex6 = (longlong)pfloatResult8 - (longlong)pfloatResult2;
+    componentIndex6 = (longlong)pFloatValue1 - (longlong)pfloatResult2;
     allocatedMemory4 = (longlong)plocalFloat22 - (longlong)plocalFloat25;
     semaphoreHandle3 = (ulonglong)(uint)(uiOperationResult6 - (int)unmodifiedR12);
     do {
@@ -79447,8 +79447,8 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -79479,7 +79479,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     }
     allocatedMemory3 = (longlong)param_9;
     result1 = (uint)result2;
-    floatResult9 = param_6 * *(float *)(&TransformMatrixZ + localLong7 * 0xc);
+    FloatValue2 = param_6 * *(float *)(&TransformMatrixZ + localLong7 * 0xc);
     floatResult7 = *(float *)(dataSource + (longlong)(int)(1 - result1) * 4);
     localFloat26 = param_6 * *(float *)(&TransformMatrixX + localLong7 * 0xc);
     localFloat27 = param_6 * *(float *)(&TransformMatrixY + localLong7 * 0xc);
@@ -79489,7 +79489,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     localLong7 = 0;
     localInt9 = 0;
     vectorComponentX = *(float *)(dataSource + (longlong)(int)result1 * -4);
-    floatResult8 = *(float *)(dataSource + (longlong)(int)~result1 * 4);
+    FloatValue1 = *(float *)(dataSource + (longlong)(int)~result1 * 4);
     localFloat25 = *(float *)(dataSource + (longlong)(int)(-2 - result1) * 4);
     if (((param_6 == param_7) && (result == result1)) && (param_8 == param_9)) {
       uiContext1 = 0;
@@ -79506,7 +79506,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
       ContextHandleData = ((longlong)uiContext1 - 4U >> 2) + 1;
       localInt9 = (int)ContextHandleData * 4;
       localLong7 = ContextHandleData * 4;
-      floatResult5 = floatResult8;
+      floatResult5 = FloatValue1;
       floatResult6 = vectorComponentX;
       localFloat20 = floatResult7;
       localFloat24 = localFloat25;
@@ -79517,26 +79517,26 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         vectorComponentX = 1.0 - floatResult7;
         *(float *)((longlong)plocalFloat8 + allocatedMemory3 + uiContext) =
              vectorComponentX * localFloat26 * plocalFloat8[2] + plocalFloat8[EventDataIndex + 2] +
-             (plocalFloat8[1] + plocalFloat8[3]) * vectorComponentX * localFloat27 + (*plocalFloat8 + plocalFloat8[4]) * vectorComponentX * floatResult9 +
+             (plocalFloat8[1] + plocalFloat8[3]) * vectorComponentX * localFloat27 + (*plocalFloat8 + plocalFloat8[4]) * vectorComponentX * FloatValue2 +
              floatResult7 * localFloat21 * floatResult6 + floatResult7 * localFloat22 * (floatResult5 + localFloat20) +
              (localFloat25 + localFloat24) * floatResult7 * localFloat23;
         floatResult7 = *(float *)((longlong)plocalFloat8 + componentIndex + uiContext0);
-        floatResult8 = plocalFloat8[allocatedMemory0 + 5];
+        FloatValue1 = plocalFloat8[allocatedMemory0 + 5];
         floatResult7 = floatResult7 * floatResult7;
         vectorComponentX = 1.0 - floatResult7;
         *(float *)((longlong)plocalFloat8 + componentIndex + uiContext) =
              vectorComponentX * localFloat26 * plocalFloat8[3] + plocalFloat8[EventDataIndex + 3] +
-             (plocalFloat8[4] + plocalFloat8[2]) * vectorComponentX * localFloat27 + (plocalFloat8[1] + plocalFloat8[5]) * vectorComponentX * floatResult9 +
+             (plocalFloat8[4] + plocalFloat8[2]) * vectorComponentX * localFloat27 + (plocalFloat8[1] + plocalFloat8[5]) * vectorComponentX * FloatValue2 +
              floatResult7 * localFloat21 * localFloat20 + floatResult7 * localFloat22 * (floatResult6 + localFloat25) +
-             (floatResult8 + floatResult5) * floatResult7 * localFloat23;
+             (FloatValue1 + floatResult5) * floatResult7 * localFloat23;
         floatResult7 = *(float *)((longlong)plocalFloat8 + stringCompareIndex + uiContext0);
         vectorComponentX = plocalFloat8[allocatedMemory0 + 6];
         floatResult7 = floatResult7 * floatResult7;
         floatResult5 = 1.0 - floatResult7;
         *(float *)((longlong)plocalFloat8 + stringCompareIndex + uiContext) =
              floatResult5 * localFloat26 * plocalFloat8[4] + plocalFloat8[EventDataIndex + 4] +
-             (plocalFloat8[5] + plocalFloat8[3]) * floatResult5 * localFloat27 + (plocalFloat8[6] + plocalFloat8[2]) * floatResult5 * floatResult9 +
-             floatResult7 * localFloat21 * localFloat25 + floatResult7 * localFloat22 * (localFloat20 + floatResult8) +
+             (plocalFloat8[5] + plocalFloat8[3]) * floatResult5 * localFloat27 + (plocalFloat8[6] + plocalFloat8[2]) * floatResult5 * FloatValue2 +
+             floatResult7 * localFloat21 * localFloat25 + floatResult7 * localFloat22 * (localFloat20 + FloatValue1) +
              (vectorComponentX + floatResult6) * floatResult7 * localFloat23;
         floatResult5 = *(float *)((longlong)plocalFloat8 + ContextHandleData + uiContext0);
         floatResult7 = plocalFloat8[allocatedMemory0 + 7];
@@ -79544,12 +79544,12 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         floatResult6 = 1.0 - floatResult5;
         *(float *)((longlong)plocalFloat8 + ContextHandleData + uiContext) =
              floatResult6 * localFloat26 * plocalFloat8[5] + plocalFloat8[EventDataIndex + 5] +
-             (plocalFloat8[6] + plocalFloat8[4]) * floatResult6 * localFloat27 + (plocalFloat8[7] + plocalFloat8[3]) * floatResult6 * floatResult9 +
-             floatResult5 * localFloat21 * floatResult8 + floatResult5 * localFloat22 * (localFloat25 + vectorComponentX) +
+             (plocalFloat8[6] + plocalFloat8[4]) * floatResult6 * localFloat27 + (plocalFloat8[7] + plocalFloat8[3]) * floatResult6 * FloatValue2 +
+             floatResult5 * localFloat21 * FloatValue1 + floatResult5 * localFloat22 * (localFloat25 + vectorComponentX) +
              (floatResult7 + localFloat20) * floatResult5 * localFloat23;
         plocalFloat8 = plocalFloat8 + 4;
         ContextHandleData = ContextHandleData + -1;
-        floatResult5 = floatResult8;
+        floatResult5 = FloatValue1;
         floatResult6 = vectorComponentX;
         localFloat20 = floatResult7;
         localFloat24 = localFloat25;
@@ -79564,19 +79564,19 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
       localLong7 = componentIndex * 4 - dataSource;
       localInt9 = localInt9 + (int)stringCompareIndex;
       do {
-        localFloat20 = floatResult8;
-        floatResult8 = *(float *)(uiContext0 + localLong7 + 4 + (longlong)plocalFloat8);
+        localFloat20 = FloatValue1;
+        FloatValue1 = *(float *)(uiContext0 + localLong7 + 4 + (longlong)plocalFloat8);
         floatResult5 = plocalFloat8[(componentIndex - (int)result1) + 3];
-        floatResult8 = floatResult8 * floatResult8;
-        floatResult6 = 1.0 - floatResult8;
+        FloatValue1 = FloatValue1 * FloatValue1;
+        floatResult6 = 1.0 - FloatValue1;
         *(float *)(localLong7 + uiContext + 4 + (longlong)plocalFloat8) =
              floatResult6 * localFloat26 * plocalFloat8[1] + plocalFloat8[componentIndex + 1] +
-             (plocalFloat8[2] + *plocalFloat8) * floatResult6 * localFloat27 + (plocalFloat8[3] + plocalFloat8[-1]) * floatResult6 * floatResult9 +
-             floatResult8 * localFloat21 * vectorComponentX + floatResult8 * localFloat22 * (localFloat20 + floatResult7) +
-             (floatResult5 + localFloat25) * floatResult8 * localFloat23;
+             (plocalFloat8[2] + *plocalFloat8) * floatResult6 * localFloat27 + (plocalFloat8[3] + plocalFloat8[-1]) * floatResult6 * FloatValue2 +
+             FloatValue1 * localFloat21 * vectorComponentX + FloatValue1 * localFloat22 * (localFloat20 + floatResult7) +
+             (floatResult5 + localFloat25) * FloatValue1 * localFloat23;
         plocalFloat8 = plocalFloat8 + 1;
         stringCompareIndex = stringCompareIndex + -1;
-        floatResult8 = vectorComponentX;
+        FloatValue1 = vectorComponentX;
         vectorComponentX = floatResult7;
         floatResult7 = floatResult5;
         localFloat25 = localFloat20;
@@ -79624,8 +79624,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -79657,8 +79657,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   floatResult5 = *(float *)(register10 + (longlong)(int)(1 - uStack0000000000000044) * 4);
   localFloat23 = in_XMM1_Da * *(float *)(&TransformMatrixX + dataSource * 0xc);
   localFloat24 = in_XMM1_Da * *(float *)(&TransformMatrixY + dataSource * 0xc);
-  floatResult8 = uiContext * *(float *)(&TransformMatrixX + allocatedMemory1 * 0xc);
-  floatResult9 = uiContext * *(float *)(&TransformMatrixY + allocatedMemory1 * 0xc);
+  FloatValue1 = uiContext * *(float *)(&TransformMatrixX + allocatedMemory1 * 0xc);
+  FloatValue2 = uiContext * *(float *)(&TransformMatrixY + allocatedMemory1 * 0xc);
   localFloat20 = uiContext * *(float *)(&TransformMatrixZ + allocatedMemory1 * 0xc);
   allocatedMemory1 = 0;
   localInt8 = 0;
@@ -79694,8 +79694,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
       *(float *)((longlong)presultFloat + ContextHandleData + RegisterPointer) =
            floatResult2 * localFloat23 * presultFloat[2] + presultFloat[EventDataIndex + 2] +
            (presultFloat[1] + presultFloat[3]) * floatResult2 * localFloat24 +
-           (*presultFloat + presultFloat[4]) * floatResult2 * fStack00000000000001c8 + floatResult5 * floatResult8 * vectorComponentX +
-           floatResult5 * floatResult9 * (floatResult3 + floatResult7) + (localFloat22 + localFloat21) * floatResult5 * localFloat20;
+           (*presultFloat + presultFloat[4]) * floatResult2 * fStack00000000000001c8 + floatResult5 * FloatValue1 * vectorComponentX +
+           floatResult5 * FloatValue2 * (floatResult3 + floatResult7) + (localFloat22 + localFloat21) * floatResult5 * localFloat20;
       floatResult5 = *(float *)((longlong)presultFloat + allocatedMemory + stackParam000001e8);
       floatResult6 = presultFloat[CharacterDataOffset + 5];
       floatResult5 = floatResult5 * floatResult5;
@@ -79703,8 +79703,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
       *(float *)((longlong)presultFloat + allocatedMemory + RegisterPointer) =
            floatResult2 * localFloat23 * presultFloat[3] + presultFloat[EventDataIndex + 3] +
            (presultFloat[4] + presultFloat[2]) * floatResult2 * localFloat24 +
-           (presultFloat[1] + presultFloat[5]) * floatResult2 * fStack00000000000001c8 + floatResult5 * floatResult8 * floatResult7 +
-           floatResult5 * floatResult9 * (vectorComponentX + localFloat22) + (floatResult6 + floatResult3) * floatResult5 * localFloat20;
+           (presultFloat[1] + presultFloat[5]) * floatResult2 * fStack00000000000001c8 + floatResult5 * FloatValue1 * floatResult7 +
+           floatResult5 * FloatValue2 * (vectorComponentX + localFloat22) + (floatResult6 + floatResult3) * floatResult5 * localFloat20;
       floatResult5 = *(float *)((longlong)presultFloat + componentIndex + stackParam000001e8);
       floatResult2 = presultFloat[CharacterDataOffset + 6];
       floatResult5 = floatResult5 * floatResult5;
@@ -79712,8 +79712,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
       *(float *)((longlong)presultFloat + componentIndex + RegisterPointer) =
            floatResult3 * localFloat23 * presultFloat[4] + presultFloat[EventDataIndex + 4] +
            (presultFloat[5] + presultFloat[3]) * floatResult3 * localFloat24 +
-           (presultFloat[6] + presultFloat[2]) * floatResult3 * fStack00000000000001c8 + floatResult5 * floatResult8 * localFloat22 +
-           floatResult5 * floatResult9 * (floatResult7 + floatResult6) + (floatResult2 + vectorComponentX) * floatResult5 * localFloat20;
+           (presultFloat[6] + presultFloat[2]) * floatResult3 * fStack00000000000001c8 + floatResult5 * FloatValue1 * localFloat22 +
+           floatResult5 * FloatValue2 * (floatResult7 + floatResult6) + (floatResult2 + vectorComponentX) * floatResult5 * localFloat20;
       floatResult3 = *(float *)((longlong)presultFloat + stringCompareIndex + stackParam000001e8);
       floatResult5 = presultFloat[CharacterDataOffset + 7];
       floatResult3 = floatResult3 * floatResult3;
@@ -79721,8 +79721,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
       *(float *)((longlong)presultFloat + stringCompareIndex + RegisterPointer) =
            vectorComponentX * localFloat23 * presultFloat[5] + presultFloat[EventDataIndex + 5] +
            (presultFloat[6] + presultFloat[4]) * vectorComponentX * localFloat24 +
-           (presultFloat[7] + presultFloat[3]) * vectorComponentX * fStack00000000000001c8 + floatResult3 * floatResult8 * floatResult6 +
-           floatResult3 * floatResult9 * (localFloat22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * localFloat20;
+           (presultFloat[7] + presultFloat[3]) * vectorComponentX * fStack00000000000001c8 + floatResult3 * FloatValue1 * floatResult6 +
+           floatResult3 * FloatValue2 * (localFloat22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * localFloat20;
       presultFloat = presultFloat + 4;
       ContextHandleData = ContextHandleData + -1;
       floatResult3 = floatResult6;
@@ -79749,8 +79749,8 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
       vectorComponentX = 1.0 - floatResult6;
       *(float *)(allocatedMemory1 + RegisterPointer + 4 + (longlong)presultFloat) =
            vectorComponentX * localFloat23 * presultFloat[1] + presultFloat[allocatedMemory + 1] + (presultFloat[2] + *presultFloat) * vectorComponentX * localFloat24
-           + (presultFloat[3] + presultFloat[-1]) * vectorComponentX * fStack00000000000001c8 + floatResult6 * floatResult8 * floatResult2 +
-           floatResult6 * floatResult9 * (floatResult7 + floatResult5) + (floatResult3 + localFloat22) * floatResult6 * localFloat20;
+           + (presultFloat[3] + presultFloat[-1]) * vectorComponentX * fStack00000000000001c8 + floatResult6 * FloatValue1 * floatResult2 +
+           floatResult6 * FloatValue2 * (floatResult7 + floatResult5) + (floatResult3 + localFloat22) * floatResult6 * localFloat20;
       presultFloat = presultFloat + 1;
       componentIndex = componentIndex + -1;
       floatResult6 = floatResult2;
@@ -79768,7 +79768,7 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   }
   else {
     FUN_180707200(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
-                  stackParam000001c0 - localInt8,floatResult8);
+                  stackParam000001c0 - localInt8,FloatValue1);
   }
   return;
 }
@@ -79805,8 +79805,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -79838,8 +79838,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   floatResult5 = *(float *)(register10 + (longlong)(int)(1 - uStack0000000000000044) * 4);
   localFloat23 = dataSource * *(float *)(ContextHandle + registerDX * 0xc);
   localFloat24 = dataSource * *(float *)(ContextHandle + 4 + registerDX * 0xc);
-  floatResult8 = uiContext * *(float *)(ContextHandle + allocatedMemory1 * 0xc);
-  floatResult9 = uiContext * *(float *)(ContextHandle + 4 + allocatedMemory1 * 0xc);
+  FloatValue1 = uiContext * *(float *)(ContextHandle + allocatedMemory1 * 0xc);
+  FloatValue2 = uiContext * *(float *)(ContextHandle + 4 + allocatedMemory1 * 0xc);
   localFloat20 = uiContext * *(float *)(ContextHandle + 8 + allocatedMemory1 * 0xc);
   allocatedMemory1 = 0;
   localInt8 = 0;
@@ -79875,8 +79875,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
       *(float *)((longlong)presultFloat + ContextHandleData + RegisterPointer) =
            floatResult2 * localFloat23 * presultFloat[2] + presultFloat[EventDataIndex + 2] +
            (presultFloat[1] + presultFloat[3]) * floatResult2 * localFloat24 +
-           (*presultFloat + presultFloat[4]) * floatResult2 * fStack00000000000001c8 + floatResult5 * floatResult8 * vectorComponentX +
-           floatResult5 * floatResult9 * (floatResult3 + floatResult7) + (localFloat22 + localFloat21) * floatResult5 * localFloat20;
+           (*presultFloat + presultFloat[4]) * floatResult2 * fStack00000000000001c8 + floatResult5 * FloatValue1 * vectorComponentX +
+           floatResult5 * FloatValue2 * (floatResult3 + floatResult7) + (localFloat22 + localFloat21) * floatResult5 * localFloat20;
       floatResult5 = *(float *)((longlong)presultFloat + allocatedMemory + stackParam000001e8);
       floatResult6 = presultFloat[CharacterDataOffset + 5];
       floatResult5 = floatResult5 * floatResult5;
@@ -79884,8 +79884,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
       *(float *)((longlong)presultFloat + allocatedMemory + RegisterPointer) =
            floatResult2 * localFloat23 * presultFloat[3] + presultFloat[EventDataIndex + 3] +
            (presultFloat[4] + presultFloat[2]) * floatResult2 * localFloat24 +
-           (presultFloat[1] + presultFloat[5]) * floatResult2 * fStack00000000000001c8 + floatResult5 * floatResult8 * floatResult7 +
-           floatResult5 * floatResult9 * (vectorComponentX + localFloat22) + (floatResult6 + floatResult3) * floatResult5 * localFloat20;
+           (presultFloat[1] + presultFloat[5]) * floatResult2 * fStack00000000000001c8 + floatResult5 * FloatValue1 * floatResult7 +
+           floatResult5 * FloatValue2 * (vectorComponentX + localFloat22) + (floatResult6 + floatResult3) * floatResult5 * localFloat20;
       floatResult5 = *(float *)((longlong)presultFloat + componentIndex + stackParam000001e8);
       floatResult2 = presultFloat[CharacterDataOffset + 6];
       floatResult5 = floatResult5 * floatResult5;
@@ -79893,8 +79893,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
       *(float *)((longlong)presultFloat + componentIndex + RegisterPointer) =
            floatResult3 * localFloat23 * presultFloat[4] + presultFloat[EventDataIndex + 4] +
            (presultFloat[5] + presultFloat[3]) * floatResult3 * localFloat24 +
-           (presultFloat[6] + presultFloat[2]) * floatResult3 * fStack00000000000001c8 + floatResult5 * floatResult8 * localFloat22 +
-           floatResult5 * floatResult9 * (floatResult7 + floatResult6) + (floatResult2 + vectorComponentX) * floatResult5 * localFloat20;
+           (presultFloat[6] + presultFloat[2]) * floatResult3 * fStack00000000000001c8 + floatResult5 * FloatValue1 * localFloat22 +
+           floatResult5 * FloatValue2 * (floatResult7 + floatResult6) + (floatResult2 + vectorComponentX) * floatResult5 * localFloat20;
       floatResult3 = *(float *)((longlong)presultFloat + stringCompareIndex + stackParam000001e8);
       floatResult5 = presultFloat[CharacterDataOffset + 7];
       floatResult3 = floatResult3 * floatResult3;
@@ -79902,8 +79902,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
       *(float *)((longlong)presultFloat + stringCompareIndex + RegisterPointer) =
            vectorComponentX * localFloat23 * presultFloat[5] + presultFloat[EventDataIndex + 5] +
            (presultFloat[6] + presultFloat[4]) * vectorComponentX * localFloat24 +
-           (presultFloat[7] + presultFloat[3]) * vectorComponentX * fStack00000000000001c8 + floatResult3 * floatResult8 * floatResult6 +
-           floatResult3 * floatResult9 * (localFloat22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * localFloat20;
+           (presultFloat[7] + presultFloat[3]) * vectorComponentX * fStack00000000000001c8 + floatResult3 * FloatValue1 * floatResult6 +
+           floatResult3 * FloatValue2 * (localFloat22 + floatResult2) + (floatResult5 + floatResult7) * floatResult3 * localFloat20;
       presultFloat = presultFloat + 4;
       ContextHandleData = ContextHandleData + -1;
       floatResult3 = floatResult6;
@@ -79930,8 +79930,8 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
       vectorComponentX = 1.0 - floatResult6;
       *(float *)(allocatedMemory1 + RegisterPointer + 4 + (longlong)presultFloat) =
            vectorComponentX * localFloat23 * presultFloat[1] + presultFloat[allocatedMemory + 1] + (presultFloat[2] + *presultFloat) * vectorComponentX * localFloat24
-           + (presultFloat[3] + presultFloat[-1]) * vectorComponentX * fStack00000000000001c8 + floatResult6 * floatResult8 * floatResult2 +
-           floatResult6 * floatResult9 * (floatResult7 + floatResult5) + (floatResult3 + localFloat22) * floatResult6 * localFloat20;
+           + (presultFloat[3] + presultFloat[-1]) * vectorComponentX * fStack00000000000001c8 + floatResult6 * FloatValue1 * floatResult2 +
+           floatResult6 * FloatValue2 * (floatResult7 + floatResult5) + (floatResult3 + localFloat22) * floatResult6 * localFloat20;
       presultFloat = presultFloat + 1;
       componentIndex = componentIndex + -1;
       floatResult6 = floatResult2;
@@ -79949,7 +79949,7 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   }
   else {
     FUN_180707200(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
-                  stackParam000001c0 - localInt8,floatResult8);
+                  stackParam000001c0 - localInt8,FloatValue1);
   }
   return;
 }
@@ -80487,8 +80487,8 @@ void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,in
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   
   EventOperationCount = 0;
   floatResult = *dataSource;
@@ -80496,8 +80496,8 @@ void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,in
   resultValue = dataSource[2];
   processedFloat = dataSource[3];
   secondaryValue = dataSource[4];
-  floatResult9 = *resultPointer;
-  floatResult8 = resultPointer[1];
+  FloatValue2 = *resultPointer;
+  FloatValue1 = resultPointer[1];
   vectorComponentX = resultPointer[2];
   floatResult6 = resultPointer[3];
   floatResult2 = resultPointer[4];
@@ -80510,27 +80510,27 @@ void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,in
     floatResult1 = floatResult2;
     floatResult3 = vectorComponentX;
     floatResult5 = floatResult6;
-    floatResult7 = floatResult8;
+    floatResult7 = FloatValue1;
     do {
-      floatResult2 = floatResult9;
+      floatResult2 = FloatValue2;
       floatResult6 = *(float *)(localLong8 + -4 + (longlong)plocalFloat9);
       plocalFloat9[-1] = floatResult2 * floatResult + floatResult6 + floatResult7 * localFloat2 + floatResult3 * resultValue + floatResult5 * processedFloat +
                    floatResult1 * secondaryValue;
       vectorComponentX = *(float *)(localLong8 + (longlong)plocalFloat9);
       *plocalFloat9 = floatResult6 * floatResult + vectorComponentX + floatResult2 * localFloat2 + floatResult7 * resultValue + floatResult3 * processedFloat +
                 floatResult5 * secondaryValue;
-      floatResult8 = *(float *)(localLong8 + 4 + (longlong)plocalFloat9);
-      plocalFloat9[1] = vectorComponentX * floatResult + floatResult8 + floatResult6 * localFloat2 + floatResult2 * resultValue + floatResult7 * processedFloat +
+      FloatValue1 = *(float *)(localLong8 + 4 + (longlong)plocalFloat9);
+      plocalFloat9[1] = vectorComponentX * floatResult + FloatValue1 + floatResult6 * localFloat2 + floatResult2 * resultValue + floatResult7 * processedFloat +
                   floatResult3 * secondaryValue;
-      floatResult9 = *(float *)(localLong8 + 8 + (longlong)plocalFloat9);
-      plocalFloat9[2] = floatResult8 * floatResult + floatResult9 + vectorComponentX * localFloat2 + floatResult6 * resultValue + floatResult2 * processedFloat +
+      FloatValue2 = *(float *)(localLong8 + 8 + (longlong)plocalFloat9);
+      plocalFloat9[2] = FloatValue1 * floatResult + FloatValue2 + vectorComponentX * localFloat2 + floatResult6 * resultValue + floatResult2 * processedFloat +
                   floatResult7 * secondaryValue;
       plocalFloat9 = plocalFloat9 + 4;
       eventTypeCode = eventTypeCode - 1;
       floatResult1 = floatResult2;
       floatResult3 = vectorComponentX;
       floatResult5 = floatResult6;
-      floatResult7 = floatResult8;
+      floatResult7 = FloatValue1;
     } while (eventTypeCode != 0);
   }
   if (EventOperationCount < bufferSize) {
@@ -80538,24 +80538,24 @@ void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,in
     eventTypeCode = (ulonglong)(uint)(bufferSize - EventOperationCount);
     floatResult1 = floatResult2;
     floatResult3 = vectorComponentX;
-    floatResult5 = floatResult8;
+    floatResult5 = FloatValue1;
     do {
-      floatResult8 = floatResult9;
+      FloatValue1 = FloatValue2;
       vectorComponentX = floatResult5;
       floatResult2 = floatResult6;
       floatResult6 = floatResult3;
-      floatResult9 = *(float *)((longlong)plocalFloat9 + (uiContext - targetBuffer));
-      *plocalFloat9 = floatResult8 * floatResult + floatResult9 + vectorComponentX * localFloat2 + floatResult6 * resultValue + floatResult2 * processedFloat +
+      FloatValue2 = *(float *)((longlong)plocalFloat9 + (uiContext - targetBuffer));
+      *plocalFloat9 = FloatValue1 * floatResult + FloatValue2 + vectorComponentX * localFloat2 + floatResult6 * resultValue + floatResult2 * processedFloat +
                 floatResult1 * secondaryValue;
       plocalFloat9 = plocalFloat9 + 1;
       eventTypeCode = eventTypeCode - 1;
       floatResult1 = floatResult2;
       floatResult3 = vectorComponentX;
-      floatResult5 = floatResult8;
+      floatResult5 = FloatValue1;
     } while (eventTypeCode != 0);
   }
-  *resultPointer = floatResult9;
-  resultPointer[1] = floatResult8;
+  *resultPointer = FloatValue2;
+  resultPointer[1] = FloatValue1;
   resultPointer[2] = vectorComponentX;
   resultPointer[3] = floatResult6;
   resultPointer[4] = floatResult2;
@@ -80879,13 +80879,13 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   
   ProcessingResult1 = 0;
   floatResult7 = -1.0;
   floatResult5 = -1.0;
   localLong8 = (longlong)targetBuffer;
-  floatResult8 = 0.0;
+  FloatValue1 = 0.0;
   floatResult6 = 0.0;
   EventOperationCount = 0;
   *resultPointer = 0;
@@ -80924,7 +80924,7 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
     do {
       vectorComponentX = plocalFloat6[-1];
       if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, floatResult5 * floatResult3 < floatResult6 * vectorComponentX)) {
-        if (floatResult8 * vectorComponentX <= floatResult7 * floatResult3) {
+        if (FloatValue1 * vectorComponentX <= floatResult7 * floatResult3) {
           resultPointer[1] = ProcessingResult1;
           floatResult5 = vectorComponentX;
           floatResult6 = floatResult3;
@@ -80933,9 +80933,9 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
           resultPointer[1] = *resultPointer;
           *resultPointer = ProcessingResult1;
           floatResult5 = floatResult7;
-          floatResult6 = floatResult8;
+          floatResult6 = FloatValue1;
           floatResult7 = vectorComponentX;
-          floatResult8 = floatResult3;
+          FloatValue1 = floatResult3;
         }
       }
       vectorComponentX = *(float *)((longlong)plocalFloat6 + CharacterDataOffset + -4);
@@ -80946,7 +80946,7 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
         floatResult3 = 1.0;
       }
       if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, floatResult5 * floatResult3 < vectorComponentX * floatResult6)) {
-        if (vectorComponentX * floatResult8 <= floatResult7 * floatResult3) {
+        if (vectorComponentX * FloatValue1 <= floatResult7 * floatResult3) {
           resultPointer[1] = EventOperationCount + -1;
           floatResult5 = vectorComponentX;
           floatResult6 = floatResult3;
@@ -80955,9 +80955,9 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
           resultPointer[1] = *resultPointer;
           *resultPointer = EventOperationCount + -1;
           floatResult5 = floatResult7;
-          floatResult6 = floatResult8;
+          floatResult6 = FloatValue1;
           floatResult7 = vectorComponentX;
-          floatResult8 = floatResult3;
+          FloatValue1 = floatResult3;
         }
       }
       floatResult3 = (*(float *)((longlong)plocalFloat6 + CharacterDataOffset) * *(float *)((longlong)plocalFloat6 + CharacterDataOffset) -
@@ -80968,7 +80968,7 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
         floatResult3 = 1.0;
       }
       if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, floatResult5 * floatResult3 < floatResult6 * vectorComponentX)) {
-        if (floatResult8 * vectorComponentX <= floatResult7 * floatResult3) {
+        if (FloatValue1 * vectorComponentX <= floatResult7 * floatResult3) {
           resultPointer[1] = EventOperationCount;
           floatResult5 = vectorComponentX;
           floatResult6 = floatResult3;
@@ -80977,9 +80977,9 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
           resultPointer[1] = *resultPointer;
           *resultPointer = EventOperationCount;
           floatResult5 = floatResult7;
-          floatResult6 = floatResult8;
+          floatResult6 = FloatValue1;
           floatResult7 = vectorComponentX;
-          floatResult8 = floatResult3;
+          FloatValue1 = floatResult3;
         }
       }
       vectorComponentX = *(float *)((longlong)plocalFloat6 + CharacterDataOffset + 4);
@@ -80990,7 +80990,7 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
         floatResult3 = 1.0;
       }
       if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, floatResult5 * floatResult3 < vectorComponentX * floatResult6)) {
-        if (vectorComponentX * floatResult8 <= floatResult7 * floatResult3) {
+        if (vectorComponentX * FloatValue1 <= floatResult7 * floatResult3) {
           resultPointer[1] = EventOperationCount + 1;
           floatResult5 = vectorComponentX;
           floatResult6 = floatResult3;
@@ -80999,9 +80999,9 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
           resultPointer[1] = *resultPointer;
           *resultPointer = EventOperationCount + 1;
           floatResult5 = floatResult7;
-          floatResult6 = floatResult8;
+          floatResult6 = FloatValue1;
           floatResult7 = vectorComponentX;
-          floatResult8 = floatResult3;
+          FloatValue1 = floatResult3;
         }
       }
       vectorComponentX = *(float *)((longlong)plocalFloat6 + ((localLong8 * 4 + 8) - uiContext) + dataSource);
@@ -81020,7 +81020,7 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
     do {
       vectorComponentX = *plocalFloat6;
       if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, floatResult5 * floatResult3 < vectorComponentX * floatResult6)) {
-        if (vectorComponentX * floatResult8 <= floatResult7 * floatResult3) {
+        if (vectorComponentX * FloatValue1 <= floatResult7 * floatResult3) {
           resultPointer[1] = ProcessingResult1;
           floatResult5 = vectorComponentX;
           floatResult6 = floatResult3;
@@ -81029,9 +81029,9 @@ void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int b
           resultPointer[1] = *resultPointer;
           *resultPointer = ProcessingResult1;
           floatResult5 = floatResult7;
-          floatResult6 = floatResult8;
+          floatResult6 = FloatValue1;
           floatResult7 = vectorComponentX;
-          floatResult8 = floatResult3;
+          FloatValue1 = floatResult3;
         }
       }
       vectorComponentX = *(float *)((longlong)plocalFloat6 + (localLong8 * 4 - uiContext) + dataSource);
@@ -82062,7 +82062,7 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   int uiOperationResult5;
   int uiOperationResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   double dVar19;
   double dVar20;
   float localFloat21;
@@ -82092,8 +82092,8 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
         IsEventProcessingActive = false;
         CharacterDataOffset = (longlong)(*(int *)(uiBufferData + 8) * uiOperationResult5 + param_7);
         localFloat21 = *(float *)(uiContext0 + CharacterDataOffset * 4);
-        floatResult8 = *(float *)(uiContext1 + CharacterDataOffset * 4);
-        floatResult7 = floatResult8;
+        FloatValue1 = *(float *)(uiContext1 + CharacterDataOffset * 4);
+        floatResult7 = FloatValue1;
         if (resultPointer == 1) {
           localLong7 = (longlong)(*(int *)(uiBufferData + 8) + param_7);
           floatResult = *(float *)(uiContext0 + localLong7 * 4);
@@ -82102,8 +82102,8 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
             floatResult = localFloat21;
           }
           localFloat21 = floatResult;
-          if (floatResult7 <= floatResult8) {
-            floatResult7 = floatResult8;
+          if (floatResult7 <= FloatValue1) {
+            floatResult7 = FloatValue1;
           }
         }
         if (localFloat21 <= floatResult7) {
@@ -82135,13 +82135,13 @@ void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,
               if (0 < (int)result0) {
                 do {
                   uiContext3 = uiContext3 * 0x19660d + 0x3c6ef35f;
-                  floatResult8 = localFloat21;
+                  FloatValue1 = localFloat21;
                   if ((uiContext3 >> 0xf & 1) == 0) {
-                    floatResult8 = -localFloat21;
+                    FloatValue1 = -localFloat21;
                   }
                   TempInt4 = localInt8 << (IsValidationComplete & 0x1f);
                   localInt8 = localInt8 + 1;
-                  *(float *)(CharacterDataOffset + (longlong)(TempInt4 + ProcessingResult1) * 4) = floatResult8;
+                  *(float *)(CharacterDataOffset + (longlong)(TempInt4 + ProcessingResult1) * 4) = FloatValue1;
                 } while (localInt8 < (int)result0);
               }
               IsEventProcessingActive = true;
@@ -82200,7 +82200,7 @@ void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   float floatResult6;
   double dVar17;
   double dVar18;
-  float floatResult9;
+  float FloatValue2;
   UIByte in_XMM1 [16];
   UIByte asemaphoreHandle0 [16];
   UIDword unmodifiedXMM6_Da;
@@ -82285,39 +82285,39 @@ void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
     do {
       bVar3 = false;
       localLong8 = (longlong)(*(int *)(stackParam00000110 + 8) * ProcessingResult3 + stackParam00000140);
-      floatResult9 = *(float *)(stackParam00000158 + localLong8 * 4);
+      FloatValue2 = *(float *)(stackParam00000158 + localLong8 * 4);
       floatResult6 = *(float *)(stackParam00000160 + localLong8 * 4);
       floatResult5 = floatResult6;
       if (stackParam00000130 == 1) {
         ContextHandleData = (longlong)(*(int *)(stackParam00000110 + 8) + stackParam00000140);
         floatResult = *(float *)(stackParam00000158 + ContextHandleData * 4);
         floatResult5 = *(float *)(stackParam00000160 + ContextHandleData * 4);
-        if (floatResult <= floatResult9) {
-          floatResult = floatResult9;
+        if (floatResult <= FloatValue2) {
+          floatResult = FloatValue2;
         }
-        floatResult9 = floatResult;
+        FloatValue2 = floatResult;
         if (floatResult5 <= floatResult6) {
           floatResult5 = floatResult6;
         }
       }
-      if (floatResult9 <= floatResult5) {
-        floatResult5 = floatResult9;
+      if (FloatValue2 <= floatResult5) {
+        floatResult5 = FloatValue2;
       }
       floatResult5 = *(float *)(stackParam00000150 + localLong8 * 4) - floatResult5;
       if (floatResult5 <= 0.0) {
         floatResult5 = 0.0;
       }
       dVar18 = (double)exp((double)-floatResult5 * 0.6931471805599453);
-      floatResult9 = (float)dVar18 + (float)dVar18;
+      FloatValue2 = (float)dVar18 + (float)dVar18;
       if (unmodifiedEBP == 3) {
-        floatResult9 = floatResult9 * 1.4142135;
+        FloatValue2 = FloatValue2 * 1.4142135;
       }
-      if ((float)dVar17 * 0.5 <= floatResult9) {
-        floatResult9 = (float)dVar17 * 0.5;
+      if ((float)dVar17 * 0.5 <= FloatValue2) {
+        FloatValue2 = (float)dVar17 * 0.5;
       }
       EventOperationCount = 0;
-      floatResult9 = floatResult9 * (1.0 / (float)asemaphoreHandle0._0_8_);
-      in_XMM1 = ZEXT416((uint)floatResult9);
+      FloatValue2 = FloatValue2 * (1.0 / (float)asemaphoreHandle0._0_8_);
+      in_XMM1 = ZEXT416((uint)FloatValue2);
       localLong8 = stackParam00000118 +
               ((longlong)
                ((int)*(short *)(lStack0000000000000028 + *(longlong *)(stackParam00000110 + 0x20)) <<
@@ -82330,9 +82330,9 @@ void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
             if (0 < (int)uVar9) {
               do {
                 stackParam00000170 = stackParam00000170 * 0x19660d + 0x3c6ef35f;
-                floatResult6 = floatResult9;
+                floatResult6 = FloatValue2;
                 if ((stackParam00000170 >> 0xf & 1) == 0) {
-                  floatResult6 = -floatResult9;
+                  floatResult6 = -FloatValue2;
                 }
                 localInt5 = localInt7 << (IsEventProcessingActive & 0x1f);
                 localInt7 = localInt7 + 1;
@@ -84323,7 +84323,7 @@ ulonglong FUN_180718bd0(int *uiContext,longlong dataSource,int targetBuffer,uint
   longlong allocatedMemory6;
   longlong allocatedMemory7;
   longlong allocatedMemory8;
-  float floatResult9;
+  float FloatValue2;
   uint stackBuffer [2];
   UIByte astackUInt80 [4];
   int stackInt7c;
@@ -84453,34 +84453,34 @@ ulonglong FUN_180718bd0(int *uiContext,longlong dataSource,int targetBuffer,uint
             plocalFloat8 = (float *)(dataSource + 4);
             MaxProcessingCount = allocatedMemory7 * 4;
             do {
-              floatResult9 = 0.00390625;
+              FloatValue2 = 0.00390625;
               semaphoreHandle = uiContext[0xe] * 0x19660d + 0x3c6ef35f;
               uiContext[0xe] = semaphoreHandle;
               if ((semaphoreHandle >> 0xf & 1) == 0) {
-                floatResult9 = -0.00390625;
+                FloatValue2 = -0.00390625;
               }
-              plocalFloat8[-1] = floatResult9 + *(float *)(allocatedMemory6 + -4 + (longlong)plocalFloat8);
-              floatResult9 = 0.00390625;
+              plocalFloat8[-1] = FloatValue2 + *(float *)(allocatedMemory6 + -4 + (longlong)plocalFloat8);
+              FloatValue2 = 0.00390625;
               semaphoreHandle = uiContext[0xe] * 0x19660d + 0x3c6ef35f;
               uiContext[0xe] = semaphoreHandle;
               if ((semaphoreHandle >> 0xf & 1) == 0) {
-                floatResult9 = -0.00390625;
+                FloatValue2 = -0.00390625;
               }
-              *plocalFloat8 = floatResult9 + *(float *)(allocatedMemory6 + (longlong)plocalFloat8);
-              floatResult9 = 0.00390625;
+              *plocalFloat8 = FloatValue2 + *(float *)(allocatedMemory6 + (longlong)plocalFloat8);
+              FloatValue2 = 0.00390625;
               semaphoreHandle = uiContext[0xe] * 0x19660d + 0x3c6ef35f;
               uiContext[0xe] = semaphoreHandle;
               if ((semaphoreHandle >> 0xf & 1) == 0) {
-                floatResult9 = -0.00390625;
+                FloatValue2 = -0.00390625;
               }
-              plocalFloat8[1] = floatResult9 + *(float *)(allocatedMemory6 + 4 + (longlong)plocalFloat8);
-              floatResult9 = 0.00390625;
+              plocalFloat8[1] = FloatValue2 + *(float *)(allocatedMemory6 + 4 + (longlong)plocalFloat8);
+              FloatValue2 = 0.00390625;
               semaphoreHandle = uiContext[0xe] * 0x19660d + 0x3c6ef35f;
               uiContext[0xe] = semaphoreHandle;
               if ((semaphoreHandle >> 0xf & 1) == 0) {
-                floatResult9 = -0.00390625;
+                FloatValue2 = -0.00390625;
               }
-              plocalFloat8[2] = floatResult9 + *(float *)(allocatedMemory6 + 8 + (longlong)plocalFloat8);
+              plocalFloat8[2] = FloatValue2 + *(float *)(allocatedMemory6 + 8 + (longlong)plocalFloat8);
               plocalFloat8 = plocalFloat8 + 4;
               allocatedMemory7 = allocatedMemory7 + -1;
             } while (allocatedMemory7 != 0);
@@ -84489,13 +84489,13 @@ ulonglong FUN_180718bd0(int *uiContext,longlong dataSource,int targetBuffer,uint
             plocalFloat8 = (float *)(dataSource + MaxProcessingCount * 4);
             allocatedMemory8 = allocatedMemory8 - MaxProcessingCount;
             do {
-              floatResult9 = 0.00390625;
+              FloatValue2 = 0.00390625;
               semaphoreHandle = uiContext[0xe] * 0x19660d + 0x3c6ef35f;
               uiContext[0xe] = semaphoreHandle;
               if ((semaphoreHandle >> 0xf & 1) == 0) {
-                floatResult9 = -0.00390625;
+                FloatValue2 = -0.00390625;
               }
-              *plocalFloat8 = floatResult9 + *(float *)((longlong)plocalFloat8 + (param_6 - dataSource));
+              *plocalFloat8 = FloatValue2 + *(float *)((longlong)plocalFloat8 + (param_6 - dataSource));
               plocalFloat8 = plocalFloat8 + 1;
               allocatedMemory8 = allocatedMemory8 + -1;
             } while (allocatedMemory8 != 0);
@@ -85658,8 +85658,8 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
   longlong SourceHandle;
   longlong TargetHandle;
   longlong allocatedMemory7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float in_XMM4_Da;
   float unmodifiedXMM6_Da;
   float unmodifiedXMM8_Da;
@@ -85679,8 +85679,8 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
     pfloatResult2 = (float *)(TargetHandle + 0x10);
     do {
       localFloat2 = pfloatResult2[-4];
-      floatResult8 = pfloatResult2[-3];
-      floatResult9 = pfloatResult2[-2];
+      FloatValue1 = pfloatResult2[-3];
+      FloatValue2 = pfloatResult2[-2];
       resultValue = pfloatResult2[-1];
       targetBuffer = targetBuffer + 8;
       registerDX = registerDX + 8;
@@ -85690,8 +85690,8 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
       localFloat6 = pfloatResult[2];
       resultFloat = pfloatResult[3];
       pfloatResult2[-4] = (processedFloat * unmodifiedXMM8_Da + localFloat2) * bufferSize;
-      pfloatResult2[-3] = (secondaryValue * unmodifiedXMM8_Db + floatResult8) * bufferSize;
-      pfloatResult2[-2] = (localFloat6 * unmodifiedXMM8_Dc + floatResult9) * bufferSize;
+      pfloatResult2[-3] = (secondaryValue * unmodifiedXMM8_Db + FloatValue1) * bufferSize;
+      pfloatResult2[-2] = (localFloat6 * unmodifiedXMM8_Dc + FloatValue2) * bufferSize;
       pfloatResult2[-1] = (resultFloat * unmodifiedXMM8_Dd + resultValue) * bufferSize;
       localFloat8 = *pfloatResult2;
       localFloat9 = pfloatResult2[1];
@@ -85699,22 +85699,22 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
       floatResult1 = pfloatResult2[3];
       pfloatResult = (float *)(allocatedMemory4 + -0x10 + (longlong)pfloatResult2);
       *pfloatResult = (processedFloat * unmodifiedXMM8_Da - localFloat2) * uiContext;
-      pfloatResult[1] = (secondaryValue * unmodifiedXMM8_Db - floatResult8) * uiContext;
-      pfloatResult[2] = (localFloat6 * unmodifiedXMM8_Dc - floatResult9) * uiContext;
+      pfloatResult[1] = (secondaryValue * unmodifiedXMM8_Db - FloatValue1) * uiContext;
+      pfloatResult[2] = (localFloat6 * unmodifiedXMM8_Dc - FloatValue2) * uiContext;
       pfloatResult[3] = (resultFloat * unmodifiedXMM8_Dd - resultValue) * uiContext;
       pfloatResult = (float *)(allocatedMemory4 + (longlong)pfloatResult2);
       localFloat2 = *pfloatResult;
-      floatResult8 = pfloatResult[1];
-      floatResult9 = pfloatResult[2];
+      FloatValue1 = pfloatResult[1];
+      FloatValue2 = pfloatResult[2];
       resultValue = pfloatResult[3];
       *pfloatResult2 = (unmodifiedXMM8_Da * localFloat2 + localFloat8) * bufferSize;
-      pfloatResult2[1] = (unmodifiedXMM8_Db * floatResult8 + localFloat9) * bufferSize;
-      pfloatResult2[2] = (unmodifiedXMM8_Dc * floatResult9 + floatResult0) * bufferSize;
+      pfloatResult2[1] = (unmodifiedXMM8_Db * FloatValue1 + localFloat9) * bufferSize;
+      pfloatResult2[2] = (unmodifiedXMM8_Dc * FloatValue2 + floatResult0) * bufferSize;
       pfloatResult2[3] = (unmodifiedXMM8_Dd * resultValue + floatResult1) * bufferSize;
       pfloatResult = (float *)(allocatedMemory4 + (longlong)pfloatResult2);
       *pfloatResult = (unmodifiedXMM8_Da * localFloat2 - localFloat8) * uiContext;
-      pfloatResult[1] = (unmodifiedXMM8_Db * floatResult8 - localFloat9) * uiContext;
-      pfloatResult[2] = (unmodifiedXMM8_Dc * floatResult9 - floatResult0) * uiContext;
+      pfloatResult[1] = (unmodifiedXMM8_Db * FloatValue1 - localFloat9) * uiContext;
+      pfloatResult[2] = (unmodifiedXMM8_Dc * FloatValue2 - floatResult0) * uiContext;
       pfloatResult[3] = (unmodifiedXMM8_Dd * resultValue - floatResult1) * uiContext;
       pfloatResult2 = pfloatResult2 + 8;
     } while (registerDX < (int)(TotalResult - result3));
@@ -85728,21 +85728,21 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
       allocatedMemory4 = allocatedMemory4 + allocatedMemory5 * 4;
       do {
         localFloat2 = pfloatResult2[-1];
-        floatResult8 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + -4 + (longlong)pfloatResult2);
-        floatResult9 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + (longlong)pfloatResult2);
-        *(float *)(allocatedMemory7 + -4 + (longlong)pfloatResult2) = (floatResult8 - localFloat2) * uiContext;
-        pfloatResult2[-1] = (localFloat2 + floatResult8) * bufferSize;
+        FloatValue1 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + -4 + (longlong)pfloatResult2);
+        FloatValue2 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + (longlong)pfloatResult2);
+        *(float *)(allocatedMemory7 + -4 + (longlong)pfloatResult2) = (FloatValue1 - localFloat2) * uiContext;
+        pfloatResult2[-1] = (localFloat2 + FloatValue1) * bufferSize;
         localFloat2 = *pfloatResult2;
-        floatResult8 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + 4 + (longlong)pfloatResult2);
-        *(float *)(allocatedMemory7 + (longlong)pfloatResult2) = (floatResult9 - localFloat2) * uiContext;
-        *pfloatResult2 = (localFloat2 + floatResult9) * bufferSize;
+        FloatValue1 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + 4 + (longlong)pfloatResult2);
+        *(float *)(allocatedMemory7 + (longlong)pfloatResult2) = (FloatValue2 - localFloat2) * uiContext;
+        *pfloatResult2 = (localFloat2 + FloatValue2) * bufferSize;
         localFloat2 = pfloatResult2[1];
-        floatResult9 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + 8 + (longlong)pfloatResult2);
-        *(float *)(allocatedMemory7 + 4 + (longlong)pfloatResult2) = (floatResult8 - localFloat2) * uiContext;
-        pfloatResult2[1] = (localFloat2 + floatResult8) * bufferSize;
+        FloatValue2 = unmodifiedXMM6_Da * *(float *)(allocatedMemory7 + 8 + (longlong)pfloatResult2);
+        *(float *)(allocatedMemory7 + 4 + (longlong)pfloatResult2) = (FloatValue1 - localFloat2) * uiContext;
+        pfloatResult2[1] = (localFloat2 + FloatValue1) * bufferSize;
         localFloat2 = pfloatResult2[2];
-        *(float *)(allocatedMemory7 + 8 + (longlong)pfloatResult2) = (floatResult9 - localFloat2) * uiContext;
-        pfloatResult2[2] = (localFloat2 + floatResult9) * bufferSize;
+        *(float *)(allocatedMemory7 + 8 + (longlong)pfloatResult2) = (FloatValue2 - localFloat2) * uiContext;
+        pfloatResult2[2] = (localFloat2 + FloatValue2) * bufferSize;
         pfloatResult2 = pfloatResult2 + 4;
         allocatedMemory5 = allocatedMemory5 + -1;
       } while (allocatedMemory5 != 0);
@@ -85752,9 +85752,9 @@ void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float buffe
       allocatedMemory4 = SourceHandle - allocatedMemory4;
       do {
         localFloat2 = *pfloatResult2;
-        floatResult8 = unmodifiedXMM6_Da * *(float *)((ContextHandle - TargetHandle) + (longlong)pfloatResult2);
-        *(float *)((ContextHandle - TargetHandle) + (longlong)pfloatResult2) = (floatResult8 - localFloat2) * uiContext;
-        *pfloatResult2 = (localFloat2 + floatResult8) * bufferSize;
+        FloatValue1 = unmodifiedXMM6_Da * *(float *)((ContextHandle - TargetHandle) + (longlong)pfloatResult2);
+        *(float *)((ContextHandle - TargetHandle) + (longlong)pfloatResult2) = (FloatValue1 - localFloat2) * uiContext;
+        *pfloatResult2 = (localFloat2 + FloatValue1) * bufferSize;
         pfloatResult2 = pfloatResult2 + 1;
         allocatedMemory4 = allocatedMemory4 + -1;
       } while (allocatedMemory4 != 0);
@@ -86288,8 +86288,8 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
   float floatResult5;
   float floatResult6;
   UIByte aresult7 [16];
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   int stackIntd8;
@@ -86324,14 +86324,14 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
       do {
         localInt6 = ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2;
         allocatedMemory1 = (longlong)localInt6;
-        floatResult8 = *(float *)(resultPointer + allocatedMemory1 * 4);
+        FloatValue1 = *(float *)(resultPointer + allocatedMemory1 * 4);
         floatResult6 = *(float *)(bufferSize + allocatedMemory1 * 4);
-        if (floatResult8 < -9.0) {
-          floatResult8 = -9.0;
+        if (FloatValue1 < -9.0) {
+          FloatValue1 = -9.0;
         }
         floatResult = *pvectorComponentX;
-        floatResult9 = (floatResult6 - floatResult8 * localFloat20) - floatResult;
-        floatResult5 = floatResult9 + 0.5;
+        FloatValue2 = (floatResult6 - FloatValue1 * localFloat20) - floatResult;
+        floatResult5 = FloatValue2 + 0.5;
         aresult7._0_8_ = (double)floatResult5;
         allocatedMemory0 = (longlong)floatResult5;
         if ((allocatedMemory0 != -0x8000000000000000) && ((double)allocatedMemory0 != aresult7._0_8_)) {
@@ -86406,13 +86406,13 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
           localInt8 = uiContext5;
         }
         *(float *)(param_9 + (longlong)(ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2) * 4) =
-             floatResult9 - (float)param_7;
+             FloatValue2 - (float)param_7;
         eventTypeCode = uiValidationResult - param_7 >> 0x1f;
         stackIntd8 = stackIntd8 + ((uiValidationResult - param_7 ^ eventTypeCode) - eventTypeCode);
         floatResult6 = (float)param_7;
         localInt6 = ProcessingResult3 + 1;
         *(float *)(resultPointer + (longlong)(ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2) * 4) =
-             floatResult + floatResult8 * localFloat20 + floatResult6;
+             floatResult + FloatValue1 * localFloat20 + floatResult6;
         *pvectorComponentX = (floatResult + floatResult6) - floatResult6 * localFloat21;
         pvectorComponentX = pvectorComponentX + 1;
         ProcessingResult3 = localInt6;
@@ -86457,7 +86457,7 @@ int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferS
   float floatResult6;
   UIByte aresult7 [16];
   double dVar18;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float unmodifiedXMM10_Da;
   float unmodifiedXMM14_Da;
@@ -86484,14 +86484,14 @@ int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferS
     do {
       TempInt4 = EventHandleD * *(int *)(unmodifiedR12 + 8) + allocationFlags;
       localLong8 = (longlong)TempInt4;
-      floatResult9 = *(float *)(stackParam00000120 + localLong8 * 4);
+      FloatValue2 = *(float *)(stackParam00000120 + localLong8 * 4);
       floatResult6 = *(float *)(RegisterPointer + localLong8 * 4);
-      if (floatResult9 < -9.0) {
-        floatResult9 = -9.0;
+      if (FloatValue2 < -9.0) {
+        FloatValue2 = -9.0;
       }
       floatResult = *pfloatResult0;
       dVar18 = 0.0;
-      localFloat20 = (floatResult6 - floatResult9 * unmodifiedXMM10_Da) - floatResult;
+      localFloat20 = (floatResult6 - FloatValue2 * unmodifiedXMM10_Da) - floatResult;
       floatResult1 = localFloat20 + 0.5;
       aresult7._0_8_ = (double)floatResult1;
       localLong7 = (longlong)floatResult1;
@@ -86597,7 +86597,7 @@ int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferS
       TempInt4 = EventHandleD + 1;
       *(float *)(stackParam00000120 +
                 (longlong)(EventHandleD * *(int *)(unmodifiedR12 + 8) + allocationFlags) * 4) =
-           floatResult + floatResult9 * unmodifiedXMM10_Da + floatResult6;
+           floatResult + FloatValue2 * unmodifiedXMM10_Da + floatResult6;
       *pfloatResult0 = (floatResult + floatResult6) - floatResult6 * unmodifiedXMM14_Da;
       pfloatResult0 = pfloatResult0 + 1;
       EventHandleD = TempInt4;
@@ -88554,8 +88554,8 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
   ulonglong CounterResult;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -88573,8 +88573,8 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
       localInt7 = ProcessingStatus * 4;
       do {
         floatResult7 = *uiContext + uiContext[4];
-        floatResult9 = *uiContext - uiContext[4];
-        floatResult8 = uiContext[1] - uiContext[5];
+        FloatValue2 = *uiContext - uiContext[4];
+        FloatValue1 = uiContext[1] - uiContext[5];
         *uiContext = floatResult7;
         uiContext[1] = uiContext[1] + uiContext[5];
         uiContext[4] = floatResult7 - (uiContext[2] + uiContext[6]);
@@ -88583,12 +88583,12 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         *uiContext = uiContext[2] + uiContext[6] + *uiContext;
         floatResult7 = uiContext[3];
         floatResult6 = uiContext[7];
-        uiContext[3] = floatResult8 - (uiContext[2] - uiContext[6]);
-        uiContext[7] = (uiContext[2] - uiContext[6]) + floatResult8;
-        uiContext[6] = floatResult9 - (floatResult7 - floatResult6);
-        uiContext[2] = floatResult9 + (floatResult7 - floatResult6);
-        floatResult9 = uiContext[8] - uiContext[0xc];
-        floatResult8 = uiContext[9] - uiContext[0xd];
+        uiContext[3] = FloatValue1 - (uiContext[2] - uiContext[6]);
+        uiContext[7] = (uiContext[2] - uiContext[6]) + FloatValue1;
+        uiContext[6] = FloatValue2 - (floatResult7 - floatResult6);
+        uiContext[2] = FloatValue2 + (floatResult7 - floatResult6);
+        FloatValue2 = uiContext[8] - uiContext[0xc];
+        FloatValue1 = uiContext[9] - uiContext[0xd];
         floatResult7 = uiContext[0xc] + uiContext[8];
         uiContext[8] = floatResult7;
         uiContext[9] = uiContext[9] + uiContext[0xd];
@@ -88598,12 +88598,12 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         uiContext[8] = uiContext[0xe] + uiContext[10] + uiContext[8];
         floatResult7 = uiContext[0xb];
         floatResult6 = uiContext[0xf];
-        uiContext[0xb] = floatResult8 - (uiContext[10] - uiContext[0xe]);
-        uiContext[0xf] = (uiContext[10] - uiContext[0xe]) + floatResult8;
-        uiContext[0xe] = floatResult9 - (floatResult7 - floatResult6);
-        uiContext[10] = floatResult9 + (floatResult7 - floatResult6);
+        uiContext[0xb] = FloatValue1 - (uiContext[10] - uiContext[0xe]);
+        uiContext[0xf] = (uiContext[10] - uiContext[0xe]) + FloatValue1;
+        uiContext[0xe] = FloatValue2 - (floatResult7 - floatResult6);
+        uiContext[10] = FloatValue2 + (floatResult7 - floatResult6);
         localFloat20 = uiContext[0x10] - uiContext[0x14];
-        floatResult9 = uiContext[0x11] - uiContext[0x15];
+        FloatValue2 = uiContext[0x11] - uiContext[0x15];
         floatResult7 = uiContext[0x14] + uiContext[0x10];
         uiContext[0x10] = floatResult7;
         uiContext[0x11] = uiContext[0x11] + uiContext[0x15];
@@ -88613,12 +88613,12 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         uiContext[0x10] = uiContext[0x12] + uiContext[0x16] + uiContext[0x10];
         floatResult7 = uiContext[0x13];
         floatResult6 = uiContext[0x12];
-        floatResult8 = uiContext[0x16];
+        FloatValue1 = uiContext[0x16];
         uiContext[0x12] = (floatResult7 - uiContext[0x17]) + localFloat20;
-        uiContext[0x13] = floatResult9 - (floatResult6 - floatResult8);
+        uiContext[0x13] = FloatValue2 - (floatResult6 - FloatValue1);
         uiContext[0x16] = localFloat20 - (floatResult7 - uiContext[0x17]);
-        uiContext[0x17] = (floatResult6 - floatResult8) + floatResult9;
-        floatResult9 = uiContext[0x19] - uiContext[0x1d];
+        uiContext[0x17] = (floatResult6 - FloatValue1) + FloatValue2;
+        FloatValue2 = uiContext[0x19] - uiContext[0x1d];
         localFloat20 = uiContext[0x18] - uiContext[0x1c];
         floatResult7 = uiContext[0x1c] + uiContext[0x18];
         uiContext[0x18] = floatResult7;
@@ -88629,11 +88629,11 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         uiContext[0x19] = uiContext[0x1f] + uiContext[0x1b] + uiContext[0x19];
         floatResult7 = uiContext[0x1b];
         floatResult6 = uiContext[0x1a];
-        floatResult8 = uiContext[0x1e];
+        FloatValue1 = uiContext[0x1e];
         uiContext[0x1a] = (floatResult7 - uiContext[0x1f]) + localFloat20;
-        uiContext[0x1b] = floatResult9 - (floatResult6 - floatResult8);
+        uiContext[0x1b] = FloatValue2 - (floatResult6 - FloatValue1);
         uiContext[0x1e] = localFloat20 - (floatResult7 - uiContext[0x1f]);
-        uiContext[0x1f] = (floatResult6 - floatResult8) + floatResult9;
+        uiContext[0x1f] = (floatResult6 - FloatValue1) + FloatValue2;
         uiContext = uiContext + 0x20;
         result0 = result0 - 1;
       } while (result0 != 0);
@@ -88642,8 +88642,8 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
       uiContext = uiContext + 1;
       result0 = (ulonglong)(resultPointer - localInt7);
       do {
-        floatResult8 = *uiContext - uiContext[4];
-        floatResult9 = uiContext[-1] - uiContext[3];
+        FloatValue1 = *uiContext - uiContext[4];
+        FloatValue2 = uiContext[-1] - uiContext[3];
         floatResult7 = uiContext[3] + uiContext[-1];
         uiContext[-1] = floatResult7;
         *uiContext = *uiContext + uiContext[4];
@@ -88653,10 +88653,10 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         *uiContext = uiContext[2] + uiContext[6] + *uiContext;
         floatResult7 = uiContext[2];
         floatResult6 = uiContext[6];
-        uiContext[2] = floatResult8 - (uiContext[1] - uiContext[5]);
-        uiContext[6] = (uiContext[1] - uiContext[5]) + floatResult8;
-        uiContext[1] = floatResult9 + (floatResult7 - floatResult6);
-        uiContext[5] = floatResult9 - (floatResult7 - floatResult6);
+        uiContext[2] = FloatValue1 - (uiContext[1] - uiContext[5]);
+        uiContext[6] = (uiContext[1] - uiContext[5]) + FloatValue1;
+        uiContext[1] = FloatValue2 + (floatResult7 - floatResult6);
+        uiContext[5] = FloatValue2 - (floatResult7 - floatResult6);
         uiContext = uiContext + 8;
         result0 = result0 - 1;
       } while (result0 != 0);
@@ -88681,10 +88681,10 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
           pfloatResult3 = pfloatResult3 + dataSource * 4;
           plocalFloat2 = pfloatResult1 + 1;
           floatResult6 = *pfloatResult1;
-          floatResult8 = *pfloatResult1;
+          FloatValue1 = *pfloatResult1;
           presultValue = pfloatResult1 + 1;
           pfloatResult1 = pfloatResult1 + dataSource * 2;
-          localFloat25 = plocalFloat6[allocatedMemory2 * 2] * floatResult8 - plocalFloat6[allocatedMemory2 * 2 + 1] * *plocalFloat2;
+          localFloat25 = plocalFloat6[allocatedMemory2 * 2] * FloatValue1 - plocalFloat6[allocatedMemory2 * 2 + 1] * *plocalFloat2;
           localFloat26 = plocalFloat6[allocatedMemory2 * 2] * *presultValue + plocalFloat6[allocatedMemory2 * 2 + 1] * floatResult6;
           localFloat24 = floatResult7 * *plocalFloat6 - plocalFloat6[1] * *pfloatResult;
           plocalFloat2 = plocalFloat9 + 1;
@@ -88693,23 +88693,23 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
           floatResult7 = *plocalFloat9;
           floatResult6 = *plocalFloat9;
           plocalFloat9 = plocalFloat9 + dataSource * 6;
-          floatResult8 = plocalFloat6[allocatedMemory4 * -2 + 1];
+          FloatValue1 = plocalFloat6[allocatedMemory4 * -2 + 1];
           floatResult7 = plocalFloat6[EventDataIndex * 2] * floatResult7 - plocalFloat6[EventDataIndex * 2 + 1] * *presultValue;
           localFloat21 = plocalFloat6[EventDataIndex * 2 + 1] * floatResult6 + plocalFloat6[EventDataIndex * 2] * *plocalFloat2;
           localFloat23 = *plocalFloat8 - localFloat24;
           localFloat24 = localFloat24 + *plocalFloat8;
-          floatResult9 = floatResult7 + localFloat25;
-          localFloat20 = floatResult8 - localFloat22;
+          FloatValue2 = floatResult7 + localFloat25;
+          localFloat20 = FloatValue1 - localFloat22;
           localFloat25 = localFloat25 - floatResult7;
           *plocalFloat8 = localFloat24;
-          plocalFloat6[allocatedMemory4 * -2 + 1] = floatResult8 + localFloat22;
+          plocalFloat6[allocatedMemory4 * -2 + 1] = FloatValue1 + localFloat22;
           floatResult6 = localFloat21 + localFloat26;
           localFloat26 = localFloat26 - localFloat21;
-          *plocalFloat6 = localFloat24 - floatResult9;
+          *plocalFloat6 = localFloat24 - FloatValue2;
           plocalFloat6[1] = plocalFloat6[allocatedMemory4 * -2 + 1] - floatResult6;
           floatResult7 = *plocalFloat8;
           plocalFloat6[allocatedMemory4 * -2 + 1] = floatResult6 + plocalFloat6[allocatedMemory4 * -2 + 1];
-          *plocalFloat8 = floatResult9 + floatResult7;
+          *plocalFloat8 = FloatValue2 + floatResult7;
           plocalFloat6[allocatedMemory2 * 2] = localFloat23 + localFloat26;
           plocalFloat8 = plocalFloat8 + 2;
           plocalFloat6[allocatedMemory2 * 2 + 1] = localFloat20 - localFloat25;
@@ -88753,8 +88753,8 @@ void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -88778,7 +88778,7 @@ void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
       pfloatResult2 = plocalFloat9;
       allocatedMemory4 = unmodifiedR15;
       do {
-        floatResult8 = *pfloatResult2;
+        FloatValue1 = *pfloatResult2;
         pfloatResult = pfloatResult2 + 1;
         pfloatResult2 = pfloatResult2 + unmodifiedR12 * 4;
         plocalFloat2 = pfloatResult0 + 1;
@@ -88788,30 +88788,30 @@ void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
         pfloatResult0 = pfloatResult0 + unmodifiedR12 * 2;
         localFloat23 = presultFloat[allocatedMemory1 * 2] * processedFloat - presultFloat[allocatedMemory1 * 2 + 1] * *plocalFloat2;
         localFloat24 = presultFloat[allocatedMemory1 * 2] * *presultValue + presultFloat[allocatedMemory1 * 2 + 1] * floatResult5;
-        localFloat22 = floatResult8 * *presultFloat - presultFloat[1] * *pfloatResult;
+        localFloat22 = FloatValue1 * *presultFloat - presultFloat[1] * *pfloatResult;
         plocalFloat2 = plocalFloat9 + 1;
         presultValue = plocalFloat9 + 1;
-        localFloat20 = presultFloat[1] * floatResult8 + *pfloatResult * *presultFloat;
-        floatResult8 = *plocalFloat9;
+        localFloat20 = presultFloat[1] * FloatValue1 + *pfloatResult * *presultFloat;
+        FloatValue1 = *plocalFloat9;
         floatResult5 = *plocalFloat9;
         plocalFloat9 = plocalFloat9 + unmodifiedR12 * 6;
         processedFloat = presultFloat[allocatedMemory3 * -2 + 1];
-        floatResult8 = presultFloat[ContextHandleData * 2] * floatResult8 - presultFloat[ContextHandleData * 2 + 1] * *presultValue;
-        floatResult9 = presultFloat[ContextHandleData * 2 + 1] * floatResult5 + presultFloat[ContextHandleData * 2] * *plocalFloat2;
+        FloatValue1 = presultFloat[ContextHandleData * 2] * FloatValue1 - presultFloat[ContextHandleData * 2 + 1] * *presultValue;
+        FloatValue2 = presultFloat[ContextHandleData * 2 + 1] * floatResult5 + presultFloat[ContextHandleData * 2] * *plocalFloat2;
         localFloat21 = *plocalFloat8 - localFloat22;
         localFloat22 = localFloat22 + *plocalFloat8;
-        floatResult6 = floatResult8 + localFloat23;
+        floatResult6 = FloatValue1 + localFloat23;
         floatResult7 = processedFloat - localFloat20;
-        localFloat23 = localFloat23 - floatResult8;
+        localFloat23 = localFloat23 - FloatValue1;
         *plocalFloat8 = localFloat22;
         presultFloat[allocatedMemory3 * -2 + 1] = processedFloat + localFloat20;
-        floatResult5 = floatResult9 + localFloat24;
-        localFloat24 = localFloat24 - floatResult9;
+        floatResult5 = FloatValue2 + localFloat24;
+        localFloat24 = localFloat24 - FloatValue2;
         *presultFloat = localFloat22 - floatResult6;
         presultFloat[1] = presultFloat[allocatedMemory3 * -2 + 1] - floatResult5;
-        floatResult8 = *plocalFloat8;
+        FloatValue1 = *plocalFloat8;
         presultFloat[allocatedMemory3 * -2 + 1] = floatResult5 + presultFloat[allocatedMemory3 * -2 + 1];
-        *plocalFloat8 = floatResult6 + floatResult8;
+        *plocalFloat8 = floatResult6 + FloatValue1;
         presultFloat[allocatedMemory1 * 2] = localFloat21 + localFloat24;
         plocalFloat8 = plocalFloat8 + 2;
         presultFloat[allocatedMemory1 * 2 + 1] = floatResult7 - localFloat23;
@@ -88863,8 +88863,8 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
   float *pfloatResult5;
   float *pfloatResult6;
   float *pfloatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -88908,41 +88908,41 @@ void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,
           localFloat25 = pfloatResult1[ContextHandleData * 2 + -1] * *pfloatResult0 - pfloatResult1[ContextHandleData * 2] * pfloatResult0[1];
           resultValue0 = pfloatResult1[-1];
           resultValue2 = pfloatResult1[CharacterDataOffset * 2] * *pfloatResult6 + pfloatResult1[CharacterDataOffset * 2 + -1] * pfloatResult6[1];
-          floatResult8 = *pfloatResult1;
+          FloatValue1 = *pfloatResult1;
           resultValue3 = pfloatResult1[CharacterDataOffset * 2 + -1] * *pfloatResult6 - pfloatResult1[CharacterDataOffset * 2] * pfloatResult6[1];
           resultValue1 = *pfloatResult5 * *pfloatResult2 - pfloatResult1[localLong7 * 2] * pfloatResult5[1];
           localFloat21 = pfloatResult5[1] * *pfloatResult2 + pfloatResult1[localLong7 * 2] * *pfloatResult5;
-          floatResult9 = pfloatResult1[localLong8 * 2] * *pfloatResult7 + pfloatResult1[localLong8 * 2 + -1] * pfloatResult7[1];
+          FloatValue2 = pfloatResult1[localLong8 * 2] * *pfloatResult7 + pfloatResult1[localLong8 * 2 + -1] * pfloatResult7[1];
           localFloat28 = pfloatResult1[localLong8 * 2 + -1] * *pfloatResult7 - pfloatResult1[localLong8 * 2] * pfloatResult7[1];
-          localFloat27 = floatResult9 + localFloat23;
-          localFloat23 = localFloat23 - floatResult9;
+          localFloat27 = FloatValue2 + localFloat23;
+          localFloat23 = localFloat23 - FloatValue2;
           localFloat29 = localFloat28 + localFloat25;
           localFloat26 = localFloat21 + resultValue2;
           resultValue2 = resultValue2 - localFloat21;
           localFloat24 = resultValue1 + resultValue3;
-          *pfloatResult1 = localFloat26 + localFloat27 + floatResult8;
+          *pfloatResult1 = localFloat26 + localFloat27 + FloatValue1;
           pfloatResult1[-1] = localFloat29 + localFloat24 + resultValue0;
           localFloat22 = resultValue * localFloat24 + localFloat29 * floatResult + resultValue0;
-          localFloat20 = resultValue * localFloat26 + floatResult * localFloat27 + floatResult8;
+          localFloat20 = resultValue * localFloat26 + floatResult * localFloat27 + FloatValue1;
           pfloatResult0 = pfloatResult0 + dataSource * 2;
           pfloatResult6 = pfloatResult6 + dataSource * 4;
           pfloatResult5 = pfloatResult5 + dataSource * 6;
           pfloatResult7 = pfloatResult7 + dataSource * 8;
           localFloat21 = localFloat2 * localFloat23 + processedFloat * resultValue2;
-          floatResult9 = (resultValue1 - resultValue3) * processedFloat + (localFloat28 - localFloat25) * localFloat2;
+          FloatValue2 = (resultValue1 - resultValue3) * processedFloat + (localFloat28 - localFloat25) * localFloat2;
           pfloatResult1[ContextHandleData * 2 + -1] = localFloat22 - localFloat21;
-          pfloatResult1[ContextHandleData * 2] = localFloat20 - floatResult9;
-          pfloatResult1[localLong8 * 2] = localFloat20 + floatResult9;
+          pfloatResult1[ContextHandleData * 2] = localFloat20 - FloatValue2;
+          pfloatResult1[localLong8 * 2] = localFloat20 + FloatValue2;
           pfloatResult1[localLong8 * 2 + -1] = localFloat22 + localFloat21;
           resultValue0 = localFloat29 * resultValue + floatResult * localFloat24 + resultValue0;
           localFloat21 = (localFloat25 - localFloat28) * processedFloat - (resultValue3 - resultValue1) * localFloat2;
-          floatResult8 = resultValue * localFloat27 + floatResult * localFloat26 + floatResult8;
-          floatResult9 = localFloat2 * resultValue2 - localFloat23 * processedFloat;
-          pfloatResult1[CharacterDataOffset * 2] = localFloat21 + floatResult8;
-          pfloatResult1[CharacterDataOffset * 2 + -1] = floatResult9 + resultValue0;
-          *pfloatResult2 = resultValue0 - floatResult9;
+          FloatValue1 = resultValue * localFloat27 + floatResult * localFloat26 + FloatValue1;
+          FloatValue2 = localFloat2 * resultValue2 - localFloat23 * processedFloat;
+          pfloatResult1[CharacterDataOffset * 2] = localFloat21 + FloatValue1;
+          pfloatResult1[CharacterDataOffset * 2 + -1] = FloatValue2 + resultValue0;
+          *pfloatResult2 = resultValue0 - FloatValue2;
           pfloatResult2 = pfloatResult2 + 2;
-          pfloatResult1[localLong7 * 2] = floatResult8 - localFloat21;
+          pfloatResult1[localLong7 * 2] = FloatValue1 - localFloat21;
           pfloatResult1 = pfloatResult1 + 2;
           stackUInt128 = stackUInt128 - 1;
         } while (stackUInt128 != 0);
@@ -88984,8 +88984,8 @@ void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -89021,7 +89021,7 @@ void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
       pfloatResult1 = register10;
       pfloatResult2 = register10;
       do {
-        floatResult8 = pprocessedFloat[param_7 * 2 + -1] * register10[1] + pprocessedFloat[param_7 * 2] * *register10;
+        FloatValue1 = pprocessedFloat[param_7 * 2 + -1] * register10[1] + pprocessedFloat[param_7 * 2] * *register10;
         localFloat20 = pprocessedFloat[param_7 * 2 + -1] * *register10 - pprocessedFloat[param_7 * 2] * register10[1];
         localFloat25 = pprocessedFloat[-1];
         localFloat27 = pprocessedFloat[componentIndex * 2] * *pfloatResult1 + pprocessedFloat[componentIndex * 2 + -1] * pfloatResult1[1];
@@ -89031,30 +89031,30 @@ void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
         floatResult6 = pfloatResult0[1] * *plocalFloat6 + pprocessedFloat[stringCompareIndex * 2] * *pfloatResult0;
         vectorComponentX = pprocessedFloat[allocatedMemory * 2] * *pfloatResult2 + pprocessedFloat[allocatedMemory * 2 + -1] * pfloatResult2[1];
         localFloat23 = pprocessedFloat[allocatedMemory * 2 + -1] * *pfloatResult2 - pprocessedFloat[allocatedMemory * 2] * pfloatResult2[1];
-        localFloat22 = vectorComponentX + floatResult8;
-        floatResult8 = floatResult8 - vectorComponentX;
+        localFloat22 = vectorComponentX + FloatValue1;
+        FloatValue1 = FloatValue1 - vectorComponentX;
         localFloat24 = localFloat23 + localFloat20;
         localFloat21 = floatResult6 + localFloat27;
         localFloat27 = localFloat27 - floatResult6;
-        floatResult9 = localFloat26 + localFloat28;
+        FloatValue2 = localFloat26 + localFloat28;
         *pprocessedFloat = localFloat21 + localFloat22 + floatResult3;
-        pprocessedFloat[-1] = localFloat24 + floatResult9 + localFloat25;
-        floatResult7 = stackParam00000150 * floatResult9 + localFloat24 * unmodifiedretaddr + localFloat25;
+        pprocessedFloat[-1] = localFloat24 + FloatValue2 + localFloat25;
+        floatResult7 = stackParam00000150 * FloatValue2 + localFloat24 * unmodifiedretaddr + localFloat25;
         floatResult5 = stackParam00000150 * localFloat21 + unmodifiedretaddr * localFloat22 + floatResult3;
         register10 = register10 + dataSource * 2;
         pfloatResult1 = pfloatResult1 + dataSource * 4;
         pfloatResult0 = pfloatResult0 + dataSource * 6;
         pfloatResult2 = pfloatResult2 + dataSource * 8;
-        floatResult6 = unmodifiedretaddr_00 * floatResult8 + stackParam00000140 * localFloat27;
+        floatResult6 = unmodifiedretaddr_00 * FloatValue1 + stackParam00000140 * localFloat27;
         vectorComponentX = (localFloat26 - localFloat28) * stackParam00000140 + (localFloat23 - localFloat20) * unmodifiedretaddr_00;
         pprocessedFloat[param_7 * 2 + -1] = floatResult7 - floatResult6;
         pprocessedFloat[param_7 * 2] = floatResult5 - vectorComponentX;
         pprocessedFloat[allocatedMemory * 2] = floatResult5 + vectorComponentX;
         pprocessedFloat[allocatedMemory * 2 + -1] = floatResult7 + floatResult6;
-        localFloat25 = localFloat24 * stackParam00000150 + unmodifiedretaddr * floatResult9 + localFloat25;
+        localFloat25 = localFloat24 * stackParam00000150 + unmodifiedretaddr * FloatValue2 + localFloat25;
         floatResult6 = (localFloat20 - localFloat23) * stackParam00000140 - (localFloat28 - localFloat26) * unmodifiedretaddr_00;
         floatResult3 = stackParam00000150 * localFloat22 + unmodifiedretaddr * localFloat21 + floatResult3;
-        vectorComponentX = unmodifiedretaddr_00 * localFloat27 - floatResult8 * stackParam00000140;
+        vectorComponentX = unmodifiedretaddr_00 * localFloat27 - FloatValue1 * stackParam00000140;
         pprocessedFloat[componentIndex * 2] = floatResult6 + floatResult3;
         pprocessedFloat[componentIndex * 2 + -1] = vectorComponentX + localFloat25;
         *plocalFloat6 = localFloat25 - vectorComponentX;
@@ -89113,7 +89113,7 @@ void FUN_18071f7a0(int *uiContext,float *dataSource,float *targetBuffer)
   uint *ptrResult5;
   float *pfloatResult6;
   int uiOperationResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   longlong allocatedMemory9;
   int uiValidationResult0;
   ulonglong semaphoreHandle1;
@@ -89203,13 +89203,13 @@ void FUN_18071f7a0(int *uiContext,float *dataSource,float *targetBuffer)
             do {
               pfloatResult0 = *(float **)(uiContext + 0xe);
               plocalFloat8 = pfloatResult6;
-              pfloatResult8 = pfloatResult0;
+              pFloatValue1 = pfloatResult0;
               allocatedMemory9 = allocatedMemory2;
               do {
-                localFloat25 = *pfloatResult8;
-                plocalFloat2 = pfloatResult8 + 1;
+                localFloat25 = *pFloatValue1;
+                plocalFloat2 = pFloatValue1 + 1;
                 localFloat26 = *pfloatResult0;
-                pfloatResult8 = pfloatResult8 + allocatedMemory4 * 2;
+                pFloatValue1 = pFloatValue1 + allocatedMemory4 * 2;
                 localFloat29 = localFloat25 * plocalFloat8[allocatedMemory2 * 2 + 1] + *plocalFloat2 * plocalFloat8[allocatedMemory2 * 2];
                 presultValue = pfloatResult0 + 1;
                 pfloatResult0 = pfloatResult0 + allocatedMemory4 * 4;
@@ -89287,8 +89287,8 @@ void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
   ulonglong unmodifiedR13;
   int uiOperationResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -89326,26 +89326,26 @@ void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
           do {
             floatResult7 = *pfloatResult2;
             pfloatResult = pfloatResult2 + 1;
-            floatResult8 = *plocalFloat6;
+            FloatValue1 = *plocalFloat6;
             pfloatResult2 = pfloatResult2 + CharacterDataOffset * 2;
             localFloat21 = floatResult7 * psecondaryValue[localLong7 * 2 + 1] + *pfloatResult * psecondaryValue[localLong7 * 2];
             plocalFloat2 = plocalFloat6 + 1;
             plocalFloat6 = plocalFloat6 + CharacterDataOffset * 4;
             localFloat22 = floatResult7 * psecondaryValue[localLong7 * 2] - *pfloatResult * psecondaryValue[localLong7 * 2 + 1];
-            floatResult9 = floatResult8 * psecondaryValue[localLong8 * 2] - *plocalFloat2 * psecondaryValue[localLong8 * 2 + 1];
-            localFloat20 = psecondaryValue[localLong8 * 2 + 1] * floatResult8 + *plocalFloat2 * psecondaryValue[localLong8 * 2];
-            floatResult8 = floatResult9 + localFloat22;
+            FloatValue2 = FloatValue1 * psecondaryValue[localLong8 * 2] - *plocalFloat2 * psecondaryValue[localLong8 * 2 + 1];
+            localFloat20 = psecondaryValue[localLong8 * 2 + 1] * FloatValue1 + *plocalFloat2 * psecondaryValue[localLong8 * 2];
+            FloatValue1 = FloatValue2 + localFloat22;
             floatResult7 = localFloat20 + localFloat21;
             uiContext = (localFloat21 - localFloat20) * resultValue;
-            floatResult9 = (localFloat22 - floatResult9) * resultValue;
-            psecondaryValue[localLong7 * 2] = *psecondaryValue - floatResult8 * 0.5;
+            FloatValue2 = (localFloat22 - FloatValue2) * resultValue;
+            psecondaryValue[localLong7 * 2] = *psecondaryValue - FloatValue1 * 0.5;
             psecondaryValue[localLong7 * 2 + 1] = psecondaryValue[1] - floatResult7 * 0.5;
-            *psecondaryValue = floatResult8 + *psecondaryValue;
+            *psecondaryValue = FloatValue1 + *psecondaryValue;
             psecondaryValue[1] = floatResult7 + psecondaryValue[1];
             psecondaryValue[localLong8 * 2] = uiContext + psecondaryValue[localLong7 * 2];
-            psecondaryValue[localLong8 * 2 + 1] = psecondaryValue[localLong7 * 2 + 1] - floatResult9;
+            psecondaryValue[localLong8 * 2 + 1] = psecondaryValue[localLong7 * 2 + 1] - FloatValue2;
             uiContext = psecondaryValue[localLong7 * 2] - uiContext;
-            psecondaryValue[localLong7 * 2 + 1] = floatResult9 + psecondaryValue[localLong7 * 2 + 1];
+            psecondaryValue[localLong7 * 2 + 1] = FloatValue2 + psecondaryValue[localLong7 * 2 + 1];
             psecondaryValue[localLong7 * 2] = uiContext;
             psecondaryValue = psecondaryValue + 2;
             allocatedMemory3 = allocatedMemory3 + -1;
@@ -89414,8 +89414,8 @@ void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float unmodifiedXMM9_Da;
   ulonglong stackParam00000068;
@@ -89459,15 +89459,15 @@ void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
               pfloatResult = pfloatResult2 + 1;
               floatResult6 = *presultFloat;
               pfloatResult2 = pfloatResult2 + allocatedMemory0 * 2;
-              floatResult9 = floatResult5 * plocalFloat6[localLong8 * 2 + 1] + *pfloatResult * plocalFloat6[localLong8 * 2];
+              FloatValue2 = floatResult5 * plocalFloat6[localLong8 * 2 + 1] + *pfloatResult * plocalFloat6[localLong8 * 2];
               plocalFloat2 = presultFloat + 1;
               presultFloat = presultFloat + allocatedMemory0 * 4;
               localFloat20 = floatResult5 * plocalFloat6[localLong8 * 2] - *pfloatResult * plocalFloat6[localLong8 * 2 + 1];
               floatResult7 = floatResult6 * plocalFloat6[CharacterDataOffset * 2] - *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2 + 1];
-              floatResult8 = plocalFloat6[CharacterDataOffset * 2 + 1] * floatResult6 + *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2];
+              FloatValue1 = plocalFloat6[CharacterDataOffset * 2 + 1] * floatResult6 + *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2];
               floatResult6 = floatResult7 + localFloat20;
-              floatResult5 = floatResult8 + floatResult9;
-              uiContext = (floatResult9 - floatResult8) * resultValue;
+              floatResult5 = FloatValue1 + FloatValue2;
+              uiContext = (FloatValue2 - FloatValue1) * resultValue;
               floatResult7 = (localFloat20 - floatResult7) * resultValue;
               plocalFloat6[localLong8 * 2] = *plocalFloat6 - floatResult6 * unmodifiedXMM9_Da;
               plocalFloat6[localLong8 * 2 + 1] = plocalFloat6[1] - floatResult5 * unmodifiedXMM9_Da;
@@ -89679,8 +89679,8 @@ void FUN_18071fc11(void)
   ulonglong unmodifiedR12;
   int uiOperationResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -89722,23 +89722,23 @@ void FUN_18071fc11(void)
             plocalFloat2 = plocalFloat6 + 1;
             pfloatResult2 = pfloatResult2 + CharacterDataOffset * 2;
             localFloat21 = floatResult7 * psecondaryValue[localLong7 * 2 + 1] + *pfloatResult * psecondaryValue[localLong7 * 2];
-            floatResult8 = *plocalFloat6;
+            FloatValue1 = *plocalFloat6;
             plocalFloat6 = plocalFloat6 + CharacterDataOffset * 4;
             localFloat22 = floatResult7 * psecondaryValue[localLong7 * 2] - *pfloatResult * psecondaryValue[localLong7 * 2 + 1];
-            floatResult9 = floatResult8 * psecondaryValue[localLong8 * 2] - *plocalFloat2 * psecondaryValue[localLong8 * 2 + 1];
-            localFloat20 = *plocalFloat2 * psecondaryValue[localLong8 * 2] + psecondaryValue[localLong8 * 2 + 1] * floatResult8;
-            floatResult7 = floatResult9 + localFloat22;
-            floatResult8 = localFloat20 + localFloat21;
+            FloatValue2 = FloatValue1 * psecondaryValue[localLong8 * 2] - *plocalFloat2 * psecondaryValue[localLong8 * 2 + 1];
+            localFloat20 = *plocalFloat2 * psecondaryValue[localLong8 * 2] + psecondaryValue[localLong8 * 2 + 1] * FloatValue1;
+            floatResult7 = FloatValue2 + localFloat22;
+            FloatValue1 = localFloat20 + localFloat21;
             localFloat20 = (localFloat21 - localFloat20) * resultValue;
-            floatResult9 = (localFloat22 - floatResult9) * resultValue;
+            FloatValue2 = (localFloat22 - FloatValue2) * resultValue;
             psecondaryValue[localLong7 * 2] = *psecondaryValue - floatResult7 * 0.5;
-            psecondaryValue[localLong7 * 2 + 1] = psecondaryValue[1] - floatResult8 * 0.5;
+            psecondaryValue[localLong7 * 2 + 1] = psecondaryValue[1] - FloatValue1 * 0.5;
             *psecondaryValue = floatResult7 + *psecondaryValue;
-            psecondaryValue[1] = floatResult8 + psecondaryValue[1];
+            psecondaryValue[1] = FloatValue1 + psecondaryValue[1];
             psecondaryValue[localLong8 * 2] = localFloat20 + psecondaryValue[localLong7 * 2];
-            psecondaryValue[localLong8 * 2 + 1] = psecondaryValue[localLong7 * 2 + 1] - floatResult9;
+            psecondaryValue[localLong8 * 2 + 1] = psecondaryValue[localLong7 * 2 + 1] - FloatValue2;
             floatResult7 = psecondaryValue[localLong7 * 2];
-            psecondaryValue[localLong7 * 2 + 1] = floatResult9 + psecondaryValue[localLong7 * 2 + 1];
+            psecondaryValue[localLong7 * 2 + 1] = FloatValue2 + psecondaryValue[localLong7 * 2 + 1];
             psecondaryValue[localLong7 * 2] = floatResult7 - localFloat20;
             psecondaryValue = psecondaryValue + 2;
             allocatedMemory3 = allocatedMemory3 + -1;
@@ -89809,8 +89809,8 @@ void FUN_18071fed0(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float unmodifiedXMM9_Da;
   byte stackParam00000030;
@@ -89858,25 +89858,25 @@ void FUN_18071fed0(void)
               pfloatResult = pfloatResult2 + 1;
               plocalFloat2 = presultFloat + 1;
               pfloatResult2 = pfloatResult2 + allocatedMemory0 * 2;
-              floatResult9 = floatResult5 * plocalFloat6[localLong8 * 2 + 1] + *pfloatResult * plocalFloat6[localLong8 * 2];
+              FloatValue2 = floatResult5 * plocalFloat6[localLong8 * 2 + 1] + *pfloatResult * plocalFloat6[localLong8 * 2];
               floatResult6 = *presultFloat;
               presultFloat = presultFloat + allocatedMemory0 * 4;
               localFloat20 = floatResult5 * plocalFloat6[localLong8 * 2] - *pfloatResult * plocalFloat6[localLong8 * 2 + 1];
               floatResult7 = floatResult6 * plocalFloat6[CharacterDataOffset * 2] - *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2 + 1];
-              floatResult8 = *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2] + plocalFloat6[CharacterDataOffset * 2 + 1] * floatResult6;
+              FloatValue1 = *plocalFloat2 * plocalFloat6[CharacterDataOffset * 2] + plocalFloat6[CharacterDataOffset * 2 + 1] * floatResult6;
               floatResult5 = floatResult7 + localFloat20;
-              floatResult6 = floatResult8 + floatResult9;
-              floatResult8 = (floatResult9 - floatResult8) * resultValue;
+              floatResult6 = FloatValue1 + FloatValue2;
+              FloatValue1 = (FloatValue2 - FloatValue1) * resultValue;
               floatResult7 = (localFloat20 - floatResult7) * resultValue;
               plocalFloat6[localLong8 * 2] = *plocalFloat6 - floatResult5 * unmodifiedXMM9_Da;
               plocalFloat6[localLong8 * 2 + 1] = plocalFloat6[1] - floatResult6 * unmodifiedXMM9_Da;
               *plocalFloat6 = floatResult5 + *plocalFloat6;
               plocalFloat6[1] = floatResult6 + plocalFloat6[1];
-              plocalFloat6[CharacterDataOffset * 2] = floatResult8 + plocalFloat6[localLong8 * 2];
+              plocalFloat6[CharacterDataOffset * 2] = FloatValue1 + plocalFloat6[localLong8 * 2];
               plocalFloat6[CharacterDataOffset * 2 + 1] = plocalFloat6[localLong8 * 2 + 1] - floatResult7;
               floatResult5 = plocalFloat6[localLong8 * 2];
               plocalFloat6[localLong8 * 2 + 1] = floatResult7 + plocalFloat6[localLong8 * 2 + 1];
-              plocalFloat6[localLong8 * 2] = floatResult5 - floatResult8;
+              plocalFloat6[localLong8 * 2] = floatResult5 - FloatValue1;
               plocalFloat6 = plocalFloat6 + 2;
               allocatedMemory3 = allocatedMemory3 + -1;
             } while (allocatedMemory3 != 0);
@@ -91075,8 +91075,8 @@ void FUN_18072081d(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -91089,14 +91089,14 @@ void FUN_18072081d(void)
     CharacterDataOffset = 0;
     floatResult5 = unmodifiedXMM7_Da;
     if ((0 < (int)RegisterPointerD) && (7 < RegisterPointerD)) {
-      floatResult9 = 0.0;
+      FloatValue2 = 0.0;
       localFloat20 = 0.0;
       localFloat21 = 0.0;
       localFloat22 = 0.0;
       floatResult5 = 0.0;
       floatResult6 = 0.0;
       floatResult7 = 0.0;
-      floatResult8 = 0.0;
+      FloatValue1 = 0.0;
       result0 = RegisterPointerD & 0x80000007;
       if ((int)result0 < 0) {
         result0 = (result0 - 1 | 0xfffffff8) + 1;
@@ -91107,7 +91107,7 @@ void FUN_18072081d(void)
         pvectorComponentX = presultFloat + -5;
         pfloatResult = presultFloat + -3;
         plocalFloat2 = presultFloat + -4;
-        floatResult9 = floatResult9 + presultFloat[2] * *psecondaryValue;
+        FloatValue2 = FloatValue2 + presultFloat[2] * *psecondaryValue;
         localFloat20 = localFloat20 + presultFloat[1] * psecondaryValue[1];
         localFloat21 = localFloat21 + *presultFloat * psecondaryValue[2];
         localFloat22 = localFloat22 + presultFloat[-1] * psecondaryValue[3];
@@ -91118,9 +91118,9 @@ void FUN_18072081d(void)
         floatResult5 = floatResult5 + *psecondaryValue * *plocalFloat6;
         floatResult6 = floatResult6 + *pfloatResult * plocalFloat6[1];
         floatResult7 = floatResult7 + *plocalFloat2 * plocalFloat6[2];
-        floatResult8 = floatResult8 + *pvectorComponentX * plocalFloat6[3];
+        FloatValue1 = FloatValue1 + *pvectorComponentX * plocalFloat6[3];
       } while (CharacterDataOffset < (int)(RegisterPointerD - result0));
-      floatResult5 = localFloat21 + floatResult7 + floatResult9 + floatResult5 + localFloat22 + floatResult8 + localFloat20 + floatResult6;
+      floatResult5 = localFloat21 + floatResult7 + FloatValue2 + floatResult5 + localFloat22 + FloatValue1 + localFloat20 + floatResult6;
     }
     if (CharacterDataOffset < allocatedMemory3) {
       if (3 < allocatedMemory3 - CharacterDataOffset) {
@@ -91169,20 +91169,20 @@ void FUN_18072081d(void)
         floatResult6 = pvectorComponentX[1];
         floatResult7 = presultFloat[-2];
         presultFloat[-2] = floatResult6 * floatResult5 + floatResult7;
-        floatResult8 = *pvectorComponentX;
+        FloatValue1 = *pvectorComponentX;
         pvectorComponentX[1] = floatResult7 * floatResult5 + floatResult6;
         floatResult6 = presultFloat[-1];
-        presultFloat[-1] = floatResult8 * floatResult5 + floatResult6;
+        presultFloat[-1] = FloatValue1 * floatResult5 + floatResult6;
         floatResult7 = pvectorComponentX[-1];
-        *pvectorComponentX = floatResult6 * floatResult5 + floatResult8;
+        *pvectorComponentX = floatResult6 * floatResult5 + FloatValue1;
         floatResult6 = *presultFloat;
         *presultFloat = floatResult7 * floatResult5 + floatResult6;
-        floatResult8 = pvectorComponentX[-2];
+        FloatValue1 = pvectorComponentX[-2];
         pvectorComponentX[-1] = floatResult6 * floatResult5 + floatResult7;
         floatResult6 = presultFloat[1];
-        presultFloat[1] = floatResult8 * floatResult5 + floatResult6;
+        presultFloat[1] = FloatValue1 * floatResult5 + floatResult6;
         presultFloat = presultFloat + 4;
-        pvectorComponentX[-2] = floatResult6 * floatResult5 + floatResult8;
+        pvectorComponentX[-2] = floatResult6 * floatResult5 + FloatValue1;
         pvectorComponentX = pvectorComponentX + -4;
         localLong8 = localLong8 + -1;
       } while (localLong8 != 0);
@@ -92048,15 +92048,15 @@ int FUN_180721cf0(longlong uiContext,longlong dataSource,int targetBuffer,int bu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   
-  floatResult8 = 1e-15;
+  FloatValue1 = 1e-15;
   floatResult7 = 1e-15;
   if (targetBuffer == 0) {
     floatResult7 = (float)FUN_1807070a0(uiContext,uiContext,bufferSize);
     floatResult7 = floatResult7 + 1e-15;
-    floatResult8 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
-    floatResult8 = floatResult8 + 1e-15;
+    FloatValue1 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
+    FloatValue1 = FloatValue1 + 1e-15;
   }
   else {
     localInt6 = 0;
@@ -92081,7 +92081,7 @@ int FUN_180721cf0(longlong uiContext,longlong dataSource,int targetBuffer,int bu
         floatResult2 = *pfloatResult + floatResult6;
         floatResult6 = floatResult6 - *pfloatResult;
         floatResult7 = floatResult7 + localFloat9 * localFloat9 + floatResult0 * floatResult0 + floatResult1 * floatResult1 + floatResult2 * floatResult2;
-        floatResult8 = floatResult8 + floatResult3 * floatResult3 + floatResult5 * floatResult5 + vectorComponentX * vectorComponentX + floatResult6 * floatResult6;
+        FloatValue1 = FloatValue1 + floatResult3 * floatResult3 + floatResult5 * floatResult5 + vectorComponentX * vectorComponentX + floatResult6 * floatResult6;
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
     }
@@ -92094,35 +92094,35 @@ int FUN_180721cf0(longlong uiContext,longlong dataSource,int targetBuffer,int bu
         floatResult3 = floatResult3 - *psecondaryValue;
         psecondaryValue = psecondaryValue + 1;
         floatResult7 = floatResult7 + vectorComponentX * vectorComponentX;
-        floatResult8 = floatResult8 + floatResult3 * floatResult3;
+        FloatValue1 = FloatValue1 + floatResult3 * floatResult3;
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
     }
   }
-  if (1e-18 <= floatResult8 + floatResult7) {
-    if (floatResult8 <= floatResult7) {
+  if (1e-18 <= FloatValue1 + floatResult7) {
+    if (FloatValue1 <= floatResult7) {
       floatResult3 = -1.5707964;
-      if (0.0 <= floatResult8) {
+      if (0.0 <= FloatValue1) {
         vectorComponentX = 1.5707964;
       }
       else {
         vectorComponentX = -1.5707964;
       }
-      if (0.0 <= SQRT(floatResult7 * floatResult8)) {
+      if (0.0 <= SQRT(floatResult7 * FloatValue1)) {
         floatResult3 = 1.5707964;
       }
-      floatResult3 = (((floatResult8 * 0.43157974 + floatResult7) * SQRT(floatResult7 * floatResult8)) /
-                ((floatResult8 * 0.678484 + floatResult7) * (floatResult8 * 0.08595542 + floatResult7)) + vectorComponentX) - floatResult3;
+      floatResult3 = (((FloatValue1 * 0.43157974 + floatResult7) * SQRT(floatResult7 * FloatValue1)) /
+                ((FloatValue1 * 0.678484 + floatResult7) * (FloatValue1 * 0.08595542 + floatResult7)) + vectorComponentX) - floatResult3;
     }
     else {
-      if (0.0 <= floatResult8) {
+      if (0.0 <= FloatValue1) {
         floatResult3 = 1.5707964;
       }
       else {
         floatResult3 = -1.5707964;
       }
-      floatResult3 = floatResult3 - (SQRT(floatResult7 * floatResult8) * (floatResult7 * 0.43157974 + floatResult8)) /
-                        ((floatResult7 * 0.678484 + floatResult8) * (floatResult7 * 0.08595542 + floatResult8));
+      floatResult3 = floatResult3 - (SQRT(floatResult7 * FloatValue1) * (floatResult7 * 0.43157974 + FloatValue1)) /
+                        ((floatResult7 * 0.678484 + FloatValue1) * (floatResult7 * 0.08595542 + FloatValue1));
     }
   }
   else {
@@ -92163,15 +92163,15 @@ int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   
-  floatResult8 = 1e-15;
+  FloatValue1 = 1e-15;
   floatResult7 = 1e-15;
   if (targetBuffer == 0) {
     floatResult7 = (float)FUN_1807070a0(uiContext,uiContext,bufferSize);
     floatResult7 = floatResult7 + 1e-15;
-    floatResult8 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
-    floatResult8 = floatResult8 + 1e-15;
+    FloatValue1 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
+    FloatValue1 = FloatValue1 + 1e-15;
   }
   else {
     localInt6 = 0;
@@ -92196,7 +92196,7 @@ int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bu
         floatResult2 = *pfloatResult + floatResult6;
         floatResult6 = floatResult6 - *pfloatResult;
         floatResult7 = floatResult7 + localFloat9 * localFloat9 + floatResult0 * floatResult0 + floatResult1 * floatResult1 + floatResult2 * floatResult2;
-        floatResult8 = floatResult8 + floatResult3 * floatResult3 + floatResult5 * floatResult5 + vectorComponentX * vectorComponentX + floatResult6 * floatResult6;
+        FloatValue1 = FloatValue1 + floatResult3 * floatResult3 + floatResult5 * floatResult5 + vectorComponentX * vectorComponentX + floatResult6 * floatResult6;
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
     }
@@ -92209,35 +92209,35 @@ int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bu
         floatResult3 = floatResult3 - *psecondaryValue;
         psecondaryValue = psecondaryValue + 1;
         floatResult7 = floatResult7 + vectorComponentX * vectorComponentX;
-        floatResult8 = floatResult8 + floatResult3 * floatResult3;
+        FloatValue1 = FloatValue1 + floatResult3 * floatResult3;
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
     }
   }
-  if (1e-18 <= floatResult8 + floatResult7) {
-    if (floatResult8 <= floatResult7) {
+  if (1e-18 <= FloatValue1 + floatResult7) {
+    if (FloatValue1 <= floatResult7) {
       floatResult3 = -1.5707964;
-      if (0.0 <= floatResult8) {
+      if (0.0 <= FloatValue1) {
         vectorComponentX = 1.5707964;
       }
       else {
         vectorComponentX = -1.5707964;
       }
-      if (0.0 <= SQRT(floatResult7 * floatResult8)) {
+      if (0.0 <= SQRT(floatResult7 * FloatValue1)) {
         floatResult3 = 1.5707964;
       }
-      floatResult3 = (((floatResult8 * 0.43157974 + floatResult7) * SQRT(floatResult7 * floatResult8)) /
-                ((floatResult8 * 0.678484 + floatResult7) * (floatResult8 * 0.08595542 + floatResult7)) + vectorComponentX) - floatResult3;
+      floatResult3 = (((FloatValue1 * 0.43157974 + floatResult7) * SQRT(floatResult7 * FloatValue1)) /
+                ((FloatValue1 * 0.678484 + floatResult7) * (FloatValue1 * 0.08595542 + floatResult7)) + vectorComponentX) - floatResult3;
     }
     else {
-      if (0.0 <= floatResult8) {
+      if (0.0 <= FloatValue1) {
         floatResult3 = 1.5707964;
       }
       else {
         floatResult3 = -1.5707964;
       }
-      floatResult3 = floatResult3 - (SQRT(floatResult7 * floatResult8) * (floatResult7 * 0.43157974 + floatResult8)) /
-                        ((floatResult7 * 0.678484 + floatResult8) * (floatResult7 * 0.08595542 + floatResult8));
+      floatResult3 = floatResult3 - (SQRT(floatResult7 * FloatValue1) * (floatResult7 * 0.43157974 + FloatValue1)) /
+                        ((floatResult7 * 0.678484 + FloatValue1) * (floatResult7 * 0.08595542 + FloatValue1));
     }
   }
   else {
@@ -98286,8 +98286,8 @@ float FUN_180727fc0(int *uiContext,int dataSource,int targetBuffer,UIHandle buff
   ulonglong CounterResult;
   longlong *pallocatedMemory6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   
   uiOperationResult4 = targetBuffer + 1;
   ProcessingResult1 = uiOperationResult4;
@@ -98310,7 +98310,7 @@ float FUN_180727fc0(int *uiContext,int dataSource,int targetBuffer,UIHandle buff
                                 *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)ProcessingResult1 * 8) +
                                         (longlong)uiOperationResult4 * 4));
   CounterResult = (ulonglong)dataSource;
-  floatResult9 = 0.0;
+  FloatValue2 = 0.0;
   if (2 < dataSource) {
     CharacterDataOffset = CounterResult * 4;
     pallocatedMemory6 = (longlong *)(&UNK_180956d30 + CounterResult * 8);
@@ -98367,7 +98367,7 @@ float FUN_180727fc0(int *uiContext,int dataSource,int targetBuffer,UIHandle buff
         MaxProcessingCount = result0 - result3;
 LAB_180727edb:
         ProcessingResult1 = (int)(short)(sVar3 + sVar12 ^ eventTypeCode);
-        floatResult9 = floatResult9 + (float)ProcessingResult1 * (float)ProcessingResult1;
+        FloatValue2 = FloatValue2 + (float)ProcessingResult1 * (float)ProcessingResult1;
       }
       *uiContext = ProcessingResult1;
       CounterResult = (ulonglong)(uiOperationResult4 - 1U);
@@ -98393,8 +98393,8 @@ LAB_180727edb:
   floatResult7 = (float)uiOperationResult4;
   uiOperationResult4 = (int)(short)(sVar12 + -(short)result0 ^ -(short)result0);
   uiContext[1] = uiOperationResult4;
-  floatResult8 = (float)uiOperationResult4;
-  return floatResult7 * floatResult7 + floatResult9 + floatResult8 * floatResult8;
+  FloatValue1 = (float)uiOperationResult4;
+  return floatResult7 * floatResult7 + FloatValue2 + FloatValue1 * FloatValue1;
 }
 
 
@@ -101046,7 +101046,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
   float *pfloatResult6;
   longlong allocatedMemory7;
   ulonglong result8;
-  float *pfloatResult9;
+  float *pFloatValue2;
   double dVar20;
   float afStack_4c4 [239];
   UIByte astackUInt108 [32];
@@ -101076,7 +101076,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
   stackInte0 = targetBuffer;
   if (0 < (int)resultPointer) {
     ProcessingResult1 = 0;
-    pfloatResult9 = (float *)(uiContext + 8);
+    pFloatValue2 = (float *)(uiContext + 8);
     stackLongd8 = (longlong)bufferSize * 4;
     do {
       allocatedMemory0 = dataSource + (longlong)(*plocalChar13 + stackInte0) * -4;
@@ -101132,7 +101132,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
           } while (CharacterDataOffset != 0);
         }
       }
-      pvectorComponentX = pfloatResult9;
+      pvectorComponentX = pFloatValue2;
       allocatedMemory7 = (longlong)localInt8;
       uiOperationResult5 = ProcessingResult1;
       if (0 < (longlong)localInt8) {
@@ -101151,7 +101151,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
       dataSource = dataSource + stackLongd8;
       plocalChar13 = plocalChar13 + 2;
       ProcessingResult1 = ProcessingResult1 + stackInte4;
-      pfloatResult9 = pfloatResult9 + 0xaa;
+      pFloatValue2 = pFloatValue2 + 0xaa;
       result8 = result8 - 1;
     } while (result8 != 0);
   }
@@ -108194,8 +108194,8 @@ void FUN_180734f59(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -108294,16 +108294,16 @@ void FUN_180734f59(void)
             dVar64 = *(double *)(&stack0x00000050 + LoopCounter1 * 8);
             *(double *)(BasePointer + 0x1b0 + LoopCounter1 * 8) =
                  *(double *)(BasePointer + 0x1b0 + LoopCounter1 * 8) - (double)(vectorComponentX * floatResult6);
-            floatResult8 = *pprocessedFloat4;
+            FloatValue1 = *pprocessedFloat4;
             *(double *)(BasePointer + 0x270 + LoopCounter1 * 8) =
                  *(double *)(BasePointer + 0x270 + LoopCounter1 * 8) - (double)(floatResult7 * floatResult5);
-            floatResult9 = pprocessedFloat9[-1];
+            FloatValue2 = pprocessedFloat9[-1];
             dVar61 = *(double *)(&stack0x00000058 + LoopCounter1 * 8);
             *(double *)(BasePointer + 0x1b8 + LoopCounter1 * 8) =
-                 *(double *)(BasePointer + 0x1b8 + LoopCounter1 * 8) - (double)(vectorComponentX * floatResult8);
+                 *(double *)(BasePointer + 0x1b8 + LoopCounter1 * 8) - (double)(vectorComponentX * FloatValue1);
             localFloat20 = pprocessedFloat4[-1];
             *(double *)(BasePointer + 0x278 + LoopCounter1 * 8) =
-                 *(double *)(BasePointer + 0x278 + LoopCounter1 * 8) - (double)(floatResult9 * floatResult5);
+                 *(double *)(BasePointer + 0x278 + LoopCounter1 * 8) - (double)(FloatValue2 * floatResult5);
             localFloat21 = *pprocessedFloat9;
             dVar66 = *(double *)(&stack0x00000060 + LoopCounter1 * 8);
             *(double *)(BasePointer + 0x1c0 + LoopCounter1 * 8) =
@@ -108320,10 +108320,10 @@ void FUN_180734f59(void)
             pprocessedFloat9 = pprocessedFloat9 + 4;
             LoopCounter1 = LoopCounter1 + 4;
             pprocessedFloat4 = pprocessedFloat4 + -4;
-            dVar67 = dVar67 + (double)floatResult6 * dVar64 + (double)floatResult8 * dVar61 +
+            dVar67 = dVar67 + (double)floatResult6 * dVar64 + (double)FloatValue1 * dVar61 +
                      (double)localFloat20 * dVar66 +
                      (double)localFloat22 * *(double *)(&stack0x00000068 + ContextHandleData5);
-            dVar60 = dVar60 + (double)floatResult7 * dVar64 + (double)floatResult9 * dVar61 +
+            dVar60 = dVar60 + (double)floatResult7 * dVar64 + (double)FloatValue2 * dVar61 +
                      (double)localFloat21 * dVar66 +
                      (double)localFloat23 * *(double *)(&stack0x00000068 + ContextHandleData5);
           } while ((longlong)LoopCounter1 < (longlong)(LoopCounter4 - 3));
@@ -108952,7 +108952,7 @@ void FUN_180735d0e(void)
   uint CounterResult;
   uint TotalResult;
   UIHandle *ptrResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   uint result9;
   longlong componentIndex0;
   longlong componentIndex1;
@@ -109045,31 +109045,31 @@ void FUN_180735d0e(void)
     componentIndex0 = (longlong)(int)semaphoreHandle2;
     if (componentIndex0 < componentIndex1) {
       if (3 < componentIndex1 - componentIndex0) {
-        pfloatResult8 = (float *)(stackParam00000028 + (componentIndex0 + 2) * 4);
+        pFloatValue1 = (float *)(stackParam00000028 + (componentIndex0 + 2) * 4);
         do {
           dVar27 = *(double *)(&stack0x00000050 + componentIndex0 * 8);
           dVar28 = *(double *)(&stack0x00000058 + componentIndex0 * 8);
           dVar29 = *(double *)(BasePointer + 0x18 + componentIndex0 * 8);
           dVar30 = *(double *)(&stack0x00000060 + componentIndex0 * 8);
-          pfloatResult8[-2] = (float)(double)CONCAT44((uint)((ulonglong)dVar27 >> 0x20) ^ unmodifiedXMM11_Db,
+          pFloatValue1[-2] = (float)(double)CONCAT44((uint)((ulonglong)dVar27 >> 0x20) ^ unmodifiedXMM11_Db,
                                                 SUB84(dVar27,0) ^ unmodifiedXMM11_Da);
           dVar33 = *(double *)(BasePointer + 0x20 + componentIndex0 * 8);
           dVar31 = *(double *)(BasePointer + 0x28 + componentIndex0 * 8);
           dVar32 = *(double *)(&stack0x00000068 + componentIndex0 * 8);
-          pfloatResult8[-1] = (float)(double)CONCAT44((uint)((ulonglong)dVar28 >> 0x20) ^ unmodifiedXMM11_Db,
+          pFloatValue1[-1] = (float)(double)CONCAT44((uint)((ulonglong)dVar28 >> 0x20) ^ unmodifiedXMM11_Db,
                                                 SUB84(dVar28,0) ^ unmodifiedXMM11_Da);
           allocatedMemory = componentIndex0 * 8;
           componentIndex0 = componentIndex0 + 4;
           dVar24 = dVar24 + dVar27 * dVar29 + dVar28 * dVar33 + dVar30 * dVar31 +
                    dVar32 * *(double *)(BasePointer + 0x30 + allocatedMemory);
-          *pfloatResult8 = (float)(double)CONCAT44((uint)((ulonglong)dVar30 >> 0x20) ^ unmodifiedXMM11_Db,
+          *pFloatValue1 = (float)(double)CONCAT44((uint)((ulonglong)dVar30 >> 0x20) ^ unmodifiedXMM11_Db,
                                              SUB84(dVar30,0) ^ unmodifiedXMM11_Da);
           unmodifiedXMM12_Qa =
                unmodifiedXMM12_Qa + dVar27 * dVar27 + dVar28 * dVar28 + dVar30 * dVar30 +
                dVar32 * dVar32;
-          pfloatResult8[1] = (float)(double)CONCAT44((uint)((ulonglong)dVar32 >> 0x20) ^ unmodifiedXMM11_Db,
+          pFloatValue1[1] = (float)(double)CONCAT44((uint)((ulonglong)dVar32 >> 0x20) ^ unmodifiedXMM11_Db,
                                                SUB84(dVar32,0) ^ unmodifiedXMM11_Da);
-          pfloatResult8 = pfloatResult8 + 4;
+          pFloatValue1 = pFloatValue1 + 4;
         } while (componentIndex0 < componentIndex1 + -3);
       }
       for (; componentIndex0 < componentIndex1; componentIndex0 = componentIndex0 + 1) {
@@ -109138,11 +109138,11 @@ void FUN_180735d0e(void)
     componentIndex0 = (longlong)(int)semaphoreHandle2;
     if (componentIndex0 < componentIndex1) {
       if (3 < componentIndex1 - componentIndex0) {
-        pfloatResult8 = (float *)(stackParam00000028 + (componentIndex0 + 2) * 4);
+        pFloatValue1 = (float *)(stackParam00000028 + (componentIndex0 + 2) * 4);
         do {
           ProcessingStatus = *(UIHandle *)(&stack0x00000058 + componentIndex0 * 8);
           LoopCounter = *(UIHandle *)(&stack0x00000060 + componentIndex0 * 8);
-          pfloatResult8[-2] = (float)(double)CONCAT44((uint)((ulonglong)
+          pFloatValue1[-2] = (float)(double)CONCAT44((uint)((ulonglong)
                                                        *(UIHandle *)
                                                         (&stack0x00000050 + componentIndex0 * 8) >> 0x20) ^
                                                 unmodifiedXMM11_Db,
@@ -109150,13 +109150,13 @@ void FUN_180735d0e(void)
                                                 ^ unmodifiedXMM11_Da);
           MaxProcessingCount = *(UIHandle *)(&stack0x00000068 + componentIndex0 * 8);
           componentIndex0 = componentIndex0 + 4;
-          pfloatResult8[-1] = (float)(double)CONCAT44((uint)((ulonglong)ProcessingStatus >> 0x20) ^ unmodifiedXMM11_Db,
+          pFloatValue1[-1] = (float)(double)CONCAT44((uint)((ulonglong)ProcessingStatus >> 0x20) ^ unmodifiedXMM11_Db,
                                                 (uint)ProcessingStatus ^ unmodifiedXMM11_Da);
-          *pfloatResult8 = (float)(double)CONCAT44((uint)((ulonglong)LoopCounter >> 0x20) ^ unmodifiedXMM11_Db,
+          *pFloatValue1 = (float)(double)CONCAT44((uint)((ulonglong)LoopCounter >> 0x20) ^ unmodifiedXMM11_Db,
                                              (uint)LoopCounter ^ unmodifiedXMM11_Da);
-          pfloatResult8[1] = (float)(double)CONCAT44((uint)((ulonglong)MaxProcessingCount >> 0x20) ^ unmodifiedXMM11_Db,
+          pFloatValue1[1] = (float)(double)CONCAT44((uint)((ulonglong)MaxProcessingCount >> 0x20) ^ unmodifiedXMM11_Db,
                                                (uint)MaxProcessingCount ^ unmodifiedXMM11_Da);
-          pfloatResult8 = pfloatResult8 + 4;
+          pFloatValue1 = pFloatValue1 + 4;
         } while (componentIndex0 < componentIndex1 + -3);
       }
       for (; componentIndex0 < componentIndex1; componentIndex0 = componentIndex0 + 1) {
@@ -109591,8 +109591,8 @@ void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bu
   int uiOperationResult5;
   float *pfloatResult6;
   longlong allocatedMemory7;
-  float *pfloatResult8;
-  float *pfloatResult9;
+  float *pFloatValue1;
+  float *pFloatValue2;
   longlong componentIndex0;
   int uiValidationResult1;
   double dVar22;
@@ -109623,11 +109623,11 @@ void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bu
         pfloatResult0[((int)(targetBuffer * 2) - localLong8) + 2] = (float)dVar22;
         dVar22 = dVar22 + (double)(*pfloatResult2 * *pfloatResult2 - *pfloatResult6 * *pfloatResult6);
         *pfloatResult0 = (float)dVar22;
-        pfloatResult9 = pfloatResult6 + -1;
+        pFloatValue2 = pfloatResult6 + -1;
         pfloatResult6 = pfloatResult6 + -4;
-        pfloatResult8 = pfloatResult2 + -1;
+        pFloatValue1 = pfloatResult2 + -1;
         pfloatResult2 = pfloatResult2 + -4;
-        dVar22 = dVar22 + (double)(*pfloatResult8 * *pfloatResult8 - *pfloatResult9 * *pfloatResult9);
+        dVar22 = dVar22 + (double)(*pFloatValue1 * *pFloatValue1 - *pFloatValue2 * *pFloatValue2);
         pfloatResult0[componentIndex0 - localLong8] = (float)dVar22;
         pfloatResult0 = pfloatResult0 + componentIndex0;
         uVar9 = uVar9 - 1;
@@ -109667,36 +109667,36 @@ void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bu
       if (1 < uiOperationResult5) {
         if (4 < uiOperationResult5) {
           uiOperationResult4 = (targetBuffer + 1) * 3 + iStackX_8;
-          pfloatResult9 = (float *)(allocatedMemory + -8);
+          pFloatValue2 = (float *)(allocatedMemory + -8);
           pfloatResult2 = (float *)(allocatedMemory + (allocatedMemory7 + -2) * 4);
           componentIndex0 = (ulonglong)((uiOperationResult5 - 5U >> 2) + 1) * 4 + 1;
           uiValidationResult1 = iStackX_18;
           do {
-            dVar22 = dVar22 + (double)(*(float *)((longlong)pfloatResult9 + localLong8 + 0xc) * pfloatResult9[1] -
+            dVar22 = dVar22 + (double)(*(float *)((longlong)pFloatValue2 + localLong8 + 0xc) * pFloatValue2[1] -
                                       *(float *)(localLong8 + 0xc + (longlong)pfloatResult2) * pfloatResult2[1]);
             localFloat23 = (float)dVar22;
             bufferSize[(int)((uiValidationResult1 - targetBuffer) + ProcessingResult1)] = localFloat23;
             bufferSize[(int)((-1 - targetBuffer) * 2 + uiOperationResult4)] = localFloat23;
-            dVar22 = dVar22 + (double)(*(float *)((longlong)pfloatResult9 + localLong8 + 8) * *pfloatResult9 -
+            dVar22 = dVar22 + (double)(*(float *)((longlong)pFloatValue2 + localLong8 + 8) * *pFloatValue2 -
                                       *(float *)(localLong8 + 8 + (longlong)pfloatResult2) * *pfloatResult2);
             localFloat23 = (float)dVar22;
             bufferSize[(longlong)(uiValidationResult1 + ProcessingResult1) + 1] = localFloat23;
             bufferSize[(int)(~targetBuffer + uiOperationResult4)] = localFloat23;
-            dVar22 = dVar22 + (double)(*(float *)((longlong)pfloatResult9 + localLong8 + 4) * pfloatResult9[-1] -
+            dVar22 = dVar22 + (double)(*(float *)((longlong)pFloatValue2 + localLong8 + 4) * pFloatValue2[-1] -
                                       *(float *)(localLong8 + 4 + (longlong)pfloatResult2) * pfloatResult2[-1]);
             localFloat23 = (float)dVar22;
             bufferSize[(longlong)(int)(targetBuffer + uiValidationResult1 + ProcessingResult1) + 2] = localFloat23;
             bufferSize[uiOperationResult4] = localFloat23;
-            plocalFloat2 = (float *)((longlong)pfloatResult9 + localLong8);
+            plocalFloat2 = (float *)((longlong)pFloatValue2 + localLong8);
             presultValue = (float *)(localLong8 + (longlong)pfloatResult2);
             localInt7 = targetBuffer * 2 + uiValidationResult1 + ProcessingResult1;
-            pfloatResult8 = pfloatResult9 + -2;
-            pfloatResult9 = pfloatResult9 + -4;
+            pFloatValue1 = pFloatValue2 + -2;
+            pFloatValue2 = pFloatValue2 + -4;
             pprocessedFloat = pfloatResult2 + -2;
             ProcessingResult1 = ProcessingResult1 + 4;
             pfloatResult2 = pfloatResult2 + -4;
             uiValidationResult1 = uiValidationResult1 + targetBuffer * 4;
-            dVar22 = dVar22 + (double)(*plocalFloat2 * *pfloatResult8 - *presultValue * *pprocessedFloat);
+            dVar22 = dVar22 + (double)(*plocalFloat2 * *pFloatValue1 - *presultValue * *pprocessedFloat);
             bufferSize[(longlong)localInt7 + 3] = (float)dVar22;
             localInt7 = targetBuffer + 1 + uiOperationResult4;
             uiOperationResult4 = uiOperationResult4 + targetBuffer * 4 + 4;
@@ -109704,24 +109704,24 @@ void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bu
           } while (ProcessingResult1 < uiOperationResult5 + -3);
         }
         if (ProcessingResult1 < uiOperationResult5) {
-          pfloatResult8 = (float *)(allocatedMemory + componentIndex0 * -4);
+          pFloatValue1 = (float *)(allocatedMemory + componentIndex0 * -4);
           uiValidationResult1 = (iStackX_8 + ProcessingResult1) * targetBuffer;
           pfloatResult2 = (float *)(allocatedMemory + (allocatedMemory7 - componentIndex0) * 4);
-          pfloatResult9 = bufferSize + (int)((targetBuffer + 1) * ProcessingResult1 + iStackX_8);
+          pFloatValue2 = bufferSize + (int)((targetBuffer + 1) * ProcessingResult1 + iStackX_8);
           do {
-            pprocessedFloat = (float *)((longlong)pfloatResult8 + localLong8 + 8);
+            pprocessedFloat = (float *)((longlong)pFloatValue1 + localLong8 + 8);
             uiOperationResult4 = uiValidationResult1 + ProcessingResult1;
-            localFloat23 = *pfloatResult8;
+            localFloat23 = *pFloatValue1;
             ProcessingResult1 = ProcessingResult1 + 1;
-            pfloatResult8 = pfloatResult8 + -1;
+            pFloatValue1 = pFloatValue1 + -1;
             plocalFloat2 = (float *)(localLong8 + 8 + (longlong)pfloatResult2);
             uiValidationResult1 = uiValidationResult1 + targetBuffer;
             secondaryValue = *pfloatResult2;
             pfloatResult2 = pfloatResult2 + -1;
             dVar22 = dVar22 + (double)(*pprocessedFloat * localFloat23 - *plocalFloat2 * secondaryValue);
             bufferSize[uiOperationResult4] = (float)dVar22;
-            *pfloatResult9 = (float)dVar22;
-            pfloatResult9 = pfloatResult9 + (int)(targetBuffer + 1);
+            *pFloatValue2 = (float)dVar22;
+            pFloatValue2 = pFloatValue2 + (int)(targetBuffer + 1);
           } while (ProcessingResult1 < uiOperationResult5);
         }
       }
@@ -135142,7 +135142,7 @@ void FUN_18074dfc0(longlong *uiContext,int dataSource,char targetBuffer)
   uint TotalResult;
   float floatResult7;
   UIDword result8;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -135452,7 +135452,7 @@ LAB_18074e6e3:
         }
         if ((0.0 < afStack_e30[0]) && (localInt5 == 1)) {
           if ((TotalResult >> 0x12 & 1) == 0) {
-            floatResult9 = *(float *)(uiContext + 0x12) - *(float *)(localLong7 + 0x1109c + result0);
+            FloatValue2 = *(float *)(uiContext + 0x12) - *(float *)(localLong7 + 0x1109c + result0);
             localFloat26 = *(float *)((longlong)uiContext + 0x8c) - *(float *)(localLong7 + 0x11098 + result0);
             localFloat25 = *(float *)((longlong)uiContext + 0x94) - *(float *)(localLong7 + 0x110a0 + result0);
             localFloat24 = *(float *)(uiContext + 0x10) - *(float *)(localLong7 + 0x11080 + result0);
@@ -135462,7 +135462,7 @@ LAB_18074e6e3:
           else {
             stackUInte28 = *(UIHandle *)((longlong)uiContext + 0x8c);
             localFloat25 = *(float *)((longlong)uiContext + 0x94);
-            floatResult9 = (float)((ulonglong)stackUInte28 >> 0x20);
+            FloatValue2 = (float)((ulonglong)stackUInte28 >> 0x20);
             stackLonge18 = uiContext[0x10];
             localFloat20 = (float)((ulonglong)stackLonge18 >> 0x20);
             localFloat22 = *(float *)(uiContext + 0x11);
@@ -135474,7 +135474,7 @@ LAB_18074e6e3:
           localFloat23 = 0.0;
           localFloat21 = SQRT(localFloat20 * localFloat20 + localFloat24 * localFloat24 + localFloat22 * localFloat22);
           if (0.0 < localFloat21) {
-            localFloat23 = (localFloat20 * floatResult9 + localFloat24 * localFloat26 + localFloat22 * localFloat25) / localFloat21;
+            localFloat23 = (localFloat20 * FloatValue2 + localFloat24 * localFloat26 + localFloat22 * localFloat25) / localFloat21;
           }
           *(float *)((longlong)uiContext + 0x7c) =
                (afStack_e08[0] * 340.0 - localFloat23 * afStack_e30[0]) / (afStack_e08[0] * 340.0);
@@ -135522,7 +135522,7 @@ void FUN_18074e00f(void)
   float floatResult6;
   float floatResult7;
   UIDword result8;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -135818,7 +135818,7 @@ LAB_18074e6e3:
         }
         if ((0.0 < stackParam00000048) && (localInt5 == 1)) {
           if ((CounterResult >> 0x12 & 1) == 0) {
-            floatResult9 = *(float *)(ContextHandle + 0x12) - *(float *)(localLong7 + 0x1109c + result0);
+            FloatValue2 = *(float *)(ContextHandle + 0x12) - *(float *)(localLong7 + 0x1109c + result0);
             localFloat25 = *(float *)((longlong)ContextHandle + 0x8c) - *(float *)(localLong7 + 0x11098 + result0);
             localFloat24 = *(float *)((longlong)ContextHandle + 0x94) - *(float *)(localLong7 + 0x110a0 + result0);
             localFloat23 = *(float *)(ContextHandle + 0x10) - *(float *)(localLong7 + 0x11080 + result0);
@@ -135828,7 +135828,7 @@ LAB_18074e6e3:
           else {
             _fStack0000000000000050 = *(UIHandle *)((longlong)ContextHandle + 0x8c);
             localFloat24 = *(float *)((longlong)ContextHandle + 0x94);
-            floatResult9 = (float)((ulonglong)_fStack0000000000000050 >> 0x20);
+            FloatValue2 = (float)((ulonglong)_fStack0000000000000050 >> 0x20);
             _fStack0000000000000060 = ContextHandle[0x10];
             localFloat20 = (float)((ulonglong)_fStack0000000000000060 >> 0x20);
             floatResult6 = *(float *)(ContextHandle + 0x11);
@@ -135840,7 +135840,7 @@ LAB_18074e6e3:
           localFloat22 = 0.0;
           localFloat21 = SQRT(localFloat20 * localFloat20 + localFloat23 * localFloat23 + floatResult6 * floatResult6);
           if (0.0 < localFloat21) {
-            localFloat22 = (localFloat20 * floatResult9 + localFloat23 * localFloat25 + floatResult6 * localFloat24) / localFloat21;
+            localFloat22 = (localFloat20 * FloatValue2 + localFloat23 * localFloat25 + floatResult6 * localFloat24) / localFloat21;
           }
           *(float *)((longlong)ContextHandle + 0x7c) =
                (stackParam00000070 * 340.0 - localFloat22 * stackParam00000048) /
@@ -135889,8 +135889,8 @@ void FUN_18074e3aa(float uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float unmodifiedXMM6_Da;
@@ -135952,16 +135952,16 @@ LAB_18074f826:
         if ((*(byte *)(CharacterDataOffset + 0x78) & 4) != 0) {
           localFloat22 = -localFloat22;
         }
-        floatResult8 = SQRT(localFloat21 * localFloat21 + localFloat20 * localFloat20 + localFloat22 * localFloat22);
-        if (floatResult8 < localFloat23) {
-          *(float *)(ContextHandle + 0x98) = floatResult8;
+        FloatValue1 = SQRT(localFloat21 * localFloat21 + localFloat20 * localFloat20 + localFloat22 * localFloat22);
+        if (FloatValue1 < localFloat23) {
+          *(float *)(ContextHandle + 0x98) = FloatValue1;
           if (*(longlong *)(CharacterDataOffset + 0x11410) == 0) {
             if ((result3 >> 0x1a & 1) == 0) {
               MaxProcessingCount = result3 & 0x4f00000;
               if (MaxProcessingCount == 0x200000) {
                 localInt5 = 1;
 LAB_18074e6a1:
-                func_0x0001807d49f0(localInt5,floatResult8,*(UIDword *)(ContextHandle + 0x9c),
+                func_0x0001807d49f0(localInt5,FloatValue1,*(UIDword *)(ContextHandle + 0x9c),
                                     *(UIDword *)(ContextHandle + 0xa0),&stack0x00000038);
                 TempInt4 = iStack000000000000003c;
                 result3 = inputString;
@@ -135986,15 +135986,15 @@ LAB_18074e6de:
               if (plocalFloat2 != (float *)0x0) {
                 localInt5 = *(int *)(ContextHandle + 0xe8);
                 if (localInt5 != 0) {
-                  if (floatResult8 < plocalFloat2[(longlong)localInt5 * 3 + -3]) {
+                  if (FloatValue1 < plocalFloat2[(longlong)localInt5 * 3 + -3]) {
                     localInt8 = 1;
                     allocatedMemory1 = 1;
                     presultValue = plocalFloat2;
                     if (1 < localInt5) {
                       do {
                         localFloat23 = *presultValue;
-                        if ((localFloat23 <= floatResult8) && (floatResult5 = presultValue[3], floatResult8 < floatResult5)) {
-                          localFloat23 = (floatResult8 - localFloat23) / (floatResult5 - localFloat23);
+                        if ((localFloat23 <= FloatValue1) && (floatResult5 = presultValue[3], FloatValue1 < floatResult5)) {
+                          localFloat23 = (FloatValue1 - localFloat23) / (floatResult5 - localFloat23);
                           localFloat23 = (unmodifiedXMM6_Da - localFloat23) * plocalFloat2[allocatedMemory1 * 3 + -2] +
                                    localFloat23 * plocalFloat2[allocatedMemory1 * 3 + 1];
                           goto LAB_18074e6de;
@@ -136036,22 +136036,22 @@ LAB_18074e6e3:
             *(int *)(ContextHandle + 0x78) = unmodifiedR13D;
           }
           floatResult5 = *(float *)(ContextHandle + 0xac);
-          localFloat23 = floatResult8;
+          localFloat23 = FloatValue1;
           if ((floatResult5 < 360.0) ||
              (*(float *)(ContextHandle + 0xa8) <= 360.0 && *(float *)(ContextHandle + 0xa8) != 360.0)) {
-            floatResult8 = *(float *)(ContextHandle + 0x98);
+            FloatValue1 = *(float *)(ContextHandle + 0x98);
             floatResult6 = unmodifiedXMM7_Da;
-            if (unmodifiedXMM7_Da < floatResult8) {
+            if (unmodifiedXMM7_Da < FloatValue1) {
               *(UIDword *)(BasePointer + -0x68) = *(UIDword *)(ContextHandle + 0xbc);
               floatResult6 = *(float *)(BasePointer + -0x68);
-              floatResult8 = 1.0 / floatResult8;
+              FloatValue1 = 1.0 / FloatValue1;
               isCharacterMatch = *(byte *)(*(longlong *)(ContextHandle + 8) + 0x78);
               *(UIHandle *)(BasePointer + -0x70) = *(UIHandle *)(ContextHandle + 0xb4);
               if ((isCharacterMatch & 4) != 0) {
                 floatResult6 = -floatResult6;
               }
-              localFloat22 = -(floatResult8 * localFloat21 * *(float *)(BasePointer + -0x6c) +
-                         floatResult8 * localFloat20 * *(float *)(BasePointer + -0x70) + floatResult8 * localFloat22 * floatResult6)
+              localFloat22 = -(FloatValue1 * localFloat21 * *(float *)(BasePointer + -0x6c) +
+                         FloatValue1 * localFloat20 * *(float *)(BasePointer + -0x70) + FloatValue1 * localFloat22 * floatResult6)
               ;
               if (-1.0 <= localFloat22) {
                 if (1.0 <= localFloat22) {
@@ -136081,7 +136081,7 @@ LAB_18074e6e3:
         if ((unmodifiedXMM7_Da < fStack0000000000000048) && (TempInt4 == 1)) {
           if ((result3 >> 0x12 & 1) == 0) {
             floatResult5 = *(float *)(ContextHandle + 0x90) - *(float *)(CharacterDataOffset + 0x1109c + allocatedMemory0);
-            floatResult8 = *(float *)(ContextHandle + 0x8c) - *(float *)(CharacterDataOffset + 0x11098 + allocatedMemory0);
+            FloatValue1 = *(float *)(ContextHandle + 0x8c) - *(float *)(CharacterDataOffset + 0x11098 + allocatedMemory0);
             localFloat22 = *(float *)(ContextHandle + 0x94) - *(float *)(CharacterDataOffset + 0x110a0 + allocatedMemory0);
             localFloat21 = *(float *)(ContextHandle + 0x80) - *(float *)(CharacterDataOffset + 0x11080 + allocatedMemory0);
             localFloat20 = *(float *)(ContextHandle + 0x88) - *(float *)(CharacterDataOffset + 0x11088 + allocatedMemory0);
@@ -136095,17 +136095,17 @@ LAB_18074e6e3:
             floatResult6 = (float)((ulonglong)_fStack0000000000000060 >> 0x20);
             localFloat20 = *(float *)(ContextHandle + 0x88);
             localFloat21 = fStack0000000000000060;
-            floatResult8 = fStack0000000000000050;
+            FloatValue1 = fStack0000000000000050;
             stackParam00000058 = localFloat22;
             stackParam00000068 = localFloat20;
           }
           floatResult7 = SQRT(floatResult6 * floatResult6 + localFloat21 * localFloat21 + localFloat20 * localFloat20);
-          floatResult9 = unmodifiedXMM7_Da;
+          FloatValue2 = unmodifiedXMM7_Da;
           if (unmodifiedXMM7_Da < floatResult7) {
-            floatResult9 = (floatResult6 * floatResult5 + localFloat21 * floatResult8 + localFloat20 * localFloat22) / floatResult7;
+            FloatValue2 = (floatResult6 * floatResult5 + localFloat21 * FloatValue1 + localFloat20 * localFloat22) / floatResult7;
           }
           *(float *)(ContextHandle + 0x7c) =
-               (stackParam00000070 * 340.0 - floatResult9 * fStack0000000000000048) /
+               (stackParam00000070 * 340.0 - FloatValue2 * fStack0000000000000048) /
                (stackParam00000070 * 340.0);
         }
         if (*(float *)(ContextHandle + 0x7c) <= 1e-06 && *(float *)(ContextHandle + 0x7c) != 1e-06) {
@@ -148072,8 +148072,8 @@ UIHandle FUN_18075a7bb(void)
   UIDword *EventHandle;
   UIHandle unmodifiedR15;
   bool in_ZF;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   UIDword unmodifiedXMM6_Da;
   UIDword unmodifiedXMM6_Db;
   UIDword unmodifiedXMM6_Dc;
@@ -148185,17 +148185,17 @@ LAB_18075ce56:
       psecondaryValue = (float *)BasePointer[0x45];
       localFloat21 = unmodifiedXMM8_Da * 0.5;
       localFloat23 = unmodifiedXMM10_Da * 0.5;
-      floatResult9 = *(float *)(BasePointer + 0x3e) * 0.5;
+      FloatValue2 = *(float *)(BasePointer + 0x3e) * 0.5;
       if (TempInt4 == 2) {
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = localFloat21;
         psecondaryValue[2] = fStack000000000000002c;
-        psecondaryValue[3] = floatResult9;
-        floatResult8 = localFloat21;
+        psecondaryValue[3] = FloatValue2;
+        FloatValue1 = localFloat21;
         localFloat22 = localFloat23;
         localFloat6 = fStack000000000000002c;
         localFloat20 = localFloat20 * 0.5;
-        floatResult9 = fStack000000000000002c;
+        FloatValue2 = fStack000000000000002c;
         localFloat21 = unmodifiedXMM9_Da;
         fStack0000000000000028 = fStack000000000000002c;
       }
@@ -148204,16 +148204,16 @@ LAB_18075ce56:
         psecondaryValue[1] = fStack000000000000002c;
         psecondaryValue[2] = localFloat21;
         psecondaryValue[3] = localFloat23;
-        floatResult8 = unmodifiedXMM9_Da;
+        FloatValue1 = unmodifiedXMM9_Da;
         localFloat22 = localFloat20 * 0.5;
         localFloat6 = localFloat23;
         localFloat20 = fStack000000000000002c;
         localFloat23 = fStack000000000000002c;
       }
-      psecondaryValue[4] = floatResult9;
+      psecondaryValue[4] = FloatValue2;
       psecondaryValue[5] = localFloat23;
       psecondaryValue[6] = fStack0000000000000028;
-      psecondaryValue[7] = floatResult8;
+      psecondaryValue[7] = FloatValue1;
       psecondaryValue[8] = localFloat21;
       psecondaryValue[9] = localFloat6;
       psecondaryValue[10] = localFloat20;
@@ -148224,7 +148224,7 @@ LAB_18075ce56:
       psecondaryValue = (float *)BasePointer[0x45];
       localFloat20 = *(float *)(BasePointer + 0x3e);
       localFloat21 = *(float *)(BasePointer + 0x3f);
-      floatResult9 = *(float *)(BasePointer + 0x40);
+      FloatValue2 = *(float *)(BasePointer + 0x40);
       localFloat23 = *(float *)(BasePointer + 0x41);
       *psecondaryValue = unmodifiedXMM7_Da;
       psecondaryValue[1] = fStack000000000000002c;
@@ -148232,7 +148232,7 @@ LAB_18075ce56:
       psecondaryValue[3] = unmodifiedXMM10_Da * 0.5;
       psecondaryValue[4] = localFloat20 * 0.5;
       psecondaryValue[5] = fStack000000000000002c;
-      psecondaryValue[6] = floatResult9 * 0.75;
+      psecondaryValue[6] = FloatValue2 * 0.75;
       psecondaryValue[7] = fStack000000000000002c;
       psecondaryValue[8] = fStack0000000000000028;
       psecondaryValue[9] = unmodifiedXMM9_Da;
@@ -148248,7 +148248,7 @@ LAB_18075ce56:
       psecondaryValue = (float *)BasePointer[0x45];
       localFloat20 = *(float *)(BasePointer + 0x3e);
       localFloat21 = *(float *)(BasePointer + 0x40);
-      floatResult9 = *(float *)(BasePointer + 0x3f);
+      FloatValue2 = *(float *)(BasePointer + 0x3f);
       localFloat23 = *(float *)(BasePointer + 0x41);
       *psecondaryValue = unmodifiedXMM7_Da;
       psecondaryValue[1] = fStack000000000000002c;
@@ -148267,7 +148267,7 @@ LAB_18075ce56:
       psecondaryValue[0xe] = unmodifiedXMM8_Da * 0.5;
       psecondaryValue[0xf] = unmodifiedXMM10_Da * 0.5;
       psecondaryValue[0x10] = fStack000000000000002c;
-      psecondaryValue[0x11] = floatResult9 * 0.5;
+      psecondaryValue[0x11] = FloatValue2 * 0.5;
       psecondaryValue[0x12] = fStack000000000000002c;
       psecondaryValue[0x13] = localFloat23 * 0.75;
       psecondaryValue[0x14] = 0.0;
@@ -148320,7 +148320,7 @@ LAB_18075ce56:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x3f);
-        floatResult9 = *(float *)(BasePointer + 0x40);
+        FloatValue2 = *(float *)(BasePointer + 0x40);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = unmodifiedXMM9_Da;
@@ -148328,7 +148328,7 @@ LAB_18075ce56:
         psecondaryValue[3] = unmodifiedXMM10_Da;
         psecondaryValue[4] = localFloat20;
         psecondaryValue[5] = localFloat21;
-        psecondaryValue[6] = floatResult9;
+        psecondaryValue[6] = FloatValue2;
         psecondaryValue[7] = localFloat23;
         *EventHandle = 8;
         break;
@@ -148336,7 +148336,7 @@ LAB_18075ce56:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x3f);
-        floatResult9 = *(float *)(BasePointer + 0x40);
+        FloatValue2 = *(float *)(BasePointer + 0x40);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = unmodifiedXMM9_Da;
@@ -148344,7 +148344,7 @@ LAB_18075ce56:
         psecondaryValue[3] = unmodifiedXMM10_Da;
         psecondaryValue[4] = localFloat20;
         psecondaryValue[5] = localFloat21;
-        psecondaryValue[6] = floatResult9;
+        psecondaryValue[6] = FloatValue2;
         psecondaryValue[7] = localFloat23;
         psecondaryValue[8] = 0.0;
         psecondaryValue[9] = 0.0;
@@ -148413,20 +148413,20 @@ LAB_18075ce56:
         *EventHandle = 4;
         break;
       case 6:
-        floatResult9 = unmodifiedXMM8_Da * 0.5;
+        FloatValue2 = unmodifiedXMM8_Da * 0.5;
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat23 = unmodifiedXMM10_Da * 0.25;
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x3f);
         if (TempInt4 == 2) {
           *psecondaryValue = unmodifiedXMM7_Da;
-          psecondaryValue[1] = floatResult9;
+          psecondaryValue[1] = FloatValue2;
           psecondaryValue[2] = fStack000000000000002c;
           psecondaryValue[3] = fStack0000000000000028;
           psecondaryValue[4] = fStack000000000000002c;
           psecondaryValue[5] = localFloat23;
           psecondaryValue[6] = fStack000000000000002c;
-          psecondaryValue[7] = floatResult9;
+          psecondaryValue[7] = FloatValue2;
           psecondaryValue[8] = unmodifiedXMM9_Da;
           psecondaryValue[9] = fStack000000000000002c;
           psecondaryValue[10] = fStack0000000000000028;
@@ -148448,13 +148448,13 @@ LAB_18075ce56:
         else {
           *psecondaryValue = unmodifiedXMM7_Da;
           psecondaryValue[1] = fStack000000000000002c;
-          psecondaryValue[2] = floatResult9;
+          psecondaryValue[2] = FloatValue2;
           psecondaryValue[3] = localFloat23;
           psecondaryValue[4] = fStack000000000000002c;
           psecondaryValue[5] = fStack0000000000000028;
           psecondaryValue[6] = fStack000000000000002c;
           psecondaryValue[7] = unmodifiedXMM9_Da;
-          psecondaryValue[8] = floatResult9;
+          psecondaryValue[8] = FloatValue2;
           psecondaryValue[9] = localFloat23;
           psecondaryValue[10] = fStack000000000000002c;
           psecondaryValue[0xb] = fStack0000000000000028;
@@ -148478,7 +148478,7 @@ LAB_18075ce56:
         localFloat22 = unmodifiedXMM10_Da * 0.25;
         localFloat20 = *(float *)(BasePointer + 0x40);
         localFloat21 = *(float *)(BasePointer + 0x41);
-        floatResult9 = *(float *)(BasePointer + 0x3e);
+        FloatValue2 = *(float *)(BasePointer + 0x3e);
         localFloat23 = *(float *)(BasePointer + 0x3f);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = fStack000000000000002c;
@@ -148503,27 +148503,27 @@ LAB_18075ce56:
         *(float *)(BasePointer + -0xe) = fStack000000000000002c;
         *(float *)(BasePointer + -0xd) = fStack000000000000002c;
         localFloat6 = *(float *)(BasePointer + -0xe);
-        floatResult8 = *(float *)(BasePointer + -0xd);
-        psecondaryValue[0x14] = floatResult9;
+        FloatValue1 = *(float *)(BasePointer + -0xd);
+        psecondaryValue[0x14] = FloatValue2;
         psecondaryValue[0x15] = fStack000000000000002c;
         psecondaryValue[0x16] = localFloat20 * 0.5;
         psecondaryValue[0x17] = fStack000000000000002c;
         *(UIHandle *)((longlong)BasePointer + -0x7c) = TargetHandle;
         localFloat20 = *(float *)((longlong)BasePointer + -0x7c);
-        floatResult9 = *(float *)(BasePointer + -0xf);
+        FloatValue2 = *(float *)(BasePointer + -0xf);
         psecondaryValue[0x18] = *(float *)(BasePointer + -0x10);
         psecondaryValue[0x19] = localFloat20;
-        psecondaryValue[0x1a] = floatResult9;
+        psecondaryValue[0x1a] = FloatValue2;
         psecondaryValue[0x1b] = localFloat22;
         psecondaryValue[0x1c] = localFloat6;
         psecondaryValue[0x1d] = localFloat23;
-        psecondaryValue[0x1e] = floatResult8;
+        psecondaryValue[0x1e] = FloatValue1;
         psecondaryValue[0x1f] = localFloat21 * 0.5;
         *EventHandle = 8;
         break;
       case 0xc:
         ptrResult3 = (UIHandle *)BasePointer[0x45];
-        floatResult9 = unmodifiedXMM10_Da * 0.25;
+        FloatValue2 = unmodifiedXMM10_Da * 0.25;
         localFloat20 = *(float *)(BasePointer + 0x40);
         localFloat21 = *(float *)(BasePointer + 0x41);
         *(UIDword *)(BasePointer + -0xe) = *(UIDword *)(BasePointer + 0x3e);
@@ -148532,8 +148532,8 @@ LAB_18075ce56:
         *(UIDword *)((longlong)BasePointer + -0x3c) = *(UIDword *)(BasePointer + 0x3f);
         BasePointer[-6] = 0;
         BasePointer[-5] = 0;
-        *(float *)((longlong)BasePointer + -0x74) = floatResult9;
-        *(float *)((longlong)BasePointer + -0x44) = floatResult9;
+        *(float *)((longlong)BasePointer + -0x74) = FloatValue2;
+        *(float *)((longlong)BasePointer + -0x44) = FloatValue2;
         BasePointer[-0x10] = TargetHandle;
         *(float *)(BasePointer + -0xf) = fStack000000000000002c;
         *(float *)((longlong)BasePointer + -0x6c) = fStack000000000000002c;
@@ -148545,13 +148545,13 @@ LAB_18075ce56:
         *(float *)(BasePointer + -0xd) = localFloat20 * 0.5;
         *(float *)((longlong)BasePointer + -0x34) = localFloat21 * 0.5;
         *ptrResult3 = CONCAT44(fStack000000000000002c,unmodifiedXMM7_Da);
-        ptrResult3[1] = CONCAT44(floatResult9,unmodifiedXMM8_Da * 0.5);
+        ptrResult3[1] = CONCAT44(FloatValue2,unmodifiedXMM8_Da * 0.5);
         ptrResult3[2] = TargetHandle;
         ptrResult3[3] = CONCAT44(fStack000000000000002c,localFloat20 * 0.5);
         ptrResult3[4] = 0;
         ptrResult3[5] = 0;
         ptrResult3[6] = CONCAT44(unmodifiedXMM9_Da,fStack000000000000002c);
-        ptrResult3[7] = CONCAT44(floatResult9,unmodifiedXMM8_Da * 0.5);
+        ptrResult3[7] = CONCAT44(FloatValue2,unmodifiedXMM8_Da * 0.5);
         ptrResult3[8] = TargetHandle;
         ptrResult3[9] = CONCAT44(localFloat21 * 0.5,fStack000000000000002c);
         ptrResult3[10] = 0;
@@ -148901,7 +148901,7 @@ MemoryInitRoutine:
           psecondaryValue[0x12] = 0.0;
           psecondaryValue[0x13] = 0.0;
           *(float *)(BasePointer + -0xf) = fStack000000000000002c;
-          floatResult8 = *(float *)(BasePointer + -0x10);
+          FloatValue1 = *(float *)(BasePointer + -0x10);
           localFloat22 = *(float *)((longlong)BasePointer + -0x7c);
           resultFloat = *(float *)(BasePointer + -0xf);
           psecondaryValue[0x14] = fStack000000000000002c;
@@ -148910,10 +148910,10 @@ MemoryInitRoutine:
           psecondaryValue[0x17] = unmodifiedXMM10_Da;
           BasePointer[-0xc] = TargetHandle;
           *(float *)((longlong)BasePointer + -0x54) = fStack000000000000002c;
-          floatResult9 = *(float *)(BasePointer + -0xc);
+          FloatValue2 = *(float *)(BasePointer + -0xc);
           localFloat23 = *(float *)((longlong)BasePointer + -0x5c);
           localFloat6 = *(float *)((longlong)BasePointer + -0x54);
-          psecondaryValue[0x18] = floatResult8;
+          psecondaryValue[0x18] = FloatValue1;
           psecondaryValue[0x19] = localFloat22;
           psecondaryValue[0x1a] = resultFloat;
           psecondaryValue[0x1b] = localFloat21;
@@ -148921,7 +148921,7 @@ MemoryInitRoutine:
           psecondaryValue[0x1d] = 0.0;
           psecondaryValue[0x1e] = 0.0;
           psecondaryValue[0x1f] = 0.0;
-          psecondaryValue[0x20] = floatResult9;
+          psecondaryValue[0x20] = FloatValue2;
           psecondaryValue[0x21] = localFloat23;
           psecondaryValue[0x22] = localFloat20;
           psecondaryValue[0x23] = localFloat6;
@@ -148947,7 +148947,7 @@ MemoryInitRoutine:
           psecondaryValue[0xe] = unmodifiedXMM8_Da;
           psecondaryValue[0xf] = fStack000000000000002c;
           *(UIHandle *)((longlong)BasePointer + -0x5c) = TargetHandle;
-          floatResult8 = *(float *)(BasePointer + -0xc);
+          FloatValue1 = *(float *)(BasePointer + -0xc);
           localFloat22 = *(float *)((longlong)BasePointer + -0x5c);
           resultFloat = *(float *)(BasePointer + -0xb);
           psecondaryValue[0x10] = 0.0;
@@ -148959,7 +148959,7 @@ MemoryInitRoutine:
           psecondaryValue[0x15] = unmodifiedXMM10_Da;
           psecondaryValue[0x16] = fStack000000000000002c;
           psecondaryValue[0x17] = fStack0000000000000028;
-          floatResult9 = *(float *)((longlong)BasePointer + -0x6c);
+          FloatValue2 = *(float *)((longlong)BasePointer + -0x6c);
           localFloat23 = *(float *)(BasePointer + -0xd);
           localFloat6 = *(float *)((longlong)BasePointer + -100);
           psecondaryValue[0x18] = 0.0;
@@ -148967,10 +148967,10 @@ MemoryInitRoutine:
           psecondaryValue[0x1a] = 0.0;
           psecondaryValue[0x1b] = 0.0;
           psecondaryValue[0x1c] = localFloat21;
-          psecondaryValue[0x1d] = floatResult9;
+          psecondaryValue[0x1d] = FloatValue2;
           psecondaryValue[0x1e] = localFloat23;
           psecondaryValue[0x1f] = localFloat6;
-          psecondaryValue[0x20] = floatResult8;
+          psecondaryValue[0x20] = FloatValue1;
           psecondaryValue[0x21] = localFloat22;
           psecondaryValue[0x22] = resultFloat;
           psecondaryValue[0x23] = localFloat20;
@@ -149128,7 +149128,7 @@ MemoryInitRoutine:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x3f);
-        floatResult9 = *(float *)(BasePointer + 0x40);
+        FloatValue2 = *(float *)(BasePointer + 0x40);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = unmodifiedXMM9_Da;
@@ -149136,7 +149136,7 @@ MemoryInitRoutine:
         psecondaryValue[3] = unmodifiedXMM10_Da;
         psecondaryValue[4] = localFloat20;
         psecondaryValue[5] = localFloat21;
-        psecondaryValue[6] = floatResult9;
+        psecondaryValue[6] = FloatValue2;
         psecondaryValue[7] = localFloat23;
         *EventHandle = 1;
         break;
@@ -149144,7 +149144,7 @@ MemoryInitRoutine:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x40);
-        floatResult9 = *(float *)(BasePointer + 0x3f);
+        FloatValue2 = *(float *)(BasePointer + 0x3f);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = fStack000000000000002c;
@@ -149157,7 +149157,7 @@ MemoryInitRoutine:
         psecondaryValue[8] = localFloat20;
         psecondaryValue[9] = fStack000000000000002c;
         psecondaryValue[10] = fStack0000000000000028;
-        psecondaryValue[0xb] = floatResult9;
+        psecondaryValue[0xb] = FloatValue2;
         psecondaryValue[0xc] = localFloat21;
         psecondaryValue[0xd] = fStack000000000000002c;
         psecondaryValue[0xe] = fStack0000000000000028;
@@ -149168,7 +149168,7 @@ MemoryInitRoutine:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x3f);
-        floatResult9 = *(float *)(BasePointer + 0x40);
+        FloatValue2 = *(float *)(BasePointer + 0x40);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *(UIHandle *)((longlong)BasePointer + -0x74) = TargetHandle;
         *psecondaryValue = unmodifiedXMM7_Da;
@@ -149195,7 +149195,7 @@ MemoryInitRoutine:
         *(UIHandle *)((longlong)BasePointer + -0x6c) = TargetHandle;
         localFloat20 = *(float *)(BasePointer + -0x10);
         localFloat6 = *(float *)((longlong)BasePointer + -0x7c);
-        floatResult8 = *(float *)((longlong)BasePointer + -0x74);
+        FloatValue1 = *(float *)((longlong)BasePointer + -0x74);
         psecondaryValue[0x14] = fStack0000000000000028;
         psecondaryValue[0x15] = fStack000000000000002c;
         psecondaryValue[0x16] = fStack0000000000000028;
@@ -149205,8 +149205,8 @@ MemoryInitRoutine:
         resultFloat = *(float *)(BasePointer + -0xd);
         psecondaryValue[0x18] = localFloat20;
         psecondaryValue[0x19] = localFloat6;
-        psecondaryValue[0x1a] = floatResult9 * 0.5;
-        psecondaryValue[0x1b] = floatResult8;
+        psecondaryValue[0x1a] = FloatValue2 * 0.5;
+        psecondaryValue[0x1b] = FloatValue1;
         psecondaryValue[0x1c] = localFloat21;
         psecondaryValue[0x1d] = localFloat22;
         psecondaryValue[0x1e] = resultFloat;
@@ -149480,7 +149480,7 @@ MemoryInitRoutine:
       case 1:
         localFloat20 = *(float *)(BasePointer + 0x3f);
         localFloat21 = *(float *)(BasePointer + 0x3e);
-        floatResult9 = *(float *)(BasePointer + 0x40);
+        FloatValue2 = *(float *)(BasePointer + 0x40);
         localFloat23 = *(float *)(BasePointer + 0x41);
         psecondaryValue = (float *)BasePointer[0x45];
         *psecondaryValue = unmodifiedXMM7_Da;
@@ -149489,7 +149489,7 @@ MemoryInitRoutine:
         psecondaryValue[3] = unmodifiedXMM10_Da;
         psecondaryValue[4] = localFloat21;
         psecondaryValue[5] = localFloat20;
-        psecondaryValue[6] = floatResult9;
+        psecondaryValue[6] = FloatValue2;
         psecondaryValue[7] = localFloat23;
         psecondaryValue[8] = 0.0;
         psecondaryValue[9] = 0.0;
@@ -149501,7 +149501,7 @@ MemoryInitRoutine:
         psecondaryValue = (float *)BasePointer[0x45];
         localFloat20 = *(float *)(BasePointer + 0x3e);
         localFloat21 = *(float *)(BasePointer + 0x40);
-        floatResult9 = *(float *)(BasePointer + 0x3f);
+        FloatValue2 = *(float *)(BasePointer + 0x3f);
         localFloat23 = *(float *)(BasePointer + 0x41);
         *psecondaryValue = unmodifiedXMM7_Da;
         psecondaryValue[1] = fStack000000000000002c;
@@ -149514,7 +149514,7 @@ MemoryInitRoutine:
         psecondaryValue[8] = localFloat20;
         psecondaryValue[9] = fStack000000000000002c;
         psecondaryValue[10] = fStack0000000000000028;
-        psecondaryValue[0xb] = floatResult9;
+        psecondaryValue[0xb] = FloatValue2;
         psecondaryValue[0xc] = localFloat21;
         psecondaryValue[0xd] = fStack000000000000002c;
         psecondaryValue[0xe] = fStack0000000000000028;
@@ -171396,19 +171396,19 @@ int FUN_18076f660(longlong uiContext)
   longlong *pallocatedMemory5;
   ulonglong TotalResult;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float fStackX_8;
   
   componentIndex = *(longlong *)(uiBufferData + 0xa8);
   if (componentIndex != 0) {
     func_0x000180743c20(componentIndex);
   }
-  floatResult9 = 1.0;
+  FloatValue2 = 1.0;
   pallocatedMemory = (longlong *)(uiContext + 0x238);
   IndexResult = 0;
   bVar6 = false;
-  floatResult8 = 1.0;
+  FloatValue1 = 1.0;
   localInt8 = 0;
   if (((longlong *)*pallocatedMemory != pallocatedMemory) || (*(longlong **)(uiContext + 0x240) != pallocatedMemory)) {
     ptrResult2 = (UIDword *)(uiContext + 0x260);
@@ -171439,7 +171439,7 @@ int FUN_18076f660(longlong uiContext)
       if ((longlong)result1 < 0) {
         fStackX_8 = (float)pallocatedMemory5[2];
         if (!bVar6) {
-          floatResult8 = fStackX_8;
+          FloatValue1 = fStackX_8;
         }
         bVar6 = true;
         *(longlong **)pallocatedMemory5[1] = pstringCompareIndex;
@@ -171453,7 +171453,7 @@ int FUN_18076f660(longlong uiContext)
         *pallocatedMemory5 = allocatedMemory3 + 0x10810;
         *(longlong **)(allocatedMemory3 + 0x10818) = pallocatedMemory5;
         *(longlong **)pallocatedMemory5[1] = pallocatedMemory5;
-        floatResult9 = fStackX_8;
+        FloatValue2 = fStackX_8;
       }
       else {
         TotalResult = (ulonglong)((int)TotalResult + 1);
@@ -171471,9 +171471,9 @@ int FUN_18076f660(longlong uiContext)
   if (bVar6) {
     if (localInt8 == 0) {
       *(UIDword *)(*(longlong *)(uiBufferData + 0x218) + 0x70) = 0;
-      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = floatResult9;
-      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x78) = floatResult9;
-      *(float *)(uiContext + 0x2a0) = floatResult9;
+      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = FloatValue2;
+      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x78) = FloatValue2;
+      *(float *)(uiContext + 0x2a0) = FloatValue2;
     }
     else {
       pallocatedMemory5 = (longlong *)*pallocatedMemory;
@@ -171501,7 +171501,7 @@ int FUN_18076f660(longlong uiContext)
     } while (allocatedMemory3 != 0);
   }
   if ((localInt8 == 0) && (bVar6)) {
-    if ((floatResult8 == *(float *)(uiContext + 0x230)) && (floatResult8 != floatResult9)) {
+    if ((FloatValue1 == *(float *)(uiContext + 0x230)) && (FloatValue1 != FloatValue2)) {
       componentContextPtr = *(ulonglong **)(uiContext + 0x228);
       eventTypeCode = *(uint *)((longlong)componentContextPtr + 0x24);
       IndexResult = *(ulonglong *)(uiContext + 0x18);
@@ -171510,10 +171510,10 @@ int FUN_18076f660(longlong uiContext)
       }
       localInt8 = FUN_18076e380(uiContext,IndexResult);
       if (((localInt8 != 0) ||
-          (localInt8 = FUN_18076e380(uiContext,(ulonglong)eventTypeCode * 0x40 + IndexResult,floatResult9), localInt8 != 0)) ||
+          (localInt8 = FUN_18076e380(uiContext,(ulonglong)eventTypeCode * 0x40 + IndexResult,FloatValue2), localInt8 != 0)) ||
          (localInt8 = FUN_18076f660(uiContext), localInt8 != 0)) goto LAB_18076f928;
     }
-    *(float *)(uiContext + 0x230) = floatResult9;
+    *(float *)(uiContext + 0x230) = FloatValue2;
   }
   localInt8 = 0;
 LAB_18076f928:
@@ -171553,7 +171553,7 @@ int FUN_18076f670(longlong uiContext)
   float floatResult6;
   float floatResult7;
   UIDword unmodifiedXMM6_Da;
-  float floatResult8;
+  float FloatValue1;
   UIDword unmodifiedXMM6_Db;
   UIDword unmodifiedXMM6_Dc;
   UIDword unmodifiedXMM6_Dd;
@@ -171570,7 +171570,7 @@ int FUN_18076f670(longlong uiContext)
   if (unmodifiedR12 != 0) {
     func_0x000180743c20();
   }
-  floatResult8 = 1.0;
+  FloatValue1 = 1.0;
   pallocatedMemory = (longlong *)(uiContext + 0x238);
   result3 = 0;
   IsValidationComplete = false;
@@ -171619,7 +171619,7 @@ int FUN_18076f670(longlong uiContext)
         *pallocatedMemory4 = allocatedMemory2 + 0x10810;
         *(longlong **)(allocatedMemory2 + 0x10818) = pallocatedMemory4;
         *(longlong **)pallocatedMemory4[1] = pallocatedMemory4;
-        floatResult8 = fStack0000000000000070;
+        FloatValue1 = fStack0000000000000070;
       }
       else {
         CounterResult = (ulonglong)((int)CounterResult + 1);
@@ -171637,9 +171637,9 @@ int FUN_18076f670(longlong uiContext)
   if (IsValidationComplete) {
     if (localInt7 == 0) {
       *(UIDword *)(*(longlong *)(uiBufferData + 0x218) + 0x70) = 0;
-      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = floatResult8;
-      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x78) = floatResult8;
-      *(float *)(uiContext + 0x2a0) = floatResult8;
+      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = FloatValue1;
+      *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x78) = FloatValue1;
+      *(float *)(uiContext + 0x2a0) = FloatValue1;
     }
     else {
       pallocatedMemory4 = (longlong *)*pallocatedMemory;
@@ -171667,7 +171667,7 @@ int FUN_18076f670(longlong uiContext)
     } while (allocatedMemory2 != 0);
   }
   if ((localInt7 == 0) && (IsValidationComplete)) {
-    if ((floatResult7 == *(float *)(uiContext + 0x230)) && (floatResult7 != floatResult8)) {
+    if ((floatResult7 == *(float *)(uiContext + 0x230)) && (floatResult7 != FloatValue1)) {
       bufferPtr = *(ulonglong **)(uiContext + 0x228);
       MaxProcessingCount = *(uint *)((longlong)bufferPtr + 0x24);
       result3 = *(ulonglong *)(uiContext + 0x18);
@@ -171676,10 +171676,10 @@ int FUN_18076f670(longlong uiContext)
       }
       localInt7 = FUN_18076e380(uiContext,result3);
       if (((localInt7 != 0) ||
-          (localInt7 = FUN_18076e380(uiContext,(ulonglong)MaxProcessingCount * 0x40 + result3,floatResult8), localInt7 != 0)) ||
+          (localInt7 = FUN_18076e380(uiContext,(ulonglong)MaxProcessingCount * 0x40 + result3,FloatValue1), localInt7 != 0)) ||
          (localInt7 = FUN_18076f660(uiContext), localInt7 != 0)) goto LAB_18076f928;
     }
-    *(float *)(uiContext + 0x230) = floatResult8;
+    *(float *)(uiContext + 0x230) = FloatValue1;
   }
   localInt7 = 0;
 LAB_18076f928:
@@ -171720,7 +171720,7 @@ int FUN_18076f67e(float uiContext)
   UIDword extraout_XMM0_Da;
   float floatResult7;
   UIDword unmodifiedXMM6_Da;
-  float floatResult8;
+  float FloatValue1;
   UIDword unmodifiedXMM6_Db;
   UIDword unmodifiedXMM6_Dc;
   UIDword unmodifiedXMM6_Dd;
@@ -171736,7 +171736,7 @@ int FUN_18076f67e(float uiContext)
     uiContext = (float)func_0x000180743c20();
     unmodifiedR13B = '\x01';
   }
-  floatResult8 = 1.0;
+  FloatValue1 = 1.0;
   pallocatedMemory = (longlong *)(ContextHandle + 0x238);
   result3 = 0;
   IsValidationComplete = false;
@@ -171785,7 +171785,7 @@ int FUN_18076f67e(float uiContext)
         *pallocatedMemory5 = allocatedMemory2 + 0x10810;
         *(longlong **)(allocatedMemory2 + 0x10818) = pallocatedMemory5;
         *(longlong **)pallocatedMemory5[1] = pallocatedMemory5;
-        floatResult8 = fStack0000000000000070;
+        FloatValue1 = fStack0000000000000070;
       }
       else {
         TotalResult = (ulonglong)((int)TotalResult + 1);
@@ -171804,9 +171804,9 @@ int FUN_18076f67e(float uiContext)
   if (IsValidationComplete) {
     if (localInt7 == 0) {
       *(UIDword *)(*(longlong *)(ContextHandle + 0x218) + 0x70) = 0;
-      *(float *)(*(longlong *)(ContextHandle + 0x218) + 0x74) = floatResult8;
-      *(float *)(*(longlong *)(ContextHandle + 0x218) + 0x78) = floatResult8;
-      *(float *)(ContextHandle + 0x2a0) = floatResult8;
+      *(float *)(*(longlong *)(ContextHandle + 0x218) + 0x74) = FloatValue1;
+      *(float *)(*(longlong *)(ContextHandle + 0x218) + 0x78) = FloatValue1;
+      *(float *)(ContextHandle + 0x2a0) = FloatValue1;
     }
     else {
       pallocatedMemory5 = (longlong *)*pallocatedMemory;
@@ -171834,7 +171834,7 @@ int FUN_18076f67e(float uiContext)
     } while (allocatedMemory2 != 0);
   }
   if ((localInt7 == 0) && (IsValidationComplete)) {
-    if ((floatResult7 == *(float *)(ContextHandle + 0x230)) && (floatResult7 != floatResult8)) {
+    if ((floatResult7 == *(float *)(ContextHandle + 0x230)) && (floatResult7 != FloatValue1)) {
       bufferPtr = *(ulonglong **)(ContextHandle + 0x228);
       MaxProcessingCount = *(uint *)((longlong)bufferPtr + 0x24);
       result3 = *(ulonglong *)(ContextHandle + 0x18);
@@ -171843,10 +171843,10 @@ int FUN_18076f67e(float uiContext)
       }
       localInt7 = FUN_18076e380(uiContext,result3);
       if (((localInt7 != 0) ||
-          (localInt7 = FUN_18076e380(extraout_XMM0_Da,(ulonglong)MaxProcessingCount * 0x40 + result3,floatResult8),
+          (localInt7 = FUN_18076e380(extraout_XMM0_Da,(ulonglong)MaxProcessingCount * 0x40 + result3,FloatValue1),
           localInt7 != 0)) || (localInt7 = FUN_18076f660(), localInt7 != 0)) goto LAB_18076f928;
     }
-    *(float *)(ContextHandle + 0x230) = floatResult8;
+    *(float *)(ContextHandle + 0x230) = FloatValue1;
   }
   localInt7 = 0;
 LAB_18076f928:
@@ -177145,8 +177145,8 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   int uiOperationResult5;
   uint TotalResult;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   longlong lStackX_10;
   longlong lStackX_18;
   uint uStackX_20;
@@ -177178,16 +177178,16 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   }
   localFloat2 = (float)((int)(float)*(uint *)(uiContext + 0x248) + -1);
   if (dataSource != 0) {
-    floatResult9 = *(float *)(uiContext + 0x218);
-    if (((floatResult9 != *(float *)(uiContext + 0x8278)) ||
+    FloatValue2 = *(float *)(uiContext + 0x218);
+    if (((FloatValue2 != *(float *)(uiContext + 0x8278)) ||
         (*(float *)(uiContext + 0x827c) != *(float *)(uiContext + 0x21c))) ||
        (*(float *)(uiContext + 0x8280) != *(float *)(uiContext + 0x230))) {
       *(float *)(uiContext + 0x218) = *(float *)(uiContext + 0x8278);
-      floatResult8 = *(float *)(uiContext + 0x827c);
-      *(float *)(uiContext + 0x21c) = floatResult8;
-      floatResult7 = floatResult8 + floatResult8;
-      floatResult8 = 200.0 / (floatResult8 + 200.0);
-      *(float *)(uiContext + 0x220) = floatResult8;
+      FloatValue1 = *(float *)(uiContext + 0x827c);
+      *(float *)(uiContext + 0x21c) = FloatValue1;
+      floatResult7 = FloatValue1 + FloatValue1;
+      FloatValue1 = 200.0 / (FloatValue1 + 200.0);
+      *(float *)(uiContext + 0x220) = FloatValue1;
       if (0.0 <= floatResult7) {
         if (100.0 <= floatResult7) {
           floatResult7 = 100.0;
@@ -177196,31 +177196,31 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
       else {
         floatResult7 = 0.0;
       }
-      *(float *)(uiContext + 0x224) = floatResult8 * floatResult7 * 0.01;
-      floatResult8 = *(float *)(uiContext + 0x21c) * 4.0 - 200.0;
-      if (0.0 <= floatResult8) {
-        if (100.0 <= floatResult8) {
-          floatResult8 = 100.0;
+      *(float *)(uiContext + 0x224) = FloatValue1 * floatResult7 * 0.01;
+      FloatValue1 = *(float *)(uiContext + 0x21c) * 4.0 - 200.0;
+      if (0.0 <= FloatValue1) {
+        if (100.0 <= FloatValue1) {
+          FloatValue1 = 100.0;
         }
       }
       else {
-        floatResult8 = 0.0;
+        FloatValue1 = 0.0;
       }
-      *(float *)(uiContext + 0x228) = floatResult8 * *(float *)(uiContext + 0x220) * 0.01;
-      floatResult8 = *(float *)(uiContext + 0x21c) * 4.0 - 300.0;
-      if (0.0 <= floatResult8) {
-        if (100.0 <= floatResult8) {
-          floatResult8 = 100.0;
+      *(float *)(uiContext + 0x228) = FloatValue1 * *(float *)(uiContext + 0x220) * 0.01;
+      FloatValue1 = *(float *)(uiContext + 0x21c) * 4.0 - 300.0;
+      if (0.0 <= FloatValue1) {
+        if (100.0 <= FloatValue1) {
+          FloatValue1 = 100.0;
         }
       }
       else {
-        floatResult8 = 0.0;
+        FloatValue1 = 0.0;
       }
-      *(float *)(uiContext + 0x22c) = floatResult8 * *(float *)(uiContext + 0x220) * 0.01;
-      floatResult8 = *(float *)(uiContext + 0x218);
+      *(float *)(uiContext + 0x22c) = FloatValue1 * *(float *)(uiContext + 0x220) * 0.01;
+      FloatValue1 = *(float *)(uiContext + 0x218);
       *(float *)(uiContext + 0x230) = *(float *)(uiContext + 0x8280);
-      if (floatResult8 != floatResult9) {
-        *(float *)(uiContext + 0x264) = (float)*(int *)(uiBufferData + 0x25c) * floatResult8 * floatResult8 * 1e-05;
+      if (FloatValue1 != FloatValue2) {
+        *(float *)(uiContext + 0x264) = (float)*(int *)(uiBufferData + 0x25c) * FloatValue1 * FloatValue1 * 1e-05;
       }
       *(float *)(uiContext + 600) = *(float *)(uiContext + 0x8280) / (float)*(int *)(uiBufferData + 0x25c);
     }
@@ -177260,34 +177260,34 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
         if ((uint)uVar8 < IndexResult) {
           pfloatResult2 = (float *)(lStackX_10 + uVar8 * 4);
           do {
-            floatResult9 = *pfloatResult2;
+            FloatValue2 = *pfloatResult2;
             pfloatResult2 = pfloatResult2 + 1;
             uiOperationResult5 = (int)uVar8;
             uVar9 = uiOperationResult5 + 1;
             uVar8 = (ulonglong)uVar9;
             *(short *)(*(longlong *)(uiBufferData + 0x238) +
                       (ulonglong)(*(int *)(uiBufferData + 0x250) * EventTypeCode + uiOperationResult5) * 2) =
-                 (short)(int)(floatResult9 * 16384.0);
+                 (short)(int)(FloatValue2 * 16384.0);
           } while (uVar9 < IndexResult);
         }
         uVar9 = 0;
         if (TotalResult != 0) {
-          floatResult9 = *(float *)(uiContext + 0x254);
+          FloatValue2 = *(float *)(uiContext + 0x254);
           uiOperationResult5 = 0;
           do {
-            floatResult8 = *(float *)(uiContext + 0x264);
+            FloatValue1 = *(float *)(uiContext + 0x264);
             floatResult7 = *(float *)(uiContext + 0x268);
             ContextHandleData = 0;
-            if (floatResult8 - 0.03125 <= floatResult7) {
-              if (floatResult8 + 0.03125 < floatResult7) {
-                floatResult8 = floatResult7 - 0.03125;
+            if (FloatValue1 - 0.03125 <= floatResult7) {
+              if (FloatValue1 + 0.03125 < floatResult7) {
+                FloatValue1 = floatResult7 - 0.03125;
               }
             }
             else {
-              floatResult8 = floatResult7 + 0.03125;
+              FloatValue1 = floatResult7 + 0.03125;
             }
             ProcessingResult3 = 0;
-            *(float *)(uiContext + 0x268) = floatResult8;
+            *(float *)(uiContext + 0x268) = FloatValue1;
             if (0 < (int)EventTypeCode) {
               pfloatResult2 = (float *)(lStackX_18 + (longlong)uiOperationResult5 * 4);
               do {
@@ -177300,39 +177300,39 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
                 uVar8 = (ulonglong)eventTypeCode;
                 result0 = eventTypeCode >> 0xd;
                 if (eventTypeCode >> 0xd == 0) {
-                  floatResult9 = *(float *)(uiContext + 0x278 + uVar8 * 4);
+                  FloatValue2 = *(float *)(uiContext + 0x278 + uVar8 * 4);
                 }
                 else if (result0 == 1) {
-                  floatResult9 = -*(float *)(uiContext + (0x409d - (ulonglong)eventTypeCode) * 4);
+                  FloatValue2 = -*(float *)(uiContext + (0x409d - (ulonglong)eventTypeCode) * 4);
                 }
                 else if (result0 == 2) {
-                  floatResult9 = -*(float *)(uiContext + -0xfd88 + uVar8 * 4);
+                  FloatValue2 = -*(float *)(uiContext + -0xfd88 + uVar8 * 4);
                 }
                 else if (result0 == 3) {
-                  floatResult9 = *(float *)(uiContext + (0x809d - uVar8) * 4);
+                  FloatValue2 = *(float *)(uiContext + (0x809d - uVar8) * 4);
                 }
                 else {
-                  floatResult9 = 0.0;
+                  FloatValue2 = 0.0;
                 }
-                floatResult9 = (floatResult9 * 0.5 - 0.5) * *(float *)(uiContext + 0x268) +
+                FloatValue2 = (FloatValue2 * 0.5 - 0.5) * *(float *)(uiContext + 0x268) +
                          (float)*(uint *)(uiContext + 0x250) + (float)uVar9;
-                if (0.0 <= floatResult9) {
-                  if (localFloat2 < floatResult9) {
-                    floatResult9 = floatResult9 - localFloat2;
+                if (0.0 <= FloatValue2) {
+                  if (localFloat2 < FloatValue2) {
+                    FloatValue2 = FloatValue2 - localFloat2;
                   }
                 }
                 else {
-                  floatResult9 = floatResult9 + localFloat2;
+                  FloatValue2 = FloatValue2 + localFloat2;
                 }
-                ProcessingResult1 = (int)floatResult9;
+                ProcessingResult1 = (int)FloatValue2;
                 TempInt4 = ProcessingResult1 * EventTypeCode + ProcessingResult3;
                 localInt5 = ProcessingResult3 + ((ProcessingResult1 + 1U) % *(uint *)(uiContext + 0x248)) * EventTypeCode;
                 ProcessingResult3 = ProcessingResult3 + 1;
                 allocatedMemory = ContextHandleData + 1;
                 *pfloatResult2 = ((float)(int)*(short *)(*(longlong *)(uiBufferData + 0x238) +
-                                                  (longlong)TempInt4 * 2) * 6.1035156e-05                             (1.0 - (floatResult9 - (float)ProcessingResult1)) +
+                                                  (longlong)TempInt4 * 2) * 6.1035156e-05                             (1.0 - (FloatValue2 - (float)ProcessingResult1)) +
                            (float)(int)*(short *)(*(longlong *)(uiBufferData + 0x238) +
-                                                 (longlong)localInt5 * 2) * 6.1035156e-05                            (floatResult9 - (float)ProcessingResult1)) * *(float *)(uiContext + 0x224 + ContextHandleData * 4) +
+                                                 (longlong)localInt5 * 2) * 6.1035156e-05                            (FloatValue2 - (float)ProcessingResult1)) * *(float *)(uiContext + 0x224 + ContextHandleData * 4) +
                            *(float *)((lStackX_10 - lStackX_18) + (longlong)pfloatResult2)                            *(float *)(uiContext + 0x220);
                 pfloatResult2 = pfloatResult2 + 1;
                 ContextHandleData = 0;
@@ -177340,13 +177340,13 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
                   ContextHandleData = allocatedMemory;
                 }
               } while (ProcessingResult3 < (int)EventTypeCode);
-              floatResult9 = *(float *)(uiContext + 0x254);
+              FloatValue2 = *(float *)(uiContext + 0x254);
             }
-            floatResult9 = floatResult9 + *(float *)(uiContext + 600);
-            *(float *)(uiContext + 0x254) = floatResult9;
-            if (1.0 < floatResult9) {
-              floatResult9 = floatResult9 - 1.0;
-              *(float *)(uiContext + 0x254) = floatResult9;
+            FloatValue2 = FloatValue2 + *(float *)(uiContext + 600);
+            *(float *)(uiContext + 0x254) = FloatValue2;
+            if (1.0 < FloatValue2) {
+              FloatValue2 = FloatValue2 - 1.0;
+              *(float *)(uiContext + 0x254) = FloatValue2;
             }
             uVar9 = uVar9 + 1;
             uiOperationResult5 = uiOperationResult5 + EventTypeCode;
@@ -179076,7 +179076,7 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
   uint TotalResult;
   ulonglong result7;
   int uiOperationResult8;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -179126,9 +179126,9 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
           uVar9 = (ulonglong)EventTypeCode;
           EventOperationCount = EventTypeCode * 4;
           do {
-            floatResult9 = ((float)(int)*psVar8 * localFloat21 + (float)(int)*psVar13 * localFloat22) * 3.051851e-05;
-            localFloat20 = floatResult9 * uiContext0 + *pvectorComponentX;
-            *pfloatResult5 = floatResult9 * param_8 + *pvectorComponentX * param_9;
+            FloatValue2 = ((float)(int)*psVar8 * localFloat21 + (float)(int)*psVar13 * localFloat22) * 3.051851e-05;
+            localFloat20 = FloatValue2 * uiContext0 + *pvectorComponentX;
+            *pfloatResult5 = FloatValue2 * param_8 + *pvectorComponentX * param_9;
             if (localFloat20 <= 1.0) {
               if (-1.0 <= localFloat20) {
                 semaphoreHandle = (UIWord)(int)(localFloat20 * 32767.0);
@@ -179141,9 +179141,9 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
               semaphoreHandle = 0x7fff;
             }
             *ptrLocal6 = semaphoreHandle;
-            floatResult9 = ((float)(int)psVar8[1] * localFloat21 + (float)(int)psVar13[1] * localFloat22)                      3.051851e-05;
-            localFloat20 = floatResult9 * uiContext0 + pvectorComponentX[1];
-            pfloatResult5[1] = floatResult9 * param_8 + pvectorComponentX[1] * param_9;
+            FloatValue2 = ((float)(int)psVar8[1] * localFloat21 + (float)(int)psVar13[1] * localFloat22)                      3.051851e-05;
+            localFloat20 = FloatValue2 * uiContext0 + pvectorComponentX[1];
+            pfloatResult5[1] = FloatValue2 * param_8 + pvectorComponentX[1] * param_9;
             if (localFloat20 <= 1.0) {
               if (-1.0 <= localFloat20) {
                 semaphoreHandle = (UIWord)(int)(localFloat20 * 32767.0);
@@ -179156,9 +179156,9 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
               semaphoreHandle = 0x7fff;
             }
             ptrLocal6[1] = semaphoreHandle;
-            floatResult9 = ((float)(int)psVar8[2] * localFloat21 + (float)(int)psVar13[2] * localFloat22)                      3.051851e-05;
-            localFloat20 = floatResult9 * uiContext0 + pvectorComponentX[2];
-            pfloatResult5[2] = floatResult9 * param_8 + pvectorComponentX[2] * param_9;
+            FloatValue2 = ((float)(int)psVar8[2] * localFloat21 + (float)(int)psVar13[2] * localFloat22)                      3.051851e-05;
+            localFloat20 = FloatValue2 * uiContext0 + pvectorComponentX[2];
+            pfloatResult5[2] = FloatValue2 * param_8 + pvectorComponentX[2] * param_9;
             if (localFloat20 <= 1.0) {
               if (-1.0 <= localFloat20) {
                 semaphoreHandle = (UIWord)(int)(localFloat20 * 32767.0);
@@ -179171,9 +179171,9 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
               semaphoreHandle = 0x7fff;
             }
             ptrLocal6[2] = semaphoreHandle;
-            floatResult9 = ((float)(int)psVar8[3] * localFloat21 + (float)(int)psVar13[3] * localFloat22)                      3.051851e-05;
-            localFloat20 = floatResult9 * uiContext0 + pvectorComponentX[3];
-            pfloatResult5[3] = floatResult9 * param_8 + pvectorComponentX[3] * param_9;
+            FloatValue2 = ((float)(int)psVar8[3] * localFloat21 + (float)(int)psVar13[3] * localFloat22)                      3.051851e-05;
+            localFloat20 = FloatValue2 * uiContext0 + pvectorComponentX[3];
+            pfloatResult5[3] = FloatValue2 * param_8 + pvectorComponentX[3] * param_9;
             if (localFloat20 <= 1.0) {
               if (-1.0 <= localFloat20) {
                 semaphoreHandle = (UIWord)(int)(localFloat20 * 32767.0);
@@ -179198,11 +179198,11 @@ FUN_1807762e0(UIHandle uiContext,longlong *dataSource,UIHandle *targetBuffer,lon
           uVar9 = (ulonglong)(uint)(uiContext2 - EventOperationCount);
           do {
             localFloat21 = ((float)(int)*psVar8 * (1.0 - localFloat22) + (float)(int)*psVar13 * localFloat22)                      3.051851e-05;
-            floatResult9 = localFloat21 * uiContext0 + *pvectorComponentX;
+            FloatValue2 = localFloat21 * uiContext0 + *pvectorComponentX;
             *pfloatResult5 = localFloat21 * param_8 + *pvectorComponentX * param_9;
-            if (floatResult9 <= 1.0) {
-              if (-1.0 <= floatResult9) {
-                semaphoreHandle = (UIWord)(int)(floatResult9 * 32767.0);
+            if (FloatValue2 <= 1.0) {
+              if (-1.0 <= FloatValue2) {
+                semaphoreHandle = (UIWord)(int)(FloatValue2 * 32767.0);
               }
               else {
                 semaphoreHandle = 0x8000;
@@ -180766,7 +180766,7 @@ FUN_180779270(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
   uint CounterResult;
   int uiOperationResult6;
   uint result7;
-  float floatResult8;
+  float FloatValue1;
   UIByte aresult9 [16];
   float localFloat20;
   float localFloat22;
@@ -180814,13 +180814,13 @@ FUN_180779270(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
       uiOperationResult6 = 0;
       if (0 < localInt9) {
         do {
-          floatResult8 = (float)(**(code **)((longlong)param_7 * 8 + 0x180be1f78))(uiContext,resultValue0);
+          FloatValue1 = (float)(**(code **)((longlong)param_7 * 8 + 0x180be1f78))(uiContext,resultValue0);
           IndexResult = uiOperationResult6 + targetBuffer;
           uiOperationResult6 = uiOperationResult6 + 1;
           resultValue0 = resultValue0 + 1.0 / (float)param_6;
           resultValue1 = *(float *)(dataSource + (ulonglong)IndexResult * 4);
           pfloatResult2[1] = 1e-08;
-          *pfloatResult2 = floatResult8 * resultValue1 * (1.0 / (float)param_6);
+          *pfloatResult2 = FloatValue1 * resultValue1 * (1.0 / (float)param_6);
           pfloatResult2 = pfloatResult2 + 2;
         } while (uiOperationResult6 < localInt9);
       }
@@ -180877,7 +180877,7 @@ FUN_180779270(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
         asemaphoreHandle1 = rcpps(asemaphoreHandle1,aresult9);
         localFloat26 = 0.0;
         resultValue1 = 0.0;
-        floatResult8 = 0.0;
+        FloatValue1 = 0.0;
         localFloat20 = 0.0;
         resultValue0 = asemaphoreHandle1._0_4_;
         localFloat22 = asemaphoreHandle1._4_4_;
@@ -180920,8 +180920,8 @@ FUN_180779270(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
                            result3 | ~result3 & (uint)localFloat26);
           resultValue1 = (float)((uint)((float)(uiOperationResult6 + 1) * (float)param_8 * 0.5 * localFloat22 * localFloat2 +
                                  resultValue1) & result1 | ~result1 & (uint)resultValue1);
-          floatResult8 = (float)((uint)((float)(uiOperationResult6 + 2) * (float)param_8 * 0.5 * localFloat23 * resultValue +
-                                 floatResult8) & result0 | ~result0 & (uint)floatResult8);
+          FloatValue1 = (float)((uint)((float)(uiOperationResult6 + 2) * (float)param_8 * 0.5 * localFloat23 * resultValue +
+                                 FloatValue1) & result0 | ~result0 & (uint)FloatValue1);
           localFloat20 = (float)((uint)((float)(uiOperationResult6 + 3) * (float)param_8 * 0.5 * localFloat24 * processedFloat +
                                  localFloat20) & result7 | ~result7 & (uint)localFloat20);
           localFloat25 = (float)((uint)(floatResult + localFloat25) & result3 | ~result3 & (uint)localFloat25);
@@ -180947,34 +180947,34 @@ FUN_180779270(longlong uiContext,longlong dataSource,uint targetBuffer,uint buff
           uiOperationResult6 = localInt9;
         } while (localInt9 < (int)(IndexResult - CounterResult));
         resultValue0 = localFloat28 + resultValue8 + localFloat25 + resultValue6 + localFloat29 + resultValue9 + localFloat27 + resultValue7;
-        localFloat26 = floatResult8 + resultValue4 + localFloat26 + resultValue2 + localFloat20 + resultValue5 + resultValue1 + resultValue3;
+        localFloat26 = FloatValue1 + resultValue4 + localFloat26 + resultValue2 + localFloat20 + resultValue5 + resultValue1 + resultValue3;
       }
       if (localInt9 < (int)IndexResult) {
         if (3 < (int)(IndexResult - localInt9)) {
           uiOperationResult6 = localInt9 + 2;
           resultValue1 = (float)param_8;
           pfloatResult2 = resultPointer + (longlong)localInt9 + 2;
-          floatResult8 = (float)(int)IndexResult;
+          FloatValue1 = (float)(int)IndexResult;
           do {
             localFloat20 = pfloatResult2[-2];
             if (0.0001 < localFloat20) {
               resultValue0 = resultValue0 + localFloat20;
-              localFloat26 = localFloat26 + ((resultValue1 * 0.5 * (float)localInt9) / floatResult8) * localFloat20;
+              localFloat26 = localFloat26 + ((resultValue1 * 0.5 * (float)localInt9) / FloatValue1) * localFloat20;
             }
             localFloat20 = pfloatResult2[-1];
             if (0.0001 < localFloat20) {
               resultValue0 = resultValue0 + localFloat20;
-              localFloat26 = localFloat26 + (((float)(uiOperationResult6 + -1) * resultValue1 * 0.5) / floatResult8) * localFloat20;
+              localFloat26 = localFloat26 + (((float)(uiOperationResult6 + -1) * resultValue1 * 0.5) / FloatValue1) * localFloat20;
             }
             localFloat20 = *pfloatResult2;
             if (0.0001 < localFloat20) {
               resultValue0 = resultValue0 + localFloat20;
-              localFloat26 = localFloat26 + (((float)uiOperationResult6 * resultValue1 * 0.5) / floatResult8) * localFloat20;
+              localFloat26 = localFloat26 + (((float)uiOperationResult6 * resultValue1 * 0.5) / FloatValue1) * localFloat20;
             }
             localFloat20 = pfloatResult2[1];
             if (0.0001 < localFloat20) {
               resultValue0 = resultValue0 + localFloat20;
-              localFloat26 = localFloat26 + (((float)(uiOperationResult6 + 1) * resultValue1 * 0.5) / floatResult8) * localFloat20;
+              localFloat26 = localFloat26 + (((float)(uiOperationResult6 + 1) * resultValue1 * 0.5) / FloatValue1) * localFloat20;
             }
             pfloatResult2 = pfloatResult2 + 4;
             localInt9 = localInt9 + 4;
@@ -181033,7 +181033,7 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
   UIHandle EventHandle;
   UIHandle unmodifiedR15;
   uint result8;
-  float floatResult9;
+  float FloatValue2;
   UIByte asemaphoreHandle0 [16];
   float localFloat21;
   float localFloat23;
@@ -181093,14 +181093,14 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
       uiOperationResult7 = 0;
       if (0 < localInt9) {
         do {
-          floatResult9 = (float)(**(code **)((longlong)stackParam00000110 * 8 + 0x180be1f78))
+          FloatValue2 = (float)(**(code **)((longlong)stackParam00000110 * 8 + 0x180be1f78))
                                     (uiContext,resultValue1);
           CounterResult = uiOperationResult7 + targetBuffer;
           uiOperationResult7 = uiOperationResult7 + 1;
           resultValue1 = resultValue1 + 1.0 / (float)stackParam00000108;
           resultValue2 = *(float *)(stackParam000000e8 + (ulonglong)CounterResult * 4);
           pfloatResult2[1] = 1e-08;
-          *pfloatResult2 = floatResult9 * resultValue2 * (1.0 / (float)stackParam00000108);
+          *pfloatResult2 = FloatValue2 * resultValue2 * (1.0 / (float)stackParam00000108);
           pfloatResult2 = pfloatResult2 + 2;
           bufferSize = stackParam000000f8;
         } while (uiOperationResult7 < localInt9);
@@ -181160,7 +181160,7 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
         asemaphoreHandle2 = rcpps(asemaphoreHandle2,asemaphoreHandle0);
         localFloat27 = 0.0;
         resultValue2 = 0.0;
-        floatResult9 = 0.0;
+        FloatValue2 = 0.0;
         localFloat21 = 0.0;
         resultValue1 = asemaphoreHandle2._0_4_;
         localFloat23 = asemaphoreHandle2._4_4_;
@@ -181203,8 +181203,8 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
                            & result3 | ~result3 & (uint)localFloat27);
           resultValue2 = (float)((uint)((float)(uiOperationResult4 + 1) * (float)unmodifiedEBX * 0.5 * localFloat23 * localFloat2 +
                                  resultValue2) & result1 | ~result1 & (uint)resultValue2);
-          floatResult9 = (float)((uint)((float)(uiOperationResult4 + 2) * (float)unmodifiedEBX * 0.5 * localFloat24 * resultValue +
-                                 floatResult9) & result0 | ~result0 & (uint)floatResult9);
+          FloatValue2 = (float)((uint)((float)(uiOperationResult4 + 2) * (float)unmodifiedEBX * 0.5 * localFloat24 * resultValue +
+                                 FloatValue2) & result0 | ~result0 & (uint)FloatValue2);
           localFloat21 = (float)((uint)((float)(uiOperationResult4 + 3) * (float)unmodifiedEBX * 0.5 * localFloat25 * processedFloat +
                                  localFloat21) & result8 | ~result8 & (uint)localFloat21);
           localFloat26 = (float)((uint)(floatResult + localFloat26) & result3 | ~result3 & (uint)localFloat26);
@@ -181230,34 +181230,34 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
           uiOperationResult4 = uiOperationResult7;
         } while (uiOperationResult7 < (int)(CounterResult - TotalResult));
         resultValue1 = localFloat29 + resultValue9 + localFloat26 + resultValue7 + resultValue0 + processedFloat0 + localFloat28 + resultValue8;
-        localFloat27 = floatResult9 + resultValue5 + localFloat27 + resultValue3 + localFloat21 + resultValue6 + resultValue2 + resultValue4;
+        localFloat27 = FloatValue2 + resultValue5 + localFloat27 + resultValue3 + localFloat21 + resultValue6 + resultValue2 + resultValue4;
       }
       if (uiOperationResult7 < (int)CounterResult) {
         if (3 < (int)(CounterResult - uiOperationResult7)) {
           uiOperationResult4 = uiOperationResult7 + 2;
           resultValue2 = (float)localInt9;
           pfloatResult2 = stackParam00000100 + (longlong)uiOperationResult7 + 2;
-          floatResult9 = (float)(int)CounterResult;
+          FloatValue2 = (float)(int)CounterResult;
           do {
             localFloat21 = pfloatResult2[-2];
             if (0.0001 < localFloat21) {
               resultValue1 = resultValue1 + localFloat21;
-              localFloat27 = localFloat27 + ((resultValue2 * 0.5 * (float)uiOperationResult7) / floatResult9) * localFloat21;
+              localFloat27 = localFloat27 + ((resultValue2 * 0.5 * (float)uiOperationResult7) / FloatValue2) * localFloat21;
             }
             localFloat21 = pfloatResult2[-1];
             if (0.0001 < localFloat21) {
               resultValue1 = resultValue1 + localFloat21;
-              localFloat27 = localFloat27 + (((float)(uiOperationResult4 + -1) * resultValue2 * 0.5) / floatResult9) * localFloat21;
+              localFloat27 = localFloat27 + (((float)(uiOperationResult4 + -1) * resultValue2 * 0.5) / FloatValue2) * localFloat21;
             }
             localFloat21 = *pfloatResult2;
             if (0.0001 < localFloat21) {
               resultValue1 = resultValue1 + localFloat21;
-              localFloat27 = localFloat27 + (((float)uiOperationResult4 * resultValue2 * 0.5) / floatResult9) * localFloat21;
+              localFloat27 = localFloat27 + (((float)uiOperationResult4 * resultValue2 * 0.5) / FloatValue2) * localFloat21;
             }
             localFloat21 = pfloatResult2[1];
             if (0.0001 < localFloat21) {
               resultValue1 = resultValue1 + localFloat21;
-              localFloat27 = localFloat27 + (((float)(uiOperationResult4 + 1) * resultValue2 * 0.5) / floatResult9) * localFloat21;
+              localFloat27 = localFloat27 + (((float)(uiOperationResult4 + 1) * resultValue2 * 0.5) / FloatValue2) * localFloat21;
             }
             pfloatResult2 = pfloatResult2 + 4;
             uiOperationResult7 = uiOperationResult7 + 4;
@@ -181316,8 +181316,8 @@ UIHandle FUN_18077932f(void)
   longlong EventHandle;
   int unmodifiedR15D;
   uint result7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   UIByte asemaphoreHandle0 [16];
   float localFloat21;
   float localFloat22;
@@ -181362,12 +181362,12 @@ UIHandle FUN_18077932f(void)
     ProcessingResult3 = 0;
     if (0 < ProcessingResult1) {
       do {
-        floatResult8 = (float)(**(code **)((longlong)stackParam00000110 * 8 + 0x180be1f78))();
+        FloatValue1 = (float)(**(code **)((longlong)stackParam00000110 * 8 + 0x180be1f78))();
         CounterResult = ProcessingResult3 + unmodifiedEBP;
         ProcessingResult3 = ProcessingResult3 + 1;
-        floatResult9 = *(float *)(unmodifiedR13 + (ulonglong)CounterResult * 4);
+        FloatValue2 = *(float *)(unmodifiedR13 + (ulonglong)CounterResult * 4);
         TargetHandle[1] = 1e-08;
-        *TargetHandle = floatResult8 * floatResult9 * unmodifiedXMM8_Da;
+        *TargetHandle = FloatValue1 * FloatValue2 * unmodifiedXMM8_Da;
         TargetHandle = TargetHandle + 2;
         unmodifiedR15D = stackParam000000e0;
         register9D = stackParam000000f8;
@@ -181400,20 +181400,20 @@ UIHandle FUN_18077932f(void)
         } while (ProcessingResult1 != 0);
       }
       TotalResult = TotalResult + 1;
-      floatResult9 = *(float *)(*(longlong *)(EventHandle + 0x218) + 4 + (longlong)(int)result0 * 8);
-      floatResult8 = *(float *)(*(longlong *)(EventHandle + 0x218) + (longlong)(int)result0 * 8);
-      floatResult9 = SQRT(floatResult8 * floatResult8 + floatResult9 * floatResult9) * 2.5;
-      if (unmodifiedXMM9_Da <= floatResult9) {
-        floatResult9 = unmodifiedXMM9_Da;
+      FloatValue2 = *(float *)(*(longlong *)(EventHandle + 0x218) + 4 + (longlong)(int)result0 * 8);
+      FloatValue1 = *(float *)(*(longlong *)(EventHandle + 0x218) + (longlong)(int)result0 * 8);
+      FloatValue2 = SQRT(FloatValue1 * FloatValue1 + FloatValue2 * FloatValue2) * 2.5;
+      if (unmodifiedXMM9_Da <= FloatValue2) {
+        FloatValue2 = unmodifiedXMM9_Da;
       }
-      *pfloatResult2 = floatResult9;
+      *pfloatResult2 = FloatValue2;
       pfloatResult2 = pfloatResult2 + 1;
     } while ((int)TotalResult < (int)CounterResult);
   }
   if (stackParam00000120 != (float *)0x0) {
     ProcessingResult1 = 0;
     if (0 < (int)CounterResult) {
-      floatResult9 = unmodifiedXMM6_Da;
+      FloatValue2 = unmodifiedXMM6_Da;
       if (7 < CounterResult) {
         TotalResult = CounterResult & 0x80000007;
         if ((int)TotalResult < 0) {
@@ -181428,8 +181428,8 @@ UIHandle FUN_18077932f(void)
         asemaphoreHandle0._8_4_ = (float)asemaphoreHandle3._8_4_;
         asemaphoreHandle0._12_4_ = (float)asemaphoreHandle3._12_4_;
         asemaphoreHandle3 = rcpps(asemaphoreHandle3,asemaphoreHandle0);
-        floatResult9 = 0.0;
-        floatResult8 = 0.0;
+        FloatValue2 = 0.0;
+        FloatValue1 = 0.0;
         resultValue2 = 0.0;
         localFloat21 = 0.0;
         localFloat22 = asemaphoreHandle3._0_4_;
@@ -181469,10 +181469,10 @@ UIHandle FUN_18077932f(void)
           resultFloat = pfloatResult2[6];
           localFloat8 = pfloatResult2[7];
           pfloatResult2 = pfloatResult2 + 8;
-          floatResult9 = (float)((uint)((float)ProcessingResult3 * (float)unmodifiedXMM12_Da * 0.5 * localFloat22 * floatResult +
-                                 floatResult9) & IndexResult | ~IndexResult & (uint)floatResult9);
-          floatResult8 = (float)((uint)((float)(ProcessingResult3 + 1) * (float)unmodifiedXMM12_Db * 0.5 * localFloat24 * localFloat2
-                                 + floatResult8) & result0 | ~result0 & (uint)floatResult8);
+          FloatValue2 = (float)((uint)((float)ProcessingResult3 * (float)unmodifiedXMM12_Da * 0.5 * localFloat22 * floatResult +
+                                 FloatValue2) & IndexResult | ~IndexResult & (uint)FloatValue2);
+          FloatValue1 = (float)((uint)((float)(ProcessingResult3 + 1) * (float)unmodifiedXMM12_Db * 0.5 * localFloat24 * localFloat2
+                                 + FloatValue1) & result0 | ~result0 & (uint)FloatValue1);
           resultValue2 = (float)((uint)((float)(ProcessingResult3 + 2) * (float)unmodifiedXMM12_Dc * 0.5 * localFloat25 * resultValue
                                  + resultValue2) & uVar9 | ~uVar9 & (uint)resultValue2);
           localFloat21 = (float)((uint)((float)(ProcessingResult3 + 3) * (float)unmodifiedXMM12_Dd * 0.5 * localFloat26 * processedFloat
@@ -181500,34 +181500,34 @@ UIHandle FUN_18077932f(void)
           ProcessingResult3 = ProcessingResult1;
         } while (ProcessingResult1 < (int)(CounterResult - TotalResult));
         unmodifiedXMM6_Da = localFloat29 + resultValue8 + localFloat27 + resultValue6 + resultValue0 + resultValue9 + localFloat28 + resultValue7;
-        floatResult9 = resultValue2 + resultValue4 + floatResult9 + resultValue1 + localFloat21 + resultValue5 + floatResult8 + resultValue3;
+        FloatValue2 = resultValue2 + resultValue4 + FloatValue2 + resultValue1 + localFloat21 + resultValue5 + FloatValue1 + resultValue3;
       }
       if (ProcessingResult1 < (int)CounterResult) {
         if (3 < (int)(CounterResult - ProcessingResult1)) {
           ProcessingResult3 = ProcessingResult1 + 2;
-          floatResult8 = (float)stackParam00000118;
+          FloatValue1 = (float)stackParam00000118;
           pfloatResult2 = stackParam00000100 + (longlong)ProcessingResult1 + 2;
           resultValue2 = (float)(int)CounterResult;
           do {
             localFloat21 = pfloatResult2[-2];
             if (0.0001 < localFloat21) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat21;
-              floatResult9 = floatResult9 + ((floatResult8 * 0.5 * (float)ProcessingResult1) / resultValue2) * localFloat21;
+              FloatValue2 = FloatValue2 + ((FloatValue1 * 0.5 * (float)ProcessingResult1) / resultValue2) * localFloat21;
             }
             localFloat21 = pfloatResult2[-1];
             if (0.0001 < localFloat21) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat21;
-              floatResult9 = floatResult9 + (((float)(ProcessingResult3 + -1) * floatResult8 * 0.5) / resultValue2) * localFloat21;
+              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + -1) * FloatValue1 * 0.5) / resultValue2) * localFloat21;
             }
             localFloat21 = *pfloatResult2;
             if (0.0001 < localFloat21) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat21;
-              floatResult9 = floatResult9 + (((float)ProcessingResult3 * floatResult8 * 0.5) / resultValue2) * localFloat21;
+              FloatValue2 = FloatValue2 + (((float)ProcessingResult3 * FloatValue1 * 0.5) / resultValue2) * localFloat21;
             }
             localFloat21 = pfloatResult2[1];
             if (0.0001 < localFloat21) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat21;
-              floatResult9 = floatResult9 + (((float)(ProcessingResult3 + 1) * floatResult8 * 0.5) / resultValue2) * localFloat21;
+              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + 1) * FloatValue1 * 0.5) / resultValue2) * localFloat21;
             }
             pfloatResult2 = pfloatResult2 + 4;
             ProcessingResult1 = ProcessingResult1 + 4;
@@ -181537,11 +181537,11 @@ UIHandle FUN_18077932f(void)
         if (ProcessingResult1 < (int)CounterResult) {
           stackParam00000100 = stackParam00000100 + ProcessingResult1;
           do {
-            floatResult8 = *stackParam00000100;
-            if (0.0001 < floatResult8) {
-              unmodifiedXMM6_Da = unmodifiedXMM6_Da + floatResult8;
-              floatResult9 = floatResult9 + (((float)stackParam00000118 * 0.5 * (float)ProcessingResult1) /
-                                (float)(int)CounterResult) * floatResult8;
+            FloatValue1 = *stackParam00000100;
+            if (0.0001 < FloatValue1) {
+              unmodifiedXMM6_Da = unmodifiedXMM6_Da + FloatValue1;
+              FloatValue2 = FloatValue2 + (((float)stackParam00000118 * 0.5 * (float)ProcessingResult1) /
+                                (float)(int)CounterResult) * FloatValue1;
             }
             stackParam00000100 = stackParam00000100 + 1;
             ProcessingResult1 = ProcessingResult1 + 1;
@@ -181549,7 +181549,7 @@ UIHandle FUN_18077932f(void)
         }
       }
       if (0.001 < unmodifiedXMM6_Da) {
-        *stackParam00000120 = floatResult9 / unmodifiedXMM6_Da;
+        *stackParam00000120 = FloatValue2 / unmodifiedXMM6_Da;
         return 0;
       }
     }
@@ -181583,7 +181583,7 @@ UIHandle FUN_1807793f0(void)
   int unmodifiedR13D;
   longlong EventHandle;
   uint result7;
-  float floatResult8;
+  float FloatValue1;
   UIByte aresult9 [16];
   float localFloat20;
   float localFloat21;
@@ -181634,20 +181634,20 @@ UIHandle FUN_1807793f0(void)
         } while (ProcessingResult1 != 0);
       }
       TotalResult = TotalResult + 1;
-      floatResult8 = *(float *)(*(longlong *)(EventHandle + 0x218) + 4 + (longlong)(int)result0 * 8);
+      FloatValue1 = *(float *)(*(longlong *)(EventHandle + 0x218) + 4 + (longlong)(int)result0 * 8);
       resultValue0 = *(float *)(*(longlong *)(EventHandle + 0x218) + (longlong)(int)result0 * 8);
-      floatResult8 = SQRT(resultValue0 * resultValue0 + floatResult8 * floatResult8) * 2.5;
-      if (unmodifiedXMM9_Da <= floatResult8) {
-        floatResult8 = unmodifiedXMM9_Da;
+      FloatValue1 = SQRT(resultValue0 * resultValue0 + FloatValue1 * FloatValue1) * 2.5;
+      if (unmodifiedXMM9_Da <= FloatValue1) {
+        FloatValue1 = unmodifiedXMM9_Da;
       }
-      *pfloatResult2 = floatResult8;
+      *pfloatResult2 = FloatValue1;
       pfloatResult2 = pfloatResult2 + 1;
     } while ((int)TotalResult < (int)CounterResult);
   }
   if (stackParam00000120 != (float *)0x0) {
     ProcessingResult1 = 0;
     if (0 < (int)CounterResult) {
-      floatResult8 = unmodifiedXMM6_Da;
+      FloatValue1 = unmodifiedXMM6_Da;
       if (7 < CounterResult) {
         TotalResult = CounterResult & 0x80000007;
         if ((int)TotalResult < 0) {
@@ -181662,7 +181662,7 @@ UIHandle FUN_1807793f0(void)
         aresult9._8_4_ = (float)asemaphoreHandle2._8_4_;
         aresult9._12_4_ = (float)asemaphoreHandle2._12_4_;
         asemaphoreHandle2 = rcpps(asemaphoreHandle2,aresult9);
-        floatResult8 = 0.0;
+        FloatValue1 = 0.0;
         resultValue0 = 0.0;
         resultValue2 = 0.0;
         localFloat20 = 0.0;
@@ -181703,8 +181703,8 @@ UIHandle FUN_1807793f0(void)
           resultFloat = pfloatResult2[6];
           localFloat8 = pfloatResult2[7];
           pfloatResult2 = pfloatResult2 + 8;
-          floatResult8 = (float)((uint)((float)uiOperationResult4 * (float)unmodifiedXMM12_Da * 0.5 * localFloat21 * floatResult +
-                                 floatResult8) & result3 | ~result3 & (uint)floatResult8);
+          FloatValue1 = (float)((uint)((float)uiOperationResult4 * (float)unmodifiedXMM12_Da * 0.5 * localFloat21 * floatResult +
+                                 FloatValue1) & result3 | ~result3 & (uint)FloatValue1);
           resultValue0 = (float)((uint)((float)(uiOperationResult4 + 1) * (float)unmodifiedXMM12_Db * 0.5 * localFloat23 * localFloat2
                                  + resultValue0) & result0 | ~result0 & (uint)resultValue0);
           resultValue2 = (float)((uint)((float)(uiOperationResult4 + 2) * (float)unmodifiedXMM12_Dc * 0.5 * localFloat24 * resultValue
@@ -181734,7 +181734,7 @@ UIHandle FUN_1807793f0(void)
           uiOperationResult4 = ProcessingResult1;
         } while (ProcessingResult1 < (int)(CounterResult - TotalResult));
         unmodifiedXMM6_Da = localFloat28 + resultValue8 + localFloat26 + resultValue6 + localFloat29 + resultValue9 + localFloat27 + resultValue7;
-        floatResult8 = resultValue2 + resultValue4 + floatResult8 + resultValue1 + localFloat20 + resultValue5 + resultValue0 + resultValue3;
+        FloatValue1 = resultValue2 + resultValue4 + FloatValue1 + resultValue1 + localFloat20 + resultValue5 + resultValue0 + resultValue3;
       }
       if (ProcessingResult1 < (int)CounterResult) {
         if (3 < (int)(CounterResult - ProcessingResult1)) {
@@ -181746,22 +181746,22 @@ UIHandle FUN_1807793f0(void)
             localFloat20 = pfloatResult2[-2];
             if (0.0001 < localFloat20) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat20;
-              floatResult8 = floatResult8 + ((resultValue0 * 0.5 * (float)ProcessingResult1) / resultValue2) * localFloat20;
+              FloatValue1 = FloatValue1 + ((resultValue0 * 0.5 * (float)ProcessingResult1) / resultValue2) * localFloat20;
             }
             localFloat20 = pfloatResult2[-1];
             if (0.0001 < localFloat20) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat20;
-              floatResult8 = floatResult8 + (((float)(uiOperationResult4 + -1) * resultValue0 * 0.5) / resultValue2) * localFloat20;
+              FloatValue1 = FloatValue1 + (((float)(uiOperationResult4 + -1) * resultValue0 * 0.5) / resultValue2) * localFloat20;
             }
             localFloat20 = *pfloatResult2;
             if (0.0001 < localFloat20) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat20;
-              floatResult8 = floatResult8 + (((float)uiOperationResult4 * resultValue0 * 0.5) / resultValue2) * localFloat20;
+              FloatValue1 = FloatValue1 + (((float)uiOperationResult4 * resultValue0 * 0.5) / resultValue2) * localFloat20;
             }
             localFloat20 = pfloatResult2[1];
             if (0.0001 < localFloat20) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + localFloat20;
-              floatResult8 = floatResult8 + (((float)(uiOperationResult4 + 1) * resultValue0 * 0.5) / resultValue2) * localFloat20;
+              FloatValue1 = FloatValue1 + (((float)(uiOperationResult4 + 1) * resultValue0 * 0.5) / resultValue2) * localFloat20;
             }
             pfloatResult2 = pfloatResult2 + 4;
             ProcessingResult1 = ProcessingResult1 + 4;
@@ -181774,7 +181774,7 @@ UIHandle FUN_1807793f0(void)
             resultValue0 = *stackParam00000100;
             if (0.0001 < resultValue0) {
               unmodifiedXMM6_Da = unmodifiedXMM6_Da + resultValue0;
-              floatResult8 = floatResult8 + (((float)unmodifiedEBX * 0.5 * (float)ProcessingResult1) / (float)(int)CounterResult)                                 resultValue0;
+              FloatValue1 = FloatValue1 + (((float)unmodifiedEBX * 0.5 * (float)ProcessingResult1) / (float)(int)CounterResult)                                 resultValue0;
             }
             stackParam00000100 = stackParam00000100 + 1;
             ProcessingResult1 = ProcessingResult1 + 1;
@@ -181782,7 +181782,7 @@ UIHandle FUN_1807793f0(void)
         }
       }
       if (0.001 < unmodifiedXMM6_Da) {
-        *stackParam00000120 = floatResult8 / unmodifiedXMM6_Da;
+        *stackParam00000120 = FloatValue1 / unmodifiedXMM6_Da;
         return 0;
       }
     }
@@ -183538,7 +183538,7 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
   longlong allocatedMemory8;
   longlong unmodifiedR15;
   bool in_ZF;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float in_XMM4_Da;
   int iStack00000000000000f0;
@@ -183550,14 +183550,14 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
   if (((!in_ZF) || (*(float *)(ContextHandle + 0x8268) != *(float *)(ContextHandle + 0x21c))) ||
      (*(float *)(ContextHandle + 0x826c) != *(float *)(ContextHandle + 0x228))) {
     *(float *)(ContextHandle + 0x21c) = *(float *)(ContextHandle + 0x8268);
-    floatResult9 = *(float *)(ContextHandle + 0x8268) * 0.01;
+    FloatValue2 = *(float *)(ContextHandle + 0x8268) * 0.01;
     *(float *)(ContextHandle + 0x218) = targetBuffer;
     *(float *)(ContextHandle + 0x228) = *(float *)(ContextHandle + 0x826c);
-    *(float *)(ContextHandle + 0x220) = floatResult9;
-    *(float *)(ContextHandle + 0x224) = 1.0 - floatResult9;
+    *(float *)(ContextHandle + 0x220) = FloatValue2;
+    *(float *)(ContextHandle + 0x224) = 1.0 - FloatValue2;
     if ((targetBuffer != in_XMM4_Da) &&
-       (floatResult9 = (float)*(int *)(ContextHandle + 0x25c) * targetBuffer * 0.04 * targetBuffer * 0.5,
-       *(float *)(ContextHandle + 0x254) = floatResult9, floatResult9 < 4.0)) {
+       (FloatValue2 = (float)*(int *)(ContextHandle + 0x25c) * targetBuffer * 0.04 * targetBuffer * 0.5,
+       *(float *)(ContextHandle + 0x254) = FloatValue2, FloatValue2 < 4.0)) {
       *(UIDword *)(ContextHandle + 0x254) = 0x40800000;
     }
     *(float *)(ContextHandle + 0x250) =
@@ -183597,14 +183597,14 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
       if ((uint)LoopCounter < IndexResult) {
         pfloatResult3 = (float *)(unmodifiedR15 + LoopCounter * 4);
         do {
-          floatResult9 = *pfloatResult3;
+          FloatValue2 = *pfloatResult3;
           pfloatResult3 = pfloatResult3 + 1;
           TempInt4 = (int)LoopCounter;
           result0 = TempInt4 + 1;
           LoopCounter = (ulonglong)result0;
           *(short *)(*(longlong *)(ContextHandle + 0x238) +
                     (ulonglong)(uint)(localInt9 * *(int *)(ContextHandle + 0x248) + TempInt4) * 2) =
-               (short)(int)(floatResult9 * 16384.0);
+               (short)(int)(FloatValue2 * 16384.0);
         } while (result0 < IndexResult);
         result0 = *(uint *)(ContextHandle + 0x248);
       }
@@ -183612,17 +183612,17 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
       if (semaphoreHandle != 0) {
         iStack00000000000000f0 = 0;
         do {
-          floatResult9 = *(float *)(ContextHandle + 0x254);
+          FloatValue2 = *(float *)(ContextHandle + 0x254);
           localFloat20 = *(float *)(ContextHandle + 600);
-          if (floatResult9 - 0.015625 <= localFloat20) {
-            if (floatResult9 + 0.015625 < localFloat20) {
-              floatResult9 = localFloat20 - 0.015625;
+          if (FloatValue2 - 0.015625 <= localFloat20) {
+            if (FloatValue2 + 0.015625 < localFloat20) {
+              FloatValue2 = localFloat20 - 0.015625;
             }
           }
           else {
-            floatResult9 = localFloat20 + 0.015625;
+            FloatValue2 = localFloat20 + 0.015625;
           }
-          *(float *)(ContextHandle + 600) = floatResult9;
+          *(float *)(ContextHandle + 600) = FloatValue2;
           result0 = (uint)(*(float *)(ContextHandle + 0x24c) * 32768.0);
           if ((int)result0 < 0) {
             result0 = -result0;
@@ -183645,25 +183645,25 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
           else {
             localFloat20 = 0.0;
           }
-          floatResult9 = (localFloat20 * 0.5 - 0.5) * floatResult9 + (float)*(uint *)(ContextHandle + 0x248) +
+          FloatValue2 = (localFloat20 * 0.5 - 0.5) * FloatValue2 + (float)*(uint *)(ContextHandle + 0x248) +
                    (float)(uint)stackParam00000110;
-          if (0.0 <= floatResult9) {
-            if (resultValue < floatResult9) {
-              floatResult9 = floatResult9 - resultValue;
+          if (0.0 <= FloatValue2) {
+            if (resultValue < FloatValue2) {
+              FloatValue2 = FloatValue2 - resultValue;
             }
           }
           else {
-            floatResult9 = floatResult9 + resultValue;
+            FloatValue2 = FloatValue2 + resultValue;
           }
-          uiOperationResult5 = (int)floatResult9;
+          uiOperationResult5 = (int)FloatValue2;
           result0 = (uiOperationResult5 + 1U) % *(uint *)(ContextHandle + 0x240);
           TempInt4 = 0;
-          floatResult9 = floatResult9 - (float)uiOperationResult5;
+          FloatValue2 = FloatValue2 - (float)uiOperationResult5;
           if (TargetHandle < 4) {
             allocatedMemory6 = 0;
           }
           else {
-            localFloat20 = 1.0 - floatResult9;
+            localFloat20 = 1.0 - FloatValue2;
             ContextHandleData = (longlong)(int)(result0 * localInt9);
             localLong8 = ContextHandleData * 2;
             ContextHandleData = uiOperationResult5 * localInt9 - ContextHandleData;
@@ -183677,25 +183677,25 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
               uiOperationResult7 = uiOperationResult7 + 4;
               *(float *)(unmodifiedR12 + allocatedMemory1 * 4) =
                    ((float)(int)*(short *)(localLong8 + *(longlong *)(ContextHandle + 0x238)) * 6.1035156e-05
-                    * floatResult9 +
+                    * FloatValue2 +
                    (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + allocatedMemory2) * 6.1035156e-05
                    * localFloat20) * *(float *)(ContextHandle + 0x220) +
                    *(float *)(unmodifiedR15 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
               *(float *)(unmodifiedR12 + 4 + allocatedMemory1 * 4) =
-                   ((float)(int)*(short *)(localLong8 + 2 + *(longlong *)(ContextHandle + 0x238))                     6.1035156e-05 * floatResult9 +
+                   ((float)(int)*(short *)(localLong8 + 2 + *(longlong *)(ContextHandle + 0x238))                     6.1035156e-05 * FloatValue2 +
                    (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 2 + allocatedMemory2)                    6.1035156e-05 * localFloat20) * *(float *)(ContextHandle + 0x220) +
                    *(float *)(unmodifiedR15 + 4 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
               *(float *)(unmodifiedR12 + 8 + allocatedMemory1 * 4) =
                    ((float)(int)*(short *)(localLong8 + *(longlong *)(ContextHandle + 0x238) + 4 + ContextHandleData * 2)
                     * 6.1035156e-05 * localFloat20 +
-                   (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 4 + localLong8)                    6.1035156e-05 * floatResult9) * *(float *)(ContextHandle + 0x220) +
+                   (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 4 + localLong8)                    6.1035156e-05 * FloatValue2) * *(float *)(ContextHandle + 0x220) +
                    *(float *)(unmodifiedR15 + 8 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
               allocatedMemory2 = localLong8 + *(longlong *)(ContextHandle + 0x238);
               psVar1 = (short *)(*(longlong *)(ContextHandle + 0x238) + 6 + localLong8);
               localLong8 = localLong8 + 8;
               *(float *)(unmodifiedR12 + 0xc + allocatedMemory1 * 4) =
                    ((float)(int)*(short *)(allocatedMemory2 + 6 + ContextHandleData * 2) * 6.1035156e-05 * localFloat20 +
-                   (float)(int)*psVar1 * 6.1035156e-05 * floatResult9) * *(float *)(ContextHandle + 0x220) +
+                   (float)(int)*psVar1 * 6.1035156e-05 * FloatValue2) * *(float *)(ContextHandle + 0x220) +
                    *(float *)(unmodifiedR15 + 0xc + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
               allocatedMemory8 = allocatedMemory8 + -1;
             } while (allocatedMemory8 != 0);
@@ -183712,15 +183712,15 @@ UIHandle FUN_18077a8d0(UIHandle uiContext,uint dataSource,float targetBuffer)
               psVar1 = (short *)(*(longlong *)(ContextHandle + 0x238) + localLong8);
               localLong8 = localLong8 + 2;
               *(float *)(unmodifiedR12 + allocatedMemory2 * 4) =
-                   ((float)(int)*(short *)(allocatedMemory8 + (uiOperationResult5 * localInt9 - ContextHandleData) * 2) * 6.1035156e-05                     (1.0 - floatResult9) + (float)(int)*psVar1 * 6.1035156e-05 * floatResult9)                    *(float *)(ContextHandle + 0x220) +
+                   ((float)(int)*(short *)(allocatedMemory8 + (uiOperationResult5 * localInt9 - ContextHandleData) * 2) * 6.1035156e-05                     (1.0 - FloatValue2) + (float)(int)*psVar1 * 6.1035156e-05 * FloatValue2)                    *(float *)(ContextHandle + 0x220) +
                    *(float *)(unmodifiedR15 + allocatedMemory2 * 4) * *(float *)(ContextHandle + 0x224);
               allocatedMemory6 = allocatedMemory6 + -1;
             } while (allocatedMemory6 != 0);
           }
-          floatResult9 = *(float *)(ContextHandle + 0x24c) + *(float *)(ContextHandle + 0x250);
-          *(float *)(ContextHandle + 0x24c) = floatResult9;
-          if (1.0 < floatResult9) {
-            *(float *)(ContextHandle + 0x24c) = floatResult9 - 1.0;
+          FloatValue2 = *(float *)(ContextHandle + 0x24c) + *(float *)(ContextHandle + 0x250);
+          *(float *)(ContextHandle + 0x24c) = FloatValue2;
+          if (1.0 < FloatValue2) {
+            *(float *)(ContextHandle + 0x24c) = FloatValue2 - 1.0;
           }
           stackParam00000110 = (float)((int)stackParam00000110 + 1);
           iStack00000000000000f0 = iStack00000000000000f0 + localInt9;
@@ -183772,7 +183772,7 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
   int uiOperationResult7;
   longlong allocatedMemory8;
   longlong unmodifiedR15;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float in_XMM5_Da;
   float unmodifiedXMM7_Da;
@@ -183815,14 +183815,14 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
     if ((uint)LoopCounter < IndexResult) {
       pfloatResult3 = (float *)(unmodifiedR15 + LoopCounter * 4);
       do {
-        floatResult9 = *pfloatResult3;
+        FloatValue2 = *pfloatResult3;
         pfloatResult3 = pfloatResult3 + 1;
         TempInt4 = (int)LoopCounter;
         result0 = TempInt4 + 1;
         LoopCounter = (ulonglong)result0;
         *(short *)(*(longlong *)(ContextHandle + 0x238) +
                   (ulonglong)(uint)(localInt9 * *(int *)(ContextHandle + 0x248) + TempInt4) * 2) =
-             (short)(int)(floatResult9 * 16384.0);
+             (short)(int)(FloatValue2 * 16384.0);
       } while (result0 < IndexResult);
       uiContext = *(uint *)(ContextHandle + 0x248);
     }
@@ -183830,17 +183830,17 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
     if (semaphoreHandle != 0) {
       iStack00000000000000f0 = 0;
       do {
-        floatResult9 = *(float *)(ContextHandle + 0x254);
+        FloatValue2 = *(float *)(ContextHandle + 0x254);
         localFloat20 = *(float *)(ContextHandle + 600);
-        if (floatResult9 - in_XMM5_Da <= localFloat20) {
-          if (floatResult9 + in_XMM5_Da < localFloat20) {
-            floatResult9 = localFloat20 - in_XMM5_Da;
+        if (FloatValue2 - in_XMM5_Da <= localFloat20) {
+          if (FloatValue2 + in_XMM5_Da < localFloat20) {
+            FloatValue2 = localFloat20 - in_XMM5_Da;
           }
         }
         else {
-          floatResult9 = localFloat20 + in_XMM5_Da;
+          FloatValue2 = localFloat20 + in_XMM5_Da;
         }
-        *(float *)(ContextHandle + 600) = floatResult9;
+        *(float *)(ContextHandle + 600) = FloatValue2;
         result0 = (uint)(*(float *)(ContextHandle + 0x24c) * 32768.0);
         if ((int)result0 < 0) {
           result0 = -result0;
@@ -183863,25 +183863,25 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
         else {
           localFloat20 = 0.0;
         }
-        floatResult9 = (localFloat20 * unmodifiedXMM11_Da - unmodifiedXMM11_Da) * floatResult9 +
+        FloatValue2 = (localFloat20 * unmodifiedXMM11_Da - unmodifiedXMM11_Da) * FloatValue2 +
                  (float)*(uint *)(ContextHandle + 0x248) + (float)(uint)stackParam00000110;
-        if (0.0 <= floatResult9) {
-          if (resultValue < floatResult9) {
-            floatResult9 = floatResult9 - resultValue;
+        if (0.0 <= FloatValue2) {
+          if (resultValue < FloatValue2) {
+            FloatValue2 = FloatValue2 - resultValue;
           }
         }
         else {
-          floatResult9 = floatResult9 + resultValue;
+          FloatValue2 = FloatValue2 + resultValue;
         }
-        uiOperationResult5 = (int)floatResult9;
+        uiOperationResult5 = (int)FloatValue2;
         result0 = (uiOperationResult5 + 1U) % *(uint *)(ContextHandle + 0x240);
         TempInt4 = 0;
-        floatResult9 = floatResult9 - (float)uiOperationResult5;
+        FloatValue2 = FloatValue2 - (float)uiOperationResult5;
         if (TargetHandle < 4) {
           allocatedMemory6 = 0;
         }
         else {
-          localFloat20 = unmodifiedXMM7_Da - floatResult9;
+          localFloat20 = unmodifiedXMM7_Da - FloatValue2;
           ContextHandleData = (longlong)(int)(result0 * localInt9);
           localLong8 = ContextHandleData * 2;
           ContextHandleData = uiOperationResult5 * localInt9 - ContextHandleData;
@@ -183894,21 +183894,21 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
             allocatedMemory1 = (longlong)uiOperationResult7;
             uiOperationResult7 = uiOperationResult7 + 4;
             *(float *)(unmodifiedR12 + allocatedMemory1 * 4) =
-                 ((float)(int)*(short *)(localLong8 + *(longlong *)(ContextHandle + 0x238)) * bufferSize                   floatResult9 + (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + allocatedMemory2)                            bufferSize * localFloat20) * *(float *)(ContextHandle + 0x220) +
+                 ((float)(int)*(short *)(localLong8 + *(longlong *)(ContextHandle + 0x238)) * bufferSize                   FloatValue2 + (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + allocatedMemory2)                            bufferSize * localFloat20) * *(float *)(ContextHandle + 0x220) +
                  *(float *)(unmodifiedR15 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
             *(float *)(unmodifiedR12 + 4 + allocatedMemory1 * 4) =
-                 ((float)(int)*(short *)(localLong8 + 2 + *(longlong *)(ContextHandle + 0x238)) * bufferSize                   floatResult9 + (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 2 + allocatedMemory2)                            bufferSize * localFloat20) * *(float *)(ContextHandle + 0x220) +
+                 ((float)(int)*(short *)(localLong8 + 2 + *(longlong *)(ContextHandle + 0x238)) * bufferSize                   FloatValue2 + (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 2 + allocatedMemory2)                            bufferSize * localFloat20) * *(float *)(ContextHandle + 0x220) +
                  *(float *)(unmodifiedR15 + 4 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
             *(float *)(unmodifiedR12 + 8 + allocatedMemory1 * 4) =
                  ((float)(int)*(short *)(localLong8 + *(longlong *)(ContextHandle + 0x238) + 4 + ContextHandleData * 2)                   bufferSize * localFloat20 +
-                 (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 4 + localLong8) * bufferSize                  floatResult9) * *(float *)(ContextHandle + 0x220) +
+                 (float)(int)*(short *)(*(longlong *)(ContextHandle + 0x238) + 4 + localLong8) * bufferSize                  FloatValue2) * *(float *)(ContextHandle + 0x220) +
                  *(float *)(unmodifiedR15 + 8 + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
             allocatedMemory2 = localLong8 + *(longlong *)(ContextHandle + 0x238);
             psVar1 = (short *)(*(longlong *)(ContextHandle + 0x238) + 6 + localLong8);
             localLong8 = localLong8 + 8;
             *(float *)(unmodifiedR12 + 0xc + allocatedMemory1 * 4) =
                  ((float)(int)*(short *)(allocatedMemory2 + 6 + ContextHandleData * 2) * bufferSize * localFloat20 +
-                 (float)(int)*psVar1 * bufferSize * floatResult9) * *(float *)(ContextHandle + 0x220) +
+                 (float)(int)*psVar1 * bufferSize * FloatValue2) * *(float *)(ContextHandle + 0x220) +
                  *(float *)(unmodifiedR15 + 0xc + allocatedMemory1 * 4) * *(float *)(ContextHandle + 0x224);
             allocatedMemory8 = allocatedMemory8 + -1;
           } while (allocatedMemory8 != 0);
@@ -183925,15 +183925,15 @@ UIHandle FUN_18077a9d3(uint uiContext,uint dataSource,UIHandle targetBuffer,floa
             psVar1 = (short *)(*(longlong *)(ContextHandle + 0x238) + localLong8);
             localLong8 = localLong8 + 2;
             *(float *)(unmodifiedR12 + allocatedMemory2 * 4) =
-                 ((float)(int)*(short *)(allocatedMemory8 + (uiOperationResult5 * localInt9 - ContextHandleData) * 2) * bufferSize                   (unmodifiedXMM7_Da - floatResult9) + (float)(int)*psVar1 * bufferSize * floatResult9)                  *(float *)(ContextHandle + 0x220) +
+                 ((float)(int)*(short *)(allocatedMemory8 + (uiOperationResult5 * localInt9 - ContextHandleData) * 2) * bufferSize                   (unmodifiedXMM7_Da - FloatValue2) + (float)(int)*psVar1 * bufferSize * FloatValue2)                  *(float *)(ContextHandle + 0x220) +
                  *(float *)(unmodifiedR15 + allocatedMemory2 * 4) * *(float *)(ContextHandle + 0x224);
             allocatedMemory6 = allocatedMemory6 + -1;
           } while (allocatedMemory6 != 0);
         }
-        floatResult9 = *(float *)(ContextHandle + 0x24c) + *(float *)(ContextHandle + 0x250);
-        *(float *)(ContextHandle + 0x24c) = floatResult9;
-        if (unmodifiedXMM7_Da < floatResult9) {
-          *(float *)(ContextHandle + 0x24c) = floatResult9 - unmodifiedXMM7_Da;
+        FloatValue2 = *(float *)(ContextHandle + 0x24c) + *(float *)(ContextHandle + 0x250);
+        *(float *)(ContextHandle + 0x24c) = FloatValue2;
+        if (unmodifiedXMM7_Da < FloatValue2) {
+          *(float *)(ContextHandle + 0x24c) = FloatValue2 - unmodifiedXMM7_Da;
         }
         stackParam00000110 = (float)((int)stackParam00000110 + 1);
         iStack00000000000000f0 = iStack00000000000000f0 + localInt9;
@@ -184331,8 +184331,8 @@ FUN_18077b410(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -184690,13 +184690,13 @@ FUN_18077b410(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
         floatResult7 = (((localFloat27 * localFloat25 + *(float *)(uiContext + 0x224) * floatResult6 +
                    floatResult5 * *(float *)(uiContext + 0x2a4)) - *(float *)(uiContext + 0x324) * localFloat20) -
                  floatResult * *(float *)(uiContext + 0x3a4)) * localFloat28;
-        floatResult8 = (((*(float *)(uiContext + 0x228) * floatResult6 + localFloat27 * resultValue1 +
+        FloatValue1 = (((*(float *)(uiContext + 0x228) * floatResult6 + localFloat27 * resultValue1 +
                    floatResult5 * *(float *)(uiContext + 0x2a8)) - *(float *)(uiContext + 0x328) * localFloat20) -
                  floatResult * *(float *)(uiContext + 0x3a8)) * localFloat28;
         localFloat24 = *(float *)(uiContext + 0x230);
         resultValue2 = *(float *)(uiContext + 0x330);
         resultValue4 = *(float *)(uiContext + 0x234);
-        floatResult9 = (((localFloat2 * floatResult6 + localFloat27 * localFloat29 + floatResult5 * *(float *)(uiContext + 0x2ac)) -
+        FloatValue2 = (((localFloat2 * floatResult6 + localFloat27 * localFloat29 + floatResult5 * *(float *)(uiContext + 0x2ac)) -
                   *(float *)(uiContext + 0x32c) * localFloat20) - floatResult * *(float *)(uiContext + 0x3ac))                  localFloat28;
         resultValue3 = *(float *)(uiContext + 0x238);
         resultValue0 = (((localFloat24 * floatResult6 + localFloat27 * localFloat26 + floatResult5 * *(float *)(uiContext + 0x2b0)) -
@@ -184742,8 +184742,8 @@ FUN_18077b410(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
         *(float *)(uiContext + 0x2b0) = localFloat24;
         *(float *)(uiContext + 0x2b4) = resultValue4;
         *(float *)(uiContext + 0x324) = floatResult7;
-        *(float *)(uiContext + 0x328) = floatResult8;
-        *(float *)(uiContext + 0x32c) = floatResult9;
+        *(float *)(uiContext + 0x328) = FloatValue1;
+        *(float *)(uiContext + 0x32c) = FloatValue2;
         *(float *)(uiContext + 0x3b0) = resultValue2;
         *(float *)(uiContext + 0x3b4) = *(float *)(uiContext + 0x334);
         *(float *)(uiContext + 0x334) = localFloat28;
@@ -184753,8 +184753,8 @@ FUN_18077b410(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
         *(float *)(uiContext + 0x33c) = floatResult5;
         *(float *)(uiContext + 0x340) = floatResult6;
         *(float *)(targetBuffer + (ulonglong)EventTypeCode * 4) = floatResult7;
-        *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 1) * 4) = floatResult8;
-        *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 2) * 4) = floatResult9;
+        *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 1) * 4) = FloatValue1;
+        *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 2) * 4) = FloatValue2;
         *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 3) * 4) = resultValue0;
         *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 4) * 4) = localFloat28;
         *(float *)(targetBuffer + (ulonglong)(EventTypeCode + 5) * 4) = localFloat20;
@@ -184889,8 +184889,8 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -184908,7 +184908,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
     if (3 < unmodifiedR15D) {
       do {
         uVar8 = RegisterValue * 2;
-        floatResult8 = 1.0 / *(float *)(uiContext + 0x424);
+        FloatValue1 = 1.0 / *(float *)(uiContext + 0x424);
         localFloat22 = *(float *)(uiContext + 0x2a4);
         localFloat29 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar8 * 4);
         localFloat25 = *(float *)(uiContext + 0x224);
@@ -184927,20 +184927,20 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         localFloat22 = (((localFloat25 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat29 +
                    *(float *)(uiContext + 0x438) * localFloat22) -
                   *(float *)(uiContext + 0x324) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * localFloat20) * floatResult8;
+                 *(float *)(uiContext + 0x42c) * localFloat20) * FloatValue1;
         *(float *)(uiContext + 0x324) = localFloat22;
-        floatResult8 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
+        FloatValue1 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
                    *(float *)(uiContext + 0x438) * floatResult5) -
                   *(float *)(uiContext + 0x328) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * floatResult) * floatResult8;
-        *(float *)(uiContext + 0x328) = floatResult8;
+                 *(float *)(uiContext + 0x42c) * floatResult) * FloatValue1;
+        *(float *)(uiContext + 0x328) = FloatValue1;
         *(float *)(EventHandle + (ulonglong)uVar8 * 4) = localFloat22;
-        *(float *)(EventHandle + (ulonglong)(uVar8 + 1) * 4) = floatResult8;
+        *(float *)(EventHandle + (ulonglong)(uVar8 + 1) * 4) = FloatValue1;
         localFloat29 = resultValue0 + *(float *)(BasePointer + (ulonglong)(uVar8 + 2) * 4);
         localFloat22 = *(float *)(uiContext + 0x224);
         localFloat25 = *(float *)(uiContext + 0x2a4);
         localFloat28 = resultValue0 + *(float *)(BasePointer + (ulonglong)(uVar8 + 3) * 4);
-        floatResult8 = 1.0 / *(float *)(uiContext + 0x424);
+        FloatValue1 = 1.0 / *(float *)(uiContext + 0x424);
         floatResult5 = *(float *)(uiContext + 0x2a8);
         localFloat20 = *(float *)(uiContext + 0x3a4);
         floatResult = *(float *)(uiContext + 0x3a8);
@@ -184954,20 +184954,20 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         localFloat22 = (((localFloat22 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat29 +
                    *(float *)(uiContext + 0x438) * localFloat25) -
                   *(float *)(uiContext + 0x324) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * localFloat20) * floatResult8;
+                 *(float *)(uiContext + 0x42c) * localFloat20) * FloatValue1;
         *(float *)(uiContext + 0x324) = localFloat22;
-        floatResult8 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
+        FloatValue1 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
                    *(float *)(uiContext + 0x438) * floatResult5) -
                   *(float *)(uiContext + 0x328) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * floatResult) * floatResult8;
-        *(float *)(uiContext + 0x328) = floatResult8;
-        *(float *)(EventHandle + (ulonglong)(uVar8 + 3) * 4) = floatResult8;
+                 *(float *)(uiContext + 0x42c) * floatResult) * FloatValue1;
+        *(float *)(uiContext + 0x328) = FloatValue1;
+        *(float *)(EventHandle + (ulonglong)(uVar8 + 3) * 4) = FloatValue1;
         EventTypeCode = (RegisterValue + 3) * 2 - 2;
         *(float *)(EventHandle + (ulonglong)(uVar8 + 2) * 4) = localFloat22;
         localFloat28 = *(float *)(BasePointer + (ulonglong)EventTypeCode * 4) - resultValue0;
         localFloat22 = *(float *)(uiContext + 0x2a4);
         localFloat25 = *(float *)(uiContext + 0x224);
-        floatResult8 = *(float *)(BasePointer + (ulonglong)(uVar8 + 5) * 4) - resultValue0;
+        FloatValue1 = *(float *)(BasePointer + (ulonglong)(uVar8 + 5) * 4) - resultValue0;
         floatResult5 = *(float *)(uiContext + 0x2a8);
         *(float *)(uiContext + 0x2a4) = localFloat25;
         *(float *)(uiContext + 0x224) = localFloat28;
@@ -184977,13 +184977,13 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(uiContext + 0x3a8) = *(float *)(uiContext + 0x328);
         localFloat2 = *(float *)(uiContext + 0x228);
         *(float *)(uiContext + 0x2a8) = localFloat2;
-        *(float *)(uiContext + 0x228) = floatResult8;
+        *(float *)(uiContext + 0x228) = FloatValue1;
         localFloat25 = (((localFloat25 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
                    *(float *)(uiContext + 0x438) * localFloat22) -
                   *(float *)(uiContext + 0x324) * *(float *)(uiContext + 0x428)) -
                  *(float *)(uiContext + 0x42c) * localFloat20) / *(float *)(uiContext + 0x424);
         *(float *)(uiContext + 0x324) = localFloat25;
-        localFloat22 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * floatResult8 +
+        localFloat22 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * FloatValue1 +
                    *(float *)(uiContext + 0x438) * floatResult5) -
                   *(float *)(uiContext + 0x328) * *(float *)(uiContext + 0x428)) -
                  *(float *)(uiContext + 0x42c) * floatResult) / *(float *)(uiContext + 0x424);
@@ -184991,7 +184991,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(EventHandle + (ulonglong)(uVar8 + 5) * 4) = localFloat22;
         *(float *)(EventHandle + (ulonglong)EventTypeCode * 4) = localFloat25;
         EventTypeCode = (RegisterValue + 3) * 2;
-        floatResult8 = resultValue0 + *(float *)(BasePointer + (ulonglong)EventTypeCode * 4);
+        FloatValue1 = resultValue0 + *(float *)(BasePointer + (ulonglong)EventTypeCode * 4);
         RegisterValue = RegisterValue + 4;
         localFloat22 = *(float *)(uiContext + 0x2a4);
         localFloat25 = *(float *)(uiContext + 0x224);
@@ -184999,7 +184999,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         _DAT_180be2198 = -resultValue0;
         resultValue0 = resultValue0 + *(float *)(BasePointer + (ulonglong)(uVar8 + 7) * 4);
         *(float *)(uiContext + 0x2a4) = localFloat25;
-        *(float *)(uiContext + 0x224) = floatResult8;
+        *(float *)(uiContext + 0x224) = FloatValue1;
         localFloat20 = *(float *)(uiContext + 0x3a4);
         floatResult = *(float *)(uiContext + 0x3a8);
         *(float *)(uiContext + 0x3a4) = *(float *)(uiContext + 0x324);
@@ -185007,7 +185007,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         localFloat2 = *(float *)(uiContext + 0x228);
         *(float *)(uiContext + 0x2a8) = localFloat2;
         *(float *)(uiContext + 0x228) = resultValue0;
-        localFloat25 = (((localFloat25 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * floatResult8 +
+        localFloat25 = (((localFloat25 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * FloatValue1 +
                    *(float *)(uiContext + 0x438) * localFloat22) -
                   *(float *)(uiContext + 0x324) * *(float *)(uiContext + 0x428)) -
                  *(float *)(uiContext + 0x42c) * localFloat20) / *(float *)(uiContext + 0x424);
@@ -185024,7 +185024,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
     for (; RegisterValue < unmodifiedR15D; RegisterValue = RegisterValue + 1) {
       uVar8 = RegisterValue * 2;
       resultValue0 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar8 * 4);
-      floatResult8 = 1.0 / *(float *)(uiContext + 0x424);
+      FloatValue1 = 1.0 / *(float *)(uiContext + 0x424);
       localFloat22 = *(float *)(uiContext + 0x2a4);
       localFloat25 = *(float *)(uiContext + 0x224);
       floatResult5 = *(float *)(uiContext + 0x2a8);
@@ -185041,15 +185041,15 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
       localFloat22 = (((localFloat25 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * resultValue0 +
                  *(float *)(uiContext + 0x438) * localFloat22) -
                 *(float *)(uiContext + 0x324) * *(float *)(uiContext + 0x428)) -
-               *(float *)(uiContext + 0x42c) * localFloat20) * floatResult8;
+               *(float *)(uiContext + 0x42c) * localFloat20) * FloatValue1;
       *(float *)(uiContext + 0x324) = localFloat22;
-      floatResult8 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
+      FloatValue1 = (((localFloat2 * *(float *)(uiContext + 0x434) + *(float *)(uiContext + 0x430) * localFloat28 +
                  *(float *)(uiContext + 0x438) * floatResult5) -
                 *(float *)(uiContext + 0x328) * *(float *)(uiContext + 0x428)) -
-               *(float *)(uiContext + 0x42c) * floatResult) * floatResult8;
-      *(float *)(uiContext + 0x328) = floatResult8;
+               *(float *)(uiContext + 0x42c) * floatResult) * FloatValue1;
+      *(float *)(uiContext + 0x328) = FloatValue1;
       *(float *)(EventHandle + (ulonglong)uVar8 * 4) = localFloat22;
-      *(float *)(EventHandle + (ulonglong)(uVar8 + 1) * 4) = floatResult8;
+      *(float *)(EventHandle + (ulonglong)(uVar8 + 1) * 4) = FloatValue1;
       _DAT_180be2198 = -_DAT_180be2198;
     }
   }
@@ -185065,7 +185065,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         localFloat20 = *(float *)(SourceHandle + 0x42c);
         floatResult0 = fStackX_8 + *(float *)(BasePointer + (ulonglong)uVar8 * 4);
         vectorComponentX = 1.0 / *(float *)(SourceHandle + 0x424);
-        floatResult9 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(uVar8 + 2) * 4);
+        FloatValue2 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(uVar8 + 2) * 4);
         resultValue0 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(uVar8 + 3) * 4);
         localFloat29 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(uVar8 + 4) * 4);
         localFloat9 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(uVar8 + 5) * 4);
@@ -185077,12 +185077,12 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         floatResult6 = (((*(float *)(SourceHandle + 0x228) * localFloat22 + floatResult * localFloat23 +
                    localFloat25 * *(float *)(SourceHandle + 0x2a8)) - *(float *)(SourceHandle + 0x328) * floatResult5)
                  - localFloat20 * *(float *)(SourceHandle + 0x3a8)) * vectorComponentX;
-        floatResult8 = *(float *)(SourceHandle + 0x230);
+        FloatValue1 = *(float *)(SourceHandle + 0x230);
         localFloat28 = *(float *)(SourceHandle + 0x234);
-        localFloat26 = (((localFloat2 * localFloat22 + floatResult * floatResult9 + localFloat25 * *(float *)(SourceHandle + 0x2ac)) -
+        localFloat26 = (((localFloat2 * localFloat22 + floatResult * FloatValue2 + localFloat25 * *(float *)(SourceHandle + 0x2ac)) -
                   *(float *)(SourceHandle + 0x32c) * floatResult5) - localFloat20 * *(float *)(SourceHandle + 0x3ac))
                  * vectorComponentX;
-        localFloat20 = (((floatResult8 * localFloat22 + floatResult * resultValue0 + localFloat25 * *(float *)(SourceHandle + 0x2b0)) -
+        localFloat20 = (((FloatValue1 * localFloat22 + floatResult * resultValue0 + localFloat25 * *(float *)(SourceHandle + 0x2b0)) -
                   *(float *)(SourceHandle + 0x330) * floatResult5) - localFloat20 * *(float *)(SourceHandle + 0x3b0))
                  * vectorComponentX;
         floatResult5 = (((localFloat28 * localFloat22 + floatResult * localFloat29 + localFloat25 * *(float *)(SourceHandle + 0x2b4)) -
@@ -185098,12 +185098,12 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
                   *(float *)(SourceHandle + 0x338) * *(float *)(SourceHandle + 0x428)) -
                  *(float *)(SourceHandle + 0x42c) * *(float *)(SourceHandle + 0x3b8)) * vectorComponentX;
         *(float *)(SourceHandle + 0x228) = localFloat23;
-        *(float *)(SourceHandle + 0x22c) = floatResult9;
+        *(float *)(SourceHandle + 0x22c) = FloatValue2;
         *(float *)(SourceHandle + 0x230) = resultValue0;
         *(float *)(SourceHandle + 0x234) = localFloat29;
         *(UIDword *)(SourceHandle + 0x3a4) = *(UIDword *)(SourceHandle + 0x324);
         *(float *)(SourceHandle + 0x2ac) = localFloat2;
-        *(float *)(SourceHandle + 0x2b0) = floatResult8;
+        *(float *)(SourceHandle + 0x2b0) = FloatValue1;
         *(float *)(SourceHandle + 0x2b4) = localFloat28;
         *(float *)(SourceHandle + 0x238) = localFloat9;
         RegisterValue = RegisterValue + 1;
@@ -185139,7 +185139,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         localFloat27 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar8 + 1) * 4);
         localFloat20 = *(float *)(SourceHandle + 0x428);
         floatResult = *(float *)(SourceHandle + 0x42c);
-        floatResult9 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar8 * 4);
+        FloatValue2 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar8 * 4);
         localFloat2 = *(float *)(SourceHandle + 0x22c);
         localFloat24 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar8 + 2) * 4);
         localFloat21 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar8 + 3) * 4);
@@ -185148,19 +185148,19 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         floatResult6 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar8 + 6) * 4);
         floatResult7 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar8 + 7) * 4);
         localFloat23 = 1.0 / *(float *)(SourceHandle + 0x424);
-        floatResult1 = (((localFloat22 * floatResult9 + *(float *)(SourceHandle + 0x224) * localFloat25 +
+        floatResult1 = (((localFloat22 * FloatValue2 + *(float *)(SourceHandle + 0x224) * localFloat25 +
                    floatResult5 * *(float *)(SourceHandle + 0x2a4)) - *(float *)(SourceHandle + 0x324) * localFloat20)
                  - floatResult * *(float *)(SourceHandle + 0x3a4)) * localFloat23;
         floatResult2 = (((*(float *)(SourceHandle + 0x228) * localFloat25 + localFloat22 * localFloat27 +
                    floatResult5 * *(float *)(SourceHandle + 0x2a8)) - *(float *)(SourceHandle + 0x328) * localFloat20)
                  - floatResult * *(float *)(SourceHandle + 0x3a8)) * localFloat23;
-        floatResult8 = *(float *)(SourceHandle + 0x230);
+        FloatValue1 = *(float *)(SourceHandle + 0x230);
         localFloat28 = *(float *)(SourceHandle + 0x330);
         resultValue0 = *(float *)(SourceHandle + 0x234);
         floatResult3 = (((localFloat2 * localFloat25 + localFloat22 * localFloat24 + floatResult5 * *(float *)(SourceHandle + 0x2ac)) -
                   *(float *)(SourceHandle + 0x32c) * localFloat20) - floatResult * *(float *)(SourceHandle + 0x3ac))                  localFloat23;
         localFloat29 = *(float *)(SourceHandle + 0x238);
-        localFloat26 = (((floatResult8 * localFloat25 + localFloat22 * localFloat21 + floatResult5 * *(float *)(SourceHandle + 0x2b0)) -
+        localFloat26 = (((FloatValue1 * localFloat25 + localFloat22 * localFloat21 + floatResult5 * *(float *)(SourceHandle + 0x2b0)) -
                   localFloat28 * localFloat20) - floatResult * *(float *)(SourceHandle + 0x3b0)) * localFloat23;
         localFloat9 = *(float *)(SourceHandle + 0x23c);
         localFloat23 = (((resultValue0 * localFloat25 + localFloat22 * floatResult0 + floatResult5 * *(float *)(SourceHandle + 0x2b4)) -
@@ -185182,7 +185182,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
                  *(float *)(SourceHandle + 0x42c) * *(float *)(SourceHandle + 0x3c0)) /
                  *(float *)(SourceHandle + 0x424);
         *(UIDword *)(SourceHandle + 0x2a4) = *(UIDword *)(SourceHandle + 0x224);
-        *(float *)(SourceHandle + 0x224) = floatResult9;
+        *(float *)(SourceHandle + 0x224) = FloatValue2;
         *(UIDword *)(SourceHandle + 0x2a8) = *(UIDword *)(SourceHandle + 0x228);
         *(float *)(SourceHandle + 0x228) = localFloat27;
         *(float *)(SourceHandle + 0x22c) = localFloat24;
@@ -185200,7 +185200,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(SourceHandle + 0x3c0) = *(float *)(SourceHandle + 0x340);
         *(float *)(SourceHandle + 0x330) = localFloat26;
         *(float *)(SourceHandle + 0x2ac) = localFloat2;
-        *(float *)(SourceHandle + 0x2b0) = floatResult8;
+        *(float *)(SourceHandle + 0x2b0) = FloatValue1;
         *(float *)(SourceHandle + 0x2b4) = resultValue0;
         *(float *)(SourceHandle + 0x324) = floatResult1;
         *(float *)(SourceHandle + 0x328) = floatResult2;
@@ -185343,8 +185343,8 @@ UIHandle FUN_18077c38b(longlong uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -185367,7 +185367,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         resultValue0 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 1) * 4);
         localFloat28 = *(float *)(SourceHandle + 0x428);
         floatResult = *(float *)(SourceHandle + 0x42c);
-        floatResult8 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar9 * 4);
+        FloatValue1 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)uVar9 * 4);
         localFloat2 = *(float *)(SourceHandle + 0x22c);
         localFloat29 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 2) * 4);
         localFloat27 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 3) * 4);
@@ -185375,24 +185375,24 @@ UIHandle FUN_18077c38b(longlong uiContext)
         floatResult5 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 5) * 4);
         floatResult6 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 6) * 4);
         floatResult7 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(uVar9 + 7) * 4);
-        floatResult9 = 1.0 / *(float *)(SourceHandle + 0x424);
-        localFloat21 = (((localFloat25 * floatResult8 + *(float *)(SourceHandle + 0x224) * localFloat24 +
+        FloatValue2 = 1.0 / *(float *)(SourceHandle + 0x424);
+        localFloat21 = (((localFloat25 * FloatValue1 + *(float *)(SourceHandle + 0x224) * localFloat24 +
                    localFloat26 * *(float *)(SourceHandle + 0x2a4)) - *(float *)(SourceHandle + 0x324) * localFloat28)
-                 - floatResult * *(float *)(SourceHandle + 0x3a4)) * floatResult9;
+                 - floatResult * *(float *)(SourceHandle + 0x3a4)) * FloatValue2;
         localFloat22 = (((*(float *)(SourceHandle + 0x228) * localFloat24 + localFloat25 * resultValue0 +
                    localFloat26 * *(float *)(SourceHandle + 0x2a8)) - *(float *)(SourceHandle + 0x328) * localFloat28)
-                 - floatResult * *(float *)(SourceHandle + 0x3a8)) * floatResult9;
+                 - floatResult * *(float *)(SourceHandle + 0x3a8)) * FloatValue2;
         resultValue = *(float *)(SourceHandle + 0x230);
         processedFloat = *(float *)(SourceHandle + 0x330);
         secondaryValue = *(float *)(SourceHandle + 0x234);
         localFloat23 = (((localFloat2 * localFloat24 + localFloat25 * localFloat29 + localFloat26 * *(float *)(SourceHandle + 0x2ac)) -
-                  *(float *)(SourceHandle + 0x32c) * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3ac))                  floatResult9;
+                  *(float *)(SourceHandle + 0x32c) * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3ac))                  FloatValue2;
         localFloat6 = *(float *)(SourceHandle + 0x238);
         localFloat20 = (((resultValue * localFloat24 + localFloat25 * localFloat27 + localFloat26 * *(float *)(SourceHandle + 0x2b0)) -
-                  processedFloat * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3b0)) * floatResult9;
+                  processedFloat * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3b0)) * FloatValue2;
         resultFloat = *(float *)(SourceHandle + 0x23c);
-        floatResult9 = (((secondaryValue * localFloat24 + localFloat25 * vectorComponentX + localFloat26 * *(float *)(SourceHandle + 0x2b4)) -
-                  *(float *)(SourceHandle + 0x334) * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3b4))                  floatResult9;
+        FloatValue2 = (((secondaryValue * localFloat24 + localFloat25 * vectorComponentX + localFloat26 * *(float *)(SourceHandle + 0x2b4)) -
+                  *(float *)(SourceHandle + 0x334) * localFloat28) - floatResult * *(float *)(SourceHandle + 0x3b4))                  FloatValue2;
         localFloat28 = (((localFloat6 * localFloat24 + localFloat25 * floatResult5 +
                    *(float *)(SourceHandle + 0x438) * *(float *)(SourceHandle + 0x2b8)) -
                   *(float *)(SourceHandle + 0x338) * *(float *)(SourceHandle + 0x428)) -
@@ -185410,7 +185410,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
                  *(float *)(SourceHandle + 0x42c) * *(float *)(SourceHandle + 0x3c0)) /
                  *(float *)(SourceHandle + 0x424);
         *(UIDword *)(SourceHandle + 0x2a4) = *(UIDword *)(SourceHandle + 0x224);
-        *(float *)(SourceHandle + 0x224) = floatResult8;
+        *(float *)(SourceHandle + 0x224) = FloatValue1;
         *(UIDword *)(SourceHandle + 0x2a8) = *(UIDword *)(SourceHandle + 0x228);
         *(float *)(SourceHandle + 0x228) = resultValue0;
         *(float *)(SourceHandle + 0x22c) = localFloat29;
@@ -185435,7 +185435,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(SourceHandle + 0x32c) = localFloat23;
         *(float *)(SourceHandle + 0x3b0) = processedFloat;
         *(float *)(SourceHandle + 0x3b4) = *(float *)(SourceHandle + 0x334);
-        *(float *)(SourceHandle + 0x334) = floatResult9;
+        *(float *)(SourceHandle + 0x334) = FloatValue2;
         *(float *)(SourceHandle + 0x3b8) = *(float *)(SourceHandle + 0x338);
         *(float *)(SourceHandle + 0x338) = localFloat28;
         *(float *)(SourceHandle + 0x3bc) = *(float *)(SourceHandle + 0x33c);
@@ -185445,7 +185445,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(EventHandle + (ulonglong)(uVar9 + 1) * 4) = localFloat22;
         *(float *)(EventHandle + (ulonglong)(uVar9 + 2) * 4) = localFloat23;
         *(float *)(EventHandle + (ulonglong)(uVar9 + 3) * 4) = localFloat20;
-        *(float *)(EventHandle + (ulonglong)(uVar9 + 4) * 4) = floatResult9;
+        *(float *)(EventHandle + (ulonglong)(uVar9 + 4) * 4) = FloatValue2;
         *(float *)(EventHandle + (ulonglong)(uVar9 + 5) * 4) = localFloat28;
         *(float *)(EventHandle + (ulonglong)(uVar9 + 6) * 4) = localFloat26;
         *(float *)(EventHandle + (ulonglong)(uVar9 + 7) * 4) = localFloat24;
@@ -185741,8 +185741,8 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -185796,7 +185796,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       floatResult6 = *(float *)(uiContext + 0x21c);
       floatResult2 = *(float *)(uiContext + 0x220);
       floatResult7 = *(float *)(uiContext + 0x29c);
-      floatResult9 = *(float *)(uiContext + 0x2a0);
+      FloatValue2 = *(float *)(uiContext + 0x2a0);
       floatResult1 = floatResult6;
       floatResult3 = floatResult2;
       if (bufferSize != 0) {
@@ -185805,12 +185805,12 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           floatResult3 = dataSource[1];
           dataSource = dataSource + 2;
           floatResult7 = floatResult1 + floatResult7 + _DAT_180be2288;
-          floatResult9 = floatResult3 + floatResult9 + _DAT_180be2288;
+          FloatValue2 = floatResult3 + FloatValue2 + _DAT_180be2288;
           _DAT_180be2288 = -_DAT_180be2288;
           floatResult7 = (floatResult7 - floatResult6) * *(float *)(uiContext + 0x31c);
-          floatResult9 = (floatResult9 - floatResult2) * *(float *)(uiContext + 0x31c);
+          FloatValue2 = (FloatValue2 - floatResult2) * *(float *)(uiContext + 0x31c);
           *targetBuffer = floatResult7;
-          targetBuffer[1] = floatResult9;
+          targetBuffer[1] = FloatValue2;
           targetBuffer = targetBuffer + 2;
           eventTypeCode = (int)uVar8 - 1;
           uVar8 = (ulonglong)eventTypeCode;
@@ -185821,13 +185821,13 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x21c) = floatResult1;
       *(float *)(uiContext + 0x220) = floatResult3;
       *(float *)(uiContext + 0x29c) = floatResult7;
-      *(float *)(uiContext + 0x2a0) = floatResult9;
+      *(float *)(uiContext + 0x2a0) = FloatValue2;
     }
     else if (resultPointer == 6) {
       floatResult6 = *(float *)(uiContext + 0x220);
       floatResult2 = *(float *)(uiContext + 0x22c);
       floatResult7 = *(float *)(uiContext + 0x230);
-      floatResult9 = *(float *)(uiContext + 0x21c);
+      FloatValue2 = *(float *)(uiContext + 0x21c);
       floatResult1 = *(float *)(uiContext + 0x224);
       floatResult3 = *(float *)(uiContext + 0x228);
       localFloat20 = *(float *)(uiContext + 0x29c);
@@ -185841,7 +185841,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
         presultValue = dataSource + 2;
         floatResult0 = floatResult1;
         localFloat22 = floatResult3;
-        vectorComponentX = floatResult9;
+        vectorComponentX = FloatValue2;
         fStackX_10 = floatResult6;
         fStack_d8 = floatResult2;
         fStack_d4 = floatResult7;
@@ -185849,9 +185849,9 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           floatResult5 = *(float *)(uiContext + 0x31c);
           floatResult1 = *presultValue;
           floatResult3 = presultValue[1];
-          floatResult9 = presultValue[-2];
+          FloatValue2 = presultValue[-2];
           floatResult6 = presultValue[-1];
-          localFloat20 = ((floatResult9 + localFloat20 + _DAT_180be2288) - vectorComponentX) * floatResult5;
+          localFloat20 = ((FloatValue2 + localFloat20 + _DAT_180be2288) - vectorComponentX) * floatResult5;
           localFloat21 = ((floatResult6 + localFloat21 + _DAT_180be2288) - fStackX_10) * floatResult5;
           floatResult7 = presultValue[3];
           floatResult2 = presultValue[2];
@@ -185874,13 +185874,13 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           uVar8 = (ulonglong)eventTypeCode;
           floatResult0 = floatResult1;
           localFloat22 = floatResult3;
-          vectorComponentX = floatResult9;
+          vectorComponentX = FloatValue2;
           fStackX_10 = floatResult6;
           fStack_d8 = floatResult2;
           fStack_d4 = floatResult7;
         } while (eventTypeCode != 0);
       }
-      *(float *)(uiContext + 0x21c) = floatResult9;
+      *(float *)(uiContext + 0x21c) = FloatValue2;
       *(float *)(uiContext + 0x220) = floatResult6;
       *(float *)(uiContext + 0x224) = floatResult1;
       *(float *)(uiContext + 0x228) = floatResult3;
@@ -185897,7 +185897,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       floatResult6 = *(float *)(uiContext + 0x228);
       floatResult2 = *(float *)(uiContext + 0x22c);
       floatResult7 = *(float *)(uiContext + 0x230);
-      floatResult9 = *(float *)(uiContext + 0x234);
+      FloatValue2 = *(float *)(uiContext + 0x234);
       floatResult1 = *(float *)(uiContext + 0x21c);
       floatResult3 = *(float *)(uiContext + 0x220);
       localFloat20 = *(float *)(uiContext + 0x224);
@@ -185915,11 +185915,11 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
         presultValue = dataSource + 2;
         vectorComponentX = floatResult1;
         floatResult5 = floatResult3;
-        floatResult8 = localFloat20;
+        FloatValue1 = localFloat20;
         fStack_d4 = floatResult7;
         fStack_d0 = floatResult2;
         fStack_cc = floatResult6;
-        fStack_c8 = floatResult9;
+        fStack_c8 = FloatValue2;
         do {
           floatResult = *(float *)(uiContext + 0x31c);
           floatResult3 = presultValue[-1];
@@ -185930,12 +185930,12 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           floatResult6 = presultValue[1];
           localFloat23 = ((floatResult3 + localFloat23 + _DAT_180be2288) - floatResult5) * floatResult;
           localFloat21 = ((localFloat21 + floatResult1 + _DAT_180be2288) - vectorComponentX) * floatResult;
-          localFloat24 = ((localFloat20 + localFloat24 + _DAT_180be2288) - floatResult8) * floatResult;
-          floatResult9 = presultValue[4];
+          localFloat24 = ((localFloat20 + localFloat24 + _DAT_180be2288) - FloatValue1) * floatResult;
+          FloatValue2 = presultValue[4];
           localFloat25 = ((floatResult6 + localFloat25 + _DAT_180be2288) - fStack_cc) * floatResult;
           localFloat26 = ((floatResult2 + localFloat26 + _DAT_180be2288) - fStack_d0) * floatResult;
           floatResult0 = ((floatResult7 + floatResult0 + _DAT_180be2288) - fStack_d4) * floatResult;
-          fStackX_10 = ((floatResult9 + fStackX_10 + _DAT_180be2288) - fStack_c8) * floatResult;
+          fStackX_10 = ((FloatValue2 + fStackX_10 + _DAT_180be2288) - fStack_c8) * floatResult;
           localFloat2 = presultValue[5];
           *(float *)((longlong)presultValue + (longlong)targetBuffer + (-8 - (longlong)dataSource)) = localFloat21;
           pprocessedFloat[-1] = localFloat23;
@@ -185954,12 +185954,12 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           uVar8 = (ulonglong)eventTypeCode;
           vectorComponentX = floatResult1;
           floatResult5 = floatResult3;
-          floatResult8 = localFloat20;
+          FloatValue1 = localFloat20;
           fStack_d8 = localFloat2;
           fStack_d4 = floatResult7;
           fStack_d0 = floatResult2;
           fStack_cc = floatResult6;
-          fStack_c8 = floatResult9;
+          fStack_c8 = FloatValue2;
         } while (eventTypeCode != 0);
       }
       *(float *)(uiContext + 0x21c) = floatResult1;
@@ -185969,7 +185969,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x228) = floatResult6;
       *(float *)(uiContext + 0x22c) = floatResult2;
       *(float *)(uiContext + 0x230) = floatResult7;
-      *(float *)(uiContext + 0x234) = floatResult9;
+      *(float *)(uiContext + 0x234) = FloatValue2;
       *(float *)(uiContext + 0x29c) = localFloat21;
       *(float *)(uiContext + 0x2a0) = localFloat23;
       *(float *)(uiContext + 0x2a4) = localFloat24;
@@ -185989,22 +185989,22 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
         floatResult7 = *pprocessedFloat;
         presultValue = dataSource;
         LoopCounter = uVar8;
-        floatResult9 = floatResult2;
+        FloatValue2 = floatResult2;
         if (bufferSize != 0) {
           do {
-            floatResult9 = *presultValue;
-            floatResult7 = floatResult9 + floatResult7 + floatResult6;
+            FloatValue2 = *presultValue;
+            floatResult7 = FloatValue2 + floatResult7 + floatResult6;
             floatResult6 = -floatResult6;
             floatResult7 = (floatResult7 - floatResult2) * *(float *)(uiContext + 0x31c);
             *(float *)(ContextHandleData + (longlong)presultValue) = floatResult7;
             eventTypeCode = (int)LoopCounter - 1;
             presultValue = presultValue + (int)resultPointer;
             LoopCounter = (ulonglong)eventTypeCode;
-            floatResult2 = floatResult9;
+            floatResult2 = FloatValue2;
             _DAT_180be2288 = floatResult6;
           } while (eventTypeCode != 0);
         }
-        pprocessedFloat[-0x20] = floatResult9;
+        pprocessedFloat[-0x20] = FloatValue2;
         dataSource = dataSource + 1;
         *pprocessedFloat = floatResult7;
         pprocessedFloat = pprocessedFloat + 1;
@@ -186044,8 +186044,8 @@ UIHandle FUN_18077d60f(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -186096,8 +186096,8 @@ UIHandle FUN_18077d60f(void)
     floatResult7 = *(float *)(ContextHandle + 0x21c);
     localFloat9 = *(float *)(ContextHandle + 0x224);
     floatResult0 = *(float *)(ContextHandle + 0x228);
-    floatResult8 = *(float *)(ContextHandle + 0x29c);
-    floatResult9 = *(float *)(ContextHandle + 0x2a0);
+    FloatValue1 = *(float *)(ContextHandle + 0x29c);
+    FloatValue2 = *(float *)(ContextHandle + 0x2a0);
     localFloat21 = *(float *)(ContextHandle + 0x2a4);
     localFloat22 = *(float *)(ContextHandle + 0x2a8);
     localFloat23 = *(float *)(ContextHandle + 0x2ac);
@@ -186117,13 +186117,13 @@ UIHandle FUN_18077d60f(void)
         floatResult0 = presultValue[1];
         floatResult7 = presultValue[-2];
         vectorComponentX = presultValue[-1];
-        floatResult8 = ((floatResult7 + floatResult8 + _DAT_180be2288) - floatResult1) * floatResult3;
-        floatResult9 = ((vectorComponentX + floatResult9 + _DAT_180be2288) - fStack0000000000000108) * floatResult3;
+        FloatValue1 = ((floatResult7 + FloatValue1 + _DAT_180be2288) - floatResult1) * floatResult3;
+        FloatValue2 = ((vectorComponentX + FloatValue2 + _DAT_180be2288) - fStack0000000000000108) * floatResult3;
         floatResult5 = presultValue[3];
         floatResult2 = presultValue[2];
         localFloat21 = ((localFloat9 + localFloat21 + _DAT_180be2288) - localFloat8) * floatResult3;
-        *(float *)((longlong)TargetHandle + (-8 - (longlong)BasePointer) + (longlong)presultValue) = floatResult8;
-        pprocessedFloat[-1] = floatResult9;
+        *(float *)((longlong)TargetHandle + (-8 - (longlong)BasePointer) + (longlong)presultValue) = FloatValue1;
+        pprocessedFloat[-1] = FloatValue2;
         presultValue = presultValue + 6;
         localFloat22 = ((floatResult0 + localFloat22 + _DAT_180be2288) - localFloat20) * floatResult3;
         *pprocessedFloat = localFloat21;
@@ -186151,8 +186151,8 @@ UIHandle FUN_18077d60f(void)
     *(float *)(ContextHandle + 0x228) = floatResult0;
     *(float *)(ContextHandle + 0x22c) = floatResult2;
     *(float *)(ContextHandle + 0x230) = floatResult5;
-    *(float *)(ContextHandle + 0x29c) = floatResult8;
-    *(float *)(ContextHandle + 0x2a0) = floatResult9;
+    *(float *)(ContextHandle + 0x29c) = FloatValue1;
+    *(float *)(ContextHandle + 0x2a0) = FloatValue2;
     *(float *)(ContextHandle + 0x2a4) = localFloat21;
     *(float *)(ContextHandle + 0x2a8) = localFloat22;
     *(float *)(ContextHandle + 0x2ac) = localFloat23;
@@ -186165,8 +186165,8 @@ UIHandle FUN_18077d60f(void)
     floatResult7 = *(float *)(ContextHandle + 0x234);
     localFloat9 = *(float *)(ContextHandle + 0x21c);
     floatResult0 = *(float *)(ContextHandle + 0x220);
-    floatResult8 = *(float *)(ContextHandle + 0x224);
-    floatResult9 = *(float *)(ContextHandle + 0x29c);
+    FloatValue1 = *(float *)(ContextHandle + 0x224);
+    FloatValue2 = *(float *)(ContextHandle + 0x29c);
     localFloat21 = *(float *)(ContextHandle + 0x2a0);
     localFloat22 = *(float *)(ContextHandle + 0x2a4);
     localFloat23 = *(float *)(ContextHandle + 0x2a8);
@@ -186180,7 +186180,7 @@ UIHandle FUN_18077d60f(void)
       presultValue = BasePointer + 2;
       floatResult1 = localFloat9;
       floatResult3 = floatResult0;
-      floatResult6 = floatResult8;
+      floatResult6 = FloatValue1;
       fStackX_24 = floatResult5;
       fStack0000000000000028 = floatResult2;
       fStack000000000000002c = vectorComponentX;
@@ -186188,14 +186188,14 @@ UIHandle FUN_18077d60f(void)
       do {
         floatResult = *(float *)(ContextHandle + 0x31c);
         floatResult0 = presultValue[-1];
-        floatResult8 = *presultValue;
+        FloatValue1 = *presultValue;
         localFloat9 = presultValue[-2];
         floatResult2 = presultValue[2];
         floatResult5 = presultValue[3];
         vectorComponentX = presultValue[1];
         localFloat21 = ((floatResult0 + localFloat21 + _DAT_180be2288) - floatResult3) * floatResult;
-        floatResult9 = ((floatResult9 + localFloat9 + _DAT_180be2288) - floatResult1) * floatResult;
-        localFloat22 = ((floatResult8 + localFloat22 + _DAT_180be2288) - floatResult6) * floatResult;
+        FloatValue2 = ((FloatValue2 + localFloat9 + _DAT_180be2288) - floatResult1) * floatResult;
+        localFloat22 = ((FloatValue1 + localFloat22 + _DAT_180be2288) - floatResult6) * floatResult;
         floatResult7 = presultValue[4];
         localFloat23 = ((vectorComponentX + localFloat23 + _DAT_180be2288) - fStack000000000000002c) * floatResult;
         localFloat24 = ((floatResult2 + localFloat24 + _DAT_180be2288) - fStack0000000000000028) * floatResult;
@@ -186203,7 +186203,7 @@ UIHandle FUN_18077d60f(void)
         fStack0000000000000108 =
              ((floatResult7 + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * floatResult;
         localFloat2 = presultValue[5];
-        *(float *)((longlong)presultValue + (longlong)TargetHandle + (-8 - (longlong)BasePointer)) = floatResult9;
+        *(float *)((longlong)presultValue + (longlong)TargetHandle + (-8 - (longlong)BasePointer)) = FloatValue2;
         pprocessedFloat[-1] = localFloat21;
         presultValue = presultValue + 8;
         *pprocessedFloat = localFloat22;
@@ -186219,7 +186219,7 @@ UIHandle FUN_18077d60f(void)
         unmodifiedESI = unmodifiedESI + -1;
         floatResult1 = localFloat9;
         floatResult3 = floatResult0;
-        floatResult6 = floatResult8;
+        floatResult6 = FloatValue1;
         fStackX_20 = localFloat2;
         fStackX_24 = floatResult5;
         fStack0000000000000028 = floatResult2;
@@ -186230,12 +186230,12 @@ UIHandle FUN_18077d60f(void)
     *(float *)(ContextHandle + 0x21c) = localFloat9;
     *(float *)(ContextHandle + 0x238) = fStackX_20;
     *(float *)(ContextHandle + 0x220) = floatResult0;
-    *(float *)(ContextHandle + 0x224) = floatResult8;
+    *(float *)(ContextHandle + 0x224) = FloatValue1;
     *(float *)(ContextHandle + 0x228) = vectorComponentX;
     *(float *)(ContextHandle + 0x22c) = floatResult2;
     *(float *)(ContextHandle + 0x230) = floatResult5;
     *(float *)(ContextHandle + 0x234) = floatResult7;
-    *(float *)(ContextHandle + 0x29c) = floatResult9;
+    *(float *)(ContextHandle + 0x29c) = FloatValue2;
     *(float *)(ContextHandle + 0x2a0) = localFloat21;
     *(float *)(ContextHandle + 0x2a4) = localFloat22;
     *(float *)(ContextHandle + 0x2a8) = localFloat23;
@@ -186307,8 +186307,8 @@ UIHandle FUN_18077d6ff(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -186329,8 +186329,8 @@ UIHandle FUN_18077d6ff(void)
     floatResult7 = *(float *)(ContextHandle + 0x21c);
     localFloat9 = *(float *)(ContextHandle + 0x224);
     floatResult0 = *(float *)(ContextHandle + 0x228);
-    floatResult8 = *(float *)(ContextHandle + 0x29c);
-    floatResult9 = *(float *)(ContextHandle + 0x2a0);
+    FloatValue1 = *(float *)(ContextHandle + 0x29c);
+    FloatValue2 = *(float *)(ContextHandle + 0x2a0);
     localFloat21 = *(float *)(ContextHandle + 0x2a4);
     localFloat22 = *(float *)(ContextHandle + 0x2a8);
     localFloat23 = *(float *)(ContextHandle + 0x2ac);
@@ -186350,13 +186350,13 @@ UIHandle FUN_18077d6ff(void)
         floatResult0 = presultValue[1];
         floatResult7 = presultValue[-2];
         floatResult5 = presultValue[-1];
-        floatResult8 = ((floatResult7 + floatResult8 + _DAT_180be2288) - floatResult1) * vectorComponentX;
-        floatResult9 = ((floatResult5 + floatResult9 + _DAT_180be2288) - fStack0000000000000108) * vectorComponentX;
+        FloatValue1 = ((floatResult7 + FloatValue1 + _DAT_180be2288) - floatResult1) * vectorComponentX;
+        FloatValue2 = ((floatResult5 + FloatValue2 + _DAT_180be2288) - fStack0000000000000108) * vectorComponentX;
         floatResult2 = presultValue[3];
         floatResult3 = presultValue[2];
         localFloat21 = ((localFloat9 + localFloat21 + _DAT_180be2288) - localFloat8) * vectorComponentX;
-        *(float *)((TargetHandle - (longlong)BasePointer) + -8 + (longlong)presultValue) = floatResult8;
-        pprocessedFloat[-1] = floatResult9;
+        *(float *)((TargetHandle - (longlong)BasePointer) + -8 + (longlong)presultValue) = FloatValue1;
+        pprocessedFloat[-1] = FloatValue2;
         presultValue = presultValue + 6;
         localFloat22 = ((floatResult0 + localFloat22 + _DAT_180be2288) - localFloat20) * vectorComponentX;
         *pprocessedFloat = localFloat21;
@@ -186384,8 +186384,8 @@ UIHandle FUN_18077d6ff(void)
     *(float *)(ContextHandle + 0x228) = floatResult0;
     *(float *)(ContextHandle + 0x22c) = floatResult3;
     *(float *)(ContextHandle + 0x230) = floatResult2;
-    *(float *)(ContextHandle + 0x29c) = floatResult8;
-    *(float *)(ContextHandle + 0x2a0) = floatResult9;
+    *(float *)(ContextHandle + 0x29c) = FloatValue1;
+    *(float *)(ContextHandle + 0x2a0) = FloatValue2;
     *(float *)(ContextHandle + 0x2a4) = localFloat21;
     *(float *)(ContextHandle + 0x2a8) = localFloat22;
     *(float *)(ContextHandle + 0x2ac) = localFloat23;
@@ -186398,8 +186398,8 @@ UIHandle FUN_18077d6ff(void)
     floatResult7 = *(float *)(ContextHandle + 0x234);
     localFloat9 = *(float *)(ContextHandle + 0x21c);
     floatResult0 = *(float *)(ContextHandle + 0x220);
-    floatResult8 = *(float *)(ContextHandle + 0x224);
-    floatResult9 = *(float *)(ContextHandle + 0x29c);
+    FloatValue1 = *(float *)(ContextHandle + 0x224);
+    FloatValue2 = *(float *)(ContextHandle + 0x29c);
     localFloat21 = *(float *)(ContextHandle + 0x2a0);
     localFloat22 = *(float *)(ContextHandle + 0x2a4);
     localFloat23 = *(float *)(ContextHandle + 0x2a8);
@@ -186413,7 +186413,7 @@ UIHandle FUN_18077d6ff(void)
       presultValue = BasePointer + 2;
       floatResult1 = localFloat9;
       vectorComponentX = floatResult0;
-      floatResult6 = floatResult8;
+      floatResult6 = FloatValue1;
       fStackX_24 = floatResult2;
       fStack0000000000000028 = floatResult3;
       fStack000000000000002c = floatResult5;
@@ -186421,14 +186421,14 @@ UIHandle FUN_18077d6ff(void)
       do {
         floatResult = *(float *)(ContextHandle + 0x31c);
         floatResult0 = presultValue[-1];
-        floatResult8 = *presultValue;
+        FloatValue1 = *presultValue;
         localFloat9 = presultValue[-2];
         floatResult3 = presultValue[2];
         floatResult2 = presultValue[3];
         floatResult5 = presultValue[1];
         localFloat21 = ((floatResult0 + localFloat21 + _DAT_180be2288) - vectorComponentX) * floatResult;
-        floatResult9 = ((floatResult9 + localFloat9 + _DAT_180be2288) - floatResult1) * floatResult;
-        localFloat22 = ((floatResult8 + localFloat22 + _DAT_180be2288) - floatResult6) * floatResult;
+        FloatValue2 = ((FloatValue2 + localFloat9 + _DAT_180be2288) - floatResult1) * floatResult;
+        localFloat22 = ((FloatValue1 + localFloat22 + _DAT_180be2288) - floatResult6) * floatResult;
         floatResult7 = presultValue[4];
         localFloat23 = ((floatResult5 + localFloat23 + _DAT_180be2288) - fStack000000000000002c) * floatResult;
         localFloat24 = ((floatResult3 + localFloat24 + _DAT_180be2288) - fStack0000000000000028) * floatResult;
@@ -186436,7 +186436,7 @@ UIHandle FUN_18077d6ff(void)
         fStack0000000000000108 =
              ((floatResult7 + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * floatResult;
         localFloat2 = presultValue[5];
-        *(float *)((longlong)presultValue + (TargetHandle - (longlong)BasePointer) + -8) = floatResult9;
+        *(float *)((longlong)presultValue + (TargetHandle - (longlong)BasePointer) + -8) = FloatValue2;
         pprocessedFloat[-1] = localFloat21;
         presultValue = presultValue + 8;
         *pprocessedFloat = localFloat22;
@@ -186452,7 +186452,7 @@ UIHandle FUN_18077d6ff(void)
         unmodifiedESI = unmodifiedESI + -1;
         floatResult1 = localFloat9;
         vectorComponentX = floatResult0;
-        floatResult6 = floatResult8;
+        floatResult6 = FloatValue1;
         fStackX_20 = localFloat2;
         fStackX_24 = floatResult2;
         fStack0000000000000028 = floatResult3;
@@ -186463,12 +186463,12 @@ UIHandle FUN_18077d6ff(void)
     *(float *)(ContextHandle + 0x21c) = localFloat9;
     *(float *)(ContextHandle + 0x238) = fStackX_20;
     *(float *)(ContextHandle + 0x220) = floatResult0;
-    *(float *)(ContextHandle + 0x224) = floatResult8;
+    *(float *)(ContextHandle + 0x224) = FloatValue1;
     *(float *)(ContextHandle + 0x228) = floatResult5;
     *(float *)(ContextHandle + 0x22c) = floatResult3;
     *(float *)(ContextHandle + 0x230) = floatResult2;
     *(float *)(ContextHandle + 0x234) = floatResult7;
-    *(float *)(ContextHandle + 0x29c) = floatResult9;
+    *(float *)(ContextHandle + 0x29c) = FloatValue2;
     *(float *)(ContextHandle + 0x2a0) = localFloat21;
     *(float *)(ContextHandle + 0x2a4) = localFloat22;
     *(float *)(ContextHandle + 0x2a8) = localFloat23;
@@ -187670,7 +187670,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
   float *pfloatResult6;
   longlong allocatedMemory7;
   longlong allocatedMemory8;
-  float floatResult9;
+  float FloatValue2;
   UIDword semaphoreHandle0;
   float localFloat21;
   float localFloat22;
@@ -187709,42 +187709,42 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
       stackLong120 = *(longlong *)(uiBufferData + 200);
     }
     allocatedMemory7 = stackLong120;
-    floatResult9 = *(float *)(uiContext + 0x360);
-    if ((floatResult9 != *(float *)(uiContext + 0x218)) || (*(char *)(uiContext + 0x344) != '\0')) {
-      *(float *)(uiContext + 0x218) = floatResult9;
-      floatResult9 = (float)powf(0x41200000,floatResult9 * 0.1);
-      *(float *)(uiContext + 0x21c) = floatResult9;
-      *(float *)(uiContext + 0x220) = 1.0 / floatResult9;
+    FloatValue2 = *(float *)(uiContext + 0x360);
+    if ((FloatValue2 != *(float *)(uiContext + 0x218)) || (*(char *)(uiContext + 0x344) != '\0')) {
+      *(float *)(uiContext + 0x218) = FloatValue2;
+      FloatValue2 = (float)powf(0x41200000,FloatValue2 * 0.1);
+      *(float *)(uiContext + 0x21c) = FloatValue2;
+      *(float *)(uiContext + 0x220) = 1.0 / FloatValue2;
     }
-    floatResult9 = *(float *)(uiContext + 0x364);
-    if ((floatResult9 != *(float *)(uiContext + 0x224)) || (*(char *)(uiContext + 0x344) != '\0')) {
-      *(float *)(uiContext + 0x224) = floatResult9;
-      *(float *)(uiContext + 0x228) = 0.5 / floatResult9 - 0.5;
+    FloatValue2 = *(float *)(uiContext + 0x364);
+    if ((FloatValue2 != *(float *)(uiContext + 0x224)) || (*(char *)(uiContext + 0x344) != '\0')) {
+      *(float *)(uiContext + 0x224) = FloatValue2;
+      *(float *)(uiContext + 0x228) = 0.5 / FloatValue2 - 0.5;
     }
     if ((*(int *)(uiBufferData + 0x348) != *(int *)(uiBufferData + 0x370)) ||
        (*(char *)(uiContext + 0x344) != '\0')) {
       *(int *)(uiBufferData + 0x348) = *(int *)(uiBufferData + 0x370);
     }
-    floatResult9 = *(float *)(uiContext + 0x35c);
-    if ((floatResult9 != *(float *)(uiContext + 0x32c)) || (*(char *)(uiContext + 0x344) != '\0')) {
-      *(float *)(uiContext + 0x32c) = floatResult9;
-      floatResult9 = (float)expf(-3.11127 /
-                           ((float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0) * floatResult9 * 0.001)
+    FloatValue2 = *(float *)(uiContext + 0x35c);
+    if ((FloatValue2 != *(float *)(uiContext + 0x32c)) || (*(char *)(uiContext + 0x344) != '\0')) {
+      *(float *)(uiContext + 0x32c) = FloatValue2;
+      FloatValue2 = (float)expf(-3.11127 /
+                           ((float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0) * FloatValue2 * 0.001)
                           );
-      *(float *)(uiContext + 0x330) = 1.0 - floatResult9;
+      *(float *)(uiContext + 0x330) = 1.0 - FloatValue2;
     }
-    floatResult9 = *(float *)(uiContext + 0x368);
-    if ((floatResult9 != *(float *)(uiContext + 0x334)) || (*(char *)(uiContext + 0x344) != '\0')) {
-      *(float *)(uiContext + 0x334) = floatResult9;
-      floatResult9 = (float)expf(-3.11127 /
-                           ((float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0) * floatResult9 * 0.001)
+    FloatValue2 = *(float *)(uiContext + 0x368);
+    if ((FloatValue2 != *(float *)(uiContext + 0x334)) || (*(char *)(uiContext + 0x344) != '\0')) {
+      *(float *)(uiContext + 0x334) = FloatValue2;
+      FloatValue2 = (float)expf(-3.11127 /
+                           ((float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0) * FloatValue2 * 0.001)
                           );
-      *(float *)(uiContext + 0x338) = 1.0 - floatResult9;
+      *(float *)(uiContext + 0x338) = 1.0 - FloatValue2;
     }
-    floatResult9 = *(float *)(uiContext + 0x36c);
-    if ((floatResult9 != *(float *)(uiContext + 0x33c)) || (*(char *)(uiContext + 0x344) != '\0')) {
-      *(float *)(uiContext + 0x33c) = floatResult9;
-      if (-80.0 < floatResult9) {
+    FloatValue2 = *(float *)(uiContext + 0x36c);
+    if ((FloatValue2 != *(float *)(uiContext + 0x33c)) || (*(char *)(uiContext + 0x344) != '\0')) {
+      *(float *)(uiContext + 0x33c) = FloatValue2;
+      if (-80.0 < FloatValue2) {
         semaphoreHandle0 = powf(0x41200000);
       }
       else {
@@ -187761,18 +187761,18 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
       localInt6 = (**(code **)(*(longlong *)(uiBufferData + 0xd8) + 0x40))(uiContext + 0xb0,&stackLong130,0,0);
       if (localInt6 != 0) goto LAB_18077fe2b;
       localLong8 = stackLong130 - *(longlong *)(uiBufferData + 0x350);
-      floatResult9 = *(float *)(uiContext + 0x338);
+      FloatValue2 = *(float *)(uiContext + 0x338);
       localFloat27 = (float)localLong8;
       if (localLong8 < 0) {
         localFloat27 = localFloat27 + 1.8446744e+19;
       }
-      localFloat21 = (float)powf(1.0 - floatResult9);
+      localFloat21 = (float)powf(1.0 - FloatValue2);
       result0 = result3;
       if (3 < allocatedMemory8) {
         pfloatResult6 = (float *)(uiContext + 0x2b0);
         localLong8 = (allocatedMemory8 - 4U >> 2) + 1;
         result0 = localLong8 * 4;
-        localFloat26 = localFloat27 * floatResult9 * localFloat21;
+        localFloat26 = localFloat27 * FloatValue2 * localFloat21;
         do {
           pfloatResult6[-0x21] = localFloat21 * pfloatResult6[-0x21] + localFloat26 * pfloatResult6[-1];
           pfloatResult6[-1] = localFloat21 * pfloatResult6[-1];
@@ -187790,7 +187790,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
         pfloatResult6 = (float *)(uiContext + 0x2ac + result0 * 4);
         localLong8 = allocatedMemory8 - result0;
         do {
-          pfloatResult6[-0x20] = localFloat21 * pfloatResult6[-0x20] + localFloat27 * floatResult9 * localFloat21 * *pfloatResult6;
+          pfloatResult6[-0x20] = localFloat21 * pfloatResult6[-0x20] + localFloat27 * FloatValue2 * localFloat21 * *pfloatResult6;
           *pfloatResult6 = localFloat21 * *pfloatResult6;
           pfloatResult6 = pfloatResult6 + 1;
           localLong8 = localLong8 + -1;
@@ -187858,7 +187858,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
       result0 = result3;
       if (bufferSize != 0) {
         do {
-          floatResult9 = 0.0;
+          FloatValue2 = 0.0;
           localFloat27 = 0.0;
           localFloat21 = 0.0;
           localFloat26 = 0.0;
@@ -187886,7 +187886,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
                 presultValue = pfloatResult6 + result1;
                 IndexResult = (int)CounterResult + 8;
                 CounterResult = (ulonglong)IndexResult;
-                floatResult9 = floatResult9 + *presultValue * *presultValue;
+                FloatValue2 = FloatValue2 + *presultValue * *presultValue;
                 localFloat27 = localFloat27 + presultValue[1] * presultValue[1];
                 localFloat21 = localFloat21 + presultValue[2] * presultValue[2];
                 localFloat26 = localFloat26 + presultValue[3] * presultValue[3];
@@ -187897,36 +187897,36 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
                 localFloat24 = localFloat24 + presultValue[2] * presultValue[2];
                 localFloat25 = localFloat25 + presultValue[3] * presultValue[3];
               } while ((int)IndexResult < (int)(resultPointer - eventTypeCode));
-              afStack_108[0] = localFloat21 + localFloat24 + floatResult9 + localFloat22 + localFloat26 + localFloat25 + localFloat27 + localFloat23
+              afStack_108[0] = localFloat21 + localFloat24 + FloatValue2 + localFloat22 + localFloat26 + localFloat25 + localFloat27 + localFloat23
               ;
             }
-            floatResult9 = afStack_108[0];
+            FloatValue2 = afStack_108[0];
             if ((int)CounterResult < (int)resultPointer) {
               pfloatResult6 = pfloatResult6 + result1;
               result1 = (ulonglong)(resultPointer - (int)CounterResult);
               do {
                 localFloat27 = *pfloatResult6;
                 pfloatResult6 = pfloatResult6 + 1;
-                floatResult9 = floatResult9 + localFloat27 * localFloat27;
+                FloatValue2 = FloatValue2 + localFloat27 * localFloat27;
                 result1 = result1 - 1;
               } while (result1 != 0);
             }
           }
           localFloat27 = *(float *)(uiContext + 0x22c);
-          if (floatResult9 <= localFloat27) {
+          if (FloatValue2 <= localFloat27) {
             localFloat21 = *(float *)(uiContext + 0x338);
           }
           else {
             localFloat21 = *(float *)(uiContext + 0x330);
           }
-          floatResult9 = (floatResult9 - *(float *)(uiContext + 0x2ac)) * localFloat21 + *(float *)(uiContext + 0x2ac);
-          *(float *)(uiContext + 0x2ac) = floatResult9;
-          localFloat27 = (floatResult9 - localFloat27) * localFloat21 + localFloat27;
+          FloatValue2 = (FloatValue2 - *(float *)(uiContext + 0x2ac)) * localFloat21 + *(float *)(uiContext + 0x2ac);
+          *(float *)(uiContext + 0x2ac) = FloatValue2;
+          localFloat27 = (FloatValue2 - localFloat27) * localFloat21 + localFloat27;
           *(float *)(uiContext + 0x22c) = localFloat27;
-          floatResult9 = *(float *)(uiContext + 0x340);
+          FloatValue2 = *(float *)(uiContext + 0x340);
           if (*(float *)(uiContext + 0x21c) <= localFloat27 && localFloat27 != *(float *)(uiContext + 0x21c)) {
             localFloat27 = (float)powf(localFloat27 * *(float *)(uiContext + 0x220));
-            floatResult9 = localFloat27 * floatResult9;
+            FloatValue2 = localFloat27 * FloatValue2;
           }
           result1 = result3;
           if (((0 < (int)resultPointer) && (0xf < resultPointer)) &&
@@ -187951,32 +187951,32 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
               localFloat24 = presultValue[2];
               localFloat25 = presultValue[3];
               presultValue = pfloatResult6 + 0x10;
-              pfloatResult6[-4] = *pprocessedFloat * floatResult9;
-              pfloatResult6[-3] = localFloat27 * floatResult9;
-              pfloatResult6[-2] = localFloat21 * floatResult9;
-              pfloatResult6[-1] = localFloat26 * floatResult9;
+              pfloatResult6[-4] = *pprocessedFloat * FloatValue2;
+              pfloatResult6[-3] = localFloat27 * FloatValue2;
+              pfloatResult6[-2] = localFloat21 * FloatValue2;
+              pfloatResult6[-1] = localFloat26 * FloatValue2;
               pprocessedFloat = (float *)(localLong8 + -0x30 + (longlong)presultValue);
               localFloat27 = *pprocessedFloat;
               localFloat21 = pprocessedFloat[1];
               localFloat26 = pprocessedFloat[2];
               secondaryValue = pprocessedFloat[3];
-              *pfloatResult6 = localFloat22 * floatResult9;
-              pfloatResult6[1] = localFloat23 * floatResult9;
-              pfloatResult6[2] = localFloat24 * floatResult9;
-              pfloatResult6[3] = localFloat25 * floatResult9;
+              *pfloatResult6 = localFloat22 * FloatValue2;
+              pfloatResult6[1] = localFloat23 * FloatValue2;
+              pfloatResult6[2] = localFloat24 * FloatValue2;
+              pfloatResult6[3] = localFloat25 * FloatValue2;
               pprocessedFloat = (float *)(localLong8 + -0x20 + (longlong)presultValue);
               localFloat22 = *pprocessedFloat;
               localFloat23 = pprocessedFloat[1];
               localFloat24 = pprocessedFloat[2];
               localFloat25 = pprocessedFloat[3];
-              pfloatResult6[4] = localFloat27 * floatResult9;
-              pfloatResult6[5] = localFloat21 * floatResult9;
-              pfloatResult6[6] = localFloat26 * floatResult9;
-              pfloatResult6[7] = secondaryValue * floatResult9;
-              pfloatResult6[8] = localFloat22 * floatResult9;
-              pfloatResult6[9] = localFloat23 * floatResult9;
-              pfloatResult6[10] = localFloat24 * floatResult9;
-              pfloatResult6[0xb] = localFloat25 * floatResult9;
+              pfloatResult6[4] = localFloat27 * FloatValue2;
+              pfloatResult6[5] = localFloat21 * FloatValue2;
+              pfloatResult6[6] = localFloat26 * FloatValue2;
+              pfloatResult6[7] = secondaryValue * FloatValue2;
+              pfloatResult6[8] = localFloat22 * FloatValue2;
+              pfloatResult6[9] = localFloat23 * FloatValue2;
+              pfloatResult6[10] = localFloat24 * FloatValue2;
+              pfloatResult6[0xb] = localFloat25 * FloatValue2;
               pfloatResult6 = presultValue;
             } while ((longlong)result1 < (longlong)(int)(resultPointer - eventTypeCode));
           }
@@ -187989,10 +187989,10 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
               pfloatResult6 = (float *)(semaphoreHandle + localLong8 * 4);
               do {
                 presultValue = pfloatResult6 + 4;
-                pfloatResult6[-1] = floatResult9 * *(float *)(CharacterDataOffset + -0x14 + (longlong)presultValue);
-                *pfloatResult6 = floatResult9 * *(float *)((longlong)pfloatResult6 + CharacterDataOffset);
-                pfloatResult6[1] = floatResult9 * *(float *)(CharacterDataOffset + -0xc + (longlong)presultValue);
-                pfloatResult6[2] = floatResult9 * *(float *)(CharacterDataOffset + -8 + (longlong)presultValue);
+                pfloatResult6[-1] = FloatValue2 * *(float *)(CharacterDataOffset + -0x14 + (longlong)presultValue);
+                *pfloatResult6 = FloatValue2 * *(float *)((longlong)pfloatResult6 + CharacterDataOffset);
+                pfloatResult6[1] = FloatValue2 * *(float *)(CharacterDataOffset + -0xc + (longlong)presultValue);
+                pfloatResult6[2] = FloatValue2 * *(float *)(CharacterDataOffset + -8 + (longlong)presultValue);
                 allocatedMemory2 = allocatedMemory2 + -1;
                 pfloatResult6 = presultValue;
               } while (allocatedMemory2 != 0);
@@ -188001,7 +188001,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
               localLong8 = allocatedMemory8 - result1;
               pfloatResult6 = (float *)(semaphoreHandle + result1 * 4);
               do {
-                *pfloatResult6 = floatResult9 * *(float *)((longlong)pfloatResult6 + (result - semaphoreHandle));
+                *pfloatResult6 = FloatValue2 * *(float *)((longlong)pfloatResult6 + (result - semaphoreHandle));
                 localLong8 = localLong8 + -1;
                 pfloatResult6 = pfloatResult6 + 1;
               } while (localLong8 != 0);
@@ -188024,27 +188024,27 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
           pfloatResult6 = (float *)(uiContext + 0x22c);
           result3 = (ulonglong)resultPointer;
           do {
-            floatResult9 = *(float *)((((ulonglong)eventTypeCode * 4 + allocatedMemory7) - uiContext) + -0x22c +
+            FloatValue2 = *(float *)((((ulonglong)eventTypeCode * 4 + allocatedMemory7) - uiContext) + -0x22c +
                                (longlong)pfloatResult6);
             localFloat27 = *pfloatResult6;
-            floatResult9 = floatResult9 * floatResult9;
-            if (floatResult9 <= localFloat27) {
+            FloatValue2 = FloatValue2 * FloatValue2;
+            if (FloatValue2 <= localFloat27) {
               localFloat21 = *(float *)(uiContext + 0x338);
             }
             else {
               localFloat21 = *(float *)(uiContext + 0x330);
             }
-            floatResult9 = (floatResult9 - pfloatResult6[0x20]) * localFloat21 + pfloatResult6[0x20];
-            pfloatResult6[0x20] = floatResult9;
-            localFloat27 = (floatResult9 - localFloat27) * localFloat21 + localFloat27;
+            FloatValue2 = (FloatValue2 - pfloatResult6[0x20]) * localFloat21 + pfloatResult6[0x20];
+            pfloatResult6[0x20] = FloatValue2;
+            localFloat27 = (FloatValue2 - localFloat27) * localFloat21 + localFloat27;
             *pfloatResult6 = localFloat27;
-            floatResult9 = *(float *)(uiContext + 0x340);
+            FloatValue2 = *(float *)(uiContext + 0x340);
             if (*(float *)(uiContext + 0x21c) <= localFloat27 && localFloat27 != *(float *)(uiContext + 0x21c)) {
               localFloat27 = (float)powf(localFloat27 * *(float *)(uiContext + 0x220));
-              floatResult9 = localFloat27 * floatResult9;
+              FloatValue2 = localFloat27 * FloatValue2;
             }
             *(float *)((allocatedMemory8 - uiContext) + -0x22c + (longlong)pfloatResult6) =
-                 floatResult9 * *(float *)(((dataSource + (ulonglong)eventTypeCode * 4) - uiContext) + -0x22c +
+                 FloatValue2 * *(float *)(((dataSource + (ulonglong)eventTypeCode * 4) - uiContext) + -0x22c +
                                     (longlong)pfloatResult6);
             pfloatResult6 = pfloatResult6 + 1;
             result3 = result3 - 1;
@@ -191691,7 +191691,7 @@ void FUN_180784ebd(UIHandle uiContext,ulonglong dataSource,char targetBuffer)
   UIByte aresult8 [16];
   UIHandle extraout_XMM0_Qb_00;
   UIHandle extraout_XMM0_Qb_01;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   UIDword semaphoreHandle2;
@@ -191807,17 +191807,17 @@ LAB_180784edc:
       else {
         func_0x00018074a3d0(*(UIHandle *)(ContextHandle + 0xa8),ProcessingResult1,&stack0x00000068);
         if ((float)(int)_uStack0000000000000068[1] <= 1.0) {
-          floatResult9 = 1.0;
+          FloatValue2 = 1.0;
         }
         else {
           func_0x00018074a3d0(*(UIHandle *)(ContextHandle + 0xa8),*(UIDword *)(ContextHandle + 0x24c),
                               &stack0x00000068);
-          floatResult9 = SQRT((float)(int)_uStack0000000000000068[1]);
+          FloatValue2 = SQRT((float)(int)_uStack0000000000000068[1]);
         }
         FUN_1807d47c0(*(UIDword *)(ContextHandle + 0x244),1,0xc,BasePointer + -0x70);
         func_0x00018074a3d0(*(UIHandle *)(ContextHandle + 0xa8),*(UIDword *)(ContextHandle + 0x24c),
                             &stack0x00000068);
-        func_0x0001807d64c0(_uStack0000000000000068,1.0 / floatResult9,0x3f800000);
+        func_0x0001807d64c0(_uStack0000000000000068,1.0 / FloatValue2,0x3f800000);
       }
     }
     else if (*SourceHandle == 1) {
@@ -191843,7 +191843,7 @@ LAB_180784edc:
           FUN_180784b00();
         }
         else {
-          floatResult9 = 0.0;
+          FloatValue2 = 0.0;
           stackParam00000070 = 0;
           localFloat20 = 0.0;
           stackParam00000078 = 0;
@@ -191864,13 +191864,13 @@ LAB_180784edc:
                   localFloat21 = floatResult6;
                 }
                 localFloat20 = localFloat20 + localFloat21;
-                floatResult9 = floatResult9 + localFloat21 * (float)aresult8._0_8_;
+                FloatValue2 = FloatValue2 + localFloat21 * (float)aresult8._0_8_;
               }
               ProcessingResult1 = ProcessingResult1 + 1;
               ptrResult2 = ptrResult2 + 5;
               pfloatResult0 = pfloatResult0 + 1;
             } while (ProcessingResult1 < *(int *)(ContextHandle + 0x2c8));
-            if (floatResult9 != 0.0) {
+            if (FloatValue2 != 0.0) {
               if (0 < *(int *)(ContextHandle + 0x2c8)) {
                 pfloatResult0 = (float *)&stack0x00000070;
                 ContextHandleData = ContextHandle + 0x2d4;
@@ -191914,7 +191914,7 @@ LAB_180784edc:
                   IndexResult = (ulonglong)ProcessingStatus;
                   if (0 < (int)ProcessingStatus) {
                     do {
-                      *presultFloat = (floatResult9 / SQRT(localFloat20)) * floatResult6 * *presultFloat;
+                      *presultFloat = (FloatValue2 / SQRT(localFloat20)) * floatResult6 * *presultFloat;
                       IndexResult = IndexResult - 1;
                       presultFloat = presultFloat + 1;
                     } while (IndexResult != 0);
@@ -191941,10 +191941,10 @@ LAB_180784edc:
           IsEventProcessingActive = true;
         }
         if ((!isCharacterMatch) || (0.0 <= *(float *)(ContextHandle + 0x2a0))) {
-          floatResult9 = 0.0;
+          FloatValue2 = 0.0;
         }
         else {
-          floatResult9 = -*(float *)(ContextHandle + 0x2a0);
+          FloatValue2 = -*(float *)(ContextHandle + 0x2a0);
         }
         if ((!IsEventProcessingActive) || (localFloat20 = *(float *)(ContextHandle + 0x2a0), localFloat20 <= 0.0)) {
           localFloat20 = 0.0;
@@ -191956,12 +191956,12 @@ LAB_180784edc:
         if ((floatResult6 * localFloat20 != 0.0) && (IsEventProcessingActive)) {
           FUN_180784b00();
         }
-        if ((floatResult6 * floatResult9 != 0.0) && (isCharacterMatch)) {
+        if ((floatResult6 * FloatValue2 != 0.0) && (isCharacterMatch)) {
           FUN_1807d6d40(*(UIHandle *)(ContextHandle + 0x270),*(UIHandle *)(ContextHandle + 600),
                         *(UIDword *)(ContextHandle + 0x284),*(UIDword *)(ContextHandle + 0x288),
                         *(UIDword *)(ContextHandle + 0x28c));
         }
-        if ((((1.0 - floatResult9) * floatResult6 != 0.0) && (IsEventProcessingActive)) && (isCharacterMatch)) {
+        if ((((1.0 - FloatValue2) * floatResult6 != 0.0) && (IsEventProcessingActive)) && (isCharacterMatch)) {
           FUN_1807d6d40(*(UIHandle *)(ContextHandle + 0x270),*(UIHandle *)(ContextHandle + 0x268),
                         *(UIDword *)(ContextHandle + 0x284),*(UIDword *)(ContextHandle + 0x288),
                         *(UIDword *)(ContextHandle + 0x28c));
@@ -206234,8 +206234,8 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
   longlong allocatedMemory5;
   float floatResult6;
   ulonglong result7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   UIByte astackUInt318 [32];
   float fStack_2f8;
@@ -206305,19 +206305,19 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
   }
   fStack_2f8 = (float)EventOperationCount;
   FUN_18075d5e0(stackUInt2d0,astackLong278,stackUInt2d8,localInt5);
-  floatResult8 = *(float *)((longlong)uiContext + 0x24);
+  FloatValue1 = *(float *)((longlong)uiContext + 0x24);
   floatResult6 = 0.0;
   ContextHandleData = 0;
   stackUInt2d8 = 0;
   allocatedMemory5 = 0;
   floatResult = *(float *)(uiContext + 4);
   localFloat20 = 0.0;
-  floatResult9 = 0.0;
+  FloatValue2 = 0.0;
   vectorComponentX = floatResult6;
-  if (floatResult8 != *(float *)((longlong)uiContext + 0x2c)) {
+  if (FloatValue1 != *(float *)((longlong)uiContext + 0x2c)) {
     vectorComponentX = 1.79366e-43;
     allocatedMemory5 = 0x80;
-    floatResult9 = (*(float *)((longlong)uiContext + 0x2c) - floatResult8) * 0.0078125;
+    FloatValue2 = (*(float *)((longlong)uiContext + 0x2c) - FloatValue1) * 0.0078125;
   }
   fStack_2f0 = floatResult6;
   if (floatResult != *(float *)(uiContext + 5)) {
@@ -206325,7 +206325,7 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
     stackUInt2d8 = 0x80;
     localFloat20 = (*(float *)(uiContext + 5) - floatResult) * 0.0078125;
   }
-  if ((vectorComponentX == 0.0) && (floatResult8 <= 0.0)) {
+  if ((vectorComponentX == 0.0) && (FloatValue1 <= 0.0)) {
     ContextHandleData = uiContext[2];
     allocatedMemory5 = uiContext[3];
     eventTypeCode = func_0x00018075e4e0(&stackUInt2c0);
@@ -206346,12 +206346,12 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
           }
           localFloat9 = (float)((int)localFloat9 + 1);
           *(float *)(*pallocatedMemory3 + ContextHandleData * 4) =
-               floatResult8 * *(float *)(astackLong278[(int)processedFloat] + ContextHandleData * 4);
+               FloatValue1 * *(float *)(astackLong278[(int)processedFloat] + ContextHandleData * 4);
           pallocatedMemory3 = pallocatedMemory3 + 1;
         } while ((int)localFloat9 < (int)uiContext[3]);
       }
       ContextHandleData = ContextHandleData + 1;
-      floatResult8 = floatResult8 + floatResult9;
+      FloatValue1 = FloatValue1 + FloatValue2;
     } while (ContextHandleData < allocatedMemory5);
   }
   if ((int)vectorComponentX < (int)uiContext[2]) {
@@ -206359,16 +206359,16 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
     do {
       if (0 < (int)uiContext[3]) {
         pallocatedMemory3 = astackLong178;
-        floatResult9 = floatResult6;
+        FloatValue2 = floatResult6;
         do {
-          localFloat9 = floatResult9;
+          localFloat9 = FloatValue2;
           if (localChar2 != '\0') {
             localFloat9 = 0.0;
           }
-          floatResult9 = (float)((int)floatResult9 + 1);
-          *(float *)(ContextHandleData + *pallocatedMemory3) = floatResult8 * *(float *)(astackLong278[(int)localFloat9] + ContextHandleData);
+          FloatValue2 = (float)((int)FloatValue2 + 1);
+          *(float *)(ContextHandleData + *pallocatedMemory3) = FloatValue1 * *(float *)(astackLong278[(int)localFloat9] + ContextHandleData);
           pallocatedMemory3 = pallocatedMemory3 + 1;
-        } while ((int)floatResult9 < (int)uiContext[3]);
+        } while ((int)FloatValue2 < (int)uiContext[3]);
       }
       vectorComponentX = (float)((int)vectorComponentX + 1);
       ContextHandleData = ContextHandleData + 4;
@@ -206383,9 +206383,9 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
         EventOperationCount = 0;
         localInt5 = *(int *)((longlong)uiContext + 0x1c);
         if (0 < localInt5) {
-          floatResult8 = floatResult6;
+          FloatValue1 = floatResult6;
           if (localChar2 != '\0') {
-            floatResult8 = 0.0;
+            FloatValue1 = 0.0;
           }
           do {
             stackUInt2e8 = stackUInt2d8;
@@ -206393,7 +206393,7 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
             fStack_2f8 = floatResult;
             fStack_2f0 = localFloat20;
             localInt5 = (**(code **)(*pstringCompareIndex + 0x10))
-                              (pstringCompareIndex,astackLong278[(int)floatResult8],*pallocatedMemory3,(int)uiContext[2]);
+                              (pstringCompareIndex,astackLong278[(int)FloatValue1],*pallocatedMemory3,(int)uiContext[2]);
             if (localInt5 != 0) goto LAB_180791aec;
             localInt5 = *(int *)((longlong)uiContext + 0x1c);
             EventOperationCount = EventOperationCount + 1;
@@ -207526,8 +207526,8 @@ UIHandle FUN_1807930b9(longlong uiContext)
   uint TotalResult;
   longlong unmodifiedR15;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   
   result1 = 0;
   TotalResult = (uint)unmodifiedR15;
@@ -207541,7 +207541,7 @@ UIHandle FUN_1807930b9(longlong uiContext)
         CounterResult = unmodifiedEBX >> 2;
         do {
           floatResult7 = _DAT_180be2d08 + *pfloatResult2;
-          floatResult9 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
+          FloatValue2 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
           floatResult = *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10);
           localFloat2 = *(float *)(uiContext + 0x430);
           resultValue = *(float *)(uiContext + 0x42c);
@@ -207549,21 +207549,21 @@ UIHandle FUN_1807930b9(longlong uiContext)
           secondaryValue = *(float *)(uiContext + 0x434);
           localFloat6 = *(float *)(uiContext + 0x43c);
           _DAT_180be2d08 = -_DAT_180be2d08;
-          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = floatResult9;
+          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = FloatValue2;
           resultFloat = *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10);
-          floatResult8 = (floatResult7 * resultValue - floatResult9 * localFloat2) - floatResult * secondaryValue;
-          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = floatResult8;
+          FloatValue1 = (floatResult7 * resultValue - FloatValue2 * localFloat2) - floatResult * secondaryValue;
+          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = FloatValue1;
           localFloat2 = *(float *)(uiContext + 0x440);
           resultValue = *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10);
           secondaryValue = *(float *)(uiContext + 0x44c);
           floatResult7 = *(float *)(uiContext + 0x444);
           localFloat8 = *(float *)(uiContext + 0x448);
           *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10) = resultFloat;
-          floatResult9 = ((floatResult9 * processedFloat + floatResult8 + floatResult * localFloat6) - resultFloat * localFloat2) - resultValue * floatResult7;
-          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = floatResult9;
-          *pfloatResult3 = resultFloat * localFloat8 + floatResult9 + resultValue * secondaryValue;
+          FloatValue2 = ((FloatValue2 * processedFloat + FloatValue1 + floatResult * localFloat6) - resultFloat * localFloat2) - resultValue * floatResult7;
+          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = FloatValue2;
+          *pfloatResult3 = resultFloat * localFloat8 + FloatValue2 + resultValue * secondaryValue;
           floatResult7 = _DAT_180be2d08 + pfloatResult2[unmodifiedR15];
-          floatResult9 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
+          FloatValue2 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
           floatResult = *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10);
           localFloat2 = *(float *)(uiContext + 0x430);
           resultValue = *(float *)(uiContext + 0x42c);
@@ -207571,21 +207571,21 @@ UIHandle FUN_1807930b9(longlong uiContext)
           secondaryValue = *(float *)(uiContext + 0x434);
           localFloat6 = *(float *)(uiContext + 0x43c);
           _DAT_180be2d08 = -_DAT_180be2d08;
-          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = floatResult9;
+          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = FloatValue2;
           resultFloat = *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10);
-          floatResult8 = (floatResult7 * resultValue - floatResult9 * localFloat2) - floatResult * secondaryValue;
-          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = floatResult8;
+          FloatValue1 = (floatResult7 * resultValue - FloatValue2 * localFloat2) - floatResult * secondaryValue;
+          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = FloatValue1;
           localFloat2 = *(float *)(uiContext + 0x440);
           resultValue = *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10);
           secondaryValue = *(float *)(uiContext + 0x44c);
           floatResult7 = *(float *)(uiContext + 0x444);
           localFloat8 = *(float *)(uiContext + 0x448);
           *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10) = resultFloat;
-          floatResult9 = ((floatResult9 * processedFloat + floatResult8 + floatResult * localFloat6) - resultFloat * localFloat2) - resultValue * floatResult7;
-          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = floatResult9;
-          pfloatResult3[unmodifiedR15] = resultFloat * localFloat8 + floatResult9 + resultValue * secondaryValue;
+          FloatValue2 = ((FloatValue2 * processedFloat + FloatValue1 + floatResult * localFloat6) - resultFloat * localFloat2) - resultValue * floatResult7;
+          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = FloatValue2;
+          pfloatResult3[unmodifiedR15] = resultFloat * localFloat8 + FloatValue2 + resultValue * secondaryValue;
           floatResult7 = _DAT_180be2d08 + pfloatResult2[unmodifiedR15 * 2];
-          floatResult9 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
+          FloatValue2 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
           floatResult = *(float *)(uiContext + 0x42c);
           localFloat2 = *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10);
           resultValue = *(float *)(uiContext + 0x430);
@@ -207593,22 +207593,22 @@ UIHandle FUN_1807930b9(longlong uiContext)
           secondaryValue = *(float *)(uiContext + 0x438);
           localFloat6 = *(float *)(uiContext + 0x43c);
           _DAT_180be2d08 = -_DAT_180be2d08;
-          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = floatResult9;
+          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = FloatValue2;
           resultFloat = *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10);
-          floatResult8 = (floatResult7 * floatResult - floatResult9 * resultValue) - localFloat2 * processedFloat;
-          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = floatResult8;
+          FloatValue1 = (floatResult7 * floatResult - FloatValue2 * resultValue) - localFloat2 * processedFloat;
+          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = FloatValue1;
           floatResult = *(float *)(uiContext + 0x440);
           resultValue = *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10);
           processedFloat = *(float *)(uiContext + 0x44c);
           floatResult7 = *(float *)(uiContext + 0x444);
           localFloat8 = *(float *)(uiContext + 0x448);
           *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10) = resultFloat;
-          floatResult9 = ((floatResult9 * secondaryValue + floatResult8 + localFloat2 * localFloat6) - resultFloat * floatResult) - resultValue * floatResult7;
-          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = floatResult9;
-          pfloatResult3[unmodifiedR15 * 2] = resultFloat * localFloat8 + floatResult9 + resultValue * processedFloat;
+          FloatValue2 = ((FloatValue2 * secondaryValue + FloatValue1 + localFloat2 * localFloat6) - resultFloat * floatResult) - resultValue * floatResult7;
+          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = FloatValue2;
+          pfloatResult3[unmodifiedR15 * 2] = resultFloat * localFloat8 + FloatValue2 + resultValue * processedFloat;
           floatResult7 = _DAT_180be2d08 + pfloatResult2[unmodifiedR15 * 3];
           pfloatResult2 = pfloatResult2 + (int)(TotalResult * 4);
-          floatResult9 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
+          FloatValue2 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
           floatResult = *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10);
           localFloat2 = *(float *)(uiContext + 0x430);
           resultValue = *(float *)(uiContext + 0x434);
@@ -207616,19 +207616,19 @@ UIHandle FUN_1807930b9(longlong uiContext)
           secondaryValue = *(float *)(uiContext + 0x43c);
           localFloat6 = *(float *)(uiContext + 0x42c);
           _DAT_180be2d08 = -_DAT_180be2d08;
-          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = floatResult9;
+          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = FloatValue2;
           resultFloat = *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10);
-          floatResult8 = (floatResult7 * localFloat6 - floatResult9 * localFloat2) - floatResult * resultValue;
-          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = floatResult8;
+          FloatValue1 = (floatResult7 * localFloat6 - FloatValue2 * localFloat2) - floatResult * resultValue;
+          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = FloatValue1;
           localFloat2 = *(float *)(uiContext + 0x440);
           resultValue = *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10);
           localFloat6 = *(float *)(uiContext + 0x44c);
           floatResult7 = *(float *)(uiContext + 0x444);
           localFloat8 = *(float *)(uiContext + 0x448);
           *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10) = resultFloat;
-          floatResult9 = ((floatResult9 * processedFloat + floatResult8 + floatResult * secondaryValue) - resultFloat * localFloat2) - resultValue * floatResult7;
-          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = floatResult9;
-          pfloatResult3[unmodifiedR15 * 3] = resultFloat * localFloat8 + floatResult9 + resultValue * localFloat6;
+          FloatValue2 = ((FloatValue2 * processedFloat + FloatValue1 + floatResult * secondaryValue) - resultFloat * localFloat2) - resultValue * floatResult7;
+          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = FloatValue2;
+          pfloatResult3[unmodifiedR15 * 3] = resultFloat * localFloat8 + FloatValue2 + resultValue * localFloat6;
           pfloatResult3 = pfloatResult3 + (int)(TotalResult * 4);
           CounterResult = CounterResult - 1;
         } while (CounterResult != 0);
@@ -207639,7 +207639,7 @@ UIHandle FUN_1807930b9(longlong uiContext)
         CounterResult = unmodifiedEBX & 3;
         do {
           floatResult7 = _DAT_180be2d08 + *pfloatResult2;
-          floatResult9 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
+          FloatValue2 = *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10);
           floatResult = *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10);
           localFloat2 = *(float *)(uiContext + 0x430);
           resultValue = *(float *)(uiContext + 0x434);
@@ -207647,19 +207647,19 @@ UIHandle FUN_1807930b9(longlong uiContext)
           secondaryValue = *(float *)(uiContext + 0x43c);
           localFloat6 = *(float *)(uiContext + 0x42c);
           _DAT_180be2d08 = -_DAT_180be2d08;
-          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = floatResult9;
+          *(float *)(uiContext + 0x230 + CharacterDataOffset * 0x10) = FloatValue2;
           resultFloat = *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10);
-          floatResult8 = (floatResult7 * localFloat6 - floatResult9 * localFloat2) - floatResult * resultValue;
-          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = floatResult8;
+          FloatValue1 = (floatResult7 * localFloat6 - FloatValue2 * localFloat2) - floatResult * resultValue;
+          *(float *)(uiContext + 0x22c + CharacterDataOffset * 0x10) = FloatValue1;
           localFloat2 = *(float *)(uiContext + 0x440);
           resultValue = *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10);
           localFloat6 = *(float *)(uiContext + 0x44c);
           floatResult7 = *(float *)(uiContext + 0x444);
           localFloat8 = *(float *)(uiContext + 0x448);
           *(float *)(uiContext + 0x238 + CharacterDataOffset * 0x10) = resultFloat;
-          floatResult9 = ((floatResult9 * processedFloat + floatResult8 + floatResult * secondaryValue) - resultFloat * localFloat2) - resultValue * floatResult7;
-          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = floatResult9;
-          *(float *)((longlong)pfloatResult2 + allocatedMemory4) = resultFloat * localFloat8 + floatResult9 + resultValue * localFloat6;
+          FloatValue2 = ((FloatValue2 * processedFloat + FloatValue1 + floatResult * secondaryValue) - resultFloat * localFloat2) - resultValue * floatResult7;
+          *(float *)(uiContext + 0x234 + CharacterDataOffset * 0x10) = FloatValue2;
+          *(float *)((longlong)pfloatResult2 + allocatedMemory4) = resultFloat * localFloat8 + FloatValue2 + resultValue * localFloat6;
           pfloatResult2 = pfloatResult2 + unmodifiedR15;
           CounterResult = CounterResult - 1;
         } while (CounterResult != 0);
@@ -207961,8 +207961,8 @@ UIHandle FUN_180793880(longlong uiContext,float dataSource,float targetBuffer)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float afStack_2fc [135];
   UIHandle stackUInte0;
@@ -207971,20 +207971,20 @@ UIHandle FUN_180793880(longlong uiContext,float dataSource,float targetBuffer)
   
   if (1.0 <= dataSource) {
     plocalFloat6 = (float *)(uiContext + 0x430);
-    floatResult8 = (float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0);
+    FloatValue1 = (float)*(int *)(*(longlong *)(uiBufferData + 0xa8) + 0x6d0);
     stackUIntb0 = 0x3f800000;
     stackUIntac = 0x3f800000;
     localFloat20 = 1.0;
-    if (floatResult8 * 0.5 < targetBuffer) {
-      targetBuffer = floatResult8 * 0.5 - 10.0;
+    if (FloatValue1 * 0.5 < targetBuffer) {
+      targetBuffer = FloatValue1 * 0.5 - 10.0;
     }
     stackUInte0 = 0x18079393d;
-    localFloat8 = (float)tanf((targetBuffer * 3.1415927) / floatResult8);
+    localFloat8 = (float)tanf((targetBuffer * 3.1415927) / FloatValue1);
     psecondaryValue = (float *)(uiContext + 0x438);
     pprocessedFloat = (float *)(uiContext + 0x460);
     presultValue = (float *)(uiContext + 0x24c);
     localLong7 = 2;
-    localFloat8 = localFloat8 * (floatResult8 + floatResult8);
+    localFloat8 = localFloat8 * (FloatValue1 + FloatValue1);
     localFloat9 = 1.0 / (localFloat8 * localFloat8);
     do {
       floatResult = pprocessedFloat[-1];
@@ -207992,58 +207992,58 @@ UIHandle FUN_180793880(longlong uiContext,float dataSource,float targetBuffer)
       floatResult6 = localFloat9 * pprocessedFloat[-2];
       localFloat2 = pprocessedFloat[-4];
       floatResult5 = (2.0 / localFloat8) * pprocessedFloat[-3];
-      floatResult7 = floatResult6 * 4.0 * floatResult8;
+      floatResult7 = floatResult6 * 4.0 * FloatValue1;
       floatResult1 = ((2.0 / dataSource) * *pprocessedFloat) / localFloat8;
-      floatResult2 = vectorComponentX * 4.0 * floatResult8;
-      floatResult3 = (floatResult7 + floatResult5) * floatResult8 + localFloat2;
-      floatResult0 = 1.0 / ((floatResult1 + floatResult2) * floatResult8 + floatResult);
-      floatResult9 = floatResult0 * floatResult3                *(float *)((longlong)presultValue + (longlong)&stackUIntb0 + (-0x24c - uiContext));
-      *(float *)((longlong)presultValue + (longlong)&stackUIntb0 + (-0x24c - uiContext)) = floatResult9;
-      *plocalFloat6 = ((floatResult + floatResult) - vectorComponentX * 8.0 * floatResult8 * floatResult8) * floatResult0;
+      floatResult2 = vectorComponentX * 4.0 * FloatValue1;
+      floatResult3 = (floatResult7 + floatResult5) * FloatValue1 + localFloat2;
+      floatResult0 = 1.0 / ((floatResult1 + floatResult2) * FloatValue1 + floatResult);
+      FloatValue2 = floatResult0 * floatResult3                *(float *)((longlong)presultValue + (longlong)&stackUIntb0 + (-0x24c - uiContext));
+      *(float *)((longlong)presultValue + (longlong)&stackUIntb0 + (-0x24c - uiContext)) = FloatValue2;
+      *plocalFloat6 = ((floatResult + floatResult) - vectorComponentX * 8.0 * FloatValue1 * FloatValue1) * floatResult0;
       floatResult3 = 1.0 / floatResult3;
-      psecondaryValue[-1] = ((floatResult8 * floatResult2 - floatResult1 * floatResult8) + floatResult) * floatResult0;
-      *psecondaryValue = ((localFloat2 + localFloat2) - floatResult6 * 8.0 * floatResult8 * floatResult8) * floatResult3;
-      psecondaryValue[1] = ((floatResult7 * floatResult8 - floatResult5 * floatResult8) + localFloat2) * floatResult3;
+      psecondaryValue[-1] = ((FloatValue1 * floatResult2 - floatResult1 * FloatValue1) + floatResult) * floatResult0;
+      *psecondaryValue = ((localFloat2 + localFloat2) - floatResult6 * 8.0 * FloatValue1 * FloatValue1) * floatResult3;
+      psecondaryValue[1] = ((floatResult7 * FloatValue1 - floatResult5 * FloatValue1) + localFloat2) * floatResult3;
       if (presultValue[-10] != 0.0) {
-        presultValue[-8] = (floatResult9 / presultValue[-10]) * presultValue[-8];
-        presultValue[-4] = (floatResult9 / presultValue[-10]) * presultValue[-4];
-        *presultValue = (floatResult9 / presultValue[-10]) * *presultValue;
-        presultValue[4] = (floatResult9 / presultValue[-10]) * presultValue[4];
-        presultValue[8] = (floatResult9 / presultValue[-10]) * presultValue[8];
-        presultValue[0xc] = (floatResult9 / presultValue[-10]) * presultValue[0xc];
-        presultValue[0x10] = (floatResult9 / presultValue[-10]) * presultValue[0x10];
-        presultValue[0x14] = (floatResult9 / presultValue[-10]) * presultValue[0x14];
-        presultValue[0x18] = (floatResult9 / presultValue[-10]) * presultValue[0x18];
-        presultValue[0x1c] = (floatResult9 / presultValue[-10]) * presultValue[0x1c];
-        presultValue[0x20] = (floatResult9 / presultValue[-10]) * presultValue[0x20];
-        presultValue[0x24] = (floatResult9 / presultValue[-10]) * presultValue[0x24];
-        presultValue[0x28] = (floatResult9 / presultValue[-10]) * presultValue[0x28];
-        presultValue[0x2c] = (floatResult9 / presultValue[-10]) * presultValue[0x2c];
-        presultValue[0x30] = (floatResult9 / presultValue[-10]) * presultValue[0x30];
-        presultValue[0x34] = (floatResult9 / presultValue[-10]) * presultValue[0x34];
-        presultValue[0x38] = (floatResult9 / presultValue[-10]) * presultValue[0x38];
-        presultValue[0x3c] = (floatResult9 / presultValue[-10]) * presultValue[0x3c];
-        presultValue[0x40] = (floatResult9 / presultValue[-10]) * presultValue[0x40];
-        presultValue[0x44] = (floatResult9 / presultValue[-10]) * presultValue[0x44];
-        presultValue[0x48] = (floatResult9 / presultValue[-10]) * presultValue[0x48];
-        presultValue[0x4c] = (floatResult9 / presultValue[-10]) * presultValue[0x4c];
-        presultValue[0x50] = (floatResult9 / presultValue[-10]) * presultValue[0x50];
-        presultValue[0x54] = (floatResult9 / presultValue[-10]) * presultValue[0x54];
-        presultValue[0x58] = (floatResult9 / presultValue[-10]) * presultValue[0x58];
-        presultValue[0x5c] = (floatResult9 / presultValue[-10]) * presultValue[0x5c];
-        presultValue[0x60] = (floatResult9 / presultValue[-10]) * presultValue[0x60];
-        presultValue[100] = (floatResult9 / presultValue[-10]) * presultValue[100];
-        presultValue[0x68] = (floatResult9 / presultValue[-10]) * presultValue[0x68];
-        presultValue[0x6c] = (floatResult9 / presultValue[-10]) * presultValue[0x6c];
-        presultValue[0x70] = (floatResult9 / presultValue[-10]) * presultValue[0x70];
-        presultValue[0x74] = (floatResult9 / presultValue[-10]) * presultValue[0x74];
+        presultValue[-8] = (FloatValue2 / presultValue[-10]) * presultValue[-8];
+        presultValue[-4] = (FloatValue2 / presultValue[-10]) * presultValue[-4];
+        *presultValue = (FloatValue2 / presultValue[-10]) * *presultValue;
+        presultValue[4] = (FloatValue2 / presultValue[-10]) * presultValue[4];
+        presultValue[8] = (FloatValue2 / presultValue[-10]) * presultValue[8];
+        presultValue[0xc] = (FloatValue2 / presultValue[-10]) * presultValue[0xc];
+        presultValue[0x10] = (FloatValue2 / presultValue[-10]) * presultValue[0x10];
+        presultValue[0x14] = (FloatValue2 / presultValue[-10]) * presultValue[0x14];
+        presultValue[0x18] = (FloatValue2 / presultValue[-10]) * presultValue[0x18];
+        presultValue[0x1c] = (FloatValue2 / presultValue[-10]) * presultValue[0x1c];
+        presultValue[0x20] = (FloatValue2 / presultValue[-10]) * presultValue[0x20];
+        presultValue[0x24] = (FloatValue2 / presultValue[-10]) * presultValue[0x24];
+        presultValue[0x28] = (FloatValue2 / presultValue[-10]) * presultValue[0x28];
+        presultValue[0x2c] = (FloatValue2 / presultValue[-10]) * presultValue[0x2c];
+        presultValue[0x30] = (FloatValue2 / presultValue[-10]) * presultValue[0x30];
+        presultValue[0x34] = (FloatValue2 / presultValue[-10]) * presultValue[0x34];
+        presultValue[0x38] = (FloatValue2 / presultValue[-10]) * presultValue[0x38];
+        presultValue[0x3c] = (FloatValue2 / presultValue[-10]) * presultValue[0x3c];
+        presultValue[0x40] = (FloatValue2 / presultValue[-10]) * presultValue[0x40];
+        presultValue[0x44] = (FloatValue2 / presultValue[-10]) * presultValue[0x44];
+        presultValue[0x48] = (FloatValue2 / presultValue[-10]) * presultValue[0x48];
+        presultValue[0x4c] = (FloatValue2 / presultValue[-10]) * presultValue[0x4c];
+        presultValue[0x50] = (FloatValue2 / presultValue[-10]) * presultValue[0x50];
+        presultValue[0x54] = (FloatValue2 / presultValue[-10]) * presultValue[0x54];
+        presultValue[0x58] = (FloatValue2 / presultValue[-10]) * presultValue[0x58];
+        presultValue[0x5c] = (FloatValue2 / presultValue[-10]) * presultValue[0x5c];
+        presultValue[0x60] = (FloatValue2 / presultValue[-10]) * presultValue[0x60];
+        presultValue[100] = (FloatValue2 / presultValue[-10]) * presultValue[100];
+        presultValue[0x68] = (FloatValue2 / presultValue[-10]) * presultValue[0x68];
+        presultValue[0x6c] = (FloatValue2 / presultValue[-10]) * presultValue[0x6c];
+        presultValue[0x70] = (FloatValue2 / presultValue[-10]) * presultValue[0x70];
+        presultValue[0x74] = (FloatValue2 / presultValue[-10]) * presultValue[0x74];
       }
       plocalFloat6 = plocalFloat6 + 4;
       psecondaryValue = psecondaryValue + 4;
       pprocessedFloat = pprocessedFloat + 6;
-      presultValue[-10] = floatResult9;
+      presultValue[-10] = FloatValue2;
       presultValue = presultValue + 1;
-      localFloat20 = localFloat20 * floatResult9;
+      localFloat20 = localFloat20 * FloatValue2;
       localLong7 = localLong7 + -1;
     } while (localLong7 != 0);
     *(float *)(uiContext + 0x42c) = localFloat20;
@@ -208095,12 +208095,12 @@ UIHandle FUN_1807938b6(longlong uiContext,UIHandle dataSource,float targetBuffer
   UIDword unmodifiedXMM10_Dc;
   UIDword unmodifiedXMM10_Dd;
   UIDword unmodifiedXMM11_Da;
-  float floatResult8;
+  float FloatValue1;
   UIDword unmodifiedXMM11_Db;
   UIDword unmodifiedXMM11_Dc;
   UIDword unmodifiedXMM11_Dd;
   UIDword unmodifiedXMM12_Da;
-  float floatResult9;
+  float FloatValue2;
   UIDword unmodifiedXMM12_Db;
   UIDword unmodifiedXMM12_Dc;
   UIDword unmodifiedXMM12_Dd;
@@ -208133,23 +208133,23 @@ UIHandle FUN_1807938b6(longlong uiContext,UIHandle dataSource,float targetBuffer
   *(UIDword *)(RegisterPointer + -100) = unmodifiedXMM11_Db;
   *(UIDword *)(RegisterPointer + -0x60) = unmodifiedXMM11_Dc;
   *(UIDword *)(RegisterPointer + -0x5c) = unmodifiedXMM11_Dd;
-  floatResult8 = (float)*(int *)(registerAX + 0x6d0);
+  FloatValue1 = (float)*(int *)(registerAX + 0x6d0);
   uStack0000000000000028 = 0x3f800000;
   uStack000000000000002c = 0x3f800000;
   *(UIDword *)(RegisterPointer + -0x78) = unmodifiedXMM12_Da;
   *(UIDword *)(RegisterPointer + -0x74) = unmodifiedXMM12_Db;
   *(UIDword *)(RegisterPointer + -0x70) = unmodifiedXMM12_Dc;
   *(UIDword *)(RegisterPointer + -0x6c) = unmodifiedXMM12_Dd;
-  if (floatResult8 * 0.5 < targetBuffer) {
-    targetBuffer = floatResult8 * 0.5 - 10.0;
+  if (FloatValue1 * 0.5 < targetBuffer) {
+    targetBuffer = FloatValue1 * 0.5 - 10.0;
   }
   stackUInt8 = 0x18079393d;
-  localFloat8 = (float)tanf((targetBuffer * 3.1415927) / floatResult8);
+  localFloat8 = (float)tanf((targetBuffer * 3.1415927) / FloatValue1);
   psecondaryValue = (float *)(uiContext + 0x438);
   pprocessedFloat = (float *)(TargetHandle + 0x460);
   presultValue = (float *)(TargetHandle + 0x24c);
   localLong7 = 2;
-  localFloat8 = localFloat8 * (floatResult8 + floatResult8);
+  localFloat8 = localFloat8 * (FloatValue1 + FloatValue1);
   localFloat9 = unmodifiedXMM14_Da / (localFloat8 * localFloat8);
   localFloat20 = unmodifiedXMM14_Da;
   do {
@@ -208158,60 +208158,60 @@ UIHandle FUN_1807938b6(longlong uiContext,UIHandle dataSource,float targetBuffer
     floatResult6 = localFloat9 * pprocessedFloat[-2];
     localFloat2 = pprocessedFloat[-4];
     floatResult5 = (2.0 / localFloat8) * pprocessedFloat[-3];
-    floatResult7 = floatResult6 * 4.0 * floatResult8;
+    floatResult7 = floatResult6 * 4.0 * FloatValue1;
     floatResult1 = ((2.0 / unmodifiedXMM6_Da) * *pprocessedFloat) / localFloat8;
-    floatResult2 = vectorComponentX * 4.0 * floatResult8;
-    floatResult3 = (floatResult7 + floatResult5) * floatResult8 + localFloat2;
-    floatResult0 = unmodifiedXMM14_Da / ((floatResult1 + floatResult2) * floatResult8 + floatResult);
-    floatResult9 = floatResult0 * floatResult3              *(float *)((longlong)presultValue +
+    floatResult2 = vectorComponentX * 4.0 * FloatValue1;
+    floatResult3 = (floatResult7 + floatResult5) * FloatValue1 + localFloat2;
+    floatResult0 = unmodifiedXMM14_Da / ((floatResult1 + floatResult2) * FloatValue1 + floatResult);
+    FloatValue2 = floatResult0 * floatResult3              *(float *)((longlong)presultValue +
                        (longlong)((longlong)&stack0x00000028 + (-0x24c - TargetHandle)));
     *(float *)((longlong)presultValue + (longlong)((longlong)&stack0x00000028 + (-0x24c - TargetHandle))) =
-         floatResult9;
-    *plocalFloat6 = ((floatResult + floatResult) - vectorComponentX * 8.0 * floatResult8 * floatResult8) * floatResult0;
+         FloatValue2;
+    *plocalFloat6 = ((floatResult + floatResult) - vectorComponentX * 8.0 * FloatValue1 * FloatValue1) * floatResult0;
     floatResult3 = unmodifiedXMM14_Da / floatResult3;
-    psecondaryValue[-1] = ((floatResult8 * floatResult2 - floatResult1 * floatResult8) + floatResult) * floatResult0;
-    *psecondaryValue = ((localFloat2 + localFloat2) - floatResult6 * 8.0 * floatResult8 * floatResult8) * floatResult3;
-    psecondaryValue[1] = ((floatResult7 * floatResult8 - floatResult5 * floatResult8) + localFloat2) * floatResult3;
+    psecondaryValue[-1] = ((FloatValue1 * floatResult2 - floatResult1 * FloatValue1) + floatResult) * floatResult0;
+    *psecondaryValue = ((localFloat2 + localFloat2) - floatResult6 * 8.0 * FloatValue1 * FloatValue1) * floatResult3;
+    psecondaryValue[1] = ((floatResult7 * FloatValue1 - floatResult5 * FloatValue1) + localFloat2) * floatResult3;
     if (presultValue[-10] != 0.0) {
-      presultValue[-8] = (floatResult9 / presultValue[-10]) * presultValue[-8];
-      presultValue[-4] = (floatResult9 / presultValue[-10]) * presultValue[-4];
-      *presultValue = (floatResult9 / presultValue[-10]) * *presultValue;
-      presultValue[4] = (floatResult9 / presultValue[-10]) * presultValue[4];
-      presultValue[8] = (floatResult9 / presultValue[-10]) * presultValue[8];
-      presultValue[0xc] = (floatResult9 / presultValue[-10]) * presultValue[0xc];
-      presultValue[0x10] = (floatResult9 / presultValue[-10]) * presultValue[0x10];
-      presultValue[0x14] = (floatResult9 / presultValue[-10]) * presultValue[0x14];
-      presultValue[0x18] = (floatResult9 / presultValue[-10]) * presultValue[0x18];
-      presultValue[0x1c] = (floatResult9 / presultValue[-10]) * presultValue[0x1c];
-      presultValue[0x20] = (floatResult9 / presultValue[-10]) * presultValue[0x20];
-      presultValue[0x24] = (floatResult9 / presultValue[-10]) * presultValue[0x24];
-      presultValue[0x28] = (floatResult9 / presultValue[-10]) * presultValue[0x28];
-      presultValue[0x2c] = (floatResult9 / presultValue[-10]) * presultValue[0x2c];
-      presultValue[0x30] = (floatResult9 / presultValue[-10]) * presultValue[0x30];
-      presultValue[0x34] = (floatResult9 / presultValue[-10]) * presultValue[0x34];
-      presultValue[0x38] = (floatResult9 / presultValue[-10]) * presultValue[0x38];
-      presultValue[0x3c] = (floatResult9 / presultValue[-10]) * presultValue[0x3c];
-      presultValue[0x40] = (floatResult9 / presultValue[-10]) * presultValue[0x40];
-      presultValue[0x44] = (floatResult9 / presultValue[-10]) * presultValue[0x44];
-      presultValue[0x48] = (floatResult9 / presultValue[-10]) * presultValue[0x48];
-      presultValue[0x4c] = (floatResult9 / presultValue[-10]) * presultValue[0x4c];
-      presultValue[0x50] = (floatResult9 / presultValue[-10]) * presultValue[0x50];
-      presultValue[0x54] = (floatResult9 / presultValue[-10]) * presultValue[0x54];
-      presultValue[0x58] = (floatResult9 / presultValue[-10]) * presultValue[0x58];
-      presultValue[0x5c] = (floatResult9 / presultValue[-10]) * presultValue[0x5c];
-      presultValue[0x60] = (floatResult9 / presultValue[-10]) * presultValue[0x60];
-      presultValue[100] = (floatResult9 / presultValue[-10]) * presultValue[100];
-      presultValue[0x68] = (floatResult9 / presultValue[-10]) * presultValue[0x68];
-      presultValue[0x6c] = (floatResult9 / presultValue[-10]) * presultValue[0x6c];
-      presultValue[0x70] = (floatResult9 / presultValue[-10]) * presultValue[0x70];
-      presultValue[0x74] = (floatResult9 / presultValue[-10]) * presultValue[0x74];
+      presultValue[-8] = (FloatValue2 / presultValue[-10]) * presultValue[-8];
+      presultValue[-4] = (FloatValue2 / presultValue[-10]) * presultValue[-4];
+      *presultValue = (FloatValue2 / presultValue[-10]) * *presultValue;
+      presultValue[4] = (FloatValue2 / presultValue[-10]) * presultValue[4];
+      presultValue[8] = (FloatValue2 / presultValue[-10]) * presultValue[8];
+      presultValue[0xc] = (FloatValue2 / presultValue[-10]) * presultValue[0xc];
+      presultValue[0x10] = (FloatValue2 / presultValue[-10]) * presultValue[0x10];
+      presultValue[0x14] = (FloatValue2 / presultValue[-10]) * presultValue[0x14];
+      presultValue[0x18] = (FloatValue2 / presultValue[-10]) * presultValue[0x18];
+      presultValue[0x1c] = (FloatValue2 / presultValue[-10]) * presultValue[0x1c];
+      presultValue[0x20] = (FloatValue2 / presultValue[-10]) * presultValue[0x20];
+      presultValue[0x24] = (FloatValue2 / presultValue[-10]) * presultValue[0x24];
+      presultValue[0x28] = (FloatValue2 / presultValue[-10]) * presultValue[0x28];
+      presultValue[0x2c] = (FloatValue2 / presultValue[-10]) * presultValue[0x2c];
+      presultValue[0x30] = (FloatValue2 / presultValue[-10]) * presultValue[0x30];
+      presultValue[0x34] = (FloatValue2 / presultValue[-10]) * presultValue[0x34];
+      presultValue[0x38] = (FloatValue2 / presultValue[-10]) * presultValue[0x38];
+      presultValue[0x3c] = (FloatValue2 / presultValue[-10]) * presultValue[0x3c];
+      presultValue[0x40] = (FloatValue2 / presultValue[-10]) * presultValue[0x40];
+      presultValue[0x44] = (FloatValue2 / presultValue[-10]) * presultValue[0x44];
+      presultValue[0x48] = (FloatValue2 / presultValue[-10]) * presultValue[0x48];
+      presultValue[0x4c] = (FloatValue2 / presultValue[-10]) * presultValue[0x4c];
+      presultValue[0x50] = (FloatValue2 / presultValue[-10]) * presultValue[0x50];
+      presultValue[0x54] = (FloatValue2 / presultValue[-10]) * presultValue[0x54];
+      presultValue[0x58] = (FloatValue2 / presultValue[-10]) * presultValue[0x58];
+      presultValue[0x5c] = (FloatValue2 / presultValue[-10]) * presultValue[0x5c];
+      presultValue[0x60] = (FloatValue2 / presultValue[-10]) * presultValue[0x60];
+      presultValue[100] = (FloatValue2 / presultValue[-10]) * presultValue[100];
+      presultValue[0x68] = (FloatValue2 / presultValue[-10]) * presultValue[0x68];
+      presultValue[0x6c] = (FloatValue2 / presultValue[-10]) * presultValue[0x6c];
+      presultValue[0x70] = (FloatValue2 / presultValue[-10]) * presultValue[0x70];
+      presultValue[0x74] = (FloatValue2 / presultValue[-10]) * presultValue[0x74];
     }
     plocalFloat6 = plocalFloat6 + 4;
     psecondaryValue = psecondaryValue + 4;
     pprocessedFloat = pprocessedFloat + 6;
-    presultValue[-10] = floatResult9;
+    presultValue[-10] = FloatValue2;
     presultValue = presultValue + 1;
-    localFloat20 = localFloat20 * floatResult9;
+    localFloat20 = localFloat20 * FloatValue2;
     localLong7 = localLong7 + -1;
   } while (localLong7 != 0);
   *(float *)(TargetHandle + 0x42c) = localFloat20;
@@ -208322,8 +208322,8 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -208379,9 +208379,9 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       floatResult2 = *(float *)(uiContext + 0x220);
       localFloat25 = *(float *)(uiContext + 0x224);
       floatResult0 = *(float *)(uiContext + 0x228);
-      floatResult8 = *(float *)(uiContext + 0x22c);
+      FloatValue1 = *(float *)(uiContext + 0x22c);
       localFloat24 = localFloat25;
-      floatResult6 = floatResult8;
+      floatResult6 = FloatValue1;
       if (bufferSize != 0) {
         do {
           floatResult6 = floatResult0;
@@ -208394,13 +208394,13 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           dataSource = dataSource + 2;
           _DAT_180be2df8 = -_DAT_180be2df8;
           *targetBuffer = floatResult2;
-          floatResult0 = localFloat9 * localFloat23 + floatResult0 * floatResult6 + localFloat20 * floatResult8;
+          floatResult0 = localFloat9 * localFloat23 + floatResult0 * floatResult6 + localFloat20 * FloatValue1;
           targetBuffer[1] = floatResult0;
           targetBuffer = targetBuffer + 2;
           MaxProcessingCount = (int)eventTypeCode - 1;
           eventTypeCode = (ulonglong)MaxProcessingCount;
           localFloat25 = localFloat24;
-          floatResult8 = floatResult6;
+          FloatValue1 = floatResult6;
         } while (MaxProcessingCount != 0);
       }
       *(float *)(uiContext + 0x220) = floatResult2;
@@ -208412,14 +208412,14 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       floatResult2 = *(float *)(uiContext + 0x234);
       localFloat25 = *(float *)(uiContext + 0x23c);
       floatResult0 = *(float *)(uiContext + 0x244);
-      floatResult8 = *(float *)(uiContext + 0x248);
+      FloatValue1 = *(float *)(uiContext + 0x248);
       fStack_d0 = *(float *)(uiContext + 0x24c);
       localFloat24 = *(float *)(uiContext + 0x220);
       floatResult6 = *(float *)(uiContext + 0x224);
       localFloat23 = *(float *)(uiContext + 0x228);
       localFloat20 = *(float *)(uiContext + 0x22c);
       localFloat9 = *(float *)(uiContext + 0x230);
-      floatResult9 = *(float *)(uiContext + 0x238);
+      FloatValue2 = *(float *)(uiContext + 0x238);
       floatResult5 = *(float *)(uiContext + 0x240);
       if (bufferSize != 0) {
         presultValue = targetBuffer + 2;
@@ -208431,9 +208431,9 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
         fStack_c8 = localFloat25;
         fStack_c4 = floatResult2;
         do {
-          fStack_d0 = floatResult8;
+          fStack_d0 = FloatValue1;
           floatResult0 = floatResult5;
-          localFloat25 = floatResult9;
+          localFloat25 = FloatValue2;
           floatResult2 = localFloat9;
           localFloat20 = localFloat23;
           floatResult6 = localFloat24;
@@ -208442,22 +208442,22 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           floatResult5 = *(float *)(uiContext + 0x328);
           vectorComponentX = _DAT_180be2df8 + plocalFloat2[2];
           localFloat24 = (_DAT_180be2df8 + plocalFloat2[-2]) * floatResult + floatResult3 * floatResult6 + floatResult5 * floatResult1;
-          floatResult8 = _DAT_180be2df8 + plocalFloat2[1];
+          FloatValue1 = _DAT_180be2df8 + plocalFloat2[1];
           localFloat23 = (_DAT_180be2df8 + plocalFloat2[-1]) * floatResult + floatResult3 * localFloat20 + floatResult5 * floatResult7;
           localFloat9 = (_DAT_180be2df8 + *plocalFloat2) * floatResult + floatResult3 * floatResult2 + floatResult5 * fStack_c4;
           floatResult1 = _DAT_180be2df8 + plocalFloat2[3];
           _DAT_180be2df8 = -_DAT_180be2df8;
-          floatResult9 = floatResult8 * floatResult + floatResult3 * localFloat25 + floatResult5 * fStack_c8;
+          FloatValue2 = FloatValue1 * floatResult + floatResult3 * localFloat25 + floatResult5 * fStack_c8;
           presultValue[-1] = localFloat23;
-          floatResult8 = floatResult5 * fStackX_10;
+          FloatValue1 = floatResult5 * fStackX_10;
           floatResult5 = vectorComponentX * floatResult + floatResult3 * floatResult0 + floatResult5 * fStack_cc;
           fStackX_10 = fStack_d0;
           *presultValue = localFloat9;
-          presultValue[1] = floatResult9;
+          presultValue[1] = FloatValue2;
           presultValue[2] = floatResult5;
           *(float *)((longlong)targetBuffer + (-8 - (longlong)dataSource) + (longlong)plocalFloat2) = localFloat24;
-          floatResult8 = floatResult1 * floatResult + floatResult3 * fStack_d0 + floatResult8;
-          presultValue[3] = floatResult8;
+          FloatValue1 = floatResult1 * floatResult + floatResult3 * fStack_d0 + FloatValue1;
+          presultValue[3] = FloatValue1;
           presultValue = presultValue + 6;
           plocalFloat2 = plocalFloat2 + 6;
           MaxProcessingCount = (int)eventTypeCode - 1;
@@ -208475,18 +208475,18 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x22c) = localFloat20;
       *(float *)(uiContext + 0x230) = localFloat9;
       *(float *)(uiContext + 0x234) = floatResult2;
-      *(float *)(uiContext + 0x238) = floatResult9;
+      *(float *)(uiContext + 0x238) = FloatValue2;
       *(float *)(uiContext + 0x23c) = localFloat25;
       *(float *)(uiContext + 0x240) = floatResult5;
       *(float *)(uiContext + 0x244) = floatResult0;
-      *(float *)(uiContext + 0x248) = floatResult8;
+      *(float *)(uiContext + 0x248) = FloatValue1;
       *(float *)(uiContext + 0x24c) = fStack_d0;
     }
     else if (resultPointer == 8) {
       floatResult2 = *(float *)(uiContext + 0x220);
       localFloat25 = *(float *)(uiContext + 0x228);
       floatResult0 = *(float *)(uiContext + 0x230);
-      floatResult8 = *(float *)(uiContext + 0x238);
+      FloatValue1 = *(float *)(uiContext + 0x238);
       localFloat24 = *(float *)(uiContext + 0x250);
       fStack_d4 = *(float *)(uiContext + 0x254);
       floatResult6 = *(float *)(uiContext + 0x224);
@@ -208502,13 +208502,13 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       if (bufferSize != 0) {
         presultValue = targetBuffer + 2;
         plocalFloat2 = dataSource + 2;
-        floatResult9 = fStack_c4;
+        FloatValue2 = fStack_c4;
         floatResult5 = floatResult6;
         floatResult1 = localFloat23;
         floatResult7 = localFloat20;
         fStack_b8 = fStack_d4;
         do {
-          fStack_c4 = floatResult8;
+          fStack_c4 = FloatValue1;
           fStack_d4 = localFloat24;
           localFloat20 = floatResult0;
           localFloat23 = localFloat25;
@@ -208519,13 +208519,13 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           floatResult2 = (_DAT_180be2df8 + plocalFloat2[-2]) * floatResult3 + floatResult6 * floatResult + floatResult5 * vectorComponentX;
           localFloat25 = (_DAT_180be2df8 + plocalFloat2[-1]) * floatResult3 + localFloat23 * floatResult + floatResult1 * vectorComponentX;
           floatResult0 = (_DAT_180be2df8 + *plocalFloat2) * floatResult3 + localFloat20 * floatResult + floatResult7 * vectorComponentX;
-          floatResult8 = (_DAT_180be2df8 + plocalFloat2[1]) * floatResult3 + fStack_c4 * floatResult + floatResult9 * vectorComponentX;
+          FloatValue1 = (_DAT_180be2df8 + plocalFloat2[1]) * floatResult3 + fStack_c4 * floatResult + FloatValue2 * vectorComponentX;
           localFloat22 = (_DAT_180be2df8 + plocalFloat2[2]) * floatResult3 + fStack_d0 * floatResult + localFloat9 * vectorComponentX;
           localFloat21 = (_DAT_180be2df8 + plocalFloat2[3]) * floatResult3 + fStack_cc * floatResult + fStack_bc * vectorComponentX;
           localFloat24 = (_DAT_180be2df8 + plocalFloat2[4]) * floatResult3 + fStack_d4 * floatResult + fStack_b8 * vectorComponentX;
           floatResult3 = (_DAT_180be2df8 + plocalFloat2[5]) * floatResult3 + fStack_c8 * floatResult + fStack_b4 * vectorComponentX;
           _DAT_180be2df8 = -_DAT_180be2df8;
-          presultValue[1] = floatResult8;
+          presultValue[1] = FloatValue1;
           presultValue[2] = localFloat22;
           presultValue[3] = localFloat21;
           presultValue[4] = localFloat24;
@@ -208540,7 +208540,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           fStack_b4 = fStack_c8;
           MaxProcessingCount = (int)eventTypeCode - 1;
           eventTypeCode = (ulonglong)MaxProcessingCount;
-          floatResult9 = fStack_c4;
+          FloatValue2 = fStack_c4;
           localFloat9 = fStack_d0;
           floatResult5 = floatResult6;
           floatResult1 = localFloat23;
@@ -208560,7 +208560,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x22c) = localFloat23;
       *(float *)(uiContext + 0x230) = floatResult0;
       *(float *)(uiContext + 0x234) = localFloat20;
-      *(float *)(uiContext + 0x238) = floatResult8;
+      *(float *)(uiContext + 0x238) = FloatValue1;
       *(float *)(uiContext + 0x244) = localFloat9;
       *(float *)(uiContext + 0x250) = localFloat24;
       *(float *)(uiContext + 0x254) = fStack_d4;
@@ -208577,25 +208577,25 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
         floatResult0 = *presultValue;
         plocalFloat2 = dataSource;
         ProcessingStatus = eventTypeCode;
-        floatResult8 = floatResult0;
+        FloatValue1 = floatResult0;
         if (bufferSize != 0) {
           do {
-            floatResult8 = localFloat25;
+            FloatValue1 = localFloat25;
             localFloat25 = floatResult2 + *plocalFloat2;
             floatResult2 = -floatResult2;
-            localFloat25 = localFloat25 * *(float *)(uiContext + 800) + floatResult8 * *(float *)(uiContext + 0x324) +
+            localFloat25 = localFloat25 * *(float *)(uiContext + 800) + FloatValue1 * *(float *)(uiContext + 0x324) +
                      floatResult0 * *(float *)(uiContext + 0x328);
             *(float *)(EventDataIndex + (longlong)plocalFloat2) = localFloat25;
             MaxProcessingCount = (int)ProcessingStatus - 1;
             plocalFloat2 = plocalFloat2 + (int)resultPointer;
             ProcessingStatus = (ulonglong)MaxProcessingCount;
-            floatResult0 = floatResult8;
+            floatResult0 = FloatValue1;
             _DAT_180be2df8 = floatResult2;
           } while (MaxProcessingCount != 0);
         }
         presultValue[-1] = localFloat25;
         dataSource = dataSource + 1;
-        *presultValue = floatResult8;
+        *presultValue = FloatValue1;
         presultValue = presultValue + 2;
         uVar8 = uVar8 - 1;
       } while (uVar8 != 0);
@@ -208633,8 +208633,8 @@ UIHandle FUN_1807942ce(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -208795,9 +208795,9 @@ UIHandle FUN_1807942ce(void)
         localFloat8 = (_DAT_180be2df8 + *plocalFloat2) * floatResult0 + floatResult7 * floatResult + vectorComponentX * floatResult1;
         floatResult5 = (_DAT_180be2df8 + plocalFloat2[1]) * floatResult0 + fStack0000000000000034 * floatResult +
                  floatResult6 * floatResult1;
-        floatResult9 = (_DAT_180be2df8 + plocalFloat2[2]) * floatResult0 + fStack0000000000000028 * floatResult +
+        FloatValue2 = (_DAT_180be2df8 + plocalFloat2[2]) * floatResult0 + fStack0000000000000028 * floatResult +
                  resultFloat * floatResult1;
-        floatResult8 = (_DAT_180be2df8 + plocalFloat2[3]) * floatResult0 + fStack000000000000002c * floatResult +
+        FloatValue1 = (_DAT_180be2df8 + plocalFloat2[3]) * floatResult0 + fStack000000000000002c * floatResult +
                  fStack000000000000003c * floatResult1;
         localFloat22 = (_DAT_180be2df8 + plocalFloat2[4]) * floatResult0 + fStackX_24 * floatResult +
                  fStack0000000000000040 * floatResult1;
@@ -208805,8 +208805,8 @@ UIHandle FUN_1807942ce(void)
                  fStack0000000000000044 * floatResult1;
         _DAT_180be2df8 = -_DAT_180be2df8;
         presultValue[1] = floatResult5;
-        presultValue[2] = floatResult9;
-        presultValue[3] = floatResult8;
+        presultValue[2] = FloatValue2;
+        presultValue[3] = FloatValue1;
         presultValue[4] = localFloat22;
         presultValue[5] = floatResult0;
         *(float *)((longlong)TargetHandle + (-8 - (longlong)BasePointer) + (longlong)plocalFloat2) = localFloat20;
@@ -208823,8 +208823,8 @@ UIHandle FUN_1807942ce(void)
         floatResult2 = floatResult3;
         localFloat9 = localFloat21;
         vectorComponentX = floatResult7;
-        fStack0000000000000028 = floatResult9;
-        fStack000000000000002c = floatResult8;
+        fStack0000000000000028 = FloatValue2;
+        fStack000000000000002c = FloatValue1;
         fStack0000000000000030 = floatResult0;
       } while (unmodifiedESI != 0);
     }
@@ -208909,8 +208909,8 @@ UIHandle FUN_1807943f6(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -208929,7 +208929,7 @@ UIHandle FUN_1807943f6(void)
   if (TempInt4 == 6) {
     localFloat23 = *(float *)(ContextHandle + 0x234);
     localFloat22 = *(float *)(ContextHandle + 0x23c);
-    floatResult9 = *(float *)(ContextHandle + 0x244);
+    FloatValue2 = *(float *)(ContextHandle + 0x244);
     floatResult3 = *(float *)(ContextHandle + 0x248);
     fStack0000000000000028 = *(float *)(ContextHandle + 0x24c);
     localFloat21 = *(float *)(ContextHandle + 0x220);
@@ -208944,13 +208944,13 @@ UIHandle FUN_1807943f6(void)
       plocalFloat2 = BasePointer + 2;
       resultFloat = floatResult1;
       floatResult2 = floatResult5;
-      fStack000000000000002c = floatResult9;
+      fStack000000000000002c = FloatValue2;
       fStack0000000000000030 = localFloat22;
       fStack0000000000000034 = localFloat23;
       fStack0000000000000108 = fStack0000000000000028;
       do {
         fStack0000000000000028 = floatResult3;
-        floatResult9 = floatResult0;
+        FloatValue2 = floatResult0;
         localFloat22 = vectorComponentX;
         localFloat23 = floatResult7;
         floatResult5 = localFloat20;
@@ -208969,7 +208969,7 @@ UIHandle FUN_1807943f6(void)
         vectorComponentX = floatResult3 * floatResult + localFloat8 * localFloat22 + floatResult0 * fStack0000000000000030;
         presultValue[-1] = localFloat20;
         floatResult3 = floatResult0 * fStack0000000000000108;
-        floatResult0 = localFloat9 * floatResult + localFloat8 * floatResult9 + floatResult0 * fStack000000000000002c;
+        floatResult0 = localFloat9 * floatResult + localFloat8 * FloatValue2 + floatResult0 * fStack000000000000002c;
         fStack0000000000000108 = fStack0000000000000028;
         *presultValue = floatResult7;
         presultValue[1] = vectorComponentX;
@@ -208982,7 +208982,7 @@ UIHandle FUN_1807943f6(void)
         unmodifiedESI = unmodifiedESI + -1;
         resultFloat = floatResult1;
         floatResult2 = floatResult5;
-        fStack000000000000002c = floatResult9;
+        fStack000000000000002c = FloatValue2;
         fStack0000000000000030 = localFloat22;
         fStack0000000000000034 = localFloat23;
       } while (unmodifiedESI != 0);
@@ -208996,14 +208996,14 @@ UIHandle FUN_1807943f6(void)
     *(float *)(ContextHandle + 0x238) = vectorComponentX;
     *(float *)(ContextHandle + 0x23c) = localFloat22;
     *(float *)(ContextHandle + 0x240) = floatResult0;
-    *(float *)(ContextHandle + 0x244) = floatResult9;
+    *(float *)(ContextHandle + 0x244) = FloatValue2;
     *(float *)(ContextHandle + 0x248) = floatResult3;
     *(float *)(ContextHandle + 0x24c) = fStack0000000000000028;
   }
   else if (TempInt4 == 8) {
     localFloat23 = *(float *)(ContextHandle + 0x220);
     localFloat22 = *(float *)(ContextHandle + 0x228);
-    floatResult9 = *(float *)(ContextHandle + 0x230);
+    FloatValue2 = *(float *)(ContextHandle + 0x230);
     floatResult3 = *(float *)(ContextHandle + 0x238);
     localFloat21 = *(float *)(ContextHandle + 0x250);
     fStackX_24 = *(float *)(ContextHandle + 0x254);
@@ -209028,7 +209028,7 @@ UIHandle FUN_1807943f6(void)
       do {
         fStack0000000000000034 = floatResult3;
         fStackX_24 = localFloat21;
-        floatResult5 = floatResult9;
+        floatResult5 = FloatValue2;
         localFloat20 = localFloat22;
         floatResult1 = localFloat23;
         localFloat8 = *(float *)(ContextHandle + 800);
@@ -209036,10 +209036,10 @@ UIHandle FUN_1807943f6(void)
         localFloat9 = *(float *)(ContextHandle + 0x328);
         localFloat23 = (_DAT_180be2df8 + plocalFloat2[-2]) * localFloat8 + floatResult1 * floatResult + floatResult0 * localFloat9;
         localFloat22 = (_DAT_180be2df8 + plocalFloat2[-1]) * localFloat8 + localFloat20 * floatResult + resultFloat * localFloat9;
-        floatResult9 = (_DAT_180be2df8 + *plocalFloat2) * localFloat8 + floatResult5 * floatResult + floatResult2 * localFloat9;
+        FloatValue2 = (_DAT_180be2df8 + *plocalFloat2) * localFloat8 + floatResult5 * floatResult + floatResult2 * localFloat9;
         floatResult3 = (_DAT_180be2df8 + plocalFloat2[1]) * localFloat8 + fStack0000000000000034 * floatResult +
                  vectorComponentX * localFloat9;
-        floatResult8 = (_DAT_180be2df8 + plocalFloat2[2]) * localFloat8 + fStack0000000000000028 * floatResult +
+        FloatValue1 = (_DAT_180be2df8 + plocalFloat2[2]) * localFloat8 + fStack0000000000000028 * floatResult +
                  floatResult7 * localFloat9;
         floatResult6 = (_DAT_180be2df8 + plocalFloat2[3]) * localFloat8 + fStack000000000000002c * floatResult +
                  fStack000000000000003c * localFloat9;
@@ -209049,14 +209049,14 @@ UIHandle FUN_1807943f6(void)
                 fStack0000000000000044 * localFloat9;
         _DAT_180be2df8 = -_DAT_180be2df8;
         presultValue[1] = floatResult3;
-        presultValue[2] = floatResult8;
+        presultValue[2] = FloatValue1;
         presultValue[3] = floatResult6;
         presultValue[4] = localFloat21;
         presultValue[5] = localFloat8;
         *(float *)((TargetHandle - (longlong)BasePointer) + -8 + (longlong)plocalFloat2) = localFloat23;
         plocalFloat2 = plocalFloat2 + 8;
         presultValue[-1] = localFloat22;
-        *presultValue = floatResult9;
+        *presultValue = FloatValue2;
         presultValue = presultValue + 8;
         fStack000000000000003c = fStack000000000000002c;
         fStack0000000000000040 = fStackX_24;
@@ -209067,7 +209067,7 @@ UIHandle FUN_1807943f6(void)
         floatResult0 = floatResult1;
         resultFloat = localFloat20;
         floatResult2 = floatResult5;
-        fStack0000000000000028 = floatResult8;
+        fStack0000000000000028 = FloatValue1;
         fStack000000000000002c = floatResult6;
         fStack0000000000000030 = localFloat8;
       } while (unmodifiedESI != 0);
@@ -209080,7 +209080,7 @@ UIHandle FUN_1807943f6(void)
     *(float *)(ContextHandle + 0x224) = floatResult1;
     *(float *)(ContextHandle + 0x228) = localFloat22;
     *(float *)(ContextHandle + 0x22c) = localFloat20;
-    *(float *)(ContextHandle + 0x230) = floatResult9;
+    *(float *)(ContextHandle + 0x230) = FloatValue2;
     *(float *)(ContextHandle + 0x234) = floatResult5;
     *(float *)(ContextHandle + 0x238) = floatResult3;
     *(float *)(ContextHandle + 0x244) = floatResult7;
@@ -209096,9 +209096,9 @@ UIHandle FUN_1807943f6(void)
     localFloat23 = _DAT_180be2df8;
     do {
       localFloat22 = presultValue[-1];
-      floatResult9 = *presultValue;
+      FloatValue2 = *presultValue;
       plocalFloat2 = BasePointer;
-      floatResult3 = floatResult9;
+      floatResult3 = FloatValue2;
       TempInt4 = unmodifiedESI;
       if (unmodifiedESI != 0) {
         do {
@@ -209106,11 +209106,11 @@ UIHandle FUN_1807943f6(void)
           localFloat22 = localFloat23 + *plocalFloat2;
           localFloat23 = -localFloat23;
           localFloat22 = localFloat22 * *(float *)(ContextHandle + 800) + floatResult3 * *(float *)(ContextHandle + 0x324) +
-                   floatResult9 * *(float *)(ContextHandle + 0x328);
+                   FloatValue2 * *(float *)(ContextHandle + 0x328);
           *(float *)(EventDataIndex + (longlong)plocalFloat2) = localFloat22;
           TempInt4 = TempInt4 + -1;
           plocalFloat2 = plocalFloat2 + register9;
-          floatResult9 = floatResult3;
+          FloatValue2 = floatResult3;
           _DAT_180be2df8 = localFloat23;
         } while (TempInt4 != 0);
       }
@@ -209244,8 +209244,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float fStackX_10;
   float fStackX_18;
@@ -209323,8 +209323,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
       floatResult5 = *(float *)(uiContext + 0x234);
       floatResult6 = *(float *)(uiContext + 0x238);
       floatResult7 = *(float *)(uiContext + 0x23c);
-      floatResult8 = *(float *)(uiContext + 0x240);
-      floatResult9 = *(float *)(uiContext + 0x244);
+      FloatValue1 = *(float *)(uiContext + 0x240);
+      FloatValue2 = *(float *)(uiContext + 0x244);
       localFloat20 = *(float *)(uiContext + 0x248);
       if (bufferSize != 0) {
         plocalFloat2 = (float *)(targetBuffer + 8);
@@ -209340,8 +209340,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
                             * *(float *)(uiContext + 0x31c);
           floatResult7 = floatResult7 + ((_DAT_180be2ee8 + *(float *)(targetBuffer + 8 + (longlong)plocalFloat2)) - floatResult7)
                             * *(float *)(uiContext + 0x31c);
-          floatResult9 = floatResult9 + floatResult * ((_DAT_180be2ee8 + *(float *)(targetBuffer + 0xc + (longlong)plocalFloat2))
-                                    - floatResult9);
+          FloatValue2 = FloatValue2 + floatResult * ((_DAT_180be2ee8 + *(float *)(targetBuffer + 0xc + (longlong)plocalFloat2))
+                                    - FloatValue2);
           floatResult2 = floatResult2 + (floatResult1 - floatResult2) * floatResult;
           floatResult3 = floatResult3 + (floatResult0 - floatResult3) * floatResult;
           plocalFloat2[-2] = floatResult2;
@@ -209350,11 +209350,11 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
           floatResult6 = floatResult6 + (floatResult5 - floatResult6) * floatResult;
           *plocalFloat2 = vectorComponentX;
           plocalFloat2[1] = floatResult6;
-          localFloat20 = localFloat20 + (floatResult9 - localFloat20) * floatResult;
+          localFloat20 = localFloat20 + (FloatValue2 - localFloat20) * floatResult;
           localFloat9 = -_DAT_180be2ee8;
-          floatResult8 = floatResult8 + (floatResult7 - floatResult8) * floatResult;
+          FloatValue1 = FloatValue1 + (floatResult7 - FloatValue1) * floatResult;
           _DAT_180be2ee8 = localFloat9;
-          plocalFloat2[2] = floatResult8;
+          plocalFloat2[2] = FloatValue1;
           plocalFloat2[3] = localFloat20;
           plocalFloat2 = plocalFloat2 + 6;
           LoopCounter = (int)MaxProcessingCount - 1;
@@ -209370,8 +209370,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
       *(float *)(uiContext + 0x234) = floatResult5;
       *(float *)(uiContext + 0x238) = floatResult6;
       *(float *)(uiContext + 0x23c) = floatResult7;
-      *(float *)(uiContext + 0x240) = floatResult8;
-      *(float *)(uiContext + 0x244) = floatResult9;
+      *(float *)(uiContext + 0x240) = FloatValue1;
+      *(float *)(uiContext + 0x244) = FloatValue2;
       *(float *)(uiContext + 0x248) = localFloat20;
     }
     else if (resultPointer == 8) {
@@ -209387,8 +209387,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
       floatResult5 = *(float *)(uiContext + 0x234);
       floatResult6 = *(float *)(uiContext + 0x238);
       floatResult7 = *(float *)(uiContext + 0x23c);
-      floatResult8 = *(float *)(uiContext + 0x240);
-      floatResult9 = *(float *)(uiContext + 0x244);
+      FloatValue1 = *(float *)(uiContext + 0x240);
+      FloatValue2 = *(float *)(uiContext + 0x244);
       localFloat20 = *(float *)(uiContext + 0x248);
       localFloat9 = *(float *)(uiContext + 0x24c);
       if (bufferSize != 0) {
@@ -209404,8 +209404,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
                             * *(float *)(uiContext + 0x31c);
           floatResult7 = floatResult7 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + targetBuffer + 8)) - floatResult7)
                             * *(float *)(uiContext + 0x31c);
-          floatResult9 = floatResult9 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + targetBuffer + 0xc)) -
-                            floatResult9) * *(float *)(uiContext + 0x31c);
+          FloatValue2 = FloatValue2 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + targetBuffer + 0xc)) -
+                            FloatValue2) * *(float *)(uiContext + 0x31c);
           localFloat9 = localFloat9 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + targetBuffer + 0x10)) - localFloat9)
                           * *(float *)(uiContext + 0x31c);
           floatResult = *(float *)(uiContext + 0x31c);
@@ -209416,8 +209416,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
           floatResult2 = floatResult2 + (floatResult1 - floatResult2) * floatResult;
           floatResult6 = floatResult6 + (floatResult5 - floatResult6) * floatResult;
           vectorComponentX = vectorComponentX + (localFloat8 - vectorComponentX) * floatResult;
-          localFloat20 = localFloat20 + (floatResult9 - localFloat20) * floatResult;
-          floatResult8 = floatResult8 + (floatResult7 - floatResult8) * floatResult;
+          localFloat20 = localFloat20 + (FloatValue2 - localFloat20) * floatResult;
+          FloatValue1 = FloatValue1 + (floatResult7 - FloatValue1) * floatResult;
           fStack_c8 = fStack_c8 + (localFloat9 - fStack_c8) * floatResult;
           fStackX_18 = fStackX_18 + (fStackX_10 - fStackX_18) * floatResult;
           _DAT_180be2ee8 = -_DAT_180be2ee8;
@@ -209425,7 +209425,7 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
           plocalFloat2[-1] = floatResult3;
           *plocalFloat2 = vectorComponentX;
           plocalFloat2[1] = floatResult6;
-          plocalFloat2[2] = floatResult8;
+          plocalFloat2[2] = FloatValue1;
           plocalFloat2[3] = localFloat20;
           plocalFloat2[4] = fStack_c8;
           plocalFloat2[5] = fStackX_18;
@@ -209443,8 +209443,8 @@ UIHandle FUN_180794f40(longlong uiContext,float *dataSource,longlong targetBuffe
       *(float *)(uiContext + 0x234) = floatResult5;
       *(float *)(uiContext + 0x238) = floatResult6;
       *(float *)(uiContext + 0x23c) = floatResult7;
-      *(float *)(uiContext + 0x240) = floatResult8;
-      *(float *)(uiContext + 0x244) = floatResult9;
+      *(float *)(uiContext + 0x240) = FloatValue1;
+      *(float *)(uiContext + 0x244) = FloatValue2;
       *(float *)(uiContext + 0x248) = localFloat20;
       *(float *)(uiContext + 0x24c) = localFloat9;
       *(float *)(uiContext + 0x250) = fStack_c8;
@@ -209514,8 +209514,8 @@ UIHandle FUN_1807950d0(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float fStackX_20;
   float fStack00000000000000f8;
   float fStack0000000000000100;
@@ -209559,8 +209559,8 @@ UIHandle FUN_1807950d0(void)
     floatResult5 = *(float *)(ContextHandle + 0x238);
     floatResult6 = *(float *)(ContextHandle + 0x23c);
     floatResult7 = *(float *)(ContextHandle + 0x240);
-    floatResult8 = *(float *)(ContextHandle + 0x244);
-    floatResult9 = *(float *)(ContextHandle + 0x248);
+    FloatValue1 = *(float *)(ContextHandle + 0x244);
+    FloatValue2 = *(float *)(ContextHandle + 0x248);
     if (unmodifiedESI != 0) {
       plocalFloat2 = (float *)(BasePointer + 8);
       EventDataIndex = (longlong)TargetHandle - BasePointer;
@@ -209572,8 +209572,8 @@ UIHandle FUN_1807950d0(void)
         floatResult = *(float *)(ContextHandle + 0x31c);
         vectorComponentX = vectorComponentX + ((_DAT_180be2ee8 + *(float *)(EventDataIndex + 4 + (longlong)plocalFloat2)) - vectorComponentX)                           *(float *)(ContextHandle + 0x31c);
         floatResult6 = floatResult6 + ((_DAT_180be2ee8 + *(float *)(EventDataIndex + 8 + (longlong)plocalFloat2)) - floatResult6)                           *(float *)(ContextHandle + 0x31c);
-        floatResult8 = floatResult8 + floatResult * ((_DAT_180be2ee8 + *(float *)(EventDataIndex + 0xc + (longlong)plocalFloat2)) -
-                                  floatResult8);
+        FloatValue1 = FloatValue1 + floatResult * ((_DAT_180be2ee8 + *(float *)(EventDataIndex + 0xc + (longlong)plocalFloat2)) -
+                                  FloatValue1);
         floatResult0 = floatResult0 + (localFloat9 - floatResult0) * floatResult;
         floatResult2 = floatResult2 + (floatResult1 - floatResult2) * floatResult;
         plocalFloat2[-2] = floatResult0;
@@ -209582,12 +209582,12 @@ UIHandle FUN_1807950d0(void)
         floatResult5 = floatResult5 + (vectorComponentX - floatResult5) * floatResult;
         *plocalFloat2 = floatResult3;
         plocalFloat2[1] = floatResult5;
-        floatResult9 = floatResult9 + (floatResult8 - floatResult9) * floatResult;
+        FloatValue2 = FloatValue2 + (FloatValue1 - FloatValue2) * floatResult;
         localFloat8 = -_DAT_180be2ee8;
         floatResult7 = floatResult7 + (floatResult6 - floatResult7) * floatResult;
         _DAT_180be2ee8 = localFloat8;
         plocalFloat2[2] = floatResult7;
-        plocalFloat2[3] = floatResult9;
+        plocalFloat2[3] = FloatValue2;
         plocalFloat2 = plocalFloat2 + 6;
         unmodifiedESI = unmodifiedESI + -1;
       } while (unmodifiedESI != 0);
@@ -209602,8 +209602,8 @@ UIHandle FUN_1807950d0(void)
     *(float *)(ContextHandle + 0x238) = floatResult5;
     *(float *)(ContextHandle + 0x23c) = floatResult6;
     *(float *)(ContextHandle + 0x240) = floatResult7;
-    *(float *)(ContextHandle + 0x244) = floatResult8;
-    *(float *)(ContextHandle + 0x248) = floatResult9;
+    *(float *)(ContextHandle + 0x244) = FloatValue1;
+    *(float *)(ContextHandle + 0x248) = FloatValue2;
   }
   else if (TempInt4 == 8) {
     fStackX_20 = *(float *)(ContextHandle + 0x250);
@@ -209619,8 +209619,8 @@ UIHandle FUN_1807950d0(void)
     floatResult5 = *(float *)(ContextHandle + 0x238);
     floatResult6 = *(float *)(ContextHandle + 0x23c);
     floatResult7 = *(float *)(ContextHandle + 0x240);
-    floatResult8 = *(float *)(ContextHandle + 0x244);
-    floatResult9 = *(float *)(ContextHandle + 0x248);
+    FloatValue1 = *(float *)(ContextHandle + 0x244);
+    FloatValue2 = *(float *)(ContextHandle + 0x248);
     localFloat8 = *(float *)(ContextHandle + 0x24c);
     if (unmodifiedESI != 0) {
       plocalFloat2 = (float *)(BasePointer + 8);
@@ -209631,7 +209631,7 @@ UIHandle FUN_1807950d0(void)
         resultFloat = resultFloat + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex)) - resultFloat)                         *(float *)(ContextHandle + 0x31c);
         vectorComponentX = vectorComponentX + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex + 4)) - vectorComponentX)                           *(float *)(ContextHandle + 0x31c);
         floatResult6 = floatResult6 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex + 8)) - floatResult6)                           *(float *)(ContextHandle + 0x31c);
-        floatResult8 = floatResult8 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex + 0xc)) - floatResult8)                           *(float *)(ContextHandle + 0x31c);
+        FloatValue1 = FloatValue1 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex + 0xc)) - FloatValue1)                           *(float *)(ContextHandle + 0x31c);
         localFloat8 = localFloat8 + ((_DAT_180be2ee8 + *(float *)((longlong)plocalFloat2 + EventDataIndex + 0x10)) - localFloat8)                         *(float *)(ContextHandle + 0x31c);
         floatResult = *(float *)(ContextHandle + 0x31c);
         fStack00000000000000f8 =
@@ -209642,7 +209642,7 @@ UIHandle FUN_1807950d0(void)
         floatResult0 = floatResult0 + (localFloat9 - floatResult0) * floatResult;
         floatResult5 = floatResult5 + (vectorComponentX - floatResult5) * floatResult;
         floatResult3 = floatResult3 + (resultFloat - floatResult3) * floatResult;
-        floatResult9 = floatResult9 + (floatResult8 - floatResult9) * floatResult;
+        FloatValue2 = FloatValue2 + (FloatValue1 - FloatValue2) * floatResult;
         floatResult7 = floatResult7 + (floatResult6 - floatResult7) * floatResult;
         fStackX_20 = fStackX_20 + (localFloat8 - fStackX_20) * floatResult;
         fStack0000000000000100 =
@@ -209653,7 +209653,7 @@ UIHandle FUN_1807950d0(void)
         *plocalFloat2 = floatResult3;
         plocalFloat2[1] = floatResult5;
         plocalFloat2[2] = floatResult7;
-        plocalFloat2[3] = floatResult9;
+        plocalFloat2[3] = FloatValue2;
         plocalFloat2[4] = fStackX_20;
         plocalFloat2[5] = fStack0000000000000100;
         plocalFloat2 = plocalFloat2 + 8;
@@ -209670,8 +209670,8 @@ UIHandle FUN_1807950d0(void)
     *(float *)(ContextHandle + 0x238) = floatResult5;
     *(float *)(ContextHandle + 0x23c) = floatResult6;
     *(float *)(ContextHandle + 0x240) = floatResult7;
-    *(float *)(ContextHandle + 0x244) = floatResult8;
-    *(float *)(ContextHandle + 0x248) = floatResult9;
+    *(float *)(ContextHandle + 0x244) = FloatValue1;
+    *(float *)(ContextHandle + 0x248) = FloatValue2;
     *(float *)(ContextHandle + 0x24c) = localFloat8;
     *(float *)(ContextHandle + 0x250) = fStackX_20;
     *(float *)(ContextHandle + 0x254) = fStack00000000000000f8;
@@ -211004,8 +211004,8 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
   uint CounterResult;
   uint TotalResult;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -211037,10 +211037,10 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
     *bufferSize = (float)dataSource[7];
     bufferSize[1] = (float)dataSource[8];
     bufferSize[2] = (float)dataSource[9];
-    floatResult9 = (float)dataSource[1] * (float)dataSource[1];
+    FloatValue2 = (float)dataSource[1] * (float)dataSource[1];
     localFloat24 = (float)dataSource[3] * (float)dataSource[3];
-    localFloat25 = localFloat24 + floatResult9;
-    *resultPointer = SQRT((float)dataSource[2] * (float)dataSource[2] + floatResult9 + localFloat24);
+    localFloat25 = localFloat24 + FloatValue2;
+    *resultPointer = SQRT((float)dataSource[2] * (float)dataSource[2] + FloatValue2 + localFloat24);
   }
   else {
     localFloat25 = 3.4028235e+38;
@@ -211050,7 +211050,7 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
     if (3 < allocatedMemory2) {
       plocalFloat6 = (float *)(dataSource + 1);
       do {
-        floatResult9 = plocalFloat6[0xd];
+        FloatValue2 = plocalFloat6[0xd];
         localFloat24 = plocalFloat6[0xe];
         localFloat29 = SQRT(plocalFloat6[1] * plocalFloat6[1] + *plocalFloat6 * *plocalFloat6 + plocalFloat6[2] * plocalFloat6[2]);
         floatResult7 = plocalFloat6[0xc];
@@ -211058,12 +211058,12 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
         if (localFloat25 <= localFloat29) {
           localFloat29 = localFloat25;
         }
-        localFloat25 = SQRT(floatResult7 * floatResult7 + floatResult9 * floatResult9 + localFloat24 * localFloat24);
+        localFloat25 = SQRT(floatResult7 * floatResult7 + FloatValue2 * FloatValue2 + localFloat24 * localFloat24);
         afStack_b8[uVar8 + 1] = localFloat25;
         if (localFloat25 <= localFloat29) {
           localFloat29 = localFloat25;
         }
-        floatResult9 = plocalFloat6[0x25];
+        FloatValue2 = plocalFloat6[0x25];
         localFloat24 = plocalFloat6[0x26];
         localFloat25 = SQRT(plocalFloat6[0x18] * plocalFloat6[0x18] + plocalFloat6[0x19] * plocalFloat6[0x19] +
                       plocalFloat6[0x1a] * plocalFloat6[0x1a]);
@@ -211072,10 +211072,10 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
         if (localFloat29 <= localFloat25) {
           localFloat25 = localFloat29;
         }
-        floatResult9 = SQRT(floatResult7 * floatResult7 + floatResult9 * floatResult9 + localFloat24 * localFloat24);
-        afStack_b8[uVar8 + 3] = floatResult9;
-        if (floatResult9 <= localFloat25) {
-          localFloat25 = floatResult9;
+        FloatValue2 = SQRT(floatResult7 * floatResult7 + FloatValue2 * FloatValue2 + localFloat24 * localFloat24);
+        afStack_b8[uVar8 + 3] = FloatValue2;
+        if (FloatValue2 <= localFloat25) {
+          localFloat25 = FloatValue2;
         }
         uVar8 = uVar8 + 4;
         plocalFloat6 = plocalFloat6 + 0x30;
@@ -211083,7 +211083,7 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
     }
     if ((longlong)uVar8 < allocatedMemory2) {
       plocalFloat6 = (float *)(dataSource + uVar8 * 0xc + 1);
-      floatResult9 = localFloat25;
+      FloatValue2 = localFloat25;
       do {
         localFloat25 = *plocalFloat6;
         pfloatResult = plocalFloat6 + 1;
@@ -211091,17 +211091,17 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
         plocalFloat6 = plocalFloat6 + 0xc;
         localFloat25 = SQRT(*pfloatResult * *pfloatResult + localFloat25 * localFloat25 + *plocalFloat2 * *plocalFloat2);
         afStack_b8[uVar8] = localFloat25;
-        if (floatResult9 <= localFloat25) {
-          localFloat25 = floatResult9;
+        if (FloatValue2 <= localFloat25) {
+          localFloat25 = FloatValue2;
         }
         uVar8 = uVar8 + 1;
-        floatResult9 = localFloat25;
+        FloatValue2 = localFloat25;
       } while ((longlong)uVar8 < allocatedMemory2);
     }
-    floatResult9 = *(float *)(uiContext + 0x2a4);
-    localFloat24 = floatResult9 * 0.5 + localFloat25;
-    if (localFloat24 <= floatResult9) {
-      localFloat24 = floatResult9;
+    FloatValue2 = *(float *)(uiContext + 0x2a4);
+    localFloat24 = FloatValue2 * 0.5 + localFloat25;
+    if (localFloat24 <= FloatValue2) {
+      localFloat24 = FloatValue2;
     }
     eventTypeCode = 0;
     if ((0 < (int)EventTypeCode) && (eventTypeCode = 0, 3 < EventTypeCode)) {
@@ -211118,10 +211118,10 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
       aProcessingStatus._8_4_ = localFloat24 - localFloat25;
       aProcessingStatus._12_4_ = localFloat24 - localFloat25;
       aEventTypeCode0 = rcpps(aEventTypeCode0,aProcessingStatus);
-      floatResult9 = aEventTypeCode0._0_4_;
+      FloatValue2 = aEventTypeCode0._0_4_;
       floatResult7 = aEventTypeCode0._4_4_;
       localFloat29 = aEventTypeCode0._8_4_;
-      floatResult8 = aEventTypeCode0._12_4_;
+      FloatValue1 = aEventTypeCode0._12_4_;
       uVar8 = result1;
       uVar9 = result1;
       do {
@@ -211134,13 +211134,13 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
         IndexResult = -(uint)(localFloat20 < localFloat24);
         CounterResult = -(uint)(localFloat21 < localFloat24);
         TotalResult = -(uint)(localFloat22 < localFloat24);
-        localFloat23 = (float)((uint)(1.0 - (*(float *)((longlong)afStack_b8 + uVar8) - localFloat25)                                       ((floatResult9 + floatResult9) - floatResult9 * floatResult9 * (localFloat24 - localFloat25))) &
+        localFloat23 = (float)((uint)(1.0 - (*(float *)((longlong)afStack_b8 + uVar8) - localFloat25)                                       ((FloatValue2 + FloatValue2) - FloatValue2 * FloatValue2 * (localFloat24 - localFloat25))) &
                          result3 | ~result3 & *(uint *)((longlong)afStack_d8 + uVar8));
         localFloat26 = (float)((uint)(1.0 - (localFloat20 - localFloat25)                                       ((floatResult7 + floatResult7) - floatResult7 * floatResult7 * (localFloat24 - localFloat25))) &
                          IndexResult | ~IndexResult & *(uint *)((longlong)afStack_d8 + uVar8 + 4));
         localFloat27 = (float)((uint)(1.0 - (localFloat21 - localFloat25)                                       ((localFloat29 + localFloat29) - localFloat29 * localFloat29 * (localFloat24 - localFloat25))) &
                          CounterResult | ~CounterResult & *(uint *)((longlong)afStack_d8 + uVar8 + 8));
-        localFloat28 = (float)((uint)(1.0 - (localFloat22 - localFloat25)                                       ((floatResult8 + floatResult8) - floatResult8 * floatResult8 * (localFloat24 - localFloat25))) &
+        localFloat28 = (float)((uint)(1.0 - (localFloat22 - localFloat25)                                       ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (localFloat24 - localFloat25))) &
                          TotalResult | ~TotalResult & *(uint *)((longlong)afStack_d8 + uVar8 + 0xc));
         localFloat20 = (float)(((uint)(localFloat23 * localFloat23) & result3 | ~result3 & (uint)localFloat23) & result3);
         localFloat21 = (float)(((uint)(localFloat26 * localFloat26) & IndexResult | ~IndexResult & (uint)localFloat26) & IndexResult);
@@ -211166,13 +211166,13 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
     allocatedMemory0 = (longlong)(int)eventTypeCode;
     if (allocatedMemory0 < allocatedMemory2) {
       if (3 < allocatedMemory2 - allocatedMemory0) {
-        floatResult9 = localFloat24 - localFloat25;
+        FloatValue2 = localFloat24 - localFloat25;
         do {
           if (localFloat24 <= afStack_b8[allocatedMemory0]) {
             floatResult7 = 0.0;
           }
           else {
-            floatResult7 = 1.0 - (afStack_b8[allocatedMemory0] - localFloat25) / floatResult9;
+            floatResult7 = 1.0 - (afStack_b8[allocatedMemory0] - localFloat25) / FloatValue2;
             floatResult7 = floatResult7 * floatResult7;
           }
           afStack_d8[allocatedMemory0] = floatResult7;
@@ -211180,40 +211180,40 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
             localFloat29 = 0.0;
           }
           else {
-            localFloat29 = 1.0 - (afStack_b8[allocatedMemory0 + 1] - localFloat25) / floatResult9;
+            localFloat29 = 1.0 - (afStack_b8[allocatedMemory0 + 1] - localFloat25) / FloatValue2;
             localFloat29 = localFloat29 * localFloat29;
           }
           afStack_d8[allocatedMemory0 + 1] = localFloat29;
           if (localFloat24 <= afStack_b8[allocatedMemory0 + 2]) {
-            floatResult8 = 0.0;
+            FloatValue1 = 0.0;
           }
           else {
-            floatResult8 = 1.0 - (afStack_b8[allocatedMemory0 + 2] - localFloat25) / floatResult9;
-            floatResult8 = floatResult8 * floatResult8;
+            FloatValue1 = 1.0 - (afStack_b8[allocatedMemory0 + 2] - localFloat25) / FloatValue2;
+            FloatValue1 = FloatValue1 * FloatValue1;
           }
-          afStack_d8[allocatedMemory0 + 2] = floatResult8;
+          afStack_d8[allocatedMemory0 + 2] = FloatValue1;
           if (localFloat24 <= afStack_b8[allocatedMemory0 + 3]) {
             resultValue2 = 0.0;
           }
           else {
-            resultValue2 = 1.0 - (afStack_b8[allocatedMemory0 + 3] - localFloat25) / floatResult9;
+            resultValue2 = 1.0 - (afStack_b8[allocatedMemory0 + 3] - localFloat25) / FloatValue2;
             resultValue2 = resultValue2 * resultValue2;
           }
           afStack_d8[allocatedMemory0 + 3] = resultValue2;
-          aEventTypeCode0._0_4_ = aEventTypeCode0._0_4_ + floatResult7 + localFloat29 + floatResult8 + resultValue2;
+          aEventTypeCode0._0_4_ = aEventTypeCode0._0_4_ + floatResult7 + localFloat29 + FloatValue1 + resultValue2;
           allocatedMemory0 = allocatedMemory0 + 4;
         } while (allocatedMemory0 < allocatedMemory2 + -3);
       }
       for (; allocatedMemory0 < allocatedMemory2; allocatedMemory0 = allocatedMemory0 + 1) {
         if (localFloat24 <= afStack_b8[allocatedMemory0]) {
-          floatResult9 = 0.0;
+          FloatValue2 = 0.0;
         }
         else {
-          floatResult9 = 1.0 - (afStack_b8[allocatedMemory0] - localFloat25) / (localFloat24 - localFloat25);
-          floatResult9 = floatResult9 * floatResult9;
+          FloatValue2 = 1.0 - (afStack_b8[allocatedMemory0] - localFloat25) / (localFloat24 - localFloat25);
+          FloatValue2 = FloatValue2 * FloatValue2;
         }
-        afStack_d8[allocatedMemory0] = floatResult9;
-        aEventTypeCode0._0_4_ = aEventTypeCode0._0_4_ + floatResult9;
+        afStack_d8[allocatedMemory0] = FloatValue2;
+        aEventTypeCode0._0_4_ = aEventTypeCode0._0_4_ + FloatValue2;
       }
     }
     targetBuffer[0] = 0.0;
@@ -211226,15 +211226,15 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
       if (3 < allocatedMemory2) {
         plocalFloat6 = (float *)(dataSource + 2);
         do {
-          floatResult9 = afStack_d8[result1];
+          FloatValue2 = afStack_d8[result1];
           localFloat24 = afStack_d8[result1 + 1];
-          *targetBuffer = floatResult9 * plocalFloat6[-1] + *targetBuffer;
-          targetBuffer[1] = floatResult9 * *plocalFloat6 + targetBuffer[1];
-          targetBuffer[2] = floatResult9 * plocalFloat6[1] + targetBuffer[2];
-          *bufferSize = floatResult9 * plocalFloat6[5] + *bufferSize;
-          bufferSize[1] = floatResult9 * plocalFloat6[6] + bufferSize[1];
-          bufferSize[2] = floatResult9 * plocalFloat6[7] + bufferSize[2];
-          floatResult9 = afStack_d8[result1 + 2];
+          *targetBuffer = FloatValue2 * plocalFloat6[-1] + *targetBuffer;
+          targetBuffer[1] = FloatValue2 * *plocalFloat6 + targetBuffer[1];
+          targetBuffer[2] = FloatValue2 * plocalFloat6[1] + targetBuffer[2];
+          *bufferSize = FloatValue2 * plocalFloat6[5] + *bufferSize;
+          bufferSize[1] = FloatValue2 * plocalFloat6[6] + bufferSize[1];
+          bufferSize[2] = FloatValue2 * plocalFloat6[7] + bufferSize[2];
+          FloatValue2 = afStack_d8[result1 + 2];
           *targetBuffer = localFloat24 * plocalFloat6[0xb] + *targetBuffer;
           targetBuffer[1] = localFloat24 * plocalFloat6[0xc] + targetBuffer[1];
           targetBuffer[2] = localFloat24 * plocalFloat6[0xd] + targetBuffer[2];
@@ -211242,12 +211242,12 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
           bufferSize[1] = localFloat24 * plocalFloat6[0x12] + bufferSize[1];
           bufferSize[2] = localFloat24 * plocalFloat6[0x13] + bufferSize[2];
           localFloat24 = afStack_d8[result1 + 3];
-          *targetBuffer = floatResult9 * plocalFloat6[0x17] + *targetBuffer;
-          targetBuffer[1] = floatResult9 * plocalFloat6[0x18] + targetBuffer[1];
-          targetBuffer[2] = floatResult9 * plocalFloat6[0x19] + targetBuffer[2];
-          *bufferSize = floatResult9 * plocalFloat6[0x1d] + *bufferSize;
-          bufferSize[1] = floatResult9 * plocalFloat6[0x1e] + bufferSize[1];
-          bufferSize[2] = floatResult9 * plocalFloat6[0x1f] + bufferSize[2];
+          *targetBuffer = FloatValue2 * plocalFloat6[0x17] + *targetBuffer;
+          targetBuffer[1] = FloatValue2 * plocalFloat6[0x18] + targetBuffer[1];
+          targetBuffer[2] = FloatValue2 * plocalFloat6[0x19] + targetBuffer[2];
+          *bufferSize = FloatValue2 * plocalFloat6[0x1d] + *bufferSize;
+          bufferSize[1] = FloatValue2 * plocalFloat6[0x1e] + bufferSize[1];
+          bufferSize[2] = FloatValue2 * plocalFloat6[0x1f] + bufferSize[2];
           *targetBuffer = localFloat24 * plocalFloat6[0x23] + *targetBuffer;
           targetBuffer[1] = localFloat24 * plocalFloat6[0x24] + targetBuffer[1];
           result1 = result1 + 4;
@@ -211262,30 +211262,30 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
       if ((longlong)result1 < allocatedMemory2) {
         plocalFloat6 = (float *)(dataSource + result1 * 0xc + 2);
         do {
-          floatResult9 = afStack_d8[result1];
+          FloatValue2 = afStack_d8[result1];
           result1 = result1 + 1;
-          *targetBuffer = floatResult9 * plocalFloat6[-1] + *targetBuffer;
-          targetBuffer[1] = floatResult9 * *plocalFloat6 + targetBuffer[1];
-          targetBuffer[2] = floatResult9 * plocalFloat6[1] + targetBuffer[2];
-          *bufferSize = floatResult9 * plocalFloat6[5] + *bufferSize;
-          bufferSize[1] = floatResult9 * plocalFloat6[6] + bufferSize[1];
+          *targetBuffer = FloatValue2 * plocalFloat6[-1] + *targetBuffer;
+          targetBuffer[1] = FloatValue2 * *plocalFloat6 + targetBuffer[1];
+          targetBuffer[2] = FloatValue2 * plocalFloat6[1] + targetBuffer[2];
+          *bufferSize = FloatValue2 * plocalFloat6[5] + *bufferSize;
+          bufferSize[1] = FloatValue2 * plocalFloat6[6] + bufferSize[1];
           pfloatResult = plocalFloat6 + 7;
           plocalFloat6 = plocalFloat6 + 0xc;
-          bufferSize[2] = floatResult9 * *pfloatResult + bufferSize[2];
+          bufferSize[2] = FloatValue2 * *pfloatResult + bufferSize[2];
         } while ((longlong)result1 < allocatedMemory2);
       }
-      floatResult9 = 1.0 / aEventTypeCode0._0_4_;
-      *targetBuffer = floatResult9 * *targetBuffer;
-      targetBuffer[2] = floatResult9 * targetBuffer[2];
-      targetBuffer[1] = floatResult9 * targetBuffer[1];
-      floatResult9 = bufferSize[1];
+      FloatValue2 = 1.0 / aEventTypeCode0._0_4_;
+      *targetBuffer = FloatValue2 * *targetBuffer;
+      targetBuffer[2] = FloatValue2 * targetBuffer[2];
+      targetBuffer[1] = FloatValue2 * targetBuffer[1];
+      FloatValue2 = bufferSize[1];
       localFloat24 = *bufferSize;
       floatResult7 = bufferSize[2];
-      localFloat29 = SQRT(floatResult9 * floatResult9 + localFloat24 * localFloat24 + floatResult7 * floatResult7);
+      localFloat29 = SQRT(FloatValue2 * FloatValue2 + localFloat24 * localFloat24 + floatResult7 * floatResult7);
       if (0.0 < localFloat29) {
         localFloat29 = 1.0 / localFloat29;
         *bufferSize = localFloat29 * localFloat24;
-        bufferSize[1] = localFloat29 * floatResult9;
+        bufferSize[1] = localFloat29 * FloatValue2;
         bufferSize[2] = localFloat29 * floatResult7;
       }
       else {
@@ -211330,8 +211330,8 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
   uint CounterResult;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -211436,7 +211436,7 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
     floatResult6 = asemaphoreHandle5._0_4_;
     floatResult7 = asemaphoreHandle5._4_4_;
     localFloat24 = asemaphoreHandle5._8_4_;
-    floatResult8 = asemaphoreHandle5._12_4_;
+    FloatValue1 = asemaphoreHandle5._12_4_;
     MaxProcessingCount = result0;
     eventTypeCode = result0;
     stackParam00000050 = unmodifiedXMM12_Da;
@@ -211444,33 +211444,33 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
     stackParam00000060 = unmodifiedXMM11_Da;
     stackParam00000068 = unmodifiedXMM11_Dc;
     do {
-      floatResult9 = *(float *)((longlong)afStackX_20 + MaxProcessingCount + 4);
+      FloatValue2 = *(float *)((longlong)afStackX_20 + MaxProcessingCount + 4);
       LoopCounter = (int)eventTypeCode + 4;
       eventTypeCode = (ulonglong)LoopCounter;
       result2 = -(uint)(*(float *)((longlong)afStackX_20 + MaxProcessingCount) < localFloat27);
-      result3 = -(uint)(floatResult9 < localFloat27);
+      result3 = -(uint)(FloatValue2 < localFloat27);
       IndexResult = -(uint)(*(float *)(&stack0x00000028 + MaxProcessingCount) < localFloat27);
       CounterResult = -(uint)(*(float *)(&stack0x0000002c + MaxProcessingCount) < localFloat27);
       ptrLocal3 = (uint *)(&stack0x00000000 + MaxProcessingCount);
       localFloat20 = (float)((uint)(1.0 - (*(float *)((longlong)afStackX_20 + MaxProcessingCount) - in_XMM4_Da)                                     ((floatResult6 + floatResult6) - floatResult6 * floatResult6 * (localFloat27 - in_XMM4_Da))) &
                        result2 | ~result2 & *ptrLocal3);
-      localFloat21 = (float)((uint)(1.0 - (floatResult9 - in_XMM4_Da)                                     ((floatResult7 + floatResult7) - floatResult7 * floatResult7 * (localFloat27 - in_XMM4_Da))) &
+      localFloat21 = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((floatResult7 + floatResult7) - floatResult7 * floatResult7 * (localFloat27 - in_XMM4_Da))) &
                        result3 | ~result3 & ptrLocal3[1]);
       localFloat22 = (float)((uint)(1.0 - (*(float *)(&stack0x00000028 + MaxProcessingCount) - in_XMM4_Da)                                     ((localFloat24 + localFloat24) - localFloat24 * localFloat24 * (localFloat27 - in_XMM4_Da))) &
                        IndexResult | ~IndexResult & ptrLocal3[2]);
-      localFloat23 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + MaxProcessingCount) - in_XMM4_Da)                                     ((floatResult8 + floatResult8) - floatResult8 * floatResult8 * (localFloat27 - in_XMM4_Da))) &
+      localFloat23 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + MaxProcessingCount) - in_XMM4_Da)                                     ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (localFloat27 - in_XMM4_Da))) &
                        CounterResult | ~CounterResult & ptrLocal3[3]);
-      floatResult9 = (float)(((uint)(localFloat20 * localFloat20) & result2 | ~result2 & (uint)localFloat20) & result2);
+      FloatValue2 = (float)(((uint)(localFloat20 * localFloat20) & result2 | ~result2 & (uint)localFloat20) & result2);
       localFloat20 = (float)(((uint)(localFloat21 * localFloat21) & result3 | ~result3 & (uint)localFloat21) & result3);
       localFloat21 = (float)(((uint)(localFloat22 * localFloat22) & IndexResult | ~IndexResult & (uint)localFloat22) & IndexResult);
       localFloat22 = (float)(((uint)(localFloat23 * localFloat23) & CounterResult | ~CounterResult & (uint)localFloat23) & CounterResult);
       plocalFloat9 = (float *)(&stack0x00000000 + MaxProcessingCount);
-      *plocalFloat9 = floatResult9;
+      *plocalFloat9 = FloatValue2;
       plocalFloat9[1] = localFloat20;
       plocalFloat9[2] = localFloat21;
       plocalFloat9[3] = localFloat22;
       MaxProcessingCount = MaxProcessingCount + 0x10;
-      localFloat28 = localFloat28 + floatResult9;
+      localFloat28 = localFloat28 + FloatValue2;
       localFloat29 = localFloat29 + localFloat20;
       resultValue0 = resultValue0 + localFloat21;
       resultValue1 = resultValue1 + localFloat22;
@@ -211504,13 +211504,13 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
         }
         *(float *)(&stack0x00000004 + localLong8 * 4) = localFloat24;
         if (localFloat27 <= *(float *)(&stack0x00000028 + localLong8 * 4)) {
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
         }
         else {
-          floatResult8 = 1.0 - (*(float *)(&stack0x00000028 + localLong8 * 4) - in_XMM4_Da) / floatResult6;
-          floatResult8 = floatResult8 * floatResult8;
+          FloatValue1 = 1.0 - (*(float *)(&stack0x00000028 + localLong8 * 4) - in_XMM4_Da) / floatResult6;
+          FloatValue1 = FloatValue1 * FloatValue1;
         }
-        afStackX_8[localLong8] = floatResult8;
+        afStackX_8[localLong8] = FloatValue1;
         if (localFloat27 <= *(float *)(&stack0x0000002c + localLong8 * 4)) {
           localFloat28 = 0.0;
         }
@@ -211519,7 +211519,7 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
           localFloat28 = localFloat28 * localFloat28;
         }
         afStackX_8[localLong8 + 1] = localFloat28;
-        in_XMM5._0_4_ = in_XMM5._0_4_ + floatResult7 + localFloat24 + floatResult8 + localFloat28;
+        in_XMM5._0_4_ = in_XMM5._0_4_ + floatResult7 + localFloat24 + FloatValue1 + localFloat28;
         localLong8 = localLong8 + 4;
       } while (localLong8 < ContextHandle + -3);
     }
@@ -211650,8 +211650,8 @@ void FUN_180797358(longlong uiContext,UIHandle dataSource,float *targetBuffer,fl
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -211756,40 +211756,40 @@ void FUN_180797358(longlong uiContext,UIHandle dataSource,float *targetBuffer,fl
     localFloat24 = asemaphoreHandle5._0_4_;
     floatResult6 = asemaphoreHandle5._4_4_;
     floatResult7 = asemaphoreHandle5._8_4_;
-    floatResult8 = asemaphoreHandle5._12_4_;
+    FloatValue1 = asemaphoreHandle5._12_4_;
     LoopCounter = EventHandle;
     stackParam00000050 = unmodifiedXMM12_Da;
     stackParam00000058 = unmodifiedXMM12_Dc;
     stackParam00000060 = unmodifiedXMM11_Da;
     stackParam00000068 = unmodifiedXMM11_Dc;
     do {
-      floatResult9 = *(float *)((longlong)afStackX_20 + LoopCounter + 4);
+      FloatValue2 = *(float *)((longlong)afStackX_20 + LoopCounter + 4);
       floatResult5 = (float)((int)uVar8 + 4);
       uVar8 = (ulonglong)(uint)floatResult5;
       result1 = -(uint)(*(float *)((longlong)afStackX_20 + LoopCounter) < localFloat27);
-      result2 = -(uint)(floatResult9 < localFloat27);
+      result2 = -(uint)(FloatValue2 < localFloat27);
       result3 = -(uint)(*(float *)(&stack0x00000028 + LoopCounter) < localFloat27);
       IndexResult = -(uint)(*(float *)(&stack0x0000002c + LoopCounter) < localFloat27);
       ptrLocal3 = (uint *)((longlong)afStackX_20 + (LoopCounter - 0x20));
       localFloat20 = (float)((uint)(1.0 - (*(float *)((longlong)afStackX_20 + LoopCounter) - in_XMM4_Da)                                     ((localFloat24 + localFloat24) - localFloat24 * localFloat24 * (localFloat27 - in_XMM4_Da))) &
                        result1 | ~result1 & *ptrLocal3);
-      localFloat21 = (float)((uint)(1.0 - (floatResult9 - in_XMM4_Da)                                     ((floatResult6 + floatResult6) - floatResult6 * floatResult6 * (localFloat27 - in_XMM4_Da))) &
+      localFloat21 = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((floatResult6 + floatResult6) - floatResult6 * floatResult6 * (localFloat27 - in_XMM4_Da))) &
                        result2 | ~result2 & ptrLocal3[1]);
       localFloat22 = (float)((uint)(1.0 - (*(float *)(&stack0x00000028 + LoopCounter) - in_XMM4_Da)                                     ((floatResult7 + floatResult7) - floatResult7 * floatResult7 * (localFloat27 - in_XMM4_Da))) &
                        result3 | ~result3 & ptrLocal3[2]);
-      localFloat23 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + LoopCounter) - in_XMM4_Da)                                     ((floatResult8 + floatResult8) - floatResult8 * floatResult8 * (localFloat27 - in_XMM4_Da))) &
+      localFloat23 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + LoopCounter) - in_XMM4_Da)                                     ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (localFloat27 - in_XMM4_Da))) &
                        IndexResult | ~IndexResult & ptrLocal3[3]);
-      floatResult9 = (float)(((uint)(localFloat20 * localFloat20) & result1 | ~result1 & (uint)localFloat20) & result1);
+      FloatValue2 = (float)(((uint)(localFloat20 * localFloat20) & result1 | ~result1 & (uint)localFloat20) & result1);
       localFloat20 = (float)(((uint)(localFloat21 * localFloat21) & result2 | ~result2 & (uint)localFloat21) & result2);
       localFloat21 = (float)(((uint)(localFloat22 * localFloat22) & result3 | ~result3 & (uint)localFloat22) & result3);
       localFloat22 = (float)(((uint)(localFloat23 * localFloat23) & IndexResult | ~IndexResult & (uint)localFloat23) & IndexResult);
       presultFloat = (float *)((longlong)afStackX_20 + (LoopCounter - 0x20));
-      *presultFloat = floatResult9;
+      *presultFloat = FloatValue2;
       presultFloat[1] = localFloat20;
       presultFloat[2] = localFloat21;
       presultFloat[3] = localFloat22;
       LoopCounter = LoopCounter + 0x10;
-      localFloat28 = localFloat28 + floatResult9;
+      localFloat28 = localFloat28 + FloatValue2;
       localFloat29 = localFloat29 + localFloat20;
       resultValue0 = resultValue0 + localFloat21;
       resultValue1 = resultValue1 + localFloat22;
@@ -211824,13 +211824,13 @@ void FUN_180797358(longlong uiContext,UIHandle dataSource,float *targetBuffer,fl
           floatResult7 = floatResult7 * floatResult7;
         }
         afStackX_8[ContextHandleData] = floatResult7;
-        floatResult8 = unmodifiedXMM8_Da;
+        FloatValue1 = unmodifiedXMM8_Da;
         if (*(float *)(&stack0x0000002c + ContextHandleData * 4) < localFloat27) {
-          floatResult8 = 1.0 - (*(float *)(&stack0x0000002c + ContextHandleData * 4) - in_XMM4_Da) / floatResult5;
-          floatResult8 = floatResult8 * floatResult8;
+          FloatValue1 = 1.0 - (*(float *)(&stack0x0000002c + ContextHandleData * 4) - in_XMM4_Da) / floatResult5;
+          FloatValue1 = FloatValue1 * FloatValue1;
         }
-        afStackX_8[ContextHandleData + 1] = floatResult8;
-        in_XMM5._0_4_ = in_XMM5._0_4_ + localFloat24 + floatResult6 + floatResult7 + floatResult8;
+        afStackX_8[ContextHandleData + 1] = FloatValue1;
+        in_XMM5._0_4_ = in_XMM5._0_4_ + localFloat24 + floatResult6 + floatResult7 + FloatValue1;
         ContextHandleData = ContextHandleData + 4;
       } while (ContextHandleData < register10 + -3);
     }
@@ -211958,7 +211958,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
   float floatResult6;
   float floatResult7;
   float in_XMM4_Da;
-  float floatResult8;
+  float FloatValue1;
   UIByte in_XMM5 [16];
   UIByte aresult9 [16];
   float unmodifiedXMM6_Da;
@@ -211992,7 +211992,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
   aresult9._8_4_ = unmodifiedXMM10_Dc - unmodifiedXMM9_Dc;
   aresult9._12_4_ = unmodifiedXMM10_Dd - unmodifiedXMM9_Dd;
   aresult9 = rcpps(in_XMM5,aresult9);
-  floatResult8 = aresult9._0_4_;
+  FloatValue1 = aresult9._0_4_;
   floatResult6 = aresult9._4_4_;
   floatResult0 = aresult9._8_4_;
   floatResult1 = aresult9._12_4_;
@@ -212005,8 +212005,8 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
     uVar8 = -(uint)(*(float *)(&stack0x00000028 + ContextHandleData) < unmodifiedXMM10_Dc);
     uVar9 = -(uint)(*(float *)(&stack0x0000002c + ContextHandleData) < unmodifiedXMM10_Dd);
     psemaphoreHandle = (uint *)((longlong)afStackX_20 + ContextHandleData + -0x20);
-    floatResult3 = (float)((uint)(1.0 - (*(float *)((longlong)afStackX_20 + ContextHandleData) - unmodifiedXMM9_Da)                                   ((floatResult8 + floatResult8) -
-                                  floatResult8 * floatResult8 * (unmodifiedXMM10_Da - unmodifiedXMM9_Da))) & MaxProcessingCount |
+    floatResult3 = (float)((uint)(1.0 - (*(float *)((longlong)afStackX_20 + ContextHandleData) - unmodifiedXMM9_Da)                                   ((FloatValue1 + FloatValue1) -
+                                  FloatValue1 * FloatValue1 * (unmodifiedXMM10_Da - unmodifiedXMM9_Da))) & MaxProcessingCount |
                     ~MaxProcessingCount & *psemaphoreHandle);
     vectorComponentX = (float)((uint)(1.0 - (floatResult2 - unmodifiedXMM9_Db)                                   ((floatResult6 + floatResult6) -
                                   floatResult6 * floatResult6 * (unmodifiedXMM10_Db - unmodifiedXMM9_Db))) & eventTypeCode |
@@ -212032,7 +212032,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
     localFloat22 = localFloat22 + vectorComponentX;
     localFloat23 = localFloat23 + floatResult5;
   } while (uiContext < (int)(unmodifiedEBX - EventTypeCode));
-  floatResult8 = localFloat22 + localFloat20 + localFloat23 + localFloat21;
+  FloatValue1 = localFloat22 + localFloat20 + localFloat23 + localFloat21;
   ContextHandleData = (longlong)uiContext;
   if (ContextHandleData < register10) {
     if (3 < register10 - ContextHandleData) {
@@ -212062,7 +212062,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
           localFloat21 = localFloat21 * localFloat21;
         }
         afStackX_8[ContextHandleData + 1] = localFloat21;
-        floatResult8 = floatResult8 + floatResult0 + floatResult1 + localFloat20 + localFloat21;
+        FloatValue1 = FloatValue1 + floatResult0 + floatResult1 + localFloat20 + localFloat21;
         ContextHandleData = ContextHandleData + 4;
       } while (ContextHandleData < register10 + -3);
     }
@@ -212073,7 +212073,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
         floatResult6 = floatResult6 * floatResult6;
       }
       afStackX_20[ContextHandleData + -8] = floatResult6;
-      floatResult8 = floatResult8 + floatResult6;
+      FloatValue1 = FloatValue1 + floatResult6;
     }
   }
   *(longlong *)targetBuffer = EventHandle;
@@ -212081,7 +212081,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
   targetBuffer[2] = floatResult6;
   *(longlong *)bufferSize = EventHandle;
   bufferSize[2] = floatResult6;
-  if (floatResult8 != unmodifiedXMM8_Da) {
+  if (FloatValue1 != unmodifiedXMM8_Da) {
     ContextHandleData = EventHandle;
     if (3 < register10) {
       psecondaryValue = (float *)(RegisterPointer + 8);
@@ -212134,18 +212134,18 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
         bufferSize[2] = floatResult0 * *pfloatResult + bufferSize[2];
       } while (ContextHandleData < register10);
     }
-    floatResult8 = 1.0 / floatResult8;
-    *targetBuffer = floatResult8 * *targetBuffer;
-    targetBuffer[2] = floatResult8 * targetBuffer[2];
-    targetBuffer[1] = floatResult8 * targetBuffer[1];
-    floatResult8 = bufferSize[1];
+    FloatValue1 = 1.0 / FloatValue1;
+    *targetBuffer = FloatValue1 * *targetBuffer;
+    targetBuffer[2] = FloatValue1 * targetBuffer[2];
+    targetBuffer[1] = FloatValue1 * targetBuffer[1];
+    FloatValue1 = bufferSize[1];
     floatResult0 = *bufferSize;
     floatResult1 = bufferSize[2];
-    localFloat20 = SQRT(floatResult8 * floatResult8 + floatResult0 * floatResult0 + floatResult1 * floatResult1);
+    localFloat20 = SQRT(FloatValue1 * FloatValue1 + floatResult0 * floatResult0 + floatResult1 * floatResult1);
     if (unmodifiedXMM8_Da < localFloat20) {
       localFloat20 = 1.0 / localFloat20;
       *bufferSize = localFloat20 * floatResult0;
-      bufferSize[1] = localFloat20 * floatResult8;
+      bufferSize[1] = localFloat20 * FloatValue1;
       bufferSize[2] = localFloat20 * floatResult1;
     }
     else {
@@ -213893,8 +213893,8 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -213972,16 +213972,16 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
         result2 = (ulonglong)eventTypeCode;
         uVar8 = (ulonglong)(eventTypeCode * 4);
         do {
-          floatResult9 = *(float *)(allocatedMemory0 + -4 + (longlong)pfloatResult1);
-          floatResult7 = (((floatResult9 * processedFloat + localFloat24 * secondaryValue + vectorComponentX * localFloat6) - localFloat20 * floatResult) -
+          FloatValue2 = *(float *)(allocatedMemory0 + -4 + (longlong)pfloatResult1);
+          floatResult7 = (((FloatValue2 * processedFloat + localFloat24 * secondaryValue + vectorComponentX * localFloat6) - localFloat20 * floatResult) -
                    floatResult7 * resultValue) * resultValue1;
           pfloatResult1[-1] = floatResult7;
           localFloat23 = *(float *)(allocatedMemory0 + (longlong)pfloatResult1);
-          localFloat20 = (((localFloat23 * processedFloat + floatResult9 * secondaryValue + localFloat24 * localFloat6) - floatResult7 * floatResult) -
+          localFloat20 = (((localFloat23 * processedFloat + FloatValue2 * secondaryValue + localFloat24 * localFloat6) - floatResult7 * floatResult) -
                    localFloat20 * resultValue) * resultValue1;
           *pfloatResult1 = localFloat20;
           vectorComponentX = *(float *)(allocatedMemory0 + 4 + (longlong)pfloatResult1);
-          floatResult7 = (((vectorComponentX * processedFloat + localFloat23 * secondaryValue + floatResult9 * localFloat6) - localFloat20 * floatResult) -
+          floatResult7 = (((vectorComponentX * processedFloat + localFloat23 * secondaryValue + FloatValue2 * localFloat6) - localFloat20 * floatResult) -
                    floatResult7 * resultValue) * resultValue1;
           pfloatResult1[1] = floatResult7;
           localFloat24 = *(float *)(allocatedMemory0 + 8 + (longlong)pfloatResult1);
@@ -213995,18 +213995,18 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
       if ((uint)uVar8 < bufferSize) {
         pfloatResult1 = targetBuffer + uVar8;
         uVar8 = (ulonglong)(bufferSize - (uint)uVar8);
-        floatResult9 = floatResult7;
+        FloatValue2 = floatResult7;
         localFloat23 = vectorComponentX;
         do {
           vectorComponentX = localFloat24;
           floatResult7 = localFloat20;
           localFloat24 = *(float *)((longlong)pfloatResult1 + ((longlong)dataSource - (longlong)targetBuffer));
           localFloat20 = (((localFloat24 * processedFloat + vectorComponentX * secondaryValue + localFloat23 * localFloat6) - floatResult7 * floatResult) -
-                   floatResult9 * resultValue) * resultValue1;
+                   FloatValue2 * resultValue) * resultValue1;
           *pfloatResult1 = localFloat20;
           pfloatResult1 = pfloatResult1 + 1;
           uVar8 = uVar8 - 1;
-          floatResult9 = floatResult7;
+          FloatValue2 = floatResult7;
           localFloat23 = vectorComponentX;
         } while (uVar8 != 0);
       }
@@ -214020,40 +214020,40 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
       localFloat20 = *(float *)(uiContext + 0x328);
       floatResult7 = *(float *)(uiContext + 0x330);
       localFloat24 = *(float *)(uiContext + 0x228);
-      floatResult9 = *(float *)(uiContext + 0x22c);
+      FloatValue2 = *(float *)(uiContext + 0x22c);
       fStack_110 = *(float *)(uiContext + 0x234);
       localFloat23 = *(float *)(uiContext + 0x32c);
       fStack_148 = *(float *)(uiContext + 0x334);
-      localFloat25 = floatResult9;
+      localFloat25 = FloatValue2;
       floatResult5 = fStack_110;
       floatResult6 = localFloat23;
-      floatResult8 = fStack_148;
+      FloatValue1 = fStack_148;
       if (bufferSize != 0) {
         do {
           fStack_110 = vectorComponentX;
           fStack_148 = floatResult7;
-          floatResult9 = localFloat24;
+          FloatValue2 = localFloat24;
           localFloat23 = localFloat20;
           localFloat24 = *dataSource;
           vectorComponentX = dataSource[1];
           dataSource = dataSource + 2;
-          localFloat20 = (((localFloat24 * processedFloat + floatResult9 * secondaryValue + localFloat25 * localFloat6) - localFloat23 * floatResult) -
+          localFloat20 = (((localFloat24 * processedFloat + FloatValue2 * secondaryValue + localFloat25 * localFloat6) - localFloat23 * floatResult) -
                    floatResult6 * resultValue) * resultValue1;
           *targetBuffer = localFloat20;
           floatResult7 = (((vectorComponentX * processedFloat + fStack_110 * secondaryValue + floatResult5 * localFloat6) - fStack_148 * floatResult) -
-                   floatResult8 * resultValue) * resultValue1;
+                   FloatValue1 * resultValue) * resultValue1;
           targetBuffer[1] = floatResult7;
           targetBuffer = targetBuffer + 2;
           bufferSize = bufferSize - 1;
-          localFloat25 = floatResult9;
+          localFloat25 = FloatValue2;
           floatResult5 = fStack_110;
           floatResult6 = localFloat23;
-          floatResult8 = fStack_148;
+          FloatValue1 = fStack_148;
         } while (bufferSize != 0);
       }
       *(float *)(uiContext + 0x228) = localFloat24;
       *(float *)(uiContext + 0x230) = vectorComponentX;
-      *(float *)(uiContext + 0x22c) = floatResult9;
+      *(float *)(uiContext + 0x22c) = FloatValue2;
       *(float *)(uiContext + 0x234) = fStack_110;
       *(float *)(uiContext + 0x328) = localFloat20;
       *(float *)(uiContext + 0x330) = floatResult7;
@@ -214092,7 +214092,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           localFloat20 = plocalFloat9[-2];
           floatResult7 = plocalFloat9[-1];
           localFloat24 = *plocalFloat9;
-          floatResult9 = plocalFloat9[1];
+          FloatValue2 = plocalFloat9[1];
           localFloat23 = plocalFloat9[2];
           localFloat25 = plocalFloat9[3];
           resultValue0 = (((localFloat20 * processedFloat + fStack_140 * secondaryValue + vectorComponentX * localFloat6) - fStack_128 * floatResult) -
@@ -214101,7 +214101,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
                     ) - fStack_e8 * resultValue) * resultValue1;
           localFloat21 = (((localFloat24 * processedFloat + fStack_138 * secondaryValue + fStack_148 * localFloat6) - fStack_120 * floatResult
                     ) - fStack_ec * resultValue) * resultValue1;
-          floatResult8 = (((floatResult9 * processedFloat + fStack_134 * secondaryValue + fStack_100 * localFloat6) - fStack_11c * floatResult
+          FloatValue1 = (((FloatValue2 * processedFloat + fStack_134 * secondaryValue + fStack_100 * localFloat6) - fStack_11c * floatResult
                     ) - fStack_f0 * resultValue) * resultValue1;
           *pfloatResult1 = localFloat21;
           floatResult6 = (((localFloat23 * processedFloat + fStack_130 * secondaryValue + fStack_104 * localFloat6) - fStack_118 * floatResult
@@ -214109,7 +214109,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           *(float *)((longlong)targetBuffer + (-8 - (longlong)dataSource) + (longlong)plocalFloat9) = resultValue0;
           plocalFloat9 = plocalFloat9 + 6;
           pfloatResult1[-1] = localFloat26;
-          pfloatResult1[1] = floatResult8;
+          pfloatResult1[1] = FloatValue1;
           pfloatResult1[2] = floatResult6;
           fStack_148 = fStack_138;
           fStack_100 = fStack_134;
@@ -214131,13 +214131,13 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           fStack_140 = localFloat20;
           fStack_13c = floatResult7;
           fStack_138 = localFloat24;
-          fStack_134 = floatResult9;
+          fStack_134 = FloatValue2;
           fStack_130 = localFloat23;
           fStack_12c = localFloat25;
           fStack_128 = resultValue0;
           fStack_124 = localFloat26;
           fStack_120 = localFloat21;
-          fStack_11c = floatResult8;
+          fStack_11c = FloatValue1;
           fStack_118 = floatResult6;
           fStack_114 = floatResult5;
         } while (bufferSize != 0);
@@ -214207,18 +214207,18 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           localFloat20 = plocalFloat9[-2];
           floatResult7 = plocalFloat9[-1];
           localFloat24 = *plocalFloat9;
-          floatResult9 = plocalFloat9[1];
+          FloatValue2 = plocalFloat9[1];
           localFloat23 = plocalFloat9[2];
           localFloat25 = plocalFloat9[3];
           floatResult5 = plocalFloat9[4];
           floatResult6 = plocalFloat9[5];
-          floatResult8 = (((localFloat20 * processedFloat + fStack_118 * secondaryValue + vectorComponentX * localFloat6) - fStack_138 * floatResult) -
+          FloatValue1 = (((localFloat20 * processedFloat + fStack_118 * secondaryValue + vectorComponentX * localFloat6) - fStack_138 * floatResult) -
                    fStack_d4 * resultValue) * resultValue1;
           localFloat29 = (((floatResult7 * processedFloat + fStack_11c * secondaryValue + fStack_fc * localFloat6) - fStack_13c * floatResult)
                    - fStack_d0 * resultValue) * resultValue1;
           localFloat28 = (((localFloat24 * processedFloat + fStack_120 * secondaryValue + fStack_f8 * localFloat6) - fStack_140 * floatResult)
                    - fStack_cc * resultValue) * resultValue1;
-          localFloat27 = (((floatResult9 * processedFloat + fStack_124 * secondaryValue + fStack_f4 * localFloat6) - fStack_dc * floatResult)
+          localFloat27 = (((FloatValue2 * processedFloat + fStack_124 * secondaryValue + fStack_f4 * localFloat6) - fStack_dc * floatResult)
                    - fStack_c8 * resultValue) * resultValue1;
           localFloat22 = (((localFloat23 * processedFloat + fStack_128 * secondaryValue + fStack_f0 * localFloat6) - fStack_108 * floatResult)
                    - fStack_c4 * resultValue) * resultValue1;
@@ -214240,7 +214240,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           pfloatResult1[-1] = localFloat29;
           pfloatResult1[4] = localFloat26;
           fStack_110 = fStack_148;
-          *(float *)((longlong)plocalFloat9 + (longlong)targetBuffer + (-8 - (longlong)dataSource)) = floatResult8;
+          *(float *)((longlong)plocalFloat9 + (longlong)targetBuffer + (-8 - (longlong)dataSource)) = FloatValue1;
           plocalFloat9 = plocalFloat9 + 8;
           *pfloatResult1 = localFloat28;
           pfloatResult1[1] = localFloat27;
@@ -214258,12 +214258,12 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           fStack_148 = localFloat21;
           fStack_140 = localFloat28;
           fStack_13c = localFloat29;
-          fStack_138 = floatResult8;
+          fStack_138 = FloatValue1;
           fStack_134 = floatResult6;
           fStack_130 = floatResult5;
           fStack_12c = localFloat25;
           fStack_128 = localFloat23;
-          fStack_124 = floatResult9;
+          fStack_124 = FloatValue2;
           fStack_120 = localFloat24;
           fStack_11c = floatResult7;
           fStack_118 = localFloat20;
@@ -214316,7 +214316,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
         floatResult7 = pfloatResult1[0x3f];
         localFloat24 = pfloatResult1[0x40];
         plocalFloat9 = dataSource;
-        floatResult9 = localFloat20;
+        FloatValue2 = localFloat20;
         localFloat23 = localFloat24;
         eventTypeCode = bufferSize;
         if (bufferSize != 0) {
@@ -214324,12 +214324,12 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
             localFloat24 = floatResult7;
             localFloat20 = vectorComponentX;
             vectorComponentX = *plocalFloat9;
-            floatResult7 = (((vectorComponentX * processedFloat + localFloat20 * secondaryValue + floatResult9 * localFloat6) - localFloat24 * floatResult) -
+            floatResult7 = (((vectorComponentX * processedFloat + localFloat20 * secondaryValue + FloatValue2 * localFloat6) - localFloat24 * floatResult) -
                      localFloat23 * resultValue) * resultValue1;
             *(float *)((longlong)plocalFloat9 + allocatedMemory0) = floatResult7;
             eventTypeCode = eventTypeCode - 1;
             plocalFloat9 = plocalFloat9 + (int)resultPointer;
-            floatResult9 = localFloat20;
+            FloatValue2 = localFloat20;
             localFloat23 = localFloat24;
           } while (eventTypeCode != 0);
         }
@@ -214373,8 +214373,8 @@ UIHandle FUN_18079983c(longlong uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -214508,16 +214508,16 @@ UIHandle FUN_18079983c(longlong uiContext)
       result2 = (ulonglong)eventTypeCode;
       uVar8 = (ulonglong)(eventTypeCode * 4);
       do {
-        floatResult9 = *(float *)(allocatedMemory0 + -4 + (longlong)pfloatResult1);
-        floatResult7 = (((floatResult9 * processedFloat + localFloat24 * secondaryValue + vectorComponentX * localFloat6) - localFloat20 * floatResult) -
+        FloatValue2 = *(float *)(allocatedMemory0 + -4 + (longlong)pfloatResult1);
+        floatResult7 = (((FloatValue2 * processedFloat + localFloat24 * secondaryValue + vectorComponentX * localFloat6) - localFloat20 * floatResult) -
                  floatResult7 * localFloat2) * resultValue1;
         pfloatResult1[-1] = floatResult7;
         localFloat23 = *(float *)(allocatedMemory0 + (longlong)pfloatResult1);
-        localFloat20 = (((localFloat23 * processedFloat + floatResult9 * secondaryValue + localFloat24 * localFloat6) - floatResult7 * floatResult) -
+        localFloat20 = (((localFloat23 * processedFloat + FloatValue2 * secondaryValue + localFloat24 * localFloat6) - floatResult7 * floatResult) -
                  localFloat20 * localFloat2) * resultValue1;
         *pfloatResult1 = localFloat20;
         vectorComponentX = *(float *)(allocatedMemory0 + 4 + (longlong)pfloatResult1);
-        floatResult7 = (((vectorComponentX * processedFloat + localFloat23 * secondaryValue + floatResult9 * localFloat6) - localFloat20 * floatResult) -
+        floatResult7 = (((vectorComponentX * processedFloat + localFloat23 * secondaryValue + FloatValue2 * localFloat6) - localFloat20 * floatResult) -
                  floatResult7 * localFloat2) * resultValue1;
         pfloatResult1[1] = floatResult7;
         localFloat24 = *(float *)(allocatedMemory0 + 8 + (longlong)pfloatResult1);
@@ -214531,18 +214531,18 @@ UIHandle FUN_18079983c(longlong uiContext)
     if ((uint)uVar8 < unmodifiedEBP) {
       pfloatResult1 = TargetHandle + uVar8;
       uVar8 = (ulonglong)(unmodifiedEBP - (uint)uVar8);
-      floatResult9 = floatResult7;
+      FloatValue2 = floatResult7;
       localFloat23 = vectorComponentX;
       do {
         vectorComponentX = localFloat24;
         floatResult7 = localFloat20;
         localFloat24 = *(float *)((longlong)pfloatResult1 + ((longlong)SourceHandle - (longlong)TargetHandle));
         localFloat20 = (((localFloat24 * processedFloat + vectorComponentX * secondaryValue + localFloat23 * localFloat6) - floatResult7 * floatResult) -
-                 floatResult9 * localFloat2) * resultValue1;
+                 FloatValue2 * localFloat2) * resultValue1;
         *pfloatResult1 = localFloat20;
         pfloatResult1 = pfloatResult1 + 1;
         uVar8 = uVar8 - 1;
-        floatResult9 = floatResult7;
+        FloatValue2 = floatResult7;
         localFloat23 = vectorComponentX;
       } while (uVar8 != 0);
     }
@@ -214556,40 +214556,40 @@ UIHandle FUN_18079983c(longlong uiContext)
     localFloat20 = *(float *)(ContextHandle + 0x328);
     floatResult7 = *(float *)(ContextHandle + 0x330);
     localFloat24 = *(float *)(ContextHandle + 0x228);
-    floatResult9 = *(float *)(ContextHandle + 0x22c);
+    FloatValue2 = *(float *)(ContextHandle + 0x22c);
     fStack0000000000000058 = *(float *)(ContextHandle + 0x234);
     localFloat23 = *(float *)(ContextHandle + 0x32c);
     fStackX_20 = *(float *)(ContextHandle + 0x334);
-    localFloat25 = floatResult9;
+    localFloat25 = FloatValue2;
     floatResult5 = fStack0000000000000058;
     floatResult6 = localFloat23;
-    floatResult8 = fStackX_20;
+    FloatValue1 = fStackX_20;
     if (unmodifiedEBP != 0) {
       do {
         fStack0000000000000058 = vectorComponentX;
         fStackX_20 = floatResult7;
-        floatResult9 = localFloat24;
+        FloatValue2 = localFloat24;
         localFloat23 = localFloat20;
         localFloat24 = *SourceHandle;
         vectorComponentX = SourceHandle[1];
         SourceHandle = SourceHandle + 2;
-        localFloat20 = (((localFloat24 * processedFloat + floatResult9 * secondaryValue + localFloat25 * localFloat6) - localFloat23 * floatResult) -
+        localFloat20 = (((localFloat24 * processedFloat + FloatValue2 * secondaryValue + localFloat25 * localFloat6) - localFloat23 * floatResult) -
                  floatResult6 * localFloat2) * resultValue1;
         *TargetHandle = localFloat20;
         floatResult7 = (((vectorComponentX * processedFloat + fStack0000000000000058 * secondaryValue + floatResult5 * localFloat6) -
-                  fStackX_20 * floatResult) - floatResult8 * localFloat2) * resultValue1;
+                  fStackX_20 * floatResult) - FloatValue1 * localFloat2) * resultValue1;
         TargetHandle[1] = floatResult7;
         TargetHandle = TargetHandle + 2;
         unmodifiedEBP = unmodifiedEBP - 1;
-        localFloat25 = floatResult9;
+        localFloat25 = FloatValue2;
         floatResult5 = fStack0000000000000058;
         floatResult6 = localFloat23;
-        floatResult8 = fStackX_20;
+        FloatValue1 = fStackX_20;
       } while (unmodifiedEBP != 0);
     }
     *(float *)(ContextHandle + 0x228) = localFloat24;
     *(float *)(ContextHandle + 0x230) = vectorComponentX;
-    *(float *)(ContextHandle + 0x22c) = floatResult9;
+    *(float *)(ContextHandle + 0x22c) = FloatValue2;
     *(float *)(ContextHandle + 0x234) = fStack0000000000000058;
     *(float *)(ContextHandle + 0x328) = localFloat20;
     *(float *)(ContextHandle + 0x330) = floatResult7;
@@ -214628,7 +214628,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         localFloat20 = plocalFloat9[-2];
         floatResult7 = plocalFloat9[-1];
         localFloat24 = *plocalFloat9;
-        floatResult9 = plocalFloat9[1];
+        FloatValue2 = plocalFloat9[1];
         localFloat23 = plocalFloat9[2];
         localFloat25 = plocalFloat9[3];
         resultValue0 = (((localFloat20 * processedFloat + fStack0000000000000028 * secondaryValue + vectorComponentX * localFloat6) -
@@ -214637,7 +214637,7 @@ UIHandle FUN_18079983c(longlong uiContext)
                    ) - fStack0000000000000044 * floatResult) - fStack0000000000000080 * localFloat2) * resultValue1;
         localFloat21 = (((localFloat24 * processedFloat + fStack0000000000000030 * secondaryValue + fStackX_20 * localFloat6) -
                   fStack0000000000000048 * floatResult) - fStack000000000000007c * localFloat2) * resultValue1;
-        floatResult8 = (((floatResult9 * processedFloat + fStack0000000000000034 * secondaryValue + fStack0000000000000068 * localFloat6
+        FloatValue1 = (((FloatValue2 * processedFloat + fStack0000000000000034 * secondaryValue + fStack0000000000000068 * localFloat6
                    ) - fStack000000000000004c * floatResult) - fStack0000000000000078 * localFloat2) * resultValue1;
         *pfloatResult1 = localFloat21;
         floatResult6 = (((localFloat23 * processedFloat + fStack0000000000000038 * secondaryValue + fStack0000000000000064 * localFloat6
@@ -214645,7 +214645,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         *(float *)((longlong)TargetHandle + (-8 - (longlong)SourceHandle) + (longlong)plocalFloat9) = resultValue0;
         plocalFloat9 = plocalFloat9 + 6;
         pfloatResult1[-1] = localFloat26;
-        pfloatResult1[1] = floatResult8;
+        pfloatResult1[1] = FloatValue1;
         pfloatResult1[2] = floatResult6;
         fStackX_20 = fStack0000000000000030;
         fStack0000000000000068 = fStack0000000000000034;
@@ -214667,13 +214667,13 @@ UIHandle FUN_18079983c(longlong uiContext)
         fStack0000000000000028 = localFloat20;
         fStack000000000000002c = floatResult7;
         fStack0000000000000030 = localFloat24;
-        fStack0000000000000034 = floatResult9;
+        fStack0000000000000034 = FloatValue2;
         fStack0000000000000038 = localFloat23;
         fStack000000000000003c = localFloat25;
         fStack0000000000000040 = resultValue0;
         fStack0000000000000044 = localFloat26;
         fStack0000000000000048 = localFloat21;
-        fStack000000000000004c = floatResult8;
+        fStack000000000000004c = FloatValue1;
         fStack0000000000000050 = floatResult6;
         fStack0000000000000054 = floatResult5;
       } while (unmodifiedEBP != 0);
@@ -214743,18 +214743,18 @@ UIHandle FUN_18079983c(longlong uiContext)
         localFloat20 = plocalFloat9[-2];
         floatResult7 = plocalFloat9[-1];
         localFloat24 = *plocalFloat9;
-        floatResult9 = plocalFloat9[1];
+        FloatValue2 = plocalFloat9[1];
         localFloat23 = plocalFloat9[2];
         localFloat25 = plocalFloat9[3];
         floatResult5 = plocalFloat9[4];
         floatResult6 = plocalFloat9[5];
-        floatResult8 = (((localFloat20 * processedFloat + fStack0000000000000050 * secondaryValue + vectorComponentX * localFloat6) -
+        FloatValue1 = (((localFloat20 * processedFloat + fStack0000000000000050 * secondaryValue + vectorComponentX * localFloat6) -
                   fStack0000000000000030 * floatResult) - fStack0000000000000094 * localFloat2) * resultValue1;
         localFloat29 = (((floatResult7 * processedFloat + fStack000000000000004c * secondaryValue + fStack000000000000006c * localFloat6
                    ) - fStack000000000000002c * floatResult) - fStack0000000000000098 * localFloat2) * resultValue1;
         localFloat28 = (((localFloat24 * processedFloat + fStack0000000000000048 * secondaryValue + fStack0000000000000070 * localFloat6
                    ) - fStack0000000000000028 * floatResult) - fStack000000000000009c * localFloat2) * resultValue1;
-        localFloat27 = (((floatResult9 * processedFloat + fStack0000000000000044 * secondaryValue + fStack0000000000000074 * localFloat6
+        localFloat27 = (((FloatValue2 * processedFloat + fStack0000000000000044 * secondaryValue + fStack0000000000000074 * localFloat6
                    ) - fStack000000000000008c * floatResult) - fStack00000000000000a0 * localFloat2) * resultValue1;
         localFloat22 = (((localFloat23 * processedFloat + fStack0000000000000040 * secondaryValue + fStack0000000000000078 * localFloat6
                    ) - fStack0000000000000060 * floatResult) - fStack00000000000000a4 * localFloat2) * resultValue1;
@@ -214776,7 +214776,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         pfloatResult1[-1] = localFloat29;
         pfloatResult1[4] = localFloat26;
         fStack0000000000000058 = fStackX_20;
-        *(float *)((longlong)plocalFloat9 + (longlong)TargetHandle + (-8 - (longlong)SourceHandle)) = floatResult8;
+        *(float *)((longlong)plocalFloat9 + (longlong)TargetHandle + (-8 - (longlong)SourceHandle)) = FloatValue1;
         plocalFloat9 = plocalFloat9 + 8;
         *pfloatResult1 = localFloat28;
         pfloatResult1[1] = localFloat27;
@@ -214794,12 +214794,12 @@ UIHandle FUN_18079983c(longlong uiContext)
         fStackX_20 = localFloat21;
         fStack0000000000000028 = localFloat28;
         fStack000000000000002c = localFloat29;
-        fStack0000000000000030 = floatResult8;
+        fStack0000000000000030 = FloatValue1;
         fStack0000000000000034 = floatResult6;
         fStack0000000000000038 = floatResult5;
         fStack000000000000003c = localFloat25;
         fStack0000000000000040 = localFloat23;
-        fStack0000000000000044 = floatResult9;
+        fStack0000000000000044 = FloatValue2;
         fStack0000000000000048 = localFloat24;
         fStack000000000000004c = floatResult7;
         fStack0000000000000050 = localFloat20;
@@ -214852,7 +214852,7 @@ UIHandle FUN_18079983c(longlong uiContext)
       floatResult7 = pfloatResult1[0x3f];
       localFloat24 = pfloatResult1[0x40];
       plocalFloat9 = SourceHandle;
-      floatResult9 = localFloat20;
+      FloatValue2 = localFloat20;
       localFloat23 = localFloat24;
       eventTypeCode = unmodifiedEBP;
       if (unmodifiedEBP != 0) {
@@ -214860,12 +214860,12 @@ UIHandle FUN_18079983c(longlong uiContext)
           localFloat24 = floatResult7;
           localFloat20 = vectorComponentX;
           vectorComponentX = *plocalFloat9;
-          floatResult7 = (((vectorComponentX * processedFloat + localFloat20 * secondaryValue + floatResult9 * localFloat6) - localFloat24 * floatResult) -
+          floatResult7 = (((vectorComponentX * processedFloat + localFloat20 * secondaryValue + FloatValue2 * localFloat6) - localFloat24 * floatResult) -
                    localFloat23 * localFloat2) * resultValue1;
           *(float *)((longlong)plocalFloat9 + allocatedMemory0) = floatResult7;
           eventTypeCode = eventTypeCode - 1;
           plocalFloat9 = plocalFloat9 + (int)stackParam00000190;
-          floatResult9 = localFloat20;
+          FloatValue2 = localFloat20;
           localFloat23 = localFloat24;
         } while (eventTypeCode != 0);
       }
@@ -214907,8 +214907,8 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -214955,7 +214955,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
   
   localInt6 = (int)targetBuffer;
   if (localInt6 == 1) {
-    floatResult8 = *(float *)(ContextHandle + 0x228);
+    FloatValue1 = *(float *)(ContextHandle + 0x228);
     semaphoreHandle = 0;
     localFloat8 = *(float *)(ContextHandle + 0x22c);
     vectorComponentX = *(float *)(ContextHandle + 0x328);
@@ -214968,19 +214968,19 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       semaphoreHandle = (ulonglong)(result * 4);
       do {
         floatResult3 = *(float *)(ContextHandleData + -4 + (longlong)psecondaryValue);
-        floatResult1 = (((floatResult3 * unmodifiedXMM7_Da + floatResult8 * unmodifiedXMM8_Da + localFloat8 * unmodifiedXMM9_Da) -
+        floatResult1 = (((floatResult3 * unmodifiedXMM7_Da + FloatValue1 * unmodifiedXMM8_Da + localFloat8 * unmodifiedXMM9_Da) -
                   vectorComponentX * unmodifiedXMM14_Da) - floatResult1 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         psecondaryValue[-1] = floatResult1;
         floatResult7 = *(float *)(ContextHandleData + (longlong)psecondaryValue);
-        vectorComponentX = (((floatResult7 * unmodifiedXMM7_Da + floatResult3 * unmodifiedXMM8_Da + floatResult8 * unmodifiedXMM9_Da) -
+        vectorComponentX = (((floatResult7 * unmodifiedXMM7_Da + floatResult3 * unmodifiedXMM8_Da + FloatValue1 * unmodifiedXMM9_Da) -
                   floatResult1 * unmodifiedXMM14_Da) - vectorComponentX * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         *psecondaryValue = vectorComponentX;
         localFloat8 = *(float *)(ContextHandleData + 4 + (longlong)psecondaryValue);
         floatResult1 = (((localFloat8 * unmodifiedXMM7_Da + floatResult7 * unmodifiedXMM8_Da + floatResult3 * unmodifiedXMM9_Da) -
                   vectorComponentX * unmodifiedXMM14_Da) - floatResult1 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         psecondaryValue[1] = floatResult1;
-        floatResult8 = *(float *)(ContextHandleData + 8 + (longlong)psecondaryValue);
-        vectorComponentX = (((floatResult8 * unmodifiedXMM7_Da + localFloat8 * unmodifiedXMM8_Da + floatResult7 * unmodifiedXMM9_Da) -
+        FloatValue1 = *(float *)(ContextHandleData + 8 + (longlong)psecondaryValue);
+        vectorComponentX = (((FloatValue1 * unmodifiedXMM7_Da + localFloat8 * unmodifiedXMM8_Da + floatResult7 * unmodifiedXMM9_Da) -
                   floatResult1 * unmodifiedXMM14_Da) - vectorComponentX * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         psecondaryValue[2] = vectorComponentX;
         psecondaryValue = psecondaryValue + 4;
@@ -214993,10 +214993,10 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       floatResult3 = floatResult1;
       floatResult7 = localFloat8;
       do {
-        localFloat8 = floatResult8;
+        localFloat8 = FloatValue1;
         floatResult1 = vectorComponentX;
-        floatResult8 = *(float *)((longlong)psecondaryValue + ((longlong)SourceHandle - (longlong)TargetHandle));
-        vectorComponentX = (((floatResult8 * unmodifiedXMM7_Da + localFloat8 * unmodifiedXMM8_Da + floatResult7 * unmodifiedXMM9_Da) -
+        FloatValue1 = *(float *)((longlong)psecondaryValue + ((longlong)SourceHandle - (longlong)TargetHandle));
+        vectorComponentX = (((FloatValue1 * unmodifiedXMM7_Da + localFloat8 * unmodifiedXMM8_Da + floatResult7 * unmodifiedXMM9_Da) -
                   floatResult1 * unmodifiedXMM14_Da) - floatResult3 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         *psecondaryValue = vectorComponentX;
         psecondaryValue = psecondaryValue + 1;
@@ -215005,7 +215005,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         floatResult7 = localFloat8;
       } while (semaphoreHandle != 0);
     }
-    *(float *)(ContextHandle + 0x228) = floatResult8;
+    *(float *)(ContextHandle + 0x228) = FloatValue1;
     *(float *)(ContextHandle + 0x22c) = localFloat8;
     *(float *)(ContextHandle + 0x328) = vectorComponentX;
     *(float *)(ContextHandle + 0x32c) = floatResult1;
@@ -215014,12 +215014,12 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
     localFloat8 = *(float *)(ContextHandle + 0x230);
     vectorComponentX = *(float *)(ContextHandle + 0x328);
     floatResult1 = *(float *)(ContextHandle + 0x330);
-    floatResult8 = *(float *)(ContextHandle + 0x228);
+    FloatValue1 = *(float *)(ContextHandle + 0x228);
     floatResult3 = *(float *)(ContextHandle + 0x22c);
     fStack0000000000000058 = *(float *)(ContextHandle + 0x234);
     floatResult7 = *(float *)(ContextHandle + 0x32c);
     fStackX_20 = *(float *)(ContextHandle + 0x334);
-    floatResult9 = floatResult3;
+    FloatValue2 = floatResult3;
     localFloat9 = fStack0000000000000058;
     floatResult0 = floatResult7;
     floatResult2 = fStackX_20;
@@ -215027,12 +215027,12 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       do {
         fStack0000000000000058 = localFloat8;
         fStackX_20 = floatResult1;
-        floatResult3 = floatResult8;
+        floatResult3 = FloatValue1;
         floatResult7 = vectorComponentX;
-        floatResult8 = *SourceHandle;
+        FloatValue1 = *SourceHandle;
         localFloat8 = SourceHandle[1];
         SourceHandle = SourceHandle + 2;
-        vectorComponentX = (((floatResult8 * unmodifiedXMM7_Da + floatResult3 * unmodifiedXMM8_Da + floatResult9 * unmodifiedXMM9_Da) -
+        vectorComponentX = (((FloatValue1 * unmodifiedXMM7_Da + floatResult3 * unmodifiedXMM8_Da + FloatValue2 * unmodifiedXMM9_Da) -
                   floatResult7 * unmodifiedXMM14_Da) - floatResult0 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         *TargetHandle = vectorComponentX;
         floatResult1 = (((localFloat8 * unmodifiedXMM7_Da + fStack0000000000000058 * unmodifiedXMM8_Da +
@@ -215041,13 +215041,13 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         TargetHandle[1] = floatResult1;
         TargetHandle = TargetHandle + 2;
         unmodifiedEBP = unmodifiedEBP - 1;
-        floatResult9 = floatResult3;
+        FloatValue2 = floatResult3;
         localFloat9 = fStack0000000000000058;
         floatResult0 = floatResult7;
         floatResult2 = fStackX_20;
       } while (unmodifiedEBP != 0);
     }
-    *(float *)(ContextHandle + 0x228) = floatResult8;
+    *(float *)(ContextHandle + 0x228) = FloatValue1;
     *(float *)(ContextHandle + 0x230) = localFloat8;
     *(float *)(ContextHandle + 0x22c) = floatResult3;
     *(float *)(ContextHandle + 0x234) = fStack0000000000000058;
@@ -215087,17 +215087,17 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       do {
         vectorComponentX = presultValue[-2];
         floatResult1 = presultValue[-1];
-        floatResult8 = *presultValue;
+        FloatValue1 = *presultValue;
         floatResult3 = presultValue[1];
         floatResult7 = presultValue[2];
-        floatResult9 = presultValue[3];
+        FloatValue2 = presultValue[3];
         localFloat24 = (((vectorComponentX * unmodifiedXMM7_Da + fStack0000000000000028 * unmodifiedXMM8_Da +
                    localFloat8 * unmodifiedXMM9_Da) - fStack0000000000000040 * unmodifiedXMM14_Da) -
                  fStack0000000000000084 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         localFloat20 = (((floatResult1 * unmodifiedXMM7_Da + fStack000000000000002c * unmodifiedXMM8_Da +
                    fStack0000000000000058 * unmodifiedXMM9_Da) - fStack0000000000000044 * unmodifiedXMM14_Da
                   ) - fStack0000000000000080 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
-        floatResult5 = (((floatResult8 * unmodifiedXMM7_Da + fStack0000000000000030 * unmodifiedXMM8_Da +
+        floatResult5 = (((FloatValue1 * unmodifiedXMM7_Da + fStack0000000000000030 * unmodifiedXMM8_Da +
                    fStackX_20 * unmodifiedXMM9_Da) - fStack0000000000000048 * unmodifiedXMM14_Da) -
                  fStack000000000000007c * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         floatResult2 = (((floatResult3 * unmodifiedXMM7_Da + fStack0000000000000034 * unmodifiedXMM8_Da +
@@ -215115,7 +215115,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStackX_20 = fStack0000000000000030;
         fStack0000000000000068 = fStack0000000000000034;
         fStack0000000000000064 = fStack0000000000000038;
-        localFloat9 = (((floatResult9 * unmodifiedXMM7_Da + fStack000000000000003c * unmodifiedXMM8_Da +
+        localFloat9 = (((FloatValue2 * unmodifiedXMM7_Da + fStack000000000000003c * unmodifiedXMM8_Da +
                   fStack0000000000000060 * unmodifiedXMM9_Da) - fStack0000000000000054 * unmodifiedXMM14_Da)
                 - fStack0000000000000070 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         psecondaryValue[3] = localFloat9;
@@ -215132,10 +215132,10 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         localFloat8 = fStack0000000000000028;
         fStack0000000000000028 = vectorComponentX;
         fStack000000000000002c = floatResult1;
-        fStack0000000000000030 = floatResult8;
+        fStack0000000000000030 = FloatValue1;
         fStack0000000000000034 = floatResult3;
         fStack0000000000000038 = floatResult7;
-        fStack000000000000003c = floatResult9;
+        fStack000000000000003c = FloatValue2;
         fStack0000000000000040 = localFloat24;
         fStack0000000000000044 = localFloat20;
         fStack0000000000000048 = floatResult5;
@@ -215208,10 +215208,10 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       do {
         vectorComponentX = presultValue[-2];
         floatResult1 = presultValue[-1];
-        floatResult8 = *presultValue;
+        FloatValue1 = *presultValue;
         floatResult3 = presultValue[1];
         floatResult7 = presultValue[2];
-        floatResult9 = presultValue[3];
+        FloatValue2 = presultValue[3];
         localFloat9 = presultValue[4];
         floatResult0 = presultValue[5];
         floatResult2 = (((vectorComponentX * unmodifiedXMM7_Da + fStack0000000000000050 * unmodifiedXMM8_Da +
@@ -215220,7 +215220,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         localFloat23 = (((floatResult1 * unmodifiedXMM7_Da + fStack000000000000004c * unmodifiedXMM8_Da +
                    fStack000000000000006c * unmodifiedXMM9_Da) - fStack000000000000002c * unmodifiedXMM14_Da
                   ) - fStack0000000000000098 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
-        localFloat22 = (((floatResult8 * unmodifiedXMM7_Da + fStack0000000000000048 * unmodifiedXMM8_Da +
+        localFloat22 = (((FloatValue1 * unmodifiedXMM7_Da + fStack0000000000000048 * unmodifiedXMM8_Da +
                    fStack0000000000000070 * unmodifiedXMM9_Da) - fStack0000000000000028 * unmodifiedXMM14_Da
                   ) - fStack000000000000009c * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         localFloat21 = (((floatResult3 * unmodifiedXMM7_Da + fStack0000000000000044 * unmodifiedXMM8_Da +
@@ -215229,7 +215229,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         floatResult6 = (((floatResult7 * unmodifiedXMM7_Da + fStack0000000000000040 * unmodifiedXMM8_Da +
                    fStack0000000000000078 * unmodifiedXMM9_Da) - fStack0000000000000060 * unmodifiedXMM14_Da
                   ) - fStack00000000000000a4 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
-        localFloat24 = (((floatResult9 * unmodifiedXMM7_Da + fStack000000000000003c * unmodifiedXMM8_Da +
+        localFloat24 = (((FloatValue2 * unmodifiedXMM7_Da + fStack000000000000003c * unmodifiedXMM8_Da +
                    fStack000000000000007c * unmodifiedXMM9_Da) - fStack0000000000000064 * unmodifiedXMM14_Da
                   ) - fStack00000000000000a8 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         localFloat20 = (((localFloat9 * unmodifiedXMM7_Da + fStack0000000000000038 * unmodifiedXMM8_Da +
@@ -215271,10 +215271,10 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000030 = floatResult2;
         fStack0000000000000034 = floatResult0;
         fStack0000000000000038 = localFloat9;
-        fStack000000000000003c = floatResult9;
+        fStack000000000000003c = FloatValue2;
         fStack0000000000000040 = floatResult7;
         fStack0000000000000044 = floatResult3;
-        fStack0000000000000048 = floatResult8;
+        fStack0000000000000048 = FloatValue1;
         fStack000000000000004c = floatResult1;
         fStack0000000000000050 = vectorComponentX;
         fStack0000000000000060 = floatResult6;
@@ -215324,30 +215324,30 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
       localFloat8 = psecondaryValue[-1];
       vectorComponentX = *psecondaryValue;
       floatResult1 = psecondaryValue[0x3f];
-      floatResult8 = psecondaryValue[0x40];
+      FloatValue1 = psecondaryValue[0x40];
       presultValue = SourceHandle;
       floatResult3 = vectorComponentX;
-      floatResult7 = floatResult8;
+      floatResult7 = FloatValue1;
       result = unmodifiedEBP;
       if (unmodifiedEBP != 0) {
         do {
-          floatResult8 = floatResult1;
+          FloatValue1 = floatResult1;
           vectorComponentX = localFloat8;
           localFloat8 = *presultValue;
           floatResult1 = (((localFloat8 * unmodifiedXMM7_Da + vectorComponentX * unmodifiedXMM8_Da + floatResult3 * unmodifiedXMM9_Da) -
-                    floatResult8 * unmodifiedXMM14_Da) - floatResult7 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
+                    FloatValue1 * unmodifiedXMM14_Da) - floatResult7 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
           *(float *)((longlong)presultValue + ContextHandleData) = floatResult1;
           result = result - 1;
           presultValue = presultValue + targetBuffer;
           floatResult3 = vectorComponentX;
-          floatResult7 = floatResult8;
+          floatResult7 = FloatValue1;
         } while (result != 0);
       }
       psecondaryValue[-1] = localFloat8;
       SourceHandle = SourceHandle + 1;
       *psecondaryValue = vectorComponentX;
       psecondaryValue[0x3f] = floatResult1;
-      psecondaryValue[0x40] = floatResult8;
+      psecondaryValue[0x40] = FloatValue1;
       psecondaryValue = psecondaryValue + 2;
       semaphoreHandle = semaphoreHandle - 1;
     } while (semaphoreHandle != 0);
@@ -215381,8 +215381,8 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float unmodifiedXMM7_Da;
   float localFloat21;
@@ -215514,7 +215514,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         localFloat22 = (((floatResult2 * fStackX_24 + fStack0000000000000028 * fStack000000000000005c +
                    localFloat6 * stackParam00000178) - fStack0000000000000040 * unmodifiedXMM14_Da) -
                  fStack0000000000000084 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
-        floatResult8 = (((resultFloat * fStackX_24 + fStack000000000000002c * fStack000000000000005c +
+        FloatValue1 = (((resultFloat * fStackX_24 + fStack000000000000002c * fStack000000000000005c +
                    fStack0000000000000058 * stackParam00000178) -
                   fStack0000000000000044 * unmodifiedXMM14_Da) - fStack0000000000000080 * unmodifiedXMM15_Da
                  ) * unmodifiedXMM13_Da;
@@ -215532,7 +215532,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
                 * unmodifiedXMM13_Da;
         *(float *)((longlong)TargetHandle + (-8 - (longlong)SourceHandle) + (longlong)pfloatResult) = localFloat22;
         pfloatResult = pfloatResult + 6;
-        presultValue[-1] = floatResult8;
+        presultValue[-1] = FloatValue1;
         presultValue[1] = floatResult0;
         presultValue[2] = localFloat9;
         fStackX_20 = fStack0000000000000030;
@@ -215562,7 +215562,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000038 = floatResult5;
         fStack000000000000003c = floatResult7;
         fStack0000000000000040 = localFloat22;
-        fStack0000000000000044 = floatResult8;
+        fStack0000000000000044 = FloatValue1;
         fStack0000000000000048 = floatResult3;
         fStack000000000000004c = floatResult0;
         fStack0000000000000050 = localFloat9;
@@ -215650,7 +215650,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
                    fStack0000000000000070 * stackParam00000178) -
                   fStack0000000000000028 * stackParam00000088) -
                  fStack000000000000009c * fStack0000000000000054) * stackParam00000090;
-        floatResult9 = (((floatResult1 * fStackX_24 + fStack0000000000000044 * fStack000000000000005c +
+        FloatValue2 = (((floatResult1 * fStackX_24 + fStack0000000000000044 * fStack000000000000005c +
                    fStack0000000000000074 * stackParam00000178) -
                   fStack000000000000008c * stackParam00000088) -
                  fStack00000000000000a0 * fStack0000000000000054) * stackParam00000090;
@@ -215662,7 +215662,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
                    fStack000000000000007c * stackParam00000178) -
                   fStack0000000000000064 * stackParam00000088) -
                  fStack00000000000000a8 * fStack0000000000000054) * stackParam00000090;
-        floatResult8 = (((localFloat8 * fStackX_24 + fStack0000000000000038 * fStack000000000000005c +
+        FloatValue1 = (((localFloat8 * fStackX_24 + fStack0000000000000038 * fStack000000000000005c +
                    fStack0000000000000080 * stackParam00000178) -
                   fStack0000000000000068 * stackParam00000088) -
                  fStack00000000000000ac * fStack0000000000000054) * stackParam00000090;
@@ -215679,12 +215679,12 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000094 = fStack0000000000000030;
         fStack0000000000000098 = fStack000000000000002c;
         presultValue[-1] = localFloat21;
-        presultValue[4] = floatResult8;
+        presultValue[4] = FloatValue1;
         fStack0000000000000058 = fStackX_20;
         *(float *)((longlong)pfloatResult + (longlong)TargetHandle + (-8 - (longlong)SourceHandle)) = floatResult0;
         pfloatResult = pfloatResult + 8;
         *presultValue = localFloat20;
-        presultValue[1] = floatResult9;
+        presultValue[1] = FloatValue2;
         presultValue[2] = vectorComponentX;
         presultValue[3] = localFloat22;
         presultValue[5] = floatResult3;
@@ -215710,8 +215710,8 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000050 = floatResult2;
         fStack0000000000000060 = vectorComponentX;
         fStack0000000000000064 = localFloat22;
-        fStack0000000000000068 = floatResult8;
-        fStack000000000000008c = floatResult9;
+        fStack0000000000000068 = FloatValue1;
+        fStack000000000000008c = FloatValue2;
       } while (unmodifiedEBP != 0);
     }
     *(float *)(ContextHandle + 0x234) = fStack000000000000006c;
@@ -216140,33 +216140,33 @@ void ProcessUITransformAndBufferData(float *uiContext,float *dataSource,int targ
         allocatedMemory4 = (allocatedMemory2 - 4U >> 2) + 1;
         pfloatResult3 = param_6 + 0x11;
         floatResult6 = localFloat24 + resultValue;
-        floatResult8 = localFloat21 + processedFloat;
+        FloatValue1 = localFloat21 + processedFloat;
         allocatedMemory5 = allocatedMemory4 * 4;
         localFloat20 = localFloat23 + floatResult0;
         floatResult7 = localFloat26 + floatResult;
         do {
           floatResult1 = *uiContext;
-          floatResult9 = floatResult8 * floatResult1 + pfloatResult3[-0x11];
-          pfloatResult3[-0x11] = (localFloat20 * floatResult1 - localFloat22 * floatResult9) + pfloatResult3[-0x10];
-          pfloatResult3[-0x10] = floatResult6 * floatResult1 - floatResult7 * floatResult9;
-          *dataSource = floatResult9;
+          FloatValue2 = FloatValue1 * floatResult1 + pfloatResult3[-0x11];
+          pfloatResult3[-0x11] = (localFloat20 * floatResult1 - localFloat22 * FloatValue2) + pfloatResult3[-0x10];
+          pfloatResult3[-0x10] = floatResult6 * floatResult1 - floatResult7 * FloatValue2;
+          *dataSource = FloatValue2;
           floatResult1 = uiContext[1];
-          floatResult9 = floatResult8 * floatResult1 + pfloatResult3[-9];
-          pfloatResult3[-9] = (localFloat20 * floatResult1 - localFloat22 * floatResult9) + pfloatResult3[-8];
-          pfloatResult3[-8] = floatResult6 * floatResult1 - floatResult7 * floatResult9;
-          dataSource[1] = floatResult9;
+          FloatValue2 = FloatValue1 * floatResult1 + pfloatResult3[-9];
+          pfloatResult3[-9] = (localFloat20 * floatResult1 - localFloat22 * FloatValue2) + pfloatResult3[-8];
+          pfloatResult3[-8] = floatResult6 * floatResult1 - floatResult7 * FloatValue2;
+          dataSource[1] = FloatValue2;
           floatResult1 = uiContext[2];
-          floatResult9 = floatResult8 * floatResult1 + pfloatResult3[-1];
-          pfloatResult3[-1] = (localFloat20 * floatResult1 - localFloat22 * floatResult9) + *pfloatResult3;
-          *pfloatResult3 = floatResult6 * floatResult1 - floatResult7 * floatResult9;
-          dataSource[2] = floatResult9;
+          FloatValue2 = FloatValue1 * floatResult1 + pfloatResult3[-1];
+          pfloatResult3[-1] = (localFloat20 * floatResult1 - localFloat22 * FloatValue2) + *pfloatResult3;
+          *pfloatResult3 = floatResult6 * floatResult1 - floatResult7 * FloatValue2;
+          dataSource[2] = FloatValue2;
           floatResult1 = uiContext[3];
           uiContext = uiContext + 4;
-          floatResult9 = floatResult8 * floatResult1 + pfloatResult3[7];
-          pfloatResult3[7] = (localFloat20 * floatResult1 - localFloat22 * floatResult9) + pfloatResult3[8];
-          pfloatResult3[8] = floatResult6 * floatResult1 - floatResult7 * floatResult9;
+          FloatValue2 = FloatValue1 * floatResult1 + pfloatResult3[7];
+          pfloatResult3[7] = (localFloat20 * floatResult1 - localFloat22 * FloatValue2) + pfloatResult3[8];
+          pfloatResult3[8] = floatResult6 * floatResult1 - floatResult7 * FloatValue2;
           pfloatResult3 = pfloatResult3 + 0x20;
-          dataSource[3] = floatResult9;
+          dataSource[3] = FloatValue2;
           dataSource = dataSource + 4;
           allocatedMemory4 = allocatedMemory4 + -1;
         } while (allocatedMemory4 != 0);
@@ -216175,11 +216175,11 @@ void ProcessUITransformAndBufferData(float *uiContext,float *dataSource,int targ
         pfloatResult3 = param_6 + allocatedMemory5 * 8;
         allocatedMemory5 = allocatedMemory2 - allocatedMemory5;
         do {
-          floatResult8 = *uiContext;
+          FloatValue1 = *uiContext;
           uiContext = uiContext + 1;
-          localFloat20 = (localFloat21 + processedFloat) * floatResult8 + *pfloatResult3;
-          *pfloatResult3 = ((localFloat23 + floatResult0) * floatResult8 - (localFloat25 + localFloat2) * localFloat20) + pfloatResult3[1];
-          pfloatResult3[1] = (localFloat24 + resultValue) * floatResult8 - (localFloat26 + floatResult) * localFloat20;
+          localFloat20 = (localFloat21 + processedFloat) * FloatValue1 + *pfloatResult3;
+          *pfloatResult3 = ((localFloat23 + floatResult0) * FloatValue1 - (localFloat25 + localFloat2) * localFloat20) + pfloatResult3[1];
+          pfloatResult3[1] = (localFloat24 + resultValue) * FloatValue1 - (localFloat26 + floatResult) * localFloat20;
           pfloatResult3 = pfloatResult3 + 8;
           *dataSource = localFloat20;
           dataSource = dataSource + 1;
@@ -216354,8 +216354,8 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -216394,17 +216394,17 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         floatResult7 = localFloat26 + secondaryValue;
         localFloat26 = localFloat26 + floatResult0;
         floatResult6 = localFloat24 + resultValue;
-        floatResult8 = localFloat25 + processedFloat;
+        FloatValue1 = localFloat25 + processedFloat;
         localFloat24 = localFloat24 + localFloat8;
         localFloat25 = localFloat25 + localFloat9;
-        floatResult9 = (localFloat22 + floatResult) * floatResult5 + localFloat21;
-        localFloat20 = (localFloat22 + floatResult) * floatResult9 + localFloat20;
-        localFloat21 = ((localFloat23 + localFloat2) * floatResult5 - floatResult8 * floatResult9) + localFloat27;
-        localFloat27 = floatResult6 * floatResult5 - floatResult7 * floatResult9;
+        FloatValue2 = (localFloat22 + floatResult) * floatResult5 + localFloat21;
+        localFloat20 = (localFloat22 + floatResult) * FloatValue2 + localFloat20;
+        localFloat21 = ((localFloat23 + localFloat2) * floatResult5 - FloatValue1 * FloatValue2) + localFloat27;
+        localFloat27 = floatResult6 * floatResult5 - floatResult7 * FloatValue2;
         *(float *)(allocatedMemory1 + (longlong)uiContext) = localFloat20;
         uiContext = uiContext + 1;
-        floatResult5 = floatResult6 * floatResult9 - floatResult7 * localFloat20;
-        localFloat20 = ((localFloat23 + localFloat2) * floatResult9 - floatResult8 * localFloat20) + param_7;
+        floatResult5 = floatResult6 * FloatValue2 - floatResult7 * localFloat20;
+        localFloat20 = ((localFloat23 + localFloat2) * FloatValue2 - FloatValue1 * localFloat20) + param_7;
         targetBuffer = targetBuffer + -1;
         localFloat22 = localFloat22 + localFloat6;
         localFloat23 = localFloat23 + resultFloat;
@@ -216430,37 +216430,37 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         floatResult6 = localFloat26 + secondaryValue;
         do {
           floatResult7 = *uiContext;
-          floatResult8 = floatResult5 * floatResult7 + pfloatResult2[-10];
-          pfloatResult2[-10] = (localFloat21 * floatResult7 - localFloat27 * floatResult8) + pfloatResult2[-9];
-          pfloatResult2[-9] = localFloat20 * floatResult7 - floatResult6 * floatResult8;
-          floatResult7 = floatResult5 * floatResult8 + pfloatResult2[-8];
-          pfloatResult2[-8] = (localFloat21 * floatResult8 - localFloat27 * floatResult7) + pfloatResult2[-7];
-          pfloatResult2[-7] = localFloat20 * floatResult8 - floatResult6 * floatResult7;
+          FloatValue1 = floatResult5 * floatResult7 + pfloatResult2[-10];
+          pfloatResult2[-10] = (localFloat21 * floatResult7 - localFloat27 * FloatValue1) + pfloatResult2[-9];
+          pfloatResult2[-9] = localFloat20 * floatResult7 - floatResult6 * FloatValue1;
+          floatResult7 = floatResult5 * FloatValue1 + pfloatResult2[-8];
+          pfloatResult2[-8] = (localFloat21 * FloatValue1 - localFloat27 * floatResult7) + pfloatResult2[-7];
+          pfloatResult2[-7] = localFloat20 * FloatValue1 - floatResult6 * floatResult7;
           *dataSource = floatResult7;
           floatResult7 = uiContext[1];
-          floatResult8 = floatResult5 * floatResult7 + pfloatResult2[-2];
-          pfloatResult2[-2] = (localFloat21 * floatResult7 - localFloat27 * floatResult8) + pfloatResult2[-1];
-          pfloatResult2[-1] = localFloat20 * floatResult7 - floatResult6 * floatResult8;
-          floatResult7 = floatResult5 * floatResult8 + *pfloatResult2;
-          *pfloatResult2 = (localFloat21 * floatResult8 - localFloat27 * floatResult7) + pfloatResult2[1];
-          pfloatResult2[1] = localFloat20 * floatResult8 - floatResult6 * floatResult7;
+          FloatValue1 = floatResult5 * floatResult7 + pfloatResult2[-2];
+          pfloatResult2[-2] = (localFloat21 * floatResult7 - localFloat27 * FloatValue1) + pfloatResult2[-1];
+          pfloatResult2[-1] = localFloat20 * floatResult7 - floatResult6 * FloatValue1;
+          floatResult7 = floatResult5 * FloatValue1 + *pfloatResult2;
+          *pfloatResult2 = (localFloat21 * FloatValue1 - localFloat27 * floatResult7) + pfloatResult2[1];
+          pfloatResult2[1] = localFloat20 * FloatValue1 - floatResult6 * floatResult7;
           dataSource[1] = floatResult7;
           floatResult7 = uiContext[2];
-          floatResult8 = floatResult5 * floatResult7 + pfloatResult2[6];
-          pfloatResult2[6] = (localFloat21 * floatResult7 - localFloat27 * floatResult8) + pfloatResult2[7];
-          pfloatResult2[7] = localFloat20 * floatResult7 - floatResult6 * floatResult8;
-          floatResult7 = floatResult5 * floatResult8 + pfloatResult2[8];
-          pfloatResult2[8] = (localFloat21 * floatResult8 - localFloat27 * floatResult7) + pfloatResult2[9];
-          pfloatResult2[9] = localFloat20 * floatResult8 - floatResult6 * floatResult7;
+          FloatValue1 = floatResult5 * floatResult7 + pfloatResult2[6];
+          pfloatResult2[6] = (localFloat21 * floatResult7 - localFloat27 * FloatValue1) + pfloatResult2[7];
+          pfloatResult2[7] = localFloat20 * floatResult7 - floatResult6 * FloatValue1;
+          floatResult7 = floatResult5 * FloatValue1 + pfloatResult2[8];
+          pfloatResult2[8] = (localFloat21 * FloatValue1 - localFloat27 * floatResult7) + pfloatResult2[9];
+          pfloatResult2[9] = localFloat20 * FloatValue1 - floatResult6 * floatResult7;
           dataSource[2] = floatResult7;
           floatResult7 = uiContext[3];
           uiContext = uiContext + 4;
-          floatResult8 = floatResult5 * floatResult7 + pfloatResult2[0xe];
-          pfloatResult2[0xe] = (localFloat21 * floatResult7 - localFloat27 * floatResult8) + pfloatResult2[0xf];
-          pfloatResult2[0xf] = localFloat20 * floatResult7 - floatResult6 * floatResult8;
-          floatResult7 = floatResult5 * floatResult8 + pfloatResult2[0x10];
-          pfloatResult2[0x10] = (localFloat21 * floatResult8 - localFloat27 * floatResult7) + pfloatResult2[0x11];
-          pfloatResult2[0x11] = localFloat20 * floatResult8 - floatResult6 * floatResult7;
+          FloatValue1 = floatResult5 * floatResult7 + pfloatResult2[0xe];
+          pfloatResult2[0xe] = (localFloat21 * floatResult7 - localFloat27 * FloatValue1) + pfloatResult2[0xf];
+          pfloatResult2[0xf] = localFloat20 * floatResult7 - floatResult6 * FloatValue1;
+          floatResult7 = floatResult5 * FloatValue1 + pfloatResult2[0x10];
+          pfloatResult2[0x10] = (localFloat21 * FloatValue1 - localFloat27 * floatResult7) + pfloatResult2[0x11];
+          pfloatResult2[0x11] = localFloat20 * FloatValue1 - floatResult6 * floatResult7;
           pfloatResult2 = pfloatResult2 + 0x20;
           dataSource[3] = floatResult7;
           dataSource = dataSource + 4;
@@ -216669,8 +216669,8 @@ void FUN_18079c2e0(float *uiContext,float *dataSource,int targetBuffer,float *bu
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -216716,26 +216716,26 @@ void FUN_18079c2e0(float *uiContext,float *dataSource,int targetBuffer,float *bu
       do {
         floatResult6 = *uiContext;
         localFloat20 = localFloat28 + localFloat2;
-        floatResult9 = fStackX_18 + secondaryValue;
+        FloatValue2 = fStackX_18 + secondaryValue;
         localFloat28 = localFloat28 + localFloat8;
         localFloat21 = resultValue0 + processedFloat;
         resultValue0 = resultValue0 + localFloat9;
         localFloat22 = localFloat25 + floatResult;
         floatResult7 = localFloat22 * floatResult6 + localFloat24;
         localFloat24 = (localFloat20 * floatResult6 - localFloat21 * floatResult7) + floatResult5;
-        floatResult8 = localFloat29 + resultValue;
+        FloatValue1 = localFloat29 + resultValue;
         localFloat29 = localFloat29 + localFloat6;
-        floatResult5 = floatResult8 * floatResult6 - floatResult9 * floatResult7;
+        floatResult5 = FloatValue1 * floatResult6 - FloatValue2 * floatResult7;
         floatResult6 = localFloat22 * floatResult7 + localFloat26;
         localFloat26 = (localFloat20 * floatResult7 - localFloat21 * floatResult6) + param_7;
-        param_7 = floatResult8 * floatResult7 - floatResult9 * floatResult6;
+        param_7 = FloatValue1 * floatResult7 - FloatValue2 * floatResult6;
         floatResult7 = localFloat22 * floatResult6 + localFloat27;
         localFloat23 = localFloat22 * floatResult7 + localFloat23;
         localFloat27 = (localFloat20 * floatResult6 - localFloat21 * floatResult7) + resultPointer._0_4_;
-        resultPointer._0_4_ = floatResult8 * floatResult6 - floatResult9 * floatResult7;
+        resultPointer._0_4_ = FloatValue1 * floatResult6 - FloatValue2 * floatResult7;
         *(float *)(allocatedMemory1 + (longlong)uiContext) = localFloat23;
         uiContext = uiContext + 1;
-        floatResult6 = floatResult8 * floatResult7 - floatResult9 * localFloat23;
+        floatResult6 = FloatValue1 * floatResult7 - FloatValue2 * localFloat23;
         localFloat23 = (localFloat20 * floatResult7 - localFloat21 * localFloat23) + fStack_d0;
         fStackX_18 = fStackX_18 + floatResult0;
         targetBuffer = targetBuffer + -1;
@@ -216838,18 +216838,18 @@ void FUN_18079c2e0(float *uiContext,float *dataSource,int targetBuffer,float *bu
         do {
           localFloat23 = *uiContext;
           uiContext = uiContext + 1;
-          floatResult8 = floatResult6 * localFloat23 + pfloatResult2[-2];
-          pfloatResult2[-2] = (localFloat24 * localFloat23 - floatResult5 * floatResult8) + pfloatResult2[-1];
-          floatResult7 = floatResult6 * floatResult8 + *pfloatResult2;
-          pfloatResult2[-1] = localFloat26 * localFloat23 - localFloat27 * floatResult8;
-          *pfloatResult2 = (localFloat24 * floatResult8 - floatResult5 * floatResult7) + pfloatResult2[1];
-          floatResult9 = floatResult6 * floatResult7 + pfloatResult2[2];
-          pfloatResult2[1] = localFloat26 * floatResult8 - localFloat27 * floatResult7;
-          pfloatResult2[2] = (localFloat24 * floatResult7 - floatResult5 * floatResult9) + pfloatResult2[3];
-          localFloat23 = floatResult6 * floatResult9 + pfloatResult2[4];
-          pfloatResult2[3] = localFloat26 * floatResult7 - localFloat27 * floatResult9;
-          pfloatResult2[4] = (localFloat24 * floatResult9 - floatResult5 * localFloat23) + pfloatResult2[5];
-          pfloatResult2[5] = localFloat26 * floatResult9 - localFloat27 * localFloat23;
+          FloatValue1 = floatResult6 * localFloat23 + pfloatResult2[-2];
+          pfloatResult2[-2] = (localFloat24 * localFloat23 - floatResult5 * FloatValue1) + pfloatResult2[-1];
+          floatResult7 = floatResult6 * FloatValue1 + *pfloatResult2;
+          pfloatResult2[-1] = localFloat26 * localFloat23 - localFloat27 * FloatValue1;
+          *pfloatResult2 = (localFloat24 * FloatValue1 - floatResult5 * floatResult7) + pfloatResult2[1];
+          FloatValue2 = floatResult6 * floatResult7 + pfloatResult2[2];
+          pfloatResult2[1] = localFloat26 * FloatValue1 - localFloat27 * floatResult7;
+          pfloatResult2[2] = (localFloat24 * floatResult7 - floatResult5 * FloatValue2) + pfloatResult2[3];
+          localFloat23 = floatResult6 * FloatValue2 + pfloatResult2[4];
+          pfloatResult2[3] = localFloat26 * floatResult7 - localFloat27 * FloatValue2;
+          pfloatResult2[4] = (localFloat24 * FloatValue2 - floatResult5 * localFloat23) + pfloatResult2[5];
+          pfloatResult2[5] = localFloat26 * FloatValue2 - localFloat27 * localFloat23;
           pfloatResult2 = pfloatResult2 + 8;
           *dataSource = localFloat23;
           dataSource = dataSource + 1;
@@ -218526,7 +218526,7 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   
   resultFloat = dataSource[4] - dataSource[6];
   secondaryValue = dataSource[4] + dataSource[6];
@@ -218581,7 +218581,7 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
       floatResult3 = dataSource[-4] - dataSource[-2];
       floatResult5 = *dataSource - dataSource[2];
       floatResult7 = secondaryValue - (localFloat8 + localFloat8) * processedFloat;
-      floatResult8 = (localFloat8 + localFloat8) * secondaryValue - processedFloat;
+      FloatValue1 = (localFloat8 + localFloat8) * secondaryValue - processedFloat;
       floatResult0 = dataSource[-1] + dataSource[-3];
       floatResult6 = dataSource[-3] - dataSource[-1];
       resultFloat = dataSource[3] + dataSource[1];
@@ -218598,8 +218598,8 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
       floatResult6 = floatResult6 - floatResult5;
       dataSource[-2] = secondaryValue * localFloat9 - processedFloat * resultFloat;
       dataSource[-1] = processedFloat * localFloat9 + secondaryValue * resultFloat;
-      dataSource[2] = floatResult7 * floatResult1 - floatResult8 * floatResult6;
-      dataSource[3] = floatResult7 * floatResult6 + floatResult8 * floatResult1;
+      dataSource[2] = floatResult7 * floatResult1 - FloatValue1 * floatResult6;
+      dataSource[3] = floatResult7 * floatResult6 + FloatValue1 * floatResult1;
       processedFloat = pfloatResult[4];
       secondaryValue = pfloatResult[5];
       floatResult2 = dataSource[6] + dataSource[4];
@@ -218610,7 +218610,7 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
       floatResult7 = processedFloat - (localFloat6 + localFloat6) * secondaryValue;
       floatResult0 = dataSource[7] + dataSource[5];
       floatResult6 = dataSource[5] - dataSource[7];
-      floatResult8 = (localFloat6 + localFloat6) * processedFloat - secondaryValue;
+      FloatValue1 = (localFloat6 + localFloat6) * processedFloat - secondaryValue;
       resultFloat = dataSource[0xb] + dataSource[9];
       floatResult1 = dataSource[9] - dataSource[0xb];
       vectorComponentX = floatResult2 - localFloat9;
@@ -218625,8 +218625,8 @@ void FUN_18079f0b0(longlong uiContext,float *dataSource)
       dataSource[9] = localFloat6 * vectorComponentX - localFloat8 * floatResult2;
       dataSource[6] = processedFloat * localFloat9 - secondaryValue * resultFloat;
       dataSource[7] = secondaryValue * localFloat9 + processedFloat * resultFloat;
-      dataSource[10] = floatResult7 * floatResult1 - floatResult8 * floatResult6;
-      dataSource[0xb] = floatResult7 * floatResult6 + floatResult8 * floatResult1;
+      dataSource[10] = floatResult7 * floatResult1 - FloatValue1 * floatResult6;
+      dataSource[0xb] = floatResult7 * floatResult6 + FloatValue1 * floatResult1;
       dataSource = dataSource + 0x10;
       pfloatResult = pfloatResult + 4;
     } while (uiCompareResult < *(int *)(uiBufferData + 0x14030) * 2);
@@ -218659,7 +218659,7 @@ void FUN_18079f269(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   
   presultFloat = (float *)&DAT_180c19950;
   plocalFloat6 = (float *)(dataSource + 0x50);
@@ -218675,7 +218675,7 @@ void FUN_18079f269(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
     floatResult5 = plocalFloat6[-4] - plocalFloat6[-2];
     floatResult3 = *plocalFloat6 - plocalFloat6[2];
     floatResult7 = resultValue - (localFloat2 + localFloat2) * floatResult;
-    floatResult8 = (localFloat2 + localFloat2) * resultValue - floatResult;
+    FloatValue1 = (localFloat2 + localFloat2) * resultValue - floatResult;
     floatResult0 = plocalFloat6[-1] + plocalFloat6[-3];
     floatResult6 = plocalFloat6[-3] - plocalFloat6[-1];
     localFloat8 = plocalFloat6[3] + plocalFloat6[1];
@@ -218692,8 +218692,8 @@ void FUN_18079f269(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
     floatResult6 = floatResult6 - floatResult3;
     plocalFloat6[-2] = resultValue * localFloat9 - floatResult * localFloat8;
     plocalFloat6[-1] = floatResult * localFloat9 + resultValue * localFloat8;
-    plocalFloat6[2] = floatResult7 * vectorComponentX - floatResult8 * floatResult6;
-    plocalFloat6[3] = floatResult7 * floatResult6 + floatResult8 * vectorComponentX;
+    plocalFloat6[2] = floatResult7 * vectorComponentX - FloatValue1 * floatResult6;
+    plocalFloat6[3] = floatResult7 * floatResult6 + FloatValue1 * vectorComponentX;
     floatResult = psecondaryValue[4];
     resultValue = psecondaryValue[5];
     floatResult1 = plocalFloat6[6] + plocalFloat6[4];
@@ -218704,7 +218704,7 @@ void FUN_18079f269(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
     floatResult7 = floatResult - (processedFloat + processedFloat) * resultValue;
     floatResult0 = plocalFloat6[7] + plocalFloat6[5];
     floatResult6 = plocalFloat6[5] - plocalFloat6[7];
-    floatResult8 = (processedFloat + processedFloat) * floatResult - resultValue;
+    FloatValue1 = (processedFloat + processedFloat) * floatResult - resultValue;
     localFloat8 = plocalFloat6[0xb] + plocalFloat6[9];
     vectorComponentX = plocalFloat6[9] - plocalFloat6[0xb];
     floatResult2 = floatResult1 - localFloat9;
@@ -218719,8 +218719,8 @@ void FUN_18079f269(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
     plocalFloat6[9] = processedFloat * floatResult2 - localFloat2 * floatResult1;
     plocalFloat6[6] = floatResult * localFloat9 - resultValue * localFloat8;
     plocalFloat6[7] = resultValue * localFloat9 + floatResult * localFloat8;
-    plocalFloat6[10] = floatResult7 * vectorComponentX - floatResult8 * floatResult6;
-    plocalFloat6[0xb] = floatResult7 * floatResult6 + floatResult8 * vectorComponentX;
+    plocalFloat6[10] = floatResult7 * vectorComponentX - FloatValue1 * floatResult6;
+    plocalFloat6[0xb] = floatResult7 * floatResult6 + FloatValue1 * vectorComponentX;
     plocalFloat6 = plocalFloat6 + 0x10;
     psecondaryValue = psecondaryValue + 4;
   } while (register10D < *(int *)(bufferSize + 0x14030) * 2);
@@ -219651,8 +219651,8 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -219669,7 +219669,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
     result = (ulonglong)((targetBuffer - 1U >> 1) + 1);
     do {
       floatResult2 = psecondaryValue[localLong7] + *psecondaryValue;
-      floatResult9 = *psecondaryValue - psecondaryValue[localLong7];
+      FloatValue2 = *psecondaryValue - psecondaryValue[localLong7];
       localFloat21 = psecondaryValue[localLong7 * -2] + psecondaryValue[-localLong7];
       localFloat25 = psecondaryValue[localLong7 * -2] - psecondaryValue[-localLong7];
       floatResult6 = psecondaryValue[1 - localLong7] + psecondaryValue[localLong7 * -2 + 1];
@@ -219681,9 +219681,9 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       *psecondaryValue = localFloat21 - floatResult2;
       psecondaryValue[1] = floatResult6 - floatResult1;
       psecondaryValue[-localLong7] = localFloat25 - floatResult3;
-      psecondaryValue[1 - localLong7] = floatResult9 + localFloat23;
+      psecondaryValue[1 - localLong7] = FloatValue2 + localFloat23;
       psecondaryValue[localLong7] = floatResult3 + localFloat25;
-      psecondaryValue[localLong7 + 1] = localFloat23 - floatResult9;
+      psecondaryValue[localLong7 + 1] = localFloat23 - FloatValue2;
       psecondaryValue = psecondaryValue + 2;
       result = result - 1;
     } while (result != 0);
@@ -219695,15 +219695,15 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
     do {
       floatResult6 = psecondaryValue[localLong7] + *psecondaryValue;
       floatResult3 = *psecondaryValue - psecondaryValue[localLong7];
-      floatResult9 = psecondaryValue[1 - localLong7] + psecondaryValue[localLong7 * -2 + 1];
+      FloatValue2 = psecondaryValue[1 - localLong7] + psecondaryValue[localLong7 * -2 + 1];
       localFloat21 = psecondaryValue[localLong7 * -2] + psecondaryValue[-localLong7];
       localFloat26 = psecondaryValue[localLong7 * -2] - psecondaryValue[-localLong7];
       localFloat25 = psecondaryValue[localLong7 * -2 + 1] - psecondaryValue[1 - localLong7];
       floatResult2 = psecondaryValue[localLong7 + 1] + psecondaryValue[1];
       localFloat23 = psecondaryValue[1] - psecondaryValue[localLong7 + 1];
       psecondaryValue[localLong7 * -2] = floatResult6 + localFloat21;
-      psecondaryValue[localLong7 * -2 + 1] = floatResult2 + floatResult9;
-      *psecondaryValue = floatResult2 - floatResult9;
+      psecondaryValue[localLong7 * -2 + 1] = floatResult2 + FloatValue2;
+      *psecondaryValue = floatResult2 - FloatValue2;
       floatResult2 = localFloat26 - localFloat23;
       psecondaryValue[1] = localFloat21 - floatResult6;
       localFloat23 = localFloat23 + localFloat26;
@@ -219730,7 +219730,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       plocalFloat8 = plocalFloat8 + 2;
       floatResult3 = psecondaryValue[3];
       floatResult6 = *plocalFloat8;
-      floatResult9 = (floatResult1 + floatResult1) * floatResult2 - floatResult3;
+      FloatValue2 = (floatResult1 + floatResult1) * floatResult2 - floatResult3;
       localFloat21 = floatResult2 - (floatResult1 + floatResult1) * floatResult3;
       if (EventOperationCount < TempInt4) {
         presultValue = (float *)(dataSource + (ContextHandleData + localLong7 * 2) * 4);
@@ -219744,7 +219744,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           vectorComponentX = presultValue[localLong7 * -2 + 1] + presultValue[1 - localLong7];
           localFloat27 = presultValue[localLong7 * -2 + 1] - presultValue[1 - localLong7];
           localFloat22 = presultValue[1] - presultValue[localLong7 + 1];
-          floatResult8 = floatResult7 - localFloat25;
+          FloatValue1 = floatResult7 - localFloat25;
           floatResult5 = vectorComponentX - localFloat23;
           localFloat26 = localFloat20 + localFloat27;
           presultValue[localLong7 * -2] = localFloat25 + floatResult7;
@@ -219752,12 +219752,12 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           presultValue[localLong7 * -2 + 1] = localFloat23 + vectorComponentX;
           localFloat23 = localFloat24 - localFloat22;
           localFloat22 = localFloat22 + localFloat24;
-          *presultValue = floatResult6 * floatResult8 - floatResult1 * floatResult5;
-          presultValue[1] = floatResult6 * floatResult5 + floatResult1 * floatResult8;
+          *presultValue = floatResult6 * FloatValue1 - floatResult1 * floatResult5;
+          presultValue[1] = floatResult6 * floatResult5 + floatResult1 * FloatValue1;
           presultValue[-localLong7] = floatResult2 * localFloat23 - floatResult3 * localFloat26;
           presultValue[1 - localLong7] = floatResult3 * localFloat23 + floatResult2 * localFloat26;
-          presultValue[localLong7] = localFloat21 * localFloat22 - floatResult9 * localFloat27;
-          presultValue[localLong7 + 1] = localFloat21 * localFloat27 + floatResult9 * localFloat22;
+          presultValue[localLong7] = localFloat21 * localFloat22 - FloatValue2 * localFloat27;
+          presultValue[localLong7 + 1] = localFloat21 * localFloat27 + FloatValue2 * localFloat22;
           presultValue = presultValue + 2;
           result = result - 1;
         } while (result != 0);
@@ -219765,7 +219765,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       floatResult2 = psecondaryValue[4];
       floatResult3 = psecondaryValue[5];
       EventOperationCount = targetBuffer * 3 + TempInt4;
-      floatResult9 = (floatResult6 + floatResult6) * floatResult2 - floatResult3;
+      FloatValue2 = (floatResult6 + floatResult6) * floatResult2 - floatResult3;
       localFloat21 = floatResult2 - (floatResult6 + floatResult6) * floatResult3;
       if (EventOperationCount < TempInt4 + localInt9) {
         presultValue = (float *)(dataSource + (localInt9 + ContextHandleData + localLong7 * 2) * 4);
@@ -219779,7 +219779,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           localFloat22 = presultValue[1] - presultValue[localLong7 + 1];
           vectorComponentX = presultValue[localLong7 * -2 + 1] + presultValue[1 - localLong7];
           localFloat27 = presultValue[localLong7 * -2 + 1] - presultValue[1 - localLong7];
-          floatResult8 = floatResult7 - localFloat25;
+          FloatValue1 = floatResult7 - localFloat25;
           floatResult5 = vectorComponentX - localFloat23;
           localFloat26 = localFloat20 + localFloat27;
           presultValue[localLong7 * -2] = localFloat25 + floatResult7;
@@ -219787,12 +219787,12 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           presultValue[localLong7 * -2 + 1] = localFloat23 + vectorComponentX;
           localFloat23 = localFloat24 - localFloat22;
           localFloat22 = localFloat22 + localFloat24;
-          *presultValue = -(floatResult1 * floatResult8) - floatResult6 * floatResult5;
-          presultValue[1] = floatResult6 * floatResult8 - floatResult1 * floatResult5;
+          *presultValue = -(floatResult1 * FloatValue1) - floatResult6 * floatResult5;
+          presultValue[1] = floatResult6 * FloatValue1 - floatResult1 * floatResult5;
           presultValue[-localLong7] = floatResult2 * localFloat23 - floatResult3 * localFloat26;
           presultValue[1 - localLong7] = floatResult3 * localFloat23 + floatResult2 * localFloat26;
-          presultValue[localLong7] = localFloat21 * localFloat22 - floatResult9 * localFloat27;
-          presultValue[localLong7 + 1] = localFloat21 * localFloat27 + floatResult9 * localFloat22;
+          presultValue[localLong7] = localFloat21 * localFloat22 - FloatValue2 * localFloat27;
+          presultValue[localLong7 + 1] = localFloat21 * localFloat27 + FloatValue2 * localFloat22;
           presultValue = presultValue + 2;
           result = result - 1;
         } while (result != 0);
@@ -219834,8 +219834,8 @@ void FUN_18079fd23(int uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -219862,23 +219862,23 @@ void FUN_18079fd23(int uiContext)
       LoopCounter = (ulonglong)(((localInt7 - ProcessingResult1) - 1U >> 1) + 1);
       do {
         floatResult3 = plocalFloat6[register10] + *plocalFloat6;
-        floatResult9 = *plocalFloat6 - plocalFloat6[register10];
+        FloatValue2 = *plocalFloat6 - plocalFloat6[register10];
         floatResult7 = plocalFloat6[register10 * -2] + plocalFloat6[-register10];
         localFloat21 = plocalFloat6[register10 * -2] - plocalFloat6[-register10];
         floatResult2 = plocalFloat6[register10 + 1] + plocalFloat6[1];
         floatResult5 = plocalFloat6[register10 * -2 + 1] + plocalFloat6[1 - register10];
         localFloat22 = plocalFloat6[register10 * -2 + 1] - plocalFloat6[1 - register10];
         localFloat20 = plocalFloat6[1] - plocalFloat6[register10 + 1];
-        floatResult8 = floatResult7 - floatResult3;
+        FloatValue1 = floatResult7 - floatResult3;
         floatResult6 = floatResult5 - floatResult2;
-        vectorComponentX = floatResult9 + localFloat22;
+        vectorComponentX = FloatValue2 + localFloat22;
         plocalFloat6[register10 * -2] = floatResult3 + floatResult7;
-        localFloat22 = localFloat22 - floatResult9;
+        localFloat22 = localFloat22 - FloatValue2;
         plocalFloat6[register10 * -2 + 1] = floatResult2 + floatResult5;
         floatResult2 = localFloat21 - localFloat20;
         localFloat20 = localFloat20 + localFloat21;
-        *plocalFloat6 = processedFloat * floatResult8 - floatResult * floatResult6;
-        plocalFloat6[1] = processedFloat * floatResult6 + floatResult * floatResult8;
+        *plocalFloat6 = processedFloat * FloatValue1 - floatResult * floatResult6;
+        plocalFloat6[1] = processedFloat * floatResult6 + floatResult * FloatValue1;
         plocalFloat6[-register10] = localFloat2 * floatResult2 - resultValue * vectorComponentX;
         plocalFloat6[1 - register10] = resultValue * floatResult2 + localFloat2 * vectorComponentX;
         plocalFloat6[register10] = localFloat24 * localFloat20 - localFloat23 * localFloat22;
@@ -219902,20 +219902,20 @@ void FUN_18079fd23(int uiContext)
         floatResult2 = plocalFloat6[1] + plocalFloat6[register10 + 1];
         floatResult7 = plocalFloat6[register10 * -2] + plocalFloat6[-register10];
         localFloat21 = plocalFloat6[register10 * -2] - plocalFloat6[-register10];
-        floatResult9 = *plocalFloat6 - plocalFloat6[register10];
+        FloatValue2 = *plocalFloat6 - plocalFloat6[register10];
         localFloat20 = plocalFloat6[1] - plocalFloat6[register10 + 1];
         floatResult5 = plocalFloat6[register10 * -2 + 1] + plocalFloat6[1 - register10];
         localFloat22 = plocalFloat6[register10 * -2 + 1] - plocalFloat6[1 - register10];
-        floatResult8 = floatResult7 - floatResult3;
+        FloatValue1 = floatResult7 - floatResult3;
         floatResult6 = floatResult5 - floatResult2;
-        vectorComponentX = floatResult9 + localFloat22;
+        vectorComponentX = FloatValue2 + localFloat22;
         plocalFloat6[register10 * -2] = floatResult3 + floatResult7;
-        localFloat22 = localFloat22 - floatResult9;
+        localFloat22 = localFloat22 - FloatValue2;
         plocalFloat6[register10 * -2 + 1] = floatResult2 + floatResult5;
         floatResult2 = localFloat21 - localFloat20;
         localFloat20 = localFloat20 + localFloat21;
-        *plocalFloat6 = -(floatResult * floatResult8) - processedFloat * floatResult6;
-        plocalFloat6[1] = processedFloat * floatResult8 - floatResult * floatResult6;
+        *plocalFloat6 = -(floatResult * FloatValue1) - processedFloat * floatResult6;
+        plocalFloat6[1] = processedFloat * FloatValue1 - floatResult * floatResult6;
         plocalFloat6[-register10] = localFloat2 * floatResult2 - resultValue * vectorComponentX;
         plocalFloat6[1 - register10] = resultValue * floatResult2 + localFloat2 * vectorComponentX;
         plocalFloat6[register10] = localFloat24 * localFloat20 - localFloat23 * localFloat22;
@@ -232579,7 +232579,7 @@ void FUN_18080dae0(longlong uiContext,int *dataSource,longlong targetBuffer,long
   longlong allocatedMemory5;
   ulonglong TotalResult;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   UIByte astackUInt108 [32];
   int stackInte8;
   int stackInte4;
@@ -232697,14 +232697,14 @@ void FUN_18080dae0(longlong uiContext,int *dataSource,longlong targetBuffer,long
           pfloatResult1[-0x80] = (float)(TempInt4 + EventOperationCount);
           *pfloatResult1 = (float)(TempInt4 + EventOperationCount) * floatResult7;
           TempInt4 = func_0x000180815aa0(allocatedMemory4,stackInte8);
-          floatResult8 = (float)(TempInt4 + EventOperationCount);
-          pfloatResult1[-0x60] = floatResult8;
-          pfloatResult1[0x20] = floatResult8 * floatResult7;
+          FloatValue1 = (float)(TempInt4 + EventOperationCount);
+          pfloatResult1[-0x60] = FloatValue1;
+          pfloatResult1[0x20] = FloatValue1 * floatResult7;
           puiOperationResult = (int *)(bufferSize + stackLonge0 * 4);
           bufferSize = bufferSize + 0x18;
           floatResult7 = *(float *)(((longlong)*puiOperationResult + (longlong)sVar3 * 0x40) * 4 + 0x180c37da0);
           pfloatResult1[-0xa0] = floatResult7 * pfloatResult1[-0xa0];
-          pfloatResult1[-0x60] = floatResult8 * floatResult7;
+          pfloatResult1[-0x60] = FloatValue1 * floatResult7;
           pfloatResult1[-0x80] = floatResult7 * pfloatResult1[-0x80];
           localLong7 = stackLonge0;
         }
@@ -237589,8 +237589,8 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -237604,11 +237604,11 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   floatResult6 = uiContext[0xe] + uiContext[0xf];
   resultFloat = uiContext[0xd] + uiContext[0xe];
   floatResult5 = uiContext[0xc] + uiContext[0xd];
-  floatResult8 = uiContext[0xb] + uiContext[0xc];
+  FloatValue1 = uiContext[0xb] + uiContext[0xc];
   uiContext[0xe] = resultFloat;
   vectorComponentX = uiContext[10] + uiContext[0xb];
   localFloat8 = uiContext[9] + uiContext[10];
-  uiContext[0xc] = floatResult8;
+  uiContext[0xc] = FloatValue1;
   floatResult3 = uiContext[8] + uiContext[9];
   localFloat20 = uiContext[7] + uiContext[8];
   uiContext[10] = localFloat8;
@@ -237640,32 +237640,32 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   uiContext[5] = floatResult0;
   localFloat9 = localFloat2 + localFloat9;
   uiContext[3] = localFloat9;
-  floatResult8 = floatResult8 * _DAT_180c42388;
-  floatResult5 = secondaryValue + floatResult8;
-  floatResult8 = (secondaryValue - floatResult8) - floatResult8;
+  FloatValue1 = FloatValue1 * _DAT_180c42388;
+  floatResult5 = secondaryValue + FloatValue1;
+  FloatValue1 = (secondaryValue - FloatValue1) - FloatValue1;
   secondaryValue = ((localFloat20 + floatResult) - floatResult7) * _DAT_180c42388;
   localFloat21 = (localFloat20 - floatResult) * _DAT_180c423cc;
-  floatResult2 = floatResult8 - secondaryValue;
+  floatResult2 = FloatValue1 - secondaryValue;
   floatResult3 = (floatResult + floatResult7) * _DAT_180c423d0;
-  floatResult9 = (localFloat20 + floatResult7) * _DAT_180c423c8;
-  secondaryValue = floatResult8 + secondaryValue + secondaryValue;
-  floatResult = (floatResult5 - floatResult9) - floatResult3;
-  floatResult8 = floatResult5 + (floatResult3 - localFloat21);
+  FloatValue2 = (localFloat20 + floatResult7) * _DAT_180c423c8;
+  secondaryValue = FloatValue1 + secondaryValue + secondaryValue;
+  floatResult = (floatResult5 - FloatValue2) - floatResult3;
+  FloatValue1 = floatResult5 + (floatResult3 - localFloat21);
   localFloat24 = localFloat24 * _DAT_180c418dc;
-  floatResult9 = floatResult9 + floatResult5 + localFloat21;
+  FloatValue2 = FloatValue2 + floatResult5 + localFloat21;
   localFloat20 = (localFloat22 + localFloat8) * _DAT_180c423d8;
   localFloat21 = (localFloat8 - resultFloat) * _DAT_180c423dc;
   floatResult3 = localFloat21 + localFloat20 + localFloat24;
-  floatResult7 = floatResult9 + floatResult3;
-  floatResult9 = floatResult9 - floatResult3;
+  floatResult7 = FloatValue2 + floatResult3;
+  FloatValue2 = FloatValue2 - floatResult3;
   floatResult5 = (resultFloat + localFloat22) * _DAT_180c423e0;
   localFloat20 = localFloat20 + (floatResult5 - localFloat24);
-  floatResult3 = floatResult8 + localFloat20;
+  floatResult3 = FloatValue1 + localFloat20;
   vectorComponentX = vectorComponentX * _DAT_180c42388;
   localFloat21 = localFloat21 - (localFloat24 + floatResult5);
   localFloat6 = localFloat6 * _DAT_180c418dc;
   floatResult5 = ((resultFloat + localFloat8) - localFloat22) * _DAT_180c418dc;
-  floatResult8 = floatResult8 - localFloat20;
+  FloatValue1 = FloatValue1 - localFloat20;
   localFloat24 = floatResult2 - floatResult5;
   floatResult5 = floatResult5 + floatResult2;
   resultFloat = floatResult - localFloat21;
@@ -237724,14 +237724,14 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   resultPointer[0x180] = floatResult3 * bufferSize[0xc] + dataSource[0xc];
   targetBuffer[0xd] = processedFloat * bufferSize[0x1f];
   targetBuffer[4] = processedFloat * bufferSize[0x16];
-  processedFloat = floatResult6 + floatResult8;
-  floatResult8 = floatResult8 - floatResult6;
+  processedFloat = floatResult6 + FloatValue1;
+  FloatValue1 = FloatValue1 - floatResult6;
   resultPointer[0x80] = secondaryValue * bufferSize[4] + dataSource[4];
   resultPointer[0x1a0] = secondaryValue * bufferSize[0xd] + dataSource[0xd];
   targetBuffer[0xe] = processedFloat * bufferSize[0x20];
   targetBuffer[3] = processedFloat * bufferSize[0x15];
-  resultPointer[0x60] = floatResult8 * bufferSize[3] + dataSource[3];
-  resultPointer[0x1c0] = floatResult8 * bufferSize[0xe] + dataSource[0xe];
+  resultPointer[0x60] = FloatValue1 * bufferSize[3] + dataSource[3];
+  resultPointer[0x1c0] = FloatValue1 * bufferSize[0xe] + dataSource[0xe];
   processedFloat = floatResult0 + resultFloat;
   resultFloat = resultFloat - floatResult0;
   targetBuffer[0xf] = processedFloat * bufferSize[0x21];
@@ -237744,12 +237744,12 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   targetBuffer[1] = processedFloat * bufferSize[0x13];
   resultPointer[0x20] = floatResult5 * bufferSize[1] + dataSource[1];
   resultPointer[0x200] = floatResult5 * bufferSize[0x10] + dataSource[0x10];
-  processedFloat = floatResult1 + floatResult9;
-  floatResult9 = floatResult9 - floatResult1;
+  processedFloat = floatResult1 + FloatValue2;
+  FloatValue2 = FloatValue2 - floatResult1;
   targetBuffer[0x11] = processedFloat * bufferSize[0x23];
   *targetBuffer = processedFloat * bufferSize[0x12];
-  *resultPointer = floatResult9 * *bufferSize + *dataSource;
-  resultPointer[0x220] = floatResult9 * bufferSize[0x11] + dataSource[0x11];
+  *resultPointer = FloatValue2 * *bufferSize + *dataSource;
+  resultPointer[0x220] = FloatValue2 * bufferSize[0x11] + dataSource[0x11];
   return;
 }
 
@@ -237789,7 +237789,7 @@ UIHandle FUN_180813210(int uiContext)
   UIDword *ptrResult6;
   int *puiOperationResult7;
   UIHandle *ptrResult8;
-  float *pfloatResult9;
+  float *pFloatValue2;
   ulonglong semaphoreHandle0;
   ulonglong semaphoreHandle1;
   longlong componentIndex2;
@@ -237909,54 +237909,54 @@ UIHandle FUN_180813210(int uiContext)
     CharacterDataOffset = CharacterDataOffset + -1;
   } while (CharacterDataOffset != 0);
   uiOperationResult4 = 1;
-  pfloatResult9 = (float *)0x180c41920;
+  pFloatValue2 = (float *)0x180c41920;
   do {
     resultValue3 = (float)cosf((float)(uiOperationResult4 + 0x12) * 0.043633234);
     resultValue4 = (float)sinf((float)uiOperationResult4 * 0.043633234);
     resultValue4 = (0.5 / resultValue3) * resultValue4;
-    pfloatResult9[0x24] = resultValue4;
-    *pfloatResult9 = resultValue4;
+    pFloatValue2[0x24] = resultValue4;
+    *pFloatValue2 = resultValue4;
     resultValue3 = (float)cosf((float)(uiOperationResult4 + 0x36) * 0.043633234);
     resultValue4 = (float)sinf((float)(uiOperationResult4 + 0x24) * 0.043633234);
     resultValue4 = (0.5 / resultValue3) * resultValue4;
     uiOperationResult4 = uiOperationResult4 + 2;
-    pfloatResult9[0x7e] = resultValue4;
-    pfloatResult9[0x12] = resultValue4;
-    pfloatResult9 = pfloatResult9 + 1;
+    pFloatValue2[0x7e] = resultValue4;
+    pFloatValue2[0x12] = resultValue4;
+    pFloatValue2 = pFloatValue2 + 1;
   } while (uiOperationResult4 < 0x25);
   uiOperationResult4 = 0x2b;
-  pfloatResult9 = (float *)0x180c41b00;
+  pFloatValue2 = (float *)0x180c41b00;
   do {
     resultValue3 = (float)cosf((float)(uiOperationResult4 + 0xc) * 0.043633234);
-    pfloatResult9[-0x42] = 0.5 / resultValue3;
+    pFloatValue2[-0x42] = 0.5 / resultValue3;
     resultValue3 = (float)cosf((float)uiOperationResult4 * 0.043633234);
-    *pfloatResult9 = 0.5 / resultValue3;
+    *pFloatValue2 = 0.5 / resultValue3;
     resultValue3 = (float)cosf((float)(uiOperationResult4 + 0x18) * 0.043633234);
     resultValue4 = (float)sinf((float)(uiOperationResult4 + -0x1e) * 0.1308997);
-    pfloatResult9[-0xc] = 0.0;
-    pfloatResult9[-0x36] = 0.0;
-    pfloatResult9[-0x3c] = (0.5 / resultValue3) * resultValue4;
+    pFloatValue2[-0xc] = 0.0;
+    pFloatValue2[-0x36] = 0.0;
+    pFloatValue2[-0x3c] = (0.5 / resultValue3) * resultValue4;
     resultValue3 = (float)cosf((float)(uiOperationResult4 + -0xc) * 0.043633234);
     resultValue4 = (float)sinf((float)(uiOperationResult4 + -0x2a) * 0.1308997);
     uiOperationResult4 = uiOperationResult4 + 2;
-    pfloatResult9[-6] = (0.5 / resultValue3) * resultValue4;
-    pfloatResult9 = pfloatResult9 + 1;
+    pFloatValue2[-6] = (0.5 / resultValue3) * resultValue4;
+    pFloatValue2 = pFloatValue2 + 1;
   } while (uiOperationResult4 < 0x37);
   uiOperationResult4 = 1;
-  pfloatResult9 = (float *)&DAT_180c42390;
+  pFloatValue2 = (float *)&DAT_180c42390;
   do {
     resultValue3 = (float)cosf((float)uiOperationResult4 * 0.08726647);
     uiOperationResult4 = uiOperationResult4 + 2;
-    *pfloatResult9 = 0.5 / resultValue3;
-    pfloatResult9 = pfloatResult9 + 1;
+    *pFloatValue2 = 0.5 / resultValue3;
+    pFloatValue2 = pFloatValue2 + 1;
   } while (uiOperationResult4 < 0x13);
   uiOperationResult4 = 1;
-  pfloatResult9 = (float *)&DAT_180c423b8;
+  pFloatValue2 = (float *)&DAT_180c423b8;
   do {
     resultValue3 = (float)cosf((float)uiOperationResult4 * 0.2617994);
     uiOperationResult4 = uiOperationResult4 + 2;
-    *pfloatResult9 = 0.5 / resultValue3;
-    pfloatResult9 = pfloatResult9 + 1;
+    *pFloatValue2 = 0.5 / resultValue3;
+    pFloatValue2 = pFloatValue2 + 1;
   } while (uiOperationResult4 < 7);
   uiOperationResult4 = 1;
   _DAT_180c418dc = 0x3f5db3d7;
@@ -237967,13 +237967,13 @@ UIHandle FUN_180813210(int uiContext)
   _DAT_180c423d8 = 0x3f7c1c5c;
   _DAT_180c423dc = 0xbeaf1d47;
   _DAT_180c423e0 = 0xbf248dbb;
-  pfloatResult9 = (float *)0x180c41a40;
+  pFloatValue2 = (float *)0x180c41a40;
   do {
     resultValue3 = (float)cosf((float)(uiOperationResult4 + 6) * 0.1308997);
     resultValue4 = (float)sinf((float)uiOperationResult4 * 0.1308997);
     uiOperationResult4 = uiOperationResult4 + 2;
-    *pfloatResult9 = (0.5 / resultValue3) * resultValue4;
-    pfloatResult9 = pfloatResult9 + 1;
+    *pFloatValue2 = (0.5 / resultValue3) * resultValue4;
+    pFloatValue2 = pFloatValue2 + 1;
   } while (uiOperationResult4 < 0x19);
   puiValidationResult5 = (int *)0x180beb618;
   CharacterDataOffset = 4;
@@ -238497,8 +238497,8 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -238545,13 +238545,13 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   localFloat8 = targetBuffer[7] + targetBuffer[0x18];
   floatResult7 = (targetBuffer[7] - targetBuffer[0x18]) * _DAT_180be5740[7];
   localFloat9 = targetBuffer[8] + targetBuffer[0x17];
-  floatResult8 = (targetBuffer[8] - targetBuffer[0x17]) * _DAT_180be5740[8];
+  FloatValue1 = (targetBuffer[8] - targetBuffer[0x17]) * _DAT_180be5740[8];
   processedFloat5 = targetBuffer[9] + targetBuffer[0x16];
   floatResult0 = (targetBuffer[9] - targetBuffer[0x16]) * _DAT_180be5740[9];
   resultValue5 = targetBuffer[10] + targetBuffer[0x15];
   localFloat20 = targetBuffer[0xd] + targetBuffer[0x12];
   floatResult1 = (targetBuffer[10] - targetBuffer[0x15]) * _DAT_180be5740[10];
-  floatResult9 = targetBuffer[0xe] + targetBuffer[0x11];
+  FloatValue2 = targetBuffer[0xe] + targetBuffer[0x11];
   resultValue0 = targetBuffer[0xb] + targetBuffer[0x14];
   processedFloat2 = (targetBuffer[0xd] - targetBuffer[0x12]) * _DAT_180be5740[0xd];
   resultValue2 = (targetBuffer[0xe] - targetBuffer[0x11]) * _DAT_180be5740[0xe];
@@ -238563,10 +238563,10 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   resultValue9 = vectorComponentX + localFloat26;
   processedFloat0 = localFloat20 + localFloat22;
   localFloat27 = (localFloat26 - vectorComponentX) * *_DAT_180be5748;
-  vectorComponentX = floatResult9 + localFloat2;
-  localFloat26 = (localFloat2 - floatResult9) * _DAT_180be5748[1];
+  vectorComponentX = FloatValue2 + localFloat2;
+  localFloat26 = (localFloat2 - FloatValue2) * _DAT_180be5748[1];
   localFloat23 = (localFloat22 - localFloat20) * _DAT_180be5748[2];
-  floatResult9 = localFloat21 + processedFloat;
+  FloatValue2 = localFloat21 + processedFloat;
   localFloat22 = (processedFloat - localFloat21) * _DAT_180be5748[3];
   processedFloat = resultValue0 + localFloat29;
   localFloat29 = (localFloat29 - resultValue0) * _DAT_180be5748[4];
@@ -238591,8 +238591,8 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   floatResult2 = (localFloat6 - floatResult1) * _DAT_180be5748[5];
   floatResult3 = floatResult0 + resultFloat;
   floatResult0 = (resultFloat - floatResult0) * _DAT_180be5748[6];
-  floatResult1 = floatResult8 + floatResult7;
-  localFloat8 = (floatResult7 - floatResult8) * _DAT_180be5748[7];
+  floatResult1 = FloatValue1 + floatResult7;
+  localFloat8 = (floatResult7 - FloatValue1) * _DAT_180be5748[7];
   floatResult = *_DAT_180be5750;
   localFloat2 = _DAT_180be5750[1];
   secondaryValue = (resultValue9 - localFloat24) * floatResult;
@@ -238600,12 +238600,12 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   resultValue = _DAT_180be5750[2];
   localFloat6 = (vectorComponentX - resultValue1) * localFloat2;
   resultValue8 = processedFloat1 + processedFloat0;
-  floatResult8 = processedFloat + floatResult9;
+  FloatValue1 = processedFloat + FloatValue2;
   resultValue1 = processedFloat6 + localFloat27;
   resultFloat = (processedFloat0 - processedFloat1) * resultValue;
   vectorComponentX = _DAT_180be5750[3];
   floatResult6 = (localFloat27 - processedFloat6) * floatResult;
-  processedFloat6 = (floatResult9 - processedFloat) * vectorComponentX;
+  processedFloat6 = (FloatValue2 - processedFloat) * vectorComponentX;
   processedFloat7 = localFloat21 + localFloat26;
   localFloat24 = (localFloat26 - localFloat21) * localFloat2;
   localFloat27 = localFloat20 + localFloat23;
@@ -238627,48 +238627,48 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   localFloat22 = floatResult2 + resultValue3;
   resultValue = (resultValue3 - floatResult2) * resultValue;
   localFloat26 = floatResult5 + resultValue0;
-  floatResult9 = _DAT_180be5758[1];
+  FloatValue2 = _DAT_180be5758[1];
   vectorComponentX = (resultValue0 - floatResult5) * vectorComponentX;
   processedFloat = *_DAT_180be5758;
-  localFloat8 = floatResult8 + resultValue7;
-  localFloat28 = (resultValue7 - floatResult8) * processedFloat;
+  localFloat8 = FloatValue1 + resultValue7;
+  localFloat28 = (resultValue7 - FloatValue1) * processedFloat;
   floatResult0 = resultValue8 + localFloat9;
-  localFloat23 = (localFloat9 - resultValue8) * floatResult9;
+  localFloat23 = (localFloat9 - resultValue8) * FloatValue2;
   resultValue6 = secondaryValue + processedFloat6;
   localFloat9 = (secondaryValue - processedFloat6) * processedFloat;
   localFloat25 = localFloat6 + resultFloat;
-  localFloat6 = (localFloat6 - resultFloat) * floatResult9;
+  localFloat6 = (localFloat6 - resultFloat) * FloatValue2;
   resultValue3 = floatResult7 + resultValue1;
-  floatResult8 = localFloat27 + processedFloat7;
+  FloatValue1 = localFloat27 + processedFloat7;
   resultFloat = (resultValue1 - floatResult7) * processedFloat;
-  floatResult5 = (processedFloat7 - localFloat27) * floatResult9;
+  floatResult5 = (processedFloat7 - localFloat27) * FloatValue2;
   floatResult7 = floatResult6 + processedFloat0;
   localFloat27 = (floatResult6 - processedFloat0) * processedFloat;
   floatResult6 = localFloat24 + resultValue9;
-  resultValue1 = (localFloat24 - resultValue9) * floatResult9;
+  resultValue1 = (localFloat24 - resultValue9) * FloatValue2;
   resultValue0 = processedFloat1 + floatResult1;
   resultValue4 = (processedFloat1 - floatResult1) * processedFloat;
   floatResult2 = localFloat20 + processedFloat2;
-  floatResult1 = (localFloat20 - processedFloat2) * floatResult9;
+  floatResult1 = (localFloat20 - processedFloat2) * FloatValue2;
   resultValue2 = processedFloat3 + processedFloat4;
   localFloat24 = (processedFloat4 - processedFloat3) * processedFloat;
   resultValue7 = localFloat21 + processedFloat5;
-  resultValue9 = (processedFloat5 - localFloat21) * floatResult9;
+  resultValue9 = (processedFloat5 - localFloat21) * FloatValue2;
   resultValue5 = localFloat29 + localFloat26;
   resultValue8 = floatResult3 + localFloat22;
   processedFloat0 = (localFloat29 - localFloat26) * processedFloat;
-  floatResult3 = (floatResult3 - localFloat22) * floatResult9;
+  floatResult3 = (floatResult3 - localFloat22) * FloatValue2;
   localFloat26 = vectorComponentX + floatResult;
   processedFloat = (floatResult - vectorComponentX) * processedFloat;
   vectorComponentX = resultValue + localFloat2;
-  floatResult9 = (localFloat2 - resultValue) * floatResult9;
+  FloatValue2 = (localFloat2 - resultValue) * FloatValue2;
   floatResult = *_DAT_180be5760;
   processedFloat5 = (resultValue6 - localFloat25) * floatResult;
   localFloat22 = (localFloat8 - floatResult0) * floatResult;
   localFloat29 = (localFloat28 - localFloat23) * floatResult;
   secondaryValue = (localFloat9 - localFloat6) * floatResult;
   processedFloat2 = localFloat9 + localFloat6 + secondaryValue;
-  resultValue = (resultValue3 - floatResult8) * floatResult;
+  resultValue = (resultValue3 - FloatValue1) * floatResult;
   localFloat20 = (resultFloat - floatResult5) * floatResult;
   processedFloat1 = floatResult5 + resultFloat + localFloat20;
   floatResult5 = (localFloat27 - resultValue1) * floatResult;
@@ -238691,13 +238691,13 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   floatResult1 = (processedFloat0 - floatResult3) * localFloat2;
   floatResult3 = floatResult3 + processedFloat0 + floatResult1;
   resultValue2 = (localFloat26 - vectorComponentX) * localFloat2;
-  localFloat2 = (processedFloat - floatResult9) * localFloat2;
-  floatResult9 = floatResult9 + processedFloat + localFloat2;
+  localFloat2 = (processedFloat - FloatValue2) * localFloat2;
+  FloatValue2 = FloatValue2 + processedFloat + localFloat2;
   uiContext[0xc0] = localFloat25 + resultValue6 + processedFloat2;
   uiContext[0x40] = processedFloat2 + processedFloat5;
-  vectorComponentX = localFloat26 + vectorComponentX + floatResult9;
+  vectorComponentX = localFloat26 + vectorComponentX + FloatValue2;
   uiContext[0x80] = localFloat28 + localFloat23 + localFloat29;
-  floatResult9 = floatResult9 + resultValue2;
+  FloatValue2 = FloatValue2 + resultValue2;
   resultValue2 = resultValue2 + localFloat2;
   *uiContext = localFloat22;
   uiContext[0x100] = floatResult0 + localFloat8;
@@ -238705,11 +238705,11 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   processedFloat = resultValue5 + resultValue8 + vectorComponentX;
   vectorComponentX = vectorComponentX + floatResult3;
   dataSource[0x40] = processedFloat5 + secondaryValue;
-  floatResult3 = floatResult3 + floatResult9;
+  floatResult3 = floatResult3 + FloatValue2;
   dataSource[0x80] = localFloat29;
   dataSource[0xc0] = secondaryValue;
   uiContext[0xa0] = resultValue1 + processedFloat1;
-  uiContext[0xe0] = resultValue3 + floatResult8 + resultValue1;
+  uiContext[0xe0] = resultValue3 + FloatValue1 + resultValue1;
   uiContext[0x60] = processedFloat1 + localFloat27;
   uiContext[0x20] = localFloat27 + resultValue;
   dataSource[0x20] = resultValue + localFloat21;
@@ -238719,13 +238719,13 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   uiContext[0xf0] = floatResult2 + resultValue0 + processedFloat;
   uiContext[0xd0] = floatResult7 + processedFloat;
   uiContext[0xb0] = floatResult7 + vectorComponentX;
-  floatResult9 = floatResult9 + floatResult;
+  FloatValue2 = FloatValue2 + floatResult;
   floatResult = floatResult + resultValue2;
   uiContext[0x90] = resultValue9 + vectorComponentX;
   uiContext[0x70] = resultValue9 + floatResult3;
   uiContext[0x50] = localFloat24 + floatResult3;
-  uiContext[0x30] = localFloat24 + floatResult9;
-  uiContext[0x10] = localFloat6 + floatResult9;
+  uiContext[0x30] = localFloat24 + FloatValue2;
+  uiContext[0x10] = localFloat6 + FloatValue2;
   dataSource[0x10] = localFloat6 + floatResult;
   resultValue2 = resultValue2 + floatResult1;
   dataSource[0x30] = localFloat9 + floatResult;
@@ -245949,7 +245949,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
   short sVar15;
   short sVar16;
   float *pfloatResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   uint result9;
   float *plocalFloat20;
   float *plocalFloat21;
@@ -245967,7 +245967,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
   plocalFloat21 = (float *)uiContext[3];
   plocalFloat20 = (float *)uiContext[4];
   pfloatResult7 = (float *)uiContext[8];
-  pfloatResult8 = (float *)uiContext[9];
+  pFloatValue1 = (float *)uiContext[9];
   sVar3 = *(short *)((longlong)uiContext + 0x56);
   result9 = (uint)sVar3;
   sVar15 = *(short *)(uiContext + 6);
@@ -245990,15 +245990,15 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
     FUN_18081d760(pfloatResult7,sVar5,pfloatResult7,sVar5,_DAT_180d4ab50,&DAT_180d4aa98,sVar3);
     FUN_18081d760(pfloatResult7,sVar5,pfloatResult7,sVar5,_DAT_180d4ab48,&DAT_180d4aa80,sVar3);
     if (dataSource == 0) {
-      FUN_18081d600(pfloatResult2,sVar16,pfloatResult8,sVar6,_DAT_180d4ab70,&DAT_180d4ab00,sVar3);
-      FUN_18081d8a0(pfloatResult8,sVar6,pfloatResult8,sVar6,_DAT_180d4ab68,&DAT_180d4aad0,sVar3);
-      pfloatResult2 = pfloatResult8;
+      FUN_18081d600(pfloatResult2,sVar16,pFloatValue1,sVar6,_DAT_180d4ab70,&DAT_180d4ab00,sVar3);
+      FUN_18081d8a0(pFloatValue1,sVar6,pFloatValue1,sVar6,_DAT_180d4ab68,&DAT_180d4aad0,sVar3);
+      pfloatResult2 = pFloatValue1;
       sVar16 = sVar6;
     }
-    FUN_18081d760(pfloatResult2,sVar16,pfloatResult8,sVar6,_DAT_180d4ab60,&DAT_180d4aab8,sVar3);
-    FUN_18081d760(pfloatResult8,sVar6,pfloatResult8,sVar6,_DAT_180d4ab58,&DAT_180d4aaa0,sVar3);
-    FUN_18081d760(pfloatResult8,sVar6,pfloatResult8,sVar6,_DAT_180d4ab50,&DAT_180d4aa88,sVar3);
-    FUN_18081d760(pfloatResult8,sVar6,pfloatResult8,sVar6,_DAT_180d4ab48,&DAT_180d4aa70,sVar3);
+    FUN_18081d760(pfloatResult2,sVar16,pFloatValue1,sVar6,_DAT_180d4ab60,&DAT_180d4aab8,sVar3);
+    FUN_18081d760(pFloatValue1,sVar6,pFloatValue1,sVar6,_DAT_180d4ab58,&DAT_180d4aaa0,sVar3);
+    FUN_18081d760(pFloatValue1,sVar6,pFloatValue1,sVar6,_DAT_180d4ab50,&DAT_180d4aa88,sVar3);
+    FUN_18081d760(pFloatValue1,sVar6,pFloatValue1,sVar6,_DAT_180d4ab48,&DAT_180d4aa70,sVar3);
     if (dataSource == 0) {
       FUN_18081d600(plocalFloat22,sVar1,plocalFloat22,sVar1,_DAT_180d4ab70,&DAT_180d4ab08,sVar3);
       FUN_18081d8a0(plocalFloat22,sVar1,plocalFloat22,sVar1,_DAT_180d4ab68,&DAT_180d4aae0,sVar3);
@@ -246040,7 +246040,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
       do {
         localFloat25 = ((*plocalFloat22 * 0.70710677 + *pfloatResult7) - *plocalFloat21 * 0.8709636) - *plocalFloat20 * 0.48977882
         ;
-        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pfloatResult8;
+        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pFloatValue1;
         if (localFloat25 < 0.9999695) {
           if (-1.0 < localFloat25) {
             uVar8 = 0;
@@ -246071,7 +246071,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
           result0 = 0xfffffffd;
         }
         *pfloatResult7 = localFloat25;
-        *pfloatResult8 = localFloat24;
+        *pFloatValue1 = localFloat24;
         if (uVar8 != 0) {
           result0 = uVar8;
         }
@@ -246079,10 +246079,10 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
         plocalFloat21 = plocalFloat21 + sVar2;
         pfloatResult7 = pfloatResult7 + sVar5;
         plocalFloat20 = plocalFloat20 + sVar4;
-        pfloatResult8 = pfloatResult8 + sVar6;
+        pFloatValue1 = pFloatValue1 + sVar6;
         localFloat25 = ((*plocalFloat22 * 0.70710677 + *pfloatResult7) - *plocalFloat21 * 0.8709636) - *plocalFloat20 * 0.48977882
         ;
-        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pfloatResult8;
+        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pFloatValue1;
         if (localFloat25 < 0.9999695) {
           if (-1.0 < localFloat25) {
             uVar8 = 0;
@@ -246113,7 +246113,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
           result0 = 0xfffffffd;
         }
         *pfloatResult7 = localFloat25;
-        *pfloatResult8 = localFloat24;
+        *pFloatValue1 = localFloat24;
         if (uVar8 != 0) {
           result0 = uVar8;
         }
@@ -246121,10 +246121,10 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
         plocalFloat21 = plocalFloat21 + sVar2;
         pfloatResult7 = pfloatResult7 + sVar5;
         plocalFloat20 = plocalFloat20 + sVar4;
-        pfloatResult8 = pfloatResult8 + sVar6;
+        pFloatValue1 = pFloatValue1 + sVar6;
         localFloat25 = ((*plocalFloat22 * 0.70710677 + *pfloatResult7) - *plocalFloat21 * 0.8709636) - *plocalFloat20 * 0.48977882
         ;
-        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pfloatResult8;
+        localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pFloatValue1;
         if (localFloat25 < 0.9999695) {
           if (-1.0 < localFloat25) {
             uVar8 = 0;
@@ -246155,17 +246155,17 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
           result3 = 0xfffffffd;
         }
         *pfloatResult7 = localFloat25;
-        *pfloatResult8 = localFloat24;
+        *pFloatValue1 = localFloat24;
         if (uVar8 != 0) {
           result3 = (ulonglong)uVar8;
         }
         pfloatResult7 = pfloatResult7 + sVar5;
-        pfloatResult8 = pfloatResult8 + sVar6;
+        pFloatValue1 = pFloatValue1 + sVar6;
         localFloat24 = plocalFloat21[sVar2];
         localFloat25 = plocalFloat20[sVar4];
         localFloat23 = plocalFloat22[sVar1] * 0.70710677;
         localFloat26 = ((localFloat23 + *pfloatResult7) - localFloat24 * 0.8709636) - localFloat25 * 0.48977882;
-        localFloat24 = localFloat24 * 0.48977882 + localFloat25 * 0.8709636 + localFloat23 + *pfloatResult8;
+        localFloat24 = localFloat24 * 0.48977882 + localFloat25 * 0.8709636 + localFloat23 + *pFloatValue1;
         if (localFloat26 < 0.9999695) {
           if (-1.0 < localFloat26) {
             uVar8 = 0;
@@ -246197,12 +246197,12 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
           result3 = 0xfffffffd;
         }
         *pfloatResult7 = localFloat26;
-        *pfloatResult8 = localFloat24;
+        *pFloatValue1 = localFloat24;
         if ((int)uVar9 != 0) {
           result3 = uVar9;
         }
         pfloatResult7 = pfloatResult7 + sVar5;
-        pfloatResult8 = pfloatResult8 + sVar6;
+        pFloatValue1 = pFloatValue1 + sVar6;
         plocalFloat22 = plocalFloat22 + sVar1 + sVar1;
         plocalFloat21 = plocalFloat21 + sVar2 + sVar2;
         plocalFloat20 = plocalFloat20 + sVar4 + sVar4;
@@ -246216,7 +246216,7 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
     uVar9 = result3;
     do {
       localFloat25 = ((*plocalFloat22 * 0.70710677 + *pfloatResult7) - *plocalFloat21 * 0.8709636) - *plocalFloat20 * 0.48977882;
-      localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pfloatResult8;
+      localFloat24 = *plocalFloat21 * 0.48977882 + *plocalFloat20 * 0.8709636 + *plocalFloat22 * 0.70710677 + *pFloatValue1;
       if (localFloat25 < 0.9999695) {
         if (-1.0 < localFloat25) {
           result9 = 0;
@@ -246247,12 +246247,12 @@ ulonglong FUN_18081c5b0(UIHandle *uiContext,int dataSource)
         uVar9 = 0xfffffffd;
       }
       *pfloatResult7 = localFloat25;
-      *pfloatResult8 = localFloat24;
+      *pFloatValue1 = localFloat24;
       if (result9 != 0) {
         uVar9 = (ulonglong)result9;
       }
       pfloatResult7 = pfloatResult7 + sVar5;
-      pfloatResult8 = pfloatResult8 + sVar6;
+      pFloatValue1 = pFloatValue1 + sVar6;
       plocalFloat22 = plocalFloat22 + sVar1;
       plocalFloat21 = plocalFloat21 + sVar2;
       plocalFloat20 = plocalFloat20 + sVar4;
@@ -246295,8 +246295,8 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
   float *pfloatResult5;
   UIDword TotalResult;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   undefined *puStack0000000000000028;
   UIWord uStack0000000000000030;
@@ -246439,41 +246439,41 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
     stackParam00000058 = (ulonglong)result;
     result = result * 4;
     do {
-      floatResult9 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
+      FloatValue2 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
                *unmodifiedR12 * 0.48977882;
-      floatResult8 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 +
+      FloatValue1 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 +
                *unmodifiedR15 * 0.70710677 + *SourceHandle;
-      if (floatResult9 < 0.9999695) {
-        if (-1.0 < floatResult9) {
+      if (FloatValue2 < 0.9999695) {
+        if (-1.0 < FloatValue2) {
           uiValidationResult = 0;
         }
         else {
-          floatResult9 = -1.0;
+          FloatValue2 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult9 = 0.9999695;
+        FloatValue2 = 0.9999695;
         uiValidationResult = -3;
       }
       if (unmodifiedEBX != 0) {
         uiValidationResult = unmodifiedEBX;
       }
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiCompareResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiCompareResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiCompareResult = -3;
       }
-      *BasePointer = floatResult9;
-      *SourceHandle = floatResult8;
+      *BasePointer = FloatValue2;
+      *SourceHandle = FloatValue1;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
       }
@@ -246482,39 +246482,39 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
       psecondaryValue = BasePointer + allocatedMemory2;
       pfloatResult3 = unmodifiedR12 + CharacterDataOffset;
       plocalFloat6 = SourceHandle + localLong8;
-      floatResult9 = ((*pfloatResult5 * 0.70710677 + *psecondaryValue) - *pvectorComponentX * 0.8709636) - *pfloatResult3 * 0.48977882;
-      floatResult8 = *pvectorComponentX * 0.48977882 + *pfloatResult3 * 0.8709636 + *pfloatResult5 * 0.70710677 + *plocalFloat6;
-      if (floatResult9 < 0.9999695) {
-        if (-1.0 < floatResult9) {
+      FloatValue2 = ((*pfloatResult5 * 0.70710677 + *psecondaryValue) - *pvectorComponentX * 0.8709636) - *pfloatResult3 * 0.48977882;
+      FloatValue1 = *pvectorComponentX * 0.48977882 + *pfloatResult3 * 0.8709636 + *pfloatResult5 * 0.70710677 + *plocalFloat6;
+      if (FloatValue2 < 0.9999695) {
+        if (-1.0 < FloatValue2) {
           uiValidationResult = 0;
         }
         else {
-          floatResult9 = -1.0;
+          FloatValue2 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult9 = 0.9999695;
+        FloatValue2 = 0.9999695;
         uiValidationResult = -3;
       }
       if (uiCompareResult != 0) {
         uiValidationResult = uiCompareResult;
       }
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiCompareResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiCompareResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiCompareResult = -3;
       }
-      *psecondaryValue = floatResult9;
-      *plocalFloat6 = floatResult8;
+      *psecondaryValue = FloatValue2;
+      *plocalFloat6 = FloatValue1;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
       }
@@ -246523,49 +246523,49 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
       psecondaryValue = psecondaryValue + allocatedMemory2;
       pfloatResult3 = pfloatResult3 + CharacterDataOffset;
       plocalFloat6 = plocalFloat6 + localLong8;
-      floatResult9 = ((*pfloatResult5 * 0.70710677 + *psecondaryValue) - *pvectorComponentX * 0.8709636) - *pfloatResult3 * 0.48977882;
-      floatResult8 = *pvectorComponentX * 0.48977882 + *pfloatResult3 * 0.8709636 + *pfloatResult5 * 0.70710677 + *plocalFloat6;
-      if (floatResult9 < 0.9999695) {
-        if (-1.0 < floatResult9) {
+      FloatValue2 = ((*pfloatResult5 * 0.70710677 + *psecondaryValue) - *pvectorComponentX * 0.8709636) - *pfloatResult3 * 0.48977882;
+      FloatValue1 = *pvectorComponentX * 0.48977882 + *pfloatResult3 * 0.8709636 + *pfloatResult5 * 0.70710677 + *plocalFloat6;
+      if (FloatValue2 < 0.9999695) {
+        if (-1.0 < FloatValue2) {
           uiValidationResult = 0;
         }
         else {
-          floatResult9 = -1.0;
+          FloatValue2 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult9 = 0.9999695;
+        FloatValue2 = 0.9999695;
         uiValidationResult = -3;
       }
       if (uiCompareResult != 0) {
         uiValidationResult = uiCompareResult;
       }
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiCompareResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiCompareResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiCompareResult = -3;
       }
-      *psecondaryValue = floatResult9;
-      *plocalFloat6 = floatResult8;
+      *psecondaryValue = FloatValue2;
+      *plocalFloat6 = FloatValue1;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
       }
       psecondaryValue = psecondaryValue + allocatedMemory2;
       plocalFloat6 = plocalFloat6 + localLong8;
-      floatResult8 = pvectorComponentX[allocatedMemory1];
-      floatResult9 = pfloatResult3[CharacterDataOffset];
+      FloatValue1 = pvectorComponentX[allocatedMemory1];
+      FloatValue2 = pfloatResult3[CharacterDataOffset];
       floatResult7 = pfloatResult5[allocatedMemory0] * 0.70710677;
-      localFloat20 = ((floatResult7 + *psecondaryValue) - floatResult8 * 0.8709636) - floatResult9 * 0.48977882;
-      floatResult8 = floatResult8 * 0.48977882 + floatResult9 * 0.8709636 + floatResult7 + *plocalFloat6;
+      localFloat20 = ((floatResult7 + *psecondaryValue) - FloatValue1 * 0.8709636) - FloatValue2 * 0.48977882;
+      FloatValue1 = FloatValue1 * 0.48977882 + FloatValue2 * 0.8709636 + floatResult7 + *plocalFloat6;
       if (localFloat20 < 0.9999695) {
         if (-1.0 < localFloat20) {
           uiValidationResult = 0;
@@ -246582,21 +246582,21 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
       if (uiCompareResult != 0) {
         uiValidationResult = uiCompareResult;
       }
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           unmodifiedEBX = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           unmodifiedEBX = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         unmodifiedEBX = -3;
       }
       *psecondaryValue = localFloat20;
-      *plocalFloat6 = floatResult8;
+      *plocalFloat6 = FloatValue1;
       if (uiValidationResult != 0) {
         unmodifiedEBX = uiValidationResult;
       }
@@ -246613,41 +246613,41 @@ int FUN_18081c668(UIDword uiContext,ulonglong dataSource,UIHandle targetBuffer,U
   }
   ProcessingStatus = (ulonglong)(allocationFlags - result);
   do {
-    floatResult9 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
+    FloatValue2 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
              *unmodifiedR12 * 0.48977882;
-    floatResult8 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 + *unmodifiedR15 * 0.70710677 + *SourceHandle
+    FloatValue1 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 + *unmodifiedR15 * 0.70710677 + *SourceHandle
     ;
-    if (floatResult9 < 0.9999695) {
-      if (-1.0 < floatResult9) {
+    if (FloatValue2 < 0.9999695) {
+      if (-1.0 < FloatValue2) {
         uiValidationResult = 0;
       }
       else {
-        floatResult9 = -1.0;
+        FloatValue2 = -1.0;
         uiValidationResult = -4;
       }
     }
     else {
-      floatResult9 = 0.9999695;
+      FloatValue2 = 0.9999695;
       uiValidationResult = -3;
     }
     if (unmodifiedEBX != 0) {
       uiValidationResult = unmodifiedEBX;
     }
-    if (floatResult8 < 0.9999695) {
-      if (-1.0 < floatResult8) {
+    if (FloatValue1 < 0.9999695) {
+      if (-1.0 < FloatValue1) {
         unmodifiedEBX = 0;
       }
       else {
-        floatResult8 = -1.0;
+        FloatValue1 = -1.0;
         unmodifiedEBX = -4;
       }
     }
     else {
-      floatResult8 = 0.9999695;
+      FloatValue1 = 0.9999695;
       unmodifiedEBX = -3;
     }
-    *BasePointer = floatResult9;
-    *SourceHandle = floatResult8;
+    *BasePointer = FloatValue2;
+    *SourceHandle = FloatValue1;
     if (uiValidationResult != 0) {
       unmodifiedEBX = uiValidationResult;
     }
@@ -246693,8 +246693,8 @@ int FUN_18081ccc3(UIDword uiContext)
   UIDword CounterResult;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   short sStack0000000000000040;
   short sStack0000000000000042;
   ulonglong uStack0000000000000058;
@@ -246722,21 +246722,21 @@ int FUN_18081ccc3(UIDword uiContext)
     uStack0000000000000058 = (ulonglong)result;
     result = result * 4;
     do {
-      floatResult8 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
+      FloatValue1 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
                *unmodifiedR12 * 0.48977882;
       floatResult7 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 +
                *unmodifiedR15 * 0.70710677 + *SourceHandle;
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiValidationResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiValidationResult = -3;
       }
       if (unmodifiedEBX != 0) {
@@ -246755,7 +246755,7 @@ int FUN_18081ccc3(UIDword uiContext)
         floatResult7 = 0.9999695;
         uiCompareResult = -3;
       }
-      *BasePointer = floatResult8;
+      *BasePointer = FloatValue1;
       *SourceHandle = floatResult7;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
@@ -246765,19 +246765,19 @@ int FUN_18081ccc3(UIDword uiContext)
       psecondaryValue = BasePointer + allocatedMemory1;
       pfloatResult2 = unmodifiedR12 + localLong8;
       plocalFloat6 = SourceHandle + localLong7;
-      floatResult8 = ((*pvectorComponentX * 0.70710677 + *psecondaryValue) - *pfloatResult3 * 0.8709636) - *pfloatResult2 * 0.48977882;
+      FloatValue1 = ((*pvectorComponentX * 0.70710677 + *psecondaryValue) - *pfloatResult3 * 0.8709636) - *pfloatResult2 * 0.48977882;
       floatResult7 = *pfloatResult3 * 0.48977882 + *pfloatResult2 * 0.8709636 + *pvectorComponentX * 0.70710677 + *plocalFloat6;
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiValidationResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiValidationResult = -3;
       }
       if (uiCompareResult != 0) {
@@ -246796,7 +246796,7 @@ int FUN_18081ccc3(UIDword uiContext)
         floatResult7 = 0.9999695;
         uiCompareResult = -3;
       }
-      *psecondaryValue = floatResult8;
+      *psecondaryValue = FloatValue1;
       *plocalFloat6 = floatResult7;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
@@ -246806,19 +246806,19 @@ int FUN_18081ccc3(UIDword uiContext)
       psecondaryValue = psecondaryValue + allocatedMemory1;
       pfloatResult2 = pfloatResult2 + localLong8;
       plocalFloat6 = plocalFloat6 + localLong7;
-      floatResult8 = ((*pvectorComponentX * 0.70710677 + *psecondaryValue) - *pfloatResult3 * 0.8709636) - *pfloatResult2 * 0.48977882;
+      FloatValue1 = ((*pvectorComponentX * 0.70710677 + *psecondaryValue) - *pfloatResult3 * 0.8709636) - *pfloatResult2 * 0.48977882;
       floatResult7 = *pfloatResult3 * 0.48977882 + *pfloatResult2 * 0.8709636 + *pvectorComponentX * 0.70710677 + *plocalFloat6;
-      if (floatResult8 < 0.9999695) {
-        if (-1.0 < floatResult8) {
+      if (FloatValue1 < 0.9999695) {
+        if (-1.0 < FloatValue1) {
           uiValidationResult = 0;
         }
         else {
-          floatResult8 = -1.0;
+          FloatValue1 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult8 = 0.9999695;
+        FloatValue1 = 0.9999695;
         uiValidationResult = -3;
       }
       if (uiCompareResult != 0) {
@@ -246837,7 +246837,7 @@ int FUN_18081ccc3(UIDword uiContext)
         floatResult7 = 0.9999695;
         uiCompareResult = -3;
       }
-      *psecondaryValue = floatResult8;
+      *psecondaryValue = FloatValue1;
       *plocalFloat6 = floatResult7;
       if (uiValidationResult != 0) {
         uiCompareResult = uiValidationResult;
@@ -246845,21 +246845,21 @@ int FUN_18081ccc3(UIDword uiContext)
       psecondaryValue = psecondaryValue + allocatedMemory1;
       plocalFloat6 = plocalFloat6 + localLong7;
       floatResult7 = pfloatResult3[allocatedMemory0];
-      floatResult8 = pfloatResult2[localLong8];
+      FloatValue1 = pfloatResult2[localLong8];
       floatResult6 = pvectorComponentX[CharacterDataOffset] * 0.70710677;
-      floatResult9 = ((floatResult6 + *psecondaryValue) - floatResult7 * 0.8709636) - floatResult8 * 0.48977882;
-      floatResult7 = floatResult7 * 0.48977882 + floatResult8 * 0.8709636 + floatResult6 + *plocalFloat6;
-      if (floatResult9 < 0.9999695) {
-        if (-1.0 < floatResult9) {
+      FloatValue2 = ((floatResult6 + *psecondaryValue) - floatResult7 * 0.8709636) - FloatValue1 * 0.48977882;
+      floatResult7 = floatResult7 * 0.48977882 + FloatValue1 * 0.8709636 + floatResult6 + *plocalFloat6;
+      if (FloatValue2 < 0.9999695) {
+        if (-1.0 < FloatValue2) {
           uiValidationResult = 0;
         }
         else {
-          floatResult9 = -1.0;
+          FloatValue2 = -1.0;
           uiValidationResult = -4;
         }
       }
       else {
-        floatResult9 = 0.9999695;
+        FloatValue2 = 0.9999695;
         uiValidationResult = -3;
       }
       if (uiCompareResult != 0) {
@@ -246878,7 +246878,7 @@ int FUN_18081ccc3(UIDword uiContext)
         floatResult7 = 0.9999695;
         unmodifiedEBX = -3;
       }
-      *psecondaryValue = floatResult9;
+      *psecondaryValue = FloatValue2;
       *plocalFloat6 = floatResult7;
       if (uiValidationResult != 0) {
         unmodifiedEBX = uiValidationResult;
@@ -246897,21 +246897,21 @@ int FUN_18081ccc3(UIDword uiContext)
   }
   ProcessingStatus = (ulonglong)(allocationFlags - result);
   do {
-    floatResult8 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
+    FloatValue1 = ((*unmodifiedR15 * 0.70710677 + *BasePointer) - *EventHandle * 0.8709636) -
              *unmodifiedR12 * 0.48977882;
     floatResult7 = *EventHandle * 0.48977882 + *unmodifiedR12 * 0.8709636 + *unmodifiedR15 * 0.70710677 + *SourceHandle
     ;
-    if (floatResult8 < 0.9999695) {
-      if (-1.0 < floatResult8) {
+    if (FloatValue1 < 0.9999695) {
+      if (-1.0 < FloatValue1) {
         uiValidationResult = 0;
       }
       else {
-        floatResult8 = -1.0;
+        FloatValue1 = -1.0;
         uiValidationResult = -4;
       }
     }
     else {
-      floatResult8 = 0.9999695;
+      FloatValue1 = 0.9999695;
       uiValidationResult = -3;
     }
     if (unmodifiedEBX != 0) {
@@ -246930,7 +246930,7 @@ int FUN_18081ccc3(UIDword uiContext)
       floatResult7 = 0.9999695;
       unmodifiedEBX = -3;
     }
-    *BasePointer = floatResult8;
+    *BasePointer = FloatValue1;
     *SourceHandle = floatResult7;
     if (uiValidationResult != 0) {
       unmodifiedEBX = uiValidationResult;
@@ -249427,8 +249427,8 @@ void FUN_1808208ba(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -249451,7 +249451,7 @@ void FUN_1808208ba(void)
       uVar9 = *stackParam000000f0 + *stackParam000000f8;
       sVar1 = *(short *)(RegisterPointer + (ulonglong)MaxProcessingCount * 2);
       sVar2 = *(short *)(RegisterPointer + (ulonglong)(MaxProcessingCount + 1) * 2);
-      floatResult8 = (float)(int)*(short *)(RegisterPointer + -2 + (ulonglong)MaxProcessingCount * 2) * 3.0517578e-05;
+      FloatValue1 = (float)(int)*(short *)(RegisterPointer + -2 + (ulonglong)MaxProcessingCount * 2) * 3.0517578e-05;
       sVar3 = *(short *)(RegisterPointer + (ulonglong)(MaxProcessingCount + 2) * 2);
       *stackParam000000f0 = uVar9;
       localFloat22 = (float)(int)sVar1 * 3.0517578e-05;
@@ -249459,7 +249459,7 @@ void FUN_1808208ba(void)
       localFloat26 = (float)(uint)result0 * 2.3283064e-10;
       floatResult2 = (float)(int)sVar3 * 1.5258789e-05;
       localInt8 = (int)(uVar9 >> 0x20);
-      floatResult9 = (float)(int)*(short *)(RegisterPointer + -2 + (uVar9 >> 0x20) * 2) * 3.0517578e-05;
+      FloatValue2 = (float)(int)*(short *)(RegisterPointer + -2 + (uVar9 >> 0x20) * 2) * 3.0517578e-05;
       localFloat23 = (float)(int)*(short *)(RegisterPointer + (uVar9 >> 0x20) * 2) * 3.0517578e-05;
       floatResult6 = (float)(int)*(short *)(RegisterPointer + (ulonglong)(localInt8 + 1) * 2) * 3.0517578e-05;
       localFloat27 = (float)(uVar9 & 0xffffffff) * 2.3283064e-10;
@@ -249488,12 +249488,12 @@ void FUN_1808208ba(void)
                       (((localFloat24 - floatResult7) * 3.0 - localFloat20) * 0.5 + vectorComponentX) * localFloat28) * localFloat28 +
                      (floatResult7 - localFloat20) * 0.5) * localFloat28 + localFloat24;
       vectorComponentX = (float)(int)sVar1 * 1.5258789e-05;
-      *ContextHandle = ((((floatResult5 + floatResult5 + floatResult8) - (localFloat22 * 2.5 + floatResult2)) +
-                    (((localFloat22 - floatResult5) * 3.0 - floatResult8) * 0.5 + floatResult2) * localFloat26) * localFloat26 +
-                   (floatResult5 - floatResult8) * 0.5) * localFloat26 + localFloat22;
-      ContextHandle[1] = ((((floatResult6 + floatResult6 + floatResult9) - (localFloat23 * 2.5 + floatResult3)) +
-                      (((localFloat23 - floatResult6) * 3.0 - floatResult9) * 0.5 + floatResult3) * localFloat27) * localFloat27 +
-                     (floatResult6 - floatResult9) * 0.5) * localFloat27 + localFloat23;
+      *ContextHandle = ((((floatResult5 + floatResult5 + FloatValue1) - (localFloat22 * 2.5 + floatResult2)) +
+                    (((localFloat22 - floatResult5) * 3.0 - FloatValue1) * 0.5 + floatResult2) * localFloat26) * localFloat26 +
+                   (floatResult5 - FloatValue1) * 0.5) * localFloat26 + localFloat22;
+      ContextHandle[1] = ((((floatResult6 + floatResult6 + FloatValue2) - (localFloat23 * 2.5 + floatResult3)) +
+                      (((localFloat23 - floatResult6) * 3.0 - FloatValue2) * 0.5 + floatResult3) * localFloat27) * localFloat27 +
+                     (floatResult6 - FloatValue2) * 0.5) * localFloat27 + localFloat23;
       ContextHandle[3] = ((((localFloat21 + localFloat21 + localFloat25) - (localFloat29 * 2.5 + vectorComponentX)) +
                       (((localFloat29 - localFloat21) * 3.0 - localFloat25) * 0.5 + vectorComponentX) * resultValue0) * resultValue0 +
                      (localFloat21 - localFloat25) * 0.5) * resultValue0 + localFloat29;
@@ -251615,7 +251615,7 @@ UIHandle FUN_180824470(longlong uiContext)
   longlong allocatedMemory5;
   uint *ptrResult6;
   UIHandle result7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   UIByte (*paresult9) [32];
   longlong componentIndex0;
   uint *psemaphoreHandle1;
@@ -251729,23 +251729,23 @@ UIHandle FUN_180824470(longlong uiContext)
   if ((int)result7 == 0) {
     plocalFloat25 = *(float **)(uiContext + 0x80);
     plocalFloat29 = (float *)(*(longlong *)(uiBufferData + 0x38) + (longlong)*(int *)(uiBufferData + 0x5c) * 4);
-    pfloatResult8 = *(float **)(uiContext + 0x40);
+    pFloatValue1 = *(float **)(uiContext + 0x40);
     plocalFloat27 = plocalFloat25 + *(int *)(uiBufferData + 0x10);
     aEventTypeCode3 = ZEXT416((uint)(1.0 / (float)*(int *)(uiBufferData + 0x24)));
     aEventTypeCode3 = vshufps_avx(aEventTypeCode3,aEventTypeCode3,0);
     if (0 < *(int *)(uiBufferData + 0x10)) {
       do {
-        floatResult = *pfloatResult8;
-        localFloat2 = pfloatResult8[1];
-        resultValue = pfloatResult8[2];
-        processedFloat = pfloatResult8[3];
+        floatResult = *pFloatValue1;
+        localFloat2 = pFloatValue1[1];
+        resultValue = pFloatValue1[2];
+        processedFloat = pFloatValue1[3];
         localFloat9 = *plocalFloat25;
         floatResult0 = plocalFloat25[1];
         floatResult1 = plocalFloat25[2];
         floatResult2 = plocalFloat25[3];
         result7 = *(UIHandle *)(plocalFloat27 + 2);
-        *(UIHandle *)pfloatResult8 = *(UIHandle *)plocalFloat27;
-        *(UIHandle *)(pfloatResult8 + 2) = result7;
+        *(UIHandle *)pFloatValue1 = *(UIHandle *)plocalFloat27;
+        *(UIHandle *)(pFloatValue1 + 2) = result7;
         *plocalFloat29 = (floatResult + localFloat9) * aEventTypeCode3._0_4_;
         plocalFloat29[1] = (localFloat2 + floatResult0) * aEventTypeCode3._4_4_;
         plocalFloat29[2] = (resultValue + floatResult1) * aEventTypeCode3._8_4_;
@@ -251754,7 +251754,7 @@ UIHandle FUN_180824470(longlong uiContext)
         plocalFloat25 = plocalFloat25 + 4;
         plocalFloat27 = plocalFloat27 + 4;
         plocalFloat29 = plocalFloat29 + 4;
-        pfloatResult8 = pfloatResult8 + 4;
+        pFloatValue1 = pFloatValue1 + 4;
       } while (uiValidationResult4 < *(int *)(uiBufferData + 0x10));
     }
     result7 = 0;
@@ -251784,7 +251784,7 @@ UIHandle FUN_18082447c(longlong uiContext)
   longlong allocatedMemory5;
   uint *ptrResult6;
   UIHandle result7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   UIByte (*paresult9) [32];
   longlong componentIndex0;
   uint *psemaphoreHandle1;
@@ -251897,23 +251897,23 @@ UIHandle FUN_18082447c(longlong uiContext)
   if ((int)result7 == 0) {
     plocalFloat24 = *(float **)(uiContext + 0x80);
     plocalFloat28 = (float *)(*(longlong *)(uiBufferData + 0x38) + (longlong)*(int *)(uiBufferData + 0x5c) * 4);
-    pfloatResult8 = *(float **)(uiContext + 0x40);
+    pFloatValue1 = *(float **)(uiContext + 0x40);
     plocalFloat26 = plocalFloat24 + *(int *)(uiBufferData + 0x10);
     aEventTypeCode2 = ZEXT416((uint)(1.0 / (float)*(int *)(uiBufferData + 0x24)));
     aEventTypeCode2 = vshufps_avx(aEventTypeCode2,aEventTypeCode2,0);
     if (0 < *(int *)(uiBufferData + 0x10)) {
       do {
-        floatResult = *pfloatResult8;
-        localFloat2 = pfloatResult8[1];
-        resultValue = pfloatResult8[2];
-        processedFloat = pfloatResult8[3];
+        floatResult = *pFloatValue1;
+        localFloat2 = pFloatValue1[1];
+        resultValue = pFloatValue1[2];
+        processedFloat = pFloatValue1[3];
         localFloat9 = *plocalFloat24;
         floatResult0 = plocalFloat24[1];
         floatResult1 = plocalFloat24[2];
         floatResult2 = plocalFloat24[3];
         result7 = *(UIHandle *)(plocalFloat26 + 2);
-        *(UIHandle *)pfloatResult8 = *(UIHandle *)plocalFloat26;
-        *(UIHandle *)(pfloatResult8 + 2) = result7;
+        *(UIHandle *)pFloatValue1 = *(UIHandle *)plocalFloat26;
+        *(UIHandle *)(pFloatValue1 + 2) = result7;
         *plocalFloat28 = (floatResult + localFloat9) * aEventTypeCode2._0_4_;
         plocalFloat28[1] = (localFloat2 + floatResult0) * aEventTypeCode2._4_4_;
         plocalFloat28[2] = (resultValue + floatResult1) * aEventTypeCode2._8_4_;
@@ -251922,7 +251922,7 @@ UIHandle FUN_18082447c(longlong uiContext)
         plocalFloat24 = plocalFloat24 + 4;
         plocalFloat26 = plocalFloat26 + 4;
         plocalFloat28 = plocalFloat28 + 4;
-        pfloatResult8 = pfloatResult8 + 4;
+        pFloatValue1 = pFloatValue1 + 4;
       } while (allocationFlags < *(int *)(uiBufferData + 0x10));
     }
     result7 = 0;
@@ -251952,7 +251952,7 @@ UIHandle FUN_180824490(void)
   longlong allocatedMemory5;
   uint *ptrResult6;
   UIHandle result7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   UIByte (*paresult9) [32];
   longlong componentIndex0;
   uint *psemaphoreHandle1;
@@ -252063,23 +252063,23 @@ UIHandle FUN_180824490(void)
   if ((int)result7 == 0) {
     plocalFloat25 = *(float **)(ContextHandle + 0x80);
     plocalFloat28 = (float *)(*(longlong *)(ContextHandle + 0x38) + (longlong)*(int *)(ContextHandle + 0x5c) * 4);
-    pfloatResult8 = *(float **)(ContextHandle + 0x40);
+    pFloatValue1 = *(float **)(ContextHandle + 0x40);
     plocalFloat27 = plocalFloat25 + *(int *)(ContextHandle + 0x10);
     aEventTypeCode1 = ZEXT416((uint)(1.0 / (float)*(int *)(ContextHandle + 0x24)));
     aEventTypeCode1 = vshufps_avx(aEventTypeCode1,aEventTypeCode1,0);
     if (0 < *(int *)(ContextHandle + 0x10)) {
       do {
-        floatResult = *pfloatResult8;
-        localFloat2 = pfloatResult8[1];
-        resultValue = pfloatResult8[2];
-        processedFloat = pfloatResult8[3];
+        floatResult = *pFloatValue1;
+        localFloat2 = pFloatValue1[1];
+        resultValue = pFloatValue1[2];
+        processedFloat = pFloatValue1[3];
         localFloat9 = *plocalFloat25;
         floatResult0 = plocalFloat25[1];
         floatResult1 = plocalFloat25[2];
         floatResult2 = plocalFloat25[3];
         result7 = *(UIHandle *)(plocalFloat27 + 2);
-        *(UIHandle *)pfloatResult8 = *(UIHandle *)plocalFloat27;
-        *(UIHandle *)(pfloatResult8 + 2) = result7;
+        *(UIHandle *)pFloatValue1 = *(UIHandle *)plocalFloat27;
+        *(UIHandle *)(pFloatValue1 + 2) = result7;
         *plocalFloat28 = (floatResult + localFloat9) * aEventTypeCode1._0_4_;
         plocalFloat28[1] = (localFloat2 + floatResult0) * aEventTypeCode1._4_4_;
         plocalFloat28[2] = (resultValue + floatResult1) * aEventTypeCode1._8_4_;
@@ -252088,7 +252088,7 @@ UIHandle FUN_180824490(void)
         plocalFloat25 = plocalFloat25 + 4;
         plocalFloat27 = plocalFloat27 + 4;
         plocalFloat28 = plocalFloat28 + 4;
-        pfloatResult8 = pfloatResult8 + 4;
+        pFloatValue1 = pFloatValue1 + 4;
       } while (allocationFlags < *(int *)(ContextHandle + 0x10));
     }
     result7 = 0;
@@ -252120,7 +252120,7 @@ UIHandle FUN_1808245aa(void)
   int allocationFlags;
   float *pfloatResult6;
   float *pfloatResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   UIByte aresult9 [16];
   
   allocatedMemory = *(longlong *)(ContextHandle + 0x78);
@@ -252147,7 +252147,7 @@ UIHandle FUN_1808245aa(void)
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result2 == 0) {
     pfloatResult6 = *(float **)(ContextHandle + 0x80);
-    pfloatResult8 = (float *)(*(longlong *)(ContextHandle + 0x38) + (longlong)*(int *)(ContextHandle + 0x5c) * 4);
+    pFloatValue1 = (float *)(*(longlong *)(ContextHandle + 0x38) + (longlong)*(int *)(ContextHandle + 0x5c) * 4);
     pfloatResult3 = *(float **)(ContextHandle + 0x40);
     pfloatResult7 = pfloatResult6 + *(int *)(ContextHandle + 0x10);
     aresult9 = ZEXT416((uint)(1.0 / (float)*(int *)(ContextHandle + 0x24)));
@@ -252165,14 +252165,14 @@ UIHandle FUN_1808245aa(void)
         result2 = *(UIHandle *)(pfloatResult7 + 2);
         *(UIHandle *)pfloatResult3 = *(UIHandle *)pfloatResult7;
         *(UIHandle *)(pfloatResult3 + 2) = result2;
-        *pfloatResult8 = (localFloat2 + localFloat6) * aresult9._0_4_;
-        pfloatResult8[1] = (resultValue + resultFloat) * aresult9._4_4_;
-        pfloatResult8[2] = (processedFloat + localFloat8) * aresult9._8_4_;
-        pfloatResult8[3] = (secondaryValue + localFloat9) * aresult9._12_4_;
+        *pFloatValue1 = (localFloat2 + localFloat6) * aresult9._0_4_;
+        pFloatValue1[1] = (resultValue + resultFloat) * aresult9._4_4_;
+        pFloatValue1[2] = (processedFloat + localFloat8) * aresult9._8_4_;
+        pFloatValue1[3] = (secondaryValue + localFloat9) * aresult9._12_4_;
         allocationFlags = allocationFlags + 4;
         pfloatResult6 = pfloatResult6 + 4;
         pfloatResult7 = pfloatResult7 + 4;
-        pfloatResult8 = pfloatResult8 + 4;
+        pFloatValue1 = pFloatValue1 + 4;
         pfloatResult3 = pfloatResult3 + 4;
       } while (allocationFlags < *(int *)(ContextHandle + 0x10));
     }
@@ -252274,8 +252274,8 @@ UIHandle FUN_180824700(longlong uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   int uiValidationResult0;
   longlong componentIndex1;
   longlong componentIndex2;
@@ -252333,8 +252333,8 @@ UIHandle FUN_180824700(longlong uiContext)
           presultValue6 = presultValue6 + 8;
           floatResult6 = *plocalFloat25;
           floatResult7 = plocalFloat25[1];
-          floatResult8 = plocalFloat25[2];
-          floatResult9 = plocalFloat25[3];
+          FloatValue1 = plocalFloat25[2];
+          FloatValue2 = plocalFloat25[3];
           *presultValue4 = *presultValue4 + (resultValue8 * localFloat8 - localFloat9 * floatResult);
           presultValue4[1] = presultValue4[1] + resultValue8 * localFloat9 + localFloat8 * floatResult;
           presultValue4[2] = presultValue4[2] + (localFloat2 * floatResult0 - floatResult1 * resultValue);
@@ -252342,8 +252342,8 @@ UIHandle FUN_180824700(longlong uiContext)
           presultValue4 = presultValue4 + 8;
           *plocalFloat25 = floatResult6 + (processedFloat * floatResult2 - floatResult3 * secondaryValue);
           plocalFloat25[1] = floatResult7 + processedFloat * floatResult3 + floatResult2 * secondaryValue;
-          plocalFloat25[2] = floatResult8 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
-          plocalFloat25[3] = floatResult9 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
+          plocalFloat25[2] = FloatValue1 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
+          plocalFloat25[3] = FloatValue2 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
           plocalFloat25 = plocalFloat25 + 8;
           uiValidationResult0 = uiValidationResult0 + -1;
         } while (uiValidationResult0 != 0);
@@ -252444,8 +252444,8 @@ UIHandle FUN_18082470c(longlong uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   int uiValidationResult0;
   longlong componentIndex1;
   longlong componentIndex2;
@@ -252502,8 +252502,8 @@ UIHandle FUN_18082470c(longlong uiContext)
           presultValue5 = presultValue5 + 8;
           floatResult6 = *plocalFloat25;
           floatResult7 = plocalFloat25[1];
-          floatResult8 = plocalFloat25[2];
-          floatResult9 = plocalFloat25[3];
+          FloatValue1 = plocalFloat25[2];
+          FloatValue2 = plocalFloat25[3];
           *presultValue3 = *presultValue3 + (resultValue7 * localFloat8 - localFloat9 * floatResult);
           presultValue3[1] = presultValue3[1] + resultValue7 * localFloat9 + localFloat8 * floatResult;
           presultValue3[2] = presultValue3[2] + (localFloat2 * floatResult0 - floatResult1 * resultValue);
@@ -252511,8 +252511,8 @@ UIHandle FUN_18082470c(longlong uiContext)
           presultValue3 = presultValue3 + 8;
           *plocalFloat25 = floatResult6 + (processedFloat * floatResult2 - floatResult3 * secondaryValue);
           plocalFloat25[1] = floatResult7 + processedFloat * floatResult3 + floatResult2 * secondaryValue;
-          plocalFloat25[2] = floatResult8 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
-          plocalFloat25[3] = floatResult9 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
+          plocalFloat25[2] = FloatValue1 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
+          plocalFloat25[3] = FloatValue2 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
           plocalFloat25 = plocalFloat25 + 8;
           uiValidationResult0 = uiValidationResult0 + -1;
         } while (uiValidationResult0 != 0);
@@ -252613,8 +252613,8 @@ UIHandle FUN_18082471f(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   int uiValidationResult0;
   longlong componentIndex1;
   longlong componentIndex2;
@@ -252670,8 +252670,8 @@ UIHandle FUN_18082471f(void)
         presultValue4 = presultValue4 + 8;
         floatResult6 = *plocalFloat25;
         floatResult7 = plocalFloat25[1];
-        floatResult8 = plocalFloat25[2];
-        floatResult9 = plocalFloat25[3];
+        FloatValue1 = plocalFloat25[2];
+        FloatValue2 = plocalFloat25[3];
         *presultValue3 = *presultValue3 + (resultValue6 * localFloat8 - localFloat9 * floatResult);
         presultValue3[1] = presultValue3[1] + resultValue6 * localFloat9 + localFloat8 * floatResult;
         presultValue3[2] = presultValue3[2] + (localFloat2 * floatResult0 - floatResult1 * resultValue);
@@ -252679,8 +252679,8 @@ UIHandle FUN_18082471f(void)
         presultValue3 = presultValue3 + 8;
         *plocalFloat25 = floatResult6 + (processedFloat * floatResult2 - floatResult3 * secondaryValue);
         plocalFloat25[1] = floatResult7 + processedFloat * floatResult3 + floatResult2 * secondaryValue;
-        plocalFloat25[2] = floatResult8 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
-        plocalFloat25[3] = floatResult9 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
+        plocalFloat25[2] = FloatValue1 + (localFloat6 * vectorComponentX - floatResult5 * resultFloat);
+        plocalFloat25[3] = FloatValue2 + localFloat6 * floatResult5 + vectorComponentX * resultFloat;
         plocalFloat25 = plocalFloat25 + 8;
         uiValidationResult0 = uiValidationResult0 + -1;
       } while (uiValidationResult0 != 0);
@@ -252782,8 +252782,8 @@ UIHandle FUN_18082487b(void)
   int unmodifiedESI;
   float *pfloatResult6;
   float *pfloatResult7;
-  float *pfloatResult8;
-  float floatResult9;
+  float *pFloatValue1;
+  float FloatValue2;
   
   allocatedMemory = *(longlong *)(ContextHandle + 0x78);
   allocatedMemory0 = (longlong)*(int *)(ContextHandle + 0x24);
@@ -252809,10 +252809,10 @@ UIHandle FUN_18082487b(void)
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result2 == 0) {
     pfloatResult6 = *(float **)(ContextHandle + 0x80);
-    pfloatResult8 = (float *)(*(longlong *)(ContextHandle + 0x38) + (longlong)*(int *)(ContextHandle + 0x5c) * 4);
+    pFloatValue1 = (float *)(*(longlong *)(ContextHandle + 0x38) + (longlong)*(int *)(ContextHandle + 0x5c) * 4);
     pfloatResult3 = *(float **)(ContextHandle + 0x40);
     pfloatResult7 = pfloatResult6 + *(int *)(ContextHandle + 0x10);
-    floatResult9 = 1.0 / (float)*(int *)(ContextHandle + 0x24);
+    FloatValue2 = 1.0 / (float)*(int *)(ContextHandle + 0x24);
     if (0 < *(int *)(ContextHandle + 0x10)) {
       do {
         localFloat2 = *pfloatResult3;
@@ -252830,11 +252830,11 @@ UIHandle FUN_18082487b(void)
         *(UIHandle *)(pfloatResult3 + 2) = result2;
         pfloatResult7 = pfloatResult7 + 4;
         pfloatResult3 = pfloatResult3 + 4;
-        *pfloatResult8 = (localFloat2 + localFloat6) * floatResult9;
-        pfloatResult8[1] = (resultValue + resultFloat) * floatResult9;
-        pfloatResult8[2] = (processedFloat + localFloat8) * floatResult9;
-        pfloatResult8[3] = (secondaryValue + localFloat9) * floatResult9;
-        pfloatResult8 = pfloatResult8 + 4;
+        *pFloatValue1 = (localFloat2 + localFloat6) * FloatValue2;
+        pFloatValue1[1] = (resultValue + resultFloat) * FloatValue2;
+        pFloatValue1[2] = (processedFloat + localFloat8) * FloatValue2;
+        pFloatValue1[3] = (secondaryValue + localFloat9) * FloatValue2;
+        pFloatValue1 = pFloatValue1 + 4;
       } while (unmodifiedESI < *(int *)(ContextHandle + 0x10));
     }
     result2 = 0;
@@ -257572,8 +257572,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -257655,19 +257655,19 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pprocessedFloat0 = pprocessedFloat2 + TempInt43;
             floatResult6 = *pprocessedFloat0;
             floatResult7 = pprocessedFloat0[1];
-            floatResult8 = pprocessedFloat0[2];
-            floatResult9 = pprocessedFloat0[3];
+            FloatValue1 = pprocessedFloat0[2];
+            FloatValue2 = pprocessedFloat0[3];
             TempInt43 = TempInt48 + 4;
             pprocessedFloat0 = dataSource + TempInt48;
             *pprocessedFloat0 = pprocessedFloat1[3];
             pprocessedFloat0[1] = floatResult5;
             pprocessedFloat0[2] = aLoopCounter8._12_4_;
-            pprocessedFloat0[3] = floatResult9;
+            pprocessedFloat0[3] = FloatValue2;
             pprocessedFloat1 = dataSource + (longlong)TempInt48 + LoopCounter6;
             *pprocessedFloat1 = resultFloat;
             pprocessedFloat1[1] = vectorComponentX;
             pprocessedFloat1[2] = aLoopCounter8._8_4_;
-            pprocessedFloat1[3] = floatResult8;
+            pprocessedFloat1[3] = FloatValue1;
             pprocessedFloat1 = dataSource + (longlong)ProcessingResult2 + (longlong)TempInt48;
             *pprocessedFloat1 = floatResult0;
             pprocessedFloat1[1] = floatResult3;
@@ -257741,9 +257741,9 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
           do {
             pprocessedFloat1 = pprocessedFloat2 + (TempInt47 + -0x400);
             floatResult7 = *pprocessedFloat1;
-            floatResult8 = pprocessedFloat1[1];
+            FloatValue1 = pprocessedFloat1[1];
             pprocessedFloat0 = pprocessedFloat2 + (TempInt47 + -0x200);
-            floatResult9 = *pprocessedFloat0;
+            FloatValue2 = *pprocessedFloat0;
             localFloat20 = pprocessedFloat0[1];
             localFloat21 = pprocessedFloat0[3];
             pfloatResult = pprocessedFloat2 + TempInt47;
@@ -257785,13 +257785,13 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pprocessedFloat0[3] = localFloat27 * localFloat8 + resultValue6 * floatResult3;
             *(UIByte (*) [16])(dataSource + (longlong)TempInt49 + LoopCounter6) = aLoopCounter8;
             pprocessedFloat1 = dataSource + (longlong)ProcessingResult2 + (longlong)TempInt49;
-            *pprocessedFloat1 = floatResult8 * floatResult0 + localFloat28 * floatResult5;
+            *pprocessedFloat1 = FloatValue1 * floatResult0 + localFloat28 * floatResult5;
             pprocessedFloat1[1] = localFloat20 * floatResult0 + resultValue1 * floatResult5;
             pprocessedFloat1[2] = localFloat23 * floatResult0 + resultValue4 * floatResult5;
             pprocessedFloat1[3] = localFloat26 * floatResult0 + resultValue7 * floatResult5;
             pprocessedFloat1 = dataSource + (longlong)TempInt49 + (longlong)ProcessingResult1;
             *pprocessedFloat1 = floatResult7 * localFloat9 + localFloat29 * floatResult6;
-            pprocessedFloat1[1] = floatResult9 * localFloat9 + resultValue2 * floatResult6;
+            pprocessedFloat1[1] = FloatValue2 * localFloat9 + resultValue2 * floatResult6;
             pprocessedFloat1[2] = localFloat22 * localFloat9 + resultValue5 * floatResult6;
             pprocessedFloat1[3] = localFloat25 * localFloat9 + resultValue8 * floatResult6;
             TempInt43 = TempInt43 + -1;
@@ -257807,8 +257807,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             TempInt49 = TempInt49 + 0x200;
             pprocessedFloat1 = pprocessedFloat2 + EventDataIndex4;
             floatResult7 = *pprocessedFloat1;
-            floatResult8 = pprocessedFloat1[1];
-            floatResult9 = pprocessedFloat1[2];
+            FloatValue1 = pprocessedFloat1[1];
+            FloatValue2 = pprocessedFloat1[2];
             EventDataIndex4 = (longlong)TempInt43;
             TempInt43 = TempInt43 + 0x400;
             pprocessedFloat0 = pprocessedFloat6 + EventDataIndex4;
@@ -257816,8 +257816,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             localFloat21 = pprocessedFloat0[2];
             localFloat22 = pprocessedFloat0[3];
             dataSource[uiCompareResult9] = pprocessedFloat1[3] * localFloat8 + *pprocessedFloat0 * floatResult3;
-            dataSource[(longlong)uiCompareResult9 + LoopCounter6] = floatResult9 * resultFloat + localFloat20 * vectorComponentX;
-            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = floatResult8 * floatResult0 + localFloat21 * floatResult5;
+            dataSource[(longlong)uiCompareResult9 + LoopCounter6] = FloatValue2 * resultFloat + localFloat20 * vectorComponentX;
+            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = FloatValue1 * floatResult0 + localFloat21 * floatResult5;
             dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult1] = floatResult7 * localFloat9 + localFloat22 * floatResult6;
             ProcessingStatus4 = ProcessingStatus4 - 1;
             uiCompareResult9 = uiCompareResult9 + 1;
@@ -257874,9 +257874,9 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
           do {
             pprocessedFloat1 = pprocessedFloat2 + (TempInt49 + -0x400);
             floatResult7 = pprocessedFloat1[2];
-            floatResult8 = pprocessedFloat1[3];
+            FloatValue1 = pprocessedFloat1[3];
             pprocessedFloat0 = pprocessedFloat2 + (TempInt49 + -0x200);
-            floatResult9 = *pprocessedFloat0;
+            FloatValue2 = *pprocessedFloat0;
             localFloat20 = pprocessedFloat0[2];
             localFloat21 = pprocessedFloat0[3];
             pfloatResult = pprocessedFloat2 + TempInt49;
@@ -257914,7 +257914,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             aLoopCounter9._12_4_ = plocalFloat2[1] * resultFloat - plocalFloat6[2] * vectorComponentX;
             pprocessedFloat0 = dataSource + TempInt43;
             *pprocessedFloat0 = *pprocessedFloat1 * localFloat8 - presultValue[3] * floatResult3;
-            pprocessedFloat0[1] = floatResult9 * localFloat8 - resultValue5 * floatResult3;
+            pprocessedFloat0[1] = FloatValue2 * localFloat8 - resultValue5 * floatResult3;
             pprocessedFloat0[2] = localFloat22 * localFloat8 - resultValue2 * floatResult3;
             pprocessedFloat0[3] = localFloat25 * localFloat8 - resultValue8 * floatResult3;
             *(UIByte (*) [16])(dataSource + (longlong)TempInt43 + LoopCounter6) = aLoopCounter9;
@@ -257924,7 +257924,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pprocessedFloat1[2] = localFloat23 * floatResult0 - resultValue1 * floatResult5;
             pprocessedFloat1[3] = localFloat26 * floatResult0 - resultValue7 * floatResult5;
             pprocessedFloat1 = dataSource + (longlong)TempInt43 + (longlong)ProcessingResult1;
-            *pprocessedFloat1 = floatResult8 * localFloat9 - localFloat28 * floatResult6;
+            *pprocessedFloat1 = FloatValue1 * localFloat9 - localFloat28 * floatResult6;
             pprocessedFloat1[1] = localFloat21 * localFloat9 - resultValue3 * floatResult6;
             pprocessedFloat1[2] = localFloat24 * localFloat9 - resultValue0 * floatResult6;
             pprocessedFloat1[3] = localFloat27 * localFloat9 - resultValue6 * floatResult6;
@@ -257941,8 +257941,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             TempInt43 = TempInt43 + 0x400;
             pprocessedFloat1 = pprocessedFloat6 + EventDataIndex4;
             floatResult7 = *pprocessedFloat1;
-            floatResult8 = pprocessedFloat1[1];
-            floatResult9 = pprocessedFloat1[2];
+            FloatValue1 = pprocessedFloat1[1];
+            FloatValue2 = pprocessedFloat1[2];
             EventDataIndex4 = (longlong)localInt51;
             localInt51 = localInt51 + 0x200;
             pprocessedFloat0 = pprocessedFloat2 + EventDataIndex4;
@@ -257950,8 +257950,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             localFloat21 = pprocessedFloat0[2];
             localFloat22 = pprocessedFloat0[3];
             dataSource[uiCompareResult9] = *pprocessedFloat0 * localFloat8 - pprocessedFloat1[3] * floatResult3;
-            dataSource[(longlong)uiCompareResult9 + LoopCounter6] = localFloat20 * resultFloat - floatResult9 * vectorComponentX;
-            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = localFloat21 * floatResult0 - floatResult8 * floatResult5;
+            dataSource[(longlong)uiCompareResult9 + LoopCounter6] = localFloat20 * resultFloat - FloatValue2 * vectorComponentX;
+            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = localFloat21 * floatResult0 - FloatValue1 * floatResult5;
             dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult1] = localFloat22 * localFloat9 - floatResult7 * floatResult6;
             ProcessingStatus4 = ProcessingStatus4 - 1;
             uiCompareResult9 = uiCompareResult9 + 1;
@@ -258018,8 +258018,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             TempInt43 = TempInt43 + 0x1000;
             pfloatResult = pprocessedFloat1 + uiCompareResult9;
             floatResult7 = *pfloatResult;
-            floatResult8 = pfloatResult[2];
-            floatResult9 = pfloatResult[3];
+            FloatValue1 = pfloatResult[2];
+            FloatValue2 = pfloatResult[3];
             uiCompareResult9 = localInt52 + 4;
             aMaxProcessingCount0._4_4_ = pprocessedFloat6[1] * -1.0;
             aMaxProcessingCount0._0_4_ = pprocessedFloat2[1] * -1.0;
@@ -258029,12 +258029,12 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             *pprocessedFloat6 = pprocessedFloat2[3] * -1.0;
             pprocessedFloat6[1] = floatResult3 * -1.0;
             pprocessedFloat6[2] = floatResult6 * -1.0;
-            pprocessedFloat6[3] = floatResult9 * -1.0;
+            pprocessedFloat6[3] = FloatValue2 * -1.0;
             pprocessedFloat2 = dataSource + (longlong)localInt52 + LoopCounter6;
             *pprocessedFloat2 = floatResult0 * -1.0;
             pprocessedFloat2[1] = localFloat8 * -1.0;
             pprocessedFloat2[2] = floatResult5 * -1.0;
-            pprocessedFloat2[3] = floatResult8 * -1.0;
+            pprocessedFloat2[3] = FloatValue1 * -1.0;
             *(UIByte (*) [16])(dataSource + (longlong)ProcessingResult2 + (longlong)localInt52) = aMaxProcessingCount0;
             pprocessedFloat2 = dataSource + (longlong)ProcessingResult1 + (longlong)localInt52;
             *pprocessedFloat2 = localFloat9 * -1.0;
@@ -258125,8 +258125,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     bufferSize = bufferSize + 4;
     pprocessedFloat6 = pprocessedFloat6 + 4;
     floatResult7 = pprocessedFloat2[-4];
-    floatResult8 = pprocessedFloat2[-3];
-    floatResult9 = pprocessedFloat2[-2];
+    FloatValue1 = pprocessedFloat2[-3];
+    FloatValue2 = pprocessedFloat2[-2];
     localFloat20 = targetBuffer[-4];
     localFloat21 = targetBuffer[-3];
     localFloat22 = targetBuffer[-2];
@@ -258141,9 +258141,9 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     *(ulonglong *)dataSource =
          CONCAT44(pprocessedFloat0[-1] * targetBuffer[-1] + localFloat26 * localFloat9,
                   pprocessedFloat2[-1] * targetBuffer[-1] + floatResult3 * localFloat9);
-    dataSource[4] = floatResult9 * localFloat22 + vectorComponentX * floatResult0;
+    dataSource[4] = FloatValue2 * localFloat22 + vectorComponentX * floatResult0;
     dataSource[5] = localFloat25 * localFloat22 + localFloat27 * floatResult0;
-    dataSource[4] = floatResult8 * localFloat21 + floatResult5 * resultFloat;
+    dataSource[4] = FloatValue1 * localFloat21 + floatResult5 * resultFloat;
     dataSource[5] = localFloat24 * localFloat21 + localFloat28 * resultFloat;
     dataSource[6] = floatResult7 * localFloat20 + floatResult6 * localFloat8;
     dataSource[7] = localFloat23 * localFloat20 + localFloat29 * localFloat8;
@@ -258178,8 +258178,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     bufferSize = bufferSize + 4;
     pprocessedFloat2 = pprocessedFloat2 + 4;
     floatResult7 = pprocessedFloat6[-4];
-    floatResult8 = pprocessedFloat6[-3];
-    floatResult9 = pprocessedFloat6[-2];
+    FloatValue1 = pprocessedFloat6[-3];
+    FloatValue2 = pprocessedFloat6[-2];
     localFloat20 = pprocessedFloat1[-4];
     localFloat21 = pprocessedFloat1[-3];
     localFloat22 = pprocessedFloat1[-2];
@@ -258194,9 +258194,9 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     *(ulonglong *)dataSource =
          CONCAT44(localFloat26 * targetBuffer[-1] - pprocessedFloat1[-1] * localFloat9,
                   floatResult3 * targetBuffer[-1] - pprocessedFloat6[-1] * localFloat9);
-    dataSource[4] = vectorComponentX * localFloat25 - floatResult9 * floatResult0;
+    dataSource[4] = vectorComponentX * localFloat25 - FloatValue2 * floatResult0;
     dataSource[5] = localFloat27 * localFloat25 - localFloat22 * floatResult0;
-    dataSource[4] = floatResult5 * localFloat24 - floatResult8 * resultFloat;
+    dataSource[4] = floatResult5 * localFloat24 - FloatValue1 * resultFloat;
     dataSource[5] = localFloat28 * localFloat24 - localFloat21 * resultFloat;
     dataSource[6] = floatResult6 * localFloat23 - floatResult7 * localFloat8;
     dataSource[7] = localFloat29 * localFloat23 - localFloat20 * localFloat8;
@@ -258282,8 +258282,8 @@ void FUN_18082b45b(void)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -258367,19 +258367,19 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register9 + TempInt49;
           floatResult6 = *pprocessedFloat4;
           floatResult7 = pprocessedFloat4[1];
-          floatResult8 = pprocessedFloat4[2];
-          floatResult9 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[2];
+          FloatValue2 = pprocessedFloat4[3];
           TempInt49 = localInt51 + 4;
           pprocessedFloat4 = RegisterPointer + localInt51;
           *pprocessedFloat4 = pprocessedFloat7[3];
           pprocessedFloat4[1] = floatResult1;
           pprocessedFloat4[2] = floatResult5;
-          pprocessedFloat4[3] = floatResult9;
+          pprocessedFloat4[3] = FloatValue2;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt51 + EventHandle;
           *pprocessedFloat7 = processedFloat;
           pprocessedFloat7[1] = floatResult0;
           pprocessedFloat7[2] = vectorComponentX;
-          pprocessedFloat7[3] = floatResult8;
+          pprocessedFloat7[3] = FloatValue1;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt8 + (longlong)localInt51;
           *pprocessedFloat7 = resultValue;
           pprocessedFloat7[1] = localFloat9;
@@ -258457,8 +258457,8 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register9 + (localInt54 + -0x200);
           floatResult6 = *pprocessedFloat4;
           floatResult7 = pprocessedFloat4[1];
-          floatResult8 = pprocessedFloat4[2];
-          floatResult9 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[2];
+          FloatValue2 = pprocessedFloat4[3];
           pprocessedFloat4 = register9 + localInt54;
           localFloat20 = *pprocessedFloat4;
           localFloat21 = pprocessedFloat4[1];
@@ -258495,12 +258495,12 @@ void FUN_18082b45b(void)
           TempInt49 = localInt52 + 4;
           plocalFloat2 = RegisterPointer + localInt52;
           *plocalFloat2 = pprocessedFloat7[3] * secondaryValue + *pprocessedFloat4 * localFloat9;
-          plocalFloat2[1] = floatResult9 * secondaryValue + resultValue1 * localFloat9;
+          plocalFloat2[1] = FloatValue2 * secondaryValue + resultValue1 * localFloat9;
           plocalFloat2[2] = localFloat23 * secondaryValue + resultValue5 * localFloat9;
           plocalFloat2[3] = localFloat27 * secondaryValue + resultValue9 * localFloat9;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt52 + EventHandle;
           *pprocessedFloat7 = floatResult5 * processedFloat + localFloat28 * floatResult0;
-          pprocessedFloat7[1] = floatResult8 * processedFloat + resultValue2 * floatResult0;
+          pprocessedFloat7[1] = FloatValue1 * processedFloat + resultValue2 * floatResult0;
           pprocessedFloat7[2] = localFloat22 * processedFloat + resultValue6 * floatResult0;
           pprocessedFloat7[3] = localFloat26 * processedFloat + processedFloat0 * floatResult0;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt8 + (longlong)localInt52;
@@ -258533,11 +258533,11 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register10 + ContextHandleData3;
           floatResult6 = pprocessedFloat4[1];
           floatResult7 = pprocessedFloat4[2];
-          floatResult8 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[3];
           RegisterPointer[TempInt49] = pprocessedFloat7[3] * secondaryValue + *pprocessedFloat4 * localFloat9;
           RegisterPointer[(longlong)TempInt49 + EventHandle] = floatResult5 * processedFloat + floatResult6 * floatResult0;
           RegisterPointer[(longlong)TempInt49 + (longlong)localInt8] = vectorComponentX * resultValue + floatResult7 * floatResult1;
-          RegisterPointer[(longlong)TempInt49 + (longlong)localInt7] = floatResult3 * localFloat6 + floatResult8 * floatResult2;
+          RegisterPointer[(longlong)TempInt49 + (longlong)localInt7] = floatResult3 * localFloat6 + FloatValue1 * floatResult2;
           LoopCounter3 = LoopCounter3 - 1;
           TempInt49 = TempInt49 + 1;
         } while (LoopCounter3 != 0);
@@ -258596,8 +258596,8 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register9 + (localInt50 + -0x200);
           floatResult6 = *pprocessedFloat4;
           floatResult7 = pprocessedFloat4[1];
-          floatResult8 = pprocessedFloat4[2];
-          floatResult9 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[2];
+          FloatValue2 = pprocessedFloat4[3];
           pprocessedFloat4 = register9 + localInt50;
           localFloat20 = *pprocessedFloat4;
           localFloat21 = pprocessedFloat4[1];
@@ -258645,12 +258645,12 @@ void FUN_18082b45b(void)
           pprocessedFloat7[3] = localFloat25 * processedFloat - processedFloat1 * floatResult0;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt52 + (longlong)localInt8;
           *pprocessedFloat7 = vectorComponentX * resultValue - localFloat29 * floatResult1;
-          pprocessedFloat7[1] = floatResult8 * resultValue - resultValue6 * floatResult1;
+          pprocessedFloat7[1] = FloatValue1 * resultValue - resultValue6 * floatResult1;
           pprocessedFloat7[2] = localFloat22 * resultValue - resultValue2 * floatResult1;
           pprocessedFloat7[3] = localFloat26 * resultValue - processedFloat0 * floatResult1;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt52 + (longlong)localInt7;
           *pprocessedFloat7 = floatResult5 * localFloat6 - localFloat28 * floatResult2;
-          pprocessedFloat7[1] = floatResult9 * localFloat6 - resultValue5 * floatResult2;
+          pprocessedFloat7[1] = FloatValue2 * localFloat6 - resultValue5 * floatResult2;
           pprocessedFloat7[2] = localFloat23 * localFloat6 - resultValue1 * floatResult2;
           pprocessedFloat7[3] = localFloat27 * localFloat6 - resultValue9 * floatResult2;
           localInt51 = localInt51 + -1;
@@ -258673,11 +258673,11 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register9 + ContextHandleData3;
           floatResult6 = pprocessedFloat4[1];
           floatResult7 = pprocessedFloat4[2];
-          floatResult8 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[3];
           RegisterPointer[TempInt49] = *pprocessedFloat4 * secondaryValue - pprocessedFloat7[3] * localFloat9;
           RegisterPointer[(longlong)TempInt49 + EventHandle] = floatResult6 * processedFloat - floatResult5 * floatResult0;
           RegisterPointer[(longlong)TempInt49 + (longlong)localInt8] = floatResult7 * resultValue - vectorComponentX * floatResult1;
-          RegisterPointer[(longlong)TempInt49 + (longlong)localInt7] = floatResult8 * localFloat6 - floatResult3 * floatResult2;
+          RegisterPointer[(longlong)TempInt49 + (longlong)localInt7] = FloatValue1 * localFloat6 - floatResult3 * floatResult2;
           LoopCounter3 = LoopCounter3 - 1;
           TempInt49 = TempInt49 + 1;
         } while (LoopCounter3 != 0);
@@ -258747,19 +258747,19 @@ void FUN_18082b45b(void)
           pprocessedFloat4 = register10 + TempInt49;
           floatResult6 = *pprocessedFloat4;
           floatResult7 = pprocessedFloat4[1];
-          floatResult8 = pprocessedFloat4[2];
-          floatResult9 = pprocessedFloat4[3];
+          FloatValue1 = pprocessedFloat4[2];
+          FloatValue2 = pprocessedFloat4[3];
           TempInt49 = localInt52 + 4;
           pprocessedFloat4 = RegisterPointer + localInt52;
           *pprocessedFloat4 = pprocessedFloat7[3] * -1.0;
           pprocessedFloat4[1] = floatResult1 * -1.0;
           pprocessedFloat4[2] = floatResult5 * -1.0;
-          pprocessedFloat4[3] = floatResult9 * -1.0;
+          pprocessedFloat4[3] = FloatValue2 * -1.0;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt52 + EventHandle;
           *pprocessedFloat7 = processedFloat * -1.0;
           pprocessedFloat7[1] = floatResult0 * -1.0;
           pprocessedFloat7[2] = vectorComponentX * -1.0;
-          pprocessedFloat7[3] = floatResult8 * -1.0;
+          pprocessedFloat7[3] = FloatValue1 * -1.0;
           pprocessedFloat7 = RegisterPointer + (longlong)localInt8 + (longlong)localInt52;
           *pprocessedFloat7 = resultValue * -1.0;
           pprocessedFloat7[1] = localFloat9 * -1.0;
@@ -258839,8 +258839,8 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -258924,8 +258924,8 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           floatResult6 = pprocessedFloat3[2];
           floatResult7 = pprocessedFloat3[3];
           pprocessedFloat3 = bufferSize + localInt54;
-          floatResult8 = *pprocessedFloat3;
-          floatResult9 = pprocessedFloat3[1];
+          FloatValue1 = *pprocessedFloat3;
+          FloatValue2 = pprocessedFloat3[1];
           localFloat20 = pprocessedFloat3[2];
           localFloat21 = pprocessedFloat3[3];
           TempInt46 = localInt54 + 0x200;
@@ -258970,12 +258970,12 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           pprocessedFloat5 = RegisterPointer + (longlong)RegisterValue + (longlong)localInt52;
           *pprocessedFloat5 = floatResult2 * processedFloat + localFloat27 * localFloat9;
           pprocessedFloat5[1] = floatResult5 * processedFloat + resultValue1 * localFloat9;
-          pprocessedFloat5[2] = floatResult9 * processedFloat + resultValue5 * localFloat9;
+          pprocessedFloat5[2] = FloatValue2 * processedFloat + resultValue5 * localFloat9;
           pprocessedFloat5[3] = localFloat23 * processedFloat + resultValue9 * localFloat9;
           pprocessedFloat5 = RegisterPointer + localInt52 + ContextHandleData1;
           *pprocessedFloat5 = floatResult1 * resultValue + localFloat28 * floatResult0;
           pprocessedFloat5[1] = vectorComponentX * resultValue + resultValue2 * floatResult0;
-          pprocessedFloat5[2] = floatResult8 * resultValue + resultValue6 * floatResult0;
+          pprocessedFloat5[2] = FloatValue1 * resultValue + resultValue6 * floatResult0;
           pprocessedFloat5[3] = localFloat22 * resultValue + processedFloat0 * floatResult0;
           TempInt48 = TempInt48 + -1;
           unmodifiedR13D = stackParam00000110;
@@ -259069,8 +259069,8 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           floatResult6 = pprocessedFloat3[2];
           floatResult7 = pprocessedFloat3[3];
           pprocessedFloat3 = bufferSize + localInt54;
-          floatResult8 = *pprocessedFloat3;
-          floatResult9 = pprocessedFloat3[1];
+          FloatValue1 = *pprocessedFloat3;
+          FloatValue2 = pprocessedFloat3[1];
           localFloat20 = pprocessedFloat3[2];
           localFloat21 = pprocessedFloat3[3];
           TempInt48 = localInt54 + 0x200;
@@ -259106,12 +259106,12 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           plocalFloat2 = RegisterPointer + localInt52;
           *plocalFloat2 = *pprocessedFloat5 * localFloat6 - pprocessedFloat3[3] * resultFloat;
           plocalFloat2[1] = vectorComponentX * localFloat6 - resultValue6 * resultFloat;
-          plocalFloat2[2] = floatResult8 * localFloat6 - resultValue2 * resultFloat;
+          plocalFloat2[2] = FloatValue1 * localFloat6 - resultValue2 * resultFloat;
           plocalFloat2[3] = localFloat22 * localFloat6 - processedFloat0 * resultFloat;
           pprocessedFloat5 = RegisterPointer + localInt52 + targetBuffer;
           *pprocessedFloat5 = floatResult1 * secondaryValue - localFloat28 * localFloat8;
           pprocessedFloat5[1] = floatResult5 * secondaryValue - resultValue5 * localFloat8;
-          pprocessedFloat5[2] = floatResult9 * secondaryValue - resultValue1 * localFloat8;
+          pprocessedFloat5[2] = FloatValue2 * secondaryValue - resultValue1 * localFloat8;
           pprocessedFloat5[3] = localFloat23 * secondaryValue - resultValue9 * localFloat8;
           pprocessedFloat5 = RegisterPointer + (longlong)localInt52 + (longlong)RegisterValue;
           *pprocessedFloat5 = floatResult2 * processedFloat - localFloat27 * localFloat9;
@@ -259310,7 +259310,7 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
   float floatResult5;
   float floatResult6;
   int uiOperationResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   longlong allocatedMemory9;
   float *plocalFloat20;
   uint semaphoreHandle1;
@@ -259340,13 +259340,13 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
     resultValue = *(float *)((longlong)plocalFloat20 + (unmodifiedR15 - (longlong)register10) + -4);
     if (EventHandleD != 0) {
       plocalFloat20 = (float *)(bufferSize + (longlong)TargetHandle);
-      pfloatResult8 = plocalFloat27;
+      pFloatValue1 = plocalFloat27;
       semaphoreHandle1 = EventHandleD;
       do {
         processedFloat = *plocalFloat20;
         plocalFloat20 = plocalFloat20 + 0x200;
-        secondaryValue = *pfloatResult8;
-        pfloatResult8 = pfloatResult8 + 0x400;
+        secondaryValue = *pFloatValue1;
+        pFloatValue1 = pFloatValue1 + 0x400;
         *RegisterPointer = resultValue * processedFloat - localFloat2 * secondaryValue;
         RegisterPointer = RegisterPointer + 1;
         semaphoreHandle1 = semaphoreHandle1 - 1;
@@ -259373,29 +259373,29 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
           localFloat2 = *plocalFloat20;
           resultValue = plocalFloat20[1];
           processedFloat = plocalFloat20[2];
-          pfloatResult8 = plocalFloat27 + (uiValidationResult5 + -0x400);
-          secondaryValue = *pfloatResult8;
-          localFloat6 = pfloatResult8[1];
-          resultFloat = pfloatResult8[2];
-          localFloat8 = pfloatResult8[3];
-          pfloatResult8 = plocalFloat27 + uiValidationResult5;
-          localFloat9 = *pfloatResult8;
-          floatResult0 = pfloatResult8[1];
-          floatResult1 = pfloatResult8[2];
-          floatResult2 = pfloatResult8[3];
+          pFloatValue1 = plocalFloat27 + (uiValidationResult5 + -0x400);
+          secondaryValue = *pFloatValue1;
+          localFloat6 = pFloatValue1[1];
+          resultFloat = pFloatValue1[2];
+          localFloat8 = pFloatValue1[3];
+          pFloatValue1 = plocalFloat27 + uiValidationResult5;
+          localFloat9 = *pFloatValue1;
+          floatResult0 = pFloatValue1[1];
+          floatResult1 = pFloatValue1[2];
+          floatResult2 = pFloatValue1[3];
           uiValidationResult2 = uiValidationResult5 + 0x400;
           uiValidationResult5 = uiValidationResult5 + 0x1000;
-          pfloatResult8 = plocalFloat27 + uiValidationResult2;
-          floatResult3 = *pfloatResult8;
-          vectorComponentX = pfloatResult8[1];
-          floatResult5 = pfloatResult8[2];
-          floatResult6 = pfloatResult8[3];
+          pFloatValue1 = plocalFloat27 + uiValidationResult2;
+          floatResult3 = *pFloatValue1;
+          vectorComponentX = pFloatValue1[1];
+          floatResult5 = pFloatValue1[2];
+          floatResult6 = pFloatValue1[3];
           uiValidationResult2 = uiValidationResult6 + 4;
-          pfloatResult8 = RegisterPointer + uiValidationResult6;
-          *pfloatResult8 = plocalFloat20[3] * -1.0;
-          pfloatResult8[1] = localFloat8 * -1.0;
-          pfloatResult8[2] = floatResult2 * -1.0;
-          pfloatResult8[3] = floatResult6 * -1.0;
+          pFloatValue1 = RegisterPointer + uiValidationResult6;
+          *pFloatValue1 = plocalFloat20[3] * -1.0;
+          pFloatValue1[1] = localFloat8 * -1.0;
+          pFloatValue1[2] = floatResult2 * -1.0;
+          pFloatValue1[3] = floatResult6 * -1.0;
           plocalFloat20 = RegisterPointer + uiValidationResult6 + targetBuffer;
           *plocalFloat20 = processedFloat * -1.0;
           plocalFloat20[1] = resultFloat * -1.0;
@@ -259509,8 +259509,8 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -259569,8 +259569,8 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     floatResult5 = dataSource[-2];
     floatResult6 = dataSource[-1];
     floatResult7 = resultPointer[-4];
-    floatResult8 = resultPointer[-3];
-    floatResult9 = resultPointer[-2];
+    FloatValue1 = resultPointer[-3];
+    FloatValue2 = resultPointer[-2];
     localFloat20 = resultPointer[-1];
     localFloat21 = *param_7;
     localFloat22 = param_7[1];
@@ -259580,9 +259580,9 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     *uiContext = bufferSize[-1] * floatResult6 + localFloat6 * localFloat2;
     uiContext[1] = localFloat20 * floatResult6 + localFloat21 * localFloat2;
     uiContext[2] = floatResult2 * floatResult5 + resultFloat * resultValue;
-    uiContext[3] = floatResult9 * floatResult5 + localFloat22 * resultValue;
+    uiContext[3] = FloatValue2 * floatResult5 + localFloat22 * resultValue;
     uiContext[4] = floatResult1 * vectorComponentX + localFloat8 * processedFloat;
-    uiContext[5] = floatResult8 * vectorComponentX + localFloat23 * processedFloat;
+    uiContext[5] = FloatValue1 * vectorComponentX + localFloat23 * processedFloat;
     uiContext[6] = floatResult0 * floatResult3 + localFloat9 * secondaryValue;
     uiContext[7] = floatResult7 * floatResult3 + localFloat24 * secondaryValue;
     uiContext = uiContext + 8;
@@ -259623,8 +259623,8 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     floatResult5 = param_7[-2];
     floatResult6 = param_7[-1];
     floatResult7 = dataSource[-4];
-    floatResult8 = dataSource[-3];
-    floatResult9 = dataSource[-2];
+    FloatValue1 = dataSource[-3];
+    FloatValue2 = dataSource[-2];
     localFloat20 = dataSource[-1];
     localFloat21 = *resultPointer;
     localFloat22 = resultPointer[1];
@@ -259633,10 +259633,10 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     resultPointer = resultPointer + 4;
     *uiContext = localFloat6 * localFloat20 - param_6[-1] * localFloat2;
     uiContext[1] = localFloat21 * localFloat20 - floatResult6 * localFloat2;
-    uiContext[2] = resultFloat * floatResult9 - floatResult2 * resultValue;
-    uiContext[3] = localFloat22 * floatResult9 - floatResult5 * resultValue;
-    uiContext[4] = localFloat8 * floatResult8 - floatResult1 * processedFloat;
-    uiContext[5] = localFloat23 * floatResult8 - vectorComponentX * processedFloat;
+    uiContext[2] = resultFloat * FloatValue2 - floatResult2 * resultValue;
+    uiContext[3] = localFloat22 * FloatValue2 - floatResult5 * resultValue;
+    uiContext[4] = localFloat8 * FloatValue1 - floatResult1 * processedFloat;
+    uiContext[5] = localFloat23 * FloatValue1 - vectorComponentX * processedFloat;
     uiContext[6] = localFloat9 * floatResult7 - floatResult0 * secondaryValue;
     uiContext[7] = localFloat24 * floatResult7 - floatResult3 * secondaryValue;
     uiContext = uiContext + 8;
@@ -259740,8 +259740,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
   UIByte aCounterResult [32];
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   int uiValidationResult2;
@@ -259869,8 +259869,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
       resultValue = *bufferSize;
       floatResult6 = bufferSize[1];
       floatResult7 = bufferSize[2];
-      floatResult8 = bufferSize[3];
-      floatResult9 = bufferSize[4];
+      FloatValue1 = bufferSize[3];
+      FloatValue2 = bufferSize[4];
       localFloat20 = bufferSize[5];
       localFloat21 = bufferSize[6];
       targetBuffer = targetBuffer + -0x20;
@@ -259938,8 +259938,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aProcessingStatus1._0_4_ = resultValue * *plocalFloat24 + aMaxProcessingCount._0_4_;
           aProcessingStatus1._4_4_ = floatResult6 * plocalFloat24[1] + aMaxProcessingCount._4_4_;
           aProcessingStatus1._8_4_ = floatResult7 * plocalFloat24[2] + aMaxProcessingCount._8_4_;
-          aProcessingStatus1._12_4_ = floatResult8 * plocalFloat24[3] + aMaxProcessingCount._12_4_;
-          aProcessingStatus1._16_4_ = floatResult9 * plocalFloat24[4] + aMaxProcessingCount._16_4_;
+          aProcessingStatus1._12_4_ = FloatValue1 * plocalFloat24[3] + aMaxProcessingCount._12_4_;
+          aProcessingStatus1._16_4_ = FloatValue2 * plocalFloat24[4] + aMaxProcessingCount._16_4_;
           aProcessingStatus1._20_4_ = localFloat20 * plocalFloat24[5] + aMaxProcessingCount._20_4_;
           aProcessingStatus1._24_4_ = localFloat21 * plocalFloat24[6] + aMaxProcessingCount._24_4_;
           aProcessingStatus1._28_4_ = plocalFloat24[7] + aMaxProcessingCount._28_4_;
@@ -259948,8 +259948,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aEventTypeCode7._0_4_ = resultValue * *plocalFloat24 + aeventTypeCode._0_4_;
           aEventTypeCode7._4_4_ = floatResult6 * plocalFloat24[1] + aeventTypeCode._4_4_;
           aEventTypeCode7._8_4_ = floatResult7 * plocalFloat24[2] + aeventTypeCode._8_4_;
-          aEventTypeCode7._12_4_ = floatResult8 * plocalFloat24[3] + aeventTypeCode._12_4_;
-          aEventTypeCode7._16_4_ = floatResult9 * plocalFloat24[4] + aeventTypeCode._16_4_;
+          aEventTypeCode7._12_4_ = FloatValue1 * plocalFloat24[3] + aeventTypeCode._12_4_;
+          aEventTypeCode7._16_4_ = FloatValue2 * plocalFloat24[4] + aeventTypeCode._16_4_;
           aEventTypeCode7._20_4_ = localFloat20 * plocalFloat24[5] + aeventTypeCode._20_4_;
           aEventTypeCode7._24_4_ = localFloat21 * plocalFloat24[6] + aeventTypeCode._24_4_;
           aEventTypeCode7._28_4_ = plocalFloat24[7] + aeventTypeCode._28_4_;
@@ -259958,8 +259958,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aEventTypeCode9._0_4_ = resultValue * *plocalFloat26 + auVar8._0_4_;
           aEventTypeCode9._4_4_ = floatResult6 * plocalFloat26[1] + auVar8._4_4_;
           aEventTypeCode9._8_4_ = floatResult7 * plocalFloat26[2] + auVar8._8_4_;
-          aEventTypeCode9._12_4_ = floatResult8 * plocalFloat26[3] + auVar8._12_4_;
-          aEventTypeCode9._16_4_ = floatResult9 * plocalFloat26[4] + auVar8._16_4_;
+          aEventTypeCode9._12_4_ = FloatValue1 * plocalFloat26[3] + auVar8._12_4_;
+          aEventTypeCode9._16_4_ = FloatValue2 * plocalFloat26[4] + auVar8._16_4_;
           aEventTypeCode9._20_4_ = localFloat20 * plocalFloat26[5] + auVar8._20_4_;
           aEventTypeCode9._24_4_ = localFloat21 * plocalFloat26[6] + auVar8._24_4_;
           aEventTypeCode9._28_4_ = plocalFloat26[7] + auVar8._28_4_;
@@ -259968,8 +259968,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aEventTypeCode8._0_4_ = resultValue * *plocalFloat24 + auVar9._0_4_;
           aEventTypeCode8._4_4_ = floatResult6 * plocalFloat24[1] + auVar9._4_4_;
           aEventTypeCode8._8_4_ = floatResult7 * plocalFloat24[2] + auVar9._8_4_;
-          aEventTypeCode8._12_4_ = floatResult8 * plocalFloat24[3] + auVar9._12_4_;
-          aEventTypeCode8._16_4_ = floatResult9 * plocalFloat24[4] + auVar9._16_4_;
+          aEventTypeCode8._12_4_ = FloatValue1 * plocalFloat24[3] + auVar9._12_4_;
+          aEventTypeCode8._16_4_ = FloatValue2 * plocalFloat24[4] + auVar9._16_4_;
           aEventTypeCode8._20_4_ = localFloat20 * plocalFloat24[5] + auVar9._20_4_;
           aEventTypeCode8._24_4_ = localFloat21 * plocalFloat24[6] + auVar9._24_4_;
           aEventTypeCode8._28_4_ = in_ZMM4._28_4_ + auVar9._28_4_;
@@ -260035,8 +260035,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
       resultValue = *bufferSize;
       floatResult6 = bufferSize[1];
       floatResult7 = bufferSize[2];
-      floatResult8 = bufferSize[3];
-      floatResult9 = bufferSize[4];
+      FloatValue1 = bufferSize[3];
+      FloatValue2 = bufferSize[4];
       localFloat20 = bufferSize[5];
       localFloat21 = bufferSize[6];
       targetBuffer = targetBuffer + -0x20;
@@ -260100,8 +260100,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aProcessingStatus2._0_4_ = aMaxProcessingCount._0_4_ * resultValue;
           aProcessingStatus2._4_4_ = aMaxProcessingCount._4_4_ * floatResult6;
           aProcessingStatus2._8_4_ = aMaxProcessingCount._8_4_ * floatResult7;
-          aProcessingStatus2._12_4_ = aMaxProcessingCount._12_4_ * floatResult8;
-          aProcessingStatus2._16_4_ = aMaxProcessingCount._16_4_ * floatResult9;
+          aProcessingStatus2._12_4_ = aMaxProcessingCount._12_4_ * FloatValue1;
+          aProcessingStatus2._16_4_ = aMaxProcessingCount._16_4_ * FloatValue2;
           aProcessingStatus2._20_4_ = aMaxProcessingCount._20_4_ * localFloat20;
           aProcessingStatus2._28_36_ = in_ZMM5._28_36_;
           aProcessingStatus2._24_4_ = aMaxProcessingCount._24_4_ * localFloat21;
@@ -260109,8 +260109,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aresult1._4_4_ = aMaxProcessingCount._4_4_ * floatResult6;
           aresult1._0_4_ = aMaxProcessingCount._0_4_ * resultValue;
           aresult1._8_4_ = aMaxProcessingCount._8_4_ * floatResult7;
-          aresult1._12_4_ = aMaxProcessingCount._12_4_ * floatResult8;
-          aresult1._16_4_ = aMaxProcessingCount._16_4_ * floatResult9;
+          aresult1._12_4_ = aMaxProcessingCount._12_4_ * FloatValue1;
+          aresult1._16_4_ = aMaxProcessingCount._16_4_ * FloatValue2;
           aresult1._20_4_ = aMaxProcessingCount._20_4_ * localFloat20;
           aresult1._24_4_ = aMaxProcessingCount._24_4_ * localFloat21;
           aresult1._28_4_ = plocalFloat24[7];
@@ -260118,8 +260118,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aresult2._4_4_ = aMaxProcessingCount._4_4_ * floatResult6;
           aresult2._0_4_ = aMaxProcessingCount._0_4_ * resultValue;
           aresult2._8_4_ = aMaxProcessingCount._8_4_ * floatResult7;
-          aresult2._12_4_ = aMaxProcessingCount._12_4_ * floatResult8;
-          aresult2._16_4_ = aMaxProcessingCount._16_4_ * floatResult9;
+          aresult2._12_4_ = aMaxProcessingCount._12_4_ * FloatValue1;
+          aresult2._16_4_ = aMaxProcessingCount._16_4_ * FloatValue2;
           aresult2._20_4_ = aMaxProcessingCount._20_4_ * localFloat20;
           aresult2._24_4_ = aMaxProcessingCount._24_4_ * localFloat21;
           aresult2._28_4_ = SUB324(*(UIByte (*) [32])(presultValue3 + uiCompareResult6),0x1c);
@@ -260131,8 +260131,8 @@ void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,fl
           aresult3._4_4_ = auVar8._4_4_ * floatResult6;
           aresult3._0_4_ = auVar8._0_4_ * resultValue;
           aresult3._8_4_ = auVar8._8_4_ * floatResult7;
-          aresult3._12_4_ = auVar8._12_4_ * floatResult8;
-          aresult3._16_4_ = auVar8._16_4_ * floatResult9;
+          aresult3._12_4_ = auVar8._12_4_ * FloatValue1;
+          aresult3._16_4_ = auVar8._16_4_ * FloatValue2;
           aresult3._20_4_ = auVar8._20_4_ * localFloat20;
           aresult3._24_4_ = auVar8._24_4_ * localFloat21;
           aresult3._28_4_ = aMaxProcessingCount._28_4_;
@@ -260342,8 +260342,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
   UIByte aCounterResult [32];
   UIByte aTotalResult [32];
   UIByte aresult7 [32];
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -260479,8 +260479,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
     aeventTypeCode = *(UIByte (*) [32])(TargetHandle + -0x20);
     in_ZMM9 = ZEXT3264(aeventTypeCode);
     secondaryValue = *ContextHandle;
-    floatResult8 = ContextHandle[1];
-    floatResult9 = ContextHandle[2];
+    FloatValue1 = ContextHandle[1];
+    FloatValue2 = ContextHandle[2];
     localFloat20 = ContextHandle[3];
     localFloat21 = ContextHandle[4];
     localFloat22 = ContextHandle[5];
@@ -260548,8 +260548,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         in_ZMM6 = ZEXT3264(aresult1);
         plocalFloat27 = register10 + (uiCompareResult8 + -0x800);
         aProcessingStatus5._0_4_ = secondaryValue * *plocalFloat27 + auVar8._0_4_;
-        aProcessingStatus5._4_4_ = floatResult8 * plocalFloat27[1] + auVar8._4_4_;
-        aProcessingStatus5._8_4_ = floatResult9 * plocalFloat27[2] + auVar8._8_4_;
+        aProcessingStatus5._4_4_ = FloatValue1 * plocalFloat27[1] + auVar8._4_4_;
+        aProcessingStatus5._8_4_ = FloatValue2 * plocalFloat27[2] + auVar8._8_4_;
         aProcessingStatus5._12_4_ = localFloat20 * plocalFloat27[3] + auVar8._12_4_;
         aProcessingStatus5._16_4_ = localFloat21 * plocalFloat27[4] + auVar8._16_4_;
         aProcessingStatus5._20_4_ = localFloat22 * plocalFloat27[5] + auVar8._20_4_;
@@ -260558,8 +260558,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         plocalFloat27 = register10 + (uiCompareResult8 + -0x400);
         presultValue = register10 + uiCompareResult8;
         aProcessingStatus1._0_4_ = secondaryValue * *plocalFloat27 + auVar9._0_4_;
-        aProcessingStatus1._4_4_ = floatResult8 * plocalFloat27[1] + auVar9._4_4_;
-        aProcessingStatus1._8_4_ = floatResult9 * plocalFloat27[2] + auVar9._8_4_;
+        aProcessingStatus1._4_4_ = FloatValue1 * plocalFloat27[1] + auVar9._4_4_;
+        aProcessingStatus1._8_4_ = FloatValue2 * plocalFloat27[2] + auVar9._8_4_;
         aProcessingStatus1._12_4_ = localFloat20 * plocalFloat27[3] + auVar9._12_4_;
         aProcessingStatus1._16_4_ = localFloat21 * plocalFloat27[4] + auVar9._16_4_;
         aProcessingStatus1._20_4_ = localFloat22 * plocalFloat27[5] + auVar9._20_4_;
@@ -260568,8 +260568,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         uiOperationResult = uiCompareResult8 + 0x400;
         uiCompareResult8 = uiCompareResult8 + 0x1000;
         aProcessingStatus3._0_4_ = secondaryValue * *presultValue + aresult0._0_4_;
-        aProcessingStatus3._4_4_ = floatResult8 * presultValue[1] + aresult0._4_4_;
-        aProcessingStatus3._8_4_ = floatResult9 * presultValue[2] + aresult0._8_4_;
+        aProcessingStatus3._4_4_ = FloatValue1 * presultValue[1] + aresult0._4_4_;
+        aProcessingStatus3._8_4_ = FloatValue2 * presultValue[2] + aresult0._8_4_;
         aProcessingStatus3._12_4_ = localFloat20 * presultValue[3] + aresult0._12_4_;
         aProcessingStatus3._16_4_ = localFloat21 * presultValue[4] + aresult0._16_4_;
         aProcessingStatus3._20_4_ = localFloat22 * presultValue[5] + aresult0._20_4_;
@@ -260578,8 +260578,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         auVar8 = vshufps_avx(aProcessingStatus5,aProcessingStatus1,0x44);
         plocalFloat27 = register10 + uiOperationResult;
         aProcessingStatus2._0_4_ = secondaryValue * *plocalFloat27 + aresult1._0_4_;
-        aProcessingStatus2._4_4_ = floatResult8 * plocalFloat27[1] + aresult1._4_4_;
-        aProcessingStatus2._8_4_ = floatResult9 * plocalFloat27[2] + aresult1._8_4_;
+        aProcessingStatus2._4_4_ = FloatValue1 * plocalFloat27[1] + aresult1._4_4_;
+        aProcessingStatus2._8_4_ = FloatValue2 * plocalFloat27[2] + aresult1._8_4_;
         aProcessingStatus2._12_4_ = localFloat20 * plocalFloat27[3] + aresult1._12_4_;
         aProcessingStatus2._16_4_ = localFloat21 * plocalFloat27[4] + aresult1._16_4_;
         aProcessingStatus2._20_4_ = localFloat22 * plocalFloat27[5] + aresult1._20_4_;
@@ -260643,8 +260643,8 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
   for (uiValidationResult4 = (int)stackParam00000198 >> 3; uiValidationResult4 != 0; uiValidationResult4 = uiValidationResult4 + -1) {
     aeventTypeCode = vpermps_avx2(aMaxProcessingCount,*(UIByte (*) [32])(TargetHandle + -0x20));
     secondaryValue = *ContextHandle;
-    floatResult8 = ContextHandle[1];
-    floatResult9 = ContextHandle[2];
+    FloatValue1 = ContextHandle[1];
+    FloatValue2 = ContextHandle[2];
     localFloat20 = ContextHandle[3];
     localFloat21 = ContextHandle[4];
     localFloat22 = ContextHandle[5];
@@ -260715,26 +260715,26 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         in_ZMM9 = ZEXT3264(aLoopCounter1._0_32_);
         auVar8 = vpermps_avx2(aMaxProcessingCount,*(UIByte (*) [32])(register10 + (uiCompareResult9 + -0x800)));
         aProcessingStatus6._0_4_ = auVar8._0_4_ * secondaryValue;
-        aProcessingStatus6._4_4_ = auVar8._4_4_ * floatResult8;
-        aProcessingStatus6._8_4_ = auVar8._8_4_ * floatResult9;
+        aProcessingStatus6._4_4_ = auVar8._4_4_ * FloatValue1;
+        aProcessingStatus6._8_4_ = auVar8._8_4_ * FloatValue2;
         aProcessingStatus6._12_4_ = auVar8._12_4_ * localFloat20;
         aProcessingStatus6._16_4_ = auVar8._16_4_ * localFloat21;
         aProcessingStatus6._20_4_ = auVar8._20_4_ * localFloat22;
         aProcessingStatus6._28_36_ = in_ZMM5._28_36_;
         aProcessingStatus6._24_4_ = auVar8._24_4_ * localFloat23;
         auVar8 = vpermps_avx2(aMaxProcessingCount,*(UIByte (*) [32])(register10 + (uiCompareResult9 + -0x400)));
-        aresult3._4_4_ = auVar8._4_4_ * floatResult8;
+        aresult3._4_4_ = auVar8._4_4_ * FloatValue1;
         aresult3._0_4_ = auVar8._0_4_ * secondaryValue;
-        aresult3._8_4_ = auVar8._8_4_ * floatResult9;
+        aresult3._8_4_ = auVar8._8_4_ * FloatValue2;
         aresult3._12_4_ = auVar8._12_4_ * localFloat20;
         aresult3._16_4_ = auVar8._16_4_ * localFloat21;
         aresult3._20_4_ = auVar8._20_4_ * localFloat22;
         aresult3._24_4_ = auVar8._24_4_ * localFloat23;
         aresult3._28_4_ = plocalFloat27[7];
         auVar8 = vpermps_avx2(aMaxProcessingCount,*(UIByte (*) [32])(register10 + uiCompareResult9));
-        aIndexResult._4_4_ = auVar8._4_4_ * floatResult8;
+        aIndexResult._4_4_ = auVar8._4_4_ * FloatValue1;
         aIndexResult._0_4_ = auVar8._0_4_ * secondaryValue;
-        aIndexResult._8_4_ = auVar8._8_4_ * floatResult9;
+        aIndexResult._8_4_ = auVar8._8_4_ * FloatValue2;
         aIndexResult._12_4_ = auVar8._12_4_ * localFloat20;
         aIndexResult._16_4_ = auVar8._16_4_ * localFloat21;
         aIndexResult._20_4_ = auVar8._20_4_ * localFloat22;
@@ -260745,9 +260745,9 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         uiValidationResult = uiCompareResult9 + 0x400;
         uiCompareResult9 = uiCompareResult9 + 0x1000;
         aresult0 = vpermps_avx2(aMaxProcessingCount,*(UIByte (*) [32])(register10 + uiValidationResult));
-        aCounterResult._4_4_ = aresult0._4_4_ * floatResult8;
+        aCounterResult._4_4_ = aresult0._4_4_ * FloatValue1;
         aCounterResult._0_4_ = aresult0._0_4_ * secondaryValue;
-        aCounterResult._8_4_ = aresult0._8_4_ * floatResult9;
+        aCounterResult._8_4_ = aresult0._8_4_ * FloatValue2;
         aCounterResult._12_4_ = aresult0._12_4_ * localFloat20;
         aCounterResult._16_4_ = aresult0._16_4_ * localFloat21;
         aCounterResult._20_4_ = aresult0._20_4_ * localFloat22;
@@ -262019,8 +262019,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
   int uiOperationResult5;
   int uiOperationResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -262074,8 +262074,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
     aresult0 = vpermps_avx2(aProcessingStatus0,*(UIByte (*) [32])(TargetHandle + -0x20));
     secondaryValue = *ContextHandle;
     floatResult7 = ContextHandle[1];
-    floatResult8 = ContextHandle[2];
-    floatResult9 = ContextHandle[3];
+    FloatValue1 = ContextHandle[2];
+    FloatValue2 = ContextHandle[3];
     localFloat20 = ContextHandle[4];
     localFloat21 = ContextHandle[5];
     localFloat22 = ContextHandle[6];
@@ -262146,8 +262146,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aresult1 = vpermps_avx2(aProcessingStatus0,*(UIByte (*) [32])(register10 + (uiCompareResult3 + -0x800)));
         aEventTypeCode5._0_4_ = aresult1._0_4_ * secondaryValue;
         aEventTypeCode5._4_4_ = aresult1._4_4_ * floatResult7;
-        aEventTypeCode5._8_4_ = aresult1._8_4_ * floatResult8;
-        aEventTypeCode5._12_4_ = aresult1._12_4_ * floatResult9;
+        aEventTypeCode5._8_4_ = aresult1._8_4_ * FloatValue1;
+        aEventTypeCode5._12_4_ = aresult1._12_4_ * FloatValue2;
         aEventTypeCode5._16_4_ = aresult1._16_4_ * localFloat20;
         aEventTypeCode5._20_4_ = aresult1._20_4_ * localFloat21;
         aEventTypeCode5._28_36_ = in_ZMM5._28_36_;
@@ -262155,8 +262155,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aresult1 = vpermps_avx2(aProcessingStatus0,*(UIByte (*) [32])(register10 + (uiCompareResult3 + -0x400)));
         aIndexResult._4_4_ = aresult1._4_4_ * floatResult7;
         aIndexResult._0_4_ = aresult1._0_4_ * secondaryValue;
-        aIndexResult._8_4_ = aresult1._8_4_ * floatResult8;
-        aIndexResult._12_4_ = aresult1._12_4_ * floatResult9;
+        aIndexResult._8_4_ = aresult1._8_4_ * FloatValue1;
+        aIndexResult._12_4_ = aresult1._12_4_ * FloatValue2;
         aIndexResult._16_4_ = aresult1._16_4_ * localFloat20;
         aIndexResult._20_4_ = aresult1._20_4_ * localFloat21;
         aIndexResult._24_4_ = aresult1._24_4_ * localFloat22;
@@ -262164,8 +262164,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aresult1 = vpermps_avx2(aProcessingStatus0,*(UIByte (*) [32])(register10 + uiCompareResult3));
         aresult2._4_4_ = aresult1._4_4_ * floatResult7;
         aresult2._0_4_ = aresult1._0_4_ * secondaryValue;
-        aresult2._8_4_ = aresult1._8_4_ * floatResult8;
-        aresult2._12_4_ = aresult1._12_4_ * floatResult9;
+        aresult2._8_4_ = aresult1._8_4_ * FloatValue1;
+        aresult2._12_4_ = aresult1._12_4_ * FloatValue2;
         aresult2._16_4_ = aresult1._16_4_ * localFloat20;
         aresult2._20_4_ = aresult1._20_4_ * localFloat21;
         aresult2._24_4_ = aresult1._24_4_ * localFloat22;
@@ -262177,8 +262177,8 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aresult2 = vpermps_avx2(aProcessingStatus0,*(UIByte (*) [32])(register10 + uiValidationResult9));
         auVar9._4_4_ = aresult2._4_4_ * floatResult7;
         auVar9._0_4_ = aresult2._0_4_ * secondaryValue;
-        auVar9._8_4_ = aresult2._8_4_ * floatResult8;
-        auVar9._12_4_ = aresult2._12_4_ * floatResult9;
+        auVar9._8_4_ = aresult2._8_4_ * FloatValue1;
+        auVar9._12_4_ = aresult2._12_4_ * FloatValue2;
         auVar9._16_4_ = aresult2._16_4_ * localFloat20;
         auVar9._20_4_ = aresult2._20_4_ * localFloat21;
         auVar9._24_4_ = aresult2._24_4_ * localFloat22;
@@ -262372,7 +262372,7 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   int uiOperationResult5;
   int uiOperationResult6;
   int uiOperationResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   uint *ptrResult9;
   int uiValidationResult0;
   float *ContextHandle;
@@ -262395,28 +262395,28 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   if (semaphoreHandle1 != 0) {
     componentIndex2 = TargetHandle - (longlong)register10;
     bufferSize = bufferSize - (longlong)ContextHandle;
-    pfloatResult8 = register10;
+    pFloatValue1 = register10;
     do {
       processedFloat = *ContextHandle;
-      register10 = pfloatResult8 + -1;
-      LoopCounter = *(uint *)((longlong)pfloatResult8 + componentIndex2 + -4);
+      register10 = pFloatValue1 + -1;
+      LoopCounter = *(uint *)((longlong)pFloatValue1 + componentIndex2 + -4);
       if (dataSource != 0) {
         ptrResult9 = (uint *)(bufferSize + (longlong)ContextHandle);
-        pfloatResult8 = register10;
+        pFloatValue1 = register10;
         uiValidationResult3 = dataSource;
         do {
           aresult1 = vfmsub213ss_fma(ZEXT416(*ptrResult9),ZEXT416(LoopCounter),
-                                    ZEXT416((uint)(processedFloat * *pfloatResult8)));
+                                    ZEXT416((uint)(processedFloat * *pFloatValue1)));
           *RegisterPointer = aresult1._0_4_;
           RegisterPointer = RegisterPointer + 1;
           ptrResult9 = ptrResult9 + 0x200;
-          pfloatResult8 = pfloatResult8 + 0x400;
+          pFloatValue1 = pFloatValue1 + 0x400;
           uiValidationResult3 = uiValidationResult3 + -1;
         } while (uiValidationResult3 != 0);
       }
       ContextHandle = ContextHandle + 1;
       semaphoreHandle1 = semaphoreHandle1 - 1;
-      pfloatResult8 = register10;
+      pFloatValue1 = register10;
     } while (semaphoreHandle1 != 0);
   }
   uiValidationResult3 = (int)stackParam000001a0 >> 3;
@@ -262436,16 +262436,16 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
         uiValidationResult0 = 0;
         uiValidationResult5 = uiOperationResult6;
         do {
-          pfloatResult8 = register10 + (uiValidationResult4 + -0x800);
-          aeventTypeCode._4_4_ = pfloatResult8[1] * -1.0;
-          aeventTypeCode._0_4_ = *pfloatResult8 * -1.0;
-          aeventTypeCode._8_4_ = pfloatResult8[2] * -1.0;
-          aeventTypeCode._12_4_ = pfloatResult8[3] * -1.0;
-          aeventTypeCode._16_4_ = pfloatResult8[4] * -1.0;
-          aeventTypeCode._20_4_ = pfloatResult8[5] * -1.0;
-          aeventTypeCode._24_4_ = pfloatResult8[6] * -1.0;
-          aeventTypeCode._28_4_ = pfloatResult8[7];
-          pfloatResult8 = register10 + (uiValidationResult4 + -0x400);
+          pFloatValue1 = register10 + (uiValidationResult4 + -0x800);
+          aeventTypeCode._4_4_ = pFloatValue1[1] * -1.0;
+          aeventTypeCode._0_4_ = *pFloatValue1 * -1.0;
+          aeventTypeCode._8_4_ = pFloatValue1[2] * -1.0;
+          aeventTypeCode._12_4_ = pFloatValue1[3] * -1.0;
+          aeventTypeCode._16_4_ = pFloatValue1[4] * -1.0;
+          aeventTypeCode._20_4_ = pFloatValue1[5] * -1.0;
+          aeventTypeCode._24_4_ = pFloatValue1[6] * -1.0;
+          aeventTypeCode._28_4_ = pFloatValue1[7];
+          pFloatValue1 = register10 + (uiValidationResult4 + -0x400);
           plocalFloat2 = register10 + uiValidationResult4;
           asemaphoreHandle6._0_4_ = *plocalFloat2 * -1.0;
           asemaphoreHandle6._4_4_ = plocalFloat2[1] * -1.0;
@@ -262457,24 +262457,24 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
           asemaphoreHandle6._24_4_ = plocalFloat2[6] * -1.0;
           uiOperationResult = uiValidationResult4 + 0x400;
           uiValidationResult4 = uiValidationResult4 + 0x1000;
-          auVar8._4_4_ = pfloatResult8[1] * -1.0;
-          auVar8._0_4_ = *pfloatResult8 * -1.0;
-          auVar8._8_4_ = pfloatResult8[2] * -1.0;
-          auVar8._12_4_ = pfloatResult8[3] * -1.0;
-          auVar8._16_4_ = pfloatResult8[4] * -1.0;
-          auVar8._20_4_ = pfloatResult8[5] * -1.0;
-          auVar8._24_4_ = pfloatResult8[6] * -1.0;
-          auVar8._28_4_ = pfloatResult8[7];
+          auVar8._4_4_ = pFloatValue1[1] * -1.0;
+          auVar8._0_4_ = *pFloatValue1 * -1.0;
+          auVar8._8_4_ = pFloatValue1[2] * -1.0;
+          auVar8._12_4_ = pFloatValue1[3] * -1.0;
+          auVar8._16_4_ = pFloatValue1[4] * -1.0;
+          auVar8._20_4_ = pFloatValue1[5] * -1.0;
+          auVar8._24_4_ = pFloatValue1[6] * -1.0;
+          auVar8._28_4_ = pFloatValue1[7];
           aMaxProcessingCount = vshufps_avx(aeventTypeCode,auVar8,0x44);
           aeventTypeCode = vshufps_avx(aeventTypeCode,auVar8,0xee);
-          pfloatResult8 = register10 + uiOperationResult;
-          aresult0._4_4_ = pfloatResult8[1] * -1.0;
-          aresult0._0_4_ = *pfloatResult8 * -1.0;
-          aresult0._8_4_ = pfloatResult8[2] * -1.0;
-          aresult0._12_4_ = pfloatResult8[3] * -1.0;
-          aresult0._16_4_ = pfloatResult8[4] * -1.0;
-          aresult0._20_4_ = pfloatResult8[5] * -1.0;
-          aresult0._24_4_ = pfloatResult8[6] * -1.0;
+          pFloatValue1 = register10 + uiOperationResult;
+          aresult0._4_4_ = pFloatValue1[1] * -1.0;
+          aresult0._0_4_ = *pFloatValue1 * -1.0;
+          aresult0._8_4_ = pFloatValue1[2] * -1.0;
+          aresult0._12_4_ = pFloatValue1[3] * -1.0;
+          aresult0._16_4_ = pFloatValue1[4] * -1.0;
+          aresult0._20_4_ = pFloatValue1[5] * -1.0;
+          aresult0._24_4_ = pFloatValue1[6] * -1.0;
           aresult0._28_4_ = plocalFloat2[7];
           auVar8 = vshufps_avx(asemaphoreHandle6._0_32_,aresult0,0x44);
           auVar9 = vshufps_avx(aMaxProcessingCount,auVar8,0x88);
@@ -262504,11 +262504,11 @@ void FUN_18082cdff(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   if (stackParam000001a0 != 0) {
     do {
       register10 = register10 + -1;
-      pfloatResult8 = register10;
+      pFloatValue1 = register10;
       for (uiValidationResult3 = dataSource; uiValidationResult3 != 0; uiValidationResult3 = uiValidationResult3 + -1) {
-        *RegisterPointer = -*pfloatResult8;
+        *RegisterPointer = -*pFloatValue1;
         RegisterPointer = RegisterPointer + 1;
-        pfloatResult8 = pfloatResult8 + 0x400;
+        pFloatValue1 = pFloatValue1 + 0x400;
       }
       stackParam000001a0 = stackParam000001a0 - 1;
     } while (stackParam000001a0 != 0);
@@ -262546,7 +262546,7 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   int uiOperationResult5;
   int uiOperationResult6;
   int uiOperationResult7;
-  float *pfloatResult8;
+  float *pFloatValue1;
   uint *ptrResult9;
   int uiValidationResult0;
   float *ContextHandle;
@@ -262566,28 +262566,28 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   uint stackParam000001a0;
   
   bufferSize = bufferSize - (longlong)ContextHandle;
-  pfloatResult8 = register10;
+  pFloatValue1 = register10;
   do {
     processedFloat = *ContextHandle;
-    plocalFloat24 = pfloatResult8 + -1;
-    LoopCounter = *(uint *)((longlong)pfloatResult8 + (TargetHandle - (longlong)register10) + -4);
+    plocalFloat24 = pFloatValue1 + -1;
+    LoopCounter = *(uint *)((longlong)pFloatValue1 + (TargetHandle - (longlong)register10) + -4);
     if (dataSource != 0) {
       ptrResult9 = (uint *)(bufferSize + (longlong)ContextHandle);
-      pfloatResult8 = plocalFloat24;
+      pFloatValue1 = plocalFloat24;
       uiValidationResult1 = dataSource;
       do {
-        aresult1 = vfmsub213ss_fma(ZEXT416(*ptrResult9),ZEXT416(LoopCounter),ZEXT416((uint)(processedFloat * *pfloatResult8))
+        aresult1 = vfmsub213ss_fma(ZEXT416(*ptrResult9),ZEXT416(LoopCounter),ZEXT416((uint)(processedFloat * *pFloatValue1))
                                  );
         *RegisterPointer = aresult1._0_4_;
         RegisterPointer = RegisterPointer + 1;
         ptrResult9 = ptrResult9 + 0x200;
-        pfloatResult8 = pfloatResult8 + 0x400;
+        pFloatValue1 = pFloatValue1 + 0x400;
         uiValidationResult1 = uiValidationResult1 + -1;
       } while (uiValidationResult1 != 0);
     }
     ContextHandle = ContextHandle + 1;
     unmodifiedESI = unmodifiedESI + -1;
-    pfloatResult8 = plocalFloat24;
+    pFloatValue1 = plocalFloat24;
   } while (unmodifiedESI != 0);
   uiValidationResult1 = (int)stackParam000001a0 >> 3;
   if (uiValidationResult1 != 0) {
@@ -262606,16 +262606,16 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
         uiValidationResult0 = 0;
         uiValidationResult3 = uiOperationResult6;
         do {
-          pfloatResult8 = plocalFloat24 + (uiValidationResult2 + -0x800);
-          aeventTypeCode._4_4_ = pfloatResult8[1] * -1.0;
-          aeventTypeCode._0_4_ = *pfloatResult8 * -1.0;
-          aeventTypeCode._8_4_ = pfloatResult8[2] * -1.0;
-          aeventTypeCode._12_4_ = pfloatResult8[3] * -1.0;
-          aeventTypeCode._16_4_ = pfloatResult8[4] * -1.0;
-          aeventTypeCode._20_4_ = pfloatResult8[5] * -1.0;
-          aeventTypeCode._24_4_ = pfloatResult8[6] * -1.0;
-          aeventTypeCode._28_4_ = pfloatResult8[7];
-          pfloatResult8 = plocalFloat24 + (uiValidationResult2 + -0x400);
+          pFloatValue1 = plocalFloat24 + (uiValidationResult2 + -0x800);
+          aeventTypeCode._4_4_ = pFloatValue1[1] * -1.0;
+          aeventTypeCode._0_4_ = *pFloatValue1 * -1.0;
+          aeventTypeCode._8_4_ = pFloatValue1[2] * -1.0;
+          aeventTypeCode._12_4_ = pFloatValue1[3] * -1.0;
+          aeventTypeCode._16_4_ = pFloatValue1[4] * -1.0;
+          aeventTypeCode._20_4_ = pFloatValue1[5] * -1.0;
+          aeventTypeCode._24_4_ = pFloatValue1[6] * -1.0;
+          aeventTypeCode._28_4_ = pFloatValue1[7];
+          pFloatValue1 = plocalFloat24 + (uiValidationResult2 + -0x400);
           plocalFloat2 = plocalFloat24 + uiValidationResult2;
           asemaphoreHandle6._0_4_ = *plocalFloat2 * -1.0;
           asemaphoreHandle6._4_4_ = plocalFloat2[1] * -1.0;
@@ -262627,24 +262627,24 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
           asemaphoreHandle6._24_4_ = plocalFloat2[6] * -1.0;
           uiOperationResult = uiValidationResult2 + 0x400;
           uiValidationResult2 = uiValidationResult2 + 0x1000;
-          auVar8._4_4_ = pfloatResult8[1] * -1.0;
-          auVar8._0_4_ = *pfloatResult8 * -1.0;
-          auVar8._8_4_ = pfloatResult8[2] * -1.0;
-          auVar8._12_4_ = pfloatResult8[3] * -1.0;
-          auVar8._16_4_ = pfloatResult8[4] * -1.0;
-          auVar8._20_4_ = pfloatResult8[5] * -1.0;
-          auVar8._24_4_ = pfloatResult8[6] * -1.0;
-          auVar8._28_4_ = pfloatResult8[7];
+          auVar8._4_4_ = pFloatValue1[1] * -1.0;
+          auVar8._0_4_ = *pFloatValue1 * -1.0;
+          auVar8._8_4_ = pFloatValue1[2] * -1.0;
+          auVar8._12_4_ = pFloatValue1[3] * -1.0;
+          auVar8._16_4_ = pFloatValue1[4] * -1.0;
+          auVar8._20_4_ = pFloatValue1[5] * -1.0;
+          auVar8._24_4_ = pFloatValue1[6] * -1.0;
+          auVar8._28_4_ = pFloatValue1[7];
           aMaxProcessingCount = vshufps_avx(aeventTypeCode,auVar8,0x44);
           aeventTypeCode = vshufps_avx(aeventTypeCode,auVar8,0xee);
-          pfloatResult8 = plocalFloat24 + uiOperationResult;
-          aresult0._4_4_ = pfloatResult8[1] * -1.0;
-          aresult0._0_4_ = *pfloatResult8 * -1.0;
-          aresult0._8_4_ = pfloatResult8[2] * -1.0;
-          aresult0._12_4_ = pfloatResult8[3] * -1.0;
-          aresult0._16_4_ = pfloatResult8[4] * -1.0;
-          aresult0._20_4_ = pfloatResult8[5] * -1.0;
-          aresult0._24_4_ = pfloatResult8[6] * -1.0;
+          pFloatValue1 = plocalFloat24 + uiOperationResult;
+          aresult0._4_4_ = pFloatValue1[1] * -1.0;
+          aresult0._0_4_ = *pFloatValue1 * -1.0;
+          aresult0._8_4_ = pFloatValue1[2] * -1.0;
+          aresult0._12_4_ = pFloatValue1[3] * -1.0;
+          aresult0._16_4_ = pFloatValue1[4] * -1.0;
+          aresult0._20_4_ = pFloatValue1[5] * -1.0;
+          aresult0._24_4_ = pFloatValue1[6] * -1.0;
           aresult0._28_4_ = plocalFloat2[7];
           auVar8 = vshufps_avx(asemaphoreHandle6._0_32_,aresult0,0x44);
           auVar9 = vshufps_avx(aMaxProcessingCount,auVar8,0x88);
@@ -262674,11 +262674,11 @@ void FUN_18082ce28(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longl
   if (stackParam000001a0 != 0) {
     do {
       plocalFloat24 = plocalFloat24 + -1;
-      pfloatResult8 = plocalFloat24;
+      pFloatValue1 = plocalFloat24;
       for (uiValidationResult1 = dataSource; uiValidationResult1 != 0; uiValidationResult1 = uiValidationResult1 + -1) {
-        *RegisterPointer = -*pfloatResult8;
+        *RegisterPointer = -*pFloatValue1;
         RegisterPointer = RegisterPointer + 1;
-        pfloatResult8 = pfloatResult8 + 0x400;
+        pFloatValue1 = pFloatValue1 + 0x400;
       }
       stackParam000001a0 = stackParam000001a0 - 1;
     } while (stackParam000001a0 != 0);
@@ -270672,8 +270672,8 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float floatResult5;
   float floatResult6;
   longlong allocatedMemory7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -270786,9 +270786,9 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       floatResult5 = *pprocessedFloat;
       floatResult6 = pprocessedFloat[1];
       processedFloat6 = pprocessedFloat[2];
-      floatResult8 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[3];
       pprocessedFloat = (float *)(targetBuffer + semaphoreHandle8 * 4);
-      floatResult9 = *pprocessedFloat;
+      FloatValue2 = *pprocessedFloat;
       localFloat20 = pprocessedFloat[1];
       localFloat21 = pprocessedFloat[2];
       localFloat22 = pprocessedFloat[3];
@@ -270803,8 +270803,8 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[3] = (floatResult2 - resultFloat) * resultValue2 + resultFloat;
       uiContext[4] = (floatResult3 - localFloat8) * resultValue2 + localFloat8;
       uiContext[5] = (vectorComponentX - localFloat9) * resultValue2 + localFloat9;
-      uiContext[6] = (processedFloat6 - floatResult9) * resultValue3 + floatResult9;
-      uiContext[7] = (floatResult8 - localFloat20) * resultValue3 + localFloat20;
+      uiContext[6] = (processedFloat6 - FloatValue2) * resultValue3 + FloatValue2;
+      uiContext[7] = (FloatValue1 - localFloat20) * resultValue3 + localFloat20;
       uiContext[8] = localFloat21 + (localFloat23 - localFloat21) * resultValue3;
       uiContext[9] = localFloat22 + (localFloat24 - localFloat22) * resultValue3;
       uiContext[10] = floatResult5 + (localFloat25 - floatResult5) * resultValue3;
@@ -270828,9 +270828,9 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       floatResult5 = *pprocessedFloat;
       floatResult6 = pprocessedFloat[1];
       processedFloat6 = pprocessedFloat[2];
-      floatResult8 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[3];
       pprocessedFloat = (float *)(targetBuffer + 0x10 + semaphoreHandle8 * 4);
-      floatResult9 = *pprocessedFloat;
+      FloatValue2 = *pprocessedFloat;
       localFloat20 = pprocessedFloat[1];
       localFloat21 = pprocessedFloat[2];
       localFloat22 = pprocessedFloat[3];
@@ -270848,8 +270848,8 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[0x12] = (localFloat21 - floatResult5) * resultValue5 + floatResult5;
       uiContext[0x13] = (localFloat22 - floatResult6) * resultValue5 + floatResult6;
       uiContext[0x14] = processedFloat6 + (localFloat23 - processedFloat6) * resultValue5;
-      uiContext[0x15] = floatResult8 + (localFloat24 - floatResult8) * resultValue5;
-      uiContext[0x16] = floatResult9 + (localFloat25 - floatResult9) * resultValue5;
+      uiContext[0x15] = FloatValue1 + (localFloat24 - FloatValue1) * resultValue5;
+      uiContext[0x16] = FloatValue2 + (localFloat25 - FloatValue2) * resultValue5;
       uiContext[0x17] = localFloat20 + (localFloat26 - localFloat20) * resultValue5;
       uiContext = uiContext + 0x18;
       uiCompareResult1 = uiCompareResult1 + -1;
@@ -270920,8 +270920,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -270977,8 +270977,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       resultValue1 = (float)(semaphoreHandle7 >> 1) * 4.656613e-10;
       resultValue2 = (float)(semaphoreHandle8 >> 1) * 4.656613e-10;
       resultValue3 = (float)(semaphoreHandle9 >> 1) * 4.656613e-10;
@@ -270993,8 +270993,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[3] = (floatResult2 - floatResult5) * resultValue4 + localFloat22;
       uiContext[4] = (floatResult6 - localFloat6) * resultValue1 + localFloat6;
       uiContext[5] = (floatResult7 - resultFloat) * resultValue2 + resultFloat;
-      uiContext[6] = (floatResult8 - localFloat8) * resultValue3 + localFloat8;
-      uiContext[7] = (floatResult9 - localFloat9) * resultValue4 + localFloat9;
+      uiContext[6] = (FloatValue1 - localFloat8) * resultValue3 + localFloat8;
+      uiContext[7] = (FloatValue2 - localFloat9) * resultValue4 + localFloat9;
       uiContext = uiContext + 8;
       *(longlong *)bufferSize = *(longlong *)bufferSize + *resultPointer;
       semaphoreHandle7 = uiValidationResult6 + semaphoreHandle7;
@@ -271049,8 +271049,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       resultValue1 = (float)(semaphoreHandle7 >> 1) * 4.656613e-10;
       resultValue2 = (float)(semaphoreHandle8 >> 1) * 4.656613e-10;
       resultValue3 = (float)(semaphoreHandle9 >> 1) * 4.656613e-10;
@@ -271065,8 +271065,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[3] = (floatResult2 - floatResult5) * resultValue1 + localFloat22;
       uiContext[4] = (floatResult6 - localFloat6) * resultValue1 + localFloat6;
       uiContext[5] = (floatResult7 - resultFloat) * resultValue1 + resultFloat;
-      uiContext[6] = (floatResult8 - localFloat8) * resultValue1 + localFloat8;
-      uiContext[7] = (floatResult9 - localFloat9) * resultValue1 + localFloat9;
+      uiContext[6] = (FloatValue1 - localFloat8) * resultValue1 + localFloat8;
+      uiContext[7] = (FloatValue2 - localFloat9) * resultValue1 + localFloat9;
       semaphoreHandle4 = (ulonglong)(uint)(uiCompareResult8 << 3);
       plocalFloat2 = (float *)(targetBuffer + 0x10 + semaphoreHandle4 * 4);
       localFloat6 = *plocalFloat2;
@@ -271084,8 +271084,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       pprocessedFloat = (float *)(targetBuffer + semaphoreHandle4 * 4);
       localFloat20 = pprocessedFloat[1];
       localFloat21 = pprocessedFloat[2];
@@ -271096,8 +271096,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[0xb] = (floatResult2 - floatResult5) * resultValue2 + localFloat22;
       uiContext[0xc] = (floatResult6 - localFloat6) * resultValue2 + localFloat6;
       uiContext[0xd] = (floatResult7 - resultFloat) * resultValue2 + resultFloat;
-      uiContext[0xe] = (floatResult8 - localFloat8) * resultValue2 + localFloat8;
-      uiContext[0xf] = (floatResult9 - localFloat9) * resultValue2 + localFloat9;
+      uiContext[0xe] = (FloatValue1 - localFloat8) * resultValue2 + localFloat8;
+      uiContext[0xf] = (FloatValue2 - localFloat9) * resultValue2 + localFloat9;
       semaphoreHandle4 = (ulonglong)(uint)(TempInt40 << 3);
       plocalFloat2 = (float *)(targetBuffer + 0x10 + semaphoreHandle4 * 4);
       localFloat6 = *plocalFloat2;
@@ -271115,8 +271115,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       pprocessedFloat = (float *)(targetBuffer + semaphoreHandle4 * 4);
       localFloat20 = pprocessedFloat[1];
       localFloat21 = pprocessedFloat[2];
@@ -271127,8 +271127,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[0x13] = (floatResult2 - floatResult5) * resultValue3 + localFloat22;
       uiContext[0x14] = (floatResult6 - localFloat6) * resultValue3 + localFloat6;
       uiContext[0x15] = (floatResult7 - resultFloat) * resultValue3 + resultFloat;
-      uiContext[0x16] = (floatResult8 - localFloat8) * resultValue3 + localFloat8;
-      uiContext[0x17] = (floatResult9 - localFloat9) * resultValue3 + localFloat9;
+      uiContext[0x16] = (FloatValue1 - localFloat8) * resultValue3 + localFloat8;
+      uiContext[0x17] = (FloatValue2 - localFloat9) * resultValue3 + localFloat9;
       semaphoreHandle4 = (ulonglong)(uint)(TempInt41 << 3);
       plocalFloat2 = (float *)(targetBuffer + 0x10 + semaphoreHandle4 * 4);
       localFloat6 = *plocalFloat2;
@@ -271146,8 +271146,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       pprocessedFloat = (float *)(targetBuffer + semaphoreHandle4 * 4);
       localFloat20 = pprocessedFloat[1];
       localFloat21 = pprocessedFloat[2];
@@ -271158,8 +271158,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[0x1b] = (floatResult2 - floatResult5) * resultValue4 + localFloat22;
       uiContext[0x1c] = (floatResult6 - localFloat6) * resultValue4 + localFloat6;
       uiContext[0x1d] = (floatResult7 - resultFloat) * resultValue4 + resultFloat;
-      uiContext[0x1e] = (floatResult8 - localFloat8) * resultValue4 + localFloat8;
-      uiContext[0x1f] = (floatResult9 - localFloat9) * resultValue4 + localFloat9;
+      uiContext[0x1e] = (FloatValue1 - localFloat8) * resultValue4 + localFloat8;
+      uiContext[0x1f] = (FloatValue2 - localFloat9) * resultValue4 + localFloat9;
       uiContext = uiContext + 0x20;
       uiValidationResult6 = uiValidationResult6 + -1;
       semaphoreHandle7 = semaphoreHandle7 + uiValidationResult3;
@@ -271194,8 +271194,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pprocessedFloat = (float *)(targetBuffer + 0x30 + semaphoreHandle4 * 4);
       floatResult6 = *pprocessedFloat;
       floatResult7 = pprocessedFloat[1];
-      floatResult8 = pprocessedFloat[2];
-      floatResult9 = pprocessedFloat[3];
+      FloatValue1 = pprocessedFloat[2];
+      FloatValue2 = pprocessedFloat[3];
       resultValue1 = (float)(semaphoreHandle7 >> 1) * 4.656613e-10;
       resultValue2 = (float)(semaphoreHandle8 >> 1) * 4.656613e-10;
       resultValue3 = (float)(semaphoreHandle9 >> 1) * 4.656613e-10;
@@ -271210,8 +271210,8 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[3] = (floatResult2 - floatResult5) * resultValue4 + localFloat22;
       uiContext[4] = (floatResult6 - localFloat6) * resultValue1 + localFloat6;
       uiContext[5] = (floatResult7 - resultFloat) * resultValue2 + resultFloat;
-      uiContext[6] = (floatResult8 - localFloat8) * resultValue3 + localFloat8;
-      uiContext[7] = (floatResult9 - localFloat9) * resultValue4 + localFloat9;
+      uiContext[6] = (FloatValue1 - localFloat8) * resultValue3 + localFloat8;
+      uiContext[7] = (FloatValue2 - localFloat9) * resultValue4 + localFloat9;
       uiContext = uiContext + 8;
       *(longlong *)bufferSize = *(longlong *)bufferSize + *resultPointer;
       semaphoreHandle7 = uiValidationResult6 + semaphoreHandle7;
@@ -271368,7 +271368,7 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   uint TotalResult;
   ulonglong *ptrResult7;
   int uiOperationResult8;
-  float floatResult9;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -271448,7 +271448,7 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       localFloat8 = pfloatResult[1];
       localFloat9 = pfloatResult[2];
       floatResult0 = pfloatResult[3];
-      floatResult9 = (float)(TotalResult >> 1) * 4.656613e-10;
+      FloatValue2 = (float)(TotalResult >> 1) * 4.656613e-10;
       localFloat20 = (float)(semaphoreHandle7 >> 1) * 4.656613e-10;
       localFloat21 = (float)(semaphoreHandle8 >> 1) * 4.656613e-10;
       localFloat22 = (float)(semaphoreHandle9 >> 1) * 4.656613e-10;
@@ -271456,10 +271456,10 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       floatResult1 = plocalFloat2[1];
       floatResult2 = plocalFloat2[2];
       resultValue3 = plocalFloat2[3];
-      *uiContext = (*pprocessedFloat - *pfloatResult) * floatResult9 + *plocalFloat2;
-      uiContext[1] = (secondaryValue - localFloat8) * floatResult9 + floatResult1;
-      uiContext[2] = (localFloat6 - localFloat9) * floatResult9 + floatResult2;
-      uiContext[3] = (resultFloat - floatResult0) * floatResult9 + resultValue3;
+      *uiContext = (*pprocessedFloat - *pfloatResult) * FloatValue2 + *plocalFloat2;
+      uiContext[1] = (secondaryValue - localFloat8) * FloatValue2 + floatResult1;
+      uiContext[2] = (localFloat6 - localFloat9) * FloatValue2 + floatResult2;
+      uiContext[3] = (resultFloat - floatResult0) * FloatValue2 + resultValue3;
       CounterResult = (ulonglong)(uint)(uiValidationResult6 << 2);
       pprocessedFloat = (float *)(targetBuffer + 0x10 + CounterResult * 4);
       secondaryValue = pprocessedFloat[1];
@@ -271574,7 +271574,7 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   int uiOperationResult9;
   uint semaphoreHandle0;
   ulonglong *psemaphoreHandle1;
@@ -271665,7 +271665,7 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       floatResult5 = *plocalFloat2;
       floatResult6 = plocalFloat2[1];
       floatResult7 = plocalFloat2[2];
-      floatResult8 = plocalFloat2[3];
+      FloatValue1 = plocalFloat2[3];
       *uiContext = (pfloatResult[2] - *pfloatResult) * localFloat24 + *pfloatResult;
       uiContext[1] = (secondaryValue - processedFloat) * localFloat24 + processedFloat;
       uiContext[2] = (localFloat9 - localFloat23) * localFloat25 + localFloat23;
@@ -271673,7 +271673,7 @@ void FUN_180834570(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[4] = (floatResult3 - floatResult1) * localFloat26 + floatResult1;
       uiContext[5] = (vectorComponentX - floatResult2) * localFloat26 + floatResult2;
       uiContext[6] = (floatResult7 - floatResult5) * localFloat27 + floatResult5;
-      uiContext[7] = (floatResult8 - floatResult6) * localFloat27 + floatResult6;
+      uiContext[7] = (FloatValue1 - floatResult6) * localFloat27 + floatResult6;
       uiContext = uiContext + 8;
       uiValidationResult2 = uiValidationResult2 + -1;
       semaphoreHandle0 = semaphoreHandle0 + uiOperationResult9;
@@ -273104,7 +273104,7 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
   UIByte aCounterResult [16];
   UIByte aTotalResult [16];
   longlong allocatedMemory7;
-  float floatResult8;
+  float FloatValue1;
   UIByte aresult9 [16];
   UIByte asemaphoreHandle0 [16];
   UIByte asemaphoreHandle1 [16];
@@ -273153,7 +273153,7 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
   semaphoreHandle5 = (ulonglong)uiContext & 0x1f;
   while ((semaphoreHandle5 != 0 && (dataSource != 0))) {
     dataSource = dataSource - 1;
-    floatResult8 = (float)(*bufferSize >> 1) * 4.656613e-10;
+    FloatValue1 = (float)(*bufferSize >> 1) * 4.656613e-10;
     semaphoreHandle4 = bufferSize[1] * 6;
     floatResult = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 1) * 4);
     localFloat2 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 2) * 4);
@@ -273165,15 +273165,15 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
     localFloat8 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 9) * 4);
     localFloat9 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 10) * 4);
     floatResult0 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 0xb) * 4);
-    aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)floatResult8),
+    aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)FloatValue1),
                               ZEXT416((uint)(*(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 6) * 4) -
                                             *(float *)(targetBuffer + (ulonglong)semaphoreHandle4 * 4))),
                               ZEXT416(*(uint *)(targetBuffer + (ulonglong)semaphoreHandle4 * 4)));
     *(int *)*uiContext = aEventTypeCode1._0_4_;
-    aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)floatResult8),ZEXT416((uint)(localFloat6 - floatResult)),
+    aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)FloatValue1),ZEXT416((uint)(localFloat6 - floatResult)),
                               ZEXT416((uint)floatResult));
     *(int *)(*uiContext + 4) = aEventTypeCode1._0_4_;
-    aProcessingStatus3 = ZEXT416((uint)floatResult8);
+    aProcessingStatus3 = ZEXT416((uint)FloatValue1);
     aEventTypeCode1 = vfmadd213ss_fma(aProcessingStatus3,ZEXT416((uint)(resultFloat - localFloat2)),ZEXT416((uint)localFloat2));
     *(int *)(*uiContext + 8) = aEventTypeCode1._0_4_;
     aEventTypeCode1 = vfmadd213ss_fma(aProcessingStatus3,ZEXT416((uint)(localFloat8 - resultValue)),ZEXT416((uint)resultValue));
@@ -273310,7 +273310,7 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
   if (dataSource != 0) {
     psemaphoreHandle9 = (UIDword *)(*uiContext + 8);
     do {
-      floatResult8 = (float)(*bufferSize >> 1) * 4.656613e-10;
+      FloatValue1 = (float)(*bufferSize >> 1) * 4.656613e-10;
       semaphoreHandle4 = bufferSize[1] * 6;
       floatResult = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 1) * 4);
       localFloat2 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 2) * 4);
@@ -273322,15 +273322,15 @@ void FUN_180836110(UIByte (*uiContext) [32],uint dataSource,longlong targetBuffe
       localFloat8 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 9) * 4);
       localFloat9 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 10) * 4);
       floatResult0 = *(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 0xb) * 4);
-      aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)floatResult8),
+      aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)FloatValue1),
                                 ZEXT416((uint)(*(float *)(targetBuffer + (ulonglong)(semaphoreHandle4 + 6) * 4) -
                                               *(float *)(targetBuffer + (ulonglong)semaphoreHandle4 * 4))),
                                 ZEXT416(*(uint *)(targetBuffer + (ulonglong)semaphoreHandle4 * 4)));
       *(int *)*(UIByte (*) [32])(psemaphoreHandle9 + -2) = aEventTypeCode1._0_4_;
-      aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)floatResult8),ZEXT416((uint)(localFloat6 - floatResult)),
+      aEventTypeCode1 = vfmadd213ss_fma(ZEXT416((uint)FloatValue1),ZEXT416((uint)(localFloat6 - floatResult)),
                                 ZEXT416((uint)floatResult));
       psemaphoreHandle9[-1] = aEventTypeCode1._0_4_;
-      aProcessingStatus3 = ZEXT416((uint)floatResult8);
+      aProcessingStatus3 = ZEXT416((uint)FloatValue1);
       aEventTypeCode1 = vfmadd213ss_fma(aProcessingStatus3,ZEXT416((uint)(resultFloat - localFloat2)),ZEXT416((uint)localFloat2));
       *psemaphoreHandle9 = aEventTypeCode1._0_4_;
       aEventTypeCode1 = vfmadd213ss_fma(aProcessingStatus3,ZEXT416((uint)(localFloat8 - resultValue)),ZEXT416((uint)resultValue));
@@ -276488,8 +276488,8 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -276604,8 +276604,8 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
           floatResult5 = dataSource[5];
           floatResult6 = dataSource[6];
           floatResult7 = dataSource[7];
-          floatResult8 = dataSource[8];
-          floatResult9 = dataSource[9];
+          FloatValue1 = dataSource[8];
+          FloatValue2 = dataSource[9];
           localFloat20 = dataSource[10];
           localFloat21 = dataSource[0xb];
           localFloat22 = dataSource[0xc];
@@ -276645,8 +276645,8 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
           dataSource[5] = (float)aEventTypeCode8._4_4_ * resultFloat + resultValue + floatResult5;
           dataSource[6] = (float)aProcessingStatus6._4_4_ * localFloat8 + processedFloat + floatResult6;
           dataSource[7] = (float)aProcessingStatus3._4_4_ * localFloat9 + secondaryValue + floatResult7;
-          dataSource[8] = (float)aEventTypeCode5._8_4_ * localFloat6 + localFloat2 + floatResult8;
-          dataSource[9] = (float)aEventTypeCode8._8_4_ * resultFloat + resultValue + floatResult9;
+          dataSource[8] = (float)aEventTypeCode5._8_4_ * localFloat6 + localFloat2 + FloatValue1;
+          dataSource[9] = (float)aEventTypeCode8._8_4_ * resultFloat + resultValue + FloatValue2;
           dataSource[10] = (float)aProcessingStatus6._8_4_ * localFloat8 + processedFloat + localFloat20;
           dataSource[0xb] = (float)aProcessingStatus3._8_4_ * localFloat9 + secondaryValue + localFloat21;
           dataSource[0xc] = (float)aEventTypeCode5._12_4_ * localFloat6 + localFloat2 + localFloat22;
@@ -278172,8 +278172,8 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -278189,8 +278189,8 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
     floatResult6 = *pfloatResult;
     floatResult7 = pfloatResult[1];
     pfloatResult = (float *)(bufferSize + (longlong)pProcessingResult1[1] * 4);
-    floatResult8 = *pfloatResult;
-    floatResult9 = pfloatResult[1];
+    FloatValue1 = *pfloatResult;
+    FloatValue2 = pfloatResult[1];
     pfloatResult = (float *)(bufferSize + (longlong)*pProcessingResult1 * 4);
     plocalFloat2 = (float *)(bufferSize + (longlong)pProcessingResult1[2] * 4);
     resultValue = *presultFloat;
@@ -278204,24 +278204,24 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
     localFloat23 = plocalFloat2[1] * -1.0;
     floatResult2 = localFloat20 + floatResult6;
     floatResult3 = localFloat21 + floatResult7;
-    vectorComponentX = localFloat22 + floatResult8;
-    floatResult5 = localFloat23 + floatResult9;
+    vectorComponentX = localFloat22 + FloatValue1;
+    floatResult5 = localFloat23 + FloatValue2;
     localFloat20 = (floatResult6 - localFloat20) * 0.5;
     localFloat21 = (floatResult7 - localFloat21) * 0.5;
-    localFloat22 = (floatResult8 - localFloat22) * 0.5;
-    localFloat23 = (floatResult9 - localFloat23) * 0.5;
+    localFloat22 = (FloatValue1 - localFloat22) * 0.5;
+    localFloat23 = (FloatValue2 - localFloat23) * 0.5;
     floatResult6 = floatResult3 * resultValue * -1.0 + *pprocessedFloat * floatResult2;
     floatResult7 = floatResult3 * *pprocessedFloat * 1.0 + resultValue * floatResult2;
-    floatResult8 = floatResult5 * *psecondaryValue * -1.0 + *plocalFloat6 * vectorComponentX;
-    floatResult9 = floatResult5 * *plocalFloat6 * 1.0 + *psecondaryValue * vectorComponentX;
+    FloatValue1 = floatResult5 * *psecondaryValue * -1.0 + *plocalFloat6 * vectorComponentX;
+    FloatValue2 = floatResult5 * *plocalFloat6 * 1.0 + *psecondaryValue * vectorComponentX;
     pfloatResult = (float *)(allocatedMemory0 + (longlong)pProcessingResult1);
     *pfloatResult = floatResult7 + localFloat21;
     pfloatResult[1] = floatResult6 + localFloat20;
-    pfloatResult[2] = floatResult9 + localFloat23;
-    pfloatResult[3] = floatResult8 + localFloat22;
+    pfloatResult[2] = FloatValue2 + localFloat23;
+    pfloatResult[3] = FloatValue1 + localFloat22;
     pProcessingResult1 = pProcessingResult1 + 4;
-    *plocalFloat9 = (localFloat23 - floatResult9) * 1.0;
-    plocalFloat8[-3] = (localFloat22 - floatResult8) * -1.0;
+    *plocalFloat9 = (localFloat23 - FloatValue2) * 1.0;
+    plocalFloat8[-3] = (localFloat22 - FloatValue1) * -1.0;
     plocalFloat8[-2] = (localFloat21 - floatResult7) * 1.0;
     plocalFloat8[-1] = (localFloat20 - floatResult6) * -1.0;
     plocalFloat8 = plocalFloat9;
@@ -278253,8 +278253,8 @@ void FUN_18083a510(float *uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -278280,7 +278280,7 @@ void FUN_18083a510(float *uiContext)
   uiContext[0x17] = uiContext[0x17] + uiContext[7];
   floatResult5 = uiContext[8] - uiContext[0x18];
   floatResult7 = uiContext[9] - uiContext[0x19];
-  floatResult9 = uiContext[10] - uiContext[0x1a];
+  FloatValue2 = uiContext[10] - uiContext[0x1a];
   localFloat21 = uiContext[0xb] - uiContext[0x1b];
   uiContext[0x18] = uiContext[0x18] + uiContext[8];
   uiContext[0x19] = uiContext[0x19] + uiContext[9];
@@ -278304,8 +278304,8 @@ void FUN_18083a510(float *uiContext)
   uiContext[7] = (floatResult - resultValue) * -1.0 + floatResult3 * 0.0;
   uiContext[8] = (floatResult5 * 0.0 + floatResult5) * -0.38268343 + floatResult7 * 0.9238795;
   uiContext[9] = (floatResult7 * 0.0 + floatResult7) * -0.38268343 + floatResult5 * -0.9238795;
-  uiContext[10] = (localFloat21 * -1.0 + floatResult9) * -0.70710677 + floatResult9 * 0.0;
-  uiContext[0xb] = (floatResult9 * 1.0 + localFloat21) * -0.70710677 + localFloat21 * 0.0;
+  uiContext[10] = (localFloat21 * -1.0 + FloatValue2) * -0.70710677 + FloatValue2 * 0.0;
+  uiContext[0xb] = (FloatValue2 * 1.0 + localFloat21) * -0.70710677 + localFloat21 * 0.0;
   uiContext[0xc] = localFloat23 * -0.9238795 + localFloat24 * 0.38268343;
   uiContext[0xd] = localFloat23 * -0.38268343 + localFloat24 * -0.9238795;
   uiContext[0xe] = (uiContext[0xe] - secondaryValue) * -1.0 + localFloat23 * 0.0;
@@ -278323,7 +278323,7 @@ void FUN_18083a510(float *uiContext)
   vectorComponentX = uiContext[0xe] - uiContext[6];
   floatResult5 = uiContext[0xf] - uiContext[7];
   floatResult7 = uiContext[0xc] + uiContext[4];
-  floatResult9 = uiContext[0xd] + uiContext[5];
+  FloatValue2 = uiContext[0xd] + uiContext[5];
   localFloat21 = uiContext[0xe] + uiContext[6];
   localFloat23 = uiContext[0xf] + uiContext[7];
   localFloat24 = ((resultValue - localFloat9) * -1.0 + (localFloat2 - floatResult)) * 0.70710677;
@@ -278331,11 +278331,11 @@ void FUN_18083a510(float *uiContext)
   resultFloat = ((processedFloat - floatResult0) * 0.0 + (floatResult0 - processedFloat)) * -1.0;
   localFloat8 = ((secondaryValue - floatResult1) * 0.0 + (floatResult1 - secondaryValue)) * 1.0;
   floatResult6 = floatResult7 + floatResult + localFloat2;
-  floatResult8 = floatResult9 + resultValue + localFloat9;
+  FloatValue1 = FloatValue2 + resultValue + localFloat9;
   localFloat20 = localFloat21 + processedFloat + floatResult0;
   localFloat22 = localFloat23 + secondaryValue + floatResult1;
   floatResult7 = floatResult7 - (floatResult + localFloat2);
-  floatResult9 = floatResult9 - (resultValue + localFloat9);
+  FloatValue2 = FloatValue2 - (resultValue + localFloat9);
   localFloat21 = localFloat21 - (processedFloat + floatResult0);
   localFloat23 = localFloat23 - (secondaryValue + floatResult1);
   floatResult = (floatResult3 * -1.0 + floatResult2) * 0.70710677;
@@ -278358,14 +278358,14 @@ void FUN_18083a510(float *uiContext)
   uiContext[5] = localFloat9 * -1.0 + floatResult1;
   uiContext[6] = localFloat2 * 1.0 + floatResult0;
   uiContext[7] = localFloat9 * 1.0 + floatResult1;
-  uiContext[8] = floatResult9 * 1.0 + localFloat21;
+  uiContext[8] = FloatValue2 * 1.0 + localFloat21;
   uiContext[9] = floatResult7 * -1.0 + localFloat23;
-  uiContext[10] = floatResult9 * -1.0 + localFloat21;
+  uiContext[10] = FloatValue2 * -1.0 + localFloat21;
   uiContext[0xb] = floatResult7 * 1.0 + localFloat23;
   uiContext[0xc] = floatResult6 * -1.0 + localFloat20;
-  uiContext[0xd] = floatResult8 * -1.0 + localFloat22;
+  uiContext[0xd] = FloatValue1 * -1.0 + localFloat22;
   uiContext[0xe] = floatResult6 * 1.0 + localFloat20;
-  uiContext[0xf] = floatResult8 * 1.0 + localFloat22;
+  uiContext[0xf] = FloatValue1 * 1.0 + localFloat22;
   floatResult = uiContext[0x10];
   resultValue = uiContext[0x11];
   processedFloat = uiContext[0x12];
@@ -278379,7 +278379,7 @@ void FUN_18083a510(float *uiContext)
   vectorComponentX = uiContext[0x1e] - uiContext[0x16];
   floatResult5 = uiContext[0x1f] - uiContext[0x17];
   floatResult7 = uiContext[0x1c] + uiContext[0x14];
-  floatResult9 = uiContext[0x1d] + uiContext[0x15];
+  FloatValue2 = uiContext[0x1d] + uiContext[0x15];
   localFloat21 = uiContext[0x1e] + uiContext[0x16];
   localFloat23 = uiContext[0x1f] + uiContext[0x17];
   localFloat24 = (floatResult3 * -1.0 + floatResult2) * 0.70710677;
@@ -278387,23 +278387,23 @@ void FUN_18083a510(float *uiContext)
   resultFloat = (vectorComponentX * 0.0 + vectorComponentX) * 1.0;
   localFloat8 = (floatResult5 * 0.0 + floatResult5) * 1.0;
   floatResult6 = ((localFloat9 - resultValue) * -1.0 + (floatResult - localFloat2)) * 0.70710677;
-  floatResult8 = ((localFloat2 - floatResult) * 1.0 + (resultValue - localFloat9)) * 0.70710677;
+  FloatValue1 = ((localFloat2 - floatResult) * 1.0 + (resultValue - localFloat9)) * 0.70710677;
   localFloat20 = ((floatResult0 - processedFloat) * 0.0 + (processedFloat - floatResult0)) * -1.0;
   localFloat22 = ((floatResult1 - secondaryValue) * 0.0 + (secondaryValue - floatResult1)) * 1.0;
   floatResult2 = localFloat24 - floatResult6;
-  floatResult3 = localFloat6 - floatResult8;
+  floatResult3 = localFloat6 - FloatValue1;
   vectorComponentX = resultFloat - localFloat22;
   floatResult5 = localFloat8 - localFloat20;
   localFloat24 = localFloat24 + floatResult6;
-  localFloat6 = localFloat6 + floatResult8;
+  localFloat6 = localFloat6 + FloatValue1;
   resultFloat = resultFloat + localFloat22;
   localFloat8 = localFloat8 + localFloat20;
   floatResult6 = floatResult7 + localFloat2 + floatResult;
-  floatResult8 = floatResult9 + localFloat9 + resultValue;
+  FloatValue1 = FloatValue2 + localFloat9 + resultValue;
   localFloat20 = localFloat21 + floatResult0 + processedFloat;
   localFloat22 = localFloat23 + floatResult1 + secondaryValue;
   floatResult7 = floatResult7 - (localFloat2 + floatResult);
-  floatResult9 = floatResult9 - (localFloat9 + resultValue);
+  FloatValue2 = FloatValue2 - (localFloat9 + resultValue);
   localFloat21 = localFloat21 - (floatResult0 + processedFloat);
   localFloat23 = localFloat23 - (floatResult1 + secondaryValue);
   uiContext[0x10] = floatResult3 * 1.0 + vectorComponentX;
@@ -278414,14 +278414,14 @@ void FUN_18083a510(float *uiContext)
   uiContext[0x15] = localFloat6 * -1.0 + localFloat8;
   uiContext[0x16] = localFloat24 * 1.0 + resultFloat;
   uiContext[0x17] = localFloat6 * 1.0 + localFloat8;
-  uiContext[0x18] = floatResult9 * 1.0 + localFloat21;
+  uiContext[0x18] = FloatValue2 * 1.0 + localFloat21;
   uiContext[0x19] = floatResult7 * -1.0 + localFloat23;
-  uiContext[0x1a] = floatResult9 * -1.0 + localFloat21;
+  uiContext[0x1a] = FloatValue2 * -1.0 + localFloat21;
   uiContext[0x1b] = floatResult7 * 1.0 + localFloat23;
   uiContext[0x1c] = floatResult6 * -1.0 + localFloat20;
-  uiContext[0x1d] = floatResult8 * -1.0 + localFloat22;
+  uiContext[0x1d] = FloatValue1 * -1.0 + localFloat22;
   uiContext[0x1e] = floatResult6 * 1.0 + localFloat20;
-  uiContext[0x1f] = floatResult8 * 1.0 + localFloat22;
+  uiContext[0x1f] = FloatValue1 * 1.0 + localFloat22;
   return;
 }
 
@@ -278449,8 +278449,8 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
   float *pfloatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float localFloat21;
   float localFloat22;
@@ -278473,8 +278473,8 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
     plocalFloat9 = pfloatResult1 + -allocatedMemory2;
     floatResult6 = *pvectorComponentX - *pfloatResult0;
     floatResult7 = pvectorComponentX[1] - floatResult;
-    floatResult8 = pvectorComponentX[2] - localFloat2;
-    floatResult9 = pvectorComponentX[3] - resultValue;
+    FloatValue1 = pvectorComponentX[2] - localFloat2;
+    FloatValue2 = pvectorComponentX[3] - resultValue;
     localFloat20 = pvectorComponentX[4] - processedFloat;
     localFloat21 = pvectorComponentX[5] - secondaryValue;
     localFloat22 = pvectorComponentX[6] - localFloat6;
@@ -278499,8 +278499,8 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
     processedFloat = plocalFloat9[1];
     *pfloatResult0 = floatResult6 * secondaryValue * 1.0 + floatResult7 * localFloat6;
     pfloatResult0[1] = floatResult6 * localFloat6 * -1.0 + floatResult7 * secondaryValue;
-    pfloatResult0[2] = floatResult8 * floatResult * 1.0 + floatResult9 * resultValue;
-    pfloatResult0[3] = floatResult8 * resultValue * -1.0 + floatResult9 * floatResult;
+    pfloatResult0[2] = FloatValue1 * floatResult * 1.0 + FloatValue2 * resultValue;
+    pfloatResult0[3] = FloatValue1 * resultValue * -1.0 + FloatValue2 * floatResult;
     pfloatResult0 = pfloatResult0 + -8;
     *pfloatResult5 = localFloat20 * resultFloat * 1.0 + localFloat21 * localFloat8;
     pfloatResult5[1] = localFloat20 * localFloat8 * -1.0 + localFloat21 * resultFloat;
@@ -282834,7 +282834,7 @@ UIHandle FUN_18083e040(UIHandle uiContext,int *dataSource,int targetBuffer)
   UIHandle extraout_XMM0_Qb;
   UIByte aCounterResult [16];
   UIByte aTotalResult [16];
-  float floatResult9;
+  float FloatValue2;
   UIByte aIndexResult [16];
   UIByte aresult7 [16];
   UIDword result8;
@@ -282842,7 +282842,7 @@ UIHandle FUN_18083e040(UIHandle uiContext,int *dataSource,int targetBuffer)
   uiCompareResult = (int)(targetBuffer + (targetBuffer >> 0x1f & 3U)) >> 2;
   ptrLocalInt7 = (int *)FUN_1807c4200(uiContext,uiCompareResult * 4);
   localLong8 = FUN_1807c4200(uiContext,(uiCompareResult + targetBuffer) * 4);
-  floatResult9 = (float)targetBuffer;
+  FloatValue2 = (float)targetBuffer;
   ProcessingStatus = logf();
   aIndexResult._8_8_ = extraout_XMM0_Qb;
   aIndexResult._0_8_ = extraout_XMM0_Qa;
@@ -282871,12 +282871,12 @@ UIHandle FUN_18083e040(UIHandle uiContext,int *dataSource,int targetBuffer)
     *(int **)(dataSource + 4) = ptrLocalInt7;
     if (0 < uiCompareResult) {
                      WARNING: Subroutine does not return
-      FUN_1808fd400(EventOperationCount,(3.1415927 / floatResult9) * 0.0);
+      FUN_1808fd400(EventOperationCount,(3.1415927 / FloatValue2) * 0.0);
     }
     uiCompareResult = (int)(targetBuffer + (targetBuffer >> 0x1f & 7U)) >> 3;
     if (0 < uiCompareResult) {
       asemaphoreHandle._4_8_ = SUB128(ZEXT812(0x40000000),4);
-      asemaphoreHandle._0_4_ = (3.1415927 / floatResult9) * 2.0;
+      asemaphoreHandle._0_4_ = (3.1415927 / FloatValue2) * 2.0;
                      WARNING: Subroutine does not return
       FUN_1808fd400(EventOperationCount,asemaphoreHandle._0_8_);
     }
@@ -282902,7 +282902,7 @@ UIHandle FUN_18083e040(UIHandle uiContext,int *dataSource,int targetBuffer)
       } while ((int)result3 < uiCompareResult);
     }
     uVar9 = 0;
-    dataSource[6] = (int)(4.0 / floatResult9);
+    dataSource[6] = (int)(4.0 / FloatValue2);
   }
   return uVar9;
 }
@@ -324395,8 +324395,8 @@ void FUN_180864850(longlong uiContext)
   float floatResult5;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   UIByte astackUInt168 [32];
   UIHandle stackUInt148;
@@ -324419,11 +324419,11 @@ void FUN_180864850(longlong uiContext)
   stackUIntc8 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   fStack_f0 = *(float *)(uiContext + 0x2fc);
   if (*(float *)(uiContext + 0x300) == 0.0) {
-    floatResult9 = 1.0;
+    FloatValue2 = 1.0;
   }
   else {
     allocatedMemory0 = 0;
-    floatResult9 = 0.0;
+    FloatValue2 = 0.0;
     localLong7 = uiContext + 0x28;
     if (uiContext == 0) {
       localLong7 = allocatedMemory0;
@@ -324454,25 +324454,25 @@ void FUN_180864850(longlong uiContext)
         }
         floatResult6 = fStack_120 - (float)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8);
         localFloat20 = fStack_118 - *(float *)(ContextHandleData + 8 + (longlong)ptrLocal8);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
-        floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + localFloat20 * localFloat20);
+        FloatValue1 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
+        floatResult1 = SQRT(FloatValue1 * FloatValue1 + floatResult6 * floatResult6 + localFloat20 * localFloat20);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
           floatResult6 = floatResult1 * floatResult6;
-          floatResult8 = floatResult1 * floatResult8;
+          FloatValue1 = floatResult1 * FloatValue1;
           floatResult1 = floatResult1 * localFloat20;
         }
         else {
           floatResult6 = 0.0;
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
           floatResult1 = 0.0;
         }
         localFloat20 = 0.0;
-        floatResult2 = (floatResult6 * fStack_114 + floatResult8 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
+        floatResult2 = (floatResult6 * fStack_114 + FloatValue1 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
         if (floatResult2 != 0.0) {
           stackUInt148._4_4_ = (float)((ulonglong)*ptrLocal8 >> 0x20);
           stackUInt148._0_4_ = (float)*ptrLocal8;
-          localFloat20 = ((floatResult6 * (float)stackUInt148 + floatResult8 * stackUInt148._4_4_ +
+          localFloat20 = ((floatResult6 * (float)stackUInt148 + FloatValue1 * stackUInt148._4_4_ +
                     floatResult1 * *(float *)(ptrLocal8 + 1)) * floatResult7 + 340.0) / floatResult2;
           if (localFloat20 <= 0.0) {
             localFloat20 = 0.0;
@@ -324485,25 +324485,25 @@ void FUN_180864850(longlong uiContext)
         }
         floatResult6 = fStack_120 - (float)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8);
         floatResult2 = fStack_118 - *(float *)(ContextHandleData + 8 + (longlong)ptrLocal8);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
-        floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + floatResult2 * floatResult2);
+        FloatValue1 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
+        floatResult1 = SQRT(FloatValue1 * FloatValue1 + floatResult6 * floatResult6 + floatResult2 * floatResult2);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
           floatResult6 = floatResult1 * floatResult6;
-          floatResult8 = floatResult1 * floatResult8;
+          FloatValue1 = floatResult1 * FloatValue1;
           floatResult1 = floatResult1 * floatResult2;
         }
         else {
           floatResult6 = 0.0;
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
           floatResult1 = 0.0;
         }
         floatResult2 = 0.0;
-        floatResult3 = (floatResult6 * fStack_114 + floatResult8 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
+        floatResult3 = (floatResult6 * fStack_114 + FloatValue1 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
         if (floatResult3 != 0.0) {
           stackUInt148._4_4_ = (float)((ulonglong)*(UIHandle *)((longlong)ptrLocal8 + 0x44) >> 0x20);
           stackUInt148._0_4_ = (float)*(UIHandle *)((longlong)ptrLocal8 + 0x44);
-          floatResult2 = ((floatResult6 * (float)stackUInt148 + floatResult8 * stackUInt148._4_4_ +
+          floatResult2 = ((floatResult6 * (float)stackUInt148 + FloatValue1 * stackUInt148._4_4_ +
                     floatResult1 * *(float *)((longlong)ptrLocal8 + 0x4c)) * floatResult7 + 340.0) / floatResult3;
           if (floatResult2 <= 0.0) {
             floatResult2 = 0.0;
@@ -324516,25 +324516,25 @@ void FUN_180864850(longlong uiContext)
         }
         floatResult6 = fStack_120 - (float)*(UIHandle *)(EventDataIndex + (longlong)ptrLocal8);
         floatResult3 = fStack_118 - *(float *)(EventDataIndex + 8 + (longlong)ptrLocal8);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(UIHandle *)(EventDataIndex + (longlong)ptrLocal8) >> 0x20);
-        floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + floatResult3 * floatResult3);
+        FloatValue1 = fStack_11c - (float)((ulonglong)*(UIHandle *)(EventDataIndex + (longlong)ptrLocal8) >> 0x20);
+        floatResult1 = SQRT(FloatValue1 * FloatValue1 + floatResult6 * floatResult6 + floatResult3 * floatResult3);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
           floatResult6 = floatResult1 * floatResult6;
-          floatResult8 = floatResult1 * floatResult8;
+          FloatValue1 = floatResult1 * FloatValue1;
           floatResult1 = floatResult1 * floatResult3;
         }
         else {
           floatResult6 = 0.0;
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
           floatResult1 = 0.0;
         }
         floatResult3 = 0.0;
-        vectorComponentX = (floatResult6 * fStack_114 + floatResult8 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
+        vectorComponentX = (floatResult6 * fStack_114 + FloatValue1 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
         if (vectorComponentX != 0.0) {
           stackUInt148._4_4_ = (float)((ulonglong)ptrLocal8[0x11] >> 0x20);
           stackUInt148._0_4_ = (float)ptrLocal8[0x11];
-          floatResult3 = ((floatResult6 * (float)stackUInt148 + floatResult8 * stackUInt148._4_4_ +
+          floatResult3 = ((floatResult6 * (float)stackUInt148 + FloatValue1 * stackUInt148._4_4_ +
                     floatResult1 * *(float *)(ptrLocal8 + 0x12)) * floatResult7 + 340.0) / vectorComponentX;
           if (floatResult3 <= 0.0) {
             floatResult3 = 0.0;
@@ -324550,25 +324550,25 @@ void FUN_180864850(longlong uiContext)
         floatResult6 = fStack_120 - (float)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8);
         vectorComponentX = fStack_118 - fStack_130;
         fStack_140 = *(float *)((longlong)ptrLocal8 + 0xd4);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
-        floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + vectorComponentX * vectorComponentX);
+        FloatValue1 = fStack_11c - (float)((ulonglong)*(UIHandle *)(ContextHandleData + (longlong)ptrLocal8) >> 0x20);
+        floatResult1 = SQRT(FloatValue1 * FloatValue1 + floatResult6 * floatResult6 + vectorComponentX * vectorComponentX);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
           floatResult6 = floatResult1 * floatResult6;
-          floatResult8 = floatResult1 * floatResult8;
+          FloatValue1 = floatResult1 * FloatValue1;
           floatResult1 = floatResult1 * vectorComponentX;
         }
         else {
           floatResult6 = 0.0;
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
           floatResult1 = 0.0;
         }
         vectorComponentX = 0.0;
-        floatResult5 = (floatResult6 * fStack_114 + floatResult8 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
+        floatResult5 = (floatResult6 * fStack_114 + FloatValue1 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
         if (floatResult5 != 0.0) {
           stackUInt148._4_4_ = (float)((ulonglong)semaphoreHandle >> 0x20);
           stackUInt148._0_4_ = (float)semaphoreHandle;
-          vectorComponentX = ((floatResult6 * (float)stackUInt148 + floatResult8 * stackUInt148._4_4_ + floatResult1 * fStack_140)                     floatResult7 + 340.0) / floatResult5;
+          vectorComponentX = ((floatResult6 * (float)stackUInt148 + FloatValue1 * stackUInt148._4_4_ + floatResult1 * fStack_140)                     floatResult7 + 340.0) / floatResult5;
           if (vectorComponentX <= 0.0) {
             vectorComponentX = 0.0;
           }
@@ -324576,7 +324576,7 @@ void FUN_180864850(longlong uiContext)
         ContextHandleData = allocatedMemory0 + 3;
         ptrLocal8 = ptrLocal8 + 0x22;
         allocatedMemory0 = allocatedMemory0 + 4;
-        floatResult9 = floatResult9 + localFloat20 * *pfloatResult + floatResult2 * afStack_e8[ContextHandleData] + floatResult3 * afStack_e8[EventDataIndex]
+        FloatValue2 = FloatValue2 + localFloat20 * *pfloatResult + floatResult2 * afStack_e8[ContextHandleData] + floatResult3 * afStack_e8[EventDataIndex]
                  + vectorComponentX * afStack_e8[ContextHandleData];
         stackUInt148 = semaphoreHandle;
       } while (allocatedMemory0 < CharacterDataOffset + -3);
@@ -324594,25 +324594,25 @@ void FUN_180864850(longlong uiContext)
         floatResult6 = fStack_120 - (float)*(UIHandle *)(localLong7 + (longlong)ptrLocal8);
         localFloat20 = fStack_118 - fStack_130;
         fStack_140 = *(float *)(ptrLocal8 + 1);
-        floatResult8 = fStack_11c - (float)((ulonglong)*(UIHandle *)(localLong7 + (longlong)ptrLocal8) >> 0x20);
-        floatResult1 = SQRT(floatResult8 * floatResult8 + floatResult6 * floatResult6 + localFloat20 * localFloat20);
+        FloatValue1 = fStack_11c - (float)((ulonglong)*(UIHandle *)(localLong7 + (longlong)ptrLocal8) >> 0x20);
+        floatResult1 = SQRT(FloatValue1 * FloatValue1 + floatResult6 * floatResult6 + localFloat20 * localFloat20);
         if (0.0 < floatResult1) {
           floatResult1 = 1.0 / floatResult1;
           floatResult6 = floatResult1 * floatResult6;
-          floatResult8 = floatResult1 * floatResult8;
+          FloatValue1 = floatResult1 * FloatValue1;
           floatResult1 = floatResult1 * localFloat20;
         }
         else {
           floatResult6 = 0.0;
-          floatResult8 = 0.0;
+          FloatValue1 = 0.0;
           floatResult1 = 0.0;
         }
         localFloat20 = 0.0;
-        floatResult2 = (floatResult6 * fStack_114 + floatResult8 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
+        floatResult2 = (floatResult6 * fStack_114 + FloatValue1 * fStack_110 + floatResult1 * fStack_10c) * floatResult7 + 340.0;
         if (floatResult2 != 0.0) {
           stackUInt148._4_4_ = (float)((ulonglong)semaphoreHandle >> 0x20);
           stackUInt148._0_4_ = (float)semaphoreHandle;
-          localFloat20 = ((floatResult6 * (float)stackUInt148 + floatResult8 * stackUInt148._4_4_ + floatResult1 * fStack_140)                     floatResult7 + 340.0) / floatResult2;
+          localFloat20 = ((floatResult6 * (float)stackUInt148 + FloatValue1 * stackUInt148._4_4_ + floatResult1 * fStack_140)                     floatResult7 + 340.0) / floatResult2;
           if (localFloat20 <= 0.0) {
             localFloat20 = 0.0;
           }
@@ -324620,16 +324620,16 @@ void FUN_180864850(longlong uiContext)
         pfloatResult = afStack_e8 + allocatedMemory0;
         ptrLocal8 = (UIHandle *)((longlong)ptrLocal8 + 0x44);
         allocatedMemory0 = allocatedMemory0 + 1;
-        floatResult9 = floatResult9 + localFloat20 * *pfloatResult;
+        FloatValue2 = FloatValue2 + localFloat20 * *pfloatResult;
         stackUInt148 = semaphoreHandle;
       } while (allocatedMemory0 < CharacterDataOffset);
     }
   }
-  *(float *)(uiContext + 0x2fc) = floatResult9;
-  if ((floatResult9 != fStack_f0) && (*(longlong *)(uiBufferData + 0x2b0) != 0)) {
-    floatResult9 = *(float *)(uiContext + 0x2f8) * floatResult9;
+  *(float *)(uiContext + 0x2fc) = FloatValue2;
+  if ((FloatValue2 != fStack_f0) && (*(longlong *)(uiBufferData + 0x2b0) != 0)) {
+    FloatValue2 = *(float *)(uiContext + 0x2f8) * FloatValue2;
     floatResult7 = 0.0;
-    if ((0.0 <= floatResult9) && (floatResult7 = floatResult9, 100.0 <= floatResult9)) {
+    if ((0.0 <= FloatValue2) && (floatResult7 = FloatValue2, 100.0 <= FloatValue2)) {
       floatResult7 = 100.0;
     }
     func_0x000180853cc0(*(longlong *)(uiBufferData + 0x2b0),floatResult7);
@@ -324672,8 +324672,8 @@ void FUN_18086490d(float uiContext,longlong dataSource,UIHandle targetBuffer,lon
   float floatResult6;
   float unmodifiedXMM10_Da;
   float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float FloatValue1;
+  float FloatValue2;
   float localFloat20;
   float fStackX_20;
   float fStackX_24;
@@ -324726,15 +324726,15 @@ void FUN_18086490d(float uiContext,longlong dataSource,UIHandle targetBuffer,lon
         LoopCounter = (ulonglong)(TempInt4 + 0x38);
       }
       floatResult6 = fStack0000000000000048 - (float)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode);
-      floatResult8 = in_XMM2_Dc - *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
+      FloatValue1 = in_XMM2_Dc - *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
       floatResult7 = floatResult0 - (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
-      floatResult2 = SQRT(floatResult7 * floatResult7 + floatResult6 * floatResult6 + floatResult8 * floatResult8);
+      floatResult2 = SQRT(floatResult7 * floatResult7 + floatResult6 * floatResult6 + FloatValue1 * FloatValue1);
       floatResult1 = unmodifiedXMM6_Da;
       floatResult3 = unmodifiedXMM6_Da;
       vectorComponentX = unmodifiedXMM6_Da;
       if (unmodifiedXMM6_Da < floatResult2) {
         floatResult2 = 1.0 / floatResult2;
-        floatResult1 = floatResult2 * floatResult8;
+        floatResult1 = floatResult2 * FloatValue1;
         floatResult3 = floatResult2 * floatResult7;
         vectorComponentX = floatResult2 * floatResult6;
       }
@@ -324756,16 +324756,16 @@ void FUN_18086490d(float uiContext,longlong dataSource,UIHandle targetBuffer,lon
         LoopCounter = (ulonglong)(TempInt4 + 0x7c);
       }
       floatResult7 = fStack0000000000000048 - (float)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode);
-      floatResult9 = in_XMM2_Dc - *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
-      floatResult8 = floatResult0 - (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
-      floatResult6 = SQRT(floatResult8 * floatResult8 + floatResult7 * floatResult7 + floatResult9 * floatResult9);
+      FloatValue2 = in_XMM2_Dc - *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
+      FloatValue1 = floatResult0 - (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
+      floatResult6 = SQRT(FloatValue1 * FloatValue1 + floatResult7 * floatResult7 + FloatValue2 * FloatValue2);
       floatResult1 = unmodifiedXMM6_Da;
       floatResult3 = unmodifiedXMM6_Da;
       vectorComponentX = unmodifiedXMM6_Da;
       if (unmodifiedXMM6_Da < floatResult6) {
         floatResult6 = 1.0 / floatResult6;
-        floatResult1 = floatResult6 * floatResult9;
-        floatResult3 = floatResult6 * floatResult8;
+        floatResult1 = floatResult6 * FloatValue2;
+        floatResult3 = floatResult6 * FloatValue1;
         vectorComponentX = floatResult6 * floatResult7;
       }
       floatResult7 = (vectorComponentX * in_XMM2_Dd + floatResult3 * fStack0000000000000058 + floatResult1 * localFloat9) * floatResult5 +
@@ -324784,27 +324784,27 @@ void FUN_18086490d(float uiContext,longlong dataSource,UIHandle targetBuffer,lon
       if (*(char *)(peventTypeCode + 0x20) == '\0') {
         LoopCounter = (ulonglong)(TempInt4 + 0xc0);
       }
-      floatResult8 = fStack0000000000000048 - (float)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode);
+      FloatValue1 = fStack0000000000000048 - (float)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode);
       localFloat20 = in_XMM2_Dc - *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
-      floatResult9 = floatResult0 - (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
-      floatResult7 = SQRT(floatResult9 * floatResult9 + floatResult8 * floatResult8 + localFloat20 * localFloat20);
+      FloatValue2 = floatResult0 - (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
+      floatResult7 = SQRT(FloatValue2 * FloatValue2 + FloatValue1 * FloatValue1 + localFloat20 * localFloat20);
       floatResult1 = unmodifiedXMM6_Da;
       floatResult3 = unmodifiedXMM6_Da;
       vectorComponentX = unmodifiedXMM6_Da;
       if (unmodifiedXMM6_Da < floatResult7) {
         floatResult7 = 1.0 / floatResult7;
         floatResult1 = floatResult7 * localFloat20;
-        floatResult3 = floatResult7 * floatResult9;
-        vectorComponentX = floatResult7 * floatResult8;
+        floatResult3 = floatResult7 * FloatValue2;
+        vectorComponentX = floatResult7 * FloatValue1;
       }
-      floatResult8 = (vectorComponentX * in_XMM2_Dd + floatResult3 * fStack0000000000000058 + floatResult1 * localFloat9) * floatResult5 +
+      FloatValue1 = (vectorComponentX * in_XMM2_Dd + floatResult3 * fStack0000000000000058 + floatResult1 * localFloat9) * floatResult5 +
                340.0;
       floatResult7 = unmodifiedXMM6_Da;
-      if (floatResult8 != unmodifiedXMM6_Da) {
+      if (FloatValue1 != unmodifiedXMM6_Da) {
         fStackX_24 = (float)((ulonglong)*(UIHandle *)((longlong)peventTypeCode + 0xcc) >> 0x20);
         fStackX_20 = (float)*(UIHandle *)((longlong)peventTypeCode + 0xcc);
         floatResult7 = ((vectorComponentX * fStackX_20 + floatResult3 * fStackX_24 +
-                  floatResult1 * *(float *)((longlong)peventTypeCode + 0xd4)) * floatResult5 + 340.0) / floatResult8;
+                  floatResult1 * *(float *)((longlong)peventTypeCode + 0xd4)) * floatResult5 + 340.0) / FloatValue1;
         if (floatResult7 <= unmodifiedXMM6_Da) {
           floatResult7 = unmodifiedXMM6_Da;
         }
@@ -324905,7 +324905,7 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
   float unmodifiedXMM10_Da;
   float floatResult6;
   float floatResult7;
-  float floatResult8;
+  float FloatValue1;
   float unmodifiedXMM12_Da;
   float unmodifiedXMM13_Da;
   float unmodifiedXMM14_Da;
@@ -325022,17 +325022,17 @@ void FUN_1808649b0(float uiContext,longlong dataSource,float targetBuffer,float 
     }
     fStack0000000000000038 = *(float *)(LoopCounter + 8 + (longlong)peventTypeCode);
     floatResult6 = fStack0000000000000048 - (float)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode);
-    floatResult8 = stackParam00000050 - fStack0000000000000038;
+    FloatValue1 = stackParam00000050 - fStack0000000000000038;
     fStack0000000000000028 = *(float *)((longlong)peventTypeCode + 0xd4);
     floatResult7 = fStack000000000000004c -
              (float)((ulonglong)*(UIHandle *)(LoopCounter + (longlong)peventTypeCode) >> 0x20);
-    floatResult5 = SQRT(floatResult7 * floatResult7 + floatResult6 * floatResult6 + floatResult8 * floatResult8);
+    floatResult5 = SQRT(floatResult7 * floatResult7 + floatResult6 * floatResult6 + FloatValue1 * FloatValue1);
     localFloat9 = unmodifiedXMM6_Da;
     floatResult2 = unmodifiedXMM6_Da;
     floatResult3 = unmodifiedXMM6_Da;
     if (unmodifiedXMM6_Da < floatResult5) {
       floatResult5 = unmodifiedXMM14_Da / floatResult5;
-      localFloat9 = floatResult5 * floatResult8;
+      localFloat9 = floatResult5 * FloatValue1;
       floatResult2 = floatResult5 * floatResult7;
       floatResult3 = floatResult5 * floatResult6;
     }
@@ -380880,7 +380880,7 @@ void FUN_180897644(void)
   UIHandle TotalResult;
   UIHandle result7;
   undefined *ptrResult8;
-  float floatResult9;
+  float FloatValue2;
   ulonglong semaphoreHandle0;
   float *plocalFloat21;
   UIHandle *BasePointer;
@@ -381031,37 +381031,37 @@ void FUN_180897644(void)
               if (ProcessingResult3 != 0) goto FUN_180897b0e;
             }
             plocalFloat21 = (float *)(unmodifiedR15 + 0x94);
-            floatResult9 = unmodifiedR13D;
+            FloatValue2 = unmodifiedR13D;
             do {
               floatResult = *plocalFloat21;
               if (floatResult != 0.0) {
                 stackParam00000038 = uStackX_20;
                 stackParam00000028 = &UNK_1809839d8;
                 stackParam00000030 = unmodifiedR13D;
-                fStack0000000000000040 = floatResult9;
+                fStack0000000000000040 = FloatValue2;
                 fStack0000000000000044 = floatResult;
                 ProcessingResult3 = FUN_180897520(floatResult,&stack0x00000028);
                 if (ProcessingResult3 != 0) goto FUN_180897b0e;
               }
-              floatResult9 = (float)((int)floatResult9 + 1);
+              FloatValue2 = (float)((int)FloatValue2 + 1);
               plocalFloat21 = plocalFloat21 + 1;
-            } while ((int)floatResult9 < 4);
+            } while ((int)FloatValue2 < 4);
             plocalFloat21 = (float *)&UNK_1809850f8;
-            floatResult9 = unmodifiedR13D;
+            FloatValue2 = unmodifiedR13D;
             do {
               floatResult = *(float *)(unmodifiedR15 + -0x180985054 + (longlong)plocalFloat21);
               if (floatResult != *plocalFloat21) {
                 stackParam00000038 = uStackX_20;
                 stackParam00000028 = &UNK_180983950;
                 stackParam00000030 = unmodifiedR13D;
-                fStack0000000000000040 = floatResult9;
+                fStack0000000000000040 = FloatValue2;
                 fStack0000000000000044 = floatResult;
                 ProcessingResult3 = FUN_180897520(floatResult,&stack0x00000028);
                 if (ProcessingResult3 != 0) goto FUN_180897b0e;
               }
-              floatResult9 = (float)((int)floatResult9 + 1);
+              FloatValue2 = (float)((int)FloatValue2 + 1);
               plocalFloat21 = plocalFloat21 + 1;
-            } while ((int)floatResult9 < 6);
+            } while ((int)FloatValue2 < 6);
             IndexResult = func_0x000180855b70(EventHandle + 200);
             semaphoreHandle4 = extraout_XMM0_Da_04;
             if ((float)(IndexResult / 0x30) != 0.0) {
@@ -381142,7 +381142,7 @@ void FUN_1808976b0(void)
   UIHandle TotalResult;
   UIHandle result7;
   undefined *ptrResult8;
-  float floatResult9;
+  float FloatValue2;
   ulonglong semaphoreHandle0;
   float *plocalFloat21;
   UIHandle *BasePointer;
@@ -381277,37 +381277,37 @@ void FUN_1808976b0(void)
           if (ProcessingResult3 != 0) goto FUN_180897afe;
         }
         plocalFloat21 = (float *)(unmodifiedR15 + 0x94);
-        floatResult9 = unmodifiedR13D;
+        FloatValue2 = unmodifiedR13D;
         do {
           floatResult = *plocalFloat21;
           if (floatResult != 0.0) {
             stackParam00000038 = uStackX_20;
             stackParam00000028 = &UNK_1809839d8;
             stackParam00000030 = unmodifiedR13D;
-            fStack0000000000000040 = floatResult9;
+            fStack0000000000000040 = FloatValue2;
             fStack0000000000000044 = floatResult;
             ProcessingResult3 = FUN_180897520(floatResult,&stack0x00000028);
             if (ProcessingResult3 != 0) goto FUN_180897afe;
           }
-          floatResult9 = (float)((int)floatResult9 + 1);
+          FloatValue2 = (float)((int)FloatValue2 + 1);
           plocalFloat21 = plocalFloat21 + 1;
-        } while ((int)floatResult9 < 4);
+        } while ((int)FloatValue2 < 4);
         plocalFloat21 = (float *)&UNK_1809850f8;
-        floatResult9 = unmodifiedR13D;
+        FloatValue2 = unmodifiedR13D;
         do {
           floatResult = *(float *)(unmodifiedR15 + -0x180985054 + (longlong)plocalFloat21);
           if (floatResult != *plocalFloat21) {
             stackParam00000038 = uStackX_20;
             stackParam00000028 = &UNK_180983950;
             stackParam00000030 = unmodifiedR13D;
-            fStack0000000000000040 = floatResult9;
+            fStack0000000000000040 = FloatValue2;
             fStack0000000000000044 = floatResult;
             ProcessingResult3 = FUN_180897520(floatResult,&stack0x00000028);
             if (ProcessingResult3 != 0) goto FUN_180897afe;
           }
-          floatResult9 = (float)((int)floatResult9 + 1);
+          FloatValue2 = (float)((int)FloatValue2 + 1);
           plocalFloat21 = plocalFloat21 + 1;
-        } while ((int)floatResult9 < 6);
+        } while ((int)FloatValue2 < 6);
         IndexResult = func_0x000180855b70(EventHandle + 200);
         semaphoreHandle3 = extraout_XMM0_Da_03;
         if ((float)(IndexResult / 0x30) != 0.0) {
@@ -381797,7 +381797,7 @@ void FUN_180898040(longlong *uiContext)
   longlong allocatedMemory5;
   longlong *pallocatedMemory6;
   uint result7;
-  float floatResult8;
+  float FloatValue1;
   longlong *pallocatedMemory9;
   bool IsEventProcessingActive0;
   UIByte astackUInt368 [32];
@@ -381892,7 +381892,7 @@ void FUN_180898040(longlong *uiContext)
           allocatedMemory5 = uiContext[1];
           stackUInt2d0 = 0;
           pstackUInt2d8 = &UNK_1809823f8;
-          floatResult8 = SUB84(pallocatedMemory3,0);
+          FloatValue1 = SUB84(pallocatedMemory3,0);
           pallocatedMemory3 = (longlong *)(allocatedMemory5 + 0xe0 + (longlong)pallocatedMemory0);
           allocatedMemory1 = *pallocatedMemory3;
           uVar9 = pallocatedMemory3[1];
@@ -381916,7 +381916,7 @@ void FUN_180898040(longlong *uiContext)
           }
           allocatedMemory5 = uiContext[4];
           stackUInt288 = allocatedMemory1 == 0;
-          fStack_2c8 = floatResult8;
+          fStack_2c8 = FloatValue1;
           if (((char)allocatedMemory5 == '\0') &&
              (localInt6 = FUN_1808987e0(uiContext,CONCAT71((uint7)(uint3)(stackUInt28c >> 8),1)), localInt6 != 0
              )) goto LAB_18089866f;
@@ -381931,7 +381931,7 @@ void FUN_180898040(longlong *uiContext)
           }
           pallocatedMemory4 = (longlong *)((longlong)pallocatedMemory4 + 1);
           pallocatedMemory0 = pallocatedMemory0 + 6;
-          pallocatedMemory3 = (longlong *)(ulonglong)((int)floatResult8 + 1);
+          pallocatedMemory3 = (longlong *)(ulonglong)((int)FloatValue1 + 1);
           pallocatedMemory9 = (longlong *)((longlong)pallocatedMemory9 + 0xc);
         } while ((longlong)pallocatedMemory4 < astackLong300[0]);
       }
@@ -381999,7 +381999,7 @@ void FUN_180898040(longlong *uiContext)
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         pallocatedMemory6 = pstackLong318;
-        floatResult8 = (float)stackUInt310;
+        FloatValue1 = (float)stackUInt310;
         do {
           do {
             allocatedMemory5 = (longlong)(int)afStack_348[0] * 0x20;
@@ -382046,25 +382046,25 @@ LAB_1808985be:
           } while ((afStack_348[0] != -NAN) &&
                   (afStack_348[0] = *(float *)(pallocatedMemory6[2] + 0x10 + allocatedMemory5), afStack_348[0] != -NAN))
           ;
-          floatResult = (float)((int)floatResult8 + 1);
-          IsEventProcessingActive0 = floatResult8 != -NAN;
-          floatResult8 = 0.0;
+          floatResult = (float)((int)FloatValue1 + 1);
+          IsEventProcessingActive0 = FloatValue1 != -NAN;
+          FloatValue1 = 0.0;
           if (IsEventProcessingActive0) {
-            floatResult8 = floatResult;
+            FloatValue1 = floatResult;
           }
-          if (floatResult8 != *(float *)(pallocatedMemory6 + 1)) {
-            allocatedMemory5 = (longlong)(int)floatResult8;
+          if (FloatValue1 != *(float *)(pallocatedMemory6 + 1)) {
+            allocatedMemory5 = (longlong)(int)FloatValue1;
             do {
               if (*(int *)(*pallocatedMemory6 + allocatedMemory5 * 4) != -1) {
-                afStack_348[0] = *(float *)(*pallocatedMemory6 + (longlong)(int)floatResult8 * 4);
+                afStack_348[0] = *(float *)(*pallocatedMemory6 + (longlong)(int)FloatValue1 * 4);
                 goto LAB_180898629;
               }
-              floatResult8 = (float)((int)floatResult8 + 1);
+              FloatValue1 = (float)((int)FloatValue1 + 1);
               allocatedMemory5 = allocatedMemory5 + 1;
             } while (allocatedMemory5 != (int)*(float *)(pallocatedMemory6 + 1));
           }
           afStack_348[0] = -NAN;
-          floatResult8 = afStack_348[0];
+          FloatValue1 = afStack_348[0];
 LAB_180898629:
         } while (afStack_348[0] != -NAN);
       }

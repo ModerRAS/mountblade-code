@@ -56,6 +56,11 @@
 #define SystemExceptionInitializerA0Address 0x180d497e0
 #define SystemExceptionInitializerB0Address 0x180d498a0
 
+// 异常处理资源管理常量
+#define ExceptionResourcePointerOffsetA8 0xa8
+#define ExceptionMemoryBlockMultiplier 0x50
+#define MemoryManagementFlagMask 0xff000000
+
 // 资源管理常量定义
 #define ResourceDataOffset 0x10
 #define ReferenceCountOffset 500
@@ -64879,7 +64884,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
       }
     }
     else {
-      ManageMemory(MemoryAddress,SetBitFlag(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
+      ManageMemory(MemoryAddress,SetBitFlag(MemoryManagementFlagMask,*(void ***)(MemoryAddress + ExceptionMemoryRegionOffset70) == &ExceptionList),
                           MemoryBlock,MemoryAddress,SystemCleanupFlagAlternative);
     }
   }
