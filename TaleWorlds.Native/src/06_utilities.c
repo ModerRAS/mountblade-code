@@ -32045,10 +32045,10 @@ uint64_t * ValidateSystemDataProcessing(void)
   int64_t InputAccumulatorRegister;
   DataBuffer *ExceptionDataBuffer1;
   DataWord *ExceptionDataBuffer2;
-  DataBuffer *ExceptionDataBuffer3;
+  DataBuffer *exceptionBuffer3;
   float *PCoordinateValue14;
   uint64_t SystemDataBuffer5;
-  DataBuffer *ExceptionDataBuffer6;
+  DataBuffer *exceptionBuffer6;
   int64_t ValidationContext7;
   int64_t SystemStackFramePointer;
   int64_t SystemContext;
@@ -40042,10 +40042,19 @@ void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-// 函数: void ExceptionUnwindHandlerA20(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常展开处理器A20
- * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ * 
+ * 该函数负责处理异常展开过程中的特定操作，它会：
+ * - 检查异常处理数据的有效性
+ * - 调用相关的异常处理回调函数
+ * - 确保异常展开过程的正确性
+ * 
+ * @param ExceptionContext 异常上下文数据缓冲区
+ * @param ExceptionHandlerData 异常处理器数据指针
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常展开处理函数，用于异常恢复过程
  */
 void ExceptionUnwindHandlerA20(DataBuffer ExceptionContext, int64_t ExceptionHandlerData)
 
@@ -40058,10 +40067,21 @@ void ExceptionUnwindHandlerA20(DataBuffer ExceptionContext, int64_t ExceptionHan
 
 
 
-// 函数: void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 异常展开处理器A21
- * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ * 
+ * 该函数负责处理异常展开过程中的特定操作，它会：
+ * - 从数据缓冲区获取异常处理回调函数指针
+ * - 验证回调函数指针的有效性
+ * - 调用异常处理回调函数进行异常恢复
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于传递清理标志
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常展开处理函数，用于异常恢复过程
  */
 void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -40077,10 +40097,19 @@ void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataB
 
 
 
-// 函数: void ExceptionUnwindHandlerA22(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常展开处理器A22
- * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
+ * 
+ * 该函数负责处理异常展开过程中的特定操作，它会：
+ * - 在数据缓冲区的指定偏移量处设置默认异常处理器
+ * - 确保异常处理链的正确性
+ * - 为后续异常处理做准备
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常展开处理函数，用于设置默认异常处理器
  */
 void ExceptionUnwindHandlerA22(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -40092,9 +40121,15 @@ void ExceptionUnwindHandlerA22(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * 设置默认异常处理器到偏移量 0x30
- * @param operationBase 上下文参数
- * @param dataBuffer 目标结构体指针
+ * @brief 设置默认异常处理器到偏移量0x30
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处设置默认异常处理器，确保异常处理链的完整性。
+ * 
+ * @param operationBase 操作基地址，用于上下文管理
+ * @param dataBuffer 目标结构体指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
 void SetDefaultExceptionHandlerAtOffset30(DataBuffer operationBase, int64_t dataBuffer)
 
