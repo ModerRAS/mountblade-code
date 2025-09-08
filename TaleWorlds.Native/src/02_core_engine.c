@@ -20006,7 +20006,7 @@ void CoreEngineManageThreadResources(void
  */
 void CoreEngineHandleThreadEvents(void)
 {
-  char CharacterStatusBuffer;
+  char SystemNodeStatus;
   EngineContext *SystemContext;
   int ComparisonResult;
   MemorySize AllocatedMemory;
@@ -20018,11 +20018,11 @@ void CoreEngineHandleThreadEvents(void)
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  CharacterStatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemNodeStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (CurrentCharacter == '\0') {
+  while (SystemNodeStatus == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20033,7 +20033,7 @@ void CoreEngineHandleThreadEvents(void)
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    CurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
@@ -20057,9 +20057,9 @@ void CoreEngineHandleThreadEvents(void)
  * 该函数负责初始化核心引擎的线程同步机制，包括互斥锁、信号量和条件变量。
  * 确保多线程环境下的数据安全和同步操作。
  */
-void CoreEngineInitializeThreadSynchronization(void
+void CoreEngineInitializeThreadSynchronization(void)
 {
-  char CharacterStatusBuffer;
+  char SystemNodeStatus;
   EngineContext *SystemContext;
   int ComparisonResult;
   MemorySize AllocatedMemory;
@@ -20071,11 +20071,11 @@ void CoreEngineInitializeThreadSynchronization(void
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  CharacterStatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemNodeStatus = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = ResourceManagementCallback;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (CurrentCharacter == '\0') {
+  while (SystemNodeStatus == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataUndenary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -20086,7 +20086,7 @@ void CoreEngineInitializeThreadSynchronization(void
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     CurrentNode = NextNode;
-    CurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataUndenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
