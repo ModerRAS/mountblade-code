@@ -189783,7 +189783,7 @@ LAB_180158404:
 
 
 
-584c0(uint64_t CharacterCode,int SystemBufferSizevoid FUN_1801584c0(uint64_t CharacterCode,int SystemBufferSize
+void ProcessSystemCharacterEncodingValidation(uint64_t CharacterCode,int SystemBufferSize)
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
@@ -189898,7 +189898,7 @@ LAB_180158671:
 
 
 
-58780(long long *CharacterCode,int SystemBufferSizevoid FUN_180158780(long long *CharacterCode,int SystemBufferSize
+void ProcessSystemCharacterDataAndManagement(long long *CharacterCode,int SystemBufferSize)
 {
   code *CurrentCharacter;
   uint8_t aStackProcessingValue [32];
@@ -190180,7 +190180,7 @@ uint64_t ProcessSystemMemoryManagement(uint64_t CharacterCode,long long SystemBu
 
 
 
-58e10(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180158e10(uint64_t CharacterCode,long long SystemBufferSize
+void ProcessSystemCharacterEncodingAndSizeManagement(uint64_t CharacterCode,long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
