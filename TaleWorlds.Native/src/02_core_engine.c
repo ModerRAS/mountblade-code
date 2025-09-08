@@ -196439,7 +196439,7 @@ ProcessUtf8ToUtf16StringConverter(uint64_t CharacterCode,uint64_t *CharacterCode
   SecondaryContextPointer = (long long *)0x0;
   FunctionAddress = 0;
   ProcessingFlags = 3;
-  FUN_1800b6780(LoopCounter,&ProcessingContextPointer);
+  ProcessSystemContextWithLoop(LoopCounter,&ProcessingContextPointer);
   SystemContextPtr = SecondaryContextPointer;
   if (ProcessingContextPointer < SecondaryContextPointer) {
     CharacterCodeTablePointer = ProcessingContextPointer;
@@ -196600,7 +196600,7 @@ ProcessUtf8ToUtf16AdvancedStringConverter(uint64_t CharacterCode,uint64_t *Chara
   pSystemTemporaryValue50 = (long long *)0x0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 3;
-  FUN_1800b7eb0(0,&plStack_58,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
+  ProcessSystemEncodingWithBuffer(0,&plStack_58,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
   BufferStatus = Utf16EndPointer[1];
   MemoryBlockIndex = *Utf16EndPointer;
   ProcessedCharacter = (unsigned long long)((long long)pSystemTemporaryValue50 + (7 - (long long)plStack_58)) >> 3;
@@ -197139,7 +197139,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage3(uint64_t CharacterCode,uint64_t *Chara
   CoreEngineSignedValue70 = 0;
   StackProcessingValue = 0;
   StackProcessingUnsignedValue60 = 3;
-  FUN_1800b7eb0(0,&pCoreEngineSignedValue78,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe,0,0,0,3);
+  ProcessSystemEncodingWithBuffer(0,&pCoreEngineSignedValue78,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe,0,0,0,3);
   Utf16ConversionContext = 0;
   SystemStringIndex = CoreEngineSignedValue70 - (long long)pCoreEngineSignedValue78 >> 3;
   MemoryPoolBlockSizePointer = MemoryBlockIndex;
@@ -200059,6 +200059,22 @@ LAB_18016b996:
 
 
 
+/**
+ * @brief 处理字符代码大小和系统数据注册
+ * 
+ * 该函数负责处理字符代码的大小和系统数据注册，包括：
+ * - 验证字符代码大小的有效性
+ * - 处理系统数据注册表的查找和更新
+ * - 管理字符代码的引用计数
+ * - 执行内存移动和数据复制操作
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param CharacterCodeSize 字符代码大小指针，用于传递和返回大小信息
+ * @return uint64_t 返回处理结果的64位无符号整数
+ * 
+ * @note 原始函数名：FUN_18016bb80
+ * @warning 该函数包含不返回的子程序调用
+ */
 uint64_t FUN_18016bb80(long long CharacterCode,int *CharacterCodeSize
 {
   int *ReferenceCountPointer;
@@ -230003,6 +230019,22 @@ uint64_t * FUN_1801952b0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
 
 
 
+/**
+ * @brief 系统数据节点初始化函数
+ * 
+ * 该函数负责初始化系统数据节点，包括：
+ * - 设置字符代码指针为系统数据节点模板
+ * - 初始化UTF-16字符为默认值
+ * - 执行系统初始化操作
+ * 
+ * @param CharacterCode 字符代码指针，用于存储初始化后的数据节点
+ * @param SystemBufferSize 系统缓冲区大小参数
+ * @param Utf8SourcePointer UTF-8源指针参数
+ * @param Utf16EndPointer UTF-16结束指针参数
+ * @return uint64_t* 返回处理后的64位无符号整数指针
+ * 
+ * @note 原始函数名：FUN_1801952e0
+ */
 uint64_t *
 FUN_1801952e0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
