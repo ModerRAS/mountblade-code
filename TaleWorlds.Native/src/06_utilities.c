@@ -95500,7 +95500,17 @@ void ExecuteExceptionContextCallback(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_18090cec0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常上下文处理器
+ * 
+ * 该函数负责初始化异常上下文处理器，设置临时异常处理器并清理状态
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cec0
+ */
+void InitializeExceptionHandlerContext(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
