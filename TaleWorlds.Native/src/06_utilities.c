@@ -83754,7 +83754,23 @@ void ManageResourceCleanupFlagA(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090a9e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理标志管理函数B
+ * 
+ * 该函数负责在异常处理过程中管理资源清理标志。
+ * 与函数A类似，但从偏移量0x60检查标志。
+ * 主要功能包括：
+ * - 检查数据缓冲区的清理标志
+ * - 清除清理标志位
+ * - 调用资源清理处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a9e0
+ * @note 这是一个异常处理展开函数，用于资源清理
+ */
+void ManageResourceCleanupFlagB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
@@ -83766,7 +83782,20 @@ void Unwind_18090a9e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090aa10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A
+ * 
+ * 该函数负责在异常处理过程中设置默认异常处理器。
+ * 主要功能包括：
+ * - 设置默认异常处理器B到指定位置
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090aa10
+ * @note 这是一个异常处理展开函数，用于设置异常处理器
+ */
+void SetDefaultExceptionHandlerInUnwindA(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xe0) = &DefaultExceptionHandlerB;
@@ -83775,7 +83804,23 @@ void Unwind_18090aa10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090aa20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理标志管理函数C
+ * 
+ * 该函数负责在异常处理过程中管理资源清理标志。
+ * 检查不同的标志位(位2)并进行相应的清理操作。
+ * 主要功能包括：
+ * - 检查数据缓冲区的清理标志(位2)
+ * - 清除清理标志位
+ * - 调用资源清理处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090aa20
+ * @note 这是一个异常处理展开函数，用于资源清理
+ */
+void ManageResourceCleanupFlagC(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
