@@ -88290,21 +88290,21 @@ void ProcessUITransformMatrix(uint uiContext,longlong dataSource,int targetBuffe
     MatrixElementPointer = (float *)(DataOffset + (longlong)TransformMatrix);
     *MatrixElementPointer = SourceTransformX * 0.70710677 + ResultTransformX * 0.70710677;
     MatrixElementPointer[1] = OriginalValueLast * 0.70710677 + ResultTransformY * 0.70710677;
-    pbaseValue[2] = baseValue5 * 0.70710677 + localFloat9 * 0.70710677;
-    pbaseValue[3] = baseValue6 * 0.70710677 + baseValue0 * 0.70710677;
-    *baseScaleFactor = resultFloat * 0.70710677 - transformCoeff1 * 0.70710677;
-    baseScaleFactor[1] = localFloat8 * 0.70710677 - baseValue7 * 0.70710677;
-    baseScaleFactor[2] = localFloat9 * 0.70710677 - baseValue5 * 0.70710677;
-    baseScaleFactor[3] = baseValue0 * 0.70710677 - baseValue6 * 0.70710677;
-    baseScaleFactor = baseScaleFactor + 8;
-  } while (dataSource < (int)((int)register10 - uiContext));
-  allocatedMemory2 = (longlong)targetBuffer;
-  if (allocatedMemory2 < register10) {
-    if (3 < register10 - allocatedMemory2) {
-      baseScaleFactor = (float *)(RegisterPointer + 4 + allocatedMemory2 * 4);
-      allocatedMemory4 = bufferSize - RegisterPointer;
-      allocatedMemory3 = ((register10 - allocatedMemory2) - 4U >> 2) + 1;
-      allocatedMemory2 = allocatedMemory2 + allocatedMemory3 * 4;
+    MatrixElementPointer[2] = OriginalValueZ * 0.70710677 + ResultTransformZ * 0.70710677;
+    MatrixElementPointer[3] = OriginalValueW * 0.70710677 + ResultTransformW * 0.70710677;
+    *TransformMatrix = ResultTransformX * 0.70710677 - SourceTransformX * 0.70710677;
+    TransformMatrix[1] = ResultTransformY * 0.70710677 - OriginalValueLast * 0.70710677;
+    TransformMatrix[2] = ResultTransformZ * 0.70710677 - OriginalValueZ * 0.70710677;
+    TransformMatrix[3] = ResultTransformW * 0.70710677 - OriginalValueW * 0.70710677;
+    TransformMatrix = TransformMatrix + 8;
+  } while (dataSource < (int)((int)LoopCounter - uiContext));
+  DataOffset = (longlong)targetBuffer;
+  if (DataOffset < LoopCounter) {
+    if (3 < LoopCounter - DataOffset) {
+      TransformMatrix = (float *)(MatrixBasePointer + 4 + DataOffset * 4);
+      MemoryBlock4 = bufferSize - MatrixBasePointer;
+      MemoryBlock3 = ((LoopCounter - DataOffset) - 4U >> 2) + 1;
+      DataOffset = DataOffset + MemoryBlock3 * 4;
       do {
         transformCoeff1 = baseScaleFactor[-1];
         baseValue5 = *(float *)(allocatedMemory4 + -4 + (longlong)baseScaleFactor) * 0.70710677;
