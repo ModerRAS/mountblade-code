@@ -221914,7 +221914,15 @@ LAB_18018728e:
 
 
 
-87390(void **CharacterCode,long long SystemBufferSizevoid FUN_180187390(void **CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理系统内存和验证
+ * 
+ * 对系统内存进行分配、验证和处理，包括字符编码转换和内存管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessSystemMemoryAndValidation(void **CharacterCode, long long SystemBufferSize
 {
   unsigned long long Utf16Char;
   uint8_t *PrimaryProcessingStatusFlag;
@@ -222508,12 +222516,22 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *CharacterCode,uint
 
 
 
-87d70(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187d70(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符表和数据初始化
+ * 
+ * 初始化字符表指针，处理UTF8到UTF16的编码转换，并设置循环计数器
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessCharacterTableAndInitialization(long long *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
   CharacterTablePointer = *CharacterCode;
-  FUN_1801884d0(CharacterCode,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterDataAndValidation(CharacterCode,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *(long long *)(*CharacterCode + 8) = LoopCounter;
   *(long long *)*CharacterCode = LoopCounter;
   *(long long *)(*CharacterCode + 0x10) = LoopCounter;
