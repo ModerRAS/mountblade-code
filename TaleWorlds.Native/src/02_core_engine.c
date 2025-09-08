@@ -1597,6 +1597,11 @@
 #define SyncValidationStatus NetworkSyncStatusFlag         // 网络同步状态标志
 #define MonitorValidationStatus NetworkMonitorStatusFlag     // 网络监控状态标志
 #define GameDataSystemNodeStatusFlag GameDataNodeStatusFlag  // 游戏数据节点状态标志
+
+// 系统初始化和状态管理函数语义化映射
+#define InitializeSystemMemoryPool FUN_1806536d0            // 初始化系统内存池
+#define InitializeSystemDataTable FUN_180653940              // 初始化系统数据表
+#define InitializeSystemResourceHandler FUN_180653ef0        // 初始化系统资源处理器
 #define NetworkConnectionStatusFlag NetworkConnectionStatusFlag // 网络连接状态标志
 #define NetworkConnectionPoolStatusFlag NetworkConnectionPoolStatusFlag // 网络连接池状态标志
 #define AudioManagerStatusFlag AudioManagerStatusFlag   // 音频管理器状态标志
@@ -217855,20 +217860,20 @@ void SystemDataProcessingFunction(void
       (*(code *)(*pppppcStack_180)[5])(pppppcStack_180);
     }
     ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_180);
-    FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_188);
+    ProcessSystemDataTable(SystemDataTablePointer + 800,&pppppcStack_188);
     StringLength = *(int *)(SystemDataTablePointer + 0x340);
     if (StringLength == 2) {
       SystemMemoryBlockA = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
       *SystemMemoryBlockA = 0;
       SystemMemoryBlockA[1] = 0;
       SystemMemoryBlockA[2] = 0;
-      FUN_1806536d0();
-      FUN_180653940();
+      InitializeSystemMemoryPool();
+      InitializeSystemDataTable();
       StringLength = *(int *)(SystemDataTablePointer + 0x340);
     }
     if (StringLength == 3) {
       SystemMemoryBlockB = MemoryAllocate(MemoryPoolManager,0x18,8,3);
-      FUN_180653ef0();
+      InitializeSystemResourceHandler();
       SystemDataTablePointer = SystemMemoryBlockB;
       pppcStack_170 = (code ***)&SystemNullTemplate;
       uStack_158 = NULL;
@@ -217987,7 +217992,7 @@ LAB_180180381:
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
       CharacterTablePointer = SystemDataTablePointer + 800;
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218014,7 +218019,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218041,7 +218046,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218068,7 +218073,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218095,7 +218100,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218122,7 +218127,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218149,7 +218154,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218176,7 +218181,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -218203,7 +218208,7 @@ LAB_180180381:
         (*(code *)(*pppppValidationStatus)[5])(pppppValidationStatus);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(LoopCounter,&pppppcStack_180);
+      ProcessSystemDataTable(LoopCounter,&pppppcStack_180);
       pppppValidationStatus = (code ******)pppppcStack_180;
       if ((*(int *)(SystemDataTablePointer + 0x3c) == -1) ||
          (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c))) {
