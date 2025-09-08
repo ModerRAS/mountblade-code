@@ -12956,18 +12956,18 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
-  int64_t *exceptionHandlerContextPointer;     // 异常处理上下文指针
-  int64_t *componentDataContext;              // 组件数据上下文指针
-  int64_t *componentInfoContext;              // 组件信息上下文指针
-  int32_t moduleInitializationStatus;         // 模块初始化状态
-  uint32_t gameMessageProcessingStatus;       // 游戏消息处理状态
-  uint64_t systemModuleOperationResult;        // 系统模块操作结果
-  int64_t *resourceInfoContext;              // 资源信息上下文指针
-  int64_t *contextDataContext;                // 上下文数据上下文指针
-  int64_t *moduleDataContext;                 // 模块数据上下文指针
-  int64_t *baseValidationContext;             // 基础验证上下文指针
-  int64_t StackMemoryContext;                 // 栈内存上下文
-  int64_t temporaryStackContext;               // 临时栈上下文
+  int64_t *exceptionHandler;                  // 异常处理器指针
+  int64_t *componentData;                     // 组件数据指针
+  int64_t *componentInfo;                     // 组件信息指针
+  int32_t initializationStatus;               // 初始化状态码
+  uint32_t messageProcessingStatus;           // 消息处理状态
+  uint64_t moduleOperationResult;             // 模块操作结果
+  int64_t *resourceInfo;                      // 资源信息指针
+  int64_t *contextData;                       // 上下文数据指针
+  int64_t *moduleData;                        // 模块数据指针
+  int64_t *validationContext;                  // 验证上下文指针
+  int64_t stackContext;                       // 栈上下文
+  int64_t tempStackContext;                   // 临时栈上下文
   
   systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporaryStackContext);
   moduleInitializationStatus = (int32_t)systemModuleOperationResult;
@@ -13475,6 +13475,14 @@ DataWord ReleaseStackResource(void)
  * 
  * @note 原始函数名：TriggerSystemShutdown
  * @warning 函数执行过程中不会返回，会直接终止系统
+ */
+/**
+ * @brief 触发系统关闭
+ * 
+ * 该函数负责触发系统的关闭过程，通过调用资源释放函数来清理系统资源。
+ * 这是一个简化的系统关闭函数，主要用于处理基本的关闭流程。
+ * 
+ * @note 原始函数名：TriggerSystemShutdown
  */
 void TriggerSystemShutdown(void)
 
@@ -20033,7 +20041,7 @@ int ProcessSystemResourceByCondition(DataBuffer inputCondition,DataBuffer dataSi
     processResult = 0x26;
   }
   else {
-    processResult = ExecuteSystemValidationA0();
+    processResult = PerformSystemStatusValidation();
     if ((processResult == 0) &&
        (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + DataOperationOffset24),&systemDataBuffer), processResult == 0)
        ) {
