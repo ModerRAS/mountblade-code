@@ -84747,27 +84747,49 @@ void ClearUIBufferMemory(void)
 
 
  void FUN_1807165be(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
-void FUN_1807165be(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,longlong param_6)
+/**
+ * @brief 处理UI变换和旋转操作
+ * 
+ * 该函数负责处理UI系统中的变换和旋转操作，包括：
+ * - 对UI元素进行旋转变换
+ * - 处理变换系数的计算
+ * - 管理UI上下文中的浮点数变换
+ * - 应用旋转矩阵到UI元素
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源句柄，提供变换所需的数据
+ * @param targetBuffer 目标缓冲区，存储变换结果
+ * @param bufferSize 缓冲区大小，控制变换处理的范围
+ * @param resultPointer 结果指针，指向变换结果的存储位置
+ * @param param_6 额外参数，用于扩展变换功能
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI动画和变换系统中被广泛使用
+ * @note 使用浮点数运算进行精确的变换计算
+ * @note 支持批量处理多个UI元素的变换
+ */
+void ProcessUITransformAndRotation(longlong uiContext, UIHandle dataSource, int targetBuffer, UIHandle bufferSize,
+                                  UIHandle resultPointer, longlong param_6)
 
 {
   float baseValue;
   float transformCoeff1;
-  uint EventTypeCode;
-  float *ptransformCoeff3;
-  longlong EventDataIndex;
-  longlong ContextHandleData;
-  float *presultFloat;
-  int unmodifiedESI;
-  int localInt8;
-  int localInt9;
-  longlong allocatedMemory0;
-  ulonglong result1;
-  int ProcessingResult2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  float in_XMM4_Da;
+  uint eventGroupCount;
+  float *transformDataPtr;
+  longlong eventIndex;
+  longlong contextOffset;
+  float *resultDataPtr;
+  int iterationCount;
+  int processingBlockSize;
+  int innerLoopCounter;
+  longlong baseOffset0;
+  ulonglong groupIterations;
+  int transformIndex;
+  longlong offset3;
+  longlong offset4;
+  longlong offset5;
+  float rotationAngle;
   
   localInt8 = unmodifiedESI >> 1;
   ProcessingResult2 = 0;
