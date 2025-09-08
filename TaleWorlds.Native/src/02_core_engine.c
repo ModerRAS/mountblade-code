@@ -209201,7 +209201,21 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
 
 
 
-uint64_t FUN_180174c70(uint64_t CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理字符代码系统清理和资源释放
+ * 
+ * 该函数负责清理字符代码系统，包括：
+ * - 验证系统句柄和状态
+ * - 处理文件指针操作
+ * - 管理互斥锁
+ * - 释放系统资源
+ * - 更新引用计数
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符代码
+ * @param CharacterCodeSize 字符代码大小指针，指向字符代码的大小信息
+ * @return uint64_t 返回操作状态，1表示成功
+ */
+uint64_t ProcessCharacterCodeSystemCleanupAndResourceRelease(uint64_t CharacterCode, long long *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -209210,30 +209224,30 @@ uint64_t FUN_180174c70(uint64_t CharacterCode,long long *CharacterCodeSize
   char SystemCharacterCode;
   int ValidationResult;
   void *StringProcessingStatus;
-  uint8_t aStackProcessingConfigurationFlag [16];
+  uint8_t ProcessingConfigurationFlag [16];
   
-  CharacterTablePointer = *CharacterCodeSize;
+  long long *CharacterCodeTablePointer = *CharacterCodeSize;
   StringProcessingStatus = &CoreEngineDataTemplate;
-  if (*(void **)(CharacterTablePointer + 8) != NULL) {
-    StringProcessingStatus = *(void **)(CharacterTablePointer + 8);
+  if (*(void **)(CharacterCodeTablePointer + 8) != NULL) {
+    StringProcessingStatus = *(void **)(CharacterCodeTablePointer + 8);
   }
-  SystemContextValidationFlag = ValidateSystemHandlesAndStatus(CharacterTablePointer + 0x20,StringProcessingStatus,5,0x105,0xfffffffffffffffe);
+  char SystemContextValidationFlag = ValidateSystemHandlesAndStatus(CharacterCodeTablePointer + 0x20, StringProcessingStatus, 5, 0x105, 0xfffffffffffffffe);
   if (SystemContextValidationFlag != '\0') {
     SystemDataRegistry = SystemBufferSize[2];
     BufferStatus = SystemBufferSize[1];
-    MemoryBlockIndex = SystemBufferSize[3];
-    ValidationResult = _Mtx_lock(CharacterTablePointer + 0x30);
+    long long *MemoryBlockIndex = SystemBufferSize[3];
+    ValidationResult = _Mtx_lock(CharacterCodeTablePointer + 0x30);
     if (ValidationResult != 0) {
       __Throw_C_error_std__YAXH_Z(ValidationResult);
     }
-    SetFilePointerEx(*(void *)(ThreadLocalStorageData + 0x20),BufferStatus,aStackProcessingConfigurationFlag,0);
-    FUN_18063bc80(CharacterTablePointer + 0x20,MemoryBlockIndex,(int)SystemDataRegistry);
-    ValidationResult = _Mtx_unlock(CharacterTablePointer + 0x30);
+    SetFilePointerEx(*(void *)(ThreadLocalStorageData + 0x20), BufferStatus, ProcessingConfigurationFlag, 0);
+    FUN_18063bc80(CharacterCodeTablePointer + 0x20, MemoryBlockIndex, (int)SystemDataRegistry);
+    ValidationResult = _Mtx_unlock(CharacterCodeTablePointer + 0x30);
     if (ValidationResult != 0) {
       __Throw_C_error_std__YAXH_Z(ValidationResult);
     }
   }
-  if (*(long long *)(CharacterTablePointer + 0x20) != -1) {
+  if (*(long long *)(CharacterCodeTablePointer + 0x20) != -1) {
     LOCK();
     SystemReferenceCounter = SystemReferenceCounter + -1;
     UNLOCK();
@@ -236852,7 +236866,20 @@ LAB_18019a44a:
 
 
 
-uint32_t FUN_18019c480(long long CharacterCode
+/**
+ * @brief 处理字符代码数据转换和系统状态更新
+ * 
+ * 该函数负责处理字符代码数据的转换操作，包括：
+ * - 从内存块中提取字符代码相关数据
+ * - 更新系统数据注册表中的各种状态信息
+ * - 处理字符状态缓冲区的互斥锁操作
+ * - 执行系统特定的字符处理函数
+ * - 管理字符代码的内存分配和释放
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符代码
+ * @return uint32_t 返回处理后的内存分配索引
+ */
+uint32_t ProcessCharacterCodeDataConversionAndSystemStatusUpdate(long long CharacterCode)
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -236863,14 +236890,14 @@ uint32_t FUN_18019c480(long long CharacterCode
   uint32_t SystemChecksum;
   uint32_t ProcessingStatusFlag;
   uint32_t SystemMemoryAllocationResult;
-  uint32_t MemoryAllocationIndex;
+  uint32_t PreviousMemoryAllocationIndex;
   uint64_t ProcessedCharacter;
   uint64_t SystemStatusCode;
   uint64_t ValidationResult;
-  uint64_t Utf16Char4;
+  uint64_t Utf16CharacterValue;
   uint64_t Utf16ConversionContext;
   
-  MemoryBlockIndex = *(long long *)(CharacterCode + 0xc0);
+  long long *MemoryBlockIndex = *(long long *)(CharacterCode + 0xc0);
   SystemDataRegistry = *(long long *)(MemoryBlockIndex + 0x3a8);
   MemoryAllocationIndex = *(uint32_t *)(MemoryBlockIndex + 0x43c);
   CalculatedCodePoint = *(uint32_t *)(MemoryBlockIndex + 0x440);
@@ -236878,7 +236905,7 @@ uint32_t FUN_18019c480(long long CharacterCode
   SystemChecksum = *(uint32_t *)(SystemDataRegistry + 0x40);
   ProcessingStatusFlag = *(uint32_t *)(SystemDataRegistry + 0x44);
   SystemMemoryAllocationResult = *(uint32_t *)(SystemDataRegistry + 0x48);
-  MemoryAllocationIndex = *(uint32_t *)(SystemDataRegistry + 0x4c);
+  PreviousMemoryAllocationIndex = *(uint32_t *)(SystemDataRegistry + 0x4c);
   *(uint32_t *)(SystemDataRegistry + 0x40) = *(uint32_t *)(MemoryBlockIndex + 0x438);
   *(uint32_t *)(SystemDataRegistry + 0x44) = MemoryAllocationIndex;
   *(uint32_t *)(SystemDataRegistry + 0x48) = CalculatedCodePoint;
@@ -236886,7 +236913,7 @@ uint32_t FUN_18019c480(long long CharacterCode
   *(uint32_t *)(SystemDataRegistry + 0x30) = SystemChecksum;
   *(uint32_t *)(SystemDataRegistry + 0x34) = ProcessingStatusFlag;
   *(uint32_t *)(SystemDataRegistry + 0x38) = SystemMemoryAllocationResult;
-  *(uint32_t *)(SystemDataRegistry + 0x3c) = MemoryAllocationIndex;
+  *(uint32_t *)(SystemDataRegistry + 0x3c) = PreviousMemoryAllocationIndex;
   FUN_1802c6190(*(void *)(*(long long *)(CharacterCode + 0xc0) + 0x3a8));
   FUN_18019c5b0(*(long long *)(CharacterCode + 200) + 0x12678,
                 *(void *)(*(long long *)(CharacterCode + 0xc0) + 0x3a8));
@@ -236895,13 +236922,13 @@ uint32_t FUN_18019c480(long long CharacterCode
   ProcessedCharacter = *(void *)(MemoryBlockIndex + 0x38);
   SystemStatusCode = *(void *)(MemoryBlockIndex + 0x40);
   ValidationResult = *(void *)(MemoryBlockIndex + 0x48);
-  Utf16Char4 = *(void *)(MemoryBlockIndex + 0x50);
+  Utf16CharacterValue = *(void *)(MemoryBlockIndex + 0x50);
   Utf16ConversionContext = *(void *)(MemoryBlockIndex + 0x58);
   *(void *)(SystemDataRegistry + 0x126b0) = *(void *)(MemoryBlockIndex + 0x30);
   *(void *)(SystemDataRegistry + 0x126b8) = ProcessedCharacter;
   *(void *)(SystemDataRegistry + 0x126c0) = SystemStatusCode;
   *(void *)(SystemDataRegistry + 0x126c8) = ValidationResult;
-  *(void *)(SystemDataRegistry + 0x126d0) = Utf16Char4;
+  *(void *)(SystemDataRegistry + 0x126d0) = Utf16CharacterValue;
   *(void *)(SystemDataRegistry + 0x126d8) = Utf16ConversionContext;
   *(byte *)(*(long long *)(CharacterCode + 200) + 0x126a0) = *(byte *)(CoreEngineSystemContext + 0x224) & 1;
   *(uint8_t *)(*(long long *)(CharacterCode + 200) + 0x12670) = 1;
