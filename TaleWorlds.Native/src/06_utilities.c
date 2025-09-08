@@ -105002,7 +105002,18 @@ void Unwind_180910340(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910350(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用计数
+ * 
+ * 释放内存资源的引用计数，当引用计数为0时调用异常处理函数
+ * 用于管理内存资源的生命周期，防止内存泄漏
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910350
+ */
+void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -105038,7 +105049,18 @@ void Unwind_180910350(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存指针标志位
+ * 
+ * 清理内存指针的标志位，释放相关资源
+ * 用于内存管理过程中的资源清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910360
+ */
+void CleanupMemoryPointerFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -105050,7 +105072,17 @@ void Unwind_180910360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910390(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统内存池指针A
+ * 
+ * 设置数据缓冲区中的系统内存池指针A，用于内存管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910390
+ */
+void SetSystemMemoryPoolPointerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x40) = &SystemMemoryPoolPointerA;
@@ -105059,7 +105091,17 @@ void Unwind_180910390(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809103a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统内存池指针B
+ * 
+ * 设置数据缓冲区中的系统内存池指针B，用于内存管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_1809103a0
+ */
+void SetSystemMemoryPoolPointerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x48) = &SystemMemoryPoolPointerB;
@@ -105068,7 +105110,17 @@ void Unwind_1809103a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809103b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统状态缓冲区指针
+ * 
+ * 设置数据缓冲区中的系统状态缓冲区指针，用于状态管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_1809103b0
+ */
+void SetSystemStateBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x48) = &SystemStateBuffer;
@@ -105077,7 +105129,18 @@ void Unwind_1809103b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809103c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放系统内存资源引用计数
+ * 
+ * 释放系统内存资源的引用计数，管理内存资源的生命周期
+ * 与ReleaseMemoryResourceReferenceCount功能类似，但处理不同的数据缓冲区位置
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_1809103c0
+ */
+void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -105113,7 +105176,15 @@ void Unwind_1809103c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809103d0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 销毁线程互斥锁，释放相关资源
+ * 用于线程同步机制的清理工作
+ * 
+ * @note 原始函数名: Unwind_1809103d0
+ */
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -105122,7 +105193,17 @@ void Unwind_1809103d0(void)
 
 
 
-void Unwind_1809103e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统控制缓冲区指针
+ * 
+ * 设置数据缓冲区中的系统控制缓冲区指针，用于系统控制
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_1809103e0
+ */
+void SetSystemControlBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x40) = &SystemControlBuffer;
@@ -105131,7 +105212,17 @@ void Unwind_1809103e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809103f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置数据缓冲区指针A1
+ * 
+ * 设置数据缓冲区中的数据缓冲区指针A1，用于数据管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_1809103f0
+ */
+void SetDataBufferPointerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x90) = &DataBufferPointerA1;
@@ -105140,7 +105231,18 @@ void Unwind_1809103f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910400(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理数据表
+ * 
+ * 初始化异常处理相关的数据表，包括异常句柄表和数据表
+ * 用于异常处理系统的初始化工作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910400
+ */
+void InitializeExceptionDataTables(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -105154,7 +105256,18 @@ void Unwind_180910400(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910410(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理数据表B
+ * 
+ * 初始化异常处理相关的数据表，设置数据表3和数据表6
+ * 用于异常处理系统的初始化工作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910410
+ */
+void InitializeExceptionDataTablesB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -105167,7 +105280,17 @@ void Unwind_180910410(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910420(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常数据表6指针
+ * 
+ * 设置数据缓冲区中的异常数据表6指针，用于异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910420
+ */
+void SetExceptionDataTable6Pointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x60) = &ExceptionDataTable6;
@@ -105176,7 +105299,17 @@ void Unwind_180910420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910430(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置数据缓冲区指针A2
+ * 
+ * 设置数据缓冲区中的数据缓冲区指针A2，用于数据管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910430
+ */
+void SetDataBufferPointerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x60) = &DataBufferPointerA2;
@@ -105185,7 +105318,17 @@ void Unwind_180910430(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910440(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B指针
+ * 
+ * 设置数据缓冲区中的默认异常处理器B指针，用于异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910440
+ */
+void SetDefaultExceptionHandlerBPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x60) + 8) = &DefaultExceptionHandlerB;
@@ -105194,7 +105337,18 @@ void Unwind_180910440(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理上下文清理
+ * 
+ * 执行异常处理上下文的清理工作，包括设置系统执行缓冲区、
+ * 执行系统命令和销毁IO流对象
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910450
+ */
+void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -105215,7 +105369,17 @@ void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910470(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数指针A
+ * 
+ * 执行异常处理上下文中的函数指针A，用于异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910470
+ */
+void ExecuteExceptionHandlerFunctionA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -105229,7 +105393,18 @@ void Unwind_180910470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910490(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理函数指针B
+ * 
+ * 执行异常处理上下文中的函数指针B，用于异常处理
+ * 与ExecuteExceptionHandlerFunctionA功能类似，但处理不同的偏移量
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名: Unwind_180910490
+ */
+void ExecuteExceptionHandlerFunctionB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
