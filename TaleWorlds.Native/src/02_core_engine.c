@@ -225613,34 +225613,48 @@ long long FUN_18018b2e0(uint64_t CharacterCode,long long SystemBufferSize,uint64
 
 
 
-uint64_t * FUN_18018b350(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 字符编码处理和内存分配函数
+ * 
+ * 该函数处理字符编码数据，根据字符长度进行不同的内存分配和处理。
+ * 对于短字符（<0x10），直接在原缓冲区处理；对于长字符，分配新的内存空间。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储处理结果
+ * @param CharacterCodeSize 字符代码大小指针
+ * 
+ * @return 返回处理后的字符代码指针
+ * 
+ * @note 函数会修改CharacterCode数组的内容
+ * @note 对于长字符会调用FUN_180067110进行内存分配
+ */
+uint64_t * ProcessCharacterEncoding(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
 {
-  unsigned long long Utf16Char;
+  unsigned long long CharacterLength;
   uint64_t MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   
   CharacterCode[2] = 0;
   CharacterCode[3] = 0;
-  Utf16Char = SystemBufferSize[2];
+  CharacterLength = SystemBufferSize[2];
   if (0xf < (unsigned long long)SystemBufferSize[3]) {
     SystemBufferSize = (void *)*CharacterCodeSize;
   }
-  if (Utf16Char < 0x10) {
+  if (CharacterLength < 0x10) {
     MemoryAllocationIndex = SystemBufferSize[1];
     *CharacterCode = *CharacterCodeSize;
     CharacterCode[1] = MemoryAllocationIndex;
-    CharacterCode[2] = Utf16Char;
+    CharacterCode[2] = CharacterLength;
     CharacterCode[3] = 0xf;
     return CharacterCode;
   }
-  UnicodeCodePoint = Utf16Char | 0xf;
+  UnicodeCodePoint = CharacterLength | 0xf;
   if (0x7fffffffffffffff < UnicodeCodePoint) {
     UnicodeCodePoint = 0x7fffffffffffffff;
   }
   MemoryAllocationIndex = FUN_180067110(UnicodeCodePoint + 1);
   *CharacterCode = MemoryAllocationIndex;
                     // WARNING: Subroutine does not return
-  memcpy(MemoryAllocationIndex,SystemBufferSize,Utf16Char + 1);
+  memcpy(MemoryAllocationIndex,SystemBufferSize,CharacterLength + 1);
 }
 
 
@@ -225678,7 +225692,21 @@ InitializeSystemMemoryBoundaryAddress(uint64_t *CharacterCode,unsigned long long
 
 
 
-uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 系统处理状态标志初始化函数
+ * 
+ * 该函数分配并初始化系统处理状态标志结构体，设置各种默认值。
+ * 如果提供了SystemBufferSize参数，则从该地址复制配置信息。
+ * 
+ * @param CharacterCode 字符代码参数（未使用）
+ * @param SystemBufferSize 系统缓冲区大小指针，包含配置信息
+ * 
+ * @return 返回初始化后的处理状态标志指针
+ * 
+ * @note 分配0x30字节的内存空间用于状态标志
+ * @note 设置多个默认值包括0x539、0x3e4ccccd等
+ */
+uint64_t * InitializeSystemProcessingStatus(uint64_t CharacterCode,long long SystemBufferSize
 {
   uint64_t Utf16Char;
   void *SystemContext;
