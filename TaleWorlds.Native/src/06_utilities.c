@@ -76882,6 +76882,18 @@ void LockStdResourceAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x70处执行异常函数
+ * 
+ * 该函数从数据缓冲区的0x70偏移量处获取异常数据缓冲区指针，
+ * 如果指针有效，则执行相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常函数信息
+ * 
+ * @note 原始函数名：Unwind_180908f40
+ * @note 异常处理：执行异常处理函数
+ */
 void ExecuteExceptionFunctionAtOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
