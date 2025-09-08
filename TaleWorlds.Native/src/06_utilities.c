@@ -91954,7 +91954,19 @@ void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_
 
 
 
-void Unwind_18090c610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证异常处理状态和数据完整性（偏移量0xC610）
+ * 
+ * 该函数负责验证异常处理器的状态和数据的完整性，确保异常处理
+ * 系统处于正常工作状态。此函数在异常处理的安全验证中起关键作用。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含验证参数
+ * 
+ * @note 原始函数名：Unwind_18090c610
+ * @note 该函数执行异常处理状态的安全验证
+ */
+void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -91990,7 +92002,19 @@ void Unwind_18090c610(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c620(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理资源和释放内存（偏移量0xC620）
+ * 
+ * 该函数负责清理异常处理过程中使用的资源，释放相关的内存块，
+ * 并重置异常处理状态。这是异常处理清理过程的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含清理参数
+ * 
+ * @note 原始函数名：Unwind_18090c620
+ * @note 该函数执行异常处理资源的清理和内存释放
+ */
+void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
