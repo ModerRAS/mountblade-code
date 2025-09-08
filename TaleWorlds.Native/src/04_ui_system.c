@@ -72384,14 +72384,14 @@ LAB_180706f57:
       dataBuffer = registerPointer + 2;
       *registerPointer = *eventQueuePointer | 3;
       registerPointer[1] = statusFlag;
-      EventOperationCount = stackParam00000090 - uVar9;
-      if (stackParam000000a0 == 0) {
-        EventOperationCount = 0;
+      operationCount = stackParameter90 - eventIndex;
+      if (stackParameterA0 == 0) {
+        operationCount = 0;
       }
-      if (EventOperationCount != 0) {
-        RegisterPointer[1] = bVar6 | 0x40;
-        localInt7 = (EventOperationCount + -1) / 0xff;
-        if (0 < localInt7) {
+      if (operationCount != 0) {
+        registerPointer[1] = statusFlag | 0x40;
+        processingStep = (operationCount + -1) / 0xff;
+        if (0 < processingStep) {
           pisCharacterMatch2 = pbVar4;
           for (localLong8 = (longlong)localInt7; localLong8 != 0; localLong8 = localLong8 + -1) {
             *pisCharacterMatch2 = 0xff;
