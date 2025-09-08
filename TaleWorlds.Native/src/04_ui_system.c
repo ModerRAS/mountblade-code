@@ -5867,10 +5867,10 @@ UIHandle GetUIStatusFlag(void)
  处理UI组件的主函数
  处理UI组件的生命周期管理，包括组件的初始化、更新和销毁。
  * 它会检查UI系统是否已初始化，然后根据传入的组件参数进行相应的处理。
-  componentPointer UI组件的指针，包含组件的状态和数据信息
+  ComponentData UI组件的指针，包含组件的状态和数据信息
   无返回值
   原始函数名: ProcessUIComponent
- void ProcessUIComponent(UIByte *componentPointer)
+ void ProcessUIComponent(UIByte *ComponentData)
 
 {
   ulonglong CurrentBufferIndex;
@@ -91074,15 +91074,33 @@ void ClearUIContextMemory(UIHandle uiContext)
 
 
 
-int FUN_18071dbc0(longlong uiContext,UIDword *dataSource,UIDword targetBuffer,UIDword bufferSize,
-                 int resultPointer)
+/**
+ * @brief 处理UI系统数据验证和状态管理
+ * 
+ * 该函数负责处理UI系统的数据验证、状态管理和事件处理：
+ * - 验证UI数据源的完整性和有效性
+ * - 处理UI组件的状态转换
+ * - 管理UI缓冲区的数据写入
+ * - 执行UI事件的处理和响应
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源数组指针
+ * @param targetBuffer 目标缓冲区标识
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理结果状态码，成功返回非零值
+ * 
+ * @note 原始函数名：FUN_18071dbc0
+ */
+int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSource,UIDword targetBuffer,UIDword bufferSize,
+                                            int resultPointer)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  int TempInt4;
-  int localInt5;
+  int eventProcessingResult;
+  int stateManagementResult;
   
   *(UIDword *)(uiBufferData + 0x17c8) = dataSource[0xc];
   *(UIDword *)(uiBufferData + 0x1240) = dataSource[0xd];

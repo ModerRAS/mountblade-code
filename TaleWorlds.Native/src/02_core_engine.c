@@ -217011,7 +217011,7 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
   pMemoryAddressMaskPointer = SystemEventTemplatePointer;
   ProcessSystemStatusAndBufferSize(SystemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *pMemoryAddressMaskPointer = &SystemMemoryAddressMaskPointerSecondary;
-  FUN_180094c20(pMemoryAddressMaskPointer + 0xe);
+  ProcessSystemMemoryValidation(pMemoryAddressMaskPointer + 0xe);
   SystemEventTemplatePointer[0x36] = 0;
   SystemEventTemplatePointer[0x43] = 0;
   SystemEventTemplatePointer[0x44] = 0;
