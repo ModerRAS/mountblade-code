@@ -97966,7 +97966,7 @@ LAB_180724308:
     sVar2 = ReadUIData(dataSource,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[sVar1],8);
     ContextFirstValue = sVar1 - sVar2;
     if (sVar2 < 1) goto LAB_180724308;
-    sVar1 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar2],8);
+    sVar1 = ReadUIData(dataSource,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[sVar2],8);
     sVar5 = sVar2 - sVar1;
   }
   if (sVar1 < 1) {
@@ -97974,7 +97974,7 @@ LAB_180724308:
     sVar2 = 0;
   }
   else {
-    sVar2 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar1],8);
+    sVar2 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[sVar1],8);
     sVar1 = sVar1 - sVar2;
   }
   *uiContext = sVar2;
@@ -97984,7 +97984,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[2] = sVar1;
@@ -97994,7 +97994,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
+    sVar5 = ReadUIData(dataSource,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
     ContextFirstValue = ContextFirstValue - sVar5;
   }
   if (sVar5 < 1) {
@@ -98002,7 +98002,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[4] = sVar1;
@@ -98012,7 +98012,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
+    sVar5 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
     ContextFirstValue = ContextFirstValue - sVar5;
   }
   uiContext[6] = sVar5;
@@ -98024,7 +98024,7 @@ LAB_180724308:
     ContextFirstValue = ReadUIData(dataSource,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[sVar4],8);
     sVar4 = sVar4 - ContextFirstValue;
     if (0 < ContextFirstValue) {
-      sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
+      sVar5 = ReadUIData(dataSource,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
       ContextFirstValue = ContextFirstValue - sVar5;
       goto LAB_180724486;
     }
@@ -98037,7 +98037,7 @@ LAB_180724486:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[8] = sVar1;
@@ -98047,7 +98047,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
+    sVar5 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
     ContextFirstValue = ContextFirstValue - sVar5;
   }
   uiContext[10] = sVar5;
@@ -98057,7 +98057,7 @@ LAB_180724486:
     ContextFirstValue = 0;
   }
   else {
-    ContextFirstValue = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar4],8);
+    ContextFirstValue = ReadUIData(dataSource,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[sVar4],8);
     sVar4 = sVar4 - ContextFirstValue;
   }
   if (ContextFirstValue < 1) {
@@ -98065,7 +98065,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
+    sVar5 = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[ContextFirstValue],8);
     ContextFirstValue = ContextFirstValue - sVar5;
   }
   uiContext[0xc] = sVar5;
@@ -98075,7 +98075,7 @@ LAB_180724486:
     uiContext[0xf] = 0;
   }
   else {
-    ContextFirstValue = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar4],8);
+    ContextFirstValue = ReadUIData(dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[sVar4],8);
     uiContext[0xe] = ContextFirstValue;
     uiContext[0xf] = sVar4 - ContextFirstValue;
   }
@@ -98122,43 +98122,43 @@ void FUN_1807245b0(UIHandle uiContext,int *dataSource)
     WriteUIDataToBuffer(uiContext,TempInt4,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[ProcessingResult1],8);
   }
   if (0 < TempInt4) {
-    WriteUIDataToBuffer(uiContext,ProcessingResult2,&UNK_180954550 + (byte)(&UILookupTableIndex)[TempInt4],8);
+    WriteUIDataToBuffer(uiContext,ProcessingResult2,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[TempInt4],8);
   }
   if (0 < ProcessingResult2) {
-    WriteUIDataToBuffer(uiContext,*dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ProcessingResult2],8);
+    WriteUIDataToBuffer(uiContext,*dataSource,&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[ProcessingResult2],8);
   }
   if (0 < loopCounter) {
-    WriteUIDataToBuffer(uiContext,dataSource[2],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[loopCounter],8);
+    WriteUIDataToBuffer(uiContext,dataSource[2],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[loopCounter],8);
   }
   if (0 < localInt7 + processedCount) {
-    WriteUIDataToBuffer(uiContext,processedCount,&UNK_180954550 + (byte)(&UILookupTableIndex)[localInt7 + processedCount],8);
+    WriteUIDataToBuffer(uiContext,processedCount,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[localInt7 + processedCount],8);
   }
   if (0 < processedCount) {
-    WriteUIDataToBuffer(uiContext,dataSource[4],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[processedCount],8);
+    WriteUIDataToBuffer(uiContext,dataSource[4],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[processedCount],8);
   }
   if (0 < localInt7) {
-    WriteUIDataToBuffer(uiContext,dataSource[6],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt7],8);
+    WriteUIDataToBuffer(uiContext,dataSource[6],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[localInt7],8);
   }
   if (0 < uiValidationResult + processingResult) {
     WriteUIDataToBuffer(uiContext,processingResult,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[uiValidationResult + processingResult],8);
   }
   if (0 < processingResult) {
-    WriteUIDataToBuffer(uiContext,uiCompareResult,&UNK_180954550 + (byte)(&UILookupTableIndex)[processingResult],8);
+    WriteUIDataToBuffer(uiContext,uiCompareResult,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[processingResult],8);
   }
   if (0 < uiCompareResult) {
-    WriteUIDataToBuffer(uiContext,dataSource[8],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[uiCompareResult],8);
+    WriteUIDataToBuffer(uiContext,dataSource[8],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[uiCompareResult],8);
   }
   if (0 < localInt9) {
-    WriteUIDataToBuffer(uiContext,dataSource[10],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt9],8);
+    WriteUIDataToBuffer(uiContext,dataSource[10],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[localInt9],8);
   }
   if (0 < uiValidationResult) {
-    WriteUIDataToBuffer(uiContext,localInt5,&UNK_180954550 + (byte)(&UILookupTableIndex)[uiValidationResult],8);
+    WriteUIDataToBuffer(uiContext,localInt5,&UIDataLookupTable180954550 + (byte)(&UILookupTableIndex)[uiValidationResult],8);
   }
   if (0 < localInt5) {
-    WriteUIDataToBuffer(uiContext,dataSource[0xc],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt5],8);
+    WriteUIDataToBuffer(uiContext,dataSource[0xc],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[localInt5],8);
   }
   if (0 < localInt8) {
-    WriteUIDataToBuffer(uiContext,dataSource[0xe],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt8],8);
+    WriteUIDataToBuffer(uiContext,dataSource[0xe],&UIDataLookupTable1809544b0 + (byte)(&UILookupTableIndex)[localInt8],8);
   }
   return;
 }
