@@ -1735,38 +1735,34 @@ void* UIGestureCoordinates;
 #define UIDataBufferQuaternary UNK_180953668
 #define UIDataBufferQuinary UNK_180953688
 
- // UI系统坐标数据表宏定义
-#define UICoordinateDataTableA UNK_1809536a6
-#define UICoordinateDataTableB UNK_1809536a8
+ // UI系统坐标数据表美化
+#define UICoordinateDataTable2D UNK_1809536a6
+#define UICoordinateDataTable3D UNK_1809536a8
 
- // UI系统函数结果表宏定义
-#define UIFunctionResultTableA UNK_1809535ec
-#define UIFunctionResultTableB UNK_1809535e8
-#define UIFunctionResultTableC UNK_180954788
-#define UIFunctionResultTableD UNK_1809535d8
-#define UIFunctionResultTableE UNK_1809535cc
-#define UIFunctionResultTableF UNK_180953640
-#define UIFunctionResultTableG UNK_1809547d8
-#define UIFunctionResultTableH UNK_1809547b8
-#define UIFunctionResultTableI UNK_180954840
-#define UIFunctionResultTableJ UNK_180954848
-#define UIFunctionResultTableK UNK_1809535d4
-#define UIFunctionResultTableL UNK_1809535b8
+ // UI系统函数结果表美化
+#define UIFunctionResultTableTransform UNK_1809535ec
+#define UIFunctionResultTableColor UNK_1809535e8
+#define UIFunctionResultTableShader UNK_180954788
+#define UIFunctionResultTableTexture UNK_1809535d8
+#define UIFunctionResultTableViewport UNK_1809535cc
+#define UIFunctionResultTableLighting UNK_180953640
+#define UIFunctionResultTableAnimation UNK_1809547d8
+#define UIFunctionResultTableEvent UNK_1809547b8
+#define UIFunctionResultTableInput UNK_180954840
+#define UIFunctionResultTableLayout UNK_180954848
+#define UIFunctionResultTableState UNK_1809535d4
+#define UIFunctionResultTableDebug UNK_1809535b8
 
- // UI系统验证数据表宏定义
-#define UIValidationDataTableA UNK_180954770
-#define UIValidationDataTableB UNK_1809536c0
-#define UIValidationDataTableC UNK_180953704
+ // UI系统验证数据表美化
+#define UIValidationDataTableInput UNK_180954770
+#define UIValidationDataTableState UNK_1809536c0
+#define UIValidationDataTableSecurity UNK_180953704
 
- UI系统数据表宏定义
- UNK_180956f72 - UI数据表A
-#define UIDataTableA UNK_180956f72
- UNK_18097edf8 - UI数据表B
-#define UIDataTableB UNK_18097edf8
- UNK_180980dc0 - UI数据表C
-#define UIDataTableC UNK_180980dc0
- UNK_180981620 - UI数据表D
-#define UIDataTableD UNK_180981620
+ // UI系统数据表美化
+#define UIDataTableGlobal UNK_180956f72
+#define UIDataTableComponent UNK_18097edf8
+#define UIDataTableEvent UNK_180980dc0
+#define UIDataTableResource UNK_180981620
 
  UI系统渲染缓冲区指针宏定义
  UNK_18097f660 - UI组件数据缓冲区指针
