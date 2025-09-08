@@ -98,6 +98,16 @@
 // 缓冲区大小常量
 #define SecurityValidationBufferSize 32
 #define WorkingDataBufferSize 512
+
+// 线程上下文常量
+#define ThreadContextDataOffset 0x50
+#define ValidationStatusPointerOffset 200
+#define ExceptionHandlerContextF8Offset 0xf8
+#define ExceptionHandlerContextF0Offset 0xf0
+#define ValidationFlagOffset3541 0x3541
+#define ValidationContextOffset3538 0x3538
+#define ValidationStatusPointerE0Offset 0xe0
+#define ResourceDataPointerOffset20 0x20
 #define ResourceHandleSize 8
 
 // 系统状态常量
@@ -60092,8 +60102,7 @@ void ExecuteTertiaryContextExceptionCleanup(DataBuffer operationBase,int64_t dat
  * 
  * @note 原始函数名：Unwind_180905ea0
  */
-void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase,int64_t dataBuffer)
-
+void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   char *validationFlag;
@@ -60102,10 +60111,10 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase,int64_t dat
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  resourceIterator = *(int64_t *)(dataBuffer + 0x50);
+  resourceIterator = *(int64_t *)(dataBuffer + ThreadContextDataOffset);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 200);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
@@ -60494,7 +60503,7 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
   resourceIterator = *(int64_t *)(dataBuffer + 0x70);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 200);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
