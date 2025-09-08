@@ -96557,13 +96557,13 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_180954690 + (byte)(&UNK_180954728)[targetBuffer],8);
+    sVar1 = ReadUIData(dataSource,&UILookupTablePrimary + (byte)(&UILookupTableIndex)[targetBuffer],8);
     sVar4 = (short)targetBuffer - sVar1;
     if (sVar1 < 1) goto LAB_180724308;
-    sVar2 = ReadUIData(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar1],8);
+    sVar2 = ReadUIData(dataSource,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[sVar1],8);
     sVar3 = sVar1 - sVar2;
     if (sVar2 < 1) goto LAB_180724308;
-    sVar1 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar2],8);
+    sVar1 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar2],8);
     sVar5 = sVar2 - sVar1;
   }
   if (sVar1 < 1) {
@@ -96571,7 +96571,7 @@ LAB_180724308:
     sVar2 = 0;
   }
   else {
-    sVar2 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar1],8);
+    sVar2 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar1],8);
     sVar1 = sVar1 - sVar2;
   }
   *uiContext = sVar2;
@@ -96581,7 +96581,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[2] = sVar1;
@@ -96591,7 +96591,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   if (sVar5 < 1) {
@@ -96599,7 +96599,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[4] = sVar1;
@@ -96609,7 +96609,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[6] = sVar5;
@@ -96618,10 +96618,10 @@ LAB_180724308:
     sVar4 = 0;
   }
   else {
-    sVar3 = ReadUIData(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[sVar4],8);
     sVar4 = sVar4 - sVar3;
     if (0 < sVar3) {
-      sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
+      sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar3],8);
       sVar3 = sVar3 - sVar5;
       goto LAB_180724486;
     }
@@ -96634,7 +96634,7 @@ LAB_180724486:
     sVar1 = 0;
   }
   else {
-    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[8] = sVar1;
@@ -96644,7 +96644,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[10] = sVar5;
@@ -96654,7 +96654,7 @@ LAB_180724486:
     sVar3 = 0;
   }
   else {
-    sVar3 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UILookupTableIndex)[sVar4],8);
     sVar4 = sVar4 - sVar3;
   }
   if (sVar3 < 1) {
@@ -96662,7 +96662,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[0xc] = sVar5;
@@ -96672,7 +96672,7 @@ LAB_180724486:
     uiContext[0xf] = 0;
   }
   else {
-    sVar3 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[sVar4],8);
     uiContext[0xe] = sVar3;
     uiContext[0xf] = sVar4 - sVar3;
   }
@@ -96712,50 +96712,50 @@ void FUN_1807245b0(UIHandle uiContext,int *dataSource)
   uiValidationResult = localInt8 + localInt5;
   TempInt4 = uiValidationResult + processingResult + ProcessingResult1;
   if (0 < TempInt4) {
-    FUN_1807054a0(uiContext,ProcessingResult1,&UNK_180954690 + (byte)(&UNK_180954728)[TempInt4],8);
+    FUN_1807054a0(uiContext,ProcessingResult1,&UILookupTablePrimary + (byte)(&UILookupTableIndex)[TempInt4],8);
   }
   TempInt4 = ProcessingResult2 + localInt6;
   if (0 < ProcessingResult1) {
-    FUN_1807054a0(uiContext,TempInt4,&UNK_1809545f0 + (byte)(&UNK_180954728)[ProcessingResult1],8);
+    FUN_1807054a0(uiContext,TempInt4,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[ProcessingResult1],8);
   }
   if (0 < TempInt4) {
-    FUN_1807054a0(uiContext,ProcessingResult2,&UNK_180954550 + (byte)(&UNK_180954728)[TempInt4],8);
+    FUN_1807054a0(uiContext,ProcessingResult2,&UNK_180954550 + (byte)(&UILookupTableIndex)[TempInt4],8);
   }
   if (0 < ProcessingResult2) {
-    FUN_1807054a0(uiContext,*dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[ProcessingResult2],8);
+    FUN_1807054a0(uiContext,*dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ProcessingResult2],8);
   }
   if (0 < localInt6) {
-    FUN_1807054a0(uiContext,dataSource[2],&UNK_1809544b0 + (byte)(&UNK_180954728)[localInt6],8);
+    FUN_1807054a0(uiContext,dataSource[2],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt6],8);
   }
   if (0 < localInt7 + processedCount) {
-    FUN_1807054a0(uiContext,processedCount,&UNK_180954550 + (byte)(&UNK_180954728)[localInt7 + processedCount],8);
+    FUN_1807054a0(uiContext,processedCount,&UNK_180954550 + (byte)(&UILookupTableIndex)[localInt7 + processedCount],8);
   }
   if (0 < processedCount) {
-    FUN_1807054a0(uiContext,dataSource[4],&UNK_1809544b0 + (byte)(&UNK_180954728)[processedCount],8);
+    FUN_1807054a0(uiContext,dataSource[4],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[processedCount],8);
   }
   if (0 < localInt7) {
-    FUN_1807054a0(uiContext,dataSource[6],&UNK_1809544b0 + (byte)(&UNK_180954728)[localInt7],8);
+    FUN_1807054a0(uiContext,dataSource[6],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt7],8);
   }
   if (0 < uiValidationResult + processingResult) {
-    FUN_1807054a0(uiContext,processingResult,&UNK_1809545f0 + (byte)(&UNK_180954728)[uiValidationResult + processingResult],8);
+    FUN_1807054a0(uiContext,processingResult,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[uiValidationResult + processingResult],8);
   }
   if (0 < processingResult) {
-    FUN_1807054a0(uiContext,uiCompareResult,&UNK_180954550 + (byte)(&UNK_180954728)[processingResult],8);
+    FUN_1807054a0(uiContext,uiCompareResult,&UNK_180954550 + (byte)(&UILookupTableIndex)[processingResult],8);
   }
   if (0 < uiCompareResult) {
-    FUN_1807054a0(uiContext,dataSource[8],&UNK_1809544b0 + (byte)(&UNK_180954728)[uiCompareResult],8);
+    FUN_1807054a0(uiContext,dataSource[8],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[uiCompareResult],8);
   }
   if (0 < localInt9) {
-    FUN_1807054a0(uiContext,dataSource[10],&UNK_1809544b0 + (byte)(&UNK_180954728)[localInt9],8);
+    FUN_1807054a0(uiContext,dataSource[10],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt9],8);
   }
   if (0 < uiValidationResult) {
-    FUN_1807054a0(uiContext,localInt5,&UNK_180954550 + (byte)(&UNK_180954728)[uiValidationResult],8);
+    FUN_1807054a0(uiContext,localInt5,&UNK_180954550 + (byte)(&UILookupTableIndex)[uiValidationResult],8);
   }
   if (0 < localInt5) {
-    FUN_1807054a0(uiContext,dataSource[0xc],&UNK_1809544b0 + (byte)(&UNK_180954728)[localInt5],8);
+    FUN_1807054a0(uiContext,dataSource[0xc],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt5],8);
   }
   if (0 < localInt8) {
-    FUN_1807054a0(uiContext,dataSource[0xe],&UNK_1809544b0 + (byte)(&UNK_180954728)[localInt8],8);
+    FUN_1807054a0(uiContext,dataSource[0xe],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt8],8);
   }
   return;
 }
@@ -114569,18 +114569,28 @@ void ProcessUIBufferDataValidation(void)
 
 
 
- void FUN_180738e7f(void)
-void FUN_180738e7f(void)
+ /**
+ * @brief UI资源清理和渲染任务执行函数
+ * 
+ * 该函数负责UI资源的清理和渲染任务执行：
+ * - 检查资源清理标志
+ * - 释放UI内存资源
+ * - 执行渲染任务
+ * 
+ * @return 处理结果状态码
+ */
+void CleanupUIResourcesAndExecuteRender(void)
+void CleanupUIResourcesAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong resourceCleanupFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
