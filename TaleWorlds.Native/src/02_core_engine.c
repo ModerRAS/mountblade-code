@@ -194615,7 +194615,55 @@ LAB_1801606a8:
 
 
 
-6060f(float CharacterCode,long long SystemBufferSizevoid FUN_18016060f(float CharacterCode,long long SystemBufferSize
+// 原始函数名：FUN_18016060f - 浮点数字符代码转换处理器
+#define ProcessFloatCharacterCodeConversion FUN_18016060f
+// 原始函数名：FUN_180160a00 - 系统数据初始化器
+#define InitializeSystemData FUN_180160a00
+// 原始函数名：FUN_180160a50 - 字符代码处理器
+#define ProcessCharacterCode FUN_180160a50
+// 原始函数名：FUN_180160a56 - 字符代码验证器
+#define ValidateCharacterCode FUN_180160a56
+// 原始函数名：FUN_180160a80 - 系统状态重置器
+#define ResetSystemStatus FUN_180160a80
+// 原始函数名：FUN_180160ab6 - 系统配置验证器
+#define ValidateSystemConfiguration FUN_180160ab6
+// 原始函数名：FUN_180160ad4 - 系统内存管理器
+#define ManageSystemMemory FUN_180160ad4
+// 原始函数名：FUN_180160b4a - UTF-8到UTF-16转换器
+#define ConvertUtf8ToUtf16 FUN_180160b4a
+// 原始函数名：FUN_180160c6e - 字符代码缓冲区处理器
+#define ProcessCharacterCodeBuffer FUN_180160c6e
+// 原始函数名：FUN_180160c8a - Unicode字符处理器
+#define ProcessUnicodeCharacter FUN_180160c8a
+// 原始函数名：FUN_180160cb0 - 系统缓冲区清理器
+#define CleanupSystemBuffer FUN_180160cb0
+// 原始函数名：FUN_180161eb0 - 字符编码转换器
+#define ConvertCharacterEncoding FUN_180161eb0
+// 原始函数名：FUN_180162220 - 多字节字符处理器
+#define ProcessMultiByteCharacter FUN_180162220
+// 原始函数名：FUN_180162600 - 系统资源管理器
+#define ManageSystemResources FUN_180162600
+// 原始函数名：FUN_1801659e0 - 系统数据验证器
+#define ValidateSystemData FUN_1801659e0
+// 原始函数名：FUN_180166dd0 - 字符串编码处理器
+#define ProcessStringEncoding FUN_180166dd0
+// 原始函数名：FUN_1801676b0 - 系统上下文处理器
+#define ProcessSystemContext FUN_1801676b0
+// 原始函数名：FUN_180167a50 - 系统最终清理器
+#define FinalizeSystemCleanup FUN_180167a50
+
+/**
+ * @brief 处理浮点数字符代码转换
+ * 
+ * 该函数负责处理浮点数格式的字符代码转换，支持系统缓冲区大小的动态调整。
+ * 
+ * @param CharacterCode 浮点数格式的字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 转换后的字符代码或错误代码
+ * 
+ * @note 原始函数名：FUN_18016060f
+ */
+void ProcessFloatCharacterCodeConversion(float CharacterCode,long long SystemBufferSize)
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
@@ -195095,7 +195143,19 @@ void ProcessUnsignedCharacterCodeValidation(unsigned long long CharacterCode)
 
 
 
-60a00(voidvoid FUN_180160a00(void
+/**
+ * @brief 初始化系统数据
+ * 
+ * 该函数负责初始化系统数据结构，包括：
+ * - 分配内存资源
+ * - 设置数据节点
+ * - 配置系统寄存器状态
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160a00
+ */
+void InitializeSystemData(void)
 {
   long long PrimaryDataSize;
   long long SystemDataNode;
@@ -195169,7 +195229,20 @@ void ProcessUnsignedCharacterCodeValidation(unsigned long long CharacterCode)
 
 
 
-60a56(long long CharacterCodevoid FUN_180160a56(long long CharacterCode
+/**
+ * @brief 验证字符代码
+ * 
+ * 该函数负责验证字符代码的有效性，包括：
+ * - 检查字符代码的格式
+ * - 验证字符代码的范围
+ * - 处理字符代码的引用计数
+ * 
+ * @param CharacterCode 待验证的字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160a56
+ */
+void ValidateCharacterCode(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
