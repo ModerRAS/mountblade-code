@@ -219,6 +219,20 @@
 #define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660  // 处理字符代码和主指针
 #define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
 #define ProcessCharacterCodeWithBufferPointer FUN_18014f520   // 处理字符代码和缓冲区指针
+/**
+ * @brief 处理系统内存管理
+ * 
+ * 该函数负责管理系统内存的分配和释放，主要功能包括：
+ * - 分配和配置系统内存缓冲区
+ * - 管理内存池的大小和状态
+ * - 处理内存块的创建和销毁
+ * - 优化内存使用效率
+ * 
+ * 该函数是系统内存管理的核心组件，确保系统内存的
+ * 高效使用和正确管理。
+ * 
+ * @note 原始函数名：FUN_18015c0a0
+ */
 #define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展
