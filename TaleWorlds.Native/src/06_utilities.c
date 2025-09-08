@@ -91821,7 +91821,16 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090c5e0(void)
+/**
+ * @brief 释放系统资源并执行清理函数（偏移量0xC5E0）
+ * 
+ * 该函数负责减少系统资源计数器，并调用系统函数表中的清理函数。
+ * 这是一个资源释放和系统清理的关键函数。
+ * 
+ * @note 原始函数名：Unwind_18090c5e0
+ * @note 该函数在系统资源管理中起到关键作用
+ */
+void ReleaseSystemResourcesAndCleanup(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -91832,7 +91841,19 @@ void Unwind_18090c5e0(void)
 
 
 
-void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常上下文参数（偏移量0xC5F0）
+ * 
+ * 该函数负责配置异常上下文的参数，设置异常处理所需的各种
+ * 数据结构和资源指针。这是异常处理系统初始化的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含配置参数
+ * 
+ * @note 原始函数名：Unwind_18090c5f0
+ * @note 该函数在异常处理系统初始化过程中被调用
+ */
+void ConfigureExceptionContextParameters(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -91877,7 +91898,19 @@ void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c600(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器并初始化资源（偏移量0xC600）
+ * 
+ * 该函数负责设置异常处理器，初始化系统资源，并配置异常处理
+ * 所需的数据结构。此函数在异常处理系统初始化过程中发挥重要作用。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含初始化参数
+ * 
+ * @note 原始函数名：Unwind_18090c600
+ * @note 该函数处理异常处理器的设置和资源初始化
+ */
+void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
