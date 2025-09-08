@@ -67010,22 +67010,28 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
  * @note 原始函数名：Unwind_180906d90
  */
 void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
-
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x268);
+  // 获取内存资源指针
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ResourceContextDataOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
+  
+  // 计算内存区域基地址
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
+    // 计算内存块偏移量
+    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    
+    // 检查异常列表和内存状态
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针和引用计数
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
@@ -67036,8 +67042,9 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+      // 执行内存管理操作
+      ManageMemory(memoryRegionBase, SetBitFlag(MemoryManagementFlagMask, *(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList),
+                   memoryResourcePointer, memoryRegionBase, SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -93632,7 +93639,7 @@ void DecrementSystemResourceCounterAndExecuteFunctionA1(void)
  * 
  * @note 原始函数名：Unwind_18090ca70
  */
-void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
