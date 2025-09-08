@@ -89873,8 +89873,31 @@ void ProcessUIElementData(longlong uiContext,int dataSource,int targetBuffer,lon
 
 
  void FUN_18071b080(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-void FUN_18071b080(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-                  UIHandle param_6,int param_7)
+/**
+ * @brief 处理UI数据缓冲区比较和验证操作
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区比较操作，包括数据验证、
+ * 循环处理、以及结果计算。函数通过复杂的循环结构来处理大量的
+ * UI数据，确保数据的正确性和一致性。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源索引，用于确定数据的起始位置
+ * @param targetBuffer 目标缓冲区索引，用于确定处理的目标范围
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @param param_6 UI句柄参数，包含UI组件的相关信息
+ * @param param_7 处理参数，用于控制处理流程
+ * 
+ * @note 该函数是UI数据处理系统的核心组件，涉及复杂的数据比较和验证操作
+ * @warning 函数执行过程中会进行大量的循环操作和数据访问
+ * @see ProcessUIComponentDataTransformation, ProcessUIRenderDataUpdate
+ */
+// UI数据缓冲区比较处理函数
+// 原始函数名: FUN_18071b080
+#define ProcessUIDataBufferComparison FUN_18071b080
+
+void ProcessUIDataBufferComparison(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+                                   UIHandle uiHandleParameter,int processingParameter)
 
 {
   int processingResult;
