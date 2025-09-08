@@ -1196,9 +1196,9 @@
 #define CameraManagerStatusFlag CameraManagerStatusFlag   // 相机管理器状态标志
 #define SystemNodeStatusFlag SystemNodeStatusFlag           // 系统节点状态标志
 #define ValidationStatusFlag ValidationStatusFlag      // 验证状态标志
-#define ConfigCurrentCharacter ConfigStatusFlag             // 配置状态标志
-#define DataCurrentCharacter DataStatusFlag                 // 数据状态标志
-#define StateCurrentCharacter StateStatusFlag               // 状态标志
+#define ConfigStatusFlag ConfigStatusFlag             // 配置状态标志
+#define DataStatusFlag DataStatusFlag                 // 数据状态标志
+#define StateStatusFlag StateStatusFlag               // 状态标志
 
 /**
  * @brief 处理系统优先级和标志
@@ -16808,7 +16808,7 @@ void CoreEngineInitializePhysicsManager(void
  */
 void CoreEngineInitializeSystemConfigManager(void
 {
-  char ConfigCurrentCharacter;
+  char ConfigStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -16821,11 +16821,11 @@ void CoreEngineInitializeSystemConfigManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  ConfigCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  ConfigStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConfigHandler = ConfigurationManagementCallback;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (ConfigCurrentCharacter == '\0') {
+  while (ConfigStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemConfigurationDataTemplate,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -16836,7 +16836,7 @@ void CoreEngineInitializeSystemConfigManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    ConfigCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    ConfigStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemConfigurationDataTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -16870,7 +16870,7 @@ void CoreEngineInitializeSystemConfigManager(void
  */
 void CoreEngineInitializeSystemDataManager(void
 {
-  char DataCurrentCharacter;
+  char DataStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -16883,11 +16883,11 @@ void CoreEngineInitializeSystemDataManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  DataCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  DataStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   DataHandler = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (DataCurrentCharacter == '\0') {
+  while (DataStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemConfigurationHandleTemplate,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -16898,7 +16898,7 @@ void CoreEngineInitializeSystemDataManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    DataCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    DataStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemConfigurationHandleTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -16932,7 +16932,7 @@ void CoreEngineInitializeSystemDataManager(void
  */
 void CoreEngineInitializeSystemStateManager(void
 {
-  char StateCurrentCharacter;
+  char StateStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -16945,11 +16945,11 @@ void CoreEngineInitializeSystemStateManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  StateCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  StateStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   StateHandler = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (StateCurrentCharacter == '\0') {
+  while (StateStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemStateConfigurationTemplate,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -16960,7 +16960,7 @@ void CoreEngineInitializeSystemStateManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    StateCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    StateStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemStateConfigurationTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -19179,7 +19179,7 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
  */
 void CoreEngineInitializeNetworkConnectionDataManager(void
 {
-  char DataCurrentCharacter;
+  char DataStatusFlag;
   void *CharacterCode;
   int DataComparisonResult;
   long long *SystemContext;
@@ -19192,11 +19192,11 @@ void CoreEngineInitializeNetworkConnectionDataManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  DataCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  DataStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   DataHandler = 0;
   CurrentNode = CharacterCode;
   PreviousNode = (void *)CharacterCode[1];
-  while (DataCurrentCharacter == '\0') {
+  while (DataStatusFlag == '\0') {
     DataComparisonResult = memcmp(PreviousNode + 4,&SystemMemoryTemplateSecondary,0x10);
     if (DataComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -19207,7 +19207,7 @@ void CoreEngineInitializeNetworkConnectionDataManager(void
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    DataCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    DataStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == CharacterCode) || (DataComparisonResult = memcmp(&SystemMemoryTemplateSecondary,CurrentNode + 4,0x10), DataComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -19241,7 +19241,7 @@ void CoreEngineInitializeNetworkConnectionDataManager(void
  */
 void CoreEngineInitializeNetworkConnectionConfigManager(void
 {
-  char ConfigCurrentCharacter;
+  char ConfigStatusFlag;
   void *CharacterCode;
   int ConfigComparisonResult;
   long long *SystemContext;
@@ -19254,11 +19254,11 @@ void CoreEngineInitializeNetworkConnectionConfigManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  ConfigCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  ConfigStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConfigHandler = 0;
   CurrentNode = CharacterCode;
   PreviousNode = (void *)CharacterCode[1];
-  while (ConfigCurrentCharacter == '\0') {
+  while (ConfigStatusFlag == '\0') {
     ConfigComparisonResult = memcmp(PreviousNode + 4,&SystemConfigTemplatePrimary,0x10);
     if (ConfigComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -19269,7 +19269,7 @@ void CoreEngineInitializeNetworkConnectionConfigManager(void
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    ConfigCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    ConfigStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == CharacterCode) || (ConfigComparisonResult = memcmp(&SystemConfigTemplatePrimary,CurrentNode + 4,0x10), ConfigComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -24547,27 +24547,27 @@ void CoreEngineInitializeRuntimeEnvironment(void
   void *SenaryCharacterStatusBufferPointer;
   uint8_t *StringProcessingBuffer;
   uint32_t StringLength;
-  uint8_t ConfigCurrentCharacterA [72];
+  uint8_t ConfigStatusFlagA [72];
   void *SeptenaryCharacterStatusBufferPointer;
   uint8_t *SystemCurrentCharacterA;
   uint32_t BufferSizeA;
-  uint8_t ConfigCurrentCharacterB [72];
+  uint8_t ConfigStatusFlagB [72];
   void *OctonaryCharacterStatusBufferPointer;
   uint8_t *SystemCurrentCharacterB;
   uint32_t BufferSizeB;
-  uint8_t ConfigCurrentCharacterC [72];
+  uint8_t ConfigStatusFlagC [72];
   void *NonaryCharacterStatusBufferPointer;
   uint8_t *SystemCurrentCharacterC;
   uint32_t BufferSizeC;
-  uint8_t ConfigCurrentCharacterD [72];
+  uint8_t ConfigStatusFlagD [72];
   void *DenaryCharacterStatusBufferPointer;
   uint8_t *SystemCurrentCharacterD;
   uint32_t BufferSizeD;
-  uint8_t ConfigCurrentCharacterE [72];
+  uint8_t ConfigStatusFlagE [72];
   void *UndenaryCharacterStatusBufferPointer;
   uint8_t *SystemCurrentCharacterE;
   uint32_t BufferSizeE;
-  uint8_t ConfigCurrentCharacterF [648];
+  uint8_t ConfigStatusFlagF [648];
   unsigned long long StackDataSecurityKey;
   
   SystemContextId = 0xfffffffffffffffe;
@@ -24606,47 +24606,47 @@ void CoreEngineInitializeRuntimeEnvironment(void
     CoreEngineResetSystemStatus(&StackBuffer678);
   }
   SystemCharacterStatusBufferPointer4e8 = &SystemCurrentCharacter;
-  StringProcessingBuffer = ConfigCurrentCharacterA;
-  ConfigCurrentCharacterA[0] = 0;
+  StringProcessingBuffer = ConfigStatusFlagA;
+  ConfigStatusFlagA[0] = 0;
   StringLength = 0x18;
-  strcpy_s(ConfigCurrentCharacterA,0x40,&SystemConfigTemplateB);
+  strcpy_s(ConfigStatusFlagA,0x40,&SystemConfigTemplateB);
   InitializeCoreEngineConfig(CoreEngineConfigFlag,&SystemCharacterStatusBufferPointer4e8,&StackBuffer678);
   SystemCharacterStatusBufferPointer4e8 = &ThreadLocalStorageTemplate;
   SystemCharacterStatusBufferPointer488 = &SystemCurrentCharacter;
-  SystemCurrentCharacterA = ConfigCurrentCharacterB;
-  ConfigCurrentCharacterB[0] = 0;
+  SystemCurrentCharacterA = ConfigStatusFlagB;
+  ConfigStatusFlagB[0] = 0;
   BufferSizeA = 0xb;
-  strcpy_s(ConfigCurrentCharacterB,0x40,&SystemConfigTemplateC);
+  strcpy_s(ConfigStatusFlagB,0x40,&SystemConfigTemplateC);
   InitializeCoreEngineConfig(CoreEngineConfigFlag,&CharacterStatusBufferPointer488,&StackBuffer678);
   CharacterStatusBufferPointer488 = &ThreadLocalStorageTemplate;
   CharacterStatusBufferPointer428 = &SystemCurrentCharacter;
-  SystemCurrentCharacterB = ConfigCurrentCharacterC;
-  ConfigCurrentCharacterC[0] = 0;
+  SystemCurrentCharacterB = ConfigStatusFlagC;
+  ConfigStatusFlagC[0] = 0;
   BufferSizeB = 0x18;
-  ConfigurationResult = strcpy_s(ConfigCurrentCharacterC,0x40,&SystemConfigTemplateB);
+  ConfigurationResult = strcpy_s(ConfigStatusFlagC,0x40,&SystemConfigTemplateB);
   EngineParameterInverseValueA = (float)CalculateEngineParameterValue(ConfigurationResult,&CharacterStatusBufferPointer428);
   EngineParameterInverseValueA = 1.0 / EngineParameterInverseValueA;
   CharacterStatusBufferPointer428 = &ThreadLocalStorageTemplate;
   CharacterStatusBufferPointer3c8 = &SystemCurrentCharacter;
-  SystemCurrentCharacterC = ConfigCurrentCharacterD;
-  ConfigCurrentCharacterD[0] = 0;
+  SystemCurrentCharacterC = ConfigStatusFlagD;
+  ConfigStatusFlagD[0] = 0;
   BufferSizeC = 0xb;
-  ConfigurationResult = strcpy_s(ConfigCurrentCharacterD,0x40,&SystemConfigTemplateC);
+  ConfigurationResult = strcpy_s(ConfigStatusFlagD,0x40,&SystemConfigTemplateC);
   EngineParameterInverseValueB = (float)CalculateEngineParameterValue(ConfigurationResult,&CharacterStatusBufferPointer3c8);
   EngineParameterInverseValueB = 1.0 / EngineParameterInverseValueB;
   CharacterStatusBufferPointer3c8 = &ThreadLocalStorageTemplate;
   CharacterStatusBufferPointer368 = &SystemCurrentCharacter;
-  SystemCurrentCharacterD = ConfigCurrentCharacterE;
-  ConfigCurrentCharacterE[0] = 0;
+  SystemCurrentCharacterD = ConfigStatusFlagE;
+  ConfigStatusFlagE[0] = 0;
   BufferSizeD = 0xb;
-  ConfigurationResult = strcpy_s(ConfigCurrentCharacterE,0x40,&SystemConfigTemplateC);
+  ConfigurationResult = strcpy_s(ConfigStatusFlagE,0x40,&SystemConfigTemplateC);
   EngineParameterA = (float)CalculateEngineSecondaryParameter(ConfigurationResult,&CharacterStatusBufferPointer368);
   CharacterStatusBufferPointer368 = &ThreadLocalStorageTemplate;
   CharacterStatusBufferPointer308 = &SystemCurrentCharacter;
-  SystemCurrentCharacterE = ConfigCurrentCharacterF;
-  ConfigCurrentCharacterF[0] = 0;
+  SystemCurrentCharacterE = ConfigStatusFlagF;
+  ConfigStatusFlagF[0] = 0;
   BufferSizeE = 0x18;
-  ConfigurationResult = strcpy_s(ConfigCurrentCharacterF,0x40,&SystemConfigTemplateB);
+  ConfigurationResult = strcpy_s(ConfigStatusFlagF,0x40,&SystemConfigTemplateB);
   EngineParameterB = (float)CalculateEngineSecondaryParameter(ConfigurationResult,&CharacterStatusBufferPointer308);
   CharacterStatusBufferPointer308 = &ThreadLocalStorageTemplate;
   SystemStatusValue = CoreEngineGetSystemStatus();
@@ -154108,7 +154108,7 @@ LAB_18013148a:
 uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t SystemBufferSize,float Utf8SourcePointer,float Utf16EndPointer
 {
   int LockResult;
-  uint8_t SystemDataCurrentCharacter;
+  uint8_t SystemDataStatusFlag;
   int in_EAX;
   long long in_R8;
   long long SystemRegisterR11;
@@ -154131,7 +154131,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t S
           if (in_EAX - 2U < 2) {
             Utf16EndPointer = in_XMM5_Da;
           }
-          SystemBufferSize = SystemDataCurrentCharacter;
+          SystemBufferSize = SystemDataStatusFlag;
           if (Utf16EndPointer < Utf8SourcePointer) {
             SystemBufferSize = 1;
           }
