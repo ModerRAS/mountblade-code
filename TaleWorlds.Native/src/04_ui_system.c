@@ -373121,14 +373121,18 @@ UIHandle FUN_18088fff0(longlong uiContext)
 
 
 
- void FUN_18089022b(void)
-void FUN_18089022b(void)
+ /**
+ * @brief 执行UI渲染任务
+ * @note 此函数不返回，直接调用渲染任务执行器
+ */
+void ExecuteUIRenderTaskWrapper(void)
+void ExecuteUIRenderTaskWrapper(void)
 
 {
-  ulonglong stackParam00000240;
+  ulonglong taskParameter;
   
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000240 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务，此函数不返回
+  ExecuteUIRenderTask(taskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 

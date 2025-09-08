@@ -50195,24 +50195,24 @@ void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1370) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1370))(exceptionHandlerContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + SystemDataOffset40);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionPointerOffset1370) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionPointerOffset1370))(exceptionHandlerContext + ExceptionHandlerCallbackParamOffset1360,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1340) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryHandlerOffset1338) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateFlagOffset1340) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1340) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1350) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1318) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1320) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateFlagOffset1340) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusWordOffset1350) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryHandlerOffset1338) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryHandlerOffset1318) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateFlagOffset1320) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1320) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1330) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1318) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateFlagOffset1320) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusWordOffset1330) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryHandlerOffset1318) = &DefaultExceptionHandlerB;
   return;
 }
 

@@ -200005,7 +200005,19 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long SystemBufferS
 
 
 
-6c970(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18016c970(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和系统配置
+ * 
+ * 该函数负责处理字符编码转换过程中的系统配置和状态管理。
+ * 主要功能包括初始化字符状态缓冲区、处理系统事件队列、
+ * 管理内存分配和验证系统数据结构。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uint64_t *CharacterCodeSize, uint64_t *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint *CharacterStatusBuffer;
   int *pStringComparisonResult;
