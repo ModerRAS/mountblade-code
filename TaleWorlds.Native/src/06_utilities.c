@@ -60122,13 +60122,13 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + ExceptionHandlerCallbackOffset10) != 0)
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerContextF8Offset) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerContextF8Offset) + ExceptionHandlerCallbackOffset10) != 0)
      ) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0xf0);
+  calculatedIndex = *(int64_t *)(resourceIterator + ExceptionHandlerContextF0Offset);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x3541);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset3541);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
@@ -60511,13 +60511,13 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + ExceptionHandlerCallbackOffset10) != 0)
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerContextF8Offset) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerContextF8Offset) + ExceptionHandlerCallbackOffset10) != 0)
      ) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0xf0);
+  calculatedIndex = *(int64_t *)(resourceIterator + ExceptionHandlerContextF0Offset);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x3541);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset3541);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
