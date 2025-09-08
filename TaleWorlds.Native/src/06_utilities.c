@@ -125656,4 +125656,85 @@ uint8_t SystemExceptionHandlerStateTable;
 #define InvokeExceptionHandlerContextAtOffsetE0 Unwind_18090de30
 #define CleanupMemoryResourceAtOffsetE0 Unwind_18090de40
 #define ProcessExceptionHandlersInRange Unwind_18090de50
+
+// 异常处理器初始化和清理函数系列 - C150-C320
+// 原始函数名：Unwind_18090c150 - 异常处理器初始化函数C150
+// 功能：初始化异常处理器，设置异常处理上下文和回调函数
+#define InitializeExceptionHandlerC150 Unwind_18090c150
+
+// 原始函数名：Unwind_18090c160 - 异常处理器回调函数C160
+// 功能：调用异常处理器回调函数，处理异常事件
+#define InvokeExceptionHandlerCallbackC160 Unwind_18090c160
+
+// 原始函数名：Unwind_18090c170 - 异常上下文处理函数C170
+// 功能：处理异常上下文，管理异常状态和数据
+#define ProcessExceptionContextC170 Unwind_18090c170
+
+// 原始函数名：Unwind_18090c180 - 异常处理器配置函数C180
+// 功能：配置异常处理器参数，设置异常处理选项
+#define ConfigureExceptionHandlerC180 Unwind_18090c180
+
+// 原始函数名：Unwind_18090c190 - 异常状态重置函数C190
+// 功能：重置异常状态，清理异常处理上下文
+#define ResetExceptionStateC190 Unwind_18090c190
+
+// 原始函数名：Unwind_18090c220 - 异常数据清理函数C220
+// 功能：清理异常数据，释放异常处理资源
+#define CleanupExceptionDataC220 Unwind_18090c220
+
+// 原始函数名：Unwind_18090c240 - 异常处理器验证函数C240
+// 功能：验证异常处理器的有效性，检查异常处理状态
+#define ValidateExceptionHandlerC240 Unwind_18090c240
+
+// 原始函数名：Unwind_18090c260 - 异常处理器设置函数C260
+// 功能：设置异常处理器，配置异常处理参数和标志
+#define SetupExceptionHandlerC260 Unwind_18090c260
+
+// 原始函数名：Unwind_18090c270 - 异常上下文初始化函数C270
+// 功能：初始化异常上下文，设置异常处理环境
+#define InitializeExceptionContextC270 Unwind_18090c270
+
+// 原始函数名：Unwind_18090c280 - 异常处理器执行函数C280
+// 功能：执行异常处理器，处理异常事件和错误
+#define ExecuteExceptionHandlerC280 Unwind_18090c280
+
+// 原始函数名：Unwind_18090c290 - 异常处理配置函数C290
+// 功能：配置异常处理参数，设置异常处理选项
+#define ConfigureExceptionProcessingC290 Unwind_18090c290
+
+// 原始函数名：Unwind_18090c2a0 - 异常处理管理函数C2A0
+// 功能：管理异常处理流程，协调异常处理操作
+#define ManageExceptionProcessingC2A0 Unwind_18090c2a0
+
+// 原始函数名：Unwind_18090c2b0 - 异常状态检查函数C2B0
+// 功能：检查异常状态，验证异常处理的有效性
+#define CheckExceptionStateC2B0 Unwind_18090c2b0
+
+// 原始函数名：Unwind_18090c2c0 - 异常数据验证函数C2C0
+// 功能：验证异常数据，检查异常处理的完整性
+#define ValidateExceptionDataC2C0 Unwind_18090c2c0
+
+// 原始函数名：Unwind_18090c2d0 - 异常资源管理函数C2D0
+// 功能：管理异常资源，分配和释放异常处理资源
+#define ManageExceptionResourcesC2D0 Unwind_18090c2d0
+
+// 原始函数名：Unwind_18090c2e0 - 异常处理器清理函数C2E0
+// 功能：清理异常处理器，重置异常处理状态
+#define CleanupExceptionHandlerC2E0 Unwind_18090c2e0
+
+// 原始函数名：Unwind_18090c2f0 - 异常上下文清理函数C2F0
+// 功能：清理异常上下文，释放异常处理资源
+#define CleanupExceptionContextC2F0 Unwind_18090c2f0
+
+// 原始函数名：Unwind_18090c300 - 异常处理重置函数C300
+// 功能：重置异常处理状态，清理异常处理上下文
+#define ResetExceptionProcessingC300 Unwind_18090c300
+
+// 原始函数名：Unwind_18090c310 - 异常处理器终止函数C310
+// 功能：终止异常处理器，完成异常处理流程
+#define TerminateExceptionHandlerC310 Unwind_18090c310
+
+// 原始函数名：Unwind_18090c320 - 异常处理完成函数C320
+// 功能：完成异常处理，清理异常处理资源
+#define FinalizeExceptionProcessingC320 Unwind_18090c320
 #define ValidateSystemResources130 Unwind_18090a130
