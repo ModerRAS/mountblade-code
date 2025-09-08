@@ -91644,16 +91644,39 @@ void ProcessUITransformMatrixCalculation(float *uiContext,UIHandle dataSource,in
 
 
  void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
-void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
-                  int param_6)
+// 原始函数名：FUN_18071ebe0 - UI变换矩阵处理器
+#define ProcessUITransformMatrix FUN_18071ebe0
+
+/**
+ * @brief 处理UI变换矩阵计算
+ * 
+ * 该函数负责处理UI元素的变换矩阵计算，主要功能包括：
+ * - 计算UI元素的旋转变换
+ * - 处理缩放和平移变换
+ * - 应用变换系数到UI元素
+ * - 批量处理多个UI元素的变换
+ * 
+ * @param uiContext UI上下文指针，包含变换矩阵数据
+ * @param dataSource 数据源句柄，用于变换计算
+ * @param targetBuffer 目标缓冲区，存储变换结果
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针，指向输出数据位置
+ * @param transformStep 变换步长参数
+ * 
+ * @note 原始函数名：FUN_18071ebe0
+ * @note 此函数处理复杂的矩阵变换计算
+ * @note 包含旋转、缩放、平移等变换操作
+ */
+void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
+                  int transformStep)
 
 {
   float *pbaseValue;
-  float *ptransformCoeff1;
-  float *ptransformCoeff2;
+  float *protationCoeff1;
+  float *protationCoeff2;
   uint ProcessingStatus;
   longlong EventDataIndex;
-  float *plocalFloat6;
+  float *ptransformMatrix;
   int localInt7;
   float *ptempFloat;
   float *bufferPointer;
@@ -91663,8 +91686,8 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
   float *pbaseValue3;
   longlong allocatedMemory4;
   ulonglong CounterResult;
-  float baseValue6;
-  float baseValue7;
+  float rotationValue1;
+  float rotationValue2;
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
@@ -91693,11 +91716,11 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         uiContext[1] = uiContext[3] + uiContext[7] + uiContext[1];
         *uiContext = uiContext[2] + uiContext[6] + *uiContext;
         baseValue7 = uiContext[3];
-        baseValue6 = uiContext[7];
+        rotationValue1 = uiContext[7];
         uiContext[3] = FloatValue1 - (uiContext[2] - uiContext[6]);
         uiContext[7] = (uiContext[2] - uiContext[6]) + FloatValue1;
-        uiContext[6] = FloatValue2 - (baseValue7 - baseValue6);
-        uiContext[2] = FloatValue2 + (baseValue7 - baseValue6);
+        uiContext[6] = FloatValue2 - (baseValue7 - rotationValue1);
+        uiContext[2] = FloatValue2 + (baseValue7 - rotationValue1);
         FloatValue2 = uiContext[8] - uiContext[0xc];
         FloatValue1 = uiContext[9] - uiContext[0xd];
         baseValue7 = uiContext[0xc] + uiContext[8];
@@ -91708,7 +91731,7 @@ void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,ui
         uiContext[9] = uiContext[0xf] + uiContext[0xb] + uiContext[9];
         uiContext[8] = uiContext[0xe] + uiContext[10] + uiContext[8];
         baseValue7 = uiContext[0xb];
-        baseValue6 = uiContext[0xf];
+        rotationValue2 = uiContext[0xf];
         uiContext[0xb] = FloatValue1 - (uiContext[10] - uiContext[0xe]);
         uiContext[0xf] = (uiContext[10] - uiContext[0xe]) + FloatValue1;
         uiContext[0xe] = FloatValue2 - (baseValue7 - baseValue6);
@@ -92964,8 +92987,16 @@ void UIRenderTaskExecutor(void)
 
 
 
- void FUN_18071fed0(void)
-void FUN_18071fed0(void)
+ /**
+ * @brief 处理UI组件变换
+ * 
+ * 该函数负责处理UI组件的各种变换操作，包括位置、大小、旋转等属性的变换计算。
+ * 这些变换通常用于动画效果、响应式布局和用户交互反馈。
+ * 
+ * @note 原始函数名：FUN_18071fed0
+ */
+void ProcessUIComponentTransformations(void)
+void ProcessUIComponentTransformations(void)
 
 {
   float *pbaseValue;
