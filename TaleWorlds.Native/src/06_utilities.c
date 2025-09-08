@@ -100734,7 +100734,24 @@ void InvokeExceptionContextHandlerAtOffset1448(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_18090d7e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文清理和内存管理D7E0
+ * 
+ * 该函数负责在异常上下文中执行清理操作和内存管理。
+ * 主要功能包括：
+ * - 调用多个异常处理器进行清理（14D0、14C8、14C0偏移量）
+ * - 执行系统清理操作
+ * - 检查系统终止条件
+ * - 管理内存资源引用计数
+ * - 处理内存块的释放和重定向
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d7e0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行异常上下文清理和内存管理
+ */
+void ExecuteExceptionContextCleanupAndMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
