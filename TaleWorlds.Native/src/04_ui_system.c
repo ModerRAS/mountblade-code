@@ -228854,7 +228854,7 @@ LAB_18080837b:
         else if ((uiOperationResult == 3) && (uiOperationResult9 = localInt5 + 1, ProcessingResult2 != 1)) {
           uiOperationResult9 = localInt5;
         }
-        localInt5 = FUN_18080a240(uiContext,dataSource,CounterResult,uiOperationResult9,bufferSize);
+        localInt5 = ExecuteUIComponentRender(uiContext,dataSource,CounterResult,uiOperationResult9,bufferSize);
         if (localInt5 == 0) {
           return 0;
         }
@@ -229874,7 +229874,7 @@ UIHandle FUN_18080a22e(void)
 
 
 UIHandle
-FUN_18080a240(UIHandle uiContext,UIHandle *dataSource,uint targetBuffer,int bufferSize,int resultPointer)
+ExecuteUIComponentRender(UIHandle uiContext,UIHandle *dataSource,uint targetBuffer,int bufferSize,int resultPointer)
 
 {
   int *puiOperationResult;
