@@ -20012,39 +20012,38 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
 
  (ram,SYSTEM_DEBUG_ADDRESS_002)
 
-// 原始函数名：FUN_180893964 - 条件数据处理函数
-// 功能：根据输入条件执行不同的数据处理操作
-#define ProcessDataByCondition FUN_180893964
+// 系统资源条件处理函数 - 根据输入条件执行不同的数据处理操作
+#define ProcessSystemResourceByCondition FUN_180893964
 
-int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
+int ProcessSystemResourceByCondition(DataBuffer inputCondition,DataBuffer dataSize)
 
 {
-  int eaxRegister;
-  int operationResult;
-  int64_t allocatedBuffer;
-  int64_t contextHandle;
-  int64_t resourceHandle;
-  int64_t systemContextBuffer;
+  int cpuRegister;
+  int processResult;
+  int64_t memoryBuffer;
+  int64_t systemContext;
+  int64_t resourcePointer;
+  int64_t systemDataBuffer;
   
-  if (eaxRegister == 0) {
-    allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize,MemoryAlignmentSize32,&SystemMemoryPoolB,0xdd);
-    if (allocatedBuffer != 0) {
-        memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + ComponentHandleOffset),(int64_t)*(int *)(contextHandle + SystemDataSecondaryOffset18));
+  if (cpuRegister == 0) {
+    memoryBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize,MemoryAlignmentSize32,&SystemMemoryPoolB,0xdd);
+    if (memoryBuffer != 0) {
+        memcpy(memoryBuffer,*(DataBuffer *)(systemContext + ComponentHandleOffset),(int64_t)*(int *)(systemContext + SystemDataSecondaryOffset18));
     }
-    operationResult = 0x26;
+    processResult = 0x26;
   }
   else {
-    operationResult = ExecuteSystemValidationA0();
-    if ((operationResult == 0) &&
-       (operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + DataOperationOffset24),&systemContextBuffer), operationResult == 0)
+    processResult = ExecuteSystemValidationA0();
+    if ((processResult == 0) &&
+       (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + DataOperationOffset24),&systemDataBuffer), processResult == 0)
        ) {
-      if (*(int *)(systemContextBuffer + DataOperationOffset30) == 1) {
-        *(DataWord *)(systemContextBuffer + DataOperationOffset30) = 2;
+      if (*(int *)(systemDataBuffer + DataOperationOffset30) == 1) {
+        *(DataWord *)(systemDataBuffer + DataOperationOffset30) = 2;
       }
-        CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + SystemManagementOffset98));
+        CleanupSystemEventA0(*(DataBuffer *)(resourcePointer + SystemManagementOffset98));
     }
   }
-  return operationResult;
+  return processResult;
 }
 
 
@@ -20057,11 +20056,10 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
 // 功能：查询系统数据并获取相关信息
 #define QueryAndRetrieveSystemDataA0 RetrieveSystemConfigurationData
 
-// 原始函数名：FUN_180893a63 - 返回错误码函数
-// 功能：返回固定错误码0x1f
-#define ReturnErrorCode31 FUN_180893a63
+// 组件数据验证失败返回函数 - 返回固定错误码0x1f
+#define ReturnComponentValidationError FUN_180893a63
 
-DataBuffer ReturnErrorCode31(void)
+DataBuffer ReturnComponentValidationError(void)
 
 {
   return ComponentDataValidationFailure;
@@ -20069,29 +20067,23 @@ DataBuffer ReturnErrorCode31(void)
 
 
 
-// 原始函数名：FUN_180893d50 - 浮点数验证和处理函数
-// 功能：验证浮点数有效性并在指定范围内进行数值处理
-#define ValidateAndProcessFloatValue FUN_180893d50
+// 浮点数值验证和处理函数 - 验证浮点数有效性并在指定范围内进行数值处理
+#define ValidateAndProcessFloatingPointValue FUN_180893d50
 
-// 原始函数名：FUN_180894c70 - 系统验证函数A0
-// 功能：执行系统验证操作，通过多个验证步骤确保系统状态正常
-#define ExecuteSystemValidationA0 FUN_180894c70
+// 系统状态验证函数 - 执行系统验证操作，通过多个验证步骤确保系统状态正常
+#define PerformSystemStatusValidation FUN_180894c70
 
-// 原始函数名：FUN_180896c60 - 数据处理函数A0
-// 功能：处理复杂的数据结构和缓冲区操作
-#define ProcessComplexDataStructureA0 FUN_180896c60
+// 复杂数据结构处理函数 - 处理复杂的数据结构和缓冲区操作
+#define ProcessComplexDataBufferOperations FUN_180896c60
 
-// 原始函数名：FUN_180896e11 - 系统状态检查函数A0
-// 功能：检查系统状态并执行相应的状态更新操作
-#define CheckSystemStatusAndExecuteA0 FUN_180896e11
+// 系统状态检查执行函数 - 检查系统状态并执行相应的状态更新操作
+#define CheckSystemStateAndExecuteUpdates FUN_180896e11
 
-// 原始函数名：FUN_1808974f4 - 安全检查执行函数A0
-// 功能：执行安全检查并在检查失败时终止程序
-#define ExecuteSecurityCheckAndTerminateA0 FUN_1808974f4
+// 安全检查终止函数 - 执行安全检查并在检查失败时终止程序
+#define ExecuteSecurityValidationAndTerminate FUN_1808974f4
 
-// 原始函数名：FUN_180897520 - 数据处理函数A1
-// 功能：处理数据指针和缓冲区操作
-#define ProcessDataPointerAndBufferA1 FUN_180897520
+// 数据指针缓冲区处理函数 - 处理数据指针和缓冲区操作
+#define ProcessDataPointerAndBufferOperations FUN_180897520
 
 DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationContext)
 
