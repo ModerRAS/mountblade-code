@@ -83,6 +83,40 @@
 #define SystemMemoryBufferAlignment           0xfffff000  // 系统内存缓冲区对齐
 #define SystemMemoryStatusAlignment           0xffffff00  // 系统内存状态对齐
 
+// 系统数据库和互斥体地址常量
+#define SystemDatabaseConnectionAddress 0x180c4f510  // 系统数据库连接地址
+#define SystemCriticalSectionAddress 0x180c82170    // 系统临界区地址
+#define SystemPrimaryMutexAddress 0x180c91970       // 系统主互斥体地址
+#define SystemSecondaryMutexAddress 0x180c91288     // 系统次互斥体地址
+#define SystemTertiaryMutexAddress 0x180c91910      // 系统第三互斥体地址
+
+// 系统配置地址常量
+#define SystemConfigurationBaseAddress 0x18005d147   // 系统配置基址
+#define SystemResourceStringAddress 0x180d48d24     // 系统资源字符串地址
+#define SystemTimeStringAddress 0x180c84871          // 系统时间字符串地址
+#define SystemDebugDataAddress 0x1809fde87          // 系统调试数据地址
+
+// 系统操作计数器地址常量
+#define SystemOperationCounterBase 0x180068808      // 系统操作计数器基址
+#define SystemOperationCounterAlt1 0x180068815      // 系统操作计数器备用地址1
+#define SystemOperationCounterAlt2 0x18006881f      // 系统操作计数器备用地址2
+#define SystemOperationCounterAlt3 0x18006883a      // 系统操作计数器备用地址3
+#define SystemOperationCounterAlt4 0x180068847      // 系统操作计数器备用地址4
+
+// 系统线程句柄地址常量
+#define SystemThreadHandleBase 0x180bfd400          // 系统线程句柄基址
+#define SystemThreadHandleReturn 0x180bfd730        // 系统线程句柄返回地址
+
+// 系统标志地址常量
+#define SystemResourceStatusFlagAddress 0x1800756d4 // 系统资源状态标志地址
+#define SystemTertiaryFlagBase 0x1800795fa          // 系统第三标志基址
+#define SystemTertiaryFlagAlt1 0x180079605          // 系统第三标志备用地址1
+#define SystemTertiaryFlagAlt2 0x18007967a          // 系统第三标志备用地址2
+#define SystemTertiaryFlagAlt3 0x18007968e          // 系统第三标志备用地址3
+
+// 系统数据初始化地址常量
+#define SystemDataInitializationAddress 0x180d49150  // 系统数据初始化地址
+
 // 系统标识符大小常量
 #define SystemIdentifierSize                0x10  // 系统标识符大小
 #define SystemNodeAllocationExtraSize       0x20  // 系统节点分配额外大小
@@ -19771,7 +19805,7 @@ int InitializeDebugSystem(void)
 {
   long long CallbackResult;
   
-  InitializeSystemDatabase(0x180c4f510);
+  InitializeSystemDatabase(SystemDatabaseConnectionAddress);
   CallbackResult = ProcessSystemEvent(&SystemSecondaryEventData);
   return (CallbackResult != 0) - 1;
 }
@@ -19789,7 +19823,7 @@ int InitializeThreadSafetyMutex(void)
 {
   long long CallbackResult;
   
-  _Mtx_init_in_situ(0x180c82170,2);
+  _Mtx_init_in_situ(SystemCriticalSectionAddress,2);
   CallbackResult = ProcessSystemEvent(&SystemTertiaryEventData);
   return (CallbackResult != 0) - 1;
 }
@@ -25487,7 +25521,7 @@ void SystemDataPointerSetter(void* *dataPointer)
   int MutexUnLockOperationResult;
   
   SystemDataHeaderStorage = *dataPointer;
-  MutexUnLockOperationResult = _Mtx_unlock(0x180c91970);
+  MutexUnLockOperationResult = _Mtx_unlock(SystemPrimaryMutexAddress);
   if (MutexUnLockOperationResult != 0) {
     ThrowSystemError(MutexUnLockOperationResult);
   }
@@ -27785,7 +27819,7 @@ void SystemDataInitializer(void)
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
   SystemDataPointer = SystemResourceManager;
   if (*(char *)(SystemResourceManager + 7) != '\0') {
-    SystemModuleContextPointerA = (long long *)0x180c91970;
+    SystemModuleContextPointerA = (long long *)SystemPrimaryMutexAddress;
     CalculationFlags = _Mtx_lock(0x180c91970);
     if (CalculationFlags != 0) {
       ThrowSystemError(CalculationFlags);
@@ -49565,11 +49599,11 @@ void ResetSystemResourceManagerArray(long long ResourceManagerHandle)
  * 该函数负责系统资源的分配、配置和初始化
  * 包括内存池管理、哈希表操作和资源索引分配
  * 
- * @param SystemResourceManager 资源管理器指针
- * @param ConfigurationDataPointer 配置数据指针
- * @param AdditionalParameter 额外参数指针
- * @param ConfigurationFlag 配置标志指针
- * @param OutputResult 输出结果指针
+ * @param ResourceManagerHandle 资源管理器句柄
+ * @param ConfigDataHandle 配置数据句柄
+ * @param ExtraParameterPtr 额外参数指针
+ * @param ConfigFlagPtr 配置标志指针
+ * @param ResultOutputPtr 输出结果指针
  * 
  06bda0：AllocateAndConfigureSystemResource
  */

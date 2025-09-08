@@ -5849,12 +5849,26 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define InitializeThreadLocalStorageA7 FUN_180943180
 
-// 原始函数名：FUN_1809431a0 - 线程本地存储初始化函数A8
-// 功能：初始化线程本地存储A8
+/**
+ * @brief 线程本地存储初始化函数A8
+ * 
+ * 该函数负责初始化线程本地存储区域A8，为多线程环境下的数据存储提供支持。
+ * 线程本地存储允许每个线程拥有自己的数据副本，避免线程间的数据竞争。
+ * 
+ * @note 原始函数名：FUN_1809431a0
+ * @return int 初始化状态码，0表示成功
+ */
 #define InitializeThreadLocalStorageA8 FUN_1809431a0
 
-// 原始函数名：FUN_180943200 - 线程本地存储初始化函数A9
-// 功能：初始化线程本地存储A9
+/**
+ * @brief 线程本地存储初始化函数A9
+ * 
+ * 该函数负责初始化线程本地存储区域A9，为多线程环境下的数据存储提供支持。
+ * 线程本地存储允许每个线程拥有自己的数据副本，避免线程间的数据竞争。
+ * 
+ * @note 原始函数名：FUN_180943200
+ * @return int 初始化状态码，0表示成功
+ */
 #define InitializeThreadLocalStorageA9 FUN_180943200
 
 // 原始函数名：FUN_1809425e0 - 内存管理初始化函数D0
@@ -100032,8 +100046,8 @@ void ResetDataBufferExceptionHandlerStateD5B0(DataBuffer operationBase,int64_t d
 void InvokeDataBufferExceptionHandlerD5C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0xb8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xb8) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerContextOffsetB8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerContextOffsetB8) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -100055,7 +100069,7 @@ void InvokeDataBufferExceptionHandlerD5C0(DataBuffer operationBase,int64_t dataB
 void SetDefaultExceptionHandlerD5D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x160) = &SystemDefaultExceptionHandlerB;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset160) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -100180,7 +100194,7 @@ void SetDefaultExceptionHandlerD620(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerD630(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x1b8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DefaultExceptionHandlerOffset1b8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
