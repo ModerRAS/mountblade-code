@@ -205187,7 +205187,27 @@ LAB_18017023b:
 
 
 
-long long FUN_180170700(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
+/**
+ * @brief 处理字符编码和内存池块的复杂操作
+ * 
+ * 该函数负责处理字符编码转换和内存池块的复杂操作，包括：
+ * - 内存边界检查和分配
+ * - 字符串比较操作
+ * - 内存池管理
+ * - 高低字节处理
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return long long 返回处理结果
+ * 
+ * @note 原始函数名：FUN_180170700
+ */
+#define ProcessCharacterEncodingAndMemoryPoolOperations FUN_180170700
+
+long long ProcessCharacterEncodingAndMemoryPoolOperations(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
                       long long AdditionalParameter1
 {
   byte StringComparisonByte;
