@@ -206064,7 +206064,22 @@ void LoadCursorResourceAndSetToDataNode(void)
 
 
 
-71101(long long CharacterCodevoid FUN_180171101(long long CharacterCode
+// 函数: void FUN_180171101(long long CharacterCode)
+/**
+ * @brief 处理字符表指针和系统上下文操作
+ * 
+ * 该函数负责处理字符表指针和系统上下文操作，主要功能包括：
+ * - 获取字符表指针和系统上下文
+ * - 处理系统栈长整型数据
+ * - 执行系统功能调用和数据处理
+ * - 管理数据存储值和栈基址
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的对象
+ * 
+ * @note 原始函数名：FUN_180171101
+ */
+#define ProcessCharacterTablePointerAndSystemContextOperations FUN_180171101
+void ProcessCharacterTablePointerAndSystemContextOperations(long long CharacterCode
 {
   long long PrimaryDataSize;
   long long SystemContext;
