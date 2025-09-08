@@ -100118,8 +100118,19 @@ void DestroySystemMutexAndReleaseResourcesDF00(void)
 
 
 
-void Unwind_18090df20(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 调用异常处理器
+ * 
+ * 该函数调用异常处理器，处理异常上下文。
+ * 它通过异常上下文指针获取异常处理器，并调用相应的处理函数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090df20
+ * @note 异常处理器调用函数
+ */
+void InvokeExceptionHandlerAtOffset13B8(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
