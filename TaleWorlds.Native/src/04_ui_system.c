@@ -1047,6 +1047,7 @@ typedef enum {
 #define FindUIContextResource FUN_18087b553
 
 // UI系统函数宏定义 - 重置UI状态
+#define ProcessUIDataValidationAndStateManagement FUN_18071dbc0
 #define ResetUIState FUN_18087b5f0
 
 // UI系统函数宏定义 - 获取UI系统信息
@@ -91146,7 +91147,7 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
     }
   }
   *(UIDword *)(uiBufferData + 0x1238) = 1;
-  return localInt5 + uiCompareResult + TempInt4;
+  return stateManagementResult + uiCompareResult + eventProcessingResult;
 }
 
 
@@ -91189,12 +91190,28 @@ int InitializeUISystemState(void)
 
 
 
-UIDword FUN_18071dce5(int uiContext,UIHandle dataSource,UIDword targetBuffer)
+/**
+ * @brief 处理UI上下文验证和缓冲区状态管理
+ * 
+ * 该函数负责验证UI上下文的有效性并管理缓冲区状态：
+ * - 检查UI上下文是否为空
+ * - 根据上下文状态设置缓冲区值
+ * - 计算状态转换参数
+ * - 管理UI系统的状态标志
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区标识
+ * @return 处理结果，通常返回目标缓冲区标识
+ * 
+ * @note 原始函数名：FUN_18071dce5
+ */
+UIDword ProcessUIContextValidationAndBufferState(int uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int processingResult;
   int uiValidationResult;
-  longlong SourceHandle;
+  longlong bufferHandle;
   
   if (uiContext == 0) {
     *(UIDword *)(SourceHandle + 0x17dc) = 7;
