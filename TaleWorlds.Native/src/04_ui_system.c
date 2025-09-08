@@ -342,9 +342,9 @@ typedef enum {
  * 
  * 该函数确保UI系统内存使用的高效性和稳定性。
  * 
- * @note 原始函数名：FUN_1808fd200
+ * @note 原始函数名：ProcessUIBufferOperation
  */
-#define ProcessUISystemMemoryOperation FUN_1808fd200
+#define ProcessUISystemMemoryOperation ProcessUIBufferOperation
 
  
 
@@ -869,7 +869,7 @@ typedef enum {
 #define ExecuteUIAdvancedOperation FUN_18071ad00
 
 // UI系统函数宏定义 - 执行UI内存分配操作
-#define ExecuteUIMemoryAllocation FUN_1808fd200
+#define ExecuteUIMemoryAllocation ProcessUIBufferOperation
 
 // UI系统函数宏定义 - 清理UI上下文
 #define CleanupUIContext FUN_18070f490
@@ -3433,8 +3433,8 @@ void* UIGestureCoordinates;
  处理UI系统信号量相关的严重错误，包括信号量获取失败和同步错误。
  该函数不会返回，用于处理不可恢复的信号量错误。
  
- 原始函数名: FUN_1808fd200
-#define HandleUISemaphoreFatalError FUN_1808fd200
+ 原始函数名: ProcessUIBufferOperation
+#define HandleUISemaphoreFatalError ProcessUIBufferOperation
 
  UI系统数据转换器
  转换UI系统的数据格式，包括字符串数据的编码转换和缓冲区操作。
@@ -78850,7 +78850,7 @@ LAB_180710a34:
     result9 = 0xffffffffffffff0;
   }
                      WARNING: Subroutine does not return
-  FUN_1808fd200(uiValidationResult6,result9 & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(uiValidationResult6,result9 & 0xfffffffffffffff0);
 }
 
 
@@ -79024,7 +79024,7 @@ void ProcessUIFloatData(int *uiContext,float *dataSource,float *targetBuffer,flo
       iterationCount5 = iterationCount5 - 1;
     } while (iterationCount5 != 0);
   }
-  FUN_18071fb70(allocatedMemory9,pfloatResult7);
+  ProcessUIMemoryManagement(allocatedMemory9,pfloatResult7);
   componentIndex3 = (longlong)(processingResult5 >> 1);
   allocatedMemory9 = (longlong)((processingResult5 >> 2) + 1) >> 1;
   pfloatResult1 = targetBuffer + ((longlong)resultPointer >> 1) + -2 + componentIndex3;
@@ -79333,7 +79333,7 @@ void ProcessUIFloatTransform(int *uiContext,float *dataSource,float *targetBuffe
       unmodifiedR12 = unmodifiedR12 - 1;
     } while (unmodifiedR12 != 0);
   }
-  FUN_18071fb70(lStack0000000000000088,pFloatValue1);
+  ProcessUIMemoryManagement(lStack0000000000000088,pFloatValue1);
   componentIndex7 = (longlong)iStack00000000000000a8;
   componentIndex4 = (longlong)((processingResult6 >> 2) + 1) >> 1;
   pfloatResult2 = targetBuffer + lStack0000000000000090 + -2 + componentIndex7;
@@ -79641,7 +79641,7 @@ void ProcessUIComponentTransform(int *uiContext,float *dataSource,UIHandle targe
       unmodifiedR12 = unmodifiedR12 - 1;
     } while (unmodifiedR12 != 0);
   }
-  FUN_18071fb70(lStack0000000000000088,pFloatValue1);
+  ProcessUIMemoryManagement(lStack0000000000000088,pFloatValue1);
   componentIndex7 = (longlong)iStack00000000000000a8;
   componentIndex4 = (longlong)((processingResult6 >> 2) + 1) >> 1;
   pfloatResult2 = ContextHandle + lStack0000000000000090 + -2 + componentIndex7;
@@ -79821,7 +79821,7 @@ void ProcessUIComponentTransform(int *uiContext,float *dataSource,UIHandle targe
   int stackParam000000a0;
   int stackParam000000a8;
   
-  FUN_18071fb70();
+  ProcessUIMemoryManagement();
   allocatedMemory7 = (longlong)stackParam000000a8;
   allocatedMemory3 = (longlong)(unmodifiedESI + 1) >> 1;
   pfloatResult0 = ContextHandle + stackParam00000090 + -2 + allocatedMemory7;
@@ -80621,7 +80621,7 @@ void ProcessUIContextInitialization(int *uiContext, UIHandle dataSource, UIHandl
   }
   sourceHandle = dataSource;
   targetHandle = targetBuffer;
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -82787,7 +82787,7 @@ void FUN_180713890(UIHandle uiContext,UIHandle dataSource,int targetBuffer,UIHan
   stackUInt90 = dataSource;
   stackUInt88 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(result & 0xfffffffffffffff0,0xffffffffffffff0,targetBuffer,uiContext);
+  ProcessUIBufferOperation(result & 0xfffffffffffffff0,0xffffffffffffff0,targetBuffer,uiContext);
 }
 
 
@@ -82827,7 +82827,7 @@ void FUN_180713c60(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bu
   }
   stackUIntfc = targetBuffer;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(result & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(result & 0xfffffffffffffff0);
 }
 
 
@@ -82889,7 +82889,7 @@ void FUN_1807141f0(longlong uiContext,int dataSource,int targetBuffer,UIHandle b
   stackUInt78 = bufferSize;
   stackInt6c = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200((longlong)stackInt88 * 4,0xffffffffffffff0);
+  ProcessUIBufferOperation((longlong)stackInt88 * 4,0xffffffffffffff0);
 }
 
 
@@ -87613,7 +87613,7 @@ void FUN_180719e00(longlong uiContext,int dataSource,int targetBuffer,int buffer
   stackInt120 = dataSource;
   stackLong118 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(componentIndex,0xffffffffffffff0);
+  ProcessUIBufferOperation(componentIndex,0xffffffffffffff0);
 }
 
 
@@ -88701,7 +88701,7 @@ void FUN_18071b790(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   stackUInt60 = targetBuffer;
   stackUInt48 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0,dataSource,0xffffffffffffff0,targetBuffer);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0,dataSource,0xffffffffffffff0,targetBuffer);
 }
 
 
@@ -88851,7 +88851,7 @@ void FUN_18071c290(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,lo
   stackLong88 = bufferSize;
   stackUInt80 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -90857,8 +90857,8 @@ void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071fb70(longlong uiContext,float *dataSource)
-void FUN_18071fb70(longlong uiContext,float *dataSource)
+ void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
+void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
 
 {
   short *psVar1;
@@ -92624,7 +92624,7 @@ void FUN_180720e10(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackUInt88 = uiContext;
   stackUInt60 = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(result & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(result & 0xfffffffffffffff0);
 }
 
 
@@ -95110,7 +95110,7 @@ void FUN_180723360(longlong uiContext,UIHandle dataSource)
   }
   stackUInt40 = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -99943,7 +99943,7 @@ void FUN_180728160(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   
   stackUIntd8 = XorEncryptionKey ^ (ulonglong)astackUInte8;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(uiContext,(longlong)bufferSize * 4 + 0xc,0xffffffffffffff0);
+  ProcessUIBufferOperation(uiContext,(longlong)bufferSize * 4 + 0xc,0xffffffffffffff0);
 }
 
 
@@ -100070,7 +100070,7 @@ void FUN_180728720(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackUInt80 = targetBuffer;
   stackUInt78 = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -100346,7 +100346,7 @@ void FUN_1807294f0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
     EventTypeCode = 0xffffffffffffff0;
   }
                      WARNING: Subroutine does not return
-  FUN_1808fd200(EventTypeCode & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(EventTypeCode & 0xfffffffffffffff0);
 }
 
 
@@ -100564,7 +100564,7 @@ void TransferUIData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer
   stackUIntc0 = dataSource;
   stackUInta8 = targetBuffer;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -106339,7 +106339,7 @@ void FUN_18072fba0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   }
   stackUInt80 = bufferSize;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
 }
 
 
@@ -112158,7 +112158,7 @@ void FUN_180737240(UIHandle uiContext,UIHandle dataSource,short *targetBuffer,UI
     result = 0xffffffffffffff0;
   }
                      WARNING: Subroutine does not return
-  FUN_1808fd200(result & 0xfffffffffffffff0);
+  ProcessUIBufferOperation(result & 0xfffffffffffffff0);
 }
 
 
@@ -223280,7 +223280,7 @@ void FUN_180801ef0(longlong uiContext)
         EventTypeCode = 0xffffffffffffff0;
       }
                      WARNING: Subroutine does not return
-      FUN_1808fd200(EventTypeCode & 0xfffffffffffffff0);
+      ProcessUIBufferOperation(EventTypeCode & 0xfffffffffffffff0);
     }
     if ((astackLong270[0] == 0) || (processingResult = RegCloseKey(), processingResult == 0)) {
       *(UIByte *)(uiContext + 0x310) = 1;
@@ -257972,7 +257972,7 @@ void FUN_180828b00(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
       iterationCount = 0xffffffffffffff0;
     }
                      WARNING: Subroutine does not return
-    FUN_1808fd200(iterationCount & 0xfffffffffffffff0);
+    ProcessUIBufferOperation(iterationCount & 0xfffffffffffffff0);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(XorEncryptionKey);
@@ -258466,7 +258466,7 @@ void FUN_180829f10(UIHandle uiContext,UIHandle dataSource,ushort targetBuffer)
   stackUInt50 = dataSource;
   stackUInt40 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(targetBuffer);
+  ProcessUIBufferOperation(targetBuffer);
 }
 
 
@@ -258539,7 +258539,7 @@ void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIH
           MaxProcessingCount = 0xffffffffffffff0;
         }
                      WARNING: Subroutine does not return
-        FUN_1808fd200(MaxProcessingCount & 0xfffffffffffffff0);
+        ProcessUIBufferOperation(MaxProcessingCount & 0xfffffffffffffff0);
       }
     }
   }
@@ -258558,7 +258558,7 @@ void FUN_18082a180(longlong *uiContext,UIHandle dataSource,int *targetBuffer,UIH
         MaxProcessingCount = 0xffffffffffffff0;
       }
                      WARNING: Subroutine does not return
-      FUN_1808fd200(TempInt4,iterationCount & 0xffffffff,MaxProcessingCount & 0xfffffffffffffff0);
+      ProcessUIBufferOperation(TempInt4,iterationCount & 0xffffffff,MaxProcessingCount & 0xfffffffffffffff0);
     }
   }
                      WARNING: Subroutine does not return
@@ -258595,7 +258595,7 @@ void FUN_18082a780(UIHandle uiContext,longlong *dataSource)
   *(uint *)(dataSource + 2) = iterationCount & 7;
   *dataSource = *dataSource + ((longlong)(int)iterationCount >> 3);
                      WARNING: Subroutine does not return
-  FUN_1808fd200(processingResult + 4U & 0xfffffffc);
+  ProcessUIBufferOperation(processingResult + 4U & 0xfffffffc);
 }
 
 
@@ -258933,7 +258933,7 @@ void FUN_18082aee0(longlong *uiContext,UIHandle dataSource)
   stackUInt80 = *(UIDword *)(stackLong70 + (longlong)(int)uiContext[5] * 4);
   stackUInt50 = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200((longlong)*(int *)(stackLong38 + 4),0xffffffffffffff0);
+  ProcessUIBufferOperation((longlong)*(int *)(stackLong38 + 4),0xffffffffffffff0);
 }
 
 
@@ -266227,7 +266227,7 @@ void FUN_18082ed00(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int 
   if (0 < uiContext[2]) {
     stackLong48 = (longlong)(bufferSize / *uiContext);
                      WARNING: Subroutine does not return
-    FUN_1808fd200(uiContext,0xffffffffffffff0);
+    ProcessUIBufferOperation(uiContext,0xffffffffffffff0);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(XorEncryptionKey);
@@ -280557,7 +280557,7 @@ void FUN_18083ad10(int uiContext,UIHandle dataSource)
   astackUInt98[0] = (ulonglong)(result >> 1);
   stackUInt88 = dataSource;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(astackUInt98[0] * 4 + 0x20,dataSource,iterationCount,0xffffffffffffff0);
+  ProcessUIBufferOperation(astackUInt98[0] * 4 + 0x20,dataSource,iterationCount,0xffffffffffffff0);
 }
 
 
@@ -283625,7 +283625,7 @@ FUN_18083ccd0(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
       }
       astackInt78[0] = (processingResult - *pstackInt40) / stackInt6c;
                      WARNING: Subroutine does not return
-      FUN_1808fd200((longlong)(int)loopCounter * 8,
+      ProcessUIBufferOperation((longlong)(int)loopCounter * 8,
                     (longlong)(astackInt78[0] + -1 + *(int *)targetBuffer[3]) %
                     (longlong)*(int *)targetBuffer[3] & 0xffffffff);
     }
@@ -283671,7 +283671,7 @@ FUN_18083ccea(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
     }
     if (0 < uiValidationResult - *pprocessingResult) {
                      WARNING: Subroutine does not return
-      FUN_1808fd200((longlong)(int)RegisterPointerD * 8,
+      ProcessUIBufferOperation((longlong)(int)RegisterPointerD * 8,
                     (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                     (longlong)*(int *)targetBuffer[3] & 0xffffffff);
     }
@@ -283708,7 +283708,7 @@ void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
   }
   if (0 < uiValidationResult - *pprocessingResult) {
                      WARNING: Subroutine does not return
-    FUN_1808fd200((longlong)RegisterPointerD * 8,
+    ProcessUIBufferOperation((longlong)RegisterPointerD * 8,
                   (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                   (longlong)*(int *)targetBuffer[3] & 0xffffffff);
   }
@@ -283768,7 +283768,7 @@ FUN_18083cd60(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
       }
       astackInt78[0] = (processingResult - *pstackInt40) / stackInt6c;
                      WARNING: Subroutine does not return
-      FUN_1808fd200((longlong)(int)loopCounter * 8,
+      ProcessUIBufferOperation((longlong)(int)loopCounter * 8,
                     (longlong)(astackInt78[0] + -1 + *(int *)targetBuffer[3]) %
                     (longlong)*(int *)targetBuffer[3] & 0xffffffff);
     }
@@ -283814,7 +283814,7 @@ FUN_18083cd7a(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer,UIHa
     }
     if (0 < uiValidationResult - *pprocessingResult) {
                      WARNING: Subroutine does not return
-      FUN_1808fd200((longlong)(int)RegisterPointerD * 8,
+      ProcessUIBufferOperation((longlong)(int)RegisterPointerD * 8,
                     (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                     (longlong)*(int *)targetBuffer[3] & 0xffffffff);
     }
@@ -283851,7 +283851,7 @@ void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
   }
   if (0 < uiValidationResult - *pprocessingResult) {
                      WARNING: Subroutine does not return
-    FUN_1808fd200((longlong)RegisterPointerD * 8,
+    ProcessUIBufferOperation((longlong)RegisterPointerD * 8,
                   (longlong)((uiValidationResult - *pprocessingResult) / pprocessingResult[2] + -1 + *(int *)targetBuffer[3]) %
                   (longlong)*(int *)targetBuffer[3] & 0xffffffff);
   }
@@ -283989,7 +283989,7 @@ void FUN_18083d030(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
   if (0 < processingResult - *pstackInt40) {
     astackInt78[0] = (processingResult - *pstackInt40) / stackInt6c;
                      WARNING: Subroutine does not return
-    FUN_1808fd200((longlong)resultPointer * 8,
+    ProcessUIBufferOperation((longlong)resultPointer * 8,
                   (longlong)(astackInt78[0] + -1 + *(int *)targetBuffer[3]) % (longlong)*(int *)targetBuffer[3]
                   & 0xffffffff);
   }
@@ -312849,7 +312849,7 @@ void FUN_180859ba0(longlong uiContext,longlong *dataSource)
       MaxProcessingCount = 0xffffffffffffff0;
     }
                      WARNING: Subroutine does not return
-    FUN_1808fd200(MaxProcessingCount & 0xfffffffffffffff0,piterationCount,stackLong78);
+    ProcessUIBufferOperation(MaxProcessingCount & 0xfffffffffffffff0,piterationCount,stackLong78);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(XorEncryptionKey);
@@ -328151,7 +328151,7 @@ void FUN_180866550(UIHandle uiContext,longlong dataSource)
       EventTypeCode = 0xffffffffffffff0;
     }
                      WARNING: Subroutine does not return
-    FUN_1808fd200(EventTypeCode & 0xfffffffffffffff0);
+    ProcessUIBufferOperation(EventTypeCode & 0xfffffffffffffff0);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt268);
@@ -377793,7 +377793,7 @@ void FUN_180892e50(longlong uiContext,UIHandle dataSource)
       EventTypeCode = 0xffffffffffffff0;
     }
                      WARNING: Subroutine does not return
-    FUN_1808fd200(componentIndex,EventTypeCode & 0xfffffffffffffff0);
+    ProcessUIBufferOperation(componentIndex,EventTypeCode & 0xfffffffffffffff0);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt30 ^ (ulonglong)astackLong58);
