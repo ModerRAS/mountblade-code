@@ -97593,7 +97593,20 @@ void CleanupResourceAtOffset6F0WithFlags(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090d330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用偏移量0xa88处的异常处理回调函数
+ * 
+ * 该函数检查数据缓冲区偏移量0xa88处的异常处理回调函数，如果存在则调用。
+ * 这是一个标准的异常处理回调调用模式。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_18090d330
+ */
+void CallExceptionHandlerCallbackAtOffsetA88(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
