@@ -101992,7 +101992,7 @@ void ExecuteMemoryOperationProcessingDA20(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090da40(DataBuffer operationBase,int64_t dataBuffer)
+void SystemMemoryOperationHandlerDA40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x2378,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
@@ -120002,7 +120002,18 @@ void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void SystemExceptionHandlerUnwind110EC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器110EC0
+ * 
+ * 该函数负责处理系统异常，从0x2e20偏移量处获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void HandleSystemExceptionAtOffset110EC0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
