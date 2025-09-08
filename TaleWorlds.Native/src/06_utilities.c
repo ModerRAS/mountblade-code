@@ -744,6 +744,9 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 
 // 高低位字合并宏 - 用于将两个16位值合并为32位
 #define MergeHighLowWords(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
+
+// 浮点数组件合并宏 - 用于合并浮点数的高低位部分
+#define MergeFloatComponents(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
 #define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
 // 联合体成员访问宏定义
@@ -17796,7 +17799,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   VectorComponentW = *(uint *)(dataPtr + VectorComponentWOffset);
   ComponentYFloat = *(float *)(dataPtr + VectorComponentYFloatOffset);
   // 合并浮点数组件Z到系统上下文缓冲区
-  systemContextBuffer[0] = MergeFloatComponents(systemContextBuffer[0]._4_4_, floatComponentZ);
+  systemContextBuffer[0] = MergeFloatComponents(systemContextBuffer[0].HighPart, floatComponentZ);
   quaternaryInfinityFlag = tertiaryInfinityFlag;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
@@ -17937,7 +17940,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   int64_t queryBuffer [2];
   
   // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
-  systemContextBuffer = MergeHighLowWords(systemContextBuffer._4_4_, *(uint *)(contextPointer + FloatingPointDataOffset20));
+  systemContextBuffer = MergeHighLowWords(systemContextBuffer.HighPart, *(uint *)(contextPointer + FloatingPointDataOffset20));
   if ((*(uint *)(contextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -23182,9 +23185,9 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = CONCAT44(DataProcessingContext._4_4_,ValidationFloatArrayC[0]);
+          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23192,7 +23195,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23201,7 +23204,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
@@ -23229,9 +23232,9 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = CONCAT44(DataProcessingContext._4_4_,ValidationFloatArrayC[0]);
+          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23239,7 +23242,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23248,7 +23251,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
@@ -23276,9 +23279,9 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = CONCAT44(DataProcessingContext._4_4_,ValidationFloatArrayC[0]);
+          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23286,7 +23289,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23295,7 +23298,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
@@ -23323,9 +23326,9 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = CONCAT44(DataProcessingContext._4_4_,ValidationFloatArrayC[0]);
+          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA1;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = LoopCounter;
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23333,7 +23336,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA4;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           LoopCounter = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
@@ -23342,7 +23345,7 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           DataProcessingContext = SetBitFlag(DataProcessingContext._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
@@ -23373,9 +23376,9 @@ SecurityValidationLabel:
         if ((LoopCounter != 0) || (calculatedValue = ValidateDataA2(dataContext,ValidationFloatArrayC,0), calculatedValue != 0)) break;
         LoopCounter = arrayIndex;
         if (ValidationFloatArrayC[0] != 1.0) {
-          DataProcessingContext = CONCAT44(DataProcessingContext._4_4_,ValidationFloatArrayC[0]);
+          DataProcessingContext = MergeHighLowWords(DataProcessingContext.HighPart, ValidationFloatArrayC[0]);
           ValidationDataTablePointer = &SystemValidationDataTableA7;
-          ValidationResultData = CONCAT44(ValidationResultData._4_4_,PrimaryContextData);
+          ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
           ValidationStatusF = calculatedValue;
           calculatedValue = ValidateDataIntegrityA0(operationBase,&ValidationDataTablePointer);
           if (calculatedValue != 0) break;
