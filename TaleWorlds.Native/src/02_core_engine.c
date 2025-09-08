@@ -215295,7 +215295,24 @@ void CompleteSystemInitialization(void)
  * @note 原始函数名：FUN_18017b380
  */
 #define ProcessUtf16ToUtf8EncodingConversion FUN_18017b380
-void FUN_18017b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF16到UTF8转换的主要处理器
+ * 
+ * 该函数负责执行UTF16到UTF8的字符编码转换操作。
+ * 主要功能包括：
+ * - 读取UTF16编码的字符数据
+ * - 转换为UTF8编码格式
+ * - 处理字符边界和有效性检查
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_18017b380
+ */
+#define ConvertUtf16ToUtf8MainProcessor FUN_18017b380
+void ConvertUtf16ToUtf8MainProcessor(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   ConvertUtf16ToUtf8MainProcessor(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
@@ -215316,7 +215333,7 @@ void FUN_18017b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Ut
  * @note 原始函数名：FUN_18017b3a0
  */
 #define ProcessCharacterCodePointerOperations FUN_18017b3a0
-void FUN_18017b3a0(long long *CharacterCode
+void ProcessCharacterCodePointerOperations(long long *CharacterCode
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -215463,7 +215480,21 @@ void ProcessSystemDataValidationAndCharacterEncoding(long long *CharacterCode,lo
 
 
 
-7b4bc(long long CharacterCodevoid FUN_18017b4bc(long long CharacterCode
+/**
+ * @brief 处理字符代码内存分配和系统上下文管理
+ * 
+ * 该函数负责处理字符代码的内存分配和系统上下文管理操作。
+ * 主要功能包括：
+ * - 管理内存池分配和缓冲区创建
+ * - 处理系统上下文和内存块索引
+ * - 执行系统数据注册和字符限制检查
+ * 
+ * @param CharacterCode 字符代码参数
+ * 
+ * @note 原始函数名：FUN_18017b4bc
+ */
+#define ProcessCharacterCodeMemoryAllocationAndSystemContextManagement FUN_18017b4bc
+void ProcessCharacterCodeMemoryAllocationAndSystemContextManagement(long long CharacterCode
 {
   long long *CharacterCode;
   long long BufferStatus;

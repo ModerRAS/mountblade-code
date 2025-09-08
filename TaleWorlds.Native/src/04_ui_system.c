@@ -83115,102 +83115,143 @@ void ValidateUIContextAndDataSource(longlong uiContext,int dataSource,int target
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_1807147f0(longlong uiContext,int dataSource,uint targetBuffer,int bufferSize,longlong resultPointer,
-                  longlong param_6,longlong param_7,longlong param_8,int param_9,int *uiContext0,
-                  int uiContext1,uint *uiContext2,uint uiContext3,int *uiContext4,int uiContext5,
-                  longlong uiContext6,longlong uiContext7,longlong uiContext8,int uiContext9,int dataSource0,
-                  UIHandle dataSource1,int dataSource2,int dataSource3,int dataSource4)
+/**
+ * @brief 计算UI组件插值系数
+ * 
+ * 该函数负责计算UI组件之间的插值系数，用于实现平滑的动画过渡效果。
+ * 通过多轮迭代计算最优的插值参数，确保UI元素在状态变化时具有流畅的视觉效果。
+ * 
+ * 主要功能：
+ * - 计算UI组件之间的差值和比例
+ * - 优化插值参数以达到最佳视觉效果
+ * - 处理边界条件和特殊情况
+ * - 返回计算后的插值结果
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param maximumDistance 最大距离参数
+ * @param referenceOffset1 参考偏移量1
+ * @param referenceOffset2 参考偏移量2
+ * @param thresholdValue 阈值
+ * @param outputResult 输出结果
+ * @param contextOffset1 上下文偏移量1
+ * @param contextBuffer2 上下文缓冲区2
+ * @param contextValue3 上下文值3
+ * @param contextBuffer4 上下文缓冲区4
+ * @param contextValue5 上下文值5
+ * @param contextPointer6 上下文指针6
+ * @param contextPointer7 上下文指针7
+ * @param contextPointer8 上下文指针8
+ * @param contextValue9 上下文值9
+ * @param sourceIndex0 源索引0
+ * @param resourceHandle1 资源句柄1
+ * @param sourceIndex2 源索引2
+ * @param sourceIndex3 源索引3
+ * @param sourceIndex4 源索引4
+ * 
+ * @return 计算后的插值结果
+ * 
+ * @note 原始函数名：FUN_1807147f0
+ */
+uint CalculateUIInterpolationCoefficients(longlong uiContext,int dataSource,uint targetBuffer,int bufferSize,longlong resultPointer,
+                  longlong maximumDistance,longlong referenceOffset1,longlong referenceOffset2,int thresholdValue,int *outputResult,
+                  int contextOffset1,uint *contextBuffer2,uint contextValue3,int *contextBuffer4,int contextValue5,
+                  longlong contextPointer6,longlong contextPointer7,longlong contextPointer8,int contextValue9,int sourceIndex0,
+                  UIHandle resourceHandle1,int sourceIndex2,int sourceIndex3,int sourceIndex4)
 
 {
-  longlong *pallocatedMemory;
-  longlong *colorBufferPointer;
-  int *puiCompareResult;
-  uint *bufferPtr;
-  bool IsValidationComplete;
-  bool bVar6;
-  int localInt7;
-  longlong contextOffset;
-  UIByte (*pauVar9) [16];
-  uint result0;
-  int ProcessingResult1;
-  int *pProcessingResult2;
-  int ProcessingResult3;
-  int processingResult4;
-  ulonglong CounterResult;
-  int processingResult6;
-  uint result7;
-  longlong *pallocatedMemory8;
-  int processingResult9;
-  uint iterationCount0;
-  ulonglong iterationCount1;
-  ulonglong iterationCount2;
-  longlong componentIndex3;
-  longlong componentIndex4;
-  UIByte aiterationCount5 [16];
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount7 [16];
-  UIByte aiterationCount8 [16];
-  UIByte aiterationCount9 [16];
-  UIByte aEventTypeCode0 [16];
-  UIByte in_XMM2 [16];
-  UIByte aEventTypeCode1 [16];
-  UIByte aEventTypeCode2 [16];
-  UIByte aEventTypeCode3 [16];
-  UIByte aEventTypeCode4 [16];
-  UIByte aEventTypeCode5 [16];
-  UIByte aEventTypeCode6 [16];
-  UIByte aEventTypeCode7 [16];
-  UIByte aEventTypeCode8 [16];
-  UIByte aEventTypeCode9 [16];
-  UIByte aProcessingStatus0 [16];
-  UIByte aProcessingStatus1 [16];
-  uint uStackX_10;
-  int stackInt98;
-  longlong stackLong90;
+  longlong *allocatedMemoryPointer;
+  longlong *colorDataPointer;
+  int *comparisonResultPointer;
+  uint *bufferDataPointer;
+  bool isValidationComplete;
+  bool hasComparisonResult;
+  int calculationResult;
+  longlong currentOffset;
+  UIByte (*vectorDataBuffer) [16];
+  uint interpolatedValue;
+  int accumulatedResult;
+  int *resultDataPointer;
+  int thresholdResult;
+  int processedValue;
+  ulonglong sourceCounter;
+  int iterationResult;
+  uint finalResult;
+  longlong *memoryAllocationPointer;
+  int optimizedResult;
+  uint loopCounter;
+  ulonglong targetIteration;
+  ulonglong sourceIteration;
+  longlong componentOffset;
+  longlong dataOffset;
+  UIByte vectorBuffer1 [16];
+  UIByte vectorBuffer2 [16];
+  UIByte vectorBuffer3 [16];
+  UIByte vectorBuffer4 [16];
+  UIByte vectorBuffer5 [16];
+  UIByte eventTypeVector0 [16];
+  UIByte registerXMM2 [16];
+  UIByte eventTypeVector1 [16];
+  UIByte eventTypeVector2 [16];
+  UIByte eventTypeVector3 [16];
+  UIByte eventTypeVector4 [16];
+  UIByte eventTypeVector5 [16];
+  UIByte eventTypeVector6 [16];
+  UIByte eventTypeVector7 [16];
+  UIByte eventTypeVector8 [16];
+  UIByte eventTypeVector9 [16];
+  UIByte processingStatusVector0 [16];
+  UIByte processingStatusVector1 [16];
+  uint outputValue;
+  int stackValue98;
+  longlong iterationControl;
   
-  CounterResult = (ulonglong)dataSource;
-  ProcessingResult1 = 0;
-  iterationCount1 = (ulonglong)(int)targetBuffer;
-  ProcessingResult3 = uiContext9 * 8;
-  IsValidationComplete = 1 < uiContext9;
-  aProcessingStatus1 = ZEXT116(IsValidationComplete);
-  stackLong90 = 6;
-  iterationCount2 = iterationCount1;
-  processingResult4 = 0x40;
+  sourceCounter = (ulonglong)dataSource;
+  accumulatedResult = 0;
+  targetIteration = (ulonglong)(int)targetBuffer;
+  thresholdResult = contextValue9 * 8;
+  isValidationComplete = 1 < contextValue9;
+  processingStatusVector1 = ZEXT116(isValidationComplete);
+  iterationControl = 6;
+  sourceIteration = targetIteration;
+  processedValue = 0x40;
   do {
-    processingResult6 = 0;
-    processingResult9 = processingResult4 + ProcessingResult1 >> 1;
-    bVar6 = false;
-    if (dataSource < (int)iterationCount2) {
-      pProcessingResult2 = (int *)(iterationCount1 * 4 + resultPointer);
-      iterationCount2 = (ulonglong)(uint)((int)iterationCount2 - dataSource);
-      processingResult6 = 0;
+    iterationResult = 0;
+    optimizedResult = processedValue + accumulatedResult >> 1;
+    hasComparisonResult = false;
+    if (dataSource < (int)sourceIteration) {
+      resultDataPointer = (int *)(targetIteration * 4 + resultPointer);
+      sourceIteration = (ulonglong)(uint)((int)sourceIteration - dataSource);
+      iterationResult = 0;
       do {
-        puiCompareResult = (int *)((param_6 - resultPointer) + -4 + (longlong)pProcessingResult2);
-        pProcessingResult2 = pProcessingResult2 + -1;
-        localInt7 = (*puiCompareResult * processingResult9 >> 6) + *pProcessingResult2;
-        if ((*(int *)((longlong)pProcessingResult2 + (param_7 - resultPointer)) <= localInt7) || (bVar6)) {
-          bVar6 = true;
-          if (*(int *)((param_8 - resultPointer) + (longlong)pProcessingResult2) <= localInt7) {
-            localInt7 = *(int *)((param_8 - resultPointer) + (longlong)pProcessingResult2);
+        comparisonResultPointer = (int *)((maximumDistance - resultPointer) + -4 + (longlong)resultDataPointer);
+        resultDataPointer = resultDataPointer + -1;
+        calculationResult = (*comparisonResultPointer * optimizedResult >> 6) + *resultDataPointer;
+        if ((*(int *)((longlong)resultDataPointer + (referenceOffset1 - resultPointer)) <= calculationResult) || (hasComparisonResult)) {
+          hasComparisonResult = true;
+          if (*(int *)((referenceOffset2 - resultPointer) + (longlong)resultDataPointer) <= calculationResult) {
+            calculationResult = *(int *)((referenceOffset2 - resultPointer) + (longlong)resultDataPointer);
           }
-          processingResult6 = processingResult6 + localInt7;
+          iterationResult = iterationResult + calculationResult;
         }
-        else if (ProcessingResult3 <= localInt7) {
-          processingResult6 = processingResult6 + ProcessingResult3;
+        else if (thresholdResult <= calculationResult) {
+          iterationResult = iterationResult + thresholdResult;
         }
-        iterationCount2 = iterationCount2 - 1;
-      } while (iterationCount2 != 0);
-      iterationCount2 = (ulonglong)targetBuffer;
+        sourceIteration = sourceIteration - 1;
+      } while (sourceIteration != 0);
+      sourceIteration = (ulonglong)targetBuffer;
     }
-    localInt7 = processingResult9;
-    if (processingResult6 <= param_9) {
-      localInt7 = processingResult4;
-      ProcessingResult1 = processingResult9;
+    calculationResult = optimizedResult;
+    if (iterationResult <= thresholdValue) {
+      calculationResult = processedValue;
+      accumulatedResult = optimizedResult;
     }
-    stackLong90 = stackLong90 + -1;
-    processingResult4 = localInt7;
-  } while (stackLong90 != 0);
+    iterationControl = iterationControl + -1;
+    processedValue = calculationResult;
+  } while (iterationControl != 0);
   processingResult4 = 0;
   bVar6 = false;
   uStackX_10 = (uint)iterationCount2;
