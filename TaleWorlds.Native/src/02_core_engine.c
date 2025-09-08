@@ -547,6 +547,49 @@
 #define GetMemoryAddressMask CalculateMemoryAddressMask
 #define AllocateValidationMemory AllocateMemoryForValidation
 #define ProcessSystemValidation ExecuteSystemValidationProcess
+
+/**
+ * @brief 处理系统内存分配索引
+ * 
+ * 该函数负责处理系统内存分配的索引操作，包括：
+ * - 计算内存分配的索引值
+ * - 管理内存块的分配状态
+ * - 处理字符代码相关的内存分配
+ * 
+ * @param CharacterStatusBuffer1 字符状态缓冲区1
+ * @param CharacterStatusBuffer2 字符状态缓冲区2
+ * @param CharacterCode 字符代码
+ * @return 内存分配索引值
+ * @note 原始函数名：FUN_18014d7f0
+ */
+#define ProcessSystemMemoryAllocationIndex FUN_18014d7f0
+
+/**
+ * @brief 处理系统资源释放
+ * 
+ * 该函数负责处理系统资源的释放操作，包括：
+ * - 释放内存块索引
+ * - 清理系统数据注册表
+ * - 管理内存分配大小
+ * 
+ * @param SystemDataRegistry 系统数据注册表
+ * @note 原始函数名：FUN_18014c7d0
+ */
+#define ProcessSystemResourceRelease FUN_18014c7d0
+
+/**
+ * @brief 处理字符表数据操作
+ * 
+ * 该函数负责处理字符表数据的操作，包括：
+ * - 访问字符表中的特定数据
+ * - 执行字符代码的处理和转换
+ * - 管理字符表的数据结构
+ * 
+ * @param CharacterTablePointer 字符表指针
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_18014ce90
+ */
+#define ProcessCharacterTableDataOperation FUN_18014ce90
 #define ProcessStringConversion ConvertStringEncoding
 #define InitializeStringEncodingBuffer SetupStringEncodingBuffer
 
