@@ -15629,7 +15629,7 @@ void UpdateUIElementState(void)
   int LocalIndex;
   UIHandle UIContext;
   longlong StackBasePointer;
-  char LocalFlag;
+  char UIStateFlag;
   UIDword AllocationFlags;
   char UnmodifiedRegister13;
   longlong EventData;
@@ -91410,17 +91410,17 @@ void ProcessUITransformMatrixCalculation(float *uiContext,UIHandle dataSource,in
   
   uiElementIndex = 0;
   if (3 < targetBuffer) {
-    ptransformCoeff3 = uiContext + 10;
-    EventTypeCode = (targetBuffer - 4U >> 2) + 1;
-    maxProcessingCount = (ulonglong)EventTypeCode;
-    localInt5 = EventTypeCode * 4;
+    transformMatrixPtr = uiContext + 10;
+    eventProcessingCode = (targetBuffer - 4U >> 2) + 1;
+    maxProcessingCount = (ulonglong)eventProcessingCode;
+    matrixElementSize = eventProcessingCode * 4;
     do {
-      resultFloat = ptransformCoeff3[-2];
-      tempFloat = ptransformCoeff3[-1];
-      ptransformCoeff3[-2] = *uiContext - resultFloat;
-      ptransformCoeff3[-1] = ptransformCoeff3[-9] - tempFloat;
-      baseValue = ptransformCoeff3[-9];
-      transformCoeff1 = ptransformCoeff3[-8];
+      resultFloat = transformMatrixPtr[-2];
+      tempFloat = transformMatrixPtr[-1];
+      transformMatrixPtr[-2] = *uiContext - resultFloat;
+      transformMatrixPtr[-1] = transformMatrixPtr[-9] - tempFloat;
+      baseValue = transformMatrixPtr[-9];
+      transformCoeff1 = transformMatrixPtr[-8];
       *uiContext = resultFloat + *uiContext;
       ptransformCoeff3[-9] = tempFloat + baseValue;
       resultFloat = (ptransformCoeff3[1] + *ptransformCoeff3) * 0.70710677;
