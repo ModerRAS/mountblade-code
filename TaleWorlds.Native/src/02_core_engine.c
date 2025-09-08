@@ -216996,29 +216996,29 @@ InitializeUtf8SystemContext(uint64_t *CharacterCode,unsigned long long SystemBuf
  */
 void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
 {
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
   uint32_t MemoryAllocationIndex;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointer;
-  void *pCoreEngineUnsignedValue208;
-  uint64_t *UnsignedProcessingStatusFlag;
-  uint32_t uStack_1f8;
-  uint64_t uStack_1f0;
-  uint64_t SystemStackOffset48;
+  void *CoreEngineDataBuffer;
+  uint64_t *ProcessingStatusFlag;
+  uint32_t StackValidationFlag;
+  uint64_t StackProcessingOffset;
+  uint64_t SystemContextOffset;
   
   SystemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x230,0x10,3);
-  SystemStackFlag = 0xfffffffffffffffe;
-  pMemoryAddressMaskPointer = SystemEventTemplatePointer;
+  SystemContextOffset = 0xfffffffffffffffe;
+  MemoryAddressMaskPointer = SystemEventTemplatePointer;
   ProcessSystemStatusAndBufferSize(SystemEventTemplatePointer,SystemBufferSize,CharacterCode);
-  *pMemoryAddressMaskPointer = &SystemMemoryAddressMaskPointerSecondary;
-  ProcessSystemMemoryValidation(pMemoryAddressMaskPointer + 0xe);
+  *MemoryAddressMaskPointer = &SystemMemoryAddressMaskPointerSecondary;
+  ProcessSystemMemoryValidation(MemoryAddressMaskPointer + 0xe);
   SystemEventTemplatePointer[0x36] = 0;
   SystemEventTemplatePointer[0x43] = 0;
   SystemEventTemplatePointer[0x44] = 0;
-  CharacterCode = (long long *)SystemEventTemplatePointer[0x36];
+  CharacterCodePointer = (long long *)SystemEventTemplatePointer[0x36];
   SystemEventTemplatePointer[0x36] = 0;
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x38))();
+  if (CharacterCodePointer != (long long *)0x0) {
+    (**(code **)(*CharacterCodePointer + 0x38))();
   }
   SystemEventTemplatePointer[0x37] = 0x404e000000000000;
   *(uint32_t *)(SystemEventTemplatePointer + 0x38) = 0x100;
@@ -255757,16 +255757,31 @@ LAB_18020f126:
 
 
 
-uint64_t FUN_18020f2b0(long long CharacterCode,char SystemBufferSize
+/**
+ * @brief 处理系统上下文和内存块管理
+ * 
+ * 该函数负责处理系统上下文管理和内存块操作，包括：
+ * - 验证系统配置和处理性能计数器
+ * - 管理内存块索引和分配
+ * - 处理互斥锁和线程安全
+ * - 执行系统事件和上下文清理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @return uint64_t 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18020f2b0
+ */
+uint64_t ProcessSystemContextAndMemoryManagement(long long ContextHandle,char OperationBufferSize)
 {
-  char CurrentCharacter;
-  int StringComparisonResult;
+  char ValidationStatus;
+  int LockOperationResult;
   long long *MemoryBlockIndex;
   long long *EngineContext;
   long long AllocatedMemorySize;
-  uint64_t DataSize;
-  long long *SystemRegisterPointerX18;
-  long long *pPerformanceCounterValue;
+  uint64_t OperationResult;
+  long long *SystemContextRegister;
+  long long *PerformanceCounterPointer;
   
   SystemRegisterPointerX18 = (long long *)0x0;
   if (SystemBufferSize == '\0') {

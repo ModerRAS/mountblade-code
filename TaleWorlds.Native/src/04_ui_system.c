@@ -130912,7 +130912,7 @@ UIHandle ProcessUIContextDataValidationAndEventManagement(longlong uiContext,int
   if ((*(char *)(uiContext + 8) == '\0') &&
      (ProcessingStatus = FUN_18078ae40(uiContext,*(UIDword *)(uiBufferData + 0x678),
                             *(UIDword *)(uiBufferData + 0x67c)), (int)ProcessingStatus != 0)) {
-    stackInt18 = 0;
+    DataSourceIndex = 0;
   }
   else {
     ProcessingStatus = FUN_18078a600(uiContext,0);
@@ -130921,29 +130921,29 @@ UIHandle ProcessUIContextDataValidationAndEventManagement(longlong uiContext,int
     }
     allocatedMemory = *(longlong *)(uiBufferData + 0x670);
     if (*(code **)(allocatedMemory + 0x340) == (UIFunctionPtr *)0x0) {
-      stackInt18 = 0;
-      goto LAB_1807464ee;
+      DataSourceIndex = 0;
+      goto ValidateDataSourceBounds;
     }
     EventDataIndex = allocatedMemory + 8;
     if (allocatedMemory == 0) {
       EventDataIndex = 0;
     }
-    ProcessingStatus = (**(code **)(allocatedMemory + 0x340))(EventDataIndex,&stackInt18);
+    ProcessingStatus = (**(code **)(allocatedMemory + 0x340))(EventDataIndex,&DataSourceIndex);
   }
   if ((int)ProcessingStatus != 0) {
     return ProcessingStatus;
   }
-LAB_1807464ee:
-  if ((dataSource < 0) || (stackInt18 <= dataSource)) {
+ValidateDataSourceBounds:
+  if ((dataSource < 0) || (DataSourceIndex <= dataSource)) {
     ProcessingStatus = 0x1f;
   }
   else if ((*(char *)(uiContext + 8) != '\0') ||
           (ProcessingStatus = FUN_18078ae40(uiContext,*(UIDword *)(uiBufferData + 0x678),
                                  *(UIDword *)(uiBufferData + 0x67c)), (int)ProcessingStatus == 0)) {
     if (*(longlong *)(*(longlong *)(uiBufferData + 0x670) + 0x348) != 0) {
-      stackIntc = 0;
-      stackInt14 = 0;
-      stackInt10 = 0;
+      StackParameterC = 0;
+      StackParameter14 = 0;
+      StackParameter10 = 0;
       if (targetBuffer != 0) {
                      WARNING: Subroutine does not return
         memset(targetBuffer,0,(longlong)bufferSize);
