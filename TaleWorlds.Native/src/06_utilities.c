@@ -4279,8 +4279,15 @@
 // 原始函数名：FUN_180894bf5
 #define ExecuteSecurityCheckWrapperB FUN_180894bf5
 
-// 原始函数名：FUN_180895b89 - 安全检查执行函数
-// 功能：执行安全检查，程序不会返回
+/**
+ * @brief 安全检查执行函数
+ * 
+ * 该函数执行系统的安全检查操作，确保系统在安全状态下运行。
+ * 这是一个关键的安全函数，执行后程序不会返回。
+ * 
+ * @note 原始函数名：FUN_180895b89
+ * @note 这是系统安全机制的重要组成部分
+ */
 #define ExecuteSecurityCheck FUN_180895b89
 
 
