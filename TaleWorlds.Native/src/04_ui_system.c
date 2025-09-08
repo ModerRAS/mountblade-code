@@ -5905,16 +5905,16 @@ UIHandle GetUIStatusFlag(void)
           memcpy();
           return;
         }
-        for (; remainingChars != 0; remainingChars = remainingChars + -1) {
-          *uiBufferPointer = *componentPointer;
-          componentPointer = componentPointer + 1;
-          uiBufferPointer = uiBufferPointer + 1;
+        for (; RemainingCharacters != 0; RemainingCharacters = RemainingCharacters + -1) {
+          *UIBufferPointer = *ComponentData;
+          ComponentData = ComponentData + 1;
+          UIBufferPointer = UIBufferPointer + 1;
         }
         return;
       }
     }
   }
-  UIBufferIndex = currentBufferIndex;
+  UIBufferIndex = CurrentBufferIndex;
   return;
 }
 

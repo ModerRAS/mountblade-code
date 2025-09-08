@@ -216852,7 +216852,7 @@ InitializeUtf8EncodingConversion(uint64_t *CharacterCode,unsigned long long Syst
   
   Utf16Char = 0xfffffffffffffffe;
   *CharacterCode = &SystemCharacterStatusBufferSecondary;
-  FUN_1803457d0();
+  InitializeSystemEncodingConversionStatus();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x70,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
@@ -216973,7 +216973,7 @@ InitializeUtf8SystemContext(uint64_t *CharacterCode,unsigned long long SystemBuf
   
   Utf16Char = 0xfffffffffffffffe;
   *CharacterCode = &SystemContextBufferQuinary;
-  FUN_1803457d0();
+  InitializeSystemEncodingConversionStatus();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0xa8,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
