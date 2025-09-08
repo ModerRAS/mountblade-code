@@ -86506,110 +86506,130 @@ UIDword GetUIRenderFlagsAndStatus(void)
 
 
 
-ulonglong FUN_180718bd0(int *uiContext,longlong dataSource,int targetBuffer,uint bufferSize,int resultPointer,
+/**
+ * @brief 处理复杂的UI事件和数据操作
+ * 
+ * 该函数处理UI系统中的复杂事件，包括：
+ * - 事件类型查找和匹配
+ * - 数据缓冲区处理和压缩
+ * - 随机数生成和数据填充
+ * - 递归处理嵌套事件
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（数据源偏移）
+ * @param param_7 参数7（处理深度）
+ * @param param_8 参数8（缩放因子）
+ * @param param_9 参数9（标志位）
+ * @return ulonglong 处理结果状态码
+ */
+ulonglong ProcessComplexUIEvent(int *uiContext,longlong dataSource,int targetBuffer,uint bufferSize,int resultPointer,
                        longlong param_6,int param_7,float param_8,uint param_9)
 
 {
   int processingResult;
   uint iterationCount;
-  uint EventTypeCode;
-  int TempInt4;
+  uint eventTypeId;
+  int tempInt4;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
-  byte bVar7;
-  float *plocalFloat8;
+  byte byteFlag7;
+  float *floatPointer8;
   uint eventProcessingStatus;
-  ulonglong result0;
-  int ProcessingResult1;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  byte *pisCharacterMatch4;
-  uint CounterResult;
-  longlong allocatedMemory6;
-  longlong allocatedMemory7;
-  longlong allocatedMemory8;
-  float FloatValue2;
+  ulonglong resultValue;
+  int processingResult1;
+  int processingResult2;
+  int processingResult3;
+  byte *characterMatchTable;
+  uint counterResult;
+  longlong memoryPointer6;
+  longlong memoryPointer7;
+  longlong memoryPointer8;
+  float floatValue2;
   uint stackBuffer [2];
-  UIByte astackUInt80 [4];
+  UIByte stackBuffer80 [4];
   int stackInt7c;
   int stackInt78;
   int stackInt74;
   uint stackUInt70;
   int stackInt6c;
   
-  allocatedMemory6 = *(longlong *)(uiBufferData + 2);
+  memoryPointer6 = *(longlong *)(uiBufferData + 2);
   maxProcessingCount = 0;
-  allocatedMemory8 = (longlong)targetBuffer;
-  pisCharacterMatch4 = (byte *)((longlong)
-                     *(short *)(*(longlong *)(allocatedMemory6 + 0x88) +
-                               (longlong)(*(int *)(allocatedMemory6 + 8) * (param_7 + 1) + uiContext[4]) * 2) +
-                    *(longlong *)(allocatedMemory6 + 0x90));
+  memoryPointer8 = (longlong)targetBuffer;
+  characterMatchTable = (byte *)((longlong)
+                     *(short *)(*(longlong *)(memoryPointer6 + 0x88) +
+                               (longlong)(*(int *)(memoryPointer6 + 8) * (param_7 + 1) + uiContext[4]) * 2) +
+                    *(longlong *)(memoryPointer6 + 0x90));
   stackBuffer[0] = bufferSize;
-  if (((param_7 == -1) || ((int)bufferSize <= (int)(pisCharacterMatch4[*pisCharacterMatch4] + 0xc))) || (targetBuffer < 3)) {
+  if (((param_7 == -1) || ((int)bufferSize <= (int)(characterMatchTable[*characterMatchTable] + 0xc))) || (targetBuffer < 3)) {
     processingResult = bufferSize - 1;
-    EventTypeCode = (int)(*pisCharacterMatch4 + 1) >> 1;
+    eventTypeId = (int)(*characterMatchTable + 1) >> 1;
     iterationCount = 0;
-    if ((int)(uint)pisCharacterMatch4[(int)EventTypeCode] < processingResult) {
-      iterationCount = EventTypeCode;
+    if ((int)(uint)characterMatchTable[(int)eventTypeId] < processingResult) {
+      iterationCount = eventTypeId;
     }
-    if ((int)(uint)pisCharacterMatch4[(int)EventTypeCode] < processingResult) {
-      EventTypeCode = (uint)*pisCharacterMatch4;
+    if ((int)(uint)characterMatchTable[(int)eventTypeId] < processingResult) {
+      eventTypeId = (uint)*characterMatchTable;
     }
-    eventProcessingStatus = (int)(EventTypeCode + 1 + iterationCount) >> 1;
-    if ((int)(uint)pisCharacterMatch4[(int)eventProcessingStatus] < processingResult) {
+    eventProcessingStatus = (int)(eventTypeId + 1 + iterationCount) >> 1;
+    if ((int)(uint)characterMatchTable[(int)eventProcessingStatus] < processingResult) {
       iterationCount = eventProcessingStatus;
-      eventProcessingStatus = EventTypeCode;
+      eventProcessingStatus = eventTypeId;
     }
-    EventTypeCode = (int)(eventProcessingStatus + 1 + iterationCount) >> 1;
-    if ((int)(uint)pisCharacterMatch4[(int)EventTypeCode] < processingResult) {
-      iterationCount = EventTypeCode;
-      EventTypeCode = eventProcessingStatus;
+    eventTypeId = (int)(eventProcessingStatus + 1 + iterationCount) >> 1;
+    if ((int)(uint)characterMatchTable[(int)eventTypeId] < processingResult) {
+      iterationCount = eventTypeId;
+      eventTypeId = eventProcessingStatus;
     }
-    eventProcessingStatus = (int)(EventTypeCode + 1 + iterationCount) >> 1;
-    if ((int)(uint)pisCharacterMatch4[(int)eventProcessingStatus] < processingResult) {
+    eventProcessingStatus = (int)(eventTypeId + 1 + iterationCount) >> 1;
+    if ((int)(uint)characterMatchTable[(int)eventProcessingStatus] < processingResult) {
       iterationCount = eventProcessingStatus;
-      eventProcessingStatus = EventTypeCode;
+      eventProcessingStatus = eventTypeId;
     }
-    EventTypeCode = (int)(eventProcessingStatus + 1 + iterationCount) >> 1;
-    if ((int)(uint)pisCharacterMatch4[(int)EventTypeCode] < processingResult) {
-      iterationCount = EventTypeCode;
-      EventTypeCode = eventProcessingStatus;
+    eventTypeId = (int)(eventProcessingStatus + 1 + iterationCount) >> 1;
+    if ((int)(uint)characterMatchTable[(int)eventTypeId] < processingResult) {
+      iterationCount = eventTypeId;
+      eventTypeId = eventProcessingStatus;
     }
-    CounterResult = (int)(EventTypeCode + 1 + iterationCount) >> 1;
-    eventProcessingStatus = CounterResult;
-    if ((int)(uint)pisCharacterMatch4[(int)CounterResult] < processingResult) {
-      eventProcessingStatus = EventTypeCode;
-      iterationCount = CounterResult;
+    counterResult = (int)(eventTypeId + 1 + iterationCount) >> 1;
+    eventProcessingStatus = counterResult;
+    if ((int)(uint)characterMatchTable[(int)counterResult] < processingResult) {
+      eventProcessingStatus = eventTypeId;
+      iterationCount = counterResult;
     }
     if (iterationCount == 0) {
-      EventTypeCode = 0xffffffff;
+      eventTypeId = 0xffffffff;
     }
     else {
-      EventTypeCode = (uint)pisCharacterMatch4[(int)iterationCount];
+      eventTypeId = (uint)characterMatchTable[(int)iterationCount];
     }
-    if ((int)((uint)pisCharacterMatch4[(int)eventProcessingStatus] - processingResult) < (int)(processingResult - EventTypeCode)) {
+    if ((int)((uint)characterMatchTable[(int)eventProcessingStatus] - processingResult) < (int)(processingResult - eventTypeId)) {
       iterationCount = eventProcessingStatus;
     }
-    allocatedMemory7 = (longlong)(int)iterationCount;
+    memoryPointer7 = (longlong)(int)iterationCount;
     loopCounter = maxProcessingCount;
     if (iterationCount != 0) {
-      loopCounter = (ulonglong)(pisCharacterMatch4[allocatedMemory7] + 1);
+      loopCounter = (ulonglong)(characterMatchTable[memoryPointer7] + 1);
     }
     processingResult = uiContext[10] - (int)loopCounter;
     uiContext[10] = processingResult;
     if (processingResult < 0) {
       do {
-        if (allocatedMemory7 < 1) break;
+        if (memoryPointer7 < 1) break;
         processingResult = processingResult + (int)loopCounter;
         iterationCount = iterationCount - 1;
         uiContext[10] = processingResult;
-        allocatedMemory7 = allocatedMemory7 + -1;
+        memoryPointer7 = memoryPointer7 + -1;
         loopCounter = maxProcessingCount;
-        if (allocatedMemory7 != 0) {
+        if (memoryPointer7 != 0) {
           loopCounter = (ulonglong)
-                  (*(byte *)(*(short *)(*(longlong *)(allocatedMemory6 + 0x88) +
-                                       (longlong)(*(int *)(allocatedMemory6 + 8) * (param_7 + 1) + uiContext[4])
-                                       * 2) + allocatedMemory7 + *(longlong *)(allocatedMemory6 + 0x90)) + 1);
+                  (*(byte *)(*(short *)(*(longlong *)(memoryPointer6 + 0x88) +
+                                       (longlong)(*(int)(memoryPointer6 + 8) * (param_7 + 1) + uiContext[4])
+                                       * 2) + memoryPointer7 + *(longlong *)(memoryPointer6 + 0x90)) + 1);
         }
         processingResult = processingResult - (int)loopCounter;
         uiContext[10] = processingResult;
@@ -99605,73 +99625,73 @@ void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource
 void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
-  ulonglong result;
-  ulonglong iterationCount;
-  short ContextFirstValue;
-  short sVar4;
-  short sVar5;
-  UIByte amaxProcessingCount [12];
-  UIByte aprocessingCounter [12];
-  UIByte aeventProcessingCounter [12];
-  UIByte aeventProcessingStatus [12];
-  float *pbaseValue0;
-  uint result1;
-  longlong allocatedMemory2;
-  ulonglong result3;
-  longlong allocatedMemory4;
-  ulonglong CounterResult;
-  UIByte aTotalResult [16];
-  UIByte aiterationCount0 [16];
-  UIByte aiterationCount3 [16];
-  UIByte aiterationCount6 [16];
-  UIByte astackUInt68 [32];
-  UIHandle stackUInt48;
-  ulonglong astackUInt40 [6];
-  UIByte aresult7 [16];
-  UIByte aresult8 [16];
-  UIWord result9;
-  UIByte aiterationCount1 [16];
-  UIByte aiterationCount2 [16];
-  UIByte aiterationCount4 [16];
-  UIByte aiterationCount5 [16];
-  UIByte aiterationCount7 [16];
-  UIByte aiterationCount8 [16];
+  ulonglong processingResult;
+  ulonglong dataIterationCount;
+  short contextPrimaryValue;
+  short contextSecondaryValue;
+  short contextTertiaryValue;
+  UIByte maxProcessingBuffer [12];
+  UIByte processingCounterBuffer [12];
+  UIByte eventCounterBuffer [12];
+  UIByte eventStatusBuffer [12];
+  float *dataPointer;
+  uint validationResult;
+  longlong memoryAllocationSize;
+  ulonglong loopCounter;
+  longlong bufferAllocationSize;
+  ulonglong processingCounter;
+  UIByte totalResultBuffer [16];
+  UIByte iterationBuffer0 [16];
+  UIByte iterationBuffer3 [16];
+  UIByte iterationBuffer6 [16];
+  UIByte encryptionBuffer [32];
+  UIHandle dataHandle;
+  ulonglong encryptionKeyArray [6];
+  UIByte resultBuffer7 [16];
+  UIByte resultBuffer8 [16];
+  UIWord wordResult;
+  UIByte iterationBuffer1 [16];
+  UIByte iterationBuffer2 [16];
+  UIByte iterationBuffer4 [16];
+  UIByte iterationBuffer5 [16];
+  UIByte iterationBuffer7 [16];
+  UIByte iterationBuffer8 [16];
   
-  astackUInt40[3] = XorEncryptionKey ^ (ulonglong)astackUInt68;
-  allocatedMemory4 = (longlong)(int)targetBuffer;
-  FUN_18072f4d0(&stackUInt48,dataSource,targetBuffer);
-  result3 = 0;
-  CounterResult = result3;
-  if (((0 < (int)targetBuffer) && (CounterResult = 0, 0xf < targetBuffer)) &&
-     (((ulonglong)((longlong)&stackUInt48 + (longlong)(int)(targetBuffer - 1) * 2) < uiContext ||
-      ((UIHandle *)(uiContext + (longlong)(int)(targetBuffer - 1) * 4) < &stackUInt48)))) {
-    result1 = targetBuffer & 0x8000000f;
-    if ((int)result1 < 0) {
-      result1 = (result1 - 1 | 0xfffffff0) + 1;
+  encryptionKeyArray[3] = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  bufferAllocationSize = (longlong)(int)targetBuffer;
+  ProcessUIDataHandle(&dataHandle,dataSource,targetBuffer);
+  loopCounter = 0;
+  processingCounter = loopCounter;
+  if (((0 < (int)targetBuffer) && (processingCounter = 0, 0xf < targetBuffer)) &&
+     (((ulonglong)((longlong)&dataHandle + (longlong)(int)(targetBuffer - 1) * 2) < uiContext ||
+      ((UIHandle *)(uiContext + (longlong)(int)(targetBuffer - 1) * 4) < &dataHandle)))) {
+    validationResult = targetBuffer & 0x8000000f;
+    if ((int)validationResult < 0) {
+      validationResult = (validationResult - 1 | 0xfffffff0) + 1;
     }
-    pbaseValue0 = (float *)(uiContext + 0x20);
-    CounterResult = result3;
+    dataPointer = (float *)(uiContext + 0x20);
+    processingCounter = loopCounter;
     do {
-      result = *(ulonglong *)((longlong)&stackUInt48 + result3 * 2);
-      iterationCount = *(ulonglong *)((longlong)astackUInt40 + result3 * 2);
-      CounterResult = (ulonglong)((int)CounterResult + 0x10);
-      result9 = (UIWord)(result >> 0x30);
-      aresult8._8_4_ = 0;
-      aresult8._0_8_ = result;
-      aresult8._12_2_ = result9;
-      aresult8._14_2_ = result9;
-      result9 = (UIWord)(result >> 0x20);
-      aresult7._12_4_ = aresult8._12_4_;
-      aresult7._8_2_ = 0;
-      aresult7._0_8_ = result;
-      aresult7._10_2_ = result9;
-      aTotalResult._10_6_ = aresult7._10_6_;
-      aTotalResult._8_2_ = result9;
-      aTotalResult._0_8_ = result;
-      result9 = (UIWord)(result >> 0x10);
-      amaxProcessingCount._4_8_ = aTotalResult._8_8_;
-      amaxProcessingCount._2_2_ = result9;
-      amaxProcessingCount._0_2_ = result9;
+      processingResult = *(ulonglong *)((longlong)&dataHandle + loopCounter * 2);
+      dataIterationCount = *(ulonglong *)((longlong)encryptionKeyArray + loopCounter * 2);
+      processingCounter = (ulonglong)((int)processingCounter + 0x10);
+      wordResult = (UIWord)(processingResult >> 0x30);
+      resultBuffer8._8_4_ = 0;
+      resultBuffer8._0_8_ = processingResult;
+      resultBuffer8._12_2_ = wordResult;
+      resultBuffer8._14_2_ = wordResult;
+      wordResult = (UIWord)(processingResult >> 0x20);
+      resultBuffer7._12_4_ = resultBuffer8._12_4_;
+      resultBuffer7._8_2_ = 0;
+      resultBuffer7._0_8_ = processingResult;
+      resultBuffer7._10_2_ = wordResult;
+      totalResultBuffer._10_6_ = resultBuffer7._10_6_;
+      totalResultBuffer._8_2_ = wordResult;
+      totalResultBuffer._0_8_ = processingResult;
+      wordResult = (UIWord)(processingResult >> 0x10);
+      maxProcessingBuffer._4_8_ = totalResultBuffer._8_8_;
+      maxProcessingBuffer._2_2_ = wordResult;
+      maxProcessingBuffer._0_2_ = wordResult;
       result9 = (UIWord)(iterationCount >> 0x30);
       aiterationCount2._8_4_ = 0;
       aiterationCount2._0_8_ = iterationCount;
