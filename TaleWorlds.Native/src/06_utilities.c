@@ -2359,6 +2359,13 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define UnwindCleanupContextA10 Unwind_180909e80
 #define UnwindCleanupContextA11 Unwind_180909ea0
 // 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
+/**
+ * @brief 销毁互斥锁清理函数A12
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909ec0
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 Unwind_180909ec0
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
@@ -23605,19 +23612,19 @@ void ProcessFloatingPointDataA0(void)
   DataWord DataProcessingOffset;    // 数据处理偏移量
   float ProcessedFloatValue;        // 处理后的浮点值
   
-  if (((contextPointerB != '\0') || (*(int *)(*(int64_t *)(dataPointer + 0x2e8) + 0x34) == loopCounter)) &&
-     (allocatedMemoryBlock = ConfigureSystemParametersA0(), allocatedMemoryBlock == 0)) {
-    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + 0x48))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
-      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0x40) + (int64_t)allocatedMemoryBlock * 8);
-      dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
-      if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
+  if (((systemContextValidationFlag != '\0') || (*(int *)(*(int64_t *)(systemDataPointer + 0x2e8) + 0x34) == processingLoopCounter)) &&
+     (systemResourceAllocationResult = ConfigureSystemParametersA0(), systemResourceAllocationResult == 0)) {
+    for (systemResourceAllocationResult = 0; (-1 < systemResourceAllocationResult && (systemResourceAllocationResult < *(int *)(systemDataPointer + 0x48))); systemResourceAllocationResult = systemResourceAllocationResult + 1) {
+      exceptionHandlerDataPointer = *(int64_t *)(*(int64_t *)(systemDataPointer + 0x40) + (int64_t)systemResourceAllocationResult * 8);
+      dataContext = *(int64_t *)(exceptionHandlerDataPointer + 0x68);
+      if (((*(byte *)(exceptionHandlerDataPointer + 0xc4) & 1) != 0) && (dataContext != 0)) {
         SystemOperationResult = 0;
-        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&SystemOperationResult);
-        if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
-        validationStatus = *(DataWord *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10);
-        memoryRegionBase = *(DataWord *)(exceptionHandlerContext + 0x14);
-        operationResult = *(DataWord *)(exceptionHandlerContext + 0x18);
-        dataFlags = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        validationSizeResult = ValidateAndProcessSystemResourceA0(dataContext,&SystemOperationResult);
+        if (validationSizeResult != 0) goto ProcessCheckpointSizeValidation;
+        validationStatus = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerCallbackOffset10);
+        memoryRegionBase = *(DataWord *)(exceptionHandlerDataPointer + 0x14);
+        operationResult = *(DataWord *)(exceptionHandlerDataPointer + 0x18);
+        dataFlags = *(DataWord *)(exceptionHandlerDataPointer + 0x1c);
         *(DataWord *)(StackFrameContext + -0x78) = 0;
         *(int *)(StackFrameContext + -0x68) = loopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
@@ -28935,7 +28942,7 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
   
   rawDataValue = *operationData;
   if (rawDataValue + 0x4000 < 0x8000) {
-    processedData = CONCAT22(processedData._2_2_,(short)rawDataValue) & 0xffff7fff;
+    systemProcessedData = CONCAT22(systemProcessedData._2_2_,(short)rawDataValue) & 0xffff7fff;
     processingMode = 2;
   }
   else {
@@ -28964,7 +28971,7 @@ DataBuffer ProcessDataConversionA0(int64_t operationBase,DataBuffer *dataBuffer)
     operationResult = 0;
   }
   if (operationResult < 0x8000) {
-    stackUIntBuffer[0] = CONCAT22(stackUIntBuffer[0]._2_2_,(short)operationResult);
+    systemUIntBuffer[0] = CONCAT22(systemUIntBuffer[0]._2_2_,(short)operationResult);
     systemDataBuffer = 2;
   }
   else {
@@ -37139,7 +37146,7 @@ ValidationStartHandler:
   }
   dataBufferSizeValid = *(uint *)(dataBuffer + 8) < 0x34;
   hasValidSystemName = (char)memoryRegionBase;
-  systemStatusUnion[0] = CONCAT31(systemStatusUnion[0]._1_3_,hasValidSystemName);
+  systemStatusBuffer[0] = CONCAT31(systemStatusBuffer[0]._1_3_,hasValidSystemName);
   isMemoryAllocationComplete = false;
   if (0x37 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
@@ -37202,7 +37209,7 @@ ValidationDataHandler2:
         }
       }
       if (validationStatus == 0) {
-        systemStatusUnion[0] = CONCAT31(systemStatusUnion[0]._1_3_,validationStatusBuffer[0] != '\0');
+        systemStatusBuffer[0] = CONCAT31(systemStatusBuffer[0]._1_3_,validationStatusBuffer[0] != '\0');
       }
       memoryRegionBase = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -38508,7 +38515,7 @@ void ConfigureSystemOptionsC1(void)
       StackFrameRegister = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      StackDataBufferD = CONCAT31(StackDataBufferD._1_3_,*(ByteFlag *)(systemContext + 0x5c));
+      systemStackDataBufferD = CONCAT31(systemStackDataBufferD._1_3_,*(ByteFlag *)(systemContext + 0x5c));
       StackFrameRegister = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                             (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
@@ -122960,6 +122967,13 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define UnwindCleanupContextA10 Unwind_180909e80
 #define UnwindCleanupContextA11 Unwind_180909ea0
 // 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
+/**
+ * @brief 销毁互斥锁清理函数A12
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909ec0
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 Unwind_180909ec0
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
