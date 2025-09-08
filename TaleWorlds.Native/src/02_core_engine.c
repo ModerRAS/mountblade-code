@@ -197191,42 +197191,42 @@ HandleOutputData(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Ut
 
 
 
-62600(voidvoid FUN_180162600(void
+void InitializeSystemMemoryAllocatorAndThreadLocalStorage(void)
 {
-  uint64_t Utf16Char;
+  uint64_t MemoryAllocatorHandle;
   void *SystemContext;
-  uint32_t UnicodeCodePoint;
-  uint32_t *MemoryAddressMaskPointer;
-  void *pDataProcessingStatus;
+  uint32_t MemoryAllocationInfo;
+  uint32_t *MemoryAllocationMaskPointer;
+  void *MemoryAllocationStatus;
   uint32_t *ThreadLocalStoragePointer;
-  uint32_t SystemStackData;
-  uint64_t uStack_1d0;
-  uint64_t SystemStackOffset48;
+  uint32_t SystemMemoryData;
+  uint64_t SystemMemoryOffset1d0;
+  uint64_t SystemMemoryOffset48;
   
   PrimaryProcessingStatusFlag = _SystemPrimaryProcessingStatusFlag;
   SystemStackFlag = 0xfffffffffffffffe;
-  Utf16Char = MemoryAllocate(MemoryPoolManager,0x88,8,3);
-  pDataProcessingStatus = &SystemNullTemplate;
-  uStack_1d0 = 0;
+  MemoryAllocatorHandle = MemoryAllocate(MemoryPoolManager,0x88,8,3);
+  MemoryAllocationStatus = &SystemNullTemplate;
+  SystemMemoryOffset1d0 = 0;
   ThreadLocalStoragePointer = (uint32_t *)0x0;
-  SystemStackData = 0;
-  pMemoryAddressMaskPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
-  *(uint8_t *)pMemoryAddressMaskPointer = 0;
-  ThreadLocalStoragePointer = pMemoryAddressMaskPointer;
-  UnicodeCodePoint = GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
-  uStack_1d0 = CONCAT44(uStack_1d0.HighPart,UnicodeCodePoint);
-  *pMemoryAddressMaskPointer = 0x49564e49;
-  pMemoryAddressMaskPointer[1] = 0x4c424953;
-  pMemoryAddressMaskPointer[2] = 0x525f5f45;
-  pMemoryAddressMaskPointer[3] = 0x5f544f4f;
-  pMemoryAddressMaskPointer[4] = 0x4554495f;
-  *(uint16_t *)(pMemoryAddressMaskPointer + 5) = 0x4d;
-  SystemStackData = 0x15;
-  Utf16Char = FUN_1801614d0(Utf16Char,&pDataProcessingStatus);
-  *PrimaryProcessingStatusFlag = Utf16Char;
-  pDataProcessingStatus = &SystemNullTemplate;
+  SystemMemoryData = 0;
+  MemoryAllocationMaskPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
+  *(uint8_t *)MemoryAllocationMaskPointer = 0;
+  ThreadLocalStoragePointer = MemoryAllocationMaskPointer;
+  MemoryAllocationInfo = GetMemoryAllocationInfo(MemoryAllocationMaskPointer);
+  SystemMemoryOffset1d0 = CONCAT44(SystemMemoryOffset1d0.HighPart,MemoryAllocationInfo);
+  *MemoryAllocationMaskPointer = 0x49564e49;
+  MemoryAllocationMaskPointer[1] = 0x4c424953;
+  MemoryAllocationMaskPointer[2] = 0x525f5f45;
+  MemoryAllocationMaskPointer[3] = 0x5f544f4f;
+  MemoryAllocationMaskPointer[4] = 0x4554495f;
+  *(uint16_t *)(MemoryAllocationMaskPointer + 5) = 0x4d;
+  SystemMemoryData = 0x15;
+  MemoryAllocatorHandle = ProcessMemoryAllocationAndValidation(MemoryAllocatorHandle,&MemoryAllocationStatus);
+  *PrimaryProcessingStatusFlag = MemoryAllocatorHandle;
+  MemoryAllocationStatus = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(pMemoryAddressMaskPointer);
+  CoreEngineFreeSystemMemory(MemoryAllocationMaskPointer);
 }
 
 
