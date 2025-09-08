@@ -89935,7 +89935,7 @@ void ManageExceptionProcessingC2A0(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_18090c2b0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessFloatArrayC2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
@@ -89944,7 +89944,7 @@ void Unwind_18090c2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c2c0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionC2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
@@ -89953,7 +89953,7 @@ void Unwind_18090c2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c2d0(DataBuffer operationBase,int64_t dataBuffer)
+void ManageMemoryResourceC2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -89989,7 +89989,7 @@ void Unwind_18090c2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c2e0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseMemoryResourceC2e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -90197,7 +90197,7 @@ void Unwind_ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090c390(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerC390(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
