@@ -207350,7 +207350,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
             if (*(char *)(CharacterCode + 0x3c) != '\0') {
               UnicodeCharacterCode = ProcessSystemMemoryContext(CoreEngineMemoryContext,2);
               uStack_8b8 = uStack_8b8 & 0xffffff00;
-              FUN_180055000(UnicodeCharacterCode,(int)*(float *)(SystemMemoryManager + 0x17ec),
+              ProcessUnicodeCharacter(UnicodeCharacterCode,(int)*(float *)(SystemMemoryManager + 0x17ec),
                                   (int)*(float *)(SystemMemoryManager + 0x17f0));
               *(uint8_t *)(CharacterCode + 0x3c) = 0;
             }
