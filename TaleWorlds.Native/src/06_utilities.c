@@ -18654,7 +18654,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     inputFloatValue = *(float *)(ResourceDescriptor + 0x20);
     calculatedFloatValue = *(float *)(dataOffset + 0x38);
     if ((*(float *)(dataOffset + 0x38) <= inputFloatValue) &&
-       (calculatedFloatValue = *(float *)(dataOffset + 0x3c), inputFloatValue <= *(float *)(dataOffset + 0x3c))) {
+       (calculatedFloatValue = *(float *)(dataOffset + FloatDataValidationOffset3C), inputFloatValue <= *(float *)(dataOffset + FloatDataValidationOffset3C))) {
       calculatedFloatValue = inputFloatValue;
     }
     *(float *)(ResourceDescriptor + 0x20) = calculatedFloatValue;
