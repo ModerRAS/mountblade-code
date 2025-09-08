@@ -1776,6 +1776,15 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define ExceptionHandlerTempOffset1ce8 0x1ce8               // 异常处理器临时偏移量1ce8
 #define ExceptionHandlerStateOffset1cf0 0x1cf0              // 异常处理器状态偏移量1cf0
 #define ExceptionHandlerStatusOffset1d00 0x1d00             // 异常处理器状态偏移量1d00
+// 异常处理器1db0系列偏移量常量
+#define ExceptionHandlerCallbackOffset1db0 0x1db0            // 异常处理器回调偏移量1db0
+#define ExceptionHandlerCallbackParamOffset1da0 0x1da0      // 异常处理器回调参数偏移量1da0
+#define ExceptionHandlerTempOffset1d78 0x1d78               // 异常处理器临时偏移量1d78
+#define ExceptionHandlerStateOffset1d80 0x1d80              // 异常处理器状态偏移量1d80
+#define ExceptionHandlerStatusOffset1d90 0x1d90             // 异常处理器状态偏移量1d90
+#define ExceptionHandlerTempOffset1d58 0x1d58               // 异常处理器临时偏移量1d58
+#define ExceptionHandlerStateOffset1d60 0x1d60              // 异常处理器状态偏移量1d60
+#define ExceptionHandlerStatusOffset1d70 0x1d70             // 异常处理器状态偏移量1d70
 
 // 异常处理器函数指针偏移量常量
 #define ExceptionHandlerFunctionPointerOffset1220 0x1220    // 异常处理器函数指针偏移量1220
@@ -110159,29 +110168,41 @@ void ResetExceptionHandlerStateOffset1d40(DataBuffer operationBase, int64_t data
 
 
 
-void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器状态重置函数偏移量1db0
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+ * 使用偏移量1db0进行异常处理器的配置和状态管理
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180910d40
+ */
+void ResetExceptionHandlerStateOffset1db0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1db0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1db0))(exceptionHandlerContext + 0x1da0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset1db0) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset1db0))(exceptionHandlerContext + ExceptionHandlerCallbackParamOffset1da0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1d80) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1d78) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateOffset1d80) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d80) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1d90) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d58) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1d60) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateOffset1d80) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusOffset1d90) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1d78) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1d58) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateOffset1d60) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d60) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1d70) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1d58) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateOffset1d60) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusOffset1d70) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1d58) = &DefaultExceptionHandlerB;
   return;
 }
 
