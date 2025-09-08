@@ -455,6 +455,9 @@
 #define ProcessCharacterStatusValidation FUN_18024c080         // 处理字符状态验证
 #define ProcessSystemFloatValueUpdate FUN_180632f00           // 处理系统浮点值更新
 #define ProcessSystemMemoryBoundaryCheck FUN_18029f070         // 处理系统内存边界检查
+#define ProcessSystemMemoryBlockManagement FUN_1802c24b0       // 处理系统内存块管理
+#define ProcessSystemValueUpdate FUN_1802c2ac0                  // 处理系统值更新
+#define ProcessSystemCharacterEncoding FUN_18029ad30           // 处理系统字符编码
 #define IdentifySystemIdentifierByPatternVariantN FUN_180225627
 
 // 系统变量语义化映射
@@ -185287,7 +185290,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
             ProcessSystemEventQueueData(&SystemSecondaryEventQueue,(double)(TertiaryFloatValue * 1e-06));
             ProcessSystemEventQueueData(&SystemBufferQuaternary,(double)(QuinaryFloatValue * 1e-06));
             ProcessSystemEventQueueData(&SystemBufferQuinary,(double)(QuaternaryFloatValue * 1e-06));
-            FUN_180119790();
+            ProcessSystemConfiguration();
           }
         }
         FinalizeSystemEventQueue();
@@ -185304,7 +185307,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       EncodingConversionResult = *(long long *)(SystemDataRegistry + 0x7fc8);
       if (EncodingConversionResult != MemoryBoundaryEnd) {
         do {
-          FUN_180152b00(EncodingConversionResult);
+          ProcessSystemCharacterDataConversion(EncodingConversionResult);
           EncodingConversionResult = EncodingConversionResult + 0x40;
         } while (EncodingConversionResult != MemoryBoundaryEnd);
         EncodingConversionResult = *(long long *)(SystemDataRegistry + 0x7fc8);
@@ -185334,7 +185337,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     SystemCheckResult = FUN_1800c6910(Utf16Character,CharacterCode);
     if (*(char *)(CoreEngineSystemContext + 0x12e7) != '\0') {
       SystemDataRegistry = *(long long *)(CoreEngineRenderContext + 0x1cd8);
-      FUN_1802c24b0(MemoryBlockListHead);
+      ProcessSystemMemoryBlockManagement(MemoryBlockListHead);
       *(long long *)(SystemDataRegistry + 0x80b0 + (long long)*(int *)(SystemDataRegistry + 0x8088) * 8) = MemoryBlockListHead[0xb];
     }
     FUN_1802c2ac0(&CoreEngineValue148);
@@ -186184,6 +186187,18 @@ void ProcessCharacterEncodingPointerAndSystemState(long long *CharacterCode)
 
 
 
+/**
+ * @brief 处理字符代码表迭代的函数
+ * 
+ * 此函数负责迭代处理字符代码表中的数据，通过循环遍历缓冲区状态并调用处理函数。
+ * 它是字符编码处理系统中的核心迭代器组件。
+ * 
+ * @param CharacterCode 字符代码指针，指向要处理的字符代码数据
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180152a00
+ * @warning 此函数涉及系统级别的字符编码表操作
+ */
 void ProcessCharacterCodeTableIteration(long long *CharacterCode)
 {
   long long PrimaryDataSize;
