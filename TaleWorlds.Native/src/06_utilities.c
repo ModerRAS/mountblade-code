@@ -947,6 +947,12 @@
 #define SecurityValidationPortControl 0x42464542
 #define SecurityValidationRequest 0x42495645
 #define SecurityValidationLmpOperation 0x424c4d50
+
+// 异常处理器配置常量
+#define SystemTemporaryExceptionHandlerOffset358 0x358
+#define SystemValidationStatusOffset360 0x360
+#define SystemCleanupFlagOffset370 0x370
+#define SystemFloatDataOffset388 0x388
 #define SecurityValidationMrpOperation 0x424d5250
 #define SecurityValidationPortControlAlt 0x42464550
 #define SecurityValidationPortControlSecurity 0x42464553

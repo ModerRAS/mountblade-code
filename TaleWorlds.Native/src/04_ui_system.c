@@ -114422,41 +114422,55 @@ void FUN_180738d67(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180738d90(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180738d90(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief UI数据加密处理和缓冲区操作函数
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * 该函数处理UI数据的加密和缓冲区操作：
+ * - 数据加密处理（XOR加密）
+ * - 缓冲区数据验证
+ * - 内存资源管理
+ * - 渲染任务执行
+ * 
+ * @return 处理结果状态码
+ */
+void ProcessUIDataWithEncryption(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
+void ProcessUIDataWithEncryption(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  int dataOperationResult;
+  int encryptionValidationResult;
+  int bufferCompareResult;
+  UIByte encryptionBuffer [32];
+  UIByte *bufferPointer;
+  longlong resourceCleanupFlag;
+  UIHandle contextHandle;
+  UIByte validationBuffer [256];
+  ulonglong encryptedTaskParameter;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
-  if (processingResult == 0) {
-    processingResult = func_0x0001807455d0(stackUInt140,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180738e7f;
+  encryptedTaskParameter = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceCleanupFlag = 0;
+  dataOperationResult = FUN_180749e60(uiContext,&contextHandle,&resourceCleanupFlag);
+  if (dataOperationResult == 0) {
+    dataOperationResult = func_0x0001807455d0(contextHandle,dataSource,targetBuffer);
+    if (dataOperationResult == 0) goto ExecuteCleanupAndRenderTask;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074b880(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    func_0x00018074bda0(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+    encryptionValidationResult = FUN_18074b880(validationBuffer,0x100,dataSource);
+    bufferCompareResult = FUN_18074b880(validationBuffer + encryptionValidationResult,0x100 - encryptionValidationResult,&UIBufferControlData);
+    func_0x00018074bda0(validationBuffer + (encryptionValidationResult + bufferCompareResult),0x100 - (encryptionValidationResult + bufferCompareResult),targetBuffer);
+    bufferPointer = validationBuffer;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957488);
+    FUN_180749ef0(dataOperationResult,1,uiContext,&UNK_180957488);
   }
-FUN_180738e7f:
-  if (stackLong148 != 0) {
+ExecuteCleanupAndRenderTask:
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedTaskParameter ^ (ulonglong)encryptionBuffer);
 }
 
 
