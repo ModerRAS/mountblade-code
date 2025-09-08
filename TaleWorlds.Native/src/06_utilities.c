@@ -23865,7 +23865,7 @@ void ExecuteSecurityCheckJumpA0(void)
  * 
  * @warning 此函数涉及复杂的加密和验证操作
  * @note 原始函数名：FUN_180897520
- * @see ValidateSystemDataA0, ProcessData, exceptionEncryptionKey
+ * @see ValidateSystemDataA0, ProcessData, ExceptionEncryptionKeyValue
  */
 #define ProcessDataPointerOperationsA0 FUN_180897520
 
@@ -24019,7 +24019,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorProcessingData;
   
-  colorProcessingData = exceptionEncryptionKey ^ (uint64_t)TertiaryEncryptionKeyBuffer;
+  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   exceptionHandlerContext4 = 0;
   SystemValidationWordA = 0;
@@ -25035,7 +25035,7 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   DataWord StackDataWordAM;
   DataWord StackDataWordAN;
   
-  securityToken = exceptionEncryptionKey ^ (uint64_t)securityBuffer;
+  securityToken = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
   processCount = 0;
   resourceIndex = 0;
   do {
@@ -25164,7 +25164,7 @@ void ProcessSecureDataA0(int64_t *contextPointer, DataBuffer dataSource, DataBuf
   uint64_t securityValidationChecksum;                            // 安全验证校验和
   
   // 计算安全验证校验和，用于数据完整性验证
-  securityValidationChecksum = exceptionEncryptionKey ^ (uint64_t)securityKeyBuffer;
+  securityValidationChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityKeyBuffer;
   encryptedSecurityParam1 = securityParam1;
   encryptedSecurityParam2 = securityParam2;
   
@@ -25392,7 +25392,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   // 美化后的变量名
   uint64_t securityValidationValue;
   
-  securityValidationValue = exceptionEncryptionKey ^ (uint64_t)securityBuffer;
+  securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
   nullPointer = (int64_t *)0x0;
   contextProcessingArray300[1] = 0;
   operationResult = InitializeBufferA0(contextProcessingArray300 + 1,dataContext[1]);
@@ -39900,7 +39900,7 @@ void ExceptionUnwindHandlerA17(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)exceptionEncryptionKey & 0x3f;
+  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
                           (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
             (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
   return;
@@ -64993,7 +64993,7 @@ void ResetSystemEventState(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)exceptionEncryptionKey & 0x3f;
+  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
                           (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
             (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
   return;
