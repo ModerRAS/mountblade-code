@@ -100005,13 +100005,13 @@ void InvokeDataBufferExceptionHandlerD5A0(DataBuffer operationBase,int64_t dataB
 void ResetDataBufferExceptionHandlerStateD5B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x88) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + ResourceHandlerOffsetPrimary) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + SystemContextPointerOffset90) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + SystemContextPointerOffset90) = 0;
   *(DataWord *)(dataBuffer + ExceptionHandlerContextOffsetA0) = 0;
-  *(DataBuffer *)(dataBuffer + 0x88) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ResourceHandlerOffsetPrimary) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

@@ -49506,7 +49506,7 @@ void CleanupSystemResourceManagerArray(long long SystemResourceManager)
     resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < arraySize) && (*(long long *)(SystemResourceManager + 8) != 0)) {
+  if ((1 < resourceArraySize) && (*(long long *)(ResourceManagerHandle + 8) != 0)) {
       SystemCleanupFunction();
   }
   return;
@@ -49550,7 +49550,7 @@ void ResetSystemResourceManagerArray(long long ResourceManagerHandle)
     resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
   }
   *(void* **)(ResourceManagerHandle + 0x18) = (void**)0;
-  if ((1 < arraySize) && (*(long long *)(SystemResourceManager + 8) != 0)) {
+  if ((1 < resourceArraySize) && (*(long long *)(ResourceManagerHandle + 8) != 0)) {
       SystemCleanupFunction();
   }
   return;
