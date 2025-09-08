@@ -199550,26 +199550,26 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
   EncodedFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
   SystemValidationFlag = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> 5 != 0) {
-    AllocatedMemorySize = AllocateSystemMemoryBuffer(&SystemResourcePointer);
+    AllocatedMemoryBuffer = AllocateSystemMemoryBuffer(&SystemResourcePointer);
     SystemContextPointer = &SystemNullTemplate;
     StackParameter = 0;
     MemoryAllocationPointer = NULL;
     StackOperationCode = 0;
     StackValidationFlag = 1;
-    Utf16Char = *(uint *)(AllocatedMemorySize + 0x10);
-    SystemMemoryAllocationResult = (unsigned long long)Utf16Char;
-    if (*(long long *)(AllocatedMemorySize + 8) != 0) {
+    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + 0x10);
+    SystemMemoryAllocationResult = (unsigned long long)ConvertedUtf16Char;
+    if (*(long long *)(AllocatedMemoryBuffer + 8) != 0) {
       CoreEngineProcessSystemEvent(&SystemContextPointer,SystemMemoryAllocationResult);
     }
-    if (Utf16Char != 0) {
+    if (ConvertedUtf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemoryBuffer + 8),SystemMemoryAllocationResult);
     }
     if (MemoryAllocationPointer != NULL) {
       *(uint8_t *)(SystemMemoryAllocationResult + (long long)MemoryAllocationPointer) = 0;
     }
-    StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)StackParameter);
-    StackOperationCode = Utf16Char;
+    StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + 0x1c),(uint32_t)StackParameter);
+    StackOperationCode = ConvertedUtf16Char;
     CoreEngineProcessSystemEvent(&SystemContextPointer,0xf);
     SecondaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackOperationCode + (long long)MemoryAllocationPointer);
     *SecondaryProcessingStatusFlag = 0x72726554;
@@ -199577,7 +199577,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
     SecondaryProcessingStatusFlag[2] = 0x65646168;
     SecondaryProcessingStatusFlag[3] = 0x2f7372;
     StackOperationCode = 0xf;
-    AllocatedMemorySize = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextPointer,&SystemResourcePointerB8,*Utf8SourcePointer);
+    AllocatedMemoryBuffer = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextPointer,&SystemResourcePointerB8,*Utf8SourcePointer);
     ThreadLocalStoragePointer = &SystemNullTemplate;
     StackDataBuffer = 0;
     MemoryBlockOffset = 0;

@@ -93800,7 +93800,7 @@ void SetSystemDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuff
  * 
  * @note 原始函数名：Unwind_18090ca90
  */
-void Unwind_18090ca90(void)
+void DecrementSystemResourceCounterAndExecuteFunctionA(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -93811,7 +93811,18 @@ void Unwind_18090ca90(void)
 
 
 
-void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放
+ * 
+ * 该函数处理异常上下文的资源释放操作。它检查资源计数器，遍历资源迭代器表，
+ * 处理异常上下文的状态，并在适当的条件下执行资源清理操作。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090caa0
+ */
+void ProcessExceptionContextResourceRelease(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -93893,7 +93904,22 @@ void CleanupSystemResourcesC0(void)
 
 
 
-void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放和数据验证（AD0版本）
+ * 
+ * 该函数是异常处理系统的重要组成部分，负责在异常发生时进行资源清理。
+ * 它会检查数据缓冲区状态，管理资源迭代器，处理异常上下文，
+ * 并验证数据缓冲区的完整性。最后会设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090cad0
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextResourceReleaseAD0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -93937,7 +93963,21 @@ void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器（AE0版本）
+ * 
+ * 该函数是一个简单的异常处理器设置函数，负责在数据缓冲区的指定位置
+ * 设置默认异常处理器。这是异常处理系统的基础设置函数之一。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090cae0
+ * @warning 此函数为异常处理系统的一部分，用于初始化异常处理器
+ * 
+ * @see SystemDefaultExceptionHandlerB
+ */
+void SetupExceptionHandlerAE0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset600) = &SystemDefaultExceptionHandlerB;
