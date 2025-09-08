@@ -20041,19 +20041,19 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
 void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
 
 {
-  int systemStatus;
-  int64_t systemContext;
-  DataBuffer systemDataBuffer;
+  int systemOperationStatus;
+  int64_t systemExecutionContext;
+  DataBuffer systemDataStorageBuffer;
   
-  systemStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
-  if (systemStatus == 0) {
-    if (systemDataBuffer == 0) {
-      systemContext = 0;
+  systemOperationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
+  if (systemOperationStatus == 0) {
+    if (systemDataStorageBuffer == 0) {
+      systemExecutionContext = 0;
     }
     else {
-      systemContext = systemDataBuffer + -8;
+      systemExecutionContext = systemDataStorageBuffer + -8;
     }
-    *(ByteFlag *)(systemContext + SystemContextConfigOffsetBC) = *(ByteFlag *)(systemHandle + DataValidationOffset18);
+    *(ByteFlag *)(systemExecutionContext + SystemContextConfigOffsetBC) = *(ByteFlag *)(systemHandle + DataValidationOffset18);
       ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + SystemContextConfigOffset98),systemHandle);
   }
   return;
@@ -25239,29 +25239,38 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
       // 验证数据完整性
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
+        // 获取堆栈长整数值并初始化缓冲区指针
         StackLongIntegerA = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset28);
         bufferPointer = exceptionHandlerContext4;
         if (0 < StackLongIntegerA) {
+          // 开始数据处理循环
           do {
+            // 获取数据指针和内存块偏移量
             dataPointer = *(int64_t *)(dataContext + SystemDataParameterOffset20);
             memoryBlockOffset = *(int64_t *)(exceptionHandlerContext4 + 0x10 + dataPointer);
             calculatedIndex = *(int64_t *)(exceptionHandlerContext4 + 8 + dataPointer);
+            // 检查系统状态
             statusFlag = CheckSystemStatus(memoryBlockOffset,1);
             exceptionBuffer6 = TemporaryPointerBufferB;
+            // 验证浮点数比较结果
             if ((statusFlag == '\0') && (*(float *)(memoryBlockOffset + 0x4c) != *(float *)(calculatedIndex + SystemParameterValidationOffset28))) {
+              // 执行安全验证数据操作
               SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
               SecurityValidationResultB = StackDataWordA;
               SecurityCheckValue = 0;
+              // 执行临时指针缓冲区操作
               dataPointer = (**(FunctionPointer**)*TemporaryPointerBufferB)(TemporaryPointerBufferB);
               TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + SystemContextPointerOffset90) + bufferPointer * 8);
               TemporaryByteFlagA = 0;
+              // 根据内存块偏移量选择异常数据缓冲区
               if (*(int *)(memoryBlockOffset + 0x58) < 1) {
                 exceptionDataBuffer = &SystemResourceDataBuffer;
               }
               else {
                 exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + 0x50);
               }
+              // 初始化内存并验证数据完整性
               InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer,0x80);
               iterationCount = ValidateDataIntegrityA0(operationBase,&SecurityValidationBuffer);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
