@@ -191251,7 +191251,16 @@ LAB_18015b087:
 
 
 
-5b160(voidvoid FUN_18015b160(void
+/**
+ * @brief 终止系统运行
+ * 
+ * 该函数负责终止系统运行，调用核心引擎的终止系统函数。
+ * 这是一个不返回的函数，执行后系统将完全停止运行。
+ * 
+ * @note 原始函数名：FUN_18015b160
+ * @warning 该函数包含不返回的子程序调用
+ */
+void TerminateSystemExecution(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -200077,22 +200086,6 @@ LAB_18016b996:
 
 
 /**
- * @brief 处理字符代码大小和系统数据注册
- * 
- * 该函数负责处理字符代码的大小和系统数据注册，包括：
- * - 验证字符代码大小的有效性
- * - 处理系统数据注册表的查找和更新
- * - 管理字符代码的引用计数
- * - 执行内存移动和数据复制操作
- * 
- * @param CharacterCode 字符代码参数，用于标识要处理的字符
- * @param CharacterCodeSize 字符代码大小指针，用于传递和返回大小信息
- * @return uint64_t 返回处理结果的64位无符号整数
- * 
- * @note 原始函数名：FUN_18016bb80
- * @warning 该函数包含不返回的子程序调用
- */
-/**
  * @brief 处理字符代码和系统缓冲区操作
  * 
  * 该函数负责处理字符代码的内存管理、系统缓冲区操作以及字符状态验证。
@@ -202070,8 +202063,10 @@ uint64_t InitializeUtf8ToUtf16ConversionEnvironment(uint64_t *CharacterCode,uint
  * @param SystemBufferSize UTF-8缓冲区大小
  * @param Utf8SourcePointer UTF-16输入指针
  * @return 处理后的系统上下文指针
+ * 
+ * @note 原始函数名：FUN_18016e120
  */
-uint64_t FUN_18016e120(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+uint64_t ProcessSystemContextWithBuffers(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
   FUN_180168430(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -284866,5 +284861,95 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18018b160
  */
 #define ProcessCharacterCodeSearchAndBufferTraversal FUN_18018b160
+
+/**
+ * @brief 初始化系统主数据模板
+ * 
+ * 该函数负责初始化系统主数据模板，包括：
+ * - 设置字符代码指针
+ * - 管理系统缓冲区大小
+ * - 执行内存释放操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回字符代码指针
+ * 
+ * @note 原始函数名：FUN_18018b3f0
+ */
+#define InitializeSystemPrimaryDataTemplate FUN_18018b3f0
+
+/**
+ * @brief 初始化系统内存边界地址
+ * 
+ * 该函数负责初始化系统内存边界地址，包括：
+ * - 设置字符代码指针到内存边界起始地址
+ * - 验证系统事件状态
+ * - 重置字符代码状态
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回字符代码指针
+ * 
+ * @note 原始函数名：FUN_18018b430
+ */
+#define InitializeSystemMemoryBoundaryAddress FUN_18018b430
+
+/**
+ * @brief 处理字符编码转换和状态管理
+ * 
+ * 该函数负责处理字符编码转换和状态管理，包括：
+ * - 管理字符代码状态
+ * - 处理UTF-8到UTF-16的转换
+ * - 执行字符数据验证
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018be60
+ */
+#define ProcessCharacterEncodingConversionAndStatusManagement FUN_18018be60
+
+/**
+ * @brief 处理系统字符编码转换
+ * 
+ * 该函数负责处理系统字符编码转换，包括：
+ * - 字符代码指针管理
+ * - UTF-8和UTF-16编码转换
+ * - 系统缓冲区管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018cc00
+ */
+#define ProcessSystemCharacterEncodingConversion FUN_18018cc00
+
+/**
+ * @brief 处理字符编码和系统缓冲区配置
+ * 
+ * 该函数负责处理字符编码和系统缓冲区配置，包括：
+ * - 字符代码指针管理
+ * - 系统缓冲区大小配置
+ * - UTF编码处理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018e7e0
+ */
+#define ProcessCharacterEncodingAndSystemBufferConfiguration FUN_18018e7e0
 
 
