@@ -89613,6 +89613,23 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
 
 
 
+/**
+ * @brief 异常数据清理函数C220
+ * 
+ * 该函数负责清理异常数据，释放异常处理资源。
+ * 它会销毁基本的IO流对象，清理与异常处理相关的资源。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取IO流对象指针
+ * - 销毁基本的IO流对象，释放相关资源
+ * 
+ * @note 原始函数名：Unwind_18090c220
+ * @note 使用偏移量0x40获取IO流对象指针
+ * @note 使用偏移量-0x98销毁IO流对象
+ */
 void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -89622,6 +89639,27 @@ void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器验证函数C240
+ * 
+ * 该函数负责验证异常处理器的有效性，检查异常处理状态。
+ * 它会管理内存区域，验证系统数据缓冲区，并初始化相关的数据结构。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取内存块偏移量
+ * - 设置内存区域基地址
+ * - 验证系统数据缓冲区的有效性
+ * - 管理数据上下文和内存引用
+ * - 根据需要初始化数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090c240
+ * @note 使用偏移量0x40获取内存块偏移量
+ * @note 使用偏移量-0xa0设置内存区域基地址
+ * @note 使用偏移量-0x24检查初始化状态
+ */
 void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
