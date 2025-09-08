@@ -190416,7 +190416,7 @@ long long * FUN_180159210(long long CharacterCode,long long *CharacterCodeSize,u
 
 
 
-592f0(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801592f0(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessCharacterCodeConversionAndBufferManagement(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
@@ -190507,7 +190507,7 @@ LAB_180159499:
 
 
 
-594d0(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801594d0(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessCharacterEncodingConversionAndMemoryManagement(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
@@ -200049,7 +200049,7 @@ void ProcessCharacterEncodingAndSystemContext(long long ***CharacterCode,long lo
       *(uint8_t *)(SystemConfigurationIterator + 0x1b3f) = 1;
     }
     MemoryAllocationOffset = 0x800;
-    FUN_1801283f0(&SystemEventBufferQuaternary,StringLength,&pppSystemContextRegister);
+    ProcessSystemDataAndParametersEx(&SystemEventBufferQuaternary,StringLength,&pppSystemContextRegister);
     SystemConfigurationIterator = SystemConfigurationHandle;
     StringLength = ValidateSystemDataAndProcessOperation(&SystemProcessingStatusFlagB,0,
                           *(uint32_t *                           (*(long long *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x220) + -4 +
