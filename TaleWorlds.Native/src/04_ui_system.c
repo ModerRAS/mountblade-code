@@ -11165,7 +11165,7 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   scaleY = targetPosition[6] - matrixRow1_Z;
   minY = targetPosition[4] - matrixRow1_X;
   sourceY = targetPosition[5] - matrixRow1_Y;
-  clipMinY = sourceX * projMatrix_1_1 + minX * fStack_118 + matrixRow3_Z * maxY;
+  clipMinY = sourceX * projMatrix_1_1 + minX * transformX + matrixRow3_Z * maxY;
   clipMinZ = sourceX * depthY + minX * depthX + depthZ * maxY;
   scaleX = sourceX * matrixRow2_Y + minX * matrixRow2_X + matrixRow2_Z * maxY;
   clipFar = sourceX * matrixRow2_W + minX * matrixRow2_W + matrixRow2_W * maxY;
@@ -84536,24 +84536,23 @@ void ClearUIBufferMemory(void)
 
 
 
- void FUN_1807165a0(longlong uiContext,int dataSource,int targetBuffer)
-void FUN_1807165a0(longlong uiContext,int dataSource,int targetBuffer)
+ void ProcessUITextureData(longlong uiContext,int dataSource,int targetBuffer)
 
 {
   float baseValue;
   float transformCoeff1;
-  uint EventTypeCode;
-  float *ptransformCoeff3;
-  longlong EventDataIndex;
-  longlong ContextHandleData;
-  float *presultFloat;
-  int localInt8;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  int ProcessingResult1;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
+  uint eventTypeCode;
+  float *transformCoeff3;
+  longlong eventDataIndex;
+  longlong contextHandleData;
+  float *resultFloat;
+  int loopCounter;
+  longlong characterDataOffset;
+  ulonglong transformResult;
+  int processingResult;
+  longlong memoryOffset2;
+  longlong memoryOffset3;
+  longlong memoryOffset4;
   
   if (0 < targetBuffer) {
     dataSource = dataSource >> 1;
