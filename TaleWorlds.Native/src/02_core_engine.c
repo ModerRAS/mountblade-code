@@ -280010,7 +280010,24 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
 
 
 
-void ProcessSystemCharacterDataAndMemoryManagement(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer
+/**
+ * @brief 处理系统字符数据和内存管理
+ * 
+ * 该函数负责处理系统字符数据和内存管理操作，包括：
+ * - 字符状态缓冲区的分配和初始化
+ * - 内存池管理和内存分配
+ * - Unicode码点处理
+ * - 字符串比较和验证
+ * - 系统内存清理和资源管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18022edb0
+ */
+void ProcessSystemCharacterDataAndMemoryManagement(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer)
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
