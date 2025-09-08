@@ -202637,7 +202637,7 @@ void InitializeSystemEncodingValidator(void)
  */
 #define ProcessSystemBufferSizeAndCharacterCodeOperations FUN_18016cccb
 
-void FUN_18016cccb(long long CharacterCode,long long SystemBufferSize)
+void ProcessSystemBufferSizeAndCharacterCodeOperations(long long CharacterCode,long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -202689,7 +202689,7 @@ void FUN_18016cccb(long long CharacterCode,long long SystemBufferSize)
  */
 #define ProcessUtf8ToUtf16ConversionDataUpdate FUN_18016cd1d
 
-void FUN_18016cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer)
+void ProcessUtf8ToUtf16ConversionDataUpdate(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer)
 {
   int LockResult;
   long long ProcessingResult;
