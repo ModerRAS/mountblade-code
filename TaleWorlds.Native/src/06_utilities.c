@@ -25864,7 +25864,7 @@ ValidateDataSecurity:
         dataFlags = *(DataWord *)(contextPointer + 0x50);
         validationOutcome = *(DataWord *)(contextPointer + 0x54);
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
-        StackFrameContext[-0xb] = systemDataBuffer7;
+        StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = systemDataBuffer7;
         StackFrameContext[-10] = systemDataBuffer6;
         *(float *)(StackFrameContext + -0xd) = dataPointerD;
         securityCheckResult = *(DataWord *)(contextPointer + 0x58);
