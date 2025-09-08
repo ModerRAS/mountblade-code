@@ -406,6 +406,7 @@
 #define ManageSystemBufferAllocation FUN_18015c2b0               // 管理系统缓冲区分配
 #define ExecuteSystemResourceRelease FUN_18015b450               // 执行系统资源释放
 #define ProcessMemoryBoundaryManagement FUN_18015bea0            // 处理内存边界管理
+#define ExecuteSystemFinalCleanup FUN_180159870                    // 执行系统最终清理
 
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
@@ -188710,7 +188711,7 @@ LAB_180156d2e:
     *(uint8_t *)(SystemMemoryAllocationResult + 0x20) = FunctionAddress;
   }
   else {
-    FUN_18015bea0(MemoryBoundaryPointer + 0x24,&pBufferOffset);
+    ProcessMemoryBoundaryManagement(MemoryBoundaryPointer + 0x24,&pBufferOffset);
   }
 LAB_180156d7b:
   FUN_180159870();
