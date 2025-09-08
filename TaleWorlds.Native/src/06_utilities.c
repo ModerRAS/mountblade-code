@@ -589,6 +589,7 @@
 #define ExceptionHandlerStateOffset8e8 0x8e8          // 异常处理器状态偏移量8e8
 #define MemoryPointerOffset8 0x8                       // 内存指针偏移量8
 #define ExceptionHandlerConfigOffset278 0x278          // 异常处理器配置偏移量278
+#define MemoryAllocationSecurityOffset 0x19            // 内存分配安全偏移量
 #define ExceptionHandlerConfigOffset250 0x250          // 异常处理器配置偏移量250
 #define ExceptionHandlerConfigOffset128 0x128          // 异常处理器配置偏移量128
 #define ExceptionHandlerConfigOffset130 0x130          // 异常处理器配置偏移量130
@@ -17277,7 +17278,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
     entryOffset = baseOffset;
     if (0 < *(int *)(adjustedStackPointer + SystemDataArraySizeOffset)) {
       do {
-        listEntry = *(int64_t *)(adjustedStackPointer + 0x20) + entryOffset;
+        listEntry = *(int64_t *)(adjustedStackPointer + SystemDataArrayPointerOffset) + entryOffset;
         memoryResourcePointer = *(int64_t *)(listEntry + ExceptionHandlerCallbackOffset10);
         if (memoryResourcePointer == 0) {
           return ResourceNotFoundCode;
@@ -17300,7 +17301,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
         iterationCounter = (int)baseOffset + 1;
         baseOffset = (uint64_t)iterationCounter;
         entryOffset = entryOffset + 0x18;
-      } while ((int)iterationCounter < *(int *)(adjustedStackPointer + 0x28));
+      } while ((int)iterationCounter < *(int *)(adjustedStackPointer + SystemDataArraySizeOffset));
     }
     operationResult = 0x4a;
   }
@@ -22756,9 +22757,9 @@ void ResetResourceState(int64_t *resourceHandle)
 {
   int resetResult;
   
-  resetResult = (**(FunctionPointer**)(*resourceHandle + 0x18))();
+  resetResult = (**(FunctionPointer**)(*resourceHandle + ResourceCallbackDataOffset))();
   if (resetResult == 0) {
-    *(ByteFlag *)(resourceHandle + 4) = 0;
+    *(ByteFlag *)(resourceHandle + ExceptionHandlerPointerOffset4) = 0;
   }
   return;
 }
@@ -22785,7 +22786,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
   DataBuffer dataHandle;
   int dataSize;
   
-  if ((*(int64_t *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + 0x30), 0 < dataSize)) {
+  if ((*(int64_t *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + SystemDataOffset30), 0 < dataSize)) {
     dataSource = *(int64_t *)(resourceContext + SystemContextOffset28);
     if (0x40000 < dataSize) {
       adjustedSize = CalculateSystemDataSize(dataSource + DataSourceOffset40000,10);
@@ -22793,8 +22794,8 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
         dataSize = ((int)adjustedSize - (int)dataSource) + 1;
       }
     }
-    dataBuffer = (int *)AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize + 0x19,
-                                  &SystemStatusDataTable,0x278,0,0,1);
+    dataBuffer = (int *)AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize + MemoryAllocationSecurityOffset,
+                                  &SystemStatusDataTable,ExceptionHandlerConfigOffset278,0,0,1);
     dataBuffer[0] = 0;
     dataBuffer[1] = 0;
     dataBuffer[2] = 0;
