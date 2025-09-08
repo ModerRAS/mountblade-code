@@ -98072,7 +98072,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 操作基础指针
  * @param dataBuffer 数据缓冲区指针
  */
-void Unwind_18090d410(DataBuffer operationBase,int64_t dataBuffer)
+void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
