@@ -79856,91 +79856,105 @@ void ProcessUIMatrixTransformation(float *UiContext, UIHandle DataSource, UIHand
 
 
  void FUN_180711359(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180711359(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-
+/**
+ * @brief UI矩阵变换处理函数
+ * 
+ * 该函数负责处理UI系统中的矩阵变换操作，包括旋转、缩放和平移变换。
+ * 通过对UI上下文、数据源和目标缓冲区进行复杂的浮点数运算，实现UI元素的变换效果。
+ * 
+ * @param uiContext UI上下文指针，包含当前的UI状态和变换矩阵
+ * @param dataSource 数据源句柄，提供变换所需的原始数据
+ * @param targetBuffer 目标缓冲区句柄，存储变换后的结果
+ * @param bufferSize 缓冲区大小，指定处理的数据范围
+ * 
+ * @note 原始函数名：FUN_180711359
+ * @warning 该函数涉及复杂的浮点数运算，需要确保输入参数的有效性
+ */
+void ProcessUIMatrixTransformation(float *uiContext, UIHandle dataSource, UIHandle targetBuffer, longlong bufferSize)
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  float secondaryValue;
-  float localFloat6;
-  int localInt7;
-  longlong localLong8;
-  longlong CharacterDataOffset;
-  uint result0;
-  longlong allocatedMemory1;
-  float *pfloatResult2;
-  float *ContextHandle;
-  float *pfloatResult3;
-  longlong BasePointer;
-  float *TargetHandle;
-  longlong register10;
-  float *pvectorComponentX;
-  ulonglong CounterResult;
-  int RegisterValue;
-  longlong unmodifiedR13;
-  float *EventHandle;
-  float *pfloatResult6;
-  longlong unmodifiedR15;
-  int stackParam000000a0;
+  float transformationResult;           // 变换结果
+  float intermediateValue;              // 中间计算值
+  float matrixElement;                 // 矩阵元素
+  float contextValue;                   // 上下文值
+  float scalarComponent;                // 标量分量
+  float vectorComponent;               // 向量分量
+  float auxiliaryValue;                 // 辅助计算值
+  int loopCounter;                      // 循环计数器
+  longlong iterationCount;              // 迭代次数
+  longlong dataOffset;                  // 数据偏移量
+  uint processResult;                   // 处理结果
+  longlong memoryOffset;                // 内存偏移量
+  float *sourceDataPointer;             // 源数据指针
+  float *contextPointer;                // 上下文指针
+  float *resultDataPointer;             // 结果数据指针
+  longlong baseOffset;                  // 基础偏移量
+  float *targetDataPointer;             // 目标数据指针
+  longlong registerValue;               // 寄存器值
+  float *vectorDataPointer;             // 向量数据指针
+  ulonglong counterValue;                // 计数器值
+  int statusRegister;                    // 状态寄存器
+  longlong preservedRegister13;         // 保留的寄存器13
+  float *eventDataPointer;              // 事件数据指针
+  float *auxiliaryDataPointer;          // 辅助数据指针
+  longlong preservedRegister15;         // 保留的寄存器15
+  int stackParameter;                   // 栈参数
   
-  pvectorComponentX = (float *)(register10 + unmodifiedR13);
-  allocatedMemory1 = BasePointer - unmodifiedR15;
-  pfloatResult2 = (float *)(unmodifiedR13 + 4);
-  localLong8 = (bufferSize - 4U >> 2) + 1;
-  CharacterDataOffset = localLong8;
+  vectorDataPointer = (float *)(registerValue + preservedRegister13);
+  memoryOffset = baseOffset - preservedRegister15;
+  sourceDataPointer = (float *)(preservedRegister13 + 4);
+  iterationCount = (bufferSize - 4U >> 2) + 1;
+  dataOffset = iterationCount;
   do {
-    floatResult = pfloatResult2[-1];
-    localFloat2 = pfloatResult2[BasePointer + -1];
-    resultValue = *TargetHandle;
-    processedFloat = uiContext[1];
-    secondaryValue = *uiContext;
-    *TargetHandle = localFloat2 * *TargetHandle + floatResult * TargetHandle[1];
-    uiContext[1] = localFloat2 * TargetHandle[1] - floatResult * resultValue;
-    floatResult = pvectorComponentX[allocatedMemory1];
-    localFloat2 = *pvectorComponentX;
-    *uiContext = localFloat2 * secondaryValue + floatResult * processedFloat;
-    TargetHandle[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
-    floatResult = *pfloatResult2;
-    localFloat2 = pfloatResult2[BasePointer];
-    resultValue = TargetHandle[2];
-    processedFloat = uiContext[-1];
-    secondaryValue = uiContext[-2];
-    TargetHandle[2] = localFloat2 * TargetHandle[2] + floatResult * TargetHandle[3];
-    uiContext[-1] = localFloat2 * TargetHandle[3] - floatResult * resultValue;
-    floatResult = pvectorComponentX[allocatedMemory1 + -1];
-    localFloat2 = pvectorComponentX[-1];
-    uiContext[-2] = localFloat2 * secondaryValue + floatResult * processedFloat;
-    TargetHandle[3] = localFloat2 * processedFloat - floatResult * secondaryValue;
-    floatResult = pfloatResult2[1];
-    localFloat2 = pfloatResult2[BasePointer + 1];
-    resultValue = TargetHandle[4];
-    processedFloat = uiContext[-3];
-    secondaryValue = uiContext[-4];
-    TargetHandle[4] = localFloat2 * TargetHandle[4] + floatResult * TargetHandle[5];
-    uiContext[-3] = localFloat2 * TargetHandle[5] - floatResult * resultValue;
-    floatResult = pvectorComponentX[-2];
-    localFloat2 = pvectorComponentX[allocatedMemory1 + -2];
-    uiContext[-4] = floatResult * secondaryValue + localFloat2 * processedFloat;
-    TargetHandle[5] = floatResult * processedFloat - localFloat2 * secondaryValue;
-    floatResult = pfloatResult2[BasePointer + 2];
-    localFloat2 = pfloatResult2[2];
-    resultValue = uiContext[-5];
-    processedFloat = TargetHandle[6];
-    pfloatResult2 = pfloatResult2 + 4;
-    secondaryValue = uiContext[-6];
-    TargetHandle[6] = floatResult * TargetHandle[6] + localFloat2 * TargetHandle[7];
-    uiContext[-5] = floatResult * TargetHandle[7] - localFloat2 * processedFloat;
-    floatResult = pvectorComponentX[allocatedMemory1 + -3];
-    localFloat2 = pvectorComponentX[-3];
-    pvectorComponentX = pvectorComponentX + -4;
-    uiContext[-6] = localFloat2 * secondaryValue + floatResult * resultValue;
+    transformationResult = sourceDataPointer[-1];
+    intermediateValue = sourceDataPointer[baseOffset + -1];
+    matrixElement = *targetDataPointer;
+    contextValue = uiContext[1];
+    scalarComponent = *uiContext;
+    *targetDataPointer = intermediateValue * *targetDataPointer + transformationResult * targetDataPointer[1];
+    uiContext[1] = intermediateValue * targetDataPointer[1] - transformationResult * matrixElement;
+    transformationResult = vectorDataPointer[memoryOffset];
+    intermediateValue = *vectorDataPointer;
+    *uiContext = intermediateValue * scalarComponent + transformationResult * contextValue;
+    targetDataPointer[1] = intermediateValue * contextValue - transformationResult * scalarComponent;
+    transformationResult = *sourceDataPointer;
+    intermediateValue = sourceDataPointer[baseOffset];
+    matrixElement = targetDataPointer[2];
+    contextValue = uiContext[-1];
+    scalarComponent = uiContext[-2];
+    targetDataPointer[2] = intermediateValue * targetDataPointer[2] + transformationResult * targetDataPointer[3];
+    uiContext[-1] = intermediateValue * targetDataPointer[3] - transformationResult * matrixElement;
+    transformationResult = vectorDataPointer[memoryOffset + -1];
+    intermediateValue = vectorDataPointer[-1];
+    uiContext[-2] = intermediateValue * scalarComponent + transformationResult * contextValue;
+    targetDataPointer[3] = intermediateValue * contextValue - transformationResult * scalarComponent;
+    transformationResult = sourceDataPointer[1];
+    intermediateValue = sourceDataPointer[baseOffset + 1];
+    matrixElement = targetDataPointer[4];
+    contextValue = uiContext[-3];
+    scalarComponent = uiContext[-4];
+    targetDataPointer[4] = intermediateValue * targetDataPointer[4] + transformationResult * targetDataPointer[5];
+    uiContext[-3] = intermediateValue * targetDataPointer[5] - transformationResult * matrixElement;
+    transformationResult = vectorDataPointer[-2];
+    intermediateValue = vectorDataPointer[memoryOffset + -2];
+    uiContext[-4] = transformationResult * scalarComponent + intermediateValue * contextValue;
+    targetDataPointer[5] = transformationResult * contextValue - intermediateValue * scalarComponent;
+    transformationResult = sourceDataPointer[baseOffset + 2];
+    intermediateValue = sourceDataPointer[2];
+    matrixElement = uiContext[-5];
+    contextValue = targetDataPointer[6];
+    sourceDataPointer = sourceDataPointer + 4;
+    scalarComponent = uiContext[-6];
+    targetDataPointer[6] = transformationResult * targetDataPointer[6] + intermediateValue * targetDataPointer[7];
+    uiContext[-5] = transformationResult * targetDataPointer[7] - intermediateValue * contextValue;
+    transformationResult = vectorDataPointer[memoryOffset + -3];
+    intermediateValue = vectorDataPointer[-3];
+    vectorDataPointer = vectorDataPointer + -4;
+    uiContext[-6] = intermediateValue * scalarComponent + transformationResult * matrixElement;
     uiContext = uiContext + -8;
-    TargetHandle[7] = localFloat2 * resultValue - floatResult * secondaryValue;
-    TargetHandle = TargetHandle + 8;
-    CharacterDataOffset = CharacterDataOffset + -1;
-  } while (CharacterDataOffset != 0);
+    targetDataPointer[7] = intermediateValue * matrixElement - transformationResult * scalarComponent;
+    targetDataPointer = targetDataPointer + 8;
+    dataOffset = dataOffset + -1;
+  } while (dataOffset != 0);
   if (localLong8 * 4 < bufferSize) {
     pfloatResult2 = (float *)(localLong8 * 0x10 + unmodifiedR13);
     pvectorComponentX = (float *)((unmodifiedR15 + localLong8 * -4) * 4 + -4 + unmodifiedR13);

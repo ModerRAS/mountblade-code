@@ -10282,12 +10282,12 @@ uint8_t UtilitySystemStatusFlagA;
 
 // 函数: void ConfigureUtilitySystemBufferA();
 #define ConfigureUtilitySystemBufferA FUN_180942890
-void ConfigureUtilitySystemBufferA;           // 配置工具系统缓冲区A
+void ConfigureUtilitySystemPrimaryBuffer;     // 配置工具系统主缓冲区
 void* UtilitySystemConfigBufferB;
 
 // 函数: void ConfigureUtilitySystemBufferB();
 #define ConfigureUtilitySystemBufferB FUN_1809428e0
-void ConfigureUtilitySystemBufferB;           // 配置工具系统缓冲区B
+void ConfigureUtilitySystemSecondaryBuffer;   // 配置工具系统次缓冲区
 void* UtilitySystemConfigBufferC;
 
 /**
@@ -10444,7 +10444,7 @@ uint8_t UtilitySystemStorageStatus2;
  * @return void* 初始化的线程本地存储指针
  */
 void* InitializeThreadLocalStorageA8(void);
-uint32_t _tls_index;
+uint32_t ThreadLocalStorageIndex;
 void *ThreadLocalStoragePointer;
 void* SystemMemoryControlFlag;
 void* MemoryManagementControlFlag;
@@ -10546,7 +10546,7 @@ uint8_t SystemConfigDataTableB;
 // 系统缓存数据表A
 uint8_t SystemCacheDataTableA;
 // 系统状态标志变量A
-char SystemStatusFlagA;                      // 系统状态标志A
+char SystemPrimaryStatusFlag;                 // 系统主状态标志
 // 网络连接数据管理器
 uint8_t NetworkConnectionDataManager;
 // 网络状态监控器
@@ -10569,7 +10569,7 @@ uint8_t SystemDataBufferA;
 // 系统资源预留空间G
 uint8_t SystemResourceReservedSpaceG;
 // 系统状态标志变量B
-char SystemStatusFlagB;                      // 系统状态标志B
+char SystemSecondaryStatusFlag;              // 系统次状态标志
 // 系统异常处理状态表第三缓冲区
 uint8_t SystemExceptionHandlerStatusTertiaryBuffer;
 uint8_t SystemPerformanceCounterA;
@@ -11830,25 +11830,25 @@ uint8_t SystemBufferDataTableA3;
 #define SystemConfigurationDataTableA2 SystemConfigurationDataTableTertiary
 uint8_t SystemConfigurationDataTableA2;
 // 系统辅助缓存状态标志
-char SystemSecondaryCacheStatusFlag;
+char SystemBackupCacheStatusFlag;
 // 系统验证指针A0
 // 功能：指向系统验证数据
-void* SystemValidationPointerA0;
+void* SystemDataValidationPointer;
 // 系统控制指针A0
 // 功能：指向系统控制数据
-void* SystemControlPointerA0;
+void* SystemControlManagementPointer;
 // 系统处理指针A0
 // 功能：指向系统处理数据
-void* SystemProcessingPointerA0;
+void* SystemDataProcessingPointer;
 // 系统接口指针A0
 // 功能：指向系统接口数据
-void* SystemInterfacePointerA0;
+void* SystemInterfaceManagementPointer;
 // 系统服务指针A0
 // 功能：指向系统服务数据
-void* SystemServicePointerA0;
+void* SystemServiceManagementPointer;
 // 系统管理数据表A0
 // 功能：存储系统管理数据表信息
-uint8_t SystemManagementDataTableA0;
+uint8_t SystemResourceManagementTable;
 
 // Unwind函数语义化宏定义（180901f90系列）
 // 原始函数名：Unwind_180901f90 - 异常上下文设置函数D0
@@ -60077,7 +60077,7 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + 0x48);
+  memoryBlockOffset = *(int64_t *)(unwindContext + 0x48);
   memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset10);
   exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
@@ -60112,7 +60112,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  contextPointer = *(int64_t **)(dataBuffer + 0x48);
+  contextPointer = *(int64_t **)(threadContext + 0x48);
   validationStatusPointer = (DataBuffer *)*contextPointer;
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
@@ -120692,7 +120692,7 @@ void ResetThreadLocalStorage(void)
 {
   int64_t ThreadContext;
   
-  ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)ThreadLocalStorageIndex * 8);
   *(DataBuffer *)(ThreadContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ThreadContext + 0x20) != 0) {
       TerminateSystemE0();

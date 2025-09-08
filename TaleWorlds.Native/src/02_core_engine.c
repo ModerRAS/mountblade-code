@@ -251574,8 +251574,26 @@ LAB_18020bfbd:
 
 
 
- (ram,0x00018020c4bc (ram,0x00018020c4c5
-long long * FUN_18020c010(uint64_t CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer
+ /**
+ * @brief 处理字符代码和UTF-8源数据的复杂搜索操作
+ * 
+ * 该函数负责执行复杂的字符代码搜索和UTF-8数据处理操作。
+ * 主要功能包括：
+ * - 遍历内存块和字符代码表
+ * - 执行字符串比较和长度验证
+ * - 管理系统配置迭代器
+ * - 处理UTF-8源数据的编码转换
+ * - 返回匹配的字符代码指针
+ * 
+ * @param CharacterCode 字符代码参数，用于标识搜索的目标
+ * @param CharacterCodeSize 字符代码大小指针，用于存储大小信息
+ * @param Utf8SourcePointer UTF-8源数据指针，包含要处理的数据
+ * 
+ * @return 返回匹配的字符代码指针，如果没有匹配则返回0
+ * 
+ * @note 原始函数名：FUN_18020c010
+ */
+long long *ProcessCharacterCodeAndUtf8DataSearch(uint64_t CharacterCode, long long *CharacterCodeSize, long long Utf8SourcePointer)
 {
   byte *CurrentBytePointer;
   int StringComparisonResult;
@@ -251589,66 +251607,66 @@ long long * FUN_18020c010(uint64_t CharacterCode,long long *CharacterCodeSize,lo
   int ArrayIndex;
   uint64_t *SystemCharacterStatusBuffer;
   long long SystemContextValue;
-  long long *CharacterCode3;
-  int IntegerValue4;
-  int *ReferenceCountPointer5;
+  long long *CharacterCodeTableEntry;
+  int EntryValidationResult;
+  int *ReferenceCountPointer;
   unsigned long long PrimaryReturnCode;
   long long SystemConfigurationIterator;
   uint64_t *CharacterStatusBuffer8;
   uint64_t *CharacterStatusBuffer9;
-  int StringComparisonResult0;
-  bool HighByte1;
-  long long lStackX_18;
-  unsigned long long uStackX_20;
-  int iStack_138;
-  int iStack_134;
-  uint64_t *pBufferInitializationFlag;
-  uint64_t *pDataProcessingFlags;
-  long long *plStack_108;
-  long long *plStack_100;
+  int StringComparisonResultSecondary;
+  bool SystemValidationFlag;
+  long long StackParameter18;
+  unsigned long long StackParameter20;
+  int StackParameter138;
+  int StackParameter134;
+  uint64_t *BufferInitializationFlag;
+  uint64_t *DataProcessingFlags;
+  long long *StackParameter108;
+  long long *StackParameter100;
   long long *PreviousContextPointer;
   uint32_t OperationStatus;
   long long CoreEngineSignedValueE8;
-  long long lStack_e0;
-  long long lStack_d8;
+  long long StackParameterE0;
+  long long StackParameterD8;
   long long SystemTemporaryValueD0;
   long long CoreEngineSignedValueC8;
   long long StackMemoryBufferC0;
-  long long lStack_b8;
-  uint64_t *pSystemStackRegisterFlagB0;
+  long long StackParameterB8;
+  uint64_t *SystemStackRegisterFlagB0;
   uint64_t *SystemEventDispatcher;
   uint64_t *StackTempPointer;
   uint32_t SystemOperationFlag98;
   long long SystemTemporaryValue90;
-  long long lStack_88;
+  long long StackParameter88;
   uint64_t CalculationFunctionAddress;
   uint32_t StackProcessingUnsignedValue78;
   long long CoreEngineSignedValue70;
-  long long lStack_68;
+  long long StackParameter68;
   unsigned long long StackProcessingUnsignedValue60;
   long long SystemStackRegister58;
   uint64_t SystemKeyPointer;
   
   SystemKeyPointer = 0xfffffffffffffffe;
-  lStack_d8 = CoreEngineConfigurationData;
-  HighByte1 = CoreEngineConfigurationData == *(long long *)(CoreEngineConfigurationData + 8);
+  StackParameterD8 = CoreEngineConfigurationData;
+  SystemValidationFlag = CoreEngineConfigurationData == *(long long *)(CoreEngineConfigurationData + 8);
   MemoryBoundaryEnd = CoreEngineConfigurationData;
   SystemDataRegistry = CoreEngineConfigurationData;
-  lStackX_18 = Utf8SourcePointer;
-  while (!HighByte1) {
+  StackParameter18 = Utf8SourcePointer;
+  while (!SystemValidationFlag) {
     MemoryBlockIndex = GetPreviousMemoryBlockIndex(MemoryBoundaryEnd);
     SystemConfigurationIterator = 0;
-    IntegerValue4 = (int)(*(long long *)(MemoryBlockIndex + 0x30) - *(long long *)(MemoryBlockIndex + 0x28) >> 3);
-    if (0 < IntegerValue4) {
+    EntryValidationResult = (int)(*(long long *)(MemoryBlockIndex + 0x30) - *(long long *)(MemoryBlockIndex + 0x28) >> 3);
+    if (0 < EntryValidationResult) {
       do {
-        StringComparisonResult0 = 0;
+        StringComparisonResultSecondary = 0;
         SystemDataRegistry = GetPreviousMemoryBlockIndex(MemoryBoundaryEnd);
         SystemDataRegistry = *(long long *)(*(long long *)(SystemDataRegistry + 0x28) + SystemConfigurationIterator * 8);
         if (*(long long *)(SystemDataRegistry + 0x30) - *(long long *)(SystemDataRegistry + 0x28) >> 3 != 0) {
           SystemDataRegistry = 0;
           do {
             MemoryBlockIndex = GetPreviousMemoryBlockIndex(MemoryBoundaryEnd);
-            MemoryBlockIndex = *(long long *                     (SystemDataRegistry + *(long long *                               (*(long long *)(*(long long *)(MemoryBlockIndex + 0x28) + SystemConfigurationIterator * 8) + 0x28));
+            MemoryBlockIndex = *(long long *)(SystemDataRegistry + *(long long *)(*(long long *)(*(long long *)(MemoryBlockIndex + 0x28) + SystemConfigurationIterator * 8) + 0x28));
             StringComparisonResult = *(int *)(MemoryBlockIndex + 0x298);
             ArrayIndex = *(int *)(Utf8SourcePointer + 0x250);
             if (StringComparisonResult == ArrayIndex) {
