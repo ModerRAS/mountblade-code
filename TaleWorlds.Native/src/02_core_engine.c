@@ -137,6 +137,17 @@
 #define SystemStackUnsigned290 uStack_290                   // 系统栈无符号290
 #define SystemStackPointer270 plStack_270                   // 系统栈指针270
 
+// 新增栈变量语义化宏定义
+#define StackFloatValue14 fStackX_14                        // 栈浮点值14
+#define StackFloatValue10 fStackX_10                        // 栈浮点值10
+#define StackFloatValue4c fStack_4c                         // 栈浮点值4c
+#define StackUnsignedValueCC uStack_cc                      // 栈无符号值CC
+#define StackProcessingValue9c uStack_9c                    // 栈处理值9c
+#define StackCharacterValueA4 StackCharacterValueA4         // 栈字符值A4
+#define StackUnsignedValueA0 CoreEngineUnsignedValueA0      // 栈无符号值A0
+#define StackProcessingValue98 SystemOperationFlag98        // 栈处理值98
+#define StackProcessingValueA8 CoreEngineValueA8            // 栈处理值A8
+
 // FUN_函数语义化宏定义
 /**
  * @brief 重置字符处理系统
@@ -240131,29 +240142,29 @@ void FUN_180202c2d(uint32_t SearchPattern,float *ArraySizePointer)
       CurrentFloatValue = PrimaryContextValue;
     }
     while( true ) {
-      while (CalculatedDistance < FloatOffsetValue) {
-        CalculatedDistance = pMatrixTransformMultiplier[1];
-        pMatrixTransformMultiplier = pMatrixTransformMultiplier + 1;
+      while (DistanceValue < CurrentFloatValue) {
+        DistanceValue = ArrayIterator[1];
+        ArrayIterator = ArrayIterator + 1;
       }
-      FloatVariablePointer4 = FloatVariablePointer4 + -1;
-      SystemContextPrimaryFloat = *FloatVariablePointer4;
-      while (FloatOffsetValue < SystemContextPrimaryFloat) {
-        FloatVariablePointer4 = FloatVariablePointer4 + -1;
-        SystemContextPrimaryFloat = *FloatVariablePointer4;
+      ArrayPointer4 = ArrayPointer4 + -1;
+      PrimaryContextValue = *ArrayPointer4;
+      while (CurrentFloatValue < PrimaryContextValue) {
+        ArrayPointer4 = ArrayPointer4 + -1;
+        PrimaryContextValue = *ArrayPointer4;
       }
-      if (FloatVariablePointer4 <= pMatrixTransformMultiplier) break;
-      SystemContextPrimaryFloat = *pMatrixTransformMultiplier;
-      *pMatrixTransformMultiplier = *FloatVariablePointer4;
-      *FloatVariablePointer4 = SystemContextPrimaryFloat;
-      CalculatedDistance = pMatrixTransformMultiplier[1];
-      pMatrixTransformMultiplier = pMatrixTransformMultiplier + 1;
+      if (ArrayPointer4 <= ArrayIterator) break;
+      PrimaryContextValue = *ArrayIterator;
+      *ArrayIterator = *ArrayPointer4;
+      *ArrayPointer4 = PrimaryContextValue;
+      DistanceValue = ArrayIterator[1];
+      ArrayIterator = ArrayIterator + 1;
     }
-    StackFrameAddressPointer = StackFrameAddressPointer + -1;
-    CharacterCode = FUN_180202c00(pMatrixTransformMultiplier,SystemBufferSize,StackFrameAddressPointer,RegisterValueBL);
-    SystemBufferSize = pMatrixTransformMultiplier;
-  } while (0x70 < (long long)((long long)pMatrixTransformMultiplier - (long long)PatternIndex & 0xfffffffffffffffcU));
-  if (StackFrameAddressPointer == 0) {
-    FUN_180202e40(CharacterCode,pMatrixTransformMultiplier,pMatrixTransformMultiplier,RegisterValueBL);
+    FrameAddress = FrameAddress + -1;
+    SearchPattern = FUN_180202c00(ArrayIterator,SystemBufferSize,FrameAddress,StatusFlag);
+    SystemBufferSize = ArrayIterator;
+  } while (0x70 < (long long)((long long)ArrayIterator - (long long)PatternPointer & 0xfffffffffffffffcU));
+  if (FrameAddress == 0) {
+    FUN_180202e40(SearchPattern,ArrayIterator,ArrayIterator,StatusFlag);
   }
   return;
 }
@@ -240161,11 +240172,18 @@ void FUN_180202c2d(uint32_t SearchPattern,float *ArraySizePointer)
 
 
 
-02cef(voidvoid FUN_180202cef(void
+/**
+ * @brief 处理系统栈帧地址检查和最终化操作
+ * 
+ * 该函数检查栈帧地址并根据条件执行系统最终化操作
+ * 
+ * @note 原始函数名：FUN_180202cef
+ */
+void FUN_180202cef(void)
 {
-  long long StackFrameAddressPointer;
+  long long FrameAddressPointer;
   
-  if (StackFrameAddressPointer == 0) {
+  if (FrameAddressPointer == 0) {
     FUN_180202e40();
   }
   return;
@@ -240174,7 +240192,14 @@ void FUN_180202c2d(uint32_t SearchPattern,float *ArraySizePointer)
 
 
 
-02cf9(voidvoid FUN_180202cf9(void
+/**
+ * @brief 执行系统最终化操作
+ * 
+ * 该函数直接调用系统最终化函数，完成清理工作
+ * 
+ * @note 原始函数名：FUN_180202cf9
+ */
+void FUN_180202cf9(void)
 {
   FUN_180202e40();
   return;
