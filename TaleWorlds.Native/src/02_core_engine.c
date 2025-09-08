@@ -257066,7 +257066,22 @@ uint8_t FUN_180215fee(void
 
 
 
-16000(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180216000(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统字符编码转换
+ * 
+ * 该函数负责处理系统字符编码转换，通过调用字符代码处理函数来转换UTF-8到UTF-16。
+ * 函数设置系统寄存器标志并调用相应的处理函数进行编码转换。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符编码信息
+ * @param SystemBufferSize 系统缓冲区大小，定义处理数据的大小
+ * @param Utf8SourcePointer UTF-8源数据指针，包含待转换的字符数据
+ * @param Utf16EndPointer UTF-16结束指针，定义转换数据的边界
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180216000
+ * @note 该函数用于字符编码转换处理
+ */
+void ProcessSystemCharacterEncodingConversion(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint32_t SystemRegisterFlag;
   uint32_t uStackX_c;
@@ -257140,32 +257155,58 @@ FUN_180216030(long long CharacterCode,int SystemBufferSize,uint64_t Utf8SourcePo
 
 
 
-uint32_t FUN_1802161d0(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符表配置和状态检查
+ * 
+ * 该函数负责处理字符表配置和状态检查，通过调用字符表处理函数来获取
+ * 字符表指针，然后根据处理结果返回相应的配置标志。
+ * 
+ * @param CharacterCode 字符代码，用于标识字符类型
+ * @param SystemBufferSize 系统缓冲区大小，定义处理数据的大小
+ * @return uint32_t 返回处理配置标志，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_1802161d0
+ * @note 该函数用于字符表配置和状态管理
+ */
+uint32_t ProcessCharacterTableConfigurationAndStatusCheck(uint64_t CharacterCode,uint64_t SystemBufferSize)
 {
   long long PrimaryDataSize;
-  uint32_t aStackProcessingConfigurationFlag [2];
-  uint8_t auStackX_20 [8];
+  uint32_t StackProcessingConfigurationFlag [2];
+  uint8_t StackProcessingBuffer [8];
   
   CharacterTablePointer = FUN_180213440(CharacterCode,SystemBufferSize,0);
   if (CharacterTablePointer != 0) {
-    FUN_180846050(LoopCounter,auStackX_20,aStackProcessingConfigurationFlag);
-    return aStackProcessingConfigurationFlag[0];
+    FUN_180846050(LoopCounter,StackProcessingBuffer,StackProcessingConfigurationFlag);
+    return StackProcessingConfigurationFlag[0];
   }
   return 0;
 }
 
 
 
-uint32_t FUN_180216210(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符表验证和配置标志
+ * 
+ * 该函数负责处理字符表验证和配置标志，通过调用字符表验证函数来获取
+ * 字符表指针，然后根据处理结果返回相应的配置标志。
+ * 
+ * @param CharacterCode 字符代码，用于标识字符类型
+ * @param SystemBufferSize 系统缓冲区大小，定义处理数据的大小
+ * @return uint32_t 返回验证配置标志，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_180216210
+ * @note 该函数用于字符表验证和配置管理
+ */
+uint32_t ProcessCharacterTableValidationAndConfigurationFlag(uint64_t CharacterCode,uint64_t SystemBufferSize)
 {
   long long PrimaryDataSize;
-  uint32_t aStackProcessingConfigurationFlag [2];
-  uint8_t auStackX_20 [8];
+  uint32_t StackValidationConfigurationFlag [2];
+  uint8_t StackValidationBuffer [8];
   
   CharacterTablePointer = FUN_180213700(CharacterCode,SystemBufferSize,0);
   if (CharacterTablePointer != 0) {
-    FUN_180846050(LoopCounter,auStackX_20,aStackProcessingConfigurationFlag);
-    return aStackProcessingConfigurationFlag[0];
+    FUN_180846050(LoopCounter,StackValidationBuffer,StackValidationConfigurationFlag);
+    return StackValidationConfigurationFlag[0];
   }
   return 0;
 }
@@ -257174,7 +257215,21 @@ uint32_t FUN_180216210(uint64_t CharacterCode,uint64_t SystemBufferSize
 
 
 
-16250(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint32_t Utf8SourcePointervoid FUN_180216250(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint32_t Utf8SourcePointer
+/**
+ * @brief 处理字符代码大小和UTF-8源数据
+ * 
+ * 该函数负责处理字符代码大小和UTF-8源数据，包括字符状态缓冲区的管理
+ * 和Unicode码点的处理。
+ * 
+ * @param CharacterCode 字符代码，用于标识字符类型
+ * @param CharacterCodeSize 字符代码大小指针，用于存储字符代码的大小信息
+ * @param Utf8SourcePointer UTF-8源数据指针，包含待处理的字符数据
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180216250
+ * @note 该函数用于字符代码大小和UTF-8源数据处理
+ */
+void ProcessCharacterCodeSizeAndUtf8SourceData(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint32_t Utf8SourcePointer)
 {
   uint8_t *CharacterStatusBuffer;
   long long BufferStatus;
