@@ -200120,55 +200120,67 @@ int ValidateUIContextAndProcessDataSource(longlong *uiContext, longlong *dataSou
       *colorBufferPointer = (longlong)(uiContext + 9);
       uiContext[10] = (longlong)colorBufferPointer;
       *(longlong **)colorBufferPointer[1] = colorBufferPointer;
-      pcontextOffset = (longlong *)uiContext[1];
+      contextOffset = (longlong *)uiContext[1];
       do {
-        pstringCompareIndex = (longlong *)pcontextOffset[5];
-        if ((pstringCompareIndex <= colorBufferPointer) && (colorBufferPointer < pstringCompareIndex + (longlong)(int)pcontextOffset[4] * 3)) {
-          localInt6 = (int)(((longlong)colorBufferPointer - (longlong)pstringCompareIndex) / 0x18);
-          if (localInt6 != -1) {
-            ContextHandleData = *(longlong *)(pcontextOffset[6] + (longlong)localInt6 * 8);
-            *dataSource = ContextHandleData;
-            if (ContextHandleData == 0) {
-              localInt6 = 0x26;
+        stringCompareIndex = (longlong *)contextOffset[5];
+        if ((stringCompareIndex <= colorBufferPointer) && (colorBufferPointer < stringCompareIndex + (longlong)(int)contextOffset[4] * 3)) {
+          validationResult = (int)(((longlong)colorBufferPointer - (longlong)stringCompareIndex) / 0x18);
+          if (validationResult != -1) {
+            contextHandleData = *(longlong *)(contextOffset[6] + (longlong)validationResult * 8);
+            *dataSource = contextHandleData;
+            if (contextHandleData == 0) {
+              validationResult = 0x26;
             }
             else {
-              colorBufferPointer[2] = ContextHandleData;
-              func_0x000180763630(*dataSource,*uiContext,0x3f800000);
-              *(int *)((longlong)pcontextOffset + 0x24) = *(int *)((longlong)pcontextOffset + 0x24) + 1;
+              colorBufferPointer[2] = contextHandleData;
+              func_0x000180763630(*dataSource, *uiContext, 0x3f800000);
+              *(int *)((longlong)contextOffset + 0x24) = *(int *)((longlong)contextOffset + 0x24) + 1;
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
-              localInt6 = 0;
+              validationResult = 0;
             }
             goto LAB_18078a1be;
           }
           break;
         }
-        pcontextOffset = (longlong *)*pcontextOffset;
-      } while (pcontextOffset != (longlong *)uiContext[1]);
-      localInt6 = 0x1e;
+        contextOffset = (longlong *)*contextOffset;
+      } while (contextOffset != (longlong *)uiContext[1]);
+      validationResult = 0x1e;
     }
   }
 LAB_18078a1be:
-  if ((IsValidationComplete) && (allocatedMemory != 0)) {
+  if ((isValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    ProcessUISystemCleanup(allocatedMemory,localInt9);
+    ProcessUISystemCleanup(allocatedMemory, maxValidationSize);
   }
-  return localInt6;
+  return validationResult;
 }
 
 
 
-int FUN_18078a0d9(UIHandle *uiContext,longlong *dataSource,char targetBuffer,int bufferSize)
-
+/**
+ * @brief 验证UI句柄并处理数据源
+ * 
+ * 该函数验证UI句柄的有效性，处理数据源，并执行相关的数据操作。
+ * 这是ValidateUIContextAndProcessDataSource函数的变体，专门处理UI句柄类型。
+ * 
+ * @param uiContext UI上下文句柄指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 处理结果状态码，0表示成功，其他值表示错误
+ * @note 原始函数名: FUN_18078a0d9
+ */
+int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSource, char targetBuffer, int bufferSize)
 {
-  UIHandle *ptrResult;
+  UIHandle *resultHandle;
   longlong *colorBufferPointer;
-  longlong *pstringCompareIndex;
-  longlong ContextHandleData;
-  bool IsValidationComplete;
-  int localInt6;
+  longlong *stringCompareIndex;
+  longlong contextHandleData;
+  bool isValidationComplete;
+  int validationResult;
   char validationFlag;
-  longlong *pcontextOffset;
-  longlong BasePointer;
+  longlong *contextOffset;
+  longlong basePointer;
   
   IsValidationComplete = false;
   if (BasePointer == 0) {

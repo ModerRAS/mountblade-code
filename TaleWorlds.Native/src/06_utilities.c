@@ -20064,11 +20064,11 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
 DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationContext,DataBuffer exceptionHandlerContext,DataBuffer processingContext)
 
 {
-  float floatValue;
-  uint64_t operationResult;
-  int64_t resultPointer;
-  DataBuffer DestinationContext;
-  int64_t stackValue;
+  float floatingPointValue;
+  uint64_t systemOperationResult;
+  int64_t resultStoragePointer;
+  DataBuffer destinationExecutionContext;
+  int64_t temporaryStackValue;
   
   floatValue = *(float *)(valueContext + DataValidationOffset18);
   stackValue = MergeHighLowWords(stackValue.HighPart, floatValue);
@@ -25275,49 +25275,63 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               iterationCount = ValidateDataIntegrityA0(operationBase,&SecurityValidationBuffer);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
+            // 更新缓冲区指针和异常处理上下文
             bufferPointer = bufferPointer + 1;
             exceptionHandlerContext4 = exceptionHandlerContext4 + SystemDataSecondaryOffset18;
             dataBuffer = ProcessingLongIntegerB;
           } while (bufferPointer < StackLongIntegerA);
         }
+        // 获取系统内存缓冲区并执行数据处理操作
         systemMemoryBuffer = *(DataBuffer *)(*(int64_t *)(operationBase + OperationBaseOffset8) + 800);
         loopCounter = (**(FunctionPointer**)*exceptionBuffer6)(exceptionBuffer6);
         iterationCount = ProcessDataOperationA7(loopCounter,systemMemoryBuffer,systemNameBuffer);
         if (iterationCount == 0) {
+          // 验证系统名称缓冲区并初始化系统
           if (systemNameBuffer[0] != '\0') {
             systemMemoryBuffer = InitializeSystem();
             iterationCount = memcmp(dataContext + SystemFloatDataOffset38,systemMemoryBuffer,0x30);
             if (iterationCount != 0) {
+              // 获取系统配置数据和操作数据
               SystemConfigurationDataBuffer = *(DataBuffer *)(dataContext + SystemFloatDataOffset38);
               SystemOperationDataBuffer = *(DataBuffer *)(dataContext + SystemDataOffset40);
+              // 获取系统配置数据字
               SystemConfigurationDataWordJ = *(DataWord *)(dataContext + DataOperationOffset48);
               SystemConfigurationDataWordK = *(DataWord *)(dataContext + DataOperationOffset4c);
               SystemConfigurationDataWordL = *(DataWord *)(dataContext + DataOperationOffset50);
               SystemContextOffsetData54 = *(DataWord *)(dataContext + DataOperationOffset54);
+              // 初始化安全检查和重置数据
               StackPointerBufferD = &SystemSecurityCheckReference;
               SystemResetDataWordH = 0;
+              // 获取系统上下文偏移数据
               SystemContextOffsetData58 = *(DataWord *)(dataContext + DataOperationOffset58);
               SystemContextOffsetData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
               SystemContextOffsetData60 = *(DataWord *)(dataContext + DataOperationOffset60);
+              // 获取系统安全验证数据
               SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
               SystemStackDataWordI = StackDataWordA;
+              // 验证数据完整性
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
+          // 转换数据格式并验证浮点数值
           iterationCount = ConvertDataFormatA2(dataContext,&SystemSystemInputFloatValueC,0);
           if (iterationCount == 0) {
             if (SystemSystemInputFloatValueC != 1.0) {
+              // 处理浮点数验证错误
               SystemSystemInputFloatValueA = SystemSystemInputFloatValueC;
               SystemSystemStackPointerBufferI = &FloatingPointValidationErrorA;
               SystemSystemTemporaryDataWordC = StackDataWordA;
               SystemSystemTemporaryDataWordB = 0;
+              // 验证数据完整性
               iterationCount = ValidateDataIntegrityA0(operationBase,&SystemSystemStackPointerBufferI);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
+            // 验证数据A3并检查浮点数组
             iterationCount = ValidateDataA3(dataContext,StackFloatArrayA,0);
             if (iterationCount == 0) {
               if (StackFloatArrayA[0] != 1.0) {
+                // 处理浮点数验证错误B
                 SystemInputFloatValueA = StackFloatArrayA[0];
                 SystemStackPointerBufferI = &FloatingPointValidationErrorB;
                 SystemTemporaryDataWordC = StackDataWordA;
@@ -25325,10 +25339,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
+              // 初始化循环计数器和浮点数组指针
               loopCounter = 0.0;
               floatArrayPointer = (float *)(dataContext + DataOperationOffset94);
+              // 执行浮点数组验证循环
               do {
                 if (*floatArrayPointer != 0.0) {
+                  // 处理数据验证错误
                   SystemTemporaryDataWordC = StackDataWordA;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &DataProcessingValidationError;
@@ -25340,11 +25357,14 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 loopCounter = (float)((int)loopCounter + 1);
                 floatArrayPointer = floatArrayPointer + 1;
               } while ((int)loopCounter < 4);
+              // 执行浮点验证数组检查
               floatArrayPointer = (float *)&FloatValidationArray;
               loopCounter = 0.0;
               do {
+                // 获取浮点数值并与预期值比较
                 floatValue = *(float *)(dataContext - FloatValidationDataAddress + (int64_t)floatArrayPointer);
                 if (floatValue != *floatArrayPointer) {
+                  // 处理系统状态验证错误
                   SystemTemporaryDataWordC = StackDataWordA;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &SystemStatusValidationError;
@@ -25356,8 +25376,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 loopCounter = (float)((int)loopCounter + 1);
                 floatArrayPointer = floatArrayPointer + 1;
               } while ((int)loopCounter < 6);
+              // 验证参数并检查数据完整性
               validationOutcome = ValidateParameters(dataBuffer + SystemDataBufferOffset200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
+                // 处理数据完整性验证错误A
                 SystemStackPointerBufferI = &DataIntegrityValidationErrorA;
                 SystemTemporaryDataWordC = StackDataWordA;
                 SystemTemporaryDataWordB = 0;
