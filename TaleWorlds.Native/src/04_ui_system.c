@@ -82959,8 +82959,28 @@ void ProcessUIBufferDataOperation(UIHandle uiContext,UIHandle dataSource,int tar
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180713c60(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bufferSize,int *resultPointer,
-void FUN_180713c60(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bufferSize,int *resultPointer,
+ /**
+ * @brief 处理UI数据验证和转换
+ * 
+ * 该函数负责处理UI系统中的数据验证和转换，包括：
+ * - 数据源的验证和完整性检查
+ * - 目标缓冲区的数据转换
+ * - 缓冲区大小的动态调整
+ * - 结果数据的存储和返回
+ * 
+ * 该函数用于优化UI数据验证和转换的性能。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * 
+ * @note 原始函数名：FUN_180713c60
+ */
+void ProcessUIDataValidationAndConversion(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bufferSize,int *resultPointer,
+void ProcessUIDataValidationAndConversion(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bufferSize,int *resultPointer,
                   int param_6)
 
 {
@@ -82999,8 +83019,26 @@ void FUN_180713c60(UIHandle uiContext,int dataSource,UIDword targetBuffer,int bu
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807141f0(longlong uiContext,int dataSource,int targetBuffer,UIHandle bufferSize)
-void FUN_1807141f0(longlong uiContext,int dataSource,int targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 验证UI上下文和数据源
+ * 
+ * 该函数负责验证UI系统中的上下文和数据源，包括：
+ * - UI上下文的有效性检查
+ * - 数据源的完整性验证
+ * - 目标缓冲区的状态检查
+ * - 缓冲区大小的合理性验证
+ * 
+ * 该函数用于确保UI系统操作的安全性和正确性。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1807141f0
+ */
+void ValidateUIContextAndDataSource(longlong uiContext,int dataSource,int targetBuffer,UIHandle bufferSize)
+void ValidateUIContextAndDataSource(longlong uiContext,int dataSource,int targetBuffer,UIHandle bufferSize)
 
 {
   byte isCharacterMatch;
