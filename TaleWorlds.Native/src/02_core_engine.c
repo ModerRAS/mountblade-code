@@ -94963,6 +94963,16 @@ void GetSystemValueByIndex(long long CharacterCode,uint32_t SystemBufferSize
 
 
 
+/**
+ * @brief 配置系统数据结构偏移量070
+ * 
+ * 该函数负责配置系统数据结构在偏移量0x070处的参数和状态
+ * 
+ * @param CharacterCode 字符代码，用于标识系统中的字符
+ * @param SystemBufferSize 系统缓冲区大小，用于配置数据结构
+ * 
+ * @note 原始函数名：FUN_18004b790
+ */
 void ConfigureSystemDataStructureOffset070(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
@@ -94989,6 +94999,16 @@ void ConfigureSystemDataStructureOffset070(long long CharacterCode, uint32_t Sys
 
 
 
+/**
+ * @brief 配置系统数据结构偏移量0f0
+ * 
+ * 该函数负责配置系统数据结构在偏移量0x0f0处的参数和状态
+ * 
+ * @param CharacterCode 字符代码，用于标识系统中的字符
+ * @param SystemBufferSize 系统缓冲区大小，用于配置数据结构
+ * 
+ * @note 原始函数名：FUN_18004b790
+ */
 void ConfigureSystemDataStructureOffset0f0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;

@@ -8572,6 +8572,7 @@ void* DataBufferCleanupPointer;           // 数据缓冲区清理指针
 
 // 默认异常处理器指针变量声明
 void* SystemDefaultExceptionHandlerBPointer;     // 系统默认异常处理器B指针
+void* SystemDefaultExceptionHandlerB;              // 系统默认异常处理器B
 
 // 异常处理器指针变量声明
 void* PrimaryExceptionHandler;         // 主异常处理器指针
