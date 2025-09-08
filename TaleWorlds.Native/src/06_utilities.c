@@ -29998,7 +29998,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
     }
     if ((int)validationStatus == 0) {
       if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-        validationStatus = ProcessDataBlocksA1(*dataBuffer,operationBase + 0x30);
+        validationStatus = ProcessDataBlocksInSecondaryMode(*dataBuffer,operationBase + 0x30);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -30031,7 +30031,7 @@ uint64_t ProcessDataWithValidation(void)
 
 {
   DataBuffer dataHandle;
-  int registerEAX;
+  int eaxRegisterValue;
   uint64_t operationResult;
   DataBuffer *dataBuffer;
   int64_t contextPointer;
@@ -30039,15 +30039,15 @@ uint64_t ProcessDataWithValidation(void)
   bool carryFlag;
   ByteFlag dataElementBuffer [4];
   ByteFlag dataSizeBuffer [2];
-  ByteFlag tempBuffer3 [2];
+  ByteFlag thirdTempBuffer [2];
   
-  validationFlag = registerEAX + 0x1c;
+  validationFlag = eaxRegisterValue + 0x1c;
   if (carryFlag) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       dataHandle = *dataBuffer;
-      operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
-      if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
-         (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
+      operationResult = ProcessDataElement(dataHandle, firstTempBuffer, 4);
+      if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondTempBuffer, 2), (int)operationResult == 0)) &&
+         (operationResult = ProcessDataElement(dataHandle, thirdTempBuffer, 2), (int)operationResult == 0)) {
         operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
       }
     }
