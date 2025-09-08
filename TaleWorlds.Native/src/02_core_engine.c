@@ -25024,7 +25024,7 @@ int64_t CoreEngineCopyDataStructure(int64_t TargetStructure,int64_t SourceStruct
   StructurePointer = *(void *)(SourceStructure + 0x58);
   *(void *)(TargetStructure + 0x50) = *(void *)(SourceStructure + 0x50);
   *(void *)(TargetStructure + 0x58) = StructurePointer;
-  StructureField1 = *(uint32_t *)(SourceStructure + 100);
+  StructureVersionNumber = *(uint32_t *)(SourceStructure + 100);
   StructureField2 = *(uint32_t *)(SourceStructure + 0x68);
   StructureField3 = *(uint32_t *)(SourceStructure + 0x6c);
   *(uint32_t *)(TargetStructure + 0x60) = *(uint32_t *)(SourceStructure + 0x60);
