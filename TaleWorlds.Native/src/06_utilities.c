@@ -86238,15 +86238,27 @@ void ExceptionUnwindHandlerA32(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 原始函数名：Unwind_18090b310 - 异常展开处理函数A33
-// 功能：异常展开清理函数A33
-#define ExceptionUnwindHandlerA33 Unwind_18090b310
+// 原始函数名：Unwind_18090b310 - 异常上下文处理器调用函数A33
+// 功能：调用异常上下文中偏移量0x3b8处的处理器函数
+#define ExecuteExceptionHandlerCallbackAtOffset3B8 Unwind_18090b310
 
 // 原始函数名：Unwind_18090b330 - 异常上下文处理器调用函数A34
 // 功能：调用异常上下文中偏移量0x3c0处的处理器函数
-#define InvokeExceptionHandlerAtOffset3C0 Unwind_18090b330
+#define ExecuteExceptionHandlerCallbackAtOffset3C0 Unwind_18090b330
 
-void ExceptionUnwindHandlerA33(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数A33
+ * 
+ * 该函数从异常上下文中偏移量0x3b8处获取异常处理器上下文指针，
+ * 并执行相应的回调函数。这是异常处理机制中的关键函数，用于
+ * 在异常展开过程中调用注册的异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090b310
+ */
+void ExecuteExceptionHandlerCallbackAtOffset3B8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
