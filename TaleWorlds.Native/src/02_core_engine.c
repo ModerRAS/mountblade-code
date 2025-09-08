@@ -208709,7 +208709,20 @@ void CoreEngineUtilityFunctionExecutor(void)
 
 
 
-73be0(uint64_t CharacterCode,char SystemBufferSize,uint32_t Utf8SourcePointervoid FUN_180173be0(uint64_t CharacterCode,char SystemBufferSize,uint32_t Utf8SourcePointer
+/**
+ * @brief 处理字符编码转换和光标显示
+ * 
+ * 该函数负责处理字符编码转换并管理系统光标显示状态。根据系统缓冲区大小
+ * 的不同，执行不同的字符转换和光标显示操作。
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小，决定处理模式
+ * @param Utf8SourcePointer UTF-8源指针，指向要转换的字符数据
+ * 
+ * @note 原始函数名：FUN_180173be0
+ * @note 该函数用于字符编码转换和光标管理
+ */
+void ProcessCharacterEncodingAndCursorDisplay(uint64_t CharacterCode,char SystemBufferSize,uint32_t Utf8SourcePointer)
 {
   int LockResult;
   
@@ -209967,7 +209980,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
 
 
 
-75500(long long CharacterCode,long long SystemBufferSizevoid FUN_180175500(long long CharacterCode,long long SystemBufferSize
+void FUN_180175500(long long CharacterCode,long long SystemBufferSize)
 {
   unsigned long long Utf16Char;
   long long BufferStatus;

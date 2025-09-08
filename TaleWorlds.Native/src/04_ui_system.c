@@ -2122,7 +2122,18 @@ void* UIGestureCoordinates;
  * 该函数在UI系统空闲时执行清理和优化操作
  * 
   原始函数名: FUN_180698a50
- #define ProcessUIIdleTasks FUN_180698a50
+ /**
+ * @brief UI系统空闲处理函数
+ * 
+ * 该函数在UI系统空闲时执行清理和优化操作。
+ * 主要负责处理UI系统在空闲期间的资源清理和性能优化。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180698a50
+ * @see ProcessUIIdleTasks
+ */
+#define ProcessUIIdleTasks FUN_180698a50
 
  UI系统资源加载函数
  加载UI系统所需的资源
@@ -2131,7 +2142,20 @@ void* UIGestureCoordinates;
   加载结果状态码
  * 
   原始函数名: FUN_180698b00
- #define LoadUIResource FUN_180698b00
+ /**
+ * @brief UI系统资源加载函数
+ * 
+ * 加载UI系统所需的资源，包括纹理、字体、着色器等。
+ * 主要负责初始化和管理UI系统所需的各种资源。
+ * 
+ * @param UIContext UI上下文指针，包含UI系统的当前状态和配置信息
+ * @param DataSource 数据源标识，指定要加载的资源类型和位置
+ * @return uint32_t 加载结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180698b00
+ * @see LoadUIResource
+ */
+#define LoadUIResource FUN_180698b00
 
  UI系统数据流处理函数
  处理UI系统的数据流
@@ -2142,7 +2166,22 @@ void* UIGestureCoordinates;
   处理结果状态码
  * 
   原始函数名: FUN_180698bb0
- #define ProcessUIDataStream FUN_180698bb0
+ /**
+ * @brief UI系统数据流处理函数
+ * 
+ * 处理UI系统的数据流，包括数据的读取、解析和转换。
+ * 主要负责管理UI系统中的数据流动和处理。
+ * 
+ * @param UIContext UI上下文指针，包含UI系统的当前状态和配置信息
+ * @param DataSource 数据源指针，指向要处理的数据源
+ * @param TargetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param BufferSize 缓冲区大小，指定目标缓冲区的容量
+ * @return uint32_t 处理结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180698bb0
+ * @see ProcessUIDataStream
+ */
+#define ProcessUIDataStream FUN_180698bb0
 
  UI系统上下文清理函数
  清理UI系统的上下文环境
@@ -2151,10 +2190,44 @@ void* UIGestureCoordinates;
   清理结果状态码
  * 
   原始函数名: FUN_180698c64
- #define CleanupUIContext FUN_180698c64
+ /**
+ * @brief UI系统上下文清理函数
+ * 
+ * 清理UI系统的上下文环境，释放资源并重置状态。
+ * 主要负责在UI系统关闭或重置时清理相关资源。
+ * 
+ * @param UIContext UI上下文指针，指向要清理的UI上下文
+ * @return uint32_t 清理结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180698c64
+ * @see CleanupUIContext
+ */
+#define CleanupUIContext FUN_180698c64
 
  UI系统数据处理函数
+/**
+ * @brief UI系统数据处理函数
+ * 
+ * 处理UI系统中的数据操作，包括数据的读取、写入和转换。
+ * 主要负责管理UI系统中的数据处理流程。
+ * 
+ * @return uint32_t 处理结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180675b40
+ * @see ProcessUIDataHandler
+ */
 #define ProcessUIDataHandler FUN_180675b40
+/**
+ * @brief UI系统数据传输函数
+ * 
+ * 处理UI系统中的数据传输操作，包括数据的复制和移动。
+ * 主要负责管理UI系统中的数据传输流程。
+ * 
+ * @return uint32_t 传输结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180675e28
+ * @see ProcessUIDataTransfer
+ */
 #define ProcessUIDataTransfer FUN_180675e28
 #define ProcessUIDataConversion FUN_180675f70
 #define ProcessUIDataOptimization FUN_180676320
