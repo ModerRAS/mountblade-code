@@ -86170,6 +86170,10 @@ void InvokeExceptionHandlerAtOffset3A0(DataBuffer operationBase,int64_t dataBuff
 
 
 
+// 原始函数名：Unwind_18090b2b0 - 异常上下文处理器调用函数A30
+// 功能：调用异常上下文中偏移量0x3a0处的处理器函数
+#define InvokeExceptionHandlerAtOffset3A0 Unwind_18090b2b0
+
 // 原始函数名：Unwind_18090b2d0 - 异常展开处理函数A31
 // 功能：异常展开清理函数A31
 #define ExceptionUnwindHandlerA31 Unwind_18090b2d0
