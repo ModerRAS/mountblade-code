@@ -191850,7 +191850,7 @@ void ExecuteSystemMemoryBoundaryManagement(uint64_t *CharacterCode,long long Sys
   }
   else {
     MemoryBoundaryEnd = MemoryBoundaryEnd * 2;
-    if (MemoryBoundaryEnd == 0) goto LAB_18015bf2e;
+    if (MemoryBoundaryEnd == 0) goto MemoryBoundaryCalculationComplete;
   }
   PrimaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x28,*(uint8_t *)(CharacterCode + 3),SystemEventTemplatePointer,
                          0xfffffffffffffffe);
