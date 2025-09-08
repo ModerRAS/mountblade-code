@@ -84699,7 +84699,28 @@ void ClearUIBufferMemory(void)
 
 
 
- void ProcessUITextureData(longlong uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI纹理数据变换
+ * 
+ * 该函数负责处理UI系统中的纹理数据变换操作，包括：
+ * - 对纹理数据进行旋转和变换处理
+ * - 使用0.70710677系数进行旋转矩阵计算
+ * - 批量处理多个纹理数据块
+ * - 支持不同的数据源和目标缓冲区配置
+ * 
+ * @param uiContext UI上下文指针，包含纹理数据的内存地址
+ * @param dataSource 数据源参数，控制处理的纹理数据数量
+ * @param targetBuffer 目标缓冲区参数，指定缓冲区大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数使用0.70710677（约等于1/√2）作为旋转系数
+ * @note 函数内部使用双重循环处理纹理数据变换
+ * @note 变换操作包括正弦和余弦变换的组合
+ * 
+ * @see ProcessUIEventDataCompression, ProcessUIRenderDataProcessing
+ */
+void ProcessUITextureData(longlong uiContext,int dataSource,int targetBuffer)
 
 {
   float baseValue;
@@ -85908,6 +85929,27 @@ uint FUN_180718590(int *uiContext,float *dataSource,float *targetBuffer,uint buf
 
 
 
+/**
+ * @brief 处理UI渲染变换操作
+ * 
+ * 该函数负责处理UI系统中的渲染变换操作，包括：
+ * - 处理UI元素的旋转变换和缩放
+ * - 根据不同的索引结果执行不同的变换路径
+ * - 处理渲染标志和变换数据
+ * - 支持批量处理多个UI元素的变换
+ * 
+ * 函数根据indexResult的值选择不同的处理路径：
+ * - 当indexResult == 2时，执行旋转变换处理
+ * - 其他情况时，执行数据变换处理
+ * 
+ * @return uint 返回渲染标志和处理结果的组合值
+ * 
+ * @note 函数使用3.0517578e-05作为缩放因子
+ * @note 内部包含复杂的变换矩阵计算
+ * @note 支持负值交叉检测和处理
+ * 
+ * @see UpdateUIElementData, ProcessUIFloatDataWithHandle, ProcessUIRenderDataProcessing
+ */
 uint ProcessUIRenderTransformation(void)
 
 {
@@ -184270,14 +184312,15 @@ undefined UIProcessEvents;
 
  undefined UIResourceAllocator;
 undefined UIResourceAllocator;
-undefined DAT_180c11734;
-undefined DAT_180c11738;
-undefined DAT_180be3540;
-undefined DAT_180be3538;
-undefined DAT_180be34d8;
-undefined DAT_180be34dc;
-undefined DAT_180c1173c;
-undefined DAT_180be3590;
+// UI系统数据表变量语义化定义
+#define DAT_180c11734 UIDataTable11734
+#define DAT_180c11738 UIDataTable11738
+#define DAT_180be3540 UIDataTable3540
+#define DAT_180be3538 UIDataTable3538
+#define DAT_180be34d8 UIDataTable34d8
+#define DAT_180be34dc UIDataTable34dc
+#define DAT_180c1173c UIDataTable1173c
+#define DAT_180be3590 UIDataTable3590
 
  undefined UIResourceManager;
 undefined UIResourceManager;
