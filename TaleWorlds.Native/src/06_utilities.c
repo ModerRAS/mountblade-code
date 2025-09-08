@@ -106,6 +106,14 @@
 #define MemoryResourceReleaseOffset110 0x110
 #define MemoryResourceReleaseOffset130 0x130
 
+// 异常状态数据偏移量常量
+#define ExceptionStatusDataOffset30 0x30
+#define ExceptionStatusFlagBit1 1
+#define ExceptionStatusFlagBit2 2
+#define ExceptionStatusMaskClearBit1 0xfffffffe
+#define ExceptionStatusMaskClearBit2 0xfffffffd
+#define SystemResourceDataOffset38 0x38
+
 // 数据处理相关偏移量常量
 #define DataProcessingOffset70 0x70
 #define DataProcessingOffset84 0x84
@@ -64030,8 +64038,8 @@ void ExecuteExceptionCallbackChain(DataBuffer operationBase,int64_t dataBuffer,D
 void CleanupExceptionAtOffset176(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
-    *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
+  if ((*(uint *)(dataBuffer + ExceptionStatusDataOffset30) & ExceptionStatusFlagBit1) != 0) {
+    *(uint *)(dataBuffer + ExceptionStatusDataOffset30) = *(uint *)(dataBuffer + ExceptionStatusDataOffset30) & ExceptionStatusMaskClearBit1;
     CleanupResourceHandler(dataBuffer + SystemManagementOffset98);
   }
   return;
@@ -64054,9 +64062,9 @@ void CleanupExceptionAtOffset176(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupExceptionAtOffset192(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
-    *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    CleanupResourceHandler(dataBuffer + SystemFloatDataOffset38);
+  if ((*(uint *)(dataBuffer + ExceptionStatusDataOffset30) & ExceptionStatusFlagBit2) != 0) {
+    *(uint *)(dataBuffer + ExceptionStatusDataOffset30) = *(uint *)(dataBuffer + ExceptionStatusDataOffset30) & ExceptionStatusMaskClearBit2;
+    CleanupResourceHandler(dataBuffer + SystemResourceDataOffset38);
   }
   return;
 }
