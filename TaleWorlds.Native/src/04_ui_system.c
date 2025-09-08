@@ -397259,30 +397259,44 @@ UIHandle ValidateUIDataIntegrity(longlong uiContext, longlong *dataSource)
 
 
 
-ulonglong FUN_18089f970(longlong uiContext,longlong *dataSource)
+/**
+ * @brief 处理UI数据控制验证
+ * 
+ * 处理UI系统中的数据控制验证操作，包括内存分配、缓冲区验证、数据一致性检查等
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return ulonglong 处理结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_18089f970
+ */
+ulonglong ProcessUIDataControlValidation(longlong uiContext,longlong *dataSource)
 
 {
   longlong allocatedMemory;
   uint iterationCount;
-  UIDword *ptrLocal3;
-  ulonglong ProcessingStatus;
-  UIWord bufferValidation [4];
-  UIWord stackBuffer [4];
-  UIDword astackUInt58 [2];
-  UIDword stackUInt50;
-  UIDword stackUInt4c;
-  UIDword stackUInt48;
-  UIDword stackUInt44;
-  UIByte astackUInt40 [40];
+  UIDword *controlDataPtr;
+  ulonglong processingStatus;
+  UIWord bufferValidationData [4];
+  UIWord stackBufferData [4];
+  UIDword validationBuffer [2];
+  UIDword controlDataValue1;
+  UIDword controlDataValue2;
+  UIDword controlDataValue3;
+  UIDword controlDataValue4;
+  UIByte processingBuffer [40];
   
-  ptrLocal3 = (UIDword *)FUN_180847820();
-  stackUInt50 = *ptrLocal3;
-  stackUInt4c = ptrLocal3[1];
-  stackUInt48 = ptrLocal3[2];
-  stackUInt44 = ptrLocal3[3];
-  ProcessingStatus = FUN_1808ddd30(dataSource,astackUInt40,0,0x4c525443,0);
-  if ((int)ProcessingStatus != 0) {
-    return ProcessingStatus;
+  // 获取控制数据
+  controlDataPtr = (UIDword *)FUN_180847820();
+  controlDataValue1 = *controlDataPtr;
+  controlDataValue2 = controlDataPtr[1];
+  controlDataValue3 = controlDataPtr[2];
+  controlDataValue4 = controlDataPtr[3];
+  
+  // 验证CTRL数据头
+  processingStatus = FUN_1808ddd30(dataSource,processingBuffer,0,0x4c525443,0);
+  if ((int)processingStatus != 0) {
+    return processingStatus;
   }
   if (*(int *)(dataSource[1] + 0x18) == 0) {
     iterationCount = FUN_180899ef0(*dataSource,uiContext + 0x10);
