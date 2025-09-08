@@ -8063,12 +8063,12 @@ void InitializeSystemResourceInitializer(void)
 void InitializeSystemFloatingPointCalculator(void)
 
 {
-  ulong long TableIndex;
+  uint64_t TableIndex;
   float *TableEntryPointer;
   int NodeIdentifierComparisonResult;
-  ulong long OuterLoopCounter;
-  uint InnerLoopCounter;
-  ulong long BaseCounter;
+  uint64_t OuterLoopCounter;
+  uint32_t InnerLoopCounter;
+  uint64_t BaseCounter;
   int RangeOffset;
   float *CurrentTableAddress;
   float CalculatedValue;
@@ -8130,8 +8130,8 @@ void InitializeSystemEventManager(void)
   char NodeActiveFlag;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
+  int64_t* MemorySystemDataPointer;
+  int64_t SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
@@ -8189,8 +8189,8 @@ void InitializeSystemSearchManager(void)
   char NodeActiveFlag;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
+  int64_t* MemorySystemDataPointer;
+  int64_t SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
@@ -8247,8 +8247,8 @@ void InitializeSystemIndexManager(void)
   char NodeActiveFlag;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
+  int64_t* MemorySystemDataPointer;
+  int64_t SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;

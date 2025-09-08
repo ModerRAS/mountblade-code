@@ -2161,6 +2161,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FloatValidationMask 0x7f800000                         // 浮点数验证掩码 - 用于验证浮点数有效性的位掩码
 #define IntegerMinValue -0x80000000                              // 整数最小值 - 32位有符号整数的最小值
 #define MaximumFloatingPointRangeValue 256.0                     // 最大浮点数范围值 - 浮点数范围验证的上限值
+#define DataProcessingBufferSize 1536                              // 数据处理缓冲区大小 - 数据处理操作使用的缓冲区大小（字节）
+#define DataCopyBufferSize 1024                                       // 数据复制缓冲区大小 - 数据复制操作使用的缓冲区大小（字节）
+#define StandardDataBufferSize 520                                     // 标准数据缓冲区大小 - 标准数据缓冲区的大小（字节）
 
 // 数据处理相关常量
 #define DataConfigurationOffset 0x10                             // 数据配置偏移量 - 数据配置信息的存储位置
@@ -22881,13 +22884,13 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   int64_t systemBaseAddress;                 // 系统基地址
   int64_t recordArrayOffset;                 // 记录数组偏移量
   int64_t temporaryArray [13];               // 临时数组
-  ByteFlag dataProcessingBuffer [1536];       // 数据处理缓冲区
+  ByteFlag dataProcessingBuffer [DataProcessingBufferSize];       // 数据处理缓冲区
   uint64_t dataSecurityChecksum;             // 数据安全校验和
   
   // 临时处理变量
   DataWord inputProcessingDataWord;          // 输入处理数据字
   ByteFlag securityValidationBufferA [32];   // 安全验证缓冲区A
-  ByteFlag dataCopyDestinationBuffer [1024]; // 数据复制目标缓冲区
+  ByteFlag dataCopyDestinationBuffer [DataCopyBufferSize]; // 数据复制目标缓冲区
   int64_t *stackIntegerPointerC;            // 栈整数指针C
   
   // 初始化安全校验和
@@ -24583,7 +24586,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   DataWord validationFlagA;
   uint validationFlagB;
   DataWord validationFlagC;
-  ByteFlag DataBufferA [520];
+  ByteFlag DataBufferA [StandardDataBufferSize];
   uint64_t colorProcessingData;
   
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
@@ -26564,7 +26567,7 @@ void ProcessSecureDataA0(int64_t *contextPointer, DataBuffer dataSource, DataBuf
   DataBuffer encryptedSecurityParam1;                             // 加密后的安全参数1
   DataBuffer encryptedSecurityParam2;                             // 加密后的安全参数2
   ByteFlag securityKeyBuffer[32];                                // 安全密钥缓冲区（32字节）
-  ByteFlag dataProcessingBuffer[1024];                            // 数据处理缓冲区（1KB）
+  ByteFlag dataProcessingBuffer[DataCopyBufferSize];                            // 数据处理缓冲区（1KB）
   uint64_t securityValidationChecksum;                            // 安全验证校验和
   
   // 计算安全验证校验和，用于数据完整性验证
