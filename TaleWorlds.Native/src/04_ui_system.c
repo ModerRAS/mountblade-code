@@ -130,6 +130,14 @@ typedef enum {
 #define UpdateUIComponentState FUN_18073d8a0
 #define ValidateUIComponentEvent FUN_180853fc0
 
+// UI系统函数宏定义 - 处理UI上下文管理
+#define InitializeUIContext FUN_180789cd9
+#define ProcessUIContextAllocation FUN_180789cf0
+#define ValidateUIContextData FUN_180789e60
+#define AllocateUIResource FUN_180742250
+#define ReleaseUIMemory FUN_180768380
+#define GetUIContextHandle FUN_180742050
+
 // UI系统标签宏定义 - 事件处理相关
 #define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
 #define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
@@ -8176,10 +8184,10 @@ void SetupUIMemoryAllocator(void)
   uint textureBufferSize;
   ulonglong encryptedBufferOffset;
   UIDword bufferPadding;
-  undefined *stackPointer90;
-  UIHandle *stackPointer88;
-  UIDword stackValue80;
-  UIHandle stackValue78;
+  undefined *primaryBufferPointer;
+  UIHandle *stringBufferHandle;
+  UIDword stringBufferLength;
+  UIHandle textureFormatFlag;
   UIHandle memoryAlignmentFlag;
   ulonglong xorKeyOffset;
   
@@ -8222,19 +8230,18 @@ void SetupUIMemoryAllocator(void)
   if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventClearHandler);
   }
-  stackPointer90 = &PrimaryUIBuffer;
-  stackValue78 = 0;
-  stackPointer88 = (UIHandle *)0x0;
-  stackValue80 = 0;
+  primaryBufferPointer = &PrimaryUIBuffer;
+  textureFormatFlag = 0;
+  stringBufferHandle = (UIHandle *)0x0;
+  stringBufferLength = 0;
   stringBufferHandle = (UIHandle *)CreateUIContext(UIContextManager,0x10,0x13);
   *(UIByte *)stringBufferHandle = 0;
-  stackPointer88 = stringBufferHandle;
-  textureFormatFlag = ConfigureUIComponent(stringBufferHandle);
-  stackValue78 = CONCAT44(stackValue78._4_4_,textureFormatFlag);
+  textureFormatResult = ConfigureUIComponent(stringBufferHandle);
+  textureFormatFlag = CONCAT44(textureFormatFlag._4_4_,textureFormatResult);
   *pstringBuffer = 0x6c6c6f72746e6f43;
   *(UIWord *)(pstringBuffer + 1) = 0x7265;
   *(UIByte *)((longlong)pstringBuffer + 10) = 0;
-  stackValue80 = 10;
+  stringBufferLength = 10;
   pprimaryUIBuffer = &PrimaryUIBuffer;
   encryptedBufferOffset = 0;
   pallocatedTextureBuffer = (UIDword *)0x0;
@@ -200017,7 +200024,7 @@ void FUN_180789cf0(longlong *uiContext)
   
   if (uiContext[8] != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[8],&UNK_18095ad40,0x94,1);
+    AllocateUIResource(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[8],&UNK_18095ad40,0x94,1);
   }
   if (uiContext[9] != 0) {
                      WARNING: Subroutine does not return
