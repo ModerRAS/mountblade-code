@@ -68773,7 +68773,7 @@ LAB_18069f85f:
     componentIndex = componentIndex + 1;
     *componentPointer = semaphoreHandle;
   } while (componentIndex < 0x10);
-  initializationResult = FUN_1806a02d0();
+  initializationResult = ProcessUIDataInitialization();
   *(uint8_t *)(systemContext + 1) = initializationResult;
   return;
 }
@@ -68794,7 +68794,7 @@ void InitializeUISystem(void)
   UIByte initializationResult;
   longlong ContextHandlePointer;
   
-  initializationResult = FUN_1806a02d0();
+  initializationResult = ProcessUIDataInitialization();
   *(UIByte *)(ContextHandlePointer + 1) = initializationResult;
   return;
 }
@@ -74557,14 +74557,24 @@ void ProcessUIRenderDataAndEventOperations(longlong uiContext,longlong dataSourc
 
 
 
- void FUN_18070b610(UIDword *uiContext,UIDword dataSource)
-void FUN_18070b610(UIDword *uiContext,UIDword dataSource)
+ /**
+ * @brief 初始化UI上下文并设置数据源
+ * 
+ * 该函数初始化UI上下文，调用清理函数重置上下文状态，
+ * 然后设置数据源参数，最后清理上下文内存区域。
+ * 
+ * @param uiContext UI上下文指针，用于存储初始化后的上下文数据
+ * @param dataSource 数据源参数，将被设置到上下文中
+ * 
+ * @note 原始函数名: FUN_18070b610
+ */
+void InitializeUIContextAndSetDataSource(UIDword *uiContext,UIDword dataSource)
 
 {
-  UIDword result;
+  UIDword contextResult;
   
-  result = FUN_1807058d0();
-  *uiContext = result;
+  contextResult = CleanupUIResources();
+  *uiContext = contextResult;
   uiContext[2] = dataSource;
                      WARNING: Subroutine does not return
   memset(uiContext + 3,0,(longlong)uiContext + (0x364c - (longlong)(uiContext + 3)));

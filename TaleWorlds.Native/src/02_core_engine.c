@@ -182661,7 +182661,25 @@ void ResetSystemEventHandler(void)
 
 
 
-4ece0(uint64_t *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014ece0(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理字符系统数据交换和内存管理
+ * 
+ * 该函数负责处理字符系统数据的交换和内存管理操作，主要功能包括：
+ * - 分配和管理内存块用于字符数据存储
+ * - 处理字符编码转换和数据复制
+ * - 管理系统字符状态缓冲区
+ * - 清理和释放内存资源
+ * - 验证系统边界和处理状态标志
+ * 
+ * 该函数是字符处理系统的核心组件，确保数据在系统间的正确传递和内存的有效管理。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含字符数据和系统状态信息
+ * @param SystemBufferSize 系统缓冲区大小，用于确定需要处理的字符数据量
+ * 
+ * @note 原始函数名：FUN_18014ece0
+ * @note 这是一个复杂的内存管理函数，需要仔细处理内存分配和释放操作
+ */
+void FUN_18014ece0(uint64_t *CharacterCode,unsigned long long SystemBufferSize)
 {
   uint Utf16Char;
   uint64_t MemoryAllocationIndex;
@@ -182671,7 +182689,7 @@ void ResetSystemEventHandler(void)
   long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   unsigned long long ProcessingStatusFlag;
-  long long *pStringOffset;
+  long long *StringDataPointer;
   long long EncodingConversionResult;
   uint64_t *SystemCharacterStatusBuffer;
   unsigned long long SystemStatusCode;
@@ -182797,14 +182815,32 @@ void ResetSystemEventHandler(void)
 
 
 
-4eff0(long long *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointervoid FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符系统最终化操作
+ * 
+ * 该函数负责处理字符系统的最终化操作，主要功能包括：
+ * - 管理内存块的分配和释放
+ * - 处理UTF-8到UTF-16的字符编码转换
+ * - 清理系统资源和内存池
+ * - 验证系统状态和数据完整性
+ * 
+ * 该函数确保字符处理系统的正确关闭和资源的及时释放。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含字符数据和系统状态信息
+ * @param SystemBufferSize 系统缓冲区大小，用于确定需要处理的字符数据量
+ * @param Utf8SourcePointer UTF-8源数据指针，指向需要转换的字符数据
+ * 
+ * @note 原始函数名：FUN_18014eff0
+ * @note 这是一个系统清理函数，用于释放字符处理过程中分配的资源
+ */
+void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
   long long SearchStartIndex;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
-  long long lStackX_8;
+  long long StackProcessingBuffer;
   
   MemoryAllocationIndex = (Utf8SourcePointer - SystemBufferSize) / 0x88;
   if ((unsigned long long)((CharacterCode[2] - *CharacterCode) / 0x88) < MemoryAllocationIndex) {
@@ -182814,7 +182850,7 @@ void ResetSystemEventHandler(void)
     else {
       MemoryBlockIndex = BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 0x88,(char)CharacterCode[3]);
     }
-    FUN_18014fbc0(&lStackX_8,SystemBufferSize,Utf8SourcePointer,MemoryBlockIndex);
+    FUN_18014fbc0(&StackProcessingBuffer,SystemBufferSize,Utf8SourcePointer,MemoryBlockIndex);
     AllocatedMemorySize = CharacterCode[1];
     SystemDataRegistry = *CharacterCode;
     if (SystemDataRegistry != AllocatedMemorySize) {
