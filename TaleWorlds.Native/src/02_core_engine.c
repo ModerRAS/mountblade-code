@@ -195597,7 +195597,21 @@ void ConvertUtf8ToUtf16(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_
 
 
 
-60c6e(uint64_t CharacterCode,uint64_t SystemBufferSizevoid FUN_180160c6e(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符代码缓冲区
+ * 
+ * 该函数负责处理字符代码缓冲区，包括：
+ * - 设置处理结果
+ * - 管理缓冲区大小
+ * - 设置缓冲区状态标志
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160c6e
+ */
+void ProcessCharacterCodeBuffer(uint64_t CharacterCode,uint64_t SystemBufferSize)
 {
   uint64_t ProcessingResult;
   uint64_t *NullPointerValue;
