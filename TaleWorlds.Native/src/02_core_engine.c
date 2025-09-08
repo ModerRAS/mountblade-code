@@ -123839,7 +123839,7 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Cha
       pSystemContextPrimaryFloat = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
                         (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
       MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
-      MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
+      MatrixTransformMultiplier = CharacterContextFloatPtr[1];
       CalculatedDistance = pSystemContextPrimaryFloat[2];
       FloatOffsetValue = pSystemContextPrimaryFloat[3];
       *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
@@ -157135,7 +157135,7 @@ void ProcessSystemValidationFDB(void)
   else {
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
     MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
-    MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
+    MatrixTransformMultiplier = CharacterContextFloatPtr[1];
     CalculatedDistance = pSystemContextPrimaryFloat[2];
     FloatOffsetValue = pSystemContextPrimaryFloat[3];
   }
@@ -280468,7 +280468,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
         CurrentCharacter0 = *(char *)(CharacterTableIndex + 0x100 + Utf16EndPointer);
         CharacterContextFloatPtr = (float *)(CharacterCode + (CharacterTableIndex + 0x82) * 0x10);
         MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
-        MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
+        MatrixTransformMultiplier = CharacterContextFloatPtr[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatOffsetValue = pSystemContextPrimaryFloat[3];
         SystemContextPrimaryFloat8 = FloatOffsetValue * SecondaryFloatValue;
@@ -280492,7 +280492,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
       if ((-1 < CurrentCharacter0) && (CurrentCharacter0 == IntegerValue9)) {
         pSystemContextPrimaryFloat = (float *)(CharacterCode + (long long)CurrentCharacter0 * 0x10);
         MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
-        MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
+        MatrixTransformMultiplier = CharacterContextFloatPtr[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatOffsetValue = pSystemContextPrimaryFloat[3];
         SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + MatrixTransformMultiplier1 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier - FloatOffsetValue * ContextPrimaryFloat9);
