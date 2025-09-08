@@ -76846,6 +76846,25 @@ uint ProcessUIEventHandlersAndManageState(UIHandle uiContext, uint dataSource)
 
 
 
+/**
+ * @brief UI音频数据处理函数
+ * 
+ * 该函数负责处理UI系统中的音频数据，包括：
+ * - 音频采样率转换和处理
+ * - 字符编码匹配和验证
+ * - 数据缓冲区管理
+ * - 错误状态检查和返回
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（短整型指针）
+ * @param param_7 参数7（整型指针）
+ * @param param_8 参数8（整型指针）
+ * @return 处理结果状态码
+ */
 ulonglong FUN_18070f860(byte *uiContext,int dataSource,int targetBuffer,byte *bufferSize,longlong resultPointer,
                        short *param_6,int *param_7,int *param_8)
 
@@ -77061,6 +77080,19 @@ LAB_18070fb9d:
 
 
 
+/**
+ * @brief UI数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区，包括：
+ * - 数据源和目标缓冲区的管理
+ * - UI句柄的处理和验证
+ * - 数据传输和转换操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区索引
+ * @return 处理结果状态码
+ */
 ulonglong FUN_18070f8a4(byte *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
