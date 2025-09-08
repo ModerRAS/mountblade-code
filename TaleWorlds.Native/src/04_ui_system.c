@@ -300045,116 +300045,125 @@ UIDword ReleaseUICriticalSectionResource(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f560(longlong *uiContext)
+/**
+ * @brief UI系统上下文数据清理器
+ * 
+ * 该函数负责清理和管理UI系统上下文数据，包括：
+ * - 清理无效的上下文状态
+ * - 处理资源引用和内存管理
+ * - 执行数据验证和同步操作
+ * - 管理临界区和线程安全
+ * 
+ * @param uiContext UI系统上下文指针
+ * @return ulonglong 操作结果状态码
+ * @note 原始函数名：FUN_18084f560
+ */
+ulonglong CleanupUIContextData(longlong *uiContext)
 
 {
-  uint *ptrResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  UIHandle ProcessingStatus;
-  uint loopCounter;
+  uint *hashResultPointer;
+  int validationCount;
+  longlong contextCleanupIndex;
+  UIHandle resourceStatus;
+  uint processingCounter;
   uint maxProcessingCount;
-  int localInt7;
-  ulonglong uVar8;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  int *pProcessingResult1;
+  int resourceIndex;
+  ulonglong iterationCount;
+  longlong dataOffset;
+  ulonglong searchIndex;
+  int *resourcePointer;
   
-  stringCompareIndex = uiContext[5];
-  if (stringCompareIndex != 0) {
-    CleanupUIContextState(stringCompareIndex);
+  contextCleanupIndex = uiContext[5];
+  if (contextCleanupIndex != 0) {
+    CleanupUIContextState(contextCleanupIndex);
   }
-  uVar8 = 0;
+  iterationCount = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
-    uiValidationResult = (int)uiContext[1];
-    if (uiValidationResult != 0) {
-      pProcessingResult1 = (int *)*uiContext;
-      result0 = uVar8;
+    validationCount = (int)uiContext[1];
+    if (validationCount != 0) {
+      resourcePointer = (int *)*uiContext;
+      searchIndex = iterationCount;
       do {
-        if (*pProcessingResult1 != -1) {
-          localInt7 = ((int *)*uiContext)[(int)result0];
-          goto LAB_18084f5dc;
+        if (*resourcePointer != -1) {
+          resourceIndex = ((int *)*uiContext)[(int)searchIndex];
+          goto HASH_PROCESSING_LABEL;
         }
-        result0 = (ulonglong)((int)result0 + 1);
-        uVar8 = uVar8 + 1;
-        pProcessingResult1 = pProcessingResult1 + 1;
-      } while (uVar8 != (longlong)uiValidationResult);
+        searchIndex = (ulonglong)((int)searchIndex + 1);
+        iterationCount = iterationCount + 1;
+        resourcePointer = resourcePointer + 1;
+      } while (iterationCount != (longlong)validationCount);
     }
-    localInt7 = -1;
-LAB_18084f5dc:
-    stringCompareIndex = uiContext[2];
-    ProcessingStatus = *(UIHandle *)((longlong)localInt7 * 0x20 + 0x18 + stringCompareIndex);
-    ptrResult = (uint *)((longlong)localInt7 * 0x20 + stringCompareIndex);
-    if ((*(int *)((longlong)uiContext + 0x24) != 0) && (uiValidationResult != 0)) {
-      CharacterDataOffset = (longlong)(int)((ptrResult[3] ^ ptrResult[1] ^ *ptrResult ^ ptrResult[2]) & uiValidationResult - 1U);
-      pProcessingResult1 = (int *)(*uiContext + CharacterDataOffset * 4);
-      uiValidationResult = *(int *)(*uiContext + CharacterDataOffset * 4);
-      while (uiValidationResult != -1) {
-        CharacterDataOffset = (longlong)uiValidationResult * 0x20;
-        if ((*(longlong *)(CharacterDataOffset + stringCompareIndex) == *(longlong *)ptrResult) &&
-           (*(longlong *)(CharacterDataOffset + 8 + stringCompareIndex) == *(longlong *)(ptrResult + 2))) {
-          uiValidationResult = *pProcessingResult1;
-          CharacterDataOffset = (longlong)uiValidationResult * 0x20;
-          *(UIHandle *)(CharacterDataOffset + 0x18 + stringCompareIndex) = 0;
-          *pProcessingResult1 = *(int *)(CharacterDataOffset + 0x10 + stringCompareIndex);
-          *(int *)(CharacterDataOffset + 0x10 + stringCompareIndex) = (int)uiContext[4];
+    resourceIndex = -1;
+HASH_PROCESSING_LABEL:
+    contextCleanupIndex = uiContext[2];
+    resourceStatus = *(UIHandle *)((longlong)resourceIndex * 0x20 + 0x18 + contextCleanupIndex);
+    hashResultPointer = (uint *)((longlong)resourceIndex * 0x20 + contextCleanupIndex);
+    if ((*(int *)((longlong)uiContext + 0x24) != 0) && (validationCount != 0)) {
+      dataOffset = (longlong)(int)((hashResultPointer[3] ^ hashResultPointer[1] ^ *hashResultPointer ^ hashResultPointer[2]) & validationCount - 1U);
+      resourcePointer = (int *)(*uiContext + dataOffset * 4);
+      validationCount = *(int *)(*uiContext + dataOffset * 4);
+      while (validationCount != -1) {
+        dataOffset = (longlong)validationCount * 0x20;
+        if ((*(longlong *)(dataOffset + contextCleanupIndex) == *(longlong *)hashResultPointer) &&
+           (*(longlong *)(dataOffset + 8 + contextCleanupIndex) == *(longlong *)(hashResultPointer + 2))) {
+          validationCount = *resourcePointer;
+          dataOffset = (longlong)validationCount * 0x20;
+          *(UIHandle *)(dataOffset + 0x18 + contextCleanupIndex) = 0;
+          *resourcePointer = *(int *)(dataOffset + 0x10 + contextCleanupIndex);
+          *(int *)(dataOffset + 0x10 + contextCleanupIndex) = (int)uiContext[4];
           *(int *)((longlong)uiContext + 0x24) = *(int *)((longlong)uiContext + 0x24) + -1;
-          *(int *)(uiBufferData + 4) = uiValidationResult;
+          *(int *)(uiBufferData + 4) = validationCount;
           break;
         }
-        pProcessingResult1 = (int *)(stringCompareIndex + 0x10 + CharacterDataOffset);
-        uiValidationResult = *pProcessingResult1;
+        resourcePointer = (int *)(contextCleanupIndex + 0x10 + dataOffset);
+        validationCount = *resourcePointer;
       }
     }
-    FUN_1808bbe80(ProcessingStatus);
-                     WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingStatus,&UNK_180984cd0,0x62,1);
+    FUN_1808bbe80(resourceStatus);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resourceStatus,&UNK_180984cd0,0x62,1);
   }
-  CharacterDataOffset = uiContext[5];
-  if (CharacterDataOffset != 0) {
-    CleanupUIContextState(CharacterDataOffset);
+  dataOffset = uiContext[5];
+  if (dataOffset != 0) {
+    CleanupUIContextState(dataOffset);
   }
-  uVar8 = FUN_180744cc0(uiContext);
-  if ((int)uVar8 == 0) {
+  iterationCount = FUN_180744cc0(uiContext);
+  if ((int)iterationCount == 0) {
     maxProcessingCount = *(uint *)((longlong)uiContext + 0x1c);
-    loopCounter = maxProcessingCount ^ (int)maxProcessingCount >> 0x1f;
-    uVar8 = (ulonglong)loopCounter;
-    if ((int)(loopCounter - ((int)maxProcessingCount >> 0x1f)) < 0) {
-      if (0 < (int)uiContext[3]) goto LAB_18084f7a3;
+    processingCounter = maxProcessingCount ^ (int)maxProcessingCount >> 0x1f;
+    iterationCount = (ulonglong)processingCounter;
+    if ((int)(processingCounter - ((int)maxProcessingCount >> 0x1f)) < 0) {
+      if (0 < (int)uiContext[3]) goto PROCESSING_COMPLETE_LABEL;
       if ((0 < (int)maxProcessingCount) && (uiContext[2] != 0)) {
-                     WARNING: Subroutine does not return
         FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[2],&UNK_180957f70,0x100,1);
       }
       uiContext[2] = 0;
       *(UIDword *)((longlong)uiContext + 0x1c) = 0;
       maxProcessingCount = 0;
     }
-    uiValidationResult = (int)uiContext[3];
-    if (uiValidationResult < 0) {
-                     WARNING: Subroutine does not return
-      memset((longlong)uiValidationResult * 0x20 + uiContext[2],0,(longlong)-uiValidationResult << 5);
+    validationCount = (int)uiContext[3];
+    if (validationCount < 0) {
+      memset((longlong)validationCount * 0x20 + uiContext[2],0,(longlong)-validationCount << 5);
     }
     *(UIDword *)(uiBufferData + 3) = 0;
     maxProcessingCount = (maxProcessingCount ^ (int)maxProcessingCount >> 0x1f) - ((int)maxProcessingCount >> 0x1f);
-    uVar8 = (ulonglong)maxProcessingCount;
-    if (((int)maxProcessingCount < 1) || (uVar8 = FUN_1808532e0(uiContext + 2,0), (int)uVar8 == 0)) {
+    iterationCount = (ulonglong)maxProcessingCount;
+    if (((int)maxProcessingCount < 1) || (iterationCount = FUN_1808532e0(uiContext + 2,0), (int)iterationCount == 0)) {
       *(UIDword *)(uiBufferData + 4) = 0xffffffff;
       *(UIDword *)((longlong)uiContext + 0x24) = 0;
     }
   }
-LAB_18084f7a3:
-  if (CharacterDataOffset != 0) {
-                     WARNING: Subroutine does not return
-    ProcessUIMemoryAllocation(CharacterDataOffset);
+PROCESSING_COMPLETE_LABEL:
+  if (dataOffset != 0) {
+    ProcessUIMemoryAllocation(dataOffset);
   }
-  if (stringCompareIndex != 0) {
-    if (stringCompareIndex == 0) {
+  if (contextCleanupIndex != 0) {
+    if (contextCleanupIndex == 0) {
       return 0x1c;
     }
     LeaveCriticalSection();
     return 0;
   }
-  return uVar8;
+  return iterationCount;
 }
 
 
