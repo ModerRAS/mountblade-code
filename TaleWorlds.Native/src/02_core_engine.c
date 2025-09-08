@@ -231780,7 +231780,6 @@ uint64_t * FUN_1801952b0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
  * 
  * @note 原始函数名：FUN_1801952e0
  */
-uint64_t *
 /**
  * @brief 初始化字符代码和系统缓冲区
  * 
