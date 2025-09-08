@@ -10005,7 +10005,7 @@ uint8_t UtilityMergeResultC;
 
 // 原始函数名：FUN_1809423a0 - 数据分割函数A0
 // 功能：分割工具数据为多个部分
-#define SplitUtilityDataA0 FUN_1809423a0
+#define SplitUtilityDataA0 SplitUtilityDataIntoPartsA0
 
 // 数据分割状态标志
 uint8_t DataSplitStatus;
@@ -10018,7 +10018,7 @@ uint8_t UtilitySplitResultD;
 
 // 原始函数名：FUN_1809423c0 - 数据过滤函数A0
 // 功能：过滤工具数据中的特定内容
-#define FilterUtilityDataA0 FUN_1809423c0
+#define FilterUtilityDataA0 FilterUtilityDataContentA0
 
 // 数据过滤状态标志
 uint8_t DataFilterStatus;
@@ -10030,7 +10030,7 @@ uint8_t UtilityFilterBufferD;
 
 // 原始函数名：FUN_1809423e0 - 全局指针设置函数A35
 // 功能：设置全局数据指针A35到指定地址
-#define SetGlobalDataPointerA35 FUN_1809423e0
+#define SetGlobalDataPointerA35 SetGlobalDataPointerToAddressA35
 
 // 全局数据指针A35配置缓冲区
 // 功能：存储全局数据指针A35的配置信息
@@ -10059,7 +10059,7 @@ uint8_t GlobalDataPointerA35Cache;
 
 // 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
-#define SetGlobalDataPointerA36 FUN_180942400
+#define SetGlobalDataPointerA36 SetGlobalDataPointerToAddressA36
 
 // 全局数据指针A36配置缓冲区
 // 功能：存储全局数据指针A36的配置信息
@@ -10093,7 +10093,7 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 原始函数名：FUN_180942420 - 全局指针设置函数A37
 // 功能：设置全局数据指针A37到指定地址
-#define SetGlobalDataPointerA37 FUN_180942420
+#define SetGlobalDataPointerA37 SetGlobalDataPointerToAddressA37
 
 // 全局数据指针Final存储区
 // 功能：存储全局数据指针Final的相关信息
@@ -126273,17 +126273,17 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ManageExceptionContextResources Unwind_18090efe0
 
 // 内存资源引用计数清理函数系列
-#define CleanupMemoryResourceReferenceCountAtOffset2F0 Unwind_18090d3d0
-#define CleanupMemoryResourceReferenceCountAtOffset310A Unwind_18090d3e0
-#define CleanupMemoryResourceReferenceCountAtOffset310B Unwind_18090d3f0
+#define CleanupMemoryResourceReferenceCountAtOffset2F0 CleanupMemoryResourceReferencesAtOffset2F0
+#define CleanupMemoryResourceReferenceCountAtOffset310A CleanupMemoryResourceReferencesAtOffset310A
+#define CleanupMemoryResourceReferenceCountAtOffset310B CleanupMemoryResourceReferencesAtOffset310B
 
 // 系统内存操作和清理函数
-#define ExecuteSystemMemoryOperationAtOffset40 Unwind_18090dde0
-#define DestroyMutexInSitu Unwind_18090de10
-#define InvokeExceptionHandlerAtOffsetE0 Unwind_18090de20
-#define InvokeExceptionHandlerContextAtOffsetE0 Unwind_18090de30
-#define CleanupMemoryResourceAtOffsetE0 Unwind_18090de40
-#define ProcessExceptionHandlersInRange Unwind_18090de50
+#define ExecuteSystemMemoryOperationAtOffset40 ExecuteSystemMemoryOperationsAtOffset40
+#define DestroyMutexInSitu DestroySystemMutexInSitu
+#define InvokeExceptionHandlerAtOffsetE0 InvokeSystemExceptionHandlerAtOffsetE0
+#define InvokeExceptionHandlerContextAtOffsetE0 InvokeSystemExceptionHandlerContextAtOffsetE0
+#define CleanupMemoryResourceAtOffsetE0 CleanupSystemMemoryResourceAtOffsetE0
+#define ProcessExceptionHandlersInRange ProcessSystemExceptionHandlersInRange
 
 // 异常处理器初始化和清理函数系列 - C150-C320
 // 原始函数名：Unwind_18090c150 - 异常处理器初始化函数C150
