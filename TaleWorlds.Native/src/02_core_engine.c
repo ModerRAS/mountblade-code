@@ -11226,17 +11226,33 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @note 此函数会在引擎启动时自动调用
  * @note 初始化过程中会创建系统节点并建立数据结构
  */
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 此函数负责初始化TaleWorlds引擎的核心数据结构，包括系统节点的创建、
+ * 内存分配和数据结构设置。它会遍历系统节点树，查找合适的位置
+ * 插入新的数据结构节点，并进行必要的初始化配置。
+ * 
+ * 主要功能：
+ * - 获取引擎系统上下文和根节点
+ * - 遍历系统节点链表，查找插入位置
+ * - 分配内存并创建新的系统节点
+ * - 设置节点标识符和数据模板
+ * - 配置节点初始化函数指针
+ * 
+ * @note 此函数是引擎启动过程中的关键步骤，确保核心数据结构正确初始化
+ */
 void InitializeCoreEngineDataStructure(void) {
-  char SystemNodeInitializedFlag;
-  void *SystemRootNode;
-  int DataComparisonResult;
-  long long *EngineSystemContext;
-  void *SystemTraversalNode;
-  void *SystemSearchNode;
-  void *SystemNextNodeInChain;
-  long long SystemMemoryOffset;
-  void *CreatedSystemNode;
-  void (*SystemNodeInitializer)(void);
+  bool SystemNodeInitializedFlag;          // 系统节点初始化标志
+  void *SystemRootNode;                    // 系统根节点指针
+  int DataComparisonResult;                // 数据比较结果
+  long long *EngineSystemContext;          // 引擎系统上下文指针
+  void *SystemTraversalNode;               // 系统遍历节点指针
+  void *SystemSearchNode;                  // 系统搜索节点指针
+  void *SystemNextNodeInChain;             // 系统链表中的下一个节点
+  long long SystemMemoryOffset;             // 系统内存偏移量
+  void *CreatedSystemNode;                 // 新创建的系统节点
+  void (*SystemNodeInitializer)(void);     // 系统节点初始化函数指针
   
   EngineSystemContext = (long long *)CoreEngineGetSystemHandle();
   SystemRootNode = (void *)*EngineSystemContext;
