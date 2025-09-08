@@ -200092,7 +200092,24 @@ LAB_18016b996:
  * @note 原始函数名：FUN_18016bb80
  * @warning 该函数包含不返回的子程序调用
  */
-uint64_t FUN_18016bb80(long long CharacterCode,int *CharacterCodeSize
+/**
+ * @brief 处理字符代码和系统缓冲区操作
+ * 
+ * 该函数负责处理字符代码的内存管理、系统缓冲区操作以及字符状态验证。
+ * 主要功能包括：
+ * - 处理不同大小的字符代码缓冲区（0x40、0x80、0x100）
+ * - 管理字符代码表的内存分配和释放
+ * - 验证和处理字符代码的引用计数
+ * - 执行字符代码的数据移动和状态更新
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return uint64_t 返回处理结果的64位无符号整数
+ * 
+ * @note 原始函数名：FUN_18016bb80
+ * @warning 该函数包含不返回的子程序调用
+ */
+uint64_t ProcessCharacterCodeAndSystemBuffer(long long CharacterCode,int *CharacterCodeSize
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
@@ -284829,5 +284846,25 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18018af30
  */
 #define ProcessCharacterCodeBufferManagementAndDataValidation FUN_18018af30
+
+/**
+ * @brief 处理字符代码搜索和缓冲区遍历
+ * 
+ * 该函数负责处理字符代码搜索和缓冲区遍历工作，包括：
+ * - 搜索字符状态缓冲区
+ * - 遍历内存地址链表
+ * - 验证字符边界条件
+ * - 执行缓冲区管理操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018b160
+ */
+#define ProcessCharacterCodeSearchAndBufferTraversal FUN_18018b160
 
 
