@@ -2130,13 +2130,36 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 
 /**
  * @brief 系统资源处理函数A0
+ * 
+ * 该函数负责处理系统资源的分配、管理和释放，包括内存资源、文件资源和
+ * 系统句柄等。它会根据系统状态和资源需求进行相应的资源操作。
+ * 
+ * @param resourceHandle 资源句柄，标识要处理的资源
+ * @param operationType 操作类型，指定要执行的资源操作
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 具体的错误代码
+ * 
  * @note 原始函数名：FUN_18007f6a0
+ * @warning 资源操作失败可能会导致系统不稳定，需要妥善处理错误情况
  */
 #define ProcessSystemResourcesA1 ProcessSystemResourcesAndMemory
 
 /**
  * @brief 数据缓冲区清理函数
+ * 
+ * 该函数负责清理数据缓冲区，释放已分配的内存资源，重置缓冲区状态，
+ * 并确保所有相关资源得到妥善处理。它会执行内存释放、数据清理和
+ * 状态重置等操作。
+ * 
+ * @param bufferHandle 缓冲区句柄，标识要清理的数据缓冲区
+ * @param cleanupFlags 清理标志，指定清理操作的类型和范围
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 清理失败或错误代码
+ * 
  * @note 原始函数名：FUN_18013ea00
+ * @warning 清理操作失败可能会导致内存泄漏，需要确保所有资源都被正确释放
  */
 #define CleanupDataBuffer CleanupDataBufferAndMemory
 
@@ -100075,7 +100098,17 @@ void ExecuteExceptionHandlerCallbackE5A0(DataBuffer operationBase, int64_t dataB
 
 
 
-void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作E5C0
+ * 
+ * 该函数负责执行内存操作，使用偏移量0xe8获取数据缓冲区，
+ * 并在偏移量0x488处执行内存操作，使用操作类型A0。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e5c0
+ */
+void ExecuteMemoryOperationE5C0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x488,2,ProcessMemoryOperationA0);
@@ -100084,7 +100117,17 @@ void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作E5F0
+ * 
+ * 该函数负责执行内存操作，使用偏移量0xe8获取数据缓冲区，
+ * 并在偏移量0x128处执行内存操作，使用操作类型A1。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e5f0
+ */
+void ExecuteMemoryOperationE5F0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x128,2,ProcessMemoryOperationA1);
@@ -100093,7 +100136,17 @@ void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e620(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作E620
+ * 
+ * 该函数负责执行内存操作，使用偏移量0x30获取数据缓冲区，
+ * 并在偏移量0x18处执行内存操作，使用操作类型A2。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e620
+ */
+void ExecuteMemoryOperationE620(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 8,0x18,2,ProcessMemoryOperationA2);
@@ -100102,7 +100155,17 @@ void Unwind_18090e620(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调E650
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作。使用偏移量0x30和偏移量8获取异常处理器上下文。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e650
+ */
+void ExecuteExceptionHandlerCallbackE650(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100116,7 +100179,17 @@ void Unwind_18090e650(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调E660
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作。使用偏移量0xe8和偏移量8获取异常处理器上下文。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e660
+ */
+void ExecuteExceptionHandlerCallbackE660(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
