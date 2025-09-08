@@ -195404,7 +195404,7 @@ void FUN_180785c10(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffe
     fStack_6c = 1.0;
     stackUInt68 = 0;
     pstackUInt98 = targetBuffer;
-    FUN_1807e4630(*(UIHandle *)(uiContext + 0x1a0),&UNK_180785d90,&stackUInt88,dataSource);
+    FUN_1807e4630(*(UIHandle *)(uiContext + 0x1a0),&UIFontManagerData,&stackUInt88,dataSource);
     if (bufferSize != (float *)0x0) {
       *bufferSize = 1.0 - fStack_70;
     }
@@ -195465,7 +195465,7 @@ void FUN_180785c52(longlong uiContext)
   stackParam00000048 = 1.0;
   fStack000000000000004c = 1.0;
   stackParam00000050 = 0;
-  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UNK_180785d90,&stack0x00000030);
+  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UIFontManagerData,&stack0x00000030);
   if (EventHandle != (float *)0x0) {
     *EventHandle = 1.0 - stackParam00000048;
   }
@@ -195512,7 +195512,7 @@ void FUN_180785c80(longlong uiContext)
   uStack0000000000000044 = *(UIDword *)(preservedRegister12 + 1);
   stackParam00000048 = 1.0;
   fStack000000000000004c = 1.0;
-  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UNK_180785d90,&stack0x00000030);
+  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UIFontManagerData,&stack0x00000030);
   if (EventHandle != (float *)0x0) {
     *EventHandle = 1.0 - stackParam00000048;
   }
@@ -195548,7 +195548,7 @@ void FUN_180785cba(void)
   uStack0000000000000044 = *(UIDword *)(preservedRegister12 + 1);
   fStack0000000000000048 = 1.0;
   fStack000000000000004c = 1.0;
-  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UNK_180785d90,&stack0x00000030);
+  FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UIFontManagerData,&stack0x00000030);
   if (EventHandle != (float *)0x0) {
     *EventHandle = 1.0 - fStack0000000000000048;
   }
