@@ -189772,7 +189772,7 @@ long long * ProcessCharacterEncodingBufferValidation(uint64_t CharacterCode,long
   float MatrixTransformValue;
   long long *PerformanceCounterPointer;
   
-  CalculatedFilterValue = *(float *)(Utf8SourcePointer + 0x40);
+  FilterCalculatedValue = *(float *)(Utf8SourcePointer + 0x40);
   RandomSeedValue = RandomSeedValue << 0xd ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue >> 0x11 ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue << 5 ^ RandomSeedValue;
