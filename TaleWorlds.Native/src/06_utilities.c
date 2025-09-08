@@ -20720,7 +20720,7 @@ int ProcessUtilityDataWithEncryption(int64_t dataContext,int64_t dataBuffer,int 
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第九步：执行数据缓冲区转换
-  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + 0x1c));
+  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + DataProcessingContextOffset1C));
   
   // 返回总处理字节数
   return OperationResult + ProcessedBytes;
