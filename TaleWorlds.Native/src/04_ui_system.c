@@ -88729,57 +88729,57 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
   int errorCount;
   float transformVectorArray [38];
   
-  localInt8 = uiContext3;
+  enableTransform = uiContext3;
   stringCompareIndex = uiContext0;
-  stackIntd8 = 0;
-  afStack_d0[0] = 0.0;
-  afStack_d0[1] = 0.0;
+  errorCount = 0;
+  transformVectorArray[0] = 0.0;
+  transformVectorArray[1] = 0.0;
   AccumulatedFloat = 0.0;
   if (param_7 + 3 <= param_6) {
     func_0x000180705150(uiContext0,uiContext3,3);
   }
   transformCoeff3 = uiContext4;
-  if (localInt8 == 0) {
+  if (enableTransform == 0) {
     transformCoeff11 = *(float *)(&RenderFloatDataY + (longlong)uiContext2 * 4);
     AccumulatedFloat = *(float *)(&RenderFloatDataX + (longlong)uiContext2 * 4);
   }
   else {
     transformCoeff11 = 0.1499939;
   }
-  localInt8 = uiContext5;
-  ProcessingResult3 = 0;
+  enableTransform = uiContext5;
+  processingResult = 0;
   if (dataSource < targetBuffer) {
     uiContext3 = 1;
-    ProcessingResult2 = dataSource;
+    dataSourceIndex = dataSource;
     do {
-      pvectorComponentX = afStack_d0;
-      localInt5 = (targetBuffer - ProcessingResult2) * uiContext1;
-      ProcessingResult3 = 0;
+      transformVector = transformVectorArray;
+      transformOffset = (targetBuffer - dataSourceIndex) * uiContext1;
+      processingResult = 0;
       do {
-        loopCounter = ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2;
+        loopCounter = processingResult * *(int *)(uiBufferData + 8) + dataSourceIndex;
         allocatedMemory1 = (longlong)loopCounter;
-        FloatValue1 = *(float *)(resultPointer + allocatedMemory1 * 4);
-        baseValue6 = *(float *)(bufferSize + allocatedMemory1 * 4);
-        if (FloatValue1 < -9.0) {
-          FloatValue1 = -9.0;
+        sourceValue = *(float *)(resultPointer + allocatedMemory1 * 4);
+        maxValue = *(float *)(bufferSize + allocatedMemory1 * 4);
+        if (sourceValue < -9.0) {
+          sourceValue = -9.0;
         }
-        baseValue = *pvectorComponentX;
-        FloatValue2 = (baseValue6 - FloatValue1 * AccumulatedFloat) - baseValue;
-        baseValue5 = FloatValue2 + 0.5;
-        aresult7._0_8_ = (double)baseValue5;
-        allocatedMemory0 = (longlong)baseValue5;
-        if ((allocatedMemory0 != -0x8000000000000000) && ((double)allocatedMemory0 != aresult7._0_8_)) {
-          aresult7._8_8_ = aresult7._0_8_;
-          processingCounter = movmskpd(loopCounter,aresult7);
-          aresult7._0_8_ = (double)(longlong)(allocatedMemory0 - (ulonglong)(processingCounter & 1));
+        baseValue = *transformVector;
+        targetValue = (maxValue - sourceValue * AccumulatedFloat) - baseValue;
+        minValue = targetValue + 0.5;
+        conversionResult._0_8_ = (double)minValue;
+        allocatedMemory0 = (longlong)minValue;
+        if ((allocatedMemory0 != -0x8000000000000000) && ((double)allocatedMemory0 != conversionResult._0_8_)) {
+          conversionResult._8_8_ = conversionResult._0_8_;
+          processingCounter = movmskpd(loopCounter,conversionResult);
+          conversionResult._0_8_ = (double)(longlong)(allocatedMemory0 - (ulonglong)(processingCounter & 1));
         }
-        param_7 = (int)aresult7._0_8_;
-        baseValue5 = *(float *)(resultPointer + allocatedMemory1 * 4);
-        if (baseValue5 <= -28.0) {
-          baseValue5 = -28.0;
+        param_7 = (int)conversionResult._0_8_;
+        minValue = *(float *)(resultPointer + allocatedMemory1 * 4);
+        if (minValue <= -28.0) {
+          minValue = -28.0;
         }
-        if (((param_7 < 0) && (baseValue6 < baseValue5 - transformCoeff3)) &&
-           (param_7 = (int)((baseValue5 - transformCoeff3) - baseValue6) + param_7, 0 < param_7)) {
+        if (((param_7 < 0) && (maxValue < minValue - transformCoeff3)) &&
+           (param_7 = (int)((minValue - transformCoeff3) - maxValue) + param_7, 0 < param_7)) {
           param_7 = 0;
         }
         uiValidationResult = param_7;
@@ -88788,9 +88788,9 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
           for (; *(uint *)(stringCompareIndex + 0x20) >> loopCounter == 0; loopCounter = loopCounter + -1) {
           }
         }
-        localInt9 = (loopCounter - *(int *)(stringCompareIndex + 0x18)) + 1;
-        loopCounter = localInt9 + param_6 + localInt5 * -3;
-        if ((ProcessingResult2 != dataSource) && (loopCounter < 0x1e)) {
+        bitCount = (loopCounter - *(int *)(stringCompareIndex + 0x18)) + 1;
+        loopCounter = bitCount + param_6 + transformOffset * -3;
+        if ((dataSourceIndex != dataSource) && (loopCounter < 0x1e)) {
           if ((loopCounter < 0x18) && (1 < param_7)) {
             param_7 = uiContext3;
           }
@@ -88799,14 +88799,14 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
           }
         }
         loopCounter = param_7;
-        if (((localInt8 != 0) && (1 < ProcessingResult2)) && (loopCounter = 0, param_7 < 0)) {
+        if (((enableTransform != 0) && (1 < dataSourceIndex)) && (loopCounter = 0, param_7 < 0)) {
           loopCounter = param_7;
         }
         param_7 = loopCounter;
-        localInt9 = localInt9 + param_6;
-        if (localInt9 < 0xf) {
-          if (localInt9 < 2) {
-            if (localInt9 < 1) {
+        bitCount = bitCount + param_6;
+        if (bitCount < 0xf) {
+          if (bitCount < 2) {
+            if (bitCount < 1) {
               param_7 = -1;
             }
             else {
@@ -88814,51 +88814,51 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
                 param_7 = 0;
               }
               func_0x000180705150(stringCompareIndex,-param_7,1);
-              localInt8 = uiContext5;
+              enableTransform = uiContext5;
             }
           }
           else {
-            localInt8 = 1;
+            enableTransform = 1;
             if (param_7 < 1) {
-              localInt8 = param_7;
+              enableTransform = param_7;
             }
-            if (localInt8 < -1) {
-              localInt8 = -1;
+            if (enableTransform < -1) {
+              enableTransform = -1;
             }
-            param_7 = localInt8;
-            WriteUIDataToBuffer(stringCompareIndex,localInt8 >> 0x1f ^ localInt8 * 2,&UiStateBuffer,2);
-            localInt8 = uiContext5;
+            param_7 = enableTransform;
+            WriteUIDataToBuffer(stringCompareIndex,enableTransform >> 0x1f ^ enableTransform * 2,&UiStateBuffer,2);
+            enableTransform = uiContext5;
           }
         }
         else {
-          localInt8 = 0x14;
-          if (ProcessingResult2 < 0x14) {
-            localInt8 = ProcessingResult2;
+          enableTransform = 0x14;
+          if (dataSourceIndex < 0x14) {
+            enableTransform = dataSourceIndex;
           }
-          FUN_180723060(stringCompareIndex,&param_7,(ulonglong)*(byte *)(localInt8 * 2 + param_8) << 7,
-                        (ulonglong)*(byte *)((longlong)(localInt8 * 2) + 1 + param_8) << 6);
-          localInt8 = uiContext5;
+          FUN_180723060(stringCompareIndex,&param_7,(ulonglong)*(byte *)(enableTransform * 2 + param_8) << 7,
+                        (ulonglong)*(byte *)((longlong)(enableTransform * 2) + 1 + param_8) << 6);
+          enableTransform = uiContext5;
         }
-        *(float *)(param_9 + (longlong)(ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2) * 4) =
-             FloatValue2 - (float)param_7;
+        *(float *)(param_9 + (longlong)(processingResult * *(int *)(uiBufferData + 8) + dataSourceIndex) * 4) =
+             targetValue - (float)param_7;
         processingCounter = uiValidationResult - param_7 >> 0x1f;
-        stackIntd8 = stackIntd8 + ((uiValidationResult - param_7 ^ processingCounter) - processingCounter);
-        baseValue6 = (float)param_7;
-        loopCounter = ProcessingResult3 + 1;
-        *(float *)(resultPointer + (longlong)(ProcessingResult3 * *(int *)(uiBufferData + 8) + ProcessingResult2) * 4) =
-             baseValue + FloatValue1 * AccumulatedFloat + baseValue6;
-        *pvectorComponentX = (baseValue + baseValue6) - baseValue6 * transformCoeff11;
-        pvectorComponentX = pvectorComponentX + 1;
-        ProcessingResult3 = loopCounter;
+        errorCount = errorCount + ((uiValidationResult - param_7 ^ processingCounter) - processingCounter);
+        maxValue = (float)param_7;
+        loopCounter = processingResult + 1;
+        *(float *)(resultPointer + (longlong)(processingResult * *(int *)(uiBufferData + 8) + dataSourceIndex) * 4) =
+             baseValue + sourceValue * AccumulatedFloat + maxValue;
+        *transformVector = (baseValue + maxValue) - maxValue * transformCoeff11;
+        transformVector = transformVector + 1;
+        processingResult = loopCounter;
       } while (loopCounter < uiContext1);
-      ProcessingResult2 = ProcessingResult2 + 1;
-      ProcessingResult3 = stackIntd8;
-    } while (ProcessingResult2 < targetBuffer);
+      dataSourceIndex = dataSourceIndex + 1;
+      processingResult = errorCount;
+    } while (dataSourceIndex < targetBuffer);
   }
-  if (localInt8 != 0) {
-    ProcessingResult3 = 0;
+  if (enableTransform != 0) {
+    processingResult = 0;
   }
-  return ProcessingResult3;
+  return processingResult;
 }
 
 
