@@ -20039,7 +20039,7 @@ void CoreEngineInitializeDataStreamManager(void
 
 
 
- void CoreEngineInitializeThreadQueue(voidvoid CoreEngineInitializeThreadQueue(void
+ void CoreEngineInitializeThreadQueue(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -191639,7 +191639,15 @@ void CleanupSystemMemoryBlocksAndReleaseResources(void)
 
 
 
-5b556(voidvoid FUN_18015b556(void
+/**
+ * @brief 释放系统内存引用和清理资源
+ * 
+ * 处理系统内存的引用计数，释放资源，并在引用计数归零时
+ * 调用相应的清理函数。这是一个简化的内存清理函数。
+ * 
+ * @note 原始函数名：FUN_18015b556
+ */
+void ReleaseSystemMemoryReferencesAndCleanup(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
