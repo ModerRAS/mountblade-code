@@ -188390,7 +188390,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
 
 
 
-56b60(long long CharacterCodevoid FUN_180156b60(long long CharacterCode
+void ProcessSystemCharacterStatusReset(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -188427,7 +188427,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
 
 
 
-56ba0(long long CharacterCodevoid FUN_180156ba0(long long CharacterCode
+void ProcessSystemCharacterStatusInitialization(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
