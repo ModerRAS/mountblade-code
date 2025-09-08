@@ -640,6 +640,7 @@
 // 系统参数配置函数宏定义
 #define ConfigureSystemRenderingParameters FUN_1806faf00        // 配置系统渲染参数
 #define ResetSystemCharacterStatus FUN_18015b450                // 重置系统字符状态
+#define ProcessSystemMemoryBoundaryValidation FUN_18015bea0     // 处理系统内存边界验证
 
 #define ProcessCharacterEncodingAndBufferManagement FUN_1801601c0
 
@@ -49909,9 +49910,9 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   float FloatXMM0;
   float FloatXMM1;
   float FloatXMM4;
-  float in_XMM4_Db;
-  float in_XMM4_Dc;
-  float in_XMM5_Da;
+  float FloatXMM4Secondary;
+  float FloatXMM4Tertiary;
+  float FloatXMM5;
   uint32_t SystemParameter28;
   float CalculatedValue30;
   float CalculatedValue34;
@@ -50291,7 +50292,7 @@ void ProcessFloatDataStructureAndParameterCalculationWithFloats(float CharacterC
   bool BooleanValidationFlag9;
   float PrimaryFloatValue;
   float FloatXMM4;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float SecondaryFloatValue;
   
   PrimaryFloatValue = (*(float *)(ProcessingResult + 0x74) * SystemBufferSize - Utf8SourcePointer * Utf16EndPointer) * *(float *)(ProcessingResult + 0x90);
@@ -59365,7 +59366,7 @@ void ProcessFloatDataStructure(float *CharacterCode,long long SystemBufferSize,u
   float FloatXMM4;
   float magnitudeSquared;
   float CalculatedDistance;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float crossProductZ;
   float matrixElementY;
   float matrixElementX;
@@ -122468,7 +122469,7 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Charact
   long long NullPointerValue;
   float SystemContextPrimaryFloat8;
   float FloatXMM4;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float AuxiliaryFloat10;
   
   CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x4f);
@@ -128760,7 +128761,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
   uint32_t RegisterValueEDI;
   float in_XMM3_Da;
   float FloatXMM4;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float FloatingPointRegisterA;
   
   StringComparisonByte = *(byte *)(SystemContext + 0x30);
@@ -131909,7 +131910,7 @@ float * ManageFloatMemoryAllocation(float *CharacterCode,long long SystemBufferS
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier;
   float CalculatedDistance;
-  float in_XMM5_Da;
+  float FloatXMM5;
   
   if (in_R8B != '\0') {
     if ((in_XMM5_Da <= Utf16EndPointer) &&
@@ -148680,7 +148681,7 @@ e63a(uint32_t CharacterCode,float SystemBufferSizevoid ProcessSystemFloatingPoin
   long long PatternMatchStatus;
   long long SystemRegisterR10;
   long long SystemRegisterR11;
-  float in_XMM5_Da;
+  float FloatXMM5;
   uint32_t FloatingPointRegisterA;
   uint32_t unaff_XMM6_Db;
   uint32_t FloatingPointRegisterC;
@@ -152979,7 +152980,7 @@ unsigned long long ProcessSystemDataConfigurationAndParameters(uint64_t Characte
   bool shouldReturnSource;
   bool BooleanCurrentCharacter6;
   float FloatXMM4;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float SecondaryFloatValue;
@@ -153077,7 +153078,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t S
   long long in_R8;
   long long SystemRegisterR11;
   float in_XMM1_Da;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float SecondaryFloatValue;
@@ -156435,7 +156436,7 @@ uint64_t ProcessCharacterCodeWithMemoryAllocation(float CharacterCode,uint64_t S
   char CurrentCharacter;
   long long SystemRegisterR10;
   uint32_t SystemRegisterR11D;
-  float in_XMM5_Da;
+  float FloatXMM5;
   uint32_t in_XMM5_Db;
   float ContextSecondaryFloat;
   
@@ -253482,7 +253483,7 @@ uint64_t FUN_180214b09(float *CharacterCode,float *CharacterCodeSize
   float ProcessedFloatValue8;
   float NormalizedParameterValue;
   float PrimaryFloatValue;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float SecondaryFloatValue;
   
   StringComparisonResult = *ProcessingResult;
@@ -253574,7 +253575,7 @@ uint64_t FUN_180214b21(float *CharacterCode,float *CharacterCodeSize
   float FloatOffsetValue;
   float ProcessedFloatValue8;
   float NormalizedParameterValue;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float BaseFloatValue;
   
   do {
@@ -253660,7 +253661,7 @@ uint64_t ConfigureSystemFloatParameters(void
 {
   int LockResult;
   long long BufferStatus;
-  float in_XMM5_Da;
+  float FloatXMM5;
   float BaseFloatValue;
   
   BufferStatus = *(long long *)(SystemDataTabled0 + 0x2018);
