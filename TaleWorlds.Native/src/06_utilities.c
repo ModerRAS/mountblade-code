@@ -208,6 +208,7 @@
 #define StackDataHighWordOffset6D 0x6d
 #define StackDataHighWordOffset6E 0x6e
 #define StackDataHighWordOffset6C 0x6c
+#define StackDataLowWordOffset6F 0x6f
 
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c
@@ -29203,27 +29204,27 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                             (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
           if (((operationResult == 0) && (operationResult = ValidateParametersA1(operationBase,dataBuffer + DataProcessingOffset66), operationResult == 0)) &&
              (operationResult = ValidateParametersA1(operationBase,dataBuffer + DataProcessingOffset67), operationResult == 0)) {
-            stackDataBuffer.highWord = dataBuffer[0x69];
+            stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset69];
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
             if (operationResult == 0) {
-              stackDataBuffer.highWord = dataBuffer[0x6a];
+              stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset6A];
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
               if (operationResult == 0) {
-                stackDataBuffer.highWord = dataBuffer[0x6b];
+                stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset6B];
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                 if (operationResult == 0) {
-                  stackDataBuffer.highWord = dataBuffer[0x6d];
+                  stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset6D];
                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                   if (operationResult == 0) {
-                    stackDataBuffer.highWord = dataBuffer[0x6e];
+                    stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset6E];
                     operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                       (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                     if (operationResult == 0) {
-                      stackDataBuffer.highWord = dataBuffer[0x6c];
+                      stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset6C];
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                       if (operationResult == 0) {
