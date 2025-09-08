@@ -251498,44 +251498,61 @@ LAB_18020b6e6:
 
 
 
-uint64_t FUN_18020bef0(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 在字符代码表中搜索匹配的系统数据
+ * 
+ * 该函数负责在字符代码表中搜索与指定系统缓冲区匹配的数据。
+ * 主要功能包括：
+ * - 遍历字符代码表中的内存块
+ * - 比较输入数据长度和缓冲区内容
+ * - 执行字符串比较和匹配验证
+ * - 返回匹配数据的指针或0
+ * 
+ * @param CharacterCode 字符代码参数，用于标识搜索的起点
+ * @param SystemBufferSize 系统缓冲区参数，包含要比较的数据
+ * 
+ * @return 返回匹配数据的指针，如果没有匹配则返回0
+ * 
+ * @note 原始函数名：FUN_18020bef0
+ */
+void *SearchCharacterCodeTableForMatchingData(long long CharacterCode, long long SystemBufferSize)
 {
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
   byte *HighBytePointer;
   int MemoryMatchResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   int ValidationResult;
   int ProcessIterationCount;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   int ArrayIndex;
-  long long *CharacterCode1;
+  long long *CharacterCodeTableEntry;
   long long SystemContextValue;
   
   if ((*(int *)(SystemBufferSize + 0x10) != 0) &&
-     (CharacterCode = (long long *)(CharacterCode + 8), CharacterCode != *(long long *)(CharacterCode + 8))) {
+     (CharacterCodePointer = (long long *)(CharacterCode + 8), CharacterCodePointer != *(long long *)(CharacterCodePointer + 8))) {
     do {
       SystemContextValue = 0;
-      for (StringLength = 0; SystemDataRegistry = GetPreviousMemoryBlockIndex(CharacterCode),
-          (unsigned long long)(long long)StringLength <
+      for (ProcessIterationCount = 0; SystemDataRegistry = GetPreviousMemoryBlockIndex(CharacterCodePointer),
+          (unsigned long long)(long long)ProcessIterationCount <
           (unsigned long long)(*(long long *)(SystemDataRegistry + 0x30) - *(long long *)(SystemDataRegistry + 0x28) >> 3);
-          StringLength = StringLength + 1) {
-        SystemDataRegistry = GetPreviousMemoryBlockIndex(CharacterCode);
+          ProcessIterationCount = ProcessIterationCount + 1) {
+        SystemDataRegistry = GetPreviousMemoryBlockIndex(CharacterCodePointer);
         SystemDataRegistry = *(long long *)(*(long long *)(SystemDataRegistry + 0x28) + SystemContextValue);
-        CharacterCode1 = *(long long **)(SystemDataRegistry + 0x28);
-        SystemDataTablePointer = *(long long *)(SystemDataRegistry + 0x30) - (long long)CharacterCode1;
-        for (ArrayIndex = 0; (unsigned long long)(long long)ArrayIndex < (unsigned long long)(SystemDataTablePointer >> 3); ArrayIndex = ArrayIndex + 1        {
+        CharacterCodeTableEntry = *(long long **)(SystemDataRegistry + 0x28);
+        SystemDataTablePointer = *(long long *)(SystemDataRegistry + 0x30) - (long long)CharacterCodeTableEntry;
+        for (ArrayIndex = 0; (unsigned long long)(long long)ArrayIndex < (unsigned long long)(SystemDataTablePointer >> 3); ArrayIndex = ArrayIndex + 1) {
           ValidationResult = *(int *)(SystemBufferSize + 0x10);
-          InputDataLength = *(int *)(*CharacterCode1 + 0x298);
+          InputDataLength = *(int *)(*CharacterCodeTableEntry + 0x298);
           if (InputDataLength == ValidationResult) {
             if (InputDataLength != 0) {
-              SystemBytePointer = *(byte **)(*CharacterCode1 + 0x290);
+              SystemBytePointer = *(byte **)(*CharacterCodeTableEntry + 0x290);
               StringOffset = *(long long *)(SystemBufferSize + 8) - (long long)SystemBytePointer;
               do {
                 HighBytePointer = SystemBytePointer + StringOffset;
                 ValidationResult = (uint)*SystemBytePointer - (uint)*HighBytePointer;
-                if (CharacterComparisonResult != 0) break;
+                if (MemoryMatchResult != 0) break;
                 SystemBytePointer = SystemBytePointer + 1;
               } while (*HighBytePointer != 0);
             }
@@ -251545,12 +251562,12 @@ LAB_18020bfbd:
             }
           }
           else if (InputDataLength == 0) goto LAB_18020bfbd;
-          CharacterCode1 = CharacterCode1 + 1;
+          CharacterCodeTableEntry = CharacterCodeTableEntry + 1;
         }
         SystemContextValue = SystemContextValue + 8;
       }
-      CharacterCode = GetPreviousMemoryBlockIndex(CharacterCode);
-    } while (CharacterCode != *CharacterCode);
+      CharacterCodePointer = GetPreviousMemoryBlockIndex(CharacterCodePointer);
+    } while (CharacterCodePointer != *CharacterCodePointer);
   }
   return 0;
 }
