@@ -25273,7 +25273,7 @@ ValidateDataSecurity:
   int64_t systemContext;
   uint64_t operationResult2;
   int64_t contextPointer;
-  DataWord operationResult3;
+  DataWord SystemOperationResult3;
   DataWord floatResultA;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
