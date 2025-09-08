@@ -205204,7 +205204,7 @@ LAB_18017023b:
       *(uint32_t *)(MemoryPoolBlockSizePointer + -3) = 0;
       *CharacterCode = 0;
       MemoryPoolBlockSizePointer[-2] = 0;
-      FUN_180170700(CharacterCode,MemoryBoundaryEnd,StringOffset,MemoryBoundaryEnd,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
+      ProcessCharacterEncodingAndMemoryPoolOperations(CharacterCode,MemoryBoundaryEnd,StringOffset,MemoryBoundaryEnd,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
       EncodingBuffer = &SystemNullTemplate;
       if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
@@ -205621,7 +205621,25 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
 
 
 
-70da0(uint64_t CharacterCode,uint32_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180170da0(uint64_t CharacterCode,uint32_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180170da0(uint64_t CharacterCode,uint32_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理窗口消息和字符表操作
+ * 
+ * 该函数负责处理窗口消息和字符表操作，主要功能包括：
+ * - 获取窗口长指针和字符表指针
+ * - 处理系统内存当前字符状态
+ * - 调用默认窗口过程处理函数
+ * - 执行字符表相关的系统操作
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180170da0
+ */
+#define ProcessWindowMessageAndCharacterTableOperations FUN_180170da0
+void ProcessWindowMessageAndCharacterTableOperations(uint64_t CharacterCode,uint32_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
