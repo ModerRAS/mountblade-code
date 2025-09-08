@@ -167,8 +167,8 @@
 #define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
 #define StackFloatValue5c StackFloatValue5c             // 栈浮点值5c
 #define StackValidationFlag20 StackValidationFlag20                 // 栈验证标志20
-#define StackValidationFlagD8 &stack0x000000d8                 // 栈验证标志D8
-#define StackValidationFlag49 &stack0x00000049                 // 栈验证标志49
+#define StackValidationFlagD8 StackValidationFlagD8                 // 栈验证标志D8
+#define StackValidationFlag49 StackValidationFlag49                 // 栈验证标志49
 
 // FUN_函数语义化宏定义
 /**
@@ -113766,7 +113766,7 @@ uint8_t ProcessFloatDataAndSystemConfiguration(void)
     resultFloatValue = 0.0;
   }
   else {
-    ProcessFloatAndSystemConfiguration(floatProcessingStatusFlag,&stack0x000000d8,resultFloatValue,systemParameter,0xbf800000);
+    ProcessFloatAndSystemConfiguration(floatProcessingStatusFlag,StackValidationFlagD8,resultFloatValue,systemParameter,0xbf800000);
     adjustedFloatValue = floatStorageValue;
     if (0.0 < floatStorageValue) {
       adjustedFloatValue = floatStorageValue - resultFloatValue / *floatProcessingStatusFlag;
@@ -113786,21 +113786,21 @@ uint8_t ProcessFloatDataAndSystemConfiguration(void)
     *(float *)(systemContext + 0x1670) = secondaryFloatValue + secondaryFloatValue;
     localStatusFlag = 0;
     floatStorageValue = resultFloatValue;
-    memoryAddressMask = ValidateSystemDataAndCheckStatus(systemVariable,0,0x1000,&stack0x000000d8);
+    memoryAddressMask = ValidateSystemDataAndCheckStatus(systemVariable,0,0x1000,StackValidationFlagD8);
     UpdateSystemStatusEx(1);
     *(float *)(dataIndex + 0x100) =
          *(float *)(dataIndex + 0x100) - (float)(int)(*(float *)(systemContext + 0x166c) * 0.5);
   }
   else {
     SystemCallDataOperation(dataIndex + 0x288);
-    floatProcessingStatusFlag = (float *)SystemCallMemoryAllocation(&stack0x000000d8);
+    floatProcessingStatusFlag = (float *)SystemCallMemoryAllocation(StackValidationFlagD8);
     floatStorageValue = (float)xmm0RegisterValue;
     resultFloatValue = *floatProcessingStatusFlag - floatStorageValue;
     localStatusFlag = 0;
     if (resultFloatValue <= 0.0) {
       resultFloatValue = 0.0;
     }
-    memoryAddressMask = ValidateSystemDataAndCheckStatus(xmm0RegisterValue,0,0x3000,&stack0x000000d8);
+    memoryAddressMask = ValidateSystemDataAndCheckStatus(xmm0RegisterValue,0,0x3000,StackValidationFlagD8);
     if (systemStatusFlag != '\0') {
       adjustedFloatValue = *(float *)(systemContext + 0x19f8);
       calculatedFilterValue = *(float *)(dataIndex + 0x2a0);
@@ -113852,7 +113852,7 @@ uint8_t ProcessSystemContextAndUnicode(void)
   *(float *)(SystemContext + 0x166c) = FirstContextFloat + FirstContextFloat;
   *(float *)(SystemContext + 0x1670) = SecondContextFloat + SecondContextFloat;
   ResultStatusFlag = 0;
-  UnicodeCodePoint = ValidateSystemDataAndCheckStatus(MemoryAddressMaskPointer,0,0x1000,&stack0x000000d8);
+  UnicodeCodePoint = ValidateSystemDataAndCheckStatus(MemoryAddressMaskPointer,0,0x1000,StackValidationFlagD8);
   UpdateSystemStatusEx(1);
   *(float *)(SystemDataNode + 0x100) =
        *(float *)(SystemDataNode + 0x100) - (float)(int)(*(float *)(SystemContext + 0x166c) * 0.5);
@@ -135395,7 +135395,7 @@ LAB_18012ac57:
       }
       ProcessedCharacter = SystemCallResourceOperation(pBufferIndex,(long long)(int)MemoryAllocationIndex);
       SystemParameter1 = (void *)CONCAT44(SystemStatusCode,0x2020);
-      ProcessSystemParameters(StackFrameAddressPointer + -0x1c,ProcessedCharacter,&SecondaryDataBuffer,&stack0x00000049,SystemParameter1);
+      ProcessSystemParameters(StackFrameAddressPointer + -0x1c,ProcessedCharacter,&SecondaryDataBuffer,StackValidationFlag49,SystemParameter1);
       if (((PrimaryDataStorage == '\0') && (cStack0000000000000049 == '\0')) ||
          (*(uint *)(CharacterTablePointer + 0x1dcc) = (~MemoryAllocationIndex & 1) + 5, cStack0000000000000049 == '\0')) {
 LAB_18012b18f:
@@ -137237,7 +137237,7 @@ LAB_18012ac57:
       }
       MemoryAllocationIndex = SystemCallResourceOperation(CharacterCode9,(long long)(int)SystemMemoryAllocationResult);
       SystemParameter1 = (void *)CONCAT44(ProcessedCharacter,0x2020);
-      ProcessSystemParameters(StackFrameAddressPointer + -0x1c,MemoryAllocationIndex,&SecondaryDataBuffer,&stack0x00000049,SystemParameter1);
+      ProcessSystemParameters(StackFrameAddressPointer + -0x1c,MemoryAllocationIndex,&SecondaryDataBuffer,StackValidationFlag49,SystemParameter1);
       if (((PrimaryDataStorage == '\0') && (cStack0000000000000049 == '\0')) ||
          (*(uint *)(LoopIndex + 0x1dcc) = (~SystemMemoryAllocationResult & 1) + 5, cStack0000000000000049 == '\0')) {
 LAB_18012b18f:
