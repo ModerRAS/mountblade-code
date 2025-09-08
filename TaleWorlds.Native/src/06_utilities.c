@@ -7357,6 +7357,72 @@ uint32_t SystemDataWord;              // 系统数据字，用于存储系统运
 
 // 异常状态标志变量声明
 uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
+// 异常处理器常用偏移量常量补充定义
+#define ExceptionHandlerContextOffset6e0 0x6e0            // 异常处理上下文偏移量6e0
+#define ExceptionHandlerContextOffset6e8 0x6e8            // 异常处理上下文偏移量6e8
+#define ExceptionHandlerContextOffset6f0 0x6f0            // 异常处理上下文偏移量6f0
+#define ExceptionHandlerContextOffset6f8 0x6f8            // 异常处理上下文偏移量6f8
+#define ExceptionHandlerContextOffset6b8 0x6b8            // 异常处理上下文偏移量6b8
+#define ExceptionHandlerContextOffset6c0 0x6c0            // 异常处理上下文偏移量6c0
+#define ExceptionHandlerContextOffset6d0 0x6d0            // 异常处理上下文偏移量6d0
+#define ExceptionHandlerContextOffset698 0x698            // 异常处理上下文偏移量698
+#define ExceptionHandlerContextOffset6a0 0x6a0            // 异常处理上下文偏移量6a0
+#define ExceptionHandlerContextOffset6b0 0x6b0            // 异常处理上下文偏移量6b0
+#define ExceptionHandlerContextOffset760 0x760            // 异常处理上下文偏移量760
+#define ExceptionHandlerContextOffset750 0x750            // 异常处理上下文偏移量750
+#define ExceptionHandlerContextOffset728 0x728            // 异常处理上下文偏移量728
+#define ExceptionHandlerContextOffset730 0x730            // 异常处理上下文偏移量730
+#define ExceptionHandlerContextOffset740 0x740            // 异常处理上下文偏移量740
+#define ExceptionHandlerContextOffset708 0x708            // 异常处理上下文偏移量708
+#define ExceptionHandlerContextOffset710 0x710            // 异常处理上下文偏移量710
+#define ExceptionHandlerContextOffset720 0x720            // 异常处理上下文偏移量720
+#define ExceptionHandlerContextOffset7d0 0x7d0            // 异常处理上下文偏移量7d0
+
+// 异常处理器回调相关偏移量常量
+#define ExceptionHandlerCallbackOffset6f0 0x6f0            // 异常处理器回调偏移量6f0
+#define ExceptionHandlerCallbackOffset760 0x760            // 异常处理器回调偏移量760
+#define ExceptionHandlerCallbackOffset840 0x840            // 异常处理器回调偏移量840
+#define ExceptionHandlerCallbackOffset8b0 0x8b0            // 异常处理器回调偏移量8b0
+#define ExceptionHandlerCallbackOffset2000 2000            // 异常处理器回调偏移量2000
+
+// 异常处理器状态相关偏移量常量
+#define ExceptionHandlerContextStateOffset808 0x808        // 异常处理上下文状态偏移量808
+#define ExceptionHandlerContextOffset810 0x810            // 异常处理上下文偏移量810
+#define ExceptionHandlerContextOffset820 0x820            // 异常处理上下文偏移量820
+#define ExceptionHandlerContextOffset830 0x830            // 异常处理上下文偏移量830
+#define ExceptionHandlerContextOffset878 0x878            // 异常处理上下文偏移量878
+#define ExceptionHandlerContextOffset880 0x880            // 异常处理上下文偏移量880
+#define ExceptionHandlerContextOffset890 0x890            // 异常处理上下文偏移量890
+#define ExceptionHandlerContextOffset858 0x858            // 异常处理上下文偏移量858
+#define ExceptionHandlerContextOffset860 0x860            // 异常处理上下文偏移量860
+#define ExceptionHandlerContextOffset870 0x870            // 异常处理上下文偏移量870
+#define ExceptionHandlerContextOffset7e8 0x7e8            // 异常处理上下文偏移量7e8
+#define ExceptionHandlerContextOffset7f0 0x7f0            // 异常处理上下文偏移量7f0
+#define ExceptionHandlerContextOffset800 0x800            // 异常处理上下文偏移量800
+
+// 异常处理器引用相关偏移量常量
+#define ExceptionHandlerContextOffset798 0x798            // 异常处理上下文偏移量798
+#define ExceptionHandlerContextOffset778 0x778            // 异常处理上下文偏移量778
+#define ExceptionHandlerContextOffset780 0x780            // 异常处理上下文偏移量780
+#define ExceptionHandlerContextOffset790 0x790            // 异常处理上下文偏移量790
+#define ExceptionHandlerContextOffset7a0 0x7a0            // 异常处理上下文偏移量7a0
+#define ExceptionHandlerContextOffset7b0 0x7b0            // 异常处理上下文偏移量7b0
+#define ExceptionHandlerContextOffset7c0 0x7c0            // 异常处理上下文偏移量7c0
+
+// 系统上下文和数据处理相关偏移量常量
+#define SystemContextOffset24 0x24                         // 系统上下文偏移量24
+#define DataContextOffset29 0x29                           // 数据上下文偏移量29
+
+// 异常处理器管理相关偏移量常量
+#define ExceptionHandlerManagementOffset990 0x990        // 异常处理器管理偏移量990
+#define SystemManagementOffset980 0x980                   // 系统管理偏移量980
+#define ExceptionHandlerManagementOffset958 0x958        // 异常处理器管理偏移量958
+#define ExceptionHandlerManagementOffset960 0x960        // 异常处理器管理偏移量960
+#define ExceptionHandlerManagementOffset970 0x970        // 异常处理器管理偏移量970
+#define ExceptionHandlerManagementOffset938 0x938        // 异常处理器管理偏移量938
+#define ExceptionHandlerManagementOffset940 0x940        // 异常处理器管理偏移量940
+#define ExceptionHandlerManagementOffset950 0x950        // 异常处理器管理偏移量950
+
 uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 
 // 浮点数验证数组变量声明
