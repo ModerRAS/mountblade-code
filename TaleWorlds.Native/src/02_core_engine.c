@@ -183119,7 +183119,7 @@ void FUN_18014f059(void)
  * @param Utf8SourcePointer UTF-8源数据指针
  * @param Utf16EndPointer UTF-16结束指针
  */
-void ProcessCharacterCodeStatusBufferOperation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+void ProcessCharacterCodeStatusBufferOperation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint8_t MemoryAllocationIndex;
