@@ -259770,7 +259770,17 @@ unsigned long long GetSystemUtf16Char(void
 
 
 
-uint8_t FUN_180216416(void
+/**
+ * @brief 返回零值的状态检查函数（变体）
+ * 
+ * 该函数是一个简单的状态检查函数，始终返回0。
+ * 可能用于系统初始化或状态验证的另一种场景。
+ * 
+ * @return uint8_t 始终返回0
+ * 
+ * @note 原始函数名：FUN_180216416
+ */
+uint8_t ReturnZeroStatusCheckVariant(void)
 {
   return 0;
 }
@@ -259962,7 +259972,17 @@ unsigned long long ValidateSystemUtf16Configuration(void
 
 
 
-uint8_t FUN_1802164d6(void
+/**
+ * @brief 返回零值的状态检查函数（第二种变体）
+ * 
+ * 该函数是一个简单的状态检查函数，始终返回0。
+ * 可能用于系统初始化或状态验证的第三种场景。
+ * 
+ * @return uint8_t 始终返回0
+ * 
+ * @note 原始函数名：FUN_1802164d6
+ */
+uint8_t ReturnZeroStatusCheckSecondVariant(void)
 {
   return 0;
 }
@@ -259971,7 +259991,19 @@ uint8_t FUN_1802164d6(void
 
 
 
-164f0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointervoid FUN_1802164f0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 该函数处理字符编码转换，将UTF-8数据转换为系统内部格式，
+ * 并管理内存分配和系统上下文。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_1802164f0
+ */
+void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer)
 {
   uint32_t Utf16Char;
   void *SystemContext;
@@ -263459,7 +263491,16 @@ LAB_18021ae8e:
 
 
 
-uint32_t FUN_18021aef5(void
+/**
+ * @brief 获取输入数据长度
+ * 
+ * 该函数返回输入数据的长度，用于数据大小验证和内存分配。
+ * 
+ * @return uint32_t 输入数据的长度
+ * 
+ * @note 原始函数名：FUN_18021aef5
+ */
+uint32_t GetInputDataLength(void)
 {
   uint32_t InputDataLength;
   
