@@ -222517,7 +222517,7 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *CharacterCode,uint
 
 
 
-uint64_t * FUN_180187f00(long long *CharacterCode,uint64_t *CharacterCodeSize
+uint64_t * ProcessUnicodeCodePointAndManageCharacterEncoding(long long *CharacterCode,uint64_t *CharacterCodeSize
 {
   uint64_t *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
