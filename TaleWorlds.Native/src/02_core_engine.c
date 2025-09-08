@@ -172,10 +172,14 @@
 #define StringComparisonResultPointer0 StringComparisonResultPointer0 // 字符串比较结果指针0
 #define SystemStackPointer190 SystemStackPointer190            // 系统栈指针190
 #define LoopCounterVariable lStack_158                          // 循环计数器变量
-#define SystemMemoryAllocationBlock128 SystemMemoryAllocationBlock128             // 系统内存分配块128
-#define SystemMemoryAllocationBlock298 SystemMemoryAllocationBlock298             // 系统内存分配块298
+#define SystemMemoryAllocationBlock128 pplStack_128             // 系统内存分配块128
+#define SystemMemoryAllocationBlock298 pplStack_298             // 系统内存分配块298
 #define SystemMemoryAllocationBlock260 pplStack_260             // 系统内存分配块260
 #define SystemMemoryAllocationBlock258 pplStack_258             // 系统内存分配块258
+#define StackValidationData aStackValidationData                 // 栈验证数据
+#define StackProcessingVariable1B8 aStackProcessingVariable1B8   // 栈处理变量1B8
+#define SystemStackRegisterFlagB0 aSystemStackRegisterFlagB0     // 系统栈寄存器标志B0
+#define SystemFlagF aSystemFlagF                                 // 系统标志F
 
 // 系统栈变量语义化映射
 #define SystemStackUnsigned110 uStack_110                  // 系统栈无符号110
@@ -72128,8 +72132,8 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   long long *plStack_278;
   long long *plStack_270;
   long long *plStack_268;
-  long long **pplStack_260;
-  long long **pplStack_258;
+  long long **SystemMemoryAllocationBlock260;
+  long long **SystemMemoryAllocationBlock258;
   uint BufferCurrentCharacter;
   uint SystemUnsignedValue24C;
   uint32_t BufferTypeFlag;
@@ -72676,7 +72680,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   SystemStatusValue = 3;
   BufferIndex = *MemoryBoundaryPointer;
   pCharacterCode7 = (long long **)(CoreEngineSystemContext + 0x68);
-  pplStack_258 = pCharacterCode7;
+  SystemMemoryAllocationBlock258 = pCharacterCode7;
   StringComparisonResult4 = _Mtx_lock(pCharacterCode7);
   if (StringComparisonResult4 != 0) {
     __Throw_C_error_std__YAXH_Z(StringComparisonResult4);
@@ -72696,13 +72700,13 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   CharacterCode3 = (long long *)CreateSystemContextAndInitialize(SystemStatusCode,&SystemUnsignedValue1A0);
   BufferIndex = CoreEngineSystemContext;
   if (CharacterCode3 != (long long *)0x0) {
-    pplStack_260 = (long long **)CharacterCode3;
+    SystemMemoryAllocationBlock260 = (long long **)CharacterCode3;
     (**(code **)(*CharacterCode3 + 0x28))(CharacterCode3);
   }
-  pplStack_260 = *(long long ***)(BufferIndex + 0x60);
+  SystemMemoryAllocationBlock260 = *(long long ***)(BufferIndex + 0x60);
   *(long long **)(BufferIndex + 0x60) = CharacterCode3;
-  if (pplStack_260 != (long long **)0x0) {
-    (*(code *)(*pplStack_260)[7])();
+  if (SystemMemoryAllocationBlock260 != (long long **)0x0) {
+    (*(code *)(*SystemMemoryAllocationBlock260)[7])();
   }
   *(void *)(*(long long *)(CoreEngineSystemContext + 0x60) + 0x18) = 0xfffffffffffffffe;
   StringComparisonResult4 = _Mtx_unlock(pCharacterCode7);
@@ -72711,12 +72715,12 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   }
   BufferIndex = TimeoutValueStorage;
   if (*(int *)(SystemConfigData + 0x3f0) == 0) {
-    pplStack_258 = &plStack_290;
+    SystemMemoryAllocationBlock258 = &plStack_290;
     plStack_290 = *(long long **)(CoreEngineSystemContext + 0x60);
     if (plStack_290 != (long long *)0x0) {
       (**(code **)(*plStack_290 + 0x28))();
     }
-    pplStack_260 = &plStack_290;
+    SystemMemoryAllocationBlock260 = &plStack_290;
     (**(code **)(*plStack_290 + 0x78))();
     SystemStringIndex = GetSystemStringIndexFromMemoryBuffer(BufferIndex + 0x548);
     if (SystemStringIndex != 0) {
@@ -72746,7 +72750,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   (**(code **)(**(long long **)(CoreEngineSystemContext + 0x2b0) + 0xa8))();
   SystemMemoryAllocationResult = GetSystemConfigurationFromContext(CoreEngineSystemContext + 0xb8);
   if (*(char *)(CoreEngineSystemContext + 0x12dc) != '\0') {
-    pplStack_258 = aplStack_178;
+    SystemMemoryAllocationBlock258 = aplStack_178;
     pDataContentStatus = &SystemContextVTable;
     pcStack_160 = _guard_check_icall;
     SystemMemoryAllocationResult = CoreEngineExecuteConfiguration(aplStack_178);
@@ -236555,7 +236559,7 @@ LAB_18019a44a:
   long long *plStack_270;
   long long *plStack_268;
   long long *plStack_260;
-  long long **pplStack_258;
+  long long **SystemMemoryAllocationBlock258;
   long long lStack_250;
   long long lStack_248;
   long long lStack_240;
@@ -237352,17 +237356,17 @@ LAB_18019a44a:
       *(byte *)(pCharacterCode3 + 0x1a) = HighByte4 >> 1 & 1;
       pCharacterCode3[0x1b] = CharacterCode + 0x4e3;
       pCharacterCode3[0x1c] = CharacterCode + 0x4cf;
-      pplStack_258 = pCharacterCode3;
+      SystemMemoryAllocationBlock258 = pCharacterCode3;
       (*(code *)(*pCharacterCode3)[5])(pCharacterCode3);
-      pplStack_258 = (long long **)CharacterCode[0x4ce];
+      SystemMemoryAllocationBlock258 = (long long **)CharacterCode[0x4ce];
       CharacterCode[0x4ce] = (long long)pCharacterCode3;
-      if (pplStack_258 != (long long **)0x0) {
-        (*(code *)(*pplStack_258)[7])();
+      if (SystemMemoryAllocationBlock258 != (long long **)0x0) {
+        (*(code *)(*SystemMemoryAllocationBlock258)[7])();
       }
       BufferIndex = TimeoutValueStorage;
       CharacterCodeData = (long long *)CharacterCode[0x4ce];
       if (*(int *)(SystemConfigData + 0x380) == 0) {
-        pplStack_258 = &plStack_260;
+        SystemMemoryAllocationBlock258 = &plStack_260;
         plStack_260 = CharacterCodeData;
         if (CharacterCodeData != (long long *)0x0) {
           (**(code **)(*CharacterCode4 + 0x28))();
