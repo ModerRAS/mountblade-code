@@ -183030,11 +183030,11 @@ undefined UIResourceAllocator;
 undefined UIResumeSystem;
 undefined UIResourceValidator;
 undefined UIResourceCache;
-undefined DAT_180c108d8;
-undefined DAT_180c108e0;
-undefined DAT_180c108dc;
-undefined DAT_180c108e4;
-undefined UNK_18095ae30;
+undefined UIResourceDataPointer;
+undefined UIResourceSizeInfo;
+undefined UIResourceConfigData;
+undefined UIResourceStatusFlag;
+undefined UIResourceEventHandler;
 
  简化实现：UI系统更新函数
  原本实现：可能包含更复杂的更新逻辑
@@ -183064,7 +183064,7 @@ undefined UNK_18095b780;
 undefined UNK_18095b5f8;
 undefined UNK_18095b638;
 undefined UNK_18095b678;
-undefined DAT_180c10a88;
+undefined UIResourceAllocator;
 undefined DAT_180c10a70;
 undefined DAT_180c10a80;
 undefined DAT_180be2d0c;
