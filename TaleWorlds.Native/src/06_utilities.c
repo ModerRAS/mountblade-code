@@ -100003,7 +100003,18 @@ void Unwind_18090f130(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器函数A0
+ * 
+ * 该函数负责配置异常处理器，设置临时异常处理器，清理现有处理器状态，
+ * 并设置默认异常处理器B。这是一个系统级的异常处理配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f140
+ */
+void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;

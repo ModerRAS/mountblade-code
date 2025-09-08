@@ -201,9 +201,9 @@ typedef enum {
 #define localChar8 BoundingBoxValidationFlag
 #define allocatedMemory2 CollisionMemoryAllocation
 #define ProcessingResult3 CollisionProcessingResult
-#define ProcessUIRenderOperation FUN_180690580
+#define ProcessUIRenderOperation ProcessUIRenderOperationData
 #define ProcessUIDataTransfer ProcessUIComponentBlend
-#define InitializeUILayoutSystem FUN_180707a56
+#define InitializeUILayoutSystem InitializeUILayoutSystemHandler
 
  // UI系统函数宏定义 - 验证UI布局
 #define ValidateUILayout FUN_180707a74

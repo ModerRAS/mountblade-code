@@ -6674,33 +6674,33 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
     }
     
     // 处理剩余的元素
-    if (processed_elements < total_elements) {
-      input_buffer = input_buffer + 2;
-      remaining_elements = (uint64_t)(uint32_t)(total_elements - processed_elements);
-      element_count = element_count + remaining_elements;
+    if (ProcessedColorElements < TotalColorElements) {
+      InputColorBuffer = InputColorBuffer + 2;
+      RemainingColorElements = (uint64_t)(uint32_t)(TotalColorElements - ProcessedColorElements);
+      TotalColorCount = TotalColorCount + RemainingColorElements;
       do {
-        red_component = input_buffer + -1;
-        green_component = input_buffer + -2;
-        temp_float = *input_buffer;
-        input_buffer = input_buffer + 3;
-        luminance_sum = luminance_sum + (double)*red_component * 0.7152 + (double)*green_component * 0.2126 +
-                          (double)temp_float * 0.0722;
-        remaining_elements = remaining_elements - 1;
-      } while (remaining_elements != 0);
+        ColorComponentRed = InputColorBuffer + -1;
+        ColorComponentGreen = InputColorBuffer + -2;
+        TemporaryColorValue = *InputColorBuffer;
+        InputColorBuffer = InputColorBuffer + 3;
+        LuminanceAccumulator = LuminanceAccumulator + (double)*ColorComponentRed * 0.7152 + (double)*ColorComponentGreen * 0.2126 +
+                          (double)TemporaryColorValue * 0.0722;
+        RemainingColorElements = RemainingColorElements - 1;
+      } while (RemainingColorElements != 0);
     }
     
     // 计算标准化系数
-    luminance_sum = 1.0 / (luminance_sum / (double)element_count);
+    LuminanceAccumulator = 1.0 / (LuminanceAccumulator / (double)TotalColorCount);
     
     // 应用标准化系数到输出缓冲区
-    if (3 < total_elements) {
-      batch_loop_counter = (total_elements - 4U >> 2) + 1;
-      remaining_elements = (uint64_t)batch_loop_counter;
-      batch_processed_elements = batch_loop_counter * 4;
+    if (3 < TotalColorElements) {
+      BatchProcessingCounter = (TotalColorElements - 4U >> 2) + 1;
+      RemainingColorElements = (uint64_t)BatchProcessingCounter;
+      BatchProcessedElements = BatchProcessingCounter * 4;
       do {
-        *output_buffer = (float)((double)*output_buffer * luminance_sum);
-        output_buffer[1] = (float)((double)output_buffer[1] * luminance_sum);
-        output_buffer[2] = (float)((double)output_buffer[2] * luminance_sum);
+        *OutputColorBuffer = (float)((double)*OutputColorBuffer * LuminanceAccumulator);
+        OutputColorBuffer[1] = (float)((double)OutputColorBuffer[1] * LuminanceAccumulator);
+        OutputColorBuffer[2] = (float)((double)OutputColorBuffer[2] * LuminanceAccumulator);
         output_buffer[3] = (float)((double)output_buffer[3] * luminance_sum);
         output_buffer[4] = (float)((double)output_buffer[4] * luminance_sum);
         output_buffer[5] = (float)((double)output_buffer[5] * luminance_sum);

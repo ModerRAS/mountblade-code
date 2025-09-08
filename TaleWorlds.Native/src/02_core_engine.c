@@ -182126,7 +182126,7 @@ void InitializeCharacterThreadLocalStorage(long long *CharacterCode)
     return;
   }
   CharacterCode[0xc] = (long long)&ThreadLocalStorageTemplate;
-  FUN_18014e400();
+  ProcessSystemInitialization();
   if (CharacterCode[4] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -182155,7 +182155,7 @@ void CleanupCharacterSystemResources(long long *CharacterCode)
   if (CharacterCode == (long long *)0x0) {
     return;
   }
-  FUN_18014e2a0();
+  ProcessSystemCleanup();
   if (CharacterCode[4] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
