@@ -31508,7 +31508,7 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
         return;
       }
       operationResult = operationResult + 1;
-      auStackX_8[0] = auStackX_8[0] & -validationOutcome;
+      validationDataBuffer[0] = validationDataBuffer[0] & -validationOutcome;
     } while (operationResult < (int)operationResult);
   }
   auStackX_8[0] = 0;

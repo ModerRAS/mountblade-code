@@ -6662,6 +6662,9 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_180235ca0 - 渲染数据主要处理函数
 #define ProcessRenderDataPrimary FUN_180235ca0
 
+// 原始函数名：FUN_18007ea10 - 字符串偏移处理和验证函数
+#define ProcessStringOffsetAndValidation FUN_18007ea10
+
 /**
  * @brief 获取内存分配大小
  * 
@@ -214462,7 +214465,7 @@ void ProcessSystemContextDataEncoding(long long CharacterCode,long long *Charact
     ProcessSystemDataValidationAndCharacterEncoding(&CoreEngineUnsignedValueA0,*Utf8SourcePointer,Utf8SourcePointer[1]);
   }
   ProcessCharacterCodeBufferAndDataManagement(&CalculationFunctionAddress,Utf16EndPointer);
-  FUN_180150240(&StackProcessingUnsignedValue60,AdditionalParameter1);
+  ProcessCharacterCodeBufferAllocationAndDataManagement(&StackProcessingUnsignedValue60,AdditionalParameter1);
   ProcessingStatusFlag = *(unsigned long long *)(CharacterCode + 0x68);
   EncodingConversionResult = 1;
   if (ProcessingStatusFlag < *(unsigned long long *)(CharacterCode + 0x70)) {
@@ -214740,7 +214743,7 @@ void CleanupSystemDataTable(long long *CharacterCode
           CharacterCodeData = (long long *)(unsigned long long)ValidationResult;
         } while (MemoryBoundaryPointer < (long long *)((long long)plStack_d8 - (long long)plStack_e0 >> 3));
       }
-      FUN_18007ea10(pStringOffset,1);
+      ProcessStringOffsetAndValidation(pStringOffset,1);
       if ((plStack_138 != (long long *)0x0) && (pSystemMemoryBlock130 != (long long *)0x0)) {
         if (cStack_106 != '\0') {
           CleanupSystemResources();
