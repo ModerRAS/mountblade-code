@@ -111192,13 +111192,13 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x1640) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 0x1640))(exceptionHandlerContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset1608) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1610) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1610) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerOffset1620) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset1608) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x15e8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15f0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -113859,13 +113859,13 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x1640) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 0x1640))(exceptionHandlerContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset1608) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1610) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1610) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerOffset1620) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerOffset1608) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x15e8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15f0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -116343,7 +116343,7 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1608);
+  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerOffset1608);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
