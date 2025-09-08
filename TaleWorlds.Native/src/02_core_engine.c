@@ -100252,10 +100252,10 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
     ProcessSystemBuffer(&matrixTransformResult,0);
     systemStatusCode = ValidateSystemData(&matrixElementC,computedResult,0);
     if ((char)systemStatusCode != '\0') {
-      SystemDataTablePointer = (unsigned long long)ProcessedCharacter << 0x20;
-      isSystemContextNull = ProcessSystemParameters(&MatrixElementC,ComputedResult,&AdditionalParameter1,LocalStackBuffer_d8,SystemDataTablePointer);
-      MemoryAllocationIndex = (uint32_t)((unsigned long long)SystemDataTablePointer >> 0x20);
-      if ((LocalStackBuffer_d8[0] == '\0') || (AdditionalParameter1 == '\0')) {
+      SystemDataTablePointer = (unsigned long long)processedCharacter << 0x20;
+      isSystemContextNull = ProcessSystemParameters(&matrixElementC,computedResult,&AdditionalParameter1,localStackBuffer_d8,SystemDataTablePointer);
+      memoryAllocationIndex = (uint32_t)((unsigned long long)SystemDataTablePointer >> 0x20);
+      if ((localStackBuffer_d8[0] == '\0') || (AdditionalParameter1 == '\0')) {
         SystemDataTablePointer = (unsigned long long)(AdditionalParameter1 != '\0') + 0x15;
       }
       else {

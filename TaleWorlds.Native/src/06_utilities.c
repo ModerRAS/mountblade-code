@@ -100047,7 +100047,18 @@ void ProcessExceptionContextD1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C1
+ * 
+ * 该函数负责处理异常上下文，执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec10
+ */
+void ExecuteExceptionHandlerCallbackC1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x90) != (int64_t *)0x0) {
@@ -100058,7 +100069,18 @@ void Unwind_18090ec10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数C2
+ * 
+ * 该函数负责重置异常处理器，包括临时异常处理器的设置和清理
+ * 主要用于异常处理系统的重置和初始化
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec20
+ */
+void ResetExceptionHandlerC2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
@@ -100073,11 +100095,22 @@ void Unwind_18090ec20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C3
+ * 
+ * 该函数负责处理异常上下文，在指定偏移处执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec30
+ */
+void ExecuteExceptionHandlerCallbackC3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 200) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 200) + 0x38))();
+  if (*(int64_t **)(dataBuffer + ValidationStatusPointerOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ValidationStatusPointerOffset) + 0x38))();
   }
   return;
 }
