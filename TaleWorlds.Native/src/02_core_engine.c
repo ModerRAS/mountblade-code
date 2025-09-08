@@ -202873,7 +202873,7 @@ void ConvertCharacterEncodingWithValidation(uint64_t *CharacterCode,uint64_t Sys
 
 
 
-6cff0(long long *CharacterCode,uint32_t *CharacterCodeSizevoid FUN_18016cff0(long long *CharacterCode,uint32_t *CharacterCodeSize
+void ProcessCharacterCodeSizeAndMemoryAllocation(long long *CharacterCode,uint32_t *CharacterCodeSize)
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -202965,7 +202965,7 @@ LAB_18016d07b:
 
 
 
-6d200(long long CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointervoid FUN_18016d200(long long CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer
+void ProcessCharacterDataAndSystemBuffer(long long CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer)
 {
   byte StringComparisonByte;
   uint32_t MemoryAllocationIndex;
@@ -203048,7 +203048,7 @@ LAB_18016d07b:
 
 
 
-6d400(long long *CharacterCode,uint64_t *CharacterCodeSize,long long Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18016d400(long long *CharacterCode,uint64_t *CharacterCodeSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessCharacterCodeAndMemoryManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -203147,7 +203147,7 @@ LAB_18016d59c:
 
 
 
-6d690(long long CharacterCode,long long SystemBufferSizevoid FUN_18016d690(long long CharacterCode,long long SystemBufferSize
+void ProcessCharacterBufferAndMemoryValidation(long long CharacterCode,long long SystemBufferSize)
 {
   byte StringComparisonByte;
   int StringComparisonResult;
@@ -203270,7 +203270,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx8(uint64_t *CharacterCode,uint64_t SystemBu
 
 
 
-6da50(uint64_t *CharacterCodevoid FUN_18016da50(uint64_t *CharacterCode
+void InitializeCharacterCodeAndSystemData(uint64_t *CharacterCode)
 {
   uint32_t *CharacterStatusBuffer;
   uint8_t SystemOperationBuffer [32];
