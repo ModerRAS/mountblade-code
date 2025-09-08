@@ -21248,9 +21248,9 @@ void* * InitializeSystemMemoryAllocatorPointer(void* *memoryAllocatorPointer)
  * 该函数处理需要三个参数的系统数据操作，包括内存分配、
  * 数据处理和缓冲区管理。
  * 
- * @param param1 第一个参数
- * @param param2 第二个参数
- * @param param3 第三个参数
+ * @param sourceStringPointer 源字符串指针
+ * @param targetStringPointer 目标字符串指针
+ * @param searchStringLength 搜索字符串长度
  */
 void ProcessSystemThreeParameterData(long long sourceStringPointer, long long targetStringPointer, long long searchStringLength)
 

@@ -77124,7 +77124,7 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
   unsigned long long MemoryAllocationLoopCounter;
   long long EncodingConversionResult;
   long long SystemStringIndex;
-  float fStackX_10;
+  float StackHorizontalOffset;
   float StackVerticalOffset;
   
   MemoryBlockIndex = SystemDataTabled0;
@@ -188359,19 +188359,19 @@ uint64_t *InitializeSystemContext(uint64_t *CharacterCode,uint64_t SystemBufferS
     InitializeSystemEvent(&SystemEventTemplate);
     CharacterCode[0x4a] = 0;
   }
-  FUN_1806faf00(CharacterCode[0x4a],0xfa2,*(uint *)((long long)CharacterCode + 0x214) >> 2,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfa8,0xfffffc18,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfa6,1,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfb4,0,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfaa,10,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfac,0,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfb6,0xfffffc18,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfb0,0,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfae,0,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfa2,*(uint *)((long long)CharacterCode + 0x214) >> 2,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfa8,0xfffffc18,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfa6,1,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfb4,0,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfaa,10,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfac,0,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfb6,0xfffffc18,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfb0,0,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfae,0,&TemporaryBuffer);
   *(uint32_t *)(CharacterCode + 0x4b) = 0;
-  FUN_1806faf00(CharacterCode[0x4a],0xfbb,CharacterCode + 0x4b,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfc4,0x10,&TemporaryBuffer);
-  FUN_1806faf00(CharacterCode[0x4a],0xfc8,5000,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfbb,CharacterCode + 0x4b,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfc4,0x10,&TemporaryBuffer);
+  ConfigureSystemRenderingParameters(CharacterCode[0x4a],0xfc8,5000,&TemporaryBuffer);
   *(uint16_t *)((long long)CharacterCode + 0x161) = 0;
   *(uint8_t *)(CharacterCode + 0x2c) = 0;
   *(uint8_t *)(CharacterCode + 0x42) = 1;
@@ -188391,14 +188391,14 @@ uint64_t *InitializeSystemContext(uint64_t *CharacterCode,uint64_t SystemBufferS
   *(uint32_t *)((long long)CharacterCode + 0x1cc) = 0;
   *(uint32_t *)(CharacterCode + 0x3a) = 0;
   *(uint32_t *)((long long)CharacterCode + 0x1d4) = 0x3f800000;
-  FUN_180157050(CharacterCode);
+  ProcessCharacterDataFinalization(CharacterCode);
   BufferAllocationStatus = (long long *)MemoryAllocate(MemoryPoolManager,0x60,8,3);
   *BufferAllocationStatus = (long long)&DataNodeTemplateA;
   *BufferAllocationStatus = (long long)&DataNodeTemplateB;
   *(uint32_t *)(BufferAllocationStatus + 1) = 0;
   *BufferAllocationStatus = (long long)&SystemCurrentCharacterTertiary;
   pPerformanceCounterValue = BufferAllocationStatus;
-  FUN_18015c2b0(BufferAllocationStatus + 2);
+  ManageSystemBufferAllocation(BufferAllocationStatus + 2);
   *BufferAllocationStatus = (long long)&SystemCurrentCharacterQuaternary;
   *(uint32_t *)(BufferAllocationStatus + 10) = 0xffffffff;
   BufferAllocationStatus[0xb] = 0;
@@ -188458,7 +188458,7 @@ void ProcessSystemCharacterStatusReset(long long CharacterCode)
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
-  FUN_18015b450();
+  ExecuteSystemResourceRelease();
   if ((1 < *(unsigned long long *)(CharacterCode + 0x10)) &&
      (PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 8), PrimaryProcessingStatusFlag != NULL)) {
     MemoryAddressMaskPointer = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
@@ -188548,7 +188548,7 @@ void ProcessSystemCharacterStatusConfiguration(long long CharacterCode)
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
-  FUN_18015b450();
+  ExecuteSystemResourceRelease();
   if ((1 < *(unsigned long long *)(CharacterCode + 0x10)) &&
      (PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 8), PrimaryProcessingStatusFlag != NULL)) {
     MemoryAddressMaskPointer = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
@@ -191101,7 +191101,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
-  FUN_18015b450();
+  ExecuteSystemResourceRelease();
   if ((1 < *(unsigned long long *)(CharacterCode + 0x10)) &&
      (PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 8), PrimaryProcessingStatusFlag != NULL)) {
     MemoryAddressMaskPointer = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
