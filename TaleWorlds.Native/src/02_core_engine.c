@@ -236959,7 +236959,21 @@ uint32_t ProcessCharacterCodeDataConversionAndSystemStatusUpdate(long long Chara
  * 
  * @note 原始函数名: FUN_18019c560
  */
-uint64_t FUN_18019c560(uint64_t CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符代码转换扩展操作
+ * 
+ * 该函数负责处理字符代码的扩展转换操作，包括：
+ * - 初始化数据处理器
+ * - 根据缓冲区大小决定是否释放内存
+ * - 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param SystemBufferSize UTF-8缓冲区大小，指定输入数据的长度
+ * @param Utf8SourcePointer UTF-8源指针，指向输入数据的起始位置
+ * @param Utf16EndPointer UTF-16结束指针，指向输出数据的结束位置
+ * @return uint64_t 返回处理后的字符代码
+ */
+uint64_t ProcessCharacterCodeConversionEx(uint64_t CharacterCode, unsigned long long SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
