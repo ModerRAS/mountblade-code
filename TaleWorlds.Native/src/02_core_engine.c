@@ -188798,7 +188798,7 @@ LAB_180156d7b:
 
 
 
-56e40(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointervoid FUN_180156e40(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer
+void ProcessSystemDataFinalization(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer)
 {
   byte *CurrentBytePointer;
   uint MemoryAllocationIndex;
@@ -188901,7 +188901,7 @@ LAB_180156f96:
 
 
 
-57050(long long CharacterCodevoid FUN_180157050(long long CharacterCode
+void ProcessCharacterDataFinalization(long long CharacterCode)
 {
   int LockResult;
   
