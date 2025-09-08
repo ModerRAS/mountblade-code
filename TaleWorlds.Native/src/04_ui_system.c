@@ -82203,7 +82203,7 @@ void ProcessUIDataBufferBatch(UIHandle uiContext,longlong dataSource,longlong ta
     iterationPointer = (UIDword *)(targetBufferCopy + (longlong)processedSize * 4);
     loopCounter = (ulonglong)(uint)(resultPointer - processedSize);
     do {
-      maxProcessingCount = FUN_1807070a0(uiContext,dataSource,bufferSize);
+      maxProcessingCount = CalculateUIRenderScale(uiContext,dataSource,bufferSize);
       dataSource = dataSource + 4;
       *iterationPointer = maxProcessingCount;
       iterationPointer = iterationPointer + 1;
@@ -82271,7 +82271,7 @@ void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBu
     loopCounter = (ulonglong)(unmodifiedESI + iterationCount * -4);
     maxProcessingCount = StackData1;
     do {
-      maxProcessingCount = FUN_1807070a0(maxProcessingCount,ContextHandleData,EventHandleD);
+      maxProcessingCount = CalculateUIRenderScale(maxProcessingCount,ContextHandleData,EventHandleD);
       ContextHandleData = ContextHandleData + 4;
       *ptrLocal3 = maxProcessingCount;
       ptrLocal3 = ptrLocal3 + 1;
