@@ -373531,8 +373531,11 @@ UIHandle FUN_18089062a(char uiContext)
 
 
 
- void FUN_18089064b(void)
-void FUN_18089064b(void)
+ /**
+ * @brief 空操作函数
+ * @note 用于UI系统的空操作占位符
+ */
+void UINoOperation(void)
 
 {
   return;
@@ -373587,19 +373590,25 @@ UIDword FUN_180890673(void)
 
 
 
- void FUN_18089069c(void)
-void FUN_18089069c(void)
+ /**
+ * @brief UI系统异常终止函数
+ * @note 此函数不返回，直接调用异常处理程序
+ */
+void UITerminateSystem(void)
 
 {
-                     WARNING: Subroutine does not return
+  // 调用系统异常终止处理程序，此函数不返回
   FUN_180862e00();
 }
 
 
 
 
- void FUN_1808906f0(void)
-void FUN_1808906f0(void)
+ /**
+ * @brief UI系统空操作函数2
+ * @note 用于UI系统的另一个空操作占位符
+ */
+void UINoOperation2(void)
 
 {
   return;
