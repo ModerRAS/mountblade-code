@@ -14049,8 +14049,8 @@ int RegisterSystemNetworkModule(void);
 
 // 系统栈变量
 #define SystemStackProcessingBuffer SystemStackVariable_e8
-#define SystemStackProcessingBufferA aSystemStackVariable_c8
-#define SystemStackProcessingBufferB aSystemStackVariable_b8
+#define SystemStackProcessingBufferA SystemStackVariable_c8
+#define SystemStackProcessingBufferB SystemStackVariable_b8
 #define SystemStackVariableA SystemStackVariable_378
 #define SystemStackVariableB SystemStackVariable_368
 #define SystemStackVariableC SystemStackVariable_2e0

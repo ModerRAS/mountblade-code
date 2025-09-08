@@ -107,6 +107,36 @@ typedef enum {
  // UI系统函数宏定义 - 处理UI事件
 #define ProcessUIEvent FUN_1807069e0
 
+ // UI系统函数宏定义 - 处理UI上下文事件分发
+#define ProcessUIContextEventDispatch FUN_180705530
+
+ // UI系统函数宏定义 - 获取UI组件状态值
+#define GetUIComponentStatusValue FUN_18069ff30
+
+ // UI系统函数宏定义 - 处理UI字符编码
+#define ProcessUICharacterEncoding FUN_1806a03a0
+
+ // UI系统函数宏定义 - 处理UI事件数据
+#define ProcessUIEventData FUN_18069ef30
+
+ // UI系统函数宏定义 - 初始化UI数据
+#define ProcessUIDataInitialization FUN_1806a03a0
+
+ // UI系统函数宏定义 - 解码UI字符数据
+#define DecodeUICharacterData FUN_1806a03a0
+
+ // UI系统函数宏定义 - 计算UI渲染数据加权累加和
+#define CalculateUIRenderDataWeightedSum FUN_18070737d
+
+ // UI系统函数宏定义 - 处理UI渲染数据变换
+#define ProcessUIRenderDataTransform FUN_1807074b0
+
+ // UI系统函数宏定义 - 处理UI系统内存操作
+#define ProcessUISystemMemoryOperation FUN_1808fd200
+
+ // UI系统函数宏定义 - 处理UI事件
+#define ProcessUIEvent FUN_1807069e0
+
 // UI系统函数宏定义 - 处理UI上下文事件分发
 #define ProcessUIContextEventDispatch FUN_180705530
 
@@ -68458,7 +68488,7 @@ LAB_18069f21f:
       if (localInt6 == 0) goto LAB_18069f21f;
       sVar4 = GetUIComponentStatus(uiContext,param_7);
       sVar4 = sVar4 * 2 + (short)param_6;
-      sVar5 = FUN_18069ff30(uiContext,param_7 + 0x13);
+      sVar5 = GetUIComponentStatusValue(uiContext,param_7 + 0x13);
       uStackX_8 = CONCAT22(sVar5 * 2 + param_6._2_2_,sVar4);
     }
     localInt6 = (int)(short)((uint)uStackX_8 >> 0x10);
@@ -69082,7 +69112,7 @@ void ProcessUIResourceSynchronization(longlong uiContext,longlong dataSource,cha
     targetBuffer[5] = '\0';
     targetBuffer[6] = '\0';
     targetBuffer[7] = '\0';
-    localChar6 = FUN_1806a03a0(allocatedMemory,uiContext + 0x308b);
+    localChar6 = ProcessUICharacterEncoding(allocatedMemory,uiContext + 0x308b);
     *targetBuffer = localChar6;
     if (localChar6 == '\x04') {
       targetBuffer[3] = '\x01';
@@ -69253,7 +69283,7 @@ LAB_18069fcfe:
       EventDataIndex = stackUInt58;
       allocatedMemory2 = stackLong70;
       if (localInt8 == 0) {
-        sVar7 = FUN_18069ff30(allocatedMemory,stackUInt58);
+        sVar7 = GetUIComponentStatusValue(allocatedMemory,stackUInt58);
         *(short *)(targetBuffer + 4) = sVar7 * 2;
         sVar7 = FUN_18069ff30(allocatedMemory,EventDataIndex + 0x13);
         *(short *)(targetBuffer + 6) = sVar7 * 2;

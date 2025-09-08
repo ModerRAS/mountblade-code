@@ -1005,6 +1005,55 @@
 #define ProcessCharacterEncodingAndDataConversion FUN_180160af0
 
 /**
+ * @brief 处理系统字符编码转换
+ * 
+ * 该函数负责处理系统字符编码转换，包括：
+ * - 转换字符编码格式
+ * - 处理字符数据大小
+ * - 管理编码转换状态
+ * 
+ * @param CharacterCode 字符代码
+ * @param DataSize 数据大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180628320
+ */
+#define ProcessSystemCharacterEncodingConversion FUN_180628320
+
+/**
+ * @brief 处理系统核心引擎内存上下文
+ * 
+ * 该函数负责处理系统核心引擎的内存上下文，包括：
+ * - 管理内存分配和释放
+ * - 处理引擎指针缓冲区
+ * - 管理上下文数据指针
+ * 
+ * @param MemoryContext 内存上下文
+ * @param EnginePointer 引擎指针
+ * @param ContextPointer 上下文指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1800af2c0
+ */
+#define ProcessSystemCoreEngineMemoryContext FUN_1800af2c0
+
+/**
+ * @brief 处理向量寄存器数据
+ * 
+ * 该函数负责处理向量寄存器数据，包括：
+ * - 管理向量寄存器值
+ * - 处理数据大小
+ * - 执行向量运算
+ * 
+ * @param VectorRegister 向量寄存器值
+ * @param DataSize 数据大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180103970
+ */
+#define ProcessVectorRegisterData FUN_180103970
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -194188,7 +194237,7 @@ LAB_1801604e5:
   StackUintValue60 = CharacterLimit[5];
   MemoryAllocationIndex = CharacterLimit[6];
   SystemStackInteger224 = LoopCounter;
-  FUN_180160af0(ProcessingResult,&InputDataLengthStackBuffer,Utf8SourcePointer,&stack0x000000e0,(long long)CharacterTablePointer);
+  ProcessCharacterEncodingAndDataConversion(ProcessingResult,&InputDataLengthStackBuffer,Utf8SourcePointer,&stack0x000000e0,(long long)CharacterTablePointer);
   *(void *)(StackProcessingParameter0 + 4) = SystemUnsignedValue38;
   *(void *)(StackProcessingParameter0 + 0xc) = StackProcessingVariable40;
   *(void *)(StackProcessingParameter0 + 0x14) = StackProcessingVariable48;
