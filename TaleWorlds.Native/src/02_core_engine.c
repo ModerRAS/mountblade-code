@@ -23561,7 +23561,7 @@ InitializeResourceHandle(uint64_t *ResourceHandle,unsigned long long Flags,uint6
  * @param Flags 清理标志位
  * @return 返回清理后的结构指针
  */
-uint64_t * CleanupCompletionPort(uint64_t *CompletionPort,uint Flags
+uint64_t * CleanupCompletionPort(uint64_t *CompletionPort, uint Flags)
 {
   *CompletionPort = &CleanupContextStorage;
   PostQueuedCompletionStatus(CompletionPort[0x42686],0,0xffffffffffffffff,0,0xfffffffffffffffe);
@@ -24052,7 +24052,18 @@ void CoreEngineResetSystemCurrentCharacter(uint8_t *SystemCurrentCharacter)
 
 
 
-uint64_t * CoreEngineInitializeQueueHeader(uint64_t *QueueHeader
+/**
+ * @brief 初始化核心引擎队列头
+ * 
+ * 该函数负责初始化核心引擎的队列头结构，包括：
+ * - 设置队列头指针
+ * - 初始化队列状态
+ * - 配置队列参数
+ * 
+ * @param QueueHeader 队列头结构指针
+ * @return 返回初始化后的队列头指针
+ */
+uint64_t * CoreEngineInitializeQueueHeader(uint64_t *QueueHeader)
 {
   *QueueHeader = &ThreadLocalStorageTemplate;
   QueueHeader[1] = 0;
@@ -212688,7 +212699,7 @@ uint32_t ProcessSystemEventTemplate(void)
       EventTemplatePointer = (void *)AllocateCharacterCodeTableAndEventTemplate(CharacterStatusBuffer,&SystemChecksumStackBuffer,CharacterStatusBuffer,EventTemplatePointer,&SystemStackBuffer);
       EventTemplatePointer = (void *)*EventTemplatePointer;
     }
-    FUN_1800863a0(EventTemplatePointer + 5,&DataStackBuffer);
+    ProcessSystemDataTablePointerOperation(EventTemplatePointer + 5,&DataStackBuffer);
   }
   (**(code **)(*SystemContextData + 0x28))(SystemContextData,&SystemSecondaryCharacterStatusBuffer,7,&SystemConfigurationData);
   return EventLoopCounter;

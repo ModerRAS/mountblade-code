@@ -81999,23 +81999,23 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
     transformCoeff1 = sourceValue0;
     do {
       sourceValue0 = transformCoeff10;
-      localFloat8 = transformCoeff1;
-      resultFloat = localFloat9;
-      localFloat9 = baseValue;
-      unmodifiedXMM10_Da = *(float *)((longlong)ptransformCoeff4 + (register10 - RegisterPointer));
-      *ptransformCoeff4 = baseValue0 * unmodifiedXMM11_Da + unmodifiedXMM10_Da + localFloat8 * unmodifiedXMM12_Da +
-                localFloat9 * unmodifiedXMM13_Da + resultFloat * unmodifiedXMM14_Da + localFloat6 * unmodifiedXMM15_Da;
-      ptransformCoeff4 = ptransformCoeff4 + 1;
-      ProcessingStatus = ProcessingStatus - 1;
-      localFloat6 = resultFloat;
-      baseValue = localFloat8;
-      transformCoeff1 = baseValue0;
-    } while (ProcessingStatus != 0);
+      tempFloat8 = transformCoeff1;
+      resultValue = tempFloat9;
+      tempFloat9 = baseValue;
+      transformCoeff10 = *(float *)((longlong)transformCoeffPointer + (tempRegister10 - basePointer));
+      *transformCoeffPointer = sourceValue0 * transformCoeff11 + transformCoeff10 + tempFloat8 * transformCoeff12 +
+                tempFloat9 * transformCoeff13 + resultValue * transformCoeff14 + tempFloat6 * transformCoeff15;
+      transformCoeffPointer = transformCoeffPointer + 1;
+      processingCounter = processingCounter - 1;
+      tempFloat6 = resultValue;
+      baseValue = tempFloat8;
+      transformCoeff1 = sourceValue0;
+    } while (processingCounter != 0);
   }
-  *dataSource = unmodifiedXMM10_Da;
-  dataSource[1] = baseValue0;
-  dataSource[2] = localFloat8;
-  dataSource[3] = localFloat9;
+  *dataSource = transformCoeff10;
+  dataSource[1] = sourceValue0;
+  dataSource[2] = tempFloat8;
+  dataSource[3] = tempFloat9;
   dataSource[4] = resultFloat;
   return;
 }

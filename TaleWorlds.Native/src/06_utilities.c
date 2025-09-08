@@ -5246,13 +5246,13 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：重置系统配置B4并返回重置结果
 #define ResetSystemConfigurationB4 FUN_180941880
 
-// 原始函数名：FUN_1809418a0 - 全局指针设置函数B5
-// 功能：设置全局数据指针B5到指定地址
-#define SetGlobalDataPointerB5 FUN_1809418a0
+// 原始函数名：FUN_1809418a0 - 系统状态监控函数B5
+// 功能：监控系统状态并返回监控结果
+#define MonitorSystemStatusB5 FUN_1809418a0
 
-// 原始函数名：FUN_1809418c0 - 全局指针设置函数B6
-// 功能：设置全局数据指针B6到指定地址
-#define SetGlobalDataPointerB6 FUN_1809418c0
+// 原始函数名：FUN_1809418c0 - 系统性能分析函数B6
+// 功能：分析系统性能并返回分析结果
+#define AnalyzeSystemPerformanceB6 FUN_1809418c0
 
 // 原始函数名：FUN_1809418e0 - 全局指针设置函数B7
 // 功能：设置全局数据指针B7到指定地址
