@@ -98065,7 +98065,25 @@ void Unwind_ProcessExceptionContextD290(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_18090d2a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存资源引用计数和清理
+ * 
+ * 该函数负责管理内存资源的引用计数，并在引用计数归零时进行清理。
+ * 主要功能包括：
+ * - 获取内存资源指针
+ * - 计算内存区域基址和块偏移量
+ * - 检查内存区域是否属于异常列表
+ * - 更新资源引用计数
+ * - 当引用计数归零时调用异常处理
+ * - 处理其他内存管理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d2a0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源引用计数
+ */
+void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100119,7 +100137,22 @@ void CleanupExceptionHandlerContextAndResources(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_18090d680(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文内存操作D680
+ * 
+ * 该函数负责在异常上下文的指定偏移量处执行内存操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在EE8偏移量处执行内存操作，大小为0x18字节
+ * - 使用系统清理标志作为操作参数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d680
+ * @note 这是一个异常展开（unwind）处理函数，用于执行特定的内存操作
+ */
+void ExecuteExceptionContextMemoryOperationD680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xee8,0x18,2,ProcessMemoryOperationA5,SystemCleanupFlagAlternative);
@@ -100128,7 +100161,22 @@ void Unwind_18090d680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d6a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文资源清理操作D6A0
+ * 
+ * 该函数负责在异常上下文的指定偏移量处执行资源清理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在F20偏移量处执行内存操作，大小为0x20字节
+ * - 使用资源清理处理器处理内存资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d6a0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行资源清理操作
+ */
+void ExecuteExceptionContextResourceCleanupD6A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xf20,0x20,0x1d,CleanupResourceHandler);

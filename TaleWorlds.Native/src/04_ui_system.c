@@ -99873,10 +99873,10 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           EventTypeCode = (targetBuffer < result2) - 1;
           sVar2 = EventTypeCode - (short)uVar9;
           targetBuffer = (targetBuffer - processingCounter) -
-                    *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+                    *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8));
           goto LAB_180727edb;
         }
-        targetBuffer = targetBuffer - *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + EventDataIndex * 8));
+        targetBuffer = targetBuffer - *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8));
         localInt8 = 0;
       }
       else {
@@ -99892,7 +99892,7 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           do {
             uVar9 = (int)result0 - 1;
             result0 = (ulonglong)uVar9;
-            uVar9 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+            uVar9 = *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8));
           } while (processingCounter < uVar9);
         }
         else {
@@ -99988,10 +99988,10 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           EventTypeCode = (targetBuffer < result2) - 1;
           sVar2 = EventTypeCode - (short)uVar9;
           targetBuffer = (targetBuffer - processingCounter) -
-                    *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+                    *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8));
           goto LAB_180727edb;
         }
-        targetBuffer = targetBuffer - *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + EventDataIndex * 8));
+        targetBuffer = targetBuffer - *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8));
         localInt8 = 0;
       }
       else {
@@ -100007,7 +100007,7 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
           do {
             uVar9 = (int)result0 - 1;
             result0 = (ulonglong)uVar9;
-            uVar9 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8));
+            uVar9 = *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8));
           } while (processingCounter < uVar9);
         }
         else {
@@ -100325,15 +100325,15 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
   if (targetBuffer < dataSource) {
     localInt5 = dataSource;
   }
-  maxProcessingCount = FUN_18070f540(bufferSize,*(int *)(*(longlong *)(&UNK_180956d30 + (longlong)tempInt4 * 8) +
+  maxProcessingCount = FUN_18070f540(bufferSize,*(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)tempInt4 * 8) +
                                         (longlong)localInt5 * 4) +
-                                *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)processingResult1 * 8) +
+                                *(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)processingResult1 * 8) +
                                         (longlong)processingResult4 * 4));
   counterResult = (ulonglong)dataSource;
   floatValue2 = 0.0;
   if (2 < dataSource) {
     characterDataOffset = counterResult * 4;
-    allocatedMemoryPointer = (longlong *)(&UNK_180956d30 + counterResult * 8);
+    allocatedMemoryPointer = (longlong *)(&UIGlobalDataRegistry + counterResult * 8);
     do {
       contextOffset = (longlong)targetBuffer;
       processingResult4 = (int)counterResult;
