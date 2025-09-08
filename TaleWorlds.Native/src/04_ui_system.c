@@ -10054,46 +10054,46 @@ LAB_180656e11:
       }
       else {
         do {
-          if (stackUInta8 == 0) {
+          if (StackPointerA8 == 0) {
             isCharacterMatchFound = false;
-            characterMatchPointer = *(byte **)(pisCharacterMatch8 + 8);
+            characterMatchPointer = *(byte **)(CharacterComparisonResult + 8);
           }
           else {
-            if (*(int *)(pisCharacterMatch8 + 0x30) == 0) {
+            if (*(int *)(CharacterComparisonResult + 0x30) == 0) {
               isCharacterMatchFound = true;
             }
             else {
-              pisCharacterMatch1 = pbStack_b0;
+              CharacterComparisonPointer = StackPointerB0;
               do {
-                iterationCount2 = (uint)pisCharacterMatch1[*(longlong *)(pisCharacterMatch8 + 0x28) - (longlong)pbStack_b0];
-                ProcessingResult2 = *pisCharacterMatch1 - iterationCount2;
-                if (*pisCharacterMatch1 != iterationCount2) break;
-                pisCharacterMatch1 = pisCharacterMatch1 + 1;
+                iterationCount2 = (uint)CharacterComparisonPointer[*(longlong *)(CharacterComparisonResult + 0x28) - (longlong)StackPointerB0];
+                ProcessingResult2 = *CharacterComparisonPointer - iterationCount2;
+                if (*CharacterComparisonPointer != iterationCount2) break;
+                CharacterComparisonPointer = CharacterComparisonPointer + 1;
               } while (iterationCount2 != 0);
               isCharacterMatchFound = 0 < ProcessingResult2;
               if (ProcessingResult2 < 1) {
-                pisCharacterMatch1 = *(byte **)(pisCharacterMatch8 + 8);
+                CharacterComparisonPointer = *(byte **)(CharacterComparisonResult + 8);
                 goto LAB_180656d07;
               }
             }
-            pisCharacterMatch1 = *(byte **)pisCharacterMatch8;
+            CharacterComparisonPointer = *(byte **)CharacterComparisonResult;
           }
 LAB_180656d07:
           if (ShouldSkipResourceValidation) {
             ResourceDataPointer = ResourceIterator;
           }
           ResourceIterator = ResourceDataPointer;
-          pisCharacterMatch8 = pisCharacterMatch1;
-        } while (pisCharacterMatch1 != (byte *)0x0);
-        pisCharacterMatch8 = (byte *)0x0;
+          CharacterComparisonResult = CharacterComparisonPointer;
+        } while (CharacterComparisonPointer != (byte *)0x0);
+        CharacterComparisonResult = (byte *)0x0;
         if (ResourceIterator == &UIDefaultResourceBuffer) goto LAB_180656d5b;
         if (*(int *)(ResourceIterator + 0x30) != 0) {
-          if (stackUInta8 != 0) {
+          if (StackPointerA8 != 0) {
             ResourceDataPointer = *(byte **)(ResourceIterator + 0x28);
-            pisCharacterMatch8 = pbStack_b0 + -(longlong)ResourceDataPointer;
+            CharacterComparisonResult = StackPointerB0 + -(longlong)ResourceDataPointer;
             do {
               isCharacterMatch = *ResourceDataPointer;
-              iterationCount2 = (uint)ResourceDataPointer[(longlong)pisCharacterMatch8];
+              iterationCount2 = (uint)ResourceDataPointer[(longlong)CharacterComparisonResult];
               if (isCharacterMatch != iterationCount2) break;
               ResourceDataPointer = ResourceDataPointer + 1;
             } while (iterationCount2 != 0);
