@@ -88205,68 +88205,91 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
 
 
  void FUN_180719ab8(uint uiContext,longlong dataSource,int targetBuffer,longlong bufferSize)
-void FUN_180719ab8(uint uiContext,longlong dataSource,int targetBuffer,longlong bufferSize)
+// 原始函数名：FUN_180719ab8 - UI变换矩阵处理器
+#define ProcessUITransformMatrix FUN_180719ab8
+
+/**
+ * @brief 处理UI变换矩阵
+ * 
+ * 该函数负责处理UI元素的变换矩阵计算，主要功能包括：
+ * - 计算UI元素的旋转变换（45度角的旋转矩阵）
+ * - 处理4x4变换矩阵的乘法运算
+ * - 应用旋转变换系数到UI元素
+ * - 管理变换矩阵的内存和数据流
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含输入的变换数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180719ab8
+ * @note 此函数使用0.70710677（1/√2）作为45度旋转的系数
+ * @note 负责UI元素的旋转变换和矩阵运算
+ */
+void ProcessUITransformMatrix(uint uiContext,longlong dataSource,int targetBuffer,longlong bufferSize)
 
 {
-  float *pbaseValue;
-  float transformCoeff1;
-  float transformCoeff2;
-  float transformCoeff3;
-  float transformCoeff4;
-  float localFloat6;
-  float resultFloat;
-  float localFloat8;
-  float localFloat9;
-  float baseValue0;
-  float *baseScaleFactor;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  longlong register10;
-  longlong allocatedMemory4;
-  longlong RegisterPointer;
-  float baseValue5;
-  float baseValue6;
-  float baseValue7;
+  float *MatrixElementPointer;
+  float SourceTransformX;
+  float SourceTransformY;
+  float SourceTransformZ;
+  float SourceTransformW;
+  float SourceTransformLast;
+  float ResultTransformX;
+  float ResultTransformY;
+  float ResultTransformZ;
+  float ResultTransformW;
+  float *TransformMatrix;
+  longlong DataOffset;
+  longlong MemoryBlock3;
+  longlong LoopCounter;
+  longlong MemoryBlock4;
+  longlong MatrixBasePointer;
+  float OriginalValueZ;
+  float OriginalValueW;
+  float OriginalValueLast;
   
   uiContext = uiContext & 0x80000007;
   if ((int)uiContext < 0) {
     uiContext = (uiContext - 1 | 0xfffffff8) + 1;
   }
-  allocatedMemory2 = bufferSize - RegisterPointer;
-  baseScaleFactor = (float *)(RegisterPointer + 0x10);
+  DataOffset = bufferSize - MatrixBasePointer;
+  TransformMatrix = (float *)(MatrixBasePointer + 0x10);
   do {
-    pbaseValue = (float *)(allocatedMemory2 + -0x10 + (longlong)baseScaleFactor);
-    transformCoeff1 = *pbaseValue;
-    baseValue7 = pbaseValue[1];
-    baseValue5 = pbaseValue[2];
-    baseValue6 = pbaseValue[3];
+    MatrixElementPointer = (float *)(DataOffset + -0x10 + (longlong)TransformMatrix);
+    SourceTransformX = *MatrixElementPointer;
+    OriginalValueLast = MatrixElementPointer[1];
+    OriginalValueZ = MatrixElementPointer[2];
+    OriginalValueW = MatrixElementPointer[3];
     targetBuffer = targetBuffer + 8;
     dataSource = dataSource + 8;
-    transformCoeff2 = baseScaleFactor[-4];
-    transformCoeff3 = baseScaleFactor[-3];
-    transformCoeff4 = baseScaleFactor[-2];
-    localFloat6 = baseScaleFactor[-1];
-    baseScaleFactor[-4] = transformCoeff2 * 0.70710677 - transformCoeff1 * 0.70710677;
-    baseScaleFactor[-3] = transformCoeff3 * 0.70710677 - baseValue7 * 0.70710677;
-    baseScaleFactor[-2] = transformCoeff4 * 0.70710677 - baseValue5 * 0.70710677;
-    baseScaleFactor[-1] = localFloat6 * 0.70710677 - baseValue6 * 0.70710677;
-    resultFloat = *baseScaleFactor;
-    localFloat8 = baseScaleFactor[1];
-    localFloat9 = baseScaleFactor[2];
-    baseValue0 = baseScaleFactor[3];
-    pbaseValue = (float *)(allocatedMemory2 + -0x10 + (longlong)baseScaleFactor);
-    *pbaseValue = transformCoeff2 * 0.70710677 + transformCoeff1 * 0.70710677;
-    pbaseValue[1] = transformCoeff3 * 0.70710677 + baseValue7 * 0.70710677;
-    pbaseValue[2] = transformCoeff4 * 0.70710677 + baseValue5 * 0.70710677;
-    pbaseValue[3] = localFloat6 * 0.70710677 + baseValue6 * 0.70710677;
-    pbaseValue = (float *)(allocatedMemory2 + (longlong)baseScaleFactor);
-    transformCoeff1 = *pbaseValue;
-    baseValue7 = pbaseValue[1];
-    baseValue5 = pbaseValue[2];
-    baseValue6 = pbaseValue[3];
-    pbaseValue = (float *)(allocatedMemory2 + (longlong)baseScaleFactor);
-    *pbaseValue = transformCoeff1 * 0.70710677 + resultFloat * 0.70710677;
-    pbaseValue[1] = baseValue7 * 0.70710677 + localFloat8 * 0.70710677;
+    SourceTransformY = TransformMatrix[-4];
+    SourceTransformZ = TransformMatrix[-3];
+    SourceTransformW = TransformMatrix[-2];
+    SourceTransformLast = TransformMatrix[-1];
+    TransformMatrix[-4] = SourceTransformY * 0.70710677 - SourceTransformX * 0.70710677;
+    TransformMatrix[-3] = SourceTransformZ * 0.70710677 - OriginalValueLast * 0.70710677;
+    TransformMatrix[-2] = SourceTransformW * 0.70710677 - OriginalValueZ * 0.70710677;
+    TransformMatrix[-1] = SourceTransformLast * 0.70710677 - OriginalValueW * 0.70710677;
+    ResultTransformX = *TransformMatrix;
+    ResultTransformY = TransformMatrix[1];
+    ResultTransformZ = TransformMatrix[2];
+    ResultTransformW = TransformMatrix[3];
+    MatrixElementPointer = (float *)(DataOffset + -0x10 + (longlong)TransformMatrix);
+    *MatrixElementPointer = SourceTransformY * 0.70710677 + SourceTransformX * 0.70710677;
+    MatrixElementPointer[1] = SourceTransformZ * 0.70710677 + OriginalValueLast * 0.70710677;
+    MatrixElementPointer[2] = SourceTransformW * 0.70710677 + OriginalValueZ * 0.70710677;
+    MatrixElementPointer[3] = SourceTransformLast * 0.70710677 + OriginalValueW * 0.70710677;
+    MatrixElementPointer = (float *)(DataOffset + (longlong)TransformMatrix);
+    SourceTransformX = *MatrixElementPointer;
+    OriginalValueLast = MatrixElementPointer[1];
+    OriginalValueZ = MatrixElementPointer[2];
+    OriginalValueW = MatrixElementPointer[3];
+    MatrixElementPointer = (float *)(DataOffset + (longlong)TransformMatrix);
+    *MatrixElementPointer = SourceTransformX * 0.70710677 + ResultTransformX * 0.70710677;
+    MatrixElementPointer[1] = OriginalValueLast * 0.70710677 + ResultTransformY * 0.70710677;
     pbaseValue[2] = baseValue5 * 0.70710677 + localFloat9 * 0.70710677;
     pbaseValue[3] = baseValue6 * 0.70710677 + baseValue0 * 0.70710677;
     *baseScaleFactor = resultFloat * 0.70710677 - transformCoeff1 * 0.70710677;
