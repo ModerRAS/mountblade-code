@@ -200054,7 +200054,7 @@ UIHandle InitializeUIResourceHandle(longlong uiContext)
   UIHandle operationResult;
   UIDword uiBufferData;
   UIDword allocationFlags;
-  UIDoword operationFlags;
+  UIDword operationFlags;
   UIByte initializationFlag;
   UIHandle resourceHandleA;
   UIHandle resourceHandleB;
