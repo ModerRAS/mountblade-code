@@ -10229,31 +10229,31 @@ LAB_1806588f2:
           EventTypeCodePointer = LocalPointer9;
           if (ContextHandleData != 0) goto LAB_1806588f2;
         }
-        if (ptrResult0 != ptrLocal3) {
+        if (ResultPointer0 != LocalPointer3) {
                      WARNING: Subroutine does not return
-          memmove(peventTypeCode,ptrResult0,(longlong)ptrLocal3 - (longlong)ptrResult0);
+          memmove(EventTypeCodePointer,ResultPointer0,(longlong)LocalPointer3 - (longlong)ResultPointer0);
         }
-        *peventTypeCode = *(UIHandle *)((longlong)ptrResult1 + EventDataIndex);
-        if (ptrResult0 != (UIHandle *)0x0) {
+        *EventTypeCodePointer = *(UIHandle *)((longlong)ResultPointer1 + EventDataIndex);
+        if (ResultPointer0 != (UIHandle *)0x0) {
                      WARNING: Subroutine does not return
-          DestroyUIComponent(ptrResult0);
+          DestroyUIComponent(ResultPointer0);
         }
-        ptrLocal8 = peventTypeCode + ContextHandleData;
-        pstackUInt60 = peventTypeCode;
-        pstackUInt50 = ptrLocal8;
-        pstackUInt58 = peventTypeCode;
+        LocalPointer8 = EventTypeCodePointer + ContextHandleData;
+        StackPointer60 = EventTypeCodePointer;
+        StackPointer50 = LocalPointer8;
+        StackPointer58 = EventTypeCodePointer;
       }
-      pstackUInt58 = pstackUInt58 + 1;
+      StackPointer58 = StackPointer58 + 1;
       lStackX_8 = lStackX_8 + -1;
-      ptrResult0 = peventTypeCode;
-      ptrResult1 = ptrResult1 + 2;
+      ResultPointer0 = EventTypeCodePointer;
+      ResultPointer1 = ResultPointer1 + 2;
     } while (lStackX_8 != 0);
   }
-  EventDataIndex = (longlong)pstackUInt58 - (longlong)peventTypeCode;
-  ProcessUIResourceCleanup(peventTypeCode,pstackUInt58);
-  ValidateUIComponentMemory(uiContext,&pstackUInt60,EventDataIndex >> 3 & 0xffffffff,1);
+  EventDataIndex = (longlong)StackPointer58 - (longlong)EventTypeCodePointer;
+  ProcessUIResourceCleanup(EventTypeCodePointer,StackPointer58);
+  ValidateUIComponentMemory(uiContext,&StackPointer60,EventDataIndex >> 3 & 0xffffffff,1);
   ProcessUILayoutCalculation(uiContext + 0x11,uiContext[1] - *uiContext >> 3);
-  ptrLocal8 = ptrLocal9;
+  LocalPointer8 = LocalPointer9;
   if (uiContext[1] - *uiContext >> 3 != 0) {
     do {
       bufferValidation = CONCAT44(*(UIDword *)((longlong)ptrLocal9 + *uiContext + 4),
