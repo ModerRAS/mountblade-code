@@ -25396,15 +25396,15 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   DataWord flagStackDataA;
   DataWord flagStackDataB;
   DataWord flagStackDataC;
-  DataBuffer resourceStackData2b4;
-  DataBuffer resourceStackData2ac;
-  DataWord resultStackData2a4;
-  DataWord resultStackData2a0;
-  DataWord resultStackData29c;
-  DataWord resultStackData298;
-  int64_t offsetStackData294;
+  DataBuffer resourceStackDataA;
+  DataBuffer resourceStackDataB;
+  DataWord resultStackDataA;
+  DataWord resultStackDataB;
+  DataWord resultStackDataC;
+  DataWord resultStackDataD;
+  int64_t offsetStackData;
   uint arrayIndexStackData;
-  ByteFlag flagStackData288;
+  ByteFlag flagStackData;
   ByteFlag dataTransferBufferA [512];
   uint64_t securityValidationStack38;
   
@@ -25488,9 +25488,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ValidationStatusPointerB = validationStatusPointer[1];
           ValidationStatusPointerC = validationStatusPointer[2];
           SecurityFlagData = validationStatusPointer[3];
-          offsetStackData294 = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
+          offsetStackData = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
           ExceptionHandlerData = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
-          exceptionHandlerContext1 = exceptionHandlerContext1 - offsetStackData294;
+          exceptionHandlerContext1 = exceptionHandlerContext1 - offsetStackData;
           if (exceptionHandlerContext1 == 0) {
             exceptionHandlerContext1 = (statusCounter & SystemCleanupFlag) - (uint64_t)ExceptionHandlerData;
           }
@@ -126004,9 +126004,17 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：监控系统性能，收集性能数据
 #define MonitorSystemPerformance Unwind_180909500
 
-// 原始函数名：Unwind_180909510 - 系统健康检查函数
-// 功能：检查系统健康状态，验证系统完整性
-#define CheckSystemHealth Unwind_180909510
+/**
+ * @brief 系统健康检查函数
+ * 
+ * 检查系统健康状态，验证系统完整性，确保系统各个组件正常运行
+ * 
+ * @param healthCheckParameters 健康检查参数
+ * @return 系统健康状态码，0表示健康，非0表示存在问题
+ * 
+ * @note 原始函数名：Unwind_180909510
+ */
+#define CheckSystemHealth CheckSystemHealthAndValidateIntegrity
 
 // 原始函数名：Unwind_180909520 - 系统状态更新函数
 // 功能：更新系统状态，同步系统信息
