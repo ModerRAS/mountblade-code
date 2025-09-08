@@ -77181,8 +77181,8 @@ LAB_18070f928:
     if (0x1680 < (int)(encodingOffset * encodingSize)) {
       return 0xfffffffc;
     }
-    IndexResult = RegisterPointerD - 2;
-    if ((bVar4 & 0x40) != 0) {
+    indexResult = registerValue - 2;
+    if ((encodingType & 0x40) != 0) {
       do {
         if ((int)IndexResult < 1) {
           return 0xfffffffc;
