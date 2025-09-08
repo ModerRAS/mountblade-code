@@ -196430,7 +196430,7 @@ uint64_t * ProcessCharacterEncodingAndStatusValidation(long long CharacterCode,u
         }
         FUN_1801624e0(CharacterCode,&StackTempPointer);
         CoreEngineFinalizeSystemEvent(&pCalculationFunctionAddress,Utf8SourcePointer);
-        FUN_180169c30(&EncodingBuffer);
+        ProcessSystemCalculationFunctionAddress(&EncodingBuffer);
         pCalculationFunctionAddress = (void *)&SystemNullTemplate;
         if (CoreEnginePointerBuffer78 != NULL) {
                     // WARNING: Subroutine does not return
@@ -196552,7 +196552,7 @@ LAB_18016195a:
         CoreEngineFreeSystemMemory(CharacterCodeTablePointer);
       }
       CoreEngineFinalizeSystemEvent(&StackTempPointer,Utf8SourcePointer);
-      FUN_180169c30(&SystemMemoryPointer,&StackTempPointer);
+      ProcessSystemCalculationFunctionAddress(&SystemMemoryPointer,&StackTempPointer);
       StackTempPointer = &SystemNullTemplate;
       if (pSystemOperationFlag98 != NULL) {
                     // WARNING: Subroutine does not return
@@ -199595,7 +199595,21 @@ long long FUN_180169350(long long *CharacterCode,long long SystemBufferSize
 
 
 
-long long * FUN_180169c30(long long *CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理系统计算函数地址
+ * 
+ * 该函数负责处理系统计算函数地址，包括：
+ * - 获取函数地址指针
+ * - 处理系统缓冲区大小
+ * - 管理计算函数的调用
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return long long* 返回计算结果指针
+ * 
+ * @note 原始函数名：FUN_180169c30
+ */
+long long * ProcessSystemCalculationFunctionAddress(long long *CharacterCode,long long SystemBufferSize
 {
   char CurrentCharacter;
   void *SystemContext;
