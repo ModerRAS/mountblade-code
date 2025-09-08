@@ -237,6 +237,25 @@
 #define NodeConfigurationFunctionOffset     0x1a  // 节点配置函数偏移量
 #define NodeConfigurationParameterOffset    0x14  // 节点配置参数偏移量
 #define NodeConfigurationErrorStringOffset  0x4   // 节点配置错误字符串偏移量
+#define NodeConfigurationStatusIndex        0x12  // 节点配置状态索引
+
+// 全局状态标志相关偏移量
+#define SystemGlobalCallbackOffset          0x98  // 系统全局回调偏移量
+#define SystemGlobalStatusOffset            0x2b0 // 系统全局状态偏移量
+#define SystemGlobalMemoryCounterOffset     0x224 // 系统全局内存计数器偏移量
+#define SystemGlobalInitializationFlagsOffset 0x180 // 系统全局初始化标志偏移量
+#define SystemGlobalResourceDataOffset      0x178 // 系统全局资源数据偏移量
+#define SystemGlobalStackFlagsOffset        0x18c // 系统全局栈标志偏移量
+
+// 数据缓冲区相关偏移量
+#define DataBufferLengthOffset             0x10  // 数据缓冲区长度偏移量
+#define DataBufferPointerOffset             0x10  // 数据缓冲区指针偏移量
+
+// 资源管理器相关偏移量
+#define ResourceManagerTableSizeOffset      0x10  // 资源管理器表大小偏移量
+#define ResourceManagerDataPointerOffset    0x10  // 资源管理器数据指针偏移量
+#define ResourceManagerMemoryPointerOffset  0x8   // 资源管理器内存指针偏移量
+#define ResourceManagerComparisonIndexOffset 0x68 // 资源管理器比较索引偏移量
 
 // 系统配置偏移量
 #define SystemConfigurationDataOffset       0x198 // 系统配置数据偏移量
@@ -19985,8 +20004,8 @@ void InitializeSystemInfoAndUserEnvironment(void)
   GameControllerInitializationStatus = 0;
   if (*(char *)(SystemContextManagerPointer + SystemContextManagerStatusOffset) == '\0') {
     InitializeGameController(&SystemGameControllerBuffer);
-    (**(code **)(**(long long **)(SystemGlobalStatusFlags + 0x2b0) + 0x98))
-              (*(long long **)(SystemGlobalStatusFlags + 0x2b0),&SystemGameControllerBuffer);
+    (**(code **)(**(long long **)(SystemGlobalStatusFlags + SystemGlobalStatusOffset) + SystemGlobalCallbackOffset))
+              (*(long long **)(SystemGlobalStatusFlags + SystemGlobalStatusOffset),&SystemGameControllerBuffer);
     StartInputSystem();
     SystemContextHandle = SystemContextManagerPointer;
     SystemMemoryAllocationSize = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
@@ -21030,18 +21049,18 @@ long long ProcessSystemNodeConfiguration(uint32_t* NodeConfigurationPointer, uin
   char CallbackResult;
   void* ErrorStringPointer;
   
-  if (*(long long *)(NodeConfigurationPointer + 0x18) != 0) {
-    CallbackResult = (**(code **)(NodeConfigurationPointer + 0x1a))(ParameterBuffer,NodeConfigurationPointer + 0x14);
+  if (*(long long *)(NodeConfigurationPointer + NodeConfigurationCallbackOffset) != 0) {
+    CallbackResult = (**(code **)(NodeConfigurationPointer + NodeConfigurationFunctionOffset))(ParameterBuffer,NodeConfigurationPointer + NodeConfigurationParameterOffset);
     if (CallbackResult == '\0') {
       if (SystemDebugModeEnabled == '\0') {
         ErrorStringPointer = &SystemErrorMessageTemplate;
-        if (*(void **)(NodeConfigurationPointer + 4) != (void *)0x0) {
-          ErrorStringPointer = *(void **)(NodeConfigurationPointer + 4);
+        if (*(void **)(NodeConfigurationPointer + NodeConfigurationErrorStringOffset) != (void *)0x0) {
+          ErrorStringPointer = *(void **)(NodeConfigurationPointer + NodeConfigurationErrorStringOffset);
         }
         LogSystemErrorMessage(&SystemErrorLogBuffer,ErrorStringPointer);
       }
-      *NodeConfigurationPointer = NodeConfigurationPointer[0x12];
-      return (unsigned long long)(uint3)((uint)NodeConfigurationPointer[0x12] >> 8) << 8;
+      *NodeConfigurationPointer = NodeConfigurationPointer[NodeConfigurationStatusIndex];
+      return (unsigned long long)(uint3)((uint)NodeConfigurationPointer[NodeConfigurationStatusIndex] >> 8) << 8;
     }
   }
   ConfigurationValue = *ParameterBuffer;
@@ -21656,7 +21675,7 @@ SystemMemoryAllocationOffsetCheck:
   SystemDataPointerPointer = SystemEncryptionContext;
   ProcessSystemData(SystemEncryptionContext,&SystemMemoryContext);
   SystemResourceManagerContext = (void* ****)(SystemDataPointerPointer + 0x20);
-  SystemResourceTableSize = *(long long *)(SystemResourceManager + 0x10);
+  SystemResourceTableSize = *(long long *)(SystemResourceManager + ResourceManagerTableSizeOffset);
   SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
   if (SystemResourceTablePointer != SystemResourceTableSize) {
     do {
@@ -21744,7 +21763,7 @@ ComparisonResultHandler:
   }
 ComparisonResultCheck:
   dataBlockComparisonIndex = 0;
-  dataBlockSizeLimit = *(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8;
+  dataBlockSizeLimit = *(long long *)(SystemResourceManager + ResourceManagerTableSizeOffset) - dataBlockResourceMemoryOffset >> 8;
   if (dataBlockSizeLimit != 0) {
     DataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
     loopCounterValue = dataBlockComparisonIndex;
@@ -55040,7 +55059,7 @@ void ProcessSystemResourceInitializationConfiguration(void* SystemResourceManage
   void* *GlobalDataReferencePointer;
   long long LocalMemoryPointer;
   
-  PrimaryResourceHandle = *(long long **)(SystemGlobalStatusFlags + 0x2b0);
+  PrimaryResourceHandle = *(long long **)(SystemGlobalStatusFlags + SystemGlobalStatusOffset);
   if (PrimaryResourceHandle != (long long *)0x0) {
     resourceCreationFlags = (**(code **)(*PrimaryResourceHandle + 0x110))(PrimaryResourceHandle,&GlobalDataReferencePointer,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     ConfigureSystemResourceParameters(ConfigurationDataPointer,resourceCreationFlags);

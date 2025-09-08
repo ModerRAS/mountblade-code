@@ -189223,7 +189223,7 @@ LAB_180157585:
     *(uint8_t *)((long long)SystemMemoryPointer + 0x14) = 0;
     MemoryOffsetValue = 0x14;
     SystemStackRegisterFlagB0.LowPart = CalculatedCodePoint;
-    FUN_180628380(&SystemCharacterStatusBufferPointer,EncodingValidationResult);
+    ProcessSystemCharacterStatusUpdate(&SystemCharacterStatusBufferPointer,EncodingValidationResult);
     CalculatedCodePoint = MemoryOffsetValue + 0xe;
     if (CalculatedCodePoint != 0) {
       DataSize = MemoryOffsetValue + 0xf;
@@ -189247,7 +189247,7 @@ LAB_1801577b2:
     *(uint16_t *)((long long)StringProcessingStatus + 0xc) = 0x2065;
     *(uint8_t *)((long long)StringProcessingStatus + 0xe) = 0;
     MemoryOffsetValue = CalculatedCodePoint;
-    FUN_180628380(&SystemCharacterStatusBufferPointer,(int)SystemContextRegister[10]);
+    ProcessSystemCharacterStatusUpdate(&SystemCharacterStatusBufferPointer,(int)SystemContextRegister[10]);
     EncodingValidationResult = MemoryOffsetValue + 1;
     if (EncodingValidationResult != 0) {
       CalculatedCodePoint = MemoryOffsetValue + 2;
@@ -189475,7 +189475,7 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
     *(uint16_t *)(SystemEventDispatcher + 5) = 0x22;
     CoreEngineUnsignedValueA0 = 0x15;
     SystemOperationFlag98.LowPart = DataSize;
-    FUN_180628380(&pSystemStackRegisterFlagB0,Utf8SourcePointer);
+    ProcessSystemCharacterStatusUpdate(&pSystemStackRegisterFlagB0,Utf8SourcePointer);
     RemainingSpace = CoreEngineUnsignedValueA0 + 0x19;
     if (RemainingSpace != 0) {
       DataSize = CoreEngineUnsignedValueA0 + 0x1a;
@@ -189833,7 +189833,7 @@ void ProcessSystemCharacterEncodingValidation(uint64_t CharacterCode,int SystemB
   *(uint8_t *)((long long)pBufferOffset + 0xe) = 0;
   SystemKeyPointer = 0xe;
   SystemStackFlag.LowPart = UnicodeCodePoint;
-  FUN_180628380(&EncodingBuffer,SystemBufferSize);
+  ProcessSystemCharacterStatusUpdate(&EncodingBuffer,SystemBufferSize);
   ComputedResult = SystemKeyPointer + 1;
   if (ComputedResult != 0) {
     UnicodeCodePoint = SystemKeyPointer + 2;
@@ -190086,7 +190086,7 @@ LAB_180158aea:
     *(uint8_t *)((long long)pBufferOffset + 0x1a) = 0;
     SystemKeyPointer = 0x1a;
     SystemStackFlag.LowPart = MemoryAddressMaskPointer;
-    FUN_180628380(&EncodingBuffer,SystemBufferSize);
+    ProcessSystemCharacterStatusUpdate(&EncodingBuffer,SystemBufferSize);
     InputDataLength = SystemKeyPointer + 1;
     if (InputDataLength != 0) {
       MemoryAddressMaskPointer = SystemKeyPointer + 2;
@@ -252043,7 +252043,7 @@ long long FUN_1802119c0(long long CharacterCode,uint SystemBufferSize,uint64_t U
   *(uint16_t *)((long long)ContextDataPointer + 0xc) = 0x2820;
   *(uint8_t *)((long long)ContextDataPointer + 0xe) = 0;
   SystemPriorityLevel = 0xe;
-  FUN_180628380(&SystemValidationPointer,CharacterCode);
+  ProcessSystemCharacterStatusUpdate(&SystemValidationPointer,CharacterCode);
   MemoryAllocationIndex = SystemPriorityLevel;
   SystemChecksum = SystemPriorityLevel + 2;
   if (SystemChecksum != 0) {
@@ -252859,7 +252859,7 @@ long long FUN_180213700(long long CharacterCode,int SystemBufferSize,char Utf8So
   ContextDataPointer[3] = 0x206373;
   SystemPriorityLevel = 0xf;
   FunctionAddress.LowPart = Utf16Char;
-  FUN_180628380(&SystemValidationPointer,SystemBufferSize);
+  ProcessSystemCharacterStatusUpdate(&SystemValidationPointer,SystemBufferSize);
   EncodingValidationResult = SystemPriorityLevel + 1;
   if (EncodingValidationResult != 0) {
     Utf16Char = SystemPriorityLevel + 2;
@@ -253016,7 +253016,7 @@ uint64_t FUN_180213bb0(long long CharacterCode,uint32_t SystemBufferSize
   *(uint16_t *)(pBufferOffset + 5) = 0x20;
   SystemKeyPointer = 0x15;
   SystemStackFlag.LowPart = MemoryAllocationIndex;
-  FUN_180628380(&EncodingBuffer,SystemBufferSize);
+  ProcessSystemCharacterStatusUpdate(&EncodingBuffer,SystemBufferSize);
   IntegerValue = SystemKeyPointer + 1;
   if (LockResult != 0) {
     MemoryAllocationIndex = SystemKeyPointer + 2;
@@ -253975,7 +253975,7 @@ uint32_t FUN_180214c90(long long CharacterCode
   *(uint16_t *)((long long)ContextDataPointer + 0xc) = 0x2820;
   *(uint8_t *)((long long)ContextDataPointer + 0xe) = 0;
   SystemPriorityLevel = 0xe;
-  FUN_180628380(&SystemValidationPointer,InputDataLength);
+  ProcessSystemCharacterStatusUpdate(&SystemValidationPointer,InputDataLength);
   MemoryAllocationIndex = SystemPriorityLevel;
   ProcessingStatusFlag = SystemPriorityLevel + 2;
   if (ProcessingStatusFlag != 0) {
