@@ -328,6 +328,10 @@
 #define DataContextStatusOffset204 0x204
 #define DataContextStatusOffset208 0x208
 #define DataContextPrimaryOffset14 0x14
+
+// 异常处理器回调偏移常量
+#define ExceptionHandlerSecondaryOffset178 0x178
+#define ExceptionHandlerTertiaryOffset168 0x168
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
 #define ExceptionContextTertiaryOffset 0xf0
@@ -60013,9 +60017,9 @@ void ExecuteSecondaryContextExceptionCleanup(DataBuffer operationBase,int64_t da
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x178);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + DataBufferPointerOffset70) + ExceptionHandlerSecondaryOffset178);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70) + 0x168,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + DataBufferPointerOffset70) + ExceptionHandlerTertiaryOffset168,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
