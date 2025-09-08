@@ -275785,8 +275785,26 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
 
 
 
+/**
+ * 初始化系统主数据模板指针
+ * 
+ * 该函数用于初始化系统主数据模板的指针，并根据系统缓冲区大小的奇偶性
+ * 决定是否进行内存释放操作。此函数在系统字符编码初始化和重置过程中使用。
+ * 
+ * @param CharacterCode 指向字符代码的指针，用于存储系统主数据模板的地址
+ * @param SystemBufferSize 系统缓冲区的大小，用于判断是否需要释放内存
+ * @param Utf8SourcePointer UTF-8源数据的指针，用于内存释放操作
+ * @param Utf16EndPointer UTF-16结束指针，用于内存释放操作
+ * @return 返回初始化后的字符代码指针
+ * 
+ * 功能特性：
+ * - 将系统主数据模板地址赋值给字符代码指针
+ * - 当系统缓冲区大小为奇数时，执行内存释放操作
+ * - 支持UTF-8和UTF-16编码的内存管理
+ * - 用于系统级字符编码的初始化和重置
+ */
 uint64_t *
-FUN_180226a50(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemPrimaryDataTemplate(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   *CharacterCode = &SystemPrimaryDataTemplate;
   if ((SystemBufferSize & 1) != 0) {
