@@ -100247,7 +100247,19 @@ void ExecuteMemoryOperationValidationD980(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090d9c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器上下文指针D9C0
+ * 
+ * 该函数负责调用数据缓冲区偏移量0x1588处的异常处理器上下文指针。
+ * 这是一个简单的异常处理器调用函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d9c0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常处理器上下文指针
+ */
+void InvokeExceptionHandlerContextD9C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100261,7 +100273,19 @@ void Unwind_18090d9c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d9e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统数据初始化函数D9E0
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1598处执行系统数据初始化。
+ * 这是一个系统数据初始化函数，用于初始化系统数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统数据信息
+ * 
+ * @note 原始函数名：Unwind_18090d9e0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行系统数据初始化
+ */
+void ExecuteSystemDataInitializationD9E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x1598,0x238,2,InitializeSystemDataA0);
@@ -100270,7 +100294,19 @@ void Unwind_18090d9e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090da20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作处理函数DA20
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1a18处执行内存操作处理。
+ * 这是一个内存操作处理函数，用于处理内存操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090da20
+ * @note 这是一个异常展开（unwind）处理函数，用于执行内存操作处理
+ */
+void ExecuteMemoryOperationProcessingDA20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x1a18,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
