@@ -2233,6 +2233,19 @@ void* UIGestureCoordinates;
 #define UIGlobalOperationProcessorTypeH _DAT_180d4a920
 #define UIGlobalOperationProcessorTypeJ _DAT_180d4a8f0
 #define UIGlobalOperationProcessorTypeL _DAT_180d4a8d0
+#define UIGlobalOperationProcessorTypeM _DAT_180d4a898
+#define UIGlobalOperationProcessorTypeN _DAT_180d4a858
+#define UIGlobalOperationProcessorTypeO _DAT_180d4a820
+#define UIGlobalOperationProcessorTypeP _DAT_180d4a7e0
+#define UIGlobalOperationProcessorTypeQ _DAT_180d4a7b0
+#define UIGlobalOperationProcessorTypeR _DAT_180d4a778
+#define UIGlobalOperationProcessorTypeS _DAT_180d4a750
+#define UIGlobalOperationProcessorTypeT _DAT_180d4a708
+#define UIGlobalOperationProcessorTypeU _DAT_180d4a958
+#define UIGlobalOperationProcessorTypeV _DAT_180d4a928
+#define UIGlobalOperationProcessorTypeW _DAT_180d4a910
+#define UIGlobalOperationProcessorTypeX _DAT_180d4a8c0
+#define UIGlobalOperationProcessorTypeY _DAT_180d4a8a8
 
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
@@ -27936,49 +27949,49 @@ void InitializeUIRenderingFunctions(void)
   }
   UIGlobalStatusFlag1 = ProcessUIAdvancedData;
   if (bVar6) {
-    _DAT_180d4a788 = ProcessUIDataTransformation;
+    UIGlobalDataTransformationProcessor = ProcessUIDataTransformation;
   }
-  _DAT_180d4a740 = ProcessUIDataConversion;
+  UIGlobalDataConversionProcessor = ProcessUIDataConversion;
   if (bVar6) {
-    _DAT_180d4a740 = ProcessUIDataEncoding;
+    UIGlobalDataConversionProcessor = ProcessUIDataEncoding;
   }
   if (bVar4) {
-    _DAT_180d4a740 = FUN_180695600;
+    UIGlobalDataConversionProcessor = ProcessUIDataFallback;
   }
-  _DAT_180d4a700 = ValidateUIResourceIntegrity;
+  UIGlobalResourceValidationProcessor = ValidateUIResourceIntegrity;
   if (bVar6) {
-    _DAT_180d4a700 = ProcessUIDataOperationType1;
+    UIGlobalResourceValidationProcessor = ProcessUIDataOperationType1;
   }
-  _DAT_180d4a6e0 = ProcessUIDataOperationType2;
+  UIGlobalOperationProcessorType2 = ProcessUIDataOperationType2;
   if (bVar6) {
-    _DAT_180d4a6e0 = ProcessUIDataOperationTypeA;
+    UIGlobalOperationProcessorType2 = ProcessUIDataOperationTypeA;
   }
-  _DAT_180d4a6b8 = ProcessUIDataOperationTypeB;
+  UIGlobalOperationProcessorTypeB = ProcessUIDataOperationTypeB;
   if (bVar6) {
-    _DAT_180d4a6b8 = ProcessUIDataOperationTypeC;
+    UIGlobalOperationProcessorTypeB = ProcessUIDataOperationTypeC;
   }
-  _DAT_180d4a968 = ProcessUIDataOperationTypeD;
+  UIGlobalOperationProcessorTypeD = ProcessUIDataOperationTypeD;
   if (bVar6) {
-    _DAT_180d4a968 = ProcessUIDataOperationTypeE;
+    UIGlobalOperationProcessorTypeD = ProcessUIDataOperationTypeE;
   }
-  _DAT_180d4a948 = ProcessUIDataOperationTypeF;
+  UIGlobalOperationProcessorTypeF = ProcessUIDataOperationTypeF;
   if (bVar6) {
-    _DAT_180d4a948 = ProcessUIDataOperationTypeG;
+    UIGlobalOperationProcessorTypeF = ProcessUIDataOperationTypeG;
   }
-  _DAT_180d4a920 = ProcessUIDataOperationTypeH;
+  UIGlobalOperationProcessorTypeH = ProcessUIDataOperationTypeH;
   if (bVar6) {
-    _DAT_180d4a920 = ProcessUIDataOperationTypeI;
+    UIGlobalOperationProcessorTypeH = ProcessUIDataOperationTypeI;
   }
-  _DAT_180d4a8f0 = ProcessUIDataOperationTypeJ;
+  UIGlobalOperationProcessorTypeJ = ProcessUIDataOperationTypeJ;
   if (bVar6) {
-    _DAT_180d4a8f0 = ProcessUIDataOperationTypeK;
+    UIGlobalOperationProcessorTypeJ = ProcessUIDataOperationTypeK;
   }
-  _DAT_180d4a8d0 = ProcessUIDataOperationTypeL;
+  UIGlobalOperationProcessorTypeL = ProcessUIDataOperationTypeL;
   if (bVar6) {
-    _DAT_180d4a8d0 = FUN_18068f060;
+    UIGlobalOperationProcessorTypeL = ProcessUIDataSpecialOperation;
   }
   if (bVar4) {
-    _DAT_180d4a8d0 = FUN_180695700;
+    UIGlobalOperationProcessorTypeL = ProcessUIDataFallbackOperation;
   }
   _DAT_180d4a898 = FUN_18068f150;
   if (bVar6) {
@@ -100980,31 +100993,31 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
   longlong memoryAllocation4;
   longlong memoryAllocation5;
   ulonglong totalOperationResult;
-  UIByte aresult7 [16];
-  UIByte aiterationCount1 [16];
-  UIByte aiterationCount4 [16];
-  UIByte aiterationCount7 [16];
-  UIByte astackUInt2a8 [32];
-  float *pfStack_288;
-  int *pstackInt280;
-  int *pstackInt278;
+  UIByte resultBuffer7 [16];
+  UIByte iterationCountBuffer1 [16];
+  UIByte iterationCountBuffer4 [16];
+  UIByte iterationCountBuffer7 [16];
+  UIByte stackUIntBuffer2a8 [32];
+  float *floatStackPointer288;
+  int *intStackPointer280;
+  int *intStackPointer278;
   UIDword stackUInt270;
   int stackInt268;
   UIDword stackUInt260;
-  float afStack_258 [4];
-  int astackInt248 [20];
-  int astackInt1f8 [100];
+  float floatStackArray258 [4];
+  int intStackArray248 [20];
+  int intStackArray1f8 [100];
   UIHandle stackUInt68;
-  ulonglong astackUInt60 [5];
-  UIByte aresult8 [16];
-  UIByte aresult9 [16];
-  UIWord iterationCount0;
-  UIByte aiterationCount2 [16];
-  UIByte aiterationCount3 [16];
-  UIByte aiterationCount5 [16];
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount8 [16];
-  UIByte aiterationCount9 [16];
+  ulonglong stackUIntArray60 [5];
+  UIByte resultBuffer8 [16];
+  UIByte resultBuffer9 [16];
+  UIWord iterationCountWord0;
+  UIByte iterationCountBuffer2 [16];
+  UIByte iterationCountBuffer3 [16];
+  UIByte iterationCountBuffer5 [16];
+  UIByte iterationCountBuffer6 [16];
+  UIByte iterationCountBuffer8 [16];
+  UIByte iterationCountBuffer9 [16];
   
   astackUInt60[4] = XorEncryptionKey ^ (ulonglong)astackUInt2a8;
   TotalResult = 0;
