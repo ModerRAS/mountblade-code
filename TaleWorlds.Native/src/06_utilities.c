@@ -287,6 +287,16 @@
 #define ExceptionHandlerCallbackOffset400 0x190
 #define ExceptionHandlerCallbackDataOffset180 0x180
 #define ExceptionHandlerCleanupOffset160 0x160
+
+// 数据结构偏移常量
+#define VectorComponentWOffset 0x20
+#define VectorComponentXOffset 0x24
+#define VectorComponentYOffset 0x28
+#define VectorComponentZOffset 0x2c
+#define VectorComponentAdditionalOffset38 0x38
+#define SystemContextSecondaryOffset1c 0x1c
+#define ResourceAccessRequestOffset98 0x98
+#define ResourceDescriptorOffset18 0x18
 #define ExceptionHandlerCleanupStateOffset168 0x168
 #define ExceptionHandlerCleanupFlagOffset178 0x178
 #define ExceptionHandlerCleanupStateOffset148 0x148

@@ -29148,8 +29148,8 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
         do {
           *ptrResult5 = 0x81;
           ptrResult5 = ptrResult5 + localInt5;
-          componentIndex0 = componentIndex0 + -1;
-        } while (componentIndex0 != 0);
+          RenderBufferOffset = RenderBufferOffset + -1;
+        } while (RenderBufferOffset != 0);
         *peventTypeCode = 0x81;
         peventTypeCode[allocatedMemory8] = 0x81;
         peventTypeCode[allocatedMemory8 * 2] = 0x81;

@@ -199179,10 +199179,38 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
   void *ContextDataPointerArray [68];
   uint16_t MemoryCopyDataBuffer [280];
   unsigned long long SystemFunctionAddress;
+  // 美化后的变量名
+  uint64_t SystemStackValidationParameter = 0xfffffffffffffffe;
+  unsigned long long EncodedFunctionAddress;
+  uint32_t SystemValidationFlag = 0;
+  void *AllocatedMemoryBuffer;
+  void *SystemContextPointer;
+  uint64_t StackParameter;
+  void *MemoryAllocationPointer;
+  uint32_t StackOperationCode;
+  uint32_t StackValidationFlag;
+  uint16_t ConvertedUtf16Char;
+  uint64_t SystemMemoryAllocationResult;
+  uint32_t *SecondaryProcessingStatusFlag;
+  void *SystemResourcePointer;
+  void *SystemResourcePointerSecondary;
+  uint64_t StackDataBuffer;
+  long long MemoryBlockOffset;
+  uint32_t SystemKeyIndex;
+  uint32_t ProcessingStatusFlag;
+  long long StackMemoryOffset;
+  uint64_t StackAddress;
+  uint32_t OperationStatus;
+  uint64_t SystemChecksum;
+  void *CharacterStatusBuffer;
+  uint32_t SystemStatusValue;
+  uint16_t *MemoryCopyBufferPointer;
+  uint32_t EncodingValidationResult;
   
-  SystemStackParameter498 = 0xfffffffffffffffe;
-  SystemFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
-  SystemStackValidationFlag = 0;
+  // 初始化系统栈参数和函数地址
+  SystemStackValidationParameter = 0xfffffffffffffffe;
+  EncodedFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
+  SystemValidationFlag = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> 5 != 0) {
     AllocatedMemorySize = AllocateSystemMemoryBuffer(&SystemResourcePointer);
     SystemContextPointer = &SystemNullTemplate;
