@@ -178658,7 +178658,7 @@ UIHandle FUN_180775540(longlong *uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180775620(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
+ProcessUIStateUpdate(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer)
 
 {
   UIDword *ptrResult;
@@ -179751,7 +179751,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
 
 
 UIHandle
-FUN_180776840(UIDword uiContext,UIHandle *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
+ValidateUIComponentData(UIDword uiContext,UIHandle *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
 
 {
   UIHandle *registerAX;
