@@ -46029,6 +46029,17 @@ void CleanupStringMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理对象内存资源
+ * 
+ * 该函数负责清理对象相关的内存资源，包括异常上下文清理、系统资源释放和内存操作。
+ * 它会安全地释放所有已分配的资源，确保系统内存管理的正确性。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 该函数在对象销毁或内存回收时调用
+ */
 void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -46047,6 +46058,17 @@ void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常情况下清理类内存资源
+ * 
+ * 该函数在异常发生时负责清理类相关的内存资源，确保异常处理过程中的内存安全。
+ * 它会执行必要的清理操作，防止内存泄漏和资源浪费。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 该函数在异常处理过程中调用，用于清理类相关的内存资源
+ */
 void CleanupClassMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
