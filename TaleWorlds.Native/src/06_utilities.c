@@ -1107,6 +1107,17 @@
 #define ValidationDataOffset58 0x58
 #define SystemResourceIndex2 2
 #define SystemResourceIndex4 4
+
+// 数据验证和处理常量
+#define SystemContextValidationOffset1C8 0x1c8            // 系统上下文验证偏移量1C8
+#define DataProcessingParameterOffset30 0x30              // 数据处理参数偏移量30
+#define SecurityContextValidationOffset5F0 0x5f0         // 安全上下文验证偏移量5F0
+#define SystemDataParameterOffset20 0x20                 // 系统数据参数偏移量20
+#define OperationBaseOffset58 0x58                        // 操作基础偏移量58
+#define OperationBaseOffset6C 0x6c                        // 操作基础偏移量6C
+#define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
+#define SystemContextPointerOffset90 0x90                 // 系统上下文指针偏移量90
+#define SystemValidationOffset790 0x790                  // 系统验证偏移量790
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
@@ -22469,8 +22480,8 @@ MemoryCopyLabel:
     if (characterFlag == '\a') {
       characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseOffset58));
       if (characterFlag == '\0') {
-        if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(DestinationContext + 0x58) + SystemContextPointerOffset90) + 0x790) +
-                    0x1c8) != 0) {
+        if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(DestinationContext + DestinationContextOffset58) + SystemContextPointerOffset90) + SystemValidationOffset790) +
+                    SystemContextValidationOffset1C8) != 0) {
           *dataPointer = 0;
           goto ValidationSuccessLabel;
         }
@@ -22482,14 +22493,14 @@ MemoryCopyLabel:
       DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + SystemDataParameterOffset20);
       arrayIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
       if (arrayIndex != 0) goto ValidationSuccessLabel;
-      arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + -0x78);
-      if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + -0x78) + 0x30) != 2))
+      arrayIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
+      if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(StackFrameContext + DataProcessingBufferOffsetNegative78) + DataProcessingParameterOffset30) != 2))
       goto MemoryCopyLabel;
     }
   }
   *dataPointer = 0;
 DataValidationLabel:
-    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + 0x5f0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + SecurityContextValidationOffset5F0) ^ (uint64_t)&securityBuffer);
 }
 
 
