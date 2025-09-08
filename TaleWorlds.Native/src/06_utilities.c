@@ -362,6 +362,16 @@
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
 #define DataContextOffset50 0x50                             // 数据上下文偏移量50
 #define DataContextOffset54 0x54                             // 数据上下文偏移量54
+
+// 内存资源管理偏移量常量
+#define MemoryResourcePointerOffset360 0x360                  // 内存资源指针偏移量360
+#define MemoryPointerTableOffset70 0x70                      // 内存指针表偏移量70
+
+// 异常处理器配置偏移量常量
+#define ExceptionHandlerCleanupOffset390 0x390               // 异常处理器清理偏移量390
+#define ExceptionHandlerStatusOffset3A0 0x3a0                 // 异常处理器状态偏移量3A0
+#define ExceptionHandlerCallbackOffset3A8 0x3a8               // 异常处理器回调偏移量3A8
+#define ExceptionHandlerCleanupOffset3B0 0x3b0               // 异常处理器清理偏移量3B0
 #define DataContextOffset58 0x58                             // 数据上下文偏移量58
 #define DataContextOffset5c 0x5c                             // 数据上下文偏移量5c
 #define DataContextOffset60 0x60                             // 数据上下文偏移量60
@@ -120110,7 +120120,17 @@ void ConfigureExceptionHandlerAtOffset218(DataBuffer operationBase, int64_t data
 
 
 
-void Unwind_180912930(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源管理函数930
+ * 
+ * 管理内存资源的引用计数和释放操作，处理内存块的清理和异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_180912930
+ */
+void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -120118,7 +120138,7 @@ void Unwind_180912930(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 0x360);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + MemoryResourcePointerOffset360);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -120146,37 +120166,57 @@ void Unwind_180912930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数950
+ * 
+ * 配置异常处理器，设置临时和默认异常处理器，并管理异常处理状态
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180912950
+ */
+void ConfigureExceptionHandlerAtOffset388(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   *(DataBuffer *)(exceptionHandlerContext + SystemFloatDataOffset388) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x390) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset390) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x390) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x3a0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset390) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusOffset3A0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + SystemFloatDataOffset388) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180912970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数970
+ * 
+ * 配置异常处理器，设置临时和默认异常处理器，并管理异常处理状态
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180912970
+ */
+void ConfigureExceptionHandlerAtOffset3A8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x3b0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset3A8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset3B0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x3b0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset3B0) = 0;
   *(DataWord *)(exceptionHandlerContext + SystemDataRecordOffset3c0) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset3A8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
