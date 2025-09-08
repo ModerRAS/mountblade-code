@@ -100184,7 +100184,19 @@ void InvokeExceptionHandlerContextD8E0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090d900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作验证函数D900
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1558处执行内存操作验证。
+ * 这是一个内存操作验证函数，用于验证数据的完整性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090d900
+ * @note 这是一个异常展开（unwind）处理函数，用于执行内存操作验证
+ */
+void ExecuteMemoryOperationValidationD900(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x1558,8,2,ValidateDataHandler);
@@ -120181,7 +120193,19 @@ void CleanupSystemDataBufferA0(DataBuffer operationBase, int64_t dataBuffer, Dat
 
 
 
-void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理系统异常处理器
+ * 
+ * 该函数负责清理系统异常处理器，释放数据缓冲区并处理异常上下文
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809127b0
+ */
+void CleanupSystemExceptionHandler(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
