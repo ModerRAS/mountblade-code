@@ -185910,7 +185910,7 @@ code_r0x000180151fd7:
     SystemDataValue1 = 0;
     SystemDataValue2 = 0;
     MemoryAllocationIndex = GetSystemStringIndex(*(void *)(CoreEngineRenderContext + 0x121e0));
-    FUN_1800a5fc0(CoreEngineRenderContext,MemoryAllocationIndex,&lStack_a8);
+    ProcessMemoryPoolManagement(CoreEngineRenderContext,MemoryAllocationIndex,&lStack_a8);
     if ((((int)SystemUnsignedValue54 == 1) || ((int)SystemUnsignedValue54 - 7U < 2)) && (0 < (int)(CoreEngineUnsignedValueA0 >> 2))) {
       StringProcessingStatus = (uint8_t *)(lStack_a8 + 3);
       SystemStatusCode = CoreEngineUnsignedValueA0 >> 2 & 0xffffffff;
@@ -221190,13 +221190,13 @@ uint64_t *
 void *ProcessCharacterEncodingMemoryAllocationAndStatusManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              uint64_t AdditionalParameter1,long long *AdditionalParameter2
 {
-  char CurrentCharacter;
-  long long *BufferAllocationStatus;
-  code *FunctionPointer;
+  char CurrentProcessingCharacter;
+  long long *BufferAllocationState;
+  code *SystemFunctionPointer;
   uint64_t *MemoryAddressMaskPointer;
-  long long AllocatedMemorySize;
-  long long *MemoryBoundaryPointer;
-  long long *MemoryPoolBlockSizePointer;
+  long long TotalAllocatedMemorySize;
+  long long *MemoryBlockBoundary;
+  long long *MemoryPoolSizePointer;
   long long *SystemDataTablePointer;
   
   if (0x2aaaaaaaaaaaaa8 < (unsigned long long)CharacterCode[1]) {
