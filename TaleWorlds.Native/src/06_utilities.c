@@ -90517,7 +90517,7 @@ void SetDefaultExceptionHandlerB_Position3(DataBuffer operationBase, int64_t dat
  * @param operationBase 操作基址
  * @param dataBuffer 数据缓冲区
  */
-void Unwind_18090c460(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerB_Position1D8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1d8) = &SystemDefaultExceptionHandlerB;
@@ -90534,7 +90534,7 @@ void Unwind_18090c460(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 操作基址
  * @param dataBuffer 数据缓冲区
  */
-void Unwind_18090c470(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerB_Position248(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x248) = &SystemDefaultExceptionHandlerB;
@@ -90544,7 +90544,7 @@ void Unwind_18090c470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c480(void)
+void DecrementSystemResourceCounterAndCallFunction(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
