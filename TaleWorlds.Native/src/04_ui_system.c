@@ -92927,8 +92927,18 @@ void FUN_1807201f0(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180720430(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180720430(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 初始化UI渲染数据处理器
+ * 
+ * 初始化UI渲染数据的处理，设置数据源和目标缓冲区
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_180720430
+ */
+void InitializeUIRenderDataProcessor(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   UIHandle stackUInt48;
@@ -92945,8 +92955,18 @@ void FUN_180720430(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
 
- void FUN_1807207d0(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_1807207d0(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
+ /**
+ * @brief 清零UI数据缓冲区
+ * 
+ * 将UI数据缓冲区清零，初始化内存区域
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1807207d0
+ */
+void ClearUIDataBuffer(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
 {
                      WARNING: Subroutine does not return
