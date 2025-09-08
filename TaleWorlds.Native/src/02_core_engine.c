@@ -755,6 +755,7 @@
 #define ProcessSystemMemoryAllocation FUN_1800a4010            // 处理系统内存分配
 #define GetMemoryAllocationIndex FUN_18023a940                 // 获取内存分配索引
 #define ProcessMemoryPoolManagement FUN_1800a5fc0              // 处理内存池管理
+#define ProcessCharacterTableValidation FUN_1801769e0            // 处理字符表验证
 #define ExecuteSystemFunctionInitialization FUN_18013c020     // 执行系统函数初始化
 #define ProcessSystemDataStructureSetup FUN_18013c4e0        // 处理系统数据结构设置
 #define GetSystemCharacterDataStatus FUN_1801210b0           // 获取系统字符数据状态
@@ -256814,36 +256815,36 @@ long long *ConvertUtf8ToUtf16Character(long long CharacterCode,long long *Charac
   uint32_t Utf16Char;
   int StringComparisonResult;
   uint UnicodeCodePoint;
-  uint MemoryAddressMaskPointer;
+  uint MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
   uint64_t SystemChecksum;
   uint8_t *StringProcessingStatus;
-  long long *pStringOffset;
-  unsigned long long Utf16Char;
-  uint ProcessedCharacter;
-  long long *CharacterCode2;
-  void *pSystemValue1a8;
+  long long *StringOffsetPointer;
+  unsigned long long Utf16CharSecondary;
+  uint ProcessedCharacterCount;
+  long long *CharacterCodeSecondary;
+  void *SystemValue1a8;
   uint64_t *ProcessingBufferPointer;
   uint32_t StackProcessingVariable;
-  uint64_t uStack_190;
-  void *pProcessingStatus;
+  uint64_t StackValue190;
+  void *ProcessingStatusPointer;
   uint64_t *SystemProcessingStatusFlag;
-  uint32_t uStack_178;
-  uint64_t uStack_170;
-  void *pDataContentStatus;
-  uint64_t *CharacterCode;
-  uint32_t uStack_158;
+  uint32_t StackValue178;
+  uint64_t StackValue170;
+  void *DataContentStatusPointer;
+  uint64_t *CharacterCodePointer;
+  uint32_t StackValue158;
   uint64_t SystemStackOffset150;
   void *CoreEngineValue148;
   uint64_t *EventVariablePointer;
-  uint32_t uStack_138;
+  uint32_t StackValue138;
   uint64_t TemporaryFlag;
-  void *pBufferInitializationFlag;
-  long long lStack_120;
-  uint32_t uStack_110;
-  void *pProcessingCounter;
-  long long lStack_100;
+  void *BufferInitializationFlag;
+  long long StackValue120;
+  uint32_t StackValue110;
+  void *ProcessingCounter;
+  long long StackValue100;
   uint32_t OperationStatus;
   uint8_t SystemFlagBuffer [32];
   void *SystemCharacterStatusBufferPointer;
@@ -256851,11 +256852,11 @@ long long *ConvertUtf8ToUtf16Character(long long CharacterCode,long long *Charac
   uint32_t SystemStackRegisterFlagB0;
   void *SystemEventDispatcher;
   long long CoreEngineSignedValueA0;
-  uint32_t configurationFlag;
-  uint8_t aStackValidationData [32];
+  uint32_t ConfigurationFlag;
+  uint8_t StackValidationData [32];
   uint64_t StackProcessingValue;
-  long long *plStack_60;
-  long long *pSystemStackRegister58;
+  long long *StackPointer60;
+  long long *SystemStackRegister58;
   
   StackProcessingValue = 0xfffffffffffffffe;
   if (*(char *)(CharacterCode + 0x210) != '\0') {
