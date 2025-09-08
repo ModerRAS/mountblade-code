@@ -5653,16 +5653,31 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：管理资源的引用计数，处理资源的释放和清理
 #define ResourceReferenceManagerA1 Unwind_1809079e0
 
-// 原始函数名：FUN_180943140 - 线程本地存储初始化函数A5
-// 功能：初始化线程本地存储A5
+/**
+ * @brief 线程本地存储初始化函数A5
+ * 
+ * 该函数负责初始化线程本地存储区域A5，为多线程环境下的数据存储提供支持
+ * 
+ * @note 原始函数名：FUN_180943140 - 线程本地存储初始化函数A5
+ */
 #define InitializeThreadLocalStorageA5 FUN_180943140
 
-// 原始函数名：FUN_180943160 - 线程本地存储初始化函数A6
-// 功能：初始化线程本地存储A6
+/**
+ * @brief 线程本地存储初始化函数A6
+ * 
+ * 该函数负责初始化线程本地存储区域A6，为多线程环境下的数据存储提供支持
+ * 
+ * @note 原始函数名：FUN_180943160 - 线程本地存储初始化函数A6
+ */
 #define InitializeThreadLocalStorageA6 FUN_180943160
 
-// 原始函数名：FUN_180943180 - 线程本地存储初始化函数A7
-// 功能：初始化线程本地存储A7
+/**
+ * @brief 线程本地存储初始化函数A7
+ * 
+ * 该函数负责初始化线程本地存储区域A7，为多线程环境下的数据存储提供支持
+ * 
+ * @note 原始函数名：FUN_180943180 - 线程本地存储初始化函数A7
+ */
 #define InitializeThreadLocalStorageA7 FUN_180943180
 
 // 原始函数名：FUN_1809431a0 - 线程本地存储初始化函数A8
@@ -16469,9 +16484,6 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：合并工具系统数据
 #define MergeUtilityDataBL0 FUN_180943070
 
-// 原始函数名：FUN_180943140 - 工具数据分割函数BM0
-// 功能：分割工具系统数据
-#define SplitUtilityDataBM0 FUN_180943140
 
 // 原始函数名：FUN_180943160 - 工具数据排序函数BN0
 // 功能：排序工具系统数据
