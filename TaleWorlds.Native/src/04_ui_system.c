@@ -104299,8 +104299,8 @@ void ProcessUIComponentDataTransformation(longlong uiContext,longlong dataSource
   stackUInt144 = (uint)bufferSize;
   if (resultPointer == 4) {
     stackInt148 = 0x22;
-    localInt7 = (int)(char)(&UIComponentSizeTable180956e8c)[param_6];
-    plocalChar10 = &UIComponentOffsetTable180956f18 + (longlong)param_6 * 8;
+    localInt7 = (int)(char)(&UIComponentSizeTable180956e8c)[componentParameter];
+    plocalChar10 = &UIComponentOffsetTable180956f18 + (longlong)componentParameter * 8;
     componentHandle = &UIComponentDataTable180956e90;
   }
   else {
