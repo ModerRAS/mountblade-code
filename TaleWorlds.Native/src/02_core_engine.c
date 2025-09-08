@@ -240246,7 +240246,7 @@ void ProcessFloatArraySearchAndSort(uint32_t SearchPattern,float *ArraySizePoint
  * 
  * @note 原始函数名：FUN_180202cef
  */
-void FUN_180202cef(void)
+void ProcessSystemStackFrameCheck(void)
 {
   long long FrameAddressPointer;
   
@@ -240266,7 +240266,7 @@ void FUN_180202cef(void)
  * 
  * @note 原始函数名：FUN_180202cf9
  */
-void FUN_180202cf9(void)
+void ExecuteSystemFinalization(void)
 {
   FUN_180202e40();
   return;
