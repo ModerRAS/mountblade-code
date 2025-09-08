@@ -259923,8 +259923,8 @@ LAB_18021800d:
 
 
 long long *
-FUN_180218290(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
-             unsigned long long AdditionalParameter1
+ProcessCharacterCodeTableAllocation(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
+                                     unsigned long long AdditionalParameter1
 {
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
@@ -262940,8 +262940,8 @@ LAB_18021e424:
 
 
 long long *
-FUN_18021f4e0(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer,
-             uint64_t AdditionalParameter1,uint32_t AdditionalParameter2
+ProcessCharacterEncodingWithMemoryManagement(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer,
+                                             uint64_t AdditionalParameter1,uint32_t AdditionalParameter2
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
