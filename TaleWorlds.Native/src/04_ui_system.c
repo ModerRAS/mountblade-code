@@ -4818,9 +4818,9 @@ UIHandle UIFrameBuffer;
  UI系统深度模板
 UIHandle UIDepthStencil;
  UI系统渲染状态
-undefined UIRenderState;
+UIHandle UIRenderState;
  UI系统绘制调用
-undefined UIDrawCall;
+UIHandle UIDrawCall;
  UI系统管道状态
 undefined UIPipelineState;
  UI系统描述符集
