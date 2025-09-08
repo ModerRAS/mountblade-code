@@ -209926,7 +209926,26 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
 
 
 
-75572(voidvoid FUN_180175572(void
+/**
+ * @brief 处理字符编码和系统数据验证函数
+ * 
+ * 该函数负责处理字符编码转换、系统数据验证和内存管理操作。
+ * 函数会执行系统数据注册、内存分配、字符处理和验证操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 初始化系统数据注册表
+ * 2. 分配内存并获取字符代码指针
+ * 3. 执行输入数据处理和验证
+ * 4. 处理模式匹配和字符限制检查
+ * 5. 执行系统函数调用和数据处理
+ * 
+ * @note 此函数是核心引擎字符处理系统的重要组成部分
+ * @note 函数使用多个系统级指针和回调函数
+ * @note 包含复杂的内存管理和数据验证逻辑
+ * 
+ * @return void 无返回值
+ */
+void ProcessCharacterEncodingAndSystemValidation(void)
 {
   long long *CharacterCode;
   code *SystemValidationFunction;
@@ -209960,10 +209979,10 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   }
   CharacterCode = *(long long **)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x8400);
   SystemValidationFunction = *(code **)(*CharacterCode + 0x78);
-  AllocatedMemorySize = FUN_18023a940(*(void *)(CharacterLimit + 0x28));
+  AllocatedMemorySize = GetSystemDataRegistry(*(void *)(CharacterLimit + 0x28));
   (*SystemValidationFunction)(CharacterCode,*(void *)(AllocatedMemorySize + 8),0);
   if (*(long long *)(NullPointerValue + 0x99e0) != 0) {
-    FUN_18029e450(*(void *)(CoreEngineRenderContext + 0x1cd8),
+    ProcessRenderContextConfiguration(*(void *)(CoreEngineRenderContext + 0x1cd8),
                   *(void *)(PatternIndex + 0x28 + StackFrameAddressPointer * 8),0,0,1);
   }
   *(long long *)(PatternIndex + 0x40) = *(long long *)(PatternIndex + 0x40) + 1;
