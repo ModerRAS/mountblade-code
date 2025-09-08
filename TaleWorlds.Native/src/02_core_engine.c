@@ -219853,7 +219853,17 @@ LAB_180184411:
 
 
 
-uint64_t * FUN_1801846d0(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 初始化字符代码指针并管理内存
+ * 
+ * 该函数初始化字符代码指针为系统内存地址三级指针，并根据系统缓冲区大小
+ * 的奇偶性决定是否释放内存。主要用于字符代码系统的初始化和内存管理。
+ * 
+ * @param CharacterCode 字符代码指针，将被设置为系统内存地址三级指针
+ * @param SystemBufferSize 系统缓冲区大小，用于判断是否需要释放内存
+ * @return uint64_t* 返回更新后的字符代码指针
+ */
+uint64_t * InitializeCharacterCodePointerAndManageMemory(uint64_t *CharacterCode,unsigned long long SystemBufferSize)
 {
   *CharacterCode = &SystemMemoryAddressTertiary;
   if ((SystemBufferSize & 1) != 0) {
