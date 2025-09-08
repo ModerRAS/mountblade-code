@@ -206155,7 +206155,7 @@ void ProcessCharacterTablePointerAndSystemContextOperations(long long CharacterC
   
   CharacterTablePointer = *(long long *)(CharacterCode + 0x20);
   SystemStackLong40 = CharacterTablePointer + 0x18;
-  FUN_180173720(LoopCounter,*(uint32_t *)(SystemContext + 0x30),*(uint32_t *)(SystemContext + 0x34),
+  ProcessSystemCharacterBuffer(LoopCounter,*(uint32_t *)(SystemContext + 0x30),*(uint32_t *)(SystemContext + 0x34),
                 *(uint8_t *)(SystemContext + 0x38),CharacterTablePointer + 0x38);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);

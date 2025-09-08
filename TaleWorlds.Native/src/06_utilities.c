@@ -91133,6 +91133,14 @@ void Unwind_18090ca80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统资源计数器递减并执行函数A2
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的第三个实现。
+ * 
+ * @note 原始函数名：Unwind_18090ca90
+ */
 void Unwind_18090ca90(void)
 
 {
