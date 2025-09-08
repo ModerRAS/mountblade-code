@@ -76866,7 +76866,7 @@ uint ProcessUIEventHandlersAndManageState(UIHandle uiContext, uint dataSource)
     comparisonResult = eventHandle - operationCount;
   }
   *(int *)(eventTargetHandle + 4) = comparisonResult;
-  FUN_18070f490();
+  CleanupUIContext();
   eventCode = *(uint *)((longlong)eventTargetHandle + 0x14);
   packedEventData = *(uint *)(eventTargetHandle + 2);
   if (eventCode < eventFlags) {
