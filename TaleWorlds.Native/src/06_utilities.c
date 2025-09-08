@@ -98133,7 +98133,22 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
 
 
 
-void Unwind_18090d2b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放函数D2B0
+ * 
+ * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
+ * 函数从数据缓冲区的0x1d0偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
+ * 如果内存区域有效，函数会计算内存块偏移量，检查异常列表和异常检查标志，
+ * 然后更新资源引用计数。如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d2b0
+ * @note 从数据缓冲区的0x1d0偏移量获取内存资源指针
+ * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
+ */
+void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -98141,7 +98156,7 @@ void Unwind_18090d2b0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1d0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1D0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -98169,7 +98184,22 @@ void Unwind_18090d2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d2c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放函数D2C0
+ * 
+ * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
+ * 函数从数据缓冲区的0x1f0偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
+ * 如果内存区域有效，函数会计算内存块偏移量，检查异常列表和异常检查标志，
+ * 然后更新资源引用计数。如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d2c0
+ * @note 从数据缓冲区的0x1f0偏移量获取内存资源指针
+ * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
+ */
+void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -98177,7 +98207,7 @@ void Unwind_18090d2c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -98205,7 +98235,22 @@ void Unwind_18090d2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d2d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放函数D2D0
+ * 
+ * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
+ * 函数从数据缓冲区的0x1f0偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
+ * 如果内存区域有效，函数会计算内存块偏移量，检查异常列表和异常检查标志，
+ * 然后更新资源引用计数。如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d2d0
+ * @note 从数据缓冲区的0x1f0偏移量获取内存资源指针
+ * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
+ */
+void ReleaseMemoryResourceD2D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -98213,7 +98258,7 @@ void Unwind_18090d2d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -98241,7 +98286,22 @@ void Unwind_18090d2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d2e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放函数D2E0
+ * 
+ * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
+ * 函数从数据缓冲区的0x210偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
+ * 如果内存区域有效，函数会计算内存块偏移量，检查异常列表和异常检查标志，
+ * 然后更新资源引用计数。如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d2e0
+ * @note 从数据缓冲区的0x210偏移量获取内存资源指针
+ * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
+ */
+void ReleaseMemoryResourceD2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -98249,7 +98309,7 @@ void Unwind_18090d2e0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x210);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset210);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -129477,6 +129537,24 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：完成异常处理，清理异常处理资源
 #define FinalizeExceptionProcessingC320 Unwind_18090c320
 
-// 原始函数名：Unwind_18090a130 - 系统资源验证函数130
-// 功能：验证系统资源的有效性和完整性，确保资源处于可用状态
-#define ValidateSystemResources130 Unwind_18090a130
+// 内存资源管理相关偏移量常量
+#define MemoryResourcePointerOffset1D0 0x1d0
+#define MemoryResourcePointerOffset1F0 0x1f0
+#define MemoryResourcePointerOffset210 0x210
+#define MemoryPointerTableOffset70 0x70
+
+// 原始函数名：Unwind_18090d2b0 - 内存资源释放函数D2B0
+// 功能：释放内存资源，管理资源引用计数，处理异常情况
+#define ReleaseMemoryResourceD2B0 Unwind_18090d2b0
+
+// 原始函数名：Unwind_18090d2c0 - 内存资源释放函数D2C0
+// 功能：释放内存资源，管理资源引用计数，处理异常情况
+#define ReleaseMemoryResourceD2C0 Unwind_18090d2c0
+
+// 原始函数名：Unwind_18090d2d0 - 内存资源释放函数D2D0
+// 功能：释放内存资源，管理资源引用计数，处理异常情况
+#define ReleaseMemoryResourceD2D0 Unwind_18090d2d0
+
+// 原始函数名：Unwind_18090d2e0 - 内存资源释放函数D2E0
+// 功能：释放内存资源，管理资源引用计数，处理异常情况
+#define ReleaseMemoryResourceD2E0 Unwind_18090d2e0
