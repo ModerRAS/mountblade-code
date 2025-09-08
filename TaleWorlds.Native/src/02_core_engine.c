@@ -100083,7 +100083,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
     MatrixElementD = *(float *)(MemoryBlockIndex + 0x104);
     SystemContextPrimaryFloat4 = (float)*(void *)(AllocatedMemorySize + 0x165c);
     MatrixElementG = MatrixElementC + SystemContextPrimaryFloat4;
-    SystemFlagG.HighPart = (float)((unsigned long long)*(void *)(AllocatedMemorySize + 0x165c) >> 0x20);
+    MatrixTransformResult.HighPart = (float)((unsigned long long)*(void *)(AllocatedMemorySize + 0x165c) >> 0x20);
     SystemFloatValue = SystemFlagG.HighPart;
     MatrixElementH = MatrixElementD + SystemFlagG.HighPart;
     MatrixElementI = MatrixElementG + *CharacterCodeSize;
