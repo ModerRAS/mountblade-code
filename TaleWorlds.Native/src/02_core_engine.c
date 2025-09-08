@@ -50464,19 +50464,24 @@ StringProcessingComplete:
  * @brief 处理浮点数数据结构和参数计算
  * 
  * 该函数负责处理浮点数数据结构和参数计算，包括：
- * - 执行目标数据结构和源数据结构之间的数据传输
- * - 处理浮点数参数的计算和转换
- * - 管理内存分配和数据结构操作
- * - 执行复杂的数学运算
+ * - 从系统数据节点中提取矩阵变换参数和距离值
+ * - 使用XMM寄存器进行高性能浮点数计算
+ * - 计算各种系数：位置系数、速度系数、加速度系数等
+ * - 执行复杂的矩阵变换和归一化参数计算
+ * - 管理系统上下文中的浮点数状态
  * 
- * @param CharacterCode 目标数据结构指针
- * @param SystemBufferSize 源数据结构指针
- * @param Utf8SourcePointer 保留参数1（浮点数）
- * @param Utf16EndPointer 保留参数2（浮点数）
- * @return 无
+ * @param CharacterCode 字符代码参数（用于计算）
+ * @param SystemBufferSize 系统缓冲区大小参数
+ * @param Utf8SourcePointer UTF-8源指针（浮点数参数）
+ * @param Utf16EndPointer UTF-16结束指针（浮点数参数）
+ * @return void
  * 
- * @note 这是一个浮点数数据处理函数，涉及复杂的数学计算
- * @note 用于核心引擎的数据结构和参数处理
+ * @note 此函数使用多个XMM寄存器（XMM0, XMM1, XMM4, XMM5）进行并行浮点运算
+ * @note 涉及复杂的数学计算，包括矩阵变换、距离计算和参数归一化
+ * @note 用于核心引擎的高性能浮点数数据处理和参数计算
+ * 
+ * @see FloatXMM0, FloatXMM1, FloatXMM4, FloatXMM4Secondary, FloatXMM4Tertiary, FloatXMM5
+ * @see MatrixTransformMultiplier1, MatrixTransformMultiplier, CalculatedDistance
  */
 void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, uint64_t SystemBufferSize, float Utf8SourcePointer, float Utf16EndPointer)
 {
@@ -199272,7 +199277,23 @@ ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *CharacterCode,uint64_t *Charact
 
 
 
-long long FUN_180168af0(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 初始化字符代码处理和系统缓冲区管理
+ * 
+ * 该函数负责初始化字符代码处理系统并管理系统缓冲区，包括：
+ * - 分配字符代码缓冲区内存
+ * - 初始化系统数据结构
+ * - 设置线程本地存储
+ * - 复制系统配置参数
+ * - 处理内存块分配和释放
+ * 
+ * @param CharacterCode 字符代码指针，用于存储处理后的字符数据
+ * @param SystemBufferSize 系统缓冲区大小，包含源系统配置数据
+ * @return long long 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180168af0
+ */
+long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long CharacterCode,long long SystemBufferSize)
 {
   uint Utf16Char;
   void *PrimaryProcessingStatusFlag;
