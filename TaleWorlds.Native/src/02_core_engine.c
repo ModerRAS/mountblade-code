@@ -814,6 +814,7 @@
 
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
+#define ProcessSystemContextWithMemoryAllocation FUN_18032c450    // 处理系统上下文和内存分配
 
 // 渲染上下文处理函数
 #define ProcessRenderContextWithUnsignedValue FUN_1800a43c0     // 处理渲染上下文和无符号值
@@ -204122,7 +204123,7 @@ uint64_t ProcessUtf8CharacterEncodingWithStatusBuffer(uint64_t CharacterCode,uin
     CharacterStatusBuffer = SystemCharacterStatusBufferPrimary;
   }
   else {
-    FUN_18032c450(*(void *)(CoreEngineSystemContext + 0x3d8));
+    ProcessSystemContextWithMemoryAllocation(*(void *)(CoreEngineSystemContext + 0x3d8));
     CharacterStatusBuffer = SystemCharacterStatusBufferSecondary;
   }
   ProcessTemporaryBuffer(CharacterCode,CharacterStatusBuffer);
