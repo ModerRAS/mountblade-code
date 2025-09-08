@@ -248,6 +248,14 @@
 // 系统资源偏移常量
 #define SystemResourceOffset88 0x88
 
+// 高频魔法数字常量定义
+#define SystemContextDataOffset40 0x40                    // 系统上下文数据偏移量40（845+次使用）
+#define SystemArrayStepOffset18 0x18                      // 系统数组步长偏移量18（830+次使用）
+#define SystemErrorCodeOffset1c 0x1c                      // 系统错误码偏移量1c（474+次使用）
+#define SystemDataFieldOffset20 0x20                      // 系统数据字段偏移量20（446+次使用）
+#define SystemValidationFlagMask11 0x11                   // 系统验证标志掩码11（346+次使用）
+#define SystemContextSecondaryOffset68 0x68               // 系统上下文次级偏移量68（212+次使用）
+
 // 异常处理器回调偏移常量
 #define ExceptionHandlerCallbackOffset68 0x68
 #define ExceptionHandlerCallbackDataOffset58 0x58
@@ -567,6 +575,17 @@
 #define ExceptionHandlerTempCallbackOffsetED0 0xed0     // 异常处理器临时回调偏移量ED0
 #define ExceptionHandlerTempCallbackOffsetEB0 0xeb0     // 异常处理器临时回调偏移量EB0
 #define ExceptionHandlerTempCallbackOffsetEB8 0xeb8     // 异常处理器临时回调偏移量EB8
+
+// 安全检查和位操作常量
+#define SecurityCheckBitMask26 0x1a
+#define SecurityCheckBitMask1 1
+#define SystemContextPointerOffset70 0x70
+#define ArrayIterationStepSize 0x10
+#define ArrayDataOffset8 8
+#define ArrayDataOffsetC 0xc
+#define ValidationDataOffset58 0x58
+#define SystemResourceIndex2 2
+#define SystemResourceIndex4 4
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
