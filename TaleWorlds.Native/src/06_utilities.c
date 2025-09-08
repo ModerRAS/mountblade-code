@@ -333,6 +333,20 @@
 #define DataOperationOffset24 0x24                            // 数据操作偏移量24
 #define DataOperationOffset10 0x10                            // 数据操作偏移量10
 
+// 操作基础偏移量常量
+#define OperationBaseFlagsOffset78 0x78                       // 操作基础标志偏移量
+#define OperationBaseCounterOffset24 0x24                     // 操作基础计数器偏移量
+
+// 输入寄存器偏移量常量
+#define InputRegisterR10_Offset70 0x70                        // 输入寄存器R10偏移量
+
+// 哈希表偏移量常量
+#define HashTableDataOffset1C 0x1c                           // 哈希表数据偏移量
+
+// 数据结构偏移量常量
+#define DataStructurePointerOffset8 0x8                       // 数据结构指针偏移量
+#define DataStructureCallbackOffset50 0x50                    // 数据结构回调偏移量
+
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98                          // 系统管理偏移量98
 #define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量
@@ -22972,17 +22986,17 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     if ((*(SystemByteType *)(dataIterator + DataIteratorStatusOffset6C) & 2) != 0) {
       dataType = typeCheck;
     }
-    if (*(int64_t *)(DestinationContext + 0xc0) != 0) {
+    if (*(int64_t *)(DestinationContext + DestinationContextDataOffsetC0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
       operationStatus = (**(FunctionPointer**)(DestinationContext + 0xc0))
                         (dataFlags,basePointer,*(DataWord *)(bufferPointer + SystemDataSecondaryOffset18),
-                         *(DataBuffer *)(DestinationContext + 0xb8));
+                         *(DataBuffer *)(DestinationContext + DestinationContextBufferOffsetB8));
       operationFlagA = ProcessedFloatValue;
       if (operationStatus != 0) goto ValidationSuccessLabel;
     }
     if ((((characterFlag != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
-        ((*(uint *)(DestinationContext + 0x6c) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(DestinationContext + 0x6c) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + 0xb0)))))
+        ((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x18 & 1) == 0)) &&
+       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryCopyLabel:
         memcpy(StackFrameContext + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
@@ -23177,9 +23191,9 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   bool isValid;
   int validationResult;
   
-  if (((!zeroFlag) && (*(int *)(operationBase + 0x78) != 0)) &&
-     (arrayIndex = *(int *)(*(int64_t *)(inputRegisterR10 + 0x70) +
-                      (int64_t)(int)(*(int *)(operationBase + 0x78) - 1U & operationFlagB) * 4), arrayIndex != -1)) {
+  if (((!zeroFlag) && (*(int *)(operationBase + OperationBaseFlagsOffset78) != 0)) &&
+     (arrayIndex = *(int *)(*(int64_t *)(inputRegisterR10 + InputRegisterR10_Offset70) +
+                      (int64_t)(int)(*(int *)(operationBase + OperationBaseFlagsOffset78) - 1U & operationFlagB) * 4), arrayIndex != -1)) {
     exceptionHandlerContext = *(int64_t *)(inputRegisterR10 + ResourceManagementOffset80);
     do {
       dataContext = (int64_t)arrayIndex;
@@ -23313,8 +23327,8 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       systemMemoryBase = *systemDataBuffer;
       operationResult = (int)hashTable[3];
       allocatedMemoryBlock = operationResult + 1;
-      systemMemoryBuffer = (int)*(uint *)((int64_t)hashTable + 0x1c) >> 0x1f;
-      operationStatus = (*(uint *)((int64_t)hashTable + 0x1c) ^ systemMemoryBuffer) - systemMemoryBuffer;
+      systemMemoryBuffer = (int)*(uint *)((int64_t)hashTable + HashTableDataOffset1C) >> 0x1f;
+      operationStatus = (*(uint *)((int64_t)hashTable + HashTableDataOffset1C) ^ systemMemoryBuffer) - systemMemoryBuffer;
       if (operationStatus < allocatedMemoryBlock) {
         validationParameter = (int)((float)operationStatus * 1.5);
         operationStatus = allocatedMemoryBlock;
@@ -23345,7 +23359,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       *(DataBuffer *)(hashChainPointer + 2) = *operationFlagA;
     }
     *resourceReferencePointer = operationResult;
-    *(int *)((int64_t)operationBase + 0x24) = *(int *)((int64_t)operationBase + 0x24) + 1;
+    *(int *)((int64_t)operationBase + OperationBaseCounterOffset24) = *(int *)((int64_t)operationBase + OperationBaseCounterOffset24) + 1;
     systemMemoryBase = 0;
   }
   return systemMemoryBase;
