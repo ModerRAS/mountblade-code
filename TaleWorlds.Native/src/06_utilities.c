@@ -1047,6 +1047,16 @@
 
 // 异常处理器回调偏移常量
 #define ExceptionHandlerSecondaryOffset178 0x178
+
+// 数据操作类型常量
+#define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
+#define DataOperationTypeTNVE 0x544e5645   // "TNVE" - 数据验证操作
+#define DataOperationTypeBTVE 0x42545645   // "BTVE" - 备用验证操作
+#define DataOperationTypeFFEB 0x46464542    // "FFEB" - 安全检查操作
+#define DataOperationTypeBFEB 0x42464542    // "BFEB" - 备用安全检查操作
+#define DataOperationTypeIDMC 0x49444d43    // "IDMC" - 身份管理操作
+#define DataOperationTypeTIFE 0x54494645    // "TIFE" - 类型检查操作
+#define DataOperationTypeTIVE 0x54495645    // "TIVE" - 类型验证操作
 #define ExceptionHandlerTertiaryOffset168 0x168
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
@@ -38904,9 +38914,9 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
   ByteFlag validationBuffer3 [64];
   ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x46464542);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeFFEB);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer3,0,0x42464542,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer3,0,DataOperationTypeBFEB,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + ExceptionHandlerCallbackOffset10);
       if (((int)systemDataBuffer == 0) &&
