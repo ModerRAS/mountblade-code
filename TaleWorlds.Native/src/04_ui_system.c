@@ -127012,7 +127012,7 @@ UIHandle FUN_180744780(longlong uiContext)
     else if (localInt7 < TempInt4) {
       localInt7 = TempInt4;
     }
-    processingResult = FUN_180747f10((longlong *)(uiContext + 0x127e0),localInt7);
+    processingResult = ReleaseUIResourceHandle((longlong *)(uiContext + 0x127e0),localInt7);
     if (processingResult != 0) goto LAB_1807448f0;
   }
   *(longlong **)(*(longlong *)(uiBufferData + 0x127e0) + (longlong)*(int *)(uiBufferData + 0x127e8) * 8) =
