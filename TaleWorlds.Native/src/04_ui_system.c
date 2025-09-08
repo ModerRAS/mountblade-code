@@ -20702,7 +20702,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     transformCoeff43 = *param_6;
     baseValue7 = transformMatrix[1];
     FloatValue1 = transformMatrix[2];
-    transformCoeff30 = param_6[3];
+    transformCoeff30 = transformMatrix[3];
     localFloat68 = resultPointer * 0.33;
     fStack_140 = transformCoeff30 * transformCoeff38 * -1.0 + transformCoeff43 * transformCoeff34 * -1.0 + baseValue7 * transformCoeff29 + FloatValue1 * transformScale42
     ;
