@@ -13110,7 +13110,7 @@ LAB_180659b1a:
     }
   }
   uiContext[0x15] = AccumulatedFloat;
-  if ((((transformCoeff11 <= -0.1) || (param_6 == '\0')) || (resultPointer != '\0')) || (transformCoeff14 <= -0.1)) {
+  if ((((transformCoeff11 <= -0.1) || (contextFlag == '\0')) || (resultPointer != '\0')) || (transformCoeff14 <= -0.1)) {
 LAB_18065a17c:
     if ((uiContext[0x11] <= 0.0) || (1.0 <= uiContext[0x11])) {
       uiContext[0x11] = 0.0;
@@ -15007,8 +15007,8 @@ LAB_18065a765:
  * @note 原始函数名: 未指定
  */
 void RenderUIElement(UIHandle uiContext,uint dataSource,uint targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7,UIHandle param_8,
-                  UIHandle param_9,UIHandle uiContext0,UIHandle uiContext1,UIHandle uiContext2)
+                  UIHandle resultPointer,UIHandle contextFlag,UIHandle dataBuffer,UIHandle renderHandle,
+                  UIHandle transformHandle,UIHandle uiContext0,UIHandle uiContext1,UIHandle uiContext2)
 
 {
   float *baseValuePointer;
@@ -15407,14 +15407,14 @@ LAB_18065a2e9:
   baseValue2 = baseValue2 * uiContext0._4_4_ * FloatValue1;
   baseValue7 = baseValue3 * FloatValue1;
   uiContext0._4_4_ = uiContext0._4_4_ * FloatValue1;
-  fStack0000000000000074 = baseValue2 * (float)param_8;
+  fStack0000000000000074 = baseValue2 * (float)renderHandle;
   *(float *)(BasePointer + -0x7c) = uiContext0._4_4_;
   *(float *)(BasePointer + -0x78) = uiContext0._4_4_;
   *(float *)(BasePointer + -0x74) = (unmodifiedXMM8_Da - baseValue6) * baseValue5;
-  transformCoeff15 = (unmodifiedXMM8_Da - (float)param_8) * baseValue7;
+  transformCoeff15 = (unmodifiedXMM8_Da - (float)renderHandle) * baseValue7;
   uiContext1._4_4_ = (unmodifiedXMM8_Da - (float)param_8) * baseValue2;
   *(float *)(BasePointer + -0x80) = transformCoeff15;
-  if (((char)param_6 == '\0') || (preservedXMM6 < (float)param_8)) {
+  if (((char)contextFlag == '\0') || (preservedXMM6 < (float)renderHandle)) {
     if (baseValue5 <= preservedXMM6) {
       baseValue5 = 3.0;
     }
