@@ -296,6 +296,60 @@ typedef enum {
 #define ProcessUIComponentOpacity func_0x0001807673c0
 #define ProcessUIRenderOpacity FUN_180785c10
 
+// UI系统函数宏定义 - 处理UI事件调度
+#define DispatchUIEventToComponents FUN_180711810
+
+// UI系统函数宏定义 - 处理UI数据批量处理
+#define ProcessUIDataBatchOperation FUN_18071db50
+
+// UI系统函数宏定义 - 处理UI数据批量处理结果
+#define ProcessUIDataBatchResult FUN_18071dbc0
+
+// UI系统函数宏定义 - 查询UI数据源状态
+#define QueryUIDataSourceStatus FUN_180706d32
+
+// UI系统函数宏定义 - 计算UI渲染比例
+#define CalculateUIRenderScale FUN_1807070a0
+
+// UI系统函数宏定义 - 计算UI布局边界
+#define CalculateUILayoutBounds FUN_180707b03
+
+// UI系统函数宏定义 - 处理UI布局数据
+#define ProcessUILayoutData FUN_180707d35
+
+// UI系统函数宏定义 - 创建UI信号量
+#define CreateUISemaphore FUN_18070e250
+
+// UI系统函数宏定义 - 处理UI事件系统
+#define ProcessUIEventSystem FUN_18070e950
+
+// UI系统函数宏定义 - 获取UI队列项
+#define GetUIQueueItem FUN_18070f310
+
+// UI系统函数宏定义 - 设置UI队列项
+#define SetUIQueueItem FUN_18070f360
+
+// UI系统函数宏定义 - 处理UI内存分配
+#define ProcessUIMemoryAllocation FUN_18071ad00
+
+// UI系统函数宏定义 - 验证UI上下文
+#define ValidateUIContext FUN_18070e140
+
+// UI系统函数宏定义 - 处理UI上下文数据操作
+#define ProcessUIContextDataOperation FUN_18070ee30
+
+// UI系统函数宏定义 - 处理UI上下文数据缓冲区
+#define ProcessUIContextDataBuffer FUN_18070ee86
+
+// UI系统函数宏定义 - 处理UI浮点数据
+#define ProcessUIFloatData FUN_18070efdd
+
+// UI系统函数宏定义 - 清理UI上下文
+#define CleanupUIContext FUN_18070f490
+
+// UI系统函数宏定义 - 获取UI上下文状态
+#define GetUIContextStatus FUN_18070f57b
+
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
 #define renderParam2 stackParam00000050
