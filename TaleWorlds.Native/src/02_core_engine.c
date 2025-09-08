@@ -100236,22 +100236,22 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
       *(uint8_t *)(memoryBoundaryEnd + 0x1b3f) = 1;
     }
     referenceCountPointer = (int *)(*(long long *)(memoryBoundaryEnd + 0x1af8) + 0x218);
-    *ReferenceCountPointer = *ReferenceCountPointer + -1;
-    MatrixElementC = *(float *)(MemoryBlockIndex + 0x100);
-    MatrixElementD = *(float *)(MemoryBlockIndex + 0x104);
-    SystemContextPrimaryFloat4 = (float)*(void *)(AllocatedMemorySize + 0x165c);
-    MatrixElementG = MatrixElementC + SystemContextPrimaryFloat4;
-    MatrixTransformResult.HighPart = (float)((unsigned long long)*(void *)(AllocatedMemorySize + 0x165c) >> 0x20);
-    SystemFloatValue = MatrixTransformResult.HighPart;
-    MatrixElementH = MatrixElementD + MatrixTransformResult.HighPart;
-    MatrixElementI = MatrixElementG + *CharacterCodeSize;
-    MatrixElementE = MatrixElementC + *CharacterCodeSize + SystemContextPrimaryFloat4 * 2.0;
-    MatrixElementF = SystemBufferSize[1] + MatrixElementD + MatrixTransformResult.HighPart * 2.0;
-    MatrixElementJ = MatrixElementH + SystemBufferSize[1];
-    MatrixTransformResult = CONCAT44(MatrixElementF - MatrixElementD,MatrixElementE - MatrixElementC);
-    ProcessSystemBuffer(&MatrixTransformResult,0);
-    SystemStatusCode = ValidateSystemData(&MatrixElementC,ComputedResult,0);
-    if ((char)SystemStatusCode != '\0') {
+    *referenceCountPointer = *referenceCountPointer + -1;
+    matrixElementC = *(float *)(MemoryBlockIndex + 0x100);
+    matrixElementD = *(float *)(MemoryBlockIndex + 0x104);
+    systemContextPrimaryFloat4 = (float)*(void *)(allocatedMemorySize + 0x165c);
+    matrixElementG = matrixElementC + systemContextPrimaryFloat4;
+    matrixTransformResult.HighPart = (float)((unsigned long long)*(void *)(allocatedMemorySize + 0x165c) >> 0x20);
+    systemFloatValue = matrixTransformResult.HighPart;
+    matrixElementH = matrixElementD + matrixTransformResult.HighPart;
+    matrixElementI = matrixElementG + *CharacterCodeSize;
+    matrixElementE = matrixElementC + *CharacterCodeSize + systemContextPrimaryFloat4 * 2.0;
+    matrixElementF = SystemBufferSize[1] + matrixElementD + matrixTransformResult.HighPart * 2.0;
+    matrixElementJ = matrixElementH + SystemBufferSize[1];
+    matrixTransformResult = CONCAT44(matrixElementF - matrixElementD,matrixElementE - matrixElementC);
+    ProcessSystemBuffer(&matrixTransformResult,0);
+    systemStatusCode = ValidateSystemData(&matrixElementC,computedResult,0);
+    if ((char)systemStatusCode != '\0') {
       SystemDataTablePointer = (unsigned long long)ProcessedCharacter << 0x20;
       isSystemContextNull = ProcessSystemParameters(&MatrixElementC,ComputedResult,&AdditionalParameter1,LocalStackBuffer_d8,SystemDataTablePointer);
       MemoryAllocationIndex = (uint32_t)((unsigned long long)SystemDataTablePointer >> 0x20);
