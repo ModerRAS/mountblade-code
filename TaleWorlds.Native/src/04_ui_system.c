@@ -89963,21 +89963,24 @@ void FUN_18071b790(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_18071bfe0(UIHandle uiContext,char *dataSource)
-void FUN_18071bfe0(UIHandle uiContext,char *dataSource)
-
+ /**
+ * @brief 处理UI字符数据序列
+ * @param uiContext UI上下文句柄
+ * @param dataSource 字符数据源指针
+ * @note 原始函数名：FUN_18071bfe0
+ */
+void ProcessUICharacterDataSequence(UIHandle uiContext, char *dataSource)
 {
-  longlong allocatedMemory;
+  longlong iterationCount;
   
-  WriteUIDataToBuffer(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UiControlData,8);
-  allocatedMemory = 2;
+  WriteUIDataToBuffer(uiContext, dataSource[2] * 5 + (int)dataSource[5], &UiControlData, 8);
+  iterationCount = 2;
   do {
-    WriteUIDataToBuffer(uiContext,(int)*dataSource,&UIDataBufferA,8);
-    WriteUIDataToBuffer(uiContext,(int)dataSource[1],&UIDataBufferB,8);
+    WriteUIDataToBuffer(uiContext, (int)*dataSource, &UIDataBufferA, 8);
+    WriteUIDataToBuffer(uiContext, (int)dataSource[1], &UIDataBufferB, 8);
     dataSource = dataSource + 3;
-    allocatedMemory = allocatedMemory + -1;
-  } while (allocatedMemory != 0);
-  return;
+    iterationCount = iterationCount - 1;
+  } while (iterationCount != 0);
 }
 
 
@@ -91096,30 +91099,33 @@ UIDword FUN_18071dfc0(longlong uiContext,int dataSource,ulonglong targetBuffer)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071e260(longlong uiContext,int dataSource)
-void FUN_18071e260(longlong uiContext,int dataSource)
-
+ /**
+ * @brief 处理UI渲染更新任务
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源参数
+ * @note 原始函数名：FUN_18071e260
+ * @warning 此函数不返回（执行渲染任务后可能跳转到其他位置）
+ */
+void ProcessUIRenderingUpdateTask(longlong uiContext, int dataSource)
 {
-  UIByte astackUInt48 [8];
-  int stackInt40;
-  int stackInt3c;
-  ulonglong stackUInt38;
+  UIByte encryptedStackData[8];
+  int currentDataValue;
+  int calculatedMultiplier;
+  ulonglong xorDecryptedValue;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt48;
-  stackInt40 = *(int *)(uiBufferData + 0x11dc);
-  if ((stackInt40 != dataSource) || (*(int *)(uiBufferData + 0x11cc) != *(int *)(uiBufferData + 0x11c8))) {
-    if (stackInt40 != 0) {
-      stackInt3c = *(int *)(uiBufferData + 0x11e0) * 10 + 5;
-      stackInt40 = stackInt40 * stackInt3c;
-      stackInt3c = stackInt3c * dataSource;
-                     WARNING: Subroutine does not return
+  xorDecryptedValue = XorEncryptionKey ^ (ulonglong)encryptedStackData;
+  currentDataValue = *(int *)(uiBufferData + 0x11dc);
+  if ((currentDataValue != dataSource) || (*(int *)(uiBufferData + 0x11cc) != *(int *)(uiBufferData + 0x11c8))) {
+    if (currentDataValue != 0) {
+      calculatedMultiplier = *(int *)(uiBufferData + 0x11e0) * 10 + 5;
+      currentDataValue = currentDataValue * calculatedMultiplier;
+      calculatedMultiplier = calculatedMultiplier * dataSource;
       ProcessUIRenderingUpdate();
     }
-    FUN_18071b320(uiContext + 0x1698,*(int *)(uiBufferData + 0x11c8),dataSource * 1000,1);
+    FUN_18071b320(uiContext + 0x1698, *(int *)(uiBufferData + 0x11c8), dataSource * 1000, 1);
   }
   *(UIDword *)(uiBufferData + 0x11cc) = *(UIDword *)(uiBufferData + 0x11c8);
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt48);
+  ExecuteUIRenderTask(xorDecryptedValue ^ (ulonglong)encryptedStackData);
 }
 
 
