@@ -186440,7 +186440,7 @@ void ProcessCharacterCodeTableIterationSmallStep(long long *CharacterCode)
  */
 void Process64BitCharacterEncodingTable(uint64_t *CharacterCode)
 {
-  FUN_180152a80();
+  ProcessSystemCharacterDataManagement();
   *CharacterCode = &SystemNullTemplate;
   if (CharacterCode[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -191361,7 +191361,20 @@ void ReleaseSystemMemoryAndCleanup(long long CharacterCode)
 
 
 
-5b590(long long *CharacterCode,long long *CharacterCodeSizevoid FUN_18015b590(long long *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理UTF-16字符编码转换和内存管理
+ * 
+ * 该函数负责处理UTF-16字符编码的转换操作，包括：
+ * - 字符代码的验证和转换
+ * - 内存块的分配和管理
+ * - 系统数据注册表的操作
+ * - 内存操作状态的管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @note 原始函数名：FUN_18015b590
+ */
+void ProcessUtf16CharacterEncodingAndMemoryManagement(long long *CharacterCode, long long *CharacterCodeSize)
 {
   uint32_t Utf16Char;
   long long BufferStatus;
