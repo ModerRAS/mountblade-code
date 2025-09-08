@@ -10064,10 +10064,10 @@ void ManageUIElements(longlong *uiContext)
   longlong *uiColorBufferData = uiColorBuffer;
   if (UIActiveContext != (longlong *)0x0) {
     UIHandle *uiComponentQueue = (UIHandle *)0x0;
-    stackPointer50 = (UIHandle *)0x0;
-    stackValue48 = 0;
-    stackValue40 = 3;
-    (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&stackPointer58);
+    UIHandle *uiComponentList = (UIHandle *)0x0;
+    uint uiQueueSize = 0;
+    uint uiListSize = 3;
+    (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&uiComponentQueue);
     result = uiComponentQueue;
     uiBufferPointer = uiComponentProcessor;
     colorBufferPtr = uiActiveElement;
