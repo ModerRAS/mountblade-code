@@ -82906,8 +82906,27 @@ void ProcessUITransformDataCalculation(longlong *uiContext,float *dataSource,int
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180713890(UIHandle uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
-void FUN_180713890(UIHandle uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 处理UI缓冲区数据操作
+ * 
+ * 该函数负责处理UI系统中的缓冲区数据操作，包括：
+ * - 缓冲区数据的加密和安全处理
+ * - 数据源和目标缓冲区的管理
+ * - 内存对齐和边界检查
+ * - 结果数据的存储和返回
+ * 
+ * 该函数用于优化UI缓冲区数据操作的性能。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @note 原始函数名：FUN_180713890
+ */
+void ProcessUIBufferDataOperation(UIHandle uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
+void ProcessUIBufferDataOperation(UIHandle uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer)
 
 {
@@ -83861,7 +83880,7 @@ void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
  void FUN_18071565d(void)
-void FUN_18071565d(void)
+void CleanupUIRenderer(void)
 
 {
   return;
