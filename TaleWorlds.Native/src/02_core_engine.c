@@ -215547,7 +215547,23 @@ void ProcessCharacterCodeMemoryAllocationAndSystemContextManagement(long long Ch
 
 
 
-7b55d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointervoid FUN_18017b55d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符代码内存分配和地址掩码操作
+ * 
+ * 该函数负责处理字符代码的内存分配和地址掩码操作。
+ * 主要功能包括：
+ * - 计算内存分配索引和字符限制
+ * - 处理内存地址掩码和模式匹配
+ * - 管理内存块索引和分配大小
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * 
+ * @note 原始函数名：FUN_18017b55d
+ */
+#define ProcessCharacterCodeMemoryAllocationAndAddressMaskOperations FUN_18017b55d
+void ProcessCharacterCodeMemoryAllocationAndAddressMaskOperations(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer
 {
   long long *CharacterCode;
   unsigned long long MemoryAllocationIndex;
