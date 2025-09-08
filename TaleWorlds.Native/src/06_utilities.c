@@ -5423,14 +5423,26 @@
 // 异常数据表2地址
 #define ExceptionDataTable2Address 0x180a21690
 
+// C++标准库函数宏定义
+// 错误处理函数
+// 功能：抛出C标准错误并处理错误码
+#define ThrowCErrorAndHandleCode __Throw_C_error_std__YAXH_Z
 
+// 异常状态检查函数
+// 功能：检查当前是否有未捕获的异常
+#define CheckUncaughtException _uncaught_exception_std__YA_NXZ
 
+// 流缓冲区锁定函数
+// 功能：锁定标准库流缓冲区以确保线程安全
+#define LockStreamBuffer __1_Lockit_std__QEAA_XZ
 
+// 基本流缓冲区析构函数
+// 功能：销毁基本流缓冲区对象并释放资源
+#define DestroyBasicStreambuf __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ
 
-
-
-
-
+// 基本输出流析构函数
+// 功能：销毁基本输出流对象并释放资源
+#define DestroyBasicOstream __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ
 
 
 // 工具函数宏定义
@@ -122043,7 +122055,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 已美化异常处理器指针：26个
  * - 已美化系统资源指针：6个
  * - 已美化系统验证变量：7个
- * - 已美化C++标准库函数：10个
+ * - 已美化C++标准库函数：15个
  * - 已美化函数描述注释：8个
  * - 已美化Unwind函数：200+个
  * - 已美化FUN_函数：50+个
@@ -122067,6 +122079,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 美化了数据处理临时变量名，包括DataProcessingTemporaryWord等
  * - 为Unwind_1809125a0函数添加了语义化名称HandleExceptionContextReferenceCountDecrementSimplified
  * - 为简化版异常上下文引用计数递减函数添加了详细的文档注释
+ * - 为C++标准库函数添加了语义化宏定义，包括错误处理、异常检查和流操作函数
  */
 
 // 额外的Unwind_函数语义化定义

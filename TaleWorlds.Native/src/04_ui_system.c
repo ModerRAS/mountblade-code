@@ -139916,7 +139916,7 @@ UIHandle FUN_18075334a(float uiContext,float *dataSource,UIHandle targetBuffer,f
 
 
 UIHandle
-FUN_1807533c2(UIHandle uiContext,UIDword *dataSource,UIHandle targetBuffer,UIDword bufferSize)
+ProcessUIRenderContext(UIHandle uiContext,UIDword *dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
   *dataSource = bufferSize;
@@ -146253,7 +146253,7 @@ UIHandle FUN_18075a030(longlong uiContext,longlong dataSource)
 
 
 UIHandle
-FUN_18075a100(ulonglong *uiContext,ulonglong dataSource,int targetBuffer,UIDword bufferSize,char resultPointer)
+ExecuteUIRenderTask(ulonglong *uiContext,ulonglong dataSource,int targetBuffer,UIDword bufferSize,char resultPointer)
 
 {
   UIHandle *ptrResult;
@@ -152463,7 +152463,7 @@ LAB_18075f551:
   }
   ptrLocal8 = (UIHandle *)0x0;
   if ((*resultPointer == 0) &&
-     (ProcessingStatus = FUN_18075a100(resultPointer,*uiContext,bufferSize,eventTypeCode & 0xffffffff,1), (int)ProcessingStatus != 0)) {
+     (ProcessingStatus = ExecuteUIRenderTask(resultPointer,*uiContext,bufferSize,eventTypeCode & 0xffffffff,1), (int)ProcessingStatus != 0)) {
     return ProcessingStatus;
   }
   if ((int)resultPointer[2] == bufferSize) {
@@ -155281,7 +155281,7 @@ LAB_180761ebf:
               eventTypeCode = *(uint *)(CharacterDataOffset + 100) >> 0xf & 1;
               if (allocatedMemory5 == 0) {
                 pstackUInt548 = (UIDword *)((ulonglong)pstackUInt548 & 0xffffffffffffff00);
-                TempInt4 = FUN_18075a100(colorBufferPointer1,*(UIHandle *)(uiContext + 0xa8),MaxProcessingCount,0);
+                TempInt4 = ExecuteUIRenderTask(colorBufferPointer1,*(UIHandle *)(uiContext + 0xa8),MaxProcessingCount,0);
                 if (TempInt4 != 0) goto FUN_18076203a;
                 allocatedMemory5 = *colorBufferPointer1;
                 eventTypeCode = 1;
@@ -155355,7 +155355,7 @@ LAB_180761ebf:
       pptrResult = (UIHandle **)(uiContext + 0x138);
       if ((*pptrResult == (UIHandle *)0x0) && (uiCompareResult != 0)) {
         pstackUInt548 = (UIDword *)CONCAT71(pstackUInt548._1_7_,1);
-        TempInt4 = FUN_18075a100(pptrResult,*(UIHandle *)(uiContext + 0xa8),stackUInt4b4,stackUInt4b8);
+        TempInt4 = ExecuteUIRenderTask(pptrResult,*(UIHandle *)(uiContext + 0xa8),stackUInt4b4,stackUInt4b8);
         ptrResult8 = pstackUInt508;
         ptrResult4 = pstackUInt4d8;
         if (TempInt4 == 0) goto LAB_180760f3a;
@@ -155363,7 +155363,7 @@ LAB_180761ebf:
       else {
 LAB_180760f3a:
         pstackUInt548 = (UIDword *)((ulonglong)pstackUInt548 & 0xffffffffffffff00);
-        TempInt4 = FUN_18075a100(&pstackUInt508,*(UIHandle *)(uiContext + 0xa8),stackUInt4b4);
+        TempInt4 = ExecuteUIRenderTask(&pstackUInt508,*(UIHandle *)(uiContext + 0xa8),stackUInt4b4);
         ptrResult8 = pstackUInt508;
         ptrResult4 = pstackUInt4d8;
         if (TempInt4 == 0) {
@@ -155372,7 +155372,7 @@ LAB_180760f3a:
             if (((allocatedMemory2 == 0) || (*(longlong *)(allocatedMemory2 + 0x10) == 0)) ||
                (*(int *)(uiBufferData + 0x168) != *(int *)(uiBufferData + 0x148))) {
               pstackUInt548 = (UIDword *)CONCAT71(pstackUInt548._1_7_,1);
-              TempInt4 = FUN_18075a100((longlong *)(uiContext + 0x158),*(UIHandle *)(uiContext + 0xa8),
+              TempInt4 = ExecuteUIRenderTask((longlong *)(uiContext + 0x158),*(UIHandle *)(uiContext + 0xa8),
                                     *(UIDword *)(uiBufferData + 0x148));
               if (TempInt4 != 0) {
                 FUN_18075f8e0(&pstackUInt508);
@@ -155580,7 +155580,7 @@ LAB_180760f3a:
             pstackUInt4a0 = (UIHandle *)0x0;
             stackLong498 = 0;
             stackUInt488 = 0xffffffff;
-            uiCompareResult = FUN_18075a100(&pstackUInt4a0,*(UIHandle *)(uiContext + 0xa8),TempInt4,
+            uiCompareResult = ExecuteUIRenderTask(&pstackUInt4a0,*(UIHandle *)(uiContext + 0xa8),TempInt4,
                                   stackUInt4f8._4_4_);
             if (uiCompareResult == 0) {
               result0 = 0;
@@ -155628,7 +155628,7 @@ LAB_180760f3a:
             stackUInt420 = 0;
             stackUInt418 = 0;
             pstackUInt548 = (UIDword *)((ulonglong)pstackUInt548 & 0xffffffffffffff00);
-            uiCompareResult = FUN_18075a100(&pstackUInt4d8,*(UIHandle *)(uiContext + 0xa8),
+            uiCompareResult = ExecuteUIRenderTask(&pstackUInt4d8,*(UIHandle *)(uiContext + 0xa8),
                                   *(UIDword *)(uiBufferData + 0x148),*(UIDword *)(uiBufferData + 0x14c))
             ;
             ptrResult4 = pstackUInt4d8;
@@ -155683,7 +155683,7 @@ LAB_180761496:
       stackUInt210 = 0;
       stackUInt208 = 0;
       pstackUInt548 = (UIDword *)((ulonglong)pstackUInt548._1_7_ << 8);
-      uiCompareResult = FUN_18075a100(&pstackUInt4d8,*(UIHandle *)(uiContext + 0xa8),
+      uiCompareResult = ExecuteUIRenderTask(&pstackUInt4d8,*(UIHandle *)(uiContext + 0xa8),
                             *(UIDword *)(uiBufferData + 0x148),*(UIDword *)(uiBufferData + 0x14c));
       ptrResult4 = pstackUInt4d8;
       if (uiCompareResult == 0) {
@@ -155940,7 +155940,7 @@ LAB_180761ebf:
               allocatedMemory5 = *colorBufferPointer1;
               semaphoreHandle0 = *(uint *)(allocatedMemory1 + 100) >> 0xf & 1;
               if (allocatedMemory5 == 0) {
-                localInt6 = FUN_18075a100(colorBufferPointer1,*(UIHandle *)(ContextHandle + 0xa8),uVar8,0,0);
+                localInt6 = ExecuteUIRenderTask(colorBufferPointer1,*(UIHandle *)(ContextHandle + 0xa8),uVar8,0,0);
                 if (localInt6 != 0) goto LAB_180762032;
                 allocatedMemory5 = *colorBufferPointer1;
                 semaphoreHandle0 = 1;
@@ -156021,7 +156021,7 @@ LAB_180761ebf:
     BasePointer[0x40] = unmodifiedR13;
     BasePointer[0x4b] = unmodifiedR13;
     BasePointer[0x4c] = unmodifiedR13;
-    localInt7 = FUN_18075a100(BasePointer + -0xe,result7,result,semaphoreHandle7,CONCAT71(semaphoreHandle6,(char)unmodifiedR13));
+    localInt7 = ExecuteUIRenderTask(BasePointer + -0xe,result7,result,semaphoreHandle7,CONCAT71(semaphoreHandle6,(char)unmodifiedR13));
     if (localInt7 == 0) {
       if (*(longlong *)(ContextHandle + 0x138) != 0) {
         unmodifiedR13 = *(longlong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
@@ -156046,7 +156046,7 @@ LAB_180761ebf:
     semaphoreHandle7 = *(UIDword *)((longlong)BasePointer + -0x4c);
     if ((*colorBufferPointer1 == 0) && (localInt6 != 0)) {
       stackParam00000020 = CONCAT71(semaphoreHandle6,1);
-      localInt5 = FUN_18075a100(colorBufferPointer1,*(UIHandle *)(ContextHandle + 0xa8),semaphoreHandle7,(int)allocatedMemory3,
+      localInt5 = ExecuteUIRenderTask(colorBufferPointer1,*(UIHandle *)(ContextHandle + 0xa8),semaphoreHandle7,(int)allocatedMemory3,
                             stackParam00000020);
       if (localInt5 == 0) goto LAB_180760f3a;
 LAB_180760fbb:
@@ -156056,7 +156056,7 @@ LAB_180760fbb:
     else {
 LAB_180760f3a:
       semaphoreHandle5 = stackParam00000020 & 0xffffffffffffff00;
-      localInt5 = FUN_18075a100(&stack0x00000060,*(UIHandle *)(ContextHandle + 0xa8),semaphoreHandle7,(int)allocatedMemory3,
+      localInt5 = ExecuteUIRenderTask(&stack0x00000060,*(UIHandle *)(ContextHandle + 0xa8),semaphoreHandle7,(int)allocatedMemory3,
                             semaphoreHandle5);
       if (localInt5 != 0) goto LAB_180760fbb;
       if ((*(uint *)(ContextHandle + 100) >> 3 & 1) != 0) {
@@ -156064,7 +156064,7 @@ LAB_180760f3a:
         if (((allocatedMemory3 == 0) || (*(longlong *)(allocatedMemory3 + 0x10) == 0)) ||
            (*(int *)(ContextHandle + 0x168) != *(int *)(ContextHandle + 0x148))) {
           semaphoreHandle5 = CONCAT71((int7)(semaphoreHandle5 >> 8),1);
-          localInt5 = FUN_18075a100((longlong *)(ContextHandle + 0x158),*(UIHandle *)(ContextHandle + 0xa8),
+          localInt5 = ExecuteUIRenderTask((longlong *)(ContextHandle + 0x158),*(UIHandle *)(ContextHandle + 0xa8),
                                 *(UIDword *)(ContextHandle + 0x148),*(UIDword *)(ContextHandle + 0xc4)
                                 ,semaphoreHandle5);
           if (localInt5 != 0) {
@@ -156271,7 +156271,7 @@ LAB_180760f3a:
         BasePointer[-7] = 0;
         BasePointer[-6] = 0;
         *(UIDword *)(BasePointer + -4) = 0xffffffff;
-        localInt6 = FUN_18075a100(BasePointer + -7,result7,localInt7,semaphoreHandle7,semaphoreHandle5 & 0xffffffffffffff00);
+        localInt6 = ExecuteUIRenderTask(BasePointer + -7,result7,localInt7,semaphoreHandle7,semaphoreHandle5 & 0xffffffffffffff00);
         if (localInt6 == 0) {
           result2 = 0;
           result7 = result2;
@@ -156321,7 +156321,7 @@ LAB_180760f3a:
         BasePointer[-2] = 0;
         BasePointer[9] = 0;
         BasePointer[10] = 0;
-        localInt7 = FUN_18075a100(BasePointer + -0xe,result7,result,semaphoreHandle7,semaphoreHandle5 & 0xffffffffffffff00);
+        localInt7 = ExecuteUIRenderTask(BasePointer + -0xe,result7,result,semaphoreHandle7,semaphoreHandle5 & 0xffffffffffffff00);
         if (localInt7 == 0) {
           allocatedMemory1 = allocatedMemory3;
           if (*colorBufferPointer1 != 0) {
@@ -156687,7 +156687,7 @@ LAB_180761ebf:
             result8 = *(uint *)(stringCompareIndex + 100) >> 0xf & 1;
             if (allocatedMemory1 == 0) {
               stackParam00000020 = stackParam00000020 & 0xffffffffffffff00;
-              localInt6 = FUN_18075a100(colorBufferPointer0,*(UIHandle *)(ContextHandle + 0xa8),LoopCounter,0,
+              localInt6 = ExecuteUIRenderTask(colorBufferPointer0,*(UIHandle *)(ContextHandle + 0xa8),LoopCounter,0,
                                     stackParam00000020);
               if (localInt6 != 0) goto LAB_180762032;
               allocatedMemory1 = *colorBufferPointer0;
@@ -157003,7 +157003,7 @@ LAB_180761ebf:
             result3 = *(uint *)(allocatedMemory + 100) >> 0xf & 1;
             if (CharacterDataOffset == 0) {
               stackParam00000020 = stackParam00000020 & 0xffffffffffffff00;
-              TempInt4 = FUN_18075a100(pallocatedMemory5,*(UIHandle *)(ContextHandle + 0xa8),EventTypeCode,0,
+              TempInt4 = ExecuteUIRenderTask(pallocatedMemory5,*(UIHandle *)(ContextHandle + 0xa8),EventTypeCode,0,
                                     stackParam00000020);
               if (TempInt4 != 0) goto LAB_180762032;
               CharacterDataOffset = *pallocatedMemory5;
@@ -206533,9 +206533,9 @@ void FUN_180791770(longlong *uiContext,UIHandle dataSource,UIHandle targetBuffer
   stackUInt2d8 = bufferSize;
   stackUInt2d0 = dataSource;
   stackUInt2c8 = targetBuffer;
-  FUN_18075a100(&stackUInt2a0,uiContext[1],localInt5,0);
+  ExecuteUIRenderTask(&stackUInt2a0,uiContext[1],localInt5,0);
   fStack_2f8 = (float)((uint)fStack_2f8 & 0xffffff00);
-  FUN_18075a100(&stackUInt2c0,uiContext[1],(int)uiContext[3],0);
+  ExecuteUIRenderTask(&stackUInt2c0,uiContext[1],(int)uiContext[3],0);
   result7 = result2;
   if (localInt5 < 1) {
     EventOperationCount = (int)uiContext[2];
