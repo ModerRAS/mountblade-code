@@ -126526,11 +126526,11 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cb50 - 系统资源计数器递减函数B50
 // 功能：递减系统资源计数器并执行系统函数表操作
-#define DecrementSystemResourceCounterB50 Unwind_18090cb50
+#define DecrementSystemResourceCounterB50 DecrementSystemResourceCounterAndExecuteFunctionB50
 
 // 原始函数名：Unwind_18090cb60 - 异常上下文处理函数B60
 // 功能：处理异常上下文，设置默认异常处理器B
-#define ProcessExceptionContextB60 Unwind_18090cb60
+#define ProcessExceptionContextB60 ProcessExceptionContextResourceReleaseB60
 
 // 原始函数名：Unwind_18090cbd0 - 异常上下文处理函数BD0
 // 功能：处理异常上下文，设置默认异常处理器B
