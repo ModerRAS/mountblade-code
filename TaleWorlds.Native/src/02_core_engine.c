@@ -207346,7 +207346,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   MemoryPoolBlockSize = CharacterCode + ProcessingStatusFlag * 8;
   if (*(long long *)(CharacterCode + 0x28 + ProcessingStatusFlag * 8) != 0) {
     BufferStatus = *(long long *)(CoreEngineRenderContext + 0x1cd8);
-    MemoryBoundaryEnd = FUN_18023a940();
+    MemoryBoundaryEnd = GetSystemStringIndex();
     MemoryBlockIndex = *(long long **)(BufferStatus + 0x8400);
     RemainingSpace = (**(code **)(*MemoryBlockIndex + 0x70))(MemoryBlockIndex,*(void *)(MemoryBoundaryEnd + 8),0,1,0,&pFunctionAddress);
     if (RemainingSpace < 0) {
@@ -207363,7 +207363,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
     }
     MemoryBlockIndex = *(long long **)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x8400);
     pOperationStatus = *(code **)(*MemoryBlockIndex + 0x78);
-    MemoryPoolBlockSize = FUN_18023a940(*(void *)(MemoryPoolBlockSize + 0x28));
+    MemoryPoolBlockSize = GetSystemStringIndex(*(void *)(MemoryPoolBlockSize + 0x28));
     (*pOperationStatus)(MemoryBlockIndex,*(void *)(MemoryPoolBlockSize + 8),0);
     if (*(long long *)(SystemBufferSize + 0x99e0) != 0) {
       FUN_18029e450(*(void *)(CoreEngineRenderContext + 0x1cd8),
