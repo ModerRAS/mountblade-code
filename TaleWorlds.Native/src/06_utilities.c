@@ -310,6 +310,7 @@
 
 // 系统上下文扩展偏移量常量
 #define SystemContextOffset48 0x48                           // 系统上下文偏移量48
+#define SystemContextOffset4c 0x4c                           // 系统上下文偏移量4c
 #define SystemContextOffset94 0x94                           // 系统上下文偏移量94
 #define SystemContextOffsetAc 0xac                           // 系统上下文偏移量Ac
 #define SystemContextOffsetB0 0xb0                           // 系统上下文偏移量B0
@@ -11080,10 +11081,10 @@ void* UtilitySystemQuaternaryValidationDataPointer;
 uint8_t UtilitySystemSecondaryValidationStatus;
 void* UtilitySystemQuinaryValidationDataPointer;
 uint8_t UtilitySystemTertiaryValidationStatus;
-void* UtilitySystemProcessData1;
-void* UtilitySystemProcessData2;
-void* UtilitySystemProcessData3;
-void* UtilitySystemProcessData4;
+void* UtilitySystemPrimaryProcessDataPointer;
+void* UtilitySystemSecondaryProcessDataPointer;
+void* UtilitySystemTertiaryProcessDataPointer;
+void* UtilitySystemQuaternaryProcessDataPointer;
 
 /**
  * @brief 配置工具系统回调函数
@@ -21451,7 +21452,7 @@ void ExecuteSecurityCheckWrapper(void)
   int64_t stateValue;
   uint64_t securityContext;
   
-  stateValue = *(int64_t *)(contextRegister + 0x48);
+  stateValue = *(int64_t *)(contextRegister + RegisterContextOffset48);
   if ((stateValue != 0) || (validationResult = ProcessSystemContextA0(), validationResult == 0)) {
     *targetPointer = stateValue;
   }
@@ -21827,7 +21828,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   if ((operationResult == 0) && (operationResult = ValidateSystemStateDI0(systemContext + ResourceManagementOffset80), operationResult == 0)) {
     // 设置系统状态标志
     *(DataWord *)(systemContext + SystemContextPointerOffset90) = SystemCleanupFlag;
-    *(DataWord *)(systemContext + 0x94) = 0;
+    *(DataWord *)(systemContext + SystemContextOffset94) = 0;
   }
   
   // 验证系统状态DI0
@@ -21840,8 +21841,8 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   operationResult = ReleaseSystemResourceDJ0(systemContext + SystemContextOffset28);
   if ((operationResult == 0) && (operationResult = ConfigureSystemParameterDK0(systemContext + SystemFloatDataOffset38), operationResult == 0)) {
     // 设置系统参数标志
-    *(DataWord *)(systemContext + 0x48) = SystemCleanupFlag;
-    *(DataWord *)(systemContext + 0x4c) = 0;
+    *(DataWord *)(systemContext + SystemContextOffset48) = SystemCleanupFlag;
+    *(DataWord *)(systemContext + SystemContextOffset4c) = 0;
   }
   
   // 配置系统参数DK0
