@@ -97199,6 +97199,23 @@ void Unwind_18090de40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理范围内的异常处理器
+ * 
+ * 该函数遍历指定范围内的异常处理器，并调用每个有效的处理器函数。
+ * 它会检查数据上下文和异常处理器上下文指针，在两者之间的范围内
+ * 依次调用每个异常处理器的函数指针（偏移量0x38）。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器范围信息
+ * 
+ * @note 原始函数名：Unwind_18090de50
+ * @note 使用偏移量0xE0访问异常处理器上下文
+ * @note 数据上下文位于偏移量0x40处，异常处理器上下文位于偏移量0x48处
+ * @note 函数指针位于偏移量0x38处
+ * 
+ * @see TerminateSystemE0
+ */
 void Unwind_18090de50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
