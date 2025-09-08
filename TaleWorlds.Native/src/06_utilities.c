@@ -28099,7 +28099,7 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
   float normalizedValue;
   BytePair stackBufferX [4];
   
-  stackBufferX[0] = CONCAT11(stackBufferX[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
+  systemDataBufferX[0] = CONCAT11(systemDataBufferX[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackBufferX,1);
   if ((int)systemDataBuffer == 0) {
     operationStatus = 0;
@@ -28301,7 +28301,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
   DataBuffer validationFlags;        // 验证标志
   DataBuffer processedData;          // 已处理数据
   
-  workingBuffer = CONCAT44(workingBuffer._4_4_,*dataBuffer);
+  systemWorkingBuffer = CONCAT44(systemWorkingBuffer._4_4_,*dataBuffer);
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))(*(DataBuffer **)(systemContext + 8),&workingBuffer,4);
   if (operationResult == 0) {
     workingBuffer = *(DataBuffer *)(dataBuffer + 2);
@@ -28335,7 +28335,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         }
         systemDataBuffer = dataBuffer[100];
         if (systemDataBuffer < 0x8000) {
-          stackDataBuffer = CONCAT62(stackDataBuffer._2_6_,(short)systemDataBuffer);
+          systemStackBuffer = CONCAT62(systemStackBuffer._2_6_,(short)systemDataBuffer);
           memoryRegionBase = 2;
         }
         else {
@@ -28636,7 +28636,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
     memoryPointerArray[0] = *(int *)(dataBuffer + MemoryPointerOffset);
     memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,4);
     if ((int)memoryRegionBase == 0) {
-      memoryPointerArray[0] = CONCAT22(memoryPointerArray[0]._2_2_,operationResult);
+      systemMemoryPointerArray[0] = CONCAT22(systemMemoryPointerArray[0]._2_2_,operationResult);
       memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,2);
       if (((int)memoryRegionBase == 0) && (memoryRegionBase = CheckSystemStatusA1(operationBase,dataBuffer + 0x24), (int)memoryRegionBase == 0)) {
@@ -28671,7 +28671,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 if ((int)memoryRegionBase != 0) {
                   return memoryRegionBase;
                 }
-                stackParameterArray[0] = CONCAT31(stackParameterArray[0]._1_3_,statusFlag != 0);
+                systemParameterArray[0] = CONCAT31(systemParameterArray[0]._1_3_,statusFlag != 0);
                 memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackParameterArray,1);
                 if ((int)memoryRegionBase != 0) {
