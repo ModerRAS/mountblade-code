@@ -1838,7 +1838,7 @@
  * @brief 系统状态检查函数
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define CheckSystemStatus CheckSystemStatusAndHealth
+#define CheckSystemStatusAndCleanupResources CheckSystemStatusAndHealth
 
 /**
  * @brief 工具操作执行函数
