@@ -1,5 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @file 01_initialization.c
+ * @brief 系统初始化和配置模块
+ * 
+ * 本模块提供了TaleWorlds引擎的初始化和配置功能，包括：
+ * - 系统组件初始化和配置
+ * - 资源管理和内存分配
+ * - 系统状态监控和管理
+ * - 硬件抽象层初始化
+ * - 网络和通信系统初始化
+ * 
+ * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
+ *       替换为具有语义的名称，提高了代码的可读性和维护性。
+ */
+
 // 系统管理器表偏移量
 #define SystemCompletionPortHandleOffset    0x42686  // 系统完成端口句柄偏移量
 #define SystemResourceManagerOffset         0x42687  // 系统资源管理器偏移量
