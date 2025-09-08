@@ -200182,26 +200182,26 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
   longlong *contextOffset;
   longlong basePointer;
   
-  IsValidationComplete = false;
-  if (BasePointer == 0) {
-    localInt6 = 0x43;
+  isValidationComplete = false;
+  if (basePointer == 0) {
+    validationResult = 0x43;
   }
   else if (dataSource == (longlong *)0x0) {
-    localInt6 = 0x1f;
+    validationResult = 0x1f;
   }
   else {
     validationFlag = '\0';
     if (-1 < bufferSize) {
       validationFlag = targetBuffer;
     }
-    if ((validationFlag != '\0') && (BasePointer != 0)) {
-      func_0x000180743c20();
-      IsValidationComplete = true;
+    if ((validationFlag != '\0') && (basePointer != 0)) {
+      ValidateUIContext();
+      isValidationComplete = true;
     }
-    ptrResult = uiContext + 6;
-    if ((((UIHandle *)*ptrResult != ptrResult) || ((UIHandle *)uiContext[7] != ptrResult)) ||
-       (localInt6 = FUN_180789e60(uiContext), localInt6 == 0)) {
-      colorBufferPointer = (longlong *)*ptrResult;
+    resultHandle = uiContext + 6;
+    if ((((UIHandle *)*resultHandle != resultHandle) || ((UIHandle *)uiContext[7] != resultHandle)) ||
+       (validationResult = FUN_180789e60(uiContext), validationResult == 0)) {
+      colorBufferPointer = (longlong *)*resultHandle;
       *(longlong *)colorBufferPointer[1] = *colorBufferPointer;
       *(longlong *)(*colorBufferPointer + 8) = colorBufferPointer[1];
       colorBufferPointer[1] = (longlong)colorBufferPointer;
@@ -200210,50 +200210,58 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
       *colorBufferPointer = (longlong)(uiContext + 9);
       uiContext[10] = colorBufferPointer;
       *(longlong **)colorBufferPointer[1] = colorBufferPointer;
-      pcontextOffset = (longlong *)uiContext[1];
+      contextOffset = (longlong *)uiContext[1];
       do {
-        pstringCompareIndex = (longlong *)pcontextOffset[5];
-        if ((pstringCompareIndex <= colorBufferPointer) && (colorBufferPointer < pstringCompareIndex + (longlong)(int)pcontextOffset[4] * 3)) {
-          localInt6 = (int)(((longlong)colorBufferPointer - (longlong)pstringCompareIndex) / 0x18);
-          if (localInt6 != -1) {
-            ContextHandleData = *(longlong *)(pcontextOffset[6] + (longlong)localInt6 * 8);
-            *dataSource = ContextHandleData;
-            if (ContextHandleData == 0) {
-              localInt6 = 0x26;
+        stringCompareIndex = (longlong *)contextOffset[5];
+        if ((stringCompareIndex <= colorBufferPointer) && (colorBufferPointer < stringCompareIndex + (longlong)(int)contextOffset[4] * 3)) {
+          validationResult = (int)(((longlong)colorBufferPointer - (longlong)stringCompareIndex) / 0x18);
+          if (validationResult != -1) {
+            contextHandleData = *(longlong *)(contextOffset[6] + (longlong)validationResult * 8);
+            *dataSource = contextHandleData;
+            if (contextHandleData == 0) {
+              validationResult = 0x26;
             }
             else {
-              colorBufferPointer[2] = ContextHandleData;
-              func_0x000180763630(*dataSource,*uiContext,0x3f800000);
-              *(int *)((longlong)pcontextOffset + 0x24) = *(int *)((longlong)pcontextOffset + 0x24) + 1;
+              colorBufferPointer[2] = contextHandleData;
+              func_0x000180763630(*dataSource, *uiContext, 0x3f800000);
+              *(int *)((longlong)contextOffset + 0x24) = *(int *)((longlong)contextOffset + 0x24) + 1;
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
-              localInt6 = 0;
+              validationResult = 0;
             }
             goto LAB_18078a1be;
           }
           break;
         }
-        pcontextOffset = (longlong *)*pcontextOffset;
-      } while (pcontextOffset != (longlong *)uiContext[1]);
-      localInt6 = 0x1e;
+        contextOffset = (longlong *)*contextOffset;
+      } while (contextOffset != (longlong *)uiContext[1]);
+      validationResult = 0x1e;
     }
   }
 LAB_18078a1be:
-  if ((IsValidationComplete) && (BasePointer != 0)) {
+  if ((isValidationComplete) && (basePointer != 0)) {
                      WARNING: Subroutine does not return
     ProcessUISystemCleanup();
   }
-  return localInt6;
+  return validationResult;
 }
 
 
 
-UIDword FUN_18078a1d7(void)
-
+/**
+ * @brief 清理UI系统资源
+ * 
+ * 该函数负责清理UI系统相关的资源，包括内存释放、句柄清理等。
+ * 这是一个资源管理函数，确保系统资源被正确释放。
+ * 
+ * @return 分配标志位，表示资源清理的状态
+ * @note 原始函数名: FUN_18078a1d7
+ */
+UIDword CleanupUISystemResources(void)
 {
-  longlong BasePointer;
+  longlong basePointer;
   UIDword allocationFlags;
   
-  if (BasePointer != 0) {
+  if (basePointer != 0) {
                      WARNING: Subroutine does not return
     ProcessUISystemCleanup();
   }
@@ -200262,36 +200270,47 @@ UIDword FUN_18078a1d7(void)
 
 
 
-UIDword FUN_18078a1f2(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
-
+/**
+ * @brief 处理UI数据分配和验证
+ * 
+ * 该函数处理UI数据的分配、验证和相关操作。包括数据源和目标缓冲区之间的
+ * 数据处理，以及相关的内存管理操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @return 分配标志位，表示操作结果状态
+ * @note 原始函数名: FUN_18078a1f2
+ */
+UIDword ProcessUIDataAllocationAndValidation(UIHandle uiContext, longlong dataSource, longlong targetBuffer)
 {
   longlong allocatedMemory;
-  int uiValidationResult;
-  longlong ContextHandle;
-  longlong BasePointer;
-  UIHandle *SourceHandle;
+  int validationIndex;
+  longlong contextHandle;
+  longlong basePointer;
+  UIHandle *sourceHandle;
   UIDword allocationFlags;
-  char unmodifiedR12B;
-  longlong *unmodifiedR15;
+  char cleanupFlag;
+  longlong *resultPointer;
   
-  uiValidationResult = (int)((targetBuffer - dataSource) / 0x18);
-  if (uiValidationResult == -1) {
+  validationIndex = (int)((targetBuffer - dataSource) / 0x18);
+  if (validationIndex == -1) {
     allocationFlags = 0x1e;
   }
   else {
-    allocatedMemory = *(longlong *)(*(longlong *)(ContextHandle + 0x30) + (longlong)uiValidationResult * 8);
-    *unmodifiedR15 = allocatedMemory;
+    allocatedMemory = *(longlong *)(*(longlong *)(contextHandle + 0x30) + (longlong)validationIndex * 8);
+    *resultPointer = allocatedMemory;
     if (allocatedMemory == 0) {
       allocationFlags = 0x26;
     }
     else {
       *(longlong *)(targetBuffer + 0x10) = allocatedMemory;
-      func_0x000180763630(*unmodifiedR15,*SourceHandle,0x3f800000);
-      *(int *)(ContextHandle + 0x24) = *(int *)(ContextHandle + 0x24) + 1;
-      *(int *)((longlong)SourceHandle + 0x14) = *(int *)((longlong)SourceHandle + 0x14) + 1;
+      func_0x000180763630(*resultPointer, *sourceHandle, 0x3f800000);
+      *(int *)(contextHandle + 0x24) = *(int *)(contextHandle + 0x24) + 1;
+      *(int *)((longlong)sourceHandle + 0x14) = *(int *)((longlong)sourceHandle + 0x14) + 1;
     }
   }
-  if ((unmodifiedR12B != '\0') && (BasePointer != 0)) {
+  if ((cleanupFlag != '\0') && (basePointer != 0)) {
                      WARNING: Subroutine does not return
     ProcessUISystemCleanup();
   }
