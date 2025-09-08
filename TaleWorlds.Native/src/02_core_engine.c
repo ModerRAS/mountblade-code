@@ -954,6 +954,18 @@
 // 系统字符处理函数
 #define ProcessSystemCharacterData FUN_180651d20
 
+// 高频出现的FUN_函数语义化宏定义
+#define GetSystemDataPointer FUN_180189990            // 获取系统数据指针（出现9次）
+#define GetSystemMemoryHandle FUN_180188490            // 获取系统内存句柄（出现11次）
+#define ProcessSystemFunctionCall FUN_18022f080        // 处理系统函数调用（出现6次）
+#define ProcessSystemDataOperation FUN_180204a00      // 处理系统数据操作（出现5次）
+#define ProcessSystemEncodingConversionEx FUN_1802164f0 // 处理系统编码转换扩展（出现3次）
+#define ProcessSystemStatusPrimary FUN_18018a130      // 处理系统主状态（出现8次）
+#define ProcessSystemStatusSecondary FUN_18018a1c0    // 处理系统次状态（出现3次）
+#define ProcessSystemMemoryManagementEx FUN_1802eeba0 // 处理系统内存管理扩展（出现10次）
+#define ProcessSystemBufferOperation FUN_1803005b0    // 处理系统缓冲区操作（出现3次）
+#define GetSystemPrimaryStatus FUN_1800b0a10         // 获取系统主状态（出现15次）
+
 // 系统标识符识别函数语义化映射
 #define IdentifySystemIdentifierByPattern FUN_1802252d3
 #define IdentifySystemIdentifierByPatternVariantB FUN_180225317
@@ -202765,7 +202777,7 @@ long long * FUN_18016cdb0(long long *CharacterCode
   *(void **)((long long)*(int *)(*CharacterCode + 4) + (long long)CharacterCode) = &RenderConfigDataD;
   *(int *)((long long)*(int *)(*CharacterCode + 4) + -4 + (long long)CharacterCode) =
        *(int *)(*CharacterCode + 4) + -0xa8;
-  FUN_18009ec20(CharacterCode + 1);
+  ProcessCharacterIncrementOperation(CharacterCode + 1);
   return CharacterCode;
 }
 
@@ -202831,7 +202843,7 @@ long long * FUN_18016cdb0(long long *CharacterCode
   MemoryAddressMaskPointer = UnicodeCodePoint;
   if (CharacterCode[6] - *CharacterCode >> 3 != 0) {
     do {
-      FUN_18016cef0(*(void *)(MemoryAddressMaskPointer + *CharacterCode));
+      ConvertCharacterEncodingWithValidation(*(void *)(MemoryAddressMaskPointer + *CharacterCode));
       *(void *)(MemoryAddressMaskPointer + *CharacterCode) = 0;
       MemoryAllocationIndex = (int)UnicodeCodePoint + 1;
       UnicodeCodePoint = (unsigned long long)MemoryAllocationIndex;
@@ -202973,13 +202985,13 @@ LAB_18016d07b:
     for (SystemDataRegistry = StringOffset; SystemDataRegistry != 0; SystemDataRegistry = SystemDataRegistry >> 1) {
       MatchCounter = MatchCounter + 1;
     }
-    FUN_18016ff80(CharacterCode,SystemBufferSize,(long long)(MatchCounter + -1) * 2,Utf8SourcePointer,0xfffffffffffffffe);
+    ProcessCharacterEncodingConversion(CharacterCode,SystemBufferSize,(long long)(MatchCounter + -1) * 2,Utf8SourcePointer,0xfffffffffffffffe);
     if (StringOffset < 0x1d) {
-      FUN_18016d690(CharacterCode,SystemBufferSize);
+      AllocateSystemMemoryForCharacter(CharacterCode,SystemBufferSize);
     }
     else {
       SystemDataRegistry = CharacterCode + 0x380;
-      FUN_18016d690(CharacterCode,SystemDataRegistry);
+      AllocateSystemMemoryForCharacter(CharacterCode,SystemDataRegistry);
       for (; SystemDataRegistry != SystemBufferSize; SystemDataRegistry = SystemDataRegistry + 0x20) {
         MatchCounter = *(int *)(SystemDataRegistry + 0x10);
         StringOffset = *(long long *)(SystemDataRegistry + 8);
@@ -203072,7 +203084,7 @@ LAB_18016d07b:
     *(uint32_t *)(CharacterCodeTablePointer + -2) = 0;
     CharacterCodeTablePointer[-3] = 0;
     CharacterCodeTablePointer[-1] = 0;
-    FUN_18016fec0(SystemBufferSize,CharacterCode[1] + -0x20);
+    ProcessCharacterEncodingValidation(SystemBufferSize,CharacterCode[1] + -0x20);
     (**(code **)*CharacterCodeSize)(SystemBufferSize,0);
     *CharacterCodeSize = &ThreadLocalStorageTemplate;
     SystemBufferSize[1] = 0;
@@ -203284,7 +203296,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx8(uint64_t *CharacterCode,uint64_t SystemBu
   EnginePointerBuffer = CharacterCode;
   strcpy_s(aProcessingCounter,0x10,&CoreEngineDataTemplate);
   CoreEngineFinalizeSystemEvent(aBufferOffset,&pFunctionAddress);
-  FUN_180046ca0();
+  InitializeSystemMemoryManager();
   pFunctionAddress = &ThreadLocalStorageTemplate;
   *CharacterCode = &ThreadLocalStorageTemplate;
   CharacterCode[1] = 0;
@@ -203422,14 +203434,14 @@ uint64_t InitializeUtf8ToUtf16ConversionEnvironment(uint64_t *CharacterCode,uint
   
   CharacterCode = 0xfffffffffffffffe;
   MemoryAddressMaskPointer = 0;
-  BufferAllocationStatus = (long long *)FUN_18064e2a0();
+  BufferAllocationStatus = (long long *)GetSystemMemoryAllocationStatus();
   SystemEventTemplatePointer = (void *)(*BufferAllocationStatus + 0x3d8);
   if (SystemEventTemplatePointer != &SystemEventTemplateData) {
-    FUN_1806470a0();
+    InitializeSystemDataProcessor();
                     // WARNING: Subroutine does not return
     memset(SystemEventTemplatePointer,0,0x240,Utf16EndPointer,MemoryAddressMaskPointer,CharacterCode);
   }
-  FUN_1806478d0();
+  CleanupSystemDataProcessor();
   *CharacterCode = &ThreadLocalStorageTemplate;
   CharacterCode[1] = 0;
   *(uint32_t *)(CharacterCode + 2) = 0;
@@ -203528,7 +203540,7 @@ uint64_t InitializeUtf8ToUtf16ConversionEnvironment(uint64_t *CharacterCode,uint
  */
 uint64_t ProcessSystemContextWithBuffers(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180168430(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessCharacterEncodingConversionExtended(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -286889,6 +286901,200 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180169350
  */
 #define ProcessSystemDataRegistrationAndBufferManagement FUN_180169350
+
+/**
+ * @brief 处理系统字符编码转换和初始化
+ * 
+ * 该函数负责处理系统字符编码转换和初始化操作
+ * 
+ * @param CharacterCode 字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18009ec20
+ */
+#define ProcessCharacterIncrementOperation FUN_18009ec20
+
+/**
+ * @brief 处理字符编码转换和验证
+ * 
+ * 该函数负责处理字符编码转换和验证操作
+ * 
+ * @param CharacterCodeParameter 字符代码参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016cef0
+ */
+#define ConvertCharacterEncodingWithValidation FUN_18016cef0
+
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码转换操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param ValidationFlag 验证标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016ff80
+ */
+#define ProcessCharacterEncodingConversion FUN_18016ff80
+
+/**
+ * @brief 为字符分配系统内存
+ * 
+ * 该函数负责为字符处理分配系统内存
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016d690
+ */
+#define AllocateSystemMemoryForCharacter FUN_18016d690
+
+/**
+ * @brief 处理字符编码验证
+ * 
+ * 该函数负责处理字符编码验证操作
+ * 
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param CharacterOffset 字符偏移量
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016fec0
+ */
+#define ProcessCharacterEncodingValidation FUN_18016fec0
+
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统内存管理器
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180046ca0
+ */
+#define InitializeSystemMemoryManager FUN_180046ca0
+
+/**
+ * @brief 获取系统内存分配状态
+ * 
+ * 该函数负责获取系统内存分配状态
+ * 
+ * @return 系统内存分配状态指针
+ * 
+ * @note 原始函数名：FUN_18064e2a0
+ */
+#define GetSystemMemoryAllocationStatus FUN_18064e2a0
+
+/**
+ * @brief 初始化系统数据处理器
+ * 
+ * 该函数负责初始化系统数据处理器
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1806470a0
+ */
+#define InitializeSystemDataProcessor FUN_1806470a0
+
+/**
+ * @brief 清理系统数据处理器
+ * 
+ * 该函数负责清理系统数据处理器
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1806478d0
+ */
+#define CleanupSystemDataProcessor FUN_1806478d0
+
+/**
+ * @brief 处理字符编码转换扩展
+ * 
+ * 该函数负责处理字符编码转换的扩展操作
+ * 
+ * @param SourceCharacterCode 源字符代码
+ * @param TargetCharacterCode 目标字符代码
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf8TargetPointer UTF-8目标指针
+ * @param ProcessingFlag 处理标志
+ * @param ValidationFlag 验证标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180168430
+ */
+#define ProcessCharacterEncodingConversionExtended FUN_180168430
+
+/**
+ * @brief 初始化核心引擎事件系统
+ * 
+ * 该函数负责初始化核心引擎事件系统
+ * 
+ * @param CoreEngineEventInitialized 核心引擎事件初始化标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180176060
+ */
+#define InitializeCoreEngineEventSystem FUN_180176060
+
+/**
+ * @brief 初始化系统内存分配器
+ * 
+ * 该函数负责初始化系统内存分配器
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801cb3e0
+ */
+#define InitializeSystemMemoryAllocator FUN_1801cb3e0
+
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 该函数负责处理系统内存分配操作
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801c9a40
+ */
+#define ProcessSystemMemoryAllocation FUN_1801c9a40
+
+/**
+ * @brief 处理字符编码转换基础
+ * 
+ * 该函数负责处理字符编码转换的基础操作
+ * 
+ * @param SourceCharacterCode 源字符代码
+ * @param TargetCharacterCode 目标字符代码
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf8TargetPointer UTF-8目标指针
+ * @param ProcessingFlag 处理标志
+ * @param ValidationFlag 验证标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801681e0
+ */
+#define ProcessCharacterEncodingConversionBasic FUN_1801681e0
+
+/**
+ * @brief 处理字符编码转换高级
+ * 
+ * 该函数负责处理字符编码转换的高级操作
+ * 
+ * @param SourceCharacterCode 源字符代码
+ * @param TargetCharacterCode 目标字符代码
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf8TargetPointer UTF-8目标指针
+ * @param ProcessingFlag 处理标志
+ * @param ValidationFlag 验证标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180167f80
+ */
+#define ProcessCharacterEncodingConversionAdvanced FUN_180167f80
 
 /**
  * @brief 处理系统字符编码转换和初始化
