@@ -5386,7 +5386,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       StackCounter2._0_4_ = (uint32_t)StackParameter2;
       StackCounter2._4_4_ = StackParameter2._4_4_;
       StackParameter2 = in_RCX;
-      StackCounter3 = plStack_68;
+      StackCounter3 = MemoryManagerContextPointer;
       ppplStack_b8 = (longlong ***)CreateMemoryManagerContext(UnsignedSize,&StackCounter2);
       if (ppplStack_b8 != (longlong ***)0x0) {
         pppPerformanceCounterCurrent = ppplStack_b8;
@@ -6988,8 +6988,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   longlong *pPerformanceCounterCurrent;
   longlong *pPerformanceCounterFinal;
   uint64_t StackParameter2;
-  longlong **pplStack_68;
-  longlong *plStack_60;
+  longlong **MemoryManagerContextPointer;
+  longlong *MemoryPoolPointer;
   uint8_t aStackCounter3 [32];
   StackParameter2 = SystemMutexFlags;
   MemoryAllocationResult = 0;

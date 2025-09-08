@@ -100017,10 +100017,10 @@ uint8_t UpdateSystemStatus(void
   uint32_t DataSize;
   uint SystemChecksum;
   long long SystemContext;
-  long long FramePointer;
+  long long StackFrameAddressPointer;
   int CharacterTablePointer;
   uint64_t SystemDataNode;
-  long long secondaryLoopCounter;
+  long long SecondaryLoopCounter;
   long long RegisterR12Value;
   long long CharacterLimit;
   long long NullPointerValue;
@@ -100038,10 +100038,10 @@ uint8_t UpdateSystemStatus(void
   float StackFloatValue44;
   
   MemoryAllocationIndex = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),(int)SystemDataNode);
-  InputDataLength = ProcessSystemParameters(FramePointer + -0x79,LoopCounter,FramePointer + 0x6f,&SystemStackBuffer,MemoryAllocationIndex);
+  InputDataLength = ProcessSystemParameters(StackFrameAddressPointer + -0x79,LoopCounter,StackFrameAddressPointer + 0x6f,&SystemStackBuffer,MemoryAllocationIndex);
   ProcessedCharacter = (uint32_t)((unsigned long long)MemoryAllocationIndex >> 0x20);
-  if ((SystemCurrentCharacter30 == (char)SystemDataNode) || (*(char *)(FramePointer + 0x6f) == '\0')) {
-    SystemDataTablePointer = CONCAT71((int7)((unsigned long long)SystemDataNode >> 8),*(char *)(FramePointer + 0x6f) != '\0') + 0x15;
+  if ((SystemCurrentCharacter30 == (char)SystemDataNode) || (*(char *)(StackFrameAddressPointer + 0x6f) == '\0')) {
+    SystemDataTablePointer = CONCAT71((int7)((unsigned long long)SystemDataNode >> 8),*(char *)(StackFrameAddressPointer + 0x6f) != '\0') + 0x15;
   }
   else {
     SystemDataTablePointer = 0x17;
