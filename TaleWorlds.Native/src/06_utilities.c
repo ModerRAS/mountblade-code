@@ -953,6 +953,7 @@
 #define SystemValidationStatusOffset360 0x360
 #define SystemCleanupFlagOffset370 0x370
 #define SystemFloatDataOffset388 0x388
+#define SystemMemoryCleanupOffset1F0 0x1f0
 #define SecurityValidationMrpOperation 0x424d5250
 #define SecurityValidationPortControlAlt 0x42464550
 #define SecurityValidationPortControlSecurity 0x42464553
@@ -95642,7 +95643,20 @@ void ConfigureTemporaryAndDefaultExceptionHandlersCEF0(DataBuffer operationBase,
 
 
 
-void Unwind_18090cf00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用浮点数据偏移量388处的异常处理器
+ * 
+ * 该函数调用位于偏移量388处的异常处理器。
+ * 当异常处理器指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090cf00
+ * @note 偏移量：0x388
+ */
+void InvokeExceptionHandlerAtFloatDataOffset388(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemFloatDataOffset388) != (int64_t *)0x0) {
