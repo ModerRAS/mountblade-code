@@ -95340,7 +95340,21 @@ void Unwind_InitializeExceptionHandlerCE50(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090ce60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常处理器重置函数CE60
+ * 
+ * 该函数负责重置系统异常处理器，包括：
+ * - 调用现有的异常处理器
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置系统状态
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090ce60
+ */
+void ResetSystemExceptionHandlerCE60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 1000) != (int64_t *)0x0) {
@@ -95361,7 +95375,17 @@ void Unwind_18090ce60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理函数CE70
+ * 
+ * 该函数处理异常上下文，包括异常处理器的调用和管理
+ * 通过异常上下文指针访问和操作异常处理相关数据
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090ce70
+ */
+void ProcessExceptionContextCE70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
