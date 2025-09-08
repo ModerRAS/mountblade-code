@@ -1728,12 +1728,12 @@ void* UIGestureCoordinates;
 #define UIRenderParameterViewportData UNK_18094e27c
 #define UIRenderParameterLightingData UNK_18094e280
 
- // UI系统数据缓冲区宏定义
-#define UIDataBufferA UNK_1809535b4
-#define UIDataBufferB UNK_1809535bc
-#define UIDataBufferC UNK_180953648
-#define UIDataBufferD UNK_180953668
-#define UIDataBufferE UNK_180953688
+ // UI系统数据缓冲区美化
+#define UIDataBufferPrimary UNK_1809535b4
+#define UIDataBufferSecondary UNK_1809535bc
+#define UIDataBufferTertiary UNK_180953648
+#define UIDataBufferQuaternary UNK_180953668
+#define UIDataBufferQuinary UNK_180953688
 
  // UI系统坐标数据表宏定义
 #define UICoordinateDataTableA UNK_1809536a6

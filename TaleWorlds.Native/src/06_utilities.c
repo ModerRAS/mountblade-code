@@ -12286,16 +12286,16 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
     if (moduleInitializationStatus == 0) {
       StackMemoryContext = 0;
       gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
-                            &localStackMemoryContext);
+                            &StackMemoryContext);
       if (gameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(moduleDataContext);
         return (uint64_t)gameMessageProcessingStatus;
       }
       if (((*(uint32_t *)(*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemModuleOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(StackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
-      exceptionHandlerContextPointer = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
+      exceptionHandlerContextPointer = (int64_t *)(StackMemoryContext + MODULE_CONTEXT_OFFSET);
       resourceInfoContext = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
       if (*exceptionHandlerContextPointer == 0) {
         resourceInfoContext = baseValidationContext;
