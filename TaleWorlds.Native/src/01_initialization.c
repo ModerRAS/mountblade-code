@@ -39026,10 +39026,10 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
   }
   LoggerProcessingCounter = 0;
   LoggerIteratorOffset = *PrimaryResourceHandle;
-  if (*(long long *)(SystemResourceManager + 0x10) - LocalSystemOffset >> 3 != 0) {
-    localDataIndex = 0;
+  if (*(long long *)(SystemResourceManager + 0x10) - LoggerIteratorOffset >> 3 != 0) {
+    LoggerCleanupIndex = 0;
     do {
-      SystemCalculatedBufferPointer = *(long long **)(localDataIndex + LocalSystemOffset);
+      SystemCalculatedBufferPointer = *(long long **)(LoggerCleanupIndex + LoggerIteratorOffset);
       if (SystemCalculatedBufferPointer != (long long *)0x0) {
         LocalSystemOffset = __RTCastToVoid(SystemCalculatedBufferPointer);
         (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer,0);

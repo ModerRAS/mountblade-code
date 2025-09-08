@@ -239927,7 +239927,19 @@ void ProcessUtf8ToUtf16Conversion(uint64_t CharacterCode,double SystemBufferSize
 
 
 
-024d5(uint64_t CharacterCode,uint64_t SystemBufferSize,double Utf8SourcePointer,double Utf16EndPointervoid FUN_1802024d5(uint64_t CharacterCode,uint64_t SystemBufferSize,double Utf8SourcePointer,double Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的高级编码转换
+ * 
+ * 该函数处理UTF-8到UTF-16的高级编码转换操作，支持更多的编码选项
+ * 
+ * @param CharacterCode - 字符编码
+ * @param SystemBufferSize - 系统缓冲区大小
+ * @param Utf8SourcePointer - UTF-8源指针
+ * @param Utf16EndPointer - UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1802024d5
+ */
+void ProcessAdvancedUtf8ToUtf16Conversion(uint64_t CharacterCode,uint64_t SystemBufferSize,double Utf8SourcePointer,double Utf16EndPointer)
 {
   uint8_t aUtf16Char [16];
   uint8_t aMemoryAllocationIndex [16];
@@ -240011,7 +240023,16 @@ void ProcessUtf8ToUtf16Conversion(uint64_t CharacterCode,double SystemBufferSize
 
 
 
-02660(long long CharacterCodevoid FUN_180202660(long long CharacterCode
+/**
+ * @brief 处理字符编码转换和内存分配
+ * 
+ * 该函数处理字符编码转换和相关的内存分配操作
+ * 
+ * @param CharacterCode - 字符编码参数
+ * 
+ * @note 原始函数名：FUN_180202660
+ */
+void ProcessCharacterEncodingAndAllocation(long long CharacterCode)
 {
   uint64_t Utf16Char;
   uint32_t MemoryAllocationIndex;
