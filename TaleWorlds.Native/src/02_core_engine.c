@@ -637,6 +637,9 @@
 #define ProcessSystemDataBlockOperation HandleSystemDataBlockProcessingAndManagement
 #define ProcessSystemDataStructureCopy HandleSystemDataStructureCopyAndSynchronization
 
+// 系统参数配置函数宏定义
+#define ConfigureSystemRenderingParameters FUN_1806faf00        // 配置系统渲染参数
+
 #define ProcessCharacterEncodingAndBufferManagement FUN_1801601c0
 
 /**
@@ -49314,7 +49317,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
   byte HighByte8;
   float *PatternIndex;
   long long RegisterR13Value;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   uint64_t MemoryAllocationIndexAdditional0;
   uint64_t MemoryAllocationIndexAdditional8;
   uint64_t MemoryAllocationIndex70;
@@ -49902,7 +49905,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   long long SystemContext;
   float *SystemDataNode;
   uint32_t CharacterLimitD;
-  float in_XMM0_Dc;
+  float FloatXMM0;
   float in_XMM1_Dc;
   float in_XMM4_Da;
   float in_XMM4_Db;
@@ -51701,7 +51704,7 @@ void ProcessDataStructureTransformation(long long CharacterCode
   uint *pMemoryAddressMaskPointer7;
   unsigned long long MemoryAddressMaskPointer8;
   unsigned long long MemoryAddressMaskPointer9;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   bool shouldReturnSource0;
   
   SystemConfigurationIterator = CoreEngineSystemContext;
@@ -59350,7 +59353,7 @@ void ProcessFloatDataStructure(float *CharacterCode,long long SystemBufferSize,u
                                uint64_t AdditionalParameter1
 {
   uint64_t RegisterXMM0Value;
-  float in_XMM0_Dc;
+  float FloatXMM0;
   float in_XMM0_Dd;
   float SystemContextPrimaryFloat;
   uint8_t aMemoryAllocationIndex [16];
@@ -121477,7 +121480,7 @@ void ProcessCharacterEncodingConversion(int CharacterCode, uint64_t SystemBuffer
   long long StackFrameAddressPointer;
   long long SearchStartIndex;
   int *SystemDataNode;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   
   IntegerValue = 1;
   if (!in_ZF) {
@@ -137536,7 +137539,7 @@ void InitializeSystemStringProcessing(void)
   bool HighByte8;
   uint32_t CharacterLimitD;
   float NullPointerD;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   float ContextSecondaryFloat9;
   float FilterInputValue0;
   float FilterInputValue1;
@@ -144081,7 +144084,7 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float SystemBufferSiz
   bool HighByte1;
   long long CharacterLimit;
   float NullPointerD;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   uint64_t MemoryAllocationOffset;
   unsigned long long InputDataLength;
   uint8_t aMemoryAllocationBase [16];
@@ -153369,7 +153372,7 @@ void ProcessUtf8CharacterAndInputBuffer(uint CharacterCode,uint32_t *CharacterCo
   unsigned long long CalculatedCodePoint;
   int *pValidationResult;
   float *SystemDataNode;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   float FloatOffsetValue;
   float ProcessedFloatValue8;
   int FloatingPointRegisterA;
@@ -158561,7 +158564,7 @@ void CoreEngineProcessSystemFloatFilter(void)
   long long SystemDataNode;
   unsigned long long Utf16Char4;
   char *StringCodeBuffer;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   uint32_t PrimaryReturnCode;
   uint32_t SystemFloatValue2c;
   uint64_t MemoryAllocationIndexAdditional0;
@@ -158694,7 +158697,7 @@ void CoreEngineProcessSystemFloatValidator(void)
   long long SystemDataNode;
   unsigned long long Utf16Char4;
   char *StringCodeBuffer;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   uint32_t PrimaryReturnCode;
   uint32_t SystemFloatValue2c;
   uint64_t MemoryAllocationIndexAdditional0;
@@ -193594,7 +193597,7 @@ char ProcessCharacterEncodingConversionAndBufferManagement(uint32_t CharacterCod
   unsigned long long DataSize;
   int ProcessIterationCount;
   long long secondaryLoopCounter;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   bool BooleanValidationFlag9;
   uint32_t VectorRegisterDa;
   
@@ -205717,7 +205720,7 @@ LAB_1801736de:
   unsigned long long UnicodeCodePoint;
   long long SystemContext;
   long long StackFrameAddressPointer;
-  bool in_ZF;
+  bool ZeroFlagRegister;
   float MatrixTransformMultiplier1;
   float MatrixTransformMultiplier;
   
