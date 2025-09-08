@@ -18987,7 +18987,7 @@ DataBuffer ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
       dataContext = MergeHighLowWords(bufferFlags, bufferSize) - 8;
     }
     *(DataWord *)(dataContext + 0x8c) = *(DataWord *)(bufferDescriptor + 0x18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),bufferDescriptor);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),bufferDescriptor);
   }
   return operationResult;
 }
@@ -19088,7 +19088,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   }
   *(float *)(allocationContext + 0x14) = rangeValue;
   *(float *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 4) = rangeValue;
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),allocationContext);
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),allocationContext);
 }
 
 
@@ -19116,7 +19116,7 @@ DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext
   else {
     OperationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(ValidationContext + ValidationContextResourceOffset),memoryDescriptor + 0x20);
     if ((int)OperationResult == 0) {
-      OperationResult = ProcessSystemEventB0(*(DataBuffer *)(systemContext + 0x98),memoryDescriptor);
+      OperationResult = ProcessSystemEventB0(*(DataBuffer *)(systemContext + SystemContextOffset98),memoryDescriptor);
       return OperationResult;
     }
   }
@@ -19599,7 +19599,7 @@ void ProcessFloatComparisonAndValidation(void)
   *(float *)(registerContext + 0x18) = rangeValue;
   operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter,rangeValue);
   if (operationResult == 0) {
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),systemContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),systemContext);
   }
   return;
 }
@@ -19685,7 +19685,7 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
     else {
       validationResult = ProcessSystemRequest(systemContext + 0x60,validationParameter);
       if ((int)validationResult == 0) {
-          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
+          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + SystemContextOffset98));
       }
     }
   }
@@ -19730,7 +19730,7 @@ DataBuffer ValidateFloatRangeAndDispatchCall(void)
     else {
       validationResult = ProcessSystemRequest(systemContext + 0x60,processingParameter);
       if ((int)validationResult == 0) {
-          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
+          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + SystemContextOffset98));
       }
     }
   }
@@ -19792,7 +19792,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
     if ((int)operationResult == 0) {
       memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemContext + 0x60,validationBuffer,securityBuffer[0]);
       *(DataBuffer *)(configHandle + 0x18) = *memoryRegionBase;
-        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),configHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),configHandle);
     }
   }
   return operationResult;
@@ -88596,7 +88596,7 @@ void ValidateDataHandlerAtOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bf40(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset98(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x98) = &DefaultExceptionHandlerB;
