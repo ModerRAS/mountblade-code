@@ -119707,6 +119707,7 @@ char ProcessDataFilteringAndVectorCalculation(double CharacterCode, uint64_t Sys
   uint64_t SystemParameter2;
   float *OutputParameters;
   float StackFloatParameter;
+  double CalculationInputParameter;
   
   if (in_EAX == 1) {
     if (*(char *)(SystemContext + 0x120) == NullPointerValueB) {
@@ -119777,7 +119778,7 @@ LAB_18011f1e4:
       MatrixTransformMultiplier1 = 1.0;
     }
   }
-  CharacterCode = (double)ProcessSystemFloatCalculation(in_stack_00000100,SystemBufferSize,
+  CharacterCode = (double)ProcessSystemFloatCalculation(CalculationInputParameter,SystemBufferSize,
                                   SUB84(((double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10) -
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue)) *
                                         (double)MatrixTransformMultiplier1 +
