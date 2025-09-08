@@ -99586,8 +99586,23 @@ void ProcessUIDataConversionAndScaling(UIHandle uiContext,longlong dataSource,in
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180726a70(ulonglong uiContext,UIHandle dataSource,uint targetBuffer)
-void FUN_180726a70(ulonglong uiContext,UIHandle dataSource,uint targetBuffer)
+ /**
+ * @brief 处理UI数据解包和转换
+ * 
+ * 该函数负责处理UI数据的解包、转换和验证操作。
+ * 主要功能包括：
+ * 1. 解包和处理UI上下文数据
+ * 2. 执行数据转换和验证
+ * 3. 处理各种数据类型和格式转换
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180726a70
+ */
+void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource,uint targetBuffer)
+void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource,uint targetBuffer)
 
 {
   ulonglong result;
