@@ -88427,56 +88427,77 @@ void TransformUIDataB4C(UIHandle uiContext,UIHandle dataSource,int targetBuffer,
 
 
 
- void FUN_180719ca0(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-void FUN_180719ca0(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-                  int param_6)
+ /**
+ * @brief 处理UI数据计算和颜色调整
+ * 
+ * 该函数负责处理UI系统中的数据计算和颜色调整操作，主要功能包括：
+ * - 对数变换计算：使用log函数进行数据变换
+ * - 颜色调整：应用颜色调整表到UI元素
+ * - 批量数据处理：处理多个UI元素的数据
+ * - 内存管理：管理数据缓冲区和内存操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源大小
+ * @param targetBuffer 目标缓冲区大小
+ * @param bufferSize 缓冲区数据指针
+ * @param resultPointer 结果指针
+ * @param param_6 参数6，处理迭代次数
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180719ca0
+ * @note 使用1.4426950408889634作为log2的转换系数
+ * @note 0xc1600000是浮点数-14.0的十六进制表示
+ */
+void ProcessUIDataCalculationAndColorAdjustment(longlong uiContext, int dataSource, int targetBuffer, longlong bufferSize, longlong resultPointer,
+                                               int param_6)
 
 {
-  longlong allocatedMemory;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  longlong ContextHandleData;
-  int localInt5;
-  int localInt6;
-  double dVar7;
+  longlong memoryOffset;
+  int colorAdjustmentResult;
+  longlong dataIndex;
+  longlong contextDataSize;
+  int elementIndex;
+  int elementCounter;
+  double logValue;
   
-  uiElementIndex = 0;
+  elementIndex = 0;
   do {
-    localInt6 = 0;
-    ContextHandleData = 0;
+    elementCounter = 0;
+    contextDataSize = 0;
     if (0 < (longlong)dataSource) {
       do {
-        stringCompareIndex = (longlong)(*(int *)(uiBufferData + 8) * localInt5 + localInt6);
-        dVar7 = (double)log((double)*(float *)(bufferSize + stringCompareIndex * 4));
-        localInt6 = localInt6 + 1;
-        allocatedMemory = ContextHandleData * 4;
-        ContextHandleData = ContextHandleData + 1;
-        *(float *)(resultPointer + stringCompareIndex * 4) =
-             (float)(dVar7 * 1.4426950408889634) - *(float *)(&ColorAdjustmentTable + allocatedMemory);
-      } while (ContextHandleData < dataSource);
+        dataIndex = (longlong)(*(int *)(uiBufferData + 8) * elementIndex + elementCounter);
+        logValue = (double)log((double)*(float *)(bufferSize + dataIndex * 4));
+        elementCounter = elementCounter + 1;
+        memoryOffset = contextDataSize * 4;
+        contextDataSize = contextDataSize + 1;
+        *(float *)(resultPointer + dataIndex * 4) =
+             (float)(logValue * 1.4426950408889634) - *(float *)(&ColorAdjustmentTable + memoryOffset);
+      } while (contextDataSize < dataSource);
     }
     if (dataSource < targetBuffer) {
-      localInt6 = dataSource;
+      elementCounter = dataSource;
       if (3 < targetBuffer - dataSource) {
         do {
-          *(UIDword *)(resultPointer + (longlong)(*(int *)(uiBufferData + 8) * localInt5 + localInt6) * 4) =
+          *(UIDword *)(resultPointer + (longlong)(*(int *)(uiBufferData + 8) * elementIndex + elementCounter) * 4) =
                0xc1600000;
-          *(UIDword *)(resultPointer + 4 + (longlong)(*(int *)(uiBufferData + 8) * localInt5 + localInt6) * 4) =
+          *(UIDword *)(resultPointer + 4 + (longlong)(*(int *)(uiBufferData + 8) * elementIndex + elementCounter) * 4) =
                0xc1600000;
-          *(UIDword *)(resultPointer + 8 + (longlong)(*(int *)(uiBufferData + 8) * localInt5 + localInt6) * 4) =
+          *(UIDword *)(resultPointer + 8 + (longlong)(*(int *)(uiBufferData + 8) * elementIndex + elementCounter) * 4) =
                0xc1600000;
-          uiValidationResult = *(int *)(uiBufferData + 8) * localInt5 + localInt6;
-          localInt6 = localInt6 + 4;
-          *(UIDword *)(resultPointer + 0xc + (longlong)uiValidationResult * 4) = 0xc1600000;
-        } while (localInt6 < targetBuffer + -3);
+          colorAdjustmentResult = *(int *)(uiBufferData + 8) * elementIndex + elementCounter;
+          elementCounter = elementCounter + 4;
+          *(UIDword *)(resultPointer + 0xc + (longlong)colorAdjustmentResult * 4) = 0xc1600000;
+        } while (elementCounter < targetBuffer + -3);
       }
-      for (; localInt6 < targetBuffer; localInt6 = localInt6 + 1) {
-        *(UIDword *)(resultPointer + (longlong)(*(int *)(uiBufferData + 8) * localInt5 + localInt6) * 4) =
+      for (; elementCounter < targetBuffer; elementCounter = elementCounter + 1) {
+        *(UIDword *)(resultPointer + (longlong)(*(int *)(uiBufferData + 8) * elementIndex + elementCounter) * 4) =
              0xc1600000;
       }
     }
-    uiElementIndex = uiElementIndex + 1;
-  } while (localInt5 < param_6);
+    elementIndex = elementIndex + 1;
+  } while (elementIndex < param_6);
   return;
 }
 
