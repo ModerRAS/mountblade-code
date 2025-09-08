@@ -12270,7 +12270,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t *contextDataContext;                // 上下文数据上下文指针
   int64_t *moduleDataContext;                 // 模块数据上下文指针
   int64_t *baseValidationContext;             // 基础验证上下文指针
-  int64_t localStackMemoryContext;            // 本地栈内存上下文
+  int64_t StackMemoryContext;                 // 栈内存上下文
   int64_t temporaryStackContext;               // 临时栈上下文
   
   systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporaryStackContext);
@@ -12284,7 +12284,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
     systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporaryStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
-      localStackMemoryContext = 0;
+      StackMemoryContext = 0;
       gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
                             &localStackMemoryContext);
       if (gameMessageProcessingStatus != 0) {

@@ -280439,7 +280439,11 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
   float ContextSecondaryFloat0;
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
-  float ContextSecondaryFloat3;
+  float ContextSecondaryFloat3;        // 上下文次要浮点数3
+  long long SystemDataTablePointer;    // 系统数据表指针（临时变量）
+  int SystemOperationResult;           // 系统操作结果
+  float *pSystemContextPrimaryFloat;   // 系统上下文主要浮点数指针（临时变量）
+  void *PrimaryProcessingStatusFlag;   // 主要处理状态标志（临时变量）
   
   UnicodeCodePoint = *(unsigned long long *)(CharacterCode + 0x800);
   CharacterTableIndex = (long long)(char)Utf8SourcePointer;
