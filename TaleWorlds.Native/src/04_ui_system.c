@@ -100181,19 +100181,32 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180726fd0(longlong uiContext,float *dataSource)
-void FUN_180726fd0(longlong uiContext,float *dataSource)
+ /**
+ * @brief 处理UI元素索引
+ * 
+ * 该函数负责处理UI系统中的元素索引，包括：
+ * - 元素索引的计算和更新
+ * - 变换系数的转换和应用
+ * - 上下文数据的处理
+ * - UI元素状态的同步
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * 
+ * @note 原始函数名：FUN_180726fd0
+ */
+void ProcessUIElementIndex(longlong uiContext,float *dataSource)
 
 {
-  short sVar1;
-  float *ptransformCoeff1;
-  short *pContextFirstValue;
-  int TempInt4;
-  int localInt5;
-  UIByte astackUInt88 [32];
-  short asStack_68 [16];
-  short asStack_48 [16];
-  ulonglong stackUInt28;
+  short elementValue;
+  float *transformCoeffPtr;
+  short *contextDataPtr;
+  int elementCount;
+  int currentIndex;
+  UIByte encryptionBuffer [32];
+  short contextArray1 [16];
+  short contextArray2 [16];
+  ulonglong encryptionKey;
   
   stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt88;
   FUN_180733080(uiContext,asStack_68);
