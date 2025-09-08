@@ -19322,8 +19322,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   int64_t resourceIterator;
   int64_t memoryBlockOffset;
   
-  validationBuffer[0] = *(uint *)(systemContext + SystemDataSecondaryOffset18);
-  if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
+  validationDataBuffer[0] = *(uint *)(systemContext + SystemDataSecondaryOffset18);
+  if ((validationDataBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
   if (systemContext + SystemContextOffset28 != 0) {
@@ -20772,8 +20772,8 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   unsigned int validationDataBuffer [2];
   DataWord securityBuffer [2];
   
-  validationBuffer[0] = *(uint *)(configHandle + ExceptionHandlerCallbackOffset10);
-  if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
+  validationDataBuffer[0] = *(uint *)(configHandle + ExceptionHandlerCallbackOffset10);
+  if ((validationDataBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
   securityBuffer[0] = 0;
@@ -20792,7 +20792,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
     *(float *)(configHandle + ExceptionHandlerCallbackOffset10) = validatedValue;
     operationResult = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,securityBuffer[0],validatedValue);
     if ((int)operationResult == 0) {
-      memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemContext + SystemContextOperationOffset60,validationBuffer,securityBuffer[0]);
+      memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemContext + SystemContextOperationOffset60,validationDataBuffer,securityBuffer[0]);
       *(DataBuffer *)(configHandle + SystemDataSecondaryOffset18) = *memoryRegionBase;
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),configHandle);
     }

@@ -840,13 +840,13 @@ typedef enum {
 #define ProcessUIFloatDataProcessing FUN_180712e3f
 
 // UI系统数据指针美化
-#define UIDataBufferPointer UNK_180741cf0
-#define UIResourceTablePointer UNK_180741d00
+#define UIDataBufferRegistryPointer UNK_180741cf0
+#define UIResourceTableRegistryPointer UNK_180741d00
 #define UIContextDataPointer UNK_180741ce0
 // UI系统全局数据美化
-#define UISystemGlobalData UNK_180958080
+#define UISystemGlobalDataRegistry UNK_180958080
 #define UISystemConfigurationData UNK_18078b870
-#define UISystemStateData UNK_180958bf0
+#define UISystemStateDataRegistry UNK_180958bf0
 #define UISystemResourceData UNK_1807693c0
 // UI系统组件数据美化
 #define UIComponentDataBuffer UNK_180770640
