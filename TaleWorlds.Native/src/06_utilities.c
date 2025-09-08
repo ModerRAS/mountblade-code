@@ -88165,7 +88165,7 @@ void DestroyMutexLock(void)
 
 
 
-void Unwind_18090bd10(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -88201,7 +88201,7 @@ void Unwind_18090bd10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextAtOffset20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -88424,7 +88424,7 @@ void ExecuteSystemCallbackZ0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bdd0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeSystemAndInvokeHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -88436,7 +88436,7 @@ void Unwind_18090bdd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bde0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
