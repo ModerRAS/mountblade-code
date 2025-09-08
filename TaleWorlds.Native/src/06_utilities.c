@@ -100050,31 +100050,60 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_18090ed70(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 在异常处理上下文中设置临时处理器并清理状态
+ * 
+ * 该函数在指定的异常处理上下文中设置临时异常处理器，
+ * 检查系统终止标志，清理相关状态，并恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ */
+void SetupExceptionHandlerInContextAndCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   
+  // 获取异常处理上下文指针
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
+  
+  // 在异常处理上下文中设置临时异常处理器
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
+  
+  // 检查系统终止标志，如果存在则调用系统终止函数
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
+  
+  // 清理异常处理上下文状态
+  *(int64_t *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
+  
+  // 恢复默认异常处理器
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090ed80(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 通过间接指针执行异常处理回调函数
+ * 
+ * 该函数通过数据缓冲区中的间接指针获取异常处理上下文，
+ * 如果存在有效的异常处理器，则调用相应的回调函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ */
+void ExecuteExceptionHandlerCallbackViaIndirectPointer(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 通过间接指针获取异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x58);
+  
+  // 检查异常处理上下文指针是否有效
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理回调函数
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;

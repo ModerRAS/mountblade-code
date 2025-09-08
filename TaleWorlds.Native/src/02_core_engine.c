@@ -199773,7 +199773,7 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
     if (*(void **)(Utf8SourcePointer + 8) != NULL) {
       SecondaryProcessingStatusFlag = *(void **)(Utf8SourcePointer + 8);
     }
-    FUN_1806272a0(&SystemEventBufferSecondary,SecondaryProcessingStatusFlag);
+    ProcessSystemEventBufferCleanup(&SystemEventBufferSecondary,SecondaryProcessingStatusFlag);
     (**(code **)(*CharacterCodeSize + 0x10))(SystemBufferSize,&SystemEventBufferPrimary);
   }
   else {
