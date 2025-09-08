@@ -86938,24 +86938,24 @@ uint ProcessUIEventDataCompressionAndValidation(UIHandle uiContext, longlong dat
   if ((-1 < uiCompareResult) && (localInt5 = uiValidationResult, stackParam00000108 < uiValidationResult)) {
     localInt5 = stackParam00000108;
   }
-  *(int *)(ContextHandle + 0x28) = *(int *)(ContextHandle + 0x28) - iStack000000000000007c;
-  stackParam00000120 = *(UIDword *)(ContextHandle + 0x28);
-  localLong7 = stackParam00000118 + (longlong)unmodifiedR15D * 4;
-  if (stackParam00000118 == 0) {
-    localLong7 = TargetHandle;
+  *(int *)(eventContextHandle + 0x28) = *(int *)(eventContextHandle + 0x28) - bufferOffset;
+  eventDataWord = *(UIDword *)(eventContextHandle + 0x28);
+  tempDataPointer = targetDataPointer + (longlong)eventIndex * 4;
+  if (targetDataPointer == 0) {
+    tempDataPointer = eventTargetHandle;
   }
-  bVar6 = (byte)iStack0000000000000110;
-  EventProcessingStatus = (byte)(unmodifiedR13D >> 1);
-  if (localInt5 < stackParam00000108 - localInt5) {
-    StackData4 = (int)stackParam00000130 >> (bVar6 & 0x1f);
-    fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * stackParam00000128;
-    pStackData1 = (UIDword *)localLong7;
-    localInt5 = FUN_180718bd0();
-    StackData4 = stackParam00000130;
-    fStack0000000000000038 = (float)stackParam00000068._4_4_ * 3.0517578e-05 * baseValue;
-    pStackData1 = (UIDword *)stackParam00000118;
+  validationFlag = (byte)iterationLimit;
+  EventProcessingStatus = (byte)(eventCount >> 1);
+  if (eventIterationCount < sourceDataSize - eventIterationCount) {
+    compressedData = (int)eventStatusFlags >> (validationFlag & 0x1f);
+    scaleFactor = (float)eventDataSize * 3.0517578e-05 * compressionFactor;
+    eventDataBuffer = (UIDword *)tempDataPointer;
+    eventIterationCount = FUN_180718bd0();
+    compressedData = eventStatusFlags;
+    scaleFactor = (float)uiComponentHandle._4_4_ * 3.0517578e-05 * baseValue;
+    eventDataBuffer = (UIDword *)targetDataPointer;
     ProcessingStatus = FUN_180718bd0();
-    ProcessingStatus = ProcessingStatus | localInt5 << (EventProcessingStatus & 0x1f);
+    ProcessingStatus = ProcessingStatus | eventIterationCount << (EventProcessingStatus & 0x1f);
   }
   else {
     StackData4 = stackParam00000130;
