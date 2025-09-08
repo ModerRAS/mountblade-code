@@ -7927,14 +7927,14 @@ LAB_UIContextInitialize:
             *uiContext = (longlong)newMemoryBlock;
             uiContext[1] = (longlong)(currentMemoryBlock + 3);
             uiContext[2] = (longlong)(newMemoryBlock + allocatedMemory2 * 3);
-            elementCount = stackValue1;
+            elementCount = elementCounter;
           }
           resultPointer3 = &PrimaryUIBuffer;
-          if (stackValue2 != 0) {
+          if (transformResult != 0) {
                      WARNING: Subroutine does not return
             DestroyUIComponent();
           }
-          stackValue2 = 0;
+          transformResult = 0;
           transformCoeff23 = 0;
           resultPointer3 = &SecondaryUIBuffer;
           for (currentMemoryBlock = dataPointer1; currentMemoryBlock != dataPointer2; currentMemoryBlock = currentMemoryBlock + 4) {
@@ -90873,30 +90873,30 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
   StackByteData = (UIByte)ComponentHandle;
   ContextFlags = *(UIByte *)(uiContext + 0x1208);
   *(int *)(uiBufferData + 0x1208) = *(int *)(uiBufferData + 0x1208) + 1;
-  *(byte *)(uiContext + 0x12aa) = contextFlags & 3;
-  allocatedMemory = uiContext + 0x1c1c + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
-  componentIndex = basePointer + 0x35e0 + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
-  stackData44 = stackData3;
-  stackHandle1 = stackData3;
-  stackData58 = stackData3;
-  stackData5c = bufferSize;
-  stackData68 = dataSource;
-  stackData70 = allocatedMemory;
+  *(UIByte *)(uiContext + 0x12aa) = ContextFlags & 3;
+  AllocatedMemory = uiContext + 0x1c1c + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
+  ComponentIndex = BasePointer + 0x35e0 + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
+  StackDwordData3 = StackDwordData2;
+  StackHandleData = StackDwordData2;
+  StackDwordData5 = StackDwordData2;
+  StackDwordData6 = bufferSize;
+  StackHandleData2 = dataSource;
+  StackLongData = AllocatedMemory;
   FUN_180724e90(uiContext + 0x10,uiContext + 0x13f2,*(UIDword *)(uiBufferData + 0x11e4));
-  loopCounter = *(int *)(uiBufferData + 0x11e4) + -1;
-  allocatedMemorySize = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5);
-  contextOffset = (longlong)loopCounter;
-  if (-1 < loopCounter) {
-    if (2 < contextOffset) {
-      componentPointer = (short *)(uiContext + 0x13f0 + contextOffset * 2);
-      bufferPointer = (float *)(allocatedMemory + (allocatedMemorySize + -3 + contextOffset) * 4);
+  LoopCounter = *(int *)(uiBufferData + 0x11e4) + -1;
+  AllocatedMemorySize = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5);
+  ContextOffset = (longlong)LoopCounter;
+  if (-1 < LoopCounter) {
+    if (2 < ContextOffset) {
+      ComponentPointer = (UIWord *)(uiContext + 0x13f0 + ContextOffset * 2);
+      BufferPointer = (float *)(AllocatedMemory + (AllocatedMemorySize + -3 + ContextOffset) * 4);
       do {
-        stringCompareIndex = allocatedMemorySize + contextOffset;
-        contextOffset = contextOffset + -4;
-        *(float *)(allocatedMemory + stringCompareIndex * 4) = (float)(int)componentPointer[1];
-        *(float *)(allocatedMemory + -4 + stringCompareIndex * 4) = (float)(int)*componentPointer;
-        bufferPointer[1] = (float)(int)componentPointer[-1];
-        *bufferPointer = (float)(int)componentPointer[-2];
+        StringCompareIndex = AllocatedMemorySize + ContextOffset;
+        ContextOffset = ContextOffset + -4;
+        *(float *)(AllocatedMemory + StringCompareIndex * 4) = (float)(int)ComponentPointer[1];
+        *(float *)(AllocatedMemory + -4 + StringCompareIndex * 4) = (float)(int)*ComponentPointer;
+        BufferPointer[1] = (float)(int)ComponentPointer[-1];
+        *BufferPointer = (float)(int)ComponentPointer[-2];
         componentPointer = componentPointer + -4;
         bufferPointer = bufferPointer + -4;
       } while (2 < contextOffset);
