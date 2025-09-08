@@ -64948,7 +64948,7 @@ void ReleaseExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
       }
     }
     else {
-      ManageMemory(MemoryAddress,SetBitFlag(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
+      ManageMemory(MemoryAddress,SetBitFlag(MemoryManagementFlagMask,*(void ***)(MemoryAddress + ExceptionMemoryRegionOffset70) == &ExceptionList),
                           MemoryBlock,MemoryAddress,SystemCleanupFlagAlternative);
     }
   }
