@@ -73,6 +73,32 @@
 #define ResourcePrimaryDataOffset 0x90
 #define ResourceSecondaryDataOffset 800
 
+// 寄存器上下文偏移量常量
+#define RegisterContextDataPointerOffset 0x20
+#define RegisterContextDataSizeOffset 0x28
+#define RegisterContextCountOffset 0x2c
+#define RegisterContextAllocationOffset 0x30
+
+// 系统数据结构偏移量常量
+#define SystemDataArrayPointerOffset 0x20
+#define SystemDataArraySizeOffset 0x28
+#define SystemDataItemSizeOffset 0x18
+#define SystemDataItemPointerOffset 0x10
+#define SystemDataValidationOffset 0x28
+#define SystemStatePrimaryOffset 0x30
+#define SystemStateSecondaryOffset 0x34
+#define SystemStateResultOffset 0x38
+
+// 连接管理器偏移量常量
+#define ConnectionManagerStatusOffset 0x18
+#define ConnectionManagerFlagsOffset 0x98
+
+// 系统上下文偏移量常量
+#define SystemContextDataIndexOffset 0x18
+#define SystemContextStatusOffset 0x18
+#define SystemContextAlignmentOffset 0x8
+#define SystemContextManagementOffset 0x98
+
 // 系统操作上下文常量
 #define SystemOperationDataOffset 0x10
 #define SystemOperationTargetOffset 0x18
