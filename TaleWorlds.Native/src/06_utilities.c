@@ -1342,6 +1342,31 @@
 // 异常处理器偏移量常量定义
 #define ExceptionHandlerContextOffset80 0x80            // 异常处理上下文偏移量80
 #define ExceptionHandlerCallbackOffsetB40 0xb40        // 异常处理器回调偏移量B40
+
+// 栈帧上下文偏移量常量
+#define StackFrameSecurityCheckOffsetNegativeE -0xe     // 栈帧安全检查负偏移量E
+#define StackFrameSecurityCheckOffsetNegativeB -0xb     // 栈帧安全检查负偏移量B
+#define StackFrameSecurityCheckOffsetNegativeD -0xd     // 栈帧安全检查负偏移量D
+#define StackFrameSecurityCheckOffsetNegativeC -0xc     // 栈帧安全检查负偏移量C
+#define StackFrameDataOffsetNegative44 -0x44            // 栈帧数据负偏移量44
+#define StackFrameDataOffsetNegative3C -0x3c            // 栈帧数据负偏移量3C
+#define StackFrameDataOffsetNegative34 -0x34            // 栈帧数据负偏移量34
+#define StackFrameDataOffsetNegative2C -0x2c            // 栈帧数据负偏移量2C
+#define StackFrameDataOffsetNegative10 -0x10            // 栈帧数据负偏移量10
+#define StackFrameDataOffsetNegative9 -0x9              // 栈帧数据负偏移量9
+#define StackFrameDataOffsetNegative8 -0x8              // 栈帧数据负偏移量8
+#define StackFrameDataOffsetNegative7 -0x7              // 栈帧数据负偏移量7
+
+// 上下文数据偏移量常量
+#define ContextFloatDataOffset40 0x40                   // 上下文浮点数据偏移量40
+#define ContextOperationResultOffset48 0x48             // 上下文操作结果偏移量48
+#define ContextSecondaryOperationResultOffset4C 0x4c    // 上下文次级操作结果偏移量4C
+#define ContextDataFlagsOffset50 0x50                   // 上下文数据标志偏移量50
+#define ContextValidationOutcomeOffset54 0x54           // 上下文验证结果偏移量54
+#define ContextSecurityCheckResultOffset58 0x58        // 上下文安全检查结果偏移量58
+#define ContextStatusCounterOffset5C 0x5c               // 上下文状态计数器偏移量5C
+#define ContextLoopCounterOffset60 0x60                 // 上下文循环计数器偏移量60
+#define ContextSystemMemoryBufferOffset64 0x64         // 上下文系统内存缓冲区偏移量64
 #define ExceptionHandlerCallbackOffsetB50 0xb50        // 异常处理器回调偏移量B50
 #define ExceptionHandlerCleanupOffsetB20 0xb20         // 异常处理器清理偏移量B20
 #define ExceptionHandlerCleanupStateOffsetB28 0xb28   // 异常处理器清理状态偏移量B28
@@ -20070,43 +20095,43 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   DataBuffer destinationExecutionContext;
   int64_t temporaryStackValue;
   
-  floatValue = *(float *)(valueContext + DataValidationOffset18);
-  stackValue = MergeHighLowWords(stackValue.HighPart, floatValue);
-  if (((uint)floatValue & FloatInfinityValue) == FloatInfinityValue) {
+  floatingPointValue = *(float *)(valueContext + DataValidationOffset18);
+  temporaryStackValue = MergeHighLowWords(temporaryStackValue.HighPart, floatingPointValue);
+  if (((uint)floatingPointValue & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
+  if ((floatingPointValue < 0.0) || (3.4028235e+38 <= floatingPointValue)) {
     return ComponentDataValidationFailure;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + ExceptionHandlerCallbackOffset10),&stackValue);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  systemOperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + ExceptionHandlerCallbackOffset10),&temporaryStackValue);
+  if ((int)systemOperationResult != 0) {
+    return systemOperationResult;
   }
-  if (stackValue == 0) {
-    resultPointer = 0;
+  if (temporaryStackValue == 0) {
+    resultStoragePointer = 0;
   }
   else {
-    resultPointer = stackValue + -8;
+    resultStoragePointer = temporaryStackValue + -8;
   }
-  *(DataWord *)(resultPointer + SystemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
-  resultPointer = *(int64_t *)(operationContext + SystemContextConfigOffset98);
-  if ((*(int *)(resultPointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultPointer + SystemConfigSecondaryOffset) != 0)) {
-    stackValue = 0;
-    InitializeSystemContextA0(&stackValue,valueContext,exceptionHandlerContext,processingContext,DestinationContext);
-    if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
-      operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
-      if ((int)operationResult == 0) {
+  *(DataWord *)(resultStoragePointer + SystemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
+  resultStoragePointer = *(int64_t *)(operationContext + SystemContextConfigOffset98);
+  if ((*(int *)(resultStoragePointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultStoragePointer + SystemConfigSecondaryOffset) != 0)) {
+    temporaryStackValue = 0;
+    InitializeSystemContextA0(&temporaryStackValue,valueContext,exceptionHandlerContext,processingContext,destinationExecutionContext);
+    if (temporaryStackValue == *(int64_t *)((int64_t)*(int *)(resultStoragePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
+      systemOperationResult = ProcessSystemDataEC0(resultStoragePointer,valueContext);
+      if ((int)systemOperationResult == 0) {
         return 0;
       }
-      return operationResult;
+      return systemOperationResult;
     }
   }
   *(uint *)(valueContext + ValueContextOffset8) = *(int *)(valueContext + ValueContextOffset8) + 0xfU & 0xfffffff0;
-  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultPointer + SystemConfigTertiaryOffset));
-  if ((int)operationResult == 0) {
+  systemOperationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultStoragePointer + SystemConfigTertiaryOffset));
+  if ((int)systemOperationResult == 0) {
     return 0;
   }
-  return operationResult;
+  return systemOperationResult;
 }
 
 
@@ -20114,19 +20139,19 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
 DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHandlerContext)
 
 {
-  float rangeValue;
-  uint64_t validationResult;
-  int64_t resultPointer;
-  int64_t stackValue;
+  float floatingPointRangeValue;
+  uint64_t rangeValidationResult;
+  int64_t resultDataPointer;
+  int64_t temporaryStackValue;
   
-  rangeValue = *(float *)(rangeContext + DataRangeValueOffset1C);
-  stackValue = MergeHighLowWords(stackValue.HighPart, rangeValue);
-  if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
+  floatingPointRangeValue = *(float *)(rangeContext + DataRangeValueOffset1C);
+  temporaryStackValue = MergeHighLowWords(temporaryStackValue.HighPart, floatingPointRangeValue);
+  if (((uint)floatingPointRangeValue & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
   switch(*(DataWord *)(rangeContext + SystemDataSecondaryOffset18)) {
   case 0:
-    if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto RangeValidationSuccess;
+    if ((0.0 <= floatingPointRangeValue) && (floatingPointRangeValue <= 256.0)) goto RangeValidationSuccess;
     goto RangeValidationFailureWithNegativeValue;
   case 1:
   case 2:
@@ -25573,10 +25598,10 @@ void ProcessDataTypesA0(void)
             operationResult = *(DataWord *)(contextPointer + 0x4c);
             dataFlags = *(DataWord *)(contextPointer + 0x50);
             validationOutcome = *(DataWord *)(contextPointer + 0x54);
-            StackFrameContext[-0xe] = &SystemSecurityCheckReference;
-            StackFrameContext[-0xb] = systemDataBuffer7;
-            StackFrameContext[-10] = systemDataBuffer6;
-            *(float *)(StackFrameContext + -0xd) = dataPointerD;
+            StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
+            StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = systemDataBuffer7;
+            StackFrameContext[StackFrameDataOffsetNegative10] = systemDataBuffer6;
+            *(float *)(StackFrameContext + StackFrameSecurityCheckOffsetNegativeD) = dataPointerD;
             securityCheckResult = *(DataWord *)(contextPointer + 0x58);
             statusCounter = *(DataWord *)(contextPointer + 0x5c);
             loopCounter = *(DataWord *)(contextPointer + 0x60);
