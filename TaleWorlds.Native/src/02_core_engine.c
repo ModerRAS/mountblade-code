@@ -184261,7 +184261,18 @@ long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
 
 
 
-50259(long long CharacterCode,long long *CharacterCodeSizevoid FUN_180150259(long long CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理字符代码和内存缓冲区操作
+ * 
+ * 该函数负责处理字符代码数据，管理内存缓冲区的分配和数据移动。
+ * 它根据输入的字符代码和大小信息，进行相应的内存操作和数据处理。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param CharacterCodeSize 字符代码大小指针，指向字符代码的大小信息
+ * 
+ * @note 原始函数名：FUN_180150259
+ */
+void ProcessCharacterCodeAndMemoryBuffer(long long CharacterCode, long long *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;

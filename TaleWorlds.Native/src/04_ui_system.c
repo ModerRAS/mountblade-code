@@ -72378,12 +72378,12 @@ LAB_180706eb2:
         goto LAB_180706f57;
       }
 LAB_180706ec1:
-      uVar9 = EventOperationCount + *(short *)pisCharacterMatch * ProcessingResult1 + 2;
-      if (stackParam00000090 < (int)uVar9) goto LAB_180706ed5;
+      eventIndex = operationCount + *(short *)eventMatchPointer * processingResult + 2;
+      if (stackParameter90 < (int)eventIndex) goto LAB_180706ed5;
 LAB_180706f57:
-      pbVar4 = RegisterPointer + 2;
-      *RegisterPointer = *EventHandle | 3;
-      RegisterPointer[1] = bVar6;
+      dataBuffer = registerPointer + 2;
+      *registerPointer = *eventQueuePointer | 3;
+      registerPointer[1] = statusFlag;
       EventOperationCount = stackParam00000090 - uVar9;
       if (stackParam000000a0 == 0) {
         EventOperationCount = 0;
