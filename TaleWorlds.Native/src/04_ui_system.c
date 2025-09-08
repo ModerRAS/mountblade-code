@@ -7980,7 +7980,7 @@ void SetupUIMemoryAllocator(void)
   if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventClearHandler);
   }
-  pstackPointer90 = &PrimaryUIBuffer;
+  stackPointer90 = &PrimaryUIBuffer;
   stackValue78 = 0;
   pstackPointer88 = (UIHandle *)0x0;
   stackValue80 = 0;
@@ -74327,8 +74327,7 @@ void ProcessUIEventDispatchAndDataSourceManagement(UIHandle uiContext, int dataS
 
 
 
- void FUN_180707a56(void)
-void InitializeUILayoutSystem(void)
+ void InitializeUILayoutSystem(void)
 
 {
   ulonglong layoutElementCount;
