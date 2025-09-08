@@ -82138,14 +82138,14 @@ void ProcessUIDataBufferBatch(UIHandle uiContext,longlong dataSource,longlong ta
     iterationPointer = (UIDword *)(targetBuffer + 8);
     dataOffset = dataSource;
     do {
-      stackUInt60 = 0;
-      stackUInt58 = 0;
-      FUN_1807074b0(uiContext,stringCompareIndex,&stackUInt60,bufferSize);
-      stringCompareIndex = stringCompareIndex + 0x10;
-      piterationCount[-2] = (UIDword)stackUInt60;
-      piterationCount[-1] = stackUInt60._4_4_;
-      *piterationCount = (UIDword)stackUInt58;
-      piterationCount[1] = stackUInt58._4_4_;
+      tempHandle60 = 0;
+      tempHandle58 = 0;
+      FUN_1807074b0(uiContext,dataOffset,&tempHandle60,bufferSize);
+      dataOffset = dataOffset + 0x10;
+      iterationPointer[-2] = (UIDword)tempHandle60;
+      iterationPointer[-1] = tempHandle60._4_4_;
+      *iterationPointer = (UIDword)tempHandle58;
+      iterationPointer[1] = tempHandle58._4_4_;
       loopCounter = loopCounter - 1;
       piterationCount = piterationCount + 4;
     } while (loopCounter != 0);

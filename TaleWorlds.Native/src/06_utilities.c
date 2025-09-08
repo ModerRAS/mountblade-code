@@ -89350,6 +89350,28 @@ void Unwind_18090c160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常上下文处理函数C170
+ * 
+ * 该函数负责处理异常上下文，管理异常状态和数据。
+ * 它会从数据缓冲区获取异常处理上下文，执行异常处理器回调，并重置异常处理状态。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文（使用DataContextOffset68偏移量）
+ * - 检查并执行现有的异常处理器回调
+ * - 设置临时异常处理器
+ * - 验证异常处理状态，必要时终止系统
+ * - 重置异常处理状态标志
+ * - 设置默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c170
+ * @note 使用DataContextOffset68获取异常处理上下文
+ * @note 使用偏移量0x40检查异常处理器回调
+ * @note 使用偏移量0x38调用异常处理器回调函数
+ */
 void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -89371,6 +89393,24 @@ void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器配置函数C180
+ * 
+ * 该函数负责配置异常处理器参数，设置异常处理选项。
+ * 它会从数据缓冲区获取异常处理上下文指针，并执行相关的配置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文指针（使用偏移量0x70）
+ * - 通过偏移量0x20获取异常处理器配置指针
+ * - 执行异常处理器配置操作
+ * 
+ * @note 原始函数名：Unwind_18090c180
+ * @note 使用偏移量0x70获取异常处理上下文
+ * @note 使用偏移量0x20获取异常处理器配置指针
+ */
 void Unwind_18090c180(DataBuffer operationBase,int64_t dataBuffer)
 
 {
