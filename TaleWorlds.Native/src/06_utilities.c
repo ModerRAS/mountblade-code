@@ -10281,8 +10281,8 @@ uint8_t SystemDataBufferA;
 uint8_t SystemResourceReservedSpaceG;
 // 系统状态标志变量B
 char SystemStatusFlagB;                      // 系统状态标志B
-// 系统异常处理状态表A3
-uint8_t SystemExceptionHandlerStatusA3;
+// 系统异常处理状态表第三缓冲区
+uint8_t SystemExceptionHandlerStatusTertiaryBuffer;
 uint8_t SystemPerformanceCounterA;
 // 异常处理列表
 void *ExceptionHandlerList;
@@ -10299,17 +10299,23 @@ uint8_t NetworkConnectionStatus;
 uint8_t SystemMemoryManagementTableSecondaryIndex;
 // 系统资源管理表次索引
 uint8_t SystemResourceManagerTableSecondaryIndex;
-// 系统配置管理表A0
-uint8_t SystemConfigurationManagementTableA0;
-// 系统状态管理表A0
-uint8_t SystemStatusManagementTableA0;
-// 系统数据管理表A0
-uint8_t SystemDataManagementTableA0;
+// 系统配置管理表主缓冲区
+uint8_t SystemConfigurationManagementTablePrimaryBuffer;
+// 系统状态管理表主缓冲区
+uint8_t SystemStatusManagementTablePrimaryBuffer;
+// 系统数据管理表主缓冲区
+uint8_t SystemDataManagementTablePrimaryBuffer;
 uint8_t SystemConfigurationPointerA;
 uint8_t SystemExceptionCounterD;
 
-// 函数: uint8_t UtilityInitializeMemoryManager;
-// 初始化内存管理器，设置内存分配和释放的基础结构
+/**
+ * @brief 初始化内存管理器
+ * 
+ * 初始化系统内存管理器，设置内存分配和释放的基础结构，
+ * 包括内存池初始化、分配器配置和内存区域划分
+ * 
+ * @return uint8_t 初始化状态码，0表示成功，非0表示错误
+ */
 uint8_t UtilityInitializeMemoryManager;
 uint8_t SystemExceptionStatusA;
 uint8_t SystemExceptionStatusB;
@@ -10320,15 +10326,21 @@ uint8_t SystemMemoryManagementTableTertiaryIndex;
 uint8_t SystemDataBufferB;
 // 系统资源管理表第三索引
 uint8_t SystemResourceManagerTableTertiaryIndex;
-// 系统配置管理表A1
-uint8_t SystemConfigurationManagementTableA1;
-// 系统状态管理表A1
-uint8_t SystemStatusManagementTableA1;
-// 系统数据管理表A1
-uint8_t SystemDataManagementTableA1;
+// 系统配置管理表次缓冲区
+uint8_t SystemConfigurationManagementTableSecondaryBuffer;
+// 系统状态管理表次缓冲区
+uint8_t SystemStatusManagementTableSecondaryBuffer;
+// 系统数据管理表次缓冲区
+uint8_t SystemDataManagementTableSecondaryBuffer;
 
-// 函数: uint8_t UtilityConfigureMemorySettings;
-// 配置内存管理器的设置，包括内存池大小、分配策略等
+/**
+ * @brief 配置内存管理器设置
+ * 
+ * 配置内存管理器的各项设置，包括内存池大小、分配策略、
+ * 内存对齐要求和缓存策略等参数
+ * 
+ * @return uint8_t 配置状态码，0表示成功，非0表示错误
+ */
 uint8_t UtilityConfigureMemorySettings;
 // 系统内存管理表第四索引
 uint8_t SystemMemoryManagementTableQuaternaryIndex;
@@ -10336,8 +10348,14 @@ uint8_t SystemMemoryManagementTableQuaternaryIndex;
 uint8_t SystemResourceManagerTableQuaternaryIndex;
 uint8_t SystemConfigurationParameterO;
 
-// 函数: uint8_t UtilitySetupMemoryRegions;
-// 设置内存区域，划分不同用途的内存空间
+/**
+ * @brief 设置内存区域
+ * 
+ * 设置和划分不同用途的内存区域，包括代码区、数据区、
+ * 堆区和栈区的边界和权限设置
+ * 
+ * @return uint8_t 设置状态码，0表示成功，非0表示错误
+ */
 uint8_t UtilitySetupMemoryRegions;
 uint8_t SystemConfigurationParameterP;
 uint8_t SystemConfigurationParameterQ;
