@@ -96084,7 +96084,19 @@ void ResetDataBufferExceptionHandlerStateD5B0(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_18090d5c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用数据缓冲区异常处理器D5C0
+ * 
+ * 该函数负责调用数据缓冲区偏移量0xb8处的异常处理器。
+ * 这是一个简单的异常处理器调用函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5c0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用数据缓冲区异常处理器
+ */
+void InvokeDataBufferExceptionHandlerD5C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xb8) != (int64_t *)0x0) {
@@ -96095,7 +96107,19 @@ void Unwind_18090d5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d5d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器D5D0
+ * 
+ * 该函数负责在数据缓冲区偏移量0x160处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5d0
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerD5D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x160) = &DefaultExceptionHandlerB;
@@ -96104,7 +96128,19 @@ void Unwind_18090d5d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d5e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器D5E0
+ * 
+ * 该函数负责在数据缓冲区偏移量0xd8处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5e0
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerD5E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xd8) = &DefaultExceptionHandlerB;
@@ -96113,7 +96149,19 @@ void Unwind_18090d5e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d5f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器D5F0
+ * 
+ * 该函数负责在数据缓冲区偏移量0x148处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5f0
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerD5F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataBufferOffset148) = &DefaultExceptionHandlerB;
@@ -96131,7 +96179,19 @@ void Unwind_18090d600(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器D610
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1b8处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d610
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerD610(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1f0) = &DefaultExceptionHandlerB;

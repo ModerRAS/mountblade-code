@@ -1086,6 +1086,22 @@
 #define ProcessSystemCharacterEncodingAndDataManagement FUN_1801624e0
 
 /**
+ * @brief 处理系统缓冲区配置和数据管理
+ * 
+ * 该函数负责处理系统缓冲区配置和数据管理，包括：
+ * - 配置系统缓冲区
+ * - 管理数据大小
+ * - 处理缓冲区状态
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016a740
+ */
+#define ProcessSystemBufferConfigurationAndDataManagement FUN_18016a740
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -196701,7 +196717,7 @@ LAB_180161e6a:
 
 
 
-61eb0(long long CharacterCode,long long SystemBufferSizevoid FUN_180161eb0(long long CharacterCode,long long SystemBufferSize
+void FUN_180161eb0(long long CharacterCode,long long SystemBufferSize)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -196877,7 +196893,7 @@ LAB_180162130:
 
 
 
-62220(long long CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180162220(long long CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_180162220(long long CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -197032,7 +197048,7 @@ HandleOutputData(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Ut
   *(uint32_t *)(SystemBufferSize + 2) = 0;
   CharacterTablePointer = *(long long *)(CharacterCode + 0x48);
   if ((CharacterTablePointer != 0) && (*(long long *)(CharacterTablePointer + 0x48) != 0)) {
-    MemoryAllocationIndex = FUN_1801624e0(LoopCounter,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
+    MemoryAllocationIndex = ProcessSystemCharacterEncodingAndDataManagement(LoopCounter,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
     FUN_180628320(SystemBufferSize,MemoryAllocationIndex);
     pFunctionAddress = &SystemNullTemplate;
     if (lStack_30 != 0) {
