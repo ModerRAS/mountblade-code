@@ -347,6 +347,111 @@
 #define ProcessCharacterBufferInitialization FUN_18011aea0     // 处理字符缓冲区初始化
 #define ProcessStringDataConversion FUN_18011c360              // 处理字符串数据转换
 #define ProcessCharacterTableReset FUN_18011b190               // 处理字符表重置
+
+// 新增的FUN_函数语义化宏定义
+/**
+ * @brief 处理字符编码和缓冲区清理操作
+ * 
+ * 该函数负责处理字符编码转换，并在不同缓冲区状态之间进行切换和清理操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针  
+ * @param Utf8SourcePointer UTF8源指针
+ * @note 原始函数名：FUN_18016d400
+ */
+#define ProcessCharacterEncodingAndBufferCleanup FUN_18016d400
+
+/**
+ * @brief 处理字符代码结构
+ * 
+ * 当字符代码不等于其下一个元素时调用，用于处理字符代码的结构和状态。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @note 原始函数名：FUN_180095280
+ */
+#define ProcessCharacterCodeStructure FUN_180095280
+
+/**
+ * @brief 处理系统内存池分配和管理
+ * 
+ * 负责系统内存池的分配操作，根据不同的字符编码状态进行相应的内存管理。
+ * 
+ * @param Utf16Char UTF16字符
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param CharacterCodeOffset 字符代码偏移量
+ * @note 原始函数名：FUN_180627ce0
+ */
+#define ProcessSystemMemoryPoolAllocation FUN_180627ce0
+
+/**
+ * @brief 处理内存块和栈值
+ * 
+ * 在系统密钥指针为1时调用，处理内存块和相关的栈处理值。
+ * 
+ * @param MemoryBlockIndex 内存块索引
+ * @param StackProcessingValue 栈处理值
+ * @note 原始函数名：FUN_18016cff0
+ */
+#define ProcessMemoryBlockAndStackValue FUN_18016cff0
+
+/**
+ * @brief 系统缓冲区清理函数
+ * 
+ * 负责清理系统缓冲区，释放资源并重置相关状态。
+ * 
+ * @param BufferPointer 缓冲区指针
+ * @note 原始函数名：FUN_180629b30
+ */
+#define CleanupSystemBuffer FUN_180629b30
+
+/**
+ * @brief 分配系统事件模板
+ * 
+ * 分配系统事件模板并返回系统事件模板指针。
+ * 
+ * @param MemoryAllocationIndex 内存分配索引
+ * @param StackProcessingVariableBuffer 栈处理变量缓冲区指针
+ * @param ProcessingCounterPointer 处理计数器指针
+ * @note 原始函数名：FUN_180169f60
+ */
+#define AllocateSystemEventTemplate FUN_180169f60
+
+/**
+ * @brief 系统缓冲区初始化函数
+ * 
+ * 初始化系统缓冲区，设置不同大小的缓冲区空间。
+ * 
+ * @param CharacterStatusBuffer 字符状态缓冲区
+ * @param InitializationSize 初始化大小参数
+ * @note 原始函数名：FUN_180629c00
+ */
+#define InitializeSystemBuffer FUN_180629c00
+
+/**
+ * @brief 处理字符代码最终化
+ * 
+ * 在不同的字符串比较结果下调用，负责字符代码的最终化处理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @note 原始函数名：FUN_18016afc0
+ */
+#define ProcessCharacterCodeFinalization FUN_18016afc0
+
+/**
+ * @brief 系统缓冲区验证和数据处理
+ * 
+ * 验证系统缓冲区并处理相关数据，返回字符验证结果。
+ * 
+ * @param SystemEventBufferQuinary 系统事件缓冲区五指针
+ * @param CharacterCodeOffset 字符代码偏移量
+ * @param BufferSize 缓冲区大小
+ * @param SystemContextRegisterPointer 系统上下文寄存器指针
+ * @param ProcessingFlag 处理标志
+ * @param SystemEventCallbackHandler 系统事件回调处理器指针
+ * @param CharacterCode 字符代码指针
+ * @note 原始函数名：FUN_1801166f0
+ */
+#define ValidateSystemBufferAndProcessData FUN_1801166f0
 #define ProcessCharacterValidationEx FUN_180139060             // 处理字符验证扩展
 #define ProcessPerformanceCounterUpdate FUN_180138fc0          // 处理性能计数器更新
 #define ProcessFloatValueConversion FUN_18011ce30              // 处理浮点值转换
@@ -199813,7 +199918,7 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
   CharacterStatusBuffer = *(uint64_t **)(MemoryBlockIndex + 8);
   PrimaryProcessingStatusFlag = *(uint64_t **)(MemoryBlockIndex + 0x10);
   if ((PrimaryProcessingStatusFlag == *(uint64_t **)(MemoryBlockIndex + 0x18)) || (CharacterStatusBuffer != PrimaryProcessingStatusFlag)) {
-    FUN_18016d400((void *)(MemoryBlockIndex + 8),CharacterStatusBuffer,&CoreEnginePointerBuffer78);
+    ProcessCharacterEncodingAndBufferCleanup((void *)(MemoryBlockIndex + 8),CharacterStatusBuffer,&CoreEnginePointerBuffer78);
   }
   else {
     *PrimaryProcessingStatusFlag = &ThreadLocalStorageTemplate;
@@ -200117,7 +200222,7 @@ LAB_180169e1e:
     }
   }
   if (*CharacterCode != CharacterCode[1]) {
-    FUN_180095280(CharacterCode);
+    ProcessCharacterCodeStructure(CharacterCode);
   }
   return CharacterCode;
 }
@@ -200496,7 +200601,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
       }
       else {
         Utf16Char = CoreEngineGetSystemContext();
-        FUN_180627ce0(Utf16Char,SystemBufferSize,CharacterCode[2]);
+        ProcessSystemMemoryPoolAllocation(Utf16Char,SystemBufferSize,CharacterCode[2]);
       }
     }
     else {
