@@ -2692,6 +2692,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 系统清理函数A0
+ * 
+ * 该函数负责清理系统资源，包括内存释放、数据结构清理和状态重置。
+ * 它会在系统关闭或重启时调用，确保所有资源都被正确释放。
+ * 
  * @note 原始函数名：FUN_1800809a0
  */
 #define CleanupSystemA0 CleanupSystemMemoryAndData

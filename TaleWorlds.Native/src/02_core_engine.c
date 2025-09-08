@@ -268,7 +268,7 @@
 #define BufferInitializationPointerArray BufferInitializationPointerArray // 缓冲区初始化指针数组
 #define ProcessingStatusFlagPointer9 ProcessingStatusFlagPointer9  // 处理状态标志指针9
 #define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
-#define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
+#define ProcessingStatusFlagPointer6 ProcessingStatusFlagPointer6  // 处理状态标志指针6
 
 // FUN_函数语义化宏定义
 /**
@@ -49851,7 +49851,7 @@ SystemBufferValidationError:
               UnicodeCharacterIndex = (unsigned long long)(InputDataLength3 + 1);
               SystemEventTemplatePointer5 = SystemEventTemplatePointer5 + 2;
             } while ((long long)(FunctionPointer2 + (-0x808 - (long long)SystemEventTemplatePointer0)) <= (long long)MemoryAllocationIndexSecondary);
-            PrimaryProcessingStatusFlag6 = (void *                      (*(long long *                        ((long long)*(int *)(SystemTemporaryValue118 + 0x1210) * 0x908 + SystemTemporaryValue118 + 8 +
+            ProcessingStatusFlagPointer6 = (void *                      (*(long long *                        ((long long)*(int *)(SystemTemporaryValue118 + 0x1210) * 0x908 + SystemTemporaryValue118 + 8 +
                         MemoryAllocationIndexSecondary * 8) + (unsigned long long)(DataSize - (DataSize & 0xfffffe00)) * 0x60);
             BufferValidationStatus = CharacterCode;
             BufferInitializationPointerArray[0] = ProcessingStatusFlagPointer6;
@@ -49866,8 +49866,8 @@ SystemBufferValidationError:
             }
             SystemBufferSize = TemporaryBuffer;
             BufferValidationStatus = *(long long *)(BufferValidationStatus + 0x1e0);
-            *PrimaryProcessingStatusFlag6 = *(void *)(BufferValidationStatus + (unsigned long long)LowByte1 * 0x18);
-            PrimaryProcessingStatusFlag6[1] = *(void *)(BufferValidationStatus + 8 + (unsigned long long)LowByte1 * 0x18);
+            *ProcessingStatusFlagPointer6 = *(void *)(BufferValidationStatus + (unsigned long long)LowByte1 * 0x18);
+            ProcessingStatusFlagPointer6[1] = *(void *)(BufferValidationStatus + 8 + (unsigned long long)LowByte1 * 0x18);
             *(uint32_t *)(BufferInitializationPointerArray[0] + 2) =
                  *(uint32_t *)(*(long long *)(CharacterCode + 600) + 0x2c);
             *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x14) =
@@ -63397,7 +63397,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *CharacterCode,uint64_t *Ch
   void *PrimaryProcessingStatusFlag4;
   unsigned long long MemoryAllocationOffset;
   void *PrimaryProcessingStatusFlag5;
-  uint *PrimaryProcessingStatusFlag6;
+  uint *ProcessingStatusFlagPointer6;
   uint8_t StackDataBuffer158 [32];
   void *MemoryAllocationBuffer;
   void *CoreEngineProcessingStatusFlag;
@@ -109643,7 +109643,7 @@ char ProcessSystemRenderingAndMemoryManagement(void
   uint32_t MemoryTertiaryIndex;
   long long BufferAllocationStatus4;
   char *SystemCheckResult;
-  uint16_t *PrimaryProcessingStatusFlag6;
+  uint16_t *ProcessingStatusFlagPointer6;
   char *SystemSecondaryCheckResult;
   float *RenderParameterPointer28;
   long long BufferAllocationStatus9;
@@ -110196,9 +110196,9 @@ LAB_1801177f4:
               do {
                 BufferStatus4 = BufferStatus4 + 1;
               } while (SystemValidationFunction5[BufferStatus4] != '\0');
-              PrimaryProcessingStatusFlag6 = (uint16_t *)GetSystemEventTemplate();
+              ProcessingStatusFlagPointer6 = (uint16_t *)GetSystemEventTemplate();
               MemoryAllocationOffset = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-              *(uint16_t **)(StackFrameAddressPointer + -0x12) = PrimaryProcessingStatusFlag6;
+              *(uint16_t **)(StackFrameAddressPointer + -0x12) = ProcessingStatusFlagPointer6;
               IntegerValue9 = 0;
               if (*SystemValidationFunction5 != '\0') {
                 MemoryAddressMaskPointer5 = *(void *)(StackFrameAddressPointer + 0x7c);
@@ -110212,18 +110212,18 @@ LAB_1801177f4:
                   if (((uint)_StackUintValue60 < 0x10000) &&
                      (CurrentCharacter7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,MatrixTransformMultiplier13,CalculatedCodePoint2,MemoryAddressMaskPointer5), CurrentCharacter7 != '\0'                     ) {
                     IntegerValue9 = IterationCounter + 1;
-                    *PrimaryProcessingStatusFlag6 = StackUintValue60;
-                    PrimaryProcessingStatusFlag6 = PrimaryProcessingStatusFlag6 + 1;
+                    *ProcessingStatusFlagPointer6 = StackUintValue60;
+                    ProcessingStatusFlagPointer6 = ProcessingStatusFlagPointer6 + 1;
                   }
                   MemoryAllocationOffset = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
                 } while (*SystemValidationFunction5 != '\0');
                 PatternIndex = *(long long *)(StackFrameAddressPointer + 4);
-                PrimaryProcessingStatusFlag6 = *(uint16_t **)(StackFrameAddressPointer + -0x12);
+                ProcessingStatusFlagPointer6 = *(uint16_t **)(StackFrameAddressPointer + -0x12);
               }
               pFilterInputValue1 = (float *)(PatternIndex + 0x1ea8);
-              PrimaryProcessingStatusFlag6[IntegerValue9] = 0;
+              ProcessingStatusFlagPointer6[IntegerValue9] = 0;
               if (0 < IntegerValue9) {
-                ProcessSystemDataStatus(pFilterInputValue1,PatternIndex + 0x1ef0,PrimaryProcessingStatusFlag6,IntegerValue9);
+                ProcessSystemDataStatus(pFilterInputValue1,PatternIndex + 0x1ef0,ProcessingStatusFlagPointer6,IntegerValue9);
                 *(uint8_t *)(PatternIndex + 0x2d18) = 1;
               }
               ReleaseSystemResources();
@@ -201645,7 +201645,7 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
   uint InputDataLength;
   long long *BufferAllocationStatus4;
   uint *PrimaryProcessingStatusFlag5;
-  uint8_t *PrimaryProcessingStatusFlag6;
+  uint8_t *ProcessingStatusFlagPointer6;
   uint64_t *PrimaryProcessingStatusFlag7;
   uint MemoryAllocationIndex8;
   uint32_t MemoryAllocationIndex9;
@@ -201845,7 +201845,7 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
           PrimaryProcessingStatusFlag5 = (uint *)(SystemMemoryPointer + 2);
           SecondaryProcessingStatusFlag = StringProcessingStatus;
           TemporaryBuffer = StringProcessingStatus;
-          PrimaryProcessingStatusFlag6 = StringProcessingStatus;
+          ProcessingStatusFlagPointer6 = StringProcessingStatus;
           do {
             SystemStatusContext = SystemMemoryPointer + (long long)SecondaryProcessingStatusFlag * 4;
             InitializeSystemBuffer(CharacterStatusBuffer3,10);
@@ -201983,8 +201983,8 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
             CharacterCodeTablePointer[MemoryAllocationIndex] = 0x20;
             PrimaryProcessingStatusFlag0 = (uint8_t *)(unsigned long long)(IntegerValue7 + 2);
             PrimaryProcessingStatusFlag0[(long long)CharacterCodeTablePointer] = 0;
-            MemoryAllocationIndex = (int)PrimaryProcessingStatusFlag6 + 1;
-            PrimaryProcessingStatusFlag6 = (uint8_t *)(unsigned long long)MemoryAllocationIndex;
+            MemoryAllocationIndex = (int)ProcessingStatusFlagPointer6 + 1;
+            ProcessingStatusFlagPointer6 = (uint8_t *)(unsigned long long)MemoryAllocationIndex;
             PrimaryProcessingStatusFlag5 = PrimaryProcessingStatusFlag5 + 8;
             SecondaryProcessingStatusFlag = (uint8_t *)(long long)(int)MemoryAllocationIndex;
           } while (SecondaryProcessingStatusFlag < (uint8_t *)(SystemDataTablePointer + -1));
@@ -241959,7 +241959,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *CharacterCodeSi
   uint64_t *PrimaryProcessingStatusFlag3;
   uint32_t *PrimaryProcessingStatusFlag4;
   float *pContextSecondaryFloat5;
-  uint8_t *PrimaryProcessingStatusFlag6;
+  uint8_t *ProcessingStatusFlagPointer6;
   long long BufferValidationStatus;
   void *PrimaryProcessingStatusFlag8;
   char *SystemValidationFunction9;
@@ -242988,7 +242988,7 @@ LAB_1802016f7:
       *PrimaryProcessingStatusFlag4 = 0x75736572;
       *(uint16_t *)(PrimaryProcessingStatusFlag4 + 1) = 0x746c;
       *(uint8_t *)((long long)PrimaryProcessingStatusFlag4 + 6) = 0;
-      PrimaryProcessingStatusFlag6 = (uint8_t *)0x0;
+      ProcessingStatusFlagPointer6 = (uint8_t *)0x0;
       CoreEngineValue148 = &SystemNullTemplate;
       TemporaryFlag = 0;
       EventVariablePointer = (uint32_t *)0x0;
@@ -243015,7 +243015,7 @@ LAB_1802016f7:
         SystemUnsignedValue160 = 0;
         uStack_1c0 = 1;
         Utf16Char4 = (unsigned long long)SystemValue1a8;
-        SystemCharacterStatusPointer = PrimaryProcessingStatusFlag6;
+        SystemCharacterStatusPointer = ProcessingStatusFlagPointer6;
         Utf16Character = 0;
         if (stackPointer1B0 == (uint8_t *)0x0) {
 LAB_180201c59:
@@ -243074,7 +243074,7 @@ LAB_180201cec:
         pfStack_1d8 = (float *)0x0;
         uStack_1d0 = uStack_1d0 & 0xffffffff00000000;
         uStack_1c0 = 3;
-        CharacterStatusBuffer7 = PrimaryProcessingStatusFlag6;
+        CharacterStatusBuffer7 = ProcessingStatusFlagPointer6;
         Utf16Character = 0;
         if (SystemCharacterStatusPointer == (uint8_t *)0x0) {
 LAB_180201d86:
@@ -243194,13 +243194,13 @@ LAB_180201ee2:
     *(uint8_t *)((long long)(stackPointer1B0 + SystemValue1a8) + 4) = *(uint8_t *)(PrimaryProcessingStatusFlag4 + 1);
     SystemValue1a8 = StringLength;
     PrimaryProcessingStatusFlag3 = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,3);
-    PrimaryProcessingStatusFlag6 = &CoreEngineDataTemplate;
+    ProcessingStatusFlagPointer6 = &CoreEngineDataTemplate;
     if (stackPointer1B0 != (uint8_t *)0x0) {
-      PrimaryProcessingStatusFlag6 = stackPointer1B0;
+      ProcessingStatusFlagPointer6 = stackPointer1B0;
     }
     *PrimaryProcessingStatusFlag3 = 0;
     *(uint8_t *)(PrimaryProcessingStatusFlag3 + 2) = 0;
-    InitializeSystemStatusContext(PrimaryProcessingStatusFlag3,PrimaryProcessingStatusFlag6,&EngineInitializationBufferConfig);
+    InitializeSystemStatusContext(PrimaryProcessingStatusFlag3,ProcessingStatusFlagPointer6,&EngineInitializationBufferConfig);
     PrimaryProcessingStatusFlag8 = &CoreEngineDataTemplate;
     if (UnsignedProcessingStatusFlag != NULL) {
       PrimaryProcessingStatusFlag8 = UnsignedProcessingStatusFlag;
@@ -252081,7 +252081,7 @@ void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long SystemBuffe
   void *PrimaryProcessingStatusFlag3;
   long long *BufferAllocationStatus4;
   long long BufferStatus5;
-  uint64_t *******pppppPrimaryProcessingStatusFlag6;
+  uint64_t *******pppppProcessingStatusFlagPointer6;
   uint64_t MemoryAllocationIndex7;
   char *SystemValidationFunction8;
   char *SystemValidationFunction9;
@@ -252601,7 +252601,7 @@ LAB_18020b45e:
       do {
         if (iStack_4d0 == 0) {
           HighByte = false;
-          pppppPrimaryProcessingStatusFlag6 = (uint64_t *******)ppppppSystemCharacterStatusBuffer[1];
+          pppppProcessingStatusFlagPointer6 = (uint64_t *******)ppppppSystemCharacterStatusBuffer[1];
         }
         else {
           if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) == 0) {
@@ -252617,20 +252617,20 @@ LAB_18020b45e:
             } while (MemoryAllocationHandle != 0);
             HighByte = 0 < InputDataLength2;
             if (InputDataLength2 < 1) {
-              pppppPrimaryProcessingStatusFlag6 = (uint64_t *******)ppppppSystemCharacterStatusBuffer[1];
+              pppppProcessingStatusFlagPointer6 = (uint64_t *******)ppppppSystemCharacterStatusBuffer[1];
               goto LAB_18020b3a7;
             }
           }
-          pppppPrimaryProcessingStatusFlag6 = (uint64_t *******)*ppppppSystemCharacterStatusBuffer;
+          pppppProcessingStatusFlagPointer6 = (uint64_t *******)*ppppppSystemCharacterStatusBuffer;
         }
 LAB_18020b3a7:
         ppppppSystemEventTemplatePointer0 = ppppppSystemCharacterStatusBuffer;
         if (HighByte) {
           ppppppSystemEventTemplatePointer0 = pppppppSystemStatusValue;
         }
-        ppppppSystemCharacterStatusBuffer = pppppPrimaryProcessingStatusFlag6;
+        ppppppSystemCharacterStatusBuffer = pppppProcessingStatusFlagPointer6;
         pppppppSystemStatusValue = ppppppSystemEventTemplatePointer0;
-      } while (pppppPrimaryProcessingStatusFlag6 != (uint64_t *******)0x0);
+      } while (pppppProcessingStatusFlagPointer6 != (uint64_t *******)0x0);
       if ((uint64_t ********)ppppppSystemEventTemplatePointer0 == &ppppppContextDataPointer8) goto LAB_18020b3fb;
       if (*(int *)(ppppppSystemEventTemplatePointer0 + 6) != 0) {
         if (iStack_4d0 != 0) {
