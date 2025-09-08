@@ -197191,6 +197191,21 @@ HandleOutputData(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Ut
 
 
 
+/**
+ * @brief 初始化系统内存分配器和线程本地存储
+ * 
+ * 该函数负责初始化系统的内存分配器和线程本地存储机制。主要功能包括：
+ * - 分配内存管理器句柄
+ * - 设置内存分配掩码和状态
+ * - 初始化线程本地存储指针
+ * - 配置系统内存数据结构
+ * - 处理内存分配验证
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180162600
+ * @warning 该函数包含不返回的子程序调用
+ */
 void InitializeSystemMemoryAllocatorAndThreadLocalStorage(void)
 {
   uint64_t MemoryAllocatorHandle;
