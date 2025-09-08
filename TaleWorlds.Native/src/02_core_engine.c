@@ -40192,8 +40192,8 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *CharacterCode,uint64_t
     SystemStatusCode = ValidationResult;
   } while (Utf16Char4 < 3);
   if (Utf16Char4 != 0) {
-    CharacterVariable5 = RetrieveSystemVariable(SystemMemoryAllocationResult,SystemBufferSize);
-    if (CharacterVariable5 != '\0') {
+    SystemContextValidationFlag = RetrieveSystemVariable(SystemMemoryAllocationResult,SystemBufferSize);
+    if (SystemContextValidationFlag != '\0') {
       return 1;
     }
     ProcessedCharacter = *CharacterCode;
@@ -50162,7 +50162,7 @@ CharacterVariableSet:
 
 
 
-8239(float CharacterCode,float SystemBufferSize,float Utf8SourcePointer,float Utf16EndPointer/**
+/**
  * @brief 处理浮点数数据结构和参数计算
  * 
  * 该函数负责处理浮点数数据结构和参数计算，包括：
@@ -50179,6 +50179,7 @@ CharacterVariableSet:
  * 
  * @note 这是一个浮点数处理函数，涉及复杂的数学计算
  * @note 用于核心引擎的浮点数数据处理
+ * @note 原始函数名：8239
  */
 void ProcessFloatDataStructureAndParameterCalculationWithFloats(float CharacterCode, float SystemBufferSize, float Utf8SourcePointer, float Utf16EndPointer
 {
