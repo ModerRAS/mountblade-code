@@ -808,6 +808,9 @@ typedef enum {
 // UI系统函数宏定义 - 执行UI高级操作
 #define ExecuteUIAdvancedOperation FUN_18071ad00
 
+// UI系统函数宏定义 - 执行UI内存分配操作
+#define ExecuteUIMemoryAllocation FUN_1808fd200
+
 #define CalculateUITransformMatrix CalculateUITransformMatrixInternal
 
 #define CalculateUIScaleFactor CalculateUIScaleFactorInternal
@@ -75986,7 +75989,7 @@ int CalculateUIComponentMemoryOffset(int uiContext)
     alignedSize = 0xffffffffffffff0;
   }
                      WARNING: Subroutine does not return
-  FUN_1808fd200(alignedSize & 0xfffffffffffffff0,dataSource,uiContext);
+  ExecuteUIMemoryAllocation(alignedSize & 0xfffffffffffffff0,dataSource,uiContext);
 }
 
 
