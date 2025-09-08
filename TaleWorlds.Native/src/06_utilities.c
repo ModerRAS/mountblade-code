@@ -100249,7 +100249,23 @@ void ResetExceptionHandlerB10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eb20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文重置和清理处理器
+ * 
+ * 该函数负责重置异常上下文状态，包括：
+ * - 获取异常上下文指针
+ * - 调用异常处理函数
+ * - 设置临时和默认异常处理器
+ * - 清理系统状态
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090eb20
+ * @warning 确保异常上下文指针有效，否则可能导致系统崩溃
+ */
+void ResetExceptionContextAndCleanup(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
