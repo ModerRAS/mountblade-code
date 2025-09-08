@@ -92354,13 +92354,27 @@ void UIEmptyOperationProcessorVariant(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071f7a0(int *uiContext,float *dataSource,float *targetBuffer)
-void FUN_18071f7a0(int *uiContext,float *dataSource,float *targetBuffer)
+ /**
+ * @brief UI浮点数据变换处理器
+ * 
+ * 该函数负责处理UI系统中的浮点数据变换，主要功能包括：
+ * - 处理浮点数变换系数的计算和应用
+ * - 管理UI上下文的验证和迭代处理
+ * - 执行复杂的浮点数运算和数据转换
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 源浮点数据数组
+ * @param targetBuffer 目标浮点数据缓冲区
+ * 
+ * @note 原始函数名：FUN_18071f7a0
+ * @note 该函数涉及复杂的浮点运算
+ */
+void ProcessUIFloatDataTransform(int *uiContext,float *dataSource,float *targetBuffer)
 
 {
-  short *psVar1;
-  float *ptransformCoeff1;
-  float *ptransformCoeff2;
+  short *shortPointer1;
+  float *transformCoeff1;
+  float *transformCoeff2;
   int *ptrLocalInt4;
   short *psVar5;
   float localFloat6;
@@ -100950,7 +100964,7 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
                   UIDword uiContext0)
 
 {
-  ulonglong operationResult;
+  ulonglong contextOperationResult;
   ulonglong processCounter;
   short contextValue;
   short tempValue1;
