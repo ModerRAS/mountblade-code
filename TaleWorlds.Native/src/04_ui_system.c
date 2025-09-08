@@ -1005,6 +1005,14 @@ typedef enum {
 #define UIStatusPointer3 UNK_180954818
 #define UIStatusPointer4 UNK_1809547f0
 
+// UI系统附加状态指针美化
+#define UIStatusPointer5 UNK_1809553a0
+#define UIStatusPointer6 UNK_180954b30
+#define UIStatusPointer7 UNK_1809535d8
+#define UIStatusPointer8 UNK_1809535c4
+#define UIStatusPointer9 UNK_1809535e8
+#define UIStatusPointer10 UNK_180954788
+
 // UI系统浮点数据美化
 #define UIFloatDataTable UNK_180953730
 #define UIFloatDataArray UNK_180954194
@@ -4940,17 +4948,17 @@ UIHandle UIPipelineState;
  UI系统描述符集
 UIHandle UIDescriptorSet;
  UI系统常量缓冲区
-undefined UIConstantBuffer;
+UIHandle UIConstantBuffer;
  UI系统采样器
-undefined UISampler;
+UIHandle UISampler;
  UI系统资源视图
-undefined UIResourceView;
+UIHandle UIResourceView;
  UI系统流输出
-undefined UIStreamOutput;
+UIHandle UIStreamOutput;
  UI系统像素缓冲区
-undefined UIPixelBuffer;
+UIHandle UIPixelBuffer;
  UI系统效果管理器
-undefined UIEffectManager;
+UIHandle UIEffectManager;
  UI系统粒子系统
 undefined UIParticleSystem;
  UI系统图集管理器
@@ -95139,9 +95147,9 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
     uiValidationResult = *(int *)(uiBufferData + 0x90c);
   }
   else {
-    ptrLocal3 = &UNK_1809547f0;
+    ptrLocal3 = &UIStatusPointer4;
     if (*(int *)(uiBufferData + 0x914) != 4) {
-      ptrLocal3 = &UNK_180954828;
+      ptrLocal3 = &UIStatusPointer2;
     }
     *(undefined **)(uiContext + 0x958) = ptrLocal3;
   }
@@ -95152,7 +95160,7 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
   }
   *(int *)(uiBufferData + 0x920) = TempInt4 * 0x14;
   if ((dataSource - 8U & 0xfffffffb) == 0) {
-    ptrLocal3 = &UNK_1809553a0;
+    ptrLocal3 = &UIStatusPointer5;
     result = 10;
   }
   else {
