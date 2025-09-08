@@ -200133,7 +200133,7 @@ int ValidateUIContextAndProcessDataSource(longlong *uiContext, longlong *dataSou
             }
             else {
               colorBufferPointer[2] = contextHandleData;
-              func_0x000180763630(*dataSource, *uiContext, 0x3f800000);
+              ProcessUIDataWithContext(*dataSource, *uiContext, 0x3f800000);
               *(int *)((longlong)contextOffset + 0x24) = *(int *)((longlong)contextOffset + 0x24) + 1;
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
               validationResult = 0;
@@ -200200,7 +200200,7 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
     }
     resultHandle = uiContext + 6;
     if ((((UIHandle *)*resultHandle != resultHandle) || ((UIHandle *)uiContext[7] != resultHandle)) ||
-       (validationResult = FUN_180789e60(uiContext), validationResult == 0)) {
+       (validationResult = ValidateUIHandle(uiContext), validationResult == 0)) {
       colorBufferPointer = (longlong *)*resultHandle;
       *(longlong *)colorBufferPointer[1] = *colorBufferPointer;
       *(longlong *)(*colorBufferPointer + 8) = colorBufferPointer[1];
@@ -200223,7 +200223,7 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
             }
             else {
               colorBufferPointer[2] = contextHandleData;
-              func_0x000180763630(*dataSource, *uiContext, 0x3f800000);
+              ProcessUIDataWithContext(*dataSource, *uiContext, 0x3f800000);
               *(int *)((longlong)contextOffset + 0x24) = *(int *)((longlong)contextOffset + 0x24) + 1;
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
               validationResult = 0;

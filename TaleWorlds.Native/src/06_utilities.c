@@ -197,6 +197,14 @@
 #define DataValidationOffsetA8 0xa8
 #define DataValidationOffset18 0x18
 
+// 浮点数据相关偏移量常量
+#define FloatDataArraySizeOffset 0x104
+#define FloatDataPointerOffset84 0x84
+#define FloatDataPreprocessorOffset20 0x20
+
+// 系统栈帧相关偏移量常量
+#define StackFramePointerOffset8 0x8
+
 // 数据结构偏移量常量
 #define DataStructureHandleOffset1C 0x1c
 #define DataRecordArraySizeOffset30 0x30
@@ -1356,6 +1364,8 @@
 #define StackFrameDataOffsetNegative9 -0x9              // 栈帧数据负偏移量9
 #define StackFrameDataOffsetNegative8 -0x8              // 栈帧数据负偏移量8
 #define StackFrameDataOffsetNegative7 -0x7              // 栈帧数据负偏移量7
+#define StackFrameDataOffsetNegative6 -0x6              // 栈帧数据负偏移量6
+#define StackFrameDataOffsetNegativeC -0xc              // 栈帧数据负偏移量C
 
 // 上下文数据偏移量常量
 #define ContextFloatDataOffset40 0x40                   // 上下文浮点数据偏移量40
@@ -20022,12 +20032,19 @@ DataBuffer ValidateSystemConfigurationA0(void)
 // 资源上下文初始化函数
 // 初始化资源操作的上下文环境，设置必要的参数和状态
 // 
-// 参数:
-//   operationBase - 上下文描述符，包含初始化所需的配置信息
-//   dataBuffer - 初始化选项，指定初始化的模式和参数
-// 
-// 返回值:
-//   无 - 初始化结果通过系统状态返回
+/**
+ * @brief 初始化资源上下文
+ * 
+ * 初始化系统资源上下文，分配必要的资源并设置初始状态。
+ * 该函数负责管理系统资源的初始化过程，包括内存分配和状态设置。
+ * 
+ * @param contextDescriptor 上下文描述符，包含初始化所需的配置信息
+ * @param initializationOptions 初始化选项，指定初始化的模式和参数
+ * 
+ * @return 无 - 初始化结果通过系统状态返回
+ * 
+ * @note 该函数处理资源分配、安全验证和状态初始化
+ */
 void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializationOptions)
 
 {
@@ -25593,28 +25610,28 @@ void ProcessDataTypesA0(void)
           operationResult4 = normalizedFloatValue;
           if (resourceValidationStatus != 0) {
             systemDataBuffer7 = *(DataBuffer *)(contextPointer + SystemFloatDataOffset38);
-            systemDataBuffer6 = *(DataBuffer *)(contextPointer + 0x40);
-            operationResult4 = *(DataWord *)(contextPointer + 0x48);
-            operationResult = *(DataWord *)(contextPointer + 0x4c);
-            dataFlags = *(DataWord *)(contextPointer + 0x50);
-            validationOutcome = *(DataWord *)(contextPointer + 0x54);
+            systemDataBuffer6 = *(DataBuffer *)(contextPointer + ContextFloatDataOffset40);
+            operationResult4 = *(DataWord *)(contextPointer + ContextOperationResultOffset48);
+            operationResult = *(DataWord *)(contextPointer + ContextSecondaryOperationResultOffset4C);
+            dataFlags = *(DataWord *)(contextPointer + ContextDataFlagsOffset50);
+            validationOutcome = *(DataWord *)(contextPointer + ContextValidationOutcomeOffset54);
             StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
             StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = systemDataBuffer7;
             StackFrameContext[StackFrameDataOffsetNegative10] = systemDataBuffer6;
             *(float *)(StackFrameContext + StackFrameSecurityCheckOffsetNegativeD) = dataPointerD;
-            securityCheckResult = *(DataWord *)(contextPointer + 0x58);
-            statusCounter = *(DataWord *)(contextPointer + 0x5c);
-            loopCounter = *(DataWord *)(contextPointer + 0x60);
-            systemMemoryBuffer = *(DataWord *)(contextPointer + 100);
-            *(DataWord *)(StackFrameContext + -0xc) = SystemOperationResult;
-            *(DataWord *)(StackFrameContext + -9) = operationResult4;
-            *(DataWord *)((int64_t)StackFrameContext + -0x44) = operationResult;
-            *(DataWord *)(StackFrameContext + -8) = dataFlags;
-            *(DataWord *)((int64_t)StackFrameContext + -0x3c) = validationOutcome;
-            *(DataWord *)(StackFrameContext + -7) = securityCheckResult;
-            *(DataWord *)((int64_t)StackFrameContext + -0x34) = statusCounter;
-            *(DataWord *)(StackFrameContext + -6) = loopCounter;
-            *(DataWord *)((int64_t)StackFrameContext + -0x2c) = systemMemoryBuffer;
+            securityCheckResult = *(DataWord *)(contextPointer + ContextSecurityCheckResultOffset58);
+            statusCounter = *(DataWord *)(contextPointer + ContextStatusCounterOffset5C);
+            loopCounter = *(DataWord *)(contextPointer + ContextLoopCounterOffset60);
+            systemMemoryBuffer = *(DataWord *)(contextPointer + ContextSystemMemoryBufferOffset64);
+            *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegativeC) = SystemOperationResult;
+            *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegative9) = operationResult4;
+            *(DataWord *)((int64_t)StackFrameContext + StackFrameDataOffsetNegative44) = operationResult;
+            *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegative8) = dataFlags;
+            *(DataWord *)((int64_t)StackFrameContext + StackFrameDataOffsetNegative3C) = validationOutcome;
+            *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegative7) = securityCheckResult;
+            *(DataWord *)((int64_t)StackFrameContext + StackFrameDataOffsetNegative34) = statusCounter;
+            *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegative6) = loopCounter;
+            *(DataWord *)((int64_t)StackFrameContext + StackFrameDataOffsetNegative2C) = systemMemoryBuffer;
             resourceValidationStatus = ValidateDataIntegrityA0(securityCheckResult,StackFrameContext + -0xe);
             operationResult4 = interpolatedFloatValue;
             if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -25859,7 +25876,7 @@ ValidateDataSecurity:
         *(DataWord *)((int64_t)StackFrameContext + -0x3c) = validationOutcome;
         *(DataWord *)(StackFrameContext + -7) = securityCheckResult;
         *(DataWord *)((int64_t)StackFrameContext + -0x34) = statusCounter;
-        *(DataWord *)(StackFrameContext + -6) = loopCounter;
+        *(DataWord *)(StackFrameContext + StackFrameDataOffsetNegative6) = loopCounter;
         *(DataWord *)((int64_t)StackFrameContext + -0x2c) = systemMemoryBuffer;
         resourceValidationStatus = ValidateDataIntegrityA0(securityCheckResult,StackFrameContext + -0xe);
         operationResult3 = normalizedFloatValue;
