@@ -850,6 +850,8 @@
 
 // 系统内存和线程本地存储管理函数语义化映射
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
+#define InitializeSystemCharacterEncodingValidation FUN_1801659e0  // 初始化系统字符编码验证
+#define ProcessSystemTimeoutHandler FUN_18005e630  // 处理系统超时处理器
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
 #define IdentifySystemIdentifierByPatternVariantX FUN_1802258a7
@@ -197330,37 +197332,37 @@ void InitializeSystemCharacterEncodingValidation(void)
   InitializationCounter = 0xfffffffffffffffe;
   InitializationCounter = EncodingDecodingKey ^ (unsigned long long)EncodingKeyBuffer;
   CharacterEncodingPointer = *(long long **)(SystemCallbackTable + 0x18);
-  if (CharacterCode != (long long *)0x0) {
-    SystemValidationFunction = *(code **)(*CharacterCode + 0x20);
-    pBufferOffset = &RenderConfigManager;
-    SystemValidationPointer = aSystemPriorityLevel;
-    aSystemPriorityLevel[0] = 0;
-    SystemStackFlag = 5;
-    strcpy_s(aSystemPriorityLevel,0x20,&SystemCurrentCharacterSeptenary);
-    pSystemOperation90 = &RenderConfigManager;
-    SystemEventPointer = aStackProcessingUnsignedValue78;
-    aStackProcessingUnsignedValue78[0] = 0;
-    CalculationFunctionAddress = 5;
-    strcpy_s(aStackProcessingUnsignedValue78,0x20,&SystemCurrentCharacterSenary);
-    SystemCharacterStatusBufferPointer = &RenderConfigManager;
-    SystemMemoryPointer = aSystemStackRegisterFlagB0;
-    aSystemStackRegisterFlagB0[0] = 0;
-    MemoryOffsetValue = 7;
-    strcpy_s(aSystemStackRegisterFlagB0,0x20,&CoreEngineTemplate);
-    pSystemFlagA = &RenderConfigManager;
-    pSystemFlagB = SystemFlagBuffer;
-    SystemFlagBuffer[0] = 0;
-    OperationStatus = 0xe;
-    strcpy_s(SystemFlagBuffer,0x20,&SystemDefaultPathString);
-    pThreadLocalStorageBuffer = &pBufferOffset;
-    (*SystemValidationFunction)(CharacterCode,&pSystemFlagA,&SystemCharacterStatusBufferPointer,&pSystemOperation90);
-    pSystemFlagA = &ThreadLocalStorageTemplate;
-    SystemCharacterStatusBufferPointer = &ThreadLocalStorageTemplate;
-    pSystemOperation90 = &ThreadLocalStorageTemplate;
-    pBufferOffset = &ThreadLocalStorageTemplate;
+  if (CharacterEncodingPointer != (long long *)0x0) {
+    SystemValidationFunction = *(code **)(*CharacterEncodingPointer + 0x20);
+    BufferOffsetPointer = &RenderConfigManager;
+    ValidationPointer = SystemPriorityLevelBuffer;
+    SystemPriorityLevelBuffer[0] = 0;
+    SystemStackRegisterFlag = 5;
+    strcpy_s(SystemPriorityLevelBuffer,0x20,&SystemCurrentCharacterSeptenary);
+    SystemOperationPointer = &RenderConfigManager;
+    SystemEventBufferPointer = SystemProcessingBuffer;
+    SystemProcessingBuffer[0] = 0;
+    CalculationAddress = 5;
+    strcpy_s(SystemProcessingBuffer,0x20,&SystemCurrentCharacterSenary);
+    CharacterStatusBufferPointer = &RenderConfigManager;
+    SystemMemoryAllocationPointer = SystemStackRegisterBuffer;
+    SystemStackRegisterBuffer[0] = 0;
+    MemoryOffset = 7;
+    strcpy_s(SystemStackRegisterBuffer,0x20,&CoreEngineTemplate);
+    SystemFlagPointerA = &RenderConfigManager;
+    SystemFlagPointerB = SystemFlagInitializationBuffer;
+    SystemFlagInitializationBuffer[0] = 0;
+    SystemOperationStatus = 0xe;
+    strcpy_s(SystemFlagInitializationBuffer,0x20,&SystemDefaultPathString);
+    ThreadLocalStorageBufferPointer = &BufferOffsetPointer;
+    (*SystemValidationFunction)(CharacterEncodingPointer,&SystemFlagPointerA,&CharacterStatusBufferPointer,&SystemOperationPointer);
+    SystemFlagPointerA = &ThreadLocalStorageTemplate;
+    CharacterStatusBufferPointer = &ThreadLocalStorageTemplate;
+    SystemOperationPointer = &ThreadLocalStorageTemplate;
+    BufferOffsetPointer = &ThreadLocalStorageTemplate;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(ProcessingCounter ^ (unsigned long long)StackArray138);
+  CoreEngineExecuteUtilityFunction(InitializationCounter ^ (unsigned long long)EncodingKeyBuffer);
 }
 
 
@@ -198069,7 +198071,7 @@ ProcessUtf8ToUtf16CharacterEncodingInitialize(uint64_t CharacterCode,uint64_t *C
       __Throw_C_error_std__YAXH_Z(StringComparisonResult);
     }
   }
-  FUN_18005e630(TimeoutValueStorage);
+  ProcessSystemTimeoutHandler(TimeoutValueStorage);
   *(uint32_t *)(_SystemFloatTableAddress + 0x60) = 1;
   *CharacterCodeSize = &ThreadLocalStorageTemplate;
   SystemBufferSize[1] = 0;
@@ -198815,7 +198817,16 @@ LAB_180167a3b:
 
 
 
-67a50(voidvoid FUN_180167a50(void
+/**
+ * @brief 系统终止处理器
+ * 
+ * 该函数负责终止系统运行，调用核心引擎终止函数并确保系统安全关闭。
+ * 这是一个不返回的函数，执行后将导致系统终止。
+ * 
+ * @note 原始函数名：FUN_180167a50
+ * @see CoreEngineTerminateSystem
+ */
+void TerminateSystemProcess(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -199380,7 +199391,18 @@ ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *CharacterCode,uint64_t *Charact
 
 
 
-68ab0(uint64_t *CharacterCodevoid FUN_180168ab0(uint64_t *CharacterCode
+/**
+ * @brief 初始化字符代码线程本地存储
+ * 
+ * 该函数负责初始化字符代码处理器的线程本地存储模板，设置关键的指针位置。
+ * 这是一个简单的初始化函数，用于配置字符代码处理器的线程本地存储。
+ * 
+ * @param CharacterCode 字符代码指针数组，用于设置线程本地存储
+ * 
+ * @note 原始函数名：FUN_180168ab0
+ * @see ThreadLocalStorageTemplate
+ */
+void InitializeCharacterCodeThreadLocalStorage(uint64_t *CharacterCode)
 {
   CharacterCode[0x16] = &ThreadLocalStorageTemplate;
   CharacterCode[0xb] = &ThreadLocalStorageTemplate;
