@@ -40064,12 +40064,12 @@ SystemConfigurationComplete: // 原始标签：LAB_18006650a
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB88);
     SystemDataTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPointer != NULL) {
-      SystemPointerBuffer1d8 = SystemCharacterStatusBufferPointer;
+      SystemDataTemplatePointer = SystemCharacterStatusBufferPointer;
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateBA8);
-    SystemPointerBuffer1d8 = &SystemConfigTemplateBC8;
+    SystemDataTemplatePointer = &SystemConfigTemplateBC8;
     if (Utf8SourcePointer != '\0') {
-      SystemPointerBuffer1d8 = &SystemConfigTemplateBC0;
+      SystemDataTemplatePointer = &SystemConfigTemplateBC0;
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateBD8);
     FinalizeSystemConfiguration();
@@ -186708,7 +186708,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
   uint8_t aDataProcessingStatus [32];
-  void **ppSystemValue1c8;
+  void **ppSystemMessageTemplatePointer;
   uint8_t StackProcessingVariable1B8 [8];
   long long *plStack_1b0;
   uint32_t SystemValidationValue1a8;
@@ -186826,7 +186826,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       SystemValue1a8 = 1;
       ProcessSystemContextConfiguration(&ProcessingBufferPointer,&SystemStatusContextData,(double)*(float *)(CoreEngineSystemContext + 500));
       plStack_1b0 = (long long *)CONCAT44(plStack_1b0.HighPart,0xffffff00);
-      ppSystemValue1c8 = &ProcessingBufferPointer;
+      ppSystemMessageTemplatePointer = &ProcessingBufferPointer;
       ProcessSystemFloatValueUpdate(SystemDataRegistry + 0x11a50,SecondaryFloatValue - (float)((iStack_190 + 1) * 10));
       SystemValue1a8 = 0;
       ProcessingBufferPointer = &SystemNullTemplate;
@@ -209929,7 +209929,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
   uint64_t uStack_1e0;
   uint64_t SystemStackData;
   uint64_t uStack_1d0;
-  void *pSystemValue1c8;
+  void *SystemMessageTemplatePointer;
   uint8_t *NullTemplatePointer;
   uint32_t StackProcessingVariable1B8;
   uint8_t auStack_1b0 [256];
@@ -236771,7 +236771,7 @@ void ConfigureSystemContext(long long CharacterCode,float SystemBufferSize,char 
   byte *pbStack_1e0;
   int iStack_1d8;
   unsigned long long uStack_1d0;
-  void *pSystemValue1c8;
+  void *SystemMessageTemplatePointer;
   byte *pbStack_1c0;
   int iStack_1b8;
   unsigned long long uStack_1b0;
