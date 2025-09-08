@@ -95476,7 +95476,17 @@ void ExecuteAdvancedSystemCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090ceb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文回调函数
+ * 
+ * 该函数负责执行异常上下文回调，通过异常上下文指针调用相应的处理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常上下文指针信息
+ * 
+ * @note 原始函数名：Unwind_18090ceb0
+ */
+void ExecuteExceptionContextCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
