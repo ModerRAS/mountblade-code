@@ -82016,7 +82016,7 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
   dataSource[1] = sourceValue0;
   dataSource[2] = tempFloat8;
   dataSource[3] = tempFloat9;
-  dataSource[4] = resultFloat;
+  dataSource[4] = resultValue;
   return;
 }
 
