@@ -100097,17 +100097,17 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
       SystemDataTablePointer = (unsigned long long)ProcessedCharacter << 0x20;
       isSystemContextNull = ProcessSystemParameters(&MatrixElementC,ComputedResult,&AdditionalParameter1,LocalStackBuffer_d8,SystemDataTablePointer);
       MemoryAllocationIndex = (uint32_t)((unsigned long long)SystemDataTablePointer >> 0x20);
-      if ((acStack_d8[0] == '\0') || (AdditionalParameter1 == '\0')) {
+      if ((LocalStackBuffer_d8[0] == '\0') || (AdditionalParameter1 == '\0')) {
         SystemDataTablePointer = (unsigned long long)(AdditionalParameter1 != '\0') + 0x15;
       }
       else {
         SystemDataTablePointer = 0x17;
       }
       PrimaryProcessingStatusFlag = (void *)(MemoryBoundaryEnd + 0x1628 + (SystemDataTablePointer + 10) * 0x10);
-      SystemFlagG = *PrimaryProcessingStatusFlag;
-      SystemFlagH = *(uint32_t *)(PrimaryProcessingStatusFlag + 1);
+      MatrixTransformResult = *PrimaryProcessingStatusFlag;
+      SystemValidationFlag = *(uint32_t *)(PrimaryProcessingStatusFlag + 1);
       MatrixElementB = *(float *)((long long)PrimaryProcessingStatusFlag + 0xc) * *(float *)(MemoryBoundaryEnd + 0x1628);
-      SystemMemoryAllocationResult = ValidateSystemData(&SystemFlagG);
+      SystemMemoryAllocationResult = ValidateSystemData(&MatrixTransformResult);
       if (ComputedResult == *(int *)(MemoryBoundaryEnd + 0x1ca0)) {
         ProcessMemoryLock(&MatrixElementC,1,MemoryBoundaryEnd);
       }
@@ -203631,7 +203631,7 @@ uint64_t ProcessUtf8ToUtf16Initialization(uint64_t *CharacterCode,uint64_t Syste
   if (ProcessingStatusFlag != (uint8_t *)0x0) {
     *ProcessingStatusFlag = 0;
   }
-  FUN_1801cb3e0();
+  InitializeSystemMemoryAllocator();
   *CharacterCode = &ThreadLocalStorageTemplate;
   CharacterCode[1] = 0;
   *(uint32_t *)(CharacterCode + 2) = 0;
@@ -203672,7 +203672,7 @@ ValidateAndProcessUtf8Encoding(uint64_t *CharacterCode,uint64_t SystemBufferSize
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryAllocationIndex = 0;
-  FUN_1801c9a40();
+  ProcessSystemMemoryAllocation();
   *CharacterCode = &ThreadLocalStorageTemplate;
   CharacterCode[1] = 0;
   *(uint32_t *)(CharacterCode + 2) = 0;
