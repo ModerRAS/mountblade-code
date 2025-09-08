@@ -200050,7 +200050,16 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
  * @param SystemBufferSize 系统缓冲区大小，用于确定处理范围
  * @return long long 返回处理后的系统缓冲区大小
  * 
+ * @details 函数执行流程：
+ * 1. 初始化系统验证函数和字符处理变量
+ * 2. 遍历系统缓冲区中的字符数据
+ * 3. 对每个字符进行验证和处理
+ * 4. 管理内存分配和释放
+ * 5. 调用系统事件处理函数
+ * 6. 返回处理结果
+ * 
  * @note 原始函数名：FUN_180169350
+ * @warning 此函数包含不返回的子函数调用，使用时需谨慎
  */
 long long ProcessCoreEngineCharacterCode(long long *CharacterCode,long long SystemBufferSize
 {
@@ -200161,7 +200170,16 @@ long long ProcessCoreEngineCharacterCode(long long *CharacterCode,long long Syst
  * @param SystemBufferSize 系统缓冲区大小
  * @return long long* 返回计算结果指针
  * 
+ * @details 函数执行流程：
+ * 1. 初始化字符代码和系统缓冲区
+ * 2. 设置字符串处理状态标志
+ * 3. 遍历字符串缓冲区进行字符处理
+ * 4. 管理系统上下文和内存地址
+ * 5. 处理字符编码转换
+ * 6. 返回计算结果指针
+ * 
  * @note 原始函数名：FUN_180169c30
+ * @warning 此函数包含复杂的字符串处理和内存管理逻辑
  */
 long long * ProcessSystemCalculationFunctionAddress(long long *CharacterCode,long long SystemBufferSize
 {

@@ -18386,19 +18386,19 @@ DataBuffer GetSystemStatusA0(void)
   
   // 输入参数寄存器变量
   uint64_t inputAccumulatorRegister;      // 输入累加器寄存器
-  uint64_t inputRegisterR9D;               // 输入寄存器R9D
+  uint64_t arrayIterationCounter;         // 数组迭代计数器
   uint64_t inputRegisterR10;              // 输入寄存器R10
   bool zeroFlag;                          // 零标志位
   
   systemFlags = inputAccumulatorRegister - 8;
   if (inputAccumulatorRegister == 0) {
-    systemFlags = (uint64_t)inputRegisterR9D;
+    systemFlags = (uint64_t)arrayIterationCounter;
   }
   validationStatus = *(int *)(systemFlags + 0x28);
   floatArrayBase = (float *)(registerContext + 0x20 + (int64_t)*(int *)(registerContext + 0x18) * 4);
   if (0 < *(int *)(registerContext + 0x18)) {
     floatArrayPointer = floatArrayBase;
-    securityCheckResult = inputRegisterR9D;
+    securityCheckResult = arrayIterationCounter;
     do {
       arrayIndex = *(int *)(((registerContext + 0x20) - (int64_t)floatArrayBase) + (int64_t)floatArrayPointer);
       if (arrayIndex != -1) {
@@ -18417,7 +18417,7 @@ DataBuffer GetSystemStatusA0(void)
         if (dataNodePointer == 0) {
           return ResourceNotFoundCode;
         }
-        if (*(uint *)(dataNodePointer + 0x30) != inputRegisterR9D) {
+        if (*(uint *)(dataNodePointer + 0x30) != arrayIterationCounter) {
           return ComponentDataValidationFailure;
         }
         resultValue = *(float *)(dataNodePointer + 0x38);
@@ -18437,9 +18437,9 @@ DataBuffer GetSystemStatusA0(void)
         if (validationStatus != -1) {
           *(float *)(*(int64_t *)(systemFlags + 0x20) + 4 + (int64_t)validationStatus * 0x18) = *floatArrayBase;
         }
-        inputRegisterR9D = inputRegisterR9D + 1;
+        arrayIterationCounter = arrayIterationCounter + 1;
         floatArrayBase = floatArrayBase + 1;
-      } while ((int)inputRegisterR9D < *(int *)(registerContext + 0x18));
+      } while ((int)arrayIterationCounter < *(int *)(registerContext + 0x18));
     }
   }
     CleanupSystemEventA0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98));
@@ -22282,6 +22282,8 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   ByteFlag validationBuffer2 [8];
   ByteFlag validationBuffer3 [40];
   DataWord *stackDataPointerInput;
+  DataWord *systemResourceDataPointer;
+  DataWord *systemValidationDataPointer;
   DataWord *stackDataPointer2;
   DataWord *stackDataPointer3;
   DataWord *stackDataPointer4;
@@ -22344,15 +22346,15 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),stackByteBuffer);
             exceptionHandlerContextPointer = systemContextPointer;
             if (arrayIndex == 0) {
-              stackDataPointer1 = &SystemValidationDataTableA1;
+              systemResourceDataPointer = &SystemValidationDataTableA1;
               StackResourceData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
               StackResourceOffset = 0;
               StackResourceFlag = 1;
-              ProcessSystemDataA2(stackDataPointer1,*(DataBuffer *)(operationBase + 0x58));
-              stackDataPointer2 = &SystemValidationDataTableA2;
+              ProcessSystemDataA2(systemResourceDataPointer,*(DataBuffer *)(operationBase + 0x58));
+              systemValidationDataPointer = &SystemValidationDataTableA2;
               StackValidationData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
               StackValidationOffset = 0;
-              ValidateAndExecuteOperationA0(stackDataPointer2,*(DataBuffer *)(operationBase + 0x58));
+              ValidateAndExecuteOperationA0(systemValidationDataPointer,*(DataBuffer *)(operationBase + 0x58));
               exceptionHandlerContextPointer = systemContextPointer;
             }
           }
@@ -22462,29 +22464,29 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
                 return dataFlags;
               }
               loopCounter = (uint64_t)StackMemoryData.lowWord;
-              validationParameter4 = (int)StackMemoryData;
+              stackMemoryIndex = (int)StackMemoryData;
             }
-            stackUIntBuffer[0] = validationParameter4 + 1;
+            stackUIntBuffer[0] = stackMemoryIndex + 1;
             dataFlags = (uint64_t)stackUIntBuffer[0];
             StackMemoryData = CONCAT44(StackMemoryData.lowWord,stackUIntBuffer[0]);
-            *(DataWord *)(StackMemoryBuffer + (int64_t)validationParameter4 * 4) = operationResult;
+            *(DataWord *)(StackMemoryBuffer + (int64_t)stackMemoryIndex * 4) = operationResult;
             exceptionHandlerContextPointer = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
-          validationParameter6 = (int)dataFlags;
+          dataFlagCounter = (int)dataFlags;
         } while ((stackIntBuffer[0] != -1) &&
                 (stackIntBuffer[0] = *(int *)(exceptionHandlerContextPointer[2] + 4 + exceptionContextIndex * 0x10), stackIntBuffer[0] != -1));
-        calculatedValue = validationParameter1 + 1;
-        isInputParameterValid = validationParameter1 != -1;
-        validationParameter1 = 0;
+        calculatedValue = arrayIterationIndex + 1;
+        isInputParameterValid = arrayIterationIndex != -1;
+        arrayIterationIndex = 0;
         if (isInputParameterValid) {
-          validationParameter1 = calculatedValue;
+          arrayIterationIndex = calculatedValue;
         }
-        if (validationParameter1 != (int)exceptionHandlerContextPointer[1]) {
-          resourceIterator = (int64_t)validationParameter1;
+        if (arrayIterationIndex != (int)exceptionHandlerContextPointer[1]) {
+          resourceIterator = (int64_t)arrayIterationIndex;
           do {
             if (*(int *)(*exceptionHandlerContextPointer + resourceIterator * 4) != -1) {
-              stackIntBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)validationParameter1 * 4);
+              stackIntBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)arrayIterationIndex * 4);
               goto ProcessCheckpointDataFlow;
             }
             validationParameter1 = validationParameter1 + 1;
