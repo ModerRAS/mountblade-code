@@ -122,6 +122,26 @@ typedef enum {
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance FUN_180727dd3
 
+// UI系统标签宏定义 - 事件处理相关
+#define LAB_EventTypeStringCompare LAB_180655402
+#define LAB_EventTypeValidationCheck LAB_1806553fb
+#define LAB_EventStringComparison LAB_1806554a0
+#define LAB_EventHandlerReturn LAB_180655685
+#define LAB_EventProcessingContinue LAB_1806559dc
+#define LAB_EventValidationFailed LAB_180655683
+#define LAB_EventStringCompare LAB_180655a80
+#define LAB_EventFocusCheck LAB_180655afa
+#define LAB_EventValidationCheck LAB_1806554f3
+#define LAB_EventProcessingComplete LAB_180655598
+#define LAB_EventComponentCheck LAB_1806555a6
+#define LAB_EventTypeHandler LAB_18065555e
+#define LAB_EventStringMatch LAB_180655761
+#define LAB_EventDataProcess LAB_1806557d3
+#define LAB_EventResultReturn LAB_180655bea
+#define LAB_EventFocusCheck LAB_180655bdf
+#define LAB_EventSystemInitialize LAB_180655e30
+#define LAB_EventContextSetup LAB_180655d38
+
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData GetUIDataValue
 
@@ -8748,7 +8768,7 @@ LAB_UIStringCompareFinal:
         goto LAB_EventTypeResultReturn;
       }
       bufferPtr = &UIEventTypeString22;
-      goto LAB_180655402;
+      goto LAB_EventTypeStringCompare;
     }
     if (stackInt20 == 0x11) {
       processingResult = strcmp(stackLong28,&UIEventTypeString23);
@@ -8758,7 +8778,7 @@ LAB_UIStringCompareFinal:
       }
     }
     else {
-      if (stackInt20 == 0x18) goto LAB_1806553fb;
+      if (stackInt20 == 0x18) goto LAB_EventTypeValidationCheck;
       if (stackInt20 == 0xb) {
         processingResult = strcmp(stackLong28,&UIEventTypeString24);
         if (processingResult == 0) {
@@ -8782,7 +8802,7 @@ LAB_UIEventTypeCompare:
             componentIndex = stringCompareIndex + 1;
             if (*(char *)(stackLong28 + stringCompareIndex) != (&UIEventTypeString26)[stringCompareIndex]) {
               stringCompareIndex = 0;
-              goto LAB_1806554a0;
+              goto LAB_EventStringComparison;
             }
             stringCompareIndex = componentIndex;
           } while (componentIndex != 8);
@@ -8799,23 +8819,23 @@ LAB_UIEventTypeCompare:
         else {
           if (stackInt20 == 0x13) {
             bufferPtr = &UIEventTypeString28;
-            goto LAB_1806554f3;
+            goto LAB_EventValidationCheck;
           }
           if (stackInt20 == 0xd) {
             bufferPtr = &UIEventTypeString29;
-            goto LAB_180655598;
+            goto LAB_EventProcessingComplete;
           }
           if (stackInt20 == 6) {
             stringCompareIndex = 0;
             do {
               componentIndex = stringCompareIndex;
-              if (*(char *)(stackLong28 + componentIndex) != (&UIEventTypeString30)[componentIndex]) goto LAB_1806555a6;
+              if (*(char *)(stackLong28 + componentIndex) != (&UIEventTypeString30)[componentIndex]) goto LAB_EventComponentCheck;
               stringCompareIndex = componentIndex + 1;
             } while (componentIndex + 1 != 7);
             processingResult = (int)componentIndex + 0x1e;
             goto LAB_EventTypeResultReturn;
           }
-          if (stackInt20 == 0x12) goto LAB_18065555e;
+          if (stackInt20 == 0x12) goto LAB_EventTypeHandler;
         }
       }
     }
@@ -8832,7 +8852,7 @@ LAB_UIDestructionStart:
   while (stringCompareIndex = componentIndex, componentIndex != 8) {
 UIEventTypeString31Check:
     componentIndex = stringCompareIndex + 1;
-    if (*(char *)(stackLong28 + stringCompareIndex) != (&UIEventTypeString31)[stringCompareIndex]) goto LAB_1806555a6;
+    if (*(char *)(stackLong28 + stringCompareIndex) != (&UIEventTypeString31)[stringCompareIndex]) goto LAB_EventComponentCheck;
   }
   processingResult = 0x30;
   goto LAB_EventTypeResultReturn;
@@ -8893,7 +8913,7 @@ LAB_UIEventProcessingStart:
 LAB_UIEventProcessingCheck:
         if (EventProcessingResult) {
           processingCounter = 4;
-          goto LAB_180655685;
+          goto LAB_EventHandlerReturn;
         }
       }
     }
@@ -8907,7 +8927,7 @@ LAB_UIEventProcessingCheck:
         loopCounter1 = loopCounter2 + 1;
         if (eventStringPtr[loopCounter2] != (&UIEventTypeMouse)[loopCounter2]) {
           loopCounter2 = 0;
-          goto LAB_180655761;
+          goto LAB_EventStringMatch;
         }
         loopCounter2 = loopCounter1;
       } while (loopCounter1 != 8);
@@ -8935,7 +8955,7 @@ LAB_UIEventProcessingCheck:
       }
       else if ((stringLength == 9) && (uiCompareResult = strcmp(eventStringPtr,&UIComponentNameTable[2]), uiCompareResult == 0)) {
         processingCounter = 0x204;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
     }
   }
@@ -8956,18 +8976,18 @@ UIEventTypeSelectCheck:
         uiCompareResult = strcmp(eventStringPtr,eventTypePointer);
         if (uiCompareResult == 0) {
           processingCounter = 0x10;
-          goto LAB_180655685;
+          goto LAB_EventHandlerReturn;
         }
       }
       else if (stringLength == 5) {
         loopCounter2 = 0;
         do {
           loopCounter1 = loopCounter2;
-          if (eventStringPtr[loopCounter1] != (&UIEventTypeChange)[loopCounter1]) goto LAB_180655683;
+          if (eventStringPtr[loopCounter1] != (&UIEventTypeChange)[loopCounter1]) goto LAB_EventValidationFailed;
           loopCounter2 = loopCounter1 + 1;
         } while (loopCounter1 + 1 != 6);
         processingCounter = (ulonglong)((int)loopCounter1 + 0x3b);
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
     }
   }
@@ -8987,14 +9007,14 @@ UIAxisEventProcessing:
     if (((uiCompareResult == 0) && (stringLength == 1)) && ((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')))) {
       if ((*eventStringPtr == 'y') && (eventStringPtr[1] == '\0')) {
         processingCounter = 4;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
       if (*eventStringPtr == 'z') {
         EventProcessingResult = eventStringPtr[1] == '\0';
-LAB_1806559dc:
+LAB_EventProcessingContinue:
         if (EventProcessingResult) {
           processingCounter = 8;
-          goto LAB_180655685;
+          goto LAB_EventHandlerReturn;
         }
       }
     }
@@ -9006,12 +9026,12 @@ LAB_1806559dc:
       loopCounter1 = loopCounter2 + 1;
       if (*(char *)(eventDataPtr + loopCounter2) != (&UIEventTypeScroll)[loopCounter2]) {
         loopCounter2 = 0;
-        goto LAB_180655a80;
+        goto LAB_EventStringCompare;
       }
       loopCounter2 = loopCounter1;
     } while (loopCounter1 != 8);
     if ((((stringLength == 1) && ((*eventStringPtr != 's' || (eventStringPtr[1] != '\0')))) &&
-        (*eventStringPtr == 'f')) && (eventStringPtr[1] == '\0')) goto LAB_180655685;
+        (*eventStringPtr == 'f')) && (eventStringPtr[1] == '\0')) goto LAB_EventHandlerReturn;
   }
   else if (eventTypeIndex == 0xf) {
     uiCompareResult = strcmp(eventDataPtr,&UIEventTypeFocus);
@@ -9026,7 +9046,7 @@ LAB_1806559dc:
       }
       else if (((stringLength == 1) && (*eventStringPtr == 'o')) && (eventStringPtr[1] == '\0')) {
         processingCounter = 0x30;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
     }
   }
@@ -9054,18 +9074,18 @@ LAB_1806559dc:
     if (((uiCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'w' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'x') && (pcStack_48[1] == '\0')) {
         processingCounter = 4;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
         processingCounter = 8;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
       if (*pcStack_48 == 'z') {
         localChar1 = pcStack_48[1];
 LAB_180655e30:
         if (localChar1 == '\0') {
           processingCounter = 0xc;
-          goto LAB_180655685;
+          goto LAB_EventHandlerReturn;
         }
       }
     }
@@ -9074,7 +9094,7 @@ LAB_180655e30:
     EventDataIndex = 0;
     do {
       ContextHandleData = EventDataIndex + 1;
-      if (*(char *)(stackLong28 + EventDataIndex) != (&UIStringComparisonData)[EventDataIndex]) goto LAB_180655683;
+      if (*(char *)(stackLong28 + EventDataIndex) != (&UIStringComparisonData)[EventDataIndex]) goto LAB_EventValidationFailed;
       EventDataIndex = ContextHandleData;
     } while (ContextHandleData != 7);
     if (stackInt40 == 7) {
@@ -9104,11 +9124,11 @@ LAB_180655e30:
     if (((uiCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
         processingCounter = 4;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
       if ((*pcStack_48 == 'z') && (pcStack_48[1] == '\0')) {
         processingCounter = 8;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
       if (*pcStack_48 == 'w') {
         localChar1 = pcStack_48[1];
@@ -9116,36 +9136,36 @@ LAB_180655e30:
       }
     }
   }
-  goto LAB_180655683;
+  goto LAB_EventValidationFailed;
   while (iterationCount = processingCounter + 1, processingCounter + 1 != 5) {
 UIValidationLoop:
     processingCounter = iterationCount;
-    if (pcStack_48[processingCounter] != (&UIValidationTableAddress)[processingCounter]) goto LAB_180655683;
+    if (pcStack_48[processingCounter] != (&UIValidationTableAddress)[processingCounter]) goto LAB_EventValidationFailed;
   }
   processingCounter = processingCounter & 0xffffffff;
-  goto LAB_180655685;
+  goto LAB_EventHandlerReturn;
   while (EventDataIndex = ContextHandleData, ContextHandleData != 8) {
 UIValidationLoopA:
     ContextHandleData = EventDataIndex + 1;
-    if (pcStack_48[EventDataIndex] != (&UIValidationTableA)[EventDataIndex]) goto LAB_180655683;
+    if (pcStack_48[EventDataIndex] != (&UIValidationTableA)[EventDataIndex]) goto LAB_EventValidationFailed;
   }
-  goto LAB_180655685;
+  goto LAB_EventHandlerReturn;
   while (EventDataIndex = ContextHandleData, ContextHandleData != 8) {
-LAB_180655a80:
+LAB_EventStringCompare:
     ContextHandleData = EventDataIndex + 1;
-    if (*(char *)(stackLong28 + EventDataIndex) != (&UIValidationTableB)[EventDataIndex]) goto LAB_180655683;
+    if (*(char *)(stackLong28 + EventDataIndex) != (&UIValidationTableB)[EventDataIndex]) goto LAB_EventValidationFailed;
   }
   if ((stackInt40 == 1) && ((*pcStack_48 != 's' || (pcStack_48[1] != '\0')))) {
     if ((*pcStack_48 == 'f') && (pcStack_48[1] == '\0')) {
       processingCounter = 0x10;
-      goto LAB_180655685;
+      goto LAB_EventHandlerReturn;
     }
     if (*pcStack_48 == 'u') {
       IsStringTerminated = pcStack_48[1] == '\0';
-LAB_180655afa:
+LAB_EventFocusCheck:
       if (IsStringTerminated) {
         processingCounter = 0x20;
-        goto LAB_180655685;
+        goto LAB_EventHandlerReturn;
       }
     }
   }
