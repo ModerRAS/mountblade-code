@@ -62062,7 +62062,7 @@ MemoryAllocationLoopLAB1800878e0:
       SystemOperationFlag = 0;
       MemoryAllocationBuffer = NULL;
       FileOperationResult = ReadFile(MemoryOffset,(long long)&ThreadIndex + (long long)MemoryBufferPointer,MemoryAllocationOffset,&SystemOperationFlag);
-      if (FileOperationResult == 0) goto LAB_18008807f;
+      if (FileOperationResult == 0) goto SystemConfigHandlerLAB18008807f;
     } while ((SystemOperationFlag != 0) &&
             (MemoryBufferPointer = (long long *)((long long)MemoryBufferPointer + (unsigned long long)SystemOperationFlag),
             MemoryBufferPointer < (long long *)0x24));
@@ -62193,7 +62193,7 @@ SystemConfigHandlerLAB18008807f:
             CharacterStatusBuffer7 = (void *)PrimaryProcessingStatusFlag4[2];
             CharacterStatusBuffer9 = PrimaryProcessingStatusFlag4;
             if (CharacterStatusBuffer7 == NULL) {
-LAB_180087f81:
+SystemValidationHandlerLAB180087f81:
                     // WARNING: Subroutine does not return
               ValidateSystemConfiguration(SystemConfigHandle,&SystemHandlerTemplateSecondary);
             }
@@ -62310,7 +62310,7 @@ LAB_180087f81:
                 CharacterTablePointer = (long long)PrimaryProcessingStatusFlag4 - (long long)CharacterStatusBuffer7 >> 3;
                 if (CharacterTablePointer == 0) {
                   CharacterTablePointer = 1;
-LAB_180087f16:
+CharacterDataAllocationLAB180087f16:
                   CharacterCodeData = (long long *)BufferAllocate(MemoryPoolManager,CharacterTablePointer * 8,SystemCharacterStatusBuffer[0x198]);
                   PrimaryProcessingStatusFlag4 = *(uint64_t **)(SystemCharacterStatusBuffer + 0x188);
                   CharacterStatusBuffer7 = (void *)*BufferAllocationStatus1;
@@ -191765,7 +191765,20 @@ ConvertUtf16ToUtf8(uint32_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Ut
 
 
 
-uint64_t FUN_18015c320(uint64_t CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 释放系统缓冲区内存（带参数）
+ * 原始函数名: FUN_18015c320
+ * 
+ * 根据系统缓冲区大小的奇偶性决定是否释放内存。
+ * 这是内存管理函数的扩展版本，包含额外的参数。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 返回字符代码指针
+ */
+uint64_t ReleaseSystemBufferMemoryWithParams(uint64_t CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   
