@@ -2089,20 +2089,32 @@
 #define InitializeSystemMemoryPoolA0 FUN_180046860
 
 /**
- * @brief 系统内存初始化函数A1
+ * @brief 初始化系统内存池并配置缓存
  * 
  * 初始化系统内存A1模块，配置内存管理和缓存
  * 
+ * @param systemContext 系统上下文，包含系统初始化参数
+ * @param cacheConfig 缓存配置，指定缓存大小和策略
+ * 
+ * @return 初始化结果状态码，0表示成功，非0表示错误
+ * 
  * @note 原始函数名：FUN_18004c030
+ * @note 此函数负责系统内存池初始化和缓存配置
  */
 #define InitializeSystemMemoryPoolAndConfigureCache FUN_18004c030
 
 /**
- * @brief 系统内存初始化函数A2
+ * @brief 初始化系统内存并设置A2
  * 
- * 初始化系统内存A2
+ * 初始化系统内存A2模块，设置内存管理和相关配置
+ * 
+ * @param systemContext 系统上下文，包含系统初始化参数
+ * @param memoryConfig 内存配置，指定内存管理参数
+ * 
+ * @return 初始化结果状态码，0表示成功，非0表示错误
  * 
  * @note 原始函数名：FUN_18004c090
+ * @note 此函数负责系统内存A2模块的初始化
  */
 #define InitializeSystemMemoryAndSetupA2 FUN_18004c090
 
@@ -120084,43 +120096,43 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_27c - 栈数据字AA
 // 功能：存储资源分配结果数据字
-#define ContextDataWordAA StackResourceAllocationResult
+#define StackResourceAllocationResult uStack_27c
 
 // 原始变量名：uStack_298 - 栈数据字AB
 // 功能：存储操作状态标志数据字
-#define ContextDataWordAB StackOperationStatusFlag
+#define StackOperationStatusFlag uStack_298
 
 // 原始变量名：puStack_2a8 - 栈指针缓冲区G
 // 功能：存储系统表指针的栈缓冲区
-#define TablePointerG StackSystemTablePointer
+#define StackSystemTablePointer puStack_2a8
 
 // 原始变量名：iStack_2a0 - 栈整型D
 // 功能：存储验证结果的栈变量
-#define ValidationIntegerD StackValidationResult
+#define StackValidationResult iStack_2a0
 
 // 原始变量名：iStack_290 - 栈整型E
 // 功能：存储循环计数的栈变量
-#define ValidationIntegerE StackLoopCounter
+#define StackLoopCounter iStack_290
 
 // 原始变量名：puStack_2f8 - 栈指针缓冲区H
 // 功能：存储验证表指针的栈缓冲区
-#define TablePointerH StackValidationTablePointer
+#define StackValidationTablePointer puStack_2f8
 
 // 原始变量名：iStack_2f0 - 栈整型F
 // 功能：存储处理状态的栈变量
-#define ValidationIntegerF StackProcessingStatus
+#define StackProcessingStatus iStack_2f0
 
 // 原始变量名：afStack_304 - 栈浮点数组C
 // 功能：存储同步浮点数组的栈数据
-#define ValidationFloatArrayC StackSynchronizationArray
+#define StackSynchronizationArray afStack_304
 
 // 原始变量名：piStack_6f0 - 栈整型指针C
 // 功能：存储数组索引指针的栈变量
-#define StackIntegerPointerC StackArrayIndexPointer
+#define StackArrayIndexPointer piStack_6f0
 
 // 原始变量名：piStack_8 - 栈整型指针D
 // 功能：存储数据缓冲区指针的栈变量
-#define StackIntegerPointerD StackDataBufferPointer
+#define StackDataBufferPointer piStack_8
 
 // 系统初始化数据缓冲区
 // 功能：存储系统初始化过程中的数据缓冲区
