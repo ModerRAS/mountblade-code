@@ -22953,14 +22953,14 @@ ResourceCleanupLabel:
     if ((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x18 & 1) == 0) {
       if ((*(int *)(operationBase + 0xb0) == -1) || (*(int *)(operationBase + 0xac) <= *(int *)(operationBase + 0xb0))
          ) {
-        stackIndexBuffer[0] = CONCAT31(stackIndexBuffer[0]._1_3_,1);
+        stackDataBuffer[0] = CONCAT31(stackDataBuffer[0]._1_3_,1);
         stackUIntBuffer[0] = 0;
         do {
-          dataFlags = ProcessSystemDataA1(operationBase,stackIndexBuffer,stackUIntBuffer);
+          dataFlags = ProcessSystemDataA1(operationBase,stackDataBuffer,stackUIntBuffer);
           if ((int)dataFlags != 0) {
             return dataFlags;
           }
-        } while ((char)stackIndexBuffer[0] != (char)dataFlags);
+        } while ((char)stackDataBuffer[0] != (char)dataFlags);
       }
       else {
         *(DataBuffer *)(operationBase + 0xa8) = 0;
@@ -23645,7 +23645,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = calculatedFloatValue;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -23654,7 +23654,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
@@ -23698,7 +23698,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = interpolatedFloatValue;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -23707,7 +23707,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
@@ -23751,7 +23751,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = accumulatedFloatValue;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -23760,7 +23760,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
@@ -23804,7 +23804,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           floatValue = transformedFloatValue;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -23813,7 +23813,7 @@ void ProcessFloatingPointDataA0(void)
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
-          ProcessedFloatValue = (float)CONCAT31(ProcessedFloatValue._1_3_,1);
+          FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
@@ -24215,7 +24215,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 TemporaryDataWordB = 0;
                 StackPointerBufferI = &DataIntegrityValidationErrorB;
                 TemporaryDataWordC = StackDataWordA;
-                InputFloatValueA = (float)CONCAT31(InputFloatValueA._1_3_,1);
+                FloatInputValueA = (float)CONCAT31(FloatInputValueA._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -24488,7 +24488,7 @@ void ProcessDataTypesA0(void)
             if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
               StackInputParameterC = &DataIntegrityValidationErrorB;
               operationResult = SystemOperationResult;
-              StackFloatRegisterB = (float)CONCAT31(StackFloatRegisterB._1_3_,1);
+              FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
               ValidationDataBuffer = dataPointerD;
               resourceValidationStatus = ValidateDataIntegrityA0(operationResult4,&StackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
@@ -24734,7 +24734,7 @@ ValidateDataSecurity:
         if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
           StackInputParameterC = &DataIntegrityValidationErrorB;
           operationResult = SystemOperationResult;
-          StackFloatRegisterB = (float)CONCAT31(StackFloatRegisterB._1_3_,1);
+          FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
           ValidationDataBuffer = dataPointerD;
           resourceValidationStatus = ValidateDataIntegrityA0(operationResult3,&StackValidationBuffer);
           if (resourceValidationStatus != 0) GOTO_SecurityTerminationA1;
@@ -24896,7 +24896,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
       StackInputParameterC = &DataIntegrityValidationErrorB;
       operationResult = SystemOperationResult;
-      StackFloatRegisterB = (float)CONCAT31(StackFloatRegisterB._1_3_,1);
+      FloatStackRegisterB = (float)CONCAT31(FloatStackRegisterB._1_3_,1);
       ValidationDataBuffer = dataPointerD;
       operationResult = ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
@@ -25491,7 +25491,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       if (operationResult != 1) {
         stackGuard = stackGuard & ZeroValue;
         bufferPointer = (int64_t *)&DataValidationBufferA;
-        contextArray[0] = (int64_t *)CONCAT44(contextArray[0]._4_4_,operationResult);
+        systemContextArray[0] = (int64_t *)CONCAT44(systemContextArray[0]._4_4_,operationResult);
         bufferIndex = ValidateDataIntegrityA0(dataContext,&bufferPointer);
         if (bufferIndex != 0) goto ProcessCheckpointBufferValidation;
       }
@@ -25617,7 +25617,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           do {
             exceptionHandlerContext5 = (int64_t)(int)StackFloatArrayE[0] * 0x20;
             SystemCleanupFlagLocal2 = AllBitsSet;
-            exceptionHandlerArray[0] = (int64_t *)CONCAT44(exceptionHandlerArray[0]._4_4_,SystemCleanupFlag);
+            systemExceptionHandlerArray[0] = (int64_t *)CONCAT44(systemExceptionHandlerArray[0]._4_4_,SystemCleanupFlag);
             stackExceptionContext = *(int64_t **)(exceptionHandlerContextPointer6[2] + 0x18 + exceptionHandlerContext5);
             StackLongIntegerC = exceptionHandlerContext5;
             ProcessDataConversionDN0(stackExceptionContext,&SystemCleanupFlagLocal2,exceptionHandlerArray);
@@ -27571,14 +27571,14 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
   DataBuffer operationDataBuffer;
   DataBuffer stackDataBuffer;
   
-  operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,*dataBuffer);
+  systemOperationBuffer = CONCAT44(systemOperationBuffer._4_4_,*dataBuffer);
   inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
   if (inputParameter == 0) {
     operationDataBuffer = *(DataBuffer *)(dataBuffer + 2);
     inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,8);
     if ((inputParameter == 0) && (inputParameter = ValidateDataAndReturnCodeA1(operationBase,dataBuffer + 4), inputParameter == 0)) {
       inputParameter = dataBuffer[10];
-      operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,inputParameter);
+      systemOperationBuffer = CONCAT44(systemOperationBuffer._4_4_,inputParameter);
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
       dataFlags = 0;
@@ -27595,7 +27595,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
           } while ((int)validationStatus < inputParameter);
         }
         inputParameter = dataBuffer[DataBufferOffsetE];
-        operationDataBuffer = CONCAT44(operationDataBuffer._4_4_,inputParameter);
+        systemOperationBuffer = CONCAT44(systemOperationBuffer._4_4_,inputParameter);
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
                           (*(DataBuffer **)(operationBase + DataBufferOffset8),&operationDataBuffer,DataProcessingMultiplier4);
         if (operationResult == 0) {
@@ -27645,7 +27645,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                   }
                   validationStatus = *(uint *)(resourceIterator + ExceptionHandlerCallbackOffset10);
                   if (validationStatus < ValidationStatusThreshold) {
-                    stackDataBuffer = CONCAT62(stackDataBuffer._2_6_,(short)validationStatus);
+                    systemStackBuffer = CONCAT62(systemStackBuffer._2_6_,(short)validationStatus);
                     validationOutcome = 2;
                   }
                   else {
