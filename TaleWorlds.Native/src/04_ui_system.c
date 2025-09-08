@@ -1060,6 +1060,21 @@ typedef enum {
 // UI系统函数宏定义 - 清理UI上下文
 #define CleanupUIContext FUN_18070f490
 
+// UI系统函数宏定义 - 处理UI数据迭代
+#define ProcessUIDataIteration FUN_180719a90
+
+// UI系统函数宏定义 - 执行UI数据验证
+#define ExecuteUIDataValidation FUN_1807165a0
+
+// UI系统函数宏定义 - 执行UI数据比较
+#define ExecuteUIDataComparison FUN_1807160c0
+
+// UI系统函数宏定义 - 处理UI事件分发
+#define ProcessUIEventDispatch FUN_180718bd0
+
+// UI系统函数宏定义 - 执行UI位移操作
+#define ExecuteUIShiftOperation FUN_180716aa0
+
 #define CalculateUITransformMatrix CalculateUITransformMatrixInternal
 
 #define CalculateUIScaleFactor CalculateUIScaleFactorInternal
@@ -84708,7 +84723,7 @@ LAB_180715b7d:
       ProcessUIDataTransformAndNormalization(allocatedMemory,targetBuffer,bufferSize,EventTypeCode,processingResult5,resultPointer);
     }
     else {
-      FUN_180719a90(targetBuffer,bufferSize,resultPointer);
+      ProcessUIDataIteration(targetBuffer,bufferSize,resultPointer);
     }
   }
 LAB_180715d56:
@@ -85753,10 +85768,10 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
     do {
       UIValidationResult5 = (int)targetBuffer >> ((byte)StackInt4c & 0x1f);
       if (UIValidationResult6 != 0) {
-        FUN_1807165a0(dataSource,UIValidationResult5,Result6);
+        ExecuteUIDataValidation(dataSource,UIValidationResult5,Result6);
       }
       if (param_6 != 0) {
-        FUN_1807165a0(param_6,UIValidationResult5,Result6);
+        ExecuteUIDataValidation(param_6,UIValidationResult5,Result6);
       }
       Result6 = Result6 << 1 | (uint)((int)Result6 < 0);
       uiContext1 = (uint)(byte)(&g_uiHexConversionTable)[(longlong)(int)uiContext1 >> 4] << 2 |
@@ -85771,10 +85786,10 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
     do {
       if (-1 < UIValidationResult7) break;
       if (UIValidationResult6 != 0) {
-        FUN_1807165a0(dataSource,Result6,resultPointer);
+        ExecuteUIDataValidation(dataSource,Result6,resultPointer);
       }
       if (param_6 != 0) {
-        FUN_1807165a0(param_6,Result6,resultPointer);
+        ExecuteUIDataValidation(param_6,Result6,resultPointer);
       }
       StackUInt50 = StackUInt50 + 1;
       Result6 = (int)Result6 >> 1;
@@ -85789,19 +85804,19 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
     UIValidationResult7 = resultPointer << (IsCharacterMatch8 & 0x1f);
     UIValidationResult5 = (int)Result6 >> (IsCharacterMatch8 & 0x1f);
     if (UIValidationResult6 != 0) {
-      FUN_1807160c0(dataSource,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
+      ExecuteUIDataComparison(dataSource,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
     }
     if (param_6 != 0) {
-      FUN_1807160c0(param_6,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
+      ExecuteUIDataComparison(param_6,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
     }
   }
   SemaphoreHandle9 = (uint)EventTypeCode;
-  Result5 = FUN_180718bd0(uiContext,dataSource,EventTypeCode & 0xffffffff,bufferSize,resultPointer,param_6,param_7,param_9
+  Result5 = ProcessUIEventDispatch(uiContext,dataSource,EventTypeCode & 0xffffffff,bufferSize,resultPointer,param_6,param_7,param_9
                          ,uiContext1);
   SemaphoreHandle3 = (ulonglong)Result5;
   if (uiContext[1] != 0) {
     if (1 < (int)resultPointer) {
-      FUN_180716aa0(dataSource,(int)Result6 >> (IsCharacterMatch8 & 0x1f),resultPointer << (IsCharacterMatch8 & 0x1f));
+      ExecuteUIShiftOperation(dataSource,(int)Result6 >> (IsCharacterMatch8 & 0x1f),resultPointer << (IsCharacterMatch8 & 0x1f));
     }
     if (0 < (int)StackUInt50) {
       EventTypeCode = (ulonglong)StackUInt50;
@@ -85809,7 +85824,7 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
         resultPointer = (int)resultPointer >> 1;
         Result6 = Result6 * 2;
         SemaphoreHandle3 = (ulonglong)((uint)SemaphoreHandle3 | (uint)SemaphoreHandle3 >> ((byte)resultPointer & 0x1f));
-        FUN_1807165a0(dataSource,Result6,resultPointer);
+        ExecuteUIDataValidation(dataSource,Result6,resultPointer);
         EventTypeCode = EventTypeCode - 1;
       } while (EventTypeCode != 0);
     }
