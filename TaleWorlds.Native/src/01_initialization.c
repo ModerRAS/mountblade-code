@@ -2680,11 +2680,11 @@ int InitializeSystemGlobalVariables(void)
   SystemInitializationStatusCode = 0;
   SystemInitializationProgress = 0;
   SystemMemoryStatusFlagTertiary = 0;
-  SystemInitializationErrorFlag = 3;
+  SystemInitializationErrorFlag = SystemInitializationErrorFlagDefault;
   SystemInitializationMemoryStatus = 0;
   SystemInitializationThreadStatus = 0;
   SystemMemoryStatusFlagQuaternary = 0;
-  SystemInitializationResourceStatus = 3;
+  SystemInitializationResourceStatus = SystemInitializationResourceStatusDefault;
   SystemConfigurationDataPrimary = &SystemGlobalDataPointer;
   SystemConfigurationDataSecondary = 0;
   SystemConfigurationDataTertiary = 0;
@@ -2765,7 +2765,7 @@ void InitializeRenderingSystemConfig(void)
   PreviousNodePointer = RootNodeReference;
   CurrentNode = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (!SystemNodeActiveFlag) {
-    SystemIdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
+    SystemIdentifierCompareResult = memcmp(CurrentNode + SystemNodeIdentifierOffset, &RenderingSystemTemplateIdentifier, SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNode = (void**)CurrentNode[SystemNodeNextPointerOffset];
       CurrentNode = PreviousNodePointer;
@@ -2777,16 +2777,16 @@ void InitializeRenderingSystemConfig(void)
     CurrentNode = NextNode;
     SystemNodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
-  if ((PreviousNode == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), SystemIdentifierCompareResult < 0)) {
+  if ((PreviousNode == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&RenderingSystemTemplateIdentifier, PreviousNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedNode, PreviousNode, SystemRequiredMemorySize + SystemNodeAllocationExtraSize, SystemRequiredMemorySize);
     PreviousNode = AllocatedNode;
   }
-  PreviousNode[SystemNodeIdentifier1Index] = RENDERING_CONFIG_NODE_IDENTIFIER1;
-  PreviousNode[SystemNodeIdentifier2Index] = RENDERING_CONFIG_NODE_IDENTIFIER2;
+  PreviousNode[SystemNodeIdentifier1Index] = RenderingSystemNodeIdentifier1;
+  PreviousNode[SystemNodeIdentifier2Index] = RenderingSystemNodeIdentifier2;
   PreviousNode[SystemNodeDataPointerIndex] = &SystemDataNodeSecondaryRoot;
-  PreviousNode[SystemNodeActiveFlagIndex] = 0;
-  PreviousNode[SYSTEM_NODE_HANDLER_INDEX] = RendererHandler;
+  PreviousNode[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  PreviousNode[SystemNodeHandlerIndex] = RendererHandler;
   return;
 }
 
