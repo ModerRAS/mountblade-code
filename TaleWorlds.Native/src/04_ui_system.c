@@ -20917,13 +20917,13 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     if (0.001 <= resultPointer) {
       if (resultPointer <= 0.999) {
         localFloat61 = transformMatrix[2] * transformCoeff38;
-        localFloat63 = param_6[3] * transformScale42;
+        localFloat63 = transformMatrix[3] * transformScale42;
         stackUIntf8 = 0xbf800000;
         stackUIntf4 = 0xbf800000;
         stackUIntf0 = 0xbf800000;
         stackUIntec = 0xbf800000;
-        aiterationCount4._0_4_ = localFloat61 + *param_6 * transformCoeff29;
-        aiterationCount4._4_4_ = localFloat63 + param_6[1] * transformCoeff34;
+        aiterationCount4._0_4_ = localFloat61 + *transformMatrix * transformCoeff29;
+        aiterationCount4._4_4_ = localFloat63 + transformMatrix[1] * transformCoeff34;
         aiterationCount4._8_4_ = localFloat61 + localFloat61;
         aiterationCount4._12_4_ = localFloat63 + localFloat63;
         aiterationCount5._4_12_ = aiterationCount4._4_12_;
@@ -20936,10 +20936,10 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         localFloat63 = *(float *)(astackUInt108 + allocatedMemory + 4);
         localFloat65 = *(float *)(astackUInt108 + allocatedMemory + 8);
         localFloat67 = *(float *)(astackUInt108 + allocatedMemory + 0xc);
-        transformCoeff27 = *param_6;
-        transformCoeff31 = param_6[1];
-        scaleFactor35 = param_6[2];
-        transformCoeff39 = param_6[3];
+        transformCoeff27 = *transformMatrix;
+        transformCoeff31 = transformMatrix[1];
+        scaleFactor35 = transformMatrix[2];
+        transformCoeff39 = transformMatrix[3];
         if (0.9995 < ABS(aiterationCount5._0_4_)) {
           localFloat68 = 1.0 - resultPointer;
           transformCoeff29 = transformCoeff29 * localFloat68 + resultPointer * localFloat61 * transformCoeff27;
@@ -20979,7 +20979,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       }
       else {
         transformCoeff29 = *param_6;
-        transformCoeff34 = param_6[1];
+        transformCoeff34 = transformMatrix[1];
         transformCoeff38 = param_6[2];
         transformScale42 = param_6[3];
       }
