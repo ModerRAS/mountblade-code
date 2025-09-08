@@ -95953,7 +95953,22 @@ void InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_InitializeExceptionHandlerCE50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数CE50
+ * 
+ * 初始化异常处理器的相关资源，设置异常处理上下文。
+ * 该函数负责：
+ * 1. 初始化异常处理器的状态
+ * 2. 设置异常处理上下文
+ * 3. 配置异常处理相关的内存区域
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_InitializeExceptionHandlerCE50
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
+ */
+void InitializeExceptionHandlerCE50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) != (int64_t *)0x0) {

@@ -1447,6 +1447,28 @@
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
 #define InitializeSystemCharacterEncodingValidation FUN_1801659e0  // 初始化系统字符编码验证
 #define ProcessSystemTimeoutHandler FUN_18005e630  // 处理系统超时处理器
+
+// 系统渲染和状态管理函数语义化映射
+#define ProcessSystemRenderState FUN_1801c93c0                 // 处理系统渲染状态
+#define ProcessSystemStringData FUN_1800ab6f0                   // 处理系统字符串数据
+#define ProcessSystemMemoryBlock FUN_1800a3880                  // 处理系统内存块
+#define ProcessSystemRenderObjectConfiguration FUN_18029ae20    // 处理系统渲染对象配置
+#define ProcessSystemDataEncoding FUN_18029de40                 // 处理系统数据编码
+#define ProcessSystemRenderMaterial FUN_18029c8a0               // 处理系统渲染材质
+#define ProcessSystemMemoryAllocationEx FUN_1802aaef0           // 处理系统内存分配扩展
+#define ProcessSystemMemoryAllocationVariantB FUN_1800ba230     // 处理系统内存分配变体B
+#define ProcessSystemMemoryPoolCleanup FUN_1802ab0c0            // 处理系统内存池清理
+
+// 系统内存管理和数据清理函数语义化映射
+#define ReleaseSystemMemoryRegistry FUN_1800b3cc0               // 释放系统内存注册表
+#define ResetSystemDataPointers FUN_1800d7810                   // 重置系统数据指针
+#define CleanupSystemEventHandlers FUN_1800f08a0               // 清理系统事件处理器
+#define CleanupSystemMemoryBuffers FUN_1800c1a80               // 清理系统内存缓冲区
+#define ValidateSystemConfiguration FUN_180092820               // 验证系统配置
+#define ProcessSystemMemoryValidation FUN_180094c20            // 处理系统内存验证
+#define ProcessSystemDataTable FUN_1800b88d0                   // 处理系统数据表
+#define ProcessSystemTimeoutEx FUN_18005e770                  // 处理系统超时扩展
+#define CleanupSystemDataTable FUN_1800b8500                   // 清理系统数据表
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
 #define IdentifySystemIdentifierByPatternVariantX FUN_1802258a7
@@ -215899,10 +215921,10 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *CharacterCode,uin
     ProcessMemoryBlockCleanup(pStringOffset);
     ProcessMemoryBlockConfiguration(pStringOffset);
     ProcessMemoryBlockAllocation(pStringOffset);
-    FUN_1801c93c0();
-    FUN_1800ab6f0(pStringOffset);
-    FUN_1800a3880(pStringOffset,*(uint32_t *)(CoreEngineMemoryContext + 0x1d50),
-                  *(uint32_t *)(CoreEngineMemoryContext + 0x1dc0),0);
+    ProcessSystemRenderState();
+    ProcessSystemStringData(pStringOffset);
+    ProcessSystemMemoryBlock(pStringOffset,*(uint32_t *)(CoreEngineMemoryContext + 0x1d50),
+                           *(uint32_t *)(CoreEngineMemoryContext + 0x1dc0),0);
   }
   else {
     (**(code **)((void *)*pStringOffset + 0xa8))(pStringOffset);
@@ -215911,7 +215933,7 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *CharacterCode,uin
     (**(code **)((void *)*pStringOffset + 0x80))(pStringOffset);
   }
   ProcessRenderObjectState(pStringOffset[0x39b]);
-  FUN_18029ae20(pStringOffset[0x39b]);
+  ProcessSystemRenderObjectConfiguration(pStringOffset[0x39b]);
   CharacterCodeTablePointer = (long long *)pStringOffset[0x39b];
   SystemDataRegistry = (**(code **)(*pStringOffset + 0x118))(pStringOffset,0xffffffff);
   SystemDataTablePointer = *(long long **)(SystemDataRegistry + 0x1d8);
@@ -215928,19 +215950,19 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *CharacterCode,uin
   }
   CharacterCodeTablePointer[0x1077] = (long long)SystemDataTablePointer;
   *(void *)(pStringOffset[0x39b] + 0x83f0) = 0;
-  FUN_18029de40(pStringOffset[0x39b],1);
-  FUN_18029c8a0(pStringOffset[0x39b],3,0xff0000ff,0x3f800000,0x8a,0);
+  ProcessSystemDataEncoding(pStringOffset[0x39b],1);
+  ProcessSystemRenderMaterial(pStringOffset[0x39b],3,0xff0000ff,0x3f800000,0x8a,0);
   SystemDataRegistry = SystemMemoryManagerPointer;
   pStringOffset = *(long long **)(SystemMemoryManagerPointer + 0x138);
   if (pStringOffset != *(long long **)(SystemMemoryManagerPointer + 0x140)) {
     do {
       CharacterTablePointer = *pStringOffset;
       if ((*(long long *)(CharacterTablePointer + 0x15b8) == 0) && (*(int *)(CharacterTablePointer + 0x16c0) != 0)) {
-        AllocatedMemorySize = FUN_1802aaef0(SystemDataRegistry + 0xac0,CharacterTablePointer + 0x16b0);
+        AllocatedMemorySize = ProcessSystemMemoryAllocationEx(SystemDataRegistry + 0xac0,CharacterTablePointer + 0x16b0);
         if (AllocatedMemorySize == 0) {
           DataSize = MemoryAllocate(MemoryPoolManager,0x50,0x10,3);
-          AllocatedMemorySize = FUN_1800ba230(DataSize,CharacterTablePointer + 0x16b0);
-          FUN_1802ab0c0(SystemDataRegistry + 0xac0,AllocatedMemorySize);
+          AllocatedMemorySize = ProcessSystemMemoryAllocationVariantB(DataSize,CharacterTablePointer + 0x16b0);
+          ProcessSystemMemoryPoolCleanup(SystemDataRegistry + 0xac0,AllocatedMemorySize);
         }
         *(long long *)(CharacterTablePointer + 0x15b8) = AllocatedMemorySize;
       }

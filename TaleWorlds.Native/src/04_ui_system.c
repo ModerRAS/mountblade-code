@@ -10611,21 +10611,21 @@ UIHandle * FindUIModuleByPath(UIHandle path_length, UIHandle *path_buffer, longl
           pathCharacterPtr = *(byte **)(targetBuffer + 8);
           pathOffset = resourceManagerPtr[5] - (longlong)pathCharacterPtr;
           do {
-            characterCode = (uint)pathCharacterPtr[ContextHandleData];
+            characterCode = (uint)pathCharacterPtr[pathOffset];
             characterDifference = *pathCharacterPtr - characterCode;
             if (*pathCharacterPtr != characterCode) break;
             pathCharacterPtr = pathCharacterPtr + 1;
           } while (characterCode != 0);
           isPathMatching = 0 < characterDifference;
           if (characterDifference < 1) {
-            modulePathPtr = (UIHandle *)eventCodePtr[1];
+            modulePathPtr = (UIHandle *)resourceManagerPtr[1];
             goto LAB_1806575b7;
           }
         }
-        modulePathPtr = (UIHandle *)*eventCodePtr;
+        modulePathPtr = (UIHandle *)*resourceManagerPtr;
       }
 LAB_1806575b7:
-      resultPtr = eventCodePtr;
+      searchResultPtr = resourceManagerPtr;
       if (isPathMatching) {
         resultPtr = resultPtr;
       }
