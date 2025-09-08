@@ -216,6 +216,52 @@
 #define DataValidationContextOffset 0x38            // 数据验证上下文偏移量
 #define DataProcessingResultOffset 0x3c             // 数据处理结果偏移量
 #define DataSecurityFlagsOffset 0x30                // 数据安全标志偏移量
+
+// 数据查询偏移量常量
+#define DataStructurePointerOffset 0x18                   // 数据结构指针偏移量
+#define DataStructureBaseOffset 8                         // 数据结构基础偏移量
+#define DataStructureSizeOffset 0x20                      // 数据结构大小偏移量
+#define DataItemSizeMultiplier 0xc                        // 数据项大小乘数
+#define DataItemTargetOffset 0x20                         // 数据项目标偏移量
+#define DataItemProcessingOffset 0x50                     // 数据项处理偏移量
+
+// 安全上下文偏移量常量
+#define SecurityContextValidationOffset 0x5f0            // 安全上下文验证偏移量
+#define SecurityContextStackSize 40                      // 安全上下文栈大小
+
+// 操作上下文偏移量常量
+#define OperationBaseContextOffset 0x58                  // 操作基础上下文偏移量
+#define OperationBaseSecondaryOffset 0x90                // 操作基础次级偏移量
+#define OperationDataOffset 0x790                        // 操作数据偏移量
+#define OperationResultOffset 0x1c8                       // 操作结果偏移量
+#define OperationBaseFlagOffset 0x6c                     // 操作基础标志偏移量
+#define OperationBufferOffset 0x20                       // 操作缓冲区偏移量
+
+// 栈帧上下文偏移量常量
+#define StackFrameValidationOffset 0x5f0                  // 栈帧验证偏移量
+#define StackFrameDataOffset -0x78                        // 栈帧数据偏移量
+#define StackFrameItemCountOffset 0x30                   // 栈帧项目计数偏移量
+
+// 资源管理器偏移量常量
+#define ResourceManagerIndexOffset 0x1a8                 // 资源管理器索引偏移量
+#define ResourceManagerPointerOffset 0x1a0               // 资源管理器指针偏移量
+#define ResourceEntrySizeMultiplier 8                    // 资源条目大小乘数
+
+// 异常处理上下文偏移量常量
+#define ExceptionHandlerContextDataOffset 0x6d8         // 异常处理上下文数据偏移量
+#define ExceptionHandlerContextFlagOffset 0x2d8         // 异常处理上下文标志偏移量
+#define ExceptionHandlerShiftRight1Bit 1                 // 异常处理器右移1位
+#define ExceptionHandlerShiftRight3Bit 3                 // 异常处理器右移3位
+
+// 数据缓冲区偏移量常量
+#define DataBufferPointerOffset 0x2e8                    // 数据缓冲区指针偏移量
+#define DataBufferStatusOffset 0x2c                      // 数据缓冲区状态偏移量
+#define DataBufferValidationOffset 0x34                  // 数据缓冲区验证偏移量
+#define DataBufferHandleOffset 0x4d0                     // 数据缓冲区句柄偏移量
+#define DataBufferSizeOffset 0x774                       // 数据缓冲区大小偏移量
+
+// 系统数据区域偏移量常量
+#define SystemDataRegionStart 0x40000                    // 系统数据区域起始地址
 #define DataSecondaryValidationOffset 0x44          // 数据二次验证偏移量
 #define DataPrimaryValidationOffset 0x48           // 数据主要验证偏移量
 #define DataFloatingPointOffset 0x4c               // 数据浮点偏移量
