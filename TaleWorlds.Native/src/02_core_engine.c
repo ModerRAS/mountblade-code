@@ -222517,7 +222517,17 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *CharacterCode,uint
 
 
 
-uint64_t * ProcessUnicodeCodePointAndManageCharacterEncoding(long long *CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 处理Unicode码点并管理字符编码
+ * 
+ * 该函数处理Unicode码点转换，管理字符编码状态，并进行内存分配和释放操作。
+ * 主要用于UTF-8到UTF-16的编码转换过程中的字符处理。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符编码信息
+ * @param CharacterCodeSize 字符代码大小指针，用于确定内存分配大小
+ * @return uint64_t* 返回处理后的字符状态缓冲区指针
+ */
+uint64_t * ProcessUnicodeCodePointAndManageCharacterEncoding(long long *CharacterCode,uint64_t *CharacterCodeSize)
 {
   uint64_t *CharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -222597,7 +222607,17 @@ LAB_18018802f:
 
 
 
-uint64_t * FUN_180187f11(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理UTF-16字符并管理内存分配
+ * 
+ * 该函数处理UTF-16字符转换，管理内存分配操作，并进行模式匹配和数据注册。
+ * 主要用于字符编码转换过程中的UTF-16字符处理和内存管理。
+ * 
+ * @param CharacterCode 字符代码，包含要处理的UTF-16字符信息
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配计算
+ * @return uint64_t* 返回系统上下文指针
+ */
+uint64_t * ProcessUtf16CharacterAndManageMemoryAllocation(uint64_t CharacterCode,long long SystemBufferSize)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -222655,7 +222675,17 @@ LAB_18018802f:
 
 
 
-uint64_t * FUN_180187f26(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 使用引擎上下文处理UTF-16字符
+ * 
+ * 该函数使用引擎上下文处理UTF-16字符，进行内存分配、模式匹配和系统数据处理。
+ * 主要用于高级字符编码转换过程中的复杂字符处理操作。
+ * 
+ * @param CharacterCode 字符代码，包含要处理的UTF-16字符信息
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和字符处理
+ * @return uint64_t* 返回系统上下文指针
+ */
+uint64_t * ProcessUtf16CharacterWithEngineContext(uint64_t CharacterCode,long long SystemBufferSize)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
