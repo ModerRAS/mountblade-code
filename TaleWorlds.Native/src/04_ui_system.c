@@ -87936,32 +87936,32 @@ void FUN_18071991e(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
 void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dataSource,uint targetBuffer)
 
 {
-  float *pbaseValue;
-  float transformCoeff1;
-  float transformCoeff2;
-  float transformCoeff3;
-  float transformCoeff4;
-  float localFloat6;
-  float resultFloat;
-  float localFloat8;
-  float localFloat9;
-  float baseValue0;
-  float *baseScaleFactor;
-  uint result2;
-  longlong allocatedMemory3;
-  ulonglong componentIndex;
-  longlong allocatedMemory5;
-  uint TotalResult;
-  longlong allocatedMemory8;
-  longlong allocatedMemory9;
-  float AccumulatedFloat;
-  float transformCoeff11;
-  float transformCoeff12;
-  ulonglong result7;
+  float *baseValuePointer;
+  float transformCoefficient1;
+  float transformCoefficient2;
+  float transformCoefficient3;
+  float transformCoefficient4;
+  float intermediateValue6;
+  float resultValue;
+  float intermediateValue8;
+  float intermediateValue9;
+  float baseValue;
+  float *scaleFactorPointer;
+  uint bufferAlignmentResult;
+  longlong contextDataOffset;
+  ulonglong componentCounter;
+  longlong bufferDataPointer;
+  uint processedBytesCount;
+  longlong targetBufferSize;
+  longlong remainingBuffer;
+  float accumulatedResult;
+  float matrixCoefficient11;
+  float matrixCoefficient12;
+  ulonglong iterationCounter;
   
-  allocatedMemory8 = (longlong)(int)targetBuffer;
-  componentIndex = 0;
-  TotalResult = 0;
+  targetBufferSize = (longlong)(int)targetBuffer;
+  componentCounter = 0;
+  processedBytesCount = 0;
   if ((0 < (int)targetBuffer) && (7 < targetBuffer)) {
     result2 = targetBuffer & 0x80000007;
     if ((int)result2 < 0) {

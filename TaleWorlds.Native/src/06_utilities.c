@@ -347,6 +347,21 @@
 #define DataStructurePointerOffset8 0x8                       // 数据结构指针偏移量
 #define DataStructureCallbackOffset50 0x50                    // 数据结构回调偏移量
 
+// 异常数据缓冲区偏移量常量
+#define ExceptionDataBufferOffset50 0x50                     // 异常数据缓冲区偏移量
+
+// 系统上下文数据偏移量常量
+#define SystemContextDataOffset50 0x50                       // 系统上下文数据偏移量
+
+// 目标上下文数据偏移量常量
+#define DestinationContextDataOffset50 0x50                  // 目标上下文数据偏移量
+
+// 操作基础数据偏移量常量
+#define OperationBaseDataOffset50 0x50                       // 操作基础数据偏移量
+
+// 上下文指针偏移量常量
+#define ContextPointerOffset50 0x50                          // 上下文指针偏移量
+
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98                          // 系统管理偏移量98
 #define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量

@@ -77879,14 +77879,14 @@ void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t SystemBufferSize,l
              (unsigned long long)(*(long long *)(AdditionalParameter1 + 0x50) - (long long)CharacterIterator2 >> 3));
   }
   SystemContextPtr = *(long long **)(AdditionalParameter1 + 0x50);
-  if (CharacterCode2 != SystemContextPtr) {
-    IntegerValue = 0;
-    CharacterTablePointer6 = (long long)SystemContextPtr - (long long)CharacterCode2 >> 3;
-    for (AllocatedMemorySize = CharacterTablePointer6; AllocatedMemorySize != 0; AllocatedMemorySize = AllocatedMemorySize >> 1) {
+  if (CharacterIterator2 != SystemContextPtr) {
+    LoopCounter = 0;
+    CharacterTablePointer6 = (long long)SystemContextPtr - (long long)CharacterIterator2 >> 3;
+    for (AllocatedMemoryBlockSize = CharacterTablePointer6; AllocatedMemoryBlockSize != 0; AllocatedMemoryBlockSize = AllocatedMemoryBlockSize >> 1) {
       CharacterTablePointer = CharacterTablePointer + 1;
     }
-    ProcessSystemMemoryAndCopyData(CharacterCode2,SystemContextPtr,(long long)(IntegerValue + -1) * 2,0);
-    CharacterCode8 = CharacterCode2;
+    ProcessSystemMemoryAndCopyData(CharacterIterator2,SystemContextPtr,(long long)(LoopCounter + -1) * 2,0);
+    CharacterIterator8 = CharacterIterator2;
     if (CharacterTablePointer6 < 0x1d) {
       while (CharacterCode8 = CharacterCode8 + 1, CharacterCode8 != SystemContextPtr) {
         AllocatedMemorySize = *CharacterCode8;
