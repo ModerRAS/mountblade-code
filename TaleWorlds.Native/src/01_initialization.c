@@ -20607,13 +20607,13 @@ void PerformSystemMemoryCopyOperation(void)
  * @param BufferPointer 指向需要重置的缓冲区的指针
  * @note 这是一个系统级的缓冲区重置操作，确保缓冲区处于干净状态
  */
-void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
+void ResetSystemProcessingBuffer(uint8_t *SystemProcessingBufferPointer)
 {
-  long long BufferOffset;
+  long long SystemBufferOffset;
   
-  *BufferPointer = 0;
-  BufferOffset = (long long)BufferPointer;
-  *(uint32_t *)(BufferOffset + 0x10) = 0;
+  *SystemProcessingBufferPointer = 0;
+  SystemBufferOffset = (long long)SystemProcessingBufferPointer;
+  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
   return;
 }
 
@@ -20821,13 +20821,13 @@ void ExecuteSystemMemoryCopyOperation(void)
 
 
 
-void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
+void ResetSystemProcessingBuffer(uint8_t *SystemProcessingBufferPointer)
 {
-  long long BufferOffset;
+  long long SystemBufferOffset;
   
-  *BufferPointer = 0;
-  BufferOffset = (long long)BufferPointer;
-  *(uint32_t *)(BufferOffset + 0x10) = 0;
+  *SystemProcessingBufferPointer = 0;
+  SystemBufferOffset = (long long)SystemProcessingBufferPointer;
+  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
   return;
 }
 
@@ -21202,14 +21202,14 @@ void ExecuteSystemMemoryCopy(void)
  * 
  * @param dataBufferPointer 指向需要重置的数据缓冲区的指针
  */
-void ResetSystemDataBuffer(uint8_t *dataBufferPointer)
+void ResetSystemDataBuffer(uint8_t *SystemDataBufferPointer)
 
 {
-  long long bufferOffset;
+  long long SystemBufferOffset;
   
-  *dataBufferPointer = 0;
-  bufferOffset = (long long)dataBufferPointer;
-  *(uint32_t *)(bufferOffset + 0x10) = 0;
+  *SystemDataBufferPointer = 0;
+  SystemBufferOffset = (long long)SystemDataBufferPointer;
+  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
   return;
 }
 
