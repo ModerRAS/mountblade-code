@@ -53652,7 +53652,7 @@ SystemDataRelease:
             } while (BufferStatus1 < 3);
           }
           else {
-            lStack_1d0 = 0;
+            SystemStackOffset464 = 0;
             do {
               ReferenceCountPointer = ReferenceCountPointer218;
               MemoryBlockIndex1 = 0;
@@ -53807,7 +53807,7 @@ UnicodeBufferAllocation:
                   *(unsigned long long *)(ReferenceCountPointer + MemoryAddressMaskPointer1 * 8 + 4) = (long long)paMemoryAddressMaskPointer2 + uStackX_20 * 0x14;
                 }
               }
-              lStack_1d0 = lStack_1d0 + 1;
+              SystemStackOffset464 = SystemStackOffset464 + 1;
             } while (lStack_1d0 < 3);
           }
           MemoryAllocationPointer1f0 = (int *)((long long)MemoryAllocationPointer1f0 + 1);
@@ -53982,7 +53982,7 @@ UnicodeBufferAllocation:
       }
     } while( true );
   }
-  lStack_1d0 = 0;
+  SystemStackOffset464 = 0;
 MemoryAddressProcessingLoop:
   paMemoryAddressMaskPointer2 = (uint8_t (*) [16])(lStack_1d0 * 0x20);
   StringComparisonResultPointer0 = *(int **)(*paMemoryAddressMaskPointer2 + SystemStackOffset170);
@@ -54327,7 +54327,7 @@ SystemEventProcessing:
 LoopContinuation:
   Utf16Character = Utf16Character + 1;
   StackProcessingConfigurationFlag = (unsigned long long)Utf16Character;
-  lStack_1d0 = lStack_1d0 + 1;
+  SystemStackOffset464 = SystemStackOffset464 + 1;
   if (*ReferenceCountPointer <= (int)Utf16Character) goto SystemDataRelease;
   goto LAB_180079e40;
 }
@@ -215578,7 +215578,7 @@ uint64_t *ReleaseCharacterCodeResources(uint64_t *CharacterCode,unsigned long lo
   lStack_1f0 = 0;
   lStack_1e8 = 0;
   pcStack_1d8 = (code *)0x0;
-  lStack_1d0 = 0;
+  SystemStackOffset464 = 0;
   SystemValue1c8 = 0;
   lStack_1c0 = 0;
   DataStatusPointer = CharacterCode;
@@ -279996,7 +279996,7 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
 
 
 
-2edb0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointervoid FUN_18022edb0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer
+2edb0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointervoid ProcessSystemCharacterDataAndMemoryManagement(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
