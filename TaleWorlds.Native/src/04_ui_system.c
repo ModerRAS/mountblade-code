@@ -10523,9 +10523,22 @@ LAB_1806572f9:
 
 
 
+/**
+ * @brief 处理UI模块路径并返回模块句柄
+ * 
+ * 该函数负责处理UI模块的路径信息，进行必要的字符串处理和路径规范化，
+ * 最终返回有效的模块句柄用于后续的模块加载和管理操作。
+ * 
+ * @param module_handle 模块句柄，用于标识要处理的UI模块
+ * @param path_buffer 路径缓冲区，包含模块的路径信息
+ * @param targetBuffer 目标缓冲区，用于存储处理后的路径数据
+ * @param bufferSize 缓冲区大小，限制可处理的路径长度
+ * @return UIHandle 返回处理后的模块句柄，用于后续操作
+ * 
+ * @note 该函数会对路径字符串进行字符规范化处理，确保路径格式正确
+ */
 UIHandle
 ProcessUIModulePath(UIHandle module_handle, UIHandle path_buffer, UIHandle targetBuffer, UIHandle bufferSize)
- 处理UI模块路径并返回模块句柄
 
 {
   uint result;
@@ -10581,8 +10594,21 @@ void InitializeUIModuleLoader(UIHandle loader_handle, UIHandle config_data, UIHa
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 根据路径查找UI模块
+ * 
+ * 该函数在UI资源管理器中根据指定的路径信息查找对应的UI模块。
+ * 通过路径字符串匹配和资源句柄验证，返回找到的模块指针。
+ * 
+ * @param path_length 路径长度，用于限定搜索范围
+ * @param path_buffer 路径缓冲区指针，包含要搜索的模块路径
+ * @param module_index 模块索引，用于定位特定的模块
+ * @return UIHandle* 返回找到的UI模块指针，如果未找到则返回默认资源缓冲区
+ * 
+ * @note 该函数会进行详细的路径字符匹配，确保找到准确的模块
+ * @note 如果找不到匹配的模块，会返回UIDefaultResourceBuffer作为默认值
+ */
 UIHandle * FindUIModuleByPath(UIHandle path_length, UIHandle *path_buffer, longlong module_index)
- 根据路径查找UI模块
 
 {
   byte isCharacterMatch;
