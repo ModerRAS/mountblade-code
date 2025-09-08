@@ -199295,7 +199295,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *CharacterCode,uint64_t *Charact
  */
 long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long CharacterCode,long long SystemBufferSize)
 {
-  uint Utf16Char;
+  uint Utf16CharacterValue;
   void *PrimaryProcessingStatusFlag;
   long long SearchStartIndex;
   long long SystemDataRegistry;
@@ -199308,7 +199308,7 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
   SystemDataRegistry = SystemDataRegistry / 0x26 + (SystemDataRegistry >> 0x3f);
   MemoryBlockHandle = 0;
   AllocatedMemorySize = (SystemDataRegistry >> 2) - (SystemDataRegistry >> 0x3f);
-  Utf16Char = *(uint *)(SystemBufferSize + 0x38);
+  Utf16CharacterValue = *(uint *)(SystemBufferSize + 0x38);
   *(uint *)(CharacterCode + 0x38) = Utf16Char;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
