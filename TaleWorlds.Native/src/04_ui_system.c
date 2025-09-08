@@ -866,6 +866,8 @@ typedef enum {
 #define uiRenderStack stack0x00000078
 #define blendFactorStack stack0x00000040
 #define uiOptionStringPointer pcStack_48
+#define uiStringComparisonBuffer stackLong28
+#define uiEventTypeCode stackInt20
 
 // UI系统函数宏定义补充
 /**
@@ -974,7 +976,7 @@ typedef enum {
 
 // UI系统数据指针美化
 #define UIDataBufferRegistryPointer (void*)0x180741cf0
-#define UIResourceTableRegistryPointer UNK_180741d00
+#define UIResourceTableRegistryPointer (void*)0x180741d00
 #define UIContextDataPointer UNK_180741ce0
 // UI系统全局数据美化
 #define UISystemGlobalDataRegistry UNK_180958080
@@ -4616,7 +4618,14 @@ longlong CalculateUIAdvancedLayoutOffset(void);
 ulonglong CalculateUICompositeLayoutOffset(longlong layoutContext,uint layoutType,uint layoutFlags,uint layoutOptions,
                        longlong layoutData,uint layoutSize,uint *layoutResults);
 
- 计算UI渲染缓冲区大小
+ /**
+ * @brief 计算UI渲染缓冲区大小
+ * 
+ * 计算UI系统所需的渲染缓冲区大小，确保有足够的内存空间
+ * 用于存储渲染数据和纹理信息。
+ * 
+ * @return int 缓冲区大小（字节）
+ */
 int CalculateUIRenderBufferSize(void);
 
  计算UI纹理内存偏移量
@@ -8823,8 +8832,18 @@ LAB_UIComponentWriteHeader:
 
 
 
- int ProcessUIEvent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
- 处理UI事件的函数，根据事件类型返回不同的处理结果
+ /**
+ * @brief 处理UI事件并返回相应的处理结果
+ * 
+ * 该函数根据输入的事件类型和参数，返回相应的处理结果代码。
+ * 主要用于UI事件系统的事件分发和处理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return int 处理结果代码
+ */
 int ProcessUIEvent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
