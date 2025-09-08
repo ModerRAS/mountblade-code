@@ -165955,7 +165955,7 @@ UIHandle FUN_180769860(longlong uiContext)
     if (localChar8 != '\0') {
       processingCounter = iterationCount;
     }
-    TempInt4 = FUN_180767c00(pEventDataIndex + 3,&UNK_180958bf0,&UNK_1807693c0,pEventDataIndex,3,0,10,processingCounter,1);
+    TempInt4 = FUN_180767c00(pEventDataIndex + 3,&UISystemStateDataRegistry,&UISystemResourceData,pEventDataIndex,3,0,10,processingCounter,1);
     if (TempInt4 == 0) {
       if (*(char *)((longlong)pEventDataIndex + 0x1a4) == '\0') {
         *(longlong *)(_DAT_180be12f0 + 0x40) = pEventDataIndex[0x25];
