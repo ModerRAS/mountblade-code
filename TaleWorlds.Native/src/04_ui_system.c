@@ -130741,16 +130741,16 @@ void ThunkUIBufferOperation(longlong uiContext)
       BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
-    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (localInt5 = func_0x000180069ee0(), localInt5 == 0)) {
-      ptrResult = (UIHandle *)(uiContext + 0x12758);
-      ptrLocal3 = (UIHandle *)*ptrResult;
-      floatResult1 = 0.0;
-      stackUInt140 = 0;
-      stackUInt138 = 0;
-      stackUInt130 = 0;
-      stackUInt128 = 0;
-      stackUInt120 = 0;
-      stackUInt118 = 0;
+    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = func_0x000180069ee0(), ProcessingResult == 0)) {
+      ComponentIterator = (UIHandle *)(uiContext + 0x12758);
+      ComponentPointer = (UIHandle *)*ComponentIterator;
+      AlphaValue = 0.0;
+      TransformMatrix1 = 0;
+      TransformMatrix2 = 0;
+      TransformMatrix3 = 0;
+      TransformMatrix4 = 0;
+      TransformMatrix5 = 0;
+      TransformMatrix6 = 0;
       for (; ptrLocal3 != ptrResult; ptrLocal3 = (UIHandle *)*ptrLocal3) {
         ProcessingStatus = ptrLocal3[2];
         func_0x0001807673f0(ProcessingStatus,acStack_158);
@@ -200132,16 +200132,16 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
       BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
-    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (localInt5 = func_0x000180069ee0(), localInt5 == 0)) {
-      ptrResult = (UIHandle *)(uiContext + 0x12758);
-      ptrLocal3 = (UIHandle *)*ptrResult;
-      floatResult1 = 0.0;
-      stackUInt140 = 0;
-      stackUInt138 = 0;
-      stackUInt130 = 0;
-      stackUInt128 = 0;
-      stackUInt120 = 0;
-      stackUInt118 = 0;
+    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = func_0x000180069ee0(), ProcessingResult == 0)) {
+      ComponentIterator = (UIHandle *)(uiContext + 0x12758);
+      ComponentPointer = (UIHandle *)*ComponentIterator;
+      AlphaValue = 0.0;
+      TransformMatrix1 = 0;
+      TransformMatrix2 = 0;
+      TransformMatrix3 = 0;
+      TransformMatrix4 = 0;
+      TransformMatrix5 = 0;
+      TransformMatrix6 = 0;
       for (; ptrLocal3 != ptrResult; ptrLocal3 = (UIHandle *)*ptrLocal3) {
         ProcessingStatus = ptrLocal3[2];
         func_0x0001807673f0(ProcessingStatus,acStack_158);
