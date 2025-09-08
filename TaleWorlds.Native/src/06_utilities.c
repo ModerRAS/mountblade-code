@@ -144,6 +144,9 @@
 #define ExceptionHandlerPointerOffset7F0 0x7f0             // 异常处理器指针偏移量7F0
 #define SystemStatusCheckOffset268 0x268                   // 系统状态检查偏移量268
 
+// 系统回调相关偏移量常量
+#define SystemCallbackTableOffset 0xb0                      // 系统回调表偏移量
+
 // 资源管理相关偏移量常量
 #define ResourceManagementOffset1d8 0x1d8                   // 资源管理偏移量1d8
 #define ResourceManagementOffset80 0x80                     // 资源管理偏移量80
@@ -167,6 +170,9 @@
 #define ExceptionHandlerOffset930 0x930                   // 异常处理器偏移量930
 #define ExceptionHandlerOffset318 0x318                   // 异常处理器偏移量318
 #define ExceptionHandlerOffset238 0x238                   // 异常处理器偏移量238
+
+// 异常处理数据缓冲区偏移量常量
+#define ExceptionHandlerDataBufferOffset160 0x160         // 异常处理数据缓冲区偏移量160
 
 // 数据验证偏移量常量
 #define DataValidationOffset20 0x20                        // 数据验证偏移量20
@@ -67503,11 +67509,22 @@ void ExecuteSystemCallbackF(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteSystemCallbackG(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统回调执行函数G
+ * 
+ * 该函数负责执行系统回调操作，通过调用指定偏移量处的回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180906eb0
+ */
+void ExecuteSystemCallbackG(DataBuffer operationBase, int64_t dataBuffer)
 {
-  if (*(int64_t **)(dataBuffer + 0xb0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xb0) + SystemFloatDataOffset38))();
+  // 检查回调函数指针表是否有效
+  if (*(int64_t **)(dataBuffer + SystemCallbackTableOffset) != (int64_t *)0x0) {
+    // 执行回调函数
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemCallbackTableOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -68205,7 +68222,7 @@ void ExecuteExceptionHandlerCallbackK0(DataBuffer operationBase, int64_t dataBuf
 /**
  * @brief 异常处理器回调执行函数L0
  * 
- * 该函数负责执行异常处理器回调，使用偏移量0x160获取异常处理上下文
+ * 该函数负责执行异常处理器回调，通过获取异常处理上下文并调用相应的回调函数
  * 
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针
@@ -68216,8 +68233,10 @@ void ExecuteExceptionHandlerCallbackL0(DataBuffer operationBase, int64_t dataBuf
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x160) + ExceptionHandlerCallbackOffset10);
+  // 从异常处理数据缓冲区获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset160) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理回调函数
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -100088,26 +100107,26 @@ void ExecuteSystemMemoryOperationAndCleanupDE80(DataBuffer operationBase,int64_t
 
 {
   int64_t exceptionHandlerContext;
-  DataBuffer operationResult;
+  DataBuffer cleanupResult;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0xe0);
-  operationResult = SystemCleanupFlagAlternative;
-  if (*(int64_t **)(exceptionHandlerContext + 0xed0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0xed0) + SystemFloatDataOffset38))();
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextDataOffset);
+  cleanupResult = SystemCleanupFlagAlternative;
+  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetED0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetED0) + ExceptionHandlerContextFunctionOffset38))();
   }
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xec0,8,2,ValidateDataHandler,operationResult);
-  if (*(int64_t **)(exceptionHandlerContext + 0xeb8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0xeb8) + SystemFloatDataOffset38))();
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetEC0,8,2,ValidateDataHandler,cleanupResult);
+  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetEB8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetEB8) + ExceptionHandlerContextFunctionOffset38))();
   }
-  if (*(int64_t **)(exceptionHandlerContext + 0xeb0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0xeb0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetEB0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffsetEB0) + ExceptionHandlerContextFunctionOffset38))();
   }
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xea0,8,2,ValidateDataHandler,operationResult);
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xe90,8,2,ValidateDataHandler);
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xe80,8,2,ValidateDataHandler);
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xc28,0x128,2,ProcessMemoryOperationA1);
-  ExecuteMemoryOperation(exceptionHandlerContext + 0x9d0,0x128,2,ProcessMemoryOperationA1);
-  ExecuteMemoryOperation(exceptionHandlerContext + 0xb8,0x488,2,ProcessMemoryOperationA3);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetEA0,8,2,ValidateDataHandler,cleanupResult);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetE90,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetE80,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetC28,0x128,2,ProcessMemoryOperationA1);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffset9D0,0x128,2,ProcessMemoryOperationA1);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetB8,0x488,2,ProcessMemoryOperationA3);
   return;
 }
 
