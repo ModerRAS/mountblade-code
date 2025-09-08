@@ -20875,7 +20875,7 @@ DataBuffer CleanupSystemB0(void)
       validationStatus = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,operationParameter);
       if ((int)validationStatus == 0) {
         memoryRegionBase = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&systemDataBuffer,operationParameter);
+                 ProcessSystemDataA0(systemContext + SystemContextOperationOffset60,&systemDataBuffer,operationParameter);
         *(DataBuffer *)(DestinationContext + SystemDataSecondaryOffset18) = *memoryRegionBase;
           CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
       }
@@ -20921,10 +20921,10 @@ DataBuffer ResetSystemB0(void)
       operationResult = 0x1c;
     }
     else {
-      operationResult = ValidateOperationRangeA0(systemContext + 0x60,SystemInputParameter);
+      operationResult = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,SystemInputParameter);
       if ((int)operationResult == 0) {
         validationStatusPointer = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&dataProcessingBuffer,SystemInputParameter);
+                 ProcessSystemDataA0(systemContext + SystemContextOperationOffset60,&dataProcessingBuffer,SystemInputParameter);
         *(DataBuffer *)(DestinationContext + SystemDataSecondaryOffset18) = *validationStatusPointer;
           CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
       }
@@ -20959,7 +20959,7 @@ void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
   uint64_t securityHash;
   
   securityHash = GlobalSecurityKey ^ (uint64_t)SecurityStackData;
-  contextOffset = systemData + 0x60;
+  contextOffset = systemData + SystemContextOperationOffset60;
   handlePointer = contextHandle + SystemDataSecondaryOffset18 + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * 8;
   dataPointer = systemData;
     ExecuteSystemInitialization();
@@ -22023,7 +22023,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
     // 重置验证上下文
     *exceptionHandlerContext = 0;
     validationCounter = 0;
-    *(DataWord *)(systemContext + 0x14) = 0;
+    *(DataWord *)(systemContext + SystemContextDataOffset14) = 0;
   }
   
   // 清理系统数据
