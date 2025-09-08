@@ -860,7 +860,7 @@ typedef enum {
 
 // UI系统查找函数美化
 #define ProcessUILookupTableSearch FUN_180724250
-#define InitializeUILookupTable FUN_180724237
+#define InitializeUILookupTable InitializeUILookupTable
 
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
@@ -96538,8 +96538,8 @@ void FUN_1807241b8(void)
 
 
 
- void FUN_180724237(void)
-void FUN_180724237(void)
+ void InitializeUILookupTable(void)
+void InitializeUILookupTable(void)
 
 {
   return;
