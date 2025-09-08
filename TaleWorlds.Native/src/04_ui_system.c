@@ -8674,7 +8674,7 @@ void CleanupUIComponentCache(void)
   undefined *stackPointer1;
   UIWord *stackPointer2;
   UIDword renderState;
-  UIHandle stackValue2;
+  UIHandle textureHandle;
   undefined *stackPointer3;
   UIDword *stackPointer4;
   UIDword textureFlags;
