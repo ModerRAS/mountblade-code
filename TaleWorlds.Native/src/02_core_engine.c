@@ -213609,9 +213609,14 @@ void ProcessCharacterEncodingWrapper4(uint64_t *CharacterCode, uint64_t SystemBu
 
 
 
-// 系统上下文数据清理函数
-// 清理系统上下文数据，释放相关资源并重置状态
-void CleanupSystemContextData(unsigned long long *CharacterCode
+/**
+ * @brief 系统上下文数据清理函数
+ * 
+ * 清理系统上下文数据，释放相关资源并重置状态
+ * 
+ * @param CharacterCode 字符编码数据指针
+ */
+void CleanupSystemContextData(unsigned long long *CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -213713,9 +213718,14 @@ uint64_t * ProcessUtf8EncodingBuffer(uint64_t *CharacterCode,unsigned long long 
 
 
 
-// 系统上下文缓冲区重置函数
-// 重置系统上下文缓冲区，恢复到初始状态
-void ResetSystemContextBuffer(uint64_t *CharacterCode
+/**
+ * @brief 系统上下文缓冲区重置函数
+ * 
+ * 重置系统上下文缓冲区，恢复到初始状态
+ * 
+ * @param CharacterCode 字符编码数据指针
+ */
+void ResetSystemContextBuffer(uint64_t *CharacterCode)
 {
   *CharacterCode = &SystemContextBufferTertiary;
   *CharacterCode = &SystemContextBufferQuaternary;
@@ -213724,9 +213734,16 @@ void ResetSystemContextBuffer(uint64_t *CharacterCode
 
 
 
-// 系统主上下文缓冲区处理函数
-// 处理系统主上下文缓冲区的操作，管理主要上下文数据的内存分配
-uint64_t * ProcessPrimarySystemContextBuffer(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 系统主上下文缓冲区处理函数
+ * 
+ * 处理系统主上下文缓冲区的操作，管理主要上下文数据的内存分配
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 返回字符编码数据指针
+ */
+uint64_t * ProcessPrimarySystemContextBuffer(uint64_t *CharacterCode, unsigned long long SystemBufferSize)
 {
   *CharacterCode = &SystemContextBufferPrimary;
   if ((SystemBufferSize & 1) != 0) {
@@ -213738,9 +213755,14 @@ uint64_t * ProcessPrimarySystemContextBuffer(uint64_t *CharacterCode,unsigned lo
 
 
 
-// 系统主上下文缓冲区设置函数
-// 设置系统主上下文缓冲区，配置主要上下文数据
-void SetPrimarySystemContextBuffer(uint64_t *CharacterCode
+/**
+ * @brief 系统主上下文缓冲区设置函数
+ * 
+ * 设置系统主上下文缓冲区，配置主要上下文数据
+ * 
+ * @param CharacterCode 字符编码数据指针
+ */
+void SetPrimarySystemContextBuffer(uint64_t *CharacterCode)
 {
   *CharacterCode = &SystemContextBufferPrimary;
   return;
@@ -213749,9 +213771,12 @@ void SetPrimarySystemContextBuffer(uint64_t *CharacterCode
 
 
 
-// 系统资源释放和清理函数
-// 释放系统资源并执行清理操作，确保系统资源正确释放
-void ReleaseAndCleanupSystemResources(void
+/**
+ * @brief 系统资源释放和清理函数
+ * 
+ * 释放系统资源并执行清理操作，确保系统资源正确释放
+ */
+void ReleaseAndCleanupSystemResources(void)
 {
   CoreEngineReleaseSystemResources();
   _Mtx_destroy_in_situ();
@@ -213760,9 +213785,16 @@ void ReleaseAndCleanupSystemResources(void
 
 
 
-// 系统次级上下文缓冲区处理函数
-// 处理系统次级上下文缓冲区的操作，管理次要上下文数据的内存分配
-uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 系统次级上下文缓冲区处理函数
+ * 
+ * 处理系统次级上下文缓冲区的操作，管理次要上下文数据的内存分配
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 返回字符编码数据指针
+ */
+uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *CharacterCode, unsigned long long SystemBufferSize)
 {
   *CharacterCode = SystemContextDataSecondary;
   if ((SystemBufferSize & 1) != 0) {
@@ -213774,9 +213806,17 @@ uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *CharacterCode,unsigned 
 
 
 
-// UTF-16编码处理和系统事件函数
-// 处理UTF-16编码和系统事件的协调操作，管理编码过程中的事件触发
-void ProcessUtf16EncodingAndSystemEvent(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief UTF-16编码处理和系统事件函数
+ * 
+ * 处理UTF-16编码和系统事件的协调操作，管理编码过程中的事件触发
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessUtf16EncodingAndSystemEvent(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ConvertUtf16ToUtf8MainProcessor(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
