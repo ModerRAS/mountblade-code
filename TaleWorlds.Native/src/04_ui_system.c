@@ -90680,8 +90680,19 @@ LAB_18071cd9c:
 
 
 
- void FUN_18071cde0(void)
-void FUN_18071cde0(void)
+ /**
+ * @brief 处理UI渲染更新
+ * 
+ * 该函数负责处理UI系统的渲染更新操作，包括：
+ * - 更新UI组件的渲染状态
+ * - 处理渲染队列和缓冲区
+ * - 执行实际的渲染操作
+ * 
+ * 该函数是一个不返回的函数，通常用于主要的渲染循环中。
+ * 
+ * @note 原始函数名：FUN_18071cde0
+ */
+void ProcessUIRenderingUpdateWrapper(void)
 
 {
                      WARNING: Subroutine does not return
