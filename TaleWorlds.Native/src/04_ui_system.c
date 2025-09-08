@@ -4992,17 +4992,17 @@ UIHandle UIAnimationTimeline;
 UIHandle UITransitionQueue;
  UI系统文本处理器
 UIHandle UITextProcessor;
- UI系统字体渲染器
+ // UI系统字体渲染器
 UIHandle UIFontRenderer;
- UI系统模态栈
+ // UI系统模态栈
 UIHandle UIModalStack;
- UI系统资源池
+ // UI系统资源池
 UIHandle UIResourcePool;
  // UI系统事件调度器
 UIHandle UIEventDispatcher;
- UI系统剪裁区域
+ // UI系统剪裁区域
 UIHandle UIClipRegion;
- UI系统视口设置
+// UI系统视口设置
 UIHandle UIViewportSettings;
  UI系统显示缓冲区
 UIHandle UIDisplayBuffer;
