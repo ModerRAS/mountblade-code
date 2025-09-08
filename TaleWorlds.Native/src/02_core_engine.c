@@ -230081,8 +230081,19 @@ LAB_180193b87:
 
 
 
-unsigned long long *
-FUN_180193bc0(unsigned long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 初始化字符编码处理系统
+ * 
+ * 该函数负责初始化字符编码处理系统，分配必要的内存缓冲区并设置系统状态。
+ * 它处理字符代码转换、内存分配和系统模板初始化等核心功能。
+ * 
+ * @param CharacterCode 字符代码，用于确定需要处理的字符数量
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回主处理状态标志指针，用于后续字符处理操作
+ */
+void *InitializeCharacterEncodingSystem(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long *PrimaryProcessingStatusFlag;
