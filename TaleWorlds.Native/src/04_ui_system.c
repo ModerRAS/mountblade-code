@@ -87791,13 +87791,13 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
   uiContext = contextScale / uiContext;
   bufferSize = bufferSize / SQRT(dataSource);
   totalElements = (uint)sourceDataSize;
-  if ((0 < (int)TotalResult) && (7 < TotalResult)) {
-    result3 = TotalResult & 0x80000007;
-    if ((int)result3 < 0) {
-      result3 = (result3 - 1 | 0xfffffff8) + 1;
+  if ((0 < (int)totalElements) && (7 < totalElements)) {
+    alignmentResult = totalElements & 0x80000007;
+    if ((int)alignmentResult < 0) {
+      alignmentResult = (alignmentResult - 1 | 0xfffffff8) + 1;
     }
-    allocatedMemory4 = ContextHandle - TargetHandle;
-    pbaseValue2 = (float *)(TargetHandle + 0x10);
+    memoryOffset = contextHandle - targetDataSize;
+    sourceDataPtr = (float *)(targetDataSize + 0x10);
     do {
       transformCoeff1 = pbaseValue2[-4];
       FloatValue1 = pbaseValue2[-3];
