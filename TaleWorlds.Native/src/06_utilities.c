@@ -12361,7 +12361,7 @@ uint8_t SystemDebugDataBlockTertiary;
 uint8_t SystemDebugDataBlockQuaternary;
 uint8_t SystemDebugDataBlockFifth;
 
-// 函数: uint8_t UtilityHandleEvent1;
+// 函数: uint8_t UtilityHandlePrimaryEvent;
 uint8_t UtilityHandleEventPrimary;
 // 系统数据表
 uint8_t SystemDataTablePrimary;
@@ -12586,7 +12586,7 @@ void* SystemSecurityConfigData;
 void* SystemValidationConfigData;
 
 // 系统资源销毁函数A0
-void* DestroySystemResourceA0;
+void* SystemResourcePrimaryDestructor;
 void* ResourceDestroyerHandle;
 void* ResourceDestroyerContext;
 uint32_t ResourceDestroyerStatus;
@@ -12600,14 +12600,14 @@ void* ResourceDestroyerData;
 void* ResourceDestroyerConfig;
 
 // 系统资源销毁函数A1
-uint8_t DestroySystemResourceA1;
-uint8_t ResourceDestroyerStatusA1;
-uint8_t ResourceDestroyerCounterA1;
-uint8_t ResourceDestroyerIndexA1;
-uint8_t ResourceDestroyerHandleA1;
-uint8_t ResourceDestroyerContextA1;
-uint8_t ResourceDestroyerFlagA1;
-uint8_t ResourceDestroyerMemoryA1;
+uint8_t SystemResourceSecondaryDestructorStatus;
+uint8_t SystemResourceSecondaryDestructorCounter;
+uint8_t SystemResourceSecondaryDestructorIndex;
+uint8_t SystemResourceSecondaryDestructorHandle;
+uint8_t SystemResourceSecondaryDestructorContext;
+uint8_t SystemResourceSecondaryDestructorFlag;
+uint8_t SystemResourceSecondaryDestructorMemory;
+uint8_t SystemResourceTertiaryDestructorMemory;
 uint8_t ResourceDestroyerMemoryA2;
 uint8_t ResourceDestroyerHandleA2;
 uint8_t ResourceDestroyerContextA2;
@@ -123818,8 +123818,22 @@ void ProcessSystemExceptionDataG1(void)
 
 
 
-// 函数: void UtilityHandleEventFirst(void)
-void UtilityHandleEvent1(void)
+/**
+ * @brief 工具系统事件处理第一阶段
+ * 
+ * 该函数负责处理工具系统事件的第一阶段，初始化事件处理器和系统状态。
+ * 这是系统启动过程中的重要环节，确保事件处理系统能够正常运行。
+ * 
+ * @details 函数执行以下操作：
+ * - 将EventHandlerPointer设置为DefaultExceptionHandlerA
+ * - 检查系统关闭标志，如果设置则执行清理和终止
+ * - 重置系统关闭标志和重置标志
+ * - 设置最终的事件处理器为SystemDefaultExceptionHandlerB
+ * 
+ * @note 此函数在系统初始化过程中被调用，确保事件处理系统正常工作
+ * @warning 如果系统关闭标志被设置，函数将调用系统终止函数
+ */
+void UtilityHandlePrimaryEvent(void)
 
 {
   EventHandlerPointer = &DefaultExceptionHandlerA;
