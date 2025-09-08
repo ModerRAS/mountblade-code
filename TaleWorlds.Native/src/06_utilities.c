@@ -93054,10 +93054,21 @@ void InvokeFunctionPointerAtOffset200(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090c910(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B的指针
+ * 
+ * 该函数在数据缓冲区的0x7f0偏移量处设置系统默认异常处理器B的指针。
+ * 这用于配置异常处理机制，确保系统能够正确处理异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器指针
+ * 
+ * @note 原始函数名：Unwind_18090c910
+ */
+void SetDefaultExceptionHandlerPointerAtOffset7F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x7f0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerPointerOffset7F0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
