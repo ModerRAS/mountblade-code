@@ -202351,7 +202351,18 @@ uint64_t ProcessCharacterCodeWrapper1(uint64_t CharacterCode,uint64_t SystemBuff
 
 
 
-uint64_t FUN_18016f2c0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * 处理字符代码包装器2
+ * 原始函数名: FUN_18016f2c0
+ * 
+ * 包装器函数，调用底层字符处理函数。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return uint64_t 返回字符代码指针
+ */
+uint64_t ProcessCharacterCodeWrapper2(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
   FUN_1801661b0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -202359,7 +202370,18 @@ uint64_t FUN_18016f2c0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t
 
 
 
-uint64_t FUN_18016f340(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * 处理字符代码包装器3
+ * 原始函数名: FUN_18016f340
+ * 
+ * 包装器函数，调用底层字符处理函数。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return uint64_t 返回字符代码指针
+ */
+uint64_t ProcessCharacterCodeWrapper3(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
   FUN_180165f80(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
