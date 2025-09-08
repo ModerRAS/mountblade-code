@@ -91326,17 +91326,18 @@ void SetAlternateExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：清理内存指针标志
+ * @brief 清理内存指针标志
  * 
- * 在系统栈展开过程中清理内存指针标志，并在需要时销毁基本IOS对象
+ * 在系统栈展开过程中清理内存指针标志，并在需要时销毁基本IOS对象。
+ * 该函数检查内存指针标志的最低位，如果为1则清除该标志并销毁相应的IOS对象。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的内存指针信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存指针信息
  * 
- * @note 此函数是系统异常处理的一部分，用于清理内存指针标志
- * @warning 调用者需要确保参数的有效性
+ * @note 原始函数名：Unwind_180904870
+ * @note 这是一个异常展开（unwind）处理函数，用于清理内存指针标志
  */
-void Unwind_ClearMemoryPointerFlags(DataBuffer operationBase,int64_t dataBuffer)
+void ClearMemoryPointerFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -91349,17 +91350,18 @@ void Unwind_ClearMemoryPointerFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：销毁基本IO流对象
+ * @brief 销毁基本IO流对象
  * 
- * 在系统栈展开过程中销毁基本IO流对象，释放相关资源
+ * 在系统栈展开过程中销毁基本IO流对象，释放相关资源。
+ * 该函数调用DestroyBasicIostream函数来销毁指定位置的基本IO流对象。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的IO流对象信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含IO流对象信息
  * 
- * @note 此函数是系统异常处理的一部分，用于销毁基本IO流对象
- * @warning 调用者需要确保参数的有效性
+ * @note 原始函数名：Unwind_180904880
+ * @note 这是一个异常展开（unwind）处理函数，用于销毁基本IO流对象
  */
-void Unwind_DestroyBasicIostream(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyBasicIostreamObject(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DestroyBasicIostream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20);
