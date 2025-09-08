@@ -4806,17 +4806,17 @@ void* UIFontCache;
  UI系统着色器程序
 void* UIShaderProgram;
  UI系统顶点缓冲区
-undefined UIVertexBuffer;
+UIHandle UIVertexBuffer;
  UI系统索引缓冲区
-undefined UIIndexBuffer;
+UIHandle UIIndexBuffer;
  UI系统材质实例
-undefined UIMaterialInstance;
+UIHandle UIMaterialInstance;
  UI系统命令缓冲区
-undefined UICommandBuffer;
+UIHandle UICommandBuffer;
  UI系统帧缓冲区
-undefined UIFrameBuffer;
+UIHandle UIFrameBuffer;
  UI系统深度模板
-undefined UIDepthStencil;
+UIHandle UIDepthStencil;
  UI系统渲染状态
 undefined UIRenderState;
  UI系统绘制调用
