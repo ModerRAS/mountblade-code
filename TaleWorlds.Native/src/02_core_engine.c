@@ -50539,9 +50539,9 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   DistanceCoefficient48 = FloatXMM5 * FloatXMM4Tertiary + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x150);
-  StackFloatValue50 = Utf16EndPointer * in_XMM4_Da + FilterInputValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatOffsetValue;
-  VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8;
-  AccelerationCoefficient58 = Utf16EndPointer * in_XMM4_Dc + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
+  StackFloatValue50 = Utf16EndPointer * FloatXMM4 + FilterInputValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatOffsetValue;
+  VelocityCoefficient54 = Utf16EndPointer * FloatXMM4Secondary + FilterInputValue * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8;
+  AccelerationCoefficient58 = Utf16EndPointer * FloatXMM4Tertiary + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
   StackFloatValue60 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatOffsetValue + SystemDataNode[0xc];
   TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8 + SystemDataNode[0xd];
