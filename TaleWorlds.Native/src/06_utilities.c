@@ -32079,11 +32079,11 @@ uint64_t * ValidateSystemDataProcessing(void)
   *(DataWord *)(StackFrameContext + -0x11) = validationStatus;
   *(DataWord *)(StackFrameContext + -0xd) = memoryRegionBase;
   securityCheckResult = 0;
-  exceptionDataBuffer3 = exceptionDataBuffer1;
+  exceptionBuffer3 = exceptionDataBuffer1;
   if (statusCounter < 0x6d) {
     if (*(int *)(DestinationContext[1] + 0x18) == 0) {
       systemDataBuffer = *DestinationContext;
-      exceptionDataBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x19,4);
+      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x19,4);
       if ((int)exceptionDataBuffer3 != 0) {
         return exceptionDataBuffer3;
       }
