@@ -199180,7 +199180,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *C
   if (PrimaryProcessingStatusFlag != NULL) {
     SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   }
-  FUN_1801ca670(ppMemoryAddressMaskPointer,SecondaryProcessingStatusFlag);
+  ProcessSystemMemoryAddressValidation(ppMemoryAddressMaskPointer,SecondaryProcessingStatusFlag);
   *CharacterCodeSize = &ThreadLocalStorageTemplate;
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
@@ -199465,7 +199465,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *CharacterCode,uint64_t *Charact
   SystemBufferSize[3] = 0;
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
-  FUN_18016a6c0(*CharacterCode,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
+  ProcessCharacterEncodingConversionEx(*CharacterCode,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
   FUN_18016d200(pFunctionAddress,LocalProcessingStatusFlag,0);
   CalculatedCodePoint = MemoryAddressMaskPointer;
   CharacterStatusBuffer = pFunctionAddress;
