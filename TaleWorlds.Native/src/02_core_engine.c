@@ -239355,7 +239355,16 @@ LAB_180201f5b:
 
 
 
-02180(long long CharacterCodevoid FUN_180202180(long long CharacterCode
+/**
+ * @brief 处理字符编码和内存分配操作
+ * 
+ * 该函数处理字符编码转换和内存分配相关操作
+ * 
+ * @param CharacterCode - 字符编码参数
+ * 
+ * @note 原始函数名：FUN_180202180
+ */
+void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -239554,7 +239563,14 @@ LAB_180201f5b:
 
 
 
-021bc(voidvoid FUN_1802021bc(void
+/**
+ * @brief 执行系统初始化和清理操作
+ * 
+ * 该函数执行系统初始化和相关的清理操作
+ * 
+ * @note 原始函数名：FUN_1802021bc
+ */
+void ExecuteSystemInitializationAndCleanup(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
