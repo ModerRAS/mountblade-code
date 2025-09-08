@@ -183071,7 +183071,7 @@ undefined UIConfigDataPrimary;
 undefined UIConfigDataSecondary;
 undefined DAT_180be2df8;
 undefined DAT_180be2ee8;
-undefined UNK_18095a524;
+undefined UIStateDataPrimary;
 undefined UNK_18095bc58;
 undefined UNK_18095be50;
 
