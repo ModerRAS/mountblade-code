@@ -1007,6 +1007,14 @@ typedef enum {
 #define FUN_180713020 ProcessUIDataFinalization
 #define FUN_180713126 ProcessUIDataProcessing
 #define FUN_180713394 ProcessUIDataManagement
+#define FUN_1807056f0 ProcessUIDataIteration
+#define FUN_18071565d CleanupUIRenderer
+#define FUN_180720430 InitializeUIRenderDataProcessor
+#define FUN_1807207d0 ClearUIDataBuffer
+#define FUN_180721bd0 NormalizeUIData
+#define FUN_180721cf0 CalculateUIDataSimilarity
+#define FUN_180716890 ProcessUIDataTransformAndNormalization
+#define FUN_180715670 CalculateUIProcessingRatio
 
      * @param stateType 状态类型
  * @param stateFlagPtr 状态标志指针
@@ -84974,8 +84982,7 @@ LAB_180716845:
 
 
 
- void FUN_180716890(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-/**
+ /**
  * @brief 处理UI数据变换和归一化操作
  * 
  * 该函数负责处理UI系统中的数据变换和归一化操作，包括：
@@ -84996,6 +85003,7 @@ LAB_180716845:
  * @note 此函数在UI数据处理和归一化中被广泛使用
  * @note 使用浮点数运算进行精确的变换计算
  * @note 支持批量处理多个UI数据元素的变换
+ * @note 原始函数名：FUN_180716890
  */
 void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize, int resultPointer,
                                           uint param_6)
@@ -93964,7 +93972,20 @@ void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
 
 
 
-int FUN_180721cf0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+/**
+ * @brief UI数据相似度计算器
+ * 
+ * 计算两个UI上下文之间的相似度或距离
+ * 
+ * @param uiContext 第一个UI上下文
+ * @param dataSource 第二个数据源
+ * @param targetBuffer 目标缓冲区参数
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，表示相似度或距离值
+ * 
+ * @note 原始函数名：FUN_180721cf0
+ */
+int CalculateUIDataSimilarity(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
   float *pbaseValue;
