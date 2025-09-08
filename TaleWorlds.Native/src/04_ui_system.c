@@ -107,6 +107,9 @@ typedef enum {
 #define ProcessUIEventDataCompression ProcessUIEventDataCompression
 #define ValidateUISystem ValidateUISystemIntegrity
 
+// UI系统函数宏定义 - 数据变换处理
+#define TransformUIDataB4C FUN_180719b4c
+
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UNK_180956d30
 #define UIGlobalDataRegistry38 UNK_180956d38
@@ -88345,20 +88348,37 @@ void ProcessUITransformMatrix(uint uiContext,longlong dataSource,int targetBuffe
 
 
 
- void FUN_180719b4c(UIHandle uiContext,UIHandle dataSource,int targetBuffer,longlong bufferSize)
-void FUN_180719b4c(UIHandle uiContext,UIHandle dataSource,int targetBuffer,longlong bufferSize)
+ /**
+ * @brief UI数据变换处理函数
+ * 
+ * 对UI数据进行变换处理，执行快速傅里叶变换(FFT)或类似的信号处理操作。
+ * 该函数负责：
+ * 1. 对输入的数据缓冲区进行变换处理
+ * 2. 使用0.70710677系数（1/√2）进行数据变换
+ * 3. 处理4元组数据块和单个数据元素
+ * 4. 支持可变长度的数据缓冲区处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180719b4c
+ * @warning 该函数包含复杂的指针操作和数学计算
+ */
+void TransformUIDataB4C(UIHandle uiContext,UIHandle dataSource,int targetBuffer,longlong bufferSize)
 
 {
-  float baseValue;
-  float *ptransformCoeff1;
-  longlong stringCompareIndex;
-  longlong ContextHandleData;
-  longlong register10;
-  longlong EventDataIndex;
-  longlong RegisterPointer;
-  float localFloat6;
-  float resultFloat;
-  float localFloat8;
+  float transformCoefficient;
+  float *dataBufferPointer;
+  longlong iterationCount;
+  longlong bufferOffset;
+  longlong maxBufferSize;
+  longlong dataStride;
+  longlong baseRegisterPointer;
+  float transformedValue1;
+  float transformedValue2;
+  float transformedValue3;
   
   ContextHandleData = (longlong)targetBuffer;
   if (ContextHandleData < register10) {
