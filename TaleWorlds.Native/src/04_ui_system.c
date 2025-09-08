@@ -82498,95 +82498,107 @@ void TransformUIDataCoordinates(longlong uiContext,longlong dataSource,int targe
 
 
 
- void FUN_180713126(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int *bufferSize)
-void FUN_180713126(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int *bufferSize)
+ /**
+ * @brief UI变换系数优化处理函数
+ * 
+ * 处理UI系统中的变换系数，通过数学计算优化变换参数。
+ * 该函数负责计算和优化UI元素的变换系数，包括缩放、旋转和平移参数。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统状态信息
+ * @param dataSource 数据源句柄，提供变换系数数据
+ * @param targetBuffer 目标缓冲区，存储计算结果
+ * @param bufferSize 缓冲区大小指针，用于返回优化结果
+ * 
+ * @note 原始函数名：FUN_180713126
+ */
+void ProcessUITransformationCoefficients(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int *bufferSize)
 
 {
-  float baseValue;
-  float *ptransformCoeff1;
-  longlong ContextHandle;
-  int unmodifiedEBP;
-  longlong SourceHandle;
-  longlong stringCompareIndex;
-  int TempInt4;
-  int register10D;
-  longlong EventDataIndex;
-  longlong EventHandle;
-  float localFloat6;
-  float in_XMM4_Da;
-  float in_XMM5_Da;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
+  float calculatedValue;
+  float *transformCoefficients;
+  longlong contextOffset;
+  int maxIterations;
+  longlong dataOffset;
+  longlong stringIndex;
+  int iterationCounter;
+  int registerValue;
+  longlong eventDataOffset;
+  longlong eventHandle;
+  float coefficientValue;
+  float thresholdValue1;
+  float thresholdValue2;
+  float comparisonValue1;
+  float comparisonValue2;
+  float minThresholdValue;
+  float maxThresholdValue;
+  float upperLimitValue;
   
-  ptransformCoeff1 = (float *)(EventHandle + 4);
-  stringCompareIndex = (SourceHandle * 4 - EventHandle) + ContextHandle;
-  EventDataIndex = ContextHandle - EventHandle;
-  TempInt4 = 2;
+  transformCoefficients = (float *)(eventHandle + 4);
+  stringIndex = (dataOffset * 4 - eventHandle) + contextOffset;
+  eventDataOffset = contextOffset - eventHandle;
+  iterationCounter = 2;
   do {
-    localFloat6 = ptransformCoeff1[-1];
-    if ((unmodifiedXMM8_Da < localFloat6) &&
-       (localFloat6 = localFloat6 * localFloat6 * unmodifiedXMM9_Da, in_XMM4_Da * targetBuffer < in_XMM5_Da * localFloat6)) {
-      if (unmodifiedXMM7_Da * localFloat6 <= unmodifiedXMM6_Da * targetBuffer) {
-        bufferSize[1] = register10D;
-        in_XMM4_Da = localFloat6;
-        in_XMM5_Da = targetBuffer;
+    coefficientValue = transformCoefficients[-1];
+    if ((minThresholdValue < coefficientValue) &&
+       (coefficientValue = coefficientValue * coefficientValue * maxThresholdValue, thresholdValue1 * targetBuffer < thresholdValue2 * coefficientValue)) {
+      if (comparisonValue2 * coefficientValue <= comparisonValue1 * targetBuffer) {
+        bufferSize[1] = registerValue;
+        thresholdValue1 = coefficientValue;
+        thresholdValue2 = targetBuffer;
       }
       else {
         bufferSize[1] = *bufferSize;
-        *bufferSize = register10D;
-        in_XMM4_Da = unmodifiedXMM6_Da;
-        in_XMM5_Da = unmodifiedXMM7_Da;
-        unmodifiedXMM6_Da = localFloat6;
-        unmodifiedXMM7_Da = targetBuffer;
+        *bufferSize = registerValue;
+        thresholdValue1 = comparisonValue1;
+        thresholdValue2 = comparisonValue2;
+        comparisonValue1 = coefficientValue;
+        comparisonValue2 = targetBuffer;
       }
     }
-    localFloat6 = *(float *)((longlong)ptransformCoeff1 + stringCompareIndex + -4);
-    baseValue = *(float *)((longlong)ptransformCoeff1 + EventDataIndex + -4);
-    targetBuffer = (localFloat6 * localFloat6 - baseValue * baseValue) + targetBuffer;
-    localFloat6 = *ptransformCoeff1;
-    if (targetBuffer <= unmodifiedXMM10_Da) {
-      targetBuffer = unmodifiedXMM10_Da;
+    coefficientValue = *(float *)((longlong)transformCoefficients + stringIndex + -4);
+    calculatedValue = *(float *)((longlong)transformCoefficients + eventDataOffset + -4);
+    targetBuffer = (coefficientValue * coefficientValue - calculatedValue * calculatedValue) + targetBuffer;
+    coefficientValue = *transformCoefficients;
+    if (targetBuffer <= upperLimitValue) {
+      targetBuffer = upperLimitValue;
     }
-    if ((unmodifiedXMM8_Da < localFloat6) &&
-       (localFloat6 = localFloat6 * localFloat6 * unmodifiedXMM9_Da, in_XMM4_Da * targetBuffer < localFloat6 * in_XMM5_Da)) {
-      if (localFloat6 * unmodifiedXMM7_Da <= unmodifiedXMM6_Da * targetBuffer) {
-        bufferSize[1] = TempInt4 + -1;
-        in_XMM4_Da = localFloat6;
-        in_XMM5_Da = targetBuffer;
+    if ((minThresholdValue < coefficientValue) &&
+       (coefficientValue = coefficientValue * coefficientValue * maxThresholdValue, thresholdValue1 * targetBuffer < coefficientValue * thresholdValue2)) {
+      if (coefficientValue * comparisonValue2 <= comparisonValue1 * targetBuffer) {
+        bufferSize[1] = iterationCounter + -1;
+        thresholdValue1 = coefficientValue;
+        thresholdValue2 = targetBuffer;
       }
       else {
         bufferSize[1] = *bufferSize;
-        *bufferSize = TempInt4 + -1;
-        in_XMM4_Da = unmodifiedXMM6_Da;
-        in_XMM5_Da = unmodifiedXMM7_Da;
-        unmodifiedXMM6_Da = localFloat6;
-        unmodifiedXMM7_Da = targetBuffer;
+        *bufferSize = iterationCounter + -1;
+        thresholdValue1 = comparisonValue1;
+        thresholdValue2 = comparisonValue2;
+        comparisonValue1 = coefficientValue;
+        comparisonValue2 = targetBuffer;
       }
     }
-    targetBuffer = (*(float *)((longlong)ptransformCoeff1 + stringCompareIndex) * *(float *)((longlong)ptransformCoeff1 + stringCompareIndex) -
-              *(float *)((longlong)ptransformCoeff1 + EventDataIndex) * *(float *)((longlong)ptransformCoeff1 + EventDataIndex)) + targetBuffer
+    targetBuffer = (*(float *)((longlong)transformCoefficients + stringIndex) * *(float *)((longlong)transformCoefficients + stringIndex) -
+              *(float *)((longlong)transformCoefficients + eventDataOffset) * *(float *)((longlong)transformCoefficients + eventDataOffset)) + targetBuffer
     ;
-    localFloat6 = ptransformCoeff1[1];
-    if (targetBuffer <= unmodifiedXMM10_Da) {
-      targetBuffer = unmodifiedXMM10_Da;
+    coefficientValue = transformCoefficients[1];
+    if (targetBuffer <= upperLimitValue) {
+      targetBuffer = upperLimitValue;
     }
-    if ((unmodifiedXMM8_Da < localFloat6) &&
-       (localFloat6 = localFloat6 * localFloat6 * unmodifiedXMM9_Da, in_XMM4_Da * targetBuffer < in_XMM5_Da * localFloat6)) {
-      if (unmodifiedXMM7_Da * localFloat6 <= unmodifiedXMM6_Da * targetBuffer) {
-        bufferSize[1] = TempInt4;
-        in_XMM4_Da = localFloat6;
-        in_XMM5_Da = targetBuffer;
+    if ((minThresholdValue < coefficientValue) &&
+       (coefficientValue = coefficientValue * coefficientValue * maxThresholdValue, thresholdValue1 * targetBuffer < thresholdValue2 * coefficientValue)) {
+      if (comparisonValue2 * coefficientValue <= comparisonValue1 * targetBuffer) {
+        bufferSize[1] = iterationCounter;
+        thresholdValue1 = coefficientValue;
+        thresholdValue2 = targetBuffer;
       }
       else {
         bufferSize[1] = *bufferSize;
-        *bufferSize = TempInt4;
-        in_XMM4_Da = unmodifiedXMM6_Da;
-        in_XMM5_Da = unmodifiedXMM7_Da;
-        unmodifiedXMM6_Da = localFloat6;
-        unmodifiedXMM7_Da = targetBuffer;
+        *bufferSize = iterationCounter;
+        thresholdValue1 = comparisonValue1;
+        thresholdValue2 = comparisonValue2;
+        comparisonValue1 = coefficientValue;
+        comparisonValue2 = targetBuffer;
       }
     }
     localFloat6 = *(float *)((longlong)ptransformCoeff1 + stringCompareIndex + 4);
@@ -82658,55 +82670,73 @@ void FUN_180713126(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int
 
 
 
- void FUN_180713394(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int *bufferSize)
-void FUN_180713394(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int *bufferSize)
+ /**
+ * @brief UI变换系数处理器
+ * 
+ * 该函数处理UI系统中的变换系数，通过迭代计算优化变换参数。
+ * 实现了一种基于阈值的系数选择和更新机制。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区值
+ * @param bufferSize 缓冲区大小指针
+ * 
+ * @note 原始函数名: FUN_180713394
+ * 
+ * 该函数执行以下操作：
+ * - 遍历变换系数数组
+ * - 基于阈值条件选择最优系数
+ * - 动态更新缓冲区参数
+ * - 应用最小值约束
+ */
+void ProcessUITransformCoefficients(UIHandle uiContext, UIHandle dataSource, float targetBuffer, int *bufferSize)
 
 {
   float baseValue;
-  float *ptransformCoeff1;
-  longlong ContextHandle;
-  int unmodifiedEBP;
-  longlong SourceHandle;
-  int register10D;
-  longlong EventHandle;
-  float transformCoeff2;
-  float in_XMM4_Da;
-  float in_XMM5_Da;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
+  float *pCoeffArray;
+  longlong contextOffset;
+  int maxIterations;
+  longlong sourceOffset;
+  int currentIndex;
+  longlong eventOffset;
+  float coefficient;
+  float thresholdFactor1;
+  float thresholdFactor2;
+  float comparisonValue1;
+  float comparisonValue2;
+  float weightFactor1;
+  float weightFactor2;
+  float minValue;
   
-  if (register10D < unmodifiedEBP) {
-    ptransformCoeff1 = (float *)(EventHandle + (longlong)register10D * 4);
+  if (currentIndex < maxIterations) {
+    pCoeffArray = (float *)(eventOffset + (longlong)currentIndex * 4);
     do {
-      transformCoeff2 = *ptransformCoeff1;
-      if ((unmodifiedXMM8_Da < transformCoeff2) &&
-         (transformCoeff2 = transformCoeff2 * transformCoeff2 * unmodifiedXMM9_Da, in_XMM4_Da * targetBuffer < transformCoeff2 * in_XMM5_Da)) {
-        if (transformCoeff2 * unmodifiedXMM7_Da <= unmodifiedXMM6_Da * targetBuffer) {
-          bufferSize[1] = register10D;
-          in_XMM4_Da = transformCoeff2;
-          in_XMM5_Da = targetBuffer;
+      coefficient = *pCoeffArray;
+      if ((weightFactor1 < coefficient) &&
+         (coefficient = coefficient * coefficient * weightFactor2, thresholdFactor1 * targetBuffer < coefficient * thresholdFactor2)) {
+        if (coefficient * comparisonValue2 <= comparisonValue1 * targetBuffer) {
+          bufferSize[1] = currentIndex;
+          thresholdFactor1 = coefficient;
+          thresholdFactor2 = targetBuffer;
         }
         else {
           bufferSize[1] = *bufferSize;
-          *bufferSize = register10D;
-          in_XMM4_Da = unmodifiedXMM6_Da;
-          in_XMM5_Da = unmodifiedXMM7_Da;
-          unmodifiedXMM6_Da = transformCoeff2;
-          unmodifiedXMM7_Da = targetBuffer;
+          *bufferSize = currentIndex;
+          thresholdFactor1 = comparisonValue1;
+          thresholdFactor2 = comparisonValue2;
+          comparisonValue1 = coefficient;
+          comparisonValue2 = targetBuffer;
         }
       }
-      transformCoeff2 = *(float *)((longlong)ptransformCoeff1 + (SourceHandle * 4 - EventHandle) + ContextHandle);
-      register10D = register10D + 1;
-      baseValue = *(float *)((longlong)ptransformCoeff1 + (ContextHandle - EventHandle));
-      ptransformCoeff1 = ptransformCoeff1 + 1;
-      targetBuffer = (transformCoeff2 * transformCoeff2 - baseValue * baseValue) + targetBuffer;
-      if (targetBuffer <= unmodifiedXMM10_Da) {
-        targetBuffer = unmodifiedXMM10_Da;
+      coefficient = *(float *)((longlong)pCoeffArray + (sourceOffset * 4 - eventOffset) + contextOffset);
+      currentIndex = currentIndex + 1;
+      baseValue = *(float *)((longlong)pCoeffArray + (contextOffset - eventOffset));
+      pCoeffArray = pCoeffArray + 1;
+      targetBuffer = (coefficient * coefficient - baseValue * baseValue) + targetBuffer;
+      if (targetBuffer <= minValue) {
+        targetBuffer = minValue;
       }
-    } while (register10D < unmodifiedEBP);
+    } while (currentIndex < maxIterations);
   }
   return;
 }
@@ -82716,8 +82746,27 @@ void FUN_180713394(UIHandle uiContext,UIHandle dataSource,float targetBuffer,int
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180713470(longlong *uiContext,float *dataSource,int targetBuffer,int bufferSize,UIDword resultPointer)
-void FUN_180713470(longlong *uiContext,float *dataSource,int targetBuffer,int bufferSize,UIDword resultPointer)
+ /**
+ * @brief 处理UI变换数据计算
+ * 
+ * 该函数负责处理UI系统中的变换数据计算，包括：
+ * - 变换系数的多重计算和优化
+ * - 数据源的迭代处理和变换
+ * - 结果数据的加密和安全处理
+ * - 内存分配和缓冲区管理
+ * 
+ * 该函数用于优化UI变换数据的计算性能。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源浮点数组
+ * @param targetBuffer 目标缓冲区大小
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @note 原始函数名：FUN_180713470
+ */
+void ProcessUITransformDataCalculation(longlong *uiContext,float *dataSource,int targetBuffer,int bufferSize,UIDword resultPointer)
+void ProcessUITransformDataCalculation(longlong *uiContext,float *dataSource,int targetBuffer,int bufferSize,UIDword resultPointer)
 
 {
   float *pbaseValue;
