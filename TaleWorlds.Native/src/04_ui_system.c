@@ -89817,43 +89817,43 @@ int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int target
   int ShiftAmount;
   int ShiftedResult;
   
-  result = (uiContext ^ (int)uiContext >> 0x1f) - ((int)uiContext >> 0x1f);
-  if (result == 0) {
-    localInt7 = 0x20;
+  CalculatedResult = (uiContext ^ (int)uiContext >> 0x1f) - ((int)uiContext >> 0x1f);
+  if (CalculatedResult == 0) {
+    ShiftAmount = 0x20;
   }
   else {
-    localInt7 = 0x1f;
-    if (result != 0) {
-      for (; result >> localInt7 == 0; localInt7 = localInt7 + -1) {
+    ShiftAmount = 0x1f;
+    if (CalculatedResult != 0) {
+      for (; CalculatedResult >> ShiftAmount == 0; ShiftAmount = ShiftAmount + -1) {
       }
     }
-    localInt7 = 0x1f - localInt7;
+    ShiftAmount = 0x1f - ShiftAmount;
   }
-  localInt8 = uiContext << ((byte)(localInt7 + -1) & 0x1f);
-  result = (dataSource ^ (int)dataSource >> 0x1f) - ((int)dataSource >> 0x1f);
-  if (result == 0) {
-    loopCounter = 0x20;
+  ShiftedResult = uiContext << ((byte)(ShiftAmount + -1) & 0x1f);
+  CalculatedResult = (dataSource ^ (int)dataSource >> 0x1f) - ((int)dataSource >> 0x1f);
+  if (CalculatedResult == 0) {
+    BitScanLoopCounter = 0x20;
   }
   else {
-    loopCounter = 0x1f;
-    if (result != 0) {
-      for (; result >> loopCounter == 0; loopCounter = loopCounter + -1) {
+    BitScanLoopCounter = 0x1f;
+    if (CalculatedResult != 0) {
+      for (; CalculatedResult >> BitScanLoopCounter == 0; BitScanLoopCounter = BitScanLoopCounter + -1) {
       }
     }
-    loopCounter = 0x1f - loopCounter;
+    BitScanLoopCounter = 0x1f - BitScanLoopCounter;
   }
-  localInt5 = dataSource << ((byte)(loopCounter + -1) & 0x1f);
-  contextHandleData = (longlong)(short)(0x1fffffff / (longlong)(localInt5 >> 0x10));
-  uiCompareResult = (int)((ulonglong)(localInt8 * contextHandleData) >> 0x10);
-  uiCompareResult = (int)((ulonglong)
-                (contextHandleData * (localInt8 + (int)((ulonglong)((longlong)uiCompareResult * (longlong)localInt5) >> 0x20) * -8
-                         )) >> 0x10) + uiCompareResult;
-  localInt7 = (((localInt7 + -1) - (loopCounter + -1)) - targetBuffer) + 0x1d;
-  if (localInt7 < 0) {
-    IsEventProcessingActive = -(byte)localInt7;
-    localInt7 = -0x80000000 >> (IsEventProcessingActive & 0x1f);
-    localInt8 = 0x7fffffff >> (IsEventProcessingActive & 0x1f);
-    if (localInt8 < localInt7) {
+  MultiplierOperand = dataSource << ((byte)(BitScanLoopCounter + -1) & 0x1f);
+  DivisionContext = (longlong)(short)(0x1fffffff / (longlong)(MultiplierOperand >> 0x10));
+  ValidationCompareResult = (int)((ulonglong)(ShiftedResult * DivisionContext) >> 0x10);
+  ValidationCompareResult = (int)((ulonglong)
+                (DivisionContext * (ShiftedResult + (int)((ulonglong)((longlong)ValidationCompareResult * (longlong)MultiplierOperand) >> 0x20) * -8
+                         )) >> 0x10) + ValidationCompareResult;
+  ShiftAmount = (((ShiftAmount + -1) - (BitScanLoopCounter + -1)) - targetBuffer) + 0x1d;
+  if (ShiftAmount < 0) {
+    ShiftBitCount = -(byte)ShiftAmount;
+    ShiftAmount = -0x80000000 >> (ShiftBitCount & 0x1f);
+    ShiftedResult = 0x7fffffff >> (ShiftBitCount & 0x1f);
+    if (ShiftedResult < ShiftAmount) {
       if (uiCompareResult <= localInt7) {
         if (localInt8 <= uiCompareResult) {
           localInt8 = uiCompareResult;

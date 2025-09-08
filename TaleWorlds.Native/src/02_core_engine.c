@@ -86465,7 +86465,7 @@ void FreeSystemDataStructureMemory(uint64_t *CharacterCode
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(CharacterCode);
+  DestroyBasicStreambufFinal(CharacterCode);
   return;
 }
 
@@ -86488,10 +86488,10 @@ void ResetSystemDataStructureState(long long *CharacterCode
   *(int *)((long long)*(int *)(*CharacterCode + 4) + -0xac + (long long)CharacterCode) =
        *(int *)(*CharacterCode + 4) + -0xa8;
   ProcessSystemDataAndCleanupSecondary(CharacterCode + 1);
-  __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(CharacterCode + 2);
+  DestroyBasicOstreamFinal(CharacterCode + 2);
                     // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(CharacterCode);
+  DestroyBasicIosFinal(CharacterCode);
   return;
 }
 
