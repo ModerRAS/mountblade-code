@@ -86863,7 +86863,22 @@ ulonglong ProcessComplexUIEvent(int *uiContext,longlong dataSource,int targetBuf
 
 
 
-uint FUN_180718c67(UIHandle uiContext,longlong dataSource)
+/**
+ * @brief 处理UI数据验证和浮点数计算
+ * 
+ * 该函数执行以下操作：
+ * - 对输入参数进行位运算和浮点数计算
+ * - 处理UI事件数据压缩
+ * - 计算UI验证结果和比较结果
+ * - 调用其他处理函数并组合结果
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @return 处理状态，包含位运算和浮点数计算结果的组合值
+ * 
+ * @note 原始函数名：FUN_180718c67
+ */
+uint ProcessUIValidationAndFloatCalculation(UIHandle uiContext, longlong dataSource)
 
 {
   float baseValue;
@@ -95701,7 +95716,7 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
     ptrLocal3 = &UIStatusPointer7;
   }
   else if (dataSource == 0xc) {
-    ptrLocal3 = &UNK_1809535c4;
+    ptrLocal3 = &UIStatusPointer8;
   }
   else {
     if (dataSource != 8) goto LAB_180722683;
@@ -99948,36 +99963,45 @@ void FUN_1807263f2(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_1807265fd(UIDword uiContext)
-void FUN_1807265fd(UIDword uiContext)
-
+ /**
+ * @brief 处理UI渲染任务初始化
+ * 
+ * 该函数负责初始化UI渲染任务，包括：
+ * - 设置渲染参数和上下文
+ * - 配置渲染缓冲区
+ * - 初始化渲染状态
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * 
+ * @note 原始函数名：FUN_1807265fd
+ */
+void ProcessUIRenderTaskInitialization(UIDword uiContext)
 {
-  longlong SourceHandle;
+  longlong renderSourceHandle;
   longlong preservedRegister15;
-  UIDword result;
-  UIDword stackParam00000840;
-  UIDword stackParam00000844;
-  UIDword stackParam00000848;
-  UIDword stackParam0000084c;
-  UIDword stackParam00000850;
-  UIDword stackParam00000854;
-  UIDword stackParam00000858;
-  UIDword stackParam0000085c;
-  ulonglong stackParam00000860;
+  UIDword initializationResult;
+  UIDword renderParamBuffer1;
+  UIDword renderParamBuffer2;
+  UIDword renderParamBuffer3;
+  UIDword renderParamBuffer4;
+  UIDword renderParamBuffer5;
+  UIDword renderParamBuffer6;
+  UIDword renderParamBuffer7;
+  ulonglong renderTaskHandle;
   
-  result = FUN_18072e720(uiContext,&stack0x00000840,&stack0x00000240,0x3c23d70a);
-  FUN_180726fd0(result,preservedRegister15 + 0x10,&stack0x00000840,SourceHandle + 0x1190);
-  FUN_18072ec50(preservedRegister15 + 0x2c8,&stack0x00000240,preservedRegister15 + 0x10);
-  *(UIDword *)(SourceHandle + 0x1190) = stackParam00000840;
-  *(UIDword *)(SourceHandle + 0x1194) = stackParam00000844;
-  *(UIDword *)(SourceHandle + 0x1198) = stackParam00000848;
-  *(UIDword *)(SourceHandle + 0x119c) = stackParam0000084c;
-  *(UIDword *)(SourceHandle + 0x11a0) = stackParam00000850;
-  *(UIDword *)(SourceHandle + 0x11a4) = stackParam00000854;
-  *(UIDword *)(SourceHandle + 0x11a8) = stackParam00000858;
-  *(UIDword *)(SourceHandle + 0x11ac) = stackParam0000085c;
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000860 ^ (ulonglong)&stack0x00000000);
+  initializationResult = FUN_18072e720(uiContext,&renderParamBuffer1,&renderParamBuffer2,0x3c23d70a);
+  FUN_180726fd0(initializationResult,preservedRegister15 + 0x10,&renderParamBuffer1,renderSourceHandle + 0x1190);
+  FUN_18072ec50(preservedRegister15 + 0x2c8,&renderParamBuffer2,preservedRegister15 + 0x10);
+  *(UIDword *)(renderSourceHandle + 0x1190) = renderParamBuffer1;
+  *(UIDword *)(renderSourceHandle + 0x1194) = renderParamBuffer2;
+  *(UIDword *)(renderSourceHandle + 0x1198) = renderParamBuffer3;
+  *(UIDword *)(renderSourceHandle + 0x119c) = renderParamBuffer4;
+  *(UIDword *)(renderSourceHandle + 0x11a0) = renderParamBuffer5;
+  *(UIDword *)(renderSourceHandle + 0x11a4) = renderParamBuffer6;
+  *(UIDword *)(renderSourceHandle + 0x11a8) = renderParamBuffer7;
+  *(UIDword *)(renderSourceHandle + 0x11ac) = renderParamBuffer7;
+  ExecuteUIRenderTask(renderTaskHandle ^ (ulonglong)&renderParamBuffer1);
 }
 
 
@@ -200053,7 +200077,26 @@ UIHandle FUN_1807894bb(longlong uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_1807894e0(longlong uiContext)
+// 函数: UIHandle FUN_1807894e0(longlong uiContext)
+/**
+ * @brief 处理UI上下文句柄和资源管理
+ * 
+ * 该函数负责处理UI上下文句柄的创建、管理和资源分配。主要功能包括：
+ * - 分配和管理UI上下文句柄
+ * - 处理UI资源的内存分配
+ * - 管理UI事件处理状态
+ * - 执行UI上下文的初始化和清理
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * 
+ * @return UIHandle 返回UI句柄，0x26表示失败
+ * 
+ * @note 原始函数名：FUN_1807894e0
+ * @note 该函数使用了多个UI系统内部函数进行资源管理
+ */
+#define ProcessUIContextHandleAndResourceManager FUN_1807894e0
+
+UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
 
 {
   int processingResult;
