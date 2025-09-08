@@ -49605,10 +49605,11 @@ void ResetSystemResourceManagerArray(long long ResourceManagerHandle)
  * @param ConfigFlagPtr 配置标志指针
  * @param ResultOutputPtr 输出结果指针
  * 
- 06bda0：AllocateAndConfigureSystemResource
+ * @note 原始函数名：AllocateAndConfigureSystemResource
+ * @note 地址：06bda0
  */
-void AllocateAndConfigureSystemResource(long long SystemResourceManager,long long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,
-             long long *OutputResult)
+void AllocateAndConfigureSystemResource(long long ResourceManagerHandle,long long ConfigDataHandle,long long *ExtraParameterPtr,long long *ConfigFlagPtr,
+             long long *ResultOutputPtr)
 
 {
   long long ResourceDataIndex;
