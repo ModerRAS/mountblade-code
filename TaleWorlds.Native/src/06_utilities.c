@@ -61028,7 +61028,7 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exception
   uint64_t memoryRegion;
   
   threadLocalStorage = *(int64_t **)(threadStorageContext + 0x40);
-  exceptionHandlerPointer = (DataBuffer *)*threadSpecificStorage;
+  exceptionHandlerPointer = (DataBuffer *)*threadLocalStorage;
   if (exceptionHandlerPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)exceptionHandlerPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)exceptionHandlerPointer[3] = 0;
@@ -61036,10 +61036,10 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exception
     (**(FunctionPointer**)*exceptionHandlerPointer)(exceptionHandlerPointer,0);
       CleanupExceptionResources(exceptionHandlerPointer);
   }
-  if ((threadSpecificStorage[6] != 0) && (*(int64_t *)(threadSpecificStorage[6] + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((threadLocalStorage[6] != 0) && (*(int64_t *)(threadLocalStorage[6] + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemOnError();
   }
-  resourceIterator = threadSpecificStorage[5];
+  resourceIterator = threadLocalStorage[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x3541);
     resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
@@ -61503,12 +61503,12 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer operationBase,int64_t data
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
+  int64_t *exceptionDataContext;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionContextPrimaryOffset) + ExceptionContextTertiaryOffset);
+  exceptionDataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionContextPrimaryOffset) + ExceptionContextTertiaryOffset);
   _Mtx_destroy_in_situ();
-  exceptionHandlerContextPointer = (int64_t *)*dataContext;
-  if (exceptionHandlerContextPointer != dataContext) {
+  exceptionHandlerContextPointer = (int64_t *)*exceptionDataContext;
+  if (exceptionHandlerContextPointer != exceptionDataContext) {
       TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
@@ -62546,12 +62546,12 @@ void CleanupExceptionContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
+  int64_t *exceptionDataContext;
   
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset58);
-  dataContext = *(int64_t **)(dataBuffer + 0x50);
+  exceptionDataContext = *(int64_t **)(dataBuffer + 0x50);
   while( true ) {
-    if (dataContext == exceptionHandlerContextPointer) {
+    if (exceptionDataContext == exceptionHandlerContextPointer) {
       if (*(int64_t *)(dataBuffer + 0x50) != 0) {
           TerminateSystemE0();
       }
