@@ -64286,12 +64286,12 @@ MemoryBlockListHeadUpdate:
           if (StringComparisonByte != ProcessingStatusFlag) break;
           BufferEndPointer = BufferEndPointer + 1;
         } while (ProcessingStatusFlag != 0);
-        if ((int)(StringComparisonByte - ProcessingStatusFlag) < 1) goto LAB_1800892bd;
+        if ((int)(StringComparisonByte - ProcessingStatusFlag) < 1) goto StringComparisonComplete;
       }
       goto MemoryBlockListHeadAssignment;
     }
   }
-LAB_1800892bd:
+StringComparisonComplete:
   if (MemoryBlockListHead == CharacterCodeTablePointer) {
     StringOffset = CharacterCode[1];
     CoreEngineFinalizeSystemEvent(&ContextDataPointer,SystemBufferSize);
