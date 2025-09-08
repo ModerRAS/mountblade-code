@@ -89854,25 +89854,25 @@ int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int target
     ShiftAmount = -0x80000000 >> (ShiftBitCount & 0x1f);
     ShiftedResult = 0x7fffffff >> (ShiftBitCount & 0x1f);
     if (ShiftedResult < ShiftAmount) {
-      if (uiCompareResult <= localInt7) {
-        if (localInt8 <= uiCompareResult) {
-          localInt8 = uiCompareResult;
+      if (ValidationCompareResult <= ShiftAmount) {
+        if (ShiftedResult <= ValidationCompareResult) {
+          ShiftedResult = ValidationCompareResult;
         }
-        return localInt8 << (IsEventProcessingActive & 0x1f);
+        return ShiftedResult << (ShiftBitCount & 0x1f);
       }
     }
     else {
-      if (localInt8 < uiCompareResult) {
-        return localInt8 << (IsEventProcessingActive & 0x1f);
+      if (ShiftedResult < ValidationCompareResult) {
+        return ShiftedResult << (ShiftBitCount & 0x1f);
       }
-      if (localInt7 <= uiCompareResult) {
-        localInt7 = uiCompareResult;
+      if (ShiftAmount <= ValidationCompareResult) {
+        ShiftAmount = ValidationCompareResult;
       }
     }
-    return localInt7 << (IsEventProcessingActive & 0x1f);
+    return ShiftAmount << (ShiftBitCount & 0x1f);
   }
-  if (localInt7 < 0x20) {
-    return uiCompareResult >> ((byte)localInt7 & 0x1f);
+  if (ShiftAmount < 0x20) {
+    return ValidationCompareResult >> ((byte)ShiftAmount & 0x1f);
   }
   return 0;
 }
