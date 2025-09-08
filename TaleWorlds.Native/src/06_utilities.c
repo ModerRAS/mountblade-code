@@ -17545,8 +17545,8 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   int64_t queryBuffer [2];
   
   // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
-  systemContextBuffer = MergeHighLowWords(systemContextBuffer._4_4_, *(uint *)(contextPointer + 0x20));
-  if ((*(uint *)(contextPointer + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
+  systemContextBuffer = MergeHighLowWords(systemContextBuffer._4_4_, *(uint *)(contextPointer + FloatingPointDataOffset20));
+  if ((*(uint *)(contextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + ExceptionHandlerCallbackOffset10),queryBuffer);
@@ -17558,7 +17558,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
       queryBuffer[0] = queryBuffer[0] + -8;
     }
     systemContextBuffer = 0;
-    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + 0x18,&systemContextBuffer);
+    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + FloatingPointDataOffset18,&systemContextBuffer);
     if ((int)result == 0) {
       if (systemContextBuffer == 0) {
         return OperationSuccessCode;
@@ -39577,7 +39577,7 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
 {
   if ((*(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 1) != 0) {
     *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) = *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 0xfffffffe;
-    CleanupResourceHandler(*(DataBuffer *)(targetObjectPointer + 0x1c8));
+    CleanupResourceHandler(*(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1b8));
   }
   return;
 }

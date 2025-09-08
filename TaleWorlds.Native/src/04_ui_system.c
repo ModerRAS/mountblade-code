@@ -373142,7 +373142,6 @@ void ExecuteUIRenderTaskWrapper(void)
  * @note 根据上下文状态决定是否执行渲染任务，此函数不返回
  */
 void ExecuteConditionalUIRenderTask(void)
-void ExecuteConditionalUIRenderTask(void)
 
 {
   longlong uiContext;
