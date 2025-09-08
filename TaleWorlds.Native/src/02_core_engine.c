@@ -63784,7 +63784,7 @@ SystemValidationHandlerLAB180087f81:
               }
               CharacterStatusBuffer7 = PrimaryProcessingStatusFlag2;
             } while (PrimaryProcessingStatusFlag2 != NULL);
-            if ((CharacterStatusBuffer9 == PrimaryProcessingStatusFlag4) || (ArrayIndex = memcmp(&StackProcessingVariable70,CharacterStatusBuffer9 + 4,0x10), ArrayIndex < 0)            goto LAB_180087f81;
+            if ((CharacterStatusBuffer9 == PrimaryProcessingStatusFlag4) || (ArrayIndex = memcmp(&StackProcessingVariable70,CharacterStatusBuffer9 + 4,0x10), ArrayIndex < 0)            goto MemoryAllocationComplete;
             ContextHandle2 = (long long *)(*(code *)CharacterStatusBuffer9[6])(&StackProcessingUnsignedValue60,ContextHandle2);
             if (ContextHandle2 != (long long *)0x0) {
               UnicodeCodePoint = *(uint *)pBufferIndex[1];
