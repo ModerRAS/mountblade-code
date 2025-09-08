@@ -10030,6 +10030,12 @@ uint8_t SystemNetworkManager;
 #define NetworkValidationContextOffset 0x20
 #define NetworkOperationContextOffset 0x1c
 #define NetworkConfigurationOffset 0x14
+
+// 请求处理相关偏移量常量
+#define RequestContextFlagsOffset 0x20
+#define RequestContextDataOffset 0x58
+#define RequestContextStateOffset 0x50
+#define ComponentDataCounterOffset 0xc
 // 系统图形管理器
 uint8_t SystemGraphicsManager;
 // 系统音频管理器
@@ -16579,21 +16585,21 @@ void UtilityValidateSystemState(void)
   validationResult = ProcessSystemBufferA0(systemParameter);
   if (validationResult < 1) {
     validationResult = ProcessSystemBufferA1(systemParameter);
-    *(uint *)(systemContext + 0x18) = (uint)(validationResult < 1);
+    *(uint *)(systemContext + SystemContextStatusOffset) = (uint)(validationResult < 1);
   }
   else {
     validationResult = ProcessSystemBufferA1(systemParameter);
     if (validationResult < 1) {
-      *(DataWord *)(systemContext + 0x18) = 2;
+      *(DataWord *)(systemContext + SystemContextStatusOffset) = 2;
     }
     else {
-      validationResult = ValidateDataIntegrityA0(systemParameter,systemContext + 0x18);
+      validationResult = ValidateDataIntegrityA0(systemParameter,systemContext + SystemContextStatusOffset);
       if (validationResult != 0) {
         return;
       }
     }
   }
-  ProcessSystemEventB0(*(DataBuffer *)(StackFrameContext + 0x98));
+  ProcessSystemEventB0(*(DataBuffer *)(stackFrameContext + SystemContextManagementOffset));
   return;
 }
 
