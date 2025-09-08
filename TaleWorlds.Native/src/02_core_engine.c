@@ -250375,7 +250375,7 @@ joined_r0x00018020a436:
                   else {
                     pSystemStatusChar = (char *)CharacterStatusBuffer3[2];
                   }
-                  if (pSystemStatusChar == CharacterPointer + -0x180a03a83) {
+                  if (pSystemStatusChar == CharacterPointer + -(long long)SystemStringTemplateOffset) {
                     pSystemStatusChar = pSystemStatusChar + (long long)StringCodeBuffer;
                     if (pSystemStatusChar <= StringCodeBuffer) {
 LAB_18020a4d0:
