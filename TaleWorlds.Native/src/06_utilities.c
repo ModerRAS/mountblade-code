@@ -110,6 +110,11 @@
 #define ResourceDataPointerOffset20 0x20
 #define ResourceHandleSize 8
 
+// 系统上下文常量
+#define SystemContextDataOffset60 0x60
+#define ResourceValidationFlagOffset 0x3541
+#define ResourceQueuePointerOffset 0x3538
+
 // 系统状态常量
 #define SystemSuccessStatus 0
 #define SystemErrorStatus 2

@@ -10061,10 +10061,10 @@ void InitializeUIComponent(longlong component_id, longlong parent_id, UIHandle t
   MaxProcessingCount = ProcessingStatus;
   if (*(longlong *)(uiBufferData + 0x10) - stringCompareIndex >> 5 != 0) {
     do {
-      pstackUInt50 = &PrimaryUIBuffer;
-      stackUInt38 = 0;
-      pstackUInt48 = (UIByte *)0x0;
-      stackInt40 = 0;
+      BufferPointer = &PrimaryUIBuffer;
+      ProcessingCounter = 0;
+      DataBufferPointer = (UIByte *)0x0;
+      OperationResult = 0;
       AllocateUIBuffer(&pstackUInt50,*(UIDword *)(ProcessingStatus + 0x10 + stringCompareIndex));
       uiOperationResult = *(int *)(ProcessingStatus + 0x10 + stringCompareIndex);
       if (uiOperationResult != 0) {
