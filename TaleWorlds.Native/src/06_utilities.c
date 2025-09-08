@@ -98,6 +98,19 @@
 #define SystemDataItemPointerOffset 0x10
 #define SystemDataValidationOffset 0x28
 #define SystemStatePrimaryOffset 0x30
+
+// 数据验证偏移量常量
+#define DataValidationOffset20 0x20                        // 数据验证偏移量20
+#define DataValidationOffset25 0x25                        // 数据验证偏移量25
+#define DataValidationOffsetA8 0xa8                        // 数据验证偏移量A8
+#define DataValidationOffset18 0x18                        // 数据验证偏移量18
+
+// 浮点数据偏移量常量
+#define FloatDataValidationOffset3C 0x3c                    // 浮点数据验证偏移量3C
+
+// 系统数据记录偏移量常量
+#define SystemDataRecordOffset10 0x10                      // 系统数据记录偏移量10
+#define SystemDataRecordMultiplier18 0x18                   // 系统数据记录乘数18
 #define SystemStateSecondaryOffset 0x34
 #define SystemStateResultOffset 0x38
 
@@ -18379,7 +18392,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
   if ((*(byte *)(contextHandle + ValidationStatusOffset34) & SystemValidationFlagMask11) != 0) {
     return ComponentDataValidationFailure;
   }
-  validationResult = ProcessDataValidationA0(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
+  validationResult = ProcessDataValidationA0(parameterFlags,dataPointer + DataValidationOffset25,dataPointer + DataValidationOffset20);
   if ((int)validationResult == 0) {
     floatValue = *(float *)(dataPointer + VectorComponentWOffset);
     if ((*(float *)(contextHandle + ValidationStatusOffset38) <= floatValue) &&
@@ -18512,7 +18525,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
       inputValue = *(float *)(dataBuffer + FloatValueOffset);
       resultValue = *(float *)(memoryBlockOffset + 0x38);
       if ((*(float *)(memoryBlockOffset + 0x38) <= inputValue) &&
-         (resultValue = *(float *)(memoryBlockOffset + 0x3c), inputValue <= *(float *)(memoryBlockOffset + 0x3c))) {
+         (resultValue = *(float *)(memoryBlockOffset + FloatDataValidationOffset3C), inputValue <= *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
         resultValue = inputValue;
       }
       *(float *)(dataBuffer + FloatValueOffset) = resultValue;
@@ -18560,15 +18573,15 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
     }
     arrayIndex = (int64_t)operationResult[0];
     systemContext = *(int64_t *)(systemContext + 0x20);
-    memoryBlockOffset = *(int64_t *)(systemContext + 0x10 + arrayIndex * 0x18);
+    memoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + arrayIndex * SystemDataRecordMultiplier18);
     if ((*(byte *)(memoryBlockOffset + 0x34) & 0x11) == 0) {
-      memoryRegionBase = ProcessDataValidationA0(memoryBlockOffset,dataParameter + 0xa8,dataParameter + 0x18);
+      memoryRegionBase = ProcessDataValidationA0(memoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
       if ((int)memoryRegionBase != 0) {
         return memoryRegionBase;
       }
       floatValue = *(float *)(dataParameter + 0x18);
       if ((*(float *)(memoryBlockOffset + 0x38) <= floatValue) &&
-         (floatValue < *(float *)(memoryBlockOffset + 0x3c) || floatValue == *(float *)(memoryBlockOffset + 0x3c))) {
+         (floatValue < *(float *)(memoryBlockOffset + FloatDataValidationOffset3C) || floatValue == *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
         dataContext = *(int64_t *)(dataContext + 0x90);
         *(float *)(systemContext + 4 + arrayIndex * 0x18) = floatValue;
         *(DataBuffer *)(dataParameter + 0x20) = *(DataBuffer *)(dataContext + (int64_t)operationResult[0] * 8);
@@ -118008,7 +118021,19 @@ void HandleIndirectExceptionContextReferenceCountDecrementB(DataBuffer operation
 
 
 
-void Unwind_180912670(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行安全检查调用保护670
+ * 
+ * 该函数负责执行安全检查调用保护，确保调用的函数指针是有效的。
+ * 这是系统安全机制的重要组成部分，用于防止恶意代码执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含安全检查信息
+ * 
+ * @note 原始函数名：Unwind_180912670
+ * @note 这是安全检查函数，用于执行调用保护
+ */
+void ExecuteSecurityCheckCallProtection670(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ValidationResultOffset),**(ByteFlag **)(dataBuffer + 0x68),
