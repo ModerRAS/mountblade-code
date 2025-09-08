@@ -1140,8 +1140,13 @@
 
 // UTF-16字符编码处理函数
 #define ProcessUtf16CharacterEncodingConversion FUN_18018801e     // 处理UTF-16字符编码转换
+#define ProcessSystemMemoryAllocationAndUtf8Management FUN_180188910 // 处理系统内存分配和UTF-8管理
 #define ProcessSystemMemoryAllocation FUN_18018a130              // 处理系统内存分配
 #define ProcessSystemMemoryValidation FUN_18018a1c0              // 处理系统内存验证
+#define ProcessSystemValidationRoutine FUN_180189990              // 处理系统验证例程
+#define AllocateSystemMemoryBlock FUN_180067110                 // 分配系统内存块
+#define ProcessSystemDataValidation FUN_180189aa0                 // 处理系统数据验证
+#define ProcessSystemMemoryCleanup FUN_180189900                 // 处理系统内存清理
 #define CleanupSystemMemoryManager FUN_180093af0                   // 清理系统内存管理器
 #define ProcessCharacterDataWithCodePointer FUN_180173470          // 处理带代码指针的字符数据
 #define ExecuteSystemInitialization FUN_180171610                  // 执行系统初始化
@@ -223613,16 +223618,27 @@ LAB_18018873e:
 
 
 
-uint64_t * FUN_180188910(long long *ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理系统内存分配和UTF-8源数据管理
+ * 
+ * 该函数负责处理系统内存分配，管理UTF-8源数据，并进行字符状态验证。
+ * 包括内存边界计算、校验和计算、以及内存块的分配和释放。
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 处理后的内存地址掩码指针
+ */
+uint64_t * ProcessSystemMemoryAllocationAndUtf8Management(long long *ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16CharacterValue;
   code *SystemValidationFunction;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   unsigned long long SystemChecksum;
-  long long secondaryLoopCounter;
+  long long SecondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
   uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
@@ -223634,43 +223650,43 @@ uint64_t * FUN_180188910(long long *ContextHandle,long long OperationBufferSize,
   MemoryBoundaryEnd = (OperationBufferSize - SystemDataTablePointer) / 6 + (OperationBufferSize - SystemDataTablePointer >> 0x3f);
   AllocatedMemorySize = (ContextHandle[1] - SystemDataTablePointer) / 0x18;
   if (AllocatedMemorySize == 0xaaaaaaaaaaaaaaa) {
-    FUN_180189990();
+    ProcessSystemValidationRoutine();
     SystemValidationFunction = (code *)swi(3);
-    pMemoryAddressMaskPointer = (void *)(*SystemValidationFunction)();
-    return pMemoryAddressMaskPointer;
+    MemoryAddressMaskPointer = (void *)(*SystemValidationFunction)();
+    return MemoryAddressMaskPointer;
   }
-  Utf16Char = AllocatedMemorySize + 1;
+  Utf16CharacterValue = AllocatedMemorySize + 1;
   SystemMemoryAllocationResult = (ContextHandle[2] - SystemDataTablePointer) / 0x18;
-  SystemChecksum = Utf16Char;
-  if ((SystemMemoryAllocationResult <= 0xaaaaaaaaaaaaaaa - (SystemMemoryAllocationResult >> 1)) && (SystemChecksum = SystemMemoryAllocationResult + (SystemMemoryAllocationResult >> 1), SystemChecksum < Utf16Char)  {
-    SystemChecksum = Utf16Char;
+  SystemChecksum = Utf16CharacterValue;
+  if ((SystemMemoryAllocationResult <= 0xaaaaaaaaaaaaaaa - (SystemMemoryAllocationResult >> 1)) && (SystemChecksum = SystemMemoryAllocationResult + (SystemMemoryAllocationResult >> 1), SystemChecksum < Utf16CharacterValue)  {
+    SystemChecksum = Utf16CharacterValue;
   }
-  SystemEventTemplatePointer = (void *)FUN_180067110();
-  pMemoryAddressMaskPointer = SystemEventTemplatePointer + ((MemoryBoundaryEnd >> 2) - (MemoryBoundaryEnd >> 0x3f)) * 3;
-  *pMemoryAddressMaskPointer = 0;
-  pMemoryAddressMaskPointer[1] = 0;
-  pMemoryAddressMaskPointer[2] = 0;
-  *pMemoryAddressMaskPointer = *Utf8SourcePointer;
-  pMemoryAddressMaskPointer[1] = Utf8SourcePointer[1];
-  pMemoryAddressMaskPointer[2] = Utf8SourcePointer[2];
+  SystemEventTemplatePointer = (void *)AllocateSystemMemoryBlock();
+  MemoryAddressMaskPointer = SystemEventTemplatePointer + ((MemoryBoundaryEnd >> 2) - (MemoryBoundaryEnd >> 0x3f)) * 3;
+  *MemoryAddressMaskPointer = 0;
+  MemoryAddressMaskPointer[1] = 0;
+  MemoryAddressMaskPointer[2] = 0;
+  *MemoryAddressMaskPointer = *Utf8SourcePointer;
+  MemoryAddressMaskPointer[1] = Utf8SourcePointer[1];
+  MemoryAddressMaskPointer[2] = Utf8SourcePointer[2];
   *Utf8SourcePointer = 0;
   Utf8SourcePointer[1] = 0;
   Utf8SourcePointer[2] = 0;
   SystemDataTablePointer = ContextHandle[1];
   AllocatedMemorySize = *ContextHandle;
   CharacterStatusBuffer = SystemEventTemplatePointer;
-  SystemCharacterStatusBuffer = pMemoryAddressMaskPointer;
+  SystemCharacterStatusBuffer = MemoryAddressMaskPointer;
   CharacterStatusBuffer2 = SystemEventTemplatePointer;
   if (OperationBufferSize != SystemDataTablePointer) {
-    FUN_180189aa0(*ContextHandle,OperationBufferSize,SystemEventTemplatePointer,ContextHandle,pMemoryAddressMaskPointer,SystemEventTemplatePointer,ValidationResult);
+    ProcessSystemDataValidation(*ContextHandle,OperationBufferSize,SystemEventTemplatePointer,ContextHandle,MemoryAddressMaskPointer,SystemEventTemplatePointer,ValidationResult);
     SystemDataTablePointer = ContextHandle[1];
     AllocatedMemorySize = OperationBufferSize;
-    CharacterStatusBuffer = pMemoryAddressMaskPointer + 3;
+    CharacterStatusBuffer = MemoryAddressMaskPointer + 3;
     SystemCharacterStatusBuffer = SystemEventTemplatePointer;
   }
-  FUN_180189aa0(AllocatedMemorySize,SystemDataTablePointer,CharacterStatusBuffer,ContextHandle,SystemCharacterStatusBuffer,CharacterStatusBuffer2,ValidationResult);
+  ProcessSystemDataValidation(AllocatedMemorySize,SystemDataTablePointer,CharacterStatusBuffer,ContextHandle,SystemCharacterStatusBuffer,CharacterStatusBuffer2,ValidationResult);
   if (*ContextHandle != 0) {
-    FUN_180189900(*ContextHandle,ContextHandle[1]);
+    ProcessSystemMemoryCleanup(*ContextHandle,ContextHandle[1]);
     SystemDataTablePointer = *ContextHandle;
     SystemMemoryAllocationResult = ((ContextHandle[2] - SystemDataTablePointer) / 0x18) * 0x18;
     AllocatedMemorySize = SystemDataTablePointer;
@@ -223684,9 +223700,9 @@ uint64_t * FUN_180188910(long long *ContextHandle,long long OperationBufferSize,
     free(AllocatedMemorySize);
   }
   *ContextHandle = (long long)SystemEventTemplatePointer;
-  ContextHandle[1] = (long long)(SystemEventTemplatePointer + Utf16Char * 3);
+  ContextHandle[1] = (long long)(SystemEventTemplatePointer + Utf16CharacterValue * 3);
   ContextHandle[2] = (long long)(SystemEventTemplatePointer + SystemChecksum * 3);
-  return pMemoryAddressMaskPointer;
+  return MemoryAddressMaskPointer;
 }
 
 
