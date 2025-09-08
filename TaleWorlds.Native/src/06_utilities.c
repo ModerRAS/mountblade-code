@@ -26171,14 +26171,14 @@ void ProcessFloatingPointDataA0(float inputValue)
   float systemContextBuffer40;
   float systemContextBuffer44;
   float secondaryInputValue;
-  float ValidationFloatValue;    // 验证浮点数值
-  float LoopCounterFloat;        // 循环计数器
-  float *FloatArrayPointer;      // 浮点数组指针
+  float validationFloatValue;    // 验证浮点数值
+  float loopCounterFloat;        // 循环计数器
+  float *floatArrayPointer;      // 浮点数组指针
   
   // 初始化新变量，用于替换原始的Ghidra生成变量名
-  ValidationFloatValue = 0.0f;
-  LoopCounterFloat = 0.0f;
-  FloatArrayPointer = NULL;
+  validationFloatValue = 0.0f;
+  loopCounterFloat = 0.0f;
+  floatArrayPointer = NULL;
   
   if (inputValue != 1.0) {
     exceptionHandlerContext = &ValidationContextA0;
