@@ -190666,7 +190666,24 @@ void InitializeSystemEncodingProcessingModule(uint64_t CharacterCode, long long 
 
 
 
-long long FUN_1801596c0(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化系统字符状态缓冲区
+ * 
+ * 该函数负责初始化系统字符状态缓冲区，包括：
+ * - 调用系统初始化函数
+ * - 计算字符串比较结果
+ * - 处理系统事件
+ * - 设置字符状态缓冲区的初始值
+ * 
+ * @param CharacterCode 字符代码，用于缓冲区初始化
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和管理
+ * @param Utf8SourcePointer UTF-8源指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，指向目标数据
+ * @return long long 返回处理后的系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1801596c0
+ */
+long long InitializeSystemCharacterStatusBuffer(uint64_t CharacterCode, long long SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
@@ -191379,7 +191396,17 @@ void ReleaseSystemMemoryAndCleanup(long long CharacterCode)
 
 
 
-5b4f0(long long CharacterCodevoid FUN_18015b4f0(long long CharacterCode
+/**
+ * @brief 释放系统数据缓冲区
+ * 
+ * 该函数负责释放系统数据缓冲区中的所有内存块，并清理相关的引用计数。
+ * 这是一个不返回的函数，在释放内存后会调用系统终止函数。
+ * 
+ * @param CharacterCode 系统上下文指针，包含要释放的数据缓冲区信息
+ * 
+ * @note 原始函数名：FUN_18015b4f0
+ */
+void ReleaseSystemDataBuffer(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -191432,7 +191459,17 @@ void ReleaseSystemMemoryAndCleanup(long long CharacterCode)
 
 
 
-5b4f6(long long CharacterCodevoid FUN_18015b4f6(long long CharacterCode
+/**
+ * @brief 清理系统数据缓冲区
+ * 
+ * 该函数负责清理系统数据缓冲区中的所有内存块，并处理相关的引用计数。
+ * 与ReleaseSystemDataBuffer类似，但具有不同的内存管理策略。
+ * 
+ * @param CharacterCode 系统上下文指针，包含要清理的数据缓冲区信息
+ * 
+ * @note 原始函数名：FUN_18015b4f6
+ */
+void CleanupSystemDataBuffer(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
