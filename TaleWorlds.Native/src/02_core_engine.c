@@ -240086,38 +240086,49 @@ void FUN_180202c0d(float *FloatArrayPointer,float *ArraySizePointer,long long It
 
 
 
-void FUN_180202c2d(uint32_t CharacterCode,float *CharacterCodeSize)
+/**
+ * @brief 处理浮点数组的搜索和排序操作
+ * 
+ * 该函数实现了一个浮点数组的搜索和排序算法，通过迭代方式
+ * 对数组进行查找和排序操作
+ * 
+ * @param SearchPattern - 搜索模式参数
+ * @param ArraySizePointer - 数组大小指针
+ * 
+ * @note 原始函数名：FUN_180202c2d
+ */
+void FUN_180202c2d(uint32_t SearchPattern,float *ArraySizePointer)
 {
-  float SystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
-  long long SearchStartIndex;
-  float *FloatVariablePointer4;
-  float *pMatrixTransformMultiplier;
-  uint8_t RegisterValueBL;
-  long long StackFrameAddressPointer;
-  float *PatternIndex;
-  float CalculatedDistance;
-  float FloatOffsetValue;
+  float PrimaryContextValue;
+  float SecondaryContextValue;
+  long long SearchIndex;
+  float *ArrayPointer4;
+  float *ArrayIterator;
+  uint8_t StatusFlag;
+  long long FrameAddress;
+  float *PatternPointer;
+  float DistanceValue;
+  float CurrentFloatValue;
   
   do {
-    pMatrixTransformMultiplier = SystemBufferSize;
-    if (StackFrameAddressPointer < 1) break;
-    MemoryBlockIndex = (long long)SystemBufferSize - (long long)PatternIndex >> 2;
-    if (MemoryBlockIndex < 0) {
-      MemoryBlockIndex = MemoryBlockIndex + 1;
+    ArrayIterator = SystemBufferSize;
+    if (FrameAddress < 1) break;
+    SearchIndex = (long long)SystemBufferSize - (long long)PatternPointer >> 2;
+    if (SearchIndex < 0) {
+      SearchIndex = SearchIndex + 1;
     }
-    CalculatedDistance = *PatternIndex;
-    SystemContextPrimaryFloat = SystemBufferSize[-1];
-    ContextSecondaryFloat = PatternIndex[MemoryBlockIndex >> 1];
-    FloatOffsetValue = CalculatedDistance;
-    if (CalculatedDistance < ContextSecondaryFloat) {
-      FloatOffsetValue = ContextSecondaryFloat;
-      ContextSecondaryFloat = CalculatedDistance;
+    DistanceValue = *PatternPointer;
+    PrimaryContextValue = SystemBufferSize[-1];
+    SecondaryContextValue = PatternPointer[SearchIndex >> 1];
+    CurrentFloatValue = DistanceValue;
+    if (DistanceValue < SecondaryContextValue) {
+      CurrentFloatValue = SecondaryContextValue;
+      SecondaryContextValue = DistanceValue;
     }
-    FloatVariablePointer4 = SystemBufferSize;
-    pMatrixTransformMultiplier = PatternIndex;
-    if ((SystemContextPrimaryFloat <= FloatOffsetValue) && (FloatOffsetValue = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
-      FloatOffsetValue = SystemContextPrimaryFloat;
+    ArrayPointer4 = SystemBufferSize;
+    ArrayIterator = PatternPointer;
+    if ((PrimaryContextValue <= CurrentFloatValue) && (CurrentFloatValue = SecondaryContextValue, SecondaryContextValue < PrimaryContextValue)) {
+      CurrentFloatValue = PrimaryContextValue;
     }
     while( true ) {
       while (CalculatedDistance < FloatOffsetValue) {
