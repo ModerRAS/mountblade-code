@@ -60481,7 +60481,7 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
 
 
 
-5190(float *CharacterCode,long long SystemBufferSize,char Utf8SourcePointer,uint64_t *Utf16EndPointervoid InitializeFloatDataStructure(float *CharacterCode,long long SystemBufferSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer
+void InitializeFloatDataStructure(float *CharacterCode,long long SystemBufferSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;

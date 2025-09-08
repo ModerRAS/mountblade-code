@@ -29994,8 +29994,8 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
 {
   int64_t ExceptionHandlerContext;
   DataBuffer OperationResult;
-  char RegisterBPL;
-  char StackValidationParameter;
+  char StackValidationFlag;
+  char ValidationResult;
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -30046,7 +30046,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
        (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x66,2), (int)OperationResult == 0)) {
       OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x68,8);
     }
-    StackValidationParameter = RegisterBPL;
+    ValidationResult = StackValidationFlag;
     if ((int)OperationResult != 0) {
       return OperationResult;
     }
@@ -30092,7 +30092,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
 ProcessCheckpointDataFlowControl:
   if ((int)operationResult == 0) {
-    *(bool *)(operationBase + 0x7c) = stackValidationParameter != (char)operationResult;
+    *(bool *)(operationBase + 0x7c) = ValidationResult != (char)operationResult;
   }
   return operationResult;
 }
@@ -30114,14 +30114,14 @@ DataBuffer CleanupDataResourcesA0(void)
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
-  int64_t inputAccumulatorRegister;
+  int64_t inputDataContext;
   DataBuffer validationStatus;
   int64_t *registerContext;
   DataBuffer StackFrameContext;
   int64_t DestinationContext;
-  bool carryFlag;
-  char stackCharBuffer;
-  uint dataProcessingOffset;
+  bool validationFlag;
+  char stackBuffer;
+  uint processingOffset;
   
   if (carryFlag) {
     if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
