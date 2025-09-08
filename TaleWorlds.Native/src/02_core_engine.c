@@ -199555,7 +199555,25 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
 
 
 
-long long * FUN_180169110(uint64_t CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和系统状态验证
+ * 
+ * 该函数负责处理字符编码转换过程中的系统状态验证和内存管理。
+ * 主要功能包括：
+ * - 初始化系统事件和内存块
+ * - 处理字符编码转换
+ * - 验证系统状态和数据完整性
+ * - 管理内存缓冲区和状态标志
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 返回处理后的系统缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180169110
+ */
+long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
