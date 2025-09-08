@@ -19949,7 +19949,7 @@ void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
   int64_t dataPointer;
   uint64_t securityHash;
   
-  securityHash = GlobalSecurityKey ^ (uint64_t)localStackData;
+  securityHash = GlobalSecurityKey ^ (uint64_t)SecurityStackData;
   contextOffset = systemData + 0x60;
   handlePointer = contextHandle + 0x18 + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * 8;
   dataPointer = systemData;
