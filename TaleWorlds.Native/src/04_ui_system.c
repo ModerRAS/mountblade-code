@@ -125,6 +125,13 @@ typedef enum {
 #define TransformUIDataB4C TransformUIDataStructureB4C
 #define ProcessUIDataTransformationAndValidation FUN_180726700
 #define ProcessUIRenderingUpdateAndDataHandling FUN_180727610
+#define ProcessUIDataTransformation FUN_18072e9a0
+#define ProcessUIEventUpdate FUN_1807270a0
+#define ProcessUIBufferAllocation FUN_18072eb00
+#define ProcessUIValueCalculation FUN_18072e720
+#define ProcessUIRenderDataUpdate FUN_180726fd0
+#define ProcessUIComponentUpdate FUN_18072ec50
+#define ProcessUIDataBufferCopy FUN_18072e4b0
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -855,6 +862,10 @@ typedef enum {
 #define UIContextByteStatusOffset 0x40                 // UI上下文字节状态偏移量
 #define UIDwordDataOffset 0x44                          // UI双字数据偏移量
 #define UIContextHandleOffset 0x48                      // UI上下文句柄偏移量
+#define UIContextDataOffset 0x48                          // UI上下文数据偏移量
+#define UIEventCallbackHandlerOffset 0x3b0                // UI事件回调处理器偏移量
+#define UIEventCallbackListOffset 0x6c0                   // UI事件回调链表偏移量
+#define UIEventCallbackDataOffset 0x24                    // UI事件回调数据偏移量
 #define UIBufferDataOffset 0x50                         // UI缓冲区数据偏移量
 #define UIContextExtendedDataOffset 0x58                // UI上下文扩展数据偏移量
 #define UIContextAdvancedDataOffset 0x78                // UI上下文高级数据偏移量
@@ -870,7 +881,7 @@ typedef enum {
 #define AudioProcessingMode bVar4
 #define AudioDataChunkIndex loopCounter
 #define AudioSampleRate loopCounter
-#define AudioDataSize localInt7
+#define AudioDataSize AudioDataSizeLocal7
 #define AudioProcessedBytes eventProcessingCounter
 #define AudioChannelCount eventProcessingStatus
 #define AudioChunkCount result0
@@ -882,18 +893,18 @@ typedef enum {
 #define AudioStackData uStackX_8
 
 // UI系统变量名美化
-#define uiSystemEventCallback register10
+#define uiSystemEventCallback UISystemEventCallbackRegister10
 #define uiEventTimeDelta uiEventTimeDeltaStack
-#define uiEventStackBuffer stack0x00000038
-#define uiValidationResult localInt5
-#define uiComponentList ptrResult
-#define currentComponent ptrLocal3
+#define uiEventStackBuffer UIEventStackBuffer38
+#define uiValidationResult UIValidationResultLocal5
+#define uiComponentList UIComponentListPtrResult
+#define currentComponent CurrentComponentPtrLocal3
 #define componentProcessingStatus ProcessingStatus
-#define uiComponentStack stack0x00000030
+#define uiComponentStack UIComponentStack30
 #define uiComponentStatus uiComponentStatusStack
 #define componentOpacityValue componentOpacityValueStack
-#define uiRenderStack stack0x00000078
-#define blendFactorStack stack0x00000040
+#define uiRenderStack UIRenderStack78
+#define blendFactorStack UIBlendFactorStack40
 
 // UI系统函数宏定义补充
 
@@ -903,6 +914,11 @@ typedef enum {
 #define localChar34 PreviousComponentContext
 #define localChar8 CurrentComponentContext
 #define localChar26 ComponentContextBackup
+#define allocatedMemory1 MemoryAllocation1
+#define allocatedMemory3 MemoryAllocation3
+#define allocatedMemory4 MemoryAllocation4
+#define allocatedMemory5 MemoryAllocation5
+#define allocatedMemory6 MemoryAllocation6
 /**
  * @brief 验证UI上下文的有效性
  * 
@@ -1045,19 +1061,19 @@ typedef enum {
 #define UIStatusPointer5 (void*)0x1809553a0
 #define UIStatusPointer6 (void*)0x180954b30
 #define UIStatusPointer7 (void*)0x1809535d8
-#define UIStatusPointer8 UNK_1809535c4
-#define UIStatusPointer9 UNK_1809535e8
-#define UIStatusPointer10 UNK_180954788
+#define UIStatusPointer8 (void*)0x1809535c4
+#define UIStatusPointer9 (void*)0x1809535e8
+#define UIStatusPointer10 (void*)0x180954788
 
 // UI系统浮点数据美化
-#define UIFloatDataTable UNK_180953730
-#define UIFloatDataArray UNK_180954194
+#define UIFloatDataTable (void*)0x180953730
+#define UIFloatDataArray (void*)0x180954194
 
 // UI系统事件处理数据表美化
-#define UIEventProcessingDataTable UNK_180954740
+#define UIEventProcessingDataTable (void*)0x180954740
 
 // UI系统上下文美化
-#define UIContextDataTable UNK_18095362c
+#define UIContextDataTable (void*)0x18095362c
 #define renderParam2 stackParam00000050
 #define renderParam3 stackParam00000058
 #define renderParam4 stackParam00000060
@@ -1091,6 +1107,20 @@ typedef enum {
 // UI系统函数宏定义 - 执行UI高级操作
 #define ExecuteUIAdvancedOperation FUN_18071ad00
 
+// UI系统数据处理函数宏定义
+#define ProcessUIDataTransformationWithValidation FUN_18071af00
+#define ProcessUIDataTransformationWithBuffer FUN_18071b080
+#define ProcessUIDataTransformationWithFloat FUN_18071ebe0
+#define ProcessUIDataHandleOperation FUN_18071efcb
+#define ProcessUIDataBufferOperationWithSize FUN_18071f270
+
+// UI系统数据操作函数宏定义
+#define ProcessUIDataBufferCopyOperation FUN_180719a90
+#define ProcessUIDataValidationAndCopy FUN_1807165a0
+#define ProcessUIDataBitwiseOperation FUN_1807160c0
+#define ProcessUIEventHandlingAndValidation FUN_180718bd0
+#define ProcessUIDataShiftOperation FUN_180716aa0
+
 // UI系统函数宏定义 - 执行UI内存分配操作
 #define ExecuteUIMemoryAllocation ProcessUIBufferOperation
 
@@ -1112,6 +1142,7 @@ typedef enum {
 // 向量处理结果变量
 #define aresult9 VectorResult9
 #define aresult21 VectorResult21
+#define aresult2 VectorResult2
 #define aiterationCount2 IterationCountVector2
 #define aProcessingStatus ProcessingStatusVector
 #define aProcessingStatus0 ProcessingStatusVector0
@@ -1724,7 +1755,7 @@ void* UIAnimationSystem;
 #define GetUIStringCompareIndex GetUIStringCompareIndex
 
  // UI系统字符串常量美化
-#define UIStringConstant UNK_18095af38
+#define UIStringConstant (void*)0x18095af38
 
  原始函数名：ValidateUIContext - UI上下文验证函数
 #define ValidateUIContext ValidateUIContext
@@ -10119,11 +10150,11 @@ void ManageUIElements(longlong *uiContext)
     UIHandle *uiProcessedQueue = uiComponentQueue;
     uiBufferPointer = uiComponentProcessor;
     colorBufferPtr = uiActiveElement;
-    if ((longlong)stackPointer50 - (longlong)stackPointer58 >> 5 != 0) {
-      stackFramePointer = stackPointer70;
-      allocatedMemoryPtr = stackPointer68;
+    if ((longlong)uiContextStackPointer - (longlong)uiComponentStackPointer >> 5 != 0) {
+      stackFramePointer = uiMemoryStackPointer;
+      allocatedMemoryPtr = uiResourceStackPointer;
       bufferAllocationResult = iterationCount;
-      memoryAllocationPtr = stackPointer70;
+      memoryAllocationPtr = uiMemoryStackPointer;
       do {
         result = stackPointer58;
         stackBufferB8 = &PrimaryUIBuffer;
@@ -16085,7 +16116,7 @@ LAB_18065a765:
                   UIHandle uiContext0,UIHandle uiContext1,float uiContext2)
 
 {
-  undefined3 result;
+  undefined3 UIProcessingResult;
   float *ptransformCoeff1;
   int uiCompareResult;
   int TempInt4;
@@ -16378,7 +16409,7 @@ void UpdateUIComponentTransform(UIHandle uiContext,float dataSource,UIHandle tar
                   UIHandle uiContext0,UIHandle uiContext1,float uiContext2)
 
 {
-  undefined3 result;
+  undefined3 UIProcessingResult;
   float *ptransformCoeff1;
   int uiCompareResult;
   int TempInt4;
@@ -16642,7 +16673,7 @@ LAB_18065a765:
  void CalculateUITransformMatrix(void* UIRenderContext, float ScaleX, float ScaleY, float RotationAngle, void* TransformMatrix)
 
 {
-  undefined3 TempFlag;
+  undefined3 UITempFlag;
   longlong RenderContext;
   UIDword RenderFlags;
   longlong TransformData;
@@ -20179,7 +20210,16 @@ float CalculateUIGradientInterpolation(void)
 
 
 
- void UpdateUILayout(void)
+ /**
+ * @brief 更新UI布局
+ * 
+ * 该函数负责更新UI系统的布局信息，包括：
+ * - 重新计算UI组件的位置和大小
+ * - 更新布局约束和对齐方式
+ * - 触发布局重绘和更新事件
+ * 
+ * 这是一个布局管理的核心函数，确保UI元素正确排列。
+ */
 void UpdateUILayout(void)
 
 {
@@ -20188,6 +20228,18 @@ void UpdateUILayout(void)
 
 
 
+/**
+ * @brief 计算UI组件缩放比例
+ * 
+ * 该函数负责计算UI组件的缩放比例，包括：
+ * - 基于基础缩放值和输入参数计算最终缩放比例
+ * - 应用缩放约束和限制条件
+ * - 确保缩放比例在合理范围内
+ * 
+ * @param componentPtr UI组件指针，包含组件的缩放数据
+ * @param scaleFactor 输入的缩放因子
+ * @return 返回计算后的缩放比例
+ */
 float CalculateUIComponentScale(longlong componentPtr,float scaleFactor)
 
 {
@@ -45318,7 +45370,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
   short sVar124;
   UIByte aresult19 [16];
   UIByte aresult20 [16];
-  UIByte aresult21 [16];
+  UIByte UIVectorResult21 [16];
   UIByte aresult22 [16];
   UIByte aresult23 [16];
   UIByte aresult25 [16];
@@ -49876,10 +49928,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aresult15 [15];
   UIByte aresult16 [15];
   UIHandle result17;
-  UIByte aresult18 [12];
-  UIByte aresult19 [12];
-  UIDword result20;
-  UIByte aresult21 [16];
+  UIByte UIVectorResult18 [12];
+  UIByte UIVectorResult19 [12];
+  UIDword tempResult20;
+  UIByte UIVectorResult21 [16];
   short sVar122;
   UIDword result23;
   short sVar132;
@@ -51033,7 +51085,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aeventProcessingStatus6 [16];
   UIByte aresult12 [16];
   UIByte aresult13 [16];
-  UIByte aresult21 [16];
+  UIByte UIVectorResult21 [16];
   UIByte aresult22 [16];
   UIByte aresult37 [16];
   UIByte aresult38 [16];
@@ -66901,7 +66953,7 @@ void RenderUISliderInternal(longlong uiContext,int dataSource,UIByte (*targetBuf
   UIWord result13;
   UIByte aresult19 [16];
   UIByte aresult20 [16];
-  UIByte aresult21 [16];
+  UIByte UIVectorResult21 [16];
   UIWord result23;
   UIByte result35;
   UIByte result36;
@@ -87038,28 +87090,38 @@ uint ProcessUIValidationAndFloatCalculation(UIHandle uiContext, longlong dataSou
 
 
 
-uint FUN_180718dab(longlong uiContext)
-
+/**
+ * @brief 处理UI上下文数据验证和标志位操作
+ * 
+ * 该函数根据条件执行不同的UI数据验证路径，并合并验证结果。
+ * 包含位移操作和标志位处理，用于UI系统的状态管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @return uint 验证结果和状态标志的组合值
+ * 
+ * @note 原始函数名：FUN_180718dab
+ */
+uint ProcessUIContextDataValidation(longlong uiContext)
 {
-  uint result;
-  int uiValidationResult;
-  longlong registerAX;
-  byte ProcessingFlag;
-  int unmodifiedEBP;
-  int unmodifiedESI;
-  longlong TargetHandle;
-  int preservedRegister13D;
-  bool in_ZF;
-  float preservedXMM6;
-  float preservedXMM7;
-  longlong lStack0000000000000028;
-  float fStack0000000000000038;
-  int iStack0000000000000040;
-  longlong lStack0000000000000060;
-  byte stackParam00000110;
-  UIHandle stackParam00000118;
-  float stackParam00000128;
-  int stackParam00000130;
+  uint validationResult;
+  int primaryValidationResult;
+  longlong contextOffset;
+  byte processingFlag;
+  int rangeStart;
+  int rangeEnd;
+  longlong targetHandle;
+  int preservedRegister;
+  bool useAlternatePath;
+  float preservedValue1;
+  float preservedValue2;
+  longlong calculatedOffset;
+  float calculatedValue;
+  int shiftResult;
+  longlong contextData;
+  byte flagBitCount;
+  UIHandle componentHandle;
+  float scaleFactor;
+  int shiftOperand;
   
   lStack0000000000000028 = registerAX + uiContext * 4;
   if (in_ZF) {
@@ -87145,30 +87207,30 @@ uint ProcessUIContextBitwiseAndFloatCalculation(UIHandle uiContext,UIHandle data
 
 
 
-ulonglong FUN_180718f58(void)
+ulonglong PerformUIBinarySearchOptimization(void)
 
 {
   ulonglong result;
   float *ptransformCoeff1;
-  uint EventTypeCode;
-  uint *contextHandle;
-  byte *SourceHandle;
-  uint ProcessingStatus;
-  ulonglong TargetHandle;
-  uint loopCounter;
-  uint maxProcessingCount;
-  int register9D;
-  longlong localLong7;
+  uint searchLeftIndex;
+  uint *uiContextData;
+  byte *searchArray;
+  uint searchResult;
+  ulonglong searchTarget;
+  uint binaryStepCounter;
+  uint maxIterations;
+  int comparisonValue;
+  longlong foundIndex;
   longlong contextOffset;
-  uint eventProcessingStatus;
-  longlong RegisterPointer;
-  byte preservedRegister13B;
-  longlong EventHandle;
+  uint searchStatus;
+  longlong uiSystemPointer;
+  byte bitShiftValue;
+  longlong eventDataPointer;
   longlong preservedRegister15;
   float baseValue0;
-  int stackParam00000110;
-  longlong stackParam00000118;
-  uint stackParam00000130;
+  int stackParam110;
+  longlong stackParam118;
+  uint stackParam130;
   
   register9D = register9D + -1;
   ProcessingStatus = (uint)TargetHandle;
@@ -89741,37 +89803,55 @@ void EmptyUIPlaceholderFunction(void)
 
 
  void FUN_18071af00(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-void FUN_18071af00(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-                  longlong param_6,int param_7,UIHandle param_8,int param_9)
+/**
+ * @brief UI元素数据处理函数
+ * 
+ * 处理UI元素数据，包括数据的读取、验证和更新操作。
+ * 该函数负责管理UI元素的数据流，处理数据项的分配和验证。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 UI句柄
+ * @param param_9 额外参数9
+ * 
+ * @note 原始函数名：FUN_18071af00
+ */
+void ProcessUIElementData(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+                         longlong param_6,int param_7,UIHandle param_8,int param_9)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  int *ptrLocalInt4;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
-  longlong contextOffset;
-  int stackInt78;
+  int ProcessingResult;
+  int UIValidationResult;
+  longlong StringCompareIndex;
+  int *ElementDataPointer;
+  int DataSourceIndex;
+  int ElementCounter;
+  longlong ValidationOffset;
+  longlong ContextOffset;
+  int StackValidationFlag;
   
-  stringCompareIndex = (longlong)dataSource;
-  stackInt78 = 0;
+  StringCompareIndex = (longlong)dataSource;
+  StackValidationFlag = 0;
   do {
-    if (stringCompareIndex < targetBuffer) {
-      ptrLocalInt4 = (int *)(resultPointer + stringCompareIndex * 4);
-      contextOffset = stringCompareIndex;
-      localInt5 = dataSource;
+    if (StringCompareIndex < targetBuffer) {
+      ElementDataPointer = (int *)(resultPointer + StringCompareIndex * 4);
+      ContextOffset = StringCompareIndex;
+      DataSourceIndex = dataSource;
       do {
         if (param_7 < param_9) break;
-        if ((*ptrLocalInt4 < 8) && (*(int *)((param_6 - resultPointer) + (longlong)ptrLocalInt4) == stackInt78)) {
-          loopCounter = 0;
+        if ((*ElementDataPointer < 8) && (*(int *)((param_6 - resultPointer) + (longlong)ElementDataPointer) == StackValidationFlag)) {
+          ElementCounter = 0;
           do {
-            processingResult = UpdateUIElementData(param_8,1);
-            uiValidationResult = *(int *)(uiBufferData + 8) * loopCounter;
+            ProcessingResult = UpdateUIElementData(param_8,1);
+            UIValidationResult = *(int *)(uiBufferData + 8) * ElementCounter;
             param_7 = param_7 + -1;
-            loopCounter = loopCounter + 1;
-            localLong7 = (longlong)(uiValidationResult + localInt5);
+            ElementCounter = ElementCounter + 1;
+            ValidationOffset = (longlong)(UIValidationResult + DataSourceIndex);
             *(float *)(bufferSize + localLong7 * 4) =
                  (float)(1 << (0xdU - (char)*ptrLocalInt4 & 0x1f)) * ((float)processingResult - 0.5) * 6.1035156e-05
                  + *(float *)(bufferSize + localLong7 * 4);
@@ -107214,8 +107294,25 @@ void FUN_18072e96d(void)
 
 
 
- void FUN_18072e9a0(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_18072e9a0(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI数据变换和验证
+ * 
+ * 该函数负责处理UI数据的变换和验证，包括：
+ * - 数据变换计算
+ * - 内存分配和管理
+ * - 系数计算和调整
+ * - 上下文更新
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含输入数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，指定数据处理的范围
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @param param_6 参数6，指定处理的元素数量
+ * 
+ * @note 原始函数名：FUN_18072e9a0
+ */
+void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
                   int param_6)
 
 {
@@ -199956,7 +200053,19 @@ UIHandle FUN_18078922b(void)
 
 
 
-UIHandle FUN_18078923c(void)
+/**
+ * @brief 清理UI事件句柄和回调
+ * 
+ * 该函数负责清理UI系统中的事件句柄和回调函数，包括：
+ * - 遍历事件句柄数组并清理每个句柄
+ * - 调用回调函数进行清理操作
+ * - 重置事件句柄状态
+ * - 处理事件队列的清理
+ * 
+ * @return UIHandle 返回操作结果句柄
+ * @note 原始函数名：FUN_18078923c
+ */
+UIHandle CleanupUIEventHandlesAndCallbacks(void)
 
 {
   longlong allocatedMemory;
@@ -199986,17 +200095,29 @@ UIHandle FUN_18078923c(void)
 
 
 
-UIHandle FUN_180789283(void)
+/**
+ * @brief 处理UI事件回调链表
+ * 
+ * 该函数负责处理UI系统中的事件回调链表，包括：
+ * - 检查事件回调处理器是否可用
+ * - 获取事件回调链表头指针
+ * - 遍历所有事件回调节点
+ * - 执行每个事件回调函数
+ * 
+ * @return UIHandle 返回操作结果句柄，成功返回0
+ * @note 原始函数名：FUN_180789283
+ */
+UIHandle ProcessUIEventCallbackLinkedList(void)
 
 {
-  UIHandle *ptrResult;
-  longlong contextHandle;
-  UIHandle *piterationCount;
+  UIHandle *callbackNode;
+  longlong uiContext;
+  UIHandle *listHead;
   
-  if (*(longlong *)(contextHandle + 0x3b0) != 0) {
-    piterationCount = (UIHandle *)(*(longlong *)(contextHandle + 0x48) + 0x6c0);
-    for (ptrResult = (UIHandle *)*piterationCount; ptrResult != piterationCount; ptrResult = (UIHandle *)*ptrResult) {
-      (**(code **)(contextHandle + 0x3b0))(contextHandle + 8,*(UIDword *)((longlong)ptrResult + 0x24));
+  if (*(longlong *)(uiContext + UIEventCallbackHandlerOffset) != 0) {
+    listHead = (UIHandle *)(*(longlong *)(uiContext + UIContextDataOffset) + UIEventCallbackListOffset);
+    for (callbackNode = (UIHandle *)*listHead; callbackNode != listHead; callbackNode = (UIHandle *)*callbackNode) {
+      (**(code **)(uiContext + UIEventCallbackHandlerOffset))(uiContext + 8,*(UIDword *)((longlong)callbackNode + UIEventCallbackDataOffset));
     }
   }
   return 0;
@@ -200004,7 +200125,19 @@ UIHandle FUN_180789283(void)
 
 
 
-UIHandle FUN_180789292(void)
+/**
+ * @brief 执行UI事件回调处理
+ * 
+ * 该函数负责执行UI系统中的事件回调处理，包括：
+ * - 获取事件回调链表头指针
+ * - 遍历所有事件回调
+ * - 执行每个事件的回调函数
+ * - 传递上下文和事件数据
+ * 
+ * @return UIHandle 返回操作结果句柄
+ * @note 原始函数名：FUN_180789292
+ */
+UIHandle ExecuteUIEventCallbackProcessing(void)
 
 {
   UIHandle *ptrResult;
@@ -200022,7 +200155,14 @@ UIHandle FUN_180789292(void)
 
 
  void FUN_1807892d1(void)
-void FUN_1807892d1(void)
+/**
+ * @brief UI系统空函数1
+ * 
+ * 该函数是一个空函数，可能用于占位或未来扩展。
+ * 
+ * @note 原始函数名：FUN_1807892d1
+ */
+void UIEmptyFunction1(void)
 
 {
   return;
@@ -200032,7 +200172,14 @@ void FUN_1807892d1(void)
 
 
  void FUN_1807892d6(void)
-void FUN_1807892d6(void)
+/**
+ * @brief UI系统空函数2
+ * 
+ * 该函数是一个空函数，可能用于占位或未来扩展。
+ * 
+ * @note 原始函数名：FUN_1807892d6
+ */
+void UIEmptyFunction2(void)
 
 {
   return;
@@ -200040,7 +200187,19 @@ void FUN_1807892d6(void)
 
 
 
-UIHandle FUN_180789300(longlong uiContext)
+/**
+ * @brief 执行UI上下文回调函数
+ * 
+ * 该函数负责执行UI上下文中注册的回调函数，包括：
+ * - 检查回调函数指针是否有效
+ * - 调用回调函数并传递上下文参数
+ * - 返回回调函数的执行结果
+ * 
+ * @param uiContext UI上下文句柄
+ * @return UIHandle 返回回调函数的执行结果
+ * @note 原始函数名：FUN_180789300
+ */
+UIHandle ExecuteUIContextCallback(longlong uiContext)
 
 {
   UIHandle result;
