@@ -215686,11 +215686,11 @@ void ProcessCharacterCodeMemoryAllocationAndAddressMaskOperations(long long Char
   MemoryAllocationIndex = *(long long *)(CharacterCode + 8) - Utf8SourcePointer >> 3;
   if (MemoryAllocationIndex < CharacterLimit) {
     ProcessMemoryBlockIndexAndBufferAllocation(0,0);
-    MemoryAddressMaskPointer = FUN_18017b680(SystemBufferSize + MemoryAllocationIndex * 8);
+    MemoryAddressMaskPointer = ProcessCharacterCodeTraversalAndMemoryManagement((long long *)(SystemBufferSize + MemoryAllocationIndex * 8),(long long *)(SystemBufferSize + MemoryAllocationIndex * 8),(long long *)0);
     *(void *)(PatternIndex + 8) = MemoryAddressMaskPointer;
   }
   else {
-    MemoryBlockIndex = (long long *)ProcessMemoryBlockIndexAndBufferAllocation(0,0);
+    MemoryBlockIndex = ProcessMemoryBlockIndexAndBufferAllocation(0,0);
     CharacterCode = *(long long **)(PatternIndex + 8);
     for (MemoryBlockListHead = MemoryBlockIndex; MemoryBlockListHead != CharacterCode; MemoryBlockListHead = MemoryBlockListHead + 1) {
       if ((long long *)*MemoryBlockListHead != (long long *)0x0) {
