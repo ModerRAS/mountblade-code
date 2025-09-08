@@ -171,6 +171,7 @@
 
 // 栈操作偏移量常量
 #define StackOperationOffset8 0x8                             // 栈操作偏移量8
+#define SystemContextOffset60 0x60                            // 系统上下文偏移量60
 #define ExceptionHandlerHierarchyB0_DataBufferOffset40 0x40     // 数据缓冲区偏移量40
 #define ExceptionHandlerHierarchyB0_CallbackOffsetE20 0xe20     // 回调函数偏移量E20
 #define ExceptionHandlerHierarchyB0_CallbackParamOffsetE10 0xe10 // 回调参数偏移量E10
@@ -19964,7 +19965,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
     return SystemFloatDataInvalid;
   }
   systemContextBuffer[0] = 0;
-  operationResult = ProcessSystemDataTransferA0(operationContext + 0x60,dataContext + ExceptionDataBufferOffset10,systemContextBuffer);
+  operationResult = ProcessSystemDataTransferA0(operationContext + SystemContextOffset60,dataContext + ExceptionDataBufferOffset10,systemContextBuffer);
   if ((int)operationResult == 0) {
     rangeData = GetOperationRangeDataA0(operationContext + 0x60,systemContextBuffer[0]);
     if ((*(uint *)(rangeData + SystemDataValidationOffset34) >> 4 & 1) != 0) {
