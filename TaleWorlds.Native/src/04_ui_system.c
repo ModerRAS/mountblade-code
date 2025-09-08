@@ -301,6 +301,19 @@ typedef enum {
 #define ProcessUIDataMatrixTransform FUN_180711674
 
 /**
+ * @brief 处理UI上下文数据初始化
+ * 
+ * 该函数负责初始化和处理UI上下文数据，包括：
+ * - UI上下文数据的初始化和验证
+ * - 数据源和目标缓冲区的设置
+ * - 内存分配和信号量处理
+ * - 系统资源的预分配
+ * 
+ * @note 原始函数名：FUN_180711810
+ */
+#define ProcessUIContextInitialization FUN_180711810
+
+/**
  * @brief 处理UI渲染数据变换
  * 
  * 该函数负责处理UI渲染数据的各种变换，包括：
@@ -788,6 +801,12 @@ typedef enum {
 
 // UI系统函数宏定义 - 获取UI系统信息
 #define GetUISystemInfo FUN_18087b60b
+
+// UI系统函数宏定义 - 获取UI验证标志
+#define GetUIValidationFlags FUN_18070f310
+
+// UI系统函数宏定义 - 执行UI高级操作
+#define ExecuteUIAdvancedOperation FUN_18071ad00
 
 #define CalculateUITransformMatrix CalculateUITransformMatrixInternal
 
@@ -5018,10 +5037,10 @@ undefined g_uiComponentStateBufferNovendenary;
 undefined g_uiComponentStateBufferVigesimal;
 undefined g_uiComponentStateBufferUnvigesimal;
  UI系统渲染常量
-uint32_t g_uiRenderConstant1;
-uint32_t g_uiRenderConstant2;
-uint32_t g_uiRenderConstant3;
-char g_uiRenderFlag1;
+uint32_t g_uiRenderConstantPrimary;
+uint32_t g_uiRenderConstantSecondary;
+uint32_t g_uiRenderConstantTertiary;
+char g_uiRenderFlagEnabled;
 undefined g_uiComponentStateBufferDuovigesimal;
 undefined g_uiComponentStateBufferTrevigesimal;
 undefined g_uiComponentStateBufferQuattuorvigesimal;
@@ -5124,15 +5143,15 @@ undefined g_uiRenderPipelineDataSenary;
 undefined g_uiRenderPipelineDataSeptenary;
 undefined g_uiRenderPipelineDataOctonary;
  UI系统渲染常量
-uint32_t g_uiRenderConstant4;
+uint32_t g_uiRenderConstantQuaternary;
 undefined g_uiRenderPipelineDataNonary;
 undefined g_uiRenderPipelineDataDenary;
 undefined g_uiRenderPipelineDataUndenary;
  UI系统渲染常量
-uint32_t g_uiRenderConstant5;
+uint32_t g_uiRenderConstantQuinary;
  UI渲染数据值
-uint64_t g_uiRenderDataValue1;
-uint64_t g_uiRenderDataValue2;
+uint64_t g_uiRenderDataValuePrimary;
+uint64_t g_uiRenderDataValueSecondary;
 undefined g_uiRenderPipelineDataDuodenary;
 undefined g_uiRenderPipelineDataTerdenary;
 undefined g_uiRenderPipelineDataQuattuordenary;
@@ -7020,14 +7039,14 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
  void ProcessUIComponentDataValidation(longlong ComponentContext, longlong *DataBuffer, UIHandle ValidationFlags, UIHandle ErrorHandlingMode)
 
 {
-  undefined *ptrResult;
-  undefined *psemaphoreHandle;
-  longlong *plStackX_10;
-  undefined *pstackUInt50;
-  undefined *pstackUInt48;
-  UIDword stackUInt38;
-  undefined *pstackUInt30;
-  undefined *pstackUInt28;
+  undefined *pResultPointer;
+  undefined *pSemaphoreHandle;
+  longlong *pDataStackPointer;
+  undefined *pStackBuffer50;
+  undefined *pStackBuffer48;
+  UIDword stackData38;
+  undefined *pStackBuffer30;
+  undefined *pStackBuffer28;
   
   plStackX_10 = dataSource;
   UpdateUIState(uiContext + 0x168,&plStackX_10,targetBuffer,bufferSize,0xfffffffffffffffe);
@@ -75784,7 +75803,7 @@ LAB_18070d1ad:
     stackInt1b0 = 0;
   }
   else {
-    stackInt1b0 = FUN_18070f310(param_6,3);
+    stackInt1b0 = GetUIValidationFlags(param_6,3);
     localInt9 = 0x1f;
     if (*(uint *)(param_6 + 0x20) != 0) {
       for (; *(uint *)(param_6 + 0x20) >> localInt9 == 0; localInt9 = localInt9 + -1) {
@@ -75798,9 +75817,9 @@ LAB_18070d1ad:
     stackInt12c = localInt9;
   }
   if (EventOperationCount + 3 <= uiValidationResult) {
-    localInt9 = FUN_18070f310(param_6,3);
+    localInt9 = GetUIValidationFlags(param_6,3);
   }
-  FUN_18071ad00(stackLong188,stackInt1b4,stackInt1a8,allocatedMemory,localInt9,param_6,CONCAT44(result3,stackInt1b8),
+  ExecuteUIAdvancedOperation(stackLong188,stackInt1b4,stackInt1a8,allocatedMemory,localInt9,param_6,CONCAT44(result3,stackInt1b8),
                 ProcessingResult1);
   stackLong148 = localLong7 * 4;
                      WARNING: Subroutine does not return
@@ -80401,59 +80420,73 @@ void ProcessUIDataMatrixTransform(UIHandle uiContext, UIHandle dataSource, float
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180711810(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_180711810(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,int param_6)
+ /**
+ * @brief 处理UI上下文数据初始化
+ * 
+ * 该函数负责初始化和处理UI上下文数据，包括：
+ * - UI上下文数据的初始化和验证
+ * - 数据源和目标缓冲区的设置
+ * - 内存分配和信号量处理
+ * - 系统资源的预分配
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小句柄
+ * @param resultPointer 结果指针句柄
+ * @param param_6 参数6，用于计算和初始化
+ */
+void ProcessUIContextInitialization(int *uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize,
+                                   UIHandle resultPointer, int param_6)
 
 {
-  uint result;
+  uint iterationCount;
   ulonglong semaphoreHandle;
-  int uiCompareResult;
-  longlong ContextHandleData;
-  longlong EventDataIndex;
-  int localInt6;
-  UIByte astackUIntc8 [16];
-  longlong stackLongb8;
-  UIHandle stackUIntb0;
-  int stackInta8;
-  ulonglong stackUInta0;
-  UIHandle stackUInt98;
-  UIHandle stackUInt90;
-  ulonglong stackUInt40;
+  int uiShiftResult;
+  longlong contextDataOffset;
+  longlong eventDataOffset;
+  int processedCount;
+  UIByte encryptionBuffer [16];
+  longlong bufferOffset;
+  UIHandle sourceHandle;
+  int contextValue;
+  ulonglong alignedSize;
+  UIHandle targetHandle;
+  UIHandle contextHandle;
+  ulonglong xorResult;
   
-  stackUInt40 = XorEncryptionKey ^ (ulonglong)astackUIntc8;
-  stackInta8 = *uiContext;
-  ContextHandleData = 0;
-  stackUInt90 = *(UIHandle *)(uiContext + (longlong)param_6 * 2 + 2);
-  EventDataIndex = 0;
-  stackLongb8 = *(longlong *)(uiBufferData + 10);
-  localInt6 = 0;
+  xorResult = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  contextValue = *uiContext;
+  contextDataOffset = 0;
+  contextHandle = *(UIHandle *)(uiContext + (longlong)param_6 * 2 + 2);
+  eventDataOffset = 0;
+  bufferOffset = *(longlong *)(uiBufferData + 10);
+  processedCount = 0;
   if (1 < param_6) {
-    result = (param_6 - 2U >> 1) + 1;
-    semaphoreHandle = (ulonglong)result;
-    localInt6 = result * 2;
+    iterationCount = (param_6 - 2U >> 1) + 1;
+    semaphoreHandle = (ulonglong)iterationCount;
+    processedCount = iterationCount * 2;
     do {
-      uiCompareResult = stackInta8 >> 1;
-      stackInta8 = stackInta8 >> 2;
-      ContextHandleData = ContextHandleData + (longlong)uiCompareResult * 4;
-      EventDataIndex = EventDataIndex + (longlong)stackInta8 * 4;
+      uiShiftResult = contextValue >> 1;
+      contextValue = contextValue >> 2;
+      contextDataOffset = contextDataOffset + (longlong)uiShiftResult * 4;
+      eventDataOffset = eventDataOffset + (longlong)contextValue * 4;
       semaphoreHandle = semaphoreHandle - 1;
     } while (semaphoreHandle != 0);
   }
-  if (localInt6 < param_6) {
-    stackInta8 = stackInta8 >> 1;
-    stackLongb8 = stackLongb8 + (longlong)stackInta8 * 4;
+  if (processedCount < param_6) {
+    contextValue = contextValue >> 1;
+    bufferOffset = bufferOffset + (longlong)contextValue * 4;
   }
-  stackLongb8 = stackLongb8 + EventDataIndex + ContextHandleData;
-  stackInta8 = stackInta8 >> 1;
-  stackUInta0 = (longlong)stackInta8 * 4;
-  semaphoreHandle = stackUInta0 + 0xf;
-  if (semaphoreHandle <= stackUInta0) {
+  bufferOffset = bufferOffset + eventDataOffset + contextDataOffset;
+  contextValue = contextValue >> 1;
+  alignedSize = (longlong)contextValue * 4;
+  semaphoreHandle = alignedSize + 0xf;
+  if (semaphoreHandle <= alignedSize) {
     semaphoreHandle = 0xffffffffffffff0;
   }
-  stackUIntb0 = dataSource;
-  stackUInt98 = targetBuffer;
-                     WARNING: Subroutine does not return
+  sourceHandle = dataSource;
+  targetHandle = targetBuffer;
   FUN_1808fd200(semaphoreHandle & 0xfffffffffffffff0);
 }
 
@@ -81557,8 +81590,14 @@ void FUN_180712b71(int uiContext,UIHandle dataSource,int targetBuffer,int buffer
 
 
 
- void FUN_180712bf0(void)
-void FUN_180712bf0(void)
+ /**
+ * @brief UI空操作函数3
+ * 
+ * 该函数是一个空操作函数，用于保持系统的一致性。
+ * 
+ * @note 原始函数名：FUN_180712bf0
+ */
+void UIEmptyOperation3(void)
 
 {
   return;
@@ -88660,7 +88699,7 @@ void FUN_18071c7f0(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
   plocalChar8 = plocalChar9;
   if (1 < *(int *)(uiBufferData + 0x11e0)) {
     do {
-      FUN_1807054a0(dataSource,(int)plocalChar8[1],&UNK_180954788,8);
+      FUN_1807054a0(dataSource,(int)plocalChar8[1],&UIShaderUniformTable,8);
       EventOperationCount = EventOperationCount + 1;
       plocalChar8 = plocalChar8 + 1;
     } while (EventOperationCount < *(int *)(uiBufferData + 0x11e0));
@@ -88712,7 +88751,7 @@ void FUN_18071c7f0(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
     if (0x13 < LoopCounter) {
       ProcessingResult3 = 0;
     }
-    FUN_1807054a0(dataSource,ProcessingResult3,&UNK_1809547d8,8);
+    FUN_1807054a0(dataSource,ProcessingResult3,&UIAnimationDataTable,8);
     if (0x13 < LoopCounter) goto LAB_18071ca80;
   }
   else {
@@ -88737,7 +88776,7 @@ LAB_18071ca80:
     } while (EventOperationCount < *(int *)(uiBufferData + 0x11e0));
   }
   if (resultPointer == 0) {
-    FUN_1807054a0(dataSource,(int)plocalChar9[0x21],&UNK_1809535d4,8);
+    FUN_1807054a0(dataSource,(int)plocalChar9[0x21],&UIStateDataTable,8);
   }
 LAB_18071cb6a:
   *(int *)(uiBufferData + 0x1690) = (int)plocalChar9[0x1d];
@@ -89051,7 +89090,7 @@ void FUN_18071ccba(void)
 void FUN_18071cd40(longlong uiContext)
 
 {
-  (**(code **)(&UNK_180954ae0 + (ulonglong)(*(uint *)(uiContext + 0x13ec) & 7) * 8))
+  (**(code **)(&UIFunctionDispatchTable + (ulonglong)(*(uint *)(uiContext + 0x13ec) & 7) * 8))
             (uiContext,uiContext + 0x13f2);
   if (0xc < *(int *)(uiBufferData + 0x11b0)) {
     *(UIByte *)(uiContext + 0x12a5) = 1;
@@ -254357,7 +254396,23 @@ LAB_180824f4f:
 
 
 UIDword
-FUN_180824f70(UIHandle uiContext,longlong *dataSource,uint *targetBuffer,int bufferSize,uint resultPointer)
+/**
+ * @brief 处理UI事件数据流并解码事件类型
+ * 
+ * 该函数从数据源中读取UI事件数据流，进行位操作解码，并将解码后的事件类型码写入目标缓冲区。
+ * 函数处理可变长度的位流数据，支持事件类型码的动态解码和缓冲区管理。
+ * 
+ * @param uiContext UI上下文句柄，用于UI系统操作
+ * @param dataSource 数据源指针，包含事件数据流
+ * @param targetBuffer 目标缓冲区，用于存储解码后的事件类型码
+ * @param bufferSize 缓冲区大小，限制处理的元素数量
+ * @param resultPointer 结果指针，用于位操作和状态跟踪
+ * @return int 返回处理状态：1表示成功，0表示失败
+ * 
+ * @note 原始函数名：FUN_180824f70
+ * @note 这是一个简化的实现，保持了原始的位操作逻辑
+ */
+int ProcessUIEventDataStream(UIHandle uiContext,longlong *dataSource,uint *targetBuffer,int bufferSize,uint resultPointer)
 
 {
   uint result;

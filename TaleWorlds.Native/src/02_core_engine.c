@@ -1069,6 +1069,26 @@
 // 系统标志配置标签
 #define LabelSystemFlagConfiguration LAB_18016c134            // 系统标志配置标签
 
+// 新增的LAB_标签定义
+#define LAB_180082720 ValidationHandlerLAB180082720           // 验证处理器标签
+#define LAB_18008642b CharacterProcessingCompleteLAB18008642b  // 字符处理完成标签
+#define LAB_1800872f7 MemoryAllocationStartLAB1800872f7        // 内存分配开始标签
+#define LAB_180087337 BufferValidationLAB180087337             // 缓冲区验证标签
+#define LAB_18008733a DataSizeCheckLAB18008733a                // 数据大小检查标签
+#define LAB_180087418 CharacterCodeValidationLAB180087418      // 字符代码验证标签
+#define LAB_18008755d NullCharacterCheckLAB18008755d          // 空字符检查标签
+#define LAB_1800878e0 CharacterProcessingLAB1800878e0         // 字符处理标签
+#define LAB_180088131 SystemProcessingLAB180088131             // 系统处理标签
+#define LAB_180087f81 MemoryAllocationLAB180087f81            // 内存分配标签
+#define LAB_180087f16 CharacterValidationLAB180087f16          // 字符验证标签
+#define LAB_180088ac9 DataProcessingLAB180088ac9               // 数据处理标签
+#define LAB_18008913b CharacterEncodingLAB18008913b           // 字符编码标签
+#define LAB_18008917c SystemMemoryCheckLAB18008917c           // 系统内存检查标签
+#define LAB_18008927d StringProcessingLAB18008927d             // 字符串处理标签
+#define LAB_1800892ba MemoryBlockProcessingLAB1800892ba       // 内存块处理标签
+#define LAB_1800892bd DataStructureProcessingLAB1800892bd     // 数据结构处理标签
+#define LAB_1800892fd MemoryCopyLAB1800892fd                  // 内存复制标签
+
 // 浮点变量语义化映射
 #define FloatOffsetValue PrimaryFloatCoefficient              // 主浮点系数
 #define MatrixTransformMultiplier SecondaryFloatCoefficient            // 次浮点系数  
@@ -58105,7 +58125,7 @@ void ProcessCoreEngineDataStructureCopy(long long *CharacterCode,long long *Char
   else {
     EncodingConversionResult = EncodingConversionResult * 2;
     CharacterCodeTablePointer = StringProcessingStatus;
-    if (EncodingConversionResult == 0) goto LAB_180082720;
+    if (EncodingConversionResult == 0) goto ValidationHandlerLAB180082720;
   }
   CharacterCodeTablePointer = (void *           BufferAllocate(MemoryPoolManager,EncodingConversionResult << 5,(char)CharacterCode[3],CharacterStatusBuffer2,0xfffffffffffffffe);
   CharacterStatusBuffer2 = (uint32_t *)CharacterCode[1];
@@ -61918,7 +61938,7 @@ void ExpandCharacterStatusBuffer(unsigned long long *CharacterStatusBufferPointe
     MemoryPoolBlockSize = MemoryPoolBlockSize * 2;
     if (MemoryPoolBlockSize == 0) {
       CharacterCodeTablePointer = (uint32_t *)0x0;
-      goto LAB_18008642b;
+      goto CharacterProcessingCompleteLAB18008642b;
     }
   }
   CharacterCodeTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)CharacterStatusBufferPointer[3]);
@@ -62806,7 +62826,7 @@ SystemHandlerLAB180087337:
             LowByte = 0 < StringLength;
             if (StringLength < 1) {
               CharacterStatusBuffer2 = (void *)SystemCharacterStatusBuffer[1];
-              goto LAB_1800872f7;
+              goto MemoryAllocationStartLAB1800872f7;
             }
           }
           CharacterStatusBuffer2 = (void *)*SystemCharacterStatusBuffer;
@@ -62819,7 +62839,7 @@ MemoryHandlerLAB1800872f7:
         TemporaryBuffer = CharacterStatusBuffer;
         SystemCharacterStatusBuffer = CharacterStatusBuffer2;
       } while (CharacterStatusBuffer2 != NULL);
-      if (CharacterStatusBuffer == CharacterStatusBuffer) goto LAB_180087337;
+      if (CharacterStatusBuffer == CharacterStatusBuffer) goto BufferValidationLAB180087337;
       if (*(int *)(CharacterStatusBuffer + 6) != 0) {
         if (iStack_40 != 0) {
           ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
@@ -62830,7 +62850,7 @@ MemoryHandlerLAB1800872f7:
             if (HighByte != DataSize) break;
             ValidationBytePointer = ValidationBytePointer + 1;
           } while (DataSize != 0);
-          if ((int)(HighByte - DataSize) < 1) goto LAB_18008733a;
+          if ((int)(HighByte - DataSize) < 1) goto DataSizeCheckLAB18008733a;
         }
         goto LAB_180087337;
       }
