@@ -100243,18 +100243,39 @@ void ProcessUIElementIndex(longlong uiContext,float *dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807270a0(ulonglong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_1807270a0(ulonglong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 处理UI上下文数据
+ * 
+ * 该函数负责处理UI系统中的上下文数据，包括：
+ * - 上下文数据的初始化和配置
+ * - 数据缓冲区的管理和操作
+ * - 迭代处理和结果计算
+ * - 上下文状态的验证和更新
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 额外参数8
+ * @param param_9 额外参数9
+ * @param uiContext0 UI上下文0
+ * 
+ * @note 原始函数名：FUN_1807270a0
+ */
+void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   float *resultPointer,longlong param_6,longlong param_7,UIDword param_8,int param_9,
                   UIDword uiContext0)
 
 {
-  ulonglong result;
-  ulonglong iterationCount;
-  short ContextFirstValue;
-  short sVar4;
-  short sVar5;
-  uint maxProcessingCount;
+  ulonglong operationResult;
+  ulonglong processCounter;
+  short contextValue;
+  short tempValue1;
+  short tempValue2;
+  uint maxIterations;
   UIByte aprocessingCounter [12];
   UIByte aeventProcessingCounter [12];
   UIByte aeventProcessingStatus [12];
