@@ -5657,6 +5657,21 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：设置全局数据指针A32到指定地址
 #define SetGlobalDataPointerA32 FUN_180942380
 
+// 新增的偏移量宏定义
+#define MemoryResourceOffset48 0x48                    // 内存资源偏移量48
+#define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
+#define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
+#define MemoryPointerTableOffset70 0x70               // 内存指针表偏移量70
+#define SystemContextOffset80 0x80                   // 系统上下文偏移量80
+#define SystemContextOffset90 0x90                   // 系统上下文偏移量90
+#define DataSecondaryOffset18 0x18                    // 数据次级偏移量18
+#define DataParameterOffset20 0x20                   // 数据参数偏移量20
+#define SystemParameterOffset28 0x28                 // 系统参数偏移量28
+#define SystemFloatDataOffset38 0x38                 // 系统浮点数据偏移量38
+#define ExceptionHandlerOffset300 0x300              // 异常处理器偏移量300
+#define ExceptionHandlerOffset3c0 0x3c0              // 异常处理器偏移量3c0
+#define SystemCleanupFlagffc00000 0xffc00000         // 系统清理标志ffc00000
+
 // 原始函数名：FUN_1809423a0 - 全局指针设置函数A33
 // 功能：设置全局数据指针A33到指定地址
 #define SetGlobalDataPointerA33 FUN_1809423a0
