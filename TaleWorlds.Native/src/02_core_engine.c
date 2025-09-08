@@ -256791,8 +256791,25 @@ float ProcessCharacterCodeAndSystemBufferSize(uint64_t CharacterCode,uint64_t Sy
 
 
 
-long long *
-FUN_180215110(long long CharacterCode,long long *CharacterCodeSize,int *Utf8SourcePointer,uint32_t Utf16EndPointer,long long AdditionalParameter1
+/**
+ * @brief 转换UTF-8到UTF-16字符编码
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、
+ * 字符串处理和系统事件管理。函数会根据输入的字符代码和缓冲区
+ * 信息，执行相应的编码转换操作。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符编码信息
+ * @param CharacterCodeSize 字符代码大小指针，用于返回转换后的大小
+ * @param Utf8SourcePointer UTF-8源指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，标识转换范围
+ * @param AdditionalParameter1 额外参数，用于扩展功能
+ * @return long long* 转换结果的指针，失败时返回错误码
+ * 
+ * @note 原始函数名：FUN_180215110
+ * @note 函数涉及复杂的内存管理和字符编码转换逻辑
+ * @warning 函数包含多个分支和错误处理路径
+ */
+long long *ConvertUtf8ToUtf16Character(long long CharacterCode,long long *CharacterCodeSize,int *Utf8SourcePointer,uint32_t Utf16EndPointer,long long AdditionalParameter1)
 {
   uint32_t Utf16Char;
   int StringComparisonResult;
