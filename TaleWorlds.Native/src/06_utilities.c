@@ -19927,7 +19927,7 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
   int64_t systemContextBuffer;
   
   if (eaxRegister == 0) {
-    allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize,0x20,&SystemMemoryPoolB,0xdd);
+    allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataSize,MemoryAlignmentSize32,&SystemMemoryPoolB,0xdd);
     if (allocatedBuffer != 0) {
         memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + ComponentHandleOffset),(int64_t)*(int *)(contextHandle + SystemDataSecondaryOffset18));
     }
@@ -20925,8 +20925,8 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       colorComponentAlpha = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
-    if (((*(SystemByteType *)(memoryBlockOffset + 0xc4) & 1) != 0) &&
-       ((systemContext = *(int64_t *)(memoryBlockOffset + 0x68), systemContext != 0 ||
+    if (((*(SystemByteType *)(memoryBlockOffset + DataValidationOffsetC4) & 1) != 0) &&
+       ((systemContext = *(int64_t *)(memoryBlockOffset + SystemContextOffset68), systemContext != 0 ||
         (operationResult = ProcessSystemConfigurationA0(operationBase,memoryBlockOffset,&systemContext), operationResult == 0)))) {
       *operationFlagA = systemContext;
     }
