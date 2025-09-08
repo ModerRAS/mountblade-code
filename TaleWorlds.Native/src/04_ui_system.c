@@ -130751,29 +130751,29 @@ void ThunkUIBufferOperation(longlong uiContext)
       TransformMatrix4 = 0;
       TransformMatrix5 = 0;
       TransformMatrix6 = 0;
-      for (; ptrLocal3 != ptrResult; ptrLocal3 = (UIHandle *)*ptrLocal3) {
-        ProcessingStatus = ptrLocal3[2];
-        func_0x0001807673f0(ProcessingStatus,acStack_158);
-        if (acStack_158[0] != '\0') {
-          FUN_1807671a0(ProcessingStatus,uiContext + 0x11080,&fStack_150,&fStack_154);
-          if (0.0 < fStack_150) {
-            func_0x0001807673c0(ProcessingStatus,astackUInt110,0,0);
-            pfStack_168 = afStack_148;
-            localInt5 = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,astackUInt110,0);
-            if (localInt5 != 0) goto FUN_18078c746;
-            fStack_150 = fStack_150 * (1.0 - afStack_148[0]);
-            fStack_154 = fStack_154 * (1.0 - afStack_148[0]);
+      for (; ComponentPointer != ComponentIterator; ComponentPointer = (UIHandle *)*ComponentPointer) {
+        ComponentStatus = ComponentPointer[2];
+        func_0x0001807673f0(ComponentStatus,ValidationBuffer);
+        if (ValidationBuffer[0] != '\0') {
+          FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
+          if (0.0 < ScaleValue) {
+            func_0x0001807673c0(ComponentStatus,EventDataBuffer,0,0);
+            ColorPointer = ColorArray;
+            ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
+            if (ProcessingResult != 0) goto ExitFunction;
+            ScaleValue = ScaleValue * (1.0 - ColorArray[0]);
+            OpacityValue = OpacityValue * (1.0 - ColorArray[0]);
           }
-          if (0.001 <= fStack_154) {
-            stackUInt100 = 0;
-            stackUIntf8 = 0;
-            stackUIntf0 = 0;
-            stackUInte8 = 0;
-            stackUInte0 = 0;
-            stackUIntd8 = 0;
-            func_0x000180767410(ProcessingStatus,&stackUInt100);
-            FUN_180767800(&stackUInt140,&stackUInt100,fStack_154);
-            floatResult1 = floatResult1 + fStack_154;
+          if (0.001 <= OpacityValue) {
+            RenderTarget1 = 0;
+            RenderTarget2 = 0;
+            RenderTarget3 = 0;
+            RenderTarget4 = 0;
+            RenderTarget5 = 0;
+            RenderTarget6 = 0;
+            func_0x000180767410(ComponentStatus,&RenderTarget1);
+            FUN_180767800(&TransformMatrix1,&RenderTarget1,OpacityValue);
+            AlphaValue = AlphaValue + OpacityValue;
           }
         }
       }
@@ -130819,7 +130819,7 @@ void ThunkUIBufferOperation(longlong uiContext)
       } while (localInt5 == 0);
     }
   }
-  goto FUN_18078c746;
+  goto ExitFunction;
   while( true ) {
     uVar8 = (int)uVar9 + 1;
     uVar9 = (ulonglong)uVar8;
@@ -130828,12 +130828,12 @@ void ThunkUIBufferOperation(longlong uiContext)
 LAB_18078c440:
     ContextHandleData = *(longlong *)(*(longlong *)(uiBufferData + 0x6a0) + 0x30 + result0);
     if (((ContextHandleData != 0) && (*(char *)(ContextHandleData + 0x31) != '\0')) &&
-       (localInt5 = FUN_180748290(uiContext,uVar9), localInt5 != 0)) goto FUN_18078c746;
+       (localInt5 = FUN_180748290(uiContext,uVar9), localInt5 != 0)) goto ExitFunction;
   }
 LAB_18078c477:
   if (((*(longlong *)(uiBufferData + 0x11838) != 0) && ((*(uint *)(uiContext + 0x11840) & 0x1000) != 0)) &&
      (localInt5 = FUN_1807499f0(uiContext), localInt5 != 0x39)) {
-    if (localInt5 != 0) goto FUN_18078c746;
+    if (localInt5 != 0) goto ExitFunction;
     if (*(char *)(uiContext + 0x6a8) != '\0') {
       ColorPointer = *(float **)(uiContext + 0x11670);
       *(UIByte *)(uiContext + 0x6a8) = 0;
@@ -130909,9 +130909,9 @@ LAB_18078c477:
       }
     }
   }
-FUN_18078c746:
+ExitFunction:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt70 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(EncryptionKey ^ (ulonglong)EncryptionBuffer);
 }
 
 
@@ -200142,29 +200142,29 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
       TransformMatrix4 = 0;
       TransformMatrix5 = 0;
       TransformMatrix6 = 0;
-      for (; ptrLocal3 != ptrResult; ptrLocal3 = (UIHandle *)*ptrLocal3) {
-        ProcessingStatus = ptrLocal3[2];
-        func_0x0001807673f0(ProcessingStatus,acStack_158);
-        if (acStack_158[0] != '\0') {
-          FUN_1807671a0(ProcessingStatus,uiContext + 0x11080,&fStack_150,&fStack_154);
-          if (0.0 < fStack_150) {
-            func_0x0001807673c0(ProcessingStatus,astackUInt110,0,0);
-            pfStack_168 = afStack_148;
-            localInt5 = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,astackUInt110,0);
-            if (localInt5 != 0) goto FUN_18078c746;
-            fStack_150 = fStack_150 * (1.0 - afStack_148[0]);
-            fStack_154 = fStack_154 * (1.0 - afStack_148[0]);
+      for (; ComponentPointer != ComponentIterator; ComponentPointer = (UIHandle *)*ComponentPointer) {
+        ComponentStatus = ComponentPointer[2];
+        func_0x0001807673f0(ComponentStatus,ValidationBuffer);
+        if (ValidationBuffer[0] != '\0') {
+          FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
+          if (0.0 < ScaleValue) {
+            func_0x0001807673c0(ComponentStatus,EventDataBuffer,0,0);
+            ColorPointer = ColorArray;
+            ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
+            if (ProcessingResult != 0) goto ExitFunction;
+            ScaleValue = ScaleValue * (1.0 - ColorArray[0]);
+            OpacityValue = OpacityValue * (1.0 - ColorArray[0]);
           }
-          if (0.001 <= fStack_154) {
-            stackUInt100 = 0;
-            stackUIntf8 = 0;
-            stackUIntf0 = 0;
-            stackUInte8 = 0;
-            stackUInte0 = 0;
-            stackUIntd8 = 0;
-            func_0x000180767410(ProcessingStatus,&stackUInt100);
-            FUN_180767800(&stackUInt140,&stackUInt100,fStack_154);
-            floatResult1 = floatResult1 + fStack_154;
+          if (0.001 <= OpacityValue) {
+            RenderTarget1 = 0;
+            RenderTarget2 = 0;
+            RenderTarget3 = 0;
+            RenderTarget4 = 0;
+            RenderTarget5 = 0;
+            RenderTarget6 = 0;
+            func_0x000180767410(ComponentStatus,&RenderTarget1);
+            FUN_180767800(&TransformMatrix1,&RenderTarget1,OpacityValue);
+            AlphaValue = AlphaValue + OpacityValue;
           }
         }
       }
@@ -200209,7 +200209,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
       } while (localInt5 == 0);
     }
   }
-  goto FUN_18078c746;
+  goto ExitFunction;
   while( true ) {
     uVar8 = (int)uVar9 + 1;
     uVar9 = (ulonglong)uVar8;
@@ -200218,13 +200218,13 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
 LAB_18078c440:
     ContextHandleData = *(longlong *)(*(longlong *)(uiBufferData + 0x6a0) + 0x30 + result0);
     if (((ContextHandleData != 0) && (*(char *)(ContextHandleData + 0x31) != '\0')) &&
-       (localInt5 = FUN_180748290(uiContext,uVar9), localInt5 != 0)) goto FUN_18078c746;
+       (localInt5 = FUN_180748290(uiContext,uVar9), localInt5 != 0)) goto ExitFunction;
   }
 LAB_18078c477:
   if (((dataSource != '\0') && (*(longlong *)(uiBufferData + 0x11838) != 0)) &&
      (((*(uint *)(uiContext + 0x11840) & 0x1000) != 0 &&
       (localInt5 = FUN_1807499f0(uiContext), localInt5 != 0x39)))) {
-    if (localInt5 != 0) goto FUN_18078c746;
+    if (localInt5 != 0) goto ExitFunction;
     if (*(char *)(uiContext + 0x6a8) != '\0') {
       ColorPointer = *(float **)(uiContext + 0x11670);
       *(UIByte *)(uiContext + 0x6a8) = 0;
@@ -200300,9 +200300,9 @@ LAB_18078c477:
       }
     }
   }
-FUN_18078c746:
+ExitFunction:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt70 ^ (ulonglong)astackUInt188);
+  ExecuteUIRenderTask(EncryptionKey ^ (ulonglong)EncryptionBuffer);
 }
 
 
