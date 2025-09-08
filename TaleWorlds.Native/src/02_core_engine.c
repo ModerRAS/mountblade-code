@@ -213427,7 +213427,24 @@ LAB_180179984:
     *CharacterCodeSize = MemoryBoundaryPointer;
     return SystemBufferSize;
   }
-FUN_180179a0a:
+/**
+ * @brief 处理系统上下文比较和内存池分配
+ * 
+ * 该函数负责处理系统上下文的比较操作和内存池分配，包括：
+ * - 系统上下文与字符代码的比较
+ * - 内存比较和剩余空间计算
+ * - 处理状态标志设置
+ * - 内存池块分配和数据初始化
+ * 
+ * @param SystemContextPtr 系统上下文指针
+ * @param CharacterCode 字符代码
+ * @param AdditionalParameter1 附加参数1
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180179a0a
+ */
+#define ProcessSystemContextComparisonAndMemoryPoolAllocation FUN_180179a0a
+ProcessSystemContextComparisonAndMemoryPoolAllocation:
   if ((SystemContextPtr == CharacterCode) || (RemainingSpace = memcmp(AdditionalParameter1,SystemContextPtr + 4,0x10), RemainingSpace < 0)) {
     ProcessingStatusFlag = 0;
   }
@@ -260784,7 +260801,19 @@ ProcessMemoryBoundaryAndCharacterCodeSizeManagement:
 LAB_180218784:
       MemoryAddressMaskPointer = *CharacterCodeSize;
       if (MemoryAddressMaskPointer <= (unsigned long long)MemoryBlockIndex[4]) {
-FUN_180218724:
+/**
+ * @brief 返回内存块索引加5的地址
+ * 
+ * 该函数是一个简单的辅助函数，用于返回内存块索引加5的地址。
+ * 主要用于内存布局计算和地址偏移处理。
+ * 
+ * @param MemoryBlockIndex 内存块索引
+ * @return long long* 内存块索引加5的地址
+ * 
+ * @note 原始函数名：FUN_180218724
+ */
+#define ReturnMemoryBlockIndexPlusFiveAddress FUN_180218724
+ReturnMemoryBlockIndexPlusFiveAddress:
         return MemoryBlockIndex + 5;
       }
     }
