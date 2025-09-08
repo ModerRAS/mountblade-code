@@ -1199,6 +1199,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 系统上下文偏移量常量定义
 #define SystemContextValidationOffset 0x28               // 系统上下文验证偏移量 - 系统上下文验证信息的存储位置
 #define SystemContextOperationOffset 0x30                 // 系统上下文操作偏移量 - 系统操作相关信息的存储位置
+#define SystemContextManagementOffset 0x98                // 系统上下文管理偏移量 - 系统管理相关信息的存储位置
 #define SystemContextDataOffset 0x38                      // 系统上下文数据偏移量 - 系统数据相关信息的存储位置
 #define SystemContextResourceOffset 0x40                  // 系统上下文资源偏移量 - 系统资源相关信息的存储位置
 #define SystemContextSizeOffset 0x20                      // 系统上下文大小偏移量 - 系统上下文数据结构大小的存储位置
