@@ -130871,7 +130871,31 @@ UIHandle FUN_1807463d0(longlong uiContext,int dataSource,UIHandle *targetBuffer)
 
 
 UIHandle
-FUN_180746460(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,UIHandle *resultPointer,
+/**
+ * @brief 处理UI上下文数据验证和事件管理
+ * 
+ * 该函数负责处理UI上下文的数据验证、事件管理和资源分配。主要功能包括：
+ * - 验证UI上下文的有效性
+ * - 处理UI事件数据和状态管理
+ * - 分配和管理UI资源内存
+ * - 执行UI回调函数
+ * - 处理数据源和目标缓冲区的操作
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和配置信息
+ * @param dataSource 数据源标识符，指定要处理的数据源
+ * @param targetBuffer 目标缓冲区，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，指定数据处理的容量
+ * @param resultPointer 结果指针，用于返回操作状态
+ * @param param_6 额外参数6，用于扩展功能
+ * @param param_7 额外参数7，用于扩展功能
+ * @param param_8 额外参数8，用于扩展功能
+ * @return UIHandle 返回处理状态句柄，表示操作的成功或失败状态
+ * 
+ * @note 原始函数名：FUN_180746460
+ * @warning 此函数包含复杂的UI事件处理和内存管理操作
+ * @see FUN_18078ae40, FUN_18078a600
+ */
+UIHandle ProcessUIContextDataValidationAndEventManagement(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,UIHandle *resultPointer,
              int *param_6,int *param_7,int *param_8)
 
 {
@@ -130880,10 +130904,10 @@ FUN_180746460(longlong uiContext,int dataSource,longlong targetBuffer,int buffer
   int uiCompareResult;
   UIHandle ProcessingStatus;
   longlong EventDataIndex;
-  int stackInt18;
-  int stackInt14;
-  int stackInt10;
-  int stackIntc;
+  int DataSourceIndex;
+  int StackParameter14;
+  int StackParameter10;
+  int StackParameterC;
   
   if ((*(char *)(uiContext + 8) == '\0') &&
      (ProcessingStatus = FUN_18078ae40(uiContext,*(UIDword *)(uiBufferData + 0x678),
@@ -200140,37 +200164,37 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
   StackFlag1 = EventCounter;
   StringCompareIndex = FUN_180741e10(*(UIHandle *)(uiContext + 0x1a0),MemoryAllocationOffset,&UNK_18095ad40);
   *(longlong *)(UIContextSourceHandle + 0x40) = StringCompareIndex;
-  if (stringCompareIndex != 0) {
-    ProcessingStatus = stringCompareIndex + 0xfU & 0xfffffffffffffff0;
-    *(ulonglong *)(SourceHandle + 0x20) = ProcessingStatus;
-    if (unmodifiedBPL == '\0') {
-      *(ulonglong *)(SourceHandle + 0x28) = ProcessingStatus;
-      *(UIHandle *)(SourceHandle + 0x68) = *(UIHandle *)(SourceHandle + 0x60);
-      *(UIHandle *)(SourceHandle + 0x48) = preservedRegister12;
+  if (StringCompareIndex != 0) {
+    ContextProcessingStatus = StringCompareIndex + 0xfU & 0xfffffffffffffff0;
+    *(ulonglong *)(UIContextSourceHandle + 0x20) = ContextProcessingStatus;
+    if (BranchFlag == '\0') {
+      *(ulonglong *)(UIContextSourceHandle + 0x28) = ContextProcessingStatus;
+      *(UIHandle *)(UIContextSourceHandle + 0x68) = *(UIHandle *)(UIContextSourceHandle + 0x60);
+      *(UIHandle *)(UIContextSourceHandle + 0x48) = PreservedContextHandle;
     }
     else {
-      StackData2 = 1;
-      StackData1 = eventProcessingCounter;
-      stringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),localInt7,&UNK_18095ad40,
-                            (int)preservedRegister12 + 0x58);
-      *(longlong *)(SourceHandle + 0x48) = stringCompareIndex;
-      if (stringCompareIndex == 0) {
+      StackFlag2 = 1;
+      StackFlag1 = EventCounter;
+      StringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),MemoryAllocationOffset,&UNK_18095ad40,
+                            (int)PreservedContextHandle + 0x58);
+      *(longlong *)(UIContextSourceHandle + 0x48) = StringCompareIndex;
+      if (StringCompareIndex == 0) {
         return 0x26;
       }
-      *(ulonglong *)(SourceHandle + 0x28) = stringCompareIndex + 0xfU & 0xfffffffffffffff0;
-      loopCounter = InitializeUIContextState(SourceHandle + 0x68,0);
-      if ((int)loopCounter != 0) {
-        return loopCounter;
+      *(ulonglong )(UIContextSourceHandle + 0x28) = StringCompareIndex + 0xfU & 0xfffffffffffffff0;
+      EventLoopCounter = InitializeUIContextState(UIContextSourceHandle + 0x68,0);
+      if ((int)EventLoopCounter != 0) {
+        return EventLoopCounter;
       }
     }
-    StackData2 = 1;
-    ProcessingStatus = preservedRegister15 >> 1 & 0x7fffffff;
-    eventProcessingStatus = (uint)ProcessingStatus;
-    StackData1 = eventProcessingCounter;
-    stringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
-                          (((uint)(preservedRegister15 >> 2) & 0x3fffffff) + eventProcessingStatus) * 8 + 0x10,&UNK_18095ad40,
+    StackFlag2 = 1;
+    ContextProcessingStatus = PreservedSystemFlags >> 1 & 0x7fffffff;
+    EventProcessingStatus = (uint)ContextProcessingStatus;
+    StackFlag1 = EventCounter;
+    StringCompareIndex = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
+                          (((uint)(PreservedSystemFlags >> 2) & 0x3fffffff) + EventProcessingStatus) * 8 + 0x10,&UNK_18095ad40,
                           0x6b);
-    *(longlong *)(SourceHandle + 0x50) = stringCompareIndex;
+    *(longlong *)(UIContextSourceHandle + 0x50) = StringCompareIndex;
     if (stringCompareIndex != 0) {
       *(ulonglong *)(SourceHandle + 0x30) = stringCompareIndex + 0xfU & 0xfffffffffffffff0;
       iterationCount = ProcessingStatus;
