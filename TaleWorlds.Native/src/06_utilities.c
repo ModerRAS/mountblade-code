@@ -39267,7 +39267,7 @@ void ProcessExceptionState(void* exceptionContext, int64_t contextData)
   *(DataWord *)(contextData + TemporaryExceptionHandlerOffset80) = 0;
   
   // 重置为默认异常处理器
-  *(DataBuffer *)(contextData + 0x68) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(contextData + TemporaryExceptionHandlerOffset68) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -39286,7 +39286,7 @@ void ResetExceptionHandlerToDefault(void* resetContext, int64_t contextData)
 
 {
   // 重置异常处理器为默认状态
-  *(uint8_t **)(contextData + 0x68) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(contextData + TemporaryExceptionHandlerOffset68) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -39526,8 +39526,8 @@ void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t data
 void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + DataBufferOffset138) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + DataBufferOffset140) != 0) {
+  *(DataBuffer *)(dataBuffer + DefaultExceptionHandlerOffset138) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + DefaultExceptionHandlerOffset140) != 0) {
       TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + DataBufferOffset140) = 0;
