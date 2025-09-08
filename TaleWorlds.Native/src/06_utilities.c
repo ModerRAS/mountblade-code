@@ -29564,7 +29564,7 @@ uint64_t GetSystemValidationContext(void)
   dataFlags = 0;
   validationOutcome = 0;
   if (InputAccumulator < InputAccumulatorMinValue) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return (uint64_t)registerValueEDI;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -30242,7 +30242,7 @@ DataBuffer CleanupDataResourcesA0(void)
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x74);
@@ -30253,7 +30253,7 @@ DataBuffer CleanupDataResourcesA0(void)
   if (*(uint *)(registerContext + 8) < 0x7d) {
     return 0;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   dataContext = (int64_t *)*registerContext;
@@ -30316,7 +30316,7 @@ DataBuffer ResetDataProcessorA1(void)
   if (*(uint *)(registerContext + 8) < 0x7d) {
     return 0;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   dataContext = (int64_t *)*registerContext;
@@ -30382,7 +30382,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x74);
@@ -30392,7 +30392,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   if (*(uint *)(registerContext + 8) < 0x7d) {
     return 0;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -30671,7 +30671,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  securityCheckResult = 0x1c;
+  securityCheckResult = SystemOperationCode0x1c;
   operationResult = 0;
   if (*(uint *)(exceptionHandlerContext + 8) < 0x82) {
     if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
@@ -30820,24 +30820,24 @@ uint64_t ProcessUtilityDataValidation(void)
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   validationStatus = OperateDataO0(*registerContext,systemContext + 0xb0,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  securityCheckResult = 0x1c;
+  securityCheckResult = SystemOperationCode0x1c;
   validationOutcome = 0;
   if (*(uint *)(registerContext + 8) < 0x82) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -30869,7 +30869,7 @@ ValidateDataWithDirectAllocation:
     *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~validationStatus;
   }
   else {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
@@ -31022,7 +31022,7 @@ DataProcessSectionA:
     *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~validationStatus;
   }
   else {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
@@ -31136,10 +31136,10 @@ uint64_t ExecuteUtilityDataCheck(void)
   char stackDataBuffer;
   uint stackDataSize;
   
-  securityCheckResult = 0x1c;
+  securityCheckResult = SystemOperationCode0x1c;
   validationOutcome = 0;
   if (*(uint *)(registerContext + 8) < 0x82) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -31171,7 +31171,7 @@ DataProcessLabelA:
     *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~memoryRegionBase;
   }
   else {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
@@ -33291,27 +33291,27 @@ uint64_t ProcessSystemDataD0(void)
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     dataContext = *exceptionHandlerContextPointer;
     if (dataContext == 0) {
-      securityCheckResult = 0x1c;
+      securityCheckResult = SystemOperationCode0x1c;
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
 OperationLabelA:
-      securityCheckResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,StackFrameContext + 0x77,systemContextD,systemContextD,0);
+      securityCheckResult = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,StackFrameContext + StackFrameValidationOffset,systemContextD,systemContextD,0);
     }
     else {
-      *(DataWord *)(StackFrameContext + 0x7f) = 0;
-      securityCheckResult = AllocateMemory(dataContext,StackFrameContext + 0x7f);
+      *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
+      securityCheckResult = AllocateMemory(dataContext,StackFrameContext + StackFrameStatusOffset);
       if (securityCheckResult == 0) {
-        if ((uint64_t)*(uint *)(StackFrameContext + 0x7f) + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointBufferSizeCheck;
+        if ((uint64_t)*(uint *)(StackFrameContext + StackFrameStatusOffset) + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointBufferSizeCheck;
         securityCheckResult = 0x11;
       }
     }
     if (securityCheckResult == 0) {
-      *(uint *)(StackFrameContext + 0x7f) = (uint)(*(char *)(StackFrameContext + 0x77) != '\0');
-      *(uint *)(StackFrameContext + -0x29) = (uint)(*(char *)(StackFrameContext + 0x77) == '\0');
+      *(uint *)(StackFrameContext + StackFrameStatusOffset) = (uint)(*(char *)(StackFrameContext + StackFrameValidationOffset) != '\0');
+      *(uint *)(StackFrameContext + -0x29) = (uint)(*(char *)(StackFrameContext + StackFrameValidationOffset) == '\0');
       securityCheckResult = 0;
     }
     else {
-      *(DataWord *)(StackFrameContext + 0x7f) = 0;
+      *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
       *(uint *)(StackFrameContext + -0x29) = systemContextD;
       if (securityCheckResult == 0) {
         securityCheckResult = dataFlags;
@@ -33321,12 +33321,12 @@ OperationLabelA:
   else {
 OperationLabelB:
     *(uint *)(StackFrameContext + -0x29) = systemContextD;
-    *(DataWord *)(StackFrameContext + 0x7f) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -33392,42 +33392,42 @@ OperationLabelD:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
@@ -33499,7 +33499,7 @@ ValidationContextHandler:
   }
   memoryRegionBase = validationOutcome;
   if (0x1d < (int)registerContext[8] - 0x52U) goto ProcessCheckpointValidationError;
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     memoryRegionBase = 0x1c;
     goto ProcessCheckpointValidationError;
   }
@@ -33550,7 +33550,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < validationStatus) {
     dataContext = *registerContext;
-    *(DataWord *)(StackFrameContext + 0x7f) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
     memoryRegionBase = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
@@ -33645,42 +33645,42 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if ((int)DestinationContext != 0) {
     return DestinationContext & SystemCleanupFlag;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
@@ -33757,7 +33757,7 @@ ValidationContextHandler:
     operationResult = DestinationContext & SystemCleanupFlag;
     goto ProcessCheckpointValidationError;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     operationResult = 0x1c;
     goto ProcessCheckpointValidationError;
   }
@@ -33807,7 +33807,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryRegionBase) {
     dataContext = *registerContext;
-    *(DataWord *)(StackFrameContext + 0x7f) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
     operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
@@ -33902,42 +33902,42 @@ uint64_t ValidateSystemDataIntegrity(void)
   if ((int)DestinationContext != 0) {
     return DestinationContext & SystemCleanupFlag;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x38);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x3c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x4c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x40);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ValidateDataWithSecurityCheckA2(*registerContext,dataPointer + 0x44);
@@ -34014,7 +34014,7 @@ ValidationContextHandler:
     operationResult = DestinationContext & SystemCleanupFlag;
     goto ProcessCheckpointValidationError;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     operationResult = 0x1c;
     goto ProcessCheckpointValidationError;
   }
@@ -34064,7 +34064,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryRegionBase) {
     dataContext = *registerContext;
-    *(DataWord *)(StackFrameContext + 0x7f) = 0;
+    *(DataWord *)(StackFrameContext + StackFrameStatusOffset) = 0;
     operationResult = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
@@ -35295,7 +35295,7 @@ ValidationDataHandler:
     return validationStatus;
   }
   operationResult = 0;
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -36110,7 +36110,7 @@ DataBuffer ReturnFixedStatusCodeA1(void)
     operationResult = OperateDataO0(systemDataBuffer,DestinationContext + 0x54,8);
   }
   if ((int)operationResult == 0) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x48);
@@ -36154,7 +36154,7 @@ DataBuffer ValidateSystemStatusA0(void)
     }
   }
   if ((int)operationResult == 0) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x48);
@@ -36185,7 +36185,7 @@ DataBuffer ExecuteDataSynchronizationA1(void)
   DataBuffer *registerContext;
   int64_t DestinationContext;
   
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   systemDataBuffer = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x48);
@@ -36446,14 +36446,14 @@ uint64_t ProcessSystemValidation(void)
       StackDataBufferD = StackDataBufferD & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryRegionBase != 0) {
     return (uint64_t)memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -36552,14 +36552,14 @@ uint64_t ValidateSystemIntegrity(void)
       StackDataBufferD = StackDataBufferD & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryRegionBase != 0) {
     return (uint64_t)memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -36647,14 +36647,14 @@ uint64_t ProcessSystemBuffer(void)
       StackDataBufferD = StackDataBufferD & -memoryRegionBase;
     } while ((int)operationResult < (int)dataFlags);
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   memoryRegionBase = GetMemoryAddressA0(*registerContext,systemContext + 0x48);
   if (memoryRegionBase != 0) {
     return (uint64_t)memoryRegionBase;
   }
-  if (*(int *)(registerContext[1] + 0x18) != 0) {
+  if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*registerContext;
@@ -36864,7 +36864,7 @@ uint64_t InitializeSystemComponentsA0(void)
       systemMemoryBuffer = floatResultA;
     }
     else {
-      securityCheckResult = 0x1c;
+      securityCheckResult = SystemOperationCode0x1c;
     }
   }
   if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(systemMemoryBuffer,contextPointer + 0x38,0), (int)securityCheckResult == 0)) &&
