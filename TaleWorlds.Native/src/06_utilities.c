@@ -19339,8 +19339,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     if (resourceDataPointer == 0) {
       return ResourceNotFoundCode;
     }
-    validationBuffer[0] = 0;
-    operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + SystemContextOffset28,validationBuffer);
+    validationDataBuffer[0] = 0;
+    operationResult = ExecuteSystemOperationA0(dataBuffer,resourceHandle,systemContext + SystemContextOffset28,validationDataBuffer);
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
     }
@@ -120241,7 +120241,21 @@ void HandleExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x50偏移异常上下文并清理资源
+ * 
+ * 该函数负责处理数据缓冲区0x50偏移量处的异常上下文，执行异常处理操作
+ * 同时清理相关资源，包括数据缓冲区和异常处理器回调
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809124f0
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常并清理资源
+ */
+void HandleExceptionContextAtOffset50WithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
