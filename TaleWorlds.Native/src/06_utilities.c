@@ -17225,10 +17225,10 @@ DataBuffer ConfigureUtilityDataA1(int64_t configPointer,int64_t dataPointer)
     if (systemStackPointer != 0) {
       systemStackPointer = systemStackPointer + -8;
     }
-    if (*(int64_t *)(systemStackPointer + 0x18) == 0) {
+    if (*(int64_t *)(systemStackPointer + SystemDataArrayPointerOffset) == 0) {
       return ResourceNotFoundCode;
     }
-    configurationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(*(int64_t *)(systemStackPointer + 0x18) + 0xd0),
+    configurationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(*(int64_t *)(systemStackPointer + SystemDataArrayPointerOffset) + SystemResourceOffset),
                                 configPointer + 0x18);
     if ((int)configurationStatus == 0) {
       configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + SystemEventOffset),configPointer);
@@ -17275,7 +17275,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
       adjustedStackPointer = systemContextBuffer - 8;
     }
     entryOffset = baseOffset;
-    if (0 < *(int *)(adjustedStackPointer + 0x28)) {
+    if (0 < *(int *)(adjustedStackPointer + SystemDataArraySizeOffset)) {
       do {
         listEntry = *(int64_t *)(adjustedStackPointer + 0x20) + entryOffset;
         memoryResourcePointer = *(int64_t *)(listEntry + ExceptionHandlerCallbackOffset10);
@@ -100017,9 +100017,21 @@ void Unwind_18090eb00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eb10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置器B10
+ * 
+ * 该函数负责重置异常处理器状态，将默认异常处理器B设置到指定位置
+ * 主要用于异常处理后的状态恢复和清理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090eb10
+ */
+void ResetExceptionHandlerB10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
+  // 设置默认异常处理器B到指定位置
   **(DataBuffer **)(dataBuffer + 0x128) = &DefaultExceptionHandlerB;
   return;
 }
@@ -100998,7 +101010,21 @@ void Unwind_18090eea0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eeb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理函数
+ * 
+ * 该函数负责管理内存资源的引用计数，包括内存块的分配、释放和引用关系更新
+ * 主要功能：
+ * - 检查内存资源指针的有效性
+ * - 计算内存块偏移量
+ * - 更新引用计数
+ * - 处理内存资源的释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090eeb0
+ */
+void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -101034,7 +101060,19 @@ void Unwind_18090eeb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eec0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据缓冲区处理函数EEC0
+ * 
+ * 该函数负责处理数据缓冲区，调用数据缓冲区处理函数A2
+ * 主要功能：
+ * - 从数据缓冲区获取地址偏移量
+ * - 调用数据缓冲区处理函数A2进行具体处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090eec0
+ */
+void ProcessDataBufferEEC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataBufferA2(*(int64_t *)(dataBuffer + 0x88) + 0x80);

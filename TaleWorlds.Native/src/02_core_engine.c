@@ -59991,7 +59991,7 @@ void CleanupSystemDataStructure(long long CharacterCode
  * 
  * 原始函数名为ProcessMemoryAddressMaskPointer，CalculateAndTransformFloatData
  */
-void CalculateAndTransformFloatData(float *CharacterCode,float *CharacterCodeSize
+void CalculateAndTransformFloatData(float *CharacterCode,float *CharacterCodeSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -123840,8 +123840,8 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Cha
                         (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
       MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
       MatrixTransformMultiplier = CharacterContextFloatPtr[1];
-      CalculatedDistance = pSystemContextPrimaryFloat[2];
-      FloatOffsetValue = pSystemContextPrimaryFloat[3];
+      CalculatedDistance = CharacterContextFloatPtr[2];
+      FloatOffsetValue = CharacterContextFloatPtr[3];
       *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
       *(float *)(StackFrameAddressPointer + -0x55) = MatrixTransformMultiplier;
       *(float *)(StackFrameAddressPointer + -0x51) = CalculatedDistance;
@@ -157136,8 +157136,8 @@ void ProcessSystemValidationFDB(void)
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
     MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
     MatrixTransformMultiplier = CharacterContextFloatPtr[1];
-    CalculatedDistance = pSystemContextPrimaryFloat[2];
-    FloatOffsetValue = pSystemContextPrimaryFloat[3];
+    CalculatedDistance = CharacterContextFloatPtr[2];
+    FloatOffsetValue = CharacterContextFloatPtr[3];
   }
   if (BufferStatus == 0) {
     StackConfigurationData30 = 0;
@@ -280469,8 +280469,8 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
         CharacterContextFloatPtr = (float *)(CharacterCode + (CharacterTableIndex + 0x82) * 0x10);
         MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
         MatrixTransformMultiplier = CharacterContextFloatPtr[1];
-        CalculatedDistance = pSystemContextPrimaryFloat[2];
-        FloatOffsetValue = pSystemContextPrimaryFloat[3];
+        CalculatedDistance = CharacterContextFloatPtr[2];
+        FloatOffsetValue = CharacterContextFloatPtr[3];
         SystemContextPrimaryFloat8 = FloatOffsetValue * SecondaryFloatValue;
         ContextSecondaryFloat0 = MatrixTransformMultiplier * ContextPrimaryFloat9;
         ContextSecondaryFloat2 = FloatOffsetValue * ContextSecondaryFloat1;
@@ -280489,12 +280489,12 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
           return SystemBufferSize;
         }
       }
-      if ((-1 < CurrentCharacter0) && (CurrentCharacter0 == IntegerValue9)) {
-        pSystemContextPrimaryFloat = (float *)(CharacterCode + (long long)CurrentCharacter0 * 0x10);
+      if ((-1 < CurrentCharacter0) && (CurrentCharacter0 == SystemRegister)) {
+        CharacterContextFloatPtr = (float *)(CharacterCode + (long long)CurrentCharacter0 * 0x10);
         MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
         MatrixTransformMultiplier = CharacterContextFloatPtr[1];
-        CalculatedDistance = pSystemContextPrimaryFloat[2];
-        FloatOffsetValue = pSystemContextPrimaryFloat[3];
+        CalculatedDistance = CharacterContextFloatPtr[2];
+        FloatOffsetValue = CharacterContextFloatPtr[3];
         SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + MatrixTransformMultiplier1 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier - FloatOffsetValue * ContextPrimaryFloat9);
         ContextPrimaryFloat9 = FloatOffsetValue * SecondaryFloatValue * 1.0 + MatrixTransformMultiplier1 * ContextPrimaryFloat9 * 1.0 + (ContextSecondaryFloat3 * CalculatedDistance - MatrixTransformMultiplier * ContextSecondaryFloat1);
         ContextSecondaryFloat1 = MatrixTransformMultiplier * ContextPrimaryFloat9 * 1.0 + MatrixTransformMultiplier1 * ContextSecondaryFloat1 * 1.0 + (ContextSecondaryFloat3 * FloatOffsetValue - CalculatedDistance * SecondaryFloatValue);
@@ -280507,9 +280507,9 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
     SystemBufferSize[3] = ContextSecondaryFloat1;
     return SystemBufferSize;
   }
-  PrimaryProcessingStatusFlag = (void *)(CharacterCode + SystemDataTablePointer * 0x10);
-  ProcessingStatusFlag = PrimaryProcessingStatusFlag[1];
-  *(void *)SystemBufferSize = *PrimaryProcessingStatusFlag;
+  PrimaryStatusFlagPtr = (void *)(CharacterCode + CharacterTableIndex * 0x10);
+  ProcessingStatusFlag = PrimaryStatusFlagPtr[1];
+  *(void *)SystemBufferSize = *PrimaryStatusFlagPtr;
   *(void *)(SystemBufferSize + 2) = ProcessingStatusFlag;
   return SystemBufferSize;
 }
