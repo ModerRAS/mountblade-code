@@ -153,6 +153,18 @@
 #define StackProcessingValue98 SystemOperationFlag98        // 栈处理值98
 #define StackProcessingValueA8 CoreEngineValueA8            // 栈处理值A8
 
+// 新增栈变量语义化宏定义
+#define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
+#define StackFloatValue48 fStack0000000000000048             // 栈浮点值48
+#define StackFloatValue58 fStack0000000000000058             // 栈浮点值58
+#define StackFloatValue7c fStack000000000000007c             // 栈浮点值7c
+#define StackFloatValue118 fStack0000000000000118            // 栈浮点值118
+#define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
+#define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
+#define StackValidationFlag8 &stack0x00000108                 // 栈验证标志8
+#define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
+#define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
+
 // FUN_函数语义化宏定义
 /**
  * @brief 重置字符处理系统
