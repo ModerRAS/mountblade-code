@@ -23466,7 +23466,7 @@ SecurityValidationLabel:
     dataProcessingBufferA = *(uint *)(dataBuffer + ExceptionHandlerCallbackOffset10);
     dataProcessingBufferB = *(DataWord *)(dataBuffer + DataBufferContextOffset);
     dataProcessingBufferC = *(int *)(dataBuffer + FloatValueOffset);
-    dataProcessingBufferD = *(DataWord *)(dataBuffer + 0x1c);
+    dataProcessingBufferD = *(DataWord *)(dataBuffer + DataBufferProcessingOffset);
     processingIterationIndex = 0;
     dataProcessingContext = &SystemConfigurationDataTable;
     dataProcessingBufferF = 0;
@@ -23488,7 +23488,7 @@ SecurityValidationLabel:
   }
   if (((operationFlagB != '\0') || (*(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x34) == 0)) &&
      (operationStatus = ConfigureSystemParametersA0(operationBase,dataBuffer,operationFlagA), operationStatus == 0)) {
-    for (operationStatus = 0; (-1 < operationStatus && (operationStatus < *(int *)(dataBuffer + 0x48))); operationStatus = operationStatus + 1) {
+    for (operationStatus = 0; (-1 < operationStatus && (operationStatus < *(int *)(dataBuffer + DataBufferStatusOffset))); operationStatus = operationStatus + 1) {
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
       if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
@@ -28754,7 +28754,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
   
   memoryOffset = 0;
   operationResult = (ushort)(*(int *)(dataBuffer + ValidationResultOffset) != 0);
-  if ((*(int *)(dataBuffer + ValidationDataOffset) != 0) || (*(int *)(dataBuffer + 0x30) != 0)) {
+  if ((*(int *)(dataBuffer + ValidationDataOffset) != 0) || (*(int *)(dataBuffer + DataBufferValidationOffset) != 0)) {
     operationResult = operationResult | 2;
   }
   validationStatus = operationResult | 4;
