@@ -12664,8 +12664,8 @@ void CoreEngineInitializePhysicsConfig(void)
     ConnectionPoolActive = *(bool *)((int64_t)NextConnection + SystemNodeStatusOffset);
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemConnectionComparisonData,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
-    MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
+    PhysicsConnectionMemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
+    CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,PhysicsConnectionMemoryOffset + SystemMemoryAllocationOffset,PhysicsConnectionMemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
   CurrentConnection[6] = SystemNetworkConnectionPoolStateManagerIdentifierPrimary;
@@ -221799,7 +221799,12 @@ void EncodeSystemCharacterData(uint64_t CharacterCode,uint64_t *CharacterCodeSiz
 
 
 
-86eb0(voidvoid FUN_180186eb0(void
+/**
+ * @brief 初始化字符表指针
+ * 
+ * 为字符表分配内存并初始化，用于字符编码转换和处理
+ */
+void InitializeCharacterTablePointer(void)
 {
   long long PrimaryDataSize;
   
