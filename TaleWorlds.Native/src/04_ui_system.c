@@ -84470,18 +84470,30 @@ LAB_180715d56:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807160c0(UIHandle uiContext,int dataSource,int targetBuffer)
-void FUN_1807160c0(UIHandle uiContext,int dataSource,int targetBuffer)
-
+ /**
+ * @brief 处理UI渲染上下文更新
+ * 
+ * 该函数负责处理UI渲染上下文的更新操作，包括：
+ * - 加密密钥的异或操作
+ * - 数据源和目标缓冲区的计算
+ * - UI渲染状态的更新
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区标识
+ * 
+ * @note 原始函数名：FUN_1807160c0
+ */
+void ProcessUIContextUpdate(UIHandle uiContext,int dataSource,int targetBuffer)
 {
-  UIByte astackUInt58 [8];
-  UIHandle stackUInt50;
-  longlong stackLong38;
-  ulonglong stackUInt30;
+  UIByte encryptionBuffer [8];
+  UIHandle contextHandle;
+  longlong calculatedOffset;
+  ulonglong xorResult;
   
-  stackUInt30 = XorEncryptionKey ^ (ulonglong)astackUInt58;
-  stackLong38 = (longlong)(dataSource * targetBuffer) * 4;
-  stackUInt50 = uiContext;
+  xorResult = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  calculatedOffset = (longlong)(dataSource * targetBuffer) * 4;
+  contextHandle = uiContext;
                      WARNING: Subroutine does not return
   ProcessUIRenderingUpdate();
 }
