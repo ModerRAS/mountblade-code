@@ -38232,8 +38232,8 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
     }
     FormatSystemResourceOutput(LocalSystemOffset,(long long)SystemCode,&SystemFormatString,&LocalStackVariable18);
     SearchSystemResourceString(ConfigurationDataPointer,LocalSystemOffset);
-    if (LocalSystemOffset != 0) {
-        SystemCleanupFunction(LocalSystemOffset);
+    if (LoggerCleanupResult != 0) {
+        SystemCleanupFunction(LoggerCleanupResult);
     }
   }
     ValidateSystemChecksum(SystemContextValue ^ (ulong long)aconfigurationFlags478);
@@ -39031,10 +39031,10 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
     do {
       SystemCalculatedBufferPointer = *(long long **)(LoggerCleanupIndex + LoggerIteratorOffset);
       if (SystemCalculatedBufferPointer != (long long *)0x0) {
-        LocalSystemOffset = __RTCastToVoid(SystemCalculatedBufferPointer);
+        LoggerCleanupResult = __RTCastToVoid(SystemCalculatedBufferPointer);
         (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer,0);
-        if (LocalSystemOffset != 0) {
-            SystemCleanupFunction(LocalSystemOffset);
+        if (LoggerCleanupResult != 0) {
+            SystemCleanupFunction(LoggerCleanupResult);
         }
       }
       *(void* *)(localDataIndex + *PrimaryResourceHandle) = 0;
@@ -39050,10 +39050,10 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
     do {
       SystemCalculatedBufferPointer = *(long long **)(LocalSystemOffset + localDataIndex);
       if (SystemCalculatedBufferPointer != (long long *)0x0) {
-        LocalSystemOffset = __RTCastToVoid(SystemCalculatedBufferPointer);
+        LoggerCleanupResult = __RTCastToVoid(SystemCalculatedBufferPointer);
         (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer,0);
-        if (LocalSystemOffset != 0) {
-            SystemCleanupFunction(LocalSystemOffset);
+        if (LoggerCleanupResult != 0) {
+            SystemCleanupFunction(LoggerCleanupResult);
         }
       }
       *(void* *)(localDataIndex + *resourcePoolPointer) = 0;
@@ -39069,10 +39069,10 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
     do {
       SystemCalculatedBufferPointer = *(long long **)(LocalSystemOffset + localDataIndex);
       if (SystemCalculatedBufferPointer != (long long *)0x0) {
-        LocalSystemOffset = __RTCastToVoid(SystemCalculatedBufferPointer);
+        LoggerCleanupResult = __RTCastToVoid(SystemCalculatedBufferPointer);
         (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer,0);
-        if (LocalSystemOffset != 0) {
-            SystemCleanupFunction(LocalSystemOffset);
+        if (LoggerCleanupResult != 0) {
+            SystemCleanupFunction(LoggerCleanupResult);
         }
       }
       *(void* *)(localDataIndex + *SystemResourceOffsetPointer) = 0;
@@ -44629,7 +44629,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
     }
     LocalSystemOffset = SystemMemoryAllocationHandle;
     resourceCreationFlags = fwrite(SystemMemoryAllocationSize,1,(long long)SystemMemoryAllocationCount,SystemMemoryAllocationHandle);
-    if (LocalSystemOffset != 0) {
+    if (LoggerCleanupResult != 0) {
       fclose(LocalSystemOffset);
       SystemMemoryAllocationHandle = 0;
       LOCK();
@@ -44655,7 +44655,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
     SystemOperationCounter = 0;
     memoryAllocationBuffer = &SystemMemoryAllocatorPointer;
     ResourceAddressPointer = resourceEntryPointer;
-    if (LocalSystemOffset != 0) {
+    if (LoggerCleanupResult != 0) {
       resourceCreationFlags = fclose(LocalSystemOffset);
       SystemMemoryAllocationOffsetUndenary = 0;
       LOCK();
@@ -50280,8 +50280,8 @@ ResourceCreationComplete:
     } while (LocalSystemOffset != ResourceDataIndex);
     LocalSystemOffset = *systemDataIndexPtr;
   }
-  if (LocalSystemOffset != 0) {
-      SystemCleanupFunction(LocalSystemOffset);
+  if (LoggerCleanupResult != 0) {
+      SystemCleanupFunction(LoggerCleanupResult);
   }
   *systemDataIndexPtr = ResourceMemoryOffset;
   systemDataIndexPtr[1] = SystemThreadHandle + 0x1a8;
@@ -59565,7 +59565,7 @@ ulong long InitializeSystemResourceContext(long long SystemResourceManager)
           SystemIntegerPointer = (int *)(*(long long *)(SystemThreadFlags + *(long long *)(SystemResourceManager + 0x1b8)) + 0x3a8);
           *SystemIntegerPointer = *SystemIntegerPointer + 1;
         }
-        else if (LocalSystemOffset != 0) {
+        else if (LoggerCleanupResult != 0) {
           *(long long *)(ResourceMemoryOffset + 0x340) = (long long)*(int *)(LocalSystemOffset + 0x224);
         }
       }
