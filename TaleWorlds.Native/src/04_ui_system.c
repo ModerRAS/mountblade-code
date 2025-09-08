@@ -10643,7 +10643,7 @@ LAB_1806575f7:
         pathOffset = *(longlong *)(targetBuffer + 8) - (longlong)pathCharacterPtr;
         do {
           isCharacterMatch = *pathCharacterPtr;
-          characterCode = (uint)pathCharacterPtr[ContextHandleData];
+          characterCode = (uint)pathCharacterPtr[pathOffset];
           if (isCharacterMatch != characterCode) break;
           pathCharacterPtr = pathCharacterPtr + 1;
         } while (characterCode != 0);
