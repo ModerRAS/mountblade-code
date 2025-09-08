@@ -767,6 +767,28 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * @warning 如果初始化失败，后续的迭代处理将无法正常进行
  * @see HandleNetworkProtocolStackData, VerifyNetworkConnectionHandleSecurity
  */
+/**
+ * @brief 初始化网络迭代上下文
+ * 
+ * 该函数负责初始化网络连接的迭代上下文，为后续的网络操作提供必要的状态信息。
+ * 函数会验证连接上下文的有效性、结果数据的完整性，并根据迭代控制标志决定是否进行初始化。
+ * 
+ * @param NetworkConnectionContext 网络连接上下文，包含网络连接的状态和配置信息
+ * @param ValidationResultData 验证结果数据，包含连接验证的结果信息
+ * @param IterationControlFlag 迭代控制标志，用于控制是否进行迭代初始化
+ * @return uint32_t 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 1: 初始化失败（连接上下文无效）
+ *         - 2: 初始化失败（验证结果数据无效）
+ *         - 3: 初始化失败（迭代控制标志未设置）
+ * 
+ * @retval NetworkValidationSuccess 初始化成功
+ * @retval NetworkValidationFailure 初始化失败
+ * 
+ * @note 此函数是网络迭代操作的基础初始化函数，必须在执行网络迭代前调用
+ * @warning 如果连接上下文或验证结果数据无效，将导致初始化失败
+ * @see HandleNetworkProtocolStackData, ValidateNetworkConnectionSecurity
+ */
 uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag)
 {
   // 网络迭代上下文初始化变量
@@ -774,24 +796,27 @@ uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int
   uint32_t ConnectionValidationResult;                        // 连接验证结果
   uint32_t DataValidationResult;                           // 数据验证结果
   
-  // 初始化验证结果
+  // 初始化所有验证结果为失败状态
   ContextInitializationResult = NetworkValidationFailure;
   ConnectionValidationResult = NetworkValidationFailure;
   DataValidationResult = NetworkValidationFailure;
   
-  // 验证连接上下文有效性
+  // 验证网络连接上下文的有效性
+  // 只有当连接上下文不为零时才认为有效
   if (NetworkConnectionContext != 0) {
     ConnectionValidationResult = NetworkValidationSuccess;
   }
   
-  // 验证结果数据有效性
+  // 验证验证结果数据的有效性
+  // 确保验证结果数据包含有效信息
   if (ValidationResultData != 0) {
     DataValidationResult = NetworkValidationSuccess;
   }
   
-  // 检查迭代控制标志
+  // 检查迭代控制标志以决定是否进行初始化
+  // 只有当迭代控制标志被设置时才进行初始化
   if (IterationControlFlag != 0) {
-    // 如果验证都成功，则初始化成功
+    // 只有当所有验证都成功时，才认为初始化成功
     if (ConnectionValidationResult == NetworkValidationSuccess && 
         DataValidationResult == NetworkValidationSuccess) {
       ContextInitializationResult = NetworkValidationSuccess;
@@ -827,22 +852,25 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int
   uint32_t StackValidationResult;                         // 协议栈验证结果
   uint32_t ContextProcessingResult;                       // 上下文处理结果
   
-  // 初始化处理结果
+  // 初始化所有处理结果为失败状态
   ProtocolProcessingResult = NetworkValidationFailure;
   StackValidationResult = NetworkValidationFailure;
   ContextProcessingResult = NetworkValidationFailure;
   
-  // 验证协议栈缓冲区有效性
+  // 验证协议栈缓冲区的有效性
+  // 检查缓冲区指针不为空且缓冲区内容有效
   if (NetworkProtocolStackBuffer != NULL && *NetworkProtocolStackBuffer != 0) {
     StackValidationResult = NetworkValidationSuccess;
   }
   
-  // 验证上下文数据有效性
+  // 验证网络上下文数据的有效性
+  // 确保上下文数据包含有效信息
   if (NetworkContextData != 0) {
     ContextProcessingResult = NetworkValidationSuccess;
   }
   
-  // 如果验证都成功，则处理成功
+  // 只有当所有验证都成功时，才认为协议处理成功
+  // 这是简化实现，实际应用中需要进行更复杂的协议处理
   if (StackValidationResult == NetworkValidationSuccess && 
       ContextProcessingResult == NetworkValidationSuccess) {
     ProtocolProcessingResult = NetworkValidationSuccess;
