@@ -286579,6 +286579,100 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ExecuteMemoryAddressMaskValidation FUN_1801ca670
 
 /**
+ * @brief 执行函数地址调用和状态处理
+ * 
+ * 该函数负责执行函数地址调用并处理相关的状态信息
+ * 
+ * @param FunctionAddress 函数地址
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016d200
+ */
+#define ExecuteFunctionAddressCallAndStatusProcessing FUN_18016d200
+
+/**
+ * @brief 处理系统事件缓冲区和状态管理
+ * 
+ * 该函数负责处理系统事件缓冲区并管理相关状态
+ * 
+ * @param SystemEventBufferPointer 系统事件缓冲区指针
+ * @param ProcessingStatusFlag 处理状态标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1806272a0
+ */
+#define ProcessSystemEventBufferAndStatusManagement FUN_1806272a0
+
+/**
+ * @brief 处理系统缓冲区大小计算和验证
+ * 
+ * 该函数负责处理系统缓冲区的大小计算和验证操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18005d190
+ */
+#define ProcessSystemBufferSizeCalculationAndValidation FUN_18005d190
+
+/**
+ * @brief 处理字符状态缓冲区和数据管理
+ * 
+ * 该函数负责处理字符状态缓冲区和相关数据管理
+ * 
+ * @param MemoryBlockIndex 内存块索引
+ * @param CharacterStatusBufferPointer 字符状态缓冲区指针
+ * @param SystemDataPointer 系统数据指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016d400
+ */
+#define ProcessCharacterStatusBufferAndDataManagement FUN_18016d400
+
+/**
+ * @brief 处理系统数据注册和缓冲区管理
+ * 
+ * 该函数负责处理系统数据注册和缓冲区管理操作
+ * 
+ * @param MemoryBlockIndex 内存块索引
+ * @param SystemBufferPointer 系统缓冲区指针
+ * @return 系统数据注册结果
+ * 
+ * @note 原始函数名：FUN_180169350
+ */
+#define ProcessSystemDataRegistrationAndBufferManagement FUN_180169350
+
+/**
+ * @brief 处理系统字符编码转换和初始化
+ * 
+ * 该函数负责处理系统字符编码转换和初始化操作
+ * 
+ * @param CharacterCode 字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180095280
+ */
+#define ProcessSystemCharacterEncodingConversionAndInitialization FUN_180095280
+
+/**
+ * @brief 处理系统上下文和函数地址管理
+ * 
+ * 该函数负责处理系统上下文和函数地址管理
+ * 
+ * @param MemoryBlockIndex 内存块索引
+ * @param EnginePointerBuffer 引擎指针缓冲区
+ * @param SystemOperationPointer 系统操作指针
+ * @return 系统上下文指针
+ * 
+ * @note 原始函数名：FUN_180161f80
+ */
+#define ProcessSystemContextAndFunctionAddressManagement FUN_180161f80
+
+/**
  * @brief 处理字符编码转换和地址计算
  * 
  * 该函数负责处理字符编码转换并计算相关地址
