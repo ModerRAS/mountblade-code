@@ -95848,7 +95848,18 @@ void Unwind_InitializeExceptionHandlerF60(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090cf70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器F70
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置数据缓冲区的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cf70
+ */
+void Unwind_InitializeExceptionHandlerF70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x2b0) != (int64_t *)0x0) {
