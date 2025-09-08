@@ -24939,7 +24939,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataBuffer SystemTemporaryDataBufferB;
   DataWord SystemDataValidationWord;
   DataWord SystemOperationResultWord;
-  DataWord TemporaryDataWordL;
+  DataWord SystemConfigurationDataWordL;
   DataWord SystemContextOffsetData54;
   DataWord SystemContextOffsetData58;
   DataWord SystemContextOffsetData5C;
@@ -25019,17 +25019,17 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             if (iterationCount != 0) {
               SystemConfigurationDataBuffer = *(DataBuffer *)(dataContext + SystemFloatDataOffset38);
               SystemOperationDataBuffer = *(DataBuffer *)(dataContext + SystemDataOffset40);
-              TemporaryDataWordJ = *(DataWord *)(dataContext + 0x48);
-              TemporaryDataWordK = *(DataWord *)(dataContext + 0x4c);
-              TemporaryDataWordL = *(DataWord *)(dataContext + 0x50);
+              SystemConfigurationDataWordJ = *(DataWord *)(dataContext + 0x48);
+              SystemConfigurationDataWordK = *(DataWord *)(dataContext + 0x4c);
+              SystemConfigurationDataWordL = *(DataWord *)(dataContext + 0x50);
               DataContextOffset54Data = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
-              TemporaryDataWordH = 0;
-              DataContextOffset58Data = *(DataWord *)(dataContext + 0x58);
-              DataContextOffset5CData = *(DataWord *)(dataContext + 0x5c);
-              DataContextOffset60Data = *(DataWord *)(dataContext + 0x60);
-              SecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
-              TemporaryDataWordI = StackDataWordA;
+              SystemResetDataWordH = 0;
+              SystemContextOffsetData58 = *(DataWord *)(dataContext + 0x58);
+              SystemContextOffsetData5C = *(DataWord *)(dataContext + 0x5c);
+              SystemContextOffsetData60 = *(DataWord *)(dataContext + 0x60);
+              SystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
+              SystemStackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
