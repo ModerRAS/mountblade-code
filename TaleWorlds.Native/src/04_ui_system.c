@@ -68433,82 +68433,92 @@ void InitializeUIEventSystem(longlong uiContext)
  * 
  * @note 原始函数名: FUN_18069f51a
  */
- void FUN_18069f51a(void)
+ /**
+ * @brief 处理UI组件内存分配和状态管理
+ * 
+ * 该函数负责处理UI组件的内存分配和状态管理。它执行以下操作：
+ * - 分配UI组件内存
+ * - 处理UI上下文状态
+ * - 管理事件处理循环
+ * - 更新UI状态表
+ * 
+ * @note 原始函数名：FUN_18069f51a
+ */
 void ProcessUIComponentMemoryAllocation(void)
 
 {
-  byte isCharacterMatch;
-  int uiValidationResult;
-  ulonglong bitMask1;
-  ulonglong bitMask2;
-  longlong ContextHandle;
-  uint bitFieldResult;
-  uint characterIndex;
-  longlong unmodifiedR13;
-  UIByte EventHandleB;
-  longlong localLong7;
-  bool bVar8;
+  UIByte characterMatchFlag;
+  int memoryAllocationResult;
+  ulonglong processingBitMask;
+  ulonglong eventBitMask;
+  longlong uiContextHandle;
+  uint bitFieldOperationResult;
+  uint characterProcessingIndex;
+  longlong baseMemoryAddress;
+  UIByte eventHandlerValue;
+  longlong loopIterationCounter;
+  bool eventComparisonResult;
   
-  *(UIByte *)(unmodifiedR13 + 0x4416) = EventHandleB;
-  uiValidationResult = AllocateUIComponentMemory();
-  if (uiValidationResult != 0) {
-    localLong7 = 0;
+  *(UIByte *)(baseMemoryAddress + 0x4416) = eventHandlerValue;
+  memoryAllocationResult = AllocateUIComponentMemory();
+  if (memoryAllocationResult != 0) {
+    loopIterationCounter = 0;
     do {
-      LoopCounter = 0;
-      uiValidationResult = 7;
+      uint processingLoopCounter = 0;
+      memoryAllocationResult = 7;
       do {
-        MaxProcessingCount = ((uint)((*(int *)(ContextHandle + 0x1c) + -1) * 0x80) >> 8) + 1;
-        if (*(int *)(ContextHandle + 0x18) < 0) {
+        uint maxProcessingCount = ((uint)((*(int *)(uiContextHandle + 0x1c) + -1) * 0x80) >> 8) + 1;
+        if (*(int *)(uiContextHandle + 0x18) < 0) {
           UpdateUIContext();
         }
-        ProcessingStatus = *(ulonglong *)(ContextHandle + 0x10);
-        EventTypeCode = (ulonglong)MaxProcessingCount << 0x38;
-        bVar8 = EventTypeCode <= ProcessingStatus;
-        if (bVar8) {
-          MaxProcessingCount = *(int *)(ContextHandle + 0x1c) - MaxProcessingCount;
-          ProcessingStatus = ProcessingStatus - EventTypeCode;
+        ulonglong currentProcessingStatus = *(ulonglong *)(uiContextHandle + 0x10);
+        ulonglong eventTypeCode = (ulonglong)maxProcessingCount << 0x38;
+        eventComparisonResult = eventTypeCode <= currentProcessingStatus;
+        if (eventComparisonResult) {
+          maxProcessingCount = *(int *)(uiContextHandle + 0x1c) - maxProcessingCount;
+          currentProcessingStatus = currentProcessingStatus - eventTypeCode;
         }
-        isCharacterMatch = (&g_uiStateTable)[MaxProcessingCount];
-        *(int *)(ContextHandle + 0x18) = *(int *)(ContextHandle + 0x18) - (uint)isCharacterMatch;
-        LoopCounter = LoopCounter | (uint)bVar8 << ((byte)uiValidationResult & 0x1f);
-        *(ulonglong *)(ContextHandle + 0x10) = ProcessingStatus << (isCharacterMatch & 0x3f);
-        uiValidationResult = uiValidationResult + -1;
-        *(uint *)(ContextHandle + 0x1c) = MaxProcessingCount << (isCharacterMatch & 0x1f);
-      } while (-1 < uiValidationResult);
-      *(char *)(localLong7 + 0x308b + unmodifiedR13) = (char)LoopCounter;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < 4);
+        characterMatchFlag = (&g_uiStateTable)[maxProcessingCount];
+        *(int *)(uiContextHandle + 0x18) = *(int *)(uiContextHandle + 0x18) - (uint)characterMatchFlag;
+        processingLoopCounter = processingLoopCounter | (uint)eventComparisonResult << ((byte)memoryAllocationResult & 0x1f);
+        *(ulonglong *)(uiContextHandle + 0x10) = currentProcessingStatus << (characterMatchFlag & 0x3f);
+        memoryAllocationResult = memoryAllocationResult + -1;
+        *(uint *)(uiContextHandle + 0x1c) = maxProcessingCount << (characterMatchFlag & 0x1f);
+      } while (-1 < memoryAllocationResult);
+      *(char *)(loopIterationCounter + 0x308b + baseMemoryAddress) = (char)processingLoopCounter;
+      loopIterationCounter = loopIterationCounter + 1;
+    } while (loopIterationCounter < 4);
   }
-  uiValidationResult = AllocateUIComponentMemory();
-  if (uiValidationResult != 0) {
-    localLong7 = 0;
+  memoryAllocationResult = AllocateUIComponentMemory();
+  if (memoryAllocationResult != 0) {
+    loopIterationCounter = 0;
     do {
-      LoopCounter = 0;
-      uiValidationResult = 7;
+      uint processingLoopCounter = 0;
+      memoryAllocationResult = 7;
       do {
-        MaxProcessingCount = ((uint)((*(int *)(ContextHandle + 0x1c) + -1) * 0x80) >> 8) + 1;
-        if (*(int *)(ContextHandle + 0x18) < 0) {
+        uint maxProcessingCount = ((uint)((*(int *)(uiContextHandle + 0x1c) + -1) * 0x80) >> 8) + 1;
+        if (*(int *)(uiContextHandle + 0x18) < 0) {
           UpdateUIContext();
         }
-        ProcessingStatus = *(ulonglong *)(ContextHandle + 0x10);
-        EventTypeCode = (ulonglong)MaxProcessingCount << 0x38;
-        bVar8 = EventTypeCode <= ProcessingStatus;
-        if (bVar8) {
-          MaxProcessingCount = *(int *)(ContextHandle + 0x1c) - MaxProcessingCount;
-          ProcessingStatus = ProcessingStatus - EventTypeCode;
+        ulonglong currentProcessingStatus = *(ulonglong *)(uiContextHandle + 0x10);
+        ulonglong eventTypeCode = (ulonglong)maxProcessingCount << 0x38;
+        eventComparisonResult = eventTypeCode <= currentProcessingStatus;
+        if (eventComparisonResult) {
+          maxProcessingCount = *(int *)(uiContextHandle + 0x1c) - maxProcessingCount;
+          currentProcessingStatus = currentProcessingStatus - eventTypeCode;
         }
-        isCharacterMatch = (&g_uiStateTable)[MaxProcessingCount];
-        *(int *)(ContextHandle + 0x18) = *(int *)(ContextHandle + 0x18) - (uint)isCharacterMatch;
-        LoopCounter = LoopCounter | (uint)bVar8 << ((byte)uiValidationResult & 0x1f);
-        *(ulonglong *)(ContextHandle + 0x10) = ProcessingStatus << (isCharacterMatch & 0x3f);
-        uiValidationResult = uiValidationResult + -1;
-        *(uint *)(ContextHandle + 0x1c) = MaxProcessingCount << (isCharacterMatch & 0x1f);
-      } while (-1 < uiValidationResult);
-      *(char *)(localLong7 + 0x308f + unmodifiedR13) = (char)LoopCounter;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < 3);
+        characterMatchFlag = (&g_uiStateTable)[maxProcessingCount];
+        *(int *)(uiContextHandle + 0x18) = *(int *)(uiContextHandle + 0x18) - (uint)characterMatchFlag;
+        processingLoopCounter = processingLoopCounter | (uint)eventComparisonResult << ((byte)memoryAllocationResult & 0x1f);
+        *(ulonglong *)(uiContextHandle + 0x10) = currentProcessingStatus << (characterMatchFlag & 0x3f);
+        memoryAllocationResult = memoryAllocationResult + -1;
+        *(uint *)(uiContextHandle + 0x1c) = maxProcessingCount << (characterMatchFlag & 0x1f);
+      } while (-1 < memoryAllocationResult);
+      *(char *)(loopIterationCounter + 0x308f + baseMemoryAddress) = (char)processingLoopCounter;
+      loopIterationCounter = loopIterationCounter + 1;
+    } while (loopIterationCounter < 3);
   }
-  FUN_1806a0150();
+  ProcessUIEventHandlingRoutine();
   return;
 }
 
@@ -200042,49 +200052,55 @@ LAB_18078bea3:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18078c0a0(longlong uiContext,char dataSource)
-void FUN_18078c0a0(longlong uiContext,char dataSource)
-
+ /**
+ * @brief UI系统上下文事件循环处理器
+ * 
+ * 处理UI系统的事件循环，包括组件渲染、事件分发、内存管理和状态更新
+ * 
+ * @param uiContext UI系统上下文指针
+ * @param dataSource 数据源标识符
+ * 
+ * @note 原始函数名: FUN_18078c0a0
+ */
+void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
 {
-  UIHandle *ptrResult;
-  UIDword semaphoreHandle;
-  UIHandle *ptrLocal3;
-  UIHandle ProcessingStatus;
-  int localInt5;
-  longlong ContextHandleData;
-  ulonglong eventTypeCode;
-  uint uVar8;
-  ulonglong uVar9;
-  ulonglong result0;
-  float floatResult1;
-  UIByte astackUInt188 [32];
-  float *pfStack_168;
-  char acStack_158 [4];
-  float fStack_154;
-  float fStack_150;
-  uint stackUInt14c;
-  float afStack_148 [2];
-  UIHandle stackUInt140;
-  UIHandle stackUInt138;
-  UIHandle stackUInt130;
-  UIHandle stackUInt128;
-  UIHandle stackUInt120;
-  UIHandle stackUInt118;
-  UIByte astackUInt110 [16];
-  UIHandle stackUInt100;
-  UIHandle stackUIntf8;
-  UIHandle stackUIntf0;
-  UIHandle stackUInte8;
-  UIHandle stackUInte0;
-  UIHandle stackUIntd8;
-  UIHandle stackUIntd0;
-  UIHandle stackUIntc8;
-  UIHandle stackUIntc0;
-  UIHandle stackUIntb8;
-  UIHandle stackUIntb0;
-  UIHandle stackUInta8;
-  UIByte astackUInta0 [48];
-  ulonglong stackUInt70;
+  UIHandle *ComponentIterator;
+  UIDword SemaphoreHandle;
+  UIHandle *ComponentPointer;
+  UIHandle ComponentStatus;
+  int ProcessingResult;
+  longlong EventHandlerData;
+  ulonglong EventCounter;
+  uint BufferSize;
+  ulonglong EventIndex;
+  ulonglong ResultOffset;
+  float AlphaValue;
+  UIByte EncryptionBuffer [32];
+  float *ColorPointer;
+  char ValidationBuffer [4];
+  float OpacityValue;
+  float ScaleValue;
+  uint RenderFlags;
+  float ColorArray [2];
+  UIHandle TransformMatrix1;
+  UIHandle TransformMatrix2;
+  UIHandle TransformMatrix3;
+  UIHandle TransformMatrix4;
+  UIHandle TransformMatrix5;
+  UIHandle TransformMatrix6;
+  UIByte EventDataBuffer [16];
+  UIHandle RenderTarget1;
+  UIHandle RenderTarget2;
+  UIHandle RenderTarget3;
+  UIHandle RenderTarget4;
+  UIHandle RenderTarget5;
+  UIHandle RenderTarget6;
+  UIHandle RenderTarget7;
+  UIHandle RenderTarget8;
+  UIHandle RenderTarget9;
+  UIHandle RenderTarget10;
+  UIByte ComponentDataBuffer [48];
+  ulonglong EncryptionKey;
   
   stackUInt70 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   if (*(char *)(uiContext + 8) != '\0') {
