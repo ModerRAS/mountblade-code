@@ -50527,9 +50527,9 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   NormalizedParameterValue = SystemDataNode[10];
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x124);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x130);
-  CalculatedValue30 = SystemContextPrimaryFloat * in_XMM4_Da + (float)CharacterCode * MatrixTransformMultiplier1 + (float)SystemBufferSize * FloatOffsetValue;
+  CalculatedValue30 = SystemContextPrimaryFloat * FloatXMM4 + (float)CharacterCode * MatrixTransformMultiplier1 + (float)SystemBufferSize * FloatOffsetValue;
   CalculatedValue34 =
-       SystemContextPrimaryFloat * in_XMM4_Db + (float)((unsigned long long)CharacterCode >> 0x20) * MatrixTransformMultiplier +
+       SystemContextPrimaryFloat * FloatXMM4Secondary + (float)((unsigned long long)CharacterCode >> 0x20) * MatrixTransformMultiplier +
        (float)((unsigned long long)SystemBufferSize >> 0x20) * ProcessedFloatValue8;
   FilterCoefficient38 = SystemContextPrimaryFloat * in_XMM4_Dc + in_XMM0_Dc * CalculatedDistance + in_XMM1_Dc * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
