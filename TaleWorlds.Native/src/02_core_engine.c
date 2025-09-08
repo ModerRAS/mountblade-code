@@ -201049,7 +201049,7 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
       }
     }
     MemoryAllocationIndex9 = CleanupSystemBuffer(&pProcessingCounter);
-    pSystemEventTemplatePointer = (uint64_t **)FUN_180169f60(MemoryAllocationIndex9,&StackProcessingVariableBuffer,&pProcessingCounter);
+    pSystemEventTemplatePointer = (uint64_t **)AllocateSystemEventTemplate(MemoryAllocationIndex9,&StackProcessingVariableBuffer,&pProcessingCounter);
     puStackX_20 = pErrorCode;
     CharacterStatusBuffer5 = pErrorCode;
     PrimaryProcessingStatusFlag7 = pSystemFlagE;
@@ -201107,8 +201107,8 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
           PrimaryProcessingStatusFlag6 = StringProcessingStatus;
           do {
             SystemStatusContext = SystemMemoryPointer + (long long)SecondaryProcessingStatusFlag * 4;
-            FUN_180629c00(CharacterStatusBuffer3,10);
-            FUN_180629c00(CharacterStatusBuffer3,0x20);
+            InitializeSystemBuffer(CharacterStatusBuffer3,10);
+            InitializeSystemBuffer(CharacterStatusBuffer3,0x20);
             InputDataLength = *PrimaryProcessingStatusFlag5;
             if (InputDataLength != 0) {
               MemoryAllocationIndex = MemoryAllocationIndex8;
@@ -201126,7 +201126,7 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
               *PrimaryProcessingStatusFlag5 = InputDataLength - MemoryAllocationIndex;
               *(uint8_t *)((unsigned long long)(InputDataLength - MemoryAllocationIndex) + *(long long *)(PrimaryProcessingStatusFlag5 + -2)) = 0;
             }
-            FUN_180629b30(CharacterStatusBuffer3);
+            CleanupSystemBuffer(CharacterStatusBuffer3);
             IntegerValue7 = (int)PrimaryProcessingStatusFlag0;
             if (0 < (int)*PrimaryProcessingStatusFlag5) {
               IntegerValue7 = *PrimaryProcessingStatusFlag5 + IntegerValue7;
@@ -201480,12 +201480,12 @@ uint64_t ProcessCharacterCodeAndSystemBuffer(long long CharacterCode,int *Charac
     }
     if ((*(long long *)(CharacterCode + 0x28) - *(long long *)(CharacterCode + 0x20) & 0xffffffffffffffe0U) == 0    {
       *(uint8_t *)(CharacterCode + 0x60) = 0;
-      FUN_18016afc0(CharacterCode);
+      ProcessCharacterCodeFinalization(CharacterCode);
       *(void *)(CharacterCode + 100) = 0xffffffffffffffff;
     }
   }
   else if (StringComparisonResult == 0x80) {
-    FUN_18016afc0(CharacterCode);
+    ProcessCharacterCodeFinalization(CharacterCode);
     if (*(long long *)(CharacterCode + 0x28) - *(long long *)(CharacterCode + 0x20) >> 5 != 0) {
       *(uint8_t *)(CharacterCode + 0x60) = 1;
       if (SystemBufferSize[5] == 3) {
@@ -201514,10 +201514,10 @@ uint64_t ProcessCharacterCodeAndSystemBuffer(long long CharacterCode,int *Charac
     }
   }
   else if (StringComparisonResult == 0x100) {
-    FUN_18016afc0(CharacterCode);
+    ProcessCharacterCodeFinalization(CharacterCode);
     if ((*(long long *)(CharacterCode + 0x28) - *(long long *)(CharacterCode + 0x20) & 0xffffffffffffffe0U) == 0    {
       *(uint8_t *)(CharacterCode + 0x60) = 0;
-      FUN_18016afc0(CharacterCode);
+      ProcessCharacterCodeFinalization(CharacterCode);
       *(void *)(CharacterCode + 100) = 0xffffffffffffffff;
     }
     else {
@@ -201802,7 +201802,7 @@ LabelSystemFlagConfiguration:
     *ReferenceCountPointer = *ReferenceCountPointer + -1;
     ManageSystemMemory();
     pppSystemContextRegister = (long long ****)0x0;
-    CharacterValidationResult = FUN_1801166f0(&SystemEventBufferQuinary,(long long)CharacterCode + 0x74,0x400,&pppSystemContextRegister,0x3e0,
+    CharacterValidationResult = ValidateSystemBufferAndProcessData(&SystemEventBufferQuinary,(long long)CharacterCode + 0x74,0x400,&pppSystemContextRegister,0x3e0,
                           &SystemEventCallbackHandler,CharacterCode);
     SystemConfigurationIterator = SystemConfigurationHandle;
     if (CharacterValidationResult != '\0') {
