@@ -88474,7 +88474,7 @@ void PerformSystemCleanupAndInvokeHandlers(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090be00(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerWithFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -88486,7 +88486,7 @@ void Unwind_18090be00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090be30(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x68) != (int64_t *)0x0) {
@@ -88497,7 +88497,7 @@ void Unwind_18090be30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090be40(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeSystemAndInvokeHandlerAtOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -88509,7 +88509,7 @@ void Unwind_18090be40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090be50(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerAtMemoryPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
