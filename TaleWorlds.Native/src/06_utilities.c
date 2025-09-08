@@ -19943,7 +19943,7 @@ void UtilityNoOperationE(void)
 void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
 
 {
-  ByteFlag localStackData [8];
+  ByteFlag SecurityStackData [8];
   int64_t contextOffset;
   int64_t handlePointer;
   int64_t dataPointer;
