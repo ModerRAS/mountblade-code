@@ -84711,14 +84711,14 @@ void FUN_1807167d3(void)
 
 
 
-int FUN_1807167e0(float uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer)
+int ProcessUIStringComparison(float uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer)
 
 {
   int processingResult;
   longlong componentIndex;
   longlong stringCompareIndex;
-  float *ptransformCoeff3;
-  longlong EventDataIndex;
+  float *transformCoeff3;
+  longlong eventDataIndex;
   
   componentIndex = (longlong)resultPointer;
   processingResult = 0;
