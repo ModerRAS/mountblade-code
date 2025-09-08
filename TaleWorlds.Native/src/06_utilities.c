@@ -247,6 +247,18 @@
 // 栈操作偏移量常量
 #define StackOperationOffset8 0x8                             // 栈操作偏移量8
 #define SystemContextOffset60 0x60                            // 系统上下文偏移量60
+
+// 资源管理偏移量常量
+#define SystemResourceValidationOffset490 0x490               // 系统资源验证偏移量490
+#define ResourceIteratorTableOffset1cd8 0x1cd8                // 资源迭代器表偏移量1cd8
+#define ResourceStatusFlagOffset12e3 0x12e3                   // 资源状态标志偏移量12e3
+#define ResourceStatusFlagOffset12dd 0x12dd                   // 资源状态标志偏移量12dd
+#define MemoryBlockDataOffset200 0xc8                         // 内存块数据偏移量200
+#define MemoryBlockDataOffsetD0 0xd0                          // 内存块数据偏移量D0
+#define ResourceManagementOffset7f20 0x7f20                    // 资源管理偏移量7f20
+#define ExceptionHandlerDataOffset480 0x480                   // 异常处理器数据偏移量480
+#define ExceptionHandlerDataOffset540 0x540                   // 异常处理器数据偏移量540
+#define ExceptionHandlerDataOffset5a0 0x5a0                   // 异常处理器数据偏移量5a0
 #define ExceptionHandlerHierarchyB0_DataBufferOffset40 0x40     // 数据缓冲区偏移量40
 #define ExceptionHandlerHierarchyB0_CallbackOffsetE20 0xe20     // 回调函数偏移量E20
 #define ExceptionHandlerHierarchyB0_CallbackParamOffsetE10 0xe10 // 回调参数偏移量E10
@@ -94608,7 +94620,17 @@ void DecrementSystemResourceCounterAndExecuteFunctionB(void)
 
 
 
-void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数CC00
+ * 
+ * 重置异常处理器状态，设置默认异常处理器，并处理系统资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc00
+ */
+void ResetExceptionHandlerAndManageSystemResources(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -94617,9 +94639,9 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x490)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
-    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
+  if (0 < *(int *)(dataBuffer + SystemResourceValidationOffset490)) {
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + ResourceIteratorTableOffset1cd8);
+    if ((*(char *)(SystemResourcePointer + ResourceStatusFlagOffset12e3) != '\0') || (*(char *)(SystemResourcePointer + ResourceStatusFlagOffset12dd) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
       exceptionHandlerContext = *contextPointer;
@@ -94629,12 +94651,12 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + MemoryBlockDataOffset200 + resourceIterator + ResourceManagementOffset7f20);
+      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockDataOffsetD0 + resourceIterator + ResourceManagementOffset7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
-          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + ExceptionContextStatusOffset60) == '\x01') {
             if (operationResult != -1) {
               ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)operationResult * 8));
             }
@@ -94646,13 +94668,23 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x480) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerDataOffset480) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090cc10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数CC10
+ * 
+ * 简单的异常处理器重置函数，设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc10
+ */
+void ResetExceptionHandlerToDefault(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataProcessingOffset840) = &SystemDefaultExceptionHandlerB;
@@ -94661,10 +94693,20 @@ void Unwind_18090cc10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cc20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数CC20
+ * 
+ * 简单的异常处理器重置函数，设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc20
+ */
+void ResetExceptionHandlerToDefaultAtOffset540(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x540) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerDataOffset540) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
