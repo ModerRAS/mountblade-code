@@ -84791,62 +84791,62 @@ void ProcessUITransformAndRotation(longlong uiContext, UIHandle dataSource, int 
   longlong offset5;
   float rotationAngle;
   
-  localInt8 = unmodifiedESI >> 1;
-  ProcessingResult2 = 0;
+  processingBlockSize = iterationCount >> 1;
+  transformIndex = 0;
   do {
-    localInt9 = 0;
-    if (3 < localInt8) {
-      EventDataIndex = (longlong)(ProcessingResult2 + targetBuffer * 3);
-      allocatedMemory0 = (longlong)(ProcessingResult2 + targetBuffer * 4);
-      allocatedMemory4 = (ProcessingResult2 + targetBuffer) - EventDataIndex;
-      presultFloat = (float *)(uiContext + allocatedMemory0 * 4);
-      allocatedMemory3 = (ProcessingResult2 + targetBuffer * 5) - EventDataIndex;
-      ptransformCoeff3 = (float *)(uiContext + EventDataIndex * 4);
-      allocatedMemory5 = (ProcessingResult2 + targetBuffer * 2) - allocatedMemory0;
-      EventDataIndex = (targetBuffer * 7 + ProcessingResult2) - EventDataIndex;
-      ContextHandleData = (ProcessingResult2 + targetBuffer * 6) - allocatedMemory0;
-      EventTypeCode = (localInt8 - 4U >> 2) + 1;
-      result1 = (ulonglong)EventTypeCode;
-      localInt9 = EventTypeCode * 4;
+    innerLoopCounter = 0;
+    if (3 < processingBlockSize) {
+      eventIndex = (longlong)(transformIndex + targetBuffer * 3);
+      baseOffset0 = (longlong)(transformIndex + targetBuffer * 4);
+      offset4 = (transformIndex + targetBuffer) - eventIndex;
+      resultDataPtr = (float *)(uiContext + baseOffset0 * 4);
+      offset3 = (transformIndex + targetBuffer * 5) - eventIndex;
+      transformDataPtr = (float *)(uiContext + eventIndex * 4);
+      offset5 = (transformIndex + targetBuffer * 2) - baseOffset0;
+      eventIndex = (targetBuffer * 7 + transformIndex) - eventIndex;
+      contextOffset = (transformIndex + targetBuffer * 6) - baseOffset0;
+      eventGroupCount = (processingBlockSize - 4U >> 2) + 1;
+      groupIterations = (ulonglong)eventGroupCount;
+      innerLoopCounter = eventGroupCount * 4;
       do {
-        baseValue = ptransformCoeff3[allocatedMemory4];
-        transformCoeff1 = presultFloat[ProcessingResult2 - allocatedMemory0];
-        presultFloat[ProcessingResult2 - allocatedMemory0] = baseValue * in_XMM4_Da + transformCoeff1 * in_XMM4_Da;
-        ptransformCoeff3[allocatedMemory4] = transformCoeff1 * in_XMM4_Da - baseValue * in_XMM4_Da;
-        baseValue = *ptransformCoeff3;
-        transformCoeff1 = presultFloat[allocatedMemory5];
-        presultFloat[allocatedMemory5] = baseValue * in_XMM4_Da + transformCoeff1 * in_XMM4_Da;
-        *ptransformCoeff3 = transformCoeff1 * in_XMM4_Da - baseValue * in_XMM4_Da;
-        baseValue = ptransformCoeff3[allocatedMemory3];
-        transformCoeff1 = *presultFloat;
-        *presultFloat = baseValue * in_XMM4_Da + transformCoeff1 * in_XMM4_Da;
-        ptransformCoeff3[allocatedMemory3] = transformCoeff1 * in_XMM4_Da - baseValue * in_XMM4_Da;
-        baseValue = ptransformCoeff3[EventDataIndex];
-        transformCoeff1 = presultFloat[ContextHandleData];
-        presultFloat[ContextHandleData] = baseValue * in_XMM4_Da + transformCoeff1 * in_XMM4_Da;
-        presultFloat = presultFloat + targetBuffer * 8;
-        ptransformCoeff3[EventDataIndex] = transformCoeff1 * in_XMM4_Da - baseValue * in_XMM4_Da;
-        ptransformCoeff3 = ptransformCoeff3 + targetBuffer * 8;
-        result1 = result1 - 1;
+        baseValue = transformDataPtr[offset4];
+        transformCoeff1 = resultDataPtr[transformIndex - baseOffset0];
+        resultDataPtr[transformIndex - baseOffset0] = baseValue * rotationAngle + transformCoeff1 * rotationAngle;
+        transformDataPtr[offset4] = transformCoeff1 * rotationAngle - baseValue * rotationAngle;
+        baseValue = *transformDataPtr;
+        transformCoeff1 = resultDataPtr[offset5];
+        resultDataPtr[offset5] = baseValue * rotationAngle + transformCoeff1 * rotationAngle;
+        *transformDataPtr = transformCoeff1 * rotationAngle - baseValue * rotationAngle;
+        baseValue = transformDataPtr[offset3];
+        transformCoeff1 = *resultDataPtr;
+        *resultDataPtr = baseValue * rotationAngle + transformCoeff1 * rotationAngle;
+        transformDataPtr[offset3] = transformCoeff1 * rotationAngle - baseValue * rotationAngle;
+        baseValue = transformDataPtr[eventIndex];
+        transformCoeff1 = resultDataPtr[contextOffset];
+        resultDataPtr[contextOffset] = baseValue * rotationAngle + transformCoeff1 * rotationAngle;
+        resultDataPtr = resultDataPtr + targetBuffer * 8;
+        transformDataPtr[eventIndex] = transformCoeff1 * rotationAngle - baseValue * rotationAngle;
+        transformDataPtr = transformDataPtr + targetBuffer * 8;
+        groupIterations = groupIterations - 1;
         uiContext = param_6;
-      } while (result1 != 0);
+      } while (groupIterations != 0);
     }
-    if (localInt9 < localInt8) {
-      presultFloat = (float *)(uiContext + (longlong)(ProcessingResult2 + localInt9 * targetBuffer * 2) * 4);
-      result1 = (ulonglong)(uint)(localInt8 - localInt9);
-      ptransformCoeff3 = (float *)(uiContext + (longlong)((localInt9 * 2 + 1) * targetBuffer + ProcessingResult2) * 4);
+    if (innerLoopCounter < processingBlockSize) {
+      resultDataPtr = (float *)(uiContext + (longlong)(transformIndex + innerLoopCounter * targetBuffer * 2) * 4);
+      groupIterations = (ulonglong)(uint)(processingBlockSize - innerLoopCounter);
+      transformDataPtr = (float *)(uiContext + (longlong)((innerLoopCounter * 2 + 1) * targetBuffer + transformIndex) * 4);
       do {
-        baseValue = *ptransformCoeff3;
-        transformCoeff1 = *presultFloat;
-        *presultFloat = baseValue * in_XMM4_Da + transformCoeff1 * in_XMM4_Da;
-        presultFloat = presultFloat + targetBuffer * 2;
-        *ptransformCoeff3 = transformCoeff1 * in_XMM4_Da - baseValue * in_XMM4_Da;
-        ptransformCoeff3 = ptransformCoeff3 + targetBuffer * 2;
-        result1 = result1 - 1;
-      } while (result1 != 0);
+        baseValue = *transformDataPtr;
+        transformCoeff1 = *resultDataPtr;
+        *resultDataPtr = baseValue * rotationAngle + transformCoeff1 * rotationAngle;
+        resultDataPtr = resultDataPtr + targetBuffer * 2;
+        *transformDataPtr = transformCoeff1 * rotationAngle - baseValue * rotationAngle;
+        transformDataPtr = transformDataPtr + targetBuffer * 2;
+        groupIterations = groupIterations - 1;
+      } while (groupIterations != 0);
     }
-    ProcessingResult2 = ProcessingResult2 + 1;
-  } while (ProcessingResult2 < targetBuffer);
+    transformIndex = transformIndex + 1;
+  } while (transformIndex < targetBuffer);
   return;
 }
 
@@ -84854,7 +84854,20 @@ void ProcessUITransformAndRotation(longlong uiContext, UIHandle dataSource, int 
 
 
  void FUN_1807167d3(void)
-void FUN_1807167d3(void)
+/**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，主要用于：
+ * - 作为占位符函数
+ * - 提供统一的函数调用接口
+ * - 在某些流程中作为默认处理函数
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数不执行任何实际操作
+ * @note 主要用于保持代码结构的一致性
+ */
+void UIEmptyOperation(void)
 
 {
   return;
