@@ -184772,8 +184772,8 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long SystemBuffer
       SecondaryFloatValue = *(float *)(SystemMemoryManager + 0x17ec);
       ProcessingBufferPointer = &SystemNullTemplate;
       ProcessingStatus = 0;
-      lStack_198 = 0;
-      iStack_190 = 0;
+      SystemLockStatus = 0;
+      IntegerProcessingIndex = 0;
       SystemValue1a8 = 1;
       ProcessSystemContextConfiguration(&ProcessingBufferPointer,&SystemStatusContextData,(double)*(float *)(CoreEngineSystemContext + 500));
       plStack_1b0 = (long long *)CONCAT44(plStack_1b0.HighPart,0xffffff00);
