@@ -75931,7 +75931,7 @@ int CalculateUIComponentMemoryOffset(int uiContext)
   targetBufferCopy = targetBuffer;
   uiContextCopy = uiContext;
   if (((resultPointer == 1) && (bufferSize == 2)) && (param_8 == 0)) {
-    FUN_18070ee30(uiContext,dataSource,targetBuffer,*param_6,param_7);
+    ProcessUIDataTransferWithOffset(uiContext,dataSource,targetBuffer,*param_6,param_7);
                      WARNING: Subroutine does not return
     ExecuteUIRenderTask(encryptedKey ^ (ulonglong)stackBuffer);
   }
@@ -80185,26 +80185,26 @@ void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle
   longlong targetBaseAddr;
   int stackParam000000a0;
   
-  if (RegisterPointer < bufferSize) {
-    plocalFloat9 = (float *)(RegisterPointer * 4 + unmodifiedR13);
-    pfloatResult1 = (float *)((unmodifiedR15 - RegisterPointer) * 4 + -4 + unmodifiedR13);
-    bufferSize = bufferSize - RegisterPointer;
+  if (startIndex < bufferSize) {
+    sourceMatrixPtr = (float *)(startIndex * 4 + sourceBaseAddr);
+    inverseMatrixPtr = (float *)((targetBaseAddr - startIndex) * 4 + -4 + sourceBaseAddr);
+    bufferSize = bufferSize - startIndex;
     do {
-      floatResult = *plocalFloat9;
-      localFloat2 = plocalFloat9[BasePointer];
-      plocalFloat9 = plocalFloat9 + 1;
-      resultValue = *TargetHandle;
-      processedFloat = uiContext[1];
-      secondaryValue = *uiContext;
-      *TargetHandle = localFloat2 * *TargetHandle + floatResult * TargetHandle[1];
-      uiContext[1] = localFloat2 * TargetHandle[1] - floatResult * resultValue;
-      floatResult = pfloatResult1[BasePointer - unmodifiedR15];
-      localFloat2 = *pfloatResult1;
-      pfloatResult1 = pfloatResult1 + -1;
-      *uiContext = localFloat2 * secondaryValue + floatResult * processedFloat;
+      matrixElementA = *sourceMatrixPtr;
+      matrixElementB = sourceMatrixPtr[matrixStride];
+      sourceMatrixPtr = sourceMatrixPtr + 1;
+      targetValueX = *targetMatrixPtr;
+      contextValueY = uiContext[1];
+      contextValueX = *uiContext;
+      *targetMatrixPtr = matrixElementB * *targetMatrixPtr + matrixElementA * targetMatrixPtr[1];
+      uiContext[1] = matrixElementB * targetMatrixPtr[1] - matrixElementA * targetValueX;
+      matrixElementA = inverseMatrixPtr[matrixStride - targetBaseAddr];
+      matrixElementB = *inverseMatrixPtr;
+      inverseMatrixPtr = inverseMatrixPtr + -1;
+      *uiContext = matrixElementB * contextValueX + matrixElementA * contextValueY;
       uiContext = uiContext + -2;
-      TargetHandle[1] = localFloat2 * processedFloat - floatResult * secondaryValue;
-      TargetHandle = TargetHandle + 2;
+      targetMatrixPtr[1] = matrixElementB * contextValueY - matrixElementA * contextValueX;
+      targetMatrixPtr = targetMatrixPtr + 2;
       bufferSize = bufferSize + -1;
     } while (bufferSize != 0);
   }
@@ -87917,8 +87917,8 @@ void FUN_18071ace8(void)
 
 
 
- void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
+ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
+void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
                   longlong param_6,int param_7,int param_8)
 
 {
