@@ -92035,8 +92035,30 @@ void UIEmptyOperationProcessor(void)
 
 
  void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
-void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
-                  int param_6)
+/**
+ * @brief 处理UI渲染数据变换和缓冲区操作
+ * 
+ * 该函数负责处理UI系统中的渲染数据变换操作，包括缓冲区的初始化、
+ * 数据变换计算、以及渲染参数的调整。函数使用浮点数计算来处理
+ * 复杂的UI渲染数据。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针，用于存储处理结果
+ * @param param_6 处理参数，用于控制处理流程
+ * 
+ * @note 该函数是UI渲染系统的核心组件，涉及复杂的数据变换和浮点数计算
+ * @warning 函数执行过程中会进行大量的浮点数运算和内存操作
+ * @see ProcessUIComponentDataTransformation, ProcessUIRenderDataUpdate
+ */
+// UI渲染数据变换处理函数
+// 原始函数名: FUN_18071f270
+#define ProcessUIRenderDataTransformation FUN_18071f270
+
+void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
+                                       int processingParameter)
 
 {
   float baseValue;
@@ -100767,7 +100789,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
     } while (CharacterDataOffset < contextOffset);
   }
   if (*(char *)(targetBuffer + 0x1d) == '\x02') {
-    stackInt468 = (int)*(short *)(&UNK_1809535e0 + (longlong)*(char *)(targetBuffer + 0x21) * 2);
+    stackInt468 = (int)*(short *)(&UIComponentTypeTable1809535e0 + (longlong)*(char *)(targetBuffer + 0x21) * 2);
   }
   uiCompareResult = *(int *)(uiBufferData + 0x11e4);
   if (0 < (longlong)uiCompareResult) {
@@ -102661,7 +102683,7 @@ void ProcessUIComponentData(void)
   ulonglong stackParam00000070;
   
   FUN_1807342b0(*(UIWord *)(contextHandle + 0xae2),*(UIByte *)(contextHandle + 0xae4));
-  componentIndex = *(longlong *)(&UNK_180954878 + (longlong)*(char *)(contextHandle + 0xae8) * 8);
+  componentIndex = *(longlong *)(&UIContextHandleTable180954878 + (longlong)*(char *)(contextHandle + 0xae8) * 8);
   if (allocationFlags < *(int *)(contextHandle + 0x914)) {
     plocalChar5 = (char *)(contextHandle + 0xacc);
     psVar4 = (short *)(SourceHandle + 0x62);
@@ -102679,7 +102701,7 @@ void ProcessUIComponentData(void)
     } while (allocationFlags < *(int *)(contextHandle + 0x914));
   }
   *(int *)(SourceHandle + 0x88) =
-       (int)*(short *)(&UNK_1809535e0 + (longlong)*(char *)(contextHandle + 0xae9) * 2);
+       (int)*(short *)(&UIComponentTypeTable1809535e0 + (longlong)*(char *)(contextHandle + 0xae9) * 2);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000070 ^ (ulonglong)&stack0x00000000);
 }
@@ -108442,7 +108464,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
     localInt9 = 0;
     uiCompareResult = 0;
     loopCounter = *bufferSize;
-    stackUInt50 = *(UIHandle *)(&UNK_180954878 + stackLong68);
+    stackUInt50 = *(UIHandle *)(&UIContextHandleTable180954878 + stackLong68);
     stackUInt58 = *(UIHandle *)(&UNK_180954890 + stackLong68);
     stackInt84 = (int)*pcStack_70;
     if (0 < (int)param_9) {
@@ -108484,7 +108506,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
     stackLong68 = stackLong68 + 8;
     pcStack_70 = pcStack_70 + 1;
     if (2 < stackInt88) {
-      contextHandleData = *(longlong *)(&UNK_180954878 + (longlong)*targetBuffer * 8);
+      contextHandleData = *(longlong *)(&UIContextHandleTable180954878 + (longlong)*targetBuffer * 8);
       if (0 < (int)param_9) {
         processingCounter = (ulonglong)param_9;
         do {
