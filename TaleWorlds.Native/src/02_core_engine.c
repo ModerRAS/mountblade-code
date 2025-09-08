@@ -240010,7 +240010,7 @@ LAB_180201f5b:
 
 
 
-02c0d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180202c0d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer
+void FUN_180202c0d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
