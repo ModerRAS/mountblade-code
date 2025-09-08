@@ -92677,7 +92677,16 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d0d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理0x3b0偏移量的资源引用计数
+ * 
+ * 该函数负责管理数据缓冲区0x3b0偏移量处的资源引用计数，
+ * 处理内存资源的释放和清理操作。
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -93043,7 +93052,16 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090d140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理0x3f0偏移量的资源引用计数
+ * 
+ * 该函数负责管理数据缓冲区0x3f0偏移量处的资源引用计数，
+ * 处理内存资源的释放和清理操作。
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -94801,7 +94819,16 @@ void Unwind_18090d410(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 操作基础指针
  * @param dataBuffer 数据缓冲区指针
  */
-void Unwind_18090d420(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理0x350偏移量的资源引用计数
+ * 
+ * 该函数负责管理数据缓冲区0x350偏移量处的资源引用计数，
+ * 处理内存资源的释放和清理操作。
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -94838,15 +94865,15 @@ void Unwind_18090d420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 资源引用计数管理器E0
+ * @brief 管理0x350偏移量的资源引用计数（副本）
  * 
- * 该函数用于管理资源的引用计数，使用0x350偏移量
- * 主要用于内存管理和资源清理
+ * 该函数负责管理数据缓冲区0x350偏移量处的资源引用计数，
+ * 处理内存资源的释放和清理操作。这是ManageResourceReferenceCountAtOffset350的副本。
  * 
  * @param operationBase 操作基础指针
  * @param dataBuffer 数据缓冲区指针
  */
-void Unwind_18090d430(DataBuffer operationBase,int64_t dataBuffer)
+void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -94882,7 +94909,16 @@ void Unwind_18090d430(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d440(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理0x470偏移量的资源引用计数
+ * 
+ * 该函数负责管理数据缓冲区0x470偏移量处的资源引用计数，
+ * 处理内存资源的释放和清理操作。
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -114944,14 +114980,17 @@ void Unwind_180912970(DataBuffer operationBase,int64_t dataBuffer)
 
 DataWord SystemDataWord;
 
-// 函数: void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
-void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
+// 函数: void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
+// 功能：处理工具系统参数1，执行状态检查和操作
+// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
+// 返回值：无
+void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
 
 {
   char statusFlag;
   int operationResult;
   
-  statusFlag = *(char *)(dataBuffer + 0x40);
+  statusFlag = *(char *)(dataContext + 0x40);
   operationResult = CheckOperationResult();
   if ((operationResult != 0) && (statusFlag == '\0')) {
     LOCK();
@@ -114965,18 +115004,18 @@ void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 函数: void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
+// 函数: void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
 // 功能：处理工具系统参数2，执行状态检查和操作
-// 参数：operationBase-操作句柄，dataBuffer-数据上下文
+// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
 // 返回值：无
-void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
+void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
 
 {
   char statusFlag;
   int systemCheckResult;
   
   CheckSystemStatus();
-  statusFlag = *(char *)(dataBuffer + 0x38);
+  statusFlag = *(char *)(dataContext + 0x38);
   systemCheckResult = CheckOperationResult();
   if ((systemCheckResult != 0) && (statusFlag == '\0')) {
     LOCK();
@@ -114989,43 +115028,43 @@ void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 函数: void ExecuteUtilityOperation(DataBuffer *operationBase,int64_t dataBuffer)
+// 函数: void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
 // 功能：执行工具系统操作，处理数据和函数调用
-// 参数：operationBase-操作句柄，dataBuffer-数据上下文
+// 参数：systemContextHandle-系统上下文句柄，dataContext-数据上下文
 // 返回值：无
-void ExecuteUtilityOperation(DataBuffer *operationBase,int64_t dataBuffer)
+void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
 
 {
-  ExecuteUtilityOperationWithParams(*(DataBuffer *)(dataBuffer + 0x60),*(DataWord *)(dataBuffer + 0x68),
-                *(DataBuffer *)(dataBuffer + 0x70),ProcessSystemValidation,*(DataWord *)*operationBase,operationBase);
+  ExecuteUtilityOperationWithParams(*(DataBuffer *)(dataContext + 0x60),*(DataWord *)(dataContext + 0x68),
+                *(DataBuffer *)(dataContext + 0x70),ProcessSystemValidation,*(DataWord *)*systemContextHandle,systemContextHandle);
   return;
 }
 
 
 
-// 函数: bool CheckUtilitySystemStatus(DataBuffer *operationBase)
+// 函数: bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 // 功能：检查工具系统状态，验证系统是否正常
-// 参数：operationBase-系统状态指针
+// 参数：systemContextHandle-系统上下文句柄
 // 返回值：true-系统正常，false-系统异常
-bool CheckUtilitySystemStatus(DataBuffer *operationBase)
+bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 
 {
-  return *(int *)*operationBase == -0x3ffffffb;
+  return *(int *)*systemContextHandle == -0x3ffffffb;
 }
 
 
 
 
-// 函数: void ProcessUtilitySystemEvent(DataBuffer operationBase,int64_t dataBuffer)
+// 函数: void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
 // 功能：处理工具系统事件，根据条件执行相应操作
-// 参数：operationBase-事件类型，dataBuffer-事件数据上下文
+// 参数：eventTypeHandle-事件类型句柄，eventDataContext-事件数据上下文
 // 返回值：无
-void ProcessUtilitySystemEvent(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
 
 {
-  if (*(char *)(dataBuffer + MemoryPointerOffset) == '\0') {
-    ValidateDataWithParams(*(DataBuffer *)(dataBuffer + 0x50),*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58),
-                  *(DataBuffer *)(dataBuffer + ValidationResultOffset),*(DataBuffer *)(dataBuffer + 0x70));
+  if (*(char *)(eventDataContext + MemoryPointerOffset) == '\0') {
+    ValidateDataWithParams(*(DataBuffer *)(eventDataContext + 0x50),*(DataBuffer *)(eventDataContext + ExceptionHandlerContextOffset58),
+                  *(DataBuffer *)(eventDataContext + ValidationResultOffset),*(DataBuffer *)(eventDataContext + 0x70));
   }
   return;
 }
