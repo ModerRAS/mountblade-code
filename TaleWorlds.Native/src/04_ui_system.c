@@ -114379,18 +114379,28 @@ void ProcessUIBufferOperations(void)
 
 
 
- void FUN_180738d3d(void)
-void FUN_180738d3d(void)
+ /**
+ * @brief UI内存资源清理和渲染任务执行函数
+ * 
+ * 该函数负责UI系统的资源清理和渲染任务执行：
+ * - 检查内存资源状态
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return 处理结果状态码
+ */
+void CleanupUIResourcesAndExecuteRenderTask(void)
+void CleanupUIResourcesAndExecuteRenderTask(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong resourceCleanupFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
