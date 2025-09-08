@@ -120053,7 +120053,21 @@ void HandleExceptionContextAtOffset200_18(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x200偏移0x28异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x200偏移量0x28处的异常上下文，执行异常处理操作
+ * 从0x200偏移量的0x28处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912420
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset200_28(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
