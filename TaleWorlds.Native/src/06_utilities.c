@@ -24766,10 +24766,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataWord SystemDataValidationWord;
   DataWord SystemOperationResultWord;
   DataWord TemporaryDataWordL;
-  DataWord ContextOffsetData54;
-  DataWord ContextOffsetData58;
-  DataWord ContextOffsetData5C;
-  DataWord ContextOffsetData60;
+  DataWord SystemContextOffsetData54;
+  DataWord SystemContextOffsetData58;
+  DataWord SystemContextOffsetData5C;
+  DataWord SystemContextOffsetData60;
   DataWord SecurityValidationResultA;
   uint8_t *SecurityValidationTempBuffer;
   DataWord SecurityCheckResult;
@@ -25012,7 +25012,7 @@ void ProcessDataTypesA0(void)
   uint64_t operationResult3;
   int64_t contextPointer;
   DataWord floatResultA;
-  DataWord operationResult4;
+  DataWord SystemOperationResult4;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   DataWord interpolatedFloatValue;
