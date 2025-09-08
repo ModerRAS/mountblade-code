@@ -100084,11 +100084,11 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
     SystemContextPrimaryFloat4 = (float)*(void *)(AllocatedMemorySize + 0x165c);
     MatrixElementG = MatrixElementC + SystemContextPrimaryFloat4;
     MatrixTransformResult.HighPart = (float)((unsigned long long)*(void *)(AllocatedMemorySize + 0x165c) >> 0x20);
-    SystemFloatValue = SystemFlagG.HighPart;
-    MatrixElementH = MatrixElementD + SystemFlagG.HighPart;
+    SystemFloatValue = MatrixTransformResult.HighPart;
+    MatrixElementH = MatrixElementD + MatrixTransformResult.HighPart;
     MatrixElementI = MatrixElementG + *CharacterCodeSize;
     MatrixElementE = MatrixElementC + *CharacterCodeSize + SystemContextPrimaryFloat4 * 2.0;
-    MatrixElementF = SystemBufferSize[1] + MatrixElementD + SystemFlagG.HighPart * 2.0;
+    MatrixElementF = SystemBufferSize[1] + MatrixElementD + MatrixTransformResult.HighPart * 2.0;
     MatrixElementJ = MatrixElementH + SystemBufferSize[1];
     SystemFlagG = CONCAT44(MatrixElementF - MatrixElementD,MatrixElementE - MatrixElementC);
     ProcessSystemBuffer(&SystemFlagG,0);
