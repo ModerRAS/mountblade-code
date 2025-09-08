@@ -220970,78 +220970,78 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *CharacterCode
     FUN_18018af30(CharacterCode,SystemBufferSize,1,*CharacterCode);
   }
   else {
-    MemoryBlockIndex = (long long *)*CharacterCode;
-    if (Utf8SourcePointer == (long long *)*MemoryBlockIndex) {
+    MemoryBlockIterator = (long long *)*CharacterCode;
+    if (Utf8SourcePointer == (long long *)*MemoryBlockIterator) {
       if (*Utf16EndPointer < *(int *)((long long)Utf8SourcePointer + 0x1c)) {
         FUN_18018af30(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
         return SystemBufferSize;
       }
     }
-    else if (Utf8SourcePointer == MemoryBlockIndex) {
-      if (*(int *)(MemoryBlockIndex[2] + 0x1c) < *Utf16EndPointer) {
+    else if (Utf8SourcePointer == MemoryBlockIterator) {
+      if (*(int *)(MemoryBlockIterator[2] + 0x1c) < *Utf16EndPointer) {
         FUN_18018af30(CharacterCode,SystemBufferSize,0);
         return SystemBufferSize;
       }
     }
     else {
-      IntegerValue = *Utf16EndPointer;
-      StringComparisonResult = *(int *)((long long)Utf8SourcePointer + 0x1c);
-      IsSystemContextValidationResult = SBORROW4(StringComparisonResult,IntegerValue);
-      EncodingValidationResult = StringComparisonResult - IntegerValue;
-      if (IntegerValue < StringComparisonResult) {
+      uint32_t Utf16EndValue = *Utf16EndPointer;
+      EncodingStringComparisonResult = *(int *)((long long)Utf8SourcePointer + 0x1c);
+      bool IsSystemContextValidationResult = SBORROW4(EncodingStringComparisonResult,Utf16EndValue);
+      EncodingValidationStatus = EncodingStringComparisonResult - Utf16EndValue;
+      if (Utf16EndValue < EncodingStringComparisonResult) {
         if (*(char *)((long long)Utf8SourcePointer + SystemNodeStatusOffset) == '\0') {
-          MemoryBlockIndex = Utf8SourcePointer;
-          MemoryPoolBlockSizePointer = (long long *)*Utf8SourcePointer;
+          MemoryBlockIterator = Utf8SourcePointer;
+          MemoryPoolSizePointer = (long long *)*Utf8SourcePointer;
           if (*(char *)(*Utf8SourcePointer + SystemNodeStatusOffset) == '\0') {
             do {
-              MemoryBoundaryPointer = MemoryPoolBlockSizePointer;
-              MemoryPoolBlockSizePointer = (long long *)MemoryBoundaryPointer[2];
-            } while (*(char *)(MemoryBoundaryPointer[2] + SystemNodeStatusOffset) == '\0');
+              MemoryBlockBoundary = MemoryPoolSizePointer;
+              MemoryPoolSizePointer = (long long *)MemoryBlockBoundary[2];
+            } while (*(char *)(MemoryBlockBoundary[2] + SystemNodeStatusOffset) == '\0');
           }
           else {
             do {
-              MemoryBoundaryPointer = MemoryBlockIndex;
-              MemoryBlockIndex = (long long *)MemoryBoundaryPointer[1];
-              if (*(char *)((long long)MemoryBlockIndex + SystemNodeStatusOffset) != '\0') break;
-            } while (MemoryBoundaryPointer == (long long *)*MemoryBlockIndex);
-            if (*(char *)((long long)MemoryBoundaryPointer + SystemNodeStatusOffset) == '\0') {
-              MemoryBoundaryPointer = MemoryBlockIndex;
+              MemoryBlockBoundary = MemoryBlockIterator;
+              MemoryBlockIterator = (long long *)MemoryBlockBoundary[1];
+              if (*(char *)((long long)MemoryBlockIterator + SystemNodeStatusOffset) != '\0') break;
+            } while (MemoryBlockBoundary == (long long *)*MemoryBlockIterator);
+            if (*(char *)((long long)MemoryBlockBoundary + SystemNodeStatusOffset) == '\0') {
+              MemoryBlockBoundary = MemoryBlockIterator;
             }
           }
         }
         else {
-          MemoryBoundaryPointer = (long long *)Utf8SourcePointer[2];
+          MemoryBlockBoundary = (long long *)Utf8SourcePointer[2];
         }
-        EncodingValidationResult = *Utf16EndPointer;
-        if (*(int *)((long long)MemoryBoundaryPointer + 0x1c) < EncodingValidationResult) {
-          if (*(char *)(MemoryBoundaryPointer[2] + SystemNodeStatusOffset) != '\0') {
+        EncodingValidationStatus = *Utf16EndPointer;
+        if (*(int *)((long long)MemoryBlockBoundary + 0x1c) < EncodingValidationStatus) {
+          if (*(char *)(MemoryBlockBoundary[2] + SystemNodeStatusOffset) != '\0') {
             FUN_18018af30(CharacterCode,SystemBufferSize,0);
             return SystemBufferSize;
           }
           FUN_18018af30(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
           return SystemBufferSize;
         }
-        IsSystemContextValidationResult = SBORROW4(*(int *)((long long)Utf8SourcePointer + 0x1c),EncodingValidationResult);
-        EncodingValidationResult = *(int *)((long long)Utf8SourcePointer + 0x1c) - EncodingValidationResult;
+        IsSystemContextValidationResult = SBORROW4(*(int *)((long long)Utf8SourcePointer + 0x1c),EncodingValidationStatus);
+        EncodingValidationStatus = *(int *)((long long)Utf8SourcePointer + 0x1c) - EncodingValidationStatus;
       }
-      if (IsSystemContextValidationResult != EncodingValidationResult < 0) {
-        MemoryBlockIndex = (long long *)Utf8SourcePointer[2];
-        MemoryPoolBlockSizePointer = Utf8SourcePointer;
+      if (IsSystemContextValidationResult != EncodingValidationStatus < 0) {
+        MemoryBlockIterator = (long long *)Utf8SourcePointer[2];
+        MemoryPoolSizePointer = Utf8SourcePointer;
         if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) == '\0') {
           do {
-            MemoryBoundaryPointer = MemoryBlockIndex;
-            MemoryBlockIndex = (long long *)*MemoryBoundaryPointer;
-          } while (*(char *)(*MemoryBoundaryPointer + SystemNodeStatusOffset) == '\0');
+            MemoryBlockBoundary = MemoryBlockIterator;
+            MemoryBlockIterator = (long long *)*MemoryBlockBoundary;
+          } while (*(char *)(*MemoryBlockBoundary + SystemNodeStatusOffset) == '\0');
         }
         else {
           do {
-            MemoryBoundaryPointer = (long long *)MemoryPoolBlockSizePointer[1];
-            if (*(char *)((long long)MemoryBoundaryPointer + SystemNodeStatusOffset) != '\0') break;
-            IsSystemContextValidationResult = MemoryPoolBlockSizePointer == (long long *)MemoryBoundaryPointer[2];
-            MemoryPoolBlockSizePointer = MemoryBoundaryPointer;
+            MemoryBlockBoundary = (long long *)MemoryPoolSizePointer[1];
+            if (*(char *)((long long)MemoryBlockBoundary + SystemNodeStatusOffset) != '\0') break;
+            IsSystemContextValidationResult = MemoryPoolSizePointer == (long long *)MemoryBlockBoundary[2];
+            MemoryPoolSizePointer = MemoryBlockBoundary;
           } while (IsSystemContextValidationResult);
         }
-        if ((MemoryBoundaryPointer == (long long *)*CharacterCode) || (*Utf16EndPointer < *(int *)((long long)MemoryBoundaryPointer + 0x1c))) {
+        if ((MemoryBlockBoundary == (long long *)*CharacterCode) || (*Utf16EndPointer < *(int *)((long long)MemoryBlockBoundary + 0x1c))) {
           if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) != '\0') {
             FUN_18018af30(CharacterCode,SystemBufferSize,0,Utf8SourcePointer);
             return SystemBufferSize;
@@ -221051,16 +221051,31 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *CharacterCode
         }
       }
     }
-    CharacterCodeTablePointer = (void *)FUN_18018b160(CharacterCode,aProcessingCounter,0,Utf16EndPointer,AdditionalParameter1);
-    *CharacterCodeSize = *CharacterCodePointer;
+    CharacterCodeTablePointer = (void *)FUN_18018b160(CharacterCode,EncodingProcessingBuffer,0,Utf16EndPointer,AdditionalParameter1);
+    *CharacterCodeSize = *CharacterCodeTablePointer;
   }
   return SystemBufferSize;
 }
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16编码转换的字符状态管理
+ * 
+ * 该函数负责管理UTF-8到UTF-16编码转换过程中的字符状态缓冲区。
+ * 函数会分配和初始化字符状态缓冲区，为后续的编码转换做准备。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含编码信息和数据
+ * @param CharacterCodeSize 字符代码大小指针，用于返回转换后的大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的数据
+ * @param Utf16EndPointer UTF-16结束指针，指示转换目标的边界
+ * @return uint64_t* 返回字符状态缓冲区指针，用于存储转换过程中的状态信息
+ * 
+ * @note 原始函数名：FUN_18018a8c0
+ * @warning 返回的缓冲区需要调用者负责管理和释放
+ */
 uint64_t *
-FUN_18018a8c0(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer
+ProcessCharacterStatusManagementForUtf8ToUtf16Conversion(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
