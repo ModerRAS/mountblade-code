@@ -95608,7 +95608,7 @@ void ConfigureSystemDataStructureOffsetb70(long long CharacterCode, uint32_t Sys
 
 
 
-dbf0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffsetbf0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffsetbf0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95634,7 +95634,7 @@ dbf0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-dc70(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffsetc70(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffsetc70(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95660,7 +95660,7 @@ dc70(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-dcf0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffsetcf0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffsetcf0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;

@@ -99357,7 +99357,20 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e3e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器链式清理函数E3E0
+ * 
+ * 该函数负责遍历异常处理器链并执行清理操作，包括：
+ * - 获取数据上下文和异常处理器指针
+ * - 遍历内存块并执行清理函数
+ * - 在特定条件下终止系统执行
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090e3e0
+ */
+void CleanupExceptionHandlerChainE3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -99379,7 +99392,14 @@ void Unwind_18090e3e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e3f0(void)
+/**
+ * @brief 互斥锁销毁函数E3F0
+ * 
+ * 该函数负责销毁互斥锁资源，确保线程同步资源的正确清理。
+ * 
+ * @note 原始函数名：Unwind_18090e3f0
+ */
+void DestroyMutexE3F0(void)
 
 {
   _Mtx_destroy_in_situ();
