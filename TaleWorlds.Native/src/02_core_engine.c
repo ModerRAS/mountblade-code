@@ -985,6 +985,26 @@
 #define ValidateCharacterEncodingStatus FUN_1801605f0
 
 /**
+ * @brief 处理字符编码和数据转换
+ * 
+ * 该函数负责处理字符编码和数据转换，包括：
+ * - 转换字符编码格式
+ * - 处理数据缓冲区
+ * - 管理字符串比较结果
+ * - 处理系统缓冲区大小
+ * 
+ * @param CharacterCode 字符代码
+ * @param StackData 栈数据
+ * @param ResultPointer 结果指针
+ * @param BufferPointer 缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160af0
+ */
+#define ProcessCharacterEncodingAndDataConversion FUN_180160af0
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -194008,7 +194028,7 @@ LAB_180160304:
       SystemChecksum = *(void *)(Utf8SourcePointer + 8);
       ProcessingStatusFlag = *(void *)(Utf8SourcePointer + 10);
       Utf16Char = *(void *)(Utf8SourcePointer + 0xc);
-      FUN_180160af0(CharacterCode + 0x50,alStack_60,StringComparisonResultPointer3,&iStackX_18,(long long)SystemBufferSize);
+      ProcessCharacterEncodingAndDataConversion(CharacterCode + 0x50,alStack_60,StringComparisonResultPointer3,&iStackX_18,(long long)SystemBufferSize);
       *(void *)(alStack_60[0] + 4) = UnicodeCodePoint;
       *(void *)(alStack_60[0] + 0xc) = MemoryAddressMaskPointer;
       *(void *)(alStack_60[0] + 0x14) = CalculatedCodePoint;
