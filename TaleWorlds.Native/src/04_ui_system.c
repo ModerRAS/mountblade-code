@@ -448,7 +448,90 @@ typedef enum {
  */
 #define InitializeUIEventSystem FUN_180706ba7
 
- // UI系统函数宏定义 - 处理UI渲染
+ // UI系统函数宏定义 - 处理复杂UI事件处理
+/**
+ * @brief 处理复杂UI事件处理
+ * 
+ * 该函数负责处理复杂的UI事件，包括：
+ * - 多参数事件处理
+ * - 事件数据转换
+ * - 事件结果计算
+ * 
+ * @note 原始函数名：FUN_180718bd0
+ */
+#define ProcessComplexUIEvent FUN_180718bd0
+
+// UI系统函数宏定义 - 获取UI上下文状态
+/**
+ * @brief 获取UI上下文状态
+ * 
+ * 该函数负责获取UI上下文的当前状态信息。
+ * 
+ * @note 原始函数名：FUN_180718c67
+ */
+#define GetUIContextStatus FUN_180718c67
+
+// UI系统函数宏定义 - 验证UI上下文数据
+/**
+ * @brief 验证UI上下文数据
+ * 
+ * 该函数负责验证UI上下文数据的有效性。
+ * 
+ * @note 原始函数名：FUN_180718dab
+ */
+#define ValidateUIContextData FUN_180718dab
+
+// UI系统函数宏定义 - 获取UI系统信息
+/**
+ * @brief 获取UI系统信息
+ * 
+ * 该函数负责获取UI系统的基本信息。
+ * 
+ * @note 原始函数名：FUN_180718f58
+ */
+#define GetUISystemInfo FUN_180718f58
+
+// UI系统函数宏定义 - 处理UI浮点数据
+/**
+ * @brief 处理UI浮点数据
+ * 
+ * 该函数负责处理UI系统中的浮点数据运算。
+ * 
+ * @note 原始函数名：FUN_18071943e
+ */
+#define ProcessUIFloatData FUN_18071943e
+
+// UI系统函数宏定义 - 处理UI数据转换
+/**
+ * @brief 处理UI数据转换
+ * 
+ * 该函数负责处理UI数据的类型转换。
+ * 
+ * @note 原始函数名：FUN_1807196d4
+ */
+#define ProcessUIDataConversion FUN_1807196d4
+
+// UI系统函数宏定义 - 处理UI数据缓冲区
+/**
+ * @brief 处理UI数据缓冲区
+ * 
+ * 该函数负责处理UI数据缓冲区的操作。
+ * 
+ * @note 原始函数名：FUN_180719ab8
+ */
+#define ProcessUIDataBuffer FUN_180719ab8
+
+// UI系统函数宏定义 - 处理UI组件缓冲区
+/**
+ * @brief 处理UI组件缓冲区
+ * 
+ * 该函数负责处理UI组件缓冲区的操作。
+ * 
+ * @note 原始函数名：FUN_180719b4c
+ */
+#define ProcessUIComponentBuffer FUN_180719b4c
+
+// UI系统函数宏定义 - 处理UI渲染
 /**
  * @brief 处理UI渲染
  * 
