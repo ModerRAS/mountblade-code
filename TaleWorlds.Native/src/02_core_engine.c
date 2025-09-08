@@ -377,6 +377,30 @@
 
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
+
+// 渲染上下文处理函数
+#define ProcessRenderContextWithUnsignedValue FUN_1800a43c0     // 处理渲染上下文和无符号值
+#define ProcessRenderContextWithStackVariable FUN_1800a4c50    // 处理渲染上下文和栈变量
+
+// 系统内存管理函数
+#define ProcessMemoryAllocationIndex FUN_18020ee40             // 处理内存分配索引
+
+// 字符代码处理函数
+#define ProcessCharacterCodeDataPair FUN_18031ce00              // 处理字符代码数据对
+#define ProcessCharacterCodeDataAdvanced FUN_18031d820         // 处理字符代码数据（高级）
+
+// 系统字符串处理函数
+#define ProcessSystemStringWithIdentifier FUN_180205470        // 处理带标识符的系统字符串
+#define ProcessSystemStringWithHandle FUN_180206cb0            // 处理带句柄的系统字符串
+
+// 系统操作函数
+#define ExecuteSystemOperationPrimary FUN_1801d7420            // 执行系统主要操作
+#define ExecuteSystemOperationSecondary FUN_18005cfc0          // 执行系统次要操作
+
+// 缓冲区状态处理函数
+#define ProcessBufferStatusValidation FUN_1801528b0            // 处理缓冲区状态验证
+#define ExecuteSystemProcessingTask FUN_180152990              // 执行系统处理任务
+#define ProcessBufferStatusAdvanced FUN_180152a20              // 处理缓冲区状态（高级）
 #define ReleaseSystemMemoryResources FUN_18006f4c0             // 释放系统内存资源
 #define ProcessRenderContextDataUpdate FUN_18029ef00           // 处理渲染上下文数据更新
 #define GetSystemStringIdentifierHandle FUN_180629810         // 获取系统字符串标识符句柄
