@@ -213521,7 +213521,19 @@ uint64_t * SetSystemContextBuffer(uint64_t *CharacterCode, unsigned long long Sy
 
 
 
-79f70(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179f70(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 字符编码处理包装函数1
+ * 
+ * 该函数是字符编码处理的包装函数，调用ProcessCharacterEncodingFinalization函数
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180179f70
+ */
+void ProcessCharacterEncodingWrapper1(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
@@ -213530,7 +213542,20 @@ uint64_t * SetSystemContextBuffer(uint64_t *CharacterCode, unsigned long long Sy
 
 
 
-79f90(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179f90(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 字符编码处理包装函数2
+ * 
+ * 该函数是字符编码处理的另一个包装函数，功能与ProcessCharacterEncodingWrapper1相同
+ * 用于不同的调用路径
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180179f90
+ */
+void ProcessCharacterEncodingWrapper2(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
@@ -213539,7 +213564,20 @@ uint64_t * SetSystemContextBuffer(uint64_t *CharacterCode, unsigned long long Sy
 
 
 
-79fc0(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179fc0(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 字符编码处理包装函数3
+ * 
+ * 该函数是字符编码处理的第三个包装函数，功能与前两个相同
+ * 用于不同的调用路径
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180179fc0
+ */
+void ProcessCharacterEncodingWrapper3(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
@@ -213548,7 +213586,20 @@ uint64_t * SetSystemContextBuffer(uint64_t *CharacterCode, unsigned long long Sy
 
 
 
-79ff0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179ff0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 字符编码处理包装函数4
+ * 
+ * 该函数是字符编码处理的第四个包装函数，除了调用ProcessCharacterEncodingFinalization外
+ * 还会设置系统上下文缓冲区
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180179ff0
+ */
+void ProcessCharacterEncodingWrapper4(uint64_t *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ProcessCharacterEncodingFinalization(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *CharacterCode = &SystemContextBufferSecondary;
