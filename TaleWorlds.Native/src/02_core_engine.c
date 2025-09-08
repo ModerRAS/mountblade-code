@@ -1182,6 +1182,24 @@
 
 #define ProcessCharacterEncodingAndBufferManagement FUN_1801601c0
 
+// 网络同步器变量语义化宏定义
+#define SyncCurrentCharacter NetworkSyncStatusFlag         // 网络同步状态标志
+#define MonitorCurrentCharacter NetworkMonitorStatusFlag     // 网络监控状态标志
+#define GameDataNodeCurrentCharacter GameDataNodeStatusFlag  // 游戏数据节点状态标志
+#define ConnectionCurrentCharacter NetworkConnectionStatusFlag // 网络连接状态标志
+#define ConnectionPoolCurrentCharacter NetworkConnectionPoolStatusFlag // 网络连接池状态标志
+#define AudioManagerCurrentCharacter AudioManagerStatusFlag   // 音频管理器状态标志
+#define InputManagerCurrentCharacter InputManagerStatusFlag   // 输入管理器状态标志
+#define PhysicsManagerNodeCurrentCharacter PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
+#define NetworkManagerCurrentCharacter NetworkManagerStatusFlag // 网络管理器状态标志
+#define SceneManagerCurrentCharacter SceneManagerStatusFlag   // 场景管理器状态标志
+#define CameraManagerCurrentCharacter CameraManagerStatusFlag   // 相机管理器状态标志
+#define NodeCurrentCharacter SystemNodeStatusFlag           // 系统节点状态标志
+#define ValidationCurrentCharacter ValidationStatusFlag      // 验证状态标志
+#define ConfigCurrentCharacter ConfigStatusFlag             // 配置状态标志
+#define DataCurrentCharacter DataStatusFlag                 // 数据状态标志
+#define StateCurrentCharacter StateStatusFlag               // 状态标志
+
 /**
  * @brief 处理系统优先级和标志
  * 
@@ -12065,7 +12083,7 @@ void CoreEngineInitializeNetworkEventHandler(void)
  */
 void CoreEngineInitializeNetworkDataSynchronizer(void)
 {
-  char SyncCurrentCharacter;
+  char NetworkSyncStatusFlag;
   void *SyncPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12078,7 +12096,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
   
   SystemHandle = (long long *)CoreEngineGetNetworkSystemHandle();
   SyncPoolPointer = (void *)*SystemHandle;
-  SyncCurrentCharacter = *(char *)((long long)SyncPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkSyncStatusFlag = *(char *)((long long)SyncPoolPointer[1] + SystemNodeStatusOffset);
   NetworkSyncHandler = 0;
   CurrentSyncNode = SyncPoolPointer;
   PreviousSyncNode = (void *)SyncPoolPointer[1];
@@ -205251,7 +205269,7 @@ void ProcessCharacterEncodingAndMemoryPoolManagement(long long OriginalCharacter
         LowByte = true;
       }
       else {
-        ValidationBytePointer = *(byte **)(CharacterCode + 8);
+        ValidationBytePointer = *(byte **)(OriginalCharacterCode + 8);
         SystemDataTablePointer = *MemoryPoolBlockSizePointer - (long long)ValidationBytePointer;
         do {
           HighByte = *ValidationBytePointer;
@@ -205276,14 +205294,14 @@ void ProcessCharacterEncodingAndMemoryPoolManagement(long long OriginalCharacter
         MemoryPoolBlockSizePointer[2] = 0;
         *MemoryPoolBlockSizePointer = 0;
         *(uint32_t *)(MemoryPoolBlockSizePointer + 1) = 0;
-        *(uint32_t *)(MemoryPoolBlockSizePointer + 1) = *(uint32_t *)(CharacterCode + 0x10);
-        *MemoryPoolBlockSizePointer = *(long long *)(CharacterCode + 8);
-        *(uint32_t *)((long long)MemoryPoolBlockSizePointer + 0x14) = *(uint32_t *)(CharacterCode + 0x1c);
-        *(uint32_t *)(MemoryPoolBlockSizePointer + 2) = *(uint32_t *)(CharacterCode + 0x18);
-        *(uint32_t *)(CharacterCode + 0x10) = 0;
-        *(void *)(CharacterCode + 8) = 0;
-        *(void *)(CharacterCode + 0x18) = 0;
-        ProcessCharacterEncodingAndMemoryPoolOperations(CharacterCode,0,StringOffset,0,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
+        *(uint32_t *)(MemoryPoolBlockSizePointer + 1) = *(uint32_t *)(OriginalCharacterCode + 0x10);
+        *MemoryPoolBlockSizePointer = *(long long *)(OriginalCharacterCode + 8);
+        *(uint32_t *)((long long)MemoryPoolBlockSizePointer + 0x14) = *(uint32_t *)(OriginalCharacterCode + 0x1c);
+        *(uint32_t *)(MemoryPoolBlockSizePointer + 2) = *(uint32_t *)(OriginalCharacterCode + 0x18);
+        *(uint32_t *)(OriginalCharacterCode + 0x10) = 0;
+        *(void *)(OriginalCharacterCode + 8) = 0;
+        *(void *)(OriginalCharacterCode + 0x18) = 0;
+        ProcessCharacterEncodingAndMemoryPoolOperations(OriginalCharacterCode,0,StringOffset,0,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
         EncodingBuffer = &SystemNullTemplate;
         if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
@@ -205304,15 +205322,15 @@ void ProcessCharacterEncodingAndMemoryPoolManagement(long long OriginalCharacter
       *(uint32_t *)(MemoryPoolBlockSizePointer + 1) = 0;
       *MemoryPoolBlockSizePointer = 0;
       MemoryPoolBlockSizePointer[2] = 0;
-      ProcessSystemMemoryAllocation(MemoryPoolBlockSizePointer + -1,CharacterCode);
-      ProcessSystemCharacterDataValidation(CharacterCode,0,StringOffset + -1,0,&EncodingBuffer,Utf16EndPointer);
+      ProcessSystemMemoryAllocation(MemoryPoolBlockSizePointer + -1,OriginalCharacterCode);
+      ProcessSystemCharacterDataValidation(OriginalCharacterCode,0,StringOffset + -1,0,&EncodingBuffer,Utf16EndPointer);
       EncodingBuffer = &SystemNullTemplate;
       if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
       }
       MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + -4;
-      StringOffset = (0x18 - CharacterCode) + (long long)MemoryPoolBlockSizePointer >> 5;
+      StringOffset = (0x18 - OriginalCharacterCode) + (long long)MemoryPoolBlockSizePointer >> 5;
     } while (1 < StringOffset);
   }
   return;
@@ -205451,7 +205469,20 @@ long long ProcessCharacterEncodingAndMemoryPoolOperations(long long CharacterCod
 
 
 
-70900(uint64_t *CharacterCodevoid FUN_180170900(uint64_t *CharacterCode
+/**
+ * @brief 初始化字符代码数组和线程本地存储
+ * 
+ * 该函数负责初始化字符代码数组并设置线程本地存储，包括：
+ * - 初始化多个字符代码数组元素
+ * - 设置线程本地存储模板
+ * - 初始化系统内存块
+ * - 处理线程本地存储设置
+ * 
+ * @param CharacterCode 字符代码数组指针
+ * 
+ * @note 原始函数名：FUN_180170900
+ */
+void InitializeCharacterCodeArrayAndThreadLocalStorage(uint64_t *CharacterCode)
 {
   CharacterCode[0x27f] = &ThreadLocalStorageTemplate;
   CharacterCode[0x26c] = &ThreadLocalStorageTemplate;
