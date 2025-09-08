@@ -91886,8 +91886,26 @@ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targ
 
 
 
- void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
-void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
+ /**
+ * @brief 处理UI事件数据更新和状态管理
+ * 
+ * 该函数负责处理UI系统中的事件数据更新操作，包括事件状态的更新、
+ * 数据处理、以及事件触发机制的维护。函数通过复杂的浮点数计算和
+ * 内存操作来处理UI事件数据。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * 
+ * @note 该函数是UI事件处理系统的核心组件，涉及复杂的数据计算和状态管理
+ * @warning 函数执行过程中会进行大量的浮点数运算和内存操作
+ * @see ProcessUIComponentDataTransformation, ProcessUIRenderDataUpdate
+ */
+// UI事件数据更新处理函数
+// 原始函数名: FUN_18071efcb
+#define ProcessUIEventDataUpdate FUN_18071efcb
+
+void ProcessUIEventDataUpdate(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
 
 {
   float *pbaseValue;
