@@ -25068,23 +25068,23 @@ LAB_18066a567:
       transformValue90 = transformValueA0;
       transformValue8C = transformValue9C;
       CalculateUITransformMatrix(dataSource,&transformValue98,0,&transformValue88,0,1,processingCounter);
-      if (cStack_54 == '\0') {
-        fStack_58 = 0.0;
+      if (collisionFlag54 == '\0') {
+        transformValue58 = 0.0;
       }
-      fStack_90 = fStack_58 + 0.01;
-      cStack_54 = '\0';
-      stackUInt78 = 0;
-      stackUInt70 = 0x7f7fffff3f800000;
-      fStack_58 = 0.0;
-      stackUInt68 = 0;
-      stackUInt60 = 0;
-      fStack_8c = 3.4028235e+38;
-      fStack_98 = transformCoeff4;
-      fStack_94 = localFloat6;
-      CalculateUITransformMatrix(dataSource,&fStack_98,0,&fStack_88,0,1,processingCounter);
+      transformValue90 = transformValue58 + 0.01;
+      collisionFlag54 = '\0';
+      uiHandle78 = 0;
+      uiHandle70 = 0x7f7fffff3f800000;
+      transformValue58 = 0.0;
+      uiHandle68 = 0;
+      uiHandle60 = 0;
+      transformValue8C = 3.4028235e+38;
+      transformValue98 = transformCoeff4;
+      transformValue94 = localFloat6;
+      CalculateUITransformMatrix(dataSource,&transformValue98,0,&transformValue88,0,1,processingCounter);
       transformCoeff3 = 0.0;
-      if (cStack_54 != '\0') {
-        transformCoeff3 = fStack_58;
+      if (collisionFlag54 != '\0') {
+        transformCoeff3 = transformValue58;
       }
     }
     transformCoeff3 = transformCoeff3 + 0.01;
@@ -88215,11 +88215,11 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
   }
   contextDataOffset = (longlong)(int)processedBytesCount;
   if (contextDataOffset < targetBufferSize) {
-    if (3 < allocatedMemory8 - allocatedMemory3) {
-      baseScaleFactor = (float *)(dataSource + 4 + allocatedMemory3 * 4);
-      allocatedMemory9 = uiContext - dataSource;
-      allocatedMemory5 = ((allocatedMemory8 - allocatedMemory3) - 4U >> 2) + 1;
-      allocatedMemory3 = allocatedMemory3 + allocatedMemory5 * 4;
+    if (3 < remainingDataSize - startDataOffset) {
+      remainingScaleFactor = (float *)(dataSource + 4 + startDataOffset * 4);
+      contextDifference = uiContext - dataSource;
+      remainingGroupsCount = ((remainingDataSize - startDataOffset) - 4U >> 2) + 1;
+      startDataOffset = startDataOffset + remainingGroupsCount * 4;
       do {
         transformCoeff1 = baseScaleFactor[-1];
         AccumulatedFloat = *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor) * 0.70710677;
