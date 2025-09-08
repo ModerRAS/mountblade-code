@@ -308,6 +308,59 @@
 #define ExceptionHandlerMinimumResourceCount 1             // 异常处理器最小资源计数
 #define ExceptionHandlerStateOffset 0x58                   // 异常处理器状态偏移量
 
+// 系统上下文扩展偏移量常量
+#define SystemContextOffset48 0x48                           // 系统上下文偏移量48
+#define SystemContextOffset94 0x94                           // 系统上下文偏移量94
+#define SystemContextOffsetAc 0xac                           // 系统上下文偏移量Ac
+#define SystemContextOffsetB0 0xb0                           // 系统上下文偏移量B0
+#define SystemContextOffsetB4 0xb4                           // 系统上下文偏移量B4
+#define SystemContextOffsetA8 0xa8                           // 系统上下文偏移量A8
+#define SystemContextOffset68 0x68                           // 系统上下文偏移量68
+#define SystemContextOffsetA0 0xa0                           // 系统上下文偏移量A0
+
+// 数据上下文偏移量常量
+#define DataContextOffset29 0x29                             // 数据上下文偏移量29
+#define DataContextOffset48 0x48                             // 数据上下文偏移量48
+#define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
+#define DataContextOffset50 0x50                             // 数据上下文偏移量50
+#define DataContextOffset54 0x54                             // 数据上下文偏移量54
+#define DataContextOffset58 0x58                             // 数据上下文偏移量58
+#define DataContextOffset5c 0x5c                             // 数据上下文偏移量5c
+#define DataContextOffset60 0x60                             // 数据上下文偏移量60
+#define DataContextOffset94 0x94                             // 数据上下文偏移量94
+
+// 异常处理器数据偏移量常量
+#define ExceptionHandlerContextOffset48 0x48                 // 异常处理上下文偏移量48
+#define ExceptionHandlerContextOffsetC4 0xc4                 // 异常处理上下文偏移量C4
+#define ExceptionHandlerContextOffset6d8 0x6d8               // 异常处理上下文偏移量6d8
+#define ExceptionHandlerContextOffset6dc 0x6dc               // 异常处理上下文偏移量6dc
+#define ExceptionHandlerContextOffset6d0 0x6d0               // 异常处理上下文偏移量6d0
+#define ExceptionHandlerContextOffset6d4 0x6d4               // 异常处理上下文偏移量6d4
+#define ExceptionHandlerContextOffset1e0 0x1e0               // 异常处理上下文偏移量1e0
+#define ExceptionHandlerContextOffset78 0x78                 // 异常处理上下文偏移量78
+
+// 操作基础偏移量常量
+#define OperationBaseOffset14 0x14                           // 操作基础偏移量14
+#define OperationBaseOffset24 0x24                           // 操作基础偏移量24
+#define OperationBaseOffset30 0x30                           // 操作基础偏移量30
+#define OperationBaseOffset58 0x58                           // 操作基础偏移量58
+#define OperationBaseOffset60 0x60                           // 操作基础偏移量60
+#define OperationBaseOffset70 0x70                           // 操作基础偏移量70
+#define OperationBaseOffset78 0x78                           // 操作基础偏移量78
+#define OperationBaseOffset94 0x94                           // 操作基础偏移量94
+#define OperationBaseOffsetA0 0xa0                           // 操作基础偏移量A0
+#define OperationBaseOffsetA8 0xa8                           // 操作基础偏移量A8
+#define OperationBaseOffsetAc 0xac                           // 操作基础偏移量Ac
+#define OperationBaseOffsetB0 0xb0                           // 操作基础偏移量B0
+
+// 栈帧上下文偏移量常量
+#define StackFrameContextOffset1d0 0x1d0                     // 栈帧上下文偏移量1d0
+#define StackFrameContextOffset5f0 0x5f0                     // 栈帧上下文偏移量5f0
+
+// 寄存器上下文偏移量常量
+#define RegisterContextOffset48 0x48                         // 寄存器上下文偏移量48
+#define RegisterContextOffset1c 0x1c                         // 寄存器上下文偏移量1c
+
 // 系统资源验证栈常量
 #define SystemResourceValidationStackAdjustment 8           // 系统资源验证栈调整
 #define SystemResourceValidationArraySizeOffset 0x28        // 系统资源验证数组大小偏移量
