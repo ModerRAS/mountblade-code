@@ -2702,6 +2702,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 系统重置函数A0
+ * 
+ * 该函数负责重置系统状态，包括配置重置、状态初始化和系统重新启动。
+ * 它会在系统出现错误或需要重新初始化时调用，确保系统能够恢复到初始状态。
+ * 
  * @note 原始函数名：FUN_180080870
  */
 #define ResetSystemA0 ResetSystemStateAndConfiguration
