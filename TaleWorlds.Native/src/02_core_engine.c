@@ -255783,11 +255783,11 @@ uint64_t ProcessSystemContextAndMemoryManagement(long long ContextHandle,char Op
   long long *SystemContextRegister;
   long long *PerformanceCounterPointer;
   
-  SystemRegisterPointerX18 = (long long *)0x0;
-  if (SystemBufferSize == '\0') {
-    CurrentCharacter = ValidateSystemConfiguration(*(void *)(CharacterCode + 0x60),CharacterCode + 0x78,&SystemRegisterPointerX18);
-    SystemContextPtr = SystemRegisterPointerX18;
-    DataSize = TimeoutValueStorage;
+  SystemContextRegister = (long long *)0x0;
+  if (OperationBufferSize == '\0') {
+    ValidationStatus = ValidateSystemConfiguration(*(void *)(ContextHandle + 0x60),ContextHandle + 0x78,&SystemContextRegister);
+    SystemContextPtr = SystemContextRegister;
+    OperationResult = TimeoutValueStorage;
     if (CurrentCharacter != '\0') {
       if (((unsigned long long)SystemRegisterPointerX18[3] >> (*(unsigned long long *)(CharacterCode + 0x50) & 0x3f) & 1) != 0) {
         (**(code **)(*SystemRegisterPointerX18 + 0x60))(SystemRegisterPointerX18);

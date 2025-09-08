@@ -91126,8 +91126,8 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
     uiValidationResult = resultPointer;
   }
   uiCompareResult = FUN_18071e260(uiContext,uiValidationResult);
-  TempInt4 = FUN_18071dfc0(uiContext,uiValidationResult,dataSource[6]);
-  localInt5 = func_0x00018071dd40(uiContext,dataSource[9]);
+  eventProcessingResult = FUN_18071dfc0(uiContext,uiValidationResult,dataSource[6]);
+  stateManagementResult = func_0x00018071dd40(uiContext,dataSource[9]);
   *(UIDword *)(uiBufferData + 0x1204) = dataSource[8];
   uiValidationResult = dataSource[0xb];
   processingResult = *(int *)(uiBufferData + 0x17d8);
