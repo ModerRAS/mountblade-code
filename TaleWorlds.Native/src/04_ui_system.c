@@ -73696,7 +73696,7 @@ void ProcessUIAnimation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBu
   }
   animationDataSize = (longlong)resultPointer * 4;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(animationDataSize,animationParam,0xffffffffffffff0);
+  ProcessUIAnimationDataAllocation(animationDataSize,animationParam,0xffffffffffffff0);
 }
 
 
@@ -73766,7 +73766,7 @@ void UpdateUIAnimationState(longlong uiContext,UIHandle dataSource,longlong targ
         if (localInt9 <= param_9) {
           ProcessingResult1 = localInt9;
         }
-        FUN_180707df0(uiContext,dataSource,targetBuffer,ProcessingResult1,uiOperationResult6,param_6,param_7,param_8,uiContext0,
+        ProcessUIDataWithContext(uiContext,dataSource,targetBuffer,ProcessingResult1,uiOperationResult6,param_6,param_7,param_8,uiContext0,
                       uiContext1);
         uiOperationResult6 = uiOperationResult6 + param_9;
         localInt9 = localInt9 - param_9;
@@ -73989,7 +73989,7 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
       StackData3 = StackParam4;
       StackData2 = StackParam3;
       StackData1 = StackParam2;
-      FUN_180707df0();
+      ProcessUIDataWithContext();
       TempInt9 = TempInt9 - uiContext / 0x32;
       RegisterValue = StackParam1;
     } while (0 < TempInt9);
@@ -75068,7 +75068,7 @@ void ProcessUIRenderDataAndEventOperations(longlong uiContext,longlong dataSourc
   stackInt748 = resultPointer;
   stackUInt738 = targetBuffer;
   stackLong718 = uiContext;
-  fStack_72c = (float)FUN_1807075c0(uiContext0,targetBuffer,uiContext + ((longlong)EventOperationCount + 0x2d3) * 4,
+  fStack_72c = (float)ProcessUIAnimationData(uiContext0,targetBuffer,uiContext + ((longlong)EventOperationCount + 0x2d3) * 4,
                                     uiContext + 0x2060);
   fStack_72c = fStack_72c + *(float *)(uiContext + 0x205c);
   localInt8 = *(int *)(uiBufferData + 0x168c) + localInt8;
