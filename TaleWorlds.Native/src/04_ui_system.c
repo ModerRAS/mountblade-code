@@ -29065,7 +29065,7 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
   UIDword result1;
   UIDword result2;
   uint result3;
-  int *pprocessingResult4;
+  int *ProcessingStatusPointer;
   UIByte *ptrResult5;
   longlong allocatedMemory6;
   uint result7;
@@ -29233,13 +29233,13 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
         RenderContextIndex = 0;
         RenderDataAlignment = 0x20;
         do {
-          pprocessingResult4 = pstackInt110;
+          ProcessingStatusPointer = pstackInt110;
           localInt5 = stackInt160;
           *pstackInt108 = result7 - 1;
           if (((result7 & stackInt160 - 1U) == 0) && (*pstackInt110 - stackInt160 < (int)result7)) {
             do {
               Sleep(0);
-            } while (*pprocessingResult4 - localInt5 < (int)result7);
+            } while (*ProcessingStatusPointer - localInt5 < (int)result7);
             iterationCount1 = (ulonglong)(int)iterationCount2;
           }
           componentIndex0 = *(longlong *)(dataSource + 0xf00);
@@ -107202,7 +107202,7 @@ void FUN_1807326d0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   int ProcessingResult1;
   uint *ptrResult2;
   int ProcessingResult3;
-  int *pprocessingResult4;
+  int *ProcessingStatusPointer;
   uint CounterResult;
   int processingResult6;
   longlong allocatedMemory7;
@@ -107368,71 +107368,71 @@ LAB_180732998:
   ProcessingResult3 = *(int *)(dataSource + 0x10f0) - *(int *)(uiBufferData + 0x11ec);
   allocatedMemory0 = (longlong)processingResult6;
   if (ProcessingResult3 < *(int *)(dataSource + 0x10f0)) {
-    pprocessingResult4 = (int *)(dataSource + ((longlong)ProcessingResult3 + 0x140) * 4);
+    ProcessingStatusPointer = (int *)(dataSource + ((longlong)ProcessingResult3 + 0x140) * 4);
     do {
       ProcessingResult3 = ProcessingResult3 + 1;
-      *pprocessingResult4 = (int)((ulonglong)(*pprocessingResult4 * allocatedMemory0) >> 0x10);
-      pprocessingResult4 = pprocessingResult4 + 1;
+      *ProcessingStatusPointer = (int)((ulonglong)(*ProcessingStatusPointer * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer = ProcessingStatusPointer + 1;
     } while (ProcessingResult3 < *(int *)(dataSource + 0x10f0));
   }
   if (((uiContext3 == 2) && (*(int *)(dataSource + 0x10fc) == 0)) &&
      (localInt8 = (*(int *)(dataSource + 0x10ec) - localInt8) + -2,
      localInt8 < *(int *)(dataSource + 0x10ec) - uiContext4)) {
-    pprocessingResult4 = (int *)(param_7 + (longlong)localInt8 * 4);
+    ProcessingStatusPointer = (int *)(param_7 + (longlong)localInt8 * 4);
     do {
       localInt8 = localInt8 + 1;
-      *pprocessingResult4 = (int)((ulonglong)(*pprocessingResult4 * allocatedMemory0) >> 0x10);
-      pprocessingResult4 = pprocessingResult4 + 1;
+      *ProcessingStatusPointer = (int)((ulonglong)(*ProcessingStatusPointer * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer = ProcessingStatusPointer + 1;
     } while (localInt8 < *(int *)(dataSource + 0x10ec) - uiContext4);
   }
   allocatedMemory7 = (longlong)param_9;
   if (0 < allocatedMemory7) {
-    pprocessingResult4 = (int *)(targetBuffer + 0x504);
+    ProcessingStatusPointer = (int *)(targetBuffer + 0x504);
     do {
-      pprocessingResult4[-1] = (int)((ulonglong)(pprocessingResult4[-1] * allocatedMemory0) >> 0x10);
-      *pprocessingResult4 = (int)((ulonglong)(*pprocessingResult4 * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x141] = (int)((ulonglong)(pprocessingResult4[-0x141] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x140] = (int)((ulonglong)(pprocessingResult4[-0x140] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13f] = (int)((ulonglong)(pprocessingResult4[-0x13f] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13e] = (int)((ulonglong)(pprocessingResult4[-0x13e] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13d] = (int)((ulonglong)(pprocessingResult4[-0x13d] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13c] = (int)((ulonglong)(pprocessingResult4[-0x13c] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13b] = (int)((ulonglong)(pprocessingResult4[-0x13b] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13a] = (int)((ulonglong)(pprocessingResult4[-0x13a] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x139] = (int)((ulonglong)(pprocessingResult4[-0x139] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x138] = (int)((ulonglong)(pprocessingResult4[-0x138] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x137] = (int)((ulonglong)(pprocessingResult4[-0x137] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x136] = (int)((ulonglong)(pprocessingResult4[-0x136] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x135] = (int)((ulonglong)(pprocessingResult4[-0x135] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x134] = (int)((ulonglong)(pprocessingResult4[-0x134] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x133] = (int)((ulonglong)(pprocessingResult4[-0x133] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x132] = (int)((ulonglong)(pprocessingResult4[-0x132] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x19] = (int)((ulonglong)(pprocessingResult4[-0x19] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x18] = (int)((ulonglong)(pprocessingResult4[-0x18] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x17] = (int)((ulonglong)(pprocessingResult4[-0x17] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x16] = (int)((ulonglong)(pprocessingResult4[-0x16] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x15] = (int)((ulonglong)(pprocessingResult4[-0x15] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x14] = (int)((ulonglong)(pprocessingResult4[-0x14] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x13] = (int)((ulonglong)(pprocessingResult4[-0x13] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x12] = (int)((ulonglong)(pprocessingResult4[-0x12] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x11] = (int)((ulonglong)(pprocessingResult4[-0x11] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0x10] = (int)((ulonglong)(pprocessingResult4[-0x10] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0xf] = (int)((ulonglong)(pprocessingResult4[-0xf] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0xe] = (int)((ulonglong)(pprocessingResult4[-0xe] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0xd] = (int)((ulonglong)(pprocessingResult4[-0xd] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0xc] = (int)((ulonglong)(pprocessingResult4[-0xc] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-0xb] = (int)((ulonglong)(pprocessingResult4[-0xb] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-10] = (int)((ulonglong)(pprocessingResult4[-10] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-9] = (int)((ulonglong)(pprocessingResult4[-9] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-8] = (int)((ulonglong)(pprocessingResult4[-8] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-7] = (int)((ulonglong)(pprocessingResult4[-7] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-6] = (int)((ulonglong)(pprocessingResult4[-6] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-5] = (int)((ulonglong)(pprocessingResult4[-5] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-4] = (int)((ulonglong)(pprocessingResult4[-4] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-1] = (int)((ulonglong)(ProcessingStatusPointer[-1] * allocatedMemory0) >> 0x10);
+      *ProcessingStatusPointer = (int)((ulonglong)(*ProcessingStatusPointer * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x141] = (int)((ulonglong)(ProcessingStatusPointer[-0x141] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x140] = (int)((ulonglong)(ProcessingStatusPointer[-0x140] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13f] = (int)((ulonglong)(ProcessingStatusPointer[-0x13f] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13e] = (int)((ulonglong)(ProcessingStatusPointer[-0x13e] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13d] = (int)((ulonglong)(ProcessingStatusPointer[-0x13d] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13c] = (int)((ulonglong)(ProcessingStatusPointer[-0x13c] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13b] = (int)((ulonglong)(ProcessingStatusPointer[-0x13b] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13a] = (int)((ulonglong)(ProcessingStatusPointer[-0x13a] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x139] = (int)((ulonglong)(ProcessingStatusPointer[-0x139] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x138] = (int)((ulonglong)(ProcessingStatusPointer[-0x138] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x137] = (int)((ulonglong)(ProcessingStatusPointer[-0x137] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x136] = (int)((ulonglong)(ProcessingStatusPointer[-0x136] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x135] = (int)((ulonglong)(ProcessingStatusPointer[-0x135] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x134] = (int)((ulonglong)(ProcessingStatusPointer[-0x134] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x133] = (int)((ulonglong)(ProcessingStatusPointer[-0x133] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x132] = (int)((ulonglong)(ProcessingStatusPointer[-0x132] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x19] = (int)((ulonglong)(ProcessingStatusPointer[-0x19] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x18] = (int)((ulonglong)(ProcessingStatusPointer[-0x18] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x17] = (int)((ulonglong)(ProcessingStatusPointer[-0x17] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x16] = (int)((ulonglong)(ProcessingStatusPointer[-0x16] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x15] = (int)((ulonglong)(ProcessingStatusPointer[-0x15] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x14] = (int)((ulonglong)(ProcessingStatusPointer[-0x14] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x13] = (int)((ulonglong)(ProcessingStatusPointer[-0x13] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x12] = (int)((ulonglong)(ProcessingStatusPointer[-0x12] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x11] = (int)((ulonglong)(ProcessingStatusPointer[-0x11] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0x10] = (int)((ulonglong)(ProcessingStatusPointer[-0x10] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0xf] = (int)((ulonglong)(ProcessingStatusPointer[-0xf] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0xe] = (int)((ulonglong)(ProcessingStatusPointer[-0xe] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0xd] = (int)((ulonglong)(ProcessingStatusPointer[-0xd] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0xc] = (int)((ulonglong)(ProcessingStatusPointer[-0xc] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-0xb] = (int)((ulonglong)(ProcessingStatusPointer[-0xb] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-10] = (int)((ulonglong)(ProcessingStatusPointer[-10] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-9] = (int)((ulonglong)(ProcessingStatusPointer[-9] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-8] = (int)((ulonglong)(ProcessingStatusPointer[-8] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-7] = (int)((ulonglong)(ProcessingStatusPointer[-7] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-6] = (int)((ulonglong)(ProcessingStatusPointer[-6] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-5] = (int)((ulonglong)(ProcessingStatusPointer[-5] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-4] = (int)((ulonglong)(ProcessingStatusPointer[-4] * allocatedMemory0) >> 0x10);
       allocatedMemory9 = 2;
-      pprocessingResult4[-3] = (int)((ulonglong)(pprocessingResult4[-3] * allocatedMemory0) >> 0x10);
-      pprocessingResult4[-2] = (int)((ulonglong)(pprocessingResult4[-2] * allocatedMemory0) >> 0x10);
-      ptrLocalInt5 = pprocessingResult4 + -0x41;
+      ProcessingStatusPointer[-3] = (int)((ulonglong)(ProcessingStatusPointer[-3] * allocatedMemory0) >> 0x10);
+      ProcessingStatusPointer[-2] = (int)((ulonglong)(ProcessingStatusPointer[-2] * allocatedMemory0) >> 0x10);
+      ptrLocalInt5 = ProcessingStatusPointer + -0x41;
       do {
         ptrLocalInt5[-0x28] = (int)((ulonglong)(ptrLocalInt5[-0x28] * allocatedMemory0) >> 0x10);
         *ptrLocalInt5 = (int)((ulonglong)(*ptrLocalInt5 * allocatedMemory0) >> 0x10);
@@ -107477,7 +107477,7 @@ LAB_180732998:
         allocatedMemory9 = allocatedMemory9 + -1;
         ptrLocalInt5 = ptrLocalInt5 + 0x14;
       } while (allocatedMemory9 != 0);
-      pprocessingResult4 = pprocessingResult4 + 0x145;
+      ProcessingStatusPointer = ProcessingStatusPointer + 0x145;
       allocatedMemory7 = allocatedMemory7 + -1;
     } while (allocatedMemory7 != 0);
   }
@@ -207041,7 +207041,7 @@ void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int 
   UIHandle *ptrResult1;
   uint result2;
   UIHandle *ptrResult3;
-  int *pprocessingResult4;
+  int *ProcessingStatusPointer;
   UIByte astackUInt108 [32];
   int stackInte8;
   UIDword stackUInte0;
@@ -207133,7 +207133,7 @@ LAB_1807912bc:
         stackUInta8 = 0;
         localInt7 = (int)ptrLocal8;
         if (0 < *(int *)((longlong)uiContext + 0x1c)) {
-          pprocessingResult4 = astackInt80;
+          ProcessingStatusPointer = astackInt80;
           ptrLocal8 = ptrResult1;
           ptrResult3 = ptrResult1;
           do {
@@ -207142,7 +207142,7 @@ LAB_1807912bc:
               uiValidationResult = localInt9;
             }
             ptrLocal8 = ptrResult1;
-            if ((uiValidationResult == 0) || (pprocessingResult4[2] == 0)) {
+            if ((uiValidationResult == 0) || (ProcessingStatusPointer[2] == 0)) {
               stackInte8 = 0;
               ptrLocal6 = (UIHandle *)
                        FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x88,&UNK_18095b780,
@@ -207174,7 +207174,7 @@ LAB_1807912bc:
                       (uiContext[7] +
                       (longlong)(*(int *)((longlong)uiContext + 0x1c) * localInt7 + localInt9) * 8);
             if (ptrLocal8 == (UIHandle *)0x0) goto FUN_1807915fb;
-            stackIntd8 = pprocessingResult4[2];
+            stackIntd8 = ProcessingStatusPointer[2];
             stackUIntb0 = 0;
             stackUIntb8 = 0;
             stackUIntc0 = 0;
@@ -207182,8 +207182,8 @@ LAB_1807912bc:
             stackUInte0 = 0;
             stackIntd0 = uiValidationResult;
             if (localInt9 < *(int *)((longlong)uiContext + 0x1c) + -1) {
-              uiValidationResult = *pprocessingResult4;
-              TempInt4 = pprocessingResult4[1];
+              uiValidationResult = *ProcessingStatusPointer;
+              TempInt4 = ProcessingStatusPointer[1];
               stackInte8 = TempInt4;
               uiCompareResult = (**(code **)*ptrLocal8)(ptrLocal8,uiContext[1],uiValidationResult);
               if (uiCompareResult != 0) goto FUN_1807915fb;
@@ -207197,7 +207197,7 @@ LAB_1807912bc:
             }
             else {
               uiCompareResult = resultPointer - (int)ptrResult3;
-              uiValidationResult = *pprocessingResult4;
+              uiValidationResult = *ProcessingStatusPointer;
               stackInte8 = (uiCompareResult + -1) / uiValidationResult + 1;
               TempInt4 = (**(code **)*ptrLocal8)(ptrLocal8,uiContext[1],uiValidationResult,stackInta4);
               if (TempInt4 != 0) goto FUN_1807915fb;
@@ -207208,10 +207208,10 @@ LAB_1807912bc:
               TempInt4 = (**(code **)(*pallocatedMemory + 8))
                                 (pallocatedMemory,(int)((*(int *)(uiBufferData + 3) * stackUInta8 + localInt7)                                              (int)stackUInt90) + stackLong88,stackInt9c,stackInta0);
               if (TempInt4 != 0) goto FUN_1807915fb;
-              TempInt4 = pprocessingResult4[1];
+              TempInt4 = ProcessingStatusPointer[1];
             }
             ptrLocal8 = (UIHandle *)(ulonglong)(localInt9 + 1U);
-            pprocessingResult4 = pprocessingResult4 + 3;
+            ProcessingStatusPointer = ProcessingStatusPointer + 3;
             stackUInta8 = stackUInta8 + TempInt4 * uiValidationResult;
             ptrResult3 = (UIHandle *)(ulonglong)stackUInta8;
             uiValidationResult = stackInt98;
@@ -219351,7 +219351,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
   int ProcessingResult1;
   longlong allocatedMemory2;
   int ProcessingResult3;
-  int *pprocessingResult4;
+  int *ProcessingStatusPointer;
   uint CounterResult;
   int processingResult6;
   int iStackX_18;
@@ -219384,7 +219384,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
     CounterResult = 0;
     if (0 < processingResult6) {
       TempInt4 = 0;
-      pprocessingResult4 = (int *)&DAT_180c1b958;
+      ProcessingStatusPointer = (int *)&DAT_180c1b958;
       do {
         if (0 < (int)CounterResult) {
           eventTypeCode = (ulonglong)CounterResult;
@@ -219394,7 +219394,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
             ProcessingResult3 = *ptrLocalInt8;
             ptrLocalInt8 = ptrLocalInt8 + 1;
             allocatedMemory2 = (longlong)(ProcessingResult3 + TempInt4);
-            ProcessingResult1 = *pprocessingResult4 + EventOperationCount;
+            ProcessingResult1 = *ProcessingStatusPointer + EventOperationCount;
             EventDataIndex = (longlong)ProcessingResult1;
             ProcessingResult3 = ProcessingResult3 + TempInt4 + processingResult6 * 4;
             EventOperationCount = EventOperationCount + 2;
@@ -219437,9 +219437,9 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
             eventTypeCode = eventTypeCode - 1;
           } while (eventTypeCode != 0);
         }
-        EventOperationCount = *pprocessingResult4;
+        EventOperationCount = *ProcessingStatusPointer;
         CounterResult = CounterResult + 1;
-        pprocessingResult4 = pprocessingResult4 + 1;
+        ProcessingStatusPointer = ProcessingStatusPointer + 1;
         EventOperationCount = EventOperationCount + TempInt4 + localInt9;
         TempInt4 = TempInt4 + 2;
         EventDataIndex = (longlong)EventOperationCount;
@@ -219458,7 +219458,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
   else if (1 < lStackX_20) {
     lStackX_20 = lStackX_20 + -1;
     processingResult6 = 2;
-    pprocessingResult4 = (int *)0x180c1b95c;
+    ProcessingStatusPointer = (int *)0x180c1b95c;
     do {
       TempInt4 = 0;
       allocatedMemory2 = 0;
@@ -219468,7 +219468,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
         eventTypeCode = (ulonglong)CounterResult;
         TempInt4 = CounterResult * 4;
         do {
-          ProcessingResult1 = *pprocessingResult4;
+          ProcessingResult1 = *ProcessingStatusPointer;
           ProcessingResult3 = *(int *)(&DAT_180c1b958 + allocatedMemory2 * 4);
           ContextHandleData = (longlong)(ProcessingResult1 + EventOperationCount);
           EventDataIndex = (longlong)(ProcessingResult3 + processingResult6);
@@ -219488,7 +219488,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
           *(UIDword *)(dataSource + 4 + ContextHandleData * 4) = iterationCount;
           *(UIDword *)(dataSource + EventDataIndex * 4) = result;
           *(UIDword *)(dataSource + 4 + EventDataIndex * 4) = EventTypeCode;
-          ProcessingResult1 = *pprocessingResult4;
+          ProcessingResult1 = *ProcessingStatusPointer;
           ContextHandleData = (longlong)(ProcessingResult1 + EventOperationCount);
           ProcessingResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b95c) + processingResult6;
           EventDataIndex = (longlong)ProcessingResult3;
@@ -219508,7 +219508,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
           *(UIDword *)(dataSource + 0xc + ContextHandleData * 4) = iterationCount;
           *(UIDword *)(dataSource + EventDataIndex * 4) = result;
           *(UIDword *)(dataSource + 4 + EventDataIndex * 4) = EventTypeCode;
-          ProcessingResult1 = *pprocessingResult4 + EventOperationCount + 6;
+          ProcessingResult1 = *ProcessingStatusPointer + EventOperationCount + 6;
           ContextHandleData = (longlong)ProcessingResult1;
           ProcessingResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b960) + processingResult6;
           EventDataIndex = (longlong)ProcessingResult3;
@@ -219528,7 +219528,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
           *(UIDword *)(dataSource + -4 + ContextHandleData * 4) = iterationCount;
           *(UIDword *)(dataSource + EventDataIndex * 4) = result;
           *(UIDword *)(dataSource + 4 + EventDataIndex * 4) = EventTypeCode;
-          ProcessingResult1 = *pprocessingResult4 + EventOperationCount + 6;
+          ProcessingResult1 = *ProcessingStatusPointer + EventOperationCount + 6;
           EventOperationCount = EventOperationCount + 8;
           ContextHandleData = (longlong)ProcessingResult1;
           ProcessingResult3 = *(int *)(allocatedMemory2 * 4 + 0x180c1b964) + processingResult6;
@@ -219562,7 +219562,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
           TempInt4 = *ptrLocalInt8;
           ptrLocalInt8 = ptrLocalInt8 + 1;
           allocatedMemory2 = (longlong)(TempInt4 + processingResult6);
-          ProcessingResult1 = *pprocessingResult4 + EventOperationCount;
+          ProcessingResult1 = *ProcessingStatusPointer + EventOperationCount;
           EventDataIndex = (longlong)ProcessingResult1;
           EventOperationCount = EventOperationCount + 2;
           result = *(UIDword *)(dataSource + 4 + allocatedMemory2 * 4);
@@ -219586,7 +219586,7 @@ void FUN_18079e450(UIHandle uiContext,longlong dataSource,int targetBuffer)
       }
       iStackX_18 = iStackX_18 + 1;
       processingResult6 = processingResult6 + 2;
-      pprocessingResult4 = pprocessingResult4 + 1;
+      ProcessingStatusPointer = ProcessingStatusPointer + 1;
       lStackX_20 = lStackX_20 + -1;
     } while (lStackX_20 != 0);
   }
@@ -265642,7 +265642,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
   int ProcessingResult1;
   int ProcessingResult2;
   int ProcessingResult3;
-  int *pprocessingResult4;
+  int *ProcessingStatusPointer;
   longlong allocatedMemory5;
   float floatResult6;
   double dVar17;
@@ -265699,7 +265699,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
       ProcessingResult1 = 0;
       if (0 < (int)result) {
         allocatedMemory5 = 0;
-        pprocessingResult4 = bufferSize;
+        ProcessingStatusPointer = bufferSize;
         do {
           if ((bufferSize == (int *)0x0) || (*(int *)(allocatedMemory5 + *(longlong *)(dataSource + 2)) != 0)) {
             uiValidationResult = 0;
@@ -265721,7 +265721,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
                 }
                 localInt5 = EventOperationCount;
                 if (bufferSize != (int *)0x0) {
-                  localInt5 = *pprocessingResult4;
+                  localInt5 = *ProcessingStatusPointer;
                 }
                 localInt5 = uiValidationResult + (int)uVar9 * localInt5;
                 ProcessingResult3 = ProcessingResult3 * ProcessingResult2;
@@ -265731,7 +265731,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
               } while (uiValidationResult < (int)*dataSource);
             }
             EventOperationCount = EventOperationCount + 1;
-            pprocessingResult4 = pprocessingResult4 + 1;
+            ProcessingStatusPointer = ProcessingStatusPointer + 1;
           }
           ProcessingResult1 = ProcessingResult1 + 1;
           allocatedMemory5 = allocatedMemory5 + 4;
@@ -265740,7 +265740,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
     }
     else if ((dataSource[4] == 2) && (ProcessingResult2 = 0, 0 < (int)dataSource[1])) {
       allocatedMemory5 = 0;
-      pprocessingResult4 = bufferSize;
+      ProcessingStatusPointer = bufferSize;
       do {
         if ((bufferSize == (int *)0x0) || (*(int *)(allocatedMemory5 + *(longlong *)(dataSource + 2)) != 0)) {
           eventTypeCode = *dataSource;
@@ -265755,7 +265755,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
               }
               uiValidationResult = EventOperationCount;
               if (bufferSize != (int *)0x0) {
-                uiValidationResult = *pprocessingResult4;
+                uiValidationResult = *ProcessingStatusPointer;
               }
               uiValidationResult = uiValidationResult * eventTypeCode + ProcessingResult1;
               ProcessingResult1 = ProcessingResult1 + 1;
@@ -265764,7 +265764,7 @@ longlong FUN_18082e290(UIHandle uiContext,uint *dataSource,int targetBuffer,int 
             } while (ProcessingResult1 < (int)eventTypeCode);
           }
           EventOperationCount = EventOperationCount + 1;
-          pprocessingResult4 = pprocessingResult4 + 1;
+          ProcessingStatusPointer = ProcessingStatusPointer + 1;
         }
         ProcessingResult2 = ProcessingResult2 + 1;
         allocatedMemory5 = allocatedMemory5 + 4;
