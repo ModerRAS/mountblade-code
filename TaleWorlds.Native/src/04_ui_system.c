@@ -10050,10 +10050,10 @@ void InitializeUIComponent(longlong component_id, longlong parent_id, UIHandle t
   uint LoopCounter;
   ulonglong MaxProcessingCount;
   UIHandle eventTypeCode;
-  undefined *pstackUInt50;
-  UIByte *pstackUInt48;
-  int stackInt40;
-  ulonglong stackUInt38;
+  UIHandle *BufferPointer;
+  UIByte *DataBufferPointer;
+  int OperationResult;
+  ulonglong ProcessingCounter;
   
   eventTypeCode = 0xfffffffffffffffe;
   ProcessingStatus = 0;
@@ -74271,8 +74271,26 @@ float FUN_180707d35(float *uiContext,UIHandle dataSource,longlong targetBuffer,l
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180707df0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer,
-void FUN_180707df0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI渲染数据和事件操作
+ * 
+ * 该函数负责处理UI系统的渲染数据，包括事件操作计数、缓冲区管理、
+ * 渲染参数计算和数据处理。它根据不同的采样率和缓冲区大小
+ * 进行相应的数据处理和渲染任务执行。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9
+ * @param uiContext0 UI上下文0
+ */
+void ProcessUIRenderDataAndEventOperations(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer,
+void ProcessUIRenderDataAndEventOperations(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,int resultPointer,
                   UIDword param_6,UIDword param_7,UIDword param_8,UIHandle param_9,
                   UIHandle uiContext0)
 

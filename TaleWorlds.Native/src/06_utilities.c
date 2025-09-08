@@ -41844,7 +41844,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer operationBase,int64_t dataBuf
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
         *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+        *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -41909,7 +41909,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer operationBase,int64_t dataBu
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
         *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+        *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -42054,7 +42054,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer operationBase,int64_t dataBu
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
         *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+        *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -42119,7 +42119,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer operationBase,int64_t dataBu
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
         *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+        *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
         resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -45386,7 +45386,7 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45765,7 +45765,7 @@ void CleanupSystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45951,7 +45951,7 @@ void CleanupSystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53224,7 +53224,7 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53295,7 +53295,7 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53354,7 +53354,7 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53643,7 +53643,7 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53714,7 +53714,7 @@ void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -53792,7 +53792,7 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -58909,7 +58909,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59015,7 +59015,7 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(DataBuffer exceptionCon
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = exceptionHandlerPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = exceptionHandlerPointer;
       exceptionHandlerCount = (int *)(resourceIterator + ReferenceCountOffset);
       *exceptionHandlerCount = *exceptionHandlerCount - 1;
       if (*exceptionHandlerCount == 0) {
@@ -59323,7 +59323,7 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59507,7 +59507,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60144,7 +60144,7 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60162,8 +60162,18 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
 
 
 
-void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t exceptionHandlerContext)
-
+/**
+ * @brief 处理异常展开过程中的数据验证
+ * 
+ * 该函数在异常展开过程中处理数据验证，遍历异常数据列表并处理每个内存块
+ * 如果数据上下文为空，则正常返回；否则调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param exceptionHandlerContext 异常处理器上下文指针
+ * 
+ * @note 原始函数名：Unwind_180905eb0
+ */
+void ProcessUnwindDataValidation(DataBuffer exceptionContext, int64_t exceptionHandlerContext)
 {
   int64_t contextIterator;
   int64_t *dataContext;
@@ -60182,8 +60192,18 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t exceptionH
 
 
 
-void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryContext)
-
+/**
+ * @brief 验证异常展开过程中的内存访问
+ * 
+ * 该函数在异常展开过程中验证内存访问的安全性，遍历内存区域数据并处理每个内存块
+ * 如果数据上下文为空，则正常返回；否则调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param memoryContext 内存上下文指针
+ * 
+ * @note 原始函数名：Unwind_180905ec0
+ */
+void ValidateUnwindMemoryAccess(DataBuffer exceptionContext, int64_t memoryContext)
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
@@ -60213,17 +60233,18 @@ void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
  * 
  * @note 原始函数名：Unwind_180905ef0
  */
-void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
-
+void CleanupSystemResources(DataBuffer systemContext, int64_t contextHandle)
 {
   int *resourceReferenceCount;
   char *validationFlag;
   DataBuffer *validationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t cleanupFlags;
+  uint64_t dataFlags;
   
-  contextPointer = *(int64_t **)(contextHandle + 0x60);
+  contextPointer = *(int64_t **)(contextHandle + SystemContextDataOffset60);
   validationStatus = (DataBuffer *)*contextPointer;
   if (validationStatus != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatus[3] != (DataBuffer *)0x0) {
@@ -60253,7 +60274,7 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60401,7 +60422,7 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exception
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = exceptionHandlerPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = exceptionHandlerPointer;
       exceptionHandlerCount = (int *)(resourceIterator + ReferenceCountOffset);
       *exceptionHandlerCount = *exceptionHandlerCount - 1;
       if (*exceptionHandlerCount == 0) {
@@ -60533,7 +60554,7 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
-      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
+      *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
