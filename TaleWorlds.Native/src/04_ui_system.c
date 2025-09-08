@@ -84875,84 +84875,128 @@ void UIEmptyOperation(void)
 
 
 
-int ProcessUIStringComparison(float uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer)
+/**
+ * @brief 处理UI字符串比较操作
+ * 
+ * 该函数负责处理UI系统中的字符串比较操作，包括：
+ * - 比较浮点数值范围
+ * - 处理字符串索引和位置
+ * - 批量处理比较操作
+ * - 返回比较结果
+ * 
+ * @param uiContext UI上下文浮点数值，用于比较的基准值
+ * @param dataSource 数据源指针，包含比较用的数据数组
+ * @param targetBuffer 目标缓冲区指针，存储比较目标数据
+ * @param bufferSize 缓冲区大小，控制比较的范围
+ * @param resultPointer 结果指针，用于索引结果位置
+ * 
+ * @return int 返回比较结果的状态码
+ * 
+ * @note 此函数在UI字符串处理和比较中被广泛使用
+ * @note 支持批量比较和范围检查
+ * @note 使用浮点数进行精确的数值比较
+ */
+int ProcessUIStringComparison(float uiContext, longlong dataSource, longlong targetBuffer, int bufferSize, int resultPointer)
 
 {
-  int processingResult;
+  int comparisonResult;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  float *transformCoeff3;
-  longlong eventDataIndex;
+  longlong compareIndex;
+  float *rangeDataPtr;
+  longlong rangeSize;
   
   componentIndex = (longlong)resultPointer;
-  processingResult = 0;
-  EventDataIndex = (longlong)bufferSize;
-  stringCompareIndex = 0;
-  if (3 < EventDataIndex) {
-    ptransformCoeff3 = (float *)(dataSource + 8);
+  comparisonResult = 0;
+  rangeSize = (longlong)bufferSize;
+  compareIndex = 0;
+  if (3 < rangeSize) {
+    rangeDataPtr = (float *)(dataSource + 8);
     do {
-      if (uiContext < ptransformCoeff3[-2]) goto LAB_180716845;
-      if (uiContext < ptransformCoeff3[-1]) {
-        processingResult = processingResult + 1;
+      if (uiContext < rangeDataPtr[-2]) goto LAB_180716845;
+      if (uiContext < rangeDataPtr[-1]) {
+        comparisonResult = comparisonResult + 1;
         goto LAB_180716845;
       }
-      if (uiContext < *ptransformCoeff3) {
-        processingResult = processingResult + 2;
+      if (uiContext < *rangeDataPtr) {
+        comparisonResult = comparisonResult + 2;
         goto LAB_180716845;
       }
-      if (uiContext < ptransformCoeff3[1]) {
-        processingResult = processingResult + 3;
+      if (uiContext < rangeDataPtr[1]) {
+        comparisonResult = comparisonResult + 3;
         goto LAB_180716845;
       }
-      processingResult = processingResult + 4;
-      stringCompareIndex = stringCompareIndex + 4;
-      ptransformCoeff3 = ptransformCoeff3 + 4;
-    } while (stringCompareIndex < EventDataIndex + -3);
+      comparisonResult = comparisonResult + 4;
+      compareIndex = compareIndex + 4;
+      rangeDataPtr = rangeDataPtr + 4;
+    } while (compareIndex < rangeSize + -3);
   }
-  for (; (stringCompareIndex < EventDataIndex && (*(float *)(dataSource + stringCompareIndex * 4) <= uiContext)); stringCompareIndex = stringCompareIndex + 1) {
-    processingResult = processingResult + 1;
+  for (; (compareIndex < rangeSize && (*(float *)(dataSource + compareIndex * 4) <= uiContext)); compareIndex = compareIndex + 1) {
+    comparisonResult = comparisonResult + 1;
   }
 LAB_180716845:
-  if ((resultPointer < processingResult) &&
+  if ((resultPointer < comparisonResult) &&
      (uiContext < *(float *)(dataSource + componentIndex * 4) + *(float *)(targetBuffer + componentIndex * 4))) {
     return resultPointer;
   }
-  if ((processingResult < resultPointer) &&
+  if ((comparisonResult < resultPointer) &&
      (*(float *)(dataSource + -4 + componentIndex * 4) - *(float *)(targetBuffer + -4 + componentIndex * 4) < uiContext)) {
-    processingResult = resultPointer;
+    comparisonResult = resultPointer;
   }
-  return processingResult;
+  return comparisonResult;
 }
 
 
 
 
  void FUN_180716890(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_180716890(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-                  uint param_6)
+/**
+ * @brief 处理UI数据变换和归一化操作
+ * 
+ * 该函数负责处理UI系统中的数据变换和归一化操作，包括：
+ * - 对UI数据进行归一化处理
+ * - 计算变换系数和权重
+ * - 处理数据批量变换
+ * - 应用数学变换到UI数据
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源指针，提供变换所需的数据
+ * @param targetBuffer 目标缓冲区，存储变换结果
+ * @param bufferSize 缓冲区大小，控制变换处理的范围
+ * @param resultPointer 结果指针，指向变换结果的存储位置
+ * @param param_6 额外参数，用于扩展变换功能
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI数据处理和归一化中被广泛使用
+ * @note 使用浮点数运算进行精确的变换计算
+ * @note 支持批量处理多个UI数据元素的变换
+ */
+void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize, int resultPointer,
+                                          uint param_6)
 
 {
-  float *pbaseValue;
-  float *ptransformCoeff1;
-  float transformCoeff2;
+  float *baseValuePtr;
+  float *transformCoeffPtr;
+  float normalizeCoeff1;
+  float normalizeCoeff2;
   float transformCoeff3;
   float transformCoeff4;
-  float localFloat6;
+  float tempFloat1;
   float resultFloat;
-  float localFloat8;
-  float localFloat9;
+  float tempFloat2;
+  float tempFloat3;
   float baseValue0;
-  float *pbaseValue1;
-  uint result2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  uint TotalResult;
-  longlong allocatedMemory8;
-  ulonglong result9;
-  float AccumulatedFloat;
-  float transformCoeff11;
-  ulonglong result7;
+  float *baseValuePtr1;
+  uint maskResult;
+  longlong dataOffset;
+  longlong bufferSize4;
+  longlong bufferSize5;
+  uint totalProcessed;
+  longlong contextOffset;
+  ulonglong iterationCount;
+  float accumulatedValue;
+  float normalizeCoeff11;
+  ulonglong transformIndex;
   
   allocatedMemory4 = (longlong)(int)param_6;
   transformCoeff2 = *(float *)(bufferSize + (longlong)resultPointer * 4);
