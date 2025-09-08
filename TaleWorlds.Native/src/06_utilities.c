@@ -20085,7 +20085,7 @@ DataBuffer ReturnComponentValidationError(void)
 // 数据指针缓冲区处理函数 - 处理数据指针和缓冲区操作
 #define ProcessDataPointerAndBufferOperations FUN_180897520
 
-DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationContext)
+DataBuffer ValidateAndProcessFloatingPointValue(int64_t dataContext,int64_t operationContext)
 
 {
   float inputValue;
