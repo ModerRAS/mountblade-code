@@ -61017,17 +61017,17 @@ void DestroyConditionVariable(DataBuffer operationBase,int64_t dataBuffer)
 
 // 异常处理：清理线程特定存储和异常处理器
 // 在异常展开时清理线程特定存储和相关资源
-void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exceptionContext, int64_t threadContext)
+void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exceptionContext, int64_t threadStorageContext)
 
 {
   int *exceptionHandlerCount;
   char *validationFlag;
   DataBuffer *exceptionHandlerPointer;
-  int64_t *threadSpecificStorage;
+  int64_t *threadLocalStorage;
   int64_t resourceIterator;
   uint64_t memoryRegion;
   
-  threadSpecificStorage = *(int64_t **)(threadContext + 0x40);
+  threadLocalStorage = *(int64_t **)(threadStorageContext + 0x40);
   exceptionHandlerPointer = (DataBuffer *)*threadSpecificStorage;
   if (exceptionHandlerPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)exceptionHandlerPointer[3] != (DataBuffer *)0x0) {
@@ -86478,8 +86478,20 @@ void ExecuteExceptionHandlerCallbackA5(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_18090b450(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调函数A6
+ * 
+ * 该函数负责在偏移量0x408处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b450
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void ExecuteExceptionHandlerCallbackA6(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -86492,8 +86504,20 @@ void Unwind_18090b450(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b470(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调函数A7
+ * 
+ * 该函数负责在偏移量0x410处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b470
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void ExecuteExceptionHandlerCallbackA7(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
