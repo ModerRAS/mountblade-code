@@ -1118,6 +1118,18 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define ExceptionHandlerContextOffset260 0x260         // 异常处理上下文偏移量260
 #define ExceptionHandlerContextOffset268 0x268         // 异常处理上下文偏移量268
 
+// 系统配置相关偏移量常量定义
+#define SystemConfigPrimaryOffset 0x84                  // 系统配置主偏移量
+#define SystemConfigSecondaryOffset 0x88               // 系统配置次偏移量
+#define SystemContextConfigOffsetBC 0xbc                // 系统上下文配置偏移量BC
+#define SystemContextConfigOffset98 0x98                // 系统上下文配置偏移量98
+#define SystemContextConfigOffset90 0x90                // 系统上下文配置偏移量90
+
+// 数据验证相关偏移量常量定义
+#define DataValidationOffset3C 0x3c                     // 数据验证偏移量3C
+#define DataValidationOffset38 0x38                     // 数据验证偏移量38
+#define DataValidationOffset18 0x18                     // 数据验证偏移量18
+
 // 数据处理相关偏移量常量定义
 #define DataProcessingFlagValue 3                      // 数据处理标志值
 #define DataProcessingArrayMultiplier 4                 // 数据处理数组乘数
@@ -18800,7 +18812,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
         }
         rangeMinValue = *(float *)(dataRecordIndex + 0x38);
         if ((*(float *)(dataRecordIndex + 0x38) <= currentValue) &&
-           (rangeMaxValue = *(float *)(dataRecordIndex + 0x3c), currentValue <= *(float *)(dataRecordIndex + 0x3c))) {
+           (rangeMaxValue = *(float *)(dataRecordIndex + DataValidationOffset3C), currentValue <= *(float *)(dataRecordIndex + DataValidationOffset3C))) {
           rangeMaxValue = currentValue;
         }
         *currentFloatPointer = rangeMaxValue;
@@ -19008,8 +19020,8 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
     else {
       systemContext = systemDataBuffer + -8;
     }
-    *(ByteFlag *)(systemContext + 0xbc) = *(ByteFlag *)(systemHandle + 0x18);
-      ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + 0x98),systemHandle);
+    *(ByteFlag *)(systemContext + SystemContextConfigOffsetBC) = *(ByteFlag *)(systemHandle + DataValidationOffset18);
+      ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + SystemContextConfigOffset98),systemHandle);
   }
   return;
 }
@@ -19025,7 +19037,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   DataBuffer DestinationContext;
   int64_t stackValue;
   
-  floatValue = *(float *)(valueContext + 0x18);
+  floatValue = *(float *)(valueContext + DataValidationOffset18);
   stackValue = MergeHighLowWords(stackValue.HighPart, floatValue);
   if (((uint)floatValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
@@ -19043,8 +19055,8 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   else {
     resultPointer = stackValue + -8;
   }
-  *(DataWord *)(resultPointer + 0x90) = *(DataWord *)(valueContext + 0x18);
-  resultPointer = *(int64_t *)(operationContext + 0x98);
+  *(DataWord *)(resultPointer + SystemContextConfigOffset90) = *(DataWord *)(valueContext + DataValidationOffset18);
+  resultPointer = *(int64_t *)(operationContext + SystemContextConfigOffset98);
   if ((*(int *)(resultPointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultPointer + SystemConfigSecondaryOffset) != 0)) {
     stackValue = 0;
     InitializeSystemContextA0(&stackValue,valueContext,exceptionHandlerContext,processingContext,DestinationContext);
@@ -91321,7 +91333,17 @@ void InitializeExceptionHandlerBToBuffer(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090c5b0(void)
+/**
+ * @brief 系统资源释放函数C5B0
+ * 
+ * 释放系统资源并执行清理操作，包括：
+ * - 减少系统资源计数器
+ * - 调用系统函数表中的清理函数
+ * - 确保资源正确释放
+ * 
+ * @note 原始函数名：Unwind_18090c5b0
+ */
+void ReleaseSystemResourceAndCleanupC5B0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -91332,7 +91354,21 @@ void Unwind_18090c5b0(void)
 
 
 
-void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数C5C0
+ * 
+ * 配置异常处理器上下文和资源管理器，包括：
+ * - 检查系统资源状态和异常处理标志
+ * - 设置异常处理器上下文指针
+ * - 验证数据缓冲区的有效性
+ * - 配置默认异常处理器到指定位置
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_18090c5c0
+ */
+void ConfigureExceptionHandlerContextC5C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
