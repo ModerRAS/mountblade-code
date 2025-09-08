@@ -102,6 +102,9 @@ typedef enum {
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
 
  // UI系统函数宏定义 - 验证UI系统
+
+// UI系统函数宏定义 - 处理UI事件数据压缩
+#define ProcessUIEventDataCompression FUN_180715830
 #define ValidateUISystem ValidateUISystemIntegrity
 
  // UI系统函数宏定义 - 获取UI数据
