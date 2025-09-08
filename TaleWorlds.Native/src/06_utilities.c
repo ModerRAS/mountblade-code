@@ -66874,14 +66874,14 @@ void ExecuteExceptionHandlerOffset40(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_180906f80
  */
-void ExecuteExceptionHandlerOffset40_18(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerWithContextOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionContextPtr;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x18);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionContextPtr = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x18);
+  if (exceptionContextPtr != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionContextPtr + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -66899,7 +66899,7 @@ void ExecuteExceptionHandlerOffset40_18(DataBuffer operationBase,int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180906f90
  */
-void UnwindResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourcesDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,CleanupBufferHandler);
@@ -66919,7 +66919,7 @@ void UnwindResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180906fc0
  */
-void UnwindResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourcesDuringUnwindAlternate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,CleanupBufferHandler);
@@ -66939,14 +66939,14 @@ void UnwindResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180906ff0
  */
-void UnwindCallbackExecutorA0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteCallbackDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x50) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x50) + 0x38))();
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x50) + ExceptionHandlerContextFunctionOffset38))();
   }
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x48) + 0x38))();
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x48) + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -66964,20 +66964,20 @@ void UnwindCallbackExecutorA0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180907000
  */
-void UnwindContextCallbackExecutorA0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteContextCallbackDuringUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionContextPtr;
   int64_t dataContext;
   
   dataContext = *(int64_t *)(dataBuffer + 0xd0);
-  exceptionHandlerContextPointer = *(int64_t **)(dataContext + 0x18);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionContextPtr = *(int64_t **)(dataContext + 0x18);
+  if (exceptionContextPtr != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionContextPtr + ExceptionHandlerContextFunctionOffset38))();
   }
-  exceptionHandlerContextPointer = *(int64_t **)(dataContext + ExceptionHandlerCallbackOffset10);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionContextPtr = *(int64_t **)(dataContext + ExceptionHandlerCallbackOffset10);
+  if (exceptionContextPtr != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionContextPtr + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -66997,7 +66997,7 @@ void UnwindContextCallbackExecutorA0(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_180907010
  */
-void UnwindExceptionHandlerA0(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
+void HandleExceptionDuringUnwind(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
   if (*(FunctionPointer**)(HandlerContext + 0xe8) != (code *)0x0) {
@@ -69183,7 +69183,7 @@ void CheckSystemTerminationConditionAtOffset30(DataBuffer operationBase,int64_t 
  * 
  * @note 原始函数名：Unwind_1809076e0
  */
-void CheckSystemTerminationConditionAtOffset40_8(DataBuffer operationBase,int64_t dataBuffer)
+void CheckSystemTerminationConditionAtOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 8) != 0) {
@@ -69202,7 +69202,7 @@ void CheckSystemTerminationConditionAtOffset40_8(DataBuffer operationBase,int64_
  * 
  * @note 原始函数名：Unwind_1809076f0
  */
-void CheckSystemTerminationConditionAtOffset40_30(DataBuffer operationBase,int64_t dataBuffer)
+void CheckSystemTerminationConditionAtSecondaryOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30) != 0) {
