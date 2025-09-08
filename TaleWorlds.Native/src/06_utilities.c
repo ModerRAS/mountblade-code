@@ -197,6 +197,11 @@
 #define ExceptionHandlerHierarchyB1_CallbackOffsetEE0 0xee0     // 回调函数偏移量EE0
 #define ExceptionHandlerHierarchyB1_CallbackParamOffsetED0 0xed0 // 回调参数偏移量ED0
 #define ExceptionHandlerHierarchyB1_TempCallbackOffsetEB0 0xeb0 // 临时回调偏移量EB0
+
+// 系统返回状态码常量
+#define SystemEventHandlerNotConfigured 0x4e                 // 系统事件处理器未配置
+#define SystemFloatDataInvalid 0x1d                          // 系统浮点数据无效
+#define SystemResourceNotFound 0x4f                           // 系统资源未找到
 #define ExceptionHandlerHierarchyB1_CleanupStateOffsetEB8 0xeb8  // 清理状态偏移量EB8
 #define ExceptionHandlerHierarchyB1_CleanupOffsetEC8 0xec8       // 清理偏移量EC8
 #define ExceptionHandlerHierarchyB1_TempCallbackOffsetE90 0xe90 // 临时回调偏移量E90
@@ -16965,7 +16970,7 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
     return requestResult;
   }
   if (*(char *)(requestContext + EventHandlerConfigOffset2c) != '\0') {
-    return 0x4e;
+    return SystemEventHandlerNotConfigured;
   }
   *(ByteFlag *)(requestContext + EventHandlerConfigOffset2c) = 1;
     CleanupSystemEventA0(*(DataBuffer *)(systemParameters + SystemEventOffset),contextHandle);
@@ -17038,7 +17043,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   
   validationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&validationData);
   if ((int)result == 0) {
@@ -17072,7 +17077,7 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
     return operationResult;
   }
   if (*(char *)(systemDataBuffer + QUEUE_CAPACITY_OFFSET) == '\0') {
-    return 0x4f;
+    return SystemResourceNotFound;
   }
   *(ByteFlag *)(systemDataBuffer + QUEUE_CAPACITY_OFFSET) = 0;
     ExecuteSystemOperation(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
@@ -18317,7 +18322,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
   systemContextBuffer = MergeHighLowWords(systemContextBuffer.HighPart, *(uint *)(contextPointer + FloatingPointDataOffset20));
   if ((*(uint *)(contextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + ExceptionHandlerCallbackOffset10),queryBuffer);
   if ((int)result == 0) {
@@ -18648,7 +18653,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   
   validationBuffer[0] = *(uint *)(systemContext + 0x18);
   if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   if (systemContext + SystemContextOffset28 != 0) {
     operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + ExceptionHandlerCallbackOffset10),&systemContextBuffer);
@@ -18780,7 +18785,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
   
   stackBuffer = MergeHighLowWords(stackBuffer.HighPart,*(uint *)(DataStructureHandle + DataStructureDataOffset));
   if ((*(uint *)(DataStructureHandle + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(DataStructureHandle + ExceptionHandlerCallbackOffset10),&stackBuffer);
   if ((int)validationStatus != 0) {
@@ -18885,7 +18890,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
       if (arrayIndex != -1) {
         currentValue = *currentFloatPointer;
         if (((uint)currentValue & FloatInfinityValue) == FloatInfinityValue) {
-          return 0x1d;
+          return SystemFloatDataInvalid;
         }
         if ((arrayIndex < 0) || (arraySize <= arrayIndex)) {
           return ComponentDataValidationFailure;
@@ -18986,7 +18991,7 @@ DataBuffer GetSystemStatusA0(void)
       if (arrayIndex != -1) {
         inputValue = *floatArrayPointer;
         if (((uint)inputValue & FloatInfinityValue) == FloatInfinityValue) {
-          return 0x1d;
+          return SystemFloatDataInvalid;
         }
         if ((arrayIndex < 0) || (validationStatus <= arrayIndex)) {
           return ComponentDataValidationFailure;
@@ -19131,7 +19136,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   floatValue = *(float *)(valueContext + DataValidationOffset18);
   stackValue = MergeHighLowWords(stackValue.HighPart, floatValue);
   if (((uint)floatValue & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
     return ComponentDataValidationFailure;
@@ -19180,7 +19185,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
   rangeValue = *(float *)(rangeContext + 0x1c);
   stackValue = MergeHighLowWords(stackValue.HighPart, rangeValue);
   if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   switch(*(DataWord *)(rangeContext + 0x18)) {
   case 0:
@@ -19251,7 +19256,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   }
   transferSize = MergeHighLowWords(transferSize.HighPart, *(uint *)(dataDescriptor + DataDescriptorSizeOffset));
   if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataDescriptor + ExceptionHandlerCallbackOffset10));
   if ((int)operationResult != 0) {
@@ -19298,7 +19303,7 @@ DataBuffer ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
   
   bufferSize = *(uint *)(bufferDescriptor + 0x18);
   if ((bufferSize & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(bufferDescriptor + ExceptionHandlerCallbackOffset10),&bufferSize);
   if ((int)operationResult == 0) {
@@ -19389,7 +19394,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   
   stackBufferLowPart = *(uint *)(allocationContext + 0x14);
   if ((stackBufferLowPart & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + ExceptionHandlerCallbackOffset10),&stackBufferLowPart);
   if ((int)validationStatus != 0) {
@@ -19823,7 +19828,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
   DataWord systemContextBuffer [2];
   
   if ((*(uint *)(dataContext + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   systemContextBuffer[0] = 0;
   operationResult = ProcessSystemDataTransferA0(operationContext + 0x60,dataContext + ExceptionDataBufferOffset10,systemContextBuffer);
@@ -20094,7 +20099,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   
   validationBuffer[0] = *(uint *)(configHandle + ExceptionHandlerCallbackOffset10);
   if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+    return SystemFloatDataInvalid;
   }
   securityBuffer[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(systemContext,configHandle + 0x20,securityBuffer);
@@ -20408,7 +20413,7 @@ DataBuffer ValidateSystemB0(int64_t exceptionHandlerContext,int64_t systemContex
   // 获取系统参数并检查浮点数是否为无穷大
   floatValidationParameter = *(uint *)(exceptionHandlerContext + 0x18);
   if ((floatValidationParameter & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;  // 返回浮点数无穷大错误
+    return SystemFloatDataInvalid;  // 返回浮点数无穷大错误
   }
   
   // 查询系统数据
