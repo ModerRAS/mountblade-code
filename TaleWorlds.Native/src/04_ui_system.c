@@ -300115,34 +300115,33 @@ UIHandle ProcessUIFloatDataTransformation(longlong uiContext)
 void ProcessUIComplexEventAndDataHandling(longlong uiContext)
 
 {
-  UIByte aresult [16];
-  short sVar2;
-  int uiCompareResult;
-  UIByte astackUIntc8 [32];
-  uint stackUInta8;
-  uint stackUInta0;
-  uint stackUInt98;
-  uint stackUInt90;
-  uint stackUInt88;
-  uint stackUInt80;
-  uint stackUInt78;
-  uint stackUInt70;
-  uint stackUInt68;
-  uint stackUInt60;
-  UIHandle stackUInt58;
-  UIHandle stackUInt50;
-  UIHandle stackUInt48;
-  UIHandle stackUInt40;
-  UIHandle stackUInt38;
-  UIDword stackUInt30;
-  UIWord stackUInt2c;
-  UIByte stackUInt2a;
-  ulonglong stackUInt28;
+  UIByte encryptedResult [16];
+  short validationShort;
+  int comparisonResult;
+  UIByte stackBuffer [32];
+  uint processingFlag1;
+  uint processingFlag2;
+  uint processingFlag3;
+  uint processingFlag4;
+  uint processingFlag5;
+  uint processingFlag6;
+  uint processingFlag7;
+  uint processingFlag8;
+  uint processingFlag9;
+  UIHandle contextHandle1;
+  UIHandle contextHandle2;
+  UIHandle contextHandle3;
+  UIHandle contextHandle4;
+  UIHandle contextHandle5;
+  UIDword dataWord;
+  UIWord dataWord16;
+  UIByte dataByte;
+  ulonglong encryptedValue;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUIntc8;
-  sVar2 = func_0x00018084c3d0(*(UIHandle *)(uiContext + 0x40));
-  if ((sVar2 == 4) &&
-     (uiCompareResult = FUN_18073cb70(*(UIHandle *)(uiContext + 0x78),&stackUInt58), uiCompareResult == 0)) {
+  encryptedValue = XorEncryptionKey ^ (ulonglong)stackBuffer;
+  validationShort = func_0x00018084c3d0(*(UIHandle *)(uiContext + 0x40));
+  if ((validationShort == 4) &&
+     (comparisonResult = FUN_18073cb70(*(UIHandle *)(uiContext + 0x78),&contextHandle1), comparisonResult == 0)) {
     if ((*(uint *)(uiContext + 0xc0) >> 3 & 1) != 0) {
       uiCompareResult = FUN_180739350(stackUInt58,*(UIHandle *)(uiContext + 0x78));
       if (uiCompareResult != 0) goto LAB_18084efc3;

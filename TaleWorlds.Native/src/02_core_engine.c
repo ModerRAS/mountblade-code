@@ -101,6 +101,17 @@
 // 系统栈操作常量
 #define SystemStackParameterMask 0xffffffff00000000          // 系统栈参数掩码
 #define SystemStackShiftAmount 0x20                          // 系统栈移位数量
+
+// 系统配置偏移量常量
+#define SystemStringLengthOffset 100                        // 系统字符串长度偏移量
+#define SystemMatrixTransformOffset1 0x1b80                  // 系统矩阵变换偏移量1
+#define SystemMatrixTransformOffset2 0x1718                  // 系统矩阵变换偏移量2
+#define SystemMatrixTransformOffset3 0x1720                  // 系统矩阵变换偏移量3
+#define SystemMatrixTransformValue1 0x3f800000               // 系统矩阵变换值1 (1.0f)
+#define SystemMatrixTransformValue2 0x3f80000000000000       // 系统矩阵变换值2 (1.0)
+#define SystemMatrixTransformOperation 5                     // 系统矩阵变换操作
+#define SystemStringDataOffset 0x20                         // 系统字符串数据偏移量
+#define SystemStringPointerOffset 8                         // 系统字符串指针偏移量
 #define SystemStatusByte LowByte                          // 系统状态字节
 #define MemoryBlockStatus IsMemoryBlockEqual              // 内存块状态
 #define Utf16CharacterValue Utf16Char                     // UTF-16字符值
@@ -203237,12 +203248,12 @@ void ProcessSystemConfigurationAndStringMatching(void)
   
   UnicodeCharacterCode = UnicodeCodeValue;
   do {
-    StringLength = *(int *)(PatternIndex + 100);
+    StringLength = *(int *)(PatternIndex + SystemStringLengthOffset);
     if (StringLength == ProcessingIndex) {
-      SystemStackBuffer20[0] = 5;
-      ProcessSystemConfiguration(SystemConfigurationContext + 0x1b80, SystemStackBuffer20);
-      *(void *)(SystemConfigurationContext + 0x1718) = 0x3f800000;
-      *(void *)(SystemConfigurationContext + 0x1720) = 0x3f80000000000000;
+      SystemStackBuffer20[0] = SystemMatrixTransformOperation;
+      ProcessSystemConfiguration(SystemConfigurationContext + SystemMatrixTransformOffset1, SystemStackBuffer20);
+      *(void *)(SystemConfigurationContext + SystemMatrixTransformOffset2) = SystemMatrixTransformValue1;
+      *(void *)(SystemConfigurationContext + SystemMatrixTransformOffset3) = SystemMatrixTransformValue2;
     }
     ProcessDataMatchingOperation(ProcessingIndex);
     StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + 0x20) + 8 + UnicodeCharacterCode);
