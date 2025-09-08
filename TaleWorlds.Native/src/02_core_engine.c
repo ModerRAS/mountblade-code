@@ -186158,10 +186158,10 @@ code_r0x000180151fd7:
     UNLOCK();
     break;
   case 0x27:
-    FUN_1801d7420();
+    ExecuteSystemOperationPrimary();
     break;
   case 0x28:
-    FUN_18005cfc0();
+    ExecuteSystemOperationSecondary();
     break;
   case 0x2b:
   case 0x2c:
@@ -221520,13 +221520,13 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
       if (CalculatedCodePoint == 0) {
         if (MemoryAllocationIndex < Utf16Char) {
           CalculatedCodePoint = 0;
-          goto LAB_18018ad63;
+          goto CharacterComparisonComplete;
         }
         CalculatedCodePoint = (uint)(Utf16Char < MemoryAllocationIndex);
       }
       CalculatedCodePoint = ~CalculatedCodePoint;
     }
-LAB_18018ad63:
+CharacterComparisonComplete:
     MemoryAllocationIndex = CalculatedCodePoint >> 0x1f;
     StringProcessingStatus = StringProcessingStatus;
     if ((int)CalculatedCodePoint < 0) {
@@ -221586,7 +221586,7 @@ LAB_18018ad63:
   ValidationResult = memcmp(pStringOffset,Utf16EndPointer,ProcessedCharacter);
   if (ValidationResult == 0) {
     if (Utf16Char <= MemoryAllocationIndex) {
-LAB_18018aebc:
+MemoryCleanupAndReturn:
       SystemContextRegister = (long long *)(AdditionalParameter1 + 0x20);
       ProcessSystemStackData(AdditionalParameter1 + 0x40);
       ProcessSystemStackData((long long *)(AdditionalParameter1 + 0x20));
@@ -221597,7 +221597,7 @@ LAB_18018aebc:
       return SystemBufferSize;
     }
   }
-  else if (-1 < ValidationResult) goto LAB_18018aebc;
+  else if (-1 < ValidationResult) goto MemoryCleanupAndReturn;
   StringProcessingStatus = (void *)FUN_18018aa30(SystemContextRegister,StackProcessingBuffer,MemoryAllocationIndex,StringProcessingStatus);
   *CharacterCodeSize = *StringProcessingStatus;
   *(uint8_t *)(SystemBufferSize + 1) = 1;
