@@ -87818,11 +87818,11 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
       translationY = sourceDataPtr[1];
       baseScaleX = sourceDataPtr[2];
       baseScaleY = sourceDataPtr[3];
-      pbaseValue = (float *)(allocatedMemory4 + -0x10 + (longlong)pbaseValue2);
-      *pbaseValue = (transformCoeff3 * unmodifiedXMM8_Da - transformCoeff1) * uiContext;
-      pbaseValue[1] = (transformCoeff4 * unmodifiedXMM8_Db - FloatValue1) * uiContext;
-      pbaseValue[2] = (localFloat6 * unmodifiedXMM8_Dc - FloatValue2) * uiContext;
-      pbaseValue[3] = (resultFloat * unmodifiedXMM8_Dd - transformCoeff2) * uiContext;
+      transformMatrixPtr = (float *)(memoryOffset + -0x10 + (longlong)sourceDataPtr);
+      *transformMatrixPtr = (transformCoeff3 * transformScaleX - transformCoeff1) * uiContext;
+      transformMatrixPtr[1] = (transformCoeff4 * transformScaleY - transformValue1) * uiContext;
+      transformMatrixPtr[2] = (rotationAngle * transformScaleZ - transformValue2) * uiContext;
+      transformMatrixPtr[3] = (scaleResult * transformScaleW - transformCoeff2) * uiContext;
       pbaseValue = (float *)(allocatedMemory4 + (longlong)pbaseValue2);
       transformCoeff1 = *pbaseValue;
       FloatValue1 = pbaseValue[1];
