@@ -847,6 +847,9 @@
 #define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7
+
+// 系统内存和线程本地存储管理函数语义化映射
+#define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
 #define IdentifySystemIdentifierByPatternVariantX FUN_1802258a7
@@ -197290,7 +197293,16 @@ InitializeUtf8ToUtf16StringConversion(uint64_t CharacterCode,uint64_t *Character
 
 
 
-659e0(voidvoid FUN_1801659e0(void
+/**
+ * @brief 系统字符编码验证和初始化处理器
+ * 
+ * 该函数负责初始化系统字符编码处理环境，包括验证函数指针设置、
+ * 系统标志配置和内存缓冲区初始化。这是核心引擎启动时的关键初始化函数。
+ * 
+ * @note 原始函数名：FUN_1801659e0
+ * @see SystemCallbackTable, RenderConfigManager, CoreEngineExecuteUtilityFunction
+ */
+void InitializeSystemCharacterEncodingValidation(void)
 {
   long long *CharacterCode;
   code *SystemValidationFunction;
