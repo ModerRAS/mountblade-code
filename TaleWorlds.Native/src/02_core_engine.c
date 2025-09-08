@@ -500,6 +500,31 @@
  */
 #define ProcessSystemStatusAndBufferSize FUN_1803456e0
 
+/**
+ * @brief 处理UTF8到UTF16转换
+ * 
+ * 该函数负责处理UTF8到UTF16的转换操作。
+ * 
+ * @param CharacterCodePtr 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18014fbc0
+ */
+#define ConvertUtf8ToUtf16 FUN_18014fbc0
+
+/**
+ * @brief 处理字符编码指针
+ * 
+ * 该函数负责处理字符编码指针的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @note 原始函数名：FUN_18014fe60
+ */
+#define ProcessCharacterEncodingPointer FUN_18014fe60
+
 #define ProcessSystemResourceInitialization HandleSystemResourceInitializationAndConfiguration
 
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
@@ -182936,7 +182961,7 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
     else {
       MemoryBlockIndex = BufferAllocate(MemoryPoolManager,MemoryAllocationIndex * 0x88,(char)CharacterCode[3]);
     }
-    FUN_18014fbc0(&StackProcessingBuffer,SystemBufferSize,Utf8SourcePointer,MemoryBlockIndex);
+    ConvertUtf8ToUtf16(&StackProcessingBuffer,SystemBufferSize,Utf8SourcePointer,MemoryBlockIndex);
     AllocatedMemorySize = CharacterCode[1];
     SystemDataRegistry = *CharacterCode;
     if (SystemDataRegistry != AllocatedMemorySize) {
@@ -182959,12 +182984,12 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
     Utf16Char = (CharacterCode[1] - *CharacterCode) / 0x88;
     if (Utf16Char < MemoryAllocationIndex) {
       MemoryBlockIndex = Utf16Char * 0x88 + SystemBufferSize;
-      FUN_18014fe60(SystemBufferSize,MemoryBlockIndex);
-      FUN_18014fbc0(&lStackX_8,MemoryBlockIndex,Utf8SourcePointer,CharacterCode[1]);
+      ProcessCharacterEncodingPointer(SystemBufferSize,MemoryBlockIndex);
+      ConvertUtf8ToUtf16(&lStackX_8,MemoryBlockIndex,Utf8SourcePointer,CharacterCode[1]);
       CharacterCode[1] = lStackX_8;
     }
     else {
-      SystemDataRegistry = FUN_18014fe60(SystemBufferSize,Utf8SourcePointer);
+      SystemDataRegistry = ProcessCharacterEncodingPointer(SystemBufferSize,Utf8SourcePointer);
       MemoryBlockIndex = CharacterCode[1];
       for (AllocatedMemorySize = SystemDataRegistry; AllocatedMemorySize != MemoryBlockIndex; AllocatedMemorySize = AllocatedMemorySize + 0x88) {
         FUN_18014c7d0(AllocatedMemorySize);
@@ -183009,7 +183034,7 @@ void FUN_18014f059(void)
   else {
     BufferStatus = BufferAllocate(MemoryPoolManager,StackFrameAddressPointer * 0x88,(char)SystemDataNode[3]);
   }
-  FUN_18014fbc0(&TertiaryDataBuffer);
+  ConvertUtf8ToUtf16(&TertiaryDataBuffer);
   CharacterTablePointer = SystemDataNode[1];
   MemoryBlockIndex = *SystemDataNode;
   if (MemoryBlockIndex != CharacterTablePointer) {
@@ -183048,12 +183073,12 @@ void FUN_18014f059(void)
   BufferStatus = SUB168(SEXT816(SystemRegisterR10) * SEXT816(*(long long *)(SystemDataNode + 8) - Utf8SourcePointer),8);
   UnicodeCodePoint = (BufferStatus >> 6) - (BufferStatus >> 0x3f);
   if (UnicodeCodePoint < StackFrameAddressPointer) {
-    FUN_18014fe60();
-    FUN_18014fbc0(&TertiaryDataBuffer,UnicodeCodePoint * 0x88 + PatternIndex);
+    ProcessCharacterEncodingPointer();
+    ConvertUtf8ToUtf16(&TertiaryDataBuffer,UnicodeCodePoint * 0x88 + PatternIndex);
     *(void *)(SystemDataNode + 8) = DataStorageValue;
   }
   else {
-    CharacterTablePointer = FUN_18014fe60();
+    CharacterTablePointer = ProcessCharacterEncodingPointer();
     BufferStatus = *(long long *)(DestinationIndex + 8);
     for (SystemDataRegistry = LoopCounter; SystemDataRegistry != BufferStatus; SystemDataRegistry = SystemDataRegistry + 0x88) {
       FUN_18014c7d0(SystemDataRegistry);
@@ -183549,7 +183574,7 @@ LAB_18014fb2e:
 
 
 
-long long * FUN_18014fbc0(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
+long long * ConvertUtf8ToUtf16(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
 {
   long long *CharacterCode;
   uint MemoryAllocationIndex;
@@ -183650,7 +183675,7 @@ long long * FUN_18014fbc0(long long *CharacterCode,long long *CharacterCodeSize,
 
 
 
-long long * FUN_18014fe60(long long CharacterCode,long long SystemBufferSize,long long *Utf8SourcePointer
+long long * ProcessCharacterEncodingPointer(long long CharacterCode,long long SystemBufferSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;
   long long BufferStatus;
