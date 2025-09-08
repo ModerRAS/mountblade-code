@@ -89171,23 +89171,45 @@ void AdvancedProcessUIContextData(longlong uiContext,uint dataSource,int targetB
 
 
 
- void FUN_18071ab20(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-void FUN_18071ab20(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-                  longlong param_6,UIHandle param_7,int param_8)
+ /**
+ * @brief UI系统数据处理和浮点运算优化器
+ * 
+ * 该函数负责UI系统中的数据处理和浮点运算优化，主要功能包括：
+ * - 处理UI数据源的批量转换和计算
+ * - 优化浮点数的精度和运算性能
+ * - 管理UI数据缓冲区的读写操作
+ * - 处理UI事件的索引和状态管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果数据指针
+ * @param param_6 事件处理参数指针
+ * @param param_7 UI处理句柄
+ * @param param_8 循环计数器限制
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18071ab20
+ * @note 该函数主要用于UI系统的数据处理和浮点运算优化
+ */
+void ProcessUIDataAndOptimizeFloatOperations(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+                                             longlong param_6,UIHandle param_7,int param_8)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
   uint ProcessingStatus;
-  longlong EventDataIndex;
+  longlong eventDataIndex;
   int loopCounter;
-  int localInt7;
-  int localInt8;
+  int processingStep;
+  int dataSourceIndex;
   ulonglong eventProcessingStatus;
-  int *pprocessedCount;
-  float baseValue1;
-  UIByte aresult2 [16];
+  int *processedCountPointer;
+  float calculatedValue;
+  UIByte floatResultBuffer [16];
   
   eventProcessingStatus = (ulonglong)dataSource;
   if (dataSource < targetBuffer) {
@@ -91591,8 +91613,26 @@ void FUN_18071efcb(longlong uiContext,UIHandle dataSource,longlong targetBuffer)
 
 
 
- void FUN_18071f257(void)
-void FUN_18071f257(void)
+ // UI系统空操作函数
+// 原始函数名：FUN_18071f257 - UI系统空操作处理器
+#define UIEmptyOperationProcessor FUN_18071f257
+
+/**
+ * @brief UI系统空操作处理器
+ * 
+ * 该函数是一个空操作函数，用于UI系统中需要占位但不执行实际操作的场景。
+ * 主要用于：
+ * - 系统初始化时的占位函数
+ * - 某些UI状态的默认处理函数
+ * - 系统架构中的空操作实现
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数不执行任何实际操作
+ * @note 主要用于系统架构完整性
+ * @note 保持函数接口一致性
+ */
+void UIEmptyOperationProcessor(void)
 
 {
   return;
@@ -91840,8 +91880,26 @@ void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_18071f792(void)
-void FUN_18071f792(void)
+ // UI系统空操作函数变体
+// 原始函数名：FUN_18071f792 - UI系统空操作处理器变体
+#define UIEmptyOperationProcessorVariant FUN_18071f792
+
+/**
+ * @brief UI系统空操作处理器变体
+ * 
+ * 该函数是UI系统空操作函数的变体版本，用于不同的UI处理场景。
+ * 主要用于：
+ * - 系统架构中的另一种空操作实现
+ * - 特定UI状态的默认处理函数
+ * - 系统兼容性要求的占位函数
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数不执行任何实际操作
+ * @note 与UIEmptyOperationProcessor功能相同但实现位置不同
+ * @note 用于系统架构的完整性
+ */
+void UIEmptyOperationProcessorVariant(void)
 
 {
   return;

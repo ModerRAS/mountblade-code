@@ -36311,7 +36311,7 @@ void CleanupAndDestroySystemResources(long long* SystemResourceManager)
 void ProcessSystemResourceCleanup(long long SystemResourceManager)
 
 {
-  int* SystemIntegerPointer;
+  int* ResourceReferenceCount;
   void** SystemDataTable;
   long long ResourceMemoryOffset;
   ulong long ResourceAddress;
@@ -36327,9 +36327,9 @@ void ProcessSystemResourceCleanup(long long SystemResourceManager)
     if ((*(void ***)(ResourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
       *ResourceHashEntryPointer = *(void* *)(ResourceMemoryOffset + 0x20);
       *(void* **)(ResourceMemoryOffset + 0x20) = ResourceHashEntryPointer;
-      SystemIntegerPointer = (int *)(ResourceMemoryOffset + 0x18);
-      *SystemIntegerPointer = *SystemIntegerPointer + SystemResourceCounterDecrement;
-      if (*SystemIntegerPointer == 0) {
+      ResourceReferenceCount = (int *)(ResourceMemoryOffset + 0x18);
+      *ResourceReferenceCount = *ResourceReferenceCount + SystemResourceCounterDecrement;
+      if (*ResourceReferenceCount == 0) {
         ReleaseSystemResource();
         return;
       }
@@ -36358,29 +36358,29 @@ void ProcessSystemResourceCleanup(long long SystemResourceManager)
 void CleanupSystemResourceArray(long long SystemResourceManager)
 
 {
-  ulong long SystemInitializationStatus;
-  long long SystemThreadHandle;
+  ulong long ResourceArraySize;
+  long long ResourceArrayPointer;
   long long ResourceMemoryOffset;
   ulong long ResourceAddress;
   
-  SystemInitializationStatus = *(ulong long *)(SystemResourceManager + 0x10);
-  SystemThreadHandle = *(long long *)(SystemResourceManager + 8);
+  ResourceArraySize = *(ulong long *)(SystemResourceManager + 0x10);
+  ResourceArrayPointer = *(long long *)(SystemResourceManager + 8);
   resourceBaseAddress = 0;
-  if (SystemInitializationStatus == 0) {
+  if (ResourceArraySize == 0) {
     *(void* *)(SystemResourceManager + 0x18) = 0;
   }
   else {
     do {
-      resourceMemoryOffset = *(long long *)(SystemThreadHandle + ResourceAddress * 8);
+      resourceMemoryOffset = *(long long *)(ResourceArrayPointer + ResourceAddress * 8);
       if (ResourceMemoryOffset != 0) {
         if (*(long long *)(ResourceMemoryOffset + 0x18) != 0) {
             SystemCleanupFunction();
         }
           SystemCleanupFunction(ResourceMemoryOffset);
       }
-      *(void* *)(SystemThreadHandle + ResourceAddress * 8) = 0;
+      *(void* *)(ResourceArrayPointer + ResourceAddress * 8) = 0;
       resourceBaseAddress = ResourceAddress + 1;
-    } while (ResourceAddress < SystemInitializationStatus);
+    } while (ResourceAddress < ResourceArraySize);
     *(void* *)(SystemResourceManager + 0x18) = 0;
   }
   return;
@@ -36402,7 +36402,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
 void ValidateSystemResourceManager(long long SystemResourceManager)
 
 {
-  int* SystemIntegerPointer;
+  int* ValidationStatus;
   void** SystemDataTable;
   long long ResourceMemoryOffset;
   ulong long ResourceAddress;
