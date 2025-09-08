@@ -4341,6 +4341,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 // 系统字符和数据转换函数
 #define ConvertSystemCharacterData FUN_180179c00
 #define TransformSystemCharacterData FUN_180179cd0
+#define ProcessSystemCharacterDataConversion FUN_180179d80
 #define CalculateSystemCharacterMetrics FUN_180181a80
 #define ProcessSystemCharacterValidation FUN_180181e30
 #define EncodeSystemCharacterData FUN_180186ac0
@@ -213355,7 +213356,7 @@ LAB_180179aff:
       Utf16EndPointer = MemoryBlockIndex;
 LAB_180179b02:
       if (Utf16EndPointer != (long long *)0x0) {
-        FUN_180179d80(CharacterCode,SystemBufferSize,Utf16EndPointer,DataSize,AdditionalParameter1);
+        ProcessSystemCharacterDataConversion(CharacterCode,SystemBufferSize,Utf16EndPointer,DataSize,AdditionalParameter1);
         return SystemBufferSize;
       }
     }
@@ -214033,7 +214034,22 @@ void ProcessUtf16EncodingAndSystemEventAlt(long long CharacterCode, uint64_t Sys
 
 
 
-7a2c0(uint64_t *CharacterCode,long long *CharacterCodeSizevoid FUN_18017a2c0(uint64_t *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理系统上下文和UTF-8大小
+ * 
+ * 该函数负责处理系统上下文和UTF-8大小的管理，包括：
+ * - 系统上下文的获取和设置
+ * - UTF-8缓冲区大小的计算和调整
+ * - 上下文与缓冲区大小的同步
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18017a2c0
+ */
+void ProcessSystemContextAndUtf8Size(uint64_t *CharacterCode,long long *CharacterCodeSize
 {
   unsigned long long *CharacterStatusBuffer;
   int *StringComparisonResultPointer;
