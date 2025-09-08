@@ -206253,7 +206253,17 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long CharacterCode)
 
 
 
-71410(long long CharacterCode,uint64_t *CharacterCodeSizevoid FUN_180171410(long long CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 处理字符代码和大小的函数
+ * 
+ * 处理字符代码和相关的大小参数，用于字符编码和数据处理
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param CharacterCodeSize 字符代码大小参数，用于指定处理的大小
+ * 
+ * @note 原始函数名：FUN_180171410
+ */
+void ProcessCharacterCodeAndSize(long long CharacterCode,uint64_t *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -206318,7 +206328,16 @@ void ProcessCharacterWindowMessageAndSystemStatus(long long CharacterCode)
 
 
 
-71610(long long CharacterCodevoid FUN_180171610(long long CharacterCode
+/**
+ * @brief 执行系统初始化的函数
+ * 
+ * 执行系统初始化操作，包括字符状态缓冲区的设置和系统配置
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_180171610
+ */
+void ExecuteSystemInitialization(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -206440,7 +206459,16 @@ uint64_t InitializeSystemMemoryWithPerformanceCounter(long long CharacterCode,ui
 
 
 
-718f0(long long CharacterCodevoid FUN_1801718f0(long long CharacterCode
+/**
+ * @brief 处理字符编码转换的函数
+ * 
+ * 处理字符编码转换操作，包括Unicode码点计算和字符状态管理
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_1801718f0
+ */
+void ProcessCharacterEncodingConversion(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
@@ -207546,7 +207574,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
         *(uint8_t *)(SystemDataTabled0 + 0x2028) = 1;
       }
       if (*(char *)(SystemMemoryManager + 0x1609) == '\0') {
-        FUN_180173470(CharacterCode);
+        ProcessCharacterDataWithCodePointer(CharacterCode);
       }
     }
     break;
@@ -208540,7 +208568,7 @@ void ProcessCharacterEncodingAndWindowManagement(long long CharacterCode)
   unsigned long long FunctionAddress;
   
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemKeyPointer8;
-  FUN_180171610();
+  ExecuteSystemInitialization();
   IntegerValue = *(int *)(CoreEngineMemoryContext + 0x1d50);
   MatchCounter = *(int *)(CoreEngineMemoryContext + 0x1dc0);
   *(uint32_t *)(CharacterCode + 0x38) = *(uint32_t *)(CoreEngineMemoryContext + 0x1ea0);

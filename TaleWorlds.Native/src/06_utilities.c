@@ -88341,6 +88341,17 @@ void ExceptionContextHandler100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x300处设置默认异常处理器
+ * 
+ * 该函数在数据缓冲区的偏移量0x300处设置默认异常处理器B。
+ * 这是一个简单的异常处理器配置函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c110
+ */
 void Unwind_18090c110(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -88350,6 +88361,17 @@ void Unwind_18090c110(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x3C0处设置默认异常处理器
+ * 
+ * 该函数在数据缓冲区的偏移量0x3C0处设置默认异常处理器B。
+ * 这是一个简单的异常处理器配置函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c120
+ */
 void Unwind_18090c120(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -88359,6 +88381,17 @@ void Unwind_18090c120(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理异常处理器并终止系统
+ * 
+ * 该函数遍历数据缓冲区中的异常处理器上下文，执行每个有效的异常处理器，
+ * 并在完成后终止系统。这是一个关键的系统清理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c130
+ */
 void Unwind_18090c130(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -124273,6 +124306,12 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ProcessSystemResourceCleanupAndValidation Unwind_18090ca70
 #define SetDefaultExceptionHandlerAtOffset540 Unwind_18090ca80
 #define DecrementSystemResourceCounterAndExecuteFunctionA2 Unwind_18090ca90
+
+// 异常处理器设置函数系列
+#define SetDefaultExceptionHandlerAtOffset300 Unwind_18090c110
+#define SetDefaultExceptionHandlerAtOffset3C0 Unwind_18090c120
+#define ProcessExceptionHandlersAndTerminateSystem Unwind_18090c130
+#define ProcessMemoryResourceCleanup Unwind_18090c140
 
 // 系统资源表清理和异常处理函数
 #define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0
