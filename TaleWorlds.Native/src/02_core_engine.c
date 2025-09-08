@@ -6665,6 +6665,9 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_18007ea10 - 字符串偏移处理和验证函数
 #define ProcessStringOffsetAndValidation FUN_18007ea10
 
+// 原始函数名：FUN_1800b9270 - 系统事件模板处理和初始化函数
+#define ProcessSystemEventTemplateAndInitialization FUN_1800b9270
+
 /**
  * @brief 获取内存分配大小
  * 
@@ -214783,7 +214786,7 @@ void CleanupSystemDataTable(long long *CharacterCode
         CoreEngineProcessSystemEvent();
       }
       pPreviousContextPointer = &plStack_e0;
-      FUN_180057830(&plStack_e0);
+      ProcessSystemMemoryBlockRelease(&plStack_e0);
       if (pCoreEngineSignedValueE8 != (long long *)0x0) {
         (**(code **)(*pCoreEngineSignedValueE8 + 0x38))();
       }
@@ -214837,7 +214840,7 @@ void CleanupSystemDataTable(long long *CharacterCode
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
   }
-  FUN_1800b9270(CharacterCode,*SystemEventTemplatePointer);
+  ProcessSystemEventTemplateAndInitialization(CharacterCode,*SystemEventTemplatePointer);
   if ((long long *)SystemEventTemplatePointer[5] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemEventTemplatePointer[5] + 0x38))();
   }
