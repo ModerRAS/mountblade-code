@@ -274416,7 +274416,26 @@ uint64_t GetSystemNullStatus(void
 
 
 
-25ee0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180225ee0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理向量寄存器操作
+ * 
+ * 该函数负责处理向量寄存器操作，包括：
+ * - 初始化字符代码和系统缓冲区
+ * - 执行编码解码操作
+ * - 管理系统标志和状态
+ * - 处理内存偏移量计算
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180225ee0
+ */
+#define ProcessVectorRegisterOperation FUN_180225ee0
+
+void ProcessVectorRegisterOperation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint32_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *CharacterCode;
   uint8_t aSystemFlagB [32];
