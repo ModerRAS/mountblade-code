@@ -88221,37 +88221,37 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
       remainingGroupsCount = ((remainingDataSize - startDataOffset) - 4U >> 2) + 1;
       startDataOffset = startDataOffset + remainingGroupsCount * 4;
       do {
-        transformCoeff1 = baseScaleFactor[-1];
-        AccumulatedFloat = *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor) * 0.70710677;
-        transformCoeff11 = *(float *)(allocatedMemory9 + (longlong)baseScaleFactor) * 0.70710677;
-        baseScaleFactor[-1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
-        transformCoeff12 = *baseScaleFactor;
-        *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
-        AccumulatedFloat = *(float *)(allocatedMemory9 + 4 + (longlong)baseScaleFactor) * 0.70710677;
-        *baseScaleFactor = transformCoeff12 * 0.70710677 - transformCoeff11;
-        transformCoeff1 = baseScaleFactor[1];
-        *(float *)(allocatedMemory9 + (longlong)baseScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
-        transformCoeff11 = *(float *)(allocatedMemory9 + 8 + (longlong)baseScaleFactor) * 0.70710677;
-        baseScaleFactor[1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
-        transformCoeff12 = baseScaleFactor[2];
-        *(float *)(allocatedMemory9 + 4 + (longlong)baseScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
-        baseScaleFactor[2] = transformCoeff12 * 0.70710677 - transformCoeff11;
-        *(float *)(allocatedMemory9 + 8 + (longlong)baseScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
-        baseScaleFactor = baseScaleFactor + 4;
-        allocatedMemory5 = allocatedMemory5 + -1;
-      } while (allocatedMemory5 != 0);
+        transformCoeff1 = remainingScaleFactor[-1];
+        AccumulatedFloat = *(float *)(contextDifference + -4 + (longlong)remainingScaleFactor) * 0.70710677;
+        transformCoeff11 = *(float *)(contextDifference + (longlong)remainingScaleFactor) * 0.70710677;
+        remainingScaleFactor[-1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
+        transformCoeff12 = *remainingScaleFactor;
+        *(float *)(contextDifference + -4 + (longlong)remainingScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
+        AccumulatedFloat = *(float *)(contextDifference + 4 + (longlong)remainingScaleFactor) * 0.70710677;
+        *remainingScaleFactor = transformCoeff12 * 0.70710677 - transformCoeff11;
+        transformCoeff1 = remainingScaleFactor[1];
+        *(float *)(contextDifference + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
+        transformCoeff11 = *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) * 0.70710677;
+        remainingScaleFactor[1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
+        transformCoeff12 = remainingScaleFactor[2];
+        *(float *)(contextDifference + 4 + (longlong)remainingScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
+        remainingScaleFactor[2] = transformCoeff12 * 0.70710677 - transformCoeff11;
+        *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
+        remainingScaleFactor = remainingScaleFactor + 4;
+        remainingGroupsCount = remainingGroupsCount + -1;
+      } while (remainingGroupsCount != 0);
     }
-    if (allocatedMemory3 < allocatedMemory8) {
-      baseScaleFactor = (float *)(dataSource + allocatedMemory3 * 4);
-      allocatedMemory8 = allocatedMemory8 - allocatedMemory3;
+    if (startDataOffset < remainingDataSize) {
+      finalScaleFactor = (float *)(dataSource + startDataOffset * 4);
+      remainingDataSize = remainingDataSize - startDataOffset;
       do {
-        transformCoeff1 = *baseScaleFactor;
-        transformCoeff12 = *(float *)((uiContext - dataSource) + (longlong)baseScaleFactor) * 0.70710677;
-        *(float *)((uiContext - dataSource) + (longlong)baseScaleFactor) = transformCoeff1 * 0.70710677 + transformCoeff12;
-        *baseScaleFactor = transformCoeff1 * 0.70710677 - transformCoeff12;
-        baseScaleFactor = baseScaleFactor + 1;
-        allocatedMemory8 = allocatedMemory8 + -1;
-      } while (allocatedMemory8 != 0);
+        transformCoeff1 = *finalScaleFactor;
+        transformCoeff12 = *(float *)((uiContext - dataSource) + (longlong)finalScaleFactor) * 0.70710677;
+        *(float *)((uiContext - dataSource) + (longlong)finalScaleFactor) = transformCoeff1 * 0.70710677 + transformCoeff12;
+        *finalScaleFactor = transformCoeff1 * 0.70710677 - transformCoeff12;
+        finalScaleFactor = finalScaleFactor + 1;
+        remainingDataSize = remainingDataSize + -1;
+      } while (remainingDataSize != 0);
     }
   }
   return;
@@ -88559,11 +88559,46 @@ void ProcessUIDataCalculationAndColorAdjustment(longlong uiContext, int dataSour
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180719e00(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
-void FUN_180719e00(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
-                  UIHandle param_6,uint param_7,UIHandle param_8,longlong param_9,int uiContext0,
-                  UIHandle uiContext1,int uiContext2,int uiContext3,float *uiContext4,int uiContext5,
-                  int uiContext6)
+ // 原始函数名：FUN_180719e00 - UI上下文数据处理器
+#define ProcessUIContextData FUN_180719e00
+
+/**
+ * @brief 处理UI上下文数据
+ * 
+ * 该函数负责处理UI上下文中的数据，包括：
+ * - 处理数据源和目标缓冲区之间的数据传输
+ * - 计算和处理UI组件的索引和偏移量
+ * - 执行字符串比较和上下文处理
+ * - 处理加密数据和参数验证
+ * - 计算UI渲染相关的数值和权重
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（UI句柄）
+ * @param param_7 参数7
+ * @param param_8 参数8（UI句柄）
+ * @param param_9 参数9
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1（UI句柄）
+ * @param uiContext2 UI上下文参数2
+ * @param uiContext3 UI上下文参数3
+ * @param uiContext4 UI上下文参数4（浮点数指针）
+ * @param uiContext5 UI上下文参数5
+ * @param uiContext6 UI上下文参数6
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI系统需要处理复杂数据时被调用
+ * @note 包含加密处理和数据验证逻辑
+ * @note 负责确保UI数据的正确处理和传输
+ */
+void ProcessUIContextData(longlong uiContext,int dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
+                         UIHandle param_6,uint param_7,UIHandle param_8,longlong param_9,int uiContext0,
+                         UIHandle uiContext1,int uiContext2,int uiContext3,float *uiContext4,int uiContext5,
+                         int uiContext6)
 
 {
   int processingResult;
