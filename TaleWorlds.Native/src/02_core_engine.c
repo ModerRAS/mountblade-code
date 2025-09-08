@@ -42971,8 +42971,8 @@ void ProcessDataStructureWithSemaphore(uint64_t CharacterCode,uint64_t SystemBuf
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    StackProcessedData48 = 0;
-    StackProcessingVariable38 = 0;
+    MemoryCleanupFlag = 0;
+    ThreadProcessingCounter = 0;
     SystemKeyPointer = &ThreadLocalStorageTemplate;
   }
   StackProcessingValue = &SystemNullTemplate;
@@ -44995,40 +44995,55 @@ void ProcessSystemDataTransfer(uint64_t CharacterCode,uint32_t SystemBufferSize,
 
 
 
- void ThreadManagementCallback(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ThreadManagementCallback(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ /**
+ * @brief 线程管理回调函数
+ * 
+ * 该函数负责处理线程管理相关的回调操作，包括：
+ * - 管理系统事件和线程同步
+ * - 处理线程间的数据传输
+ * - 执行线程相关的内存分配和配置
+ * 
+ * @param CharacterCode 目标数据结构指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：ThreadManagementCallback
+ */
+void ThreadManagementCallback(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   void *SystemEventPointer;
   uint64_t CalculationFunctionAddress;
-  uint32_t StackProcessingValue78;
-  uint64_t StackProcessingVariable70;
-  uint64_t StackProcessingValue;
-  uint64_t StackProcessingUnsignedValue60;
+  uint32_t ThreadProcessingTimeout;
+  uint64_t ThreadContextHandle;
+  uint64_t ThreadProcessingValue;
+  uint64_t ThreadProcessingFlag;
   uint64_t BufferOffset;
   uint32_t SystemKeyPointer;
-  uint64_t SystemStackOffset48;
+  uint64_t ThreadStackOffset;
   uint64_t SystemPriorityLevel;
   uint16_t FunctionAddress;
-  uint64_t SystemStackOffset36;
-  uint64_t SystemStackOffset2E;
-  uint16_t SystemStackFlag26;
-  uint64_t SystemStackOffset18;
+  uint64_t ThreadContextOffset;
+  uint64_t ThreadStateOffset;
+  uint16_t ThreadStatusFlag;
+  uint64_t ThreadInitializationFlag;
   
-  SystemStackOffset18 = 0xfffffffffffffffe;
+  ThreadInitializationFlag = 0xfffffffffffffffe;
   SystemEventPointer = &SystemNullTemplate;
-  StackProcessingVariable70 = 0;
+  ThreadContextHandle = 0;
   CalculationFunctionAddress = 0;
-  StackProcessingValue78 = 0;
-  StackProcessingValue = 0;
-  StackProcessingUnsignedValue60 = 0;
+  ThreadProcessingTimeout = 0;
+  ThreadProcessingValue = 0;
+  ThreadProcessingFlag = 0;
   BufferOffset = 0;
   SystemKeyPointer = 3;
   FunctionAddress = 0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 0;
-  SystemStackFlag26 = 0;
-  SystemStackOffset36 = 0;
-  SystemStackOffset2E = 0;
-  ProcessSystemEventEx(&SystemEventPointer,CharacterCode,Utf8SourcePointer,Utf16EndPointer,&StackProcessingValue);
+  ThreadStatusFlag = 0;
+  ThreadContextOffset = 0;
+  ThreadStateOffset = 0;
+  ProcessSystemEventEx(&SystemEventPointer,CharacterCode,Utf8SourcePointer,Utf16EndPointer,&ThreadProcessingValue);
   ProcessSystemConfigurationData(&SystemEventPointer,Utf8SourcePointer);
   ProcessSystemMemoryAllocation(&SystemEventPointer);
   return;
@@ -216643,7 +216658,17 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
 
 
 
-uint64_t * FUN_18017cac0(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 初始化字符状态缓冲区并分配内存
+ * 
+ * 该函数为字符处理系统分配内存缓冲区，并初始化字符状态信息。
+ * 主要用于UTF-8编码转换前的准备工作，确保有足够的内存空间存储字符状态。
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小，决定内存分配的大小
+ * @return uint64_t* 返回分配的字符状态缓冲区指针
+ */
+uint64_t * InitializeCharacterStatusBufferAndAllocateMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
   
