@@ -185884,7 +185884,7 @@ code_r0x000180151fd7:
     uStack_218 = CONCAT44(uStack_218.HighPart,(int)MemoryBlockListHead[8]);
     SystemPointer208 = MemoryBlockIndex;
     SystemPointer200 = MemoryBlockListHead;
-    FUN_1800a4010(CoreEngineRenderContext,*(uint32_t *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xac),
+    ProcessSystemMemoryAllocation(CoreEngineRenderContext,*(uint32_t *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xac),
                   *(uint32_t *)((long long)MemoryBlockListHead + 0x3c));
     if (MemoryBlockIndex != (long long *)0x0) {
       (**(code **)(*MemoryBlockIndex + 0x38))(MemoryBlockIndex);
@@ -275762,25 +275762,39 @@ LAB_1802297eb:
 
 
 
-29b30(long long *CharacterCode,unsigned long long SystemBufferSizevoid ProcessCharacterCodeData(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理字符代码数据和系统缓冲区
+ * 
+ * 该函数负责处理字符代码数据和系统缓冲区的管理操作，包括：
+ * - 字符代码数据的解析和验证
+ * - 系统缓冲区的分配和管理
+ * - 字符串偏移量的计算和处理
+ * - 内存分配和索引管理
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180229b30
+ */
+void ProcessCharacterCodeData(long long *CharacterCode,unsigned long long SystemBufferSize)
 {
-  uint64_t *CharacterStatusBuffer;
-  uint32_t *PrimaryProcessingStatusFlag;
-  void *SystemEventTemplatePointer;
-  uint32_t MemoryAddressMaskPointer;
-  uint32_t CalculatedCodePoint;
-  uint32_t DataSize;
-  uint64_t SystemChecksum;
-  uint8_t *StringProcessingStatus;
-  long long systemLoopCounter;
-  unsigned long long Utf16Char;
-  long long SystemStringIndex;
-  uint8_t *CharacterStatusBuffer2;
-  uint8_t *CharacterStatusBuffer3;
-  long long LoopIndex;
-  void *SecondaryCharacterStatusBuffer;
-  unsigned long long PrimaryReturnCode;
-  uint32_t *CharacterStatusBuffer7;
+  uint64_t *CharacterStatusBuffer;                    // 字符状态缓冲区指针
+  uint32_t *PrimaryProcessingStatusFlag;            // 主处理状态标志指针
+  void *SystemEventTemplatePointer;                  // 系统事件模板指针
+  uint32_t MemoryAddressMaskPointer;                 // 内存地址掩码指针
+  uint32_t CalculatedCodePoint;                      // 计算的Unicode码点
+  uint32_t DataSize;                                 // 数据大小
+  uint64_t SystemChecksum;                           // 系统校验和
+  uint8_t *StringProcessingStatus;                    // 字符串处理状态指针
+  long long systemLoopCounter;                       // 系统循环计数器
+  unsigned long long Utf16Char;                       // UTF-16字符值
+  long long SystemStringIndex;                       // 系统字符串索引
+  uint8_t *CharacterStatusBuffer2;                   // 字符状态缓冲区2
+  uint8_t *CharacterStatusBuffer3;                   // 字符状态缓冲区3
+  long long LoopIndex;                               // 循环索引
+  void *SecondaryCharacterStatusBuffer;              // 次要字符状态缓冲区
+  unsigned long long PrimaryReturnCode;              // 主返回码
+  uint32_t *CharacterStatusBuffer7;                   // 字符状态缓冲区7
   
   LoopIndex = CharacterCode[1];
   SystemStringIndex = *CharacterCode;
@@ -279996,7 +280010,7 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
 
 
 
-2edb0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointervoid ProcessSystemCharacterDataAndMemoryManagement(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer
+void ProcessSystemCharacterDataAndMemoryManagement(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
