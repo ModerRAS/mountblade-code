@@ -45073,45 +45073,136 @@ void CleanupResourceReference(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void CleanupSystemResource(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统资源，通过调用系统参数验证和处理函数来确保资源的安全释放。
+ * 它从数据缓冲区中提取系统上下文信息，并执行相应的清理操作。
+ * 
+ * 主要功能包括：
+ * - 从数据缓冲区获取异常处理上下文
+ * - 提取系统资源句柄和清理参数
+ * - 调用系统参数验证和处理函数
+ * - 传递操作标志和清理标志
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统资源信息
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * 
+ * @note 该函数是系统资源清理的核心函数之一
+ * @warning 函数执行过程中可能会触发异常处理
+ * 
+ * @see ProcessSystemParametersWithValidation, SystemCleanupFlagAlternative
+ */
+void CleanupSystemResource(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40) + 0x8e8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x8f8),operationFlagA,operationFlagB,
-                SystemCleanupFlagAlternative);
+  // 获取异常处理上下文
+  int64_t exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
+  
+  // 提取系统资源句柄和清理参数
+  int64_t systemResourceHandle = exceptionHandlerContext + ExceptionHandlerCleanupOffsetD90;
+  DataBuffer systemCleanupParameter = *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetDA0);
+  
+  // 调用系统参数验证和处理函数，执行资源清理
+  ProcessSystemParametersWithValidation(systemResourceHandle, systemCleanupParameter, 
+                                        operationFlagA, operationFlagB, 
+                                        SystemCleanupFlagAlternative);
   return;
 }
 
 
 
-void ResetSystemHandler(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 重置系统处理器
+ * 
+ * 该函数负责重置系统异常处理器，确保系统能够正确处理后续的异常事件。
+ * 它设置临时异常处理器，检查系统状态，清理标志，然后恢复默认异常处理器。
+ * 
+ * 主要功能包括：
+ * - 从数据缓冲区获取异常处理上下文
+ * - 设置临时异常处理器以确保安全
+ * - 检查系统终止标志并在需要时终止系统
+ * - 清理系统状态标志
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 该函数是系统异常处理重置的核心函数
+ * @warning 如果系统终止标志被设置，函数会终止系统执行
+ * 
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB, TerminateSystemExecutionAndCleanupResources
+ */
+void ResetSystemHandler(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t exceptionHandlerContext;
+  // 获取异常处理上下文
+  int64_t exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(exceptionHandlerContext + 0x918) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x920) != 0) {
+  // 设置临时异常处理器以确保安全操作
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerHierarchyB0_TempCallbackOffsetDC8) = &SystemTemporaryExceptionHandler;
+  
+  // 检查系统终止标志，如果设置则终止系统
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerHierarchyB0_CleanupStateOffsetDF0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x920) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x930) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x918) = &SystemDefaultExceptionHandlerB;
+  
+  // 清理系统状态标志
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerHierarchyB0_CleanupStateOffsetDF0) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerHierarchyB0_CleanupOffsetE00) = 0;
+  
+  // 恢复默认异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerHierarchyB0_TempCallbackOffsetDC8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理数据资源A
+ * 
+ * 该函数负责清理系统中的数据资源，通过处理系统资源和释放资源来确保数据完整性。
+ * 它从数据缓冲区中提取异常数据缓冲区，并执行相应的资源处理和释放操作。
+ * 
+ * 主要功能包括：
+ * - 从数据缓冲区获取异常处理上下文
+ * - 提取异常数据缓冲区指针
+ * - 处理系统资源并传递操作标志
+ * - 释放系统资源
+ * - 终止系统执行以确保数据一致性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含数据资源信息
+ * @param operationFlagA 操作标志A，用于控制资源处理行为
+ * @param operationFlagB 操作标志B，用于控制资源处理行为
+ * 
+ * @note 该函数是数据资源清理的核心函数之一
+ * @warning 函数执行过程中会终止系统执行
+ * 
+ * @see ProcessSystemResourcesA0, ReleaseSystemResourcesA1, TerminateSystemE0
+ */
+void CleanupDataResourceA(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *exceptionDataBuffer;     // 异常数据缓冲区指针
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x948);
+  // 获取异常处理上下文
+  int64_t exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
+  
+  // 提取异常数据缓冲区指针
+  exceptionDataBuffer = *(DataBuffer **)(exceptionHandlerContext + ExceptionHandlerHierarchyB1_TempCallbackOffsetE90);
+  
+  // 如果异常数据缓冲区存在，则执行资源处理和释放
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    // 处理系统资源，传递操作标志和清理标志
+    ProcessSystemResourcesA0(exceptionHandlerContext + ExceptionHandlerHierarchyB1_CleanupOffsetE88, 
+                               *exceptionDataBuffer, operationFlagA, operationFlagB, 
+                               SystemCleanupFlagAlternative);
+    
+    // 释放系统资源
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-      TerminateSystemE0(exceptionDataBuffer);
+    
+    // 终止系统执行以确保数据一致性
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
