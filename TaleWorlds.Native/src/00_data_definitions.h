@@ -14011,14 +14011,14 @@ int RegisterSystemNetworkModule(void);
 // 数据处理栈变量
 #define DataProcessingStackA SystemDataProcessingStackA
 #define DataProcessingStackB SystemDataProcessingStackB
-#define DataProcessingStackC lStack_28
-#define DataProcessingStackD lStack_68
-#define DataProcessingStackE lStack_d0
-#define DataProcessingStackF lStack_278
+#define DataProcessingStackC SystemDataProcessingStackC
+#define DataProcessingStackD SystemDataProcessingStackD
+#define DataProcessingStackE SystemDataProcessingStackE
+#define DataProcessingStackF SystemDataProcessingStackF
 
 // 浮点数处理栈变量
-#define FloatProcessingVarA fVar4
-#define FloatProcessingVarB fVar5
+#define FloatProcessingVarA SystemFloatProcessingVarA
+#define FloatProcessingVarB SystemFloatProcessingVarB
 #define FloatProcessingVarC fVar6
 #define FloatProcessingVarD fVar9
 #define FloatProcessingVarE fVar12
