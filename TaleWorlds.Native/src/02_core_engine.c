@@ -238,6 +238,9 @@
  */
 #define ProcessCharacterStatusValidationAndMemoryManagement FUN_180150ae0
 
+// 系统字符编码转换和处理函数宏定义
+#define ProcessSystemCharacterEncodingAndConversion FUN_180166dd0  // 系统字符编码转换和处理函数
+
 /**
  * @brief 使用字符代码处理字符数据
  * 
