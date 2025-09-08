@@ -14001,12 +14001,12 @@ int RegisterSystemNetworkModule(void);
 
 // 性能计数器相关栈变量
 #define PerformanceCounterStackPointer SystemPerformanceCounterStack
-#define StackCounterRegister plStack_68
+#define StackCounterRegister SystemStackCounterRegister
 
 // 内存管理相关栈变量
-#define MemoryManagerContextPointer ppplStack_b8
-#define MemoryManagerContextBuffer ppplStack_b0
-#define SystemStackPointer ppSystemStackPointer
+#define MemoryManagerContextPointer SystemMemoryManagerContext
+#define MemoryManagerContextBuffer SystemMemoryManagerBuffer
+#define SystemStackPointer SystemStackContextPointer
 
 // 数据处理栈变量
 #define DataProcessingStackA lStack_b0
