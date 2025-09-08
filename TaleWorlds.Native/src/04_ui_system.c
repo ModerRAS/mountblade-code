@@ -29031,46 +29031,43 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
   ulonglong iterationCount1;
   ulonglong iterationCount2;
   uint iterationCount3;
-  UIByte astackUInt198 [32];
-  uint stackUInt178;
-  longlong *pstackLong170;
-  longlong stackLong168;
-  int stackInt160;
-  int stackInt15c;
-  int stackInt158;
-  int stackInt154;
-  int stackInt150;
-  int stackInt14c;
-  uint stackUInt148;
-  int stackInt144;
-  uint stackUInt140;
-  uint stackUInt13c;
-  int stackInt138;
-  int stackInt134;
-  longlong stackLong130;
-  longlong stackLong128;
-  ulonglong stackUInt120;
-  ulonglong stackUInt118;
-  int *pstackInt110;
-  int *pstackInt108;
-  longlong stackLong100;
-  longlong stackLongf8;
-  longlong stackLongf0;
-  int *pstackInte8;
-  longlong stackLonge0;
-  longlong stackLongd8;
-  longlong stackLongd0;
-  longlong stackLongc8;
-  longlong stackLongc0;
-  uint astackUIntb8 [4];
-  longlong astackLonga8 [6];
-  UIHandle stackUInt78;
-  UIHandle stackUInt70;
-  UIHandle stackUInt68;
-  UIHandle stackUInt60;
-  UIHandle stackUInt58;
-  UIHandle stackUInt50;
-  ulonglong stackUInt48;
+  UIByte EncryptionKeyBuffer[32];
+  uint RenderParameterOffset;
+  longlong *TransformMatrixPointer;
+  longlong AnimationStateValue;
+  int RenderIterationCount;
+  int RenderSubIterationCount;
+  int RenderBatchIndex;
+  int RenderChunkIndex;
+  int RenderSegmentIndex;
+  int RenderTileIndex;
+  uint RenderTileCount;
+  int RenderPassIndex;
+  uint RenderPassCount;
+  uint RenderStepCount;
+  int RenderPhaseIndex;
+  int RenderPhaseCount;
+  longlong RenderContextOffset;
+  longlong RenderDataOffset;
+  ulonglong RenderHandleValue;
+  ulonglong RenderStateValue;
+  int *RenderStatusPointer;
+  int *RenderValidationPointer;
+  longlong RenderMemoryBase;
+  longlong RenderMemoryOffset;
+  longlong RenderBufferSize;
+  longlong RenderBufferOffset;
+  longlong RenderChunkSize;
+  uint RenderFlagArray[4];
+  longlong RenderCoordinateArray[6];
+  UIHandle PrimaryUIComponent;
+  UIHandle SecondaryUIComponent;
+  UIHandle TertiaryUIComponent;
+  UIHandle QuaternaryUIComponent;
+  UIHandle QuinaryUIComponent;
+  UIHandle SenaryUIComponent;
+  UIHandle SeptenaryUIComponent;
+  ulonglong RenderDescriptor;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt198;
   stackInt160 = *(int *)(uiBufferData + 0x43a4);
@@ -77137,58 +77134,58 @@ ulonglong ParseUIDataStream(byte *uiContext,UIHandle dataSource,int targetBuffer
 {
   byte dataTypeIdentifier;
   byte isEventProcessingActive;
-  short sVar3;
-  byte bVar4;
-  ulonglong loopCounter;
-  int localInt6;
-  int localInt7;
-  ulonglong ContextHandle;
-  uint uVar8;
-  ulonglong uVar9;
-  short *SourceHandle;
-  uint result0;
-  short *psVar11;
-  uint result2;
-  longlong register10;
-  byte *pisCharacterMatch3;
-  int RegisterPointerD;
-  uint IndexResult;
-  uint CounterResult;
-  int EventHandleD;
-  int unmodifiedR15D;
-  bool in_ZF;
-  int iStackX_20;
-  int stackParam00000070;
-  int stackParam00000080;
-  byte *stackParam00000088;
-  longlong stackParam00000090;
-  int *stackParam000000a0;
-  int *stackParam000000a8;
+  short tempShortValue;
+  byte tempByteValue;
+  ulonglong dataLoopCounter;
+  int calculatedSize;
+  int tempIntValue;
+  ulonglong contextHandle;
+  uint elementCount;
+  ulonglong elementSize;
+  short *sourceDataHandle;
+  uint tempResult;
+  short *tempShortPointer;
+  uint dataIndex;
+  longlong dataPointer;
+  byte *dataStreamPointer;
+  int registerPointer;
+  uint indexResult;
+  uint counterResult;
+  int eventHandle;
+  int unmodifiedRegister;
+  bool zeroFlag;
+  int stackOffset;
+  int stackParam70;
+  int stackParam80;
+  byte *stackParam88;
+  longlong stackParam90;
+  int *stackParamA0;
+  int *stackParamA8;
   
-  if (in_ZF) {
+  if (zeroFlag) {
     return 0xfffffffc;
   }
-  isCharacterMatch = *uiContext;
-  if ((char)isCharacterMatch < '\0') {
-    localInt6 = 48000 << (isCharacterMatch >> 3 & 3);
-    localInt6 = localInt6 / 400 + (localInt6 >> 0x1f);
+  dataTypeIdentifier = *uiContext;
+  if ((char)dataTypeIdentifier < '\0') {
+    calculatedSize = 48000 << (dataTypeIdentifier >> 3 & 3);
+    calculatedSize = calculatedSize / 400 + (calculatedSize >> 0x1f);
 LAB_18070f928:
-    localInt6 = localInt6 - (localInt6 >> 0x1f);
+    calculatedSize = calculatedSize - (calculatedSize >> 0x1f);
   }
-  else if ((isCharacterMatch & 0x60) == 0x60) {
-    localInt6 = 0x3c0;
-    if ((isCharacterMatch & 8) == 0) {
-      localInt6 = 0x1e0;
+  else if ((dataTypeIdentifier & 0x60) == 0x60) {
+    calculatedSize = 0x3c0;
+    if ((dataTypeIdentifier & 8) == 0) {
+      calculatedSize = 0x1e0;
     }
   }
   else {
-    bVar4 = isCharacterMatch >> 3 & 3;
-    if (bVar4 != 3) {
-      localInt6 = 48000 << bVar4;
-      localInt6 = localInt6 / 100 + (localInt6 >> 0x1f);
+    tempByteValue = dataTypeIdentifier >> 3 & 3;
+    if (tempByteValue != 3) {
+      calculatedSize = 48000 << tempByteValue;
+      calculatedSize = calculatedSize / 100 + (calculatedSize >> 0x1f);
       goto LAB_18070f928;
     }
-    localInt6 = 0xb40;
+    calculatedSize = 0xb40;
   }
   IndexResult = RegisterPointerD - 1;
   pisCharacterMatch3 = (byte *)(register10 + 1);
