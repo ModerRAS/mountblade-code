@@ -28650,7 +28650,7 @@ EventProcessingStart:
 
 
 
- void CoreEngineProcessDataStream(long long *CharacterCode,long long SystemBufferSizevoid CoreEngineProcessDataStream(long long *CharacterCode,long long SystemBufferSize
+ void CoreEngineProcessDataStream(long long *CharacterCode,long long SystemBufferSize)
 {
   uint dataStreamFlags;
   int processingStatus;
