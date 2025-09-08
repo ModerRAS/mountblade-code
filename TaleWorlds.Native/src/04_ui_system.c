@@ -72279,90 +72279,102 @@ BufferCompareLoop:
 
 
 
-ulonglong FUN_180706d32(byte *uiContext,int dataSource)
+/**
+ * @brief 处理UI事件队列
+ * 
+ * 处理UI系统中的事件队列，包括事件的分发、处理和状态更新。
+ * 该函数管理事件队列的循环处理，根据事件类型和上下文状态来执行相应的事件处理逻辑。
+ * 
+ * @param uiContext UI上下文指针，包含事件处理所需的上下文信息
+ * @param dataSource 事件数据源参数，指定要处理的事件数据
+ * @return 处理结果状态码，成功返回处理的事件数量，失败返回错误码
+ * 
+ * @note 原始函数名: FUN_180706d32
+ */
+ulonglong ProcessUIEventQueue(byte *uiContext,int dataSource)
 
 {
-  byte *pisCharacterMatch;
-  short sVar2;
-  bool bVar3;
-  longlong registerAX;
-  byte *pbVar4;
-  ulonglong LoopCounter;
-  byte bVar6;
-  int localInt7;
-  longlong localLong8;
-  uint uVar9;
-  int EventOperationCount;
-  UIHandle ContextHandle;
-  int unmodifiedEBP;
-  int ProcessingResult1;
-  UIHandle SourceHandle;
-  UIHandle TargetHandle;
-  byte *pisCharacterMatch2;
-  longlong allocatedMemory3;
-  byte *RegisterPointer;
-  UIHandle unmodifiedR12;
-  ulonglong IndexResult;
-  UIHandle unmodifiedR13;
-  byte *EventHandle;
-  ulonglong CounterResult;
-  UIHandle unmodifiedR15;
-  byte *stackParam00000088;
-  int stackParam00000090;
-  int stackParam00000098;
-  int stackParam000000a0;
+  byte *eventMatchPointer;
+  short eventCode;
+  bool isEventValid;
+  longlong contextRegister;
+  byte *dataBuffer;
+  ulonglong eventCounter;
+  byte statusFlag;
+  int processingStep;
+  longlong memoryOffset;
+  uint eventIndex;
+  int operationCount;
+  UIHandle eventContext;
+  int stackFramePointer;
+  int processingResult;
+  UIHandle sourceEventHandle;
+  UIHandle targetEventHandle;
+  byte *validationPointer;
+  longlong allocationSize;
+  byte *registerPointer;
+  UIHandle contextHandleR12;
+  ulonglong indexResult;
+  UIHandle contextHandleR13;
+  byte *eventQueuePointer;
+  ulonglong counterResult;
+  UIHandle contextHandleR15;
+  byte *stackParameter88;
+  int stackParameter90;
+  int stackParameter98;
+  int stackParameterA0;
   
-  *(UIHandle *)(registerAX + 8) = ContextHandle;
-  ProcessingResult1 = unmodifiedEBP - dataSource;
-  *(UIHandle *)(registerAX + -0x18) = SourceHandle;
-  *(UIHandle *)(registerAX + -0x20) = TargetHandle;
-  *(UIHandle *)(registerAX + -0x28) = unmodifiedR12;
-  IndexResult = 0;
-  *(UIHandle *)(registerAX + -0x30) = unmodifiedR13;
-  *(UIHandle *)(registerAX + -0x38) = unmodifiedR15;
-  allocatedMemory3 = (longlong)ProcessingResult1;
-  pisCharacterMatch = uiContext + (longlong)dataSource * 2 + 0x188;
-  LoopCounter = IndexResult;
-  if (stackParam00000098 != 0) {
-    LoopCounter = (ulonglong)((0xfb < *(short *)(pisCharacterMatch + allocatedMemory3 * 2 + -2)) + 1);
+  *(UIHandle *)(contextRegister + 8) = eventContext;
+  processingResult = stackFramePointer - dataSource;
+  *(UIHandle *)(contextRegister + -0x18) = sourceEventHandle;
+  *(UIHandle *)(contextRegister + -0x20) = targetEventHandle;
+  *(UIHandle *)(contextRegister + -0x28) = contextHandleR12;
+  indexResult = 0;
+  *(UIHandle *)(contextRegister + -0x30) = contextHandleR13;
+  *(UIHandle *)(contextRegister + -0x38) = contextHandleR15;
+  allocationSize = (longlong)processingResult;
+  eventMatchPointer = uiContext + (longlong)dataSource * 2 + 0x188;
+  eventCounter = indexResult;
+  if (stackParameter98 != 0) {
+    eventCounter = (ulonglong)((0xfb < *(short *)(eventMatchPointer + allocationSize * 2 + -2)) + 1);
   }
-  EventOperationCount = (int)LoopCounter;
-  if (ProcessingResult1 == 1) {
-    uVar9 = EventOperationCount + *(short *)pisCharacterMatch + 1;
-    LoopCounter = (ulonglong)uVar9;
-    if (stackParam00000090 < (int)uVar9) goto LAB_180706ed5;
-    *RegisterPointer = *uiContext & 0xfc;
-    pbVar4 = RegisterPointer + 1;
+  operationCount = (int)eventCounter;
+  if (processingResult == 1) {
+    eventIndex = operationCount + *(short *)eventMatchPointer + 1;
+    eventCounter = (ulonglong)eventIndex;
+    if (stackParameter90 < (int)eventIndex) goto LAB_180706ed5;
+    *registerPointer = *uiContext & 0xfc;
+    dataBuffer = registerPointer + 1;
 LAB_180706e76:
-    if ((stackParam000000a0 != 0) && ((int)LoopCounter < stackParam00000090)) {
+    if ((stackParameterA0 != 0) && ((int)eventCounter < stackParameter90)) {
 LAB_180706e88:
-      EventOperationCount = 0;
-      if (stackParam00000098 != 0) {
-        EventOperationCount = (0xfb < *(short *)(pisCharacterMatch + (longlong)ProcessingResult1 * 2 + -2)) + 1;
+      operationCount = 0;
+      if (stackParameter98 != 0) {
+        operationCount = (0xfb < *(short *)(eventMatchPointer + (longlong)processingResult * 2 + -2)) + 1;
       }
-      localInt7 = 1;
-      bVar3 = false;
-      bVar6 = (byte)ProcessingResult1;
-      if (1 < ProcessingResult1) {
-        pbVar4 = pisCharacterMatch;
+      processingStep = 1;
+      isEventValid = false;
+      statusFlag = (byte)processingResult;
+      if (1 < processingResult) {
+        dataBuffer = eventMatchPointer;
 LAB_180706eb2:
-        pbVar4 = pbVar4 + 2;
-        if (*(short *)pbVar4 == *(short *)pisCharacterMatch) goto BufferCompareLoop;
-        EventOperationCount = EventOperationCount + 2;
-        bVar3 = true;
-        if (0 < (int)(ProcessingResult1 - 1U)) {
-          LoopCounter = (ulonglong)(ProcessingResult1 - 1U);
-          pbVar4 = pisCharacterMatch;
+        dataBuffer = dataBuffer + 2;
+        if (*(short *)dataBuffer == *(short *)eventMatchPointer) goto BufferCompareLoop;
+        operationCount = operationCount + 2;
+        isEventValid = true;
+        if (0 < (int)(processingResult - 1U)) {
+          eventCounter = (ulonglong)(processingResult - 1U);
+          dataBuffer = eventMatchPointer;
           do {
-            sVar2 = *(short *)pbVar4;
-            pbVar4 = pbVar4 + 2;
-            EventOperationCount = EventOperationCount + sVar2 + (0xfb < sVar2) + 1;
-            LoopCounter = LoopCounter - 1;
-          } while (LoopCounter != 0);
+            eventCode = *(short *)dataBuffer;
+            dataBuffer = dataBuffer + 2;
+            operationCount = operationCount + eventCode + (0xfb < eventCode) + 1;
+            eventCounter = eventCounter - 1;
+          } while (eventCounter != 0);
         }
-        uVar9 = EventOperationCount + *(short *)(pisCharacterMatch + allocatedMemory3 * 2 + -2);
-        if (stackParam00000090 < (int)uVar9) goto LAB_180706ed5;
-        bVar6 = bVar6 | 0x80;
+        eventIndex = operationCount + *(short *)(eventMatchPointer + allocationSize * 2 + -2);
+        if (stackParameter90 < (int)eventIndex) goto LAB_180706ed5;
+        statusFlag = statusFlag | 0x80;
         goto LAB_180706f57;
       }
 LAB_180706ec1:
