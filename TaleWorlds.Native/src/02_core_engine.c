@@ -61,6 +61,9 @@
 #define RegisterR10 SystemRegisterR10                     // R10寄存器（系统寄存器10）
 #define FloatXMM4 in_XMM4_Da                              // XMM4寄存器（浮点数4）
 #define FloatXMM5 in_XMM5_Da                              // XMM5寄存器（浮点数5）
+#define FloatXMM0 in_XMM0_Dc                              // XMM0寄存器（浮点数0）
+#define FloatXMM1 in_XMM1_Dc                              // XMM1寄存器（浮点数1）
+#define ZeroFlagRegister in_ZF                            // 零标志寄存器（用于条件判断）
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
