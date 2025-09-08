@@ -10055,7 +10055,7 @@ LAB_UISystemCleanup:
       }
       CharacterComparisonResult = UIResourceManagerHandle;
       if (UIResourceManagerHandle == (byte *)0x0) {
-LAB_180656d5b:
+LAB_UIResourceRelease:
         CharacterComparisonPointer = &UIDefaultResourceBuffer;
         ResourceIterator = UIResourceManagerHandle;
         while (ResourcePointer = CharacterComparisonPointer, ResourceIterator != (byte *)0x0) {
@@ -10084,7 +10084,7 @@ LAB_180656d5b:
             }
             ResourceNamePointer = *(byte **)ResourceIterator;
           }
-LAB_180656dbb:
+LAB_UIMemoryFree:
           CharacterComparisonPointer = ResourceIterator;
           ResourceIterator = ResourceNamePointer;
           if (ShouldSkipResourceValidation) {

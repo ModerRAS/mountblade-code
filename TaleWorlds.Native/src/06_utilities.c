@@ -396,6 +396,12 @@
 
 // 数据操作偏移量常量
 #define DataOperationOffset48 0x48                           // 数据操作偏移量48
+#define DataOperationOffset4c 0x4c                           // 数据操作偏移量4c
+#define DataOperationOffset50 0x50                           // 数据操作偏移量50
+#define DataOperationOffset54 0x54                           // 数据操作偏移量54
+#define DataOperationOffset58 0x58                           // 数据操作偏移量58
+#define DataOperationOffset5c 0x5c                           // 数据操作偏移量5c
+#define DataOperationOffset60 0x60                           // 数据操作偏移量60
 #define SystemDataBufferOffset80 0x80                        // 系统数据缓冲区偏移量80
 #define DataContextOffset48 0x48                             // 数据上下文偏移量48
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
