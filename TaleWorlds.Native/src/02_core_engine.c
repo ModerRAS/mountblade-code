@@ -202763,7 +202763,7 @@ void ProcessUtf8ToUtf16ConversionDataUpdate(long long CharacterCode,long long Sy
  */
 #define ExecuteCharacterCodePointerCallback FUN_18016cd80
 
-void FUN_18016cd80(long long *CharacterCode)
+void ExecuteCharacterCodePointerCallback(long long *CharacterCode)
 {
   if ((long long *)*CharacterCode != (long long *)0x0) {
     (**(code **)(*(long long *)*CharacterCode + 0x38))();
@@ -202789,7 +202789,7 @@ void FUN_18016cd80(long long *CharacterCode)
  */
 #define InitializeSystemStringTemplateAndRenderConfig FUN_18016cdb0
 
-long long * FUN_18016cdb0(long long *CharacterCode
+long long * InitializeSystemStringTemplateAndRenderConfig(long long *CharacterCode
 {
   uint64_t Utf16Char;
   
@@ -280007,7 +280007,7 @@ uint64_t * FUN_18022b590(uint64_t *CharacterCode
   CharacterCode[0x77] = 0;
   *(uint8_t *)((long long)CharacterCode + 0x1d9) = 0;
   CharacterCode[0x28] = 0;
-  FUN_18022ebe0(CharacterCode + 0x6d);
+  InitializeCharacterTransformationData(CharacterCode + 0x6d);
   *(uint32_t *)((long long)CharacterCode + 0x25c) = 0x3f800000;
   *(uint32_t *)(CharacterCode + 0x4c) = 0x3f266666;
   *(uint32_t *)((long long)CharacterCode + 0x264) = 0x3f800000;
@@ -280037,9 +280037,25 @@ uint64_t * FUN_18022b590(uint64_t *CharacterCode
 
 
 
-uint64_t FUN_18022b980(uint64_t CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 字符代码内存管理函数
+ * 
+ * 该函数负责管理字符代码的内存资源，根据系统缓冲区大小决定是否释放内存。
+ * 主要功能包括：
+ * 1. 执行系统初始化操作
+ * 2. 根据缓冲区大小标志决定是否释放内存
+ * 3. 返回处理后的字符代码指针
+ * 
+ * @param CharacterCode 字符代码指针，指向需要管理的字符代码数据
+ * @param SystemBufferSize 系统缓冲区大小，用于决定是否释放内存
+ * 
+ * @return uint64_t 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18022b980
+ */
+uint64_t ManageCharacterCodeMemory(uint64_t CharacterCode,unsigned long long SystemBufferSize)
 {
-  FUN_18022ba40();
+  PerformSystemInitialization();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x470);
   }
@@ -280049,7 +280065,20 @@ uint64_t FUN_18022b980(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 
 
 
-2b9c0(long long CharacterCodevoid FUN_18022b9c0(long long CharacterCode
+/**
+ * @brief 初始化字符代码系统配置
+ * 
+ * 该函数负责初始化字符代码系统的配置参数和内存块。
+ * 主要功能包括：
+ * 1. 分配和初始化系统内存块
+ * 2. 设置线程本地存储配置
+ * 3. 配置系统参数和标志
+ * 
+ * @param CharacterCode 字符代码指针，指向需要初始化的字符代码数据
+ * 
+ * @note 原始函数名：FUN_18022b9c0
+ */
+void InitializeCharacterCodeSystemConfiguration(long long CharacterCode)
 {
   InitializeSystemMemoryBlock(CharacterCode + 0x18,0x38,2,CoreEngineSetupThreadLocalStorage,0xfffffffffffffffe);
   return;
@@ -280058,7 +280087,20 @@ uint64_t FUN_18022b980(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 
 
 
-2ba00(long long CharacterCodevoid FUN_18022ba00(long long CharacterCode
+/**
+ * @brief 初始化系统内存回调配置
+ * 
+ * 该函数负责初始化系统内存的回调配置和内存块分配。
+ * 主要功能包括：
+ * 1. 分配系统内存块
+ * 2. 配置内存回调函数
+ * 3. 设置系统参数和标志
+ * 
+ * @param CharacterCode 字符代码指针，指向需要配置的字符代码数据
+ * 
+ * @note 原始函数名：FUN_18022ba00
+ */
+void InitializeSystemMemoryCallbackConfiguration(long long CharacterCode)
 {
   InitializeSystemMemoryBlock(CharacterCode + 8,8,0x10,InitializeSystemMemoryCallback,0xfffffffffffffffe);
   return;
