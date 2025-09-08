@@ -195538,7 +195538,23 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long CharacterCode,uint64_t *Ch
 
 
 
-60b4a(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180160b4a(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 转换UTF-8到UTF-16编码
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码，包括：
+ * - 解析UTF-8字符序列
+ * - 生成对应的UTF-16编码
+ * - 处理字符边界情况
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160b4a
+ */
+void ConvertUtf8ToUtf16(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
