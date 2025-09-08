@@ -199466,7 +199466,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx4(uint64_t *CharacterCode,uint64_t *Charact
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
   ProcessCharacterEncodingConversionEx(*CharacterCode,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
-  FUN_18016d200(pFunctionAddress,LocalProcessingStatusFlag,0);
+  ProcessSystemDataStatusUpdate(pFunctionAddress,LocalProcessingStatusFlag,0);
   CalculatedCodePoint = MemoryAddressMaskPointer;
   CharacterStatusBuffer = pFunctionAddress;
   if ((long long)LocalProcessingStatusFlag - (long long)pFunctionAddress >> 5 != 0) {
@@ -202364,19 +202364,19 @@ void ProcessSystemConfigurationAndStringMatching(void)
     }
     ProcessingIndex = ProcessingIndex + 1;
     UnicodeCharacterCode = UnicodeCharacterCode + 0x20;
-  } while ((unsigned long long)(long long)RegisterValueEDI <
+  } while ((unsigned long long)(long long)ProcessingIndex <
            (unsigned long long)(*(long long *)(PatternIndex + 0x28) - *(long long *)(PatternIndex + 0x20) >> 5));
-  *(bool *)RegisterR13Value =
-       *(long long *)(SystemContext + 0x1c98) == *(long long *)(*(long long *)(SystemContext + 0x1af8) + 0x3a8  ;
+  *(bool *)SystemRegisterValue =
+       *(long long *)(SystemContext + 0x1c98) == *(long long *)(*(long long *)(SystemContext + 0x1af8) + 0x3a8);
   *(uint8_t *)(*(long long *)(SystemContext + 0x1af8) + 0xb1) = 1;
   StringOffset = *(long long *)(SystemContext + 0x1af8);
   StringLength = *(int *)(StringOffset + 0x1b8);
   IntegerValue = StringLength + -1;
   *(int *)(StringOffset + 0x1b8) = IntegerValue;
   if (IntegerValue != 0) {
-    RegisterR12Value = (unsigned long long)*(uint *)(*(long long *)(StringOffset + 0x1c0) + -8 + (long long)StringLength * 4);
+    UnicodeCodeValue = (unsigned long long)*(uint *)(*(long long *)(StringOffset + 0x1c0) + -8 + (long long)StringLength * 4);
   }
-  *(int *)(StringOffset + 0x1a8) = (int)RegisterR12Value;
+  *(int *)(StringOffset + 0x1a8) = (int)UnicodeCodeValue;
   FinalizeSystemEventQueue();
   SystemStringIndex = SystemConfigurationHandle;
   LoopIndex = (long long)*(int *)(SystemConfigurationHandle + 0x1b90);
