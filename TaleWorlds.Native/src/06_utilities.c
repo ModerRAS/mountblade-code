@@ -12373,7 +12373,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     // 处理执行结果
     if (OperationStatus == SystemSuccessStatus) {
       // 如果有资源需要处理，遍历资源列表
-      if (0 < resourceProcessingLoopCounter) {
+      if (0 < ResourceProcessingLoopCounter) {
         ResourceArrayIterator = 0;
         do {
           // 获取资源标识符
@@ -12387,7 +12387,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
           // 更新计数器和偏移量
           ProcessedResourceCount = ProcessedResourceCount + 1;
           ResourceArrayIterator = ResourceArrayIterator + ResourceHandleSize;
-        } while (ProcessedResourceCount < resourceProcessingLoopCounter);
+        } while (ProcessedResourceCount < ResourceProcessingLoopCounter);
       }
       // 清理内存缓冲区
       CleanupMemory(&DataProcessingBuffer);
@@ -15060,8 +15060,8 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   float floatProcessingValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
-  uint dataProcessingFlags;
-  uint bitShiftedProcessingFlags;
+  uint DataProcessingFlags;
+  uint BitShiftedProcessingFlags;
   DataBuffer vectorRegister;
   uint maskOperationResult;
   
@@ -15082,8 +15082,8 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
     }
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
-      dataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
-      bitShiftedProcessingFlags = dataProcessingFlags >> ProcessingFlagsShift;
+      DataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      BitShiftedProcessingFlags = DataProcessingFlags >> ProcessingFlagsShift;
       if ((bitShiftedProcessingFlags & 1) == 0) {
         if ((((dataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
            ((float)integerConversionResult != floatProcessingValue)) {
