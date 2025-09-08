@@ -200065,54 +200065,54 @@ UIHandle InitializeUIResourceHandle(longlong uiContext)
   UIHandle resourceHandleF;
   UIHandle resourceHandleG;
   
-  stackUInt58 = *(UIDword *)(uiBufferData + 0x6d8);
-  ContextHandleData = 0;
-  stackUInt4c = 1;
-  _stackUInt54 = CONCAT44(5,*(UIDword *)(*(longlong *)(uiBufferData + 0x670) + 0x58));
-  piterationCount = (UIHandle *)func_0x0001807e5100();
-  stackUInt48 = *piterationCount;
-  stackUInt40 = piterationCount[1];
-  stackUInt38 = piterationCount[2];
-  stackUInt30 = piterationCount[3];
-  stackUInt20 = piterationCount[5];
-  stackUInt18 = piterationCount[6];
-  stackUInt10 = piterationCount[7];
-  pstackUInt28 = &stackUInt58;
-  stringCompareIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x2d8,&UNK_18095ae30,0x1c6,0);
-  if (stringCompareIndex != 0) {
-    ContextHandleData = FUN_1807e4c10(stringCompareIndex);
+  uiBufferData = *(UIDword *)(uiBufferData + 0x6d8);
+  contextHandleData = 0;
+  initializationFlag = 1;
+  allocationFlags = CONCAT44(5,*(UIDword *)(*(longlong *)(uiBufferData + 0x670) + 0x58));
+  iterationResultPointer = (UIHandle *)func_0x0001807e5100();
+  resourceHandleA = *iterationResultPointer;
+  resourceHandleB = iterationResultPointer[1];
+  resourceHandleC = iterationResultPointer[2];
+  resourceHandleD = iterationResultPointer[3];
+  resourceHandleE = iterationResultPointer[5];
+  resourceHandleF = iterationResultPointer[6];
+  resourceHandleG = iterationResultPointer[7];
+  dataPointer = &uiBufferData;
+  stringComparisonResult = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x2d8,&UNK_18095ae30,0x1c6,0);
+  if (stringComparisonResult != 0) {
+    contextHandleData = FUN_1807e4c10(stringComparisonResult);
   }
-  *(longlong *)(uiBufferData + 0x10f80) = ContextHandleData;
-  if (ContextHandleData == 0) {
+  *(longlong *)(uiBufferData + 0x10f80) = contextHandleData;
+  if (contextHandleData == 0) {
     return 0x26;
   }
-  *(longlong *)(ContextHandleData + 0xa8) = uiContext;
+  *(longlong *)(contextHandleData + 0xa8) = uiContext;
   *(longlong *)(*(longlong *)(uiBufferData + 0x10f80) + 0xd8) = uiContext + 0x11848;
   *(UIDword *)(*(longlong *)(uiBufferData + 0x10f80) + 0xe0) = *(UIDword *)(uiBufferData + 0x116b8);
-  loopCounter = FUN_18075a230(*(UIHandle *)(uiContext + 0x10f80),&stackUInt48);
-  if ((int)loopCounter == 0) {
+  operationResult = FUN_18075a230(*(UIHandle *)(uiContext + 0x10f80),&resourceHandleA);
+  if ((int)operationResult == 0) {
     *(UIDword *)(*(longlong *)(uiBufferData + 0x10f80) + 0x2b8) = 0xffffffff;
     *(code **)(*(longlong *)(uiBufferData + 0x10f80) + 0x298) = FUN_180787030;
     *(UIHandle *)(*(longlong *)(uiBufferData + 0x10f80) + 0x1e8) = *(UIHandle *)(uiContext + 0x670);
     *(float *)(*(longlong *)(uiBufferData + 0x10f80) + 0x230) =
          (float)*(int *)(*(longlong *)(uiBufferData + 0x670) + 100);
-    loopCounter = (**(code **)(**(longlong **)(uiContext + 0x10f80) + 0x38))();
-    if ((int)loopCounter == 0) {
-      loopCounter = (**(code **)(**(longlong **)(uiContext + 0x10f80) + 0x28))
+    operationResult = (**(code **)(**(longlong **)(uiContext + 0x10f80) + 0x38))();
+    if ((int)operationResult == 0) {
+      operationResult = (**(code **)(**(longlong **)(uiContext + 0x10f80) + 0x28))
                         (*(longlong **)(uiContext + 0x10f80),0,0,0);
-      if ((int)loopCounter == 0) {
-        loopCounter = FUN_180762070(*(UIHandle *)(uiContext + 0x10f80),1);
-        if ((int)loopCounter == 0) {
+      if ((int)operationResult == 0) {
+        operationResult = FUN_180762070(*(UIHandle *)(uiContext + 0x10f80),1);
+        if ((int)operationResult == 0) {
           LOCK();
-          ptrResult = (uint *)(*(longlong *)(uiBufferData + 0x10f80) + 100);
-          *ptrResult = *ptrResult | 0x200;
+          resourceFlagPointer = (uint *)(*(longlong *)(uiBufferData + 0x10f80) + 100);
+          *resourceFlagPointer = *resourceFlagPointer | 0x200;
           UNLOCK();
-          loopCounter = 0;
+          operationResult = 0;
         }
       }
     }
   }
-  return loopCounter;
+  return operationResult;
 }
 
 
