@@ -10357,12 +10357,12 @@ uint8_t SystemConfigurationParameterO;
  * @return uint8_t 设置状态码，0表示成功，非0表示错误
  */
 uint8_t UtilitySetupMemoryRegions;
-uint8_t SystemConfigurationParameterP;
-uint8_t SystemConfigurationParameterQ;
-uint8_t SystemConfigurationParameterR;
-uint8_t SystemConfigurationParameterS;
-uint8_t SystemDataBufferC;
-uint8_t SystemExceptionDataA;
+uint8_t SystemConfigurationParameterPoolSize;
+uint8_t SystemConfigurationParameterAlignment;
+uint8_t SystemConfigurationParameterCacheSize;
+uint8_t SystemConfigurationParameterFlags;
+uint8_t SystemDataBufferTertiary;
+uint8_t SystemExceptionDataPrimary;
 uint8_t SystemNetworkContext;
 uint8_t SystemMessageQueue;
 uint8_t SystemConnectionHandle;
@@ -10385,23 +10385,35 @@ uint8_t UtilitySystemConfigData7;
 uint8_t UtilitySystemConfigData8;
 uint8_t UtilitySystemConfigData9;
 
-// 函数: uint8_t UtilityCreateMemoryHeap;
-// 创建内存堆，用于动态内存分配
+/**
+ * @brief 创建内存堆
+ * 
+ * 创建用于动态内存分配的内存堆，初始化堆管理结构，
+ * 设置堆的大小、对齐方式和分配策略
+ * 
+ * @return uint8_t 创建状态码，0表示成功，非0表示错误
+ */
 uint8_t UtilityCreateMemoryHeap;
-uint8_t MemoryHeapHeader;
-uint8_t MemoryHeapSize;
-uint8_t MemoryHeapFlags;
-uint8_t MemoryHeapBase;
-uint8_t MemoryHeapLimit;
-uint8_t MemoryHeapAlignment;
-uint8_t MemoryHeapAllocator;
+uint8_t MemoryHeapHeaderData;
+uint8_t MemoryHeapTotalSize;
+uint8_t MemoryHeapControlFlags;
+uint8_t MemoryHeapBaseAddress;
+uint8_t MemoryHeapSizeLimit;
+uint8_t MemoryHeapAlignmentSize;
+uint8_t MemoryHeapAllocatorType;
 
-// 函数: uint8_t UtilityDestroyMemoryHeap;
-// 销毁内存堆，释放相关资源
+/**
+ * @brief 销毁内存堆
+ * 
+ * 销毁指定的内存堆，释放所有已分配的内存资源，
+ * 清理堆管理结构和相关数据
+ * 
+ * @return uint8_t 销毁状态码，0表示成功，非0表示错误
+ */
 uint8_t UtilityDestroyMemoryHeap;
-uint8_t MemoryHeapDestroyHandle;
-uint8_t MemoryHeapCleanupFlag;
-uint8_t MemoryPoolAllocatorA;
+uint8_t MemoryHeapDestroyHandleData;
+uint8_t MemoryHeapCleanupStatus;
+uint8_t MemoryPoolAllocatorPrimary;
 // 系统内存管理数据块主数据
 uint8_t SystemMemoryManagementBlockPrimaryData;
 uint8_t SystemMemoryManagementBlockSecondaryData;
@@ -10410,8 +10422,8 @@ uint8_t SystemMemoryManagementBlockQuaternaryData;
 // 系统全局数据指针
 uint8_t SystemGlobalDataPointer;
 // 系统内存管理数据块状态
-uint8_t SystemMemoryManagementBlockStatus;
-uint8_t SystemMemoryManagementBlockFlags;
+uint8_t SystemMemoryManagementBlockStatusData;
+uint8_t SystemMemoryManagementBlockControlFlags;
 // 全局系统数据指针
 int64_t GlobalSystemDataPointer;
 // 系统健康状态指示器
@@ -21096,27 +21108,27 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   memset(securityValidationBufferA, 0, sizeof(securityValidationBufferA));
   memset(dataCopyDestinationBuffer, 0, sizeof(dataCopyDestinationBuffer));
   // 检查当前索引是否在有效范围内
-  if (currentRecordIndex < *(int *)(systemContext + 0x20)) {
-    systemBaseAddress = *(int64_t *)(systemContext + 0x18);
+  if (currentRecordIndex < *(int *)(systemContext + SystemContextArrayCountOffset)) {
+    systemBaseAddress = *(int64_t *)(systemContext + SystemContextBaseAddressOffset);
     recordArrayOffset = recordIterationCount * 3;
-    recordDataPointer = (int64_t)*(int *)(systemBaseAddress + recordIterationCount * 0xc) + *(int64_t *)(systemContext + 8);
-    recordDataType = *(char *)(systemBaseAddress + 8 + recordIterationCount * 0xc);
+    recordDataPointer = (int64_t)*(int *)(systemBaseAddress + recordIterationCount * RecordDataSizeMultiplier) + *(int64_t *)(systemContext + SystemContextSecondaryOffset);
+    recordDataType = *(char *)(systemBaseAddress + RecordDataTypeOffset + recordIterationCount * RecordDataSizeMultiplier);
     // 处理浮点数据类型
-    if (recordDataType == '\x01') {
-      int dataBufferSize = *(int *)(systemContext + 0xb0);
+    if (recordDataType == DataTypeFloat) {
+      int dataBufferSize = *(int *)(systemContext + FloatProcessingBufferSizeOffset);
       if (currentRecordIndex < dataBufferSize) {
-        *(int *)(systemContext + 0xac) = currentRecordIndex + 1;
+        *(int *)(systemContext + FloatProcessingNextIndexOffset) = currentRecordIndex + 1;
         GOTO_ValidationFailed;
       }
-      float sourceFloatValue = *(float *)(recordDataPointer + 0x18);
+      float sourceFloatValue = *(float *)(recordDataPointer + FloatDataValueOffset);
       float processedFloatValue = sourceFloatValue;
       if (dataBufferSize != -1) {
-        processedFloatValue = *(float *)(systemContext + 0xb4);
+        processedFloatValue = *(float *)(systemContext + FloatProcessedValueOffset);
         dataBufferSize = -1;
-        *(DataWord *)(systemContext + 0xb0) = SystemCleanupFlag;
-        *(DataWord *)(systemContext + 0xb4) = NegativeZeroFloat;
+        *(DataWord *)(systemContext + FloatProcessingBufferSizeOffset) = SystemCleanupFlag;
+        *(DataWord *)(systemContext + FloatProcessedValueOffset) = NegativeZeroFloat;
       }
-      *(float *)(systemContext + 0xa8) = sourceFloatValue;
+      *(float *)(systemContext + FloatSourceValueOffset) = sourceFloatValue;
       memoryOffset = 0;
       float calculatedFloatValue = (float)*(uint *)(systemContext + 0x68) * sourceFloatValue;
       if ((9.223372e+18 <= calculatedFloatValue) && (calculatedFloatValue = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
@@ -32722,7 +32734,7 @@ uint64_t ProcessSystemDataD0(void)
   DataWord secondaryFloatResultA;
   DataWord tertiaryFloatResultA;
   DataWord loopCounter;
-  float floatResultA_09;
+  float finalCalculatedResult;
   uint64_t validationOutcome;
   
   operationResult = InputAccumulator + 4;
@@ -33354,7 +33366,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   DataWord secondaryFloatResultA;
   DataWord tertiaryFloatResultA;
   DataWord systemDataBuffer3;
-  float floatResultA_09;
+  float finalCalculatedResult;
   
   *(DataWord *)(dataPointer + 0x30) = RegisterContextValue;
   if ((int)DestinationContext != 0) {
