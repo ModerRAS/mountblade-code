@@ -8072,8 +8072,8 @@ LAB_UIContextInitialize:
   undefined *resultBuffer;
   longlong bufferHandle;
   UIDword renderFlags;
-  UIDword stackValue3;
-  UIDword stackValue4;
+  UIDword textureFlags;
+  UIDword animationFlags;
   longlong loopCounter;
   
   bufferOffset = 0;
@@ -8677,7 +8677,7 @@ void CleanupUIComponentCache(void)
   UIHandle stackValue2;
   undefined *stackPointer3;
   UIDword *stackPointer4;
-  UIDword stackValue3;
+  UIDword textureFlags;
   UIHandle stackValue4;
   undefined *stackPointer5;
   UIByte *stackPointer6;

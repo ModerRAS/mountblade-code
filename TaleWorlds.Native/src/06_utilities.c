@@ -125,6 +125,7 @@
 #define ExceptionHandlerTertiaryOffset2D48 0x2d48
 #define ExceptionHandlerSystemLevelOffset2DD8 0x2dd8
 #define ExceptionHandlerHighLevelOffset1EB8 0x1eb8
+#define ExceptionHandlerFinalCleanupOffset2E10 0x2e10
 
 // 系统状态验证相关偏移量常量
 #define SystemStatusValidationOffset82 0x82
@@ -119958,8 +119959,8 @@ void CleanupMultiLevelExceptionContexts(DataBuffer operationBase, int64_t dataBu
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   
-  // 清理第三级异常处理器上下文（偏移量0x1eb8）
-  exceptionHandlerContext = *(int64_t *)(dataContext + 0x1eb8);
+  // 清理第三级异常处理器上下文
+  exceptionHandlerContext = *(int64_t *)(dataContext + ExceptionHandlerHighLevelOffset1EB8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
@@ -120077,17 +120078,38 @@ void CleanupSystemLevelExceptionHandlerContext(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理最终异常处理器上下文函数
+ * 
+ * 该函数负责清理最终的异常处理器上下文，这是系统清理过程中的最后一步。
+ * 主要功能：
+ * 1. 从数据缓冲区获取最终清理的异常处理器上下文
+ * 2. 更新异常上下文引用计数
+ * 3. 执行最终的异常处理清理操作
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含最终清理上下文信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911ea0
+ * @note 这是异常处理器清理链中的最后一步
+ * @note 处理偏移量0x2e10处的最终异常处理器上下文
+ */
+void CleanupFinalExceptionHandlerContext(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2e10);
+  // 获取最终清理的异常处理器上下文
+  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerFinalCleanupOffset2E10);
   if (exceptionHandlerContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    // 执行最终的异常处理清理
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }

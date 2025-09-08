@@ -225776,7 +225776,21 @@ ProcessCharacterCodeWithMemoryBoundaryValidation(long long *CharacterCode,uint64
 
 
 
-long long FUN_18018b2e0(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化字符编码处理缓冲区
+ * 
+ * 该函数初始化字符编码处理的缓冲区，设置字符表指针并调用相关处理函数。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @return 返回循环计数器
+ * 
+ * @note 此函数负责初始化字符编码处理所需的缓冲区和数据结构
+ */
+long long InitializeCharacterEncodingBuffer(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
