@@ -60656,7 +60656,7 @@ void CopyDataStructure(unsigned long long *CharacterCode,uint64_t *CharacterCode
     MemoryBoundaryEnd = MemoryBoundaryEnd * 2;
     if (MemoryBoundaryEnd == 0) {
       CharacterCodeTablePointer = (uint32_t *)0x0;
-      goto LAB_180086316;
+      goto SystemMemoryValidationComplete;
     }
   }
   CharacterCodeTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x18,(char)CharacterCode[3]);
@@ -60724,7 +60724,7 @@ void ProcessSystemDataStructureAllocation(long long CharacterCode,uint64_t Syste
     BufferAllocationSize = (CharacterCode / 0x18) * 2;
     if (BufferAllocationSize == 0) {
       MemoryBufferPointer = (uint32_t *)0x0;
-      goto LAB_180086316;
+      goto SystemMemoryValidationComplete;
     }
   }
   MemoryBufferPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,BufferAllocationSize * 0x18,(char)CharacterCode[3]);
@@ -240073,7 +240073,7 @@ void FUN_180202c0d(float *CharacterCode,float *CharacterCodeSize,long long Utf8S
 
 
 
-02c2d(uint32_t CharacterCode,float *CharacterCodeSizevoid FUN_180202c2d(uint32_t CharacterCode,float *CharacterCodeSize
+void FUN_180202c2d(uint32_t CharacterCode,float *CharacterCodeSize)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
