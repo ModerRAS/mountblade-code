@@ -484,6 +484,37 @@ typedef enum {
 
 #define ProcessUIComponentState ProcessUIComponentState
 
+// 新增的UI系统函数美化定义
+// UI系统数据处理函数
+#define FUN_18070f8a4 ProcessUIContextDataWithHandle
+#define FUN_180710510 ProcessUIContextWithSemaphore
+#define FUN_180711020 ProcessUIFloatDataConversion
+#define FUN_180711037 ProcessUIFloatDataSimplified
+#define FUN_18071103e ProcessUIFloatDataWithHandle
+#define FUN_180711311 InitializeUIEmptyOperation
+#define FUN_180711351 ProcessUIHandleWithFloatData
+#define FUN_1807123a8 ProcessUIFloatDataWithMemory
+#define FUN_1807123c2 ProcessUIFloatDataCalculation
+#define FUN_180712526 ProcessUIHandleDataWithMemory
+
+// UI系统高级处理函数
+#define FUN_180711359 ProcessUIHandleDataAdvanced
+#define FUN_180711576 ProcessUIHandleTransformation
+#define FUN_180711674 ProcessUIDataConversion
+#define FUN_180711810 ProcessUIEventDispatch
+#define FUN_180712541 ProcessUIDataSource
+#define FUN_180712943 ProcessUIFloatCalculation
+#define FUN_180712bf0 InitializeUIEmptyOperationAdvanced
+#define FUN_180712c50 ProcessUIDataOperation
+#define FUN_180712cdf ProcessUIDataBuffer
+#define FUN_180712e3f ProcessUIDataStream
+#define FUN_180712f20 ProcessUIDataValidation
+#define FUN_180712f5f ProcessUIDataTransformation
+#define FUN_180712fbc ProcessUIDataOptimization
+#define FUN_180713020 ProcessUIDataFinalization
+#define FUN_180713126 ProcessUIDataProcessing
+#define FUN_180713394 ProcessUIDataManagement
+
      * @param stateType 状态类型
  * @param stateFlagPtr 状态标志指针
  * @return 设置结果状态码
