@@ -194338,7 +194338,7 @@ char ProcessCharacterEncodingConversionAndBufferManagement(uint32_t CharacterCod
     StringLength = 0;
     if (DataSize != 0) {
       do {
-        OperationStatus = FUN_1801605f0(CharacterCode,*CharacterCodePointer,ProcessingResult + 4);
+        OperationStatus = ValidateCharacterEncodingStatus(CharacterCode,*CharacterCodePointer,ProcessingResult + 4);
         if (OperationStatus != '\0') {
           return '\x01';
         }
