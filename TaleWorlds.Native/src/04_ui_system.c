@@ -95947,7 +95947,7 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
   *(UIByte *)(uiContext + 0xae7) = result;
   if (*(char *)(uiContext + 0xae5) == '\x02') {
     if (((resultPointer == 2) && (*(int *)(uiBufferData + 0x968) == 2)) &&
-       (ContextFirstValue = ReadUIData(dataSource,&UNK_1809547d8,8), 0 < ContextFirstValue)) {
+       (ContextFirstValue = ReadUIData(dataSource,&UIFunctionResultTableAnimation,8), 0 < ContextFirstValue)) {
       ContextFirstValue = *(short *)(uiContext + 0x96c) + -9 + ContextFirstValue;
       *(short *)(uiContext + 0xae2) = ContextFirstValue;
     }
@@ -95975,7 +95975,7 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
       } while (processedCount < *(int *)(uiBufferData + 0x914));
     }
     if (resultPointer == 0) {
-      result = ReadUIData(dataSource,&UNK_1809535d4,8);
+      result = ReadUIData(dataSource,&UIFunctionResultTableState,8);
       *(UIByte *)(uiContext + 0xae9) = result;
     }
     else {
@@ -96077,7 +96077,7 @@ void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
   *(UIByte *)(uiContext + 0xae7) = result;
   if (*(char *)(uiContext + 0xae5) == '\x02') {
     if (((maxIterations == 2) && (*(int *)(uiBufferData + 0x968) == 2)) &&
-       (ContextFirstValue = ReadUIData(dataSource,&UNK_1809547d8,8), 0 < ContextFirstValue)) {
+       (ContextFirstValue = ReadUIData(dataSource,&UIFunctionResultTableAnimation,8), 0 < ContextFirstValue)) {
       ContextFirstValue = *(short *)(uiContext + 0x96c) + -9 + ContextFirstValue;
       *(short *)(uiContext + 0xae2) = ContextFirstValue;
     }
@@ -96105,7 +96105,7 @@ void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
       } while (processedCount < *(int *)(uiBufferData + 0x914));
     }
     if (maxIterations == 0) {
-      result = ReadUIData(dataSource,&UNK_1809535d4,8);
+      result = ReadUIData(dataSource,&UIFunctionResultTableState,8);
       *(UIByte *)(uiContext + 0xae9) = result;
     }
     else {
