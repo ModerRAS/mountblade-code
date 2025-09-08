@@ -28,8 +28,8 @@
 
 // 浮点数常量定义
 #define FloatMaximumValue 3.4028235e+38f
-#define FloatLargeValue 1e+08f
-#define FloatNegativeLargeValue -1e+08f
+#define FloatLargeValue FloatLargeValuef
+#define FloatNegativeLargeValue -FloatLargeValuef
 
 // 系统节点和内存管理常量
 #define SystemNodeHeaderSize 4                              // 系统节点头大小
@@ -53169,14 +53169,14 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
   }
   if ((*(long long *)(pFloatOffsetValue + 0x84) != 0) && (((uint)FloatDataStructure[0x40] & 0x80) == 0)) {
     pSystemContextPrimaryFloat = CharacterCode + 0x9d;
-    pSystemContextPrimaryFloat[0] = 1e+08;
-    pSystemContextPrimaryFloat[1] = 1e+08;
-    CharacterCode[0x9f] = 1e+08;
-    CharacterCode[0xa0] = 3.4028235e+38;
-    CharacterCode[0xa1] = -1e+08;
-    CharacterCode[0xa2] = -1e+08;
-    CharacterCode[0xa3] = -1e+08;
-    CharacterCode[0xa4] = 3.4028235e+38;
+    pSystemContextPrimaryFloat[0] = FloatLargeValue;
+    pSystemContextPrimaryFloat[1] = FloatLargeValue;
+    CharacterCode[0x9f] = FloatLargeValue;
+    CharacterCode[0xa0] = FloatMaximumValue;
+    CharacterCode[0xa1] = -FloatLargeValue;
+    CharacterCode[0xa2] = -FloatLargeValue;
+    CharacterCode[0xa3] = -FloatLargeValue;
+    CharacterCode[0xa4] = FloatMaximumValue;
     ProcessingStatusFlag = 0;
     CharacterCode[0xa9] = 0.0;
     CharacterCode[0xa5] = 0.0;
@@ -59436,12 +59436,12 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
     CharacterCode[4] = ProcessedFloatValue8;
     CharacterCode[5] = FloatOffsetValue;
     CharacterCode[6] = NormalizedParameterValue;
-    CharacterCode[7] = 3.4028235e+38;
+    CharacterCode[7] = FloatMaximumValue;
     MatrixTransformMultiplier = FloatOffsetValue * PrimaryFloatValue - NormalizedParameterValue * SecondaryFloatValue;
     *CharacterCode = MatrixTransformMultiplier;
     CharacterCode[1] = NormalizedParameterValue * SystemContextPrimaryFloat2 - ProcessedFloatValue8 * PrimaryFloatValue;
     CharacterCode[2] = ProcessedFloatValue8 * SecondaryFloatValue - FloatOffsetValue * SystemContextPrimaryFloat2;
-    CharacterCode[3] = 3.4028235e+38;
+    CharacterCode[3] = FloatMaximumValue;
     *CharacterCode = SystemContextPrimaryFloat3 * MatrixTransformMultiplier;
     CharacterCode[2] = SystemContextPrimaryFloat3 * CharacterCode[2];
     CharacterCode[1] = SystemContextPrimaryFloat3 * CharacterCode[1];
@@ -59542,7 +59542,7 @@ void ProcessFloatDataStructure(float *CharacterCode,long long SystemBufferSize,u
   *CharacterCode = matrixComponent;
   CharacterCode[1] = crossProductZ * matrixElementW - CalculatedDistance * matrixElementX;
   CharacterCode[2] = CalculatedDistance * matrixElementY - magnitudeSquared * matrixElementW;
-  CharacterCode[3] = 3.4028235e+38;
+  CharacterCode[3] = FloatMaximumValue;
   *CharacterCode = refinedScaleFactor * matrixComponent;
   CharacterCode[2] = refinedScaleFactor * CharacterCode[2];
   CharacterCode[1] = refinedScaleFactor * CharacterCode[1];
@@ -94915,8 +94915,8 @@ void CopySystemDataStructure(unsigned long long CharacterCode,unsigned long long
             EncodingConversionResult = *(long long *)(SystemStringIndex + 0x1af8);
             if (((((ContextSecondaryFloat1 < *(float *)(EncodingConversionResult + 0x22c) || ContextSecondaryFloat1 == *(float *)(EncodingConversionResult + 0x22c)) ||
                   (*(float *)(EncodingConversionResult + 0x234) <= ContextPrimaryFloat9)) ||
-                 (SecondaryFloatValue + 3.4028235e+38 < *(float *)(EncodingConversionResult + 0x228) ||
-                  SecondaryFloatValue + 3.4028235e+38 == *(float *)(EncodingConversionResult + 0x228))) ||
+                 (SecondaryFloatValue + FloatMaximumValue < *(float *)(EncodingConversionResult + 0x228) ||
+                  SecondaryFloatValue + FloatMaximumValue == *(float *)(EncodingConversionResult + 0x228))) ||
                 (*(float *)(EncodingConversionResult + 0x230) <= SecondaryFloatValue)) && (*(char *)(SystemStringIndex + 0x2e38) == '\0')            break;
             SystemChecksum = memchr(CharacterCode,10,SystemBufferSize - CharacterCode);
             pContextSecondaryFloat = *(float **)(SystemStringIndex + 0x19f0);
@@ -95245,8 +95245,8 @@ void ProcessSystemDataValidation(long long CharacterCode, long long SystemBuffer
             EncodingConversionResult = *(long long *)(PatternIndex + 0x1af8);
             if (((((ContextSecondaryFloat0 < *(float *)(EncodingConversionResult + 0x22c) || ContextSecondaryFloat0 == *(float *)(EncodingConversionResult + 0x22c)) ||
                   (*(float *)(EncodingConversionResult + 0x234) <= SecondaryFloatValue)) ||
-                 (ContextSecondaryFloat + 3.4028235e+38 < *(float *)(EncodingConversionResult + 0x228) ||
-                  ContextSecondaryFloat + 3.4028235e+38 == *(float *)(EncodingConversionResult + 0x228))) ||
+                 (ContextSecondaryFloat + FloatMaximumValue < *(float *)(EncodingConversionResult + 0x228) ||
+                  ContextSecondaryFloat + FloatMaximumValue == *(float *)(EncodingConversionResult + 0x228))) ||
                 (*(float *)(EncodingConversionResult + 0x230) <= ContextSecondaryFloat)) && (*(char *)(PatternIndex + 0x2e38) == '\0')            break;
             ProcessingStatusFlag = memchr(SystemDataNode,10,SystemContext - SystemDataNode);
             pCalculatedFilterValue = *(float **)(PatternIndex + 0x19f0);
@@ -274092,21 +274092,21 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long SystemBufferSize
     *(uint8_t *)(CharacterCode + 0x1d8) = 1;
   }
   else {
-    FilterInputValue9 = 1e+08;
-    MatrixTransformMultiplier10 = 1e+08;
-    MatrixTransformMultiplier11 = 1e+08;
+    FilterInputValue9 = FloatLargeValue;
+    MatrixTransformMultiplier10 = FloatLargeValue;
+    MatrixTransformMultiplier11 = FloatLargeValue;
     DataContentStatus = (void *)0x4cbebc204cbebc20;
     SystemUnsignedValue160 = 0x7f7fffff4cbebc20;
-    fStack_158 = -1e+08;
-    fStack_154 = -1e+08;
-    fStack_150 = -1e+08;
+    fStack_158 = -FloatLargeValue;
+    fStack_154 = -FloatLargeValue;
+    fStack_150 = -FloatLargeValue;
     uStack_14c = 0x7f7fffff;
     MemoryAddressMaskPointer2 = 0x7f7fffff;
     if (0 < (int)UnicodeCodePoint5) {
       UnicodeCharacterIndex = UnicodeCodePoint5 & 0xffffffff;
-      SystemUnsignedValue160.LowPart = 1e+08;
-      DataContentStatus.HighPart = 1e+08;
-      DataContentStatus.LowPart = 1e+08;
+      SystemUnsignedValue160.LowPart = FloatLargeValue;
+      DataContentStatus.HighPart = FloatLargeValue;
+      DataContentStatus.LowPart = FloatLargeValue;
       StringComparisonResultPointer9 = pEncodingValidationResult;
       FilterInputValue9 = (float)DataContentStatus;
       MatrixTransformMultiplier10 = DataContentStatus.HighPart;
