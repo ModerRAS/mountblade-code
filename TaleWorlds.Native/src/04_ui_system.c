@@ -87,10 +87,10 @@ typedef enum {
 #define ValidateUISystem ValidateUISystemIntegrity
 
  // UI系统函数宏定义 - 获取UI数据
-#define GetUIData FUN_1807056b0
+#define GetUIData GetUIDataValue
 
  // UI系统函数宏定义 - 设置UI数据
-#define SetUIData FUN_1807056f0
+#define SetUIData SetUIDataValue
 
  // UI系统函数宏定义 - 处理UI渲染数据
 #define ProcessUIRenderData FUN_180705870
