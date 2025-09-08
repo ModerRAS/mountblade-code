@@ -202011,8 +202011,15 @@ void ExecuteUIInitializationCheck(void)
 
 
 
-UIHandle FUN_18078acfd(void)
-
+/**
+ * @brief 获取UI渲染状态标识符
+ * 
+ * 返回一个固定的UI渲染状态标识符，用于标识特定的UI渲染状态。
+ * 这个函数通常用于UI渲染状态管理和状态识别。
+ * 
+ * @return UIHandle 返回UI渲染状态标识符(0x1c)
+ */
+UIHandle GetUIRenderStateIdentifier(void)
 {
   return 0x1c;
 }
