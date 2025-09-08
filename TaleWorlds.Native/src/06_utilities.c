@@ -89417,7 +89417,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
  * @note 使用偏移量0x40检查异常处理器回调
  * @note 使用偏移量0x38调用异常处理器回调函数
  */
-void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerC150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -89512,7 +89512,7 @@ void ExecuteExceptionHandlerCallbackC160(DataBuffer operationBase, int64_t dataB
  * @note 使用偏移量0x40检查异常处理器回调
  * @note 使用偏移量0x38调用异常处理器回调函数
  */
-void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextC170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -89806,7 +89806,7 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
  * @note 使用偏移量0x40获取IO流对象指针
  * @note 使用偏移量-0x98销毁IO流对象
  */
-void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionDataC220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
                                 DestroyBasicIostream(*(int64_t *)(dataBuffer + 0x40) + -0x98);
@@ -89836,7 +89836,7 @@ void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
  * @note 使用偏移量-0xa0设置内存区域基地址
  * @note 使用偏移量-0x24检查初始化状态
  */
-void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionHandlerC240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
@@ -89863,7 +89863,7 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SetupExceptionHandlerC260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -89872,7 +89872,7 @@ void Unwind_18090c260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c270(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionContextC270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
@@ -89881,7 +89881,7 @@ void Unwind_18090c270(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c280(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -89917,7 +89917,7 @@ void Unwind_18090c280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ConfigureExceptionProcessingC290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -89926,7 +89926,7 @@ void Unwind_18090c290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090c2a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ManageExceptionProcessingC2A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
