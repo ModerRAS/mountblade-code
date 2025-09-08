@@ -29965,17 +29965,17 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   DataWord *dataPointer;
   uint64_t operationResult;
   uint validationStatus;
-  DataWord bufferValue1;
-  DataWord bufferValue2;
-  DataWord bufferValue3;
-  DataWord bufferValue4;
+  DataWord firstResourceDataValue;
+  DataWord secondResourceDataValue;
+  DataWord thirdResourceDataValue;
+  DataWord fourthResourceDataValue;
   ByteFlag securityValidationBuffer [32];
   
   memoryResourcePointer = (DataWord *)ExecuteSystemResourceOperation();
-  ResourceDataValueA = *memoryResourcePointer;
-  ResourceDataValueB = memoryResourcePointer[1];
-  ResourceDataValueC = memoryResourcePointer[2];
-  ResourceDataValueD = memoryResourcePointer[3];
+  firstResourceDataValue = *memoryResourcePointer;
+  secondResourceDataValue = memoryResourcePointer[1];
+  thirdResourceDataValue = memoryResourcePointer[2];
+  fourthResourceDataValue = memoryResourcePointer[3];
   validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,0,0x4c525443);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x20), (int)validationStatus == 0)) {
@@ -29983,10 +29983,10 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
     if (*(uint *)(dataBuffer + 8) < 0x5a) {
       if (*(int *)(dataBuffer[1] + 0x18) == 0) {
         systemDataBuffer = *dataBuffer;
-        validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueA,4);
-        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueB,2), (int)validationStatus == 0)) &&
-           (validationStatus = OperateDataO0(systemDataBuffer,(int64_t)&ResourceDataValueB + 2,2), (int)validationStatus == 0)) {
-          validationStatus = OperateDataO0(systemDataBuffer,&ResourceDataValueC,8);
+        validationStatus = OperateDataO0(systemDataBuffer,&firstResourceDataValue,4);
+        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(systemDataBuffer,&secondResourceDataValue,2), (int)validationStatus == 0)) &&
+           (validationStatus = OperateDataO0(systemDataBuffer,(int64_t)&secondResourceDataValue + 2,2), (int)validationStatus == 0)) {
+          validationStatus = OperateDataO0(systemDataBuffer,&thirdResourceDataValue,8);
         }
       }
       else {
@@ -62934,22 +62934,24 @@ void CleanupExceptionAtOffset128(DataBuffer exceptionContext,int64_t systemState
 
 
 /**
- * @brief 清理偏移量144处的异常状态
+ * @brief 清理系统事件状态标志位
  * 
- * 该函数负责清理系统状态中偏移量为144的异常状态，清除相应的标志位
- * 并释放相关资源。当检测到第2位标志被设置时，执行清理操作。
+ * 该函数负责清理系统状态中的事件状态标志位，当检测到事件状态标志
+ * 被设置时，会清除相应的标志位并释放相关的事件处理资源。这是系统
+ * 事件管理的关键函数，确保事件资源能够被正确清理和回收。
  * 
- * @param exceptionContext 异常上下文指针
- * @param systemState 系统状态指针，包含需要清理的状态信息
+ * @param exceptionContext 异常上下文指针，用于异常处理和状态管理
+ * @param systemState 系统状态指针，包含需要清理的事件状态信息和标志位
  * 
  * @note 原始函数名：Unwind_180906390
+ * @note 处理系统状态偏移量0x54处的第二位标志和偏移量0x98处的事件资源清理
  */
 void CleanupExceptionAtOffset144(DataBuffer exceptionContext,int64_t systemState)
 
 {
-  if ((*(uint *)(systemState + 0x54) & 2) != 0) {
-    *(uint *)(systemState + 0x54) = *(uint *)(systemState + 0x54) & 0xfffffffd;
-    CleanupResourceHandler(systemState + 0x98);
+  if ((*(uint *)(systemState + SystemStateFlagsOffset) & SystemStateSecondBitFlag) != 0) {
+    *(uint *)(systemState + SystemStateFlagsOffset) = *(uint *)(systemState + SystemStateFlagsOffset) & SystemStateSecondBitMask;
+    CleanupResourceHandler(systemState + SystemStateEventCleanupOffset);
   }
   return;
 }
