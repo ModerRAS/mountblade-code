@@ -100081,10 +100081,20 @@ void ExecuteMemoryOperationAtOffset18(DataBuffer operationBase, int64_t dataBuff
 
 
 
-void Unwind_18090dcd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文内存操作处理器DCD0
+ * 
+ * 执行异常上下文的内存操作，处理数据缓冲区的内存管理
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090dcd0
+ */
+void ExecuteExceptionContextMemoryOperation(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8,0x18,2,ProcessMemoryOperationA5);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8, 0x18, 2, ProcessMemoryOperationA5);
   return;
 }
 
@@ -126394,9 +126404,13 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：执行异常处理回调函数，从数据缓冲区的0x110偏移量获取回调函数指针
 #define ExecuteExceptionHandlerCallback460 Unwind_180905460
 
+// 原始函数名：Unwind_18090cad0 - 异常上下文处理函数AD0
+// 功能：处理异常上下文，设置默认异常处理器B
+#define ProcessExceptionContextAD0 ProcessExceptionContextResourceReleaseAD0
+
 // 原始函数名：Unwind_18090cae0 - 异常处理器设置函数AE0
 // 功能：设置异常数据缓冲区的默认异常处理器B
-#define SetupExceptionHandlerAE0 Unwind_18090cae0
+#define SetupExceptionHandlerAE0 SetupExceptionHandlerAE0
 
 // 原始函数名：Unwind_18090caf0 - 系统资源计数器递减函数AF0
 // 功能：递减系统资源计数器并执行系统函数表操作
@@ -126404,7 +126418,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cb00 - 异常上下文处理函数B00
 // 功能：处理异常上下文，设置默认异常处理器B
-#define ProcessExceptionContextB00 Unwind_18090cb00
+#define ProcessExceptionContextB00 ProcessExceptionContextResourceReleaseB00
 
 // 原始函数名：Unwind_18090cb10 - 异常处理器设置函数B10
 // 功能：设置异常数据缓冲区的默认异常处理器B

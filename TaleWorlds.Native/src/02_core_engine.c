@@ -64267,7 +64267,7 @@ MemoryBlockListHeadAssignment:
         }
         CharacterCode3 = (long long *)*CharacterCode2;
       }
-LAB_18008927d:
+MemoryBlockListHeadUpdate:
       MemoryBlockListHead = CharacterCode2;
       if (HighByte) {
         MemoryBlockListHead = SystemContextPtr;
@@ -64275,7 +64275,7 @@ LAB_18008927d:
       SystemContextPtr = MemoryBlockListHead;
       CharacterCode2 = CharacterCode3;
     } while (CharacterCode3 != (long long *)0x0);
-    if (MemoryBlockListHead == CharacterCodeTablePointer) goto LAB_1800892ba;
+    if (MemoryBlockListHead == CharacterCodeTablePointer) goto MemoryBlockListHeadAssignment;
     if ((int)MemoryBlockListHead[6] != 0) {
       if (StringComparisonMode != 0) {
         BufferEndPointer = (byte *)MemoryBlockListHead[5];
@@ -64288,7 +64288,7 @@ LAB_18008927d:
         } while (ProcessingStatusFlag != 0);
         if ((int)(StringComparisonByte - ProcessingStatusFlag) < 1) goto LAB_1800892bd;
       }
-      goto LAB_1800892ba;
+      goto MemoryBlockListHeadAssignment;
     }
   }
 LAB_1800892bd:
