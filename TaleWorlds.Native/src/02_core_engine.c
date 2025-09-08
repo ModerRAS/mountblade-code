@@ -118633,7 +118633,7 @@ void CoreEngineCopyAndInitializeData(long long CharacterCode,uint64_t SystemBuff
 
 
 
-d940(int *CharacterCode,uint32_t *CharacterCodeSizevoid ValidateSystemContextData(int *CharacterCode,uint32_t *CharacterCodeSize
+void ValidateSystemContextData(int *CharacterCode,uint32_t *CharacterCodeSize)
 {
   int LockResult;
   int StringComparisonResult;
