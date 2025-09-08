@@ -39575,8 +39575,8 @@ void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t ta
 void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  if ((*(uint *)(targetObjectPointer + 0x30) & 1) != 0) {
-    *(uint *)(targetObjectPointer + 0x30) = *(uint *)(targetObjectPointer + 0x30) & 0xfffffffe;
+  if ((*(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 1) != 0) {
+    *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) = *(uint *)(targetObjectPointer + DefaultExceptionHandlerOffset30) & 0xfffffffe;
     CleanupResourceHandler(*(DataBuffer *)(targetObjectPointer + 0x1c8));
   }
   return;
@@ -39621,7 +39621,7 @@ void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t ta
 void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(uint8_t **)(targetObjectPointer + 0x138) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(targetObjectPointer + DefaultExceptionHandlerOffset138) = &DefaultExceptionHandlerB;
   return;
 }
 

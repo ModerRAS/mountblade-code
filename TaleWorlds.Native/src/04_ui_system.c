@@ -373126,7 +373126,6 @@ UIHandle FUN_18088fff0(longlong uiContext)
  * @note 此函数不返回，直接调用渲染任务执行器
  */
 void ExecuteUIRenderTaskWrapper(void)
-void ExecuteUIRenderTaskWrapper(void)
 
 {
   ulonglong taskParameter;
@@ -373138,20 +373137,25 @@ void ExecuteUIRenderTaskWrapper(void)
 
 
 
- void FUN_180890246(void)
-void FUN_180890246(void)
+ /**
+ * @brief 条件执行UI渲染任务
+ * @note 根据上下文状态决定是否执行渲染任务，此函数不返回
+ */
+void ExecuteConditionalUIRenderTask(void)
+void ExecuteConditionalUIRenderTask(void)
 
 {
-  longlong ContextHandle;
-  ulonglong stackParam00000240;
+  longlong uiContext;
+  ulonglong taskParameter;
   
-  if ((*(uint *)(ContextHandle + 0x2d8) >> 7 & 1) != 0) {
-                     WARNING: Subroutine does not return
+  // 检查UI上下文状态位
+  if ((*(uint *)(uiContext + 0x2d8) >> 7 & 1) != 0) {
+    // 执行异常处理，此函数不返回
     FUN_180862e00();
   }
   FUN_18085dbf0(&stack0x00000030);
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000240 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务，此函数不返回
+  ExecuteUIRenderTask(taskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
