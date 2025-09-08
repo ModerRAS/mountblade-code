@@ -182263,7 +182263,23 @@ long long InitializeCharacterProcessingContext(long long CharacterCode,long long
 
 
 
-4e9d0(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014e9d0(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 扩展系统缓冲区容量
+ * 
+ * 该函数负责扩展系统缓冲区的容量，主要功能包括：
+ * - 检查当前缓冲区容量是否足够
+ * - 如果容量不足，分配新的内存空间
+ * - 将现有数据复制到新的缓冲区
+ * - 更新缓冲区指针和大小信息
+ * 
+ * 该函数用于动态调整系统缓冲区大小，确保系统能够处理
+ * 不同大小的数据块，是内存管理的重要组成部分。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @note 原始函数名：FUN_18014e9d0
+ */
+void ExpandSystemBufferCapacity(long long *CharacterCode,unsigned long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
