@@ -188517,7 +188517,7 @@ void ProcessSystemCharacterStatusConfiguration(long long CharacterCode)
 
 
 
-56c00(long long CharacterCodevoid FUN_180156c00(long long CharacterCode
+void ProcessSystemCharacterStatusValidation(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -188571,7 +188571,7 @@ void ProcessSystemCharacterStatusConfiguration(long long CharacterCode)
 
 
 
-56c20(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointervoid FUN_180156c20(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer
+void ProcessSystemCharacterStatusFinalization(uint64_t CharacterCode,long long SystemBufferSize,uint8_t Utf8SourcePointer)
 {
   byte *CurrentBytePointer;
   uint MemoryAllocationIndex;
