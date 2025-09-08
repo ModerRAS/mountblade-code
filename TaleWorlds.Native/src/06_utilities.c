@@ -20421,7 +20421,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
     // 重置组件状态
     *componentContext = 0;
     dataCounter = 0;
-    *(DataWord *)((int64_t)componentContext + 0xc) = 0;
+    *(DataWord *)((int64_t)componentContext + ComponentDataCounterOffset) = 0;
   }
   
   // 检查数据项数量
