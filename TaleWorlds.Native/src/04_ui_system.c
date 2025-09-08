@@ -98579,15 +98579,15 @@ void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSiz
   }
   allocatedMemory1 = (longlong)targetBuffer;
   if (0 < bufferSize) {
-    puiCompareResult = (int *)(&UNK_1809536c4 + allocatedMemory1 * 0xc);
+    puiCompareResult = (int *)(&UIComponentOffsetTable1809536c4 + allocatedMemory1 * 0xc);
     allocatedMemory2 = (longlong)(short)bufferSize;
-    ptrLocalInt4 = (int *)(&UNK_1809536c8 + allocatedMemory1 * 0xc);
+    ptrLocalInt4 = (int *)(&UIComponentDataBuffer1809536c8 + allocatedMemory1 * 0xc);
     allocatedMemory = allocatedMemory1 + 1;
-    ptrLocalInt5 = (int *)(&UNK_1809536c8 + allocatedMemory * 0xc);
-    ptrLocalInt6 = (int *)(&UNK_180953700 + allocatedMemory1 * 8);
-    ptrLocalInt7 = (int *)(&UNK_1809536c4 + allocatedMemory * 0xc);
+    ptrLocalInt5 = (int *)(&UIComponentDataBuffer1809536c8 + allocatedMemory * 0xc);
+    ptrLocalInt6 = (int *)(&UIComponentHandleTable180953700 + allocatedMemory1 * 8);
+    ptrLocalInt7 = (int *)(&UIComponentOffsetTable1809536c4 + allocatedMemory * 0xc);
     contextOffset = allocatedMemory1 * 2 + 2;
-    ptrLocalInt9 = (int *)(&UNK_180953700 + contextOffset * 4);
+    ptrLocalInt9 = (int *)(&UIComponentHandleTable180953700 + contextOffset * 4);
     puiValidationResult = (int *)(&UIValidationDataTableC + allocatedMemory1 * 8);
     processedCount = (int)((ulonglong)
                    ((*(int *)(&UIValidationDataTableB + allocatedMemory * 0xc) -
@@ -98612,8 +98612,8 @@ void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSiz
     return;
   }
   *(UIHandle *)uiContext = *(UIHandle *)(&UIValidationDataTableB + allocatedMemory1 * 0xc);
-  uiContext[2] = *(int *)(&UNK_1809536c8 + allocatedMemory1 * 0xc);
-  *(UIHandle *)dataSource = *(UIHandle *)(&UNK_180953700 + allocatedMemory1 * 8);
+  uiContext[2] = *(int *)(&UIComponentDataBuffer1809536c8 + allocatedMemory1 * 0xc);
+  *(UIHandle *)dataSource = *(UIHandle *)(&UIComponentHandleTable180953700 + allocatedMemory1 * 8);
   return;
 }
 
