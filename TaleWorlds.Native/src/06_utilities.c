@@ -39705,35 +39705,60 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 
 
 
-void ExceptionUnwindHandlerA2(DataBuffer exceptionContext,int64_t unwindParam)
+/**
+ * @brief 异常展开处理器A2
+ * 
+ * 该函数负责处理异常展开过程中的资源管理和引用计数更新。
+ * 它遍历异常处理器的内存区域，检查异常链表的有效性，并管理异常处理器的生命周期。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的环境信息
+ * @param unwindParam 展开参数，包含异常处理器的指针和状态信息
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的异常展开逻辑
+ * @warning 简化实现仅执行基本的引用计数管理，不进行复杂的异常处理
+ * @see HandleExceptionE0, ManageMemory
+ */
+void ExceptionUnwindHandlerA2(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
-  int *exceptionReferenceCount;
-  DataBuffer *exceptionHandlerPointer;
-  int64_t exceptionHandlerData;
-  uint64_t exceptionMemoryRegion;
+  int *exceptionHandlerReferenceCount;           // 异常处理器引用计数指针
+  DataBuffer *exceptionHandlerPointer;           // 异常处理器指针
+  int64_t exceptionHandlerMemoryBlock;           // 异常处理器内存块地址
+  uint64_t exceptionMemoryRegion;                // 异常内存区域标识
   
+  // 获取异常处理器指针
   exceptionHandlerPointer = *(DataBuffer **)(unwindParam + ExceptionHandlerPointerOffset);
   if (exceptionHandlerPointer == (DataBuffer *)0x0) {
-    return;
+    return;  // 异常处理器指针为空，直接返回
   }
+  
+  // 计算异常内存区域
   exceptionMemoryRegion = (uint64_t)exceptionHandlerPointer & MemoryRegionMask;
   if (exceptionMemoryRegion != 0) {
-    exceptionHandlerData = exceptionMemoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
-    exceptionHandlerData = exceptionHandlerData - (uint64_t)*(uint *)(exceptionHandlerData + ExceptionHandlerPointerOffset4);
-    if ((*(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(exceptionHandlerData + ExceptionHandlerPointerOffsetE) == '\0')) {
-      *exceptionHandlerPointer = *(DataBuffer *)(exceptionHandlerData + ExceptionHandlerPointerOffset20);
-      *(DataBuffer **)(exceptionHandlerData + ExceptionHandlerPointerOffset20) = exceptionHandlerPointer;
-      exceptionReferenceCount = (int *)(exceptionHandlerData + ExceptionHandlerPointerOffset18);
-      *exceptionReferenceCount = *exceptionReferenceCount + -1;
-      if (*exceptionReferenceCount == 0) {
+    // 计算异常处理器内存块地址
+    exceptionHandlerMemoryBlock = exceptionMemoryRegion + ExceptionMemoryRegionOffset + 
+                                ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
+    exceptionHandlerMemoryBlock = exceptionHandlerMemoryBlock - (uint64_t)*(uint *)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffset4);
+    
+    // 检查异常链表和处理器的有效性
+    if ((*(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && 
+        (*(char *)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffsetE) == '\0')) {
+      // 更新异常处理器指针和引用计数
+      *exceptionHandlerPointer = *(DataBuffer *)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffset20);
+      *(DataBuffer **)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffset20) = exceptionHandlerPointer;
+      exceptionHandlerReferenceCount = (int *)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffset18);
+      *exceptionHandlerReferenceCount = *exceptionHandlerReferenceCount + -1;
+      
+      // 如果引用计数为0，则调用异常处理函数
+      if (*exceptionHandlerReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
-      ManageMemory(exceptionMemoryRegion,SetBitFlag(0xff000000,*(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList),
-                          exceptionHandlerPointer,exceptionMemoryRegion,SystemCleanupFlagAlternative);
+      // 管理异常内存区域
+      ManageMemory(exceptionMemoryRegion, SetBitFlag(0xff000000, *(void ***)(exceptionMemoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList),
+                   exceptionHandlerPointer, exceptionMemoryRegion, SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -39795,44 +39820,60 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
  * @note 如果数据指针无效，函数会直接返回
  * @note 验证通过后会更新指针链表并管理引用计数
  */
+/**
+ * @brief 验证异常数据指针并处理相关操作
+ * 
+ * 该函数用于验证异常数据指针的有效性，如果指针有效则执行相应的异常处理操作。
+ * 主要用于异常处理过程中的数据验证和资源管理。函数会检查数据指针是否属于异常链表，
+ * 并根据验证结果进行相应的资源清理和引用计数管理。
+ * 
+ * @param exceptionContext 异常处理上下文（当前未使用）
+ * @param contextData 包含异常数据指针的上下文结构
+ * 
+ * @note 如果数据指针无效，函数会直接返回
+ * @note 验证通过后会更新指针链表并管理引用计数
+ * @see HandleExceptionE0, ManageMemory
+ */
 void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextData)
 
 {
-  int *referenceCount;
-  DataBuffer *dataPointer;
-  int64_t memoryBlockOffset;
-  uint64_t baseAddress;
+  int *dataReferenceCount;                    // 数据引用计数指针
+  DataBuffer *exceptionDataPointer;           // 异常数据指针
+  int64_t memoryBlockAddress;                 // 内存块地址
+  uint64_t memoryRegionBase;                  // 内存区域基地址
   
   // 获取异常数据指针
-  dataPointer = *(DataBuffer **)(*(int64_t *)(contextData + 0x20) + ExceptionDataPointerOffset);
-  if (dataPointer == (DataBuffer *)0x0) {
-    return;
+  exceptionDataPointer = *(DataBuffer **)(*(int64_t *)(contextData + 0x20) + ExceptionDataPointerOffset);
+  if (exceptionDataPointer == (DataBuffer *)0x0) {
+    return;  // 数据指针为空，直接返回
   }
   
-  // 计算基地址和偏移量
-  baseAddress = (uint64_t)dataPointer & MemoryRegionMask;
-  if (baseAddress != 0) {
-    memoryBlockOffset = baseAddress + ExceptionMemoryRegionOffset + ((int64_t)dataPointer - baseAddress >> 0x10) * ExceptionMemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+  // 计算内存区域基地址和内存块地址
+  memoryRegionBase = (uint64_t)exceptionDataPointer & MemoryRegionMask;
+  if (memoryRegionBase != 0) {
+    memoryBlockAddress = memoryRegionBase + ExceptionMemoryRegionOffset + 
+                        ((int64_t)exceptionDataPointer - memoryRegionBase >> 0x10) * ExceptionMemoryBlockMultiplier;
+    memoryBlockAddress = memoryBlockAddress - (uint64_t)*(uint *)(memoryBlockAddress + MemoryOffsetAdjustment);
     
     // 检查是否为异常列表且状态标志为0
-    if ((*(void ***)(baseAddress + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(memoryBlockOffset + ExceptionHandlerPointerOffsetE) == '\0')) {
-      // 更新指针链表
-      *dataPointer = *(DataBuffer *)(memoryBlockOffset + ExceptionHandlerPointerOffset20);
-      *(DataBuffer **)(memoryBlockOffset + ExceptionHandlerPointerOffset20) = dataPointer;
+    if ((*(void ***)(memoryRegionBase + ExceptionMemoryRegionOffset70) == &ExceptionList) && 
+        (*(char *)(memoryBlockAddress + ExceptionHandlerPointerOffsetE) == '\0')) {
+      // 更新指针链表，将当前指针指向下一个节点
+      *exceptionDataPointer = *(DataBuffer *)(memoryBlockAddress + ExceptionHandlerPointerOffset20);
+      *(DataBuffer **)(memoryBlockAddress + ExceptionHandlerPointerOffset20) = exceptionDataPointer;
       
-      // 减少引用计数
-      referenceCount = (int *)(memoryBlockOffset + ExceptionHandlerPointerOffset18);
-      *referenceCount = *referenceCount + -1;
-      if (*referenceCount == 0) {
-        HandleExceptionE0();
+      // 减少引用计数，管理内存资源生命周期
+      dataReferenceCount = (int *)(memoryBlockAddress + ExceptionHandlerPointerOffset18);
+      *dataReferenceCount = *dataReferenceCount + -1;
+      if (*dataReferenceCount == 0) {
+        HandleExceptionE0();  // 引用计数为0，调用异常处理函数
         return;
       }
     }
     else {
-      // 调用异常处理函数
-      ManageMemory(baseAddress,SetBitFlag(0xff000000,*(void ***)(baseAddress + ExceptionMemoryRegionOffset70) == &ExceptionList),
-                          dataPointer,baseAddress,SystemCleanupFlagAlternative);
+      // 调用异常处理函数进行内存管理
+      ManageMemory(memoryRegionBase, SetBitFlag(0xff000000, *(void ***)(memoryRegionBase + ExceptionMemoryRegionOffset70) == &ExceptionList),
+                   exceptionDataPointer, memoryRegionBase, SystemCleanupFlagAlternative);
     }
   }
   return;
