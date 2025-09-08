@@ -22380,7 +22380,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     dataOffset = *(int64_t *)(systemContext + SystemContextOffsetA0);
     systemDataBuffer = *(int64_t *)(systemContext + SystemManagementOffset98);
     if (systemDataBuffer == 0) {
-      normalizedValue = (float)*(uint *)(systemContext + 0x68) * normalizedValue;
+      normalizedValue = (float)*(uint *)(systemContext + SystemContextOffset68) * normalizedValue;
       systemDataBuffer = 0;
       if ((9.223372e+18 <= normalizedValue) && (normalizedValue = normalizedValue - 9.223372e+18, normalizedValue < 9.223372e+18)) {
         systemDataBuffer = InvalidMemoryOffset;
