@@ -104597,73 +104597,80 @@ void TraverseMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_1809100e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 遍历数据上下文内存块并执行回调函数
+ * 
+ * 该函数在异常展开过程中遍历数据上下文中的内存块链表，对每个内存块执行相应的回调函数。
+ * 从数据缓冲区的0x48偏移量获取数据上下文，然后遍历内存块链表，对每个内存块的回调函数指针执行回调。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含数据上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809100e0
+ * @note 通过0x48偏移量获取数据上下文
+ * @note 异常处理器上下文为dataContext[1]
+ * @note 遍历步长为0x18的内存块链表
+ * @note 如果数据上下文为空则调用TerminateSystemE0()
+ */
+void TraverseDataContextMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
   int64_t memoryBlockOffset;
+  FunctionPointer** callbackPointer;
   
   dataContext = *(int64_t **)(dataBuffer + 0x48);
   exceptionHandlerContext = dataContext[1];
+  
+  // 遍历内存块链表并执行回调函数
   for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + 0x38))();
+    callbackPointer = *(FunctionPointer***)(memoryBlockOffset + 8);
+    if (callbackPointer != (FunctionPointer**)0x0) {
+      (**(callbackPointer + 0x38))();
     }
   }
+  
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  TerminateSystemE0();
 }
 
 
 
-void Unwind_1809100f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文回调函数序列
+ * 
+ * 该函数在异常展开过程中执行异常上下文中的多个回调函数。
+ * 从数据缓冲区的0x40偏移量获取异常处理器上下文，然后检查多个偏移量的回调函数指针，
+ * 如果指针非空则执行对应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809100f0
+ * @note 通过0x40偏移量获取异常处理器上下文
+ * @note 检查多个偏移量的回调函数指针：0x68, 0x60, 0x58, 0x50, 0x48, 0x40, 0x38, 0x30, 0x28, 0x20, 0x18, 0x10, 0x8
+ * @note 每个回调函数都在0x38偏移量处
+ */
+void ExecuteExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
+  FunctionPointer** callbackPointer;
+  int callbackOffset;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(int64_t **)(exceptionHandlerContext + 0x68) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x68) + 0x38))();
+  
+  // 遍历多个偏移量的回调函数指针并执行
+  for (callbackOffset = 0x68; callbackOffset >= 8; callbackOffset -= 8) {
+    callbackPointer = *(FunctionPointer***)(exceptionHandlerContext + callbackOffset);
+    if (callbackPointer != (FunctionPointer**)0x0) {
+      (**(callbackPointer + 0x38))();
+    }
   }
-  if (*(int64_t **)(exceptionHandlerContext + 0x60) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x60) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x58) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x58) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x50) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x50) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x48) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x48) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x40) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x40) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x38) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x38) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x30) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x30) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x28) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x28) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x18) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x18) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 8) + 0x38))();
-  }
+  
   return;
 }
 
