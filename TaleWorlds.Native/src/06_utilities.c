@@ -187,6 +187,7 @@
 
 // 数据缓冲区通用偏移量常量
 #define DataBufferContextOffset 0x14                    // 数据缓冲区上下文偏移量
+#define DataValidationOffset1D 0x1d                     // 数据验证偏移量1D
 #define DataBufferProcessingOffset 0x1c                  // 数据缓冲区处理偏移量
 #define DataBufferValidationOffset 0x30                  // 数据缓冲区验证偏移量
 #define DataBufferStatusOffset 0x48                      // 数据缓冲区状态偏移量
