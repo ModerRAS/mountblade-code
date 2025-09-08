@@ -11138,8 +11138,8 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   maxY = *(float *)((longlong)uiContext + 0x6c);
   scaleX = *(float *)((longlong)uiContext + 0x5c);
   scaleY = *(float *)(uiContext + 0xb);
-  fStack_118 = minX * scaleX + transformResult * sourceX + centerY * rotateY;
-  fStack_114 = minX * scaleY + transformResult * sourceY + centerY * rotationX;
+  transformX = minX * scaleX + transformResult * sourceX + centerY * rotateY;
+  transformY = minX * scaleY + transformResult * sourceY + centerY * rotationX;
   matrixRow3_Z = minX * translateZ + transformResult * sourceZ + centerY * rotationY;
   matrixRow3_W = minX * rotateX + transformResult * translateX + centerY * rotationZ;
   transformResult = *(float *)(uiContext + 0xc);
@@ -83750,8 +83750,26 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
 
 
 
- void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,byte bufferSize)
-void FUN_1807152e3(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,byte bufferSize)
+ /**
+ * @brief 处理UI事件数据压缩
+ * 
+ * 该函数负责处理UI系统中的事件数据压缩，包括：
+ * - 事件数据的压缩和优化
+ * - 数据源和目标缓冲区的管理
+ * - 缓冲区大小的动态调整
+ * - 事件处理状态的管理
+ * 
+ * 该函数用于优化UI事件数据的存储和传输。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1807152e3
+ */
+void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,byte bufferSize)
+void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,byte bufferSize)
 
 {
   float baseValue;
@@ -84504,15 +84522,15 @@ void FUN_1807164b6(undefined *uiContext)
 
 
  void FUN_180716572(void)
-void FUN_180716572(void)
+void ClearUIBufferMemory(void)
 
 {
-  longlong register9;
-  int register10D;
-  int RegisterValue;
+  longlong bufferAddress;
+  int startIndex;
+  int endIndex;
   
                      WARNING: Subroutine does not return
-  memset(register9 + (longlong)register10D * 4,0,(longlong)(RegisterValue - register10D) << 2);
+  memset(bufferAddress + (longlong)startIndex * 4,0,(longlong)(endIndex - startIndex) << 2);
 }
 
 
