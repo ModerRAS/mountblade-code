@@ -99988,7 +99988,7 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
  * 
  * @see TerminateSystemE0
  */
-void Unwind_18090de50(DataBuffer operationBase,int64_t dataBuffer)
+void TerminateSystemE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
