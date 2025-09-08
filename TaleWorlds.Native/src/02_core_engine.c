@@ -232339,7 +232339,18 @@ uint64_t * InitializeSystemContext(uint64_t *CharacterCode,long long SystemBuffe
 
 
 
-uint64_t FUN_180196ab0(uint64_t CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理系统缓冲区释放
+ * 
+ * 该函数负责处理系统缓冲区的释放操作，清理内存资源
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 释放操作结果
+ * 
+ * @note 原始函数名：FUN_180196ab0
+ */
+uint64_t ProcessSystemBufferRelease(uint64_t CharacterCode,unsigned long long SystemBufferSize)
 {
   FUN_180197a20();
   if ((SystemBufferSize & 1) != 0) {
