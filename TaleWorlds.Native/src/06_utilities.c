@@ -108790,7 +108790,22 @@ void ExecuteExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180910100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器链遍历和回调
+ * 
+ * 该函数负责遍历异常处理器链，执行每个节点的回调函数。
+ * 从数据缓冲区获取异常上下文，然后遍历处理器链中的每个节点，
+ * 如果节点存在回调函数指针，则执行相应的回调。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910100
+ * @note 通过0x40偏移量获取异常处理器上下文
+ * @note 遍历处理器链，步长为0x18
+ * @note 每个节点的回调函数在0x38偏移量处
+ */
+void ExecuteExceptionHandlerChainTraversal(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
