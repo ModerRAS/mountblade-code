@@ -190791,7 +190791,17 @@ ConfigureSystemParameters(uint64_t CharacterCode,uint64_t SystemBufferSize,uint6
 
 
 
-598f0(voidvoid FUN_1801598f0(void
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数负责终止系统进程，调用核心引擎终止函数。
+ * 这是一个系统级别的终止操作，通常在发生严重错误或系统需要关闭时调用。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801598f0
+ */
+void TerminateSystemProcess(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -190801,7 +190811,24 @@ ConfigureSystemParameters(uint64_t CharacterCode,uint64_t SystemBufferSize,uint6
 
 
 
-5a900(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointervoid FUN_18015a900(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理字符编码转换和系统缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换、系统缓冲区管理和内存分配操作。
+ * 主要功能包括：
+ * - 初始化字符编码处理参数
+ * - 分配和管理编码缓冲区
+ * - 处理字符数据的转换和验证
+ * - 管理系统内存池和资源
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015a900
+ */
+void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -191856,7 +191883,7 @@ void ExecuteSystemMemoryBoundaryManagement(uint64_t *CharacterCode,long long Sys
                          0xfffffffffffffffe);
   StringProcessingStatus = (void *)CharacterCode[1];
   SystemEventTemplatePointer = (void *)*CharacterCode;
-LAB_18015bf2e:
+MemoryBoundaryCalculationComplete:
   CharacterCodeTablePointer = PrimaryProcessingStatusFlag;
   if (SystemEventTemplatePointer != StringProcessingStatus) {
     SystemDataRegistry = (long long)PrimaryProcessingStatusFlag - (long long)SystemEventTemplatePointer;
