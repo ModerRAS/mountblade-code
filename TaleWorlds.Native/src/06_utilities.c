@@ -36310,7 +36310,7 @@ uint64_t CheckSystemDataIntegrity(void)
   uint64_t operationResult;
   DataBuffer *registerContext;
   int64_t systemContext;
-  uint registerValueEDI;
+  uint RegisterContextBackup;
   
   systemDataBuffer = *registerContext;
   operationResult = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stackDataBuffer);
@@ -36329,10 +36329,10 @@ uint64_t CheckSystemDataIntegrity(void)
     }
     if ((int)operationResult == 0) {
       if (*(uint *)(registerContext + 8) < 0x5e) {
-        registerValueEDI = 0;
+        RegisterContextBackup = 0;
       }
       else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-        registerValueEDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
+        RegisterContextBackup = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
       }
       if (RegisterContextBackup == 0) {
         if ((0x84 < *(uint *)(registerContext + 8)) && (operationResult = ValidateDataSequence(), (int)operationResult != 0)) {
