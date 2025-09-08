@@ -100048,16 +100048,21 @@ void ProcessRenderParameterCalculation(int CharacterCode
 
 
 /**
- * @brief 系统内存分配处理函数
- * 
- * 处理系统内存分配和状态管理
- */
-/**
- * @brief 系统内存分配处理函数
+ * @brief 处理系统内存分配和状态管理
  * 
  * 该函数负责处理系统内存分配操作，包括内存块的验证、配置和优化。
  * 函数会计算内存分配大小，验证内存操作的有效性，并根据系统状态
  * 进行相应的内存管理操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 验证内存分配参数和系统状态
+ * 2. 计算内存分配大小和对齐方式
+ * 3. 执行内存分配和初始化
+ * 4. 验证内存操作的有效性
+ * 5. 更新系统内存管理状态
+ * 
+ * @note 该函数是系统内存管理的核心函数
+ * @warning 内存分配失败可能导致系统不稳定
  */
 void ProcessSystemMemoryAllocation(void)
 {
@@ -100099,10 +100104,10 @@ void ProcessSystemMemoryAllocation(void)
   
   if (AuxiliaryCalculationFloat10 < StackProcessedFloat3c - BaseFloatValue) {
     StackProcessedData40 = *(uint32_t *)(SystemDataNode + 0x17a8);
-    StackProcessingVariable44 = *(uint32_t *)(SystemDataNode + 0x17ac);
+    StackDataBuffer1 = *(uint32_t *)(SystemDataNode + 0x17ac);
     StackProcessedData48 = *(uint32_t *)(SystemDataNode + 0x17b0);
-    StackProcessedFloat4c = *(float *)(SystemDataNode + 0x17b4);
-    *(float *)(StackFrameAddressPointer + -0x7d) = StackProcessedFloat4c * *(float *)(SystemDataNode + 0x1628);
+    FloatParameter2 = *(float *)(SystemDataNode + 0x17b4);
+    *(float *)(StackFrameAddressPointer + -0x7d) = FloatParameter2 * *(float *)(SystemDataNode + 0x1628);
     SystemChecksum = ValidateSystemData(&DataStackBuffer);
     ProcessSystemDataAndConfigure(*(void *)(SystemContext + 0x2e8),&SystemStackBuffer,&SystemChecksumStackBuffer,SystemChecksum,
                   *(uint32_t *)(SystemContext + 0x78));
@@ -100250,10 +100255,10 @@ void ProcessSystemMemoryAllocation(void)
     }
     CharacterStatusBuffer = (uint32_t *)(AllocatedMemorySize + 0x1628 + (SystemDataTablePointer + 10) * 0x10);
     StackProcessedData40 = *CharacterStatusBuffer;
-    StackProcessingVariable44 = CharacterStatusBuffer[1];
+    StackDataBuffer1 = CharacterStatusBuffer[1];
     StackProcessedData48 = CharacterStatusBuffer[2];
-    StackProcessedFloat4c = (float)CharacterStatusBuffer[3];
-    *(float *)(StackFrameAddressPointer + -0x7d) = StackProcessedFloat4c * *(float *)(AllocatedMemorySize + 0x1628);
+    FloatParameter2 = (float)CharacterStatusBuffer[3];
+    *(float *)(StackFrameAddressPointer + -0x7d) = FloatParameter2 * *(float *)(AllocatedMemorySize + 0x1628);
     SystemChecksum = ValidateSystemData(&DataStackBuffer);
     if (NullPointerD == 0) {
       SystemCurrentCharacter30 = (StackProcessingVariable38 - PrimaryFloatValue) * NormalizedParameterValue + PrimaryFloatValue;
