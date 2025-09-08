@@ -92520,14 +92520,14 @@ void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
 
 
 
- void FUN_18071fb3f(void)
-void FUN_18071fb3f(void)
+ void ExecuteUIRenderTaskWrapper(void)
+void ExecuteUIRenderTaskWrapper(void)
 
 {
-  ulonglong stackParam00000068;
+  ulonglong renderTaskParam;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000068 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -94092,13 +94092,13 @@ void ProcessUIDataConversionFunction(void)
   ulonglong stackParam00000190;
   
   do {
-    transformCoeff14 = *register9;
-    allocatedMemory7 = 0;
-    TotalResult = *(uint *)(EventHandle + 4);
-    allocatedMemory9 = (longlong)(int)TotalResult;
-    register9 = register9 + 1;
-    if ((0 < (int)TotalResult) && (7 < TotalResult)) {
-      AccumulatedFloat = 0.0;
+    transformCoeff14 = *register9Pointer;
+    memoryAllocation7 = 0;
+    conversionTotalResult = *(uint *)(eventHandle + 4);
+    memoryAllocation9 = (longlong)(int)conversionTotalResult;
+    register9Pointer = register9Pointer + 1;
+    if ((0 < (int)conversionTotalResult) && (7 < conversionTotalResult)) {
+      accumulatedValue = 0.0;
       transformCoeff11 = 0.0;
       transformCoeff12 = 0.0;
       transformCoeff13 = 0.0;
@@ -94106,7 +94106,7 @@ void ProcessUIDataConversionFunction(void)
       transformCoeff16 = 0.0;
       transformCoeff17 = 0.0;
       transformCoeff18 = 0.0;
-      result8 = TotalResult & 0x80000007;
+      result8 = conversionTotalResult & 0x80000007;
       if ((int)result8 < 0) {
         result8 = (result8 - 1 | 0xfffffff8) + 1;
       }
