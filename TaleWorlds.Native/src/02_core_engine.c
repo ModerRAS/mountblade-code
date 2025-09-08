@@ -195295,7 +195295,20 @@ void ValidateCharacterCode(long long CharacterCode)
 
 
 
-60a80(voidvoid FUN_180160a80(void
+/**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责重置系统状态，包括：
+ * - 清理系统上下文
+ * - 重置引用计数
+ * - 清理搜索索引
+ * - 重置栈帧地址
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160a80
+ */
+void ResetSystemStatus(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -195346,7 +195359,19 @@ void ValidateCharacterCode(long long CharacterCode)
 
 
 
-60ab6(voidvoid FUN_180160ab6(void
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数负责验证系统配置的有效性，包括：
+ * - 检查配置参数的完整性
+ * - 验证内存分配状态
+ * - 处理配置异常情况
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160ab6
+ */
+void ValidateSystemConfiguration(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -195385,7 +195410,19 @@ void ValidateCharacterCode(long long CharacterCode)
 
 
 
-60ad4(voidvoid FUN_180160ad4(void
+/**
+ * @brief 管理系统内存
+ * 
+ * 该函数负责管理系统内存资源，包括：
+ * - 分配和释放内存
+ * - 管理内存引用计数
+ * - 处理内存异常情况
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160ad4
+ */
+void ManageSystemMemory(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
