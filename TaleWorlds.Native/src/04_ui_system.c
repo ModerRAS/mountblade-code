@@ -20077,21 +20077,21 @@ float CalculateUIAnimationInterpolation(longlong *uiContext,float dataSource)
 float CalculateUIGradientInterpolation(void)
 
 {
-  float baseValue;
-  longlong registerAX;
-  longlong componentIndex;
-  float transformCoeff2;
-  float transformCoeff3;
-  float unmodifiedXMM6_Da;
-  float transformCoeff4;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
+  float gradientStartValue;
+  longlong componentHandle;
+  longlong transformData;
+  float gradientRangeStart;
+  float gradientRangeEnd;
+  float currentInputValue;
+  float interpolationFactor;
+  float targetOutputValue;
+  float minimumThreshold;
   
-  baseValue = *(float *)(registerAX + 0x188);
-  componentIndex = GetUITransformData();
-  transformCoeff4 = *(float *)(componentIndex + 0xc);
-  transformCoeff2 = *(float *)(componentIndex + 0x10);
-  transformCoeff3 = transformCoeff4;
+  targetOutputValue = *(float *)(componentHandle + 0x188);
+  transformData = GetUITransformData();
+  interpolationFactor = *(float *)(transformData + 0xc);
+  gradientRangeStart = *(float *)(transformData + 0x10);
+  gradientRangeEnd = interpolationFactor;
   if (transformCoeff4 < unmodifiedXMM8_Da) {
     transformCoeff3 = -transformCoeff2;
     transformCoeff2 = -transformCoeff4;
@@ -86905,18 +86905,18 @@ uint ProcessUIEventDataCompressionAndValidation(UIHandle uiContext, longlong dat
   float compressionFactor;
   uint eventStatusFlags;
   
-  lStack00000000000000f0 = dataSource + registerAX * 4;
-  if (unmodifiedR13D == 1) {
-    stackParam00000130 = stackParam00000130 & 1 | stackParam00000130 * 2;
+  calculatedDataPointer = dataSource + dataOffset * 4;
+  if (eventCount == 1) {
+    eventStatusFlags = eventStatusFlags & 1 | eventStatusFlags * 2;
   }
-  puStack0000000000000050 = &stack0x00000130;
-  localInt5 = (int)TargetHandle;
-  iStack0000000000000030 = unmodifiedR13D + 1 >> 1;
-  pStackData1 = &stack0x00000108;
-  iStack0000000000000048 = localInt5;
-  iStack0000000000000110 = iStack0000000000000030;
+  statusBuffer = &eventStatusFlags;
+  eventIterationCount = (int)eventTargetHandle;
+  processingBlockSize = eventCount + 1 >> 1;
+  eventDataBuffer = &sourceDataSize;
+  tempEventCount = eventIterationCount;
+  iterationLimit = processingBlockSize;
   ProcessUIEventDataCompression();
-  baseValue = stackParam00000128;
+  baseValue = compressionFactor;
   if ((1 < unmodifiedR13D) && ((_iStack0000000000000078 & 0x3fff) != 0)) {
     if (iStack0000000000000078 < 0x2001) {
       iStack0000000000000074 = (unmodifiedR15D * 8 >> (5U - unmodifiedR12B & 0x1f)) + iStack0000000000000074
