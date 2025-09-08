@@ -1137,6 +1137,11 @@
 #define ProcessCharacterStatusWithValidation FUN_180174150          // 处理带验证的字符状态
 #define ProcessCharacterLoopWithMultipleParameters FUN_1801727d0   // 处理带多参数的字符循环
 #define ProcessCharacterConversionWithUtf16 FUN_1801720a0         // 处理带UTF16的字符转换
+
+// UTF-16字符编码处理函数
+#define ProcessUtf16CharacterEncodingConversion FUN_18018801e     // 处理UTF-16字符编码转换
+#define ProcessSystemMemoryAllocation FUN_18018a130              // 处理系统内存分配
+#define ProcessSystemMemoryValidation FUN_18018a1c0              // 处理系统内存验证
 #define CleanupSystemMemoryManager FUN_180093af0                   // 清理系统内存管理器
 #define ProcessCharacterDataWithCodePointer FUN_180173470          // 处理带代码指针的字符数据
 #define ExecuteSystemInitialization FUN_180171610                  // 执行系统初始化
@@ -223017,9 +223022,17 @@ LAB_18018802f:
 
 
 
-uint64_t * FUN_18018801e(void
+/**
+ * @brief 处理UTF-16字符编码转换和内存匹配
+ * 
+ * 该函数负责处理UTF-16字符的编码转换，进行内存匹配操作，
+ * 并管理系统数据节点的遍历和处理。
+ * 
+ * @return 转换后的字符指针或处理结果
+ */
+uint64_t * ProcessUtf16CharacterEncodingConversion(void
 {
-  unsigned long long Utf16Char;
+  unsigned long long Utf16CharacterValue;
   unsigned long long MemoryAllocationIndex;
   int MemoryMatchResult;
   long long *EngineContext;
@@ -223028,40 +223041,40 @@ uint64_t * FUN_18018801e(void
   uint64_t *SystemDataNode;
   uint64_t *RegisterR13Value;
   unsigned long long CharacterLimit;
-  uint8_t in_SF;
+  uint8_t StatusFlag;
   long long StackProcessingParameter3;
   
 code_r0x00018018801e:
-  if (!(bool)in_SF) goto LAB_180187f7e;
+  if (!(bool)StatusFlag) goto LAB_180187f7e;
 LAB_180188024:
   SystemDataNode = (void *)SystemDataNode[2];
   do {
     if (*(char *)((long long)SystemDataNode + SystemNodeStatusOffset) != '\0') {
       if (SystemContext != RegisterR13Value) {
-        Utf16Char = SystemContext[6];
+        Utf16CharacterValue = SystemContext[6];
         MemoryAllocationIndex = *(unsigned long long *)(PatternIndex + 0x10);
         MemoryMatchResult = memcmp();
         if (InputDataLength == 0) {
-          if (Utf16Char <= MemoryAllocationIndex) {
+          if (Utf16CharacterValue <= MemoryAllocationIndex) {
 LAB_18018802f:
             return SystemContext + 8;
           }
         }
         else if (-1 < InputDataLength) goto LAB_18018802f;
       }
-      FUN_18018a130();
-      FUN_18018a1c0();
+      ProcessSystemMemoryAllocation();
+      ProcessSystemMemoryValidation();
       return (void *)(StackProcessingParameter3 + 0x40);
     }
     SystemContextPtr = SystemDataNode + 4;
-    Utf16Char = SystemDataNode[6];
+    Utf16CharacterValue = SystemDataNode[6];
     if (0xf < (unsigned long long)SystemDataNode[7]) {
       SystemContextPtr = (long long *)*SystemContextPtr;
     }
     MemoryMatchResult = memcmp(SystemContextPtr);
-    in_SF = InputDataLength < 0;
+    StatusFlag = InputDataLength < 0;
     if (InputDataLength != 0) goto code_r0x00018018801e;
-    if (Utf16Char < CharacterLimit) goto LAB_180188024;
+    if (Utf16CharacterValue < CharacterLimit) goto LAB_180188024;
 LAB_180187f7e:
     SystemContext = SystemDataNode;
     SystemDataNode = (void *)*SystemContext;
