@@ -231384,12 +231384,25 @@ InitializeSystemDataContext(uint64_t CharacterCode,uint64_t *CharacterCodeSize,u
 
 
 
+/**
+ * @brief 处理字符代码分配和初始化
+ * 
+ * 该函数负责分配内存并初始化字符代码数据结构。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 系统缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180194e00
+ */
 uint64_t *
-FUN_180194e00(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessCharacterCodeAllocationAndInitialization(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long *CharacterCode;
+  long long *CharacterCodeBuffer;
   
-  CharacterCode = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0,0xfffffffffffffffe);
+  CharacterCodeBuffer = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0,0xfffffffffffffffe);
   *CharacterCode = (long long)&DataNodeTemplateA;
   *CharacterCode = (long long)&DataNodeTemplateB;
   *(uint32_t *)(CharacterCode + 1) = 0;
