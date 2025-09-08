@@ -120934,31 +120934,31 @@ void ProcessStringFormatting64Bit(char *CharacterCode,uint64_t SystemBufferSize,
   do {
     ValidationStatus = *CharacterCode;
     if (ValidationStatus == '\0') {
-LAB_18011f555:
+StringFormattingComplete64:
       if ((ValidationStatus == '%') && (CharacterCode[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8SourcePointer);
         SystemValidationFunction = &FormatResultChar;
-        while (cStack_58 == ' ') {
+        while (FormatStackCharacter == ' ') {
           SystemValidationFunction = SystemValidationFunction + 1;
-          cStack_58 = *SystemValidationFunction;
+          FormatStackCharacter = *SystemValidationFunction;
         }
         atof();
                     // WARNING: Subroutine does not return
-        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+        CoreEngineExecuteUtilityFunction(EncodingStackValue ^ (unsigned long long)ProcessingStackBuffer);
       }
                     // WARNING: Subroutine does not return
-      CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingValue78);
+      CoreEngineExecuteUtilityFunction(EncodingStackValue ^ (unsigned long long)ProcessingStackBuffer);
     }
-    LowByte = ValidationStatus == '%';
-    if (LowByte) {
+    IsPercentCharacter = ValidationStatus == '%';
+    if (IsPercentCharacter) {
       if (CharacterCode[1] != '%') {
         ValidationStatus = *CharacterCode;
-        goto LAB_18011f555;
+        goto StringFormattingComplete64;
       }
-      LowByte = true;
+      IsPercentCharacter = true;
     }
     SystemValidationFunction = CharacterCode + 1;
-    if (!LowByte) {
+    if (!IsPercentCharacter) {
       SystemValidationFunction = CharacterCode;
     }
     CharacterCode = SystemValidationFunction + 1;
