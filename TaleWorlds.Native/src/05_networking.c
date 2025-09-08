@@ -1436,7 +1436,7 @@ uint32_t NetworkSocketProtocolTypeId;
  * 
  * 定义网络套接字的类型标识符，如流式套接字、数据报套接字等
  */
-uint32_t NetworkSocketTypeId;
+uint32_t NetworkSocketTypeId;                              // 网络套接字类型标识符
 
 /**
  * @brief 网络套接字协议实例
@@ -3204,7 +3204,6 @@ void InitializeNetworkConnectionState(void)
   int32_t NetworkInitializationResult;                      // 网络连接初始化结果状态
   int64_t NetworkSystemContextData;                         // 网络系统上下文数据
   int32_t NetworkConnectionId;                              // 网络连接标识符
-  uint32_t NetworkConnectionStateFlags;                               // 网络连接状态标志位
   int32_t NetworkSessionId;                                 // 网络连接会话ID
   uint64_t *NetworkStateDataPointer;                        // 网络连接状态数据指针
   int64_t *NetworkContextPointer;                           // 网络连接上下文指针
