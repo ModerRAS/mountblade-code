@@ -81100,8 +81100,25 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
 
 
 
- void FUN_180712526(float uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize)
-void FUN_180712526(float uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize)
+ /**
+ * @brief UI数据处理函数（长整型版本）
+ * 
+ * 该函数负责处理UI系统中的长整型数据，包括：
+ * - 长整型数据的内存分配和管理
+ * - 数据源和目标缓冲区的处理
+ * - 字符串比较和索引操作
+ * - 上下文句柄和事件数据的处理
+ * 
+ * @param uiContext UI上下文浮点数
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180712526
+ * @note 此函数处理UI系统中的长整型数据
+ * @note 包含复杂的内存管理和数据处理逻辑
+ */
+void ProcessUILongData(float uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize)
 
 {
   longlong allocatedMemory;

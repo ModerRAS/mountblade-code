@@ -76829,6 +76829,18 @@ void SetSystemExceptionDataBufferB(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x40处清理异常数据缓冲区
+ * 
+ * 该函数从数据缓冲区的0x40偏移量处获取异常数据缓冲区指针，
+ * 将其设置为系统异常数据缓冲区B，并销毁异常对象。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据缓冲区信息
+ * 
+ * @note 原始函数名：Unwind_180908ee0
+ * @note 异常处理：清理异常数据缓冲区
+ */
 void CleanupExceptionDataBufferAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
