@@ -118503,14 +118503,6 @@ void InitializeExceptionHandlerC(void)
 
 
 
-/**
- * @brief 初始化全局数据指针A1
- * 
- * 该函数负责将默认异常处理器B设置到全局异常处理器指针A1中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_180941f80
- */
 void InitializeGlobalDataPointerA1(void)
 
 {
@@ -118522,14 +118514,6 @@ void InitializeGlobalDataPointerA1(void)
 
 
 
-/**
- * @brief 初始化全局数据指针A2
- * 
- * 该函数负责将默认异常处理器B设置到全局异常处理器指针A2中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_180941fc0
- */
 void InitializeGlobalDataPointerA2(void)
 
 {
@@ -118814,14 +118798,6 @@ void SetExceptionHandlerBToGlobalA(void)
 
 
 
-/**
- * @brief 设置异常处理器B到全局变量B
- * 
- * 该函数负责将默认异常处理器B设置到指定的全局变量中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_1809421c0
- */
 void SetExceptionHandlerBToGlobalB(void)
 
 {
@@ -118833,14 +118809,6 @@ void SetExceptionHandlerBToGlobalB(void)
 
 
 
-/**
- * @brief 设置异常处理器B到全局变量C
- * 
- * 该函数负责将默认异常处理器B设置到指定的全局变量中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_1809421e0
- */
 void SetExceptionHandlerBToGlobalC(void)
 
 {
@@ -118890,14 +118858,6 @@ void SetDefaultExceptionHandler08(void)
 
 
 
-/**
- * @brief 设置默认异常处理器09
- * 
- * 该函数负责将默认异常处理器B设置到指定的全局变量中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_180942240
- */
 void SetDefaultExceptionHandler09(void)
 
 {
@@ -118909,14 +118869,6 @@ void SetDefaultExceptionHandler09(void)
 
 
 
-/**
- * @brief 设置默认异常处理器01
- * 
- * 该函数负责将默认异常处理器B设置到指定的全局变量中
- * 用于系统异常处理机制的初始化
- * 
- * @note 原始函数名：FUN_180942260
- */
 void SetDefaultExceptionHandler01(void)
 
 {
@@ -119569,18 +119521,6 @@ void CleanupSystemMemoryBufferC(void)
 
 
 
-/**
- * @brief 清理数据缓冲区D
- * 
- * 该函数负责清理数据缓冲区D，释放已分配的内存资源并重置相关状态
- * 主要用于数据管理和资源释放
- * 
- * @return void 无返回值
- * 
- * @note 此函数会验证内存块的有效性，确保安全的内存释放操作
- * @warning 如果内存块大小或偏移量无效，将触发参数验证错误
- * @see CleanupSystemMemoryBufferA, CleanupSystemMemoryBufferB, CleanupSystemMemoryBufferC
- */
 void CleanupDataBufferD(void)
 
 {
