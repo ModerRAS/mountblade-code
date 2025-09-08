@@ -1767,6 +1767,16 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define ExceptionHandlerStateOffset1c80 0x1c80              // 异常处理器状态偏移量1c80
 #define ExceptionHandlerStatusOffset1c90 0x1c90             // 异常处理器状态偏移量1c90
 
+// 异常处理器1d40系列偏移量常量
+#define ExceptionHandlerCallbackOffset1d40 0x1d40            // 异常处理器回调偏移量1d40
+#define ExceptionHandlerCallbackParamOffset1d30 0x1d30      // 异常处理器回调参数偏移量1d30
+#define ExceptionHandlerTempOffset1d08 0x1d08               // 异常处理器临时偏移量1d08
+#define ExceptionHandlerStateOffset1d10 0x1d10              // 异常处理器状态偏移量1d10
+#define ExceptionHandlerStatusOffset1d20 0x1d20             // 异常处理器状态偏移量1d20
+#define ExceptionHandlerTempOffset1ce8 0x1ce8               // 异常处理器临时偏移量1ce8
+#define ExceptionHandlerStateOffset1cf0 0x1cf0              // 异常处理器状态偏移量1cf0
+#define ExceptionHandlerStatusOffset1d00 0x1d00             // 异常处理器状态偏移量1d00
+
 // 异常处理器函数指针偏移量常量
 #define ExceptionHandlerFunctionPointerOffset1220 0x1220    // 异常处理器函数指针偏移量1220
 #define ExceptionHandlerFunctionPointerOffset1290 0x1290    // 异常处理器函数指针偏移量1290

@@ -258053,6 +258053,22 @@ void ProcessSystemCharacterEncodingConversion(long long *CharacterCode,uint64_t 
 
 
 
+/**
+ * @brief 处理字符编码和内存分配
+ * 
+ * 该函数负责处理字符编码转换过程中的内存分配和管理。
+ * 函数根据系统配置和字符编码状态，执行相应的内存分配和字符处理操作。
+ * 
+ * @param CharacterCode 字符编码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return uint64_t 处理结果状态码
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的字符编码处理逻辑
+ * @warning 简化实现仅执行基本的验证，不进行实际的字符编码转换工作
+ */
 uint64_t
 ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode,int SystemBufferSize,uint64_t Utf8SourcePointer,uint32_t *Utf16EndPointer,uint64_t AdditionalParameter1
              
@@ -259922,6 +259938,22 @@ LAB_18021800d:
 
 
 
+/**
+ * @brief 处理字符代码表分配
+ * 
+ * 该函数负责处理字符代码表的内存分配和管理。
+ * 函数根据字符代码和系统参数，分配相应的内存空间并初始化字符代码表。
+ * 
+ * @param CharacterCode 字符编码指针
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return long long* 处理结果指针
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的字符代码表分配逻辑
+ * @warning 简化实现仅执行基本的验证，不进行实际的内存分配工作
+ */
 long long *
 ProcessCharacterCodeTableAllocation(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
                                      unsigned long long AdditionalParameter1
