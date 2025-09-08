@@ -6735,7 +6735,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1808aec50 - 数据验证函数A1
 // 功能：验证数据完整性和安全性
-#define ValidateDataIntegrityA0 FUN_1808aec50
+#define ValidateDataIntegrityA1 FUN_1808aec50
 
 // 原始函数名：FUN_1808a5780 - 数据处理函数A2
 // 功能：处理数据并返回处理结果
@@ -100064,7 +100064,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x330);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceReferenceManagerOffset330);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
