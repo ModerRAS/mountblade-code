@@ -41319,7 +41319,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(resourceManager + 0x48);
+  memoryResourcePointer = *(DataBuffer **)(resourceManager + MemoryResourceOffset48);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
