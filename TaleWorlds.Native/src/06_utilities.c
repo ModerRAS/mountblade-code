@@ -83112,118 +83112,237 @@ void ProcessExceptionContextWithMemoryManagement(DataBuffer operationBase,int64_
 
 
 
-void Unwind_18090a8b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文迭代器和处理器调用函数
+ * 
+ * 该函数负责遍历异常上下文中的处理器，并调用每个有效的异常处理函数。
+ * 函数会检查每个内存块偏移量处的处理器指针，如果有效则调用相应的处理函数。
+ * 如果数据上下文为空，则直接返回；否则调用系统终止函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a8b0
+ * @note 该函数使用0x60偏移量访问异常上下文数据
+ * @note 函数会遍历处理器链表并调用每个有效的处理器
+ */
+void IterateAndCallExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
+  int64_t *dataContext;                         // 数据上下文指针
+  int64_t *memoryBlockIterator;                  // 内存块迭代器指针
   
+  // 获取数据上下文和异常处理上下文指针
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 8);
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + ExceptionHandlerCallbackOffset10);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionHandlerContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + 0x38))();
+  
+  // 遍历内存块中的异常处理器
+  for (memoryBlockIterator = (int64_t *)*dataContext; memoryBlockIterator != exceptionHandlerContextPointer; memoryBlockIterator = memoryBlockIterator + 1) {
+    if ((int64_t *)*memoryBlockIterator != (int64_t *)0x0) {
+      // 调用异常处理函数
+      (**(FunctionPointer**)(*(int64_t *)*memoryBlockIterator + 0x38))();
     }
   }
+  
+  // 检查数据上下文是否为空
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 如果数据上下文不为空，终止系统
+  TerminateSystemE0();
 }
 
 
 
-void ExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器C0 - 0x70偏移量异常处理
+ * 
+ * 该函数负责处理0x70偏移量处的异常上下文，遍历并调用相应的异常处理函数。
+ * 函数的逻辑结构与IterateAndCallExceptionHandlers类似，但使用不同的偏移量(0x70)。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：ExceptionHandlerC0
+ * @note 该函数使用0x70偏移量访问异常上下文数据
+ * @note 函数会遍历处理器链表并调用每个有效的处理器
+ */
+void ProcessExceptionHandlerAtOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
+  int64_t *dataContext;                         // 数据上下文指针
+  int64_t *memoryBlockIterator;                  // 内存块迭代器指针
   
+  // 获取数据上下文和异常处理上下文指针（使用0x70偏移量）
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 8);
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x70) + ExceptionHandlerCallbackOffset10);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionHandlerContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + 0x38))();
+  
+  // 遍历内存块中的异常处理器
+  for (memoryBlockIterator = (int64_t *)*dataContext; memoryBlockIterator != exceptionHandlerContextPointer; memoryBlockIterator = memoryBlockIterator + 1) {
+    if ((int64_t *)*memoryBlockIterator != (int64_t *)0x0) {
+      // 调用异常处理函数
+      (**(FunctionPointer**)(*(int64_t *)*memoryBlockIterator + 0x38))();
     }
   }
+  
+  // 检查数据上下文是否为空
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 如果数据上下文不为空，终止系统
+  TerminateSystemE0();
 }
 
 
 
-void ExceptionHandlerC1(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器C1 - 0x88偏移量异常处理
+ * 
+ * 该函数负责处理0x88偏移量处的异常上下文，遍历并调用相应的异常处理函数。
+ * 与前两个函数类似，但使用不同的数据访问模式（直接从0x88偏移量获取数据上下文）。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：ExceptionHandlerC1
+ * @note 该函数使用0x88偏移量访问异常上下文数据
+ * @note 函数会遍历处理器链表并调用每个有效的处理器
+ */
+void ProcessExceptionHandlerAtOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
+  int64_t *dataContext;                         // 数据上下文指针
+  int64_t *memoryBlockIterator;                  // 内存块迭代器指针
   
+  // 获取数据上下文和异常处理上下文指针（使用0x88偏移量）
   dataContext = *(int64_t **)(dataBuffer + 0x88);
   exceptionHandlerContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionHandlerContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + 0x38))();
+  
+  // 遍历内存块中的异常处理器
+  for (memoryBlockIterator = (int64_t *)*dataContext; memoryBlockIterator != exceptionHandlerContextPointer; memoryBlockIterator = memoryBlockIterator + 1) {
+    if ((int64_t *)*memoryBlockIterator != (int64_t *)0x0) {
+      // 调用异常处理函数
+      (**(FunctionPointer**)(*(int64_t *)*memoryBlockIterator + 0x38))();
     }
   }
+  
+  // 检查数据上下文是否为空
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 如果数据上下文不为空，终止系统
+  TerminateSystemE0();
 }
 
 
 
-void Unwind_18090a8e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数 - 0x48偏移量异常处理
+ * 
+ * 该函数负责处理0x48偏移量处的异常上下文，调用单个异常处理函数。
+ * 与前几个函数不同，该函数只调用一个异常处理器，而不是遍历处理器链表。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a8e0
+ * @note 该函数使用0x48偏移量和0x28子偏移量访问异常上下文数据
+ * @note 函数只调用单个异常处理器，不进行遍历
+ */
+void CallSingleExceptionHandlerAtOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
   
+  // 获取异常处理上下文指针（使用0x48偏移量和0x28子偏移量）
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x28);
+  
+  // 如果异常处理上下文指针有效，调用异常处理函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
+  
   return;
 }
 
 
 
-void Unwind_18090a8f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数 - 0x50偏移量异常处理（简化版）
+ * 
+ * 该函数负责处理0x50偏移量处的异常上下文，调用单个异常处理函数。
+ * 与前一个函数类似，但使用不同的偏移量（0x50）和子偏移量（8）。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a8f0
+ * @note 该函数使用0x50偏移量和8字节子偏移量访问异常上下文数据
+ * @note 函数只调用单个异常处理器，不进行遍历
+ */
+void CallSingleExceptionHandlerAtOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
   
+  // 获取异常处理上下文指针（使用0x50偏移量和8字节子偏移量）
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 8);
+  
+  // 如果异常处理上下文指针有效，调用异常处理函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
+  
   return;
 }
 
 
 
-void Unwind_18090a900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器迭代函数 - 0x50偏移量异常处理（完整版）
+ * 
+ * 该函数负责处理0x50偏移量处的异常上下文，遍历并调用多个异常处理函数。
+ * 与前一个函数使用相同的偏移量，但这个函数会遍历整个处理器链表。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a900
+ * @note 该函数使用0x50偏移量访问异常上下文数据
+ * @note 函数会遍历处理器链表并调用每个有效的处理器
+ */
+void IterateAndCallExceptionHandlersAtOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *exceptionHandlerContextPointer;      // 异常处理上下文指针
+  int64_t *dataContext;                         // 数据上下文指针
+  int64_t *memoryBlockIterator;                  // 内存块迭代器指针
   
+  // 获取数据上下文和异常处理上下文指针（使用0x50偏移量）
   dataContext = *(int64_t **)(dataBuffer + 0x50);
   exceptionHandlerContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionHandlerContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + 0x38))();
+  
+  // 遍历内存块中的异常处理器
+  for (memoryBlockIterator = (int64_t *)*dataContext; memoryBlockIterator != exceptionHandlerContextPointer; memoryBlockIterator = memoryBlockIterator + 1) {
+    if ((int64_t *)*memoryBlockIterator != (int64_t *)0x0) {
+      // 调用异常处理函数
+      (**(FunctionPointer**)(*(int64_t *)*memoryBlockIterator + 0x38))();
     }
   }
+  
+  // 检查数据上下文是否为空
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 如果数据上下文不为空，终止系统
+  TerminateSystemE0();
 }
 
 
