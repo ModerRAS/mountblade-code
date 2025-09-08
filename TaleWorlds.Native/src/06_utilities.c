@@ -89317,6 +89317,25 @@ void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器回调函数C160
+ * 
+ * 该函数负责调用异常处理器回调函数，处理异常事件。
+ * 它会从异常处理上下文中获取回调函数指针，并在有效时执行回调。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文指针
+ * - 检查异常处理器回调函数的有效性
+ * - 执行异常处理器回调函数
+ * 
+ * @note 原始函数名：Unwind_18090c160
+ * @note 使用偏移量0x48获取异常处理上下文
+ * @note 使用偏移量0x20获取异常处理器回调指针
+ * @note 使用偏移量0x38调用异常处理器回调函数
+ */
 void Unwind_18090c160(DataBuffer operationBase,int64_t dataBuffer)
 
 {
