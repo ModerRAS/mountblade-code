@@ -4977,17 +4977,17 @@ UIHandle UIAtlasManager;
 UIHandle UITouchHandler;
  UI系统手势处理器
 UIHandle UIGestureHandler;
- UI系统键盘管理器
+ // UI系统键盘管理器
 UIHandle UIKeyboardManager;
- UI系统鼠标处理器
+ // UI系统鼠标处理器
 UIHandle UIMouseHandler;
- UI系统主题管理器
+// UI系统主题管理器
 UIHandle UIThemeManager;
- UI系统样式数据库
+// UI系统样式数据库
 UIHandle UIStyleDatabase;
- UI系统组件注册表
+// UI系统组件注册表
 UIHandle UIComponentRegistry;
- UI系统布局引擎
+// UI系统布局引擎
 UIHandle UILayoutEngine;
  UI系统动画时间线
 UIHandle UIAnimationTimeline;
@@ -8497,50 +8497,50 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,UIHandle targetB
   longlong registerAX;
   longlong contextHandle;
   longlong allocatedMemory;
-  UIHandle BasePointer;
-  ulonglong iterationCount;
-  longlong SourceHandle;
-  ulonglong calculatedBufferSize;
-  int RegisterValue;
+  UIHandle contextBasePointer;
+  ulonglong bufferIterationCount;
+  longlong dataSourceHandle;
+  ulonglong calculatedMemorySize;
+  int registerAXValue;
   longlong *preservedRegister15;
-  UIHandle stackParam00000058;
+  UIHandle contextBufferHandle;
   
-  calculatedBufferSize = (uiContext - contextHandle) + bufferSize;
-  if ((ulonglong)(registerAX - contextHandle) < calculatedBufferSize) {
-    iterationCount = dataSource * 2;
+  calculatedMemorySize = (uiContext - contextHandle) + bufferSize;
+  if ((ulonglong)(registerAX - contextHandle) < calculatedMemorySize) {
+    bufferIterationCount = dataSource * 2;
     if (dataSource == 0) {
-      iterationCount = 1;
+      bufferIterationCount = 1;
     }
-    if (iterationCount < dataSource + calculatedBufferSize) {
-      iterationCount = dataSource + calculatedBufferSize;
+    if (bufferIterationCount < dataSource + calculatedMemorySize) {
+      bufferIterationCount = dataSource + calculatedMemorySize;
     }
-    if (iterationCount == 0) {
+    if (bufferIterationCount == 0) {
       allocatedMemory = contextHandle;
       contextHandle = 0;
     }
     else {
-      contextHandle = CreateUIContext(UIContextManager,iterationCount,*(UIByte *)(SourceHandle + 0x28));
-      uiContext = *(longlong *)(SourceHandle + 0x10);
+      contextHandle = CreateUIContext(UIContextManager,bufferIterationCount,*(UIByte *)(dataSourceHandle + 0x28));
+      uiContext = *(longlong *)(dataSourceHandle + 0x10);
       allocatedMemory = *preservedRegister15;
     }
     if (uiContext != allocatedMemory) {
                      WARNING: Subroutine does not return
       memmove(contextHandle,uiContext,allocatedMemory - uiContext);
     }
-    if (calculatedBufferSize != 0) {
+    if (calculatedMemorySize != 0) {
                      WARNING: Subroutine does not return
-      memset(contextHandle,0,calculatedBufferSize);
+      memset(contextHandle,0,calculatedMemorySize);
     }
-    if (*(longlong *)(SourceHandle + 0x10) != 0) {
+    if (*(longlong *)(dataSourceHandle + 0x10) != 0) {
                      WARNING: Subroutine does not return
       DestroyUIComponent();
     }
-    *(longlong *)(SourceHandle + 0x10) = contextHandle;
-    *(ulonglong *)(SourceHandle + 0x20) = contextHandle + iterationCount;
+    *(longlong *)(dataSourceHandle + 0x10) = contextHandle;
+    *(ulonglong *)(dataSourceHandle + 0x20) = contextHandle + bufferIterationCount;
   }
   else {
-    stackParam00000058 = BasePointer;
-    if (calculatedBufferSize != 0) {
+    contextBufferHandle = contextBasePointer;
+    if (calculatedMemorySize != 0) {
                      WARNING: Subroutine does not return
       memset();
     }
@@ -115560,20 +115560,32 @@ FUN_180738fbf:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180738eed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180738eed(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief UI数据处理器
+ * 
+ * 处理UI系统中的数据传输和缓冲区管理，包括数据验证、复制和渲染任务执行
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI操作的上下文环境
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数负责UI数据的完整处理流程，包括数据验证、内存管理和渲染任务执行
+ */
+void ProcessUIDataTransfer(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
-  UIHandle contextHandle;
+  int DataTransferStatus;
+  int UIValidationResult;
+  int UIComparisonResult;
+  UIHandle ContextHandle;
   UIHandle BasePointer;
   longlong RegisterPointer;
   UIHandle EventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong MemoryResourceFlag;
+  UIHandle TempBufferHandle;
+  ulonglong RenderTaskParameter;
   
   *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = BasePointer;
@@ -397910,6 +397922,16 @@ UIHandle FUN_18089fc50(longlong uiContext,UIHandle *dataSource)
 #define BackupUIState FUN_1807075b0
 #define RestoreUIState FUN_180707610
 #define SyncUIState FUN_180707670
+
+// UI系统数据处理函数
+#define ProcessUIBufferData FUN_1807160c0
+#define ProcessUIBufferDataWithResult FUN_1807165a0
+#define ProcessUIBufferDataAdvanced FUN_180716aa0
+#define ProcessUIContextData FUN_180718bd0
+#define ProcessUITransformData FUN_1807197a0
+#define ProcessUIValidationData FUN_180719a90
+#define ProcessUIAdvancedData FUN_1807213f0
+#define ProcessUIComplexData FUN_180721540
 
 
 
