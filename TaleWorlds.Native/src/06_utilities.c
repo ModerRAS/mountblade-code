@@ -99905,7 +99905,7 @@ void InvokeExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffe
  * 
  * @see InvokeExceptionHandlerAtOffsetE0
  */
-void Unwind_18090de30(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerContextAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -99935,7 +99935,7 @@ void Unwind_18090de30(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @see CleanupMemoryResourceReferenceCountAtOffset2F0
  */
-void Unwind_18090de40(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
