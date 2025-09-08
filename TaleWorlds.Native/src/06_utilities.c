@@ -91052,6 +91052,22 @@ void Unwind_18090ca60(void)
 
 
 
+/**
+ * @brief 处理系统资源清理和验证
+ * 
+ * 该函数处理系统资源的清理和验证流程，包括：
+ * - 检查数据缓冲区的状态
+ * - 获取资源迭代器和上下文指针
+ * - 处理异常处理上下文
+ * - 执行系统操作
+ * - 验证数据缓冲区
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ca70
+ */
 void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -91096,6 +91112,17 @@ void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x540处设置默认异常处理器
+ * 
+ * 该函数在数据缓冲区的偏移量0x540处设置默认异常处理器B。
+ * 这是一个简单的异常处理器配置函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ca80
+ */
 void Unwind_18090ca80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
