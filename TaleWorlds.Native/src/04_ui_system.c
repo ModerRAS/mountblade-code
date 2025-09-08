@@ -865,6 +865,7 @@ typedef enum {
 #define componentOpacityValue componentOpacityValueStack
 #define uiRenderStack stack0x00000078
 #define blendFactorStack stack0x00000040
+#define uiOptionStringPointer pcStack_48
 
 // UI系统函数宏定义补充
 /**
