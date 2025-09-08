@@ -10196,24 +10196,24 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
   layoutElementCount = (int)EventDataIndex;
   lStackX_8 = (longlong)layoutElementCount;
   if (layoutElementCount != 0) {
-    pstackUInt58 = (UIHandle *)
+    StackPointer58 = (UIHandle *)
                  CreateUIContext(UIContextManager,lStackX_8 * 8,
                                CONCAT71((int7)(int3)((ulonglong)EventDataIndex >> 8),3),targetBuffer,
                                0xfffffffffffffffe);
-    pstackUInt50 = pstackUInt58 + lStackX_8;
+    StackPointer50 = StackPointer58 + lStackX_8;
   }
-  ptrLocal8 = pstackUInt50;
-  peventTypeCode = pstackUInt58;
-  ptrResult0 = pstackUInt58;
-  ptrResult1 = ptrLocal9;
-  pstackUInt60 = pstackUInt58;
+  LocalPointer8 = StackPointer50;
+  EventTypeCodePointer = StackPointer58;
+  ResultPointer0 = StackPointer58;
+  ResultPointer1 = LocalPointer9;
+  StackPointer60 = StackPointer58;
   if (0 < lStackX_8) {
     do {
-      ptrLocal3 = pstackUInt58;
+      LocalPointer3 = StackPointer58;
       EventDataIndex = *targetBuffer;
-      if (pstackUInt58 < ptrLocal8) {
-        *pstackUInt58 = *(UIHandle *)((longlong)ptrResult1 + EventDataIndex);
-        peventTypeCode = ptrResult0;
+      if (StackPointer58 < LocalPointer8) {
+        *StackPointer58 = *(UIHandle *)((longlong)ResultPointer1 + EventDataIndex);
+        EventTypeCodePointer = ResultPointer0;
       }
       else {
         ContextHandleData = (longlong)pstackUInt58 - (longlong)ptrResult0 >> 3;
