@@ -209889,7 +209889,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   
   Utf16Char = *(unsigned long long *)(CharacterCode + 0x40);
   ProcessingStatusFlag = (Utf16Char + 4) % 3;
-  FUN_180175700(CharacterCode,SystemBufferSize);
+  ProcessCharacterCodeAndMemoryAllocation(CharacterCode,SystemBufferSize);
   MemoryPoolBlockSize = CharacterCode + ProcessingStatusFlag * 8;
   if (*(long long *)(CharacterCode + 0x28 + ProcessingStatusFlag * 8) != 0) {
     BufferStatus = *(long long *)(CoreEngineRenderContext + 0x1cd8);
@@ -209913,7 +209913,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
     MemoryPoolBlockSize = GetSystemStringIndex(*(void *)(MemoryPoolBlockSize + 0x28));
     (*pOperationStatus)(MemoryBlockIndex,*(void *)(MemoryPoolBlockSize + 8),0);
     if (*(long long *)(SystemBufferSize + 0x99e0) != 0) {
-      FUN_18029e450(*(void *)(CoreEngineRenderContext + 0x1cd8),
+      ProcessRenderContextConfiguration(*(void *)(CoreEngineRenderContext + 0x1cd8),
                     *(void *)(CharacterCode + 0x28 + (Utf16Char % 3) * 8),0,0,1,
                     *(void *)(**(long long **)(*(long long *)(SystemBufferSize + 0x99e0) + 0x50) + 0x428                    ,0,0,1);
     }
@@ -210321,7 +210321,7 @@ void GetSystemMemoryInfo(uint64_t *CharacterCode)
   (**(code **)*StringProcessingStatus)(StringProcessingStatus, TemporaryBuffer);
   long long InputDataLength = _Initialize_Granite_Graphine__YA_AW4Enum_Error_2__J_Z(0x1450);
   if (InputDataLength != 0) {
-    FUN_180626ee0(SystemMemoryValidationPointerPrimary, InputDataLength);
+    ProcessSystemMemoryCleanupEx(SystemMemoryValidationPointerPrimary, InputDataLength);
   }
   __0DirectX11DeviceOptions_DX11_Granite_Graphine__QEAA_XZ(StackAlignmentBuffer);
   StackValidationFlag = 1;
@@ -210331,7 +210331,7 @@ void GetSystemMemoryInfo(uint64_t *CharacterCode)
   CharacterCode[0x1c] = AllocatedMemorySize;
   CharacterCode[0x4c] = AllocatedMemorySize;
   if (AllocatedMemorySize == 0) {
-    FUN_180626ee0(SystemEventTemplateData);
+    ProcessSystemMemoryCleanupEx(SystemEventTemplateData);
   }
   TemporaryBuffer = (void *)MemoryAllocate(MemoryPoolManager, 8, 8, 3);
   *TemporaryBuffer = SystemContextDataSecondary;
@@ -210347,12 +210347,12 @@ void GetSystemMemoryInfo(uint64_t *CharacterCode)
                     (&SystemOperationFlag, CharacterCode + 0x1d);
   MemoryPoolBlockSizePointer = (long long *)CharacterCode[0x1d];
   if ((MemoryPoolBlockSizePointer == (long long *)0x0) || (InputDataLength != 0)) {
-    FUN_180626ee0(SystemMemoryValidationPointerSecondary, InputDataLength);
+    ProcessSystemMemoryCleanupEx(SystemMemoryValidationPointerSecondary, InputDataLength);
     MemoryPoolBlockSizePointer = (long long *)CharacterCode[0x1d];
   }
   InputDataLength = (**(code **)(*MemoryPoolBlockSizePointer + 0x100))(MemoryPoolBlockSizePointer, SystemMemoryValidationPointerTertiary);
   if (InputDataLength != 0) {
-    FUN_180626ee0(SystemMemoryValidationPointerQuaternary, InputDataLength);
+    ProcessSystemMemoryCleanupEx(SystemMemoryValidationPointerQuaternary, InputDataLength);
   }
   __0ContextBudget_Granite_Graphine__QEAA_XZ(&SystemOperationFlagPointer);
   SystemOperationFlagPointer = (void *)CONCAT44(((uint64_t)SystemOperationFlagPointer >> 32), 0x400000);
