@@ -228,6 +228,14 @@
 #define ValidationIncrementStep 1
 #define BitShiftForMemoryCalculation 3
 
+// 向量组件偏移常量
+#define VectorComponentXOffset 0x30
+#define VectorComponentYOffset 0x34
+#define VectorComponentZOffset 0x44
+#define VectorComponentWOffset 0x40
+#define VectorComponentYFloatOffset 0x3c
+#define VectorComponentAdditionalOffset38 0x38
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -17179,23 +17187,23 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     return ComponentDataValidationFailure;
   }
   componentWInfinityFlag = componentZInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x38) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
     componentWInfinityFlag = 0x1d;
   }
   componentXInfinityFlag = componentZInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x34) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
-  if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
+  if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
   }
   if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || quaternaryInfinityFlag != 0) {
     return ComponentDataValidationFailure;
   }
-  floatComponentZ = *(float *)(dataPtr + 0x44);
+  floatComponentZ = *(float *)(dataPtr + VectorComponentZOffset);
   tertiaryInfinityFlag = 0;
-  VectorComponentW = *(uint *)(dataPtr + 0x40);
-  ComponentYFloat = *(float *)(dataPtr + 0x3c);
+  VectorComponentW = *(uint *)(dataPtr + VectorComponentWOffset);
+  ComponentYFloat = *(float *)(dataPtr + VectorComponentYFloatOffset);
   // 合并浮点数组件Z到系统上下文缓冲区
   systemContextBuffer[0] = MergeFloatComponents(systemContextBuffer[0]._4_4_, floatComponentZ);
   quaternaryInfinityFlag = tertiaryInfinityFlag;
@@ -17210,11 +17218,11 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     componentWInfinityFlag = 0x1d;
   }
   if ((componentZInfinityFlag == 0 && componentXInfinityFlag == 0) && componentWInfinityFlag == 0) {
-    if (((*(float *)(dataPtr + 0x30) == 0.0) && (*(float *)(dataPtr + 0x34) == 0.0)) &&
-       (*(float *)(dataPtr + 0x38) == 0.0)) {
+    if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
+       (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
     }
-    if (((ComponentYFloat == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
+    if (((ComponentYFloat == 0.0) && (*(float *)(dataPtr + VectorComponentWOffset) == 0.0)) && (floatComponentZ == 0.0)) {
       return ComponentDataValidationFailure;
     }
     result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + ExceptionHandlerCallbackOffset10),systemContextBuffer);

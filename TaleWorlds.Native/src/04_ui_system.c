@@ -72462,12 +72462,12 @@ LAB_180706f57:
       }
     }
 LAB_180706ed5:
-    LoopCounter = 0xfffffffe;
+    eventCounter = 0xfffffffe;
   }
-  return LoopCounter;
+  return eventCounter;
 BufferCompareLoop:
-  localInt7 = localInt7 + 1;
-  if (ProcessingResult1 <= localInt7) goto LAB_180706ec1;
+  processingStep = processingStep + 1;
+  if (processingResult <= processingStep) goto LAB_180706ec1;
   goto LAB_180706eb2;
 }
 

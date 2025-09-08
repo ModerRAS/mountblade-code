@@ -971,6 +971,14 @@ char SystemConfigStateArray[64];
 #define SystemNetworkAddressBase 0x180c80000
 #define SystemColorTableMultiplier 0xaaaaaaaaaaaaaaab
 
+// 系统上下文偏移量常量
+#define SystemContextStringHashOffset 0x9f8
+#define SystemContextStringHashModuloOffset 0xa00
+#define SystemContextTertiaryDataBoundOffset 0x160
+#define SystemContextModuleInitializationOffset 8
+#define SystemContextMemoryCounterOffset 0x10
+#define SystemContextParameterValidationOffset 2
+
 // 浮点数常量定义
 #define SystemFloatOneThirdValue 0x3d088889
 #define SystemFloatPiValue 0x40490fdb
@@ -13968,5 +13976,90 @@ int RegisterSystemAudioModule(void);
  * @return 注册成功返回0，失败返回-1
  */
 int RegisterSystemNetworkModule(void);
+
+// =============================================================================
+// 栈变量语义化定义 - 用于美化Ghidra自动生成的变量名
+// =============================================================================
+
+// 性能计数器相关栈变量
+#define PerformanceCounterStackPointer plStack_2f8
+#define StackCounterRegister plStack_68
+
+// 内存管理相关栈变量
+#define MemoryManagerContextPointer ppplStack_b8
+#define MemoryManagerContextBuffer ppplStack_b0
+#define SystemStackPointer ppSystemStackPointer
+
+// 数据处理栈变量
+#define DataProcessingStackA lStack_b0
+#define DataProcessingStackB lStack_a8
+#define DataProcessingStackC lStack_28
+#define DataProcessingStackD lStack_68
+#define DataProcessingStackE lStack_d0
+#define DataProcessingStackF lStack_278
+
+// 浮点数处理栈变量
+#define FloatProcessingVarA fVar4
+#define FloatProcessingVarB fVar5
+#define FloatProcessingVarC fVar6
+#define FloatProcessingVarD fVar9
+#define FloatProcessingVarE fVar12
+#define FloatProcessingVarF fVar16
+#define FloatProcessingVarG fVar18
+#define FloatProcessingVarH fVar20
+#define FloatProcessingVarI fVar21
+#define FloatProcessingVarJ fVar25
+#define FloatProcessingVarK fVar26
+#define FloatProcessingVarL fVar27
+#define FloatProcessingVarM fVar28
+#define FloatProcessingVarN fVar29
+#define FloatProcessingVarO fVar30
+
+// 浮点指针栈变量
+#define FloatPointerVarA pfVar3
+#define FloatPointerVarB pfVar5
+#define FloatPointerVarC pfVar9
+#define FloatStackVar fStack_cc
+#define FloatStackVarA fStack_268
+#define FloatStackVarB fStack_328
+#define FloatStackVarC fStack_370
+
+// 数组栈变量
+#define FloatArrayStack afStack_2e8
+#define LongArrayStack alStack_30
+#define LongArrayStackB alStack_3d0
+
+// 系统栈变量
+#define SystemStackProcessingBuffer SystemStackVariable_e8
+#define SystemStackProcessingBufferA aSystemStackVariable_c8
+#define SystemStackProcessingBufferB aSystemStackVariable_b8
+#define SystemStackVariableA SystemStackVariable_378
+#define SystemStackVariableB SystemStackVariable_368
+#define SystemStackVariableC SystemStackVariable_2e0
+#define SystemStackVariableD SystemStackVariable_360
+
+// 复杂指针栈变量
+#define ComplexPointerStackA ppppppSystemStackPointer
+#define ComplexPointerStackB ppppppplStack_108
+#define ComplexPointerStackC pppppppStringProcessingCompleteFlag
+#define ComplexPointerStackD ppppppplStack_f8
+#define ComplexPointerStackE pppppppMemoryAddressValue
+#define ComplexPointerStackF ppppppplStack_108
+#define ComplexPointerStackG pppppppMemoryIndexValue
+#define ComplexPointerStackH ppppppuStackX_10
+
+// 临时数据栈变量
+#define TemporaryDataStack uStack_2e0
+#define TemporaryDataStackB uStack_2e8
+#define TemporaryDataStackC uStack_28c
+#define TemporaryDataStackD uStack_288
+#define TemporaryDataStackE uStack_284
+#define TemporaryDataStackF uStack_280
+#define TemporaryDataStackG uStack_27c
+#define TemporaryDataStackH uStack_298
+#define TemporaryDataStackI uStack_2a4
+#define TemporaryDataStackJ uStack_2a0
+#define TemporaryDataStackK uStack_29c
+#define TemporaryDataStackL uStack_2d0
 
 #endif // DATA_DEFINITIONS_H

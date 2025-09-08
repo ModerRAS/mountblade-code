@@ -71707,7 +71707,7 @@ float CalculateFloatFilterAndDistance(float *CharacterCode, float *CharacterCode
 
 
 
-2b20(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+/**
  * @brief 执行系统数据复制
  * 
  * 该函数负责执行系统数据的复制操作，包括数据验证和目标设置。
@@ -71719,7 +71719,7 @@ float CalculateFloatFilterAndDistance(float *CharacterCode, float *CharacterCode
  * @param reservedParameter2 保留参数2
  * 
  */
-void ExecuteSystemDataCopy(long long targetDataStructure, long long sourceData, uint64_t reservedParameter1, uint64_t reservedParameter2
+void ExecuteSystemDataCopy(long long targetDataStructure, long long sourceData, uint64_t reservedParameter1, uint64_t reservedParameter2)
 {
   uint32_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -183782,7 +183782,21 @@ LAB_18014fb2e:
 
 
 
-4fb60(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointervoid FUN_18014fb60(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 移动UTF-8源数据到目标位置
+ * 
+ * 该函数将UTF-8源数据从源位置移动到目标位置，主要用于内存管理和数据重组。
+ * 这是一个简单的内存移动操作函数。
+ * 
+ * @param CharacterCode 源数据起始位置
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针（目标位置）
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18014fb60
+ * @note 该函数不返回，执行完后直接终止
+ */
+void MoveUtf8SourceData(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   if (CharacterCode != SystemBufferSize) {
                     // WARNING: Subroutine does not return
@@ -184068,7 +184082,21 @@ long long * ProcessCharacterEncodingPointer(long long CharacterCode,long long Sy
 
 
 
-long long * FUN_18014fe9c(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符代码和UTF-8源数据的转换操作
+ * 
+ * 该函数负责处理字符代码和UTF-8源数据之间的复杂转换操作。
+ * 它包含多层循环和条件判断，用于处理不同的字符编码场景。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_18014fe9c
+ * @note 这是一个复杂的字符编码转换处理函数
+ */
+long long * ProcessCharacterCodeAndUtf8Conversion(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer)
 {
   long long *CharacterCode;
   long long BufferStatus;
@@ -184256,7 +184284,18 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t SystemBufferSize,long
 
 
 
-50227(voidvoid FUN_180150227(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作，直接返回。
+ * 通常用于占位或作为默认的函数指针。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150227
+ * @note 这是一个空操作函数，用于占位或默认处理
+ */
+void UtilityNoOperation(void)
 {
   return;
 }
@@ -184264,7 +184303,20 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t SystemBufferSize,long
 
 
 
-long long * FUN_180150240(long long *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理字符代码缓冲区分配和数据管理
+ * 
+ * 该函数负责处理字符代码数据的缓冲区分配、数据移动和内存管理。
+ * 它根据输入的字符代码和大小信息，动态分配内存缓冲区并处理数据移动操作。
+ * 
+ * @param CharacterCode 字符代码指针，包含要处理的字符代码数据
+ * @param CharacterCodeSize 字符代码大小指针，指向字符代码的大小信息
+ * @return long long* 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180150240
+ * @note 该函数涉及内存分配和数据移动操作，可能不会返回（WARNING标注）
+ */
+long long * ProcessCharacterCodeBufferAllocationAndDataManagement(long long *CharacterCode,long long *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
