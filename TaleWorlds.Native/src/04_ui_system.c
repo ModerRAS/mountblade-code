@@ -122,6 +122,14 @@ typedef enum {
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance FUN_180727dd3
 
+// UI系统函数宏定义 - 处理UI组件事件
+#define ProcessUIComponentEvent FUN_1808b5de0
+#define ProcessUIComponentState FUN_18073d7c0
+#define ValidateUIComponentState FUN_180853e80
+#define CheckUIComponentCondition FUN_180853120
+#define UpdateUIComponentState FUN_18073d8a0
+#define ValidateUIComponentEvent FUN_180853fc0
+
 // UI系统标签宏定义 - 事件处理相关
 #define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
 #define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
@@ -87887,8 +87895,7 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
 
 
 
- void FUN_18071991e(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-/**
+ /**
  * @brief 处理UI数据变换和缩放操作
  * 
  * 该函数负责处理UI数据的变换和缩放操作，主要功能包括：
@@ -87921,40 +87928,40 @@ void ProcessUIDataTransformAndScaling(longlong uiContext, UIHandle dataSource, U
   float baseTransform;
   
   if (3 < uiContext - bufferSize) {
-    ptransformCoeff1 = (float *)(TargetHandle + 4 + bufferSize * 4);
-    ContextHandleData = ContextHandle - TargetHandle;
-    stringCompareIndex = ((uiContext - bufferSize) - 4U >> 2) + 1;
-    bufferSize = bufferSize + stringCompareIndex * 4;
+    transformDataPtr = (float *)(targetHandle + 4 + bufferSize * 4);
+    contextDataOffset = contextHandle - targetHandle;
+    loopCounter = ((uiContext - bufferSize) - 4U >> 2) + 1;
+    bufferSize = bufferSize + loopCounter * 4;
     do {
-      baseValue = ptransformCoeff1[-1];
-      transformCoeff4 = unmodifiedXMM6_Da * *(float *)(ContextHandleData + -4 + (longlong)ptransformCoeff1);
-      localFloat6 = unmodifiedXMM6_Da * *(float *)(ContextHandleData + (longlong)ptransformCoeff1);
-      *(float *)(ContextHandleData + -4 + (longlong)ptransformCoeff1) = (transformCoeff4 - baseValue) * in_XMM4_Da;
-      ptransformCoeff1[-1] = (baseValue + transformCoeff4) * in_XMM3_Da;
-      baseValue = *ptransformCoeff1;
-      transformCoeff4 = unmodifiedXMM6_Da * *(float *)(ContextHandleData + 4 + (longlong)ptransformCoeff1);
-      *(float *)(ContextHandleData + (longlong)ptransformCoeff1) = (localFloat6 - baseValue) * in_XMM4_Da;
-      *ptransformCoeff1 = (baseValue + localFloat6) * in_XMM3_Da;
-      baseValue = ptransformCoeff1[1];
-      localFloat6 = unmodifiedXMM6_Da * *(float *)(ContextHandleData + 8 + (longlong)ptransformCoeff1);
-      *(float *)(ContextHandleData + 4 + (longlong)ptransformCoeff1) = (transformCoeff4 - baseValue) * in_XMM4_Da;
-      ptransformCoeff1[1] = (baseValue + transformCoeff4) * in_XMM3_Da;
-      baseValue = ptransformCoeff1[2];
-      *(float *)(ContextHandleData + 8 + (longlong)ptransformCoeff1) = (localFloat6 - baseValue) * in_XMM4_Da;
-      ptransformCoeff1[2] = (baseValue + localFloat6) * in_XMM3_Da;
-      ptransformCoeff1 = ptransformCoeff1 + 4;
-      stringCompareIndex = stringCompareIndex + -1;
-    } while (stringCompareIndex != 0);
+      baseValue = transformDataPtr[-1];
+      transformValue = baseTransform * *(float *)(contextDataOffset + -4 + (longlong)transformDataPtr);
+      tempValue = baseTransform * *(float *)(contextDataOffset + (longlong)transformDataPtr);
+      *(float *)(contextDataOffset + -4 + (longlong)transformDataPtr) = (transformValue - baseValue) * scaleOut;
+      transformDataPtr[-1] = (baseValue + transformValue) * scaleIn;
+      baseValue = *transformDataPtr;
+      transformValue = baseTransform * *(float *)(contextDataOffset + 4 + (longlong)transformDataPtr);
+      *(float *)(contextDataOffset + (longlong)transformDataPtr) = (tempValue - baseValue) * scaleOut;
+      *transformDataPtr = (baseValue + tempValue) * scaleIn;
+      baseValue = transformDataPtr[1];
+      tempValue = baseTransform * *(float *)(contextDataOffset + 8 + (longlong)transformDataPtr);
+      *(float *)(contextDataOffset + 4 + (longlong)transformDataPtr) = (transformValue - baseValue) * scaleOut;
+      transformDataPtr[1] = (baseValue + transformValue) * scaleIn;
+      baseValue = transformDataPtr[2];
+      *(float *)(contextDataOffset + 8 + (longlong)transformDataPtr) = (tempValue - baseValue) * scaleOut;
+      transformDataPtr[2] = (baseValue + tempValue) * scaleIn;
+      transformDataPtr = transformDataPtr + 4;
+      loopCounter = loopCounter + -1;
+    } while (loopCounter != 0);
   }
   if (bufferSize < uiContext) {
-    ptransformCoeff1 = (float *)(TargetHandle + bufferSize * 4);
+    transformDataPtr = (float *)(targetHandle + bufferSize * 4);
     uiContext = uiContext - bufferSize;
     do {
-      baseValue = *ptransformCoeff1;
-      transformCoeff4 = unmodifiedXMM6_Da * *(float *)((ContextHandle - TargetHandle) + (longlong)ptransformCoeff1);
-      *(float *)((ContextHandle - TargetHandle) + (longlong)ptransformCoeff1) = (transformCoeff4 - baseValue) * in_XMM4_Da;
-      *ptransformCoeff1 = (baseValue + transformCoeff4) * in_XMM3_Da;
-      ptransformCoeff1 = ptransformCoeff1 + 1;
+      baseValue = *transformDataPtr;
+      transformValue = baseTransform * *(float *)((contextHandle - targetHandle) + (longlong)transformDataPtr);
+      *(float *)((contextHandle - targetHandle) + (longlong)transformDataPtr) = (transformValue - baseValue) * scaleOut;
+      *transformDataPtr = (baseValue + transformValue) * scaleIn;
+      transformDataPtr = transformDataPtr + 1;
       uiContext = uiContext + -1;
     } while (uiContext != 0);
   }
@@ -300000,7 +300007,7 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x80) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x80) + *(int *)(uiBufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
@@ -300009,18 +300016,18 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x90) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x90) + *(int *)(uiBufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
   }
-  FUN_18073d7c0(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
+  ProcessUIComponentState(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
   componentContextPtr = *(UIHandle **)(uiContext + 0x50);
   while( true ) {
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
     }
-    ProcessingStatus = FUN_180853e80(componentContextPtr[2],maxProcessingCount);
+    ProcessingStatus = ValidateUIComponentState(componentContextPtr[2],maxProcessingCount);
     if ((int)ProcessingStatus != 0) break;
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
@@ -306977,7 +306984,7 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x80) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x80) + *(int *)(uiBufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
@@ -306986,18 +306993,18 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x90) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x90) + *(int *)(uiBufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
   }
-  FUN_18073d7c0(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
+  ProcessUIComponentState(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
   componentContextPtr = *(UIHandle **)(uiContext + 0x50);
   while( true ) {
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
     }
-    ProcessingStatus = FUN_180853e80(componentContextPtr[2],maxProcessingCount);
+    ProcessingStatus = ValidateUIComponentState(componentContextPtr[2],maxProcessingCount);
     if ((int)ProcessingStatus != 0) break;
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
@@ -307125,7 +307132,7 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x80) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x80) + *(int *)(uiBufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
@@ -307134,18 +307141,18 @@ LAB_180853ee2:
       (*(UIHandle **)(uiContext + 0x90) <= componentContextPtr &&
       (componentContextPtr < *(UIHandle **)(uiContext + 0x90) + *(int *)(uiBufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    EventTypeCode = FUN_1808b5de0(*componentContextPtr,ProcessingStatus);
+    EventTypeCode = ProcessUIComponentEvent(*componentContextPtr,ProcessingStatus);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
     }
   }
-  FUN_18073d7c0(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
+  ProcessUIComponentState(*(UIHandle *)(uiContext + 0x78),ProcessingStatus);
   componentContextPtr = *(UIHandle **)(uiContext + 0x50);
   while( true ) {
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
     }
-    ProcessingStatus = FUN_180853e80(componentContextPtr[2],maxProcessingCount);
+    ProcessingStatus = ValidateUIComponentState(componentContextPtr[2],maxProcessingCount);
     if ((int)ProcessingStatus != 0) break;
     if (componentContextPtr == (UIHandle *)(uiContext + 0x50)) {
       return 0;
