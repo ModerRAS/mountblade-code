@@ -397299,33 +397299,35 @@ ulonglong ProcessUIDataControlValidation(longlong uiContext,longlong *dataSource
     return processingStatus;
   }
   if (*(int *)(dataSource[1] + 0x18) == 0) {
+    // 验证第一层上下文
     iterationCount = FUN_180899ef0(*dataSource,uiContext + 0x10);
-    ProcessingStatus = (ulonglong)iterationCount;
+    processingStatus = (ulonglong)iterationCount;
     if (iterationCount == 0) {
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
+      // 验证第二层上下文
       iterationCount = FUN_180899ef0(*dataSource,uiContext + 0x20);
-      ProcessingStatus = (ulonglong)iterationCount;
+      processingStatus = (ulonglong)iterationCount;
       if (iterationCount == 0) {
-        ProcessingStatus = 0x1c;
+        processingStatus = 0x1c;
         iterationCount = 0;
         if ((*(uint *)(dataSource + 8) < 0x5a) && (iterationCount = 0x1c, *(int *)(dataSource[1] + 0x18) == 0)) {
-          astackUInt58[0] = stackUInt50;
+          validationBuffer[0] = controlDataValue1;
           allocatedMemory = *dataSource;
           iterationCount = (**(code **)**(UIHandle **)(allocatedMemory + 8))
-                            (*(UIHandle **)(allocatedMemory + 8),astackUInt58,4);
+                            (*(UIHandle **)(allocatedMemory + 8),validationBuffer,4);
           if (iterationCount == 0) {
-            bufferValidation[0] = (UIWord)stackUInt4c;
+            bufferValidationData[0] = (UIWord)controlDataValue2;
             iterationCount = (**(code **)**(UIHandle **)(allocatedMemory + 8))
-                              (*(UIHandle **)(allocatedMemory + 8),bufferValidation,2);
+                              (*(UIHandle **)(allocatedMemory + 8),bufferValidationData,2);
             if (iterationCount == 0) {
-              stackBuffer[0] = stackUInt4c._2_2_;
+              stackBufferData[0] = controlDataValue2._2_2_;
               iterationCount = (**(code **)**(UIHandle **)(allocatedMemory + 8))
-                                (*(UIHandle **)(allocatedMemory + 8),stackBuffer,2);
+                                (*(UIHandle **)(allocatedMemory + 8),stackBufferData,2);
               if (iterationCount == 0) {
                 iterationCount = (**(code **)**(UIHandle **)(allocatedMemory + 8))
-                                  (*(UIHandle **)(allocatedMemory + 8),&stackUInt48,8);
+                                  (*(UIHandle **)(allocatedMemory + 8),&controlDataValue3,8);
               }
             }
           }
@@ -397335,19 +397337,19 @@ ulonglong ProcessUIDataControlValidation(longlong uiContext,longlong *dataSource
         }
         if (*(int *)(dataSource[1] + 0x18) == 0) {
           iterationCount = FUN_180899ef0(*dataSource,uiContext + 0x30);
-          ProcessingStatus = (ulonglong)iterationCount;
+          processingStatus = (ulonglong)iterationCount;
           if (iterationCount == 0) {
-            ProcessingStatus = FUN_180898e70(dataSource,uiContext + 0x40);
-            if ((int)ProcessingStatus != 0) {
-              return ProcessingStatus;
+            processingStatus = FUN_180898e70(dataSource,uiContext + 0x40);
+            if ((int)processingStatus != 0) {
+              return processingStatus;
             }
                      WARNING: Subroutine does not return
-            FUN_1808de000(dataSource,astackUInt40);
+            FUN_1808de000(dataSource,processingBuffer);
           }
         }
       }
     }
-    return ProcessingStatus;
+    return processingStatus;
   }
   return 0x1c;
 }
