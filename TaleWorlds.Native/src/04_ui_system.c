@@ -69285,7 +69285,7 @@ LAB_18069fcfe:
       if (localInt8 == 0) {
         sVar7 = GetUIComponentStatusValue(allocatedMemory,stackUInt58);
         *(short *)(targetBuffer + 4) = sVar7 * 2;
-        sVar7 = FUN_18069ff30(allocatedMemory,EventDataIndex + 0x13);
+        sVar7 = GetUIComponentStatusValue(allocatedMemory,EventDataIndex + 0x13);
         *(short *)(targetBuffer + 6) = sVar7 * 2;
         *(short *)(targetBuffer + 4) =
              *(short *)(targetBuffer + 4) + *(short *)((longlong)&stackUInt68 + stackUInt98);
@@ -69304,7 +69304,7 @@ LAB_18069fcfe:
         pcStack_d8 = targetBuffer;
         stackIntb0 = localInt9;
         stackInta8 = ProcessingResult3;
-        FUN_18069ef30(allocatedMemory,stackLong70,dataPointer,plocalChar4);
+        ProcessUIEventData(allocatedMemory,stackLong70,dataPointer,plocalChar4);
         *(UIDword *)(targetBuffer + 4) = *(UIDword *)(allocatedMemory2 + 0x48);
         *targetBuffer = '\t';
         targetBuffer[3] = '\x01';
@@ -70409,7 +70409,7 @@ void ProcessUIDataEncryption(UIHandle uiContext,UIHandle dataSource,UIDword targ
   encryptedTargetBuffer = targetBuffer;
   encryptedContext = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  ProcessUISystemMemoryOperation(0xffffffffffffff0);
 }
 
 
@@ -71013,7 +71013,7 @@ void ProcessUIAnimationData(longlong *uiContext,UIHandle dataSource,UIHandle tar
   pstackLonga8 = uiContext;
   stackUInt98 = targetBuffer;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  ProcessUISystemMemoryOperation(0xffffffffffffff0);
 }
 
 
@@ -72130,7 +72130,7 @@ LAB_180705c37:
       EventOperationCount = *(int *)((longlong)uiContext + 0x11dc) * 1000;
       stackInt60 = *(int *)((longlong)uiContext + 0x11dc) * stackInt78 * 10;
                      WARNING: Subroutine does not return
-      FUN_1808fd200((longlong)((*(int *)(uiBufferData + 0x239) * stackInt60) / EventOperationCount) * 2,
+      ProcessUISystemMemoryOperation((longlong)((*(int *)(uiBufferData + 0x239) * stackInt60) / EventOperationCount) * 2,
                     (longlong)(*(int *)(uiBufferData + 0x239) * stackInt60) % (longlong)EventOperationCount &
                     0xffffffff);
     }
@@ -75396,7 +75396,7 @@ LAB_18070d1ad:
                 ProcessingResult1);
   stackLong148 = localLong7 * 4;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  ProcessUISystemMemoryOperation(0xffffffffffffff0);
 }
 
 
@@ -106344,7 +106344,7 @@ void FUN_180730e60(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   stackUInt88 = bufferSize;
   stackUInt58 = uiContext;
                      WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  ProcessUISystemMemoryOperation(0xffffffffffffff0);
 }
 
 
@@ -257234,7 +257234,7 @@ void FUN_180829400(UIHandle uiContext,UIHandle dataSource)
   astackUInt48[0] = 0;
   FUN_18080b990(dataSource,5);
                      WARNING: Subroutine does not return
-  FUN_1808fd200(0xffffffffffffff0);
+  ProcessUISystemMemoryOperation(0xffffffffffffff0);
 }
 
 

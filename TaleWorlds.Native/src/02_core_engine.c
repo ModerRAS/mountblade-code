@@ -195905,7 +195905,7 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *
       *(uint8_t *)((uint32_t *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0;
       *(int *)(CharacterCode + 2) = IntegerValue9 + 0xd;
       DataSize = ProcessSystemDataAndContext(CoreEngineMemoryContext,&ContextDataPointer,&EnginePointerBuffer,Utf16EndPointer,ProcessedCharacter);
-      FUN_180628320(CharacterCode,DataSize);
+      ProcessSystemCharacterEncodingConversion(CharacterCode,DataSize);
       ContextDataPointer = &SystemNullTemplate;
       if (MemoryOperationStatus != 0) {
                     // WARNING: Subroutine does not return
@@ -195969,7 +195969,7 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *
     }
     BufferStatus = strstr(StringProcessingStatus,&SystemCurrentCharacterQuinary);
     if (BufferStatus == 0) {
-      FUN_1800af2c0(CoreEngineMemoryContext,&EnginePointerBuffer,&ContextDataPointer);
+      ProcessSystemCoreEngineMemoryContext(CoreEngineMemoryContext,&EnginePointerBuffer,&ContextDataPointer);
     }
     else {
       ProcessedCharacter = atoi(MemoryOperationStatus);
@@ -196001,7 +196001,7 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *
     else {
       DataSize = 1;
     }
-    FUN_180103970(VectorRegisterDa_00,DataSize);
+    ProcessVectorRegisterData(VectorRegisterDa_00,DataSize);
     SystemOperationResult = *(int *)(CharacterCode + 2);
     CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9 + 0x23);
     StringProcessingStatus = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
@@ -196158,7 +196158,7 @@ ValidateSystemState(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long 
   }
   else {
     CoreEngineExecuteSystemEvent(&ContextDataPointer);
-    FUN_1800af2c0(SystemConfigData,&EnginePointerBuffer,&ContextDataPointer,Utf16EndPointer,ProcessingStatusFlag);
+    ProcessSystemCoreEngineMemoryContext(SystemConfigData,&EnginePointerBuffer,&ContextDataPointer,Utf16EndPointer,ProcessingStatusFlag);
     ValidationResult = *(int *)(CharacterCode + 2);
     CoreEngineProcessSystemEvent(CharacterCode,ValidationResult + 0x23);
     SystemEventTemplatePointer = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + CharacterCode[1]);
