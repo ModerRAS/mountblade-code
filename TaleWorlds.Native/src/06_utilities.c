@@ -97602,6 +97602,17 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
 
 
 
+/**
+ * @brief 异常上下文处理函数D280
+ * 
+ * 该函数处理异常上下文中的内存资源，包括内存资源引用计数管理、
+ * 内存块偏移计算、内存区域验证和异常处理。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d280
+ */
 void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
