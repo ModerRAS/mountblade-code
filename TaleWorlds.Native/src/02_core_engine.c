@@ -1289,9 +1289,9 @@
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
 #define lStackX_10 StackLongValue10                         // 栈长整型值10
 #define uStackX_20 StackUnsignedValue20                     // 栈无符号值20
-#define SystemDataTablePointerA8_3 SystemDataTablePointerA8_3     // 系统数据表指针A8_3
-#define SystemDataTablePointer90_2 SystemDataTablePointer90_2     // 系统数据表指针90_2
-#define SystemDataTablePointerB8_3 SystemDataTablePointerB8_3     // 系统数据表指针B8_3
+#define SystemMessageTemplatePointer pSystemValue1c8             // 系统消息模板指针
+#define SystemSecondaryMessageTemplate SystemPointerBuffer1d0    // 系统次消息模板指针
+#define SystemDataTemplatePointer SystemPointerBuffer1d8        // 系统数据模板指针
 #define fStack_48 StackPrimaryFloat                        // 栈主浮点值
 #define fStack_44 StackSecondaryFloat                      // 栈次浮点值
 #define fStack_40 StackTertiaryFloat                       // 栈第三浮点值
@@ -40006,9 +40006,9 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
       if (EncodingValidationResult == 4) goto SystemConfigurationComplete;
     }
     else if (*(char *)(SystemConfigHandle + 0x18) != '\0') {
-      pSystemValue1c8 = &MessageBoxTemplateAA0;
-      SystemPointerBuffer1d0 = &MessageBoxTemplateB24;
-      SystemPointerBuffer1d8 = &SystemDataTemplate4F08;
+      SystemMessageTemplatePointer = &MessageBoxTemplateAA0;
+      SystemSecondaryMessageTemplate = &MessageBoxTemplateB24;
+      SystemDataTemplatePointer = &SystemDataTemplate4F08;
       ValidateSystemConfiguration(SystemConfigHandle,3,0xffffffff00000000,0xd);
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB28);
@@ -40050,19 +40050,19 @@ SystemConfigurationComplete: // 原始标签：LAB_18006650a
     }
     ProcessSystemContextConfiguration(&DataContentPointer,&ProcessInfoTemplate,DataSize / 0x100000 & 0xffffffff);
     ConfigureSystemParameters(SystemConfigHandle,5,3,&ValidationConfigBuffer);
-    SystemPointerBuffer1d8 = &CoreEngineDataTemplate;
+    SystemDataTemplatePointer = &CoreEngineDataTemplate;
     if (CharacterDataBuffer != NULL) {
-      SystemPointerBuffer1d8 = CharacterDataBuffer;
+      SystemDataTemplatePointer = CharacterDataBuffer;
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB58);
-    SystemPointerBuffer1d8 = &CoreEngineDataTemplate;
+    SystemDataTemplatePointer = &CoreEngineDataTemplate;
     if (SystemPointerValue170 != NULL) {
-      SystemPointerBuffer1d8 = SystemPointerValue170;
+      SystemDataTemplatePointer = SystemPointerValue170;
     }
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB70);
-    SystemPointerBuffer1d8 = &CoreEngineDataTemplate;
+    SystemDataTemplatePointer = &CoreEngineDataTemplate;
     ConfigureSystemParameters(SystemConfigHandle,5,3,&SystemConfigTemplateB88);
-    SystemPointerBuffer1d8 = &CoreEngineDataTemplate;
+    SystemDataTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPointer != NULL) {
       SystemPointerBuffer1d8 = SystemCharacterStatusBufferPointer;
     }
