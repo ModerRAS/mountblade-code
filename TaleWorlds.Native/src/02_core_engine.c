@@ -388,6 +388,7 @@
 // 字符代码内存分配和验证函数
 #define ProcessCharacterCodeMemoryAllocationAndValidation FUN_180158990 // 处理字符代码内存分配和验证
 #define ProcessSystemBufferCleanupAndFinalization FUN_1801595d0        // 处理系统缓冲区清理和最终化
+#define ProcessCharacterCodeWithMutexLockAndValidation FUN_180159210   // 处理带互斥锁和验证的字符代码
 #define ProcessUtf8CharacterAdvancedEncoding FUN_18016f7d0  // 高级UTF-8字符编码处理
 #define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
 
@@ -190006,12 +190007,20 @@ LAB_180158962:
 
 
 
-long long * FUN_180158990(long long CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
+/**
+ * @brief 处理字符编码和内存分配验证
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @return 内存分配状态指针
+ * @note 该函数处理字符编码验证和内存分配状态检查
+ */
+long long * ProcessCharacterEncodingAndMemoryValidation(long long CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
   int MemoryMatchResult;
-  int *pEncodingValidationResult;
+  int *EncodingValidationPointer;
   long long AllocatedMemorySize;
   
   InputDataLength = _Mtx_lock(CharacterCode + 0xd0);
@@ -190417,9 +190426,18 @@ LAB_18015906f:
 
 
 
-long long * FUN_180159210(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF8到UTF16字符编码转换
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 字符代码指针
+ * @note 该函数处理UTF8到UTF16的字符编码转换
+ */
+long long * ProcessUtf8ToUtf16CharacterEncoding(long long CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
   int StringComparisonResult;
   uint32_t UnicodeCodePoint;
   uint64_t MemoryAddressMaskPointer;
@@ -190439,7 +190457,7 @@ long long * FUN_180159210(long long CharacterCode,long long *CharacterCodeSize,u
     if (CharacterCode != (long long *)0x0) {
       (**(code **)(*CharacterCode + 0x28))(CharacterCode);
     }
-    FUN_1800b8630(CharacterCode + 0x168,(long long)StringComparisonResult + -1,Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint,MemoryAddressMaskPointer);
+    ProcessSystemCharacterDataValidationAndConversion(CharacterCode + 0x168,(long long)StringComparisonResult + -1,Utf8SourcePointer,Utf16EndPointer,UnicodeCodePoint,MemoryAddressMaskPointer);
     *CharacterCodeSize = (long long)CharacterCode;
   }
   StringComparisonResult = _Mtx_unlock(CharacterCode + 0xd0);
@@ -190583,39 +190601,55 @@ void ProcessCharacterEncodingConversionAndMemoryManagement(long long CharacterCo
 
 
 
-595d0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_1801595d0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 初始化系统编码处理模块
+ * 
+ * 该函数负责初始化系统的编码处理模块，包括：
+ * - 设置编码密钥和解码缓冲区
+ * - 初始化系统优先级和函数地址
+ * - 配置处理标志和系统事件
+ * - 执行系统初始化的最终步骤
+ * 
+ * @param CharacterCode 字符代码，用于编码处理的输入
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和管理
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801595d0
+ * @warning 该函数包含不返回的子程序调用
+ */
+void InitializeSystemEncodingProcessingModule(uint64_t CharacterCode, long long SystemBufferSize)
 {
   int LockResult;
-  uint8_t aStackProcessingUnsignedValue78 [32];
+  uint8_t StackValidationBuffer[32];
   uint32_t BufferOffset;
   uint64_t SystemKeyPointer;
   long long CoreEngineSignedValue48;
   void *pSystemPriorityLevel;
   uint8_t *pFunctionAddress;
   uint32_t ProcessingFlags;
-  uint8_t aStackValidationFlag28 [16];
-  unsigned long long uStack_18;
+  uint8_t StackValidationFlag[16];
+  unsigned long long StackUnsignedValue18;
   
   SystemKeyPointer = 0xfffffffffffffffe;
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   BufferOffset = 0;
   pSystemPriorityLevel = &UnknownDataStructureTemplate;
-  pFunctionAddress = aStackValidationFlag28;
-  aStackValidationFlag28[0] = 0;
+  pFunctionAddress = StackValidationFlag;
+  StackValidationFlag[0] = 0;
   ProcessingFlags = 6;
   CoreEngineSignedValue48 = SystemBufferSize;
-  strcpy_s(aStackValidationFlag28,0x10,&SystemStringTemplate);
+  strcpy_s(StackValidationFlag, 0x10, &SystemStringTemplate);
   BufferOffset = 2;
-  CoreEngineFinalizeSystemEvent(SystemBufferSize,&pSystemPriorityLevel);
+  CoreEngineFinalizeSystemEvent(SystemBufferSize, &pSystemPriorityLevel);
   BufferOffset = 1;
   pSystemPriorityLevel = &ThreadLocalStorageTemplate;
   IntegerValue = *(int *)(SystemBufferSize + 0x10) + 7;
-  CoreEngineProcessSystemEvent(SystemBufferSize,IntegerValue);
+  CoreEngineProcessSystemEvent(SystemBufferSize, IntegerValue);
   *(void *)((unsigned long long)*(uint *)(SystemBufferSize + 0x10) + *(long long *)(SystemBufferSize + 8)) =
        0x2f73646e756f53;
   *(int *)(SystemBufferSize + 0x10) = IntegerValue;
-                    // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue78);
+  // WARNING: Subroutine does not return
+  CoreEngineExecuteUtilityFunction(StackUnsignedValue18 ^ (unsigned long long)StackValidationBuffer);
 }
 
 
@@ -190639,16 +190673,33 @@ long long FUN_1801596c0(uint64_t CharacterCode,long long SystemBufferSize,uint64
 
 
 
-long long FUN_180159730(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 配置系统字符数据结构模板
+ * 
+ * 该函数负责配置系统字符数据结构模板，包括：
+ * - 初始化系统编码处理模块
+ * - 设置字符串比较结果偏移量
+ * - 处理系统事件和状态缓冲区
+ * - 配置字符数据结构模板的初始值
+ * 
+ * @param CharacterCode 字符代码，用于数据结构配置
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和管理
+ * @param Utf8SourcePointer UTF-8源指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，指向目标数据
+ * @return long long 返回处理后的系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180159730
+ */
+long long ConfigureSystemCharacterDataStructureTemplate(uint64_t CharacterCode, long long SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
   uint64_t UnicodeCodePoint;
   
   UnicodeCodePoint = 0xfffffffffffffffe;
-  FUN_1801595d0();
+  InitializeSystemEncodingProcessingModule(CharacterCode, SystemBufferSize);
   StringComparisonResult = *(int *)(SystemBufferSize + 0x10) + 0x13;
-  CoreEngineProcessSystemEvent(SystemBufferSize,StringComparisonResult,Utf8SourcePointer,Utf16EndPointer,1,UnicodeCodePoint);
+  CoreEngineProcessSystemEvent(SystemBufferSize, StringComparisonResult, Utf8SourcePointer, Utf16EndPointer, 1, UnicodeCodePoint);
   CharacterStatusBuffer = (void *)((unsigned long long)*(uint *)(SystemBufferSize + 0x10) + *(long long *)(SystemBufferSize + 8));
   *CharacterStatusBuffer = 0x746144646e756f53;
   CharacterStatusBuffer[1] = 0x732e6e65672e7361;
@@ -195740,16 +195791,24 @@ LAB_180161f28:
 
 
 
-long long * FUN_180161f80(long long CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符编码和内存块管理
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @return 内存块索引指针
+ * @note 该函数处理字符编码验证和内存块分配管理
+ */
+long long * ProcessCharacterEncodingAndMemoryManagement(long long CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer
 {
-  long long *CharacterCode;
-  long long BufferStatus;
+  long long *CharacterCodePointer;
+  long long BufferValidationStatus;
   long long *MemoryBlockIndex;
   uint8_t *MemoryAddressMaskPointer;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
   void *StringProcessingStatus;
-  long long *pStringOffset;
+  long long *StringOffsetPointer;
   unsigned long long Utf16Char;
   unsigned long long ProcessedCharacter;
   unsigned long long SystemStatusCode;
