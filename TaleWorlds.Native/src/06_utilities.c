@@ -89950,7 +89950,7 @@ void SetDefaultExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionContextHandler0e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x300) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset300) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -89969,7 +89969,7 @@ void ExceptionContextHandler0e0(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionContextHandler0f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + SystemDataRecordOffset3c0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset3c0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -90032,7 +90032,7 @@ void ExceptionContextHandler100(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerAtOffset300(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x300) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset300) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -90054,7 +90054,7 @@ void SetDefaultExceptionHandlerAtOffset300(DataBuffer operationBase,int64_t data
 void SetDefaultExceptionHandlerAtOffset3C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + SystemDataRecordOffset3c0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset3c0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -93710,7 +93710,7 @@ void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x300) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset300) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -93917,7 +93917,7 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
       }
     }
   }
-  *(uint8_t **)(dataBuffer + SystemDataRecordOffset3c0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset3c0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
