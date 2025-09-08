@@ -212162,7 +212162,7 @@ LAB_1801780ed:
     SecondaryProcessingStatusFlag = aSystemPriorityLevel;
     do {
       MemoryAddressMaskPointer = (**(code **)(**(long long **)(SystemBufferSize + 0x148) + 0xa0)                        (*(long long **)(SystemBufferSize + 0x148),CalculatedCodePoint);
-      MemoryAddressMaskPointer = FUN_180179480(BufferStatus + 0x228,MemoryAddressMaskPointer,0);
+      MemoryAddressMaskPointer = ProcessMemoryAddressMaskAndBufferStatus(BufferStatus + 0x228,MemoryAddressMaskPointer,0);
       CalculatedCodePoint = CalculatedCodePoint + 1;
       *SecondaryProcessingStatusFlag = MemoryAddressMaskPointer;
       SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 1;
@@ -212171,7 +212171,7 @@ LAB_1801780ed:
   CharacterCode = *(long long **)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x8400);
   (**(code **)(*CharacterCode + 0x40))(CharacterCode,0x2c,UnicodeCodePoint,aSystemPriorityLevel);
   MemoryAddressMaskPointer = (**(code **)(**(long long **)(SystemBufferSize + 0x148) + 0xb0))(*(long long **)(SystemBufferSize + 0x148),0);
-  SystemStackFlag = FUN_180179480(BufferStatus + 0x228,MemoryAddressMaskPointer,0);
+  SystemStackFlag = ProcessMemoryAddressMaskAndBufferStatus(BufferStatus + 0x228,MemoryAddressMaskPointer,0);
   CharacterCode = *(long long **)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x8400);
   (**(code **)(*CharacterCode + 0x40))(CharacterCode,0x2f,1,&SystemStackFlag);
                     // WARNING: Subroutine does not return
