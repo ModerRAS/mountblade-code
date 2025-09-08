@@ -86242,6 +86242,10 @@ void ExceptionUnwindHandlerA32(DataBuffer operationBase,int64_t dataBuffer)
 // 功能：异常展开清理函数A33
 #define ExceptionUnwindHandlerA33 Unwind_18090b310
 
+// 原始函数名：Unwind_18090b330 - 异常上下文处理器调用函数A34
+// 功能：调用异常上下文中偏移量0x3c0处的处理器函数
+#define InvokeExceptionHandlerAtOffset3C0 Unwind_18090b330
+
 void ExceptionUnwindHandlerA33(DataBuffer operationBase,int64_t dataBuffer)
 
 {
