@@ -98,6 +98,9 @@ typedef enum {
  // UI系统函数宏定义 - 清理UI资源
 #define CleanupUIResources FUN_1807058d0
 
+ // UI系统函数宏定义 - 计算UI组件内存偏移量
+#define CalculateUIComponentMemoryOffset FUN_18070e140
+
  // UI系统函数宏定义 - 处理UI组件数据
 #define ProcessUIComponentData FUN_180705980
 
