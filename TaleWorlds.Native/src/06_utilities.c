@@ -29552,7 +29552,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
             }
           }
           if ((((((operationResult & 0x20) == 0) ||
-                (memoryRegionBase = ValidateSystemConfigurationA1(operationBase,dataBuffer + 0x268), (int)memoryRegionBase == 0)) &&
+                (memoryRegionBase = ValidateSystemConfigurationA1(operationBase,dataBuffer + DataBufferSystemOffset268), (int)memoryRegionBase == 0)) &&
                (((operationResult & 0x40) == 0 ||
                 ((memoryRegionBase = ProcessDataOperationA4(operationBase,dataBuffer + SystemDataValidationOffset34), (int)memoryRegionBase == 0 &&
                  (memoryRegionBase = ProcessDataOperationA4(operationBase,dataBuffer + SystemFloatDataOffset38), (int)memoryRegionBase == 0)))))) &&
@@ -67255,7 +67255,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x268);
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferSystemOffset268);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
