@@ -100965,21 +100965,21 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
 
 {
   ulonglong contextOperationResult;
-  ulonglong processCounter;
-  short contextValue;
-  short tempValue1;
-  short tempValue2;
-  uint maxIterations;
-  UIByte aprocessingCounter [12];
-  UIByte aeventProcessingCounter [12];
-  UIByte aeventProcessingStatus [12];
-  UIByte aresult0 [12];
-  uint result1;
-  float *pbaseValue2;
-  ulonglong result3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  ulonglong TotalResult;
+  ulonglong dataProcessCounter;
+  short contextStatusValue;
+  short tempContextValue1;
+  short tempContextValue2;
+  uint maxProcessingIterations;
+  UIByte processingCounterBuffer [12];
+  UIByte eventProcessingCounterBuffer [12];
+  UIByte eventProcessingStatusBuffer [12];
+  UIByte resultBuffer0 [12];
+  uint processingResult1;
+  float *baseValuePointer;
+  ulonglong iterationResult;
+  longlong memoryAllocation4;
+  longlong memoryAllocation5;
+  ulonglong totalOperationResult;
   UIByte aresult7 [16];
   UIByte aiterationCount1 [16];
   UIByte aiterationCount4 [16];
