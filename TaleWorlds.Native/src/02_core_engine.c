@@ -12100,7 +12100,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
   NetworkSyncHandler = 0;
   CurrentSyncNode = SyncPoolPointer;
   PreviousSyncNode = (void *)SyncPoolPointer[1];
-  while (SyncCurrentCharacter == '\0') {
+  while (NetworkSyncStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousSyncNode + 4,&SystemComparisonDataOctonary,0x10);
     if (ComparisonResult < 0) {
       NextSyncNode = (void *)PreviousSyncNode[2];
@@ -12111,7 +12111,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
     }
     CurrentSyncNode = PreviousSyncNode;
     PreviousSyncNode = NextSyncNode;
-    SyncCurrentCharacter = *(char *)((long long)NextSyncNode + SystemNodeStatusOffset);
+    NetworkSyncStatusFlag = *(char *)((long long)NextSyncNode + SystemNodeStatusOffset);
   }
   if ((CurrentSyncNode == SyncPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataOctonary,CurrentSyncNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
@@ -12212,7 +12212,7 @@ int InitializeSystemProcessingStatusFlags(void)
  */
 void CoreEngineInitializeNetworkStatusMonitor(void
 {
-  char MonitorCurrentCharacter;
+  char NetworkMonitorStatusFlag;
   void *MonitorPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12225,11 +12225,11 @@ void CoreEngineInitializeNetworkStatusMonitor(void
   
   SystemHandle = (long long *)CoreEngineGetNetworkSystemHandle();
   MonitorPoolPointer = (void *)*SystemHandle;
-  MonitorCurrentCharacter = *(char *)((long long)MonitorPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkMonitorStatusFlag = *(char *)((long long)MonitorPoolPointer[1] + SystemNodeStatusOffset);
   StatusCallbackFunction = CoreEngineGetStatusMonitorCallback();
   CurrentMonitorNode = MonitorPoolPointer;
   PreviousMonitorNode = (void *)MonitorPoolPointer[1];
-  while (MonitorCurrentCharacter == '\0') {
+  while (NetworkMonitorStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousMonitorNode + 4,&SystemMonitorComparisonData,0x10);
     if (ComparisonResult < 0) {
       NextMonitorNode = (void *)PreviousMonitorNode[2];
@@ -12240,7 +12240,7 @@ void CoreEngineInitializeNetworkStatusMonitor(void
     }
     CurrentMonitorNode = PreviousMonitorNode;
     PreviousMonitorNode = NextMonitorNode;
-    MonitorCurrentCharacter = *(char *)((long long)NextMonitorNode + SystemNodeStatusOffset);
+    NetworkMonitorStatusFlag = *(char *)((long long)NextMonitorNode + SystemNodeStatusOffset);
   }
   if ((CurrentMonitorNode == MonitorPoolPointer) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentMonitorNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
@@ -12488,7 +12488,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
  */
 void InitializeGameDataStructureNode(void
 {
-  char GameDataNodeCurrentCharacter;
+  char GameDataNodeStatusFlag;
   void *GameSystemDataNode;
   int ComparisonResult;
   long long *SystemContext;
@@ -12501,11 +12501,11 @@ void InitializeGameDataStructureNode(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   GameSystemDataNode = (void *)*SystemContext;
-  GameDataNodeCurrentCharacter = *(char *)((long long)GameSystemDataNode[1] + SystemNodeStatusOffset);
+  GameDataNodeStatusFlag = *(char *)((long long)GameSystemDataNode[1] + SystemNodeStatusOffset);
   GameDataInitializationFunction = CoreEngineGetConnectionInitializer;
   CurrentGameDataNode = GameSystemDataNode;
   PreviousGameDataNode = (void *)GameSystemDataNode[1];
-  while (GameDataNodeCurrentCharacter == '\0') {
+  while (GameDataNodeStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousGameDataNode + 4,&SystemComparisonDataTertiary,0x10);
     if (ComparisonResult < 0) {
       NextGameDataNode = (void *)PreviousGameDataNode[2];
@@ -12516,7 +12516,7 @@ void InitializeGameDataStructureNode(void
     }
     CurrentGameDataNode = PreviousGameDataNode;
     PreviousGameDataNode = NextGameDataNode;
-    GameDataNodeCurrentCharacter = *(char *)((long long)NextGameDataNode + SystemNodeStatusOffset);
+    GameDataNodeStatusFlag = *(char *)((long long)NextGameDataNode + SystemNodeStatusOffset);
   }
   if ((CurrentGameDataNode == GameSystemDataNode) || (ComparisonResult = memcmp(&SystemComparisonDataTertiary,CurrentGameDataNode + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineAllocateMemory(SystemContext);
