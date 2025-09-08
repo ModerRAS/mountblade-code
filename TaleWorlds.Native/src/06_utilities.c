@@ -17599,7 +17599,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   }
   
   // 验证并处理系统资源
-  operationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + (int64_t)dataIndex * 0x18, systemContext + 0x1c);
+  operationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + (int64_t)dataIndex * 0x18, systemContext + SystemContextSecondaryOffset1c);
   if ((int)operationStatus != 0) {
     return operationStatus;
   }
