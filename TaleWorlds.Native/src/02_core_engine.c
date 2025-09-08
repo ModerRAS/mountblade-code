@@ -200849,7 +200849,7 @@ void ConvertUtf8ToUtf16AndManageSystemBuffer(uint64_t CharacterCode, long long S
   }
   else {
     SystemKeyPointer = 1;
-    FUN_18016cff0(MemoryBlockIndex,aStackProcessingValue);
+    ProcessMemoryBlockAndStackValue(MemoryBlockIndex,aStackProcessingValue);
   }
   EncodingBuffer = &SystemNullTemplate;
   if (SystemStackRegister58 != 0) {
@@ -201048,7 +201048,7 @@ void ConfigureSystemCharacterStatusBuffer(long long CharacterCode)
         }
       }
     }
-    MemoryAllocationIndex9 = FUN_180629b30(&pProcessingCounter);
+    MemoryAllocationIndex9 = CleanupSystemBuffer(&pProcessingCounter);
     pSystemEventTemplatePointer = (uint64_t **)FUN_180169f60(MemoryAllocationIndex9,&StackProcessingVariableBuffer,&pProcessingCounter);
     puStackX_20 = pErrorCode;
     CharacterStatusBuffer5 = pErrorCode;
