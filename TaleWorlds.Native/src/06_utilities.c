@@ -91014,6 +91014,14 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统资源计数器递减并执行函数A0
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程。
+ * 
+ * @note 原始函数名：Unwind_18090ca50
+ */
 void Unwind_18090ca50(void)
 
 {
@@ -91025,6 +91033,14 @@ void Unwind_18090ca50(void)
 
 
 
+/**
+ * @brief 系统资源计数器递减并执行函数A1
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的另一个实现。
+ * 
+ * @note 原始函数名：Unwind_18090ca60
+ */
 void Unwind_18090ca60(void)
 
 {
@@ -124215,6 +124231,13 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteSystemRecoveryDC0 Unwind_180909dc0
 #define HandleSystemExceptionDE0 Unwind_180909de0
 #define ProcessSystemCleanupF20 Unwind_180909f20
+
+// 系统资源计数器管理函数
+#define DecrementSystemResourceCounterAndExecuteFunctionA0 Unwind_18090ca50
+#define DecrementSystemResourceCounterAndExecuteFunctionA1 Unwind_18090ca60
+#define ProcessSystemResourceCleanupAndValidation Unwind_18090ca70
+#define SetDefaultExceptionHandlerAtOffset540 Unwind_18090ca80
+#define DecrementSystemResourceCounterAndExecuteFunctionA2 Unwind_18090ca90
 
 // 系统资源表清理和异常处理函数
 #define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0

@@ -267,6 +267,15 @@
 #define ProcessCharacterStatusValidationAndMemoryManagement FUN_180150ae0
 
 // 系统字符编码转换和处理函数宏定义
+// 系统窗口和UI处理函数
+#define ProcessSystemWindowAndUIInitialization FUN_180173c40    // 系统窗口和UI初始化处理
+#define ProcessSystemWindowOperation FUN_180173950            // 系统窗口操作处理
+#define ProcessSystemWindowSecondaryOperation FUN_180173ab0    // 系统窗口次要操作处理
+#define ProcessSystemMemoryAllocation FUN_1801720a0            // 系统内存分配处理
+#define ProcessSystemWindowParameter FUN_180173be0              // 系统窗口参数处理
+#define ProcessSystemCharacterBuffer FUN_180173720              // 系统字符缓冲区处理
+#define ProcessCharacterDataWithCodePointer FUN_180173470       // 处理带代码指针的字符数据
+
 #define ProcessSystemCharacterEncodingAndConversion FUN_180166dd0  // 系统字符编码转换和处理函数
 
 /**
@@ -205808,7 +205817,7 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
   unsigned long long EncodedOperationKey;             // 编码操作密钥
   
   ProcessingFlags = 0x180170e65;
-  FUN_180173c40(*(void *)(CharacterCode + 0xc0));
+  ProcessSystemWindowAndUIInitialization(*(void *)(CharacterCode + 0xc0));
   MemoryBlockIndex = *(long long *)(CharacterCode + 0xc0);
   EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   WindowPositionX = 0;
@@ -205897,11 +205906,11 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
   EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemValidationBuffer;
   switch(*(uint32_t *)(CharacterCode + 0x28)) {
   case 0:
-    FUN_180173950(*(void *)(CharacterCode + 0x20),*(void *)(CharacterCode + 0x30));
+    ProcessSystemWindowOperation(*(void *)(CharacterCode + 0x20),*(void *)(CharacterCode + 0x30));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 1:
-    FUN_180173ab0(*(long long *)(CharacterCode + 0x20),*(long long *)(CharacterCode + 0x20) + 0x148);
+    ProcessSystemWindowSecondaryOperation(*(long long *)(CharacterCode + 0x20),*(long long *)(CharacterCode + 0x20) + 0x148);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 2:
@@ -205967,12 +205976,12 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 9:
-    MemoryAllocationIndex = FUN_1801720a0(*(void *)(CharacterCode + 0x20),*(uint32_t *)(CharacterCode + 0x30));
+    MemoryAllocationIndex = ProcessSystemMemoryAllocation(*(void *)(CharacterCode + 0x20),*(uint32_t *)(CharacterCode + 0x30));
     *(uint8_t *)(*(long long )(CharacterCode + 0x20) + 0x168) = MemoryAllocationIndex;
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 10:
-    FUN_180173be0(*(void *)(CharacterCode + 0x20),*(uint8_t *)(CharacterCode + 0x30),
+    ProcessSystemWindowParameter(*(void *)(CharacterCode + 0x20),*(uint8_t *)(CharacterCode + 0x30),
                   *(uint32_t *)(CharacterCode + 0x34));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
@@ -208486,7 +208495,16 @@ void ConvertCharacterEncodingA0(void)
 
 
 
-73c40(long long CharacterCodevoid FUN_180173c40(long long CharacterCode
+/**
+ * @brief 字符编码状态和窗口管理处理函数
+ * 
+ * 处理字符编码状态并管理系统窗口属性，包括窗口位置、大小和系统资源管理
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_180173c40
+ */
+void ProcessCharacterEncodingAndWindowManagement(long long CharacterCode)
 {
   long long PrimaryDataSize;
   int StringComparisonResult;

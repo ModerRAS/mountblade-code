@@ -79652,34 +79652,45 @@ void ProcessUIComponentTransform(int *uiContext,float *dataSource,UIHandle targe
 
 
 
- void FUN_180711351(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180711351(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-
+ /**
+ * @brief 处理UI矩阵变换和向量计算
+ * 
+ * 该函数执行UI系统中的矩阵变换和向量计算，主要用于UI元素的变换和渲染。
+ * 函数通过SIMD指令优化处理大量向量数据，计算UI元素的变换矩阵。
+ * 
+ * @param UiContext UI上下文指针，包含变换矩阵数据
+ * @param DataSource 数据源句柄，包含输入向量数据
+ * @param TargetBuffer 目标缓冲区句柄，用于存储计算结果
+ * @param BufferSize 缓冲区大小，指定处理的数据量
+ * @return void 无返回值
+ */
+void ProcessUIMatrixTransformation(float *UiContext, UIHandle DataSource, UIHandle TargetBuffer, longlong BufferSize)
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  float secondaryValue;
-  float localFloat6;
-  int localInt7;
-  longlong localLong8;
+  float MatrixElementX;
+  float MatrixElementY;
+  float VectorComponentX;
+  float VectorComponentY;
+  float TransformResultX;
+  float TransformResultY;
+  float ScalingFactorX;
+  int LoopCounter;
+  longlong DataOffset;
   longlong CharacterDataOffset;
-  uint result0;
-  longlong allocatedMemory1;
-  float *pfloatResult2;
-  float *ContextHandle;
-  float *pfloatResult3;
-  longlong BasePointer;
-  float *TargetHandle;
-  float *pvectorComponentX;
-  ulonglong CounterResult;
+  uint ProcessedElements;
+  longlong MemoryOffset;
+  float *SourceDataPointer;
+  float *ContextMatrixPointer;
+  float *ResultDataPointer;
+  longlong BaseMatrixOffset;
+  float *TargetVectorPointer;
+  float *SourceVectorPointer;
+  ulonglong ElementCounter;
   int RegisterValue;
-  longlong unmodifiedR13;
-  float *EventHandle;
-  float *pfloatResult6;
-  longlong unmodifiedR15;
-  int stackParam000000a0;
+  longlong SourceDataStart;
+  float *EventContextPointer;
+  float *TransformResultPointer;
+  longlong VectorElementCount;
+  int StackParameter;
   
   pvectorComponentX = (float *)(unmodifiedR15 * 4 + -4 + unmodifiedR13);
   allocatedMemory1 = BasePointer - unmodifiedR15;
