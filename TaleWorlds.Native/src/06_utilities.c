@@ -30048,24 +30048,24 @@ uint64_t ProcessDataWithValidation(void)
   uint64_t operationResult;
   DataBuffer *dataBuffer;
   int64_t contextPointer;
-  uint validationFlag;
+  uint dataValidationOffset;
   bool carryFlag;
   ByteFlag dataElementBuffer [4];
   ByteFlag dataSizeBuffer [2];
-  ByteFlag thirdTempBuffer [2];
+  ByteFlag processingBuffer [2];
   
-  validationFlag = eaxRegisterValue + 0x1c;
+  dataValidationOffset = eaxRegisterValue + 0x1c;
   if (carryFlag) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       dataHandle = *dataBuffer;
-      operationResult = ProcessDataElement(dataHandle, firstTempBuffer, 4);
-      if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondTempBuffer, 2), (int)operationResult == 0)) &&
-         (operationResult = ProcessDataElement(dataHandle, thirdTempBuffer, 2), (int)operationResult == 0)) {
+      operationResult = ProcessDataElement(dataHandle, primaryDataBuffer, 4);
+      if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondaryDataBuffer, 2), (int)operationResult == 0)) &&
+         (operationResult = ProcessDataElement(dataHandle, processingBuffer, 2), (int)operationResult == 0)) {
         operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
       }
     }
     else {
-      operationResult = (uint64_t)validationFlag;
+      operationResult = (uint64_t)dataValidationOffset;
     }
   }
   else {
@@ -30080,11 +30080,11 @@ uint64_t ProcessDataWithValidation(void)
       return operationResult;
     }
     if ((*(int *)(dataBuffer[1] + 0x18) == 0) &&
-       (validationFlag = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4), validationFlag == 0)) {
+       (dataValidationOffset = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4), dataValidationOffset == 0)) {
         ExecuteDataProcessing();
     }
   }
-  return (uint64_t)validationFlag;
+  return (uint64_t)dataValidationOffset;
 }
 
 
@@ -30122,8 +30122,8 @@ uint64_t ProcessDataStream(void)
   ByteFlag thirdTempBuffer [2];
   
   dataHandle = *dataBuffer;
-  operationResult = ProcessDataElement(dataHandle, firstTempBuffer, 4);
-  if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondTempBuffer, 2), (int)operationResult == 0)) &&
+  operationResult = ProcessDataElement(dataHandle, primaryDataBuffer, 4);
+  if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondaryDataBuffer, 2), (int)operationResult == 0)) &&
      (operationResult = ProcessDataElement(dataHandle, thirdTempBuffer, 2), (int)operationResult == 0)) {
     operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
   }
@@ -60050,14 +60050,14 @@ void CleanupSystemResourcesAndMutexA0(DataBuffer systemContext, int64_t executio
 
 
 
-void ExecuteSystemCallbackWithCleanupFlags(DataBuffer systemContext, int64_t executionContext, DataBuffer parameter3, DataBuffer parameter4)
+void ExecuteSystemCallbackWithCleanupFlags(DataBuffer systemContext, int64_t executionContext, DataBuffer callbackParameter, DataBuffer cleanupFlag)
 
 {
   code *systemCallback;
   
   systemCallback = *(FunctionPointer**)(*(int64_t *)(executionContext + 0x50) + 0xd0);
   if (systemCallback != (code *)0x0) {
-    (*systemCallback)(*(int64_t *)(executionContext + 0x50) + 0xc0,0,0,parameter4,SystemCleanupFlagAlternative);
+    (*systemCallback)(*(int64_t *)(executionContext + 0x50) + 0xc0,0,0,cleanupFlag,SystemCleanupFlagAlternative);
   }
   return;
 }
