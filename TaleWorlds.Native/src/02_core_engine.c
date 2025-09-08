@@ -231781,12 +231781,27 @@ uint64_t * FUN_1801952b0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
  * @note 原始函数名：FUN_1801952e0
  */
 uint64_t *
-FUN_1801952e0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化字符代码和系统缓冲区
+ * 
+ * 该函数负责初始化字符代码指针，设置系统数据节点模板，并根据系统缓冲区大小
+ * 决定是否释放内存资源。函数处理UTF-8到UTF-16的字符转换初始化工作。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储处理后的字符代码
+ * @param SystemBufferSize 系统缓冲区大小，用于内存管理决策
+ * @param Utf8SourcePointer UTF-8源数据指针，包含源字符数据
+ * @param Utf16EndPointer UTF-16结束指针，定义转换数据的边界
+ * @return uint64_t* 返回初始化后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_1801952e0
+ * @note 该函数涉及字符编码转换和内存管理
+ */
+uint64_t *InitializeCharacterCodeAndSystemBuffer(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *CharacterCode = &SystemDataNodeTemplateQuaternary;
+  *CharacterCode = (uint64_t)&SystemDataNodeTemplateQuaternary;
   FUN_1801c2640();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0xb8,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
