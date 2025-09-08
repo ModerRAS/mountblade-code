@@ -777,6 +777,21 @@
 #define ProcessSystemBufferCallback FUN_18015c3b0
 
 /**
+ * @brief 初始化系统优先级和标志配置
+ * 
+ * 该函数负责初始化系统的优先级管理和标志配置，包括：
+ * - 设置系统优先级级别和对应的处理标志
+ * - 配置字符编码和转换参数
+ * - 初始化系统数据结构和缓冲区
+ * - 调用字符编码处理函数进行批量配置
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要配置的字符类型
+ * 
+ * @note 原始函数名：FUN_18015c450
+ */
+#define InitializeSystemPriorityAndFlagConfiguration FUN_18015c450
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -193540,7 +193555,7 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
 
 
 
-60180(long long CharacterCodevoid FUN_180160180(long long CharacterCode
+void ProcessCharacterCodeValidation(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
