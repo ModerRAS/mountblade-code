@@ -6117,7 +6117,7 @@ void* ExceptionDataTableAddress;
 
 // 异常加密密钥变量
 // 功能：存储异常处理的加密密钥信息
-extern uint64_t exceptionEncryptionKey;
+extern uint64_t ExceptionEncryptionKeyValue;
 
 // 异常偏移量变量
 // 功能：存储异常处理的偏移量信息
