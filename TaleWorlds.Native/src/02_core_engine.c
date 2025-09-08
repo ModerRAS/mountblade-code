@@ -212827,7 +212827,23 @@ uint32_t ConvertUtf8ToUtf16Character(uint64_t CharacterCode,long long *Character
 
 
 
-79480(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointervoid FUN_180179480(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理内存地址掩码和缓冲区状态
+ * 
+ * 该函数负责处理内存地址掩码和缓冲区状态的管理，包括：
+ * - 内存地址掩码的计算和应用
+ * - 缓冲区状态的监控和更新
+ * - 系统内存边界的验证
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180179480
+ */
+void ProcessMemoryAddressMaskAndBufferStatus(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
 {
   long long *CharacterCode;
   void *SystemContext;
@@ -212899,7 +212915,7 @@ LAB_1801794f5:
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       CharacterCode = pStackLongValue;
     }
-    FUN_1800863a0(PrimaryProcessingStatusFlag + 5,&StackValidationData);
+    ProcessSystemDataTablePointerOperation(PrimaryProcessingStatusFlag + 5,&StackValidationData);
   }
   else {
     ValidationResult = 0;
@@ -212972,7 +212988,7 @@ LAB_1801794f5:
     pMemoryAddressMaskPointer = (void *)AllocateCharacterCodeTableAndEventTemplate(StringProcessingStatus,aStackProcessingUnsignedValue78);
     pMemoryAddressMaskPointer = (void *)*pMemoryAddressMaskPointer;
   }
-  FUN_1800863a0(pMemoryAddressMaskPointer + 5,&StackValidationData);
+  ProcessSystemDataTablePointerOperation(pMemoryAddressMaskPointer + 5,&StackValidationData);
 LAB_180179745:
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(ProcessingCounter ^ (unsigned long long)SystemFlagH);

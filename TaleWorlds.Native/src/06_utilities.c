@@ -89274,6 +89274,28 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器初始化函数C150
+ * 
+ * 该函数负责初始化异常处理器，设置异常处理上下文和回调函数。
+ * 它会检查现有的异常处理器回调，如果有则执行，然后设置临时和默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文
+ * - 检查并执行现有的异常处理器回调
+ * - 设置临时异常处理器
+ * - 验证异常处理状态，必要时终止系统
+ * - 重置异常处理状态标志
+ * - 设置默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c150
+ * @note 使用偏移量0x48获取异常处理上下文
+ * @note 使用偏移量0x40检查异常处理器回调
+ * @note 使用偏移量0x38调用异常处理器回调函数
+ */
 void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
