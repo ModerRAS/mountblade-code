@@ -90817,15 +90817,26 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_18071d0bf(void)
-void FUN_18071d0bf(void)
+ /**
+ * @brief 初始化UI系统上下文
+ * 
+ * 该函数负责初始化UI系统的上下文环境，包括：
+ * - 设置系统上下文句柄
+ * - 初始化UI系统状态
+ * - 准备UI系统运行环境
+ * 
+ * 该函数通常在UI系统启动时调用，确保系统正确初始化。
+ * 
+ * @note 原始函数名：FUN_18071d0bf
+ */
+void InitializeUIContextSystem(void)
 
 {
   longlong contextHandle;
-  longlong BasePointer;
-  UIDword uStack0000000000000034;
-  UIDword uStack000000000000004c;
-  UIDword uStack0000000000000054;
+  longlong basePointer;
+  UIDword stackData34;
+  UIDword stackData4c;
+  UIDword stackData54;
   
   FUN_1807260d0();
   FUN_180724f40();
@@ -283059,7 +283070,7 @@ void FUN_18083b4a0(UIByte (*uiContext) [32])
   aEventTypeCode = *paresult;
   aProcessingStatus = uiContext[1];
   aloopCounter = vsubps_avx(aProcessingStatus,aiterationCount);
-  aprocessingCounter = vpermilps_avx(aloopCounter,_DAT_1809813c0);
+  aprocessingCounter = vpermilps_avx(aloopCounter,VectorPermutationMask1809813c0);
   aeventProcessingStatus = *uiContext;
   amaxProcessingCount = vsubps_avx(aeventProcessingStatus,aEventTypeCode);
   aresult2 = vshufps_avx(amaxProcessingCount,amaxProcessingCount,0xb5);
