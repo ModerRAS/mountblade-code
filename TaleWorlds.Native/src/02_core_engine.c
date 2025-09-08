@@ -207746,7 +207746,7 @@ void ProcessCharacterEncodingValidationAndMemoryAllocation(long long CharacterCo
   
   CalculatedCodePoint = (unsigned long long)(*(uint *)(CharacterCode + 0x13c) & 1);
   UnicodeCodePoint = *(int *)(PatternIndex + 0xb4 + CalculatedCodePoint * 0x48) - *(int *)(PatternIndex + 0xac + CalculatedCodePoint * 0x48);
-  DataSize = *(int *)(PatternIndex + 0xb8 + CalculatedCodePoint * 0x48) - *(int *)(PatternIndex + 0xb0 + CalculatedCodePoint * 0x48);
+  CharacterDataSize = *(int *)(PatternIndex + 0xb8 + CalculatedCodePoint * 0x48) - *(int *)(PatternIndex + 0xb0 + CalculatedCodePoint * 0x48);
   MemoryAllocationIndex = 1;
   if (1 < UnicodeCodePoint) {
     MemoryAllocationIndex = UnicodeCodePoint;
@@ -207800,7 +207800,22 @@ void ProcessCharacterEncodingValidationAndMemoryAllocation(long long CharacterCo
 
 
 
-73470(float CharacterCode,uint64_t SystemBufferSizevoid FUN_180173470(float CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符数据和缓冲区管理
+ * 
+ * 该函数负责处理字符数据的缓冲区管理，包括UTF-16字符处理、内存分配和系统数据管理。
+ * 函数根据输入控制标志的不同执行不同的处理路径，包括字符过滤、矩阵变换和光标位置处理。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和管理
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数根据输入控制标志执行不同的处理逻辑
+ * @warning 当InputCharacterStatusBuffer不为0时，函数会直接返回
+ * @see ProcessMemoryAllocationHandler
+ */
+void ProcessCharacterDataAndBufferManagement(float CharacterCode, uint64_t SystemBufferSize)
 {
   ushort Utf16Char;
   long long in_RCX;
@@ -209810,7 +209825,7 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
     MemoryBlockIndex = *(long long **)(BufferStatus + 0x8400);
     RemainingSpace = (**(code **)(*MemoryBlockIndex + 0x70))(MemoryBlockIndex,*(void *)(MemoryBoundaryEnd + 8),0,1,0,&pFunctionAddress);
     if (RemainingSpace < 0) {
-      FUN_180220810(RemainingSpace,SystemDataValidationPointer);
+      ProcessSystemDataWithRemainingSpace(RemainingSpace,SystemDataValidationPointer);
     }
     BufferStatus = *(long long *)(MemoryPoolBlockSize + 0x28);
     RemainingSpace = (**(code **)(**(long long **)(CharacterCode + 0x50) + 0xa8)                      (*(long long **)(CharacterCode + 0x50),pFunctionAddress,*(uint16_t *)(BufferStatus + 0x32c),

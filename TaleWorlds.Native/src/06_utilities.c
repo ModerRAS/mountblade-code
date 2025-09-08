@@ -56042,7 +56042,7 @@ void CleanupExceptionResourcesA2(DataBuffer operationBase, int64_t dataBuffer, D
  */
 void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  *(uint8_t **)(dataBuffer + 0x278) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerConfigOffset278) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -56061,7 +56061,7 @@ void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
  */
 void ConfigureExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 {
-  *(uint8_t **)(dataBuffer + 0x250) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerConfigOffset250) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -56080,11 +56080,11 @@ void ConfigureExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
  */
 void InitializeExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 {
-  *(DataBuffer *)(dataBuffer + 0x128) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x130) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerConfigOffset128) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionHandlerConfigOffset130) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(dataBuffer + 0x130) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerConfigOffset130) = 0;
   *(DataWord *)(dataBuffer + DataBufferOffset140) = 0;
   *(DataBuffer *)(dataBuffer + 0x128) = &DefaultExceptionHandlerB;
   return;
@@ -56359,7 +56359,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x278) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerConfigOffset278) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -56368,7 +56368,7 @@ void CleanupExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x250) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerConfigOffset250) = &DefaultExceptionHandlerB;
   return;
 }
 
