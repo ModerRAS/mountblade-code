@@ -145024,19 +145024,19 @@ LAB_18012b510:
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
     CharacterTablePointer6 = *(long long *)(SystemParameter2 + 0x408);
     if ((CharacterTablePointer6 != 0) && ((*(byte *)(CharacterTablePointer6 + 0xa0) & 0x40) != 0)) {
-      FilterInputValue4 = *(float *)(CharacterTablePointer6 + 0x38);
-      FilterInputValue1 = *(float *)(PatternIndex + 0x19f8);
-      FilterInputValue2 = *(float *)(CharacterTablePointer6 + 0x3c);
+      RenderingParameter4 = *(float *)(CharacterTablePointer6 + 0x38);
+      RenderingParameter1 = *(float *)(PatternIndex + 0x19f8);
+      RenderingParameter2 = *(float *)(CharacterTablePointer6 + 0x3c);
       _StackFloatValue50 = *(void *)(CharacterTablePointer6 + 0x38);
-      StackFrameAddressPointer[-0x20] = FilterInputValue4;
-      StackFrameAddressPointer[-0x1f] = FilterInputValue2;
-      ScalingFactor = (float)(int)(FilterInputValue1 * 0.7);
-      FilterInputValue1 = (float)(int)(FilterInputValue1 * 0.55);
-      StackFrameAddressPointer[-0x1e] = FilterInputValue4 + FilterInputValue1;
-      StackFrameAddressPointer[-0x1d] = FilterInputValue2 + FilterInputValue1;
+      MemoryContextPointer[-0x20] = RenderingParameter4;
+      MemoryContextPointer[-0x1f] = RenderingParameter2;
+      ScalingFactor = (float)(int)(RenderingParameter1 * 0.7);
+      RenderingParameter1 = (float)(int)(RenderingParameter1 * 0.55);
+      MemoryContextPointer[-0x1e] = RenderingParameter4 + RenderingParameter1;
+      MemoryContextPointer[-0x1d] = RenderingParameter2 + RenderingParameter1;
       ProcessingStatusFlag = AllocateSystemMemory(SystemParameter2,SystemDataTablePointerC0,0);
       SystemStatusCode = CONCAT44(SystemMemoryAllocationResult,0x20);
-      CharacterValidationResult = ProcessSystemParameters(StackFrameAddressPointer + -0x20,ProcessingStatusFlag,(long long)&StackBuffer58 + 1,&StackBuffer58,
+      CharacterValidationResult = ProcessSystemParameters(MemoryContextPointer + -0x20,ProcessingStatusFlag,(long long)&StackBuffer58 + 1,&StackBuffer58,
                             SystemStatusCode);
       SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
       if (CharacterValidationResult != '\0') {
@@ -145053,21 +145053,21 @@ LAB_18012b510:
         BufferIndex = 0x17;
       }
       pSystemContextPrimaryFloat4 = (float *)(SystemConfigurationHandle + 0x1628 + (BufferIndex + 10) * 0x10);
-      FilterInputValue4 = pSystemContextPrimaryFloat4[1];
-      FilterInputValue1 = pSystemContextPrimaryFloat4[2];
-      FilterInputValue2 = pSystemContextPrimaryFloat4[3];
-      StackFrameAddressPointer[-0x14] = *pSystemContextPrimaryFloat4;
-      StackFrameAddressPointer[-0x13] = FilterInputValue4;
-      StackFrameAddressPointer[-0x12] = FilterInputValue1;
-      StackFrameAddressPointer[-0x11] = FilterInputValue2;
-      StackFrameAddressPointer[-0x11] = FilterInputValue2 * *(float *)(CharacterTablePointer6 + 0x1628);
-      ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x14);
+      RenderingParameter4 = pSystemContextPrimaryFloat4[1];
+      RenderingParameter1 = pSystemContextPrimaryFloat4[2];
+      RenderingParameter2 = pSystemContextPrimaryFloat4[3];
+      MemoryContextPointer[-0x14] = *pSystemContextPrimaryFloat4;
+      MemoryContextPointer[-0x13] = RenderingParameter4;
+      MemoryContextPointer[-0x12] = RenderingParameter1;
+      MemoryContextPointer[-0x11] = RenderingParameter2;
+      MemoryContextPointer[-0x11] = RenderingParameter2 * *(float *)(CharacterTablePointer6 + 0x1628);
+      ProcessingStatusFlag = ValidateSystemData(MemoryContextPointer + -0x14);
       SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,ProcessingStatusFlag);
       SystemStatusCode = *(void *)(SystemParameter2 + 0x2e8);
-      StackFrameAddressPointer[0xe] = StackFloatValue50;
-      StackFrameAddressPointer[0xf] = StackFloatValue54 + ScalingFactor;
+      MemoryContextPointer[0xe] = StackFloatValue50;
+      MemoryContextPointer[0xf] = StackFloatValue54 + ScalingFactor;
       _StackFloat1 = CONCAT44(StackFloatValue54,StackFloatValue50 + ScalingFactor);
-      ConfigureRenderParameters(SystemStatusCode,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,StackFrameAddressPointer + 0xe,SystemParameter1);
+      ConfigureRenderParameters(SystemStatusCode,&TertiaryDataBuffer,&MemoryAllocationStackBuffer,MemoryContextPointer + 0xe,SystemParameter1);
     }
     if (*(char *)(SystemParameter2 + 0xac) != '\0') {
       ExecuteSystemResourceReleaseAndCleanup(0);
@@ -145080,20 +145080,20 @@ LAB_18012b510:
       CharacterTablePointer6 = 0;
       do {
         SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-        FilterInputValue4 = *(float *)(SystemParameter2 + 0x40);
-        FilterInputValue1 = *(float *)(SystemParameter2 + 0x44);
+        RenderingParameter4 = *(float *)(SystemParameter2 + 0x40);
+        RenderingParameter1 = *(float *)(SystemParameter2 + 0x44);
         BufferIndex = *(long long *)(SystemParameter2 + 0x2e8);
-        FilterInputValue4 = ((FilterInputValue4 + *(float *)(SystemParameter2 + 0x48)) - FilterInputValue4) * pSystemContextPrimaryFloat3[-2] + FilterInputValue4;
-        FilterInputValue1 = ((FilterInputValue1 + *(float *)(SystemParameter2 + 0x4c)) - FilterInputValue1) * pSystemContextPrimaryFloat3[-1] + FilterInputValue1;
+        RenderingParameter4 = ((RenderingParameter4 + *(float *)(SystemParameter2 + 0x48)) - RenderingParameter4) * pSystemContextPrimaryFloat3[-2] + RenderingParameter4;
+        RenderingParameter1 = ((RenderingParameter1 + *(float *)(SystemParameter2 + 0x4c)) - RenderingParameter1) * pSystemContextPrimaryFloat3[-1] + RenderingParameter1;
         if (HighByte7) {
-          StackFrameAddressPointer[2] = FilterInputValue0;
-          StackFrameAddressPointer[3] = ContextSecondaryFloat5;
-          FilterInputValue2 = FilterInputValue0;
+          MemoryContextPointer[2] = FilterInputValue0;
+          MemoryContextPointer[3] = ContextSecondaryFloat5;
+          RenderingParameter2 = FilterInputValue0;
         }
         else {
           TemporaryFloatStack64 = FilterInputValue0;
           StackFloatValue60 = ContextSecondaryFloat5;
-          FilterInputValue2 = ContextSecondaryFloat5;
+          RenderingParameter2 = ContextSecondaryFloat5;
         }
         pSystemContextPrimaryFloat4 = (float *)((long long)&DataTransferStackBuffer + 4);
         if (HighByte7) {
