@@ -246694,7 +246694,23 @@ LAB_180204eca:
   *SecondaryProcessingStatusFlag = (unsigned long long)pMemoryAddressMaskPointer;
   SecondaryProcessingStatusFlag[2] = (unsigned long long)(pMemoryAddressMaskPointer + MemoryPoolBlockSize * 2);
   SecondaryProcessingStatusFlag[1] = (unsigned long long)(pMemoryAddressMaskPointer + 2);
-FUN_180204f4d:
+/**
+ * @brief 处理字符代码表和内存池分配
+ * 
+ * 该函数负责处理字符代码表的内存池分配和管理，包括：
+ * - UTF-16字符数据处理
+ * - 内存池块大小计算
+ * - 字符代码表指针管理
+ * - 次要处理状态标志控制
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180204f4d
+ */
+#define ProcessCharacterCodeTableAndMemoryPoolAllocation FUN_180204f4d
+ProcessCharacterCodeTableAndMemoryPoolAllocation:
   *PatternIndex = 0xffffffffffffffff;
   MemoryBlockIndex = (long long *)PatternIndex[2];
   PatternIndex[2] = 0;
@@ -260724,7 +260740,23 @@ LAB_1802186cd:
       CharacterCode = MemoryBlockIndex;
       goto LAB_1802186cf;
     }
-FUN_180218739:
+/**
+ * @brief 处理内存边界和字符代码大小管理
+ * 
+ * 该函数负责处理内存边界检查和字符代码大小管理，包括：
+ * - 内存边界变化检测
+ * - 字符代码大小验证
+ * - 内存块索引管理
+ * - 前一个和后一个内存块索引获取
+ * 
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param CharacterCode 字符代码数组
+ * @return long long* 处理后的内存块索引
+ * 
+ * @note 原始函数名：FUN_180218739
+ */
+#define ProcessMemoryBoundaryAndCharacterCodeSizeManagement FUN_180218739
+ProcessMemoryBoundaryAndCharacterCodeSizeManagement:
     hasMemoryBoundaryChanged = true;
     CharacterCode = CharacterCode;
     if ((long long *)CharacterCode[2] != (long long *)0x0) {
