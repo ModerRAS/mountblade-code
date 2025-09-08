@@ -86143,7 +86143,20 @@ void ProcessExceptionContextPointerA9(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090b2b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数A30
+ * 
+ * 该函数负责调用异常上下文中指定偏移量处的处理器函数。
+ * 它从数据缓冲区中获取异常上下文指针，并在偏移量0x3a0处查找处理器函数，
+ * 如果存在有效的处理器函数，则调用该函数执行异常处理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区，保留参数
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和状态信息
+ * 
+ * @note 原始函数名：Unwind_18090b2b0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset3A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
