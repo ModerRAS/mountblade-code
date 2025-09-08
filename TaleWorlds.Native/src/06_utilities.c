@@ -305,6 +305,14 @@
 #define ExceptionHandlerCallbackDataOffset180 0x180
 #define ExceptionHandlerCleanupOffset160 0x160
 
+// 异常处理上下文偏移常量
+#define ExceptionHandlerContextOffset48 0x48
+#define ExceptionHandlerContextCallbackOffset40 0x40
+#define ExceptionHandlerContextFunctionOffset38 0x38
+#define ExceptionHandlerContextCallbackOffset20 0x20
+#define SystemTerminationFlagOffset 0x28
+#define SystemCleanupFlagOffset 0x38
+
 // 数据结构偏移常量
 #define VectorComponentWOffset 0x20
 #define VectorComponentXOffset 0x24
@@ -20693,10 +20701,10 @@ void ExecuteSecurityCheckWrapper(void)
  * @param DataBuffer 数据缓冲区，用于存储处理结果
  * @param ResultPointer 结果指针，用于返回处理状态
  */
-void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *ResultPointer)
+void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, int64_t *ResultPointer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionContextPtr;
   int operationResult;
   int64_t memoryBlockOffset;
   ByteFlag encryptionKeyBuffer [32];
@@ -20719,13 +20727,13 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   uint64_t securityCheckValue;
   
   securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
-  exceptionHandlerContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionContextPtr = *(int64_t **)(operationBase + OperationBaseOffset800);
+  if (exceptionContextPtr != (int64_t *)0x0) {
     colorDataWord = *dataBuffer;
     redGreenComponents = dataBuffer[1];
     blueAlphaComponents = dataBuffer[2];
     colorPackedData = dataBuffer[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + FunctionPointerTableOffset2f8))(exceptionHandlerContextPointer,&colorDataWord,1);
+    memoryBlockOffset = (**(FunctionPointer**)(*exceptionContextPtr + FunctionPointerTableOffset2f8))(exceptionContextPtr,&colorDataWord,1);
     if (memoryBlockOffset == 0) {
       blueComponent = blueAlphaComponents >> 0x18;
       alphaComponent = colorPackedData >> 0x18;
@@ -89397,12 +89405,31 @@ void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
  * @note 使用偏移量0x20获取异常处理器回调指针
  * @note 使用偏移量0x38调用异常处理器回调函数
  */
-void Unwind_18090c160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行函数C160
+ * 
+ * 该函数负责执行异常处理器回调函数，处理异常事件。
+ * 它会从异常处理上下文中获取回调函数指针，并在有效时执行回调。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文指针
+ * - 获取异常处理器回调函数指针
+ * - 执行异常处理器回调函数
+ * 
+ * @note 原始函数名：Unwind_18090c160
+ * @note 使用偏移量0x48获取异常处理上下文
+ * @note 使用偏移量0x20获取异常处理器回调指针
+ * @note 使用偏移量0x38调用异常处理器回调函数
+ */
+void ExecuteExceptionHandlerCallbackC160(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x20);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48) + ExceptionHandlerContextCallbackOffset20);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
