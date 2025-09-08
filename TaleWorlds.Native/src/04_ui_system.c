@@ -112554,7 +112554,7 @@ void FUN_180738c00(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   uiOperationResult = FUN_180749e60(uiContext,&stackUInt150,&stackLong158);
   if (uiOperationResult == 0) {
     pstackUInt168 = (UIByte *)CONCAT71(pstackUInt168._1_7_,resultPointer);
-    uiOperationResult = FUN_180744920(stackUInt150,dataSource,targetBuffer,bufferSize);
+    uiOperationResult = ProcessUIBufferDataOperation(stackUInt150,dataSource,targetBuffer,bufferSize);
     if (uiOperationResult == 0) goto FUN_180738d3d;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -112605,7 +112605,7 @@ void FUN_180738c1d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   param_6 = 0;
   uiOperationResult = FUN_180749e60(uiContext,&param_7,&param_6);
   if (uiOperationResult == 0) {
-    uiOperationResult = FUN_180744920(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
+    uiOperationResult = ProcessUIBufferDataOperation(param_7,dataSource,targetBuffer,bufferSize,stackParam000001b0);
     if (uiOperationResult == 0) goto FUN_180738d3d;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -119256,7 +119256,7 @@ void FUN_18073e110(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer)
 FUN_18073e229:
   if (stackLong140 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong140,0xc);
+    ProcessUISystemCleanup(stackLong140,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
@@ -119306,7 +119306,7 @@ void FUN_18073e12d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 FUN_18073e229:
   if (lStack0000000000000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    ProcessUISystemCleanup(lStack0000000000000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119343,7 +119343,7 @@ void FUN_18073e229(void)
   
   if (stackParam00000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000038,0xc);
+    ProcessUISystemCleanup(stackParam00000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119357,7 +119357,7 @@ void FUN_18073e24b(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -119412,7 +119412,7 @@ void FUN_18073e270(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 FUN_18073e414:
   if (stackLong150 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong150,0xc);
+    ProcessUISystemCleanup(stackLong150,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -119480,7 +119480,7 @@ void FUN_18073e28d(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
 FUN_18073e414:
   if (lStack0000000000000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    ProcessUISystemCleanup(lStack0000000000000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119526,7 +119526,7 @@ void FUN_18073e414(void)
   
   if (stackParam00000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000038,0xc);
+    ProcessUISystemCleanup(stackParam00000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119540,7 +119540,7 @@ void FUN_18073e446(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -119628,7 +119628,7 @@ void FUN_18073e550(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 FUN_18073e6ce:
   if (stackLong158 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong158,0xc);
+    ProcessUISystemCleanup(stackLong158,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -119685,7 +119685,7 @@ void FUN_18073e56d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 FUN_18073e6ce:
   if (param_6 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(param_6,0xc);
+    ProcessUISystemCleanup(param_6,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119729,7 +119729,7 @@ void FUN_18073e6ce(void)
   
   if (stackParam00000030 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000030,0xc);
+    ProcessUISystemCleanup(stackParam00000030,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -119743,7 +119743,7 @@ void FUN_18073e700(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -119792,7 +119792,7 @@ void FUN_18073e810(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 LAB_18073e90c:
   if (stackLong140 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong140,0xc);
+    ProcessUISystemCleanup(stackLong140,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
@@ -119864,7 +119864,7 @@ void FUN_18073e940(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 FUN_18073eb6d:
   if (stackLong170 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong170,0xc);
+    ProcessUISystemCleanup(stackLong170,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt58 ^ (ulonglong)astackUInt1b8);
@@ -119942,7 +119942,7 @@ void FUN_18073e95d(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 FUN_18073eb6d:
   if (lStack0000000000000048 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000048,0xc);
+    ProcessUISystemCleanup(lStack0000000000000048,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000160 ^ (ulonglong)&stack0x00000000);
@@ -119997,7 +119997,7 @@ void FUN_18073eb6d(void)
   
   if (stackParam00000048 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000048,0xc);
+    ProcessUISystemCleanup(stackParam00000048,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000160 ^ (ulonglong)&stack0x00000000);
@@ -120011,7 +120011,7 @@ void FUN_18073eba7(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -120100,7 +120100,7 @@ void FUN_18073ecb0(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer)
 FUN_18073eddb:
   if (stackLong150 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong150,0xc);
+    ProcessUISystemCleanup(stackLong150,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -120156,7 +120156,7 @@ void FUN_18073eccd(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
 FUN_18073eddb:
   if (lStack0000000000000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    ProcessUISystemCleanup(lStack0000000000000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -120193,7 +120193,7 @@ void FUN_18073eddb(void)
   
   if (stackParam00000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000038,0xc);
+    ProcessUISystemCleanup(stackParam00000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -120207,7 +120207,7 @@ void FUN_18073edfd(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -120248,7 +120248,7 @@ void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
 LAB_18073eef2:
   if (stackLong120 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong120,0xc);
+    ProcessUISystemCleanup(stackLong120,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
@@ -120306,7 +120306,7 @@ void FUN_18073ef30(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 FUN_18073f0d1:
   if (stackLong150 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong150,0xc);
+    ProcessUISystemCleanup(stackLong150,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -120374,7 +120374,7 @@ void FUN_18073ef4d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 FUN_18073f0d1:
   if (lStack0000000000000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000038,0xc);
+    ProcessUISystemCleanup(lStack0000000000000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -120420,7 +120420,7 @@ void FUN_18073f0d1(void)
   
   if (stackParam00000038 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000038,0xc);
+    ProcessUISystemCleanup(stackParam00000038,0xc);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
@@ -120434,7 +120434,7 @@ void FUN_18073f103(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0xc);
+  ProcessUISystemCleanup(uiContext,0xc);
 }
 
 
@@ -123491,11 +123491,11 @@ void FUN_180741e10(longlong uiContext,int dataSource,UIHandle targetBuffer,UIHan
       memset(ptrLocalInt4,0,EventDataIndex);
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(uiContext + 0x378));
+    ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x378));
   }
 LAB_180741fc4:
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x378));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x378));
 }
 
 
@@ -123713,7 +123713,7 @@ void FUN_180742250(longlong *uiContext,int *dataSource)
     (*(code *)uiContext[0x6d])(dataSource + -2,*(uint *)(_DAT_180be12f0 + 0x24) & result0,0);
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(uiContext[0x6f]);
+  ProcessUIMemoryAllocation(uiContext[0x6f]);
 }
 
 
@@ -124016,11 +124016,11 @@ FUN_180742aca:
       *(uint *)((longlong)uiContext + 0x344) = *(uint *)(uiContext + 0x68);
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(uiContext[0x6f]);
+    ProcessUIMemoryAllocation(uiContext[0x6f]);
   }
 LAB_180742a3a:
                      WARNING: Subroutine does not return
-  FUN_180768400(uiContext[0x6f]);
+  ProcessUIMemoryAllocation(uiContext[0x6f]);
 }
 
 
@@ -124191,11 +124191,11 @@ void FUN_1807426bf(void)
       *(uint *)((longlong)ContextHandle + 0x344) = *(uint *)(ContextHandle + 0x68);
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(ContextHandle[0x6f]);
+    ProcessUIMemoryAllocation(ContextHandle[0x6f]);
   }
 LAB_180742a3a:
                      WARNING: Subroutine does not return
-  FUN_180768400(ContextHandle[0x6f]);
+  ProcessUIMemoryAllocation(ContextHandle[0x6f]);
 }
 
 
@@ -124330,7 +124330,7 @@ void FUN_180742af0(longlong *uiContext,uint dataSource,int targetBuffer,uint buf
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180742cd0(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDword bufferSize,UIDword resultPointer)
+InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UIDword bufferSize,UIDword resultPointer)
 
 {
   longlong *pallocatedMemory;
@@ -124380,7 +124380,7 @@ UIHandle FUN_180742d90(longlong uiContext,int dataSource)
 
 
 UIHandle
-FUN_180742e00(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong *bufferSize,char resultPointer)
+ProcessUIDataTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong *bufferSize,char resultPointer)
 
 {
   UIHandle result;
@@ -124624,7 +124624,7 @@ UIHandle ValidateUIMemoryOperation(longlong uiContext,char dataSource)
             **(UIHandle **)(componentIndex + 0x180) = pstringCompareIndex;
             *(longlong *)(*(longlong *)(ptrLocalInt4 + 2) + 0x188) = *(longlong *)(ptrLocalInt4 + 2);
                      WARNING: Subroutine does not return
-            FUN_180743d60(uiContext,0x14);
+            ProcessUISystemCleanup(uiContext,0x14);
           }
           break;
         case '\x06':
@@ -124693,14 +124693,14 @@ UIHandle ValidateUIMemoryOperation(longlong uiContext,char dataSource)
     *(UIByte *)(uiContext + 0x10784) = 0;
     if (dataSource != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,3);
+      ProcessUISystemCleanup(uiContext,3);
     }
   }
   if (uiContext == 0) {
     return 0;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,1);
+  ProcessUISystemCleanup(uiContext,1);
 }
 
 
@@ -124795,7 +124795,7 @@ UIHandle FUN_180743166(longlong uiContext,char dataSource)
             **(UIHandle **)(componentIndex + 0x180) = pstringCompareIndex;
             *(longlong *)(*(longlong *)(ptrLocalInt4 + 2) + 0x188) = *(longlong *)(ptrLocalInt4 + 2);
                      WARNING: Subroutine does not return
-            FUN_180743d60(uiContext,0x14);
+            ProcessUISystemCleanup(uiContext,0x14);
           }
           break;
         case '\x06':
@@ -124864,14 +124864,14 @@ UIHandle FUN_180743166(longlong uiContext,char dataSource)
     *(UIByte *)(uiContext + 0x10784) = 0;
     if (dataSource != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,3);
+      ProcessUISystemCleanup(uiContext,3);
     }
   }
   if (uiContext == 0) {
     return 0;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,1);
+  ProcessUISystemCleanup(uiContext,1);
 }
 
 
@@ -124965,7 +124965,7 @@ UIHandle FUN_1807431a7(void)
           **(UIHandle **)(allocatedMemory + 0x180) = colorBufferPointer;
           *(longlong *)(*(longlong *)(puiCompareResult + 2) + 0x188) = *(longlong *)(puiCompareResult + 2);
                      WARNING: Subroutine does not return
-          FUN_180743d60();
+          ProcessUISystemCleanup();
         }
         break;
       case '\x06':
@@ -125035,13 +125035,13 @@ UIHandle FUN_1807431a7(void)
   *(UIByte *)(TargetHandle + 0x10784) = 0;
   if (unmodifiedR15B != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   if (EventHandleB == '\0') {
     return 0;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -125126,7 +125126,7 @@ UIHandle FUN_1807431d5(void)
         **(UIHandle **)(allocatedMemory + 0x180) = colorBufferPointer;
         *(longlong *)(*(longlong *)(puiCompareResult + 2) + 0x188) = *(longlong *)(puiCompareResult + 2);
                      WARNING: Subroutine does not return
-        FUN_180743d60();
+        ProcessUISystemCleanup();
       }
       break;
     case '\x06':
@@ -125194,13 +125194,13 @@ UIHandle FUN_1807431d5(void)
   *(UIByte *)(TargetHandle + 0x10784) = 0;
   if (unmodifiedR15B != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   if (EventHandleB == '\0') {
     return 0;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -125216,11 +125216,11 @@ UIHandle FUN_1807435b8(void)
   *(UIByte *)(TargetHandle + 0x10784) = 0;
   if (unmodifiedR15B != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   if (EventHandleB != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return 0;
 }
@@ -125233,7 +125233,7 @@ void FUN_1807435d3(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -125244,7 +125244,7 @@ void FUN_1807435ef(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -125267,10 +125267,10 @@ void FUN_1807435ef(void)
     pallocatedMemory[1] = (longlong)pallocatedMemory;
     *pallocatedMemory = (longlong)pallocatedMemory;
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x14);
+    ProcessUISystemCleanup(uiContext,0x14);
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0x14);
+  ProcessUISystemCleanup(uiContext,0x14);
 }
 
 
@@ -125304,7 +125304,7 @@ void FUN_1807435ef(void)
     }
     else if (bufferSize != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,1);
+      ProcessUISystemCleanup(uiContext,1);
     }
     semaphoreHandle = (ulonglong)result;
   }
@@ -125333,7 +125333,7 @@ int FUN_180743741(int uiContext)
   }
   else if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return uiOperationResult;
 }
@@ -125680,7 +125680,7 @@ UIHandle FUN_180743cc0(longlong uiContext,UIByte dataSource)
   resourceArray 资源数组指针
  *  resourceIndex 资源索引
   操作结果状态码，0表示成功，0x1c表示资源无效
-  原始函数名: FUN_180743d60
+  原始函数名: ProcessUISystemCleanup
  uint32_t ReleaseUIResourceCriticalSection(void* resourceArray, int32_t resourceIndex)
 {
   int64_t resourceHandle;
@@ -125707,7 +125707,7 @@ UIHandle FUN_180743cc0(longlong uiContext,UIByte dataSource)
  uint64_t DestroyUIResourceManager(void* resourceManager)
 {
   if (*(int64_t *)(resourceManager + 0x11598) != 0) {
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return 0;
 }
@@ -125733,7 +125733,7 @@ UIHandle FUN_180743da0(longlong uiContext)
     semaphoreHandle = FUN_180744ae0(uiContext,0x100004,allocatedMemory,0);
     if ((int)semaphoreHandle == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(uiContext + 0x115a8));
+      ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x115a8));
     }
   }
   return semaphoreHandle;
@@ -125760,11 +125760,11 @@ UIHandle FUN_180743e50(longlong uiContext)
 {
   if (*(longlong *)(uiBufferData + 0x11548) != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   if (*(longlong *)(uiBufferData + 0x11538) != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return 0;
 }
@@ -126084,13 +126084,13 @@ UIHandle FUN_180744780(longlong uiContext)
   *(int *)(uiBufferData + 0x127e8) = *(int *)(uiBufferData + 0x127e8) + 1;
 LAB_1807448f0:
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,0x11);
+  ProcessUISystemCleanup(uiContext,0x11);
 }
 
 
 
 UIHandle
-FUN_180744920(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong *bufferSize,char resultPointer)
+ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong *bufferSize,char resultPointer)
 
 {
   UIHandle result;
@@ -126280,7 +126280,7 @@ int FUN_180744ae0(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,UI
 LAB_180744b66:
   if ((uiContext != 0) && (uiContext != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x15);
+    ProcessUISystemCleanup(uiContext,0x15);
   }
   return uiOperationResult;
 }
@@ -126311,7 +126311,7 @@ int FUN_180744ae6(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,UI
 LAB_180744b66:
   if ((uiContext != 0) && (uiContext != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x15);
+    ProcessUISystemCleanup(uiContext,0x15);
   }
   return uiOperationResult;
 }
@@ -126326,7 +126326,7 @@ UIDword FUN_180744b89(void)
   
   if (BasePointer != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedESI;
 }
@@ -126365,7 +126365,7 @@ void FUN_180744bb0(longlong uiContext,longlong dataSource)
   }
   if (uiContext != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x11);
+    ProcessUISystemCleanup(uiContext,0x11);
   }
   uiValidationResult = FUN_18078a340(0x720,*(UIHandle *)(dataSource + 0x10),
                         CONCAT71((int7)(int3)((uint)uiValidationResult >> 8),1));
@@ -126588,7 +126588,7 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
       *(int *)(uiBufferData + 0x127e8) = TempInt4 + -1;
     }
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x11);
+    ProcessUISystemCleanup(uiContext,0x11);
   }
   FUN_180744d60(uiContext + 0x127e0);
   if (*(longlong *)(uiBufferData + 0x12770) != 0) {
@@ -126914,7 +126914,7 @@ UIHandle FUN_180745760(longlong uiContext,UIHandle dataSource,UIHandle *targetBu
         stackUInt14 = 0;
         stackUIntc = 0;
         pstackUInt40 = &UNK_180958098;
-        result = FUN_180742e00(uiContext,&stackUInt48,0,targetBuffer,(char)dataSource);
+        result = ProcessUIDataTransfer(uiContext,&stackUInt48,0,targetBuffer,(char)dataSource);
         if ((int)result == 0) {
           return 0;
         }
@@ -127052,7 +127052,7 @@ ulonglong FUN_180745870(longlong uiContext,longlong dataSource,uint targetBuffer
     *(longlong **)(ContextHandleData + 0x158) = pEventDataIndex;
     **(UIHandle **)(allocatedMemory + 0x20) = pEventDataIndex;
                      WARNING: Subroutine does not return
-    FUN_180768400(eventTypeCode);
+    ProcessUIMemoryAllocation(eventTypeCode);
   }
   LOCK();
   ContextHandleData = pEventDataIndex[0x22];
@@ -127208,7 +127208,7 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
     *(longlong **)(ContextHandleData + 0x158) = pEventDataIndex;
     **(UIHandle **)(allocatedMemory + 0x20) = pEventDataIndex;
                      WARNING: Subroutine does not return
-    FUN_180768400(eventTypeCode);
+    ProcessUIMemoryAllocation(eventTypeCode);
   }
   LOCK();
   ContextHandleData = pEventDataIndex[0x22];
@@ -127439,7 +127439,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
       *(longlong **)(ContextHandleData + 0x158) = plocalLong7;
       **(UIHandle **)(allocatedMemory0 + 0x20) = plocalLong7;
                      WARNING: Subroutine does not return
-      FUN_180768400(uVar9);
+      ProcessUIMemoryAllocation(uVar9);
     }
     LOCK();
     ContextHandleData = plocalLong7[0x22];
@@ -127535,7 +127535,7 @@ void FUN_180745cff(void)
   *(longlong **)(allocatedMemory + 0x158) = pContextHandleData;
   **(UIHandle **)(stringCompareIndex + 0x20) = pContextHandleData;
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -128200,7 +128200,7 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,UIH
         *(longlong **)pContextHandleData[1] = pContextHandleData;
         pContextHandleData[3] = uiContext;
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+        ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
       }
     }
   }
@@ -128415,7 +128415,7 @@ ulonglong FUN_180746c35(void)
         *(longlong **)pallocatedMemory0[1] = pallocatedMemory0;
         pallocatedMemory0[3] = TargetHandle;
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+        ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
       }
     }
   }
@@ -128584,7 +128584,7 @@ int FUN_180746d01(void)
         *(longlong **)pCharacterDataOffset[1] = pCharacterDataOffset;
         pCharacterDataOffset[3] = TargetHandle;
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+        ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
       }
     }
   }
@@ -128698,22 +128698,22 @@ LAB_1807474ff:
           }
           if (*(int *)(TargetHandle + 0x11610) != 0) {
             func_0x0001807c9f10();
-            semaphoreHandle = FUN_180742cd0();
+            semaphoreHandle = InitializeUIComponent();
             if (semaphoreHandle != 0) goto LAB_180747287;
           }
           if (*(int *)(TargetHandle + 0x1160c) != 0) {
             func_0x0001807c1df0();
-            semaphoreHandle = FUN_180742cd0();
+            semaphoreHandle = InitializeUIComponent();
             if (semaphoreHandle != 0) goto LAB_180747287;
           }
           if (*(int *)(TargetHandle + 0x11618) != 0) {
             func_0x0001807b10d0();
-            semaphoreHandle = FUN_180742cd0();
+            semaphoreHandle = InitializeUIComponent();
             if (semaphoreHandle != 0) goto LAB_180747287;
           }
           if (*(int *)(TargetHandle + 0x11620) != 0) {
             func_0x0001807ae590();
-            semaphoreHandle = FUN_180742cd0();
+            semaphoreHandle = InitializeUIComponent();
             if (semaphoreHandle != 0) goto LAB_180747287;
           }
           peventTypeCode = (UIDword *)(TargetHandle + 0x126cc);
@@ -129762,7 +129762,7 @@ UIHandle FUN_180748290(longlong uiContext,int dataSource)
                         *(UIHandle *)(stringCompareIndex + 0x30 + *(longlong *)(uiBufferData + 0x6a0)));
   if (uiOperationResult != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x10);
+    ProcessUISystemCleanup(uiContext,0x10);
   }
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
@@ -129790,7 +129790,7 @@ UIHandle FUN_1807482c8(void)
                         *(UIHandle *)(TargetHandle + 0x30 + *(longlong *)(ContextHandle + 0x6a0)));
   if (uiOperationResult != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),
@@ -130593,7 +130593,7 @@ UIHandle FUN_180748e20(longlong uiContext,int dataSource,UIHandle targetBuffer,U
   *(UIHandle *)(uiContext + 0x115e8 + (longlong)dataSource * 8) = bufferSize;
   if ((uiContext != 0) && (uiContext != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x15);
+    ProcessUISystemCleanup(uiContext,0x15);
   }
   return 0;
 }
@@ -131101,7 +131101,7 @@ LAB_18078c477:
     }
     if (uiContext != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,7);
+      ProcessUISystemCleanup(uiContext,7);
     }
   }
   localInt5 = CheckUIMemoryStatus(uiContext);
@@ -131120,7 +131120,7 @@ LAB_18078c477:
     }
     if (uiContext != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,6);
+      ProcessUISystemCleanup(uiContext,6);
     }
     ptrResult = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -131171,7 +131171,7 @@ int FUN_180749940(longlong uiContext)
 LAB_1807499b3:
   if (uiContext != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x10);
+    ProcessUISystemCleanup(uiContext,0x10);
   }
   return uiOperationResult;
 }
@@ -131204,7 +131204,7 @@ int FUN_180749946(longlong uiContext)
 LAB_1807499b3:
   if (uiContext != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,0x10);
+    ProcessUISystemCleanup(uiContext,0x10);
   }
   return uiOperationResult;
 }
@@ -131217,7 +131217,7 @@ void FUN_1807499c7(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -133580,13 +133580,13 @@ ulonglong FUN_18074bf10(longlong *uiContext,int dataSource,ulonglong targetBuffe
     }
     if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory0,1);
+      ProcessUISystemCleanup(allocatedMemory0,1);
     }
     return (ulonglong)LoopCounter;
   }
   if ((isCharacterMatch5) && (allocatedMemory0 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory0,1);
+    ProcessUISystemCleanup(allocatedMemory0,1);
   }
   pallocatedMemory = uiContext + 0x22;
   for (pallocatedMemory3 = (longlong *)*pallocatedMemory; pallocatedMemory3 != pallocatedMemory; pallocatedMemory3 = (longlong *)*pallocatedMemory3) {
@@ -133729,13 +133729,13 @@ ulonglong FUN_18074c014(void)
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(localLong8,1);
+      ProcessUISystemCleanup(localLong8,1);
     }
     return (ulonglong)ProcessingStatus;
   }
   if ((isCharacterMatch2) && (localLong8 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(localLong8,1);
+    ProcessUISystemCleanup(localLong8,1);
   }
   pallocatedMemory = ContextHandle + 0x22;
   for (pallocatedMemory1 = (longlong *)*pallocatedMemory; pallocatedMemory1 != pallocatedMemory; pallocatedMemory1 = (longlong *)*pallocatedMemory1) {
@@ -133861,13 +133861,13 @@ ulonglong FUN_18074c039(void)
     }
     if (TargetHandle != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60();
+      ProcessUISystemCleanup();
     }
     return (ulonglong)ProcessingStatus;
   }
   if ((isCharacterMatch2) && (TargetHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   pallocatedMemory = ContextHandle + 0x22;
   for (pallocatedMemory1 = (longlong *)*pallocatedMemory; pallocatedMemory1 != pallocatedMemory; pallocatedMemory1 = (longlong *)*pallocatedMemory1) {
@@ -134001,7 +134001,7 @@ UIHandle FUN_18074c0f3(void)
   
   if ((unmodifiedBPL != '\0') && (TargetHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   pallocatedMemory = ContextHandle + 0x22;
   for (pallocatedMemory0 = (longlong *)*pallocatedMemory; pallocatedMemory0 != pallocatedMemory; pallocatedMemory0 = (longlong *)*pallocatedMemory0) {
@@ -134188,7 +134188,7 @@ UIHandle FUN_18074c510(longlong *uiContext,UIHandle *dataSource)
 
 
 UIHandle
-FUN_18074c570(longlong *uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
+ValidateUIComponentHandle(longlong *uiContext,UIDword *dataSource,UIDword *targetBuffer,UIDword *bufferSize)
 
 {
   UIHandle result;
@@ -134479,7 +134479,7 @@ LAB_18074cd03:
                 return semaphoreHandle;
               }
                      WARNING: Subroutine does not return
-              FUN_180743d60(allocatedMemory,1);
+              ProcessUISystemCleanup(allocatedMemory,1);
             }
             eventTypeCode = FUN_18075fce0(dataSource,dataSource,0);
             semaphoreHandle = (ulonglong)eventTypeCode;
@@ -134491,7 +134491,7 @@ LAB_18074cd03:
             }
             if ((isCharacterMatch1) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(allocatedMemory,1);
+              ProcessUISystemCleanup(allocatedMemory,1);
             }
             pCharacterDataOffset = (longlong *)(dataSource + 0x90);
             **(longlong **)(dataSource + 0x98) = *pCharacterDataOffset;
@@ -135086,7 +135086,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
        ((stackLong38 == 0 || (EventTypeCode = FUN_18076f4f0(componentIndex,stackLong38 + 8,0), EventTypeCode == 0)))) {
       if ((bVar7) && (ContextHandleData != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(ContextHandleData,1);
+        ProcessUISystemCleanup(ContextHandleData,1);
       }
       if (((stackLong38 == 0) && (stackLong30 == 0)) ||
          (ProcessingStatus = (**(code **)(*uiContext + 0x1e8))(uiContext), (int)ProcessingStatus == 0)) {
@@ -135097,7 +135097,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
       ProcessingStatus = (ulonglong)EventTypeCode;
       if ((bVar7) && (ContextHandleData != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(ContextHandleData,1);
+        ProcessUISystemCleanup(ContextHandleData,1);
       }
     }
   }
@@ -135152,7 +135152,7 @@ ulonglong FUN_18074d99f(int uiContext,int dataSource)
     }
     if ((IsValidationComplete) && (ContextHandleData != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(ContextHandleData,1);
+      ProcessUISystemCleanup(ContextHandleData,1);
     }
     if (((stringCompareIndex == 0) && (*(longlong *)(BasePointer + -8) == 0)) ||
        (semaphoreHandle = (**(code **)(*ContextHandle + 0x1e8))(), (int)semaphoreHandle == 0)) {
@@ -135164,7 +135164,7 @@ LAB_18074da75:
     semaphoreHandle = (ulonglong)result;
     if ((IsValidationComplete) && (ContextHandleData != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(ContextHandleData,1);
+      ProcessUISystemCleanup(ContextHandleData,1);
     }
   }
   return semaphoreHandle;
@@ -135193,7 +135193,7 @@ UIHandle FUN_18074daa4(void)
   
   if ((EventHandleB != '\0') && (TargetHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   if (((*(longlong *)(BasePointer + -0x10) != 0) || (*(longlong *)(BasePointer + -8) != 0)) &&
      (result = (**(code **)(*ContextHandle + 0x1e8))(), (int)result != 0)) {
@@ -136844,7 +136844,7 @@ UIHandle FUN_180750240(longlong uiContext)
     *(longlong **)(allocatedMemory + 0x20) = colorBufferPointer;
     *colorBufferPointer = (longlong)colorBufferPointer;
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(*(longlong *)(*(longlong *)(uiBufferData + 0x108) + 0x10) + 0x168));
+    ProcessUIMemoryAllocation(*(UIHandle *)(*(longlong *)(*(longlong *)(uiBufferData + 0x108) + 0x10) + 0x168));
   }
   return 0;
 }
@@ -136869,7 +136869,7 @@ void FUN_18075027d(void)
   *(longlong **)(allocatedMemory + 0x20) = colorBufferPointer;
   *colorBufferPointer = (longlong)colorBufferPointer;
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(*(longlong *)(*(longlong *)(ContextHandle + 0x108) + 0x10) + 0x168));
+  ProcessUIMemoryAllocation(*(UIHandle *)(*(longlong *)(*(longlong *)(ContextHandle + 0x108) + 0x10) + 0x168));
 }
 
 
@@ -137217,7 +137217,7 @@ UIHandle FUN_180750bc0(longlong uiContext,int dataSource,UIHandle *targetBuffer)
         *(longlong **)(componentIndex + 0x158) = plocalLong7;
         **(UIHandle **)(stringCompareIndex + 0x20) = plocalLong7;
                      WARNING: Subroutine does not return
-        FUN_180768400(MaxProcessingCount);
+        ProcessUIMemoryAllocation(MaxProcessingCount);
       }
     }
   }
@@ -137331,7 +137331,7 @@ FUN_180750bf2(longlong uiContext,UIHandle dataSource,UIHandle *targetBuffer,UIHa
         *(longlong **)(componentIndex + 0x158) = plocalLong7;
         **(UIHandle **)(stringCompareIndex + 0x20) = plocalLong7;
                      WARNING: Subroutine does not return
-        FUN_180768400(MaxProcessingCount);
+        ProcessUIMemoryAllocation(MaxProcessingCount);
       }
     }
   }
@@ -137373,7 +137373,7 @@ void FUN_180750caa(void)
   *(longlong **)(allocatedMemory + 0x158) = pContextHandleData;
   **(UIHandle **)(stringCompareIndex + 0x20) = pContextHandleData;
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -137385,7 +137385,7 @@ UIHandle FUN_180750d42(void)
   longlong EventHandle;
   UIHandle *unmodifiedR15;
   
-  FUN_180768910();
+  ValidateUIContextState();
   *unmodifiedR15 = *(UIHandle *)(*(longlong *)(EventHandle + 0xa0) + BasePointer * 8);
   return 0;
 }
@@ -138001,7 +138001,7 @@ int FUN_180751800(UIHandle *uiContext)
       UNLOCK();
       if ((EventDataIndex != 0) && (isCharacterMatch3)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(EventDataIndex,10);
+        ProcessUISystemCleanup(EventDataIndex,10);
       }
       if ((uiContext[0xc] != 0) && (*(longlong *)(uiContext[0xc] + 0x170) != 0)) {
         func_0x000180768d40();
@@ -138017,7 +138017,7 @@ int FUN_180751800(UIHandle *uiContext)
         *(longlong **)(EventDataIndex + 0x20) = pCharacterDataOffset;
         *pCharacterDataOffset = (longlong)pCharacterDataOffset;
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
+        ProcessUIMemoryAllocation(*(UIHandle *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
       }
       if ((uiContext[0x1b] == 0) || (TempInt4 = FUN_1807902d0(uiContext[0x1b],uiContext), TempInt4 == 0)) {
         pCharacterDataOffset = (longlong *)uiContext[0x1e];
@@ -138071,7 +138071,7 @@ int FUN_180751800(UIHandle *uiContext)
           *pCharacterDataOffset = (longlong)pCharacterDataOffset;
           uiContext[0x2e] = 0;
                      WARNING: Subroutine does not return
-          FUN_180743d60(uiContext[0x1b],10);
+          ProcessUISystemCleanup(uiContext[0x1b],10);
         }
         TempInt4 = *(int *)(uiBufferData + 0x16);
         if ((TempInt4 != 0) && (ContextHandleData = uiContext[0x14], ContextHandleData != 0)) {
@@ -138177,7 +138177,7 @@ int FUN_180751800(UIHandle *uiContext)
           uiContext[0x25] = pCharacterDataOffset;
           *pCharacterDataOffset = (longlong)pCharacterDataOffset;
                      WARNING: Subroutine does not return
-          FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+          ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
         }
                      WARNING: Subroutine does not return
         FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[7],&UNK_1809583d0,0x2e5,1);
@@ -138192,7 +138192,7 @@ int FUN_180751800(UIHandle *uiContext)
   }
   if ((isCharacterMatch3) && (EventDataIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(EventDataIndex,10);
+    ProcessUISystemCleanup(EventDataIndex,10);
   }
   return TempInt4;
 }
@@ -138232,7 +138232,7 @@ int FUN_180751811(UIHandle *uiContext)
       UNLOCK();
       if ((unmodifiedR12 != 0) && (isCharacterMatch3)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60();
+        ProcessUISystemCleanup();
       }
       if ((uiContext[0xc] != 0) && (*(longlong *)(uiContext[0xc] + 0x170) != 0)) {
         func_0x000180768d40();
@@ -138248,7 +138248,7 @@ int FUN_180751811(UIHandle *uiContext)
         *(longlong **)(EventDataIndex + 0x20) = pCharacterDataOffset;
         *pCharacterDataOffset = (longlong)pCharacterDataOffset;
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
+        ProcessUIMemoryAllocation(*(UIHandle *)(*(longlong *)(uiContext[0x21] + 0x10) + 0x168));
       }
       if ((uiContext[0x1b] == 0) || (TempInt4 = FUN_1807902d0(uiContext[0x1b],uiContext), TempInt4 == 0)) {
         pCharacterDataOffset = (longlong *)uiContext[0x1e];
@@ -138302,7 +138302,7 @@ int FUN_180751811(UIHandle *uiContext)
           *pCharacterDataOffset = (longlong)pCharacterDataOffset;
           uiContext[0x2e] = 0;
                      WARNING: Subroutine does not return
-          FUN_180743d60(uiContext[0x1b],10);
+          ProcessUISystemCleanup(uiContext[0x1b],10);
         }
         TempInt4 = *(int *)(uiBufferData + 0x16);
         if ((TempInt4 != 0) && (ContextHandleData = uiContext[0x14], ContextHandleData != 0)) {
@@ -138408,7 +138408,7 @@ int FUN_180751811(UIHandle *uiContext)
           uiContext[0x25] = pCharacterDataOffset;
           *pCharacterDataOffset = (longlong)pCharacterDataOffset;
                      WARNING: Subroutine does not return
-          FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+          ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
         }
                      WARNING: Subroutine does not return
         FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[7],&UNK_1809583d0,0x2e5,1);
@@ -138423,7 +138423,7 @@ int FUN_180751811(UIHandle *uiContext)
   }
   if ((isCharacterMatch3) && (unmodifiedR12 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return TempInt4;
 }
@@ -138497,7 +138497,7 @@ void FUN_1807519a8(UIHandle uiContext,longlong *dataSource)
     *pContextHandleData = (longlong)pContextHandleData;
     ContextHandle[0x2e] = 0;
                      WARNING: Subroutine does not return
-    FUN_180743d60(ContextHandle[0x1b],10);
+    ProcessUISystemCleanup(ContextHandle[0x1b],10);
   }
   ProcessingResult2 = *(int *)(ContextHandle + 0x16);
   if ((ProcessingResult2 != 0) && (ContextHandleData = ContextHandle[0x14], ContextHandleData != 0)) {
@@ -138601,7 +138601,7 @@ void FUN_1807519a8(UIHandle uiContext,longlong *dataSource)
     ContextHandle[0x25] = pContextHandleData;
     *pContextHandleData = (longlong)pContextHandleData;
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+    ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
   }
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ContextHandle[7],&UNK_1809583d0,0x2e5,1);
@@ -138680,7 +138680,7 @@ void FUN_180751d7a(longlong uiContext)
     ContextHandle[0x25] = pallocatedMemory;
     *pallocatedMemory = (longlong)pallocatedMemory;
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+    ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
   }
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ContextHandle[7],&UNK_1809583d0,0x2e5,1);
@@ -138696,7 +138696,7 @@ UIDword FUN_180751fc5(void)
   
   if (unmodifiedR12 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -139070,7 +139070,7 @@ void FUN_1807526e0(UIHandle *uiContext,longlong dataSource)
   *(longlong **)(componentIndex + 8) = pallocatedMemory;
   *(longlong **)pallocatedMemory[1] = pallocatedMemory;
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -139177,7 +139177,7 @@ UIHandle FUN_180752820(UIHandle *uiContext,int dataSource,longlong targetBuffer,
       }
       if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(uiContext[0x1b],3);
+        ProcessUISystemCleanup(uiContext[0x1b],3);
       }
       localChar4 = (**(code **)*uiContext)(uiContext);
       if (localChar4 != '\0') {
@@ -139188,7 +139188,7 @@ UIHandle FUN_180752820(UIHandle *uiContext,int dataSource,longlong targetBuffer,
         }
         if (bVar3) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(uiContext[0x1b],9);
+          ProcessUISystemCleanup(uiContext[0x1b],9);
         }
       }
       LoopCounter = 0;
@@ -139302,13 +139302,13 @@ UIHandle FUN_180752889(void)
       }
       if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(ContextHandle[0x1b],9);
+        ProcessUISystemCleanup(ContextHandle[0x1b],9);
       }
     }
     return 0;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60(ContextHandle[0x1b],3);
+  ProcessUISystemCleanup(ContextHandle[0x1b],3);
 }
 
 
@@ -139326,7 +139326,7 @@ UIHandle FUN_180752a56(void)
             ((longlong *)ContextHandle[0x2f],0,*(int *)((longlong)ContextHandle + 0x44) + -1);
   if (unmodifiedR12B != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60(ContextHandle[0x1b],3);
+    ProcessUISystemCleanup(ContextHandle[0x1b],3);
   }
   localChar1 = (**(code **)*ContextHandle)();
   if (localChar1 != '\0') {
@@ -139337,7 +139337,7 @@ UIHandle FUN_180752a56(void)
     }
     if (unmodifiedR15B != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(ContextHandle[0x1b],9);
+      ProcessUISystemCleanup(ContextHandle[0x1b],9);
     }
   }
   return 0;
@@ -139590,7 +139590,7 @@ int ValidateUIContext(longlong *uiContext,longlong *dataSource,char targetBuffer
 LAB_1807530cb:
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,2);
+    ProcessUISystemCleanup(componentIndex,2);
   }
   return TempInt4;
 }
@@ -139660,7 +139660,7 @@ int FUN_180752f3d(longlong uiContext)
 LAB_1807530cb:
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,2);
+    ProcessUISystemCleanup(componentIndex,2);
   }
   return TempInt4;
 }
@@ -139729,7 +139729,7 @@ int FUN_180752f4e(void)
 LAB_1807530cb:
   if ((BasePointer != 0) && (BasePointer != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return uiCompareResult;
 }
@@ -139744,7 +139744,7 @@ UIDword FUN_1807530dd(void)
   
   if (BasePointer != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBX;
 }
@@ -141675,7 +141675,7 @@ UIDword FUN_180754fe0(longlong uiContext,int *dataSource)
       *dataSource = *dataSource + *(int *)(ptrResult[2] + 0x138);
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+    ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
   }
   return 0x1f;
 }
@@ -141703,7 +141703,7 @@ UIHandle FUN_180755070(longlong *uiContext)
       uiContext[1] = (longlong)uiContext;
       *uiContext = (longlong)uiContext;
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+      ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
     }
                      WARNING: Subroutine does not return
     FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[0xc],&UNK_1809586e0,0xb7,1);
@@ -141737,7 +141737,7 @@ UIHandle FUN_180755070(longlong *uiContext)
     colorBufferPointer = (longlong *)*pallocatedMemory;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -141787,7 +141787,7 @@ void FUN_1807550a5(void)
     colorBufferPointer = (longlong *)*pallocatedMemory;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -141811,7 +141811,7 @@ void FUN_1807551c2(void)
   TargetHandle[1] = (longlong)TargetHandle;
   *TargetHandle = (longlong)TargetHandle;
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -141833,7 +141833,7 @@ void FUN_180755270(longlong *uiContext)
   uiContext[1] = (longlong)uiContext;
   *uiContext = (longlong)uiContext;
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -142684,7 +142684,7 @@ UIHandle FUN_180756640(longlong uiContext,uint dataSource,longlong targetBuffer)
   stackUInt10 = *(UIDword *)(psemaphoreHandle + 7);
   stackUIntc = *(UIDword *)((longlong)psemaphoreHandle + 0x3c);
   pstackUInt40 = &UNK_180958970;
-  EventTypeCode = FUN_180742e00(*(UIHandle *)(uiContext + 8),&stackUInt48,0,alStackX_8,0);
+  EventTypeCode = ProcessUIDataTransfer(*(UIHandle *)(uiContext + 8),&stackUInt48,0,alStackX_8,0);
   if ((int)EventTypeCode == 0) {
     *(longlong *)(uiBufferData + 0x70) = alStackX_8[0];
     *(longlong *)(uiBufferData + 0x68) = alStackX_8[0];
@@ -143035,7 +143035,7 @@ void FUN_180756aa0(longlong *uiContext,longlong *dataSource,longlong targetBuffe
               *(longlong **)(stringCompareIndex + 8) = pallocatedMemory;
               *(longlong **)pallocatedMemory[1] = pallocatedMemory;
                      WARNING: Subroutine does not return
-              FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+              ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
             }
             if (resultPointer != '\0') {
               (**(code **)(*dataSource + 0x120))(dataSource,abStack_58);
@@ -143135,7 +143135,7 @@ void FUN_180756b90(void)
       *(longlong **)(stringCompareIndex + 8) = pallocatedMemory;
       *(longlong **)pallocatedMemory[1] = pallocatedMemory;
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+      ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
     }
     MaxProcessingCount = extraout_XMM0_Da_00;
     if (unmodifiedSIL != '\0') {
@@ -144313,7 +144313,7 @@ LAB_18075833f:
     *(UIHandle *)(stringCompareIndex + 0x18) = 0;
     if (IsValidationComplete) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext[1],8);
+      ProcessUISystemCleanup(uiContext[1],8);
     }
   }
   if ((dataSource & 4) == 0) {
@@ -144475,7 +144475,7 @@ LAB_18075833f:
     *(UIHandle *)(stringCompareIndex + 0x18) = 0;
     if (IsValidationComplete) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(ContextHandle[1],8);
+      ProcessUISystemCleanup(ContextHandle[1],8);
     }
   }
   if ((unmodifiedDIL & 4) == 0) {
@@ -144541,7 +144541,7 @@ UIHandle FUN_1807584a8(UIHandle *uiContext)
   *(UIHandle *)(SourceHandle + 0x18) = unmodifiedR15;
   if (isCharacterMatch) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(*(UIHandle *)(ContextHandle + 8),8);
+    ProcessUISystemCleanup(*(UIHandle *)(ContextHandle + 8),8);
   }
   if (unmodifiedEBP == 0) {
     *(UIHandle *)(ContextHandle + 0x68) = *(UIHandle *)(ContextHandle + 0x70);
@@ -144592,7 +144592,7 @@ void FUN_1807584e5(void)
   longlong ContextHandle;
   
                      WARNING: Subroutine does not return
-  FUN_180743d60(*(UIHandle *)(ContextHandle + 8),8);
+  ProcessUISystemCleanup(*(UIHandle *)(ContextHandle + 8),8);
 }
 
 
@@ -145591,7 +145591,7 @@ ulonglong FUN_1807594d0(ulonglong uiContext,ulonglong dataSource,int targetBuffe
 LAB_1807595e2:
         if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(componentIndex,1);
+          ProcessUISystemCleanup(componentIndex,1);
         }
       }
     } while ((uiOperationResult4 != 9) &&
@@ -145660,7 +145660,7 @@ LAB_1807595e2:
 LAB_180759812:
     if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(componentIndex,1);
+      ProcessUISystemCleanup(componentIndex,1);
     }
   }
   if ((int)LoopCounter != 0) {
@@ -145677,7 +145677,7 @@ LAB_180759661:
       sVar1 = *(short *)(uiContext + 0x1ae);
       if (param_6 != '\0') {
                      WARNING: Subroutine does not return
-        FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+        ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
       }
       MaxProcessingCount = 0;
       LoopCounter = MaxProcessingCount;
@@ -145787,7 +145787,7 @@ LAB_180759661:
 LAB_180759a33:
           if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-            FUN_180743d60(componentIndex,1);
+            ProcessUISystemCleanup(componentIndex,1);
           }
         }
       } while ((uiOperationResult4 != 9) && (uiOperationResult6 = uiOperationResult6 + 1, uiOperationResult6 < bufferSize));
@@ -145804,7 +145804,7 @@ LAB_180759a33:
         sVar1 = *(short *)(LoopCounter + 0x1ac);
         if (param_6 != '\0') {
                      WARNING: Subroutine does not return
-          FUN_180743d60(*(UIHandle *)(LoopCounter + 0xa8),1);
+          ProcessUISystemCleanup(*(UIHandle *)(LoopCounter + 0xa8),1);
         }
         uVar8 = 0;
         MaxProcessingCount = uVar8;
@@ -145909,7 +145909,7 @@ LAB_180759a33:
 LAB_180759d46:
             if (!isCharacterMatch8) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(componentIndex,1);
+              ProcessUISystemCleanup(componentIndex,1);
             }
           }
           if ((result7 != 0) && (result7 != 9)) {
@@ -146020,11 +146020,11 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
     if ((localChar6 != '\0') && (allocatedMemory != 0)) {
       if (bVar4) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,3);
+        ProcessUISystemCleanup(allocatedMemory,3);
       }
       if ((allocatedMemory != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,1);
+        ProcessUISystemCleanup(allocatedMemory,1);
       }
     }
     if (targetBuffer != (longlong *)0x0) {
@@ -146035,11 +146035,11 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
 LAB_180759fd6:
   if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
   if ((bVar4) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,3);
+    ProcessUISystemCleanup(allocatedMemory,3);
   }
   return result0;
 }
@@ -146151,11 +146151,11 @@ ulonglong FUN_180759d94(longlong uiContext,longlong dataSource,UIHandle targetBu
     if ((localChar5 != '\0') && (ContextHandle != 0)) {
       if (bVar3) {
                      WARNING: Subroutine does not return
-        FUN_180743d60();
+        ProcessUISystemCleanup();
       }
       if ((ContextHandle != 0) && (bVar4)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60();
+        ProcessUISystemCleanup();
       }
     }
     if (stackParam00000060 != (longlong *)0x0) {
@@ -146166,11 +146166,11 @@ ulonglong FUN_180759d94(longlong uiContext,longlong dataSource,UIHandle targetBu
 LAB_180759fd6:
   if ((bVar4) && (ContextHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   if ((bVar3) && (ContextHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return uVar9;
 }
@@ -146189,7 +146189,7 @@ UIDword FUN_180759ff4(void)
     return allocationFlags;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -146202,7 +146202,7 @@ UIDword FUN_18075a010(void)
   
   if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -150538,7 +150538,7 @@ UIHandle FUN_18075d7f0(longlong uiContext,char dataSource,char targetBuffer,char
     }
     if (resultPointer != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     iStackX_10 = 0;
     if (0 < sVar1) {
@@ -150608,7 +150608,7 @@ LAB_18075d910:
     }
     if (resultPointer != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     iStackX_10 = 0;
     if (0 < sVar1) {
@@ -150767,7 +150767,7 @@ ulonglong ProcessUIComponentRecursive(longlong uiContext, longlong dataSource, u
     sVar1 = *(short *)(uiContext + 0x1a8);
     if (resultPointer != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     result2 = 0;
     while (sVar1 != 0) {
@@ -150887,7 +150887,7 @@ LAB_18075dfdf:
 LAB_18075e172:
             if (!isCharacterMatch5) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(stringCompareIndex,1);
+              ProcessUISystemCleanup(stringCompareIndex,1);
             }
           }
           if (result0 != 0) goto LAB_18075dfe8;
@@ -150975,11 +150975,11 @@ LAB_18075e20f:
           if (resultPointer != '\0') {
             if ((componentIndex != 0) && (bVar4)) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(componentIndex,3);
+              ProcessUISystemCleanup(componentIndex,3);
             }
             if ((componentIndex != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(componentIndex,1);
+              ProcessUISystemCleanup(componentIndex,1);
             }
           }
           goto LAB_18075dffb;
@@ -150992,11 +150992,11 @@ LAB_18075dfe8:
 LAB_18075dffb:
   if ((bVar4) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,3);
+    ProcessUISystemCleanup(componentIndex,3);
   }
   if ((IsValidationComplete) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,1);
+    ProcessUISystemCleanup(componentIndex,1);
   }
   return result2;
 }
@@ -151070,7 +151070,7 @@ ulonglong FUN_18075dcce(longlong uiContext,longlong dataSource,ulonglong targetB
     sVar1 = *(short *)(uiContext + 0x1a8);
     if (stackParam000000a0 != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     uVar9 = 0;
     while (sVar1 != 0) {
@@ -151190,7 +151190,7 @@ LAB_18075dfdf:
 LAB_18075e172:
             if (!isCharacterMatch3) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(allocatedMemory2,1);
+              ProcessUISystemCleanup(allocatedMemory2,1);
             }
           }
           if (eventTypeCode != 0) goto LAB_18075dfe8;
@@ -151280,11 +151280,11 @@ LAB_18075e20f:
           if (stackParam000000a0 != '\0') {
             if ((allocatedMemory2 != 0) && (cStack0000000000000088 != '\0')) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(allocatedMemory2,3);
+              ProcessUISystemCleanup(allocatedMemory2,3);
             }
             if ((allocatedMemory2 != 0) && (cStack0000000000000080 != '\0')) {
                      WARNING: Subroutine does not return
-              FUN_180743d60(allocatedMemory2,1);
+              ProcessUISystemCleanup(allocatedMemory2,1);
             }
           }
           goto LAB_18075dffb;
@@ -151297,11 +151297,11 @@ LAB_18075dfe8:
 LAB_18075dffb:
   if ((cStack0000000000000088 != '\0') && (lStack0000000000000030 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000030,3);
+    ProcessUISystemCleanup(lStack0000000000000030,3);
   }
   if ((cStack0000000000000080 != '\0') && (lStack0000000000000030 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(lStack0000000000000030,1);
+    ProcessUISystemCleanup(lStack0000000000000030,1);
   }
   return uVar9;
 }
@@ -151320,7 +151320,7 @@ UIDword FUN_18075e020(void)
     return unmodifiedR13D;
   }
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -151333,7 +151333,7 @@ UIDword FUN_18075e03c(void)
   
   if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedR13D;
 }
@@ -151425,7 +151425,7 @@ ulonglong FUN_18075e059(void)
 LAB_18075e172:
           if (!isCharacterMatch0) {
                      WARNING: Subroutine does not return
-            FUN_180743d60(componentIndex,1);
+            ProcessUISystemCleanup(componentIndex,1);
           }
         }
         if (LoopCounter != 0) goto LAB_18075dfe8;
@@ -151515,11 +151515,11 @@ LAB_18075e20f:
         if (stackParam000000a0 != '\0') {
           if ((EventHandle != 0) && (stackParam00000088 != '\0')) {
                      WARNING: Subroutine does not return
-            FUN_180743d60(EventHandle,3);
+            ProcessUISystemCleanup(EventHandle,3);
           }
           if ((EventHandle != 0) && (stackParam00000080 != '\0')) {
                      WARNING: Subroutine does not return
-            FUN_180743d60(EventHandle,1);
+            ProcessUISystemCleanup(EventHandle,1);
           }
         }
         goto LAB_18075dffb;
@@ -151531,11 +151531,11 @@ LAB_18075dfe8:
 LAB_18075dffb:
   if ((stackParam00000088 != '\0') && (stackParam00000030 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000030,3);
+    ProcessUISystemCleanup(stackParam00000030,3);
   }
   if ((stackParam00000080 != '\0') && (stackParam00000030 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000030,1);
+    ProcessUISystemCleanup(stackParam00000030,1);
   }
   return uVar8;
 }
@@ -151595,7 +151595,7 @@ int FUN_18075e410(longlong uiContext)
 LAB_18075e4a6:
   if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,7);
+    ProcessUISystemCleanup(allocatedMemory,7);
   }
   return uiCompareResult;
 }
@@ -151629,7 +151629,7 @@ int FUN_18075e41d(longlong uiContext)
 LAB_18075e4a6:
   if ((SourceHandle != 0) && (SourceHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return uiValidationResult;
 }
@@ -151644,7 +151644,7 @@ UIDword FUN_18075e4b5(void)
   
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBX;
 }
@@ -151776,7 +151776,7 @@ ulonglong FUN_18075e740(longlong uiContext,int dataSource,ulonglong *targetBuffe
   else if (isCharacterMatch1) {
 LAB_18075e85a:
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
   return MaxProcessingCount;
 }
@@ -151966,7 +151966,7 @@ LAB_18075eb30:
 LAB_18075eb37:
   if ((stringCompareIndex != 0) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,7);
+    ProcessUISystemCleanup(stringCompareIndex,7);
   }
   return IndexResult;
 }
@@ -151996,7 +151996,7 @@ UIDword FUN_18075eb70(longlong uiContext,int *dataSource,char targetBuffer,char 
     *dataSource = (int)sVar1;
     if (bufferSize != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     semaphoreHandle = 0;
   }
@@ -152028,7 +152028,7 @@ UIDword FUN_18075ec10(longlong uiContext,int *dataSource,char targetBuffer,char 
     *dataSource = (int)sVar1;
     if (bufferSize != '\0') {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
     }
     semaphoreHandle = 0;
   }
@@ -152253,7 +152253,7 @@ ulonglong FUN_18075ef40(longlong uiContext,int dataSource,ulonglong *targetBuffe
   else if (isCharacterMatch1) {
 LAB_18075f05a:
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
   return MaxProcessingCount;
 }
@@ -153149,7 +153149,7 @@ ulonglong FUN_18075fdb0(longlong uiContext,longlong dataSource,char targetBuffer
   localInt8 = (int)sVar1;
   if (targetBuffer != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180743d60(*(UIHandle *)(uiContext + 0xa8),1);
+    ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
   }
   localInt9 = (int)*(short *)(dataSource + 0x1ac);
   if ((1 < localInt9) && (1 < localInt8)) {
@@ -153434,7 +153434,7 @@ LAB_18075feb6:
       }
       if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,1);
+        ProcessUISystemCleanup(allocatedMemory,1);
       }
 LAB_180760204:
       if (((int)EventTypeCode != 9) && ((int)EventTypeCode != 0)) {
@@ -153498,7 +153498,7 @@ LAB_180760204:
 LAB_180760306:
           if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-            FUN_180743d60(allocatedMemory,1);
+            ProcessUISystemCleanup(allocatedMemory,1);
           }
         }
         if ((int)EventTypeCode != 0) {
@@ -153576,7 +153576,7 @@ LAB_180760306:
   }
   if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
 LAB_18075ffc4:
   if (((int)EventTypeCode != 9) && ((int)EventTypeCode != 0)) {
@@ -153635,7 +153635,7 @@ LAB_18075ffc4:
 LAB_1807600cf:
         if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(allocatedMemory,1);
+          ProcessUISystemCleanup(allocatedMemory,1);
         }
       }
       if ((int)EventTypeCode != 0) {
@@ -153741,7 +153741,7 @@ LAB_18075feb6:
     }
     if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory,1);
+      ProcessUISystemCleanup(allocatedMemory,1);
     }
 LAB_180760204:
     if (((int)EventTypeCode != 9) && ((int)EventTypeCode != 0)) {
@@ -153805,7 +153805,7 @@ LAB_180760204:
 LAB_180760306:
         if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(allocatedMemory,1);
+          ProcessUISystemCleanup(allocatedMemory,1);
         }
       }
       if ((int)EventTypeCode != 0) {
@@ -153886,7 +153886,7 @@ LAB_180760306:
   }
   if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
 LAB_18075ffc4:
   if (((int)EventTypeCode != 9) && ((int)EventTypeCode != 0)) {
@@ -153945,7 +153945,7 @@ LAB_18075ffc4:
 LAB_1807600cf:
         if (!isCharacterMatch4) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(allocatedMemory,1);
+          ProcessUISystemCleanup(allocatedMemory,1);
         }
       }
       if ((int)EventTypeCode != 0) {
@@ -154024,7 +154024,7 @@ ulonglong FUN_1807603e0(longlong uiContext)
   }
   if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,7);
+    ProcessUISystemCleanup(allocatedMemory,7);
   }
   allocatedMemory = *(longlong *)(uiBufferData + 0xe8);
   if ((allocatedMemory != 0) && (*(longlong *)(allocatedMemory + 0x40) != 0)) {
@@ -154074,7 +154074,7 @@ ulonglong FUN_1807603ff(void)
   }
   if ((SourceHandle != 0) && (SourceHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   componentIndex = *(longlong *)(ContextHandle + 0xe8);
   if ((componentIndex != 0) && (*(longlong *)(componentIndex + 0x40) != 0)) {
@@ -154098,7 +154098,7 @@ ulonglong FUN_1807604ab(void)
   
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   allocatedMemory = *(longlong *)(ContextHandle + 0xe8);
   if ((allocatedMemory != 0) && (*(ulonglong *)(allocatedMemory + 0x40) != TargetHandle)) {
@@ -154165,7 +154165,7 @@ UIHandle FUN_180760540(longlong uiContext)
   }
   if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,7);
+    ProcessUISystemCleanup(allocatedMemory,7);
   }
   allocatedMemory = *(longlong *)(uiBufferData + 0xe8);
   if ((allocatedMemory == 0) || (*(longlong *)(allocatedMemory + 0x40) == 0)) {
@@ -155098,13 +155098,13 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
     if (uiCompareResult != 0) {
       if ((IsEventProcessingActive4) && (allocatedMemory2 != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory2,7);
+        ProcessUISystemCleanup(allocatedMemory2,7);
       }
       goto FUN_18076203a;
     }
     if ((IsEventProcessingActive4) && (allocatedMemory2 != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory2,7);
+      ProcessUISystemCleanup(allocatedMemory2,7);
     }
   }
   localChar19 = cStack_528;
@@ -155150,13 +155150,13 @@ LAB_180761b18:
       if (uiCompareResult != 0) {
         if ((IsEventProcessingActive3) && (CharacterDataOffset != 0)) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(CharacterDataOffset,7);
+          ProcessUISystemCleanup(CharacterDataOffset,7);
         }
         goto FUN_18076203a;
       }
       if ((IsEventProcessingActive3) && (CharacterDataOffset != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(CharacterDataOffset,7);
+        ProcessUISystemCleanup(CharacterDataOffset,7);
       }
     }
     if (*(longlong *)(uiBufferData + 0x138) == 0) {
@@ -155813,13 +155813,13 @@ LAB_180761b18:
       if (localInt7 != 0) {
         if ((IsEventProcessingActive3) && (allocatedMemory1 != 0)) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(allocatedMemory1,7);
+          ProcessUISystemCleanup(allocatedMemory1,7);
         }
         goto LAB_180762032;
       }
       if ((IsEventProcessingActive3) && (allocatedMemory1 != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory1,7);
+        ProcessUISystemCleanup(allocatedMemory1,7);
       }
     }
     if (*(longlong *)(ContextHandle + 0x138) == 0) {
@@ -156559,13 +156559,13 @@ void FUN_18076161b(float uiContext)
     if (TempInt4 != 0) {
       if ((IsEventProcessingActive1) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(stringCompareIndex,7);
+        ProcessUISystemCleanup(stringCompareIndex,7);
       }
       goto LAB_180762032;
     }
     if ((IsEventProcessingActive1) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(stringCompareIndex,7);
+      ProcessUISystemCleanup(stringCompareIndex,7);
     }
   }
   if (*(longlong *)(ContextHandle + 0x138) == 0) {
@@ -156875,13 +156875,13 @@ void FUN_1807617cf(void)
     if (uiValidationResult != 0) {
       if ((isCharacterMatch6) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,7);
+        ProcessUISystemCleanup(allocatedMemory,7);
       }
       goto LAB_180762032;
     }
     if ((isCharacterMatch6) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory,7);
+      ProcessUISystemCleanup(allocatedMemory,7);
     }
   }
   if (*(longlong *)(ContextHandle + 0x138) == 0) {
@@ -157265,7 +157265,7 @@ LAB_18076259e:
     if (ContextHandleData == 0) {
       if (EventDataIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(EventDataIndex,7);
+        ProcessUISystemCleanup(EventDataIndex,7);
       }
       localInt8 = 0x26;
       goto LAB_1807625b6;
@@ -157280,20 +157280,20 @@ LAB_18076259e:
     if (TempInt4 == 0) {
       if (EventDataIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(EventDataIndex,7);
+        ProcessUISystemCleanup(EventDataIndex,7);
       }
       goto LAB_180762564;
     }
     if (EventDataIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(EventDataIndex,7);
+      ProcessUISystemCleanup(EventDataIndex,7);
     }
   }
   localInt8 = TempInt4;
 LAB_1807625b6:
   if ((bVar9) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,7);
+    ProcessUISystemCleanup(allocatedMemory,7);
   }
   return localInt8;
 }
@@ -157369,7 +157369,7 @@ LAB_18076259e:
     if (EventDataIndex == 0) {
       if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,7);
+        ProcessUISystemCleanup(allocatedMemory,7);
       }
       localInt7 = 0x26;
       goto LAB_1807625b6;
@@ -157384,20 +157384,20 @@ LAB_18076259e:
     if (TempInt4 == 0) {
       if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,7);
+        ProcessUISystemCleanup(allocatedMemory,7);
       }
       goto LAB_180762564;
     }
     if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory,7);
+      ProcessUISystemCleanup(allocatedMemory,7);
     }
   }
   localInt7 = TempInt4;
 LAB_1807625b6:
   if ((cStack0000000000000070 != '\0') && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return localInt7;
 }
@@ -157412,7 +157412,7 @@ UIDword FUN_1807625db(void)
   
   if (unmodifiedR15 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBX;
 }
@@ -160985,7 +160985,7 @@ UIHandle FUN_1807679d0(UIHandle *uiContext)
     *(UIHandle *)(uiContext[0x27] + 0x10 + (longlong)*(int *)(uiBufferData + 0x28) * 8) = uiContext[0x22];
   }
   *(UIByte *)(uiContext + 0x23) = 1;
-  FUN_180768910(uiContext[0x26]);
+  ValidateUIContextState(uiContext[0x26]);
   localChar1 = *(char *)(uiContext + 0x23);
   while (localChar1 != '\0') {
     if (uiContext[0x25] != 0) {
@@ -161033,7 +161033,7 @@ UIHandle FUN_180767ad0(longlong uiContext)
   if (*(char *)(uiContext + 0x119) != '\0') {
     *(UIByte *)(uiContext + 0x118) = 0;
   }
-  if ((*(longlong *)(uiBufferData + 0x128) != 0) && (result = FUN_180768910(), (int)result != 0)) {
+  if ((*(longlong *)(uiBufferData + 0x128) != 0) && (result = ValidateUIContextState(), (int)result != 0)) {
     return result;
   }
   result = FUN_180768940(*(UIHandle *)(uiContext + 0x130));
@@ -161953,7 +161953,7 @@ UIDword FUN_180768380(longlong uiContext,char dataSource)
 
 
 
-UIDword FUN_180768400(longlong uiContext)
+UIDword ProcessUIMemoryAllocation(longlong uiContext)
 
 {
   if (uiContext == 0) {
@@ -162217,7 +162217,7 @@ UIHandle FUN_1807688f0(void)
 
 
 
-UIHandle FUN_180768910(UIHandle uiContext)
+UIHandle ValidateUIContextState(UIHandle uiContext)
 
 {
   int uiOperationResult;
@@ -162842,7 +162842,7 @@ UIDword FUN_180769080(longlong *uiContext)
     uiContext[2] = (longlong)pallocatedMemory;
     *pallocatedMemory = (longlong)pallocatedMemory;
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(uiContext[0x31] + 0x198));
+    ProcessUIMemoryAllocation(*(UIHandle *)(uiContext[0x31] + 0x198));
   }
   ProcessingStatus = (**(code **)(*uiContext + 0x28))(uiContext);
   if ((uiContext[0x33] != 0) && (dataPointer = *(code **)(uiContext[0x33] + 0x11820), dataPointer != (code *)0x0))
@@ -162917,7 +162917,7 @@ UIHandle FUN_180769220(longlong uiContext,uint dataSource,longlong targetBuffer)
       *(longlong **)(ContextHandleData + 8) = pallocatedMemory;
       **(longlong **)(uiContext + 0x10) = (longlong)pallocatedMemory;
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(*(longlong *)(uiBufferData + 0x188) + 0x198));
+      ProcessUIMemoryAllocation(*(UIHandle *)(*(longlong *)(uiBufferData + 0x188) + 0x198));
     }
   }
   else {
@@ -164208,7 +164208,7 @@ UIHandle FUN_18076a800(longlong uiContext)
   while( true ) {
     if (ptrResult == (UIHandle *)(uiContext + 0x170)) {
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(uiContext + 0x198));
+      ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x198));
     }
     *(UIHandle *)(uiContext + 400) = *ptrResult;
     if ((*(uint *)((longlong)ptrResult + 0x18c) & 0x20) != 0) break;
@@ -164216,7 +164216,7 @@ UIHandle FUN_18076a800(longlong uiContext)
     *(UIHandle **)(uiContext + 0x188) = ptrResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x198));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x198));
 }
 
 
@@ -164235,7 +164235,7 @@ void FUN_18076a81f(void)
   while( true ) {
     if (ptrResult == (UIHandle *)(EventHandle + 0x170)) {
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(EventHandle + 0x198));
+      ProcessUIMemoryAllocation(*(UIHandle *)(EventHandle + 0x198));
     }
     *(UIHandle *)(EventHandle + 400) = *ptrResult;
     if ((*(uint *)((longlong)ptrResult + 0x18c) & 0x20) != 0) break;
@@ -164243,7 +164243,7 @@ void FUN_18076a81f(void)
     *(UIHandle **)(EventHandle + 0x188) = ptrResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(EventHandle + 0x198));
+  ProcessUIMemoryAllocation(*(UIHandle *)(EventHandle + 0x198));
 }
 
 
@@ -164260,13 +164260,13 @@ void FUN_18076a844(UIHandle uiContext,UIHandle *dataSource)
     *(UIHandle *)(EventHandle + 400) = *dataSource;
     if ((*(uint *)((longlong)dataSource + 0x18c) & 0x20) != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(EventHandle + 0x198));
+      ProcessUIMemoryAllocation(*(UIHandle *)(EventHandle + 0x198));
     }
     dataSource = *(UIHandle **)(EventHandle + 400);
     *(UIHandle **)(EventHandle + 0x188) = dataSource;
   } while (dataSource != unmodifiedR12);
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(EventHandle + 0x198));
+  ProcessUIMemoryAllocation(*(UIHandle *)(EventHandle + 0x198));
 }
 
 
@@ -164279,7 +164279,7 @@ void FUN_18076abb4(void)
   longlong EventHandle;
   
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(EventHandle + 0x198));
+  ProcessUIMemoryAllocation(*(UIHandle *)(EventHandle + 0x198));
 }
 
 
@@ -164304,7 +164304,7 @@ UIHandle FUN_18076abd0(int uiContext)
   }
   *(UIDword *)(_DAT_180be12f0 + 4) = 0;
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x118));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x118));
 }
 
 
@@ -164341,7 +164341,7 @@ void FUN_18076ac40(int uiContext,longlong *dataSource)
     EventDataIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x178,&UNK_180958cb0);
     if (EventDataIndex == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(EventTypeCode);
+      ProcessUIMemoryAllocation(EventTypeCode);
     }
     func_0x000180767970(EventDataIndex);
     allocatedMemory = EventDataIndex + 0x150;
@@ -164357,12 +164357,12 @@ void FUN_18076ac40(int uiContext,longlong *dataSource)
     }
     if (TempInt4 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(EventTypeCode);
+      ProcessUIMemoryAllocation(EventTypeCode);
     }
     *colorBufferPointer = EventDataIndex;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(EventTypeCode);
+  ProcessUIMemoryAllocation(EventTypeCode);
 }
 
 
@@ -164397,7 +164397,7 @@ UIHandle FUN_18076ade0(void)
     componentIndex = componentIndex + -1;
   } while (componentIndex != 0);
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x128));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x128));
 }
 
 
@@ -164431,7 +164431,7 @@ void FUN_18076adfb(void)
     componentIndex = componentIndex + -1;
   } while (componentIndex != 0);
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x128));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x128));
 }
 
 
@@ -164460,7 +164460,7 @@ void FUN_18076aee0(longlong uiContext)
     *pallocatedMemory = (longlong)pallocatedMemory;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x168));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x168));
 }
 
 
@@ -164531,7 +164531,7 @@ UIHandle FUN_18076af64(void)
       }
       if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(componentIndex,8);
+        ProcessUISystemCleanup(componentIndex,8);
       }
     }
     else {
@@ -164543,7 +164543,7 @@ UIHandle FUN_18076af64(void)
       *ptrResult = *ptrResult & 0xffffbfff;
       if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(componentIndex,8);
+        ProcessUISystemCleanup(componentIndex,8);
       }
     }
   }
@@ -164641,7 +164641,7 @@ UIHandle FUN_18076b0f6(longlong *uiContext,longlong dataSource)
   }
   if ((EventDataIndex != 0) && (EventDataIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(EventDataIndex,8);
+    ProcessUISystemCleanup(EventDataIndex,8);
   }
   *(int *)(*(longlong *)(*(longlong *)(BasePointer + 0x28) + 0x108) + 0x124) = TempInt4;
   EventDataIndex = *(longlong *)(BasePointer + 0x28);
@@ -164712,7 +164712,7 @@ UIHandle FUN_18076b181(void)
   
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   *(int *)(*(longlong *)(*(longlong *)(BasePointer + 0x28) + 0x108) + 0x124) = unmodifiedEBX;
   componentIndex = *(longlong *)(BasePointer + 0x28);
@@ -170782,7 +170782,7 @@ LAB_18076e4a9:
 LAB_18076e4f2:
   if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,5);
+    ProcessUISystemCleanup(allocatedMemory,5);
   }
   return uiCompareResult;
 }
@@ -170873,7 +170873,7 @@ LAB_18076e4a9:
 LAB_18076e4f2:
   if ((EventHandle != 0) && (EventHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(resultFloat,5);
+    ProcessUISystemCleanup(resultFloat,5);
   }
   return uiValidationResult;
 }
@@ -170888,7 +170888,7 @@ UIDword FUN_18076e510(void)
   
   if (EventHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -170952,7 +170952,7 @@ UIDword FUN_18076e620(longlong uiContext,uint *dataSource,longlong targetBuffer,
   }
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,5);
+    ProcessUISystemCleanup(componentIndex,5);
   }
   return MaxProcessingCount;
 }
@@ -171080,7 +171080,7 @@ LAB_18076e8e3:
   *(UIDword *)(uiBufferData + 0x2a4) = uVar8;
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,5);
+    ProcessUISystemCleanup(componentIndex,5);
   }
   return 0;
 }
@@ -171384,7 +171384,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
 LAB_18076f24a:
   if ((bVar6) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,5);
+    ProcessUISystemCleanup(componentIndex,5);
   }
   return localInt7;
 }
@@ -171457,7 +171457,7 @@ int FUN_18076f111(longlong uiContext,ulonglong dataSource,UIHandle targetBuffer,
 LAB_18076f24a:
   if ((IsValidationComplete) && (BasePointer != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return localInt6;
 }
@@ -171472,7 +171472,7 @@ UIDword FUN_18076f263(void)
   
   if (BasePointer != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -171555,7 +171555,7 @@ LAB_18076f469:
       }
       if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(allocatedMemory,5);
+        ProcessUISystemCleanup(allocatedMemory,5);
       }
       return TempInt4;
     }
@@ -171771,7 +171771,7 @@ int FUN_18076f660(longlong uiContext)
 LAB_18076f928:
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,5);
+    ProcessUISystemCleanup(componentIndex,5);
   }
   return localInt8;
 }
@@ -171937,7 +171937,7 @@ int FUN_18076f670(longlong uiContext)
 LAB_18076f928:
   if ((unmodifiedR12 != 0) && (unmodifiedR12 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(unmodifiedR12,5);
+    ProcessUISystemCleanup(unmodifiedR12,5);
   }
   return localInt7;
 }
@@ -172104,7 +172104,7 @@ int FUN_18076f67e(float uiContext)
 LAB_18076f928:
   if ((unmodifiedR13B != '\0') && (unmodifiedR12 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(unmodifiedR12,5);
+    ProcessUISystemCleanup(unmodifiedR12,5);
   }
   return localInt7;
 }
@@ -172241,7 +172241,7 @@ int FUN_18076f6db(float uiContext,UIHandle dataSource,longlong *targetBuffer,lon
 LAB_18076f928:
   if ((unmodifiedR13B != '\0') && (stackParam00000078 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackParam00000078,5);
+    ProcessUISystemCleanup(stackParam00000078,5);
   }
   return localInt5;
 }
@@ -172335,7 +172335,7 @@ ulonglong FUN_18076f7ef(float uiContext,UIHandle dataSource,float targetBuffer,l
 LAB_18076f928:
   if ((unmodifiedR13B != '\0') && (unmodifiedR12 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,5);
+    ProcessUISystemCleanup(uiContext,5);
   }
   return uVar8;
 }
@@ -172365,7 +172365,7 @@ int FUN_18076f8bb(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
 LAB_18076f928:
   if ((unmodifiedR13B != '\0') && (unmodifiedR12 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return register10D;
 }
@@ -172380,7 +172380,7 @@ UIDword FUN_18076f949(void)
   
   if (unmodifiedR12 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -173438,7 +173438,7 @@ LAB_18077086b:
               }
               result1 = result1 & 0xffffffffffffff00;
               pstackLongc0 = pallocatedMemory4;
-              MaxProcessingCount = FUN_180742e00(*uiContext,&stackUInt78,0,&pstackLongc0,result1);
+              MaxProcessingCount = ProcessUIDataTransfer(*uiContext,&stackUInt78,0,&pstackLongc0,result1);
               pallocatedMemory4 = pstackLongc0;
               pallocatedMemory0 = (longlong *)(ulonglong)MaxProcessingCount;
               pallocatedMemory5 = pallocatedMemory2;
@@ -173545,7 +173545,7 @@ LAB_180770cd4:
 LAB_180770c67:
   if ((isCharacterMatch6) && (stackLong88 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stackLong88,4);
+    ProcessUISystemCleanup(stackLong88,4);
   }
   if (((IsValidationComplete) && (pallocatedMemory2 != (longlong *)0x0)) && (0 < (int)stackUInta8)) {
     result1 = (ulonglong)stackUInta8;
@@ -173737,7 +173737,7 @@ LAB_18077086b:
               allocatedMemory1 = *SourceHandle;
               *(UIHandle **)(BasePointer + -0x69) = ptrResult0;
               CounterResult = CounterResult & 0xffffffffffffff00;
-              TotalResult = FUN_180742e00(allocatedMemory1,BasePointer + -0x21,0,BasePointer + -0x69,CounterResult);
+              TotalResult = ProcessUIDataTransfer(allocatedMemory1,BasePointer + -0x21,0,BasePointer + -0x69,CounterResult);
               IndexResult = (ulonglong)TotalResult;
               if (TotalResult != 0) goto LAB_180770cd4;
               if (uiOperationResult8 == 0) {
@@ -173849,7 +173849,7 @@ LAB_180770cd4:
 LAB_180770c67:
   if ((*(char *)(BasePointer + -0x71) != '\0') && (*(longlong *)(BasePointer + -0x31) != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(*(longlong *)(BasePointer + -0x31),4);
+    ProcessUISystemCleanup(*(longlong *)(BasePointer + -0x31),4);
   }
   if (((bVar7) && (EventHandle != (longlong *)0x0)) && (0 < (int)*(uint *)(BasePointer + -0x51))) {
     CounterResult = (ulonglong)*(uint *)(BasePointer + -0x51);
@@ -173875,7 +173875,7 @@ UIHandle FUN_180770ccf(void)
   
   if ((*(char *)(BasePointer + -0x71) != '\0') && (*(longlong *)(BasePointer + -0x31) != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(*(longlong *)(BasePointer + -0x31),4);
+    ProcessUISystemCleanup(*(longlong *)(BasePointer + -0x31),4);
   }
   if ((EventHandle != (longlong *)0x0) && (0 < (int)*(uint *)(BasePointer + -0x51))) {
     result = (ulonglong)*(uint *)(BasePointer + -0x51);
@@ -175078,7 +175078,7 @@ LAB_180772526:
       pallocatedMemory1[0xe] = (longlong)pallocatedMemory1;
       if ((isCharacterMatch0) && (EventDataIndex != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180743d60(EventDataIndex,3);
+        ProcessUISystemCleanup(EventDataIndex,3);
       }
     }
     pallocatedMemory1[0xf] = resultPointer;
@@ -175372,7 +175372,7 @@ UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
         *pContextHandleData = (longlong)pContextHandleData;
         if ((bVar3) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(componentIndex,3);
+          ProcessUISystemCleanup(componentIndex,3);
         }
       }
       uiOperationResult = (int)plocalLong7[3];
@@ -175430,7 +175430,7 @@ void FUN_180772ae2(void)
   *pallocatedMemory = (longlong)pallocatedMemory;
   if ((bVar4) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,3);
+    ProcessUISystemCleanup(stringCompareIndex,3);
   }
   uiValidationResult = *(int *)(ContextHandle + 3);
   if ((uiValidationResult != 0) && (uiValidationResult < 0x25)) {
@@ -189887,7 +189887,7 @@ UIHandle FUN_180782790(longlong *uiContext)
   *pallocatedMemory = (longlong)pallocatedMemory;
   if ((stringCompareIndex != 0) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,6);
+    ProcessUISystemCleanup(stringCompareIndex,6);
   }
   if (*(longlong *)(componentIndex + 0x260) == 0) {
     if (*(longlong *)(componentIndex + 0x268) == 0) {
@@ -190002,7 +190002,7 @@ UIHandle FUN_180782a70(longlong *uiContext,UIDword dataSource,int targetBuffer)
   **(longlong **)(componentIndex + 0x378) = (longlong)pallocatedMemory;
   if ((stringCompareIndex != 0) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,6);
+    ProcessUISystemCleanup(stringCompareIndex,6);
   }
   return 0;
 }
@@ -190034,7 +190034,7 @@ UIHandle FUN_180782b42(void)
   **(longlong **)(ContextHandle + 0x378) = (longlong)pallocatedMemory;
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,6);
+    ProcessUISystemCleanup(componentIndex,6);
   }
   return 0;
 }
@@ -190095,7 +190095,7 @@ UIHandle FUN_180782d10(longlong *uiContext,int dataSource,int targetBuffer)
     **(longlong **)(componentIndex + 0x378) = (longlong)pallocatedMemory;
     if ((stringCompareIndex != 0) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(stringCompareIndex,6);
+      ProcessUISystemCleanup(stringCompareIndex,6);
     }
     return 0;
   }
@@ -190146,7 +190146,7 @@ UIHandle FUN_180782d38(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
   **(longlong **)(ContextHandle + 0x378) = (longlong)pallocatedMemory;
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,6);
+    ProcessUISystemCleanup(componentIndex,6);
   }
   return 0;
 }
@@ -190714,7 +190714,7 @@ UIHandle FUN_1807833e0(longlong uiContext,int dataSource,longlong targetBuffer)
     *pallocatedMemory = (longlong)pallocatedMemory;
     if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(componentIndex,6);
+      ProcessUISystemCleanup(componentIndex,6);
     }
     *(UIByte *)(uiContext + 0x220) = 0;
   }
@@ -191085,14 +191085,14 @@ void FUN_1807845c0(longlong uiContext,int dataSource,float *targetBuffer,int buf
         **(longlong **)(uiContext + 0x378) = (longlong)pallocatedMemory;
         if ((bVar7) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-          FUN_180743d60(stringCompareIndex,6);
+          ProcessUISystemCleanup(stringCompareIndex,6);
         }
         goto LAB_18078482e;
       }
     }
     if ((bVar7) && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(stringCompareIndex,6);
+      ProcessUISystemCleanup(stringCompareIndex,6);
     }
   }
 LAB_18078482e:
@@ -191165,7 +191165,7 @@ void FUN_180784812(void)
   
   if (TargetHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000000c0 ^ (ulonglong)&stack0x00000000);
@@ -191309,7 +191309,7 @@ UIHandle FUN_180784850(longlong uiContext,UIDword dataSource,float targetBuffer)
   **(longlong **)(uiContext + 0x378) = (longlong)pallocatedMemory;
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,6);
+    ProcessUISystemCleanup(componentIndex,6);
   }
   return 0;
 }
@@ -191341,7 +191341,7 @@ UIHandle FUN_180784a05(void)
   **(longlong **)(ContextHandle + 0x378) = (longlong)pallocatedMemory;
   if ((componentIndex != 0) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,6);
+    ProcessUISystemCleanup(componentIndex,6);
   }
   return 0;
 }
@@ -192569,7 +192569,7 @@ void FUN_180785b10(longlong uiContext,longlong dataSource,UIDword *targetBuffer)
     }
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -192625,7 +192625,7 @@ void FUN_180785c10(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffe
       *resultPointer = 1.0 - fStack_6c;
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(result);
+    ProcessUIMemoryAllocation(result);
   }
   if (bufferSize != (float *)0x0) {
     *bufferSize = 0.0;
@@ -192686,7 +192686,7 @@ void FUN_180785c52(longlong uiContext)
     *SourceHandle = 1.0 - fStack000000000000004c;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -192733,7 +192733,7 @@ void FUN_180785c80(longlong uiContext)
     *SourceHandle = 1.0 - fStack000000000000004c;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -192769,7 +192769,7 @@ void FUN_180785cba(void)
     *SourceHandle = 1.0 - fStack000000000000004c;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -192852,7 +192852,7 @@ void FUN_180785e40(longlong uiContext)
     *pstringCompareIndex = (longlong)pstringCompareIndex;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -193703,7 +193703,7 @@ int FUN_180786cb0(longlong uiContext,ulonglong dataSource,int targetBuffer)
         if (localInt6 != 0) goto LAB_180786fc2;
         *(int *)(ptrLocal3 + 8) = *(int *)(ptrLocal3 + 8) + TempInt4;
       }
-      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (localInt6 = FUN_180768910(), localInt6 != 0))
+      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (localInt6 = ValidateUIContextState(), localInt6 != 0))
       goto LAB_180786fc2;
     }
     pallocatedMemory = *(longlong **)(*(longlong *)(uiBufferData + 0x48) + 0x10f78);
@@ -193820,7 +193820,7 @@ int FUN_180786cc3(longlong uiContext,ulonglong dataSource,int targetBuffer)
         if (localInt5 != 0) goto LAB_180786fc2;
         *(int *)(psemaphoreHandle + 8) = *(int *)(psemaphoreHandle + 8) + uiCompareResult;
       }
-      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (localInt5 = FUN_180768910(), localInt5 != 0))
+      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (localInt5 = ValidateUIContextState(), localInt5 != 0))
       goto LAB_180786fc2;
     }
     pallocatedMemory = *(longlong **)(*(longlong *)(uiBufferData + 0x48) + 0x10f78);
@@ -193931,11 +193931,11 @@ ulonglong FUN_180787080(longlong uiContext,UIHandle dataSource,int targetBuffer)
   }
   if ((cStack_5c != '\0') && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,stackUInt60);
+    ProcessUISystemCleanup(stringCompareIndex,stackUInt60);
   }
   if ((cStack_4c != '\0') && (ContextHandleData != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(ContextHandleData,stackUInt50);
+    ProcessUISystemCleanup(ContextHandleData,stackUInt50);
   }
   return uVar8;
 }
@@ -193984,11 +193984,11 @@ ulonglong FUN_1807870ec(void)
   }
   if ((*(char *)(BasePointer + -0x3c) != '\0') && (stringCompareIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(stringCompareIndex,*(UIDword *)(BasePointer + -0x40));
+    ProcessUISystemCleanup(stringCompareIndex,*(UIDword *)(BasePointer + -0x40));
   }
   if ((*(char *)(BasePointer + -0x2c) != '\0') && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,*(UIDword *)(BasePointer + -0x30));
+    ProcessUISystemCleanup(componentIndex,*(UIDword *)(BasePointer + -0x30));
   }
   return uVar8;
 }
@@ -194003,7 +194003,7 @@ UIDword FUN_180787277(void)
   
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBX;
 }
@@ -194181,7 +194181,7 @@ void FUN_1807872c0(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,i
 LAB_1807878e9:
   if ((cStack_108 != '\0') && (allocatedMemory1 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory1,0x11);
+    ProcessUISystemCleanup(allocatedMemory1,0x11);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt58 ^ (ulonglong)astackUInt148);
@@ -194352,7 +194352,7 @@ void FUN_1807872e6(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,i
 LAB_1807878e9:
   if ((cStack0000000000000040 != '\0') && (TargetHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(TargetHandle,0x11);
+    ProcessUISystemCleanup(TargetHandle,0x11);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(*(ulonglong *)(BasePointer + -0x10) ^ (ulonglong)&stack0x00000000);
@@ -194467,7 +194467,7 @@ void FUN_1807873a8(int uiContext,longlong dataSource)
   if (result0 == 0) {
     if ((inputString != '\0') && (*(longlong *)(BasePointer + -0x70) != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(*(longlong *)(BasePointer + -0x70),0x11);
+      ProcessUISystemCleanup(*(longlong *)(BasePointer + -0x70),0x11);
     }
                      WARNING: Subroutine does not return
     ExecuteUIRenderTask(*(ulonglong *)(BasePointer + -0x10) ^ (ulonglong)&stack0x00000000);
@@ -194503,7 +194503,7 @@ void FUN_180787908(void)
   
   if (TargetHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(*(ulonglong *)(BasePointer + -0x10) ^ (ulonglong)&stack0x00000000);
@@ -194590,7 +194590,7 @@ LAB_180787e12:
     stackUInt78 = bufferPtr[6];
     stackUInt70 = bufferPtr[7];
     pstackUInta0 = &UNK_18095acf0;
-    semaphoreHandle = FUN_180742e00(*(UIHandle *)(uiContext + 0x48),&stackUInta8,0,pstringCompareIndex + 2,uVar8);
+    semaphoreHandle = ProcessUIDataTransfer(*(UIHandle *)(uiContext + 0x48),&stackUInta8,0,pstringCompareIndex + 2,uVar8);
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
     }
@@ -194812,7 +194812,7 @@ LAB_180787e12:
     *(undefined **)(BasePointer + -0x49) = &UNK_18095acf0;
     *(UIHandle *)(BasePointer + -0x21) = semaphoreHandle;
     *(UIHandle *)(BasePointer + -0x19) = EventTypeCode;
-    ProcessingStatus = FUN_180742e00(ProcessingStatus,BasePointer + -0x51,0,pEventDataIndex + 2,uVar9);
+    ProcessingStatus = ProcessUIDataTransfer(ProcessingStatus,BasePointer + -0x51,0,pEventDataIndex + 2,uVar9);
     if ((int)ProcessingStatus != 0) {
       return ProcessingStatus;
     }
@@ -195141,7 +195141,7 @@ LAB_180787ee9:
     if ((SourceHandle != 0) && (unmodifiedR15B != '\0')) {
                      WARNING: Subroutine does not return
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787ff4;
-      FUN_180743d60(SourceHandle,2);
+      ProcessUISystemCleanup(SourceHandle,2);
     }
     if (localInt9 == 0) {
       semaphoreHandle = *(UIHandle *)(allocatedMemory6 + 0x48);
@@ -195168,7 +195168,7 @@ LAB_180788061:
   if ((unmodifiedR15B != '\0') && (SourceHandle != 0)) {
                      WARNING: Subroutine does not return
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180788091;
-    FUN_180743d60(SourceHandle,2);
+    ProcessUISystemCleanup(SourceHandle,2);
   }
   return localInt9;
 }
@@ -195223,7 +195223,7 @@ int FUN_180787e70(longlong uiContext,UIDword dataSource,longlong *targetBuffer,l
     }
     if ((allocatedMemory != 0) && (IsValidationComplete)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(allocatedMemory,2);
+      ProcessUISystemCleanup(allocatedMemory,2);
     }
     if (TempInt4 == 0) {
       TempInt4 = FUN_180749940(*(UIHandle *)(uiContext + 0x48));
@@ -195242,7 +195242,7 @@ int FUN_180787e70(longlong uiContext,UIDword dataSource,longlong *targetBuffer,l
 LAB_180788061:
   if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,2);
+    ProcessUISystemCleanup(allocatedMemory,2);
   }
   return TempInt4;
 }
@@ -195298,7 +195298,7 @@ int FUN_180787e7e(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,lo
     }
     if ((SourceHandle != 0) && (bVar4)) {
                      WARNING: Subroutine does not return
-      FUN_180743d60();
+      ProcessUISystemCleanup();
     }
     if (uiCompareResult == 0) {
       uiCompareResult = FUN_180749940(*(UIHandle *)(uiContext + 0x48));
@@ -195317,7 +195317,7 @@ int FUN_180787e7e(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,lo
 LAB_180788061:
   if ((bVar4) && (SourceHandle != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return uiCompareResult;
 }
@@ -195332,7 +195332,7 @@ UIDword FUN_18078807f(void)
   
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBX;
 }
@@ -197318,7 +197318,7 @@ LAB_180789990:
   (*(code *)_DAT_180c108d0[2])
             (plocalFloat2,targetBuffer,*(UIHandle *)(uiContext + 0x30),*(UIDword *)(uiBufferData + 0x18));
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -197407,7 +197407,7 @@ LAB_180789990:
   ;
   (*(code *)_DAT_180c108d0[2])(plocalFloat2);
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -197539,7 +197539,7 @@ FUN_180789a00(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer,longl
       }
     }
                      WARNING: Subroutine does not return
-    FUN_180768400(result);
+    ProcessUIMemoryAllocation(result);
   }
   return 0x1f;
 }
@@ -197664,7 +197664,7 @@ void FUN_180789a48(longlong uiContext)
     }
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -197979,7 +197979,7 @@ int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
 LAB_18078a1be:
   if ((IsValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,localInt9);
+    ProcessUISystemCleanup(allocatedMemory,localInt9);
   }
   return localInt6;
 }
@@ -198057,7 +198057,7 @@ int FUN_18078a0d9(UIHandle *uiContext,longlong *dataSource,char targetBuffer,int
 LAB_18078a1be:
   if ((IsValidationComplete) && (BasePointer != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return localInt6;
 }
@@ -198072,7 +198072,7 @@ UIDword FUN_18078a1d7(void)
   
   if (BasePointer != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -198110,7 +198110,7 @@ UIDword FUN_18078a1f2(UIHandle uiContext,longlong dataSource,longlong targetBuff
   }
   if ((unmodifiedR12B != '\0') && (BasePointer != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return allocationFlags;
 }
@@ -198293,7 +198293,7 @@ int FUN_18078a340(longlong *uiContext,ulonglong dataSource,char targetBuffer)
 LAB_18078a3ed:
   if ((bVar4) && (componentIndex != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(componentIndex,localInt9);
+    ProcessUISystemCleanup(componentIndex,localInt9);
   }
   return localInt5;
 }
@@ -198364,7 +198364,7 @@ int FUN_18078a353(longlong uiContext,ulonglong dataSource,char targetBuffer)
 LAB_18078a3ed:
   if ((bVar3) && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return TempInt4;
 }
@@ -198379,7 +198379,7 @@ UIDword FUN_18078a40b(void)
   
   if (unmodifiedR15 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return unmodifiedEBP;
 }
@@ -198431,7 +198431,7 @@ ulonglong FUN_18078a427(UIHandle uiContext,longlong dataSource,uint targetBuffer
 LAB_18078a3ed:
   if ((unmodifiedR13B != '\0') && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return BasePointer & 0xffffffff;
 }
@@ -200492,7 +200492,7 @@ LAB_18078c477:
     }
     if (uiContext != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,7);
+      ProcessUISystemCleanup(uiContext,7);
     }
   }
   localInt5 = CheckUIMemoryStatus(uiContext);
@@ -200511,7 +200511,7 @@ LAB_18078c477:
     }
     if (uiContext != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,6);
+      ProcessUISystemCleanup(uiContext,6);
     }
     ptrResult = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -200766,7 +200766,7 @@ LAB_18078c477:
     }
     if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(result2,7);
+      ProcessUISystemCleanup(result2,7);
     }
   }
   localInt5 = CheckUIMemoryStatus();
@@ -200786,7 +200786,7 @@ LAB_18078c477:
     }
     if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(result2,6);
+      ProcessUISystemCleanup(result2,6);
     }
     ptrResult = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -200980,7 +200980,7 @@ LAB_18078c477:
     }
     if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(result2,7);
+      ProcessUISystemCleanup(result2,7);
     }
   }
   localInt5 = CheckUIMemoryStatus();
@@ -201000,7 +201000,7 @@ LAB_18078c477:
     }
     if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-      FUN_180743d60(result2,6);
+      ProcessUISystemCleanup(result2,6);
     }
     bufferPtr = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
@@ -201088,7 +201088,7 @@ void ProcessUIColorBufferData(longlong uiContext,int dataSource)
       ContextHandleData = colorBufferPointer;
       if (ContextHandleData == (longlong *)(uiContext + 0x11728)) {
                      WARNING: Subroutine does not return
-        FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+        ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
       }
       colorProcessingFlags[0] = 0;
       colorBufferPointer = (longlong *)*ContextHandleData;
@@ -201244,7 +201244,7 @@ LAB_18078c8ad:
     ContextHandle = colorBufferPointer;
     if (colorBufferPointer == (longlong *)ContextHandleEnd) {
                      WARNING: Subroutine does not return
-      FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+      ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
     }
   } while( true );
 }
@@ -201259,7 +201259,7 @@ void FUN_18078c92b(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+  ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }
 
 
@@ -201278,11 +201278,11 @@ void FUN_18078c950(longlong uiContext)
   if (pallocatedMemory != (longlong *)(uiContext + 0x121e0)) {
     *(longlong *)(uiBufferData + 0x12200) = *pallocatedMemory;
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,10);
+    ProcessUISystemCleanup(uiContext,10);
   }
   *(UIHandle *)(uiContext + 0x12200) = 0;
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,10);
+  ProcessUISystemCleanup(uiContext,10);
 }
 
 
@@ -201302,11 +201302,11 @@ void FUN_18078c95d(longlong uiContext)
   if (pallocatedMemory != (longlong *)(ContextHandle + 0x121e0)) {
     *(longlong *)(ContextHandle + 0x12200) = *pallocatedMemory;
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   *(UIHandle *)(ContextHandle + 0x12200) = 0;
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -201321,7 +201321,7 @@ void FUN_18078c991(void)
   
   *(UIHandle *)(ContextHandle + 0x12200) = *registerAX;
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -201335,7 +201335,7 @@ void FUN_18078ca0e(void)
   
   *(UIHandle *)(ContextHandle + 0x12200) = 0;
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -201376,7 +201376,7 @@ void FUN_18078ca50(UIHandle uiContext,longlong *dataSource,UIHandle targetBuffer
     dataSource = (longlong *)*dataSource;
   } while (dataSource != (longlong *)bufferSize);
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -201515,7 +201515,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
       }
       stackUInt188 = CONCAT31(stackUInt188._1_3_,1);
       pstackUInt160 = &UNK_18095af28;
-      uiValidationResult = FUN_180742e00(uiContext,&pstackLong168,pContextHandleData,astackLong178);
+      uiValidationResult = ProcessUIDataTransfer(uiContext,&pstackLong168,pContextHandleData,astackLong178);
       pEventDataIndex = pContextHandleData;
       if (uiValidationResult == 0) {
         pContextHandleData[0xe] = astackLong178[0];
@@ -202045,7 +202045,7 @@ LAB_18078d4e4:
     }
     else {
       stackParamffffffffffffff28 = CONCAT44((int)(stackParamffffffffffffff28 >> 0x20),2);
-      eventTypeCode = FUN_180742cd0(uiContext,*(UIDword *)(stackLongb8 + 0xa4),MaxProcessingCount,ProcessingResult1,
+      eventTypeCode = InitializeUIComponent(uiContext,*(UIDword *)(stackLongb8 + 0xa4),MaxProcessingCount,ProcessingResult1,
                             stackParamffffffffffffff28);
       if ((int)eventTypeCode != 0) {
         return eventTypeCode;
@@ -203108,7 +203108,7 @@ LAB_18078ec15:
                       *(longlong **)(lStack0000000000000070 + 0x12210) = colorBufferPointer9;
                       *(longlong **)pstringCompareIndex2[0x2d] = colorBufferPointer9;
                      WARNING: Subroutine does not return
-                      FUN_180743d60(lStack0000000000000070,10);
+                      ProcessUISystemCleanup(lStack0000000000000070,10);
                     }
                     goto LAB_18078f725;
                   }
@@ -203470,7 +203470,7 @@ LAB_18078fd4b:
               *(longlong **)(allocatedMemory5 + 8) = colorBufferPointer9;
               *(longlong **)pstringCompareIndex2[2] = colorBufferPointer9;
                      WARNING: Subroutine does not return
-              FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+              ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
             }
             pstringCompareIndex1 = colorBufferPointer9;
             if ((stackParam00000050 & 0xffffffef) == 0) {
@@ -203893,7 +203893,7 @@ LAB_18078ec15:
             *(longlong **)(stackParam00000070 + 0x12210) = plocalLong7;
             *(longlong **)colorBufferPointer3[0x2d] = plocalLong7;
                      WARNING: Subroutine does not return
-            FUN_180743d60(stackParam00000070,10);
+            ProcessUISystemCleanup(stackParam00000070,10);
           }
         }
       }
@@ -204223,7 +204223,7 @@ LAB_18078fd4b:
     *(longlong **)(ContextHandleData + 8) = plocalLong7;
     *(longlong **)pallocatedMemory0[2] = plocalLong7;
                      WARNING: Subroutine does not return
-    FUN_180768400(*(UIHandle *)(_DAT_180be12f0 + 0x120));
+    ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
   }
   if ((stackParam00000050 & 0xffffffef) != 0) {
     if ((CounterResult & 0x1000000000000) == 0) {
@@ -204513,7 +204513,7 @@ UIHandle FUN_1807902d0(longlong uiContext,longlong *dataSource)
   if (*(longlong **)(uiContext + 0x121e8) == pallocatedMemory) {
 LAB_180790406:
                      WARNING: Subroutine does not return
-    FUN_180743d60(uiContext,10);
+    ProcessUISystemCleanup(uiContext,10);
   }
   do {
     while( true ) {
@@ -204539,7 +204539,7 @@ LAB_180790380:
   } while (pstringCompareIndex[0x30] != dataSource[0x30]);
 LAB_1807903d6:
                      WARNING: Subroutine does not return
-  FUN_180743d60(uiContext,10);
+  ProcessUISystemCleanup(uiContext,10);
 }
 
 
@@ -204602,7 +204602,7 @@ UIHandle FUN_18079033d(void)
   if (*(longlong **)(SourceHandle + 0x121e8) == pContextHandleData) {
 LAB_180790406:
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   do {
     while( true ) {
@@ -204628,7 +204628,7 @@ LAB_180790380:
   } while (pallocatedMemory[0x30] != ContextHandle[0x30]);
 LAB_1807903d6:
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -204691,7 +204691,7 @@ LAB_1807905d8:
         return localInt5;
       }
                      WARNING: Subroutine does not return
-      FUN_180743d60(uiContext,0x13);
+      ProcessUISystemCleanup(uiContext,0x13);
     }
     *targetBuffer = (longlong)colorBufferPointer;
     if ((int)colorBufferPointer[3] == dataSource) {
@@ -204752,7 +204752,7 @@ LAB_1807905d8:
         return localInt5;
       }
                      WARNING: Subroutine does not return
-      FUN_180743d60();
+      ProcessUISystemCleanup();
     }
     *TargetHandle = (longlong)colorBufferPointer;
     if ((int)colorBufferPointer[3] == unmodifiedEBP) {
@@ -204771,7 +204771,7 @@ void FUN_1807905e7(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180743d60();
+  ProcessUISystemCleanup();
 }
 
 
@@ -204874,7 +204874,7 @@ LAB_180789990:
             (pfloatResult,bufferSize,*(UIHandle *)(stackParam00000008 + 0x30),
              *(UIDword *)(stackParam00000008 + 0x18));
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -205010,7 +205010,7 @@ FUN_180790680(longlong *uiContext,UIHandle dataSource,longlong targetBuffer,UIDw
           }
         }
                      WARNING: Subroutine does not return
-        FUN_180768400(semaphoreHandle);
+        ProcessUIMemoryAllocation(semaphoreHandle);
       }
       return 0x1f;
     }
@@ -220370,7 +220370,7 @@ UIHandle FUN_180800530(longlong uiContext)
      ) {
     apstackLong18[0] = (longlong *)(uiContext + 0x70);
     semaphoreHandle = func_0x0001807e63a0();
-    semaphoreHandle = FUN_180742e00(*(UIHandle *)(uiContext + 8),semaphoreHandle,0,apstackLong18,0);
+    semaphoreHandle = ProcessUIDataTransfer(*(UIHandle *)(uiContext + 8),semaphoreHandle,0,apstackLong18,0);
     pallocatedMemory = apstackLong18[0];
     if ((((int)semaphoreHandle == 0) &&
         (semaphoreHandle = (**(code **)(*apstackLong18[0] + 0x28))(apstackLong18[0],1,1,0), (int)semaphoreHandle == 0)) &&
@@ -223326,7 +223326,7 @@ void FUN_180802fa0(longlong uiContext)
   result = *ptrLocal3;
   *psemaphoreHandle = 0;
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -223526,7 +223526,7 @@ LAB_1808031e5:
          (uint)(*(int *)(uiBufferData + 0x470) + *(int *)(uiBufferData + 0x4c0)) % *(uint *)(allocatedMemory3 + 0x24);
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x4a8));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x4a8));
 }
 
 
@@ -232500,7 +232500,7 @@ UIHandle FUN_18080d690(longlong uiContext)
   }
   if ((allocatedMemory != 0) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60(allocatedMemory,1);
+    ProcessUISystemCleanup(allocatedMemory,1);
   }
   return 0;
 }
@@ -232573,7 +232573,7 @@ UIHandle FUN_18080d69a(longlong uiContext)
   }
   if ((unmodifiedR15 != 0) && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return 0;
 }
@@ -232641,7 +232641,7 @@ UIHandle FUN_18080d6db(void)
   } while (unmodifiedEBP < *(int *)(SourceHandle + 0x3c8));
   if ((unmodifiedR12B != '\0') && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return 0;
 }
@@ -232656,7 +232656,7 @@ UIHandle FUN_18080d80c(void)
   
   if ((unmodifiedR12B != '\0') && (unmodifiedR15 != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return 0;
 }
@@ -232670,7 +232670,7 @@ UIHandle FUN_18080d820(void)
   
   if (unmodifiedR15 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180743d60();
+    ProcessUISystemCleanup();
   }
   return 0;
 }
@@ -245297,7 +245297,7 @@ void FUN_18081b2d0(longlong uiContext,int dataSource)
   }
   FUN_18081b7c0(uiContext);
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -245320,7 +245320,7 @@ void FUN_18081b330(longlong uiContext,int *dataSource)
   }
   FUN_18081b7c0(uiContext + 0x520);
                      WARNING: Subroutine does not return
-  FUN_180768400(semaphoreHandle);
+  ProcessUIMemoryAllocation(semaphoreHandle);
 }
 
 
@@ -245457,7 +245457,7 @@ LAB_18081b5e5:
         result = *(UIHandle *)(uiContext + 0x4f8);
         CleanupUIContextState(result);
                      WARNING: Subroutine does not return
-        FUN_180768400(result);
+        ProcessUIMemoryAllocation(result);
       }
       LoopCounter = LoopCounter + 1;
       plocalChar4 = plocalChar4 + 0x10;
@@ -245498,12 +245498,12 @@ void FUN_18081b670(longlong uiContext)
     uiCompareResult = FUN_1807ff260(*(UIHandle *)(uiContext + 0x20));
     if (uiCompareResult == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(result);
+      ProcessUIMemoryAllocation(result);
     }
   }
 FUN_18081b7ac:
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -245536,12 +245536,12 @@ void FUN_18081b67c(longlong uiContext)
     uiValidationResult = FUN_1807ff260(*(UIHandle *)(uiContext + 0x20));
     if (uiValidationResult == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400();
+      ProcessUIMemoryAllocation();
     }
   }
 FUN_18081b7ac:
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -245552,7 +245552,7 @@ void FUN_18081b7ac(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -245571,7 +245571,7 @@ void FUN_18081b7c0(longlong uiContext)
   if (0 < *(int *)(uiBufferData + 0x3c)) {
     uiCompareResult = 0;
     do {
-      uiValidationResult = FUN_180768910(*(UIHandle *)(uiContext + 0x30));
+      uiValidationResult = ValidateUIContextState(*(UIHandle *)(uiContext + 0x30));
       if (uiValidationResult != 0) goto LAB_18081b80b;
       uiCompareResult = uiCompareResult + 1;
     } while (uiCompareResult < *(int *)(uiBufferData + 0x3c));
@@ -245579,7 +245579,7 @@ void FUN_18081b7c0(longlong uiContext)
   }
 LAB_18081b80b:
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -245598,7 +245598,7 @@ void FUN_18081b830(longlong uiContext)
   uiCompareResult = 0;
   if (0 < *(int *)(uiBufferData + 0x38)) {
     do {
-      uiValidationResult = FUN_180768910(*(UIHandle *)(uiContext + 0x28));
+      uiValidationResult = ValidateUIContextState(*(UIHandle *)(uiContext + 0x28));
       if (uiValidationResult != 0) goto LAB_18081b87f;
       uiCompareResult = uiCompareResult + 1;
     } while (uiCompareResult < *(int *)(uiBufferData + 0x38));
@@ -245606,7 +245606,7 @@ void FUN_18081b830(longlong uiContext)
   *(UIDword *)(uiBufferData + 0x38) = 0;
 LAB_18081b87f:
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -245722,7 +245722,7 @@ void FUN_18081b980(longlong uiContext)
 LAB_18081bc1e:
         if (stackLong68 != 0) {
                      WARNING: Subroutine does not return
-          FUN_180768400();
+          ProcessUIMemoryAllocation();
         }
         break;
       }
@@ -245753,10 +245753,10 @@ LAB_18081bb51:
         CleanupUIContextState(result);
         if (0 < *(int *)(uiBufferData + 0x558)) {
           do {
-            uiValidationResult = FUN_180768910(*(UIHandle *)(uiContext + 0x548));
+            uiValidationResult = ValidateUIContextState(*(UIHandle *)(uiContext + 0x548));
             if (uiValidationResult != 0) {
                      WARNING: Subroutine does not return
-              FUN_180768400(result);
+              ProcessUIMemoryAllocation(result);
             }
             MaxProcessingCount = (int)plocalLong7 + 1;
             plocalLong7 = (longlong *)(ulonglong)MaxProcessingCount;
@@ -245764,7 +245764,7 @@ LAB_18081bb51:
         }
         *(UIDword *)(uiBufferData + 0x558) = 0;
                      WARNING: Subroutine does not return
-        FUN_180768400(result);
+        ProcessUIMemoryAllocation(result);
       }
       uiValidationResult = FUN_18081bd90(uiContext,*(UIByte *)((longlong)pstackUInt70 + 0xc),
                             *(UIByte *)((longlong)pstackUInt70 + 0xd),
@@ -245774,7 +245774,7 @@ LAB_18081bbc3:
       *(int *)(uiBufferData + 0x56c) = *(int *)(uiBufferData + 0x56c) + (int)stackUInt48;
       if (stackLong68 != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400();
+        ProcessUIMemoryAllocation();
       }
       stackUInt48 = 0;
       stackUInt40 = 0;
@@ -245819,12 +245819,12 @@ UIHandle FUN_18081bc60(longlong uiContext)
     uiValidationResult = FUN_1807ff260(*(UIHandle *)(uiContext + 0x20));
     if (uiValidationResult == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(EventTypeCode);
+      ProcessUIMemoryAllocation(EventTypeCode);
     }
   }
 FUN_18081b7ac:
                      WARNING: Subroutine does not return
-  FUN_180768400(EventTypeCode);
+  ProcessUIMemoryAllocation(EventTypeCode);
 }
 
 
@@ -245918,7 +245918,7 @@ void FUN_18081bd90(longlong uiContext,char dataSource,char targetBuffer,UIDword 
   }
 LAB_18081be5a:
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -245956,7 +245956,7 @@ void FUN_18081be80(longlong uiContext)
     FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),result,&UNK_18097fb10,0x2f2,1);
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -245993,12 +245993,12 @@ UIHandle FUN_18081c0c0(longlong uiContext)
     uiValidationResult = FUN_1807ff260(*(UIHandle *)(uiContext + 0x20));
     if (uiValidationResult == 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(EventTypeCode);
+      ProcessUIMemoryAllocation(EventTypeCode);
     }
   }
 FUN_18081b7ac:
                      WARNING: Subroutine does not return
-  FUN_180768400(EventTypeCode);
+  ProcessUIMemoryAllocation(EventTypeCode);
 }
 
 
@@ -246031,7 +246031,7 @@ UIHandle FUN_18081c0f0(longlong *uiContext,char dataSource,longlong *targetBuffe
           *(int *)(uiBufferData + 7) = (int)uiContext[7] + 1;
         }
                      WARNING: Subroutine does not return
-        FUN_180768400(uiContext[4]);
+        ProcessUIMemoryAllocation(uiContext[4]);
       }
                      WARNING: Subroutine does not return
       FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_18097fb10,0xf3,1);
@@ -246080,17 +246080,17 @@ UIHandle FUN_18081c2d0(longlong *uiContext,int dataSource,char targetBuffer,long
       CleanupUIContextState(allocatedMemory);
       if (0 < (int)uiContext[7]) {
         do {
-          uiValidationResult = FUN_180768910(uiContext[5]);
+          uiValidationResult = ValidateUIContextState(uiContext[5]);
           if (uiValidationResult != 0) {
                      WARNING: Subroutine does not return
-            FUN_180768400(allocatedMemory);
+            ProcessUIMemoryAllocation(allocatedMemory);
           }
           localInt6 = localInt6 + 1;
         } while (localInt6 < (int)uiContext[7]);
       }
       *(UIDword *)(uiBufferData + 7) = 0;
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
     allocatedMemory = uiContext[2];
     ProcessingStatus = uiValidationResult - 1U & *(uint *)((longlong)uiContext + 0xc);
@@ -246118,7 +246118,7 @@ UIHandle FUN_18081c2d0(longlong *uiContext,int dataSource,char targetBuffer,long
   }
   *(int *)((longlong)uiContext + 0x3c) = *(int *)((longlong)uiContext + 0x3c) + 1;
                      WARNING: Subroutine does not return
-  FUN_180768400(uiContext[4]);
+  ProcessUIMemoryAllocation(uiContext[4]);
 }
 
 
@@ -246180,7 +246180,7 @@ LAB_18081c502:
     return eventTypeCode;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -279608,7 +279608,7 @@ void FUN_18083b1f0(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer
   if (0 < targetBuffer) {
     result8 = 1;
     do {
-      aresult3 = _DAT_1809815e0;
+      aresult3 = UIProcessingStatusVector;
       if (0 < (int)result8) {
         uiValidationResult1 = 4 << (uStackX_8 & 0x1f);
         allocatedMemory6 = (longlong)bufferSize >> ((longlong)(int)uStackX_8 & 0x3fU);
@@ -279746,7 +279746,7 @@ void FUN_18083b202(UIHandle uiContext,UIByte (*dataSource) [32],int targetBuffer
     *(UIByte (*) [16])(registerAX + -0x48) = in_ZMM6._0_16_;
     paTotalResult = dataSource;
     do {
-      aresult3 = _DAT_1809815e0;
+      aresult3 = UIProcessingStatusVector;
       dataSource = paTotalResult;
       if (0 < (int)result9) {
         uiValidationResult2 = 4 << (uStack0000000000000080 & 0x1f);
@@ -279880,7 +279880,7 @@ ulonglong FUN_18083b22e(UIHandle uiContext,uint dataSource,UIHandle targetBuffer
   *(UIByte (*) [16])(registerAX + -0x48) = in_ZMM6._0_16_;
   semaphoreHandle0 = (ulonglong)(dataSource + 4);
   do {
-    aresult3 = _DAT_1809815e0;
+    aresult3 = UIProcessingStatusVector;
     if (0 < (int)result8) {
       uiValidationResult1 = (int)semaphoreHandle0 << (dataSource & 0x1f);
       allocatedMemory5 = (longlong)bufferSize >> ((longlong)(int)dataSource & 0x3fU);
@@ -280079,7 +280079,7 @@ void FUN_18083b3d0(UIByte (*uiContext) [32])
   auVar8._20_4_ = aresult._20_4_ * 1.0 + asemaphoreHandle._20_4_;
   auVar8._24_4_ = aresult._24_4_ * 1.0 + asemaphoreHandle._24_4_;
   auVar8._28_4_ = processedFloat + asemaphoreHandle._28_4_;
-  asemaphoreHandle = vpermilps_avx(auVar8,_DAT_180981440);
+  asemaphoreHandle = vpermilps_avx(auVar8,UIEventProcessingVector);
   aresult = vshufps_avx(aLoopCounter,aLoopCounter,0xee);
   *(float *)*uiContext = aEventTypeCode._0_4_ * 1.0 + aresult._0_4_;
   *(float *)(*uiContext + 4) = aEventTypeCode._4_4_ * -1.0 + aresult._4_4_;
@@ -280230,7 +280230,7 @@ void FUN_18083b4a0(UIByte (*uiContext) [32])
   auVar9._24_4_ = aEventTypeCode._24_4_ * 1.0 + asemaphoreHandle._24_4_;
   auVar9._28_4_ = localFloat8 + asemaphoreHandle._28_4_;
   asemaphoreHandle = vperm2f128_avx(aresult2,aresult2,0);
-  aProcessingStatus = vpermilps_avx(auVar9,_DAT_180981440);
+  aProcessingStatus = vpermilps_avx(auVar9,UIEventProcessingVector);
   aEventTypeCode = vperm2f128_avx(aresult2,aresult2,0x11);
   aresult3._0_4_ = asemaphoreHandle._0_4_ * -1.0 + aEventTypeCode._0_4_;
   aresult3._4_4_ = asemaphoreHandle._4_4_ * -1.0 + aEventTypeCode._4_4_;
@@ -280240,7 +280240,7 @@ void FUN_18083b4a0(UIByte (*uiContext) [32])
   aresult3._20_4_ = asemaphoreHandle._20_4_ * 1.0 + aEventTypeCode._20_4_;
   aresult3._24_4_ = asemaphoreHandle._24_4_ * 1.0 + aEventTypeCode._24_4_;
   aresult3._28_4_ = localFloat8 + aEventTypeCode._28_4_;
-  aEventTypeCode = vpermilps_avx(aresult3,_DAT_180981440);
+  aEventTypeCode = vpermilps_avx(aresult3,UIEventProcessingVector);
   asemaphoreHandle = vshufps_avx(auVar9,auVar9,0xee);
   *(float *)*paresult = aProcessingStatus._0_4_ * 1.0 + asemaphoreHandle._0_4_;
   *(float *)(uiContext[2] + 4) = aProcessingStatus._4_4_ * -1.0 + asemaphoreHandle._4_4_;
@@ -298007,7 +298007,7 @@ LAB_18084f0bc:
 LAB_18084f283:
   if (CharacterDataOffset != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(CharacterDataOffset);
+    ProcessUIMemoryAllocation(CharacterDataOffset);
   }
   if (stringCompareIndex != 0) {
     if (stringCompareIndex == 0) {
@@ -298129,7 +298129,7 @@ LAB_18084f0bc:
 LAB_18084f283:
   if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(stringCompareIndex);
+    ProcessUIMemoryAllocation(stringCompareIndex);
   }
   if (BasePointer != 0) {
     if (BasePointer == 0) {
@@ -298149,7 +298149,7 @@ void FUN_18084f297(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -298272,7 +298272,7 @@ LAB_18084f34c:
 LAB_18084f513:
   if (CharacterDataOffset != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(CharacterDataOffset);
+    ProcessUIMemoryAllocation(CharacterDataOffset);
   }
   if (stringCompareIndex != 0) {
     if (stringCompareIndex == 0) {
@@ -298394,7 +298394,7 @@ LAB_18084f34c:
 LAB_18084f513:
   if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(stringCompareIndex);
+    ProcessUIMemoryAllocation(stringCompareIndex);
   }
   if (BasePointer != 0) {
     if (BasePointer == 0) {
@@ -298414,7 +298414,7 @@ void FUN_18084f527(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -298537,7 +298537,7 @@ LAB_18084f5dc:
 LAB_18084f7a3:
   if (CharacterDataOffset != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(CharacterDataOffset);
+    ProcessUIMemoryAllocation(CharacterDataOffset);
   }
   if (stringCompareIndex != 0) {
     if (stringCompareIndex == 0) {
@@ -298659,7 +298659,7 @@ LAB_18084f5dc:
 LAB_18084f7a3:
   if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(stringCompareIndex);
+    ProcessUIMemoryAllocation(stringCompareIndex);
   }
   if (BasePointer != 0) {
     if (BasePointer == 0) {
@@ -298679,7 +298679,7 @@ void FUN_18084f7b7(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -298748,7 +298748,7 @@ int FUN_18084f7f0(longlong *uiContext)
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       ProcessingResult1 = 0;
@@ -298806,7 +298806,7 @@ LAB_18084f88c:
 LAB_18084f933:
     if (!IsMatchFound) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (CharacterDataOffset != 0) {
       pContextHandleData = *(longlong **)((longlong)ProcessingResult1 * 0x20 + 0x18 + uiContext[8]);
@@ -298849,13 +298849,13 @@ LAB_18084f933:
 LAB_18084fc27:
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
   } while (ProcessingResult1 == 0);
 LAB_18084fc83:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   return ProcessingResult1;
 joined_r0x00018084fa4e:
@@ -298993,7 +298993,7 @@ int FUN_18084f800(longlong *uiContext)
     }
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       EventOperationCount = 0;
@@ -299052,7 +299052,7 @@ LAB_18084f88c:
 LAB_18084f933:
     if (!isCharacterMatch6) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (localLong8 != 0) {
       pEventDataIndex = *(longlong **)((longlong)EventOperationCount * 0x20 + 0x18 + uiContext[8]);
@@ -299096,13 +299096,13 @@ LAB_18084f933:
 LAB_18084fc27:
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
   } while (EventOperationCount == 0);
 LAB_18084fc83:
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(SourceHandle);
+    ProcessUIMemoryAllocation(SourceHandle);
   }
   return EventOperationCount;
 joined_r0x00018084fa4e:
@@ -299187,7 +299187,7 @@ void FUN_18084fcba(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -299245,7 +299245,7 @@ void FUN_18084fcba(void)
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       ProcessingResult1 = 0;
@@ -299303,7 +299303,7 @@ LAB_18084fd6c:
 LAB_18084fe13:
     if (!IsMatchFound) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (CharacterDataOffset != 0) {
       pContextHandleData = *(longlong **)((longlong)ProcessingResult1 * 0x20 + 0x18 + uiContext[8]);
@@ -299346,13 +299346,13 @@ LAB_18084fe13:
 LAB_180850107:
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
   } while (ProcessingResult1 == 0);
 LAB_180850163:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   return ProcessingResult1;
 joined_r0x00018084ff2e:
@@ -299490,7 +299490,7 @@ int FUN_18084fce0(longlong *uiContext)
     }
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       EventOperationCount = 0;
@@ -299549,7 +299549,7 @@ LAB_18084fd6c:
 LAB_18084fe13:
     if (!isCharacterMatch6) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (localLong8 != 0) {
       pEventDataIndex = *(longlong **)((longlong)EventOperationCount * 0x20 + 0x18 + uiContext[8]);
@@ -299593,13 +299593,13 @@ LAB_18084fe13:
 LAB_180850107:
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
   } while (EventOperationCount == 0);
 LAB_180850163:
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(SourceHandle);
+    ProcessUIMemoryAllocation(SourceHandle);
   }
   return EventOperationCount;
 joined_r0x00018084ff2e:
@@ -299684,7 +299684,7 @@ void FUN_18085019a(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -299737,7 +299737,7 @@ int FUN_1808501b0(longlong *uiContext)
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       ProcessingResult1 = 0;
@@ -299795,7 +299795,7 @@ LAB_18085024c:
 LAB_1808502f3:
     if (!IsMatchFound) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (CharacterDataOffset != 0) {
       pContextHandleData = *(longlong **)((longlong)ProcessingResult1 * 0x20 + 0x18 + uiContext[8]);
@@ -299838,13 +299838,13 @@ LAB_1808502f3:
 LAB_1808505e7:
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
   } while (ProcessingResult1 == 0);
 LAB_180850643:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   return ProcessingResult1;
 joined_r0x00018085040e:
@@ -299982,7 +299982,7 @@ int FUN_1808501c0(longlong *uiContext)
     }
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       EventOperationCount = 0;
@@ -300041,7 +300041,7 @@ LAB_18085024c:
 LAB_1808502f3:
     if (!isCharacterMatch6) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (localLong8 != 0) {
       pEventDataIndex = *(longlong **)((longlong)EventOperationCount * 0x20 + 0x18 + uiContext[8]);
@@ -300085,13 +300085,13 @@ LAB_1808502f3:
 LAB_1808505e7:
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
   } while (EventOperationCount == 0);
 LAB_180850643:
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(SourceHandle);
+    ProcessUIMemoryAllocation(SourceHandle);
   }
   return EventOperationCount;
 joined_r0x00018085040e:
@@ -300176,7 +300176,7 @@ void FUN_18085067a(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -300229,7 +300229,7 @@ int FUN_180850690(longlong *uiContext)
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       ProcessingResult1 = 0;
@@ -300287,7 +300287,7 @@ LAB_18085072c:
 LAB_1808507d3:
     if (!IsMatchFound) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if (CharacterDataOffset != 0) {
       pContextHandleData = *(longlong **)((longlong)ProcessingResult1 * 0x20 + 0x18 + uiContext[8]);
@@ -300330,13 +300330,13 @@ LAB_1808507d3:
 LAB_180850ac7:
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
   } while (ProcessingResult1 == 0);
 LAB_180850b23:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   return ProcessingResult1;
 joined_r0x0001808508ee:
@@ -300474,7 +300474,7 @@ int FUN_1808506a0(longlong *uiContext)
     }
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (*(int *)((longlong)uiContext + 0x54) == 0) {
       EventOperationCount = 0;
@@ -300533,7 +300533,7 @@ LAB_18085072c:
 LAB_1808507d3:
     if (!isCharacterMatch6) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (localLong8 != 0) {
       pEventDataIndex = *(longlong **)((longlong)EventOperationCount * 0x20 + 0x18 + uiContext[8]);
@@ -300577,13 +300577,13 @@ LAB_1808507d3:
 LAB_180850ac7:
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
   } while (EventOperationCount == 0);
 LAB_180850b23:
   if (SourceHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(SourceHandle);
+    ProcessUIMemoryAllocation(SourceHandle);
   }
   return EventOperationCount;
 joined_r0x0001808508ee:
@@ -300668,7 +300668,7 @@ void FUN_180850b5a(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -301662,7 +301662,7 @@ UIHandle FUN_180851740(longlong uiContext)
   }
   if (!bVar7) {
                      WARNING: Subroutine does not return
-    FUN_180768400(EventDataIndex);
+    ProcessUIMemoryAllocation(EventDataIndex);
   }
   if (psemaphoreHandle != (UIHandle *)0x0) {
     uiOperationResult = *(int *)((longlong)psemaphoreHandle + 0x24);
@@ -302142,7 +302142,7 @@ UIHandle FUN_180851c50(longlong uiContext,UIHandle dataSource,uint targetBuffer)
 LAB_180851ce6:
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return MaxProcessingCount;
 }
@@ -303554,7 +303554,7 @@ int FUN_180852d40(longlong *uiContext,UIDword *dataSource,UIHandle *targetBuffer
   ptrLocal6 = (UIHandle *)func_0x000180851be0(pallocatedMemory2,dataSource);
   if (EventDataIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(EventDataIndex);
+    ProcessUIMemoryAllocation(EventDataIndex);
   }
   bVar4 = false;
   peventTypeCode = (UIHandle *)0x0;
@@ -303630,12 +303630,12 @@ LAB_180852f31:
         return 0;
       }
                      WARNING: Subroutine does not return
-      FUN_180768400(EventDataIndex);
+      ProcessUIMemoryAllocation(EventDataIndex);
     }
   }
   if (EventDataIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(EventDataIndex);
+    ProcessUIMemoryAllocation(EventDataIndex);
   }
   if (EventOperationCount == 0) {
     return 0;
@@ -303694,7 +303694,7 @@ int FUN_180852d79(void)
   ptrLocal6 = (UIHandle *)func_0x000180851be0(pallocatedMemory2);
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   IsValidationComplete = false;
   peventTypeCode = (UIHandle *)0x0;
@@ -303772,12 +303772,12 @@ LAB_180852f31:
         return 0;
       }
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
   }
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   if (EventOperationCount == 0) {
     return 0;
@@ -303807,7 +303807,7 @@ UIDword FUN_180852f68(void)
   
   if (BasePointer != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   func_0x0001807d2ed0();
   if (ContextHandle == 0) {
@@ -304262,7 +304262,7 @@ LAB_180853766:
 LAB_180853768:
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return pallocatedMemory2;
 }
@@ -304309,7 +304309,7 @@ void FUN_180853840(longlong uiContext,UIHandle dataSource)
   func_0x0001808534b0(uiContext,dataSource);
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return;
 }
@@ -318937,7 +318937,7 @@ LAB_1808607eb:
             if (pCharacterDataOffset == (longlong *)0x0) {
               if (allocatedMemory4 != 0) {
                      WARNING: Subroutine does not return
-                FUN_180768400(allocatedMemory4);
+                ProcessUIMemoryAllocation(allocatedMemory4);
               }
               goto FUN_1808616bc;
             }
@@ -318958,7 +318958,7 @@ LAB_1808607eb:
 LAB_180860998:
             if (allocatedMemory4 != 0) {
                      WARNING: Subroutine does not return
-              FUN_180768400(allocatedMemory4);
+              ProcessUIMemoryAllocation(allocatedMemory4);
             }
             if ((localLong7 == 0) ||
                (localInt6 = FUN_1808c19d0(*(UIHandle *)(uiContext + 0x2c8)), localInt6 != 0))
@@ -319631,7 +319631,7 @@ LAB_1808607eb:
           if (plocalLong7 == (longlong *)0x0) {
             if (ContextHandleData != 0) {
                      WARNING: Subroutine does not return
-              FUN_180768400(ContextHandleData);
+              ProcessUIMemoryAllocation(ContextHandleData);
             }
             goto LAB_180861693;
           }
@@ -319652,7 +319652,7 @@ LAB_1808607eb:
 LAB_180860998:
           if (ContextHandleData != 0) {
                      WARNING: Subroutine does not return
-            FUN_180768400(ContextHandleData);
+            ProcessUIMemoryAllocation(ContextHandleData);
           }
           if ((allocatedMemory4 == 0) ||
              (localInt5 = FUN_1808c19d0(*(UIHandle *)(unmodifiedR12 + 0x2c8)), uVar9 = extraout_XMM0_Qa_02
@@ -343142,11 +343142,11 @@ void FUN_180874760(longlong *uiContext)
     }
     if (localLong7 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong7);
+      ProcessUIMemoryAllocation(localLong7);
     }
     if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(componentIndex);
+      ProcessUIMemoryAllocation(componentIndex);
     }
     return;
   }
@@ -343229,7 +343229,7 @@ UIHandle FUN_180874940(longlong *uiContext)
     }
     if (ContextHandleData != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(ContextHandleData);
+      ProcessUIMemoryAllocation(ContextHandleData);
     }
     if (ContextHandleData == 0) {
       return LoopCounter;
@@ -343319,7 +343319,7 @@ UIHandle FUN_18087494c(longlong *uiContext)
     }
     if (ContextHandleData != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(ContextHandleData);
+      ProcessUIMemoryAllocation(ContextHandleData);
     }
     if (BasePointer == 0) {
       return LoopCounter;
@@ -343448,7 +343448,7 @@ UIHandle FUN_180874aba(void)
   }
   if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   if (EventHandleB == '\0') {
     return semaphoreHandle;
@@ -343468,7 +343468,7 @@ void FUN_180874afe(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -343551,7 +343551,7 @@ UIHandle FUN_180874b30(longlong uiContext)
     if (stringCompareIndex != 0) {
       CleanupUIContextState(stringCompareIndex);
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     do {
       stringCompareIndex = *(longlong *)(uiBufferData + 0x8c0);
@@ -343560,7 +343560,7 @@ UIHandle FUN_180874b30(longlong uiContext)
       }
       if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(stringCompareIndex);
+        ProcessUIMemoryAllocation(stringCompareIndex);
       }
       if (*(int *)(uiBufferData + 0x8bc) == 0) {
         MaxProcessingCount = FUN_1808bcf40(*(UIHandle *)(uiContext + 0x90));
@@ -343761,7 +343761,7 @@ UIHandle FUN_180874ce3(void)
   if (TargetHandle != 0) {
     CleanupUIContextState();
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   while( true ) {
     componentIndex = *(longlong *)(ContextHandle + 0x8c0);
@@ -343770,7 +343770,7 @@ UIHandle FUN_180874ce3(void)
     }
     if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(componentIndex);
+      ProcessUIMemoryAllocation(componentIndex);
     }
     if (*(int *)(ContextHandle + 0x8bc) == 0) break;
     stackParam00000038 = 0xffffffffffffffff;
@@ -345142,7 +345142,7 @@ joined_r0x000180876529:
         if (localInt7 == 0) {
           if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-            FUN_180768400(allocatedMemory0);
+            ProcessUIMemoryAllocation(allocatedMemory0);
           }
           if (localChar5 != '\0') {
             astackUInt958[0] = 0;
@@ -345194,7 +345194,7 @@ LAB_180876796:
                     if (localInt9 != 0) {
                       if (stackLong968 != 0) {
                      WARNING: Subroutine does not return
-                        FUN_180768400();
+                        ProcessUIMemoryAllocation();
                       }
                       goto LAB_180876b83;
                     }
@@ -345264,7 +345264,7 @@ LAB_180876b83:
 FUN_180876d54:
               if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-                FUN_180768400(allocatedMemory0);
+                ProcessUIMemoryAllocation(allocatedMemory0);
               }
               goto LAB_180876d05;
             }
@@ -345284,7 +345284,7 @@ FUN_180876d54:
             *(longlong **)psemaphoreHandle[5] = pContextHandleData;
             if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-              FUN_180768400(allocatedMemory0);
+              ProcessUIMemoryAllocation(allocatedMemory0);
             }
           }
           localInt7 = FUN_1808db1d0(*(UIHandle *)(uiContext + 0xaa0),psemaphoreHandle);
@@ -345306,7 +345306,7 @@ FUN_180876d54:
         }
         else if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-          FUN_180768400(allocatedMemory0);
+          ProcessUIMemoryAllocation(allocatedMemory0);
         }
       }
     }
@@ -345348,7 +345348,7 @@ LAB_1808769aa:
   } while( true );
   if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory0);
+    ProcessUIMemoryAllocation(allocatedMemory0);
   }
   localInt7 = FUN_1808bfbe0(*(UIHandle *)(uiContext + 0x90),&pstackLong948);
   if (localInt7 == 0) {
@@ -345371,7 +345371,7 @@ LAB_1808769aa:
          localInt7 != 0)) {
         if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-          FUN_180768400(allocatedMemory0);
+          ProcessUIMemoryAllocation(allocatedMemory0);
         }
         goto LAB_180876b83;
       }
@@ -345380,7 +345380,7 @@ LAB_1808769aa:
     }
     if (allocatedMemory0 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory0);
+      ProcessUIMemoryAllocation(allocatedMemory0);
     }
     if ((((*(longlong *)(uiBufferData + 0xad0) == 0) ||
          (localInt7 = FUN_180881eb0(uiContext,psemaphoreHandle), localInt7 == 0)) &&
@@ -345525,13 +345525,13 @@ void FUN_180876428(void)
   if (localInt5 != 0) {
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     goto LAB_180876d05;
   }
   if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(localLong8);
+    ProcessUIMemoryAllocation(localLong8);
   }
   if (unmodifiedR13B != '\0') {
     stackParam00000070 = 0;
@@ -345566,7 +345566,7 @@ void FUN_180876428(void)
             if (localInt7 != 0) {
               if (stackParam00000060 != 0) {
                      WARNING: Subroutine does not return
-                FUN_180768400();
+                ProcessUIMemoryAllocation();
               }
               goto LAB_180876b83;
             }
@@ -345634,7 +345634,7 @@ LAB_1808768bc:
 FUN_180876d54:
       if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(localLong8);
+        ProcessUIMemoryAllocation(localLong8);
       }
       goto LAB_180876d05;
     }
@@ -345654,7 +345654,7 @@ FUN_180876d54:
     *(longlong **)SourceHandle[5] = pstringCompareIndex;
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
   }
   localInt5 = FUN_1808db1d0(*(UIHandle *)(EventHandle + 0xaa0));
@@ -345702,7 +345702,7 @@ LAB_1808769aa:
   } while( true );
   if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(localLong8);
+    ProcessUIMemoryAllocation(localLong8);
   }
   localInt5 = FUN_1808bfbe0(*(UIHandle *)(EventHandle + 0x90),BasePointer + -0x10);
   if (localInt5 == 0) {
@@ -345725,7 +345725,7 @@ LAB_1808769aa:
          localInt5 != 0)) {
         if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-          FUN_180768400(localLong8);
+          ProcessUIMemoryAllocation(localLong8);
         }
         goto LAB_180876b83;
       }
@@ -345734,7 +345734,7 @@ LAB_1808769aa:
     }
     if (localLong8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(localLong8);
+      ProcessUIMemoryAllocation(localLong8);
     }
     if ((((*(longlong *)(EventHandle + 0xad0) == 0) || (localInt5 = FUN_180881eb0(), localInt5 == 0)) &&
         (localInt5 = FUN_180875800(BasePointer + 0x9c,*(UIHandle *)(EventHandle + 800)), localInt5 == 0)) &&
@@ -345776,7 +345776,7 @@ void FUN_180876d54(void)
   
   if (ContextHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   FUN_180872630(BasePointer + 0x78);
   FUN_180873cd0(BasePointer + -0x78);
@@ -348848,7 +348848,7 @@ longlong FUN_180879970(longlong *uiContext,uint *dataSource,char targetBuffer)
 LAB_180879a06:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -349943,7 +349943,7 @@ longlong FUN_18087aa90(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087ab46:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -349987,7 +349987,7 @@ longlong FUN_18087aab3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087ab46:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350000,7 +350000,7 @@ void FUN_18087ab50(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350013,7 +350013,7 @@ UIHandle FUN_18087ab6b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350072,7 +350072,7 @@ longlong FUN_18087aba0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087ac5f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -350122,7 +350122,7 @@ longlong FUN_18087abba(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087ac5f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350135,7 +350135,7 @@ void FUN_18087ac69(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350148,7 +350148,7 @@ UIHandle FUN_18087ac7f(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350194,7 +350194,7 @@ longlong FUN_18087acb0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087ad66:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350238,7 +350238,7 @@ longlong FUN_18087acd3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087ad66:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350251,7 +350251,7 @@ void FUN_18087ad70(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350264,7 +350264,7 @@ UIHandle FUN_18087ad8b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350310,7 +350310,7 @@ longlong FUN_18087adc0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087ae76:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350354,7 +350354,7 @@ longlong FUN_18087ade3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087ae76:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350367,7 +350367,7 @@ void FUN_18087ae80(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350380,7 +350380,7 @@ UIHandle FUN_18087ae9b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350426,7 +350426,7 @@ longlong FUN_18087aed0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087af86:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350470,7 +350470,7 @@ longlong FUN_18087aef3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087af86:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350483,7 +350483,7 @@ void FUN_18087af90(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350496,7 +350496,7 @@ UIHandle FUN_18087afab(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350542,7 +350542,7 @@ longlong FUN_18087afe0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b096:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350586,7 +350586,7 @@ longlong FUN_18087b003(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b096:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350599,7 +350599,7 @@ void FUN_18087b0a0(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350612,7 +350612,7 @@ UIHandle FUN_18087b0bb(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350658,7 +350658,7 @@ longlong FUN_18087b110(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b1c6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350702,7 +350702,7 @@ longlong FUN_18087b133(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b1c6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350715,7 +350715,7 @@ void FUN_18087b1d0(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350728,7 +350728,7 @@ UIHandle FUN_18087b1eb(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350774,7 +350774,7 @@ longlong FUN_18087b200(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b2b6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350818,7 +350818,7 @@ longlong FUN_18087b223(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b2b6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350831,7 +350831,7 @@ void FUN_18087b2c0(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350844,7 +350844,7 @@ UIHandle FUN_18087b2db(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -350903,7 +350903,7 @@ longlong FUN_18087b310(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b3cf:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -350953,7 +350953,7 @@ longlong FUN_18087b32a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b3cf:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -350966,7 +350966,7 @@ void FUN_18087b3d9(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -350979,7 +350979,7 @@ UIHandle FUN_18087b3ef(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351038,7 +351038,7 @@ longlong FUN_18087b420(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b4df:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -351103,7 +351103,7 @@ longlong FUN_18087b43a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b4df:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351116,7 +351116,7 @@ void FUN_18087b4e9(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351129,7 +351129,7 @@ UIHandle FUN_18087b4ff(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351175,7 +351175,7 @@ longlong FUN_18087b530(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b5e6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351219,7 +351219,7 @@ longlong FUN_18087b553(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b5e6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351232,7 +351232,7 @@ void FUN_18087b5f0(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351245,7 +351245,7 @@ UIHandle FUN_18087b60b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351291,7 +351291,7 @@ longlong FUN_18087b640(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b6f6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351335,7 +351335,7 @@ longlong FUN_18087b663(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b6f6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351348,7 +351348,7 @@ void FUN_18087b700(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351361,7 +351361,7 @@ UIHandle FUN_18087b71b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351420,7 +351420,7 @@ longlong FUN_18087b750(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b80f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -351470,7 +351470,7 @@ longlong FUN_18087b76a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b80f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351483,7 +351483,7 @@ void FUN_18087b819(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351496,7 +351496,7 @@ UIHandle FUN_18087b82f(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351542,7 +351542,7 @@ longlong FUN_18087b860(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087b916:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351586,7 +351586,7 @@ longlong FUN_18087b883(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087b916:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351599,7 +351599,7 @@ void FUN_18087b920(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351612,7 +351612,7 @@ UIHandle FUN_18087b93b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351658,7 +351658,7 @@ longlong FUN_18087b970(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087ba26:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351702,7 +351702,7 @@ longlong FUN_18087b993(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087ba26:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351715,7 +351715,7 @@ void FUN_18087ba30(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351728,7 +351728,7 @@ UIHandle FUN_18087ba4b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351787,7 +351787,7 @@ longlong FUN_18087ba80(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087bb3f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -351837,7 +351837,7 @@ longlong FUN_18087ba9a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087bb3f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351850,7 +351850,7 @@ void FUN_18087bb49(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351863,7 +351863,7 @@ UIHandle FUN_18087bb5f(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -351909,7 +351909,7 @@ longlong FUN_18087bbb0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087bc66:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351953,7 +351953,7 @@ longlong FUN_18087bbd3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087bc66:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -351966,7 +351966,7 @@ void FUN_18087bc70(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -351979,7 +351979,7 @@ UIHandle FUN_18087bc8b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352025,7 +352025,7 @@ longlong FUN_18087bca0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087bd56:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352069,7 +352069,7 @@ longlong FUN_18087bcc3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087bd56:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352082,7 +352082,7 @@ void FUN_18087bd60(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352095,7 +352095,7 @@ UIHandle FUN_18087bd7b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352154,7 +352154,7 @@ longlong FUN_18087bdd0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087be8f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -352204,7 +352204,7 @@ longlong FUN_18087bdea(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087be8f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352217,7 +352217,7 @@ void FUN_18087be99(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352230,7 +352230,7 @@ UIHandle FUN_18087beaf(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352276,7 +352276,7 @@ longlong FUN_18087bee0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087bf96:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352320,7 +352320,7 @@ longlong FUN_18087bf03(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087bf96:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352333,7 +352333,7 @@ void FUN_18087bfa0(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352346,7 +352346,7 @@ UIHandle FUN_18087bfbb(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352405,7 +352405,7 @@ longlong FUN_18087bff0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c0af:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -352455,7 +352455,7 @@ longlong FUN_18087c00a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c0af:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352468,7 +352468,7 @@ void FUN_18087c0b9(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352481,7 +352481,7 @@ UIHandle FUN_18087c0cf(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352527,7 +352527,7 @@ longlong FUN_18087c140(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c1f6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352571,7 +352571,7 @@ longlong FUN_18087c163(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c1f6:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352584,7 +352584,7 @@ void FUN_18087c200(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352597,7 +352597,7 @@ UIHandle FUN_18087c21b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352656,7 +352656,7 @@ longlong FUN_18087c250(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c30f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -352706,7 +352706,7 @@ longlong FUN_18087c26a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c30f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352719,7 +352719,7 @@ void FUN_18087c319(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352732,7 +352732,7 @@ UIHandle FUN_18087c32f(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352791,7 +352791,7 @@ longlong FUN_18087c360(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c41f:
   if (bVar6) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return allocatedMemory1;
 }
@@ -352841,7 +352841,7 @@ longlong FUN_18087c37a(longlong uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c41f:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352854,7 +352854,7 @@ void FUN_18087c429(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352867,7 +352867,7 @@ UIHandle FUN_18087c43f(void)
   
   if (unmodifiedSIL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -352913,7 +352913,7 @@ longlong FUN_18087c470(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c526:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352957,7 +352957,7 @@ longlong FUN_18087c493(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c526:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -352970,7 +352970,7 @@ void FUN_18087c530(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -352983,7 +352983,7 @@ UIHandle FUN_18087c54b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -353029,7 +353029,7 @@ longlong FUN_18087c580(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c636:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353073,7 +353073,7 @@ longlong FUN_18087c5a3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c636:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353086,7 +353086,7 @@ void FUN_18087c640(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -353099,7 +353099,7 @@ UIHandle FUN_18087c65b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -353145,7 +353145,7 @@ longlong FUN_18087c690(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c746:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353189,7 +353189,7 @@ longlong FUN_18087c6b3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c746:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353202,7 +353202,7 @@ void FUN_18087c750(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -353215,7 +353215,7 @@ UIHandle FUN_18087c76b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -353261,7 +353261,7 @@ longlong FUN_18087c7a0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c856:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353305,7 +353305,7 @@ longlong FUN_18087c7c3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c856:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353318,7 +353318,7 @@ void FUN_18087c860(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -353331,7 +353331,7 @@ UIHandle FUN_18087c87b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -353377,7 +353377,7 @@ longlong FUN_18087c8b0(longlong uiContext,uint *dataSource,char targetBuffer)
 LAB_18087c966:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353421,7 +353421,7 @@ longlong FUN_18087c8d3(UIHandle uiContext,UIHandle dataSource,char targetBuffer)
 LAB_18087c966:
   if (IsEventProcessingActive) {
                      WARNING: Subroutine does not return
-    FUN_180768400(allocatedMemory);
+    ProcessUIMemoryAllocation(allocatedMemory);
   }
   return EventDataIndex;
 }
@@ -353434,7 +353434,7 @@ void FUN_18087c970(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -353447,7 +353447,7 @@ UIHandle FUN_18087c98b(void)
   
   if (unmodifiedBPL != '\0') {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   return *(UIHandle *)(registerAX + 0x18);
 }
@@ -355950,7 +355950,7 @@ LAB_180880327:
     return localInt6;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(allocatedMemory);
+  ProcessUIMemoryAllocation(allocatedMemory);
 }
 
 
@@ -357376,7 +357376,7 @@ LAB_1808820fa:
     ExecuteUIRenderTask(stackUInt40 ^ (ulonglong)astackUInt78);
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(allocatedMemory);
+  ProcessUIMemoryAllocation(allocatedMemory);
 }
 
 
@@ -357466,7 +357466,7 @@ LAB_1808820fa:
     ExecuteUIRenderTask(param_7 ^ (ulonglong)&stack0x00000000);
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -357477,7 +357477,7 @@ void FUN_180882120(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -357511,7 +357511,7 @@ LAB_1808820fa:
         ExecuteUIRenderTask(stackParam00000038 ^ (ulonglong)&stack0x00000000);
       }
                      WARNING: Subroutine does not return
-      FUN_180768400();
+      ProcessUIMemoryAllocation();
     }
     do {
       if (*(longlong *)(*(longlong *)(EventHandle[2] + 0x18 + (longlong)uiCompareResult * 0x20) + 0x2d8) != 0) {
@@ -357618,7 +357618,7 @@ LAB_18088229d:
     return uiCompareResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(allocatedMemory);
+  ProcessUIMemoryAllocation(allocatedMemory);
 }
 
 
@@ -357701,7 +357701,7 @@ LAB_18088229d:
     return uiValidationResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -357712,7 +357712,7 @@ void FUN_1808822c3(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -357742,7 +357742,7 @@ LAB_18088229d:
         return uiOperationResult;
       }
                      WARNING: Subroutine does not return
-      FUN_180768400();
+      ProcessUIMemoryAllocation();
     }
     do {
       componentIndex = *(longlong *)(*(longlong *)(EventHandle[2] + 0x18 + (longlong)uiCompareResult * 0x20) + 0x2d8);
@@ -358089,7 +358089,7 @@ UIHandle FUN_180882610(longlong uiContext,ulonglong *dataSource)
        ((UIDword *)*dataSource + (longlong)(int)dataSource[1] * 5 <= componentContextPtr)) {
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(EventTypeCode,componentContextPtr);
+        ProcessUIMemoryAllocation(EventTypeCode,componentContextPtr);
       }
       return 0;
     }
@@ -359989,7 +359989,7 @@ LAB_180883b56:
 LAB_180883dd3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -359997,7 +359997,7 @@ LAB_180883dd3:
 LAB_180883b5e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -360067,7 +360067,7 @@ LAB_180883b5e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -360112,7 +360112,7 @@ LAB_180883d88:
 LAB_180883db9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -360122,7 +360122,7 @@ LAB_180883db9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180883d99:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -360201,7 +360201,7 @@ LAB_180883ed6:
 LAB_180884153:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -360209,7 +360209,7 @@ LAB_180884153:
 LAB_180883ede:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -360279,7 +360279,7 @@ LAB_180883ede:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -360324,7 +360324,7 @@ LAB_180884108:
 LAB_180884139:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -360334,7 +360334,7 @@ LAB_180884139:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180884119:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -360413,7 +360413,7 @@ LAB_180884256:
 LAB_1808844d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -360421,7 +360421,7 @@ LAB_1808844d3:
 LAB_18088425e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -360491,7 +360491,7 @@ LAB_18088425e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -360536,7 +360536,7 @@ LAB_180884488:
 LAB_1808844b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -360546,7 +360546,7 @@ LAB_1808844b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180884499:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -360625,7 +360625,7 @@ LAB_1808845d6:
 LAB_180884853:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -360633,7 +360633,7 @@ LAB_180884853:
 LAB_1808845de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -360703,7 +360703,7 @@ LAB_1808845de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -360748,7 +360748,7 @@ LAB_180884808:
 LAB_180884839:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -360758,7 +360758,7 @@ LAB_180884839:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180884819:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -360837,7 +360837,7 @@ LAB_180884956:
 LAB_180884bd3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -360845,7 +360845,7 @@ LAB_180884bd3:
 LAB_18088495e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -360915,7 +360915,7 @@ LAB_18088495e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -360960,7 +360960,7 @@ LAB_180884b88:
 LAB_180884bb9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -360970,7 +360970,7 @@ LAB_180884bb9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180884b99:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -361049,7 +361049,7 @@ LAB_180884cd6:
 LAB_180884f53:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -361057,7 +361057,7 @@ LAB_180884f53:
 LAB_180884cde:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -361127,7 +361127,7 @@ LAB_180884cde:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -361172,7 +361172,7 @@ LAB_180884f08:
 LAB_180884f39:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -361182,7 +361182,7 @@ LAB_180884f39:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180884f19:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -361261,7 +361261,7 @@ LAB_180885056:
 LAB_1808852d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -361269,7 +361269,7 @@ LAB_1808852d3:
 LAB_18088505e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -361339,7 +361339,7 @@ LAB_18088505e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -361384,7 +361384,7 @@ LAB_180885288:
 LAB_1808852b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -361394,7 +361394,7 @@ LAB_1808852b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180885299:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -361473,7 +361473,7 @@ LAB_1808853d6:
 LAB_180885653:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -361481,7 +361481,7 @@ LAB_180885653:
 LAB_1808853de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -361551,7 +361551,7 @@ LAB_1808853de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -361596,7 +361596,7 @@ LAB_180885608:
 LAB_180885639:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -361606,7 +361606,7 @@ LAB_180885639:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180885619:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -361685,7 +361685,7 @@ LAB_180885756:
 LAB_1808859d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -361693,7 +361693,7 @@ LAB_1808859d3:
 LAB_18088575e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -361763,7 +361763,7 @@ LAB_18088575e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -361808,7 +361808,7 @@ LAB_180885988:
 LAB_1808859b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -361818,7 +361818,7 @@ LAB_1808859b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180885999:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -361897,7 +361897,7 @@ LAB_180885ad6:
 LAB_180885d53:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -361905,7 +361905,7 @@ LAB_180885d53:
 LAB_180885ade:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -361975,7 +361975,7 @@ LAB_180885ade:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -362020,7 +362020,7 @@ LAB_180885d08:
 LAB_180885d39:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -362030,7 +362030,7 @@ LAB_180885d39:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180885d19:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -362109,7 +362109,7 @@ LAB_180885e56:
 LAB_1808860d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -362117,7 +362117,7 @@ LAB_1808860d3:
 LAB_180885e5e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -362187,7 +362187,7 @@ LAB_180885e5e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -362232,7 +362232,7 @@ LAB_180886088:
 LAB_1808860b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -362242,7 +362242,7 @@ LAB_1808860b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180886099:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -362321,7 +362321,7 @@ LAB_1808861d6:
 LAB_180886453:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -362329,7 +362329,7 @@ LAB_180886453:
 LAB_1808861de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -362399,7 +362399,7 @@ LAB_1808861de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -362444,7 +362444,7 @@ LAB_180886408:
 LAB_180886439:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -362454,7 +362454,7 @@ LAB_180886439:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180886419:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -362533,7 +362533,7 @@ LAB_180886556:
 LAB_1808867d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -362541,7 +362541,7 @@ LAB_1808867d3:
 LAB_18088655e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -362611,7 +362611,7 @@ LAB_18088655e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -362656,7 +362656,7 @@ LAB_180886788:
 LAB_1808867b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -362666,7 +362666,7 @@ LAB_1808867b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180886799:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -362745,7 +362745,7 @@ LAB_1808868d6:
 LAB_180886b53:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -362753,7 +362753,7 @@ LAB_180886b53:
 LAB_1808868de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -362823,7 +362823,7 @@ LAB_1808868de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -362868,7 +362868,7 @@ LAB_180886b08:
 LAB_180886b39:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -362878,7 +362878,7 @@ LAB_180886b39:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180886b19:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -362957,7 +362957,7 @@ LAB_180886c56:
 LAB_180886ed3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -362965,7 +362965,7 @@ LAB_180886ed3:
 LAB_180886c5e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -363035,7 +363035,7 @@ LAB_180886c5e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -363080,7 +363080,7 @@ LAB_180886e88:
 LAB_180886eb9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -363090,7 +363090,7 @@ LAB_180886eb9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180886e99:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -363169,7 +363169,7 @@ LAB_180886fd6:
 LAB_180887253:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -363177,7 +363177,7 @@ LAB_180887253:
 LAB_180886fde:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -363247,7 +363247,7 @@ LAB_180886fde:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -363292,7 +363292,7 @@ LAB_180887208:
 LAB_180887239:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -363302,7 +363302,7 @@ LAB_180887239:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180887219:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -363381,7 +363381,7 @@ LAB_180887356:
 LAB_1808875d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -363389,7 +363389,7 @@ LAB_1808875d3:
 LAB_18088735e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -363459,7 +363459,7 @@ LAB_18088735e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -363504,7 +363504,7 @@ LAB_180887588:
 LAB_1808875b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -363514,7 +363514,7 @@ LAB_1808875b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180887599:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -363593,7 +363593,7 @@ LAB_1808876d6:
 LAB_180887953:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -363601,7 +363601,7 @@ LAB_180887953:
 LAB_1808876de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -363671,7 +363671,7 @@ LAB_1808876de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -363716,7 +363716,7 @@ LAB_180887908:
 LAB_180887939:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -363726,7 +363726,7 @@ LAB_180887939:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180887919:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -363805,7 +363805,7 @@ LAB_180887a56:
 LAB_180887cd3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -363813,7 +363813,7 @@ LAB_180887cd3:
 LAB_180887a5e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -363883,7 +363883,7 @@ LAB_180887a5e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -363928,7 +363928,7 @@ LAB_180887c88:
 LAB_180887cb9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -363938,7 +363938,7 @@ LAB_180887cb9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180887c99:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -364017,7 +364017,7 @@ LAB_180887dd6:
 LAB_180888053:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -364025,7 +364025,7 @@ LAB_180888053:
 LAB_180887dde:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -364095,7 +364095,7 @@ LAB_180887dde:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -364140,7 +364140,7 @@ LAB_180888008:
 LAB_180888039:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -364150,7 +364150,7 @@ LAB_180888039:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180888019:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -364229,7 +364229,7 @@ LAB_180888156:
 LAB_1808883d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -364237,7 +364237,7 @@ LAB_1808883d3:
 LAB_18088815e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -364307,7 +364307,7 @@ LAB_18088815e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -364352,7 +364352,7 @@ LAB_180888388:
 LAB_1808883b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -364362,7 +364362,7 @@ LAB_1808883b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180888399:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -364441,7 +364441,7 @@ LAB_1808884d6:
 LAB_180888753:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -364449,7 +364449,7 @@ LAB_180888753:
 LAB_1808884de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -364519,7 +364519,7 @@ LAB_1808884de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -364564,7 +364564,7 @@ LAB_180888708:
 LAB_180888739:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -364574,7 +364574,7 @@ LAB_180888739:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180888719:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -364653,7 +364653,7 @@ LAB_180888856:
 LAB_180888ad3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -364661,7 +364661,7 @@ LAB_180888ad3:
 LAB_18088885e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -364731,7 +364731,7 @@ LAB_18088885e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -364776,7 +364776,7 @@ LAB_180888a88:
 LAB_180888ab9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -364786,7 +364786,7 @@ LAB_180888ab9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180888a99:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -364865,7 +364865,7 @@ LAB_180888bd6:
 LAB_180888e53:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -364873,7 +364873,7 @@ LAB_180888e53:
 LAB_180888bde:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -364943,7 +364943,7 @@ LAB_180888bde:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -364988,7 +364988,7 @@ LAB_180888e08:
 LAB_180888e39:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -364998,7 +364998,7 @@ LAB_180888e39:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180888e19:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -365077,7 +365077,7 @@ LAB_180888f56:
 LAB_1808891d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -365085,7 +365085,7 @@ LAB_1808891d3:
 LAB_180888f5e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -365155,7 +365155,7 @@ LAB_180888f5e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -365200,7 +365200,7 @@ LAB_180889188:
 LAB_1808891b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -365210,7 +365210,7 @@ LAB_1808891b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180889199:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -365289,7 +365289,7 @@ LAB_1808892d6:
 LAB_180889553:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -365297,7 +365297,7 @@ LAB_180889553:
 LAB_1808892de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -365367,7 +365367,7 @@ LAB_1808892de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -365412,7 +365412,7 @@ LAB_180889508:
 LAB_180889539:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -365422,7 +365422,7 @@ LAB_180889539:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180889519:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -365501,7 +365501,7 @@ LAB_180889656:
 LAB_1808898d3:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -365509,7 +365509,7 @@ LAB_1808898d3:
 LAB_18088965e:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -365579,7 +365579,7 @@ LAB_18088965e:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -365624,7 +365624,7 @@ LAB_180889888:
 LAB_1808898b9:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -365634,7 +365634,7 @@ LAB_1808898b9:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180889899:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -365713,7 +365713,7 @@ LAB_1808899d6:
 LAB_180889c53:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       return eventTypeCode;
     }
@@ -365721,7 +365721,7 @@ LAB_180889c53:
 LAB_1808899de:
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if (result2 == 0) {
     MaxProcessingCount = (**(code **)*plStackX_8)(plStackX_8,dataSource);
@@ -365791,7 +365791,7 @@ LAB_1808899de:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
   if ((int)MaxProcessingCount != 0) {
     return MaxProcessingCount;
@@ -365836,7 +365836,7 @@ LAB_180889c08:
 LAB_180889c39:
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (EventTypeCode != 0) {
         return (ulonglong)EventTypeCode;
@@ -365846,7 +365846,7 @@ LAB_180889c39:
   }
   if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(componentIndex);
+    ProcessUIMemoryAllocation(componentIndex);
   }
 LAB_180889c19:
   MaxProcessingCount = (**(code **)(*pallocatedMemory1 + 0x10))(pallocatedMemory1,dataSource,result2);
@@ -365973,7 +365973,7 @@ LAB_180889e8c:
     return LoopCounter;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(componentIndex);
+  ProcessUIMemoryAllocation(componentIndex);
 }
 
 
@@ -366092,7 +366092,7 @@ LAB_180889e8c:
   }
   if (TargetHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400(TargetHandle);
+    ProcessUIMemoryAllocation(TargetHandle);
   }
   ptrResult4 = (UIHandle *)FUN_180847820();
   EventTypeCode = *(UIHandle *)(uiContext + 0x80);
@@ -366198,7 +366198,7 @@ LAB_180889e8c:
       localLong7 = *(longlong *)(BasePointer + 0x28);
       if (*(longlong *)(BasePointer + 0x30) != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(*(longlong *)(BasePointer + 0x30));
+        ProcessUIMemoryAllocation(*(longlong *)(BasePointer + 0x30));
       }
       ptrResult0 = (UIHandle *)FUN_180847820();
       EventTypeCode = *(UIHandle *)(localLong7 + 0x80);
@@ -366228,7 +366228,7 @@ UIDword FUN_180889eb2(void)
   
   if (TargetHandle != 0) {
                      WARNING: Subroutine does not return
-    FUN_180768400();
+    ProcessUIMemoryAllocation();
   }
   componentContextPtr = (UIDword *)FUN_180847820();
   result = *(UIHandle *)(SourceHandle + 0x80);
@@ -366252,7 +366252,7 @@ void FUN_180889ebf(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -366284,7 +366284,7 @@ GamepadEventHandler:
       localLong7 = *(longlong *)(BasePointer + 0x28);
       if (*(longlong *)(BasePointer + 0x30) != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(*(longlong *)(BasePointer + 0x30));
+        ProcessUIMemoryAllocation(*(longlong *)(BasePointer + 0x30));
       }
       ptrLocal8 = (UIHandle *)FUN_180847820();
       EventTypeCode = *(UIHandle *)(localLong7 + 0x80);
@@ -366503,7 +366503,7 @@ LAB_18088a24d:
     return uiValidationResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400(allocatedMemory);
+  ProcessUIMemoryAllocation(allocatedMemory);
 }
 
 
@@ -366531,7 +366531,7 @@ LAB_18088a24d:
     return uiOperationResult;
   }
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -366542,7 +366542,7 @@ void FUN_18088a257(void)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400();
+  ProcessUIMemoryAllocation();
 }
 
 
@@ -366570,14 +366570,14 @@ ulonglong FUN_18088a270(longlong uiContext)
 LAB_18088a2cf:
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
   }
   else {
 LAB_18088a2ee:
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x380);
     if (stringCompareIndex != 0) {
@@ -366596,7 +366596,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x3b0);
     if (stringCompareIndex != 0) {
@@ -366615,7 +366615,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x3e0);
     if (stringCompareIndex != 0) {
@@ -366634,7 +366634,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x410);
     if (stringCompareIndex != 0) {
@@ -366653,7 +366653,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x440);
     if (stringCompareIndex != 0) {
@@ -366672,7 +366672,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x470);
     if (stringCompareIndex != 0) {
@@ -366691,7 +366691,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x4a0);
     if (stringCompareIndex != 0) {
@@ -366710,7 +366710,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x4d0);
     if (stringCompareIndex != 0) {
@@ -366729,7 +366729,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x500);
     if (stringCompareIndex != 0) {
@@ -366748,7 +366748,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x530);
     if (stringCompareIndex != 0) {
@@ -366767,7 +366767,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x560);
     if (stringCompareIndex != 0) {
@@ -366786,7 +366786,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x590);
     if (stringCompareIndex != 0) {
@@ -366805,7 +366805,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x5c0);
     if (stringCompareIndex != 0) {
@@ -366824,7 +366824,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x620);
     if (stringCompareIndex != 0) {
@@ -366843,7 +366843,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x650);
     if (stringCompareIndex != 0) {
@@ -366862,7 +366862,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x680);
     if (stringCompareIndex != 0) {
@@ -366881,7 +366881,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     semaphoreHandle = FUN_18088a1f0(uiContext + 0x688);
     if ((int)semaphoreHandle != 0) {
@@ -366904,7 +366904,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x710);
     if (stringCompareIndex != 0) {
@@ -366923,7 +366923,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x740);
     if (stringCompareIndex != 0) {
@@ -366942,7 +366942,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x770);
     if (stringCompareIndex != 0) {
@@ -366961,7 +366961,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x7a0);
     if (stringCompareIndex != 0) {
@@ -366980,7 +366980,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 2000);
     if (stringCompareIndex != 0) {
@@ -366999,7 +366999,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x800);
     if (stringCompareIndex != 0) {
@@ -367018,7 +367018,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x830);
     if (stringCompareIndex != 0) {
@@ -367037,7 +367037,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     stringCompareIndex = *(longlong *)(uiBufferData + 0x860);
     if (stringCompareIndex != 0) {
@@ -367056,7 +367056,7 @@ LAB_18088a2ee:
     }
     if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(stringCompareIndex);
+      ProcessUIMemoryAllocation(stringCompareIndex);
     }
     semaphoreHandle = FUN_18088a1f0(uiContext + 0x868);
     if (((int)semaphoreHandle == 0) && (semaphoreHandle = FUN_18088a1f0(uiContext + 0x898), (int)semaphoreHandle == 0)) {
@@ -369324,7 +369324,7 @@ void FUN_18088d850(longlong uiContext)
   uiValidationResult = FUN_180748e20(*(UIHandle *)(*(longlong *)(uiBufferData + 0x158) + 0x78),0,0,0);
   if (uiValidationResult == 0) {
     if (*(char *)(uiContext + 0x188) != '\0') {
-      uiValidationResult = FUN_180768910(*(UIHandle *)(uiContext + 0x170));
+      uiValidationResult = ValidateUIContextState(*(UIHandle *)(uiContext + 0x170));
       if (uiValidationResult != 0) {
         return;
       }
@@ -369369,7 +369369,7 @@ void FUN_18088d880(void)
   longlong TargetHandle;
   
   if (*(char *)(TargetHandle + 0x188) != '\0') {
-    uiValidationResult = FUN_180768910(*(UIHandle *)(TargetHandle + 0x170));
+    uiValidationResult = ValidateUIContextState(*(UIHandle *)(TargetHandle + 0x170));
     if (uiValidationResult != 0) {
       return;
     }
@@ -369679,7 +369679,7 @@ void FUN_18088dbf0(longlong uiContext,UIHandle *dataSource)
     localInt8 = FUN_18088e780((longlong *)(uiContext + 0x210),ProcessingResult2);
     if (localInt8 != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(result);
+      ProcessUIMemoryAllocation(result);
     }
   }
   ptrResult0 = (UIHandle *)
@@ -369692,7 +369692,7 @@ void FUN_18088dbf0(longlong uiContext,UIHandle *dataSource)
   ptrResult0[5] = eventTypeCode;
   *(int *)(uiBufferData + 0x218) = *(int *)(uiBufferData + 0x218) + 1;
                      WARNING: Subroutine does not return
-  FUN_180768400(result);
+  ProcessUIMemoryAllocation(result);
 }
 
 
@@ -369883,7 +369883,7 @@ UIHandle FUN_18088dec0(longlong uiContext,longlong *dataSource,int targetBuffer)
   FUN_180768b90(auStackX_10);
   func_0x0001808e64e0(*(UIHandle *)(uiContext + 0x1e0));
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x160));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x160));
 }
 
 
@@ -369904,7 +369904,7 @@ ulonglong FUN_18088e0f0(longlong uiContext,char dataSource)
         if ((*(char *)(uiContext + 0x188) != '\0') &&
            (FUN_180768b70(aiStackX_18), 0x32 < aiStackX_18[0] - *(int *)(uiBufferData + 0x178))) {
           *(int *)(uiBufferData + 0x178) = aiStackX_18[0];
-          EventTypeCode = FUN_180768910(*(UIHandle *)(uiContext + 0x170));
+          EventTypeCode = ValidateUIContextState(*(UIHandle *)(uiContext + 0x170));
           if ((int)EventTypeCode != 0) {
             return EventTypeCode;
           }
@@ -369956,7 +369956,7 @@ ulonglong FUN_18088e10d(void)
          (FUN_180768b70(&stack0x00000040), 0x32 < inputString - *(int *)(ContextHandle + 0x178)))
       {
         *(int *)(ContextHandle + 0x178) = inputString;
-        EventTypeCode = FUN_180768910(*(UIHandle *)(ContextHandle + 0x170));
+        EventTypeCode = ValidateUIContextState(*(UIHandle *)(ContextHandle + 0x170));
         if ((int)EventTypeCode != 0) {
           return EventTypeCode;
         }
@@ -370218,7 +370218,7 @@ void FUN_18088e6d0(longlong uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180768400(*(UIHandle *)(uiContext + 0x160));
+  ProcessUIMemoryAllocation(*(UIHandle *)(uiContext + 0x160));
 }
 
 
@@ -370510,7 +370510,7 @@ FUN_18088ea60(UIHandle uiContext,int dataSource,UIHandle targetBuffer,longlong b
         else {
           *(UIDword *)(resultPointer + 0x18c) = 0;
           *(UIByte *)(resultPointer + 0x18a) = 0;
-          result = FUN_180768910(*(UIHandle *)(resultPointer + 0x170));
+          result = ValidateUIContextState(*(UIHandle *)(resultPointer + 0x170));
           if ((int)result != 0) {
             return result;
           }
@@ -370549,7 +370549,7 @@ UIHandle FUN_18088eb60(longlong uiContext)
   if ((*(char *)(uiContext + 0x188) != '\0') &&
      (FUN_180768b70(aiStackX_8), 0x32 < aiStackX_8[0] - *(int *)(uiBufferData + 0x178))) {
     *(int *)(uiBufferData + 0x178) = aiStackX_8[0];
-    result = FUN_180768910(*(UIHandle *)(uiContext + 0x170));
+    result = ValidateUIContextState(*(UIHandle *)(uiContext + 0x170));
     if ((int)result != 0) {
       return result;
     }
@@ -371745,7 +371745,7 @@ longlong * FUN_18088f810(UIHandle uiContext,longlong dataSource)
     if (pCharacterDataOffset == (longlong *)0x0) {
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
     }
     else {
@@ -371765,7 +371765,7 @@ LAB_18088f951:
       }
       if (componentIndex != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(componentIndex);
+        ProcessUIMemoryAllocation(componentIndex);
       }
       if (pallocatedMemory0 != (longlong *)0x0) {
         if (*(longlong **)(lStackX_18 + 8) == (longlong *)0x0) {
@@ -371851,7 +371851,7 @@ longlong * FUN_18088f832(void)
   if (pEventDataIndex == (longlong *)0x0) {
     if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
   }
   else {
@@ -371871,7 +371871,7 @@ LAB_18088f951:
     }
     if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
     if (pContextHandleData != (longlong *)0x0) {
       if (*(longlong **)(stackParam00000050 + 8) == (longlong *)0x0) {
@@ -371932,7 +371932,7 @@ longlong FUN_18088fa00(UIHandle uiContext,longlong dataSource)
     if (pContextHandleData == (longlong *)0x0) {
       if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(allocatedMemory);
+        ProcessUIMemoryAllocation(allocatedMemory);
       }
     }
     else {
@@ -371951,7 +371951,7 @@ longlong FUN_18088fa00(UIHandle uiContext,longlong dataSource)
       }
       if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-        FUN_180768400(allocatedMemory);
+        ProcessUIMemoryAllocation(allocatedMemory);
       }
       if (localLong7 != 0) {
         if (*(longlong *)(lStackX_18 + 8) == 0) {
@@ -372001,7 +372001,7 @@ longlong FUN_18088fa22(void)
   if (pstringCompareIndex == (longlong *)0x0) {
     if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
   }
   else {
@@ -372020,7 +372020,7 @@ longlong FUN_18088fa22(void)
     }
     if (allocatedMemory != 0) {
                      WARNING: Subroutine does not return
-      FUN_180768400(allocatedMemory);
+      ProcessUIMemoryAllocation(allocatedMemory);
     }
     if (ContextHandleData != 0) {
       if (*(longlong *)(inputString + 8) == 0) {
