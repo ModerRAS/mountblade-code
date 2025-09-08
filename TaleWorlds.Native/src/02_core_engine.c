@@ -196717,7 +196717,7 @@ LAB_180161e6a:
 
 
 
-void FUN_180161eb0(long long CharacterCode,long long SystemBufferSize)
+void ConvertCharacterEncoding(long long CharacterCode,long long SystemBufferSize)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
