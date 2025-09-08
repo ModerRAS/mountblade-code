@@ -75439,8 +75439,18 @@ void ProcessUISystemData(longlong *uiContext,longlong dataSource,int targetBuffe
 
 
 
- void FUN_18070ee86(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,float *bufferSize)
-void FUN_18070ee86(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,float *bufferSize)
+ /**
+ * UI变换矩阵处理函数 - 处理UI元素的变换矩阵计算
+ * 
+ * 该函数对UI元素进行矩阵变换计算，包括平移、旋转、缩放等操作
+ * 主要用于UI元素的位置变换和动画效果处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源缓冲区
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小数组，用于返回计算结果
+ */
+void ProcessUITransformMatrix(UIHandle uiContext, longlong dataSource, UIHandle targetBuffer, float *bufferSize)
 
 {
   float *pfloatResult;
@@ -279447,7 +279457,7 @@ void FUN_18083b050(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHan
   UIByte aresult3 [32];
   UIByte aIndexResult [32];
   
-  aeventTypeCode = _DAT_180981460;
+  aeventTypeCode = UIEventTypeCodeVector;
   aMaxProcessingCount = _DAT_180981440;
   CharacterDataOffset = (longlong)targetBuffer * 4 - (longlong)resultPointer;
   pauVar8 = (UIByte (*) [32])(*resultPointer + ((longlong)targetBuffer >> 1) * 4);
