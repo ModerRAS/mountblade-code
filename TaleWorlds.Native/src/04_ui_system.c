@@ -35069,14 +35069,14 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
   UIDword *pixelDataPointer;
   longlong textureBufferPointer;
   short colorFormat;
-  short sVar25;
-  short sVar26;
-  short sVar27;
-  short sVar28;
-  short sVar29;
-  short sVar30;
-  UIByte asemaphoreHandle4 [16];
-  short sVar31;
+  short redChannel;
+  short greenChannel;
+  short blueChannel;
+  short alphaValue;
+  short textureWidth;
+  short textureHeight;
+  UIByte colorPaletteBuffer [16];
+  short mipMapLevel;
   UIByte aEventTypeCode2 [16];
   UIByte aEventTypeCode3 [16];
   UIWord EventTypeCode4;
@@ -73196,8 +73196,26 @@ void UpdateUIAnimationState(longlong uiContext,UIHandle dataSource,longlong targ
 
 
 
- void FUN_180707988(int uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_180707988(int uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+ // UI系统事件数据处理器
+// 原始函数名：FUN_180707988 - UI系统事件数据处理器
+#define ProcessUIEventData FUN_180707988
+
+/**
+ * @brief 处理UI系统事件数据
+ * 
+ * 该函数负责处理UI系统的事件数据，包括事件类型编码、数据缓冲区管理和事件调度。
+ * 函数会根据输入的参数计算事件处理的边界条件，并管理事件数据的生命周期。
+ * 
+ * @param uiContext UI上下文句柄，用于访问UI系统状态
+ * @param dataSource 数据源句柄，包含事件数据的来源信息
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的最大范围
+ * 
+ * @note 该函数涉及复杂的内存操作和事件调度逻辑
+ * @warning 处理过程中会修改UI系统的内部状态，需要确保调用时机正确
+ * @see ProcessUIEventDispatch, HandleUIDataBuffer
+ */
+void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   ulonglong result;
