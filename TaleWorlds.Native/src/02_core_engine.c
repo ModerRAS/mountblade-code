@@ -100004,8 +100004,12 @@ uint8_t ValidateSystemOperation(void
  * - 管理系统上下文
  * - 处理循环计数器
  * - 更新各种系统标志
+ * - 处理字符状态和数据验证
+ * - 管理系统配置和数据操作
  * 
  * @return uint8_t 更新后的系统状态
+ * 
+ * @note 原始函数名：FUN_1801d8f0
  */
 uint8_t UpdateSystemStatus(void
 {
@@ -100051,7 +100055,7 @@ uint8_t UpdateSystemStatus(void
   UnsignedStackProcessingParameter3C = CharacterStatusBufferPointer[1];
   SystemParameter2 = CharacterStatusBufferPointer[2];
   StackFloatValue44 = (float)CharacterStatusBufferPointer[3];
-  *(float *)(FramePointer + -0x7d) = StackFloatValue44 * *(float *)(SystemContext + 0x1628);
+  *(float *)(StackFrameAddressPointer + -0x7d) = StackFloatValue44 * *(float *)(SystemContext + 0x1628);
   DataSize = ValidateSystemData(&StackProcessingParameter38);
   if (CharacterTablePointer == *(int *)(SystemContext + 0x1ca0)) {
     ProcessMemoryLock(StackFrameAddressPointer + -0x79,1);
@@ -100069,36 +100073,36 @@ uint8_t UpdateSystemStatus(void
     InputFloatValue = 0.0;
   }
   MemoryAllocationIndex = CONCAT44(ProcessedCharacter,InputFloatValue);
-  ProcessSystemDataConcatenation(*(void *)(FramePointer + -0x79),*(void *)(FramePointer + -0x71),DataSize,1,MemoryAllocationIndex
+  ProcessSystemDataConcatenation(*(void *)(StackFrameAddressPointer + -0x79),*(void *)(StackFrameAddressPointer + -0x71),DataSize,1,MemoryAllocationIndex
                );
   SystemDataTablePointer = SystemConfigurationHandle;
   ProcessedCharacter = (uint32_t)((unsigned long long)MemoryAllocationIndex >> 0x20);
-  CharacterStatusBufferPointer = *(uint32_t **)(FramePointer + 0x77);
+  CharacterStatusBufferPointer = *(uint32_t **)(StackFrameAddressPointer + 0x77);
   if (FloatingPointRegisterA < (float)CharacterStatusBufferPointer[3]) {
     DataSize = CharacterStatusBufferPointer[1];
     MemoryAllocationIndex = CharacterStatusBufferPointer[2];
     InputFloatValue = (float)CharacterStatusBufferPointer[3];
-    *(uint32_t *)(FramePointer + -0x79) = *CharacterStatusBufferPointer;
-    *(uint32_t *)(FramePointer + -0x75) = DataSize;
-    *(uint32_t *)(FramePointer + -0x71) = MemoryAllocationIndex;
-    *(float *)(FramePointer + -0x6d) = InputFloatValue;
-    *(float *)(FramePointer + -0x6d) = InputFloatValue * *(float *)(SystemDataTablePointer + 0x1628);
+    *(uint32_t *)(StackFrameAddressPointer + -0x79) = *CharacterStatusBufferPointer;
+    *(uint32_t *)(StackFrameAddressPointer + -0x75) = DataSize;
+    *(uint32_t *)(StackFrameAddressPointer + -0x71) = MemoryAllocationIndex;
+    *(float *)(StackFrameAddressPointer + -0x6d) = InputFloatValue;
+    *(float *)(StackFrameAddressPointer + -0x6d) = InputFloatValue * *(float *)(SystemDataTablePointer + 0x1628);
     DataSize = ValidateSystemData(StackFrameAddressPointer + -0x79);
     ProcessSystemDataAndConfigure(*(void *)(CharacterLimit + 0x2e8),StackFrameAddressPointer + -0x69,StackFrameAddressPointer + -0x61,DataSize,
                   CONCAT44(ProcessedCharacter,FloatingPointRegisterA));
   }
   SystemDataRegistry = SystemConfigurationHandle;
-  CharacterStatusBufferPointer = *(uint32_t **)(FramePointer + 0x7f);
+  CharacterStatusBufferPointer = *(uint32_t **)(StackFrameAddressPointer + 0x7f);
   SystemDataTablePointer = *(long long *)(CharacterLimit + 0x2e8);
   ProcessedCharacter = CharacterStatusBufferPointer[1];
   DataSize = CharacterStatusBufferPointer[2];
   InputFloatValue = (float)CharacterStatusBufferPointer[3];
-  *(uint32_t *)(FramePointer + -0x79) = *CharacterStatusBufferPointer;
-  *(uint32_t *)(FramePointer + -0x75) = ProcessedCharacter;
-  *(uint32_t *)(FramePointer + -0x71) = DataSize;
-  *(float *)(FramePointer + -0x6d) = InputFloatValue;
-  *(float *)(FramePointer + -0x6d) = InputFloatValue * *(float *)(SystemDataRegistry + 0x1628);
-  SystemChecksum = ValidateSystemData(FramePointer + -0x79);
+  *(uint32_t *)(StackFrameAddressPointer + -0x79) = *CharacterStatusBufferPointer;
+  *(uint32_t *)(StackFrameAddressPointer + -0x75) = ProcessedCharacter;
+  *(uint32_t *)(StackFrameAddressPointer + -0x71) = DataSize;
+  *(float *)(StackFrameAddressPointer + -0x6d) = InputFloatValue;
+  *(float *)(StackFrameAddressPointer + -0x6d) = InputFloatValue * *(float *)(SystemDataRegistry + 0x1628);
+  SystemChecksum = ValidateSystemData(StackFrameAddressPointer + -0x79);
   if ((SystemChecksum & 0xff000000) != 0) {
     if ((*(int *)(SystemDataTablePointer + 0x70) == 0) ||
        (RegisterR12Value !=
