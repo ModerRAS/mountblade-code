@@ -94996,6 +94996,22 @@ void Unwind_18090d3c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理内存资源引用计数（偏移量2F0）
+ * 
+ * 该函数负责清理指定偏移量（0x2F0）处的内存资源引用计数。
+ * 它会检查内存资源指针的有效性，计算内存区域基址，并递减引用计数。
+ * 如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源引用信息
+ * 
+ * @note 原始函数名：Unwind_18090d3d0
+ * @note 处理偏移量0x2F0处的内存资源引用计数
+ * @note 使用MemoryReferenceCleanupOffset2F0常量定义偏移量
+ * 
+ * @see CleanupMemoryResourceReferenceCountAtOffset310A, CleanupMemoryResourceReferenceCountAtOffset310B
+ */
 void Unwind_18090d3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -123771,4 +123787,17 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteSystemMemoryOperation Unwind_18090ef90
 #define ProcessDataBufferWithFlags Unwind_18090efc0
 #define ManageExceptionContextResources Unwind_18090efe0
+
+// 内存资源引用计数清理函数系列
+#define CleanupMemoryResourceReferenceCountAtOffset2F0 Unwind_18090d3d0
+#define CleanupMemoryResourceReferenceCountAtOffset310A Unwind_18090d3e0
+#define CleanupMemoryResourceReferenceCountAtOffset310B Unwind_18090d3f0
+
+// 系统内存操作和清理函数
+#define ExecuteSystemMemoryOperationAtOffset40 Unwind_18090dde0
+#define DestroyMutexInSitu Unwind_18090de10
+#define InvokeExceptionHandlerAtOffsetE0 Unwind_18090de20
+#define InvokeExceptionHandlerContextAtOffsetE0 Unwind_18090de30
+#define CleanupMemoryResourceAtOffsetE0 Unwind_18090de40
+#define ProcessExceptionHandlersInRange Unwind_18090de50
 #define ValidateSystemResources130 Unwind_18090a130

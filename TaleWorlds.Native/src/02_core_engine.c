@@ -623,6 +623,29 @@
 #define AllocateSystemMemoryBlockWithId FUN_18031a020          // 分配带ID的系统内存块
 #define ConvertCharacterToUtf16Format FUN_1806fade0           // 转换字符为UTF16格式
 #define ValidateCharacterTableStructure FUN_180158a70          // 验证字符表结构
+
+// 新发现的字符编码处理函数
+#define ProcessCharacterCodeWithMemoryBoundaryValidation FUN_18018b160 // 处理带内存边界验证的字符代码
+#define InitializeSystemPrimaryDataTemplate FUN_18018b3f0      // 初始化系统主数据模板
+#define InitializeSystemMemoryBoundaryAddress FUN_18018b430     // 初始化系统内存边界地址
+#define ProcessCharacterEncodingConversionAndStatusManagement FUN_18018be60 // 处理字符编码转换和状态管理
+#define ProcessSystemCharacterEncodingConversion FUN_18018cc00   // 处理系统字符编码转换
+#define ProcessCharacterEncodingAndSystemBufferConfiguration FUN_18018e7e0 // 处理字符编码和系统缓冲区配置
+#define InitializeSystemCharacterEncodingConverterAndMemoryAllocator FUN_180162600 // 初始化系统字符编码转换器和内存分配器
+
+// 系统内存管理函数
+#define ProcessSystemMemoryAllocationAndDataStructureManagement FUN_18018e7f0 // 处理系统内存分配和数据结构管理
+
+// 内存清理和资源管理函数
+#define ProcessSystemDataCleanupAndMemoryRelease FUN_180204f57   // 处理系统数据清理和内存释放
+#define ProcessPatternIndexCleanupAndMemoryRelease FUN_180204f4d // 处理模式索引清理和内存释放
+#define ProcessSystemEncodingConversionWithValidation FUN_1802090ff // 处理带验证的系统编码转换
+#define ProcessMemoryBlockManagementWithValidation FUN_180218739  // 处理带验证的内存块管理
+#define GetPreviousMemoryBlockIndex FUN_180218724                // 获取前一个内存块索引
+
+// 字符处理和内存分配标签
+#define ProcessCharacterAllocationWithValidation LAB_180179a0a     // 处理带验证的字符分配
+
 /**
  * @brief 处理系统内存管理
  * 
@@ -196933,7 +196956,7 @@ LAB_18016236a:
     if (*(int *)(CharacterCode + 0x20) == 0) goto LAB_180162395;
   }
   else {
-    BufferStatus = FUN_180627ce0(Utf8SourcePointer,&EncodingBuffer,CharacterCode,Utf16EndPointer,0xfffffffffffffffe);
+    BufferStatus = ConvertUtf8ToUtf16CharacterEncoding(Utf8SourcePointer,&EncodingBuffer,CharacterCode,Utf16EndPointer,0xfffffffffffffffe);
     if (CoreEngineSignedValue78 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
@@ -198563,7 +198586,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     SecondaryProcessingStatusFlag[2] = 0x65646168;
     SecondaryProcessingStatusFlag[3] = 0x2f7372;
     uStack_520 = 0xf;
-    AllocatedMemorySize = FUN_180627ce0(&puStack_530,&puStack_4b8,*Utf8SourcePointer);
+    AllocatedMemorySize = ConvertUtf8ToUtf16CharacterEncoding(&puStack_530,&puStack_4b8,*Utf8SourcePointer);
     puStack_510 = &SystemNullTemplate;
     uStack_4f8 = 0;
     SystemTemporaryValue508 = 0;
@@ -223071,7 +223094,7 @@ LAB_18018b129:
 
 
 uint64_t *
-FUN_18018b160(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,int *Utf16EndPointer,uint64_t AdditionalParameter1
+ProcessCharacterCodeWithMemoryBoundaryValidation(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,int *Utf16EndPointer,uint64_t AdditionalParameter1
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -223193,7 +223216,7 @@ uint64_t * FUN_18018b350(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
 
 
 uint64_t *
-FUN_18018b3f0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemPrimaryDataTemplate(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   *CharacterCode = &SystemPrimaryDataTemplate;
   if ((SystemBufferSize & 1) != 0) {
@@ -223205,7 +223228,7 @@ FUN_18018b3f0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64
 
 
 uint64_t *
-FUN_18018b430(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemMemoryBoundaryAddress(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   *CharacterCode = &SystemMemoryBoundaryStartAddress;
   if (CharacterCode[0x16] != 0) {
