@@ -94576,8 +94576,15 @@ void FUN_18072081d(void)
 
 
 
- void FUN_180720b35(void)
-void FUN_180720b35(void)
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于UI系统的某些特定场景下的占位符或默认处理。
+ * 
+ * @note 原始函数名：FUN_180720b35
+ */
+void UINoOperationHandlerAlternative(void)
+void UINoOperationHandlerAlternative(void)
 
 {
   return;
@@ -94588,21 +94595,39 @@ void FUN_180720b35(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180720b60(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
-void FUN_180720b60(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+ /**
+ * @brief UI渲染更新触发器
+ * 
+ * 该函数负责触发UI渲染更新，主要功能包括：
+ * - 设置XOR加密密钥用于数据保护
+ * - 准备渲染所需的上下文和数据缓冲区
+ * - 调用渲染更新函数进行实际的渲染操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，指向渲染数据源
+ * @param targetBuffer 目标缓冲区，用于存储渲染结果
+ * @param bufferSize 缓冲区大小，控制渲染数据量
+ * 
+ * @return 无返回值（函数不返回）
+ * 
+ * @note 原始函数名：FUN_180720b60
+ * @note 此函数使用XOR加密保护数据传输
+ * @note 函数调用ProcessUIRenderingUpdate()后不返回
+ */
+void TriggerUIRenderingUpdate(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIDword bufferSize)
+void TriggerUIRenderingUpdate(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIDword bufferSize)
 
 {
-  UIByte astackUInt78 [4];
-  UIDword stackUInt74;
-  UIHandle stackUInt68;
-  UIHandle stackUInt60;
-  ulonglong stackUInt48;
+  UIByte encryptionDataArray [4];
+  UIDword encryptedBufferSize;
+  UIHandle encryptedContext;
+  UIHandle encryptedTargetBuffer;
+  ulonglong xorEncryptedData;
   
-  stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt78;
-  stackUInt74 = bufferSize;
-  stackUInt68 = uiContext;
-  stackUInt60 = targetBuffer;
-                     WARNING: Subroutine does not return
+  xorEncryptedData = XorEncryptionKey ^ (ulonglong)encryptionDataArray;
+  encryptedBufferSize = bufferSize;
+  encryptedContext = uiContext;
+  encryptedTargetBuffer = targetBuffer;
   ProcessUIRenderingUpdate();
 }
 
@@ -101034,17 +101059,17 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
   iterationResult = totalOperationResult;
   if (0 < (int)maxProcessingCount) {
     do {
-      afStack_258[0] = *(float *)(param_7 + result3 * 4) * 131072.0;
-      astackInt248[result3] = (int)ROUND(afStack_258[0]);
-      result3 = result3 + 1;
-    } while ((longlong)result3 < allocatedMemory5);
+      floatStackArray258[0] = *(float *)(param_7 + iterationResult * 4) * 131072.0;
+      intStackArray248[iterationResult] = (int)ROUND(floatStackArray258[0]);
+      iterationResult = iterationResult + 1;
+    } while ((longlong)iterationResult < memoryAllocation5);
   }
   stackUInt260 = uiContext0;
   stackInt268 = param_9;
   stackUInt270 = param_8;
-  pstackInt278 = astackInt248;
-  pstackInt280 = astackInt1f8;
-  pfStack_288 = afStack_258;
+  intStackPointer278 = intStackArray248;
+  intStackPointer280 = intStackArray1f8;
+  floatStackPointer288 = floatStackArray258;
   FUN_18072f890(&stackUInt68,dataSource,targetBuffer,bufferSize);
   result3 = TotalResult;
   if (((0 < (int)maxProcessingCount) && (result3 = 0, 0xf < maxProcessingCount)) &&
