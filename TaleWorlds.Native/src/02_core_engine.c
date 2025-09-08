@@ -202477,6 +202477,21 @@ long long * FUN_18016cdb0(long long *CharacterCode
 
 
 
+/**
+ * @brief 初始化字符代码表指针和系统模板
+ * 
+ * 该函数负责初始化字符代码表指针和系统模板，包括：
+ * - 遍历字符代码表并设置系统模板
+ * - 处理缓冲区状态和数据大小
+ * - 管理系统空模板的引用
+ * 
+ * @param CharacterCode 字符代码指针数组，包含表指针和配置信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016ce50
+ */
+#define InitializeCharacterTablePointerAndSystemTemplate FUN_18016ce50
+
 6ce50(long long *CharacterCodevoid FUN_18016ce50(long long *CharacterCode
 {
   long long PrimaryDataSize;
