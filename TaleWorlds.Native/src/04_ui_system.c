@@ -87888,20 +87888,37 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
 
 
  void FUN_18071991e(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18071991e(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+/**
+ * @brief 处理UI数据变换和缩放操作
+ * 
+ * 该函数负责处理UI数据的变换和缩放操作，主要功能包括：
+ * - 批量处理UI数据的变换计算
+ * - 应用缩放系数到UI元素
+ * - 处理不同类型的数据变换
+ * - 优化数据访问和计算性能
+ * 
+ * @param uiContext UI上下文，包含变换参数和元素数量
+ * @param dataSource 数据源句柄，包含原始数据
+ * @param targetBuffer 目标缓冲区句柄，存储变换结果
+ * @param bufferSize 缓冲区大小，控制处理范围
+ * 
+ * @note 原始函数名：FUN_18071991e
+ * @warning 此函数包含复杂的内存操作和数学计算
+ */
+void ProcessUIDataTransformAndScaling(longlong uiContext, UIHandle dataSource, UIHandle targetBuffer, longlong bufferSize)
 
 {
   float baseValue;
-  float *ptransformCoeff1;
-  longlong stringCompareIndex;
-  longlong ContextHandle;
-  longlong TargetHandle;
-  longlong ContextHandleData;
-  float transformCoeff4;
-  float localFloat6;
-  float in_XMM3_Da;
-  float in_XMM4_Da;
-  float unmodifiedXMM6_Da;
+  float *transformDataPtr;
+  longlong loopCounter;
+  longlong contextHandle;
+  longlong targetHandle;
+  longlong contextDataOffset;
+  float transformValue;
+  float tempValue;
+  float scaleIn;
+  float scaleOut;
+  float baseTransform;
   
   if (3 < uiContext - bufferSize) {
     ptransformCoeff1 = (float *)(TargetHandle + 4 + bufferSize * 4);
