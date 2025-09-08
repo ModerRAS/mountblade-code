@@ -821,6 +821,12 @@
 #define ProcessCharacterTableMemoryOperation FUN_18033ad00      // 处理字符表内存操作
 #define ProcessCharacterTableUpdate FUN_1803336f0             // 处理字符表更新
 #define ProcessSystemContextWithFloatParameters FUN_180321e80  // 处理系统上下文和浮点参数
+#define ProcessSystemContextWithValidationFlags FUN_18032c0b0   // 处理系统上下文和验证标志
+#define ProcessSystemCharacterEncodingConversion FUN_180166580  // 处理系统字符编码转换
+#define ProcessSystemCharacterEncodingValidation FUN_1801661b0  // 处理系统字符编码验证
+#define ProcessSystemCharacterEncodingFinalization FUN_180165f80 // 处理系统字符编码最终化
+#define ProcessSystemCharacterEncodingOptimization FUN_180165bb0 // 处理系统字符编码优化
+#define ExecuteSystemMemoryInitialization FUN_1800da9b0         // 执行系统内存初始化
 
 // 渲染上下文处理函数
 #define ProcessRenderContextWithUnsignedValue FUN_1800a43c0     // 处理渲染上下文和无符号值
@@ -1015,6 +1021,8 @@
 #define InitializeSystemContext FUN_18021b9c0
 // 系统字符处理函数
 #define ProcessSystemCharacterData FUN_180651d20
+// 系统数据初始化函数
+#define InitializeSystemData FUN_1800da9b0
 
 // 高频出现的FUN_函数语义化宏定义
 #define GetSystemDataPointer FUN_180189990            // 获取系统数据指针（出现9次）
@@ -70447,6 +70455,10 @@ void ProcessSystemDataStructureValidation(long long CharacterCode,long long Syst
   long long systemLoopCounter;
   long long EncodingConversionResult;
   long long *systemContextPointer;
+  long long StringOffset;
+  int InputDataLength;
+  int IntegerValue;
+  byte HighByte;
   
   EncodingConversionResult = Utf16EndPointer * 2;
   while (StringOffset = EncodingConversionResult + 2, StringOffset < Utf8SourcePointer) {
@@ -204241,7 +204253,7 @@ ProcessUtf8ToUtf16ConversionInitial(uint64_t *CharacterCode,uint64_t SystemBuffe
 {
   uint32_t *CharacterStatusBuffer;
   
-  FUN_180321e80(*(long long *)(CoreEngineSystemContext + 0x3d8),
+  ProcessSystemContextWithFloatParameters(*(long long *)(CoreEngineSystemContext + 0x3d8),
                 1.0 / *(float *)(*(long long *)(CoreEngineSystemContext + 0x3d8) + 0x13c),Utf8SourcePointer,Utf16EndPointer,0,
                 0xfffffffffffffffe);
   *CharacterCode = &ThreadLocalStorageTemplate;
@@ -204283,7 +204295,7 @@ ProcessUtf8ToUtf16ConversionExtended(uint64_t *CharacterCode,uint64_t SystemBuff
   long long lStack_20;
   uint32_t uStack_10;
   
-  FUN_18032c0b0(*(void *)(CoreEngineSystemContext + 0x3d8),&pStackValidationFlag28,Utf8SourcePointer,Utf16EndPointer,0,
+  ProcessSystemContextWithValidationFlags(*(void *)(CoreEngineSystemContext + 0x3d8),&pStackValidationFlag28,Utf8SourcePointer,Utf16EndPointer,0,
                 0xfffffffffffffffe);
   pStackValidationFlag28 = &SystemNullTemplate;
   if (lStack_20 != 0) {
@@ -204389,7 +204401,7 @@ LAB_18016f158:
  */
 uint64_t ProcessCharacterCodeWrapper1(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180166580(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessSystemCharacterEncodingConversion(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -204408,7 +204420,7 @@ uint64_t ProcessCharacterCodeWrapper1(uint64_t CharacterCode,uint64_t SystemBuff
  */
 uint64_t ProcessCharacterCodeWrapper2(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_1801661b0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessSystemCharacterEncodingValidation(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -204427,7 +204439,7 @@ uint64_t ProcessCharacterCodeWrapper2(uint64_t CharacterCode,uint64_t SystemBuff
  */
 uint64_t ProcessCharacterCodeWrapper3(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180165f80(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessSystemCharacterEncodingFinalization(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -204449,7 +204461,7 @@ uint64_t ProcessCharacterCodeWrapper3(uint64_t CharacterCode,uint64_t SystemBuff
 
 uint64_t ProcessCharacterEncodingAndSystemBufferManagement(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
-  FUN_180165bb0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessSystemCharacterEncodingOptimization(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -204828,7 +204840,7 @@ ReleaseUtf8EncodingData(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryAllocationIndex = 0;
-  FUN_1800da9b0();
+  InitializeSystemData();
   *CharacterCode = &ThreadLocalStorageTemplate;
   CharacterCode[1] = 0;
   *(uint32_t *)(CharacterCode + 2) = 0;
@@ -205110,7 +205122,7 @@ LAB_18017023b:
       *(void *)(Utf16Char4 + 0x18) = 0;
       SystemKeyPointer = CalculatedCodePoint;
       SystemStackFlag = MemoryAllocationIndex;
-      FUN_18005d190(Utf16Char4,SystemChecksum);
+      ProcessSystemMemoryAllocation(Utf16Char4,SystemChecksum);
       if (*(long long *)(SystemStatusCode - 0x18) != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
@@ -205136,7 +205148,7 @@ LAB_18017023b:
     CoreEnginePointerBuffer78 = &ThreadLocalStorageTemplate;
     Utf8SourcePointer = Utf8SourcePointer + -1;
     Utf16EndPointer = Utf16ConversionContext;
-    FUN_18016ff80(Utf16Char4,SystemBufferSize,Utf8SourcePointer,Utf16ConversionContext);
+    ProcessCharacterEncodingConversion(Utf16Char4,SystemBufferSize,Utf8SourcePointer,Utf16ConversionContext);
     SystemChecksum = Utf16Char4 - CharacterCode;
     SystemBufferSize = Utf16Char4;
     DataSize = Utf16ConversionContext;
@@ -205251,8 +205263,8 @@ LAB_18017023b:
       *(uint32_t *)(MemoryPoolBlockSizePointer + 1) = 0;
       *MemoryPoolBlockSizePointer = 0;
       MemoryPoolBlockSizePointer[2] = 0;
-      FUN_18005d190(MemoryPoolBlockSizePointer + -1,CharacterCode);
-      FUN_180170700(CharacterCode,0,StringOffset + -1,0,&EncodingBuffer,Utf16EndPointer);
+      ProcessSystemMemoryAllocation(MemoryPoolBlockSizePointer + -1,CharacterCode);
+      ProcessSystemCharacterDataValidation(CharacterCode,0,StringOffset + -1,0,&EncodingBuffer,Utf16EndPointer);
       EncodingBuffer = &SystemNullTemplate;
       if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
@@ -205342,7 +205354,7 @@ long long ProcessCharacterEncodingAndMemoryPoolOperations(long long CharacterCod
     AllocatedMemorySize = MemoryPoolBlockSize * 2;
   }
   if (MemoryBoundaryEnd == Utf8SourcePointer) {
-    FUN_18005d190(Utf16EndPointer * 0x20 + CharacterCode,CharacterCode + -0x20 + MemoryBoundaryEnd * 0x20);
+    ProcessSystemMemoryAllocation(Utf16EndPointer * 0x20 + CharacterCode,CharacterCode + -0x20 + MemoryBoundaryEnd * 0x20);
     Utf16EndPointer = AllocatedMemorySize + 1;
   }
   while (SystemBufferSize < Utf16EndPointer) {
