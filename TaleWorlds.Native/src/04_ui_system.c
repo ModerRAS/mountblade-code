@@ -345,9 +345,9 @@ typedef enum {
  * 
  * 该函数确保UI元素能够正确地进行各种渲染变换。
  * 
- * @note 原始函数名：FUN_1807074b0
+ * @note 原始函数名：ProcessUIRenderDataTransform
  */
-#define ProcessUIRenderDataTransform FUN_1807074b0
+#define ProcessUIRenderDataTransform ProcessUIRenderDataTransform
 
 /**
  * @brief 处理UI系统内存操作
@@ -468,7 +468,7 @@ typedef enum {
 #define ProcessUITextureData FUN_180707457
 
  // UI系统函数宏定义 - 更新UI纹理
-#define UpdateUITexture FUN_1807074b0
+#define UpdateUITexture ProcessUIRenderDataTransform
 
  // UI系统函数宏定义 - 处理UI动画
 #define ProcessUIAnimation FUN_1807075c0
@@ -779,7 +779,7 @@ typedef enum {
 #define QueryUIDataSourceStatus FUN_180706d32
 
 // UI系统函数宏定义 - 计算UI渲染比例
-#define CalculateUIRenderScale FUN_1807070a0
+#define CalculateUIRenderScale CalculateUIRenderScale
 
 // UI系统函数宏定义 - 计算UI布局边界
 #define CalculateUILayoutBounds FUN_180707b03
@@ -835,7 +835,7 @@ typedef enum {
 #define UIEmptyOperation2 FUN_1807104b7
 #define ProcessUIFloatParameterCalculation FUN_180712943
 #define ProcessUIIntegerParameterOperation FUN_180712b71
-#define ProcessUIFloatDataOperation FUN_180712c50
+#define ProcessUIFloatDataOperation ProcessUIDataOperation
 #define ProcessUIFloatDataValidation FUN_180712cdf
 #define ProcessUIFloatDataProcessing FUN_180712e3f
 
@@ -998,7 +998,7 @@ typedef enum {
 #define FUN_180712541 ProcessUIDataSource
 #define FUN_180712943 ProcessUIFloatCalculation
 #define FUN_180712bf0 InitializeUIEmptyOperationAdvanced
-#define FUN_180712c50 ProcessUIDataOperation
+#define ProcessUIDataOperation ProcessUIDataOperation
 #define FUN_180712cdf ProcessUIDataBuffer
 #define FUN_180712e3f ProcessUIDataStream
 #define FUN_180712f20 ProcessUIDataValidation
@@ -1007,13 +1007,13 @@ typedef enum {
 #define FUN_180713020 ProcessUIDataFinalization
 #define FUN_180713126 ProcessUIDataProcessing
 #define FUN_180713394 ProcessUIDataManagement
-#define FUN_1807056f0 ProcessUIDataIteration
+#define ProcessUIDataIteration ProcessUIDataIteration
 #define FUN_18071565d CleanupUIRenderer
-#define FUN_180720430 InitializeUIRenderDataProcessor
-#define FUN_1807207d0 ClearUIDataBuffer
-#define FUN_180721bd0 NormalizeUIData
-#define FUN_180721cf0 CalculateUIDataSimilarity
-#define FUN_180716890 ProcessUIDataTransformAndNormalization
+#define InitializeUIRenderDataProcessor InitializeUIRenderDataProcessor
+#define ClearUIDataBuffer ClearUIDataBuffer
+#define NormalizeUIData NormalizeUIData
+#define CalculateUIDataSimilarity CalculateUIDataSimilarity
+#define ProcessUIDataTransformAndNormalization ProcessUIDataTransformAndNormalization
 #define FUN_180715670 CalculateUIProcessingRatio
 
      * @param stateType 状态类型
@@ -1618,7 +1618,7 @@ void* UIRenderTarget;
 #define FUN_18070ba50 ProcessUIComponentEvent
 #define FUN_18070e950 ProcessUIRenderDataWithTransform
 #define ProcessUIResourceAllocation GetUIElementCount
-#define FUN_18070f540 SetUIElementState
+#define SetUIElementState SetUIElementState
 #define FUN_18070f360 UpdateUIElementData
 #define FUN_18070ee30 ProcessUIDataTransferWithOffset
 
@@ -73346,7 +73346,7 @@ int ValidateUIDataAndProcessBufferOperation(UIHandle uiContext,UIHandle dataSour
  * @param targetBuffer 目标缓冲区索引，指定变换的目标区域
  * @return 变换结果，返回计算后的浮点数值
  * 
- * @note 原始函数名: FUN_1807070a0
+ * @note 原始函数名: CalculateUIRenderScale
  */
 float CalculateUIFloatDataTransformation(longlong uiContext,float *dataSource,int targetBuffer)
 
@@ -76783,7 +76783,7 @@ void UINoOperationFunction(void)
  * @param dataSource 数据源参数，指定要分配的资源类型和数量
  * @return 分配结果状态码，成功返回分配的资源ID，失败返回错误码
  * 
- * @note 原始函数名: FUN_18070f540
+ * @note 原始函数名: SetUIElementState
  */
 uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
 
@@ -82931,20 +82931,20 @@ void ProcessUITransformDataCalculation(longlong *uiContext,float *dataSource,int
   stackUInt68 = resultPointer;
   pstackUInt78 = (UIHandle *)CONCAT44(pstackUInt78._4_4_,4);
   stackInt70 = targetBuffer;
-  FUN_180720430(dataSource,&fStack_40,0,0);
+  InitializeUIRenderDataProcessor(dataSource,&fStack_40,0,0);
   fStack_40 = fStack_40 * 1.0001;
   fStack_3c = fStack_3c - fStack_3c * 0.008 * 0.008;
   fStack_38 = fStack_38 - fStack_38 * 0.016 * 0.016;
   fStack_34 = fStack_34 - fStack_34 * 0.024 * 0.024;
   fStack_30 = fStack_30 - fStack_30 * 0.032 * 0.032;
-  FUN_1807207d0(&fStack_28,&fStack_40,4);
+  ClearUIDataBuffer(&fStack_28,&fStack_40,4);
   pstackUInt78 = &stackUInt58;
   fStack_40 = fStack_28 * 0.9 + 0.8;
   fStack_3c = fStack_28 * 0.9 * 0.8 + fStack_24 * 0.80999994;
   fStack_38 = fStack_24 * 0.80999994 * 0.8 + fStack_20 * 0.7289999;
   fStack_34 = fStack_20 * 0.7289999 * 0.8 + fStack_1c * 0.6560999;
   fStack_30 = fStack_1c * 0.6560999 * 0.8;
-  FUN_180712c50(dataSource,&fStack_40,dataSource,targetBuffer);
+  ProcessUIDataOperation(dataSource,&fStack_40,dataSource,targetBuffer);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt98);
 }
@@ -83390,7 +83390,7 @@ LAB_180714c0e:
     *uiContext2 = 0;
   }
   else if (dataSource2 == 0) {
-    ProcessingResult3 = FUN_18070f540(dataSource1,(uStackX_10 - dataSource) + 1);
+    ProcessingResult3 = SetUIElementState(dataSource1,(uStackX_10 - dataSource) + 1);
     result7 = ProcessingResult3 + dataSource;
     *uiContext2 = result7;
   }
@@ -83400,7 +83400,7 @@ LAB_180714c0e:
       result7 = uStackX_10;
     }
     *uiContext2 = result7;
-    FUN_1807056f0(dataSource1,result7 - dataSource);
+    ProcessUIDataIteration(dataSource1,result7 - dataSource);
     result7 = *uiContext2;
   }
   ProcessingResult3 = param_9 + uiContext5;
@@ -83821,7 +83821,7 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
             result2 = result2 << 1 | (uint)((int)result2 < 0);
           } while (ProcessingResult1 < processingResult6);
           if (IsEventProcessingActive) {
-            FUN_180721bd0(CharacterDataOffset,uiCompareResult,0x3f800000,uiContext4);
+            NormalizeUIData(CharacterDataOffset,uiCompareResult,0x3f800000,uiContext4);
           }
         }
         processingResult4 = processingResult4 + param_6;
@@ -84034,7 +84034,7 @@ void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHand
           result1 = result1 << 1 | (uint)((int)result1 < 0);
         } while (processedCount < processingResult4);
         if (bVar3) {
-          FUN_180721bd0(contextOffset,TempInt4,0x3f800000,stackParam00000178);
+          NormalizeUIData(contextOffset,TempInt4,0x3f800000,stackParam00000178);
         }
       }
       ProcessingResult2 = ProcessingResult2 + stackParam00000138;
@@ -84119,7 +84119,7 @@ int CompareUIContextValues(uint uiContext,uint dataSource)
     if (0 < bufferSize) {
       do {
         allocatedMemory = dataSource + (longlong)(((int)*psVar5 << (param_6 & 0x1f)) + localInt6) * 4;
-        localFloat9 = (float)FUN_1807070a0(allocatedMemory,allocatedMemory,(int)psVar5[1] - (int)*psVar5 << (param_6 & 0x1f));
+        localFloat9 = (float)CalculateUIRenderScale(allocatedMemory,allocatedMemory,(int)psVar5[1] - (int)*psVar5 << (param_6 & 0x1f));
         TempInt4 = *(int *)(uiBufferData + 8) * localInt8 + localInt7;
         localInt7 = localInt7 + 1;
         *(float *)(targetBuffer + (longlong)TempInt4 * 4) = SQRT(localFloat9 + 1e-27);
@@ -84224,7 +84224,7 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
   }
   result7 = result3;
   if (processedCount != 0) {
-    processingCounter = FUN_180721cf0(targetBuffer,bufferSize,uiContext0,resultPointer,uiContext[0xf]);
+    processingCounter = CalculateUIDataSimilarity(targetBuffer,bufferSize,uiContext0,resultPointer,uiContext[0xf]);
     result7 = (ulonglong)processingCounter;
   }
   localInt8 = func_0x000180712300(iterationCount);
@@ -84300,7 +84300,7 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
             }
           }
         }
-        FUN_180716890(allocatedMemory,targetBuffer,bufferSize,EventTypeCode,processingResult5,resultPointer);
+        ProcessUIDataTransformAndNormalization(allocatedMemory,targetBuffer,bufferSize,EventTypeCode,processingResult5,resultPointer);
       }
       result2 = iterationCount0;
       if ((0x10 < *param_6) && (0x10 < uiContext[10])) {
@@ -84446,16 +84446,16 @@ LAB_180715b7d:
       }
     }
     else if (processedCount == 0) {
-      processingCounter = FUN_18070f540(iterationCount);
+      processingCounter = SetUIElementState(iterationCount);
     }
     else {
-      FUN_1807056f0(iterationCount,result3,localInt5 + 1);
+      ProcessUIDataIteration(iterationCount,result3,localInt5 + 1);
     }
   }
   processingCounter = (uint)((processingCounter << 0xe) / TotalResult);
   if ((processedCount != 0) && (uiContext0 != 0)) {
     if (processingCounter == 0) {
-      FUN_180716890(allocatedMemory,targetBuffer,bufferSize,EventTypeCode,processingResult5,resultPointer);
+      ProcessUIDataTransformAndNormalization(allocatedMemory,targetBuffer,bufferSize,EventTypeCode,processingResult5,resultPointer);
     }
     else {
       FUN_180719a90(targetBuffer,bufferSize,resultPointer);
@@ -85002,7 +85002,7 @@ LAB_180716845:
  * @note 此函数在UI数据处理和归一化中被广泛使用
  * @note 使用浮点数运算进行精确的变换计算
  * @note 支持批量处理多个UI数据元素的变换
- * @note 原始函数名：FUN_180716890
+ * @note 原始函数名：ProcessUIDataTransformAndNormalization
  */
 void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize, int resultPointer,
                                           uint param_6)
@@ -86379,7 +86379,7 @@ ulonglong FUN_180718bd0(int *uiContext,longlong dataSource,int targetBuffer,uint
             } while (allocatedMemory8 != 0);
           }
         }
-        FUN_180721bd0(dataSource,targetBuffer,param_8,uiContext[0xf]);
+        NormalizeUIData(dataSource,targetBuffer,param_8,uiContext[0xf]);
         maxProcessingCount = (ulonglong)EventTypeCode;
       }
     }
@@ -86859,7 +86859,7 @@ ulonglong FUN_180718f58(void)
           } while (localLong7 != 0);
         }
       }
-      FUN_180721bd0();
+      NormalizeUIData();
       result = (ulonglong)stackParam00000130;
     }
   }
@@ -92982,7 +92982,7 @@ void FUN_1807201f0(void)
  * @param dataSource 数据源句柄
  * @param targetBuffer 目标缓冲区句柄
  * 
- * @note 原始函数名：FUN_180720430
+ * @note 原始函数名：InitializeUIRenderDataProcessor
  */
 void InitializeUIRenderDataProcessor(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
@@ -93010,7 +93010,7 @@ void InitializeUIRenderDataProcessor(UIHandle uiContext,UIHandle dataSource,UIHa
  * @param dataSource 数据源句柄
  * @param targetBuffer 目标缓冲区大小
  * 
- * @note 原始函数名：FUN_1807207d0
+ * @note 原始函数名：ClearUIDataBuffer
  */
 void ClearUIDataBuffer(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
@@ -93940,7 +93940,7 @@ uint FUN_180721b40(longlong uiContext,uint dataSource,uint targetBuffer)
  * @param dataSource 数据源大小
  * @param targetBuffer 目标缩放因子
  * 
- * @note 原始函数名：FUN_180721bd0
+ * @note 原始函数名：NormalizeUIData
  */
 void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
 
@@ -93951,7 +93951,7 @@ void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
   ulonglong ProcessingStatus;
   float transformCoeff4;
   
-  transformCoeff4 = (float)FUN_1807070a0(uiContext,uiContext,dataSource);
+  transformCoeff4 = (float)CalculateUIRenderScale(uiContext,uiContext,dataSource);
   uiCompareResult = 0;
   targetBuffer = targetBuffer / SQRT(transformCoeff4 + 1e-15);
   if (0 < (int)dataSource) {
@@ -94021,7 +94021,7 @@ void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
  * @param bufferSize 缓冲区大小
  * @return 计算结果，表示相似度或距离值
  * 
- * @note 原始函数名：FUN_180721cf0
+ * @note 原始函数名：CalculateUIDataSimilarity
  */
 int CalculateUIDataSimilarity(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
@@ -94048,9 +94048,9 @@ int CalculateUIDataSimilarity(longlong uiContext,longlong dataSource,int targetB
   FloatValue1 = 1e-15;
   baseValue7 = 1e-15;
   if (targetBuffer == 0) {
-    baseValue7 = (float)FUN_1807070a0(uiContext,uiContext,bufferSize);
+    baseValue7 = (float)CalculateUIRenderScale(uiContext,uiContext,bufferSize);
     baseValue7 = baseValue7 + 1e-15;
-    FloatValue1 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
+    FloatValue1 = (float)CalculateUIRenderScale(dataSource,dataSource,bufferSize);
     FloatValue1 = FloatValue1 + 1e-15;
   }
   else {
@@ -94163,9 +94163,9 @@ int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bu
   FloatValue1 = 1e-15;
   baseValue7 = 1e-15;
   if (targetBuffer == 0) {
-    baseValue7 = (float)FUN_1807070a0(uiContext,uiContext,bufferSize);
+    baseValue7 = (float)CalculateUIRenderScale(uiContext,uiContext,bufferSize);
     baseValue7 = baseValue7 + 1e-15;
-    FloatValue1 = (float)FUN_1807070a0(dataSource,dataSource,bufferSize);
+    FloatValue1 = (float)CalculateUIRenderScale(dataSource,dataSource,bufferSize);
     FloatValue1 = FloatValue1 + 1e-15;
   }
   else {
@@ -100364,7 +100364,7 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
   if (targetBuffer < dataSource) {
     localInt5 = dataSource;
   }
-  maxProcessingCount = FUN_18070f540(bufferSize,*(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)tempInt4 * 8) +
+  maxProcessingCount = SetUIElementState(bufferSize,*(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)tempInt4 * 8) +
                                         (longlong)localInt5 * 4) +
                                 *(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)processingResult1 * 8) +
                                         (longlong)processingResult4 * 4));
