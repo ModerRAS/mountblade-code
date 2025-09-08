@@ -20040,7 +20040,7 @@ DataBuffer ValidateSystemB0(int64_t exceptionHandlerContext,int64_t systemContex
   ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10), &floatValidationParameter);
   if ((int)ValidationResult == 0) {
     // 设置系统参数并执行清理操作
-    *(DataWord *)(CONCAT44(StackParameterC, floatValidationParameter) + 0x18) = *(DataWord *)(exceptionHandlerContext + 0x18);
+    *(DataWord *)(MergeHighLowWords(StackParameterC, floatValidationParameter) + DataStructureOffset18) = *(DataWord *)(exceptionHandlerContext + DataStructureOffset18);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98), exceptionHandlerContext);
   }
   return ValidationResult;
