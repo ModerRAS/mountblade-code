@@ -188122,7 +188122,7 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *CharacterCode, 
     }
   }
   CharacterCodeTablePointer = StackProcessingVariableBuffer;
-  FUN_18015b590(pSystemCharacterStatusBuffer,&pSystemStackRegisterFlagB0);
+  ProcessUtf16CharacterEncodingAndMemoryManagement(pSystemCharacterStatusBuffer, &pSystemStackRegisterFlagB0);
   StringComparisonResult = _Mtx_unlock(CharacterCode + 0xc);
   if (StringComparisonResult != 0) {
     __Throw_C_error_std__YAXH_Z(StringComparisonResult);
@@ -191436,7 +191436,22 @@ void ProcessUtf16CharacterEncodingAndMemoryManagement(long long *CharacterCode, 
 
 
 
-uint64_t * FUN_18015b6b0(long long CharacterCode,uint64_t *CharacterCodeSize,int *Utf8SourcePointer
+/**
+ * @brief 处理UTF-8编码验证和内存分配
+ * 
+ * 该函数负责处理UTF-8编码的验证操作，包括：
+ * - 编码验证结果的内存分配
+ * - 字符串比较结果的计算
+ * - 代码点的计算和验证
+ * - 系统寄存器标志的管理
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return uint64_t* 返回处理后的系统缓冲区指针
+ * @note 原始函数名：FUN_18015b6b0
+ */
+uint64_t * ProcessUtf8EncodingValidationAndMemoryAllocation(long long CharacterCode, uint64_t *CharacterCodeSize, int *Utf8SourcePointer)
 {
   int LockResult;
   int *StringComparisonResultPointer;
