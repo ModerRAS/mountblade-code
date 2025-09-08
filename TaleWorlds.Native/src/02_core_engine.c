@@ -189284,7 +189284,7 @@ LAB_180157862:
   ProcessingContextPointerBuffer = (void **)CONCAT44(ProcessingContextPointerBuffer.HighPart,(int)SystemContextRegister[10]);
   plStack_68 = SystemContextRegister;
   (**(code **)(*SystemContextRegister + 0x28))();
-  FUN_18015b6b0(BufferAllocationStatus + 6,&SystemCharacterStatusBufferPointer,&ProcessingContextPointerBuffer);
+  ProcessSystemBufferStatusManagement(BufferAllocationStatus + 6,&SystemCharacterStatusBufferPointer,&ProcessingContextPointerBuffer);
   if (SystemPointerArray != (long long *)0x0) {
     (**(code **)(*SystemPointerArray + 0x38))();
   }
@@ -189435,7 +189435,7 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
   }
   RemainingSpace = *(int *)(BufferAllocationStatus[0x3f] + 0x50);
   if (RemainingSpace <= Utf8SourcePointer) {
-    FUN_1801582f0(BufferAllocationStatus,&ppSystemOperation90,
+    ExecuteSystemOperationProcessing(BufferAllocationStatus,&ppSystemOperation90,
                   (long long)(Utf8SourcePointer - RemainingSpace) * 0x60 + *(long long *)(BufferAllocationStatus[0x3f] + 0x30));
     *CharacterCodeSize = (long long)ppSystemOperation90;
     ppSystemOperation90 = (void **)0x0;
@@ -189454,7 +189454,7 @@ AllocateSystemMemoryBuffer(long long *CharacterCode,long long *CharacterCodeSize
   aBufferOffset[0] = (uint32_t)SystemContextRegister[10];
   pSystemTemporaryValue50 = SystemContextRegister;
   (**(code **)(*SystemContextRegister + 0x28))();
-  FUN_18015b6b0(BufferAllocationStatus + 6,&pSystemStackRegisterFlagB0,aBufferOffset);
+  ProcessSystemBufferStatusManagement(BufferAllocationStatus + 6,&pSystemStackRegisterFlagB0,aBufferOffset);
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     (**(code **)(*pSystemTemporaryValue50 + 0x38))();
   }
@@ -189605,7 +189605,7 @@ ResizeMemoryPool(long long *CharacterCode,long long *CharacterCodeSize,uint64_t 
     aStackProcessingUnsignedValue78[0] = (uint32_t)SystemContextRegister[10];
     pCoreEngineSignedValue70 = SystemContextRegister;
     (**(code **)(*SystemContextRegister + 0x28))();
-    FUN_18015b6b0(BufferAllocationStatus + 6,aBufferOffset,aStackProcessingUnsignedValue78);
+    ProcessSystemBufferStatusManagement(BufferAllocationStatus + 6,aBufferOffset,aStackProcessingUnsignedValue78);
     if (pCoreEngineSignedValue70 != (long long *)0x0) {
       (**(code **)(*pCoreEngineSignedValue70 + 0x38))();
     }
@@ -189707,7 +189707,7 @@ ReleaseMemoryPool(long long *CharacterCode,long long *CharacterCodeSize,uint64_t
     aStackProcessingUnsignedValue78[0] = (uint32_t)SystemContextRegister[10];
     pCoreEngineSignedValue70 = SystemContextRegister;
     (**(code **)(*SystemContextRegister + 0x28))();
-    FUN_18015b6b0(CharacterCode + 6,aBufferOffset,aStackProcessingUnsignedValue78);
+    ProcessSystemBufferStatusManagement(CharacterCode + 6,aBufferOffset,aStackProcessingUnsignedValue78);
     if (pCoreEngineSignedValue70 != (long long *)0x0) {
       (**(code **)(*pCoreEngineSignedValue70 + 0x38))();
     }

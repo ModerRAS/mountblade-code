@@ -166,6 +166,10 @@
 // 符号选项常量
 #define SymbolTableOptionsDefault           0x2017 // 符号表默认选项
 
+// 系统队列相关常量
+#define SystemQueueItemSize                  0x18    // 系统队列项目大小
+#define SystemQueueVirtualTableOffset        0x38    // 系统队列虚函数表偏移量
+
 // 系统资源管理器偏移量
 #define SystemResourceManagerPrimaryDataOffset   0x16  // 系统资源管理器主数据偏移量
 #define SystemResourceManagerSecondaryDataOffset  0x17  // 系统资源管理器次数据偏移量
@@ -561,11 +565,11 @@
 #define DeviceStatusActiveFlag                0xffffffff
 
 // 显示上下文地址常量
-#define DisplayRendererContextAddress        0x180be14a8
-#define DisplayShaderContextAddress          0x180be14c0
-#define DisplayTextureContextAddress         0x180be15c0
-#define DisplayBufferContextAddress         0x180be14e0
-#define DisplayPipelineContextAddress        0x180be1550
+#define DisplayRendererSystemContext          0x180be14a8
+#define DisplayShaderSystemContext            0x180be14c0
+#define DisplayTextureSystemContext           0x180be15c0
+#define DisplayBufferSystemContext           0x180be14e0
+#define DisplayPipelineSystemContext          0x180be1550
 
 // 音频系统地址常量
 #define AudioMixerSystemContext               0x180be1c00
@@ -603,24 +607,24 @@
 #define SystemEventBroadcastOffset            0x20
 #define SystemStatusFlagOffset          0x1ed
 #define SystemSecondaryAllocationSize         0x28
-#define SystemInputControllerAddress           0x180c91060
+#define SystemInputControllerSystemContext       0x180c91060
 
 // 游戏系统地址常量
-#define GameStateContextAddress                0x180bebac8
-#define GameEntityContextAddress               0x180bebad8
-#define UIManagerContextAddress                0x180bebaf0
-#define UIWidgetContextAddress                 0x180bebbb0
-#define UIEventContextAddress                  0x180bebb50
-#define UIRenderContextAddress                 0x180bebc10
+#define GameStateSystemContext                   0x180bebac8
+#define GameEntitySystemContext                  0x180bebad8
+#define UIManagerSystemContext                   0x180bebaf0
+#define UIWidgetSystemContext                    0x180bebbb0
+#define UIEventSystemContext                     0x180bebb50
+#define UIRenderSystemContext                    0x180bebc10
 
 // 系统数据库地址常量
-#define DatabaseConnectionContextAddress       0x180c4f510
+#define DatabaseConnectionSystemContext          0x180c4f510
 
 // 系统同步对象地址常量
-#define SystemCriticalSectionAddress           0x180c82170
+#define SystemCriticalSectionContext             0x180c82170
 
 // 虚函数表地址常量
-#define VirtualFunctionTableAddress            0x180c35590
+#define VirtualFunctionTableSystemContext        0x180c35590
 
 // 系统配置标识符常量
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
@@ -25962,7 +25966,7 @@ void CleanupSystemQueue(long long *QueueHeader)
   long long CurrentItem;
   
   QueueEnd = QueueHeader[1];
-  for (CurrentItem = *QueueHeader; CurrentItem != QueueEnd; CurrentItem = CurrentItem + 0x18) {
+  for (CurrentItem = *QueueHeader; CurrentItem != QueueEnd; CurrentItem = CurrentItem + SystemQueueItemSize) {
     ProcessSystemQueueItem(CurrentItem);
   }
   if (*QueueHeader == 0) {
@@ -25984,7 +25988,7 @@ void SystemDataStructureProcess(long long* SystemResourceManager)
   PrimaryResourceHandle = (long long *)SystemResourceManager[1];
   for (resourcePoolPointer = (long long *)*SystemResourceManager; resourcePoolPointer != PrimaryResourceHandle; resourcePoolPointer = resourcePoolPointer + 1) {
     if ((long long *)*resourcePoolPointer != (long long *)0x0) {
-      (**(code **)(*(long long *)*resourcePoolPointer + 0x38))();
+      (**(code **)(*(long long *)*resourcePoolPointer + SystemQueueVirtualTableOffset))();
     }
   }
   if (*SystemResourceManager == 0) {
