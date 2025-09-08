@@ -236,6 +236,24 @@
 #define VectorComponentYFloatOffset 0x3c
 #define VectorComponentAdditionalOffset38 0x38
 
+// 数据缓冲区偏移常量
+#define DataBufferResultOffset 0x20
+#define DataBufferReferenceOffset18 0x18
+#define DataBufferComponentOffset28 0x28
+#define DataBufferComponentOffset2c 0x2c
+
+// 数据缓冲区目标偏移常量
+#define DataBufferTargetOffset38 0x38
+#define DataBufferTargetOffset40 0x40
+#define DataBufferTargetOffset48 0x48
+#define DataBufferTargetOffset4c 0x4c
+#define DataBufferTargetOffset50 0x50
+#define DataBufferTargetOffset54 0x54
+#define DataBufferTargetOffset58 0x58
+#define DataBufferTargetOffset5c 0x5c
+#define DataBufferTargetOffset60 0x60
+#define DataBufferTargetOffset64 0x64
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -17232,24 +17250,24 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     if (systemContextBuffer[0] != 0) {
       dataBufferPtr = systemContextBuffer[0] + -8;
     }
-    result = *(DataBuffer *)(dataPtr + 0x20);
-    *(DataBuffer *)(dataBufferPtr + 0x38) = *(DataBuffer *)(dataPtr + 0x18);
-    *(DataBuffer *)(dataBufferPtr + 0x40) = result;
-    VectorComponentX = *(DataWord *)(dataPtr + 0x2c);
-    VectorComponentY = *(DataWord *)(dataPtr + 0x30);
-    VectorComponentZ = *(DataWord *)(dataPtr + 0x34);
-    *(DataWord *)(dataBufferPtr + 0x48) = *(DataWord *)(dataPtr + 0x28);
-    *(DataWord *)(dataBufferPtr + 0x4c) = VectorComponentX;
-    *(DataWord *)(dataBufferPtr + 0x50) = VectorComponentY;
-    *(DataWord *)(dataBufferPtr + 0x54) = VectorComponentZ;
-    VectorComponentX = *(DataWord *)(dataPtr + 0x3c);
-    VectorComponentY = *(DataWord *)(dataPtr + 0x40);
-    VectorComponentZ = *(DataWord *)(dataPtr + 0x44);
-    *(DataWord *)(dataBufferPtr + 0x58) = *(DataWord *)(dataPtr + 0x38);
-    *(DataWord *)(dataBufferPtr + 0x5c) = VectorComponentX;
-    *(DataWord *)(dataBufferPtr + 0x60) = VectorComponentY;
-    *(DataWord *)(dataBufferPtr + 100) = VectorComponentZ;
-    dataBufferPtr = *(int64_t *)(contextPtr + 0x98);
+    result = *(DataBuffer *)(dataPtr + DataBufferResultOffset);
+    *(DataBuffer *)(dataBufferPtr + DataBufferTargetOffset38) = *(DataBuffer *)(dataPtr + DataBufferReferenceOffset18);
+    *(DataBuffer *)(dataBufferPtr + DataBufferTargetOffset40) = result;
+    VectorComponentX = *(DataWord *)(dataPtr + DataBufferComponentOffset2c);
+    VectorComponentY = *(DataWord *)(dataPtr + VectorComponentXOffset);
+    VectorComponentZ = *(DataWord *)(dataPtr + VectorComponentYOffset);
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset48) = *(DataWord *)(dataPtr + DataBufferComponentOffset28);
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset4c) = VectorComponentX;
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset50) = VectorComponentY;
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset54) = VectorComponentZ;
+    VectorComponentX = *(DataWord *)(dataPtr + VectorComponentYFloatOffset);
+    VectorComponentY = *(DataWord *)(dataPtr + VectorComponentWOffset);
+    VectorComponentZ = *(DataWord *)(dataPtr + VectorComponentZOffset);
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset58) = *(DataWord *)(dataPtr + VectorComponentAdditionalOffset38);
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset5c) = VectorComponentX;
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset60) = VectorComponentY;
+    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset64) = VectorComponentZ;
+    dataBufferPtr = *(int64_t *)(contextPtr + SystemOperationDataOffset98);
     if ((*(int *)(dataBufferPtr + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataBufferPtr + SystemConfigSecondaryOffset) != 0)) {
       systemContextBuffer[0] = 0;
       InitializeSystemContextA0(systemContextBuffer);
