@@ -108,22 +108,22 @@ typedef enum {
 #define ValidateUISystem ValidateUISystemIntegrity
 
 // UI系统函数宏定义 - 数据变换处理
-#define TransformUIDataB4C FUN_180719b4c
+#define TransformUIDataB4C TransformUIDataStructureB4C
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
-#define UIGlobalDataRegistry30 UNK_180956d30
+#define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
 
 // UI系统查找表变量宏定义
-#define UIPrimaryLookupTable UNK_180954690
-#define UILookupTableIndex UNK_180954728
-#define UISecondaryLookupTable UNK_1809545f0
-#define UITertiaryLookupTable UNK_180954550
-#define UIQuaternaryLookupTable UNK_1809544b0
+#define UIPrimaryLookupTable UISystemPrimaryLookupTable
+#define UILookupTableIndex UISystemLookupTableIndex
+#define UISecondaryLookupTable UISystemSecondaryLookupTable
+#define UITertiaryLookupTable UISystemTertiaryLookupTable
+#define UIQuaternaryLookupTable UISystemQuaternaryLookupTable
 
 // UI系统函数宏定义 - 计算UI事件距离
-#define CalculateUIEventDistance FUN_180727dd3
+#define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
 
 // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent FUN_1808b5de0
