@@ -162,6 +162,19 @@
 #define StackFloatValue118 fStack0000000000000118            // 栈浮点值118
 #define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
 #define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
+
+// 系统栈变量语义化映射
+#define SystemStackUnsigned110 uStack_110                  // 系统栈无符号110
+#define SystemStackArray158 auStack_158                     // 系统栈数组158
+#define SystemStackUnsigned158 uStack_158                   // 系统栈无符号158
+#define SystemStackByte25c uStack_25c                       // 系统栈字节25c
+#define SystemStackArray418 auStack_418                     // 系统栈数组418
+#define SystemStackPointer418 puStack_418                   // 系统栈指针418
+#define SystemStackArray4d8 apuStack_4d8                    // 系统栈数组4d8
+#define SystemStackUnsigned4d8 uStack_4d8                   // 系统栈无符号4d8
+#define SystemStackUnsigned5a8 uStack_5a8                  // 系统栈无符号5a8
+#define SystemStackPointer5b8 puStack_5b8                  // 系统栈指针5b8
+#define SystemStackArray5d8 auStack_5d8                     // 系统栈数组5d8
 #define StackValidationFlag8 &stack0x00000108                 // 栈验证标志8
 #define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
 #define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
@@ -844,6 +857,8 @@
 #define ProcessVectorRegisterOperation FUN_180225ee0             // 处理向量寄存器操作
 #define ProcessMemoryAllocationIndex FUN_180225e50               // 处理内存分配索引
 #define GetSystemStatusRegister FUN_180225cc6                    // 获取系统状态寄存器
+#define ProcessSystemStackDataAndCleanup FUN_1802c2c40          // 处理系统栈数据和清理
+#define ProcessSystemMemoryValidation FUN_1802c4c30             // 处理系统内存验证
 #define GetSystemControlRegister FUN_180225cf2                  // 获取系统控制寄存器
 #define GetSystemInterruptRegister FUN_180225d1e                // 获取系统中断寄存器
 #define GetSystemErrorRegister FUN_180225d4a                    // 获取系统错误寄存器
@@ -198376,8 +198391,8 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t CharacterCode, uin
     else {
       SystemUnsignedValue180 = false;
     }
-    FUN_1802c2c40(auStack_118);
-    FUN_1802c4c30(auStack_118);
+    ProcessSystemStackDataAndCleanup(auStack_118);
+    ProcessSystemMemoryValidation(auStack_118);
     DataContentPointer = &SystemCurrentCharacter;
     SystemPointerValue170 = aSystemUnsignedValue160;
     aSystemUnsignedValue160[0] = 0;
