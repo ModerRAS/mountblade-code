@@ -100007,7 +100007,23 @@ void Unwind_18090d4e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d4f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理函数D4F0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d4f0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
