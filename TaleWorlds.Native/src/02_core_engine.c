@@ -210152,7 +210152,7 @@ void ProcessCharacterEncodingAndBufferSize(long long CharacterCode, long long Sy
             StringProcessingStatus = CharacterCodeTablePointer;
           }
           ProcessedCharacter = strcpy_s(EncodingWorkspace, 0x80, StringProcessingStatus);
-          MemoryBoundaryEndPointer = (long long *)FUN_1800b2450(ProcessedCharacter, &PreviousHandlerContext, &ErrorHandler, &ProcessingStatus);
+          MemoryBoundaryEndPointer = (long long *)ProcessSystemMemoryWithValidation(ProcessedCharacter, &PreviousHandlerContext, &ErrorHandler, &ProcessingStatus);
           EncodingBufferStatus = *MemoryBoundaryEndPointer;
           *MemoryBoundaryEndPointer = 0;
           long long *MemoryCleanupHandler = (long long *)*MemoryPoolBlockSizePointer;
@@ -210436,7 +210436,7 @@ InitializeCharacterCode(uint64_t *CharacterCode,unsigned long long SystemBufferS
 
 
 
-uint64_t * FUN_180175f20(uint64_t *CharacterCode,uint SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+uint64_t * ProcessCharacterDataWithUtf8Conversion(uint64_t *CharacterCode,uint SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   ProcessCharacterEncodingFinalization(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *CharacterCode = &SystemContextBufferSecondary;
@@ -210524,6 +210524,7 @@ void ProcessSystemMutexLock(long long CharacterCode)
  * 
  * @note 原始函数名：FUN_1801760d0
  */
+#define ProcessCharacterCodeAndEncoding FUN_1801760d0
 void ProcessCharacterCodeAndEncoding(long long CharacterCode,long long *CharacterCodeSize,uint32_t Utf8SourcePointer,int Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
@@ -210630,6 +210631,7 @@ void ProcessCharacterCodeAndEncoding(long long CharacterCode,long long *Characte
  * 
  * @note 原始函数名：FUN_1801762b0
  */
+#define ProcessCharacterCodeAndMemoryAllocation FUN_1801762b0
 void ProcessCharacterCodeAndMemoryAllocation(long long CharacterCode,void **CharacterCodeSize,long long Utf8SourcePointer,void **Utf16EndPointer
 {
   void **pCharacterStatusBuffer;
@@ -210778,7 +210780,7 @@ void ProcessCharacterCodeAndMemoryAllocation(long long CharacterCode,void **Char
   }
   EncodingValidationResult = (**(code **)(*plStack_6b8 + 0x130))(plStack_6b8,lStack_6d8);
   if (EncodingValidationResult != 0) {
-    FUN_180626ee0(&SystemEventBufferPrimary);
+    ProcessSystemMemoryCleanupEx(&SystemEventBufferPrimary);
   }
   apEnginePointerBuffer0[0] = &puStack_6a8;
   puStack_6a8 = &SystemNullTemplate;
@@ -210957,7 +210959,7 @@ LAB_1801769b0:
   StackProcessingVariable70 = 0xfffffffffffffffe;
   BufferOffset = EncodingDecodingKey ^ (unsigned long long)aSystemFlagH;
   StackProcessingValue = CharacterCode;
-  FUN_180176060();
+  InitializeCoreEngineEventSystem();
   pStackLongValue = (long long *)0x0;
   pSystemTemporaryValue90 = (long long *)0x0;
   CharacterCodeTablePointer = (long long *)0x0;
@@ -211111,7 +211113,7 @@ LAB_180176cb5:
         DataSize = FUN_1801760d0(CharacterCode,MemoryBlockListHead,UnicodeCodePoint,*(uint32_t *)ConfigurationString);
         StringComparisonResult = (**(code **)(*MemoryBlockListHead + 0x128))(MemoryBlockListHead,UnicodeCodePoint,DataSize);
         if (StringComparisonResult != 0) {
-          FUN_180626ee0(&SystemEventBufferSecondary);
+          ProcessSystemMemoryCleanupEx(&SystemEventBufferSecondary);
         }
         UnicodeCodePoint = UnicodeCodePoint + 1;
         ConfigurationString = (void *)((long long)ConfigurationString + 4);
@@ -211577,7 +211579,7 @@ LAB_180176cb5:
             SystemCharacterStatusPointer = SystemMemoryBuffer;
           }
           ProcessTemporaryBuffer(&ProcessInfoPointer,SystemCharacterStatusPointer);
-          FUN_1801762b0(EncodingConversionResult,&ProcessInfoPointer,&LocalProcessingStatusFlag8,&SystemStackFlag);
+          ProcessCharacterCodeAndMemoryAllocation(EncodingConversionResult,&ProcessInfoPointer,&LocalProcessingStatusFlag8,&SystemStackFlag);
           ProcessInfoPointer = &SystemNullTemplate;
           if (lStack_2e0 != 0) {
                     // WARNING: Subroutine does not return
