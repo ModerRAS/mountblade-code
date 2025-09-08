@@ -19275,7 +19275,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
   uint dataState;
   int processResult;
   int64_t allocatedBuffer;
-  int64_t localStackBuffer;
+  int64_t DataStateBuffer;
   
   dataState = *(uint *)(dataContext + 0x1c);
   if ((((dataState != 1) || ((*(byte *)(dataContext + ExceptionHandlerCallbackOffset10) & 0x1f) == 0)) && (0 < *(int *)(dataContext + 0x18))
@@ -19350,7 +19350,7 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
 
 // 原始函数名：QueryAndRetrieveSystemDataA0 - 系统数据查询和获取函数A0
 // 功能：查询系统数据并获取相关信息
-#define QueryAndRetrieveSystemDataA0 QueryAndRetrieveSystemDataA0
+#define QueryAndRetrieveSystemDataA0 RetrieveSystemConfigurationData
 
 // 原始函数名：FUN_180893a63 - 返回错误码函数
 // 功能：返回固定错误码0x1f

@@ -81283,32 +81283,43 @@ void UIEmptyOperation(void)
 
 
 
- void FUN_180712b50(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize)
-void FUN_180712b50(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize)
+ /**
+ * @brief UI数据处理函数
+ * 
+ * 该函数用于处理UI系统中的数据，通过循环处理数据缓冲区中的元素。
+ * 它根据缓冲区大小和目标缓冲区参数计算数据偏移量，并将处理结果存储到数据源中。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针，用于存储处理结果
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return void 无返回值
+ */
+void ProcessUIData(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize)
 
 {
-  int uiOperationResult;
-  ulonglong semaphoreHandle;
-  int uiCompareResult;
-  uint ProcessingStatus;
-  ulonglong LoopCounter;
+  int dataElementCount;
+  ulonglong dataIndex;
+  int currentElementIndex;
+  uint processingStatus;
+  ulonglong loopCounter;
   
-  semaphoreHandle = 0;
-  uiOperationResult = *(int *)(uiBufferData + 8);
-  if (0 < uiOperationResult) {
-    LoopCounter = semaphoreHandle;
+  dataIndex = 0;
+  dataElementCount = *(int *)(uiBufferData + 8);
+  if (0 < dataElementCount) {
+    loopCounter = dataIndex;
     do {
-      semaphoreHandle = semaphoreHandle + 2;
-      uiCompareResult = (int)LoopCounter;
-      ProcessingStatus = uiCompareResult + 1;
-      LoopCounter = (ulonglong)ProcessingStatus;
-      *dataSource = (int)((*(byte *)((longlong)((bufferSize + targetBuffer * 2 + -1) * uiOperationResult + uiCompareResult) +
-                                 *(longlong *)(uiBufferData + 0x98)) + 0x40)                        ((int)*(short *)(*(longlong *)(uiBufferData + 0x20) + semaphoreHandle) -
-                        (int)*(short *)(*(longlong *)(uiBufferData + 0x20) + -2 + semaphoreHandle) <<
+      dataIndex = dataIndex + 2;
+      currentElementIndex = (int)loopCounter;
+      processingStatus = currentElementIndex + 1;
+      loopCounter = (ulonglong)processingStatus;
+      *dataSource = (int)((*(byte *)((longlong)((bufferSize + targetBuffer * 2 + -1) * dataElementCount + currentElementIndex) +
+                                 *(longlong *)(uiBufferData + 0x98)) + 0x40)                        ((int)*(short *)(*(longlong *)(uiBufferData + 0x20) + dataIndex) -
+                        (int)*(short *)(*(longlong *)(uiBufferData + 0x20) + -2 + dataIndex) <<
                        ((byte)targetBuffer & 0x1f)) * bufferSize) >> 2;
-      uiOperationResult = *(int *)(uiBufferData + 8);
+      dataElementCount = *(int *)(uiBufferData + 8);
       dataSource = dataSource + 1;
-    } while ((int)ProcessingStatus < uiOperationResult);
+    } while ((int)processingStatus < dataElementCount);
   }
   return;
 }
