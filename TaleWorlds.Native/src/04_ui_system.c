@@ -19712,7 +19712,7 @@ void ProcessUIEventQueue(void)
  *  resultPointer 附加参数
  *  param_6 输出缓冲区
  void SetUIComponentTransform(longlong uiContext,float *dataSource,UIDword targetBuffer,UIDword bufferSize,
-                            UIDword resultPointer,float *param_6)
+                            UIDword resultPointer,float *transformMatrix)
 
 {
   float baseValue;
@@ -19730,17 +19730,17 @@ void ProcessUIEventQueue(void)
   float fStackX_10;
   UIDword uStackX_14;
   
-  ptransformCoeff3 = param_6;
+  ptransformCoeff3 = transformMatrix;
   ptransformCoeff3[0] = 0.0;
   ptransformCoeff3[1] = 0.0;
   ptransformCoeff3[2] = 0.0;
   ptransformCoeff3[3] = 0.0;
-  param_6[4] = 0.0;
+  transformMatrix[4] = 0.0;
   ptransformCoeff3[6] = 0.0;
   ptransformCoeff3[7] = 0.0;
   ptransformCoeff3[8] = 0.0;
   ptransformCoeff3[9] = 0.0;
-  param_6[10] = 0.0;
+  transformMatrix[10] = 0.0;
   localFloat9 = *dataSource;
   baseValue0 = dataSource[9];
   if (0.0 < baseValue0) {
@@ -20700,7 +20700,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     stackUInt120._4_4_ =
          FloatValue1 * transformCoeff34 * -1.0 + transformCoeff43 * transformScale42 * -1.0 + transformCoeff30 * transformCoeff29 + baseValue7 * transformCoeff38;
     transformCoeff43 = *param_6;
-    baseValue7 = param_6[1];
+    baseValue7 = transformMatrix[1];
     FloatValue1 = param_6[2];
     transformCoeff30 = param_6[3];
     localFloat68 = resultPointer * 0.33;

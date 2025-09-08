@@ -63608,7 +63608,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *ContextHandle,uint64_t *Co
     }
     ValidationStatus = ValidateSystemHandlesAndStatus(SystemHandleArray,SystemCharacterStatusBuffer,5,0x105);
     MemoryOffset = SystemHandleArray[0];
-    if (ValidationStatus != '\0') goto LAB_1800878e0;
+    if (ValidationStatus != '\0') goto CharacterProcessingComplete;
     SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
     if (CoreEngineDataBuffer != (uint8_t *)0x0) {
       SystemCharacterStatusBuffer = CoreEngineDataBuffer;
@@ -63680,7 +63680,7 @@ SystemConfigHandlerLAB18008807f:
       Utf8SourcePointer[1] = 0;
       *(uint32_t *)(Utf8SourcePointer + 3) = 0;
       *Utf8SourcePointer = &ThreadLocalStorageTemplate;
-      goto LAB_180088131;
+      goto SystemProcessingComplete;
     }
     if (StackValue98 == 0x43415054) {
       if (StackValue94 < 3) {

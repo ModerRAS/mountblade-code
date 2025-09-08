@@ -17922,7 +17922,7 @@ uint8_t DataConfigurationTableA8;
 
 // 原始函数名：FUN_180898040 - 浮点数据处理函数A0
 // 功能：处理浮点数据和信息
-#define ProcessFloatingPointDataA0 FUN_180898040
+#define ProcessFloatingPointDataWithValidation FUN_180898040
 
 // 原始函数名：FUN_180896c60 - 资源验证函数A0
 // 功能：验证资源和参数
@@ -23568,8 +23568,8 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
         if (allocatedMemoryBlock <= validationParameter) {
           operationStatus = validationParameter;
         }
-        if (operationStatus < 4) {
-          validationParameter = 4;
+        if (operationStatus < MinimumAllocationSize) {
+          validationParameter = MinimumAllocationSize;
         }
         else if (validationParameter < allocatedMemoryBlock) {
           validationParameter = allocatedMemoryBlock;
@@ -25039,33 +25039,33 @@ ExecuteSystemSecurityCheck:
  * 
  * @return 无 - 处理结果通过系统状态返回
  */
-void ProcessFloatingPointDataA0(void)
+void ProcessFloatingPointDataWithValidation(void)
 
 {
-  int64_t ValidationContext;
-  int64_t DataContext;
-  DataWord ValidationStatus;
-  DataWord MemoryBaseAddress;
-  DataWord OperationResult;
-  DataWord DataFlags;
-  int CalculatedValue;
-  int CalculatedSize;
-  int ValidationErrorCode;
-  DataWord SystemRegisterEBX;
-  int64_t SystemStackFramePointer;
-  int SystemRegisterValueR12;
-  int64_t DataContextPointer;
-  char SystemRegisterValueR15B;
-  float CalculatedFloatResultA;
-  float ProcessedFloatResultArray[6];
-  float ProcessedFloatResultSpecial;
-  float CalculatedFloatValue;
-  DataWord SystemOperationResult;     // 系统操作结果
-  float NormalizedParameterValue;    // 标准化参数值
-  uint8_t *ValidationDataBuffer;    // 验证数据缓冲区
-  int SystemContextParameter;      // 系统上下文参数
-  DataWord DataProcessingOffset;    // 数据处理偏移量
-  float ProcessedFloatValue;        // 处理后的浮点值
+  int64_t validationContext;
+  int64_t dataContext;
+  DataWord validationStatus;
+  DataWord memoryBaseAddress;
+  DataWord operationResult;
+  DataWord dataFlags;
+  int calculatedValue;
+  int calculatedSize;
+  int validationErrorCode;
+  DataWord systemRegisterEBX;
+  int64_t systemStackFramePointer;
+  int systemRegisterValueR12;
+  int64_t dataContextPointer;
+  char systemRegisterValueR15B;
+  float calculatedFloatResultA;
+  float processedFloatResultArray[6];
+  float processedFloatResultSpecial;
+  float calculatedFloatValue;
+  DataWord systemOperationResult;     // 系统操作结果
+  float normalizedParameterValue;    // 标准化参数值
+  uint8_t *validationDataBuffer;    // 验证数据缓冲区
+  int systemContextParameter;      // 系统上下文参数
+  DataWord dataProcessingOffset;    // 数据处理偏移量
+  float processedFloatValue;        // 处理后的浮点值
   
   if (((systemContextValidationFlag != '\0') || (*(int *)(*(int64_t *)(systemDataPointer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == processingLoopCounter)) &&
      (systemResourceAllocationResult = ConfigureSystemParametersA0(), systemResourceAllocationResult == 0)) {
