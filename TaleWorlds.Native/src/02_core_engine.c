@@ -86008,7 +86008,7 @@ long long ProcessDataStreamReadOperation(long long CharacterCode,uint64_t System
   if (*(long long *)(CharacterCode + 0x68) != 0) {
                     // WARNING: Could not recover jumptable at 0x00018009f460. Too many branches
                     // WARNING: Treating indirect jump as call
-    BufferStatus = _xsgetn___basic_streambuf_DU__char_traits_D_std___std__MEAA_JPEAD_J_Z();
+    BufferStatus = GetStreambufCharacters();
     return BufferStatus;
   }
   if (**(long long **)(CharacterCode + 0x38) == 0) {
