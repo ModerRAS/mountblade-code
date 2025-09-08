@@ -91371,18 +91371,18 @@ void DestroyBasicIostreamObject(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：重置内存区域基础地址
+ * @brief 重置内存区域基础地址
  * 
  * 在系统栈展开过程中重置内存区域基础地址，并处理相关的数据缓冲区初始化
  * 和流缓冲区的销毁操作。此函数负责清理内存区域的引用和资源。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的内存区域信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存区域信息
  * 
- * @note 此函数是系统异常处理的一部分，用于重置内存区域基础地址
- * @warning 调用者需要确保参数的有效性，函数会销毁流缓冲区资源
+ * @note 原始函数名：Unwind_180904890
+ * @note 这是一个异常展开（unwind）处理函数，用于重置内存区域基础地址
  */
-void Unwind_ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
+void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
