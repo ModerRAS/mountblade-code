@@ -166,8 +166,11 @@
 // 系统状态偏移量常量
 #define SystemStateFlagsOffset 0x54                         // 系统状态标志偏移量
 #define SystemStateResourceCleanupOffset 0xe8              // 系统状态资源清理偏移量
+#define SystemStateEventCleanupOffset 0x98                 // 系统状态事件清理偏移量
 #define SystemStateFirstBitFlag 1                           // 系统状态第一位标志
 #define SystemStateFirstBitMask 0xfffffffe                  // 系统状态第一位掩码
+#define SystemStateSecondBitFlag 2                          // 系统状态第二位标志
+#define SystemStateSecondBitMask 0xfffffffd                 // 系统状态第二位掩码
 
 // 系统栈和资源管理常量
 #define SystemStackFrameAdjustment 8                      // 系统栈帧调整
