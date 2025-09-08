@@ -280417,11 +280417,11 @@ long long FUN_18022ac3f(void
  */
 float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,float *CharacterCodeSize,int Utf8SourcePointer,long long Utf16EndPointer)
 {
-  float *SystemContextPrimaryFloatPtr;
-  void *SystemContext;
+  float *CharacterContextFloatPtr;     // 字符上下文浮点数指针
+  void *PrimaryStatusFlagPtr;          // 主要状态标志指针
   unsigned long long UnicodeCodePoint;
-  float MatrixTransformMultiplierA;
-  float MatrixTransformMultiplierB;
+  float MatrixTransformMultiplier1;     // 矩阵变换乘数1
+  float MatrixTransformMultiplier;      // 矩阵变换乘数
   float CalculatedDistance;
   float FloatOffsetValue;
   uint64_t ProcessingStatusFlag;
@@ -280429,7 +280429,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
   char CurrentCharacter0;
   int MatchCounter;
   char CurrentCharacter;
-  long long DataSize13;
+  long long CharacterTableIndexValue;  // 字符表索引值
   float SystemContextFloat4;
   float SystemFloatValue;
   float SystemContextFloat6;
@@ -288133,4 +288133,49 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180172e23
  */
 #define ProcessCharacterEncodingValidationAndMemoryAllocation FUN_180172e23
+
+// 栈处理变量语义化宏定义
+#define StackProcessingVariable1B8 StackProcessingBuffer1B8  // 栈处理变量1B8
+#define LongStackProcessingVariable278 LongStackValue278     // 长整型栈处理变量278
+#define LongStackProcessingVariable328 LongStackValue328     // 长整型栈处理变量328
+#define IntegerStackProcessingVariable320 IntegerStackValue320 // 整型栈处理变量320
+#define SystemStackProcessingVariable70 SystemStackValue70   // 系统栈处理变量70
+#define StackProcessingVariable48 StackValue48               // 栈处理变量48
+#define StackProcessingVariable38 StackValue38               // 栈处理变量38
+#define StackProcessingVariable70 StackValue70               // 栈处理变量70
+
+// 辅助浮点变量语义化宏定义
+#define AuxiliaryFloat9 SecondaryFloatParameter9             // 辅助浮点参数9
+#define AuxiliaryFloat10 SecondaryFloatParameter10            // 辅助浮点参数10
+#define AuxiliaryFloat11 SecondaryFloatParameter11            // 辅助浮点参数11
+#define AuxiliaryFloat12 SecondaryFloatParameter12            // 辅助浮点参数12
+#define AuxiliaryFloat13 SecondaryFloatParameter13            // 辅助浮点参数13
+#define AuxiliaryFloatValue11 SecondaryFloatValue11          // 辅助浮点值11
+
+// 系统上下文浮点变量语义化宏定义
+#define SystemContextPrimaryFloat2 ContextPrimaryFloat2      // 系统上下文主浮点2
+#define SystemContextPrimaryFloat3 ContextPrimaryFloat3      // 系统上下文主浮点3
+#define SystemContextPrimaryFloat4 ContextPrimaryFloat4      // 系统上下文主浮点4
+#define SystemContextPrimaryFloat6 ContextPrimaryFloat6      // 系统上下文主浮点6
+#define SystemContextPrimaryFloat8 ContextPrimaryFloat8      // 系统上下文主浮点8
+
+// 其他变量语义化宏定义
+#define SecondaryFloatValue SecondaryParameterValue           // 次要浮点值
+#define SystemFloatValue SystemFloatParameterValue           // 系统浮点值
+#define StackProcessingVariable34 StackValue34               // 栈处理变量34
+#define StackProcessingVariable3c StackValue3c               // 栈处理变量3c
+#define StackProcessingVariable4c StackValue4c               // 栈处理变量4c
+#define StackProcessingVariable44 StackValue44               // 栈处理变量44
+#define StackProcessingVariable40 StackValue40               // 栈处理变量40
+#define StackDataBuffer1 StackBufferData1                    // 栈数据缓冲区1
+#define SystemCurrentCharacter30 CurrentSystemCharacter30    // 系统当前字符30
+#define TertiaryDataStorage TertiaryDataBuffer               // 第三数据存储
+#define NormalizedParameterValue NormalizedParameter          // 归一化参数值
+#define BaseFloatValue BaseFloatingPointValue                // 基础浮点值
+#define FloatingPointRegisterA FloatRegisterA               // 浮点寄存器A
+#define FloatParameter2 ParameterFloat2                      // 浮点参数2
+#define NullPointerD NullPointerD                            // 空指针D
+#define InputDataLength DataInputLength                      // 输入数据长度
+#define AllocatedMemorySize MemoryAllocationSize             // 内存分配大小
+#define SystemDataTablePointer DataTableSystemPointer        // 系统数据表指针
 

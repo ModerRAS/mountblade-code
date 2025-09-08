@@ -715,10 +715,10 @@ typedef enum {
 // UI系统函数宏定义 - 获取UI上下文状态
 #define GetUIContextStatus FUN_18070f57b
 
-// UI系统未知数据指针美化
-#define UIUnknownDataPointer1 UNK_180741cf0
-#define UIUnknownDataPointer2 UNK_180741d00
-#define UIUnknownDataPointer3 UNK_180741ce0
+// UI系统数据指针美化
+#define UIDataBufferPointer UNK_180741cf0
+#define UIResourceTablePointer UNK_180741d00
+#define UIContextDataPointer UNK_180741ce0
 #define UIUnknownSystemData1 UNK_180958080
 #define UIUnknownSystemData2 UNK_18078b870
 #define UIUnknownSystemData3 UNK_180958bf0
