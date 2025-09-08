@@ -7831,6 +7831,16 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
  */
 #define AllocateAndInitializeMemoryPoolBlock FUN_1801580f0
 
+/**
+ * @brief 处理系统字符数据验证和转换
+ * 
+ * 该函数负责处理系统字符数据的验证和转换操作，
+ * 包括字符编码转换和数据验证
+ * 
+ * @note 原始函数名：FUN_1800b8630
+ */
+#define ProcessSystemCharacterDataValidationAndConversion FUN_1800b8630
+
 // 字符编码相关函数 (调用次数: 11次)
 /**
  * @brief 处理字符编码转换
@@ -189776,7 +189786,7 @@ long long * ProcessCharacterEncodingBufferValidation(uint64_t CharacterCode,long
   RandomSeedValue = RandomSeedValue << 0xd ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue >> 0x11 ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue << 5 ^ RandomSeedValue;
-  MatrixTransformMultiplier1 = (float)(RandomSeedValue - 1) * 2.3283064e-10 * FilterInputValue;
+  MatrixTransformValue = (float)(RandomSeedValue - 1) * 2.3283064e-10 * FilterInputValue;
   *CharacterCodeSize = 0;
   BufferStatus = *(long long *)(Utf8SourcePointer + 0x20);
   do {
