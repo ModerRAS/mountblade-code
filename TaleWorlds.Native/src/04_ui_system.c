@@ -100017,103 +100017,103 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
                   UIHandle resultPointer,longlong param_6)
 
 {
-  float baseValue;
-  float transformCoeff1;
-  int uiCompareResult;
-  int TempInt4;
-  UIWord *componentContextPtr;
-  float *plocalFloat6;
-  float *presultFloat;
-  longlong contextOffset;
-  longlong CharacterDataOffset;
-  longlong allocatedMemory0;
-  UIWord *ptrResult1;
-  longlong allocatedMemory2;
-  uint astackUInt6a4 [4];
-  int astackInt694 [4];
-  int astackInt684 [105];
-  UIHandle stackUInt4e0;
-  UIByte astackUInt4d8 [32];
-  UIHandle stackUInt4b8;
-  UIWord *pstackUInt4b0;
-  UIWord *pstackUInt4a8;
-  UIWord *pstackUInt4a0;
-  UIByte *pstackUInt498;
-  UIByte *pstackUInt490;
-  UIByte *pstackUInt488;
-  int *pstackInt480;
-  longlong stackLong478;
-  int stackInt470;
-  int stackInt468;
-  UIHandle stackUInt450;
-  UIHandle stackUInt448;
-  int astackInt440 [4];
-  UIByte astackUInt430 [16];
-  UIByte astackUInt420 [16];
-  UIByte astackUInt410 [16];
-  UIWord astackUInt400 [20];
-  UIWord astackUInt3d8 [32];
-  UIWord astackUInt398 [96];
-  UIWord astackUInt2d8 [320];
-  ulonglong stackUInt58;
+  float scaleFactor;
+  float transformCoeff;
+  int componentCount;
+  int transformDataCount;
+  UIWord *componentContext;
+  float *dataSourcePtr;
+  float *transformDataPtr;
+  longlong contextSize;
+  longlong dataIndex;
+  longlong tempOffset;
+  UIWord *resultBuffer;
+  longlong loopCounter;
+  uint transformArray1 [4];
+  int transformArray2 [4];
+  int transformArray3 [105];
+  UIHandle renderHandle;
+  UIByte encryptionBuffer [32];
+  UIHandle resultHandle;
+  UIWord *contextBuffer;
+  UIWord *transformBuffer1;
+  UIWord *transformBuffer2;
+  UIByte *dataBuffer1;
+  UIByte *dataBuffer2;
+  UIByte *dataBuffer3;
+  int *intBuffer;
+  longlong dataPointer;
+  int scaledValue1;
+  int scaledValue2;
+  UIHandle bufferSizeHandle;
+  UIHandle resultSizeHandle;
+  int intArray [4];
+  UIByte byteBuffer1 [16];
+  UIByte byteBuffer2 [16];
+  UIByte byteBuffer3 [16];
+  UIWord wordArray [20];
+  UIWord contextArray [32];
+  UIWord componentArray [96];
+  UIWord renderArray [320];
+  ulonglong encryptionKey;
   
-  pstackUInt4b0 = astackUInt3d8;
-  stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt4d8;
-  uiCompareResult = *(int *)(uiBufferData + 0x11e0);
-  contextOffset = (longlong)uiCompareResult;
-  stackUInt450 = resultPointer;
-  stackUInt448 = bufferSize;
-  if (0 < uiCompareResult) {
-    TempInt4 = *(int *)(uiBufferData + 0x1218);
-    ptrResult1 = astackUInt398;
-    plocalFloat6 = (float *)(dataSource + 0xf4);
-    allocatedMemory2 = contextOffset;
+  contextBuffer = contextArray;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  componentCount = *(int *)(uiBufferData + 0x11e0);
+  contextSize = (longlong)componentCount;
+  resultHandle = resultPointer;
+  resultSizeHandle = bufferSize;
+  if (0 < componentCount) {
+    transformDataCount = *(int *)(uiBufferData + 0x1218);
+    resultBuffer = componentArray;
+    dataSourcePtr = (float *)(dataSource + 0xf4);
+    loopCounter = contextSize;
     do {
-      componentContextPtr = ptrResult1;
-      presultFloat = plocalFloat6;
-      CharacterDataOffset = (longlong)TempInt4;
-      if (0 < (longlong)TempInt4) {
+      componentContext = resultBuffer;
+      transformDataPtr = dataSourcePtr;
+      dataIndex = (longlong)transformDataCount;
+      if (0 < (longlong)transformDataCount) {
         do {
-          *componentContextPtr = (short)(int)ROUND(*presultFloat * 8192.0);
-          CharacterDataOffset = CharacterDataOffset + -1;
-          componentContextPtr = componentContextPtr + 1;
-          presultFloat = presultFloat + 1;
-        } while (CharacterDataOffset != 0);
+          *componentContext = (short)(int)ROUND(*transformDataPtr * 8192.0);
+          dataIndex = dataIndex + -1;
+          componentContext = componentContext + 1;
+          transformDataPtr = transformDataPtr + 1;
+        } while (dataIndex != 0);
       }
-      ptrResult1 = ptrResult1 + 0x18;
-      plocalFloat6 = plocalFloat6 + 0x18;
-      allocatedMemory2 = allocatedMemory2 + -1;
-    } while (allocatedMemory2 != 0);
-    allocatedMemory2 = contextOffset;
-    plocalFloat6 = (float *)(dataSource + 0x274);
+      resultBuffer = resultBuffer + 0x18;
+      dataSourcePtr = dataSourcePtr + 0x18;
+      loopCounter = loopCounter + -1;
+    } while (loopCounter != 0);
+    loopCounter = contextSize;
+    dataSourcePtr = (float *)(dataSource + 0x274);
     do {
-      baseValue = plocalFloat6[8];
-      *(uint *)((longlong)plocalFloat6 + ((longlong)astackUInt6a4 - dataSource)) =
-           (int)ROUND(plocalFloat6[4] * 16384.0) << 0x10 | (int)ROUND(*plocalFloat6 * 16384.0) & 0xffffU;
-      transformCoeff1 = plocalFloat6[0xc];
-      *(int *)((longlong)plocalFloat6 + ((longlong)astackInt694 - dataSource)) = (int)ROUND(baseValue * 16384.0);
-      *(int *)((longlong)plocalFloat6 + ((longlong)astackInt684 - dataSource)) = (int)ROUND(transformCoeff1 * 16384.0);
-      allocatedMemory2 = allocatedMemory2 + -1;
-      plocalFloat6 = plocalFloat6 + 1;
-    } while (allocatedMemory2 != 0);
+      scaleFactor = dataSourcePtr[8];
+      *(uint *)((longlong)dataSourcePtr + ((longlong)transformArray1 - dataSource)) =
+           (int)ROUND(dataSourcePtr[4] * 16384.0) << 0x10 | (int)ROUND(*dataSourcePtr * 16384.0) & 0xffffU;
+      transformCoeff = dataSourcePtr[0xc];
+      *(int *)((longlong)dataSourcePtr + ((longlong)transformArray2 - dataSource)) = (int)ROUND(scaleFactor * 16384.0);
+      *(int *)((longlong)dataSourcePtr + ((longlong)transformArray3 - dataSource)) = (int)ROUND(transformCoeff * 16384.0);
+      loopCounter = loopCounter + -1;
+      dataSourcePtr = dataSourcePtr + 1;
+    } while (loopCounter != 0);
   }
-  allocatedMemory2 = 0;
-  stackInt470 = (int)ROUND(*(float *)(dataSource + 0x2b4) * 1024.0);
-  stackInt468 = 0;
-  if (0 < uiCompareResult * 5) {
-    plocalFloat6 = (float *)(dataSource + 0x90);
-    CharacterDataOffset = allocatedMemory2;
+  loopCounter = 0;
+  scaledValue1 = (int)ROUND(*(float *)(dataSource + 0x2b4) * 1024.0);
+  scaledValue2 = 0;
+  if (0 < componentCount * 5) {
+    dataSourcePtr = (float *)(dataSource + 0x90);
+    dataIndex = loopCounter;
     do {
-      baseValue = *plocalFloat6;
-      plocalFloat6 = plocalFloat6 + 1;
-      astackUInt400[CharacterDataOffset] = (short)(int)ROUND(baseValue * 16384.0);
-      CharacterDataOffset = CharacterDataOffset + 1;
-    } while (CharacterDataOffset < uiCompareResult * 5);
+      scaleFactor = *dataSourcePtr;
+      dataSourcePtr = dataSourcePtr + 1;
+      wordArray[dataIndex] = (short)(int)ROUND(scaleFactor * 16384.0);
+      dataIndex = dataIndex + 1;
+    } while (dataIndex < componentCount * 5);
   }
-  uiCompareResult = *(int *)(uiBufferData + 0x121c);
-  plocalFloat6 = (float *)(dataSource + 0x10);
-  CharacterDataOffset = 2;
-  ptrResult1 = pstackUInt4b0;
+  componentCount = *(int *)(uiBufferData + 0x121c);
+  dataSourcePtr = (float *)(dataSource + 0x10);
+  dataIndex = 2;
+  resultBuffer = contextBuffer;
   do {
     componentContextPtr = ptrResult1;
     presultFloat = plocalFloat6;
