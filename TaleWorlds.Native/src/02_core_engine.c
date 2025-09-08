@@ -277,6 +277,35 @@
 #define ExecuteSystemFunctionCodeExecution FUN_18013cf40      // 执行系统函数代码执行
 #define ProcessSystemCharacterCodeValidation FUN_18013d010    // 处理系统字符代码验证
 #define ProcessSystemMemoryBlockAllocation FUN_18013d200     // 处理系统内存块分配
+
+// 缺失的FUN_函数语义化宏定义
+#define QueryCharacterCodeData FUN_18024b870                   // 查询字符代码数据
+#define AllocateSystemMemoryAndHandleError FUN_180096b60      // 分配系统内存并处理错误
+#define ProcessStringValidationStatus FUN_1801189e0           // 处理字符串验证状态
+#define ExtractCharacterFromRenderContext FUN_1802c2560       // 从渲染上下文中提取字符
+#define AllocateMemoryBlockFromRegistry FUN_1802c28d0        // 从注册表分配内存块
+#define ConvertCharacterToSystemFormat FUN_1800a1e20          // 转换字符为系统格式
+#define GetCharacterFromMemoryBlock FUN_1802c2400            // 从内存块获取字符
+#define ValidateCharacterPair FUN_1800c6910                    // 验证字符对
+#define ProcessSystemConfiguration FUN_180099430               // 处理系统配置
+#define ExecuteSystemCleanup FUN_180127860                     // 执行系统清理
+#define ReleaseSystemResources FUN_1800a3f00                  // 释放系统资源
+#define ExecuteSystemInitialization FUN_1801c6120              // 执行系统初始化
+#define ValidateSystemDataStructure FUN_1801c9940              // 验证系统数据结构
+#define ProcessRenderContextData FUN_1800aa220                 // 处理渲染上下文数据
+#define ProcessRenderContextUpdate FUN_18029e630               // 处理渲染上下文更新
+#define GetSystemStringIdentifier FUN_18023a940                // 获取系统字符串标识符
+#define ProcessRenderContextExtension FUN_18029e6e0            // 处理渲染上下文扩展
+#define ProcessRenderContextConfiguration FUN_18029e450         // 处理渲染上下文配置
+#define ProcessRenderContextOptimization FUN_18029e500         // 处理渲染上下文优化
+#define ProcessRenderContextValidation FUN_18029e570           // 处理渲染上下文验证
+#define ProcessRenderContextFinalization FUN_18029ea30         // 处理渲染上下文最终化
+#define ProcessRenderContextSynchronization FUN_18029ead0     // 处理渲染上下文同步
+#define ProcessStringWithMutexLock FUN_180220810               // 处理带互斥锁的字符串
+#define ProcessCharacterDataWithValidation FUN_180152870      // 处理带验证的字符数据
+#define ProcessSystemMemoryAllocation FUN_1800a4010            // 处理系统内存分配
+#define GetMemoryAllocationIndex FUN_18023a940                 // 获取内存分配索引
+#define ProcessMemoryPoolManagement FUN_1800a5fc0              // 处理内存池管理
 #define ExecuteSystemFunctionInitialization FUN_18013c020     // 执行系统函数初始化
 #define ProcessSystemDataStructureSetup FUN_18013c4e0        // 处理系统数据结构设置
 #define GetSystemCharacterDataStatus FUN_1801210b0           // 获取系统字符数据状态
@@ -185145,7 +185174,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
   if (InputDataLength != 0) {
     __Throw_C_error_std__YAXH_Z(InputDataLength);
   }
-  SystemDataRegistry = FUN_18024b870(CharacterCode);
+  SystemDataRegistry = QueryCharacterCodeData(CharacterCode);
   ValidationResult = (unsigned long long)(*(byte *)(CharacterCode + 6) & 1);
   CharacterStatusBuffer2 = (void *)(CharacterCode + 0x9a48);
   pSystemValidationChar = SystemStringCurrentCharacter;
@@ -185251,7 +185280,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
         aSystemFlagG[0] = 0;
         SystemFlagF = 0xb;
         MemoryAllocationHandle = strcpy_s(aSystemFlagG,0x40,&SystemConfigTemplateC);
-        FUN_180096b60(MemoryAllocationHandle,&pErrorCode,Utf16Character,0);
+        AllocateSystemMemoryAndHandleError(MemoryAllocationHandle,&pErrorCode,Utf16Character,0);
         pErrorCode = &ThreadLocalStorageTemplate;
       }
       if ((*(char *)(CoreEngineSystemContext + 0x12e3) != '\0') && (*(char *)(SystemDataRegistry + 0x7f21) != '\0')) {
@@ -185270,7 +185299,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
           if (*(void **)(MemoryBoundaryEnd + 0x28) != NULL) {
             StringProcessingStatus = *(void **)(MemoryBoundaryEnd + 0x28);
           }
-          SystemCheckResult = FUN_1801189e0(StringProcessingStatus);
+          SystemCheckResult = ProcessStringValidationStatus(StringProcessingStatus);
           if (SystemCheckResult != '\0') {
             SecondaryFloatValue = (float)*(long long *)(MemoryBoundaryEnd + 0x138);
             if (*(long long *)(MemoryBoundaryEnd + 0x138) < 0) {
@@ -185322,7 +185351,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     uStack_138 = 0;
     aTemporaryFlag[0] = 0;
     CopyAndInitializeSystemDataStructure(&CoreEngineValue148, &SystemBufferPointer);
-    Utf16Character = FUN_1802c2560(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x7f20,&CoreEngineValue148);
+    Utf16Character = ExtractCharacterFromRenderContext(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x7f20,&CoreEngineValue148);
     MemoryBlockListHead = plStack_180;
     if (*(char *)(CoreEngineSystemContext + 0x12e7) != '\0') {
       SystemDataRegistry = *(long long *)(CoreEngineRenderContext + 0x1cd8);
