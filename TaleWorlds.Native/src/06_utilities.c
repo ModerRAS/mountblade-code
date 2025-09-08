@@ -100010,7 +100010,22 @@ void TerminateSystemE0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090de60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器（偏移量60）
+ * 
+ * 该函数在数据缓冲区偏移量0xE0+0x60处检查是否存在有效的异常处理器上下文指针，
+ * 如果存在则调用该上下文中偏移量0x38处的函数指针。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090de60
+ * @note 使用偏移量0xE0+0x60访问异常处理器上下文指针
+ * @note 函数指针位于偏移量0x38处
+ * 
+ * @see InvokeExceptionHandlerAtOffsetE0
+ */
+void InvokeExceptionHandlerAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100024,7 +100039,18 @@ void Unwind_18090de60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090de70(void)
+/**
+ * @brief 销毁系统互斥锁（第二个实例）
+ * 
+ * 该函数负责销毁系统中的互斥锁，释放相关资源。
+ * 这是系统清理过程中的另一个互斥锁销毁函数。
+ * 
+ * @note 原始函数名：Unwind_18090de70
+ * @warning 此函数会直接调用系统互斥锁销毁函数
+ * 
+ * @see DestroySystemMutexDE10
+ */
+void DestroySystemMutexDE70(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -100033,7 +100059,25 @@ void Unwind_18090de70(void)
 
 
 
-void Unwind_18090de80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统内存操作和资源清理
+ * 
+ * 该函数负责执行一系列系统内存操作和资源清理任务。它会：
+ * 1. 获取异常处理上下文
+ * 2. 调用多个异常处理器回调函数
+ * 3. 执行内存操作来清理资源
+ * 4. 处理不同区域的内存块
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090de80
+ * @note 该函数执行多个内存操作，包括验证和处理不同大小的内存块
+ * @note 使用的偏移量包括：0xED0, 0xEC0, 0xEB8, 0xEB0, 0xEA0, 0xE90, 0xE80, 0xC28, 0x9D0, 0xB8
+ * 
+ * @see ExecuteMemoryOperation, ValidateDataHandler, ProcessMemoryOperationA1, ProcessMemoryOperationA3
+ */
+void ExecuteSystemMemoryOperationAndCleanupDE80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
