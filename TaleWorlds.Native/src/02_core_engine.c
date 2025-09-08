@@ -808,6 +808,11 @@
 #define fStack_64 StackSecondaryScaleFactor                // 栈次缩放因子
 #define fStack_60 StackTertiaryScaleFactor                 // 栈第三缩放因子
 #define fStack_17c StackInterpolationFactor                // 栈插值因子
+#define uStack_184 StackUnsignedValue184                     // 栈无符号值184
+#define uStack_180 StackUnsignedValue180                     // 栈无符号值180
+#define uStack_178 StackUnsignedValue178                     // 栈无符号值178
+#define uStack_170 StackUnsignedValue170                     // 栈无符号值170
+#define uStack_16c StackUnsignedValue16c                     // 栈无符号值16c
 #define fStack_8f8 StackTemporaryFloatValue                // 栈临时浮点值
 #define fStack_70 StackCalculationBuffer                   // 栈计算缓冲区
 
