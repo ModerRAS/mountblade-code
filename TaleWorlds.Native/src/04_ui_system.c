@@ -90792,22 +90792,22 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   contextOffset = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5 + (*(int *)(uiBufferData + 0x11e4) >> 3) * 7);
   *(float *)(allocatedMemory + contextOffset * 4) = *(float *)(allocatedMemory + contextOffset * 4) - 1e-06;
   if (*(int *)(uiBufferData + 0x1244) == 0) {
-    FUN_1807260d0(uiContext,BasePointer + 0x21b0,BasePointer + 0x35e0,allocatedMemory,
+    FUN_1807260d0(uiContext,basePointer + 0x21b0,basePointer + 0x35e0,allocatedMemory,
                   *(UIDword *)(uiBufferData + 0x13ec));
-    FUN_180724f40(uiContext,BasePointer + 0x21b0,componentIndex,allocatedMemory);
-    FUN_1807263d0(uiContext,BasePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
-    FUN_180726700(uiContext,BasePointer + 0x21b0,bufferSize);
+    FUN_180724f40(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory);
+    FUN_1807263d0(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
+    FUN_180726700(uiContext,basePointer + 0x21b0,bufferSize);
     if ((*(int *)(uiBufferData + 0x17d8) != 0) && (0x4d < *(int *)(uiBufferData + 0x11b0))) {
       *(UIDword *)(uiBufferData + 0x127c + (longlong)*(int *)(uiBufferData + 0x167c) * 4) = 1;
                      WARNING: Subroutine does not return
-      memcpy(BasePointer + 0x24a0,uiContext + 0x90,0x1100);
+      memcpy(basePointer + 0x24a0,uiContext + 0x90,0x1100);
     }
-    uStack0000000000000034 = 0;
-    uStack0000000000000054 = 0;
+    stackData34 = 0;
+    stackData54 = 0;
     func_0x0001807249a0(uiContext + 0x1288,*(UIDword *)(uiBufferData + 0x11e0));
-    uStack000000000000004c = 0xffffffff;
+    stackData4c = 0xffffffff;
                      WARNING: Subroutine does not return
-    memcpy(BasePointer + -0x50,uiContext + 0x90,0x1100);
+    memcpy(basePointer + -0x50,uiContext + 0x90,0x1100);
   }
                      WARNING: Subroutine does not return
   memmove(uiContext + 0x1c1c,uiContext + ((longlong)*(int *)(uiBufferData + 0x11e4) + 0x707) * 4,

@@ -7582,9 +7582,6 @@ extern void* SystemPrimaryResourceTable;
 // 功能：设置系统状态并返回设置结果
 #define SetSystemStatusA0 FUN_180899740
 
-// 原始函数名：FUN_180899763 - 系统状态检查函数A0
-// 功能：检查系统状态并返回检查结果
-#define CheckSystemStatusA0 FUN_180899763
 
 // 原始函数名：FUN_1808997f0 - 系统重置函数A0
 // 功能：重置系统并返回重置结果
