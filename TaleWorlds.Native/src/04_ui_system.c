@@ -84098,8 +84098,32 @@ int CompareUIContextValues(uint uiContext,uint dataSource)
 
 
 
- void FUN_180715830(int *uiContext,uint *dataSource,UIHandle targetBuffer,longlong bufferSize,uint resultPointer,
-void FUN_180715830(int *uiContext,uint *dataSource,UIHandle targetBuffer,longlong bufferSize,uint resultPointer,
+ /**
+ * @brief 处理UI事件数据压缩和转换操作
+ * 
+ * 该函数负责处理UI系统中的事件数据压缩、转换和优化操作。主要功能包括：
+ * - 数据验证和预处理
+ * - 内存分配和缓冲区管理
+ * - 事件类型代码处理
+ * - 数据压缩算法应用
+ * - 位操作和数据转换
+ * - 结果计算和返回
+ * 
+ * @param uiContext UI上下文指针，包含UI状态和处理信息
+ * @param dataSource 数据源指针，用于存储处理结果
+ * @param targetBuffer 目标缓冲区句柄，存储处理后的数据
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于返回处理状态
+ * @param param_6 参数6，处理计数相关
+ * @param param_7 参数7，位操作相关
+ * @param param_8 参数8，处理模式相关
+ * @param param_9 参数9，偏移量相关
+ * @param uiContext0 UI上下文0，额外上下文信息
+ * @param uiContext1 UI上下文1，返回结果数据
+ * 
+ * @note 原始函数名：FUN_180715830
+ */
+void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targetBuffer,longlong bufferSize,uint resultPointer,
                   int *param_6,byte param_7,int param_8,int param_9,int uiContext0,uint *uiContext1)
 
 {
