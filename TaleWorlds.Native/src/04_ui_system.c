@@ -325,8 +325,8 @@ typedef enum {
 #define blendFactorStack stack0x00000040
 
 // UI系统函数宏定义补充
-#define ValidateUIContext func_0x000180069ee0
-#define ProcessUIComponent func_0x0001807673f0
+#define ValidateUIContext ValidateUIContext
+#define ProcessUIComponent ProcessUIComponent
 #define ProcessUIComponentOpacity func_0x0001807673c0
 #define ProcessUIRenderOpacity FUN_180785c10
 
@@ -131080,7 +131080,7 @@ void ThunkUIBufferOperation(longlong uiContext)
       BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
-    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = func_0x000180069ee0(), ProcessingResult == 0)) {
+    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = ValidateUIContext(), ProcessingResult == 0)) {
       ComponentIterator = (UIHandle *)(uiContext + 0x12758);
       ComponentPointer = (UIHandle *)*ComponentIterator;
       AlphaValue = 0.0;
@@ -131092,7 +131092,7 @@ void ThunkUIBufferOperation(longlong uiContext)
       TransformMatrix6 = 0;
       for (; ComponentPointer != ComponentIterator; ComponentPointer = (UIHandle *)*ComponentPointer) {
         ComponentStatus = ComponentPointer[2];
-        func_0x0001807673f0(ComponentStatus,ValidationBuffer);
+        ProcessUIComponent(ComponentStatus,ValidationBuffer);
         if (ValidationBuffer[0] != '\0') {
           FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
@@ -200113,7 +200113,7 @@ void FUN_18078b880(longlong uiContext)
   stackUIntb0 = 0;
   for (; psemaphoreHandle != ptrResult; psemaphoreHandle = (UIHandle *)*psemaphoreHandle) {
     EventTypeCode = psemaphoreHandle[2];
-    func_0x0001807673f0(EventTypeCode,acStack_118);
+    ProcessUIComponent(EventTypeCode,acStack_118);
     if (acStack_118[0] != '\0') {
       FUN_1807671a0(EventTypeCode,uiContext + 0x11080,&fStack_110,&fStack_114);
       if (0.0 < fStack_110) {
@@ -200487,7 +200487,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
       BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
-    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = func_0x000180069ee0(), ProcessingResult == 0)) {
+    if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = ValidateUIContext(), ProcessingResult == 0)) {
       ComponentIterator = (UIHandle *)(uiContext + 0x12758);
       ComponentPointer = (UIHandle *)*ComponentIterator;
       AlphaValue = 0.0;
@@ -200499,7 +200499,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
       TransformMatrix6 = 0;
       for (; ComponentPointer != ComponentIterator; ComponentPointer = (UIHandle *)*ComponentPointer) {
         ComponentStatus = ComponentPointer[2];
-        func_0x0001807673f0(ComponentStatus,ValidationBuffer);
+        ProcessUIComponent(ComponentStatus,ValidationBuffer);
         if (ValidationBuffer[0] != '\0') {
           FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
@@ -200747,7 +200747,7 @@ void ProcessUIContextEventLoop(longlong uiContext)
   }
   *(uint *)(ContextHandle + 0x116b4) = uStack000000000000003c;
   if ((*(longlong *)(ContextHandle + 0x6b0) == 0) ||
-     (localInt5 = func_0x000180069ee0(), floatResult1 = extraout_XMM0_Da, localInt5 == 0)) {
+     (localInt5 = ValidateUIContext(), floatResult1 = extraout_XMM0_Da, localInt5 == 0)) {
     ptrResult = (UIHandle *)(ContextHandle + 0x12758);
     ptrLocal3 = (UIHandle *)*ptrResult;
     floatResult3 = 0.0;
@@ -200767,7 +200767,7 @@ void ProcessUIContextEventLoop(longlong uiContext)
     stackParam00000150 = unmodifiedXMM6_Da;
     for (; ptrLocal3 != ptrResult; ptrLocal3 = (UIHandle *)*ptrLocal3) {
       ProcessingStatus = ptrLocal3[2];
-      floatResult1 = (float)func_0x0001807673f0(ProcessingStatus,&stack0x00000030);
+      floatResult1 = (float)ProcessUIComponent(ProcessingStatus,&stack0x00000030);
       if (cStack0000000000000030 != '\0') {
         FUN_1807671a0(ProcessingStatus,ContextHandle + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
         if (0.0 < fStack0000000000000038) {
@@ -200979,7 +200979,7 @@ void FUN_18078c188(float uiContext)
   if (pCharacterDataOffset != pallocatedMemory) {
     do {
       ContextHandleData = pCharacterDataOffset[2];
-      uiContext = (float)func_0x0001807673f0(ContextHandleData,&stack0x00000030);
+      uiContext = (float)ProcessUIComponent(ContextHandleData,&stack0x00000030);
       if (cStack0000000000000030 != '\0') {
         FUN_1807671a0(ContextHandleData,ContextHandle + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
         if (0.0 < stackParam00000038) {
@@ -213065,7 +213065,7 @@ FUN_180798350(longlong uiContext,UIDword dataSource,longlong targetBuffer,UIHand
       *(float *)(astackLonge8[0] + 0xc) = *(float *)(astackLonge8[0] + 0xc) * 0.5;
       *(UIByte *)(uiContext + 0x288) = 0;
     }
-    result = func_0x000180069ee0(*(UIHandle *)(uiContext + 0xa8),*(UIHandle *)(uiContext + 0x280),
+    result = ValidateUIContext(*(UIHandle *)(uiContext + 0xa8),*(UIHandle *)(uiContext + 0x280),
                                 astackLonge8[0]);
     if ((int)result != 0) {
       return result;
@@ -213123,7 +213123,7 @@ UIHandle FUN_180798486(UIHandle uiContext)
   }
   *(float *)(inputString + 0xc) = *(float *)(inputString + 0xc) * 0.5;
   *(UIByte *)(ContextHandle + 0x288) = EventHandleB;
-  semaphoreHandle = func_0x000180069ee0(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
+  semaphoreHandle = ValidateUIContext(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
                               inputString);
   if ((int)semaphoreHandle == 0) {
     semaphoreHandle = 0xb;
@@ -213152,7 +213152,7 @@ UIHandle FUN_180798557(UIHandle uiContext)
   *(float *)(inputString + 0xc) = unmodifiedXMM7_Da - *(float *)(inputString + 0xc);
   *(float *)(inputString + 0xc) = *(float *)(inputString + 0xc) * 0.5;
   *(UIByte *)(ContextHandle + 0x288) = EventHandleB;
-  result = func_0x000180069ee0(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
+  result = ValidateUIContext(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
                               inputString);
   if ((int)result == 0) {
     result = 0xb;
@@ -213169,7 +213169,7 @@ UIHandle FUN_1807985f8(void)
   longlong ContextHandle;
   UIHandle inputString;
   
-  result = func_0x000180069ee0(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
+  result = ValidateUIContext(*(UIHandle *)(ContextHandle + 0xa8),*(UIHandle *)(ContextHandle + 0x280),
                               inputString);
   if ((int)result == 0) {
     result = 0xb;
@@ -227542,7 +227542,7 @@ UIHandle FUN_180806d60(longlong uiContext,int dataSource)
   ulonglong uStackX_20;
   ulonglong astackUInt28 [2];
   
-  LoopCounter = func_0x000180069ee0();
+  LoopCounter = ValidateUIContext();
   if ((int)LoopCounter == 0) {
     if (((((*(uint *)(uiContext + 0x3c) & 0x20) == 0) && ((*(uint *)(uiContext + 0x3c) & 0x40) != 0)) &&
         (pstringCompareIndex = *(longlong **)(uiContext + 0x18), (*(uint *)(pstringCompareIndex + 9) & 0x30000) != 0x10000)) &&
@@ -387669,7 +387669,7 @@ LAB_18089bfc7:
     uiValidationResult = FUN_1808ad600(dataSource,uiContext + 0x40);
   }
   if (uiValidationResult == 0) {
-    func_0x000180069ee0(uiContext);
+    ValidateUIContext(uiContext);
   }
   return;
 }
@@ -387778,7 +387778,7 @@ LAB_18089bfc7:
     uiOperationResult = FUN_1808ad600();
   }
   if (uiOperationResult == 0) {
-    func_0x000180069ee0();
+    ValidateUIContext();
   }
   return;
 }
@@ -387864,7 +387864,7 @@ LAB_18089c131:
       EventTypeCode = FUN_1808aed00(*dataSource,uiContext + 4,4);
     }
     if (EventTypeCode == 0) {
-      ProcessingStatus = func_0x000180069ee0(uiContext);
+      ProcessingStatus = ValidateUIContext(uiContext);
     }
     else {
       ProcessingStatus = (ulonglong)EventTypeCode;
