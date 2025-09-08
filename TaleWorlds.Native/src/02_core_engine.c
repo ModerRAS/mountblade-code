@@ -186176,7 +186176,7 @@ code_r0x000180151fd7:
     break;
   case 0x2d:
     MemoryAllocationIndex = GetSystemStringIndex(*(void *)(CharacterCode + 0xa0));
-    FUN_180225ee0(VectorRegisterDa,*(void *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xb0),
+    ProcessVectorRegisterOperation(VectorRegisterDa,*(void *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xb0),
                   MemoryAllocationIndex);
     (**(code **)(**(long long **)(CharacterCode + 0xa0) + 0x38))();
   }
