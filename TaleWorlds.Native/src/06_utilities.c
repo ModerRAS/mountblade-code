@@ -30040,25 +30040,25 @@ DataCheckpointB:
     return operationResult;
   }
   dataFlags = validationOutcome;
-  if ((0x8b < *(uint *)(registerContext + 8)) && (dataFlags = registerValueEDI, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0))
+  if ((0x8b < *(uint *)(registerContext + 8)) && (dataFlags = RegisterContextBackup, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0))
   {
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     if (*exceptionHandlerContextPointer != 0) {
       if (exceptionHandlerContextPointer[2] == 0) {
 MemoryCheckpointA:
-        registerValueEDI = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&StackDataBufferI,RegisterContextValue,4,0);
+        RegisterContextBackup = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&StackDataBufferI,RegisterContextValue,4,0);
       }
       else {
         uint64_t allocationFlag = 0;
-        registerValueEDI = AllocateMemory(*exceptionHandlerContextPointer,(int64_t)&ValidationDataBuffer + 4);
-        if (registerValueEDI == 0) {
+        RegisterContextBackup = AllocateMemory(*exceptionHandlerContextPointer,(int64_t)&ValidationDataBuffer + 4);
+        if (RegisterContextBackup == 0) {
           if ((uint64_t)allocationFlag + 4 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointDataSizeCheck;
-          registerValueEDI = 0x11;
+          RegisterContextBackup = 0x11;
         }
       }
     }
-    dataFlags = registerValueEDI;
-    if (registerValueEDI != 0) goto ProcessCheckpointRegisterValidation;
+    dataFlags = RegisterContextBackup;
+    if (RegisterContextBackup != 0) goto ProcessCheckpointRegisterValidation;
     switch(operationResult) {
     case 0:
       RegisterContextValue = validationOutcome;
@@ -36334,7 +36334,7 @@ uint64_t CheckSystemDataIntegrity(void)
       else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
         registerValueEDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
       }
-      if (registerValueEDI == 0) {
+      if (RegisterContextBackup == 0) {
         if ((0x84 < *(uint *)(registerContext + 8)) && (operationResult = ValidateDataSequence(), (int)operationResult != 0)) {
           return operationResult;
         }
