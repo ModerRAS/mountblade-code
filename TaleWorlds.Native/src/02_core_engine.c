@@ -184783,7 +184783,7 @@ void ProcessCharacterCodeConversion(long long CharacterCode,uint64_t SystemBuffe
   (*(code *)CoreEngineConsoleHandle[0x1d]            (&SystemParameterBuffer1,&SystemParameterBuffer2,(code *)CoreEngineConsoleHandle[0x1d],Utf16EndPointer,0,0xfffffffffffffffe
             );
   (*(code *)CoreEngineConsoleHandle[0x1f])(&SystemTertiaryDataStructure,FUN_180150480);
-  FUN_180310b50(CharacterCode);
+  ProcessCharacterCodeFinalization(CharacterCode);
   (**(code **)(CharacterCode + 0x68))();
   *(long long *)(CharacterCode + 0x10) = CharacterCode;
   BufferStatus = CoreEngineSystemContext;
@@ -185112,7 +185112,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
   pCharacterStatusBuffer = SystemConfigurationHandle;
   ppDataContentStatus = SystemConfigurationHandle;
   SystemConfigurationHandle = (void **)*MemoryBlockListHead;
-  FUN_18009b220((long long)*(int *)(CoreEngineSystemContext + 0x1590) * 0x238 + CoreEngineSystemContext + 0x1598);
+  ProcessSystemDataStructureAccess((long long)*(int *)(CoreEngineSystemContext + 0x1590) * 0x238 + CoreEngineSystemContext + 0x1598);
   *(uint32_t *)((long long)SystemConfigurationHandle + 0x18) = SystemConfigurationValue;
   ProcessSystemCleanupAndTerminate();
   CharacterStatusBuffer2 = CoreEngineConfigFlag;
@@ -185145,7 +185145,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
   CharacterStatusBuffer2 = (void *)(CharacterCode + 0x9a48);
   pSystemValidationChar = SystemStringCurrentCharacter;
   while (InputDataLength = (int)pSystemValidationChar, InputDataLength < *(int *)(CharacterCode + 0x11a48)) {
-    FUN_18024c080(*CharacterStatusBuffer2,ValidationResult & 0xff);
+    ProcessCharacterStatusValidation(*CharacterStatusBuffer2,ValidationResult & 0xff);
     CharacterStatusBuffer2 = CharacterStatusBuffer2 + 1;
     pSystemValidationChar = (char *)(unsigned long long)(InputDataLength + 1);
   }
@@ -185191,7 +185191,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       ProcessSystemContextConfiguration(&ProcessingBufferPointer,&SystemStatusContextData,(double)*(float *)(CoreEngineSystemContext + 500));
       plStack_1b0 = (long long *)CONCAT44(plStack_1b0.HighPart,0xffffff00);
       ppSystemValue1c8 = &ProcessingBufferPointer;
-      FUN_180632f00(SystemDataRegistry + 0x11a50,SecondaryFloatValue - (float)((iStack_190 + 1) * 10));
+      ProcessSystemFloatValueUpdate(SystemDataRegistry + 0x11a50,SecondaryFloatValue - (float)((iStack_190 + 1) * 10));
       SystemValue1a8 = 0;
       ProcessingBufferPointer = &SystemNullTemplate;
       if (lStack_198 != 0) {
