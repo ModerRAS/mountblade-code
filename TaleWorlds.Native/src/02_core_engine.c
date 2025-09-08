@@ -49139,28 +49139,28 @@ void UnlockSystemDataStructure(long long ContextHandle
  */
 uint64_t ValidateContextHandleIntegrity(long long ContextHandle
 {
-  byte StringComparisonByte;
-  long long BufferStatus;
+  byte SystemValidationCode;
+  long long SystemBufferHandle;
   byte SystemByteValidationStatus;
   
   SystemByteValidationStatus = *(byte *)(ContextHandle + 0xfd);
-  BufferStatus = ContextHandle;
+  SystemBufferHandle = ContextHandle;
   if ((SystemByteValidationStatus & 0x20) == 0) {
-    BufferStatus = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
+    SystemBufferHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
   }
-  if (0 < *(int *)(BufferStatus + 0x200)) {
-    BufferStatus = *(long long *)(ContextHandle + 0x1b8);
-    StringComparisonByte = *(byte *)(BufferStatus + 0x38c);
-    if (StringComparisonByte == 9) {
-      StringComparisonByte = GetSystemValidationStatus();
-      *(byte *)(BufferStatus + 0x38c) = StringComparisonByte;
+  if (0 < *(int *)(SystemBufferHandle + 0x200)) {
+    SystemBufferHandle = *(long long *)(ContextHandle + 0x1b8);
+    SystemValidationCode = *(byte *)(SystemBufferHandle + 0x38c);
+    if (SystemValidationCode == 9) {
+      SystemValidationCode = GetSystemValidationStatus();
+      *(byte *)(SystemBufferHandle + 0x38c) = SystemValidationCode;
       SystemByteValidationStatus = *(byte *)(ContextHandle + 0xfd);
     }
     if ((SystemByteValidationStatus & 0x20) == 0) {
       ContextHandle = GetMemoryBlockData(*(void *)(ContextHandle + 0x1b0));
     }
     if ((*(long long *)(ContextHandle + 0x1e0) == 0) ||
-       (*(byte *)(*(long long *)(ContextHandle + 0x1e0) + 0x15 + (unsigned long long)StringComparisonByte * 0x18) < 2)) {
+       (*(byte *)(*(long long *)(ContextHandle + 0x1e0) + 0x15 + (unsigned long long)SystemValidationCode * 0x18) < 2)) {
       return 0;
     }
   }
