@@ -948,6 +948,43 @@
 #define InitializeSystemPriorityAndFlagConfiguration FUN_18015c450
 
 /**
+ * @brief 处理字符编码和状态验证
+ * 
+ * 该函数负责处理字符编码和状态验证，包括：
+ * - 管理字符编码状态
+ * - 验证字符处理结果
+ * - 处理系统内存分配
+ * - 管理优先级和标志
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param ProcessingFlag 处理标志
+ * @return uint64_t* 返回处理结果指针
+ * 
+ * @note 原始函数名：FUN_1801616b0
+ */
+#define ProcessCharacterEncodingAndStatusValidation FUN_1801616b0
+
+/**
+ * @brief 验证字符编码状态
+ * 
+ * 该函数负责验证字符编码状态，包括：
+ * - 检查字符编码的有效性
+ * - 处理编码状态标志
+ * - 返回验证操作状态
+ * 
+ * @param CharacterCode 字符代码
+ * @param StatusPointer 状态指针
+ * @param ValidationResult 验证结果指针
+ * @return int 返回操作状态
+ * 
+ * @note 原始函数名：FUN_1801605f0
+ */
+#define ValidateCharacterEncodingStatus FUN_1801605f0
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -194180,7 +194217,7 @@ LAB_180160546:
     ComputedResult = 0;
     if (SystemChecksum != 0) {
       do {
-        OperationStatus = FUN_1801605f0(CharacterCode,*SecondaryProcessingStatusFlag,pEncodingValidationResult + 1);
+        OperationStatus = ValidateCharacterEncodingStatus(CharacterCode,*SecondaryProcessingStatusFlag,pEncodingValidationResult + 1);
         if (OperationStatus != '\0') {
           return '\x01';
         }
@@ -195185,7 +195222,21 @@ void InitializeSystemData(void)
 
 
 
-60a50(long long CharacterCodevoid FUN_180160a50(long long CharacterCode
+/**
+ * @brief 清理字符代码内存和引用计数
+ * 
+ * 该函数负责清理字符代码的内存和引用计数，包括：
+ * - 释放系统内存
+ * - 管理引用计数
+ * - 处理内存分配异常
+ * - 清理系统数据注册表
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160a50
+ */
+void CleanupCharacterCodeMemoryAndReferenceCount(long long CharacterCode
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -196179,7 +196230,7 @@ ProcessInputBuffer(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t *U
 
 
 
-uint64_t * FUN_1801616b0(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer
+uint64_t * ProcessCharacterEncodingAndStatusValidation(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer
 {
   int LockResult;
   double TimeDifferenceInSeconds;
@@ -199299,7 +199350,7 @@ long long * FUN_180169110(uint64_t CharacterCode,long long *CharacterCodeSize,lo
     (**(code **)(*CharacterCodeSize + 0x10))(SystemBufferSize,&SystemEventBufferPrimary);
   }
   else {
-    CalculatedCodePoint = FUN_1801616b0(SystemDataRegistry,&pBufferOffset,Utf8SourcePointer,Utf16EndPointer,1);
+    CalculatedCodePoint = ProcessCharacterEncodingAndStatusValidation(SystemDataRegistry,&pBufferOffset,Utf8SourcePointer,Utf16EndPointer,1);
     FUN_18005d190(SystemBufferSize,CalculatedCodePoint);
     pBufferOffset = &SystemNullTemplate;
     if (SystemTemporaryValue50 != 0) {
