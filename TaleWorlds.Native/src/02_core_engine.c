@@ -1409,6 +1409,17 @@
 #define fStack_8f8 StackTemporaryFloatValue                // 栈临时浮点值
 #define fStack_70 StackCalculationBuffer                   // 栈计算缓冲区
 
+// 新增栈变量语义化宏定义
+#define fStack_88 StackPrimaryCoordinateX                  // 栈主坐标X
+#define fStack_84 StackSecondaryCoordinateX                // 栈次坐标X
+#define fStack_80 StackTertiaryCoordinateX                 // 栈第三坐标X
+#define fStack_7c StackQuaternaryCoordinateX               // 栈第四坐标X
+#define fStack_78 StackPrimaryCoordinateY                  // 栈主坐标Y
+#define fStack_74 StackSecondaryCoordinateY                // 栈次坐标Y
+#define fStack_6c StackTertiaryCoordinateY                 // 栈第三坐标Y
+#define fStack_70 StackSecondaryCoordinateY                // 栈次坐标Y (重定义)
+#define acStack_98 StackCharacterBuffer98                  // 栈字符缓冲区98
+
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
 // 系统超时处理函数

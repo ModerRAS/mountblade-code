@@ -16137,7 +16137,7 @@ LAB_18065a765:
  *  uiContext1 特效参数2
  *  uiContext2 混合模式
  void DrawUIComponentWithEffects(UIHandle uiContext,UIHandle dataSource,float targetBuffer,float bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,float param_7,float param_8,float param_9,
+                  UIHandle resultPointer,UIHandle contextFlag,float dataValue,float renderValue,float transformValue,
                   UIHandle uiContext0,UIHandle uiContext1,float uiContext2)
 
 {
