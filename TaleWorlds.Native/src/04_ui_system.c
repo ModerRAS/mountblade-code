@@ -82310,80 +82310,80 @@ void ProcessUIContextBatchOperation(UIDword uiContext,UIHandle dataSource,longlo
 void TransformUIDataCoordinates(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int *resultPointer)
 
 {
-  float *pbaseValue;
-  float *ptransformCoeff1;
-  float *ptransformCoeff2;
-  float transformCoeff3;
-  uint loopCounter;
-  float *plocalFloat6;
-  ulonglong processingCounter;
-  longlong contextOffset;
-  longlong CharacterDataOffset;
-  int processedCount;
-  int ProcessingResult1;
-  longlong allocatedMemory2;
-  float baseValue3;
-  float vectorComponentX;
-  float baseValue5;
-  float baseValue6;
-  float baseValue7;
-  float FloatValue1;
+  float *baseValuePointer;
+  float *transformCoeffPointer1;
+  float *transformCoeffPointer2;
+  float transformCoefficient3;
+  uint dataIterationCount;
+  float *coordinateDataPointer;
+  ulonglong transformCounter;
+  longlong contextDataOffset;
+  longlong characterDataSourceOffset;
+  int processedDataCount;
+  int transformResultCode;
+  longlong allocatedMemoryOffset;
+  float distanceAccumulator;
+  float coordinateX;
+  float maxDistanceValue1;
+  float maxDistanceValue2;
+  float maxDistanceValue3;
+  float normalizationFactor;
   
-  ProcessingResult1 = 0;
-  baseValue7 = -1.0;
-  baseValue5 = -1.0;
-  contextOffset = (longlong)targetBuffer;
-  FloatValue1 = 0.0;
-  baseValue6 = 0.0;
-  processedCount = 0;
+  transformResultCode = 0;
+  maxDistanceValue3 = -1.0;
+  maxDistanceValue1 = -1.0;
+  contextDataOffset = (longlong)targetBuffer;
+  normalizationFactor = 0.0;
+  maxDistanceValue2 = 0.0;
+  processedDataCount = 0;
   *resultPointer = 0;
-  baseValue3 = 1.0;
+  distanceAccumulator = 1.0;
   resultPointer[1] = 1;
   if (3 < targetBuffer) {
-    plocalFloat6 = (float *)(dataSource + 8);
-    loopCounter = (targetBuffer - 4U >> 2) + 1;
-    processingCounter = (ulonglong)loopCounter;
-    processedCount = loopCounter * 4;
+    coordinateDataPointer = (float *)(dataSource + 8);
+    dataIterationCount = (targetBuffer - 4U >> 2) + 1;
+    transformCounter = (ulonglong)dataIterationCount;
+    processedDataCount = dataIterationCount * 4;
     do {
-      pbaseValue = plocalFloat6 + -2;
-      ptransformCoeff1 = plocalFloat6 + -1;
-      vectorComponentX = *plocalFloat6;
-      ptransformCoeff2 = plocalFloat6 + 1;
-      plocalFloat6 = plocalFloat6 + 4;
-      baseValue3 = baseValue3 + *pbaseValue * *pbaseValue + *ptransformCoeff1 * *ptransformCoeff1 + vectorComponentX * vectorComponentX + *ptransformCoeff2 * *ptransformCoeff2;
-      processingCounter = processingCounter - 1;
-    } while (processingCounter != 0);
+      baseValuePointer = coordinateDataPointer + -2;
+      transformCoeffPointer1 = coordinateDataPointer + -1;
+      coordinateX = *coordinateDataPointer;
+      transformCoeffPointer2 = coordinateDataPointer + 1;
+      coordinateDataPointer = coordinateDataPointer + 4;
+      distanceAccumulator = distanceAccumulator + *baseValuePointer * *baseValuePointer + *transformCoeffPointer1 * *transformCoeffPointer1 + coordinateX * coordinateX + *transformCoeffPointer2 * *transformCoeffPointer2;
+      transformCounter = transformCounter - 1;
+    } while (transformCounter != 0);
   }
-  if (processedCount < targetBuffer) {
-    processingCounter = (ulonglong)(uint)(targetBuffer - processedCount);
-    plocalFloat6 = (float *)(dataSource + (longlong)processedCount * 4);
+  if (processedDataCount < targetBuffer) {
+    transformCounter = (ulonglong)(uint)(targetBuffer - processedDataCount);
+    coordinateDataPointer = (float *)(dataSource + (longlong)processedDataCount * 4);
     do {
-      vectorComponentX = *plocalFloat6;
-      plocalFloat6 = plocalFloat6 + 1;
-      baseValue3 = baseValue3 + vectorComponentX * vectorComponentX;
-      processingCounter = processingCounter - 1;
-    } while (processingCounter != 0);
+      coordinateX = *coordinateDataPointer;
+      coordinateDataPointer = coordinateDataPointer + 1;
+      distanceAccumulator = distanceAccumulator + coordinateX * coordinateX;
+      transformCounter = transformCounter - 1;
+    } while (transformCounter != 0);
   }
   if (3 < bufferSize) {
-    plocalFloat6 = (float *)(uiContext + 4);
-    CharacterDataOffset = (contextOffset * 4 - uiContext) + dataSource;
-    allocatedMemory2 = dataSource - uiContext;
-    processedCount = 2;
+    coordinateDataPointer = (float *)(uiContext + 4);
+    characterDataSourceOffset = (contextDataOffset * 4 - uiContext) + dataSource;
+    allocatedMemoryOffset = dataSource - uiContext;
+    processedDataCount = 2;
     do {
-      vectorComponentX = plocalFloat6[-1];
-      if ((0.0 < vectorComponentX) && (vectorComponentX = vectorComponentX * vectorComponentX * 1e-24, baseValue5 * baseValue3 < baseValue6 * vectorComponentX)) {
-        if (FloatValue1 * vectorComponentX <= baseValue7 * baseValue3) {
-          resultPointer[1] = ProcessingResult1;
-          baseValue5 = vectorComponentX;
-          baseValue6 = baseValue3;
+      coordinateX = coordinateDataPointer[-1];
+      if ((0.0 < coordinateX) && (coordinateX = coordinateX * coordinateX * 1e-24, maxDistanceValue1 * distanceAccumulator < maxDistanceValue2 * coordinateX)) {
+        if (normalizationFactor * coordinateX <= maxDistanceValue3 * distanceAccumulator) {
+          resultPointer[1] = transformResultCode;
+          maxDistanceValue1 = coordinateX;
+          maxDistanceValue2 = distanceAccumulator;
         }
         else {
           resultPointer[1] = *resultPointer;
-          *resultPointer = ProcessingResult1;
-          baseValue5 = baseValue7;
-          baseValue6 = FloatValue1;
-          baseValue7 = vectorComponentX;
-          FloatValue1 = baseValue3;
+          *resultPointer = transformResultCode;
+          maxDistanceValue1 = maxDistanceValue3;
+          maxDistanceValue2 = normalizationFactor;
+          maxDistanceValue3 = coordinateX;
+          normalizationFactor = distanceAccumulator;
         }
       }
       vectorComponentX = *(float *)((longlong)plocalFloat6 + CharacterDataOffset + -4);
