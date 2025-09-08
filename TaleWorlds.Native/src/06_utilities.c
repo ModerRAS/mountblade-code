@@ -1048,6 +1048,15 @@
 // 异常处理器回调偏移常量
 #define ExceptionHandlerSecondaryOffset178 0x178
 
+// 系统操作上下文偏移常量
+#define SystemOperationContextOffset60 0x60
+#define EventContextValidationOffset1D 0x1d
+#define SystemConfigurationOffsetD8 0xd8
+#define SystemResourceManagementOffset70 0x70
+#define SystemValidationCounterOffset14 0x14
+#define SystemConfigurationValueOffset24 0x24
+#define SystemDataFlagsOffset1C 0x1c
+
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
 #define DataOperationTypeTNVE 0x544e5645   // "TNVE" - 数据验证操作
@@ -20408,13 +20417,13 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
   DataWord eventDataBuffer [2];
   
   eventDataBuffer[0] = 0;
-  operationResult = ProcessSystemDataTransferA0(systemContext + SystemOperationContextOffset60,eventContext + 0x10,eventDataBuffer);
+  operationResult = ProcessSystemDataTransferA0(systemContext + SystemOperationContextOffset60,eventContext + ComponentHandleOffset,eventDataBuffer);
   if ((int)operationResult == 0) {
-    dataRangeOffset = GetOperationRangeDataA0(systemContext + 0x60,eventDataBuffer[0]);
+    dataRangeOffset = GetOperationRangeDataA0(systemContext + SystemOperationContextOffset60,eventDataBuffer[0]);
     if ((*(uint *)(dataRangeOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
-    operationResult = ProcessDataValidationA0(dataRangeOffset,eventContext + 0x1d,eventContext + SystemDataSecondaryOffset18);
+    operationResult = ProcessDataValidationA0(dataRangeOffset,eventContext + EventContextValidationOffset1D,eventContext + SystemDataSecondaryOffset18);
     if ((int)operationResult == 0) {
       eventDataValue = *(float *)(eventContext + SystemDataSecondaryOffset18);
       if ((eventDataValue < *(float *)(dataRangeOffset + SystemFloatDataOffset38)) ||
@@ -20422,7 +20431,7 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
         operationResult = 0x1c;
       }
       else {
-        operationResult = ValidateOperationRangeA0(systemContext + 0x60,eventDataBuffer[0]);
+        operationResult = ValidateOperationRangeA0(systemContext + SystemOperationContextOffset60,eventDataBuffer[0]);
         if ((int)operationResult == 0) {
             CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemEventOffset),eventContext);
         }
@@ -20467,7 +20476,7 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
   if ((*(uint *)(resourceHandle + SystemDataValidationOffset34) >> 4 & 1) != 0) {
     return ComponentDataValidationFailure;
   }
-  validationResult = ValidateResourceData(resourceHandle,resourceDescriptor + 0x1d,resourceDescriptor + SystemDataSecondaryOffset18);
+  validationResult = ValidateResourceData(resourceHandle,resourceDescriptor + EventContextValidationOffset1D,resourceDescriptor + SystemDataSecondaryOffset18);
   if ((int)validationResult == 0) {
     floatValue = *(float *)(resourceDescriptor + SystemDataSecondaryOffset18);
     if ((floatValue < *(float *)(resourceHandle + SystemFloatDataOffset38)) ||
@@ -20475,7 +20484,7 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
       validationResult = 0x1c;
     }
     else {
-      validationResult = ProcessSystemRequest(systemContext + 0x60,validationParameter);
+      validationResult = ProcessSystemRequest(systemContext + SystemOperationContextOffset60,validationParameter);
       if ((int)validationResult == 0) {
           ExecuteSystemDispatch(*(DataBuffer *)(systemContext + SystemContextOffset98));
       }
@@ -20520,7 +20529,7 @@ DataBuffer ValidateFloatRangeAndDispatchCall(void)
       validationResult = 0x1c;
     }
     else {
-      validationResult = ProcessSystemRequest(systemContext + 0x60,processingParameter);
+      validationResult = ProcessSystemRequest(systemContext + SystemOperationContextOffset60,processingParameter);
       if ((int)validationResult == 0) {
           ExecuteSystemDispatch(*(DataBuffer *)(systemContext + SystemContextOffset98));
       }
@@ -21859,10 +21868,10 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   ResetSystemStateDG0();
   
   // 处理系统数据DH0
-  ProcessSystemDataDH0(systemContext + 0xd8);
+  ProcessSystemDataDH0(systemContext + SystemConfigurationOffsetD8);
   
   // 释放系统资源DJ0
-  operationResult = ReleaseSystemResourceDJ0(systemContext + 0x70);
+  operationResult = ReleaseSystemResourceDJ0(systemContext + SystemResourceManagementOffset70);
   if ((operationResult == 0) && (operationResult = ValidateSystemStateDI0(systemContext + ResourceManagementOffset80), operationResult == 0)) {
     // 设置系统状态标志
     *(DataWord *)(systemContext + SystemContextPointerOffset90) = SystemCleanupFlag;
@@ -21873,7 +21882,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   ValidateSystemStateDI0(systemContext + ResourceManagementOffset80);
   
   // 释放系统资源DJ0
-  ReleaseSystemResourceDJ0(systemContext + 0x70);
+  ReleaseSystemResourceDJ0(systemContext + SystemResourceManagementOffset70);
   
   // 释放另一个系统资源DJ0
   operationResult = ReleaseSystemResourceDJ0(systemContext + SystemContextOffset28);
