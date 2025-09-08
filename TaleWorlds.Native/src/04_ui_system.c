@@ -10050,7 +10050,7 @@ void ManageUIElements(longlong *uiContext)
   UIDword uiComponentFlags;
   UIHandle uicontextHandle;
   
-  stackValue38 = 0xfffffffffffffffe;
+  longlong uiSystemFlag = 0xfffffffffffffffe;
   UIActiveContext = uiContext;
   if (uiContext != (longlong *)0x0) {
     (**(code **)(*uiContext + 8))();
@@ -91214,35 +91214,51 @@ UIDword ProcessUIContextValidationAndBufferState(int uiContext,UIHandle dataSour
   longlong bufferHandle;
   
   if (uiContext == 0) {
-    *(UIDword *)(SourceHandle + 0x17dc) = 7;
+    *(UIDword *)(bufferHandle + 0x17dc) = 7;
   }
   else {
-    processingResult = 7 - (int)((ulonglong)((longlong)*(int *)(SourceHandle + 0x1204) * 0x6666) >> 0x10);
+    processingResult = 7 - (int)((ulonglong)((longlong)*(int *)(bufferHandle + 0x1204) * 0x6666) >> 0x10);
     uiValidationResult = 2;
     if (2 < processingResult) {
       uiValidationResult = processingResult;
     }
-    *(int *)(SourceHandle + 0x17dc) = uiValidationResult;
+    *(int *)(bufferHandle + 0x17dc) = uiValidationResult;
   }
-  *(UIDword *)(SourceHandle + 0x1238) = 1;
+  *(UIDword *)(bufferHandle + 0x1238) = 1;
   return targetBuffer;
 }
 
 
 
-UIDword FUN_18071dfc0(longlong uiContext,int dataSource,ulonglong targetBuffer)
+/**
+ * @brief 处理UI事件类型验证和状态配置
+ * 
+ * 该函数负责处理UI事件类型的验证和状态配置：
+ * - 验证事件类型的有效性
+ * - 根据事件类型配置UI状态
+ * - 设置UI缓冲区参数
+ * - 管理UI上下文的状态指针
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区标识
+ * @return 事件类型代码，成功返回0，失败返回错误代码
+ * 
+ * @note 原始函数名：FUN_18071dfc0
+ */
+UIDword ProcessUIEventTypeValidationAndStateConfiguration(longlong uiContext,int dataSource,ulonglong targetBuffer)
 
 {
-  undefined *ptrResult;
+  undefined *statusPointer;
   int uiValidationResult;
-  UIDword EventTypeCode;
-  uint ProcessingStatus;
+  UIDword eventTypeCode;
+  uint processingStatus;
   
-  EventTypeCode = 0;
-  ProcessingStatus = (uint)targetBuffer;
-  if (ProcessingStatus != *(uint *)(uiContext + 0x1200)) {
-    if ((0x3c < ProcessingStatus) || ((0x1000010000100400U >> (targetBuffer & 0x3f) & 1) == 0)) {
-      EventTypeCode = 0xffffff99;
+  eventTypeCode = 0;
+  processingStatus = (uint)targetBuffer;
+  if (processingStatus != *(uint *)(uiContext + 0x1200)) {
+    if ((0x3c < processingStatus) || ((0x1000010000100400U >> (targetBuffer & 0x3f) & 1) == 0)) {
+      eventTypeCode = 0xffffff99;
     }
     uiValidationResult = (int)(short)dataSource;
     if ((int)ProcessingStatus < 0xb) {
