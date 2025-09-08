@@ -29909,7 +29909,7 @@ uint64_t GetSystemValidationContext(void)
   int64_t *systemRegister;
   int64_t systemStackFramePointer;
   uint RegisterContextValue;
-  uint registerValueEDI;
+  uint RegisterContextBackup;
   uint dataFlags;
   uint validationOutcome;
   char stackValidationFlag;
@@ -29921,10 +29921,10 @@ uint64_t GetSystemValidationContext(void)
   validationOutcome = 0;
   if (InputAccumulator < InputAccumulatorMinValue) {
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
-      return (uint64_t)registerValueEDI;
+      return (uint64_t)RegisterContextBackup;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
-    validationStatus = registerValueEDI;
+    validationStatus = RegisterContextBackup;
     if (*exceptionHandlerContextPointer != 0) {
       if (exceptionHandlerContextPointer[2] == 0) {
 DataCheckpointB:
