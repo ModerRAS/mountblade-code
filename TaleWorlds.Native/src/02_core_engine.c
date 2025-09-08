@@ -280426,7 +280426,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
   UnicodeCodePoint = *(unsigned long long *)(CharacterCode + 0x800);
   CharacterTableIndex = (long long)(char)Utf8SourcePointer;
   if (((*(unsigned long long *)(CharacterCode + 0x810) & UnicodeCodePoint) != 0) &&
-     ((*(unsigned long long *)(SystemDataTablePointer * 0x1b0 + 0xe0 + *(long long *)(Utf16EndPointer + 0x140)) & UnicodeCodePoint) != 0)) {
+     ((*(unsigned long long *)(CharacterTableIndex * 0x1b0 + 0xe0 + *(long long *)(Utf16EndPointer + 0x140)) & UnicodeCodePoint) != 0)) {
     MatchCounter = -1;
     do {
       CurrentCharacter = (char)Utf8SourcePointer;
@@ -280436,19 +280436,19 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
       if ((*(unsigned long long *)((long long)CurrentCharacter * 0x1b0 + 0xe0 + *(long long *)(Utf16EndPointer + 0x140)) & UnicodeCodePoint          == 0) {
         SystemOperationResult = MatchCounter;
       }
-      MatchCounter = IntegerValue9;
+      MatchCounter = SystemRegister;
     } while (-1 < CurrentCharacter0);
-    pSystemContextPrimaryFloat = (float *)(CharacterCode + (SystemDataTablePointer + 0x82) * 0x10);
-    ContextSecondaryFloat3 = *pSystemContextPrimaryFloat;
-    SecondaryFloatValue = pSystemContextPrimaryFloat[1];
-    ContextPrimaryFloat9 = pSystemContextPrimaryFloat[2];
-    ContextSecondaryFloat1 = pSystemContextPrimaryFloat[3];
-    CurrentCharacter0 = *(char *)(SystemDataTablePointer + 0x100 + Utf16EndPointer);
+    CharacterContextFloatPtr = (float *)(CharacterCode + (CharacterTableIndex + 0x82) * 0x10);
+    ContextSecondaryFloat3 = *CharacterContextFloatPtr;
+    SecondaryFloatValue = CharacterContextFloatPtr[1];
+    ContextPrimaryFloat9 = CharacterContextFloatPtr[2];
+    ContextSecondaryFloat1 = CharacterContextFloatPtr[3];
+    CurrentCharacter0 = *(char *)(CharacterTableIndex + 0x100 + Utf16EndPointer);
     if (-1 < CurrentCharacter0) {
       while (CurrentCharacter0 != IntegerValue9) {
-        SystemDataTablePointer = (long long)CurrentCharacter0;
-        CurrentCharacter0 = *(char *)(SystemDataTablePointer + 0x100 + Utf16EndPointer);
-        pSystemContextPrimaryFloat = (float *)(CharacterCode + (SystemDataTablePointer + 0x82) * 0x10);
+        CharacterTableIndex = (long long)CurrentCharacter0;
+        CurrentCharacter0 = *(char *)(CharacterTableIndex + 0x100 + Utf16EndPointer);
+        CharacterContextFloatPtr = (float *)(CharacterCode + (CharacterTableIndex + 0x82) * 0x10);
         MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
         MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];

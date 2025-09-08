@@ -85974,7 +85974,18 @@ void ProcessExceptionContextPointerA4(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090b210(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针处理器A5
+ * 
+ * 该函数负责处理异常上下文指针，调用相应的异常处理函数
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b210
+ */
+void ProcessExceptionContextPointerA5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -85988,7 +85999,18 @@ void Unwind_18090b210(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b230(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针处理器A6
+ * 
+ * 该函数负责处理异常上下文指针，调用相应的异常处理函数
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b230
+ */
+void ProcessExceptionContextPointerA6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -86002,7 +86024,18 @@ void Unwind_18090b230(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b250(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针处理器A7
+ * 
+ * 该函数负责处理异常上下文指针，调用相应的异常处理函数
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b250
+ */
+void ProcessExceptionContextPointerA7(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -86016,7 +86049,18 @@ void Unwind_18090b250(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针处理器A8
+ * 
+ * 该函数负责处理异常上下文指针，调用相应的异常处理函数
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b270
+ */
+void ProcessExceptionContextPointerA8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -86030,7 +86074,18 @@ void Unwind_18090b270(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b290(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针处理器A9
+ * 
+ * 该函数负责处理异常上下文指针，调用相应的异常处理函数
+ * 主要用于异常处理过程中的上下文管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090b290
+ */
+void ProcessExceptionContextPointerA9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
