@@ -204353,7 +204353,21 @@ uint64_t ProcessCharacterCodeWrapper3(uint64_t CharacterCode,uint64_t SystemBuff
 
 
 
-uint64_t FUN_18016f3c0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理字符编码转换和系统缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换操作，包括系统缓冲区管理和数据初始化
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return uint64_t 返回处理后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016f3c0
+ */
+#define ProcessCharacterEncodingAndSystemBufferManagement FUN_18016f3c0
+
+uint64_t ProcessCharacterEncodingAndSystemBufferManagement(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   FUN_180165bb0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
