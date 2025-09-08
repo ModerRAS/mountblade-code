@@ -36410,23 +36410,23 @@ void ValidateSystemResourceManager(long long SystemResourceManager)
   CleanupSystemAndProcessBuffers();
   if ((1 < *(ulong long *)(SystemResourceManager + 0x10)) &&
      (ResourceHashEntryPointer = *(void* **)(SystemResourceManager + 8), ResourceHashEntryPointer != (void* *)0x0)) {
-    resourceBaseAddress = (ulong long)ResourceHashEntryPointer & SystemMemoryPageAlignmentMask;
-    if (ResourceAddress != 0) {
-      resourceMemoryOffset = ResourceAddress + 0x80 + ((long long)ResourceHashEntryPointer - ResourceAddress >> 0x10) * 0x50;
+    SystemMemoryPageBase = (ulong long)ResourceHashEntryPointer & SystemMemoryPageAlignmentMask;
+    if (SystemMemoryPageBase != 0) {
+      resourceMemoryOffset = SystemMemoryPageBase + 0x80 + ((long long)ResourceHashEntryPointer - SystemMemoryPageBase >> 0x10) * 0x50;
       resourceMemoryOffset = ResourceMemoryOffset - (ulong long)*(uint *)(ResourceMemoryOffset + 4);
-      if ((*(void ***)(ResourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
+      if ((*(void ***)(SystemMemoryPageBase + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
         *ResourceHashEntryPointer = *(void* *)(ResourceMemoryOffset + 0x20);
         *(void* **)(ResourceMemoryOffset + 0x20) = ResourceHashEntryPointer;
-        SystemIntegerPointer = (int *)(ResourceMemoryOffset + 0x18);
-        *SystemIntegerPointer = *SystemIntegerPointer + SystemResourceCounterDecrement;
-        if (*SystemIntegerPointer == 0) {
+        ValidationStatus = (int *)(ResourceMemoryOffset + 0x18);
+        *ValidationStatus = *ValidationStatus + SystemResourceCounterDecrement;
+        if (*ValidationStatus == 0) {
           ReleaseSystemResource();
           return;
         }
       }
       else {
-        SystemExceptionCheck(ResourceAddress,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
-                            ResourceHashEntryPointer,ResourceAddress,InvalidHandleValue);
+        SystemExceptionCheck(SystemMemoryPageBase,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(SystemMemoryPageBase + 0x70) == &ExceptionList),
+                            ResourceHashEntryPointer,SystemMemoryPageBase,InvalidHandleValue);
       }
     }
     return;
