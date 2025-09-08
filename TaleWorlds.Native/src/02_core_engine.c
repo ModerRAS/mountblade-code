@@ -204193,7 +204193,7 @@ uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t CharacterCode
     CharacterTablePointer = *(long long *)(CoreEngineSystemContext + 0x3d8);
     MemoryAllocationIndex = atoi(*(void *)(*Utf8SourcePointer + 8));
     if (*(int *)(CharacterTablePointer + 0x110) == 3) {
-      FUN_1803214c0(CharacterTablePointer);
+      ProcessCharacterTableWithValidation(CharacterTablePointer);
     }
     if ((unsigned long long)MemoryAllocationIndex < *(long long *)(CharacterTablePointer + 0x160) - 2U) {
       FUN_180323d00(LoopCounter,4,2);
