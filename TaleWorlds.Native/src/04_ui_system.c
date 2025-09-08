@@ -88908,6 +88908,34 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
 // 原始函数名：FUN_18071a56f - UI数据缓冲区转换处理器
 #define ProcessUIDataBufferConversion FUN_18071a56f
 
+// UI数据缓冲区转换变量美化宏定义
+#define baseValue UIBaseValue
+#define uiValidationResult UIValidationResult
+#define transformCoeff2 UITransformCoeff2
+#define TempInt4 UITempInt4
+#define loopCounter UILoopCounter
+#define localLong7 UILocalLong7
+#define contextOffset UIContextOffset
+#define contextHandle UIContextHandle
+#define SourceHandle UISourceHandle
+#define allocationFlags UIAllocationFlags
+#define register10D UIRegister10D
+#define RegisterPointer UIRegisterPointer
+#define preservedRegister12 UIPreservedRegister12
+#define localInt9 UILocalInt9
+#define eventHandle UIEventHandle
+#define preservedRegister15D UIPreservedRegister15D
+#define pbaseValue0 UIPBaseValue0
+#define baseValue1 UIBaseValue1
+#define baseValue6 UIBaseValue6
+#define dVar18 UIDVar18
+#define FloatValue2 UIFloatValue2
+#define AccumulatedFloat UIAccumulatedFloat
+#define unmodifiedXMM10_Da UIUnmodifiedXMM10_Da
+#define unmodifiedXMM14_Da UIUnmodifiedXMM14_Da
+#define iStackX_20 UIStackX20
+#define result2 UIResult2
+
 /**
  * @brief 处理UI数据缓冲区转换
  * 
