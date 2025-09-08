@@ -300003,10 +300003,17 @@ LAB_18084f513:
 
 
  void FUN_18084f527(void)
-void FUN_18084f527(void)
+/**
+ * @brief UI系统内存分配处理器
+ * 
+ * 该函数负责处理UI系统的内存分配操作，是一个关键的管理函数。
+ * 函数不返回，通常在系统初始化或资源管理时调用。
+ * 
+ * @note 原始函数名：FUN_18084f527
+ */
+void ProcessUIMemoryAllocationHandler(void)
 
 {
-                     WARNING: Subroutine does not return
   ProcessUIMemoryAllocation();
 }
 
