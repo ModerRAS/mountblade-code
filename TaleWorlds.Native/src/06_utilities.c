@@ -100289,7 +100289,20 @@ void ResetExceptionContextAndCleanup(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_18090eb30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器B设置器
+ * 
+ * 该函数负责将默认异常处理器B设置到数据缓冲区的指定位置（0x108偏移量）
+ * 用于异常处理系统的初始化和重置操作。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090eb30
+ * @warning 确保dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x108) = &DefaultExceptionHandlerB;
