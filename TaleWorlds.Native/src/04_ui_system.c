@@ -75457,7 +75457,7 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
   stackUInt260 = targetBuffer;
   if (((stackInt264 < 5) && (stackInt258 == 0)) && (*(int *)((longlong)uiContext + 0x3c) == 0)) {
     if (stackInt264 == 0) {
-      semaphoreHandle = FUN_18070e250(astackLong140,stackInt250,(int)uiContext[5]);
+      semaphoreHandle = AcquireUISemaphoreHandle(astackLong140,stackInt250,(int)uiContext[5]);
       *(UIDword *)((longlong)uiContext + 0x34) = semaphoreHandle;
     }
     else {
@@ -75465,7 +75465,7 @@ void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDwo
     }
     stackLong248 = (longlong)stackInt268;
                      WARNING: Subroutine does not return
-    FUN_1808fd200(semaphoreHandle);
+    ProcessUIAnimationDataAllocation(semaphoreHandle);
   }
   localInt6 = *(int *)((longlong)uiContext + 0x1c);
   uiOperationResult = *(int *)(stackLong228 + 0xc);
