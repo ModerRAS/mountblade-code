@@ -201,6 +201,7 @@
 #define StackFloatValue118 fStack0000000000000118            // 栈浮点值118
 #define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
 #define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
+#define SystemSecurityValidationBuffer aCoreEngineUnsignedValue318    // 系统安全验证缓冲区
 
 // 数据缓冲区和引用计数指针语义化宏定义
 #define DataBuffer1E0 pStackDataBuffer1e0                      // 数据缓冲区1E0
@@ -149940,7 +149941,7 @@ e4e0(voidvoid ProcessSystemEncoding(void
   float StackFloatValue58;
   float StackFloatValue54;
   float DistanceThreshold;
-  float fStack_4c;
+  float NormalizationFactor;
   
   EncodingConversionResult = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
@@ -209958,7 +209959,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
   LOCK();
   *SystemStackData = 0;
   UNLOCK();
-  pSystemValue1c8 = &SystemContextTemplate;
+  SystemMessageTemplatePointer = &SystemContextTemplate;
   NullTemplatePointer = auStack_1b0;
   StackProcessingVariable1B8 = 0;
   auStack_1b0[0] = 0;
