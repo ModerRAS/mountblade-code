@@ -14986,25 +14986,25 @@ void RenderUIElement(UIHandle uiContext,uint dataSource,uint targetBuffer,UIHand
                   UIHandle param_9,UIHandle uiContext0,UIHandle uiContext1,UIHandle uiContext2)
 
 {
-  float *pbaseValue;
-  char localChar2;
+  float *baseValuePointer;
+  char validationChar2;
   bool IsGeometryValid;
   longlong contextHandleData;
   float *transformCoeffPointer;
   int loopCounter;
-  longlong localLong7;
+  longlong animationFrameIndex;
   longlong contextOffset;
   UIHandle contextHandle;
-  longlong BasePointer;
-  int localInt9;
-  UIHandle TargetHandle;
-  ulonglong result0;
+  longlong baseContextPointer;
+  int comparisonResult;
+  UIHandle renderTargetHandle;
+  ulonglong iterationResult;
   longlong preservedRegister12;
-  char localChar11;
+  char textureValidationChar;
   float preservedRegister13D;
-  float *EventHandle;
-  char preservedRegister15B;
-  bool in_ZF;
+  float *eventDataHandle;
+  char renderStateChar;
+  bool isRotationValid;
   float baseValue2;
   float baseValue3;
   float vectorComponentX;
@@ -199982,7 +199982,24 @@ UIHandle FUN_1807891bb(void)
 
 
 
-UIHandle FUN_1807891d0(longlong uiContext)
+/**
+ * @brief UI事件处理器清理函数A0
+ * 
+ * 该函数负责清理UI事件处理器的相关资源，包括：
+ * 1. 清理事件处理器的内存分配
+ * 2. 释放事件数据相关的资源
+ * 3. 重置事件处理器的状态
+ * 4. 确保所有事件处理器都被正确清理
+ * 
+ * @param uiContext UI上下文句柄，指向要清理的UI上下文
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_1807891d0
+ * @warning 清理过程中会释放所有事件处理器资源，调用后需要重新初始化
+ */
+UIHandle CleanupUIEventHandlersA0(longlong uiContext)
 
 {
   longlong allocatedMemory;
