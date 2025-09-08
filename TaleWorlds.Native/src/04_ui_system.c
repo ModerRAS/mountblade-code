@@ -108,27 +108,104 @@ typedef enum {
 #define ProcessUIEvent FUN_1807069e0
 
  // UI系统函数宏定义 - 处理UI事件缓冲区
+/**
+ * @brief 处理UI事件缓冲区
+ * 
+ * 该函数负责处理UI事件缓冲区的操作，包括：
+ * - 缓冲区数据读取
+ * - 缓冲区状态管理
+ * - 缓冲区清理
+ * 
+ * @note 原始函数名：FUN_180706b30
+ */
 #define ProcessUIEventBuffer FUN_180706b30
 
  // UI系统函数宏定义 - 更新UI事件状态
+/**
+ * @brief 更新UI事件状态
+ * 
+ * 该函数负责更新UI事件的状态信息，确保事件处理的正确性。
+ * 
+ * @note 原始函数名：FUN_180706b61
+ */
 #define UpdateUIEventState FUN_180706b61
 
  // UI系统函数宏定义 - 初始化UI事件系统
+/**
+ * @brief 初始化UI事件系统
+ * 
+ * 该函数负责初始化UI事件系统，包括：
+ * - 事件队列初始化
+ * - 事件处理器设置
+ * - 系统状态配置
+ * 
+ * @note 原始函数名：FUN_180706ba7
+ */
 #define InitializeUIEventSystem FUN_180706ba7
 
  // UI系统函数宏定义 - 处理UI渲染
+/**
+ * @brief 处理UI渲染
+ * 
+ * 该函数负责处理UI系统的渲染操作，包括：
+ * - 渲染管线管理
+ * - 渲染状态更新
+ * - 渲染数据准备
+ * 
+ * @note 原始函数名：FUN_180707200
+ */
 #define ProcessUIRendering FUN_180707200
 
  // UI系统函数宏定义 - 处理UI渲染缓冲区
+/**
+ * @brief 处理UI渲染缓冲区
+ * 
+ * 该函数负责处理UI渲染缓冲区的操作，包括：
+ * - 缓冲区数据管理
+ * - 渲染数据存储
+ * - 缓冲区状态更新
+ * 
+ * @note 原始函数名：FUN_1807072c0
+ */
 #define ProcessUIRenderBuffer FUN_1807072c0
 
  // UI系统函数宏定义 - 计算UI渲染数据
+/**
+ * @brief 计算UI渲染数据
+ * 
+ * 该函数负责计算UI渲染所需的数据，包括：
+ * - 渲染参数计算
+ * - 坐标变换计算
+ * - 渲染属性计算
+ * 
+ * @note 原始函数名：FUN_18070737d
+ */
 #define CalculateUIRenderData FUN_18070737d
 
  // UI系统函数宏定义 - 处理UI元素2D变换
+/**
+ * @brief 处理UI元素2D变换
+ * 
+ * 该函数负责处理UI元素的2D变换操作，包括：
+ * - 平移变换
+ * - 旋转变换
+ * - 缩放变换
+ * 
+ * @note 原始函数名：FUN_180707b03
+ */
 #define ProcessUIElement2DTransformation FUN_180707b03
 
  // UI系统函数宏定义 - 处理UI纹理数据
+/**
+ * @brief 处理UI纹理数据
+ * 
+ * 该函数负责处理UI纹理数据，包括：
+ * - 纹理加载
+ * - 纹理更新
+ * - 纹理管理
+ * 
+ * @note 原始函数名：FUN_180707457
+ */
 #define ProcessUITextureData FUN_180707457
 
  // UI系统函数宏定义 - 更新UI纹理
@@ -68699,10 +68776,7 @@ void ProcessUIComponentMemoryAllocation(void)
  * - 空闲时间处理
  * - 系统资源检查
  * - 后台任务调度
- * 
- * @note 原始函数名: FUN_18069f682
  */
- void FUN_18069f682(void)
 void UIEmptyOperation(void)
 
 {

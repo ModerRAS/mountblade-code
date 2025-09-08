@@ -639,6 +639,7 @@
 
 // 系统参数配置函数宏定义
 #define ConfigureSystemRenderingParameters FUN_1806faf00        // 配置系统渲染参数
+#define ResetSystemCharacterStatus FUN_18015b450                // 重置系统字符状态
 
 #define ProcessCharacterEncodingAndBufferManagement FUN_1801601c0
 
@@ -49906,8 +49907,8 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   float *SystemDataNode;
   uint32_t CharacterLimitD;
   float FloatXMM0;
-  float in_XMM1_Dc;
-  float in_XMM4_Da;
+  float FloatXMM1;
+  float FloatXMM4;
   float in_XMM4_Db;
   float in_XMM4_Dc;
   float in_XMM5_Da;
@@ -50289,7 +50290,7 @@ void ProcessFloatDataStructureAndParameterCalculationWithFloats(float CharacterC
   long long SystemContext;
   bool BooleanValidationFlag9;
   float PrimaryFloatValue;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float in_XMM5_Da;
   float SecondaryFloatValue;
   
@@ -59361,7 +59362,7 @@ void ProcessFloatDataStructure(float *CharacterCode,long long SystemBufferSize,u
   uint32_t MemoryAddressMaskPointer;
   uint32_t in_XMM3_Dc;
   uint32_t in_XMM3_Dd;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float magnitudeSquared;
   float CalculatedDistance;
   float in_XMM5_Da;
@@ -122466,7 +122467,7 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Charact
   long long RegisterR13Value;
   long long NullPointerValue;
   float SystemContextPrimaryFloat8;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float in_XMM5_Da;
   float AuxiliaryFloat10;
   
@@ -125174,7 +125175,7 @@ LAB_180124eff:
   long long SearchStartIndex;
   uint MemoryAddressMaskPointer;
   float MatrixTransformMultiplier;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float CalculatedDistance;
   
   if ((in_XMM4_Da != 0.0) || (*(float *)(SystemBufferSize + 300) != 0.0)) {
@@ -125244,7 +125245,7 @@ LAB_180124eff:
   long long in_RCX;
   float in_XMM1_Da;
   float SystemContextPrimaryFloat;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float ContextSecondaryFloat;
   float AuxiliaryFloat9;
   
@@ -125285,7 +125286,7 @@ LAB_180124eff:
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float AuxiliaryFloat9;
   
   if (Utf16EndPointer == 0) {
@@ -128758,7 +128759,7 @@ void ProcessSystemRenderingAndMemoryManagement(void)
   long long StackFrameAddressPointer;
   uint32_t RegisterValueEDI;
   float in_XMM3_Da;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float in_XMM5_Da;
   float FloatingPointRegisterA;
   
@@ -144092,7 +144093,7 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float SystemBufferSiz
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float ContextSecondaryFloat8;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float ContextSecondaryFloat9;
   float FilterInputValue0;
   float FilterInputValue1;
@@ -152977,7 +152978,7 @@ unsigned long long ProcessSystemDataConfigurationAndParameters(uint64_t Characte
   long long SystemRegisterR11;
   bool shouldReturnSource;
   bool BooleanCurrentCharacter6;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float in_XMM5_Da;
   float FloatingPointRegisterA;
   float BaseFloatValue;
@@ -246085,7 +246086,7 @@ FUN_1802090ff:
   long long systemLoopCounter;
   long long CharacterLimit;
   long long NullPointerValue;
-  float in_XMM4_Da;
+  float FloatXMM4;
   float TertiaryDataStorage;
   
   SystemBufferSize = SystemBufferSize * TertiaryDataStorage;
@@ -246190,7 +246191,7 @@ FUN_1802090ff:
   long long systemLoopCounter;
   long long CharacterLimit;
   long long NullPointerValue;
-  float in_XMM4_Da;
+  float FloatXMM4;
   
   StringLength = 0;
   if (0 < (int)(ProcessingResult >> 3)) {
@@ -246287,7 +246288,7 @@ LAB_1802090fa:
   long long CharacterLimit;
   long long NullPointerValue;
   float in_XMM3_Da;
-  float in_XMM4_Da;
+  float FloatXMM4;
   
   if (in_XMM4_Da < in_XMM3_Da) {
     long long AllocatedMemorySize = *(long long *)(NullPointerValue + 8);
