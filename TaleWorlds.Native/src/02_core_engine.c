@@ -3582,6 +3582,10 @@ const char* const StringTemplateDebugSystem = (const char*)0x180a097a0;
 // 系统字符串模板常量 - 用于替换UNK_180a03ac8等变量
 const void* const SystemStringPrimaryTemplate = (void*)0x180a03ac8;
 const void* const SystemStringSecondaryTemplate = (void*)0x180a01620;
+
+// 系统字符处理变量语义化宏定义
+#define CharacterVariable5 SystemContextValidationFlag
+#define IsSystemContextValid IsSystemContextValidationResult
 const void* const SystemStringTertiaryTemplate = (void*)0x180a03ad8;
 
 // 系统内存缓冲区常量 - 用于替换UNK_180a0ffa8等变量
@@ -185397,7 +185401,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     pCharacterStatusBuffer = SystemConfigurationHandle;
     pCoreEnginePointerBuffer158 = SystemConfigurationHandle;
     SystemConfigurationHandle = (void **)*CharacterStatusBuffer2;
-    FUN_180099430(*CoreEngineConfigFlag,
+    ProcessSystemConfiguration(*CoreEngineConfigFlag,
                   *(void *                   (CoreEngineSystemContext + 0x1a08 + (long long)*(int *)(CoreEngineSystemContext + 0x1590) * 8));
     SystemConfigurationHandle = pCharacterStatusBuffer;
     InputDataLength = _Mtx_unlock(0x180c91970);
@@ -185412,7 +185416,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     pCharacterStatusBuffer = SystemConfigurationHandle;
     pCharacterDataBuffer = SystemConfigurationHandle;
     SystemConfigurationHandle = (void **)*MemoryBlockListHead;
-    FUN_180127860();
+    ExecuteSystemCleanup();
     pSystemValidationChar = (char *)(**(long long **)((long long)SystemConfigurationHandle + 0x1c70) + 0x88);
     if (*pSystemValidationChar == '\0') {
       pSystemValidationChar = SystemStringCurrentCharacter;
