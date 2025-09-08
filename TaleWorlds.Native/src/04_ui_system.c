@@ -107,6 +107,9 @@ typedef enum {
  // UI系统函数宏定义 - 处理UI事件
 #define ProcessUIEvent FUN_1807069e0
 
+// UI系统函数宏定义 - 处理UI上下文事件分发
+#define ProcessUIContextEventDispatch FUN_180705530
+
  // UI系统函数宏定义 - 处理UI事件缓冲区
 /**
  * @brief 处理UI事件缓冲区
@@ -70159,7 +70162,7 @@ void ProcessUIComponentStateUpdate(longlong uiContext,int dataSource,longlong ta
     if (0 < dataSource) {
       localLong8 = bufferSize + (longlong)stackInt54 * 4;
       do {
-        FUN_180711810(uiContext + 0x50,
+        DispatchUIEventToComponents(uiContext + 0x50,
                       targetBuffer + ((longlong)(uiOperationResult * localInt6) +
                                 (longlong)((ProcessingResult2 + localInt7) * stackInt58)) * 4,localLong8,
                       *(UIHandle *)(uiContext + 0x48),localInt7,EventOperationCount,dataSource,param_9);
@@ -71766,7 +71769,7 @@ LAB_1807053b0:
          *(int *)((longlong)uiContext + 0x24) + (uVar9 - localInt8 * MaxProcessingCount);
   }
   *(uint *)(uiContext + 4) = MaxProcessingCount;
-  FUN_180705530(uiContext,(ulonglong)uVar9 % (ulonglong)eventTypeCode);
+  ProcessUIContextEventDispatch(uiContext,(ulonglong)uVar9 % (ulonglong)eventTypeCode);
   localInt8 = *(int *)((longlong)uiContext + 0x14);
   uVar9 = *(uint *)(uiContext + 2);
   if (0x20 < (uint)(localInt8 + localInt5)) {
@@ -71960,7 +71963,7 @@ LAB_1807053b0:
   if (EventOperationCount == 0) {
     dataSource[0x16] = 0;
     if (*(int *)((longlong)uiContext + 0x4f04) < (int)dataSource[1]) {
-      FUN_18071db50(uiContext + 0x4ec,*(UIDword *)((longlong)uiContext + 0x13ec));
+      ProcessUIDataBatchOperation(uiContext + 0x4ec,*(UIDword *)((longlong)uiContext + 0x13ec));
       *(UIDword *)(uiBufferData + 0x9d8) = 0;
       uiContext[0x9d9] = 0;
       uiContext[0x9da] = 1;
@@ -72048,7 +72051,7 @@ LAB_1807053b0:
       if (0 < (int)dataSource[1]) {
         ptrResult3 = (UIDword *)((longlong)uiContext + 0x13ec);
         do {
-          FUN_18071db50(uiContext + (longlong)EventOperationCount * 0x4ec,*ptrResult3);
+          ProcessUIDataBatchOperation(uiContext + (longlong)EventOperationCount * 0x4ec,*ptrResult3);
           EventOperationCount = EventOperationCount + 1;
           ptrResult3 = ptrResult3 + 0x9d8;
         } while (EventOperationCount < (int)dataSource[1]);
@@ -72078,7 +72081,7 @@ LAB_180705c37:
           else {
             result7 = 0;
           }
-          ProcessingResult1 = FUN_18071dbc0(uiContext + (longlong)EventOperationCount * 0x4ec,dataSource,
+          ProcessingResult1 = ProcessUIDataBatchResult(uiContext + (longlong)EventOperationCount * 0x4ec,dataSource,
                                  *(UIDword *)(uiBufferData + 0x9e2),EventOperationCount,result7);
           if (ProcessingResult1 != 0) goto LAB_180706998;
           if (((ptrResult3[-0x12] != 0) || (uiOperationResult8 != 0)) &&
