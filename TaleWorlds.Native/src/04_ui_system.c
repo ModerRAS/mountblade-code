@@ -4998,7 +4998,7 @@ UIHandle UIFontRenderer;
 UIHandle UIModalStack;
  UI系统资源池
 UIHandle UIResourcePool;
- UI系统事件调度器
+ // UI系统事件调度器
 UIHandle UIEventDispatcher;
  UI系统剪裁区域
 UIHandle UIClipRegion;
