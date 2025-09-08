@@ -110123,7 +110123,23 @@ void ProcessSystemOperationsInExceptionHandlerLoop(DataBuffer operationBase,int6
 
 
 
-void Unwind_180910160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存资源清理操作的异常处理器
+ * 
+ * 该函数负责在异常上下文中执行内存资源清理操作。主要功能包括：
+ * - 获取异常处理器上下文
+ * - 执行内存操作，清理资源数据
+ * - 调用资源清理处理器完成清理工作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910160
+ * @note 这是一个异常展开（unwind）处理函数，用于执行内存资源清理操作
+ */
+#define ExecuteMemoryResourceCleanupInExceptionHandler Unwind_180910160
+
+void ExecuteMemoryResourceCleanupInExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataSecondaryOffset18,0x20,2,CleanupResourceHandler);
@@ -110132,7 +110148,23 @@ void Unwind_180910160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910190(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 检查系统状态的异常处理器
+ * 
+ * 该函数负责在异常上下文中检查系统状态。主要功能包括：
+ * - 获取异常处理器上下文
+ * - 执行内存操作，检查系统状态
+ * - 调用系统状态检查函数完成状态验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910190
+ * @note 这是一个异常展开（unwind）处理函数，用于检查系统状态
+ */
+#define CheckSystemStatusInExceptionHandler Unwind_180910190
+
+void CheckSystemStatusInExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x58,2,CheckSystemStatusA0);
