@@ -88905,6 +88905,27 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
 
 
 
+// 原始函数名：FUN_18071a56f - UI数据缓冲区转换处理器
+#define ProcessUIDataBufferConversion FUN_18071a56f
+
+/**
+ * @brief 处理UI数据缓冲区转换
+ * 
+ * 该函数负责转换UI系统的数据缓冲区格式，支持不同数据类型之间的转换。
+ * 函数会根据输入的参数进行数据格式转换，并确保转换后的数据符合UI系统的要求。
+ * 
+ * @param uiContext UI上下文句柄，用于访问UI系统状态
+ * @param dataSource 数据源句柄，包含待转换的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储转换后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的最大范围
+ * 
+ * @return int 转换处理状态码，0表示成功，非0值表示错误
+ * 
+ * @note 原始函数名：FUN_18071a56f
+ * @note 该函数涉及复杂的数据类型转换算法
+ * @warning 转换过程中会修改原始数据结构
+ * @see ProcessUIDataConversion, HandleUIDataBuffer
+ */
 int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
 
 {
