@@ -239775,7 +239775,19 @@ void ExecuteSystemInitializationAndCleanup(void)
 
 
 
-02367(uint64_t CharacterCode,double SystemBufferSize,double Utf8SourcePointer,int Utf16EndPointervoid FUN_180202367(uint64_t CharacterCode,double SystemBufferSize,double Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * 该函数处理UTF-8到UTF-16的字符编码转换操作
+ * 
+ * @param CharacterCode - 字符编码
+ * @param SystemBufferSize - 系统缓冲区大小
+ * @param Utf8SourcePointer - UTF-8源指针
+ * @param Utf16EndPointer - UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180202367
+ */
+void ProcessUtf8ToUtf16Conversion(uint64_t CharacterCode,double SystemBufferSize,double Utf8SourcePointer,int Utf16EndPointer)
 {
   int LockResult;
   uint8_t aMemoryAllocationIndex [16];

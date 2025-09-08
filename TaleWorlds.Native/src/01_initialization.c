@@ -39007,7 +39007,7 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
   if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3 != 0) {
     LoggerIteratorOffset = 0;
     do {
-      ManageSystemThreads(*(void* )(*resourcePoolPointer + LocalSystemOffset));
+      ManageSystemThreads(*(void* )(*resourcePoolPointer + LoggerIteratorOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LoggerIteratorOffset = LoggerIteratorOffset + 8;
     } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3))
@@ -39018,14 +39018,14 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
   if (*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3 != 0) {
     LoggerIteratorOffset = 0;
     do {
-      ManageSystemThreads(*(void* )(*SystemResourceOffsetPointer + LocalSystemOffset));
+      ManageSystemThreads(*(void* )(*SystemResourceOffsetPointer + LoggerIteratorOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LoggerIteratorOffset = LoggerIteratorOffset + 8;
     } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long )(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
-  LocalSystemOffset = *PrimaryResourceHandle;
+  LoggerIteratorOffset = *PrimaryResourceHandle;
   if (*(long long *)(SystemResourceManager + 0x10) - LocalSystemOffset >> 3 != 0) {
     localDataIndex = 0;
     do {
