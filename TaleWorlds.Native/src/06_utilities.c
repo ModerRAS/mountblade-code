@@ -30123,12 +30123,12 @@ DataBuffer CleanupDataResourcesA0(void)
   char stackBuffer;
   uint processingOffset;
   
-  if (carryFlag) {
-    if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
+  if (validationFlag) {
+    if (*(int *)(inputDataContext + 0x18) != 0) {
       return ResourceInvalidErrorCode;
     }
     exceptionHandlerContext = *registerContext;
-    stackCharBuffer = StackFrameContext;
+    stackBuffer = StackFrameContext;
     validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x60,4);
     if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 100,2), (int)validationStatus == 0)) &&
        (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x66,2), (int)validationStatus == 0)) {
@@ -30139,7 +30139,7 @@ DataBuffer CleanupDataResourcesA0(void)
     }
   }
   else {
-    if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
+    if (*(int *)(inputDataContext + 0x18) != 0) {
       return ResourceInvalidErrorCode;
     }
     validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x70);
