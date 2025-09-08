@@ -198427,7 +198427,7 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t CharacterCode, uin
       pMemoryAddressMaskPointer = puStack_360;
     }
     strcpy_s(aSystemUnsignedValue160,0x40,pMemoryAddressMaskPointer);
-    FUN_1802c5470(auStack_118,&DataContentPointer,&SystemCharacterStatusBufferPointer);
+    ProcessSystemDataExtractionAndPointerManagement(auStack_118,&DataContentPointer,&SystemCharacterStatusBufferPointer);
     DataContentPointer = &ThreadLocalStorageTemplate;
     *CharacterCodeSize = &ThreadLocalStorageTemplate;
     SystemBufferSize[1] = 0;
@@ -198460,11 +198460,11 @@ uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t CharacterCode, uin
     uStack_2e8 = 0;
     uStack_2e0 = 0;
     SystemStateFlag = 0;
-    FUN_1802479e0(auStack_118,&uStack_328);
-    FUN_180246690(&uStack_328);
+    ProcessSystemStatusValidationAndMemoryManagement(auStack_118,&uStack_328);
+    ExecuteSystemMemoryCleanupAndResourceRelease(&uStack_328);
     ppuStack_3b8 = (void **)aStackProcessingValue;
-    FUN_1802c6e70(aStackProcessingValue);
-    FUN_180246690(auStack_118);
+    ProcessSystemStackDataAndCleanupOperations(aStackProcessingValue);
+    ExecuteSystemMemoryCleanupAndResourceRelease(auStack_118);
     SystemPointerBuffer1d8 = &ThreadLocalStorageTemplate;
     puStack_230 = &ThreadLocalStorageTemplate;
     ppuStack_3b8 = &SystemCharacterStatusBufferPointer;
