@@ -125097,8 +125097,8 @@ uint8_t SystemExceptionHandlerStateTable;
 // 回调函数执行器
 #define ExecuteOperationCallbacksA0 ExecuteSystemOperationCallbacksA0
 #define ExecuteCleanupCallbacksA0 ExecuteSystemCleanupCallbacksA0
-#define ExecuteStatusCallbacksA0 Unwind_180907ca0
-#define ExecuteResourceCallbacksA0 Unwind_180907cc0
+#define ExecuteStatusCallbacksA0 ExecuteSystemStatusCallbacksA0
+#define ExecuteResourceCallbacksA0 ExecuteSystemResourceCallbacksA0
 
 // 系统资源管理
 #define ResetSystemContextA0 Unwind_180907c40

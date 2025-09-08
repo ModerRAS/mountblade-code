@@ -162704,7 +162704,7 @@ void ProcessSystemContextAndByteBuffer(void)
   long long StackFrameAddressPointer;
   uint8_t ByteProcessBuffer;
   
-  *(uint8_t *)(SystemContext + 9) = in_stack_00000110;
+  *(uint8_t *)(SystemContext + 9) = StackParameter110;
   *(void *)(StackFrameAddressPointer + 0x210) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x20c) = 0;
   *(float *)(StackFrameAddressPointer + 0x100) =
@@ -162733,7 +162733,7 @@ void ProcessSystemContextAndByteBufferAux(void)
   long long StackFrameAddressPointer;
   uint8_t ByteProcessBuffer;
   
-  *(uint8_t *)(SystemContext + 9) = in_stack_00000110;
+  *(uint8_t *)(SystemContext + 9) = StackParameter110;
   *(void *)(StackFrameAddressPointer + 0x210) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x20c) = 0;
   *(float *)(StackFrameAddressPointer + 0x100) =
@@ -172217,7 +172217,7 @@ uint64_t * GetCharacterStatusBuffer(void)
   uint SystemMemoryAllocationResult;        // 系统内存分配结果
   byte *CharacterLimit;                     // 字符限制指针
   uint64_t uStackX_20;                      // 栈变量X_20
-  uint64_t in_stack_00000028;               // 栈变量00000028
+  uint64_t StackParameter28;               // 栈变量00000028
   uint64_t SystemCurrentCharacter30;        // 系统输入字符串缓冲区30
   uint64_t TertiaryDataStorage;             // 第三级数据存储
   uint32_t StackProcessedData40;       // 栈处理变量40
@@ -172236,7 +172236,7 @@ uint64_t * GetCharacterStatusBuffer(void)
   MemoryPoolBlockSize = (long long)*(int *)(SystemContext + 0x2e28) * 0x38;
   SystemDataRegistry = *(long long *)(SystemContext + 0x2e30);
   *(void *)(MemoryPoolBlockSize + SystemDataRegistry) = uStackX_20;
-  ((void *)(MemoryPoolBlockSize + SystemDataRegistry))[1] = in_stack_00000028;
+  ((void *)(MemoryPoolBlockSize + SystemDataRegistry))[1] = StackParameter28;
   StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x10 + SystemDataRegistry);
   *StringProcessingStatus = SystemCurrentCharacter30;
   StringProcessingStatus[1] = TertiaryDataStorage;
@@ -172292,7 +172292,7 @@ uint64_t * GetCharacterStatusBufferByCode(int CharacterCode)
   uint SystemMemoryAllocationResult;        // 系统内存分配结果
   byte *CharacterLimit;                     // 字符限制指针
   uint64_t uStackX_20;                      // 栈变量X_20
-  uint64_t in_stack_00000028;               // 栈变量00000028
+  uint64_t StackParameter28;               // 栈变量00000028
   uint64_t SystemCurrentCharacter30;        // 系统输入字符串缓冲区30
   uint64_t TertiaryDataStorage;             // 第三级数据存储
   uint32_t StackProcessedData40;       // 栈处理变量40
@@ -172304,7 +172304,7 @@ uint64_t * GetCharacterStatusBufferByCode(int CharacterCode)
   MemoryPoolBlockSize = (long long)CharacterCode * 0x38;
   SystemDataRegistry = *(long long *)(SystemContext + 0x2e30);
   *(void *)(MemoryPoolBlockSize + SystemDataRegistry) = uStackX_20;
-  ((void *)(MemoryPoolBlockSize + SystemDataRegistry))[1] = in_stack_00000028;
+  ((void *)(MemoryPoolBlockSize + SystemDataRegistry))[1] = StackParameter28;
   StringProcessingStatus = (void *)(MemoryPoolBlockSize + 0x10 + SystemDataRegistry);
   *StringProcessingStatus = SystemCurrentCharacter30;
   StringProcessingStatus[1] = TertiaryDataStorage;
@@ -209015,7 +209015,7 @@ void ConvertCharacterEncodingA0(void)
   uint32_t UnsignedSystemParameter28;
   uint64_t StackConfigurationData30;
   uint64_t SystemUnsignedValue38;
-  unsigned long long in_stack_00008040;
+  unsigned long long StackParameter8040;
   
   SystemUnsignedValue38 = 0;
   StackConfigurationData30 = 0;
@@ -209049,7 +209049,7 @@ void ConvertCharacterEncodingA0(void)
 void ClipboardCloseAndSystemContextHandler(void)
 {
   long long *SystemContext;
-  unsigned long long in_stack_00008040;
+  unsigned long long StackParameter8040;
   
   (**(code **)(*SystemContext + 0x10))();
   CloseClipboard();
@@ -209075,7 +209075,7 @@ void ClipboardCloseAndSystemContextHandler(void)
  */
 void CoreEngineUtilityFunctionExecutor(void)
 {
-  unsigned long long in_stack_00008040;
+  unsigned long long StackParameter8040;
   
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(StackSecurityParameter ^ (unsigned long long)&StackBaseAddress);
@@ -218639,7 +218639,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long SystemBuf
   unsigned long long MemoryAllocationOffset;
   float ContextSecondaryFloat1;
   uint64_t VectorCalculationResult;
-  uint64_t extraout_XMM0_Qb;
+  uint64_t VectorResultB;
   uint32_t MemoryAllocationIndex8;
   uint8_t aMemoryAllocationOffset [16];
   uint8_t aInputDataLength [16];
@@ -218776,9 +218776,9 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long SystemBuf
         }
         else if (ComputedResult == 9) {
           MemoryAllocationIndex = FUN_180181d80(CharacterCode,0x20,PrimaryReturnCode,IntegerValue9,UnicodeCodePoint0);
-          aMemoryAllocationOffset._8_4_ = (int)extraout_XMM0_Qb;
+          aMemoryAllocationOffset._8_4_ = (int)VectorResultB;
           aMemoryAllocationOffset.Low64Part = VectorCalculationResult;
-          aMemoryAllocationOffset.High32Part = (int)((unsigned long long)extraout_XMM0_Qb >> 0x20);
+          aMemoryAllocationOffset.High32Part = (int)((unsigned long long)VectorResultB >> 0x20);
           aInputDataLength._4_12_ = aMemoryAllocationOffset._4_12_;
           aInputDataLength.LowPart = ((float)VectorCalculationResult + ContextSecondaryFloat9) * 5.0;
           SystemOperationResult = (int)aInputDataLength.LowPart;
