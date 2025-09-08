@@ -237130,7 +237130,7 @@ LAB_180199fb9:
             uStack_1b0 = 0;
             pbStack_1c0 = (byte *)0x0;
             iStack_1b8 = 0;
-            CoreEngineProcessSystemEvent(&pSystemValue1c8,*(uint32_t *)(MemoryBufferC + 0x20));
+            CoreEngineProcessSystemEvent(&SystemMessageTemplatePointer,*(uint32_t *)(MemoryBufferC + 0x20));
             Utf8OutputPointer = pbStack_1c0;
             if (0 < *(int *)(MemoryBufferC + 0x20)) {
               CharacterStatusBuffer8 = &CoreEngineDataTemplate;
