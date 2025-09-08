@@ -202763,7 +202763,7 @@ void ProcessUtf8ToUtf16ConversionDataUpdate(long long CharacterCode,long long Sy
  */
 #define ExecuteCharacterCodePointerCallback FUN_18016cd80
 
-6cd80(long long *CharacterCodevoid FUN_18016cd80(long long *CharacterCode
+void FUN_18016cd80(long long *CharacterCode)
 {
   if ((long long *)*CharacterCode != (long long *)0x0) {
     (**(code **)(*(long long *)*CharacterCode + 0x38))();
@@ -202823,7 +202823,7 @@ long long * FUN_18016cdb0(long long *CharacterCode
  */
 #define InitializeCharacterTablePointerAndSystemTemplate FUN_18016ce50
 
-6ce50(long long *CharacterCodevoid FUN_18016ce50(long long *CharacterCode
+void FUN_18016ce50(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
