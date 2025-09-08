@@ -182425,7 +182425,20 @@ void ConvertUtf8ToUtf16Encoding(long long CharacterCode,uint64_t SystemBufferSiz
 
 
 
-4eb27(voidvoid FUN_18014eb27(void
+/**
+ * @brief 初始化系统事件模板
+ * 
+ * 该函数负责初始化系统事件模板，主要功能包括：
+ * - 设置系统事件模板的初始状态
+ * - 配置事件处理所需的内存结构
+ * - 初始化事件模板的指针和数据
+ * 
+ * 该函数用于系统事件管理的基础设置，确保事件处理系统能够
+ * 正确初始化并准备好接收和处理各种系统事件。
+ * 
+ * @note 原始函数名：FUN_18014eb27
+ */
+void InitializeSystemEventTemplate(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -182535,7 +182548,23 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
 
 
 
-4ebb6(long long CharacterCode,long long SystemBufferSizevoid FUN_18014ebb6(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 调整系统缓冲区大小
+ * 
+ * 该函数负责调整系统缓冲区的大小，主要功能包括：
+ * - 计算新的缓冲区容量需求
+ * - 重新分配内存空间
+ * - 复制现有数据到新的缓冲区
+ * - 更新缓冲区指针和大小信息
+ * 
+ * 该函数用于动态管理系统内存，确保缓冲区大小始终满足
+ * 系统需求，同时避免内存浪费。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @note 原始函数名：FUN_18014ebb6
+ */
+void AdjustSystemBufferSize(long long CharacterCode,long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long ProcessingResult;
@@ -182591,7 +182620,20 @@ void ProcessCharacterWithAdvancedValidation(long long *CharacterCode,unsigned lo
 
 
 
-4ec91(voidvoid FUN_18014ec91(void
+/**
+ * @brief 重置系统事件处理器
+ * 
+ * 该函数负责重置系统事件处理器，主要功能包括：
+ * - 清理事件处理器的内存状态
+ * - 重置事件处理相关的指针和计数器
+ * - 初始化事件处理器的默认配置
+ * 
+ * 该函数用于系统事件处理的清理和重置，确保事件处理系统
+ * 能够重新开始处理新的事件序列。
+ * 
+ * @note 原始函数名：FUN_18014ec91
+ */
+void ResetSystemEventHandler(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;

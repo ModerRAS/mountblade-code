@@ -83832,7 +83832,22 @@ void ManageResourceCleanupFlagC(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090aa50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源标志位2清理函数
+ * 
+ * 该函数负责在异常处理展开过程中清理特定标志位和关联资源。
+ * 主要功能包括：
+ * - 检查数据缓冲区0x30偏移处的第2位（值4）是否被设置
+ * - 如果标志位被设置，则清除该位并调用资源清理处理器
+ * - 清理位于数据缓冲区0x38偏移处的资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090aa50
+ * @note 这是异常处理展开机制中的资源清理函数
+ */
+void CleanupResourceFlagBit2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
