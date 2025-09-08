@@ -15412,7 +15412,7 @@ LAB_18065a2e9:
   *(float *)(BasePointer + -0x78) = uiContext0._4_4_;
   *(float *)(BasePointer + -0x74) = (unmodifiedXMM8_Da - baseValue6) * baseValue5;
   transformCoeff15 = (unmodifiedXMM8_Da - (float)renderHandle) * baseValue7;
-  uiContext1._4_4_ = (unmodifiedXMM8_Da - (float)param_8) * baseValue2;
+  uiContext1._4_4_ = (unmodifiedXMM8_Da - (float)renderHandle) * baseValue2;
   *(float *)(BasePointer + -0x80) = transformCoeff15;
   if (((char)contextFlag == '\0') || (preservedXMM6 < (float)renderHandle)) {
     if (baseValue5 <= preservedXMM6) {
