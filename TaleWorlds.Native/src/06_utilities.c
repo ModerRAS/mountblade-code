@@ -100100,7 +100100,17 @@ void ExecuteExceptionContextMemoryOperation(DataBuffer operationBase, int64_t da
 
 
 
-void Unwind_18090dd00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据验证处理器DD00
+ * 
+ * 验证和处理异常数据缓冲区，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090dd00
+ */
+void ValidateAndProcessExceptionData(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100126,7 +100136,17 @@ void Unwind_18090dd00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dd10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文数据处理器DD10
+ * 
+ * 处理异常上下文数据，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090dd10
+ */
+void ProcessExceptionContextData(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -126422,7 +126442,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cb10 - 异常处理器设置函数B10
 // 功能：设置异常数据缓冲区的默认异常处理器B
-#define SetupExceptionHandlerB10 Unwind_18090cb10
+#define SetupExceptionHandlerB10 SetupExceptionHandlerB10
 
 // 原始函数名：Unwind_18090cb20 - 异常上下文处理函数B20
 // 功能：处理异常上下文，设置默认异常处理器B
