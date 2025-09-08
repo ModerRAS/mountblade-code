@@ -190886,7 +190886,24 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
 
 
 
-5aa70(long long *CharacterCode,int SystemBufferSize,int Utf8SourcePointervoid FUN_18015aa70(long long *CharacterCode,int SystemBufferSize,int Utf8SourcePointer
+/**
+ * @brief 处理字符代码的内存分配和引用计数管理
+ * 
+ * 该函数负责处理字符代码的内存分配、引用计数管理和系统配置。
+ * 主要功能包括：
+ * - 分配和管理字符代码内存
+ * - 处理引用计数和内存池管理
+ * - 执行系统配置和性能计数
+ * - 管理内存边界和资源释放
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015aa70
+ */
+void ProcessCharacterCodeMemoryAllocationAndReferenceCount(long long *CharacterCode,int SystemBufferSize,int Utf8SourcePointer
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
