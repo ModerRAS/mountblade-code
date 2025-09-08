@@ -107571,7 +107571,18 @@ void ResetExceptionHandlerToDefaultAtOffset158(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_18090fab0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器为默认处理器 - 偏移量0x158
+ * 
+ * 该函数将数据缓冲区偏移量0x158处的异常处理器重置为系统默认异常处理器B。
+ * 这是一个标准的异常处理器重置函数，用于在异常处理完成后恢复默认状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fab0
+ */
+void ResetExceptionHandlerToDefaultAtOffset158B(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x158) = &SystemDefaultExceptionHandlerB;
