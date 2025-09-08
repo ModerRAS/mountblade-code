@@ -77844,39 +77844,39 @@ void TerminateSystemProcess(void
 void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
                   long long AdditionalParameter1
 {
-  long long *CharacterCode;
-  double *pTimeDifferenceInSeconds;
-  double CalculatedDifference;
-  long long *EngineContext;
-  long long AllocatedMemorySize;
+  long long *DataStructureIterator;
+  double *TimeDifferencePointer;
+  double CalculatedTimeDifference;
+  long long *EngineContextPointer;
+  long long AllocatedMemoryBlockSize;
   long long *MemoryBoundaryPointer;
-  long long *MemoryPoolBlockSizePointer;
-  void *NextNode;
-  char *pSystemValidationChar;
-  long long *CharacterCode1;
-  long long *CharacterCode2;
-  int IntegerValue;
-  uint Utf16Char4;
+  long long *MemoryPoolIterator;
+  void *NextNodePointer;
+  char *ScopeStringPointer;
+  long long *CharacterIterator1;
+  long long *CharacterIterator2;
+  int LoopCounter;
+  uint Utf16CharacterCode;
   long long MemoryAllocationOffset;
-  unsigned long long UnicodeCharacterCode;
-  long long *CharacterCode8;
-  void *CharacterStatusBuffer9;
-  float ContextSecondaryFloat0;
-  char *CurrentCharacter0;
+  unsigned long long UnicodeCharacterValue;
+  long long *CharacterIterator8;
+  void *CharacterStatusBuffer;
+  float ContextFloatValue;
+  char *CurrentCharacterPointer;
   unsigned long long Utf16ConversionContext;
   
-  IntegerValue = 0;
-  CharacterCode2 = *(long long **)(AdditionalParameter1 + 0x48);
-  if (*(long long *)(AdditionalParameter1 + 0x50) - (long long)CharacterCode2 >> 3 != 0) {
-    AllocatedMemorySize = 0;
+  LoopCounter = 0;
+  CharacterIterator2 = *(long long **)(AdditionalParameter1 + 0x48);
+  if (*(long long *)(AdditionalParameter1 + 0x50) - (long long)CharacterIterator2 >> 3 != 0) {
+    AllocatedMemoryBlockSize = 0;
     do {
-      ContextSecondaryFloat0 = (float)CalculateSystemAverageValue(SystemBufferSize,*(void *)(AllocatedMemorySize + *(long long *)(AdditionalParameter1 + 0x48)));
+      ContextFloatValue = (float)CalculateSystemAverageValue(SourceDataStructurePointer,*(void *)(AllocatedMemoryBlockSize + *(long long *)(AdditionalParameter1 + 0x48)));
       CharacterTablePointer = CharacterTablePointer + 1;
-      *(double *)(*(long long *)(AllocatedMemorySize + *(long long *)(AdditionalParameter1 + 0x48)) + 0x40) = (double)ContextSecondaryFloat0;
-      CharacterCode2 = *(long long **)(AdditionalParameter1 + 0x48);
-      AllocatedMemorySize = AllocatedMemorySize + 8;
-    } while ((unsigned long long)(long long)IntegerValue <
-             (unsigned long long)(*(long long *)(AdditionalParameter1 + 0x50) - (long long)CharacterCode2 >> 3));
+      *(double *)(*(long long *)(AllocatedMemoryBlockSize + *(long long *)(AdditionalParameter1 + 0x48)) + 0x40) = (double)ContextFloatValue;
+      CharacterIterator2 = *(long long **)(AdditionalParameter1 + 0x48);
+      AllocatedMemoryBlockSize = AllocatedMemoryBlockSize + 8;
+    } while ((unsigned long long)(long long)LoopCounter <
+             (unsigned long long)(*(long long *)(AdditionalParameter1 + 0x50) - (long long)CharacterIterator2 >> 3));
   }
   SystemContextPtr = *(long long **)(AdditionalParameter1 + 0x50);
   if (CharacterCode2 != SystemContextPtr) {

@@ -23088,7 +23088,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
   dataPointer = (int *)(**(FunctionPointer**)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + (int64_t)searchIndex * 0xc) +
-                                *(int64_t *)(dataStructure + 8)) + 0x50))();
+                                *(int64_t *)(dataStructure + DataStructurePointerOffset8)) + 0x50))();
   if (dataPointer == (int *)0x0) {
     targetValue = 0;
   }
@@ -23099,7 +23099,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
     currentIndex = (int64_t)(searchIndex + 1);
     dataPointer = (int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + currentIndex * 0xc);
     while (((char)dataPointer[2] != '\x02' ||
-           (itemAddress = (int64_t)*dataPointer + *(int64_t *)(dataStructure + 8), *(int *)(itemAddress + SystemDataParameterOffset20) != targetValue)
+           (itemAddress = (int64_t)*dataPointer + *(int64_t *)(dataStructure + DataStructurePointerOffset8), *(int *)(itemAddress + SystemDataParameterOffset20) != targetValue)
            )) {
       currentIndex = currentIndex + 1;
       dataPointer = dataPointer + 3;
