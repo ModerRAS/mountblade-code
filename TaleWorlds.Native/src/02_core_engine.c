@@ -202417,6 +202417,21 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
+/**
+ * @brief 执行字符代码指针的回调函数
+ * 
+ * 该函数负责执行字符代码指针所指向的回调函数，包括：
+ * - 检查字符代码指针的有效性
+ * - 通过函数指针调用回调函数
+ * - 处理空指针的情况
+ * 
+ * @param CharacterCode 字符代码指针，包含回调函数信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016cd80
+ */
+#define ExecuteCharacterCodePointerCallback FUN_18016cd80
+
 6cd80(long long *CharacterCodevoid FUN_18016cd80(long long *CharacterCode
 {
   if ((long long *)*CharacterCode != (long long *)0x0) {
@@ -202426,6 +202441,22 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 }
 
 
+
+/**
+ * @brief 初始化系统字符串模板和渲染配置
+ * 
+ * 该函数负责初始化系统字符串模板和渲染配置，包括：
+ * - 设置字符代码指针为系统字符串模板
+ * - 初始化基本的IO流操作
+ * - 配置渲染数据结构
+ * - 设置字符串处理的偏移量
+ * 
+ * @param CharacterCode 字符代码指针，用于存储初始化后的配置
+ * @return long long* 返回配置后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18016cdb0
+ */
+#define InitializeSystemStringTemplateAndRenderConfig FUN_18016cdb0
 
 long long * FUN_18016cdb0(long long *CharacterCode
 {
