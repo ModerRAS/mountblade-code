@@ -186048,7 +186048,7 @@ code_r0x000180151fd7:
     break;
   case 0x1f:
     MemoryBlockListHead = *(long long **)(CharacterCode + 0xa0);
-    MemoryAllocationIndex = FUN_18031a020(&SystemStackPointer448,MemoryBlockListHead[0x21],*(uint32_t *)(CharacterCode + 0xb0));
+    MemoryAllocationIndex = AllocateSystemMemoryBlockWithId(&SystemStackPointer448,MemoryBlockListHead[0x21],*(uint32_t *)(CharacterCode + 0xb0));
     ProcessSystemContextData(MemoryBlockListHead + 0x20,MemoryAllocationIndex);
     if (SystemStackPointer448 != (long long *)0x0) {
       (**(code **)(*SystemStackPointer448 + 0x38))();
