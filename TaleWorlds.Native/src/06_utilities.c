@@ -5926,16 +5926,37 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define InitializeMemoryManagerD4 FUN_1809427d0
 
-// 原始函数名：FUN_180891ca0 - 数据处理函数
-// 功能：处理数据并设置标志位0x29
+/**
+ * @brief 数据处理并设置主标志位函数
+ * 
+ * 该函数负责处理数据并设置标志位0x29，用于标记数据的处理状态。
+ * 通过设置特定的标志位，系统可以跟踪数据处理的进度和状态。
+ * 
+ * @note 原始函数名：FUN_180891ca0
+ * @return int 处理状态码，0表示成功
+ */
 #define ProcessDataSetFlagPrimary FUN_180891ca0
 
-// 原始函数名：FUN_180891cf0 - 数据处理函数
-// 功能：处理数据并设置标志位0x28
+/**
+ * @brief 数据处理并设置次标志位函数
+ * 
+ * 该函数负责处理数据并设置标志位0x28，用于标记数据的处理状态。
+ * 通过设置特定的标志位，系统可以跟踪数据处理的进度和状态。
+ * 
+ * @note 原始函数名：FUN_180891cf0
+ * @return int 处理状态码，0表示成功
+ */
 #define ProcessDataSetFlagSecondary FUN_180891cf0
 
-// 原始函数名：FUN_180891d40 - 数据验证函数
-// 功能：验证数据并返回状态码
+/**
+ * @brief 数据验证并返回状态码函数
+ * 
+ * 该函数负责验证数据的完整性和有效性，并返回相应的状态码。
+ * 数据验证是确保系统安全性和稳定性的重要环节。
+ * 
+ * @note 原始函数名：FUN_180891d40
+ * @return int 验证状态码，0表示成功，非0表示错误
+ */
 #define ValidateDataAndReturnStatus FUN_180891d40
 
 // 原始函数名：FUN_180891e40 - 系统事件处理函数
