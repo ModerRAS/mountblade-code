@@ -100047,9 +100047,9 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
   float SystemContextPrimaryFloat4;
   float SystemFloatValue;
   uint64_t CharacterCodeParameter;
-  char acStack_d8 [8];
-  uint64_t SystemFlagG;
-  uint32_t SystemFlagH;
+  char LocalStackBuffer_d8 [8];
+  uint64_t MatrixTransformResult;
+  uint32_t SystemValidationFlag;
   float MatrixElementB;
   float MatrixElementC;
   float MatrixElementD;
@@ -203461,7 +203461,7 @@ uint64_t InitializeUtf8ToUtf16ConversionEnvironment(uint64_t *CharacterCode,uint
 
 
 
-6df40(uint64_t *CharacterCodevoid FUN_18016df40(uint64_t *CharacterCode
+void ProcessSystemMemoryAndCharacterValidation(uint64_t *CharacterCode)
 {
   long long *CharacterCode;
   uint32_t *PrimaryProcessingStatusFlag;
