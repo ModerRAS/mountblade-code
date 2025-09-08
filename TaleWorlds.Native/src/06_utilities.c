@@ -11332,13 +11332,13 @@ void* UtilitySystemQuaternaryCallbackDataPointer;
  * @note 原始函数名: FUN_180942a80
  */
 void SetupUtilitySystemConfiguration(void);          // 设置工具系统配置
-void* UtilitySystemConfigData1;
-uint8_t UtilitySystemConfigStatus1;
-void* UtilitySystemConfigData2;
-uint8_t UtilitySystemConfigStatus2;
-void* UtilitySystemThreadData1;
-void* UtilitySystemThreadData2;
-void* UtilitySystemThreadData3;
+void* UtilitySystemPrimaryConfigData;
+uint8_t UtilitySystemPrimaryConfigStatus;
+void* UtilitySystemSecondaryConfigData;
+uint8_t UtilitySystemSecondaryConfigStatus;
+void* UtilitySystemPrimaryThreadData;
+void* UtilitySystemSecondaryThreadData;
+void* UtilitySystemTertiaryThreadData;
 
 /**
  * @brief 处理工具系统标志
@@ -11348,10 +11348,10 @@ void* UtilitySystemThreadData3;
  * @note 原始函数名: FUN_180942fa0
  */
 void ProcessUtilitySystemFlags(void);               // 处理工具系统标志
-void* UtilitySystemFlagData1;
-void* UtilitySystemFlagData2;
-void* UtilitySystemFlagData3;
-void* UtilitySystemFlagData4;
+void* UtilitySystemPrimaryFlagData;
+void* UtilitySystemSecondaryFlagData;
+void* UtilitySystemTertiaryFlagData;
+void* UtilitySystemQuaternaryFlagData;
 
 /**
  * @brief 验证工具系统标志
@@ -11361,8 +11361,8 @@ void* UtilitySystemFlagData4;
  * @note 原始函数名: FUN_180942fc0
  */
 void ValidateUtilitySystemFlags(void);               // 验证工具系统标志
-void* UtilitySystemCleanupData1;
-uint8_t UtilitySystemCleanupStatus1;
+void* UtilitySystemPrimaryCleanupData;
+uint8_t UtilitySystemPrimaryCleanupStatus;
 
 /**
  * @brief 初始化工具系统本地数据
@@ -11373,10 +11373,10 @@ uint8_t UtilitySystemCleanupStatus1;
  * @return uint8_t 初始化结果状态码
  */
 uint8_t InitializeUtilitySystemLocalData(void);
-uint8_t UtilitySystemLocalData1;
-uint8_t UtilitySystemLocalStatus1;
-uint8_t UtilitySystemLocalData2;
-uint8_t UtilitySystemLocalStatus2;
+uint8_t UtilitySystemPrimaryLocalData;
+uint8_t UtilitySystemPrimaryLocalStatus;
+uint8_t UtilitySystemSecondaryLocalData;
+uint8_t UtilitySystemSecondaryLocalStatus;
 
 /**
  * @brief 配置工具系统存储
@@ -11397,8 +11397,8 @@ uint8_t ConfigureUtilitySystemStorage(void);
  * @return uint8_t 验证结果状态码
  */
 uint8_t ValidateUtilitySystemStorage(void);
-uint8_t UtilitySystemStorageData1;
-uint8_t UtilitySystemStorageData2;
+uint8_t UtilitySystemPrimaryStorageData;
+uint8_t UtilitySystemSecondaryStorageData;
 
 /**
  * @brief 处理工具系统存储
