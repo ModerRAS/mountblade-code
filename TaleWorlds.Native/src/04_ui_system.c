@@ -20007,18 +20007,20 @@ longlong InitializeUISystemInstance(longlong uiContext)
 
 
 
- UI组件渲染更新函数
- 
- 该函数负责更新UI组件的渲染状态，处理组件的位置、大小、
- 颜色等属性的更新，并准备渲染数据。
- 
-  uiContext UI组件指针
-  dataSource 渲染上下文
-  targetBuffer 渲染参数
-  bufferSize 更新标志
-  resultPointer 附加数据
-  param_6 渲染时间戳
- @return 无返回值
+ /**
+ * @brief UI组件渲染更新函数
+ * 
+ * 该函数负责更新UI组件的渲染状态，处理组件的位置、大小、
+ * 颜色等属性的更新，并准备渲染数据。
+ * 
+ * @param uiContext UI组件指针
+ * @param dataSource 渲染上下文
+ * @param targetBuffer 渲染参数
+ * @param bufferSize 更新标志
+ * @param resultPointer 附加数据
+ * @param renderTimestamp 渲染时间戳
+ * @return 无返回值
+ */
 void UpdateUIComponentRendering(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize,
                                UIHandle resultPointer,longlong renderTimestamp)
 
@@ -84751,7 +84753,18 @@ void ProcessUIContextTransform(undefined *uiContext)
 
 
 
- void FUN_180716572(void)
+ /**
+ * @brief 清空UI缓冲区内存
+ * 
+ * 该函数负责清空UI系统中的缓冲区内存，将指定范围的内存块设置为0。
+ * 主要用于UI系统的内存清理和资源释放操作。
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180716572
+ * @warning 此函数不会返回，会直接调用memset并终止执行
+ */
 void ClearUIBufferMemory(void)
 
 {
@@ -84974,8 +84987,7 @@ void ProcessUITransformAndRotation(longlong uiContext, UIHandle dataSource, int 
 
 
 
- void FUN_1807167d3(void)
-/**
+ /**
  * @brief UI系统空操作函数
  * 
  * 该函数是一个空操作函数，主要用于：
@@ -85347,8 +85359,37 @@ void ProcessUIFloatTransformAndNormalization(longlong uiContext, longlong dataSo
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180716f10(int uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,UIHandle resultPointer,
-void FUN_180716f10(int uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,UIHandle resultPointer,
+ /**
+ * @brief UI系统数据处理函数
+ * 
+ * 该函数负责处理UI系统中的复杂数据操作，包括多个参数的协调处理。
+ * 
+ * @param uiContext UI上下文参数
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9
+ * @param uiContext0 UI上下文0
+ * @param uiContext1 UI上下文1
+ * @param uiContext2 UI上下文2
+ * @param uiContext3 UI上下文3
+ * @param uiContext4 UI上下文4
+ * @param uiContext5 UI上下文5
+ * @param uiContext6 UI上下文6
+ * @param uiContext7 UI上下文7
+ * @param uiContext8 UI上下文8
+ * @param uiContext9 UI上下文9
+ * @param dataSource0 数据源0
+ * @param dataSource1 数据源1
+ * @return 处理结果
+ * 
+ * @note 原始函数名：FUN_180716f10
+ */
+void ProcessUIDataComplex(int uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,UIHandle resultPointer,
                   longlong param_6,UIHandle param_7,UIHandle param_8,UIHandle param_9,
                   int uiContext0,UIHandle uiContext1,int uiContext2,UIHandle uiContext3,
                   UIHandle uiContext4,UIHandle uiContext5,UIHandle uiContext6,UIHandle uiContext7,
