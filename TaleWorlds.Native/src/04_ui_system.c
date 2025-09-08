@@ -114859,8 +114859,8 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
           if ((bufferSize == 0) && (resultPointer == 0)) {
             validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
             *(undefined **)(validationIndex + 0x358) = &UNK_180741cf0;
-            *(undefined **)(validationIndex + 0x360) = &UNK_180741d00;
-            *(undefined **)(validationIndex + 0x368) = &UNK_180741ce0;
+            *(undefined **)(validationIndex + 0x360) = &UIResourceTableRegistryPointer;
+            *(undefined **)(validationIndex + 0x368) = &UIContextDataPointer;
             return 0;
           }
         }
@@ -125979,8 +125979,8 @@ UIHandle ThunkUIDataProcess(longlong *uiContext)
     stringCompareIndex = stringCompareIndex + -1;
   } while (stringCompareIndex != 0);
   uiContext[0x6b] = (longlong)&UNK_180741cf0;
-  uiContext[0x6c] = (longlong)&UNK_180741d00;
-  uiContext[0x6d] = (longlong)&UNK_180741ce0;
+  uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
+  uiContext[0x6d] = (longlong)&UIContextDataPointer;
   result = *(uint *)(uiContext + 0x66);
   *uiContext = 0;
   uiContext[1] = 0;
@@ -126168,8 +126168,8 @@ UIHandle FUN_180742070(longlong *uiContext)
     stringCompareIndex = stringCompareIndex + -1;
   } while (stringCompareIndex != 0);
   uiContext[0x6b] = (longlong)&UNK_180741cf0;
-  uiContext[0x6c] = (longlong)&UNK_180741d00;
-  uiContext[0x6d] = (longlong)&UNK_180741ce0;
+  uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
+  uiContext[0x6d] = (longlong)&UIContextDataPointer;
   result = *(uint *)(uiContext + 0x66);
   *uiContext = 0;
   uiContext[1] = 0;
@@ -131417,7 +131417,7 @@ LAB_1807474ff:
           }
           if ((*(char *)(TargetHandle + 0x12370) == (char)SourceHandle) &&
              ((*(byte *)(TargetHandle + 0x78) & 1) == 0)) {
-            iterationCount = FUN_180767c00(TargetHandle + 0x12220,&UNK_180958080,&UNK_18078b870);
+            iterationCount = FUN_180767c00(TargetHandle + 0x12220,&UISystemGlobalDataRegistry,&UISystemConfigurationData);
             if (iterationCount != 0) goto LAB_180747287;
             *(UIByte *)(TargetHandle + 0x12370) = 1;
           }
