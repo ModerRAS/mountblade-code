@@ -129891,7 +129891,7 @@ UIHandle FUN_1807483a0(longlong uiContext,longlong dataSource,UIDword *targetBuf
       stackUInt30 = 0;
       stackUInt28 = 0;
       stackUInt20 = 0;
-      semaphoreHandle = FUN_180772160(*(UIHandle *)(uiContext + 0x11418),&stackUInt58,dataSource,astackUInt68,0);
+      semaphoreHandle = ValidateUIDataStructure(*(UIHandle *)(uiContext + 0x11418),&stackUInt58,dataSource,astackUInt68,0);
       if ((int)semaphoreHandle == 0) {
         if (targetBuffer != (UIDword *)0x0) {
           *targetBuffer = astackUInt68[0];
@@ -129954,7 +129954,7 @@ UIHandle FUN_180748401(void)
   stackParam00000068 = 0;
   stackParam00000070 = 0;
   stackParam00000078 = 0;
-  semaphoreHandle = FUN_180772160(*(UIHandle *)(TargetHandle + 0x11418),&stack0x00000040);
+  semaphoreHandle = ValidateUIDataStructure(*(UIHandle *)(TargetHandle + 0x11418),&stack0x00000040);
   if ((int)semaphoreHandle == 0) {
     if (SourceHandle != (UIDword *)0x0) {
       *SourceHandle = stackParam00000030;
@@ -130710,60 +130710,60 @@ int FUN_180749060(longlong uiContext)
                                               localInt5 = FUN_180771ed0(*pContextHandleData,EventTypeCode,0,0xa28,0);
                                               if (localInt5 == 0) {
                                                 EventTypeCode = FUN_180798860();
-                                                localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                 if (localInt5 == 0) {
                                                   EventTypeCode = FUN_1807a2720();
-                                                  localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                  localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                   if (localInt5 == 0) {
                                                     EventTypeCode = FUN_180791e20();
-                                                    localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                    localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                     if (localInt5 == 0) {
                                                       EventTypeCode = FUN_180793ff0();
-                                                      localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                      localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                       if (localInt5 == 0) {
                                                         EventTypeCode = FUN_180794e70();
-                                                        localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                        localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                         if (localInt5 == 0) {
                                                           EventTypeCode = FUN_18077b2c0();
-                                                          localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0)
+                                                          localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0)
                                                           ;
                                                           if (localInt5 == 0) {
                                                             EventTypeCode = FUN_18077d3d0();
-                                                            localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,
+                                                            localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,
                                                                                   0);
                                                             if (localInt5 == 0) {
                                                               EventTypeCode = FUN_180776090();
-                                                              localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,
+                                                              localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,
                                                                                     0,0);
                                                               if (localInt5 == 0) {
                                                                 EventTypeCode = FUN_180777010();
-                                                                localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,
+                                                                localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,
                                                                                       0,0,0);
                                                                 if (localInt5 == 0) {
                                                                   EventTypeCode = FUN_18077a570();
-                                                                  localInt5 = FUN_180772160(*pContextHandleData,
+                                                                  localInt5 = ValidateUIDataStructure(*pContextHandleData,
                                                   EventTypeCode,0,0,0);
                                                   if (localInt5 == 0) {
                                                     EventTypeCode = FUN_1807a57f0();
-                                                    localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                    localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                     if (localInt5 == 0) {
                                                       EventTypeCode = FUN_1807a75f0();
-                                                      localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                      localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                       if (localInt5 == 0) {
                                                         EventTypeCode = FUN_180775120();
-                                                        localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                        localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                         if (localInt5 == 0) {
                                                           EventTypeCode = FUN_180795c00();
-                                                          localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0)
+                                                          localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0)
                                                           ;
                                                           if (localInt5 == 0) {
                                                             EventTypeCode = FUN_180796620();
-                                                            localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,
+                                                            localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,
                                                                                   0);
                                                             if (localInt5 == 0) {
                                                               EventTypeCode = FUN_180799620();
                                                               MaxProcessingCount = 0;
-                                                              localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,
+                                                              localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,
                                                                                     0,0);
                                                               if (localInt5 == 0) {
                                                                 EventTypeCode = FUN_18079d1f0();
@@ -130772,57 +130772,57 @@ int FUN_180749060(longlong uiContext)
                                                   MaxProcessingCount,0x24));
                                                   if (localInt5 == 0) {
                                                     EventTypeCode = FUN_1807a01e0();
-                                                    localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                    localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                     if (localInt5 == 0) {
                                                       EventTypeCode = FUN_1807744e0();
-                                                      localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                      localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                       if (localInt5 == 0) {
                                                         EventTypeCode = FUN_18077e570();
-                                                        localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                        localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                         if (localInt5 == 0) {
                                                           EventTypeCode = FUN_18077efd0();
-                                                          localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0)
+                                                          localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0)
                                                           ;
                                                           if (localInt5 == 0) {
                                                             EventTypeCode = FUN_180781cc0();
-                                                            localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,
+                                                            localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,
                                                                                   0);
                                                             if (localInt5 == 0) {
                                                               EventTypeCode = FUN_180791b60();
-                                                              localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,
+                                                              localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,
                                                                                     0,0);
                                                               if (localInt5 == 0) {
                                                                 EventTypeCode = FUN_180771090();
-                                                                localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,
+                                                                localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,
                                                                                       0,0,0);
                                                                 if (localInt5 == 0) {
                                                                   EventTypeCode = FUN_18076ff30();
-                                                                  localInt5 = FUN_180772160(*pContextHandleData,
+                                                                  localInt5 = ValidateUIDataStructure(*pContextHandleData,
                                                   EventTypeCode,0,0,0);
                                                   if (localInt5 == 0) {
                                                     EventTypeCode = func_0x00018076e530();
-                                                    localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                    localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                     if (localInt5 == 0) {
                                                       EventTypeCode = FUN_180783810();
-                                                      localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                      localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                       if (localInt5 == 0) {
                                                         EventTypeCode = FUN_180779050();
-                                                        localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0);
+                                                        localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0);
                                                         if (localInt5 == 0) {
                                                           EventTypeCode = FUN_1807a86a0();
-                                                          localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,0)
+                                                          localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,0)
                                                           ;
                                                           if (localInt5 == 0) {
                                                             EventTypeCode = FUN_1807aa050();
-                                                            localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,0,
+                                                            localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,0,
                                                                                   0);
                                                             if (localInt5 == 0) {
                                                               EventTypeCode = FUN_1807806c0();
-                                                              localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,0,
+                                                              localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,0,
                                                                                     0,0);
                                                               if (localInt5 == 0) {
                                                                 EventTypeCode = FUN_180797e50();
-                                                                localInt5 = FUN_180772160(*pContextHandleData,EventTypeCode,
+                                                                localInt5 = ValidateUIDataStructure(*pContextHandleData,EventTypeCode,
                                                                                       0,0,0);
                                                                 if (localInt5 == 0) {
                                                                   *(UIByte *)(uiContext + 9) = 1;
@@ -155094,7 +155094,7 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
     if (*(longlong *)(uiBufferData + 0x138) != 0) {
       ptrResult1 = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
     }
-    uiCompareResult = FUN_180762e40(uiContext,ptrResult1,dataSource,*(UIDword *)(uiBufferData + 0x148));
+    uiCompareResult = ProcessUIEventDispatch(uiContext,ptrResult1,dataSource,*(UIDword *)(uiBufferData + 0x148));
     if (uiCompareResult != 0) {
       if ((IsEventProcessingActive4) && (allocatedMemory2 != 0)) {
                      WARNING: Subroutine does not return
@@ -155146,7 +155146,7 @@ LAB_180761b18:
       if (*(longlong *)(uiBufferData + 0x138) != 0) {
         ptrResult1 = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
       }
-      uiCompareResult = FUN_180762e40(uiContext,ptrResult1,dataSource,*(UIDword *)(uiBufferData + 0x148));
+      uiCompareResult = ProcessUIEventDispatch(uiContext,ptrResult1,dataSource,*(UIDword *)(uiBufferData + 0x148));
       if (uiCompareResult != 0) {
         if ((IsEventProcessingActive3) && (CharacterDataOffset != 0)) {
                      WARNING: Subroutine does not return
@@ -155809,7 +155809,7 @@ LAB_180761b18:
       if (*(longlong *)(ContextHandle + 0x138) != 0) {
         unmodifiedR13 = *(longlong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
       }
-      localInt7 = FUN_180762e40(uiContext,unmodifiedR13,RegisterValue,*(UIDword *)(ContextHandle + 0x148),allocatedMemory5);
+      localInt7 = ProcessUIEventDispatch(uiContext,unmodifiedR13,RegisterValue,*(UIDword *)(ContextHandle + 0x148),allocatedMemory5);
       if (localInt7 != 0) {
         if ((IsEventProcessingActive3) && (allocatedMemory1 != 0)) {
                      WARNING: Subroutine does not return
@@ -156554,7 +156554,7 @@ void FUN_18076161b(float uiContext)
     if (*(longlong *)(ContextHandle + 0x138) != 0) {
       IndexResult = *(ulonglong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
     }
-    TempInt4 = FUN_180762e40(semaphoreHandle2,IndexResult,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
+    TempInt4 = ProcessUIEventDispatch(semaphoreHandle2,IndexResult,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
                           stackParam00000020);
     if (TempInt4 != 0) {
       if ((IsEventProcessingActive1) && (stringCompareIndex != 0)) {
@@ -156870,7 +156870,7 @@ void FUN_1807617cf(void)
     if (*(longlong *)(ContextHandle + 0x138) != 0) {
       result1 = *(ulonglong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
     }
-    uiValidationResult = FUN_180762e40(result7,result1,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
+    uiValidationResult = ProcessUIEventDispatch(result7,result1,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
                           stackParam00000020);
     if (uiValidationResult != 0) {
       if ((isCharacterMatch6) && (allocatedMemory != 0)) {
@@ -157874,7 +157874,7 @@ UIHandle FUN_180762da0(longlong uiContext,ulonglong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180762e40(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize,UIDword *resultPointer)
+ProcessUIEventDispatch(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize,UIDword *resultPointer)
 
 {
   UIDword *ptrResult;
@@ -174841,7 +174841,7 @@ void FUN_180772100(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackUInt10 = 0;
   stackUInt30 = (ulonglong)resultPointer;
   stackUInt38 = 0x218;
-  FUN_180772160(uiContext,&stackUInt48,dataSource,targetBuffer,bufferSize);
+  ValidateUIDataStructure(uiContext,&stackUInt48,dataSource,targetBuffer,bufferSize);
   return;
 }
 
@@ -174850,7 +174850,7 @@ void FUN_180772100(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180772160(longlong uiContext,longlong *dataSource,uint *targetBuffer,UIDword *bufferSize,longlong resultPointer)
+ValidateUIDataStructure(longlong uiContext,longlong *dataSource,uint *targetBuffer,UIDword *bufferSize,longlong resultPointer)
 
 {
   longlong *pallocatedMemory;
@@ -280151,7 +280151,7 @@ void FUN_18083b4a0(UIByte (*uiContext) [32])
   *(float *)(*uiContext + 0x18) = (aMaxProcessingCount._24_4_ * 0.0 + aresult2._24_4_) * 1.0 + aresult3._24_4_ * 0.0;
   *(float *)(*uiContext + 0x1c) = in_register_0000131c + in_register_0000125c;
   aresult2 = vblendps_avx(ZEXT832(0) << 0x20,aLoopCounter,0xf);
-  aresult3 = vpermilps_avx(aLoopCounter,_DAT_1809814a0);
+  aresult3 = vpermilps_avx(aLoopCounter,UIStatusVector);
   *(float *)uiContext[1] =
        (aeventTypeCode._0_4_ * 0.0 + aresult2._0_4_) * -0.38268343 + aresult3._0_4_ * 0.9238795;
   *(float *)(uiContext[1] + 4) =
