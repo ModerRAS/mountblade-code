@@ -87963,58 +87963,58 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
   componentCounter = 0;
   processedBytesCount = 0;
   if ((0 < (int)targetBuffer) && (7 < targetBuffer)) {
-    result2 = targetBuffer & 0x80000007;
-    if ((int)result2 < 0) {
-      result2 = (result2 - 1 | 0xfffffff8) + 1;
+    bufferAlignmentResult = targetBuffer & 0x80000007;
+    if ((int)bufferAlignmentResult < 0) {
+      bufferAlignmentResult = (bufferAlignmentResult - 1 | 0xfffffff8) + 1;
     }
-    allocatedMemory3 = uiContext - dataSource;
-    baseScaleFactor = (float *)(dataSource + 0x10);
-    result7 = componentIndex;
+    contextDataOffset = uiContext - dataSource;
+    scaleFactorPointer = (float *)(dataSource + 0x10);
+    iterationCounter = componentCounter;
     do {
-      pbaseValue = (float *)(allocatedMemory3 + -0x10 + (longlong)baseScaleFactor);
-      transformCoeff1 = *pbaseValue;
-      transformCoeff12 = pbaseValue[1];
-      AccumulatedFloat = pbaseValue[2];
-      transformCoeff11 = pbaseValue[3];
-      TotalResult = (int)result7 + 8;
-      result7 = (ulonglong)TotalResult;
-      componentIndex = componentIndex + 8;
-      transformCoeff2 = baseScaleFactor[-4];
-      transformCoeff3 = baseScaleFactor[-3];
-      transformCoeff4 = baseScaleFactor[-2];
-      localFloat6 = baseScaleFactor[-1];
-      baseScaleFactor[-4] = transformCoeff2 * 0.70710677 - transformCoeff1 * 0.70710677;
-      baseScaleFactor[-3] = transformCoeff3 * 0.70710677 - transformCoeff12 * 0.70710677;
-      baseScaleFactor[-2] = transformCoeff4 * 0.70710677 - AccumulatedFloat * 0.70710677;
-      baseScaleFactor[-1] = localFloat6 * 0.70710677 - transformCoeff11 * 0.70710677;
-      resultFloat = *baseScaleFactor;
-      localFloat8 = baseScaleFactor[1];
-      localFloat9 = baseScaleFactor[2];
-      baseValue0 = baseScaleFactor[3];
-      pbaseValue = (float *)(allocatedMemory3 + -0x10 + (longlong)baseScaleFactor);
-      *pbaseValue = transformCoeff2 * 0.70710677 + transformCoeff1 * 0.70710677;
-      pbaseValue[1] = transformCoeff3 * 0.70710677 + transformCoeff12 * 0.70710677;
-      pbaseValue[2] = transformCoeff4 * 0.70710677 + AccumulatedFloat * 0.70710677;
-      pbaseValue[3] = localFloat6 * 0.70710677 + transformCoeff11 * 0.70710677;
-      pbaseValue = (float *)(allocatedMemory3 + (longlong)baseScaleFactor);
-      transformCoeff1 = *pbaseValue;
-      transformCoeff12 = pbaseValue[1];
-      AccumulatedFloat = pbaseValue[2];
-      transformCoeff11 = pbaseValue[3];
-      pbaseValue = (float *)(allocatedMemory3 + (longlong)baseScaleFactor);
-      *pbaseValue = transformCoeff1 * 0.70710677 + resultFloat * 0.70710677;
-      pbaseValue[1] = transformCoeff12 * 0.70710677 + localFloat8 * 0.70710677;
-      pbaseValue[2] = AccumulatedFloat * 0.70710677 + localFloat9 * 0.70710677;
-      pbaseValue[3] = transformCoeff11 * 0.70710677 + baseValue0 * 0.70710677;
-      *baseScaleFactor = resultFloat * 0.70710677 - transformCoeff1 * 0.70710677;
-      baseScaleFactor[1] = localFloat8 * 0.70710677 - transformCoeff12 * 0.70710677;
-      baseScaleFactor[2] = localFloat9 * 0.70710677 - AccumulatedFloat * 0.70710677;
-      baseScaleFactor[3] = baseValue0 * 0.70710677 - transformCoeff11 * 0.70710677;
-      baseScaleFactor = baseScaleFactor + 8;
-    } while ((longlong)componentIndex < (longlong)(int)(targetBuffer - result2));
+      baseValuePointer = (float *)(contextDataOffset + -0x10 + (longlong)scaleFactorPointer);
+      transformCoefficient1 = *baseValuePointer;
+      matrixCoefficient12 = baseValuePointer[1];
+      accumulatedResult = baseValuePointer[2];
+      matrixCoefficient11 = baseValuePointer[3];
+      processedBytesCount = (int)iterationCounter + 8;
+      iterationCounter = (ulonglong)processedBytesCount;
+      componentCounter = componentCounter + 8;
+      transformCoefficient2 = scaleFactorPointer[-4];
+      transformCoefficient3 = scaleFactorPointer[-3];
+      transformCoefficient4 = scaleFactorPointer[-2];
+      intermediateValue6 = scaleFactorPointer[-1];
+      scaleFactorPointer[-4] = transformCoefficient2 * 0.70710677 - transformCoefficient1 * 0.70710677;
+      scaleFactorPointer[-3] = transformCoefficient3 * 0.70710677 - matrixCoefficient12 * 0.70710677;
+      scaleFactorPointer[-2] = transformCoefficient4 * 0.70710677 - accumulatedResult * 0.70710677;
+      scaleFactorPointer[-1] = intermediateValue6 * 0.70710677 - matrixCoefficient11 * 0.70710677;
+      resultValue = *scaleFactorPointer;
+      intermediateValue8 = scaleFactorPointer[1];
+      intermediateValue9 = scaleFactorPointer[2];
+      baseValue = scaleFactorPointer[3];
+      baseValuePointer = (float *)(contextDataOffset + -0x10 + (longlong)scaleFactorPointer);
+      *baseValuePointer = transformCoefficient2 * 0.70710677 + transformCoefficient1 * 0.70710677;
+      baseValuePointer[1] = transformCoefficient3 * 0.70710677 + matrixCoefficient12 * 0.70710677;
+      baseValuePointer[2] = transformCoefficient4 * 0.70710677 + accumulatedResult * 0.70710677;
+      baseValuePointer[3] = intermediateValue6 * 0.70710677 + matrixCoefficient11 * 0.70710677;
+      baseValuePointer = (float *)(contextDataOffset + (longlong)scaleFactorPointer);
+      transformCoefficient1 = *baseValuePointer;
+      matrixCoefficient12 = baseValuePointer[1];
+      accumulatedResult = baseValuePointer[2];
+      matrixCoefficient11 = baseValuePointer[3];
+      baseValuePointer = (float *)(contextDataOffset + (longlong)scaleFactorPointer);
+      *baseValuePointer = transformCoefficient1 * 0.70710677 + resultValue * 0.70710677;
+      baseValuePointer[1] = matrixCoefficient12 * 0.70710677 + intermediateValue8 * 0.70710677;
+      baseValuePointer[2] = accumulatedResult * 0.70710677 + intermediateValue9 * 0.70710677;
+      baseValuePointer[3] = matrixCoefficient11 * 0.70710677 + baseValue * 0.70710677;
+      *scaleFactorPointer = resultValue * 0.70710677 - transformCoefficient1 * 0.70710677;
+      scaleFactorPointer[1] = intermediateValue8 * 0.70710677 - matrixCoefficient12 * 0.70710677;
+      scaleFactorPointer[2] = intermediateValue9 * 0.70710677 - accumulatedResult * 0.70710677;
+      scaleFactorPointer[3] = baseValue * 0.70710677 - matrixCoefficient11 * 0.70710677;
+      scaleFactorPointer = scaleFactorPointer + 8;
+    } while ((longlong)componentCounter < (longlong)(int)(targetBuffer - bufferAlignmentResult));
   }
-  allocatedMemory3 = (longlong)(int)TotalResult;
-  if (allocatedMemory3 < allocatedMemory8) {
+  contextDataOffset = (longlong)(int)processedBytesCount;
+  if (contextDataOffset < targetBufferSize) {
     if (3 < allocatedMemory8 - allocatedMemory3) {
       baseScaleFactor = (float *)(dataSource + 4 + allocatedMemory3 * 4);
       allocatedMemory9 = uiContext - dataSource;
