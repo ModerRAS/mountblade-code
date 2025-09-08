@@ -2576,12 +2576,17 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define InitializeDataBuffer FUN_1800a19c0
 
-// 系统命令执行函数
-// 功能：执行系统级命令，处理命令参数和返回结果
-// 系统命令执行函数
+/**
+ * @brief 系统命令执行函数
+ * 
+ * 执行系统级命令，处理命令参数和返回结果
+ * 
+ * @note 原始函数名：FUN_18009fb60
+ */
 #define ExecuteSystemCommand FUN_18009fb60
 
-// 系统操作处理函数
+/**
+ * @brief 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
 // 系统操作处理函数
 #define ProcessSystemOperations FUN_1800ad6f0
