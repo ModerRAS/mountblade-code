@@ -220,7 +220,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_18070e140
  */
-#define CalculateUIComponentMemoryOffset FUN_18070e140
+#define CalculateUIComponentMemoryOffset CalculateUIComponentMemoryOffsetE140
 
 /**
  * @brief 处理UI组件数据
@@ -235,7 +235,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_180705980
  */
-#define ProcessUIComponentData FUN_180705980
+#define ProcessUIComponentData ProcessUIComponentDataManagement980
 
 /**
  * @brief 处理UI事件
@@ -89238,8 +89238,18 @@ void UINoOperationHandler(void)
 
 
 
- void FUN_18071ace8(void)
-void FUN_18071ace8(void)
+ // 函数: void FUN_18071ace8(void)
+/**
+ * @brief UI系统空返回函数
+ * 
+ * 该函数是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18071ace8
+ * @note 这是一个简单的返回函数，不执行任何操作
+ */
+void UIReturnEmptyFunction(void)
 
 {
   return;
