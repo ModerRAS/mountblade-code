@@ -95694,16 +95694,30 @@ void InvokeExceptionHandlerAtMemoryCleanupOffset1F0(DataBuffer operationBase,int
 
 
 
-void Unwind_18090cf20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置临时异常处理器和默认异常处理器B（偏移量1F8）
+ * 
+ * 该函数负责配置异常处理系统，设置临时异常处理器和默认异常处理器B。
+ * 首先设置临时异常处理器，验证系统状态，然后重置相关标志位，最后设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090cf20
+ * @note 偏移量：0x1F8, 0x200, 0x210
+ * @note 如果发现异常状态，会调用TerminateSystemExecutionAndCleanupResources()终止系统
+ */
+void ConfigureTemporaryAndDefaultExceptionHandlersCF20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1f8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + MemoryPointerOffset0) != 0) {
+  *(DataBuffer *)(dataBuffer + SystemTemporaryExceptionHandlerOffset1F8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + SystemMemoryPointerOffset0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + MemoryPointerOffset0) = 0;
-  *(DataWord *)(dataBuffer + 0x210) = 0;
-  *(DataBuffer *)(dataBuffer + 0x1f8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + SystemMemoryPointerOffset0) = 0;
+  *(DataWord *)(dataBuffer + SystemCleanupFlagOffset210) = 0;
+  *(DataBuffer *)(dataBuffer + SystemTemporaryExceptionHandlerOffset1F8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

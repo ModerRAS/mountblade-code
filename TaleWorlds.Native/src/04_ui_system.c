@@ -82130,8 +82130,7 @@ void ProcessUIContextDataTransform(UIHandle uiContext, float *dataSource, int ta
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180712f20(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,
-/**
+ /**
  * @brief UI数据缓冲区批量处理器
  * 
  * 该函数处理UI系统中的数据缓冲区批量操作，主要用于：
@@ -114596,15 +114595,24 @@ void CleanupUIResourcesAndExecuteRender(void)
 
 
 
- void FUN_180738ea1(void)
-void FUN_180738ea1(void)
+ /**
+ * @brief UI内存资源释放和渲染任务执行函数
+ * 
+ * 该函数负责UI内存资源的释放和渲染任务执行：
+ * - 释放UI内存资源
+ * - 执行渲染任务
+ * 
+ * @return 处理结果状态码
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
