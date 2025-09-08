@@ -251779,54 +251779,54 @@ LAB_18020c2f3:
           }
           SystemConfigurationIterator = SystemConfigurationIterator + 1;
           MemoryBoundaryEnd = SystemTemporaryValue90;
-          MemoryBlockIndex = lStack_88;
-        } while (SystemConfigurationIterator < StringComparisonResult0);
+          MemoryBlockIndex = StackParameter88;
+        } while (SystemConfigurationIterator < StringComparisonResultSecondary);
       }
-      IntegerValue4 = IntegerValue4 + 1;
-      uStackX_20 = uStackX_20 + 8;
-      SystemDataRegistry = lStack_d8;
-    } while ((unsigned long long)(long long)IntegerValue4 < (unsigned long long)(MemoryBlockIndex - MemoryBoundaryEnd >> 3));
+      EntryValidationResult = EntryValidationResult + 1;
+      StackParameter20 = StackParameter20 + 8;
+      SystemDataRegistry = StackParameterD8;
+    } while ((unsigned long long)(long long)EntryValidationResult < (unsigned long long)(MemoryBlockIndex - MemoryBoundaryEnd >> 3));
   }
   MemoryBoundaryEnd = *(long long *)(SystemDataRegistry + 8);
   SystemConfigurationIterator = 0;
   CoreEngineSignedValueE8 = 0;
-  uStackX_20 = uStackX_20 & 0xffffffff00000000;
+  StackParameter20 = StackParameter20 & 0xffffffff00000000;
   MemoryBlockIndex = MemoryBoundaryEnd;
-  lStack_c0 = MemoryBoundaryEnd;
+  StackMemoryBufferC0 = MemoryBoundaryEnd;
   if (MemoryBoundaryEnd != SystemDataRegistry) {
     do {
-      iStack_134 = 0;
+      StackParameter134 = 0;
       SystemContextValue = *(long long *)(MemoryBoundaryEnd + 0x28);
       if (*(long long *)(MemoryBoundaryEnd + 0x30) - SystemContextValue >> 3 != 0) {
-        lStack_e0 = 0;
+        StackParameterE0 = 0;
         do {
-          SystemStackRegister58 = *(long long *)(lStack_e0 + SystemContextValue);
-          iStack_138 = 0;
+          SystemStackRegister58 = *(long long *)(StackParameterE0 + SystemContextValue);
+          StackParameter138 = 0;
           SystemDataRegistry = *(long long *)(SystemStackRegister58 + 0x28);
           if (*(long long *)(SystemStackRegister58 + 0x30) - SystemDataRegistry >> 3 != 0) {
-            StackProcessingUnsignedValue60 = (long long)pDataProcessingFlags - (long long)pBufferInitializationFlag >> 5;
-            lStack_b8 = 0;
+            StackProcessingUnsignedValue60 = (long long)DataProcessingFlags - (long long)BufferInitializationFlag >> 5;
+            StackParameterB8 = 0;
             SystemContextValue = CoreEngineSignedValueE8;
             do {
               CoreEngineSignedValueE8 = SystemContextValue;
-              SystemDataRegistry = *(long long *)(lStack_b8 + SystemDataRegistry);
-              plStack_108 = (long long *)0x0;
-              plStack_100 = (long long *)0x0;
+              SystemDataRegistry = *(long long *)(StackParameterB8 + SystemDataRegistry);
+              StackParameter108 = (long long *)0x0;
+              StackParameter100 = (long long *)0x0;
               PreviousContextPointer = (long long *)0x0;
               OperationStatus = 3;
-              lStack_68 = SystemDataRegistry;
-              SystemDataTablePointer = (long long *)BufferAllocate(MemoryPoolManager,8,3);
-              if (plStack_108 != plStack_100) {
+              StackParameter68 = SystemDataRegistry;
+              SystemDataTablePointer = (long long *)BufferAllocate(MemoryPoolManager, 8, 3);
+              if (StackParameter108 != StackParameter100) {
                     // WARNING: Subroutine does not return
-                memmove(SystemDataTablePointer,plStack_108,(long long)plStack_100 - (long long)plStack_108);
+                memmove(SystemDataTablePointer, StackParameter108, (long long)StackParameter100 - (long long)StackParameter108);
               }
               *SystemDataTablePointer = SystemDataRegistry;
-              if (plStack_108 != (long long *)0x0) {
+              if (StackParameter108 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
                 CoreEngineProcessSystemEvent();
               }
               PreviousContextPointer = SystemDataTablePointer + 1;
-              plStack_108 = SystemDataTablePointer;
+              StackParameter108 = SystemDataTablePointer;
               plStack_100 = SystemDataTablePointer + 1;
               FUN_1802e8c60(SystemDataRegistry,&plStack_108);
               pSystemStackRegisterFlagB0 = NULL;
