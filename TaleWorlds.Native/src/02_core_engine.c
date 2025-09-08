@@ -285905,3 +285905,104 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemMemoryAllocationAndDataStructureManagement FUN_1801659e0
 
+/**
+ * @brief 处理字符编码转换和内存块管理
+ * 
+ * 该函数负责处理字符编码转换和内存块管理，包括：
+ * - 字符代码指针管理
+ * - 字符代码大小验证
+ * - UTF-8到UTF-16转换
+ * - 内存块分配和管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180166dd0
+ */
+#define ProcessCharacterEncodingConversionAndMemoryBlockManagement FUN_180166dd0
+
+/**
+ * @brief 处理系统字符编码和缓冲区管理
+ * 
+ * 该函数负责处理系统字符编码和缓冲区管理，包括：
+ * - 字符代码指针管理
+ * - 系统缓冲区大小配置
+ * - UTF-8源数据处理
+ * - 系统资源分配
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801676b0
+ */
+#define ProcessSystemCharacterEncodingAndBufferManagement FUN_1801676b0
+
+/**
+ * @brief 处理系统内存管理和资源清理
+ * 
+ * 该函数负责处理系统内存管理和资源清理，包括：
+ * - 释放系统内存资源
+ * - 清理临时数据结构
+ * - 重置系统状态标志
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180167a50
+ */
+#define ProcessSystemMemoryManagementAndResourceCleanup FUN_180167a50
+
+/**
+ * @brief 处理字符代码指针和内存管理
+ * 
+ * 该函数负责处理字符代码指针和内存管理，包括：
+ * - 字符代码指针验证
+ * - 内存地址管理
+ * - 系统资源配置
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180168ab0
+ */
+#define ProcessCharacterCodePointerAndMemoryManagement FUN_180168ab0
+
+/**
+ * @brief 处理系统引擎状态和字符数据管理
+ * 
+ * 该函数负责处理系统引擎状态和字符数据管理，包括：
+ * - 系统引擎状态验证
+ * - 字符数据指针管理
+ * - 内存地址操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016a890
+ */
+#define ProcessSystemEngineStatusAndCharacterDataManagement FUN_18016a890
+
+/**
+ * @brief 处理字符编码转换和数据验证
+ * 
+ * 该函数负责处理字符编码转换和数据验证，包括：
+ * - 字符代码指针管理
+ * - 字符代码大小验证
+ * - UTF-8到UTF-16转换
+ * - 数据完整性验证
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016c97a
+ */
+#define ProcessCharacterEncodingConversionAndDataValidation FUN_18016c97a
+
