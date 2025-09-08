@@ -94,9 +94,23 @@ typedef enum {
 
  #define InitializeUIContext InitializeUIContextSystem
 
- #define ProcessUIDataRead ReadUIDataFromBuffer
-
- #define UpdateUIState UpdateUIComponentState
+ #define UIStatusVector UIComponentStatusVector
+#define VectorPermutationMask1809813c0 UIVectorPermutationMask
+#define in_register_0000131c UIRegisterValue131c
+#define in_register_0000125c UIRegisterValue125c
+#define paresult2 UIResultPointer2
+#define paresult3 UIResultPointer3
+#define paresult7 UIResultPointer7
+#define paeventProcessingStatus UIEventProcessingStatusPointer
+#define paeventProcessingCounter UIEventProcessingCounterPointer
+#define astackUInt278 UIStackUInt278
+#define astackUInt168 UIStackUInt168
+#define astackUInt1a8 UIStackUInt1a8
+#define astackUInt158 UIStackUInt158
+#define astackUIntf8 UIStackUIntf8
+#define astackUInt48 UIStackUInt48
+#define afStack_6260 UIFloatStack6260
+#define astackUInt178 UIStackUInt178
 
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
@@ -109,6 +123,8 @@ typedef enum {
 
 // UI系统函数宏定义 - 数据变换处理
 #define TransformUIDataB4C TransformUIDataStructureB4C
+#define ProcessUIDataTransformationAndValidation FUN_180726700
+#define ProcessUIRenderingUpdateAndDataHandling FUN_180727610
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -990,12 +1006,12 @@ typedef enum {
 // UI系统组件数据美化
 #define UIComponentDataBuffer (void*)0x180770640
 // UI系统字体数据美化
-#define UIFontDataBuffer1 UNK_180786c90
-#define UIFontDataBuffer2 UNK_1807868c0
-#define UIFontDataBuffer3 UNK_180788fc0
+#define UIFontDataBuffer1 (void*)0x180786c90
+#define UIFontDataBuffer2 (void*)0x1807868c0
+#define UIFontDataBuffer3 (void*)0x180788fc0
 // UI系统事件和字体管理器美化
-#define UIEventDataBuffer UNK_180747d60
-#define UIFontManagerData UNK_180785d90
+#define UIEventDataBuffer (void*)0x180747d60
+#define UIFontManagerData (void*)0x180785d90
 
 // UI系统查找函数美化
 #define ProcessUILookupTableSearch FUN_180724250
@@ -1007,10 +1023,10 @@ typedef enum {
 #define renderParam1 stackParam00000048
 
 // UI系统状态指针美化
-#define UIStatusPointer1 UNK_180954814
-#define UIStatusPointer2 UNK_180954828
-#define UIStatusPointer3 UNK_180954818
-#define UIStatusPointer4 UNK_1809547f0
+#define UIStatusPointer1 (void*)0x180954814
+#define UIStatusPointer2 (void*)0x180954828
+#define UIStatusPointer3 (void*)0x180954818
+#define UIStatusPointer4 (void*)0x1809547f0
 
 // UI系统附加状态指针美化
 #define UIStatusPointer5 UNK_1809553a0
@@ -100060,8 +100076,21 @@ void ProcessUIRenderTaskInitialization(UIDword uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180726700(longlong uiContext,float *dataSource)
-void FUN_180726700(longlong uiContext,float *dataSource)
+ /**
+ * @brief 处理UI数据变换和验证
+ * 
+ * 该函数负责处理UI数据的数学变换和验证，包括：
+ * - 基于指数和幂运算的数据变换
+ * - UI元素的索引管理和验证
+ * - 缓冲区数据的处理和计算
+ * - 数据源的操作和管理
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含需要处理的UI数据
+ * 
+ * @note 原始函数名：FUN_180726700
+ */
+void ProcessUIDataTransformationAndValidation(longlong uiContext,float *dataSource)
 
 {
   float *pbaseValue;
@@ -100985,8 +101014,21 @@ void FUN_1807273a0(int *uiContext,longlong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180727610(longlong uiContext,UIHandle dataSource)
-void FUN_180727610(longlong uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI渲染更新和数据处理
+ * 
+ * 该函数负责处理UI渲染更新和相关的数据处理，包括：
+ * - 计算渲染参数和缓冲区大小
+ * - 处理UI上下文和数据源
+ * - 执行渲染更新操作
+ * - 管理渲染状态和参数
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，包含需要处理的UI数据
+ * 
+ * @note 原始函数名：FUN_180727610
+ */
+void ProcessUIRenderingUpdateAndDataHandling(longlong uiContext,UIHandle dataSource)
 
 {
   UIByte astackUIntb8 [8];
