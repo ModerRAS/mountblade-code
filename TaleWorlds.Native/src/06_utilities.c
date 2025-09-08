@@ -88680,7 +88680,7 @@ void InitializeSystemAndInvokeHandlerAtOffset60(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_18090bfa0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -88694,7 +88694,7 @@ void Unwind_18090bfa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataBufferWithFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -88716,7 +88716,7 @@ void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessDataBufferAtOffset20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA1(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x20,
@@ -88727,7 +88727,7 @@ void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090bfd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ValidateDataBufferAtOffset50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA1(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x50,
@@ -88738,7 +88738,7 @@ void Unwind_18090bfd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090bfe0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextAtOffset80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
