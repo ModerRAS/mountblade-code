@@ -15615,9 +15615,16 @@ LAB_18065a765:
  /**
  * @brief 更新UI元素状态
  * 
- * 更新UI元素的状态信息，处理位置、旋转和变换数据
+ * 该函数负责更新UI元素的状态信息，包括：
+ * - 处理UI元素的几何变换和位置更新
+ * - 计算旋转角度和缩放比例
+ * - 管理变换矩阵和动画状态
+ * - 更新UI组件的渲染参数
+ * 
+ * 函数通过处理各种变换参数来确保UI元素能够正确显示和响应用户交互。
  * 
  * @note 此函数处理UI元素的几何变换和状态更新
+ * @note 原始函数名：FUN_180705870
  */
 void UpdateUIElementState(void)
 
@@ -15634,29 +15641,29 @@ void UpdateUIElementState(void)
   char PreservedRegister13;
   longlong UIEventData;
   char PreservedRegister15;
-  float CalculatedFloat;
-  float LocalFloatValue8;
-  float LocalFloatValue9;
-  float IntermediateResult0;
-  float IntermediateResult1;
-  float IntermediateResult2;
-  float IntermediateResult3;
-  float VectorComponentX;
-  float IntermediateResult5;
+  float RotationAngle;
+  float ComponentScaleX;
+  float ComponentScaleY;
+  float TransformMatrix0;
+  float TransformMatrix1;
+  float TransformMatrix2;
+  float TransformMatrix3;
+  float TransformMatrix4;
+  float TransformMatrix5;
   UIByte TotalResult [16];
-  float IntermediateResult7;
+  float TransformMatrix7;
   float ProcessedValue1;
-  float RegisterXMM6;
-  float RegisterXMM7;
-  float RegisterXMM8;
-  float RegisterXMM9;
-  float RegisterXMM11;
-  float RegisterXMM12;
+  float PreservedXMM6;
+  float PreservedXMM7;
+  float PreservedXMM8;
+  float PreservedXMM9;
+  float PreservedXMM11;
+  float PreservedXMM12;
   float ProcessedValue2;
   float AccumulatedValue;
-  float RegisterXMM13;
-  float RegisterXMM14;
-  float RegisterXMM15;
+  float PreservedXMM13;
+  float PreservedXMM14;
+  float PreservedXMM15;
   char StackPadding30;
   float StackFloat34;
   float InputParameter;
