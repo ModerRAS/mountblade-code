@@ -16431,21 +16431,21 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
       systemContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),operationResult * 8,&SystemMemoryPoolB,
                                 0xf4);
       if (systemContext == 0) goto ErrorHandlingLabel;
-      if (*(int *)(registerContext + 0x28) != 0) {
-          memcpy(systemContext,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3
+      if (*(int *)(registerContext + RegisterContextDataSizeOffset) != 0) {
+          memcpy(systemContext,*(DataBuffer *)(registerContext + RegisterContextDataPointerOffset),(int64_t)*(int *)(registerContext + RegisterContextDataSizeOffset) << 3
               );
       }
     }
-    if ((0 < *(int *)(registerContext + 0x2c)) && (*(int64_t *)(registerContext + 0x20) != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + 0x20),
+    if ((0 < *(int *)(registerContext + RegisterContextCountOffset)) && (*(int64_t *)(registerContext + RegisterContextDataPointerOffset) != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + RegisterContextDataPointerOffset),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(registerContext + 0x20) = systemContext;
-    *(int *)(registerContext + 0x2c) = operationResult;
+    *(int64_t *)(registerContext + RegisterContextDataPointerOffset) = systemContext;
+    *(int *)(registerContext + RegisterContextCountOffset) = operationResult;
   }
-  *(DataBuffer *)(*(int64_t *)(registerContext + 0x20) + (int64_t)*(int *)(registerContext + 0x28) * 8) =
+  *(DataBuffer *)(*(int64_t *)(registerContext + RegisterContextDataPointerOffset) + (int64_t)*(int *)(registerContext + RegisterContextDataSizeOffset) * 8) =
        systemParameter;
-  *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
+  *(int *)(registerContext + RegisterContextDataSizeOffset) = *(int *)(registerContext + RegisterContextDataSizeOffset) + 1;
 SystemCleanupLabel:
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
 }
@@ -16986,22 +16986,22 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
     systemDataPtr = bufferPtr + -8;
   }
   
-  dataIndex = *(int *)(systemContext + 0x18);
-  if ((dataIndex < 0) || (*(int *)(systemDataPtr + 0x28) <= dataIndex)) {
+  dataIndex = *(int *)(systemContext + SystemContextDataIndexOffset);
+  if ((dataIndex < 0) || (*(int *)(systemDataPtr + SystemDataArraySizeOffset) <= dataIndex)) {
     return ComponentDataValidationFailure;  // 索引越界错误
   }
   
-  if (*(int64_t *)(*(int64_t *)(systemDataPtr + 0x20) + 0x10 + (int64_t)dataIndex * 0x18) == 0) {
+  if (*(int64_t *)(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + SystemDataItemPointerOffset + (int64_t)dataIndex * 0x18) == 0) {
     return ResourceNotFoundCode;  // 资源不存在错误
   }
   
   // 验证并处理系统资源
-  operationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataPtr + 0x20) + (int64_t)dataIndex * 0x18, systemContext + 0x1c);
+  operationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + (int64_t)dataIndex * 0x18, systemContext + 0x1c);
   if ((int)operationStatus != 0) {
     return operationStatus;
   }
   
-  systemDataPtr = *(int64_t *)(resourceContext + 0x98);
+  systemDataPtr = *(int64_t *)(resourceContext + SystemContextManagementOffset);
   if (*(int *)(systemDataPtr + SystemDataValidationOffset) == 0) {
     return 0;  // 操作成功完成
   }
@@ -17016,7 +17016,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
     }
   }
   // 更新系统上下文状态
-  *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
+  *(uint *)(systemContext + SystemContextAlignmentOffset) = *(int *)(systemContext + SystemContextAlignmentOffset) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
   operationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(systemDataPtr + SystemStateResultOffset));
   
 OperationComplete:
