@@ -10256,19 +10256,19 @@ LAB_1806588f2:
   LocalPointer8 = LocalPointer9;
   if (uiContext[1] - *uiContext >> 3 != 0) {
     do {
-      bufferValidation = CONCAT44(*(UIDword *)((longlong)ptrLocal9 + *uiContext + 4),
-                            *(UIDword *)((longlong)ptrLocal9 + *uiContext));
-      *(UIHandle *)((longlong)ptrLocal9 + uiContext[0x11]) = bufferValidation;
-      result2 = (int)ptrLocal8 + 1;
-      ptrLocal9 = ptrLocal9 + 1;
-      ptrLocal8 = (UIHandle *)(ulonglong)result2;
-    } while ((ulonglong)(longlong)(int)result2 < (ulonglong)(uiContext[1] - *uiContext >> 3));
+      BufferValidation = CONCAT44(*(UIDword *)((longlong)LocalPointer9 + *uiContext + 4),
+                            *(UIDword *)((longlong)LocalPointer9 + *uiContext));
+      *(UIHandle *)((longlong)LocalPointer9 + uiContext[0x11]) = BufferValidation;
+      Result2 = (int)LocalPointer8 + 1;
+      LocalPointer9 = LocalPointer9 + 1;
+      LocalPointer8 = (UIHandle *)(ulonglong)Result2;
+    } while ((ulonglong)(longlong)(int)Result2 < (ulonglong)(uiContext[1] - *uiContext >> 3));
   }
-  if (peventTypeCode == (UIHandle *)0x0) {
+  if (EventTypeCodePointer == (UIHandle *)0x0) {
     return;
   }
                      WARNING: Subroutine does not return
-  DestroyUIComponent(peventTypeCode);
+  DestroyUIComponent(EventTypeCodePointer);
 }
 
 
@@ -67776,7 +67776,7 @@ void UpdateUIRenderContext(longlong uiContext)
                   stackLongf0 = stackLong90 + stackLongf8;
                   stackLongf8 = stackLongf8 + stackLong98;
                   stackLongd8 = (stackIntc0 * uiCompareResult + localInt8) * 8 + stackLong88;
-                  FUN_18069dfe0(8,stackUInta8,stackUInta4,(stackInte8 * uiCompareResult + localInt8) * 8 + stackLonga0);
+                  ProcessUIContextDataValidation(8,stackUInta8,stackUInta4,(stackInte8 * uiCompareResult + localInt8) * 8 + stackLonga0);
                   uiContext = stackLong48;
                 }
                 localInt8 = localInt8 + 1;
@@ -67803,7 +67803,7 @@ void UpdateUIRenderContext(longlong uiContext)
             stackLongd8 = stackLong88;
             stackLongd0 = allocatedMemory0;
             stackLongc8 = ContextHandleData;
-            FUN_18069dfe0(0x10,stackUInta8,eventTypeCode,stackLonga0);
+            ProcessUIContextDataValidation(0x10,stackUInta8,eventTypeCode,stackLonga0);
           }
           stackLong68 = allocatedMemory0 + 8;
           stackInt70 = stackInt70 + 1;
@@ -67951,7 +67951,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
                      *(UIDword *)((longlong)componentContextPtr + (longlong)uiOperationResult);
               }
               else {
-                FUN_18069dfe0(8,uStack0000000000000070,uStack0000000000000074,
+                ProcessUIContextDataValidation(8,uStack0000000000000070,uStack0000000000000074,
                               (*(int *)(dataSource + 0x10) * localInt8 + uiCompareResult) * 8 + stackParam00000078,
                               (*(int *)(dataSource + 0x24) * localInt8 + uiCompareResult) * 4 + bufferSize);
                 BasePointer = stackParam000000d0;
@@ -67975,7 +67975,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
           unmodifiedEBX = uStack0000000000000074;
         }
         else {
-          FUN_18069dfe0(0x10,uiContext,unmodifiedEBX,register10,bufferSize);
+          ProcessUIContextDataValidation(0x10,uiContext,unmodifiedEBX,register10,bufferSize);
         }
         TargetHandle = TargetHandle + 8;
         iStack00000000000000a8 = iStack00000000000000a8 + 1;
@@ -69381,45 +69381,56 @@ LAB_1806a011c:
 
 
 
-uint FUN_18069ff67(void)
+/**
+ * @brief 处理UI系统事件编码和验证
+ * 
+ * 对UI系统中的事件数据进行编码处理和验证，包括事件类型识别、
+ * 状态更新和资源验证。该函数通过循环处理事件数据，执行编码转换
+ * 和状态验证，确保UI系统事件处理的正确性。
+ * 
+ * @return 处理结果状态码，成功返回处理的事件数量，失败返回错误码
+ * 
+ * @note 原始函数名: FUN_18069ff67
+ */
+uint ProcessUIEventEncodingAndValidation(void)
 
 {
-  byte isCharacterMatch;
-  byte IsEventProcessingActive;
-  ulonglong EventTypeCode;
-  ulonglong ProcessingStatus;
-  longlong ContextHandle;
-  uint unmodifiedESI;
-  uint LoopCounter;
-  longlong unmodifiedR12;
-  longlong unmodifiedR13;
-  byte *pbVar6;
-  int localInt7;
-  bool bVar8;
+  byte characterMatchFlag;
+  byte eventProcessingState;
+  ulonglong eventTypeIdentifier;
+  ulonglong eventProcessingStatus;
+  longlong uiContextHandle;
+  uint eventAccumulator;
+  uint encodingCounter;
+  longlong resourceOffsetTable;
+  longlong dataSourcePointer;
+  byte *dataBufferPointer;
+  int processingIndex;
+  bool statusComparisonResult;
   
-  pbVar6 = (byte *)(unmodifiedR13 + 9);
-  localInt7 = 0;
+  dataBufferPointer = (byte *)(dataSourcePointer + 9);
+  processingIndex = 0;
   do {
-    LoopCounter = ((*(int *)(ContextHandle + 0x1c) + -1) * (uint)*pbVar6 >> 8) + 1;
-    if (*(int *)(ContextHandle + 0x18) < 0) {
+    encodingCounter = ((*(int *)(uiContextHandle + 0x1c) + -1) * (uint)*dataBufferPointer >> 8) + 1;
+    if (*(int *)(uiContextHandle + 0x18) < 0) {
       UpdateUIContext();
     }
-    ProcessingStatus = *(ulonglong *)(ContextHandle + 0x10);
-    EventTypeCode = (ulonglong)LoopCounter << 0x38;
-    bVar8 = EventTypeCode <= ProcessingStatus;
-    if (bVar8) {
-      LoopCounter = *(int *)(ContextHandle + 0x1c) - LoopCounter;
-      ProcessingStatus = ProcessingStatus - EventTypeCode;
+    eventProcessingStatus = *(ulonglong *)(uiContextHandle + 0x10);
+    eventTypeIdentifier = (ulonglong)encodingCounter << 0x38;
+    statusComparisonResult = eventTypeIdentifier <= eventProcessingStatus;
+    if (statusComparisonResult) {
+      encodingCounter = *(int *)(uiContextHandle + 0x1c) - encodingCounter;
+      eventProcessingStatus = eventProcessingStatus - eventTypeIdentifier;
     }
-    pbVar6 = pbVar6 + 1;
-    isCharacterMatch = *(byte *)((ulonglong)LoopCounter + 0x9495c0 + unmodifiedR12);
-    *(int *)(ContextHandle + 0x18) = *(int *)(ContextHandle + 0x18) - (uint)isCharacterMatch;
-    IsEventProcessingActive = (byte)localInt7;
-    localInt7 = localInt7 + 1;
-    unmodifiedESI = unmodifiedESI + ((uint)bVar8 << (IsEventProcessingActive & 0x1f));
-    *(ulonglong *)(ContextHandle + 0x10) = ProcessingStatus << (isCharacterMatch & 0x3f);
-    *(uint *)(ContextHandle + 0x1c) = LoopCounter << (isCharacterMatch & 0x1f);
-  } while (localInt7 < 3);
+    dataBufferPointer = dataBufferPointer + 1;
+    characterMatchFlag = *(byte *)((ulonglong)encodingCounter + 0x9495c0 + resourceOffsetTable);
+    *(int *)(uiContextHandle + 0x18) = *(int *)(uiContextHandle + 0x18) - (uint)characterMatchFlag;
+    eventProcessingState = (byte)processingIndex;
+    processingIndex = processingIndex + 1;
+    eventAccumulator = eventAccumulator + ((uint)statusComparisonResult << (eventProcessingState & 0x1f));
+    *(ulonglong *)(uiContextHandle + 0x10) = eventProcessingStatus << (characterMatchFlag & 0x3f);
+    *(uint *)(uiContextHandle + 0x1c) = encodingCounter << (characterMatchFlag & 0x1f);
+  } while (processingIndex < 3);
   localInt7 = 9;
   pbVar6 = (byte *)(unmodifiedR13 + 0x12);
   do {
@@ -70836,7 +70847,22 @@ void ProcessUIAnimationData(longlong *uiContext,UIHandle dataSource,UIHandle tar
  * @return 验证结果：true表示验证通过，false表示验证失败
  * @note 原始函数名: FUN_1807040a0
  */
-bool FUN_1807040a0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+/**
+ * @brief 验证UI浮点数据精度
+ * 
+ * 该函数验证UI系统中的浮点数据精度，通过计算浮点值的绝对值累加和
+ * 以及差值比较来判断数据是否在可接受的精度范围内。主要用于UI
+ * 渲染数据的精度验证和质量控制。
+ * 
+ * @param uiContext UI上下文指针，包含验证所需的上下文信息
+ * @param dataSource 数据源指针，包含待验证的浮点数据
+ * @param targetBuffer 目标缓冲区，指定验证的目标区域
+ * @param bufferSize 缓冲区大小，用于数据访问偏移计算
+ * @return 验证结果，true表示数据精度符合要求，false表示精度不足
+ * 
+ * @note 原始函数名: FUN_1807040a0
+ */
+bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
   float floatResult;
