@@ -74462,42 +74462,60 @@ float ProcessUIElement2DTransformation(float *uiContext,ulonglong dataSource,lon
 
 
 
-float FUN_180707d35(float *uiContext,UIHandle dataSource,longlong targetBuffer,longlong bufferSize)
+/**
+ * @brief UI系统渲染数据加权计算和误差累积函数
+ * 
+ * 该函数负责处理UI渲染数据的加权计算和误差累积，主要功能包括：
+ * - 对渲染数据进行加权变换处理
+ * - 计算数据点与参考值的偏差
+ * - 应用加权系数进行数据调整
+ * - 累积计算结果的平方误差
+ * - 支持批量数据处理和迭代计算
+ * 
+ * @param uiContext UI上下文指针，包含变换参数和计算结果
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区指针，存储处理数据
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @return float 返回累积的平方误差值
+ * 
+ * @note 该函数用于UI渲染系统的数据预处理和误差分析
+ */
+float CalculateUIRenderDataWeightedSumAndError(float *uiContext, UIHandle dataSource, longlong targetBuffer, longlong bufferSize)
 
 {
-  float floatResult;
-  float localFloat2;
-  longlong registerAX;
-  longlong register10;
-  float resultValue;
-  float processedFloat;
-  float secondaryValue;
-  float localFloat6;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  uint unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
+  float sourceDataValue;
+  float contextSecondaryValue;
+  longlong dataIndex;
+  longlong resultBufferOffset;
+  float weightedResult;
+  float transformedValue;
+  float accumulatedValue;
+  float adjustedValue;
+  float errorAccumulator;
+  float weightFactorPrimary;
+  uint xorMaskValue;
+  float weightFactorSecondary;
+  float outputWeightFactor;
   
-  if (registerAX < bufferSize) {
+  if (dataIndex < bufferSize) {
     do {
-      floatResult = *(float *)(targetBuffer + registerAX * 8);
-      localFloat2 = uiContext[1];
-      resultValue = (floatResult - *uiContext) * unmodifiedXMM9_Da;
-      localFloat6 = *uiContext + resultValue;
-      *uiContext = resultValue + floatResult;
-      floatResult = *(float *)(targetBuffer + 4 + registerAX * 8);
-      resultValue = (floatResult - localFloat2) * unmodifiedXMM7_Da;
-      processedFloat = ((float)((uint)floatResult ^ unmodifiedXMM8_Da) - uiContext[2]) * unmodifiedXMM7_Da;
-      secondaryValue = uiContext[2] + localFloat6 + processedFloat;
-      uiContext[1] = resultValue + floatResult;
-      uiContext[2] = processedFloat - floatResult;
-      *(float *)(register10 + registerAX * 4) = (localFloat2 + localFloat6 + resultValue) * unmodifiedXMM10_Da;
-      registerAX = registerAX + 1;
-      unmodifiedXMM6_Da = unmodifiedXMM6_Da + secondaryValue * secondaryValue;
-    } while (registerAX < bufferSize);
+      sourceDataValue = *(float *)(targetBuffer + dataIndex * 8);
+      contextSecondaryValue = uiContext[1];
+      weightedResult = (sourceDataValue - *uiContext) * weightFactorSecondary;
+      adjustedValue = *uiContext + weightedResult;
+      *uiContext = weightedResult + sourceDataValue;
+      sourceDataValue = *(float *)(targetBuffer + 4 + dataIndex * 8);
+      weightedResult = (sourceDataValue - contextSecondaryValue) * weightFactorPrimary;
+      transformedValue = ((float)((uint)sourceDataValue ^ xorMaskValue) - uiContext[2]) * weightFactorPrimary;
+      accumulatedValue = uiContext[2] + adjustedValue + transformedValue;
+      uiContext[1] = weightedResult + sourceDataValue;
+      uiContext[2] = transformedValue - sourceDataValue;
+      *(float *)(resultBufferOffset + dataIndex * 4) = (contextSecondaryValue + adjustedValue + weightedResult) * outputWeightFactor;
+      dataIndex = dataIndex + 1;
+      errorAccumulator = errorAccumulator + accumulatedValue * accumulatedValue;
+    } while (dataIndex < bufferSize);
   }
-  return unmodifiedXMM6_Da;
+  return errorAccumulator;
 }
 
 
@@ -76244,72 +76262,88 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
 
 
 
-uint FUN_18070f57b(UIHandle uiContext,uint dataSource)
+/**
+ * @brief UI系统事件处理器和状态管理函数
+ * 
+ * 该函数负责处理UI系统的事件处理和状态管理，主要功能包括：
+ * - 计算事件处理的分布和负载均衡
+ * - 管理事件处理器的状态和标志位
+ * - 处理事件队列的优化和调度
+ * - 维护事件处理的计数器和索引
+ * - 批量处理事件状态更新
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统状态信息
+ * @param dataSource 数据源标识，用于数据获取和处理
+ * @return uint 返回处理后的状态标志位
+ * 
+ * @note 该函数是UI事件处理系统的核心组件，负责事件的高效处理
+ */
+uint ProcessUIEventHandlersAndManageState(UIHandle uiContext, uint dataSource)
 
 {
-  ulonglong result;
-  byte IsEventProcessingActive;
-  int uiCompareResult;
-  uint ProcessingStatus;
-  ulonglong registerAX;
-  int localInt5;
-  uint MaxProcessingCount;
-  uint unmodifiedEBX;
-  uint unmodifiedEBP;
-  uint unmodifiedESI;
-  longlong *TargetHandle;
-  uint eventTypeCode;
-  uint uVar8;
-  uint uVar9;
-  int EventOperationCount;
-  uint RegisterPointerD;
-  int EventHandleD;
+  ulonglong divisionResult;
+  byte bitShiftAmount;
+  int comparisonResult;
+  uint eventStatus;
+  ulonglong dataRegister;
+  int adjustedCount;
+  uint maxProcessingCount;
+  uint inputEventCount;
+  uint basePriority;
+  uint eventFlags;
+  longlong *eventTargetHandle;
+  uint eventCode;
+  uint accumulatedStatus;
+  uint packedEventData;
+  int operationCount;
+  uint registerValue;
+  int eventHandle;
   
-  IsEventProcessingActive = (byte)unmodifiedESI;
-  uVar9 = (unmodifiedEBX >> (IsEventProcessingActive & 0x1f)) + 1;
-  result = ((ulonglong)dataSource << 0x20 | registerAX & 0xffffffff) / (ulonglong)uVar9;
-  uiCompareResult = (int)result;
-  *(int *)(TargetHandle + 5) = uiCompareResult;
-  localInt5 = (int)((ulonglong)RegisterPointerD / (result & 0xffffffff));
-  uVar8 = unmodifiedEBP;
-  if (uVar9 < localInt5 + 1U) {
-    uVar8 = (uVar9 - localInt5) - 1;
+  bitShiftAmount = (byte)eventFlags;
+  packedEventData = (inputEventCount >> (bitShiftAmount & 0x1f)) + 1;
+  divisionResult = ((ulonglong)dataSource << 0x20 | dataRegister & 0xffffffff) / (ulonglong)packedEventData;
+  comparisonResult = (int)divisionResult;
+  *(int *)(eventTargetHandle + 5) = comparisonResult;
+  adjustedCount = (int)((ulonglong)registerValue / (divisionResult & 0xffffffff));
+  eventCode = basePriority;
+  if (packedEventData < adjustedCount + 1U) {
+    eventCode = (packedEventData - adjustedCount) - 1;
   }
-  localInt5 = (uVar9 - uVar8) - localInt5;
-  EventOperationCount = (uVar9 - localInt5) * uiCompareResult;
-  localInt5 = localInt5 + -1;
-  *(uint *)((longlong)TargetHandle + 0x24) = RegisterPointerD - EventOperationCount;
-  if (localInt5 == 0) {
-    uiCompareResult = EventHandleD - EventOperationCount;
+  adjustedCount = (packedEventData - eventCode) - adjustedCount;
+  operationCount = (packedEventData - adjustedCount) * comparisonResult;
+  adjustedCount = adjustedCount + -1;
+  *(uint *)((longlong)eventTargetHandle + 0x24) = registerValue - operationCount;
+  if (adjustedCount == 0) {
+    comparisonResult = eventHandle - operationCount;
   }
-  *(int *)(TargetHandle + 4) = uiCompareResult;
+  *(int *)(eventTargetHandle + 4) = comparisonResult;
   FUN_18070f490();
-  uVar8 = *(uint *)((longlong)TargetHandle + 0x14);
-  uVar9 = *(uint *)(TargetHandle + 2);
-  if (uVar8 < unmodifiedESI) {
-    MaxProcessingCount = *(uint *)((longlong)TargetHandle + 0xc);
-    eventTypeCode = uVar8;
+  eventCode = *(uint *)((longlong)eventTargetHandle + 0x14);
+  packedEventData = *(uint *)(eventTargetHandle + 2);
+  if (eventCode < eventFlags) {
+    maxProcessingCount = *(uint *)((longlong)eventTargetHandle + 0xc);
+    eventCode = eventCode;
     do {
-      ProcessingStatus = unmodifiedEBP;
-      if (MaxProcessingCount < *(uint *)(TargetHandle + 1)) {
-        MaxProcessingCount = MaxProcessingCount + 1;
-        *(uint *)((longlong)TargetHandle + 0xc) = MaxProcessingCount;
-        ProcessingStatus = (uint)*(byte *)((ulonglong)(*(uint *)(TargetHandle + 1) - MaxProcessingCount) + *TargetHandle);
+      eventStatus = basePriority;
+      if (maxProcessingCount < *(uint *)(eventTargetHandle + 1)) {
+        maxProcessingCount = maxProcessingCount + 1;
+        *(uint *)((longlong)eventTargetHandle + 0xc) = maxProcessingCount;
+        eventStatus = (uint)*(byte *)((ulonglong)(*(uint *)(eventTargetHandle + 1) - maxProcessingCount) + *eventTargetHandle);
       }
-      uVar8 = eventTypeCode + 8;
-      uVar9 = uVar9 | ProcessingStatus << ((byte)eventTypeCode & 0x1f);
-      eventTypeCode = uVar8;
-    } while ((int)uVar8 < 0x19);
+      eventCode = eventCode + 8;
+      packedEventData = packedEventData | eventStatus << ((byte)eventCode & 0x1f);
+      eventCode = eventCode;
+    } while ((int)eventCode < 0x19);
   }
-  *(uint *)(TargetHandle + 3) = (int)TargetHandle[3] + unmodifiedESI;
-  *(uint *)((longlong)TargetHandle + 0x14) = uVar8 - unmodifiedESI;
-  *(uint *)(TargetHandle + 2) = uVar9 >> (IsEventProcessingActive & 0x1f);
-  uVar8 = (1 << (IsEventProcessingActive & 0x1f)) - 1U & uVar9 | localInt5 << (IsEventProcessingActive & 0x1f);
-  if (unmodifiedEBX < uVar8) {
-    *(UIDword *)(TargetHandle + 6) = 1;
-    uVar8 = unmodifiedEBX;
+  *(uint *)(eventTargetHandle + 3) = (int)eventTargetHandle[3] + eventFlags;
+  *(uint *)((longlong)eventTargetHandle + 0x14) = eventCode - eventFlags;
+  *(uint *)(eventTargetHandle + 2) = packedEventData >> (bitShiftAmount & 0x1f);
+  eventCode = (1 << (bitShiftAmount & 0x1f)) - 1U & packedEventData | adjustedCount << (bitShiftAmount & 0x1f);
+  if (inputEventCount < eventCode) {
+    *(UIDword *)(eventTargetHandle + 6) = 1;
+    eventCode = inputEventCount;
   }
-  return uVar8;
+  return eventCode;
 }
 
 
