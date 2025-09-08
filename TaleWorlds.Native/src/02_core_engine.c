@@ -183106,13 +183106,26 @@ void FUN_18014f059(void)
 
 
 
-4f220(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointervoid FUN_18014f220(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 处理字符代码状态缓冲区操作
+ * 
+ * 该函数负责处理字符代码状态缓冲区的操作，主要功能包括：
+ * - 获取字符状态缓冲区指针
+ * - 执行内存分配索引操作
+ * - 设置字符状态缓冲区的内存分配索引
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessCharacterCodeStatusBufferOperation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   uint8_t MemoryAllocationIndex;
   
   CharacterStatusBuffer = (void *)*Utf16EndPointer;
-  MemoryAllocationIndex = FUN_18014d7f0(CharacterStatusBuffer[1],CharacterStatusBuffer[2],CharacterCode);
+  MemoryAllocationIndex = ProcessSystemMemoryAllocationIndex(CharacterStatusBuffer[1],CharacterStatusBuffer[2],CharacterCode);
   *(uint8_t *)*CharacterStatusBuffer = MemoryAllocationIndex;
   return;
 }
