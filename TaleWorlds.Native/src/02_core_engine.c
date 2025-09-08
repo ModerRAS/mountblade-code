@@ -900,12 +900,13 @@
 #define ProcessCharacterStatusWithValidation FUN_180174150          // 处理带验证的字符状态
 #define ProcessCharacterLoopWithMultipleParameters FUN_1801727d0   // 处理带多参数的字符循环
 #define ProcessCharacterConversionWithUtf16 FUN_1801720a0         // 处理带UTF16的字符转换
-#define ProcessSystemMemoryManager FUN_180093af0                   // 处理系统内存管理器
+#define CleanupSystemMemoryManager FUN_180093af0                   // 清理系统内存管理器
 #define ProcessCharacterDataWithCodePointer FUN_180173470          // 处理带代码指针的字符数据
 #define ExecuteSystemInitialization FUN_180171610                  // 执行系统初始化
 #define ProcessCharacterTableWithOffset FUN_1801712c0              // 处理带偏移量的字符表
 #define ProcessMemoryBlockWithCharacterTable FUN_18006d0b0          // 处理带字符表的内存块
 #define ProcessMemoryBlockWithSystemValue FUN_18006d6c0            // 处理带系统值的内存块
+#define ProcessCharacterCodeTableWithMemory FUN_18063bc80           // 处理带内存的字符代码表
 #define ProcessSystemCharacterEncodingWithBufferSize FUN_180175700 // 处理带缓冲区大小的系统字符编码
 #define ProcessSystemDataWithRemainingSpace FUN_180220810          // 处理带剩余空间的系统数据
 #define InitializeSystemDataRegistry FUN_18023a940                  // 初始化系统数据注册表
@@ -207138,12 +207139,12 @@ void InitializeSystemContextAndConfigureData(long long CharacterCode, uint32_t S
 
 
 
-726f0(long long CharacterCode,uint64_t SystemBufferSizevoid FUN_1801726f0(long long CharacterCode,uint64_t SystemBufferSize
+void ProcessSystemEventInitializationAndMemoryManagement(long long CharacterCode,uint64_t SystemBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
   long long *MemoryBlockIndex;
-  long long *aSystemContextRegister [2];
+  long long *SystemContextRegister [2];
   long long **PerformanceFrequencyDoublePointer;
   long long *pPerformanceCounterValue;
   
@@ -207165,10 +207166,10 @@ void InitializeSystemContextAndConfigureData(long long CharacterCode, uint32_t S
   CoreEngineInitializeSystemEvent(CharacterCode + 0x148,SystemBufferSize);
   CharacterStatusBuffer = *(uint64_t **)(CharacterCode + 0x140);
   SystemValidationFunction = *(code **)*CharacterStatusBuffer;
-  PerformanceFrequencyDoublePointer = aSystemContextRegister;
-  aSystemContextRegister[0] = MemoryBlockIndex;
+  PerformanceFrequencyDoublePointer = SystemContextRegister;
+  SystemContextRegister[0] = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
-  (*SystemValidationFunction)(CharacterStatusBuffer,aSystemContextRegister);
+  (*SystemValidationFunction)(CharacterStatusBuffer,SystemContextRegister);
                     // WARNING: Could not recover jumptable at 0x0001801727c6. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*MemoryBlockIndex + 0x38))(MemoryBlockIndex);
@@ -207555,7 +207556,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
       else if (Utf8SourcePointer == 7) {
         if (SystemMemoryManager != 0) {
           ProcessSystemMemoryManager(SystemMemoryManager,*(uint8_t *)(SystemMemoryManager + 0x160a));
-          FUN_180093af0(SystemMemoryManager);
+          CleanupSystemMemoryManager(SystemMemoryManager);
         }
       }
       else if (Utf8SourcePointer == 8) {
@@ -207582,7 +207583,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
   switch(Utf8SourcePointer) {
   case 0x20:
     if (((SystemMemoryManager != 0) && (*(char *)(SystemMemoryManager + 0x1609) != '\0')) &&
-       (OperationStatus = FUN_1801720a0(CharacterCode,*(uint32_t *)(SystemMemoryManager + 0x160c)), OperationStatus != '\0')    goto LAB_1801732ce;
+       (OperationStatus = ProcessCharacterConversionWithUtf16(CharacterCode,*(uint32_t *)(SystemMemoryManager + 0x160c)), OperationStatus != '\0')    goto LAB_1801732ce;
     break;
   case 0x24:
     *(uint32_t *)(AdditionalParameter1 + 0x18) = 0x140;
@@ -209389,9 +209390,9 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
   pcStack_48 = _guard_check_icall;
   StackValidationData = 0xc0;
   CharacterTablePointer = *(long long *)(CleanupContextStorage + 8);
-  MemoryBlockIndex = FUN_18006d0b0(CharacterTablePointer + 200);
+  MemoryBlockIndex = ProcessMemoryBlockWithCharacterTable(CharacterTablePointer + 200);
   if (MemoryBlockIndex != 0) {
-    FUN_18006d6c0(MemoryBlockIndex,&pSystemValue1c8);
+    ProcessMemoryBlockWithSystemValue(MemoryBlockIndex,&pSystemValue1c8);
   }
   StringComparisonResult = _Cnd_signal(CharacterTablePointer + 0x330);
   if (StringComparisonResult != 0) {
@@ -209454,7 +209455,7 @@ uint64_t ProcessCharacterCodeSystemCleanupAndResourceRelease(uint64_t CharacterC
       __Throw_C_error_std__YAXH_Z(ValidationResult);
     }
     SetFilePointerEx(*(void *)(ThreadLocalStorageData + 0x20), BufferStatus, ProcessingConfigurationFlag, 0);
-    FUN_18063bc80(CharacterCodeTablePointer + 0x20, MemoryBlockIndex, (int)SystemDataRegistry);
+    ProcessCharacterCodeTableWithMemory(CharacterCodeTablePointer + 0x20, MemoryBlockIndex, (int)SystemDataRegistry);
     ValidationResult = _Mtx_unlock(CharacterCodeTablePointer + 0x30);
     if (ValidationResult != 0) {
       __Throw_C_error_std__YAXH_Z(ValidationResult);

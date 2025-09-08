@@ -510,6 +510,27 @@
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
 #define ExceptionHandlerTempCallbackOffsetEA8 0xea8     // 异常处理器临时回调偏移量EA8
+#define ExceptionHandlerTempCallbackOffsetE70 0xe70     // 异常处理器临时回调偏移量E70
+#define ExceptionHandlerTempCallbackOffsetE78 0xe78     // 异常处理器临时回调偏移量E78
+#define ExceptionHandlerTempCallbackOffsetE80 0xe80     // 异常处理器临时回调偏移量E80
+#define ExceptionHandlerTempCallbackOffsetE88 0xe88     // 异常处理器临时回调偏移量E88
+#define ExceptionHandlerTempCallbackOffsetE68 0xe68     // 异常处理器临时回调偏移量E68
+#define ExceptionHandlerTempCallbackOffsetE60 0xe60     // 异常处理器临时回调偏移量E60
+#define ExceptionHandlerTempCallbackOffsetE58 0xe58     // 异常处理器临时回调偏移量E58
+#define ExceptionHandlerTempCallbackOffsetE50 0xe50     // 异常处理器临时回调偏移量E50
+#define ExceptionHandlerTempCallbackOffsetE48 0xe48     // 异常处理器临时回调偏移量E48
+#define ExceptionHandlerTempCallbackOffsetE40 0xe40     // 异常处理器临时回调偏移量E40
+#define ExceptionHandlerTempCallbackOffsetE38 0xe38     // 异常处理器临时回调偏移量E38
+#define ExceptionHandlerTempCallbackOffsetE30 0xe30     // 异常处理器临时回调偏移量E30
+#define ExceptionHandlerTempCallbackOffsetE28 0xe28     // 异常处理器临时回调偏移量E28
+#define ExceptionHandlerTempCallbackOffsetE20 0xe20     // 异常处理器临时回调偏移量E20
+#define ExceptionHandlerTempCallbackOffsetE18 0xe18     // 异常处理器临时回调偏移量E18
+#define ExceptionHandlerTempCallbackOffsetE10 0xe10     // 异常处理器临时回调偏移量E10
+#define ExceptionHandlerTempCallbackOffsetE08 0xe08     // 异常处理器临时回调偏移量E08
+#define ExceptionHandlerTempCallbackOffsetE00 0xe00     // 异常处理器临时回调偏移量E00
+#define ExceptionHandlerTempCallbackOffsetDF8 0xdf8     // 异常处理器临时回调偏移量DF8
+#define ExceptionHandlerTempCallbackOffsetDF0 0xdf0     // 异常处理器临时回调偏移量DF0
+#define ExceptionHandlerTempCallbackOffsetDE8 0xde8     // 异常处理器临时回调偏移量DE8
 #define ExceptionHandlerContextOffset900 0x900        // 异常处理上下文偏移量900
 #define ExceptionHandlerCallbackOffset910 0x910        // 异常处理器回调偏移量910
 #define ExceptionHandlerCleanupOffset8e0 0x8e0          // 异常处理器清理偏移量8e0
@@ -50059,27 +50080,27 @@ void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dat
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE98) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEA8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE90) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xe78) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE70) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE78) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xe78) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xe88) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xe58) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE78) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE88) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE70) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE50) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE58) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xe58) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xe68) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe30) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xe38) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE58) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE68) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE50) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE30) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE38) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xe38) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xe48) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe30) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE38) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE48) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE30) = &DefaultExceptionHandlerB;
   return;
 }
 
