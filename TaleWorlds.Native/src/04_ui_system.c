@@ -20074,6 +20074,16 @@ float CalculateUIAnimationInterpolation(longlong *uiContext,float dataSource)
 
 
 
+/**
+ * @brief 计算UI渐变插值
+ * 
+ * 该函数根据当前输入值在渐变范围内计算插值因子，并返回对应的插值结果。
+ * 支持非线性插值（使用平方根函数）和阈值处理。
+ * 
+ * @return float 插值计算结果
+ * 
+ * @note 原始函数名：FUN_180676df0
+ */
 float CalculateUIGradientInterpolation(void)
 
 {
@@ -86995,23 +87005,23 @@ uint ProcessUIEventStateUpdate(longlong uiContext)
 {
   uint result;
   int uiValidationResult;
-  longlong registerAX;
+  longlong dataOffset;
   byte ProcessingFlag;
-  int unmodifiedEBP;
-  int unmodifiedESI;
-  longlong TargetHandle;
-  int unmodifiedR13D;
-  bool in_ZF;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  longlong lStack0000000000000028;
-  float fStack0000000000000038;
-  int iStack0000000000000040;
-  longlong lStack0000000000000060;
-  byte stackParam00000110;
-  UIHandle stackParam00000118;
-  float stackParam00000128;
-  int stackParam00000130;
+  int eventStartIndex;
+  int eventEndIndex;
+  longlong eventTargetHandle;
+  int eventCount;
+  bool isZeroFlag;
+  float scaleFactor1;
+  float scaleFactor2;
+  longlong tempDataPointer1;
+  float calculatedValue;
+  int processingBlockSize;
+  longlong tempDataPointer2;
+  byte validationFlag;
+  UIHandle eventHandle;
+  float compressionFactor;
+  int eventStatusFlags;
   
   lStack0000000000000028 = registerAX + uiContext * 4;
   if (in_ZF) {
