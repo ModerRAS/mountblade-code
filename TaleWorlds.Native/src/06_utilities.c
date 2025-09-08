@@ -97134,7 +97134,19 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d260(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0x170处的内存资源指针
+ * 
+ * 该函数负责清理数据缓冲区偏移量0x170处的内存资源指针。
+ * 它会减少内存资源的引用计数，如果引用计数降为0，则调用异常处理函数。
+ * 这是内存资源管理的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d260
+ */
+void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -97170,7 +97182,19 @@ void Unwind_18090d260(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0x190处的内存资源指针
+ * 
+ * 该函数负责清理数据缓冲区偏移量0x190处的内存资源指针。
+ * 它会减少内存资源的引用计数，如果引用计数降为0，则调用异常处理函数。
+ * 这是内存资源管理的重要组成部分，与上一个函数类似但偏移量不同。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存资源管理信息
+ * 
+ * @note 原始函数名：Unwind_18090d270
+ */
+void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -97620,7 +97644,20 @@ void CallExceptionHandlerCallbackAtOffsetA88(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_18090d340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用偏移量0xa80处的异常处理回调函数
+ * 
+ * 该函数检查数据缓冲区偏移量0xa80处的异常处理回调函数，如果存在则调用。
+ * 这是一个标准的异常处理回调调用模式，与上一个函数类似但偏移量不同。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_18090d340
+ */
+void CallExceptionHandlerCallbackAtOffsetA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -101984,7 +102021,15 @@ void ManageExceptionHandlerResourcesE800(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090e810(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数D
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的第四个实现。
+ * 
+ * @note 原始函数名：Unwind_18090e810
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionD(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -102040,7 +102085,15 @@ void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e830(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数E
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的第五个实现。
+ * 
+ * @note 原始函数名：Unwind_18090e830
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionE(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -102096,7 +102149,15 @@ void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e850(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数F
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的第六个实现。
+ * 
+ * @note 原始函数名：Unwind_18090e850
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionF(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -102152,7 +102213,15 @@ void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e870(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数G
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程的第七个实现。
+ * 
+ * @note 原始函数名：Unwind_18090e870
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionG(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -108827,7 +108896,23 @@ void ExecuteExceptionHandlerChainTraversal(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180910110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置临时异常处理器并重置状态
+ * 
+ * 该函数负责配置临时异常处理器，重置异常处理状态，
+ * 并在必要时终止系统执行。首先设置临时异常处理器，
+ * 检查是否需要终止系统，然后重置状态字段并恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910110
+ * @note 通过0x60偏移量获取异常处理器上下文
+ * @note 在0x108偏移量设置异常处理器
+ * @note 检查0x110偏移量的状态标志
+ * @note 重置0x110和0x120偏移量的状态
+ */
+void ConfigureTemporaryExceptionHandlerAndReset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
