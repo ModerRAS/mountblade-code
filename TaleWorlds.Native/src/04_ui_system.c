@@ -197322,7 +197322,7 @@ UIHandle FUN_180789798(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIDword
-FUN_1807897b0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,int resultPointer)
+ProcessUIComponentLayout(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,int resultPointer)
 
 {
   UIHandle result;
@@ -197511,7 +197511,7 @@ void FUN_1807899de(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIDword
-FUN_180789a00(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer,longlong bufferSize,int resultPointer)
+ProcessUIDataValidation(longlong uiContext,UIHandle dataSource,UIDword *targetBuffer,longlong bufferSize,int resultPointer)
 
 {
   UIHandle result;
@@ -208210,7 +208210,7 @@ UIHandle FUN_18079362f(void)
 
 
 UIHandle
-FUN_180793660(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
+ProcessUIEventHandling(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
 
 {
   float floatResult;
@@ -210144,7 +210144,7 @@ void FUN_180795c00(void)
 
 
 UIHandle
-FUN_180795df0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
+ExecuteUIAnimation(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
 
 {
   float floatResult;
@@ -210742,7 +210742,7 @@ void FUN_180796620(void)
 
 
 UIHandle
-FUN_180796840(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
+ProcessUIAnimationUpdate(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer)
 
 {
   float floatResult;
@@ -223761,7 +223761,7 @@ UIHandle FUN_1808037e0(longlong uiContext)
     }
     stackParamffffffffffffffc8 =
          (longlong *)((ulonglong)stackParamffffffffffffffc8 & 0xffffffffffffff00);
-    semaphoreHandle = FUN_180804c50(uiContext,plStackX_10,
+    semaphoreHandle = ValidateUIBufferStructure(uiContext,plStackX_10,
                           uiContext + ((longlong)*(int *)(uiBufferData + 0x418) + 0x2c) * 0x18,0,
                           stackParamffffffffffffffc8);
     if ((int)semaphoreHandle != 0) {
@@ -223792,7 +223792,7 @@ UIHandle FUN_1808037e0(longlong uiContext)
               (uiOperationResult = func_0x0001807f7d80(bufferValidation), uiOperationResult != 0)))) {
             stackParamffffffffffffffc8 =
                  (longlong *)((ulonglong)stackParamffffffffffffffc8 & 0xffffffffffffff00);
-            semaphoreHandle = FUN_180804c50(uiContext,plStackX_10,
+            semaphoreHandle = ValidateUIBufferStructure(uiContext,plStackX_10,
                                   uiContext + ((longlong)*(int *)(uiBufferData + 0x418) + 0x2c) * 0x18,
                                   bufferValidation,stackParamffffffffffffffc8);
             if ((int)semaphoreHandle != 0) {
@@ -223870,7 +223870,7 @@ UIHandle FUN_1808037fa(longlong uiContext)
     if (uiOperationResult < 0) {
       return 0x33;
     }
-    semaphoreHandle = FUN_180804c50();
+    semaphoreHandle = ValidateUIBufferStructure();
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
     }
@@ -223898,7 +223898,7 @@ UIHandle FUN_1808037fa(longlong uiContext)
           if ((*(int *)(ContextHandle + 0x418) < 0x20) &&
              ((*(longlong *)(ContextHandle + 0x420) == 0 ||
               (uiOperationResult = func_0x0001807f7d80(stackParam00000070), uiOperationResult != 0)))) {
-            semaphoreHandle = FUN_180804c50();
+            semaphoreHandle = ValidateUIBufferStructure();
             if ((int)semaphoreHandle != 0) {
               return semaphoreHandle;
             }
@@ -223977,7 +223977,7 @@ UIHandle FUN_180803801(longlong uiContext)
     if (uiOperationResult < 0) {
       return 0x33;
     }
-    semaphoreHandle = FUN_180804c50();
+    semaphoreHandle = ValidateUIBufferStructure();
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
     }
@@ -224007,7 +224007,7 @@ UIHandle FUN_180803801(longlong uiContext)
       if ((*(int *)(ContextHandle + 0x418) < 0x20) &&
          ((*(longlong *)(ContextHandle + 0x420) == 0 ||
           (uiOperationResult = func_0x0001807f7d80(stackParam00000070), uiOperationResult != 0)))) {
-        semaphoreHandle = FUN_180804c50();
+        semaphoreHandle = ValidateUIBufferStructure();
         if ((int)semaphoreHandle != 0) {
           return semaphoreHandle;
         }
@@ -224059,7 +224059,7 @@ UIHandle FUN_180803887(void)
       if (uiOperationResult < 0) {
         return 0x33;
       }
-      semaphoreHandle = FUN_180804c50();
+      semaphoreHandle = ValidateUIBufferStructure();
       if ((int)semaphoreHandle != 0) {
         return semaphoreHandle;
       }
@@ -224089,7 +224089,7 @@ UIHandle FUN_180803887(void)
             if ((*(int *)(ContextHandle + 0x418) < 0x20) &&
                ((*(longlong *)(ContextHandle + 0x420) == 0 ||
                 (uiOperationResult = func_0x0001807f7d80(stackParam00000070), uiOperationResult != 0)))) {
-              semaphoreHandle = FUN_180804c50();
+              semaphoreHandle = ValidateUIBufferStructure();
               if ((int)semaphoreHandle != 0) {
                 return semaphoreHandle;
               }
@@ -224995,7 +224995,7 @@ UIHandle FUN_180804500(longlong uiContext)
     if (uiValidationResult < 0) {
       return 0x39;
     }
-    result = FUN_180804c50(uiContext,apstackLong38[0],
+    result = ValidateUIBufferStructure(uiContext,apstackLong38[0],
                           uiContext + ((longlong)*(int *)(uiBufferData + 0x760) + 0x4f) * 0x18,0,1);
     if ((int)result != 0) {
       return result;
@@ -225025,7 +225025,7 @@ UIHandle FUN_180804500(longlong uiContext)
           if ((*(int *)(uiBufferData + 0x760) < 0x20) &&
              ((*(longlong *)(uiBufferData + 0x768) == 0 ||
               (uiValidationResult = func_0x0001807f7d80(uStackX_10), uiValidationResult != 0)))) {
-            result = FUN_180804c50(uiContext,plStackX_18,
+            result = ValidateUIBufferStructure(uiContext,plStackX_18,
                                   uiContext + ((longlong)*(int *)(uiBufferData + 0x760) + 0x4f) * 0x18,
                                   uStackX_10,1);
             if ((int)result != 0) {
@@ -225092,7 +225092,7 @@ UIHandle FUN_18080450a(longlong uiContext)
     if (uiOperationResult < 0) {
       return 0x39;
     }
-    EventTypeCode = FUN_180804c50(uiContext,stackParam00000030,
+    EventTypeCode = ValidateUIBufferStructure(uiContext,stackParam00000030,
                           uiContext + ((longlong)*(int *)(uiBufferData + 0x760) + 0x4f) * 0x18,0,1);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
@@ -225125,7 +225125,7 @@ UIHandle FUN_18080450a(longlong uiContext)
       if ((*(int *)(uiBufferData + 0x760) < 0x20) &&
          ((*(longlong *)(uiBufferData + 0x768) == 0 ||
           (uiValidationResult = func_0x0001807f7d80(stackParam00000078), uiValidationResult != 0)))) {
-        EventTypeCode = FUN_180804c50(uiContext,stackParam00000080,
+        EventTypeCode = ValidateUIBufferStructure(uiContext,stackParam00000080,
                               uiContext + ((longlong)*(int *)(uiBufferData + 0x760) + 0x4f) * 0x18,
                               stackParam00000078,1);
         if ((int)EventTypeCode != 0) {
@@ -225166,7 +225166,7 @@ UIHandle FUN_1808045a3(void)
   
   if (-1 < bufferSize) {
     LoopCounter = 1;
-    semaphoreHandle = FUN_180804c50();
+    semaphoreHandle = ValidateUIBufferStructure();
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
     }
@@ -225196,7 +225196,7 @@ UIHandle FUN_1808045a3(void)
             if ((*(int *)(ContextHandle + 0x760) < 0x20) &&
                ((*(longlong *)(ContextHandle + 0x768) == 0 ||
                 (uiOperationResult = func_0x0001807f7d80(stackParam00000078), uiOperationResult != 0)))) {
-              semaphoreHandle = FUN_180804c50();
+              semaphoreHandle = ValidateUIBufferStructure();
               if ((int)semaphoreHandle != 0) {
                 return semaphoreHandle;
               }
@@ -225475,7 +225475,7 @@ UIHandle FUN_180804c20(UIHandle uiContext,longlong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180804c50(UIHandle uiContext,longlong *dataSource,longlong *targetBuffer,longlong bufferSize,char resultPointer)
+ValidateUIBufferStructure(UIHandle uiContext,longlong *dataSource,longlong *targetBuffer,longlong bufferSize,char resultPointer)
 
 {
   bool isCharacterMatch;
@@ -252068,7 +252068,7 @@ UIHandle FUN_180824470(longlong uiContext)
       psemaphoreHandle1 = psemaphoreHandle1 + -8;
     } while (uiCompareResult1 != 0);
   }
-  result7 = FUN_180789a00(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
+  result7 = ProcessUIDataValidation(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
                          *(UIHandle *)(uiContext + 0x80),0,1);
   if ((int)result7 == 0) {
     plocalFloat25 = *(float **)(uiContext + 0x80);
@@ -252236,7 +252236,7 @@ UIHandle FUN_18082447c(longlong uiContext)
       psemaphoreHandle1 = psemaphoreHandle1 + -8;
     } while (uiCompareResult0 != 0);
   }
-  result7 = FUN_180789a00(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
+  result7 = ProcessUIDataValidation(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
                          *(UIHandle *)(uiContext + 0x80),0,1);
   if ((int)result7 == 0) {
     plocalFloat24 = *(float **)(uiContext + 0x80);
@@ -252402,7 +252402,7 @@ UIHandle FUN_180824490(void)
       psemaphoreHandle1 = psemaphoreHandle1 + -8;
     } while (uiValidationResult3 != 0);
   }
-  result7 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  result7 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result7 == 0) {
     plocalFloat25 = *(float **)(ContextHandle + 0x80);
@@ -252487,7 +252487,7 @@ UIHandle FUN_1808245aa(void)
       ptrResult4 = ptrResult4 + -8;
     } while (uiOperationResult5 != 0);
   }
-  result2 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  result2 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result2 == 0) {
     pfloatResult6 = *(float **)(ContextHandle + 0x80);
@@ -252558,7 +252558,7 @@ UIHandle FUN_180824605(uint *uiContext,int dataSource,longlong targetBuffer,uint
     ptrLocal9 = ptrLocal9 + 8;
     uiContext = uiContext + -8;
   } while (dataSource != 0);
-  result0 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  result0 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result0 == 0) {
     pfloatResult2 = *(float **)(ContextHandle + 0x80);
@@ -252729,7 +252729,7 @@ UIHandle FUN_180824700(longlong uiContext)
       psemaphoreHandle8 = psemaphoreHandle8 + -8;
     } while (uiCompareResult3 != 0);
   }
-  semaphoreHandle4 = FUN_180789a00(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
+  semaphoreHandle4 = ProcessUIDataValidation(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
                          *(UIHandle *)(uiContext + 0x80),0,1);
   if ((int)semaphoreHandle4 == 0) {
     presultValue4 = *(float **)(uiContext + 0x80);
@@ -252898,7 +252898,7 @@ UIHandle FUN_18082470c(longlong uiContext)
       psemaphoreHandle8 = psemaphoreHandle8 + -8;
     } while (uiCompareResult2 != 0);
   }
-  semaphoreHandle4 = FUN_180789a00(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
+  semaphoreHandle4 = ProcessUIDataValidation(*(UIHandle *)(uiContext + 0x48),*(UIHandle *)(uiContext + 0x78),
                          *(UIHandle *)(uiContext + 0x80),0,1);
   if ((int)semaphoreHandle4 == 0) {
     presultValue3 = *(float **)(uiContext + 0x80);
@@ -253065,7 +253065,7 @@ UIHandle FUN_18082471f(void)
       psemaphoreHandle8 = psemaphoreHandle8 + -8;
     } while (uiCompareResult0 != 0);
   }
-  semaphoreHandle4 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  semaphoreHandle4 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)semaphoreHandle4 == 0) {
     presultValue3 = *(float **)(ContextHandle + 0x80);
@@ -253149,7 +253149,7 @@ UIHandle FUN_18082487b(void)
       ptrResult4 = ptrResult4 + -8;
     } while (uiOperationResult5 != 0);
   }
-  result2 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  result2 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result2 == 0) {
     pfloatResult6 = *(float **)(ContextHandle + 0x80);
@@ -253220,7 +253220,7 @@ UIHandle FUN_1808248d3(uint *uiContext,int dataSource,longlong targetBuffer)
     ptrLocal9 = ptrLocal9 + 8;
     uiContext = uiContext + -8;
   } while (dataSource != 0);
-  result0 = FUN_180789a00(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
+  result0 = ProcessUIDataValidation(*(UIHandle *)(ContextHandle + 0x48),*(UIHandle *)(ContextHandle + 0x78),
                          *(UIHandle *)(ContextHandle + 0x80),0,1);
   if ((int)result0 == 0) {
     pfloatResult2 = *(float **)(ContextHandle + 0x80);

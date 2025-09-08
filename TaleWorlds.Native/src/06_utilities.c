@@ -95004,7 +95004,21 @@ void Unwind_18090d4f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用异常处理器回调函数D500
+ * 
+ * 该函数负责调用异常处理器回调函数，传递操作标志和清理标志。
+ * 这是异常处理机制的一部分，用于在特定条件下执行回调。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090d500
+ * @note 这是一个异常展开（unwind）处理函数，用于调用特定的异常处理器回调
+ */
+void InvokeExceptionHandlerCallbackD500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -95018,7 +95032,21 @@ void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090d510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 调用异常处理器回调函数D510
+ * 
+ * 该函数负责调用异常处理器回调函数，从偏移量0xe8处获取回调函数指针，
+ * 并传递操作标志和清理标志。这是异常处理机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090d510
+ * @note 这是一个异常展开（unwind）处理函数，用于调用特定的异常处理器回调
+ */
+void InvokeExceptionHandlerCallbackD510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -95032,7 +95060,23 @@ void Unwind_18090d510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090d530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文和清理异常处理器D530
+ * 
+ * 该函数负责处理异常上下文，包括：
+ * 1. 调用异常上下文中的异常处理器
+ * 2. 设置临时异常处理器
+ * 3. 检查系统终止条件
+ * 4. 清理异常处理状态
+ * 5. 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d530
+ * @note 这是一个异常展开（unwind）处理函数，用于处理复杂的异常上下文清理
+ */
+void ProcessExceptionContextAndCleanupHandlersD530(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -95056,7 +95100,19 @@ void Unwind_18090d530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器D540
+ * 
+ * 该函数负责在数据缓冲区的偏移量0x140处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090d540
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerD540(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + DataBufferOffset140) = &DefaultExceptionHandlerB;
@@ -95065,7 +95121,19 @@ void Unwind_18090d540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D550
+ * 
+ * 该函数负责从异常上下文中获取异常处理器指针，并调用相应的异常处理函数。
+ * 这是异常处理机制的一部分，用于执行特定的异常处理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d550
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerD550(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -95079,7 +95147,22 @@ void Unwind_18090d550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器状态D560
+ * 
+ * 该函数负责重置异常处理器的状态，包括：
+ * 1. 设置临时异常处理器
+ * 2. 检查系统终止条件
+ * 3. 清理异常处理状态
+ * 4. 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d560
+ * @note 这是一个异常展开（unwind）处理函数，用于重置异常处理器状态
+ */
+void ResetExceptionHandlerStateD560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -95097,7 +95180,19 @@ void Unwind_18090d560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d570(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D570
+ * 
+ * 该函数负责从异常上下文的偏移量0x58处获取异常处理器指针，
+ * 并调用相应的异常处理函数。这是异常处理机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d570
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerD570(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -95111,7 +95206,23 @@ void Unwind_18090d570(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d580(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据缓冲区异常状态D580
+ * 
+ * 该函数负责处理数据缓冲区的异常状态，包括：
+ * 1. 调用异常处理器
+ * 2. 设置临时异常处理器
+ * 3. 检查系统终止条件
+ * 4. 清理异常处理状态
+ * 5. 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d580
+ * @note 这是一个异常展开（unwind）处理函数，用于处理数据缓冲区的异常状态
+ */
+void ProcessDataBufferExceptionStateD580(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xb8) != (int64_t *)0x0) {

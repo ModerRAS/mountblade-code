@@ -63,6 +63,52 @@
 #define StackPointer68 pcStack_68                          // 栈指针68
 #define StackPointerD0 pcStack_d0                          // 栈指针D0
 
+// 新增栈变量语义化宏定义
+#define SystemStackOffset170 lStack_170                    // 系统栈偏移量170
+#define SystemStackOffset1e8 iStack_1e8                    // 系统栈偏移量1e8
+#define SystemStackOffset1d0 lStack_1d0                    // 系统栈偏移量1d0
+#define SystemStackPointer218 plStack_218                  // 系统栈指针218
+#define SystemStackPointerB0 plStack_b0                    // 系统栈指针B0
+#define SystemStackPointerA8 plStack_a8                    // 系统栈指针A8
+#define ValidationBytePointer48 pbStack_48                 // 验证字节指针48
+#define SystemStackInteger40 iStack_40                     // 系统栈整数40
+#define SystemStackOffsetB0 lStack_b0                      // 系统栈偏移量B0
+#define SystemStackInteger2e8 iStack_2e8                   // 系统栈整数2e8
+#define SystemStackPointer2e0 plStack_2e0                   // 系统栈指针2e0
+#define SystemStackOffset2d8 lStack_2d8                     // 系统栈偏移量2d8
+#define SystemStackUnsigned270 uStack_270                  // 系统栈无符号270
+#define SystemStackOffset268 lStack_268                     // 系统栈偏移量268
+#define SystemStackOffset258 lStack_258                     // 系统栈偏移量258
+#define SystemStackOffset248 lStack_248                     // 系统栈偏移量248
+#define SystemStackUnsigned1e0 uStack_1e0                   // 系统栈无符号1e0
+#define SystemStackUnsigned1d0 uStack_1d0                   // 系统栈无符号1d0
+
+// 扩展栈变量语义化宏定义
+#define SystemStackPointer3f8 puStack_3f8                   // 系统栈指针3f8
+#define SystemStackUnsigned3e4 uStack_3e4                   // 系统栈无符号3e4
+#define SystemStackPointer3e0 ppuStack_3e0                 // 系统栈指针3e0
+#define SystemStackPointer3d8 puStack_3d8                   // 系统栈指针3d8
+#define SystemStackOffset3d0 lStack_3d0                     // 系统栈偏移量3d0
+#define SystemStackUnsigned3c8 uStack_3c8                   // 系统栈无符号3c8
+#define SystemStackUnsigned3c0 uStack_3c0                   // 系统栈无符号3c0
+#define SystemStackOffset3b8 lStack_3b8                     // 系统栈偏移量3b8
+#define SystemStackPointer3b0 puStack_3b0                   // 系统栈指针3b0
+#define SystemStackPointer3a8 puStack_3a8                   // 系统栈指针3a8
+#define SystemStackUnsigned3a0 uStack_3a0                   // 系统栈无符号3a0
+#define SystemStackUnsigned398 uStack_398                   // 系统栈无符号398
+#define SystemStackUnsigned378 uStack_378                   // 系统栈无符号378
+#define SystemStackPointer370 puStack_370                   // 系统栈指针370
+#define SystemStackPointer368 puStack_368                   // 系统栈指针368
+#define SystemStackUnsigned360 uStack_360                   // 系统栈无符号360
+#define SystemStackUnsigned358 uStack_358                   // 系统栈无符号358
+#define SystemStackPointer350 puStack_350                   // 系统栈指针350
+#define SystemStackInteger340 iStack_340                     // 系统栈整数340
+#define SystemStackUnsigned338 uStack_338                   // 系统栈无符号338
+#define SystemStackOffset310 lStack_310                     // 系统栈偏移量310
+#define SystemStackUnsigned298 uStack_298                   // 系统栈无符号298
+#define SystemStackUnsigned290 uStack_290                   // 系统栈无符号290
+#define SystemStackPointer270 plStack_270                   // 系统栈指针270
+
 // FUN_函数语义化宏定义
 /**
  * @brief 重置字符处理系统
@@ -53305,22 +53351,22 @@ CharacterTableAllocationLoop:
         *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3) = ReferenceCountPointer3 + 1;
         *(int **)(MemoryBlockIndex1 + 0x10 + BufferStatus3) = ReferenceCountPointer3 + CharacterTableIterator;
       }
-      BufferStatus3 = lStack_170;
+      BufferStatus3 = SystemStackOffset170;
       ReferenceCountPointer3 = (int *)0x0;
       MemoryBlockIndex1 = (unsigned long long)*(uint *)(BufferStatus1 + 4 + UnicodeCodePoint6) * 0x20;
-      pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + lStack_170);
-      if (pStringComparisonResult0 < *(int **)(MemoryBlockIndex1 + 0x10 + lStack_170)) {
-        *(int **)(MemoryBlockIndex1 + 8 + lStack_170) = pStringComparisonResult0 + 1;
+      pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + SystemStackOffset170);
+      if (pStringComparisonResult0 < *(int **)(MemoryBlockIndex1 + 0x10 + SystemStackOffset170)) {
+        *(int **)(MemoryBlockIndex1 + 8 + SystemStackOffset170) = pStringComparisonResult0 + 1;
         *pStringComparisonResult0 = StringComparisonResult7;
       }
       else {
-        ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + lStack_170);
+        ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + SystemStackOffset170);
         CharacterTableIterator = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer5 >> 2;
         if (CharacterTableIterator == 0) {
           CharacterTableIterator = 1;
 CharacterTableAllocationLoopVariant:
           ReferenceCountPointer3 = (int *)BufferAllocate(MemoryPoolManager,CharacterTableIterator * 4,
-                                         *(uint8_t *)(MemoryBlockIndex1 + 0x18 + lStack_170));
+                                         *(uint8_t *)(MemoryBlockIndex1 + 0x18 + SystemStackOffset170));
           pStringComparisonResult0 = *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3);
           ReferenceCountPointer5 = *(int **)(MemoryBlockIndex1 + BufferStatus3);
         }
@@ -53341,21 +53387,21 @@ CharacterTableAllocationLoopVariant:
         *(int **)(MemoryBlockIndex1 + 8 + BufferStatus3) = ReferenceCountPointer3 + 1;
         *(int **)(MemoryBlockIndex1 + 0x10 + BufferStatus3) = ReferenceCountPointer3 + CharacterTableIterator;
       }
-      BufferStatus3 = lStack_170;
+      BufferStatus3 = SystemStackOffset170;
       BufferStatus1 = (unsigned long long)*(uint *)(BufferStatus1 + 8 + UnicodeCodePoint6) * 0x20;
-      pStringComparisonResult0 = *(int **)(BufferStatus1 + 8 + lStack_170);
-      if (pStringComparisonResult0 < *(int **)(BufferStatus1 + 0x10 + lStack_170)) {
-        *(int **)(BufferStatus1 + 8 + lStack_170) = pStringComparisonResult0 + 1;
+      pStringComparisonResult0 = *(int **)(BufferStatus1 + 8 + SystemStackOffset170);
+      if (pStringComparisonResult0 < *(int **)(BufferStatus1 + 0x10 + SystemStackOffset170)) {
+        *(int **)(BufferStatus1 + 8 + SystemStackOffset170) = pStringComparisonResult0 + 1;
         *pStringComparisonResult0 = StringComparisonResult7;
       }
       else {
-        ReferenceCountPointer3 = *(int **)(BufferStatus1 + lStack_170);
+        ReferenceCountPointer3 = *(int **)(BufferStatus1 + SystemStackOffset170);
         MemoryBlockIndex1 = (long long)pStringComparisonResult0 - (long long)ReferenceCountPointer3 >> 2;
         if (MemoryBlockIndex1 == 0) {
           MemoryBlockIndex1 = 1;
 ReferenceCountAllocationLoop:
           ReferenceCountPointer5 = (int *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex1 * 4,
-                                         *(uint8_t *)(BufferStatus1 + 0x18 + lStack_170));
+                                         *(uint8_t *)(BufferStatus1 + 0x18 + SystemStackOffset170));
           pStringComparisonResult0 = *(int **)(BufferStatus1 + 8 + BufferStatus3);
           ReferenceCountPointer3 = *(int **)(BufferStatus1 + BufferStatus3);
         }
@@ -53386,7 +53432,7 @@ ReferenceCountAllocationLoop:
   StackProcessingConfigurationFlag = 0;
   if (*ReferenceCountPointer < 1) {
 SystemDataRelease:
-    ReleaseSystemDataStructure(&lStack_170);
+    ReleaseSystemDataStructure(&SystemStackOffset170);
     BufferStatus1 = (long long)iStack_1e8;
     SystemStackData = (unsigned long long)*(ushort *)(CharacterCode + 0xc0);
     StackProcessingConfigurationFlag = -1;
@@ -53799,8 +53845,8 @@ UnicodeBufferAllocation:
   lStack_1d0 = 0;
 MemoryAddressProcessingLoop:
   paMemoryAddressMask2 = (uint8_t (*) [16])(lStack_1d0 * 0x20);
-  pStringComparisonResult0 = *(int **)(*paMemoryAddressMask2 + lStack_170);
-  MemoryAddressMask1 = *(long long *)(*paMemoryAddressMask2 + lStack_170 + 8) - (long long)pStringComparisonResult0 >> 2;
+  pStringComparisonResult0 = *(int **)(*paMemoryAddressMask2 + SystemStackOffset170);
+  MemoryAddressMask1 = *(long long *)(*paMemoryAddressMask2 + SystemStackOffset170 + 8) - (long long)pStringComparisonResult0 >> 2;
   pStackDataBuffer1e0 = paMemoryAddressMask2;
   if (1 < MemoryAddressMask1) {
     hasDataBeenUpdated = true;
@@ -53832,12 +53878,12 @@ MemoryAddressProcessingLoop:
       pCoreEngineLoopCounter08 = (int *)0x0;
       ProcessingCounter0 = 3;
       iStackX_10 = 1;
-      SystemStackPointer1f8 = *(int **)(*paMemoryAddressMask2 + lStack_170);
+      SystemStackPointer1f8 = *(int **)(*paMemoryAddressMask2 + SystemStackOffset170);
       ReferenceCountPointer5 = pStringComparisonResult0;
       SystemUnsignedValue1A0 = ReferenceCountPointer4;
       StackProcessingVariable = pStringComparisonResult0;
       SystemStackPointer190 = pStringComparisonResult0;
-      if (1 < (unsigned long long)(*(long long *)(*paMemoryAddressMask2 + lStack_170 + 8) - (long long)SystemStackPointer1f8 >> 2)) {
+      if (1 < (unsigned long long)(*(long long *)(*paMemoryAddressMask2 + SystemStackOffset170 + 8) - (long long)SystemStackPointer1f8 >> 2)) {
         uStackX_20 = 4;
         pStringComparisonResult5 = (int *)0x0;
         do {
@@ -53877,10 +53923,10 @@ ReferenceCountBufferAllocation:
           ReferenceCountPointer210 = ReferenceCountPointer210 + 1;
           iStackX_10 = iStackX_10 + 1;
           uStackX_20 = uStackX_20 + 4;
-          SystemStackPointer1f8 = *(int **)(*paMemoryAddressMask2 + lStack_170);
+          SystemStackPointer1f8 = *(int **)(*paMemoryAddressMask2 + SystemStackOffset170);
           pStringComparisonResult5 = ReferenceCountPointer6;
         } while ((unsigned long long)(long long)iStackX_10 <
-                 (unsigned long long)(*(long long *)(*paMemoryAddressMask2 + lStack_170 + 8) - (long long)SystemStackPointer1f8 >> 2                );
+                 (unsigned long long)(*(long long *)(*paMemoryAddressMask2 + SystemStackOffset170 + 8) - (long long)SystemStackPointer1f8 >> 2                );
       }
       do {
         ReferenceCountPointer3 = (int *)0x0;
