@@ -27619,7 +27619,7 @@ void ValidateDataWithSecurityCheck(int64_t *dataHandle,DataWord *resultBuffer)
     }
     validationResult = ValidateDataAndReturnStatusO3(*dataHandle,dataBuffer,1,4,0);
   }
-ProcessCheckpointA:
+ValidationResultCheckpoint:
   if (validationResult == 0) {
     *resultBuffer = dataBuffer[0];
   }
@@ -27655,7 +27655,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t *operationBase,int64_t *dataBuf
     }
     systemDataBuffer = ValidateDataAndReturnStatusO3(*operationBase,stackIndexBuffer,1,4,0);
   }
-ProcessCheckpointB:
+SystemDataValidationCheckpoint:
   if ((int)systemDataBuffer == 0) {
     if (stackIndexBuffer[0] < 0) {
       return 0xd;
