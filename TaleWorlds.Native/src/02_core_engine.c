@@ -175,6 +175,21 @@
 #define SystemStackUnsigned5a8 uStack_5a8                  // 系统栈无符号5a8
 #define SystemStackPointer5b8 puStack_5b8                  // 系统栈指针5b8
 #define SystemStackArray5d8 auStack_5d8                     // 系统栈数组5d8
+
+// 扩展系统栈变量语义化映射
+#define SystemStackArray190 auStack_190                     // 系统栈数组190
+#define SystemStackArray218 auStack_218                     // 系统栈数组218
+#define SystemStackArray328 auStack_328                     // 系统栈数组328
+#define SystemStackArray870 auStack_870                     // 系统栈数组870
+#define SystemStackArray890 auStack_890                     // 系统栈数组890
+#define SystemStackArray18c auStack_18c                     // 系统栈数组18c
+#define SystemStackPointer538 puStack_538                   // 系统栈指针538
+#define SystemStackPointer550 puStack_550                   // 系统栈指针550
+#define SystemStackPointer558 puStack_558                   // 系统栈指针558
+#define SystemStackPointer570 puStack_570                   // 系统栈指针570
+#define SystemStackPointer578 puStack_578                   // 系统栈指针578
+#define SystemStackPointer590 puStack_590                   // 系统栈指针590
+#define SystemStackPointer598 puStack_598                   // 系统栈指针598
 #define StackValidationFlag8 &stack0x00000108                 // 栈验证标志8
 #define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
 #define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
@@ -211365,7 +211380,18 @@ LAB_1801780ed:
 
 
 
-uint64_t FUN_1801790a0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 初始化系统缓冲区和性能计数器
+ * 
+ * 该函数负责初始化系统缓冲区和性能计数器，为系统操作做准备
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return 初始化结果
+ * 
+ * @note 原始函数名：FUN_1801790a0
+ */
+uint64_t InitializeSystemBufferAndPerformanceCounter(uint64_t CharacterCode,uint64_t *CharacterCodeSize)
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
@@ -286376,4 +286402,108 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18016cc64
  */
 #define ProcessSystemMemoryAllocationAndBufferManagement FUN_18016cc64
+
+/**
+ * @brief 初始化系统缓冲区和性能计数器
+ * 
+ * 该函数负责初始化系统缓冲区和性能计数器，为系统操作做准备
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return 处理结果
+ * 
+ * @note 原始函数名：FUN_1801790a0
+ */
+#define InitializeSystemBufferAndPerformanceCounter FUN_1801790a0
+
+/**
+ * @brief 查找并比较系统数据节点
+ * 
+ * 该函数负责在系统中查找并比较数据节点，用于数据管理和索引操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 查找比较结果
+ * 
+ * @note 原始函数名：FUN_180195330
+ */
+#define FindAndCompareSystemDataNode FUN_180195330
+
+/**
+ * @brief 处理系统缓冲区释放
+ * 
+ * 该函数负责处理系统缓冲区的释放操作，清理内存资源
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 释放操作结果
+ * 
+ * @note 原始函数名：FUN_180196ab0
+ */
+#define ProcessSystemBufferRelease FUN_180196ab0
+
+/**
+ * @brief 处理系统数据和验证
+ * 
+ * 该函数负责处理系统数据的验证操作，确保数据完整性
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 验证处理结果
+ * 
+ * @note 原始函数名：FUN_18020bef0
+ */
+#define ProcessSystemDataAndValidation FUN_18020bef0
+
+/**
+ * @brief 处理系统数据提取和指针管理
+ * 
+ * 该函数负责从系统数据结构中提取信息并管理相关指针
+ * 
+ * @param StackBuffer 栈缓冲区指针
+ * @param DataContentPointer 数据内容指针
+ * @param SystemCharacterStatusBufferPointer 系统字符状态缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802c5470
+ */
+#define ProcessSystemDataExtractionAndPointerManagement FUN_1802c5470
+
+/**
+ * @brief 处理系统状态验证和内存管理
+ * 
+ * 该函数负责验证系统状态并执行相关的内存管理操作
+ * 
+ * @param StackBuffer 栈缓冲区指针
+ * @param SystemStatusPointer 系统状态指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802479e0
+ */
+#define ProcessSystemStatusValidationAndMemoryManagement FUN_1802479e0
+
+/**
+ * @brief 执行系统内存清理和资源释放
+ * 
+ * 该函数负责清理系统内存并释放相关资源
+ * 
+ * @param MemoryPointer 内存指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180246690
+ */
+#define ExecuteSystemMemoryCleanupAndResourceRelease FUN_180246690
+
+/**
+ * @brief 处理系统栈数据和清理操作
+ * 
+ * 该函数负责处理系统栈数据并执行清理操作
+ * 
+ * @param StackBuffer 栈缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802c6e70
+ */
+#define ProcessSystemStackDataAndCleanupOperations FUN_1802c6e70
 
