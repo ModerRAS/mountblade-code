@@ -85748,15 +85748,42 @@ ProcessUIFloatDataSign(int *uiContext,float *dataSource,float *targetBuffer,UIHa
 
 
 
-uint FUN_180718590(int *uiContext,float *dataSource,float *targetBuffer,uint bufferSize,float *resultPointer,
-                  UIDword param_6,UIHandle param_7,UIDword param_8,float *param_9,
-                  UIHandle uiContext0,int uiContext1)
+/**
+ * @brief 处理UI浮点数据变换和缩放
+ * 
+ * 该函数负责处理UI系统中的浮点数据变换和缩放操作，包括：
+ * - 对浮点数据进行批量变换处理
+ * - 执行复杂的缩放和变换计算
+ * - 管理多个数据源和目标缓冲区的同步
+ * - 处理不同精度的浮点数转换
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和配置
+ * @param dataSource 源数据指针，指向要处理的浮点数据
+ * @param targetBuffer 目标缓冲区指针，存储处理后的数据
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针，指向最终处理结果的存储位置
+ * @param param_6 处理参数1，控制变换模式
+ * @param param_7 处理参数2，控制缩放系数
+ * @param param_8 处理参数3，指定精度要求
+ * @param param_9 处理参数4，提供额外的变换参数
+ * @param uiContext0 辅助UI上下文0
+ * @param uiContext1 辅助UI上下文1
+ * 
+ * @return uint 处理状态码，0表示失败，非0表示成功
+ * 
+ * @note 此函数在UI渲染和动画系统中被广泛使用
+ * @note 支持多种浮点数变换和缩放模式
+ * @note 使用复杂的迭代算法处理大量数据
+ */
+uint ProcessUIFloatDataTransformationAndScaling(int *uiContext,float *dataSource,float *targetBuffer,uint bufferSize,float *resultPointer,
+                                                UIDword param_6,UIHandle param_7,UIDword param_8,float *param_9,
+                                                UIHandle uiContext0,int uiContext1)
 
 {
   float baseValue;
   float transformCoeff1;
-  bool bVar3;
-  longlong ContextHandleData;
+  bool isValidTransform;
+  longlong contextHandleData;
   UIDword loopCounter;
   uint maxProcessingCount;
   int localInt7;

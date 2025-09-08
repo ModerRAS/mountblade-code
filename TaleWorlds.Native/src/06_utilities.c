@@ -100650,7 +100650,21 @@ void InvokeExceptionContextHandlerAtOffset1400(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_18090d780(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D780
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在1418偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d780
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset1418(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
