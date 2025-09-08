@@ -76021,7 +76021,6 @@ void UINoOperationFunction(void)
 
 
 
-uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
 /**
  * @brief 处理UI资源分配
  * 
@@ -76037,17 +76036,17 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
 uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
 
 {
-  int uiOperationResult;
-  uint semaphoreHandle;
-  byte bVar3;
-  int TempInt4;
-  uint LoopCounter;
-  uint MaxProcessingCount;
-  uint eventTypeCode;
-  uint uVar8;
-  uint uVar9;
-  uint result0;
-  int ProcessingResult1;
+  int allocationResult;
+  uint resourceHandle;
+  byte statusFlag;
+  int tempValue;
+  uint allocationCounter;
+  uint maxAllocationCount;
+  uint resourceType;
+  uint contextValue1;
+  uint contextValue2;
+  uint allocationId;
+  int bitShiftCount;
   
   uVar8 = *(uint *)(uiContext + 4);
   LoopCounter = dataSource - 1;
@@ -77092,135 +77091,151 @@ LAB_1807100a5:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070fc68(UIHandle uiContext,uint dataSource,int targetBuffer)
-void FUN_18070fc68(UIHandle uiContext,uint dataSource,int targetBuffer)
+ /**
+ * UI系统浮点数据归一化处理器
+ * 处理UI组件的浮点数据，进行范围检查、符号处理和数值归一化
+ * 
+ * 该函数负责处理UI系统中的浮点数数据，主要功能包括：
+ * - 对浮点数进行范围限制（-2.0到2.0）
+ * - 处理SIMD浮点运算（minps/maxps指令）
+ * - 数据归一化和符号处理
+ * - 矩阵和向量运算的优化处理
+ * 
+ * @param uiContext UI上下文句柄，用于UI系统状态管理
+ * @param dataSource 数据源大小，指定要处理的数据量
+ * @param targetBuffer 目标缓冲区，存储处理后的结果
+ * 
+ * @note 该函数使用SIMD指令进行浮点运算优化
+ * @note 包含复杂的数值归一化算法和符号处理逻辑
+ */
+void NormalizeUIFloatData(UIHandle uiContext, uint dataSource, int targetBuffer)
 
 {
   bool isCharacterMatch;
-  UIByte asemaphoreHandle [16];
-  UIByte aEventTypeCode [16];
-  int TempInt4;
-  UIByte (*paLoopCounter) [16];
-  uint MaxProcessingCount;
+  UIByte semaphoreHandleArray[16];
+  UIByte eventTypeCodeArray[16];
+  int tempInt;
+  UIByte (*loopCounterArray)[16];
+  uint maxProcessingCount;
   int localInt7;
   int localInt8;
-  longlong CharacterDataOffset;
-  float *pfloatResult0;
+  longlong characterDataOffset;
+  float *floatResultPtr0;
   longlong allocatedMemory1;
-  float *pfloatResult2;
-  int ProcessingResult3;
+  float *floatResultPtr2;
+  int processingResult3;
   longlong allocatedMemory4;
   longlong allocatedMemory5;
   int uiOperationResult6;
   ulonglong result7;
   int uiOperationResult8;
   float *register10;
-  longlong RegisterPointer;
+  longlong registerPointer;
   longlong allocatedMemory9;
   int unmodifiedR13D;
   int uiValidationResult0;
-  longlong EventHandle;
+  longlong eventHandle;
   float localFloat21;
   float localFloat22;
   float localFloat23;
   float localFloat24;
   float localFloat25;
-  UIByte asemaphoreHandle6 [16];
+  UIByte semaphoreHandleArray6[16];
   float *stackParam000000c8;
   
-  aEventTypeCode = _DAT_180a401b0;
-  asemaphoreHandle = _DAT_18094ed40;
+  eventTypeCodeArray = _DAT_180a401b0;
+  semaphoreHandleArray = _DAT_18094ed40;
   if (0 < (int)dataSource) {
     if (0xf < dataSource) {
-      MaxProcessingCount = dataSource & 0x8000000f;
-      if ((int)MaxProcessingCount < 0) {
-        MaxProcessingCount = (MaxProcessingCount - 1 | 0xfffffff0) + 1;
+      maxProcessingCount = dataSource & 0x8000000f;
+      if ((int)maxProcessingCount < 0) {
+        maxProcessingCount = (maxProcessingCount - 1 | 0xfffffff0) + 1;
       }
-      CharacterDataOffset = 0;
-      paLoopCounter = (UIByte (*) [16])(RegisterPointer + 0x20);
+      characterDataOffset = 0;
+      loopCounterArray = (UIByte (*) [16])(registerPointer + 0x20);
       do {
         targetBuffer = targetBuffer + 0x10;
-        asemaphoreHandle6 = minps(aEventTypeCode,paLoopCounter[-2]);
-        CharacterDataOffset = CharacterDataOffset + 0x10;
-        asemaphoreHandle6 = maxps(asemaphoreHandle,asemaphoreHandle6);
-        paLoopCounter[-2] = asemaphoreHandle6;
-        asemaphoreHandle6 = minps(aEventTypeCode,paLoopCounter[-1]);
-        asemaphoreHandle6 = maxps(asemaphoreHandle,asemaphoreHandle6);
-        paLoopCounter[-1] = asemaphoreHandle6;
-        asemaphoreHandle6 = minps(aEventTypeCode,*paLoopCounter);
-        asemaphoreHandle6 = maxps(asemaphoreHandle,asemaphoreHandle6);
-        *paLoopCounter = asemaphoreHandle6;
-        asemaphoreHandle6 = minps(aEventTypeCode,paLoopCounter[1]);
-        asemaphoreHandle6 = maxps(asemaphoreHandle,asemaphoreHandle6);
-        paLoopCounter[1] = asemaphoreHandle6;
-        paLoopCounter = paLoopCounter + 4;
-      } while (CharacterDataOffset < (int)(dataSource - MaxProcessingCount));
+        semaphoreHandleArray6 = minps(eventTypeCodeArray, loopCounterArray[-2]);
+        characterDataOffset = characterDataOffset + 0x10;
+        semaphoreHandleArray6 = maxps(semaphoreHandleArray, semaphoreHandleArray6);
+        loopCounterArray[-2] = semaphoreHandleArray6;
+        semaphoreHandleArray6 = minps(eventTypeCodeArray, loopCounterArray[-1]);
+        semaphoreHandleArray6 = maxps(semaphoreHandleArray, semaphoreHandleArray6);
+        loopCounterArray[-1] = semaphoreHandleArray6;
+        semaphoreHandleArray6 = minps(eventTypeCodeArray, *loopCounterArray);
+        semaphoreHandleArray6 = maxps(semaphoreHandleArray, semaphoreHandleArray6);
+        *loopCounterArray = semaphoreHandleArray6;
+        semaphoreHandleArray6 = minps(eventTypeCodeArray, loopCounterArray[1]);
+        semaphoreHandleArray6 = maxps(semaphoreHandleArray, semaphoreHandleArray6);
+        loopCounterArray[1] = semaphoreHandleArray6;
+        loopCounterArray = loopCounterArray + 4;
+      } while (characterDataOffset < (int)(dataSource - maxProcessingCount));
     }
     if (targetBuffer < (int)dataSource) {
       if (3 < (int)(dataSource - targetBuffer)) {
-        MaxProcessingCount = ((dataSource - targetBuffer) - 4 >> 2) + 1;
-        pfloatResult0 = (float *)(RegisterPointer + ((longlong)targetBuffer + 2) * 4);
-        result7 = (ulonglong)MaxProcessingCount;
-        targetBuffer = targetBuffer + MaxProcessingCount * 4;
+        maxProcessingCount = ((dataSource - targetBuffer) - 4 >> 2) + 1;
+        floatResultPtr0 = (float *)(registerPointer + ((longlong)targetBuffer + 2) * 4);
+        result7 = (ulonglong)maxProcessingCount;
+        targetBuffer = targetBuffer + maxProcessingCount * 4;
         do {
-          localFloat23 = pfloatResult0[-2];
+          localFloat23 = floatResultPtr0[-2];
           if (2.0 <= localFloat23) {
             localFloat23 = 2.0;
           }
           if (localFloat23 < -2.0) {
             localFloat23 = -2.0;
           }
-          localFloat21 = pfloatResult0[-1];
+          localFloat21 = floatResultPtr0[-1];
           if (2.0 <= localFloat21) {
             localFloat21 = 2.0;
           }
-          pfloatResult0[-2] = localFloat23;
+          floatResultPtr0[-2] = localFloat23;
           if (localFloat21 < -2.0) {
             localFloat21 = -2.0;
           }
-          localFloat23 = *pfloatResult0;
+          localFloat23 = *floatResultPtr0;
           if (2.0 <= localFloat23) {
             localFloat23 = 2.0;
           }
-          pfloatResult0[-1] = localFloat21;
+          floatResultPtr0[-1] = localFloat21;
           if (localFloat23 < -2.0) {
             localFloat23 = -2.0;
           }
-          *pfloatResult0 = localFloat23;
-          localFloat23 = pfloatResult0[1];
+          *floatResultPtr0 = localFloat23;
+          localFloat23 = floatResultPtr0[1];
           if (2.0 <= localFloat23) {
             localFloat23 = 2.0;
           }
           if (localFloat23 < -2.0) {
             localFloat23 = -2.0;
           }
-          pfloatResult0[1] = localFloat23;
-          pfloatResult0 = pfloatResult0 + 4;
+          floatResultPtr0[1] = localFloat23;
+          floatResultPtr0 = floatResultPtr0 + 4;
           result7 = result7 - 1;
         } while (result7 != 0);
       }
       if (targetBuffer < (int)dataSource) {
-        pfloatResult0 = (float *)(RegisterPointer + (longlong)targetBuffer * 4);
-        CharacterDataOffset = (longlong)(int)(dataSource - targetBuffer);
+        floatResultPtr0 = (float *)(registerPointer + (longlong)targetBuffer * 4);
+        characterDataOffset = (longlong)(int)(dataSource - targetBuffer);
         do {
-          localFloat23 = *pfloatResult0;
+          localFloat23 = *floatResultPtr0;
           if (2.0 <= localFloat23) {
             localFloat23 = 2.0;
           }
           if (localFloat23 < -2.0) {
             localFloat23 = -2.0;
           }
-          *pfloatResult0 = localFloat23;
-          pfloatResult0 = pfloatResult0 + 1;
-          CharacterDataOffset = CharacterDataOffset + -1;
-        } while (CharacterDataOffset != 0);
+          *floatResultPtr0 = localFloat23;
+          floatResultPtr0 = floatResultPtr0 + 1;
+          characterDataOffset = characterDataOffset + -1;
+        } while (characterDataOffset != 0);
       }
     }
   }
-  uiValidationResult0 = (int)EventHandle;
+  uiValidationResult0 = (int)eventHandle;
   if (0 < uiValidationResult0) {
-    allocatedMemory9 = RegisterPointer - (longlong)register10;
-    CharacterDataOffset = EventHandle;
+    allocatedMemory9 = registerPointer - (longlong)register10;
+    characterDataOffset = eventHandle;
     do {
       localFloat23 = *register10;
       pfloatResult0 = (float *)(allocatedMemory9 + (longlong)register10);

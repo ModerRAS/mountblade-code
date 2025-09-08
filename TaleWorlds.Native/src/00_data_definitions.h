@@ -979,6 +979,24 @@ char SystemConfigStateArray[64];
 #define SystemContextMemoryCounterOffset 0x10
 #define SystemContextParameterValidationOffset 2
 
+// 内存管理器偏移量常量
+#define MemoryManagerFunctionTableOffset 0x18
+#define MemoryManagerFunctionPointerOffset 0x30
+#define MemoryDataOperationCounterOffset 0x224
+#define MemoryDataOperationTimestampOffset 0x228
+#define MemoryDataPerformanceMetricOffset 0x1f8
+#define MemoryDataProcessingTimeOffset 0x70
+#define MemoryDataFunctionTableOffset 0x2b0
+#define MemoryDataExceptionHandlerOffset 0xe0
+
+// 游戏引擎数据偏移量常量
+#define GameEngineFrameTimeOffset 0x1510
+#define GameEngineGameDataOffset 0x1598
+#define GameEngineConfigDataOffset 0x12d0
+#define GameEngineFrameCounterOffset 0x1590
+#define GameEngineFrameDataArrayOffset 0x1a08
+#define GameEngineConfigDataBaseOffset 0x1614
+
 // 浮点数常量定义
 #define SystemFloatOneThirdValue 0x3d088889
 #define SystemFloatPiValue 0x40490fdb
@@ -4014,8 +4032,8 @@ LabelSystemOperationExit:
   if (BooleanFlag != '\0') {
     *(uint32_t *)(SystemDataPointer + 0x20) = 1;
   }
-  (**(code **)(**(longlong **)(SystemMemoryManager + 0x18) + 0x30))
-            (*(longlong **)(SystemMemoryManager + 0x18),MemoryManagerDataPointer);
+  (**(code **)(**(longlong **)(SystemMemoryManager + MemoryManagerFunctionTableOffset) + MemoryManagerFunctionPointerOffset))
+            (*(longlong **)(SystemMemoryManager + MemoryManagerFunctionTableOffset),MemoryManagerDataPointer);
   SystemBufferPointer310 = &SystemNullPointer;
   if (pMemoryAddress1 != (uint8_t *)0x0) {
     SystemBufferValidate(pMemoryAddress1);
@@ -4147,8 +4165,8 @@ Label_CharacterValidationComplete:
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
   if (*(char *)(MemoryDataPointer + 0x1ee) == '\0') {
-    (**(code **)(**(longlong **)(MemoryDataPointer + 0x2b0) + 0xe0))();
-    *(int *)(MemoryDataPointer + 0x224) = *(int *)(MemoryDataPointer + 0x224) + 1;
+    (**(code **)(**(longlong **)(MemoryDataPointer + MemoryDataFunctionTableOffset) + MemoryDataExceptionHandlerOffset))();
+    *(int *)(MemoryDataPointer + MemoryDataOperationCounterOffset) = *(int *)(MemoryDataPointer + MemoryDataOperationCounterOffset) + 1;
     if (*(int *)(SystemPerformanceData + 0xe0) == 0) {
       if (*(char *)(MemoryDataPointer + 0x264) == '\0') {
         IntegerError = 10;
@@ -4210,7 +4228,7 @@ Label_CharacterValidationComplete:
       if (*(char *)(MemoryDataPointer + 0x22c) != '\0') {
         InitializeNetworkStack();
       }
-      *(uint32_t *)(MemoryDataPointer + 0x228) = *(uint32_t *)(MemoryDataPointer + 0x224);
+      *(uint32_t *)(MemoryDataPointer + MemoryDataOperationTimestampOffset) = *(uint32_t *)(MemoryDataPointer + MemoryDataOperationCounterOffset);
       StartNetworkService();
       ConfigureNetworkSettings();
     }
@@ -4222,10 +4240,10 @@ Label_CharacterValidationComplete:
       *(float *)(MemoryDataPointer + 500) = (float)((double)FrameCounter / DoubleFrame);
       FrameCounter = 0;
       LastFrameTimestamp = DoubleDelta;
-      *(float *)(MemoryDataPointer + 0x1f8) = (float)(1000.0 / *(double *)(MemoryDataPointer + 0x70));
+      *(float *)(MemoryDataPointer + MemoryDataPerformanceMetricOffset) = (float)(1000.0 / *(double *)(MemoryDataPointer + MemoryDataProcessingTimeOffset));
     }
-    if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
-      ProcessGameLogic(MemoryDataPointer,(float)*(double *)(GameEngineDataAddress + 0x1510));
+    if (0.0 < *(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset)) {
+      ProcessGameLogic(MemoryDataPointer,(float)*(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset));
     }
     if (*(char *)(MemoryDataPointer + 0x1ee) == '\0') {
       FloatCalculationResult = *(float *)(MemoryDataPointer + 0x200);
@@ -4256,8 +4274,8 @@ Label_CharacterValidationComplete:
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
   if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
-    (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0xe0))();
-    *(int *)(SystemContextDataPointer + 0x224) = *(int *)(SystemContextDataPointer + 0x224) + 1;
+    (**(code **)(**(longlong **)(SystemContextDataPointer + MemoryDataFunctionTableOffset) + MemoryDataExceptionHandlerOffset))();
+    *(int *)(SystemContextDataPointer + MemoryDataOperationCounterOffset) = *(int *)(SystemContextDataPointer + MemoryDataOperationCounterOffset) + 1;
     if (*(int *)(SystemPerformanceData + 0xe0) == 0) {
       if (*(char *)(SystemContextDataPointer + 0x264) == '\0') {
         LoopCounterValue = 10;
@@ -4319,7 +4337,7 @@ Label_CharacterValidationComplete:
       if (*(char *)(SystemContextDataPointer + 0x22c) != '\0') {
         InitializeNetworkStack();
       }
-      *(uint32_t *)(SystemContextDataPointer + 0x228) = *(uint32_t *)(SystemContextDataPointer + 0x224);
+      *(uint32_t *)(SystemContextDataPointer + MemoryDataOperationTimestampOffset) = *(uint32_t *)(SystemContextDataPointer + MemoryDataOperationCounterOffset);
       StartNetworkService();
       ConfigureNetworkSettings();
     }
@@ -4331,10 +4349,10 @@ Label_CharacterValidationComplete:
       *(float *)(SystemContextDataPointer + 500) = (float)((double)FrameCounter / DoubleDelta);
       FrameCounter = 0;
       LastFrameTimestamp = DoubleTime;
-      *(float *)(SystemContextDataPointer + 0x1f8) = (float)(1000.0 / *(double *)(SystemContextDataPointer + 0x70));
+      *(float *)(SystemContextDataPointer + MemoryDataPerformanceMetricOffset) = (float)(1000.0 / *(double *)(SystemContextDataPointer + MemoryDataProcessingTimeOffset));
     }
-    if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
-      ProcessGameLogic(SystemContextDataPointer,(float)*(double *)(GameEngineDataAddress + 0x1510));
+    if (0.0 < *(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset)) {
+      ProcessGameLogic(SystemContextDataPointer,(float)*(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset));
     }
     if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
       FloatValue = *(float *)(SystemContextDataPointer + 0x200);
