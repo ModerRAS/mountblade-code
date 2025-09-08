@@ -49854,7 +49854,7 @@ SystemBufferValidationError:
             PrimaryProcessingStatusFlag6 = (void *                      (*(long long *                        ((long long)*(int *)(SystemTemporaryValue118 + 0x1210) * 0x908 + SystemTemporaryValue118 + 8 +
                         MemoryAllocationIndexSecondary * 8) + (unsigned long long)(DataSize - (DataSize & 0xfffffe00)) * 0x60);
             BufferValidationStatus = CharacterCode;
-            apBufferInitializationFlag[0] = PrimaryProcessingStatusFlag6;
+            BufferInitializationPointerArray[0] = ProcessingStatusFlagPointer6;
             if ((*(byte *)(CharacterCode + 0xfd) & 0x20) == 0) {
               BufferValidationStatus = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
             }

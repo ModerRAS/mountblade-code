@@ -30,7 +30,7 @@
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
 #define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBaseAddressAddress 0x180c4f450
+#define ThreadLocalStorageBaseAddress 0x180c4f450
 #define ResourceCleanupAlignment 0xfffffff0
 #define DataProcessingMultiplier 0xc
 #define OperationFlagMask 0x10000000
@@ -48,9 +48,9 @@
 #define ResourcePointerStep 4
 #define ExceptionHandlerContextOffset 0x1800
 #define ExceptionHandlerParameterOffset 0x17f0
-#define SystemMutexCleanupAddress 0x180c919f0
-#define SystemExceptionInitializerA0Address 0x180d497e0
-#define SystemExceptionInitializerB0Address 0x180d498a0
+#define SystemMutexCleanupBaseAddress 0x180c919f0
+#define SystemExceptionInitializerA0BaseAddress 0x180d497e0
+#define SystemExceptionInitializerB0BaseAddress 0x180d498a0
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetA8 0xa8
