@@ -5396,85 +5396,35 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：设置全局数据指针B26到指定地址
 #define SetGlobalDataPointerB26 FUN_180941f60
 
-// 原始函数名：FUN_180941f80 - 全局指针设置函数B27
-// 功能：设置全局数据指针B27到指定地址
+// 全局指针设置函数B27-B30
 #define SetGlobalDataPointerB27 FUN_180941f80
-
-// 原始函数名：FUN_180941fa0 - 全局指针设置函数B28
-// 功能：设置全局数据指针B28到指定地址
 #define SetGlobalDataPointerB28 FUN_180941fa0
-
-// 原始函数名：InitializeGlobalDataPointerA2 - 全局指针设置函数B29
-// 功能：设置全局数据指针B29到指定地址
 #define SetGlobalDataPointerB29 InitializeGlobalDataPointerA2
-
-// 原始函数名：InitializeGlobalDataPointerA3 - 全局指针设置函数B30
-// 功能：设置全局数据指针B30到指定地址
 #define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
 
-// 原始函数名：FUN_1808a5630 - 数据验证初始化函数
-// 功能：初始化数据验证过程并返回验证状态
+// 数据处理和验证函数组
 #define InitializeDataValidation FUN_1808a5630
-
-// 原始函数名：FUN_1808afe30 - 数据处理执行函数
-// 功能：执行数据处理操作并返回处理结果
 #define ExecuteDataProcessing FUN_1808afe30
-
-// 原始函数名：FUN_180748010 - 系统内存验证函数
-// 功能：验证系统内存分配和访问权限
 #define ValidateSystemMemoryAccess FUN_180748010
-
-// 原始函数名：FUN_1808dde10 - 操作状态检查函数
-// 功能：检查当前操作状态并返回状态码
 #define CheckOperationStatus FUN_1808dde10
-
-// 原始函数名：FUN_1808de0e0 - 数据处理完成函数
-// 功能：完成数据处理操作并清理资源
 #define FinalizeDataProcessing FUN_1808de0e0
-
-// 原始函数名：FUN_1808a6150 - 数据安全验证函数
-// 功能：验证数据安全性和完整性
 #define ValidateDataSecurity FUN_1808a6150
-
-// 原始函数名：FUN_180882f00 - 内存分配函数
-// 功能：分配内存并返回分配的地址
 #define AllocateMemoryWithContext FUN_180882f00
-
-// 原始函数名：FUN_1808afc70 - 上下文数据获取函数
-// 功能：根据上下文获取相关数据
 #define GetContextData FUN_1808afc70
-
-// 原始函数名：FUN_1808ddc20 - 安全验证执行函数
-// 功能：执行安全验证操作并返回验证结果
 #define ExecuteSecurityValidation FUN_1808ddc20
 
 // 原始函数名：FUN_1808a5d60 - 内存分配验证函数
 // 功能：验证内存分配状态和访问权限
 #define ValidateMemoryAllocation FUN_1808a5d60
 
-// 异常处理器相关函数语义化宏定义
-// 原始函数名：Unwind_1809115c0 - 异常处理器清理函数A0
-// 功能：清理异常处理器资源，销毁相关互斥锁
+// 异常处理器清理函数组
 #define CleanupExceptionHandlerA0 Unwind_1809115c0
-
-// 原始函数名：Unwind_1809115e0 - 异常处理器清理函数A1
-// 功能：清理异常处理器资源，调用回调函数并终止系统
 #define CleanupExceptionHandlerA1 Unwind_1809115e0
-
-// 原始函数名：Unwind_180911600 - 异常处理器清理函数A2
-// 功能：清理异常处理器资源，调用回调函数并终止系统
 #define CleanupExceptionHandlerA2 Unwind_180911600
 
-// 原始函数名：GetSystemParameter - 系统参数获取函数
-// 功能：获取系统参数并返回参数值
+// 系统功能函数组
 #define GetSystemParameter GetSystemParameter
-
-// 原始函数名：GetSecurityCheckResult - 安全检查结果函数
-// 功能：执行安全检查并返回检查结果
 #define GetSecurityCheckResult GetSecurityCheckResult
-
-// 原始函数名：FUN_18089dcf0 - 数据验证和安全检查处理函数
-// 功能：执行数据验证和安全检查，处理端口控制和数据操作
 #define ProcessDataValidationAndSecurityCheck FUN_18089dcf0
 
 // 原始函数名：FUN_18089dd54 - 系统上下文处理函数
