@@ -202823,7 +202823,7 @@ long long * FUN_18016cdb0(long long *CharacterCode
  */
 #define InitializeCharacterTablePointerAndSystemTemplate FUN_18016ce50
 
-void FUN_18016ce50(long long *CharacterCode)
+void InitializeCharacterTablePointerAndSystemTemplate(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -244866,9 +244866,23 @@ uint64_t * FUN_180204a00(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
 
 
 
-uint64_t *
-FUN_180204b50(long long CharacterCode,uint64_t *CharacterCodeSize,int Utf8SourcePointer,char Utf16EndPointer,uint32_t AdditionalParameter1,
-             char AdditionalParameter2
+/**
+ * 处理字符编码和内存分配操作
+ * 
+ * 该函数负责处理字符编码转换、内存分配和系统数据管理。
+ * 它根据输入参数执行不同的处理路径，包括内存分配、字符表操作
+ * 和系统状态管理等功能。
+ * 
+ * @param CharacterCode 字符代码，用于标识处理的字符类型
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1，包含系统配置信息
+ * @param AdditionalParameter2 额外参数2，用于控制处理流程
+ * @return uint64_t* 返回处理结果指针
+ */
+uint64_t *ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode,uint64_t *CharacterCodeSize,int Utf8SourcePointer,char Utf16EndPointer,uint32_t AdditionalParameter1,
+             char AdditionalParameter2)
 {
   uint64_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -252154,9 +252168,22 @@ uint64_t * FUN_18020d6c0(uint64_t *CharacterCode,int *CharacterCodeSize,uint64_t
 
 
 
-uint64_t *
-FUN_18020d730(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
-             int *AdditionalParameter1
+/**
+ * 处理字符数据缓冲区和内存块管理
+ * 
+ * 该函数负责处理字符数据缓冲区的管理，包括内存块的分配、
+ * 验证和索引操作。它会遍历字符数据结构，管理内存块的链接关系，
+ * 并根据输入参数执行相应的处理逻辑。
+ * 
+ * @param CharacterCode 字符代码指针，包含缓冲区管理信息
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数指针，包含处理配置信息
+ * @return uint64_t* 返回处理后的内存地址指针
+ */
+uint64_t *ProcessCharacterDataBufferAndMemoryBlockManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+             int *AdditionalParameter1)
 {
   bool StringComparisonByte;
   int StringComparisonResult;
@@ -255583,8 +255610,20 @@ LAB_180214378:
 
 
 
-uint64_t
-FUN_180214ad0(uint64_t CharacterCode,int SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,int AdditionalParameter1
+/**
+ * 执行系统上下文浮点数计算和矩阵变换
+ * 
+ * 该函数负责执行系统上下文中的浮点数计算、矩阵变换和数据处理。
+ * 它处理浮点数的归一化、矩阵乘法运算和系统校验和计算等核心功能。
+ * 
+ * @param CharacterCode 字符代码，用于标识处理的数据类型
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数，包含处理配置信息
+ * @return uint64_t 返回计算结果
+ */
+uint64_t ExecuteSystemContextFloatingPointCalculationAndMatrixTransform(uint64_t CharacterCode,int SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,int AdditionalParameter1)
 {
   float *pSystemContextPrimaryFloat;
   int StringComparisonResult;
