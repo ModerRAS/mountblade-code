@@ -959,6 +959,14 @@ typedef enum {
   原始函数名: CalculateUILayout
  #define CalculateUILayout CalculateUILayout
 
+// UI系统字体渲染函数
+#define FUN_1807224d0 InitializeUIFontRendering
+#define FUN_180722540 ProcessUIFontDataTransfer
+#define FUN_1807226f0 ConfigureUIFontParameters
+#define FUN_180722910 ValidateUIFontRenderingContext
+#define FUN_180722cf0 ProcessUIFontShaderConfiguration
+#define FUN_180722f80 AcquireUIFontResourceHandle
+
  处理UI渲染数据
  处理UI渲染所需的数据，包括顶点数据、纹理坐标等
   renderDataPtr 渲染数据指针
