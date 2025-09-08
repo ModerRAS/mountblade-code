@@ -214845,7 +214845,28 @@ void CleanupSystemDataTable(long long *CharacterCode
 
 
 
-long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统缓冲区分配和内存管理
+ * 
+ * 该函数负责处理系统缓冲区分配、内存管理和数据结构初始化。
+ * 主要功能包括：
+ * - 分配和管理系统内存缓冲区
+ * - 处理字符代码和数据表
+ * - 管理内存边界和数据块
+ * - 执行内存复制和初始化操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @return 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18017b070
+ */
+#define ProcessSystemBufferAllocationAndMemoryManagement FUN_18017b070
+long long * ProcessSystemBufferAllocationAndMemoryManagement(long long *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint Utf16Char;
   long long *BufferAllocationStatus;
@@ -214924,7 +214945,26 @@ long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,
 
 
 
-long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize
+// 函数: long long * FUN_18017b240(long long *CharacterCode,long long *CharacterCodeSize)
+/**
+ * @brief 处理字符代码缓冲区和数据管理
+ * 
+ * 该函数负责处理字符代码缓冲区、内存分配和数据管理操作。
+ * 主要功能包括：
+ * - 管理字符代码和缓冲区大小
+ * - 处理内存池和数据块分配
+ * - 执行数据复制和内存管理
+ * - 验证和处理系统数据
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * 
+ * @return 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18017b240
+ */
+#define ProcessCharacterCodeBufferAndDataManagement FUN_18017b240
+long long * ProcessCharacterCodeBufferAndDataManagement(long long *CharacterCode,long long *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;

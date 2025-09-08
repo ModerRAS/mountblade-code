@@ -39901,8 +39901,8 @@ void ExceptionUnwindHandlerA17(void)
     return;
   }
   encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
   return;
 }
 
@@ -39934,9 +39934,9 @@ void ExceptionHandlerA0(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -67423,9 +67423,9 @@ void ResetSystemStatusFlag(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -72564,9 +72564,9 @@ void ResetSystemStatusFlags(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -76336,9 +76336,9 @@ void ResetExceptionStatusAndTriggerEvent(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -83557,9 +83557,9 @@ void ResetExceptionStatusFlags(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -117575,9 +117575,9 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
