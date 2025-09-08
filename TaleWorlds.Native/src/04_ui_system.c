@@ -10102,10 +10102,10 @@ void InitializeUIComponent(longlong component_id, longlong parent_id, UIHandle t
         }
       }
       else {
-        ProcessUIInputData(dataSource,&pstackUInt50);
+        ProcessUIInputData(dataSource,&BufferPointer);
       }
-      pstackUInt50 = &PrimaryUIBuffer;
-      if (pstackUInt48 != (UIByte *)0x0) {
+      BufferPointer = &PrimaryUIBuffer;
+      if (DataBufferPointer != (UIByte *)0x0) {
                      WARNING: Subroutine does not return
         DestroyUIComponent();
       }
@@ -10150,27 +10150,27 @@ void InitializeUIAnimation(void)
 void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong *style_data)
 
 {
-  UIDword result;
-  UIDword semaphoreHandle;
-  UIHandle *ptrLocal3;
-  int layoutCalculationResult;
-  longlong dataSourceValue;
+  UIDword OperationResult;
+  UIDword SemaphoreHandle;
+  UIHandle *LocalPointer3;
+  int LayoutCalculationResult;
+  longlong DataSourceValue;
   longlong ContextHandleData;
-  UIHandle *peventTypeCode;
+  UIHandle *EventTypeCodePointer;
   UIHandle *ContextHandlePointer;
-  UIHandle *tempPointer;
-  UIHandle *ptrResult0;
-  UIHandle *ptrResult1;
-  uint result2;
-  longlong bufferSize;
-  UIHandle bufferValidation;
-  UIHandle result3;
+  UIHandle *TempPointer;
+  UIHandle *ResultPointer0;
+  UIHandle *ResultPointer1;
+  uint Result2;
+  longlong BufferSize;
+  UIHandle BufferValidation;
+  UIHandle Result3;
   UIHandle *ContextHandleManager;
   UIHandle *ContextHandleBuffer;
-  UIHandle *bufferEnd;
-  UIDword stackUInt48;
+  UIHandle *BufferEndPointer;
+  UIDword StackUInt48;
   
-  result3 = 0xfffffffffffffffe;
+  Result3 = 0xfffffffffffffffe;
   EventDataIndex = dataSource[1];
   uiContext[9] = *dataSource;
   uiContext[10] = EventDataIndex;
@@ -69264,7 +69264,20 @@ LAB_1806a011c:
 
 
 
-uint FUN_18069ff39(longlong uiContext,UIByte *dataSource)
+uint ValidateAndProcessUIComponentData(longlong uiContext,UIByte *dataSource)
+/**
+ * @brief 验证并处理UI组件数据
+ * 
+ * 对UI组件数据进行验证和处理，包括内存分配、状态检查、数据处理等。
+ * 该函数根据不同的数据源类型执行相应的处理逻辑，确保UI组件数据的
+ * 完整性和正确性。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统状态和配置信息
+ * @param dataSource 数据源指针，包含待处理的UI组件数据
+ * @return 处理结果状态码，成功返回正数，失败返回负数或0
+ * 
+ * @note 原始函数名: FUN_18069ff39
+ */
 
 {
   byte isCharacterMatch;
@@ -74520,8 +74533,16 @@ void FUN_18070b610(UIDword *uiContext,UIDword dataSource)
 
 
 
- void FUN_18070b660(longlong uiContext)
-void FUN_18070b660(longlong uiContext)
+ /**
+ * @brief 清理UI上下文内存
+ * 
+ * 该函数负责清理UI上下文的内存区域，从偏移量0xc开始，
+ * 清理长度为0x364c的内存区域。用于UI系统的资源释放。
+ * 
+ * @param uiContext UI上下文句柄
+ */
+void ClearUIContextMemory(longlong uiContext)
+void ClearUIContextMemory(longlong uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -74531,68 +74552,79 @@ void FUN_18070b660(longlong uiContext)
 
 
 
- void FUN_18070b6a0(longlong uiContext,UIHandle *dataSource,int targetBuffer)
-void FUN_18070b6a0(longlong uiContext,UIHandle *dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI事件和数据源
+ * 
+ * 该函数负责处理UI系统的事件处理、数据源管理、信号量操作
+ * 和事件类型编码。它管理事件队列、处理缓冲区数据，
+ * 并执行相应的UI操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ */
+void ProcessUIEventAndDataSource(longlong uiContext,UIHandle *dataSource,int targetBuffer)
+void ProcessUIEventAndDataSource(longlong uiContext,UIHandle *dataSource,int targetBuffer)
 
 {
-  ulonglong result;
-  UIHandle *psemaphoreHandle;
-  UIHandle EventTypeCode;
-  int TempInt4;
-  int localInt5;
-  longlong ContextHandleData;
-  longlong localLong7;
-  float *plocalFloat8;
-  int localInt9;
-  ulonglong result0;
-  int ProcessingResult1;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  ulonglong IndexResult;
-  uint CounterResult;
-  bool IsMatchFound;
-  float FloatValue1;
-  float FloatValue2;
-  float AccumulatedFloat;
-  ulonglong TotalResult;
+  ulonglong operationResult;
+  UIHandle *semaphoreHandle;
+  UIHandle eventTypeCode;
+  int temporaryValue;
+  int eventCount;
+  longlong contextHandleData;
+  longlong localContextData;
+  float *floatPointer;
+  int bufferIndex;
+  ulonglong indexResult;
+  int processingStatus1;
+  int processingStatus2;
+  int processingStatus3;
+  ulonglong arrayIndex;
+  uint counterValue;
+  bool matchFound;
+  float calculatedFloat1;
+  float calculatedFloat2;
+  float accumulatedFloat;
+  ulonglong totalOperationResult;
   
-  localInt9 = *(int *)(uiBufferData + 0x2054);
-  localInt5 = *(int *)(uiBufferData + 0x2050);
-  TempInt4 = localInt5 - localInt9;
-  ProcessingResult2 = TempInt4 + 100;
-  if (-1 < TempInt4) {
-    ProcessingResult2 = TempInt4;
+  bufferIndex = *(int *)(uiBufferData + 0x2054);
+  eventCount = *(int *)(uiBufferData + 0x2050);
+  temporaryValue = eventCount - bufferIndex;
+  processingStatus2 = temporaryValue + 100;
+  if (-1 < temporaryValue) {
+    processingStatus2 = temporaryValue;
   }
-  IndexResult = 0;
-  TempInt4 = 0;
-  if (((*(int *)(uiBufferData + 8) / 0x32 < targetBuffer) && (localInt9 != localInt5)) &&
-     (localInt9 = localInt9 + 1, localInt9 == 100)) {
-    localInt9 = 0;
+  arrayIndex = 0;
+  temporaryValue = 0;
+  if (((*(int *)(uiBufferData + 8) / 0x32 < targetBuffer) && (bufferIndex != eventCount)) &&
+     (bufferIndex = bufferIndex + 1, bufferIndex == 100)) {
+    bufferIndex = 0;
   }
-  ProcessingResult1 = 1;
-  ProcessingResult3 = localInt9 + -1;
-  if (localInt9 != localInt5) {
-    ProcessingResult3 = localInt9;
+  processingStatus1 = 1;
+  processingStatus3 = bufferIndex + -1;
+  if (bufferIndex != eventCount) {
+    processingStatus3 = bufferIndex;
   }
-  if (ProcessingResult3 < 0) {
-    ProcessingResult3 = 99;
+  if (processingStatus3 < 0) {
+    processingStatus3 = 99;
   }
-  result0 = (ulonglong)ProcessingResult3;
-  ContextHandleData = result0 * 0x38;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x206c + uiContext);
-  EventTypeCode = psemaphoreHandle[1];
-  *dataSource = *psemaphoreHandle;
-  dataSource[1] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x207c + uiContext);
-  EventTypeCode = psemaphoreHandle[1];
-  dataSource[2] = *psemaphoreHandle;
-  dataSource[3] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x208c + uiContext);
-  EventTypeCode = psemaphoreHandle[1];
-  dataSource[4] = *psemaphoreHandle;
-  dataSource[5] = EventTypeCode;
-  dataSource[6] = *(UIHandle *)(ContextHandleData + 0x209c + uiContext);
-  AccumulatedFloat = *(float *)((longlong)dataSource + 4);
+  indexResult = (ulonglong)processingStatus3;
+  contextHandleData = indexResult * 0x38;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x206c + uiContext);
+  eventTypeCode = semaphoreHandle[1];
+  *dataSource = *semaphoreHandle;
+  dataSource[1] = eventTypeCode;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x207c + uiContext);
+  eventTypeCode = semaphoreHandle[1];
+  dataSource[2] = *semaphoreHandle;
+  dataSource[3] = eventTypeCode;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x208c + uiContext);
+  eventTypeCode = semaphoreHandle[1];
+  dataSource[4] = *semaphoreHandle;
+  dataSource[5] = eventTypeCode;
+  dataSource[6] = *(UIHandle *)(contextHandleData + 0x209c + uiContext);
+  accumulatedFloat = *(float *)((longlong)dataSource + 4);
   TotalResult = IndexResult;
   FloatValue1 = AccumulatedFloat;
   do {
