@@ -265,7 +265,7 @@
 #define SystemEventFlag8 aSystemEventFlag8                       // 系统事件标志8
 
 // 核心引擎数据处理变量语义化宏定义
-#define BufferInitializationPointerArray apBufferInitializationFlag // 缓冲区初始化指针数组
+#define BufferInitializationPointerArray BufferInitializationPointerArray // 缓冲区初始化指针数组
 #define ProcessingStatusFlagPointer9 PrimaryProcessingStatusFlag9  // 处理状态标志指针9
 #define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
 #define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
@@ -49868,11 +49868,11 @@ SystemBufferValidationError:
             BufferValidationStatus = *(long long *)(BufferValidationStatus + 0x1e0);
             *PrimaryProcessingStatusFlag6 = *(void *)(BufferValidationStatus + (unsigned long long)LowByte1 * 0x18);
             PrimaryProcessingStatusFlag6[1] = *(void *)(BufferValidationStatus + 8 + (unsigned long long)LowByte1 * 0x18);
-            *(uint32_t *)(apBufferInitializationFlag[0] + 2) =
+            *(uint32_t *)(BufferInitializationPointerArray[0] + 2) =
                  *(uint32_t *)(*(long long *)(CharacterCode + 600) + 0x2c);
-            *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x14) =
+            *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x14) =
                  *(uint32_t *)(*(long long *)(CharacterCode + 600) + 0x4c);
-            *(int *)(apBufferInitializationFlag[0] + 9) = (int)*(char *)(*(long long *)(CharacterCode + 600) + 0x44);
+            *(int *)(BufferInitializationPointerArray[0] + 9) = (int)*(char *)(*(long long *)(CharacterCode + 600) + 0x44);
             if ((*(long long *)(CharacterCode + 0x2d0) == 0) ||
                (*(int *)(*(long long *)(CharacterCode + 0x2d0) + 0x14) == 0)) {
               InputDataLength = 0xffffffff;
@@ -49880,7 +49880,7 @@ SystemBufferValidationError:
             else {
               InputDataLength = *(uint32_t *)(CharacterCode + 0x108);
             }
-            *(uint32_t *)(apBufferInitializationFlag[0] + 3) = InputDataLength;
+            *(uint32_t *)(BufferInitializationPointerArray[0] + 3) = InputDataLength;
             if ((*(long long *)(CharacterCode + 0x2d0) == 0) ||
                (*(int *)(*(long long *)(CharacterCode + 0x2d0) + 0x14) == 0)) {
               InputDataLength = 0xffffffff;
@@ -49888,7 +49888,7 @@ SystemBufferValidationError:
             else {
               InputDataLength = *(uint32_t *)(CharacterCode + 0x10c);
             }
-            *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x1c) = InputDataLength;
+            *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x1c) = InputDataLength;
             if ((*(long long *)(CharacterCode + 0x2d0) == 0) ||
                (*(int *)(*(long long *)(CharacterCode + 0x2d0) + 0x14) == 0)) {
               InputDataLength = 0xffffffff;
@@ -49896,39 +49896,39 @@ SystemBufferValidationError:
             else {
               InputDataLength = *(uint32_t *)(CharacterCode + 0x110);
             }
-            *(uint32_t *)(apBufferInitializationFlag[0] + 4) = InputDataLength;
-            *(byte *)((long long)apBufferInitializationFlag[0] + 0x4e) = *(byte *)(CharacterCode + 0xfe) >> 3 & 1;
+            *(uint32_t *)(BufferInitializationPointerArray[0] + 4) = InputDataLength;
+            *(byte *)((long long)BufferInitializationPointerArray[0] + 0x4e) = *(byte *)(CharacterCode + 0xfe) >> 3 & 1;
             if (*(int *)(CharacterCode + 0x108) != -1) {
               PrimaryProcessingStatusFlag9 = *(uint32_t **)(CharacterCode + 0x2d0);
               InputDataLength = PrimaryProcessingStatusFlag9[1];
               SystemChecksum = PrimaryProcessingStatusFlag9[2];
               ProcessingStatusFlag = PrimaryProcessingStatusFlag9[3];
-              *(uint32_t *)(apBufferInitializationFlag[0] + 5) = *PrimaryProcessingStatusFlag9;
-              *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x2c) = InputDataLength;
-              *(uint32_t *)(apBufferInitializationFlag[0] + 6) = SystemChecksum;
-              *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x34) = ProcessingStatusFlag;
+              *(uint32_t *)(BufferInitializationPointerArray[0] + 5) = *PrimaryProcessingStatusFlag9;
+              *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x2c) = InputDataLength;
+              *(uint32_t *)(BufferInitializationPointerArray[0] + 6) = SystemChecksum;
+              *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x34) = ProcessingStatusFlag;
               MemoryAllocationBase = *(void *)(PrimaryProcessingStatusFlag9 + 6);
-              apBufferInitializationFlag[0][7] = *(void *)(PrimaryProcessingStatusFlag9 + 4);
-              apBufferInitializationFlag[0][8] = MemoryAllocationBase;
+              BufferInitializationPointerArray[0][7] = *(void *)(PrimaryProcessingStatusFlag9 + 4);
+              BufferInitializationPointerArray[0][8] = MemoryAllocationBase;
             }
-            *(uint8_t *)((long long)apBufferInitializationFlag[0] + 0x4f) =
+            *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4f) =
                  *(uint8_t *)(*(long long *)(CharacterCode + 600) + 0x24);
             BufferValidationStatus = *(long long *)(CharacterCode + 600);
             if (*(char *)(BufferValidationStatus + 0x24) != '\0') {
               InputDataLength = *(uint32_t *)(CharacterCode + 0x2ac);
               SystemChecksum = *(uint32_t *)(CharacterCode + 0x2b0);
               ProcessingStatusFlag = *(uint32_t *)(CharacterCode + 0x2b4);
-              *(uint32_t *)(apBufferInitializationFlag[0] + 10) = *(uint32_t *)(CharacterCode + 0x2a8);
-              *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x54) = InputDataLength;
-              *(uint32_t *)(apBufferInitializationFlag[0] + 0xb) = SystemChecksum;
-              *(uint32_t *)((long long)apBufferInitializationFlag[0] + 0x5c) = ProcessingStatusFlag;
+              *(uint32_t *)(BufferInitializationPointerArray[0] + 10) = *(uint32_t *)(CharacterCode + 0x2a8);
+              *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x54) = InputDataLength;
+              *(uint32_t *)(BufferInitializationPointerArray[0] + 0xb) = SystemChecksum;
+              *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x5c) = ProcessingStatusFlag;
               BufferValidationStatus = *(long long *)(CharacterCode + 600);
             }
-            *(bool *)((long long)apBufferInitializationFlag[0] + 0x4c) = *(long long *)(BufferValidationStatus + 0x10) != 0;
-            *(uint8_t *)((long long)apBufferInitializationFlag[0] + 0x4d) = 1;
+            *(bool *)((long long)BufferInitializationPointerArray[0] + 0x4c) = *(long long *)(BufferValidationStatus + 0x10) != 0;
+            *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4d) = 1;
             if ((*(char *)(AdditionalParameter1 + 0xc) != '\0') ||
                (0 < *(int *)(*(long long *)(CharacterCode + 600) + 0x1c))) {
-              *(uint8_t *)((long long)apBufferInitializationFlag[0] + 0x4d) = 0;
+              *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4d) = 0;
             }
             if (*(uint **)(TemporaryBuffer + 10) == (uint *)0x0) {
               StackArray138[0] = 0xffffffff;
@@ -49940,7 +49940,7 @@ SystemBufferValidationError:
               PrimaryProcessingStatusFlag9 = SystemRegisterFlagBuffer;
               SystemEventTemplatePointer5 = *(uint **)(TemporaryBuffer + 10);
             }
-            ProcessSystemEventTemplate(SystemEventTemplatePointer5 + 0xce2,PrimaryProcessingStatusFlag9,apBufferInitializationFlag);
+            ProcessSystemEventTemplate(SystemEventTemplatePointer5 + 0xce2,PrimaryProcessingStatusFlag9,BufferInitializationPointerArray);
             Utf8SourcePointer = FloatParameterArray;
             Utf16EndPointer = PerformanceCounterValue;
           }
