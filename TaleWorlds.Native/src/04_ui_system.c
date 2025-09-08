@@ -982,7 +982,7 @@ void* UIAnimationSystem;
 #define ProcessUIDataInternal ProcessUIDataInternal
 
  原始函数名：FreeUIMemory - UI内存释放函数
-#define FreeUIMemory FreeUIMemory
+#define FreeUIMemory func_0x000180753860
 
  原始函数名：ExecuteUIRenderTask - UI渲染任务执行函数
 #define ExecuteUIRenderTask ExecuteUIRenderTask
@@ -2269,14 +2269,14 @@ void* UIGestureCoordinates;
  清理UI系统的上下文数据
  * 释放上下文相关的资源
   uiContext UI上下文指针
-  原始函数名: func_0x0001806980f0
+  原始函数名: CleanupUIContext
  #define CleanupUIContext FUN_1806980f0
 
  UI系统状态重置函数
  重置UI系统的状态
  * 将系统恢复到初始状态
  * 
-  原始函数名: func_0x0001806980d0
+  原始函数名: ResetUISystemState
  #define ResetUISystemState FUN_1806980d0
 
  UI系统输入状态更新函数
@@ -2495,21 +2495,21 @@ void* UIGestureCoordinates;
  释放UI分配的内存
  释放UI系统分配的内存资源
   memoryPtr 内存指针
-  原始函数名: func_0x0001804aabb0
- #define FreeUIMemory func_0x0001804aabb0
+  原始函数名: FreeUIMemory
+ #define FreeUIMemory FreeUIMemory
 
  处理UI缓冲区数据
  处理UI系统的缓冲区数据，用于数据同步和管理
   bufferPtr 缓冲区指针
-  原始函数名: func_0x00018022b430
- #define ProcessUIBufferData func_0x00018022b430
+  原始函数名: ProcessUIBufferData
+ #define ProcessUIBufferData ProcessUIBufferData
 
  初始化UI信号量
  初始化UI系统的信号量，用于线程同步和资源管理
   param1 参数1
  *   *    初始化结果
-  原始函数名: func_0x00018022b3c0
- #define InitializeUISemaphore func_0x00018022b3c0
+  原始函数名: InitializeUISemaphore
+ #define InitializeUISemaphore InitializeUISemaphore
 
  创建UI系统资源
  创建UI系统的资源，用于资源管理和分配
@@ -2668,8 +2668,8 @@ void* UIGestureCoordinates;
 #define CalculateUIFloatAbsoluteSum FUN_180702f80
 
  UI系统func函数宏定义
-#define CleanupUIContext func_0x0001806980f0
-#define ResetUISystemState func_0x0001806980d0
+#define CleanupUIContext CleanupUIContext
+#define ResetUISystemState ResetUISystemState
 #define ReleaseUIResourceHandle func_0x00018066e940
 
  清理UI系统临界区资源
@@ -63759,7 +63759,7 @@ uint SynchronizeUISystemState(void)
     *(UIDword *)(uiBufferData + 0x34d1) = 0x4a828280;
     *(UIDword *)(uiBufferData + 0x34d5) = 0xeccbb494;
     *(UIWord *)(uiContext + 0x34d9) = 0xfefe;
-    func_0x0001806980f0(uiContext + 0x12c0);
+    CleanupUIContext(uiContext + 0x12c0);
     func_0x00018069df60(uiContext + 0x12c0);
     *(UIHandle *)(uiContext + 0xf67) = 0;
     *(UIByte *)(uiContext + 0xf63) = 0;
@@ -68782,7 +68782,7 @@ LAB_18069f85f:
       *dataPointer = operationType;
     } while ((int)processingIndex < 0x10);
   }
-  dataCharacter = FUN_1806a02d0(uiContext,&UISymbolTable);
+  dataCharacter = ProcessUIDataInitialization(uiContext,&UISymbolTable);
   dataSource[1] = dataCharacter;
   return;
 }
@@ -68961,7 +68961,7 @@ void ProcessUIResourceSynchronization(longlong uiContext,longlong dataSource,cha
         allocatedMemory2 = allocatedMemory2 + -1;
       } while (allocatedMemory2 != 0);
     }
-    localChar6 = FUN_1806a02d0(allocatedMemory,uiContext + 0x308f);
+    localChar6 = ProcessUIDataInitialization(allocatedMemory,uiContext + 0x308f);
     targetBuffer[1] = localChar6;
     goto LAB_18069fefd;
   }
