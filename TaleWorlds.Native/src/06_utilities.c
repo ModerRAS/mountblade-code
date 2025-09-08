@@ -25548,9 +25548,9 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                 *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11618),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
           if (((int)operationResult == 0) &&
              (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA5,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11628),
-                                    (double)*(float *)(exceptionHandlerContext + 0x11640),
-                                    *(DataWord *)(exceptionHandlerContext + 0x11644),
-                                    *(DataWord *)(exceptionHandlerContext + 0x1164c),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase),
+                                    (double)*(float *)(exceptionHandlerContext + ExceptionContextExtendedOffset11640),
+                                    *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11644),
+                                    *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1164C),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase),
              (int)operationResult == 0)) {
             dataFlags = *(DataWord *)(exceptionHandlerContext + 0x11660);
             operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA6,(double)*(float *)(exceptionHandlerContext + 0x11650),
