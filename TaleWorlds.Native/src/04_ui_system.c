@@ -8089,7 +8089,7 @@ LAB_UIContextInitialize:
     if ((int)elementCount == 0) {
       InitializeUIDataBuffer(dataSource,&UIDataUpdateHandler);
       resultBuffer = &PrimaryUIBuffer;
-      if (stackValue1 == 0) {
+      if (bufferHandle == 0) {
         return dataSource;
       }
                      WARNING: Subroutine does not return

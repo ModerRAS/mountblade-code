@@ -216602,7 +216602,18 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
 
 
 
-7c880(uint64_t CharacterCode,uint64_t SystemBufferSizevoid FUN_18017c880(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 初始化系统事件模板和内存分配
+ * 
+ * 该函数负责初始化系统事件模板，分配内存并设置系统事件相关的数据结构。
+ * 包括内存分配、事件模板配置、字符代码处理和系统优先级设置。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18017c880
+ */
+void InitializeSystemEventTemplateAndMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize)
 {
   long long *CharacterCode;
   uint32_t MemoryAllocationIndex;
