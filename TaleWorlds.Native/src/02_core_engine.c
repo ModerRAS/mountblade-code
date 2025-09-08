@@ -387,6 +387,7 @@
 
 // 字符代码内存分配和验证函数
 #define ProcessCharacterCodeMemoryAllocationAndValidation FUN_180158990 // 处理字符代码内存分配和验证
+#define ProcessSystemBufferCleanupAndFinalization FUN_1801595d0        // 处理系统缓冲区清理和最终化
 #define ProcessUtf8CharacterAdvancedEncoding FUN_18016f7d0  // 高级UTF-8字符编码处理
 #define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
 
@@ -189799,7 +189800,7 @@ LAB_180158404:
     }
     CalculatedFilterValue = FilterInputValue - *(float *)(BufferStatus + 0x20);
     if (FilterInputValue <= MatrixTransformMultiplier1) {
-      CharacterCode = (long long *               FUN_1801580f0(CharacterCode,&pPerformanceCounterValue,
+      CharacterCode = (long long *               AllocateAndInitializeMemoryPoolBlock(CharacterCode,&pPerformanceCounterValue,
                              *(void *                              (SystemDataOffsetTable + (long long)*(char *)(Utf8SourcePointer + 0x59) * 8),BufferStatus,0,
                              *(uint8_t *)(Utf8SourcePointer + 0x58),0);
       BufferStatus = *CharacterCode;
