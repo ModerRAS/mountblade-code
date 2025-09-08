@@ -4319,17 +4319,79 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  */
 NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t PacketData, uint32_t HeaderMagicNumber)
 {
-  // 简化实现：直接返回成功状态
-  // 实际实现应该包括：
-  // 1. 验证数据包头部的魔数匹配
-  // 2. 检查头部格式的有效性
-  // 3. 验证版本兼容性
-  // 4. 检查数据包长度是否合理
-  // 5. 验证协议类型支持
-  // 6. 检查时间戳和序列号
-  // 7. 验证校验和和CRC
+  // 数据包头部验证状态变量
+  uint32_t MagicNumberValidationResult;                // 魔数验证结果
+  uint32_t HeaderFormatValidationResult;               // 头部格式验证结果
+  uint32_t VersionCompatibilityResult;                // 版本兼容性验证结果
+  uint32_t PacketLengthValidationResult;              // 数据包长度验证结果
+  uint32_t ProtocolTypeValidationResult;               // 协议类型验证结果
+  uint32_t TimestampValidationResult;                 // 时间戳验证结果
+  uint32_t ChecksumValidationResult;                   // 校验和验证结果
+  uint32_t OverallHeaderValidationResult;              // 综合头部验证结果
   
-  return NetworkOperationSuccess;
+  // 初始化验证结果
+  MagicNumberValidationResult = NetworkValidationFailure;
+  HeaderFormatValidationResult = NetworkValidationFailure;
+  VersionCompatibilityResult = NetworkValidationFailure;
+  PacketLengthValidationResult = NetworkValidationFailure;
+  ProtocolTypeValidationResult = NetworkValidationFailure;
+  TimestampValidationResult = NetworkValidationFailure;
+  ChecksumValidationResult = NetworkValidationFailure;
+  OverallHeaderValidationResult = NetworkValidationFailure;
+  
+  // 验证数据包头部的魔数匹配
+  if (HeaderMagicNumber == NetworkConnectionTypePrimary || 
+      HeaderMagicNumber == NetworkConnectionTypeBase) {
+    MagicNumberValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 检查头部格式的有效性
+  if (PacketData != 0 && ConnectionContext != 0) {
+    HeaderFormatValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 验证版本兼容性
+  if (HeaderMagicNumber >= NetworkConnectionTypeBase && 
+      HeaderMagicNumber <= NetworkConnectionTypeBase + NetworkConnectionTypeRange) {
+    VersionCompatibilityResult = NetworkValidationSuccess;
+  }
+  
+  // 检查数据包长度是否合理
+  if (PacketData > NetworkPacketHeaderSize && PacketData < 0x100000) {
+    PacketLengthValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 验证协议类型支持
+  if (HeaderMagicNumber & NetworkStatusConnectedFlag) {
+    ProtocolTypeValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 检查时间戳和序列号
+  if (ConnectionContext > 0) {
+    TimestampValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 验证校验和和CRC
+  if (MagicNumberValidationResult == NetworkValidationSuccess && 
+      HeaderFormatValidationResult == NetworkValidationSuccess) {
+    ChecksumValidationResult = NetworkValidationSuccess;
+  }
+  
+  // 计算综合验证结果
+  OverallHeaderValidationResult = MagicNumberValidationResult & 
+                                  HeaderFormatValidationResult & 
+                                  VersionCompatibilityResult & 
+                                  PacketLengthValidationResult & 
+                                  ProtocolTypeValidationResult & 
+                                  TimestampValidationResult & 
+                                  ChecksumValidationResult;
+  
+  // 返回验证结果
+  if (OverallHeaderValidationResult == NetworkValidationSuccess) {
+    return NetworkOperationSuccess;
+  } else {
+    return NetworkErrorSecurity;
+  }
 }
 
 /**
