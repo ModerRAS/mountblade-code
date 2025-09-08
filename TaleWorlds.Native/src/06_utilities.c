@@ -458,6 +458,11 @@
 #define EventHandlerConfigOffset1c 0x1c
 #define EventHandlerConfigOffset2c 0x2c
 
+// 异常上下文处理偏移常量
+#define ExceptionContextOffset2C0 0x2c0
+#define ExceptionContextOffset2D0 0x2d0
+#define ExceptionContextOffset2DD8 0x2dd8
+
 // 权限请求上下文常量
 #define PermissionRequestDataOffset18 0x18
 #define PermissionContextOffset8 0x8
@@ -115116,22 +115121,50 @@ void ProcessExtendedComponentDataProcessorA40(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180911a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理高级组件处理器A50
+ * 
+ * 该函数负责处理位于0xd8偏移量的高级组件处理器，如果存在则调用它。
+ * 这是系统高级组件处理机制的重要组成部分，用于高级组件的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含高级组件处理器信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给高级组件处理器
+ * 
+ * @note 原始函数名：Unwind_180911a50
+ * @note 这是高级组件处理函数，用于调用高级组件处理器
+ */
+void ProcessAdvancedComponentProcessorA50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0xd8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xd8))(dataBuffer + 200,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetD8) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetD8))(dataBuffer + ValidationStatusPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_180911a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理临时异常处理器A60
+ * 
+ * 该函数负责处理位于0xf8偏移量的临时异常处理器，如果存在则调用它。
+ * 这是系统临时异常处理机制的重要组成部分，用于临时异常的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含临时异常处理器信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给临时异常处理器
+ * 
+ * @note 原始函数名：Unwind_180911a60
+ * @note 这是临时异常处理函数，用于调用临时异常处理器
+ */
+void ProcessTemporaryExceptionHandlerA60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0xf8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xf8))(dataBuffer + 0xe8,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetF8) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + AdvancedComponentProcessorOffsetF8))(dataBuffer + DataProcessingContextOffsetE8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -116081,7 +116114,7 @@ void CleanupSystemLevelExceptionHandlerContext(DataBuffer operationBase, int64_t
   int64_t exceptionHandlerContext;
   
   // 获取系统级异常处理器上下文
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x2dd8);
+  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + ExceptionContextOffset2DD8);
   if (exceptionHandlerContext != 0) {
     // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
@@ -117060,7 +117093,7 @@ void ProcessExceptionContextAtOffset2C0(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x2c0);
+  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemContextPointerOffset) + ExceptionContextOffset2C0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
@@ -117092,7 +117125,7 @@ void ProcessExceptionContextAtOffset2D0(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x2d0);
+  exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemContextPointerOffset) + ExceptionContextOffset2D0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
