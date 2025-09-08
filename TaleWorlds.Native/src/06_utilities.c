@@ -29677,10 +29677,10 @@ void ValidateAndProcessPortControlRequest(int64_t portContext, DataBuffer contro
 DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  DataBuffer operationResult;
-  char registerBPL;
-  char stackValidationParameter;
+  int64_t ExceptionHandlerContext;
+  DataBuffer OperationResult;
+  char RegisterBPL;
+  char StackValidationParameter;
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -29725,31 +29725,31 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    exceptionHandlerContext = *dataBuffer;
-    operationResult = OperateDataO0(exceptionHandlerContext,operationBase + 0x60,4);
-    if ((((int)operationResult == 0) && (operationResult = OperateDataO0(exceptionHandlerContext,operationBase + 100,2), (int)operationResult == 0)) &&
-       (operationResult = OperateDataO0(exceptionHandlerContext,operationBase + 0x66,2), (int)operationResult == 0)) {
-      operationResult = OperateDataO0(exceptionHandlerContext,operationBase + 0x68,8);
+    ExceptionHandlerContext = *dataBuffer;
+    OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x60,4);
+    if ((((int)OperationResult == 0) && (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 100,2), (int)OperationResult == 0)) &&
+       (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x66,2), (int)OperationResult == 0)) {
+      OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x68,8);
     }
-    stackValidationParameter = registerBPL;
-    if ((int)operationResult != 0) {
-      return operationResult;
+    StackValidationParameter = RegisterBPL;
+    if ((int)OperationResult != 0) {
+      return OperationResult;
     }
   }
   else {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
-    if ((int)operationResult != 0) {
-      return operationResult;
+    OperationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
+    if ((int)OperationResult != 0) {
+      return OperationResult;
     }
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x74);
-    if ((int)operationResult != 0) {
-      return operationResult;
+    OperationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x74);
+    if ((int)OperationResult != 0) {
+      return OperationResult;
     }
   }
   if (*(uint *)(dataBuffer + 8) < 0x7d) {
@@ -85546,13 +85546,25 @@ void ProcessSystemContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b090(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理上下文回调函数 - 内存资源清理
+ * 
+ * 该函数负责在异常处理过程中清理内存资源，通过调用异常处理上下文中的回调函数
+ * 来释放和清理相关的内存资源，确保系统在异常情况下能够正确清理资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 原始函数名：Unwind_18090b090
+ */
+void CleanupExceptionMemoryResourcesAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针，偏移量0x318用于定位内存资源清理相关的上下文
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x318);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理上下文中的回调函数来执行内存资源清理
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -85560,13 +85572,25 @@ void Unwind_18090b090(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b0b0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理上下文回调函数 - 系统状态验证
+ * 
+ * 该函数负责在异常处理过程中验证系统状态，通过调用异常处理上下文中的回调函数
+ * 来检查和验证系统的当前状态，确保系统在异常情况下能够正确处理状态变化。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 原始函数名：Unwind_18090b0b0
+ */
+void ValidateSystemStateExceptionAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针，偏移量800用于定位系统状态验证相关的上下文
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理上下文中的回调函数来执行系统状态验证
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -85574,13 +85598,25 @@ void Unwind_18090b0b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b0d0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理上下文回调函数 - 资源释放处理
+ * 
+ * 该函数负责在异常处理过程中释放系统资源，通过调用异常处理上下文中的回调函数
+ * 来释放和清理相关的系统资源，确保系统在异常情况下能够正确释放资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 原始函数名：Unwind_18090b0d0
+ */
+void ReleaseSystemResourcesAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针，偏移量0x328用于定位资源释放处理相关的上下文
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x328);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理上下文中的回调函数来执行资源释放处理
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -85588,13 +85624,25 @@ void Unwind_18090b0d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b0f0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理上下文回调函数 - 线程同步处理
+ * 
+ * 该函数负责在异常处理过程中处理线程同步问题，通过调用异常处理上下文中的回调函数
+ * 来确保线程同步的正确性，防止在异常情况下出现线程竞争和死锁问题。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 原始函数名：Unwind_18090b0f0
+ */
+void HandleThreadSynchronizationAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针，偏移量0x330用于定位线程同步处理相关的上下文
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x330);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理上下文中的回调函数来执行线程同步处理
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;

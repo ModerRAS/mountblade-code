@@ -1185,17 +1185,17 @@
 // 网络同步器变量语义化宏定义
 #define SyncCurrentCharacter NetworkSyncStatusFlag         // 网络同步状态标志
 #define MonitorCurrentCharacter NetworkMonitorStatusFlag     // 网络监控状态标志
-#define GameDataNodeCurrentCharacter GameDataNodeStatusFlag  // 游戏数据节点状态标志
-#define ConnectionCurrentCharacter NetworkConnectionStatusFlag // 网络连接状态标志
-#define ConnectionPoolCurrentCharacter NetworkConnectionPoolStatusFlag // 网络连接池状态标志
-#define AudioManagerCurrentCharacter AudioManagerStatusFlag   // 音频管理器状态标志
-#define InputManagerCurrentCharacter InputManagerStatusFlag   // 输入管理器状态标志
-#define PhysicsManagerNodeCurrentCharacter PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
-#define NetworkManagerCurrentCharacter NetworkManagerStatusFlag // 网络管理器状态标志
-#define SceneManagerCurrentCharacter SceneManagerStatusFlag   // 场景管理器状态标志
-#define CameraManagerCurrentCharacter CameraManagerStatusFlag   // 相机管理器状态标志
-#define NodeCurrentCharacter SystemNodeStatusFlag           // 系统节点状态标志
-#define ValidationCurrentCharacter ValidationStatusFlag      // 验证状态标志
+#define GameDataSystemNodeStatusFlag GameDataNodeStatusFlag  // 游戏数据节点状态标志
+#define NetworkConnectionStatusFlag NetworkConnectionStatusFlag // 网络连接状态标志
+#define NetworkConnectionPoolStatusFlag NetworkConnectionPoolStatusFlag // 网络连接池状态标志
+#define AudioManagerStatusFlag AudioManagerStatusFlag   // 音频管理器状态标志
+#define InputManagerStatusFlag InputManagerStatusFlag   // 输入管理器状态标志
+#define PhysicsManagerNodeStatusFlag PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
+#define NetworkManagerStatusFlag NetworkManagerStatusFlag // 网络管理器状态标志
+#define SceneManagerStatusFlag SceneManagerStatusFlag   // 场景管理器状态标志
+#define CameraManagerStatusFlag CameraManagerStatusFlag   // 相机管理器状态标志
+#define SystemNodeStatusFlag SystemNodeStatusFlag           // 系统节点状态标志
+#define ValidationStatusFlag ValidationStatusFlag      // 验证状态标志
 #define ConfigCurrentCharacter ConfigStatusFlag             // 配置状态标志
 #define DataCurrentCharacter DataStatusFlag                 // 数据状态标志
 #define StateCurrentCharacter StateStatusFlag               // 状态标志
@@ -9339,7 +9339,7 @@ void* DatabaseCacheBuffer;                    // 数据库缓存缓冲区
 void* DatabaseTablePrimary;                   // 数据库主表
 void* DatabaseTableSecondary;                 // 数据库备表
 void* DatabaseSecurityFlag;                   // 数据库安全标志
-char DatabaseConnectionCurrentCharacter;             // 数据库连接状态标志
+char DatabaseNetworkConnectionStatusFlag;             // 数据库连接状态标志
 void* DatabaseIndexTable;                     // 数据库索引表
 char DatabaseTransactionCurrentCharacter;            // 数据库事务状态标志
 void* DatabaseQueryBuffer;                    // 数据库查询缓冲区
@@ -10852,7 +10852,7 @@ void* EventDispatcherConnectionMemoryPool;
 void* EventDispatcherConnectionCharacterStatusBuffer;
 void* SystemMemoryPoolPointer;
 void* EventDispatcherConnectionQueuePointer;
-void* EventDispatcherConnectionCurrentCharacter;
+void* EventDispatcherNetworkConnectionStatusFlag;
 void* EventDispatcherConnectionConfigTable;
 void* EventDispatcherConnectionMemoryManager;
 void* EventDispatcherConnectionErrorHandler;
@@ -12657,7 +12657,7 @@ void CoreEngineInitializeNetworkConnectionPoolQueueManager(void)
  */
 void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12670,11 +12670,11 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionEventInitializer = 0;
   CurrentConnection = ConnectionPoolPointer;
   PreviousConnection = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousConnection + 4,&SystemComparisonDataSextenary,0x10);
     if (ComparisonResult < 0) {
       NextConnection = (void *)PreviousConnection[2];
@@ -12685,7 +12685,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
     }
     CurrentConnection = PreviousConnection;
     PreviousConnection = NextConnection;
-    ConnectionCurrentCharacter = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSextenary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
@@ -12711,7 +12711,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
  */
 void CoreEngineInitializeNetworkConnectionPoolEventCallbackManager(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12724,11 +12724,11 @@ void CoreEngineInitializeNetworkConnectionPoolEventCallbackManager(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   EventCallbackFunction = CoreEngineGetEventCallbackFunction();
   CurrentConnection = ConnectionPoolPointer;
   PreviousConnection = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousConnection + 4,&SystemComparisonDataSeptenary,0x10);
     if (ComparisonResult < 0) {
       NextConnection = (void *)PreviousConnection[2];
@@ -12739,7 +12739,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventCallbackManager(void
     }
     CurrentConnection = PreviousConnection;
     PreviousConnection = NextConnection;
-    ConnectionCurrentCharacter = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSeptenary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
@@ -12765,7 +12765,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventCallbackManager(void
  */
 void CoreEngineInitializeNetworkConnectionPoolSyncManager(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12778,11 +12778,11 @@ void CoreEngineInitializeNetworkConnectionPoolSyncManager(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionSyncInitializer = 0;
   CurrentConnection = ConnectionPoolPointer;
   PreviousConnection = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousConnection + 4,&SystemComparisonDataOctonary,0x10);
     if (ComparisonResult < 0) {
       NextConnection = (void *)PreviousConnection[2];
@@ -12793,7 +12793,7 @@ void CoreEngineInitializeNetworkConnectionPoolSyncManager(void
     }
     CurrentConnection = PreviousConnection;
     PreviousConnection = NextConnection;
-    ConnectionCurrentCharacter = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataOctonary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
@@ -12846,7 +12846,7 @@ void CoreEngineInitializeNetworkConnectionPoolConfigManager(void
  */
 void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -12859,11 +12859,11 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   StateRecoveryHandler = CoreEngineGetStateRecoveryHandler();
   CurrentConnection = ConnectionPoolPointer;
   PreviousConnection = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousConnection + 4,&SystemComparisonDataSecondary,0x10);
     if (ComparisonResult < 0) {
       NextConnection = (void *)PreviousConnection[2];
@@ -12874,7 +12874,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
     }
     CurrentConnection = PreviousConnection;
     PreviousConnection = NextConnection;
-    ConnectionCurrentCharacter = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)NextConnection + SystemNodeStatusOffset);
   }
   if ((CurrentConnection == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSecondary,CurrentConnection + 4,0x10), ComparisonResult < 0)) {
     AllocationSize = CoreEngineGetAllocationSize(SystemHandle);
@@ -12899,7 +12899,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
  * 通过遍历连接池中的节点，检查连接状态，并根据需要创建新的连接。
  */
 void InitializeNetworkConnectionPoolStatusHandler(void) {
-  char ConnectionPoolCurrentCharacter;
+  char NetworkConnectionPoolStatusFlag;
   void *NetworkConnectionPool;
   int ConnectionComparisonResult;
   long long *EngineSystemContext;
@@ -12912,11 +12912,11 @@ void InitializeNetworkConnectionPoolStatusHandler(void) {
   
   EngineSystemContext = (long long *)CoreEngineGetSystemContext();
   NetworkConnectionPool = (void *)*EngineSystemContext;
-  ConnectionPoolCurrentCharacter = *(char *)((long long)NetworkConnectionPool[1] + SystemNodeStatusOffset);
+  NetworkConnectionPoolStatusFlag = *(char *)((long long)NetworkConnectionPool[1] + SystemNodeStatusOffset);
   ConnectionStatusHandlerFunction = CoreEngineGetConnectionInitializer;
   CurrentNetworkConnection = NetworkConnectionPool;
   PreviousNetworkConnection = (void *)NetworkConnectionPool[1];
-  while (ConnectionPoolCurrentCharacter == '\0') {
+  while (NetworkConnectionPoolStatusFlag == '\0') {
     ConnectionComparisonResult = memcmp(PreviousNetworkConnection + 4,&SystemComparisonDataTertiary,0x10);
     if (ConnectionComparisonResult < 0) {
       NextNetworkConnection = (void *)PreviousNetworkConnection[2];
@@ -12927,7 +12927,7 @@ void InitializeNetworkConnectionPoolStatusHandler(void) {
     }
     CurrentNetworkConnection = PreviousNetworkConnection;
     PreviousNetworkConnection = NextNetworkConnection;
-    ConnectionPoolCurrentCharacter = *(char *)((long long)NextNetworkConnection + SystemNodeStatusOffset);
+    NetworkConnectionPoolStatusFlag = *(char *)((long long)NextNetworkConnection + SystemNodeStatusOffset);
   }
   if ((CurrentNetworkConnection == NetworkConnectionPool) || (ConnectionComparisonResult = memcmp(&SystemComparisonDataTertiary,CurrentNetworkConnection + 4,0x10), ConnectionComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineSystemContext);
@@ -13421,7 +13421,7 @@ void CoreEngineInitializeScriptManager(void
  */
 void CoreEngineInitializeAudioManager(void
 {
-  char AudioManagerCurrentCharacter;
+  char AudioManagerStatusFlag;
   void* AudioCharacterCode;
   int AudioMemoryCompareResult;
   int64_t* AudioEngineContext;
@@ -13434,11 +13434,11 @@ void CoreEngineInitializeAudioManager(void
   
   AudioEngineContext = (int64_t*)CoreEngineGetSystemContext();
   AudioCharacterCode = (void*)*AudioEngineContext;
-  AudioManagerCurrentCharacter = *(char*)((int64_t)AudioCharacterCode[1] + SystemNodeStatusOffset);
+  AudioManagerStatusFlag = *(char*)((int64_t)AudioCharacterCode[1] + SystemNodeStatusOffset);
   AudioNetworkAuthenticationCallback = CoreEngineProcessNetworkAuthentication;
   AudioPreviousNode = AudioCharacterCode;
   AudioCurrentNode = (void*)AudioCharacterCode[1];
-  while (AudioManagerCurrentCharacter == '\0') {
+  while (AudioManagerStatusFlag == '\0') {
     AudioMemoryCompareResult = memcmp(AudioCurrentNode + 4,&SystemComparisonDataNonary,0x10);
     if (AudioMemoryCompareResult < 0) {
       AudioNextNode = (void*)AudioCurrentNode[2];
@@ -13449,7 +13449,7 @@ void CoreEngineInitializeAudioManager(void
     }
     AudioPreviousNode = AudioCurrentNode;
     AudioCurrentNode = AudioNextNode;
-    AudioManagerCurrentCharacter = *(char*)((int64_t)AudioNextNode + SystemNodeStatusOffset);
+    AudioManagerStatusFlag = *(char*)((int64_t)AudioNextNode + SystemNodeStatusOffset);
   }
   if ((AudioPreviousNode == AudioCharacterCode) || (AudioMemoryCompareResult = memcmp(&SystemComparisonDataNonary,AudioPreviousNode + 4,0x10), AudioMemoryCompareResult < 0)) {
     AudioAllocatedMemorySize = CoreEngineAllocateMemory(AudioEngineContext);
@@ -13475,7 +13475,7 @@ void CoreEngineInitializeAudioManager(void
  */
 void CoreEngineInitializeInputManager(void
 {
-  char InputManagerCurrentCharacter;
+  char InputManagerStatusFlag;
   uint64_t *InputCharacterCode;
   int InputMemoryCompareResult;
   int64_t *InputEngineContext;
@@ -13488,11 +13488,11 @@ void CoreEngineInitializeInputManager(void
   
   InputEngineContext = (int64_t *)CoreEngineGetSystemContext();
   InputCharacterCode = (uint64_t *)*InputEngineContext;
-  InputManagerCurrentCharacter = *(char *)((long long)InputCharacterCode[1] + SystemNodeStatusOffset);
+  InputManagerStatusFlag = *(char *)((long long)InputCharacterCode[1] + SystemNodeStatusOffset);
   InputNetworkValidationCallback = CoreEngineProcessNetworkValidation;
   InputPreviousNode = InputCharacterCode;
   InputCurrentNode = (uint64_t *)InputCharacterCode[1];
-  while (InputManagerCurrentCharacter == '\0') {
+  while (InputManagerStatusFlag == '\0') {
     InputMemoryCompareResult = memcmp(InputCurrentNode + 4,&SystemComparisonDataDenary,0x10);
     if (InputMemoryCompareResult < 0) {
       InputNextNode = (uint64_t *)InputCurrentNode[2];
@@ -13503,7 +13503,7 @@ void CoreEngineInitializeInputManager(void
     }
     InputPreviousNode = InputCurrentNode;
     InputCurrentNode = InputNextNode;
-    InputManagerCurrentCharacter = *(char *)((long long)InputNextNode + SystemNodeStatusOffset);
+    InputManagerStatusFlag = *(char *)((long long)InputNextNode + SystemNodeStatusOffset);
   }
   if ((InputPreviousNode == InputCharacterCode) || (InputMemoryCompareResult = memcmp(&SystemComparisonDataDenary,InputPreviousNode + 4,0x10), InputMemoryCompareResult < 0)) {
     InputAllocatedMemorySize = CoreEngineAllocateMemory(InputEngineContext);
@@ -13529,7 +13529,7 @@ void CoreEngineInitializeInputManager(void
  */
 void CoreEngineInitializePhysicsManager(void
 {
-  char PhysicsManagerNodeCurrentCharacter;
+  char PhysicsManagerNodeStatusFlag;
   void *PhysicsManagerSystemContext;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -13542,11 +13542,11 @@ void CoreEngineInitializePhysicsManager(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   PhysicsManagerSystemContext = (void *)*EngineContext;
-  PhysicsManagerNodeCurrentCharacter = *(char *)((long long)PhysicsManagerSystemContext[1] + SystemNodeStatusOffset);
+  PhysicsManagerNodeStatusFlag = *(char *)((long long)PhysicsManagerSystemContext[1] + SystemNodeStatusOffset);
   PhysicsNetworkStatusCallback = CoreEngineProcessNetworkStatus;
   PreviousPhysicsManagerNode = PhysicsManagerSystemContext;
   CurrentPhysicsManagerNode = (void *)PhysicsManagerSystemContext[1];
-  while (PhysicsManagerNodeCurrentCharacter == '\0') {
+  while (PhysicsManagerNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentPhysicsManagerNode + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryCompareResult < 0) {
       NextPhysicsManagerNode = (void *)CurrentPhysicsManagerNode[2];
@@ -13557,7 +13557,7 @@ void CoreEngineInitializePhysicsManager(void
     }
     PreviousPhysicsManagerNode = CurrentPhysicsManagerNode;
     CurrentPhysicsManagerNode = NextPhysicsManagerNode;
-    PhysicsManagerNodeCurrentCharacter = *(char *)((long long)NextPhysicsManagerNode + SystemNodeStatusOffset);
+    PhysicsManagerNodeStatusFlag = *(char *)((long long)NextPhysicsManagerNode + SystemNodeStatusOffset);
   }
   if ((PreviousPhysicsManagerNode == PhysicsManagerSystemContext) || (MemoryCompareResult = memcmp(&SystemComparisonDataSecondary,PreviousPhysicsManagerNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -13596,11 +13596,11 @@ void CoreEngineInitializeAnimationManager(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   SystemSystemContext = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)SystemSystemContext[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)SystemSystemContext[1] + SystemNodeStatusOffset);
   ConnectionInitializerCallback = CoreEngineGetConnectionInitializer;
   PreviousNode = SystemSystemContext;
   CurrentNode = (void *)SystemSystemContext[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -13611,7 +13611,7 @@ void CoreEngineInitializeAnimationManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == SystemSystemContext) || (MemoryCompareResult = memcmp(&SystemComparisonDataTertiary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -13699,7 +13699,7 @@ void CoreEngineInitializeFileSystem(void)
  */
 void CoreEngineInitializeNetworkManager(void)
 {
-  char NetworkManagerCurrentCharacter;
+  char NetworkManagerStatusFlag;
   void* NetworkCharacterCode;
   int NetworkMemoryCompareResult;
   int64_t* NetworkEngineContext;
@@ -13712,11 +13712,11 @@ void CoreEngineInitializeNetworkManager(void)
   
   NetworkEngineContext = (int64_t*)CoreEngineGetSystemContext();
   NetworkCharacterCode = (void*)*NetworkEngineContext;
-  NetworkManagerCurrentCharacter = *(char*)((int64_t)NetworkCharacterCode[1] + SystemNodeStatusOffset);
+  NetworkManagerStatusFlag = *(char*)((int64_t)NetworkCharacterCode[1] + SystemNodeStatusOffset);
   NetworkSecurityCallback = CoreEngineProcessNetworkSecurity;
   NetworkPreviousNode = NetworkCharacterCode;
   NetworkCurrentNode = (void*)NetworkCharacterCode[1];
-  while (NetworkManagerCurrentCharacter == '\0') {
+  while (NetworkManagerStatusFlag == '\0') {
     NetworkMemoryCompareResult = memcmp(NetworkCurrentNode + 4,&SystemComparisonDataQuinary,0x10);
     if (NetworkMemoryCompareResult < 0) {
       NetworkNextNode = (void*)NetworkCurrentNode[2];
@@ -13727,7 +13727,7 @@ void CoreEngineInitializeNetworkManager(void)
     }
     NetworkPreviousNode = NetworkCurrentNode;
     NetworkCurrentNode = NetworkNextNode;
-    NetworkManagerCurrentCharacter = *(char*)((int64_t)NetworkNextNode + SystemNodeStatusOffset);
+    NetworkManagerStatusFlag = *(char*)((int64_t)NetworkNextNode + SystemNodeStatusOffset);
   }
   if ((NetworkPreviousNode == NetworkCharacterCode) || (NetworkMemoryCompareResult = memcmp(&SystemComparisonDataQuinary,NetworkPreviousNode + 4,0x10), NetworkMemoryCompareResult < 0)) {
     NetworkAllocatedMemorySize = CoreEngineAllocateMemory(NetworkEngineContext);
@@ -13761,7 +13761,7 @@ void CoreEngineInitializeConsole(void)
  */
 void CoreEngineInitializeSceneManager(void)
 {
-  char SceneManagerCurrentCharacter;
+  char SceneManagerStatusFlag;
   void* SceneCharacterCode;
   int SceneMemoryCompareResult;
   int64_t* SceneEngineContext;
@@ -13774,11 +13774,11 @@ void CoreEngineInitializeSceneManager(void)
   
   SceneEngineContext = (int64_t*)CoreEngineGetSystemContext();
   SceneCharacterCode = (void*)*SceneEngineContext;
-  SceneManagerCurrentCharacter = *(char*)((int64_t)SceneCharacterCode[1] + SystemNodeStatusOffset);
+  SceneManagerStatusFlag = *(char*)((int64_t)SceneCharacterCode[1] + SystemNodeStatusOffset);
   SceneCallbackHandler = 0;
   ScenePreviousNode = SceneCharacterCode;
   SceneCurrentNode = (void*)SceneCharacterCode[1];
-  while (SceneManagerCurrentCharacter == '\0') {
+  while (SceneManagerStatusFlag == '\0') {
     SceneMemoryCompareResult = memcmp(SceneCurrentNode + 4,&SystemComparisonDataSextenary,0x10);
     if (SceneMemoryCompareResult < 0) {
       SceneNextNode = (void*)SceneCurrentNode[2];
@@ -13789,7 +13789,7 @@ void CoreEngineInitializeSceneManager(void)
     }
     ScenePreviousNode = SceneCurrentNode;
     SceneCurrentNode = SceneNextNode;
-    SceneManagerCurrentCharacter = *(char*)((int64_t)SceneNextNode + SystemNodeStatusOffset);
+    SceneManagerStatusFlag = *(char*)((int64_t)SceneNextNode + SystemNodeStatusOffset);
   }
   if ((ScenePreviousNode == SceneCharacterCode) || (SceneMemoryCompareResult = memcmp(&SystemComparisonDataSextenary,ScenePreviousNode + 4,0x10), SceneMemoryCompareResult < 0)) {
     SceneAllocatedMemorySize = CoreEngineAllocateMemory(SceneEngineContext);
@@ -13815,7 +13815,7 @@ void CoreEngineInitializeSceneManager(void)
  */
 void CoreEngineInitializeCameraManager(void
 {
-  char CameraManagerCurrentCharacter;
+  char CameraManagerStatusFlag;
   void* CameraCharacterCode;
   int CameraMemoryCompareResult;
   int64_t* CameraEngineContext;
@@ -13828,11 +13828,11 @@ void CoreEngineInitializeCameraManager(void
   
   CameraEngineContext = (int64_t*)CoreEngineGetSystemContext();
   CameraCharacterCode = (void*)*CameraEngineContext;
-  CameraManagerCurrentCharacter = *(char*)((int64_t)CameraCharacterCode[1] + SystemNodeStatusOffset);
+  CameraManagerStatusFlag = *(char*)((int64_t)CameraCharacterCode[1] + SystemNodeStatusOffset);
   CameraFileSystemHandler = &SystemFileSystemHandler;
   CameraPreviousNode = CameraCharacterCode;
   CameraCurrentNode = (void*)CameraCharacterCode[1];
-  while (CameraManagerCurrentCharacter == '\0') {
+  while (CameraManagerStatusFlag == '\0') {
     CameraMemoryCompareResult = memcmp(CameraCurrentNode + 4,&SystemComparisonDataSeptenary,0x10);
     if (CameraMemoryCompareResult < 0) {
       CameraNextNode = (void*)CameraCurrentNode[2];
@@ -13843,7 +13843,7 @@ void CoreEngineInitializeCameraManager(void
     }
     CameraPreviousNode = CameraCurrentNode;
     CameraCurrentNode = CameraNextNode;
-    CameraManagerCurrentCharacter = *(char*)((int64_t)CameraNextNode + SystemNodeStatusOffset);
+    CameraManagerStatusFlag = *(char*)((int64_t)CameraNextNode + SystemNodeStatusOffset);
   }
   if ((CameraPreviousNode == CameraCharacterCode) || (CameraMemoryCompareResult = memcmp(&SystemComparisonDataSeptenary,CameraPreviousNode + 4,0x10), CameraMemoryCompareResult < 0)) {
     CameraAllocatedMemorySize = CoreEngineAllocateMemory(CameraEngineContext);
@@ -13922,7 +13922,7 @@ void CoreEngineInitializeEventSystem(void
  * 用于管理引擎的资源加载系统。
  */
 void CoreEngineInitializeResourceLoader(void) {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -13935,11 +13935,11 @@ void CoreEngineInitializeResourceLoader(void) {
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ResourceProcessor = CoreEngineProcessNetworkStatus;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -13950,7 +13950,7 @@ void CoreEngineInitializeResourceLoader(void) {
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -13976,7 +13976,7 @@ void CoreEngineInitializeResourceLoader(void) {
  */
 void CoreEngineInitializeTextureManager(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -13989,11 +13989,11 @@ void CoreEngineInitializeTextureManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   TextureInitializer = CoreEngineGetConnectionInitializer;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataTertiary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -14004,7 +14004,7 @@ void CoreEngineInitializeTextureManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -14030,7 +14030,7 @@ void CoreEngineInitializeTextureManager(void
  */
 void CoreEngineInitializeShaderManager(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void* CharacterCode;
   int MemoryCompareResult;
   int64_t* EngineContext;
@@ -14043,11 +14043,11 @@ void CoreEngineInitializeShaderManager(void
   
   EngineContext = (int64_t*)CoreEngineGetSystemContext();
   CharacterCode = (void*)*EngineContext;
-  NodeCurrentCharacter = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
   ShaderManagerCallback = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void*)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void*)CurrentNode[2];
@@ -14058,7 +14058,7 @@ void CoreEngineInitializeShaderManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuaternary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -14084,7 +14084,7 @@ void CoreEngineInitializeShaderManager(void
  */
 void CoreEngineInitializeMeshManager(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void* CharacterCode;
   int MemoryCompareResult;
   int64_t* EngineContext;
@@ -14097,11 +14097,11 @@ void CoreEngineInitializeMeshManager(void
   
   EngineContext = (int64_t*)CoreEngineGetSystemContext();
   CharacterCode = (void*)*EngineContext;
-  NodeCurrentCharacter = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
   NetworkSecurityCallback = CoreEngineProcessNetworkSecurity;
   PreviousNode = CharacterCode;
   CurrentNode = (void*)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void*)CurrentNode[2];
@@ -14112,7 +14112,7 @@ void CoreEngineInitializeMeshManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuinary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -14138,7 +14138,7 @@ void CoreEngineInitializeMeshManager(void
  */
 void CoreEngineInitializeParticleManager(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void* CharacterCode;
   int MemoryCompareResult;
   int64_t* EngineContext;
@@ -14151,11 +14151,11 @@ void CoreEngineInitializeParticleManager(void
   
   EngineContext = (int64_t*)CoreEngineGetSystemContext();
   CharacterCode = (void*)*EngineContext;
-  NodeCurrentCharacter = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char*)((int64_t)CharacterCode[1] + SystemNodeStatusOffset);
   ParticleManagerCallback = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void*)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void*)CurrentNode[2];
@@ -14166,7 +14166,7 @@ void CoreEngineInitializeParticleManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char*)((int64_t)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataSextenary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -14246,7 +14246,7 @@ void CoreEngineInitializeMemoryPoolManager(void
  */
 void CoreEngineInitializeAudioSystemManager(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -14259,11 +14259,11 @@ void CoreEngineInitializeAudioSystemManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   AudioHandler = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -14274,7 +14274,7 @@ void CoreEngineInitializeAudioSystemManager(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -14376,7 +14376,7 @@ void CoreEngineInitializeEventSystem(void);
  * @note 使用特定的标识符来识别网络配置节点类型
  */
 void CoreEngineInitializeNetworkConfigurationSystem(void) {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *SystemContext;
   int ComparisonResult;
   long long *SystemHandle;
@@ -14389,11 +14389,11 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   SystemContext = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   NetworkConfigCallback = CoreEngineProcessNetworkConfiguration;
   CurrentNode = SystemContext;
   PreviousNode = (void *)SystemContext[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousNode + 4, &SystemComparisonDataPrimary, 0x10);
     if (ComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -14404,7 +14404,7 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == SystemContext) || (ComparisonResult = memcmp(&SystemComparisonDataPrimary, CurrentNode + SystemNodeHeaderSize, SystemDataStructureSize), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
@@ -14441,7 +14441,7 @@ void CoreEngineInitializeNetworkManager(void);
  * @note 使用特定的标识符来识别资源管理节点类型
  */
 void CoreEngineInitializeResourceManagerSystem(void) {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *SystemContext;
   int ComparisonResult;
   long long *SystemHandle;
@@ -14454,11 +14454,11 @@ void CoreEngineInitializeResourceManagerSystem(void) {
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   SystemContext = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   ResourceManagementCallback = CoreEngineProcessResourceManagement;
   CurrentNode = SystemContext;
   PreviousNode = (void *)SystemContext[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousNode + 4, &SystemComparisonDataUndenary, 0x10);
     if (ComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -14469,7 +14469,7 @@ void CoreEngineInitializeResourceManagerSystem(void) {
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == SystemContext) || (ComparisonResult = memcmp(&SystemComparisonDataUndenary, CurrentNode + 4, 0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
@@ -14507,7 +14507,7 @@ void CoreEngineInitializeFileSystem(void);
  */
 void CoreEngineInitializeNetworkEventSystem(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int ComparisonResult;
   long long *SystemHandle;
@@ -14520,11 +14520,11 @@ void CoreEngineInitializeNetworkEventSystem(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   NetworkEventCallback = CoreEngineProcessNetworkEvent;
   CurrentNode = CharacterCode;
   PreviousNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ComparisonResult = memcmp(PreviousNode + 4,&SystemMonitorComparisonData,0x10);
     if (ComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -14535,7 +14535,7 @@ void CoreEngineInitializeNetworkEventSystem(void
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == CharacterCode) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentNode + 4,0x10), ComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
@@ -14568,7 +14568,7 @@ void CoreEngineInitializeNetworkEventSystem(void
  */
 void CoreEngineInitializeNetworkConnectionProcessor(void
 {
-  char NetworkConnectionCurrentCharacter;
+  char NetworkNetworkConnectionStatusFlag;
   void *NetworkSystemSystemContext;
   int NetworkConnectionComparisonResult;
   long long *NetworkSystemHandle;
@@ -14581,11 +14581,11 @@ void CoreEngineInitializeNetworkConnectionProcessor(void
   
   NetworkSystemHandle = (long long *)CoreEngineGetSystemContext();
   NetworkSystemSystemContext = (void *)*NetworkSystemHandle;
-  NetworkConnectionCurrentCharacter = *(char *)((long long)NetworkSystemSystemContext[1] + SystemNodeStatusOffset);
+  NetworkNetworkConnectionStatusFlag = *(char *)((long long)NetworkSystemSystemContext[1] + SystemNodeStatusOffset);
   NetworkConnectionProcessor = CoreEngineProcessNetworkConnection;
   currentNetworkConnection = NetworkSystemSystemContext;
   previousNetworkConnection = (void *)NetworkSystemSystemContext[1];
-  while (NetworkConnectionCurrentCharacter == '\0') {
+  while (NetworkNetworkConnectionStatusFlag == '\0') {
     NetworkConnectionComparisonResult = memcmp(previousNetworkConnection + 4,&SystemConnectionComparisonData,0x10);
     if (NetworkConnectionComparisonResult < 0) {
       nextNetworkConnection = (void *)previousNetworkConnection[2];
@@ -14596,7 +14596,7 @@ void CoreEngineInitializeNetworkConnectionProcessor(void
     }
     currentNetworkConnection = previousNetworkConnection;
     previousNetworkConnection = nextNetworkConnection;
-    NetworkConnectionCurrentCharacter = *(char *)((long long)nextNetworkConnection + SystemNodeStatusOffset);
+    NetworkNetworkConnectionStatusFlag = *(char *)((long long)nextNetworkConnection + SystemNodeStatusOffset);
   }
   if ((currentNetworkConnection == NetworkSystemSystemContext) || (NetworkConnectionComparisonResult = memcmp(&SystemConnectionComparisonData,currentNetworkConnection + 4,0x10), NetworkConnectionComparisonResult < 0)) {
     NetworkMemoryOffset = CoreEngineAllocateMemory(NetworkSystemHandle);
@@ -14629,7 +14629,7 @@ void CoreEngineInitializeNetworkConnectionProcessor(void
  */
 void CoreEngineInitializeNetworkStatusProcessor(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -14642,11 +14642,11 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   NetworkStatusProcessor = CoreEngineProcessNetworkStatus;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -14657,7 +14657,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -15129,7 +15129,7 @@ void InitializeNetworkConnectionPool(void)
  */
 void InitializeNetworkValidationSystem(void
 {
-  char ValidationCurrentCharacter;                          // 验证状态标志
+  char ValidationStatusFlag;                          // 验证状态标志
   void* ValidationSystemContext;                      // 验证系统上下文指针
   int ValidationComparisonResult;                     // 验证比较结果
   long long *ValidationEngineContext;                  // 验证引擎上下文指针
@@ -15142,11 +15142,11 @@ void InitializeNetworkValidationSystem(void
   
   ValidationEngineContext = (long long *)CoreEngineGetSystemContext();
   ValidationSystemContext = (void *)*ValidationEngineContext;
-  ValidationCurrentCharacter = *(char *)((long long)ValidationSystemContext[1] + SystemNodeStatusOffset);
+  ValidationStatusFlag = *(char *)((long long)ValidationSystemContext[1] + SystemNodeStatusOffset);
   ValidationProcessHandler = CoreEngineProcessNetworkValidation;
   ValidationRightNode = ValidationSystemContext;
   ValidationLeftNode = (void *)ValidationSystemContext[1];
-  while (ValidationCurrentCharacter == '\0') {
+  while (ValidationStatusFlag == '\0') {
     ValidationComparisonResult = memcmp(ValidationLeftNode + 4,&SystemComparisonDataDenary,0x10);
     if (ValidationComparisonResult < 0) {
       ValidationNextNode = (void *)ValidationLeftNode[2];
@@ -15157,7 +15157,7 @@ void InitializeNetworkValidationSystem(void
     }
     ValidationRightNode = ValidationLeftNode;
     ValidationLeftNode = ValidationNextNode;
-    ValidationCurrentCharacter = *(char *)((long long)ValidationNextNode + SystemNodeStatusOffset);
+    ValidationStatusFlag = *(char *)((long long)ValidationNextNode + SystemNodeStatusOffset);
   }
   if ((ValidationRightNode == ValidationSystemContext) || (ValidationComparisonResult = memcmp(&SystemComparisonDataDenary,ValidationRightNode + 4,0x10), ValidationComparisonResult < 0)) {
     ValidationAllocatedMemorySize = CoreEngineAllocateMemory(ValidationSystemContext);
@@ -17047,7 +17047,7 @@ void CoreEngineInitializeMemoryTemplate(void
  */
 void SystemMemoryTemplateManagerInitialize(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *MemoryPoolPointer;
@@ -17060,11 +17060,11 @@ void SystemMemoryTemplateManagerInitialize(void
   
   MemoryPoolPointer = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*MemoryPoolPointer;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   MemoryNodeData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryMatchResult = memcmp(CurrentNode + 4,&SystemMemoryTemplateSecondary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17075,7 +17075,7 @@ void SystemMemoryTemplateManagerInitialize(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemMemoryTemplateSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(MemoryPoolPointer);
@@ -17108,7 +17108,7 @@ void SystemMemoryTemplateManagerInitialize(void
  */
 void SystemConfigTemplateManagerInitialize(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int ConfigComparisonResult;
   long long *ConfigPoolPointer;
@@ -17121,11 +17121,11 @@ void SystemConfigTemplateManagerInitialize(void
   
   ConfigPoolPointer = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*ConfigPoolPointer;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConfigNodeData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ConfigComparisonResult = memcmp(CurrentNode + 4,&SystemConfigTemplatePrimary,0x10);
     if (ConfigComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17136,7 +17136,7 @@ void SystemConfigTemplateManagerInitialize(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (ConfigComparisonResult = memcmp(&SystemConfigTemplatePrimary,PreviousNode + 4,0x10), ConfigComparisonResult < 0)) {
     ConfigAllocationSize = CoreEngineAllocateMemory(ConfigPoolPointer);
@@ -17169,7 +17169,7 @@ void SystemConfigTemplateManagerInitialize(void
  */
 void SystemConfigTemplateSecondaryManagerInitialize(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int ConfigComparisonResult;
   long long *ConfigPoolPointer;
@@ -17182,11 +17182,11 @@ void SystemConfigTemplateSecondaryManagerInitialize(void
   
   ConfigPoolPointer = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*ConfigPoolPointer;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConfigNodeData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ConfigComparisonResult = memcmp(CurrentNode + 4,&SystemConfigTemplateSecondary,0x10);
     if (ConfigComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17197,7 +17197,7 @@ void SystemConfigTemplateSecondaryManagerInitialize(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (ConfigComparisonResult = memcmp(&SystemConfigTemplateSecondary,PreviousNode + 4,0x10), ConfigComparisonResult < 0)) {
     ConfigAllocationSize = CoreEngineAllocateMemory(ConfigPoolPointer);
@@ -17230,7 +17230,7 @@ void SystemConfigTemplateSecondaryManagerInitialize(void
  */
 void SystemDataTemplateTertiaryManagerInitialize(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int DataComparisonResult;
   long long *DataPoolPointer;
@@ -17243,11 +17243,11 @@ void SystemDataTemplateTertiaryManagerInitialize(void
   
   DataPoolPointer = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*DataPoolPointer;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   DataNodeData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     DataComparisonResult = memcmp(CurrentNode + 4,&SystemDataTemplateTertiary,0x10);
     if (DataComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17258,7 +17258,7 @@ void SystemDataTemplateTertiaryManagerInitialize(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (DataComparisonResult = memcmp(&SystemDataTemplateTertiary,PreviousNode + 4,0x10), DataComparisonResult < 0)) {
     DataAllocationSize = CoreEngineAllocateMemory(DataPoolPointer);
@@ -17291,7 +17291,7 @@ void SystemDataTemplateTertiaryManagerInitialize(void
  */
 void SystemThreadTemplateManagerInitialize(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int ThreadComparisonResult;
   long long *ThreadPoolPointer;
@@ -17304,11 +17304,11 @@ void SystemThreadTemplateManagerInitialize(void
   
   ThreadPoolPointer = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*ThreadPoolPointer;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ThreadCallbackFunction = ThreadManagementCallback;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ThreadComparisonResult = memcmp(CurrentNode + 4,&SystemThreadTemplatePrimary,0x10);
     if (ThreadComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17319,7 +17319,7 @@ void SystemThreadTemplateManagerInitialize(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (ThreadComparisonResult = memcmp(&SystemThreadTemplatePrimary,PreviousNode + 4,0x10), ThreadComparisonResult < 0)) {
     ThreadAllocationSize = CoreEngineAllocateMemory(ThreadPoolPointer);
@@ -17345,7 +17345,7 @@ void SystemThreadTemplateManagerInitialize(void
  */
 void CoreEngineInitializeSystemNodeTemplateJ(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void **CharacterCode;
   int ComparisonResult;
   long long *SystemHandle;
@@ -17358,11 +17358,11 @@ void CoreEngineInitializeSystemNodeTemplateJ(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void **)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   NodeConfigurationValue = 0;
   PreviousNodePointer = CharacterCode;
   CurrentNodePointer = (void **)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     ComparisonResult = memcmp(CurrentNodePointer + 4,&SystemThreadTemplateSecondary,0x10);
     if (ComparisonResult < 0) {
       NextNodePointer = (void **)CurrentNodePointer[2];
@@ -17373,7 +17373,7 @@ void CoreEngineInitializeSystemNodeTemplateJ(void
     }
     PreviousNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeCurrentCharacter = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
   if ((PreviousNodePointer == CharacterCode) || (ComparisonResult = memcmp(&SystemThreadTemplateSecondary,PreviousNodePointer + 4,0x10), ComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemHandle);
@@ -17399,7 +17399,7 @@ void CoreEngineInitializeSystemNodeTemplateJ(void
  */
 void CoreEngineInitializeSystemNodeTemplateK(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void **CharacterCode;
   int ComparisonResult;
   long long *SystemHandle;
@@ -17798,7 +17798,7 @@ void CoreEngineInitializeConnectionInitializer(void
  */
 void CoreEngineInitializeSystemConnectionTemplateA(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -17811,11 +17811,11 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConnectionTemplateData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuaternary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17826,7 +17826,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuaternary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -17852,7 +17852,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
  */
 void CoreEngineInitializeSystemConnectionTemplateB(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -17865,11 +17865,11 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   NetworkSecurityCallback = CoreEngineProcessNetworkSecurity;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuinary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17880,7 +17880,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuinary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -17906,7 +17906,7 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
  */
 void CoreEngineInitializeSystemConnectionTemplateC(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -17919,11 +17919,11 @@ void CoreEngineInitializeSystemConnectionTemplateC(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConnectionTemplateData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataSextenary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17934,7 +17934,7 @@ void CoreEngineInitializeSystemConnectionTemplateC(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataSextenary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -17960,7 +17960,7 @@ void CoreEngineInitializeSystemConnectionTemplateC(void
  */
 void CoreEngineInitializeSystemConnectionTemplateD(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -17973,11 +17973,11 @@ void CoreEngineInitializeSystemConnectionTemplateD(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   FileSystemHandler = &SystemFileSystemHandler;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataSeptenary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -17988,7 +17988,7 @@ void CoreEngineInitializeSystemConnectionTemplateD(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataSeptenary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -18014,7 +18014,7 @@ void CoreEngineInitializeSystemConnectionTemplateD(void
  */
 void CoreEngineInitializeSystemConnectionTemplateE(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -18027,11 +18027,11 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConnectionTemplateData = 0;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -18042,7 +18042,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -18068,7 +18068,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
  */
 void CoreEngineInitializeSystemDataTemplateInput(void
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *CharacterCode;
   int MemoryCompareResult;
   long long *EngineContext;
@@ -18081,11 +18081,11 @@ void CoreEngineInitializeSystemDataTemplateInput(void
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*EngineContext;
-  NodeCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   NetworkStatusCallback = CoreEngineProcessNetworkStatus;
   PreviousNode = CharacterCode;
   CurrentNode = (void *)CharacterCode[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)CurrentNode[2];
@@ -18096,7 +18096,7 @@ void CoreEngineInitializeSystemDataTemplateInput(void
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((PreviousNode == CharacterCode) || (MemoryCompareResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
@@ -19117,7 +19117,7 @@ void CoreEngineInitializeDatabaseManager(void)
  */
 void CoreEngineInitializeNetworkConnectionStateManager(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *CharacterCode;
   int MemoryMatchResult;
   long long *SystemContext;
@@ -19130,11 +19130,11 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
   
   SystemContext = (long long *)CoreEngineGetSystemContext();
   CharacterCode = (void *)*SystemContext;
-  ConnectionCurrentCharacter = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)CharacterCode[1] + SystemNodeStatusOffset);
   ConnectionHandler = 0;
   CurrentNode = CharacterCode;
   PreviousNode = (void *)CharacterCode[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     MemoryMatchResult = memcmp(PreviousNode + 4,&SystemMemoryTemplatePrimary,0x10);
     if (MemoryMatchResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -19145,7 +19145,7 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    ConnectionCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == CharacterCode) || (MemoryMatchResult = memcmp(&SystemMemoryTemplatePrimary,CurrentNode + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
@@ -20940,7 +20940,7 @@ void CoreEngineInitializeDataStreamManager(void
  */
 void CoreEngineInitializenetworkConnectionPoolManager(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -20953,11 +20953,11 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionHandlerFunction = CoreEngineProcessNetworkStatus;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataSecondary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -20968,7 +20968,7 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSecondary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -20994,7 +20994,7 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
  */
 void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -21007,11 +21007,11 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionHandlerFunction = CoreEngineGetConnectionInitializer;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataTertiary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -21022,7 +21022,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataTertiary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -21042,7 +21042,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
 
 
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -21055,11 +21055,11 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionHandlerFlag = 0;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataQuaternary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -21070,7 +21070,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataQuaternary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -21096,7 +21096,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
  */
 void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -21109,11 +21109,11 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionHandlerFunction = CoreEngineProcessNetworkSecurity;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataQuinary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -21124,7 +21124,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataQuinary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -21150,7 +21150,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
  */
 void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -21163,11 +21163,11 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   ConnectionHandlerFlag = 0;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataSextenary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -21178,7 +21178,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSextenary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -21204,7 +21204,7 @@ void CoreEngineInitializeNetworkConnectionPoolEventHandler(void
  */
 void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
-  char ConnectionCurrentCharacter;
+  char NetworkConnectionStatusFlag;
   void *ConnectionPoolPointer;
   int ComparisonResult;
   long long *SystemHandle;
@@ -21217,11 +21217,11 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   ConnectionPoolPointer = (void *)*SystemHandle;
-  ConnectionCurrentCharacter = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
+  NetworkConnectionStatusFlag = *(char *)((long long)ConnectionPoolPointer[1] + SystemNodeStatusOffset);
   DataHandlerPointer = &SystemFileSystemHandler;
   ConnectionManager = ConnectionPoolPointer;
   ConnectionData = (void *)ConnectionPoolPointer[1];
-  while (ConnectionCurrentCharacter == '\0') {
+  while (NetworkConnectionStatusFlag == '\0') {
     ComparisonResult = memcmp(ConnectionData + 4,&SystemComparisonDataSeptenary,0x10);
     if (ComparisonResult < 0) {
       ConnectionProcessor = (void *)ConnectionData[2];
@@ -21232,7 +21232,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     }
     ConnectionManager = ConnectionData;
     ConnectionData = ConnectionProcessor;
-    ConnectionCurrentCharacter = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
+    NetworkConnectionStatusFlag = *(char *)((long long)ConnectionProcessor + SystemNodeStatusOffset);
   }
   if ((ConnectionManager == ConnectionPoolPointer) || (ComparisonResult = memcmp(&SystemComparisonDataSeptenary,ConnectionManager + 4,0x10), ComparisonResult < 0)) {
     ConfigurationValue = CoreEngineAllocateMemory(SystemHandle);
@@ -21601,7 +21601,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
  */
 void CoreEngineInitializeSystemConfigNodeG(void)
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *SystemContext;
   int MemoryCompareResult;
   long long *SystemHandle;
@@ -21614,11 +21614,11 @@ void CoreEngineInitializeSystemConfigNodeG(void)
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   SystemContext = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   ConfigHandler = 0;
   CurrentNode = SystemContext;
   PreviousNode = (void *)SystemContext[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(PreviousNode + 4,&SystemConfigTemplateSecondary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -21629,7 +21629,7 @@ void CoreEngineInitializeSystemConfigNodeG(void)
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == SystemContext) || (MemoryCompareResult = memcmp(&SystemConfigTemplateSecondary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
@@ -21663,7 +21663,7 @@ void CoreEngineInitializeSystemConfigNodeG(void)
  */
 void CoreEngineInitializeSystemDataNodeH(void)
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   void *SystemContext;
   int MemoryCompareResult;
   long long *SystemHandle;
@@ -21676,11 +21676,11 @@ void CoreEngineInitializeSystemDataNodeH(void)
   
   SystemHandle = (long long *)CoreEngineGetSystemContext();
   SystemContext = (void *)*SystemHandle;
-  NodeCurrentCharacter = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char *)((long long)SystemContext[1] + SystemNodeStatusOffset);
   DataHandler = 0;
   CurrentNode = SystemContext;
   PreviousNode = (void *)SystemContext[1];
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     MemoryCompareResult = memcmp(PreviousNode + 4,&SystemDataTemplateTertiary,0x10);
     if (MemoryCompareResult < 0) {
       NextNode = (void *)PreviousNode[2];
@@ -21691,7 +21691,7 @@ void CoreEngineInitializeSystemDataNodeH(void)
     }
     CurrentNode = PreviousNode;
     PreviousNode = NextNode;
-    NodeCurrentCharacter = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((CurrentNode == SystemContext) || (MemoryCompareResult = memcmp(&SystemDataTemplateTertiary,CurrentNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
@@ -66681,14 +66681,14 @@ void InitializeSystemDataStructure(void
  */
 void CleanupSystemNodeChain(uint64_t CharacterCode, long long* SystemBufferSize
 {
-  char NodeCurrentCharacter;
+  char SystemNodeStatusFlag;
   long long* NextNodePointer;
   
   // 获取当前节点的状态标志
-  NodeCurrentCharacter = *(char*)((long long)SystemBufferSize + SystemNodeStatusOffset);
+  SystemNodeStatusFlag = *(char*)((long long)SystemBufferSize + SystemNodeStatusOffset);
   
   // 循环处理所有非活动节点
-  while (NodeCurrentCharacter == '\0') {
+  while (SystemNodeStatusFlag == '\0') {
     // 递归处理下一个节点
     CleanupSystemNodeChain(&DataTable180D49200, SystemBufferSize[2]);
     
@@ -66700,7 +66700,7 @@ void CleanupSystemNodeChain(uint64_t CharacterCode, long long* SystemBufferSize
     
     // 移动到下一个节点
     SystemBufferSize = NextNodePointer;
-    NodeCurrentCharacter = *(char*)((long long)NextNodePointer + SystemNodeStatusOffset);
+    SystemNodeStatusFlag = *(char*)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
   
   return;
