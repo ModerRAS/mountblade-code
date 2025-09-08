@@ -209978,7 +209978,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
     pMemoryAddressMaskPointer = *(void **)(CharacterTablePointer + 8);
   }
   uStack_1e0 = SystemBufferSize;
-  ValidateSystemDataIntegrity(&pSystemValue1c8,pMemoryAddressMaskPointer);
+  ValidateSystemDataIntegrity(&SystemMessageTemplatePointer,pMemoryAddressMaskPointer);
   lStack_b0 = SystemBufferSize[1];
   CoreEngineValueA8 = (unsigned long long)*(uint *)(SystemBufferSize + 2);
   SystemOperationFlag98 = 0;
@@ -210000,7 +210000,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
   CharacterTablePointer = *(long long *)(CleanupContextStorage + 8);
   MemoryBlockIndex = ProcessMemoryBlockWithCharacterTable(CharacterTablePointer + 200);
   if (MemoryBlockIndex != 0) {
-    ProcessMemoryBlockWithSystemValue(MemoryBlockIndex,&pSystemValue1c8);
+    ProcessMemoryBlockWithSystemValue(MemoryBlockIndex,&SystemMessageTemplatePointer);
   }
   StringComparisonResult = _Cnd_signal(CharacterTablePointer + 0x330);
   if (StringComparisonResult != 0) {
@@ -210014,7 +210014,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
   if (pcStack_70 != (code *)0x0) {
     (*pcStack_70)(&CalculationFunctionAddress,0,0);
   }
-  ppDataProcessingStatus = &pSystemValue1c8;
+  ppDataProcessingStatus = &SystemMessageTemplatePointer;
   pSystemValue1c8 = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aCoreEngineUnsignedValue208);
