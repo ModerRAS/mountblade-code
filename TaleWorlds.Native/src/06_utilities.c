@@ -149,6 +149,9 @@
 #define ExceptionHandlerOffset1670 0x1670                 // 异常处理器偏移量1670
 #define ExceptionHandlerOffset1720 0x1720                 // 异常处理器偏移量1720
 #define ExceptionHandlerOffset1710 0x1710                 // 异常处理器偏移量1710
+#define ExceptionHandlerOffset930 0x930                   // 异常处理器偏移量930
+#define ExceptionHandlerOffset318 0x318                   // 异常处理器偏移量318
+#define ExceptionHandlerOffset238 0x238                   // 异常处理器偏移量238
 
 // 数据验证偏移量常量
 #define DataValidationOffset20 0x20                        // 数据验证偏移量20
@@ -92773,25 +92776,64 @@ void SetDefaultExceptionHandlerAtOffset890(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090c840(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量930
+ * 
+ * 该函数在数据缓冲区的0x930偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c840
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x930) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset930) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090c850(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量318
+ * 
+ * 该函数在数据缓冲区的0x318偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c850
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset318(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x318) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerOffset318) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_18090c860(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作偏移量处的函数指针
+ * 
+ * 该函数检查数据缓冲区内存操作偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c860
+ * @note 此函数为异常处理机制的一部分，用于执行回调函数
+ */
+void ExecuteFunctionPointerAtMemoryOperationOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + MemoryOperationOffset) != (int64_t *)0x0) {
