@@ -125,6 +125,9 @@ typedef enum {
  // UI系统函数宏定义 - 计算UI渲染数据
 #define CalculateUIRenderData FUN_18070737d
 
+ // UI系统函数宏定义 - 处理UI元素2D变换
+#define ProcessUIElement2DTransformation FUN_180707b03
+
  // UI系统函数宏定义 - 处理UI纹理数据
 #define ProcessUITextureData FUN_180707457
 
@@ -74220,15 +74223,27 @@ float CalculateUILayoutMetrics(float *uiContext,longlong dataSource,longlong tar
 
 
 
-float FUN_180707b03(float *uiContext,ulonglong dataSource,longlong targetBuffer,longlong bufferSize)
+/**
+ * @brief 处理UI元素2D变换和矩阵运算
+ * 
+ * 该函数执行复杂的UI元素2D变换，包括平移、旋转、缩放等操作
+ * 使用矩阵运算来处理UI元素的位置和变换状态
+ * uiContext UI上下文指针，包含变换矩阵和状态信息
+ * dataSource 数据源参数，包含变换参数
+ * targetBuffer 目标缓冲区，存储变换结果
+ * bufferSize 缓冲区大小参数
+ * 变换处理结果值
+ * 原始函数名: FUN_180707b03
+ */
+float ProcessUIElement2DTransformation(float *uiContext,ulonglong dataSource,longlong targetBuffer,longlong bufferSize)
 
 {
-  float floatResult;
+  float transformResultX;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  float *pprocessedFloat;
+  longlong iterationCounter;
+  float *outputBufferPointer;
   longlong register10;
-  float *psecondaryValue;
+  float *inputBufferPointer;
   float localFloat6;
   float resultFloat;
   float localFloat8;
@@ -74237,11 +74252,11 @@ float FUN_180707b03(float *uiContext,ulonglong dataSource,longlong targetBuffer,
   float floatResult1;
   float floatResult2;
   float floatResult3;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  uint unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
+  float transformScaleX;
+  float transformScaleY;
+  uint transformFlags;
+  float rotationAngle;
+  float scaleFactor;
   
   pprocessedFloat = (float *)(register10 + 8);
   stringCompareIndex = (dataSource >> 2) + 1;
@@ -75561,8 +75576,7 @@ void ProcessUITransformMatrix(UIHandle uiContext, longlong dataSource, UIHandle 
 
 
 
- void FUN_18070efdd(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,float *bufferSize)
-void FUN_18070efdd(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,float *bufferSize)
+ void ProcessUIFloatBufferData(UIHandle uiContext, longlong dataSource, UIHandle targetBuffer, float *bufferSize)
 
 {
   float *pfloatResult;
@@ -88508,7 +88522,7 @@ int FUN_18071dbc0(longlong uiContext,UIDword *dataSource,UIDword targetBuffer,UI
 
 
 
-int FUN_18071dc71(void)
+int InitializeUISystemState(void)
 
 {
   int uiOperationResult;
@@ -92539,7 +92553,7 @@ int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bu
 
 
 
-int FUN_180721e74(void)
+int ProcessUISIMDOperation(void)
 
 {
   UIByte aresult [16];
