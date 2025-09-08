@@ -2103,7 +2103,19 @@ void* UIGestureCoordinates;
   更新结果状态码
  * 
   原始函数名: FUN_180698800
- #define ProcessUIRenderingUpdate FUN_180698800
+ /**
+ * @brief UI系统渲染更新函数
+ * 
+ * 该函数执行UI系统的渲染更新操作，更新渲染状态和缓冲区。
+ * 主要负责处理UI渲染过程中的状态更新和缓冲区管理。
+ * 
+ * @param UIContext UI上下文指针，包含UI系统的当前状态和配置信息
+ * @return uint32_t 更新结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180698800
+ * @see ProcessUIRenderingUpdate
+ */
+#define ProcessUIRenderingUpdate FUN_180698800
 
  UI系统空闲处理函数
  * 
