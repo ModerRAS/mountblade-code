@@ -196369,7 +196369,7 @@ uint64_t * ProcessCharacterEncodingAndStatusValidation(long long CharacterCode,u
   else {
     if (IntegerValue == 1) {
       CoreEngineFinalizeSystemEvent(&StackTempPointer,Utf8SourcePointer);
-      FUN_180169c30(&pCalculationFunctionAddress,&StackTempPointer);
+      ProcessSystemCalculationFunctionAddress(&pCalculationFunctionAddress,&StackTempPointer);
       StackTempPointer = &SystemNullTemplate;
       if (pSystemOperationFlag98 != NULL) {
                     // WARNING: Subroutine does not return
@@ -197544,7 +197544,7 @@ ProcessAdvancedCharacterEncodingConversion(uint64_t CharacterCode,uint64_t *Char
   SecondaryContextPointer = (long long *)0x0;
   FunctionAddress = 0;
   ProcessingFlags = 3;
-  FUN_1800b6940(LoopCounter,&ProcessingContextPointer);
+  ProcessSystemMemoryAllocation(LoopCounter,&ProcessingContextPointer);
   SystemContextPtr = SecondaryContextPointer;
   if (ProcessingContextPointer < SecondaryContextPointer) {
     CharacterCodeTablePointer = ProcessingContextPointer;
@@ -197723,7 +197723,7 @@ ProcessUtf8ToUtf16CharacterEncodingMain(uint64_t CharacterCode,uint64_t *Charact
   SecondaryContextPointer = (long long *)0x0;
   FunctionAddress = 0;
   ProcessingFlags = 3;
-  FUN_1800b6b20(LoopCounter,&ProcessingContextPointer);
+  ProcessSystemMemoryValidation(LoopCounter,&ProcessingContextPointer);
   SystemContextPtr = SecondaryContextPointer;
   if (ProcessingContextPointer < SecondaryContextPointer) {
     CharacterCodeTablePointer = ProcessingContextPointer;
@@ -197863,11 +197863,11 @@ ProcessUtf8ToUtf16CharacterEncodingInitialize(uint64_t CharacterCode,uint64_t *C
   DataSize = 0xfffffffffffffffe;
   CalculatedCodePoint = 0;
   while (SystemDataRegistry = SystemCurrentCharacter, SystemCurrentCharacter != 0) {
-    MemoryBlockIndex = FUN_18006eec0(SystemCurrentCharacter);
+    MemoryBlockIndex = GetSystemMemoryBlockIndex(SystemCurrentCharacter);
     if (MemoryBlockIndex == 0) {
-      MemoryBlockIndex = FUN_18006eec0(SystemDataRegistry + 0x78);
+      MemoryBlockIndex = GetSystemMemoryBlockIndex(SystemDataRegistry + 0x78);
       if (MemoryBlockIndex == 0) {
-        SystemDataRegistry = FUN_18006eec0(SystemDataRegistry + 0xf0);
+        SystemDataRegistry = GetSystemMemoryBlockIndex(SystemDataRegistry + 0xf0);
         if (SystemDataRegistry == 0) break;
       }
     }
@@ -197882,7 +197882,7 @@ ProcessUtf8ToUtf16CharacterEncodingInitialize(uint64_t CharacterCode,uint64_t *C
       __Throw_C_error_std__YAXH_Z(StringComparisonResult);
     }
     if (SystemCurrentCharacter != 0) {
-      FUN_18006eb30();
+      ResetSystemMemoryHandler();
     }
     ProcessSystemContextHandler(*(void *)(*(long long *)(TimeoutValueStorage + 8) + 8));
     SystemDataRegistry = CoreEngineRenderContext + 0x20;
