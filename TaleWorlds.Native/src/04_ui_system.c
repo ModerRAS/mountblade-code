@@ -184222,23 +184222,25 @@ undefined UIResourceEventHandler;
 undefined UIUpdateSystem;
 UIHandle UNK_00011670;
 undefined UIResourceCleanupHandler;
-undefined UNK_18095af28;
-undefined UNK_18095af38;
-undefined UNK_18095afe8;
-undefined UNK_18095b430;
-undefined UNK_18095af48;
-undefined UNK_18095b038;
-undefined UNK_18095b4a8;
-undefined UNK_18095b4b8;
-undefined UNK_18095b4c0;
-undefined UNK_18095b4d0;
-undefined UNK_18095b4dc;
-undefined UNK_18095b4e4;
-undefined UNK_18095af98;
-undefined UNK_18095b094;
-undefined UNK_18095b4ec;
-undefined UNK_18095b4f4;
-undefined UNK_18095b4f8;
+// UI系统状态变量语义化定义
+#define UNK_18095af28 UIStatusFlagAf28
+#define UNK_18095af38 UIStatusFlagAf38
+#define UNK_18095afe8 UIStatusFlagAfe8
+#define UNK_18095b430 UIStatusFlagB430
+#define UNK_18095af48 UIStatusFlagAf48
+#define UNK_18095b038 UIStatusFlagB038
+#define UNK_18095b4a8 UIStatusFlagB4a8
+#define UNK_18095b4b8 UIStatusFlagB4b8
+#define UNK_18095b4c0 UIStatusFlagB4c0
+#define UNK_18095b4d0 UIStatusFlagB4d0
+// UI系统渲染状态变量语义化定义
+#define UNK_18095b4dc UIRenderFlagB4dc
+#define UNK_18095b4e4 UIRenderFlagB4e4
+#define UNK_18095af98 UIRenderFlagAf98
+#define UNK_18095b094 UIRenderFlagB094
+#define UNK_18095b4ec UIRenderFlagB4ec
+#define UNK_18095b4f4 UIRenderFlagB4f4
+#define UNK_18095b4f8 UIRenderFlagB4f8
 undefined UNK_18095b580;
 undefined UNK_18095b6b8;
 undefined UNK_18095b780;

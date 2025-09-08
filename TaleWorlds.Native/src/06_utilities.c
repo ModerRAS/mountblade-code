@@ -110003,7 +110003,7 @@ void TraverseDataContextMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase
   int64_t memoryBlockOffset;
   FunctionPointer** callbackPointer;
   
-  dataContext = *(int64_t **)(dataBuffer + 0x48);
+  dataContext = *(int64_t **)(dataBuffer + SystemStatusCheckOffset48);
   exceptionHandlerContext = dataContext[1];
   
   // 遍历内存块链表并执行回调函数
