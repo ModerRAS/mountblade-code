@@ -150041,10 +150041,10 @@ e4f6(uint64_t CharacterCode,uint64_t SystemBufferSize,uint8_t Utf8SourcePointer,
   float SecondaryFloatValue;
   float SystemContextPrimaryFloat2;
   float SystemContextPrimaryFloat3;
-  float fStack0000000000000028;
-  float fStack000000000000002c;
-  float fStack0000000000000080;
-  float fStack0000000000000084;
+  float NormalizedPrimaryValue;
+  float NormalizedSecondaryValue;
+  float CalculatedDifference1;
+  float CalculatedDifference2;
   
   *(uint8_t *)(*(long long *)(SystemRegisterR11 + 0x1af8) + 0xb1) = 1;
   StringOffset = *(long long *)(SystemRegisterR11 + 0x1af8);
@@ -150084,12 +150084,12 @@ e4f6(uint64_t CharacterCode,uint64_t SystemBufferSize,uint8_t Utf8SourcePointer,
     if (*(float *)(StringOffset + 0x134) <= SecondaryFloatValue) {
       PrimaryFloatValue = SecondaryFloatValue;
     }
-    fStack0000000000000080 = SystemContextPrimaryFloat2 - ContextSecondaryFloat;
+    CalculatedDifference1 = SystemContextPrimaryFloat2 - ContextSecondaryFloat;
     *(float *)(StringOffset + 0x128) = PrimaryFloatValue;
-    fStack0000000000000084 = SystemContextPrimaryFloat3 - SystemContextPrimaryFloat;
+    CalculatedDifference2 = SystemContextPrimaryFloat3 - SystemContextPrimaryFloat;
     SecondaryFloatValue = SystemContextPrimaryFloat2;
-    fStack0000000000000028 = SystemContextPrimaryFloat2;
-    fStack000000000000002c = SystemContextPrimaryFloat3;
+    NormalizedPrimaryValue = SystemContextPrimaryFloat2;
+    NormalizedSecondaryValue = SystemContextPrimaryFloat3;
     ProcessSystemBuffer(&stack0x00000080,*(uint32_t *)(MemoryBlockIndex + -0x10 + SystemDataTablePointer * 0x30),Utf8SourcePointer,
                         Utf16EndPointer,ContextSecondaryFloat);
     SystemDataRegistry = *(long long *)(SystemRegisterR11 + 0x1af8);
