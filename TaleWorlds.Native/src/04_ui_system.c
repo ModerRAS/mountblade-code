@@ -89311,7 +89311,7 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
 
 
 
- void FUN_180719ab8(uint uiContext,longlong dataSource,int targetBuffer,longlong bufferSize)
+ void ProcessUIDataBuffer(uint uiContext,longlong dataSource,int targetBuffer,longlong bufferSize)
 // 原始函数名：FUN_180719ab8 - UI变换矩阵处理器
 #define ProcessUITransformMatrix FUN_180719ab8
 
@@ -90170,7 +90170,7 @@ UIDword ManageUIEventHandle(UIHandle uiContext,UIDword dataSource,UIHandle targe
 
 
 
- void FUN_18071a930(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+ void ValidateUIDataProcessing(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
 // 原始函数名：FUN_18071a930 - UI上下文数据高级处理器
 #define AdvancedProcessUIContextData FUN_18071a930
 
@@ -90686,7 +90686,7 @@ void EmptyUIPlaceholderFunction(void)
 
 
 
- void FUN_18071af00(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+ void ProcessUIDataTransformationWithValidation(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
 /**
  * @brief UI元素数据处理函数
  * 
