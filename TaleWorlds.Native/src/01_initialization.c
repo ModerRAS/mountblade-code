@@ -41137,6 +41137,7 @@ void* ProcessSystemResourceHandleOperation(long long SystemResourceManager,long 
   ulong long ResourceAddress;
   ulong long SystemParameterPointer;
   long long *pStackResourcePointer;
+  long long SystemResourceConfigurationValue;
   
   SystemInitializationStatus = *(ulong long *)(SystemResourceManager + 0x20);
   resourceBaseAddress = (ulong long)((uint)SystemInitializationStatus & SystemBitMask32Bit);
@@ -41151,7 +41152,7 @@ ResourceProcessingLoop:
     return 1;
   }
   if (0x8000000000000000 < (*(long long *)(SystemResourceManager + 0x28) - SystemInitializationStatus) - 0x20) {
-    SystemOperationResult = ConfigureSystemSettings(SystemResourceManager,&stackValue18,SystemInitializationStatus,ResourceAddress,InvalidHandleValue);
+    SystemOperationResult = ConfigureSystemSettings(SystemResourceManager,&SystemResourceConfigurationValue,SystemInitializationStatus,ResourceAddress,InvalidHandleValue);
     if (validationStatusFlag != '\0') {
       SystemResourceOffsetPointer = (long long *)GetResourceOffsetPointer(*(void* *)(SystemResourceManager + 0x50));
       if (SystemResourceOffsetPointer != (long long *)0x0) {
