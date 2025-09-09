@@ -132388,7 +132388,19 @@ UIHandle GetUIDataSourceInfo(longlong uiContext,int *dataSource)
 
 
 
-ulonglong FUN_1807468d0(longlong uiContext,int dataSource,UIDword *targetBuffer)
+/**
+ * @brief 获取UI目标缓冲区数据
+ * 
+ * 该函数根据数据源索引从UI数据缓冲区中获取目标缓冲区数据，并进行有效性检查。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针
+ * @return ulonglong 操作结果，0表示成功，0x1f表示失败，0x50表示特殊状态
+ * 
+ * @note 原始函数名：FUN_1807468d0
+ */
+ulonglong GetUITargetBufferData(longlong uiContext,int dataSource,UIDword *targetBuffer)
 
 {
   longlong allocatedMemory;
