@@ -100037,7 +100037,7 @@ void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
   ulonglong xorCalculationResult;
   
   xorCalculationResult = XorEncryptionKey ^ (ulonglong)encryptedBuffer;
-  result = (longlong)(*(int *)(uiBufferData + 0x10c) + *(int *)(uiBufferData + 0x114)) * 4;
+  calculationResult = (longlong)(*(int *)(uiBufferData + 0x10c) + *(int *)(uiBufferData + 0x114)) * 4;
   iterationCount = result + 0xf;
   if (iterationCount <= result) {
     iterationCount = 0xffffffffffffff0;
