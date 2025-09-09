@@ -125012,7 +125012,23 @@ void HandleDataBufferExceptionAtOffset130(DataBuffer operationBase,int64_t dataB
 
 
 
-// 数据缓冲区异常处理函数 - 在偏移量0x150处处理数据缓冲区操作异常
+/**
+ * @brief 处理数据缓冲区异常 - 偏移量0x150
+ * 
+ * 该函数负责处理位于偏移量0x150处的数据缓冲区操作异常，包括：
+ * - 检查异常上下文的有效性
+ * - 处理异常上下文引用计数
+ * - 调用系统异常处理器
+ * - 确保异常处理的完整性和安全性
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：HandleDataBufferExceptionAtOffset150
+ * @note 这是一个异常处理函数，用于处理数据缓冲区操作过程中的异常情况
+ */
 void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -125031,7 +125047,23 @@ void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataB
 
 
 
-// 数据缓冲区异常处理函数 - 在偏移量0x170处处理数据缓冲区操作异常
+/**
+ * @brief 处理数据缓冲区异常 - 偏移量0x170
+ * 
+ * 该函数负责处理位于偏移量0x170处的数据缓冲区操作异常，包括：
+ * - 检查异常上下文的有效性
+ * - 处理异常上下文引用计数
+ * - 调用系统异常处理器
+ * - 确保异常处理的完整性和安全性
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：HandleDataBufferExceptionAtOffset170
+ * @note 这是一个异常处理函数，用于处理数据缓冲区操作过程中的异常情况
+ */
 void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -125050,7 +125082,23 @@ void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataB
 
 
 
-// 数据缓冲区异常处理函数 - 在偏移量0x180处处理数据缓冲区操作异常
+/**
+ * @brief 处理数据缓冲区异常 - 偏移量0x180
+ * 
+ * 该函数负责处理位于偏移量0x180处的数据缓冲区操作异常，包括：
+ * - 检查异常上下文的有效性
+ * - 处理异常上下文引用计数
+ * - 调用系统异常处理器
+ * - 确保异常处理的完整性和安全性
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：HandleDataBufferExceptionAtOffset180
+ * @note 这是一个异常处理函数，用于处理数据缓冲区操作过程中的异常情况
+ */
 void HandleDataBufferExceptionAtOffset180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
