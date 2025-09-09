@@ -100729,8 +100729,17 @@ void ProcessUIComponentData(void)
 
 
 
- void FUN_180724160(void)
-void FUN_180724160(void)
+ /**
+ * @brief UI系统空返回函数
+ * 
+ * 该函数是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180724160
+ * @note 这是一个简单的返回函数，不执行任何操作
+ */
+void UIReturnEmptyFunction2(void)
 
 {
   return;
@@ -100739,9 +100748,29 @@ void FUN_180724160(void)
 
 
 
- void FUN_180724170(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
-void FUN_180724170(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
-                  longlong param_6)
+ /**
+ * @brief UI事件数据迭代处理函数
+ * 
+ * 该函数负责迭代处理UI系统的事件数据，主要功能包括：
+ * - 遍历和处理事件数据的迭代
+ * - 管理事件数据的上下文和索引
+ * - 处理事件数据的缓冲区操作
+ * - 更新事件数据的处理结果
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param iterationParameter 迭代参数，包含迭代相关信息
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180724170
+ * @note 这是一个UI事件数据迭代处理函数，用于处理UI系统的事件迭代操作
+ */
+void ProcessUIEventDataIteration(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
+                  longlong iterationParameter)
 
 {
   uint result;
