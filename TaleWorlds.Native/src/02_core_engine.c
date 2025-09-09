@@ -222248,14 +222248,14 @@ LAB_180185b78:
     ProcessingContextPointer = &SystemValue1a8;
     SystemValue1a8 = 0;
     SystemUnsignedValue1A0 = 0;
-    SystemValue1a8 = FUN_180188560();
+    SystemValue1a8 = ProcessSystemPrimaryCharacterStatus();
     FUN_180183a20(CoreSystemStatusContext178,aiStack_1d0);
     if (-1 < aiStack_1d0[0]) {
-      Utf16Char = FUN_1801836e0();
+      Utf16Char = ProcessSystemCharacterEncoding();
                     // WARNING: Subroutine does not return
       ValidateSystemConfiguration(SystemConfigHandle,&SystemStringTemplateSecondary,Utf16Char);
     }
-    Utf16Char = FUN_1801836e0();
+    Utf16Char = ProcessSystemCharacterEncoding();
                     // WARNING: Subroutine does not return
     ValidateSystemConfiguration(SystemConfigHandle,&SystemStringTemplateTertiary,Utf16Char);
   }
@@ -222434,7 +222434,7 @@ LAB_180185b78:
     SystemStackFlag = 0xf;
     EncodingBuffer = (void *)((unsigned long long)EncodingBuffer & 0xffffffffffffff00);
     ReallocateContextHandle(&EncodingBuffer,&SystemBufferSecondary,5);
-    UnicodeCodePoint = FUN_180187f00(&CoreEngineSignedValue70,&EncodingBuffer);
+    UnicodeCodePoint = ProcessSystemUnicodeCodePoint(&CoreEngineSignedValue70,&EncodingBuffer);
     do {
       MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
     } while (pMemoryAddressMaskPointer[MemoryBoundaryEnd] != '\0');
@@ -223128,7 +223128,7 @@ LAB_180187642:
           else {
 LAB_18018764a:
             OperationStatus = &SystemOperationFlag98;
-            BufferInitializationFlag = FUN_18018a130(&SystemEventDispatcher);
+            BufferInitializationFlag = ProcessSystemEventDispatcher(&SystemEventDispatcher);
             FUN_18018a1c0(&SystemEventDispatcher,&pSystemFlagA,TemporaryBuffer);
             TemporaryBuffer = pSystemFlagA;
           }
@@ -223744,7 +223744,7 @@ LAB_18018802f:
     }
     else if (-1 < EncodingValidationResult) goto LAB_18018802f;
   }
-  AllocatedMemorySize = FUN_18018a130(ContextHandle);
+  AllocatedMemorySize = ProcessSystemEventDispatcher(ContextHandle);
   FUN_18018a1c0(ContextHandle,alStackX_18,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
   return (void *)(alStackX_18[0] + 0x40);
 }
@@ -223812,7 +223812,7 @@ LAB_18018802f:
     }
     else if (-1 < InputDataLength) goto LAB_18018802f;
   }
-  SystemDataRegistry = FUN_18018a130(ContextHandle);
+  SystemDataRegistry = ProcessSystemEventDispatcher(ContextHandle);
   FUN_18018a1c0(ContextHandle,&stack0x00000080,SecondaryProcessingStatusFlag,SystemDataRegistry + 0x20,SystemDataRegistry);
   return (void *)(StackProcessingParameter3 + 0x40);
 }
@@ -224341,7 +224341,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 {
   long long PrimaryOperationResult;
   
-  CharacterTablePointer = FUN_180067110(0x60);
+  CharacterTablePointer = ProcessSystemCharacterTable(0x60);
   *(long long *)CharacterTablePointer = LoopCounter;
   *(long long *)(CharacterTablePointer + 8) = LoopCounter;
   *(long long *)(CharacterTablePointer + 0x10) = LoopCounter;
@@ -224379,7 +224379,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 {
   long long PrimaryOperationResult;
   
-  CharacterTablePointer = FUN_180067110(0x28);
+  CharacterTablePointer = ProcessSystemCharacterTable(0x28);
   *(long long *)CharacterTablePointer = LoopCounter;
   *(long long *)(CharacterTablePointer + 8) = LoopCounter;
   *(long long *)(CharacterTablePointer + 0x10) = LoopCounter;
