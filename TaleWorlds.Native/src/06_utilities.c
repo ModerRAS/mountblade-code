@@ -2152,6 +2152,7 @@
 #define SystemContextOffsetA0 0xa0                         // 系统上下文偏移量A0
 #define SystemContextOffsetA8 0xa8                         // 系统上下文偏移量A8
 #define SystemContextOffsetAC 0xac                         // 系统上下文偏移量AC
+#define SystemContextOffsetB4 0xb4                         // 系统上下文偏移量B4
 #define ArrayIndexMultiplier 0xc                           // 数组索引乘数
 #define SystemDataTableOffset8 8                            // 系统数据表偏移量8
 #define ResourceReferenceDataOffset330 0x330                // 资源引用数据偏移量330
@@ -33897,13 +33898,13 @@ DataProcessLabelA:
     dataFlags = ValidateDataWithSecurityCheckA2(dataContext,operationBase + ResourceManagementOffset80);
     if (((((int)dataFlags == 0) &&
          ((dataFlags = ValidateDataWithSecurityCheckA2(dataContext,operationBase + SystemContextOffset84), (int)dataFlags == 0 &&
-          (dataFlags = ValidateDataSequence(dataBuffer,operationBase + 0x88), (int)dataFlags == 0)))) &&
+          (dataFlags = ValidateDataSequence(dataBuffer,operationBase + SystemContextOffset88), (int)dataFlags == 0)))) &&
         (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) &&
        ((((dataFlags = ProcessDataBlocksA1(*dataBuffer,operationBase + OperationBaseResultOffset), (int)dataFlags == 0 &&
           (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) &&
-         (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xa8), (int)dataFlags == 0)) &&
+         (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffsetA8), (int)dataFlags == 0)) &&
         (((dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0 &&
-          (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x9c), (int)dataFlags == 0)) &&
+          (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffset9C), (int)dataFlags == 0)) &&
          ((dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0 &&
           ((dataFlags = OperateDataO0(*dataBuffer,operationBase + 0xb4,4), (int)dataFlags == 0 &&
            (dataFlags = ValidateDataIntegrityA1(operationBase + 0x30,dataBuffer), (int)dataFlags == 0)))))))))) {
