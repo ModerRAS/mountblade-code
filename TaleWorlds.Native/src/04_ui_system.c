@@ -100545,32 +100545,32 @@ void CalculateUIFontMetrics(int *uiContext,char *dataSource)
   int horizontalDistance;
   int verticalDistance;
   
-  currentChar = *dataSource;
-  distanceResult1 = 0;
-  maxIntValue = 0x7fffffff;
-  distanceResult2 = 0x7fffffff;
+  currentCharacter = *dataSource;
+  horizontalDistance = 0;
+  maximumIntValue = 0x7fffffff;
+  verticalDistance = 0x7fffffff;
   fontTableIndex = 0;
   do {
-    charIndex = 0;
+    characterIndex = 0;
     fontMetricX = *(short *)(&FontMetricTableX + (longlong)fontTableIndex * 2);
     fontMetricY = *(short *)(&FontMetricTableY + (longlong)fontTableIndex * 2);
-    tempProcessingResult = distanceResult2;
-    processedCount = distanceResult1;
+    metricProcessingResult = verticalDistance;
+    metricProcessedCount = horizontalDistance;
     do {
-      distanceResult1 = (int)(short)((short)charIndex * 2 + 1)                (int)(short)((ulonglong)(uint)((int)fontMetricY - (int)fontMetricX) * 0x199a >> 0x10) +
+      horizontalDistance = (int)(short)((short)characterIndex * 2 + 1)                (int)(short)((ulonglong)(uint)((int)fontMetricY - (int)fontMetricX) * 0x199a >> 0x10) +
                (int)fontMetricX;
-      distanceResult2 = *uiContext - distanceResult1;
-      if (*uiContext - distanceResult1 < 1) {
-        distanceResult2 = distanceResult1 - *uiContext;
+      verticalDistance = *uiContext - horizontalDistance;
+      if (*uiContext - horizontalDistance < 1) {
+        verticalDistance = horizontalDistance - *uiContext;
       }
-      if (tempProcessingResult <= distanceResult2) goto LAB_180723f9b;
-      dataSource[1] = (char)charIndex;
-      charIndex = charIndex + 1;
-      currentChar = (char)fontTableIndex;
-      *dataSource = currentChar;
-      tempProcessingResult = distanceResult2;
-      processedCount = distanceResult1;
-    } while (charIndex < 5);
+      if (metricProcessingResult <= verticalDistance) goto LAB_180723f9b;
+      dataSource[1] = (char)characterIndex;
+      characterIndex = characterIndex + 1;
+      currentCharacter = (char)fontTableIndex;
+      *dataSource = currentCharacter;
+      metricProcessingResult = verticalDistance;
+      metricProcessedCount = horizontalDistance;
+    } while (characterIndex < 5);
     fontTableIndex = fontTableIndex + 1;
   } while (fontTableIndex < 0xf);
 LAB_180723f9b:
