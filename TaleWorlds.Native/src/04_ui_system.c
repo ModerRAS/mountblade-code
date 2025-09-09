@@ -224,9 +224,9 @@ typedef enum {
 #define ProcessUIComponentLayout FUN_18072ec50          // UI组件布局处理
 #define ProcessUICoefficientCalculation FUN_18072e4b0   // UI系数计算处理
 #define ProcessUISurfaceRendering FUN_18072fba0         // UI表面渲染处理
-#define FUN_180730e60 ProcessUIInterfaceRendering        // UI界面渲染处理
-#define FUN_180733080 ProcessUINavigationSystem          // UI导航系统处理
-#define FUN_18072f890 ProcessUITextProcessing           // UI文本处理函数
+#define ProcessUIInterfaceRendering FUN_180730e60        // UI界面渲染处理
+#define ProcessUINavigationSystem FUN_180733080          // UI导航系统处理
+#define ProcessUITextProcessing FUN_18072f890           // UI文本处理函数
 
 // 额外的UNK变量定义
 
@@ -96873,7 +96873,7 @@ void InitializeUIRenderingSystem(void)
   float *BaseValuePointer;
   float *TransformCoefficient1;
   UIByte aEventTypeCode [16];
-  double dVar4;
+  double TemporalDoubleValue;
   float TransformCoefficient4;
   float *pLocalFloatValue6;
   float *pResultFloatValue;
@@ -96998,7 +96998,7 @@ void InitializeUIRenderingSystem(void)
           transformCoeff11 = preservedXMM7;
         }
         transformCoeff12 = (float)((uint)transformCoeff15 & unmodifiedXMM11_Da) * unmodifiedXMM12_Da + unmodifiedXMM13_Da;
-        dVar4 = (double)transformCoeff12;
+        TemporalDoubleValue = (double)transformCoeff12;
         allocatedMemory7 = (longlong)transformCoeff12;
         if ((allocatedMemory7 != BasePointer) && ((double)allocatedMemory7 != dVar4)) {
           aEventTypeCode._8_4_ = SUB84(dVar4,0);
