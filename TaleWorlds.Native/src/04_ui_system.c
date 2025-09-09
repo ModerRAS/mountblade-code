@@ -1512,7 +1512,7 @@ typedef enum {
 #define AudioFormatType isCharacterMatch
 #define AudioEncodingActive IsEventProcessingActive
 #define AudioSampleCount ContextFirstValue
-#define AudioProcessingMode bVar4
+#define AudioProcessingMode UIAudioProcessingMode
 #define AudioDataChunkIndex loopCounter
 #define AudioSampleRate loopCounter
 #define AudioDataSize AudioDataSizeLocal7
@@ -100496,8 +100496,8 @@ void FUN_180723ee0(int *uiContext,char *dataSource)
     fontTableIndex = fontTableIndex + 1;
   } while (fontTableIndex < 0xf);
 LAB_180723f9b:
-  stringCompareIndex = (longlong)(int)localChar6;
-  localChar5 = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
+  stringCompareIndex = (longlong)(int)currentChar;
+  firstChar = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
           (char)((stringCompareIndex / 3 + (stringCompareIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
   dataSource[2] = localChar5;
   *dataSource = localChar6 + localChar5 * -3;
