@@ -10231,9 +10231,31 @@ void FinalizeUIFrame(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void UpdateUIComponentList(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 更新UI组件列表
+ * 
+ * 更新UI系统中的组件列表，添加新的组件或更新现有组件：
+ * - 初始化新的UI组件
+ * - 设置组件的数据源和目标缓冲区
+ * - 配置组件的大小和状态标志
+ * 
+ * @param uiContext UI上下文句柄，包含组件的上下文信息
+ * @param dataSource 数据源句柄，提供组件所需的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储组件数据
+ * @param bufferSize 缓冲区大小，指定数据存储空间
+ * 
+ * @details 实现细节：
+ * - 调用InitializeUIComponent进行组件初始化
+ * - 传递UIComponentList作为组件列表
+ * - 使用0xfffffffffffffffe作为组件状态标志
+ * - 直接返回，不进行额外处理
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 组件重复性检查
+ * - 组件优先级处理
+ * - 更复杂的错误处理
+ */
 void UpdateUIComponentList(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-
 {
   InitializeUIComponent(uiContext,UIComponentList,targetBuffer,bufferSize,0xfffffffffffffffe);
   return;

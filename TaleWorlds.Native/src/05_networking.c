@@ -5672,6 +5672,17 @@ static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConn
  * - 多线程安全性
  * - 句柄冲突检测
  * @warning 句柄值1000以下可能被系统保留使用
+ * 
+ * @example
+ * ```c
+ * NetworkConnectionContext context;
+ * NetworkHandle handle = GenerateConnectionHandle(&context);
+ * if (handle != NetworkErrorInvalidHandle) {
+ *     // 句柄生成成功，可以使用
+ * } else {
+ *     // 句柄生成失败，处理错误
+ * }
+ * ```
  */
 static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkConnectionContext)
 {
@@ -5704,6 +5715,13 @@ static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkC
  * - 配置证书验证
  * - 启用数据压缩
  * @warning 安全上下文初始化失败可能导致通信不安全
+ * 
+ * @example
+ * ```c
+ * NetworkConnectionContext context;
+ * InitializeSecurityContext(&context);
+ * // 现在连接已经配置了基本的安全参数
+ * ```
  */
 static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectionContext)
 {
@@ -5752,9 +5770,31 @@ static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConne
 /**
  * @brief 获取当前系统时间
  * 
- * 获取当前系统时间戳，用于连接时间管理
+ * 获取当前系统时间戳，用于连接时间管理和超时控制
  * 
- * @return uint64_t 当前系统时间戳
+ * @return uint64_t 当前系统时间戳（毫秒）
+ * 
+ * @details 实现细节：
+ * - 使用静态计数器模拟时间戳
+ * - 每次调用递增时间戳
+ * - 从初始值1000000开始计数
+ * - 用于模拟系统时间流逝
+ * 
+ * @note 这是简化实现，实际应用中应该：
+ * - 调用系统时间函数（如GetTickCount64、clock_gettime等）
+ * - 使用高精度时间源
+ * - 处理时间回绕问题
+ * - 考虑时区影响
+ * 
+ * @warning 此实现不适用于生产环境，仅用于演示
+ * @see NetworkConnectionTimeoutDefault
+ * 
+ * @example
+ * ```c
+ * uint64_t currentTime = GetCurrentSystemTime();
+ * uint64_t timeout = currentTime + NetworkConnectionTimeoutDefault;
+ * // 现在可以使用timeout进行超时控制
+ * ```
  */
 static uint64_t GetCurrentSystemTime(void)
 {

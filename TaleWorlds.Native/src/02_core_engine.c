@@ -250038,6 +250038,19 @@ LAB_180204eec:
 
 
 
+/**
+ * @brief 处理操作缓冲区大小和内存块索引管理
+ * 
+ * 该函数负责管理系统操作缓冲区的大小和内存块索引的分配与释放。
+ * 主要功能包括：
+ * - 初始化内存模式索引
+ * - 设置系统栈配置数据
+ * - 管理系统清理回调指针
+ * - 执行内存清理操作
+ * 
+ * @note 原始函数名：FUN_180204f57
+ * @return 无返回值
+ */
 void ProcessOperationBufferSizeAndMemoryBlockIndexManagement(void)
 {
   uint64_t *MemoryPatternIndex;
@@ -250060,6 +250073,23 @@ void ProcessOperationBufferSizeAndMemoryBlockIndexManagement(void)
 
 
 
+/**
+ * @brief 处理上下文句柄和UTF8源数据
+ * 
+ * 该函数负责处理系统上下文句柄和UTF8源数据的编码转换和处理。
+ * 主要功能包括：
+ * - 初始化编码缓冲区和处理状态标志
+ * - 从上下文句柄中提取系统数据
+ * - 分配字符表内存并设置编码参数
+ * - 初始化系统资源和线程本地存储
+ * - 配置字符表参数和内存清理
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @note 原始函数名：FUN_180204f70
+ * @return 无返回值
+ */
 void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
