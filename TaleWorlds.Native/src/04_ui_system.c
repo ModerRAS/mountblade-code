@@ -109031,200 +109031,200 @@ void ProcessUITransformDataWithCoefficients(float *UIContext,int DataSource,int 
 {
   float *BaseValuePointer;
   float *TransformCoefficient1;
-  float *pTransformCoefficient2;
-  float *pTransformCoefficient3;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
-  longlong contextOffset;
+  float *SecondaryTransformCoefficient;
+  float *TertiaryTransformCoefficient;
+  int ComponentSize;
+  int LoopCounter;
+  longlong MemoryOffset;
+  longlong ContextOffset;
   longlong CharacterDataOffset;
-  char *plocalChar10;
-  ulonglong result1;
-  int ProcessingResult2;
-  longlong BasePointer;
-  int ProcessingResult3;
-  short sVar14;
-  longlong allocatedMemory5;
+  char *CharacterDataPointer;
+  ulonglong IterationCount;
+  int ProcessingResult;
+  longlong UIBasePointer;
+  int MaxProcessingCount;
+  short ComponentType;
+  longlong ComponentMemoryOffset;
   uint TotalResult;
-  longlong allocatedMemory7;
-  int *pprocessingResult8;
-  longlong allocatedMemory9;
-  longlong preservedRegister12;
-  longlong componentIndex0;
-  longlong preservedRegister13;
-  uint eventHandle;
-  UIDword unmodified000000b4;
-  float transformCoeff11;
-  double dVar22;
-  float transformCoeff13;
-  double dVar24;
-  double dVar25;
-  float preservedXMM7;
-  float unmodifiedXMM8_Da;
-  UIDword unmodifiedXMM9_Da;
-  UIDword unmodifiedXMM9_Db;
-  float unmodifiedXMM13_Da;
-  float unmodifiedXMM14_Da;
-  uint StackHandle1;
-  int iStack000000000000004c;
-  int iStack0000000000000050;
-  int iStack0000000000000054;
-  int stackParam00000058;
-  int stackParam00000068;
-  undefined *pstackUInt32_70;
+  longlong AllocatedMemorySize;
+  int *ProcessingResultPointer;
+  longlong RenderMemoryPool;
+  longlong StringDataOffset;
+  longlong ComponentIndex;
+  longlong StackMemorySize;
+  uint EventHandle;
+  UIDword TextureQuality;
+  float BaseScale;
+  double SizeRatio;
+  float AdjustedScale;
+  double PixelRatio;
+  double TempDouble1;
+  float BaseRenderScale;
+  float CurrentScale;
+  UIDword RenderQuality;
+  UIDword RenderQualityLow;
+  float InputScale;
+  float TargetScale;
+  uint StackHandle;
+  int StackParam4C;
+  int StackParam50;
+  int StackParam54;
+  int StackParam58;
+  int StackParam68;
+  undefined *DataBufferPointer;
   
-  *uiContext = unmodifiedXMM13_Da / unmodifiedXMM14_Da;
-  if (iStack000000000000004c < 9) {
-    if (0 < (int)*(uint *)(BasePointer + 0x2cb0)) {
-      componentIndex0 = *(longlong *)(BasePointer + -0x70);
-      pprocessingResult8 = *(int **)(BasePointer + -0x80);
-      result1 = (ulonglong)*(uint *)(BasePointer + 0x2cb0);
-      plocalChar10 = (char *)(dataSource + preservedRegister12);
+  *UIContext = TargetScale / InputScale;
+  if (StackParam4C < 9) {
+    if (0 < (int)*(uint *)(UIBasePointer + 0x2cb0)) {
+      StringDataOffset = *(longlong *)(UIBasePointer + -0x70);
+      ProcessingResultPointer = *(int **)(UIBasePointer + -0x80);
+      IterationCount = (ulonglong)*(uint *)(UIBasePointer + 0x2cb0);
+      CharacterDataPointer = (char *)(DataSource + StringDataOffset);
       do {
-        loopCounter = *plocalChar10 + targetBuffer;
-        if (loopCounter < 0x91) {
-          if (loopCounter < 0x10) {
-            loopCounter = 0x10;
+        LoopCounter = *CharacterDataPointer + TargetBuffer;
+        if (LoopCounter < 0x91) {
+          if (LoopCounter < 0x10) {
+            LoopCounter = 0x10;
           }
         }
         else {
-          loopCounter = 0x90;
+          LoopCounter = 0x90;
         }
-        *pprocessingResult8 = loopCounter;
-        plocalChar10 = plocalChar10 + componentIndex0;
-        pprocessingResult8 = pprocessingResult8 + 1;
-        result1 = result1 - 1;
-      } while (result1 != 0);
+        *ProcessingResultPointer = LoopCounter;
+        CharacterDataPointer = CharacterDataPointer + StringDataOffset;
+        ProcessingResultPointer = ProcessingResultPointer + 1;
+        IterationCount = IterationCount - 1;
+      } while (IterationCount != 0);
     }
-    sVar14 = (short)targetBuffer + -0x10;
-    _StackHandle1 = _StackHandle1 & 0xffffffff;
+    ComponentType = (short)TargetBuffer + -0x10;
+    StackHandle = StackHandle & 0xffffffff;
   }
   else {
-    if (iStack000000000000004c == 0xc) {
-      TotalResult = (short)targetBuffer * 3;
-      targetBuffer = ((int)TotalResult >> 1) + (TotalResult & 1);
+    if (StackParam4C == 0xc) {
+      TotalResult = (short)TargetBuffer * 3;
+      TargetBuffer = ((int)TotalResult >> 1) + (TotalResult & 1);
     }
     else {
-      targetBuffer = targetBuffer * 2;
+      TargetBuffer = TargetBuffer * 2;
     }
-    if (stackParam00000068 < stackParam00000058) {
-      loopCounter = stackParam00000058;
-      if ((targetBuffer <= stackParam00000058) && (loopCounter = targetBuffer, targetBuffer < stackParam00000068)) {
-        loopCounter = stackParam00000068;
+    if (StackParam68 < StackParam58) {
+      LoopCounter = StackParam58;
+      if ((TargetBuffer <= StackParam58) && (LoopCounter = TargetBuffer, TargetBuffer < StackParam68)) {
+        LoopCounter = StackParam68;
       }
     }
     else {
-      loopCounter = stackParam00000068;
-      if ((targetBuffer <= stackParam00000068) && (loopCounter = targetBuffer, targetBuffer < stackParam00000058)) {
-        loopCounter = stackParam00000058;
+      LoopCounter = StackParam68;
+      if ((TargetBuffer <= StackParam68) && (LoopCounter = TargetBuffer, TargetBuffer < StackParam58)) {
+        LoopCounter = StackParam58;
       }
     }
-    ProcessingResult3 = *(int *)(BasePointer + 0x2cb0);
-    ProcessingResult2 = stackParam00000058;
-    if (stackParam00000058 < loopCounter + -2) {
-      ProcessingResult2 = loopCounter + -2;
+    MaxProcessingCount = *(int *)(UIBasePointer + 0x2cb0);
+    ProcessingResult = StackParam58;
+    if (StackParam58 < LoopCounter + -2) {
+      ProcessingResult = LoopCounter + -2;
     }
-    localInt5 = stackParam00000068;
-    if (loopCounter + 2 < stackParam00000068) {
-      localInt5 = loopCounter + 2;
+    ComponentSize = StackParam68;
+    if (LoopCounter + 2 < StackParam68) {
+      ComponentSize = LoopCounter + 2;
     }
-    FUN_18072b930(BasePointer + 0xae0,*(UIHandle *)(BasePointer + -0x60),ProcessingResult2,iStack0000000000000054
-                  ,ProcessingResult3);
-    FUN_18072bbd0(BasePointer + 0x1d00,*(UIHandle *)(BasePointer + -0x60),ProcessingResult2,
-                  iStack0000000000000054,ProcessingResult3);
-    transformCoeff11 = (float)loopCounter;
-    if (ProcessingResult3 == 4) {
-      pstackUInt32_70 = &UIComponentDataTable180956e90;
-      componentIndex0 = 0x22;
-      ProcessingResult3 = (int)(char)(&UIComponentSizeTable180956e8c)[iStack0000000000000050];
+    ProcessUIComponentRenderQueue(UIBasePointer + 0xae0,*(UIHandle *)(UIBasePointer + -0x60),ProcessingResult,StackParam54
+                  ,MaxProcessingCount);
+    ProcessUIComponentTextureQueue(UIBasePointer + 0x1d00,*(UIHandle *)(UIBasePointer + -0x60),ProcessingResult,
+                  StackParam54,MaxProcessingCount);
+    BaseScale = (float)LoopCounter;
+    if (MaxProcessingCount == 4) {
+      DataBufferPointer = &UIComponentDataTable180956e90;
+      ComponentIndex = 0x22;
+      MaxProcessingCount = (int)(char)(&UIComponentSizeTable180956e8c)[StackParam50];
     }
     else {
-      ProcessingResult3 = 0xc;
-      pstackUInt32_70 = &UNK_180956f38;
-      componentIndex0 = 0xc;
+      MaxProcessingCount = 0xc;
+      DataBufferPointer = &UIComponentHandleF38;
+      ComponentIndex = 0xc;
     }
-    dVar22 = (double)FUN_18072b3a0(*(longlong *)(BasePointer + -0x60) +
-                                   (longlong)(iStack000000000000004c * 0x14) * 4,
-                                   iStack0000000000000054 * *(int *)(BasePointer + 0x2cb0));
-    StackHandle1 = eventHandle;
-    if (ProcessingResult2 <= localInt5) {
-      allocatedMemory9 = CONCAT44(unmodified000000b4,eventHandle);
+    SizeRatio = (double)CalculateUIComponentOptimization(*(longlong *)(UIBasePointer + -0x60) +
+                                   (longlong)(StackParam4C * 0x14) * 4,
+                                   StackParam54 * *(int *)(UIBasePointer + 0x2cb0));
+    StackHandle = EventHandle;
+    if (ProcessingResult <= ComponentSize) {
+      RenderMemoryPool = CONCAT44(TextureQuality,EventHandle);
       do {
-        allocatedMemory5 = CONCAT44(unmodified000000b4,eventHandle);
-        if (0 < (longlong)ProcessingResult3) {
-          allocatedMemory7 = allocatedMemory9 * 4;
-          TotalResult = eventHandle;
+        ComponentMemoryOffset = CONCAT44(TextureQuality,EventHandle);
+        if (0 < (longlong)MaxProcessingCount) {
+          AllocatedMemorySize = RenderMemoryPool * 4;
+          TotalResult = EventHandle;
           do {
-            dVar24 = (double)CONCAT44(unmodifiedXMM9_Db,unmodifiedXMM9_Da);
-            contextOffset = CONCAT44(unmodified000000b4,eventHandle);
-            dVar25 = dVar22 + 1.0;
-            if (3 < preservedRegister13) {
-              CharacterDataOffset = (preservedRegister13 - 4U >> 2) + 1;
-              contextOffset = CharacterDataOffset * 4;
-              localLong7 = allocatedMemory7;
+            PixelRatio = (double)CONCAT44(RenderQualityLow,RenderQuality);
+            ContextOffset = CONCAT44(TextureQuality,EventHandle);
+            TempDouble1 = SizeRatio + 1.0;
+            if (3 < StackMemorySize) {
+              CharacterDataOffset = (StackMemorySize - 4U >> 2) + 1;
+              ContextOffset = CharacterDataOffset * 4;
+              MemoryOffset = AllocatedMemorySize;
               do {
-                BaseValuePointer = (float *)(BasePointer + 0x1d00 + localLong7);
-                dVar24 = (double)*(float *)(BasePointer + 0xae0 + localLong7) + dVar24 +
-                         (double)*(float *)(BasePointer + 0xd88 + localLong7) +
-                         (double)*(float *)(BasePointer + 0x1030 + localLong7) +
-                         (double)*(float *)(BasePointer + 0x12d8 + localLong7);
-                TransformCoefficient1 = (float *)(BasePointer + 0x1fa8 + localLong7);
-                pTransformCoefficient2 = (float *)(BasePointer + 0x2250 + localLong7);
-                pTransformCoefficient3 = (float *)(BasePointer + 0x24f8 + localLong7);
-                localLong7 = localLong7 + 0xaa0;
-                dVar25 = (double)*BaseValuePointer + dVar25 + (double)*TransformCoefficient1 + (double)*pTransformCoefficient2 +
-                         (double)*pTransformCoefficient3;
+                BaseValuePointer = (float *)(UIBasePointer + 0x1d00 + MemoryOffset);
+                PixelRatio = (double)*(float *)(UIBasePointer + 0xae0 + MemoryOffset) + PixelRatio +
+                         (double)*(float *)(UIBasePointer + 0xd88 + MemoryOffset) +
+                         (double)*(float *)(UIBasePointer + 0x1030 + MemoryOffset) +
+                         (double)*(float *)(UIBasePointer + 0x12d8 + MemoryOffset);
+                TransformCoefficient1 = (float *)(UIBasePointer + 0x1fa8 + MemoryOffset);
+                SecondaryTransformCoefficient = (float *)(UIBasePointer + 0x2250 + MemoryOffset);
+                TertiaryTransformCoefficient = (float *)(UIBasePointer + 0x24f8 + MemoryOffset);
+                MemoryOffset = MemoryOffset + 0xaa0;
+                TempDouble1 = (double)*BaseValuePointer + TempDouble1 + (double)*TransformCoefficient1 + (double)*SecondaryTransformCoefficient +
+                         (double)*TertiaryTransformCoefficient;
                 CharacterDataOffset = CharacterDataOffset + -1;
               } while (CharacterDataOffset != 0);
             }
-            if (contextOffset < preservedRegister13) {
-              localLong7 = (allocatedMemory9 + (contextOffset * 0x22 + allocatedMemory5) * 5) * 4;
-              contextOffset = preservedRegister13 - contextOffset;
+            if (ContextOffset < StackMemorySize) {
+              MemoryOffset = (RenderMemoryPool + (ContextOffset * 0x22 + ComponentMemoryOffset) * 5) * 4;
+              ContextOffset = StackMemorySize - ContextOffset;
               do {
-                BaseValuePointer = (float *)(BasePointer + 0xae0 + localLong7);
-                TransformCoefficient1 = (float *)(BasePointer + 0x1d00 + localLong7);
-                localLong7 = localLong7 + 0x2a8;
-                dVar24 = dVar24 + (double)*BaseValuePointer;
-                dVar25 = dVar25 + (double)*TransformCoefficient1;
-                contextOffset = contextOffset + -1;
-              } while (contextOffset != 0);
+                BaseValuePointer = (float *)(UIBasePointer + 0xae0 + MemoryOffset);
+                TransformCoefficient1 = (float *)(UIBasePointer + 0x1d00 + MemoryOffset);
+                MemoryOffset = MemoryOffset + 0x2a8;
+                PixelRatio = PixelRatio + (double)*BaseValuePointer;
+                TempDouble1 = TempDouble1 + (double)*TransformCoefficient1;
+                ContextOffset = ContextOffset + -1;
+              } while (ContextOffset != 0);
             }
-            transformCoeff13 = unmodifiedXMM8_Da;
-            if ((double)CONCAT44(unmodifiedXMM9_Db,unmodifiedXMM9_Da) <= dVar24 &&
-                dVar24 != (double)CONCAT44(unmodifiedXMM9_Db,unmodifiedXMM9_Da)) {
-              transformCoeff13 = (1.0 - (float)(int)TotalResult * (0.05 / transformCoeff11))                        (float)((dVar24 + dVar24) / dVar25);
+            AdjustedScale = CurrentScale;
+            if ((double)CONCAT44(RenderQualityLow,RenderQuality) <= PixelRatio &&
+                PixelRatio != (double)CONCAT44(RenderQualityLow,RenderQuality)) {
+              AdjustedScale = (1.0 - (float)(int)TotalResult * (0.05 / BaseScale))                        (float)((PixelRatio + PixelRatio) / TempDouble1);
             }
-            if ((preservedXMM7 < transformCoeff13) &&
-               ((char)(&UIComponentDataTable180956e90)[allocatedMemory5] + ProcessingResult2 <= stackParam00000068)) {
-              preservedXMM7 = transformCoeff13;
-              loopCounter = ProcessingResult2;
-              StackHandle1 = TotalResult;
+            if ((BaseRenderScale < AdjustedScale) &&
+               ((char)(&UIComponentDataTable180956e90)[ComponentMemoryOffset] + ProcessingResult <= StackParam68)) {
+              BaseRenderScale = AdjustedScale;
+              LoopCounter = ProcessingResult;
+              StackHandle = TotalResult;
             }
             TotalResult = TotalResult + 1;
-            allocatedMemory5 = allocatedMemory5 + 1;
-            allocatedMemory7 = allocatedMemory7 + 0x14;
-          } while (allocatedMemory5 < ProcessingResult3);
+            ComponentMemoryOffset = ComponentMemoryOffset + 1;
+            AllocatedMemorySize = AllocatedMemorySize + 0x14;
+          } while (ComponentMemoryOffset < MaxProcessingCount);
         }
-        allocatedMemory9 = allocatedMemory9 + 1;
-        ProcessingResult2 = ProcessingResult2 + 1;
-      } while (ProcessingResult2 <= localInt5);
+        RenderMemoryPool = RenderMemoryPool + 1;
+        ProcessingResult = ProcessingResult + 1;
+      } while (ProcessingResult <= ComponentSize);
     }
-    if ((int)*(uint *)(BasePointer + 0x2cb0) < 1) {
-      _StackHandle1 = (ulonglong)StackHandle1;
-      sVar14 = (short)loopCounter - (short)stackParam00000058;
+    if ((int)*(uint *)(UIBasePointer + 0x2cb0) < 1) {
+      StackHandle = (ulonglong)StackHandle;
+      ComponentType = (short)LoopCounter - (short)StackParam58;
     }
     else {
-      _StackHandle1 = (ulonglong)(int)StackHandle1;
-      result1 = (ulonglong)*(uint *)(BasePointer + 0x2cb0);
-      pprocessingResult8 = *(int **)(BasePointer + -0x80);
-      plocalChar10 = pstackUInt32_70 + _StackHandle1;
-      ProcessingResult3 = *(int *)(BasePointer + -0x68);
+      StackHandle = (ulonglong)(int)StackHandle;
+      IterationCount = (ulonglong)*(uint *)(UIBasePointer + 0x2cb0);
+      ProcessingResultPointer = *(int **)(UIBasePointer + -0x80);
+      CharacterDataPointer = DataBufferPointer + StackHandle;
+      MaxProcessingCount = *(int *)(UIBasePointer + -0x68);
       do {
-        ProcessingResult2 = *plocalChar10 + loopCounter;
-        if (ProcessingResult3 < stackParam00000058) {
-          localInt5 = stackParam00000058;
-          if ((ProcessingResult2 <= stackParam00000058) && (localInt5 = ProcessingResult2, ProcessingResult2 < ProcessingResult3)) {
-            localInt5 = ProcessingResult3;
+        ProcessingResult = *CharacterDataPointer + LoopCounter;
+        if (MaxProcessingCount < StackParam58) {
+          ComponentSize = StackParam58;
+          if ((ProcessingResult <= StackParam58) && (ComponentSize = ProcessingResult, ProcessingResult < MaxProcessingCount)) {
+            ComponentSize = MaxProcessingCount;
           }
         }
         else {
