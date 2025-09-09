@@ -205621,7 +205621,7 @@ UIHandle ProcessUIContextValidation(UIHandle uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_1807896ae(UIHandle uiContext)
+UIHandle ProcessUIComponentRegistration(UIHandle uiContext)
 
 {
   UIHandle result;
