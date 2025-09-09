@@ -71991,7 +71991,7 @@ LAB_18008eecc:
         if (StringComparisonByte != CalculatedCodePoint) break;
         ValidationBytePointer = ValidationBytePointer + 1;
       } while (CalculatedCodePoint != 0);
-      if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_18008eecc;
+      if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto CodePointComparisonLabel;
     }
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryPoolBlockSize;
@@ -72043,7 +72043,7 @@ LAB_18008ef40:
       do {
         MemoryBlockIndex = ContextHandle1[-1];
         ContextHandle1 = ContextHandle1 + -1;
-        if (*(int *)(MemoryBlockIndex + 0x78) == 0) goto LAB_18008efb7;
+        if (*(int *)(MemoryBlockIndex + 0x78) == 0) goto MemoryBlockIndexCheckLabel;
       } while (*(int *)(EncodingConversionResult + 0x78) == 0);
       ValidationBytePointer = *(byte **)(MemoryBlockIndex + 0x70);
       StringOffset = *(long long *)(EncodingConversionResult + 0x70) - (long long)ValidationBytePointer;
@@ -72171,7 +72171,7 @@ LAB_18008eecc:
         if (StringComparisonByte != CalculatedCodePoint) break;
         ValidationBytePointer = ValidationBytePointer + 1;
       } while (CalculatedCodePoint != 0);
-      if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto LAB_18008eecc;
+      if ((int)(StringComparisonByte - CalculatedCodePoint) < 1) goto CodePointComparisonLabel;
     }
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryPoolBlockSize;
@@ -72223,7 +72223,7 @@ LAB_18008ef40:
       do {
         MemoryBlockIndex = ContextHandle1[-1];
         ContextHandle1 = ContextHandle1 + -1;
-        if (*(int *)(MemoryBlockIndex + 0x78) == 0) goto LAB_18008efb7;
+        if (*(int *)(MemoryBlockIndex + 0x78) == 0) goto MemoryBlockIndexCheckLabel;
       } while (*(int *)(EncodingConversionResult + 0x78) == 0);
       ValidationBytePointer = *(byte **)(MemoryBlockIndex + 0x70);
       StringOffset = *(long long *)(EncodingConversionResult + 0x70) - (long long)ValidationBytePointer;
@@ -72325,7 +72325,7 @@ LAB_18008eecc:
           if (StringComparisonByte != MemoryAddressMaskPointer) break;
           LowBytePointer = LowBytePointer + 1;
         } while (MemoryAddressMaskPointer != 0);
-        if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto LAB_18008eecc;
+        if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto CodePointComparisonLabel;
       }
       SystemDataTablePointer = CharacterLimit[-1];
       StringOffset = MemoryBoundaryEnd;
@@ -72377,7 +72377,7 @@ LAB_18008ef40:
         do {
           BufferStatus = ContextHandleTablePointer[-1];
           ContextHandleTablePointer = ContextHandleTablePointer + -1;
-          if (*(int *)(BufferStatus + 0x78) == 0) goto LAB_18008efb7;
+          if (*(int *)(BufferStatus + 0x78) == 0) goto MemoryBlockIndexCheckLabel;
         } while (*(int *)(StringOffset + 0x78) == 0);
         LowBytePointer = *(byte **)(BufferStatus + 0x70);
         SystemDataTablePointer = *(long long *)(StringOffset + 0x70) - (long long)LowBytePointer;
