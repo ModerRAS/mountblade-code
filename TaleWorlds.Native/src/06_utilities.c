@@ -65071,7 +65071,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
   resourceIterator = *exceptionContextPointer;
   *exceptionContextPointer = *exceptionContextPointer + 1;
   UNLOCK();
-  if (resourceIterator == 0x1f) {
+  if (resourceIterator == MemoryOffsetValidationThreshold) {
     *(DataBuffer *)(*(int64_t *)(dataBuffer + SystemFloatDataOffset38) + 8) = 0;
     resourceIterator = *memoryBlockOffset;
     memoryPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
