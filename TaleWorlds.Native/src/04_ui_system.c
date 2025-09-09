@@ -10061,10 +10061,37 @@ LAB_UIComponentWriteHeader:
 
 
 
- int ProcessUIEvent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
- 处理UI事件的函数，根据事件类型返回不同的处理结果
-int ProcessUIEvent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-
+ /**
+ * @brief UI事件处理函数
+ * 
+ * 处理UI系统中的各种事件类型，包括字符输入、按钮点击、菜单选择等。
+ * 该函数根据事件类型和内容返回相应的处理结果码。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，提供事件数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定目标缓冲区的容量
+ * @return int 处理结果状态码，不同值代表不同的事件处理结果
+ * 
+ * 事件类型码说明：
+ * - 0x19: 特殊字符事件，返回0x84
+ * - 0x18: 字符串事件，返回0x10
+ * - 0x12: 字符串比较事件，返回0xa0或8
+ * - 0x1a: 高级字符串事件，返回0x204
+ * - 0x15: 事件类型21，返回0x404
+ * - 0x11: 事件类型23，返回0x50
+ * - 0x0b: 事件类型24，返回8
+ * - 0x16: 事件类型25，返回0xc
+ * - 0x07: 事件类型26，返回0x10
+ * - 0x0f: 事件类型27，返回0x40
+ * - 0x13: 事件类型28，进行验证检查
+ * - 0x0d: 事件类型29，处理完成
+ * - 0x06: 事件类型30，返回组件索引+0x1e
+ * 
+ * @note 此函数使用多个字符串常量进行比较，支持多种事件类型的处理
+ * @warning 函数包含多个goto语句，用于事件处理流程控制
+ */
+int ProcessUIEvent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 {
   int processingResult;
   longlong eventIndex;
