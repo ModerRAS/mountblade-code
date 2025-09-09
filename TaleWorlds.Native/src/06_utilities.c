@@ -42575,13 +42575,13 @@ void InitializeExceptionHandlerA8(DataBuffer exceptionContext, int64_t handlerTa
 void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xd0) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetD0) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + 0xd8) = 0;
   *(DataWord *)(dataBuffer + 0xe8) = 0;
-  *(DataBuffer *)(dataBuffer + 0xd0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetD0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -42796,7 +42796,7 @@ void ExceptionRecoveryHandlerB9(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + SystemContextPointerOffset90) = 0;
   *(DataWord *)(dataBuffer + ExceptionHandlerContextOffsetA0) = 0;
-  *(DataBuffer *)(dataBuffer + 0x88) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffset88) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -42896,7 +42896,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB12(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x88) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffset88) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -56996,7 +56996,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
 void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xb0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetB0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -57075,7 +57075,7 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
 void SetDefaultExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xb0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetB0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
