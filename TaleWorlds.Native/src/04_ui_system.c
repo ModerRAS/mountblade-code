@@ -106875,9 +106875,29 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
 
 
 
- void FUN_18072ad20(longlong uiContext,int *dataSource,int *targetBuffer,int *bufferSize,UIWord *resultPointer,
-void FUN_18072ad20(longlong uiContext,int *dataSource,int *targetBuffer,int *bufferSize,UIWord *resultPointer,
-                  int param_6)
+ /**
+ * @brief UI数据矩阵处理函数
+ * 
+ * 该函数负责处理UI数据的矩阵运算，主要功能包括：
+ * - 执行复杂的数据矩阵乘法和累加运算
+ * - 处理UI事件数据的位运算和位移
+ * - 管理多维度数据的处理流程
+ * - 优化数据计算的精度和性能
+ * 
+ * @param uiContext UI上下文参数，用于控制处理流程
+ * @param dataSource 数据源数组，提供输入数据
+ * @param targetBuffer 目标缓冲区，存储处理结果
+ * @param bufferSize 缓冲区大小数组，控制处理范围
+ * @param resultPointer 结果指针数组，存储计算结果
+ * @param processingCount 处理计数，控制处理循环
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18072ad20
+ * @note 这是一个UI数据矩阵处理函数，用于处理复杂的数据运算
+ */
+void ProcessUIDataMatrixOperation(longlong uiContext, int *dataSource, int *targetBuffer, int *bufferSize, UIWord *resultPointer,
+                                  int processingCount)
 
 {
   int processingResult;
