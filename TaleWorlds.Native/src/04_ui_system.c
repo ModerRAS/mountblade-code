@@ -94815,21 +94815,20 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
 
 
 
- void FUN_18071ffc5(void)
-void FUN_18071ffc5(void)
+ void ProcessUITransformMatrix(void)
 
 {
   float *BaseValuePointer;
   float *TransformCoefficient1;
-  UIByte aEventTypeCode [16];
-  UIByte aProcessingStatus [16];
-  double dVar5;
+  UIByte EventTypeCode [16];
+  UIByte ProcessingStatus [16];
+  double TransformFactor;
   float LocalFloatValue6;
-  float *pResultFloatValue;
-  float *pTemporaryFloatValue;
-  float *bufferPointer;
+  float *ResultFloatValue;
+  float *TemporaryFloatValue;
+  float *BufferPointer;
   float *BaseValuePointer0;
-  float *baseScaleFactor;
+  float *BaseScaleFactor;
   float *BaseValuePointer2;
   longlong allocatedMemory3;
   longlong allocatedMemory4;
