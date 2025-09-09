@@ -168226,7 +168226,7 @@ LAB_18076855d:
   if (stackLong48 != 0) {
     stackUInt278 = CONCAT31(stackUInt278._1_3_,1);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stackLong48,&UNK_180958b20,0xcd);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stackLong48,&UIComponentParameterB20,0xcd);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt298);
