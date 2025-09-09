@@ -100217,8 +100217,8 @@ LAB_180724b88:
           *contextHandle = localChar4;
         }
         else {
-          if (localChar4 < '?') {
-            localChar4 = '?';
+          if (normalizedChar < '?') {
+            normalizedChar = '?';
           }
           *sourceBuffer = normalizedChar;
           *contextBuffer = normalizedChar;

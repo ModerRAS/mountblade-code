@@ -223970,7 +223970,7 @@ LAB_18018802f:
     else if (-1 < EncodingValidationResult) goto LAB_18018802f;
   }
   AllocatedMemorySize = ProcessSystemEventDispatcher(ContextHandle);
-  FUN_18018a1c0(ContextHandle,alStackX_18,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+  ProcessSystemMemoryValidation(ContextHandle,alStackX_18,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
   return (void *)(alStackX_18[0] + 0x40);
 }
 
