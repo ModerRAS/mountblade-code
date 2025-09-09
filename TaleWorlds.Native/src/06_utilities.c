@@ -82088,7 +82088,18 @@ void CallExceptionHandlerAtOffsetA8(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-// 异常处理函数B3 - 在偏移量0xB0处调用异常处理器
+/**
+ * @brief 在偏移量0xB0处调用异常处理器
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理器。
+ * 它会获取异常处理上下文指针，并在偏移量0xB0处执行异常处理回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809091f0
+ * @note 此函数用于异常处理系统中的资源清理和状态管理
+ */
 void CallExceptionHandlerAtOffsetB0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
