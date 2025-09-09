@@ -2444,12 +2444,12 @@ int InitializeStringProcessingSystemEnhanced(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理系统模块O
- * 设置字符串处理系统模块O所需的数据结构和缓冲区
+ * 初始化字符串处理系统模块优化
+ * 设置字符串处理系统模块优化所需的数据结构和缓冲区
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessingSystemO(void)
+int InitializeStringProcessingSystemOptimized(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
