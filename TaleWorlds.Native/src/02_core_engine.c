@@ -218676,26 +218676,26 @@ long long * ProcessSystemContextAndCharacterEncoding(long long ContextHandle, lo
   }
   if (AllocatedMemorySize != ContextHandle) {
     if (*(int *)(AllocatedMemorySize + 0x30) == 0) {
-LAB_1801807e7:
+HandleMemoryAllocationError:
       ProcessingStatusFlag = 1;
-      goto LAB_1801807f2;
+      goto ProcessMemoryAllocation;
     }
     if (*(int *)(SystemDataRegistry + 0x30) != 0) {
       Utf8OutputPointer = *(byte **)(AllocatedMemorySize + 0x28);
       MemoryPoolBlockSize = *(long long *)(SystemDataRegistry + 0x28) - (long long)Utf8OutputPointer;
       do {
-        HighByte = *Utf8OutputPointer;
+        SystemHighByte = *Utf8OutputPointer;
         UnicodeCodePoint = (uint)Utf8OutputPointer[MemoryPoolBlockSize];
-        if (HighByte != UnicodeCodePoint) break;
+        if (SystemHighByte != UnicodeCodePoint) break;
         Utf8OutputPointer = Utf8OutputPointer + 1;
       } while (UnicodeCodePoint != 0);
-      if ((int)(HighByte - UnicodeCodePoint) < 1) goto LAB_1801807e7;
+      if ((int)(SystemHighByte - UnicodeCodePoint) < 1) goto HandleMemoryAllocationError;
     }
   }
   ProcessingStatusFlag = 0;
-LAB_1801807f2:
+ProcessMemoryAllocation:
                     // WARNING: Subroutine does not return
-  AllocateMemoryWithFlags(SystemDataRegistry,AllocatedMemorySize,ContextHandle,ProcessingStatusFlag);
+  AllocateMemoryWithFlags(SystemDataRegistry, AllocatedMemorySize, ContextHandle, ProcessingStatusFlag);
 }
 
 
