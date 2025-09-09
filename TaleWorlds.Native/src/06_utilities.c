@@ -14378,20 +14378,20 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   if (initializationStatus == 0) {
     validationContext = (int64_t *)0x0;
     moduleData = validationContext;
-    if (tempStackContext != 0) {
-      moduleDataContext = (int64_t *)(temporaryStackContext + -8);
+    if (tempSystemStackContext != 0) {
+      moduleDataContext = (int64_t *)(tempSystemStackContext + -8);
     }
-    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporaryStackContext);
+    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempSystemStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
       StackMemoryContext = 0;
-      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
+      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempSystemStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
                             &StackMemoryContext);
       if (gameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(moduleDataContext);
         return (uint64_t)gameMessageProcessingStatus;
       }
-      if (((*(uint32_t *)(*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+      if (((*(uint32_t *)(*(int64_t *)(tempSystemStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
          (systemModuleOperationResult = ValidateSystemOperationContextA0(StackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
