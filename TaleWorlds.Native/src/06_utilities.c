@@ -8031,17 +8031,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统缓冲区处理函数 - 处理系统缓冲区和数据操作
 #define ProcessSystemBuffer ProcessSystemBufferAndDataOperations
 
-// 原始函数名：FUN_18089e4f0 - 数据验证和处理函数
-// 功能：验证数据并执行处理操作
-#define ValidateAndProcessDataOperation FUN_18089e4f0
+// 数据验证和处理函数 - 验证数据并执行处理操作
+#define ValidateAndProcessDataOperation ValidateDataAndExecuteProcessing
 
-// 原始函数名：FUN_18089e558 - 系统初始化函数
-// 功能：初始化系统组件和状态
-#define InitializeSystemComponentsA0 FUN_18089e558
+// 系统初始化函数A0 - 初始化系统组件和状态
+#define InitializeSystemComponentsA0 InitializeSystemComponentsAndState
 
-// 原始函数名：FUN_18089e624 - 系统重置函数
-// 功能：重置系统状态和清理资源
-#define ResetSystemComponents FUN_18089e624
+// 系统重置函数 - 重置系统状态和清理资源
+#define ResetSystemComponents ResetSystemStateAndCleanupResources
 
 // 原始函数名：FUN_18089e87d - 系统验证函数
 // 功能：验证系统状态和配置
