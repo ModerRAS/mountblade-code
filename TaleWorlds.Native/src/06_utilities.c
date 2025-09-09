@@ -66071,10 +66071,10 @@ void InitializeExceptionHandlerB(DataBuffer exceptionHandler,int64_t systemConte
 
 {
   *(DataBuffer *)(systemContext + 0xb0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(systemContext + 0xb8) != 0) {
+  if (*(int64_t *)(systemContext + SystemContextDataFlagsOffsetB8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(systemContext + 0xb8) = 0;
+  *(DataBuffer *)(systemContext + SystemContextDataFlagsOffsetB8) = 0;
   *(DataWord *)(systemContext + 200) = 0;
   *(DataBuffer *)(systemContext + 0xb0) = &SystemDefaultExceptionHandlerB;
   return;

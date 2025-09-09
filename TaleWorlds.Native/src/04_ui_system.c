@@ -257,7 +257,7 @@ typedef enum {
 #define fStack_ec UIBlendFactor
 #define fStack_128 UITransformFactor128                    // UI变换因子128 - 用于UI元素变换计算的因子
 #define fStack_10c UIVertexComponentX10C                    // UI顶点组件X坐标10C - 存储UI顶点X坐标分量的变量
-#define fStack_108 UIVertexComponentY
+#define fStack_108 UIVertexComponentY108                    // UI顶点组件Y坐标108 - 存储UI顶点Y坐标分量的变量
 #define fStack_120 UIAnimationFactor
 #define fStack_104 UITimeScaleFactor
 #define fStack_100 UIInterpolationFactor
