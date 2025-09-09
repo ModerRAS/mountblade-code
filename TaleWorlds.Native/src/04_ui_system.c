@@ -99919,16 +99919,16 @@ void ProcessUIContextData(void)
 void ProcessUIContextData(void)
 
 {
-  UIByte result;
-  short sVar2;
+  UIByte processingResult;
+  short shortCalculationResult;
   int uiCompareResult;
   longlong contextHandle;
-  int unmodifiedEBP;
+  int loopCounter;
   UIByte *bufferPtr;
-  int RegisterValue;
-  char *plocalChar5;
+  int registerValue;
+  char *characterBufferPtr;
   int preservedRegister15D;
-  ulonglong stackParam00000050;
+  ulonglong stackParameter50;
   
   plocalChar5 = (char *)(contextHandle + 0xad1);
   do {

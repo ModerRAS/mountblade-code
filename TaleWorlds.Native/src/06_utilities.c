@@ -5400,7 +5400,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180896830
  */
-#define InitializeDataBlockWithCleanup FUN_180896830
+#define InitializeDataBlockWithCleanup InitializeDataBlockWithCleanupFunction
 
 /**
  * @brief 处理数据缓冲区A0
