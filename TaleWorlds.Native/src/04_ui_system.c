@@ -29461,6 +29461,22 @@ void CalculateUIComponentScale(float uiContext,UIHandle dataSource,float targetB
 
 
 
+/**
+ * @brief 验证UI组件状态
+ * 
+ * 验证UI组件的状态是否有效，包括组件的上下文、数据源和缓冲区状态。
+ * 该函数会检查组件的各种状态标志，确保组件处于可用状态。
+ * 
+ * @param uiContext UI组件上下文指针，包含组件的状态信息
+ * @param dataSource UI组件数据源指针，包含组件的数据信息
+ * @param targetBuffer 目标缓冲区句柄，用于存储验证结果
+ * @param bufferSize 缓冲区大小，指定验证操作的数据范围
+ * @param resultPointer 结果指针，用于返回验证状态码
+ * @return 验证结果状态码，0表示成功，非0表示失败或警告
+ * 
+ * @note 原始函数名: ValidateUIComponentState
+ * @note 用于UI组件状态验证和完整性检查
+ */
 int ValidateUIComponentState(UIHandle *uiContext,UIHandle *dataSource,UIHandle targetBuffer,uint bufferSize,
                  int resultPointer)
 

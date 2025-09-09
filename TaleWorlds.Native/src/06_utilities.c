@@ -27621,43 +27621,43 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
-              // 初始化循环计数器和浮点数组指针
-              loopCounter = 0.0;
-              floatArrayPointer = (float *)(dataContext + DataOperationOffset94);
+              // 初始化数组索引计数器和浮点数组指针
+              arrayIndexCounter = 0.0;
+              floatValidationArrayPointer = (float *)(dataContext + DataOperationOffset94);
               // 执行浮点数组验证循环
               do {
-                if (*floatArrayPointer != 0.0) {
+                if (*floatValidationArrayPointer != 0.0) {
                   // 处理数据验证错误
                   SystemTemporaryDataWordC = StackDataWordA;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &DataProcessingValidationError;
-                  SystemInputFloatValueA = loopCounter;
-                  InputFloatValueB = *floatArrayPointer;
+                  SystemInputFloatValueA = arrayIndexCounter;
+                  InputFloatValueB = *floatValidationArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
-                loopCounter = (float)((int)loopCounter + 1);
-                floatArrayPointer = floatArrayPointer + 1;
-              } while ((int)loopCounter < 4);
+                arrayIndexCounter = (float)((int)arrayIndexCounter + 1);
+                floatValidationArrayPointer = floatValidationArrayPointer + 1;
+              } while ((int)arrayIndexCounter < 4);
               // 执行浮点验证数组检查
-              floatArrayPointer = (float *)&FloatValidationArray;
-              loopCounter = 0.0;
+              floatValidationArrayPointer = (float *)&FloatValidationArray;
+              validationIndexCounter = 0.0;
               do {
                 // 获取浮点数值并与预期值比较
-                floatValue = *(float *)(dataContext - FloatValidationDataAddress + (int64_t)floatArrayPointer);
-                if (floatValue != *floatArrayPointer) {
+                validationFloatValue = *(float *)(dataContext - FloatValidationDataAddress + (int64_t)floatValidationArrayPointer);
+                if (validationFloatValue != *floatValidationArrayPointer) {
                   // 处理系统状态验证错误
                   SystemTemporaryDataWordC = StackDataWordA;
                   SystemTemporaryDataWordB = 0;
                   SystemStackPointerBufferI = &SystemStatusValidationError;
-                  SystemInputFloatValueA = loopCounter;
-                  InputFloatValueB = floatValue;
+                  SystemInputFloatValueA = validationIndexCounter;
+                  InputFloatValueB = validationFloatValue;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
-                loopCounter = (float)((int)loopCounter + 1);
-                floatArrayPointer = floatArrayPointer + 1;
-              } while ((int)loopCounter < 6);
+                validationIndexCounter = (float)((int)validationIndexCounter + 1);
+                floatValidationArrayPointer = floatValidationArrayPointer + 1;
+              } while ((int)validationIndexCounter < 6);
               // 验证参数并检查数据完整性
               validationOutcome = ValidateParameters(dataBuffer + SystemDataBufferOffset200);
               if ((float)(validationOutcome / 0x30) != 0.0) {

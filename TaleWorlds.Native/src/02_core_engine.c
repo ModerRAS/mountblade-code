@@ -110847,7 +110847,7 @@ unsigned long long CoreEngineSystemProcessor(uint64_t ContextHandle,char *Contex
   unsigned long long MemoryPointerValue;
   uint64_t Utf8SourcePointerParameter;
   char SystemValidationStatus;
-  byte bStack_260;
+  byte SystemValidationFlag;
   byte bStack_25a;
   byte bStack_259;
   uint aSystemUintBuffer258 [2];
@@ -110936,7 +110936,7 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
     return MemoryAllocationIndex7 & 0xffffffffffffff00;
   }
   MemoryAddressMaskPointer1 = AdditionalParameter1 >> 0x14;
-  bStack_260 = ~(byte)(AdditionalParameter1 >> 0xe) & 1;
+  SystemValidationFlag = ~(byte)(AdditionalParameter1 >> 0xe) & 1;
   uStack_220 = AdditionalParameter1 >> 0xf & 0x1ff01;
   ProcessingCounter0 = (uint16_t *               (CONCAT44(ProcessingCounter0.HighPart,
                          (uint)CONCAT11((char)(AdditionalParameter1 >> 0x18),~(byte)(AdditionalParameter1 >> 0x10))) &
@@ -111066,7 +111066,7 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
   bStack_259 = 0;
   fStack_250 = 0.0;
   if (*(float *)(MemoryBlockIndex9 + 0x1b2c) == MatrixTransformMultiplier1) {
-    if ((bStack_260 == 0) && (*(char *)(MemoryBlockIndex9 + 0x1b3c) == '\0')) {
+    if ((SystemValidationFlag == 0) && (*(char *)(MemoryBlockIndex9 + 0x1b3c) == '\0')) {
       ManageSystemDataReferenceCount((uint32_t *)(MemoryBlockIndex9 + 0x1eb0),Utf8SourcePointer + 1);
       ContextHandleTablePointer3 = &uStack_1b0;
       uStack_1b0 = 0;
@@ -111133,7 +111133,7 @@ LAB_180116f58:
     if (0 < *ReferenceCountPointer) {
       if ((((*(char *)(MemoryBlockIndex9 + 0x134) == '\0') || (*(char *)(MemoryBlockIndex9 + 0x136) != '\0')) &&
           ((ValidationStatus8 == '\0' || (*(char *)(MemoryBlockIndex9 + 0x137) == '\0')))) &&
-         (((bStack_260 != 0 && (!IsMemoryBlockEqual)) && (UnicodeCodePoint7 = 0, MemoryAllocationIndex7 = UnicodeCodePoint7, 0 < *ReferenceCountPointer)))) {
+         (((SystemValidationFlag != 0 && (!IsMemoryBlockEqual)) && (UnicodeCodePoint7 = 0, MemoryAllocationIndex7 = UnicodeCodePoint7, 0 < *ReferenceCountPointer)))) {
         do {
           aSystemUintBuffer258[0] = (uint)*(ushort *)(MemoryAllocationIndex7 + *(long long *)(MemoryBlockIndex9 + 0x1538));
           ValidationStatus7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
@@ -111212,7 +111212,7 @@ LAB_18011713b:
           (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x84),1), ValidationStatus7 != '\0')) ||
          (((StringComparisonByte0 && (-1 < *(int *)(SystemConfigurationHandle + 100))) &&
           (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 100),1), ValidationStatus7 != '\0')))) &&
-        ((bStack_260 != 0 && ((char)uStack_220 == '\0')))) &&
+        ((SystemValidationFlag != 0 && ((char)uStack_220 == '\0')))) &&
        (((MemoryAddressMaskPointer1 & 1) == 0 || (*(int *)(MemoryBlockIndex9 + 0x1ef4) != *(int *)(MemoryBlockIndex9 + 0x1ef8))))) {
       StringComparisonByte2 = true;
     }
@@ -111234,7 +111234,7 @@ LAB_18011713b:
          (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x80),1), ValidationStatus7 != '\0')) ||
         (((StringComparisonByte0 && (-1 < *(int *)(SystemConfigurationHandle + 0x60))) &&
          (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x60),1), ValidationStatus7 != '\0')))) &&
-       (bStack_260 != 0)) {
+       (SystemValidationFlag != 0)) {
       StringComparisonByte0 = true;
     }
     else {
@@ -111242,7 +111242,7 @@ LAB_18011713b:
     }
     if (((IsSystemContextValidationResult) && (-1 < *(int *)(SystemConfigurationHandle + 0x8c))) &&
        ((ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x8c),1), ValidationStatus7 != '\0' &&
-        ((bStack_260 != 0 && ((char)ProcessingCounter0 != '\0')))))) {
+        ((SystemValidationFlag != 0 && ((char)ProcessingCounter0 != '\0')))))) {
       hasComparisonResult0 = 1;
     }
     else {
@@ -111252,7 +111252,7 @@ LAB_18011713b:
          (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x88),1), ValidationStatus7 != '\0')) ||
         (((IsSystemContextValidationResult && (-1 < *(int *)(SystemConfigurationHandle + 0x8c))) &&
          (ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x8c),1), ValidationStatus7 != '\0')))) &&
-       ((bStack_260 != 0 && ((char)ProcessingCounter0 != '\0')))) {
+       ((SystemValidationFlag != 0 && ((char)ProcessingCounter0 != '\0')))) {
       IsSystemContextValidationResult = true;
     }
     else {
@@ -111364,7 +111364,7 @@ LAB_180117593:
       ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 100),1);
       MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)ContextHandleTablePointer3 >> 0x20);
       MemoryAllocationCounter = (uint32_t)((unsigned long long)Utf8SourcePointerParameter >> 0x20);
-      if ((ValidationStatus7 != '\0') && (bStack_260 != 0)) {
+      if ((ValidationStatus7 != '\0') && (SystemValidationFlag != 0)) {
         UnicodeCodePoint6 = UnicodeCodePoint6 | 0x10008;
         goto LAB_180117375;
       }
@@ -111373,7 +111373,7 @@ LAB_180117593:
       ValidationStatus7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x68),1);
       MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)ContextHandleTablePointer3 >> 0x20);
       MemoryAllocationCounter = (uint32_t)((unsigned long long)Utf8SourcePointerParameter >> 0x20);
-      if ((ValidationStatus7 != '\0') && (bStack_260 != 0)) {
+      if ((ValidationStatus7 != '\0') && (SystemValidationFlag != 0)) {
         if (*(int *)(MemoryBlockIndex9 + 0x1ef4) == *(int *)(MemoryBlockIndex9 + 0x1ef8)) {
           if (SystemValidationStatus == '\0') {
             if ((((cStack_248 == '\0') || (*(char *)(MemoryBlockIndex9 + 0x137) == '\0')) ||
@@ -111403,7 +111403,7 @@ LAB_1801177f4:
         MemoryAllocationCounter = (uint32_t)((unsigned long long)Utf8SourcePointerParameter >> 0x20);
         if ((((ValidationStatus7 != '\0') &&
              ((*(char *)(MemoryBlockIndex9 + 0x134) == '\0' && (*(char *)(MemoryBlockIndex9 + 0x135) == '\0')))) &&
-            (*(char *)(MemoryBlockIndex9 + 0x136) == '\0')) && (bStack_260 != 0)) {
+            (*(char *)(MemoryBlockIndex9 + 0x136) == '\0')) && (SystemValidationFlag != 0)) {
           aSystemUintBuffer258[0] = 9;
           ValidationStatus7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
           UnicodeCodePoint6 = aSystemUintBuffer258[0];
@@ -111547,7 +111547,7 @@ LAB_180117443:
       }
       else if (*(char *)(MemoryBlockIndex9 + 0x134) != '\0') {
 LAB_1801177b9:
-        if (bStack_260 != 0) {
+        if (SystemValidationFlag != 0) {
           ProcessingCounter0 = (uint16_t *)CONCAT44(ProcessingCounter0.HighPart,10);
           ValidationStatus7 = ValidateSystemParametersAndCheckStatus(&ProcessingCounter0,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
           if (ValidationStatus7 != '\0') {
@@ -111571,7 +111571,7 @@ LAB_1801177b9:
     ContextPrimaryFloat9 = 0.0;
     if (IsSystemContextValidationResult) {
       ContextPrimaryFloat9 = 0.0;
-      if (bStack_260 != 0) {
+      if (SystemValidationFlag != 0) {
         SystemValidationFunction9 = OperationBufferSize;
         do {
           ValidationStatus7 = *SystemValidationFunction9;
@@ -111591,7 +111591,7 @@ LAB_1801177b9:
     }
     else {
 LAB_180117b4d:
-      if (bStack_260 != 0) {
+      if (SystemValidationFlag != 0) {
         SetSystemDataStatus(MemoryBlockIndex9 + 0x1ed0,*(int *)(MemoryBlockIndex9 + 0x1eb0) * 4 + 1);
         ConvertUtf16Character(*(void *)(MemoryBlockIndex9 + 0x1ed8),*(uint32_t *)(MemoryBlockIndex9 + 0x1ed0),
                       *(void *)(MemoryBlockIndex9 + 0x1eb8),0);
@@ -111678,7 +111678,7 @@ LAB_180117c0c:
         }
       }
 LAB_180117d84:
-      if (bStack_260 != 0) {
+      if (SystemValidationFlag != 0) {
         CharacterPointer = *(char **)(MemoryBlockIndex9 + 0x1ed8);
         FunctionPointer1 = CharacterPointer;
         do {
@@ -111739,7 +111739,7 @@ LAB_180117d84:
   }
   else {
 LAB_180117e4a:
-    if ((ContextPrimaryFloat9 == fStack_244) && (bStack_260 != 0)) {
+    if ((ContextPrimaryFloat9 == fStack_244) && (SystemValidationFlag != 0)) {
       pcStackX_10 = *(char **)(MemoryBlockIndex9 + 0x1ed8);
     }
   }
@@ -112057,7 +112057,7 @@ LAB_1801180e1:
         AllocateMemoryAndConfigure(MemoryAllocationIndexAdditional,&fStack_1d8,&fStack_244,MemoryAllocationIndexSecondary,CONCAT44(MemoryAllocationCounter,0x3f800000));
       }
     }
-    if (bStack_260 != 0) {
+    if (SystemValidationFlag != 0) {
       *(float *)(MemoryBlockIndex9 + 0x2de4) = MatrixTransformMultiplier19 - *(float *)(MemoryBlockIndex9 + 0x19f8);
       *(float *)(MemoryBlockIndex9 + 0x2de0) = MatrixTransformMultiplier16 - 1.0;
       *(void *)(MemoryBlockIndex9 + 0x2df0) = *(void *)(SystemValue1c8 + 0x14);
@@ -239732,7 +239732,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
   uint32_t uStackX_1c;
   long long **pPerformanceCounterPointer;
   void *pMemoryCopyBuffer;
-  byte *pbStack_260;
+  byte *pSystemValidationFlag;
   int iStack_258;
   unsigned long long BufferValidationStatus;
   void *pBufferTypeFlag;
@@ -240193,21 +240193,21 @@ LAB_18019a129:
               if (BufferStatus3 != 0) {
                 pMemoryCopyBuffer = &SystemNullTemplate;
                 BufferValidationStatus = 0;
-                pbStack_260 = (byte *)0x0;
+                pSystemValidationFlag = (byte *)0x0;
                 iStack_258 = 0;
                 CoreEngineProcessSystemEvent(&pMemoryCopyBuffer,*(uint32_t *)(BufferStatus3 + 0x20));
-                Utf8OutputPointer = pbStack_260;
+                Utf8OutputPointer = pSystemValidationFlag;
                 if (0 < *(int *)(BufferStatus3 + 0x20)) {
                   CharacterStatusBuffer8 = &CoreEngineDataTemplate;
                   if (*(void **)(BufferStatus3 + 0x18) != NULL) {
                     CharacterStatusBuffer8 = *(void **)(BufferStatus3 + 0x18);
                   }
                     // WARNING: Subroutine does not return
-                  memcpy(pbStack_260,CharacterStatusBuffer8,(long long)(*(int *)(BufferStatus3 + 0x20) + 1));
+                  memcpy(pSystemValidationFlag,CharacterStatusBuffer8,(long long)(*(int *)(BufferStatus3 + 0x20) + 1));
                 }
                 if ((*(long long *)(BufferStatus3 + 0x18) != 0) &&
-                   (iStack_258 = 0, pbStack_260 != (byte *)0x0)) {
-                  *pbStack_260 = 0;
+                   (iStack_258 = 0, pSystemValidationFlag != (byte *)0x0)) {
+                  *pSystemValidationFlag = 0;
                 }
                 ppppppStringProcessingStatus = &ppppppSystemValue1a8;
                 ppppppSystemStatusContext = (uint64_t *******)ppppPrimaryStackPointer98;
@@ -240221,9 +240221,9 @@ LAB_18019a129:
                       HighByte = true;
                     }
                     else {
-                      CurrentBytePointer7 = pbStack_260;
+                      CurrentBytePointer7 = pSystemValidationFlag;
                       do {
-                        Utf16ConversionContext = (uint)CurrentBytePointer7[(long long)ppppppCharacterStatusBuffer3[5] - (long long)pbStack_260];
+                        Utf16ConversionContext = (uint)CurrentBytePointer7[(long long)ppppppCharacterStatusBuffer3[5] - (long long)pSystemValidationFlag];
                         LockOperationResult0 = *CurrentBytePointer7 - Utf16ConversionContext;
                         if (*CurrentBytePointer7 != Utf16ConversionContext) break;
                         CurrentBytePointer7 = CurrentBytePointer7 + 1;
@@ -240251,7 +240251,7 @@ LAB_18019a2aa:
                 else if (*(int *)(ppppppSystemCharacterStatusBuffer + 6) != 0) {
                   if (iStack_258 != 0) {
                     ppppSystemCharacterStatusPointerReference = ppppppSystemCharacterStatusBuffer[5];
-                    BufferStatus4 = (long long)pbStack_260 - (long long)ppppSystemCharacterStatusPointerReference;
+                    BufferStatus4 = (long long)pSystemValidationFlag - (long long)ppppSystemCharacterStatusPointerReference;
                     do {
                       StringComparisonByte = *(byte *)ppppSystemCharacterStatusPointerReference;
                       Utf16ConversionContext = (uint)*(byte *)((long long)ppppSystemCharacterStatusPointerReference + BufferStatus4);
@@ -240269,7 +240269,7 @@ LAB_18019a2ca:
                     // WARNING: Subroutine does not return
                   CoreEngineFreeSystemMemory(Utf8OutputPointer);
                 }
-                pbStack_260 = (byte *)0x0;
+                pSystemValidationFlag = (byte *)0x0;
                 BufferValidationStatus = BufferValidationStatus & 0xffffffff00000000;
                 pMemoryCopyBuffer = &ThreadLocalStorageTemplate;
                 pBufferTypeFlag = &SystemNullTemplate;
