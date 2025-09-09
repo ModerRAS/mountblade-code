@@ -136,6 +136,7 @@
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffset170 0x170
 #define ExceptionHandlerContextOffset190 0x190
+#define ExceptionHandlerContextOffset1B0 0x1b0
 #define StackFrameContextOffset200 0x200
 #define ValueContextOffset8 0x8
 #define OperationBaseOffset8 0x8
@@ -100163,7 +100164,7 @@ void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuf
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1b0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1D0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -100175,7 +100176,7 @@ void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuf
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
