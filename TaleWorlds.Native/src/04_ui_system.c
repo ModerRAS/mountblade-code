@@ -347,6 +347,11 @@ typedef enum {
 #define uiValidationResultLocal5 UIValidationResultLocal5
 #define AudioStackData UIAudioStackData
 #define uiRenderDataBuffer UIRenderDataBuffer
+
+// UI系统整数局部变量宏定义
+#define localInt9 UILocalInt9
+#define stackUInt32_60 UIStackUInt32_60
+#define cStack0000000000000030 UICharStack30
 #define UIStringTable_TitleFont UIStringTableTitleFont
 #define UIValidationTableAddress UIValidationTableAddress
 #define UIValidationTableA UIValidationTableA
