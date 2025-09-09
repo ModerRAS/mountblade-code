@@ -10045,21 +10045,21 @@ UIEventTypeString31Check:
 ulonglong UIProcessEventCallback(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
-  char localChar1;
-  ulonglong iterationCount;
-  int uiCompareResult;
-  longlong loopCounter1;
-  longlong loopCounter2;
-  undefined *eventTypePointer;
-  ulonglong processingCounter;
+  char localEventChar;
+  ulonglong eventIterationCount;
+  int eventCompareResult;
+  longlong eventLoopCounter1;
+  longlong eventLoopCounter2;
+  undefined *eventDataTypePointer;
+  ulonglong eventProcessingCounter;
   bool EventProcessingResult;   was EventProcessingStatus
-  undefined *dataBufferPtr1;
-  char *eventStringPtr;
-  int stringLength;
-  UIDword stackUInt38;
-  undefined *dataBufferPtr2;
-  longlong eventDataPtr;
-  int eventTypeIndex;
+  undefined *eventDataBufferPtr1;
+  char *eventDataStringPtr;
+  int eventDataStringLength;
+  UIDword eventDataBufferSize;
+  undefined *eventDataBufferPtr2;
+  longlong eventDataAddress;
+  int eventTypeId;
   
   InitializeUIDataBuffer(&dataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
   InitializeUIDataBuffer(&dataBufferPtr1,dataSource);

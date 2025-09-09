@@ -590,13 +590,13 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define SocketBound 0x01                                    // 套接字已绑定标志
 #define ActiveConnectionsMaximum 100                           // 最大活跃连接数
 #define NetworkPendingRequestsInitial 0                          // 初始待处理请求数
-#define QUEUE_INITIALIZED 0x01                               // 队列已初始化
-#define CALLBACK_INVALID 0xFFFFFFFF                           // 无效回调句柄
-#define TIMEOUT_INVALID 0xFFFFFFFF                            // 无效超时句柄
+#define NetworkQueueInitialized 0x01                               // 队列已初始化
+#define NetworkCallbackInvalid 0xFFFFFFFF                           // 无效回调句柄
+#define NetworkTimeoutInvalid 0xFFFFFFFF                            // 无效超时句柄
 #define InvalidCallbackHandle CallbackInvalid              // 无效回调句柄别名
 #define InvalidTimeoutHandle TimeoutInvalid                 // 无效超时句柄别名
-#define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
-#define RELIABILITY_HIGH 0x01                                // 高可靠性
+#define NetworkContextInitialized 0x01                              // 上下文已初始化
+#define NetworkReliabilityHigh 0x01                                // 高可靠性
 #define EncryptionKeyDemoValue 0x12345678                       // 演示加密密钥
 #define DemoEncryptionKey EncryptionKeyDemoValue             // 演示加密密钥别名
 
