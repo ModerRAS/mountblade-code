@@ -593,14 +593,14 @@ typedef enum {
 #define DAT_180c0c720 UIProcessorFeatureCache720           // UI处理器功能缓存720 - 存储UI处理器功能的缓存数据
 #define _DAT_180c0c6e8 UIComponentInstanceGlobalPtrE8     // 全局UI组件实例指针E8 - 指向全局UI组件实例的指针
 // UI系统函数宏定义 - 初始化UI组件上下文
-#define InitializeUIComponentContext FUN_18076b6f0
+#define InitializeUIComponentContext FUN_18076b6f0        // 初始化UI组件上下文 - 设置UI组件的初始状态和上下文信息
 
 // UI系统查找表变量宏定义
-#define UIPrimaryLookupTable UISystemPrimaryLookupTable
-#define UILookupTableIndex UISystemLookupTableIndex
-#define UISecondaryLookupTable UISystemSecondaryLookupTable
-#define UITertiaryLookupTable UISystemTertiaryLookupTable
-#define UIQuaternaryLookupTable UISystemQuaternaryLookupTable
+#define UIPrimaryLookupTable UISystemPrimaryLookupTable        // UI主查找表 - 存储主要的UI组件查找信息
+#define UILookupTableIndex UISystemLookupTableIndex            // UI查找表索引 - 用于索引UI查找表
+#define UISecondaryLookupTable UISystemSecondaryLookupTable    // UI次查找表 - 存储次要的UI组件查找信息
+#define UITertiaryLookupTable UISystemTertiaryLookupTable      // UI第三查找表 - 存储第三级的UI组件查找信息
+#define UIQuaternaryLookupTable UISystemQuaternaryLookupTable  // UI第四查找表 - 存储第四级的UI组件查找信息
 
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
