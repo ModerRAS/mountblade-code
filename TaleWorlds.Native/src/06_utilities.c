@@ -99561,24 +99561,34 @@ void ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffe
  * @brief 释放系统上下文互斥锁
  * 
  * 该函数负责释放系统上下文相关的互斥锁，处理异常上下文指针，
- * 并在互斥锁解锁失败时抛出C标准错误
+ * 并在互斥锁解锁失败时抛出C标准错误。这是一个关键的资源清理函数，
+ * 确保在异常处理过程中系统能够正确释放互斥锁资源。
  * 
- * @param operationBase 操作基础指针
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础指针 - 用于系统操作的基础数据结构
+ * @param dataBuffer 数据缓冲区指针 - 包含系统上下文信息的数据缓冲区
  * @return void
  * 
  * @note 原始函数名：Unwind_18090cfe0
+ * @note 这是一个异常处理过程中的关键清理函数
+ * @note 函数会检查互斥锁解锁操作的返回值，失败时抛出异常
  */
-void Unwind_ReleasesystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseSystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
+  // 从数据缓冲区获取异常上下文指针
   ExceptionContextPtr = *(DataBuffer *)(dataBuffer + systemContextPointerOffset90);
-  inputParameter = _Mtx_unlock(SystemMutexObjectAddress + 0x60);
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  
+  // 尝试解锁系统互斥锁
+  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress + 0x60);
+  
+  // 检查解锁操作是否成功
+  if (mutexUnlockResult != 0) {
+    // 解锁失败，抛出C标准错误
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
+  
   return;
 }
 
