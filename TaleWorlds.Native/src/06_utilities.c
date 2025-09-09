@@ -3869,7 +3869,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1803f33b0
  * @warning 非法内存访问可能会导致系统崩溃，需要确保访问参数的有效性
  */
-#define ProcessMemoryAccessAndValidate FUN_1803f33b0
+#define ProcessMemoryAccessWithValidation FUN_1803f33b0
 
 /**
  * @brief 系统状态验证函数A0
@@ -3878,7 +3878,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180085530
  */
-#define ValidateSystemStatusAndCheckHealth FUN_180085530
+#define ValidateSystemStatusAndHealthCheck FUN_180085530
 
 /**
  * @brief 系统状态更新函数A0
