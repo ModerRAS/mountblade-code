@@ -108,6 +108,20 @@
 // 系统表地址偏移量
 #define SystemTableAddressIncrement            0x40     // 系统表地址增量
 
+// 系统上下文相关偏移量
+#define SystemContextLockOffset               0x48     // 系统上下文锁偏移量
+#define SystemContextStatusOffset             0x98     // 系统上下文状态偏移量
+
+// 系统内存页相关偏移量
+#define SystemMemoryPageExceptionOffset       0x70     // 系统内存页异常偏移量
+
+// 系统数据指针相关偏移量
+#define SystemDataPointerResourceOffset       0x20     // 系统数据指针资源偏移量
+#define SystemResourceTableIncrement           0x100    // 系统资源表增量
+
+// 系统比较数据偏移量
+#define SystemComparisonDataOffset            0x10     // 系统比较数据偏移量
+
 // 系统地址和偏移量常量
 #define SystemMemoryPageAlignment            0xffc00000  // 系统内存页对齐
 #define SystemMemoryAllocationAlignment       0xfffffff8  // 系统内存分配对齐
@@ -8168,7 +8182,7 @@ void InitializeSystemFloatingPointCalculator(void)
     }
     RangeOffset = RangeOffset + 1;
     OuterLoopCounter = OuterLoopCounter + 1;
-    CurrentTableAddress = CurrentTableAddress + 0x40;
+    CurrentTableAddress = CurrentTableAddress + SystemTableAddressIncrement;
   } while ((long long)CurrentTableAddress < SYSTEM_FLOAT_TABLE_END_ADDRESS);
   CurrentTableAddress = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
@@ -20661,7 +20675,7 @@ void ExecuteSystemCallback(long long *CallbackParameter)
 
 {
   if ((long long *)*CallbackParameter != (long long *)0x0) {
-    (**(code **)(*(long long *)*CallbackParameter + 0x38))();
+    (**(code **)(*(long long *)*CallbackParameter + SystemCallbackFunctionOffset))();
   }
   return;
 }
@@ -20763,7 +20777,7 @@ void ResetSystemProcessingBuffer(uint8_t *SystemProcessingBufferPointer)
   
   *SystemProcessingBufferPointer = 0;
   SystemBufferOffset = (long long)SystemProcessingBufferPointer;
-  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
+  *(uint32_t *)(SystemBufferOffset + SystemBufferStatusOffset) = 0;
   return;
 }
 
@@ -20977,7 +20991,7 @@ void ResetSystemProcessingBuffer(uint8_t *SystemProcessingBufferPointer)
   
   *SystemProcessingBufferPointer = 0;
   SystemBufferOffset = (long long)SystemProcessingBufferPointer;
-  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
+  *(uint32_t *)(SystemBufferOffset + SystemBufferStatusOffset) = 0;
   return;
 }
 
@@ -21359,7 +21373,7 @@ void ResetSystemDataBuffer(uint8_t *SystemDataBufferPointer)
   
   *SystemDataBufferPointer = 0;
   SystemBufferOffset = (long long)SystemDataBufferPointer;
-  *(uint32_t *)(SystemBufferOffset + 0x10) = 0;
+  *(uint32_t *)(SystemBufferOffset + SystemBufferStatusOffset) = 0;
   return;
 }
 
@@ -21497,11 +21511,11 @@ void LockSystemMutexAndBroadcast(long long systemContextReference)
 {
   int lockResult;
   
-  lockResult = _Mtx_lock(systemContextReference + 0x48);
+  lockResult = _Mtx_lock(systemContextReference + SystemContextLockOffset);
   if (lockResult != 0) {
     ThrowSystemError(lockResult);
   }
-  *(uint8_t *)(systemContextReference + 0x98) = 1;
+  *(uint8_t *)(systemContextReference + SystemContextStatusOffset) = 1;
   lockResult = _Cnd_broadcast(systemContextReference);
   if (lockResult != 0) {
     ThrowSystemError(lockResult);
