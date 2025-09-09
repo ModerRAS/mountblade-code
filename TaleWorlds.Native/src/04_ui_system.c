@@ -134895,9 +134895,8 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
   else {
     maxProcessingCount = (**(code **)(**(longlong **)(uiContext + 0x10f80) + 0x10))();
     if ((int)maxProcessingCount == 0) {
-                     WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(UIHandle *)(uiContext + 0x10f80),
-                    &UNK_180958000,0x2f2,1);
+      ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), *(UIHandle *)(uiContext + 0x10f80),
+                              &UIComponentDataF50, 0x2f2, 1);
     }
   }
   return maxProcessingCount;
@@ -199626,11 +199625,11 @@ UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, floa
     if (targetBuffer == *(float *)(uiContext + 0x3b8)) {
       return 0;
     }
-    TransformCoefficient3 = *(float *)(uiContext + 0x234);
+    calculatedTransformValue = *(float *)(uiContext + 0x234);
     if (targetBuffer <= *(float *)(uiContext + 0x234)) {
-      TransformCoefficient3 = targetBuffer;
+      calculatedTransformValue = targetBuffer;
     }
-    *(float *)(uiContext + 0x3b8) = TransformCoefficient3;
+    *(float *)(uiContext + 0x3b8) = calculatedTransformValue;
     break;
   case 0xd:
     *(float *)(uiContext + 0x234) = targetBuffer;
@@ -199640,12 +199639,12 @@ UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, floa
     if (targetBuffer == *(float *)(uiContext + 0x3bc)) {
       return 0;
     }
-    TransformCoefficient3 = *(float *)(uiContext + 0x230);
+    calculatedTransformValue = *(float *)(uiContext + 0x230);
     if (targetBuffer <= *(float *)(uiContext + 0x230)) {
-      TransformCoefficient3 = targetBuffer;
+      calculatedTransformValue = targetBuffer;
     }
     *(float *)(uiContext + 0x3bc) = targetBuffer;
-    *(float *)(uiContext + 0x3b8) = TransformCoefficient3;
+    *(float *)(uiContext + 0x3b8) = calculatedTransformValue;
     break;
   case 0xf:
     if (targetBuffer == *(float *)(uiContext + 0x3c4)) {

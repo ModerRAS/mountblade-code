@@ -80059,11 +80059,11 @@ void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
 void ReleaseMutexLockA20(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int mutexUnlockResult;
+  int systemMutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x68));
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x68));
+  if (systemMutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
   }
   return;
 }
@@ -80073,11 +80073,11 @@ void ReleaseMutexLockA20(DataBuffer exceptionContext, int64_t stackFrame)
 void ReleaseMutexLockA30(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int mutexUnlockResult;
+  int systemMutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x148));
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x148));
+  if (systemMutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
   }
   return;
 }
@@ -80087,11 +80087,11 @@ void ReleaseMutexLockA30(DataBuffer exceptionContext, int64_t stackFrame)
 void ReleaseMutexLockA10(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int mutexUnlockResult;
+  int systemMutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + ResourceManagementOffset1d8));
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  systemMutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + ResourceManagementOffset1d8));
+  if (systemMutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
   }
   return;
 }

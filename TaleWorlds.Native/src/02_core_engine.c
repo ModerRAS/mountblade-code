@@ -76306,7 +76306,7 @@ SystemDataProcessingLabel2:
             SystemContextValue = ((long long)ProcessingStatusPointer - (long long)SystemCharacterStatusPointer) / 0x30;
             if (SystemContextValue == 0) {
               SystemContextValue = 1;
-LAB_1800934cd:
+SystemContextSwitchLabel:
               StringProcessingStatus = (void *                       BufferAllocate(MemoryPoolManager,SystemContextValue * 0x30,
                                      *(uint8_t *)(TimeManager + 0x70));
               ProcessingStatusPointer = *(uint64_t **)(CharacterTablePointer + 0x60);
@@ -76315,7 +76315,7 @@ LAB_1800934cd:
             else {
               SystemContextValue = SystemContextValue * 2;
               StringProcessingStatus = CharacterStatusBufferCurrent;
-              if (SystemContextValue != 0) goto LAB_1800934cd;
+              if (SystemContextValue != 0) goto SystemContextSwitchLabel;
             }
             SystemStatusContext = StringProcessingStatus;
             if (SystemCharacterStatusPointer != ProcessingStatusPointer) {
@@ -76717,13 +76717,13 @@ void CoreEngineCopyDataStructure(long long *ContextHandle,uint64_t *ContextHandl
     EncodingConversionResult = EncodingConversionResult * 2;
     if (EncodingConversionResult == 0) {
       StringProcessingStatus = NULL;
-      goto LAB_180093cb6;
+      goto SystemResourceManagementLabel;
     }
   }
   StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,EncodingConversionResult * 0x30,(char)ContextHandle[3]);
   SystemCharacterStatusBuffer = (void *)ContextHandle[1];
   TemporaryBuffer = (void *)*ContextHandle;
-LAB_180093cb6:
+SystemResourceManagementLabel:
   StringProcessingStatus = StringProcessingStatus;
   if (TemporaryBuffer != SystemCharacterStatusBuffer) {
     SystemContextValue = (long long)StringProcessingStatus - (long long)TemporaryBuffer;
@@ -77870,7 +77870,7 @@ uint64_t CalculateEngineParameterValue(void
         }
         CharacterStatusBuffer2 = (void *)*CharacterStatusBuffer3;
       }
-LAB_180095527:
+SystemErrorHandlingLabel:
       CharacterStatusBuffer = CharacterStatusBuffer3;
       if (LowByte) {
         CharacterStatusBuffer = TemporaryBuffer;
@@ -77880,7 +77880,7 @@ LAB_180095527:
     } while (CharacterStatusBuffer2 != NULL);
     SystemStatusContext = NULL;
     if (CharacterStatusBuffer != SystemCharacterStatusBuffer) {
-      if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009556a;
+      if (*(int *)(CharacterStatusBuffer + 6) == 0) goto SystemErrorHandlingLabel;
       if (SystemStackInteger40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
         LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
