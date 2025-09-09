@@ -101152,8 +101152,8 @@ void ProcessUIBufferDataOperation(short *uiContext,longlong dataSource,longlong 
 
 
 
- void FUN_1807249d0(longlong uiContext,char *dataSource,char *targetBuffer,int bufferSize,int resultPointer)
-void FUN_1807249d0(longlong uiContext,char *dataSource,char *targetBuffer,int bufferSize,int resultPointer)
+ void ProcessUICharacterDataConversion(longlong uiContext,char *dataSource,char *targetBuffer,int bufferSize,int resultPointer)
+void ProcessUICharacterDataConversion(longlong uiContext,char *dataSource,char *targetBuffer,int bufferSize,int resultPointer)
 
 {
   char localChar1;
@@ -101205,8 +101205,8 @@ void FUN_1807249d0(longlong uiContext,char *dataSource,char *targetBuffer,int bu
 
 
 
- void FUN_1807249fd(void)
-void FUN_1807249fd(void)
+ void CleanupUIBufferData(void)
+void CleanupUIBufferData(void)
 
 {
   char localChar1;
