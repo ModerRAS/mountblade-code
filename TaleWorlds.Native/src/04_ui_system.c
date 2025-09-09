@@ -200000,23 +200000,19 @@ UIDword FUN_180786030(int *uiContext,longlong *dataSource,int targetBuffer,char 
 
 
 
-// UI系统事件处理函数语义化定义
-#define FUN_180786056 ConfigureUIElementVisibilityFlags
-#define FUN_180786104 SetupUIContextEventHandle
-#define FUN_1807861b0 InitializeUIContextDataBuffer
-
-// UI系统事件处理变量语义化定义
-#define localInt5 UIElementIndex
-#define stack0x00000048 UIEventStackParameter
-#define uiBufferData UIBufferDataContext
-#define BasePointer UIBaseContextPointer
-#define contextHandleData UIContextHandleData
-#define colorBufferPointer UIColorBufferPointer
-#define uiCompareResult UIComparisonResult
-#define ptrResult UIResultPointer
-#define EventHandle UIEventHandle
-#define stackParam00000048 UIStackParameter48
-#define preservedRegister15B UIPreservedRegister15B
+/**
+ * @brief 配置UI元素可见性标志
+ * 
+ * 配置UI元素的可见性标志，处理UI元素的显示和隐藏状态
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区索引
+ * @return UIHandle 返回操作结果句柄
+ * 
+ * @note 原始函数名：FUN_180786056
+ */
+UIHandle ConfigureUIElementVisibilityFlags(int *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   uint *ptrResult;
