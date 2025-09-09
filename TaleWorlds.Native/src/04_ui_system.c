@@ -2102,6 +2102,9 @@ typedef enum {
 #define FUN_180721984 ResetUITransformState
 #define FUN_1807219ee ProcessUIBufferWithTransform
 
+// UI系统数据处理函数宏定义
+#define FUN_180787940 ProcessUIContextDataWithBuffer
+
 // UI系统堆栈变量美化
 #define afStack_6260 UIFloatStack6260
 
