@@ -96199,18 +96199,18 @@ void ProcessUIRenderBufferData(longlong uiContext, longlong dataSource, float *t
             transformCoeff16 = -1.0;
           }
           transformCoeff17 = ABS(TransformCoefficient20) * 25.0 + 0.5;
-          dVar6 = (double)transformCoeff17;
+          ScalingFactorValue = (double)transformCoeff17;
           AllocatedMemoryBlock8 = (longlong)transformCoeff17;
-          if ((AllocatedMemoryBlock8 != -0x8000000000000000) && ((double)AllocatedMemoryBlock8 != dVar6)) {
-            aloopCounter._8_4_ = SUB84(dVar6,0);
-            aloopCounter._0_8_ = dVar6;
-            aloopCounter._12_4_ = (int)((ulonglong)dVar6 >> 0x20);
+          if ((AllocatedMemoryBlock8 != -0x8000000000000000) && ((double)AllocatedMemoryBlock8 != ScalingFactorValue)) {
+            aloopCounter._8_4_ = SUB84(ScalingFactorValue,0);
+            aloopCounter._0_8_ = ScalingFactorValue;
+            aloopCounter._12_4_ = (int)((ulonglong)ScalingFactorValue >> 0x20);
             result9 = movmskpd((int)BaseValuePointer7,aloopCounter);
-            dVar6 = (double)(longlong)(AllocatedMemoryBlock8 - (ulonglong)(result9 & 1));
+            ScalingFactorValue = (double)(longlong)(AllocatedMemoryBlock8 - (ulonglong)(result9 & 1));
           }
-          BaseValuePointer7 = (float *)(longlong)(int)dVar6;
+          BaseValuePointer7 = (float *)(longlong)(int)ScalingFactorValue;
           transformCoeff17 = *(float *)(&UIFloatDataTable + (longlong)BaseValuePointer7 * 4);
-          TransformCoefficient20 = ABS(TransformCoefficient20) - (float)(int)dVar6 * 0.04;
+          TransformCoefficient20 = ABS(TransformCoefficient20) - (float)(int)ScalingFactorValue * 0.04;
           transformCoeff16 = ((1.0 - transformCoeff17 * transformCoeff17) * TransformCoefficient20 * (1.0 - transformCoeff17 * TransformCoefficient20) + transformCoeff17) * transformCoeff16;
         }
         else {
@@ -96304,18 +96304,18 @@ void ProcessUIRenderBufferData(longlong uiContext, longlong dataSource, float *t
             transformCoeff16 = -1.0;
           }
           transformCoeff17 = ABS(TransformCoefficient20) * 25.0 + 0.5;
-          dVar6 = (double)transformCoeff17;
+          ScalingFactorValue = (double)transformCoeff17;
           componentIndex2 = (longlong)transformCoeff17;
-          if ((componentIndex2 != -0x8000000000000000) && ((double)componentIndex2 != dVar6)) {
-            aProcessingStatus._8_4_ = SUB84(dVar6,0);
-            aProcessingStatus._0_8_ = dVar6;
-            aProcessingStatus._12_4_ = (int)((ulonglong)dVar6 >> 0x20);
+          if ((componentIndex2 != -0x8000000000000000) && ((double)componentIndex2 != ScalingFactorValue)) {
+            aProcessingStatus._8_4_ = SUB84(ScalingFactorValue,0);
+            aProcessingStatus._0_8_ = ScalingFactorValue;
+            aProcessingStatus._12_4_ = (int)((ulonglong)ScalingFactorValue >> 0x20);
             TotalResult = movmskpd((int)BaseValuePointer7,aProcessingStatus);
-            dVar6 = (double)(longlong)(componentIndex2 - (ulonglong)(TotalResult & 1));
+            ScalingFactorValue = (double)(longlong)(componentIndex2 - (ulonglong)(TotalResult & 1));
           }
-          BaseValuePointer7 = (float *)(longlong)(int)dVar6;
+          BaseValuePointer7 = (float *)(longlong)(int)ScalingFactorValue;
           transformCoeff17 = *(float *)(&UIFloatDataTable + (longlong)BaseValuePointer7 * 4);
-          TransformCoefficient20 = ABS(TransformCoefficient20) - (float)(int)dVar6 * 0.04;
+          TransformCoefficient20 = ABS(TransformCoefficient20) - (float)(int)ScalingFactorValue * 0.04;
           transformCoeff16 = ((1.0 - transformCoeff17 * transformCoeff17) * TransformCoefficient20 * (1.0 - transformCoeff17 * TransformCoefficient20) + transformCoeff17) * transformCoeff16;
         }
         else {
@@ -102141,8 +102141,8 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
   baseValue1 = (float)*(int *)(uiBufferData + 0x1274) * 0.0078125;
   LocalFloatValue9 = (float)(*(int *)(uiBufferData + 0x1264) + *(int *)(uiBufferData + 0x1260)) * 1.5258789e-05;
   dataSource[0xae] = LocalFloatValue9;
-  dVar6 = (double)exp((double)((baseValue1 - 20.0) * -0.25));
-  TemporaryFloatValue = (float)(1.0 / (dVar6 + 1.0));
+  ScalingFactorValue = (double)exp((double)((baseValue1 - 20.0) * -0.25));
+  TemporaryFloatValue = (float)(1.0 / (ScalingFactorValue + 1.0));
   dataSource[0xaf] = TemporaryFloatValue;
   if (*(int *)(uiBufferData + 0x1240) == 0) {
     ResultFloatValue = 1.0 - (float)*(int *)(uiBufferData + 0x11b0) * 0.00390625;
@@ -102163,14 +102163,14 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
     if (0 < TempInt4) {
       baseValue0 = 0.0;
       do {
-        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
-        dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
+        ScalingFactorValue = (double)CalculateUIMetricValue(targetBuffer,processingResult);
+        ScalingFactorValue = (double)log10((double)((float)ScalingFactorValue + (float)processingResult));
         if (0 < uiCompareResult) {
-          ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);
+          ResultFloatValue = ResultFloatValue + ABS((float)(ScalingFactorValue * 3.32192809488736) - baseValue0);
         }
         targetBuffer = targetBuffer + (longlong)processingResult * 4;
         uiCompareResult = uiCompareResult + 1;
-        baseValue0 = (float)(dVar6 * 3.32192809488736);
+        baseValue0 = (float)(ScalingFactorValue * 3.32192809488736);
       } while (uiCompareResult < TempInt4);
     }
     if (ResultFloatValue <= (float)(TempInt4 + -1) * 0.6) {
@@ -102185,13 +102185,13 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
   processingResult = *(int *)(uiBufferData + 0x11e0);
   fStack_5b8 = 0.0;
   if (processingResult < 1) {
-    dVar6 = (double)pow(0x4000000000000000,(double)(fStack_5a4 * -0.16));
+    ScalingFactorValue = (double)pow(0x4000000000000000,(double)(fStack_5a4 * -0.16));
     uiCompareResult = 0;
     TransformCoefficient1 = dataSource;
     if (0 < processingResult) {
       do {
         uiCompareResult = uiCompareResult + 1;
-        *TransformCoefficient1 = (float)dVar6 * *TransformCoefficient1 + 1.2483306;
+        *TransformCoefficient1 = (float)ScalingFactorValue * *TransformCoefficient1 + 1.2483306;
         processingResult = *(int *)(uiBufferData + 0x11e0);
         TransformCoefficient1 = TransformCoefficient1 + 1;
       } while (uiCompareResult < processingResult);
@@ -102594,8 +102594,8 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
   *(UIDword *)(RegisterPointer + -0xcc) = unmodifiedXMM14_Dd;
   LocalFloatValue9 = (float)(processingResult + TempInt4) * 1.5258789e-05;
   *(float *)(dataSource + 0x2b8) = LocalFloatValue9;
-  dVar6 = (double)exp((double)((baseValue1 - 20.0) * -0.25));
-  TemporaryFloatValue = (float)(1.0 / (dVar6 + 1.0));
+  ScalingFactorValue = (double)exp((double)((baseValue1 - 20.0) * -0.25));
+  TemporaryFloatValue = (float)(1.0 / (ScalingFactorValue + 1.0));
   preservedRegister13[0xaf] = TemporaryFloatValue;
   if (*(int *)(SourceHandle + 0x1240) == 0) {
     ResultFloatValue = 1.0 - (float)*(int *)(SourceHandle + 0x11b0) * 0.00390625;
@@ -102616,14 +102616,14 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
     if (0 < TempInt4) {
       baseValue0 = 0.0;
       do {
-        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
-        dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
+        ScalingFactorValue = (double)CalculateUIMetricValue(targetBuffer,processingResult);
+        ScalingFactorValue = (double)log10((double)((float)ScalingFactorValue + (float)processingResult));
         if (0 < uiCompareResult) {
-          ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);
+          ResultFloatValue = ResultFloatValue + ABS((float)(ScalingFactorValue * 3.32192809488736) - baseValue0);
         }
         targetBuffer = targetBuffer + (longlong)processingResult * 4;
         uiCompareResult = uiCompareResult + 1;
-        baseValue0 = (float)(dVar6 * 3.32192809488736);
+        baseValue0 = (float)(ScalingFactorValue * 3.32192809488736);
       } while (uiCompareResult < TempInt4);
     }
     if (ResultFloatValue <= (float)(TempInt4 + -1) * 0.6) {
@@ -102637,13 +102637,13 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
   TempInt4 = 1;
   processingResult = *(int *)(SourceHandle + 0x11e0);
   if (processingResult < 1) {
-    dVar6 = (double)pow(0x4000000000000000,(double)(fStack0000000000000044 * -0.16));
+    ScalingFactorValue = (double)pow(0x4000000000000000,(double)(fStack0000000000000044 * -0.16));
     uiCompareResult = 0;
     TransformCoefficient1 = preservedRegister13;
     if (0 < processingResult) {
       do {
         uiCompareResult = uiCompareResult + 1;
-        *TransformCoefficient1 = (float)dVar6 * *TransformCoefficient1 + 1.2483306;
+        *TransformCoefficient1 = (float)ScalingFactorValue * *TransformCoefficient1 + 1.2483306;
         processingResult = *(int *)(SourceHandle + 0x11e0);
         TransformCoefficient1 = TransformCoefficient1 + 1;
       } while (uiCompareResult < processingResult);
@@ -106485,23 +106485,41 @@ void ProcessUIIntegerDataValidation(int *uiContext,int *dataSource,short *target
 
 
 
- void FUN_18072aa86(int uiContext,UIHandle dataSource,uint targetBuffer,int bufferSize)
-void FUN_18072aa86(int uiContext,UIHandle dataSource,uint targetBuffer,int bufferSize)
+ /**
+ * @brief UI缓冲区数据处理函数
+ * 
+ * 该函数负责处理UI缓冲区的数据操作，主要功能包括：
+ * - 计算和处理UI缓冲区的数据累加
+ * - 执行位运算和位移操作
+ * - 处理事件数据的平方和计算
+ * - 管理UI缓冲区的数据流处理
+ * 
+ * @param uiContext UI上下文参数，用于控制处理流程
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区，存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理范围
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18072aa86
+ * @note 这是一个UI缓冲区数据处理函数，用于处理UI数据的累加和位运算
+ */
+void ProcessUIBufferDataOperation(int uiContext, UIHandle dataSource, uint targetBuffer, int bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint bufferSize;
-  uint EventTypeCode;
-  int unmodifiedEBX;
-  int unmodifiedESI;
-  ulonglong ProcessingStatus;
-  short *psVar5;
-  int RegisterPointerD;
+  short *dataPointer1;
+  short dataValue2;
+  uint calculatedBufferSize;
+  uint iterationCount;
+  int preservedRegisterEBX;
+  int preservedRegisterESI;
+  ulonglong processingStatus;
+  short *dataPointer5;
+  int registerValueD;
   int loopCounter;
-  int localInt7;
+  int localVariable7;
   int *preservedRegister12;
-  short *EventHandle;
+  short *eventDataPointer;
   int *preservedRegister15;
   
   EventTypeCode = (bufferSize >> 1) + 1;
@@ -106963,7 +106981,7 @@ void FUN_18072af30(longlong uiContext,longlong dataSource,int targetBuffer)
   double CalculationResultValue;
   UIByte aProcessingStatus [16];
   longlong EventDataIndex;
-  double *pdVar6;
+  double *pScalingFactorValue;
   longlong localLong7;
   longlong contextOffset;
   ulonglong eventProcessingStatus;
@@ -107005,7 +107023,7 @@ void FUN_18072af30(longlong uiContext,longlong dataSource,int targetBuffer)
         TotalResult = 0x3e112e0b;
       }
       contextOffset = (longlong)(int)result0;
-      pdVar6 = (double *)((longlong)adStack_1b0 + AllocatedMemoryBlock1 + 0x10);
+      pScalingFactorValue = (double *)((longlong)adStack_1b0 + AllocatedMemoryBlock1 + 0x10);
       allocatedMemory3 = 0;
       dVar17 = (-1.0 / (double)CONCAT44(TotalResult,CounterResult))                *(double *)((longlong)adStack_1b0 + AllocatedMemoryBlock1);
       *(float *)(uiContext + allocatedMemory4 * 4) = (float)dVar17;
@@ -107013,35 +107031,35 @@ void FUN_18072af30(longlong uiContext,longlong dataSource,int targetBuffer)
         localLong7 = (contextOffset - 4U >> 2) + 1;
         allocatedMemory3 = localLong7 * 4;
         do {
-          dVar1 = *(double *)((longlong)pdVar6 + EventDataIndex + -0x10);
-          dVar2 = pdVar6[-2];
-          pdVar6[-2] = dVar1 * dVar17 + dVar2;
-          CalculationResultValue = *(double *)((longlong)pdVar6 + EventDataIndex);
-          *(double *)((longlong)pdVar6 + EventDataIndex + -0x10) = dVar2 * dVar17 + dVar1;
-          dVar1 = *pdVar6;
-          *pdVar6 = CalculationResultValue * dVar17 + dVar1;
-          dVar2 = *(double *)((longlong)pdVar6 + EventDataIndex + 0x10);
-          *(double *)((longlong)pdVar6 + EventDataIndex) = dVar1 * dVar17 + CalculationResultValue;
-          dVar1 = pdVar6[2];
-          pdVar6[2] = dVar2 * dVar17 + dVar1;
-          CalculationResultValue = *(double *)((longlong)pdVar6 + EventDataIndex + 0x20);
-          *(double *)((longlong)pdVar6 + EventDataIndex + 0x10) = dVar1 * dVar17 + dVar2;
-          dVar1 = pdVar6[4];
-          pdVar6[4] = CalculationResultValue * dVar17 + dVar1;
-          *(double *)((longlong)pdVar6 + EventDataIndex + 0x20) = dVar1 * dVar17 + CalculationResultValue;
-          pdVar6 = pdVar6 + 8;
+          dVar1 = *(double *)((longlong)pScalingFactorValue + EventDataIndex + -0x10);
+          dVar2 = pScalingFactorValue[-2];
+          pScalingFactorValue[-2] = dVar1 * dVar17 + dVar2;
+          CalculationResultValue = *(double *)((longlong)pScalingFactorValue + EventDataIndex);
+          *(double *)((longlong)pScalingFactorValue + EventDataIndex + -0x10) = dVar2 * dVar17 + dVar1;
+          dVar1 = *pScalingFactorValue;
+          *pScalingFactorValue = CalculationResultValue * dVar17 + dVar1;
+          dVar2 = *(double *)((longlong)pScalingFactorValue + EventDataIndex + 0x10);
+          *(double *)((longlong)pScalingFactorValue + EventDataIndex) = dVar1 * dVar17 + CalculationResultValue;
+          dVar1 = pScalingFactorValue[2];
+          pScalingFactorValue[2] = dVar2 * dVar17 + dVar1;
+          CalculationResultValue = *(double *)((longlong)pScalingFactorValue + EventDataIndex + 0x20);
+          *(double *)((longlong)pScalingFactorValue + EventDataIndex + 0x10) = dVar1 * dVar17 + dVar2;
+          dVar1 = pScalingFactorValue[4];
+          pScalingFactorValue[4] = CalculationResultValue * dVar17 + dVar1;
+          *(double *)((longlong)pScalingFactorValue + EventDataIndex + 0x20) = dVar1 * dVar17 + CalculationResultValue;
+          pScalingFactorValue = pScalingFactorValue + 8;
           localLong7 = localLong7 + -1;
         } while (localLong7 != 0);
       }
       if (allocatedMemory3 < contextOffset) {
-        pdVar6 = adStack_1b0 + allocatedMemory3 * 2;
+        pScalingFactorValue = adStack_1b0 + allocatedMemory3 * 2;
         contextOffset = contextOffset - allocatedMemory3;
         do {
-          dVar1 = *pdVar6;
-          dVar2 = *(double *)(AllocatedMemoryBlock1 + (longlong)pdVar6);
-          *(double *)(AllocatedMemoryBlock1 + (longlong)pdVar6) = dVar1 * dVar17 + dVar2;
-          *pdVar6 = dVar2 * dVar17 + dVar1;
-          pdVar6 = pdVar6 + 2;
+          dVar1 = *pScalingFactorValue;
+          dVar2 = *(double *)(AllocatedMemoryBlock1 + (longlong)pScalingFactorValue);
+          *(double *)(AllocatedMemoryBlock1 + (longlong)pScalingFactorValue) = dVar1 * dVar17 + dVar2;
+          *pScalingFactorValue = dVar2 * dVar17 + dVar1;
+          pScalingFactorValue = pScalingFactorValue + 2;
           contextOffset = contextOffset + -1;
         } while (contextOffset != 0);
       }
@@ -110915,10 +110933,10 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
                   *(UIDword *)(TargetHandle + 0x13ec),eventProcessingCounter);
     FUN_18072e450(&stack0x000000b0,&stack0x00000030);
     processingResult = *(int *)(TargetHandle + 0x121c);
-    dVar6 = (double)FUN_18072b3a0(&stack0x000000b0 +
+    ScalingFactorValue = (double)FUN_18072b3a0(&stack0x000000b0 +
                                   ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)eventHandle)                                   4,eventHandle - *(int *)(TargetHandle + 0x121c));
     TemporalDoubleValue = (double)FUN_18072b3a0(&stack0x000000b0 + (longlong)processingResult * 4,eventHandle - processingResult);
-    TransformCoefficient4 = (float)(dVar6 + TemporalDoubleValue);
+    TransformCoefficient4 = (float)(ScalingFactorValue + TemporalDoubleValue);
     if (ResultFloatValue <= TransformCoefficient4) {
       if (TransformCoefficient2 < TransformCoefficient4) break;
     }
@@ -115376,17 +115394,17 @@ void FUN_180734f59(void)
   uint eventHandle;
   longlong preservedRegister15;
   double dVar59;
-  double dVar60;
-  double dVar61;
-  double dVar62;
-  double dVar63;
-  double dVar64;
-  double dVar65;
-  double dVar66;
+  double ScalingFactorValue0;
+  double ScalingFactorValue1;
+  double ScalingFactorValue2;
+  double ScalingFactorValue3;
+  double ScalingFactorValue4;
+  double ScalingFactorValue5;
+  double ScalingFactorValue6;
   float preservedXMM6;
-  double dVar67;
-  double dVar68;
-  double dVar69;
+  double ScalingFactorValue7;
+  double ScalingFactorValue8;
+  double ScalingFactorValue9;
   double dVar70;
   double dVar71;
   uint unmodifiedXMM11_Da;
@@ -115415,8 +115433,8 @@ void FUN_180734f59(void)
       do {
         vectorComponentX = *(float *)(preservedRegister15 + loopCounter4 * 4);
         contextHandleData5 = preservedRegister15 + loopCounter4 * 4;
-        dVar67 = (double)vectorComponentX;
-        dVar60 = (double)*(float *)(contextHandleData5 + -4 + EventDataIndex3 * 4 + loopCounter4 * -4);
+        ScalingFactorValue7 = (double)vectorComponentX;
+        ScalingFactorValue0 = (double)*(float *)(contextHandleData5 + -4 + EventDataIndex3 * 4 + loopCounter4 * -4);
         loopCounter1 = register10;
         if (3 < (longlong)loopCounter4) {
           baseValue5 = *(float *)(contextHandleData5 + contextHandleData6 + loopCounter4 * -4);
@@ -115425,21 +115443,21 @@ void FUN_180734f59(void)
           do {
             baseValue6 = pTransformCoefficient34[1];
             baseValue7 = pTransformCoefficient39[-2];
-            dVar64 = *(double *)(&stack0x00000050 + loopCounter1 * 8);
+            ScalingFactorValue4 = *(double *)(&stack0x00000050 + loopCounter1 * 8);
             *(double *)(BasePointer + 0x1b0 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x1b0 + loopCounter1 * 8) - (double)(vectorComponentX * baseValue6);
             FloatValue1 = *pTransformCoefficient34;
             *(double *)(BasePointer + 0x270 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x270 + loopCounter1 * 8) - (double)(baseValue7 * baseValue5);
             FloatValue2 = pTransformCoefficient39[-1];
-            dVar61 = *(double *)(&stack0x00000058 + loopCounter1 * 8);
+            ScalingFactorValue1 = *(double *)(&stack0x00000058 + loopCounter1 * 8);
             *(double *)(BasePointer + 0x1b8 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x1b8 + loopCounter1 * 8) - (double)(vectorComponentX * FloatValue1);
             AccumulatedFloat = pTransformCoefficient34[-1];
             *(double *)(BasePointer + 0x278 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x278 + loopCounter1 * 8) - (double)(FloatValue2 * baseValue5);
             transformCoeff11 = *pTransformCoefficient39;
-            dVar66 = *(double *)(&stack0x00000060 + loopCounter1 * 8);
+            ScalingFactorValue6 = *(double *)(&stack0x00000060 + loopCounter1 * 8);
             *(double *)(BasePointer + 0x1c0 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x1c0 + loopCounter1 * 8) - (double)(vectorComponentX * AccumulatedFloat);
             transformCoeff12 = pTransformCoefficient34[-2];
@@ -115454,11 +115472,11 @@ void FUN_180734f59(void)
             pTransformCoefficient39 = pTransformCoefficient39 + 4;
             loopCounter1 = loopCounter1 + 4;
             pTransformCoefficient34 = pTransformCoefficient34 + -4;
-            dVar67 = dVar67 + (double)baseValue6 * dVar64 + (double)FloatValue1 * dVar61 +
-                     (double)AccumulatedFloat * dVar66 +
+            ScalingFactorValue7 = ScalingFactorValue7 + (double)baseValue6 * ScalingFactorValue4 + (double)FloatValue1 * ScalingFactorValue1 +
+                     (double)AccumulatedFloat * ScalingFactorValue6 +
                      (double)transformCoeff12 * *(double *)(&stack0x00000068 + contextHandleData5);
-            dVar60 = dVar60 + (double)baseValue7 * dVar64 + (double)FloatValue2 * dVar61 +
-                     (double)transformCoeff11 * dVar66 +
+            ScalingFactorValue0 = ScalingFactorValue0 + (double)baseValue7 * ScalingFactorValue4 + (double)FloatValue2 * ScalingFactorValue1 +
+                     (double)transformCoeff11 * ScalingFactorValue6 +
                      (double)transformCoeff13 * *(double *)(&stack0x00000068 + contextHandleData5);
           } while ((longlong)loopCounter1 < (longlong)(loopCounter4 - 3));
         }
@@ -115470,15 +115488,15 @@ void FUN_180734f59(void)
             baseValue6 = *pTransformCoefficient34;
             baseValue7 = *pTransformCoefficient39;
             pTransformCoefficient34 = pTransformCoefficient34 + -1;
-            dVar64 = *(double *)(&stack0x00000050 + loopCounter1 * 8);
+            ScalingFactorValue4 = *(double *)(&stack0x00000050 + loopCounter1 * 8);
             pTransformCoefficient39 = pTransformCoefficient39 + 1;
             *(double *)(BasePointer + 0x1b0 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x1b0 + loopCounter1 * 8) - (double)(vectorComponentX * baseValue6);
             *(double *)(BasePointer + 0x270 + loopCounter1 * 8) =
                  *(double *)(BasePointer + 0x270 + loopCounter1 * 8) - (double)(baseValue5 * baseValue7);
             loopCounter1 = loopCounter1 + 1;
-            dVar60 = dVar60 + (double)baseValue7 * dVar64;
-            dVar67 = dVar67 + (double)baseValue6 * dVar64;
+            ScalingFactorValue0 = ScalingFactorValue0 + (double)baseValue7 * ScalingFactorValue4;
+            ScalingFactorValue7 = ScalingFactorValue7 + (double)baseValue6 * ScalingFactorValue4;
           } while ((longlong)loopCounter1 < (longlong)loopCounter4);
         }
         if (-1 < (longlong)loopCounter4) {
@@ -115489,29 +115507,29 @@ void FUN_180734f59(void)
             do {
               vectorComponentX = pTransformCoefficient34[-2];
               *(double *)(BasePointer + 0x10 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0x10 + loopCounter1 * 8) - (double)pTransformCoefficient39[2] * dVar67;
+                   *(double *)(BasePointer + 0x10 + loopCounter1 * 8) - (double)pTransformCoefficient39[2] * ScalingFactorValue7;
               baseValue5 = pTransformCoefficient39[1];
               *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) - (double)vectorComponentX * dVar60;
+                   *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) - (double)vectorComponentX * ScalingFactorValue0;
               vectorComponentX = pTransformCoefficient34[-1];
               *(double *)(BasePointer + 0x18 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0x18 + loopCounter1 * 8) - (double)baseValue5 * dVar67;
+                   *(double *)(BasePointer + 0x18 + loopCounter1 * 8) - (double)baseValue5 * ScalingFactorValue7;
               baseValue5 = *pTransformCoefficient39;
               *(double *)(BasePointer + 0xe8 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0xe8 + loopCounter1 * 8) - (double)vectorComponentX * dVar60;
+                   *(double *)(BasePointer + 0xe8 + loopCounter1 * 8) - (double)vectorComponentX * ScalingFactorValue0;
               vectorComponentX = *pTransformCoefficient34;
               *(double *)(BasePointer + 0x20 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0x20 + loopCounter1 * 8) - (double)baseValue5 * dVar67;
+                   *(double *)(BasePointer + 0x20 + loopCounter1 * 8) - (double)baseValue5 * ScalingFactorValue7;
               baseValue5 = pTransformCoefficient39[-1];
               pTransformCoefficient39 = pTransformCoefficient39 + -4;
               *(double *)(BasePointer + 0xf0 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0xf0 + loopCounter1 * 8) - (double)vectorComponentX * dVar60;
+                   *(double *)(BasePointer + 0xf0 + loopCounter1 * 8) - (double)vectorComponentX * ScalingFactorValue0;
               vectorComponentX = pTransformCoefficient34[1];
               pTransformCoefficient34 = pTransformCoefficient34 + 4;
               *(double *)(BasePointer + 0x28 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0x28 + loopCounter1 * 8) - (double)baseValue5 * dVar67;
+                   *(double *)(BasePointer + 0x28 + loopCounter1 * 8) - (double)baseValue5 * ScalingFactorValue7;
               *(double *)(BasePointer + 0xf8 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0xf8 + loopCounter1 * 8) - (double)vectorComponentX * dVar60;
+                   *(double *)(BasePointer + 0xf8 + loopCounter1 * 8) - (double)vectorComponentX * ScalingFactorValue0;
               loopCounter1 = loopCounter1 + 4;
             } while ((longlong)loopCounter1 <= (longlong)(loopCounter4 - 3));
           }
@@ -115524,9 +115542,9 @@ void FUN_180734f59(void)
               baseValue5 = *pTransformCoefficient34;
               pTransformCoefficient34 = pTransformCoefficient34 + 1;
               *(double *)(BasePointer + 0x10 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0x10 + loopCounter1 * 8) - (double)vectorComponentX * dVar67;
+                   *(double *)(BasePointer + 0x10 + loopCounter1 * 8) - (double)vectorComponentX * ScalingFactorValue7;
               *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) =
-                   *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) - (double)baseValue5 * dVar60;
+                   *(double *)(BasePointer + 0xe0 + loopCounter1 * 8) - (double)baseValue5 * ScalingFactorValue0;
               loopCounter1 = loopCounter1 + 1;
             } while ((longlong)loopCounter1 <= (longlong)loopCounter4);
           }
@@ -115537,44 +115555,44 @@ void FUN_180734f59(void)
       eventHandle = *(uint *)(BasePointer + 0x448);
       RegisterValue = *(uint *)(BasePointer + 0x440);
     }
-    dVar60 = *(double *)(BasePointer + 0x1b0 + loopCounter4 * 8);
+    ScalingFactorValue0 = *(double *)(BasePointer + 0x1b0 + loopCounter4 * 8);
     loopCounter7 = iStack0000000000000038 - 1;
-    dVar67 = *(double *)(BasePointer + 0x270 + loopCounter4 * 8);
+    ScalingFactorValue7 = *(double *)(BasePointer + 0x270 + loopCounter4 * 8);
     loopCounter8 = register10;
     if ((0 < (int)loopCounter7) && (3 < iStack0000000000000038 - 1U)) {
-      dVar63 = 0.0;
-      dVar65 = 0.0;
-      dVar64 = 0.0;
-      dVar61 = 0.0;
-      dVar66 = 0.0;
-      dVar62 = 0.0;
+      ScalingFactorValue3 = 0.0;
+      ScalingFactorValue5 = 0.0;
+      ScalingFactorValue4 = 0.0;
+      ScalingFactorValue1 = 0.0;
+      ScalingFactorValue6 = 0.0;
+      ScalingFactorValue2 = 0.0;
       loopCounter0 = loopCounter7 & 0x80000003;
       if ((int)loopCounter0 < 0) {
         loopCounter0 = (loopCounter0 - 1 | 0xfffffffc) + 1;
       }
       localInt56 = iStack0000000000000038 + -3;
-      dVar68 = 0.0;
+      ScalingFactorValue8 = 0.0;
       dVar70 = 0.0;
       do {
         contextHandleData6 = loopCounter8 * 8;
         TempInt40 = localInt56 + 1;
         contextHandleData5 = (longlong)localInt56;
-        dVar63 = dVar63 + *(double *)(BasePointer + 0x270 + (longlong)TempInt40 * 8)                           *(double *)(&stack0x00000050 + contextHandleData6);
-        dVar65 = dVar65 + *(double *)(BasePointer + 0x270 + contextHandleData5 * 8)                           *(double *)(&stack0x00000058 + contextHandleData6);
+        ScalingFactorValue3 = ScalingFactorValue3 + *(double *)(BasePointer + 0x270 + (longlong)TempInt40 * 8)                           *(double *)(&stack0x00000050 + contextHandleData6);
+        ScalingFactorValue5 = ScalingFactorValue5 + *(double *)(BasePointer + 0x270 + contextHandleData5 * 8)                           *(double *)(&stack0x00000058 + contextHandleData6);
         TempInt41 = localInt56 + -1;
         TempInt42 = localInt56 + -2;
         localInt56 = localInt56 + -4;
         EventDataIndex3 = loopCounter8 * 8;
         loopCounter8 = loopCounter8 + 4;
-        dVar68 = dVar68 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt40 * 8)                           *(double *)(&stack0x00000050 + contextHandleData6);
+        ScalingFactorValue8 = ScalingFactorValue8 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt40 * 8)                           *(double *)(&stack0x00000050 + contextHandleData6);
         dVar70 = dVar70 + *(double *)(BasePointer + 0x1b0 + contextHandleData5 * 8)                           *(double *)(&stack0x00000058 + contextHandleData6);
-        dVar64 = dVar64 + *(double *)(BasePointer + 0x270 + (longlong)TempInt41 * 8)                           *(double *)(&stack0x00000060 + EventDataIndex3);
-        dVar61 = dVar61 + *(double *)(BasePointer + 0x270 + (longlong)TempInt42 * 8)                           *(double *)(&stack0x00000068 + EventDataIndex3);
-        dVar66 = dVar66 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt41 * 8)                           *(double *)(&stack0x00000060 + EventDataIndex3);
-        dVar62 = dVar62 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt42 * 8)                           *(double *)(&stack0x00000068 + EventDataIndex3);
+        ScalingFactorValue4 = ScalingFactorValue4 + *(double *)(BasePointer + 0x270 + (longlong)TempInt41 * 8)                           *(double *)(&stack0x00000060 + EventDataIndex3);
+        ScalingFactorValue1 = ScalingFactorValue1 + *(double *)(BasePointer + 0x270 + (longlong)TempInt42 * 8)                           *(double *)(&stack0x00000068 + EventDataIndex3);
+        ScalingFactorValue6 = ScalingFactorValue6 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt41 * 8)                           *(double *)(&stack0x00000060 + EventDataIndex3);
+        ScalingFactorValue2 = ScalingFactorValue2 + *(double *)(BasePointer + 0x1b0 + (longlong)TempInt42 * 8)                           *(double *)(&stack0x00000068 + EventDataIndex3);
       } while ((longlong)loopCounter8 < (longlong)(int)(loopCounter7 - loopCounter0));
-      dVar67 = dVar67 + dVar68 + dVar66 + dVar70 + dVar62;
-      dVar60 = dVar60 + dVar63 + dVar64 + dVar65 + dVar61;
+      ScalingFactorValue7 = ScalingFactorValue7 + ScalingFactorValue8 + ScalingFactorValue6 + dVar70 + ScalingFactorValue2;
+      ScalingFactorValue0 = ScalingFactorValue0 + ScalingFactorValue3 + ScalingFactorValue4 + ScalingFactorValue5 + ScalingFactorValue1;
     }
     if ((longlong)loopCounter8 < (longlong)loopCounter4) {
       if (3 < (longlong)(loopCounter4 - loopCounter8)) {
@@ -115594,11 +115612,11 @@ void FUN_180734f59(void)
           pdVar12 = (double *)(BasePointer + 600 + contextHandleData6);
           pdVar13 = (double *)(BasePointer + 0x198 + contextHandleData6);
           contextHandleData6 = contextHandleData6 + -0x20;
-          dVar60 = dVar60 + *(double *)(&stack0x00000050 + EventDataIndex3) * *pTemporalDoubleValue7 +
+          ScalingFactorValue0 = ScalingFactorValue0 + *(double *)(&stack0x00000050 + EventDataIndex3) * *pTemporalDoubleValue7 +
                    *(double *)(&stack0x00000058 + contextHandleData5) * *pdVar8 +
                    *(double *)(&stack0x00000060 + componentIndex) * *pdVar10 +
                    *(double *)(&stack0x00000068 + stringCompareIndex) * *pdVar12;
-          dVar67 = dVar67 + *(double *)(&stack0x00000050 + EventDataIndex3) * *pdVar52 +
+          ScalingFactorValue7 = ScalingFactorValue7 + *(double *)(&stack0x00000050 + EventDataIndex3) * *pdVar52 +
                    *(double *)(&stack0x00000058 + contextHandleData5) * *pdVar9 +
                    *(double *)(&stack0x00000060 + componentIndex) * *pdVar11 +
                    *(double *)(&stack0x00000068 + stringCompareIndex) * *pdVar13;
@@ -115610,25 +115628,25 @@ void FUN_180734f59(void)
           contextHandleData6 = contextHandleData6 + -8;
           EventDataIndex3 = loopCounter8 * 8;
           loopCounter8 = loopCounter8 + 1;
-          dVar67 = dVar67 + *(double *)(&stack0x00000050 + EventDataIndex3)                             *(double *)(BasePointer + 0x1b0 + contextHandleData6);
-          dVar60 = dVar60 + *(double *)(&stack0x00000050 + EventDataIndex3)                             *(double *)(BasePointer + 0x270 + contextHandleData6);
+          ScalingFactorValue7 = ScalingFactorValue7 + *(double *)(&stack0x00000050 + EventDataIndex3)                             *(double *)(BasePointer + 0x1b0 + contextHandleData6);
+          ScalingFactorValue0 = ScalingFactorValue0 + *(double *)(&stack0x00000050 + EventDataIndex3)                             *(double *)(BasePointer + 0x270 + contextHandleData6);
         } while ((longlong)loopCounter8 < (longlong)loopCounter4);
       }
     }
-    *(double *)(BasePointer + 0x18 + loopCounter4 * 8) = dVar60;
-    dVar60 = *(double *)(BasePointer + 0x10);
-    *(double *)(BasePointer + 0xe8 + loopCounter4 * 8) = dVar67;
-    dVar64 = *(double *)(BasePointer + 0xe0);
+    *(double *)(BasePointer + 0x18 + loopCounter4 * 8) = ScalingFactorValue0;
+    ScalingFactorValue0 = *(double *)(BasePointer + 0x10);
+    *(double *)(BasePointer + 0xe8 + loopCounter4 * 8) = ScalingFactorValue7;
+    ScalingFactorValue4 = *(double *)(BasePointer + 0xe0);
     loopCounter8 = register10;
     if ((0 < (int)loopCounter7) && (3 < iStack0000000000000038 - 1U)) {
-      dVar68 = 0.0;
+      ScalingFactorValue8 = 0.0;
       dVar70 = 0.0;
-      dVar61 = 0.0;
-      dVar66 = 0.0;
-      dVar62 = 0.0;
-      dVar63 = 0.0;
-      dVar60 = 0.0;
-      dVar65 = 0.0;
+      ScalingFactorValue1 = 0.0;
+      ScalingFactorValue6 = 0.0;
+      ScalingFactorValue2 = 0.0;
+      ScalingFactorValue3 = 0.0;
+      ScalingFactorValue0 = 0.0;
+      ScalingFactorValue5 = 0.0;
       loopCounter0 = loopCounter7 & 0x80000003;
       if ((int)loopCounter0 < 0) {
         loopCounter0 = (loopCounter0 - 1 | 0xfffffffc) + 1;
@@ -115636,7 +115654,7 @@ void FUN_180734f59(void)
       localInt56 = iStack0000000000000038 + -3;
       dVar29 = 0.0;
       CalculationResultValue0 = 0.0;
-      dVar69 = 0.0;
+      ScalingFactorValue9 = 0.0;
       dVar71 = 0.0;
       do {
         CalculationResultValue1 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
@@ -115648,123 +115666,123 @@ void FUN_180734f59(void)
         pTemporalDoubleValue7 = (double *)(BasePointer + 0x18 + loopCounter8 * 8);
         CalculationResultValue3 = *(double *)(&stack0x00000060 + loopCounter8 * 8);
         CalculationResultValue4 = *(double *)(&stack0x00000068 + loopCounter8 * 8);
-        dVar69 = dVar69 + *pTemporalDoubleValue7 * CalculationResultValue1;
+        ScalingFactorValue9 = ScalingFactorValue9 + *pTemporalDoubleValue7 * CalculationResultValue1;
         dVar71 = dVar71 + pTemporalDoubleValue7[1] * CalculationResultValue2;
         pTemporalDoubleValue7 = (double *)(BasePointer + 0xf8 + loopCounter8 * 8);
-        dVar68 = dVar68 + *(double *)(BasePointer + 0xe0 + (longlong)(localInt56 + 2) * 8) * CalculationResultValue1;
+        ScalingFactorValue8 = ScalingFactorValue8 + *(double *)(BasePointer + 0xe0 + (longlong)(localInt56 + 2) * 8) * CalculationResultValue1;
         dVar70 = dVar70 + *(double *)(BasePointer + 0xe0 + (longlong)(localInt56 + 1) * 8) * CalculationResultValue2;
         TempInt40 = localInt56 + -1;
         localInt56 = localInt56 + -4;
-        dVar62 = dVar62 + *pTemporalDoubleValue7 * CalculationResultValue3;
-        dVar63 = dVar63 + pTemporalDoubleValue7[1] * CalculationResultValue4;
+        ScalingFactorValue2 = ScalingFactorValue2 + *pTemporalDoubleValue7 * CalculationResultValue3;
+        ScalingFactorValue3 = ScalingFactorValue3 + pTemporalDoubleValue7[1] * CalculationResultValue4;
         pTemporalDoubleValue7 = (double *)(BasePointer + 0x28 + loopCounter8 * 8);
         loopCounter8 = loopCounter8 + 4;
-        dVar61 = dVar61 + *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8) * CalculationResultValue3;
-        dVar66 = dVar66 + *(double *)(BasePointer + 0xe0 + (longlong)TempInt40 * 8) * CalculationResultValue4;
-        dVar60 = dVar60 + *pTemporalDoubleValue7 * CalculationResultValue3;
-        dVar65 = dVar65 + pTemporalDoubleValue7[1] * CalculationResultValue4;
+        ScalingFactorValue1 = ScalingFactorValue1 + *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8) * CalculationResultValue3;
+        ScalingFactorValue6 = ScalingFactorValue6 + *(double *)(BasePointer + 0xe0 + (longlong)TempInt40 * 8) * CalculationResultValue4;
+        ScalingFactorValue0 = ScalingFactorValue0 + *pTemporalDoubleValue7 * CalculationResultValue3;
+        ScalingFactorValue5 = ScalingFactorValue5 + pTemporalDoubleValue7[1] * CalculationResultValue4;
       } while ((longlong)loopCounter8 < (longlong)(int)(loopCounter7 - loopCounter0));
-      dVar60 = dVar69 + dVar60 + dVar71 + dVar65 + *(double *)(BasePointer + 0x10);
-      dVar64 = dVar29 + dVar62 + CalculationResultValue0 + dVar63 + dVar64;
-      dVar67 = dVar68 + dVar61 + dVar70 + dVar66 + dVar67;
+      ScalingFactorValue0 = ScalingFactorValue9 + ScalingFactorValue0 + dVar71 + ScalingFactorValue5 + *(double *)(BasePointer + 0x10);
+      ScalingFactorValue4 = dVar29 + ScalingFactorValue2 + CalculationResultValue0 + ScalingFactorValue3 + ScalingFactorValue4;
+      ScalingFactorValue7 = ScalingFactorValue8 + ScalingFactorValue1 + dVar70 + ScalingFactorValue6 + ScalingFactorValue7;
     }
     if ((longlong)loopCounter8 < (longlong)loopCounter4) {
       if (3 < (longlong)(loopCounter4 - loopCounter8)) {
         pTemporalDoubleValue7 = (double *)(BasePointer + 0xd0 + (loopCounter4 - loopCounter8) * 8);
         do {
-          dVar61 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
-          dVar66 = *(double *)(&stack0x00000058 + loopCounter8 * 8);
+          ScalingFactorValue1 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
+          ScalingFactorValue6 = *(double *)(&stack0x00000058 + loopCounter8 * 8);
           pdVar52 = pTemporalDoubleValue7 + 2;
           stringCompareIndex = loopCounter8 * 8;
           contextHandleData6 = loopCounter8 * 8;
           pdVar8 = pTemporalDoubleValue7 + 1;
           EventDataIndex3 = loopCounter8 * 8;
           EventDataIndex = loopCounter8 * 8;
-          dVar62 = *(double *)(&stack0x00000060 + loopCounter8 * 8);
-          dVar63 = *pTemporalDoubleValue7;
+          ScalingFactorValue2 = *(double *)(&stack0x00000060 + loopCounter8 * 8);
+          ScalingFactorValue3 = *pTemporalDoubleValue7;
           contextHandleData = loopCounter8 * 8;
-          dVar65 = *(double *)(&stack0x00000068 + loopCounter8 * 8);
+          ScalingFactorValue5 = *(double *)(&stack0x00000068 + loopCounter8 * 8);
           contextHandleData5 = loopCounter8 * 8;
           pdVar9 = pTemporalDoubleValue7 + -1;
           pTemporalDoubleValue7 = pTemporalDoubleValue7 + -4;
           componentIndex = loopCounter8 * 8;
           localLong7 = loopCounter8 * 8;
           loopCounter8 = loopCounter8 + 4;
-          dVar67 = dVar67 + dVar61 * *pdVar52 + dVar66 * *pdVar8 + dVar62 * dVar63 +
-                   dVar65 * *pdVar9;
-          dVar64 = dVar64 + dVar61 * *(double *)(BasePointer + 0xe8 + stringCompareIndex) +
-                   dVar66 * *(double *)(BasePointer + 0xf0 + EventDataIndex) +
-                   dVar62 * *(double *)(BasePointer + 0xf8 + contextHandleData) +
-                   dVar65 * *(double *)(BasePointer + 0x100 + localLong7);
-          dVar60 = dVar60 + dVar61 * *(double *)(BasePointer + 0x18 + contextHandleData6) +
-                   dVar66 * *(double *)(BasePointer + 0x20 + EventDataIndex3) +
-                   dVar62 * *(double *)(BasePointer + 0x28 + contextHandleData5) +
-                   dVar65 * *(double *)(BasePointer + 0x30 + componentIndex);
+          ScalingFactorValue7 = ScalingFactorValue7 + ScalingFactorValue1 * *pdVar52 + ScalingFactorValue6 * *pdVar8 + ScalingFactorValue2 * ScalingFactorValue3 +
+                   ScalingFactorValue5 * *pdVar9;
+          ScalingFactorValue4 = ScalingFactorValue4 + ScalingFactorValue1 * *(double *)(BasePointer + 0xe8 + stringCompareIndex) +
+                   ScalingFactorValue6 * *(double *)(BasePointer + 0xf0 + EventDataIndex) +
+                   ScalingFactorValue2 * *(double *)(BasePointer + 0xf8 + contextHandleData) +
+                   ScalingFactorValue5 * *(double *)(BasePointer + 0x100 + localLong7);
+          ScalingFactorValue0 = ScalingFactorValue0 + ScalingFactorValue1 * *(double *)(BasePointer + 0x18 + contextHandleData6) +
+                   ScalingFactorValue6 * *(double *)(BasePointer + 0x20 + EventDataIndex3) +
+                   ScalingFactorValue2 * *(double *)(BasePointer + 0x28 + contextHandleData5) +
+                   ScalingFactorValue5 * *(double *)(BasePointer + 0x30 + componentIndex);
         } while ((longlong)loopCounter8 < (longlong)(loopCounter4 - 3));
       }
       if ((longlong)loopCounter8 < (longlong)loopCounter4) {
         pTemporalDoubleValue7 = (double *)(BasePointer + 0xe0 + (loopCounter4 - loopCounter8) * 8);
         do {
-          dVar61 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
-          dVar66 = *pTemporalDoubleValue7;
+          ScalingFactorValue1 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
+          ScalingFactorValue6 = *pTemporalDoubleValue7;
           pTemporalDoubleValue7 = pTemporalDoubleValue7 + -1;
           EventDataIndex3 = loopCounter8 * 8;
           contextHandleData6 = loopCounter8 * 8;
           loopCounter8 = loopCounter8 + 1;
-          dVar67 = dVar67 + dVar61 * dVar66;
-          dVar64 = dVar64 + dVar61 * *(double *)(BasePointer + 0xe8 + EventDataIndex3);
-          dVar60 = dVar60 + dVar61 * *(double *)(BasePointer + 0x18 + contextHandleData6);
+          ScalingFactorValue7 = ScalingFactorValue7 + ScalingFactorValue1 * ScalingFactorValue6;
+          ScalingFactorValue4 = ScalingFactorValue4 + ScalingFactorValue1 * *(double *)(BasePointer + 0xe8 + EventDataIndex3);
+          ScalingFactorValue0 = ScalingFactorValue0 + ScalingFactorValue1 * *(double *)(BasePointer + 0x18 + contextHandleData6);
         } while ((longlong)loopCounter8 < (longlong)loopCounter4);
       }
     }
-    dVar64 = (-2.0 / (dVar60 + dVar64)) * dVar67;
-    dVar60 = (unmodifiedXMM12_Qa - dVar64 * dVar64) * unmodifiedXMM13_Qa;
-    if (dVar60 <= dVar59) {
-      dVar64 = SQRT(unmodifiedXMM12_Qa - dVar59 / unmodifiedXMM13_Qa);
-      if (0.0 < dVar67) {
-        dVar64 = (double)CONCAT44((uint)((ulonglong)dVar64 >> 0x20) ^ unmodifiedXMM11_Db,
-                                  SUB84(dVar64,0) ^ unmodifiedXMM11_Da);
+    ScalingFactorValue4 = (-2.0 / (ScalingFactorValue0 + ScalingFactorValue4)) * ScalingFactorValue7;
+    ScalingFactorValue0 = (unmodifiedXMM12_Qa - ScalingFactorValue4 * ScalingFactorValue4) * unmodifiedXMM13_Qa;
+    if (ScalingFactorValue0 <= dVar59) {
+      ScalingFactorValue4 = SQRT(unmodifiedXMM12_Qa - dVar59 / unmodifiedXMM13_Qa);
+      if (0.0 < ScalingFactorValue7) {
+        ScalingFactorValue4 = (double)CONCAT44((uint)((ulonglong)ScalingFactorValue4 >> 0x20) ^ unmodifiedXMM11_Db,
+                                  SUB84(ScalingFactorValue4,0) ^ unmodifiedXMM11_Da);
       }
       iStackX_20 = 1;
-      dVar60 = dVar59;
+      ScalingFactorValue0 = dVar59;
     }
     contextHandleData6 = (longlong)(iStack0000000000000038 >> 1);
     loopCounter8 = register10;
     if (3 < contextHandleData6) {
       pTemporalDoubleValue7 = (double *)(&stack0x00000040 + loopCounter4);
       do {
-        dVar67 = pTemporalDoubleValue7[1];
-        dVar61 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
-        *(double *)(&stack0x00000050 + loopCounter8 * 8) = dVar64 * dVar67 + dVar61;
-        dVar66 = *pTemporalDoubleValue7;
-        pTemporalDoubleValue7[1] = dVar64 * dVar61 + dVar67;
-        dVar67 = *(double *)(&stack0x00000058 + loopCounter8 * 8);
-        *(double *)(&stack0x00000058 + loopCounter8 * 8) = dVar64 * dVar66 + dVar67;
-        dVar61 = pTemporalDoubleValue7[-1];
-        *pTemporalDoubleValue7 = dVar64 * dVar67 + dVar66;
-        dVar67 = *(double *)(&stack0x00000060 + loopCounter8 * 8);
-        *(double *)(&stack0x00000060 + loopCounter8 * 8) = dVar64 * dVar61 + dVar67;
-        dVar66 = pTemporalDoubleValue7[-2];
-        pTemporalDoubleValue7[-1] = dVar64 * dVar67 + dVar61;
-        dVar67 = *(double *)(&stack0x00000068 + loopCounter8 * 8);
-        *(double *)(&stack0x00000068 + loopCounter8 * 8) = dVar64 * dVar66 + dVar67;
+        ScalingFactorValue7 = pTemporalDoubleValue7[1];
+        ScalingFactorValue1 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
+        *(double *)(&stack0x00000050 + loopCounter8 * 8) = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue1;
+        ScalingFactorValue6 = *pTemporalDoubleValue7;
+        pTemporalDoubleValue7[1] = ScalingFactorValue4 * ScalingFactorValue1 + ScalingFactorValue7;
+        ScalingFactorValue7 = *(double *)(&stack0x00000058 + loopCounter8 * 8);
+        *(double *)(&stack0x00000058 + loopCounter8 * 8) = ScalingFactorValue4 * ScalingFactorValue6 + ScalingFactorValue7;
+        ScalingFactorValue1 = pTemporalDoubleValue7[-1];
+        *pTemporalDoubleValue7 = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue6;
+        ScalingFactorValue7 = *(double *)(&stack0x00000060 + loopCounter8 * 8);
+        *(double *)(&stack0x00000060 + loopCounter8 * 8) = ScalingFactorValue4 * ScalingFactorValue1 + ScalingFactorValue7;
+        ScalingFactorValue6 = pTemporalDoubleValue7[-2];
+        pTemporalDoubleValue7[-1] = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue1;
+        ScalingFactorValue7 = *(double *)(&stack0x00000068 + loopCounter8 * 8);
+        *(double *)(&stack0x00000068 + loopCounter8 * 8) = ScalingFactorValue4 * ScalingFactorValue6 + ScalingFactorValue7;
         loopCounter8 = loopCounter8 + 4;
-        pTemporalDoubleValue7[-2] = dVar64 * dVar67 + dVar66;
+        pTemporalDoubleValue7[-2] = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue6;
         pTemporalDoubleValue7 = pTemporalDoubleValue7 + -4;
       } while ((longlong)loopCounter8 < contextHandleData6 + -3);
     }
     if ((longlong)loopCounter8 < contextHandleData6) {
       pTemporalDoubleValue7 = (double *)(&stack0x00000048 + (loopCounter4 - loopCounter8) * 8);
       do {
-        dVar67 = *pTemporalDoubleValue7;
-        dVar61 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
-        *(double *)(&stack0x00000050 + loopCounter8 * 8) = dVar64 * dVar67 + dVar61;
+        ScalingFactorValue7 = *pTemporalDoubleValue7;
+        ScalingFactorValue1 = *(double *)(&stack0x00000050 + loopCounter8 * 8);
+        *(double *)(&stack0x00000050 + loopCounter8 * 8) = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue1;
         loopCounter8 = loopCounter8 + 1;
-        *pTemporalDoubleValue7 = dVar64 * dVar61 + dVar67;
+        *pTemporalDoubleValue7 = ScalingFactorValue4 * ScalingFactorValue1 + ScalingFactorValue7;
         pTemporalDoubleValue7 = pTemporalDoubleValue7 + -1;
       } while ((longlong)loopCounter8 < contextHandleData6);
     }
-    *(double *)(&stack0x00000050 + loopCounter4 * 8) = dVar64;
+    *(double *)(&stack0x00000050 + loopCounter4 * 8) = ScalingFactorValue4;
     loopCounter0 = (uint)register10;
     if (iStackX_20 != 0) break;
     loopCounter8 = register10 & 0xffffffff;
@@ -115779,21 +115797,21 @@ void FUN_180734f59(void)
         }
         do {
           pTemporalDoubleValue7 = (double *)(BasePointer + 0x10 + loopCounter1 * 8);
-          dVar62 = *pTemporalDoubleValue7;
-          dVar63 = pTemporalDoubleValue7[1];
+          ScalingFactorValue2 = *pTemporalDoubleValue7;
+          ScalingFactorValue3 = pTemporalDoubleValue7[1];
           localInt56 = loopCounter7 + 1;
           loopCounter5 = (int)loopCounter8 + 2;
           loopCounter8 = (ulonglong)loopCounter5;
           contextHandleData6 = (longlong)(int)loopCounter7;
           loopCounter7 = loopCounter7 - 2;
-          dVar67 = *(double *)(BasePointer + 0xe0 + (longlong)localInt56 * 8);
-          dVar61 = *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8);
-          *(double *)(BasePointer + 0xe0 + (longlong)localInt56 * 8) = dVar64 * dVar62 + dVar67;
-          dVar66 = dVar64 * dVar61 + dVar63;
-          *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8) = dVar64 * dVar63 + dVar61;
-          aiterationCount7._8_4_ = SUB84(dVar66,0);
-          aiterationCount7._0_8_ = dVar64 * dVar67 + dVar62;
-          aiterationCount7._12_4_ = (int)((ulonglong)dVar66 >> 0x20);
+          ScalingFactorValue7 = *(double *)(BasePointer + 0xe0 + (longlong)localInt56 * 8);
+          ScalingFactorValue1 = *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8);
+          *(double *)(BasePointer + 0xe0 + (longlong)localInt56 * 8) = ScalingFactorValue4 * ScalingFactorValue2 + ScalingFactorValue7;
+          ScalingFactorValue6 = ScalingFactorValue4 * ScalingFactorValue1 + ScalingFactorValue3;
+          *(double *)(BasePointer + 0xe0 + contextHandleData6 * 8) = ScalingFactorValue4 * ScalingFactorValue3 + ScalingFactorValue1;
+          aiterationCount7._8_4_ = SUB84(ScalingFactorValue6,0);
+          aiterationCount7._0_8_ = ScalingFactorValue4 * ScalingFactorValue7 + ScalingFactorValue2;
+          aiterationCount7._12_4_ = (int)((ulonglong)ScalingFactorValue6 >> 0x20);
           *(UIByte (*) [16])(BasePointer + 0x10 + loopCounter1 * 8) = aiterationCount7;
           loopCounter1 = loopCounter1 + 2;
         } while ((int)loopCounter5 <= (int)(iStack0000000000000038 - ProcessingStatus3));
@@ -115805,23 +115823,23 @@ void FUN_180734f59(void)
           pTemporalDoubleValue7 = (double *)(BasePointer + 0xd0 + (loopCounter4 - loopCounter1) * 8);
           loopCounter5 = loopCounter5 + loopCounter7 * 4;
           do {
-            dVar67 = *(double *)(BasePointer + 0x10 + loopCounter1 * 8);
-            dVar61 = *(double *)(BasePointer + 0x18 + loopCounter1 * 8);
-            dVar66 = pTemporalDoubleValue7[3];
-            *(double *)(BasePointer + 0x10 + loopCounter1 * 8) = pTemporalDoubleValue7[3] * dVar64 + dVar67;
-            pTemporalDoubleValue7[3] = dVar67 * dVar64 + dVar66;
-            dVar67 = *(double *)(BasePointer + 0x20 + loopCounter1 * 8);
-            dVar66 = pTemporalDoubleValue7[2];
-            *(double *)(BasePointer + 0x18 + loopCounter1 * 8) = pTemporalDoubleValue7[2] * dVar64 + dVar61;
-            pTemporalDoubleValue7[2] = dVar61 * dVar64 + dVar66;
-            dVar61 = pTemporalDoubleValue7[1];
-            *(double *)(BasePointer + 0x20 + loopCounter1 * 8) = pTemporalDoubleValue7[1] * dVar64 + dVar67;
-            pTemporalDoubleValue7[1] = dVar67 * dVar64 + dVar61;
-            dVar67 = *(double *)(BasePointer + 0x28 + loopCounter1 * 8);
-            dVar61 = *pTemporalDoubleValue7;
-            *(double *)(BasePointer + 0x28 + loopCounter1 * 8) = *pTemporalDoubleValue7 * dVar64 + dVar67;
+            ScalingFactorValue7 = *(double *)(BasePointer + 0x10 + loopCounter1 * 8);
+            ScalingFactorValue1 = *(double *)(BasePointer + 0x18 + loopCounter1 * 8);
+            ScalingFactorValue6 = pTemporalDoubleValue7[3];
+            *(double *)(BasePointer + 0x10 + loopCounter1 * 8) = pTemporalDoubleValue7[3] * ScalingFactorValue4 + ScalingFactorValue7;
+            pTemporalDoubleValue7[3] = ScalingFactorValue7 * ScalingFactorValue4 + ScalingFactorValue6;
+            ScalingFactorValue7 = *(double *)(BasePointer + 0x20 + loopCounter1 * 8);
+            ScalingFactorValue6 = pTemporalDoubleValue7[2];
+            *(double *)(BasePointer + 0x18 + loopCounter1 * 8) = pTemporalDoubleValue7[2] * ScalingFactorValue4 + ScalingFactorValue1;
+            pTemporalDoubleValue7[2] = ScalingFactorValue1 * ScalingFactorValue4 + ScalingFactorValue6;
+            ScalingFactorValue1 = pTemporalDoubleValue7[1];
+            *(double *)(BasePointer + 0x20 + loopCounter1 * 8) = pTemporalDoubleValue7[1] * ScalingFactorValue4 + ScalingFactorValue7;
+            pTemporalDoubleValue7[1] = ScalingFactorValue7 * ScalingFactorValue4 + ScalingFactorValue1;
+            ScalingFactorValue7 = *(double *)(BasePointer + 0x28 + loopCounter1 * 8);
+            ScalingFactorValue1 = *pTemporalDoubleValue7;
+            *(double *)(BasePointer + 0x28 + loopCounter1 * 8) = *pTemporalDoubleValue7 * ScalingFactorValue4 + ScalingFactorValue7;
             loopCounter1 = loopCounter1 + 4;
-            *pTemporalDoubleValue7 = dVar67 * dVar64 + dVar61;
+            *pTemporalDoubleValue7 = ScalingFactorValue7 * ScalingFactorValue4 + ScalingFactorValue1;
             pTemporalDoubleValue7 = pTemporalDoubleValue7 + -4;
             loopCounter8 = loopCounter8 - 1;
           } while (loopCounter8 != 0);
@@ -115831,11 +115849,11 @@ void FUN_180734f59(void)
           pdVar52 = (double *)(BasePointer + 0xe8 + (loopCounter4 - loopCounter1) * 8);
           contextHandleData6 = (longlong)(int)((iStack0000000000000038 - loopCounter5) + 1);
           do {
-            dVar67 = *pTemporalDoubleValue7;
-            dVar61 = *pdVar52;
-            *pTemporalDoubleValue7 = *pdVar52 * dVar64 + dVar67;
+            ScalingFactorValue7 = *pTemporalDoubleValue7;
+            ScalingFactorValue1 = *pdVar52;
+            *pTemporalDoubleValue7 = *pdVar52 * ScalingFactorValue4 + ScalingFactorValue7;
             pTemporalDoubleValue7 = pTemporalDoubleValue7 + 1;
-            *pdVar52 = dVar67 * dVar64 + dVar61;
+            *pdVar52 = ScalingFactorValue7 * ScalingFactorValue4 + ScalingFactorValue1;
             pdVar52 = pdVar52 + -1;
             contextHandleData6 = contextHandleData6 + -1;
           } while (contextHandleData6 != 0);
@@ -115845,12 +115863,12 @@ void FUN_180734f59(void)
     iStack0000000000000038 = iStack0000000000000038 + 1;
     loopCounter4 = loopCounter4 + 1;
     preservedRegister15 = inputString;
-    unmodifiedXMM13_Qa = dVar60;
+    unmodifiedXMM13_Qa = ScalingFactorValue0;
     if ((int)eventHandle < iStack0000000000000038) {
 LAB_180735ce2:
       contextHandleData6 = (longlong)(int)eventHandle;
       if (iStackX_20 == 0) {
-        dVar60 = *(double *)(BasePointer + 0x10);
+        ScalingFactorValue0 = *(double *)(BasePointer + 0x10);
         loopCounter4 = register10 & 0xffffffff;
         if ((0 < (int)eventHandle) && (3 < eventHandle)) {
           if ((((UIByte *)(BasePointer + 0x10 + contextHandleData6 * 8) < stackParam00000028) ||
@@ -115859,41 +115877,41 @@ LAB_180735ce2:
              ((&stack0x00000050 + (longlong)(int)(eventHandle - 1) * 8 < stackParam00000028 ||
               (stackParam00000028 + (longlong)(int)(eventHandle - 1) * 4 < &stack0x00000050)))) {
             dVar59 = 0.0;
-            dVar67 = 0.0;
-            dVar64 = 0.0;
-            dVar61 = 0.0;
-            dVar60 = 0.0;
-            dVar66 = 0.0;
+            ScalingFactorValue7 = 0.0;
+            ScalingFactorValue4 = 0.0;
+            ScalingFactorValue1 = 0.0;
+            ScalingFactorValue0 = 0.0;
+            ScalingFactorValue6 = 0.0;
             loopCounter7 = eventHandle & 0x80000003;
             if ((int)loopCounter7 < 0) {
               loopCounter7 = (loopCounter7 - 1 | 0xfffffffc) + 1;
             }
-            dVar62 = 0.0;
-            dVar63 = 0.0;
+            ScalingFactorValue2 = 0.0;
+            ScalingFactorValue3 = 0.0;
             do {
               aiterationCount7 = *(UIByte (*) [16])(&stack0x00000050 + register10 * 8);
-              dVar65 = aiterationCount7._0_8_;
-              dVar68 = aiterationCount7._8_8_;
+              ScalingFactorValue5 = aiterationCount7._0_8_;
+              ScalingFactorValue8 = aiterationCount7._8_8_;
               loopCounter0 = (int)loopCounter4 + 4;
               loopCounter4 = (ulonglong)loopCounter0;
               pTemporalDoubleValue7 = (double *)(BasePointer + 0x18 + register10 * 8);
-              dVar62 = dVar62 + *pTemporalDoubleValue7 * dVar65;
-              dVar63 = dVar63 + pTemporalDoubleValue7[1] * dVar68;
-              dVar59 = dVar59 + dVar65 * dVar65;
-              dVar67 = dVar67 + dVar68 * dVar68;
+              ScalingFactorValue2 = ScalingFactorValue2 + *pTemporalDoubleValue7 * ScalingFactorValue5;
+              ScalingFactorValue3 = ScalingFactorValue3 + pTemporalDoubleValue7[1] * ScalingFactorValue8;
+              dVar59 = dVar59 + ScalingFactorValue5 * ScalingFactorValue5;
+              ScalingFactorValue7 = ScalingFactorValue7 + ScalingFactorValue8 * ScalingFactorValue8;
               aiterationCount8 = *(UIByte (*) [16])(&stack0x00000060 + register10 * 8);
-              dVar65 = aiterationCount8._0_8_;
-              dVar68 = aiterationCount8._8_8_;
+              ScalingFactorValue5 = aiterationCount8._0_8_;
+              ScalingFactorValue8 = aiterationCount8._8_8_;
               *(ulonglong *)(stackParam00000028 + register10 * 4) =
                    CONCAT44((float)(double)CONCAT44(aiterationCount7._12_4_ ^ unmodifiedXMM11_Dd,
                                                     aiterationCount7._8_4_ ^ unmodifiedXMM11_Dc),
                             (float)(double)CONCAT44(aiterationCount7._4_4_ ^ unmodifiedXMM11_Db,
                                                     aiterationCount7._0_4_ ^ unmodifiedXMM11_Da));
               pTemporalDoubleValue7 = (double *)(BasePointer + 0x28 + register10 * 8);
-              dVar60 = dVar60 + *pTemporalDoubleValue7 * dVar65;
-              dVar66 = dVar66 + pTemporalDoubleValue7[1] * dVar68;
-              dVar64 = dVar64 + dVar65 * dVar65;
-              dVar61 = dVar61 + dVar68 * dVar68;
+              ScalingFactorValue0 = ScalingFactorValue0 + *pTemporalDoubleValue7 * ScalingFactorValue5;
+              ScalingFactorValue6 = ScalingFactorValue6 + pTemporalDoubleValue7[1] * ScalingFactorValue8;
+              ScalingFactorValue4 = ScalingFactorValue4 + ScalingFactorValue5 * ScalingFactorValue5;
+              ScalingFactorValue1 = ScalingFactorValue1 + ScalingFactorValue8 * ScalingFactorValue8;
               *(ulonglong *)(stackParam00000028 + register10 * 4 + 8) =
                    CONCAT44((float)(double)CONCAT44(aiterationCount8._12_4_ ^ unmodifiedXMM11_Dd,
                                                     aiterationCount8._8_4_ ^ unmodifiedXMM11_Dc),
@@ -115901,8 +115919,8 @@ LAB_180735ce2:
                                                     aiterationCount8._0_4_ ^ unmodifiedXMM11_Da));
               register10 = register10 + 4;
             } while ((longlong)register10 < (longlong)(int)(eventHandle - loopCounter7));
-            dVar60 = dVar62 + dVar60 + dVar63 + dVar66 + *(double *)(BasePointer + 0x10);
-            unmodifiedXMM12_Qa = dVar59 + dVar64 + dVar67 + dVar61 + unmodifiedXMM12_Qa;
+            ScalingFactorValue0 = ScalingFactorValue2 + ScalingFactorValue0 + ScalingFactorValue3 + ScalingFactorValue6 + *(double *)(BasePointer + 0x10);
+            unmodifiedXMM12_Qa = dVar59 + ScalingFactorValue4 + ScalingFactorValue7 + ScalingFactorValue1 + unmodifiedXMM12_Qa;
           }
         }
         EventDataIndex3 = (longlong)(int)loopCounter0;
@@ -115911,42 +115929,42 @@ LAB_180735ce2:
             pTransformCoefficient39 = (float *)(stackParam00000028 + (EventDataIndex3 + 2) * 4);
             do {
               dVar59 = *(double *)(&stack0x00000050 + EventDataIndex3 * 8);
-              dVar67 = *(double *)(&stack0x00000058 + EventDataIndex3 * 8);
-              dVar64 = *(double *)(BasePointer + 0x18 + EventDataIndex3 * 8);
-              dVar61 = *(double *)(&stack0x00000060 + EventDataIndex3 * 8);
+              ScalingFactorValue7 = *(double *)(&stack0x00000058 + EventDataIndex3 * 8);
+              ScalingFactorValue4 = *(double *)(BasePointer + 0x18 + EventDataIndex3 * 8);
+              ScalingFactorValue1 = *(double *)(&stack0x00000060 + EventDataIndex3 * 8);
               pTransformCoefficient39[-2] = (float)(double)CONCAT44((uint)((ulonglong)dVar59 >> 0x20) ^
                                                     unmodifiedXMM11_Db,SUB84(dVar59,0) ^ unmodifiedXMM11_Da)
               ;
-              dVar66 = *(double *)(BasePointer + 0x20 + EventDataIndex3 * 8);
-              dVar62 = *(double *)(BasePointer + 0x28 + EventDataIndex3 * 8);
-              dVar63 = *(double *)(&stack0x00000068 + EventDataIndex3 * 8);
-              pTransformCoefficient39[-1] = (float)(double)CONCAT44((uint)((ulonglong)dVar67 >> 0x20) ^
-                                                    unmodifiedXMM11_Db,SUB84(dVar67,0) ^ unmodifiedXMM11_Da)
+              ScalingFactorValue6 = *(double *)(BasePointer + 0x20 + EventDataIndex3 * 8);
+              ScalingFactorValue2 = *(double *)(BasePointer + 0x28 + EventDataIndex3 * 8);
+              ScalingFactorValue3 = *(double *)(&stack0x00000068 + EventDataIndex3 * 8);
+              pTransformCoefficient39[-1] = (float)(double)CONCAT44((uint)((ulonglong)ScalingFactorValue7 >> 0x20) ^
+                                                    unmodifiedXMM11_Db,SUB84(ScalingFactorValue7,0) ^ unmodifiedXMM11_Da)
               ;
               contextHandleData5 = EventDataIndex3 * 8;
               EventDataIndex3 = EventDataIndex3 + 4;
-              dVar60 = dVar60 + dVar59 * dVar64 + dVar67 * dVar66 + dVar61 * dVar62 +
-                       dVar63 * *(double *)(BasePointer + 0x30 + contextHandleData5);
-              *pTransformCoefficient39 = (float)(double)CONCAT44((uint)((ulonglong)dVar61 >> 0x20) ^ unmodifiedXMM11_Db,
-                                                 SUB84(dVar61,0) ^ unmodifiedXMM11_Da);
+              ScalingFactorValue0 = ScalingFactorValue0 + dVar59 * ScalingFactorValue4 + ScalingFactorValue7 * ScalingFactorValue6 + ScalingFactorValue1 * ScalingFactorValue2 +
+                       ScalingFactorValue3 * *(double *)(BasePointer + 0x30 + contextHandleData5);
+              *pTransformCoefficient39 = (float)(double)CONCAT44((uint)((ulonglong)ScalingFactorValue1 >> 0x20) ^ unmodifiedXMM11_Db,
+                                                 SUB84(ScalingFactorValue1,0) ^ unmodifiedXMM11_Da);
               unmodifiedXMM12_Qa =
-                   unmodifiedXMM12_Qa + dVar59 * dVar59 + dVar67 * dVar67 + dVar61 * dVar61 +
-                   dVar63 * dVar63;
-              pTransformCoefficient39[1] = (float)(double)CONCAT44((uint)((ulonglong)dVar63 >> 0x20) ^
-                                                   unmodifiedXMM11_Db,SUB84(dVar63,0) ^ unmodifiedXMM11_Da);
+                   unmodifiedXMM12_Qa + dVar59 * dVar59 + ScalingFactorValue7 * ScalingFactorValue7 + ScalingFactorValue1 * ScalingFactorValue1 +
+                   ScalingFactorValue3 * ScalingFactorValue3;
+              pTransformCoefficient39[1] = (float)(double)CONCAT44((uint)((ulonglong)ScalingFactorValue3 >> 0x20) ^
+                                                   unmodifiedXMM11_Db,SUB84(ScalingFactorValue3,0) ^ unmodifiedXMM11_Da);
               pTransformCoefficient39 = pTransformCoefficient39 + 4;
             } while (EventDataIndex3 < contextHandleData6 + -3);
           }
           for (; EventDataIndex3 < contextHandleData6; EventDataIndex3 = EventDataIndex3 + 1) {
             dVar59 = *(double *)(&stack0x00000050 + EventDataIndex3 * 8);
-            dVar60 = dVar60 + dVar59 * *(double *)(BasePointer + 0x18 + EventDataIndex3 * 8);
+            ScalingFactorValue0 = ScalingFactorValue0 + dVar59 * *(double *)(BasePointer + 0x18 + EventDataIndex3 * 8);
             unmodifiedXMM12_Qa = unmodifiedXMM12_Qa + dVar59 * dVar59;
             *(float *)(stackParam00000028 + EventDataIndex3 * 4) =
                  (float)(double)CONCAT44((uint)((ulonglong)dVar59 >> 0x20) ^ unmodifiedXMM11_Db,
                                          SUB84(dVar59,0) ^ unmodifiedXMM11_Da);
           }
         }
-        dVar60 = dVar60 + unmodifiedXMM14_Qa * -9.999999747378752e-06 * unmodifiedXMM12_Qa;
+        ScalingFactorValue0 = ScalingFactorValue0 + unmodifiedXMM14_Qa * -9.999999747378752e-06 * unmodifiedXMM12_Qa;
       }
       else {
         loopCounter4 = register10 & 0xffffffff;
@@ -116045,10 +116063,10 @@ LAB_180735ce2:
             loopCounter4 = loopCounter4 - 1;
           } while (loopCounter4 != 0);
         }
-        dVar60 = dVar60 * unmodifiedXMM14_Qa;
+        ScalingFactorValue0 = ScalingFactorValue0 * unmodifiedXMM14_Qa;
       }
                      WARNING: Subroutine does not return
-      ExecuteUIRenderTask((float)dVar60);
+      ExecuteUIRenderTask((float)ScalingFactorValue0);
     }
   }
   if (iStack0000000000000038 < (int)eventHandle) {
