@@ -1065,37 +1065,19 @@ typedef enum {
  * @note 原始函数名：func_0x0001807673c0
  */
 #define ProcessUIComponentOpacity func_0x0001807673c0
-#define ProcessUIRenderOpacity FUN_180785c10
+#define ProcessUIRenderOpacity FUN_180785c10              // UI渲染透明度处理函数
 
-// UI系统函数宏定义 - 处理UI事件调度
-#define DispatchUIEventToComponents FUN_180711810
-
-// UI系统函数宏定义 - 处理UI数据批量处理
-#define ProcessUIDataBatchOperation FUN_18071db50
-
-// UI系统函数宏定义 - 处理UI数据批量处理结果
-#define ProcessUIDataBatchResult FUN_18071dbc0
-
-// UI系统函数宏定义 - 查询UI数据源状态
-#define QueryUIDataSourceStatus FUN_180706d32
-
-// UI系统函数宏定义 - 计算UI渲染比例
-#define CalculateUIRenderScale CalculateUIRenderScale
-
-// UI系统函数宏定义 - 计算UI布局边界
-#define CalculateUILayoutBounds FUN_180707b03
-
-// UI系统函数宏定义 - 处理UI布局数据
-#define ProcessUILayoutData FUN_180707d35
-
-// UI系统函数宏定义 - 创建UI信号量
-#define CreateUISemaphore FUN_18070e250
-
-// UI系统函数宏定义 - 处理UI事件系统
-#define ProcessUIEventSystem FUN_18070e950
-
-// UI系统函数宏定义 - 获取UI队列项
-#define GetUIQueueItem ProcessUIResourceAllocation
+// UI系统事件处理函数宏定义
+#define DispatchUIEventToComponents FUN_180711810         // UI事件调度到组件函数
+#define ProcessUIDataBatchOperation FUN_18071db50          // UI数据批量处理函数
+#define ProcessUIDataBatchResult FUN_18071dbc0            // UI数据批量处理结果函数
+#define QueryUIDataSourceStatus FUN_180706d32             // UI数据源状态查询函数
+#define CalculateUIRenderScale CalculateUIRenderScale      // UI渲染比例计算函数
+#define CalculateUILayoutBounds FUN_180707b03             // UI布局边界计算函数
+#define ProcessUILayoutData FUN_180707d35                // UI布局数据处理函数
+#define CreateUISemaphore FUN_18070e250                   // UI信号量创建函数
+#define ProcessUIEventSystem FUN_18070e950                // UI事件系统处理函数
+#define GetUIQueueItem ProcessUIResourceAllocation         // UI队列项获取函数
 
 // UI系统函数宏定义 - 设置UI队列项
 #define SetUIQueueItem UpdateUIElementData
@@ -1301,6 +1283,15 @@ typedef enum {
 // UI系统堆栈变量美化
 #define uStack0000000000000050 UIStackUInt50
 #define uStack0000000000000058 UIStackUInt58
+#define pcStack0000000000000088 UICharacterStack88
+#define piStack0000000000000030 UIIntegerStack30
+#define puStack0000000000000050 UIPointerStack50
+#define pcStack0000000000000038 UICharacterStack38
+
+// UI系统寄存器变量美化
+#define register9B UIRegister9B
+#define register10B UIRegister10B
+#define register10 UIRegister10
 
 // UI系统未定义变量美化
 #define undefined6 UIUndefined6
@@ -2387,7 +2378,7 @@ void* UIGestureCoordinates;
 #define CreateUITransformedContext CreateUITransformedContextInternal
 #define NormalizeUIVector NormalizeUIVectorInternal
 
- UI系统处理器指针宏定义
+ // UI系统处理器指针宏定义
 #define UIPixelProcessorPointer _DAT_180d4a8b8
 #define UIImageProcessorPointer _DAT_180d4a860
 #define UIColorProcessorPointer _DAT_180d4a800
@@ -93155,9 +93146,24 @@ void ProcessUIFloatDataTransform(int *uiContext,float *dataSource,float *targetB
 
 
 
- void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
-void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
-                  UIHandle resultPointer,byte param_6)
+ /**
+ * @brief 处理UI组件变换数据
+ * 
+ * 该函数负责处理UI组件的变换数据，包括位置、旋转、缩放等变换操作。
+ * 支持多种变换类型，通过不同的变换系数实现复杂的UI动画效果。
+ * 
+ * @param uiContext UI上下文参数
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针句柄
+ * @param param_6 变换参数标志
+ * 
+ * @note 原始函数名：FUN_18071f88a
+ * @warning 此函数不返回，会直接执行渲染任务
+ */
+void ProcessUITransformData(float uiContext, UIHandle dataSource, UIHandle targetBuffer, int bufferSize,
+                           UIHandle resultPointer, byte param_6)
 
 {
   float *BaseValuePointer;
