@@ -99968,10 +99968,10 @@ LAB_180722ba9:
     shortCalculationResult = *(short *)(contextHandle + 0xae2);
   }
   *(short *)(contextHandle + 0x96c) = shortCalculationResult;
-  result = ReadUIData();
-  *(UIByte *)(contextHandle + 0xae4) = result;
-  result = ReadUIData();
-  *(UIByte *)(contextHandle + 0xae8) = result;
+  processingResult = ReadUIData();
+  *(UIByte *)(contextHandle + 0xae4) = processingResult;
+  processingResult = ReadUIData();
+  *(UIByte *)(contextHandle + 0xae8) = processingResult;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
     bufferPtr = (UIByte *)(contextHandle + 0xacc);
     do {
