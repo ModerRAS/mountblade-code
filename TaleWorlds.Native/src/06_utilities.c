@@ -130071,7 +130071,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_30 - 栈数据字AV
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAV uStack_30
+#define DataProcessingTempDataAV uStack_30
 
 // 原始变量名：uStack_2c - 栈数据字AW
 // 功能：存储数据处理过程中的临时数据字
