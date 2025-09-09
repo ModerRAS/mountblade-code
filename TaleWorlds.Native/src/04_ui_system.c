@@ -109011,8 +109011,22 @@ void FUN_18072cc1b(void)
 
 
 
- void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
-void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI变换数据与系数
+ * 
+ * 处理UI系统的变换数据和系数计算，包括：
+ * - 变换系数的计算和验证
+ * - 数据缓冲区的处理
+ * - 渲染参数的调整
+ * - 组件尺寸的计算
+ * 
+ * @param UIContext UI上下文指针
+ * @param DataSource 数据源索引
+ * @param TargetBuffer 目标缓冲区索引
+ * 
+ * @note 原始函数名：FUN_18072cdb2
+ */
+void ProcessUITransformDataWithCoefficients(float *UIContext,int DataSource,int TargetBuffer)
 
 {
   float *BaseValuePointer;

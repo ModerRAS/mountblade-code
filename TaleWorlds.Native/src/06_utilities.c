@@ -4263,7 +4263,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
  * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfiguration
  */
-#define ProcessDataArrayWithValidation FUN_180057010
+#define ProcessDataArrayWithValidation ProcessDataArrayWithValidation
 
 /**
  * @brief 数据缓冲区初始化函数
@@ -4286,7 +4286,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
  * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
-#define InitializeSystemDataBuffer FUN_1800a19c0
+#define InitializeSystemDataBuffer InitializeSystemDataBufferWithSecurity
 
 /**
  * @brief 系统命令执行函数
@@ -4674,11 +4674,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 /**
  * @brief 系统上下文值获取函数
  * 
- * 获取系统上下文的值
+ * 获取系统上下文的值和状态信息，用于系统监控和状态检查
  * 
  * @note 原始函数名：FUN_1807d3e20
  */
-#define GetsystemContextValueAndState FUN_1807d3e20
+#define GetsystemContextValueAndState GetSystemContextAndState
 
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
@@ -131135,7 +131135,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * 
  * @note 原始函数名：FUN_1807d3e20
  */
-#define InitializeSystemComponentA0 FUN_1807d3e20
+#define InitializeSystemComponentA0 InitializeSystemComponentWithValidation
 
 // 系统数据验证基础错误信息常量
 #define SystemDataValidationErrorBase SystemDataValidationErrorMessage
