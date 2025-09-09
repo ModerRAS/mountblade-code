@@ -7744,7 +7744,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CheckOperationStatus FUN_1808dde10
 #define FinalizeDataProcessing FUN_1808de0e0
 #define ValidateDataSecurity FUN_1808a6150
-#define AllocateMemoryWithContext FUN_180882f00
+#define AllocateMemoryWithContext AllocateMemoryWithContextualData    // 带上下文数据的内存分配函数
 #define GetContextData FUN_1808afc70
 #define ExecuteSecurityValidation FUN_1808ddc20
 
@@ -9159,7 +9159,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 内存管理函数宏定义
 // 原始函数名：FUN_18089b7d0 - 内存分配函数A0
 // 功能：分配内存并返回分配结果
-#define AllocateMemoryA0 FUN_18089b7d0
+#define AllocateMemoryA0 AllocateMemoryWithSizeValidation    // 带大小验证的内存分配函数
 
 // 原始函数名：FUN_18089b813 - 内存释放函数A0
 // 功能：释放内存并返回释放结果
@@ -9209,7 +9209,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180899d90 - 数据验证函数A3
 // 功能：验证数据并返回验证结果
-#define ValidateDataA3 FUN_180899d90
+#define ValidateDataA3 ValidateDataWithIntegrityCheck    // 带完整性检查的数据验证函数
 
 
 // 原始函数名：FUN_180894b00 - 数据验证函数B0
@@ -10228,7 +10228,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180868270 - 数据验证函数A7
 // 功能：验证数据有效性
-#define ValidateDataA3 FUN_180868270
+#define ValidateDataA3 ValidateDataWithSecurityCheck    // 带安全检查的数据验证函数
 
 // 原始函数名：FUN_180895130 - 系统检查函数A0
 // 功能：检查系统状态
