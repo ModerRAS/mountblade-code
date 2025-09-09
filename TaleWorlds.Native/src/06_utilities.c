@@ -118,13 +118,13 @@
 #define ExceptionHandlerPointerOffset580 0x580
 
 // 默认异常处理器位置常量
-#define DefaultExceptionHandlerB_Position1_Offset 0x168
-#define DefaultExceptionHandlerB_Position2_Offset 0x1d8
-#define DefaultExceptionHandlerB_Position3_Offset 0x248
+#define DefaultExceptionHandlerB_PositionPrimary_Offset 0x168
+#define DefaultExceptionHandlerB_PositionSecondary_Offset 0x1d8
+#define DefaultExceptionHandlerB_PositionTertiary_Offset 0x248
 
 // 寄存器上下文偏移量常量
 #define RegisterContextDataOffset 0x78
-#define systemContextDataOffset40 0x40
+#define SystemContextDataOffsetPrimary 0x40
 #define systemContextDataOffset50 0x50
 #define systemContextDataOffset58 0x58
 #define systemContextDataOffsetD4 0xd4
@@ -1453,7 +1453,7 @@
 #define SystemResourceOffset88 0x88
 
 // 高频魔法数字常量定义
-#define systemContextDataOffset40 0x40                    // 系统上下文数据偏移量40（845+次使用）
+#define SystemContextDataOffsetPrimary 0x40                    // 系统上下文数据偏移量40（845+次使用）
 #define SystemArrayStepOffset18 0x18                      // 系统数组步长偏移量18（830+次使用）
 #define SystemErrorCodeOffset1c 0x1c                      // 系统错误码偏移量1c（474+次使用）
 #define SystemDataFieldOffset20 0x20                      // 系统数据字段偏移量20（446+次使用）
