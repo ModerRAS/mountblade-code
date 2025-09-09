@@ -263,12 +263,24 @@ typedef enum {
 #define astackUInt158 UIDataBufferStack158
 
 // UI系统局部变量语义化定义
-#define localInt5 UILocalInt5
+#define localInt5 UIElementIndex
 #define localInt7 UILocalProcessingCounter7
 #define plocalChar6 pUILocalCharPointer6
 #define pTemporaryFloatValue pUITemporaryFloatValue
 #define unmodifiedEBX UIUnmodifiedRegisterValue
 #define RegisterPointerD UIRegisterPointerD
+
+// UI系统事件处理变量语义化定义
+#define stack0x00000048 UIEventStackParameter
+#define uiBufferData UIBufferDataContext
+#define BasePointer UIBaseContextPointer
+#define contextHandleData UIContextHandleData
+#define colorBufferPointer UIColorBufferPointer
+#define uiCompareResult UIComparisonResult
+#define ptrResult UIResultPointer
+#define EventHandle UIEventHandle
+#define stackParam00000048 UIStackParameter48
+#define preservedRegister15B UIPreservedRegister15B
 
 // 栈变量宏定义
 #define stack0x00000000 UIStackBasePointer
