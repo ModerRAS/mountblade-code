@@ -100007,16 +100007,29 @@ void FUN_180723c9b(void)
 
 
 
-void ThunkUIComponentSync(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+/**
+ * @brief UI组件数据同步函数
+ * 
+ * 同步UI组件数据，处理数据转换和验证：
+ * - 从目标缓冲区读取数据
+ * - 进行数据转换和验证
+ * - 将结果写入数据源
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ */
+void SynchronizeUIComponentData(int *uiContext, longlong dataSource, longlong targetBuffer, int bufferSize)
 
 {
-  UIWord result;
+  UIWord componentResult;
   int uiValidationResult;
   int uiCompareResult;
-  int TempInt4;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
+  int sourceDataValue;
+  int calculatedValue;
+  int dataProcessingIndex;
+  longlong bufferIndex;
   
   if (0 < bufferSize) {
     localLong7 = 0;
