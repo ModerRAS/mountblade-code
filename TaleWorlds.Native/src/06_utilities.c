@@ -15330,7 +15330,7 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
   int32_t itemIndex;
   uint64_t operationResult;
   uint32_t *dataPointerArray;
-  uint64_t stackOffset;
+  uint64_t systemStackOffset;
   uint32_t loopCounter;
   uint64_t processedCount;
   int64_t baseAddress;
@@ -34139,20 +34139,20 @@ ValidationLabelB:
       CleanupDataResourcesA0(&systemStackDataPointer,0);
       return validationOutcome;
     }
-    if ((int)stackDataBuffer == 0) {
+    if ((int)systemStackDataBuffer == 0) {
       resourceValidationStatus = 0;
     }
     else {
       dataFlags = (int)*(uint *)(operationBase + OperationBaseOffset54) >> 0x1f;
-      ploopCounter = stackDataPointer;
-      if ((int)((*(uint *)(operationBase + OperationBaseOffset54) ^ dataFlags) - dataFlags) < (int)stackDataBuffer) {
-        dataFlags = CheckSystemStatusA0(operationBase + OperationBaseOffset48,stackDataBuffer & SystemCleanupFlag);
+      ploopCounter = systemStackDataPointer;
+      if ((int)((*(uint *)(operationBase + OperationBaseOffset54) ^ dataFlags) - dataFlags) < (int)systemStackDataBuffer) {
+        dataFlags = CheckSystemStatusA0(operationBase + OperationBaseOffset48,systemStackDataBuffer & SystemCleanupFlag);
         validationOutcome = (uint64_t)dataFlags;
-        ploopCounter = stackDataPointer;
+        ploopCounter = systemStackDataPointer;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
       }
-      for (; (resourceValidationStatus = (int)stackDataBuffer, stackDataPointer <= ploopCounter &&
-             (ploopCounter < stackDataPointer + (int64_t)resourceValidationStatus * 3)); ploopCounter = ploopCounter + 3) {
+      for (; (resourceValidationStatus = (int)systemStackDataBuffer, systemStackDataPointer <= ploopCounter &&
+             (ploopCounter < systemStackDataPointer + (int64_t)resourceValidationStatus * 3)); ploopCounter = ploopCounter + 3) {
         tempDataPointer = (DataBuffer *)0x0;
         dataFlags = ValidateDataSecurityA1(operationBase + OperationBaseOffset48,&tempDataPointer);
         validationOutcome = (uint64_t)dataFlags;
@@ -34166,11 +34166,11 @@ ValidationLabelB:
         *(ByteFlag *)(tempDataPointer + 3) = 1;
       }
     }
-    dataFlags = stackDataBuffer.lowWord;
-    if ((int64_t)stackDataBuffer < 0) {
-      dataFlags = -stackDataBuffer.lowWord;
+    dataFlags = systemStackDataBuffer.lowWord;
+    if ((int64_t)systemStackDataBuffer < 0) {
+      dataFlags = -systemStackDataBuffer.lowWord;
     }
-    statusCounter = stackDataBuffer.lowWord;
+    statusCounter = systemStackDataBuffer.lowWord;
     if ((int)dataFlags < 0) {
       if (0 < resourceValidationStatus) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)stackDataBuffer.lowWord) && (stackDataPointer != (DataBuffer *)0x0)) {
