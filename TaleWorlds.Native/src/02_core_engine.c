@@ -98596,7 +98596,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t ContextHandle
   *(uint32_t *)(StackFrameAddressPointer + 0x48) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x4c) = 0;
   SystemContextValidationFlag = (char)RegisterR12Value;
-  if (AuxiliaryFloat13 <= in_XMM0_Dd) {
+  if (AuxiliaryFloat13 <= Xmm0RegisterDouble) {
     *(float *)(StackFrameAddressPointer + 0x40) = FloatingPointRegister14Da;
     *(float *)(StackFrameAddressPointer + 0x44) = AuxiliaryFloat13;
     MemoryAllocationIndex = (uint)RegisterR12Value;
@@ -106588,7 +106588,7 @@ void CoreEngineProcessDataStructureAndMemoryAllocation(long long ContextHandle, 
   char *ValidationStatus;
   int LockOperationResult0;
   float *NullPointerValue;
-  uint32_t in_XMM0_Da;
+  uint32_t Xmm0RegisterFloat;
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
   uint32_t VectorRegisterDa;

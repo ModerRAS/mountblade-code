@@ -3147,6 +3147,18 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerLevel5_QuaternaryStatusOffset 0xe78
 #define ExceptionHandlerLevel5_QuaternaryStateOffset 0xe88
 #define ExceptionHandlerLevel5_QuinaryHandlerOffset 0xe50
+
+// 资源清理相关偏移量常量
+#define ResourceCleanupExceptionHandlerOffset 0x1c8
+#define ResourceCleanupStatusOffset 0x1d0
+#define ResourceCleanupDataOffset 0x1e0
+
+// 异常处理器设置相关常量
+#define ExceptionHandlerContextStateOffset 0x58
+#define ExceptionHandlerSetupFlag 4
+#define ExceptionHandlerSetupMask 0xfffffffb
+#define ExceptionHandlerDataValidationOffset 0x2a0
+#define ExceptionHandlerFloatValueOffset 8
 #define ExceptionHandlerLevel5_QuinaryStatusOffset 0xe58
 #define ExceptionHandlerLevel5_QuinaryStateOffset 0xe68
 #define ExceptionHandlerLevel5_SenaryHandlerOffset 0xe30
@@ -60006,13 +60018,13 @@ void CleanupResourceAtOffset180(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1c8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x1d0) != 0) {
+  *(DataBuffer *)(dataBuffer + ResourceCleanupExceptionHandlerOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ResourceCleanupStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x1d0) = 0;
-  *(DataWord *)(dataBuffer + 0x1e0) = 0;
-  *(DataBuffer *)(dataBuffer + 0x1c8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ResourceCleanupStatusOffset) = 0;
+  *(DataWord *)(dataBuffer + ResourceCleanupDataOffset) = 0;
+  *(DataBuffer *)(dataBuffer + ResourceCleanupExceptionHandlerOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -60021,9 +60033,9 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 void SetupExceptionHandlerAtOffset1A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + ExceptionHandlerContextOffset58) & 4) != 0) {
-    *(uint *)(dataBuffer + ExceptionHandlerContextOffset58) = *(uint *)(dataBuffer + ExceptionHandlerContextOffset58) & 0xfffffffb;
-    ValidateDataA0(dataBuffer + 0x2a0);
+  if ((*(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) & ExceptionHandlerSetupFlag) != 0) {
+    *(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) = *(uint *)(dataBuffer + ExceptionHandlerContextStateOffset) & ExceptionHandlerSetupMask;
+    ValidateDataA0(dataBuffer + ExceptionHandlerDataValidationOffset);
   }
   return;
 }
@@ -60033,7 +60045,7 @@ void SetupExceptionHandlerAtOffset1A0(DataBuffer operationBase,int64_t dataBuffe
 void SetupExceptionHandlerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + FloatValueOffset8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerFloatValueOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
