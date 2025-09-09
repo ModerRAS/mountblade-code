@@ -248648,10 +248648,10 @@ LAB_180204eec:
                           }
                         }
                       }
-                      in_stack_fffffffffffffdb0 = uStack_218.HighPart * IntegerValue;
+                      CharacterEncodingFlags = uStack_218.HighPart * IntegerValue;
                       (**(code **)(**(long long **)(CoreEngineRenderContext + 0x1cd8) + 0x1a8)                                (*(long long **)(CoreEngineRenderContext + 0x1cd8),SystemPointer208,
                                  *(void *)(ReferenceCountPointer5 + 1),ReferenceCountPointer5[-3] * IntegerValue,
-                                 (int)uStack_218 * IntegerValue,in_stack_fffffffffffffdb0);
+                                 (int)uStack_218 * IntegerValue,CharacterEncodingFlags);
                       FUN_180207e40(SystemDataTablePointer + (long long)iStackX_18 * 0x18);
                       FUN_1802075c0(SystemDataTablePointer,&uStack_218,iStackX_18,*CharacterStatusBuffer2,IntegerValue);
                       if (SystemPointer208 != (long long *)0x0) {
