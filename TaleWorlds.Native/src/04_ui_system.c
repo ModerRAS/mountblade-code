@@ -152,6 +152,7 @@ typedef enum {
 #define UNK_180958b10 UIComponentInterfaceIID
 #define DAT_180c0c6e8 UIComponentInstancePtr
 #define DAT_180958c80 UIComponentContextData
+#define DAT_180c0c720 UIProcessorFeatureCache
 #define _DAT_180c0c6e8 UIComponentInstanceGlobalPtr
 #define FUN_18076b6f0 InitializeUIComponentContext
 
@@ -10196,7 +10197,17 @@ UIDword * CreateUIColorBuffer(UIDword *uiContext)
 
 
 
- UI组件释放函数
+ /**
+ * @brief 释放UI组件
+ * 
+ * 释放UI组件占用的资源，清理相关内存和数据结构。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @return UIHandle 返回操作结果句柄
+ */
 UIHandle FreeUIComponent(UIHandle *uiContext,ulonglong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {

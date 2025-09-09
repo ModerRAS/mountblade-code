@@ -160229,7 +160229,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       SystemStatusCode = 4;
-      CharacterStatusBuffer = &stack0x000000a8;
+      CharacterStatusBuffer = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }
@@ -160421,7 +160421,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       SystemMemoryAllocationResult = 4;
-      StringProcessingStatus = &stack0x000000a8;
+      StringProcessingStatus = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }
@@ -160602,7 +160602,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       SystemChecksum = 4;
-      StringProcessingStatus = &stack0x000000a8;
+      StringProcessingStatus = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }
