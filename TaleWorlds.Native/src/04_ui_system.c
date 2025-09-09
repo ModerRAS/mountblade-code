@@ -190,15 +190,18 @@ typedef enum {
 #define VectorPermutationMask1809813c0 UIVectorPermutationMask
 #define in_register_0000131c UIRegisterValue131c
 #define in_register_0000125c UIRegisterValue125c
-#define paresult2 UIResultPointer2
-#define paResultValue3 UIResultPointer3
-#define paresult7 UIResultPointer7
-#define paeventProcessingStatus UIEventProcessingStatusPointer
-#define paeventProcessingCounter UIEventProcessingCounterPointer
-#define astackUInt278 UIStackUInt278
-#define astackUInt168 UIStackUInt168
-#define astackUInt1a8 UIStackUInt1a8
-#define astackUInt158 UIStackUInt158
+// UI系统结果指针语义化定义
+#define paresult2 UIComponentResultPointer2
+#define paResultValue3 UIEventDataResultPointer3
+#define paresult7 UIRenderResultPointer7
+#define paeventProcessingStatus UIEventStatusProcessingPointer
+#define paeventProcessingCounter UIEventCounterProcessingPointer
+
+// UI系统栈变量语义化定义
+#define astackUInt278 UIComponentContextStack278
+#define astackUInt168 UIRenderContextStack168
+#define astackUInt1a8 UIEventContextStack1A8
+#define astackUInt158 UIDataBufferStack158
 
 // 栈变量宏定义
 #define stack0x00000000 UIStackBasePointer
@@ -208,10 +211,11 @@ typedef enum {
 #define stack0x00000070 UIStackMatrixParam7
 #define stack0x00000078 UIStackLayoutParam8
 #define stack0x00000130 UIStackTransformParam130
-#define astackUIntf8 UIStackUIntf8
-#define astackUInt48 UIStackUInt48
-#define afStack_6260 UIFloatStack6260
-#define astackUInt178 UIStackUInt178
+// UI系统变换栈变量语义化定义
+#define astackUIntf8 UITransformFactorStackF8
+#define astackUInt48 UIAnimationStateStack48
+#define afStack_6260 UIAnimationSpeedStack6260
+#define astackUInt178 UILayoutParameterStack178
 
 // 浮点栈变量宏定义
 #define fStack0000000000000034 UIAnimationSpeedFactor
@@ -97171,36 +97175,51 @@ void ProcessUITransformDataWithCoefficientsOptimized(float *uiContext,int dataSo
 
 
 
-uint FUN_180721b40(longlong uiContext,uint dataSource,uint targetBuffer)
+/**
+ * @brief UI元素状态检查器
+ * 
+ * 该函数用于检查UI元素的状态，通过对数据进行位运算来确定元素的激活状态。
+ * 函数会遍历UI元素并检查每个元素的位状态，最终返回一个状态掩码。
+ * 
+ * @param uiContext UI上下文数据指针，包含UI元素的状态信息
+ * @param dataSource 数据源大小，指定要检查的数据范围
+ * @param targetBuffer 目标缓冲区大小，用于确定检查的粒度
+ * 
+ * @return uint 返回UI元素的状态掩码，每个位代表一个元素的状态
+ * 
+ * @note 原始函数名：FUN_180721b40
+ * @note 这是UI系统中用于元素状态检查的核心函数
+ */
+uint CheckUIElementStatus(longlong uiContext,uint dataSource,uint targetBuffer)
 
 {
   uint result;
   uint *piterationCount;
   longlong stringCompareIndex;
   uint ProcessingStatus;
-  int localInt5;
+  int bitIndex;
   int loopCounter;
-  int localInt7;
+  int elementIndex;
   
   if ((int)targetBuffer < 2) {
     return 1;
   }
   result = 0;
-  localInt7 = 0;
-  uiElementIndex = 0;
+  elementIndex = 0;
+  bitIndex = 0;
   do {
     ProcessingStatus = 0;
     stringCompareIndex = 0;
-    piterationCount = (uint *)(uiContext + (longlong)localInt7 * 4);
+    piterationCount = (uint *)(uiContext + (longlong)elementIndex * 4);
     do {
       ProcessingStatus = ProcessingStatus | *piterationCount;
       piterationCount = piterationCount + 1;
       stringCompareIndex = stringCompareIndex + 1;
     } while (stringCompareIndex < (int)(dataSource / targetBuffer));
-    loopCounter = localInt5 + 1;
-    localInt7 = localInt7 + dataSource / targetBuffer;
-    result = result | (uint)(ProcessingStatus != 0) << ((byte)localInt5 & 0x1f);
-    localInt5 = loopCounter;
+    loopCounter = bitIndex + 1;
+    elementIndex = elementIndex + dataSource / targetBuffer;
+    result = result | (uint)(ProcessingStatus != 0) << ((byte)bitIndex & 0x1f);
+    bitIndex = loopCounter;
   } while (loopCounter < (int)targetBuffer);
   return result;
 }
