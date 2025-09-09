@@ -4878,7 +4878,7 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
  * 该函数负责安全地清理连接相关的内存资源，确保没有内存泄漏
  * 和资源残留。
  * 
- * @param ConnectionBuffer 连接缓冲区指针，指向需要清理的连接缓冲区
+ * @param NetworkConnectionStackBuffer 网络连接堆栈缓冲区指针，指向需要清理的连接堆栈缓冲区
  * @return void 无返回值
  * 
  * @note 此函数在连接关闭或系统清理时调用
@@ -4930,7 +4930,7 @@ void CleanupNetworkConnectionStack(void* NetworkConnectionStackBuffer)
  * @warning 如果复制失败，可能导致数据不一致或备份缺失
  * @see NetworkValidationSuccess, NetworkConnectionBufferSize
  */
-void CopyNetworkConnectionBuffer(void* SourceBuffer)
+void CopyNetworkConnectionBuffer(void* NetworkConnectionSourceBuffer)
 {
   // 连接缓冲区复制状态变量
   uint32_t CopyOperationStatus;                       // 缓冲区复制操作状态
