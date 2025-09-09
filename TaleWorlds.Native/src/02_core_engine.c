@@ -257135,19 +257135,19 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
   uint StringLength;
   long long MemoryLocationResult;
   
-  LowBytePointer = &CoreEngineDataTemplate;
+  StringPointer = &CoreEngineDataTemplate;
   if (*(byte **)(OperationBufferSize + 8) != (byte *)0x0) {
-    LowBytePointer = *(byte **)(OperationBufferSize + 8);
+    StringPointer = *(byte **)(OperationBufferSize + 8);
   }
-  MemoryAllocationIndex = 0xcbf29ce484222325;
-  MemoryAddressMaskPointer = 0;
+  HashValue = 0xcbf29ce484222325;
+  StringLength = 0;
   if (*(uint *)(OperationBufferSize + 0x10) != 0) {
     do {
-      StringComparisonByte = *LowBytePointer;
-      LowBytePointer = LowBytePointer + 1;
-      MemoryAddressMaskPointer = MemoryAddressMaskPointer + 1;
-      MemoryAllocationIndex = (MemoryAllocationIndex ^ StringComparisonByte) * 0x100000001b3;
-    } while (MemoryAddressMaskPointer < *(uint *)(OperationBufferSize + 0x10));
+      CurrentHashByte = *StringPointer;
+      StringPointer = StringPointer + 1;
+      StringLength = StringLength + 1;
+      HashValue = (HashValue ^ CurrentHashByte) * 0x100000001b3;
+    } while (StringLength < *(uint *)(OperationBufferSize + 0x10));
   }
   lStack_18 = FUN_180218bc0((unsigned long long)*(uint *)(ContextHandle + 0x10),
                                   *(void *                                   (*(long long *)(ContextHandle + 8) +
