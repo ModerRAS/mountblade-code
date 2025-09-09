@@ -1697,12 +1697,12 @@ typedef enum {
 #define transformCoeff12 UITransformCoefficient12
 #define transformCoeff13 UITransformCoefficient13
 #define transformCoeff14 UITransformCoefficient14
-#define transformCoeff15 UITransformCoeff15
-#define transformCoeff16 UITransformCoeff16
-#define transformCoeff17 UITransformCoeff17
-#define transformCoeff18 UITransformCoeff18
-#define transformCoeff19 UITransformCoeff19
-#define transformCoeff20 UITransformCoeff20
+#define transformCoeff15 UITransformCoefficient15
+#define transformCoeff16 UITransformCoefficient16
+#define transformCoeff17 UITransformCoefficient17
+#define transformCoeff18 UITransformCoefficient18
+#define transformCoeff19 UITransformCoefficient19
+#define transformCoeff20 UITransformCoefficient20
 #define allocatedMemory1 UIAllocatedMemory1
 #define allocatedMemory2 UIAllocatedMemory2
 #define allocatedMemory8 UIAllocatedMemory8
@@ -1943,7 +1943,9 @@ typedef enum {
 #define resultStack_130 UIResultStack130
 #define highWordFloat UIHighWordFloat
 #define stackUInt118 UIStackUInt118
-#define localChar11 UILocalChar11
+#define localChar11 UILocalCharacterStatus11
+#define contextBasePointer UIContextBasePointer
+#define contextBufferHandle UIContextBufferHandle
 #define localChar2 UILocalChar2
 #define preservedRegister13D UIPreservedRegister13D
 #define preservedXMM6 UIPreservedXMM6
@@ -2055,7 +2057,14 @@ typedef enum {
 #define processingResult7 UIProcessingResult7
 #define processingResult4 UIProcessingResult4
 #define processedCount UIProcessedCount
+// UI系统内存管理变量美化
 #define contextHandleData UIContextHandleData
+#define memorySize UIMemorySize
+#define memorySize64 UIMemorySize64
+#define uiBufferPointer UIBufferPointer
+#define uiComponentFlags UIComponentFlags
+#define stringBufferSize UIStringBufferSize
+#define bufferSize UIBufferSize
 #define aeventProcessingCounter2 UnsignedVector82
 #define aeventProcessingCounter3 UnsignedVector83
 #define sVar122 SignedValue122
@@ -2110,10 +2119,26 @@ typedef enum {
 #define pprocessingResult6 UIPtrProcessingResult6
 #define allocatedMemory7 UIAllocatedMemory7
 #define allocatedMemory4 UIAllocatedMemory4
+// UI系统数据缓冲区变量美化
 #define uiBufferData UIBufferData
+#define uiElementIndex UIElementIndex
+#define uiContextStackOffset UIContextStackOffset
+#define uiPrimaryBufferPtr UIPrimaryBufferPtr
+#define uiSecondaryBufferPtr UISecondaryBufferPtr
+#define uiSecondaryFlags UISecondaryFlags
+#define uiOperationFlags UIOperationFlags
+#define uiContextFlags UIContextFlags
+#define uiContextBuffer UIContextBuffer
 #define eventProcessingStatus UIEventProcessingStatus
+// UI系统组件处理变量美化
 #define uiContext1 UIContext1
 #define uiContext0 UIContext0
+#define componentHeaderPointer UIComponentHeaderPointer
+#define extendedBufferSize UIExtendedBufferSize
+#define uiContextType UIContextType
+#define componentResult UIComponentResult
+#define copyResult UICopyResult
+#define initializationResult UIInitializationResult
 #define dataSource UIDataSource
 #define ContextFirstValue UIContextFirstValue
 #define sVar5 UIShortVar5
@@ -200044,18 +200069,18 @@ LAB_180787e12:
     ptrLocal6 = (UIHandle *)FUN_1807ef190();
     ProcessingStatus = *(UIHandle *)(TargetHandle + 0x48);
     eventProcessingStatus = CONCAT71((int7)(result0 >> 8),1);
-    iterationCount = ptrLocal6[1];
-    *(UIHandle *)(BasePointer + -0x51) = *ptrLocal6;
-    *(UIHandle *)(BasePointer + -0x49) = iterationCount;
-    iterationCount = ptrLocal6[3];
-    *(UIHandle *)(BasePointer + -0x41) = ptrLocal6[2];
-    *(UIHandle *)(BasePointer + -0x39) = iterationCount;
+    EventIterationCount = UIEventPointerArray[1];
+    *(UIHandle *)(StackFrameBasePointer + -0x51) = *UIEventPointerArray;
+    *(UIHandle *)(StackFrameBasePointer + -0x49) = EventIterationCount;
+    EventIterationCount = UIEventPointerArray[3];
+    *(UIHandle *)(StackFrameBasePointer + -0x41) = UIEventPointerArray[2];
+    *(UIHandle *)(StackFrameBasePointer + -0x39) = EventIterationCount;
     iterationCount = ptrLocal6[5];
-    *(UIHandle *)(BasePointer + -0x31) = ptrLocal6[4];
-    *(UIHandle *)(BasePointer + -0x29) = iterationCount;
-    iterationCount = ptrLocal6[6];
-    EventTypeCode = ptrLocal6[7];
-    *(undefined **)(BasePointer + -0x49) = &UNK_18095acf0;
+    *(UIHandle *)(StackFrameBasePointer + -0x31) = UIEventPointerArray[4];
+    *(UIHandle *)(StackFrameBasePointer + -0x29) = EventIterationCount;
+    EventIterationCount = UIEventPointerArray[6];
+    EventTypeIdentifier = UIEventPointerArray[7];
+    *(undefined **)(StackFrameBasePointer + -0x49) = &UIEventDispatcherPointer;
     *(UIHandle *)(BasePointer + -0x21) = iterationCount;
     *(UIHandle *)(BasePointer + -0x19) = EventTypeCode;
     ProcessingStatus = ProcessUIDataTransfer(ProcessingStatus,BasePointer + -0x51,0,pEventDataIndex + 2,eventProcessingStatus);

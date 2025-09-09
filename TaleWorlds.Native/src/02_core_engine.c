@@ -66126,19 +66126,19 @@ UtilityFunctionExecution:
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)auStack_418);
   }
-  goto LAB_1800897d5;
+  goto SystemStringProcessing;
   while (CurrentBytePointer2 = CurrentBytePointer2 + 1, MemoryAllocationIndexAdditional != 0) {
-LAB_18008a310:
+CharacterComparisonLoop:
     HighByte = *CurrentBytePointer2;
     MemoryAllocationIndexAdditional = (uint)CurrentBytePointer2[CharacterTablePointer6];
     if (HighByte != MemoryAllocationIndexAdditional) break;
   }
   if ((int)(HighByte - MemoryAllocationIndexAdditional) < 1) {
-LAB_18008a327:
+MemoryAllocationIndexSet:
     MemoryAllocationIndexSecondary = 1;
   }
   else {
-LAB_18008a32f:
+MemoryAllocationIndexClear:
     MemoryAllocationIndexSecondary = 0;
   }
                     // WARNING: Subroutine does not return
@@ -66354,13 +66354,13 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *ContextHandle
         if (-1 < LockOperationResult3) {
           LoopIndex = (long long)LockOperationResult3;
           do {
-            if (*(char *)(LoopIndex + PrimaryProcessingStatusFlag7[1]) == '/') goto LAB_18008a753;
+            if (*(char *)(LoopIndex + PrimaryProcessingStatusFlag7[1]) == '/') goto PathSeparatorFound;
             LockOperationResult3 = LockOperationResult3 + -1;
             LoopIndex = LoopIndex + -1;
           } while (-1 < LoopIndex);
         }
         LockOperationResult3 = -1;
-LAB_18008a753:
+PathSeparatorFound:
         pStackValidationFlag278 = &SystemContextTemplate;
         puStack_270 = aSystemUintBuffer260;
         iStack_268 = 0;
@@ -66376,7 +66376,7 @@ LAB_18008a753:
           uStack_3d8 = 6;
           strcpy_s(auStack_3d0,0x10,&SystemStringTemplate);
           if (*(uint *)(PrimaryProcessingStatusFlag7 + 2) < uStack_3d8) {
-LAB_18008a841:
+MemoryBoundaryCheck:
             hasMemoryBoundaryChanged = false;
           }
           else {
@@ -66491,7 +66491,7 @@ LAB_18008a841:
           *puStack_530 = 0;
         }
         if (ContextHandle[0xe] == 0) {
-LAB_18008acc1:
+MemoryAddressProcessing:
           MemoryAddressMaskPointer = *(uint8_t *)((long long)ContextHandle + 0x1c);
           ppuStack_3f0 = &puStack_518;
           puStack_518 = &SystemNullTemplate;
