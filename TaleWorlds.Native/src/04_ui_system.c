@@ -2836,6 +2836,56 @@ typedef enum {
 // UI系统堆栈变量美化补充
 #define fStack_a50 UIFloatStackA50
 
+// UI系统寄存器输出变量美化
+#define extraout_XMM0_Da UIRegisterOutputDa
+#define extraout_XMM0_Da_00 UIRegisterOutputDa00
+#define extraout_XMM0_Da_01 UIRegisterOutputDa01
+#define extraout_XMM0_Da_02 UIRegisterOutputDa02
+#define extraout_XMM0_Da_03 UIRegisterOutputDa03
+#define extraout_XMM0_Da_04 UIRegisterOutputDa04
+#define extraout_XMM0_Da_05 UIRegisterOutputDa05
+#define extraout_XMM0_Da_06 UIRegisterOutputDa06
+#define extraout_XMM0_Da_07 UIRegisterOutputDa07
+#define extraout_XMM0_Qb UIRegisterOutputQb
+#define extraout_XMM0_Qb_00 UIRegisterOutputQb00
+
+// UI系统浮点计算变量美化
+#define TransformCoefficient27 UITransformCoeff27
+#define TransformCoefficient28 UITransformCoeff28
+#define TransformCoefficient29 UITransformCoeff29
+#define TransformCoefficient30 UITransformCoeff30
+#define TransformCoefficient31 UITransformCoeff31
+#define TransformCoefficient32 UITransformCoeff32
+#define TransformCoefficient33 UITransformCoeff33
+#define TransformCoefficient34 UITransformCoeff34
+#define TransformCoefficient45 UITransformCoeff45
+#define scaleFactor35 UIScaleFactor35
+#define TransformCoefficient36 UITransformCoeff36
+#define scaleFactor37 UIScaleFactor37
+#define TransformCoefficient38 UITransformCoeff38
+
+// UI系统堆栈变量美化补充
+#define fStack_198 UIFloatStack198
+#define fStack_194 UIFloatStack194
+#define stackLong190 UIStackLong190
+#define stackLong188 UIStackLong188
+#define pcStack_180 UIPtrCharStack180
+#define stackUInt178 UIStackUInt178
+#define fStack_170 UIFloatStack170
+#define fStack_16c UIFloatStack16c
+#define fStack_168 UIFloatStack168
+#define stackLong160 UIStackLong160
+#define stackLong158 UIStackLong158
+#define stackLong150 UIStackLong150
+#define pcStack_148 UIPtrCharStack148
+#define stackLong140 UIStackLong140
+#define pstackUInt138 UIPtrStackUInt138
+#define afStack_130 UIArrayFloatStack130
+#define stackUIntf4 UIStackUIntF4
+#define astackUInt1c8 UIStackArray1C8
+#define stackUInt1a8 UIStackUInt1A8
+#define stackUInt1a0 UIStackUInt1A0
+
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
@@ -12233,7 +12283,7 @@ void ManageUIElements(longlong *uiContext)
   UIDword uiComponentFlags;
   UIHandle uicontextHandle;
   
-  longlong uiSystemFlag = 0xfffffffffffffffe;
+  longlong UISystemManagementFlag = 0xfffffffffffffffe;
   UIActiveContext = uiContext;
   if (uiContext != (longlong *)0x0) {
     (**(code **)(*uiContext + 8))();
@@ -12242,14 +12292,14 @@ void ManageUIElements(longlong *uiContext)
   longlong *uiColorBuffer = (longlong *)0x0;
   ulonglong uiIterationCount = 0;
   longlong *uiMemoryPtr = (longlong *)0x0;
-  uint uiAllocationSize = 3;
+  uint UIResourceAllocationSize = 3;
   InitializeUIComponent(&uiElementPtr);
   longlong *uiColorBufferData = uiColorBuffer;
   if (UIActiveContext != (longlong *)0x0) {
     UIHandle *uiComponentQueue = (UIHandle *)0x0;
     UIHandle *uiComponentList = (UIHandle *)0x0;
-    uint uiQueueSize = 0;
-    uint uiListSize = 3;
+    uint UIComponentQueueSize = 0;
+    uint UIComponentListSize = 3;
     (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&uiComponentQueue);
     UIHandle *uiProcessedQueue = uiComponentQueue;
     uiBufferPointer = uiComponentProcessor;
@@ -23832,8 +23882,8 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
   
    计算距离平方和进行快速平方根倒数计算
   float distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
-  float reciprocalSqrt = rsqrtss(ZEXT416((uint)distanceSquared), ZEXT416((uint)distanceSquared))._0_4_;
-  float normalizationFactor = reciprocalSqrt * 0.5f * (3.0f - distanceSquared * reciprocalSqrt * reciprocalSqrt);
+  float reciprocalSquareRoot = rsqrtss(ZEXT416((uint)distanceSquared), ZEXT416((uint)distanceSquared))._0_4_;
+  float normalizationFactor = reciprocalSquareRoot * 0.5f * (3.0f - distanceSquared * reciprocalSquareRoot * reciprocalSquareRoot);
   
    归一化向量
   float normalizedX = deltaX * normalizationFactor;
@@ -23847,8 +23897,8 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
   
    计算叉积向量的长度并进行归一化
   float crossProductLength = crossProductY * crossProductY + crossProductX * crossProductX + crossProductZ * crossProductZ;
-  float crossReciprocalSqrt = rsqrtss(ZEXT416((uint)crossProductLength), ZEXT416((uint)crossProductLength))._0_4_;
-  float crossNormalizationFactor = crossReciprocalSqrt * 0.5f * (3.0f - crossProductLength * crossReciprocalSqrt * crossReciprocalSqrt);
+  float crossProductReciprocalSqrt = rsqrtss(ZEXT416((uint)crossProductLength), ZEXT416((uint)crossProductLength))._0_4_;
+  float crossNormalizationFactor = crossProductReciprocalSqrt * 0.5f * (3.0f - crossProductLength * crossProductReciprocalSqrt * crossProductReciprocalSqrt);
   
    归一化叉积向量
   crossProductY = crossNormalizationFactor * crossProductY;
