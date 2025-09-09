@@ -10481,17 +10481,17 @@ void InitializeUtilityModule(void);
  * @brief 工具模块配置参数
  */
 uint32_t UtilityCoreModuleConfig;
-uint32_t UtilitySecondaryModuleConfig;
-uint32_t UtilityTertiaryModuleConfig;
-uint32_t UtilityQuaternaryModuleConfig;
-uint32_t UtilityFifthModuleConfig;
-uint32_t UtilitySixthModuleConfig;
+uint32_t UtilitySystemModuleConfig;
+uint32_t UtilityNetworkModuleConfig;
+uint32_t UtilitySecurityModuleConfig;
+uint32_t UtilityRenderModuleConfig;
+uint32_t UtilityAudioModuleConfig;
 
 /**
  * @brief 工具模块激活状态
  */
-bool UtilityModulePrimaryActiveState;
-uint32_t UtilityModuleSeventhConfig;
+bool UtilityCoreModuleActiveState;
+uint32_t UtilityDatabaseModuleConfig;
 uint32_t UtilityModuleEighthConfig;
 bool UtilityModuleSecondaryActiveState;
 
