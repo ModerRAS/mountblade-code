@@ -7570,10 +7570,38 @@ int CalculateUIElementBoundary(longlong elementData, int elementWidth, longlong 
  */
 int ExecuteUITextureMapping(longlong textureData, int textureWidth, longlong mappingData, int mappingHeight, int *mappingResults);
 
- 计算UI渲染深度
+ /**
+ * @brief 计算UI渲染深度
+ * 
+ * 计算UI元素的渲染深度值，用于深度排序和遮挡处理。
+ * 该函数根据渲染数据和深度数据计算出每个像素的深度值。
+ * 
+ * @param renderData 渲染数据指针
+ * @param renderWidth 渲染宽度
+ * @param depthData 深度数据指针
+ * @param depthHeight 深度高度
+ * @param depthResults 深度计算结果数组指针
+ * @return 深度计算状态码，0表示成功，非0表示失败
+ * 
+ * @note 用于UI深度排序和遮挡处理
+ */
 int CalculateUIRenderDepth(uint *renderData, int renderWidth, uint *depthData, int depthHeight, int *depthResults);
 
- 执行UI元素渲染
+ /**
+ * @brief 执行UI元素渲染
+ * 
+ * 执行UI元素的渲染操作，将元素数据渲染到目标缓冲区。
+ * 该函数处理元素数据的渲染计算，包括颜色、透明度和其他渲染属性。
+ * 
+ * @param elementData UI元素数据指针
+ * @param elementWidth UI元素宽度
+ * @param renderData 渲染数据指针
+ * @param renderHeight 渲染高度
+ * @param renderResults 渲染结果数组指针
+ * @return 渲染结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 用于UI元素的实际渲染操作
+ */
 int ExecuteUIElementRendering(uint *elementData, int elementWidth, uint *renderData, int renderHeight, int *renderResults);
 
  初始化UI渲染管线
