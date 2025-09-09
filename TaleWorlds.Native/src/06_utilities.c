@@ -6998,17 +6998,17 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证系统配置
 #define ValidateSystemConfigurationA0 FUN_180893f64
 
-// 原始函数名：FUN_180942280 - 全局指针设置函数A24
+// 全局指针设置函数A24
 // 功能：设置全局数据指针A24到指定地址
-#define SetGlobalDataPointerA24 FUN_180942280
+#define SetGlobalDataPointerA24 ConfigureGlobalDataPointerA24
 
-// 原始函数名：FUN_1809422a0 - 全局指针设置函数A25
+// 全局指针设置函数A25
 // 功能：设置全局数据指针A25到指定地址
-#define SetGlobalDataPointerA25 FUN_1809422a0
+#define SetGlobalDataPointerA25 ConfigureGlobalDataPointerA25
 
-// 原始函数名：FUN_1809422c0 - 全局指针设置函数A26
+// 全局指针设置函数A26
 // 功能：设置全局数据指针A26到指定地址
-#define SetGlobalDataPointerA26 FUN_1809422c0
+#define SetGlobalDataPointerA26 ConfigureGlobalDataPointerA26
 
 // 原始函数名：FUN_1809422e0 - 全局指针设置函数A27
 // 功能：设置全局数据指针A27到指定地址
@@ -7097,13 +7097,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：设置全局数据指针A36到指定地址
 #define SetGlobalDataPointerA36 FUN_180942400
 
-// 原始函数名：FUN_180942420 - 全局指针设置函数A37
+// 全局指针设置函数A37
 // 功能：设置全局数据指针A37到指定地址
-#define SetGlobalDataPointerA37 FUN_180942420
+#define SetGlobalDataPointerA37 ConfigureGlobalDataPointerA37
 
-// 原始函数名：FUN_180942440 - 全局指针设置函数A38
+// 全局指针设置函数A38
 // 功能：设置全局数据指针A38到指定地址
-#define SetGlobalDataPointerA38 FUN_180942440
+#define SetGlobalDataPointerA38 ConfigureGlobalDataPointerA38
 
 // Unwind函数语义化宏定义
 // 原始函数名：Unwind_18090fc10 - 释放SRW锁函数
