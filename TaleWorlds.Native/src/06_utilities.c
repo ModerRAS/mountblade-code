@@ -30871,27 +30871,27 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
           iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
           if (iterationCount == 0) {
             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-            *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1b4);
+            *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextDataOffset1b4);
             iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
             if (iterationCount == 0) {
               memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-              *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1b8);
+              *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextDataOffset1b8);
               iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
               if (iterationCount == 0) {
                 memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1b0);
+                *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextDataOffset1b0);
                 iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
                 if (iterationCount == 0) {
                   memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                  *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1bc);
+                  *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextDataOffset1bc);
                   iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
                   if (iterationCount == 0) {
                     memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                    *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + 0x1c0);
+                    *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + DestinationContextDataOffset1c0);
                     iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,8);
                     if (iterationCount == 0) {
                       memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                      *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + 0x1c8);
+                      *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + DestinationContextDataOffset1c8);
                       iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,8);
                       if (iterationCount == 0) {
                         memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
@@ -31489,14 +31489,14 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -0x14;
         break;
       case 0x20:
-        outputParameter = DestinationContext[1];
+        systemOutputParameter = DestinationContext[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferG,4);
+                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferPrimary,4);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferE,4,systemInputRegisterR9,DestinationContext[2]);
+                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferSecondary,4,systemInputRegister,DestinationContext[2]);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
