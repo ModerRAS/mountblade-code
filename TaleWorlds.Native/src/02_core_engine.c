@@ -9394,6 +9394,16 @@ long long GetMemoryAllocationInfo(void* memoryPointer);
  * 该函数负责配置系统数据，包括内存配置和引擎数据配置
  * 用于系统初始化和运行时配置
  */
+/**
+ * @brief 配置系统数据
+ * 
+ * 该函数负责配置系统数据，包括数据指针、配置数据和缓冲区的设置
+ * 用于系统初始化和配置管理
+ * 
+ * @param dataPointer 数据指针，指向要配置的数据
+ * @param configData 配置数据，包含系统配置信息
+ * @param buffer 缓冲区，用于存储配置结果
+ */
 void ConfigureSystemData(void* dataPointer, void* configData, void* buffer);
 
 /**
@@ -145052,17 +145062,17 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBuf
   char RegisterR13Value;
   bool HighByteValidationFlag;
   uint32_t CharacterProcessingLimit;
-  unsigned long long NullPointerValue;
-  float ContextSecondaryFloat8;
-  float ContextSecondaryFloat9;
-  float FilterInputValue0;
-  float FilterInputValue1;
-  float FilterInputValue2;
+  unsigned long long NullPointerCheckValue;
+  float ContextSecondaryFloatResult;
+  float ContextSecondaryFloatTemp;
+  float FilterInputValueX;
+  float FilterInputValueY;
+  float FilterInputValueZ;
   float ScalingFactor;
-  float FilterInputValue4;
-  float AuxiliaryFloat13;
-  uint64_t *SystemParameter1;
-  long long SystemParameter2;
+  float FilterInputValueW;
+  float AuxiliaryFloatConstant;
+  uint64_t *SystemPrimaryParameter;
+  long long SystemSecondaryParameter;
   char TertiaryStatusFlag;
   char SystemParameterNullCheck;
   char SystemParameterRangeCheck;
