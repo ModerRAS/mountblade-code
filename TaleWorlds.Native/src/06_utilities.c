@@ -35899,12 +35899,12 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   uint resourceFlag;
   bool validationComplete;
   bool securityValidationPassed;
-  float resultFloatValue;
-  float additionalFloatValue1;
-  float additionalFloatValue2;
-  float additionalFloatValue3;
-  float additionalFloatValue4;
-  float computedFloatValue;
+  float calculationResultFloatValue;    // 计算结果浮点值
+  float tempFloatValue1;                  // 临时浮点值1
+  float tempFloatValue2;                  // 临时浮点值2
+  float tempFloatValue3;                  // 临时浮点值3
+  float tempFloatValue4;                  // 临时浮点值4
+  float processedResultFloatValue;        // 处理结果浮点值
   
   // 新增的语义化变量，用于替换原始的Ghidra生成变量名
   float calculatedFloatValue;       // 计算浮点数值，替换fVar20
@@ -35929,7 +35929,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
     operationResult = ValidateDataProcessingA0(systemContext,systemContextData + 0x58);
-    computedFloatValue = resultFloatValue;
+    processedResultFloatValue = calculationResultFloatValue;
     if ((int)operationResult != 0) {
       return operationResult;
     }

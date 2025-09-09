@@ -9886,7 +9886,7 @@ void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong
 {
   code *controllerMethod;
   UIIterationCounter *iterationCount;
-  undefined *targetBufferHandle;
+  UITargetBufferHandle *targetBufferHandle;
   
   controllerMethod = ControllerMethods;
   *(UIByte *)(uiContext + 0x189) = 1;
@@ -9895,8 +9895,8 @@ void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong
   }
   else {
     iterationCount = &UIDefaultDataBuffer;
-    if (*(undefined **)(dataSource + 8) != (undefined *)0x0) {
-      iterationCount = *(undefined **)(dataSource + 8);
+    if *(UIDataBuffer **)(dataSource + 8) != (UIDataBuffer *)0x0) {
+      iterationCount = *(UIDataBuffer **)(dataSource + 8);
     }
     targetBufferHandle = &UIDefaultDataBuffer;
     if (*(undefined **)(targetBuffer + 8) != (undefined *)0x0) {
