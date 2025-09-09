@@ -21034,7 +21034,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
       return systemOperationResult;
     }
   }
-  *(uint *)(valueContext + ValueContextOffset8) = *(int *)(valueContext + ValueContextOffset8) + 0xfU & 0xfffffff0;
+  *(uint *)(valueContext + ValueContextOffset8) = *(int *)(valueContext + ValueContextOffset8) + DataAlignmentValue & SecurityAlignmentMask;
   systemOperationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultStoragePointer + SystemConfigTertiaryOffset));
   if ((int)systemOperationResult == 0) {
     return 0;
@@ -21103,7 +21103,7 @@ RangeValidationSuccess:
       return operationResult;
     }
   }
-  *(uint *)(operationBase + OperationBaseOffset8) = *(int *)(operationBase + OperationBaseOffset8) + 0xfU & 0xfffffff0;
+  *(uint *)(operationBase + OperationBaseOffset8) = *(int *)(operationBase + OperationBaseOffset8) + DataAlignmentValue & SecurityAlignmentMask;
   operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(memoryBlockOffset + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
