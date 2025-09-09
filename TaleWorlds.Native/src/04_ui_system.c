@@ -89532,21 +89532,21 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
       if (((bufferSize != 0) && (1 < AllocationFlags)) && (TemporaryInt4 = 0, StackParam130 < 0)) {
         TemporaryInt4 = StackParam130;
       }
-      iStack0000000000000130 = TempInt4;
-      loopCounter = loopCounter + targetBuffer;
-      if (loopCounter < 0xf) {
-        if (loopCounter < 2) {
-          if (loopCounter < 1) {
-            iStack0000000000000130 = -1;
+      StackParam130 = TemporaryInt4;
+      LoopCounter = LoopCounter + targetBuffer;
+      if (LoopCounter < 0xf) {
+        if (LoopCounter < 2) {
+          if (LoopCounter < 1) {
+            StackParam130 = -1;
           }
           else {
-            if (0 < iStack0000000000000130) {
-              iStack0000000000000130 = 0;
+            if (0 < StackParam130) {
+              StackParam130 = 0;
             }
-            func_0x000180705150(result2,-iStack0000000000000130,dVar18);
-            RegisterPointer = stackParam00000118;
-            targetBuffer = stackParam00000128;
-            register10D = stackParam00000108;
+            func_0x000180705150(Result2,-StackParam130,dVar18);
+            RegisterPointer = StackParam118;
+            targetBuffer = StackParam128;
+            Register10D = StackParam108;
             bufferSize = stackParam00000170;
           }
         }
