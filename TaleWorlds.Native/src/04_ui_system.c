@@ -397529,8 +397529,16 @@ LAB_18089d07f:
 
 
 
- void FUN_18089d091(void)
-void FUN_18089d091(void)
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 执行空操作，用于UI系统的占位符或默认处理函数。
+ * 
+ * @note 原始函数名：FUN_18089d091
+ * @return 无返回值
+ */
+void UINullOperation(void)
+void UINullOperation(void)
 
 {
   return;
