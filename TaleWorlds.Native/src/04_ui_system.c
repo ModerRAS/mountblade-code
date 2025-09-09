@@ -2449,16 +2449,16 @@ void* UIGestureCoordinates;
 #define UIFunctionTablePointer7 _DAT_180d4a7e8
 
  // UI系统全局状态标志宏定义
-#define UIGlobalStatusFlag1 _DAT_180d4a788
-#define UIGlobalStatusFlag2 _DAT_180d4a740
-#define UIGlobalStatusFlag3 _DAT_180d4a700
-#define UIGlobalStatusFlag4 _DAT_180d4a6e0
-#define UIGlobalStatusFlag5 _DAT_180d4a6b8
-#define UIGlobalStatusFlag6 _DAT_180d4a968
-#define UIGlobalStatusFlag7 _DAT_180d4a948
-#define UIGlobalStatusFlag8 _DAT_180d4a920
-#define UIGlobalStatusFlag9 _DAT_180d4a8f0
-#define UIGlobalStatusFlag10 _DAT_180d4a8d0
+#define UIGlobalStatusFlag1 _DAT_180d4a788               // UI全局状态标志1
+#define UIGlobalStatusFlag2 _DAT_180d4a740               // UI全局状态标志2
+#define UIGlobalStatusFlag3 _DAT_180d4a700               // UI全局状态标志3
+#define UIGlobalStatusFlag4 _DAT_180d4a6e0               // UI全局状态标志4
+#define UIGlobalStatusFlag5 _DAT_180d4a6b8               // UI全局状态标志5
+#define UIGlobalStatusFlag6 _DAT_180d4a968               // UI全局状态标志6
+#define UIGlobalStatusFlag7 _DAT_180d4a948               // UI全局状态标志7
+#define UIGlobalStatusFlag8 _DAT_180d4a920               // UI全局状态标志8
+#define UIGlobalStatusFlag9 _DAT_180d4a8f0               // UI全局状态标志9
+#define UIGlobalStatusFlag10 _DAT_180d4a8d0              // UI全局状态标志10
 #define UIGlobalStatusFlag11 _DAT_180d4a898
 #define UIGlobalStatusFlag12 _DAT_180d4a858
 #define UIGlobalStatusFlag13 _DAT_180d4a820
