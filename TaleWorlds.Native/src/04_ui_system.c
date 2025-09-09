@@ -37143,10 +37143,10 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
   processingStatusBuffer1._10_2_ = (processingStatusBuffer0._10_2_ - eventTypeCodeBuffer._10_2_) + uiComponentDataPtr[0xd];
   processingStatusBuffer1._12_2_ = (processingStatusBuffer0._12_2_ - eventTypeCodeBuffer._12_2_) + uiComponentDataPtr[0xe];
   processingStatusBuffer1._14_2_ = (processingStatusBuffer0._14_2_ - eventTypeCodeBuffer._14_2_) + uiComponentDataPtr[0xf];
-  aloopCounter0 = pmulhw(aProcessingStatus1,(*(UIByte (**) [16])(uiContext + 0x18))[1]);
-  psVar1 = (short *)*dataSource;
-  aloopCounter1 = aloopCounter1 ^ aiterationCount1;
-  sVar49 = aloopCounter1._0_2_ - aiterationCount1._0_2_;
+  loopCounterBuffer0 = pmulhw(processingStatusBuffer1,(*(UIByte (**) [16])(uiContext + 0x18))[1]);
+  uiComponentDataPtr = (short *)*dataSource;
+  loopCounterBuffer1 = loopCounterBuffer1 ^ animationIterationBuffer;
+  transformShearY = loopCounterBuffer1._0_2_ - animationIterationBuffer._0_2_;
   sVar52 = aloopCounter1._2_2_ - aiterationCount1._2_2_;
   sVar53 = aloopCounter1._4_2_ - aiterationCount1._4_2_;
   sVar54 = aloopCounter1._6_2_ - aiterationCount1._6_2_;
