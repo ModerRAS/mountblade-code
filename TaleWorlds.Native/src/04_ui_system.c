@@ -10049,7 +10049,7 @@ longlong * GetUIComponentAndInitialize(longlong *componentPtr,longlong arrayBase
 {
   longlong *componentPointer;
   UIDword methodResult;
-  UIDword stackVar;
+  UIDword componentFlags;
   
   componentPointer = *(longlong **)(*(longlong *)(arrayBase + 0x10) + (longlong)componentIndex * 8);
   if (componentPointer == (longlong *)0x0) {
@@ -10060,7 +10060,7 @@ longlong * GetUIComponentAndInitialize(longlong *componentPtr,longlong arrayBase
     (**(code **)(*componentPointer + 0x28))(componentPointer);
   }
   *componentPtr = (longlong)componentPointer;
-  componentPtr[1] = CONCAT44(stackVar,methodResult);
+  componentPtr[1] = CONCAT44(componentFlags,methodResult);
   return componentPtr;
 }
 
