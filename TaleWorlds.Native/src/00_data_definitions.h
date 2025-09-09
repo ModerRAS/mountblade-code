@@ -4877,28 +4877,29 @@ Label_MutexOperationComplete:
     SystemPointerPointerStack1b8 = (longlong **)SystemModuleContext;
     SystemModuleContext = *pMemoryAddress5;
     SystemInitializeSecondary(&SystemDataRatioCalculator,0,0);
-    dVar2 = 0.0;
-    dVar7 = 0.0;
-    dVar9 = 0.0;
-    dVar8 = 0.0;
+    double InitialCalculationResult = 0.0;
+    double AccumulatedResultA = 0.0;
+    double AccumulatedResultB = 0.0;
+    double PreviousResultA = 0.0;
+    double PreviousResultB = 0.0;
     MemoryAddress9 = BufferSize0;
     BufferSize2 = BufferSize0;
     if (*(longlong *)(StringPointer + 0x10) - *(longlong *)(StringPointer + 8) >> 3 != 0) {
       do {
-        dVar1 = *(double *)(*(longlong *)(MemoryAddress9 + *(longlong *)(StringPointer + 8)) + 0x200);
-        dVar7 = dVar2 + dVar1;
-        dVar2 = *(double *)(*(longlong *)(MemoryAddress9 + *(longlong *)(StringPointer + 8)) + 0x1f8);
-        dVar8 = dVar9 + dVar2;
-        CalculateSystemDataRatio(&SystemDataRatioPrimary,BufferSize2,dVar1 / dVar2);
+        double CurrentDataValue = *(double *)(*(longlong *)(MemoryAddress9 + *(longlong *)(StringPointer + 8)) + 0x200);
+        AccumulatedResultA = InitialCalculationResult + CurrentDataValue;
+        InitialCalculationResult = *(double *)(*(longlong *)(MemoryAddress9 + *(longlong *)(StringPointer + 8)) + 0x1f8);
+        AccumulatedResultB = AccumulatedResultB + InitialCalculationResult;
+        CalculateSystemDataRatio(&SystemDataRatioPrimary,BufferSize2,CurrentDataValue / InitialCalculationResult);
         BufferSize1 = (int)BufferSize2 + 1;
         MemoryAddress9 = MemoryAddress9 + 8;
         BufferSize2 = (ulonglong)BufferSize1;
-        dVar2 = dVar7;
-        dVar9 = dVar8;
+        InitialCalculationResult = AccumulatedResultA;
+        AccumulatedResultB = AccumulatedResultB;
       } while ((ulonglong)(longlong)(int)BufferSize1 <
                (ulonglong)(*(longlong *)(StringPointer + 0x10) - *(longlong *)(StringPointer + 8) >> 3));
     }
-    CalculateSystemDataRatio(&SystemDataRatioSecondary,dVar7 / dVar8);
+    CalculateSystemDataRatio(&SystemDataRatioSecondary,AccumulatedResultA / AccumulatedResultB);
     FinalizeSystemComponent();
     SystemModuleContext = MemoryAddress4;
     LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);

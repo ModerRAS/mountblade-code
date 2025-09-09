@@ -132322,13 +132322,25 @@ UIHandle FUN_1807466e0(longlong uiContext,UIDword *dataSource)
 
 
 
-UIHandle FUN_180746780(longlong uiContext,int dataSource,longlong targetBuffer)
+/**
+ * @brief 处理UI系统句柄操作
+ * 
+ * 该函数根据不同的数据源类型处理UI系统句柄操作，包括初始化、清理和资源管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源类型（0、1、2代表不同的操作）
+ * @param targetBuffer 目标缓冲区句柄
+ * @return UIHandle 操作结果句柄，0x1f表示失败
+ * 
+ * @note 原始函数名：FUN_180746780
+ */
+UIHandle ProcessUIHandleOperation(longlong uiContext,int dataSource,longlong targetBuffer)
 
 {
   UIHandle result;
   
   if (targetBuffer != 0) {
-    if ((*(char *)(uiContext + 9) == '\0') && (result = FUN_180749060(), (int)result != 0)) {
+    if ((*(char *)(uiContext + 9) == '\0') && (result = InitializeUISystem(), (int)result != 0)) {
       return result;
     }
     if (dataSource == 0) {
@@ -132349,7 +132361,18 @@ UIHandle FUN_180746780(longlong uiContext,int dataSource,longlong targetBuffer)
 
 
 
-UIHandle FUN_180746840(longlong uiContext,int *dataSource)
+/**
+ * @brief 获取UI数据源信息
+ * 
+ * 该函数从UI数据缓冲区中获取数据源信息，如果数据源无效则返回错误码。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return UIHandle 操作结果，0表示成功，0x1f表示失败
+ * 
+ * @note 原始函数名：FUN_180746840
+ */
+UIHandle GetUIDataSourceInfo(longlong uiContext,int *dataSource)
 
 {
   if (dataSource == (int *)0x0) {
@@ -144404,7 +144427,7 @@ UIHandle FUN_180753680(longlong uiContext,char *dataSource)
   UIHandle *componentContextPtr;
   int loopCounter;
   int localInt7;
-  longlong *plStackX_10;
+  longlong *pUIContextStack;
   
   *dataSource = '\0';
   loopCounter = 0;
