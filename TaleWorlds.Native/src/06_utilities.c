@@ -28347,7 +28347,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   int operationResult;
   int operationStatus;
   uint memoryRegionBase;
-  ByteFlag *operationResult;
+  ByteFlag *operationResultPointer;
   ByteFlag *pdataFlags;
   uint basePointer;
   int allocatedMemoryBlock;
