@@ -3792,60 +3792,60 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ProcessDataWithMask ApplyDataMaskAndFilter
 
 /**
- * @brief 系统初始化函数A0
+ * @brief 系统组件初始化函数
  * 
- * 该函数负责初始化系统组件，包括内存分配、数据结构初始化和参数设置。
+ * 该函数负责初始化系统核心组件，包括内存分配、数据结构初始化和参数设置。
  * 它会为系统运行准备必要的环境和资源，确保系统能够正常启动。
  * 
  * @note 原始函数名：FUN_180074a80
  * 功能：初始化系统组件和内存
  */
-#define InitializeSystemA0 SetupSystemComponentsAndMemory
+#define InitializeSystemComponents SetupSystemComponentsAndMemory
 
 /**
- * @brief 系统终止函数A0
+ * @brief 系统进程终止函数
  * 
- * 该函数负责终止系统运行，包括资源清理、内存释放和状态重置。
+ * 该函数负责终止系统进程，包括资源清理、内存释放和状态重置。
  * 它会安全地关闭所有系统组件，确保系统能够正常退出。
  * 
  * @note 原始函数名：FUN_180080060
  */
-#define TerminateSystemA0 TerminateSystemProcessesAndResources
+#define TerminateSystemProcesses TerminateSystemProcessesAndResources
 
 /**
- * @brief 系统清理函数A0
+ * @brief 系统资源清理函数
  * 
  * 该函数负责清理系统资源，包括内存释放、数据结构清理和状态重置。
  * 它会在系统关闭或重启时调用，确保所有资源都被正确释放。
  * 
  * @note 原始函数名：FUN_1800809a0
  */
-#define CleanupSystemA0 CleanupSystemMemoryAndData
+#define CleanupSystemResources CleanupSystemMemoryAndData
 
 /**
- * @brief 系统重置函数A0
+ * @brief 系统状态重置函数
  * 
  * 该函数负责重置系统状态，包括配置重置、状态初始化和系统重新启动。
  * 它会在系统出现错误或需要重新初始化时调用，确保系统能够恢复到初始状态。
  * 
  * @note 原始函数名：FUN_180080870
  */
-#define ResetSystemA0 ResetSystemStateAndConfiguration
+#define ResetSystemState ResetSystemStateAndConfiguration
 
 /**
- * @brief 系统数据处理函数A0
+ * @brief 系统数据处理与验证函数
  * 
  * 该函数负责处理系统数据，包括数据验证、格式转换和数据处理。
  * 它会根据系统需求对数据进行各种操作，确保数据的正确性和完整性。
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcessSystemDataA1 ProcessSystemDataAndValidation
+#define ProcessAndValidateSystemData ProcessSystemDataAndValidation
 
 /**
- * @brief 系统资源处理函数A0
+ * @brief 系统资源管理函数
  * 
- * 该函数负责处理系统资源的分配、管理和释放，包括内存资源、文件资源和
+ * 该函数负责管理系统资源的分配、管理和释放，包括内存资源、文件资源和
  * 系统句柄等。它会根据系统状态和资源需求进行相应的资源操作。
  * 
  * @param resourceHandle 资源句柄，标识要处理的资源
@@ -3857,7 +3857,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18007f6a0
  * @warning 资源操作失败可能会导致系统不稳定，需要妥善处理错误情况
  */
-#define ProcessSystemResourcesA1 ProcessSystemResourcesAndMemory
+#define ManageSystemResources ProcessSystemResourcesAndMemory
 
 /**
  * @brief 数据缓冲区清理函数
@@ -134745,7 +134745,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * @note 原始变量名：ValidationResultFloatA
  * @warning 浮点数操作需要考虑精度和溢出问题
  */
-float ValidationResultFloatA;
+float ValidationIntermediateResultFloatA;
 
 /**
  * @brief 验证结果浮点数B

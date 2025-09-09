@@ -3912,27 +3912,17 @@ void* UIGestureCoordinates;
 #define UIDataTableEvent UNK_180980dc0
 #define UIDataTableResource UNK_180981620
 
- UI系统渲染缓冲区指针宏定义
- UNK_18097f660 - UI组件数据缓冲区指针
-#define UIComponentDataBufferPointer UNK_18097f660
- UNK_18097f960 - UI事件处理缓冲区指针
-#define UIEventHandlingBufferPointer UNK_18097f960
- UNK_18097fda8 - UI渲染缓冲区指针A
-#define UIRenderBufferPointerA UNK_18097fda8
- UNK_18097fdc0 - UI渲染缓冲区指针B
-#define UIRenderBufferPointerB UNK_18097fdc0
- UNK_18097fd98 - UI渲染缓冲区指针C
-#define UIRenderBufferPointerC UNK_18097fd98
- UNK_18097fd88 - UI渲染缓冲区指针D
-#define UIRenderBufferPointerD UNK_18097fd88
- UNK_18097fd78 - UI渲染缓冲区指针E
-#define UIRenderBufferPointerE UNK_18097fd78
- UNK_18097fd68 - UI渲染缓冲区指针F
-#define UIRenderBufferPointerF UNK_18097fd68
- UNK_18097fd58 - UI渲染缓冲区指针G
-#define UIRenderBufferPointerG UNK_18097fd58
- UNK_18097fd48 - UI渲染缓冲区指针H
-#define UIRenderBufferPointerH UNK_18097fd48
+ // UI系统渲染缓冲区指针宏定义
+#define UIComponentDataBufferPointer UNK_18097f660        // UI组件数据缓冲区指针
+#define UIEventHandlingBufferPointer UNK_18097f960         // UI事件处理缓冲区指针
+#define UIRenderBufferPointerA UNK_18097fda8               // UI渲染缓冲区指针A
+#define UIRenderBufferPointerB UNK_18097fdc0               // UI渲染缓冲区指针B
+#define UIRenderBufferPointerC UNK_18097fd98               // UI渲染缓冲区指针C
+#define UIRenderBufferPointerD UNK_18097fd88               // UI渲染缓冲区指针D
+#define UIRenderBufferPointerE UNK_18097fd78               // UI渲染缓冲区指针E
+ #define UIRenderBufferPointerF UNK_18097fd68               // UI渲染缓冲区指针F
+#define UIRenderBufferPointerG UNK_18097fd58               // UI渲染缓冲区指针G
+ #define UIRenderBufferPointerH UNK_18097fd48               // UI渲染缓冲区指针H
 
 // UI系统全局处理器指针宏定义
 #define UIGlobalDataTransformationProcessor _DAT_180d4a788
@@ -8876,8 +8866,8 @@ void ProcessUIMessages(void)
 
 {
   char currentChar;
-  ulonglong pathSeparator1;
-  ulonglong pathSeparator2;
+  ulonglong pathSeparatorPosition1;
+  ulonglong pathSeparatorPosition2;
   undefined *dataBuffer;
   char *sourceString;
   
