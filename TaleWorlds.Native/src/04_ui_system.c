@@ -96679,8 +96679,23 @@ void FUN_180721810(float *uiContext,int dataSource,int targetBuffer,float buffer
 
 
 
- void FUN_18072182d(float *uiContext,int dataSource,int targetBuffer)
-void FUN_18072182d(float *uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief UI数据简单变换处理函数
+ * 
+ * 对UI上下文中的数据进行简化的线性变换处理，包括：
+ * - 基本的数据缓冲区变换
+ * - 简单的变换系数应用
+ * - 支持正向和反向数据变换
+ * - 处理小规模数据块
+ * 
+ * @param uiContext UI上下文数据指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区索引
+ * 
+ * @note 原始函数名：FUN_18072182d
+ */
+void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int targetBuffer)
+void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int targetBuffer)
 
 {
   float baseValue;
@@ -401118,6 +401133,11 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统数据初始化函数
 #define InitializeUIDataBuffer FUN_18071ab41
 #define InitializeUIDataContext FUN_18071ace8
+
+// UI系统数据变换处理函数
+#define ProcessUIDataWithSimpleTransform FUN_18072182d
+#define ProcessUIDataWithHandles FUN_180721864
+#define ProcessUIDataFinalization FUN_180721984
 
 // UI系统寄存器变量美化
 #define unmodifiedEBX UIPreservedEBX

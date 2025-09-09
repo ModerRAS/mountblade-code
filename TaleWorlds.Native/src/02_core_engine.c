@@ -223386,10 +223386,10 @@ LAB_18018764a:
         } while (ProcessingCounter < *(unsigned long long *)(SystemStringIndex + 0x60));
       }
       if (lStack_68 == CoreEngineSignedValue70) {
-        FUN_1801891f0(&CoreEngineSignedValue78,CoreEngineSignedValue70,&pSystemFlagF);
+        ProcessSystemFlagsAndParameters(&CoreEngineSignedValue78,CoreEngineSignedValue70,&pSystemFlagF);
       }
       else {
-        FUN_180189190();
+        ResetSystemStatus();
         CoreEngineSignedValue70 = CoreEngineSignedValue70 + 0x40;
       }
       TemporaryBuffer = SystemEventDispatcher;
@@ -224922,7 +224922,7 @@ void ExpandCharacterStatusBufferAndInsertElement(long long *CharacterStatusBuffe
   BufferStartAddress = *CharacterStatusBuffer;
   StringOffset = (CharacterStatusBuffer[1] - BufferStartAddress) / 0x28;
   if (StringOffset == 0x666666666666666) {
-    FUN_180189990(CharacterStatusBuffer[1] - BufferStartAddress,0x666666666666666,BufferStartAddress,0x666666666666666,0xfffffffffffffffe    ;
+    ProcessSystemValidationRoutine(CharacterStatusBuffer[1] - BufferStartAddress,0x666666666666666,BufferStartAddress,0x666666666666666,0xfffffffffffffffe    ;
     FunctionPointer = (code *)swi(3);
     (*FunctionPointer)();
     return;
