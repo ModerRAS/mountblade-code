@@ -78010,7 +78010,7 @@ uint64_t CalculateEngineSecondaryParameter(void
         }
         CharacterStatusBuffer2 = (void *)*CharacterStatusBuffer3;
       }
-LAB_1800957c7:
+CharacterStatusBufferFinalLabel:
       CharacterStatusBuffer = CharacterStatusBuffer3;
       if (LowByte) {
         CharacterStatusBuffer = TemporaryBuffer;
@@ -78020,7 +78020,7 @@ LAB_1800957c7:
     } while (CharacterStatusBuffer2 != NULL);
     SystemStatusContext = NULL;
     if (CharacterStatusBuffer != SystemCharacterStatusBuffer) {
-      if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009580a;
+      if (*(int *)(CharacterStatusBuffer + 6) == 0) goto CharacterStatusBufferFinalLabel;
       if (SystemStackInteger40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
         LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
