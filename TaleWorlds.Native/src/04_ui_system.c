@@ -7698,29 +7698,29 @@ longlong g_uiRenderDataOffset;
  UI渲染数据缓冲区
 uint64_t *uiRenderDataBuffer;
 uint64_t uiRenderDataValue;
-undefined g_uiRenderDataSeptendenary;
-undefined g_uiRenderDataOctodenary;
-undefined g_uiRenderDataNovendenary;
-undefined g_uiRenderDataVigesimal;
-undefined g_uiRenderDataUnvigesimal;
-undefined g_uiRenderDataDuovigesimal;
-undefined g_uiRenderDataTrevigesimal;
-undefined g_uiAnimationData;
-undefined g_uiAnimationDataPrimary;
-undefined g_uiAnimationDataSecondary;
-undefined g_uiAnimationDataTertiary;
-undefined g_uiAnimationDataQuaternary;
-undefined g_uiAnimationDataQuinary;
-undefined g_uiAnimationDataSenary;
-undefined g_uiAnimationDataSeptenary;
-undefined g_uiAnimationDataOctonary;
-undefined g_uiAnimationDataNonary;
-undefined g_uiAnimationDataDenary;
-undefined g_uiAnimationDataUndenary;
+UIByte g_uiRenderDataSeptendenary;
+UIByte g_uiRenderDataOctodenary;
+UIByte g_uiRenderDataNovendenary;
+UIByte g_uiRenderDataVigesimal;
+UIByte g_uiRenderDataUnvigesimal;
+UIByte g_uiRenderDataDuovigesimal;
+UIByte g_uiRenderDataTrevigesimal;
+UIByte g_uiAnimationData;
+UIByte g_uiAnimationDataPrimary;
+UIByte g_uiAnimationDataSecondary;
+UIByte g_uiAnimationDataTertiary;
+UIByte g_uiAnimationDataQuaternary;
+UIByte g_uiAnimationDataQuinary;
+UIByte g_uiAnimationDataSenary;
+UIByte g_uiAnimationDataSeptenary;
+UIByte g_uiAnimationDataOctonary;
+UIByte g_uiAnimationDataNonary;
+UIByte g_uiAnimationDataDenary;
+UIByte g_uiAnimationDataUndenary;
 
  初始化UI系统渲染管线
-undefined InitializeUISystemRenderingPipeline;
-undefined UIRenderPipelineConfigPrimary;
+UIByte InitializeUISystemRenderingPipeline;
+UIByte UIRenderPipelineConfigPrimary;
 
  处理UI系统渲染管线
 uint8_t ProcessUISystemRenderingPipeline;
@@ -101939,7 +101939,7 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
     if (0 < TempInt4) {
       baseValue0 = 0.0;
       do {
-        dVar6 = (double)FUN_18072b3a0(targetBuffer,processingResult);
+        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
         dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
         if (0 < uiCompareResult) {
           ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);
@@ -102030,7 +102030,7 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
   localInt5 = *(int *)(uiBufferData + 0x11dc);
   processingResult = (*(int *)(uiBufferData + 0x11f8) + localInt5 * -3) / 2;
   pfStack_5a0 = dataSource;
-  FUN_18072b830(dataSource[0xaf] * 0.01,stackLong5b0,1,processingResult);
+  ProcessUIMatrixTransformation(dataSource[0xaf] * 0.01,stackLong5b0,1,processingResult);
                      WARNING: Subroutine does not return
   memcpy(astackUInt4b8 + (longlong)processingResult * 4,stackLong5b0 + (longlong)processingResult * 4,
          (longlong)(localInt5 * 3) << 2);
@@ -102149,7 +102149,7 @@ void FUN_180724f73(longlong uiContext,longlong dataSource,longlong targetBuffer,
     if (0 < TempInt4) {
       baseValue0 = 0.0;
       do {
-        dVar6 = (double)FUN_18072b3a0(targetBuffer,processingResult);
+        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
         dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
         if (0 < uiCompareResult) {
           ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);
@@ -102356,7 +102356,7 @@ void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,
     if (0 < TempInt4) {
       baseValue0 = 0.0;
       do {
-        dVar6 = (double)FUN_18072b3a0(targetBuffer,processingResult);
+        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
         dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
         if (0 < uiCompareResult) {
           ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);

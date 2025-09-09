@@ -66641,7 +66641,7 @@ MemoryBlockListHeadAssignment:
           HighByte = 0 < MatchCounter;
           if (MatchCounter < 1) {
             ContextHandle3 = (long long *)ContextHandle2[1];
-            goto LAB_18008927d;
+            goto MemoryBlockListUpdateLabel;
           }
         }
         ContextHandle3 = (long long *)*ContextHandle2;
@@ -67020,14 +67020,14 @@ void InitializeSystemStatusAndMemory(void
         while (ProcessingStatusFlag = MemoryAllocationBase + 1, *(char *)(*ContextHandle9 + MemoryAllocationBase) == (&DefaultCharacterStatusBuffer)[MemoryAllocationBase]) {
           MemoryAllocationBase = ProcessingStatusFlag;
           if (ProcessingStatusFlag == 7) {
-            if (IntegerValue8 == -1) goto LAB_18008984e;
+            if (IntegerValue8 == -1) goto IntegerValueValidationLabel;
             lStack_1f0 = (long long                         (int)(*(long long *)(SystemThreadPool + 0x30) -
                                *(long long *)(SystemThreadPool + 0x28) >> 5);
-            if (lStack_1f0 < 1) goto LAB_180089861;
+            if (lStack_1f0 < 1) goto StackValidationLabel;
             SystemEventFlag8 = 0;
             lStack_3b8 = (long long)IntegerValue8 * 0x60;
             CharacterTablePointer6 = SystemThreadPool;
-            goto LAB_1800897d5;
+            goto MemoryBlockProcessingCompleteLabel;
           }
         }
       }
