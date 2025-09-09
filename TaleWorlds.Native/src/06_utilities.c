@@ -97,7 +97,9 @@
 #define DestinationContextStatusOffset 0x7c
 #define MemoryResourcePointerOffsetTertiary 0x130
 #define MemoryResourcePointerOffsetAlternate 0x118
-#define ExceptionHandlerContextPointerRangeStart 0xf8
+#define SystemConfigurationOffsetD8 0xd8
+#define SystemValidationOffsetF8 0xf8
+#define SystemDataStreamOffsetE8 0xe8
 #define ExceptionHandlerContextPointerRangeEnd 0x100
 
 // 内存资源管理常量
