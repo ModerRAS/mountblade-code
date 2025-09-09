@@ -130075,19 +130075,19 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_2c - 栈数据字AW
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAW uStack_2c
+#define DataProcessingTempDataAW uStack_2c
 
 // 原始变量名：uStack_78 - 栈数据字AX
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAX uStack_78
+#define DataProcessingTempDataAX uStack_78
 
 // 原始变量名：uStack_74 - 栈数据字AY
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAY uStack_74
+#define DataProcessingTempDataAY uStack_74
 
 // 原始变量名：uStack_70 - 栈数据字AZ
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAZ uStack_70
+#define DataProcessingTempDataAZ uStack_70
 
 // 原始变量名：uStack_6c - 栈数据字BA
 // 功能：存储数据处理过程中的临时数据字
