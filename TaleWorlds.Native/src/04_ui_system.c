@@ -105340,9 +105340,9 @@ void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInta8;
   contextHandleData = 0;
   stackUInt88 = *(UIDword *)(uiBufferData + 0x914);
-  FUN_1807249d0(dataSource + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2);
-  FUN_180734390(asStack_78,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
-  FUN_18072f4d0(dataSource + 0x40,asStack_78,*(UIDword *)(uiBufferData + 0x924),
+  ValidateUIComponentData(dataSource + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2);
+  ProcessUIComponentTransform(asStack_78,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
+  CalculateUILayoutMetrics(dataSource + 0x40,asStack_78,*(UIDword *)(uiBufferData + 0x924),
                 *(UIDword *)(uiBufferData + 0x1060));
   if (*(int *)(uiBufferData + 0x948) == 1) {
     *(UIByte *)(uiContext + 0xae7) = 4;
@@ -299903,6 +299903,17 @@ void FUN_18084b380(UIHandle uiContext)
 
 
  void FUN_18084b410(UIHandle uiContext)
+/**
+ * @brief 验证UI上下文并执行渲染任务
+ * 
+ * 该函数负责验证UI上下文的有效性，检查渲染上下文大小和相关状态，
+ * 然后根据验证结果执行相应的渲染任务。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态和配置信息
+ * 
+ * @note 原始函数名：FUN_18084b410
+ * @warning 此函数不返回，会直接调用ExecuteUIRenderTask
+ */
 void FUN_18084b410(UIHandle uiContext)
 
 {
