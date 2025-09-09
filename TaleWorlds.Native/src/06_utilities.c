@@ -28289,13 +28289,13 @@ void ProcessFloatingPointDataA0(float inputValue)
   float systemContextBuffer44;
   float secondaryInputValue;
   float validationFloatValue;    // 验证浮点数值
-  float loopCounterFloat;        // 循环计数器
-  float *floatArrayPointer;      // 浮点数组指针
+  float arrayIterationCounter;   // 数组迭代计数器
+  float *floatDataArrayPointer;  // 浮点数据数组指针
   
   // 初始化新变量，用于替换原始的Ghidra生成变量名
   validationFloatValue = 0.0f;
-  loopCounterFloat = 0.0f;
-  floatArrayPointer = NULL;
+  arrayIterationCounter = 0.0f;
+  floatDataArrayPointer = NULL;
   
   if (inputValue != 1.0) {
     exceptionContext = &ValidationContextA0;
@@ -28316,10 +28316,10 @@ void ProcessFloatingPointDataA0(float inputValue)
       operationResult = ValidateDataIntegrityA0(secondaryInputValue,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
-    dataPointer = (float *)(dataBase + DataBaseOffset94);
+    floatDataArrayPointer = (float *)(dataBase + DataBaseOffset94);
     baseValue = systemValue;
     do {
-      processedValue = *dataPointer;
+      processedValue = *floatDataArrayPointer;
       if (validationFloatValue != 0.0) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingValidationError;
@@ -28329,19 +28329,19 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
-      loopCounterFloat = (float)((int)loopCounterFloat + 1);
-      floatArrayPointer = floatArrayPointer + 1;
-    } while ((int)loopCounterFloat < 4);
-    floatArrayPointer = (float *)&FloatValidationArray;
-    loopCounterFloat = dataPointerD;
+      arrayIterationCounter = (float)((int)arrayIterationCounter + 1);
+      floatDataArrayPointer = floatDataArrayPointer + 1;
+    } while ((int)arrayIterationCounter < 4);
+    floatValidationArrayPointer = (float *)&FloatValidationArray;
+    validationIndexCounter = processedFloatValue;
     do {
-      validationFloatValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)floatArrayPointer);
-      if (validationFloatValue != *floatArrayPointer) {
+      validationFloatValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)floatValidationArrayPointer);
+      if (validationFloatValue != *floatValidationArrayPointer) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
-        ValidationDataBuffer = dataPointerD;
-        StackFloatRegisterB = loopCounterFloat;
-        StackFloatRegisterC = floatValidationValue;
+        ValidationDataBuffer = processedFloatValue;
+        StackFloatRegisterB = validationIndexCounter;
+        StackFloatRegisterC = validationFloatValue;
         operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
