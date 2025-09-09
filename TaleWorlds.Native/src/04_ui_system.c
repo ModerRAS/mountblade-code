@@ -28671,67 +28671,67 @@ void InitializeUIRenderingFunctions(void)
     UIComponentSyncPtr = UIComponentSyncFallbackPtr;
   }
   UIDataProcessPtr = ProcessUIData;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIDataProcessPtr = UIDataProcessFallbackPtr;
   }
   UIResourceHandlePtr = HandleUIResource;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIResourceHandlePtr = (UIFunctionPtr *)&UIResourceHandleFallbackFunction;
   }
   UIBufferOperationPtr = OperateUIBuffer;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIBufferOperationPtr = (UIFunctionPtr *)&UIBufferOperationFallbackFunction;
   }
   UIRenderPipelinePtr = ProcessUIRenderPipeline;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIRenderPipelinePtr = (UIFunctionPtr *)&UIRenderPipelineFallbackFunction;
   }
   UIMemoryManagerPtr = ManageUIMemory;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIMemoryManagerPtr = (UIFunctionPtr *)&UIMemoryManagerFallbackFunction;
   }
   UITextureManagerPtr = ManageUITexture;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UITextureManagerPtr = (UIFunctionPtr *)&UITextureManagerFallbackFunction;
   }
   UIFontRendererPtr = RenderUIFont;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIFontRendererPtr = (UIFunctionPtr *)&UIFontRendererFallbackFunction;
   }
   UIShaderManagerPtr = ManageUIShader;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIShaderManagerPtr = (UIFunctionPtr *)&UIShaderManagerFallbackImplementation;
   }
   UIAnimationManagerPtr = ManageUIAnimation;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIAnimationManagerPtr = (UIFunctionPtr *)&UIAnimationManagerFallbackImplementation;
   }
   UILayoutManagerPtr = ManageUILayout;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UILayoutManagerPtr = (UIFunctionPtr *)&UILayoutManagerFallbackImplementation;
   }
   UIInputManagerPtr = ManageUIInput;
-  if (bVar4) {
+  if (HasAVX2Support) {
     UIInputManagerPtr = ManageUIInputOptimized;
   }
   UIFocusManagerPtr = ManageUIFocus;
-  if (bVar4) {
+  if (HasAVX2Support) {
     UIFocusManagerPtr = ManageUIFocusOptimized;
   }
   UIClipRegionPtr = ProcessUIClipRegion;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIClipRegionPtr = (UIFunctionPtr *)&UIClipRegionFallbackImplementation;
   }
   UIRenderQueuePtr = ProcessUIRenderQueue;
-  if (bVar4) {
+  if (HasAVX2Support) {
     UIRenderQueuePtr = CalculateUIImageAbsoluteDifferenceAVX2;
   }
   UIEventQueuePtr = InitializeUIEventQueueBuffer;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIEventQueuePtr = (UIFunctionPtr *)&UIEventQueueFallbackImplementation;
   }
   UIDataBufferPtr = InitializeUIDataBuffer;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIDataBufferPtr = (UIFunctionPtr *)&UIDataBufferFallbackImplementation;
   }
   UIComponentPoolPtr = &UIComponentPoolMainImplementation;
