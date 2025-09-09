@@ -1466,12 +1466,12 @@ int InitializeStringProcessorMemory(void)
   return (SystemModuleRegistrationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器I
- * 设置字符串处理I所需的数据结构和回调
+ * 初始化字符串处理器优化
+ * 设置字符串处理优化所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorI(void)
+int InitializeStringProcessorOptimization(void)
 {
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorIFlags;
@@ -1662,12 +1662,12 @@ int InitializeConfigurationMutex(uint64_t ThreadId,uint64_t SyncPtr,uint64_t Mut
   return (callbackResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器J
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器格式化
+ * 设置字符串处理格式化所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorJ(void)
+int InitializeStringProcessorFormatting(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorJFlags;
