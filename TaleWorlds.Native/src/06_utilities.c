@@ -82024,9 +82024,8 @@ void ExecuteSystemMonitoringA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-// 原始函数名：Unwind_180909190 - 异常处理函数B0
-// 功能：在指定偏移量处调用异常处理器
-void UnwindExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
+// 异常处理函数B0 - 在偏移量0x98处调用异常处理器
+void CallExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;   // 异常处理上下文指针

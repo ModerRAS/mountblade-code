@@ -34724,7 +34724,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   uint32_t stackIterationCount;
   long long StackRegisterValuePrimary;
   uint32_t stackOperationIndex;
-  void* ******PrimaryStackPointer;
+  void* ******SystemDataHierarchyPointer;
   uint64_t SystemContextValueSecondary;
   uint8_t *ThreadLocalStorageBasePointerSecondary;
   void* *SystemDataConfigurationPointer;
@@ -34746,8 +34746,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   LocalSystemStackPointer = 0;
   globalStatusFlags = *SystemGlobalStatusFlags;
   stackIterationCount = 0;
-  SystemAllocationFlags = *(long long *)(stackValue16 + 0x8a8);
-  if (*(long long *)(stackValue16 + 0x8b0) - SystemAllocationFlags >> 5 != 0) {
+  SystemAllocationFlags = *(long long *)(resourcePointer + 0x8a8);
+  if (*(long long *)(resourcePointer + 0x8b0) - SystemAllocationFlags >> 5 != 0) {
     stackOperationIndex = 0;
     do {
       memoryPointer = stackOperationIndex;
