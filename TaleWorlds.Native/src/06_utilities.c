@@ -20783,9 +20783,15 @@ void UtilityNoOperationFunction(void)
 /**
  * @brief 检查系统条件并执行相应操作
  * 
- * 该函数验证系统资源状态，并根据验证结果执行相应的系统事件处理
+ * 该函数验证系统资源状态，并根据验证结果执行相应的系统事件处理。
+ * 函数首先调用系统资源验证函数，如果验证成功，则处理系统事件。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  * 
  * @note 原始函数名：CheckSystemConditionAndExecute
+ * @note 该函数主要用于系统状态监控和事件触发
+ * @warning 确保系统上下文指针有效，否则可能导致未定义行为
  */
 void CheckSystemConditionAndExecute(void)
 {
