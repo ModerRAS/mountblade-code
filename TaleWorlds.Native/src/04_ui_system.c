@@ -109676,8 +109676,8 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
     } while (CharacterDataOffset < contextHandleData);
   }
   uiValidationResult = (int)targetBuffer >> 1;
-  FUN_18072f7d0(astackInta8,&stackInt108,uiValidationResult);
-  FUN_18072f7d0(astackInt70,astackUInt104);
+  ValidateUILayoutDataF7D0(astackInta8,&stackInt108,uiValidationResult);
+  ValidateUILayoutDataF7D0(astackInt70,astackUInt104);
   CharacterDataOffset = (longlong)uiValidationResult;
   if (0 < uiValidationResult) {
     contextOffset = 0;
@@ -112975,7 +112975,7 @@ void FUN_180734830(int *uiContext,UIWord *dataSource,longlong targetBuffer,int b
     astackInt7c8[1] = localInt7;
     astackInt7c8[2] = localInt8;
     astackInt7c8[3] = localInt9;
-    FUN_18072a9c0(uiContext + 4,astackUInt7b8,targetBuffer,&UNK_1809542b0,processingResult);
+    ProcessUIComponentDataA9C0(uiContext + 4,astackUInt7b8,targetBuffer,&UIContextDataTableB0,processingResult);
     if (2 < processingResult) {
       ptrLocalInt5 = astackInt7c8;
       maxProcessingCount = (ulonglong)((processingResult - 3U) / 3 + 1);
