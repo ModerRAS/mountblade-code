@@ -71,6 +71,33 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
 
+// 核心引擎系统变量语义化定义
+#define CharacterTablePointer6 CharacterTableIterator      // 字符表迭代器指针
+#define HighByte4 SystemValidationFlag4                    // 系统验证标志4
+#define HighByte7 SystemValidationFlag7                    // 系统验证标志7
+#define FilterInputValue0 InputFilterParameter0            // 输入过滤参数0
+#define FilterInputValue1 InputFilterParameter1            // 输入过滤参数1
+#define FilterInputValue2 InputFilterParameter2            // 输入过滤参数2
+#define FilterInputValue4 InputFilterParameter4            // 输入过滤参数4
+#define ContextSecondaryFloat8 SystemFloatContext8         // 系统浮点上下文8
+#define ContextSecondaryFloat9 SystemFloatContext9         // 系统浮点上下文9
+#define SystemParameter1 PrimarySystemParameter            // 主系统参数
+#define SystemParameter2 SecondarySystemParameter          // 次系统参数
+#define pSystemContextPrimaryFloat4 SystemContextFloatArrayPtr4 // 系统上下文浮点数组指针4
+#define BufferIndex DataBufferIndex                        // 数据缓冲区索引
+#define SystemMemoryAllocationResult MemoryAllocationStatus // 内存分配状态
+#define StackProcessingParameter0 StackProcessingParameter  // 栈处理参数
+#define ProcessingStatusFlag DataProcessingStatus          // 数据处理状态
+#define ScalingFactor MatrixTransformScaling               // 矩阵变换缩放因子
+#define RenderingParameter1 RenderTransformParameter1      // 渲染变换参数1
+#define RenderingParameter2 RenderTransformParameter2      // 渲染变换参数2
+#define RenderingParameter4 RenderTransformParameter4      // 渲染变换参数4
+#define MemoryContextPointer MemoryBlockContextPointer     // 内存块上下文指针
+#define SystemStatusCode SystemOperationStatusCode          // 系统操作状态码
+#define SystemConfigurationHandle SystemConfigHandle        // 系统配置句柄
+#define LockOperationResult2 StringComparisonResult        // 字符串比较结果
+#define SystemStringConstant400 SystemStringConstant        // 系统字符串常量
+
 // 系统上下文偏移量常量
 #define SystemContextStatusOffset 0x10c                    // 系统上下文状态偏移量
 #define SystemContextSecondaryStatusOffset 0x110            // 系统上下文次状态偏移量

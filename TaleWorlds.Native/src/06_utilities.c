@@ -207,7 +207,72 @@
 #define DataBufferOffset24 0x24
 #define DataBufferOffset30 0x30
 
-// 对象析构函数回调偏移量常量
+// 数据缓冲区偏移量常量
+#define DataBufferOffset44 0x44
+#define DataBufferOffset54 0x54
+#define DataBufferOffset60 0x60
+#define DataBufferOffset88 0x88
+#define DataBufferOffsetA8 0xa8
+#define DataBufferOffsetB0 0xb0
+#define DataBufferOffsetB8 0xb8
+#define DataBufferOffsetC0 0xc0
+#define DataBufferOffsetD0 0xd0
+#define DataBufferOffsetD8 0xd8
+#define DataBufferOffsetE0 0xe0
+#define DataBufferOffsetE8 0xe8
+#define DataBufferOffsetF0 0xf0
+#define DataBufferOffsetF8 0xf8
+#define DataBufferOffset120 0x120
+#define DataBufferOffset130 0x130
+#define DataBufferOffset140 0x140
+#define DataBufferOffset150 0x150
+#define DataBufferOffset178 0x178
+#define DataBufferOffset198 0x198
+#define DataBufferOffset1C0 0x1c0
+#define DataBufferOffset1C8 0x1c8
+#define DataBufferOffset1D0 0x1d0
+#define DataBufferOffset1D8 0x1d8
+#define DataBufferOffset1E0 0x1e0
+#define DataBufferOffset1E8 0x1e8
+#define DataBufferOffset1F0 0x1f0
+#define DataBufferOffset1F8 0x1f8
+#define DataBufferOffset210 0x210
+#define DataBufferOffset218 0x218
+#define DataBufferOffset260 0x260
+#define DataBufferOffset270 0x270
+#define DataBufferOffset290 0x290
+#define DataBufferOffset298 0x298
+#define DataBufferOffset2A0 0x2a0
+#define DataBufferOffset2B0 0x2b0
+#define DataBufferOffset2E0 0x2e0
+#define DataBufferOffset360 0x360
+#define DataBufferOffset390 0x390
+#define DataBufferOffset410 0x410
+#define DataBufferOffset4B0 0x4b0
+#define DataBufferOffset5D0 0x5d0
+
+// 异常处理器上下文偏移量常量
+#define ExceptionHandlerContextOffsetA0 0xa0
+#define ExceptionHandlerContextOffset108 0x108
+#define ExceptionHandlerContextOffset1B0 0x1b0
+#define ExceptionHandlerContextOffset1B8 0x1b8
+#define ExceptionHandlerContextOffset1C0 0x1c0
+#define ExceptionHandlerContextOffset1E8 0x1e8
+#define ExceptionHandlerContextOffset1F0 0x1f0
+#define ExceptionHandlerContextOffset250 0x250
+#define ExceptionHandlerContextOffset270 0x270
+#define ExceptionHandlerContextOffset290 0x290
+
+// 系统数据参数偏移量常量
+#define SystemParameterValidationOffset28 0x28
+#define SystemDataSecondaryOffset18 0x18
+#define SystemDataParameterOffset20 0x20
+#define ValidationResultOffset0 0x0
+#define MemoryPointerOffset0 0x0
+#define MemoryPointerOffset8 0x8
+#define ResourceManagementOffset1D8 0x1d8
+
+// 对象和资源管理偏移量常量
 #define ObjectDestructorCallbackOffset 0xc8
 
 // 异常恢复处理器偏移量常量
@@ -30983,7 +31048,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                ))) && (((operationResult & 0x100) == 0 ||
                        (((memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + SystemDataRecordOffset3c), (int)memoryRegionBase == 0 &&
                          (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + ExceptionHandlerContextOffset40), (int)memoryRegionBase == 0)) &&
-                        (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + 0x44), (int)memoryRegionBase == 0)))))) {
+                        (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + DataBufferOffset44), (int)memoryRegionBase == 0)))))) {
             memoryRegionBase = 0;
           }
         }
