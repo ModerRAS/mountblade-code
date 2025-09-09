@@ -1130,6 +1130,34 @@ typedef enum {
 #define ProcessUITransformDataComplex FUN_18071ebe0
 #define ProcessUITransformDataWithScale FUN_18071f270
 
+// UI系统渲染和缓冲区处理函数
+#define ProcessUIRenderBufferData FUN_18071fef0
+#define InitializeUIRenderState FUN_18071ffb4
+#define SetupUIRenderContext FUN_18071ffc5
+#define ConfigureUIRenderPipeline FUN_1807201ce
+#define ValidateUIRenderResources FUN_18072081d
+#define ProcessUIRenderBufferOperation FUN_180720e10
+#define CleanupUIRenderState FUN_1807213f0
+#define ResetUIRenderContext FUN_180721540
+
+// UI系统数据处理函数
+#define ProcessUIDataWithTransform FUN_180721650
+#define ValidateUIDataSource FUN_180721698
+#define InitializeUIDataProcessor FUN_18071f74a
+#define SetupUIDataBuffer FUN_18071f7e4
+#define ConfigureUIDataPipeline FUN_18071f7f4
+#define ProcessUIDataWithParameters FUN_18071f810
+#define ProcessUIDataSimple FUN_18071f82d
+#define ProcessUIDataWithHandles FUN_18071f864
+#define FinalizeUIDataProcessing FUN_18071f984
+#define ValidateUIDataProcessing FUN_18071f9ee
+#define ProcessUIDataWithValidation FUN_18071fcf4
+
+// UI系统数据验证和处理函数
+#define ValidateUIDataTransfer FUN_180721b40
+#define ProcessUIDataWithBuffers FUN_180721cf4
+#define ProcessUIFloatDataWithParameters FUN_180721f12
+
 // UI系统数据指针美化
 #define UIDataBufferRegistryPointer (void*)0x180741cf0
 #define UIResourceTableRegistryPointer (void*)0x180741d00
