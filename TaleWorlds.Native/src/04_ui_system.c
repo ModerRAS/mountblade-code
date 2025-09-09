@@ -100095,7 +100095,7 @@ void CleanupUIComponentResources(void)
   if ((RegisterValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
     shortCalculationResult = ReadUIData();
     if (shortCalculationResult < 1) goto LAB_180722ba9;
-    sVar2 = *(short *)(contextHandle + 0x96c) + -9 + sVar2;
+    shortCalculationResult = *(short *)(contextHandle + 0x96c) + -9 + shortCalculationResult;
     *(short *)(contextHandle + 0xae2) = sVar2;
   }
   else {
