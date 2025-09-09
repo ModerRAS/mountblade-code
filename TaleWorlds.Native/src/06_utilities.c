@@ -204,6 +204,10 @@
 #define DefaultExceptionHandlerB_PositionSecondary_Offset 0x1d8
 #define DefaultExceptionHandlerB_PositionTertiary_Offset 0x248
 
+// 数据缓冲区偏移量常量
+#define DataBufferOffset178 0x178
+#define DataBufferOffset260 0x260
+
 // 寄存器上下文偏移量常量
 #define RegisterContextDataOffset 0x78
 #define SystemContextDataOffsetPrimary 0x40
@@ -68188,7 +68192,7 @@ void InitializeSystemAndInvokeOffset48Callback(DataBuffer operationBase,int64_t 
 void InvokeOffset178Callback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
+  if (*(int64_t **)(dataBuffer + DataBufferOffset178) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x178) + SystemFloatDataOffset38))();
   }
   return;
@@ -69555,7 +69559,7 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x260);
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset260);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -69603,7 +69607,7 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x260);
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset260);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -70426,7 +70430,7 @@ void SetupExceptionDataTableA(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x178);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferOffset178);
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
   return;
@@ -70437,7 +70441,7 @@ void SetupExceptionDataTableA(DataBuffer operationBase,int64_t dataBuffer)
 void SetupExceptionDataTableB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x178) = &ExceptionDataTable6;
+  **(DataBuffer **)(dataBuffer + DataBufferOffset178) = &ExceptionDataTable6;
   return;
 }
 
@@ -98199,7 +98203,7 @@ void CleanupResourceDC0(DataBuffer operationBase, int64_t dataBuffer)
 void InitializeExceptionHandlerCDF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
+  if (*(int64_t **)(dataBuffer + DataBufferOffset178) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x178) + SystemFloatDataOffset38))();
   }
   *(DataBuffer *)(dataBuffer + DataBufferOffset148) = &SystemTemporaryExceptionHandler;
@@ -98570,7 +98574,7 @@ void ResetExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
 void ExecuteAdvancedSystemCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
+  if (*(int64_t **)(dataBuffer + DataBufferOffset178) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x178) + SystemFloatDataOffset38))();
   }
   return;

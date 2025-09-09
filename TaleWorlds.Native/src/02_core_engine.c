@@ -87032,15 +87032,15 @@ long long * CompareAndSortSystemDataStructure(long long *ContextHandle,long long
   float VectorRegisterDa;
   float VectorRegisterDa_00;
   uint8_t SystemRegisterFlagBuffer [8];
-  uint8_t auStackX_10 [8];
-  uint8_t aStackProcessingConfigurationFlag [8];
-  uint8_t auStackX_20 [8];
+  uint8_t StackBufferX10 [8];
+  uint8_t StackProcessingConfigurationFlag [8];
+  uint8_t StackBufferX20 [8];
   
   BufferStatus = *Utf8SourcePointer;
   do {
     MemoryBlockIndex = *ContextHandle;
     MemoryBlockListHead = (long long *)FindMatchingDataNode(Utf16EndPointer + 0x90,SystemRegisterFlagBuffer,MemoryBlockIndex + 0x20);
-    MemoryBlockListHead = (long long *)FindMatchingDataNode(*(uint32_t *)(*MemoryBlockListHead + 0x40),auStackX_10,BufferStatus + 0x20);
+    MemoryBlockListHead = (long long *)FindMatchingDataNode(*(uint32_t *)(*MemoryBlockListHead + 0x40),StackBufferX10,BufferStatus + 0x20);
     if (VectorRegisterDa == *(float *)(*MemoryBlockListHead + 0x40)) {
       if (*(int *)(MemoryBlockIndex + 0x30) == 0) {
         hasComparisonResult = false;
