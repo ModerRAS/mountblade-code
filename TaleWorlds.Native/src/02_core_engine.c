@@ -222285,10 +222285,10 @@ LAB_180185b78:
     SystemStatusValue = 1;
     ProcessingContextPointer = (void *)0x100000000;
     uStack_190 = 2;
-    FUN_180189600(&uStack_158,&ProcessingContextPointer,auStack_18c);
+    ProcessSystemOctonaryCharacterStatus(&uStack_158,&ProcessingContextPointer,auStack_18c);
     ProcessingContextPointer = (void *)&SystemBufferPrimary;
     ProcessingStatus = Utf16Char;
-    FUN_180188620(SystemValidationStackArray138,&ProcessingContextPointer);
+    ProcessSystemNonaryCharacterStatus(SystemValidationStackArray138,&ProcessingContextPointer);
     StackProcessingVariable1B8 = 0;
     uStack_1b0 = 0xf;
     SystemValue1c8 = 0;
@@ -222296,7 +222296,7 @@ LAB_180185b78:
     SystemValue1a8 = 0;
     SystemUnsignedValue1A0 = 0;
     SystemValue1a8 = ProcessSystemPrimaryCharacterStatus();
-    FUN_180183a20(CoreSystemStatusContext178,aiStack_1d0);
+    ProcessSystemNodeEx(CoreSystemStatusContext178,aiStack_1d0);
     if (-1 < aiStack_1d0[0]) {
       Utf16Char = ProcessSystemCharacterEncoding();
                     // WARNING: Subroutine does not return
@@ -222462,7 +222462,7 @@ LAB_180185b78:
     pSystemContextPointerA8 = &CoreEngineSignedValue70;
     CoreEngineSignedValue70 = (long long *)0x0;
     StackProcessingValue = 0;
-    CoreEngineSignedValue70 = (long long *)FUN_180188490();
+    CoreEngineSignedValue70 = (long long *)GetSystemMemoryHandle();
     pMemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if ((void *)OperationBufferSize[1] != NULL) {
       pMemoryAddressMaskPointer = (void *)OperationBufferSize[1];
@@ -222509,7 +222509,7 @@ LAB_180185b78:
     (**(code **)(*ContextHandle + 0x18))(ContextHandle,SystemOperation90,&EncodingBuffer,0);
     ContextHandle = CoreEngineSignedValue70;
     pSystemContextPointerA8 = &CoreEngineSignedValue70;
-    FUN_1801884d0(&CoreEngineSignedValue70,CoreEngineSignedValue70[1]);
+    ProcessSystemMemoryEx2(&CoreEngineSignedValue70,CoreEngineSignedValue70[1]);
     CoreEngineSignedValue70[1] = (long long)ContextHandle;
     *CoreEngineSignedValue70 = (long long)ContextHandle;
     CoreEngineSignedValue70[2] = (long long)ContextHandle;
@@ -222539,7 +222539,7 @@ LAB_180185b78:
   
   ContextHandle = (long long *)(ContextHandle + 0x20);
   BufferStatus = *ContextHandle;
-  FUN_1801884d0(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessSystemMemoryEx2(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *(long long *)(*ContextHandle + 8) = BufferStatus;
   *(long long *)*ContextHandle = BufferStatus;
   *(long long *)(*ContextHandle + 0x10) = BufferStatus;
