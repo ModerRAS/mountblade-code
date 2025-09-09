@@ -13775,7 +13775,7 @@ Label_1808fbebe:
     }
   }
   _set_invalid_parameter_handler(MemoryAddress);
-  SystemSecurityCheck(in_stack_00000230 ^ (ulonglong)&SecurityValidationStackVariable);
+  SystemSecurityCheck(ThreadLocalStorageStackParameter ^ (ulonglong)&SecurityValidationStackVariable);
 }
     SystemInitializationFlag = 1;
   }

@@ -1365,6 +1365,15 @@ typedef enum {
 #define colorRegister6_Dc UIColorRegister6_DoubleComponent
 #define colorRegister6_Da UIColorRegister6_Data
 
+// UI系统事件处理函数变量名美化补充
+#define pTransformCoefficient1 UIPtrTransformCoeff1
+#define pTransformCoefficient2 UIPtrTransformCoeff2
+#define ComponentPointer UIComponentPointer
+#define ComponentFlags UIComponentFlags
+#define PoolBaseAddress UIPoolBaseAddress
+#define ComponentOffset UIComponentOffset
+#define InitializationMethod UIInitializationMethod
+
 // UI系统状态指针美化
 #define UIStatusPointer1 (void*)0x180954814
 #define UIStatusPointer2 (void*)0x180954828
