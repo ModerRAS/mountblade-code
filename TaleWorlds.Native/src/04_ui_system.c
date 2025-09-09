@@ -11017,7 +11017,7 @@ LAB_UIStateRestore: // UI状态恢复标签
             }
             CharacterComparisonPointer = *(byte **)CharacterComparisonResult;
           }
-LAB_UIDataInitialize:
+LAB_UIDataInitialize: // UI数据初始化标签
           if (ShouldSkipResourceValidation) {
             ResourceDataPointer = ResourceIterator;
           }
