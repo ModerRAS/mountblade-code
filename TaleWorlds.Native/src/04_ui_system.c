@@ -7182,7 +7182,7 @@ void* UILayoutDataPointer19;
 void* UILayoutDataPointer20;
 void* UILayoutDataPointer21;
 UIRenderData* g_uiRenderDataPrimary;
-undefined g_uiRenderDataSecondary;
+UIRenderData* g_uiRenderDataSecondary;
 undefined g_uiRenderDataTertiary;
 undefined g_uiLayoutDataPrimary;
 undefined g_uiLayoutDataSecondary;
