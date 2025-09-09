@@ -8078,67 +8078,74 @@ UIHandle GetUIStatusFlag(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-  初始化UI系统
- 初始化UI系统的核心组件和状态。它会检查UI缓冲区的状态，
+  /**
+ * @brief 初始化UI系统
+ * 
+ * 初始化UI系统的核心组件和状态。它会检查UI缓冲区的状态，
  * 分配必要的资源，并设置系统回调函数。初始化过程包括：
  * - 检查UI缓冲区索引的有效性
  * - 分配缓冲区空间
  * - 设置系统回调
  * - 处理初始化过程中的错误情况
-  systemCallback 系统回调函数指针，用于UI系统初始化完成后的回调处理
-  无返回值
-  原始函数名: InitializeUISystem
- void InitializeUISystem(code *systemCallback)
-
+ * 
+ * @param SystemCallback 系统回调函数指针，用于UI系统初始化完成后的回调处理
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: InitializeUISystem
+ */
+void InitializeUISystem(UIFunctionPtr *SystemCallback)
 {
-  code *systemCallHandler;
-  ulonglong bufferIndex;
-  
-  LOCK();
-  UNLOCK();
-  if (UIBufferIndex < 0x8001) {
-    bufferIndex = UIBufferIndex;
-    if (0x8000 < UIBufferIndex) {
-      UIBufferIndex = UIBufferIndex + 1;
-      TriggerUIErrorHandler();
-      systemCallHandler = (UIFunctionPtr *)swi(3);
-      (*systemCallHandler)();
-      return;
+    UIFunctionPtr *SystemCallHandler;
+    uint64_t BufferIndex;
+    
+    LOCK();
+    UNLOCK();
+    if (UIBufferIndex < 0x8001) {
+        BufferIndex = UIBufferIndex;
+        if (0x8000 < UIBufferIndex) {
+            UIBufferIndex = UIBufferIndex + 1;
+            TriggerUIErrorHandler();
+            SystemCallHandler = (UIFunctionPtr *)swi(3);
+            (*SystemCallHandler)();
+            return;
+        }
     }
-  }
-  else {
-    bufferIndex = 0x8000;
-  }
-  UIBufferIndex = UIBufferIndex + 1;
-  *(UIByte *)(bufferIndex + UI_SYSTEM_CALLBACK_ID) = 0;
-  (*systemCallback)(UI_SYSTEM_CALLBACK_ID,0);
-  *(UIByte *)(bufferIndex + UI_SYSTEM_CALLBACK_ID) = 10;
-  return;
+    else {
+        BufferIndex = 0x8000;
+    }
+    UIBufferIndex = UIBufferIndex + 1;
+    *(UIByte *)(BufferIndex + UI_SYSTEM_CALLBACK_ID) = 0;
+    (*SystemCallback)(UI_SYSTEM_CALLBACK_ID, 0);
+    *(UIByte *)(BufferIndex + UI_SYSTEM_CALLBACK_ID) = 10;
+    return;
 }
 
 
 
 
- 清理UI系统
- 清理UI系统占用的所有资源，包括内存缓冲区、事件处理器和渲染器等。
+ /**
+ * @brief 清理UI系统
+ * 
+ * 清理UI系统占用的所有资源，包括内存缓冲区、事件处理器和渲染器等。
  * 它会确保所有资源都被正确释放，以避免内存泄漏。清理过程包括：
  * - 释放UI缓冲区内存
  * - 清理事件处理器
  * - 重置渲染器状态
  * - 调用清理回调函数
  * 
-  无返回值
-  原始函数名: CleanupUISystem
- void CleanupUISystem(void)
-
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: CleanupUISystem
+ */
+void CleanupUISystem(void)
 {
-  code *cleanupCallback;
-  longlong cleanupContext;
-  
-  *(UIByte *)(cleanupContext + UI_SYSTEM_CALLBACK_ID) = 0;
-  (*cleanupCallback)(UI_SYSTEM_CALLBACK_ID,0);
-  *(UIByte *)(cleanupContext + UI_SYSTEM_CALLBACK_ID) = 10;
-  return;
+    UIFunctionPtr *CleanupCallback;
+    int64_t CleanupContext;
+    
+    *(UIByte *)(CleanupContext + UI_SYSTEM_CALLBACK_ID) = 0;
+    (*CleanupCallback)(UI_SYSTEM_CALLBACK_ID, 0);
+    *(UIByte *)(CleanupContext + UI_SYSTEM_CALLBACK_ID) = 10;
+    return;
 }
 
 
