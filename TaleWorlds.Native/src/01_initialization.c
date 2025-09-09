@@ -1704,6 +1704,11 @@ void* SystemDataNodeLinkageManager;               // 系统数据节点链接管
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
 void* SystemConfigurationDataTemplate;            // 系统配置数据模板
 void* SystemStringTemplate;                       // 系统字符串模板
+void* SystemStringTemplateA;                      // 系统字符串模板A
+void* SystemStringTemplateB;                      // 系统字符串模板B
+void* SystemStringTemplateC;                      // 系统字符串模板C
+void* SystemFileSystemStringTemplate;             // 系统文件系统字符串模板
+void* SystemStringTemplateBuffer;                 // 系统字符串模板缓冲区
 void* SystemDataTemplate;                         // 系统数据模板
 void* SystemDataNodeLinkageCache;                 // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                 // 系统数据节点链接备份
@@ -1722,6 +1727,10 @@ void* SystemDataTemplateMemoryManager;          // 系统数据模板 - 内存�
 void* SystemDataTemplateResourceHandler;         // 系统数据模板 - 资源处理器
 void* SystemDataTemplateFileSystem;              // 系统数据模板 - 文件系统
 void* SystemDataTemplateNetworkManager;          // 系统数据模板 - 网络管理器
+
+// 系统模板变量
+void* SystemMemoryAllocatorTemplate;              // 系统内存分配器模板
+ulong long SystemEncryptionKeyTemplate;            // 系统加密密钥模板
 void* SystemDataTemplateAudioProcessor;          // 系统数据模板 - 音频处理器
 void* SystemDataTemplateInputController;         // 系统数据模板 - 输入控制器
 void* SystemDataTemplateDebugManager;            // 系统数据模板 - 调试管理器
@@ -49947,6 +49956,9 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint32_t SystemInitializationFlag;
   ulong long SystemContextValue;
   ulong long SystemContextReference;
+  void* SystemMemoryManagerHandle;
+  long long SystemMemoryAllocationCounter;
+  long long ResourceDataIndexCount;
   
   SystemMaxOperationCountSecondary = 0xfffffffffffffffe;
   SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemMemoryEncryptionBuffer;
