@@ -2085,6 +2085,19 @@
 #define SystemRegisterOffset40 0x40                    // 系统寄存器偏移量40
 #define ExceptionHandlerOffset80 0x80                  // 异常处理器偏移量80
 
+// 内存操作基础常量
+#define MemoryOperationBaseAddress 0x1000         // 内存操作基础地址
+#define MemoryPageSize 0x1000                      // 内存页大小
+#define SystemMemoryAlignment 0x1000               // 系统内存对齐大小
+#define ExceptionHandlerStackSize 0x2000            // 异常处理器栈大小
+#define SystemValidationCode 0xc0000001            // 系统验证代码
+#define SystemErrorCode 0xc0000002                 // 系统错误代码
+#define ResourceValidationCode 0xc0000003           // 资源验证代码
+#define MemoryAccessViolation 0xc0000005            // 内存访问违例
+#define InvalidParameterCode 0xc000000d             // 无效参数代码
+#define SystemResourceExhausted 0xc000009a          // 系统资源耗尽
+#define SecurityValidationFailed 0xc0000409          // 安全验证失败
+
 // 异常处理器层级重置偏移常量
 #define ExceptionHandlerTempCallbackOffsetDD0 0xdd0     // 异常处理器临时回调偏移量DD0
 #define ExceptionHandlerTempCallbackOffsetDE0 0xde0     // 异常处理器临时回调偏移量DE0
@@ -17897,9 +17910,11 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure, int64_t exceptionHandler
   const int DataValidationFlagOffset = 0x14;
   const int ExceptionHandlerContextOffset = 0x60;
   const int DataElementSize = 2;  // 每个元素2个int
+  const int DataElementWordSize = 8;  // 每个元素的内存大小(字节)
+  const int DefaultValidationSuccess = 0;  // 默认验证成功代码
   
   elementIndex = 0;
-  validationFlagPointer = (DataWord *)(dataStructure + systemContextDataOffset + (int64_t)*(int *)(dataStructure + DataElementCountOffset) * 8);
+  validationFlagPointer = (DataWord *)(dataStructure + systemContextDataOffset + (int64_t)*(int *)(dataStructure + DataElementCountOffset) * DataElementWordSize);
   dataElementContext = (int *)(dataStructure + DataElementArrayOffset);
   
   if (0 < *(int *)(dataStructure + DataElementCountOffset)) {
@@ -82279,13 +82294,13 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
   
   presourceTable = *(DataBuffer **)(dataBuffer + SystemDataBufferOffset80);
   *presourceTable = &SystemResourceTableA;
-  if ((int64_t *)presourceTable[0x1049] != (int64_t *)0x0) {
+  if ((int64_t *)presourceTable[ResourceTableIndex1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)presourceTable[0x1049] + SystemFloatDataOffset38))();
   }
   resourceIndex = 0;
   exceptionContextPointer = presourceTable + 0x1012;
   resourceTableBase = *exceptionContextPointer;
-  if (presourceTable[0x1013] - resourceTableBase >> 3 != 0) {
+  if (presourceTable[ResourceTableIndex1013] - resourceTableBase >> 3 != 0) {
     do {
       memoryResourcePointer = *(DataBuffer **)(resourceIndex * 8 + resourceTableBase);
       if (memoryResourcePointer != (DataBuffer *)0x0) {

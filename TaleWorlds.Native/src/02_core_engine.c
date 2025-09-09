@@ -86230,10 +86230,10 @@ void ProcessDataStructureSortingAndSwapping(long long *ContextHandle,long long *
   unsigned long long ProcessedCharacter;
   long long *ContextHandle2;
   float VectorRegisterDa;
-  long long lStackX_8;
+  long long StackValueX8;
   long long *SystemRegisterPointerX10;
-  uint8_t aStackProcessingConfigurationFlag [8];
-  uint8_t auStackX_20 [8];
+  uint8_t StackProcessingConfigurationFlag [8];
+  uint8_t StackBufferX20 [8];
   
   MemoryPoolBlockSize = (long long)OperationBufferSize - (long long)ContextHandle >> 3;
   SystemRegisterPointerX10 = OperationBufferSize;
@@ -86255,8 +86255,8 @@ void ProcessDataStructureSortingAndSwapping(long long *ContextHandle,long long *
     do {
       SystemDataTablePointer = *ContextHandle2;
       BufferStatus = *ContextHandle;
-      SystemContextPtr = (long long *)FindMatchingDataNode(Utf16EndPointer + 0x90,aStackProcessingConfigurationFlag,SystemDataTablePointer + 0x20);
-      SystemContextPtr = (long long *)FindMatchingDataNode(*(uint32_t *)(*SystemContextPtr + 0x40),auStackX_20,BufferStatus + 0x20);
+      SystemContextPtr = (long long *)FindMatchingDataNode(Utf16EndPointer + 0x90,StackProcessingConfigurationFlag,SystemDataTablePointer + 0x20);
+      SystemContextPtr = (long long *)FindMatchingDataNode(*(uint32_t *)(*SystemContextPtr + 0x40),StackBufferX20,BufferStatus + 0x20);
       if (VectorRegisterDa == *(float *)(*SystemContextPtr + 0x40)) {
         if (*(int *)(SystemDataTablePointer + 0x30) == 0) {
           LowByte = false;
