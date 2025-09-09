@@ -3188,6 +3188,14 @@ void InitializeNetworkConnectionState(void)
   uint64_t *NetworkStateDataPointer;                        // 网络连接状态数据指针
   int64_t *NetworkContextPointer;                           // 网络连接上下文指针
   
+  // 初始化变量为默认值
+  NetworkSystemContextData = 0;
+  NetworkConnectionId = 0;
+  NetworkSessionId = 0;
+  NetworkStateDataPointer = NULL;
+  NetworkContextPointer = NULL;
+  NetworkInitializationResult = NetworkOperationFailure;
+  
   // 计算连接状态缓冲区位置
   ConnectionStateBuffer = (uint8_t *)(GenerateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateBufferOffset);
   
@@ -3225,6 +3233,12 @@ void ResetNetworkConnectionPointer(void)
   uint64_t *NetworkDataResetBuffer;                              // 网络数据缓冲区指针
   uint32_t NetworkConnectionResetFlags;                               // 网络连接状态标志位
   int32_t NetworkConnectionResetId;                             // 连接标识符
+  
+  // 初始化变量为默认值
+  NetworkContextResetData = 0;
+  NetworkDataResetBuffer = NULL;
+  NetworkConnectionResetFlags = 0;
+  NetworkConnectionResetId = 0;
   
   // 计算连接状态缓冲区位置
   NetworkStateResetBuffer = (uint8_t *)(GenerateConnectionStateUniqueId(NetworkConnectionResetFlags, NetworkConnectionResetId) + NetworkConnectionStateBufferOffset);
