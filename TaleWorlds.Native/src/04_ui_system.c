@@ -235,6 +235,8 @@ typedef enum {
 #define FUN_180723b20 ProcessUIIntegerDataCalculation        // 处理UI整数数据计算
 #define FUN_180723b34 ProcessUIIntegerParameterValidation    // 处理UI整数参数验证
 #define FUN_180724090 ProcessUIFloatDataTransfer             // 处理UI浮点数据传输
+#define FUN_18072f4d0 ExecuteUIBufferDataOperation       // 执行UI缓冲区数据操作
+#define FUN_1807342b0 ValidateUIContextParameters         // 验证UI上下文参数
 #define FUN_180727db0 ProcessUIFloatDataWithHandles          // 处理UI浮点数据与句柄
 #define FUN_180727db6 ProcessUIFloatDataWithValidation        // 处理UI浮点数据与验证
 #define FUN_18072aa36 ProcessUIIntegerDataTransfer            // 处理UI整数数据传输
@@ -105985,7 +105987,7 @@ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targ
   ProcessUICharacterDataConversion(SourceHandle + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2,
                 *(UIDword *)(uiBufferData + 0x914));
   FUN_180734390(&stack0x00000030,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
-  FUN_18072f4d0(SourceHandle + 0x40,&stack0x00000030,*(UIDword *)(uiBufferData + 0x924),
+  ExecuteUIBufferDataOperation(SourceHandle + 0x40,&stack0x00000030,*(UIDword *)(uiBufferData + 0x924),
                 *(UIDword *)(uiBufferData + 0x1060));
   if (*(int *)(uiBufferData + 0x948) == 1) {
     *(UIByte *)(uiContext + 0xae7) = 4;
@@ -106011,7 +106013,7 @@ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targ
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
-  FUN_18072f4d0(SourceHandle + 0x20,&stack0x00000050,(longlong)(int)iterationCount,
+  ExecuteUIBufferDataOperation(SourceHandle + 0x20,&stack0x00000050,(longlong)(int)iterationCount,
                 *(UIDword *)(uiBufferData + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(uiContext + 0x928,&stack0x00000030,(longlong)*(int *)(uiBufferData + 0x924) * 2);
@@ -106055,7 +106057,7 @@ void ProcessUIDataBufferTransform(UIHandle uiContext,UIHandle dataSource,ulonglo
     targetDataHandle = targetDataHandle + 2;
     iterationCount = iterationCount - 1;
   } while (iterationCount != 0);
-  FUN_18072f4d0(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
+  ExecuteUIBufferDataOperation(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(contextHandle + 0x928,&stack0x00000030,(longlong)*(int *)(contextHandle + 0x924) * 2);
 }
@@ -106083,7 +106085,7 @@ void ExecuteUIDataBufferProcessing(UIHandle uiContext,UIHandle dataSource,UIHand
   longlong contextHandle;
   longlong sourceDataHandle;
   
-  FUN_18072f4d0(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
+  ExecuteUIBufferDataOperation(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(contextHandle + 0x928,&stack0x00000030,(longlong)*(int *)(contextHandle + 0x924) * 2);
 }
@@ -106105,7 +106107,7 @@ void ProcessUIComponentData(void)
   char *plocalChar5;
   ulonglong stackParam00000070;
   
-  FUN_1807342b0(*(UIWord *)(contextHandle + 0xae2),*(UIByte *)(contextHandle + 0xae4));
+  ValidateUIContextParameters(*(UIWord *)(contextHandle + 0xae2),*(UIByte *)(contextHandle + 0xae4));
   componentIndex = *(longlong *)(&UIContextHandleTable180954878 + (longlong)*(char *)(contextHandle + 0xae8) * 8);
   if (allocationFlags < *(int *)(contextHandle + 0x914)) {
     plocalChar5 = (char *)(contextHandle + 0xacc);
