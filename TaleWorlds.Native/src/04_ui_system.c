@@ -50059,17 +50059,24 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- UI数据操作处理器类型C
- *  uiContext UI上下文
- *  dataSource 数据源
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
- *  param_6 参数6
- *  param_7 参数7指针
- *  param_8 参数8
-  处理结果
-  原始函数名: FUN_18068ea70
+ /**
+ * @brief UI数据操作处理器类型C
+ * 
+ * 处理UI系统中的数据操作，使用扩展的数据处理功能和验证机制
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7指针
+ * @param param_8 参数8
+ * 
+ * @return 处理结果
+ * 
+ * @note 原始函数名: FUN_18068ea70
+ */
  int ProcessUIDataOperationTypeC(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIHandle resultPointer,int param_6,int *param_7,UIHandle param_8)
 
