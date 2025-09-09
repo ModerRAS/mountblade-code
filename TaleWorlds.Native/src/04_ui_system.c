@@ -99096,7 +99096,7 @@ void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffe
       pUIValuePtr = pUIValuePtr + 1;
       UIContextHandleData = *(longlong *)(uiBufferData + 0xac0);
       pCharDataPtr = pCharDataPtr + 1;
-    } while (TempInt4 < *(short *)(contextHandleData + 2));
+    } while (UIProcessingResult < *(short *)(UIContextHandleData + 2));
   }
   if (*(int *)(uiBufferData + 0x914) == 4) {
     result = ReadUIData(dataSource,&UIFunctionResultTableF,8);
