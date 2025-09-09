@@ -121,6 +121,21 @@ typedef enum {
 #define afStack_6260 UIFloatStack6260
 #define astackUInt178 UIStackUInt178
 
+// 浮点栈变量宏定义
+#define fStack0000000000000034 UIAnimationSpeedFactor
+#define fStack0000000000000038 UITransformX
+#define fStack000000000000003c UITransformY
+#define fStack0000000000000048 UITransformWidth
+#define fStack000000000000004c UITransformHeight
+
+// 栈参数变量宏定义
+#define stackParam00000048 UIStackRenderParam48
+#define stackParam00000058 UIStackRenderParam58
+
+// 局部变量宏定义
+#define localChar11 UILocalCharStatus
+#define localLong7 UILocalLongOffset
+
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
 
