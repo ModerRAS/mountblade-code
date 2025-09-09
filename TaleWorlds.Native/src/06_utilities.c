@@ -88,14 +88,14 @@
 #define CleanupHandlerOffsetPrimary 0x108
 #define SystemParameterValidationOffsetPrimary 0x28
 #define SystemDataParameterOffsetPrimary 0x20
-#define systemContextPointerOffset90 0x90
-#define ResourceManagementOffset80 0x80
-#define systemContextOffsetPointer90 0x90
+#define SystemContextPointerOffsetPrimary 0x90
+#define ResourceManagementOffsetPrimary 0x80
+#define SystemContextOffsetPointerPrimary 0x90
 
 // 异常处理器指针偏移量常量
-#define ExceptionHandlerPointerOffset100 0x100
-#define ExceptionHandlerPointerOffset108 0x108
-#define ExceptionHandlerPointerOffset110 0x110
+#define ExceptionHandlerPointerOffsetPrimary 0x100
+#define ExceptionHandlerPointerOffsetSecondary 0x108
+#define ExceptionHandlerPointerOffsetTertiary 0x110
 #define ExceptionHandlerPointerOffset120 0x120
 #define ExceptionHandlerPointerOffset130 0x130
 #define ExceptionHandlerPointerOffset138 0x138
@@ -593,7 +593,7 @@
 
 // 资源管理相关偏移量常量
 #define ResourceManagementOffset1d8 0x1d8
-#define ResourceManagementOffset80 0x80
+#define ResourceManagementOffsetPrimary 0x80
 
 // 异常处理器相关偏移量常量
 #define ExceptionHandlerOffset1620 0x1620
@@ -1212,7 +1212,7 @@
 #define SystemDataSecondaryOffset18 0x18                     // 系统数据次级偏移量18
 #define SystemManagementOffset98 0x98                        // 系统管理偏移量98
 #define SystemFloatDataOffset38 0x38                         // 系统浮点数据偏移量38
-#define systemContextPointerOffset90 0x90                    // 系统上下文指针偏移量90
+#define SystemContextPointerOffsetPrimary 0x90                    // 系统上下文指针偏移量90
 #define SystemParameterValidationOffsetPrimary 0x28               // 系统参数验证偏移量28
 #define SystemDataParameterOffsetPrimary 0x20                      // 系统数据参数偏移量20
 #define SystemDataRecordMultiplier 0x18                      // 系统数据记录乘数18
@@ -1979,7 +1979,7 @@
 #define OperationBaseControlOffset 0x58                        // 操作基础偏移量58
 #define OperationBaseOffset6C 0x6c                        // 操作基础偏移量6C
 #define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
-#define systemContextPointerOffset90 0x90                 // 系统上下文指针偏移量90
+#define SystemContextPointerOffsetPrimary 0x90                 // 系统上下文指针偏移量90
 #define SystemValidationOffset790 0x790                  // 系统验证偏移量790
 #define DataProcessingBufferOffsetNegative78 -0x78         // 数据处理缓冲区负偏移量78
 #define StackFrameContextOffsetNegative10 -0x10            // 栈帧上下文负偏移量10
