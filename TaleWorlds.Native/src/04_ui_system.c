@@ -147,6 +147,37 @@ typedef enum {
 #define UI_STRING_LENGTH_MAX 0xffffffffffffffff // UI字符串最大长度
 
 // UI系统初始化标志
+
+// 未美化变量名语义化定义
+// UI查找表和数据表
+#define DAT_180956f70 UILookupTableF70                    // UI查找表F70 - 存储UI组件的查找表数据
+#define DAT_1809536b8 UIComponentDataTableB8              // UI组件数据表B8 - 存储UI组件的基础数据
+#define DAT_1809542b0 UIContextDataTableB0                // UI上下文数据表B0 - 存储UI上下文相关数据
+#define DAT_180958c80 UIComponentContextTableC80          // UI组件上下文表C80 - 存储UI组件的上下文信息
+
+// UI组件实例和接口
+#define DAT_180c0c6e8 UIComponentInstanceE8               // UI组件实例E8 - 存储UI组件的实例指针
+#define UNK_180958b00 UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
+#define UNK_180958b10 UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
+#define UNK_180958b20 UIComponentParameterB20             // UI组件参数B20 - UI组件的配置参数
+#define UNK_180956f50 UIComponentDataF50                  // UI组件数据F50 - 存储UI组件的动态数据
+#define UNK_180956f38 UIComponentHandleF38                // UI组件句柄F38 - UI组件的句柄标识符
+
+// UI系统全局数据
+#define _DAT_180c0c6e8 GlobalUIComponentInstanceE8        // 全局UI组件实例E8
+#define _DAT_180be12f0 GlobalUIResourceManagerF0         // 全局UI资源管理器F0
+
+// 未美化函数名语义化定义
+#define FUN_18072a9c0 ProcessUIComponentDataA9C0          // 处理UI组件数据A9C0
+#define FUN_18072f7d0 ValidateUILayoutDataF7D0            // 验证UI布局数据F7D0
+#define FUN_180736a70 RenderUIComponentA70                // 渲染UI组件A70
+#define FUN_180734160 ValidateUIComponentContext4160     // 验证UI组件上下文4160
+#define FUN_180736a10 ProcessUIBufferDataA10              // 处理UI缓冲区数据A10
+#define FUN_180741e10 InitializeUIComponent1E10           // 初始化UI组件1E10
+
+// 额外的UNK变量定义
+#define UNK_180958ac0 UIComponentFunctionTableAC0         // UI组件函数表AC0
+#define UNK_1809536a8 UIComponentValidationTableA8         // UI组件验证表A8
 #define UI_INITIALIZATION_FLAG 0xfffffffffffffffe // UI初始化标志
 #define UI_COMPONENT_STATE_FLAG 0xfffffffffffffffe // UI组件状态标志
 #define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
@@ -1124,7 +1155,6 @@ typedef enum {
 #define ProcessUIComponentSync FUN_18069d940
 
 // UI系统变量名美化宏定义
-#define bVar2 IsEventProcessingActive
 #define EventProcessingStatus EventProcessingResult
 #define pIsValidationComplete CharacterDataPointer
 #define localLong9 CharacterDataOffset
@@ -1815,7 +1845,6 @@ typedef enum {
 #define ProcessUIDataTransformationWithBuffer FUN_18071b080
 
 // UI系统局部变量美化
-#define fStack_144 UITimeStepDelta
 #define resultPointer UIResultPointer
 #define param_6 UIOperationParam6
 #define param_7 UIOperationParam7
@@ -109333,8 +109362,8 @@ LAB_18072eeb7:
   do {
     localLong7 = 1;
     while( true ) {
-      processingResult6 = (int)*(short *)(&DAT_180956f70 + stackLongf0 * 2);
-      pstackUIntd8 = &DAT_180956f70 + stackLongf0 * 2;
+      processingResult6 = (int)*(short *)(&UILookupTableF70 + stackLongf0 * 2);
+      pstackUIntd8 = &UILookupTableF70 + stackLongf0 * 2;
       result2 = (ulonglong)*(int *)(stackLonge8 + (longlong)ptrLocalInt9);
       if (processingResult7 == 8) {
         contextHandleData = (longlong)(processingResult6 << 4);
@@ -167249,16 +167278,16 @@ UIDword FUN_1807686d0(void)
   uint ProcessingStatus;
   
   ProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffd8 >> 0x20);
-  if (_DAT_180c0c6e8 == (longlong *)0x0) {
+  if (GlobalUIComponentInstanceE8 == (longlong *)0x0) {
     ProcessingStatus = 1;
-    processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&DAT_180c0c6e8);
+    processingResult = CoCreateInstance(&UIComponentInterfaceIDB00,0,0x17,&UIComponentInterfaceIIDB10,&UIComponentInstanceE8);
     if (processingResult == -0x7ffbfe10) {
       processingResult = CoInitializeEx(0,2);
       if (processingResult < 0) {
         return 0x33;
       }
       ProcessingStatus = 1;
-      processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,&DAT_180c0c6e8);
+      processingResult = CoCreateInstance(&UIComponentInterfaceIDB00,0,0x17,&UIComponentInterfaceIIDB10,&UIComponentInstanceE8);
     }
     if (processingResult < 0) {
       return 0x33;
@@ -167266,11 +167295,11 @@ UIDword FUN_1807686d0(void)
   }
   ptrLocal3 = (UIHandle *)0x0;
   piterationCount = (UIHandle *)
-           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x10,&UNK_180958b20,0x5d,
+           InitializeUIComponent1E10(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x10,&UIComponentParameterB20,0x5d,
                          (ulonglong)ProcessingStatus << 0x20,0,1);
   if (piterationCount != (UIHandle *)0x0) {
     *(UIDword *)(piterationCount + 1) = 0;
-    *piterationCount = &UNK_180958ac0;
+    *piterationCount = &UIComponentFunctionTableAC0;
     ptrLocal3 = piterationCount;
   }
   _DAT_180c0c6f0 = ptrLocal3;
