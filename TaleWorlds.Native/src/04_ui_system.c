@@ -10039,7 +10039,7 @@ int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong 
       propertyDataPointer = *(UIPointer **)(bufferStart + 8 + bufferOffset);
       dataPointer = &UIDefaultDataBuffer;
       if (propertyDataPointer != (UIPointer *)0x0) {
-        dataPointer = result;
+        dataPointer = propertyDataPointer;
       }
       (**(code **)(uiContext + 0x128))(*dataSource, propertyIndex, dataPointer, bufferSize, isValidFlag, maxValue);
       iterationCounter = (int)propertyIndex + 1;
@@ -10350,8 +10350,8 @@ void CleanupUIComponent(void)
   longlong stringLength;
   ulonglong elementCount;
   longlong bufferOffset;
-  undefined *defaultData;
-  undefined *resultBuffer;
+  UIPointer *defaultDataPointer;
+  UIPointer *uiResultBuffer;
   longlong bufferHandle;
   UIDword renderFlags;
   UIDword textureFlags;
