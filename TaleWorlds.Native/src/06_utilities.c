@@ -104350,7 +104350,23 @@ void ExecuteExceptionHandlerCallbackE660(DataBuffer operationBase, int64_t dataB
 
 
 
-void Unwind_18090e670(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作处理函数（偏移量248）
+ * 
+ * 执行内存操作，处理0x248偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e670
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+void ExecuteMemoryOperationAtOffset248(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x248,2,ProcessMemoryOperationA0);
@@ -104359,7 +104375,23 @@ void Unwind_18090e670(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e6a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作处理函数（偏移量908）
+ * 
+ * 执行内存操作，处理0x908偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e6a0
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+void ExecuteMemoryOperationAtOffset908(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x908,2,ProcessMemoryOperationA4);
@@ -104368,7 +104400,23 @@ void Unwind_18090e6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e6d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作处理函数（偏移量50）
+ * 
+ * 执行内存操作，处理0x50偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e6d0
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+void ExecuteMemoryOperationAtOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x50,2,ProcessMemoryOperationA2);
@@ -104377,7 +104425,23 @@ void Unwind_18090e6d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e700(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作处理函数（偏移量98）
+ * 
+ * 执行内存操作，处理0x98偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e700
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+void ExecuteMemoryOperationAtOffset98(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x98,2,ProcessMemoryOperationA1);
@@ -104386,7 +104450,23 @@ void Unwind_18090e700(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e730(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存指针状态处理函数
+ * 
+ * 处理内存指针状态，验证数据缓冲区的有效性
+ * 该函数负责：
+ * 1. 检查内存指针状态标志
+ * 2. 清理内存指针状态位
+ * 3. 验证数据缓冲区的有效性
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e730
+ * @warning 内存指针状态处理必须在适当的上下文中进行
+ */
+void ProcessMemoryPointerState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -131577,3 +131657,117 @@ uint8_t SystemExceptionHandlerStateTable;
  * @see ReleaseMemoryResourceAtOffsetD2B0, ReleaseMemoryResourceAtOffsetD2C0
  */
 #define ReleaseMemoryResourceAtOffsetD2E0 Unwind_18090d2e0
+
+// 内存操作处理函数系列 - E670-E7C0
+/**
+ * @brief 内存操作处理函数E670
+ * 
+ * 执行内存操作，处理0x248偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @note 原始函数名：Unwind_18090e670
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+#define ExecuteMemoryOperationAtOffset248 Unwind_18090e670
+
+/**
+ * @brief 内存操作处理函数E6A0
+ * 
+ * 执行内存操作，处理0x908偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @note 原始函数名：Unwind_18090e6a0
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+#define ExecuteMemoryOperationAtOffset908 Unwind_18090e6a0
+
+/**
+ * @brief 内存操作处理函数E6D0
+ * 
+ * 执行内存操作，处理0x50偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @note 原始函数名：Unwind_18090e6d0
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+#define ExecuteMemoryOperationAtOffset50 Unwind_18090e6d0
+
+/**
+ * @brief 内存操作处理函数E700
+ * 
+ * 执行内存操作，处理0x98偏移量的内存操作请求
+ * 该函数负责：
+ * 1. 执行指定的内存操作
+ * 2. 处理内存操作的异常情况
+ * 3. 确保内存操作的完整性
+ * 
+ * @note 原始函数名：Unwind_18090e700
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 内存操作必须在适当的上下文中进行
+ */
+#define ExecuteMemoryOperationAtOffset98 Unwind_18090e700
+
+/**
+ * @brief 内存指针状态处理函数E730
+ * 
+ * 处理内存指针状态，验证数据缓冲区的有效性
+ * 该函数负责：
+ * 1. 检查内存指针状态标志
+ * 2. 清理内存指针状态位
+ * 3. 验证数据缓冲区的有效性
+ * 
+ * @note 原始函数名：Unwind_18090e730
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 内存指针状态处理必须在适当的上下文中进行
+ */
+#define ProcessMemoryPointerState Unwind_18090e730
+
+/**
+ * @brief 系统资源管理和异常处理函数E760
+ * 
+ * 管理系统资源并处理异常情况，包括资源迭代、上下文管理和数据验证
+ * 该函数负责：
+ * 1. 管理系统资源迭代器
+ * 2. 处理异常上下文
+ * 3. 验证数据缓冲区
+ * 4. 配置默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e760
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 资源管理操作必须在适当的上下文中进行
+ */
+#define ManageSystemResourcesAndHandleExceptions Unwind_18090e760
+
+/**
+ * @brief 系统数据验证处理函数E770
+ * 
+ * 处理系统数据验证，清理验证标志并调用验证处理器
+ * 该函数负责：
+ * 1. 检查系统数据验证标志
+ * 2. 清理数据验证状态
+ * 3. 调用数据验证处理器
+ * 
+ * @note 原始函数名：Unwind_18090e770
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 数据验证处理必须在适当的上下文中进行
+ */
+#define ProcessSystemDataValidation Unwind_18090e770

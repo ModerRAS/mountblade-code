@@ -1055,6 +1055,14 @@ typedef enum {
 #define renderParam4 UIRenderParameter4
 #define renderParam5 UIRenderParameter5
 #define renderParam6 UIRenderParameter6
+#define stackParam00000038 UIRenderParameter0
+#define stackParam00000030 UIRenderParameter7
+#define stackParam00000048 UIRenderParameter8
+#define stackParam00000050 UIRenderParameter9
+#define stackParam00000058 UIRenderParameter10
+#define stackParam00000060 UIRenderParameter11
+#define stackParam000001b0 UIRenderParameter12
+#define stackParam000001c0 UIRenderParameter13
 
 // UI系统颜色寄存器美化
 #define colorRegister9_Dc UIColorRegister9_DoubleComponent
@@ -16850,9 +16858,9 @@ LAB_18065a765:
     *(float *)(EventHandle + 0x6170) = *(float *)(EventHandle + 0x6170) * in_XMM3_Da;
     *(float *)(EventHandle + 0x6174) = in_XMM3_Da * *(float *)(EventHandle + 0x6174);
   }
-  stackParam00000048 = stackParam00000048 - stackParam00000038;
+  UIRenderParameter1 = UIRenderParameter1 - UIRenderParameter0;
   localFloat6 = ((((unmodifiedXMM12_Da + fStack0000000000000058) * inputString + unmodifiedXMM15_Da) -
-           fStack000000000000005c) - stackParam00000060) - unmodifiedXMM15_Da;
+           fStack000000000000005c) - UIRenderParameter4) - unmodifiedXMM15_Da;
   transformCoeff1 = stackParam00000048 * stackParam00000048 + localFloat6 * localFloat6;
   result = (undefined3)((uint)allocationFlags >> 8);
   transformCoeff1 = (float)CONCAT31(result,transformCoeff1 <= 1.1754944e-38) * 1.1754944e-38 + transformCoeff1;
