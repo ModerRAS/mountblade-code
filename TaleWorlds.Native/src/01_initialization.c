@@ -3046,14 +3046,14 @@ void InitializeSystemMemoryManager(void)
   while (!IsMemoryManagerNodeActive) {
     MemoryManagerSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset, &SystemMemoryManagerTemplateId, SystemIdentifierSize);
     if (MemoryManagerSystemIdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNodePointer[NodeNextPointerOffset];
+      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
     }
     else {
-      NextNode = (void**)*CurrentNodePointer;
+      NextNodePointer = (void**)*CurrentNodePointer;
     }
     HashTablePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNode;
+    CurrentNodePointer = NextNodePointer;
     IsMemoryManagerNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   
@@ -3292,11 +3292,11 @@ void InitializeSystemEventManager(void)
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
+  IsNodeActive = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
-  while (NodeActiveFlag == '\0') {
+  while (IsNodeActive == '\0') {
     SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateInputController,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
@@ -3307,7 +3307,7 @@ void InitializeSystemEventManager(void)
     }
     HashTablePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
