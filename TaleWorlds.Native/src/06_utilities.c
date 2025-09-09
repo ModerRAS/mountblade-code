@@ -1417,6 +1417,11 @@
 // 异常上下文和处理器常量
 #define ExceptionHandlerContextOffset 0x50
 #define ExceptionDataListOffset 0x3c8
+#define ExceptionHandlerContextPointerOffsetE0 0xe0
+#define MemoryResourcePointerOffsetF0 0xf0
+#define ValidationStatusPointerOffset100 0x100
+#define OffsetStackDataOffset260 0x260
+#define ExceptionHandlerDataOffset268 0x268
 #define ExceptionDataEndOffset 0x3d0
 #define ExceptionHandlerCleanupThreshold 0x8000
 
@@ -27317,23 +27322,23 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           validationStackData = 0;
           pointerStackBuffer = &ValidationStackPointer;
           processedValue = SUB84(resourceIterator,0);
-          exceptionHandlerContextPointer = (int64_t *)(exceptionHandlerContext5 + 0xe0 + (int64_t)exceptionHandlerContextPointer0);
+          exceptionHandlerContextPointer = (int64_t *)(exceptionHandlerContext5 + ExceptionHandlerContextPointerOffsetE0 + (int64_t)exceptionHandlerContextPointer0);
           exceptionHandlerContext1 = *exceptionHandlerContextPointer;
           statusCounter = exceptionHandlerContextPointer[1];
           ExceptionContextProcessorA = (uint)exceptionHandlerContext1;
           ExceptionContextProcessorB = (DataWord)((uint64_t)exceptionHandlerContext1 >> 0x20);
           StatusCounterA = (DataWord)statusCounter;
           StatusCounterB = (DataWord)(statusCounter >> 0x20);
-          memoryResourcePointer = (DataBuffer *)(exceptionHandlerContext5 + 0xf0 + (int64_t)exceptionHandlerContextPointer0);
+          memoryResourcePointer = (DataBuffer *)(exceptionHandlerContext5 + MemoryResourcePointerOffsetF0 + (int64_t)exceptionHandlerContextPointer0);
           ResourcePointerA = *memoryResourcePointer;
           ResourcePointerB = memoryResourcePointer[1];
-          validationStatusPointer = (DataWord *)(exceptionHandlerContext5 + 0x100 + (int64_t)exceptionHandlerContextPointer0);
+          validationStatusPointer = (DataWord *)(exceptionHandlerContext5 + ValidationStatusPointerOffset100 + (int64_t)exceptionHandlerContextPointer0);
           ValidationStatusPointerA = *validationStatusPointer;
           ValidationStatusPointerB = validationStatusPointer[1];
           ValidationStatusPointerC = validationStatusPointer[2];
           SecurityFlagData = validationStatusPointer[3];
-          offsetStackData = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
-          ExceptionHandlerData = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
+          offsetStackData = *(int64_t *)(exceptionHandlerContext5 + OffsetStackDataOffset260 + (int64_t)exceptionHandlerContextPointer9);
+          ExceptionHandlerData = *(uint *)(exceptionHandlerContext5 + ExceptionHandlerDataOffset268 + (int64_t)exceptionHandlerContextPointer9);
           exceptionHandlerContext1 = exceptionHandlerContext1 - offsetStackData;
           if (exceptionHandlerContext1 == 0) {
             exceptionHandlerContext1 = (statusCounter & SystemCleanupFlag) - (uint64_t)ExceptionHandlerData;

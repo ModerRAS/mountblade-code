@@ -220808,7 +220808,7 @@ LAB_180184411:
       SystemCheckResult = *(char *)((long long)primaryCharacterStatusBufferPointer[1] + SystemNodeStatusOffset);
       ppStringProcessingStatus = (uint64_t ***)primaryCharacterStatusBufferPointer[1];
       while (SystemCheckResult == '\0') {
-        FUN_1801885a0(&primaryCharacterStatusBufferPointer,ppStringProcessingStatus[2]);
+        ProcessSystemMemory(&primaryCharacterStatusBufferPointer,ppStringProcessingStatus[2]);
         ppContextHandleTablePointer = (uint64_t ***)*ppStringProcessingStatus;
         free(ppStringProcessingStatus,0x28);
         ppStringProcessingStatus = ppContextHandleTablePointer;
@@ -220851,7 +220851,7 @@ LAB_180184411:
   MemoryBlockListHead = *(long long **)(BufferStatus + 8);
   if (*(char *)((long long)*(long long **)(BufferStatus + 8) + SystemNodeStatusOffset) == '\0') {
     do {
-      FUN_1801885a0(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
+      ProcessSystemMemory(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
       MemoryBlockIndex = (long long *)*MemoryBlockListHead;
       free(MemoryBlockListHead,0x28);
       MemoryBlockListHead = MemoryBlockIndex;
@@ -220885,7 +220885,7 @@ LAB_180184411:
   MemoryBlockIndex = LoopCounter;
   if (*(char *)((long long)SystemContextPtr + SystemNodeStatusOffset) == '\0') {
     do {
-      FUN_1801885a0(ContextHandle,SystemContextPtr[2],Utf8SourcePointer,Utf16EndPointer,CalculatedCodePoint);
+      ProcessSystemMemory(ContextHandle,SystemContextPtr[2],Utf8SourcePointer,Utf16EndPointer,CalculatedCodePoint);
       BufferAllocationStatus = (long long *)*SystemContextPtr;
       free(SystemContextPtr,0x28);
       SystemContextPtr = BufferAllocationStatus;
@@ -222298,7 +222298,7 @@ LAB_180185b78:
   MemoryBlockListHead = *(long long **)(BufferStatus + 8);
   if (*(char *)((long long)*(long long **)(BufferStatus + 8) + SystemNodeStatusOffset) == '\0') {
     do {
-      FUN_1801885a0(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
+      ProcessSystemMemory(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
       MemoryBlockIndex = (long long *)*MemoryBlockListHead;
       free(MemoryBlockListHead,0x28);
       MemoryBlockListHead = MemoryBlockIndex;
@@ -250006,18 +250006,29 @@ uint64_t * FUN_180207e00(uint64_t *ContextHandle
 
 
 
-07e40(uint64_t *ContextHandlevoid FUN_180207e40(uint64_t *ContextHandle
+/**
+ * @brief 重置系统句柄状态
+ * 
+ * 该函数负责重置系统句柄的状态，包括将句柄值设置为最大值，
+ * 清除关联数据，并调用必要的清理函数。
+ * 
+ * @param SystemHandle 系统句柄指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180207e40
+ */
+void ResetSystemHandleStatus(uint64_t *SystemHandle)
 {
-  long long *ContextHandle;
+  long long *HandleData;
   
-  *ContextHandle = 0xffffffffffffffff;
-  ContextHandle = (long long *)ContextHandle[2];
-  ContextHandle[2] = 0;
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x38))();
+  *SystemHandle = 0xffffffffffffffff;
+  HandleData = (long long *)SystemHandle[2];
+  HandleData[2] = 0;
+  if (HandleData != (long long *)0x0) {
+    (**(code **)(*HandleData + 0x38))();
   }
-  *(uint32_t *)((long long)ContextHandle + 0xc) = 0x10;
-  *(uint32_t *)(ContextHandle + 1) = 0xffffffff;
+  *(uint32_t *)((long long)HandleData + 0xc) = 0x10;
+  *(uint32_t *)(HandleData + 1) = 0xffffffff;
   return;
 }
 
