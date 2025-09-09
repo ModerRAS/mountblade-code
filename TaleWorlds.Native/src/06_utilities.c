@@ -3784,20 +3784,41 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define UpdateSystemStatusAndState FUN_180089640
 
 /**
- * @brief 系统值计算函数
+ * @brief 系统值和指标计算函数
  * 
- * 该函数负责计算系统相关的数值，包括性能指标和状态参数
+ * 计算系统的关键数值和性能指标，用于系统监控和性能评估
+ * 该函数负责：
+ * 1. 计算系统性能指标（CPU使用率、内存使用率等）
+ * 2. 统计系统运行时数据
+ * 3. 生成系统健康状态报告
+ * 4. 计算资源利用率指标
+ * 
+ * @return 计算得到的系统指标数值
  * 
  * @note 原始函数名：FUN_1800ba100
+ * @warning 此函数可能涉及系统性能敏感计算，应避免频繁调用
+ * @see ValidateSystemParametersAndConfig, UpdateSystemStatusAndState
  */
 #define CalculateSystemValueAndMetrics FUN_1800ba100
 
 /**
- * @brief 系统参数验证函数A0
+ * @brief 系统参数和配置验证函数
  * 
- * 该函数负责验证系统参数的有效性，确保参数在可接受范围内
+ * 验证系统参数和配置的有效性，确保系统设置在安全范围内
+ * 该函数负责：
+ * 1. 验证系统配置参数的合法性
+ * 2. 检查参数范围和约束条件
+ * 3. 确保系统配置的一致性
+ * 4. 验证参数间的依赖关系
+ * 
+ * @param configParams 配置参数结构体指针
+ * @return 验证结果状态码：
+ *         - 0: 验证成功
+ *         - 非0值: 验证失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180047e40
+ * @warning 参数验证失败可能导致系统不稳定
+ * @see CalculateSystemValueAndMetrics, ValidateSystemStatusAndHealth
  */
 #define ValidateSystemParametersAndConfig FUN_180047e40
 
@@ -3813,45 +3834,113 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 /**
  * @brief 系统上下文验证函数A0
  * 
- * 验证系统上下文的有效性和完整性，确保上下文数据的正确性
+ * 验证系统上下文的有效性和完整性，确保上下文数据的正确性和一致性
+ * 该函数负责：
+ * 1. 验证系统上下文结构的有效性
+ * 2. 检查上下文数据的完整性
+ * 3. 确保上下文状态的一致性
+ * 4. 验证上下文依赖关系的正确性
+ * 
+ * @param systemContext 系统上下文结构体指针
+ * @return 验证结果状态码：
+ *         - 0: 验证成功
+ *         - 非0值: 验证失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180090b80
+ * @warning 上下文验证失败可能导致系统行为异常
+ * @see ValidateSystemParametersAndConfig, ProcessSystemDataA0
  */
 #define ValidatesystemContextA0 FUN_180090b80
 
 /**
  * @brief 数据数组处理函数A0
  * 
- * 处理和操作数据数组，包括数据的读取、写入、验证和转换
+ * 处理和操作数据数组，包括数据的读取、写入、验证和转换操作
+ * 该函数负责：
+ * 1. 处理数据数组的读取和写入操作
+ * 2. 验证数组数据的完整性和有效性
+ * 3. 执行数据类型转换和格式化
+ * 4. 管理数组内存的分配和释放
+ * 
+ * @param dataArray 数据数组指针
+ * @param arraySize 数组大小
+ * @param operationType 操作类型（读取/写入/验证/转换）
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 操作失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180057010
+ * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
+ * @see InitializeDataBuffer, ValidateSystemParametersAndConfig
  */
 #define ProcessDataArrayA0 FUN_180057010
 
 /**
  * @brief 数据缓冲区初始化函数
  * 
- * 初始化系统数据缓冲区，为后续的数据操作准备内存空间
+ * 初始化系统数据缓冲区，为后续的数据操作准备内存空间和设置初始状态
+ * 该函数负责：
+ * 1. 分配数据缓冲区所需的内存空间
+ * 2. 初始化缓冲区的控制结构和状态标志
+ * 3. 设置缓冲区的访问权限和安全属性
+ * 4. 验证缓冲区初始化的完整性
+ * 
+ * @param bufferSize 缓冲区大小（字节）
+ * @param bufferType 缓冲区类型（数据/指令/混合）
+ * @param accessFlags 访问权限标志
+ * @return 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败，具体错误代码
  * 
  * @note 原始函数名：FUN_1800a19c0
+ * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
+ * @see ProcessDataArrayA0, ProcessSystemDataA0
  */
 #define InitializeDataBuffer FUN_1800a19c0
 
 /**
  * @brief 系统命令执行函数
  * 
- * 执行系统级命令，处理命令参数和返回结果
+ * 执行系统级命令，处理命令参数、执行环境和返回结果
+ * 该函数负责：
+ * 1. 解析和验证系统命令参数
+ * 2. 准备命令执行环境
+ * 3. 执行指定的系统命令
+ * 4. 处理命令执行结果和错误状态
+ * 
+ * @param command 命令字符串或命令标识符
+ * @param parameters 命令参数数组
+ * @param paramCount 参数数量
+ * @return 命令执行结果状态码：
+ *         - 0: 命令执行成功
+ *         - 非0值: 命令执行失败，具体错误代码
  * 
  * @note 原始函数名：FUN_18009fb60
+ * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
+ * @see ProcessSystemOperations, ValidateSystemParametersAndConfig
  */
 #define ExecuteSystemCommand FUN_18009fb60
 
 /**
  * @brief 系统操作处理函数
  * 
- * 处理系统级操作，包括资源管理和状态控制
+ * 处理系统级操作，包括资源管理、状态控制和系统维护
+ * 该函数负责：
+ * 1. 管理系统资源的分配和释放
+ * 2. 控制系统状态的转换和同步
+ * 3. 执行系统维护和优化操作
+ * 4. 处理系统级别的异常和错误
+ * 
+ * @param operationType 操作类型（资源管理/状态控制/系统维护）
+ * @param operationData 操作数据结构体指针
+ * @param flags 操作标志和选项
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 操作失败，具体错误代码
  * 
  * @note 原始函数名：FUN_1800ad6f0
+ * @warning 系统操作可能影响系统整体性能和稳定性
+ * @see ExecuteSystemCommand, UpdateSystemStatusAndState
  */
 #define ProcessSystemOperations FUN_1800ad6f0
 
