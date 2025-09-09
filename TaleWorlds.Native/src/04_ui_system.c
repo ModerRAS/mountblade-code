@@ -655,12 +655,12 @@ typedef enum {
 #define LAB_UIResourceRelease LAB_UIResourceReleaseHandler             // UI资源释放标签 - 释放UI资源
 #define LAB_UIMemoryFree LAB_UIMemoryFreeRoutine                       // UI内存释放标签 - 释放UI内存
 #define LAB_UIContextReset LAB_UIContextResetHandler                   // UI上下文重置标签 - 重置UI上下文
-#define LAB_UIStateRestore LAB_UIStateRestoreRoutine
-#define LAB_UIDataInitialize LAB_UIDataInitializationRoutine
-#define LAB_UIComponentDestroy LAB_UIComponentDestructionHandler
-#define LAB_UIEventComplete LAB_UIEventCompletionHandler
-#define LAB_UIRenderFinish LAB_UIRenderFinishRoutine
-#define LAB_UIUpdateComplete LAB_UIUpdateCompletionHandler
+#define LAB_UIStateRestore LAB_UIStateRestoreRoutine                     // UI状态恢复标签 - 恢复UI状态
+#define LAB_UIDataInitialize LAB_UIDataInitializationRoutine            // UI数据初始化标签 - 初始化UI数据
+#define LAB_UIComponentDestroy LAB_UIComponentDestructionHandler       // UI组件销毁标签 - 销毁UI组件
+#define LAB_UIEventComplete LAB_UIEventCompletionHandler                // UI事件完成标签 - UI事件处理完成
+#define LAB_UIRenderFinish LAB_UIRenderFinishRoutine                   // UI渲染完成标签 - UI渲染完成
+#define LAB_UIUpdateComplete LAB_UIUpdateCompletionHandler             // UI更新完成标签 - UI更新完成
 
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData GetUIDataValue
