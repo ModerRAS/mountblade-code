@@ -222,8 +222,8 @@ typedef enum {
 #define ProcessUIGraphicsParameters FUN_18072e720        // UI图形参数处理
 #define ProcessUIRenderContext FUN_180726fd0           // UI渲染上下文处理
 #define ProcessUIComponentLayout FUN_18072ec50          // UI组件布局处理
-#define FUN_18072e4b0 ProcessUICoefficientCalculation   // UI系数计算处理
-#define FUN_18072fba0 ProcessUISurfaceRendering         // UI表面渲染处理
+#define ProcessUICoefficientCalculation FUN_18072e4b0   // UI系数计算处理
+#define ProcessUISurfaceRendering FUN_18072fba0         // UI表面渲染处理
 #define FUN_180730e60 ProcessUIInterfaceRendering        // UI界面渲染处理
 #define FUN_180733080 ProcessUINavigationSystem          // UI导航系统处理
 #define FUN_18072f890 ProcessUITextProcessing           // UI文本处理函数
