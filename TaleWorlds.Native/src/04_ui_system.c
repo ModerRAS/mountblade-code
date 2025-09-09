@@ -109693,7 +109693,7 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
     } while (CharacterDataOffset != 0);
   }
   stackUInt118 = targetBuffer;
-  FUN_180736a70(uiContext,&stackInt108,0xc);
+  RenderUIComponentA70(uiContext,&stackInt108,0xc);
   localInt7 = FUN_180734160(uiContext,targetBuffer);
   for (uiValidationResult = 0; (localInt7 == 0 && (uiValidationResult < 0x10)); uiValidationResult = uiValidationResult + 1) {
     func_0x000180736a10(&stackInt108,targetBuffer,0x10000 - (2 << ((byte)uiValidationResult & 0x1f)));
