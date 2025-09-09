@@ -29128,44 +29128,44 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       }
       memoryContextIndex = memoryContextIndex + memoryOperationResult;
     }
-    memoryRegionBase = (uint)*(uint3 *)((dataBuffer & SystemCleanupFlag) * 3 + systemContext[8]);
-    dataBuffer = (uint64_t)memoryRegionBase;
-  } while (memoryRegionBase != 0xffffff);
-  if (allocatedMemoryBlock != 0) {
-    if (contextIndex < allocatedMemoryBlock) {
-      operationResult = systemContext + contextIndex;
-      statusCounterPointer = operationResult + -1;
-      if (systemContext < statusCounterPointer) {
+    memoryRegionAddress = (uint)*(uint3 *)((dataBuffer & SystemCleanupFlag) * 3 + systemContext[8]);
+    dataBuffer = (uint64_t)memoryRegionAddress;
+  } while (memoryRegionAddress != 0xffffff);
+  if (memoryAllocationSize != 0) {
+    if (memoryContextIndex < memoryAllocationSize) {
+      memoryOperationResult = systemContext + memoryContextIndex;
+      dataBufferPointer = memoryOperationResult + -1;
+      if (systemContext < dataBufferPointer) {
         do {
-          systemDataBuffer = *systemContext;
-          *systemContext = *statusCounterPointer;
+          dataTransferBuffer = *systemContext;
+          *systemContext = *dataBufferPointer;
           systemContext = systemContext + 1;
-          *statusCounterPointer = systemDataBuffer;
-          statusCounterPointer = statusCounterPointer + -1;
-        } while (systemContext < statusCounterPointer);
+          *dataBufferPointer = dataTransferBuffer;
+          dataBufferPointer = dataBufferPointer + -1;
+        } while (systemContext < dataBufferPointer);
       }
-      *operationResult = (char)processingDataValue;
+      *memoryOperationResult = (char)memoryDataValue;
     }
     else {
-      processingFlagsPointer = systemContext + (int)basePointer;
-      statusCounterPointer = processingFlagsPointer + -1;
-      operationResult = systemContext;
-      if (systemContext < statusCounterPointer) {
+      memoryFlagsPointer = systemContext + (int)memoryBlockOffset;
+      dataBufferPointer = memoryFlagsPointer + -1;
+      memoryOperationResult = systemContext;
+      if (systemContext < dataBufferPointer) {
         do {
-          systemDataBuffer = *operationResult;
-          *operationResult = *statusCounterPointer;
-          operationResult = operationResult + 1;
-          *statusCounterPointer = systemDataBuffer;
-          statusCounterPointer = statusCounterPointer + -1;
-        } while (operationResult < statusCounterPointer);
+          dataTransferBuffer = *memoryOperationResult;
+          *memoryOperationResult = *dataBufferPointer;
+          memoryOperationResult = memoryOperationResult + 1;
+          *dataBufferPointer = dataTransferBuffer;
+          dataBufferPointer = dataBufferPointer + -1;
+        } while (memoryOperationResult < dataBufferPointer);
       }
-      statusCounterPointer = processingFlagsPointer + (int64_t)(int)(allocatedMemoryBlock - basePointer) + -1;
-      if (processingFlagsPointer < statusCounterPointer) {
+      dataBufferPointer = memoryFlagsPointer + (int64_t)(int)(memoryAllocationSize - memoryBlockOffset) + -1;
+      if (memoryFlagsPointer < dataBufferPointer) {
         do {
-          systemDataBuffer = *processingFlagsPointer;
-          *processingFlagsPointer = *statusCounterPointer;
-          processingFlagsPointer = processingFlagsPointer + 1;
-          *statusCounterPointer = systemDataBuffer;
+          dataTransferBuffer = *memoryFlagsPointer;
+          *memoryFlagsPointer = *dataBufferPointer;
+          memoryFlagsPointer = memoryFlagsPointer + 1;
+          *dataBufferPointer = dataTransferBuffer;
           statusCounterPointer = statusCounterPointer + -1;
         } while (processingFlagsPointer < statusCounterPointer);
       }
