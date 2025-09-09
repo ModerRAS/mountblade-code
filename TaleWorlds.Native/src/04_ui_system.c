@@ -2395,21 +2395,21 @@ typedef enum {
 #define func_0x000180024c80 ProcessUIComponentEventOperation
 #define func_0x000180024d00 ProcessUIComponentStateOperation
 #define func_0x000180024d80 ProcessUIComponentDataOperation
-#define func_0x000180024e00 ProcessUIComponentLayout
-#define func_0x000180024e80 ProcessUIComponentStyle
-#define func_0x000180024f00 ProcessUIComponentTheme
-#define func_0x000180024f80 ProcessUIComponentFont
-#define func_0x000180025000 ProcessUIComponentColor
-#define func_0x000180025080 ProcessUIComponentTexture
-#define func_0x000180025100 ProcessUIComponentShader
-#define func_0x000180025180 ProcessUIComponentMaterial
-#define func_0x000180025200 ProcessUIComponentLight
-#define func_0x000180025280 ProcessUIComponentCamera
-#define func_0x000180025300 ProcessUIComponentEffect
+#define func_0x000180024e00 ProcessUIComponentLayoutOperation
+#define func_0x000180024e80 ProcessUIComponentStyleOperation
+#define func_0x000180024f00 ProcessUIComponentThemeOperation
+#define func_0x000180024f80 ProcessUIComponentFontOperation
+#define func_0x000180025000 ProcessUIComponentColorOperation
+#define func_0x000180025080 ProcessUIComponentTextureOperation
+#define func_0x000180025100 ProcessUIComponentShaderOperation
+#define func_0x000180025180 ProcessUIComponentMaterialOperation
+#define func_0x000180025200 ProcessUIComponentLightOperation
+#define func_0x000180025280 ProcessUIComponentCameraOperation
+#define func_0x000180025300 ProcessUIComponentEffectOperation
 
 // UI系统指针变量美化
-#define psVar5 UIPtrShortVar5
-#define psVar1 UIPtrShortVar1
+#define psVar5 UIPointerVariable5
+#define psVar1 UIPointerVariable1
 #define pProcessingResult3 UIPtrProcessingResult3
 #define pprocessingResult6 UIPtrProcessingResult6
 #define allocatedMemory7 UIAllocatedMemory7
