@@ -13820,15 +13820,15 @@ Label_1808fbebe:
 }
 uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
 {
-  code *pNetworkRequestStatus;
+  code *NetworkRequestStatusPointer;
   byte ValidationStatusByte;
   int IntegerCounter;
   uint64_t NetworkRequestResult;
   if (SystemInitializationCompleteFlag == '\0') {
     if (1 < SystemContextDataPointer) {
       ProcessSystemCleanup(5);
-      pNetworkRequestStatus = (code *)swi(3);
-      NetworkRequestResult = (*pNetworkRequestStatus)();
+      NetworkRequestStatusPointer = (code *)swi(3);
+      NetworkRequestResult = (*NetworkRequestStatusPointer)();
       return NetworkRequestResult;
     }
     IntegerCounter = GetValidationStatus();
