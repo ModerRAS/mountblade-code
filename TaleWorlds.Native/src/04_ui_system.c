@@ -1597,6 +1597,64 @@ typedef enum {
 #define allocatedMemory4 MemoryAllocation4
 #define allocatedMemory5 MemoryAllocation5
 #define allocatedMemory6 MemoryAllocation6
+
+// UI系统局部变量美化
+#define sVar19 UIAnimationStatus19
+#define sVar24 UIAnimationStatus24
+#define sVar25 UIAnimationStatus25
+#define sVar26 UIAnimationStatus26
+#define sVar27 UIAnimationStatus27
+#define sVar28 UIAnimationStatus28
+#define sVar29 UIAnimationStatus29
+
+// UI系统数组变量美化
+#define aiterationCount1 UIIterationCountArray1
+#define aEventTypeCode2 UIEventTypeCodeArray2
+#define aEventTypeCode3 UIEventTypeCodeArray3
+#define aEventTypeCode4 UIEventTypeCodeArray4
+#define aEventTypeCode5 UIEventTypeCodeArray5
+#define aEventTypeCode6 UIEventTypeCodeArray6
+#define aEventTypeCode7 UIEventTypeCodeArray7
+#define aEventTypeCode8 UIEventTypeCodeArray8
+#define aProcessingStatus1 UIProcessingStatusArray1
+#define aProcessingStatus2 UIProcessingStatusArray2
+#define aProcessingStatus3 UIProcessingStatusArray3
+#define aProcessingStatus4 UIProcessingStatusArray4
+#define aProcessingStatus5 UIProcessingStatusArray5
+#define acomponentStatus6 UIComponentStatusArray6
+#define aProcessingStatus7 UIProcessingStatusArray7
+#define aloopCounter0 UILoopCounterArray0
+#define aloopCounter1 UILoopCounterArray1
+#define aloopCounter2 UILoopCounterArray2
+#define aloopCounter3 UILoopCounterArray3
+#define aloopCounter4 UILoopCounterArray4
+#define aloopCounter5 UILoopCounterArray5
+#define aloopCounter6 UILoopCounterArray6
+
+// UI系统处理变量美化
+#define aResultValue3 UIResultValueArray3
+#define amaxProcessingCount7 UIMaxProcessingCountArray7
+#define amaxProcessingCount8 UIMaxProcessingCountArray8
+#define amaxProcessingCount9 UIMaxProcessingCountArray9
+#define aprocessingCounter0 UIProcessingCounterArray0
+#define amaxProcessingCount4 UIMaxProcessingCountArray4
+#define amaxProcessingCount7 UIMaxProcessingCountArray7
+#define aiterationCount2 UIIterationCountArray2
+#define aEventTypeCode9 UIEventTypeCodeArray9
+#define aiterationCount3 UIIterationCountArray3
+#define aprocessingStatus8 UIProcessingStatusArray8
+#define aloopCounter3 UILoopCounterArray3
+#define aloopCounter4 UILoopCounterArray4
+#define aloopCounter5 UILoopCounterArray5
+#define aloopCounter6 UILoopCounterArray6
+
+// UI系统指针变量美化
+#define paCounterResult UIPointerCounterResult
+#define plocalChar16 UIPointerLocalChar16
+#define piterationCount UIPointerIterationCount
+#define ptrResult UIPointerResult
+#define ptrLocal3 UIPointerLocal3
+#define bufferPtr UIBufferPointer
 /**
  * @brief 验证UI上下文的有效性
  * 
