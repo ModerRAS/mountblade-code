@@ -72407,7 +72407,7 @@ void ProcessMemoryBlockAllocationStatus(void
   long long *CharacterLimit;
   long long *NullPointerValue;
   
-LAB_18008ee00:
+SystemExceptionHandlerLabel:
   MemoryPoolBlockSizePointer = CharacterLimit;
   if (0 < RegisterR12Value) {
     MemoryBoundaryEnd = *NullPointerValue;
@@ -72527,12 +72527,12 @@ SystemDataValidationLabel:
     } while( true );
   }
   goto SystemMemoryAllocationLabel;
-LAB_18008efcb:
+SystemExceptionCleanupLabel:
   RegisterR12Value = RegisterR12Value + -1;
   ProcessSystemDataStructureValidation(MemoryPoolBlockSizePointer,CharacterLimit,RegisterR12Value,RegisterValueBL);
   CharacterLimit = MemoryPoolBlockSizePointer;
   if ((long long)((long long)MemoryPoolBlockSizePointer - (long long)NullPointerValue & 0xfffffffffffffff8U) < 0xe1) {
-LAB_18008eff7:
+SystemMemoryCleanupLabel:
     if (RegisterR12Value == 0) {
       MemoryBoundaryEnd = (long long)MemoryPoolBlockSizePointer - (long long)NullPointerValue >> 3;
       if (1 < MemoryBoundaryEnd) {

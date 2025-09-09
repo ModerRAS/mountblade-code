@@ -134703,25 +134703,25 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
     } while ((int)dataPointer < *(int *)(uiBufferData + 0x1e0));
   }
   ReleaseUIMemoryResource(uiContext);
-  ValidateUIMemoryOperation(uiContext,1);
-  FUN_18078c0a0(uiContext,0);
+  ValidateUIMemoryOperation(uiContext, 1);
+  ProcessUIResourceRequest(uiContext, 0);
   if (*(char *)(uiContext + 0x12370) != '\0') {
-    FUN_180767ad0(uiContext + 0x12220);
+    CleanupUIComponentData(uiContext + 0x12220);
     *(UIByte *)(uiContext + 0x12370) = 0;
-    FUN_180768380(*(UIHandle *)(uiContext + 0x11570),0);
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x11570), 0);
     *(UIHandle *)(uiContext + 0x11570) = 0;
-    FUN_180768380(*(UIHandle *)(uiContext + 0x11578),0);
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x11578), 0);
     *(UIHandle *)(uiContext + 0x11578) = 0;
-    FUN_180768380(*(UIHandle *)(uiContext + 0x11580),0);
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x11580), 0);
     *(UIHandle *)(uiContext + 0x11580) = 0;
   }
   if (*(longlong *)(uiBufferData + 0x670) != 0) {
-    FUN_1807891d0();
+    ProcessUIRenderingOperation();
   }
   if (*(int *)(uiBufferData + 0x127e8) != 0) {
     contextOffset = *(longlong *)
              (*(longlong *)(uiBufferData + 0x127e0) + -8 + (longlong)*(int *)(uiBufferData + 0x127e8) * 8);
-    func_0x000180743c20(uiContext,0x11);
+    ProcessUIContextValidation(uiContext, 0x11);
     sourceDataInt = *(int *)(contextOffset + 0x20);
     ProcessingResult2 = *(int *)(uiBufferData + 0x127e8) + -1;
     contextOffset = (longlong)*(int *)(uiBufferData + 0x127e8) * 8 + -8;
@@ -134733,17 +134733,15 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
       ProcessingResult2 = (sourceDataInt - ProcessingResult2) + -1;
       if (0 < ProcessingResult2) {
         contextOffset = *(longlong *)(uiBufferData + 0x127e0) + contextOffset;
-                     WARNING: Subroutine does not return
-        memmove(contextOffset,contextOffset + 8,(longlong)ProcessingResult2 << 3);
+        memmove(contextOffset, contextOffset + 8, (longlong)ProcessingResult2 << 3);
       }
       *(int *)(uiBufferData + 0x127e8) = sourceDataInt + -1;
     }
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(uiContext,0x11);
+    ProcessUISystemCleanup(uiContext, 0x11);
   }
-  FUN_180744d60(uiContext + 0x127e0);
+  CleanupUIContextData(uiContext + 0x127e0);
   if (*(longlong *)(uiBufferData + 0x12770) != 0) {
-    maxProcessingCount = FUN_1807d0db0();
+    maxProcessingCount = ProcessUIResourceValidation();
     if ((int)maxProcessingCount != 0) {
       return maxProcessingCount;
     }
@@ -134751,14 +134749,14 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
   }
   *(UIHandle *)(uiContext + 0x12778) = 0;
   if (*(longlong *)(uiBufferData + 0x116e0) != 0) {
-    maxProcessingCount = FUN_180753880(*(longlong *)(uiBufferData + 0x116e0),1);
+    maxProcessingCount = ProcessUIComponentResource(*(longlong *)(uiBufferData + 0x116e0), 1);
     if ((int)maxProcessingCount != 0) {
       return maxProcessingCount;
     }
     *(UIHandle *)(uiContext + 0x116e0) = 0;
   }
   if (*(longlong *)(uiBufferData + 0x11720) != 0) {
-    maxProcessingCount = FUN_180755270();
+    maxProcessingCount = ProcessUIRenderingState();
     if ((int)maxProcessingCount != 0) {
       return maxProcessingCount;
     }
@@ -134767,14 +134765,14 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
   ptrLocal3 = *(UIHandle **)(uiContext + UIComponentListOffset);
   while (maxProcessingCount = result1, ptrLocal3 != (UIHandle *)(uiContext + UIComponentListOffset)) {
     piterationCount = (UIHandle *)*ptrLocal3;
-    maxProcessingCount = FUN_1807675e0(ptrLocal3[2],1);
+    maxProcessingCount = ReleaseUIComponentInstance(ptrLocal3[2], 1);
     ptrLocal3 = piterationCount;
     if ((int)maxProcessingCount != 0) {
       return maxProcessingCount;
     }
   }
   do {
-    iterationCounter = FUN_180767660(uiContext + ((longlong)(int)maxProcessingCount * 3 + 0x24c7) * 8);
+    iterationCounter = CleanupUIComponentInstance(uiContext + ((longlong)(int)maxProcessingCount * 3 + 0x24c7) * 8);
     if ((int)iterationCounter != 0) {
       return iterationCounter;
     }
@@ -134812,7 +134810,7 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
         *(UIHandle *)(uiContext + 0x6b0) = 0;
       }
       do {
-        iterationCounter = FUN_180742d90(uiContext,maxProcessingCount);
+        iterationCounter = ProcessUIComponentIteration(uiContext, maxProcessingCount);
         if ((int)iterationCounter != 0) {
           return iterationCounter;
         }
@@ -134820,16 +134818,15 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
         maxProcessingCount = (ulonglong)dataPointer;
       } while ((int)dataPointer < 9);
       if (*(longlong *)(uiBufferData + 0x1e8) != 0) {
-                     WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(uiBufferData + 0x1e8),
-                      &UNK_180958000,0x321,1);
+        ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), *(longlong *)(uiBufferData + 0x1e8),
+                                &UIComponentDataF50, 0x321, 1);
       }
       contextOffset = uiContext + 0x598;
       *(longlong *)(uiBufferData + 0x5a0) = contextOffset;
       *(longlong *)contextOffset = contextOffset;
       *(UIHandle *)(uiContext + 0x5a8) = 0;
       if (dataSource == '\0') {
-        maxProcessingCount = FUN_18074a310(uiContext);
+        maxProcessingCount = ProcessUIFinalValidation(uiContext);
         if ((int)maxProcessingCount != 0) {
           return maxProcessingCount;
         }
