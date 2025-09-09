@@ -97910,36 +97910,36 @@ int ProcessUISIMDOperation(void)
 
 
 
-int FUN_180721f12(float uiContext,float dataSource,float targetBuffer,float bufferSize)
+int ValidateUIFloatParameter(float uiContext,float dataSource,float targetBuffer,float bufferSize)
 
 {
-  UIByte aresult [16];
-  double dVar2;
-  uint EventTypeCode;
+  UIByte resultArray [16];
+  double calculationResult;
+  uint eventTypeCode;
   longlong contextHandleData;
-  float TransformCoefficient4;
+  float transformCoefficient;
   float preservedXMM6;
   float preservedXMM7;
   
-  TransformCoefficient4 = targetBuffer;
+  transformCoefficient = targetBuffer;
   if (preservedXMM7 < 0.0) {
-    TransformCoefficient4 = bufferSize;
+    transformCoefficient = bufferSize;
   }
   if (0.0 <= SQRT(preservedXMM6 * preservedXMM7)) {
     bufferSize = targetBuffer;
   }
-  TransformCoefficient4 = ((((preservedXMM7 * 0.43157974 + preservedXMM6) * SQRT(preservedXMM6 * preservedXMM7)) /
-            (dataSource * (uiContext + preservedXMM6)) + TransformCoefficient4) - bufferSize) * 10430.382 + 0.5;
-  dVar2 = (double)TransformCoefficient4;
-  contextHandleData = (longlong)TransformCoefficient4;
-  if ((contextHandleData != -0x8000000000000000) && ((double)contextHandleData != dVar2)) {
-    aresult._8_4_ = SUB84(dVar2,0);
-    aresult._0_8_ = dVar2;
-    aresult._12_4_ = (int)((ulonglong)dVar2 >> 0x20);
-    EventTypeCode = movmskpd(0,aresult);
-    dVar2 = (double)(longlong)(contextHandleData - (ulonglong)(EventTypeCode & 1));
+  transformCoefficient = ((((preservedXMM7 * 0.43157974 + preservedXMM6) * SQRT(preservedXMM6 * preservedXMM7)) /
+            (dataSource * (uiContext + preservedXMM6)) + transformCoefficient) - bufferSize) * 10430.382 + 0.5;
+  calculationResult = (double)transformCoefficient;
+  contextHandleData = (longlong)transformCoefficient;
+  if ((contextHandleData != -0x8000000000000000) && ((double)contextHandleData != calculationResult)) {
+    resultArray._8_4_ = SUB84(calculationResult,0);
+    resultArray._0_8_ = calculationResult;
+    resultArray._12_4_ = (int)((ulonglong)calculationResult >> 0x20);
+    eventTypeCode = movmskpd(0,resultArray);
+    calculationResult = (double)(longlong)(contextHandleData - (ulonglong)(eventTypeCode & 1));
   }
-  return (int)dVar2;
+  return (int)calculationResult;
 }
 
 
@@ -168339,7 +168339,9 @@ UIDword FUN_1807686d0(void)
 
 
 
-UIHandle FUN_1807687d0(void)
+// UI系统库释放处理器 - 释放UI系统库并返回迭代计数
+// 原始函数名：FUN_1807687d0
+UIHandle UILibraryReleaseHandler(void)
 
 {
   int processingResult;
@@ -168361,13 +168363,13 @@ UIHandle FUN_180768820(void)
 
 {
   if (_DAT_180c0c6f0 != 0) {
-    (**(code **)(*_DAT_180c0c6e8 + 0x38))();
+    (**(code **)(*_GlobalUIComponentInstanceE8 + 0x38))();
                      WARNING: Subroutine does not return
     FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),_DAT_180c0c6f0,&UIComponentParameterB20,0x75,1);
   }
-  if (_DAT_180c0c6e8 != (longlong *)0x0) {
-    (**(code **)(*_DAT_180c0c6e8 + 0x10))();
-    _DAT_180c0c6e8 = (longlong *)0x0;
+  if (_GlobalUIComponentInstanceE8 != (longlong *)0x0) {
+    (**(code **)(*_GlobalUIComponentInstanceE8 + 0x10))();
+    _GlobalUIComponentInstanceE8 = (longlong *)0x0;
   }
   return 0;
 }
