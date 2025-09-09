@@ -3884,22 +3884,22 @@ void* UIGestureCoordinates;
 #define UICoordinateDataTable3D UICoordinateDataTable3D
 
  // UI系统函数结果表语义化定义
-#define UIFunctionResultTableTransform UNK_1809535ec
-#define UIFunctionResultTableColor UNK_1809535e8
-#define UIFunctionResultTableShader UNK_180954788
-#define UIFunctionResultTableTexture UNK_1809535d8
-#define UIFunctionResultTableViewport UNK_1809535cc
-#define UIFunctionResultTableLighting UNK_180953640
-#define UIFunctionResultTableAnimation UNK_1809547d8
-#define UIFunctionResultTableEvent UNK_1809547b8
-#define UIFunctionResultTableInput UNK_180954840
-#define UIFunctionResultTableLayout UNK_180954848
-#define UIFunctionResultTableState UNK_1809535d4
-#define UIFunctionResultTableDebug UNK_1809535b8
-#define UIComparisonTableEntry UNK_1809543d8
-#define UIComponentDataTable UNK_180954320
-#define UIValidationFlagTable UNK_1809543c2
-#define UIComponentStateTable UNK_1809535b0
+#define UIFunctionResultTableTransform UNK_1809535ec        // UI函数结果表 - 变换操作
+#define UIFunctionResultTableColor UNK_1809535e8             // UI函数结果表 - 颜色处理
+#define UIFunctionResultTableShader UNK_180954788             // UI函数结果表 - 着色器处理
+#define UIFunctionResultTableTexture UNK_1809535d8            // UI函数结果表 - 纹理处理
+#define UIFunctionResultTableViewport UNK_1809535cc           // UI函数结果表 - 视口处理
+#define UIFunctionResultTableLighting UNK_180953640          // UI函数结果表 - 光照处理
+#define UIFunctionResultTableAnimation UNK_1809547d8         // UI函数结果表 - 动画处理
+#define UIFunctionResultTableEvent UNK_1809547b8             // UI函数结果表 - 事件处理
+#define UIFunctionResultTableInput UNK_180954840             // UI函数结果表 - 输入处理
+#define UIFunctionResultTableLayout UNK_180954848             // UI函数结果表 - 布局处理
+#define UIFunctionResultTableState UNK_1809535d4             // UI函数结果表 - 状态处理
+#define UIFunctionResultTableDebug UNK_1809535b8             // UI函数结果表 - 调试处理
+#define UIComparisonTableEntry UNK_1809543d8                  // UI比较表条目
+#define UIComponentDataTable UNK_180954320                   // UI组件数据表
+#define UIValidationFlagTable UNK_1809543c2                  // UI验证标志表
+#define UIComponentStateTable UNK_1809535b0                  // UI组件状态表
 
  // UI系统验证数据表美化
 #define UIValidationDataTableInput UNK_180954770
@@ -8881,8 +8881,8 @@ void ProcessUIMessages(void)
     dataBuffer = *(undefined **)(layoutContext + 8);
   }
   pathSeparatorPosition2 = strrchr(dataBuffer,0x5c);
-  if (pathSeparator1 == 0) {
-    if (pathSeparator2 == 0) {
+  if (pathSeparatorPosition1 == 0) {
+    if (pathSeparatorPosition2 == 0) {
       sourceString = "";
       if (*(char **)(layoutContext + 8) != (char *)0x0) {
         sourceString = *(char **)(layoutContext + 8);
@@ -8895,7 +8895,7 @@ void ProcessUIMessages(void)
       } while (currentChar != '\0');
     }
     else {
-      sourceString = (char *)(pathSeparator2 + 1);
+      sourceString = (char *)(pathSeparatorPosition2 + 1);
       targetBuffer = targetBuffer - (longlong)sourceString;
       do {
         currentChar = *sourceString;

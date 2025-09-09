@@ -134734,43 +134734,50 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ProcessSystemDataValidation Unwind_18090e770
 
 /**
- * @brief 验证结果浮点数A
+ * @brief 验证中间结果浮点数A
  * 
- * 存储验证过程中的浮点数计算结果值
+ * 存储系统验证过程中的浮点数计算中间结果值
  * 该变量用于：
- * 1. 保存浮点数验证操作的中间结果
- * 2. 提供验证结果的浮点数表示
- * 3. 支持后续的浮点数计算和处理
+ * 1. 保存浮点数验证操作的中间计算结果
+ * 2. 提供验证结果的浮点数精确表示
+ * 3. 支持后续的浮点数数学运算和数据处理
+ * 4. 在验证流程中传递临时计算值
  * 
  * @note 原始变量名：ValidationResultFloatA
- * @warning 浮点数操作需要考虑精度和溢出问题
+ * @warning 浮点数操作需要考虑精度损失和溢出问题
+ * @see ValidationIntermediateResultFloatB, ValidationIntermediateResultIntegerA
  */
 float ValidationIntermediateResultFloatA;
 
 /**
- * @brief 验证结果浮点数B
+ * @brief 验证中间结果浮点数B
  * 
- * 存储验证过程中的浮点数计算结果值
+ * 存储系统验证过程中的浮点数计算中间结果值
  * 该变量用于：
- * 1. 保存浮点数验证操作的中间结果
- * 2. 提供验证结果的浮点数表示
- * 3. 支持后续的浮点数计算和处理
+ * 1. 保存浮点数验证操作的中间计算结果
+ * 2. 提供验证结果的浮点数精确表示
+ * 3. 支持后续的浮点数数学运算和数据处理
+ * 4. 在验证流程中传递临时计算值
  * 
  * @note 原始变量名：ValidationResultFloatB
- * @warning 浮点数操作需要考虑精度和溢出问题
+ * @warning 浮点数操作需要考虑精度损失和溢出问题
+ * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultIntegerA
  */
 float ValidationIntermediateResultFloatB;
 
 /**
- * @brief 验证结果整数A
+ * @brief 验证中间结果整数A
  * 
- * 存储验证过程中的整数计算结果值
+ * 存储系统验证过程中的整数计算中间结果值
  * 该变量用于：
- * 1. 保存整数验证操作的中间结果
- * 2. 提供验证结果的整数表示
- * 3. 支持后续的整数计算和处理
+ * 1. 保存整数验证操作的中间计算结果
+ * 2. 提供验证结果的整数精确表示
+ * 3. 支持后续的整数数学运算和数据处理
+ * 4. 在验证流程中传递临时计算值
+ * 5. 用于计数器和索引操作的中间存储
  * 
  * @note 原始变量名：ValidationResultIntegerA
- * @warning 整数操作需要考虑溢出问题
+ * @warning 整数操作需要考虑溢出问题，特别是在大数计算时
+ * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultFloatB
  */
-int ValidationResultIntegerA;
+int ValidationIntermediateResultIntegerA;
