@@ -9195,17 +9195,17 @@ void ProcessUILayout(longlong layoutContext,longlong targetBuffer)
   char currentCharacter;
   ulonglong firstPathSeparatorPos;
   ulonglong secondPathSeparatorPos;
-  undefined *dataBufferPointer;
+  UIDataBuffer *dataBufferPointer;
   char *sourceStringPointer;
   
   dataBufferPointer = &UIDefaultDataBuffer;
-  if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
-    dataBufferPointer = *(undefined **)(layoutContext + 8);
+  if (*(UIDataBuffer **)(layoutContext + 8) != (UIDataBuffer *)0x0) {
+    dataBufferPointer = *(UIDataBuffer **)(layoutContext + 8);
   }
   firstPathSeparatorPos = strrchr(dataBufferPointer,0x5c);
   dataBufferPointer = &UIDefaultDataBuffer;
-  if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
-    dataBufferPointer = *(undefined **)(layoutContext + 8);
+  if (*(UIDataBuffer **)(layoutContext + 8) != (UIDataBuffer *)0x0) {
+    dataBufferPointer = *(UIDataBuffer **)(layoutContext + 8);
   }
   secondPathSeparatorPos = strrchr(dataBufferPointer,0x5c);
   if (firstPathSeparatorPos == 0) {
@@ -9393,7 +9393,7 @@ void ProcessUIRendering(longlong uiContext)
   short *componentPriority;
   UIHandle *componentListIterator;
   UIHandle *componentNextNode;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   UIHandle *componentInsertPosition;
   ulonglong bufferSize;
    UI组件状态缓冲区
@@ -9414,8 +9414,8 @@ void ProcessUIRendering(longlong uiContext)
   componentStateFlag = 0xfffffffffffffffe;
   componentEncryptionKey = XorEncryptionKey ^ (ulonglong)componentStateBuffer;
   bufferPtr = &UIDefaultDataBuffer;
-  if (*(undefined **)(uiContext + 8) != (undefined *)0x0) {
-    bufferPtr = *(undefined **)(uiContext + 8);
+  if (*(UIDataBuffer **)(uiContext + 8) != (UIDataBuffer *)0x0) {
+    bufferPtr = *(UIDataBuffer **)(uiContext + 8);
   }
   componentPriorityValue = (short *)LoadLibraryA(bufferPtr);
   if (componentPriorityValue != (short *)0x0) {
@@ -9643,8 +9643,8 @@ LAB_UIContextCreation:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,undefined *targetBuffer,UIHandle bufferSize,
-void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,undefined *targetBuffer,UIHandle bufferSize,
+ void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,UIDataBuffer *targetBuffer,UIHandle bufferSize,
+void CreateUIComponentInstance(UIHandle uiContext,UIHandle dataSource,UIDataBuffer *targetBuffer,UIHandle bufferSize,
                   ulonglong *resultPointer)
 
 {
@@ -9836,7 +9836,7 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
  void ProcessUIComponentDataValidation(longlong ComponentContext, longlong *DataBuffer, UIHandle ValidationFlags, UIHandle ErrorHandlingMode)
 
 {
-  undefined *pResultPointer;
+  UIResultBuffer *pResultPointer;
   undefined *pSemaphoreHandle;
   longlong *pDataStackPointer;
   undefined *pStackBuffer50;
@@ -11383,7 +11383,7 @@ int ProcessUIEvent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffe
   int processingResult;
   longlong eventIndex;
   longlong characterPosition;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   undefined *pstackUInt30;
   longlong stackLong28;
   int stackInt20;
@@ -92908,7 +92908,7 @@ UIHandle ValidateUIDataProcessingParameters(longlong uiContext,int dataSource)
   int processingResult;
   longlong componentIndex;
   int uiCompareResult;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   longlong EventDataIndex;
   int loopCounter;
   
@@ -158638,7 +158638,7 @@ FUN_18075e660(longlong uiContext,longlong dataSource,uint *targetBuffer,uint *bu
   UIHandle result;
   uint iterationCount;
   uint EventTypeCode;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   
   if (dataSource != 0) {
     bufferPtr = *(undefined **)(uiContext + 0xf0);
@@ -233527,7 +233527,7 @@ UIHandle FUN_1808051df(void)
   int bufferSize;
   int uiValidationResult;
   longlong stringCompareIndex;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   longlong contextHandle;
   longlong BasePointer;
   longlong EventDataIndex;
@@ -233654,7 +233654,7 @@ UIHandle FUN_18080525f(void)
   UIHandle result;
   int uiValidationResult;
   longlong stringCompareIndex;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   longlong contextHandle;
   longlong BasePointer;
   longlong EventDataIndex;
@@ -292926,7 +292926,7 @@ UIDword FUN_180840790(UIDword uiContext,longlong dataSource,UIHandle *targetBuff
   UIHandle *ptrResult;
   UIHandle *piterationCount;
   int uiCompareResult;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   undefined *componentContextPtr;
   longlong alStackX_18 [2];
   UIHandle stackUInt38;
@@ -293015,7 +293015,7 @@ void FUN_1808407ce(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   UIHandle *ptrResult;
   UIHandle *piterationCount;
   int uiCompareResult;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   UIHandle registerCX;
   UIHandle *contextHandle;
   undefined *componentContextPtr;
@@ -293236,7 +293236,7 @@ void FUN_180840af0(longlong uiContext,longlong dataSource,int *targetBuffer)
   bool isCharacterMatch;
   int uiValidationResult;
   longlong stringCompareIndex;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   int localInt5;
   UIByte astackUInt58 [32];
   longlong stackLong38;
@@ -383352,7 +383352,7 @@ UIHandle FUN_180892270(longlong uiContext,longlong dataSource)
   longlong allocatedMemory;
   int uiValidationResult;
   UIHandle EventTypeCode;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   uint loopCounter;
   ulonglong maxProcessingCount;
   longlong localLong7;
@@ -383411,7 +383411,7 @@ UIHandle FUN_1808922ad(void)
   longlong allocatedMemory;
   int uiValidationResult;
   UIHandle EventTypeCode;
-  undefined *bufferPtr;
+  UIDataBuffer *bufferPtr;
   uint loopCounter;
   ulonglong maxProcessingCount;
   longlong localLong7;
