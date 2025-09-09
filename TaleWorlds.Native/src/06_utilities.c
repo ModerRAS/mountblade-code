@@ -96949,10 +96949,6 @@ void ConfigureTemporaryAndDefaultExceptionHandlersCF20(DataBuffer operationBase,
  * @note 原始函数名：Unwind_18090cf30
  */
 void InitializeExceptionHandlerMemoryBlockF30(DataBuffer operationBase,int64_t dataBuffer)
- * 
- * @note 原始函数名：Unwind_18090cf30
- */
-void InitializeExceptionHandlerMemoryBlockF30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + MemoryBlockSizeOffset) != (int64_t *)0x0) {
@@ -96974,7 +96970,7 @@ void InitializeExceptionHandlerMemoryBlockF30(DataBuffer operationBase,int64_t d
  * 
  * @note 原始函数名：Unwind_18090cf40
  */
-void Unwind_InitializeExceptionHandlerF40(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerExecutionContextF40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x250) != (int64_t *)0x0) {
@@ -96997,7 +96993,7 @@ void Unwind_InitializeExceptionHandlerF40(DataBuffer operationBase,int64_t dataB
  * 
  * @note 原始函数名：Unwind_18090cf50
  */
-void Unwind_ConfigureTemporaryExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureTemporaryExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + SystemContextFunctionPointerOffset600) = &SystemTemporaryExceptionHandler;
@@ -97023,7 +97019,7 @@ void Unwind_ConfigureTemporaryExceptionHandler(DataBuffer operationBase,int64_t 
  * 
  * @note 原始函数名：Unwind_18090cf60
  */
-void Unwind_InitializeExceptionHandlerF60(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerValidationResultF60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ValidationResultOffset8) != (int64_t *)0x0) {
