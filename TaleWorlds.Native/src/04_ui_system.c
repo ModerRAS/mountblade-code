@@ -5723,19 +5723,14 @@ void* UITransitionController;
  uint8_t UpdateUIComponentState;
 
  void ProcessUITransformMatrix(longlong UiContext, longlong *OutputBuffer);
-void ProcessUITransformMatrix;
 
  void CalculateUIVectorTransform(longlong UiContext, longlong *OutputBuffer);
-void CalculateUIVectorTransform;
 
  void ProcessUITransformVector;
-void ProcessUITransformVector;
 
  void ProcessUIRenderingPipeline;
-void ProcessUIRenderingPipeline;
 
  void UpdateUIAnimationState;
-void UpdateUIAnimationState;
 
  void HandleUIEventDispatch(void);
 void HandleUIEventDispatch(void);
