@@ -2906,25 +2906,25 @@ typedef enum {
 #define FUN_1807069e0 ProcessUIEventAndHandling                     // 处理UI事件和处理
 #define FUN_18070e140 CalculateUIComponentMemoryOffsetAndAlignment // 计算UI组件内存偏移和对齐
 #define FUN_18070737d CalculateUIRenderDataWeightedSumAndAverage   // 计算UI渲染数据加权和平均值
-#define FUN_180711674 ProcessUIDataMatrixTransform
-#define FUN_180711810 ProcessUIContextInitialization
-#define FUN_180706b30 ProcessUIEventBuffer
-#define FUN_180706b61 ProcessUIEventQueue
-#define FUN_180725856 ProcessUITransformAnimation
-#define FUN_18076b6f0 InitializeUIComponentContext
-#define FUN_180787e70 ProcessUIComponentDataValidationAndResourceCleanup
+#define FUN_180711674 ProcessUIDataMatrixTransformAndConversion     // 处理UI数据矩阵变换和转换
+#define FUN_180711810 ProcessUIContextInitializationAndSetup        // 处理UI上下文初始化和设置
+#define FUN_180706b30 ProcessUIEventBufferAndManagement             // 处理UI事件缓冲区和管理
+#define FUN_180706b61 ProcessUIEventQueueAndDispatch                // 处理UI事件队列和分发
+#define FUN_180725856 ProcessUITransformAnimationAndInterpolation   // 处理UI变换动画和插值
+#define FUN_18076b6f0 InitializeUIComponentContextAndResources      // 初始化UI组件上下文和资源
+#define FUN_180787e70 ProcessUIComponentDataValidationAndResourceCleanup  // 处理UI组件数据验证和资源清理
 
 // UI系统组件管理函数美化
-#define FUN_18072a9c0 ProcessUIComponentDataA9C0
-#define FUN_18072f7d0 ValidateUILayoutDataF7D0
-#define FUN_180736a70 RenderUIComponentA70
-#define FUN_180734160 ValidateUIComponentContext4160
-#define FUN_180736a10 ProcessUIBufferDataA10
-#define FUN_180741e10 InitializeUIComponent1E10
+#define FUN_18072a9c0 ProcessUIComponentDataAndValidationA9C0        // 处理UI组件数据和验证A9C0
+#define FUN_18072f7d0 ValidateUILayoutDataAndFormattingF7D0         // 验证UI布局数据和格式F7D0
+#define FUN_180736a70 RenderUIComponentAndDisplayA70                // 渲染UI组件和显示A70
+#define FUN_180734160 ValidateUIComponentContextAndState4160        // 验证UI组件上下文和状态4160
+#define FUN_180736a10 ProcessUIBufferDataAndTransferA10            // 处理UI缓冲区数据和传输A10
+#define FUN_180741e10 InitializeUIComponentAndResources1E10        // 初始化UI组件和资源1E10
 
 // UI系统高级功能函数美化
-#define FUN_180722340 GetFontRenderData
-#define FUN_180722370 CalculateFontMetricData
+#define FUN_180722340 GetFontRenderDataAndInformation               // 获取字体渲染数据和信息
+#define FUN_180722370 CalculateFontMetricDataAndDimensions         // 计算字体度量数据和尺寸
 
  处理UI组件
  处理UI组件的通用操作
