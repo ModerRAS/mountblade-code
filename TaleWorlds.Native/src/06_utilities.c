@@ -12008,9 +12008,9 @@ uint8_t UtilityDecompressionStatus;
 
 // 加密操作状态标志
 uint8_t EncryptionOperationStatus;
-uint8_t UtilityEncryptionPrimaryBuffer;
-uint8_t UtilityEncryptionSecondaryBuffer;
-uint8_t UtilityEncryptionTertiaryBuffer;
+uint8_t UtilityEncryptionKeyBuffer;
+uint8_t UtilityEncryptionDataBuffer;
+uint8_t UtilityEncryptionIVBuffer;
 uint8_t UtilityEncryptionQuaternaryBuffer;
 uint8_t UtilityEncryptionStatus;
 
