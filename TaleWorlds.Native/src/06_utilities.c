@@ -28480,7 +28480,7 @@ ValidationCheckpointA:
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataBufferHandle,&SystemMemoryPoolB,0x100,1);
     }
     *DataBufferHandle = (int64_t)TargetDataBuffer;
-    *(int *)((int64_t)DataBufferHandle + 0xc) = DataBufferSize;
+    *(int *)((int64_t)DataBufferHandle + DataBufferSizeOffsetC) = DataBufferSize;
     return 0;
   }
   if (DataBufferSize * 3 - 1U < MaxSafeBufferSize) {
