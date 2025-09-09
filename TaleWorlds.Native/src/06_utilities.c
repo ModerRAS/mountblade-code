@@ -50011,7 +50011,7 @@ void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_180903500
  */
-void ManageResourceReferenceCount500(DataBuffer operationBase,int64_t dataBuffer)
+void ManageResourceReferenceCountWithExceptionHandling(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -50060,7 +50060,7 @@ void ManageResourceReferenceCount500(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_180903510
  */
-void CleanupsystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupSystemContextResourcesWithValidation(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -50130,7 +50130,7 @@ void CleanupsystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180903520
  */
-void CleanupSystemresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupSystemResourcePointerWithMemoryManagement(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
