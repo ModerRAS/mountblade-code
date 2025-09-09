@@ -287,6 +287,36 @@
 #define ExceptionHandlerPointerOffset518 0x518
 #define ExceptionHandlerPointerOffset4C8 0x4c8
 #define ExceptionHandlerPointerOffset4D8 0x4d8
+
+// 网络连接验证偏移量常量
+#define NetworkConnectionValidationOffset10 0x10
+#define NetworkConnectionValidationOffsetC0 0xc0
+
+// 数据缓冲区大小偏移量常量
+#define BufferSizeOffsetC 0xc
+#define BufferDataOffset29 0x29
+
+// 系统数据结构偏移量常量
+#define SystemDataSizeOffset48 0x48
+#define SystemDataPointerOffset40 0x40
+#define SystemContextIndexOffset10 0x10
+#define SystemDataSecondaryOffset18 0x18
+
+// 异常处理器数据偏移量常量
+#define ExceptionHandlerContextDataOffset68 0x68
+#define ExceptionHandlerDataFlagsOffset1C 0x1c
+#define ExceptionHandlerMemoryRegionOffset14 0x14
+#define ExceptionHandlerStatusFlagsOffsetC4 0xc4
+
+// 操作状态偏移量常量
+#define OperationStatusOffset24 0x24
+
+// 数据标志偏移量常量
+#define DataFlagsOffsetB 0xb
+#define DataFlagsOffsetC 0xc
+
+// 数据大小偏移量常量
+#define DataSizeAdditionalOffset19 0x19
 #define ExceptionHandlerPointerOffset4A8 0x4a8
 #define ExceptionHandlerPointerOffset4B8 0x4b8
 #define ExceptionDataBufferOffset128 0x128
@@ -23826,7 +23856,7 @@ DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSiz
     allocatedMemoryPointer[1] = resourceData;
     *(int *)(systemContext + SystemDataSecondaryOffset18) = *(int *)(systemContext + SystemDataSecondaryOffset18) + 1;
     *statusRegister = statusValue;
-    *(int *)(systemContext + 0x24) = *(int *)(systemContext + 0x24) + 1;
+    *(int *)(systemContext + OperationStatusOffset24) = *(int *)(systemContext + OperationStatusOffset24) + 1;
     allocationResult = 0;
   }
   return allocationResult;
