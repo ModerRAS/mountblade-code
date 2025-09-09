@@ -29552,7 +29552,7 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
   if ((int)validationStatus == 0) {
     memoryResourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
     secondParameterBuffer[0] = dataBuffer[1];
-    validationStatus = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,secondParameterBuffer,4);
+    validationStatus = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,secondParameterBuffer,4);
   }
   return validationStatus;
 }
@@ -30815,7 +30815,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
           securityCheckResult = 4;
           *(uint *)(StackFrameContext + ArrayDataOffset) = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
         }
-        operationStatus = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,StackFrameContext + ArrayDataOffset,securityCheckResult);
+        operationStatus = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,securityCheckResult);
         if (operationStatus != 0) {
           return;
         }

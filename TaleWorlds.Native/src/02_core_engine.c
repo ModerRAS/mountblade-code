@@ -4561,6 +4561,74 @@ const void* const SystemTaskDataFiber = (void*)0x180a0baa0;
 const void* const SystemTaskDataFuture = (void*)0x180a0bac0;
 
 // 系统序列化数据常量 - 用于替换UNK_180a0baxx变量
+
+// 新增的函数语义化定义 - 基于实际函数实现分析
+/**
+ * @brief 处理系统字符数据和内存管理
+ * 
+ * 该函数负责处理系统字符数据的内存分配、模式匹配和系统上下文管理
+ * 
+ * @note 原始函数名：FUN_180187f94
+ */
+#define ProcessSystemCharacterDataAndMemoryManagement FUN_180187f94
+
+/**
+ * @brief 处理系统字符数据验证和转换
+ * 
+ * 该函数负责处理系统字符数据的验证和转换操作
+ * 
+ * @note 原始函数名：FUN_180187f9e
+ */
+#define ProcessSystemCharacterDataValidationAndConversion FUN_180187f9e
+
+/**
+ * @brief 处理系统上下文和字符数据
+ * 
+ * 该函数负责处理系统上下文和字符数据的操作，包括内存分配和数据验证
+ * 
+ * @note 原始函数名：FUN_18018c160
+ */
+#define ProcessSystemContextAndCharacterData FUN_18018c160
+
+/**
+ * @brief 处理UTF-8到UTF-16的编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的编码转换操作
+ * 
+ * @note 原始函数名：FUN_18018ca20
+ */
+#define ProcessUtf8ToUtf16EncodingConversion FUN_18018ca20
+
+/**
+ * @brief 处理系统字符编码和内存分配
+ * 
+ * 该函数负责处理系统字符编码和内存分配操作
+ * 
+ * @note 原始函数名：FUN_18018dff0
+ */
+#define ProcessSystemCharacterEncodingAndMemoryAllocation FUN_18018dff0
+
+/**
+ * @brief 处理系统内存分配和验证
+ * 
+ * 该函数负责处理系统内存分配和验证操作
+ * 
+ * @note 原始函数名：FUN_18018a130
+ */
+#define ProcessSystemMemoryAllocationAndValidation FUN_18018a130
+
+/**
+ * @brief 处理系统内存管理和状态检查
+ * 
+ * 该函数负责处理系统内存管理和状态检查操作
+ * 
+ * @note 原始函数名：FUN_18018a1c0
+ */
+#define ProcessSystemMemoryManagementAndStatusCheck FUN_18018a1c0
+
+// =============================================================================
+// 函数实现部分
+// =============================================================================
 const void* const SystemSerializationDataBinary = (void*)0x180a0bae0;
 const void* const SystemSerializationDataJson = (void*)0x180a0bb00;
 const void* const SystemSerializationDataXml = (void*)0x180a0bb20;
