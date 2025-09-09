@@ -196,6 +196,10 @@
 #define ExceptionHandlerOffset318 0x318
 #define ExceptionHandlerOffset238 0x238
 
+// 内存对齐相关常量
+#define MemoryAlignmentValue 4                    // 内存对齐值
+#define MemoryAlignmentMaskValue 0xfffffffb       // 内存对齐掩码值
+
 // 异常上下文指针偏移量常量
 #define ExceptionContextPointerOffset88 0x88
 #define ExceptionContextPointerOffsetA0 0xa0
@@ -25409,6 +25413,18 @@ ProcessCompleteLabel:
  */
 #define ExecuteSecurityCheckJumpA0 FUN_1808974f4
 
+/**
+ * @brief 安全检查跳转函数A0
+ * 
+ * 执行安全检查操作，通过异或运算验证系统堆栈帧的安全性
+ * 该函数负责：
+ * 1. 获取系统堆栈帧指针
+ * 2. 执行安全检查操作
+ * 3. 使用异或运算验证数据完整性
+ * 
+ * @note 原始函数名：FUN_1808974f4
+ * @warning 安全检查操作必须在适当的上下文中进行
+ */
 void ExecuteSecurityCheckJumpA0(void)
 
 {
@@ -103200,6 +103216,21 @@ void ExecuteMemoryCleanupOperationA7(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 内存清理操作函数A8
+ * 
+ * 执行内存清理操作，处理异常处理器上下文指针
+ * 该函数负责：
+ * 1. 获取异常处理器上下文指针
+ * 2. 执行异常处理器回调函数
+ * 3. 清理相关内存资源
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存管理信息
+ * 
+ * @note 原始函数名：Unwind_18090e000之前的函数
+ * @warning 内存清理操作必须在适当的上下文中进行
+ */
 void ExecuteMemoryCleanupOperationA8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
