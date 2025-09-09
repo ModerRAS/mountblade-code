@@ -94005,17 +94005,17 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
         } while (allocatedMemoryBlock8 < (int)(iterationCount0 - result9));
         transformCoefficient20 = transformCoefficient20 + transformCoeff18 + transformCoefficient23 + transformCoeff16 + transformCoefficient21 + transformCoeff19 + transformMatrix24 + transformCoeff17 + transformCoefficient22;
       }
-      if (AllocatedMemoryBlock8 < componentIndex5) {
-        BaseValuePointer7 = (float *)(componentIndex5 - AllocatedMemoryBlock8);
-        if (3 < (longlong)BaseValuePointer7) {
-          BaseValuePointer7 = (float *)(dataSource + 8 + AllocatedMemoryBlock8 * 4);
-          componentIndex1 = ((componentIndex5 - AllocatedMemoryBlock8) - 4U >> 2) + 1;
-          AllocatedMemoryBlock8 = AllocatedMemoryBlock8 + componentIndex1 * 4;
+      if (allocatedMemoryBlock8 < componentIndex5) {
+        baseValuePointer7 = (float *)(componentIndex5 - allocatedMemoryBlock8);
+        if (3 < (longlong)baseValuePointer7) {
+          baseValuePointer7 = (float *)(dataSource + 8 + allocatedMemoryBlock8 * 4);
+          componentIndex1 = ((componentIndex5 - allocatedMemoryBlock8) - 4U >> 2) + 1;
+          allocatedMemoryBlock8 = allocatedMemoryBlock8 + componentIndex1 * 4;
           do {
-            BaseValuePointer = BaseValuePointer7 + -1;
-            TransformCoefficient1 = TransformCoefficient13 + 1;
-            pTemporaryFloatValue = BaseValuePointer7 + -2;
-            transformCoeff16 = *TransformCoefficient13;
+            baseValuePointer = baseValuePointer7 + -1;
+            transformCoefficient1 = transformCoefficient13 + 1;
+            temporaryFloatValue = baseValuePointer7 + -2;
+            transformCoeff16 = *transformCoefficient13;
             bufferPointer = BaseValuePointer7 + 1;
             BaseValuePointer0 = TransformCoefficient13 + 3;
             baseScaleFactor = TransformCoefficient13 + 2;
