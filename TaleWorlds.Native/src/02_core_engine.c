@@ -224529,7 +224529,7 @@ void ProcessSystemMemoryAllocationAndValidation(long long *ContextHandle, long l
     memmove(MemoryBoundaryLimit);
   }
                     // WARNING: Subroutine does not return
-  memmove(MemoryBoundaryEnd);
+  memmove(MemoryBoundaryLimit);
 }
 
 
