@@ -32415,7 +32415,7 @@ DataBuffer CleanupDataCacheA0(void)
         systemDataBuffer = 0;
       }
       else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-        systemDataBuffer = GetMemoryAddressA0(*registerContext,DestinationContext + 0x40);
+        systemDataBuffer = GetMemoryAddressA0(*registerContext,DestinationContext + DestinationContextMemoryOffset);
       }
       else {
         systemDataBuffer = 0x1c;
@@ -32449,7 +32449,7 @@ void ExecuteSystemStatusCheck(void)
     statusResult = 0;
   }
   else if (*(int *)(systemRegister[1] + SystemDataSecondaryOffset18) == 0) {
-    statusResult = GetMemoryAddressA0(*systemRegister,systemContext + 0x40);
+    statusResult = GetMemoryAddressA0(*systemRegister,systemContext + DestinationContextMemoryOffset);
   }
   else {
     statusResult = 0x1c;
@@ -32475,12 +32475,12 @@ DataBuffer ResetDataCacheA0(void)
   int64_t DestinationContext;
   
   if (InputAccumulator == 0x1b) {
-    if (*(uint *)(registerContext + 0x40) < 0x3b) {
+    if (*(uint *)(registerContext + RegisterContextValidationOffset) < 0x3b) {
       operationResult = ProcessDataOperationA5();
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if (*(int *)(DestinationContext + 0x50) == 0x14) {
+      if (*(int *)(DestinationContext + DestinationContextOperationOffset) == 0x14) {
         validationStatusPointer = (DataBuffer *)**(int64_t **)(DestinationContext + ContextDataOffset48);
         if (*(int *)(validationStatusPointer + 2) == (int)StackFrameContext) {
           ValidationFloatValue = *(float *)(validationStatusPointer + 3);
@@ -32582,7 +32582,7 @@ void ExecuteSystemDataProcessing(int64_t dataContext, DataBuffer operationHandle
   processResult = ValidatePortControlRequest(operationHandle,dataBuffer2,1,operationFlags);
   if (((processResult == 0) && (processResult = ValidatePortControlRequest(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
      (processResult = ValidatePortControlRequest(operationHandle,dataContext + ExceptionHandlerCallbackOffset10), processResult == 0)) {
-    if ((dataType != '\0') && (processResult = ValidateDataIntegrityA1(dataContext + 0x48,operationHandle), processResult != 0)) {
+    if ((dataType != '\0') && (processResult = ValidateDataIntegrityA1(dataContext + DataContextIntegrityOffset,operationHandle), processResult != 0)) {
       return;
     }
       ExecuteDataProcessingOperationB0(operationHandle,dataBuffer1);
@@ -39280,7 +39280,7 @@ DataBuffer ExecuteDataSynchronizationA1(void)
       systemDataBuffer = 0;
     }
     else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      systemDataBuffer = GetMemoryAddressA0(*registerContext,DestinationContext + 0x40);
+      systemDataBuffer = GetMemoryAddressA0(*registerContext,DestinationContext + DestinationContextMemoryOffset);
     }
     else {
       systemDataBuffer = 0x1c;

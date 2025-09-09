@@ -559,6 +559,7 @@
 #define LAB_18008ce85 MemoryBufferCheckLabel                 // 内存缓冲区检查标签
 #define LAB_18008caf0 MemoryComparisonCompleteLabel          // 内存比较完成标签
 #define LAB_18008cb7e CharacterStatusBufferCheckLabel       // 字符状态缓冲区检查标签
+#define LAB_18008ce20 MemoryBufferValidationLabel            // 内存缓冲区验证标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
@@ -69152,7 +69153,7 @@ LAB_18008caf0:
   }
   ppppTemporaryBuffer = ppppCharacterStatusBuffer;
   if (HighByte4) {
-    if (ppppCharacterStatusBuffer == (uint64_t *****)pprimaryCharacterStatusBufferPointer) goto LAB_18008cb7e;
+    if (ppppCharacterStatusBuffer == (uint64_t *****)pprimaryCharacterStatusBufferPointer) goto CharacterStatusBufferCheckLabel;
     ppppTemporaryBuffer = (uint64_t *****)GetPreviousMemoryBlockIndex(ppppCharacterStatusBuffer);
   }
   if (*(uint64_t *****)(SystemDataTablePointer + 0x20) <= ppppTemporaryBuffer[4]) {
@@ -69173,7 +69174,7 @@ LAB_18008cdfe:
   *(int *)(BufferAllocationStatus1 + 1) = IntegerValue4;
   ContextHandle8 = ContextHandle8 + 2;
   ContextHandle6 = ContextHandle6 + 2;
-  if (ContextHandle8 == BufferAllocationStatus3) goto LAB_18008ce20;
+  if (ContextHandle8 == BufferAllocationStatus3) goto MemoryBufferValidationLabel;
   goto LAB_18008cd70;
 }
 
