@@ -20896,26 +20896,36 @@ LAB_18065d55b:
 
 
 
- void UpdateUIAnimationState(longlong uiContext,longlong dataSource)
+ /**
+ * @brief 更新UI动画状态
+ * 
+ * 该函数更新UI元素的动画状态，包括位置、旋转、缩放等变换。
+ * 支持多种动画类型和插值算法，确保动画的平滑过渡。
+ * 
+ * @param uiContext UI上下文指针，包含UI元素的当前状态
+ * @param dataSource 数据源指针，包含动画所需的数据
+ * 
+ * @note 原始函数名: UpdateUIAnimationState
+ */
 void UpdateUIAnimationState(longlong uiContext,longlong dataSource)
 
 {
-  float baseValue;
+  float animationWeight;
   float transformCoeff1;
-  float TransformCoefficient2;
-  int TempInt4;
-  int localInt5;
-  UIHandle *ptrLocal6;
-  float ResultFloatValue;
-  float TemporaryFloatValue;
-  float LocalFloatValue9;
+  float transformCoeff2;
+  int animationType;
+  int renderStateIndex;
+  UIHandle *renderStatePtr;
+  float resultValue;
+  float tempFloatValue;
+  float smoothStepValue;
   float baseValue0;
   float baseValue1;
   float baseValue2;
   
-  LocalFloatValue9 = *(float *)(uiContext + 0x2c);
-  baseValue2 = (3.0 - (LocalFloatValue9 + LocalFloatValue9)) * LocalFloatValue9 * LocalFloatValue9;
-  LocalFloatValue9 = 1.0 - baseValue2;
+  smoothStepValue = *(float *)(uiContext + 0x2c);
+  baseValue2 = (3.0 - (smoothStepValue + smoothStepValue)) * smoothStepValue * smoothStepValue;
+  smoothStepValue = 1.0 - baseValue2;
   if (*(int *)(uiBufferData + 0x10) == 1) {
     CalculateUIComponentScale(*(longlong *)(uiBufferData + 0xc78) + 0x30,*(uint *)(uiContext + 0x18) & 0x7fffffff);
   }
@@ -100206,21 +100216,21 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
   UIWord result;
   int uiValidationResult;
   int uiCompareResult;
-  int TempInt4;
-  int localInt5;
+  int uiProcessingResult;
+  int uiCalculatedValue;
   int loopCounter;
-  longlong localLong7;
+  longlong bufferOffset;
   
-  localLong7 = 0;
+  bufferOffset = 0;
   do {
-    TempInt4 = *(short *)(targetBuffer + localLong7 * 2) * 0x400;
-    uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - *uiContext) * 0x6d2) >> 0x10);
-    localInt5 = *uiContext + uiValidationResult;
-    *uiContext = uiValidationResult + TempInt4;
-    uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[1]) * 0x3a8a) >> 0x10);
+    uiProcessingResult = *(short *)(targetBuffer + bufferOffset * 2) * 0x400;
+    uiValidationResult = (int)((ulonglong)((longlong)(uiProcessingResult - *uiContext) * 0x6d2) >> 0x10);
+    uiCalculatedValue = *uiContext + uiValidationResult;
+    *uiContext = uiValidationResult + uiProcessingResult;
+    uiCompareResult = (int)((ulonglong)((longlong)(uiCalculatedValue - uiContext[1]) * 0x3a8a) >> 0x10);
     loopCounter = uiContext[1] + uiCompareResult;
     uiValidationResult = uiContext[2];
-    uiContext[1] = localInt5 + uiCompareResult;
+    uiContext[1] = uiCalculatedValue + uiCompareResult;
     uiCompareResult = loopCounter - uiValidationResult;
     uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x6755) >> 0x10) + uiCompareResult;
     uiContext[2] = loopCounter + uiCompareResult;
@@ -100234,10 +100244,10 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
     else {
       result = 0x7fff;
     }
-    *(UIWord *)(dataSource + localLong7 * 4) = result;
-    uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - uiContext[3]) * 0x1ac6) >> 0x10);
-    localInt5 = uiContext[3] + uiValidationResult;
-    uiContext[3] = uiValidationResult + TempInt4;
+    *(UIWord *)(dataSource + bufferOffset * 4) = result;
+    uiValidationResult = (int)((ulonglong)((longlong)(uiProcessingResult - uiContext[3]) * 0x1ac6) >> 0x10);
+    uiCalculatedValue = uiContext[3] + uiValidationResult;
+    uiContext[3] = uiValidationResult + uiProcessingResult;
     uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[4]) * 0x64a9) >> 0x10);
     TempInt4 = uiContext[4] + uiCompareResult;
     uiValidationResult = uiContext[5];
