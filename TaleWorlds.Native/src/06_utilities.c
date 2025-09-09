@@ -4,7 +4,7 @@
 #define DefaultSystemDataAddress 0x18                    // 默认系统数据地址
 #define ComponentHandleOffset 0x10                         // 组件句柄偏移量
 #define SystemContextOffset 0x8                           // 系统上下文偏移量
-#define DataBufferElementSize 4
+#define DataBufferElementSize 4                           // 数据缓冲区元素大小
 #define FloatValidationMask 0x7f800000
 #define IntegerMinValue -0x80000000
 #define ProcessingFlagMask 0x80000000

@@ -85901,7 +85901,7 @@ void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBu
       maxProcessingCount = CalculateUIRenderScale(maxProcessingCount,contextHandleData,eventHandle);
       contextHandleData = contextHandleData + 4;
       *ptrLocal3 = maxProcessingCount;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
@@ -100051,17 +100051,17 @@ LAB_180722ba9:
   processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae8) = processingResult;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
-    ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
+    bufferPointer = (UIByte *)(contextHandle + 0xacc);
     do {
       processingResult = ReadUIData();
       *bufferPointer = processingResult;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
   if (RegisterValue == 0) {
     processingResult = ReadUIData();
-    *(UIByte *)(contextHandle + 0xae9) = result;
+    *(UIByte *)(contextHandle + 0xae9) = processingResult;
   }
   else {
     *(UIByte *)(contextHandle + 0xae9) = 0;
@@ -100112,17 +100112,17 @@ LAB_180722ba9:
   processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae8) = result;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
-    ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
+    bufferPointer = (UIByte *)(contextHandle + 0xacc);
     do {
       processingResult = ReadUIData();
       *bufferPointer = processingResult;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
   if (RegisterValue == 0) {
     processingResult = ReadUIData();
-    *(UIByte *)(contextHandle + 0xae9) = result;
+    *(UIByte *)(contextHandle + 0xae9) = processingResult;
   }
   else {
     *(UIByte *)(contextHandle + 0xae9) = 0;
@@ -234739,7 +234739,7 @@ FUN_1808054c0(longlong *uiContext,int dataSource,longlong targetBuffer,int buffe
     maxProcessingCount = result;
     while (result != 0) {
       localChar5 = (char)maxProcessingCount;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       ProcessingStatus = result >> 8;
       result = *ptrLocal3;
       maxProcessingCount = result & 0xff;
@@ -241836,7 +241836,7 @@ void FUN_18080e076(void)
         ptrResult = ptrResult + 0x80;
       } while (componentIndex != 0);
     }
-    ptrLocal3 = ptrLocal3 + 1;
+    bufferPointer = bufferPointer + 1;
     contextHandleData = contextHandleData + -1;
   } while (contextHandleData != 0);
                      WARNING: Subroutine does not return
@@ -245608,7 +245608,7 @@ ProcessUIMemoryManagement(longlong uiContext,longlong dataSource,longlong target
       ptrLocal3[0x1e0] = ptrLocal6[0x11];
       ptrLocal8[0x11] = 0;
       loopCounter = loopCounter - 1;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       ptrLocal6 = ptrLocal6 + 0x12;
       ptrLocal8 = ptrLocal8 + 0x12;
     } while (loopCounter != 0);
@@ -292639,7 +292639,7 @@ void FUN_18083f120(longlong uiContext,UIHandle dataSource)
       return;
     }
     uiValidationResult = uiValidationResult + 1;
-    ptrLocal3 = ptrLocal3 + 1;
+    bufferPointer = bufferPointer + 1;
   } while (uiValidationResult == 0);
   return;
 }
@@ -292683,7 +292683,7 @@ UIHandle FUN_18083f1c0(longlong uiContext)
       return 0;
     }
     uiValidationResult = uiValidationResult + 1;
-    ptrLocal3 = ptrLocal3 + 1;
+    bufferPointer = bufferPointer + 1;
   } while (uiValidationResult == 0);
   return 1;
 }
@@ -292795,7 +292795,7 @@ void FUN_18083f380(longlong uiContext,UIHandle dataSource)
       return;
     }
     iterationCount = iterationCount + 1;
-    ptrLocal3 = ptrLocal3 + 1;
+    bufferPointer = bufferPointer + 1;
   } while (iterationCount < 2);
   return;
 }
@@ -292817,7 +292817,7 @@ UIHandle FUN_18083f3d0(longlong uiContext)
       return 0;
     }
     iterationCount = iterationCount + 1;
-    ptrLocal3 = ptrLocal3 + 1;
+    bufferPointer = bufferPointer + 1;
   } while (iterationCount < 2);
   return 1;
 }
@@ -382506,7 +382506,7 @@ UIHandle FUN_1808909d0(longlong uiContext)
         }
         ProcessingStatus = (int)loopCounter + 1;
         loopCounter = (ulonglong)ProcessingStatus;
-        ptrLocal3 = ptrLocal3 + 1;
+        bufferPointer = bufferPointer + 1;
         puiValidationResult = puiValidationResult + 2;
       } while ((int)ProcessingStatus < *(int *)(uiBufferData + 0x18));
     }
@@ -382559,7 +382559,7 @@ UIHandle FUN_1808909f3(void)
       }
       ProcessingStatus = (int)loopCounter + 1;
       loopCounter = (ulonglong)ProcessingStatus;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       puiValidationResult = puiValidationResult + 2;
     } while ((int)ProcessingStatus < *(int *)(BasePointer + 0x18));
   }
@@ -383425,7 +383425,7 @@ UIHandle FUN_180891650(longlong uiContext,longlong dataSource)
         return result;
       }
       TempInt4 = TempInt4 + 1;
-      ptrLocal3 = ptrLocal3 + 1;
+      bufferPointer = bufferPointer + 1;
       puiValidationResult = puiValidationResult + 2;
     } while (TempInt4 < *(int *)(uiBufferData + 0x10));
   }
@@ -391704,7 +391704,7 @@ UIDword FUN_180898c86(void)
         do {
           result = *ptrLocal3;
           *ptrLocal3 = *piterationCount;
-          ptrLocal3 = ptrLocal3 + 1;
+          bufferPointer = bufferPointer + 1;
           *piterationCount = result;
           piterationCount = piterationCount + -1;
         } while (ptrLocal3 < piterationCount);
