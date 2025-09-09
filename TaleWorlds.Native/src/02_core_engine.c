@@ -67064,7 +67064,7 @@ StringLengthValidation:
       if (CharacterDataValidationResult != SystemContextValidationFlag) break;
       ValidationStatus3 = ValidationStatus3 + 1;
     } while (SystemContextValidationFlag != '\0');
-    if (CharacterDataValidationResult != SystemContextValidationFlag) goto LAB_180089891;
+    if (CharacterDataValidationResult != SystemContextValidationFlag) goto CharacterDataValidationLabel;
     LowByte = true;
   }
   if (LowByte) {
