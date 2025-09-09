@@ -22451,7 +22451,7 @@ int ProcessUtilityDataWithEncryptionB(int64_t *encryptionContext,int64_t dataBuf
   processedBytes = processedBytes + operationResult;
   operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
-  operationResult = (**(FunctionPointer**)(*encryptionContext + 8))(encryptionContext,processedBytes + dataBuffer,dataSize - processedBytes);
+  operationResult = (**(FunctionPointer**)(*encryptionContext + SystemContextOffset))(encryptionContext,processedBytes + dataBuffer,dataSize - processedBytes);
   return operationResult + processedBytes;
 }
 
@@ -22481,7 +22481,7 @@ int ProcessDataBufferWithValidation(int64_t *bufferContext,int64_t dataBuffer,in
   initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
   subsequentProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
   initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
-  subsequentProcessedBytes = (**(FunctionPointer**)(*bufferContext + 8))(bufferContext,initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes);
+  subsequentProcessedBytes = (**(FunctionPointer**)(*bufferContext + SystemContextOffset))(bufferContext,initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes);
   return subsequentProcessedBytes + initialProcessedBytes;
 }
 
