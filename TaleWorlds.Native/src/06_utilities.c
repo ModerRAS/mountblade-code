@@ -344,8 +344,8 @@
 #define MemoryResourcePointerIndex11 0x11
 
 // 操作基础地址偏移量常量
-#define OperationBaseOffset50 0x50
-#define OperationBaseOffset54 0x54
+#define OperationBaseDataBufferOffset 0x50
+#define OperationBaseSecondaryDataOffset 0x54
 #define OperationBaseOffset118 0x118
 #define OperationBaseOffset210 0x210
 #define OperationBaseOffset21c 0x21c
@@ -1347,7 +1347,7 @@
 
 // 操作基础偏移常量
 #define OperationBaseOffset48 0x48
-#define OperationBaseOffset54 0x54
+#define OperationBaseSecondaryDataOffset 0x54
 #define DataBufferOffset14 0x14
 #define ExceptionHandlerStepSize 0x18
 
@@ -19615,7 +19615,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
   int64_t memoryResourcePointer;
   uint64_t securityCheckResult;
   uint64_t dataOffset;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t systemContext;
   int64_t systemParameter;
   
@@ -20284,7 +20284,7 @@ DataBuffer QuerySystemStatusE0(void)
   float inputValue;
   int64_t dataContext;
   DataBuffer validationStatus;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t dataInputPointer;
   int64_t DataProcessingOffset;
   
@@ -20321,7 +20321,7 @@ DataBuffer InitializeSystemE0(void)
   int64_t dataContext;
   DataBuffer validationStatus;
   int64_t registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t DestinationContext;
   int64_t DataProcessingOffset;
   
@@ -20399,7 +20399,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
   float inputValue;
   DataBuffer validationResult;
   int64_t contextHandle;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t dataInputPointer;
   int64_t DataProcessingOffset;
   
@@ -20799,13 +20799,13 @@ DataBuffer GetSystemStatusA0(void)
   float resultValue;
   
   // 输入参数寄存器变量
-  uint64_t inputAccumulatorRegister;      // 输入累加器寄存器
+  uint64_t systemInputAccumulator;      // 系统输入累加器 - 用于累加输入数据的寄存器
   uint64_t arrayIterationCounter;         // 数组迭代计数器
   uint64_t inputRegisterR10;              // 输入寄存器R10
   bool zeroFlag;                          // 零标志位
   
-  systemFlags = inputAccumulatorRegister - 8;
-  if (inputAccumulatorRegister == 0) {
+  systemFlags = systemInputAccumulator - 8;
+  if (systemInputAccumulator == 0) {
     systemFlags = (uint64_t)arrayIterationCounter;
   }
   validationStatus = *(int *)(systemFlags + SystemParameterValidationOffset28);
@@ -25624,7 +25624,7 @@ void ProcessFloatingPointDataWithValidation(void)
   int calculatedSize;
   int validationErrorCode;
   DataWord systemRegisterEBX;           // 系统寄存器EBX值
-  int64_t systemStackFramePointer;      // 系统栈帧指针
+  int64_t systemStackPointer;      // 系统栈帧指针
   int systemRegisterValueR12;           // 系统寄存器R12值
   int64_t dataContextPointer;            // 数据上下文指针
   char systemRegisterValueR15B;         // 系统寄存器R15B值
@@ -25932,7 +25932,7 @@ ProcessCompleteLabel:
 void ExecuteSecurityCheckJumpA0(void)
 
 {
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   
     ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + StackFrameContextOffset1D0) ^ (uint64_t)&securityBuffer);
 }
@@ -25999,13 +25999,13 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 
 {
   int systemOperationResult;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   char systemStatus;
   int64_t *DestinationContext;
   ByteFlag stackByteBuffer [8];
   uint64_t stackMemoryAddress;
   
-  inputParameter = (**(FunctionPointer**)(inputAccumulatorRegister + ExceptionHandlerCallbackOffset10))();
+  inputParameter = (**(FunctionPointer**)(systemInputAccumulator + ExceptionHandlerCallbackOffset10))();
   ProcessData(stackByteBuffer + inputParameter,0x200 - inputParameter,10);
   inputParameter = (**(FunctionPointer**)(*DestinationContext + 8))();
   if (((inputParameter == 0) && (systemStatus == '\0')) &&
@@ -26372,7 +26372,7 @@ void ProcessDataTypesA0(void)
   char statusChar;                       // 状态字符 - 用于存储状态信息
   int validationResult;                  // 验证结果整数值 - 存储验证的整型结果
   uint systemDataBufferSize;             // 系统数据缓冲区大小 - 系统数据缓冲区的大小
-  DataBuffer *inputAccumulatorRegister;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
+  DataBuffer *systemInputAccumulator;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
   int64_t exceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
   DataBuffer systemDataBuffer6;          // 系统数据缓冲区6 - 第六个系统数据缓冲区
   DataBuffer systemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
@@ -26421,7 +26421,7 @@ void ProcessDataTypesA0(void)
   memoryResourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = dataPointerD;
   StackPointerRegisterA = memoryResourcePointer2;
-  exceptionHandlerContext5 = (*(code *)*inputAccumulatorRegister)(memoryResourcePointer2);
+  exceptionHandlerContext5 = (*(code *)*systemInputAccumulator)(memoryResourcePointer2);
   resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + ExceptionHandlerContext5OffsetD0),&validationBuffer);
   if (resourceValidationStatus == 0) {
     systemErrorHandlingBuffer = &DataValidationErrorBase;
@@ -26634,7 +26634,7 @@ ValidateDataSecurity:
   char statusChar;
   int functionInputParameter3;
   uint systemDataBufferIndex4;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   int64_t exceptionHandlerContextIndex5;
   DataBuffer systemDataBufferIndex6;
   DataBuffer systemDataBufferIndex7;
@@ -26676,10 +26676,10 @@ ValidateDataSecurity:
   DataWord ExtendedInputParameterA;
   DataWord ExtendedInputParameterB;
   
-  if (0 < inputAccumulatorRegister) {
+  if (0 < systemInputAccumulator) {
     operationResult2 = (uint64_t)(uint)dataPointerD;
     operationResult0 = (uint64_t)(uint)dataPointerD;
-    StackLoopCounter = inputAccumulatorRegister;
+    StackLoopCounter = systemInputAccumulator;
     do {
       exceptionHandlerContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
       dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
@@ -27042,7 +27042,7 @@ ValidationFailedLabel:
 void ExecuteSecurityCheckAndTerminateA1(void)
 
 {
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   
     ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + SystemContextPointerOffset90) ^ (uint64_t)&securityBuffer);
 }
@@ -27072,7 +27072,7 @@ void ExecuteSecurityCheckAndTerminateA1(void)
 void ExecuteSecurityCheckAndTerminateA2(void)
 
 {
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   
     ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + SystemContextPointerOffset90) ^ (uint64_t)&securityBuffer);
 }
@@ -27117,7 +27117,7 @@ void ExecuteSecurityCheckAndTerminateA2(void)
 void ExecuteSecurityCheckAndTerminateA3(void)
 
 {
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   
     ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + SystemContextPointerOffset90) ^ (uint64_t)&securityBuffer);
 }
@@ -28274,7 +28274,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   DataBuffer *targetBufferPointer;
   uint dataBufferOffset;
   int bufferProcessingIndex;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   ByteFlag *systemExecutionContext;
   int64_t exceptionHandlingBuffer;
   DataBuffer *temporaryBuffer;
@@ -28407,7 +28407,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   ByteFlag *processingFlagsPointer;
   uint basePointer;
   int allocatedMemoryBlock;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   ByteFlag *systemContext;
   int64_t bufferPointer;
   ByteFlag *statusCounterPointer;
@@ -28512,7 +28512,7 @@ DataWord QuerySystemStatusWithValidation(void)
   ByteFlag *validationStatusPointer;
   int basePointer;
   int arrayIndex;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   ByteFlag *systemContext;
   ByteFlag *operationResult;
   DataWord dataPointerD;
@@ -30061,7 +30061,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
   int operationStatus;
   int arrayIndex;
   int64_t registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t systemContext;
   int64_t resourceIterator;
   int64_t DestinationContext;
@@ -30642,7 +30642,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   DataBuffer *memoryResourcePointer;
   int operationStatus;
   int64_t registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t calculatedIndex;
   int64_t destinationContext;
   DataBuffer operationResult;
@@ -31554,12 +31554,12 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
 DataBuffer CleanupDataCacheA0(void)
 
 {
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   DataBuffer systemDataBuffer;
   DataBuffer *registerContext;
   int64_t DestinationContext;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) == 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) == 0) {
     systemDataBuffer = QuerySystemStatusA0(*registerContext,DestinationContext + 0x60,0x25);
     if ((int)systemDataBuffer == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
@@ -31757,8 +31757,8 @@ uint64_t GetSystemValidationContext(void)
   uint64_t contextPointer;
   uint64_t systemHandle;
   int64_t *systemRegister;
-  int64_t systemStackFramePointer;
-  uint RegisterContextValue;
+  int64_t systemStackPointer;
+  uint registerContextValue;
   uint RegisterContextBackup;
   uint dataFlags;
   uint validationOutcome;
@@ -31778,7 +31778,7 @@ uint64_t GetSystemValidationContext(void)
     if (*exceptionHandlerContextPointer != 0) {
       if (exceptionHandlerContextPointer[2] == 0) {
 DataCheckpointB:
-        validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&ValidationDataBuffer,RegisterContextValue,RegisterContextValue,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&ValidationDataBuffer,registerContextValue,registerContextValue,0);
       }
       else {
         stackAllocationCounter = 0;
@@ -31789,7 +31789,7 @@ DataCheckpointB:
         }
       }
     }
-    operationResult = RegisterContextValue;
+    operationResult = registerContextValue;
     if (validationStatus == 0) {
       dataFlags = (uint)(stackValidationFlag != '\0');
       validationStatus = validationOutcome;
@@ -31881,7 +31881,7 @@ DataCheckpointB:
     if (*exceptionHandlerContextPointer != 0) {
       if (exceptionHandlerContextPointer[2] == 0) {
 MemoryValidationCheckpoint:
-        RegisterContextBackup = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&StackDataBufferI,RegisterContextValue,4,0);
+        RegisterContextBackup = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&StackDataBufferI,registerContextValue,4,0);
       }
       else {
         uint64_t allocationFlag = 0;
@@ -31896,30 +31896,30 @@ MemoryValidationCheckpoint:
     if (RegisterContextBackup != 0) goto ProcessCheckpointRegisterValidation;
     switch(operationResult) {
     case 0:
-      RegisterContextValue = validationOutcome;
+      registerContextValue = validationOutcome;
       break;
     case 1:
       break;
     case 2:
-      RegisterContextValue = 2;
+      registerContextValue = 2;
       break;
     case 3:
-      RegisterContextValue = 3;
+      registerContextValue = 3;
       break;
     case 4:
-      RegisterContextValue = 4;
+      registerContextValue = 4;
       break;
     case 5:
-      RegisterContextValue = 5;
+      registerContextValue = 5;
       break;
     case 6:
-      RegisterContextValue = 6;
+      registerContextValue = 6;
       break;
     default:
       dataFlags = 0xd;
       goto ProcessCheckpointRegisterCleanup;
     }
-    *(uint *)(StackFrameContext + 0xd4) = RegisterContextValue;
+    *(uint *)(StackFrameContext + 0xd4) = registerContextValue;
     dataFlags = validationOutcome;
   }
 ResourceCleanupCheckpoint:
@@ -33029,7 +33029,7 @@ uint64_t ProcessUtilityDataValidation(void)
   int64_t dataContext;
   uint validationStatus;
   uint memoryRegionBase;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t operationResult;
   uint dataFlags;
   int64_t *registerContext;
@@ -33039,7 +33039,7 @@ uint64_t ProcessUtilityDataValidation(void)
   char stackDataBuffer;
   uint stackDataSize;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextPointerOffset90);
@@ -34182,9 +34182,9 @@ ValidationLabelB:
       resourceValidationStatus = 0;
     }
     else {
-      dataFlags = (int)*(uint *)(operationBase + OperationBaseOffset54) >> 0x1f;
+      dataFlags = (int)*(uint *)(operationBase + OperationBaseSecondaryDataOffset) >> 0x1f;
       ploopCounter = systemStackDataPointer;
-      if ((int)((*(uint *)(operationBase + OperationBaseOffset54) ^ dataFlags) - dataFlags) < (int)systemStackDataBuffer) {
+      if ((int)((*(uint *)(operationBase + OperationBaseSecondaryDataOffset) ^ dataFlags) - dataFlags) < (int)systemStackDataBuffer) {
         dataFlags = CheckSystemStatusA0(operationBase + OperationBaseOffset48,systemStackDataBuffer & SystemCleanupFlag);
         validationOutcome = (uint64_t)dataFlags;
         ploopCounter = systemStackDataPointer;
@@ -34311,7 +34311,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   float FloatResultA_Array[5];
   float CalculatedFloatValue;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return (DataBuffer *)0x1c;
   }
   exceptionDataBuffer1 = (DataBuffer *)ProcessDataBlocksA1(*DestinationContext,systemContext + SystemFloatDataOffset38);
@@ -35483,7 +35483,7 @@ uint64_t ProcessSystemDataD0(void)
   uint validationStatus;
   uint64_t memoryRegionBase;
   int64_t *registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   uint operationResult;
   uint dataFlags;
   uint securityCheckResult;
@@ -36112,8 +36112,8 @@ uint64_t ValidateSystemDataIntegrity(void)
   uint64_t dataFlags;
   int allocatedMemoryBlock;
   int64_t *registerContext;
-  int64_t systemStackFramePointer;
-  DataWord RegisterContextValue;
+  int64_t systemStackPointer;
+  DataWord registerContextValue;
   uint securityCheckResult;
   uint statusCounter;
   uint64_t DestinationContext;
@@ -36135,7 +36135,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   DataWord systemDataBuffer3;
   float finalCalculatedResult;
   
-  *(DataWord *)(dataPointer + 0x30) = RegisterContextValue;
+  *(DataWord *)(dataPointer + 0x30) = registerContextValue;
   if ((int)DestinationContext != 0) {
     return DestinationContext & SystemCleanupFlag;
   }
@@ -36370,7 +36370,7 @@ uint64_t ProcessFloatDataValidation(float inputValue)
   uint64_t dataFlags;
   int allocatedMemoryBlock;
   int64_t *registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   uint securityCheckResult;
   int validationErrorCode;
   uint loopCounter;
@@ -36693,16 +36693,16 @@ uint64_t ProcessDataAndReturnResult(void)
 {
   int64_t *exceptionHandlerContextPointer;
   uint operationResult;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t validationStatus;
   int arrayIndex;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t *systemContext;
   unsigned int stackBufferPointer;
   unsigned int stackMemorySize;
   
   operationResult = 0x1c;
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) == 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) == 0) {
     exceptionHandlerContextPointer = (int64_t *)*systemContext;
     if (*exceptionHandlerContextPointer == 0) {
       validationStatus = 0x1c;
@@ -36962,7 +36962,7 @@ uint64_t GetGlobalResourcePointer(void)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t operationResult;
   uint validationStatus;
   int64_t *DestinationContext;
@@ -36971,7 +36971,7 @@ uint64_t GetGlobalResourcePointer(void)
   char validationStatusFlag;
   uint stackDataSize;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContextPointer = (int64_t *)*DestinationContext;
@@ -38332,12 +38332,12 @@ DataBuffer ReturnFixedStatusCodeA1(void)
 
 {
   DataBuffer systemDataBuffer;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   DataBuffer operationResult;
   DataBuffer *registerContext;
   int64_t DestinationContext;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   systemDataBuffer = *registerContext;
@@ -38635,7 +38635,7 @@ uint64_t ProcessSystemValidation(void)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t operationResult;
   uint64_t validationStatus;
   int64_t *registerContext;
@@ -38647,7 +38647,7 @@ uint64_t ProcessSystemValidation(void)
   unsigned int stackSystemFlag;
   unsigned int stackSystemStatus;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   operationResult = OperateDataO0(*registerContext,systemContext + 0x44,4);
@@ -39059,7 +39059,7 @@ uint64_t InitializeSystemComponentsA0(void)
   DataWord *pvalidationOutcome;
   uint64_t securityCheckResult;
   int64_t dataPointer;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   DataWord *ploopCounter;
   DataBuffer *DestinationContext;
   int64_t contextPointer;
@@ -39171,7 +39171,7 @@ uint64_t ResetSystemComponents(void)
   int64_t resourceIterator;
   DataWord *pdataFlags;
   DataBuffer registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   DataWord *pvalidationOutcome;
   int64_t DestinationContext;
   int64_t contextPointer;
@@ -39574,10 +39574,10 @@ uint64_t ProcessSystemDataValidation(void)
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
   uint validationStatus;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t *DestinationContext;
   int loopCounter;
   int64_t contextPointer;
@@ -39585,7 +39585,7 @@ uint64_t ProcessSystemDataValidation(void)
   bool isSecondValidation;
   bool isThirdValidation;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContext = *DestinationContext;
@@ -39894,7 +39894,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
   uint validationStatus;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t *DestinationContext;
   DataWord loopCounter;
   int64_t contextPointer;
@@ -40231,12 +40231,12 @@ DataBuffer ReturnFixedStatusCodeA2(void)
 
 {
   DataBuffer systemDataBuffer;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   DataBuffer operationResult;
   DataBuffer *registerContext;
   int64_t DestinationContext;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   systemDataBuffer = *registerContext;
@@ -40359,7 +40359,7 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
+    stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseSecondaryDataOffset);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackValidationBuffer,4);
     if ((int)systemDataBuffer == 0) {
@@ -40545,13 +40545,13 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
 DataBuffer ReturnFixedStatusCodeA3(void)
 
 {
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   DataBuffer systemDataBuffer;
   int64_t *registerContext;
   int64_t systemContext;
   DataWord InputParamB0;
   
-  if (*(int *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) == 0) {
+  if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) == 0) {
     systemDataBuffer = ProcessDataPointerA0(*registerContext,systemContext + ExceptionHandlerCallbackOffset10);
     if (((int)systemDataBuffer == 0) &&
        ((0x5a < *(uint *)(registerContext + 8) || (systemDataBuffer = GetSystemSecurityStatus(), (int)systemDataBuffer == 0)))) {
@@ -41006,10 +41006,10 @@ uint64_t ValidateSystemContextAndProcessData(void)
 {
   int64_t exceptionHandlerContext;
   uint operationResult;
-  int64_t inputAccumulatorRegister;
+  int64_t systemInputAccumulator;
   uint64_t validationStatus;
-  int64_t systemStackFramePointer;
-  uint RegisterContextValue;
+  int64_t systemStackPointer;
+  uint registerContextValue;
   int64_t *DestinationContext;
   DataWord SystemValidationParameter;
   DataWord ValidationDataBuffer;
@@ -41018,22 +41018,22 @@ uint64_t ValidateSystemContextAndProcessData(void)
   BytePair StackDataBufferF;
   BytePair StackDataBufferG;
   
-  if (*(uint *)(inputAccumulatorRegister + SystemDataSecondaryOffset18) != RegisterContextValue) {
+  if (*(uint *)(systemInputAccumulator + SystemDataSecondaryOffset18) != registerContextValue) {
     return ResourceInvalidErrorCode;
   }
   operationResult = ProcessDataPointerA0(*DestinationContext,StackFrameContext + ExceptionHandlerCallbackOffset10);
   validationStatus = (uint64_t)operationResult;
   if (operationResult == 0) {
-    if (*(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) != RegisterContextValue) {
+    if (*(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) != registerContextValue) {
       return ResourceInvalidErrorCode;
     }
     operationResult = ProcessDataPointerA0(*DestinationContext,StackFrameContext + ArrayDataOffset);
     validationStatus = (uint64_t)operationResult;
     if (operationResult == 0) {
       validationStatus = 0x1c;
-      operationResult = RegisterContextValue;
+      operationResult = registerContextValue;
       if ((*(uint *)(DestinationContext + 8) < 0x5a) &&
-         (operationResult = 0x1c, *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == RegisterContextValue)) {
+         (operationResult = 0x1c, *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == registerContextValue)) {
         ValidationDataBuffer = ValidationDataBuffer;
         exceptionHandlerContext = *DestinationContext;
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
@@ -41088,8 +41088,8 @@ uint64_t ManageMemoryAndValidatePointers(void)
   int64_t exceptionHandlerContext;
   uint operationResult;
   uint64_t validationStatus;
-  int64_t systemStackFramePointer;
-  uint RegisterContextValue;
+  int64_t systemStackPointer;
+  uint registerContextValue;
   int64_t *DestinationContext;
   DataWord SystemValidationParameter;
   DataWord ValidationDataBuffer;
@@ -41102,9 +41102,9 @@ uint64_t ManageMemoryAndValidatePointers(void)
   validationStatus = (uint64_t)operationResult;
   if (operationResult == 0) {
     validationStatus = 0x1c;
-    operationResult = RegisterContextValue;
+    operationResult = registerContextValue;
     if ((*(uint *)(DestinationContext + 8) < 0x5a) &&
-       (operationResult = 0x1c, *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == RegisterContextValue)) {
+       (operationResult = 0x1c, *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == registerContextValue)) {
       ValidationDataBuffer = ValidationDataBuffer;
       exceptionHandlerContext = *DestinationContext;
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
@@ -41159,7 +41159,7 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
   uint operationResult;
   uint64_t validationStatus;
   uint64_t registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   int64_t *DestinationContext;
   DataBuffer operationResult;
   BytePair StackDataBufferF;
@@ -41214,12 +41214,12 @@ uint64_t ExecuteSystemMemoryOperations(void)
   uint systemDataBuffer;
   uint64_t operationResult;
   uint64_t registerContext;
-  int64_t systemStackFramePointer;
-  uint RegisterContextValue;
+  int64_t systemStackPointer;
+  uint registerContextValue;
   DataBuffer *DestinationContext;
   
-  if (RegisterContextValue != 0) {
-    return (uint64_t)RegisterContextValue;
+  if (registerContextValue != 0) {
+    return (uint64_t)registerContextValue;
   }
   if (*(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0) {
     systemDataBuffer = ProcessDataPointerA0(*DestinationContext,StackFrameContext + 0x30);
@@ -41251,7 +41251,7 @@ uint64_t ValidateAndProcessSystemData(void)
   uint systemDataBuffer;
   uint64_t operationResult;
   uint64_t registerContext;
-  int64_t systemStackFramePointer;
+  int64_t systemStackPointer;
   DataBuffer *DestinationContext;
   
   if (*(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0) {
@@ -41406,7 +41406,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
+    stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseSecondaryDataOffset);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4);
     if ((int)systemDataBuffer != 0) {
