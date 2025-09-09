@@ -67613,8 +67613,7 @@ void CleanupExceptionContextAtOffset720(DataBuffer operationBase, int64_t dataBu
  * @note 原始函数名：Unwind_180906740
  * @note 这是一个异常展开（unwind）处理函数，用于系统内存初始化
  */
-void InitializeSystemMemoryA1At740(DataBuffer operationBase,int64_t dataBuffer)
-
+void InitializeSystemMemoryA1At740(DataBuffer operationBase, int64_t dataBuffer)
 {
   InitializeSystemMemoryA1(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x2e0);
   return;
@@ -67634,8 +67633,7 @@ void InitializeSystemMemoryA1At740(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180906760
  * @note 这是一个异常展开（unwind）处理函数，用于系统内存初始化
  */
-void InitializeSystemMemoryA2At760(DataBuffer operationBase,int64_t dataBuffer)
-
+void InitializeSystemMemoryA2At760(DataBuffer operationBase, int64_t dataBuffer)
 {
   InitializeSystemMemoryA2(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x2f0);
   return;
