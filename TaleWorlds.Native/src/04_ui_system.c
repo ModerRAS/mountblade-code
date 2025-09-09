@@ -199546,35 +199546,46 @@ UIHandle FreeUIResource(longlong uiContext,int dataSource)
   }
   eventTypeCode = (**(code **)(*(longlong *)allocatedMemoryPointer[2] + 0x10))();
   if ((int)eventTypeCode != 0) {
-    return EventTypeCode;
+    return eventTypeCode;
   }
-  if (pallocatedMemory[7] == 0) {
-    *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
-    *(longlong *)(*pallocatedMemory + 8) = pallocatedMemory[1];
-    pallocatedMemory[1] = (longlong)pallocatedMemory;
-    *pallocatedMemory = (longlong)pallocatedMemory;
+  if (allocatedMemoryPointer[7] == 0) {
+    *(longlong *)allocatedMemoryPointer[1] = *allocatedMemoryPointer;
+    *(longlong *)(*allocatedMemoryPointer + 8) = allocatedMemoryPointer[1];
+    allocatedMemoryPointer[1] = (longlong)allocatedMemoryPointer;
+    *allocatedMemoryPointer = (longlong)allocatedMemoryPointer;
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pallocatedMemory,&UNK_18095ac80,0x5da,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemoryPointer,&UNK_18095ac80,0x5da,1);
   }
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pallocatedMemory[7],&UNK_18095ac80,0x5d7,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemoryPointer[7],&UNK_18095ac80,0x5d7,1);
 }
 
 
 
-int FUN_1807866d0(longlong uiContext,int dataSource,ulonglong targetBuffer,int bufferSize)
+/**
+ * @brief 处理UI组件数据验证
+ * 
+ * 该函数验证UI组件的数据，包括数据源、目标缓冲区和缓冲区大小。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return int 处理结果，0x1e表示成功
+ */
+int ValidateUIComponentData(longlong uiContext,int dataSource,ulonglong targetBuffer,int bufferSize)
 
 {
   int processingResult;
   longlong componentIndex;
-  UIHandle *ptrLocal3;
-  longlong *pcontextHandleData;
-  int localInt5;
+  UIHandle *componentPointer;
+  longlong *contextHandlePointer;
+  int validationFlag;
   longlong contextHandleData;
   ulonglong processingCounter;
-  UIDword auStackX_8 [2];
-  uint stackParamffffffffffffffa0;
-  ulonglong stackUInt38;
+  UIDword stackBuffer [2];
+  uint paddingParam;
+  ulonglong iterationCounter;
   
   componentIndex = *(longlong *)(uiBufferData + 0x48);
   ptrLocal3 = *(UIHandle **)(componentIndex + 0x6c0);
