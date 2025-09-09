@@ -1509,13 +1509,13 @@ typedef enum {
 #define UIContextBufferExtraOffset 0xac                 // UI上下文缓冲区额外偏移量
 
 // UI音频数据处理函数变量美化
-#define AudioFormatType isCharacterMatch
+#define AudioFormatType UIIsCharacterMatch
 #define AudioEncodingActive IsEventProcessingActive
-#define AudioSampleCount ContextFirstValue
+#define AudioSampleCount UIContextFirstValue
 #define AudioProcessingMode UIAudioProcessingMode
 #define AudioDataChunkIndex UILoopCounter
 #define AudioSampleRate UILoopCounter
-#define AudioDataSize AudioDataSizeLocal7
+#define AudioDataSize UILocalDataSize7
 #define AudioProcessedBytes UIEventCounter
 #define AudioChannelCount UIEventStatus
 #define AudioChunkCount UIResult0
@@ -100285,7 +100285,6 @@ void ProcessUIIntegerParameterValidation(int *uiContext,longlong dataSource,long
  */
 #define ResetUISystem FUN_180723c9b
 void ResetUISystem(void)
-void FUN_180723c9b(void)
 
 {
   return;
