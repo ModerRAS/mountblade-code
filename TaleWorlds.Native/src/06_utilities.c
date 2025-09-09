@@ -8171,20 +8171,68 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define CheckMemoryStatusA0 FUN_180883750
 
-// 原始函数名：FUN_1808aec50 - 数据验证函数A1
-// 功能：验证数据完整性和安全性
+/**
+ * @brief 数据验证函数A1
+ * 
+ * 该函数负责验证数据完整性和安全性，确保数据的正确性和可靠性。
+ * 
+ * @details 具体功能包括：
+ * - 检查数据完整性校验和
+ * - 验证数据格式和结构
+ * - 检测数据损坏和篡改
+ * - 返回数据验证结果
+ * 
+ * @note 原始函数名：FUN_1808aec50
+ * @see ProcessDataFlagsA0, CheckMemoryStatusA0
+ */
 #define ValidateDataIntegrityA1 FUN_1808aec50
 
-// 原始函数名：FUN_1808a5780 - 数据处理函数A2
-// 功能：处理数据并返回处理结果
+/**
+ * @brief 数据处理函数A2
+ * 
+ * 该函数负责处理数据并返回处理结果，包括数据验证、转换和优化。
+ * 
+ * @details 具体功能包括：
+ * - 验证输入数据的有效性
+ * - 执行数据转换和处理
+ * - 优化数据结构和格式
+ * - 返回处理结果和状态
+ * 
+ * @note 原始函数名：FUN_1808a5780
+ * @see ValidateDataIntegrityA1, CheckMemoryStatusA0
+ */
 #define ProcessDataWithValidationA0 FUN_1808a5780
 
-// 原始函数名：FUN_1807d3e20 - 系统状态检查函数A0
-// 功能：检查系统状态和运行情况
+/**
+ * @brief 系统状态检查函数A0
+ * 
+ * 该函数负责检查系统状态和运行情况，确保系统的稳定性和可靠性。
+ * 
+ * @details 具体功能包括：
+ * - 检查系统运行状态
+ * - 监控系统资源使用情况
+ * - 检测系统异常和错误
+ * - 返回系统状态检查结果
+ * 
+ * @note 原始函数名：FUN_1807d3e20
+ * @see ProcessDataWithValidationA0, ValidateDataIntegrityA1
+ */
 #define CheckSystemStatusA0 FUN_1807d3e20
 
-// 原始函数名：FUN_18089e2be - 系统内存管理函数
-// 功能：管理系统内存分配和释放
+/**
+ * @brief 系统内存管理函数
+ * 
+ * 该函数负责管理系统内存分配和释放，确保内存使用的效率和安全性。
+ * 
+ * @details 具体功能包括：
+ * - 分配和释放内存块
+ * - 管理内存池和缓存
+ * - 优化内存使用效率
+ * - 检测内存泄漏和碎片
+ * 
+ * @note 原始函数名：FUN_18089e2be
+ * @see CheckMemoryStatusA0, ProcessDataWithValidationA0
+ */
 #define ManageSystemMemoryAllocation FUN_18089e2be
 
 // 原始函数名：ProcessSystemDataWithValidation - 上下文验证函数A0

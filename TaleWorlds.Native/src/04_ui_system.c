@@ -177,7 +177,7 @@ typedef enum {
 #define UIComponentContextTableC80 DAT_180958c80          // UI组件上下文表C80 - 存储UI组件的上下文信息
 
 // UI组件实例和接口
-#define DAT_180c0c6e8 UIComponentInstanceE8               // UI组件实例E8 - 存储UI组件的实例指针
+#define UIComponentInstanceE8 DAT_180c0c6e8               // UI组件实例E8 - 存储UI组件的实例指针
 #define UIComponentInterfaceID UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
 #define UIComponentInterfaceIID UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
 #define UIComponentParameterB20 UNK_180958b20             // UI组件参数B20 - UI组件的配置参数
