@@ -2321,7 +2321,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DataProcessingContextOffset 0x14             // 数据处理上下文偏移量
 #define DataProcessingResultOffset 0x20              // 数据处理结果偏移量
 #define DataProcessingStatusOffset 0x2c              // 数据处理状态偏移量
-#define dataProcessingStatusOffset 0x38                // 数据处理标志偏移量
+#define DataProcessingStatusSecondaryOffset 0x38        // 数据处理状态次级偏移量
 #define DataProcessingHandlerOffset 0x50              // 数据处理处理器偏移量
 
 // 资源操作相关偏移量常量定义
