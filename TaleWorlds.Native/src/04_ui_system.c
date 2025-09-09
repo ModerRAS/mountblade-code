@@ -10178,20 +10178,20 @@ LAB_UIContextInitialize:
             }
             uiElementCount = ((longlong)currentMemoryAllocation - allocatedMemoryBlock1) / 0x18;
             currentMemoryAllocation = newMemoryAllocation;
-            if (0 < elementCount) {
+            if (0 < uiElementCount) {
               do {
-                ptrResult = (UIDword *)((longlong)currentMemoryBlock + (allocatedMemory4 - (longlong)newMemoryBlock));
-                iterationCount = ptrResult[1];
-                tempValue1 = ptrResult[2];
-                tempValue2 = ptrResult[3];
-                *(UIDword *)currentMemoryBlock = *ptrResult;
-                *(UIDword *)((longlong)currentMemoryBlock + 4) = iterationCount;
-                *(UIDword *)(currentMemoryBlock + 1) = tempValue1;
-                *(UIDword *)((longlong)currentMemoryBlock + 0xc) = tempValue2;
-                currentMemoryBlock[2] = *(UIHandle *)
-                              ((longlong)currentMemoryBlock + (allocatedMemory4 - (longlong)newMemoryBlock) + 0x10);
-                AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
-                currentMemoryBlock = currentMemoryBlock + 3;
+                uiProcessingResult = (UIDword *)((longlong)currentMemoryAllocation + (allocatedMemorySize4 - (longlong)newMemoryAllocation));
+                propertyIterationCount = uiProcessingResult[1];
+                tempPropertyValue1 = uiProcessingResult[2];
+                tempPropertyValue2 = uiProcessingResult[3];
+                *(UIDword *)currentMemoryAllocation = *uiProcessingResult;
+                *(UIDword *)((longlong)currentMemoryAllocation + 4) = propertyIterationCount;
+                *(UIDword *)(currentMemoryAllocation + 1) = tempPropertyValue1;
+                *(UIDword *)((longlong)currentMemoryAllocation + 0xc) = tempPropertyValue2;
+                currentMemoryAllocation[2] = *(UIHandle *)
+                              ((longlong)currentMemoryAllocation + (allocatedMemorySize4 - (longlong)newMemoryAllocation) + 0x10);
+                allocatedMemoryBlock1 = allocatedMemoryBlock1 + -1;
+                currentMemoryAllocation = currentMemoryAllocation + 3;
               } while (0 < AllocatedMemoryBlock1);
             }
             *currentMemoryBlock = newContext;
