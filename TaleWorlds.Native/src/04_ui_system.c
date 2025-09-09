@@ -2952,8 +2952,52 @@ typedef enum {
  * @see UITransformDataProcessor820
  */
 #define FUN_180695870 ProcessUIPriorityBatchOperation
+/**
+ * @brief 处理UI实时批量操作
+ * 
+ * 该函数用于处理UI系统中的实时批量操作，包括实时更新和动态响应。
+ * 主要用于UI批量操作的实时处理和动态效果。
+ * 
+ * @param batchData 批量数据指针
+ * @param operationType 操作类型
+ * @param realtimeFlags 实时标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1806958c0
+ * @see UIVectorDataProcessor898
+ */
 #define FUN_1806958c0 ProcessUIRealtimeBatchOperation
+
+/**
+ * @brief 处理UI内存批量操作
+ * 
+ * 该函数用于处理UI系统中的内存批量操作，包括内存分配和资源管理。
+ * 主要用于UI批量操作的内存处理和资源优化。
+ * 
+ * @param batchData 批量数据指针
+ * @param operationType 操作类型
+ * @param memoryFlags 内存标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180695990
+ * @see UIMatrixDataProcessor858
+ */
 #define FUN_180695990 ProcessUIMemoryBatchOperation
+
+/**
+ * @brief 处理UI线程批量操作
+ * 
+ * 该函数用于处理UI系统中的线程批量操作，包括多线程处理和同步操作。
+ * 主要用于UI批量操作的线程处理和并发控制。
+ * 
+ * @param batchData 批量数据指针
+ * @param operationType 操作类型
+ * @param threadFlags 线程标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180695ac0
+ * @see UITransformDataProcessor820
+ */
 #define FUN_180695ac0 ProcessUIThreadBatchOperation
 
 // UI空操作函数系列 - 系统保留函数
