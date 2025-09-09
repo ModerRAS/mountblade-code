@@ -16997,9 +16997,9 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
   uint DataProcessingFlags;
-  uint BitShiftedProcessingFlags;
+  uint processingFlagBitShift;
   DataBuffer vectorRegister;
-  uint maskOperationResult;
+  uint validationMaskResult;
   
   validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
   if ((int)validationResult != 0) {
