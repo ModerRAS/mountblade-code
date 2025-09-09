@@ -100233,9 +100233,9 @@ LAB_180724b88:
         localChar4 = (char)((localChar4 - localInt5) + 1 >> 1) + (char)localInt5;
         SourceHandle[localLong7] = localChar4;
       }
-      if (localChar4 < '%') {
-        if (localChar4 < -4) {
-          localChar4 = -4;
+      if (normalizedChar < '%') {
+        if (normalizedChar < -4) {
+          normalizedChar = -4;
         }
       }
       else {
