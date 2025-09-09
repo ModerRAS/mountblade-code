@@ -1606,7 +1606,7 @@
 #define ValidationStatusOffset38 0x38
 #define ValidationStatusOffset3c 0x3c
 #define SystemContextOffset90 0x90
-#define systemContextOffset98 0x98
+#define SystemContextOffset98 0x98
 #define systemContextOffsetBc 0xbc
 #define systemContextOffset84 0x84
 #define systemContextOffsetBd 0xbd
@@ -7437,7 +7437,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MemoryResourceOffset48 0x48                    // 内存资源偏移量48
 #define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
 #define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
-#define systemContextOffset80 0x80                   // 系统上下文偏移量80
+#define SystemContextOffset80 0x80                   // 系统上下文偏移量80
 #define SystemContextOffset90 0x90                   // 系统上下文偏移量90
 #define DataSecondaryOffset18 0x18                    // 数据次级偏移量18
 #define DataParameterOffset20 0x20                   // 数据参数偏移量20

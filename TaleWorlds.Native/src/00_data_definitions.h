@@ -6,6 +6,21 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
+// 变量名美化定义 - 将Ghidra生成的变量名替换为语义化名称
+#define fVar12 FloatColorComponent                    // 浮点颜色组件
+#define fVar16 FloatMatrixComponent1                   // 浮点矩阵组件1
+#define fVar20 FloatColorRedComponent                  // 浮点颜色红色组件
+#define fVar21 FloatColorGreenComponent                // 浮点颜色绿色组件
+#define fVar25 FloatNormalizationFactor                // 浮点归一化因子
+#define fVar26 FloatVectorComponentX                   // 浮点向量X组件
+#define fVar27 FloatVectorComponentY                   // 浮点向量Y组件
+#define fVar28 FloatVectorComponentZ                   // 浮点向量Z组件
+#define fVar29 FloatVectorComponentW                   // 浮点向量W组件
+#define fVar30 FloatMatrixComponent2                   // 浮点矩阵组件2
+#define iStack_2c8 StackDataPointer2c8                 // 栈数据指针2c8
+#define pfVar3 FloatPointer3                           // 浮点指针3
+#define pfVar5 FloatPointer5                           // 浮点指针5
+
 // 系统全局数据指针
 void* GameEngineGlobalData;
 
