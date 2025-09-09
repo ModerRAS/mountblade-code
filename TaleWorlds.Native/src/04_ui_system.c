@@ -14997,15 +14997,15 @@ void SetUIComponentOpacity(longlong *component_data, float opacity)
   if (uiContext[1] - componentIndex >> 3 != 0) {
     do {
       EventTypeCode = (int)ProcessingStatus + 1;
-      fStackX_c = (float)((ulonglong)*(UIHandle *)(result + componentIndex) >> 0x20);
-      fStackX_8 = (float)*(UIHandle *)(result + componentIndex);
-      TransformCoefficient4 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
-      aprocessingCounter = rsqrtss(ZEXT416((uint)TransformCoefficient4),ZEXT416((uint)TransformCoefficient4));
-      LocalFloatValue6 = aprocessingCounter._0_4_;
-      TransformCoefficient4 = LocalFloatValue6 * 0.5 * (3.0 - TransformCoefficient4 * LocalFloatValue6 * LocalFloatValue6);
+      VertexPositionY = (float)((ulonglong)*(UIHandle *)(result + componentIndex) >> 0x20);
+      VertexPositionX = (float)*(UIHandle *)(result + componentIndex);
+      TransformCoefficient4 = VertexPositionY * VertexPositionY + VertexPositionX * VertexPositionX;
+      SimdVector = rsqrtss(ZEXT416((uint)TransformCoefficient4),ZEXT416((uint)TransformCoefficient4));
+      inverseSqrtValue = SimdVector._0_4_;
+      TransformCoefficient4 = inverseSqrtValue * 0.5 * (3.0 - TransformCoefficient4 * inverseSqrtValue * inverseSqrtValue);
       *(ulonglong *)(result + uiContext[0x11]) =
-           CONCAT44(TransformCoefficient4 * fStackX_c * dataSource + *(float *)(result + 4 + componentIndex),
-                    TransformCoefficient4 * fStackX_8 * dataSource + *(float *)(result + componentIndex));
+           CONCAT44(TransformCoefficient4 * VertexPositionY * dataSource + *(float *)(result + 4 + componentIndex),
+                    TransformCoefficient4 * VertexPositionX * dataSource + *(float *)(result + componentIndex));
       result = result + 8;
       componentIndex = *uiContext;
       ProcessingStatus = (ulonglong)EventTypeCode;
