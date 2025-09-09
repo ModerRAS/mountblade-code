@@ -6720,6 +6720,30 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：管理异常状态，处理异常处理器和系统资源
 #define ManageExceptionStateAndHandlers Unwind_18090e920
 
+// 原始函数名：Unwind_18090eb90 - 内存操作执行器B0
+// 功能：执行内存操作，使用数据验证处理器
+#define ExecuteMemoryOperationWithValidationB0 Unwind_18090eb90
+
+// 原始函数名：Unwind_18090ebc0 - 内存操作执行器B1
+// 功能：执行内存操作，使用数据验证处理器
+#define ExecuteMemoryOperationWithValidationB1 Unwind_18090ebc0
+
+// 原始函数名：Unwind_18090ed10 - 数据操作处理器A0
+// 功能：处理数据操作，管理操作标志和系统状态
+#define ProcessDataOperationsWithFlagsA0 Unwind_18090ed10
+
+// 原始函数名：Unwind_18090ed20 - 数据操作处理器A1
+// 功能：处理数据操作，管理操作标志和系统状态
+#define ProcessDataOperationsWithFlagsA1 Unwind_18090ed20
+
+// 原始函数名：Unwind_18090ed30 - 数据操作处理器A2
+// 功能：处理数据操作，管理操作标志和系统状态
+#define ProcessDataOperationsWithFlagsA2 Unwind_18090ed30
+
+// 原始函数名：Unwind_18090ed40 - 数据操作处理器A3
+// 功能：处理数据操作，管理操作标志和系统状态
+#define ProcessDataOperationsWithFlagsA3 Unwind_18090ed40
+
 // 原始函数名：FUN_180942460 - 数据压缩函数A1
 // 功能：压缩数据并返回压缩结果
 #define CompressDataAndReturnResult FUN_180942460
