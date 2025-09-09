@@ -81007,7 +81007,19 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括内存管理和异常处理。
+ * 它会检查资源引用计数，并在必要时进行清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809098f0
+ * @note 此函数用于系统资源管理和清理
+ */
+void CleanupSystemResourcesWithValidation(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -82000,15 +82012,27 @@ void ExecuteSystemMaintenanceA0(DataBuffer operationBase, int64_t dataBuffer)
  * 
  * @see FunctionPointer, ExceptionHandlerContext
  */
-void ExecuteSystemMonitoringA0(DataBuffer operationBase, int64_t dataBuffer)
+/**
+ * @brief 执行系统监控操作
+ * 
+ * 该函数负责执行系统监控操作，包括异常处理和状态管理。
+ * 它会检查异常处理上下文，并在需要时执行相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809098a0
+ * @note 此函数用于系统监控和异常处理
+ */
+void ExecuteSystemMonitoringWithCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionContextPointer;   // 异常处理上下文指针
+  int64_t *exceptionHandlerContext;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x70);
-  if (exceptionContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + ExceptionHandlerDataOffset70);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
     // 执行异常处理回调函数
-    (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
+    (**(FunctionPointer**)(*exceptionHandlerContext + SystemComponentContextOffset))();
   }
   return;
 }
