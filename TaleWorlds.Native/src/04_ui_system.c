@@ -200173,10 +200173,10 @@ LAB_180787e12:
       else {
         MemoryContextPointer = FUN_1807e4c10(MemoryContextPointer);
       }
-      pEventDataIndex[10] = localLong7;
-      if (localLong7 == 0) goto LAB_180787e12;
-      *(UIHandle *)(localLong7 + 0xa8) = *(UIHandle *)(TargetHandle + 0x48);
-      *(longlong *)(pEventDataIndex[10] + 0xd8) = *(longlong *)(uiContext + 0x48) + 0x11848;
+      EventDataIndexArray[10] = MemoryContextPointer;
+      if (MemoryContextPointer == 0) goto EventProcessingCompleteLabel;
+      *(UIHandle *)(MemoryContextPointer + 0xa8) = *(UIHandle )(UITargetHandle + 0x48);
+      *(longlong )(EventDataIndexArray[10] + 0xd8) = *(longlong *)(UIContextPointer + 0x48) + 0x11848;
       *(UIDword *)(pEventDataIndex[10] + 0xe0) =
            *(UIDword *)(*(longlong *)(uiContext + 0x48) + 0x116b8);
       ProcessingStatus = FUN_18075a230(pEventDataIndex[10],BasePointer + -0x11);
