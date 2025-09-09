@@ -7900,8 +7900,11 @@ uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 
 uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 
+// 浮点数验证数组大小常量
+#define FloatValidationArraySize 16
+
 // 浮点数验证数组变量声明
-float FloatValidationArray[16];
+float FloatValidationArray[FloatValidationArraySize];
 
 // 数据处理上下文变量声明
 void* DataProcessingContextPrimary;
@@ -10345,9 +10348,13 @@ uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 #define SystemCleanupStatus GlobalSystemCleanupStatus             // 系统清理状态
 
 // 系统资源清理相关变量宏定义
+
+// 系统资源清理状态数组大小常量
+#define SystemResourceCleanupArraySize 8
+
 // 系统资源清理标志变量声明
 // 系统资源清理状态标志数组
-uint8_t SystemResourceCleanupStatus[8];   // 系统资源清理状态标志数组（索引0-7）
+uint8_t SystemResourceCleanupStatus[SystemResourceCleanupArraySize];   // 系统资源清理状态标志数组（索引0-7）
 
 // 系统资源指针变量声明
 void* PrimarySystemResourcePointer;     // 主系统资源指针
@@ -12182,8 +12189,11 @@ uint8_t SystemStatusFlagPrimary;
 void* SystemDataBufferState;
 void* SystemDataBufferStatus;
 uint64_t UtilitySystemControlPointerConfig;
+// 异常处理器指针数组大小常量
+#define ExceptionHandlerPointerArraySize 4
+
 // 系统数据缓冲区异常处理器指针数组
-void* SystemDataBufferExceptionHandlers[4];  // 异常处理器指针数组（00x, 08x, 10x, 18x偏移量）
+void* SystemDataBufferExceptionHandlers[ExceptionHandlerPointerArraySize];  // 异常处理器指针数组（00x, 08x, 10x, 18x偏移量）
 
 // 函数: void* ConfigureUtilitySystemBuffers;
 #define ConfigureUtilitySystemBuffers FUN_180942750
@@ -31026,7 +31036,7 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
   DataWord processedData;
   
   rawDataValue = *operationData;
-  if (rawDataValue + 0x4000 < 0x8000) {
+  if (rawDataValue + DataContextOffset4000 < DataContextOffset8000) {
     processedSystemData = CONCAT22(processedSystemData._2_2_,(short)rawDataValue) & 0xffff7fff;
     processingMode = 2;
   }
@@ -37561,7 +37571,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
       securityValidationResult = 0;
     }
     else if (*(int *)(SecurityBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-      securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + 0x210,8);
+      securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset210,8);
     }
     else {
       securityValidationResult = 0x1c;
@@ -37572,7 +37582,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
         securityValidationResult = 0;
       }
       else if (*(int *)(SecurityBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-        securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + 0x2f4,4);
+        securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset2f4,4);
       }
       else {
         securityValidationResult = 0x1c;
