@@ -15932,7 +15932,7 @@ void UpdateUIElementState(void)
 
 {
   longlong MemoryAllocation;
-  undefined3 UICriticalSectionHandle;
+  uint8_t UICriticalSectionHandle;
   float *ResultPointer;
   int TemporalCounter;
   int LocalIndex;
@@ -16322,7 +16322,7 @@ LAB_18065a765:
       baseValue1 = ((((AccumulatedFloat + baseValue7) * inputString + fStack0000000000000054) -
                 fStack000000000000005c) - baseValue1) - fStack0000000000000054;
       resultFloat = FloatValue2 * FloatValue2 + baseValue1 * baseValue1;
-      iterationCount = (undefined3)((uint)allocationFlags >> 8);
+      iterationCount = (uint8_t)((uint)allocationFlags >> 8);
       resultFloat = (float)CONCAT31(iterationCount,resultFloat <= 1.1754944e-38) * 1.1754944e-38 + resultFloat;
       aTotalResult = rsqrtss(ZEXT416((uint)resultFloat),ZEXT416((uint)resultFloat));
       baseValue5 = aTotalResult._0_4_;

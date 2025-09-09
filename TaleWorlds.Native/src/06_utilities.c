@@ -26102,7 +26102,7 @@ void ProcessDataTypesA0(void)
         operationResult0 = (uint64_t)(uint)dataPointerD;
         do {
           exceptionHandlerContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
-          dataContext = *(int64_t *)(operationResult0 + 0x10 + exceptionHandlerContext5);
+          dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
           memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
           memoryResourcePointer2 = StackPointerRegisterA;
@@ -26116,11 +26116,11 @@ void ProcessDataTypesA0(void)
             exceptionHandlerContext5 = (*(code *)*memoryRegionBase)(StackPointerRegisterA);
             *StackFrameContext = *(DataBuffer *)(*(int64_t *)(exceptionHandlerContext5 + SystemContextPointerOffset90) + operationResult3 * 8);
             *(ByteFlag *)((int64_t)StackFrameContext + -4) = 0;
-            if (*(int *)(dataContext + 0x58) < 1) {
+            if (*(int *)(dataContext + DataContextOffset58) < 1) {
               exceptionDataBuffer8 = &SystemResourceDataBuffer;
             }
             else {
-              exceptionDataBuffer8 = *(uint8_t **)(dataContext + 0x50);
+              exceptionDataBuffer8 = *(uint8_t **)(dataContext + DataContextOffset50);
             }
             operationResult4 = InitializeMemory(StackFrameContext + 1,exceptionDataBuffer8,0x80);
             resourceValidationStatus = ValidateDataIntegrityA0(operationResult4,StackFrameContext + -4);
@@ -26348,7 +26348,7 @@ ValidateDataSecurity:
     StackLoopCounter = inputAccumulatorRegister;
     do {
       exceptionHandlerContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
-      dataContext = *(int64_t *)(operationResult0 + 0x10 + exceptionHandlerContext5);
+      dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
       memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);
       FloatRegisterR12 = StackMemoryBasePointer;
@@ -26362,11 +26362,11 @@ ValidateDataSecurity:
         exceptionHandlerContext5 = (*(code *)*memoryRegionBase)(StackMemoryBasePointer);
         *StackFrameContext = *(DataBuffer *)(*(int64_t *)(exceptionHandlerContext5 + SystemContextPointerOffset90) + operationResult2 * 8);
         *(ByteFlag *)((int64_t)StackFrameContext + -4) = 0;
-        if (*(int *)(dataContext + 0x58) < 1) {
+        if (*(int *)(dataContext + DataContextOffset58) < 1) {
           exceptionDataBuffer8 = &SystemResourceDataBuffer;
         }
         else {
-          exceptionDataBuffer8 = *(uint8_t **)(dataContext + 0x50);
+          exceptionDataBuffer8 = *(uint8_t **)(dataContext + DataContextOffset50);
         }
         operationResult3 = InitializeMemory(StackFrameContext + 1,exceptionDataBuffer8,0x80);
         resourceValidationStatus = ValidateDataIntegrityA0(operationResult3,StackFrameContext + -4);
