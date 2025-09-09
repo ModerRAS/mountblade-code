@@ -100051,9 +100051,9 @@ void ProcessRenderParameterCalculation(int ContextHandle
     }
     RenderParameter1 = RenderTransformTranslationX + RenderTransformScaleY + RenderParameter1;
   }
-  RenderParameter5 = StackFloat5;
-  RenderParameter8 = StackFloat6;
-  RenderParameter3 = StackFloat3;
+  RenderTransformRotationX = StackFloat5;
+  RenderTransformTranslationX = StackFloat6;
+  RenderTransformScaleY = StackFloat3;
   SecondaryRenderParameter = StackFloat6 - StackFloat3;
   if ((0.0 < SecondaryRenderParameter) && (RenderParameter4 = StackFloat5 - RenderParameter1, 0.0 < RenderParameter4)) {
     if (ContextHandle == 0) {

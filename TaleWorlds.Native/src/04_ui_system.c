@@ -145326,7 +145326,7 @@ UIHandle FUN_180754c5c(void)
     if ((int)result != 0) {
       return result;
     }
-    EventTypeCode = (undefined7)((ulonglong)iterationCount >> 8);
+    EventTypeCode = (uint64_t)((ulonglong)iterationCount >> 8);
     result = FUN_180762b60();
     if ((int)result != 0) {
       return result;
@@ -159656,7 +159656,7 @@ void FUN_180760e8e(UIDword uiContext)
   UIDword extraout_XMM0_Da;
   UIDword extraout_XMM0_Da_00;
   ulonglong stackParam00000020;
-  undefined7 iterationCount6;
+  uint64_t iterationCount6;
   ulonglong iterationCount5;
   char cStack0000000000000040;
   uint uStack0000000000000044;
@@ -159892,7 +159892,7 @@ LAB_180761ebf:
   *(UIDword *)(BasePointer + -0xb) = 0xffffffff;
   BasePointer[-0xe] = 0;
   BasePointer[-0xd] = 0;
-  iterationCount6 = (undefined7)(stackParam00000020 >> 8);
+  iterationCount6 = (uint64_t)(stackParam00000020 >> 8);
   localInt7 = (int)preservedRegister13;
   if (preservedRegister15B == '\0') {
     if (((*(float *)(contextHandle + 0x1cc) == 0.0) && (*(float *)(contextHandle + 0x1d8) == 0.0)) ||
