@@ -157,6 +157,7 @@
 #define MemoryAllocationFlags1 1
 #define MemoryAllocationSize100 0x100
 #define MemoryAllocationFlag1 1
+#define FloatingPointValidationMask11 0x11
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetSecondary 0xcc
@@ -20765,7 +20766,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t 
       if (TargetDataPointer == 0) {
         return ResourceNotFoundCode;
       }
-      if ((*(SystemByteType *)(TargetDataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
+      if ((*(SystemByteType *)(TargetDataPointer + FloatingPointDataOffset34) & FloatingPointValidationMask11) != 0) {
         return ComponentDataValidationFailure;
       }
       InputFloatValue = *(float *)(ContextPointer + FloatingPointDataOffset20);
@@ -21098,7 +21099,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     }
     ResourceTraversalIndex = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
     MemoryAllocationOffset = *(int64_t *)(ResourceTraversalIndex + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
-    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & 0x11) == 0) {
+    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
       inputValue = *(float *)(dataBuffer + FloatValueOffset);
       resultValue = *(float *)(memoryBlockOffset + SystemFloatDataOffset38);
       if ((*(float *)(memoryBlockOffset + SystemFloatDataOffset38) <= inputValue) &&
@@ -21163,7 +21164,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
     ArrayIndex = (int64_t)OperationResultBuffer[0];
     systemContext = *(int64_t *)(systemContext + SystemDataParameterOffset20);
     MemoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + ArrayIndex * SystemDataRecordMultiplier18);
-    if ((*(SystemByteType *)(MemoryBlockOffset + SystemDataValidationOffset34) & 0x11) == 0) {
+    if ((*(SystemByteType *)(MemoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
       ValidationResult = ProcessDataValidationA0(MemoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
       if ((int)ValidationResult != 0) {
         return ValidationResult;

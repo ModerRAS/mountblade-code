@@ -2191,6 +2191,7 @@ typedef enum {
 #define FUN_18089aa30 UIEmptyFunction3
 #define FUN_18089aa38 UIEmptyFunction4
 #define FUN_18089aa40 UIEmptyFunction5
+#define FUN_1808995c0 ValidateUIResourceHandle
 #define FUN_18089aa48 UIEmptyFunction6
 #define FUN_18089aa50 UIEmptyFunction7
 #define FUN_18089aa58 UIEmptyFunction8
@@ -9939,25 +9940,25 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
   int componentIndex2;
   ulonglong elementCount;
   UIHandle *newMemoryBlock;
-  longlong AllocatedMemoryBlock1;
-  longlong allocatedMemory2;
+  longlong allocatedMemoryBlock1;
+  longlong allocatedMemoryBlock2;
   UIHandle *currentMemoryBlock;
-  longlong allocatedMemory4;
+  longlong allocatedMemoryBlock4;
   UIHandle *sourceDataBlock;
   UIWord stackArray [4];
   ulonglong elementCounter;
   UIHandle newContext;
   UIHandle *resultPointer1;
   UIHandle *resultPointer2;
-  UIHandle TransformCoefficient21;
-  UIDword TransformCoefficient22;
-  undefined *resultPointer3;
-  longlong transformResult;
-  UIDword TransformCoefficient23;
-  UIHandle *resultPointer4;
-  UIHandle *resultPointer5;
+  UIHandle transformCoefficient21;
+  UIDword transformCoefficient22;
+  undefined *transformResultPointer3;
+  longlong transformCalculationResult;
+  UIDword transformCoefficient23;
+  UIHandle *transformResultPointer4;
+  UIHandle *transformResultPointer5;
   UIHandle transformMatrix24;
-  UIDword TransformCoefficient25;
+  UIDword transformCoefficient25;
   
   if (*(int *)(dataSource + 0x10) != 0) {
     resultPointer1 = (UIHandle *)0x0;
@@ -11242,10 +11243,10 @@ ulonglong UIProcessEventCallback(UIHandle uiContext,UIHandle dataSource,UIHandle
   int eventTypeId;
   
   // 额外的变量定义
-  int stackInt20;
-  int stackInt40;
-  longlong stackLong28;
-  char *pcStack_48;
+  int stackLocalInt20;
+  int stackLocalInt40;
+  longlong stackLocalLong28;
+  char *stackLocalCharPointer48;
   
   InitializeUIDataBuffer(&eventDataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
   InitializeUIDataBuffer(&eventDataBufferPtr1,dataSource);
@@ -392446,38 +392447,42 @@ UIHandle UIEmptyFunction2(void)
 
 
 
- void FUN_18089a9f0(longlong uiContext,int *dataSource)
-void FUN_18089a9f0(longlong uiContext,int *dataSource)
+ // UI系统上下文数据处理函数
+// 处理UI上下文数据和缓冲区操作
+// @param uiContext UI上下文句柄
+// @param dataSource 数据源指针
+void ProcessUIContextDataWithBuffer(longlong uiContext,int *dataSource)
+ProcessUIContextDataWithBuffer(longlong uiContext,int *dataSource)
 
 {
-  char *plocalChar1;
+  char *contextCharPointer;
   code *threadLocalStorageFlag;
   char localChar3;
   UIDword bufferSize;
   UIByte maxProcessingCount;
   int localInt5;
-  UIDword in_register_00000004;
+  UIDword registerValue4;
   uint unmodifiedEBP;
-  char in_CF;
-  int *pstackInt8;
+  char carryFlag;
+  int *stackIntPointer8;
   UIDword ProcessingStatus;
   
   maxProcessingCount = (UIUndefined3)((uint)bufferSize >> 8);
-  localChar3 = (char)bufferSize + -0x57 + in_CF;
+  localChar3 = (char)bufferSize + -0x57 + carryFlag;
   ProcessingStatus = CONCAT31(maxProcessingCount,localChar3);
-  *(UIDword *)CONCAT44(in_register_00000004,ProcessingStatus) = ProcessingStatus;
+  *(UIDword *)CONCAT44(registerValue4,ProcessingStatus) = ProcessingStatus;
   *(uint *)(uiContext + -0x565dff77) = *(uint *)(uiContext + -0x565dff77) & unmodifiedEBP;
-  *(UIDword *)CONCAT44(in_register_00000004,ProcessingStatus) = ProcessingStatus;
-  pstackInt8 = dataSource;
-  *(UIDword *)CONCAT44(in_register_00000004,ProcessingStatus) = ProcessingStatus;
-  *(char *)CONCAT44(in_register_00000004,ProcessingStatus) =
-       *(char *)CONCAT44(in_register_00000004,ProcessingStatus) + localChar3;
-  *(char *)CONCAT44(in_register_00000004,ProcessingStatus) =
-       *(char *)CONCAT44(in_register_00000004,ProcessingStatus) + localChar3;
+  *(UIDword *)CONCAT44(registerValue4,ProcessingStatus) = ProcessingStatus;
+  stackIntPointer8 = dataSource;
+  *(UIDword *)CONCAT44(registerValue4,ProcessingStatus) = ProcessingStatus;
+  *(char *)CONCAT44(registerValue4,ProcessingStatus) =
+       *(char *)CONCAT44(registerValue4,ProcessingStatus) + localChar3;
+  *(char *)CONCAT44(registerValue4,ProcessingStatus) =
+       *(char *)CONCAT44(registerValue4,ProcessingStatus) + localChar3;
   localInt5 = CONCAT31(maxProcessingCount,localChar3 + '\x18');
   *dataSource = *dataSource + localInt5;
-  plocalChar1 = (char *)((longlong)&pstackInt8 + CONCAT44(in_register_00000004,localInt5));
-  *plocalChar1 = *plocalChar1 + localChar3 + '\x18';
+  contextCharPointer = (char *)((longlong)&stackIntPointer8 + CONCAT44(registerValue4,localInt5));
+  *contextCharPointer = *contextCharPointer + localChar3 + '\x18';
   threadLocalStorageFlag = (UIFunctionPtr *)swi(3);
   (*threadLocalStorageFlag)();
   return;
@@ -392485,7 +392490,9 @@ void FUN_18089a9f0(longlong uiContext,int *dataSource)
 
 
 
-UIHandle FUN_18089aa40(longlong uiContext,UIHandle *dataSource)
+// UI系统空操作函数5
+// 执行空操作，返回固定句柄值
+UIHandle UIEmptyFunction5(longlong uiContext,UIHandle *dataSource)
 
 {
   UIHandle result;
@@ -392493,22 +392500,22 @@ UIHandle FUN_18089aa40(longlong uiContext,UIHandle *dataSource)
   if (*(int *)(dataSource[1] + 0x18) != 0) {
     return 0x1c;
   }
-  result = FUN_1808995c0(*dataSource,uiContext + 0x50);
+  result = ValidateUIResourceHandle(*dataSource,uiContext + 0x50);
   if ((int)result == 0) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
-    result = FUN_1808995c0(*dataSource,uiContext + 0x54);
+    result = ValidateUIResourceHandle(*dataSource,uiContext + 0x54);
     if ((int)result == 0) {
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
-      result = FUN_1808995c0(*dataSource,uiContext + 0x58);
+      result = ValidateUIResourceHandle(*dataSource,uiContext + 0x58);
       if ((int)result == 0) {
         if (*(int *)(dataSource[1] + 0x18) != 0) {
           return 0x1c;
         }
-        result = FUN_1808995c0(*dataSource,uiContext + 0x60);
+        result = ValidateUIResourceHandle(*dataSource,uiContext + 0x60);
         if ((int)result == 0) {
           if (*(int *)(dataSource[1] + 0x18) != 0) {
             return 0x1c;
