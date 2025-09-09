@@ -174,6 +174,8 @@ typedef enum {
 #define FUN_180734160 ValidateUIComponentContext4160     // 验证UI组件上下文4160
 #define FUN_180736a10 ProcessUIBufferDataA10              // 处理UI缓冲区数据A10
 #define FUN_180741e10 InitializeUIComponent1E10           // 初始化UI组件1E10
+#define FUN_180728660 ProcessUIContextDataTransfer          // 处理UI上下文数据传输
+#define FUN_180728720 TransferUIDataToBuffer                // 传输UI数据到缓冲区
 
 // 额外的UNK变量定义
 #define UNK_180958ac0 UIComponentFunctionTableAC0         // UI组件函数表AC0

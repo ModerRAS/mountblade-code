@@ -561,6 +561,7 @@
 #define SystemResourceManagerOffset600             600       // 系统资源管理器偏移量600
 #define SystemResourceManagerOffset38             0x38      // 系统资源管理器偏移量38
 #define SystemResourceManagerOffset30             0x30      // 系统资源管理器偏移量30
+#define SystemResourceManagerOffset38c            0x38c     // 系统资源管理器偏移量38c
 #define SystemHashEntrySize                        0x10      // 系统哈希条目大小
 #define SystemHashEntryDataOffset                  8         // 系统哈希条目数据偏移量
 #define SystemResourceCounterDecrement              -1        // 系统资源计数器递减值
