@@ -207,6 +207,10 @@ typedef enum {
 
 // UI系统标签宏定义 - 事件处理相关
 #define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
+
+// UI系统变换动画函数
+// 原始函数名：FUN_180725856 - UI系统变换和动画效果
+#define ProcessUITransformAnimation FUN_180725856
 #define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
 #define LAB_EventStringComparison LAB_EventStringComparison
 #define LAB_EventHandlerReturn LAB_EventHandlerReturn
@@ -34393,84 +34397,85 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
  void ProcessUITransformMatrix(longlong UiContext, longlong *OutputBuffer)
 
 {
-  UIByte aresult [16];
-  short *psVar2;
-  longlong stringCompareIndex;
-  bool bVar4;
-  short sVar5;
-  short sVar6;
-  short sVar7;
+  UIByte TransformResult [16];
+  short *DataSourcePointer;
+  longlong StringCompareIndex;
+  bool IsTransformValid;
+  short TransformStep1;
+  short TransformStep2;
+  short TransformStep3;
   short ContextSecondValue;
-  short sVar9;
-  short sVar10;
-  short sVar11;
-  short sVar12;
-  short sVar13;
-  short sVar14;
+  short TransformStep5;
+  short TransformStep6;
+  short TransformStep7;
+  short TransformStep8;
+  short TransformStep9;
+  short TransformStep10;
   short BufferCapacityValue;
-  short sVar16;
-  short sVar17;
-  short sVar18;
-  short sVar19;
-  short sVar20;
-  short sVar21;
-  short sVar22;
-  short sVar23;
-  short sVar24;
-  short sVar25;
-  short sVar26;
-  short sVar27;
-  short sVar28;
-  short *psVar29;
-  short *pContextFirstValue0;
+  short TransformStep12;
+  short TransformStep13;
+  short TransformStep14;
+  short TransformStep15;
+  short TransformStep16;
+  short TransformStep17;
+  short TransformStep18;
+  short TransformStep19;
+  short TransformStep20;
+  short TransformStep21;
+  short TransformStep22;
+  short TransformStep23;
+  short TransformStep24;
+  short TransformStep25;
+  short *TransformStep26;
+  short *ContextFirstValue0;
   UIByte EventTypeCode1;
-  UIByte aEventTypeCode2 [16];
+  UIByte EventTypeCode2 [16];
   short ContextFirstValue3;
   short ContextFirstValue6;
   short ContextFirstValue7;
   short ContextFirstValue8;
-  UIByte aEventTypeCode4 [16];
-  UIByte aEventTypeCode5 [16];
-  UIByte aEventTypeCode9 [16];
-  UIByte aProcessingStatus0 [16];
-  UIByte aProcessingStatus1 [16];
-  UIByte aProcessingStatus2 [16];
-  UIByte aProcessingStatus3 [16];
-  UIByte aProcessingStatus4 [16];
-  UIByte astackUInt108 [16];
-  short sStack_f8;
-  short sStack_f6;
-  short sStack_f4;
-  short sStack_f2;
-  short sStack_f0;
-  short sStack_ee;
-  short sStack_ec;
-  short sStack_ea;
-  short sStack_e8;
-  short sStack_e6;
-  short sStack_e4;
-  short sStack_e2;
-  short sStack_e0;
-  short sStack_de;
-  short sStack_dc;
-  short sStack_da;
-  short sStack_d8;
-  short sStack_d6;
-  short sStack_d4;
-  short sStack_d2;
-  short sStack_d0;
-  short sStack_ce;
-  short sStack_cc;
-  short sStack_ca;
-  short sStack_c8;
-  short sStack_c6;
-  short sStack_c4;
-  short sStack_c2;
-  short sStack_c0;
-  short sStack_be;
-  short sStack_bc;
-  short sStack_ba;
-  ulonglong stackUIntb8;
+  UIByte EventTypeCode4 [16];
+  UIByte EventTypeCode5 [16];
+  UIByte EventTypeCode9 [16];
+  UIByte ProcessingStatus0 [16];
+  UIByte ProcessingStatus1 [16];
+  UIByte ProcessingStatus2 [16];
+  UIByte ProcessingStatus3 [16];
+  UIByte ProcessingStatus4 [16];
+  UIByte StackUInt108 [16];
+  short StackTransformF8;
+  short StackTransformF6;
+  short StackTransformF4;
+  short StackTransformF2;
+  short StackTransformF0;
+  short StackTransformEE;
+  short StackTransformEC;
+  short StackTransformEA;
+  short StackTransformE8;
+  short StackTransformE6;
+  short StackTransformE4;
+  short StackTransformE2;
+  short StackTransformE0;
+  short StackTransformDE;
+  short StackTransformDC;
+  short StackTransformDA;
+  short StackTransformD8;
+  short StackTransformD6;
+  short StackTransformD4;
+  short StackTransformD2;
+  short StackTransformD0;
+  short StackTransformCE;
+  short StackTransformCC;
+  short StackTransformCA;
+  short StackTransformC8;
+  short StackTransformC6;
+  short StackTransformC4;
+  short StackTransformC2;
+  short StackTransformC0;
+  short StackTransformBE;
+  short StackTransformBC;
+  short StackTransformBA;
+  ulonglong StackUIntB8;
   
   stackUIntb8 = XorEncryptionKey ^ (ulonglong)astackUInt108;
   psVar2 = (short *)*dataSource;
