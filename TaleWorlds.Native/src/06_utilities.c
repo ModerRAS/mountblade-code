@@ -63468,10 +63468,10 @@ void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,Data
 
 
 /**
- * @brief 在偏移量50处设置未知处理器
+ * @brief 在偏移量50处设置异常处理器
  * 
- * 该函数在上下文数据的偏移量50处设置一个指向未知处理器的指针。
- * 这个处理器可能是用于特定系统操作或异常处理的回调函数。
+ * 该函数在上下文数据的偏移量50处设置一个指向异常处理器的指针。
+ * 这个处理器用于系统异常处理的回调函数。
  * 
  * @param systemContext 系统上下文，包含系统状态信息
  * @param contextData 上下文数据，用于设置处理器指针
@@ -63480,9 +63480,9 @@ void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,Data
  * 
  * @note 此函数用于初始化系统处理器配置
  * @warning ExceptionDataBufferA 的具体功能需要进一步分析
- * @see SetUnknownHandlerAtOffset60, SetExceptionHandlerAtOffset30
+ * @see SetExceptionHandlerAtOffset60, SetExceptionHandlerAtOffset30
  */
-void SetUnknownHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
+void SetExceptionHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
 
 {
   **(DataBuffer **)(contextData + 0x50) = &ExceptionDataBufferA;
@@ -63504,9 +63504,9 @@ void SetUnknownHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
  * 
  * @note 此函数用于初始化系统处理器配置
  * @warning ExceptionDataBufferA 的具体功能需要进一步分析
- * @see SetUnknownHandlerAtOffset50, SetExceptionHandlerAtOffset30
+ * @see SetExceptionHandlerAtOffset50, SetExceptionHandlerAtOffset30
  */
-void SetUnknownHandlerAtOffset60(DataBuffer systemContext,int64_t contextData)
+void SetExceptionHandlerAtOffset60(DataBuffer systemContext,int64_t contextData)
 
 {
   **(DataBuffer **)(contextData + 0x60) = &ExceptionDataBufferA;
@@ -125189,7 +125189,7 @@ void SetDefaultExceptionHandlerB2(void)
 void InitializeExceptionHandlingSystem(void)
 
 {
-  ExceptionHandlerTable = &UnknownExceptionHandlerA0;
+  ExceptionHandlerTable = &DefaultExceptionHandlerA0;
   if (SystemInitializationFlag != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
