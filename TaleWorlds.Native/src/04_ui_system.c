@@ -41049,97 +41049,97 @@ void ProcessUIMainData(void)
                   uint resultPointer,UIByte (*param_6) [16])
 
 {
-  short sVar1;
-  short sVar2;
-  short ContextFirstValue;
-  short sVar4;
-  short sVar5;
-  short sVar6;
-  short sVar7;
-  short ContextSecondValue;
-  UIByte aeventProcessingStatus [16];
-  UIByte aresult0 [16];
-  UIByte aresult1 [16];
-  UIByte (*paresult2) [16];
-  ulonglong ResultValue3;
-  short sVar14;
-  short sVar18;
-  short sVar19;
-  short sVar20;
-  UIByte in_XMM0 [16];
-  UIByte aCounterResult [16];
-  UIByte aTotalResult [16];
-  UIByte aresult7 [16];
-  UIByte aiterationCount1 [16];
-  UIByte aiterationCount2 [16];
-  UIByte aiterationCount3 [16];
-  UIByte in_XMM5 [16];
-  UIByte unmodifiedXMM6 [16];
+  short UIVerticalOffset1;
+  short UIVerticalOffset2;
+  short UIContextPrimaryValue;
+  short UIProcessingOffset4;
+  short UIProcessingOffset5;
+  short UIProcessingOffset6;
+  short UIProcessingOffset7;
+  short UIContextSecondaryValue;
+  UIByte UIEventProcessingVector [16];
+  UIByte UIVectorResult0 [16];
+  UIByte UIVectorResult1 [16];
+  UIByte (*UIVectorResultPtr2) [16];
+  ulonglong UIProcessingCount3;
+  short UIVerticalOffset14;
+  short UIVerticalOffset18;
+  short UIVerticalOffset19;
+  short UIVerticalOffset20;
+  UIByte UISimdRegisterXMM0 [16];
+  UIByte UICounterVector [16];
+  UIByte UITotalResultVector [16];
+  UIByte UIVectorResult7 [16];
+  UIByte UIIterationVector1 [16];
+  UIByte UIIterationVector2 [16];
+  UIByte UIIterationVector3 [16];
+  UIByte UISimdRegisterXMM5 [16];
+  UIByte UISimdRegisterXMM6 [16];
   
-  aresult1 = UIVectorOperationMask6;
-  aresult0 = UIVectorOperationMask1;
-  aeventProcessingStatus = UIVectorOperationMask0;
-  aiterationCount1 = packsswb(*param_6,*param_6);
-  aCounterResult = pshuflw(in_XMM0,aiterationCount1,0);
-  aiterationCount1 = pshuflw(aiterationCount1,aiterationCount1,0xaa);
-  aiterationCount1 = pshufhw(unmodifiedXMM6,aiterationCount1,0xff);
-  aCounterResult = pshufhw(in_XMM5,aCounterResult,0x55);
+  UIVectorResult1 = UIVectorOperationMask6;
+  UIVectorResult0 = UIVectorOperationMask1;
+  UIEventProcessingVector = UIVectorOperationMask0;
+  UIIterationVector1 = packsswb(*param_6,*param_6);
+  UICounterVector = pshuflw(UISimdRegisterXMM0,UIIterationVector1,0);
+  UIIterationVector1 = pshuflw(UIIterationVector1,UIIterationVector1,0xaa);
+  UIIterationVector1 = pshufhw(UISimdRegisterXMM6,UIIterationVector1,0xff);
+  UICounterVector = pshufhw(UISimdRegisterXMM5,UICounterVector,0x55);
   if (resultPointer != 0) {
-    paresult2 = (UIByte (*) [16])(uiContext + -3);
-    ResultValue3 = (ulonglong)resultPointer;
+    UIVectorResultPtr2 = (UIByte (*) [16])(uiContext + -3);
+    UIProcessingCount3 = (ulonglong)resultPointer;
     do {
-      aresult7 = *paresult2;
-      paresult2 = (UIByte (*) [16])(*paresult2 + dataSource);
-      aTotalResult = pshufb(aresult7,aeventProcessingStatus);
-      aiterationCount2 = pshufb(aresult7,aresult0);
-      aresult7 = pmaddubsw(aTotalResult,aCounterResult);
-      aiterationCount3 = pmaddubsw(aiterationCount2,aiterationCount1);
-      aiterationCount2 = paddsw(aiterationCount3 >> 0x40,aresult7);
-      sVar1 = aiterationCount3._0_2_;
-      sVar14 = aresult7._8_2_;
-      aTotalResult._0_2_ = (ushort)(sVar1 < sVar14) * sVar1 | (ushort)(sVar1 >= sVar14) * sVar14;
-      sVar2 = aiterationCount3._2_2_;
-      sVar18 = aresult7._10_2_;
-      aTotalResult._2_2_ = (ushort)(sVar2 < sVar18) * sVar2 | (ushort)(sVar2 >= sVar18) * sVar18;
-      ContextFirstValue = aiterationCount3._4_2_;
-      sVar19 = aresult7._12_2_;
-      aTotalResult._4_2_ = (ushort)(ContextFirstValue < sVar19) * ContextFirstValue | (ushort)(ContextFirstValue >= sVar19) * sVar19;
-      sVar4 = aiterationCount3._6_2_;
-      sVar20 = aresult7._14_2_;
-      aTotalResult._6_2_ = (ushort)(sVar4 < sVar20) * sVar4 | (ushort)(sVar4 >= sVar20) * sVar20;
-      sVar5 = aiterationCount3._8_2_;
-      aTotalResult._8_2_ = (ushort)(sVar5 < 0) * sVar5;
-      sVar6 = aiterationCount3._10_2_;
-      aTotalResult._10_2_ = (ushort)(sVar6 < 0) * sVar6;
-      sVar7 = aiterationCount3._12_2_;
-      aTotalResult._12_2_ = (ushort)(sVar7 < 0) * sVar7;
-      ContextSecondValue = aiterationCount3._14_2_;
-      aTotalResult._14_2_ = (ushort)(ContextSecondValue < 0) * ContextSecondValue;
-      aresult7._0_2_ = (ushort)(sVar14 < sVar1) * sVar1 | (ushort)(sVar14 >= sVar1) * sVar14;
-      aresult7._2_2_ = (ushort)(sVar18 < sVar2) * sVar2 | (ushort)(sVar18 >= sVar2) * sVar18;
-      aresult7._4_2_ = (ushort)(sVar19 < ContextFirstValue) * ContextFirstValue | (ushort)(sVar19 >= ContextFirstValue) * sVar19;
-      aresult7._6_2_ = (ushort)(sVar20 < sVar4) * sVar4 | (ushort)(sVar20 >= sVar4) * sVar20;
-      aresult7._8_2_ = (ushort)(0 < sVar5) * sVar5;
-      aresult7._10_2_ = (ushort)(0 < sVar6) * sVar6;
-      aresult7._12_2_ = (ushort)(0 < sVar7) * sVar7;
-      aresult7._14_2_ = (ushort)(0 < ContextSecondValue) * ContextSecondValue;
-      aTotalResult = paddsw(aiterationCount2,aTotalResult);
-      aresult7 = paddsw(aTotalResult,aresult7);
-      aresult7 = paddsw(aresult7,aresult1);
-      aresult7 = psraw(aresult7,7);
-      sVar1 = aresult7._0_2_;
-      sVar2 = aresult7._2_2_;
-      ContextFirstValue = aresult7._4_2_;
-      sVar4 = aresult7._6_2_;
-      *targetBuffer = CONCAT13((0 < sVar4) * (sVar4 < 0x100) * aresult7[6] - (0xff < sVar4),
-                          CONCAT12((0 < ContextFirstValue) * (ContextFirstValue < 0x100) * aresult7[4] - (0xff < ContextFirstValue),
-                                   CONCAT11((0 < sVar2) * (sVar2 < 0x100) * aresult7[2] -
-                                            (0xff < sVar2),
-                                            (0 < sVar1) * (sVar1 < 0x100) * aresult7[0] -
-                                            (0xff < sVar1))));
+      UIVectorResult7 = *UIVectorResultPtr2;
+      UIVectorResultPtr2 = (UIByte (*) [16])(*UIVectorResultPtr2 + dataSource);
+      UITotalResultVector = pshufb(UIVectorResult7,UIEventProcessingVector);
+      UIIterationVector2 = pshufb(UIVectorResult7,UIVectorResult0);
+      UIVectorResult7 = pmaddubsw(UITotalResultVector,UICounterVector);
+      UIIterationVector3 = pmaddubsw(UIIterationVector2,UIIterationVector1);
+      UIIterationVector2 = paddsw(UIIterationVector3 >> 0x40,UIVectorResult7);
+      UIVerticalOffset1 = UIIterationVector3._0_2_;
+      UIVerticalOffset14 = UIVectorResult7._8_2_;
+      UITotalResultVector._0_2_ = (ushort)(UIVerticalOffset1 < UIVerticalOffset14) * UIVerticalOffset1 | (ushort)(UIVerticalOffset1 >= UIVerticalOffset14) * UIVerticalOffset14;
+      UIVerticalOffset2 = UIIterationVector3._2_2_;
+      UIVerticalOffset18 = UIVectorResult7._10_2_;
+      UITotalResultVector._2_2_ = (ushort)(UIVerticalOffset2 < UIVerticalOffset18) * UIVerticalOffset2 | (ushort)(UIVerticalOffset2 >= UIVerticalOffset18) * UIVerticalOffset18;
+      UIContextPrimaryValue = UIIterationVector3._4_2_;
+      UIVerticalOffset19 = UIVectorResult7._12_2_;
+      UITotalResultVector._4_2_ = (ushort)(UIContextPrimaryValue < UIVerticalOffset19) * UIContextPrimaryValue | (ushort)(UIContextPrimaryValue >= UIVerticalOffset19) * UIVerticalOffset19;
+      UIProcessingOffset4 = UIIterationVector3._6_2_;
+      UIVerticalOffset20 = UIVectorResult7._14_2_;
+      UITotalResultVector._6_2_ = (ushort)(UIProcessingOffset4 < UIVerticalOffset20) * UIProcessingOffset4 | (ushort)(UIProcessingOffset4 >= UIVerticalOffset20) * UIVerticalOffset20;
+      UIProcessingOffset5 = UIIterationVector3._8_2_;
+      UITotalResultVector._8_2_ = (ushort)(UIProcessingOffset5 < 0) * UIProcessingOffset5;
+      UIProcessingOffset6 = UIIterationVector3._10_2_;
+      UITotalResultVector._10_2_ = (ushort)(UIProcessingOffset6 < 0) * UIProcessingOffset6;
+      UIProcessingOffset7 = UIIterationVector3._12_2_;
+      UITotalResultVector._12_2_ = (ushort)(UIProcessingOffset7 < 0) * UIProcessingOffset7;
+      UIContextSecondaryValue = UIIterationVector3._14_2_;
+      UITotalResultVector._14_2_ = (ushort)(UIContextSecondaryValue < 0) * UIContextSecondaryValue;
+      UIVectorResult7._0_2_ = (ushort)(UIVerticalOffset14 < UIVerticalOffset1) * UIVerticalOffset1 | (ushort)(UIVerticalOffset14 >= UIVerticalOffset1) * UIVerticalOffset14;
+      UIVectorResult7._2_2_ = (ushort)(UIVerticalOffset18 < UIVerticalOffset2) * UIVerticalOffset2 | (ushort)(UIVerticalOffset18 >= UIVerticalOffset2) * UIVerticalOffset2;
+      UIVectorResult7._4_2_ = (ushort)(UIVerticalOffset19 < UIContextPrimaryValue) * UIContextPrimaryValue | (ushort)(UIVerticalOffset19 >= UIContextPrimaryValue) * UIVerticalOffset19;
+      UIVectorResult7._6_2_ = (ushort)(UIVerticalOffset20 < UIProcessingOffset4) * UIProcessingOffset4 | (ushort)(UIVerticalOffset20 >= UIProcessingOffset4) * UIProcessingOffset4;
+      UIVectorResult7._8_2_ = (ushort)(0 < UIProcessingOffset5) * UIProcessingOffset5;
+      UIVectorResult7._10_2_ = (ushort)(0 < UIProcessingOffset6) * UIProcessingOffset6;
+      UIVectorResult7._12_2_ = (ushort)(0 < UIProcessingOffset7) * UIProcessingOffset7;
+      UIVectorResult7._14_2_ = (ushort)(0 < UIContextSecondaryValue) * UIContextSecondaryValue;
+      UITotalResultVector = paddsw(UIIterationVector2,UITotalResultVector);
+      UIVectorResult7 = paddsw(UITotalResultVector,UIVectorResult7);
+      UIVectorResult7 = paddsw(UIVectorResult7,UIVectorResult1);
+      UIVectorResult7 = psraw(UIVectorResult7,7);
+      UIVerticalOffset1 = UIVectorResult7._0_2_;
+      UIVerticalOffset2 = UIVectorResult7._2_2_;
+      UIContextPrimaryValue = UIVectorResult7._4_2_;
+      UIProcessingOffset4 = UIVectorResult7._6_2_;
+      *targetBuffer = CONCAT13((0 < UIProcessingOffset4) * (UIProcessingOffset4 < 0x100) * UIVectorResult7[6] - (0xff < UIProcessingOffset4),
+                          CONCAT12((0 < UIContextPrimaryValue) * (UIContextPrimaryValue < 0x100) * UIVectorResult7[4] - (0xff < UIContextPrimaryValue),
+                                   CONCAT11((0 < UIVerticalOffset2) * (UIVerticalOffset2 < 0x100) * UIVectorResult7[2] -
+                                            (0xff < UIVerticalOffset2),
+                                            (0 < UIVerticalOffset1) * (UIVerticalOffset1 < 0x100) * UIVectorResult7[0] -
+                                            (0xff < UIVerticalOffset1))));
       targetBuffer = (UIDword *)((longlong)targetBuffer + bufferSize);
-      ResultValue3 = ResultValue3 - 1;
-    } while (ResultValue3 != 0);
+      UIProcessingCount3 = UIProcessingCount3 - 1;
+    } while (UIProcessingCount3 != 0);
   }
   return;
 }

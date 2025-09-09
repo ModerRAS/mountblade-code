@@ -7,8 +7,26 @@
  * TaleWorlds引擎的工具函数和实用程序，包括系统初始化、内存管理、
  * 异常处理、数据验证和线程管理等核心功能。
  * 
+ * @section 主要功能模块
+ * - 系统初始化和配置管理
+ * - 内存管理和资源分配
+ * - 异常处理和错误恢复
+ * - 数据验证和安全检查
+ * - 线程本地存储管理
+ * - 浮点数处理和计算
+ * - 系统状态监控和健康检查
+ * 
+ * @section 关键数据结构
+ * - ExceptionHandlerContext: 异常处理上下文结构
+ * - SystemContext: 系统上下文结构
+ * - MemoryBlock: 内存块管理结构
+ * - ThreadLocalStorage: 线程本地存储结构
+ * 
  * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
  *       替换为具有语义的名称。
+ * 
+ * @version 2.0
+ * @date 2025-09-09
  */
 
 // 系统常量定义
@@ -7093,9 +7111,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：设置全局数据指针A35到指定地址
 #define SetGlobalDataPointerA35 FUN_1809423e0
 
-// 原始函数名：FUN_180942400 - 全局指针设置函数A36
+// 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
-#define SetGlobalDataPointerA36 FUN_180942400
+#define SetGlobalDataPointerA36 ConfigureGlobalDataPointerA36
 
 // 全局指针设置函数A37
 // 功能：设置全局数据指针A37到指定地址
@@ -7106,13 +7124,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SetGlobalDataPointerA38 ConfigureGlobalDataPointerA38
 
 // Unwind函数语义化宏定义
-// 原始函数名：Unwind_18090fc10 - 释放SRW锁函数
+// 释放SRW锁函数
 // 功能：在数据缓冲区中释放SRW排他锁
-#define ReleaseSrwLockExclusiveUnwind Unwind_18090fc10
+#define ReleaseSrwLockExclusiveUnwind ReleaseSrwLockExclusiveInBuffer
 
-// 原始函数名：Unwind_18090fc20 - 数据验证标志清理函数
+// 数据验证标志清理函数
 // 功能：清理数据验证标志并调用验证处理器
-#define ClearDataValidationFlag Unwind_18090fc20
+#define ClearDataValidationFlag ClearDataValidationFlagAndCallHandler
 
 // 原始函数名：Unwind_18090fc50 - 数据验证标志清理函数B
 // 功能：清理第二种数据验证标志并调用验证处理器
