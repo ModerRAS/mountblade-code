@@ -80013,11 +80013,25 @@ void SetSystemValidationStatusTable(DataBuffer operationBase, int64_t dataBuffer
  * 内存块偏移量计算以及引用计数的更新。如果引用计数为0，
  * 则调用异常处理函数；否则管理内存资源。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @return 无返回值
  * 
  * @note 原始函数名：Unwind_180909090
  * @note 内存偏移量：使用MemoryPointerOffset作为偏移量
+ * 
+ * @details
+ * 该函数执行以下操作：
+ * 1. 从数据缓冲区获取内存资源指针
+ * 2. 计算内存区域基址和内存块偏移量
+ * 3. 检查内存块是否在异常列表中且状态正常
+ * 4. 更新内存资源指针和引用计数
+ * 5. 如果引用计数为0，调用异常处理函数
+ * 6. 否则调用内存管理函数处理资源
+ * 
+ * @warning 该函数涉及复杂的内存管理操作，错误操作可能导致内存泄漏
+ * @see ManageMemory, HandleExceptionE0
  */
 void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 

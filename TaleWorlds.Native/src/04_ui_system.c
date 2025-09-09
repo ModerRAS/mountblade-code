@@ -33517,8 +33517,8 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   if (*(int *)(stackLong78 + 0x23d4) < stackIntb4) {
     stackIntb4 = *(int *)(stackLong78 + 0x23d4);
   }
-  processedCount = sVar9 - param_6;
-  if (sVar9 - param_6 < *(int *)(stackLong78 + 0x23d8)) {
+  processedCount = bufferWidth - param_6;
+  if (bufferWidth - param_6 < *(int *)(stackLong78 + 0x23d8)) {
     processedCount = *(int *)(stackLong78 + 0x23d8);
   }
   if (*(int *)(stackLong78 + 0x23dc) < stackInta8) {
@@ -107557,8 +107557,21 @@ void FUN_18072e60c(longlong uiContext,UIHandle dataSource,float targetBuffer,lon
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072e720(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword bufferSize)
-void FUN_18072e720(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword bufferSize)
+ /**
+ * @brief 处理UI值计算
+ * 
+ * 该函数负责处理UI系统中的数值计算，包括浮点运算、数据转换和数学计算。
+ * 主要用于UI组件的数值处理和计算。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072e720
+ */
+void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword bufferSize)
+void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword bufferSize)
 
 {
   int processingResult;
@@ -107922,8 +107935,24 @@ void FUN_18072eaed(void)
 
 
 
- void FUN_18072eb00(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,float *resultPointer,
-void FUN_18072eb00(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,float *resultPointer,
+ /**
+ * @brief 处理UI缓冲区分配
+ * 
+ * 该函数负责处理UI系统中的缓冲区分配操作，包括内存分配、数据转换和缓冲区管理。
+ * 主要用于UI渲染和数据处理的内存管理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 额外参数8
+ * 
+ * @note 原始函数名：FUN_18072eb00
+ */
+void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,float *resultPointer,
                   int param_6,int param_7,int param_8)
 
 {
@@ -186056,6 +186085,12 @@ char UISystemConfigFlag;
 // 原始变量名：DAT_180c10890 - UI系统状态标志
 #define UISystemStatusFlag DAT_180c10890
 undefined UISystemStatusFlag;
+// 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
+#define UISystemCOMInterfacePtr DAT_180c0c6e8
+undefined UISystemCOMInterfacePtr;
+// 原始变量名：DAT_180958c80 - UI系统字符映射表
+#define UISystemCharacterMappingTable DAT_180958c80
+undefined UISystemCharacterMappingTable;
 // 原始变量名：UNK_18095ab70 - UI系统样式管理器
 #define UISystemStyleManager UNK_18095ab70
 undefined UISystemStyleManager;
