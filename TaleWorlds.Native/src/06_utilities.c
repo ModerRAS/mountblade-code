@@ -135159,3 +135159,81 @@ float ValidationIntermediateResultFloatB;
  * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultFloatB
  */
 int ValidationIntermediateResultIntegerA;
+
+/**
+ * @brief 系统内存缓冲区验证和处理函数
+ * 
+ * 对系统内存缓冲区进行验证和处理，确保数据完整性和安全性
+ * 该函数负责：
+ * 1. 验证内存缓冲区的有效性
+ * 2. 检查缓冲区边界和完整性
+ * 3. 处理缓冲区中的数据
+ * 4. 执行安全验证和清理
+ * 5. 返回处理结果状态
+ * 
+ * @param MemoryBufferPointer 内存缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param ValidationFlags 验证标志位
+ * @return int 处理结果状态码
+ * 
+ * @note 这是一个新增的美化函数示例
+ * @warning 内存操作必须确保在合法的地址范围内进行
+ * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultFloatB, ValidationIntermediateResultIntegerA
+ */
+int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t BufferSize, uint32_t ValidationFlags)
+{
+    // 缓冲区和验证相关变量
+    uint8_t *BufferDataPointer;                  // 缓冲区数据指针
+    uint32_t ProcessedBytesCount;                // 已处理字节数
+    uint32_t ValidationResult;                    // 验证结果
+    uint32_t SecurityCheckResult;                // 安全检查结果
+    uint8_t TempValidationBuffer[32];            // 临时验证缓冲区
+    
+    // 初始化变量
+    BufferDataPointer = (uint8_t *)MemoryBufferPointer;
+    ProcessedBytesCount = 0;
+    ValidationResult = 0;
+    SecurityCheckResult = 0;
+    
+    // 验证缓冲区指针有效性
+    if (MemoryBufferPointer == NULL) {
+        return -1; // 无效指针错误
+    }
+    
+    // 验证缓冲区大小
+    if (BufferSize == 0 || BufferSize > MaxSafeBufferSize) {
+        return -2; // 无效缓冲区大小错误
+    }
+    
+    // 执行缓冲区边界检查
+    if ((ValidationFlags & 0x1) != 0) {
+        SecurityCheckResult = ValidateMemoryBoundary(MemoryBufferPointer, BufferSize);
+        if (SecurityCheckResult != 0) {
+            return -3; // 边界检查失败
+        }
+    }
+    
+    // 处理缓冲区数据
+    if ((ValidationFlags & 0x2) != 0) {
+        // 数据处理循环
+        while (ProcessedBytesCount < BufferSize) {
+            // 读取并处理数据字节
+            TempValidationBuffer[ProcessedBytesCount % 32] = BufferDataPointer[ProcessedBytesCount];
+            
+            // 执行数据验证
+            ValidationResult = ValidateDataByte(TempValidationBuffer[ProcessedBytesCount % 32]);
+            if (ValidationResult != 0) {
+                break; // 验证失败，退出循环
+            }
+            
+            ProcessedBytesCount++;
+        }
+    }
+    
+    // 执行最终安全清理
+    if ((ValidationFlags & 0x4) != 0) {
+        SecureClearMemory(TempValidationBuffer, sizeof(TempValidationBuffer));
+    }
+    
+    return ProcessedBytesCount; // 返回已处理的字节数
+}
