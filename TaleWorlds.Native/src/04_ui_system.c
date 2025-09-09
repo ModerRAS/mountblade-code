@@ -50057,9 +50057,9 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 {
   uint result;
-  UIByte aiterationCount [14];
-  UIByte aEventTypeCode [12];
-  unkbyte10 Var4;
+  UIByte iterationCountBuffer [14];
+  UIByte eventTypeCodeBuffer [12];
+  UIByte unknownByteVar4;
   UIByte aloopCounter [14];
   UIByte amaxProcessingCount [12];
   unkbyte10 Var7;
