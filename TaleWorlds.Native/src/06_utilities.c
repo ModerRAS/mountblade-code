@@ -50021,6 +50021,12 @@ void ExceptionProcessorRegistrar3B0(DataBuffer processorContext, int64_t registr
 
 
 
+// 异常管理器配置常量
+#define ExceptionManagerConfigurationOffset 0x50
+#define ExceptionManagerConfigurationParameter 1000
+#define ExceptionManagerConfigurationType 0x58
+#define ExceptionManagerConfigurationFlags 4
+
 /**
  * @brief 异常管理器配置器3F0
  * 
@@ -50032,11 +50038,15 @@ void ExceptionProcessorRegistrar3B0(DataBuffer processorContext, int64_t registr
 void ExceptionManagerConfigurator3F0(DataBuffer managerContext, int64_t configurationData)
 
 {
-  ConfigureExceptionManager(*(int64_t *)(configurationData + 0x50) + 1000, 0x58, 4, InitializeExceptionHandlers);
+  ConfigureExceptionManager(*(int64_t *)(configurationData + ExceptionManagerConfigurationOffset) + ExceptionManagerConfigurationParameter, ExceptionManagerConfigurationType, ExceptionManagerConfigurationFlags, InitializeExceptionHandlers);
   return;
 }
 
 
+
+// 异常数据清理常量
+#define ExceptionDataPointerOffset 0x40
+#define ExceptionDataBufferOffset 0x30
 
 /**
  * @brief 异常数据清理器430
@@ -50053,15 +50063,20 @@ void ExceptionDataCleaner430(DataBuffer cleanupContext, int64_t dataPointer, Dat
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataPointer + 0x40) + 0x30);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataPointer + ExceptionDataPointerOffset) + ExceptionDataBufferOffset);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ValidateAndCleanupExceptionData(*(int64_t *)(dataPointer + 0x40) + SystemDataParameterOffset20, *exceptionDataBuffer, cleanupParameters, cleanupFlags, SystemCleanupFlagAlternative);
+    ValidateAndCleanupExceptionData(*(int64_t *)(dataPointer + ExceptionDataPointerOffset) + SystemDataParameterOffset20, *exceptionDataBuffer, cleanupParameters, cleanupFlags, SystemCleanupFlagAlternative);
       ReleaseExceptionBuffer(exceptionDataBuffer);
   }
   return;
 }
 
 
+
+// 异常上下文验证常量
+#define ExceptionContextDataOffset 0x40
+#define ExceptionContextSecondaryIndex 1
+#define ExceptionContextPrimaryIndex 0
 
 /**
  * @brief 异常上下文验证器440
@@ -50078,12 +50093,12 @@ void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextDa
   int64_t *dataContext;
   int64_t memoryBlockOffset;
   
-  dataContext = *(int64_t **)(contextData + 0x40);
-  exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockSizeStep) {
+  dataContext = *(int64_t **)(contextData + ExceptionContextDataOffset);
+  exceptionContext = dataContext[ExceptionContextSecondaryIndex];
+  for (memoryBlockOffset = dataContext[ExceptionContextPrimaryIndex]; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockSizeStep) {
     ValidateExceptionContext(memoryBlockOffset);
   }
-  if (*dataContext == 0) {
+  if (dataContext[ExceptionContextPrimaryIndex] == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();

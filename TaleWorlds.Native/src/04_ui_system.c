@@ -105332,23 +105332,23 @@ LAB_180727edb:
 float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bufferSize)
 
 {
-  longlong allocatedMemory;
-  short sVar2;
-  ushort eventCodeType;
-  int sourceDataInt;
-  longlong eventDataIndex;
-  longlong contextDataHandle;
-  uint iterationCounter;
-  int localInt8;
-  uint eventStatus;
-  ulonglong dataPointer;
+  longlong contextOffset;
+  short interpolationCoeff1;
+  ushort interpolationCoeff2;
+  int sourceDataValue;
+  longlong dataIndex;
+  longlong contextHandle;
+  uint loopCounter;
+  int interpolationResult;
+  uint eventState;
+  ulonglong dataValue;
   short eventIndex;
   uint bufferValue;
   ulonglong contextValue;
-  longlong *globalDataPointer;
-  float baseValue5;
-  float baseValue6;
-  float finalResult;
+  longlong *globalDataRegistry;
+  float weightValue1;
+  float weightValue2;
+  float interpolationResult;
   
   contextValue = (ulonglong)uiContext;
   dataPointer = dataSource & 0xffffffff;
