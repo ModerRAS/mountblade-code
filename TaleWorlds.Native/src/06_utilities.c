@@ -66396,10 +66396,10 @@ void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x118);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x118);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -66422,10 +66422,10 @@ void ExecuteExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
 void ExecuteExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b0);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -66448,10 +66448,10 @@ void ExecuteExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer
 void ExecuteExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b8);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b8);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
