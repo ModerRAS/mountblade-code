@@ -1478,6 +1478,12 @@ typedef enum {
  */
 #define ProcessUIComponent func_0x0001807673f0
 
+// UI系统函数宏定义 - 数据处理和验证
+#define func_0x000180705150 ProcessUIXOROperation
+#define func_0x00018071c070 ProcessUIDataSourceCount
+#define func_0x00018070f7d0 ProcessUIDataSourceWithLimit
+#define func_0x00018070f790 ProcessUIComponentIndexData
+
 /**
  * @brief 处理UI组件透明度
  * 
