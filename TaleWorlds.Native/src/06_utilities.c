@@ -10498,14 +10498,14 @@ bool UtilitySystemModuleActiveState;
 /**
  * @brief 工具模块资源指针
  */
-UtilityResource* PrimaryUtilityResourcePtr;
-UtilityMemory* PrimaryUtilityMemoryPtr;
-UtilityMemory* SecondaryUtilityMemoryPtr;
-uint32_t UtilityModuleNinthConfig;
-uint32_t UtilityModuleTenthConfig;
-uint32_t UtilityModuleEleventhConfig;
-uint32_t UtilityModuleTwelfthConfig;
-UtilityResource* SecondaryUtilityResourcePtr;
+UtilityResource* CoreUtilityResourcePtr;
+UtilityMemory* CoreUtilityMemoryPtr;
+UtilityMemory* SystemUtilityMemoryPtr;
+uint32_t UtilityInputModuleConfig;
+uint32_t UtilityOutputModuleConfig;
+uint32_t UtilityInputModuleSecondaryConfig;
+uint32_t UtilityOutputModuleSecondaryConfig;
+UtilityResource* SystemUtilityResourcePtr;
 
 /**
  * @brief 重置工具模块指针组1
@@ -10519,7 +10519,7 @@ void ResetSystemExceptionHandlerPointers(void);
 /**
  * @brief 指针重置配置参数
  */
-uint32_t UtilityPrimaryPointerResetConfig;
+uint32_t UtilityCorePointerResetConfig;
 uint32_t UtilitySecondaryPointerResetConfig;
 uint32_t UtilityTertiaryPointerResetConfig;
 uint32_t UtilityQuaternaryPointerResetConfig;
