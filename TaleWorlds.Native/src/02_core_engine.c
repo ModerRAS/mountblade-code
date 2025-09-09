@@ -250006,7 +250006,7 @@ LAB_180208aa2:
                   MemoryAllocationBase = uStackX_10 & 0xffffffff;
                 }
               }
-LAB_180208d4a:
+    SystemCharacterProcessingContinue:
               BufferIndex = *(long long *)(SystemStringIndex + 0x58 + SystemStackRegister58);
               StackProcessingValue = Utf16Character + 1;
               MemoryAllocationOffset = (unsigned long long)StackProcessingValue;

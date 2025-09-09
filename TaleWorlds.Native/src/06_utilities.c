@@ -104479,7 +104479,24 @@ void ProcessMemoryPointerState(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源管理和异常处理函数
+ * 
+ * 管理系统资源并处理异常情况，包括资源迭代、上下文管理和数据验证
+ * 该函数负责：
+ * 1. 管理系统资源迭代器
+ * 2. 处理异常上下文
+ * 3. 验证数据缓冲区
+ * 4. 配置默认异常处理器
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e760
+ * @warning 资源管理操作必须在适当的上下文中进行
+ */
+void ManageSystemResourcesAndHandleExceptions(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -104523,7 +104540,23 @@ void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统数据验证处理函数
+ * 
+ * 处理系统数据验证，清理验证标志并调用验证处理器
+ * 该函数负责：
+ * 1. 检查系统数据验证标志
+ * 2. 清理数据验证状态
+ * 3. 调用数据验证处理器
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e770
+ * @warning 数据验证处理必须在适当的上下文中进行
+ */
+void ProcessSystemDataValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + SystemDataValidationOffset34) & 1) != 0) {
