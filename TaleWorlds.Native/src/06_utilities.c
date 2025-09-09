@@ -60013,6 +60013,19 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionCo
 
 
 
+/**
+ * @brief 执行异常处理器函数 (偏移量0x50)
+ * 
+ * 该函数负责执行位于异常上下文偏移量0x50处的异常处理器。
+ * 如果异常处理器存在，则调用该处理器并传递相关参数。
+ * 
+ * @param ExceptionHandlerContext 异常处理器上下文
+ * @param ExceptionContext 异常上下文指针
+ * @param OperationFlag 操作标志
+ * @param ExceptionData 异常数据
+ * 
+ * @note 原始函数名：ExecuteExceptionHandlerAtOffset50
+ */
 void ExecuteExceptionHandlerAtOffset50(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
@@ -60024,6 +60037,19 @@ void ExecuteExceptionHandlerAtOffset50(DataBuffer ExceptionHandlerContext, int64
 
 
 
+/**
+ * @brief 执行异常处理器函数 (偏移量0xF0)
+ * 
+ * 该函数负责执行位于异常上下文偏移量0xF0处的异常处理器。
+ * 从异常上下文中获取异常处理函数指针，如果函数存在则执行。
+ * 
+ * @param ExceptionHandlerContext 异常处理器上下文
+ * @param ExceptionContext 异常上下文指针
+ * @param OperationFlag 操作标志
+ * @param ExceptionData 异常数据
+ * 
+ * @note 原始函数名：ExecuteExceptionHandlerAtOffsetF0
+ */
 void ExecuteExceptionHandlerAtOffsetF0(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
@@ -60038,6 +60064,17 @@ void ExecuteExceptionHandlerAtOffsetF0(DataBuffer ExceptionHandlerContext, int64
 
 
 
+/**
+ * @brief 执行清理处理函数 (偏移量0x108)
+ * 
+ * 该函数负责执行位于异常上下文偏移量0x108处的清理处理器。
+ * 如果清理处理器存在，则调用该处理器执行清理操作。
+ * 
+ * @param ExceptionHandlerContext 异常处理器上下文
+ * @param ExceptionContext 异常上下文指针
+ * 
+ * @note 原始函数名：ExecuteCleanupHandlerAtOffset108
+ */
 void ExecuteCleanupHandlerAtOffset108(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext)
 
 {
@@ -60088,14 +60125,14 @@ void ExecuteExceptionHandlerAtOffset100(DataBuffer ExceptionHandlerContext, int6
 
 
 
-void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  code *exceptionHandler;
+  code *ExceptionHandlerFunction;
   
-  exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0xf8) + ExceptionHandlerCallbackOffset10);
-  if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(int64_t *)(exceptionContext + 0xf8),0,0,exceptionData,SystemCleanupFlagAlternative);
+  ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8) + ExceptionHandlerCallbackOffset10);
+  if (ExceptionHandlerFunction != (code *)0x0) {
+    (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
