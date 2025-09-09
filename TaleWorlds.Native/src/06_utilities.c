@@ -27722,7 +27722,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),&validationStackBuffer);
   if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(validationStackBuffer,temporaryStackArray,0), (int)operationResult == 0)) &&
      (operationResult = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset10))(operationBase), (int)operationResult == 0)) {
-    validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
+    validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + SystemParameterOffset1C);
     exceptionHandlerContext = operationBase[2];
     memoryRegionBase = validationStatus - exceptionHandlerContext;
     if (((dataBuffer != '\0') || (exceptionHandlerContext == 0)) || (47999 < memoryRegionBase)) {
@@ -33508,9 +33508,9 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
     return;
   }
   validationOutcome = validationBuffer[0] & 1;
-  memoryRegionBase = (int)*(uint *)(operationBase + 0x1c) >> 0x1f;
+  memoryRegionBase = (int)*(uint *)(operationBase + SystemParameterOffset1C) >> 0x1f;
   operationResult = validationBuffer[0] >> 1;
-  if (((int)((*(uint *)(operationBase + 0x1c) ^ memoryRegionBase) - memoryRegionBase) < (int)operationResult) &&
+  if (((int)((*(uint *)(operationBase + SystemParameterOffset1C) ^ memoryRegionBase) - memoryRegionBase) < (int)operationResult) &&
      (operationResult = ValidateSystemMemoryAccess(operationBase + OperationBaseOffset10,operationResult), operationResult != 0)) {
     return;
   }

@@ -100121,18 +100121,32 @@ void ProcessUITransformAnimation(UIHandle uiContext, UIHandle dataSource, float 
 
 
 
- void FUN_1807258a2(UIHandle uiContext,UIHandle dataSource,float targetBuffer,UIHandle bufferSize,
-void FUN_1807258a2(UIHandle uiContext,UIHandle dataSource,float targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,float param_6)
+ /**
+ * @brief 处理UI元素平滑变换
+ * 
+ * 该函数负责实现UI元素的平滑变换效果，通过插值计算
+ * 实现动画的平滑过渡，提升用户体验。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区（变换目标值）
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数（动画时间或插值系数）
+ * 
+ * @note 原始函数名：FUN_1807258a2
+ */
+void ProcessUISmoothTransform(UIHandle uiContext, UIHandle dataSource, float targetBuffer, UIHandle bufferSize,
+                             UIHandle resultPointer, float param_6)
 
 {
-  float *BaseValuePointer;
-  longlong SourceHandle;
-  int RegisterValue;
-  longlong preservedRegister13;
-  float transformCoeff1;
-  float unmodifiedXMM15_Da;
-  ulonglong stackParam000004f0;
+  float *baseValuePtr;
+  longlong sourceHandle;
+  int registerValue;
+  longlong contextData;
+  float transformCoeff;
+  float targetTransform;
+  ulonglong renderTaskParam;
   
   BaseValuePointer = (float *)(preservedRegister13 + 0x294);
   do {
