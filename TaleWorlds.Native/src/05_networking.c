@@ -1803,7 +1803,7 @@ uint32_t NetworkSocketDescriptor;
  * 
  * 存储网络套接字运行时的动态数据和状态信息
  */
-uint32_t NetworkSocketOperatingData;
+uint32_t NetworkSocketRuntimeData;
 
 /**
  * @brief 网络套接字上下文数据
@@ -1817,7 +1817,7 @@ uint32_t NetworkSocketContextData;
  * 
  * 存储网络服务器的端口号，用于网络服务监听
  */
-uint32_t NetworkServerPortNumber;
+uint32_t NetworkServerPort;
 
 /**
  * @brief 网络协议版本
@@ -1831,7 +1831,7 @@ uint32_t NetworkProtocolVersion;
  * 
  * 定义网络连接的工作模式，如客户端模式、服务器模式等
  */
-uint32_t NetworkConnectionWorkMode;
+uint32_t NetworkConnectionMode;
 
 /**
  * @brief 网络连接优先级级别
@@ -2597,12 +2597,12 @@ void InitializeNetworkSocket(void)
   NetworkSocketProtocolInstance = NetworkTcpProtocol;
   
   // 初始化套接字数据缓冲区
-  NetworkSocketOperatingData = 0;
+  NetworkSocketRuntimeData = 0;
   NetworkSocketContextData = 0;
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;
-  NetworkConnectionWorkMode = NetworkConnectionModeClient;
+  NetworkConnectionMode = NetworkConnectionModeClient;
   NetworkConnectionPriorityLevelValue = NetworkConnectionPriorityMedium;
 }
 
@@ -2632,7 +2632,7 @@ void BindNetworkSocketToAddress(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = NetworkLocalhostIpAddress;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPortNumber = NetworkHttpAlternativePort;          // 设置端口为8080
+  NetworkServerPort = NetworkHttpAlternativePort;          // 设置端口为8080
   NetworkClientIpAddress = NetworkClientIpAddressAny;            // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = NetworkClientPortAny;               // 客户端端口初始化为0
   
@@ -5379,8 +5379,8 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
  */
 NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkConnectionContext, NetworkConnectionStatus *ConnectionStatus, uint32_t TimeoutValue)
 {
-    NetworkHandle connectionHandle;
-    uint32_t validationStatus;
+    NetworkHandle processedConnectionHandle;
+    uint32_t connectionValidationStatus;
     
     // 验证连接上下文有效性
     if (NetworkConnectionContext == NULL || ConnectionStatus == NULL) {
@@ -5390,29 +5390,29 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkCo
     // 检查连接状态
     if (*ConnectionStatus & NetworkStatusConnectedFlag) {
         // 连接已建立，执行连接维护操作
-        validationStatus = ValidateConnectionIntegrity(NetworkConnectionContext);
+        connectionValidationStatus = ValidateConnectionIntegrity(NetworkConnectionContext);
         
-        if (validationStatus == NetworkValidationSuccess) {
+        if (connectionValidationStatus == NetworkValidationSuccess) {
             // 连接状态良好，更新连接时间戳
             UpdateConnectionTimestamp(NetworkConnectionContext);
-            connectionHandle = NetworkConnectionContext->connectionHandle;
+            processedConnectionHandle = NetworkConnectionContext->connectionHandle;
         } else {
             // 连接验证失败，断开连接
             TerminateNetworkConnection(NetworkConnectionContext);
-            connectionHandle = NetworkErrorConnectionFailed;
+            processedConnectionHandle = NetworkErrorConnectionFailed;
         }
     } else {
         // 连接未建立，尝试建立新连接
-        connectionHandle = EstablishNetworkConnection(NetworkConnectionContext, TimeoutValue);
+        processedConnectionHandle = EstablishNetworkConnection(NetworkConnectionContext, TimeoutValue);
         
-        if (connectionHandle != NetworkErrorConnectionFailed) {
+        if (processedConnectionHandle != NetworkErrorConnectionFailed) {
             // 连接成功，更新状态
             *ConnectionStatus |= NetworkStatusConnectedFlag;
-            NetworkConnectionContext->connectionHandle = connectionHandle;
+            NetworkConnectionContext->connectionHandle = processedConnectionHandle;
         }
     }
     
-    return connectionHandle;
+    return processedConnectionHandle;
 }
 
 /**

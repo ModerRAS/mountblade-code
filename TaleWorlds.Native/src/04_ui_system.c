@@ -3794,7 +3794,7 @@ void* UIGestureCoordinates;
 #define UIDataConversionConstant _DAT_180a401b0
 #define UIXOREncryptionKey _DAT_180a40580
 
- // UI系统渲染参数表美化
+ // UI系统渲染参数表语义化定义
 #define UIRenderParameterTransformMatrix UNK_18094e25c
 #define UIRenderParameterColorData UNK_18094e26c
 #define UIRenderParameterShaderUniforms UNK_18094e270
@@ -3802,18 +3802,18 @@ void* UIGestureCoordinates;
 #define UIRenderParameterViewportData UNK_18094e27c
 #define UIRenderParameterLightingData UNK_18094e280
 
- // UI系统数据缓冲区美化
+ // UI系统数据缓冲区语义化定义
 #define UIDataBufferPrimary UNK_1809535b4
 #define UIDataBufferSecondary UNK_1809535bc
 #define UIDataBufferTertiary UNK_180953648
 #define UIDataBufferQuaternary UNK_180953668
 #define UIDataBufferQuinary UNK_180953688
 
- // UI系统坐标数据表美化
+ // UI系统坐标数据表语义化定义
 #define UICoordinateDataTable2D UNK_1809536a6
 #define UICoordinateDataTable3D UNK_1809536a8
 
- // UI系统函数结果表美化
+ // UI系统函数结果表语义化定义
 #define UIFunctionResultTableTransform UNK_1809535ec
 #define UIFunctionResultTableColor UNK_1809535e8
 #define UIFunctionResultTableShader UNK_180954788
