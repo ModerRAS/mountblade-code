@@ -248438,7 +248438,7 @@ LAB_180204eec:
   long long *BufferAllocationStatus1;
   bool HighByte2;
   int iStackX_18;
-  uint in_stack_fffffffffffffdb0;
+  uint CharacterEncodingFlags;
   uint64_t SystemUintBuffer238;
   int iStack_230;
   uint32_t uStack_22c;
