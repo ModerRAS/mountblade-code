@@ -12022,7 +12022,7 @@ uint8_t UtilityEncryptionStatus;
 uint8_t DecryptionOperationStatus;
 uint8_t UtilityDecryptionKeyBuffer;
 uint8_t UtilityDecryptionDataBuffer;
-uint8_t UtilityDecryptionTertiaryBuffer;
+uint8_t UtilityDecryptionIVBuffer;
 uint8_t UtilityDecryptionQuaternaryBuffer;
 uint8_t UtilityDecryptionStatus;
 

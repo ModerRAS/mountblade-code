@@ -1735,11 +1735,11 @@ typedef enum {
 #define bVar10 UIIsDisabledFlag
 
 // UI系统无符号变量名美化
-#define uVar1 UIUnsignedVar1
-#define uVar2 UIUnsignedVar2
-#define uVar3 UIUnsignedVar3
-#define uVar4 UIUnsignedVar4
-#define uVar5 UIUnsignedVar5
+#define uVar1 UIComponentIndex
+#define uVar2 UIResourceCount
+#define uVar3 UIEventCounter
+#define uVar4 UIRenderFlags
+#define uVar5 UIAnimationTimer
 
 // UI系统整数变量名美化
 #define iVar1 UIIntegerVar1
