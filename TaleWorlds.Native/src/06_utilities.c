@@ -198,6 +198,7 @@
 #define MemoryPointerOffset114 0x114
 
 // 异常上下文数据偏移量常量
+#define ExceptionContextDataOffset88 0x88
 #define ExceptionContextDataSecondaryOffset6D4 0x6d4
 #define DataBufferOffset48 0x48
 #define DataBufferOffset44 0x44
@@ -41852,7 +41853,7 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
   int unlockResult;
   
   // 设置异常上下文指针
-  ExceptionContext = *(DataBuffer *)(contextData + 0x88);
+  ExceptionContext = *(DataBuffer *)(contextData + ExceptionContextDataOffset88);
   
   // 解锁互斥锁
   unlockResult = _Mtx_unlock(SystemMutexObjectAddress);
