@@ -28581,19 +28581,19 @@ void InitializeUIRenderingFunctions(void)
   uint *ptrResult;
   longlong componentIndex;
   uint EventTypeCode;
-  bool bVar4;
-  bool IsValidationComplete;
-  bool bVar6;
-  bool bVar7;
+  bool HasSSE41Support;
+  bool HasAVXSupport;
+  bool HasAVX2Support;
+  bool HasOSXSAVESupport;
   bool EventProcessingStatus;
   byte in_XCR0;
   
   ptrResult = (uint *)cpuid_basic_info(0);
-  bVar7 = false;
+  HasAVX2Support = false;
   EventProcessingStatus = false;
-  IsValidationComplete = false;
-  bVar6 = false;
-  bVar4 = false;
+  HasOSXSAVESupport = false;
+  HasSSE41Support = false;
+  HasAVXSupport = false;
   if (*ptrResult != 0) {
     componentIndex = cpuid_Version_info(1);
     EventTypeCode = *(uint *)(componentIndex + 0xc);
