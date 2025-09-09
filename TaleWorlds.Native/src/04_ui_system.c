@@ -101584,8 +101584,8 @@ LAB_180724b88:
 
 
 
- void FUN_180724c38(void)
-void FUN_180724c38(void)
+ void ProcessUIComponentData(void)
+void ProcessUIComponentData(void)
 
 {
   return;
@@ -101594,8 +101594,8 @@ void FUN_180724c38(void)
 
 
 
- void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSize)
-void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSize)
+ void ProcessUIContextDataTransfer(int *uiContext,int *dataSource,int targetBuffer,int bufferSize)
+void ProcessUIContextDataTransfer(int *uiContext,int *dataSource,int targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
@@ -101662,8 +101662,8 @@ void FUN_180724c50(int *uiContext,int *dataSource,int targetBuffer,int bufferSiz
 
 
 
- void FUN_180724c7e(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180724c7e(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   longlong allocatedMemory;
