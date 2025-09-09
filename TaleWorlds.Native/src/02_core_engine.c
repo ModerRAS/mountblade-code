@@ -66459,7 +66459,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
   EncodingValidationResult = (int)((SystemThreadPool[2] - SystemThreadPool[1]) / 0x60);
   LoopIndex = (long long)EncodingValidationResult;
   SystemInitializationFlags = OperationBufferSize;
-  lStack_268 = LoopIndex;
+  SystemStackOffset268 = LoopIndex;
   if (0 < EncodingValidationResult) {
     do {
       MemoryBoundaryEnd = BufferAllocationStatus[1];
@@ -66474,7 +66474,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         SystemDataTablePointer = (long long)EncodingValidationResult * 0x20 + SystemDataTablePointer;
       }
       pSystemValue2b0 = &SystemNullTemplate;
-      uStack_298 = 0;
+      SystemStackUnsigned298 = 0;
       pSystemValue2a8 = (uint8_t *)0x0;
       SystemUnsignedValue2A0 = 0;
       CoreEngineProcessSystemEvent(&pSystemValue2b0,*(uint32_t *)(SystemDataTablePointer + 0x10));
@@ -66487,11 +66487,11 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         if (pSystemValue2a8 != (uint8_t *)0x0) {
           *pSystemValue2a8 = 0;
         }
-        uStack_298 = uStack_298 & 0xffffffff;
+        SystemStackUnsigned298 = SystemStackUnsigned298 & 0xffffffff;
       }
       pBufferValidationStatus = &SystemNullTemplate;
-      SystemUintBuffer238 = 0;
-      lStack_248 = 0;
+      SystemStackUnsigned238 = 0;
+      SystemStackOffset248 = 0;
       SystemUintBuffer240 = 0;
       CharacterStatusBuffer2 = *(void **)(MemoryBoundaryEnd + 0x28 + EncodingConversionResult);
       SystemStatusContext = &CoreEngineDataTemplate;
@@ -66508,12 +66508,12 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         ValidateDataStructure(&pBufferValidationStatus);
       }
       pBufferValidationStatus = &SystemNullTemplate;
-      if (lStack_248 != 0) {
+      if (SystemStackOffset248 != 0) {
                     // WARNING: Subroutine does not return
         ProcessSystemEventHandling();
       }
-      lStack_248 = 0;
-      SystemUintBuffer238 = SystemUintBuffer238 & 0xffffffff00000000;
+      SystemStackOffset248 = 0;
+      SystemStackUnsigned238 = SystemStackUnsigned238 & 0xffffffff00000000;
       pBufferValidationStatus = &ThreadLocalStorageTemplate;
       pSystemValue2b0 = &SystemNullTemplate;
       if (pSystemValue2a8 != (uint8_t *)0x0) {
@@ -66521,19 +66521,19 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         ProcessSystemEventHandling();
       }
       pSystemValue2a8 = (uint8_t *)0x0;
-      uStack_298 = uStack_298 & 0xffffffff00000000;
+      SystemStackUnsigned298 = SystemStackUnsigned298 & 0xffffffff00000000;
       pSystemValue2b0 = &ThreadLocalStorageTemplate;
       EncodingConversionResult = EncodingConversionResult + 0x60;
       LoopIndex = LoopIndex + -1;
     } while (LoopIndex != 0);
   }
-  EncodingConversionResult = lStack_268;
-  uStack_270 = 0;
-  if (0 < lStack_268) {
-    lStack_258 = 0;
+  EncodingConversionResult = SystemStackOffset268;
+  SystemStackUnsigned270 = 0;
+  if (0 < SystemStackOffset268) {
+    SystemStackOffset258 = 0;
     do {
-      MemoryBoundaryEnd = lStack_258;
-      SystemDataTablePointer = lStack_258 * 0x60;
+      MemoryBoundaryEnd = SystemStackOffset258;
+      SystemDataTablePointer = SystemStackOffset258 * 0x60;
       LoopIndex = BufferAllocationStatus[1];
       EncodingValidationResult = *(int *)(LoopIndex + 0x5c + SystemDataTablePointer);
       SystemStackOffset2d8 = SystemDataTablePointer;
@@ -66610,8 +66610,8 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
       pCharacterTablePointer = (uint8_t *)0x0;
       SystemValue2b8 = SystemValue2b8 & 0xffffffff00000000;
       pSystemValue2d0 = &ThreadLocalStorageTemplate;
-      lStack_258 = MemoryBoundaryEnd + 1;
-    } while (lStack_258 < EncodingConversionResult);
+      SystemStackOffset258 = MemoryBoundaryEnd + 1;
+    } while (SystemStackOffset258 < EncodingConversionResult);
     if (SystemStackInteger2e8 != 0) goto MemoryManagementCompletion;
   }
   CoreEngineMemoryManagementFunction(&CoreEngineTertiaryMemoryBuffer);
