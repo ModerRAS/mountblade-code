@@ -30035,24 +30035,24 @@ LAB_18066cdc1:
 void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
 
 {
-  int processingResult;
-  UIByte astackUInt108 [32];
-  UIDword *pstackUInte8;
-  UIHandle stackUIntd8;
-  UIHandle stackUIntd0;
-  UIDword stackUIntc8;
-  int stackIntc4;
-  UIDword stackUIntb8;
-  UIDword stackUInta4;
-  UIHandle stackUInt90;
-  UIHandle stackUInt88;
-  UIHandle stackUInt80;
-  UIHandle stackUInt70;
-  UIDword stackUInt38;
-  UIHandle stackUInt34;
-  UIHandle stackUInt2c;
-  UIHandle stackUInt24;
-  ulonglong stackUInt18;
+  int ProcessingResult;
+  UIByte UIStackBuffer108 [32];
+  UIDword *PointerStackValuee8;
+  UIHandle UIStackCounterd8;
+  UIHandle UIStackCounterd0;
+  UIDword UIStackCounterc8;
+  int StackValuec4;
+  UIDword UIStackCounterb8;
+  UIDword UIStackCountera4;
+  UIHandle UIStackCounter90;
+  UIHandle UIStackCounter88;
+  UIHandle UIStackCounter80;
+  UIHandle UIStackCounter70;
+  UIDword UIStackCounter38;
+  UIHandle UIStackCounter34;
+  UIHandle UIStackCounter2c;
+  UIHandle UIStackCounter24;
+  ulonglong UIStackCounter18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt108;
   if ((*dataSource == 0) && (*(longlong *)(uiBufferData + 0x1b0) != 0)) {
