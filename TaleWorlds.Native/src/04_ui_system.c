@@ -107525,8 +107525,21 @@ void FUN_18072e5f4(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
 
 
 
- void FUN_18072e60c(longlong uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
-void FUN_18072e60c(longlong uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
+ /**
+ * @brief 处理UI数据变换计算
+ * 
+ * 该函数负责处理UI系统中的数据变换计算，包括浮点运算、数据转换和矩阵变换。
+ * 主要用于UI组件的数据变换和计算。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072e60c
+ */
+void ProcessUIDataTransformCalculation(longlong uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
+void ProcessUIDataTransformCalculation(longlong uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
 
 {
   float *pbaseValue;

@@ -224430,33 +224430,33 @@ void ProcessSystemEncoding(long long ContextHandle, uint64_t *ContextHandleSize
   SystemOperationFlagPointer = &SystemBufferOctonary;
   SystemPointerPointer = &SystemOperationFlagPointer;
   SystemContextPointer = (long long *)0x0;
-  if ((PointerPointerStack60 != (void **)0x0) &&
-     (SystemPointer20 = (long long *)(*(code *)&SystemFunctionDispatchPointer)(PointerPointerStack60,ArrayStack58),
-     PointerPointerStack60 != (void **)0x0)) {
-    (**(code **)(*PointerPointerStack60 + 0x20)              (PointerPointerStack60,CONCAT71((int7)((unsigned long long)&pSystemOperationFlag98 >> 8),PointerPointerStack60 != &pSystemOperationFlag98)    ;
-    PointerPointerStack60 = (void **)0x0;
+  if ((SystemPointerPointer != (void **)0x0) &&
+     (SystemContextPointer = (long long *)(*(code *)&SystemFunctionDispatchPointer)(SystemPointerPointer,SystemArrayBuffer),
+     SystemPointerPointer != (void **)0x0)) {
+    (**(code **)(*SystemPointerPointer + 0x20))(SystemPointerPointer,CONCAT71((int7)((unsigned long long)&SystemOperationFlagPointer >> 8),SystemPointerPointer != &SystemOperationFlagPointer));
+    SystemPointerPointer = (void **)0x0;
   }
-  FUN_1801881a0(&pSystemOperationFlag98,ContextHandle);
-  if (SystemPointer20 != (long long *)0x0) {
-    if (SystemPointer20 == ArrayStack58) {
-      Utf16Char = (**(code **)(*SystemPointer20 + 8))(SystemPointer20,ContextHandle);
-      *(void *)(ContextHandle + 0x38) = Utf16Char;
-      if (SystemPointer20 == (long long *)0x0) goto LAB_18018873e;
-      (**(code **)(*SystemPointer20 + 0x20)                (SystemPointer20,CONCAT71((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
+  ProcessSystemData(&SystemOperationFlagPointer,ContextHandle);
+  if (SystemContextPointer != (long long *)0x0) {
+    if (SystemContextPointer == SystemArrayBuffer) {
+      Utf16Character = (**(code **)(*SystemContextPointer + 8))(SystemContextPointer,ContextHandle);
+      *(void *)(ContextHandle + 0x38) = Utf16Character;
+      if (SystemContextPointer == (long long *)0x0) goto LAB_18018873e;
+      (**(code **)(*SystemContextPointer + 0x20))(SystemContextPointer,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextPointer != SystemArrayBuffer));
     }
     else {
-      *(long long **)(ContextHandle + 0x38) = SystemPointer20;
+      *(long long **)(ContextHandle + 0x38) = SystemContextPointer;
     }
-    SystemPointer20 = (long long *)0x0;
+    SystemContextPointer = (long long *)0x0;
   }
 LAB_18018873e:
-  if (SystemPointer20 != (long long *)0x0) {
-    (**(code **)(*SystemPointer20 + 0x20)              (SystemPointer20,CONCAT71((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
-    SystemPointer20 = (long long *)0x0;
+  if (SystemContextPointer != (long long *)0x0) {
+    (**(code **)(*SystemContextPointer + 0x20))(SystemContextPointer,CONCAT71((int7)((unsigned long long)SystemArrayBuffer >> 8),SystemContextPointer != SystemArrayBuffer));
+    SystemContextPointer = (long long *)0x0;
   }
-  if (PointerPointerStack60 != (void **)0x0) {
-    (**(code **)(*PointerPointerStack60 + 0x20))(PointerPointerStack60,PointerPointerStack60 != &pSystemOperationFlag98);
-    PointerPointerStack60 = (void **)0x0;
+  if (SystemPointerPointer != (void **)0x0) {
+    (**(code **)(*SystemPointerPointer + 0x20))(SystemPointerPointer,SystemPointerPointer != &SystemOperationFlagPointer);
+    SystemPointerPointer = (void **)0x0;
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemFlagH);
