@@ -24796,8 +24796,29 @@ DataTransferLabel:
 
 
 
-// 原始函数名：FUN_18089611f - 空操作函数
-// 功能：执行空操作，用于系统初始化或清理流程中的占位符
+/**
+ * @brief 执行系统空操作
+ * 
+ * 该函数是一个特殊的空操作函数，返回固定的状态码0x26。
+ * 主要用于系统初始化、清理流程或作为函数指针占位符。
+ * 
+ * 函数特点：
+ * - 不执行任何实际操作
+ * - 返回固定的状态码0x26
+ * - 用于系统流程控制和状态管理
+ * 
+ * @return DataBuffer 固定返回值0x26，表示空操作状态
+ * 
+ * @note 此函数为系统占位符函数，用于保持接口一致性
+ * @note 返回值0x26可能有特殊的系统含义
+ * @warning 调用此函数不会产生任何副作用
+ * 
+ * @see SystemPrimaryNoOperation, SystemReturnEmptyFunction
+ * 
+ * @since 系统版本 1.0
+ * @performance_impact 无（立即返回）
+ * @thread_safety 线程安全
+ */
 #define PerformNoOperation FUN_18089611f
 DataBuffer PerformNoOperation(void)
 
