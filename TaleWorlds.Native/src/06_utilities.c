@@ -100007,10 +100007,25 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
  * @brief 管理0x3f0偏移量的资源引用计数
  * 
  * 该函数负责管理数据缓冲区0x3f0偏移量处的资源引用计数，
- * 处理内存资源的释放和清理操作。
+ * 处理内存资源的释放和清理操作。这是内存管理系统中的
+ * 核心函数，用于跟踪和释放不再使用的内存资源。
  * 
- * @param operationBase 操作基础指针
- * @param dataBuffer 数据缓冲区指针
+ * @details 函数执行以下步骤：
+ * 1. 从数据缓冲区的0x370偏移量获取内存资源指针
+ * 2. 验证资源指针的有效性
+ * 3. 计算内存区域的基地址
+ * 4. 检查内存块的有效性和异常状态
+ * 5. 递减引用计数，当计数为0时触发异常处理
+ * 6. 在特殊情况下调用内存管理器进行清理
+ * 
+ * @param operationBase 操作基础指针（未使用，保留用于接口兼容性）
+ * @param dataBuffer 数据缓冲区指针，包含要管理的资源信息
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数是内存管理系统的核心组成部分，确保资源的正确释放
+ * @warning 引用计数管理错误可能导致内存泄漏或悬挂指针
+ * @see HandleExceptionE0, ManageMemory
  */
 void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -100052,12 +100067,30 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
  * @brief 资源引用计数管理器270
  * 
  * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
- * 主要用于内存管理和资源清理操作，处理0x270偏移量处的资源
+ * 主要用于内存管理和资源清理操作，处理0x270偏移量处的资源。这是
+ * 内存管理系统的另一个核心函数，与0x3f0偏移量函数形成配对使用。
  * 
- * @param operationBase 操作基础参数
- * @param dataBuffer 数据缓冲区指针
+ * @details 函数执行以下步骤：
+ * 1. 从数据缓冲区的0x270偏移量获取内存资源指针
+ * 2. 验证资源指针的有效性，空指针直接返回
+ * 3. 使用内存区域掩码计算基地址
+ * 4. 通过复杂的偏移量计算定位内存块
+ * 5. 检查内存块是否在异常列表中且状态正常
+ * 6. 执行引用计数递减操作
+ * 7. 当引用计数为0时触发异常处理程序
+ * 8. 在异常情况下调用通用内存管理器
  * 
- * @note 原始函数名：Unwind_18090d150
+ * @param operationBase 操作基础参数（未使用，保留用于接口兼容性）
+ * @param dataBuffer 数据缓冲区指针，包含要管理的0x270偏移量资源信息
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数与ManageResourceReferenceCountAtOffset3F0功能相似但处理不同偏移量
+ * @warning 错误的引用计数管理可能导致系统不稳定或内存泄漏
+ * @see HandleExceptionE0, ManageMemory, ManageResourceReferenceCountAtOffset3F0
+ * 
+ * @version 1.0
+ * @date 2025-09-09
  */
 void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t dataBuffer)
 
