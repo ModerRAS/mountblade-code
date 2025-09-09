@@ -109331,7 +109331,7 @@ void InitializeExceptionContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f1a0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -109345,7 +109345,7 @@ void Unwind_18090f1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f1b0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109381,7 +109381,7 @@ void Unwind_18090f1b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f1d0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109426,7 +109426,7 @@ void DestroyMutexInSitu(void)
 
 
 
-void Unwind_18090f200(DataBuffer operationBase,int64_t dataBuffer)
+void TerminateSystemOnExceptionCondition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x60) != 0) {
@@ -109438,7 +109438,7 @@ void Unwind_18090f200(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f210(DataBuffer operationBase,int64_t dataBuffer)
+void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109618,7 +109618,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_18090f290(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109654,7 +109654,7 @@ void Unwind_18090f290(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f2b0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109710,7 +109710,7 @@ void ProcessExceptionContextAndSystemUpdateAtOffset2d0(DataBuffer operationBase,
 
 
 
-void Unwind_18090f2f0(DataBuffer operationBase,int64_t dataBuffer)
+void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -109777,7 +109777,7 @@ void ProcessExceptionContextIterationAtOffset330(DataBuffer operationBase,int64_
 
 
 
-void Unwind_18090f350(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseExceptionResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -109799,7 +109799,7 @@ void Unwind_18090f350(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f370(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemExceptionState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
