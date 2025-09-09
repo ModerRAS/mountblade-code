@@ -53036,13 +53036,13 @@ void ConfigureExceptionHandlerB60(DataBuffer operationBase, int64_t dataBuffer, 
   if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610))(exceptionHandlerContext + ExceptionHandlerContextOffset600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5d8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset5e0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5f0) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5d8) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5b8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset5c0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -54072,7 +54072,7 @@ void HandleExceptionWithFlagsE6(DataBuffer operationBase,int64_t dataBuffer,Data
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5c8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x5d8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset5d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5c0) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5a8) != 0) {
@@ -56056,7 +56056,7 @@ void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5c8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x5d8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset5d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset5c0) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5a8) != 0) {
@@ -57622,19 +57622,29 @@ void ResetExceptionContextOffset18(DataBuffer systemContext,int64_t exceptionCon
  * @param exceptionContext 异常上下文指针
  * @param callbackFlagA 回调标志A
  * @param callbackFlagB 回调标志B
+ * 
  * @note 原始函数名：Unwind_1809046e0
+ * @note 简化实现：异常处理器回调执行，使用标准偏移地址
+ * 
+ * @see ExecuteExceptionHandlerCallback, ExecuteExceptionHandlerCallbackB, ExecuteExceptionHandlerCallbackC
  */
 void ExecuteExceptionHandlerCallbackD(DataBuffer systemContext,int64_t exceptionContext,DataBuffer callbackFlagA,DataBuffer callbackFlagB)
 
 {
-  FunctionPointer *exceptionHandlerCallback;
-  int64_t exceptionDataPtr;
+  FunctionPointer *exceptionHandlerCallback;      // 异常处理器回调函数指针
+  int64_t exceptionDataPtr;                      // 异常数据指针
   
+  // 获取异常数据指针
   exceptionDataPtr = *(int64_t *)(exceptionContext + ExceptionDataPtrOffset);
+  
+  // 获取异常处理器回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset);
+  
+  // 如果回调函数指针有效，则执行回调
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(exceptionDataPtr + ExceptionHandlerOffset,0,0,callbackFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(exceptionDataPtr + ExceptionHandlerOffset, 0, 0, callbackFlagB, SystemCleanupFlagAlternative);
   }
+  
   return;
 }
 
@@ -57650,19 +57660,29 @@ void ExecuteExceptionHandlerCallbackD(DataBuffer systemContext,int64_t exception
  * @param exceptionContext 异常上下文指针
  * @param callbackFlagA 回调标志A
  * @param callbackFlagB 回调标志B
+ * 
  * @note 原始函数名：Unwind_180904700
+ * @note 简化实现：异常处理器回调执行，使用辅助偏移地址
+ * 
+ * @see ExecuteExceptionHandlerCallback, ExecuteExceptionHandlerCallbackB, ExecuteExceptionHandlerCallbackC
  */
 void ExecuteExceptionHandlerCallbackE(DataBuffer systemContext,int64_t exceptionContext,DataBuffer callbackFlagA,DataBuffer callbackFlagB)
 
 {
-  FunctionPointer *exceptionHandlerCallback;
-  int64_t exceptionDataPtr;
+  FunctionPointer *exceptionHandlerCallback;      // 异常处理器回调函数指针
+  int64_t exceptionDataPtr;                      // 异常数据指针
   
+  // 获取异常数据指针（使用辅助偏移量）
   exceptionDataPtr = *(int64_t *)(exceptionContext + ExceptionDataPtrSecondaryOffset);
+  
+  // 获取异常处理器回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(exceptionDataPtr + ExceptionHandlerCallbackOffset);
+  
+  // 如果回调函数指针有效，则执行回调
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(exceptionDataPtr,0,0,callbackFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(exceptionDataPtr, 0, 0, callbackFlagB, SystemCleanupFlagAlternative);
   }
+  
   return;
 }
 
@@ -57678,17 +57698,29 @@ void ExecuteExceptionHandlerCallbackE(DataBuffer systemContext,int64_t exception
  * @param dataBuffer 数据缓冲区指针
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
+ * 
  * @note 原始函数名：Unwind_180904710
+ * @note 简化实现：异常处理器回调执行，使用异常上下文偏移地址
+ * 
+ * @see ExecuteExceptionHandlerCallback, ExecuteExceptionHandlerCallbackB, ExecuteExceptionHandlerCallbackC
  */
 void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FunctionPointer *exceptionHandlerCallback;
+  FunctionPointer *exceptionHandlerCallback;      // 异常处理器回调函数指针
+  int64_t exceptionHandlerContext;              // 异常处理上下文指针
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffsetD0);
+  // 获取异常处理上下文指针
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
+  
+  // 获取异常处理器回调函数指针
+  exceptionHandlerCallback = *(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffsetD0);
+  
+  // 如果回调函数指针有效，则执行回调
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffsetC0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(exceptionHandlerContext + ExceptionHandlerContextOffsetC0, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
+  
   return;
 }
 
