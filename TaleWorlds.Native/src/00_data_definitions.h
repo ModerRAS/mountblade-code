@@ -4072,7 +4072,7 @@ BufferSizeValidationCheckpoint:
       BufferSize5 = (ulonglong)BufferSize6;
       BufferSize8 = BufferSize8 + 1;
     } while ((longlong)BufferSize8 < 0xf);
-    if (BufferSize6 == 0xf) goto BufferSizeValidationConfirmedLabel;
+    if (BufferSize6 == 0xf) goto BufferSizeValidationConfirmed;
   }
 BufferSizeValidationCompleted:
   LoopCounterValue = -1;
@@ -5584,7 +5584,7 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   if (0 < (int)SystemDataPointer) {
     do {
       if (StringIndex1 < 0) {
-      SystemBufferSizeCheckLabel:
+      SystemBufferSizeValidation:
         ModuleInitializationResult9 = SystemBufferSizeCheck();
       }
       else {
@@ -5717,7 +5717,7 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
               }
             }
             else {
-SystemMemoryPoolValidationSuccessLabel:
+SystemMemoryPoolValidationSuccessful:
               ppppppPointerValue = &pppppppStackCounter58;
               pppppppUnsignedSize = ppppppStackBufferPointer11;
               while (pppppppUnsignedSize != (uint64_t *******)0x0) {
@@ -6022,7 +6022,7 @@ SystemMemoryPoolValidationSuccessLabel:
       LongOffset = (longlong)pSystemStateValue - (longlong)SystemStateDataTable >> 4;
       if (LongOffset == 0) {
         LongOffset = 1;
-SystemMemoryAllocationLabel:
+SystemMemoryAllocationPoint:
         pSystemStateValue = (longlong *)MemoryAllocateEx(SystemMemoryAllocator,LongOffset << 4,SystemMemoryPoolPointer);
       }
       else {
