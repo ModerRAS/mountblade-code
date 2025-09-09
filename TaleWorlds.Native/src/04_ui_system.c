@@ -2448,7 +2448,7 @@ void* UIGestureCoordinates;
 #define UIFunctionTablePointer6 _DAT_180d4a830
 #define UIFunctionTablePointer7 _DAT_180d4a7e8
 
- UI系统全局状态标志宏定义
+ // UI系统全局状态标志宏定义
 #define UIGlobalStatusFlag1 _DAT_180d4a788
 #define UIGlobalStatusFlag2 _DAT_180d4a740
 #define UIGlobalStatusFlag3 _DAT_180d4a700

@@ -12945,6 +12945,17 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * 
  * @note 此函数是引擎启动过程中的关键步骤，确保核心数据结构正确初始化
  */
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 该函数负责初始化核心引擎的数据结构，包括：
+ * - 获取引擎系统上下文和根节点
+ * - 检查系统节点初始化状态
+ * - 遍历系统节点链表并建立数据结构
+ * - 初始化系统节点的内存布局和链接关系
+ * 
+ * 该函数是引擎启动时的关键初始化步骤，确保数据结构正确建立
+ */
 void InitializeCoreEngineDataStructure(void) {
   bool SystemNodeInitializedFlag;          // 系统节点初始化标志
   void *SystemRootNode;                    // 系统根节点指针
