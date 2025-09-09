@@ -100069,7 +100069,7 @@ LAB_180722ba9:
 LAB_180722ca8:
   *(int *)(contextHandle + 0x968) = (int)*(char *)(contextHandle + 0xae5);
   processingResult = ReadUIData();
-  *(UIByte *)(contextHandle + 0xaea) = result;
+  *(UIByte *)(contextHandle + 0xaea) = processingResult;
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000050 ^ (ulonglong)&stack0x00000000);
 }
@@ -100130,7 +100130,7 @@ LAB_180722ba9:
 LAB_180722ca8:
   *(int *)(contextHandle + 0x968) = (int)*(char *)(contextHandle + 0xae5);
   processingResult = ReadUIData();
-  *(UIByte *)(contextHandle + 0xaea) = result;
+  *(UIByte *)(contextHandle + 0xaea) = processingResult;
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000050 ^ (ulonglong)&stack0x00000000);
 }
