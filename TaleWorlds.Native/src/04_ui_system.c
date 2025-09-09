@@ -10694,7 +10694,7 @@ LAB_UIDataInitialize:
           goto LAB_180656d5b;
         }
       }
-LAB_180656e1e:
+LabelCleanupPhase:
       pstackUIntb8 = &PrimaryUIBuffer;
       if (pbStack_b0 != (byte *)0x0) {
                      WARNING: Subroutine does not return
