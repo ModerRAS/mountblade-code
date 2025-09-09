@@ -127,14 +127,56 @@ typedef enum {
 #define fStack000000000000003c UITransformY
 #define fStack0000000000000048 UITransformWidth
 #define fStack000000000000004c UITransformHeight
+#define fStack_124 UIAlphaBlendFactor
+#define fStack_ec UIBlendFactor
+#define fStack_128 UITransformFactor
+#define fStack_10c UIVertexComponentX
+#define fStack_108 UIVertexComponentY
+#define fStack_120 UIAnimationFactor
+#define fStack_104 UITimeScaleFactor
+#define fStack_100 UIInterpolationFactor
+#define fStack_f8 UIFadeOutFactor
+#define fStack_11c UIFadeInFactor
+#define fStack_144 UITimeStepDelta
+#define fStack_138 UIAnimationProgress
 
 // 栈参数变量宏定义
 #define stackParam00000048 UIStackRenderParam48
 #define stackParam00000058 UIStackRenderParam58
 
+// 栈变量宏定义
+#define stackUInt38 UIStackCounter38
+#define stackUInt170 UIStackCounter170
+#define stackUInt298 UIStackCounter298
+#define stackUInt20 UIStackIndex20
+#define stackUInt14 UIStackSize14
+#define stackUInt80 UIStackBuffer80
+#define stackUInta0 UIStackBufferA0
+#define stackUInta8 UIStackBufferA8
+#define stackUIntc8 UIStackBufferC8
+#define stackUIntc0 UIStackBufferC0
+#define stackUIntb8 UIStackBufferB8
+#define stackUInt98 UIStackBuffer98
+#define stackUInt90 UIStackBuffer90
+#define stackUInt78 UIStackBuffer78
+#define stackUInt70 UIStackBuffer70
+#define stackUInt68 UIStackBuffer68
+#define stackUInt180 UIStackBuffer180
+#define stackUInt118 UIStackBuffer118
+
 // 局部变量宏定义
 #define localChar11 UILocalCharStatus
 #define localLong7 UILocalLongOffset
+#define localLong9 UICharacterDataOffset
+#define localLong5 UIEventDataIndex
+#define localChar1 UIValidationFlag
+#define localChar3 UIProcessingFlag
+#define localChar9 UISystemStatus
+#define localChar8 UIBoundingBoxValidationFlag
+#define localChar36 UIComponentContextIndex
+#define localChar34 UIPreviousComponentContext
+#define localChar26 UIComponentContextBackup
+#define cStack_148 UIStackChar148
 
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
