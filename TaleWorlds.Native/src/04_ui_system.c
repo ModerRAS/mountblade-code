@@ -107748,14 +107748,25 @@ void ProcessUIFloatMatrixTransform(void)
 
 
 
- void FUN_18072b12c(void)
-void FUN_18072b12c(void)
+ /**
+ * @brief UI渲染任务启动器
+ * 
+ * 该函数负责启动UI渲染任务，包括：
+ * - 初始化UI句柄
+ * - 启动渲染任务执行
+ * - 传递UI渲染参数
+ * 
+ * @note 原始函数名：FUN_18072b12c
+ * @warning 该函数不返回，直接调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void InitializeUIRenderTask(void)
 
 {
-  UIHandle uStackX_8;
+  UIHandle uiContextHandle;
   
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask((float)uStackX_8);
+  ExecuteUIRenderTask((float)uiContextHandle);
 }
 
 
