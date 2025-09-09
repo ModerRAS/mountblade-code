@@ -2662,10 +2662,10 @@ void BindNetworkSocketToAddress(void)
   NetworkConnectionProtocolVersion = NetworkProtocolVersionOne; // 设置协议版本为1.0
   
   // 初始化缓冲区配置
-  NetworkSendBufferSize = NetworkSendBufferSize;                              // 设置发送缓冲区大小为64KB
-  NetworkReceiveBufferSize = NetworkReceiveBufferSize;                           // 设置接收缓冲区大小为64KB
-  NetworkSendBufferCapacity = NetworkBufferCapacity;                          // 设置发送缓冲区容量为128KB
-  NetworkReceiveBufferCapacity = NetworkBufferCapacity;                       // 设置接收缓冲区容量为128KB
+  NetworkSendBufferSize = 0x10000;                              // 设置发送缓冲区大小为64KB
+  NetworkReceiveBufferSize = 0x10000;                           // 设置接收缓冲区大小为64KB
+  NetworkSendBufferCapacity = 0x20000;                          // 设置发送缓冲区容量为128KB
+  NetworkReceiveBufferCapacity = 0x20000;                       // 设置接收缓冲区容量为128KB
 }
 
 
