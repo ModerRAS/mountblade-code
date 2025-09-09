@@ -50294,23 +50294,23 @@ void ExceptionHandlerCleanupDataBuffer(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x300) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x300))(exceptionHandlerContext + 0x2f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset300) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset300))(exceptionHandlerContext + ExceptionHandlerContextOffset2F0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + SystemDataStatusOffset8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x2d0) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset2D0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2d0) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x2e0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset2D0) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset2E0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + SystemDataStatusOffset8) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x2b0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset2A8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset2B0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2b0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset2B0) = 0;
   *(DataWord *)(exceptionHandlerContext + SystemDataStatusOffset0) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset2A8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

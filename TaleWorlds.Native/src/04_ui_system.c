@@ -2233,6 +2233,22 @@ typedef enum {
 #define TempValueZ UITempValueZ
 #define TempValueW UITempValueW
 
+// UI系统栈变量美化 - 新增
+#define lStack0000000000000038 UIContextHandleData38
+#define iStack0000000000000040 UIContextIndex40
+#define stack0x00000038 UIStackContext38
+#define stack0x00000040 UIStackContext40
+#define ptrLocalInt6 UIContextLocalInt6
+#define ptrLocalInt7 UIContextLocalInt7
+#define ptrResult UIResultPointer
+#define piterationCount UIIterationCount
+#define uiCompareResult UICompareResult
+#define contextHandleData UIContextHandleData
+#define EventDataIndex UIEventDataIndex
+#define contextHandle UIContextHandle
+#define allocationFlags UIAllocationFlags
+#define preservedRegister15 UIPreservedRegister15
+
 // UI系统基础变量美化
 #define BaseValuePointer3 UIBaseValuePointer3
 #define BaseValuePointer7 UIBaseValuePointer7
