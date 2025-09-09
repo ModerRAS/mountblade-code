@@ -81,6 +81,11 @@
 #define ExceptionHandlerContextOffset40 0x40
 #define ExceptionHandlerContextOffset60 0x60
 #define ExceptionHandlerCallbackOffset10 0x10
+#define ExceptionHandlerOffset50 0x50
+#define ExceptionHandlerOffsetF0 0xf0
+#define ExceptionHandlerOffsetF8 0xf8
+#define ExceptionHandlerOffset100 0x100
+#define CleanupHandlerOffset108 0x108
 #define SystemParameterValidationOffset28 0x28
 #define SystemDataParameterOffset20 0x20
 #define SystemContextPointerOffset90 0x90
@@ -19927,29 +19932,29 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   isOffsetZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset28Infinity = 0x1d;
+    isOffset28Infinity = FloatInfinityValidationResult;
   }
   isOffsetXInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset1cInfinity = 0x1d;
+    isOffset1cInfinity = FloatInfinityValidationResult;
   }
   isOffsetYInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset20Infinity = 0x1d;
+    isOffset20Infinity = FloatInfinityValidationResult;
   }
   if ((isOffset28Infinity != 0 || isOffsetXInfinity != 0) || isOffsetYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   isOffset28Infinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset28Infinity = 0x1d;
+    isOffset28Infinity = FloatInfinityValidationResult;
   }
   isOffsetXInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset1cInfinity = 0x1d;
+    isOffset1cInfinity = FloatInfinityValidationResult;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset2cInfinity = 0x1d;
+    isOffset2cInfinity = FloatInfinityValidationResult;
   }
   if ((isOffset28Infinity != 0 || isOffsetXInfinity != 0) || isOffset2cInfinity != 0) {
     return ComponentDataValidationFailure;
@@ -60033,50 +60038,50 @@ void ExecuteExceptionHandlerAtOffsetF0(DataBuffer ExceptionHandlerContext, int64
 
 
 
-void ExecuteCleanupHandlerAtOffset108(DataBuffer context,int64_t exceptionContext)
+void ExecuteCleanupHandlerAtOffset108(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext)
 
 {
-  if (*(int64_t **)(exceptionContext + 0x108) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionContext + 0x108) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(ExceptionContext + CleanupHandlerOffset108) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(ExceptionContext + CleanupHandlerOffset108) + SystemFloatDataOffset38))();
   }
   return;
 }
 
 
 
-void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(exceptionContext + 0x50) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != (code *)0x0) {
+    (**(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50))(ExceptionContext + ExceptionHandlerContextOffset40, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void ExecuteExceptionHandlerAtOffsetF8(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF8(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  code *exceptionHandler;
+  code *ExceptionHandlerFunction;
   
-  exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0xf8) + ExceptionHandlerCallbackOffset10);
-  if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(int64_t *)(exceptionContext + 0xf8),0,0,exceptionData,SystemCleanupFlagAlternative);
+  ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8) + ExceptionHandlerCallbackOffset10);
+  if (ExceptionHandlerFunction != (code *)0x0) {
+    (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF8), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void ExecuteExceptionHandlerAtOffset100(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset100(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  code *exceptionHandler;
+  code *ExceptionHandlerFunction;
   
-  exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0x100) + ExceptionHandlerCallbackOffset10);
-  if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(int64_t *)(exceptionContext + 0x100),0,0,exceptionData,SystemCleanupFlagAlternative);
+  ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffset100) + ExceptionHandlerCallbackOffset10);
+  if (ExceptionHandlerFunction != (code *)0x0) {
+    (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffset100), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
