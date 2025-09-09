@@ -218977,7 +218977,7 @@ LAB_180180381:
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
-      pppcStack_170 = (code ***)FUN_18021cf80;
+      pppcStack_170 = (code ***)TerminateSystemCriticalHandler;
       ppppValidationStatus1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppValidationStatus1 != (code *****)0x0) {
         pppppcStack_178 = ppppValidationStatus1;
