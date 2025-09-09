@@ -97401,7 +97401,7 @@ void ProcessSystemBufferAndConfigure(void
   float *pSystemContextPrimaryFloat;
   uint8_t in_AL;
   char SystemCheckResult;
-  uint8_t in_register_00000001;
+  uint8_t SystemContextRegister;
   long long PatternMatchStatus;
   long long SystemRegisterR10;
   char RegisterR12ValueB;
@@ -97409,10 +97409,10 @@ void ProcessSystemBufferAndConfigure(void
   float AuxiliaryFloat13;
   float FloatingPointRegister14Da;
   
-  if ((((AuxiliaryFloat13 < *(float *)(CONCAT71(in_register_00000001,in_AL) + 0x234)) &&
-       (pSystemContextPrimaryFloat = (float *)(CONCAT71(in_register_00000001,in_AL) + 0x228),
+  if ((((AuxiliaryFloat13 < *(float *)(CONCAT71(SystemContextRegister,in_AL) + 0x234)) &&
+       (pSystemContextPrimaryFloat = (float *)(CONCAT71(SystemContextRegister,in_AL) + 0x228),
        *pSystemContextPrimaryFloat <= BaseFloatValue && BaseFloatValue != *pSystemContextPrimaryFloat)) &&
-      (FloatingPointRegister14Da < *(float *)(CONCAT71(in_register_00000001,in_AL) + 0x230))) ||
+      (FloatingPointRegister14Da < *(float *)(CONCAT71(SystemContextRegister,in_AL) + 0x230))) ||
      (*(char *)(PatternIndex + 0x2e38) != RegisterR12ValueB)) {
     SystemCheckResult = ValidateAndProcessSystemFlags(&TertiaryDataBuffer,&StackBuffer58,1);
     if (SystemCheckResult != '\0') {
@@ -98724,8 +98724,8 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t ContextHandl
   uint32_t BaseFloatValue;
   float SystemContextPrimaryFloat4;
   uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   float SystemFloatValue;
   uint32_t XMMRegister8_Db;
@@ -100898,8 +100898,8 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   uint32_t BaseFloatValue;
   float SecondaryFloatValue;
   uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
@@ -113833,8 +113833,8 @@ void SetupIntegerDataNetwork(uint64_t ContextHandle,char *ContextHandleSize,uint
   uint32_t unaff_XMM6_Dd;
   uint32_t BaseFloatValue;
   uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   float ContextSecondaryFloat4;
   uint32_t XMMRegister8_Db;
@@ -132127,8 +132127,8 @@ void FindAndFilterSystemMemoryBlocks(void)
   uint32_t unaff_XMM6_Dd;
   uint32_t BaseFloatValue;
   uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
@@ -152750,7 +152750,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t FloatingPointRegisterA;
   uint32_t FloatingPointRegisterC;
   uint32_t BaseFloatValue;
-  uint32_t unaff_XMM7_Dc;
+  uint32_t FloatRegisterX7_C;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
@@ -161162,8 +161162,8 @@ int * FindOrCreateUtf8EncodingEntry(long long ContextHandle,int OperationBufferS
   float floatValue24;
   uint32_t registerXMM7_Da;
   uint32_t registerXMM7_Db;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
@@ -241656,8 +241656,8 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
   uint32_t BaseFloatValue;
   float FilterInputValue6;
   uint32_t FloatRegisterX7_Hi;
-  uint32_t unaff_XMM7_Dc;
-  uint32_t unaff_XMM7_Dd;
+  uint32_t FloatRegisterX7_C;
+  uint32_t FloatRegisterX7_D;
   uint32_t SecondaryFloatValue;
   float FilterInputValue7;
   uint32_t XMMRegister8_Db;
@@ -249907,7 +249907,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
                   *(uint32_t *)(BufferIndex + 8 + CoreEngineSignedValue48) = *(uint32_t *)(CharacterTablePointer6 + 0x1c);
                   *(byte *)(EncodingConversionResult + 0xfe) = *(byte *)(EncodingConversionResult + 0xfe) & 0xf7;
                   *(uint *)(EncodingConversionResult + 0x100) = *(uint *)(EncodingConversionResult + 0x100) | 0x800;
-                  MemoryAddressMaskPointer = MemoryPoolManager;
+                  MemoryAddressMaskPointer = SystemMemoryPoolManager;
                   *(uint32_t *)(EncodingConversionResult + 0x10c) = MemoryAllocationIndex;
                   if (SystemDataTablePointer == 0) {
                     hasMemoryBoundaryChanged = 8;
@@ -250114,14 +250114,14 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
           if (IntegerValue5 == -1) {
             SystemDataRegistry = *(long long *)(Utf8SourcePointer + 0x10 + MemoryAllocationOffset);
             if (SystemDataRegistry == 0) {
-              LoopIndex = FUN_1801efdb0(LoopIndex,StringOffset);
+              LoopIndex = ProcessCharacterCodeValidation(LoopIndex,StringOffset);
               Utf8SourcePointer = AdditionalParameter5;
               MemoryAllocationHandle = (uint)AdditionalParameter2;
               if ((LoopIndex == 0) || (LockOperationResult0 = *(int *)(LoopIndex + 0x18), LockOperationResult0 == 0)              goto LAB_180208aa2;
               PrimaryReturnCode = *(uint32_t *)(LoopIndex + 0x2c);
             }
             else {
-              CharacterValidationResult = FUN_1801ef300(LoopIndex,StringOffset,SystemDataRegistry);
+              CharacterValidationResult = ValidateCharacterDataStructure(LoopIndex,StringOffset,SystemDataRegistry);
               if (CharacterValidationResult == '\0') {
                 InitializeSystemEvent(&SystemEventInitializationTemplate);
                 IntegerValue5 = *(int *)(SystemStringIndex + MemoryAllocationIndex7);
@@ -250129,9 +250129,9 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
                 MemoryAllocationHandle = (uint)AdditionalParameter2;
                 goto LAB_180208aa2;
               }
-              LoopIndex = FUN_1801ef620(VectorCalculationResult,StringOffset,SystemDataRegistry);
+              LoopIndex = ProcessCharacterVectorOperation(VectorCalculationResult,StringOffset,SystemDataRegistry);
               PrimaryReturnCode = *(uint32_t *)(LoopIndex + 0x2c);
-              LoopIndex = FUN_1801efdb0(VectorCalculationResult_00,SystemDataRegistry);
+              LoopIndex = ProcessCharacterCodeValidation(VectorCalculationResult_00,SystemDataRegistry);
               LockOperationResult0 = *(int *)(LoopIndex + 0x18);
             }
             MemoryAllocationIndex = *(uint32_t *)(LoopIndex + 0x24);
@@ -250140,14 +250140,14 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
             *(uint32_t *)(SystemStringIndex + 8 + MemoryAllocationIndex7) = *(uint32_t *)(LoopIndex + 0x1c);
             *(byte *)(StringOffset + 0xfe) = *(byte *)(StringOffset + 0xfe) & 0xf7;
             *(uint *)(StringOffset + 0x100) = *(uint *)(StringOffset + 0x100) | 0x800;
-            CalculatedCodePoint = MemoryPoolManager;
+            CalculatedCodePoint = SystemMemoryPoolManager;
             *(uint32_t *)(StringOffset + 0x10c) = MemoryAllocationIndex;
-            isSystemContextNull = (byte)CharacterLimit;
+            SystemContextNullFlag = (byte)CharacterLimit;
             if (SystemDataRegistry == 0) {
               isSystemContextNull = 8;
             }
             *(uint32_t *)(StringOffset + 0x110) = UnicodeCodePoint;
-            *(byte *)(StringOffset + 0xfe) = *(byte *)(StringOffset + 0xfe) | isSystemContextNull;
+            *(byte *)(StringOffset + 0xfe) = *(byte *)(StringOffset + 0xfe) | SystemContextNullFlag;
             *(uint32_t *)(StringOffset + 0x108) = PrimaryReturnCode;
             StringProcessingStatus = (unsigned long long *)MemoryAllocate(CalculatedCodePoint,0x20,8,3);
             *StringProcessingStatus = CharacterLimit;
@@ -250159,8 +250159,8 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
             *(uint *)(SystemStringIndex + MemoryAllocationIndex7) = InputDataLength;
           }
           else {
-LAB_180208aa2:
-            if (IntegerValue5 < 0) goto LAB_180208d4a;
+  SystemCharacterValidationCheck:
+            if (IntegerValue5 < 0) goto SystemCharacterProcessingContinue;
           }
           CharacterStatusBuffer7 = (uint *)((long long)*(int *)(CoreEngineSystemContext + 0x9c8) * 0x488 +
                             CoreEngineSystemContext + 0xb8);
