@@ -18,6 +18,10 @@
 #define MemoryBlockSizeAdjustment 0x27             // 内存块大小调整值 - 用于内存块计算时的调整
 #define MemoryValidationThreshold 0xfff             // 内存验证阈值 - 用于判断是否需要进行额外的内存验证
 #define MemoryOffsetValidationThreshold 0x1f        // 内存偏移验证阈值 - 用于验证内存偏移的有效性
+#define SignBitShiftCount 0x1f                       // 符号位位移计数 - 用于提取符号位的位移操作（31位）
+#define SystemBufferConfigMultiplier 0x278           // 系统缓冲区配置乘数 - 用于系统缓冲区配置计算
+#define SystemResourceManagerMultiplier 0x1a8         // 系统资源管理器乘数 - 用于资源管理器计算
+#define SystemResourceFlagOffset 0x352f                // 系统资源标志偏移量 - 用于设置资源标志的偏移量
 #define InvalidMemoryOffset -0x8000000000000000
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
@@ -23619,7 +23623,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       colorComponentGreenMid = blueAlphaComponents >> 8 & 0xff;
       colorComponentGreenLow = blueAlphaComponents & 0xff;
       colorComponentAlpha = redGreenComponents & ColorComponentMask;
-        InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
+        InitializeSystemBufferA0(systemConfigBuffer,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,colorDataWord);
     }
     if (((*(SystemByteType *)(memoryBlockOffset + DataValidationOffsetC4) & 1) != 0) &&
        ((systemContext = *(int64_t *)(memoryBlockOffset + systemContextOffset68), systemContext != 0 ||
@@ -23742,7 +23746,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
       stackBlueAlphaHigh = inputRedComponent & ColorComponentMask;
       
       // 初始化系统缓冲区
-      InitializeSystemBufferA0(systemBufferA, 0x27, &SystemBufferConfiguration, inputDataWord);
+      InitializeSystemBufferA0(systemBufferA, MemoryBlockSizeAdjustment, &SystemBufferConfiguration, inputDataWord);
     }
     if ((**(int **)(memoryBlockOffset + ResourceValidationOffset) != 0) ||
        (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(operationContext + SystemDataSecondaryOffset18)), operationResult == 0)) {
@@ -23771,7 +23775,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   contextValue = securityContext;
   securityContextHandle = (**(FunctionPointer**)(systemHandler + FunctionPointerSecondaryOffset))();
   if (securityContextHandle == 0) {
-      InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
+      InitializeSystemBufferA0(&stackBufferHighAddress,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue.LowPart);
   }
   if (**(int **)(securityContextHandle + ResourceValidationOffset) == 0) {
@@ -23852,7 +23856,7 @@ void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, i
       blueMidLow = blueAlphaComponents >> 8 & 0xff;
       blueLowByte = blueAlphaComponents & 0xff;
       redGreenLow = redGreenComponents & ColorComponentMask;
-        InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
+        InitializeSystemBufferA0(systemConfigBuffer,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,colorDataWord);
     }
     systemContext = *(int64_t *)(memoryBlockOffset + systemContextOffset48);
     if ((systemContext != 0) || (operationResult = ProcesssystemContextA0(operationBase,memoryBlockOffset,&systemContext), operationResult == 0)) {
@@ -32142,7 +32146,7 @@ DataBuffer ProcessDataStreamA0(int64_t operationBase,DataWord *dataBuffer)
         operationStatus = 0;
         if (0 < inputParameter) {
           do {
-            operationResult = ProcessAdvancedDataOperationA0(operationBase,(int64_t)operationStatus * 0x278 + *(int64_t *)(dataBuffer + 4));
+            operationResult = ProcessAdvancedDataOperationA0(operationBase,(int64_t)operationStatus * SystemBufferConfigMultiplier + *(int64_t *)(dataBuffer + 4));
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -64991,9 +64995,9 @@ void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
   uint64_t memoryBlockOffset;
   
   maskValue = *(uint *)(processData + 0x30) & 0x1f;
-  memoryBlockOffset = (uint64_t)maskValue * 0x1a8 + *(int64_t *)(processData + SystemParameterValidationOffset28);
+  memoryBlockOffset = (uint64_t)maskValue * SystemResourceManagerMultiplier + *(int64_t *)(processData + SystemParameterValidationOffset28);
   ProcessSystemConfigurationA0(memoryBlockOffset);
-  *(ByteFlag *)((*(int64_t *)(processData + SystemParameterValidationOffset28) - (uint64_t)maskValue) + 0x352f) = 1;
+  *(ByteFlag *)((*(int64_t *)(processData + SystemParameterValidationOffset28) - (uint64_t)maskValue) + SystemResourceFlagOffset) = 1;
   return;
 }
 
@@ -65060,7 +65064,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
   bool isPointerMatch;
   
   memoryBlockOffset = (int64_t *)(dataBuffer + ValidationResultOffset);
-  ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + DataBufferOffset30) & 0x1f) * 0x1a8 + *memoryBlockOffset);
+  ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + DataBufferOffset30) & MemoryOffsetValidationThreshold) * SystemResourceManagerMultiplier + *memoryBlockOffset);
   LOCK();
   exceptionContextPointer = (int64_t *)(*memoryBlockOffset + 0x3508);
   resourceIterator = *exceptionContextPointer;

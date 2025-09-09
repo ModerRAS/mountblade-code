@@ -200126,7 +200126,7 @@ void ResetUIHandleData(void)
     *uiSourceHandle = 0;
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000058 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(uiStackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
