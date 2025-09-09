@@ -31889,7 +31889,7 @@ DataCheckpointB:
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
-  if (0x5a < *(uint *)(registerContext + 8)) {
+  if (MediumContextSize < *(uint *)(registerContext + 8)) {
     memoryRegionBase = ExecuteMemoryAllocationOperation();
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
