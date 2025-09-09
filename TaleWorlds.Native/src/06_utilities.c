@@ -57015,7 +57015,7 @@ void CloseSystemHandleAtOffset9C0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 清理资源引用计数函数9d0
+ * @brief 清理资源引用计数函数（偏移量9D0）
  * 
  * 该函数负责清理资源引用计数，管理内存资源的释放
  * 
@@ -57024,7 +57024,7 @@ void CloseSystemHandleAtOffset9C0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_1809049d0
  */
-void CleanupResourceReferenceCount9d0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
