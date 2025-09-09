@@ -2480,12 +2480,12 @@ int InitializeStringProcessingSystemPerformance(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理系统模块Q
- * 设置字符串处理系统模块Q所需的数据结构和缓冲区
+ * 初始化字符串处理系统模块质量
+ * 设置字符串处理系统模块质量所需的数据结构和缓冲区
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessingSystemQ(void)
+int InitializeStringProcessingSystemQuality(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
