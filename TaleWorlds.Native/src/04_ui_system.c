@@ -50142,37 +50142,37 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte processingStatusBuffer1 [14];
   UIByte processingStatusBuffer2 [16];
   
-  ProcessingResult3 = 0;
+  processingResult3 = 0;
   result = CONCAT13(in_XMM4_Bd,CONCAT12(in_XMM4_Bc,CONCAT11(in_XMM4_Bb,in_XMM4_Ba))) ^
           CONCAT13(in_XMM4_Bd,CONCAT12(in_XMM4_Bc,CONCAT11(in_XMM4_Bb,in_XMM4_Ba)));
   ProcessingStatus5 = (UIByte)(result >> 8);
   componentStatus6 = (UIByte)(result >> 0x10);
-  ProcessingStatus7 = (UIByte)(result >> 0x18);
-  result2 = CONCAT13(in_XMM4_Bh,CONCAT12(in_XMM4_Bg,CONCAT11(in_XMM4_Bf,in_XMM4_Be))) ^
-           CONCAT13(in_XMM4_Bh,CONCAT12(in_XMM4_Bg,CONCAT11(in_XMM4_Bf,in_XMM4_Be)));
-  processingStatus8 = (UIByte)result2;
-  processingStatus9 = (UIByte)(result2 >> 8);
-  loopCounter0 = (UIByte)(result2 >> 0x10);
-  loopCounter1 = (UIByte)(result2 >> 0x18);
-  result2 = CONCAT13(in_XMM4_Bl,CONCAT12(in_XMM4_Bk,CONCAT11(in_XMM4_Bj,in_XMM4_Bi))) ^
-           CONCAT13(in_XMM4_Bl,CONCAT12(in_XMM4_Bk,CONCAT11(in_XMM4_Bj,in_XMM4_Bi)));
-  loopCounter2 = (UIByte)result2;
-  loopCounter3 = (UIByte)(result2 >> 8);
-  loopCounter4 = (UIByte)(result2 >> 0x10);
-  loopCounter5 = (UIByte)(result2 >> 0x18);
-  result2 = CONCAT13(in_XMM4_Bp,CONCAT12(in_XMM4_Bo,CONCAT11(in_XMM4_Bn,in_XMM4_Bm))) ^
-           CONCAT13(in_XMM4_Bp,CONCAT12(in_XMM4_Bo,CONCAT11(in_XMM4_Bn,in_XMM4_Bm)));
-  loopCounter6 = (UIByte)result2;
-  loopCounter7 = (UIByte)(result2 >> 8);
-  loopCounter8 = (UIByte)(result2 >> 0x10);
-  loopCounter9 = (UIByte)(result2 >> 0x18);
-  result2 = 0;
+  processingStatus7 = (UIByte)(result >> 0x18);
+  intermediateResult2 = CONCAT13(registerValueH,CONCAT12(registerValueG,CONCAT11(registerValueF,registerValueE))) ^
+           CONCAT13(registerValueH,CONCAT12(registerValueG,CONCAT11(registerValueF,registerValueE)));
+  processingStatus8 = (UIByte)intermediateResult2;
+  processingStatus9 = (UIByte)(intermediateResult2 >> 8);
+  loopCounter0 = (UIByte)(intermediateResult2 >> 0x10);
+  loopCounter1 = (UIByte)(intermediateResult2 >> 0x18);
+  intermediateResult2 = CONCAT13(registerValueL,CONCAT12(registerValueK,CONCAT11(registerValueJ,registerValueI))) ^
+           CONCAT13(registerValueL,CONCAT12(registerValueK,CONCAT11(registerValueJ,registerValueI)));
+  loopCounter2 = (UIByte)intermediateResult2;
+  loopCounter3 = (UIByte)(intermediateResult2 >> 8);
+  loopCounter4 = (UIByte)(intermediateResult2 >> 0x10);
+  loopCounter5 = (UIByte)(intermediateResult2 >> 0x18);
+  intermediateResult2 = CONCAT13(registerValueP,CONCAT12(registerValueO,CONCAT11(registerValueN,registerValueM))) ^
+           CONCAT13(registerValueP,CONCAT12(registerValueO,CONCAT11(registerValueN,registerValueM)));
+  loopCounter6 = (UIByte)intermediateResult2;
+  loopCounter7 = (UIByte)(intermediateResult2 >> 8);
+  loopCounter8 = (UIByte)(intermediateResult2 >> 0x10);
+  loopCounter9 = (UIByte)(intermediateResult2 >> 0x18);
+  intermediateResult2 = 0;
   *resultPointer = 0;
-  allocatedMemory0 = 2;
+  allocatedMemoryBlock0 = 2;
   targetBuffer = targetBuffer - (longlong)uiContext;
   do {
-    paeventProcessingCounter = (UIByte (*) [16])(targetBuffer + (longlong)uiContext);
-    amaxProcessingCount0[4] = processingStatus8;
+    eventProcessingCounterPtr = (UIByte (*) [16])(targetBuffer + (longlong)uiContext);
+    maxProcessingCountBuffer0[4] = processingStatus8;
     amaxProcessingCount0._0_4_ = result;
     amaxProcessingCount0[5] = processingStatus9;
     amaxProcessingCount0[6] = loopCounter0;
