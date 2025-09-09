@@ -298,6 +298,15 @@
 #define SystemResourceUnvigesimalOffset        0x328 // 系统资源第二十一偏移量
 #define SystemResourceDuovigesimalOffset       0x370 // 系统资源第二十二偏移量
 
+// 系统资源节点状态常量
+#define SystemResourceNodeStatusFlagOffset       4    // 系统资源节点状态标志偏移量
+#define SystemResourceNodeNextPointerOffset     0x18 // 系统资源节点下一指针偏移量
+#define SystemResourcePoolSizeOffset            0x28005 // 系统资源池大小偏移量
+#define SystemResourceManagerPoolOffset         0xc0  // 系统资源管理器池偏移量
+#define SystemResourceManagerHashEntryOffset    0x18  // 系统资源管理器哈希条目偏移量
+#define SystemHashEntryMappingOffset            2     // 系统哈希条目映射偏移量
+#define SystemHashEntryPoolIndex               99    // 系统哈希条目池索引
+
 // 线程相关偏移量
 #define ThreadContextSize                    0x20  // 线程上下文大小
 #define ThreadLocalStorageOffset            0x1c  // 线程本地存储偏移量

@@ -33368,7 +33368,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   ProcessingResult1 = *(int *)(localLong7 + ((longlong)bufferHeight - (longlong)(contextOffsetValue >> 3)) * 4);
   localInt9 = (*(UIFunctionPtr *)*param_7)(allocatedMemory8,maxProcessingCount,allocatedMemory9,loopCounter);
   iterationCount0 = ((processingResult5 + ProcessingResult1) * resultPointer + 0x80 >> 8) + localInt9;
-  processingResult5 = sVar2 - param_6;
+  processingResult5 = bufferHeight - param_6;
   if (sVar2 - param_6 < *(int *)(uiBufferData + 0x23d0)) {
     processingResult5 = *(int *)(uiBufferData + 0x23d0);
   }
