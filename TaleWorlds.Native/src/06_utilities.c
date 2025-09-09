@@ -64980,13 +64980,19 @@ void SetExceptionHandlerAtOffset60(DataBuffer systemContext,int64_t contextData)
  * 该函数从处理数据中提取掩码值，计算偏移量，然后调用指定的处理函数。
  * 同时在计算出的内存位置设置标志位，用于标记处理状态。
  * 
+ * @details 函数执行以下操作：
+ * 1. 从进程数据的0x30偏移处提取32位掩码值，使用MemoryOffsetValidationThreshold进行位掩码
+ * 2. 使用掩码值和SystemResourceManagerMultiplier计算内存块偏移量
+ * 3. 调用ProcessSystemConfigurationA0函数处理计算出的偏移量
+ * 4. 在SystemResourceFlagOffset位置设置资源标志位，标记处理状态
+ * 
  * @param systemContext 系统上下文，包含系统状态信息
  * @param processData 处理数据，包含掩码值和偏移量信息
  * 
  * @return void 无返回值
  * 
  * @note 此函数用于数据预处理和状态标记
- * @warning 掩码值限制为5位(0x1f)，确保数据结构正确
+ * @warning 掩码值限制为5位(MemoryOffsetValidationThreshold)，确保数据结构正确
  * @see FUN_180069530, ProcessDataBuffer
  */
 void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)

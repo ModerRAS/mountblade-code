@@ -219,9 +219,9 @@ typedef enum {
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
 #define ProcessUIContextInitialization FUN_1807270a0     // UI上下文初始化
 #define ProcessUIEventBufferManagement FUN_18072eb00     // UI事件缓冲区管理
-#define FUN_18072e720 ProcessUIGraphicsParameters        // UI图形参数处理
-#define FUN_180726fd0 ProcessUIRenderContext           // UI渲染上下文处理
-#define FUN_18072ec50 ProcessUIComponentLayout          // UI组件布局处理
+#define ProcessUIGraphicsParameters FUN_18072e720        // UI图形参数处理
+#define ProcessUIRenderContext FUN_180726fd0           // UI渲染上下文处理
+#define ProcessUIComponentLayout FUN_18072ec50          // UI组件布局处理
 #define FUN_18072e4b0 ProcessUICoefficientCalculation   // UI系数计算处理
 #define FUN_18072fba0 ProcessUISurfaceRendering         // UI表面渲染处理
 #define FUN_180730e60 ProcessUIInterfaceRendering        // UI界面渲染处理
@@ -2299,6 +2299,10 @@ typedef enum {
 
 // UI系统函数宏定义 - 原始数据变换处理器
 #define ProcessUITransformDataOriginal FUN_18071a480
+
+// UI系统函数宏定义 - 浮点数据处理
+#define FUN_180727db0 CalculateUIFloatDataDistanceWeight           // 计算UI浮点数据距离权重
+#define FUN_180727db6 CalculateUIFloatDataWeightWithValidation     // 计算UI浮点数据权重与验证
 
 // UI系统变量名美化宏定义
 // 向量处理结果变量
