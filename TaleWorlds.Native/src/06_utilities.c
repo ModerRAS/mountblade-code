@@ -119,6 +119,15 @@
 #define ExceptionHandlerDataPointerOffset14 0x14
 #define ExceptionHandlerDataPointerOffset1C 0x1c
 #define DataPointerOffset58 0x58
+#define DataPointerOffset50 0x50
+#define DataPointerOffset68 0x68
+#define DataPointerOffset60 0x60
+#define DataPointerOffset78 0x78
+#define DataPointerOffset70 0x70
+#define DataPointerOffsetC0 0xc0
+#define StackFrameContextOffset1D0 0x1d0
+#define BufferPointerOffsetD0 0xd0
+#define ExceptionHandlerContext4Offset10 0x10
 
 // 内存资源释放相关偏移量常量
 #define MemoryResourceReleaseOffset30 0x30
@@ -25345,7 +25354,7 @@ void ProcessFloatingPointDataWithValidation(void)
       }
     }
     for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + DataPointerOffset58))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
-      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0x50) + (int64_t)allocatedMemoryBlock * 8);
+      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + DataPointerOffset50) + (int64_t)allocatedMemoryBlock * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68);
       if (((*(SystemByteType *)(exceptionHandlerContext + ExceptionContextValidationOffsetC4) & 1) != 0) && (dataContext != 0)) {
         SystemOperationResult = 0;
@@ -25397,8 +25406,8 @@ void ProcessFloatingPointDataWithValidation(void)
         }
       }
     }
-    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + 0x68))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
-      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0x60) + (int64_t)allocatedMemoryBlock * 8);
+    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + DataPointerOffset68))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
+      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + DataPointerOffset60) + (int64_t)allocatedMemoryBlock * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68);
       if (((*(SystemByteType *)(exceptionHandlerContext + ExceptionContextValidationOffsetC4) & 1) != 0) && (dataContext != 0)) {
         SystemOperationResult = 0;
@@ -25450,8 +25459,8 @@ void ProcessFloatingPointDataWithValidation(void)
         }
       }
     }
-    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + 0x78))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
-      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0x70) + (int64_t)allocatedMemoryBlock * 8);
+    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + DataPointerOffset78))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
+      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + DataPointerOffset70) + (int64_t)allocatedMemoryBlock * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68);
       if (((*(SystemByteType *)(exceptionHandlerContext + ExceptionContextValidationOffsetC4) & 1) != 0) && (dataContext != 0)) {
         SystemOperationResult = 0;
@@ -25507,7 +25516,7 @@ void ProcessFloatingPointDataWithValidation(void)
     allocatedMemoryBlock = 0;
     do {
       if ((allocatedMemoryBlock < 0) || (*(int *)(dataPointer + 200) <= allocatedMemoryBlock)) break;
-      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0xc0) + (int64_t)allocatedMemoryBlock * 8);
+      exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + DataPointerOffsetC0) + (int64_t)allocatedMemoryBlock * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset48);
       if (dataContext != 0) {
         SystemOperationResult = 0;
@@ -25542,7 +25551,7 @@ void ProcessFloatingPointDataWithValidation(void)
     } while( true );
   }
 ProcessCompleteLabel:
-    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + 0x1d0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + StackFrameContextOffset1D0) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -25584,7 +25593,7 @@ void ExecuteSecurityCheckJumpA0(void)
 {
   int64_t systemStackFramePointer;
   
-    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + 0x1d0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(StackFrameContext + StackFrameContextOffset1D0) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -25788,7 +25797,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
     // 执行异常缓冲区操作
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionBuffer6);
     // 验证系统资源完整性
-    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&SystemResourceValidationWord);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + BufferPointerOffsetD0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
       // 初始化安全验证相关变量
       SystemSecurityValidationWord = 0;
@@ -25806,7 +25815,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
           do {
             // 获取数据指针和内存块偏移量
             dataPointer = *(int64_t *)(dataContext + SystemDataParameterOffset20);
-            memoryBlockOffset = *(int64_t *)(exceptionHandlerContext4 + 0x10 + dataPointer);
+            memoryBlockOffset = *(int64_t *)(exceptionHandlerContext4 + ExceptionHandlerContext4Offset10 + dataPointer);
             calculatedIndex = *(int64_t *)(exceptionHandlerContext4 + 8 + dataPointer);
             // 检查系统状态
             statusFlag = CheckSystemStatus(memoryBlockOffset,1);
@@ -35241,7 +35250,7 @@ OperationLabelD:
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  memoryRegionBase = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
+  memoryRegionBase = ProcessSystemDataA0(*registerContext,dataPointer + DataPointerOffset50);
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
@@ -35402,7 +35411,7 @@ ValidationErrorHandler2:
       return memoryRegionBase;
     }
     operationResult = *(uint *)(StackFrameContext + 0x7f);
-    memoryRegionBase = ValidateSystemStatusA0(dataPointer + 0x60,operationResult >> 1);
+    memoryRegionBase = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,operationResult >> 1);
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
     }
@@ -35417,7 +35426,7 @@ ValidationErrorHandler2:
         }
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           memoryRegionBase = ProcessSystemDataWithValidation(*registerContext,
-                                (int64_t)(int)validationOutcome * 0x10 + *(int64_t *)(dataPointer + 0x60));
+                                (int64_t)(int)validationOutcome * 0x10 + *(int64_t *)(dataPointer + DataPointerOffset60));
           loopCounter = tertiaryFloatResultA;
         }
         else {
@@ -35494,7 +35503,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
+  operationResult = ProcessSystemDataA0(*registerContext,dataPointer + DataPointerOffset50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -35659,7 +35668,7 @@ ValidationErrorHandler2:
       return operationResult;
     }
     memoryRegionBase = *(uint *)(StackFrameContext + 0x7f);
-    operationResult = ValidateSystemStatusA0(dataPointer + 0x60,memoryRegionBase >> 1);
+    operationResult = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,memoryRegionBase >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -35674,7 +35683,7 @@ ValidationErrorHandler2:
         }
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           dataFlags = ProcessSystemDataWithValidation(*registerContext,
-                                (int64_t)(int)operationResult * 0x10 + *(int64_t *)(dataPointer + 0x60));
+                                (int64_t)(int)operationResult * 0x10 + *(int64_t *)(dataPointer + DataPointerOffset60));
           systemDataBuffer3 = tertiaryFloatResultA;
         }
         else {
@@ -35751,7 +35760,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ProcessSystemDataA0(*registerContext,dataPointer + 0x50);
+  operationResult = ProcessSystemDataA0(*registerContext,dataPointer + DataPointerOffset50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -35916,7 +35925,7 @@ ValidationErrorHandler2:
       return operationResult;
     }
     memoryRegionBase = *(uint *)(StackFrameContext + 0x7f);
-    operationResult = ValidateSystemStatusA0(dataPointer + 0x60,memoryRegionBase >> 1);
+    operationResult = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,memoryRegionBase >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -35931,7 +35940,7 @@ ValidationErrorHandler2:
         }
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
           dataFlags = ProcessSystemDataWithValidation(*registerContext,
-                                (int64_t)(int)operationResult * 0x10 + *(int64_t *)(dataPointer + 0x60));
+                                (int64_t)(int)operationResult * 0x10 + *(int64_t *)(dataPointer + DataPointerOffset60));
           systemDataBuffer3 = tertiaryFloatResultA;
         }
         else {
@@ -36129,7 +36138,7 @@ DataProcessingHandler:
     dataFlags = ExecuteDataValidationOperation(dataContext,StackFrameContext + 0x7f);
     if ((int)dataFlags == 0) {
       memoryRegionBase = *(uint *)(StackFrameContext + 0x7f);
-      dataFlags = ValidateSystemStatusA0(dataPointer + 0x60,memoryRegionBase >> 1);
+      dataFlags = ValidateSystemStatusA0(dataPointer + DataPointerOffset60,memoryRegionBase >> 1);
       if ((int)dataFlags == 0) {
         *(int *)(StackFrameContext + 0x77) = validationErrorCode;
         dataFlags = DestinationContext & SystemCleanupFlag;
@@ -36143,7 +36152,7 @@ DataProcessingHandler:
             }
             if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
               operationResult = ProcessSystemDataWithValidation(*registerContext,
-                                    (int64_t)(int)dataFlags * 0x10 + *(int64_t *)(dataPointer + 0x60));
+                                    (int64_t)(int)dataFlags * 0x10 + *(int64_t *)(dataPointer + DataPointerOffset60));
               systemDataBuffer4 = secondaryFloatResultA;
             }
             else {
