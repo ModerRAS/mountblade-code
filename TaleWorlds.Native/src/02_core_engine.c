@@ -224367,18 +224367,27 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 
 
 
-885a0(uint64_t ContextHandle,long long *ContextHandleSizevoid FUN_1801885a0(uint64_t ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 系统内存处理函数
+ * 
+ * 处理系统内存分配和释放操作，管理内存缓冲区的生命周期
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @note 原始函数名：FUN_1801885a0
+ */
+void ProcessSystemMemory(uint64_t ContextHandle, long long *ContextHandleSize
 {
-  char ValidationStatus;
-  long long *BufferAllocationStatus;
+  char MemoryValidationStatus;
+  long long *MemoryBufferStatus;
   
-  ValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
-  while (ValidationStatus == '\0') {
-    FUN_1801885a0(ContextHandle,OperationBufferSize[2]);
-    BufferAllocationStatus = (long long *)*ContextHandleSize;
-    free(OperationBufferSize,0x28);
-    OperationBufferSize = BufferAllocationStatus;
-    ValidationStatus = *(char *)((long long)BufferAllocationStatus + SystemNodeStatusOffset);
+  MemoryValidationStatus = *(char *)((long long)OperationBufferSize + SystemNodeStatusOffset);
+  while (MemoryValidationStatus == '\0') {
+    ProcessSystemMemory(ContextHandle, OperationBufferSize[2]);
+    MemoryBufferStatus = (long long *)*ContextHandleSize;
+    free(OperationBufferSize, 0x28);
+    OperationBufferSize = MemoryBufferStatus;
+    MemoryValidationStatus = *(char *)((long long)MemoryBufferStatus + SystemNodeStatusOffset);
   }
   return;
 }
@@ -250035,7 +250044,18 @@ void ResetSystemHandleStatus(uint64_t *SystemHandle)
 
 
 
-07ea0(long long *ContextHandlevoid FUN_180207ea0(long long *ContextHandle
+/**
+ * @brief 清理系统缓冲区数据
+ * 
+ * 该函数负责清理系统缓冲区中的数据，包括重置字符状态缓冲区、
+ * 清理缓冲区状态，并调用必要的清理函数来释放资源。
+ * 
+ * @param SystemBufferHandle 系统缓冲区句柄指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180207ea0
+ */
+void CleanupSystemBufferData(long long *SystemBufferHandle)
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;
@@ -250043,30 +250063,30 @@ void ResetSystemHandleStatus(uint64_t *SystemHandle)
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   
-  AllocatedMemorySize = *ContextHandle;
+  AllocatedMemorySize = *SystemBufferHandle;
   if ((AllocatedMemorySize != 0) &&
      (InputDataLength = (int)(*(long long *)(AllocatedMemorySize + 0x40) - *(long long *)(AllocatedMemorySize + 0x38) >> 4),
      AllocatedMemorySize = (long long)InputDataLength, 0 < InputDataLength)) {
     SystemDataRegistry = 0;
     do {
-      CharacterStatusBuffer = (uint *)(*(long long *)(SystemDataRegistry + *(long long *)(*ContextHandle + 0x38)) + 0x100);
+      CharacterStatusBuffer = (uint *)(*(long long *)(SystemDataRegistry + *(long long *)(*SystemBufferHandle + 0x38)) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
-      BufferStatus = *(long long *)(SystemDataRegistry + *(long long *)(*ContextHandle + 0x38));
+      BufferStatus = *(long long *)(SystemDataRegistry + *(long long *)(*SystemBufferHandle + 0x38));
       *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       SystemDataRegistry = SystemDataRegistry + 0x10;
       AllocatedMemorySize = AllocatedMemorySize + -1;
     } while (AllocatedMemorySize != 0);
   }
-  if (ContextHandle[0xb] != 0) {
+  if (SystemBufferHandle[0xb] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
-  if ((long long *)ContextHandle[2] != (long long *)0x0) {
-    (**(code **)(*(long long *)ContextHandle[2] + 0x38))();
+  if ((long long *)SystemBufferHandle[2] != (long long *)0x0) {
+    (**(code **)(*(long long *)SystemBufferHandle[2] + 0x38))();
   }
-  if ((long long *)*ContextHandle != (long long *)0x0) {
-    (**(code **)(*(long long *)*ContextHandle + 0x38))();
+  if ((long long *)*SystemBufferHandle != (long long *)0x0) {
+    (**(code **)(*(long long *)*SystemBufferHandle + 0x38))();
   }
   return;
 }
