@@ -2165,6 +2165,27 @@
 #define ExceptionHandlerContextOffsetFB8 0xfb8             // 异常处理上下文偏移量FB8
 #define ExceptionHandlerContextOffsetFC8 0xfc8             // 异常处理上下文偏移量FC8
 
+// 系统上下文相关偏移量常量
+#define SystemContextDataFlagsOffsetB8 0xb8                // 系统上下文数据标志偏移量B8
+#define SystemContextDataSizeOffset50 0x50                  // 系统上下文数据大小偏移量50
+#define SystemContextDataBufferOffset48 0x48                // 系统上下文数据缓冲区偏移量48
+#define SystemContextValidationOffsetF8 0xf8                // 系统上下文验证偏移量F8
+
+// 栈帧上下文相关偏移量常量
+#define StackFrameValidationFlagOffset77 0x77               // 栈帧验证标志偏移量77
+#define StackFrameSecondaryValidationFlagOffset7F 0x7f    // 栈帧次级验证标志偏移量7F
+#define StackFrameDataCheckOffsetNegative49 -0x49          // 栈帧数据检查负偏移量49
+
+// 数据缓冲区相关偏移量常量
+#define DataBufferSizeOffset8 0x8                          // 数据缓冲区大小偏移量8
+#define DataBufferMaxSize8A 0x8a                            // 数据缓冲区最大大小8A
+#define DataBufferMaxSize8E 0x8e                            // 数据缓冲区最大大小8E
+#define DataBufferValidationOffsetF8 0xf8                    // 数据缓冲区验证偏移量F8
+
+// 操作基础相关偏移量常量
+#define OperationBaseValidationOffsetF8 0xf8                // 操作基础验证偏移量F8
+#define OperationBaseMaxValue7FFFFFFF 0x7fffffff            // 操作基础最大值7FFFFFFF
+
 // 异常处理器偏移量常量定义
 #define ExceptionHandlerContextOffset80 0x80            // 异常处理上下文偏移量80
 #define ExceptionHandlerCallbackOffsetB40 0xb40        // 异常处理器回调偏移量B40
@@ -33780,7 +33801,7 @@ ValidateDataWithDirectAllocation:
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataFlagsOffsetB8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -33933,7 +33954,7 @@ DataProcessSectionA:
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataFlagsOffsetB8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -34076,13 +34097,13 @@ DataProcessLabelA:
     if (validationStatus != 0) {
       return (uint64_t)validationStatus;
     }
-    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~memoryRegionBase;
+    *(uint *)(systemContext + SystemContextDataFlagsOffsetB8) = (*(uint *)(systemContext + SystemContextDataFlagsOffsetB8) | dataFlags) & ~memoryRegionBase;
   }
   else {
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = OperateDataO0(*registerContext,systemContext + 0xb8,4);
+    operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataFlagsOffsetB8,4);
     if ((int)operationResult != 0) {
       return operationResult;
     }

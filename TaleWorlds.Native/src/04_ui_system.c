@@ -244,7 +244,7 @@ typedef enum {
 // UI系统变换栈变量语义化定义
 #define astackUIntf8 UITransformFactorStackF8
 #define astackUInt48 UIAnimationStateStack48
-#define afStack_6260 UIAnimationSpeedStack6260
+#define afStack_6260 UIAnimationSpeedStack6260               // UI动画速度栈6260 - 存储UI动画速度的栈变量
 #define astackUInt178 UILayoutParameterStack178
 
 // 浮点栈变量宏定义
@@ -253,10 +253,10 @@ typedef enum {
 #define fStack000000000000003c UITransformY
 #define fStack0000000000000048 UITransformWidth
 #define fStack000000000000004c UITransformHeight
-#define fStack_124 UIAlphaBlendFactor
+#define fStack_124 UIAlphaBlendFactor124                    // UI透明度混合因子124 - 用于控制UI元素透明度混合的因子
 #define fStack_ec UIBlendFactor
-#define fStack_128 UITransformFactor
-#define fStack_10c UIVertexComponentX
+#define fStack_128 UITransformFactor128                    // UI变换因子128 - 用于UI元素变换计算的因子
+#define fStack_10c UIVertexComponentX10C                    // UI顶点组件X坐标10C - 存储UI顶点X坐标分量的变量
 #define fStack_108 UIVertexComponentY
 #define fStack_120 UIAnimationFactor
 #define fStack_104 UITimeScaleFactor
@@ -479,8 +479,8 @@ typedef enum {
 #define DAT_180980640 UIDataTableSenary40                    // UI第六数据表40 - 存储UI系统的第六级数据
 #define DAT_1809473f0 UIVectorCalculationMask3F0             // UI向量计算掩码3F0 - 用于向量运算的掩码
 #define DAT_180947510 UIVectorCalculationMask510             // UI向量计算掩码510 - 用于向量运算的掩码
-#define DAT_180947370 UIVectorMultiplyMask4
-#define DAT_180a40580 UIXOREncryptionKey
+#define DAT_180947370 UIVectorCalculationMask370             // UI向量计算掩码370 - 用于向量运算的掩码
+#define DAT_180a40580 UIXOREncryptionKey580                 // UI异或加密密钥580 - 用于UI数据加密的密钥
 #define _DAT_180d4a8b8 UIPixelProcessorPointer
 #define _DAT_180d4a860 UIImageProcessorPointer
 #define _DAT_180d4a800 UIColorProcessorPointer
