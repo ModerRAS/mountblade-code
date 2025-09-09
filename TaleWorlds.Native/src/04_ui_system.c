@@ -84538,8 +84538,8 @@ void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHand
   UIHandle preservedRegister15;
   float baseValue5;
   float baseValue6;
-  double dVar17;
-  double dVar18;
+  double ExponentialDecayFactor3;
+  double ExponentialDecayFactor4;
   float FloatValue2;
   UIByte in_XMM1 [16];
   UIByte aiterationCount0 [16];
@@ -84613,7 +84613,7 @@ void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHand
     eventProcessingStatus = (int)*(short *)(lStack0000000000000028 + 2 + *(longlong *)(dataSource + 0x20)) -
             (int)*(short *)(lStack0000000000000028 + *(longlong *)(dataSource + 0x20));
     IsEventProcessingActive = (byte)unmodifiedEBP;
-    dVar17 = (double)exp((double)((float)(int)((*piStack0000000000000030 + 1U) / eventProcessingStatus >>
+    ExponentialDecayFactor3 = (double)exp((double)((float)(int)((*piStack0000000000000030 + 1U) / eventProcessingStatus >>
                                               (IsEventProcessingActive & 0x1f)) * -0.125) * 0.6931471805599453,
                          (ulonglong)(*piStack0000000000000030 + 1U) % (ulonglong)eventProcessingStatus);
     ProcessingResult3 = 0;
@@ -186477,8 +186477,9 @@ undefined DAT_180be3530;
 undefined DAT_180be3548;
 undefined DAT_180be3550;
 undefined DAT_180be3558;
-undefined UNK_18079ce70;
-undefined UNK_18079cf70;
+// UI系统主数据指针常量
+undefined* UIPrimaryDataPointer1;        // 原始变量名：UNK_18079ce70
+undefined* UISecondaryDataPointer1;      // 原始变量名：UNK_18079cf70
 UIDword UNK_180be353c;
 UIDword UNK_180be359c;
 UIDword UNK_180be35fc;
@@ -186499,17 +186500,19 @@ UIDword UNK_180be3b3c;
 UIDword UNK_180be3b9c;
 UIDword UNK_180be3bfc;
 UIDword UNK_180be3c5c;
-undefined UNK_18095c320;
+// UI系统渲染数据指针常量
+undefined* UIRenderDataPointer1;           // 原始变量名：UNK_18095c320
 undefined DAT_180c1b958;
 undefined DAT_180c19958;
 undefined DAT_180c19950;
 undefined DAT_180c19954;
 undefined DAT_180c1b950;
 undefined DAT_180c1b954;
-undefined UNK_18095c5c4;
-undefined UNK_18095c5cc;
-undefined UNK_18095c5d4;
-undefined UNK_18095c5f4;
+// UI系统组件状态指针常量
+undefined* UIComponentStatusPointer1;      // 原始变量名：UNK_18095c5c4
+undefined* UIComponentStatusPointer2;      // 原始变量名：UNK_18095c5cc
+undefined* UIComponentStatusPointer3;      // 原始变量名：UNK_18095c5d4
+undefined* UIComponentStatusPointer4;      // 原始变量名：UNK_18095c5f4
 undefined DAT_180c2c270;
 undefined UNK_18095c998;
 undefined DAT_180c2c250;

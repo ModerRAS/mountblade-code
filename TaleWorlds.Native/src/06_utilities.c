@@ -29927,43 +29927,49 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
 
 
 
-// 函数: void ValidateSystemDataIntegrity(void)
-// 功能：验证系统数据的完整性和一致性
+/**
+ * @brief 验证系统数据的完整性和一致性
+ * 
+ * 该函数负责验证系统数据的完整性，检查系统状态的一致性，
+ * 并在必要时执行相应的验证操作。
+ * 
+ * @note 原始函数名：ValidateSystemDataIntegrity
+ */
 void ValidateSystemDataIntegrity(void)
 
 {
-  int inputParameter;
+  int systemStatus;
   int64_t registerContext;
-  int64_t DestinationContext;
-  DataWord SystemValidationParameter;
+  int64_t destinationContext;
+  DataWord validationParameter;
   
-  inputParameter = CheckSystemStatusAndReturnO0();
-  if (inputParameter == 0) {
-    if (((*(SystemByteType *)(registerContext + 4) & 0x20) != 0) && (inputParameter = ValidateAndProcessDataA0(), inputParameter != 0)) {
+  systemStatus = CheckSystemStatusAndReturnO0();
+  if (systemStatus == 0) {
+    if (((*(SystemByteType *)(registerContext + 4) & 0x20) != 0) && (systemStatus = ValidateAndProcessDataA0(), systemStatus != 0)) {
       return;
     }
-    inputParameter = CheckSystemStateAndReturnCodeO1();
-    if ((((inputParameter == 0) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) &&
-        (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) {
+    systemStatus = CheckSystemStateAndReturnCodeO1();
+    if ((((systemStatus == 0) && (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) &&
+        (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) && (systemStatus = CheckSystemStateAndReturnCodeO1(), systemStatus == 0)) {
       if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
-        ValidationDataBuffer = *(DataWord *)(registerContext + ContextDataOffset48);
-        inputParameter = (**(FunctionPointer**)**(DataBuffer **)(DestinationContext + 8))
-                          (*(DataBuffer **)(DestinationContext + 8),&ValidationDataBuffer,4);
-        if (inputParameter != 0) {
+        validationParameter = *(DataWord *)(registerContext + ContextDataOffset48);
+        systemStatus = (**(FunctionPointer**)**(DataBuffer **)(destinationContext + 8))
+                          (*(DataBuffer **)(destinationContext + 8),&validationParameter,4);
+        if (systemStatus != 0) {
           return;
         }
-        inputParameter = ProcessDataPointerA0();
-        if (inputParameter != 0) {
+        systemStatus = ProcessDataPointerA0();
+        if (systemStatus != 0) {
           return;
         }
       }
       if ((*(uint *)(registerContext + 4) & 0x800) != 0) {
-        inputParameter = ValidateSystemStatusAndReturnA0();
-        if (inputParameter != 0) {
+        systemStatus = ValidateSystemStatusAndReturnA0();
+        if (systemStatus != 0) {
           return;
         }
-        inputParameter = ValidateSystemStatusAndReturnA0();
-        if (inputParameter != 0) {
+        systemStatus = ValidateSystemStatusAndReturnA0();
+        if (systemStatus != 0) {
           return;
         }
       }
@@ -29976,8 +29982,13 @@ void ValidateSystemDataIntegrity(void)
 
 
 
-// 函数: void NoOperationFunction(void)
-// 功能：空操作函数，不执行任何操作
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，仅作为占位符函数使用。
+ * 
+ * @note 原始函数名：NoOperationFunction
+ */
 void NoOperationFunction(void)
 
 {
@@ -29986,20 +29997,32 @@ void NoOperationFunction(void)
 
 
 
+/**
+ * @brief 执行数据验证操作A1
+ * 
+ * 该函数执行数据验证操作，处理浮点数据归一化，
+ * 并返回验证结果。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @return DataBuffer 验证结果缓冲区
+ * 
+ * @note 原始函数名：ExecuteDataValidationA1
+ */
 DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
 
 {
-  DataBuffer systemDataBuffer;
+  DataBuffer validationResult;
   float *floatDataPointer;
-  int operationStatus;
+  int processingIndex;
   float normalizedValue;
   BytePair stackDataBuffer [4];
-  BytePair systemDataBufferArray [1];
+  BytePair resultBuffer [1];
   
-  systemDataBufferArray[0] = CONCAT11(systemDataBufferArray[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,1);
-  if ((int)systemDataBuffer == 0) {
-    operationStatus = 0;
+  resultBuffer[0] = CONCAT11(resultBuffer[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
+  validationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,1);
+  if ((int)validationResult == 0) {
+    processingIndex = 0;
     if (0 < *(short *)(dataBuffer + DataBufferOffset104)) {
       floatDataPointer = (float *)(dataBuffer + DataProcessingOffset84);
       do {
@@ -30013,10 +30036,10 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
           normalizedValue = 0.0;
         }
         stackDataBuffer[0] = (BytePair)(int)(normalizedValue * 65535.0);
-        systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
+        validationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,2);
-        if ((int)systemDataBuffer != 0) {
-          return systemDataBuffer;
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
         normalizedValue = *floatDataPointer * 0.25;
         if (0.0 <= normalizedValue) {
@@ -30028,18 +30051,18 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
           normalizedValue = 0.0;
         }
         stackDataBuffer[0] = (BytePair)(int)(normalizedValue * 65535.0);
-        systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
+        validationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,2);
-        if ((int)systemDataBuffer != 0) {
-          return systemDataBuffer;
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
-        operationStatus = operationStatus + 1;
+        processingIndex = processingIndex + 1;
         floatDataPointer = floatDataPointer + 1;
-      } while (operationStatus < *(short *)(dataBuffer + DataBufferOffset104));
+      } while (processingIndex < *(short *)(dataBuffer + DataBufferOffset104));
     }
-    systemDataBuffer = 0;
+    validationResult = 0;
   }
-  return systemDataBuffer;
+  return validationResult;
 }
 
 
