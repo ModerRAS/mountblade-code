@@ -170513,7 +170513,7 @@ void FinalizeCharacterEncoding(uint32_t *ContextHandle)
           }
           LockOperationResultPointer = (int *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0x218);
           *LockOperationResultPointer = *LockOperationResultPointer + -1;
-          InitializeSystemMemoryBlock(aCoreEngineUnsignedValueA0,0x10,2,FUN_18011d900);
+          InitializeSystemMemoryBlock(aCoreEngineUnsignedValueA0,0x10,2,CopyAndInitializeSystemData);
         }
         else {
           aMatrixElementE[2] = *(float *)(CharacterTablePointer6 + 0x1878);
@@ -180185,8 +180185,8 @@ void ProcessContextHandleEncodingValidationAndFloatData(long long ContextHandle,
     lStack_e0 = ContextHandle;
     pfStack_d8 = Utf8SourcePointer;
     MemoryBoundaryEnd = GetMemoryBoundaryEnd(StackValidationData,aProcessingCounter);
-    pcStack_c0 = FUN_18014f6a0;
-    pcStack_b8 = FUN_18014f660;
+    pcStack_c0 = ProcessSystemDataBufferAllocation;
+    pcStack_b8 = ProcessSystemCharacterEncodingConversion;
     SystemChecksum = MemoryAllocate(MemoryPoolManager,0x38,8,MemoryAllocationFlags);
     GetMemoryBoundaryEnd(SystemChecksum,MemoryBoundaryEnd);
     aSystemFlagG[0] = SystemChecksum;
@@ -180363,7 +180363,7 @@ void ProcessContextHandleSystemCheckAndDataRegistry(long long ContextHandle, cha
       CharacterPointer = *(code **)(*ContextHandle + 0x70);
       SystemDataRegistry = ProcessCharacterWithSystemData(aCoreEngineValueA8,&lStack_148);
       AllocatedMemorySize = ProcessCharacterWithSystemData(StackBuffer80,SystemDataRegistry);
-      pcStack_110 = FUN_18014f3f0;
+      pcStack_110 = ProcessSystemMemoryBlockSetup;
       pProcessingCounter = &SystemProcessingCounter;
       UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags);
       ProcessCharacterWithSystemData(UnicodeCodePoint,AllocatedMemorySize);
