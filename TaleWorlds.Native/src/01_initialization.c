@@ -50001,13 +50001,13 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
       ReleaseSystemResource();
       IsDataValid = true;
     }
-    PrimaryHashEntryPointer = *(void* **)(SystemResourceManager + 0xc0);
+    PrimaryHashEntryPointer = *(void* **)(SystemResourceManager + SystemResourceManagerPoolOffset);
     if ((void* *)*PrimaryHashEntryPointer == &SystemMemoryManagerTemplate) {
-      charOutput = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + 2,&SystemResourceHandle);
+      charOutput = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + SystemHashEntryMappingOffset,&SystemResourceHandle);
       while (charOutput != '\0') {
-        ResourcePoolPointer = (long long *)PrimaryHashEntryPointer[99];
+        ResourcePoolPointer = (long long *)PrimaryHashEntryPointer[SystemHashEntryPoolIndex];
         if (SystemResourceHandle != (long long *)0x0) {
-          *(uint8_t *)(SystemResourceHandle + 4) = 0;
+          *(uint8_t *)(SystemResourceHandle + SystemResourceNodeStatusFlagOffset) = 0;
           *ResourcePoolPointer = *ResourcePoolPointer - SystemResourceHandle[1];
           ResourcePoolPointer[2] = ResourcePoolPointer[2] + SystemResourceHandle[1];
           SecondaryResourceHandle = (long long *)SystemResourceHandle[3];
@@ -50015,15 +50015,15 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
           PrimaryResourceDataPointer = SystemResourceHandle;
           if (SecondaryResourceHandle != PrimaryResourceNodePointer) {
             do {
-              if ((SecondaryResourceHandle == (long long *)0x0) || ((char)SecondaryResourceHandle[4] != '\0')) break;
+              if ((SecondaryResourceHandle == (long long *)0x0) || ((char)SecondaryResourceHandle[SystemResourceNodeStatusFlagOffset] != '\0')) break;
               ResourceDataOffset = PrimaryResourceDataPointer[2];
               SecondaryResourceHandle[2] = ResourceDataOffset;
               if (ResourceDataOffset != 0) {
-                *(long long **)(ResourceDataOffset + 0x18) = SecondaryResourceHandle;
+                *(long long **)(ResourceDataOffset + SystemResourceNodeNextPointerOffset) = SecondaryResourceHandle;
               }
               SecondaryResourceHandle[1] = SecondaryResourceHandle[1] + PrimaryResourceDataPointer[1];
-              *PrimaryResourceDataPointer = ResourcePoolPointer[0x28005];
-              ResourcePoolPointer[0x28005] = (long long)PrimaryResourceDataPointer;
+              *PrimaryResourceDataPointer = ResourcePoolPointer[SystemResourcePoolSizeOffset];
+              ResourcePoolPointer[SystemResourcePoolSizeOffset] = (long long)PrimaryResourceDataPointer;
               PrimaryResourceHandle = SecondaryResourceHandle + 3;
               PrimaryResourceNodePointer = (long long *)ResourcePoolPointer[3];
               PrimaryResourceDataPointer = SecondaryResourceHandle;
