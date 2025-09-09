@@ -182,29 +182,13 @@ typedef enum {
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
 
-// UI系统数据写入函数
-// 原始函数名：FUN_180719a90 - UI系统数据写入
-#define WriteUIData FUN_180719a90
-
-// UI系统数据处理函数
-// 原始函数名：FUN_1807165a0 - UI系统数据处理
-#define ProcessUIData FUN_1807165a0
-
-// UI系统数据验证函数
-// 原始函数名：FUN_1807160c0 - UI系统数据验证
-#define ValidateUIData FUN_1807160c0
-
-// UI系统数据转换函数
-// 原始函数名：FUN_180723060 - UI系统数据转换
-#define TransformUIData FUN_180723060
-
-// UI系统上下文处理函数
-// 原始函数名：FUN_180718bd0 - UI系统上下文处理
-#define ProcessUIContext FUN_180718bd0
-
-// UI系统数据移位函数
-// 原始函数名：FUN_180716aa0 - UI系统数据移位
-#define ShiftUIData FUN_180716aa0
+// UI系统数据处理函数宏定义
+#define WriteUIData FUN_180719a90                    // UI系统数据写入函数
+#define ProcessUIData FUN_1807165a0                  // UI系统数据处理函数
+#define ValidateUIData FUN_1807160c0                 // UI系统数据验证函数
+#define TransformUIData FUN_180723060                // UI系统数据转换函数
+#define ProcessUIContext FUN_180718bd0              // UI系统上下文处理函数
+#define ShiftUIData FUN_180716aa0                    // UI系统数据移位函数
 
 // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0

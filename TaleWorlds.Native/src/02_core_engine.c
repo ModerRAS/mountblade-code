@@ -195,7 +195,7 @@
 #define SystemStackPointer218 plStack_218                  // 系统栈指针218
 #define SystemStackPointerB0 SystemContextPointerB0                    // 系统栈指针B0
 #define SystemStackPointerA8 SystemContextPointerA8                    // 系统栈指针A8
-#define ValidationBytePointer48 pbStack_48                 // 验证字节指针48
+#define ValidationBytePointer48 ValidationBytePointer48                 // 验证字节指针48
 #define SystemStackInteger40 iStack_40                     // 系统栈整数40
 #define SystemStackOffsetB0 lStack_b0                      // 系统栈偏移量B0
 #define SystemStackInteger2e8 iStack_2e8                   // 系统栈整数2e8
@@ -64047,7 +64047,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
     CharacterStatusBuffer = (void *)(AllocatedMemorySize + 0x60);
     SystemTemplatePointer = &SystemNullTemplate;
     FunctionAddress = 0;
-    pbStack_48 = (byte *)0x0;
+    ValidationBytePointer48 = (byte *)0x0;
     iStack_40 = 0;
     CoreEngineProcessSystemEvent(&SystemValidationPointer,*(uint32_t *)(OperationBufferSize + 0x10));
     if (0 < *(int *)(OperationBufferSize + 0x10)) {
@@ -64056,10 +64056,10 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
         StringProcessingStatus = *(void **)(OperationBufferSize + 8);
       }
                     // WARNING: Subroutine does not return
-      memcpy(pbStack_48,StringProcessingStatus,(long long)(*(int *)(OperationBufferSize + 0x10) + 1));
+      memcpy(ValidationBytePointer48,StringProcessingStatus,(long long)(*(int *)(OperationBufferSize + 0x10) + 1));
     }
-    if ((*(long long *)(OperationBufferSize + 8) != 0) && (iStack_40 = 0, pbStack_48 != (byte *)0x0)) {
-      *pbStack_48 = 0;
+    if ((*(long long *)(OperationBufferSize + 8) != 0) && (iStack_40 = 0, ValidationBytePointer48 != (byte *)0x0)) {
+      *ValidationBytePointer48 = 0;
     }
     SystemCharacterStatusBuffer = *(uint64_t **)(AllocatedMemorySize + 0x70);
     TemporaryBuffer = CharacterStatusBuffer;
@@ -64078,9 +64078,9 @@ SystemHandlerLAB180087337:
             LowByte = true;
           }
           else {
-            ValidationBytePointer = pbStack_48;
+            ValidationBytePointer = ValidationBytePointer48;
             do {
-              OperationResult = (uint)ValidationBytePointer[SystemCharacterStatusBuffer[5] - (long long)pbStack_48];
+              OperationResult = (uint)ValidationBytePointer[SystemCharacterStatusBuffer[5] - (long long)ValidationBytePointer48];
               StringLength = *ValidationBytePointer - OperationResult;
               if (*ValidationBytePointer != OperationResult) break;
               ValidationBytePointer = ValidationBytePointer + 1;
@@ -64105,7 +64105,7 @@ MemoryHandlerLAB1800872f7:
       if (*(int *)(CharacterStatusBuffer + 6) != 0) {
         if (iStack_40 != 0) {
           ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
-          SystemDataTablePointer = (long long)pbStack_48 - (long long)ValidationBytePointer;
+          SystemDataTablePointer = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
           do {
             HighByte = *ValidationBytePointer;
             OperationResult = (uint)ValidationBytePointer[SystemDataTablePointer];
@@ -64119,11 +64119,11 @@ MemoryHandlerLAB1800872f7:
     }
 StatusHandlerComplete:
     SystemTemplatePointer = &SystemNullTemplate;
-    if (pbStack_48 != (byte *)0x0) {
+    if (ValidationBytePointer48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemEventHandling();
     }
-    pbStack_48 = (byte *)0x0;
+    ValidationBytePointer48 = (byte *)0x0;
     FunctionAddress = FunctionAddress & 0xffffffff00000000;
     SystemTemplatePointer = &ThreadLocalStorageTemplate;
     if (CharacterStatusBuffer != CharacterStatusBuffer) {
@@ -76322,9 +76322,9 @@ uint64_t CalculateEngineParameterValue(void
           LowByte = true;
         }
         else {
-          ValidationBytePointer = pbStack_48;
+          ValidationBytePointer = ValidationBytePointer48;
           do {
-            SystemChecksum = (uint)ValidationBytePointer[CharacterStatusBuffer3[5] - (long long)pbStack_48];
+            SystemChecksum = (uint)ValidationBytePointer[CharacterStatusBuffer3[5] - (long long)ValidationBytePointer48];
             ComputedResult = *ValidationBytePointer - SystemChecksum;
             if (*ValidationBytePointer != SystemChecksum) break;
             ValidationBytePointer = ValidationBytePointer + 1;
@@ -76350,7 +76350,7 @@ LAB_180095527:
       if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009556a;
       if (iStack_40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
-        LoopIndex = (long long)pbStack_48 - (long long)ValidationBytePointer;
+        LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
         do {
           HighByte = *ValidationBytePointer;
           SystemChecksum = (uint)ValidationBytePointer[LoopIndex];
@@ -76364,11 +76364,11 @@ LAB_180095527:
   CharacterStatusBuffer = SystemCharacterStatusBuffer;
 LAB_18009556a:
   SystemTemplatePointer = &SystemNullTemplate;
-  if (pbStack_48 != (byte *)0x0) {
+  if (ValidationBytePointer48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
-  pbStack_48 = (byte *)0x0;
+  ValidationBytePointer48 = (byte *)0x0;
   FunctionAddress = 0;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
   if (CharacterStatusBuffer == SystemCharacterStatusBuffer) {
@@ -76462,9 +76462,9 @@ uint64_t CalculateEngineSecondaryParameter(void
           LowByte = true;
         }
         else {
-          ValidationBytePointer = pbStack_48;
+          ValidationBytePointer = ValidationBytePointer48;
           do {
-            SystemChecksum = (uint)ValidationBytePointer[CharacterStatusBuffer3[5] - (long long)pbStack_48];
+            SystemChecksum = (uint)ValidationBytePointer[CharacterStatusBuffer3[5] - (long long)ValidationBytePointer48];
             ComputedResult = *ValidationBytePointer - SystemChecksum;
             if (*ValidationBytePointer != SystemChecksum) break;
             ValidationBytePointer = ValidationBytePointer + 1;
@@ -76490,7 +76490,7 @@ LAB_1800957c7:
       if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009580a;
       if (iStack_40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
-        LoopIndex = (long long)pbStack_48 - (long long)ValidationBytePointer;
+        LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
         do {
           HighByte = *ValidationBytePointer;
           SystemChecksum = (uint)ValidationBytePointer[LoopIndex];
@@ -76504,11 +76504,11 @@ LAB_1800957c7:
   CharacterStatusBuffer = SystemCharacterStatusBuffer;
 LAB_18009580a:
   SystemTemplatePointer = &SystemNullTemplate;
-  if (pbStack_48 != (byte *)0x0) {
+  if (ValidationBytePointer48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
-  pbStack_48 = (byte *)0x0;
+  ValidationBytePointer48 = (byte *)0x0;
   FunctionAddress = 0;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
   if (CharacterStatusBuffer == SystemCharacterStatusBuffer) {
