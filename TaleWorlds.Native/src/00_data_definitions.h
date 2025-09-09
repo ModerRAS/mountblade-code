@@ -11441,11 +11441,11 @@ Label_18062ee56:
         LongLoop = (longlong)&SystemNetworkDataBuffer4 - (longlong)pcVar9;
         while (*pcVar9 == pcVar9[LongLoop]) {
           pcVar9 = pcVar9 + 1;
-          if (pcVar6 <= pcVar9) goto Label_18062eece;
+          if (pcVar6 <= pcVar9) goto NetworkTextureProcessingComplete;
         }
       }
     }
-Label_18062eece:
+NetworkTextureProcessingComplete:
     *SystemSixthParameter = pNetworkRequestStatus1;
     if (pNetworkRequestStatus1 == (char *)0x0) {
       UnsignedStackPointer = &SystemNullPointer;
@@ -11596,7 +11596,7 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
       MemoryDataPointer = (longlong)&SystemNetworkDataBuffer3 - (longlong)pBooleanFlag;
       while (*pBooleanFlag == pBooleanFlag[MemoryDataPointer]) {
         pBooleanFlag = pBooleanFlag + 1;
-        if (pcVar3 <= pBooleanFlag) goto Label_18062f2b6;
+        if (pcVar3 <= pBooleanFlag) goto NetworkBooleanProcessingComplete;
       }
     }
   }
