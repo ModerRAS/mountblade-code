@@ -10067,8 +10067,14 @@ void SetUIComponentAlpha(longlong componentContext, UIDword alphaValue)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
- UIDword * CreateUIColorBuffer(UIDword *uiContext)
- 创建UI颜色缓冲区的函数，分配内存并初始化颜色数据
+ /**
+ * @brief 创建UI颜色缓冲区
+ * 
+ * 分配内存并初始化UI颜色缓冲区，用于存储和管理颜色数据。
+ * 
+ * @param uiContext UI上下文指针
+ * @return UIDword* 返回创建的颜色缓冲区指针
+ */
 UIDword * CreateUIColorBuffer(UIDword *uiContext)
 
 {
