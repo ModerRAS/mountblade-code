@@ -32,6 +32,8 @@
 #define MemoryDataOffset 0x20
 #define MemoryExceptionCheckOffset 0xe
 #define MemoryPointerTableOffset 0x70
+#define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量
+#define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量
 #define ExceptionDataBufferOffset 0x210
 #define resourcePointerStartOffset 0x208
 #define resourcePointerStep 4
@@ -49674,8 +49676,8 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x138);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
     }
@@ -50053,8 +50055,8 @@ void CleanupsystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x138);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
     }
@@ -50253,8 +50255,8 @@ void CleanupsystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x138);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
     }
@@ -63785,8 +63787,8 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(DataBuffer exceptionCon
   }
   resourceIterator = threadLocalStorage[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x138);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
     if (*validationFlag != '\0') {
         TerminateSystemOnError();
     }
@@ -64320,8 +64322,8 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x138);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
     }
