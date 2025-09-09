@@ -421,6 +421,9 @@ typedef enum {
 
 // UI系统整数局部变量宏定义
 #define localInt9 UILocalInt9
+#define localInt8 UILocalInt8
+#define ProcessingResult1 UIProcessingResult1
+#define ProcessingResult2 UIProcessingResult2
 #define stackUInt32_60 UIStackUInt32_60
 #define cStack0000000000000030 UICharStack30
 #define UIStringTable_TitleFont UIStringTableTitleFont
