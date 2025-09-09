@@ -29235,10 +29235,10 @@ DataWord QuerySystemStatusWithValidation(void)
           *validationStatusPointer = *memoryResourcePointer;
           validationStatusPointer = validationStatusPointer + 1;
           *memoryResourcePointer = statusDataBuffer;
-          memoryresourcePointer = memoryresourcePointer + -1;
-        } while (validationStatusPointer < memoryresourcePointer);
+          memoryResourcePointer = memoryResourcePointer + -1;
+        } while (validationStatusPointer < memoryResourcePointer);
       }
-      systemContext[StackFrameContext + -1] = (char)dataPointerD;
+      systemContext[StackFrameContext + -1] = (char)statusDataPointer;
       dataPointerD = 0x41;
     }
   }
