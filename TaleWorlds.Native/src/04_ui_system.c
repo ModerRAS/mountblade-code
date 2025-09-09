@@ -108172,7 +108172,6 @@ void FUN_18072ec44(void)
  * @note 原始函数名：FUN_18072ec50
  */
 void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
-void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
                   int param_6,int param_7)
 
 {
