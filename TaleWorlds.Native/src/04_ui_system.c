@@ -244,6 +244,31 @@ typedef enum {
 #define pbStack_68 UIByteStack68
 #define pbStack_40 UIByteStack40
 
+// UI系统标签宏定义
+#define LAB_180656abd UIMemoryAllocationCheckLabel
+#define LAB_180656dbb UIResourceProcessingLabel
+#define LAB_180656d07 UIContextDataProcessingLabel
+#define LAB_180656d5b UIDefaultResourceCheckLabel
+#define LAB_180656e1e UICharacterValidationLabel
+#define LAB_1806572f9 UIEventDataValidationLabel
+#define LAB_1806575b7 UIProcessingCompleteLabel
+#define LAB_1806575f7 UICharacterCodeValidationLabel
+#define LAB_1806577f1 UIProcessingCounterValidationLabel
+#define LAB_1806577d7 UIMemoryAllocationResultLabel
+#define LAB_1806577da UIContextDataTransformLabel
+#define LAB_180657812 UIResourceProcessingLoopLabel
+#define LAB_180657835 UIProcessingCompleteExitLabel
+
+// UI系统处理变量宏定义
+#define memoryBlockAddress UIMemoryBlockAddress
+#define ResourceIterator UIResourceIterator
+#define UIDefaultResourceBuffer UIDefaultResourceBuffer
+#define isCharacterMatch UIIsCharacterMatch
+#define iterationCount2 UIIterationCount2
+#define characterCode UICharacterCode
+#define isProcessingComplete UIIsProcessingComplete
+#define AudioFormatType UIAudioFormatType
+
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
 

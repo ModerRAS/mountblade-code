@@ -7986,7 +7986,7 @@ extern uint32_t SystemIntegrityValidationFlag;
 
 // 系统主资源表
 // 功能：存储系统主要资源分配表
-extern void* SystemPrimaryResourceTable;
+extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 系统异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
@@ -10297,14 +10297,14 @@ bool UtilityModuleSecondaryActiveState;
 /**
  * @brief 工具模块资源指针
  */
-void* UtilityModulePrimaryResourcePtr;
-void* UtilityModulePrimaryMemoryPtr;
-void* UtilityModuleSecondaryMemoryPtr;
+UtilityResource* PrimaryUtilityResourcePtr;
+UtilityMemory* PrimaryUtilityMemoryPtr;
+UtilityMemory* SecondaryUtilityMemoryPtr;
 uint32_t UtilityModuleNinthConfig;
 uint32_t UtilityModuleTenthConfig;
 uint32_t UtilityModuleEleventhConfig;
 uint32_t UtilityModuleTwelfthConfig;
-void* UtilityModuleSecondaryResourcePtr;
+UtilityResource* SecondaryUtilityResourcePtr;
 
 /**
  * @brief 重置工具模块指针组1
