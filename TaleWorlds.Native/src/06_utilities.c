@@ -32971,7 +32971,7 @@ DataProcessLabelA:
     if (*(int *)(exceptionHandlerContext[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    dataFlags = OperateDataO0(*exceptionHandlerContext,dataBlock + 0xb8,4);
+    dataFlags = OperateDataO0(*exceptionHandlerContext,dataBlock + OperationDataOffsetB8,4);
     if ((int)dataFlags != 0) {
       return dataFlags;
     }
@@ -33128,7 +33128,7 @@ ValidateDataWithDirectAllocation:
     if (memoryRegionBase != 0) {
       return (uint64_t)memoryRegionBase;
     }
-    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~validationStatus;
+    *(uint *)(systemContext + OperationDataOffsetB8) = (*(uint *)(systemContext + OperationDataOffsetB8) | dataFlags) & ~validationStatus;
   }
   else {
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
@@ -33281,7 +33281,7 @@ DataProcessSectionA:
     if (memoryRegionBase != 0) {
       return (uint64_t)memoryRegionBase;
     }
-    *(uint *)(systemContext + 0xb8) = (*(uint *)(systemContext + 0xb8) | dataFlags) & ~validationStatus;
+    *(uint *)(systemContext + OperationDataOffsetB8) = (*(uint *)(systemContext + OperationDataOffsetB8) | dataFlags) & ~validationStatus;
   }
   else {
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
