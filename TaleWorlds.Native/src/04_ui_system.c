@@ -217,6 +217,15 @@ typedef enum {
 #define stackUIntc8 UIStackBufferC8
 #define stackUIntc0 UIStackBufferC0
 #define stackUIntb8 UIStackBufferB8
+
+// 事件处理变量宏定义
+#define stackLong28 UIEventCharacterPosition
+#define stackInt20 UIEventTypeCode
+#define characterPosition UICharacterPosition
+#define processingResult UIProcessingResult
+#define bufferPtr UIBufferPointer
+#define stringCompareIndex UIStringCompareIndex
+#define componentIndex UIComponentIndex
 #define stackUInt98 UIStackBuffer98
 #define stackUInt90 UIStackBuffer90
 #define stackUInt78 UIStackBuffer78
@@ -224,6 +233,13 @@ typedef enum {
 #define stackUInt68 UIStackBuffer68
 #define stackUInt180 UIStackBuffer180
 #define stackUInt118 UIStackBuffer118
+
+// 更多栈变量宏定义
+#define stackLong70 UIComponentHandle70
+#define stackLong88 UIComponentHandle88
+#define stackIntd8 UIComponentStateD8
+#define stackInt158 UIComponentState158
+#define stackInt40 UIComponentState40
 
 // 局部变量宏定义
 #define localChar11 UILocalCharStatus
