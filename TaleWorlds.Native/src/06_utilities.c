@@ -136,6 +136,25 @@
 #define ExceptionHandlerPointerOffset570 0x570
 #define ExceptionHandlerPointerOffset580 0x580
 
+// 扩展异常处理器偏移量常量
+#define ExceptionHandlerContextOffset560 0x560
+#define ExceptionHandlerContextOffset568 0x568
+#define ExceptionHandlerContextOffset578 0x578
+#define ExceptionHandlerContextOffset580 0x580
+#define ExceptionHandlerContextOffset588 0x588
+#define ExceptionHandlerContextOffset598 0x598
+#define ExceptionHandlerContextOffset5a0 0x5a0
+#define ExceptionHandlerContextOffset5a8 0x5a8
+#define ExceptionHandlerContextOffset5b8 0x5b8
+#define ExceptionHandlerContextOffset5c0 0x5c0
+#define ExceptionHandlerContextOffset5c8 0x5c8
+#define ExceptionHandlerContextOffset5d8 0x5d8
+#define ExceptionHandlerContextOffset5e0 0x5e0
+#define ExceptionHandlerContextOffset5e8 0x5e8
+#define ExceptionHandlerContextOffset5f8 0x5f8
+#define ExceptionHandlerContextOffset600 0x600
+#define ExceptionHandlerContextOffset610 0x610
+
 // 资源表索引常量
 #define ResourceTableIndex1049 0x1049
 #define ResourceTableIndex1013 0x1013
@@ -4643,17 +4662,17 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CleanupExceptionHandlerContextA18 ClearExceptionHandlerContextA18
 #define CleanupExceptionHandlerContextA19 ClearExceptionHandlerContextA19
 
-// 原始函数名：Unwind_18090af50 - 异常上下文处理器回调函数AF50
+// 异常上下文处理器回调函数AF50
 // 功能：处理异常上下文回调，从0x50偏移量的0x298处获取异常上下文指针并执行回调
-#define ExecuteExceptionHandlerCallbackAF50 Unwind_18090af50
+#define ExecuteExceptionHandlerCallbackAF50 InvokeExceptionHandlerCallbackAF50
 
-// 原始函数名：Unwind_18090b130 - 异常上下文处理器回调函数B130
+// 异常上下文处理器回调函数B130
 // 功能：处理异常上下文回调，从0x50偏移量的0x340处获取异常上下文指针并执行回调
-#define ExecuteExceptionHandlerCallbackB130 Unwind_18090b130
+#define ExecuteExceptionHandlerCallbackB130 InvokeExceptionHandlerCallbackB130
 
-// 原始函数名：Unwind_18090b150 - 异常上下文处理器回调函数B150
+// 异常上下文处理器回调函数B150
 // 功能：处理异常上下文回调，从0x50偏移量的0x348处获取异常上下文指针并执行回调
-#define ExecuteExceptionHandlerCallbackB150 Unwind_18090b150
+#define ExecuteExceptionHandlerCallbackB150 InvokeExceptionHandlerCallbackB150
 
 // 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量0x28
 // 功能：清理偏移量0x28处的资源指针，处理内存引用计数和异常情况
@@ -100061,10 +100080,10 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
   uint64_t ExceptionMemoryMask;
   
   ExceptionPointerArray = *(DataBuffer ***)(ExceptionOffset + 0x150);
-  if (memoryResourcePointer == (DataBuffer *)0x0) {
+  if (ExceptionPointerArray == (DataBuffer **)0x0) {
     return;
   }
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
+  ExceptionMemoryMask = (uint64_t)ExceptionPointerArray & MemoryRegionMask;
   if (memoryRegionBase != 0) {
     memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
