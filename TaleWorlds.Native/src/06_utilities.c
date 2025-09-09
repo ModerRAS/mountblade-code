@@ -138,7 +138,7 @@
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffset170 0x170
 #define ExceptionHandlerContextOffset190 0x190
-#define ExceptionHandlerContextOffset1B0 0x1b0
+#define ExceptionHandlerContextOffsetQuinary 0x1b0
 #define ExceptionHandlerContextOffset1D0 0x1d0
 #define StackFrameContextOffset200 0x200
 #define ValueContextOffset8 0x8
@@ -273,7 +273,7 @@
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffsetQuaternary 0xa0
 #define ExceptionHandlerContextOffset108 0x108
-#define ExceptionHandlerContextOffset1B0 0x1b0
+#define ExceptionHandlerContextOffsetQuinary 0x1b0
 #define ExceptionHandlerContextOffset1B8 0x1b8
 #define ExceptionHandlerContextOffset1C0 0x1c0
 #define ExceptionHandlerContextOffset1E8 0x1e8
