@@ -4080,7 +4080,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 参数验证失败可能导致系统不稳定
  * @see CalculateSystemMetricsAndValues, ValidateSystemStatusAndHealth
  */
-#define ValidateSystemParametersAndConfiguration FUN_180047e40
+#define ValidateSystemParametersAndConfiguration ValidateSystemParametersAndConfiguration
 
 /**
  * @brief 系统数据处理函数A0
@@ -4110,7 +4110,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 上下文验证失败可能导致系统行为异常
  * @see ValidateSystemParametersAndConfiguration, ProcessSystemDataA0
  */
-#define ValidateSystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 ValidateSystemContextA0
 
 /**
  * @brief 数据数组处理函数A0
@@ -50200,7 +50200,7 @@ void CleanupValidationContextWithExceptionHandling(DataBuffer operationBase, int
  * 
  * @note 原始函数名：Unwind_180903560
  */
-void CleanupSystemDataWithReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupSystemDataWithMemoryManagement(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -50262,7 +50262,7 @@ void CleanupSystemDataWithReferenceCount(DataBuffer operationBase, int64_t dataB
  * @warning 此函数会修改系统状态，可能导致系统终止
  * @see TerminateSystemE0, TerminateSystemExecutionAndCleanupResources, HandleExceptionE0
  */
-void CleanupsystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupSystemContextWithCompleteValidation(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -130934,7 +130934,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
 // 系统上下文验证函数
-#define ValidateSystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 ValidateSystemContextA0
 
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
