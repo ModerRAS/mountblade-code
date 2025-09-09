@@ -2797,27 +2797,27 @@ void CloseNetworkConnection(void)
   NetworkConnectionExtendedFlags = NetworkDefaultResetValue;              // 重置连接扩展标志
   
   // 释放连接资源
-  NetworkConnectionActiveContext = 0x00;                     // 释放连接上下文
-  NetworkConnectionContextSize = 0x00;                 // 重置连接上下文大小
-  NetworkConnectionPoolManagerHandle = 0x00;                // 释放连接池管理器
+  NetworkConnectionActiveContext = NetworkDefaultResetValue;                     // 释放连接上下文
+  NetworkConnectionContextSize = NetworkDefaultResetValue;                 // 重置连接上下文大小
+  NetworkConnectionPoolManagerHandle = NetworkDefaultResetValue;                // 释放连接池管理器
   
   // 清理安全资源
-  NetworkSecurityContext = 0x00;                       // 释放安全上下文
-  NetworkSecurityLevel = 0x00;                         // 重置安全级别
-  NetworkAuthenticationContext = 0x00;                // 释放认证上下文
-  NetworkEncryptionContext = 0x00;                     // 释放加密上下文
-  NetworkCompressionContext = 0x00;                    // 释放压缩上下文
+  NetworkSecurityContext = NetworkDefaultResetValue;                       // 释放安全上下文
+  NetworkSecurityLevel = NetworkDefaultResetValue;                         // 重置安全级别
+  NetworkAuthenticationContext = NetworkDefaultResetValue;                // 释放认证上下文
+  NetworkEncryptionContext = NetworkDefaultResetValue;                     // 释放加密上下文
+  NetworkCompressionContext = NetworkDefaultResetValue;                    // 释放压缩上下文
   
   // 清理网络资源
-  NetworkSocketContext = 0x00;                         // 释放套接字上下文
-  NetworkSocketContextSize = 0x00;                     // 重置套接字上下文大小
-  NetworkSocketRuntimeData = 0x00;                            // 释放套接字运行时数据
+  NetworkSocketContext = NetworkDefaultResetValue;                         // 释放套接字上下文
+  NetworkSocketContextSize = NetworkDefaultResetValue;                     // 重置套接字上下文大小
+  NetworkSocketRuntimeData = NetworkDefaultResetValue;                            // 释放套接字运行时数据
   
   // 清理事件和回调资源
-  NetworkEventContext = 0x00;                          // 释放事件上下文
-  NetworkCallbackContext = 0x00;                       // 释放回调上下文
-  NetworkEventQueue = 0x00;                            // 清理事件队列
-  NetworkCallbackHandler = 0x00;                       // 清理回调处理器
+  NetworkEventContext = NetworkDefaultResetValue;                          // 释放事件上下文
+  NetworkCallbackContext = NetworkDefaultResetValue;                       // 释放回调上下文
+  NetworkEventQueue = NetworkDefaultResetValue;                            // 清理事件队列
+  NetworkCallbackHandler = NetworkDefaultResetValue;                       // 清理回调处理器
   
   // 重置统计信息
   NetworkActiveConnectionCount = 0;                   // 重置活跃连接计数
