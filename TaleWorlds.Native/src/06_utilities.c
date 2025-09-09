@@ -31277,7 +31277,7 @@ DataBuffer ExecuteDataCleanupA0(void)
     calculatedIndex = systemContext;
     if (0 < operationResult) {
       do {
-        short dataValidationFlag = *(short *)(*(int64_t *)(DestinationContext + SystemContextFunctionPointerOffset600) + systemContext + 0x114);
+        short dataValidationFlag = *(short *)(*(int64_t *)(DestinationContext + SystemContextFunctionPointerOffset600) + systemContext + SystemContextOffset114);
         validationStatus = ProcessDataPointer();
         if ((int)validationStatus != 0) {
           return validationStatus;
