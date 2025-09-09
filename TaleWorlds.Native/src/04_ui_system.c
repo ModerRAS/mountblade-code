@@ -10067,14 +10067,18 @@ void CleanupUIComponent(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-  处理UI组件数据
- 处理UI组件的数据，包括数据验证、配置处理和渲染准备。
- * 使用线程安全的方式处理数据，确保在多线程环境下的数据一致性。
-  uiContext UI上下文指针
- *  dataSource 数据源指针数组
-  无返回值
+  /**
+ * @brief 处理UI组件数据
  * 
-  该函数使用互斥锁确保线程安全，并使用XOR加密保护数据
+ * 处理UI组件的数据，包括数据验证、配置处理和渲染准备。
+ * 使用线程安全的方式处理数据，确保在多线程环境下的数据一致性。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针数组
+ * @return 无返回值
+ * 
+ * @note 该函数使用互斥锁确保线程安全，并使用XOR加密保护数据
+ */
  void ProcessUIComponentData(UIHandle uiContext,longlong *dataSource)
 
 {
