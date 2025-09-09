@@ -65342,11 +65342,11 @@ StringComparisonComplete:
     MemoryBlockListHead = (long long *)FindMatchingDataNode(StringOffset,SystemRegisterFlagBuffer,&ContextDataPointer);
     if (*MemoryBlockListHead == StringOffset) {
       HighByte = true;
-      goto LAB_1800892fd;
+      goto LowByteProcessing;
     }
   }
   HighByte = false;
-LAB_1800892fd:
+LowByteProcessing:
   if (LowByte) {
     ContextDataPointer = &SystemNullTemplate;
     if (MemoryOperationStatus != 0) {
@@ -65700,10 +65700,10 @@ void InitializeSystemStatusAndMemory(void
       ContextHandle9 = ContextHandle9 + 0xc;
     } while ((long long)UnicodeContextHandle < (long long)StringLength);
   }
-LAB_18008984e:
+SystemConfigurationValidation:
                     // WARNING: Subroutine does not return
   ValidateSystemConfiguration(SystemConfigHandle,&SystemConfigDataE);
-LAB_1800897d5:
+SystemStringProcessing:
   SystemStringIndex = lStack_3b8;
   MemoryAllocationIndexAdditional = 0;
   BufferStatusRegister8 = SystemEventFlag8 * 0x20 + *(long long *)(CharacterTablePointer6 + 0x28);
@@ -65716,7 +65716,7 @@ LAB_1800897d5:
     StringOffset = StringOffset + 1;
   } while (ConfigurationString[StringOffset] != '\0');
   if (*(int *)(BufferStatusRegister8 + 0x10) < (int)StringOffset) {
-LAB_180089891:
+StringLengthValidation:
     LowByte = false;
   }
   else {
@@ -66122,7 +66122,7 @@ LAB_180089891:
   }
   SystemEventFlag8 = SystemEventFlag8 + 1;
   if (lStack_1f0 <= SystemEventFlag8) {
-LAB_180089861:
+UtilityFunctionExecution:
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)auStack_418);
   }

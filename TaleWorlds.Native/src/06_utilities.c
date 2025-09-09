@@ -32323,7 +32323,7 @@ MemoryValidationCheckpoint:
       dataFlags = 0xd;
       goto ProcessCheckpointRegisterCleanup;
     }
-    *(uint *)(StackFrameContext + 0xd4) = registerContextValue;
+    *(uint *)(StackFrameContext + StackFrameContextOffsetD4) = registerContextValue;
     dataFlags = validationOutcome;
   }
 ResourceCleanupCheckpoint:

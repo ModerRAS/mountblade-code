@@ -554,6 +554,7 @@
 #define SystemInitializationNegativeOffset0x14     -0x14     // 系统初始化负偏移量0x14
 #define SystemInitializationNegativeOffset0xc      -0xc      // 系统初始化负偏移量0xc
 #define SystemInitializationNegativeOffset4        -4        // 系统初始化负偏移量4
+#define SystemInitializationOffset0x400          0x400     // 系统初始化偏移量0x400
 #define SystemInitializationOffset0x100           0x100     // 系统初始化偏移量0x100
 #define SystemInitializationOffset0x108           0x108     // 系统初始化偏移量0x108
 #define SystemInitializationOffset0x40             0x40      // 系统初始化偏移量0x40
@@ -591,6 +592,10 @@
 // 系统数据模板标识符
 #define SystemMemoryManagerTemplateId1   0x406be72011d07d37  // 系统内存管理器模板标识符1
 #define SystemMemoryManagerTemplateId2   0x71876af946c867ab  // 系统内存管理器模板标识符2
+#define SystemMemoryAllocatorTemplateId1  0x123456789abcdef0  // 系统内存分配器模板标识符1
+#define SystemMemoryAllocatorTemplateId2  0x0987654321fedcba  // 系统内存分配器模板标识符2
+#define SystemEncryptionKeyTemplateId1   0x1111111111111111  // 系统加密密钥模板标识符1
+#define SystemEncryptionKeyTemplateId2   0x2222222222222222  // 系统加密密钥模板标识符2
 // 系统功能模块模板标识符
 #define SystemRenderingModuleTemplateId1   0x449bafe9b77ddd3c  // 系统渲染模块模板标识符1
 #define SystemRenderingModuleTemplateId2   0xc160408bde99e59f  // 系统渲染模块模板标识符2
@@ -49927,7 +49932,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long MemoryBaseAddress;
   uint8_t SystemDataBuffer;
   uint8_t SystemFlagArrayB0 [16];
-  code *SystemSystemCodePointerA0;
+  code *SystemCodePointerA0;
   code *PrimarySystemCodePointer;
   uint8_t SystemStackConfigurationBuffer [16];
   code *SystemSecondarySystemCodePointer;

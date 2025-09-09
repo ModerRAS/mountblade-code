@@ -319,7 +319,18 @@ typedef enum {
 #define allocatedMemory UIAllocatedMemoryBlock
 #define componentIndex UIComponentIndex
 #define pstringCompareIndex UIStringCompareIndex
+// UI系统寄存器变量美化
 #define TempInt4 UIProcessingResult
+#define registerAX UIRegisterAX
+#define registerAXValue UIRegisterAXValue
+#define preservedRegister15 UIPreservedRegister15
+#define preservedRegister13 UIPreservedRegister13
+#define ptrLocal3 UIPtrLocal3
+#define ptrLocal6 UIPtrLocal6
+#define ptrLocal8 UIPtrLocal8
+#define pstackUInt50 UIStackPointer50
+#define pstackUInt80 UIStackPointer80
+#define pstackUInt88 UIStackPointer88
 #define IsValidationComplete UIValidationStatus
 #define uStackX_8 UIStackDataBuffer
 
@@ -1168,7 +1179,50 @@ typedef enum {
 #define localChar3 ProcessingFlag
 #define TransformCoefficient3 TransformScaleX
 #define TransformCoefficient4 TransformScaleY
-#define LocalFloatValue6 RotationAngle
+// UI系统数学计算变量美化
+#define baseValue0 UIMathBaseValue0
+#define baseValue1 UIMathBaseValue1
+#define baseValue2 UIMathBaseValue2
+#define baseValue3 UIMathBaseValue3
+#define baseValue5 UIMathBaseValue5
+#define baseValue6 UIMathBaseValue6
+#define baseValue7 UIMathBaseValue7
+#define FloatValue1 UIMathFloatValue1
+#define FloatValue2 UIMathFloatValue2
+#define vectorComponentX UIMathVectorComponentX
+#define crossProductZ UIMathCrossProductZ
+#define sourceY UIMathSourceY
+#define sourceZ2 UIMathSourceZ2
+#define bufferX UIMathBufferX
+#define bufferY UIMathBufferY
+#define bufferZ UIMathBufferZ
+#define targetY UIMathTargetY
+#define targetZ UIMathTargetZ
+
+// UI系统矩阵计算变量美化
+#define matrixValue1 UIMatrixValue1
+#define matrixValue2 UIMatrixValue2
+#define matrixValue3 UIMatrixValue3
+#define matrixValue4 UIMatrixValue4
+#define matrixValue5 UIMatrixValue5
+#define matrixValue6 UIMatrixValue6
+#define rotationMatrix UIMatrixRotation
+#define translationMatrix UIMatrixTranslation
+#define transformValue1 UITransformValue1
+#define transformValue2 UITransformValue2
+#define transformValue3 UITransformValue3
+#define transformValue4 UITransformValue4
+#define transformValue5 UITransformValue5
+#define transformValue6 UITransformValue6
+#define transformValue7 UITransformValue7
+#define transformValue8 UITransformValue8
+#define transformValue9 UITransformValue9
+#define transformValue10 UITransformValue10
+#define transformValue11 UITransformValue11
+#define crossProductValue1 UIMathCrossProductValue1
+#define determinant UIMathDeterminant
+
+ #define LocalFloatValue6 RotationAngle
 #define ResultFloatValue MatrixValue
 #define TemporaryFloatValue TransformResult
 #define localChar9 SystemStatus
@@ -1628,20 +1682,21 @@ typedef enum {
 #define vectorComponentY UIVectorComponentY
 #define vectorComponentZ UIVectorComponentZ
 #define bufferPointer UIBufferPointer
-#define transformCoeff1 UITransformCoeff1
-#define transformCoeff2 UITransformCoeff2
-#define transformCoeff3 UITransformCoeff3
-#define transformCoeff4 UITransformCoeff4
-#define transformCoeff5 UITransformCoeff5
-#define transformCoeff6 UITransformCoeff6
-#define transformCoeff7 UITransformCoeff7
-#define transformCoeff8 UITransformCoeff8
-#define transformCoeff9 UITransformCoeff9
-#define transformCoeff10 UITransformCoeff10
-#define transformCoeff11 UITransformCoeff11
-#define transformCoeff12 UITransformCoeff12
-#define transformCoeff13 UITransformCoeff13
-#define transformCoeff14 UITransformCoeff14
+// UI系统变换系数变量美化
+#define transformCoeff1 UITransformCoefficient1
+#define transformCoeff2 UITransformCoefficient2
+#define transformCoeff3 UITransformCoefficient3
+#define transformCoeff4 UITransformCoefficient4
+#define transformCoeff5 UITransformCoefficient5
+#define transformCoeff6 UITransformCoefficient6
+#define transformCoeff7 UITransformCoefficient7
+#define transformCoeff8 UITransformCoefficient8
+#define transformCoeff9 UITransformCoefficient9
+#define transformCoeff10 UITransformCoefficient10
+#define transformCoeff11 UITransformCoefficient11
+#define transformCoeff12 UITransformCoefficient12
+#define transformCoeff13 UITransformCoefficient13
+#define transformCoeff14 UITransformCoefficient14
 #define transformCoeff15 UITransformCoeff15
 #define transformCoeff16 UITransformCoeff16
 #define transformCoeff17 UITransformCoeff17
