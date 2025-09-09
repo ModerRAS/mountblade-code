@@ -98832,8 +98832,20 @@ LAB_180722ca8:
 
 
 
- void FUN_180722b2d(void)
-void FUN_180722b2d(void)
+ /**
+ * @brief UI系统数据读取处理器
+ * 
+ * 处理UI系统中的数据读取操作，包括：
+ * - 从上下文句柄读取数据
+ * - 验证数据完整性
+ * - 处理不同大小的数据缓冲区
+ * - 返回读取结果状态
+ * 
+ * @note 原始函数名：FUN_180722b2d
+ * @return 数据读取结果状态码
+ */
+void ProcessUIDataReader(void)
+void ProcessUIDataReader(void)
 
 {
   UIByte result;
