@@ -1,9 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 系统常量定义
-#define DefaultSystemDataAddress 0x18
-#define ComponentHandleOffset 0x10
-#define systemContextOffset 0x8
+#define DefaultSystemDataAddress 0x18                    // 默认系统数据地址
+#define ComponentHandleOffset 0x10                         // 组件句柄偏移量
+#define SystemContextOffset 0x8                           // 系统上下文偏移量
 #define DataBufferElementSize 4
 #define FloatValidationMask 0x7f800000
 #define IntegerMinValue -0x80000000
@@ -5535,7 +5535,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899816
  */
-#define CleanupDataProcessorA0 FUN_180899816
+#define CleanupDataProcessorA0 CleanupDataProcessorFunction
 
 /**
  * @brief 处理数据集合A0
@@ -5544,7 +5544,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808998a0
  */
-#define ProcessDataCollectionA0 FUN_1808998a0
+#define ProcessDataCollectionA0 ProcessDataCollectionFunction
 
 /**
  * @brief 验证数据完整性
@@ -5553,7 +5553,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808999d90
  */
-#define ValidateDataIntegrityA0 FUN_1808999d90
+#define ValidateDataIntegrityA0 ValidateDataIntegrityFunction
 
 /**
  * @brief 执行系统检查
@@ -15481,36 +15481,36 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
 uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrementValue)
 
 {
-  int64_t resourceContextPtr;
-  uint64_t resourceDecrementStatus;
-  int ResourceCleanupStatus;
-  int64_t resourceDecrementBuffer [2];
+  int64_t resourceContextPointer;
+  uint64_t resourceOperationStatus;
+  int resourceCleanupStatusCode;
+  int64_t resourceDataBuffer [2];
   
-  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),resourceDecrementBuffer);
-  resourceContextPtr = resourceDecrementBuffer[0];
-  if ((int)resourceDecrementStatus != 0) {
-    return resourceDecrementStatus;
+  resourceOperationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),resourceDataBuffer);
+  resourceContextPointer = resourceDataBuffer[0];
+  if ((int)resourceOperationStatus != 0) {
+    return resourceOperationStatus;
   }
-  if (*(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) < 1) {
+  if (*(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) < 1) {
     return ResourceInvalidErrorCode;
   }
-  resourceReleaseResult = *(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) + -1;
-  *(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) = resourceReleaseResult;
-  if (*(int *)(resourceDecrementBuffer[0] + ResourceTertiaryOffset) + *(int *)(resourceDecrementBuffer[0] + ResourceSecondaryOffset) + resourceReleaseResult != 0) {
+  resourceReferenceCount = *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) + -1;
+  *(int *)(resourceDataBuffer[0] + ResourceReferenceCountOffset) = resourceReferenceCount;
+  if (*(int *)(resourceDataBuffer[0] + ResourceTertiaryOffset) + *(int *)(resourceDataBuffer[0] + ResourceSecondaryOffset) + resourceReferenceCount != 0) {
     return 0;
   }
-  resourceDecrementBuffer[0] = 0;
-  resourceReleaseResult = ValidateResourceHandle(resourceDecrementBuffer);
-  if (resourceReleaseResult == 0) {
-    resourceReleaseResult = CleanupResourceData(resourceContextPtr,0);
-    if (resourceReleaseResult == 0) {
-      resourceReleaseResult = ValidateSystemParameters(decrementValue);
-      if (resourceReleaseResult == 0) {
-          ReleaseSystemResources(resourceDecrementBuffer);
+  resourceDataBuffer[0] = 0;
+  resourceReferenceCount = ValidateResourceHandle(resourceDataBuffer);
+  if (resourceReferenceCount == 0) {
+    resourceReferenceCount = CleanupResourceData(resourceContextPointer,0);
+    if (resourceReferenceCount == 0) {
+      resourceReferenceCount = ValidateSystemParameters(decrementValue);
+      if (resourceReferenceCount == 0) {
+          ReleaseSystemResources(resourceDataBuffer);
       }
     }
   }
-    ReleaseSystemResources(resourceDecrementBuffer);
+    ReleaseSystemResources(resourceDataBuffer);
 }
 
 
@@ -15545,22 +15545,22 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
 
 {
-  int64_t memoryResourcePointer;
-  uint64_t validationStatus;
-  int64_t systemContextBuffer [4];
+  int64_t resourceMemoryPointer;
+  uint64_t resourceValidationStatus;
+  int64_t systemContextData [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),systemContextBuffer);
-  if ((int)validationStatus != 0) {
-    return validationStatus;
+  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),systemContextData);
+  if ((int)resourceValidationStatus != 0) {
+    return resourceValidationStatus;
   }
-  if (systemContextBuffer[0] != 0) {
-    systemContextBuffer[0] = systemContextBuffer[0] + -8;
+  if (systemContextData[0] != 0) {
+    systemContextData[0] = systemContextData[0] + -8;
   }
-  memoryResourcePointer = *(int64_t *)(systemContextBuffer[ResourceHandleArrayIndex] + ResourceDataOffset);
-  if (memoryResourcePointer != 0) {
-    *(int *)(memoryResourcePointer + ReferenceCountOffset) = *(int *)(memoryResourcePointer + ReferenceCountOffset) + 1;
-    if ((*(char *)(memoryResourcePointer + ResourceStatusOffset) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
-      return validationStatus;
+  resourceMemoryPointer = *(int64_t *)(systemContextData[ResourceHandleArrayIndex] + ResourceDataOffset);
+  if (resourceMemoryPointer != 0) {
+    *(int *)(resourceMemoryPointer + ReferenceCountOffset) = *(int *)(resourceMemoryPointer + ReferenceCountOffset) + 1;
+    if ((*(char *)(resourceMemoryPointer + ResourceStatusOffset) != '\0') && (resourceValidationStatus = QuerySystemStatus(), (int)resourceValidationStatus != 0)) {
+      return resourceValidationStatus;
     }
     return 0;
   }
@@ -16602,51 +16602,51 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
 DataBuffer ValidateUtilitySystemState(void)
 
 {
-  int64_t inputParameter;
-  DataBuffer operationResult;
-  int *operationPointer;
-  int64_t basePointer;
-  DataWord *DataValidationContext;
-  uint SystemCounterValue;
-  uint64_t adjustedValue;
-  int64_t SystemDataProcessingBuffer;
-  uint64_t loopCounter;
-  uint64_t DataAddressContext;
-  uint64_t validationStatus;
-  uint64_t SystemMemoryContext;
-  uint64_t inputParameterAccumulator;
-  int *DataOperationContext;
-  int64_t LocalDataStorage;
+  int64_t systemInputParameter;
+  DataBuffer systemOperationResult;
+  int *systemOperationPointer;
+  int64_t systemBasePointer;
+  DataWord *dataValidationContext;
+  uint systemStatusCounter;
+  uint64_t adjustedParameterValue;
+  int64_t systemDataProcessingBuffer;
+  uint64_t iterationCounter;
+  uint64_t dataAddressContext;
+  uint64_t memoryValidationStatus;
+  uint64_t systemMemoryContext;
+  uint64_t parameterAccumulator;
+  int *dataOperationContext;
+  int64_t localDataStorage;
   
-  loopCounter = 0;
-  adjustedValue = inputParameter - 8;
-  if (inputParameterAccumulator == 0) {
-    SystemMemoryContext = DataAddressContext;
+  iterationCounter = 0;
+  adjustedParameterValue = systemInputParameter - 8;
+  if (parameterAccumulator == 0) {
+    systemMemoryContext = dataAddressContext;
   }
-  DataValidationContext = (DataWord *)(StackFrameContext + DataPointerOffset + (int64_t)*(int *)(StackFrameContext + ArrayCountOffset) * 8);
-  DataOperationContext = (int *)(StackFrameContext + ArrayDataOffset);
+  dataValidationContext = (DataWord *)(StackFrameContext + DataPointerOffset + (int64_t)*(int *)(StackFrameContext + ArrayCountOffset) * 8);
+  dataOperationContext = (int *)(StackFrameContext + ArrayDataOffset);
   if (0 < *(int *)(StackFrameContext + ArrayCountOffset)) {
     do {
-      if ((*DataOperationContext != MemoryValidationConstantA) || (DataOperationContext[1] != MemoryValidationConstantB)) {
-        LocalDataStorage = 0;
-        validationStatus = ValidateMemoryAddressA0(SystemMemoryContext,(int *)(StackFrameContext + ArrayDataOffset) + (int64_t)(int)DataAddressContext * 2,
-                              &SystemDataProcessingBuffer);
-        if ((int)validationStatus != 0) {
-          return validationStatus;
+      if ((*dataOperationContext != MemoryValidationConstantA) || (dataOperationContext[1] != MemoryValidationConstantB)) {
+        localDataStorage = 0;
+        memoryValidationStatus = ValidateMemoryAddressA0(systemMemoryContext,(int *)(StackFrameContext + ArrayDataOffset) + (int64_t)(int)dataAddressContext * 2,
+                              &systemDataProcessingBuffer);
+        if ((int)memoryValidationStatus != 0) {
+          return memoryValidationStatus;
         }
-        if (*(int64_t *)(LocalDataStorage + systemContextOffset) == 0) {
+        if (*(int64_t *)(localDataStorage + systemContextOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalDataStorage + systemContextOffset),*DataValidationContext,
+        memoryValidationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(localDataStorage + systemContextOffset),*dataValidationContext,
                               *(ByteFlag *)(StackFrameContext + resourceDescriptorValidationOffset));
-        if ((int)validationStatus != 0) {
-          return validationStatus;
+        if ((int)memoryValidationStatus != 0) {
+          return memoryValidationStatus;
         }
       }
-      memoryRegionBase = (int)DataAddressContext + 1;
-      DataAddressContext = (uint64_t)memoryRegionBase;
-      DataValidationContext = DataValidationContext + 1;
-      DataOperationContext = DataOperationContext + 2;
+      memoryRegionBase = (int)dataAddressContext + 1;
+      dataAddressContext = (uint64_t)memoryRegionBase;
+      dataValidationContext = dataValidationContext + 1;
+      dataOperationContext = dataOperationContext + 2;
     } while ((int)memoryRegionBase < *(int *)(StackFrameContext + ArrayCountOffset));
   }
   return 0;
@@ -17734,25 +17734,25 @@ void UtilityNoOperationE(void)
 void ProcessUtilitySystemOperation(int64_t operationParams,uint64_t systemContext)
 
 {
-  int operationResult;
-  uint64_t callbackData[4];
-  uint32_t operationParams[2];
-  uint64_t contextPointer;
-  uint32_t paramValue;
-  int64_t resourceDescriptor;
+  int systemOperationResult;
+  uint64_t systemCallbackData[4];
+  uint32_t systemOperationParams[2];
+  uint64_t systemContextPointer;
+  uint32_t systemParamValue;
+  int64_t systemResourceDescriptor;
   
   // 提取操作参数和上下文信息
-  contextPointer = *(uint64_t *)(operationParams + ExceptionHandlerCallbackOffset);
-  paramValue = *(uint32_t *)(operationParams + ResourceCallbackDataOffset);
-  operationParams[0] = 2;
-  resourceDescriptor = operationParams;
+  systemContextPointer = *(uint64_t *)(operationParams + ExceptionHandlerCallbackOffset);
+  systemParamValue = *(uint32_t *)(operationParams + ResourceCallbackDataOffset);
+  systemOperationParams[0] = 2;
+  systemResourceDescriptor = operationParams;
   
   // 执行系统操作
-  operationResult = ExecuteSystemOperation(systemContext,operationParams,*(uint32_t *)(resourceDescriptor + resourceDescriptorValidationOffset),callbackData);
+  systemOperationResult = ExecuteSystemOperation(systemContext,systemOperationParams,*(uint32_t *)(systemResourceDescriptor + resourceDescriptorValidationOffset),systemCallbackData);
   
   // 如果操作成功，执行回调函数
-  if (operationResult == 0) {
-    ExecuteCallbackA0(systemContext,callbackData[0]);
+  if (systemOperationResult == 0) {
+    ExecuteCallbackA0(systemContext,systemCallbackData[0]);
   }
   
   return;
@@ -17773,47 +17773,47 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint resourceProcessingFlags;
+  uint floatProcessingFlags;
   uint systemOperationStatus;
-  uint64_t validationResult;
-  DataBuffer *dataArrayPointer;
-  DataBuffer *dataIterator;
-  int integerConversionResult;
+  uint64_t floatValidationResult;
+  DataBuffer *floatDataArrayPointer;
+  DataBuffer *floatDataIterator;
+  int floatIntegerConversionResult;
   float floatProcessingValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
-  uint DataProcessingFlags;
-  uint processingFlagBitShift;
+  uint floatDataProcessingFlags;
+  uint floatProcessingFlagBitShift;
   DataBuffer vectorRegister;
-  uint validationMaskResult;
+  uint floatValidationMaskResult;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
-  if ((int)validationResult != 0) {
-    return validationResult;
+  floatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
+  if ((int)floatValidationResult != 0) {
+    return floatValidationResult;
   }
   dataContextPointer = *(int64_t *)(stackTempValue + systemContextOffset);
   if (dataContextPointer != 0) {
     floatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
-    for (dataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
-        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= dataIterator &&
-        (dataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); dataIterator = dataIterator + 1) {
-      validationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatProcessingValue,0);
-      if ((int)validationResult != 0) {
-        return validationResult;
+    for (floatDataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
+        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= floatDataIterator &&
+        (floatDataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); floatDataIterator = floatDataIterator + 1) {
+      floatValidationResult = ProcessFloatingPointDataValidationA0(*floatDataIterator,floatProcessingValue,0);
+      if ((int)floatValidationResult != 0) {
+        return floatValidationResult;
       }
     }
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
-      DataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
-      processingFlagBitShift = DataProcessingFlags >> ProcessingFlagsShift;
-      if ((processingFlagBitShift & 1) == 0) {
-        if ((((DataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
-           ((float)integerConversionResult != floatProcessingValue)) {
+      floatDataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      floatProcessingFlagBitShift = floatDataProcessingFlags >> ProcessingFlagsShift;
+      if ((floatProcessingFlagBitShift & 1) == 0) {
+        if ((((floatDataProcessingFlags >> 3 & 1) != 0) && (floatIntegerConversionResult = (int)floatProcessingValue, floatIntegerConversionResult != IntegerMinValue)) &&
+           ((float)floatIntegerConversionResult != floatProcessingValue)) {
           vectorRegister.xComponent = floatProcessingValue;
           vectorRegister.yComponent = floatProcessingValue;
           vectorRegister.zComponent = 0;
-          validationMaskResult = movmskps(processingFlagBitShift,vectorRegister);
-          floatProcessingValue = (float)(int)(integerConversionResult - (validationMaskResult & 1));
+          floatValidationMaskResult = movmskps(floatProcessingFlagBitShift,vectorRegister);
+          floatProcessingValue = (float)(int)(floatIntegerConversionResult - (floatValidationMaskResult & 1));
         }
         floatProcessingValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatProcessingValue);
         if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
@@ -17911,18 +17911,18 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
 void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 
 {
-  DataBuffer resultBuffer;
-  int operationStatusBuffer [2];
-  int64_t dataOffset;
-  int processingStatus[2];  // 处理状态缓冲区
+  DataBuffer systemResultBuffer;
+  int dataOperationStatus [2];
+  int64_t dataRequestOffset;
+  int dataProcessingStatus[2];  // 处理状态缓冲区
   
   // 查询系统数据获取结果缓冲区
-  processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + ExceptionHandlerCallbackOffset),&resultBuffer);
+  dataProcessingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + ExceptionHandlerCallbackOffset),&systemResultBuffer);
   
   // 如果查询成功，处理数据请求
-  if (processingStatus[0] == 0) {
-    dataOffset = dataHandle + systemContextDataOffset;
-    ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + SystemDataHandleOffset),resultBuffer);
+  if (dataProcessingStatus[0] == 0) {
+    dataRequestOffset = dataHandle + systemContextDataOffset;
+    ProcessDataRequest(requestInfo,dataProcessingStatus,*(DataWord *)(dataHandle + SystemDataHandleOffset),systemResultBuffer);
   }
   
   return;

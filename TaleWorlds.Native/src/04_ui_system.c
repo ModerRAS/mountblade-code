@@ -69300,7 +69300,7 @@ LAB_18069b66c:
     result = func_0x00018069eed0(uiValidationResult,*(UIDword *)(uiBufferData + 0x1e94));
     ptrLocal3[-0x100] = result;
     result = func_0x00018069ee90(uiValidationResult,*(UIDword *)(uiBufferData + 0x1e98));
-    *ptrLocal3 = result;
+    *bufferPointer = processingResult;
     result = func_0x00018069ef00(uiValidationResult,*(UIDword *)(uiBufferData + 0x1ea0));
     ptrLocal3[0x100] = result;
     result = func_0x00018069ee60(uiValidationResult);
@@ -100054,7 +100054,7 @@ LAB_180722ba9:
     ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
     do {
       processingResult = ReadUIData();
-      *ptrLocal3 = result;
+      *bufferPointer = processingResult;
       ptrLocal3 = ptrLocal3 + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
@@ -100115,7 +100115,7 @@ LAB_180722ba9:
     ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
     do {
       processingResult = ReadUIData();
-      *ptrLocal3 = result;
+      *bufferPointer = processingResult;
       ptrLocal3 = ptrLocal3 + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
