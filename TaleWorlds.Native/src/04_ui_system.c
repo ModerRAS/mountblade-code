@@ -144612,21 +144612,31 @@ LAB_18074ff2c:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_18074ffa0(longlong uiContext)
-
+/**
+ * @brief 初始化UI内存分配
+ * 
+ * 这个函数负责初始化UI系统的内存分配，确保UI组件有足够的内存空间。
+ * 它会检查是否已经分配了内存，如果没有则进行分配。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @return UIHandle 返回操作状态，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_18074ffa0
+ */
+static UIHandle InitializeUIMemoryAllocation(longlong uiContext)
 {
   longlong allocatedMemory;
   
   allocatedMemory = *(longlong *)(uiBufferData + 0x38);
   if (allocatedMemory == 0) {
-    allocatedMemory = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x100,&UNK_1809583d0,0x5a0,0);
+    allocatedMemory = AllocateUIComponentMemory(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), 0x100, &UIComponentParameterB20, 0x5a0, 0);
     *(longlong *)(uiBufferData + 0x38) = allocatedMemory;
     if (allocatedMemory == 0) {
-      return 0x26;
+      return UI_ERROR_MEMORY_ALLOCATION_FAILED;
     }
   }
   *(longlong *)(uiBufferData + 0x30) = allocatedMemory;
-  return 0;
+  return UI_OPERATION_SUCCESS;
 }
 
 
