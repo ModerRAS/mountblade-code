@@ -90,6 +90,67 @@ typedef enum {
 #define UISystemMemoryManagerFallbackPtr (UIFunctionPtr *)&UISystemMemoryManagerFallbackFunction
 #define UISystemMemoryManagerAdvancedFallbackPtr (UIFunctionPtr *)&UISystemMemoryManagerAdvancedFallbackFunction
 
+// UI系统魔法常量定义
+#define UI_LAYOUT_SIGNATURE_MAGIC 0x53445352    // "SDSR" - UI布局签名魔数
+#define UI_STRING_PREFIX_RUNEZ 0x7372756e      // "srun" - 字符串前缀
+#define UI_STRING_MIDDLE_YREZI 0x2d797265      // "-yre" - 字符串中间部分
+#define UI_STRING_SUFFIX_EZIS 0x657a6973       // "ezis" - 字符串后缀
+#define UI_STRING_END_918D 0x3931383d          // "918-" - 字符串结束标记
+#define UI_RENDER_PREFIX_PARA 0x41524150       // "PARA" - 渲染前缀
+
+// UI系统布局常量
+#define UI_LAYOUT_COMPONENT_SIZE_DIVISOR 7      // UI组件大小除数
+#define UI_LAYOUT_MULTIPLIER 0x2492492492492493 // UI布局乘数
+#define UI_LAYOUT_CONTEXT_OFFSET_3C 0x3c       // UI布局上下文偏移量3C
+#define UI_LAYOUT_CONTEXT_OFFSET_50 0x50       // UI布局上下文偏移量50
+#define UI_LAYOUT_CONTEXT_OFFSET_8 0x8         // UI布局上下文偏移量8
+#define UI_LAYOUT_COMPONENT_FLAG_OFFSET 0x16   // UI组件标志偏移量
+#define UI_LAYOUT_RENDER_FLAG_MASK 0x200        // UI渲染标志掩码
+#define UI_LAYOUT_RENDER_BUFFER_OFFSET 0xbc     // UI渲染缓冲区偏移量
+#define UI_LAYOUT_POSITION_OFFSET 0xb8          // UI布局位置偏移量
+#define UI_LAYOUT_POSITION_DATA_OFFSET 0xc      // UI布局位置数据偏移量
+
+// UI系统组件偏移量常量
+#define UI_COMPONENT_RENDER_STATE_OFFSET 0xac   // UI组件渲染状态偏移量
+#define UI_COMPONENT_HANDLE_OFFSET 0xa8        // UI组件句柄偏移量
+#define UI_COMPONENT_DATA_OFFSET_98 0x98        // UI组件数据偏移量98
+#define UI_COMPONENT_DATA_OFFSET_9C 0x9c        // UI组件数据偏移量9C
+#define UI_COMPONENT_DATA_OFFSET_A0 0xa0        // UI组件数据偏移量A0
+#define UI_COMPONENT_DATA_OFFSET_A4 0xa4        // UI组件数据偏移量A4
+
+// UI系统缓冲区偏移量常量
+#define UI_BUFFER_DATA_OFFSET_50 0x50           // UI缓冲区数据偏移量50
+#define UI_BUFFER_DATA_OFFSET_44 0x44           // UI缓冲区数据偏移量44
+#define UI_BUFFER_FLAG_OFFSET_40 0x40           // UI缓冲区标志偏移量40
+#define UI_BUFFER_FUNCTION_OFFSET_78 0x78       // UI缓冲区函数偏移量78
+#define UI_BUFFER_FUNCTION_OFFSET_10 0x10       // UI缓冲区函数偏移量10
+
+// UI系统状态常量
+#define UI_COMPONENT_POSITION_TYPE 2            // UI组件位置类型
+#define UI_COMPONENT_HANDLE_INDEX 2             // UI组件句柄索引
+#define UI_COMPONENT_RENDER_STATE_INDEX 3       // UI组件渲染状态索引
+#define UI_COMPONENT_TRANSFORM_FLAG_INDEX 4     // UI组件变换标志索引
+#define UI_COMPONENT_SIZE_INDEX 1               // UI组件大小索引
+#define UI_COMPONENT_POSITION_INDEX 1           // UI组件位置索引
+
+// UI系统处理常量
+#define UI_LAYOUT_DATA_ALIGNMENT_MASK 0xffffffffffffff00 // UI布局数据对齐掩码
+#define UI_POSITION_DATA_STRIDE 7               // UI位置数据步长
+
+// UI系统缓冲区对齐常量
+#define UI_BUFFER_ALIGNMENT_MASK 0x8000000f     // UI缓冲区对齐掩码
+#define UI_BUFFER_ALIGNMENT_PADDING 0xfffffff0   // UI缓冲区对齐填充
+#define UI_BUFFER_ALIGNMENT_ADJUSTMENT 1        // UI缓冲区对齐调整值
+
+// UI系统长度常量
+#define UI_MAXIMUM_LENGTH 0xffffffffffffffff    // UI最大长度
+#define UI_STRING_LENGTH_MAX 0xffffffffffffffff // UI字符串最大长度
+
+// UI系统初始化标志
+#define UI_INITIALIZATION_FLAG 0xfffffffffffffffe // UI初始化标志
+#define UI_COMPONENT_STATE_FLAG 0xfffffffffffffffe // UI组件状态标志
+#define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
+
 #define ProcessUIDataWrite WriteUIDataToBuffer
 
  #define InitializeUIContext InitializeUIContextSystem
@@ -8011,42 +8072,42 @@ ulonglong CalculateUILayout(longlong uiContext,longlong dataSource,longlong targ
   uint bufferSize;
   uint *bufferPointer;
   
-  layoutContext = *(int *)(targetBuffer + 0x3c) + dataSource;
-  *(UIDword *)(uiBufferData + 0x50) = *(UIDword *)(layoutContext + 0x50);
-  *(UIDword *)(uiBufferData + 0x44) = *(UIDword *)(layoutContext + 8);
-  if ((*(ushort *)(layoutContext + 0x16) & 0x200) != 0) {
-    *(UIByte *)(uiContext + 0x40) = 1;
+  layoutContext = *(int *)(targetBuffer + UI_LAYOUT_CONTEXT_OFFSET_3C) + dataSource;
+  *(UIDword *)(uiBufferData + UI_BUFFER_DATA_OFFSET_50) = *(UIDword *)(layoutContext + UI_LAYOUT_CONTEXT_OFFSET_50);
+  *(UIDword *)(uiBufferData + UI_BUFFER_DATA_OFFSET_44) = *(UIDword *)(layoutContext + UI_LAYOUT_CONTEXT_OFFSET_8);
+  if ((*(ushort *)(layoutContext + UI_LAYOUT_COMPONENT_FLAG_OFFSET) & UI_LAYOUT_RENDER_FLAG_MASK) != 0) {
+    *(UIByte *)(uiContext + UI_BUFFER_FLAG_OFFSET_40) = 1;
   }
-  renderBuffer = (ulonglong)*(uint *)(layoutContext + 0xbc);
-  layoutData = renderBuffer * 0x2492492492492493;
-  componentSize = (uint)((renderBuffer - renderBuffer / 7 >> 1) + renderBuffer / 7 >> 4);
+  renderBuffer = (ulonglong)*(uint *)(layoutContext + UI_LAYOUT_RENDER_BUFFER_OFFSET);
+  layoutData = renderBuffer * UI_LAYOUT_MULTIPLIER;
+  componentSize = (uint)((renderBuffer - renderBuffer / UI_LAYOUT_COMPONENT_SIZE_DIVISOR >> 1) + renderBuffer / UI_LAYOUT_COMPONENT_SIZE_DIVISOR >> 4);
   if (componentSize == 0) {
 LayoutValidationSkip:
-    layoutData = layoutData & 0xffffffffffffff00;
+    layoutData = layoutData & UI_LAYOUT_DATA_ALIGNMENT_MASK;
   }
   else {
     bufferSize = 0;
     if (componentSize != 0) {
-      positionData = (int *)((ulonglong)*(uint *)(layoutContext + 0xb8) + 0xc + dataSource);
+      positionData = (int *)((ulonglong)*(uint *)(layoutContext + UI_LAYOUT_POSITION_OFFSET) + UI_LAYOUT_POSITION_DATA_OFFSET + dataSource);
       do {
-        if ((positionData[1] != 0) && (*positionData == 2)) {
-          bufferPointer = (uint *)((ulonglong)(uint)positionData[2] + dataSource);
-          if (*bufferPointer != 0x53445352) goto LayoutValidationSkip;
-          *(uint *)(uiContext + 0xac) = bufferPointer[5];
-          (**(code **)(*(longlong *)(uiBufferData + 0x78) + 0x10))
-                    ((longlong *)(uiContext + 0x78),bufferPointer + 6);
+        if ((positionData[UI_COMPONENT_SIZE_INDEX] != 0) && (*positionData == UI_COMPONENT_POSITION_TYPE)) {
+          bufferPointer = (uint *)((ulonglong)(uint)positionData[UI_COMPONENT_HANDLE_INDEX] + dataSource);
+          if (*bufferPointer != UI_LAYOUT_SIGNATURE_MAGIC) goto LayoutValidationSkip;
+          *(uint *)(uiContext + UI_COMPONENT_RENDER_STATE_OFFSET) = bufferPointer[5];
+          (**(code **)(*(longlong *)(uiBufferData + UI_BUFFER_FUNCTION_OFFSET_78) + UI_BUFFER_FUNCTION_OFFSET_10))
+                    ((longlong *)(uiContext + UI_BUFFER_FUNCTION_OFFSET_78),bufferPointer + 6);
           layoutData = (ulonglong)*bufferPointer;
-          *(uint *)(uiContext + 0xa8) = *bufferPointer;
-          componentHandle = bufferPointer[2];
-          renderState = bufferPointer[3];
-          transformFlag = bufferPointer[4];
-          *(uint *)(uiContext + 0x98) = bufferPointer[1];
-          *(uint *)(uiContext + 0x9c) = componentHandle;
-          *(uint *)(uiContext + 0xa0) = renderState;
-          *(uint *)(uiContext + 0xa4) = transformFlag;
+          *(uint *)(uiContext + UI_COMPONENT_HANDLE_OFFSET) = *bufferPointer;
+          componentHandle = bufferPointer[UI_COMPONENT_HANDLE_INDEX];
+          renderState = bufferPointer[UI_COMPONENT_RENDER_STATE_INDEX];
+          transformFlag = bufferPointer[UI_COMPONENT_TRANSFORM_FLAG_INDEX];
+          *(uint *)(uiContext + UI_COMPONENT_DATA_OFFSET_98) = bufferPointer[UI_COMPONENT_SIZE_INDEX];
+          *(uint *)(uiContext + UI_COMPONENT_DATA_OFFSET_9C) = componentHandle;
+          *(uint *)(uiContext + UI_COMPONENT_DATA_OFFSET_A0) = renderState;
+          *(uint *)(uiContext + UI_COMPONENT_DATA_OFFSET_A4) = transformFlag;
         }
         bufferSize = bufferSize + 1;
-        positionData = positionData + 7;
+        positionData = positionData + UI_POSITION_DATA_STRIDE;
       } while (bufferSize < componentSize);
     }
     layoutData = CONCAT71((int7)(layoutData >> 8),1);
@@ -9389,17 +9450,17 @@ void SetupUIMemoryAllocator(void)
   piterationCount = (UIDword *)CreateUIContext(UIContextManager,0x13,0x13);
   *(UIByte *)piterationCount = 0;
   ConfigureUIComponent(piterationCount);
-  *piterationCount = 0x7372756e;
-  piterationCount[1] = 0x2d797265;
-  piterationCount[2] = 0x657a6973;
-  piterationCount[3] = 0x3931383d;
+  *piterationCount = UI_STRING_PREFIX_RUNEZ;
+  piterationCount[1] = UI_STRING_MIDDLE_YREZI;
+  piterationCount[2] = UI_STRING_SUFFIX_EZIS;
+  piterationCount[3] = UI_STRING_END_918D;
   *(UIWord *)(piterationCount + 4) = 0x6b32;
   *(UIByte *)((longlong)piterationCount + 0x12) = 0;
   ptrResult = (UIHandle *)CreateUIContext(UIContextManager,0x10,0x13);
   *(UIByte *)ptrResult = 0;
   ConfigureUIComponent(ptrResult);
   *ptrResult = 0x5f43475f4f4e4f4d;
-  *(UIDword *)(ptrResult + 1) = 0x41524150;
+  *(UIDword *)(ptrResult + 1) = UI_RENDER_PREFIX_PARA;
   *(UIWord *)((longlong)ptrResult + 0xc) = 0x534d;
   *(UIByte *)((longlong)ptrResult + 0xe) = 0;
   SetEnvironmentVariableA(ptrResult,piterationCount);
