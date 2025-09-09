@@ -2952,7 +2952,7 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkPortRangeEnd = NetworkMaximumPortNumber;           // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeoutMs = Network30SecondsTimeout;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeoutMs = NetworkConnectionTimeout30Seconds;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                         // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                           // 设置重试计数偏移量
   
@@ -3709,7 +3709,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t NetworkProcessingStatusCode = 0;                              // 网络连接处理状态码
   int64_t ProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketProcessingIndex = 0;                                           // 网络数据包处理索引
-  int32_t NetworkMaximumInt32Value = NetworkMaximumSignedInt32Value;         // 网络最大32位整数值
+  int32_t NetworkMaximumPacketProcessingIndex = NetworkMaximumSignedInt32Value;         // 网络数据包处理最大索引值
   int64_t *NetworkOperationBuffer = NULL;                               // 连接操作缓冲区
   if (NetworkProcessingStatusCode == 0) {
 PrimaryNetworkProcessingComplete:
@@ -3720,7 +3720,7 @@ PrimaryNetworkProcessingComplete:
     *(int *)CalculateConnectionParameterOffset(NetworkOperationBuffer) = NetworkProcessingStatusCode;
     return NetworkOperationSuccess;
   }
-  if (NetworkPacketProcessingIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
+  if (NetworkPacketProcessingIndex * ConnectionEntrySize - 1U < NetworkMaximumPacketProcessingIndex) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketProcessingIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
