@@ -33491,7 +33491,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   contextHandleData = *(longlong *)(uiBufferData + 0x2398);
   EventDataIndex = *(longlong *)(uiBufferData + 0x23a0);
   stackLonga0 = (longlong)*(int *)(targetBuffer + 0x20) + *(longlong *)(uiBufferData + 0x1e98);
-  sVar2 = *param_9;
+  contextValue = *param_9;
   pstackUInt98 = param_7;
   psStack_68 = param_9;
   stackLong90 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
@@ -186035,6 +186035,9 @@ undefined UILayoutCacheHeadPtr;
 // 原始变量名：DAT_180c0fc14 - UI布局缓存尾指针
 #define UILayoutCacheTailPtr DAT_180c0fc14
 undefined UILayoutCacheTailPtr;
+// 原始变量名：DAT_1809472f0 - UI组件数据结构
+#define UIComponentDataStructure DAT_1809472f0
+undefined UIComponentDataStructure;
 // 原始变量名：DAT_180c0fd30 - UI动画缓存头指针
 #define UIAnimationCacheHeadPtr DAT_180c0fd30
 undefined UIAnimationCacheHeadPtr;
