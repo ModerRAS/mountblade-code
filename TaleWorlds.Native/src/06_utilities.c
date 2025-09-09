@@ -296,6 +296,14 @@
 #define SystemStatusCheckOffset260 0x260
 #define SystemStatusCheckOffset270 0x270
 #define SystemStatusCheckOffset44 0x44
+
+// 栈帧上下文偏移量常量
+#define StackFrameContextNegativeOffset80 -0x80
+#define StackFrameContextNegativeOffset78 -0x78
+#define StackFrameContextNegativeOffset70 -0x70
+#define StackFrameContextNegativeOffset68 -0x68
+#define StackFrameContextNegativeOffset54 -0x54
+#define StackFrameContextNegativeOffset10 -0x10
 #define SystemStatusCheckOffset24 0x24
 #define SystemStatusCheckOffset48 0x48
 
@@ -23693,7 +23701,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
   arrayIndex = CONCAT44(processFlags,currentIndex) + CONCAT44(processFlags,currentIndex) * 2;
   allocatedMemoryBlock = (int64_t)*(int *)(dataPointer + arrayIndex * 4) + *(int64_t *)(systemContext + 8);
   dataType = *(char *)(dataPointer + 8 + arrayIndex * 4);
-  *(int64_t *)(stackPointer + -0x80) = arrayIndex;
+  *(int64_t *)(stackPointer + StackFrameContextNegativeOffset80) = arrayIndex;
   if (dataType == typeCheck) {
     itemCount = *(int *)(systemContext + SystemContextOffsetB0);
     if (currentIndex < itemCount) {
