@@ -111581,18 +111581,30 @@ void CallExceptionHandlerAE0(DataBuffer exceptionContext,int64_t systemContext)
 
 
 
-void Unwind_18090faf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器函数AF0
+ * 
+ * 该函数负责在异常处理上下文中设置临时异常处理器。
+ * 首先设置临时异常处理器，然后检查系统状态，如果需要则终止系统执行。
+ * 最后清理异常状态并恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090faf0
+ */
+void SetTemporaryExceptionHandlerAF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x120);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerPointerOffset120);
   *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + RegisterContextAllocationOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + RegisterContextAllocationOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemDefaultExceptionHandlerB;
   return;
 }
