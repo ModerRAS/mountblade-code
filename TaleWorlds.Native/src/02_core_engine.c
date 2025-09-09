@@ -72,33 +72,257 @@
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
 
 // 系统初始化和配置函数语义化定义
+
+/**
+ * @brief 配置核心引擎指针
+ * 
+ * 初始化和配置核心引擎的各种指针，包括系统上下文、内存管理器等
+ * 
+ * @note 原始函数名：FUN_18062db60
+ */
 #define ConfigureCoreEnginePointers FUN_18062db60
+
+/**
+ * @brief 验证处理状态标志
+ * 
+ * 检查系统处理状态标志的有效性和正确性
+ * 
+ * @note 原始函数名：FUN_18005f430
+ */
 #define ValidateProcessingStatusFlag FUN_18005f430
+
+/**
+ * @brief 验证内存引用
+ * 
+ * 验证内存引用的有效性和安全性
+ * 
+ * @note 原始函数名：FUN_18005ff50
+ */
 #define ValidateMemoryReference FUN_18005ff50
+
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 初始化系统内存管理器，设置内存池和分配策略
+ * 
+ * @note 原始函数名：FUN_1801570c0
+ */
 #define InitializeSystemMemoryManager FUN_1801570c0
+
+/**
+ * @brief 处理核心引擎初始化
+ * 
+ * 执行核心引擎的初始化过程，包括系统组件的启动和配置
+ * 
+ * @note 原始函数名：FUN_180066320
+ */
 #define ProcessCoreEngineInitialization FUN_180066320
+
+/**
+ * @brief 检查渲染参数状态
+ * 
+ * 检查渲染系统参数的状态和有效性
+ * 
+ * @note 原始函数名：FUN_1808fcb90
+ */
 #define CheckRenderParameterStatus FUN_1808fcb90
+
+/**
+ * @brief 更新渲染参数状态
+ * 
+ * 更新渲染系统的参数状态，确保渲染参数的同步
+ * 
+ * @note 原始函数名：FUN_1808fcb30
+ */
 #define UpdateRenderParameterStatus FUN_1808fcb30
+
+/**
+ * @brief 处理核心引擎系统上下文
+ * 
+ * 管理核心引擎的系统上下文，包括上下文的创建、维护和销毁
+ * 
+ * @note 原始函数名：FUN_18004caf0
+ */
 #define ProcessCoreEngineSystemContext FUN_18004caf0
+
+/**
+ * @brief 获取分配的内存大小信息
+ * 
+ * 获取系统已分配内存的大小和使用情况信息
+ * 
+ * @note 原始函数名：FUN_18005c2a0
+ */
 #define GetAllocatedMemorySizeInfo FUN_18005c2a0
+
+/**
+ * @brief 获取整数值指针
+ * 
+ * 获取指定整数值的指针，用于数据的间接访问
+ * 
+ * @note 原始函数名：FUN_180171f10
+ */
 #define GetIntegerValuePointer FUN_180171f10
+
+/**
+ * @brief 处理音频缓冲区
+ * 
+ * 管理音频数据的缓冲区，包括音频数据的读取、写入和处理
+ * 
+ * @note 原始函数名：FUN_180047d40
+ */
 #define ProcessAudioBuffer FUN_180047d40
+
+/**
+ * @brief 处理内存栈
+ * 
+ * 管理系统的内存栈，包括栈的分配、释放和清理
+ * 
+ * @note 原始函数名：FUN_180623de0
+ */
 #define ProcessMemoryStack FUN_180623de0
+
+/**
+ * @brief 处理系统信息
+ * 
+ * 收集和处理系统的运行时信息，用于系统监控和诊断
+ * 
+ * @note 原始函数名：FUN_180060680
+ */
 #define ProcessSystemInfo FUN_180060680
+
+/**
+ * @brief 处理核心引擎系统数据
+ * 
+ * 管理核心引擎的系统数据，包括数据的存储、检索和更新
+ * 
+ * @note 原始函数名：FUN_180052200
+ */
 #define ProcessCoreEngineSystemData FUN_180052200
+
+/**
+ * @brief 释放数据处理器资源
+ * 
+ * 释放数据处理器占用的资源，包括内存、句柄等
+ * 
+ * @note 原始函数名：FUN_1800567c0
+ */
 #define ReleaseDataProcessorResource FUN_1800567c0
+
+/**
+ * @brief 清理系统内存指针
+ * 
+ * 清理系统中的内存指针，释放不再使用的内存资源
+ * 
+ * @note 原始函数名：FUN_180057790
+ */
 #define CleanupSystemMemoryPointers FUN_180057790
+
+/**
+ * @brief 减少内存引用计数
+ * 
+ * 减少内存资源的引用计数，当计数为0时释放资源
+ * 
+ * @note 原始函数名：FUN_180057796
+ */
 #define DecrementMemoryReferenceCount FUN_180057796
+
+/**
+ * @brief 安全释放内存引用计数
+ * 
+ * 安全地减少内存引用计数，包含额外的安全检查
+ * 
+ * @note 原始函数名：FUN_180057814
+ */
 #define SafeReleaseMemoryReferenceCount FUN_180057814
+
+/**
+ * @brief 处理系统事件队列
+ * 
+ * 管理系统的事件队列，包括事件的添加、处理和分发
+ * 
+ * @note 原始函数名：FUN_180057830
+ */
 #define ProcessSystemEventQueue FUN_180057830
+
+/**
+ * @brief 处理字符状态缓冲区返回指针
+ * 
+ * 管理字符状态缓冲区的返回指针，确保指针的正确性
+ * 
+ * @note 原始函数名：FUN_180057b00
+ */
 #define ProcessCharacterStatusBufferReturnPointer FUN_180057b00
+
+/**
+ * @brief 初始化系统资源返回指针
+ * 
+ * 初始化系统资源的返回指针，设置资源的初始状态
+ * 
+ * @note 原始函数名：FUN_180057cb0
+ */
 #define InitializeSystemResourcesReturnPointer FUN_180057cb0
+
+/**
+ * @brief 带超时处理系统数据
+ * 
+ * 在指定的时间内处理系统数据，确保操作的及时性
+ * 
+ * @note 原始函数名：FUN_180057d70
+ */
 #define ProcessSystemDataWithTimeout FUN_180057d70
+
+/**
+ * @brief 初始化系统数据处理器
+ * 
+ * 初始化系统数据的处理器，设置数据处理的环境和参数
+ * 
+ * @note 原始函数名：FUN_180057f30
+ */
 #define InitializeSystemDataHandler FUN_180057f30
+
+/**
+ * @brief 处理系统上下文数据
+ * 
+ * 管理系统上下文的数据，包括数据的同步和一致性维护
+ * 
+ * @note 原始函数名：FUN_180058000
+ */
 #define ProcessSystemContextData FUN_180058000
+
+/**
+ * @brief 查找匹配的数据节点
+ * 
+ * 在数据结构中查找匹配指定条件的节点
+ * 
+ * @note 原始函数名：FUN_180058080
+ */
 #define FindMatchingDataNode FUN_180058080
+
+/**
+ * @brief 释放内存引用计数处理器
+ * 
+ * 处理内存引用计数的释放，确保资源的正确清理
+ * 
+ * @note 原始函数名：FUN_180058160
+ */
 #define ReleaseMemoryReferenceCountHandler FUN_180058160
+
+/**
+ * @brief 初始化核心引擎系统状态
+ * 
+ * 初始化核心引擎的系统状态，设置系统的初始运行状态
+ * 
+ * @note 原始函数名：FUN_180058826
+ */
 #define InitializeCoreEngineSystemState FUN_180058826
+
+/**
+ * @brief 清理核心引擎系统资源
+ * 
+ * 清理核心引擎占用的系统资源，为系统关闭做准备
+ * 
+ * @note 原始函数名：FUN_180058830
+ */
 #define CleanupCoreEngineSystemResources FUN_180058830
 
 // 系统上下文偏移量常量

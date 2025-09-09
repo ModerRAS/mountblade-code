@@ -10211,8 +10211,8 @@ LAB_UIContextInitialize:
                      WARNING: Subroutine does not return
             DestroyUIComponent();
           }
-          transformResult = 0;
-          TransformCoefficient23 = 0;
+          uiTransformCalculationResult = 0;
+          uiTransformCoefficient23 = 0;
           resultPointer3 = &SecondaryUIBuffer;
           for (currentMemoryBlock = dataPointer1; currentMemoryBlock != dataPointer2; currentMemoryBlock = currentMemoryBlock + 4) {
             (**(code **)*currentMemoryBlock)(currentMemoryBlock,0);
