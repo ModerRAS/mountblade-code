@@ -17972,21 +17972,21 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPo
   const int NullPointerValue = 0;  // 空指针值
   const int AllocationSuccessCode = 0;  // 分配成功代码
   
-  currentNodePointer = (int64_t *)0x0;
-  systemContextBuffer[0] = 0;
+  currentNodePointer = (int64_t *)NullPointerValue;
+  systemContextBuffer[0] = NullPointerValue;
   validationResult = AllocateSystemBufferCA0(systemContextBuffer);
   
-  if ((validationResult == 0) && 
-      (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + ContextValidationOffset)), validationResult == 0)) {
+  if ((validationResult == AllocationSuccessCode) && 
+      (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + ContextValidationOffset)), validationResult == AllocationSuccessCode)) {
     
     // 初始化链表遍历
     nextNodePointer = (int64_t *)(*(int64_t *)(contextPointer + ContextListHeadOffset) - NodeHeaderSize);
-    if (*(int64_t *)(contextPointer + ContextListHeadOffset) == 0) {
+    if (*(int64_t *)(contextPointer + ContextListHeadOffset) == NullPointerValue) {
       nextNodePointer = currentNodePointer;
     }
     
     dataNodePointer = currentNodePointer;
-    if (nextNodePointer != (int64_t *)0x0) {
+    if (nextNodePointer != (int64_t *)NullPointerValue) {
       dataNodePointer = nextNodePointer + 1;
     }
     
@@ -18042,8 +18042,12 @@ DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
   uint64_t operationResult;
   int64_t contextBuffer[4];
   
+  // 请求处理常量
+  const int ContextBufferSize = 4;  // 上下文缓冲区大小
+  const int OperationSuccessCode = 0;  // 操作成功代码
+  
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(requestPointer + ExceptionHandlerCallbackOffset10),contextBuffer);
-  if ((int)operationResult == 0) {
+  if ((int)operationResult == OperationSuccessCode) {
     *(DataWord *)(*(int64_t *)(contextBuffer[0] + ExceptionHandlerCallbackOffset10) + systemContextPointerOffset) = *(DataWord *)(requestPointer + systemContextDataOffset);
     if ((*(int64_t *)(contextBuffer[0] + systemContextOffset) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
       return operationResult;
