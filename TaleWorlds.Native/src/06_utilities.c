@@ -6660,6 +6660,66 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：在0x2e0偏移处设置默认异常处理器B
 #define SetDefaultExceptionHandlerM Unwind_180909ae0
 
+// 原始函数名：Unwind_18090e8a0 - 默认异常处理器设置函数N
+// 功能：在0x218偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset218 Unwind_18090e8a0
+
+// 原始函数名：Unwind_18090e8b0 - 默认异常处理器设置函数O
+// 功能：在ValidationResultOffset8偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtValidationOffset8 Unwind_18090e8b0
+
+// 原始函数名：Unwind_18090e8c0 - 默认异常处理器设置函数P
+// 功能：在0xd0偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffsetD0 Unwind_18090e8c0
+
+// 原始函数名：Unwind_18090e8d0 - 默认异常处理器设置函数Q
+// 功能：在0x158偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset158 Unwind_18090e8d0
+
+// 原始函数名：Unwind_18090e8e0 - 默认异常处理器设置函数R
+// 功能：在0x1e8偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset1E8 Unwind_18090e8e0
+
+// 原始函数名：Unwind_18090e8f0 - 默认异常处理器设置函数S
+// 功能：在0x250偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset250 Unwind_18090e8f0
+
+// 原始函数名：Unwind_18090e900 - 默认异常处理器设置函数T
+// 功能：在0x2b8偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset2B8 Unwind_18090e900
+
+// 原始函数名：Unwind_18090e910 - 默认异常处理器设置函数U
+// 功能：在0x320偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset320 Unwind_18090e910
+
+// 原始函数名：Unwind_18090e920 - 默认异常处理器设置函数V
+// 功能：在0x388偏移处设置默认异常处理器B
+#define SetDefaultExceptionHandlerAtOffset388 Unwind_18090e920
+
+// 原始函数名：Unwind_18090e8d0 - 异常处理器和系统管理函数
+// 功能：管理系统异常处理器，处理系统资源清理和终止操作
+#define ManageSystemExceptionHandlerAndCleanup Unwind_18090e8d0
+
+// 原始函数名：Unwind_18090e8e0 - 异常上下文处理函数
+// 功能：处理异常上下文，管理异常处理器和系统资源
+#define ProcessExceptionContextAndHandlers Unwind_18090e8e0
+
+// 原始函数名：Unwind_18090e8f0 - 异常资源管理函数
+// 功能：管理异常资源，处理异常上下文和数据缓冲区
+#define ManageExceptionResourcesAndBuffers Unwind_18090e8f0
+
+// 原始函数名：Unwind_18090e900 - 系统异常处理函数
+// 功能：处理系统异常，管理异常状态和资源清理
+#define HandleSystemExceptionAndCleanup Unwind_18090e900
+
+// 原始函数名：Unwind_18090e910 - 异常数据验证函数
+// 功能：验证异常数据，处理异常上下文和系统状态
+#define ValidateExceptionDataAndContext Unwind_18090e910
+
+// 原始函数名：Unwind_18090e920 - 异常状态管理函数
+// 功能：管理异常状态，处理异常处理器和系统资源
+#define ManageExceptionStateAndHandlers Unwind_18090e920
+
 // 原始函数名：FUN_180942460 - 数据压缩函数A1
 // 功能：压缩数据并返回压缩结果
 #define CompressDataAndReturnResult FUN_180942460
