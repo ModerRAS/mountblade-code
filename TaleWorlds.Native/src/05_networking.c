@@ -4885,7 +4885,7 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
  * @warning 如果清理失败，可能导致内存泄漏或资源残留
  * @see NetworkConnectionBufferSize, NetworkValidationSuccess
  */
-void CleanupNetworkConnectionStack(void* ConnectionBuffer)
+void CleanupNetworkConnectionStack(void* NetworkConnectionStackBuffer)
 {
   // 连接堆栈清理变量
   uint32_t StackCleanupStatus;                // 清理操作状态
