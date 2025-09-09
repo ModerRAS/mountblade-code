@@ -118077,9 +118077,9 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void ResetExceptionHandlersAtOffsetAc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionHandlerContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionContextDataOffset14f0) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + ExceptionContextDataOffset14f0))(exceptionHandlerContext + ExceptionContextDataOffset14e0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
