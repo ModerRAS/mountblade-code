@@ -93904,51 +93904,61 @@ void ProcessUIComponentTransformations(void)
 
 
  void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
-void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
+/**
+ * @brief UI内存管理处理器
+ * 
+ * 该函数处理UI系统中的内存管理操作，包括数据复制、缓冲区管理和内存分配。
+ * 用于优化UI组件的内存使用和性能。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ */
+void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *targetBuffer)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
-  uint *ptrLocal3;
-  UIByte aProcessingStatus [16];
-  UIByte aloopCounter [16];
-  double dVar6;
-  float ResultFloatValue;
-  float *pTemporaryFloatValue;
+  float *baseValuePointer;
+  float *transformCoefficient1;
+  uint *dataPointer;
+  UIByte processingStatus [16];
+  UIByte loopCounter [16];
+  double tempDouble;
+  float resultFloatValue;
+  float *temporaryFloatValue;
   float *bufferPointer;
-  float *BaseValuePointer0;
+  float *baseValuePointer0;
   float *baseScaleFactor;
-  float *BaseValuePointer2;
-  float *BaseValuePointer3;
+  float *baseValuePointer2;
+  float *baseValuePointer3;
   longlong allocatedMemory4;
   longlong allocatedMemory5;
-  uint TotalResult;
-  float *BaseValuePointer7;
-  longlong AllocatedMemoryBlock8;
+  uint totalResult;
+  float *baseValuePointer7;
+  longlong allocatedMemoryBlock8;
   uint result9;
   uint iterationCount0;
   longlong componentIndex1;
   longlong componentIndex2;
-  float *TransformCoefficient13;
+  float *transformCoefficient13;
   int uiValidationResult4;
   longlong componentIndex5;
   float transformCoeff16;
   float transformCoeff17;
   float transformCoeff18;
   float transformCoeff19;
-  float TransformCoefficient20;
-  float TransformCoefficient21;
-  float TransformCoefficient22;
-  float TransformCoefficient23;
+  float transformCoefficient20;
+  float transformCoefficient21;
+  float transformCoefficient22;
+  float transformCoefficient23;
   float transformMatrix24;
-  float afStack_248 [100];
-  float *pfStack_b8;
+  float stackBuffer [100];
+  float *stackPointer;
   
-  BaseValuePointer7 = (float *)(XorEncryptionKey ^ (ulonglong)afStack_248);
-  pfStack_b8 = BaseValuePointer7;
-  ptrLocal3 = *(uint **)(uiContext + 8);
-  TransformCoefficient13 = *(float **)(uiContext + 0x10);
-  TotalResult = ptrLocal3[1];
+  baseValuePointer7 = (float *)(XorEncryptionKey ^ (ulonglong)stackBuffer);
+  stackPointer = baseValuePointer7;
+  dataPointer = *(uint **)(uiContext + 8);
+  transformCoefficient13 = *(float **)(uiContext + 0x10);
+  totalResult = dataPointer[1];
   if (0 < (longlong)(int)TotalResult) {
     componentIndex2 = 0;
     iterationCount0 = *ptrLocal3;
