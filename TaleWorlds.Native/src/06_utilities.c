@@ -20206,14 +20206,14 @@ void UtilityNoOperationFunction(void)
  */
 void CheckSystemConditionAndExecute(void)
 {
-  int validationStatus;
-  int64_t contextPointer;
+  int systemValidationStatus;
+  int64_t systemContextPointer;
   
   // 验证系统资源状态
-  validationStatus = ValidateAndProcessSystemResourceA0();
-  if (validationStatus == 0) {
+  systemValidationStatus = ValidateAndProcessSystemResourceA0();
+  if (systemValidationStatus == 0) {
     // 如果验证成功，处理系统事件
-    ProcessSystemEventB0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98));
+    ProcessSystemEventB0(*(DataBuffer *)(systemContextPointer + SystemOperationDataOffset98));
   }
   return;
 }
@@ -20233,60 +20233,60 @@ void CheckSystemConditionAndExecute(void)
  */
 uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_t resourceContext)
 {
-  int dataIndex;
-  uint64_t operationStatus;
-  int64_t systemDataPtr;
-  int64_t bufferPtr;
+  int dataItemIndex;
+  uint64_t validationStatus;
+  int64_t systemDataArrayPtr;
+  int64_t dataBufferPtr;
   
   // 查询并检索系统数据
-  operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + ExceptionHandlerCallbackOffset10), &bufferPtr);
-  if ((int)operationStatus != 0) {
-    return operationStatus;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + ExceptionHandlerCallbackOffset10), &dataBufferPtr);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
   
-  systemDataPtr = bufferPtr;
-  if (bufferPtr != 0) {
-    systemDataPtr = bufferPtr + -8;
+  systemDataArrayPtr = dataBufferPtr;
+  if (dataBufferPtr != 0) {
+    systemDataArrayPtr = dataBufferPtr + -8;
   }
   
-  dataIndex = *(int *)(systemContext + systemContextDataIndexOffset);
-  if ((dataIndex < 0) || (*(int *)(systemDataPtr + SystemDataArraySizeOffset) <= dataIndex)) {
+  dataItemIndex = *(int *)(systemContext + systemContextDataIndexOffset);
+  if ((dataItemIndex < 0) || (*(int *)(systemDataArrayPtr + SystemDataArraySizeOffset) <= dataItemIndex)) {
     return ComponentDataValidationFailure;  // 索引越界错误
   }
   
-  if (*(int64_t *)(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + SystemDataItemPointerOffset + (int64_t)dataIndex * SystemDataRecordMultiplier) == 0) {
+  if (*(int64_t *)(*(int64_t *)(systemDataArrayPtr + SystemDataArrayPointerOffset) + SystemDataItemPointerOffset + (int64_t)dataItemIndex * SystemDataRecordMultiplier) == 0) {
     return ResourceNotFoundCode;  // 资源不存在错误
   }
   
   // 验证并处理系统资源
-  operationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataPtr + SystemDataArrayPointerOffset) + (int64_t)dataIndex * SystemDataRecordMultiplier, systemContext + systemContextSecondaryOffset1c);
-  if ((int)operationStatus != 0) {
-    return operationStatus;
+  validationStatus = ValidateAndProcessSystemResourceA0(*(int64_t *)(systemDataArrayPtr + SystemDataArrayPointerOffset) + (int64_t)dataItemIndex * SystemDataRecordMultiplier, systemContext + systemContextSecondaryOffset1c);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
   
-  systemDataPtr = *(int64_t *)(resourceContext + systemContextManagementOffset);
-  if (*(int *)(systemDataPtr + SystemDataValidationOffset) == 0) {
+  systemDataArrayPtr = *(int64_t *)(resourceContext + systemContextManagementOffset);
+  if (*(int *)(systemDataArrayPtr + SystemDataValidationOffset) == 0) {
     return 0;  // 操作成功完成
   }
   
   // 检查系统状态标志
-  if ((*(int *)(systemDataPtr + SystemStatePrimaryOffset) != 0) || (*(int *)(systemDataPtr + SystemStateSecondaryOffset) != 0)) {
-    bufferPtr = 0;
-    InitializesystemContextA0(&bufferPtr);
-    if (bufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
-      operationStatus = ProcessSystemDataEC0(systemDataPtr, systemContext);
+  if ((*(int *)(systemDataArrayPtr + SystemStatePrimaryOffset) != 0) || (*(int *)(systemDataArrayPtr + SystemStateSecondaryOffset) != 0)) {
+    dataBufferPtr = 0;
+    InitializesystemContextA0(&dataBufferPtr);
+    if (dataBufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataArrayPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
+      validationStatus = ProcessSystemDataEC0(systemDataArrayPtr, systemContext);
       goto OperationComplete;
     }
   }
   // 更新系统上下文状态
   *(uint *)(systemContext + systemContextAlignmentOffset) = *(int *)(systemContext + systemContextAlignmentOffset) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-  operationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(systemDataPtr + SystemStateResultOffset));
+  validationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(systemDataArrayPtr + SystemStateResultOffset));
   
 OperationComplete:
-  if ((int)operationStatus == 0) {
+  if ((int)validationStatus == 0) {
     return 0;  // 操作成功
   }
-  return operationStatus;
+  return validationStatus;
 }
 
 
