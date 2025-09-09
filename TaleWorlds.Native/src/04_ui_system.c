@@ -105367,7 +105367,7 @@ void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
-  FUN_18072f4d0(dataSource + 0x20,asStack_58,(longlong)(int)iterationCount,*(UIDword *)(uiBufferData + 0x1060));
+  CalculateUILayoutMetrics(dataSource + 0x20,asStack_58,(longlong)(int)iterationCount,*(UIDword *)(uiBufferData + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(uiContext + 0x928,asStack_78,(longlong)*(int *)(uiBufferData + 0x924) * 2);
 }
@@ -105375,8 +105375,8 @@ void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 
 
- void FUN_180729bbd(longlong uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_180729bbd(longlong uiContext,UIHandle dataSource,int targetBuffer)
+ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targetBuffer)
+void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   short sVar1;
