@@ -11532,7 +11532,7 @@ LAB_1806577da: // 上下文数据转换标签
       }
     }
   }
-LAB_1806577f1:
+LAB_1806577f1: // 处理计数器验证标签
   isProcessingComplete = true;
   ptrLocal3 = (UIHandle *)&UIDefaultResourceBuffer;
   ptrLocal6 = UIResourceManagerHandle;
@@ -11540,7 +11540,7 @@ LAB_1806577f1:
     ptrLocal3 = ptrLocal6;
     if (*(int *)(ptrLocal6 + 6) == 0) {
       isProcessingComplete = false;
-LAB_180657812:
+LAB_180657812: // 资源处理循环标签
       ptrLocal6 = (UIHandle *)*ptrLocal6;
     }
     else {
