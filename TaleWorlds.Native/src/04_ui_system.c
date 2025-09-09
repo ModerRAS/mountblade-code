@@ -168339,7 +168339,7 @@ UIHandle FUN_180769860(longlong uiContext)
   
   maxProcessingCount = 4;
   localChar8 = '\0';
-  TempInt4 = FUN_18076b6f0(&DAT_180958c80,uiContext + 0x44,7);
+  TempInt4 = FUN_18076b6f0(&UIComponentContextTableC80,uiContext + 0x44,7);
   if (TempInt4 == 0) {
     maxProcessingCount = 3;
     localChar8 = '\x01';
@@ -207785,7 +207785,7 @@ FUN_18078d9d0(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIHan
           (*(int *)(targetBuffer + 200) != 0)) {
     if ((*(char *)(uiContext + 0x11758) == '\0') || ((targetBuffer != 0 && (*(int *)(targetBuffer + 200) != 0)))
        ) {
-      loopCounter = FUN_18076b6f0(&DAT_180958c80,dataSource,7);
+      loopCounter = FUN_18076b6f0(&UIComponentContextTableC80,dataSource,7);
       if ((loopCounter == 0) ||
          ((((loopCounter = FUN_18076b6f0(&UNK_18095b4b8,dataSource,7), loopCounter == 0 ||
             (loopCounter = FUN_18076b6f0(&UNK_18095b4c0,dataSource,8), loopCounter == 0)) ||
