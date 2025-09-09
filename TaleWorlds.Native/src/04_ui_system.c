@@ -97751,7 +97751,7 @@ void FinalizeUIComponentSystem(void)
 
 
 
- // 函数: void FUN_180721810(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
+ // UI系统函数宏定义 - 使用系数处理UI变换数据
 /**
  * @brief 使用系数处理UI变换数据
  * 
@@ -97767,6 +97767,7 @@ void FinalizeUIComponentSystem(void)
  * @note 原始函数名：FUN_180721810
  * @note 这是UI系统中用于数据变换的核心函数
  */
+#define ProcessUITransformDataWithCoefficients FUN_180721810
 void ProcessUITransformDataWithCoefficients(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
 
 {
