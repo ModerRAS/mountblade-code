@@ -1422,6 +1422,7 @@
 #define ValidationStatusPointerOffset100 0x100
 #define OffsetStackDataOffset260 0x260
 #define ExceptionHandlerDataOffset268 0x268
+#define ResourceEntryDataOffsetD0 0xd0
 #define ExceptionDataEndOffset 0x3d0
 #define ExceptionHandlerCleanupThreshold 0x8000
 
