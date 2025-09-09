@@ -23937,11 +23937,11 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
     return 0x26;
   }
 CalculationLabel:
-  if ((0 < *(int *)((int64_t)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
+  if ((0 < *(int *)((int64_t)bufferPointer + BufferSizeOffsetC)) && (*bufferPointer != 0)) {
       FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
   }
   *bufferPointer = (int64_t)newBuffer;
-  *(int *)((int64_t)bufferPointer + 0xc) = bufferSize;
+  *(int *)((int64_t)bufferPointer + BufferSizeOffsetC) = bufferSize;
   return 0;
 }
 
@@ -23976,11 +23976,11 @@ DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
   newBuffer = (DataBuffer *)0x0;
   if (bufferSize == 0) {
 CalculationLabel:
-    if ((0 < *(int *)((int64_t)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
+    if ((0 < *(int *)((int64_t)bufferPointer + BufferSizeOffsetC)) && (*bufferPointer != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
     }
     *bufferPointer = (int64_t)newBuffer;
-    *(int *)((int64_t)bufferPointer + 0xc) = bufferSize;
+    *(int *)((int64_t)bufferPointer + BufferSizeOffsetC) = bufferSize;
     return 0;
   }
   if (memorySize * 0xc - 1U < MaxSafeBufferSize) {
@@ -24286,9 +24286,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
             }
           }
           else if ((arrayIndex == 7) &&
-                  (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),
+                  (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),
                                                validationBuffer), exceptionHandlerContextPointer = stackValidationPointer, arrayIndex == 0)) {
-            operationResult = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+            operationResult = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
             allocatedMemoryBlock = (int)dataFlags + 1;
             arrayIndex = loopCounterInput;
             if (loopCounterInput < 0) {
@@ -24437,9 +24437,9 @@ ProcessCompleteLabel:
   if (0 < *(int *)(operationBase + SystemDataParameterOffset20)) {
     do {
       securityCheckResult = (int)loopCounter + 1;
-      dataFlagPointer = (byte *)(dataFlags + 0xb + *(int64_t *)(operationBase + SystemDataSecondaryOffset18));
+      dataFlagPointer = (byte *)(dataFlags + DataFlagsOffsetB + *(int64_t *)(operationBase + SystemDataSecondaryOffset18));
       *dataFlagPointer = *dataFlagPointer & 0xfe;
-      dataFlags = dataFlags + 0xc;
+      dataFlags = dataFlags + DataFlagsOffsetC;
       loopCounter = (uint64_t)securityCheckResult;
     } while ((int)securityCheckResult < *(int *)(operationBase + SystemDataParameterOffset20));
   }
