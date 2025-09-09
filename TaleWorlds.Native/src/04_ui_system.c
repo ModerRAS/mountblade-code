@@ -28747,15 +28747,15 @@ void InitializeUIRenderingFunctions(void)
     g_uiSystemEventDispatcher = (UIFunctionPtr *)&UISystemEventDispatcherFallbackImplementation;
   }
   g_uiSystemStateUpdater = InitializeUIStateUpdater;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemStateUpdater = (UIFunctionPtr *)&UISystemStateUpdaterFallbackImplementation;
   }
   g_uiSystemRenderer = ProcessUIMainRenderer;
-  if (bVar4) {
+  if (HasAVX2Support) {
     g_uiSystemRenderer = InitializeUIRenderer;
   }
   g_uiSystemMemoryManager = InitializeUIMemoryManagerBasic;
-  if (bVar4) {
+  if (HasAVX2Support) {
     g_uiSystemMemoryManager = InitializeUIMemoryManager;
   }
   UIPixelProcessorPointer = InitializeUIPixelProcessor;
