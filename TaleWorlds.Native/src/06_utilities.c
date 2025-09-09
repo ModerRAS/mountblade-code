@@ -726,6 +726,9 @@
 #define SystemContextDataOffset80 0x80                        // 系统上下文数据偏移量80
 #define BasicContextOffset88 0x88                             // 基本上下文偏移量88
 #define AuxiliaryContextOffset88 0x88                          // 辅助上下文偏移量88
+#define ExceptionHandlerContextOffset88 0x88                     // 异常处理上下文偏移量88
+#define ExceptionHandlerCallbackOffset60 0x60                    // 异常处理器回调偏移量60
+#define ExceptionHandlerContextOffset50 0x50                     // 异常处理上下文偏移量50
 #define DataContextOffset48 0x48                             // 数据上下文偏移量48
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
 #define DataContextOffset50 0x50                             // 数据上下文偏移量50
@@ -50145,9 +50148,9 @@ void InvokeExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x60);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset88) + ExceptionHandlerCallbackOffset60);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x88) + 0x50,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset88) + ExceptionHandlerContextOffset50,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -105712,7 +105715,23 @@ void Unwind_18090e8e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e8f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常数据缓冲区和上下文清理
+ * 
+ * 该函数处理异常数据缓冲区并进行上下文清理，包括：
+ * 1. 调用异常数据缓冲区中的清理函数
+ * 2. 设置临时异常处理器
+ * 3. 检查并终止系统执行
+ * 4. 清理异常上下文状态
+ * 5. 设置默认异常处理器
+ * 6. 调用异常上下文清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090e8f0
+ */
+void ProcessExceptionDataBufferAndContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ExceptionDataBufferOffset128) != (int64_t *)0x0) {
@@ -105733,7 +105752,18 @@ void Unwind_18090e8f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e900(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置偏移量8处的默认异常处理器B（重复函数）
+ * 
+ * 该函数在数据缓冲区的偏移量8处设置系统默认异常处理器B。
+ * 这是一个标准的异常处理器设置操作，与前面的函数重复。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e900
+ */
+void SetDefaultExceptionHandlerBAtOffset8Duplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ValidationResultOffset8) = &SystemDefaultExceptionHandlerB;
@@ -105742,7 +105772,18 @@ void Unwind_18090e900(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e910(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文偏移量60处的清理函数
+ * 
+ * 该函数检查数据缓冲区偏移量60处的异常上下文指针，如果存在则调用其清理函数。
+ * 这是一个标准的异常上下文清理函数调用。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090e910
+ */
+void CallExceptionHandlerCleanupAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ExceptionHandlerContextOffset60) != (int64_t *)0x0) {
@@ -105753,7 +105794,22 @@ void Unwind_18090e910(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e920(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常数据缓冲区偏移量68处的状态
+ * 
+ * 该函数处理异常数据缓冲区偏移量68处的状态，包括：
+ * 1. 设置临时异常处理器
+ * 2. 检查并终止系统执行
+ * 3. 清理数据处理状态
+ * 4. 清理系统数据缓冲区
+ * 5. 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090e920
+ */
+void ProcessExceptionHandlerDataBufferAtOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68) = &SystemTemporaryExceptionHandler;
@@ -106454,7 +106510,18 @@ void SetDefaultExceptionHandlerBA(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090eb90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0xA0处的内存操作验证
+ * 
+ * 该函数在数据缓冲区偏移量0xA0处执行内存操作，用于数据验证。
+ * 这是一个标准的内存操作验证函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含要验证的数据
+ * 
+ * @note 原始函数名：Unwind_18090eb90
+ */
+void ExecuteMemoryOperationValidationAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + 0xa0,8,0x10,ValidateDataHandler);
@@ -106463,7 +106530,18 @@ void Unwind_18090eb90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ebc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0xA0处的内存操作验证（重复函数）
+ * 
+ * 该函数在数据缓冲区偏移量0xA0处执行内存操作，用于数据验证。
+ * 这是一个标准的内存操作验证函数，与前面的函数重复。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含要验证的数据
+ * 
+ * @note 原始函数名：Unwind_18090ebc0
+ */
+void ExecuteMemoryOperationValidationAtOffsetA0Duplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + 0xa0,8,0x10,ValidateDataHandler);

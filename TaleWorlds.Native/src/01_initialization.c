@@ -19408,7 +19408,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   uint64_t ThreadLocalStorageBaseAddress;
   int *CallbackFunctionTable;
   
-  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
   *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageDataOffset) = &SystemMemoryAllocatorPointer;
   *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageSecondaryOffset) = 0;
   *(uint32_t *)(ThreadLocalStorageBaseAddress + LocalStorageTertiaryOffset) = 0;
@@ -19416,7 +19416,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageQuaternaryOffset) = 0;
   *(uint64_t *)(ThreadLocalStorageBaseAddress + LocalStorageSecondaryOffset) = 0;
   *(uint32_t *)(ThreadLocalStorageBaseAddress + LocalStorageTertiaryOffset) = 0;
-  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+  ThreadLocalStorageBaseAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
   CallbackFunctionTable = *(int **)(ThreadLocalStorageBaseAddress + LocalStorageQuinaryOffset);
   if (CallbackFunctionTable == (int *)0x0) {
     CallbackFunctionTable = (int *)(ThreadLocalStorageBaseAddress + LocalStorageSenaryOffset);
@@ -29002,7 +29002,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   if (isSystemConfigured) {
     scaleFactorX = (float)CalculateExponentialBase2(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     if (*(char *)(SystemResourceManager + 0x22d) == '\0') {
-      ThreadLocalStorageDataAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+      ThreadLocalStorageDataAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
       if ((*(int *)(ThreadLocalStorageDataAddress + 0x48) < SystemDataValuePrimary) &&
          (CheckSystemDataAvailability(&SystemDataValuePrimary), SystemDataValuePrimary == -1)) {
         SystemDataValueSecondary = ConfigurationDataPointer;
@@ -39671,7 +39671,7 @@ void ProcessSystemResourceSemaphore(long long SystemResourceManager,long long *C
   
   ConfigurationMask = (void*)0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8)
                    + 0xc);
   if (ThreadLocalStorageIndex == 0xffffffff) {
     ResourceOffset = GetResourceOffsetHandler(SystemResourceManager + 0x78);
@@ -39685,7 +39685,7 @@ void ProcessSystemResourceSemaphore(long long SystemResourceManager,long long *C
     if (ResourceOffset == 0) {
       BufferPointer = 0;
     }
-    ConfigureSystemProcessingBuffer(BufferPointer,ConfigurationDataPointer,(ulong long)__tls_index,ConfigurationFlag,ConfigurationMask);
+    ConfigureSystemProcessingBuffer(BufferPointer,ConfigurationDataPointer,(ulong long)ThreadLocalStorageIndex,ConfigurationFlag,ConfigurationMask);
   }
   do {
     SemaphoreReleaseResult = ReleaseSemaphore(*(void* *)(SystemResourceManager + 0x68),1);
@@ -39758,7 +39758,7 @@ void ProcessSystemResourceWithIntParameter(long long SystemResourceManager,void*
   long long ResourceOffset;
   long long BufferPointer;
   
-  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8)
                    + 0xc);
   if (ThreadLocalStorageIndex == 0xffffffff) {
     ResourceOffset = GetResourceOffsetHandler(SystemResourceManager + 0x78);
@@ -42449,7 +42449,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
   char SystemLockAcquiredFlag;
   
   if ((char)SystemResourceManager[0xb] != '\0') {
-    PrimaryResourceHandle = (uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+    PrimaryResourceHandle = (uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
     do {
       SystemOperationResult = (**(code **)(*SystemResourceManager + 0x20))(SystemResourceManager,1);
       if (validationStatusFlag == '\0') {
@@ -64556,7 +64556,7 @@ void* * GetSystemResourceConfigurationPointer(long long SystemResourceManager,vo
   if (*(long long *)(SystemResourceManager + 0x1b8) != 0) {
     return (void* *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x10);
   }
-  if (*(int *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8) +
+  if (*(int *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8) +
               0x48) < SystemDataValue5) {
     CheckSystemDataAvailability(&SystemDataValue5);
     if (SystemDataValue5 == -1) {
@@ -68053,7 +68053,7 @@ SystemResourceFinalize:
   case 0xd:
     if (0 < SystemOperationResult) {
       SystemThreadHandleSecondary = 0x48;
-      SystemThreadHandle5 = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+      SystemThreadHandle5 = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
       MatrixElement28 = fRam0000000180d49154;
       do {
         SystemThreadHandleSecondary = *(long long *)(ConfigDataHandle + 0x68);
