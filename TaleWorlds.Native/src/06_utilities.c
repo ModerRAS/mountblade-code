@@ -18057,7 +18057,7 @@ DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
     if ((*(int64_t *)(contextBuffer[0] + systemContextOffset) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != OperationSuccessCode)) {
       return operationResult;
     }
-    operationResult = 0;
+    operationResult = OperationSuccessCode;
   }
   return operationResult;
 }
