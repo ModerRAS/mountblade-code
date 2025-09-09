@@ -1742,29 +1742,29 @@ typedef enum {
 #define uVar5 UIAnimationTimer
 
 // UI系统整数变量名美化
-#define iVar1 UIIntegerVar1
-#define iVar2 UIIntegerVar2
-#define iVar3 UIIntegerVar3
-#define iVar4 UIIntegerVar4
-#define iVar5 UIIntegerVar5
+#define iVar1 UILayoutX
+#define iVar2 UILayoutY
+#define iVar3 UIComponentWidth
+#define iVar4 UIComponentHeight
+#define iVar5 UIResourceHandle
 
 // UI系统指针变量名美化
-#define piVar1 UIPtrIntegerVar1
-#define piVar2 UIPtrIntegerVar2
-#define piVar3 UIPtrIntegerVar3
-#define pbVar1 UIPtrByteVar1
-#define pbVar2 UIPtrByteVar2
-#define pbVar3 UIPtrByteVar3
-#define puVar1 UIPtrUnsignedVar1
-#define puVar2 UIPtrUnsignedVar2
-#define plVar1 UIPtrLongVar1
-#define plVar2 UIPtrLongVar2
-#define pcVar1 UIPtrCharVar1
-#define pcVar2 UIPtrCharVar2
-#define pfVar1 UIPtrFloatVar1
-#define pfVar2 UIPtrFloatVar2
-#define psVar3 UIPtrShortVar3
-#define psVar4 UIPtrShortVar4
+#define piVar1 UIPositionXPtr
+#define piVar2 UIPositionYPtr
+#define piVar3 UIDimensionPtr
+#define pbVar1 UIStatusFlagsPtr
+#define pbVar2 UIComponentFlagsPtr
+#define pbVar3 UIEventFlagsPtr
+#define puVar1 UIResourceIndexPtr
+#define puVar2 UIElementCountPtr
+#define plVar1 UIMemoryHandlePtr
+#define plVar2 UIDataOffsetPtr
+#define pcVar1 UIStringBufferPtr
+#define pcVar2 UIEventNamePtr
+#define pfVar1 UICoordinateXPtr
+#define pfVar2 UICoordinateYPtr
+#define psVar3 UIAnimationFramePtr
+#define psVar4 UITextureIdPtr
 
 // UI系统音频处理变量名美化
 #define AudioStackData UIAudioStackData
@@ -1792,14 +1792,14 @@ typedef enum {
 #define UIContextDataTable (void*)0x18095362c
 
 // UI系统函数宏定义 - 查找UI数据索引
-#define FindUIDataIndex FUN_18087b530
+#define FindUIDataIndex GetUIDataIndex
 
 // UI系统函数宏定义 - 查找UI上下文资源
-#define FindUIContextResource FUN_18087b553
+#define FindUIContextResource GetUIContextResource
 
 // UI系统函数宏定义 - 重置UI状态
-#define ProcessUIDataValidationAndStateManagement FUN_18071dbc0
-#define ResetUIState FUN_18087b5f0
+#define ProcessUIDataValidationAndStateManagement ValidateUIDataAndResetState
+#define ResetUIState ClearUIState
 
 // UI系统函数宏定义 - 获取UI系统信息
 #define GetUISystemInfo FUN_18087b60b

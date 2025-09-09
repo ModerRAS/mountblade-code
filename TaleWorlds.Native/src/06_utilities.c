@@ -12023,7 +12023,7 @@ uint8_t DecryptionOperationStatus;
 uint8_t UtilityDecryptionKeyBuffer;
 uint8_t UtilityDecryptionDataBuffer;
 uint8_t UtilityDecryptionIVBuffer;
-uint8_t UtilityDecryptionQuaternaryBuffer;
+uint8_t UtilityDecryptionResultBuffer;
 uint8_t UtilityDecryptionStatus;
 
 // 原始函数名：FUN_180942320 - 数据哈希函数A0
@@ -12039,10 +12039,10 @@ uint8_t HashCalculationStatus;
 
 // 校验和计算状态标志
 uint8_t ChecksumCalculationStatus;
-uint8_t UtilityChecksumPrimaryBuffer;
-uint8_t UtilityChecksumSecondaryBuffer;
-uint8_t UtilityChecksumTertiaryBuffer;
-uint8_t UtilityChecksumQuaternaryBuffer;
+uint8_t UtilityChecksumDataBuffer;
+uint8_t UtilityChecksumHashBuffer;
+uint8_t UtilityChecksumValidationBuffer;
+uint8_t UtilityChecksumAlgorithmBuffer;
 uint8_t UtilityChecksumStatus;
 uint8_t UtilityChecksumResult;
 
