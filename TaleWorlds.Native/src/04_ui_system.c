@@ -100096,12 +100096,12 @@ void CleanupUIComponentResources(void)
     shortCalculationResult = ReadUIData();
     if (shortCalculationResult < 1) goto LAB_180722ba9;
     shortCalculationResult = *(short *)(contextHandle + 0x96c) + -9 + shortCalculationResult;
-    *(short *)(contextHandle + 0xae2) = sVar2;
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult;
   }
   else {
 LAB_180722ba9:
     shortCalculationResult = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = sVar2 * (short)(*(int *)(contextHandle + 0x90c) >> 1);
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult * (short)(*(int *)(contextHandle + 0x90c) >> 1);
     shortCalculationResult = ReadUIData();
     *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + sVar2;
     sVar2 = *(short *)(contextHandle + 0xae2);
