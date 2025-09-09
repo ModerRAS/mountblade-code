@@ -16095,8 +16095,8 @@ LAB_18065a5d3:
         transformCoeff11 = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
-        if (0.5 <= AccumulatedFloat) {
-          AccumulatedFloat = 0.5;
+        if (0.5 <= accumulatedFloatValue) {
+          accumulatedFloatValue = 0.5;
         }
       }
       else {
@@ -16859,8 +16859,8 @@ LAB_18065a5d3:
         transformCoeff11 = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
-        if (0.5 <= AccumulatedFloat) {
-          AccumulatedFloat = 0.5;
+        if (0.5 <= accumulatedFloatValue) {
+          accumulatedFloatValue = 0.5;
         }
       }
       else {
@@ -17539,8 +17539,8 @@ LAB_18065a5d3:
         transformCoeff11 = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
-        if (0.5 <= AccumulatedFloat) {
-          AccumulatedFloat = 0.5;
+        if (0.5 <= accumulatedFloatValue) {
+          accumulatedFloatValue = 0.5;
         }
       }
       else {

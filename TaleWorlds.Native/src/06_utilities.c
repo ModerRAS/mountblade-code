@@ -29166,17 +29166,17 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
           *memoryFlagsPointer = *dataBufferPointer;
           memoryFlagsPointer = memoryFlagsPointer + 1;
           *dataBufferPointer = dataTransferBuffer;
-          statusCounterPointer = statusCounterPointer + -1;
-        } while (processingFlagsPointer < statusCounterPointer);
+          dataBufferPointer = dataBufferPointer + -1;
+        } while (memoryFlagsPointer < dataBufferPointer);
       }
-      systemContext[StackFrameContext + -1] = (char)processingDataValue;
-      processingDataValue = 0x41;
+      systemContext[StackFrameContext + -1] = (char)memoryDataValue;
+      memoryDataValue = 0x41;
     }
   }
   if (outputParameter != (int *)0x0) {
-    *outputParameter = contextIndex + 1;
+    *outputParameter = memoryContextIndex + 1;
   }
-  return processingDataValue;
+  return memoryDataValue;
 }
 
 
@@ -29187,17 +29187,17 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
 DataWord QuerySystemStatusWithValidation(void)
 
 {
-  ByteFlag systemDataBuffer;
-  ByteFlag *memoryresourcePointer;
+  ByteFlag statusDataBuffer;
+  ByteFlag *memoryResourcePointer;
   ByteFlag *validationStatusPointer;
-  int basePointer;
-  int arrayIndex;
+  int memoryBasePointer;
+  int statusArrayIndex;
   int64_t systemStackPointer;
   ByteFlag *systemContext;
-  ByteFlag *operationResult;
-  DataWord dataPointerD;
-  int contextPointerD;
-  int *InputParam78;
+  ByteFlag *statusOperationResult;
+  DataWord statusDataPointer;
+  int statusContextPointer;
+  int *statusValidationParameter;
   
   arrayIndex = (int)StackFrameContext;
   if (arrayIndex != 0) {
