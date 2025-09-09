@@ -401671,28 +401671,28 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define ResetUIRenderState ReinitializeUIRenderState
 
 // UI系统事件处理函数
-#define ProcessUIEvent FUN_180705c30
-#define DispatchUIEvent FUN_180705c90
-#define HandleUIEvent FUN_180705cf0
-#define ValidateUIEvent FUN_180705d50
-#define QueueUIEvent FUN_180705db0
-#define ProcessUIEventQueue FUN_180705e10
-#define FlushUIEventQueue FUN_180705ed0
-#define RegisterUIEventHandler FUN_180705f30
-#define UnregisterUIEventHandler FUN_180705f90
-#define FindUIEventHandler FUN_180705ff0
+#define ProcessUIEvent HandleUIEventProcessing
+#define DispatchUIEvent DistributeUIEvent
+#define HandleUIEvent ManageUIEvent
+#define ValidateUIEvent CheckUIEventValidity
+#define QueueUIEvent EnqueueUIEvent
+#define ProcessUIEventQueue HandleUIEventQueue
+#define FlushUIEventQueue ClearUIEventQueue
+#define RegisterUIEventHandler AddUIEventHandler
+#define UnregisterUIEventHandler RemoveUIEventHandler
+#define FindUIEventHandler SearchUIEventHandler
 
 // UI系统组件管理函数
-#define CreateUIComponent FUN_180706050
-#define DestroyUIComponent FUN_1807060b0
-#define InitializeUIComponent FUN_180706110
-#define UpdateUIComponent FUN_180706170
-#define RenderUIComponent FUN_1807061d0
-#define ValidateUIComponent FUN_180706230
-#define FindUIComponent FUN_180706290
-#define GetUIComponentData FUN_1807062f0
-#define SetUIComponentData FUN_180706350
-#define ProcessUIComponentEvent FUN_1807063b0
+#define CreateUIComponent GenerateUIComponent
+#define DestroyUIComponent DeleteUIComponent
+#define InitializeUIComponent SetupUIComponent
+#define UpdateUIComponent RefreshUIComponent
+#define RenderUIComponent DrawUIComponent
+#define ValidateUIComponent VerifyUIComponent
+#define FindUIComponent LocateUIComponent
+#define GetUIComponentData RetrieveUIComponentData
+#define SetUIComponentData StoreUIComponentData
+#define ProcessUIComponentEvent HandleUIComponentEvent
 
 // UI系统布局管理函数
 #define CalculateUILayout FUN_180706410

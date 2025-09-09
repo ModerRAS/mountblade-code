@@ -24196,7 +24196,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
 {
   // 系统状态和控制变量
   SystemByteType systemStatusFlag;                    // 系统状态标志
-  int64_t memoryOffset;                      // 内存偏移量
+  int64_t memoryManagementOffset;              // 内存管理偏移量
   char recordDataType;                       // 记录数据类型
   int currentRecordIndex;                    // 当前记录索引
   DataBuffer operationCallbackResult;        // 操作回调结果
@@ -24219,7 +24219,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   DataWord inputProcessingDataWord;          // 输入处理数据字
   ByteFlag securityValidationBufferA [32];   // 安全验证缓冲区A
   ByteFlag dataCopyDestinationBuffer [DataCopyBufferSize]; // 数据复制目标缓冲区
-  int64_t *stackIntegerPointerC;            // 栈整数指针C
+  int64_t *processingResultCounter;          // 处理结果计数器
   
   // 初始化安全校验和
   dataSecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
@@ -24254,10 +24254,10 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
         *(DataWord *)(systemContext + FloatProcessedValueOffset) = NegativeZeroFloat;
       }
       *(float *)(systemContext + FloatSourceValueOffset) = sourceFloatValue;
-      memoryOffset = 0;
+      memoryManagementOffset = 0;
       float calculatedFloatValue = (float)*(uint *)(systemContext + SystemDataFlagsOffset) * sourceFloatValue;
       if ((9.223372e+18 <= calculatedFloatValue) && (calculatedFloatValue = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
-        memoryOffset = InvalidMemoryOffset;
+        memoryManagementOffset = InvalidMemoryOffset;
       }
       int64_t processingDataContext = *(int64_t *)(systemContext + SystemDataContextOffset);
       int64_t memoryManagementPointer = *(int64_t *)(systemContext + SystemMemoryManagementOffset);
