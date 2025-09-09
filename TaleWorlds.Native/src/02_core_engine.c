@@ -62571,13 +62571,13 @@ void ProcessFloatDataStructure(float *ContextHandle,long long OperationBufferSiz
 {
   uint64_t RegisterXMM0Value;
   float FloatXMM0;
-  float in_XMM0_Dd;
+  float Xmm0RegisterDouble;
   float SystemContextPrimaryFloat;
   uint8_t aMemoryAllocationIndex [16];
   uint8_t aUnicodeCodePoint [16];
   uint32_t MemoryAddressMaskPointer;
-  uint32_t in_XMM3_Dc;
-  uint32_t in_XMM3_Dd;
+  uint32_t Xmm3RegisterComponent;
+  uint32_t Xmm3RegisterDouble;
   float FloatXMM4;
   float magnitudeSquared;
   float CalculatedDistance;
