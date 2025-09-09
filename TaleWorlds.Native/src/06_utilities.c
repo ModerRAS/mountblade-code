@@ -8114,6 +8114,7 @@ uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 
 // 异常处理器管理相关偏移量常量
 #define ExceptionHandlerManagementOffset990 0x990        // 异常处理器管理偏移量990
+#define ExceptionHandlerManagementOffset238 0x238        // 异常处理器管理偏移量238
 #define SystemManagementOffset980 0x980                   // 系统管理偏移量980
 #define ExceptionHandlerManagementOffset958 0x958        // 异常处理器管理偏移量958
 #define ExceptionHandlerManagementOffset960 0x960        // 异常处理器管理偏移量960
@@ -115126,7 +115127,7 @@ void Unwind_1809105c0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x238);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerManagementOffset238);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
