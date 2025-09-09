@@ -111405,10 +111405,21 @@ void ReleaseSharedLockA60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放共享锁函数A70
+ * 
+ * 该函数负责在特定条件下释放共享锁（SRWLock）。
+ * 当偏移量0x150处的字符不为0时，释放位于偏移量0x148处的共享锁。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fa70
+ */
+void ReleaseSharedLockA70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(char *)(dataBuffer + 0x150) != '\0') {
+  if (*(char *)(dataBuffer + ExceptionHandlerContextOffset150) != '\0') {
     ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + DataBufferOffset148));
   }
   return;
@@ -111416,22 +111427,45 @@ void Unwind_18090fa70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放共享锁函数A80
+ * 
+ * 该函数负责在特定条件下释放共享锁（SRWLock）。
+ * 当偏移量0x160处的字符不为0时，释放位于偏移量0x158处的共享锁。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fa80
+ */
+void ReleaseSharedLockA80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + ExceptionHandlerContextOffset160) != '\0') {
-    ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + 0x158));
+    ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + DataBufferOffset158));
   }
   return;
 }
 
 
 
-void Unwind_18090fa90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放共享锁函数A90
+ * 
+ * 该函数负责在特定条件下释放共享锁（SRWLock）。
+ * 当偏移量0x160处的字符不为0时，释放位于偏移量0x158处的共享锁。
+ * 与A80函数功能相同。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fa90
+ */
+void ReleaseSharedLockA90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + ExceptionHandlerContextOffset160) != '\0') {
-    ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + 0x158));
+    ReleaseSRWLockShared(*(DataBuffer *)(dataBuffer + DataBufferOffset158));
   }
   return;
 }
@@ -111516,18 +111550,29 @@ void CleanupExceptionHandlers18090fac0(DataBuffer exceptionContext,int64_t syste
 void ResetExceptionHandlerToDefaultAtOffset120(DataBuffer exceptionContext, int64_t systemContext)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x120) = &SystemDefaultExceptionHandlerB;
+  **(DataBuffer **)(exceptionContext + ExceptionHandlerPointerOffset120) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
 
 
-void CallExceptionHandler18090fae0(DataBuffer exceptionContext,int64_t systemContext)
+/**
+ * @brief 调用异常处理器函数AE0
+ * 
+ * 该函数负责调用位于偏移量0x120处的异常处理器。
+ * 首先获取异常处理器上下文指针，然后调用相应的异常处理函数。
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param systemContext 系统上下文数据（未使用）
+ * 
+ * @note 原始函数名：Unwind_18090fae0
+ */
+void CallExceptionHandlerAE0(DataBuffer exceptionContext,int64_t systemContext)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x120) + SystemDataParameterOffset20);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(exceptionContext + ExceptionHandlerPointerOffset120) + SystemDataParameterOffset20);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
