@@ -108004,7 +108004,15 @@ void InitializeExceptionDataTableB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器回调B
+ * 
+ * 配置异常处理器的回调函数，建立异常处理机制。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void SetupExceptionHandlerCallbacksB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -108017,7 +108025,15 @@ void Unwind_18090ee60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表C
+ * 
+ * 初始化异常数据表，设置异常处理相关的数据结构。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionDataTableC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + SystemManagementOffset98) = &ExceptionDataTable6;
