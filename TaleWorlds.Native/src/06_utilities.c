@@ -18407,7 +18407,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_1808affb0 - 系统状态检查函数O0
 // 功能：检查系统状态并返回结果
-#define CheckSystemStatusAndReturnO0 FUN_1808affb0
+#define ValidateSystemStatusAndReturnResult FUN_1808affb0
 
 // 原始函数名：FUN_1808aff40 - 数据验证函数O1
 // 功能：验证数据并返回结果
