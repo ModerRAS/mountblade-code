@@ -304,6 +304,8 @@ typedef enum {
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
+#define DAT_180be12f0 UIManagerCore
+#define DAT_180c4ea98 UIThresholdCounter
 #define DAT_1809472f0 UIConfigurationData
 #define DAT_180956f70 UILookupTableData
 #define UNK_180958b00 UIComponentInterfaceID
