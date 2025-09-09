@@ -264,6 +264,8 @@ typedef enum {
 #define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
 
 #define ProcessUIDataWrite WriteUIDataToBuffer
+#define FUN_180765da0 ProcessUIRenderData
+#define FUN_180784ebd ProcessUIEventData
 
  #define InitializeUIContext InitializeUIContextSystem
 
@@ -283,6 +285,10 @@ typedef enum {
 #define astackUInt168 UIRenderContextStack168
 #define astackUInt1a8 UIEventContextStack1A8
 #define astackUInt158 UIDataBufferStack158
+#define astackUInt378 UIEventProcessingStack378
+#define stackUInta8 UIComponentParameterStackA8
+#define stackUInt350 UIStackFloatVector350
+#define fStack_358 UINormalizationFactor358
 
 // UI系统局部变量语义化定义
 #define localInt5 UIElementIndex
@@ -619,27 +625,27 @@ typedef enum {
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
 // 注意：这个变量已经在上面定义为 GlobalUIResourceManagerF0
-#define UIEventThresholdCounterA8 DAT_180c4ea98              // UI事件阈值计数器A8 - 存储UI事件处理的阈值计数
-#define UIDataTablePrimary198 DAT_180be2198                    // UI主数据表198 - 存储UI系统的主要数据
-#define UIDataTableSecondaryF8 DAT_180be2df8                  // UI次数据表F8 - 存储UI系统的次要数据
-#define UIDataTableTertiary88 DAT_180be2288                   // UI第三数据表88 - 存储UI系统的第三级数据
-#define UIDataTableQuaternary08 DAT_180be2d08                 // UI第四数据表08 - 存储UI系统的第四级数据
-#define UIDataTableQuinaryE8 DAT_180be2ee8                   // UI第五数据表E8 - 存储UI系统的第五级数据
-#define UIDataTableSenary40 DAT_180980640                    // UI第六数据表40 - 存储UI系统的第六级数据
-#define UIVectorCalculationMask3F0 DAT_1809473f0             // UI向量计算掩码3F0 - 用于向量运算的掩码
-#define UIVectorCalculationMask510 DAT_180947510             // UI向量计算掩码510 - 用于向量运算的掩码
-#define UIVectorCalculationMask370 DAT_180947370             // UI向量计算掩码370 - 用于向量运算的掩码
-#define UIXOREncryptionKey580 DAT_180a40580                 // UI异或加密密钥580 - 用于UI数据加密的密钥
-#define _DAT_180d4a8b8 UIPixelProcessorPointer            // UI像素处理器指针 - 处理UI像素数据
-#define _DAT_180d4a860 UIImageProcessorPointer            // UI图像处理器指针 - 处理UI图像数据
-#define _DAT_180d4a800 UIColorProcessorPointer            // UI颜色处理器指针 - 处理UI颜色数据
-#define _DAT_180d4a7c8 UITextureProcessorPointer          // UI纹理处理器指针 - 处理UI纹理数据
-#define _DAT_180d4a768 UIFontRendererPointer              // UI字体渲染器指针 - 渲染UI字体
-#define _DAT_180d4a738 UIShaderProcessorPointer          // UI着色器处理器指针 - 处理UI着色器
-#define _DAT_180d4a720 UIAnimationProcessorPointer       // UI动画处理器指针 - 处理UI动画
-#define _DAT_180d4a6e8 UILayoutProcessorPointer          // UI布局处理器指针 - 处理UI布局
-#define _DAT_180d4a6c8 UIInputProcessorPointer           // UI输入处理器指针 - 处理UI输入
-#define _DAT_180d4a6c0 UIEventProcessorPointer           // UI事件处理器指针 - 处理UI事件
+#define UIEventThresholdCounter DAT_180c4ea98                    // UI事件阈值计数器 - 存储UI事件处理的阈值计数
+#define UIDataTablePrimary DAT_180be2198                          // UI主数据表 - 存储UI系统的主要数据
+#define UIDataTableSecondary DAT_180be2df8                        // UI次数据表 - 存储UI系统的次要数据
+#define UIDataTableTertiary DAT_180be2288                         // UI第三数据表 - 存储UI系统的第三级数据
+#define UIDataTableQuaternary DAT_180be2d08                       // UI第四数据表 - 存储UI系统的第四级数据
+#define UIDataTableQuinary DAT_180be2ee8                         // UI第五数据表 - 存储UI系统的第五级数据
+#define UIDataTableSenary DAT_180980640                          // UI第六数据表 - 存储UI系统的第六级数据
+#define UIVectorCalculationMaskAlpha DAT_1809473f0          // UI向量计算掩码Alpha - 用于向量运算的掩码
+#define UIVectorCalculationMaskBeta DAT_180947510            // UI向量计算掩码Beta - 用于向量运算的掩码
+#define UIVectorCalculationMaskGamma DAT_180947370            // UI向量计算掩码Gamma - 用于向量运算的掩码
+#define UIXOREncryptionKeyAlpha DAT_180a40580                 // UI异或加密密钥Alpha - 用于UI数据加密的密钥
+#define _DAT_180d4a8b8 UIPixelProcessorMain                // UI像素处理器主指针 - 处理UI像素数据
+#define _DAT_180d4a860 UIImageProcessorMain                // UI图像处理器主指针 - 处理UI图像数据
+#define _DAT_180d4a800 UIColorProcessorMain                // UI颜色处理器主指针 - 处理UI颜色数据
+#define _DAT_180d4a7c8 UITextureProcessorMain              // UI纹理处理器主指针 - 处理UI纹理数据
+#define _DAT_180d4a768 UIFontRendererMain                  // UI字体渲染器主指针 - 渲染UI字体
+#define _DAT_180d4a738 UIShaderProcessorMain              // UI着色器处理器主指针 - 处理UI着色器
+#define _DAT_180d4a720 UIAnimationProcessorMain           // UI动画处理器主指针 - 处理UI动画
+#define _DAT_180d4a6e8 UILayoutProcessorMain              // UI布局处理器主指针 - 处理UI布局
+#define _DAT_180d4a6c8 UIInputProcessorMain               // UI输入处理器主指针 - 处理UI输入
+#define _DAT_180d4a6c0 UIEventProcessorMain               // UI事件处理器主指针 - 处理UI事件
 
 // 额外的UI系统数据指针 - 语义化定义
 #define _DAT_180d4a898 UIVectorDataProcessor898          // UI向量数据处理器898
