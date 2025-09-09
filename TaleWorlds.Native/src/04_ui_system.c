@@ -32137,29 +32137,29 @@ void RenderUISystem(void)
 void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
-  UIDword *ptrResult;
-  UIDword *piterationCount;
+  UIDword *renderResultPointer;
+  UIDword *iterationCounterPointer;
   longlong stringCompareIndex;
-  byte bVar4;
-  int localInt5;
-  UIHandle *ptrLocal6;
-  UIByte *pprocessingCounter;
-  UIByte *ptrLocal8;
-  byte *pbVar9;
-  UIDword result0;
-  UIDword result1;
-  UIDword result2;
-  uint ResultValue3;
-  int *ProcessingStatusPointer;
-  UIByte *ptrResult5;
-  longlong allocatedMemory6;
-  uint result7;
-  longlong AllocatedMemoryBlock8;
-  ulonglong result9;
+  byte characterValidationFlag;
+  int loopCounter;
+  UIHandle *componentHandlePointer;
+  UIByte *processingCounterPointer;
+  UIByte *dataBufferPointer;
+  byte *characterDataPointer;
+  UIDword renderResult0;
+  UIDword renderResult1;
+  UIDword renderResult2;
+  uint renderResult3;
+  int *renderStatusPointer;
+  UIByte *renderResultPointer5;
+  longlong allocatedMemoryBlock6;
+  uint renderResult7;
+  longlong allocatedMemoryBlock8;
+  ulonglong renderResult9;
   longlong componentIndex0;
-  ulonglong iterationCount1;
-  ulonglong iterationCount2;
-  uint iterationCount3;
+  ulonglong tileIterationCount1;
+  ulonglong tileIterationCount2;
+  uint tileIterationCount3;
   UIByte EncryptionKeyBuffer[32];
   uint RenderParameterOffset;
   longlong *TransformMatrixPointer;
@@ -32360,27 +32360,27 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
           }
           else {
 LAB_18066fdc2:
-            pbVar9 = *(byte **)(dataSource + 0xf00);
-            bVar4 = *pbVar9;
-            if (((bVar4 == 4) || (bVar4 == 9)) || (stackInt158 = 1, pbVar9[9] == 0)) {
+            characterDataPointer = *(byte **)(dataSource + 0xf00);
+            characterValidationFlag = *characterDataPointer;
+            if (((characterValidationFlag == 4) || (characterValidationFlag == 9)) || (stackInt158 = 1, characterDataPointer[9] == 0)) {
               stackInt158 = 0;
             }
-            bVar4 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar4 + 0xd00 + uiContext + 0x1ed0) +
+            characterValidationFlag = *(byte *)((ulonglong)*(byte *)((ulonglong)characterValidationFlag + 0xd00 + uiContext + 0x1ed0) +
                               uiContext + 0x1ed0 + 0xc40 +
-                             ((ulonglong)pbVar9[2] + (ulonglong)pbVar9[0xb] * 4) * 4);
-            stackUInt140 = (uint)bVar4;
+                             ((ulonglong)characterDataPointer[2] + (ulonglong)characterDataPointer[0xb] * 4) * 4);
+            stackUInt140 = (uint)characterValidationFlag;
             if (stackInt15c != *(int *)(uiBufferData + 0x1e74) + -1) {
-              ptrResult = (UIDword *)(iterationCount1 * 0xf + *(longlong *)(dataSource + 0xea8));
-              result0 = ptrResult[1];
-              result1 = ptrResult[2];
-              result2 = ptrResult[3];
-              piterationCount = (UIDword *)
+              renderResultPointer = (UIDword *)(tileIterationCount1 * 0xf + *(longlong *)(dataSource + 0xea8));
+              renderResult0 = renderResultPointer[1];
+              renderResult1 = renderResultPointer[2];
+              renderResult2 = renderResultPointer[3];
+              iterationCounterPointer = (UIDword *)
                        (*(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + AnimationStateValue * 8) +
                        RenderDataAlignment);
-              *piterationCount = *ptrResult;
-              piterationCount[1] = result0;
-              piterationCount[2] = result1;
-              piterationCount[3] = result2;
+              *iterationCounterPointer = *renderResultPointer;
+              iterationCounterPointer[1] = renderResult0;
+              iterationCounterPointer[2] = renderResult1;
+              iterationCounterPointer[3] = renderResult2;
               *(UIHandle *)
                (RenderContextSize + *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + 8 + AnimationStateValue * 8)) =
                    *(UIHandle *)(stackUInt118 * 7 + *(longlong *)(dataSource + 0xeb0));
@@ -32390,21 +32390,21 @@ LAB_18066fdc2:
             }
             if ((result7 != *(int *)(uiBufferData + 0x1e78) - 1U) &&
                (*(char *)(*(longlong *)(dataSource + 0xf00) + 0x4e) == '\0')) {
-              AllocatedMemoryBlock8 = 0;
+              allocatedMemoryBlock8 = 0;
               componentIndex0 = stackUInt120 * 2;
               do {
-                allocatedMemory6 = componentIndex0 + stackUInt120;
+                allocatedMemoryBlock6 = componentIndex0 + stackUInt120;
                 *(UIByte *)
-                 (AllocatedMemoryBlock8 + *(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8)) =
+                 (allocatedMemoryBlock8 + *(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8)) =
                      *(UIByte *)
                       (componentIndex0 + stackUInt120 * -2 + 0xf + *(longlong *)(dataSource + 0xea8));
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 1 + AllocatedMemoryBlock8) =
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 1 + allocatedMemoryBlock8) =
                      *(UIByte *)((*(longlong *)(dataSource + 0xea8) + componentIndex0 + 0xf) - stackUInt120);
                 stringCompareIndex = componentIndex0 + 0xf;
                 componentIndex0 = componentIndex0 + stackUInt120 * 4;
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 2 + AllocatedMemoryBlock8) =
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 2 + allocatedMemoryBlock8) =
                      *(UIByte *)(stringCompareIndex + *(longlong *)(dataSource + 0xea8));
                 *(UIByte *)
                  (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 3 + AllocatedMemoryBlock8) =
