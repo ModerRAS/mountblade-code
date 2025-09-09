@@ -224522,8 +224522,8 @@ void ProcessSystemMemoryAllocationAndValidation(long long *ContextHandle, long l
   TemporaryBufferPointer[2] = UnicodeCodePoint;
   TemporaryBufferPointer[3] = MemoryAddressMask;
   SystemDataTablePointer = ContextHandle[1];
-  PerformanceCounterValue = MemoryBoundaryEnd;
-  FUN_18018a000(SystemRegisterFlagBuffer,*ContextHandle,SystemDataTablePointer,Utf16EndPointer,MemoryAllocationIndex);
+  PerformanceCounter = MemoryBoundaryLimit;
+  ProcessSystemRegistrationData(SystemRegisterBuffer,*ContextHandle,SystemDataTablePointer,Utf16EndPointer,MemoryAllocationCounter);
   if (OperationBufferSize != SystemDataTablePointer) {
                     // WARNING: Subroutine does not return
     memmove(MemoryBoundaryEnd);
