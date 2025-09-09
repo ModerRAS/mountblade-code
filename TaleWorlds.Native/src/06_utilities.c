@@ -665,7 +665,7 @@
 #define OperationDataOffsetB8 0xb8
 #define OperationDataOffsetF8 0xf8
 #define ContextDataOffset48 0x48
-#define systemContextOffset48 0x48
+#define SystemContextOffset48 0x48
 
 // 异常上下文资源管理偏移量常量
 #define ResourceCounterOffset130 0x130
@@ -1187,14 +1187,14 @@
 #define ExceptionHandlerStateOffset 0x58                   // 异常处理器状态偏移量
 
 // 系统上下文扩展偏移量常量
-#define systemContextOffset48 0x48                           // 系统上下文偏移量48
-#define systemContextOffset4c 0x4c                           // 系统上下文偏移量4c
-#define systemContextOffset94 0x94                           // 系统上下文偏移量94
-#define systemContextOffsetAc 0xac                           // 系统上下文偏移量Ac
-#define systemContextOffsetB0 0xb0                           // 系统上下文偏移量B0
-#define systemContextOffsetB4 0xb4                           // 系统上下文偏移量B4
-#define systemContextOffsetA8 0xa8                           // 系统上下文偏移量A8
-#define systemContextOffset68 0x68                           // 系统上下文偏移量68
+#define SystemContextOffset48 0x48                           // 系统上下文偏移量48
+#define SystemContextOffset4c 0x4c                           // 系统上下文偏移量4c
+#define SystemContextOffset94 0x94                           // 系统上下文偏移量94
+#define SystemContextOffsetAc 0xac                           // 系统上下文偏移量Ac
+#define SystemContextOffsetB0 0xb0                           // 系统上下文偏移量B0
+#define SystemContextOffsetB4 0xb4                           // 系统上下文偏移量B4
+#define SystemContextOffsetA8 0xa8                           // 系统上下文偏移量A8
+#define SystemContextOffset68 0x68                           // 系统上下文偏移量68
 #define systemContextOffsetA0 0xa0                           // 系统上下文偏移量A0
 
 // 数据上下文偏移量常量
@@ -1426,8 +1426,8 @@
 #define DataProcessingContextOffset1C 0x1c                  // 数据处理上下文偏移量1C
 #define DataProcessingContextOffset14 0x14                  // 数据处理上下文偏移量14
 #define DataValidationOffsetC4 0xc4                         // 数据验证偏移量C4
-#define systemContextOffset68 0x68                         // 系统上下文偏移量68
-#define systemContextOffset48 0x48                         // 系统上下文偏移量48
+#define SystemContextOffset68 0x68                         // 系统上下文偏移量68
+#define SystemContextOffset48 0x48                         // 系统上下文偏移量48
 
 // 内存管理常量
 #define MemoryAlignmentSize32 0x20                           // 内存对齐大小32字节
@@ -1542,7 +1542,7 @@
 // 系统验证常量
 #define SystemValidationThreshold82 0x82
 #define SystemValidationErrorCode1C 0x1c
-#define systemContextOffsetB0 0xb0
+#define SystemContextOffsetB0 0xb0
 
 // 异常处理器偏移常量
 #define ExceptionHandlerDataOffsetA8 0xa8

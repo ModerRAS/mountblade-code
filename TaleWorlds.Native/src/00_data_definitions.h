@@ -6257,7 +6257,7 @@ SystemMemoryPoolValidationSuccessful:
       }
       ModuleInitializationResult0 = (longlong)LoopCounter1 << 4;
       do {
-        if ((int)(fVar12 - 12582912.0) <= (int)pMemoryAddressPointer) {
+        if ((int)(FloatColorComponent - 12582912.0) <= (int)pMemoryAddressPointer) {
           SystemOperationCounter = 0;
           return pSystemStateValue;
         }
@@ -6390,7 +6390,7 @@ SystemMemoryAllocationPoint:
   return;
 }
         SystemInitializationFlag = '\x01';
-        iStack_2c8 = 0x786;
+        StackDataPointer2c8 = 0x786;
         InitializeSystemModuleConfiguration(aSystemStackVariable_258,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary);
         OutputDebugStringA(aSystemStackVariable_258);
       }
@@ -6404,7 +6404,7 @@ SystemMemoryAllocationPoint:
                FloatInterpolationResult294;
       FloatTemp = (((FloatBaseValue26c - FloatTargetValue278) * FloatResult + FloatTargetValue278) - FloatInterpolationResult290) * FloatCalculationResult +
                FloatInterpolationResult290;
-      FloatCalculationResult = (((FloatTargetValue274 - fStack_280) * FloatResult + fStack_280) - FloatInterpolationResult298) * FloatCalculationResult +
+      FloatCalculationResult = (((FloatTargetValue274 - StackFloatValue280) * FloatResult + StackFloatValue280) - FloatInterpolationResult298) * FloatCalculationResult +
                FloatInterpolationResult298;
     }
     else {
@@ -6418,7 +6418,7 @@ SystemMemoryAllocationPoint:
     GameSecondaryDataPointer[3] = 1.0;
     break;
   case 0x16:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
 code_r0x0001802a14f5:
     *GameSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
@@ -6434,7 +6434,7 @@ code_r0x0001802a1528:
     GameSecondaryDataPointer[3] = (float)NetworkRequestResult * fVar16;
     break;
   case 0x1e:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = (float)ConvertToFloatValue(pUnsignedIndex[2]);
     FloatTemp = (float)ConvertToFloatValue(pUnsignedIndex[1]);
@@ -6446,7 +6446,7 @@ code_r0x0001802a1528:
     GameSecondaryDataPointer[2] = fVar16;
     break;
   case 0x20:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     *GameSecondaryDataPointer = (float)StackProcessingBuffer1;
     GameSecondaryDataPointer[2] = (float)SystemStackVariable_2a8;
@@ -6490,7 +6490,7 @@ code_r0x0001802a1ade:
       FloatTemp = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
-      FloatInterpolationResult290 = (fStack_280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
+      FloatInterpolationResult290 = (StackFloatValue280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
       *GameSecondaryDataPointer = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
                  FloatInterpolationResult298;
       GameSecondaryDataPointer[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
@@ -6509,7 +6509,7 @@ code_r0x0001802a1ade:
     }
     break;
   case 0x27:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = 1.5259022e-05;
     *GameSecondaryDataPointer = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
@@ -6517,7 +6517,7 @@ code_r0x0001802a1ade:
     MemoryAllocationResult = StackProcessingBuffer1._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = 0.003921569;
     *GameSecondaryDataPointer = (float)(byte)StackProcessingBuffer1 * 0.003921569;
@@ -6525,7 +6525,7 @@ code_r0x0001802a1ade:
     MemoryAllocationResult = (ushort)StackProcessingBuffer1._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
@@ -6538,7 +6538,7 @@ code_r0x0001802a16a1:
     GameSecondaryDataPointer[1] = (float)SecondaryParameterResult * fVar16;
     break;
   case 0x2b:
-    iStack_2c8 = SystemQuaternaryDataPointer;
+    StackDataPointer2c8 = SystemQuaternaryDataPointer;
     ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,GameSystemContextPointer,&SystemUnionData);
     GameSecondaryDataPointer[1] = 0.0;
     GameSecondaryDataPointer[2] = 0.0;
@@ -12457,22 +12457,22 @@ longlong SystemMemoryFree(longlong *memoryPtr)
     MemoryAddressPointer = 32;
     SystemStateValue = 32;
     do {
-      fVar28 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a8);
+      FloatMatrixComponent1 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a8);
       ColorComponentA = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a4);
-      fVar30 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a0);
-      fVar20 = fVar30 * *GameTertiaryDataPointer + ColorComponentA * GameTertiaryDataPointer[4] + fVar28 * GameTertiaryDataPointer[8] + GameTertiaryDataPointer[0xc];
-      fVar21 = fVar30 * GameTertiaryDataPointer[1] + ColorComponentA * GameTertiaryDataPointer[5] + fVar28 * GameTertiaryDataPointer[9] + GameTertiaryDataPointer[0xd];
-      ColorComponentG = fVar30 * GameTertiaryDataPointer[2] + ColorComponentA * GameTertiaryDataPointer[6] + fVar28 * GameTertiaryDataPointer[10] + GameTertiaryDataPointer[0xe];
-      ColorComponentA = fVar30 * GameTertiaryDataPointer[3] + ColorComponentA * GameTertiaryDataPointer[7] + fVar28 * GameTertiaryDataPointer[0xb] + GameTertiaryDataPointer[0xf];
-      *(float *)((longlong)afStack_2e8 + MemoryDataPointer) = fVar20;
-      *(float *)((longlong)afStack_2e8 + MemoryDataPointer + 4) = fVar21;
+      FloatMatrixComponent2 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a0);
+      FloatColorRedComponent = FloatMatrixComponent2 * *GameTertiaryDataPointer + ColorComponentA * GameTertiaryDataPointer[4] + FloatMatrixComponent1 * GameTertiaryDataPointer[8] + GameTertiaryDataPointer[0xc];
+      FloatColorGreenComponent = FloatMatrixComponent2 * GameTertiaryDataPointer[1] + ColorComponentA * GameTertiaryDataPointer[5] + FloatMatrixComponent1 * GameTertiaryDataPointer[9] + GameTertiaryDataPointer[0xd];
+      ColorComponentG = FloatMatrixComponent2 * GameTertiaryDataPointer[2] + ColorComponentA * GameTertiaryDataPointer[6] + FloatMatrixComponent1 * GameTertiaryDataPointer[10] + GameTertiaryDataPointer[0xe];
+      ColorComponentA = FloatMatrixComponent2 * GameTertiaryDataPointer[3] + ColorComponentA * GameTertiaryDataPointer[7] + FloatMatrixComponent1 * GameTertiaryDataPointer[0xb] + GameTertiaryDataPointer[0xf];
+      *(float *)((longlong)afStack_2e8 + MemoryDataPointer) = FloatColorRedComponent;
+      *(float *)((longlong)afStack_2e8 + MemoryDataPointer + 4) = FloatColorGreenComponent;
       *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer) = ColorComponentG;
       *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer + 4) = ColorComponentA;
       if (GameSecondaryDataPointer != 0) {
         SystemStackVariable_378 = SystemStackVariable_378 & SystemMemoryAlignmentMask;
         if (*(longlong *)(GameSecondaryDataPointer + 0x2908) == 0) {
           ProcessParameterValidation(GameSecondaryDataPointer,pfVar3,0x31b189,&SystemStackVariable_378);
-          fVar20 = (float)SystemStackVariable_378;
+          FloatColorRedComponent = (float)SystemStackVariable_378;
         }
         else {
           cStack_324 = '\0';
@@ -12481,45 +12481,45 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           fStack_328 = 0.0;
           SystemStackVariable_338 = 0;
           SystemStackVariable_330 = 0;
-          SystemStackVariable_368 = CONCAT44(fVar21,fVar20);
+          SystemStackVariable_368 = CONCAT44(FloatColorGreenComponent,FloatColorRedComponent);
           SystemStackVariable_360 = CONCAT44(ColorComponentA,ColorComponentG);
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
           ProcessSystemParameters(GameSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
-          fVar20 = fStack_328;
+          FloatColorRedComponent = fStack_328;
           if (cStack_324 == '\0') {
-            fVar20 = 0.0;
+            FloatColorRedComponent = 0.0;
           }
         }
-        *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer) = fVar20 + 0.01;
+        *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer) = FloatColorRedComponent + 0.01;
       }
       pfVar3 = pfVar3 + 4;
       MemoryDataPointer = MemoryDataPointer + 0x10;
       SystemStateValue = SystemStateValue + -1;
     } while (SystemStateValue != 0);
-    fVar20 = GameTertiaryDataPointer[0xe];
-    fVar21 = GameTertiaryDataPointer[0xd];
+    FloatColorRedComponent = GameTertiaryDataPointer[0xe];
+    FloatColorGreenComponent = GameTertiaryDataPointer[0xd];
     ColorComponentG = GameTertiaryDataPointer[0xc];
     ColorComponentA = GameTertiaryDataPointer[9];
-    fVar28 = GameTertiaryDataPointer[8];
-    fVar30 = GameTertiaryDataPointer[10];
+    FloatMatrixComponent1 = GameTertiaryDataPointer[8];
+    FloatMatrixComponent2 = GameTertiaryDataPointer[10];
     SystemStackVariable_36c = 0x7f7fffff;
     pfVar3 = afStack_2e8;
     MemoryDataPointer = 32;
     do {
-      fVar26 = pfVar3[2] - fVar20;
-      fVar27 = pfVar3[1] - fVar21;
+      fVar26 = pfVar3[2] - FloatColorRedComponent;
+      fVar27 = pfVar3[1] - FloatColorGreenComponent;
       fVar29 = *pfVar3 - ColorComponentG;
-      ColorComponentB = fVar29 * fVar28 + fVar27 * ColorComponentA + fVar26 * fVar30;
-      fVar26 = fVar26 - ColorComponentB * fVar30;
+      ColorComponentB = fVar29 * FloatMatrixComponent1 + fVar27 * ColorComponentA + fVar26 * FloatMatrixComponent2;
+      fVar26 = fVar26 - ColorComponentB * FloatMatrixComponent2;
       fVar27 = fVar27 - ColorComponentB * ColorComponentA;
-      fVar29 = fVar29 - ColorComponentB * fVar28;
+      fVar29 = fVar29 - ColorComponentB * FloatMatrixComponent1;
       ColorComponentB = fVar26 * fVar26 + fVar27 * fVar27 + fVar29 * fVar29;
       aMemoryAddress3 = rsqrtss(ZEXT416((uint)ColorComponentB),ZEXT416((uint)ColorComponentB));
       fVar25 = aMemoryAddress3._0_4_;
       fVar25 = fVar25 * 0.5 * (3.0 - ColorComponentB * fVar25 * fVar25);
-      fStack_370 = fVar25 * fVar26 * SystemFifthParameter + fVar20;
-      ColorComponentB = fVar25 * fVar27 * SystemFifthParameter + fVar21;
+      fStack_370 = fVar25 * fVar26 * SystemFifthParameter + FloatColorRedComponent;
+      ColorComponentB = fVar25 * fVar27 * SystemFifthParameter + FloatColorGreenComponent;
       fVar25 = fVar25 * fVar29 * SystemFifthParameter + ColorComponentG;
       SystemStackVariable_378 = CONCAT44(ColorComponentB,fVar25);
       *pfVar3 = fVar25;
@@ -12536,7 +12536,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
         SystemStackVariable_378 = SystemStackVariable_378 & SystemMemoryAlignmentMask;
         if (*(longlong *)(GameSecondaryDataPointer + 0x2908) == 0) {
           ProcessParameterValidation(GameSecondaryDataPointer,pfVar5,0x31b189,&SystemStackVariable_378);
-          fVar20 = (float)SystemStackVariable_378;
+          FloatColorRedComponent = (float)SystemStackVariable_378;
         }
         else {
           cStack_324 = '\0';
@@ -12550,12 +12550,12 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
           ProcessSystemParameters(GameSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
-          fVar20 = fStack_328;
+          FloatColorRedComponent = fStack_328;
           if (cStack_324 == '\0') {
-            fVar20 = 0.0;
+            FloatColorRedComponent = 0.0;
           }
         }
-        *pfVar3 = fVar20 + 0.01;
+        *pfVar3 = FloatColorRedComponent + 0.01;
         pfVar5 = pfVar5 + 4;
         pfVar3 = pfVar3 + 4;
         MemoryAddressPointer = MemoryAddressPointer + -1;
