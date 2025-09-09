@@ -199526,26 +199526,26 @@ UIHandle FreeUIResource(longlong uiContext,int dataSource)
     if (*(int *)((longlong)allocatedMemoryPointer + 0x24) == dataSource) break;
     allocatedMemoryPointer = (longlong *)*allocatedMemoryPointer;
   }
-  colorBufferPointer = pallocatedMemory + 5;
+  colorBufferPointer = allocatedMemoryPointer + 5;
   *(int *)colorBufferPointer = (int)*colorBufferPointer + -1;
   if ((int)*colorBufferPointer != 0) {
     return 0;
   }
-  *(longlong *)pallocatedMemory[1] = *pallocatedMemory;
-  *(longlong *)(*pallocatedMemory + 8) = pallocatedMemory[1];
-  pallocatedMemory[1] = (longlong)pallocatedMemory;
-  *pallocatedMemory = (longlong)pallocatedMemory;
+  *(longlong *)allocatedMemoryPointer[1] = *allocatedMemoryPointer;
+  *(longlong *)(*allocatedMemoryPointer + 8) = allocatedMemoryPointer[1];
+  allocatedMemoryPointer[1] = (longlong)allocatedMemoryPointer;
+  *allocatedMemoryPointer = (longlong)allocatedMemoryPointer;
   if ((*(code **)(uiContext + 0x3b0) != (UIFunctionPtr *)0x0) &&
-     (EventTypeCode = (**(code **)(uiContext + 0x3b0))(uiContext + 8,*(UIDword *)((longlong)pallocatedMemory + 0x24)),
-     (int)EventTypeCode != 0)) {
-    return EventTypeCode;
+     (eventTypeCode = (**(code **)(uiContext + 0x3b0))(uiContext + 8,*(UIDword *)((longlong)allocatedMemoryPointer + 0x24)),
+     (int)eventTypeCode != 0)) {
+    return eventTypeCode;
   }
-  EventTypeCode = FUN_18075d600(pallocatedMemory[2],1);
-  if ((int)EventTypeCode != 0) {
-    return EventTypeCode;
+  eventTypeCode = FUN_18075d600(allocatedMemoryPointer[2],1);
+  if ((int)eventTypeCode != 0) {
+    return eventTypeCode;
   }
-  EventTypeCode = (**(code **)(*(longlong *)pallocatedMemory[2] + 0x10))();
-  if ((int)EventTypeCode != 0) {
+  eventTypeCode = (**(code **)(*(longlong *)allocatedMemoryPointer[2] + 0x10))();
+  if ((int)eventTypeCode != 0) {
     return EventTypeCode;
   }
   if (pallocatedMemory[7] == 0) {
