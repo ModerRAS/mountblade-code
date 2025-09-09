@@ -21520,7 +21520,7 @@ void LockSystemMutexAndBroadcast(long long systemContextReference)
   if (lockResult != 0) {
     ThrowSystemError(lockResult);
   }
-  lockResult = _Mtx_unlock(systemContextReference + 0x48);
+  lockResult = _Mtx_unlock(systemContextReference + SystemContextLockOffset);
   if (lockResult != 0) {
     ThrowSystemError(lockResult);
   }
@@ -21666,7 +21666,7 @@ void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(MemoryPageBaseAddress,CombineExceptionFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryPageBaseAddress + 0x70) == &ExceptionList),
+      SystemExceptionCheck(MemoryPageBaseAddress,CombineExceptionFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryPageBaseAddress + SystemMemoryPageExceptionOffset) == &ExceptionList),
                           ResourceEntryPointer,MemoryPageBaseAddress,InvalidHandleValue);
     }
   }
@@ -21808,13 +21808,13 @@ SystemMemoryAllocationOffsetCheck:
   SetupSystemProcessingBuffer(&SystemEncryptionContext,SystemMemoryPageBase,SystemOperationCode,SystemResourceHandle);
   SystemDataPointerPointer = SystemEncryptionContext;
   ProcessSystemData(SystemEncryptionContext,&SystemMemoryContext);
-  SystemResourceManagerContext = (void* ****)(SystemDataPointerPointer + 0x20);
+  SystemResourceManagerContext = (void* ****)(SystemDataPointerPointer + SystemDataPointerResourceOffset);
   SystemResourceTableSize = *(long long *)(SystemResourceManager + ResourceManagerTableSizeOffset);
   SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
   if (SystemResourceTablePointer != SystemResourceTableSize) {
     do {
       HandleSystemMemoryPage(SystemResourceTablePointer);
-      SystemResourceTablePointer = SystemResourceTablePointer + 0x100;
+      SystemResourceTablePointer = SystemResourceTablePointer + SystemResourceTableIncrement;
     } while (SystemResourceTablePointer != SystemResourceTableSize);
     SystemResourceTablePointer = *(long long *)(SystemResourceManager + 8);
   }
@@ -21899,7 +21899,7 @@ ComparisonResultCheck:
   dataBlockComparisonIndex = 0;
   dataBlockSizeLimit = *(long long *)(SystemResourceManager + ResourceManagerTableSizeOffset) - dataBlockResourceMemoryOffset >> 8;
   if (dataBlockSizeLimit != 0) {
-    DataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    DataBlockByteDifference = *(int *)(ComparisonDataPointer + SystemComparisonDataOffset);
     loopCounterValue = dataBlockComparisonIndex;
     do {
       dataBlockComparisonResult = *(int *)(loopCounter + 0x10 + dataBlockResourceMemoryOffset);
