@@ -3083,14 +3083,47 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define systemContextDataPointerMacro systemContextDataPointer
 
 // 数据处理流程控制标签宏定义
-// 系统数据处理流程检查点
-// 功能：在数据处理流程中设置检查点以确保数据完整性
+
+/**
+ * @brief 数据处理流程检查点
+ * 
+ * 在数据处理流程中设置检查点以确保数据完整性
+ * 该宏用于：
+ * 1. 标记数据处理流程中的关键检查点
+ * 2. 确保数据处理的完整性和一致性
+ * 3. 支持数据处理的监控和调试
+ * 
+ * @note 原始函数名：ValidateDataFlowCheckpoint
+ * @warning 检查点设置需要考虑系统性能影响
+ */
 #define ProcessCheckpointDataFlow ValidateDataFlowCheckpoint
-// 检查点参数验证
-// 功能：验证检查点参数的有效性和完整性
+
+/**
+ * @brief 检查点参数验证
+ * 
+ * 验证检查点参数的有效性和完整性
+ * 该宏用于：
+ * 1. 检查检查点参数的有效性
+ * 2. 验证参数的完整性和安全性
+ * 3. 确保检查点操作的可靠性
+ * 
+ * @note 原始函数名：ValidateCheckpointParameters
+ * @warning 参数验证是确保系统安全的重要步骤
+ */
 #define ProcessCheckpointParameterValidation ValidateCheckpointParameters
-// 内存分配标签
-// 功能：标记内存分配操作的开始和结束点
+
+/**
+ * @brief 内存分配标签
+ * 
+ * 标记内存分配操作的开始和结束点
+ * 该宏用于：
+ * 1. 标记内存分配操作的边界
+ * 2. 支持内存分配的监控和调试
+ * 3. 便于内存泄漏的检测和处理
+ * 
+ * @note 原始函数名：SystemMemoryAllocationTag
+ * @warning 内存分配标签的正确使用对内存管理至关重要
+ */
 #define MemoryAllocationLabel SystemMemoryAllocationTag
 // 处理完成标签
 // 功能：标记处理操作的完成状态
@@ -134679,6 +134712,44 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ProcessSystemDataValidation Unwind_18090e770
 
-// 验证结果浮点数A
-// 功能：存储验证过程中的浮点数计算结果值
-#define ValidationResultFloatA validationFloatResultA
+/**
+ * @brief 验证结果浮点数A
+ * 
+ * 存储验证过程中的浮点数计算结果值
+ * 该变量用于：
+ * 1. 保存浮点数验证操作的中间结果
+ * 2. 提供验证结果的浮点数表示
+ * 3. 支持后续的浮点数计算和处理
+ * 
+ * @note 原始变量名：ValidationResultFloatA
+ * @warning 浮点数操作需要考虑精度和溢出问题
+ */
+float ValidationResultFloatA;
+
+/**
+ * @brief 验证结果浮点数B
+ * 
+ * 存储验证过程中的浮点数计算结果值
+ * 该变量用于：
+ * 1. 保存浮点数验证操作的中间结果
+ * 2. 提供验证结果的浮点数表示
+ * 3. 支持后续的浮点数计算和处理
+ * 
+ * @note 原始变量名：ValidationResultFloatB
+ * @warning 浮点数操作需要考虑精度和溢出问题
+ */
+float ValidationResultFloatB;
+
+/**
+ * @brief 验证结果整数A
+ * 
+ * 存储验证过程中的整数计算结果值
+ * 该变量用于：
+ * 1. 保存整数验证操作的中间结果
+ * 2. 提供验证结果的整数表示
+ * 3. 支持后续的整数计算和处理
+ * 
+ * @note 原始变量名：ValidationResultIntegerA
+ * @warning 整数操作需要考虑溢出问题
+ */
+int ValidationResultIntegerA;

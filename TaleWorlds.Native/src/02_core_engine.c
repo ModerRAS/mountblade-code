@@ -220296,7 +220296,7 @@ LAB_180180381:
     else {
       if (StringLength == 4) {
         ContextHandle8 = *(long long **)(SystemDataTablePointer + 0x40);
-        if (*(code **)(*ContextHandle8 + 0x20) == FUN_180651d20) {
+        if (*(code **)(*ContextHandle8 + 0x20) == ProcessSystemCharacterData) {
           SystemPrimaryReturnCode = Utf16ConversionContext;
           if (ContextHandle8[0x2e] - ContextHandle8[0x2d] >> 3 != 0) {
             do {
@@ -226023,7 +226023,7 @@ uint32_t * ReallocateCharacterStatusBufferAndInsertElement(long long *CharacterS
   if (0x666666666666666 < CalculatedElementCount) {
     StringOffset = -1;
   }
-  NewBufferPointer = (uint32_t *)FUN_180067110(StringOffset);
+  NewBufferPointer = (uint32_t *)AllocateSystemMemoryBlock(StringOffset);
   PrimaryProcessingStatusFlag = NewBufferPointer + ((InsertPosition - BufferStartAddress) / 0x28) * 10;
   *(void *)(PrimaryProcessingStatusFlag + 4) = 0;
   *(void *)(PrimaryProcessingStatusFlag + 6) = 0;
@@ -226135,7 +226135,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
   if (0x666666666666666 < CalculatedElementCount) {
     AllocatedMemorySizeSize = -1;
   }
-  NewBufferPointer = FUN_180067110(AllocatedMemorySizeSize);
+  NewBufferPointer = AllocateSystemMemoryBlock(AllocatedMemorySizeSize);
   InsertPointer = NewBufferPointer + ((InsertPosition - OldBufferStart) / 0x28) * 0x28;
   NewBufferStart = NewBufferPointer;
   SystemDataTablePointer = InsertPointer;
