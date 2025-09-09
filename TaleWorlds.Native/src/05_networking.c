@@ -944,7 +944,7 @@ NetworkHandle GetNetworkConnectionHandle(int64_t *NetworkConnectionContext)
     // 在实际实现中，这里应该从连接上下文中提取句柄信息
     // 包括：句柄验证、权限检查、状态确认等
     // 由于这是简化实现，直接返回一个模拟的有效句柄
-    ConnectionHandleResult = (NetworkHandle)(*NetworkConnectionContext & 0xFFFF);
+    ConnectionHandleResult = (NetworkHandle)(*NetworkConnectionContext & NetworkConnectionIdentifierMaskValue);
   }
   
   return ConnectionHandleResult;
@@ -2419,18 +2419,6 @@ void InitializeNetworkConnectionPool(void)
 }
 
 /**
- * @brief 初始化网络套接字句柄
- * 
- * 初始化网络套接字的基本参数和配置，为后续的网络通信做准备。
- * 此函数负责设置套接字的描述符、上下文大小、索引等基本参数。
- * 
- * @note 此函数会在网络系统启动时调用，确保套接字句柄正确初始化
- * @warning 如果初始化失败，系统将无法进行网络通信
- * 
- * @return void 无返回值
- */
-
-/**
  * @brief 网络连接配置数据
  */
 void *NetworkConnectionConfigurationData;
@@ -2550,7 +2538,7 @@ uint32_t NetworkConnectionValidationConfigData;
  * 包含网络路由的主要配置参数，定义路由策略、路径选择算法、负载均衡
  * 和故障转移机制。此配置是网络路由系统的核心配置。
  */
-uint32_t NetworkConnectionRoutingMainConfig;            // 网络连接路由主配置数据，路由的主要配置参数
+uint32_t NetworkConnectionRoutingMainConfig;
 
 /**
  * @brief 网络连接路由备用配置数据
@@ -2558,7 +2546,7 @@ uint32_t NetworkConnectionRoutingMainConfig;            // 网络连接路由主
  * 包含网络路由的备用配置参数，作为主配置的备份方案。当主路由配置
  * 出现故障或不可用时，系统会自动切换到备用配置以确保服务连续性。
  */
-uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备用配置数据，路由的备用配置参数
+uint32_t NetworkConnectionRoutingBackupConfig;
 
 /**
  * @brief 网络连接路由替代配置数据
@@ -2566,7 +2554,7 @@ uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备
  * 包含网络路由的替代配置参数，提供与主配置不同的路由策略和路径选择。
  * 当主配置和备用配置都无法满足需求时，系统会尝试使用替代配置。
  */
-uint32_t NetworkConnectionRoutingAlternativeConfig;           // 网络连接路由替代配置数据，路由的替代配置参数
+uint32_t NetworkConnectionRoutingAlternativeConfig;
 
 /**
  * @brief 网络连接路由回退配置数据
@@ -2574,7 +2562,7 @@ uint32_t NetworkConnectionRoutingAlternativeConfig;           // 网络连接路
  * 包含网络路由的回退配置参数，作为最后的保障方案。当所有其他配置都失败时，
  * 系统会使用回退配置来确保基本的网络连通性。
  */
-uint32_t NetworkConnectionRoutingFallbackConfig;            // 网络连接路由回退配置数据，路由的回退配置参数
+uint32_t NetworkConnectionRoutingFallbackConfig;
 
 /**
  * @brief 初始化网络套接字
@@ -5437,18 +5425,18 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkCo
  */
 static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkConnectionContext)
 {
-    uint32_t integrityCheck;
-    uint32_t securityValidation;
+    uint32_t dataIntegrityCheckResult;
+    uint32_t securityValidationResult;
     
     // 执行数据完整性检查
-    integrityCheck = PerformDataIntegrityCheck(NetworkConnectionContext);
+    dataIntegrityCheckResult = PerformDataIntegrityCheck(NetworkConnectionContext);
     
     // 执行安全性验证
-    securityValidation = PerformSecurityValidation(NetworkConnectionContext);
+    securityValidationResult = PerformSecurityValidation(NetworkConnectionContext);
     
     // 综合验证结果
-    if (integrityCheck == NetworkValidationSuccess && 
-        securityValidation == NetworkValidationSuccess) {
+    if (dataIntegrityCheckResult == NetworkValidationSuccess && 
+        securityValidationResult == NetworkValidationSuccess) {
         return NetworkValidationSuccess;
     }
     
@@ -5465,11 +5453,11 @@ static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkCon
 static void UpdateConnectionTimestamp(NetworkConnectionContext *NetworkConnectionContext)
 {
     // 获取当前系统时间
-    uint64_t currentTime = GetCurrentSystemTime();
+    uint64_t currentSystemTime = GetCurrentSystemTime();
     
     // 更新连接时间戳
-    NetworkConnectionContext->lastActivityTime = currentTime;
-    NetworkConnectionContext->heartbeatTimestamp = currentTime;
+    NetworkConnectionContext->lastActivityTime = currentSystemTime;
+    NetworkConnectionContext->heartbeatTimestamp = currentSystemTime;
 }
 
 /**
@@ -5510,16 +5498,16 @@ static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *Networ
     InitializeConnectionParameters(NetworkConnectionContext);
     
     // 执行连接建立过程
-    connectionResult = PerformConnectionHandshake(NetworkConnectionContext, TimeoutValue);
+    connectionEstablishmentResult = PerformConnectionHandshake(NetworkConnectionContext, TimeoutValue);
     
-    if (connectionResult == NetworkOperationSuccess) {
+    if (connectionEstablishmentResult == NetworkOperationSuccess) {
         // 连接成功，生成连接句柄
-        newHandle = GenerateConnectionHandle(NetworkConnectionContext);
+        newConnectionHandle = GenerateConnectionHandle(NetworkConnectionContext);
         
         // 初始化连接安全上下文
         InitializeSecurityContext(NetworkConnectionContext);
         
-        return newHandle;
+        return newConnectionHandle;
     }
     
     return NetworkErrorConnectionFailed;
