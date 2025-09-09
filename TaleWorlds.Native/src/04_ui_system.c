@@ -98383,12 +98383,12 @@ LAB_180722683:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807226f0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_1807226f0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ void ProcessUIComponentTransform(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+void ProcessUIComponentTransform(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                   int resultPointer,UIHandle param_6,UIDword param_7)
 
 {
-  UIByte astackUIntc8 [136];
+  UIByte stackArrayC8 [136];
   UIDword stackUInt40;
   UIHandle stackUInt38;
   ulonglong stackUInt30;
@@ -98400,7 +98400,7 @@ void FUN_1807226f0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
      ((resultPointer != 2 || (*(int *)(uiBufferData + 0x980 + (longlong)*(int *)(uiBufferData + 0x960) * 4) != 1))))
   {
     *(UIByte *)(uiContext + 0xae5) = *(UIByte *)(uiContext + 0x105c);
-    FUN_180728660(uiContext,astackUIntc8,targetBuffer,1,param_7);
+    ProcessUIContextDataTransfer(uiContext,stackArrayC8,targetBuffer,1,param_7);
                      WARNING: Subroutine does not return
     memmove(uiContext + 0x544,uiContext + ((longlong)*(int *)(uiBufferData + 0x918) + 0x2a2) * 2,
             (longlong)(*(int *)(uiBufferData + 0x920) - *(int *)(uiBufferData + 0x918)) * 2);
@@ -188352,7 +188352,6 @@ char UISystemConfigFlag;
 // 原始变量名：DAT_180c10890 - UI系统状态标志
 #define UISystemStatusFlag DAT_180c10890
 undefined UISystemStatusFlag;
-// 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
 // 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
 // 注意：已在文件开头定义为 GlobalUIComponentInstanceE8
 // #define UISystemCOMInterfacePtr DAT_180c0c6e8
