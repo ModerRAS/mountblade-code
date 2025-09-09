@@ -99953,21 +99953,21 @@ void ProcessUIContextData(void)
   }
   *(UIByte *)(contextHandle + 0xae7) = processingResult;
   if (*(char *)(contextHandle + 0xae5) != '\x02') goto LAB_180722ca8;
-  if ((RegisterValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
-    sVar2 = ReadUIData();
-    if (sVar2 < 1) goto LAB_180722ba9;
-    sVar2 = *(short *)(contextHandle + 0x96c) + -9 + sVar2;
-    *(short *)(contextHandle + 0xae2) = sVar2;
+  if ((registerValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
+    shortCalculationResult = ReadUIData();
+    if (shortCalculationResult < 1) goto LAB_180722ba9;
+    shortCalculationResult = *(short *)(contextHandle + 0x96c) + -9 + shortCalculationResult;
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult;
   }
   else {
 LAB_180722ba9:
-    sVar2 = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = sVar2 * (short)(*(int *)(contextHandle + 0x90c) >> 1);
-    sVar2 = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + sVar2;
-    sVar2 = *(short *)(contextHandle + 0xae2);
+    shortCalculationResult = ReadUIData();
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult * (short)(*(int *)(contextHandle + 0x90c) >> 1);
+    shortCalculationResult = ReadUIData();
+    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + shortCalculationResult;
+    shortCalculationResult = *(short *)(contextHandle + 0xae2);
   }
-  *(short *)(contextHandle + 0x96c) = sVar2;
+  *(short *)(contextHandle + 0x96c) = shortCalculationResult;
   result = ReadUIData();
   *(UIByte *)(contextHandle + 0xae4) = result;
   result = ReadUIData();
