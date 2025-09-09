@@ -4656,54 +4656,588 @@ const void* const SystemDataStructureTemplateTertiary = (void*)0x180a16c98;
 const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 
 // 函数语义化宏定义
-// 浮点数据处理函数
+
+/**
+ * @brief 计算浮点数范围值
+ * 
+ * 该函数用于计算浮点数的范围值，确保数值在有效范围内。
+ * 主要用于系统参数验证和数据预处理。
+ * 
+ * @param value 输入的浮点数值
+ * @param minValue 最小值边界
+ * @param maxValue 最大值边界
+ * @return float 返回处理后的浮点数值
+ * 
+ * @note 原始函数名：FUN_18011fc80
+ */
 #define CalculateFloatRangeValue FUN_18011fc80
+
+/**
+ * @brief 处理系统上下文数据
+ * 
+ * 该函数负责处理系统上下文数据，包括数据验证、格式转换和状态更新。
+ * 
+ * @param context 系统上下文指针
+ * @param data 要处理的数据
+ * @param dataSize 数据大小
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_18011fd90
+ */
 #define ProcessSystemContextData FUN_18011fd90
+
+/**
+ * @brief 验证系统参数
+ * 
+ * 该函数用于验证系统参数的有效性，确保参数符合系统要求。
+ * 
+ * @param parameters 参数数组
+ * @param count 参数数量
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_18011fef0
+ */
 #define ValidateSystemParameters FUN_18011fef0
+
+/**
+ * @brief 初始化系统上下文
+ * 
+ * 该函数负责初始化系统上下文，分配必要的资源并设置初始状态。
+ * 
+ * @param contextSize 上下文大小
+ * @return void* 返回初始化后的上下文指针
+ * 
+ * @note 原始函数名：FUN_18011ff20
+ */
 #define InitializeSystemContext FUN_18011ff20
+
+/**
+ * @brief 处理系统数据流
+ * 
+ * 该函数用于处理系统数据流，包括数据的读取、写入和转换操作。
+ * 
+ * @param inputStream 输入数据流
+ * @param outputStream 输出数据流
+ * @param bufferSize 缓冲区大小
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_18011ff60
+ */
 #define ProcessSystemDataFlow FUN_18011ff60
+
+/**
+ * @brief 验证系统内存
+ * 
+ * 该函数用于验证系统内存的有效性和完整性。
+ * 
+ * @param memoryAddress 内存地址
+ * @param memorySize 内存大小
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180120960
+ */
 #define ValidateSystemMemory FUN_180120960
+
+/**
+ * @brief 处理系统内存操作
+ * 
+ * 该函数负责处理系统内存操作，包括内存分配、释放和修改。
+ * 
+ * @param operation 操作类型
+ * @param memoryAddress 内存地址
+ * @param size 操作大小
+ * @return int 返回操作状态码
+ * 
+ * @note 原始函数名：FUN_1801209b0
+ */
 #define ProcessSystemMemoryOperation FUN_1801209b0
+
+/**
+ * @brief 执行系统验证
+ * 
+ * 该函数用于执行系统验证，确保系统处于正常状态。
+ * 
+ * @param validationType 验证类型
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180120a30
+ */
 #define ExecuteSystemValidation FUN_180120a30
+
+/**
+ * @brief 处理系统数据传输
+ * 
+ * 该函数负责处理系统数据传输，包括数据的复制、移动和同步。
+ * 
+ * @param source 源数据地址
+ * @param destination 目标数据地址
+ * @param size 传输大小
+ * @return int 返回传输状态码
+ * 
+ * @note 原始函数名：FUN_180120a70
+ */
 #define HandleSystemDataTransfer FUN_180120a70
-#define ProcessSystemContextData FUN_180120b10
+
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统资源，释放分配的内存和句柄。
+ * 
+ * @param resourceHandle 资源句柄
+ * @return int 返回清理状态码
+ * 
+ * @note 原始函数名：FUN_180120d00
+ */
 #define CleanupSystemResources FUN_180120d00
+
+/**
+ * @brief 初始化系统组件
+ * 
+ * 该函数负责初始化系统组件，设置组件的初始状态和参数。
+ * 
+ * @param componentHandle 组件句柄
+ * @param config 配置参数
+ * @return int 返回初始化状态码
+ * 
+ * @note 原始函数名：FUN_1801210b0
+ */
 #define InitializeSystemComponents FUN_1801210b0
+
+/**
+ * @brief 处理系统事件
+ * 
+ * 该函数负责处理系统事件，包括事件的分发和处理。
+ * 
+ * @param eventHandle 事件句柄
+ * @param eventData 事件数据
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180121300
+ */
 #define ProcessSystemEvents FUN_180121300
+
+/**
+ * @brief 验证系统数据完整性
+ * 
+ * 该函数用于验证系统数据的完整性，确保数据没有被损坏或篡改。
+ * 
+ * @param data 数据指针
+ * @param dataSize 数据大小
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180121742
+ */
 #define ValidateSystemDataIntegrity FUN_180121742
+
+/**
+ * @brief 处理系统缓冲区
+ * 
+ * 该函数负责处理系统缓冲区，包括缓冲区的分配、释放和管理。
+ * 
+ * @param bufferHandle 缓冲区句柄
+ * @param operation 操作类型
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180121761
+ */
 #define ProcessSystemBuffers FUN_180121761
+
+/**
+ * @brief 执行系统操作
+ * 
+ * 该函数用于执行系统操作，包括各种系统级别的操作。
+ * 
+ * @param operationType 操作类型
+ * @param parameters 操作参数
+ * @return int 返回操作状态码
+ * 
+ * @note 原始函数名：FUN_18012198e
+ */
 #define ExecuteSystemOperations FUN_18012198e
+
+/**
+ * @brief 处理系统配置
+ * 
+ * 该函数负责处理系统配置，包括配置的加载、保存和验证。
+ * 
+ * @param configHandle 配置句柄
+ * @param configData 配置数据
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_1801219a3
+ */
 #define HandleSystemConfiguration FUN_1801219a3
+
+/**
+ * @brief 处理系统安全验证
+ * 
+ * 该函数负责处理系统安全验证，确保系统操作的安全性。
+ * 
+ * @param securityHandle 安全句柄
+ * @param validationData 验证数据
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180122160
+ */
 #define ProcessSystemSecurityValidation FUN_180122160
+
+/**
+ * @brief 执行系统内存操作
+ * 
+ * 该函数用于执行系统内存操作，包括内存的读写和管理。
+ * 
+ * @param memoryHandle 内存句柄
+ * @param operation 操作类型
+ * @param address 内存地址
+ * @param size 操作大小
+ * @return int 返回操作状态码
+ * 
+ * @note 原始函数名：FUN_180122210
+ */
 #define ExecuteSystemMemoryOperation FUN_180122210
+
+/**
+ * @brief 验证系统状态
+ * 
+ * 该函数用于验证系统状态，确保系统处于正常工作状态。
+ * 
+ * @param statusHandle 状态句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180122240
+ */
 #define ValidateSystemStatus FUN_180122240
+
+/**
+ * @brief 处理系统线程操作
+ * 
+ * 该函数负责处理系统线程操作，包括线程的创建、同步和销毁。
+ * 
+ * @param threadHandle 线程句柄
+ * @param operation 操作类型
+ * @return int 返回操作状态码
+ * 
+ * @note 原始函数名：FUN_18012227a
+ */
 #define ProcessSystemThreadOperation FUN_18012227a
+
+/**
+ * @brief 初始化系统线程
+ * 
+ * 该函数负责初始化系统线程，设置线程的初始状态和参数。
+ * 
+ * @param threadHandle 线程句柄
+ * @param threadParams 线程参数
+ * @return int 返回初始化状态码
+ * 
+ * @note 原始函数名：FUN_180122310
+ */
 #define InitializeSystemThread FUN_180122310
+
+/**
+ * @brief 处理系统浮点数据
+ * 
+ * 该函数负责处理系统浮点数据，包括浮点数的计算和转换。
+ * 
+ * @param floatData 浮点数据指针
+ * @param dataSize 数据大小
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180122503
+ */
 #define ProcessSystemFloatData FUN_180122503
+
+/**
+ * @brief 计算系统参数
+ * 
+ * 该函数用于计算系统参数，生成系统运行所需的参数值。
+ * 
+ * @param inputParams 输入参数
+ * @param outputParams 输出参数
+ * @return int 返回计算状态码
+ * 
+ * @note 原始函数名：FUN_18012250a
+ */
 #define CalculateSystemParameters FUN_18012250a
+
+/**
+ * @brief 处理系统数据转换
+ * 
+ * 该函数负责处理系统数据转换，包括数据格式的转换和适配。
+ * 
+ * @param sourceData 源数据
+ * @param targetFormat 目标格式
+ * @return int 返回转换状态码
+ * 
+ * @note 原始函数名：FUN_180122537
+ */
 #define HandleSystemDataConversion FUN_180122537
+
+/**
+ * @brief 清理系统内存
+ * 
+ * 该函数负责清理系统内存，释放不再使用的内存资源。
+ * 
+ * @param memoryHandle 内存句柄
+ * @return int 返回清理状态码
+ * 
+ * @note 原始函数名：FUN_1801225c7
+ */
 #define CleanupSystemMemory FUN_1801225c7
+
+/**
+ * @brief 初始化系统数据
+ * 
+ * 该函数负责初始化系统数据，设置数据的初始值和状态。
+ * 
+ * @param dataHandle 数据句柄
+ * @param initialData 初始数据
+ * @return int 返回初始化状态码
+ * 
+ * @note 原始函数名：FUN_1801225f0
+ */
 #define InitializeSystemData FUN_1801225f0
+
+/**
+ * @brief 处理系统向量
+ * 
+ * 该函数负责处理系统向量，包括向量的计算和操作。
+ * 
+ * @param vectorHandle 向量句柄
+ * @param operation 操作类型
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_1801226e4
+ */
 #define ProcessSystemVectors FUN_1801226e4
+
+/**
+ * @brief 验证系统向量
+ * 
+ * 该函数用于验证系统向量的有效性和正确性。
+ * 
+ * @param vectorHandle 向量句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_1801226e9
+ */
 #define ValidateSystemVectors FUN_1801226e9
+
+/**
+ * @brief 完成系统操作
+ * 
+ * 该函数用于完成系统操作，执行必要的清理和收尾工作。
+ * 
+ * @param operationHandle 操作句柄
+ * @return int 返回完成状态码
+ * 
+ * @note 原始函数名：FUN_1801227d7
+ */
 #define FinalizeSystemOperations FUN_1801227d7
+
+/**
+ * @brief 执行系统清理
+ * 
+ * 该函数负责执行系统清理，释放系统资源并重置系统状态。
+ * 
+ * @param cleanupType 清理类型
+ * @return int 返回清理状态码
+ * 
+ * @note 原始函数名：FUN_180122906
+ */
 #define ExecuteSystemCleanup FUN_180122906
+
+/**
+ * @brief 验证系统清理
+ * 
+ * 该函数用于验证系统清理的结果，确保清理操作正确完成。
+ * 
+ * @param cleanupHandle 清理句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180122938
+ */
 #define ValidateSystemCleanup FUN_180122938
+
+/**
+ * @brief 处理系统整数数据
+ * 
+ * 该函数负责处理系统整数数据，包括整数的计算和操作。
+ * 
+ * @param integerData 整数数据指针
+ * @param dataSize 数据大小
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180122b10
+ */
 #define ProcessSystemIntegerData FUN_180122b10
+
+/**
+ * @brief 计算系统值
+ * 
+ * 该函数用于计算系统值，生成系统运行所需的数值。
+ * 
+ * @param inputValue 输入值
+ * @param calculationType 计算类型
+ * @return double 返回计算结果
+ * 
+ * @note 原始函数名：FUN_180122e80
+ */
 #define CalculateSystemValue FUN_180122e80
+
+/**
+ * @brief 处理系统缩放
+ * 
+ * 该函数负责处理系统缩放，包括缩放因子的计算和应用。
+ * 
+ * @param scaleHandle 缩放句柄
+ * @param scaleFactor 缩放因子
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180123105
+ */
 #define ProcessSystemScaling FUN_180123105
+
+/**
+ * @brief 验证系统缩放
+ * 
+ * 该函数用于验证系统缩放的有效性和正确性。
+ * 
+ * @param scaleHandle 缩放句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180123121
+ */
 #define ValidateSystemScaling FUN_180123121
+
+/**
+ * @brief 处理系统变换
+ * 
+ * 该函数负责处理系统变换，包括矩阵变换和坐标变换。
+ * 
+ * @param transformHandle 变换句柄
+ * @param transformParams 变换参数
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_1801231cf
+ */
 #define ProcessSystemTransformation FUN_1801231cf
+
+/**
+ * @brief 初始化系统变换
+ * 
+ * 该函数负责初始化系统变换，设置变换的初始状态和参数。
+ * 
+ * @param transformHandle 变换句柄
+ * @param initialParams 初始参数
+ * @return int 返回初始化状态码
+ * 
+ * @note 原始函数名：FUN_1801231dc
+ */
 #define InitializeSystemTransform FUN_1801231dc
+
+/**
+ * @brief 清理系统变换
+ * 
+ * 该函数负责清理系统变换，释放变换相关的资源。
+ * 
+ * @param transformHandle 变换句柄
+ * @return int 返回清理状态码
+ * 
+ * @note 原始函数名：FUN_1801232da
+ */
 #define CleanupSystemTransform FUN_1801232da
+
+/**
+ * @brief 完成系统变换
+ * 
+ * 该函数用于完成系统变换，执行变换的收尾工作。
+ * 
+ * @param transformHandle 变换句柄
+ * @return int 返回完成状态码
+ * 
+ * @note 原始函数名：FUN_18012331b
+ */
 #define FinalizeSystemTransform FUN_18012331b
+
+/**
+ * @brief 处理系统内存数据
+ * 
+ * 该函数负责处理系统内存数据，包括内存数据的读写和管理。
+ * 
+ * @param memoryHandle 内存句柄
+ * @param operation 操作类型
+ * @param address 内存地址
+ * @param size 操作大小
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_18012344d
+ */
 #define ProcessSystemMemoryData FUN_18012344d
+
+/**
+ * @brief 验证系统内存数据
+ * 
+ * 该函数用于验证系统内存数据的有效性和完整性。
+ * 
+ * @param memoryHandle 内存句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180123455
+ */
 #define ValidateSystemMemoryData FUN_180123455
+
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责处理系统数据验证，确保数据的正确性和安全性。
+ * 
+ * @param dataHandle 数据句柄
+ * @param validationType 验证类型
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180123460
+ */
 #define HandleSystemDataValidation FUN_180123460
+
+/**
+ * @brief 处理系统数据数组
+ * 
+ * 该函数负责处理系统数据数组，包括数组的创建、访问和修改。
+ * 
+ * @param arrayHandle 数组句柄
+ * @param operation 操作类型
+ * @param index 数组索引
+ * @param data 数据指针
+ * @return int 返回处理状态码
+ * 
+ * @note 原始函数名：FUN_180123960
+ */
 #define ProcessSystemDataArray FUN_180123960
+
+/**
+ * @brief 验证系统数据数组
+ * 
+ * 该函数用于验证系统数据数组的有效性和正确性。
+ * 
+ * @param arrayHandle 数组句柄
+ * @return bool 返回验证结果
+ * 
+ * @note 原始函数名：FUN_180123a60
+ */
 #define ValidateSystemDataArray FUN_180123a60
 
-// 系统缓冲区和数据处理函数
+/**
+ * @brief 处理系统缓冲区分配
+ * 
+ * 该函数负责处理系统缓冲区分配，包括缓冲区的创建和管理。
+ * 
+ * @param bufferSize 缓冲区大小
+ * @param alignment 对齐方式
+ * @return void* 返回分配的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1801242c0
+ */
 #define ProcessSystemBufferAllocation FUN_1801242c0
 #define HandleSystemCleanupOperation ProcessLongContextHandleOperation
 #define ProcessSystemShaderData ProcessSystemFunctionTable

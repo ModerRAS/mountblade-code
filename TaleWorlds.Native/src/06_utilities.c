@@ -50544,19 +50544,19 @@ void CleanupExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
       TerminateSystemExecutionAndCleanupResources();
   }
   exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
-  *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
+  *(DataWord *)(exceptionDataBuffer + ExceptionDataWordOffset) = 0;
   exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + ExceptionDataBufferIndex12,exceptionDataBuffer[ExceptionDataBufferIndex14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[ExceptionDataBufferIndexD] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[9] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex9] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[5] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex5] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[1] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex1] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
