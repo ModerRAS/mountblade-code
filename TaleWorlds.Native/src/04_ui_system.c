@@ -10165,9 +10165,29 @@ UIFrameFinalize:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FinalizeUIFrame(void)
+ /**
+ * @brief 完成UI帧处理
+ * 
+ * 执行UI帧的最终处理操作，包括资源清理、进程快照和加密处理：
+ * - 初始化加密密钥和互斥锁
+ * - 创建进程快照进行系统状态检查
+ * - 处理错误状态和资源释放
+ * - 执行最终的渲染任务
+ * 
+ * @details 实现细节：
+ * - 设置内存对齐标志和XOR加密密钥
+ * - 获取系统互斥锁进行线程同步
+ * - 创建进程快照进行系统状态检查
+ * - 处理错误状态和异常情况
+ * - 执行最终的UI渲染任务
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 完整的资源管理和清理
+ * - 更完善的错误处理机制
+ * - 更安全的加密处理
+ * @warning 包含不返回的子程序调用，使用时需谨慎
+ */
 void FinalizeUIFrame(void)
-
 {
   int processingResult;
   UIDword ProcessId;

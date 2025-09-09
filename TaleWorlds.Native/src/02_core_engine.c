@@ -7048,6 +7048,41 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 #define ValidateSystemReferenceCount ValidateCoreEngineReferenceCount
 
 /**
+ * @brief 处理操作缓冲区大小和内存块索引管理
+ * 
+ * 该函数负责管理系统操作缓冲区的大小和内存块索引的分配与释放。
+ * 
+ * @note 原始函数名：FUN_180204f57
+ * @return 无返回值
+ */
+#define ProcessOperationBufferSizeAndMemoryBlockIndexManagement FUN_180204f57
+
+/**
+ * @brief 处理上下文句柄和UTF8源数据
+ * 
+ * 该函数负责处理系统上下文句柄和UTF8源数据的编码转换和处理。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @note 原始函数名：FUN_180204f70
+ * @return 无返回值
+ */
+#define ProcessContextHandleAndUtf8SourceData FUN_180204f70
+
+/**
+ * @brief 处理系统内存分配和清理
+ * 
+ * 该函数负责系统内存的分配、使用和清理操作。
+ * 
+ * @param SystemContextHandle 系统上下文句柄
+ * @param MemoryBufferSize 内存缓冲区大小
+ * @note 原始函数名：FUN_180205470
+ * @return 无返回值
+ */
+#define ProcessSystemMemoryAllocationAndCleanup FUN_180205470
+
+/**
  * @brief 初始化系统数据
  * 
  * 该函数负责系统数据的初始化，包括数据结构的创建和默认值的设置。

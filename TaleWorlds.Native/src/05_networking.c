@@ -5594,6 +5594,13 @@ static void ReleaseConnectionResources(NetworkConnectionContext *NetworkConnecti
  * 
  * @note 这是简化实现，实际应用中需要设置更多连接参数
  * @warning 调用此函数前需确保NetworkConnectionContext指针有效
+ * 
+ * @example
+ * ```c
+ * NetworkConnectionContext context;
+ * InitializeConnectionParameters(&context);
+ * // 现在可以安全地调用EstablishNetworkConnection
+ * ```
  */
 static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConnectionContext)
 {
@@ -5623,6 +5630,17 @@ static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConn
  * 
  * @note 这是简化实现，实际应用中需要实现完整的TCP三次握手或自定义握手协议
  * @warning 握手过程需要在指定的超时时间内完成
+ * 
+ * @example
+ * ```c
+ * NetworkConnectionContext context;
+ * uint32_t result = PerformConnectionHandshake(&context, 30000);
+ * if (result == NetworkOperationSuccess) {
+ *     // 握手成功，连接已建立
+ * } else {
+ *     // 握手失败，处理错误
+ * }
+ * ```
  */
 static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
 {
