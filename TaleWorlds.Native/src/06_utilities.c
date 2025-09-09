@@ -43416,7 +43416,7 @@ void ExceptionUnwindHandlerA22(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：未指定
  * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
-void SetDefaultExceptionHandlerAtOffset30(DataBuffer operationBase, int64_t dataBuffer)
+void SetDefaultExceptionHandlerToContext(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataBufferOffset30) = &SystemDefaultExceptionHandlerB;
@@ -43436,7 +43436,7 @@ void SetDefaultExceptionHandlerAtOffset30(DataBuffer operationBase, int64_t data
  * @note 原始函数名：未指定
  * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
-void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t dataBuffer)
+void SetDefaultExceptionHandlerToSecondary(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetF0) = &SystemDefaultExceptionHandlerB;
