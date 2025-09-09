@@ -293039,6 +293039,23 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define DataStorageValue StoredDataValue                     // 数据存储值
 #define SystemDataTablePointer DataTableSystemPointer        // 系统数据表指针
 
+// 浮点数参数语义化宏定义
+#define BaseFloatValue BaseFloatingPointValue                // 基础浮点值
+#define FloatParameter2 ParameterFloat2                      // 浮点参数2
+#define NormalizedParameterValue NormalizedParameter          // 归一化参数值
+
+// 输入数据语义化宏定义
+#define InputDataLength DataInputLength                      // 输入数据长度
+#define AllocatedMemorySize MemoryAllocationSize             // 内存分配大小
+
+// 指针语义化宏定义
+#define NullPointerD NullPointerD                            // 空指针D
+#define FloatingPointRegisterA FloatRegisterA               // 浮点寄存器A
+
+// 栈数据缓冲区语义化宏定义
+#define StackDataBuffer1 StackBufferData1                    // 栈数据缓冲区1
+#define StackProcessedData40 StackValue40                    // 栈处理数据40
+
 // 其他变量语义化宏定义
 #define SecondaryFloatValue SecondaryParameterValue           // 次要浮点值
 #define SystemFloatValue SystemFloatParameterValue           // 系统浮点值
