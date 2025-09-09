@@ -364,6 +364,9 @@
 // 系统参数偏移量常量
 #define SystemParameterOffset1C 0x1c
 
+// 数据缓冲区大小偏移量常量
+#define DataBufferSizeOffsetC 0xc
+
 // 异常处理数据缓冲区偏移量常量
 #define ExceptionHandlerDataBufferOffset160 0x160
 
@@ -27564,7 +27567,7 @@ DataProcessingCheckpoint:
               } while (iterationCount != -1);
             }
           } while ((validationFloatArray[0] != -NAN) &&
-                  (validationFloatArray[0] = *(float *)(exceptionHandlerContextPointer6[2] + 0x10 + exceptionHandlerContext5), validationFloatArray[0] != -NAN))
+                  (validationFloatArray[0] = *(float *)(exceptionHandlerContextPointer6[2] + FloatValidationOffset10 + exceptionHandlerContext5), validationFloatArray[0] != -NAN))
           ;
           ValidationFloatValue = (float)((int)ValidationFloatValue8 + 1);
           isFloatValueValid = ValidationFloatValue8 != -NAN;
@@ -28473,7 +28476,7 @@ DataBuffer ProcessDataBufferA0(DataBuffer DataBufferHandle,int DataBufferSize)
   TargetDataBuffer = (BytePair *)0x0;
   if (DataBufferSize == 0) {
 ValidationCheckpointA:
-    if ((0 < *(int *)((int64_t)DataBufferHandle + 0xc)) && (*DataBufferHandle != 0)) {
+    if ((0 < *(int *)((int64_t)DataBufferHandle + DataBufferSizeOffsetC)) && (*DataBufferHandle != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataBufferHandle,&SystemMemoryPoolB,0x100,1);
     }
     *DataBufferHandle = (int64_t)TargetDataBuffer;
@@ -66376,9 +66379,9 @@ void InitializeSystemMemoryConditionally(DataBuffer operationBase,int64_t dataBu
  * 
  * @note 原始函数名：Unwind_1809066e0
  */
-#define ExecuteExceptionHandlerCallback6E0 Unwind_1809066e0
+#define ExecuteExceptionHandlerCallback Unwind_1809066e0
 
-void ExecuteExceptionHandlerCallback6E0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

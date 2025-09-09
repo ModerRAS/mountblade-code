@@ -1441,6 +1441,33 @@ typedef enum {
 
 // UI系统变量美化
 #define Var77 UIVariable77
+
+// UI系统布尔变量美化
+#define bVar4 UIBoolVar4
+
+// UI系统指针变量美化
+#define psVar5 UIPtrShortVar5
+#define psVar1 UIPtrShortVar1
+#define pProcessingResult3 UIPtrProcessingResult3
+#define pprocessingResult6 UIPtrProcessingResult6
+#define allocatedMemory7 UIAllocatedMemory7
+#define allocatedMemory4 UIAllocatedMemory4
+#define uiBufferData UIBufferData
+#define eventProcessingStatus UIEventProcessingStatus
+#define uiContext1 UIContext1
+#define uiContext0 UIContext0
+#define dataSource UIDataSource
+#define ContextFirstValue UIContextFirstValue
+#define sVar5 UIShortVar5
+#define sVar6 UIShortVar6
+#define sVar7 UIShortVar7
+#define sVar10 UIShortVar10
+#define sVar11 UIShortVar11
+#define sVar12 UIShortVar12
+#define sVar13 UIShortVar13
+#define sVar16 UIShortVar16
+#define sVar17 UIShortVar17
+#define BufferCapacityValue UIBufferCapacityValue
 #define FUN_18089aa80 UIEmptyFunction13
 #define FUN_18089aa88 UIEmptyFunction14
 #define FUN_18089aa90 UIEmptyFunction15
