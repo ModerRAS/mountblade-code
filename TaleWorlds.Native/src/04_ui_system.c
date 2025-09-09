@@ -9854,15 +9854,15 @@ void ValidateUIComponent(void)
 UIHandle SetUIComponentDataPointer(longlong componentManager,UIHandle dataPointer,UIDword dataType)
 
 {
-  longlong dataHandle;
-  undefined *dataBuffer;
+  longlong UIDataHandle;
+  undefined *UIDataBuffer;
   
-  dataHandle = (**(code **)(componentManager + 0x148))(dataType);
-  dataBuffer = &UIDefaultDataBuffer;
-  if (*(undefined **)(dataHandle + 8) != (undefined *)0x0) {
-    dataBuffer = *(undefined **)(dataHandle + 8);
+  UIDataHandle = (**(code **)(componentManager + 0x148))(dataType);
+  UIDataBuffer = &UIDefaultDataBuffer;
+  if (*(undefined **)(UIDataHandle + 8) != (undefined *)0x0) {
+    UIDataBuffer = *(undefined **)(UIDataHandle + 8);
   }
-  InitializeUIDataBuffer(dataPointer,dataBuffer);
+  InitializeUIDataBuffer(dataPointer,UIDataBuffer);
   return dataPointer;
 }
 
@@ -10379,18 +10379,18 @@ void CleanupUIComponent(void)
     }
     elementCount = elementCount & 0xffffffff;
     do {
-      dataHandle = *(undefined **)(bufferOffset + 8 + *uiContext);
-      defaultData = &UIDefaultDataBuffer;
-      if (dataHandle != (undefined *)0x0) {
-        defaultData = dataHandle;
+      UIDataHandle = *(undefined **)(bufferOffset + 8 + *uiContext);
+      UIDefaultData = &UIDefaultDataBuffer;
+      if (UIDataHandle != (undefined *)0x0) {
+        UIDefaultData = UIDataHandle;
       }
-      UpdateUIData(&resultBuffer,&UIRenderUpdateQueue,defaultData);
+      UpdateUIData(&UIResultBuffer,&UIRenderUpdateQueue,UIDefaultData);
       bufferOffset = bufferOffset + 0x20;
       elementCount = elementCount - 1;
     } while (elementCount != 0);
   }
   else {
-    (**(code **)(resultBuffer + 0x10))(&resultBuffer);
+    (**(code **)(UIResultBuffer + 0x10))(&UIResultBuffer);
   }
   *dataSource = &SecondaryUIBuffer;
   dataSource[1] = 0;
