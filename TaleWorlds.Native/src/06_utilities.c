@@ -148,6 +148,7 @@
 #define systemContextDataOffsetD4 0xd4
 #define DataBufferValidationOffset 0x24
 #define ExceptionHandlerDataBufferOffsetD8 0xd8
+#define ExceptionHandlerContextOffset1B8 0x1b8
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetSecondary 0xcc
@@ -80021,7 +80022,7 @@ void ExceptionHandlerFinalChecker(void* finalContext, int64_t contextData)
 void ExceptionHandlerDefaultSetter(void* setterContext, int64_t contextData)
 
 {
-  **(DataBuffer **)(contextData + 0x1b8) = &SystemDefaultExceptionHandlerB;
+  **(DataBuffer **)(contextData + ExceptionHandlerContextOffset1B8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

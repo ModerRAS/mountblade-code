@@ -3864,8 +3864,8 @@ void* UIGestureCoordinates;
 #define UIXOREncryptionKey _DAT_180a40580
 
  // UI系统渲染参数表语义化定义
-#define UIRenderParameterTransformMatrix UNK_18094e25c
-#define UIRenderParameterColorData UNK_18094e26c
+#define UIRenderParameterTransformMatrix UIRenderTransformMatrix
+#define UIRenderParameterColorData UIRenderColorData
 #define UIRenderParameterShaderUniforms UNK_18094e270
 #define UIRenderParameterTextureData UNK_18094e274
 #define UIRenderParameterViewportData UNK_18094e27c
