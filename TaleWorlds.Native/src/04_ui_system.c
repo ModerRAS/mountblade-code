@@ -663,26 +663,26 @@ typedef enum {
 #define LAB_UIUpdateComplete LAB_UIUpdateCompletionHandler             // UI更新完成标签 - UI更新完成
 
  // UI系统函数宏定义 - 获取UI数据
-#define GetUIData GetUIDataValue
+#define GetUIData GetUIDataValue                     // 获取UI数据 - 从指定位置获取UI数据
 
  // UI系统函数宏定义 - 设置UI数据
-#define SetUIData SetUIDataValue
+#define SetUIData SetUIDataValue                     // 设置UI数据 - 设置UI数据到指定位置
 
 // UI系统额外函数美化定义
-#define FUN_18089e811 UIEmptyOperationFunction
-#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式
-#define FUN_1808aed00 ValidateUIEventDataAndStructure              // 验证UI事件数据和结构
-#define FUN_180899360 ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性
-#define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实
-#define FUN_18071ab41 UIInitializeOperationFunction
-#define FUN_18071ace8 UIResetOperationFunction
-#define FUN_180721810 ProcessUIDataTransformOperation
-#define FUN_180724090 ProcessUIWordDataTransfer
-#define FUN_1807234d0 ProcessUIWordDataValidation
-#define FUN_1807238f3 GetUIWordDataPointer
-#define FUN_18072390f CalculateUIComponentSimilarityScore
-#define FUN_180723ee0 ProcessUICharacterDataValidation
-#define FUN_180723c9b UIEmptyProcessingFunction
+#define FUN_18089e811 UIEmptyOperationFunction                      // UI空操作函数 - 执行空操作的函数
+#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式 - 验证UI数据的签名和格式
+#define FUN_1808aed00 ValidateUIEventDataAndStructure              // 验证UI事件数据和结构 - 验证UI事件的数据和结构
+#define FUN_180899360 ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
+#define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
+#define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
+#define FUN_18071ace8 UIResetOperationFunction                     // UI重置操作函数 - 执行UI重置操作
+#define FUN_180721810 ProcessUIDataTransformOperation              // 处理UI数据变换操作 - 处理UI数据的变换操作
+#define FUN_180724090 ProcessUIWordDataTransfer                    // 处理UI字数据传输 - 处理UI字数据的传输
+#define FUN_1807234d0 ProcessUIWordDataValidation                  // 处理UI字数据验证 - 处理UI字数据的验证
+#define FUN_1807238f3 GetUIWordDataPointer                         // 获取UI字数据指针 - 获取UI字数据的指针
+#define FUN_18072390f CalculateUIComponentSimilarityScore         // 计算UI组件相似度得分 - 计算UI组件的相似度得分
+#define FUN_180723ee0 ProcessUICharacterDataValidation            // 处理UI字符数据验证 - 处理UI字符数据的验证
+#define FUN_180723c9b UIEmptyProcessingFunction                    // UI空处理函数 - 执行空处理的函数
 
  /**
  * @brief 处理UI渲染数据
@@ -10077,8 +10077,6 @@ LAB_UIEventInitialization:
 
 
  void ProcessUIComponentState(longlong uiContext)
-void ProcessUIComponentState(longlong uiContext)
-
 {
   ulonglong result;
   uint iterationCount;

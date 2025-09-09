@@ -5244,7 +5244,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899799
  */
-#define ResetSystemState FUN_180899799
+#define ResetSystemState ResetSystemState
 
 /**
  * @brief 同步数据A0
@@ -10031,13 +10031,11 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  */
 #define ValidateSystemDataIntegrity ValidateSystemDataIntegrity
 
-// 原始函数名：func_0x00018076b630 - 资源数据验证函数
-// 功能：验证资源数据完整性
-#define ValidateResourceDataIntegrity func_0x00018076b630
+// 资源数据验证函数 - 验证资源数据完整性
+#define ValidateResourceDataIntegrity ValidateResourceDataIntegrityCheck
 
-// 原始函数名：func_0x0001808e64d0 - 系统状态获取函数
-// 功能：获取系统当前状态
-#define GetSystemCurrentState func_0x0001808e64d0
+// 系统状态获取函数 - 获取系统当前状态
+#define GetSystemCurrentState GetCurrentSystemStatus
 
 // 原始函数名：GetsystemContextHandle - 范围数据获取函数
 // 功能：获取系统操作范围数据
