@@ -6662,9 +6662,9 @@ UIHandle GetUIStatusFlag(void)
         ((uint *)(SourceOffset + destBuffer) < srcBuffer2)) &&
        (((ulonglong)(SourceOffset + (longlong)srcBuffer1) < destBuffer || ((uint *)(SourceOffset + destBuffer) < srcBuffer1)
         ))) {
-      AlignedBufferSize = bufferSize & 0x8000000f;
+      AlignedBufferSize = bufferSize & UI_BUFFER_ALIGNMENT_MASK;
       if ((int)AlignedBufferSize < 0) {
-        AlignedBufferSize = (AlignedBufferSize - 1 | 0xfffffff0) + 1;
+        AlignedBufferSize = (AlignedBufferSize - UI_BUFFER_ALIGNMENT_ADJUSTMENT | UI_BUFFER_ALIGNMENT_PADDING) + UI_BUFFER_ALIGNMENT_ADJUSTMENT;
       }
       SourceOffset = (longlong)srcBuffer1 - (longlong)srcBuffer2;
       DestinationOffset = destBuffer - (longlong)srcBuffer2;
