@@ -168363,7 +168363,7 @@ UIHandle FUN_180768820(void)
   if (_DAT_180c0c6f0 != 0) {
     (**(code **)(*_DAT_180c0c6e8 + 0x38))();
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),_DAT_180c0c6f0,&UNK_180958b20,0x75,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),_DAT_180c0c6f0,&UIComponentParameterB20,0x75,1);
   }
   if (_DAT_180c0c6e8 != (longlong *)0x0) {
     (**(code **)(*_DAT_180c0c6e8 + 0x10))();
@@ -168486,7 +168486,7 @@ FUN_1807689d0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,ulong
   
   processingCounter = 0;
   piterationCount = (UIHandle *)
-           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x18,&UNK_180958b20,0x280,0,
+           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x18,&UIComponentParameterB20,0x280,0,
                          stackParamffffffffffffffe0 & 0xffffffffffffff00,1);
   if (piterationCount == (UIHandle *)0x0) {
     loopCounter = 0x26;
