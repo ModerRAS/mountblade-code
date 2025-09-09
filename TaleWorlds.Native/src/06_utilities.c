@@ -67567,21 +67567,20 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffe
  */
 #define CleanupExceptionResourcesWithFlags700 Unwind_180906700
 
-void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   DataBuffer *exceptionDataBuffer;
-  ExceptionDataContext *dataContext;
+  ExceptionDataContext *exceptionDataContext;
   ValidationStatusPointer *validationStatusPointer;
   DataBuffer memoryRegionBase;
   
-  dataContext = (ExceptionDataContext *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x218);
+  exceptionDataContext = (ExceptionDataContext *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x218);
   memoryRegionBase = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x220);
-  for (validationStatusPointer = (ValidationStatusPointer *)*dataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryRegionBase);
+  for (validationStatusPointer = (ValidationStatusPointer *)*exceptionDataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer, 0, operationFlagA, operationFlagB, memoryRegionBase);
   }
-  if (*dataContext == 0) {
+  if (*exceptionDataContext == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
@@ -67589,14 +67588,13 @@ void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t data
 
 
 
-void CleanupExceptionContextAtOffset720(DataBuffer operationBase,int64_t dataBuffer)
-
+void CleanupExceptionContextAtOffset720(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x268);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x268);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }

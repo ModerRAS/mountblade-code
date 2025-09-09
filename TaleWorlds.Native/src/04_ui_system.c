@@ -2058,10 +2058,10 @@ typedef enum {
 #define animationTime UIAnimationTime            // UI动画时间
 #define animationDataPtr UIAnimationDataPointer  // UI动画数据指针
 #define animationCount UIAnimationCount           // UI动画计数
-#define animationElementPtr UIAnimationElementPointer
-#define elementWeight UIElementWeight
-#define opacityMultiplier UIOpacityMultiplier
-#define doubleTimeStep UIDoubleTimeStep
+#define animationElementPtr UIAnimationElementPointer  // UI动画元素指针
+#define elementWeight UIElementWeight                   // UI元素权重
+#define opacityMultiplier UIOpacityMultiplier           // UI不透明度乘数
+#define doubleTimeStep UIDoubleTimeStep                 // UI双倍时间步长
 #define positionDifference UIPositionDifference
 #define clampedPosition UIClampedPosition
 #define vectorComponentX UIVectorComponentX
