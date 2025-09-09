@@ -100707,7 +100707,7 @@ UIWord FUN_1807234d0(UIWord *uiContext,longlong dataSource,short *targetBuffer,i
         componentIndex = (longlong)((resultPointer - innerLoopCounter) * 9);
         innerLoopCounter = ((int)((ulonglong)((longlong)compareResultPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
                  + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)compareResultPointer[10]) >> 0x10)
-                   + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)puiCompareResult[0xc]) >>
+                   + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)compareResultPointer[0xc]) >>
                           0x10) +
                      (int)((ulonglong)((longlong)puiCompareResult[0xe] * (longlong)targetBuffer[componentIndex + -6]) >>
                           0x10) +
