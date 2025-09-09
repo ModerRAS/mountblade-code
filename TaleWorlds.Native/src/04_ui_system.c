@@ -30096,7 +30096,7 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
       *(UIDword *)(uiBufferData + 0x140) = 1;
       *(UIDword *)(uiBufferData + 0x144) = 1;
       *(UIHandle *)(uiContext + 0x148) = TextureHandle;
-      *(UIHandle *)(uiContext + 0x150) = UIStackCounter88;
+      *(UIHandle *)(uiContext + 0x150) = ShaderHandle;
       *(UIDword *)(uiBufferData + 0x16c) = AnimationFrame;
       *(UIDword *)(uiBufferData + 0x170) = AnimationFrame;
       *(UIHandle *)(uiContext + 0x158) = MaterialHandle;
