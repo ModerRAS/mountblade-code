@@ -109694,7 +109694,7 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
   }
   stackUInt118 = targetBuffer;
   RenderUIComponentA70(uiContext,&stackInt108,0xc);
-  localInt7 = FUN_180734160(uiContext,targetBuffer);
+  localInt7 = ValidateUIComponentContext4160(uiContext,targetBuffer);
   for (uiValidationResult = 0; (localInt7 == 0 && (uiValidationResult < 0x10)); uiValidationResult = uiValidationResult + 1) {
     func_0x000180736a10(&stackInt108,targetBuffer,0x10000 - (2 << ((byte)uiValidationResult & 0x1f)));
     CharacterDataOffset = 0;
@@ -109747,7 +109747,7 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
       *(short *)(uiContext + CharacterDataOffset * 2) =
            (short)((*(int *)(astackUInt104 + CharacterDataOffset * 4 + -4) >> 4) + 1 >> 1);
     }
-    localInt7 = FUN_180734160(uiContext,targetBuffer);
+    localInt7 = ValidateUIComponentContext4160(uiContext,targetBuffer);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt138);

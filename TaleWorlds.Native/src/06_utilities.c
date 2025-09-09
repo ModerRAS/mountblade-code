@@ -2903,8 +2903,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define GOTO_SecurityTermination goto ValidationFailedLabel
 
 // 系统上下文宏定义
-#define systemContextD SystemContextData
-#define systemContextData SystemContextDataPointer
+#define SystemContextD SystemContextData
+#define SystemContextDataPointerMacro SystemContextDataPointer
 
 // 数据处理流程控制标签宏定义
 // 系统数据处理流程检查点
