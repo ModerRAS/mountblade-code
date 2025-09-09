@@ -10061,87 +10061,87 @@ ulonglong UIProcessEventCallback(UIHandle uiContext,UIHandle dataSource,UIHandle
   longlong eventDataAddress;
   int eventTypeId;
   
-  InitializeUIDataBuffer(&dataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
-  InitializeUIDataBuffer(&dataBufferPtr1,dataSource);
-  UILong5 = eventDataPtr;
-  if (eventTypeIndex == 0x19) {
-    UIInt3 = strcmp(eventDataPtr,&UIEventTypeClick);
-    if (UIInt3 == 0) {
-      if (stringLength == 7) {
-        UILong5 = 0;
+  InitializeUIDataBuffer(&eventDataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
+  InitializeUIDataBuffer(&eventDataBufferPtr1,dataSource);
+  eventProcessingCounter = eventDataAddress;
+  if (eventTypeId == 0x19) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeClick);
+    if (eventCompareResult == 0) {
+      if (eventDataStringLength == 7) {
+        eventProcessingCounter = 0;
         do {
-          UILong4 = UILong5 + 1;
-          if (eventStringPtr[UILong5] != (&UIEventTypePinch)[UILong5]) break;
-          UILong5 = UILong4;
-        } while (loopCounter1 != 8);
+          eventProcessingStep = eventProcessingCounter + 1;
+          if (eventDataStringPtr[eventProcessingCounter] != (&UIEventTypePinch)[eventProcessingCounter]) break;
+          eventProcessingCounter = eventProcessingStep;
+        } while (eventLoopCounter1 != 8);
       }
-      else if (stringLength == 9) {
-        eventTypePointer = &UIEventTypeSwipe;
+      else if (eventDataStringLength == 9) {
+        eventDataTypePointer = &UIEventTypeSwipe;
 LAB_UIEventProcessingStart:
-        uiCompareResult = strcmp(eventStringPtr,eventTypePointer);
-        EventProcessingResult = uiCompareResult == 0;
+        eventCompareResult = strcmp(eventDataStringPtr,eventDataTypePointer);
+        EventProcessingResult = eventCompareResult == 0;
 LAB_UIEventProcessingCheck:
         if (EventProcessingResult) {
-          processingCounter = 4;
+          eventProcessingCounter = 4;
           goto LAB_EventHandlerReturn;
         }
       }
     }
   }
-  else if (eventTypeIndex == 0x18) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeKey);
-    if ((uiCompareResult == 0) && (stringLength == 7)) {
-      processingCounter = 8;
-      loopCounter2 = 0;
+  else if (eventTypeId == 0x18) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeKey);
+    if ((eventCompareResult == 0) && (eventDataStringLength == 7)) {
+      eventProcessingCounter = 8;
+      eventLoopCounter2 = 0;
       do {
-        loopCounter1 = loopCounter2 + 1;
-        if (eventStringPtr[loopCounter2] != (&UIEventTypeMouse)[loopCounter2]) {
-          loopCounter2 = 0;
+        eventLoopCounter1 = eventLoopCounter2 + 1;
+        if (eventDataStringPtr[eventLoopCounter2] != (&UIEventTypeMouse)[eventLoopCounter2]) {
+          eventLoopCounter2 = 0;
           goto LAB_EventStringMatch;
         }
-        loopCounter2 = loopCounter1;
-      } while (loopCounter1 != 8);
+        eventLoopCounter2 = eventLoopCounter1;
+      } while (eventLoopCounter1 != 8);
     }
   }
-  else if (eventTypeIndex == 0x1a) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeMouseMove);
-    if ((uiCompareResult == 0) && (stringLength == 4)) {
-      loopCounter2 = 0;
+  else if (eventTypeId == 0x1a) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeMouseMove);
+    if ((eventCompareResult == 0) && (eventDataStringLength == 4)) {
+      eventLoopCounter2 = 0;
       do {
-        loopCounter1 = loopCounter2 + 1;
-        if (eventStringPtr[loopCounter2] != (&UIEventTypeMouseDrag)[loopCounter2]) {
-          iterationCount = 0;
+        eventLoopCounter1 = eventLoopCounter2 + 1;
+        if (eventDataStringPtr[eventLoopCounter2] != (&UIEventTypeMouseDrag)[eventLoopCounter2]) {
+          eventIterationCount = 0;
           goto LAB_EventDataProcess;
         }
-        loopCounter2 = loopCounter1;
-      } while (loopCounter1 != 5);
+        eventLoopCounter2 = eventLoopCounter1;
+      } while (eventLoopCounter1 != 5);
     }
   }
-  else if (eventTypeIndex == 0x15) {
-    uiCompareResult = strcmp(eventDataPtr,&UIComponentNameTable[0]);
-    if (uiCompareResult == 0) {
-      if (stringLength == 0xb) {
-        strcmp(eventStringPtr,&UIComponentNameTable[1]);
+  else if (eventTypeId == 0x15) {
+    eventCompareResult = strcmp(eventDataAddress,&UIComponentNameTable[0]);
+    if (eventCompareResult == 0) {
+      if (eventDataStringLength == 0xb) {
+        strcmp(eventDataStringPtr,&UIComponentNameTable[1]);
       }
-      else if ((stringLength == 9) && (uiCompareResult = strcmp(eventStringPtr,&UIComponentNameTable[2]), uiCompareResult == 0)) {
-        processingCounter = 0x204;
+      else if ((eventDataStringLength == 9) && (eventCompareResult = strcmp(eventDataStringPtr,&UIComponentNameTable[2]), eventCompareResult == 0)) {
+        eventProcessingCounter = 0x204;
         goto LAB_EventHandlerReturn;
       }
     }
   }
-  else if (eventTypeIndex == 0x11) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeFocus);
-    if (uiCompareResult == 0) {
-      if (stringLength == 6) {
-        loopCounter2 = 0;
+  else if (eventTypeId == 0x11) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeFocus);
+    if (eventCompareResult == 0) {
+      if (eventDataStringLength == 6) {
+        eventLoopCounter2 = 0;
         do {
-          loopCounter1 = loopCounter2 + 1;
-          if (eventStringPtr[loopCounter2] != (&UIEventTypeBlur)[loopCounter2]) break;
-          loopCounter2 = loopCounter1;
-        } while (loopCounter1 != 7);
+          eventLoopCounter1 = eventLoopCounter2 + 1;
+          if (eventDataStringPtr[eventLoopCounter2] != (&UIEventTypeBlur)[eventLoopCounter2]) break;
+          eventLoopCounter2 = eventLoopCounter1;
+        } while (eventLoopCounter1 != 7);
       }
-      else if (stringLength == 8) {
-        eventTypePointer = &UIEventTypeSelect;
+      else if (eventDataStringLength == 8) {
+        eventDataTypePointer = &UIEventTypeSelect;
 UIEventTypeSelectCheck:
         uiCompareResult = strcmp(eventStringPtr,eventTypePointer);
         if (uiCompareResult == 0) {
