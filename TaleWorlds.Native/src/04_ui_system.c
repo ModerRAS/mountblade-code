@@ -3033,40 +3033,52 @@ typedef enum {
  */
  #define CalculateImagePixelAverage FUN_180697460
 
- 使用AVX2指令计算图像像素方差
+ /**
+ * @brief 使用AVX2指令计算图像像素方差
  * 
  * 该函数使用AVX2指令集计算图像像素的方差
  * 用于图像处理中的纹理分析和质量控制
-  uiContext UI上下文缓冲区
- *  dataSource 数据源偏移量
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  计算结果，包含像素方差值
-  原始函数名: FUN_1806974e0
+ * 
+ * @param uiContext UI上下文缓冲区
+ * @param dataSource 数据源偏移量
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，包含像素方差值
+ * 
+ * @note 原始函数名: FUN_1806974e0
+ */
  #define CalculateImagePixelocalLongiance FUN_1806974e0
 
- 使用AVX2指令计算图像像素标准差
+ /**
+ * @brief 使用AVX2指令计算图像像素标准差
  * 
  * 该函数使用AVX2指令集计算图像像素的标准差
  * 用于图像处理中的噪声评估和质量检测
-  uiContext UI上下文缓冲区
- *  dataSource 数据源偏移量
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  计算结果，包含标准差值
-  原始函数名: FUN_180697580
+ * 
+ * @param uiContext UI上下文缓冲区
+ * @param dataSource 数据源偏移量
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，包含标准差值
+ * 
+ * @note 原始函数名: FUN_180697580
+ */
  #define CalculateImagePixelStandardDeviation FUN_180697580
 
- 使用AVX2指令计算图像像素中值
+ /**
+ * @brief 使用AVX2指令计算图像像素中值
  * 
  * 该函数使用AVX2指令集计算图像像素的中值
  * 用于图像处理中的中值滤波和异常值检测
-  uiContext UI上下文缓冲区
- *  dataSource 数据源偏移量
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  计算结果，包含像素中值
-  原始函数名: FUN_180697600
+ * 
+ * @param uiContext UI上下文缓冲区
+ * @param dataSource 数据源偏移量
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，包含像素中值
+ * 
+ * @note 原始函数名: FUN_180697600
+ */
  #define CalculateImagePixelMedian FUN_180697600
 
  使用AVX2指令计算图像像素最大值
