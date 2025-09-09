@@ -3218,6 +3218,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 地址计算乘数常量
 #define AddressCalculationMultiplier 0x10                         // 地址计算乘数 - 用于地址计算的乘数因子
+#define MemoryOperationSize 0x10                                 // 内存操作大小 - 内存操作的标准大小
+#define MemoryOperationSizeExtended 0x20                         // 扩展内存操作大小 - 扩展内存操作的大小
 
 // 系统内存分配常量
 #define SystemMemoryAllocationFlag 0x315                          // 系统内存分配标志 - 系统内存分配操作的标志值
@@ -25413,13 +25415,13 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
       }
     }
     validationStatusPointer = (DataBuffer *)
-             ((int64_t)*(int *)(destinationContext + SystemDataSecondaryOffset18) * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset));
+             ((int64_t)*(int *)(destinationContext + SystemDataSecondaryOffset18) * AddressCalculationMultiplier + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset));
     *validationStatusPointer = CONCAT44(SystemCleanupFlag, inputDataBlock);
     validationStatusPointer[1] = systemContextBuffer;
     *(int *)(destinationContext + SystemDataSecondaryOffset18) = *(int *)(destinationContext + SystemDataSecondaryOffset18) + 1;
   }
   else {
-    operationResult = (DataWord *)((int64_t)currentBufferSize * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset));
+    operationResult = (DataWord *)((int64_t)currentBufferSize * AddressCalculationMultiplier + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset));
     *(DataWord *)(destinationContext + SystemDataParameterOffset20) = operationResult[1];
     operationResult[1] = SystemCleanupFlag;
     *operationResult = *contextDataPointer;
@@ -25483,7 +25485,7 @@ DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSiz
   allocationResult = AllocateSystemResource(systemContext + SystemResourceManagementOffset10,requestedSize);
   if ((int)allocationResult == 0) {
     allocatedMemoryPointer = (DataBuffer *)
-             ((int64_t)*(int *)(systemContext + SystemDataSecondaryOffset18) * 0x10 + *(int64_t *)(systemContext + ExceptionHandlerCallbackOffset));
+             ((int64_t)*(int *)(systemContext + SystemDataSecondaryOffset18) * AddressCalculationMultiplier + *(int64_t *)(systemContext + ExceptionHandlerCallbackOffset));
     *allocatedMemoryPointer = temporaryStackData;
     allocatedMemoryPointer[1] = resourceData;
     *(int *)(systemContext + SystemDataSecondaryOffset18) = *(int *)(systemContext + SystemDataSecondaryOffset18) + 1;
