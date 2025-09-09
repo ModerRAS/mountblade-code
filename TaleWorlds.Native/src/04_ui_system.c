@@ -3868,8 +3868,8 @@ void* UIGestureCoordinates;
 #define UIRenderParameterColorData UIRenderColorData
 #define UIRenderParameterShaderUniforms UIRenderShaderUniforms
 #define UIRenderParameterTextureData UIRenderTextureData
-#define UIRenderParameterViewportData UNK_18094e27c
-#define UIRenderParameterLightingData UNK_18094e280
+#define UIRenderParameterViewportData UIRenderViewportData
+#define UIRenderParameterLightingData UIRenderLightingData
 
  // UI系统数据缓冲区语义化定义
 #define UIDataBufferPrimary UNK_1809535b4

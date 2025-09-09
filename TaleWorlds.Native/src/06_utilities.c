@@ -149,6 +149,8 @@
 #define DataBufferValidationOffset 0x24
 #define ExceptionHandlerDataBufferOffsetD8 0xd8
 #define ExceptionHandlerContextOffset1B8 0x1b8
+#define ResourceCleanupFlagOffset30 0x30
+#define SecondaryResourceOffset40 0x40
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetSecondary 0xcc
@@ -43029,12 +43031,12 @@ void CleanupExceptionStateResources(void* cleanupContext, int64_t contextData)
 
 {
   // 检查资源清理标志位是否被设置
-  if ((*(uint *)(contextData + 0x30) & 1) != 0) {
+  if ((*(uint *)(contextData + ResourceCleanupFlagOffset30) & 1) != 0) {
     // 清除资源清理标志位
-    *(uint *)(contextData + 0x30) = *(uint *)(contextData + 0x30) & 0xfffffffe;
+    *(uint *)(contextData + ResourceCleanupFlagOffset30) = *(uint *)(contextData + ResourceCleanupFlagOffset30) & 0xfffffffe;
     
     // 释放相关资源
-    CleanupResourceHandler(*(DataBuffer *)(contextData + 0xd8));
+    CleanupResourceHandler(*(DataBuffer *)(contextData + ExceptionHandlerDataBufferOffsetD8));
   }
   return;
 }
@@ -43054,12 +43056,12 @@ void CleanupSecondaryExceptionResources(void* cleanupContext, int64_t contextDat
 
 {
   // 检查次要资源清理标志位是否被设置
-  if ((*(uint *)(contextData + 0x30) & 2) != 0) {
+  if ((*(uint *)(contextData + ResourceCleanupFlagOffset30) & 2) != 0) {
     // 清除次要资源清理标志位
-    *(uint *)(contextData + 0x30) = *(uint *)(contextData + 0x30) & 0xfffffffd;
+    *(uint *)(contextData + ResourceCleanupFlagOffset30) = *(uint *)(contextData + ResourceCleanupFlagOffset30) & 0xfffffffd;
     
     // 释放次要相关资源
-    CleanupResourceHandler(contextData + 0x40);
+    CleanupResourceHandler(contextData + SecondaryResourceOffset40);
   }
   return;
 }
