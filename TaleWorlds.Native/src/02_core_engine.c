@@ -67412,12 +67412,12 @@ StringLengthValidation:
         CoreEngineExecuteSystemEvent(BufferStatusRegister8 + 0x20,&ContextHandle);
                 StringOffset = AllocateSystemMemoryBlock(SystemStringIndex,acStack_3e8,BufferStatusRegister8 + 0x20);
         if (acStack_3e8[0] != '\0') {
-          if (StringOffset == SystemStringIndex) goto LAB_18008a32f;
-          if (*(int *)(StringOffset + 0x30) == 0) goto LAB_18008a327;
-          if (*(int *)(BufferStatusRegister8 + 0x30) == 0) goto LAB_18008a32f;
+          if (StringOffset == SystemStringIndex) goto SystemStringIndexCheckLabel;
+          if (*(int *)(StringOffset + 0x30) == 0) goto StringIndexValidationLabel;
+          if (*(int *)(BufferStatusRegister8 + 0x30) == 0) goto SystemStringIndexCheckLabel;
           CurrentBytePointer2 = *(byte **)(StringOffset + 0x28);
           CharacterTablePointer6 = *(long long *)(BufferStatusRegister8 + 0x28) - (long long)CurrentBytePointer2;
-          goto LAB_18008a310;
+          goto SystemStringProcessingLabel;
         }
         ProcessVectorDataOperation(VectorRegisterDa,BufferStatusRegister8);
         ProcessLoopDataOperation(CharacterTablePointer6,&lStack_1e8);
