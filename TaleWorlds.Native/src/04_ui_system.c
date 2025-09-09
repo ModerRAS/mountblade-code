@@ -7108,19 +7108,21 @@ UIHandle GetUIStatusFlag(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
- UI系统图像混合优化函数
+ /**
+ * @brief UI系统图像混合优化函数
  * 
  * 该函数使用SIMD指令集优化图像缓冲区的混合操作，实现高性能的像素级图像混合。
  * 通过向量化的并行处理，大幅提升图像处理性能。
-  destBuffer 目标缓冲区地址，用于存储混合后的图像数据
- *  srcBuffer1 源缓冲区1地址，包含第一幅图像的像素数据
- *  srcBuffer2 源缓冲区2地址，包含第二幅图像的像素数据
- *  bufferSize 缓冲区大小（以像素为单位），指定需要处理的像素数量
-  ulonglong 处理后的目标缓冲区地址，可用于链式操作
  * 
-  该函数使用SIMD指令集进行优化，支持批量像素处理
-  确保所有缓冲区都有足够的空间容纳处理结果
-  原始函数名: BlendImageBuffersSIMD
+ * @param destBuffer 目标缓冲区地址，用于存储混合后的图像数据
+ * @param srcBuffer1 源缓冲区1地址，包含第一幅图像的像素数据
+ * @param srcBuffer2 源缓冲区2地址，包含第二幅图像的像素数据
+ * @param bufferSize 缓冲区大小（以像素为单位），指定需要处理的像素数量
+ * @return ulonglong 处理后的目标缓冲区地址，可用于链式操作
+ * 
+ * @note 该函数使用SIMD指令集进行优化，支持批量像素处理
+ * @warning 确保所有缓冲区都有足够的空间容纳处理结果
+ */
  ulonglong BlendImageBuffersSIMD(ulonglong destBuffer,uint *srcBuffer1,uint *srcBuffer2,uint bufferSize)
 
 {
