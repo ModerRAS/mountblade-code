@@ -111278,7 +111278,18 @@ void ExecuteExceptionHandlerWithContextOffset58(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_18090fa10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x60）
+ * 
+ * 该函数处理位于偏移量0x60处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fa10
+ */
+void ExecuteExceptionHandlerWithContextOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
