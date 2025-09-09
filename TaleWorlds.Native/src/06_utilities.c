@@ -31815,7 +31815,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
           return ResourceInvalidErrorCode;
         }
-        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x60);
+        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset60);
         if ((int)systemDataBuffer == 0) {
           if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
             return ResourceInvalidErrorCode;
@@ -35791,7 +35791,7 @@ DataProcessingHandler:
     if ((int)validationStatus == 0) {
       securityCheckResult = stackByteBuffer[0] & 1;
       statusCounter = stackByteBuffer[0] >> 1;
-      validationStatus = ValidateSystemStatusA0(operationBase + 0x60,statusCounter);
+      validationStatus = ValidateSystemStatusA0(operationBase + OperationBaseOffset60,statusCounter);
       if ((int)validationStatus == 0) {
         systemStatusUnion[0] = 0;
         validationStatus = dataFlags;
@@ -37577,7 +37577,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  systemDataBuffer = ProcessSystemDataWithValidation(*dataBuffer,operationBase + 0x60);
+  systemDataBuffer = ProcessSystemDataWithValidation(*dataBuffer,operationBase + OperationBaseOffset60);
   operationResult = (uint64_t)systemDataBuffer;
   if (systemDataBuffer == 0) {
     operationResult = ValidationErrorCode;
@@ -40784,7 +40784,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
          ((0x5a < *(uint *)(dataBuffer + 8) ||
           (systemDataBuffer = GetSystemSecurityStatus(dataBuffer,operationBase + 0x44), (int)systemDataBuffer == 0)))) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-          switch(*(DataWord *)(operationBase + 0x60)) {
+          switch(*(DataWord *)(operationBase + OperationBaseOffset60)) {
           default:
             systemStatusUnion[0] = 0;
             break;
@@ -41819,7 +41819,7 @@ DataBuffer InitializeDataProcessor(int64_t operationBase,int64_t *dataBuffer)
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
       }
-      systemDataBuffer = ProcessDataPointer(*dataBuffer,operationBase + 0x60);
+      systemDataBuffer = ProcessDataPointer(*dataBuffer,operationBase + OperationBaseOffset60);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }
