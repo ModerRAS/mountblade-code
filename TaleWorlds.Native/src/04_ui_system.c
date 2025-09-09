@@ -137,6 +137,7 @@ typedef enum {
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
+#define DAT_1809472f0 UIConfigurationData
 
 // UI系统查找表变量宏定义
 #define UIPrimaryLookupTable UISystemPrimaryLookupTable
@@ -45384,21 +45385,21 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
         aresult12._0_8_ = aiterationCount79._0_8_;
         aresult12._12_4_ = (int)((ulonglong)aresult94._0_8_ >> 0x20);
         if (componentIndex8 == 0) {
-          ContextFirstValue65 = (short)DAT_1809472f0;
-          aCounterResult5._0_2_ = sVar115 + (ushort)(0 < sVar115) + ContextFirstValue65;
-          sVar115 = DAT_1809472f0._2_2_;
-          aCounterResult5._2_2_ = ContextSecondValue7 + (ushort)(0 < ContextSecondValue7) + sVar115;
-          ContextSecondValue7 = DAT_1809472f0._4_2_;
-          aCounterResult5._4_2_ = sVar75 + (ushort)(0 < sVar75) + ContextSecondValue7;
-          sVar75 = DAT_1809472f0._6_2_;
+          UIContextFirstValue65 = (short)UIConfigurationData;
+          aCounterResult5._0_2_ = sVar115 + (ushort)(0 < sVar115) + UIContextFirstValue65;
+          sVar115 = UIConfigurationData._2_2_;
+          aCounterResult5._2_2_ = UIContextSecondValue7 + (ushort)(0 < UIContextSecondValue7) + sVar115;
+          UIContextSecondValue7 = UIConfigurationData._4_2_;
+          aCounterResult5._4_2_ = sVar75 + (ushort)(0 < sVar75) + UIContextSecondValue7;
+          sVar75 = UIConfigurationData._6_2_;
           aCounterResult5._6_2_ = sVar120 + (ushort)(0 < sVar120) + sVar75;
-          sVar120 = DAT_1809472f0._8_2_;
+          sVar120 = UIConfigurationData._8_2_;
           aCounterResult5._8_2_ = sVar274 + (ushort)(0 < sVar274) + sVar120;
-          sVar274 = DAT_1809472f0._10_2_;
+          sVar274 = UIConfigurationData._10_2_;
           aCounterResult5._10_2_ = sVar132 + (ushort)(0 < sVar132) + sVar274;
-          sVar132 = DAT_1809472f0._12_2_;
+          sVar132 = UIConfigurationData._12_2_;
           aCounterResult5._12_2_ = sVar245 + (ushort)(0 < sVar245) + sVar132;
-          sVar245 = DAT_1809472f0._14_2_;
+          sVar245 = UIConfigurationData._14_2_;
           aCounterResult5._14_2_ = sVar162 + (ushort)(0 < sVar162) + sVar245;
           aiterationCount19 = psraw(aCounterResult5,2);
           *paiterationCount5 = aiterationCount19;
