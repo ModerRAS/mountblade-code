@@ -80003,7 +80003,21 @@ void ResetSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void UpdateSystemConfigurationB0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 更新系统配置B0并管理内存资源
+ * 
+ * 该函数负责更新系统配置并管理内存资源，包括：
+ * - 获取内存资源指针
+ * - 计算内存区域基地址
+ * - 处理内存块偏移量
+ * - 管理资源引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：UpdateSystemConfigurationB0
+ */
+void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -80088,7 +80102,19 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
 
 
 
-void ValidateDataHandlerStateB0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器状态B0
+ * 
+ * 该函数负责验证数据处理器的状态，包括：
+ * - 检查内存指针状态
+ * - 清除状态标志位
+ * - 验证数据处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：ValidateDataHandlerStateB0
+ */
+void ValidateDataHandlerStateAndResetFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
