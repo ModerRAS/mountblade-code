@@ -2476,7 +2476,7 @@ int InitializeStringProcessingSystemPerformance(void)
   StringProcessingSystemP_DataBuffer = 0;
   StringProcessingSystemP_BufferSize = 0x17;
   strcpy_s(&StringProcessingSystemP_DataBuffer,64,&StringProcessingSystemP_Template,StringProcessorFlags,SystemMutexFlags);
-  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemP);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemPerformance);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
