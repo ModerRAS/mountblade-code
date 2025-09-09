@@ -81,6 +81,7 @@
 #define DataStructureTableElementSize 0x10
 #define DataStructureSecondaryOffset18 0x12
 #define DataStructureTableOffset8 0x8
+#define BitShift32Bits 0x20
 #define MemoryResourcePointerOffsetTertiary 0x130
 #define MemoryResourcePointerOffsetAlternate 0x118
 #define ExceptionHandlerContextPointerRangeStart 0xf8
@@ -24250,7 +24251,7 @@ DataBuffer UtilityNoOperationK(void)
         operationResultPointer = (int *)(*registerContext + calculatedIndex * 4);
         allocatedMemoryBlock = *(int *)(*registerContext + calculatedIndex * 4);
         while (allocatedMemoryBlock != -1) {
-          operationResultPointer = (int *)(registerContext[2] + 4 + (int64_t)allocatedMemoryBlock * 0x10);
+          operationResultPointer = (int *)(registerContext[2] + MemoryOffsetAdjustment + (int64_t)allocatedMemoryBlock * DataStructureTableElementSize);
           allocatedMemoryBlock = *operationResultPointer;
         }
         *operationResultPointer = (int)securityCheckResult;
@@ -24609,7 +24610,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
   resultData[1] = 0;
   dataPointer = (int *)(**(FunctionPointer**)(*(int64_t *)
                                 ((int64_t)
-                                 *(int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + (int64_t)searchIndex * 0xc) +
+                                 *(int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + (int64_t)searchIndex * DataStructureElementSize) +
                                 *(int64_t *)(dataStructure + DataStructurePointerOffset8)) + DataStructureCallbackOffset50))();
   if (dataPointer == (int *)0x0) {
     targetValue = 0;
@@ -24619,7 +24620,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
   }
   if (searchIndex + 1 < *(int *)(dataStructure + SystemDataParameterOffset20)) {
     currentIndex = (int64_t)(searchIndex + 1);
-    dataPointer = (int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + currentIndex * 0xc);
+    dataPointer = (int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + currentIndex * DataStructureElementSize);
     while (((char)dataPointer[2] != '\x02' ||
            (itemAddress = (int64_t)*dataPointer + *(int64_t *)(dataStructure + DataStructurePointerOffset8), *(int *)(itemAddress + SystemDataParameterOffset20) != targetValue)
            )) {
@@ -24673,8 +24674,8 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
         tablePointer = *(int64_t *)(dataContext + ResourceManagementOffset80);
         do {
           currentIndex = (int64_t)hashIndex;
-          if (*(uint *)(tablePointer + currentIndex * 0x10) == flagValue) {
-            resultValue = (uint)((uint64_t)*(DataBuffer *)(tablePointer + 8 + currentIndex * 0x10) >> 0x20);
+          if (*(uint *)(tablePointer + currentIndex * DataStructureTableElementSize) == flagValue) {
+            resultValue = (uint)((uint64_t)*(DataBuffer *)(tablePointer + DataStructureTableOffset8 + currentIndex * DataStructureTableElementSize) >> BitShift32Bits);
             if (resultValue != 0) {
               *validationFlags = resultValue;
               return 0;

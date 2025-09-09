@@ -68974,7 +68974,7 @@ TreeNodeProcessing:
               TreeNodePointer = (uint64_t *****)TreeNodePointer[1];
             }
           } while (TreeNodePointer != (uint64_t *****)0x0);
-          if ((ParentNodePointer == &StackNodePointer1) || (DataStructureHandle < ParentNodePointer[4])) goto LAB_18008cc42;
+          if ((ParentNodePointer == &StackNodePointer1) || (DataStructureHandle < ParentNodePointer[4])) goto ParentNodeValidationLabel;
         }
         UintValue = *(uint32_t *)(ParentNodePointer + 5);
         for (ChildNodePointer = (uint64_t ****)DataStructureHandle[8]; ChildNodePointer != DataStructureHandle + 7;
@@ -69042,7 +69042,7 @@ DataTableProcessing:
             else {
               HighByte4 = IntegerValue4 < (int)ContextHandle3[1];
             }
-            if (!HighByte4) goto LAB_18008cdfe;
+            if (!HighByte4) goto HighByteValidationLabel;
             *BufferAllocationStatus1 = *ContextHandle3;
             *(int *)((long long)ContextHandle8 + (8 - (long long)ContextHandle6) + (long long)ContextHandle3) =
                  (int)ContextHandle3[1];
@@ -69075,7 +69075,7 @@ MemoryBufferAllocation:
           }
           else {
             MemoryBufferC = MemoryBufferC * 2;
-            if (MemoryBufferC != 0) goto LAB_18008ce85;
+            if (MemoryBufferC != 0) goto MemoryBufferCheckLabel;
             ContextHandle3 = (long long *)0x0;
           }
           if (ContextHandle6 != ContextHandle8) {

@@ -7772,7 +7772,7 @@ UIByte g_uiRenderPipelineDataUnvigesimal;
 UIByte g_uiRenderPipelineDataDuovigesimal;
 UIByte g_uiRenderPipelineDataTrevigesimal;
 
- undefined InitializeUIResources;
+ UIByte InitializeUIResourcesBackup;
 UIByte InitializeUIResources;
 UIByte UIResourceLoaderPrimary;
 UIByte UIResourceLoaderSecondary;
@@ -189021,21 +189021,21 @@ UIHandle FUN_1807793f0(void)
 
 // 原始变量名：UNK_180959e90 - UI系统主控制器
 #define UISystemMainController UNK_180959e90
-undefined UISystemMainController;
-undefined UISystemConfigData;
-undefined UIComponentRegistry;
+UIByte UISystemMainController;
+UIByte UISystemConfigData;
+UIByte UIComponentRegistry;
 // 原始变量名：UNK_18095a310 - UI系统事件处理器
 #define UISystemEventHandler UNK_18095a310
-undefined UISystemEventHandler;
+UIByte UISystemEventHandler;
 // 原始变量名：UNK_18095a384 - UI系统渲染管理器
 #define UISystemRenderManager UNK_18095a384
-undefined UISystemRenderManager;
+UIByte UISystemRenderManager;
 // 原始变量名：UNK_18095a598 - UI系统布局管理器
 #define UISystemLayoutManager UNK_18095a598
-undefined UISystemLayoutManager;
+UIByte UISystemLayoutManager;
 // 原始变量名：UNK_18095a5a0 - UI系统动画管理器
 #define UISystemAnimationManager UNK_18095a5a0
-undefined UISystemAnimationManager;
+UIByte UISystemAnimationManager;
 // 原始变量名：UNK_18095a618 - UI系统输入管理器
 #define UISystemInputManager UNK_18095a618
 undefined UISystemInputManager;
