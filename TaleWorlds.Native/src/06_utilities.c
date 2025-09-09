@@ -633,8 +633,8 @@
 #define SystemContextOffset114 0x114
 #define ExceptionHandlerContext4Offset10 0x10
 #define MemoryBlockOffset4C 0x4c
-#define MemoryBlockOffset58 0x58
-#define MemoryBlockOffset50 0x50
+#define MemoryBlockSizeSecondary 0x58
+#define MemoryBlockSizeStep 0x50
 #define ExceptionHandlerContext5OffsetD0 0xd0
 #define OperationResult0Offset10 0x10
 #define DataContextOffset58 0x58
@@ -27401,11 +27401,11 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + systemContextPointerOffset90) + bufferPointer * 8);
               TemporaryByteFlagA = 0;
               // 根据内存块偏移量选择异常数据缓冲区
-              if (*(int *)(memoryBlockOffset + MemoryBlockOffset58) < 1) {
+              if (*(int *)(memoryBlockOffset + MemoryBlockSizeSecondary) < 1) {
                 exceptionDataBuffer = &SystemResourceDataBuffer;
               }
               else {
-                exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + MemoryBlockOffset50);
+                exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + MemoryBlockSizeStep);
               }
               // 初始化内存并验证数据完整性
               InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer,0x80);
@@ -50001,7 +50001,7 @@ void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextDa
   
   dataContext = *(int64_t **)(contextData + 0x40);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockOffset50) {
+  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockSizeStep) {
     ValidateExceptionContext(memoryBlockOffset);
   }
   if (*dataContext == 0) {
@@ -94850,7 +94850,7 @@ void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
     systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + 0xa8);
     dataContext = *(int64_t *)(memoryBlockOffset + 0xa0);
     **(int64_t **)(memoryBlockOffset + 0x30) = dataContext;
-    **(int64_t **)(memoryBlockOffset + MemoryBlockOffset50) = dataContext;
+    **(int64_t **)(memoryBlockOffset + MemoryBlockSizeStep) = dataContext;
     **(int **)(memoryBlockOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + 0x94) != '\0') {
@@ -130015,8 +130015,8 @@ void CleanupSystemResourceA5(void)
 void CleanupSystemResourceA6(void)
 {
   if (SystemResourceCleanupFlagA6 != '\0') {
-    ReleaseMemoryResourceA1(SystemresourcePointerA5);
-    SystemresourcePointerA5 = 0;
+    ReleaseMemoryResourceA1(SystemResourcePointerA5);
+    SystemResourcePointerA5 = 0;
   }
 }
 
