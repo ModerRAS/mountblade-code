@@ -120065,26 +120065,30 @@ void ProcessOperationBufferSize(int *ContextHandle,int OperationBufferSize)
  * 该函数负责扩展UTF-8缓冲区大小，每次扩展0x28字节。
  * 如果当前缓冲区大小小于请求大小，则重新分配内存。
  * 
- * @param ContextHandle 系统上下文指针
- * @param OperationBufferSize 请求的UTF-8缓冲区大小
+ * @param SystemContext 系统上下文指针
+ * @param BufferSize 请求的UTF-8缓冲区大小
  * @return void
  * 
  * @note 函数会复制现有数据到新分配的内存中
  * @note 使用SystemCallMemoryAccess进行内存分配
- * @note 内存块大小为OperationBufferSize * 0x28字节
+ * @note 内存块大小为BufferSize * 0x28字节
  */
 void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
-  uint64_t AllocatedMemoryBuffer;
+  uint64_t NewMemoryBuffer;
+  int CurrentBufferSize;
+  void *CurrentBufferPointer;
   
-  if (SystemContext[1] < BufferSize) {
+  CurrentBufferSize = SystemContext[1];
+  if (CurrentBufferSize < BufferSize) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    AllocatedMemoryBuffer = SystemCallMemoryAccess((long long)BufferSize * 0x28,SystemMemoryPoolBase);
-    if (*(long long *)(SystemContext + 2) != 0) {
-      memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+    NewMemoryBuffer = SystemCallMemoryAccess((long long)BufferSize * 0x28,SystemMemoryPoolBase);
+    CurrentBufferPointer = *(void **)(SystemContext + 2);
+    if (CurrentBufferPointer != NULL) {
+      memcpy(NewMemoryBuffer,CurrentBufferPointer,(long long)CurrentBufferSize * 0x28);
     }
-    *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
+    *(void **)(SystemContext + 2) = NewMemoryBuffer;
     SystemContext[1] = BufferSize;
   }
   return;
