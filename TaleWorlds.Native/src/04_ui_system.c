@@ -10040,8 +10040,10 @@ LAB_UIContextInitialize:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-  清理UI组件资源
- 清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
+  /**
+ * @brief 清理UI组件资源
+ * 
+ * 清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
  * 执行必要的清理操作以释放系统资源。
  * 
  * @return 无返回值
