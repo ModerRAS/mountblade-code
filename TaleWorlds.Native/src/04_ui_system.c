@@ -111999,36 +111999,52 @@ void FUN_18072f7ab(void)
 
 
 
- void FUN_18072f7d0(UIDword *uiContext,int *dataSource,int targetBuffer)
-void FUN_18072f7d0(UIDword *uiContext,int *dataSource,int targetBuffer)
+ /**
+ * @brief 验证UI布局数据和格式
+ * 
+ * 该函数负责验证UI布局数据的完整性和格式正确性，包括：
+ * - 布局参数验证
+ * - 数据格式检查
+ * - 上下文初始化
+ * - 字符串比较和处理
+ * 
+ * @param uiContext UI上下文指针，用于存储处理结果
+ * @param dataSource 数据源指针，包含要验证的布局数据
+ * @param targetBuffer 目标缓冲区大小
+ * @return void 无返回值，结果存储在uiContext中
+ * 
+ * @note 原始函数名：FUN_18072f7d0 - UI布局数据验证处理器
+ */
+void ValidateUILayoutDataAndFormatting(UIDword *uiContext,int *dataSource,int targetBuffer)
+void ValidateUILayoutDataAndFormatting(UIDword *uiContext,int *dataSource,int targetBuffer)
 
 {
-  int processingResult;
-  ulonglong iterationCount;
-  longlong stringCompareIndex;
-  longlong contextHandleData;
-  int *ptrLocalInt5;
+  int layoutValidationResult;
+  ulonglong bufferIterationCount;
+  longlong stringComparisonIndex;
+  longlong contextHandleIndex;
+  int *uiContextPointer;
   
   *uiContext = 0x10000;
   uiContext[1] = -*dataSource;
   if (1 < targetBuffer) {
-    ptrLocalInt5 = uiContext + 2;
-    iterationCount = (ulonglong)(targetBuffer - 1);
-    contextHandleData = 1;
+    uiContextPointer = uiContext + 2;
+    bufferIterationCount = (ulonglong)(targetBuffer - 1);
+    contextHandleIndex = 1;
     do {
-      processingResult = dataSource[contextHandleData * 2];
-      *ptrLocalInt5 = ptrLocalInt5[-2] * 2 - (int)(((longlong)ptrLocalInt5[-1] * (longlong)processingResult >> 0xf) + 1 >> 1);
-      for (stringCompareIndex = contextHandleData; 1 < stringCompareIndex; stringCompareIndex = stringCompareIndex + -1) {
-        uiContext[stringCompareIndex] =
-             uiContext[stringCompareIndex] +
-             (uiContext[stringCompareIndex + -2] -
-             (int)(((longlong)(int)uiContext[stringCompareIndex + -1] * (longlong)processingResult >> 0xf) + 1 >> 1));
+      layoutValidationResult = dataSource[contextHandleIndex * 2];
+      *uiContextPointer = uiContextPointer[-2] * 2 - (int)(((longlong)uiContextPointer[-1] * (longlong)layoutValidationResult >> 0xf) + 1 >> 1);
+      for (stringComparisonIndex = contextHandleIndex; 1 < stringComparisonIndex; stringComparisonIndex = stringComparisonIndex + -1) {
+        uiContext[stringComparisonIndex] =
+             uiContext[stringComparisonIndex] +
+             (uiContext[stringComparisonIndex + -2] -
+             (int)(((longlong)(int)uiContext[stringComparisonIndex + -1] * (longlong)layoutValidationResult >> 0xf) + 1 >> 1));
       }
-      uiContext[1] = uiContext[1] - processingResult;
-      contextHandleData = contextHandleData + 1;
-      ptrLocalInt5 = ptrLocalInt5 + 1;
-      iterationCount = iterationCount - 1;
-    } while (iterationCount != 0);
+      uiContext[1] = uiContext[1] - layoutValidationResult;
+      contextHandleIndex = contextHandleIndex + 1;
+      uiContextPointer = uiContextPointer + 1;
+      bufferIterationCount = bufferIterationCount - 1;
+    } while (bufferIterationCount != 0);
   }
   return;
 }
