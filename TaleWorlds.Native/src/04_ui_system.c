@@ -5717,13 +5717,10 @@ void* UITransitionController;
  void RenderUIFrame(void);
 
  uint8_t ProcessUIInputEvent;
-uint8_t ProcessUIInputEvent;
 
  uint8_t HandleUIEventDispatch;
-uint8_t HandleUIEventDispatch;
 
  uint8_t UpdateUIComponentState;
-uint8_t UpdateUIComponentState;
 
  void ProcessUITransformMatrix(longlong UiContext, longlong *OutputBuffer);
 void ProcessUITransformMatrix;
