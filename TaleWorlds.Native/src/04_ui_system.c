@@ -49704,6 +49704,25 @@ int ValidateUIDataIntegrity(UIHandle uiContext,int dataSource,UIHandle targetBuf
 
 
 
+/**
+ * @brief 检查UI数据一致性
+ * 
+ * 检查UI系统中的数据一致性，确保数据在不同组件之间保持同步。
+ * 该函数通过调用底层检查函数来验证UI数据的一致性状态。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储检查结果
+ * @param bufferSize 缓冲区大小，指定检查操作的数据范围
+ * @param resultPointer 结果指针，用于返回检查状态
+ * @param param_6 检查参数6，具体的检查参数
+ * @param param_7 参数7指针，用于返回检查结果
+ * @param param_8 检查参数8，具体的检查参数
+ * @return 检查结果状态码，0表示一致，非0表示不一致或错误
+ * 
+ * @note 原始函数名: CheckUIDataConsistency
+ * @note 用于UI系统中的数据一致性检查和同步验证
+ */
 int CheckUIDataConsistency(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                             UIHandle resultPointer,int param_6,int *param_7,UIHandle param_8)
 
@@ -49718,6 +49737,25 @@ int CheckUIDataConsistency(UIHandle uiContext,int dataSource,UIHandle targetBuff
 
 
 
+/**
+ * @brief 分配UI内存资源
+ * 
+ * 为UI系统分配内存资源，包括缓冲区、数据结构和其他资源。
+ * 该函数通过调用底层内存分配函数来管理UI系统的内存资源。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储分配结果
+ * @param bufferSize 缓冲区大小，指定分配操作的数据范围
+ * @param resultPointer 结果指针，用于返回分配状态
+ * @param param_6 分配参数6，具体的分配参数
+ * @param param_7 参数7指针，用于返回分配结果
+ * @param param_8 分配参数8，具体的分配参数
+ * @return 分配的内存资源句柄，成功时返回有效的内存句柄，失败时返回无效值
+ * 
+ * @note 原始函数名: AllocateUIMemoryResources
+ * @note 用于UI系统中的内存资源分配和管理
+ */
 longlong AllocateUIMemoryResources(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
                                    longlong resultPointer,int param_6,uint *param_7,longlong param_8)
 

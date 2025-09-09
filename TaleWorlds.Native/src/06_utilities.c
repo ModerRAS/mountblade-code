@@ -27798,7 +27798,7 @@ void ProcessDataTypesA0(void)
   DataWord dataWordInputValueExtended;   // 扩展的数据字输入值 - 扩展的数据字输入值
   DataWord dataWordInputValueExtendedSecondary; // 次要扩展数据字输入值 - 第二个扩展数据字输入值
   
-  memoryResourcePointer2 = (DataBuffer *)(systemContext + 8);
+  memoryResourcePointer2 = (DataBuffer *)(systemContext + SystemContextDataOffset8);
   StackFloatRegisterA = dataPointerD;
   StackPointerRegisterA = memoryResourcePointer2;
   exceptionHandlerContext5 = (*(code *)*systemInputAccumulator)(memoryResourcePointer2);
@@ -27846,7 +27846,7 @@ void ProcessDataTypesA0(void)
           systemContext = SystemStackInputParameterA;
         } while ((int64_t)operationResult3 < dataSize);
       }
-      systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
+      systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + SystemContextDataOffset8) + 800);
       systemDataBuffer6 = (**(FunctionPointer**)*memoryResourcePointer2)(memoryResourcePointer2);
       resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,SystemNameBuffer);
       if (resourceValidationStatus == 0) {
@@ -28092,7 +28092,7 @@ SystemDataValidationCheckpoint:
       systemContext = SystemStackInputParameterA;
     } while ((int64_t)operationResult2 < StackLoopCounter);
   }
-  systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
+  systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + SystemContextDataOffset8) + 800);
   systemDataBuffer6 = (**(FunctionPointer**)*FloatRegisterR12)(FloatRegisterR12);
   resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,SystemNameBuffer);
   if (resourceValidationStatus == 0) {
