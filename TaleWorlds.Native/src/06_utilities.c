@@ -9950,8 +9950,21 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：清理系统资源并重置状态
 #define CleanupSystemResourcesAndReset FUN_18005cb60
 
-// 原始函数名：FUN_1801fef10 - 系统数据流处理函数
-// 功能：处理系统数据流并执行验证
+/**
+ * @brief 处理系统数据流并执行验证
+ * 
+ * 该函数负责处理系统中的数据流，包括数据的读取、验证和转换操作。
+ * 它会对数据流进行完整性检查，确保数据在传输和处理过程中的安全性。
+ * 
+ * @param dataStream 数据流指针，指向需要处理的数据流
+ * @param streamSize 数据流大小，指定要处理的数据量
+ * @param validationFlags 验证标志，用于控制验证过程的严格程度
+ * @return 处理结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_1801fef10
+ * @note 该函数会检查数据流的完整性和有效性
+ * @note 在验证失败时会返回相应的错误码
+ */
 #define ProcessSystemDataFlowAndValidate FUN_1801fef10
 
 // 原始函数名：FUN_1800582b0 - 系统资源分配函数
