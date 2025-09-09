@@ -26403,14 +26403,14 @@ ValidateDataSecurity:
         operationResult3 = *(DataWord *)(contextPointer + ContextPointerOffset48);
         operationResult = *(DataWord *)(contextPointer + SystemDataValidationOffset4C);
         dataFlags = *(DataWord *)(contextPointer + ContextPointerOffset50);
-        validationOutcome = *(DataWord *)(contextPointer + 0x54);
+        validationOutcome = *(DataWord *)(contextPointer + ContextPointerOffset54);
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = systemDataBuffer7;
         StackFrameContext[-10] = systemDataBuffer6;
         *(float *)(StackFrameContext + -0xd) = dataPointerD;
-        securityCheckResult = *(DataWord *)(contextPointer + 0x58);
-        statusCounter = *(DataWord *)(contextPointer + 0x5c);
-        loopCounter = *(DataWord *)(contextPointer + 0x60);
+        securityCheckResult = *(DataWord *)(contextPointer + ContextPointerOffset58);
+        statusCounter = *(DataWord *)(contextPointer + ContextPointerOffset5C);
+        loopCounter = *(DataWord *)(contextPointer + ContextPointerOffset60);
         systemMemoryBuffer = *(DataWord *)(contextPointer + 100);
         *(DataWord *)(StackFrameContext + -0xc) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -9) = operationResult3;
@@ -26612,7 +26612,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       operationResult = ValidateDataIntegrityA0(secondaryInputValue,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
-    dataPointer = (float *)(dataBase + 0x94);
+    dataPointer = (float *)(dataBase + DataBaseOffset94);
     baseValue = systemValue;
     do {
       processedValue = *dataPointer;
@@ -26867,8 +26867,8 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   processCount = 0;
   resourceIndex = 0;
   do {
-    if ((resourceIndex < 0) || (*(int *)(resourceManager + 0x1a8) <= resourceIndex)) goto ProcessCheckpointResourceValidation;
-    resourceEntry = *(int64_t *)(*(int64_t *)(resourceManager + 0x1a0) + (int64_t)resourceIndex * 8);
+    if ((resourceIndex < 0) || (*(int *)(resourceManager + ResourceManagerOffset1A8) <= resourceIndex)) goto ProcessCheckpointResourceValidation;
+    resourceEntry = *(int64_t *)(*(int64_t *)(resourceManager + ResourceManagerOffset1A0) + (int64_t)resourceIndex * 8);
     if (**(int **)(resourceEntry + 0xd0) != 0) {
       validationBuffer[0] = 0;
       validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + 0xd0),validationBuffer);
@@ -38768,7 +38768,7 @@ ValidationErrorHandler5:
           *(DataWord *)(dataPointer + ExceptionHandlerCallbackOffset10) = systemMemoryBuffer;
           *(DataBuffer *)(dataPointer + SystemDataSecondaryOffset18) = 0;
           *(DataWord *)(dataPointer + SystemDataParameterOffset20) = 0;
-          operationResult = ConvertData(contextPointer + 0x58,dataPointer);
+          operationResult = ConvertData(contextPointer + ContextPointerOffset58,dataPointer);
           securityCheckResult = (uint64_t)operationResult;
           if (operationResult != 0) goto ProcessCheckpointValidationError4;
           iterationCount = *(int *)(StackFrameContext + -0x21);
@@ -38778,7 +38778,7 @@ ValidationErrorHandler5:
       systemMemoryBuffer = CleanupSystemResourcesA0(StackFrameContext + -0x29);
     }
     else {
-      securityCheckResult = GetSecurityCheckResult(normalizedFloatValue,contextPointer + 0x58);
+      securityCheckResult = GetSecurityCheckResult(normalizedFloatValue,contextPointer + ContextPointerOffset58);
       systemMemoryBuffer = interpolatedFloatValue;
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
@@ -38836,7 +38836,7 @@ ValidationErrorHandler5:
         *(DataWord *)(resourceIterator + ExceptionHandlerCallbackOffset10) = systemDataBuffer;
         *(DataBuffer *)(resourceIterator + SystemDataSecondaryOffset18) = registerContext;
         *(int *)(resourceIterator + SystemDataParameterOffset20) = (int)registerContext;
-        operationResult = ConvertData(contextPointer + 0x58,resourceIterator);
+        operationResult = ConvertData(contextPointer + ContextPointerOffset58,resourceIterator);
         memoryRegionBase = (uint64_t)operationResult;
         if (operationResult != 0) goto ProcessCheckpointValidationError4;
         operationStatus = *(int *)(StackFrameContext + -0x21);
@@ -39270,7 +39270,7 @@ uint64_t ProcessSystemDataValidation(void)
   if (*(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*DestinationContext,contextPointer + 0x58);
+  validationStatus = ValidateDataWithSecurityCheckA2(*DestinationContext,contextPointer + ContextPointerOffset58);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
