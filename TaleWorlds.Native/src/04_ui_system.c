@@ -1485,6 +1485,11 @@ typedef enum {
 #define TempValueY UITempValueY
 #define TempValueZ UITempValueZ
 #define TempValueW UITempValueW
+
+// UI系统基础变量美化
+#define BaseValuePointer3 UIBaseValuePointer3
+#define BaseValuePointer7 UIBaseValuePointer7
+#define BasePointer UIBasePointer
 #define FUN_18089aa80 UIEmptyFunction13
 #define FUN_18089aa88 UIEmptyFunction14
 #define FUN_18089aa90 UIEmptyFunction15
