@@ -28337,8 +28337,19 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
 
 
 
-// 原始函数名：FUN_180898bc0 - 数据处理函数F1
-// 功能：处理输入数据并返回32位结果
+/**
+ * @brief 根据索引处理数据缓冲区并返回处理结果
+ * 
+ * 该函数根据提供的数据索引处理输入数据缓冲区，执行数据验证、内存操作和状态检查。
+ * 函数使用复杂的算法处理数据块，包括内存区域管理、数据完整性验证和状态计数。
+ * 
+ * @param inputDataBuffer 输入数据缓冲区，包含待处理的数据
+ * @param dataIndex 数据索引，用于定位缓冲区中的特定数据
+ * @return DataWord 返回处理结果，包含状态信息或处理后的数据
+ * 
+ * @note 原始函数名：FUN_180898bc0
+ * @see ValidateSystemDataIntegrityB0, StackFrameContext
+ */
 #define ProcessDataWithIndex FUN_180898bc0
 DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
 
@@ -28411,36 +28422,36 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       *operationResult = (char)processingDataValue;
     }
     else {
-      pdataFlags = systemContext + (int)basePointer;
-      pstatusCounter = pdataFlags + -1;
+      processingFlagsPointer = systemContext + (int)basePointer;
+      statusCounterPointer = processingFlagsPointer + -1;
       operationResult = systemContext;
-      if (systemContext < pstatusCounter) {
+      if (systemContext < statusCounterPointer) {
         do {
           systemDataBuffer = *operationResult;
-          *operationResult = *pstatusCounter;
+          *operationResult = *statusCounterPointer;
           operationResult = operationResult + 1;
-          *pstatusCounter = systemDataBuffer;
-          pstatusCounter = pstatusCounter + -1;
-        } while (operationResult < pstatusCounter);
+          *statusCounterPointer = systemDataBuffer;
+          statusCounterPointer = statusCounterPointer + -1;
+        } while (operationResult < statusCounterPointer);
       }
-      pstatusCounter = pdataFlags + (int64_t)(int)(allocatedMemoryBlock - basePointer) + -1;
-      if (pdataFlags < pstatusCounter) {
+      statusCounterPointer = processingFlagsPointer + (int64_t)(int)(allocatedMemoryBlock - basePointer) + -1;
+      if (processingFlagsPointer < statusCounterPointer) {
         do {
-          systemDataBuffer = *pdataFlags;
-          *pdataFlags = *pstatusCounter;
-          pdataFlags = pdataFlags + 1;
-          *pstatusCounter = systemDataBuffer;
-          pstatusCounter = pstatusCounter + -1;
-        } while (pdataFlags < pstatusCounter);
+          systemDataBuffer = *processingFlagsPointer;
+          *processingFlagsPointer = *statusCounterPointer;
+          processingFlagsPointer = processingFlagsPointer + 1;
+          *statusCounterPointer = systemDataBuffer;
+          statusCounterPointer = statusCounterPointer + -1;
+        } while (processingFlagsPointer < statusCounterPointer);
       }
-      systemContext[StackFrameContext + -1] = (char)dataPointerD;
-      dataPointerD = 0x41;
+      systemContext[StackFrameContext + -1] = (char)processingDataValue;
+      processingDataValue = 0x41;
     }
   }
   if (outputParameter != (int *)0x0) {
-    *outputParameter = contextPointerD + 1;
+    *outputParameter = contextIndex + 1;
   }
-  return dataPointerD;
+  return processingDataValue;
 }
 
 
