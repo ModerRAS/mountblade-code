@@ -7999,17 +7999,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证上下文数据和状态
 #define ValidateContextDataA0 ProcessSystemDataWithValidation
 
-// 原始函数名：FUN_1808af8b0 - 系统配置验证函数A0
-// 功能：验证系统配置和参数
-#define ValidateSystemConfigurationA1 FUN_1808af8b0
+// 系统配置验证函数A1 - 验证系统配置和参数
+#define ValidateSystemConfigurationA1 ValidateSystemConfigurationAndParameters
 
-// 原始函数名：FUN_1808af280 - 数据缓冲区验证函数A0
-// 功能：验证数据缓冲区状态
-#define ValidateDataBufferA0 FUN_1808af280
+// 数据缓冲区验证函数A0 - 验证数据缓冲区状态
+#define ValidateDataBufferA0 ValidateDataBufferStatus
 
-// 原始函数名：FUN_1808acb90 - 数组数据处理函数A0
-// 功能：处理数组数据并返回结果
-#define ProcessArrayDataA0 FUN_1808acb90
+// 数组数据处理函数A0 - 处理数组数据并返回结果
+#define ProcessArrayDataA0 ProcessArrayDataAndReturnResult
 
 // 原始函数名：InitializeDataStructureA0 - 数据初始化函数A0
 // 功能：初始化数据结构和缓冲区
@@ -8031,9 +8028,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：处理数据并返回处理结果
 #define ProcessDataWithValidationA1 ProcessDataWithValidationA1
 
-// 原始函数名：FUN_18089e2e8 - 系统缓冲区处理函数
-// 功能：处理系统缓冲区和数据操作
-#define ProcessSystemBuffer FUN_18089e2e8
+// 系统缓冲区处理函数 - 处理系统缓冲区和数据操作
+#define ProcessSystemBuffer ProcessSystemBufferAndDataOperations
 
 // 原始函数名：FUN_18089e4f0 - 数据验证和处理函数
 // 功能：验证数据并执行处理操作
@@ -82041,9 +82037,8 @@ void CallExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-// 原始函数名：Unwind_1809091b0 - 异常处理函数B1
-// 功能：在指定偏移量处调用异常处理器
-void UnwindExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
+// 异常处理函数B1 - 在偏移量0xA0处调用异常处理器
+void CallExceptionHandlerAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
@@ -82059,9 +82054,8 @@ void UnwindExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 原始函数名：Unwind_1809091d0 - 异常处理函数B2
-// 功能：在指定偏移量处调用异常处理器
-void UnwindExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
+// 异常处理函数B2 - 在偏移量0xA8处调用异常处理器
+void CallExceptionHandlerAtOffsetA8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
@@ -82077,9 +82071,8 @@ void UnwindExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 原始函数名：Unwind_1809091f0 - 异常处理函数B3
-// 功能：在指定偏移量处调用异常处理器
-void UnwindExceptionHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
+// 异常处理函数B3 - 在偏移量0xB0处调用异常处理器
+void CallExceptionHandlerAtOffsetB0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;   // 异常处理上下文指针

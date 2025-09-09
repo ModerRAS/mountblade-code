@@ -197,7 +197,7 @@ typedef enum {
 #define ValidateUILayoutDataF7D0 FUN_18072f7d0            // 验证UI布局数据F7D0
 #define RenderUIComponentA70 FUN_180736a70                // 渲染UI组件A70
 #define ValidateUIComponentContext4160 FUN_180734160     // 验证UI组件上下文4160
-#define FUN_180736a10 ProcessUIBufferDataA10              // 处理UI缓冲区数据A10
+#define ProcessUIBufferDataA10 FUN_180736a10              // 处理UI缓冲区数据A10
 #define InitializeUIComponent1E10 FUN_180741e10           // 初始化UI组件1E10
 #define ProcessUIContextDataTransfer FUN_180728660          // 处理UI上下文数据传输
 #define TransferUIDataToBuffer FUN_180728720                // 传输UI数据到缓冲区
