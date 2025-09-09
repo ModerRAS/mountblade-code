@@ -107138,11 +107138,11 @@ void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,floa
       BaseValuePointer = BaseValuePointer2 + 4;
       BaseValuePointer2[-1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x14 + (longlong)BaseValuePointer);
       *BaseValuePointer2 = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x10 + (longlong)BaseValuePointer);
-      pbaseValue2[1] = targetBuffer * *(float *)(allocatedMemory8 + -0xc + (longlong)pbaseValue);
-      pbaseValue2[2] = targetBuffer * *(float *)(allocatedMemory8 + -8 + (longlong)pbaseValue);
-      allocatedMemory1 = allocatedMemory1 + -1;
-      pbaseValue2 = pbaseValue;
-    } while (allocatedMemory1 != 0);
+      BaseValuePointer2[1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0xc + (longlong)BaseValuePointer);
+      BaseValuePointer2[2] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -8 + (longlong)BaseValuePointer);
+      AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
+      BaseValuePointer2 = BaseValuePointer;
+    } while (AllocatedMemoryBlock1 != 0);
   }
   if ((processingResult5 < (int)bufferSize) && (0xf < bufferSize - processingResult5)) {
     allocatedMemory1 = (longlong)processingResult5;
@@ -107266,11 +107266,11 @@ void FUN_18072e4b4(longlong uiContext,longlong dataSource,float targetBuffer,uin
       pbaseValue = pbaseValue2 + 4;
       pbaseValue2[-1] = targetBuffer * *(float *)(allocatedMemory8 + -0x14 + (longlong)pbaseValue);
       *pbaseValue2 = targetBuffer * *(float *)(allocatedMemory8 + -0x10 + (longlong)pbaseValue);
-      pbaseValue2[1] = targetBuffer * *(float *)(allocatedMemory8 + -0xc + (longlong)pbaseValue);
-      pbaseValue2[2] = targetBuffer * *(float *)(allocatedMemory8 + -8 + (longlong)pbaseValue);
-      allocatedMemory1 = allocatedMemory1 + -1;
-      pbaseValue2 = pbaseValue;
-    } while (allocatedMemory1 != 0);
+      BaseValuePointer2[1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0xc + (longlong)BaseValuePointer);
+      BaseValuePointer2[2] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -8 + (longlong)BaseValuePointer);
+      AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
+      BaseValuePointer2 = BaseValuePointer;
+    } while (AllocatedMemoryBlock1 != 0);
   }
   if ((processingResult5 < (int)bufferSize) && (0xf < bufferSize - processingResult5)) {
     allocatedMemory1 = (longlong)processingResult5;
