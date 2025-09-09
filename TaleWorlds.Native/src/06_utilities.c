@@ -104809,7 +104809,19 @@ void ManageExceptionContextResourcesE7D0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E7E0
+ * 
+ * 该函数负责验证系统资源并处理异常情况。它会检查系统上下文指针，
+ * 遍历资源迭代器，验证数据缓冲区，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e7e0
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE7E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -104854,7 +104866,19 @@ void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E7F0
+ * 
+ * 该函数负责验证系统资源并处理异常情况。与E7E0函数类似，它会检查系统上下文指针，
+ * 遍历资源迭代器，验证数据缓冲区，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e7f0
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE7F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -104978,7 +105002,19 @@ void DecrementSystemResourceCounterAndExecuteFunctionD(void)
 
 
 
-void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源管理和异常处理函数E820
+ * 
+ * 该函数负责管理系统资源并处理异常情况。它会检查系统上下文状态，
+ * 处理资源迭代器，执行数据验证，并管理异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e820
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ManageSystemResourcesAndHandleExceptionsE820(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -105042,7 +105078,19 @@ void DecrementSystemResourceCounterAndExecuteFunctionE(void)
 
 
 
-void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E840
+ * 
+ * 该函数负责验证系统资源并处理异常情况。它会检查系统上下文状态，
+ * 处理资源迭代器，执行数据验证，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e840
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE840(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
