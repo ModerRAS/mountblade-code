@@ -10213,8 +10213,8 @@ LAB_UIContextInitialize:
           }
           uiTransformCalculationResult = 0;
           uiTransformCoefficient23 = 0;
-          resultPointer3 = &SecondaryUIBuffer;
-          for (currentMemoryBlock = dataPointer1; currentMemoryBlock != dataPointer2; currentMemoryBlock = currentMemoryBlock + 4) {
+          uiTransformResultPointer3 = &SecondaryUIBuffer;
+          for (currentMemoryAllocation = uiDataPointer1; currentMemoryAllocation != uiDataPointer2; currentMemoryAllocation = currentMemoryAllocation + 4) {
             (**(code **)*currentMemoryBlock)(currentMemoryBlock,0);
           }
         }
