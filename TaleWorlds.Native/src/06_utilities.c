@@ -17576,7 +17576,7 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
     operationResult = 0;
   }
   else if (memoryResourcePointer != 0) {
-    InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memoryresourcePointer,&SystemMemoryPoolB,0xe9,operationMode);
+    InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memoryResourcePointer,&SystemMemoryPoolB,0xe9,operationMode);
     return operationResult;
   }
   return operationResult;
@@ -19516,7 +19516,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
   memoryResourcePointer = 0;
   memoryBlockOffset = systemHandle + EVENT_HANDLER_OFFSET;
   if (systemHandle == 0) {
-    memoryBlockOffset = memoryresourcePointer;
+    memoryBlockOffset = memoryResourcePointer;
   }
   operationResult = ValidateAndProcessSystemResourceA0(memoryBlockOffset,systemContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if (operationResult != 0) {
