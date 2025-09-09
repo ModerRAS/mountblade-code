@@ -79946,16 +79946,16 @@ void ExecuteExceptionHandlerFloatCallback(DataBuffer operationBase,int64_t dataB
 
 
 /**
- * @brief 异常处理器调用函数偏移量0x30
+ * @brief 调用异常处理器
  * 
- * 该函数负责调用异常处理器，通过偏移量0x30获取异常处理上下文指针
+ * 该函数负责调用异常处理器，通过指定偏移量获取异常处理上下文指针
  * 并执行相应的异常处理操作
  * 
  * @param operationBase 操作基础数据
  * @param dataBuffer 数据缓冲区指针
  * @note 原始函数名：Unwind_180908b80
  */
-void CallExceptionHandlerOffset30(DataBuffer operationBase,int64_t dataBuffer)
+void CallExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
