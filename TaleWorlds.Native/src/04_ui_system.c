@@ -95340,8 +95340,8 @@ void ProcessUIRenderBufferData(longlong uiContext, longlong dataSource, float *t
 
 
 
- void FUN_1807201ce(void)
-void FUN_1807201ce(void)
+ void InitializeUIRenderingSystem(void)
+void InitializeUIRenderingSystem(void)
 
 {
   float *BaseValuePointer;
@@ -109696,7 +109696,7 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
   RenderUIComponentA70(uiContext,&stackInt108,0xc);
   localInt7 = ValidateUIComponentContext4160(uiContext,targetBuffer);
   for (uiValidationResult = 0; (localInt7 == 0 && (uiValidationResult < 0x10)); uiValidationResult = uiValidationResult + 1) {
-    func_0x000180736a10(&stackInt108,targetBuffer,0x10000 - (2 << ((byte)uiValidationResult & 0x1f)));
+    ProcessUIBufferDataA10(&stackInt108,targetBuffer,0x10000 - (2 << ((byte)uiValidationResult & 0x1f)));
     CharacterDataOffset = 0;
     if (((0 < (int)targetBuffer) && (0xf < targetBuffer)) &&
        ((astackUInt104 + (longlong)(int)(targetBuffer - 1) * 4 + -4 < uiContext ||
