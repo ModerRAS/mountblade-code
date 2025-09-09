@@ -16431,7 +16431,7 @@ LAB_18065a2e9:
         if (localInt5 == 7) {
           if (*(char *)((longlong)uiContext + 0x5d) != '\0') {
 LAB_18065a5be:
-            finalResult = 0.0;
+            interpolationResult = 0.0;
           }
         }
         else {
@@ -30036,38 +30036,38 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
 
 {
   int ProcessingResult;
-  UIByte UIStackBuffer108 [32];
-  UIDword *PointerStackValuee8;
-  UIHandle UIStackCounterd8;
-  UIHandle UIStackCounterd0;
-  UIDword UIStackCounterc8;
-  int StackValuec4;
-  UIDword UIStackCounterb8;
-  UIDword UIStackCountera4;
-  UIHandle UIStackCounter90;
-  UIHandle UIStackCounter88;
-  UIHandle UIStackCounter80;
-  UIHandle UIStackCounter70;
-  UIDword UIStackCounter38;
-  UIHandle UIStackCounter34;
-  UIHandle UIStackCounter2c;
-  UIHandle UIStackCounter24;
-  ulonglong UIStackCounter18;
+  UIByte EncryptionBuffer [32];
+  UIDword *ComponentDataPointer;
+  UIHandle RenderStateHandle;
+  UIHandle ComponentStateHandle;
+  UIDword LayoutFlags;
+  int AlignmentOffset;
+  UIDword ComponentStyle;
+  UIDown AnimationFrame;
+  UIHandle TextureHandle;
+  UIHandle ShaderHandle;
+  UIHandle MaterialHandle;
+  UIHandle ResourceIndex;
+  UIDown ComponentID;
+  UIHandle InstanceHandle;
+  UIHandle BufferHandle;
+  UIHandle MemoryHandle;
+  ulonglong EncryptionKey;
   
-  UIStackCounter18 = XorEncryptionKey ^ (ulonglong)UIStackBuffer108;
+  EncryptionKey = XorEncryptionKey ^ (ulonglong)EncryptionBuffer;
   if ((*dataSource == 0) && (*(longlong *)(uiBufferData + 0x1b0) != 0)) {
-    UIStackCounterd0 = 0;
-    UIStackCounterd8 = 0;
-    UIStackCounter38 = 0;
-    UIStackCounter34 = 0;
-    UIStackCounter2c = 0;
-    UIStackCounter24 = 0;
+    ComponentStateHandle = 0;
+    RenderStateHandle = 0;
+    ComponentID = 0;
+    InstanceHandle = 0;
+    BufferHandle = 0;
+    MemoryHandle = 0;
     if ((*(uint *)(uiContext + 8) & 0x10000) != 0) {
-      UIStackCounter38 = *(UIDword *)(uiBufferData + 0xfc);
-      UIStackCounter34 = *(UIHandle *)(uiContext + 0x100);
+      ComponentID = *(UIDword *)(uiBufferData + 0xfc);
+      InstanceHandle = *(UIHandle *)(uiContext + 0x100);
     }
-    PointerStackValuee8 = &UIStackCounter38;
-    ProcessingResult = RefreshUIComponent(*(longlong *)(uiBufferData + 0x1b0),&UIStackCounterc8,&UIStackCounterd0,&UIStackCounterd8);
+    ComponentDataPointer = &ComponentID;
+    ProcessingResult = RefreshUIComponent(*(longlong *)(uiBufferData + 0x1b0),&LayoutFlags,&ComponentStateHandle,&RenderStateHandle);
     if (ProcessingResult == 0) {
       *(int *)(uiBufferData + 0x13c) = StackValuec4;
       *(int *)(uiBufferData + 0x134) = StackValuec4;
@@ -87430,7 +87430,7 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
         }
         finalResult = *(float *)(param_9 + CharacterDataOffset * 4) - finalResult;
         if (finalResult <= 0.0) {
-          finalResult = 0.0;
+          interpolationResult = 0.0;
         }
         ExponentialDecayFactor2 = (double)exp((double)-finalResult * 0.6931471805599453);
         transformCoeff11 = (float)ExponentialDecayFactor2 + (float)ExponentialDecayFactor2;
@@ -97817,7 +97817,7 @@ void ProcessUIDataTransformAndCalculation(void)
       transformCoeff12 = 0.0;
       baseValue5 = 0.0;
       baseValue6 = 0.0;
-      finalResult = 0.0;
+      interpolationResult = 0.0;
       FloatValue1 = 0.0;
       dataPointer = RegisterPointerD & 0x80000007;
       if ((int)dataPointer < 0) {
@@ -105236,12 +105236,12 @@ float CalculateUIDataBuffer(int uiContext, ulonglong dataSource, uint targetBuff
   float finalResult;
   
   contextValue = (ulonglong)uiContext;
-  dataPointer = dataSource & 0xffffffff;
-  sourceDataInt = (int)dataSource;
-  finalResult = 0.0;
+  dataValue = dataSource & 0xffffffff;
+  sourceDataValue = (int)dataValue;
+  interpolationResult = 0.0;
   if (2 < uiContext) {
-    contextDataHandle = contextValue * 4;
-    globalDataPointer = (longlong *)(&UIGlobalDataRegistry + contextValue * 8);
+    contextHandle = contextValue * 4;
+    globalDataRegistry = (longlong *)(&UIGlobalDataRegistry + contextValue * 8);
     do {
       eventDataIndex = (longlong)(int)dataPointer;
       eventIndex = (short)dataPointer;
@@ -105351,12 +105351,12 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   float interpolationResult;
   
   contextValue = (ulonglong)uiContext;
-  dataPointer = dataSource & 0xffffffff;
-  sourceDataInt = (int)dataSource;
-  finalResult = 0.0;
+  dataValue = dataSource & 0xffffffff;
+  sourceDataValue = (int)dataValue;
+  interpolationResult = 0.0;
   if (2 < uiContext) {
-    contextDataHandle = contextValue * 4;
-    globalDataPointer = (longlong *)(&UIGlobalDataRegistry + contextValue * 8);
+    contextHandle = contextValue * 4;
+    globalDataRegistry = (longlong *)(&UIGlobalDataRegistry + contextValue * 8);
     do {
       eventDataIndex = (longlong)(int)dataPointer;
       eventIndex = (short)dataPointer;
@@ -179805,7 +179805,7 @@ int FUN_18076f660(longlong uiContext)
     else {
       pallocatedMemory5 = (longlong *)*pallocatedMemory;
       if ((pallocatedMemory5 != pallocatedMemory) || (*(longlong **)(uiContext + 0x240) != pallocatedMemory)) {
-        finalResult = 0.0;
+        interpolationResult = 0.0;
         for (; pallocatedMemory5 != pallocatedMemory; pallocatedMemory5 = (longlong *)*pallocatedMemory5) {
           fStackX_8 = (float)pallocatedMemory5[2];
           if (finalResult <= fStackX_8) {
@@ -185521,7 +185521,7 @@ FUN_1807746b0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
         }
       }
       else {
-        finalResult = 0.0;
+        interpolationResult = 0.0;
       }
       *(float *)(uiContext + 0x224) = FloatValue1 * finalResult * 0.01;
       FloatValue1 = *(float *)(uiContext + 0x21c) * 4.0 - 200.0;
@@ -185860,7 +185860,7 @@ UIHandle FUN_180774836(UIHandle uiContext,float dataSource)
                 finalResult = *(float *)(contextHandle + (0x809d - maxProcessingCount) * 4);
               }
               else {
-                finalResult = 0.0;
+                interpolationResult = 0.0;
               }
               finalResult = (finalResult * 0.5 - 0.5) * *(float *)(contextHandle + 0x268) +
                        (float)*(uint *)(contextHandle + 0x250) + (float)dataPointer;
@@ -200422,7 +200422,7 @@ void FUN_1807851dd(int uiContext,UIHandle dataSource)
       else {
         baseValue6 = 0.0;
         stackParam00000070 = 0;
-        finalResult = 0.0;
+        interpolationResult = 0.0;
         stackParam00000078 = 0;
         *(UIHandle *)(BasePointer + -0x80) = 0;
         *(UIHandle *)(BasePointer + -0x78) = 0;
@@ -220130,7 +220130,7 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
         FloatValue2 = transformCoeff14 - transformCoeff15;
         do {
           if (transformCoeff14 <= afStack_b8[allocatedMemory0]) {
-            finalResult = 0.0;
+            interpolationResult = 0.0;
           }
           else {
             finalResult = 1.0 - (afStack_b8[allocatedMemory0] - transformCoeff15) / FloatValue2;
@@ -220449,7 +220449,7 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
       baseValue6 = transformCoeff17 - in_XMM4_Da;
       do {
         if (transformCoeff17 <= transformCoeffArray[contextOffset]) {
-          finalResult = 0.0;
+          interpolationResult = 0.0;
         }
         else {
           finalResult = 1.0 - (transformCoeffArray[contextOffset] - in_XMM4_Da) / baseValue6;
@@ -333748,7 +333748,7 @@ void FUN_180864850(longlong uiContext)
   *(float *)(uiContext + 0x2fc) = FloatValue2;
   if ((FloatValue2 != fStack_f0) && (*(longlong *)(uiBufferData + 0x2b0) != 0)) {
     FloatValue2 = *(float *)(uiContext + 0x2f8) * FloatValue2;
-    finalResult = 0.0;
+    interpolationResult = 0.0;
     if ((0.0 <= FloatValue2) && (finalResult = FloatValue2, 100.0 <= FloatValue2)) {
       finalResult = 100.0;
     }

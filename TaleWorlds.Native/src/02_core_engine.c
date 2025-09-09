@@ -5252,6 +5252,22 @@ const void* const SystemStringTemplateNovemvigesimal = (void*)0x180a1318c;
 const void* const SystemDataStructureTemplateTertiary = (void*)0x180a16c98;
 const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 
+// 系统全局变量定义
+void* ResourceManagerPrimaryHandler;
+void* GameDataManagerPrimaryHandler;
+void* ResourceManagerSecondaryHandler;
+void* NetworkSessionHandler;
+void* RenderingManagerGlobalHandler;
+void* ScriptManagerGlobalHandler;
+void* ConfigurationManagerGlobalHandler;
+void* DataManagerGlobalHandlerA;
+void* DataManagerGlobalHandlerB;
+
+// 系统数据模板指针变量
+void* SystemDataTemplatePrimaryPointer;
+void* SystemDataTemplateSecondaryPointer;
+void* SystemDataTemplatePointer;
+
 // 函数语义化宏定义
 
 /**

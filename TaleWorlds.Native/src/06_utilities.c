@@ -50120,6 +50120,15 @@ void MutexDestroyer450(void)
 
 
 
+// 异常资源清理常量
+#define ExceptionResourceContextOffset 0x40
+#define ExceptionResourceValidationIndex 3
+#define ExceptionResourceCallbackIndex 6
+#define ExceptionResourceIteratorIndex 5
+#define ExceptionResourceStatusIndex 3
+#define ExceptionResourceDataShift 0x10
+#define ExceptionResourceDecrement -1
+
 /**
  * @brief 异常资源清理器460
  * 
@@ -50138,19 +50147,19 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  contextPointer = *(int64_t **)(resourceData + 0x40);
+  contextPointer = *(int64_t **)(resourceData + ExceptionResourceContextOffset);
   validationStatusPointer = (DataBuffer *)*contextPointer;
   if (validationStatusPointer != (DataBuffer *)0x0) {
-    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)validationStatusPointer[3] = 0;
+    if ((DataBuffer *)validationStatusPointer[ExceptionResourceValidationIndex] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[ExceptionResourceValidationIndex] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer, 0);
       ReleaseExceptionBuffer(validationStatusPointer);
   }
-  if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + ExceptionHandlerCallbackOffset) != 0)) {
+  if ((contextPointer[ExceptionResourceCallbackIndex] != 0) && (*(int64_t *)(contextPointer[ExceptionResourceCallbackIndex] + ExceptionHandlerCallbackOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  resourceIterator = contextPointer[5];
+  resourceIterator = contextPointer[ExceptionResourceIteratorIndex];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + ResourceIteratorValidationOffset);
     resourceIterator = *(int64_t *)(resourceIterator + ResourceIteratorNextOffset);
@@ -50158,19 +50167,19 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
         TerminateSystemExecutionAndCleanupResources();
     }
   }
-  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  validationStatusPointer = (DataBuffer *)contextPointer[ExceptionResourceStatusIndex];
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> ExceptionResourceDataShift) * MemoryResourceMultiplier;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
     if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
       *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + ResourceDataPointerOffset20) = validationStatusPointer;
       resourceReferenceCount = (int *)(resourceIterator + ReferenceCountOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount + ExceptionResourceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
@@ -50214,6 +50223,10 @@ void MutexDestroyer490(void)
 
 
 
+// 异常清理处理常量
+#define ExceptionCleanupDataShift 0x10
+#define ExceptionCleanupReferenceDecrement -1
+
 /**
  * @brief 异常清理处理器B0
  * 
@@ -50238,13 +50251,13 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
+    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
@@ -50284,13 +50297,13 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
+    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
