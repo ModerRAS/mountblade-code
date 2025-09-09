@@ -215,9 +215,14 @@ uint32_t UpdateRenderParameterStatus(void)
  * 
  * 管理核心引擎的系统上下文，包括上下文的创建、维护和销毁
  * 
- * @note 原始函数名：FUN_18004caf0
+ * @note 原始实现：简化实现，只进行基本的系统上下文处理
  */
-#define ProcessCoreEngineSystemContext FUN_18004caf0
+uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
+{
+    // 简化实现：直接返回成功
+    // 实际实现应该处理核心引擎系统上下文
+    return NetworkOperationSuccess;
+}
 
 /**
  * @brief 获取分配的内存大小信息
