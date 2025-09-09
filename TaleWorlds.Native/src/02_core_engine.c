@@ -78681,7 +78681,7 @@ MemoryBlockListProcessingLabel:
         }
         CharacterStatusBuffer5 = (void *)*PrimaryProcessingStatusFlag0;
       }
-LAB_18009662b:
+PrimaryProcessingStatusLabel:
       if (LowByte) {
         PrimaryProcessingStatusFlag0 = StringProcessingStatus;
       }
@@ -78690,7 +78690,7 @@ LAB_18009662b:
     } while (CharacterStatusBuffer5 != NULL);
   }
   if (StringProcessingStatus == CharacterStatusBuffer2) {
-LAB_18009667a:
+SystemContextCreationLabel:
     StringProcessingStatus = (void *)CreateSystemContextWithData(CharacterStatusBuffer2,&pStackProcessingConfigurationFlag);
     StringProcessingStatus = (void *)*StringProcessingStatus;
   }
@@ -78704,11 +78704,11 @@ LAB_18009667a:
         if (StringComparisonByte != SystemPrimaryReturnCode) break;
         pProcessingByte4 = pProcessingByte4 + 1;
       } while (SystemPrimaryReturnCode != 0);
-      if ((int)(StringComparisonByte - SystemPrimaryReturnCode) < 1) goto LAB_180096691;
+      if ((int)(StringComparisonByte - SystemPrimaryReturnCode) < 1) goto SystemContextCreationLabel;
     }
-    goto LAB_18009667a;
+    goto SystemContextCreationLabel;
   }
-LAB_180096691:
+PrimaryProcessingCompleteLabel:
   PrimaryProcessingStatusFlag0 = StringProcessingStatus + 8;
   ProcessSystemStringIndex(CharacterStatusBuffer2 + 6,SystemStringIndex);
   TemporaryBuffer = (void *)AllocateTemporaryBuffer(CharacterStatusBuffer2 + 0xc,SystemStringIndex);
