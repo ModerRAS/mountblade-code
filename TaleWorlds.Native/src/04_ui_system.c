@@ -9992,9 +9992,9 @@ UIDword * CreateUIColorBuffer(UIDword *uiContext)
 {
   UIDword result;
   longlong *colorBufferPointer;
-  UIDword stackUInt20;
-  UIDword stackUInt1c;
-  UIDword stackUInt14;
+  UIDword bufferAddressLow;
+  UIDword bufferAddressHigh;
+  UIDword bufferFlags;
   
   colorBufferPointer = (longlong *)AllocateUIMemory(UIContextManager,0x30,8,3,0xfffffffffffffffe);
   colorBufferPointer[1] = 0;
