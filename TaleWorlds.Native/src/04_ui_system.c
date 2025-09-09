@@ -4640,14 +4640,14 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag23 _DAT_180d4a8a8              // UI全局状态标志23
 
  // UI系统向量操作掩码和常数定义
-#define UIVectorOperationMask0 _DAT_180946ec0
-#define UIVectorOperationMask1 _DAT_180946ed0
-#define UIVectorOperationMask2 _DAT_180946ee0
-#define UIVectorOperationMask3 _DAT_180946ef0
-#define UIVectorOperationMask4 _DAT_180946f00
-#define UIVectorOperationMask5 _DAT_180946f10
-#define UIVectorOperationMask6 _DAT_180946f20
-#define UIVectorShuffleMask0 _DAT_180946f50
+#define UIVectorOperationMask0 _DAT_180946ec0     // UI向量操作掩码0 - 用于X轴向量运算
+#define UIVectorOperationMask1 _DAT_180946ed0     // UI向量操作掩码1 - 用于Y轴向量运算
+#define UIVectorOperationMask2 _DAT_180946ee0     // UI向量操作掩码2 - 用于Z轴向量运算
+#define UIVectorOperationMask3 _DAT_180946ef0     // UI向量操作掩码3 - 用于W轴向量运算
+#define UIVectorOperationMask4 _DAT_180946f00     // UI向量操作掩码4 - 用于旋转向量运算
+#define UIVectorOperationMask5 _DAT_180946f10     // UI向量操作掩码5 - 用于缩放向量运算
+#define UIVectorOperationMask6 _DAT_180946f20     // UI向量操作掩码6 - 用于裁剪向量运算
+#define UIVectorShuffleMask0 _DAT_180946f50        // UI向量重排掩码0 - 用于SIMD向量重排操作
 #define UIVectorShuffleMask1 _DAT_180946f60
 #define UIVectorShuffleMask2 _DAT_180946f80
 #define UIVectorOperationMask7 _DAT_180946fc0

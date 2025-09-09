@@ -293019,11 +293019,6 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define SystemContextPrimaryFloat6 ContextPrimaryFloat6      // 系统上下文主浮点6
 #define SystemContextPrimaryFloat8 ContextPrimaryFloat8      // 系统上下文主浮点8
 
-// 系统处理状态语义化宏定义
-#define OperationStatus ProcessingOperationStatus            // 操作状态
-#define MemoryAllocationHandle MemoryAllocationFlag          // 内存分配句柄
-#define MemoryAllocationOffset MemoryAllocationPosition      // 内存分配偏移量
-
 // 事件数据结构语义化宏定义
 #define EventDataStructureHandle EventDataStructurePointer  // 事件数据结构句柄
 #define EventDataStructureStatusOffset EventDataStatusOffset // 事件数据结构状态偏移量
@@ -293032,6 +293027,17 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define OperationStatus ProcessingOperationStatus            // 操作状态
 #define MemoryAllocationHandle MemoryAllocationFlag          // 内存分配句柄
 #define MemoryAllocationOffset MemoryAllocationPosition      // 内存分配偏移量
+
+// 栈基础地址语义化宏定义
+#define StackBaseAddress StackBasePointer                   // 栈基础地址
+
+// 系统验证状态语义化宏定义
+#define SystemValidationStatus30 CurrentSystemCharacter30    // 系统当前字符30
+
+// 数据存储语义化宏定义
+#define TertiaryDataStorage TertiaryDataBuffer               // 第三数据存储
+#define DataStorageValue StoredDataValue                     // 数据存储值
+#define SystemDataTablePointer DataTableSystemPointer        // 系统数据表指针
 
 // 其他变量语义化宏定义
 #define SecondaryFloatValue SecondaryParameterValue           // 次要浮点值
