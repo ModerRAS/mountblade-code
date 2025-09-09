@@ -2097,6 +2097,12 @@
 #define ExceptionHandlerTempCallbackOffsetDE8 0xde8     // 异常处理器临时回调偏移量DE8
 #define ExceptionHandlerContextOffset900 0x900        // 异常处理上下文偏移量900
 #define ExceptionHandlerCallbackOffset910 0x910        // 异常处理器回调偏移量910
+
+// 异常处理器上下文偏移量常量
+#define ExceptionHandlerContextOffset1B8 0x1b8         // 异常处理上下文偏移量1B8
+#define ExceptionHandlerStatusOffset30 0x30            // 异常处理器状态偏移量30
+#define ExceptionHandlerStateOffset40 0x40             // 异常处理器状态偏移量40
+#define SystemParameterValidationOffset28 0x28          // 系统参数验证偏移量28
 #define ExceptionHandlerCleanupOffset8e0 0x8e0          // 异常处理器清理偏移量8e0
 #define ExceptionHandlerStateOffset8e8 0x8e8          // 异常处理器状态偏移量8e8
 #define MemoryPointerOffset8 0x8                       // 内存指针偏移量8
@@ -80012,7 +80018,7 @@ void ExecuteExceptionHandlerCallbackAtOffset1B8_20(DataBuffer operationBase,int6
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x1b8) + SystemDataParameterOffset20);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset1B8) + SystemDataParameterOffset20);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -80035,13 +80041,13 @@ void ResetExceptionHandlerStateOffset1B8(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x1b8);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset1B8);
   *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStatusOffset30) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStatusOffset30) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStateOffset40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemDefaultExceptionHandlerB;
   return;
 }
