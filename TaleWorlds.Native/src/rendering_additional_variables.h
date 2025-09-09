@@ -1,0 +1,33 @@
+// 渲染系统补充UNK_变量语义化定义
+// 基于实际代码使用情况分析
+
+// 从实际代码中提取的未定义变量
+#define DAT_180d49678 RenderSystemCallbackData
+#define DAT_180a09de8 RenderMaterialPropertyNode
+#define DAT_180d48e24 RenderSystemInitializationData
+
+// UNK_变量（已在rendering_unk_variables.h中定义）
+// UNK_18098e3b0 RenderMaterialTextureDefault
+// UNK_180a16f78 RenderMaterialConflictData
+
+// 更多UNK_变量定义
+#define UNK_180958b00 UIComponentInterfaceID
+#define UNK_180958b10 UIComponentInterfaceIID
+#define UNK_18094e25c UIRenderParameterTransformMatrix
+#define UNK_18094e26c UIRenderParameterColorData
+#define UNK_18094e270 UIRenderParameterShaderUniforms
+#define UNK_18094e274 UIRenderParameterTextureData
+#define UNK_18094e27c UIRenderParameterViewportData
+#define UNK_18094e280 UIRenderParameterLightingData
+#define UNK_1809535b4 UIDataBufferPrimary
+#define UNK_1809535bc UIDataBufferSecondary
+#define UNK_180953648 UIDataBufferTertiary
+#define UNK_180953668 UIDataBufferQuaternary
+#define UNK_180953688 UIDataBufferQuinary
+#define UNK_1809536a6 UICoordinateDataTable2D
+#define UNK_1809536a8 UICoordinateDataTable3D
+#define UNK_1809535ec UIFunctionResultTableTransform
+#define UNK_1809535e8 UIFunctionResultTableColor
+#define UNK_180954788 UIFunctionResultTableShader
+#define UNK_1809535d8 UIFunctionResultTableTexture
+#define UNK_1809535cc UIFunctionResultTableViewport

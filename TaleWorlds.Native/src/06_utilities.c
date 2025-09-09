@@ -313,6 +313,13 @@
 // 操作基础地址偏移量常量
 #define OperationBaseOffset50 0x50
 #define OperationBaseOffset54 0x54
+#define OperationBaseOffset118 0x118
+#define OperationBaseOffset210 0x210
+#define OperationBaseOffset21c 0x21c
+#define OperationBaseOffset2f4 0x2f4
+#define DataContextOffset4000 0x4000
+#define DataContextOffset8000 0x8000
+#define ExceptionContextDataOffset1193c 0x1193c
 #define OperationBaseOffset58 0x58
 #define OperationBaseOffset5c 0x5c
 #define OperationBaseOffset60 0x60
@@ -27267,7 +27274,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                    (uint64_t)*(uint *)(exceptionHandlerContext + ExceptionContextDataCountOffset6DC) /
                                    (uint64_t)*(uint *)(exceptionHandlerContext + ExceptionContextDataSizeOffset6D8),memoryRegionBase), (int)operationResult == 0)) &&
            (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA3,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataPointerOffset6D0),
-                                  *(DataWord *)(exceptionHandlerContext + 0x1193c),*(DataWord *)(exceptionHandlerContext + ExceptionContextDataSecondaryOffset6D4)),
+                                  *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1193c),*(DataWord *)(exceptionHandlerContext + ExceptionContextDataSecondaryOffset6D4)),
            (int)operationResult == 0)) {
           memoryRegionBase = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11668);
           securityCheckResult = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11624);
@@ -30767,7 +30774,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                   return memoryRegionBase;
                 }
                 bufferPointer = bufferPointer + 1;
-                memoryOffset = memoryOffset + 0x118;
+                memoryOffset = memoryOffset + OperationBaseOffset118;
               } while (bufferPointer < operationResult);
             }
           }
@@ -30829,7 +30836,7 @@ DataBuffer ExecuteDataCleanupA0(void)
           return validationStatus;
         }
         calculatedIndex = calculatedIndex + 1;
-        systemContext = systemContext + 0x118;
+        systemContext = systemContext + OperationBaseOffset118;
       } while (calculatedIndex < operationResult);
     }
   }
