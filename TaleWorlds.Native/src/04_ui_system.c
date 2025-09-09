@@ -448,7 +448,7 @@ typedef enum {
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
-#define DAT_180be12f0 UIManagerCore
+// 注意：这个变量已经在上面定义为 GlobalUIResourceManagerF0
 #define DAT_180c4ea98 UIThresholdCounter
 #define DAT_180be2198 UIDataTablePrimary
 #define DAT_180be2df8 UIDataTableSecondary
@@ -2324,6 +2324,15 @@ typedef enum {
 #define FUN_180742460 InitializeUIComponentInstance
 #define FUN_180742190 FindUIAvailableMemorySlot
 #define FUN_180768380 UpdateUIComponentState
+#define FUN_180786990 CheckUIStateStatus
+#define FUN_18070f060 GetUIData
+#define FUN_18070f198 ProcessUIContextData
+#define FUN_18071c1b0 ProcessUIDataSource
+#define FUN_18071c23f ConvertUIData
+#define FUN_1807388f6 ConfigureUISystem
+#define FUN_1807389a0 InitializeUISystem
+#define FUN_180741b80 ManageUIContext
+#define FUN_180741c20 ManageUIState
 
 // UI系统验证函数
 #define FUN_18089ee64 ValidateUIContextHandle
@@ -104351,7 +104360,26 @@ void FUN_180728160(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_180728660(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,
+ /**
+ * @brief 处理UI上下文数据传输
+ * 
+ * 该函数负责在UI上下文之间传输数据，包括数据验证、缓冲区管理和状态更新。
+ * 主要功能包括：
+ * 1. 验证UI缓冲区状态
+ * 2. 处理数据传输逻辑
+ * 3. 管理UI组件状态
+ * 4. 更新上下文信息
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180728660
+ * @warning 该函数涉及底层内存操作，调用时需确保参数有效性
+ */
 void FUN_180728660(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,
                   UIDword resultPointer)
 
@@ -104451,7 +104479,25 @@ LAB_180729492:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180728720(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+ /**
+ * @brief 传输UI数据到缓冲区
+ * 
+ * 该函数负责将UI数据从数据源传输到目标缓冲区，包括数据验证、内存分配和状态更新。
+ * 主要功能包括：
+ * 1. 验证数据源和目标缓冲区的有效性
+ * 2. 分配和管理内存资源
+ * 3. 执行数据传输操作
+ * 4. 更新传输状态和结果
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180728720
+ * @warning 该函数涉及底层内存操作，调用时需确保参数有效性
+ */
 void FUN_180728720(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
@@ -401556,15 +401602,16 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define RestoreUIState FUN_180707610
 #define SyncUIState FUN_180707670
 
+// 注意：以下函数已经在文件前面定义过了，这里删除重复定义
 // UI系统数据处理函数
-#define ProcessUIBufferData FUN_1807160c0
-#define ProcessUIBufferDataWithResult FUN_1807165a0
-#define ProcessUIBufferDataAdvanced FUN_180716aa0
-#define ProcessUIContextData FUN_180718bd0
-#define ProcessUITransformData FUN_1807197a0
-#define ProcessUIValidationData FUN_180719a90
-#define ProcessUIAdvancedData FUN_1807213f0
-#define ProcessUIComplexData FUN_180721540
+// #define ProcessUIBufferData FUN_1807160c0
+// #define ProcessUIBufferDataWithResult FUN_1807165a0
+// #define ProcessUIBufferDataAdvanced FUN_180716aa0
+// #define ProcessUIContextData FUN_180718bd0
+// #define ProcessUITransformData FUN_1807197a0
+// #define ProcessUIValidationData FUN_180719a90
+// #define ProcessUIAdvancedData FUN_1807213f0
+// #define ProcessUIComplexData FUN_180721540
 
 // UI系统数据验证函数
 #define ValidateUIDataIntegrity FUN_18089f830
@@ -401574,39 +401621,41 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define ValidateUIHandleOperation FUN_18089fac2
 #define ProcessUIHandleValidation FUN_18089fad8
 
+// 注意：以下函数已经在文件前面定义过了，这里删除重复定义
 // UI系统数据处理函数
-#define ProcessUIFloatDataWithValidation FUN_18071fef0
-#define ValidateUIResource FUN_1807201ce
-#define ProcessUIBufferDataWithValidation FUN_180720e10
-#define ProcessUIDataWithValidationAndMetrics FUN_180721650
-#define ProcessUIDataWithSourceAndTarget FUN_180721698
-#define FinalizeUIDataOperation FUN_18072174a
-#define ProcessUIDataWithResultAndMetrics FUN_180721810
+// #define ProcessUIFloatDataWithValidation FUN_18071fef0
+// #define ValidateUIResource FUN_1807201ce
+// #define ProcessUIBufferDataWithValidation FUN_180720e10
+// #define ProcessUIDataWithValidationAndMetrics FUN_180721650
+// #define ProcessUIDataWithSourceAndTarget FUN_180721698
+// #define FinalizeUIDataOperation FUN_18072174a
+// #define ProcessUIDataWithResultAndMetrics FUN_180721810
 
 // UI系统数据初始化函数
-#define InitializeUIDataBuffer FUN_18071ab41
-#define InitializeUIDataContext FUN_18071ace8
+// #define InitializeUIDataBuffer FUN_18071ab41
+// #define InitializeUIDataContext FUN_18071ace8
 
 // UI系统数据变换处理函数
-#define ProcessUIDataWithSimpleTransform FUN_18072182d
-#define ProcessUIDataWithHandles FUN_180721864
+// #define ProcessUIDataWithSimpleTransform FUN_18072182d
+// #define ProcessUIDataWithHandles FUN_180721864
 #define ProcessUIDataFinalization FUN_180721984
 
+// 注意：以下寄存器变量已经在文件前面定义过了，这里删除重复定义
 // UI系统寄存器变量美化
-#define unmodifiedEBX UIPreservedEBX
-#define unmodifiedXMM8_Da UIPreservedXMM8_Data
-#define unmodifiedXMM9_Da UIPreservedXMM9_Data
-#define unmodifiedXMM10_Da UIPreservedXMM10_Data
-#define unmodifiedXMM12_Da UIPreservedXMM12_Data
-#define unmodifiedXMM12_Db UIPreservedXMM12_DataB
-#define unmodifiedXMM12_Dc UIPreservedXMM12_DataC
-#define unmodifiedXMM12_Dd UIPreservedXMM12_DataD
-#define unmodifiedXMM13_Da UIPreservedXMM13_Data
-#define unmodifiedXMM14_Da UIPreservedXMM14_Data
-#define unmodifiedXMM15_Da UIPreservedXMM15_Data
-#define preservedRegister15 UIPreservedRegister15
-#define preservedRegister12 UIPreservedRegister12
-#define preservedRegister13 UIPreservedRegister13
+// #define unmodifiedEBX UIPreservedEBX
+// #define unmodifiedXMM8_Da UIPreservedXMM8_Data
+// #define unmodifiedXMM9_Da UIPreservedXMM9_Data
+// #define unmodifiedXMM10_Da UIPreservedXMM10_Data
+// #define unmodifiedXMM12_Da UIPreservedXMM12_Data
+// #define unmodifiedXMM12_Db UIPreservedXMM12_DataB
+// #define unmodifiedXMM12_Dc UIPreservedXMM12_DataC
+// #define unmodifiedXMM12_Dd UIPreservedXMM12_DataD
+// #define unmodifiedXMM13_Da UIPreservedXMM13_Data
+// #define unmodifiedXMM14_Da UIPreservedXMM14_Data
+// #define unmodifiedXMM15_Da UIPreservedXMM15_Data
+// #define preservedRegister15 UIPreservedRegister15
+// #define preservedRegister12 UIPreservedRegister12
+// #define preservedRegister13 UIPreservedRegister13
 
 
 
