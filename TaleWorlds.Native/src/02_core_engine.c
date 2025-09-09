@@ -120111,19 +120111,21 @@ void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
  * @note 依赖ProcessingResult和SystemDataNode寄存器值
  */
 void ExpandUtf8Buffer28NoArgs(void) {
-  long long SystemConfigurationHandle = 0;
-  uint64_t AllocatedMemoryBuffer;
+  long long ConfigHandle = 0;
+  uint64_t NewMemoryBuffer;
   int *SystemContext = NULL;
   long long RequiredBufferSize = 0;
+  void *CurrentBufferPointer;
   
-  if (SystemConfigurationHandle != 0) {
-    *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
+  if (ConfigHandle != 0) {
+    *(int *)(ConfigHandle + 0x3a8) = *(int *)(ConfigHandle + 0x3a8) + 1;
   }
-  AllocatedMemoryBuffer = SystemCallMemoryAccess(RequiredBufferSize * 0x28,SystemMemoryPoolBase);
-  if (*(long long *)(SystemContext + 2) != 0) {
-    memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x28);
+  NewMemoryBuffer = SystemCallMemoryAccess(RequiredBufferSize * 0x28,SystemMemoryPoolBase);
+  CurrentBufferPointer = *(void **)(SystemContext + 2);
+  if (CurrentBufferPointer != NULL) {
+    memcpy(NewMemoryBuffer,CurrentBufferPointer,(long long)*SystemContext * 0x28);
   }
-  *(void *)(SystemContext + 2) = AllocatedMemoryBuffer;
+  *(void **)(SystemContext + 2) = NewMemoryBuffer;
   SystemContext[1] = (int)RequiredBufferSize;
   return;
 }
