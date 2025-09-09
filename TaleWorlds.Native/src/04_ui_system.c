@@ -200196,13 +200196,13 @@ LAB_180787e12:
         return EventProcessingStatus;
       }
       EventProcessingStatus = FUN_180762070(EventDataIndexArray[10],1);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      if ((int)EventProcessingStatus != 0) {
+        return EventProcessingStatus;
       }
       LOCK();
-      *(uint *)(pEventDataIndex[10] + 100) = *(uint *)(pEventDataIndex[10] + 100) | 0x200;
+      *(uint *)(EventDataIndexArray[10] + 100) = *(uint *)(EventDataIndexArray[10] + 100) | 0x200;
       UNLOCK();
-      *(UIByte *)(pEventDataIndex + 0xb) = 1;
+      *(UIByte *)(EventDataIndexArray + 0xb) = 1;
     }
     if (*(int *)(TargetHandle + 0x33c) == 1) {
       iStack000000000000004c = 0;
