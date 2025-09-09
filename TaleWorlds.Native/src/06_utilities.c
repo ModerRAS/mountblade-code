@@ -19370,13 +19370,13 @@ uint8_t DataConfigurationTableA8;
 void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 
 {
-  int systemOperationResult;
-  DataBuffer systemContextDataBuffer;
+  int initializationResult;
+  DataBuffer systemContextBuffer;
   
-  systemOperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventHandlerConfig + ExceptionHandlerCallbackOffset),&systemContextDataBuffer);
-  if (systemOperationResult == 0) {
-    systemOperationResult = ProcessDataOperationA0(systemContextDataBuffer,eventHandlerConfig + EventHandlerConfigOffset18);
-    if (systemOperationResult == 0) {
+  initializationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventHandlerConfig + ExceptionHandlerCallbackOffset),&systemContextBuffer);
+  if (initializationResult == 0) {
+    initializationResult = ProcessDataOperationA0(systemContextBuffer,eventHandlerConfig + EventHandlerConfigOffset18);
+    if (initializationResult == 0) {
       ProcessSystemEventB0(*(DataBuffer *)(callbackTable + SystemOperationDataOffset98),eventHandlerConfig);
     }
   }
@@ -19409,14 +19409,14 @@ void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t call
 void InitializeSecondarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 
 {
-  int validationStatus;
-  DataBuffer systemDataBuffer;
+  int initializationStatus;
+  DataBuffer systemContextBuffer;
   
   if (*(int *)(eventHandlerConfig + EventHandlerConfigOffset2c) == 0) {
-    validationStatus = QuerySystemDataA0(callbackTable,eventHandlerConfig + EventHandlerConfigOffset1c,&systemDataBuffer);
-    if (validationStatus == 0) {
-      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,eventHandlerConfig + EventHandlerConfigOffset2c);
-      if (validationStatus == 0) goto ValidationCheckpoint;
+    initializationStatus = QuerySystemDataA0(callbackTable,eventHandlerConfig + EventHandlerConfigOffset1c,&systemContextBuffer);
+    if (initializationStatus == 0) {
+      initializationStatus = ValidateAndProcessSystemResourceA0(systemContextBuffer,eventHandlerConfig + EventHandlerConfigOffset2c);
+      if (initializationStatus == 0) goto ValidationCheckpoint;
     }
     return;
   }
@@ -19431,23 +19431,23 @@ ValidationCheckpoint:
 DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventManager)
 
 {
-  int referenceCount;
-  DataBuffer queryResult;
+  int resourceReferenceCount;
+  DataBuffer validationResult;
   int64_t systemContext;
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContext);
-  if ((int)queryResult == 0) {
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContext);
+  if ((int)validationResult == 0) {
     if (*(int *)(systemContext + systemContextOffset34) != 0) {
       return SystemOperationFailure;
     }
-    referenceCount = *(int *)(systemContext + systemContextOffset28);
-    *(int *)(systemContext + systemContextOffset28) = referenceCount + 1;
-    if (referenceCount == 0) {
+    resourceReferenceCount = *(int *)(systemContext + systemContextOffset28);
+    *(int *)(systemContext + systemContextOffset28) = resourceReferenceCount + 1;
+    if (resourceReferenceCount == 0) {
         CleanupSystemEventA0(*(DataBuffer *)(eventManager + SystemOperationDataOffset98),contextHandle);
     }
-    queryResult = 0;
+    validationResult = 0;
   }
-  return queryResult;
+  return validationResult;
 }
 
 
