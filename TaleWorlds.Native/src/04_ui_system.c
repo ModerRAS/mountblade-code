@@ -180,9 +180,9 @@ typedef enum {
 #define DAT_180c0c6e8 UIComponentInstanceE8               // UI组件实例E8 - 存储UI组件的实例指针
 #define UIComponentInterfaceID UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
 #define UIComponentInterfaceIID UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
-#define UNK_180958b20 UIComponentParameterB20             // UI组件参数B20 - UI组件的配置参数
-#define UNK_180956f50 UIComponentDataF50                  // UI组件数据F50 - 存储UI组件的动态数据
-#define UNK_180956f38 UIComponentHandleF38                // UI组件句柄F38 - UI组件的句柄标识符
+#define UIComponentParameterB20 UNK_180958b20             // UI组件参数B20 - UI组件的配置参数
+#define UIComponentDataF50 UNK_180956f50                  // UI组件数据F50 - 存储UI组件的动态数据
+#define UIComponentHandleF38 UNK_180956f38                // UI组件句柄F38 - UI组件的句柄标识符
 
 // UI系统全局数据
 #define _DAT_180c0c6e8 GlobalUIComponentInstanceE8        // 全局UI组件实例E8
@@ -232,33 +232,33 @@ typedef enum {
 
 // UI系统函数补充定义
 #define ProcessUIWordDataTransfer FUN_1807234d0              // 处理UI字数据传输
-#define FUN_1807238f3 GetUIWordDataPointer                  // 获取UI字数据指针
-#define FUN_18072390f CalculateUIComponentSimilarityScore     // 计算UI组件相似度加权得分
-#define FUN_180723b20 ProcessUIIntegerDataCalculation        // 处理UI整数数据计算
-#define FUN_180723b34 ProcessUIIntegerParameterValidation    // 处理UI整数参数验证
-#define FUN_180724090 ProcessUIFloatDataTransfer             // 处理UI浮点数据传输
-#define FUN_18072f4d0 ExecuteUIBufferDataOperation       // 执行UI缓冲区数据操作
-#define FUN_1807342b0 ValidateUIContextParameters         // 验证UI上下文参数
-#define FUN_180727db0 ProcessUIFloatDataWithHandles          // 处理UI浮点数据与句柄
-#define FUN_180727db6 ProcessUIFloatDataWithValidation        // 处理UI浮点数据与验证
-#define FUN_18072aa36 ProcessUIIntegerDataTransfer            // 处理UI整数数据传输
-#define FUN_18072aa3e ProcessUIIntegerDataValidation         // 处理UI整数数据验证
-#define FUN_18072aa86 ProcessUIComponentDataTransfer         // 处理UI组件数据传输
-#define FUN_18072aac5 ProcessUIComponentDataValidation       // 处理UI组件数据验证
-#define FUN_18072ab70 ProcessUINumericDataCalculation        // UI数值数据处理计算
-#define FUN_18072ad20 ProcessUIParameterValidation            // UI参数验证处理
-#define FUN_18072ad65 ProcessUIBufferDataTransfer           // 处理UI缓冲区数据传输
-#define FUN_18072ae6c ProcessUIContextInitialization         // UI上下文初始化
-#define FUN_18072af30 ProcessUIResourceAllocation           // UI资源分配处理
-#define FUN_18072afa1 ProcessUIEventBufferManagement        // UI事件缓冲区管理
-#define FUN_18072b12c ProcessUIGraphicsParameters           // UI图形参数处理
-#define FUN_18072b33f ProcessUIRenderContext                // UI渲染上下文处理
-#define FUN_18072b380 ProcessUIComponentLayout               // UI组件布局处理
-#define FUN_18072bbae ProcessUICoefficientCalculation        // UI系数计算处理
-#define FUN_18072bbd0 ProcessUISurfaceRendering              // UI表面渲染处理
-#define FUN_18072bf1a ProcessUIInterfaceRendering             // UI界面渲染处理
-#define UNK_180958ac0 UIComponentFunctionTableAC0         // UI组件函数表AC0
-#define UNK_1809536a8 UIComponentValidationTableA8         // UI组件验证表A8
+#define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
+#define CalculateUIComponentSimilarityScore FUN_18072390f     // 计算UI组件相似度加权得分
+#define ProcessUIIntegerDataCalculation FUN_180723b20        // 处理UI整数数据计算
+#define ProcessUIIntegerParameterValidation FUN_180723b34    // 处理UI整数参数验证
+#define ProcessUIFloatDataTransfer FUN_180724090             // 处理UI浮点数据传输
+#define ExecuteUIBufferDataOperation FUN_18072f4d0       // 执行UI缓冲区数据操作
+#define ValidateUIContextParameters FUN_1807342b0         // 验证UI上下文参数
+#define ProcessUIFloatDataWithHandles FUN_180727db0          // 处理UI浮点数据与句柄
+#define ProcessUIFloatDataWithValidation FUN_180727db6        // 处理UI浮点数据与验证
+#define ProcessUIIntegerDataTransfer FUN_18072aa36            // 处理UI整数数据传输
+#define ProcessUIIntegerDataValidation FUN_18072aa3e         // 处理UI整数数据验证
+#define ProcessUIComponentDataTransfer FUN_18072aa86         // 处理UI组件数据传输
+#define ProcessUIComponentDataValidation FUN_18072aac5       // 处理UI组件数据验证
+#define ProcessUINumericDataCalculation FUN_18072ab70        // UI数值数据处理计算
+#define ProcessUIParameterValidation FUN_18072ad20            // UI参数验证处理
+#define ProcessUIBufferDataTransfer FUN_18072ad65           // 处理UI缓冲区数据传输
+#define ProcessUIContextInitialization FUN_18072ae6c         // UI上下文初始化
+#define ProcessUIResourceAllocation FUN_18072af30           // UI资源分配处理
+#define ProcessUIEventBufferManagement FUN_18072afa1        // UI事件缓冲区管理
+#define ProcessUIGraphicsParameters FUN_18072b12c           // UI图形参数处理
+#define ProcessUIRenderContext FUN_18072b33f                // UI渲染上下文处理
+#define ProcessUIComponentLayout FUN_18072b380               // UI组件布局处理
+#define ProcessUICoefficientCalculation FUN_18072bbae        // UI系数计算处理
+#define ProcessUISurfaceRendering FUN_18072bbd0              // UI表面渲染处理
+#define ProcessUIInterfaceRendering FUN_18072bf1a             // UI界面渲染处理
+#define UIComponentFunctionTableAC0 UNK_180958ac0         // UI组件函数表AC0
+#define UIComponentValidationTableA8 UNK_1809536a8         // UI组件验证表A8
 #define UI_INITIALIZATION_FLAG 0xfffffffffffffffe // UI初始化标志
 #define UI_COMPONENT_STATE_FLAG 0xfffffffffffffffe // UI组件状态标志
 #define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
@@ -2435,7 +2435,7 @@ typedef enum {
 #define Var77 UIVariable77
 
 // UI系统布尔变量美化
-#define bVar4 UIBoolVar4
+#define bVar4 IsThreadLockReferenceCountOne
 
 // UI系统内部函数名美化
 #define func_0x000180024290 ProcessUIDataWithValidationOperation     // 处理带验证的UI数据操作
@@ -3023,7 +3023,7 @@ typedef enum {
 #define FUN_180769ed0 ProcessUIComponentDataTransferAndValidation
 #define func_0x00018076a7d0 ValidateUIComponentIndexWithBounds
 #define FUN_180742250 AllocateUIMemoryResourcesWithPool
-#define UNK_180984cd0 UIResourceAllocationBufferCD0         // UI资源分配缓冲区CD0
+#define UIResourceAllocationBufferCD0 UNK_180984cd0         // UI资源分配缓冲区CD0
 #define LAB_18089eb22 UIComponentDataTransferCompleteLabel
 #define LAB_18089eb3c UIEventValidationSuccessLabel
 #define FUN_180721f12 ValidateUIFloatParameterWithRangeCheck
