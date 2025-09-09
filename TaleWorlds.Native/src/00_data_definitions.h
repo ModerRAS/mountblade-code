@@ -10464,7 +10464,7 @@ NetworkConfigValidationError4:
             if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError7;
             NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataAA,1);
             if (NetworkRequestStatus != '\0') {
-Label_18060965b:
+NetworkConfigValidationError8:
               StringProcessingResult = 0x17;
               goto NetworkRequestProcessingComplete;
             }
