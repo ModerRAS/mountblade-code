@@ -21755,8 +21755,44 @@ DataBuffer ReturnFixedErrorCode(void)
 
 
 
-// 原始函数名：FUN_1808938c0 - 上下文验证和状态更新函数
-// 功能：验证上下文有效性并更新状态，然后执行相应操作
+/**
+ * @brief 验证上下文并更新状态
+ * 
+ * 该函数负责验证上下文句柄的有效性，查询系统数据，并根据组件数据状态更新相应状态。
+ * 函数执行一系列验证操作，确保上下文和数据的有效性，然后执行状态更新和清理操作。
+ * 
+ * @param contextHandle 上下文句柄，指向要验证的上下文数据
+ * @param operationHandle 操作句柄，包含操作相关的配置信息
+ * 
+ * @return void 无返回值，操作结果通过系统状态体现
+ * 
+ * @note 函数执行的主要步骤：
+ *       1. 验证操作句柄和上下文句柄的有效性
+ *       2. 查询系统数据获取组件数据缓冲区
+ *       3. 检查组件数据状态，如果状态为1则更新为2
+ *       4. 执行系统事件清理操作
+ * 
+ * @warning 如果验证失败，函数会提前返回而不执行状态更新
+ * @warning 确保传入的contextHandle和operationHandle参数有效
+ * 
+ * @see ExecuteSystemValidationA0, QueryAndRetrieveSystemDataA0, CleanupSystemEventA0
+ * 
+ * @details
+ * 该函数执行以下详细步骤：
+ * 1. 调用ExecuteSystemValidationA0验证操作句柄和上下文句柄的有效性
+ * 2. 如果验证成功，调用QueryAndRetrieveSystemDataA0查询系统数据
+ * 3. 获取组件数据缓冲区并检查组件数据状态
+ * 4. 如果组件数据状态为1，将数据操作偏移量30处的状态更新为2
+ * 5. 调用CleanupSystemEventA0清理系统事件
+ * 6. 函数返回，完成整个验证和状态更新流程
+ * 
+ * @security
+ * 该函数包含多层安全验证机制：
+ * - 验证上下文句柄的有效性
+ * - 验证操作句柄的安全性
+ * - 检查组件数据状态的完整性
+ * - 确保状态更新操作的安全性
+ */
 #define ValidateContextAndUpdateState FUN_1808938c0
 
 void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle)
