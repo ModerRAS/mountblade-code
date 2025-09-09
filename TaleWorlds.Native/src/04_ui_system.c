@@ -144448,16 +144448,32 @@ static void EmptyPlaceholderFunction(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle
-FUN_18074fc70(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong *resultPointer,
-             int param_6,char param_7)
-
+/**
+ * @brief 处理UI数据传输和初始化
+ * 
+ * 这个函数负责处理UI系统中的数据传输、内存分配和组件初始化。
+ * 它管理UI组件的生命周期，包括内存分配、数据结构初始化和事件处理。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据的来源
+ * @param targetBuffer 目标缓冲区类型，决定数据处理方式
+ * @param bufferSize 缓冲区大小，用于数据传输
+ * @param resultPointer 结果指针，用于返回操作结果
+ * @param param_6 操作参数6，控制处理行为的额外参数
+ * @param param_7 操作参数7，控制是否触发后续处理
+ * @return UIHandle 返回操作状态，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_18074fc70
+ */
+static UIHandle ProcessUIDataTransferAndInitialization(longlong uiContext, uint dataSource, int targetBuffer, 
+                                                     longlong bufferSize, longlong *resultPointer, 
+                                                     int param_6, char param_7)
 {
   int processingResult;
   longlong componentIndex;
-  longlong *pstringCompareIndex;
-  ulonglong ProcessingStatus;
-  longlong *pEventDataIndex;
+  longlong *stringCompareIndex;
+  ulonglong processingStatus;
+  longlong *eventDataIndex;
   uint maxProcessingCount;
   
   if (*(longlong *)(uiBufferData + 0xf0) == 0) {
