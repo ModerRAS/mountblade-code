@@ -52,33 +52,33 @@
 #define SystemExceptionInitializerB0BaseAddress 0x180d498a0    // 系统异常初始化器B0基地址 - 异常初始化器B0的基地址
 
 // 异常处理资源管理常量
-#define ExceptionResourcePointerOffsetSecondary 0xa8
-#define ExceptionMemoryBlockMultiplier 0x50
-#define MemoryManagementFlagMask 0xff000000
+#define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
+#define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
+#define MemoryManagementFlagMask 0xff000000                   // 内存管理标志掩码 - 内存管理操作的标志掩码
 
 // 内存资源偏移量常量
-#define MemoryResourcePointerOffsetSecondary 0x120
-#define DataStructureElementSize 0xc
-#define DataStructureTableElementSize 0x10
-#define DataStructureSecondaryOffset18 0x12
-#define DataStructureTableOffset8 0x8
-#define BitShift32Bits 0x20
-#define DestinationContextProcessorOffset 0x60
-#define DestinationContextMemoryOffset 0x40
-#define RegisterContextValidationOffset 0x40
-#define DestinationContextOperationOffset 0x50
-#define DataContextIntegrityOffset 0x48
-#define OperationBaseSecondaryOffset 0x30
-#define DataValidationResultOffset 0x1c
-#define ContextPointerSecondaryOffset 0x30
-#define DestinationContextProcessorExtendedOffset 0x66
-#define DestinationContextProcessorSecondaryOffset 0x68
-#define DestinationContextValidationOffset 0x70
-#define DestinationContextValidationSecondaryOffset 0x74
-#define DestinationContextStatusOffset 0x7c
-#define MemoryResourcePointerOffsetTertiary 0x130
-#define MemoryResourcePointerOffsetAlternate 0x118
-#define SystemConfigurationOffsetD8 0xd8
+#define MemoryResourcePointerOffsetSecondary 0x120          // 内存资源指针辅助偏移量 - 内存资源指针的辅助位置
+#define DataStructureElementSize 0xc                         // 数据结构元素大小 - 数据结构元素的大小
+#define DataStructureTableElementSize 0x10                   // 数据结构表元素大小 - 数据结构表元素的大小
+#define DataStructureSecondaryOffset18 0x12                  // 数据结构辅助偏移量18 - 数据结构的辅助偏移位置
+#define DataStructureTableOffset8 0x8                        // 数据结构表偏移量8 - 数据结构表的偏移位置
+#define BitShift32Bits 0x20                                  // 32位位移计数 - 用于32位位移操作的计数
+#define DestinationContextProcessorOffset 0x60                // 目标上下文处理器偏移量 - 目标上下文处理器的偏移位置
+#define DestinationContextMemoryOffset 0x40                  // 目标上下文内存偏移量 - 目标上下文内存的偏移位置
+#define RegisterContextValidationOffset 0x40                 // 寄存器上下文验证偏移量 - 寄存器上下文验证的偏移位置
+#define DestinationContextOperationOffset 0x50               // 目标上下文操作偏移量 - 目标上下文操作的偏移位置
+#define DataContextIntegrityOffset 0x48                      // 数据上下文完整性偏移量 - 数据上下文完整性的偏移位置
+#define OperationBaseSecondaryOffset 0x30                    // 操作基址辅助偏移量 - 操作基址的辅助偏移位置
+#define DataValidationResultOffset 0x1c                      // 数据验证结果偏移量 - 数据验证结果的偏移位置
+#define ContextPointerSecondaryOffset 0x30                    // 上下文指针辅助偏移量 - 上下文指针的辅助偏移位置
+#define DestinationContextProcessorExtendedOffset 0x66       // 目标上下文处理器扩展偏移量 - 目标上下文处理器的扩展偏移位置
+#define DestinationContextProcessorSecondaryOffset 0x68     // 目标上下文处理器辅助偏移量 - 目标上下文处理器的辅助偏移位置
+#define DestinationContextValidationOffset 0x70              // 目标上下文验证偏移量 - 目标上下文验证的偏移位置
+#define DestinationContextValidationSecondaryOffset 0x74    // 目标上下文验证辅助偏移量 - 目标上下文验证的辅助偏移位置
+#define DestinationContextStatusOffset 0x7c                 // 目标上下文状态偏移量 - 目标上下文状态的偏移位置
+#define MemoryResourcePointerOffsetTertiary 0x130            // 内存资源指针第三偏移量 - 内存资源指针的第三偏移位置
+#define MemoryResourcePointerOffsetAlternate 0x118           // 内存资源指针交替偏移量 - 内存资源指针的交替偏移位置
+#define SystemConfigurationOffsetD8 0xd8                     // 系统配置偏移量D8 - 系统配置的偏移位置D8
 #define SystemValidationOffsetF8 0xf8
 #define SystemDataStreamOffsetE8 0xe8
 #define ExceptionHandlerContextPointerRangeEnd 0x100
@@ -3145,6 +3145,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DataValidationOffset 0x20                         // 数据验证偏移量 - 数据验证信息的存储位置
 #define MemoryResourcePointerOffsetD 0xd                 // 内存资源指针偏移量D - 用于异常处理器管理的指针偏移
 #define MemoryResourcePointerOffsetE 0xe                 // 内存资源指针偏移量E - 用于异常处理器状态的指针偏移
+#define MemoryResourcePointerOffsetF 0xf                 // 内存资源指针偏移量F - 用于异常处理器管理的指针偏移
 #define SecondaryValidationOffset 0x34                    // 次要验证偏移量 - 次要验证信息的存储位置
 #define ValidationFlagOffset 0x35                         // 验证标志偏移量 - 验证标志位的存储位置
 #define ResourceActiveFlagOffset 0x60                  // 资源活动标志偏移量 - 资源活动状态标志位的存储位置
