@@ -99597,20 +99597,40 @@ void ReleaseSystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 初始化异常处理器FF0
  * 
- * 该函数负责初始化异常处理器的相关功能，设置系统上下文指针的异常处理
+ * 该函数负责初始化异常处理器的相关功能，设置系统上下文指针的异常处理。
+ * 它会检查系统上下文指针的有效性，并在有效时调用相应的异常处理初始化函数。
+ * 这是一个关键的异常处理初始化步骤，确保系统能够正确处理异常情况。
  * 
- * @param operationBase 操作基础指针
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础指针 - 用于系统操作的基础数据结构
+ * @param dataBuffer 数据缓冲区指针 - 包含系统上下文信息的数据缓冲区
  * @return void
  * 
  * @note 原始函数名：Unwind_18090cff0
+ * @note 这是异常处理系统初始化的关键函数
+ * @note 函数会检查指针有效性后再进行调用，避免空指针异常
  */
-void Unwind_InitializeExceptionHandlerFF0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerFF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((int64_t *)**(int64_t **)(dataBuffer + systemContextPointerOffset90) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + systemContextPointerOffset90) + SystemFloatDataOffset38))();
+  int64_t **systemContextPointer;
+  int64_t *exceptionHandlerFunctionTable;
+  FunctionPointer *exceptionHandlerCallback;
+  
+  // 获取系统上下文指针
+  systemContextPointer = (int64_t **)(dataBuffer + systemContextPointerOffset90);
+  
+  // 检查系统上下文指针是否有效
+  if ((int64_t *)**systemContextPointer != (int64_t *)0x0) {
+    // 获取异常处理函数表
+    exceptionHandlerFunctionTable = *(int64_t *)**systemContextPointer;
+    
+    // 获取异常处理回调函数指针
+    exceptionHandlerCallback = (FunctionPointer **)(exceptionHandlerFunctionTable + SystemFloatDataOffset38);
+    
+    // 调用异常处理初始化函数
+    (**exceptionHandlerCallback)();
   }
+  
   return;
 }
 
