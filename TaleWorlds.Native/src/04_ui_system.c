@@ -200113,7 +200113,6 @@ void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
  * @note 该函数会迭代处理所有组件并调用清理函数
  */
 void ProcessUIContextIterativeCleanup(UIHandle uiContext,longlong dataSource)
-void ProcessUIContextIterativeCleanup(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
