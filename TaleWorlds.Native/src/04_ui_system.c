@@ -1524,7 +1524,7 @@ typedef enum {
 #define AudioDataRemaining UIResultValue3
 #define AudioDataPointer UIProcessingResultPointer4
 #define AudioDataCounter UICounterResult
-#define AudioStackData uStackX_8
+#define AudioStackData UIStackDataBuffer
 
 // UI系统变量名美化
 #define uiSystemEventCallback UISystemEventCallbackRegister10
@@ -100283,7 +100283,8 @@ void ProcessUIIntegerParameterValidation(int *uiContext,longlong dataSource,long
  * @return 无返回值
  * @note 原始函数名：FUN_180723c9b
  */
-void FUN_180723c9b(void)
+#define ResetUISystem FUN_180723c9b
+void ResetUISystem(void)
 void FUN_180723c9b(void)
 
 {
