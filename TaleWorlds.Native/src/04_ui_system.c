@@ -106196,72 +106196,72 @@ void CalculateDataAmplitudeAndBitOffset(int *uiContext,int *dataSource,short *ta
   int processedDataCount;
   
   if (bufferSize == 0) {
-    localInt9 = 0x20;
+    bitOffsetResult = 0x20;
   }
   else {
-    localInt9 = 0x1f;
+    bitOffsetResult = 0x1f;
     if (bufferSize != 0) {
-      for (; bufferSize >> localInt9 == 0; localInt9 = localInt9 + -1) {
+      for (; bufferSize >> bitOffsetResult == 0; bitOffsetResult = bitOffsetResult + -1) {
       }
     }
-    localInt9 = 0x1f - localInt9;
+    bitOffsetResult = 0x1f - bitOffsetResult;
   }
-  localInt8 = 0;
-  bVar4 = (byte)(0x1f - localInt9);
-  processedCount = localInt8;
-  maxProcessingCount = bufferSize;
+  amplitudeResult = 0;
+  bitShiftFactor = (byte)(0x1f - bitOffsetResult);
+  processedDataCount = amplitudeResult;
+  magnitudeAccumulator = bufferSize;
   if (0 < (int)(bufferSize - 1)) {
-    EventTypeCode = (bufferSize - 2 >> 1) + 1;
-    loopCounter = (ulonglong)EventTypeCode;
-    processedCount = EventTypeCode * 2;
-    psVar7 = targetBuffer;
+    eventIterationCount = (bufferSize - 2 >> 1) + 1;
+    loopCounter = (ulonglong)eventIterationCount;
+    processedDataCount = eventIterationCount * 2;
+    dataIterator = targetBuffer;
     do {
-      psVar1 = psVar7 + 1;
-      sVar2 = *psVar7;
-      psVar7 = psVar7 + 2;
-      maxProcessingCount = maxProcessingCount + ((uint)((int)*psVar1 * (int)*psVar1 + (int)sVar2 * (int)sVar2) >>
-                      (bVar4 & 0x1f));
+      nextDataPointer = dataIterator + 1;
+      currentDataValue = *dataIterator;
+      dataIterator = dataIterator + 2;
+      magnitudeAccumulator = magnitudeAccumulator + ((uint)((int)*nextDataPointer * (int)*nextDataPointer + (int)currentDataValue * (int)currentDataValue) >>
+                      (bitShiftFactor & 0x1f));
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
-  if (processedCount < (int)bufferSize) {
-    maxProcessingCount = maxProcessingCount + ((uint)((int)targetBuffer[processedCount] * (int)targetBuffer[processedCount]) >> (bVar4 & 0x1f));
+  if (processedDataCount < (int)bufferSize) {
+    magnitudeAccumulator = magnitudeAccumulator + ((uint)((int)targetBuffer[processedDataCount] * (int)targetBuffer[processedDataCount]) >> (bitShiftFactor & 0x1f));
   }
-  if (maxProcessingCount == 0) {
-    processedCount = 0x20;
+  if (magnitudeAccumulator == 0) {
+    processedDataCount = 0x20;
   }
   else {
-    processedCount = 0x1f;
-    if (maxProcessingCount != 0) {
-      for (; maxProcessingCount >> processedCount == 0; processedCount = processedCount + -1) {
+    processedDataCount = 0x1f;
+    if (magnitudeAccumulator != 0) {
+      for (; magnitudeAccumulator >> processedDataCount == 0; processedDataCount = processedDataCount + -1) {
       }
     }
-    processedCount = 0x1f - processedCount;
+    processedDataCount = 0x1f - processedDataCount;
   }
-  localInt9 = ((0x1f - localInt9) - processedCount) + 3;
-  if (localInt9 < 0) {
-    localInt9 = localInt8;
+  bitOffsetResult = ((0x1f - bitOffsetResult) - processedDataCount) + 3;
+  if (bitOffsetResult < 0) {
+    bitOffsetResult = amplitudeResult;
   }
-  processedCount = localInt8;
+  processedDataCount = amplitudeResult;
   if (0 < (int)(bufferSize - 1)) {
-    maxProcessingCount = (bufferSize - 2 >> 1) + 1;
-    loopCounter = (ulonglong)maxProcessingCount;
-    processedCount = maxProcessingCount * 2;
-    psVar7 = targetBuffer;
+    magnitudeAccumulator = (bufferSize - 2 >> 1) + 1;
+    loopCounter = (ulonglong)magnitudeAccumulator;
+    processedDataCount = magnitudeAccumulator * 2;
+    dataIterator = targetBuffer;
     do {
-      psVar1 = psVar7 + 1;
-      sVar2 = *psVar7;
-      psVar7 = psVar7 + 2;
-      localInt8 = localInt8 + ((uint)((int)sVar2 * (int)sVar2 + (int)*psVar1 * (int)*psVar1) >>
-                      ((byte)localInt9 & 0x1f));
+      nextDataPointer = dataIterator + 1;
+      currentDataValue = *dataIterator;
+      dataIterator = dataIterator + 2;
+      amplitudeResult = amplitudeResult + ((uint)((int)currentDataValue * (int)currentDataValue + (int)*nextDataPointer * (int)*nextDataPointer) >>
+                      ((byte)bitOffsetResult & 0x1f));
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
-  if (processedCount < (int)bufferSize) {
-    localInt8 = localInt8 + ((uint)((int)targetBuffer[processedCount] * (int)targetBuffer[processedCount]) >> ((byte)localInt9 & 0x1f));
+  if (processedDataCount < (int)bufferSize) {
+    amplitudeResult = amplitudeResult + ((uint)((int)targetBuffer[processedDataCount] * (int)targetBuffer[processedDataCount]) >> ((byte)bitOffsetResult & 0x1f));
   }
-  *dataSource = localInt9;
-  *uiContext = localInt8;
+  *dataSource = bitOffsetResult;
+  *uiContext = amplitudeResult;
   return;
 }
 
