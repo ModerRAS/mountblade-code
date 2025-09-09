@@ -31741,7 +31741,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
           return validationStatus;
         }
         if ((*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) &&
-           (memoryRegionBase = OperateDataO0(*dataBuffer,operationBase + 0x40,4), memoryRegionBase == 0)) {
+           (memoryRegionBase = OperateDataO0(*dataBuffer,operationBase + OperationDataOffset40,4), memoryRegionBase == 0)) {
             ExecutePortControlOperation(dataBuffer,securityValidationBuffer);
         }
       }
@@ -32050,7 +32050,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
       return ResourceInvalidErrorCode;
     }
     ExceptionHandlerContext = *dataBuffer;
-    OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x60,4);
+    OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationDataOffset60,4);
     if ((((int)OperationResult == 0) && (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 100,2), (int)OperationResult == 0)) &&
        (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x66,2), (int)OperationResult == 0)) {
       OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationBaseOffset68,8);
