@@ -537,6 +537,120 @@ typedef enum {
 #define aiterationCount2 UIIterationCountArray2
 #define afStack_60e8 UIAnimationFloatStack60E8
 
+// UI系统处理结果变量语义化定义
+#define processingResult UIProcessingResult
+#define shortCalculationResult UIShortCalculationResult
+#define uiValidationResult UIValidationResult
+#define uiCompareResult UICompareResult
+#define ProcessingStatus UIProcessingStatus
+#define ProcessingResult1 UIProcessingResult1
+#define CounterResult UICounterResult
+
+// UI系统上下文变量语义化定义
+#define contextHandle UIContextHandle
+#define contextDataHandle UIContextDataHandle
+#define contextValue UIContextValue
+#define contextOffset UIContextOffset
+#define BasePointer UIBasePointer
+#define BaseValuePointer0 UIPtrBaseValue0
+#define SourceHandle UISourceHandle
+#define resultPointer UIResultPointer
+#define ptrResult UIPtrResult
+#define bufferPointer UIBufferPointer
+#define renderDataPointer UIPtrRenderData
+#define pResultFloatValue UIPtrResultFloatValue
+
+// UI系统计数器和索引变量语义化定义
+#define componentIndex UIComponentIndex
+#define eventDataIndex UIEventDataIndex
+#define eventProcessingCounter UIEventProcessingCounter
+#define iterationCount2 UIIterationCount2
+#define loopCounter UILoopCounter
+#define maxProcessingCount UIMaxProcessingCount
+#define stringCompareIndex UIStringCompareIndex
+#define dataSource UIDataSource
+#define targetBuffer UITargetBuffer
+#define bufferSize UIBufferSize
+
+// UI系统颜色处理变量语义化定义
+#define RedChannelValue UIRedChannelValue
+#define GreenChannelValue UIGreenChannelValue
+#define BlueChannelValue UIBlueChannelValue
+#define AlphaChannelValue UIAlphaChannelValue
+#define secondaryRedChannelValue UISecondaryRedChannelValue
+#define secondaryGreenChannelValue UISecondaryGreenChannelValue
+#define secondaryBlueChannelValue UISecondaryBlueChannelValue
+#define secondaryAlphaChannelValue UISecondaryAlphaChannelValue
+#define primaryColorChannel UIPrimaryColorChannel
+#define secondaryColorChannel UISecondaryColorChannel
+#define colorShiftAmount UIColorShiftAmount
+#define PixelValue UIPixelValue
+#define uiRenderDataSize UIRenderDataSize
+
+// UI系统混合和变换变量语义化定义
+#define BlendResult UIBlendResult
+#define ColorBlendVector UIColorBlendVector
+#define BlendFactorVector UIBlendFactorVector
+#define blendFactorVector UIBlendFactorVector
+#define blendResultVector UIBlendResultVector
+#define transformCoeff11 UITransformCoeff11
+#define baseValue6 UIBaseValue6
+#define FloatValue2 UIFloatValue2
+#define AccumulatedFloat UIAccumulatedFloat
+#define result7 UIResult7
+
+// UI系统栈变量语义化定义
+#define stackUInt18 UIStackUInt18
+#define stackUInt32_68 UIStackUInt32_68
+#define stackParameter50 UIStackParameter50
+#define astackLong138 UIStackLong138
+#define apstackUInt128 UIStackPtrArray128
+#define astackUInt168 UIStackUInt168
+#define astackUInt1a8 UIStackUInt1A8
+#define astackUInt158 UIStackUInt158
+#define pstackUInt178 UIPtrStackUInt178
+#define pstackUInt180 UIPtrStackUInt180
+
+// UI系统SIMD向量变量语义化定义
+#define BlendFactorVector UIBlendFactorVector
+#define XmmRegister1 UIXmmRegister1
+#define SourceVector1 UISourceVector1
+#define XmmRegister2 UIXmmRegister2
+#define SourceVector2 UISourceVector2
+#define BlendedVector1 UIBlendedVector1
+#define BlendedVector2 UIBlendedVector2
+#define BlendedVector3 UIBlendedVector3
+#define BlendedVector4 UIBlendedVector4
+#define BlendedVector5 UIBlendedVector5
+#define BlendedVector6 UIBlendedVector6
+#define BlendedVector7 UIBlendedVector7
+#define BlendedVector8 UIBlendedVector8
+#define ShiftVector UIShiftVector
+
+// UI系统寄存器变量语义化定义
+#define registerValue UIRegisterValue
+#define preservedRegister15D UIPreservedRegister15D
+#define preservedRegister15B UIPreservedRegister15B
+#define preservedRegister13 UIPreservedRegister13
+#define preservedRegister12B UIPreservedRegister12B
+#define EventHandleB UIEventHandleB
+#define extraout_XMM0_Da UIXMM0Data
+#define extraout_XMM0_Da_00 UIXMM0Data00
+#define extraout_XMM0_Qb UIXMM0Qb
+#define extraout_XMM0_Qb_00 UIXMM0Qb00
+#define extraout_XMM0_Qb_01 UIXMM0Qb01
+#define extraout_XMM0_Qb UIExtraOutXMM0_Qb
+
+// UI系统结果变量语义化定义
+#define aresult8 UIResultArray8
+#define ptrLocal9 UIPtrLocal9
+#define piterationCounter UIPtrIterationCounter
+#define blendTargetMemory UIBlendTargetMemory
+#define blendOffset UIBlendOffset
+
+// UI系统事件状态变量语义化定义
+#define eventStatus UIEventStatus
+
 // UI系统栈变量宏定义（补充）
 #define uStack000000000000005c UIStackBuffer5C
 #define uStack00000000000000dc UIStackBufferDC
