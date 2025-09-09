@@ -86240,9 +86240,9 @@ void ProcessDataStructureSortingAndSwapping(long long *ContextHandle,long long *
   if (1 < MemoryPoolBlockSize) {
     SystemDataTablePointer = (MemoryPoolBlockSize + -2 >> 1) + 1;
     do {
-      lStackX_8 = ContextHandle[SystemDataTablePointer + -1];
+      StackValueX8 = ContextHandle[SystemDataTablePointer + -1];
       SystemDataTablePointer = SystemDataTablePointer + -1;
-      ProcessSystemDataAndProcessBuffer(ContextHandle,SystemDataTablePointer,MemoryPoolBlockSize,SystemDataTablePointer,&lStackX_8,Utf16EndPointer);
+      ProcessSystemDataAndProcessBuffer(ContextHandle,SystemDataTablePointer,MemoryPoolBlockSize,SystemDataTablePointer,&StackValueX8,Utf16EndPointer);
     } while (SystemDataTablePointer != 0);
   }
   SystemMemoryAllocationResult = 0;

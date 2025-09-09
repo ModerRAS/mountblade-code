@@ -17968,6 +17968,9 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPo
   const int DataStructureFlagOffset = DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER;
   const int NodeHeaderSize = 8;  // 节点头大小
   const int NodeDataOffset = 16; // 节点数据偏移量
+  const int SystemContextBufferSize = 2;  // 系统上下文缓冲区大小
+  const int NullPointerValue = 0;  // 空指针值
+  const int AllocationSuccessCode = 0;  // 分配成功代码
   
   currentNodePointer = (int64_t *)0x0;
   systemContextBuffer[0] = 0;
@@ -82295,7 +82298,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
   presourceTable = *(DataBuffer **)(dataBuffer + SystemDataBufferOffset80);
   *presourceTable = &SystemResourceTableA;
   if ((int64_t *)presourceTable[ResourceTableIndex1049] != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)presourceTable[0x1049] + SystemFloatDataOffset38))();
+    (**(FunctionPointer**)(*(int64_t *)presourceTable[ResourceTableIndex1049] + SystemFloatDataOffset38))();
   }
   resourceIndex = 0;
   exceptionContextPointer = presourceTable + 0x1012;
