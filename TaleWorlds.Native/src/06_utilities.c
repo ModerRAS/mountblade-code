@@ -31223,7 +31223,7 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
           systemDataBuffer = 0;
         }
         else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-          systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + 0x40);
+          systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + OperationDataOffset40);
         }
         else {
           systemDataBuffer = 0x1c;
@@ -34981,7 +34981,7 @@ OperationLabelD:
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x40);
+  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationDataOffset40);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -36913,7 +36913,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
       operationResult = 0;
     }
     else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-      systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + 0x40);
+      systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + OperationDataOffset40);
       operationResult = (uint64_t)systemDataBuffer;
     }
     if ((int)operationResult == 0) {
@@ -38302,7 +38302,7 @@ ValidationCompleteHandler2:
     if ((int)operationResult == 0) {
       operationResult = validationOutcome;
       if ((0x32 < *(uint *)(dataBuffer + 8)) && (operationResult = 0x1c, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
-        validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x40);
+        validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationDataOffset40);
         operationResult = (uint64_t)validationStatus;
       }
       if ((int)operationResult == 0) {
@@ -40215,7 +40215,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
           systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                             (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
           if (((int)systemDataBuffer == 0) &&
-             (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + 0x40,0x3d), (int)systemDataBuffer == 0)) {
+             (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + OperationDataOffset40,0x3d), (int)systemDataBuffer == 0)) {
               ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer);
           }
         }
@@ -40668,7 +40668,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
           operationResult = ProcessDataPointerA0(*dataBuffer,operationBase + 0x30);
           memoryRegionBase = (uint64_t)operationResult;
           if (operationResult == 0) {
-            memoryRegionBase = ExecuteDataValidationOperation(dataBuffer,operationBase + 0x40);
+            memoryRegionBase = ExecuteDataValidationOperation(dataBuffer,operationBase + OperationDataOffset40);
             if ((int)memoryRegionBase != 0) {
               return memoryRegionBase;
             }
