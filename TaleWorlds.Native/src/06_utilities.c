@@ -27475,7 +27475,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               exceptionDataBuffer = &SystemResourceDataBuffer;
             }
             else {
-              exceptionDataBuffer = *(uint8_t **)(exceptionHandlerContext1 + 0x50);
+              exceptionDataBuffer = *(uint8_t **)(exceptionHandlerContext1 + ExceptionHandlerContextOffset50);
             }
             InitializeMemory(&StatusCounterB,exceptionDataBuffer,0x80);
             exceptionHandlerContext1 = operationBase[4];
@@ -66239,7 +66239,7 @@ void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 执行异常上下文处理函数640
+ * @brief 执行异常上下文处理函数A
  * 
  * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
  * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
@@ -66250,7 +66250,7 @@ void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180906640
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContext640(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -66265,7 +66265,7 @@ void ExecuteExceptionHandlerContext640(DataBuffer operationBase,int64_t dataBuff
 
 
 /**
- * @brief 执行异常上下文处理函数660
+ * @brief 执行异常上下文处理函数B
  * 
  * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
  * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
@@ -66276,7 +66276,7 @@ void ExecuteExceptionHandlerContext640(DataBuffer operationBase,int64_t dataBuff
  * @note 原始函数名：Unwind_180906660
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContext660(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -66291,7 +66291,7 @@ void ExecuteExceptionHandlerContext660(DataBuffer operationBase,int64_t dataBuff
 
 
 /**
- * @brief 执行异常上下文处理函数680
+ * @brief 执行异常上下文处理函数C
  * 
  * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
  * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
@@ -66302,7 +66302,7 @@ void ExecuteExceptionHandlerContext660(DataBuffer operationBase,int64_t dataBuff
  * @note 原始函数名：Unwind_180906680
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -66317,7 +66317,7 @@ void ExecuteExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuff
 
 
 /**
- * @brief 执行异常上下文处理函数6a0
+ * @brief 执行异常上下文处理函数D
  * 
  * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
  * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
@@ -66328,7 +66328,7 @@ void ExecuteExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuff
  * @note 原始函数名：Unwind_1809066a0
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContext6a0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerContextD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -66343,7 +66343,7 @@ void ExecuteExceptionHandlerContext6a0(DataBuffer operationBase,int64_t dataBuff
 
 
 /**
- * @brief 条件性初始化系统内存函数6c0
+ * @brief 条件性初始化系统内存函数
  * 
  * 该函数负责根据特定条件初始化系统内存。它会检查数据缓冲区中
  * 特定偏移量处的值，如果该值不为零，则调用系统内存初始化函数。
@@ -66354,7 +66354,7 @@ void ExecuteExceptionHandlerContext6a0(DataBuffer operationBase,int64_t dataBuff
  * @note 原始函数名：Unwind_1809066c0
  * @note 这是一个异常展开（unwind）处理函数，用于条件性的系统内存初始化
  */
-void InitializeSystemMemoryConditionally6c0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeSystemMemoryConditionally(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1e8) != 0) {

@@ -160754,7 +160754,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       ProcessedCharacter = 4;
-      TemporaryBuffer = &stack0x000000a8;
+      TemporaryBuffer = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }
