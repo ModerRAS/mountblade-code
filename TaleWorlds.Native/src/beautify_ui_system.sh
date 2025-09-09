@@ -4,12 +4,10 @@
 # 用于处理04_ui_system.c文件中的变量名和函数名
 
 INPUT_FILE="04_ui_system.c"
-OUTPUT_FILE="04_ui_system_beautified.c"
 TEMP_FILE="temp_ui_system.c"
 
 echo "开始美化UI系统文件..."
 echo "输入文件: $INPUT_FILE"
-echo "输出文件: $OUTPUT_FILE"
 
 # 1. 首先复制原始文件
 cp "$INPUT_FILE" "$TEMP_FILE"
@@ -96,7 +94,7 @@ echo "正在添加函数文档注释..."
 # 这里可以添加更复杂的逻辑来为不同类型的函数添加注释
 
 # 9. 移动到最终位置
-mv "$TEMP_FILE" "$OUTPUT_FILE"
+mv "$TEMP_FILE" "$INPUT_FILE"
 
 echo "美化完成！"
-echo "输出文件: $OUTPUT_FILE"
+echo "已更新文件: $INPUT_FILE"
