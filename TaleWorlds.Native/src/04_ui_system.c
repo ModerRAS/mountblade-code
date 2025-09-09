@@ -263,6 +263,7 @@ typedef enum {
 #define astackUInt158 UIDataBufferStack158
 
 // UI系统局部变量语义化定义
+#define localInt5 UILocalInt5
 #define localInt7 UILocalProcessingCounter7
 #define plocalChar6 pUILocalCharPointer6
 #define pTemporaryFloatValue pUITemporaryFloatValue
@@ -2499,6 +2500,56 @@ typedef enum {
 #define FUN_180899ef0 ProcessUIContextOperation
 #define FUN_1808a1870 ValidateUIContextMemory
 #define FUN_1808de000 HandleUIValidationError
+
+// UI系统函数宏定义 - 处理UI混合数据传输
+/**
+ * @brief 处理UI混合数据传输
+ * 
+ * 该函数负责处理UI系统中混合类型数据的传输操作。
+ * 
+ * @note 原始函数名：FUN_180724170
+ */
+#define FUN_180724170 ProcessUIMixedDataTransfer
+
+// UI系统函数宏定义 - 处理UI整数指针数据
+/**
+ * @brief 处理UI整数指针数据
+ * 
+ * 该函数负责处理UI系统中整数指针数据的操作。
+ * 
+ * @note 原始函数名：FUN_1807245b0
+ */
+#define FUN_1807245b0 ProcessUIIntegerPointerData
+
+// UI系统函数宏定义 - 处理UI字符数据转换
+/**
+ * @brief 处理UI字符数据转换
+ * 
+ * 该函数负责处理UI系统中字符数据的转换操作。
+ * 
+ * @note 原始函数名：FUN_1807249d0
+ */
+#define FUN_1807249d0 ProcessUICharacterDataConversion
+
+// UI系统函数宏定义 - 重置UI系统状态
+/**
+ * @brief 重置UI系统状态
+ * 
+ * 该函数负责重置UI系统的状态到初始状态。
+ * 
+ * @note 原始函数名：FUN_18071ab41
+ */
+#define FUN_18071ab41 ResetUISystemState
+
+// UI系统函数宏定义 - 初始化UI组件
+/**
+ * @brief 初始化UI组件
+ * 
+ * 该函数负责初始化UI组件的基本设置和状态。
+ * 
+ * @note 原始函数名：FUN_18071ace8
+ */
+#define FUN_18071ace8 InitializeUIComponent
 
      * @param stateType 状态类型
  * @param stateFlagPtr 状态标志指针
