@@ -25567,6 +25567,19 @@ ResourceCleanupLabel:
 
 
 
+/**
+ * @brief 初始化数据块指针A0
+ * 
+ * 该函数负责初始化数据块指针，将其指向预定义的数据块指针表A0。
+ * 根据初始化标志，可以选择释放内存资源。
+ * 
+ * @param dataBlockPointer 数据块指针，指向要初始化的数据块
+ * @param initializationFlags 初始化标志，用于控制是否释放内存
+ * @return DataBuffer* 返回初始化后的数据块指针
+ * 
+ * @note 如果初始化标志的第0位为1，则会释放0x28字节的内存
+ * @see DataBlockPointerTableA0
+ */
 DataBuffer * InitializeDataBlockPointerA0(DataBuffer *dataBlockPointer,uint64_t initializationFlags)
 
 {
