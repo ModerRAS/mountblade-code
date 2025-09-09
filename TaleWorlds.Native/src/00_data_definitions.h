@@ -3180,6 +3180,12 @@ int InitializeSystemSecurityManager(void)
   FinalizeSystemSetup();
   return;
 }
+/**
+ * 初始化本地核心DLL
+ * 初始化游戏引擎的核心DLL模块，设置系统配置和初始化状态
+ * 
+ * @param InitFlags 初始化标志，用于控制初始化过程的不同选项
+ */
 void InitializeNativeCoreDLL(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
@@ -3286,6 +3292,12 @@ LabelStringProcessingSpaceCheck2:
   FinalizeSystemSetup();
   return;
 }
+/**
+ * 初始化本地核心引擎
+ * 初始化游戏引擎的核心功能，包括系统配置和初始化状态设置
+ * 
+ * @param InitFlags 初始化标志，用于控制初始化过程的不同选项
+ */
 void InitializeNativeCore(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
@@ -3297,6 +3309,12 @@ void InitializeNativeCore(uint64_t InitFlags)
   FinalizeSystemSetup();
   return;
 }
+/**
+ * 初始化本地核心CLR
+ * 初始化游戏引擎的CLR（公共语言运行时）支持模块
+ * 
+ * @param InitFlags 初始化标志，用于控制初始化过程的不同选项
+ */
 void InitializeNativeCoreCLR(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
@@ -13769,8 +13787,8 @@ Label_1808fbebe:
 }
     SystemStringProcessingFlag = '\x01';
     wcscpy_s(StackLoopLimitBuffer,0x104,SystemContextDataPointer);
-    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(aStackLoopLimit,0x104,SystemSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
-      FinalizeSystemOperation(aStackLoopLimit,0);
+    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(StackLoopLimitBuffer,0x104,SystemSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
+      FinalizeSystemOperation(StackLoopLimitBuffer,0);
     }
     _set_invalid_parameter_handler(MemoryAddress);
   }

@@ -200022,15 +200022,15 @@ LAB_180788061:
 
 
 
-int FUN_180787e7e(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,longlong *bufferSize)
+int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,longlong *bufferSize)
 
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
   int uiCompareResult;
   longlong *contextHandle;
-  longlong SourceHandle;
-  bool bVar4;
+  longlong sourceHandle;
+  bool isSourceValid;
   UIHandle stackParam00000060;
   
   if ((*(code **)(SourceHandle + 0x11838) != (UIFunctionPtr *)0x0) &&
