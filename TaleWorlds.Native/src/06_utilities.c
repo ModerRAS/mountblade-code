@@ -130626,7 +130626,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * 
  * @note 原始函数名：FUN_1808ad600
  */
-#define AllocateMemoryA0 FUN_1808ad600
+#define AllocateMemoryA0 AllocateMemoryWithAlignment    // 带对齐处理的内存分配函数
 
 /**
  * @brief 系统查询函数A0
