@@ -217952,7 +217952,19 @@ void ProcessUtf8EncodingConversion(uint64_t ContextHandle,uint64_t OperationBuff
 
 
 
-7ccd0(uint64_t ContextHandlevoid FUN_18017ccd0(uint64_t ContextHandle
+/**
+ * @brief 系统标志处理和状态管理函数CCD0
+ * 
+ * 该函数负责处理系统标志和状态管理，包括：
+ * 1. 处理系统标志B和操作状态
+ * 2. 管理错误代码和指针缓冲区
+ * 3. 验证系统上下文状态
+ * 4. 处理核心引擎值和指针
+ * 
+ * @param ContextHandle 上下文句柄
+ * @note 原始函数名：FUN_18017ccd0
+ */
+void ProcessSystemFlagsAndStatusManagement(uint64_t ContextHandle)
 {
   uint8_t auStack_118 [32];
   uint32_t SystemFlagB;
@@ -218092,7 +218104,19 @@ void ManageUtf8EncodingMemory(uint64_t ContextHandle,uint64_t OperationBufferSiz
 
 
 
-7ce80(uint64_t ContextHandlevoid FUN_18017ce80(uint64_t ContextHandle
+/**
+ * @brief 系统数据处理和堆栈管理函数CE80
+ * 
+ * 该函数负责处理系统数据和堆栈管理，包括：
+ * 1. 处理堆栈处理无符号值和应用程序指针
+ * 2. 管理系统数据值和字符状态缓冲区指针
+ * 3. 处理系统事件模板和内存地址掩码
+ * 4. 管理核心引擎数据缓冲区和处理偏移量
+ * 
+ * @param ContextHandle 上下文句柄
+ * @note 原始函数名：FUN_18017ce80
+ */
+void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
 {
   uint8_t aStackProcessingUnsignedValue608 [32];
   uint32_t uStack_5e8;
