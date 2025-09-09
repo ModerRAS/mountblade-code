@@ -33906,7 +33906,7 @@ DataProcessLabelA:
         (((dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0 &&
           (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffset9C), (int)dataFlags == 0)) &&
          ((dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0 &&
-          ((dataFlags = OperateDataO0(*dataBuffer,operationBase + 0xb4,4), (int)dataFlags == 0 &&
+          ((dataFlags = OperateDataO0(*dataBuffer,operationBase + SystemContextOffsetB4,4), (int)dataFlags == 0 &&
            (dataFlags = ValidateDataIntegrityA1(operationBase + 0x30,dataBuffer), (int)dataFlags == 0)))))))))) {
       dataFlags = operationResult;
       if (0x34 < *(uint *)(dataBuffer + 8)) {
