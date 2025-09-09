@@ -3143,6 +3143,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FloatDataOffset 0x14                             // 浮点数据偏移量 - 浮点数据的存储位置
 #define DataContextOffset 0x18                            // 数据上下文偏移量 - 数据上下文的存储位置
 #define DataValidationOffset 0x20                         // 数据验证偏移量 - 数据验证信息的存储位置
+#define MemoryResourcePointerOffsetD 0xd                 // 内存资源指针偏移量D - 用于异常处理器管理的指针偏移
+#define MemoryResourcePointerOffsetE 0xe                 // 内存资源指针偏移量E - 用于异常处理器状态的指针偏移
 #define SecondaryValidationOffset 0x34                    // 次要验证偏移量 - 次要验证信息的存储位置
 #define ValidationFlagOffset 0x35                         // 验证标志偏移量 - 验证标志位的存储位置
 #define ResourceActiveFlagOffset 0x60                  // 资源活动标志偏移量 - 资源活动状态标志位的存储位置
@@ -73620,7 +73622,7 @@ void ProcessSystemResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
   if (memoryResourcePointer[MemoryResourcePointerOffset12] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer[0xd] = &SystemTemporaryExceptionHandler;
+  memoryResourcePointer[MemoryResourcePointerOffsetD] = &SystemTemporaryExceptionHandler;
   if (memoryResourcePointer[0xe] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -73689,7 +73691,7 @@ void ProcessSystemResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
   if (memoryResourcePointer[MemoryResourcePointerOffset12] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer[0xd] = &SystemTemporaryExceptionHandler;
+  memoryResourcePointer[MemoryResourcePointerOffsetD] = &SystemTemporaryExceptionHandler;
   if (memoryResourcePointer[0xe] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
