@@ -9967,12 +9967,38 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  */
 #define ProcessSystemDataFlowAndValidate FUN_1801fef10
 
-// 原始函数名：FUN_1800582b0 - 系统资源分配函数
-// 功能：分配系统资源并初始化
+/**
+ * @brief 分配系统资源并初始化
+ * 
+ * 该函数负责分配系统运行所需的各类资源，包括内存、文件句柄、
+ * 网络连接等，并对这些资源进行初始化设置。
+ * 
+ * @param resourceType 资源类型，指定要分配的资源种类
+ * @param resourceSize 资源大小，指定要分配的资源数量
+ * @param initializationFlags 初始化标志，控制初始化过程的行为
+ * @return 资源句柄，成功时返回有效的资源句柄，失败时返回NULL
+ * 
+ * @note 原始函数名：FUN_1800582b0
+ * @note 该函数会进行资源分配的权限检查
+ * @note 分配失败时会记录系统日志
+ */
 #define AllocateSystemResourcesAndInitialize FUN_1800582b0
 
-// 系统组件初始化函数 - 系统验证函数
-// 功能：验证系统组件并执行检查
+/**
+ * @brief 验证系统组件并执行检查
+ * 
+ * 该函数负责验证系统中各个组件的状态和完整性，确保所有组件
+ * 都处于正常工作状态，并执行必要的安全检查。
+ * 
+ * @param componentList 组件列表，包含需要验证的系统组件
+ * @param checkFlags 检查标志，指定要执行的检查类型
+ * @param validationContext 验证上下文，提供验证过程所需的环境信息
+ * @return 验证结果，true表示所有组件都正常，false表示发现问题
+ * 
+ * @note 原始函数名：FUN_1800adb30
+ * @note 该函数会遍历所有系统组件进行验证
+ * @note 发现问题时会记录详细的错误信息
+ */
 #define ValidateSystemComponentsAndCheck FUN_1800adb30
 
 // 原始函数名：FUN_180080060 - 系统终止函数
