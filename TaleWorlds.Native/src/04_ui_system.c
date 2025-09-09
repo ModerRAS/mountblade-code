@@ -100020,30 +100020,30 @@ int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffe
   
   InitializeUIContextArrays(contextStackArray8,processingArray34,dataSource,resultPointer);
   InitializeUIContextArrays(contextStackArray20,&stackUInt38,targetBuffer,resultPointer);
-  EventTypeCode = stackUInt38;
-  if ((int)stackUInt38 < (int)astackUInt34[0]) {
-    EventTypeCode = astackUInt34[0];
+  eventTypeCode = stackUInt38;
+  if ((int)stackUInt38 < (int)processingArray34[0]) {
+    eventTypeCode = processingArray34[0];
   }
-  localInt7 = EventTypeCode + (EventTypeCode & 1);
-  aiStackX_20[0] = aiStackX_20[0] >> ((char)localInt7 - (char)stackUInt38 & 0x1fU);
-  localInt5 = aiStackX_8[0] >> ((char)localInt7 - (char)astackUInt34[0] & 0x1fU);
-  aiStackX_8[0] = 1;
-  if (1 < localInt5) {
-    aiStackX_8[0] = localInt5;
+  alignmentAdjustment = eventTypeCode + (eventTypeCode & 1);
+  contextStackArray20[0] = contextStackArray20[0] >> ((char)alignmentAdjustment - (char)stackUInt38 & 0x1fU);
+  bitShiftResult = contextStackArray8[0] >> ((char)alignmentAdjustment - (char)processingArray34[0] & 0x1fU);
+  contextStackArray8[0] = 1;
+  if (1 < bitShiftResult) {
+    contextStackArray8[0] = bitShiftResult;
   }
-  processingResult = FUN_18072ab70(dataSource,targetBuffer,localInt7,resultPointer);
-  uiValidationResult = FUN_18071b660(processingResult,aiStackX_8[0],0xd);
-  localInt5 = 0x4000;
-  if ((uiValidationResult < 0x4001) && (localInt5 = uiValidationResult, uiValidationResult < -0x4000)) {
-    localInt5 = -0x4000;
+  processingResult = ProcessUIDataSource(dataSource,targetBuffer,alignmentAdjustment,resultPointer);
+  uiValidationResult = ValidateUIProcessingResult(processingResult,contextStackArray8[0],0xd);
+  bitShiftResult = 0x4000;
+  if ((uiValidationResult < 0x4001) && (bitShiftResult = uiValidationResult, uiValidationResult < -0x4000)) {
+    bitShiftResult = -0x4000;
   }
-  allocatedMemory0 = (longlong)localInt5 * (longlong)(short)localInt5;
-  sVar9 = (short)((ulonglong)allocatedMemory0 >> 0x10);
-  EventTypeCode = (uint)((ulonglong)allocatedMemory0 >> 0x10);
-  maxProcessingCount = (int)EventTypeCode >> 0x1f;
-  eventProcessingCounter = (ulonglong)((EventTypeCode ^ maxProcessingCount) - maxProcessingCount);
-  uiValidationResult = func_0x000180723cb0(aiStackX_8[0]);
-  bVar4 = (byte)(localInt7 >> 1);
+  allocatedMemorySize = (longlong)bitShiftResult * (longlong)(short)bitShiftResult;
+  memoryAllocationHigh = (short)((ulonglong)allocatedMemorySize >> 0x10);
+  eventTypeCode = (uint)((ulonglong)allocatedMemorySize >> 0x10);
+  maxProcessingCount = (int)eventTypeCode >> 0x1f;
+  eventProcessingCounter = (ulonglong)((eventTypeCode ^ maxProcessingCount) - maxProcessingCount);
+  uiValidationResult = CalculateUIEventThreshold(contextStackArray8[0]);
+  processingFlag = (byte)(alignmentAdjustment >> 1);
   if ((int)eventProcessingCounter < param_6) {
     eventProcessingCounter = (ulonglong)(ushort)param_6;
   }
@@ -202994,7 +202994,14 @@ UIHandle CleanupUIEventHandlersE0(void)
 
 
 
-UIHandle FUN_1807891b1(void)
+/**
+ * @brief UI系统状态检查函数
+ * 
+ * 检查UI系统的当前状态，返回系统状态码
+ * 
+ * @return UIHandle 返回UI系统状态句柄
+ */
+UIHandle CheckUISystemStatus(void)
 
 {
   return 0;
@@ -203002,7 +203009,14 @@ UIHandle FUN_1807891b1(void)
 
 
 
-UIHandle FUN_1807891bb(void)
+/**
+ * @brief UI系统资源释放函数
+ * 
+ * 释放UI系统占用的资源，清理内存和相关数据结构
+ * 
+ * @return UIHandle 返回操作结果状态句柄
+ */
+UIHandle ReleaseUISystemResources(void)
 
 {
   return 0;
