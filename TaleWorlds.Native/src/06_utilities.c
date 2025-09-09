@@ -9602,6 +9602,14 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：验证系统数据
 #define ValidateSystemDataA1 FUN_18073b5f0
 
+// 原始函数名：FUN_18073b820 - 数据验证返回函数A0
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnA0 FUN_18073b820
+
+// 原始函数名：FUN_18073b830 - 数据验证返回函数A1
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnA1 FUN_18073b830
+
 // 原始函数名：FUN_18073b810 - 系统清理函数A1
 // 功能：清理系统资源
 #define CleanupSystemA1 FUN_18073b810
@@ -9719,6 +9727,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 原始函数名：FUN_180080060 - 系统终止函数
 // 功能：终止系统执行并清理资源
 #define TerminateSystemExecution FUN_180080060
+#define TerminateSystemE0 TerminateSystemResourcesAndCleanup
 
 // 原始函数名：FUN_1800594b0 - 系统数据验证函数
 // 功能：验证系统数据并执行相应操作
