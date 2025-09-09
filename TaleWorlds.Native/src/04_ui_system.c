@@ -100698,14 +100698,14 @@ UIWord FUN_1807234d0(UIWord *uiContext,longlong dataSource,short *targetBuffer,i
   int loopCounter;
   
   if (bufferSize == 0x12) {
-    TempInt4 = 0;
+    temporaryInt4 = 0;
     if (0 < param_6) {
       do {
-        puiCompareResult = (int *)(((longlong)TempInt4 >> 0x10) * 4 + dataSource);
-        loopCounter = (int)((ulonglong)(ushort)TempInt4 * (longlong)(short)resultPointer >> 0x10);
-        psVar1 = targetBuffer + loopCounter * 9;
-        componentIndex = (longlong)((resultPointer - loopCounter) * 9);
-        loopCounter = ((int)((ulonglong)((longlong)puiCompareResult[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
+        compareResultPointer = (int *)(((longlong)temporaryInt4 >> 0x10) * 4 + dataSource);
+        innerLoopCounter = (int)((ulonglong)(ushort)temporaryInt4 * (longlong)(short)resultPointer >> 0x10);
+        shortPointer1 = targetBuffer + innerLoopCounter * 9;
+        componentIndex = (longlong)((resultPointer - innerLoopCounter) * 9);
+        innerLoopCounter = ((int)((ulonglong)((longlong)compareResultPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
                  + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)puiCompareResult[10]) >> 0x10)
                    + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)puiCompareResult[0xc]) >>
                           0x10) +
