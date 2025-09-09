@@ -24880,7 +24880,7 @@ SecurityValidationLabel:
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         LoopCounter = arrayIndex;
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
@@ -24927,7 +24927,7 @@ SecurityValidationLabel:
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         LoopCounter = arrayIndex;
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
@@ -24974,7 +24974,7 @@ SecurityValidationLabel:
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         LoopCounter = arrayIndex;
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
@@ -25021,7 +25021,7 @@ SecurityValidationLabel:
           if (LoopCounter != 0) GOTO_SecurityCheckFailed;
         }
         LoopCounter = arrayIndex;
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           ValidationStatusF = 0;
           ValidationDataTablePointer = &SystemValidationDataTableA5;
           ValidationResultData = MergeHighLowWords(ValidationResultData.HighPart, PrimaryContextData);
@@ -25157,7 +25157,7 @@ void ProcessFloatingPointDataWithValidation(void)
           processedFloatValue = calculatedFloatValue;
           if (validationSizeResult != 0) goto SizeValidationCheckpoint;
         }
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
@@ -25210,7 +25210,7 @@ void ProcessFloatingPointDataWithValidation(void)
           floatValue = interpolatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
@@ -25263,7 +25263,7 @@ void ProcessFloatingPointDataWithValidation(void)
           floatValue = accumulatedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
@@ -25316,7 +25316,7 @@ void ProcessFloatingPointDataWithValidation(void)
           floatValue = transformedFloatValue;
           if (calculatedSize != 0) goto SizeValidationCheckpoint;
         }
-        if (*(char *)(dataContext + 0x29) != '\0') {
+        if (*(char *)(dataContext + BufferDataOffset29) != '\0') {
           operationResult = 0;
           ValidationDataBuffer = &SystemValidationDataTableA5;
           DataProcessingOffset = SystemOperationResult;
