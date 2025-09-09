@@ -568,6 +568,12 @@
 #define LAB_18008e13f SystemEventHandlingLabel               // 系统事件处理标签
 #define LAB_18008ebc0 MemoryBlockProcessingLabel              // 内存块处理标签
 #define LAB_18008ef40 EncodingConversionResultLabel           // 编码转换结果标签
+#define LAB_18008eecc CodePointComparisonLabel                 // 代码点比较标签
+#define LAB_18008efb7 MemoryBlockIndexCheckLabel              // 内存块索引检查标签
+#define LAB_18008efcb MemoryPoolSizeCheckLabel                // 内存池大小检查标签
+#define LAB_18008eff7 SystemMemoryAllocationLabel             // 系统内存分配标签
+#define LAB_18008ee00 SystemCharacterProcessingLabel           // 系统字符处理标签
+#define LAB_18008f4f4 SystemDataValidationLabel               // 系统数据验证标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
@@ -71743,7 +71749,7 @@ LAB_18008ebc0:
     }
     if (HighByte) {
       MemoryBoundaryPointer = MemoryBoundaryPointer + 2;
-      goto LAB_18008ebc0;
+      goto MemoryBlockProcessingLabel;
     }
     do {
       ContextHandle2 = ContextHandle1;
@@ -71781,7 +71787,7 @@ LAB_18008ebc0:
       *(int *)ContextHandle1 = (int)StringOffset;
       *(uint32_t *)((long long)ContextHandle2 + -0xc) = UnicodeCodePoint;
       *(int *)(ContextHandle2 + -1) = (int)EncodingConversionResult;
-      goto LAB_18008ebc0;
+      goto MemoryBlockProcessingLabel;
     }
     Utf8SourcePointer = Utf8SourcePointer + -1;
     ProcessSystemMemoryAllocation(MemoryBoundaryPointer,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
@@ -71951,7 +71957,7 @@ joined_r0x00018008edee:
 LAB_18008eecc:
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryBlockIndex;
-    if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto LAB_18008ef40;
+    if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto EncodingConversionResultLabel;
     ValidationBytePointer = *(byte **)(StringOffset + 0x70);
     EncodingConversionResult = *(long long *)(MemoryPoolBlockSize + 0x70) - (long long)ValidationBytePointer;
     do {
@@ -71961,7 +71967,7 @@ LAB_18008eecc:
       ValidationBytePointer = ValidationBytePointer + 1;
     } while (CalculatedCodePoint != 0);
     EncodingConversionResult = MemoryPoolBlockSize;
-    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryBlockIndex, *(int *)(StringOffset + 0x78) == 0)    goto LAB_18008ef40;
+    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryBlockIndex, *(int *)(StringOffset + 0x78) == 0)    goto EncodingConversionResultLabel;
     if (*(int *)(MemoryBlockIndex + 0x78) != 0) {
       ValidationBytePointer = *(byte **)(StringOffset + 0x70);
       EncodingConversionResult = *(long long *)(MemoryBlockIndex + 0x70) - (long long)ValidationBytePointer;
@@ -71989,7 +71995,7 @@ LAB_18008eecc:
     }
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryPoolBlockSize;
-    if (*(int *)(StringOffset + 0x78) == 0) goto LAB_18008ef40;
+    if (*(int *)(StringOffset + 0x78) == 0) goto EncodingConversionResultLabel;
     ValidationBytePointer = *(byte **)(StringOffset + 0x70);
     EncodingConversionResult = *(long long *)(MemoryBlockIndex + 0x70) - (long long)ValidationBytePointer;
     do {
@@ -71999,7 +72005,7 @@ LAB_18008eecc:
       ValidationBytePointer = ValidationBytePointer + 1;
     } while (CalculatedCodePoint != 0);
     EncodingConversionResult = MemoryBlockIndex;
-    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(StringOffset + 0x78) == 0)    goto LAB_18008ef40;
+    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(StringOffset + 0x78) == 0)    goto EncodingConversionResultLabel;
     if (*(int *)(MemoryPoolBlockSize + 0x78) != 0) {
       ValidationBytePointer = *(byte **)(StringOffset + 0x70);
       MemoryBlockIndex = *(long long *)(MemoryPoolBlockSize + 0x70) - (long long)ValidationBytePointer;
@@ -72011,7 +72017,7 @@ LAB_18008eecc:
       } while (CalculatedCodePoint != 0);
 joined_r0x00018008ef35:
       EncodingConversionResult = MemoryPoolBlockSize;
-      if (ValidationResult < 1) goto LAB_18008ef40;
+      if (ValidationResult < 1) goto EncodingConversionResultLabel;
     }
   }
   EncodingConversionResult = StringOffset;
@@ -72131,7 +72137,7 @@ joined_r0x00018008edee:
 LAB_18008eecc:
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryBlockIndex;
-    if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto LAB_18008ef40;
+    if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto EncodingConversionResultLabel;
     ValidationBytePointer = *(byte **)(StringOffset + 0x70);
     EncodingConversionResult = *(long long *)(MemoryPoolBlockSize + 0x70) - (long long)ValidationBytePointer;
     do {
@@ -72141,7 +72147,7 @@ LAB_18008eecc:
       ValidationBytePointer = ValidationBytePointer + 1;
     } while (CalculatedCodePoint != 0);
     EncodingConversionResult = MemoryPoolBlockSize;
-    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryBlockIndex, *(int *)(StringOffset + 0x78) == 0)    goto LAB_18008ef40;
+    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryBlockIndex, *(int *)(StringOffset + 0x78) == 0)    goto EncodingConversionResultLabel;
     if (*(int *)(MemoryBlockIndex + 0x78) != 0) {
       ValidationBytePointer = *(byte **)(StringOffset + 0x70);
       EncodingConversionResult = *(long long *)(MemoryBlockIndex + 0x70) - (long long)ValidationBytePointer;
@@ -72169,7 +72175,7 @@ LAB_18008eecc:
     }
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryPoolBlockSize;
-    if (*(int *)(StringOffset + 0x78) == 0) goto LAB_18008ef40;
+    if (*(int *)(StringOffset + 0x78) == 0) goto EncodingConversionResultLabel;
     ValidationBytePointer = *(byte **)(StringOffset + 0x70);
     EncodingConversionResult = *(long long *)(MemoryBlockIndex + 0x70) - (long long)ValidationBytePointer;
     do {
@@ -72179,7 +72185,7 @@ LAB_18008eecc:
       ValidationBytePointer = ValidationBytePointer + 1;
     } while (CalculatedCodePoint != 0);
     EncodingConversionResult = MemoryBlockIndex;
-    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(StringOffset + 0x78) == 0)    goto LAB_18008ef40;
+    if ((0 < (int)(StringComparisonByte - CalculatedCodePoint)) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(StringOffset + 0x78) == 0)    goto EncodingConversionResultLabel;
     if (*(int *)(MemoryPoolBlockSize + 0x78) != 0) {
       ValidationBytePointer = *(byte **)(StringOffset + 0x70);
       MemoryBlockIndex = *(long long *)(MemoryPoolBlockSize + 0x70) - (long long)ValidationBytePointer;
@@ -72191,7 +72197,7 @@ LAB_18008eecc:
       } while (CalculatedCodePoint != 0);
 joined_r0x00018008ef35:
       EncodingConversionResult = MemoryPoolBlockSize;
-      if (ValidationResult < 1) goto LAB_18008ef40;
+      if (ValidationResult < 1) goto EncodingConversionResultLabel;
     }
   }
   EncodingConversionResult = StringOffset;
@@ -72285,7 +72291,7 @@ LAB_18008ee00:
 LAB_18008eecc:
       SystemDataTablePointer = CharacterLimit[-1];
       StringOffset = BufferStatus;
-      if ((*(int *)(SystemDataTablePointer + 0x78) == 0) || (StringOffset = MemoryBoundaryEnd, *(int *)(MemoryBoundaryEnd + 0x78) == 0)      goto LAB_18008ef40;
+      if ((*(int *)(SystemDataTablePointer + 0x78) == 0) || (StringOffset = MemoryBoundaryEnd, *(int *)(MemoryBoundaryEnd + 0x78) == 0)      goto EncodingConversionResultLabel;
       LowBytePointer = *(byte **)(SystemDataTablePointer + 0x70);
       StringOffset = *(long long *)(MemoryBoundaryEnd + 0x70) - (long long)LowBytePointer;
       do {
@@ -72295,7 +72301,7 @@ LAB_18008eecc:
         LowBytePointer = LowBytePointer + 1;
       } while (MemoryAddressMaskPointer != 0);
       StringOffset = MemoryBoundaryEnd;
-      if ((0 < (int)(StringComparisonByte - MemoryAddressMaskPointer)) || (StringOffset = BufferStatus, *(int *)(SystemDataTablePointer + 0x78) == 0)      goto LAB_18008ef40;
+      if ((0 < (int)(StringComparisonByte - MemoryAddressMaskPointer)) || (StringOffset = BufferStatus, *(int *)(SystemDataTablePointer + 0x78) == 0)      goto EncodingConversionResultLabel;
       if (*(int *)(BufferStatus + 0x78) != 0) {
         LowBytePointer = *(byte **)(SystemDataTablePointer + 0x70);
         StringOffset = *(long long *)(BufferStatus + 0x70) - (long long)LowBytePointer;
@@ -72323,7 +72329,7 @@ LAB_18008eecc:
       }
       SystemDataTablePointer = CharacterLimit[-1];
       StringOffset = MemoryBoundaryEnd;
-      if (*(int *)(SystemDataTablePointer + 0x78) == 0) goto LAB_18008ef40;
+      if (*(int *)(SystemDataTablePointer + 0x78) == 0) goto EncodingConversionResultLabel;
       LowBytePointer = *(byte **)(SystemDataTablePointer + 0x70);
       StringOffset = *(long long *)(BufferStatus + 0x70) - (long long)LowBytePointer;
       do {
@@ -72333,7 +72339,7 @@ LAB_18008eecc:
         LowBytePointer = LowBytePointer + 1;
       } while (MemoryAddressMaskPointer != 0);
       StringOffset = BufferStatus;
-      if ((0 < (int)(StringComparisonByte - MemoryAddressMaskPointer)) || (StringOffset = MemoryBoundaryEnd, *(int *)(SystemDataTablePointer + 0x78) == 0)      goto LAB_18008ef40;
+      if ((0 < (int)(StringComparisonByte - MemoryAddressMaskPointer)) || (StringOffset = MemoryBoundaryEnd, *(int *)(SystemDataTablePointer + 0x78) == 0)      goto EncodingConversionResultLabel;
       if (*(int *)(MemoryBoundaryEnd + 0x78) != 0) {
         LowBytePointer = *(byte **)(SystemDataTablePointer + 0x70);
         BufferStatus = *(long long *)(MemoryBoundaryEnd + 0x70) - (long long)LowBytePointer;
@@ -72345,7 +72351,7 @@ LAB_18008eecc:
         } while (MemoryAddressMaskPointer != 0);
 joined_r0x00018008ef35:
         StringOffset = MemoryBoundaryEnd;
-        if (RemainingSpace < 1) goto LAB_18008ef40;
+        if (RemainingSpace < 1) goto EncodingConversionResultLabel;
       }
     }
     StringOffset = SystemDataTablePointer;
