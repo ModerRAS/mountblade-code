@@ -100005,7 +100005,7 @@ unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *ContextHa
   IsMemoryBlockEqual = 0;
   CharacterDataValidationResult = CheckSystemStatus();
   if (CharacterDataValidationResult == '\0') {
-LAB_18010f2a4:
+CharacterDataValidationLabel:
     if (((*(char *)(AllocatedMemorySize + 0x1dd0) != '\0') && ((UnicodeCodePoint >> 0xc & 1) != 0)) &&
        ((*(byte *)(AllocatedMemorySize + 0x1dd4) & 4) == 0)) {
       CharacterStatus2 = AllocateSystemBuffer(0x20);
@@ -100220,7 +100220,7 @@ char ValidateSystemMemoryAllocation(uint64_t ContextHandle,uint OperationBufferS
   SystemStatusChar = '\0';
   OperationStatus = CheckSystemStatus();
   if (OperationStatus == '\0') {
-LAB_18010f2a4:
+CharacterDataValidationLabel:
     if (((*(char *)(SystemContext + 0x1dd0) != '\0') && ((SystemChecksum >> 0xc & 1) != 0)) &&
        ((*(byte *)(SystemContext + 0x1dd4) & 4) == 0)) {
       OperationStatus = AllocateSystemBuffer(0x20);
@@ -100436,7 +100436,7 @@ char ValidateSystemMemoryAllocationSecondary(uint64_t ContextHandle,uint Operati
   CharacterStatus2 = '\0';
   OperationStatus = CheckSystemStatus();
   if (OperationStatus == '\0') {
-LAB_18010f2a4:
+CharacterDataValidationLabel:
     if (((*(char *)(SystemContext + 0x1dd0) != '\0') && ((RegisterEBPValue >> 0xc & 1) != 0)) &&
        ((*(byte *)(SystemContext + 0x1dd4) & 4) == 0)) {
       OperationStatus = AllocateSystemBuffer(0x20);

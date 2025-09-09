@@ -4583,10 +4583,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExecuteValidatorAtPrimaryOffset ValidateAtPrimaryOffset
 #define ExecuteValidatorAtSecondaryOffset ValidateAtSecondaryOffset
 #define ExecuteValidatorAtCombinedOffsets ValidateAtCombinedOffsets
-#define ExecuteValidatorAtTertiaryOffset Unwind_180907110
-#define ExecuteValidatorAtQuadOffsets Unwind_180907120
-#define ResetSystemStatusFlag Unwind_180907130
-#define ValidateAndProcessDataBuffer Unwind_180907140
+#define ExecuteValidatorAtTertiaryOffset ValidateAtTertiaryOffset
+#define ExecuteValidatorAtQuadOffsets ValidateAtQuadOffsets
+#define ResetSystemStatusFlag ClearSystemStatusFlag
+#define ValidateAndProcessDataBuffer VerifyAndProcessDataBuffer
 
 // 系统终止条件检查函数宏定义
 #define CheckSystemTerminationConditionAtPrimary Unwind_1809076c0
