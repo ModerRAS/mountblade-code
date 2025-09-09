@@ -49884,7 +49884,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   
   SystemMaxOperationCountSecondary = 0xfffffffffffffffe;
   SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemMemoryAllocationOffsetBuffer;
-  charOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
+  char CharacterOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   do {
     if ((charOutput == '\0') || (SystemContextReference = 0, *(char *)(SystemResourceManager + SystemInitializationOffset0x400) != '\0')) {
         ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemMemoryAllocationOffsetBuffer);

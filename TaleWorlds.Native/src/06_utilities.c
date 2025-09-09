@@ -106994,7 +106994,21 @@ void ExecuteExceptionHandlerCallbackED00(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090ed10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数ED10
+ * 
+ * 该函数从数据缓冲区中获取异常处理回调函数指针，
+ * 并使用指定的操作标志和系统清理标志调用该回调函数。
+ * 主要用于在异常处理过程中执行相应的清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_18090ed10
+ */
+void ExecuteExceptionHandlerCallbackED10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -107086,7 +107100,19 @@ void CleanupExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090ed40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数ED40
+ * 
+ * 该函数检查数据缓冲区中偏移量0xC0处的异常处理器指针，
+ * 如果存在有效的异常处理器，则调用相应的回调函数。
+ * 主要用于异常处理链中的回调执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ed40
+ */
+void ExecuteExceptionHandlerCallbackED40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffsetC0) != (int64_t *)0x0) {
@@ -107290,7 +107316,18 @@ void InitializeExceptionDataTablePointers(DataBuffer operationBase, int64_t data
 
 
 
-void Unwind_18090edc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常数据表EDC0
+ * 
+ * 该函数负责在数据缓冲区的偏移量0x150处设置异常数据表6。
+ * 这是一个简单的数据表初始化函数，用于异常处理系统的配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表指针信息
+ * 
+ * @note 原始函数名：Unwind_18090edc0
+ */
+void SetExceptionDataTableEDC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x150) = &ExceptionDataTable6;

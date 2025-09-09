@@ -33369,19 +33369,19 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   localInt9 = (*(UIFunctionPtr *)*param_7)(allocatedMemory8,maxProcessingCount,allocatedMemory9,loopCounter);
   iterationCount0 = ((processingResult5 + ProcessingResult1) * resultPointer + 0x80 >> 8) + localInt9;
   processingResult5 = bufferHeight - param_6;
-  if (sVar2 - param_6 < *(int *)(uiBufferData + 0x23d0)) {
+  if (bufferHeight - param_6 < *(int *)(uiBufferData + 0x23d0)) {
     processingResult5 = *(int *)(uiBufferData + 0x23d0);
   }
-  ProcessingResult1 = sVar2 + param_6;
-  if (*(int *)(uiBufferData + 0x23d4) < sVar2 + param_6) {
+  ProcessingResult1 = bufferHeight + param_6;
+  if (*(int *)(uiBufferData + 0x23d4) < bufferHeight + param_6) {
     ProcessingResult1 = *(int *)(uiBufferData + 0x23d4);
   }
-  localInt9 = sVar1 - param_6;
-  if (sVar1 - param_6 < *(int *)(uiBufferData + 0x23d8)) {
+  localInt9 = bufferWidth - param_6;
+  if (bufferWidth - param_6 < *(int *)(uiBufferData + 0x23d8)) {
     localInt9 = *(int *)(uiBufferData + 0x23d8);
   }
-  ProcessingResult2 = sVar1 + param_6;
-  if (*(int *)(uiBufferData + 0x23dc) < sVar1 + param_6) {
+  ProcessingResult2 = bufferWidth + param_6;
+  if (*(int *)(uiBufferData + 0x23dc) < bufferWidth + param_6) {
     ProcessingResult2 = *(int *)(uiBufferData + 0x23dc);
   }
   if (localInt9 < ProcessingResult2) {

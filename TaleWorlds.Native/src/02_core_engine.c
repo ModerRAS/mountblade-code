@@ -218775,8 +218775,8 @@ void SystemDataProcessingFunction(void
   }
   else {
     if (StringLength == 1) {
-      FUN_18005e770(TimeoutValueStorage,SystemDataTablePointer + 800,0);
-      FUN_1800b8500(SystemDataTablePointer + 800);
+      ProcessSystemTimeout(TimeoutValueStorage,SystemDataTablePointer + 800,0);
+      CleanupSystemDataTable(SystemDataTablePointer + 800);
       CharacterTablePointer = SystemMemoryManagerPointer;
       ContextHandle8 = *(long long **)(SystemMemoryManagerPointer + 0x138);
       if (ContextHandle8 != *(long long **)(SystemMemoryManagerPointer + 0x140)) {
@@ -218787,7 +218787,7 @@ void SystemDataProcessingFunction(void
             if (EncodingConversionResult == 0) {
               ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0x50,0x10,3);
               EncodingConversionResult = FUN_1800ba230(ProcessingStatusFlag,LoopIndex + 0x16b0);
-              FUN_1802ab0c0(CharacterTablePointer + 0xac0,EncodingConversionResult);
+              SetSystemEncodingConversion(CharacterTablePointer + 0xac0,EncodingConversionResult);
             }
             *(long long *)(LoopIndex + 0x15b8) = EncodingConversionResult;
           }
@@ -219148,8 +219148,8 @@ LAB_180180381:
       }
       if (StringLength != 5) {
         if (StringLength == 6) {
-          FUN_18005e770(TimeoutValueStorage,SystemDataTablePointer + 800,0);
-          FUN_1800b8500(SystemDataTablePointer + 800);
+          ProcessSystemTimeout(TimeoutValueStorage,SystemDataTablePointer + 800,0);
+          CleanupSystemDataTable(SystemDataTablePointer + 800);
           (**(code **)(**(long long **)(CoreEngineSystemContext + 0x2b0) + 0x120)                    (*(long long **)(CoreEngineSystemContext + 0x2b0),0);
           FUN_18021e0a0();
           if (*(int *)(SystemDataTablePointer + 0x3c) != -1) {
@@ -219232,8 +219232,8 @@ LAB_180180381:
         }
         goto LAB_180180381;
       }
-      FUN_18005e770(TimeoutValueStorage,SystemDataTablePointer + 800,0);
-      FUN_1800b8500(SystemDataTablePointer + 800);
+      ProcessSystemTimeout(TimeoutValueStorage,SystemDataTablePointer + 800,0);
+      CleanupSystemDataTable(SystemDataTablePointer + 800);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_178 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
