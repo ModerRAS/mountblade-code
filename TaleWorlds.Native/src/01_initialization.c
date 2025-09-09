@@ -49927,10 +49927,10 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long SystemMemorySize;
   long long systemContextValueSecondary;
   uint8_t SystemMemoryAlignment;
-  void* StackPointerTwoHundredEighteenth;
+  void* SystemContextDataPointer;
   int SystemTimeoutCounter;
   uint32_t SystemMaxOperationCountSecondary;
-  void* SystemMaxOperationCountTertiary;
+  void* SystemOperationLimitPointer;
   void* *SystemSecondaryGlobalDataReferencePtr;
   byte *SystemResourceNameBuffer;
   int ResourceProcessingCounter;
