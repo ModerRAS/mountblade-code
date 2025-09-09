@@ -115122,7 +115122,7 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_1809105c0
  * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
  */
-void Unwind_1809105c0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerAtOffset238(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
