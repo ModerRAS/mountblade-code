@@ -3866,8 +3866,8 @@ void* UIGestureCoordinates;
  // UI系统渲染参数表语义化定义
 #define UIRenderParameterTransformMatrix UIRenderTransformMatrix
 #define UIRenderParameterColorData UIRenderColorData
-#define UIRenderParameterShaderUniforms UNK_18094e270
-#define UIRenderParameterTextureData UNK_18094e274
+#define UIRenderParameterShaderUniforms UIRenderShaderUniforms
+#define UIRenderParameterTextureData UIRenderTextureData
 #define UIRenderParameterViewportData UNK_18094e27c
 #define UIRenderParameterLightingData UNK_18094e280
 
