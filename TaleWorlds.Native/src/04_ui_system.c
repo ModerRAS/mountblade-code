@@ -425,12 +425,12 @@ typedef enum {
 #define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
 
 // UI系统数据处理函数宏定义
-#define WriteUIData FUN_180719a90                    // UI系统数据写入函数
-#define ProcessUIData FUN_1807165a0                  // UI系统数据处理函数
-#define ValidateUIData FUN_1807160c0                 // UI系统数据验证函数
-#define TransformUIData FUN_180723060                // UI系统数据转换函数
-#define ProcessUIContext FUN_180718bd0              // UI系统上下文处理函数
-#define ShiftUIData FUN_180716aa0                    // UI系统数据移位函数
+#define WriteUIData SetUIData                        // UI系统数据写入函数
+#define ProcessUIData HandleUIData                    // UI系统数据处理函数
+#define ValidateUIData CheckUIData                    // UI系统数据验证函数
+#define TransformUIData ConvertUIData                 // UI系统数据转换函数
+#define ProcessUIContext ManageUIContext              // UI系统上下文处理函数
+#define ShiftUIData MoveUIData                        // UI系统数据移位函数
 
 // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0
@@ -400553,8 +400553,8 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // =============================================================================
 
 // UI系统渲染函数
-#define ProcessUIRenderData FUN_180705870
-#define CleanupUIResources FUN_1807058d0
+#define ProcessUIRenderData RenderUIData
+#define CleanupUIResources ReleaseUIResources
 #define InitializeUIRenderer FUN_180705930
 #define SetupUIRenderPipeline FUN_180705990
 #define ConfigureUIRenderSettings FUN_1807059f0

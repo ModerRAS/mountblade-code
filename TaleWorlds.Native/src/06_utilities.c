@@ -8035,6 +8035,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DestinationContextDataOffset1a0 0x1a0               // 目标上下文数据偏移量1a0
 #define DestinationContextDataOffset1a4 0x1a4               // 目标上下文数据偏移量1a4
 #define DestinationContextDataOffset1a8 0x1a8               // 目标上下文数据偏移量1a8
+#define DestinationContextDataOffset1ac 0x1ac               // 目标上下文数据偏移量1ac
+#define DestinationContextDataOffset1b0 0x1b0               // 目标上下文数据偏移量1b0
+#define DestinationContextDataOffset1b4 0x1b4               // 目标上下文数据偏移量1b4
+#define DestinationContextDataOffset1b8 0x1b8               // 目标上下文数据偏移量1b8
+#define DestinationContextDataOffset1bc 0x1bc               // 目标上下文数据偏移量1bc
+#define DestinationContextDataOffset1c0 0x1c0               // 目标上下文数据偏移量1c0
+#define DestinationContextDataOffset1c8 0x1c8               // 目标上下文数据偏移量1c8
+#define DestinationContextDataOffset1d0 0x1d0               // 目标上下文数据偏移量1d0
+#define DestinationContextDataOffset1dc 0x1dc               // 目标上下文数据偏移量1dc
+#define DestinationContextDataOffset1e0 0x1e0               // 目标上下文数据偏移量1e0
 #define OperationContextOffset800 0x320                      // 操作上下文偏移量800
 
 
