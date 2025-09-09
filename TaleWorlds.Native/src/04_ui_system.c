@@ -10028,12 +10028,12 @@ UIHandle SetUIComponentDataPointer(longlong componentManager,UIHandle dataPointe
 
 {
   UIHandle ComponentDataHandle;
-  undefined *ComponentDataBuffer;
+  UIComponentDataBuffer *ComponentDataBuffer;
   
   ComponentDataHandle = (**(code **)(componentManager + 0x148))(dataType);
   ComponentDataBuffer = &UIDefaultDataBuffer;
-  if (*(undefined **)(ComponentDataHandle + 8) != (undefined *)0x0) {
-    ComponentDataBuffer = *(undefined **)(ComponentDataHandle + 8);
+  if (*(UIComponentDataBuffer **)(ComponentDataHandle + 8) != (UIComponentDataBuffer *)0x0) {
+    ComponentDataBuffer = *(UIComponentDataBuffer **)(ComponentDataHandle + 8);
   }
   InitializeUIDataBuffer(dataPointer,ComponentDataBuffer);
   return dataPointer;
@@ -10061,7 +10061,7 @@ ulonglong ValidateUIComponentData(longlong ComponentManager, longlong DataTarget
   ulonglong ValidationResult;
   longlong ValidationDataHandle;
   longlong CharIndex;
-  undefined *DataBuffer;
+  UIDataBuffer *DataBuffer;
   ulonglong ValidationStatus;
   UIHandle CopyFlags;
   undefined *TempBuffer;
