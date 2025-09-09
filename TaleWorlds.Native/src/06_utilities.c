@@ -145,6 +145,8 @@
 #define DataBaseOffset94 0x94
 #define ResourceManagerOffset1A8 0x1a8
 #define ResourceManagerOffset1A0 0x1a0
+#define ResourceEntryOffsetD0 0xd0
+#define OperationBase1Offset78 0x78
 
 // 内存资源释放相关偏移量常量
 #define MemoryResourceReleaseOffset30 0x30
