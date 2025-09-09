@@ -93802,7 +93802,7 @@ void ExecuteUIRenderTaskWrapper(void)
 
 
 
- void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
+ void ProcessUITransformDataAdvanced(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
 /**
  * @brief UI变换矩阵处理器
  * 

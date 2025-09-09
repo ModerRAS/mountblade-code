@@ -221226,14 +221226,14 @@ LAB_180184aa5:
     MemoryPoolBlockSize = StackBufferOffset140;
     if (0xfff < SystemMemoryAllocationResult) {
       SystemMemoryAllocationResult = SystemMemoryAllocationResult + 0x27;
-      MemoryPoolBlockSize = *(long long *)(lStack_140 + -8);
-      if (0x1f < (lStack_140 - MemoryPoolBlockSize) - 8U) {
+      MemoryPoolBlockSize = *(long long *)(StackBufferOffset140 + -8);
+      if (0x1f < (StackBufferOffset140 - MemoryPoolBlockSize) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
     free(MemoryPoolBlockSize,SystemMemoryAllocationResult);
-    lStack_140 = 0;
+    StackBufferOffset140 = 0;
     memoryAllocationBuffer = NULL;
     DataProcessingBuffer = NULL;
   }
