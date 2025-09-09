@@ -4355,7 +4355,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents FUN_1800adb30
+#define InitializeSystemComponents InitializeSystemComponents
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
@@ -131254,7 +131254,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
 // 系统命令执行函数
-#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommandWithValidation
 
 // 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
@@ -131286,7 +131286,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents FUN_1800adb30
+#define InitializeSystemComponents InitializeSystemComponents
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
