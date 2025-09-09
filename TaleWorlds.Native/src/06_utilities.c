@@ -110252,7 +110252,19 @@ void ProcessExceptionDataWithFlags(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_18090f650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器设置函数F650 - 设置0x4140偏移处的异常处理器
+ * 
+ * 该函数负责在指定偏移处设置异常处理器，用于处理系统异常情况。
+ * 首先设置临时异常处理器，然后检查系统状态，最后恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090f650
+ * @note 偏移量：0x4140处设置异常处理器
+ */
+void SetupExceptionHandlerAtOffset4140(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -111007,7 +111019,7 @@ void ValidateAndProcessDataStatusFlagA1(DataBuffer operationBase, int64_t dataBu
  * 
  * @note 原始函数名：Unwind_18090f960
  */
-void Unwind_18090f960(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionRootHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + ExceptionHandlerContextOffsetA0) != (int64_t *)0x0) {
@@ -111093,7 +111105,18 @@ void ExecuteExceptionHandlerWithContextOffset18(DataBuffer operationBase, int64_
 
 
 
-void Unwind_18090f9a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x28）
+ * 
+ * 该函数处理位于偏移量0x28处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f9a0
+ */
+void ExecuteExceptionHandlerWithContextOffset28(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -111107,7 +111130,18 @@ void Unwind_18090f9a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f9b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x30）
+ * 
+ * 该函数处理位于偏移量0x30处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f9b0
+ */
+void ExecuteExceptionHandlerWithContextOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -111121,7 +111155,18 @@ void Unwind_18090f9b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f9c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x38）
+ * 
+ * 该函数处理位于偏移量0x38处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f9c0
+ */
+void ExecuteExceptionHandlerWithContextOffset38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -111183,7 +111228,18 @@ void ExecuteExceptionHandler48(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f9f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x50）
+ * 
+ * 该函数处理位于偏移量0x50处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f9f0
+ */
+void ExecuteExceptionHandlerWithContextOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -111197,7 +111253,18 @@ void Unwind_18090f9f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x58）
+ * 
+ * 该函数处理位于偏移量0x58处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fa00
+ */
+void ExecuteExceptionHandlerWithContextOffset58(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
