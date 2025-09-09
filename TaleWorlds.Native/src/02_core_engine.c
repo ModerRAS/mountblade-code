@@ -72179,7 +72179,7 @@ SystemContextProcessingLabel:
         ValidationBytePointer = ValidationBytePointer + 1;
       } while (CalculatedCodePoint != 0);
     } while (0 < (int)(StringComparisonByte - CalculatedCodePoint));
-LAB_18008efb7:
+SystemDataValidationLabel:
     if (ContextHandle1 <= SystemDataTablePointer) break;
     *SystemDataTablePointer = MemoryBlockIndex;
     *ContextHandle1 = MemoryPoolBlockSize;
@@ -72359,7 +72359,7 @@ SystemContextProcessingLabel:
         ValidationBytePointer = ValidationBytePointer + 1;
       } while (CalculatedCodePoint != 0);
     } while (0 < (int)(StringComparisonByte - CalculatedCodePoint));
-LAB_18008efb7:
+SystemDataValidationLabel:
     if (ContextHandle1 <= SystemDataTablePointer) break;
     *SystemDataTablePointer = MemoryBlockIndex;
     *ContextHandle1 = MemoryPoolBlockSize;
@@ -72513,7 +72513,7 @@ SystemContextProcessingLabel:
           LowBytePointer = LowBytePointer + 1;
         } while (MemoryAddressMaskPointer != 0);
       } while (0 < (int)(StringComparisonByte - MemoryAddressMaskPointer));
-LAB_18008efb7:
+SystemDataValidationLabel:
       if (ContextHandleTablePointer <= MemoryPoolBlockSizePointer) goto MemoryPoolSizeCheckLabel;
       *MemoryPoolBlockSizePointer = BufferStatus;
       *ContextHandlePointer = MemoryBoundaryEnd;

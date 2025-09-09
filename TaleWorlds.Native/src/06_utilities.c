@@ -4580,9 +4580,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 异常处理器执行函数宏定义
 #define ExecuteExceptionHandlerAtPrimaryPosition InvokePrimaryExceptionHandler
-#define ExecuteValidatorAtPrimaryOffset Unwind_1809070e0
-#define ExecuteValidatorAtSecondaryOffset Unwind_1809070f0
-#define ExecuteValidatorAtCombinedOffsets Unwind_180907100
+#define ExecuteValidatorAtPrimaryOffset ValidateAtPrimaryOffset
+#define ExecuteValidatorAtSecondaryOffset ValidateAtSecondaryOffset
+#define ExecuteValidatorAtCombinedOffsets ValidateAtCombinedOffsets
 #define ExecuteValidatorAtTertiaryOffset Unwind_180907110
 #define ExecuteValidatorAtQuadOffsets Unwind_180907120
 #define ResetSystemStatusFlag Unwind_180907130
