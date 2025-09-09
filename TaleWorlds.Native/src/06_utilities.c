@@ -3227,6 +3227,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ArrayElementSize12 0xc                            // 数组元素大小12 - 每个数组元素占用的字节数
 #define ArrayElementSize4 4                               // 数组元素大小4 - 每个数组元素占用的字节数
 #define ArrayElementSize8 8                               // 数组元素大小8 - 每个数组元素占用的字节数
+#define BitShift25 0x19                                  // 位位移25 - 用于位操作的位移量
 #define SystemOperationFailure 0x2e                          // 系统操作失败 - 表示系统操作失败的错误码
 #define ResourceAccessDenied 0x4c                             // 资源访问被拒绝 - 表示资源访问权限不足的错误码
 #define SystemResourceBusy 0x4e                               // 系统资源繁忙 - 表示系统资源正在使用中的错误码
@@ -24824,7 +24825,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
       if (((((dataValidationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryManagementOffset < processingDataContext - memoryManagementPointer) &&
            (processingResultIndex = *processingResultCounter, *processingResultCounter = processingResultIndex + 1, processingResultIndex < 10)) &&
           ((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
-         (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (dataBufferSize == *(int *)(systemContext + FloatProcessingBufferSizeOffset))))) {
+         (((*(uint *)(systemContext + OperationBaseOffset6C) >> BitShift25 & 1) != 0 && (dataBufferSize == *(int *)(systemContext + FloatProcessingBufferSizeOffset))))) {
 MemoryDataCopyLabel:
           memcpy(dataCopyDestinationBuffer, recordDataPointer, (int64_t)*(int *)(recordDataPointer + systemContextOffset));
       }
@@ -24953,7 +24954,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     }
     if ((((characterFlag != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
         ((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
+       (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryDataCopyLabel:
         memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + systemContextOffset));
@@ -26151,7 +26152,7 @@ ProcessCompleteLabel:
   *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) & 0xfbffffff;
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6c);
 ResourceCleanupLabel:
-  if ((securityCheckResult >> 0x19 & 1) != 0) {
+  if ((securityCheckResult >> BitShift25 & 1) != 0) {
     resourceIterator = *(int64_t *)(operationBase + OperationBaseOffsetA0);
     dataFlags = ProcessDataBufferA0(*(DataBuffer *)(operationBase + OperationBaseValidationOffset),operationBase + OperationBaseOffsetA0,0);
     if ((int)dataFlags != 0) {
@@ -31150,7 +31151,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
     systemStatusCounter = floatResultA;
     if (0 < systemOperationStatus) {
       do {
-        systemOperationResult = ValidateDataParametersA0(systemStatusCounter,(int64_t)(int)systemOperationResult * 0x6c + *(int64_t *)(systemContext + SystemDataParameterOffset20));
+        systemOperationResult = ValidateDataParametersA0(systemStatusCounter,(int64_t)(int)systemOperationResult * DataProcessingMultiplier6C + *(int64_t *)(systemContext + SystemDataParameterOffset20));
         if (systemOperationResult != 0) {
           return;
         }
