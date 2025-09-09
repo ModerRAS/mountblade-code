@@ -10014,7 +10014,7 @@ UIHandle RenderUIComponent(longlong RenderContext, longlong ComponentData)
 int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong *targetBuffer, UIHandle bufferSize)
 
 {
-  undefined *result;
+  UIPointer *propertyDataPointer;
   int uiValidationResult;
   longlong bufferStart;
   uint iterationCounter;
@@ -10036,9 +10036,9 @@ int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong 
   bufferOffset = propertyIndex;
   if (targetBuffer[1] - bufferStart >> 5 != 0) {
     do {
-      result = *(undefined **)(bufferStart + 8 + bufferOffset);
+      propertyDataPointer = *(UIPointer **)(bufferStart + 8 + bufferOffset);
       dataPointer = &UIDefaultDataBuffer;
-      if (result != (undefined *)0x0) {
+      if (propertyDataPointer != (UIPointer *)0x0) {
         dataPointer = result;
       }
       (**(code **)(uiContext + 0x128))(*dataSource, propertyIndex, dataPointer, bufferSize, isValidFlag, maxValue);
