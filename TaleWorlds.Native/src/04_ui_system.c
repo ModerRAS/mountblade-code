@@ -186527,13 +186527,16 @@ undefined DAT_180c2c254;
 // UI系统布局数据指针常量
 undefined* UILayoutDataPointer1;           // 原始变量名：UNK_18095c920
 undefined DAT_180c2c2c0;
-undefined UNK_18095ca44;
-undefined UNK_18095ca50;
-undefined UNK_18095cbc0;
+// UI系统资源管理指针常量
+undefined* UIResourceManagerPointer1;      // 原始变量名：UNK_18095ca44
+// UI系统动画数据指针常量
+undefined* UIAnimationDataPointer1;         // 原始变量名：UNK_18095ca50
+undefined* UIAnimationDataPointer2;         // 原始变量名：UNK_18095cbc0
 undefined DAT_180c2c740;
 undefined DAT_180be4ca8;
-undefined UNK_18095cc08;
-undefined UNK_18095cc30;
+// UI系统输入处理指针常量
+undefined* UIInputHandlerPointer1;         // 原始变量名：UNK_18095cc08
+undefined* UIInputHandlerPointer2;         // 原始变量名：UNK_18095cc30
 undefined UNK_18095ce68;
 undefined UNK_18095cca8;
 undefined UNK_18095cd88;

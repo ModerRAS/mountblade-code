@@ -101,6 +101,35 @@
 #define SystemDataItemSizeOffset 0x18
 #define SystemDataItemPointerOffset 0x10
 #define SystemDataValidationOffset 0x28
+
+// 异常处理器上下文偏移量常量
+#define ExceptionHandlerContextOffset80 0x80
+#define ExceptionHandlerContextOffset390 0x390
+#define ExceptionHandlerContextOffset3a0 0x3a0
+#define ExceptionHandlerContextOffset450 0x450
+#define ExceptionHandlerContextOffset440 0x440
+#define ExceptionHandlerContextOffset418 0x418
+#define ExceptionHandlerContextOffset420 0x420
+#define ExceptionHandlerContextOffset430 0x430
+#define ExceptionHandlerContextOffset3f8 0x3f8
+#define ExceptionHandlerContextOffset400 0x400
+#define ExceptionHandlerContextOffset410 0x410
+#define ExceptionHandlerContextOffset510 0x510
+#define ExceptionHandlerContextOffset500 0x500
+#define ExceptionHandlerContextOffset4e0 0x4e0
+#define ExceptionHandlerContextOffset4e8 0x4e8
+#define ExceptionHandlerContextOffset4f8 0x4f8
+#define ExceptionHandlerContextOffset4c0 0x4c0
+#define ExceptionHandlerContextOffset4c8 0x4c8
+#define ExceptionHandlerContextOffset4d8 0x4d8
+#define ExceptionHandlerContextOffset4a0 0x4a0
+#define ExceptionHandlerContextOffset4a8 0x4a8
+#define ExceptionHandlerContextOffset4b8 0x4b8
+#define ExceptionHandlerContextOffset480 0x480
+#define ExceptionHandlerContextOffset488 0x488
+
+// 系统浮点数据偏移量常量
+#define SystemFloatDataOffset388 0x388
 #define SystemStatePrimaryOffset 0x30
 #define DataBufferOffsetC 0xc
 #define DataBufferOffset24 0x24
@@ -23192,9 +23221,9 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
         if ((int)operationBase[1] == 0) {
           return ResourceInvalidErrorCode;
         }
-        resourceIterator = (int64_t)(int)(*(uint *)(memoryRegionBase + operationBase[2]) & (int)operationBase[1] - 1U);
-        allocatedMemoryBlock = (int *)(*operationBase + resourceIterator * 4);
-        calculatedSize = *(int *)(*operationBase + resourceIterator * 4);
+        ResourceTraversalIndex = (int64_t)(int)(*(uint *)(memoryRegionBase + operationBase[2]) & (int)operationBase[1] - 1U);
+        allocatedMemoryBlock = (int *)(*operationBase + ResourceTraversalIndex * 4);
+        calculatedSize = *(int *)(*operationBase + ResourceTraversalIndex * 4);
         while (calculatedSize != -1) {
           allocatedMemoryBlock = (int *)(operationBase[2] + 4 + (int64_t)calculatedSize * 0x10);
           calculatedSize = *allocatedMemoryBlock;
