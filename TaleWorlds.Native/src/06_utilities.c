@@ -29239,13 +29239,13 @@ DataWord QuerySystemStatusWithValidation(void)
         } while (validationStatusPointer < memoryResourcePointer);
       }
       systemContext[StackFrameContext + -1] = (char)statusDataPointer;
-      dataPointerD = 0x41;
+      statusDataPointer = 0x41;
     }
   }
   if (outputParameter != (int *)0x0) {
-    *outputParameter = contextPointerD + 1;
+    *outputParameter = statusContextPointer + 1;
   }
-  return dataPointerD;
+  return statusDataPointer;
 }
 
 
@@ -50081,9 +50081,19 @@ void CleanupsystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
 /**
  * @brief 销毁条件变量
  * 
- * 该函数用于销毁条件变量，释放相关资源
+ * 该函数用于销毁条件变量，释放相关资源。条件变量是线程同步的重要组件，
+ * 当不再需要时应该正确销毁以避免资源泄漏。
+ * 
+ * @return void
  * 
  * @note 原始函数名：Unwind_180903590
+ * 
+ * @details
+ * 该函数调用底层的_Cnd_destroy_in_situ()函数来销毁条件变量。
+ * 这是一个线程安全操作，确保条件变量被正确清理。
+ * 
+ * @warning 在条件变量仍被线程使用时销毁可能导致未定义行为
+ * @see DestroyMutex, _Cnd_destroy_in_situ
  */
 void DestroyConditionVariable(void)
 
@@ -50097,9 +50107,19 @@ void DestroyConditionVariable(void)
 /**
  * @brief 销毁互斥锁
  * 
- * 该函数用于销毁互斥锁，释放相关资源
+ * 该函数用于销毁互斥锁，释放相关资源。互斥锁是线程同步的核心组件，
+ * 用于保护共享资源免受并发访问的影响。
+ * 
+ * @return void
  * 
  * @note 原始函数名：Unwind_1809035b0
+ * 
+ * @details
+ * 该函数调用底层的_Mtx_destroy_in_situ()函数来销毁互斥锁。
+ * 这是一个线程安全操作，确保互斥锁被正确清理。
+ * 
+ * @warning 在互斥锁仍被线程持有时销毁可能导致未定义行为
+ * @see DestroyConditionVariable, _Mtx_destroy_in_situ
  */
 void DestroyMutex(void)
 
