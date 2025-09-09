@@ -75,6 +75,14 @@
 #define ExceptionHandlerStatusValidationOffset 0x1d8
 #define ExceptionHandlerContextCallbackOffset 0x1b8
 #define ExceptionHandlerContextFunctionOffset38 0x38
+#define ExceptionHandlerContextOffset40 0x40
+#define ExceptionHandlerContextOffset60 0x60
+#define ExceptionHandlerCallbackOffset10 0x10
+#define SystemParameterValidationOffset28 0x28
+#define SystemDataParameterOffset20 0x20
+#define SystemContextPointerOffset90 0x90
+#define ResourceManagementOffset80 0x80
+#define SystemContextOffsetPointer90 0x90
 
 // 默认异常处理器位置常量
 #define DefaultExceptionHandlerB_Position1_Offset 0x168
@@ -94,6 +102,13 @@
 #define SystemDataItemPointerOffset 0x10
 #define SystemDataValidationOffset 0x28
 #define SystemStatePrimaryOffset 0x30
+#define DataBufferOffsetC 0xc
+#define DataBufferOffset24 0x24
+#define DataBufferOffset30 0x30
+#define DataBufferOffset48 0x48
+#define DataBufferOffset44 0x44
+#define ExceptionHandlerContextOffset48 0x48
+#define ExceptionHandlerContextOffsetD0 0xd0
 
 // 内存资源释放相关偏移量常量
 #define MemoryResourceReleaseOffset30 0x30
@@ -16378,6 +16393,26 @@ void UtilityNoOperationE(void)
  * 
  * @note 原始函数名：ProcessUtilityOperation
  */
+/**
+ * @brief 处理工具系统操作
+ * 
+ * 该函数用于处理工具系统的各种操作，包括参数提取、操作执行和回调处理。
+ * 函数执行以下步骤：
+ * 1. 从操作参数中提取上下文指针和参数值
+ * 2. 设置操作参数数组
+ * 3. 执行系统操作
+ * 4. 如果操作成功，执行相应的回调函数
+ * 
+ * @param operationParams 操作参数，包含执行操作所需的所有参数信息
+ * @param systemContext 系统上下文，提供系统级别的上下文信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数是工具系统操作的核心处理函数
+ * @warning 函数执行过程中会修改操作参数数组
+ * 
+ * @see ExecuteSystemOperation, ExecuteCallbackA0
+ */
 void ProcessUtilitySystemOperation(int64_t operationParams,uint64_t systemContext)
 
 {
@@ -17071,8 +17106,22 @@ void ExecuteUtilityOperation(int64_t operationPointer,int64_t contextPointer)
 
 
 
-// 函数: void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
-// 功能：处理工具系统事件，根据事件参数执行相应的事件处理操作
+/**
+ * @brief 处理工具系统事件
+ * 
+ * 该函数负责处理工具系统的各种事件，根据事件参数执行相应的事件处理操作。
+ * 函数会执行系统事件处理，验证和处理系统资源，并管理系统事件。
+ * 
+ * @param eventPointer 事件指针，包含要处理的事件信息
+ * @param contextPointer 上下文指针，包含系统上下文信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数包含事件处理和资源管理逻辑
+ * @note 如果事件处理失败，函数会提前返回
+ * 
+ * @see ExecuteSystemEvent, ValidateAndProcessSystemResourceA0, ManageSystemResourceCC0
+ */
 void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 {
