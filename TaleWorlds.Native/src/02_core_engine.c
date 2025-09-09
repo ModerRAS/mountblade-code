@@ -2061,7 +2061,7 @@
 #define ProcessCharacterInitializeSystem InitializeCharacterSystem
 #define ProcessCharacterWithSystemContext HandleCharacterWithSystemContext
 #define ProcessCharacterWithMultipleBuffers ProcessCharacterWithMultipleBuffers
-#define ProcessCharacterWithSystemRegister FUN_180632650
+#define ProcessCharacterWithSystemRegister HandleCharacterWithSystemRegister
 #define ProcessCharacterWithValidation FUN_180146180
 #define ProcessCharacterWithSecondaryValidation FUN_1801469d0
 #define ReleaseContextHandleResources FUN_1801839a0      // 释放字符代码资源
