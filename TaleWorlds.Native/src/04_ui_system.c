@@ -100032,53 +100032,53 @@ void SynchronizeUIComponentData(int *uiContext, longlong dataSource, longlong ta
   longlong bufferIndex;
   
   if (0 < bufferSize) {
-    localLong7 = 0;
+    bufferIndex = 0;
     do {
-      TempInt4 = *(short *)(targetBuffer + localLong7 * 2) * 0x400;
-      uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - *uiContext) * 0x6d2) >> 0x10);
-      localInt5 = *uiContext + uiValidationResult;
-      *uiContext = uiValidationResult + TempInt4;
-      uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[1]) * 0x3a8a) >> 0x10);
-      loopCounter = uiContext[1] + uiCompareResult;
+      sourceDataValue = *(short *)(targetBuffer + bufferIndex * 2) * 0x400;
+      uiValidationResult = (int)((ulonglong)((longlong)(sourceDataValue - *uiContext) * 0x6d2) >> 0x10);
+      calculatedValue = *uiContext + uiValidationResult;
+      *uiContext = uiValidationResult + sourceDataValue;
+      uiCompareResult = (int)((ulonglong)((longlong)(calculatedValue - uiContext[1]) * 0x3a8a) >> 0x10);
+      dataProcessingIndex = uiContext[1] + uiCompareResult;
       uiValidationResult = uiContext[2];
-      uiContext[1] = localInt5 + uiCompareResult;
-      uiCompareResult = loopCounter - uiValidationResult;
+      uiContext[1] = calculatedValue + uiCompareResult;
+      uiCompareResult = dataProcessingIndex - uiValidationResult;
       uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x6755) >> 0x10) + uiCompareResult;
-      uiContext[2] = loopCounter + uiCompareResult;
+      uiContext[2] = dataProcessingIndex + uiCompareResult;
       uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
       if (uiValidationResult < 0x8000) {
-        result = (UIWord)uiValidationResult;
+        componentResult = (UIWord)uiValidationResult;
         if (uiValidationResult < -0x8000) {
-          result = 0x8000;
+          componentResult = 0x8000;
         }
       }
       else {
-        result = 0x7fff;
+        componentResult = 0x7fff;
       }
-      *(UIWord *)(dataSource + localLong7 * 4) = result;
-      uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - uiContext[3]) * 0x1ac6) >> 0x10);
-      localInt5 = uiContext[3] + uiValidationResult;
-      uiContext[3] = uiValidationResult + TempInt4;
-      uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[4]) * 0x64a9) >> 0x10);
-      TempInt4 = uiContext[4] + uiCompareResult;
+      *(UIWord *)(dataSource + bufferIndex * 4) = componentResult;
+      uiValidationResult = (int)((ulonglong)((longlong)(sourceDataValue - uiContext[3]) * 0x1ac6) >> 0x10);
+      calculatedValue = uiContext[3] + uiValidationResult;
+      uiContext[3] = uiValidationResult + sourceDataValue;
+      uiCompareResult = (int)((ulonglong)((longlong)(calculatedValue - uiContext[4]) * 0x64a9) >> 0x10);
+      sourceDataValue = uiContext[4] + uiCompareResult;
       uiValidationResult = uiContext[5];
-      uiContext[4] = localInt5 + uiCompareResult;
-      uiCompareResult = TempInt4 - uiValidationResult;
+      uiContext[4] = calculatedValue + uiCompareResult;
+      uiCompareResult = sourceDataValue - uiValidationResult;
       uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x270a) >> 0x10) + uiCompareResult;
-      uiContext[5] = TempInt4 + uiCompareResult;
+      uiContext[5] = sourceDataValue + uiCompareResult;
       uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
       if (uiValidationResult < 0x8000) {
-        result = (UIWord)uiValidationResult;
+        componentResult = (UIWord)uiValidationResult;
         if (uiValidationResult < -0x8000) {
-          result = 0x8000;
+          componentResult = 0x8000;
         }
       }
       else {
-        result = 0x7fff;
+        componentResult = 0x7fff;
       }
-      *(UIWord *)(dataSource + 2 + localLong7 * 4) = result;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < bufferSize);
+      *(UIWord *)(dataSource + 2 + bufferIndex * 4) = componentResult;
+      bufferIndex = bufferIndex + 1;
+    } while (bufferIndex < bufferSize);
   }
   return;
 }
