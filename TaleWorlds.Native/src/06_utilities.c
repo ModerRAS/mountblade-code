@@ -104749,7 +104749,22 @@ void ManageExceptionContextResourcesE7C0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文资源管理器E7D0
+ * 
+ * 管理异常上下文中的资源迭代器和内存块，处理资源验证和数据缓冲区操作
+ * 该函数负责：
+ * 1. 遍历异常上下文中的资源
+ * 2. 验证数据缓冲区的有效性
+ * 3. 管理资源迭代器状态
+ * 4. 配置默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e7d0
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * @warning 资源管理操作必须在适当的上下文中进行
+ */
+void ManageExceptionContextResourcesE7D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
