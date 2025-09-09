@@ -82059,8 +82059,8 @@ long long * ProcessSystemDataBlockA(long long *ContextHandle,long long Operation
   int ProcessIterationCount;
   long long *SystemDataTablePointer;
   long long systemLoopCounter;
-  long long lStackX_8;
-  uint8_t auStack_18 [16];
+  long long StackValueX8;
+  uint8_t StackBuffer18 [16];
   
   MemoryBlockListHead = ContextHandle;
   if ((long long *)ContextHandle[2] != (long long *)0x0) {
@@ -82173,10 +82173,10 @@ LAB_18009b91a:
     }
   }
 LAB_18009b938:
-  MemoryBlockListHead = (long long *)ProcessSystemDataAndAllocateTertiary(ContextHandle,auStack_18,SystemContextPtr,OperationBufferSize);
-  lStackX_8 = *MemoryBlockListHead;
+  MemoryBlockListHead = (long long *)ProcessSystemDataAndAllocateTertiary(ContextHandle,StackBuffer18,SystemContextPtr,OperationBufferSize);
+  StackValueX8 = *MemoryBlockListHead;
 LAB_18009b94b:
-  return (long long *)(lStackX_8 + 0x40);
+  return (long long *)(StackValueX8 + 0x40);
 }
 
 
