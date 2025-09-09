@@ -134607,95 +134607,91 @@ UIHandle FUN_180744d60(longlong *uiContext)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180744e20(longlong *uiContext)
+UIHandle ProcessUIContextIteration(longlong *uiContext)
 
 {
-  int processingResult;
-  UIHandle iterationCount;
-  uint eventCodeType;
-  
-  eventCodeType = *(uint *)((longlong)uiContext + 0xc);
-  if ((int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f)) < 0) {
-    if (0 < (int)uiContext[1]) {
-      return 0x1c;
+    int processingResult;
+    UIHandle iterationCount;
+    uint eventCodeType;
+    
+    eventCodeType = *(uint *)((longlong)uiContext + 0xc);
+    if ((int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f)) < 0) {
+        if (0 < (int)uiContext[1]) {
+            return 0x1c;
+        }
+        if ((0 < (int)eventCodeType) && (*uiContext != 0)) {
+            ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), *uiContext, &UIResourceBuffer180957f70, 0x100, 1);
+        }
+        *uiContext = 0;
+        eventCodeType = 0;
+        *(UIDword *)((longlong)uiContext + 0xc) = 0;
     }
-    if ((0 < (int)eventCodeType) && (*uiContext != 0)) {
-                     WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UIResourceBuffer180957f70,0x100,1);
+    processingResult = (int)uiContext[1];
+    if (processingResult < 0) {
+        memset((longlong)processingResult * 0x10 + *uiContext, 0, (longlong)-processingResult << 4);
     }
-    *uiContext = 0;
-    eventCodeType = 0;
-    *(UIDword *)((longlong)uiContext + 0xc) = 0;
-  }
-  processingResult = (int)uiContext[1];
-  if (processingResult < 0) {
-                     WARNING: Subroutine does not return
-    memset((longlong)processingResult * 0x10 + *uiContext,0,(longlong)-processingResult << 4);
-  }
-  *(UIDword *)(uiBufferData + 1) = 0;
-  if ((0 < (int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f))) &&
-     (iterationCount = FUN_180748010(uiContext,0), (int)iterationCount != 0)) {
-    return iterationCount;
-  }
-  return 0;
+    *(UIDword *)(uiBufferData + 1) = 0;
+    if ((0 < (int)((eventCodeType ^ (int)eventCodeType >> 0x1f) - ((int)eventCodeType >> 0x1f))) &&
+        (iterationCount = ProcessUIContextIterationStep(uiContext, 0), (int)iterationCount != 0)) {
+        return iterationCount;
+    }
+    return 0;
 }
 
 
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
+ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
 
 {
-  longlong allocatedMemory;
-  UIHandle *piterationCount;
-  UIHandle *ptrLocal3;
-  int sourceDataInt;
-  ulonglong loopCounter;
-  ulonglong maxProcessingCount;
-  ulonglong iterationCounter;
-  longlong contextOffset;
-  longlong *pCharacterDataOffset;
-  uint dataPointer;
-  ulonglong result1;
-  int ProcessingResult2;
-  UIByte auStackX_8 [8];
-  
-  result1 = 0;
-  maxProcessingCount = result1;
-  if ((uiContext != 0) && (sourceDataInt = FUN_180743c40(), maxProcessingCount = 0, sourceDataInt == 0)) {
-    maxProcessingCount = uiContext;
-  }
-  FUN_18078c0a0(uiContext,0);
-  if (maxProcessingCount != 0) {
-    ReleaseUIMemoryResource(maxProcessingCount);
-  }
-  maxProcessingCount = result1;
-  iterationCounter = result1;
-  if (0 < *(int *)(uiBufferData + 0x694)) {
-    do {
-      if ((*(longlong *)(maxProcessingCount + 0x30 + *(longlong *)(uiBufferData + 0x6a0)) != 0) &&
-         (loopCounter = FUN_180748290(uiContext,iterationCounter), (int)loopCounter != 0)) {
-        return loopCounter;
-      }
-      contextOffset = *(longlong *)(maxProcessingCount + *(longlong *)(uiBufferData + 0x6a0));
-      if (contextOffset != 0) {
-                     WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),contextOffset,&UNK_180958000,0x242,1);
-      }
-      dataPointer = (int)iterationCounter + 1;
-      maxProcessingCount = maxProcessingCount + 0x38;
-      iterationCounter = (ulonglong)dataPointer;
-    } while ((int)dataPointer < *(int *)(uiBufferData + 0x694));
-  }
-  *(UIHandle *)(uiContext + 0x694) = 0;
-  *(UIDword *)(uiBufferData + 0x69c) = 0;
-  *(UIByte *)(uiContext + 0x6a8) = 0;
-  *(UIDword *)(uiBufferData + 0x6ac) = 0;
-  if (*(longlong *)(uiBufferData + 0x6a0) != 0) {
-                     WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(uiBufferData + 0x6a0),
-                  &UNK_180958000,0x24a,1);
+    longlong allocatedMemory;
+    UIHandle *piterationCount;
+    UIHandle *ptrLocal3;
+    int sourceDataInt;
+    ulonglong loopCounter;
+    ulonglong maxProcessingCount;
+    ulonglong iterationCounter;
+    longlong contextOffset;
+    longlong *pCharacterDataOffset;
+    uint dataPointer;
+    ulonglong result1;
+    int ProcessingResult2;
+    UIByte auStackX_8 [8];
+    
+    result1 = 0;
+    maxProcessingCount = result1;
+    if ((uiContext != 0) && (sourceDataInt = ValidateUIResourceData(), maxProcessingCount = 0, sourceDataInt == 0)) {
+        maxProcessingCount = uiContext;
+    }
+    ProcessUIResourceRequest(uiContext, 0);
+    if (maxProcessingCount != 0) {
+        ReleaseUIMemoryResource(maxProcessingCount);
+    }
+    maxProcessingCount = result1;
+    iterationCounter = result1;
+    if (0 < *(int *)(uiBufferData + 0x694)) {
+        do {
+            if ((*(longlong *)(maxProcessingCount + 0x30 + *(longlong *)(uiBufferData + 0x6a0)) != 0) &&
+                (loopCounter = ProcessUIContextIterationStep(uiContext, iterationCounter), (int)loopCounter != 0)) {
+                return loopCounter;
+            }
+            contextOffset = *(longlong *)(maxProcessingCount + *(longlong *)(uiBufferData + 0x6a0));
+            if (contextOffset != 0) {
+                ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), contextOffset, &UIComponentDataF50, 0x242, 1);
+            }
+            dataPointer = (int)iterationCounter + 1;
+            maxProcessingCount = maxProcessingCount + 0x38;
+            iterationCounter = (ulonglong)dataPointer;
+        } while ((int)dataPointer < *(int *)(uiBufferData + 0x694));
+    }
+    *(UIHandle *)(uiContext + 0x694) = 0;
+    *(UIDword *)(uiBufferData + 0x69c) = 0;
+    *(UIByte *)(uiContext + 0x6a8) = 0;
+    *(UIDword *)(uiBufferData + 0x6ac) = 0;
+    if (*(longlong *)(uiBufferData + 0x6a0) != 0) {
+        ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), *(longlong *)(uiBufferData + 0x6a0),
+                                &UIComponentDataF50, 0x24a, 1);
   }
   FUN_180743c40(uiContext);
   maxProcessingCount = result1;

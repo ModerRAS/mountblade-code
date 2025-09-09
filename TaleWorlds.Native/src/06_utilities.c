@@ -2726,6 +2726,10 @@
 
 // 异常上下文相关偏移量常量
 #define ExceptionContextOffset3a8 0x3a8                        // 异常上下文偏移量3a8
+
+// 异常清理相关偏移量常量
+#define ExceptionCleanupOffset48 0x48                          // 异常清理偏移量48
+#define ExceptionCleanupOffset58 0x58                          // 异常清理偏移量58
 #define ExceptionHandlerContextOffsetFD8 0xfd8             // 异常处理上下文偏移量FD8
 #define ExceptionHandlerContextOffsetFE8 0xfe8             // 异常处理上下文偏移量FE8
 #define ExceptionHandlerContextOffsetFB0 0xfb0             // 异常处理上下文偏移量FB0
@@ -65580,15 +65584,34 @@ void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
  * @warning 此函数调用_CxxThrowException，不会正常返回
  * @see CleanupSystem, ConfigureSystemParametersA0, ExecuteSystemOperation
  */
+/**
+ * @brief 处理系统异常的核心函数
+ * 
+ * 该函数是系统异常处理的核心函数，负责：
+ * - 获取系统上下文信息
+ * - 执行系统清理操作
+ * - 配置系统参数
+ * - 执行系统操作
+ * - 抛出C++异常
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区，包含异常处理相关信息
+ * @param contextData 上下文数据指针，包含系统状态和配置信息
+ * 
+ * @return void 无返回值，通过异常机制传递错误
+ * 
+ * @note 这是系统异常处理的核心函数，所有异常最终都会通过此函数处理
+ * @warning 此函数会抛出C++异常，调用者需要准备好异常处理机制
+ * @see CleanupSystem, ConfigureSystemParametersA0, ExecuteSystemOperation
+ */
 void HandleSystemException(DataBuffer exceptionContext,int64_t contextData)
 
 {
   int64_t systemContext;
   
-  systemContext = *(int64_t *)(contextData + 0x60);
+  systemContext = *(int64_t *)(contextData + SystemContextOffset60);
   CleanupSystem(systemContext);
-  ConfigureSystemParametersA0(*(int64_t *)(contextData + 0x70) + 8,0);
-  ExecuteSystemOperation(*(DataBuffer *)(systemContext + 0x50),*(DataBuffer *)(contextData + 0x78));
+  ConfigureSystemParametersA0(*(int64_t *)(contextData + SystemContextOffset70) + 8,0);
+  ExecuteSystemOperation(*(DataBuffer *)(systemContext + SystemDataOffset50),*(DataBuffer *)(contextData + SystemDataOffset78));
     _CxxThrowException(0,0);
 }
 
@@ -125076,19 +125099,23 @@ void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,Data
 
 
 
-// 函数: void CleanupExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
-// 
-// 清理偏移量0x58处的异常处理资源
-// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
-// 
-// 参数:
-//   operationBase - 异常处理参数1
-//   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   operationFlagA - 异常处理参数3
-//   operationFlagB - 异常处理参数4
-// 
-// 返回值:
-//   无
+/**
+ * @brief 清理偏移量0x58处的异常处理资源
+ * 
+ * 该函数在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+ * 主要用于系统异常处理机制中的资源清理工作，与CleanupExceptionAtOffset48函数配合使用
+ * 
+ * @param operationBase 异常处理操作基址，用于定位异常处理上下文
+ * @param dataBuffer 异常上下文数据缓冲区，包含要清理的资源指针和状态信息
+ * @param operationFlagA 异常处理操作标志A，用于控制异常处理流程
+ * @param operationFlagB 异常处理操作标志B，用于控制异常处理流程
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是异常处理机制中的关键函数，负责在异常展开时清理资源
+ * @warning 调用此函数时确保dataBuffer参数有效，否则可能导致系统不稳定
+ * @see HandleSystemException, CleanupExceptionAtOffset48
+ */
 void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {

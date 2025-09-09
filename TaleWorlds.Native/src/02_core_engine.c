@@ -249810,7 +249810,7 @@ LAB_180204df9:
     return;
   }
   IntegerValue = OperationBufferSize[2];
-  if (IntegerValue == -1) goto FUN_180204f57;
+  if (IntegerValue == -1) goto ProcessSystemDataCleanupAndMemoryRelease;
   SecondaryProcessingStatusFlag = (unsigned long long *)(ContextHandle + 0x98 + (unsigned long long)*(uint *)(ContextHandle + 0x90) * 0x20);
   StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
   if (StringProcessingStatus < (void *)SecondaryProcessingStatusFlag[2]) {
@@ -249819,13 +249819,13 @@ LAB_180204df9:
     *(int *)(StringProcessingStatus + 1) = IntegerValue;
     *(int *)((long long)StringProcessingStatus + 0xc) = LockOperationResult;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
-    goto FUN_180204f57;
+    goto ProcessSystemDataCleanupAndMemoryRelease;
   }
   ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
   MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)ContextHandleTablePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
-LAB_180204eca:
+MemoryPoolAllocationLabel:
     pMemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
     StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
@@ -249905,13 +249905,13 @@ ProcessOperationBufferSizeAndMemoryBlockIndexManagement:
     *(uint32_t *)(StringProcessingStatus + 1) = OperationBufferSize;
     *(uint32_t *)((long long)StringProcessingStatus + 0xc) = Utf16Char;
     SecondaryProcessingStatusFlag[1] = SecondaryProcessingStatusFlag[1] + 0x10;
-    goto FUN_180204f4d;
+    goto ProcessPatternIndexCleanupAndMemoryRelease;
   }
   ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
   MemoryPoolBlockSize = (long long)StringProcessingStatus - (long long)ContextHandleTablePointer >> 4;
   if (MemoryPoolBlockSize == 0) {
     MemoryPoolBlockSize = 1;
-LAB_180204eca:
+MemoryPoolAllocationLabel:
     pMemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)SecondaryProcessingStatusFlag[3]);
     ContextHandleTablePointer = (void *)*SecondaryProcessingStatusFlag;
     StringProcessingStatus = (void *)SecondaryProcessingStatusFlag[1];
