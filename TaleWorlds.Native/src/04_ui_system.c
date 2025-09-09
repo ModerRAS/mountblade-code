@@ -28759,7 +28759,7 @@ void InitializeUIRenderingFunctions(void)
     g_uiSystemMemoryManager = InitializeUIMemoryManager;
   }
   UIPixelProcessorPointer = InitializeUIPixelProcessor;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIPixelProcessorPointer = (UIFunctionPtr *)&UIPixelProcessorFallbackImplementation;
   }
   if (IsValidationComplete) {
