@@ -10078,22 +10078,22 @@ LAB_UIEventInitialization:
 
  void ProcessUIComponentState(longlong uiContext)
 {
-  ulonglong result;
-  uint iterationCount;
+  ulonglong componentIndex;
+  uint currentIteration;
   ulonglong iterationCounter;
   
-  result = 0;
-  iterationCounter = result;
+  componentIndex = 0;
+  iterationCounter = componentIndex;
   if (*(longlong *)(uiBufferData + 0x170) - *(longlong *)(uiBufferData + 0x168) >> 3 == 0) {
     *(UIByte *)(uiContext + 0x188) = 1;
     return;
   }
   do {
-    (**(code **)**(UIHandle **)(result + *(longlong *)(uiBufferData + 0x168)))();
-    result = result + 8;
-    iterationCount = (int)iterationCounter + 1;
-    iterationCounter = (ulonglong)iterationCount;
-  } while ((ulonglong)(longlong)(int)iterationCount <
+    (**(code **)**(UIHandle **)(componentIndex + *(longlong *)(uiBufferData + 0x168)))();
+    componentIndex = componentIndex + 8;
+    currentIteration = (int)iterationCounter + 1;
+    iterationCounter = (ulonglong)currentIteration;
+  } while ((ulonglong)(longlong)(int)currentIteration <
            (ulonglong)(*(longlong *)(uiBufferData + 0x170) - *(longlong *)(uiBufferData + 0x168) >> 3));
   *(UIByte *)(uiContext + 0x188) = 1;
   return;
@@ -10103,19 +10103,17 @@ LAB_UIEventInitialization:
 
 
  void ValidateUIComponent(void)
-void ValidateUIComponent(void)
-
 {
   longlong contextHandle;
-  ulonglong result;
-  uint loopCounter;
+  ulonglong validationIndex;
+  uint validationCounter;
   
-  result = (ulonglong)loopCounter;
+  validationIndex = (ulonglong)validationCounter;
   do {
-    (**(code **)**(UIHandle **)(result + *(longlong *)(contextHandle + 0x168)))();
-    result = result + 8;
-    loopCounter = loopCounter + 1;
-  } while ((ulonglong)(longlong)(int)loopCounter <
+    (**(code **)**(UIHandle **)(validationIndex + *(longlong *)(contextHandle + 0x168)))();
+    validationIndex = validationIndex + 8;
+    validationCounter = validationCounter + 1;
+  } while ((ulonglong)(longlong)(int)validationCounter <
            (ulonglong)(*(longlong *)(contextHandle + 0x170) - *(longlong *)(contextHandle + 0x168) >> 3));
   *(UIByte *)(contextHandle + 0x188) = 1;
   return;
@@ -102458,25 +102456,48 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, longlong ta
 
 
 
- void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize)
-void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize)
+ /**
+ * @brief 处理UI元素的高级变换计算
+ * 
+ * 该函数负责处理UI系统中的高级变换计算，包括：
+ * - 复杂的数学运算和指数计算
+ * - 寄存器状态的管理和保存
+ * - UI元素的变换和渲染参数计算
+ * - 浮点数运算和精度处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180724f7a
+ * @note 这是一个复杂的UI变换处理函数，涉及大量数学计算
+ */
+void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize)
 
 {
+  // 处理结果状态
   int processingResult;
+  
+  // 寄存器和指针相关变量
   longlong registerAX;
-  float *TransformCoefficient1;
-  int uiCompareResult;
-  int TempInt4;
+  longlong RegisterPointer;
   longlong SourceHandle;
   UIHandle TargetHandle;
-  longlong RegisterPointer;
+  UIHandle preservedRegister15;
+  
+  // 浮点数计算相关变量
+  float *transformCoefficient;
+  int uiCompareResult;
+  int tempInt4;
   int localInt5;
   float *preservedRegister13;
-  UIHandle preservedRegister15;
-  double dVar6;
-  float ResultFloatValue;
-  float TemporaryFloatValue;
-  float LocalFloatValue9;
+  double calculationResult;
+  float resultFloatValue;
+  float temporaryFloatValue;
+  float localFloatValue9;
   UIHandle unmodifiedXMM6_Qa;
   UIHandle unmodifiedXMM6_Qb;
   UIDword preservedXMM7;

@@ -41287,6 +41287,21 @@ void CheckSystemStateAndReturnC0(void)
 
 
 
+/**
+ * @brief 处理数据集合A1
+ * 
+ * 该函数负责处理数据集合，执行安全验证和端口控制操作。
+ * 它会验证输入数据的安全性，检查端口控制请求，并执行相应的数据操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @return DataBuffer 操作结果状态码
+ * 
+ * @note 原始函数名：ProcessDataCollectionA1
+ * @warning 该函数包含安全验证机制，确保数据处理的完整性
+ * 
+ * @see ExecuteSecurityValidation, ValidatePortControlRequest, OperateDataO0
+ */
 DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
