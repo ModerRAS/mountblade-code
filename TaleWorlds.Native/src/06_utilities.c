@@ -3777,11 +3777,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量0x28
 // 功能：清理偏移量0x28处的资源指针，处理内存引用计数和异常情况
-#define CleanupResourceAtOffset28 Unwind_1809049e0
+#define CleanupResourceAtPrimaryPosition Unwind_1809049e0
 
 // 原始函数名：Unwind_1809049f0 - 资源清理函数偏移量0x48
 // 功能：清理偏移量0x48处的资源指针，处理内存引用计数和异常情况
-#define CleanupResourceAtOffset48 Unwind_1809049f0
+#define CleanupResourceAtSecondaryPosition Unwind_1809049f0
 
 // 原始函数名：Unwind_1809046d0 - 异常上下文重置函数偏移量0x18
 // 功能：重置异常上下文处理器状态，设置临时异常处理器并清理状态标志
