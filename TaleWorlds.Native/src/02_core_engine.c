@@ -219786,7 +219786,7 @@ LAB_180181af9:
     AdditionalParameter2 = (float *)CONCAT44(pFloatOffsetValue[3],PrimaryFloatValue);
     fStackX_1c = pFloatOffsetValue[1];
     fStackX_18 = SecondaryFloatValue;
-    FUN_180235ae0(&CoreEngineSignedValue70,&fStack_80,&MatrixElementO,&fStackX_18,&AdditionalParameter2,AdditionalParameter4,SystemStatusCode);
+    ProcessSystemFloatCalculation(&CoreEngineSignedValue70,&fStack_80,&MatrixElementO,&fStackX_18,&AdditionalParameter2,AdditionalParameter4,SystemStatusCode);
     if ((CoreEngineSignedValue70 != (long long *)0x0) && (SystemMemoryPointer68 != (long long *)0x0)) {
       if (cStack_3e != '\0') {
         CleanupSystemResources();
@@ -219986,7 +219986,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
           SecondaryProcessingStatusFlag = pSystemStackRegisterFlagB0;
           if (AdditionalParameter1 == (long long *)0x0) {
             if ((CoreEngineValueA8 == 0xb) && (SystemOperationResult = strcmp(pSystemStackRegisterFlagB0,&SystemEventTemplateSecondary), SystemOperationResult == 0)) {
-              FUN_180626ee0(&SystemEventTemplatePrimary,&SystemEventTemplateSecondary);
+              ProcessSystemMemoryCleanupEx(&SystemEventTemplatePrimary,&SystemEventTemplateSecondary);
             }
             else {
               CharacterStatusBuffer5 = &CoreEngineDataTemplate;
