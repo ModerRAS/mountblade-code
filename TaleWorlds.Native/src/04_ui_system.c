@@ -515,13 +515,13 @@ typedef enum {
 #define ProcessUIRenderDataUpdate UpdateUIRenderData
 
 // UI系统函数宏定义 - 数据验证和清理
-#define FUN_180787e70 ProcessUIComponentDataValidationAndCleanup
+#define FUN_180787e70 ProcessUIComponentDataValidationAndResourceCleanup
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
 // UI系统函数宏定义 - 上下文清理和验证
-#define FUN_1807864f0 CleanupUIContext
-#define FUN_180760790 ProcessUIComponentDataSource
+#define FUN_1807864f0 CleanupUIContextWithMemoryRelease
+#define FUN_180760790 ProcessUIComponentDataSourceAndValidation
 #define FUN_180760c90 ProcessUIComponentResource
 #define FUN_180749940 ValidateUIComponentHandle
 #define FUN_180744ae0 ProcessUIComponentHandle
@@ -2910,7 +2910,7 @@ typedef enum {
 #define FUN_180706b61 ProcessUIEventQueue
 #define FUN_180725856 ProcessUITransformAnimation
 #define FUN_18076b6f0 InitializeUIComponentContext
-#define FUN_180787e70 ProcessUIComponentDataValidationAndCleanup
+#define FUN_180787e70 ProcessUIComponentDataValidationAndResourceCleanup
 
 // UI系统组件管理函数美化
 #define FUN_18072a9c0 ProcessUIComponentDataA9C0

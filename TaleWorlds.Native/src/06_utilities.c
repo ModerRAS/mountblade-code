@@ -82039,17 +82039,28 @@ void ExecuteSystemMonitoringWithCallback(DataBuffer operationBase, int64_t dataB
 
 
 
-// 异常处理函数B0 - 在偏移量0x98处调用异常处理器
-void CallExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer)
+/**
+ * @brief 在指定偏移量调用异常处理器
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理器。
+ * 它会获取异常处理上下文指针，并在偏移量0x98处执行异常处理回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809098c0
+ * @note 此函数用于异常处理系统中的资源清理和状态管理
+ */
+void InvokeExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;   // 异常处理上下文指针
+  int64_t *exceptionHandlerContext;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemManagementOffset98);
-  if (exceptionContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + SystemManagementOffset98);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
     // 执行异常处理回调函数
-    (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
+    (**(FunctionPointer**)(*exceptionHandlerContext + SystemComponentContextOffset))();
   }
   return;
 }
@@ -82068,16 +82079,16 @@ void CallExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer
  * @note 原始函数名：Unwind_1809091b0
  * @note 此函数用于异常处理系统中的资源清理和状态管理
  */
-void CallExceptionHandlerAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;   // 异常处理上下文指针
+  int64_t *exceptionHandlerContext;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0xa0);
-  if (exceptionContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + SystemManagementOffsetA0);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
     // 执行异常处理回调函数
-    (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
+    (**(FunctionPointer**)(*exceptionHandlerContext + SystemComponentContextOffset))();
   }
   return;
 }
@@ -89988,83 +89999,167 @@ void InvokeExceptionHandlerContextM0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void ExecuteMemoryValidationOperation(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存验证操作
+ * 
+ * 该函数负责在指定偏移量处执行内存验证操作。
+ * 它会调用内存操作函数进行数据验证。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_180909930
+ * @note 此函数用于内存验证和数据处理
+ */
+void ExecuteMemoryValidationWithHandler(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0xf0,8,0x10,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemManagementOffsetF0, MemoryOperationSize8, MemoryAlignment16, ValidateDataHandler);
   return;
 }
 
 
 
-void ExecuteMemoryValidationOperationAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x170处执行内存验证操作
+ * 
+ * 该函数负责在指定偏移量处执行内存验证操作。
+ * 它会调用内存操作函数进行数据验证。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_180909940
+ * @note 此函数用于内存验证和数据处理
+ */
+void ExecuteMemoryValidationAtOffset170(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x170,8,0x10,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemManagementOffset170, MemoryOperationSize8, MemoryAlignment16, ValidateDataHandler);
   return;
 }
 
 
 
-void ExecuteMemoryValidationOperationAtOffset1F0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x1F0处执行内存验证操作
+ * 
+ * 该函数负责在指定偏移量处执行内存验证操作。
+ * 它会调用内存操作函数进行数据验证。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_180909950
+ * @note 此函数用于内存验证和数据处理
+ */
+void ExecuteMemoryValidationAtOffset1F0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x1f0,8,0x10,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemManagementOffset1F0, MemoryOperationSize8, MemoryAlignment16, ValidateDataHandler);
   return;
 }
 
 
 
-void InvokeExceptionHandlerContextAtOffset270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x270处调用异常处理上下文
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理上下文。
+ * 它会获取异常处理上下文指针，并在偏移量0x270处执行相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909960
+ * @note 此函数用于异常处理系统中的资源管理
+ */
+void InvokeExceptionHandlerAtOffset270(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;
+  int64_t *exceptionHandlerContext;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x270);
-  if (exceptionContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemManagementOffset270);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
 
 
 
-void InvokeExceptionHandlerContextAtOffset278(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x278处调用异常处理上下文
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理上下文。
+ * 它会获取异常处理上下文指针，并在偏移量0x278处执行相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909970
+ * @note 此函数用于异常处理系统中的资源管理
+ */
+void InvokeExceptionHandlerAtOffset278(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;
+  int64_t *exceptionHandlerContext;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x278);
-  if (exceptionContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemManagementOffset278);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
 
 
 
-void InvokeExceptionHandlerContextAtOffset280(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x280处调用异常处理上下文
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理上下文。
+ * 它会获取异常处理上下文指针，并在偏移量0x280处执行相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909980
+ * @note 此函数用于异常处理系统中的资源管理
+ */
+void InvokeExceptionHandlerAtOffset280(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;
+  int64_t *exceptionHandlerContext;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemParameterValidationOffset280);
-  if (exceptionContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemParameterValidationOffset280);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
 
 
 
-void InvokeExceptionHandlerContextAtOffset288(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量0x288处调用异常处理上下文
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理上下文。
+ * 它会获取异常处理上下文指针，并在偏移量0x288处执行相应的回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909990
+ * @note 此函数用于异常处理系统中的资源管理
+ */
+void InvokeExceptionHandlerAtOffset288(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionContextPointer;
+  int64_t *exceptionHandlerContext;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemParameterValidationOffset288);
-  if (exceptionContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemParameterValidationOffset288);
+  if (exceptionHandlerContext != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
