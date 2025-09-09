@@ -92600,7 +92600,7 @@ void ProcessUIRenderingUpdateTask(longlong uiContext, int dataSource)
       calculatedMultiplier = calculatedMultiplier * dataSource;
       ProcessUIRenderingUpdate();
     }
-    FUN_18071b320(uiContext + 0x1698, *(int *)(uiBufferData + 0x11c8), dataSource * 1000, 1);
+    ClearUIContextMemory(uiContext + 0x1698, *(int *)(uiBufferData + 0x11c8), dataSource * 1000, 1);
   }
   *(UIDword *)(uiBufferData + 0x11cc) = *(UIDword *)(uiBufferData + 0x11c8);
   ExecuteUIRenderTask(xorDecryptedValue ^ (ulonglong)encryptedStackData);
@@ -92786,7 +92786,7 @@ void ProcessUITransformMatrixCalculation(float *uiContext,UIHandle dataSource,in
 
 
 
- void FUN_18071ebe0(float *uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
+ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
 // 原始函数名：FUN_18071ebe0 - UI变换矩阵处理器
 #define ProcessUITransformMatrix FUN_18071ebe0
 
@@ -93154,7 +93154,7 @@ void UIEmptyOperationProcessor(void)
 
 
 
- void FUN_18071f270(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
+ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
 /**
  * @brief 处理UI渲染数据变换和缓冲区操作
  * 
@@ -93577,7 +93577,7 @@ void ProcessUIFloatDataTransform(int *uiContext,float *dataSource,float *targetB
       }
       sVar7 = *(short *)(stackLonga8 + 0xc + (longlong)ptrResult5);
       if (sVar7 == 2) {
-        FUN_18071e580(targetBuffer,processingResult7,*ptrResult5);
+        ProcessUITransformCoefficients(targetBuffer,processingResult7,*ptrResult5);
       }
       else {
         bVar9 = (byte)uiValidationResult0;
@@ -93632,12 +93632,12 @@ void ProcessUIFloatDataTransform(int *uiContext,float *dataSource,float *targetB
         else if (sVar7 == 4) {
           stackUIntc8 = *ptrResult5;
           stackIntc0 = uiValidationResult4;
-          FUN_18071ebe0(targetBuffer,(longlong)(int)(stackUIntc8 << (bVar9 & 0x1f)),uiContext);
+          ProcessUITransformMatrix(targetBuffer,(longlong)(int)(stackUIntc8 << (bVar9 & 0x1f)),uiContext);
         }
         else if (sVar7 == 5) {
           stackUIntc8 = *ptrResult5;
           stackIntc0 = uiValidationResult4;
-          FUN_18071f270(targetBuffer,(longlong)(int)(stackUIntc8 << (bVar9 & 0x1f)),uiContext);
+          ProcessUIRenderDataTransformation(targetBuffer,(longlong)(int)(stackUIntc8 << (bVar9 & 0x1f)),uiContext);
         }
       }
       ptrResult5 = ptrResult5 + -1;
@@ -93713,7 +93713,7 @@ void ProcessUITransformData(float uiContext, UIHandle dataSource, UIHandle targe
     }
     sVar4 = *(short *)(lStack0000000000000040 + 0xc + (longlong)componentTransformData);
     if (sVar4 == 2) {
-      uiContext = (float)FUN_18071e580(uiContext,bufferSize,*componentTransformData);
+      uiContext = (float)ProcessUITransformCoefficients(uiContext,bufferSize,*componentTransformData);
     }
     else if (sVar4 == 3) {
       CounterResult = *componentTransformData;
@@ -93763,10 +93763,10 @@ void ProcessUITransformData(float uiContext, UIHandle dataSource, UIHandle targe
       }
     }
     else if (sVar4 == 4) {
-      uiContext = (float)FUN_18071ebe0(uiContext,(longlong)(int)(*componentTransformData << (unmodifiedSIL & 0x1f)));
+      uiContext = (float)ProcessUITransformMatrix(uiContext,(longlong)(int)(*componentTransformData << (unmodifiedSIL & 0x1f)));
     }
     else if (sVar4 == 5) {
-      uiContext = (float)FUN_18071f270(uiContext,(longlong)(int)(*componentTransformData << (unmodifiedSIL & 0x1f)));
+      uiContext = (float)ProcessUIRenderDataTransformation(uiContext,(longlong)(int)(*componentTransformData << (unmodifiedSIL & 0x1f)));
     }
     componentTransformData = componentTransformData + -1;
     CounterResult = (int)preservedRegister13 - 1;
@@ -93852,7 +93852,7 @@ void ProcessUITransformMatrix(float uiContext, UIHandle dataSource, UIHandle tar
   ulonglong stackParam00000068;
   
   do {
-    uiContext = (float)FUN_18071e580(uiContext,bufferSize,*targetHandle);
+    uiContext = (float)ProcessUITransformCoefficients(uiContext,bufferSize,*targetHandle);
     bufferSize = preservedRegister15D;
     while( true ) {
       targetHandle = targetHandle + -1;
@@ -93918,13 +93918,13 @@ void ProcessUITransformMatrix(float uiContext, UIHandle dataSource, UIHandle tar
         }
       }
       else if (operationType == 4) {
-        uiContext = (float)FUN_18071ebe0(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
+        uiContext = (float)ProcessUITransformMatrix(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
         bufferSize = preservedRegister15D;
       }
       else {
         bufferSize = preservedRegister15D;
         if (operationType == 5) {
-          uiContext = (float)FUN_18071f270(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
+          uiContext = (float)ProcessUIRenderDataTransformation(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
         }
       }
     }
@@ -94008,7 +94008,7 @@ void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
       }
       sVar5 = *(short *)(allocatedMemory3 + 0xc + uiContext);
       if (sVar5 == 2) {
-        FUN_18071e580(dataSource,processingResult6,*(UIDword *)((longlong)astackUInta8 + allocatedMemory3));
+        ProcessUITransformCoefficients(dataSource,processingResult6,*(UIDword *)((longlong)astackUInta8 + allocatedMemory3));
       }
       else {
         bVar7 = (byte)processedCount;
@@ -94063,12 +94063,12 @@ void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
         else if (sVar5 == 4) {
           stackIntc8 = *(int *)((longlong)astackUInta8 + allocatedMemory3);
           stackIntc0 = uiValidationResult2;
-          FUN_18071ebe0(dataSource,(longlong)(stackIntc8 << (bVar7 & 0x1f)),uiContext);
+          ProcessUITransformMatrix(dataSource,(longlong)(stackIntc8 << (bVar7 & 0x1f)),uiContext);
         }
         else if (sVar5 == 5) {
           stackIntc8 = *(int *)((longlong)astackUInta8 + allocatedMemory3);
           stackIntc0 = uiValidationResult2;
-          FUN_18071f270(dataSource,(longlong)(stackIntc8 << (bVar7 & 0x1f)),uiContext);
+          ProcessUIRenderDataTransformation(dataSource,(longlong)(stackIntc8 << (bVar7 & 0x1f)),uiContext);
         }
       }
       allocatedMemory3 = allocatedMemory3 + -4;
@@ -94137,7 +94137,7 @@ void ProcessUITransformCoefficients(void)
     }
     sVar4 = *(short *)(allocatedMemory0 + 0xc + contextHandle);
     if (sVar4 == 2) {
-      FUN_18071e580(SourceHandle,register9D,*(UIDword *)(&stack0x00000040 + allocatedMemory0));
+      ProcessUITransformCoefficients(SourceHandle,register9D,*(UIDword *)(&stack0x00000040 + allocatedMemory0));
     }
     else if (sVar4 == 3) {
       CounterResult = *(uint *)(&stack0x00000040 + allocatedMemory0);
@@ -94188,11 +94188,11 @@ void ProcessUITransformCoefficients(void)
       }
     }
     else if (sVar4 == 4) {
-      FUN_18071ebe0(SourceHandle,(longlong)(*(int *)(&stack0x00000040 + allocatedMemory0) << (unmodifiedBPL & 0x1f)))
+      ProcessUITransformMatrix(SourceHandle,(longlong)(*(int *)(&stack0x00000040 + allocatedMemory0) << (unmodifiedBPL & 0x1f)))
       ;
     }
     else if (sVar4 == 5) {
-      FUN_18071f270(SourceHandle,(longlong)(*(int *)(&stack0x00000040 + allocatedMemory0) << (unmodifiedBPL & 0x1f)))
+      ProcessUIRenderDataTransformation(SourceHandle,(longlong)(*(int *)(&stack0x00000040 + allocatedMemory0) << (unmodifiedBPL & 0x1f)))
       ;
     }
     allocatedMemory0 = allocatedMemory0 + -4;
@@ -94284,7 +94284,7 @@ void ProcessUIComponentTransformations(void)
   ulonglong stackParam00000060;
   
   do {
-    FUN_18071e580(SourceHandle,register9D,*(UIDword *)(&stack0x00000040 + TargetHandle));
+    ProcessUITransformCoefficients(SourceHandle,register9D,*(UIDword *)(&stack0x00000040 + TargetHandle));
     register9D = preservedRegister15D;
     while( true ) {
       contextOffset = TargetHandle;
@@ -94352,7 +94352,7 @@ void ProcessUIComponentTransformations(void)
         }
       }
       else if (sVar4 == 4) {
-        FUN_18071ebe0(SourceHandle,
+        ProcessUITransformMatrix(SourceHandle,
                       (longlong)
                       (*(int *)((longlong)&stack0x00000038 + contextOffset + 4) << (unmodifiedBPL & 0x1f)));
         register9D = preservedRegister15D;
@@ -94360,7 +94360,7 @@ void ProcessUIComponentTransformations(void)
       else {
         register9D = preservedRegister15D;
         if (sVar4 == 5) {
-          FUN_18071f270(SourceHandle,
+          ProcessUIRenderDataTransformation(SourceHandle,
                         (longlong)
                         (*(int *)((longlong)&stack0x00000038 + contextOffset + 4) << (unmodifiedBPL & 0x1f)));
         }
@@ -97232,7 +97232,7 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
   localInt5 = (int)(short)(TempInt4 * 5) * (int)*(short *)(uiContext + 0x914);
   uiValidationResult = *(int *)(uiBufferData + 0x90c);
   if ((uiValidationResult != dataSource) || (*(int *)(uiBufferData + 0x910) != (int)targetBuffer)) {
-    result = FUN_18071b320(uiContext + 0x990,TempInt4 * 1000,targetBuffer,0);
+    result = ClearUIContextMemory(uiContext + 0x990,TempInt4 * 1000,targetBuffer,0);
     *(int *)(uiBufferData + 0x910) = (int)targetBuffer;
     uiValidationResult = *(int *)(uiBufferData + 0x90c);
   }

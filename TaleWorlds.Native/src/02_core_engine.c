@@ -221190,7 +221190,7 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
   MemoryPoolBlockSize = AllocateSystemMemoryPool(0x48);
   ProcessingContextPointerBuffer = (uint64_t **)0x0;
   SystemCharacterStatusBuffer = (void *)Utf8SourcePointer[7];
-  lStack_b8 = MemoryPoolBlockSize;
+  StackBufferOffsetB8 = MemoryPoolBlockSize;
   if (SystemCharacterStatusBuffer != NULL) {
     ProcessingContextPointerBuffer = (uint64_t **)(**(code **)*SystemCharacterStatusBuffer)(SystemCharacterStatusBuffer,&SystemEventDispatcher);
   }
@@ -221213,17 +221213,17 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
   }
 LAB_180184aa5:
   *(void *)(MemoryPoolBlockSize + 0x40) = StackProcessingValue;
-  NVGSDK_Highlights_ConfigureAsync(*(void *)(CoreEngineSignedValueE8 + 8),&lStack_e0,FUN_1801842a0,MemoryPoolBlockSize);
+  NVGSDK_Highlights_ConfigureAsync(*(void *)(CoreEngineSignedValueE8 + 8),&StackBufferOffsetE0,FUN_1801842a0,MemoryPoolBlockSize);
   CoreEngineUnsignedValue = 1;
   SystemFlagB = &SystemEventDispatcher;
   if (ProcessingContextPointerBuffer != (uint64_t **)0x0) {
     (*(code *)(*ProcessingContextPointerBuffer)[4]              (ProcessingContextPointerBuffer,CONCAT71((int7)((unsigned long long)&SystemEventDispatcher >> 8),ProcessingContextPointerBuffer != &SystemEventDispatcher)    ;
     ProcessingContextPointerBuffer = (uint64_t **)0x0;
   }
-  if (lStack_140 != 0) {
-    FUN_180189900(lStack_140,memoryAllocationBuffer);
-    SystemMemoryAllocationResult = (((long long)DataProcessingBuffer - lStack_140) / 0x18) * 0x18;
-    MemoryPoolBlockSize = lStack_140;
+  if (StackBufferOffset140 != 0) {
+    FUN_180189900(StackBufferOffset140,memoryAllocationBuffer);
+    SystemMemoryAllocationResult = (((long long)DataProcessingBuffer - StackBufferOffset140) / 0x18) * 0x18;
+    MemoryPoolBlockSize = StackBufferOffset140;
     if (0xfff < SystemMemoryAllocationResult) {
       SystemMemoryAllocationResult = SystemMemoryAllocationResult + 0x27;
       MemoryPoolBlockSize = *(long long *)(lStack_140 + -8);
