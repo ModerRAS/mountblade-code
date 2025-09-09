@@ -30807,7 +30807,7 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
   
   rawDataValue = *operationData;
   if (rawDataValue + 0x4000 < 0x8000) {
-    systemProcessedData = CONCAT22(systemProcessedData._2_2_,(short)rawDataValue) & 0xffff7fff;
+    processedSystemData = CONCAT22(processedSystemData._2_2_,(short)rawDataValue) & 0xffff7fff;
     processingMode = 2;
   }
   else {
@@ -40018,30 +40018,30 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
+  stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackValidationBuffer,4)
   ;
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
+    stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                      (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                      (*(DataBuffer **)(*dataBuffer + 8),stackValidationBuffer,4);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
       }
-      stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
+      stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                        (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                        (*(DataBuffer **)(*dataBuffer + 8),stackValidationBuffer,4);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
           return ResourceInvalidErrorCode;
         }
-        stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset60);
+        stackValidationBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset60);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                          (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                          (*(DataBuffer **)(*dataBuffer + 8),stackValidationBuffer,4);
         if (((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 100), (int)systemDataBuffer == 0))
             && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset68), (int)systemDataBuffer == 0)) &&
            (((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset6c), (int)systemDataBuffer == 0 &&
