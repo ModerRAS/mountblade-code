@@ -12527,6 +12527,24 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define ProcessSystemMemoryBlock FUN_180189600
 
 /**
+ * @brief 处理系统标志和参数
+ * 
+ * 该函数处理系统标志和参数
+ * 
+ * @note 原始函数名：FUN_1801891f0
+ */
+#define ProcessSystemFlagsAndParameters FUN_1801891f0
+
+/**
+ * @brief 系统状态重置函数
+ * 
+ * 该函数重置系统状态
+ * 
+ * @note 原始函数名：FUN_180189190
+ */
+#define ResetSystemStatus FUN_180189190
+
+/**
  * @brief 系统内存指针处理函数
  * 
  * 该函数处理系统内存指针操作

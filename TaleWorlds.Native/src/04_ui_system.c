@@ -3174,8 +3174,32 @@ void* UIRenderTarget;
  * @note 原始函数名：ProcessUIResourceAllocation
  */
 #define ProcessUIResourceAllocation GetUIElementCount
+
+/**
+ * @brief 设置UI元素状态
+ * 
+ * 该函数负责设置UI元素的状态，包括激活、可见、禁用等状态
+ * 
+ * @note 原始函数名：SetUIElementState
+ */
 #define SetUIElementState SetUIElementState
+
+/**
+ * @brief 更新UI元素数据
+ * 
+ * 该函数负责更新UI元素的数据，包括位置、大小、颜色等属性
+ * 
+ * @note 原始函数名：UpdateUIElementData
+ */
 #define UpdateUIElementData UpdateUIElementData
+
+/**
+ * @brief 处理带偏移量的UI数据传输
+ * 
+ * 该函数负责处理带有偏移量的UI数据传输操作
+ * 
+ * @note 原始函数名：FUN_18070ee30
+ */
 #define FUN_18070ee30 ProcessUIDataTransferWithOffset
 
  UI显示缓冲区
