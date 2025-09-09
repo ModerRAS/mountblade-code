@@ -114273,7 +114273,17 @@ void CleanupMemoryResourceHandlers(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_180910340(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数 - 上下文偏移量0x1b80
+ * 
+ * 清理内存资源引用计数，处理内存块偏移计算和内存区域验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910340
+ */
+void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
