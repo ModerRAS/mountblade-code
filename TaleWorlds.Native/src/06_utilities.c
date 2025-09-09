@@ -147,6 +147,21 @@
 #define DestinationContextOffset1B8 0x1b8
 #define DestinationContextOffset1B0 0x1b0
 #define DestinationContextOffset1BC 0x1bc
+
+// 异常处理回调偏移量常量
+#define ExceptionHandlerCallbackOffset370 0x370
+#define ExceptionHandlerCallbackOffset360 0x360
+#define ExceptionHandlerCallbackOffset338 0x338
+#define SystemDataValidationOffset340 0x340
+#define FloatStatusFlagOffset0 0x0
+#define ExceptionHandlerCallbackOffset318 0x318
+#define ExceptionHandlerCallbackOffset800 0x320
+#define ExceptionHandlerCallbackOffset330 0x330
+#define ExceptionHandlerCallbackOffset3e0 0x3e0
+#define ExceptionHandlerCallbackOffset3d0 0x3d0
+#define ExceptionHandlerCallbackOffset3a8 0x3a8
+#define SystemDataValidationOffset3b0 0x3b0
+#define SystemDataRecordOffset3c0 0x3c0
 #define DestinationContextOffset1C0 0x1c0
 #define DestinationContextOffset1C8 0x1c8
 #define DestinationContextOffset1D0 0x1d0
@@ -14878,13 +14893,24 @@ DataWord GetSystemStatus(void)
 
 
 /**
- * @brief 紧急系统关闭函数
+ * @brief 紧急系统关闭
  * 
- * 在系统遇到严重错误或紧急情况时调用，执行资源释放并立即关闭系统。
- * 这是一个紧急处理函数，用于处理无法恢复的系统错误。
+ * 该函数负责在系统出现严重错误或紧急情况下强制关闭系统。
+ * 它会立即释放系统资源并终止系统运行，确保系统安全关闭。
  * 
- * @note 原始函数名：EmergencyShutdown
- * @warning 此函数不会返回，会直接终止程序执行
+ * 函数执行流程：
+ * 1. 立即释放系统关键资源
+ * 2. 执行系统关闭序列
+ * 3. 确保系统安全终止
+ * 
+ * @note 此函数是系统应急处理机制的核心组件
+ * @warning 此函数应该在系统出现严重错误时调用，会导致系统立即关闭
+ * @warning 调用此函数后系统将无法继续运行
+ * 
+ * @see ReleaseResource, ExecuteSystemShutdown
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
  */
 void EmergencyShutdown(void)
 

@@ -200003,7 +200003,19 @@ LAB_18078835d:
 
 
 
-UIHandle FUN_180788231(int uiContext,int dataSource)
+/**
+ * @brief 处理UI事件上下文
+ * 
+ * 该函数负责处理UI系统的事件上下文，根据不同的上下文类型和数据源
+ * 进行相应的事件处理和状态管理。函数支持多种上下文类型和数据源模式。
+ * 
+ * @param uiContext UI上下文类型，决定处理逻辑
+ * @param dataSource 数据源类型，影响处理方式
+ * @return UIHandle 返回处理结果句柄
+ * 
+ * @note 原始函数名：FUN_180788231
+ */
+UIHandle ProcessUIEventContext(int uiContext,int dataSource)
 
 {
   int bufferSize;
@@ -200017,7 +200029,7 @@ UIHandle FUN_180788231(int uiContext,int dataSource)
   uint loopCounter;
   longlong contextHandleData;
   longlong localLong7;
-  int localInt8;
+  int contextType;
   uint eventProcessingStatus;
   longlong preservedRegister13;
   ulonglong result0;
@@ -200026,22 +200038,22 @@ UIHandle FUN_180788231(int uiContext,int dataSource)
   UIDword ResultValue3;
   
   if (uiContext == 1) {
-    localInt8 = 1;
+    contextType = 1;
   }
   else if (uiContext == 2) {
-    localInt8 = 2;
+    contextType = 2;
   }
   else if (uiContext == 3) {
-    localInt8 = 3;
+    contextType = 3;
   }
   else if ((uiContext == 4) || (uiContext == 5)) {
-    localInt8 = 4;
+    contextType = 4;
   }
   else {
-    localInt8 = bufferSize + 1;
+    contextType = bufferSize + 1;
   }
   uiCompareResult = *(int *)(BasePointer + 0x6f);
-  eventProcessingStatus = localInt8 * uiCompareResult;
+  eventProcessingStatus = contextType * uiCompareResult;
   result2 = (ulonglong)
            (((float)TargetHandle * *(float *)(*(longlong *)(contextHandle + 0x40) + 0x6c)) /
            (float)*(int *)(contextHandle + 0x1c));
@@ -200089,7 +200101,7 @@ LAB_180788319:
         goto LAB_180788319;
       }
     }
-    localInt8 = (int)result0;
+    contextType = (int)result0;
     if (dataSource == 1) {
       allocatedMemory = 8;
 LAB_18078835d:
@@ -200104,7 +200116,7 @@ LAB_18078835d:
         allocatedMemory = 0x18;
         goto LAB_18078835d;
       }
-      if ((dataSource == 4) || (TempInt4 = localInt8, dataSource == 5)) {
+      if ((dataSource == 4) || (TempInt4 = contextType, dataSource == 5)) {
         allocatedMemory = 0x20;
         goto LAB_18078835d;
       }
@@ -210015,7 +210027,7 @@ UIHandle FUN_180790930(longlong uiContext)
 
 
 
-UIHandle FUN_180790936(longlong uiContext)
+UIHandle ProcessUIContextCleanup(longlong uiContext)
 
 {
   longlong *pallocatedMemory;
