@@ -27140,7 +27140,7 @@ void ProcessDataTypesA0(void)
   
   memoryresourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = dataPointerD;
-  StackPointerRegisterA = memoryresourcePointer2;
+  StackPointerRegisterA = memoryResourcePointer2;
   exceptionHandlerContext5 = (*(code *)*systemInputAccumulator)(memoryResourcePointer2);
   resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + ExceptionHandlerContext5OffsetD0),&validationBuffer);
   if (resourceValidationStatus == 0) {
@@ -27159,7 +27159,7 @@ void ProcessDataTypesA0(void)
           dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
           memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
-          memoryresourcePointer2 = StackPointerRegisterA;
+          memoryResourcePointer2 = StackPointerRegisterA;
           if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
             operationResult4 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
             StackFrameContext[-4] = &SystemMemoryInitializationReference;
@@ -30833,20 +30833,20 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
       memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
       operationStatus = *(int *)(systemContext + systemContextOffset78);
       *(int *)(StackFrameContext + ArrayDataOffset) = operationStatus;
-      arrayIndex = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,StackFrameContext + ArrayDataOffset,4);
+      arrayIndex = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
       if (arrayIndex == 0) {
         if (0 < operationStatus) {
           do {
             memoryPointer = *(int64_t *)(systemContext + systemContextOffset70);
             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
             *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(memoryPointer + DestinationContext * 8);
-            arrayIndex = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,StackFrameContext + ArrayDataOffset,4);
+            arrayIndex = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
             if (arrayIndex != 0) {
               return;
             }
             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
             *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(memoryPointer + 4 + DestinationContext * 8);
-            arrayIndex = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,StackFrameContext + ArrayDataOffset,4);
+            arrayIndex = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
             if (arrayIndex != 0) {
               return;
             }

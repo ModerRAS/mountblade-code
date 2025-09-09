@@ -225036,7 +225036,15 @@ LAB_18018802f:
 
 
 
-long long FUN_180187f94(void
+/**
+ * @brief 处理系统字符数据和内存管理
+ * 
+ * 该函数负责处理系统字符数据的内存分配、模式匹配和系统上下文管理。
+ * 主要用于高级字符编码转换过程中的复杂字符处理操作。
+ * 
+ * @return long long 返回处理后的系统上下文指针
+ */
+long long ProcessSystemCharacterDataAndMemoryManagement(void
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -225065,7 +225073,17 @@ LAB_18018802f:
 
 
 
-long long FUN_180187f9e(void
+/**
+ * @brief 处理系统字符数据验证和转换
+ * 
+ * 该函数负责处理系统字符数据的验证和转换操作，包括：
+ * - UTF-16字符处理
+ * - 内存分配索引管理
+ * - 数据验证和转换
+ * 
+ * @return long long 返回处理后的系统上下文指针
+ */
+long long ProcessSystemCharacterDataValidationAndConversion(void
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -225084,8 +225102,8 @@ LAB_18018802f:
     }
   }
   else if (-1 < InputDataLength) goto LAB_18018802f;
-  FUN_18018a130();
-  FUN_18018a1c0();
+  ProcessSystemMemoryAllocationAndValidation();
+  ProcessSystemMemoryManagementAndStatusCheck();
   return StackProcessingParameter3 + 0x40;
 }
 
@@ -228657,7 +228675,17 @@ LAB_18018bee2:
 
 
 
-long long * FUN_18018c160(long long *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 处理系统上下文和字符数据
+ * 
+ * 该函数负责处理系统上下文和字符数据的操作，包括内存分配和数据验证。
+ * 主要用于处理字符编码转换过程中的上下文管理和数据处理。
+ * 
+ * @param ContextHandle 字符代码指针
+ * @param ContextHandleSize 字符代码大小指针
+ * @return long long* 返回处理后的系统上下文指针
+ */
+long long * ProcessSystemContextAndCharacterData(long long *ContextHandle,uint64_t *ContextHandleSize
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
@@ -229193,7 +229221,21 @@ LAB_18018c9b2:
 
 
 
-long long * FUN_18018ca20(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的编码转换操作，包括：
+ * - 字符编码格式转换
+ * - 内存缓冲区管理
+ * - 数据验证和错误处理
+ * 
+ * @param ContextHandle 字符代码指针
+ * @param OperationBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 返回转换后的数据指针
+ */
+long long * ProcessUtf8ToUtf16EncodingConversion(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer
 {
   byte StringComparisonByte;
   bool HighByte;
