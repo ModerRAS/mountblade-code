@@ -267,6 +267,9 @@
 #define DataBufferOffset4B0 0x4b0
 #define DataBufferOffset5D0 0x5d0
 
+// 验证状态偏移量常量
+#define ValidationResultOffset7C 0x7c
+
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffsetA0 0xa0
 #define ExceptionHandlerContextOffset108 0x108
@@ -32346,7 +32349,7 @@ int SetSystemStatusFlag(void)
   int64_t systemContext;
   int systemStatus;
   
-  *(DataWord *)(systemContext + 0xd4) = 7;
+  *(DataWord *)(systemContext + SystemContextDataOffsetD4) = 7;
   if (systemStatus != 0) {
     return systemStatus;
   }
@@ -32366,7 +32369,7 @@ int GetSystemStatusFlag(void)
   DataWord statusValue;
   int systemStatus;
   
-  *(DataWord *)(systemContext + 0xd4) = statusValue;
+  *(DataWord *)(systemContext + SystemContextDataOffsetD4) = statusValue;
   if (systemStatus != 0) {
     return systemStatus;
   }
@@ -32818,7 +32821,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
 ProcessCheckpointDataFlowControl:
   if ((int)operationResult == 0) {
-    *(bool *)(operationBase + 0x7c) = ValidationResult != (char)operationResult;
+    *(bool *)(operationBase + ValidationResultOffset7C) = ValidationResult != (char)operationResult;
   }
   return operationResult;
 }
