@@ -291499,3 +291499,63 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 原始函数名：FUN_180130e20 - 系统并行加载函数
 #define ParallelLoadSystemData FUN_180130e20
 
+// 原始函数名：FUN_1801676b0 - UTF-8上下文处理函数
+#define ProcessUtf8ContextHandle FUN_1801676b0
+
+// 原始函数名：FUN_18016cacd - 系统初始化函数
+#define InitializeSystemEx FUN_18016cacd
+
+// 原始函数名：FUN_180170da0 - UTF-8到UTF-16转换处理函数
+#define ConvertUtf8ToUtf16Ex FUN_180170da0
+
+// 原始函数名：FUN_180170e20 - 上下文处理函数
+#define ProcessContextHandleEx FUN_180170e20
+
+// 原始函数名：FUN_180171101 - 上下文验证函数
+#define ValidateContextHandle FUN_180171101
+
+// 原始函数名：FUN_180177c00 - UTF-8缓冲区处理函数
+#define ProcessUtf8Buffer FUN_180177c00
+
+// 原始函数名：FUN_18017b070 - 上下文大小处理函数
+#define ProcessContextHandleSize FUN_18017b070
+
+// 原始函数名：FUN_18017b240 - 上下文分配函数
+#define AllocateContextHandle FUN_18017b240
+
+// 原始函数名：FUN_18017b259 - 上下文设置函数
+#define SetContextHandleSize FUN_18017b259
+
+// 原始函数名：FUN_18017b28d - 系统清理函数
+#define CleanupSystemEx2 FUN_18017b28d
+
+// 原始函数名：FUN_18017b2ed - 上下文释放函数
+#define ReleaseContextHandle FUN_18017b2ed
+
+// 原始函数名：FUN_18017b400 - 上下文数据处理函数
+#define ProcessContextHandleData FUN_18017b400
+
+// 原始函数名：FUN_18017b480 - 上下文指针处理函数
+#define ProcessContextHandlePointer FUN_18017b480
+
+// 原始函数名：FUN_18017b6e0 - 上下文参数处理函数
+#define ProcessContextHandleParameters FUN_18017b6e0
+
+// 原始函数名：FUN_1801879d0 - UTF-8数据初始化函数
+#define InitializeUtf8Data FUN_1801879d0
+
+// 原始函数名：FUN_180187a30 - UTF-8数据配置函数
+#define ConfigureUtf8Data FUN_180187a30
+
+// 原始函数名：FUN_180187aa0 - UTF-8数据处理函数
+#define ProcessUtf8Data FUN_180187aa0
+
+// 原始函数名：FUN_180187b40 - UTF-8数据验证函数
+#define ValidateUtf8Data FUN_180187b40
+
+// 原始函数名：FUN_180187bd0 - UTF-8数据清理函数
+#define CleanupUtf8Data FUN_180187bd0
+
+// 原始函数名：FUN_180187c00 - UTF-8数据同步函数
+#define SynchronizeUtf8Data FUN_180187c00
+

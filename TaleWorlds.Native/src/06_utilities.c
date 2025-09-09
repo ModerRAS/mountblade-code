@@ -107045,6 +107045,23 @@ void ProcessExceptionHandlerContextAtOffsetF8AndCleanup(DataBuffer operationBase
 
 
 
+/**
+ * @brief 在偏移量0x60处清理异常上下文
+ * 
+ * 该函数从数据缓冲区的0x60偏移量处获取异常上下文，
+ * 并进行清理操作，包括：
+ * 1. 调用异常上下文清理函数
+ * 2. 设置临时异常处理器
+ * 3. 检查并终止系统执行
+ * 4. 重置异常上下文状态
+ * 5. 恢复默认异常处理器
+ * 6. 调用异常数据清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ed30
+ */
 void CleanupExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {

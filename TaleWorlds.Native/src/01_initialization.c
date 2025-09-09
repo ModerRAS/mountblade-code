@@ -39578,7 +39578,7 @@ void InitializeAndConfigureSystemResources(void)
     } while (SystemAllocationFlags < SystemResourceDataIndex);
   }
   SystemAllocationFlags = SystemMemoryAllocationOffset178;
-  SystemOperationResult = (int)(SystemIndex70 + (SystemIndex70 >> 0x1f & 3U)) >> 2;
+  SystemOperationResult = (int)(SystemIndexCounter + (SystemIndexCounter >> 0x1f & 3U)) >> 2;
   SystemProcessingResult = 2;
   if ((1 < SystemOperationResult) && (SystemProcessingResult = SystemOperationResult, 4 < SystemOperationResult)) {
     SystemProcessingResult = 4;
@@ -49896,9 +49896,9 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     SystemMemoryAllocationCounter = 0;
     SystemDataBuffer = 0;
     ResourceDataIndexPrimary = *(long long *)(SystemResourceManager + 0x3c8);
-    ResourceDataIndex4 = *(long long *)(SystemResourceManager + 0x3d0) - ResourceDataIndexPrimary;
-    SystemAllocationFlags = ResourceDataIndex4 >> 0x3f;
-    if (ResourceDataIndex4 / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
+    ResourceDataIndexCounter = *(long long *)(SystemResourceManager + 0x3d0) - ResourceDataIndexPrimary;
+    SystemAllocationFlags = ResourceDataIndexCounter >> 0x3f;
+    if (ResourceDataIndexCounter / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
       charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
       if (SystemAvailabilityFlag == '\0') {
         ResourceDataIndexPrimary = SystemResourceManager + 0x378;
@@ -49910,10 +49910,10 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         }
         SystemMemoryAlignment = 1;
         SystemAllocationFlags = _Xtime_get_ticks();
-        ResourceDataIndex4 = (SystemAllocationFlags + 50000) * 100;
-        SystemAllocationFlags = ResourceDataIndex4 / 1000000000;
+        ResourceDataIndexCounter = (SystemAllocationFlags + 50000) * 100;
+        SystemAllocationFlags = ResourceDataIndexCounter / 1000000000;
         StackInteger48 = (int)SystemAllocationFlags;
-        StackInteger210 = (int)ResourceDataIndex4 + StackInteger48 * -1000000000;
+        StackInteger210 = (int)ResourceDataIndexCounter + StackInteger48 * -1000000000;
         SystemAllocationFlags.LowPart = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
         SystemFlagComponent = SystemAllocationFlags.LowPart;
         SystemInitializationFlag = SystemMaxOperationCountSecondary;

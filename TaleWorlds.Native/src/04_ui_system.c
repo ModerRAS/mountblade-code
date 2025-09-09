@@ -10101,9 +10101,9 @@ UIDword * CreateUIComponentInstance(UIDword *componentData)
 {
   UIDword componentResult;
   longlong *uiComponent;
-  UIDword componentLowPart;
-  UIDword componentHighPart;
-  UIDword unusedValue;
+  UIDword componentAddressLow;
+  UIDword componentAddressHigh;
+  UIDword componentStatus;
   
   uiComponent = (longlong *)AllocateUIMemory(UIContextManager,0x30,8,3,0xfffffffffffffffe);
   uiComponent[1] = 0;
@@ -10125,12 +10125,12 @@ UIDword * CreateUIComponentInstance(UIDword *componentData)
   (**(code **)(*uiComponent + 0x28))(uiComponent);
   componentResult = (**(code **)(*uiComponent + 8))(uiComponent);
   (**(code **)(*uiComponent + 0x28))(uiComponent);
-  componentLowPart = SUB84(uiComponent,0);
-  componentHighPart = (UIDword)((ulonglong)uiComponent >> 0x20);
-  *componentData = componentLowPart;
-  componentData[1] = componentHighPart;
+  componentAddressLow = SUB84(uiComponent,0);
+  componentAddressHigh = (UIDword)((ulonglong)uiComponent >> 0x20);
+  *componentData = componentAddressLow;
+  componentData[1] = componentAddressHigh;
   componentData[2] = componentResult;
-  componentData[3] = unusedValue;
+  componentData[3] = componentStatus;
   (**(code **)(*uiComponent + 0x38))(uiComponent);
   return componentData;
 }
@@ -33361,11 +33361,11 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   contextOffset = *(longlong *)(uiBufferData + 0x2398);
   ContextFirstValue = *param_9;
   contextOffsetValue = param_9[1];
-  *(short *)(targetBuffer + 0x30) = sVar1;
-  *(short *)(targetBuffer + 0x32) = sVar2;
-  allocatedMemory9 = (int)((int)sVar1 * loopCounter) + allocatedMemory6 + (longlong)sVar2;
-  processingResult5 = *(int *)(contextOffset + ((longlong)sVar1 - (longlong)(ContextFirstValue >> 3)) * 4);
-  ProcessingResult1 = *(int *)(localLong7 + ((longlong)sVar2 - (longlong)(sVar4 >> 3)) * 4);
+  *(short *)(targetBuffer + 0x30) = bufferWidth;
+  *(short *)(targetBuffer + 0x32) = bufferHeight;
+  allocatedMemory9 = (int)((int)bufferWidth * loopCounter) + allocatedMemory6 + (longlong)bufferHeight;
+  processingResult5 = *(int *)(contextOffset + ((longlong)bufferWidth - (longlong)(ContextFirstValue >> 3)) * 4);
+  ProcessingResult1 = *(int *)(localLong7 + ((longlong)bufferHeight - (longlong)(contextOffsetValue >> 3)) * 4);
   localInt9 = (*(UIFunctionPtr *)*param_7)(allocatedMemory8,maxProcessingCount,allocatedMemory9,loopCounter);
   iterationCount0 = ((processingResult5 + ProcessingResult1) * resultPointer + 0x80 >> 8) + localInt9;
   processingResult5 = sVar2 - param_6;
