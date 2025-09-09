@@ -2206,6 +2206,9 @@
 #define SystemMaintenanceContextOffset 0x68            // 系统维护上下文偏移量
 #define SystemManagementOffsetA0 0xa0                   // 系统管理偏移量A0
 #define SystemManagementOffsetA8 0xa8                   // 系统管理偏移量A8
+#define SystemManagementOffsetB8 0xb8                   // 系统管理偏移量B8
+#define ExceptionHandlerContextOffset1cc0 0x1cc0         // 异常上下文处理器偏移量1cc0
+#define ExceptionHandlerContextOffset1cc8 0x1cc8         // 异常上下文处理器偏移量1cc8
 
 // 系统管理相关偏移量常量
 #define SystemManagementOffset98 0x98
@@ -82297,7 +82300,7 @@ void UnwindExceptionHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0xb8);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemManagementOffsetB8);
   if (exceptionContextPointer != (int64_t *)0x0) {
     // 执行异常处理回调函数
     (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
