@@ -15097,12 +15097,12 @@ LAB_180659b1a:
       }
     }
     else {
-      AccumulatedFloat = transformCoeff11 + transformCoeff14;
+      accumulatedFloatValue = transformCoeff11 + transformCoeff14;
     }
   }
   stackUInt180 = 0x18065a04d;
   stackUInt140 = iterationCount;
-  vectorComponentX = (float)atan2f(-vectorComponentX,AccumulatedFloat);
+  vectorComponentX = (float)atan2f(-vectorComponentX,accumulatedFloatValue);
   vectorComponentX = ABS(vectorComponentX);
   if (1.5707964 < vectorComponentX) {
     vectorComponentX = 3.1415927 - vectorComponentX;

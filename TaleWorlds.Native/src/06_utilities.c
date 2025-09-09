@@ -29079,54 +29079,54 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
 DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
 
 {
-  ByteFlag systemDataBuffer;
-  int operationResult;
-  int operationStatus;
-  uint memoryRegionBase;
-  ByteFlag *operationResultPointer;
-  ByteFlag *processingFlagsPointer;
-  uint basePointer;
-  int allocatedMemoryBlock;
+  ByteFlag dataTransferBuffer;
+  int memoryOperationResult;
+  int memoryOperationStatus;
+  uint memoryRegionAddress;
+  ByteFlag *memoryResultPointer;
+  ByteFlag *memoryFlagsPointer;
+  uint memoryBlockOffset;
+  int memoryAllocationSize;
   int64_t systemStackPointer;
   ByteFlag *systemContext;
-  int64_t bufferPointer;
-  ByteFlag *statusCounterPointer;
-  int primaryInputParameter;
-  DataWord processingDataValue;
+  int64_t dataBufferAddress;
+  ByteFlag *dataBufferPointer;
+  int primaryMemoryParameter;
+  DataWord memoryDataValue;
   int64_t *systemContextArray;
-  int contextIndex;
-  int *InputParam78;
+  int memoryContextIndex;
+  int *memoryValidationParameter;
   
   do {
-    memoryRegionBase = *(uint *)(*systemContext + dataBuffer * 8);
-    allocatedMemoryBlock = (int)StackFrameContext;
-    if ((memoryRegionBase & 0xffffff) != 0xffffff) {
-      bufferPointer = (uint64_t)(memoryRegionBase & 0xffffff) + systemContext[4];
-      operationResult = ValidateSystemDataIntegrityB0(bufferPointer);
-      if (allocatedMemoryBlock != 0) {
-        statusCounterPointer = (ByteFlag *)((operationResult + -1) + bufferPointer);
-        inputParameter0 = operationResult;
-        while (0 < inputParameter0) {
-          operationStatus = inputParameter0;
-          if ((int)(allocatedMemoryBlock - basePointer) <= inputParameter0) {
-            operationStatus = allocatedMemoryBlock - basePointer;
+    memoryRegionAddress = *(uint *)(*systemContext + dataBuffer * 8);
+    memoryAllocationSize = (int)StackFrameContext;
+    if ((memoryRegionAddress & 0xffffff) != 0xffffff) {
+      dataBufferAddress = (uint64_t)(memoryRegionAddress & 0xffffff) + systemContext[4];
+      memoryOperationResult = ValidateSystemDataIntegrityB0(dataBufferAddress);
+      if (memoryAllocationSize != 0) {
+        dataBufferPointer = (ByteFlag *)((memoryOperationResult + -1) + dataBufferAddress);
+        primaryMemoryParameter = memoryOperationResult;
+        while (0 < primaryMemoryParameter) {
+          memoryOperationStatus = primaryMemoryParameter;
+          if ((int)(memoryAllocationSize - memoryBlockOffset) <= primaryMemoryParameter) {
+            memoryOperationStatus = memoryAllocationSize - memoryBlockOffset;
           }
-          inputParameter0 = inputParameter0 - operationStatus;
-          if (operationStatus != 0) {
-            operationResult = systemContext + (int)basePointer;
-            basePointer = basePointer + operationStatus;
+          primaryMemoryParameter = primaryMemoryParameter - memoryOperationStatus;
+          if (memoryOperationStatus != 0) {
+            memoryOperationResult = systemContext + (int)memoryBlockOffset;
+            memoryBlockOffset = memoryBlockOffset + memoryOperationStatus;
             do {
-              systemDataBuffer = *statusCounterPointer;
-              statusCounterPointer = statusCounterPointer + -1;
-              *operationResult = systemDataBuffer;
-              operationResult = operationResult + 1;
-              operationStatus = operationStatus + -1;
-            } while (operationStatus != 0);
+              dataTransferBuffer = *dataBufferPointer;
+              dataBufferPointer = dataBufferPointer + -1;
+              *memoryOperationResult = dataTransferBuffer;
+              memoryOperationResult = memoryOperationResult + 1;
+              memoryOperationStatus = memoryOperationStatus + -1;
+            } while (memoryOperationStatus != 0);
           }
-          basePointer = basePointer & (int)(basePointer - allocatedMemoryBlock) >> 0x1f;
+          memoryBlockOffset = memoryBlockOffset & (int)(memoryBlockOffset - memoryAllocationSize) >> 0x1f;
         }
       }
-      contextIndex = contextIndex + operationResult;
+      memoryContextIndex = memoryContextIndex + memoryOperationResult;
     }
     memoryRegionBase = (uint)*(uint3 *)((dataBuffer & SystemCleanupFlag) * 3 + systemContext[8]);
     dataBuffer = (uint64_t)memoryRegionBase;
