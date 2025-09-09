@@ -10002,15 +10002,15 @@ void ValidateUIComponent(void)
 UIHandle SetUIComponentDataPointer(longlong componentManager,UIHandle dataPointer,UIDword dataType)
 
 {
-  longlong UIDataHandle;
-  undefined *UIDataBuffer;
+  UIHandle ComponentDataHandle;
+  undefined *ComponentDataBuffer;
   
-  UIDataHandle = (**(code **)(componentManager + 0x148))(dataType);
-  UIDataBuffer = &UIDefaultDataBuffer;
-  if (*(undefined **)(UIDataHandle + 8) != (undefined *)0x0) {
-    UIDataBuffer = *(undefined **)(UIDataHandle + 8);
+  ComponentDataHandle = (**(code **)(componentManager + 0x148))(dataType);
+  ComponentDataBuffer = &UIDefaultDataBuffer;
+  if (*(undefined **)(ComponentDataHandle + 8) != (undefined *)0x0) {
+    ComponentDataBuffer = *(undefined **)(ComponentDataHandle + 8);
   }
-  InitializeUIDataBuffer(dataPointer,UIDataBuffer);
+  InitializeUIDataBuffer(dataPointer,ComponentDataBuffer);
   return dataPointer;
 }
 
@@ -10034,7 +10034,7 @@ ulonglong ValidateUIComponentData(longlong ComponentManager, longlong DataTarget
 
 {
   ulonglong ValidationResult;
-  longlong DataHandle;
+  longlong ValidationDataHandle;
   longlong CharIndex;
   undefined *DataBuffer;
   ulonglong ValidationStatus;
@@ -10052,18 +10052,18 @@ ulonglong ValidateUIComponentData(longlong ComponentManager, longlong DataTarget
   if (*(undefined **)(DataSource + 8) != (undefined *)0x0) {
     DataBuffer = *(undefined **)(DataSource + 8);
   }
-  DataHandle = (**(code **)(ComponentManager + 0xb0))(DataBuffer);
+  ValidationDataHandle = (**(code **)(ComponentManager + 0xb0))(DataBuffer);
   DataBuffer = &UIDefaultDataBuffer;
-  if (*(undefined **)(DataHandle + 8) != (undefined *)0x0) {
-    DataBuffer = *(undefined **)(DataHandle + 8);
+  if (*(undefined **)(ValidationDataHandle + 8) != (undefined *)0x0) {
+    DataBuffer = *(undefined **)(ValidationDataHandle + 8);
   }
   InitializeUIDataBuffer(&TempBuffer,DataBuffer);
   if (DataLength == 7) {
-    DataHandle = 0;
+    ValidationDataHandle = 0;
     do {
-      CharIndex = DataHandle + 1;
-      if (*(char *)(StringData + DataHandle) != (&UIStringValidator)[DataHandle]) goto UIValidationFailed;
-      DataHandle = CharIndex;
+      CharIndex = ValidationDataHandle + 1;
+      if (*(char *)(StringData + ValidationDataHandle) != (&UIStringValidator)[ValidationDataHandle]) goto UIValidationFailed;
+      ValidationDataHandle = CharIndex;
     } while (CharIndex != 8);
     ValidationStatus = 0;
   }

@@ -561,6 +561,13 @@
 #define LAB_18008cb7e CharacterStatusBufferCheckLabel       // 字符状态缓冲区检查标签
 #define LAB_18008ce20 MemoryBufferValidationLabel            // 内存缓冲区验证标签
 #define LAB_18008cd70 MemoryBufferAllocationLabel            // 内存缓冲区分配标签
+#define LAB_18008d51d StringProcessingContinueLabel          // 字符串处理继续标签
+#define LAB_18008d56b StringComparisonResultLabel            // 字符串比较结果标签
+#define LAB_18008d7a0 PrimaryProcessingStatusLabel           // 主处理状态标签
+#define LAB_18008dde0 StackValidationCompleteLabel            // 栈验证完成标签
+#define LAB_18008e13f SystemEventHandlingLabel               // 系统事件处理标签
+#define LAB_18008ebc0 MemoryBlockProcessingLabel              // 内存块处理标签
+#define LAB_18008ef40 EncodingConversionResultLabel           // 编码转换结果标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
@@ -69735,7 +69742,7 @@ void ProcessDataStructureValidation(uint64_t *ContextHandle
         HighByte = 0 < RemainingSpace;
         if (RemainingSpace < 1) {
           SecondaryProcessingStatusFlag = (void *)SystemRegisterR10[1];
-          goto LAB_18008d51d;
+          goto StringProcessingContinueLabel;
         }
       }
       SecondaryProcessingStatusFlag = (void *)*SystemRegisterR10;
@@ -69762,7 +69769,7 @@ LAB_18008d56b:
         if (StringComparisonByte != MemoryAddressMaskPointer) break;
         LowBytePointer = LowBytePointer + 1;
       } while (MemoryAddressMaskPointer != 0);
-      if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto LAB_18008d56b;
+      if ((int)(StringComparisonByte - MemoryAddressMaskPointer) < 1) goto StringComparisonResultLabel;
     }
   }
   *CharacterLimit = ContextHandle;
@@ -69804,7 +69811,7 @@ void ValidateDataStructureByteComparison(long long ContextHandle
         if (StringComparisonByte != UnicodeCodePoint) break;
         HighBytePointer = HighBytePointer + 1;
       } while (UnicodeCodePoint != 0);
-      if ((int)(StringComparisonByte - UnicodeCodePoint) < 1) goto LAB_18008d56b;
+      if ((int)(StringComparisonByte - UnicodeCodePoint) < 1) goto StringComparisonResultLabel;
     }
     *CharacterLimit = ContextHandle;
     return;
@@ -69965,7 +69972,7 @@ void InsertDataStructureIntoTree(uint64_t *ContextHandle,uint64_t OperationBuffe
   }
   TreeTraversalNode = PrimaryProcessingStatusFlag;
   if (ShouldInsertToLeft) {
-    if (PrimaryProcessingStatusFlag == (void *)ContextHandle[1]) goto LAB_18008d7a0;
+    if (PrimaryProcessingStatusFlag == (void *)ContextHandle[1]) goto PrimaryProcessingStatusLabel;
     TreeTraversalNode = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
   }
   if (*(unsigned long long *)(MemoryBlockIndex + 0x20) <= (unsigned long long)TreeTraversalNode[4]) {
@@ -70451,7 +70458,7 @@ void ProcessSystemDataStructure(long long *ContextHandle,long long OperationBuff
   }
   else {
     lStackX_18 = lStackX_18 * 2;
-    if (lStackX_18 == 0) goto LAB_18008dde0;
+    if (lStackX_18 == 0) goto StackValidationCompleteLabel;
   }
   CharacterStatusBuffer = (void *           BufferAllocate(MemoryPoolManager,lStackX_18 * 0x60,(char)ContextHandle[3],Utf16EndPointer,
                          0xfffffffffffffffe);
