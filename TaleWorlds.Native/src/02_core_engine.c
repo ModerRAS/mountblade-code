@@ -10317,7 +10317,6 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemMemoryManager(FUN_1800842a0) ProcessSystemMemoryManager
 #define ProcessSystemResourceCleanup(FUN_180099f90) ProcessSystemResourceCleanup
 #define ProcessSystemStackInitialization(FUN_1801299b0) ProcessSystemStackInitialization
-#define ProcessSystemCoreEngineConfig(FUN_1800cf6f0) ProcessSystemCoreEngineConfig
 #define ProcessSystemFloatConstants(FUN_180112210) ProcessSystemFloatConstants
 
 // 未定义的FUN_函数宏定义
