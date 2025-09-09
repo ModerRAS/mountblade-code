@@ -10130,7 +10130,7 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
     if (*(longlong *)(dataSource + 8) != 0) {
       ProcessUIData(dataSource,&uiResultPointer1,uiParameterStack);
     }
-    elementCount = (longlong)resultPointer2 - (longlong)resultPointer1 >> 5;
+    uiElementCount = (longlong)uiResultPointer2 - (longlong)uiResultPointer1 >> 5;
     sourceDataBlock = resultPointer1;
     currentMemoryBlock = resultPointer1;
     dataPointer1 = resultPointer2;
