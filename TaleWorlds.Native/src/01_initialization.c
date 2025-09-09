@@ -24023,7 +24023,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
     do {
       SystemThreadHandle = SystemThreadHandle + 1;
     } while (*(char *)(SystemThreadHandle + AdditionalParameter) != '\0');
-      memcpy(stackOperationParameter,*(long long *)(SystemResourceManager + 8),ResourceDataIndex - *(long long *)(SystemResourceManager + 8));
+      memcpy(SystemStackOperationParameter,*(long long *)(SystemResourceManager + 8),ResourceDataIndex - *(long long *)(SystemResourceManager + 8));
   }
   SystemStackFlagSecondary = &SystemMemoryAllocatorPointer;
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)EncryptionDataBuffer);
