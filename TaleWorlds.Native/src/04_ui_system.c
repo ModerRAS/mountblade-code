@@ -190,6 +190,8 @@ typedef enum {
 
 // 未美化函数名语义化定义
 #define FUN_18073902d ProcessUIDataTransfer               // 处理UI数据传输
+#define FUN_180739085 ValidateAndProcessUIData           // 验证和处理UI数据
+#define FUN_1807390fd CleanupUIResourcesAndExecuteRender  // 清理UI资源并执行渲染
 #define FUN_18072a9c0 ProcessUIComponentDataA9C0          // 处理UI组件数据A9C0
 #define FUN_18072f7d0 ValidateUILayoutDataF7D0            // 验证UI布局数据F7D0
 #define FUN_180736a70 RenderUIComponentA70                // 渲染UI组件A70
@@ -119119,37 +119121,55 @@ TransferComplete:
 
 
 
- void FUN_180739085(void)
-void FUN_180739085(void)
-
+ /**
+ * @brief UI数据验证和处理器
+ * 
+ * 执行UI数据的验证、处理和最终化操作，包括数据缓冲区管理和状态更新
+ * 
+ * @param void 无参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数负责UI数据的完整验证和处理流程
+ */
+void ValidateAndProcessUIData(void)
 {
-  int processingResult;
-  int uiValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  int DataValidationResult;
+  int ProcessingStatus;
+  UIDword DataSourceHandle;
+  UIDword ContextHandle;
   
-  processingResult = func_0x00018074b800(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  func_0x00018074bda0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  DataValidationResult = ValidateUIDataSource(&TemporaryBuffer,0x100,DataSourceHandle);
+  ProcessingStatus = ProcessUIDataValidation(&TemporaryBuffer + DataValidationResult,0x100 - DataValidationResult,&UIBufferControlData);
+  FinalizeUIDataProcessing(&TemporaryBuffer + (DataValidationResult + ProcessingStatus),0x100 - (DataValidationResult + ProcessingStatus));
                      WARNING: Subroutine does not return
-  FUN_180749ef0(unmodifiedESI,1);
+  CompleteUIDataOperation(ContextHandle,1);
 }
 
 
 
 
- void FUN_1807390fd(void)
-void FUN_1807390fd(void)
-
+ /**
+ * @brief UI内存资源清理和渲染任务执行器
+ * 
+ * 清理UI内存资源并执行渲染任务，确保UI系统的内存管理和渲染流程正确执行
+ * 
+ * @param void 无参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数负责UI内存资源的清理和渲染任务的执行
+ */
+void CleanupUIResourcesAndExecuteRender(void)
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong MemoryResourceFlag;
+  ulonglong RenderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (MemoryResourceFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(RenderTaskParameter ^ (ulonglong)&ZeroMemoryBuffer);
 }
 
 
