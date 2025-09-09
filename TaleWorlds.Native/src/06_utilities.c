@@ -3887,7 +3887,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180089640
  */
-#define UpdateSystemStatusAndState FUN_180089640
+#define UpdateSystemStatusAndStateFlags FUN_180089640
 
 /**
  * @brief 系统值和指标计算函数
@@ -3903,7 +3903,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800ba100
  * @warning 此函数可能涉及系统性能敏感计算，应避免频繁调用
- * @see ValidateSystemParametersAndConfig, UpdateSystemStatusAndState
+ * @see ValidateSystemParametersAndConfiguration, UpdateSystemStatusAndStateFlags
  */
 #define CalculateSystemMetricsAndValues FUN_1800ba100
 
@@ -3926,7 +3926,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 参数验证失败可能导致系统不稳定
  * @see CalculateSystemMetricsAndValues, ValidateSystemStatusAndHealth
  */
-#define ValidateSystemParametersAndConfig FUN_180047e40
+#define ValidateSystemParametersAndConfiguration FUN_180047e40
 
 /**
  * @brief 系统数据处理函数A0
@@ -3954,7 +3954,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180090b80
  * @warning 上下文验证失败可能导致系统行为异常
- * @see ValidateSystemParametersAndConfig, ProcessSystemDataA0
+ * @see ValidateSystemParametersAndConfiguration, ProcessSystemDataA0
  */
 #define ValidateSystemContextA0 FUN_180090b80
 
@@ -3977,7 +3977,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180057010
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
- * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfig
+ * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfiguration
  */
 #define ProcessDataArrayWithValidation FUN_180057010
 
@@ -4023,7 +4023,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18009fb60
  * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
- * @see ProcessSystemOperations, ValidateSystemParametersAndConfig
+ * @see ProcessSystemOperations, ValidateSystemParametersAndConfiguration
  */
 #define ExecuteSystemCoreCommand FUN_18009fb60
 
@@ -4046,7 +4046,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800ad6f0
  * @warning 系统操作可能影响系统整体性能和稳定性
- * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndState
+ * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndStateFlags
  */
 #define ProcessSystemOperations FUN_1800ad6f0
 
