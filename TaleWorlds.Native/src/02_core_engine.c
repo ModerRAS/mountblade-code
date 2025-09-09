@@ -1635,6 +1635,8 @@
 #define ProcessSystemOctonaryCharacterStatus FUN_180189600    // 处理系统第八字符状态
 #define ProcessSystemNonaryCharacterStatus FUN_180188620     // 处理系统第九字符状态
 #define ProcessSystemCharacterEncoding FUN_1801836e0          // 处理系统字符编码
+#define ProcessSystemMemoryValidationEx FUN_180188f60         // 处理系统内存验证扩展
+#define ProcessSystemMemoryAllocationEx FUN_18018b350          // 处理系统内存分配扩展
 #define ProcessSystemUnicodeCodePoint FUN_180187f00          // 处理系统Unicode代码点
 #define ProcessSystemEventDispatcher FUN_18018a130           // 处理系统事件调度器
 #define ProcessSystemCharacterTable FUN_180067110             // 处理系统字符表
@@ -221591,7 +221593,7 @@ LAB_180184d09:
       }
       SystemFlagE = (long long)MemoryBlockListHead;
       if (TemporaryBuffer == pSystemFlagB) {
-        FUN_1801887a0(&lStack_100,pSystemFlagB,&ErrorCode);
+        ProcessSystemQuaternaryCharacterStatus(&lStack_100,pSystemFlagB,&ErrorCode);
         TemporaryBuffer = OperationStatus;
       }
       else {
@@ -221999,7 +222001,7 @@ LAB_1801857bd:
       uStack_cc = *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x24);
       SystemFlagF = SystemEventTemplatePointer;
       if (StringProcessingStatus == pErrorCode) {
-        FUN_1801887a0(&lStack_f0,pErrorCode,&SystemFlagF);
+        ProcessSystemQuaternaryCharacterStatus(&lStack_f0,pErrorCode,&SystemFlagF);
         StringProcessingStatus = pSystemFlagE;
       }
       else {
@@ -222831,11 +222833,11 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
         ReallocateContextHandle(&StackProcessingVariableBuffer);
         ppMemoryAddressMaskPointer = ppSystemOperation90;
         if (pSystemEventPointer == ppSystemOperation90) {
-          FUN_180188f60(&ppSystemOperationFlag98,ppSystemOperation90,&StackProcessingVariableBuffer);
+          ProcessSystemMemoryValidationEx(&ppSystemOperationFlag98,ppSystemOperation90,&StackProcessingVariableBuffer);
         }
         else {
           ppCalculationFunctionAddress = ppSystemOperation90;
-          FUN_18018b350(ppSystemOperation90,&StackProcessingVariableBuffer);
+          ProcessSystemMemoryAllocationEx(ppSystemOperation90,&StackProcessingVariableBuffer);
           *(uint32_t *)(ppMemoryAddressMaskPointer + 4) = (uint32_t)SystemKeyPointer;
           *(uint32_t *)((long long)ppMemoryAddressMaskPointer + 0x24) = SystemKeyPointer.HighPart;
           ppSystemOperation90 = ppSystemOperation90 + 5;
@@ -223096,7 +223098,7 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
       pThreadLocalStorageBuffer = &SystemEventDispatcher;
       SystemEventDispatcher = NULL;
       pStackTempPointer = (void **)0x0;
-      SystemEventDispatcher = (void *)FUN_180188490();
+      SystemEventDispatcher = (void *)GetSystemMemoryHandle();
       SystemStringIndex = -1;
       do {
         SystemStringIndex = SystemStringIndex + 1;
@@ -223176,7 +223178,7 @@ LAB_180187642:
 LAB_18018764a:
             OperationStatus = &SystemOperationFlag98;
             BufferInitializationFlag = ProcessSystemEventDispatcher(&SystemEventDispatcher);
-            FUN_18018a1c0(&SystemEventDispatcher,&pSystemFlagA,TemporaryBuffer);
+            ProcessSystemStatusSecondary(&SystemEventDispatcher,&pSystemFlagA,TemporaryBuffer);
             TemporaryBuffer = pSystemFlagA;
           }
           SystemContextValue = -1;
@@ -224935,7 +224937,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
   InsertPointer = NewBufferPointer + ((InsertPosition - OldBufferStart) / 0x28) * 0x28;
   NewBufferStart = NewBufferPointer;
   SystemDataTablePointer = InsertPointer;
-  FUN_18018b350(InsertPointer,ElementData);
+  ProcessSystemMemoryAllocationEx(InsertPointer,ElementData);
   *(uint32_t *)(InsertPointer + 0x20) = *(uint32_t *)(ElementData + 0x20);
   *(uint32_t *)(InsertPointer + 0x24) = *(uint32_t *)(ElementData + 0x24);
   AllocatedMemorySizeSize = CharacterStatusBuffer[1];
@@ -224996,7 +224998,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
  */
 void CopyStructureData(uint64_t TargetPointer, long long SourcePointer, long long Utf8SourcePointer, uint64_t Utf16EndPointer
 {
-  FUN_18018b350(TargetPointer, SourcePointer, SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
+  ProcessSystemMemoryAllocationEx(TargetPointer, SourcePointer, SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
   *(uint8_t *)(TargetPointer + 0x20) = *(uint8_t *)(SourcePointer + 0x20);
   *(uint32_t *)(TargetPointer + 0x24) = *(uint32_t *)(SourcePointer + 0x24);
   *(uint32_t *)(TargetPointer + 0x28) = *(uint32_t *)(SourcePointer + 0x28);
@@ -225053,7 +225055,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
   NewBufferPointer = FUN_180067110(CurrentElementCount);
   CurrentElementCount = InsertPosition - OldBufferStart & 0xffffffffffffffc0;
   NewBufferEnd = CurrentElementCount + NewBufferPointer;
-  FUN_18018b350(NewBufferEnd, ElementData);
+  ProcessSystemMemoryAllocationEx(NewBufferEnd, ElementData);
   *(uint8_t *)(NewBufferEnd + 0x20) = *(uint8_t *)(ElementData + 0x20);
   *(uint32_t *)(NewBufferEnd + 0x24) = *(uint32_t *)(ElementData + 0x24);
   *(uint32_t *)(NewBufferEnd + 0x28) = *(uint32_t *)(ElementData + 0x28);
@@ -225062,7 +225064,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
   if (InsertPosition == OldBufferStart) {
     NewBufferEnd = NewBufferPointer;
     for (OldBufferEnd = *CharacterStatusBuffer; OldBufferEnd = NewBufferEnd, OldBufferEnd != OldBufferStart; OldBufferEnd = OldBufferEnd + 0x40) {
-      FUN_18018b350(NewBufferEnd, OldBufferEnd);
+      ProcessSystemMemoryAllocationEx(NewBufferEnd, OldBufferEnd);
       *(uint8_t *)(NewBufferEnd + 0x20) = *(uint8_t *)(OldBufferEnd + 0x20);
       *(uint32_t *)(NewBufferEnd + 0x24) = *(uint32_t *)(OldBufferEnd + 0x24);
       *(uint32_t *)(NewBufferEnd + 0x28) = *(uint32_t *)(OldBufferEnd + 0x28);
@@ -226858,8 +226860,8 @@ long long InitializeCharacterEncodingBuffer(uint64_t ContextHandle,long long Ope
   MemoryAllocationIndex = 0xfffffffffffffffe;
   CharacterTablePointer = FUN_18018a960();
   *(uint16_t *)(CharacterTablePointer + 0x18) = 0;
-  FUN_18018b350(CharacterTablePointer + 0x20,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex);
-  FUN_18018b350(CharacterTablePointer + 0x40,OperationBufferSize + 0x20);
+  ProcessSystemMemoryAllocationEx(CharacterTablePointer + 0x20,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex);
+  ProcessSystemMemoryAllocationEx(CharacterTablePointer + 0x40,OperationBufferSize + 0x20);
   return LoopCounter;
 }
 
