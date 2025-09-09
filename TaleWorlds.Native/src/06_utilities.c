@@ -100116,7 +100116,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 400);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1B0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -100128,7 +100128,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
