@@ -148,6 +148,27 @@ typedef enum {
 
 // UI系统初始化标志
 
+// UI系统变量语义化定义
+#define apstackUInt78 UIEncryptionKeyPointerArray
+#define apstackUInt128 UIContextHandleArray
+#define apstackUInt38 UIResourceHandleArray
+#define apstackUInt138 UIComponentDataArray
+#define apstackUInt148 UIEventHandleArray
+#define pallocatedMemory UIProcessedMemoryPointer
+#define pcontextHandleData UIContextDataPointer
+#define uiBufferData UIBufferDataAddress
+#define loopCounter UIProcessingLoopCounter
+#define iterationCount UIProcessingIterationCount
+#define componentIndex UIComponentProcessingIndex
+#define contextOffset UIContextProcessingOffset
+#define allocationSize UIAllocationSizeValue
+#define bufferIndex UIBufferIndexValue
+#define ProcessingStatus UIProcessingStatusValue
+#define EventDataIndex UIEventDataIndexValue
+#define pstringCompareIndex UIStringCompareIndexPointer
+#define processingResult UIProcessingResultValue
+#define EventProcessingStatus UIEventProcessingStatusValue
+
 // 未美化变量名语义化定义
 // UI查找表和数据表
 #define DAT_180956f70 UILookupTableF70                    // UI查找表F70 - 存储UI组件的查找表数据
