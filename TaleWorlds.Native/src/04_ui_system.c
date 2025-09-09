@@ -228,6 +228,21 @@ typedef enum {
 #define uiValidationResultLocal5 UIValidationResultLocal5
 #define AudioStackData UIAudioStackData
 #define uiRenderDataBuffer UIRenderDataBuffer
+#define UIStringTable_TitleFont UIStringTableTitleFont
+#define UIValidationTableAddress UIValidationTableAddress
+#define UIValidationTableA UIValidationTableA
+#define LAB_EventValidationFailed UIEventValidationFailedLabel
+#define g_uiRenderContextEnabled UIRenderContextEnabled
+#define pbStack_b0 UIByteStackB0
+#define pbStack_d0 UIByteStackD0
+#define pbStack_a0 UIByteStackA0
+#define pbStack_b8 UIByteStackB8
+#define pbStack_98 UIByteStack98
+#define pbStack_90 UIByteStack90
+#define pbStack_88 UIByteStack88
+#define pbStack_84 UIByteStack84
+#define pbStack_68 UIByteStack68
+#define pbStack_40 UIByteStack40
 
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation

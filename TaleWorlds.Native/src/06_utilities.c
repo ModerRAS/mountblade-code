@@ -7974,7 +7974,7 @@ extern uint64_t ExceptionOffsetDataValue;
 
 // 主默认异常处理器
 // 功能：系统主要的默认异常处理器入口点
-extern void* PrimaryDefaultExceptionHandler;
+extern ExceptionHandler* PrimaryDefaultExceptionHandlerPtr;
 
 // 系统主状态标志
 // 功能：存储系统主要运行状态标志
