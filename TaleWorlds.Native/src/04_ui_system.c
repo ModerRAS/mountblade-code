@@ -2459,19 +2459,19 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag8 _DAT_180d4a920               // UI全局状态标志8
 #define UIGlobalStatusFlag9 _DAT_180d4a8f0               // UI全局状态标志9
 #define UIGlobalStatusFlag10 _DAT_180d4a8d0              // UI全局状态标志10
-#define UIGlobalStatusFlag11 _DAT_180d4a898
-#define UIGlobalStatusFlag12 _DAT_180d4a858
-#define UIGlobalStatusFlag13 _DAT_180d4a820
-#define UIGlobalStatusFlag14 _DAT_180d4a7e0
-#define UIGlobalStatusFlag15 _DAT_180d4a7b0
-#define UIGlobalStatusFlag16 _DAT_180d4a778
-#define UIGlobalStatusFlag17 _DAT_180d4a750
-#define UIGlobalStatusFlag18 _DAT_180d4a708
-#define UIGlobalStatusFlag19 _DAT_180d4a958
-#define UIGlobalStatusFlag20 _DAT_180d4a928
-#define UIGlobalStatusFlag21 _DAT_180d4a910
-#define UIGlobalStatusFlag22 _DAT_180d4a8c0
-#define UIGlobalStatusFlag23 _DAT_180d4a8a8
+#define UIGlobalStatusFlag11 _DAT_180d4a898              // UI全局状态标志11
+#define UIGlobalStatusFlag12 _DAT_180d4a858              // UI全局状态标志12
+#define UIGlobalStatusFlag13 _DAT_180d4a820              // UI全局状态标志13
+#define UIGlobalStatusFlag14 _DAT_180d4a7e0              // UI全局状态标志14
+#define UIGlobalStatusFlag15 _DAT_180d4a7b0              // UI全局状态标志15
+#define UIGlobalStatusFlag16 _DAT_180d4a778              // UI全局状态标志16
+#define UIGlobalStatusFlag17 _DAT_180d4a750              // UI全局状态标志17
+#define UIGlobalStatusFlag18 _DAT_180d4a708              // UI全局状态标志18
+#define UIGlobalStatusFlag19 _DAT_180d4a958              // UI全局状态标志19
+#define UIGlobalStatusFlag20 _DAT_180d4a928              // UI全局状态标志20
+#define UIGlobalStatusFlag21 _DAT_180d4a910              // UI全局状态标志21
+#define UIGlobalStatusFlag22 _DAT_180d4a8c0              // UI全局状态标志22
+#define UIGlobalStatusFlag23 _DAT_180d4a8a8              // UI全局状态标志23
 
  UI系统向量操作掩码和常数定义
 #define UIVectorOperationMask0 _DAT_180946ec0
