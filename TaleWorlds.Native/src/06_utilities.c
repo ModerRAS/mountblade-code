@@ -24587,7 +24587,7 @@ int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
   int encryptedBytesCount;
   int processedBytesCount;
   
-  formatFlag = *(DataWord *)(stringContext + 0x14);
+  formatFlag = *(DataWord *)(stringContext + DataBufferContextOffset);
   encryptedBytesCount = EncryptSystemData(dataBuffer,bufferSize,*(DataWord *)(stringContext + ExceptionHandlerCallbackOffset10));
   processedBytesCount = ProcessSystemBufferDataA0(dataBuffer + encryptedBytesCount,bufferSize - encryptedBytesCount,&SystemDataBufferA);
   encryptedBytesCount = encryptedBytesCount + processedBytesCount;
@@ -24669,7 +24669,7 @@ int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSiz
   int initialProcessedBytes;
   int secondaryProcessedBytes;
   
-  primaryFormatFlag = *(DataWord *)(complexContext + 0x14);
+  primaryFormatFlag = *(DataWord *)(complexContext + DataBufferContextOffset);
   secondaryFormatFlag = *(DataWord *)(complexContext + ExceptionHandlerCallbackOffset10);
   initialProcessedBytes = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA1);
   secondaryProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
@@ -24694,7 +24694,7 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
   
   systemDataBuffer = ValidateNetworkConnectionA0(outputData,operationContext + ExceptionHandlerCallbackOffset10);
   if ((int)systemDataBuffer == 0) {
-    *(DataWord *)(operationBase + 0x14) = 0;
+    *(DataWord *)(operationBase + DataBufferContextOffset) = 0;
     if ((1 < *(int *)(operationBase + ExceptionHandlerCallbackOffset10)) && (systemDataBuffer = ValidateNetworkStatusA0(operationFlagA), (int)systemDataBuffer != 0)) {
       return systemDataBuffer;
     }
@@ -65022,14 +65022,14 @@ void ResetSystemResourceStatus(DataBuffer operationBase,int64_t dataBuffer)
 void ValidateSystemOperationStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t *)(dataBuffer + 0x82) != 0) {
+  if (*(int64_t *)(dataBuffer + SystemStatusValidationOffset82) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(int64_t *)(dataBuffer + 0x82) = 0;
-  if (*(int64_t *)(dataBuffer + 0x8a) != 0) {
+  *(int64_t *)(dataBuffer + SystemStatusValidationOffset82) = 0;
+  if (*(int64_t *)(dataBuffer + SystemStatusValidationOffset8A) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x8a) = 0;
+  *(DataBuffer *)(dataBuffer + SystemStatusValidationOffset8A) = 0;
   return;
 }
 
