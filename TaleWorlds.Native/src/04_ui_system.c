@@ -105807,9 +105807,9 @@ void ProcessUIComponentDataTransformation(longlong uiContext,longlong dataSource
   }
   else {
     localInt7 = 0xc;
-    plocalChar10 = &UNK_180956f50;
+    plocalChar10 = &UIComponentDataF50;
     stackInt148 = 0xc;
-    componentHandle = &UNK_180956f38;
+    componentHandle = &UIComponentHandleF38;
   }
   stackLong138 = (longlong)localInt7;
   dataSource = dataSource + (longlong)(int)(stackUInt144 * 4) * 4;
