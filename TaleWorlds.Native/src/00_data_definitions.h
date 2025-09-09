@@ -7355,7 +7355,7 @@ InitializeNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRe
       if (UnsignedValue != 0) {
         do {
           if (*(int *)(*(longlong *)(*NetworkRequestArrayPointer + MemoryDataPointer) + 8) ==
-              *(int *)(*(longlong *)(*MemoryDataPointer + MemoryAllocationResult * 8) + 8)) goto Label_18032bf87;
+              *(int *)(*(longlong *)(*MemoryDataPointer + MemoryAllocationResult * 8) + 8)) goto SystemValidationSuccessLabel;
           StringProcessingResult = (int)MemoryAllocationResult + 1;
           MemoryAllocationResult = (ulonglong)StringProcessingResult;
         } while (StringProcessingResult < UnsignedValue);
@@ -7403,7 +7403,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
     if (SystemIndexRegister != 0) {
       do {
         if (*(int *)(*(longlong *)(*unaff_R13 + MemoryAddressValue) + 8) ==
-            *(int *)(*(longlong *)(*GameTertiaryDataPointer + StringProcessingResult * 8) + 8)) goto Label_18032bf87;
+            *(int *)(*(longlong *)(*GameTertiaryDataPointer + StringProcessingResult * 8) + 8)) goto SystemValidationSuccessLabel;
         BufferSize = (int)StringProcessingResult + 1;
         StringProcessingResult = (ulonglong)BufferSize;
       } while (BufferSize < SystemIndexRegister);
@@ -8646,7 +8646,7 @@ NetworkValidationHandler4:
             if (iStack_20 == 0x18) {
               LoopCounter = strcmp(lStack_28,&SystemValidationSenary);
               if ((LoopCounter == 0) || (LoopCounter = strcmp(MemoryIndexValue,&SystemValidationSeptenary), LoopCounter == 0))
-              goto Label_180608fce;
+              goto SystemProcessingFailureLabel;
               LoopCounter = strcmp(MemoryIndexValue,&SystemValidationOctonary);
               if (LoopCounter != 0) {
                 pNetworkRequestResult = &NetworkRequestResultVerify;
@@ -9732,7 +9732,7 @@ NetworkAuthValidationCheck11:
                               NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkConfigValidationParameter240);
                               if (NetworkRequestStatus != '\0') goto NetworkAuthValidationCheck19;
                               NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter278);
-                              if (NetworkRequestStatus != '\0') goto Label_18060a7ec;
+                              if (NetworkRequestStatus != '\0') goto NetworkRequestStatusCheckLabel;
                             }
                           }
                         }
@@ -9860,7 +9860,7 @@ NetworkAuthValidationCheck19:
                         }
                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter948);
                         if (NetworkRequestStatus != '\0') {
-Label_18060a7ec:
+NetworkRequestStatusCheckLabel:
                           StringProcessingResult = 0xa4;
                           goto NetworkRequestProcessingComplete;
                         }
@@ -9872,7 +9872,7 @@ NetworkAuthValidationCheck20:
                         }
                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterDE0);
                         if (NetworkRequestStatus != '\0') {
-Label_18060a282:
+NetworkRequestStatusLabel:
                           StringProcessingResult = 0xac;
                           goto NetworkRequestProcessingComplete;
                         }
@@ -9900,7 +9900,7 @@ NetworkAuthValidationCheck22:
                         }
                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterED0);
                         if (NetworkRequestStatus != '\0') {
-Label_18060a30c:
+NetworkStatusCheckLabel:
                           StringProcessingResult = 0xbc;
                           goto NetworkRequestProcessingComplete;
                         }
@@ -9916,7 +9916,7 @@ Label_18060a30c:
                         }
                         NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterE90);
                         if (NetworkRequestStatus != '\0') {
-Label_18060a36a:
+NetworkStatusValidationLabel:
                           StringProcessingResult = 0xc0;
                           goto NetworkRequestProcessingComplete;
                         }
@@ -10040,11 +10040,11 @@ NetworkAuthValidationCheck10:
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationTextureSettings);
                     if (NetworkRequestStatus != '\0') goto NetworkAuthValidationCheck17;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationModelSettings);
-                    if (NetworkRequestStatus != '\0') goto Label_18060a282;
+                    if (NetworkRequestStatus != '\0') goto NetworkRequestStatusLabel;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationAnimationSettings);
-                    if (NetworkRequestStatus != '\0') goto Label_18060a30c;
+                    if (NetworkRequestStatus != '\0') goto NetworkStatusCheckLabel;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationPhysicsSettings);
-                    if (NetworkRequestStatus != '\0') goto Label_18060a36a;
+                    if (NetworkRequestStatus != '\0') goto NetworkStatusValidationLabel;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigurationAudioSettings);
                     if (NetworkRequestStatus != '\0') {
                       StringProcessingResult = 0xc4;
