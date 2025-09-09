@@ -27624,7 +27624,7 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
   int iterationCount;
   
   operationResult = ValidateSystemDataIntegrityB0(ValidationBuffer);
-  inputParameter = *(int *)(DataBlockContext + 0x30);
+  inputParameter = *(int *)(DataBlockContext + DataBlockContextOffset30);
   operationResult = (int)*(uint *)(DataBlockContext + SystemDataValidationOffset34) >> 0x1f;
   operationStatus = (*(uint *)(DataBlockContext + SystemDataValidationOffset34) ^ operationResult) - operationResult;
   iterationCount = inputParameter + operationResult;
