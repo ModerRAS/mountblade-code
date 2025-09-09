@@ -913,6 +913,10 @@
 #define ExceptionHandlerContextOffset40 0x40                    // 异常处理器上下文偏移量40
 #define ExceptionDataWordOffset 0x1b                           // 异常数据字偏移量
 
+// 操作标志参数常量
+#define OperationFlagPrimary operationFlagA                     // 主要操作标志参数
+#define OperationFlagSecondary operationFlagB                   // 次要操作标志参数
+
 // 系统安全检查偏移量常量
 #define SecurityCheckOffset12 0x12                            // 安全检查偏移量12
 
