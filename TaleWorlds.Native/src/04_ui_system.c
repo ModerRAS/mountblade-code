@@ -558,16 +558,16 @@ typedef enum {
 #define DAT_180947510 UIVectorCalculationMask510             // UI向量计算掩码510 - 用于向量运算的掩码
 #define DAT_180947370 UIVectorCalculationMask370             // UI向量计算掩码370 - 用于向量运算的掩码
 #define DAT_180a40580 UIXOREncryptionKey580                 // UI异或加密密钥580 - 用于UI数据加密的密钥
-#define _DAT_180d4a8b8 UIPixelProcessorPointer
-#define _DAT_180d4a860 UIImageProcessorPointer
-#define _DAT_180d4a800 UIColorProcessorPointer
-#define _DAT_180d4a7c8 UITextureProcessorPointer
-#define _DAT_180d4a768 UIFontRendererPointer
-#define _DAT_180d4a738 UIShaderProcessorPointer
-#define _DAT_180d4a720 UIAnimationProcessorPointer
-#define _DAT_180d4a6e8 UILayoutProcessorPointer
-#define _DAT_180d4a6c8 UIInputProcessorPointer
-#define _DAT_180d4a6c0 UIEventProcessorPointer
+#define _DAT_180d4a8b8 UIPixelProcessorPointer            // UI像素处理器指针 - 处理UI像素数据
+#define _DAT_180d4a860 UIImageProcessorPointer            // UI图像处理器指针 - 处理UI图像数据
+#define _DAT_180d4a800 UIColorProcessorPointer            // UI颜色处理器指针 - 处理UI颜色数据
+#define _DAT_180d4a7c8 UITextureProcessorPointer          // UI纹理处理器指针 - 处理UI纹理数据
+#define _DAT_180d4a768 UIFontRendererPointer              // UI字体渲染器指针 - 渲染UI字体
+#define _DAT_180d4a738 UIShaderProcessorPointer          // UI着色器处理器指针 - 处理UI着色器
+#define _DAT_180d4a720 UIAnimationProcessorPointer       // UI动画处理器指针 - 处理UI动画
+#define _DAT_180d4a6e8 UILayoutProcessorPointer          // UI布局处理器指针 - 处理UI布局
+#define _DAT_180d4a6c8 UIInputProcessorPointer           // UI输入处理器指针 - 处理UI输入
+#define _DAT_180d4a6c0 UIEventProcessorPointer           // UI事件处理器指针 - 处理UI事件
 
 // 额外的UI系统数据指针 - 语义化定义
 #define _DAT_180d4a898 UIVectorDataProcessor898          // UI向量数据处理器898
