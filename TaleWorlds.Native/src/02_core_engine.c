@@ -193,8 +193,8 @@
 #define SystemStackOffset1e8 iStack_1e8                    // 系统栈偏移量1e8
 #define SystemStackOffset1d0 lStack_1d0                    // 系统栈偏移量1d0
 #define SystemStackPointer218 plStack_218                  // 系统栈指针218
-#define SystemStackPointerB0 plStack_b0                    // 系统栈指针B0
-#define SystemStackPointerA8 plStack_a8                    // 系统栈指针A8
+#define SystemStackPointerB0 SystemContextPointerB0                    // 系统栈指针B0
+#define SystemStackPointerA8 SystemContextPointerA8                    // 系统栈指针A8
 #define ValidationBytePointer48 pbStack_48                 // 验证字节指针48
 #define SystemStackInteger40 iStack_40                     // 系统栈整数40
 #define SystemStackOffsetB0 lStack_b0                      // 系统栈偏移量B0
@@ -58667,31 +58667,31 @@ void ProcessCoreEngineDataSynchronization(long long ContextHandle,long long *Con
     ReleaseSystemMemoryResources();
     pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeTertiaryMemoryPoolManager(MemoryAllocationIndex,&plStack_b0);
-    MemoryBlockIndex = plStack_b0;
-    plStack_b0[2] = SystemDataRegistry;
-    *(int *)(plStack_b0 + 3) = IntegerValue;
-    *(int *)((long long)plStack_b0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    InitializeTertiaryMemoryPoolManager(MemoryAllocationIndex,&SystemContextPointerB0);
+    MemoryBlockIndex = SystemContextPointerB0;
+    SystemContextPointerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*ContextHandleSize;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SystemContextPointerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerB0 + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  plStack_a8 = (long long *)*ContextHandleSize;
+  SystemContextPointerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextPointerA8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemFlagF);
@@ -58718,8 +58718,8 @@ void ValidateCoreEngineDataIntegrity(long long ContextHandle,long long *ContextH
   int EncodingValidationResult;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SystemContextPointerB0;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationFlag98;
   uint8_t *pSystemOperation90;
@@ -58743,31 +58743,31 @@ void ValidateCoreEngineDataIntegrity(long long ContextHandle,long long *ContextH
     ReleaseSystemMemoryResources();
     pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
     MemoryBlockIndex = MemoryAllocate(MemoryPoolManager,EncodingValidationResult,0x10,0x1e);
-    ExecuteSystemMemoryOperationA(Utf16Char,&plStack_b0);
-    BufferAllocationStatus = plStack_b0;
-    plStack_b0[2] = MemoryBlockIndex;
-    *(int *)(plStack_b0 + 3) = EncodingValidationResult;
-    *(int *)((long long)plStack_b0 + 0x1c) = EncodingValidationResult;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    ExecuteSystemMemoryOperationA(Utf16Char,&SystemContextPointerB0);
+    BufferAllocationStatus = SystemContextPointerB0;
+    SystemContextPointerB0[2] = MemoryBlockIndex;
+    *(int *)(SystemContextPointerB0 + 3) = EncodingValidationResult;
+    *(int *)((long long)SystemContextPointerB0 + 0x1c) = EncodingValidationResult;
+    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*ContextHandleSize;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)BufferAllocationStatus;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SystemContextPointerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerB0 + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  plStack_a8 = (long long *)*ContextHandleSize;
+  SystemContextPointerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextPointerA8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemFlagF);
@@ -58794,8 +58794,8 @@ void OptimizeCoreEngineDataPerformance(long long ContextHandle,long long *Contex
   long long SystemDataRegistry;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SystemContextPointerB0;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationFlag98;
   uint8_t *pSystemOperation90;
@@ -58819,31 +58819,31 @@ void OptimizeCoreEngineDataPerformance(long long ContextHandle,long long *Contex
     ReleaseSystemMemoryResources();
     pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    ExecuteSystemMemoryOperationB(MemoryAllocationIndex,&plStack_b0);
-    MemoryBlockIndex = plStack_b0;
-    plStack_b0[2] = SystemDataRegistry;
-    *(int *)(plStack_b0 + 3) = IntegerValue;
-    *(int *)((long long)plStack_b0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    ExecuteSystemMemoryOperationB(MemoryAllocationIndex,&SystemContextPointerB0);
+    MemoryBlockIndex = SystemContextPointerB0;
+    SystemContextPointerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*ContextHandleSize;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SystemContextPointerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerB0 + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  plStack_a8 = (long long *)*ContextHandleSize;
+  SystemContextPointerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextPointerA8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemFlagF);
@@ -58870,8 +58870,8 @@ void CleanupCoreEngineDataResources(long long ContextHandle,long long *ContextHa
   long long SystemDataRegistry;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SystemContextPointerB0;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationFlag98;
   uint8_t *pSystemOperation90;
@@ -58895,31 +58895,31 @@ void CleanupCoreEngineDataResources(long long ContextHandle,long long *ContextHa
     ReleaseSystemMemoryResources();
     pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    AllocateDataNodeStructure(MemoryAllocationIndex,&plStack_b0);
-    MemoryBlockIndex = plStack_b0;
-    plStack_b0[2] = SystemDataRegistry;
-    *(int *)(plStack_b0 + 3) = IntegerValue;
-    *(int *)((long long)plStack_b0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    AllocateDataNodeStructure(MemoryAllocationIndex,&SystemContextPointerB0);
+    MemoryBlockIndex = SystemContextPointerB0;
+    SystemContextPointerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*ContextHandleSize;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SystemContextPointerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerB0 + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  plStack_a8 = (long long *)*ContextHandleSize;
+  SystemContextPointerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextPointerA8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemFlagF);
@@ -59032,8 +59032,8 @@ void ProcessCoreEngineExtendedMemoryAllocation(long long ContextHandle,long long
   long long SystemDataRegistry;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SystemContextPointerB0;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   void *pSystemOperationFlag98;
   uint8_t *pSystemOperation90;
@@ -59057,31 +59057,31 @@ void ProcessCoreEngineExtendedMemoryAllocation(long long ContextHandle,long long
     ReleaseSystemMemoryResources();
     pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
     SystemDataRegistry = MemoryAllocate(MemoryPoolManager,IntegerValue,0x10,0x1e);
-    InitializeMemoryPoolManager(MemoryAllocationIndex,&plStack_b0);
-    MemoryBlockIndex = plStack_b0;
-    plStack_b0[2] = SystemDataRegistry;
-    *(int *)(plStack_b0 + 3) = IntegerValue;
-    *(int *)((long long)plStack_b0 + 0x1c) = IntegerValue;
-    *(uint8_t *)(plStack_b0 + 4) = 0;
+    InitializeMemoryPoolManager(MemoryAllocationIndex,&SystemContextPointerB0);
+    MemoryBlockIndex = SystemContextPointerB0;
+    SystemContextPointerB0[2] = SystemDataRegistry;
+    *(int *)(SystemContextPointerB0 + 3) = IntegerValue;
+    *(int *)((long long)SystemContextPointerB0 + 0x1c) = IntegerValue;
+    *(uint8_t *)(SystemContextPointerB0 + 4) = 0;
     MemoryOffsetValue = 1;
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)*ContextHandleSize;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     MemoryOffsetValue = 0;
-    if (plStack_b0 != (long long *)0x0) {
-      (**(code **)(*plStack_b0 + 0x38))();
+    if (SystemContextPointerB0 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerB0 + 0x38))();
     }
                     // WARNING: Subroutine does not return
     memcpy(*(void *)(*ContextHandleSize + 0x10),*(void *)(ContextHandle + 8),
            (long long)*(int *)(*ContextHandleSize + 0x1c));
   }
-  plStack_a8 = (long long *)*ContextHandleSize;
+  SystemContextPointerA8 = (long long *)*ContextHandleSize;
   *ContextHandleSize = 0;
-  if (plStack_a8 != (long long *)0x0) {
-    (**(code **)(*plStack_a8 + 0x38))();
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    (**(code **)(*SystemContextPointerA8 + 0x38))();
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemFlagF);
@@ -78038,7 +78038,7 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   uint32_t SystemStackRegisterFlagB0;
   uint16_t StackProcessingUnsignedValueac;
   uint16_t StackProcessingUnsignedValueaa;
-  long long *plStack_a8;
+  long long *SystemContextPointerA8;
   uint32_t CoreEngineUnsignedValueA0;
   uint32_t uStack_9c;
   uint32_t SystemOperationFlag98;
@@ -78086,8 +78086,8 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   TemporaryFlag = 0;
   BufferInitializationFlag = 0;
   CharacterTablePointer = SystemRegisterPointerX10[0x2b7];
-  pPerformanceCounterPointer = &plStack_a8;
-  plStack_a8 = pSystemTemporaryRegister118;
+  pPerformanceCounterPointer = &SystemContextPointerA8;
+  SystemContextPointerA8 = pSystemTemporaryRegister118;
   CoreEngineUnsignedValueA0 = (uint32_t)uStack_110;
   uStack_9c = uStack_110.HighPart;
   SystemOperationFlag98 = (uint32_t)ProcessingCounter;
@@ -78106,10 +78106,10 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))();
   }
-  MemoryAddressMaskPointer = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&plStack_a8,&ppSystemRegisterFlag);
+  MemoryAddressMaskPointer = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextPointerA8,&ppSystemRegisterFlag);
   *(void *)(ContextHandle + 0x68) = MemoryAddressMaskPointer;
   CharacterTablePointer = SystemContextRegister[0x2b7];
-  pPerformanceCounterPointer = &plStack_a8;
+  pPerformanceCounterPointer = &SystemContextPointerA8;
   uStack_170 = (uint32_t)CalculatedCodePoint;
   uStack_16c = (uint32_t)((unsigned long long)CalculatedCodePoint >> 0x20);
   StackProcessingUnsignedValue164 = (uint32_t)(CONCAT26(StackProcessingUnsignedValueaa,MemoryAllocationIndex) >> 0x20);
@@ -78128,7 +78128,7 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   if (plStack_120 != (long long *)0x0) {
     (**(code **)(*plStack_120 + 0x28))();
   }
-  CalculatedCodePoint = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&plStack_a8,&ppSystemRegisterFlag);
+  CalculatedCodePoint = ProcessSystemAddressMaskAndAllocate(LoopCounter,0,&SystemContextPointerA8,&ppSystemRegisterFlag);
   *(void *)(ContextHandle + 0xa8) = CalculatedCodePoint;
   if (plStack_120 != (long long *)0x0) {
     (**(code **)(*plStack_120 + 0x38))();
@@ -202010,8 +202010,8 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
   long long CoreEngineSignedValueC8;                  // 核心引擎有符号值C8
   uint CoreEngineValueC0;                             // 核心引擎值C0
   uint64_t MemoryOffsetValue;                         // 内存偏移值
-  long long *plStack_b0;                              // 栈指针b0
-  long long *plStack_a8;                              // 栈指针a8
+  long long *SystemContextPointerB0;                              // 栈指针b0
+  long long *SystemContextPointerA8;                              // 栈指针a8
   long long *CoreEngineSignedValueA0;                // 核心引擎有符号值A0指针
   uint32_t SystemOperationFlag98;                     // 系统操作标志98
   void *pSystemOperation90;                          // 系统操作90指针
@@ -202060,7 +202060,7 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
     do {
       if (*(char *)(CoreEngineSignedValueC8 + MemoryBlockIndex) == '.') {
         if (ArrayIndex != -1) {
-          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemFlagG,&plStack_b0,0,ArrayIndex);
+          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemFlagG,&SystemContextPointerB0,0,ArrayIndex);
           if (CoreEngineSignedValueC8 != 0) {
                     // WARNING: Subroutine does not return
             ProcessSystemEventHandling();
@@ -202071,15 +202071,15 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
           *(uint32_t *)(MemoryBlockIndex + 0x10) = 0;
           *(void *)(MemoryBlockIndex + 8) = 0;
           *(void *)(MemoryBlockIndex + 0x18) = 0;
-          plStack_b0 = (long long *)&SystemNullTemplate;
-          if (plStack_a8 != (long long *)0x0) {
+          SystemContextPointerB0 = (long long *)&SystemNullTemplate;
+          if (SystemContextPointerA8 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
             ProcessSystemEventHandling();
           }
-          plStack_a8 = (long long *)0x0;
+          SystemContextPointerA8 = (long long *)0x0;
           SystemOperationFlag98 = 0;
-          plStack_b0 = (long long *)&ThreadLocalStorageTemplate;
-          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemOperation90,&plStack_b0,ArrayIndex + 1,CalculationFunctionAddress);
+          SystemContextPointerB0 = (long long *)&ThreadLocalStorageTemplate;
+          MemoryBlockIndex = CoreEngineProcessSystemContext(&pSystemOperation90,&SystemContextPointerB0,ArrayIndex + 1,CalculationFunctionAddress);
           if (SystemValidationStatusPointer != 0) {
                     // WARNING: Subroutine does not return
             ProcessSystemEventHandling();
@@ -202090,14 +202090,14 @@ long long * ProcessSystemContextHandleWithValidation(uint64_t ContextHandle,long
           *(uint32_t *)(MemoryBlockIndex + 0x10) = 0;
           *(void *)(MemoryBlockIndex + 8) = 0;
           *(void *)(MemoryBlockIndex + 0x18) = 0;
-          plStack_b0 = (long long *)&SystemNullTemplate;
-          if (plStack_a8 != (long long *)0x0) {
+          SystemContextPointerB0 = (long long *)&SystemNullTemplate;
+          if (SystemContextPointerA8 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
             ProcessSystemEventHandling();
           }
-          plStack_a8 = (long long *)0x0;
+          SystemContextPointerA8 = (long long *)0x0;
           SystemOperationFlag98 = 0;
-          plStack_b0 = (long long *)&ThreadLocalStorageTemplate;
+          SystemContextPointerB0 = (long long *)&ThreadLocalStorageTemplate;
           goto LAB_18016a086;
         }
         break;
@@ -202115,14 +202115,14 @@ LAB_18016a086:
   SystemFlagF = 1;
   MemoryBlockIndex = AllocateSystemDataRegistry(MemoryAllocationIndex,&pSystemFlagG);
   if (MemoryBlockIndex != 0) {
-    plStack_b0 = (long long *)0x0;
-    plStack_a8 = (long long *)0x0;
+    SystemContextPointerB0 = (long long *)0x0;
+    SystemContextPointerA8 = (long long *)0x0;
     CoreEngineSignedValueA0 = (long long *)0x0;
     SystemOperationFlag98 = 3;
     pSystemContextPtr = (long long **)AllocateSystemContextAndInitialize(MemoryBlockIndex,&EnginePointerBuffer,&pSystemOperation90);
     SystemContextRegister = (long long *)0x0;
     pStringOffset = ContextHandle2;
-    if (&plStack_b0 != pSystemContextPtr) {
+    if (&SystemContextPointerB0 != pSystemContextPtr) {
       pSystemFlagB = NULL;
       lStack_f0 = 0;
       ErrorCode = 0;
@@ -202135,8 +202135,8 @@ LAB_18016a086:
       pSystemContextPtr[2] = (long long *)0x0;
       SystemOperationFlag98 = *(uint32_t *)(pSystemContextPtr + 3);
       *(uint32_t *)(pSystemContextPtr + 3) = 3;
-      plStack_b0 = SystemContextRegister;
-      plStack_a8 = pStringOffset;
+      SystemContextPointerB0 = SystemContextRegister;
+      SystemContextPointerA8 = pStringOffset;
     }
     if (EnginePointerBuffer != NULL) {
                     // WARNING: Subroutine does not return
@@ -202271,7 +202271,7 @@ LAB_18016a555:
         SystemContextRegister = SystemContextRegister + 1;
       } while ((unsigned long long)(long long)(int)uStackX_20 < Utf16Char4);
     }
-    if (plStack_b0 != (long long *)0x0) {
+    if (SystemContextPointerB0 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemEventHandling();
     }
@@ -214177,7 +214177,7 @@ void ProcessMemoryAddressMaskAndBufferStatus(long long ContextHandle,uint64_t Op
   void *PreviousNode;
   unsigned long long ProcessingStatusFlag;
   uint8_t SystemFlagH [32];
-  long long **pplStack_a8;
+  long long **pSystemContextPointerA8;
   long long *SystemStackPointer;
   uint64_t SystemOperation90;
   uint64_t StackValidationData;
@@ -214233,7 +214233,7 @@ LAB_1801794f5:
       }
     }
     if ((PrimaryProcessingStatusFlag == StringProcessingStatus) || (ContextHandle < (long long *)PrimaryProcessingStatusFlag[4])) {
-      pplStack_a8 = &SystemStackPointer;
+      pSystemContextPointerA8 = &SystemStackPointer;
       PrimaryProcessingStatusFlag = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       ContextHandle = SystemStackPointer;
@@ -214283,7 +214283,7 @@ LAB_1801794f5:
       }
     }
     if ((SystemEventTemplatePointer == StringProcessingStatus) || (ContextHandle < (long long *)SystemEventTemplatePointer[4])) {
-      pplStack_a8 = &SystemStackPointer;
+      pSystemContextPointerA8 = &SystemStackPointer;
       SystemEventTemplatePointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
       SystemEventTemplatePointer = (void *)*SystemEventTemplatePointer;
       ContextHandle = SystemStackPointer;
@@ -214307,7 +214307,7 @@ LAB_1801794f5:
   }
   SystemOperation90 = StackValidationData;
   if ((pMemoryAddressMaskPointer == StringProcessingStatus) || (ContextHandle < (long long *)pMemoryAddressMaskPointer[4])) {
-    pplStack_a8 = &SystemStackPointer;
+    pSystemContextPointerA8 = &SystemStackPointer;
     pMemoryAddressMaskPointer = (void *)AllocateContextHandleTableAndEventTemplate(StringProcessingStatus,aStackProcessingValue78);
     pMemoryAddressMaskPointer = (void *)*pMemoryAddressMaskPointer;
   }
@@ -215550,14 +215550,14 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
     SystemContextRegister = BufferAllocationStatus;
     (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
   }
-  SystemContextRegister = plStack_a8;
-  if (plStack_a8 != (long long *)0x0) {
-    EncodingConversionResult = *plStack_a8;
-    plStack_a8 = BufferAllocationStatus;
+  SystemContextRegister = SystemContextPointerA8;
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    EncodingConversionResult = *SystemContextPointerA8;
+    SystemContextPointerA8 = BufferAllocationStatus;
     (**(code **)(EncodingConversionResult + 0x38))();
-    BufferAllocationStatus = plStack_a8;
+    BufferAllocationStatus = SystemContextPointerA8;
   }
-  plStack_a8 = BufferAllocationStatus;
+  SystemContextPointerA8 = BufferAllocationStatus;
   if (&CoreEngineUnsignedValueA0 != Utf8SourcePointer) {
     ProcessSystemDataValidationAndCharacterEncoding(&CoreEngineUnsignedValueA0,*Utf8SourcePointer,Utf8SourcePointer[1]);
   }
@@ -215567,7 +215567,7 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
   EncodingConversionResult = 1;
   if (ProcessingStatusFlag < *(unsigned long long *)(ContextHandle + 0x70)) {
     *(unsigned long long *)(ContextHandle + 0x68) = ProcessingStatusFlag + 0x68;
-    ProcessSystemBufferAllocationAndMemoryManagement(ProcessingStatusFlag,&plStack_a8);
+    ProcessSystemBufferAllocationAndMemoryManagement(ProcessingStatusFlag,&SystemContextPointerA8);
   }
   else {
     StringOffset = *(long long *)(ContextHandle + 0x60);
@@ -215579,7 +215579,7 @@ void ProcessSystemContextDataEncoding(long long ContextHandle,long long *Context
     }
     ProcessSystemContextAndMemoryAllocation(&SystemContextRegister,StringOffset,ProcessingStatusFlag,MemoryBlockIndex);
     BufferAllocationStatus = SystemContextRegister;
-    ProcessSystemBufferAllocationAndMemoryManagement(SystemContextRegister,&plStack_a8);
+    ProcessSystemBufferAllocationAndMemoryManagement(SystemContextRegister,&SystemContextPointerA8);
     SystemContextRegister = BufferAllocationStatus + 0xd;
     StringOffset = *(long long *)(ContextHandle + 0x68);
     MemoryPoolBlockSize = *(long long *)(ContextHandle + 0x60);
@@ -215703,7 +215703,7 @@ void CleanupSystemDataTable(long long *ContextHandle
   uint SystemFlagH;
   long long *plStack_c0;
   long long *plStack_b8;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   uint CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long *SystemStackPointer;
@@ -215763,7 +215763,7 @@ void CleanupSystemDataTable(long long *ContextHandle
         plStack_c0 = (long long *)BufferAllocate(MemoryPoolManager,SystemDataTablePointer << 6,CoreEngineValueA8 & 0xff);
       }
       MemoryBoundaryPointer = (long long *)0x0;
-      plStack_b0 = plStack_c0 + SystemDataTablePointer * 8;
+      SystemContextPointerB0 = plStack_c0 + SystemDataTablePointer * 8;
       SystemDataTablePointer = *(long long *)(ProcessedCharacter + 0x30 + AllocatedMemorySize);
       BufferStatus = *(long long *)(ProcessedCharacter + 0x28 + AllocatedMemorySize);
       plStack_b8 = plStack_c0;
@@ -220514,7 +220514,7 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   long long CoreEngineSignedValueC8;
   long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -220526,7 +220526,7 @@ void ConvertUtf16Encoding(long long ContextHandle,long long *ContextHandleSize,l
   SystemFlagF = 0;
   CoreEngineSignedValueC8 = *ContextHandleSize;
   lStack_c0 = OperationBufferSize[1] - CoreEngineSignedValueC8 >> 2;
-  plStack_b0 = Utf8SourcePointer;
+  SystemContextPointerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   plStack_60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -220580,7 +220580,7 @@ LAB_180183f13:
   uint64_t MemoryAddressMaskPointer;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   uint64_t CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long StackLongValue;
@@ -220602,7 +220602,7 @@ LAB_180183f13:
   }
   MemoryOffsetValue = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
-  plStack_b0 = (long long *)MemoryBlockIndex;
+  SystemContextPointerB0 = (long long *)MemoryBlockIndex;
   SystemStackFlag = Utf8SourcePointer;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     if (pSystemTemporaryValue50 == alStack_88) {
@@ -220620,7 +220620,7 @@ LAB_180184089:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
   NVGSDK_GetUILanguageAsync(*(void *)(ContextHandle + 8),&SystemAsyncOperationDataPrimary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
-  plStack_b0 = alStack_88;
+  SystemContextPointerB0 = alStack_88;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     (**(code **)(*pSystemTemporaryValue50 + 0x20)              (pSystemTemporaryValue50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),pSystemTemporaryValue50 != alStack_88));
     pSystemTemporaryValue50 = (long long *)0x0;
@@ -221262,7 +221262,7 @@ LAB_180184aa5:
   uint64_t MemoryAddressMaskPointer;
   uint8_t SystemFlagF [32];
   uint32_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   uint64_t CoreEngineValueA8;
   long long *CoreEngineSignedValueA0;
   long long StackLongValue;
@@ -221284,7 +221284,7 @@ LAB_180184aa5:
   }
   MemoryOffsetValue = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
-  plStack_b0 = (long long *)MemoryBlockIndex;
+  SystemContextPointerB0 = (long long *)MemoryBlockIndex;
   SystemStackFlag = Utf8SourcePointer;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     if (pSystemTemporaryValue50 == alStack_88) {
@@ -221302,7 +221302,7 @@ LAB_180184d09:
   *(void *)(MemoryBlockIndex + 0x40) = SystemStackFlag;
   NVGSDK_Highlights_GetUserSettingsAsync(*(void *)(ContextHandle + 8),&SystemAsyncOperationDataSecondary,MemoryBlockIndex);
   MemoryOffsetValue = 1;
-  plStack_b0 = alStack_88;
+  SystemContextPointerB0 = alStack_88;
   if (pSystemTemporaryValue50 != (long long *)0x0) {
     (**(code **)(*pSystemTemporaryValue50 + 0x20)              (pSystemTemporaryValue50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),pSystemTemporaryValue50 != alStack_88));
     pSystemTemporaryValue50 = (long long *)0x0;
@@ -221660,7 +221660,7 @@ LAB_1801852f0:
   uint64_t *SystemCharacterStatusBufferPointer;
   uint8_t CoreEngineValueC0;
   uint64_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -221675,7 +221675,7 @@ LAB_1801852f0:
     SystemCharacterStatusBufferPointer = (void *)*ContextHandleSize;
   }
   CoreEngineValueC0 = *(uint8_t *)(OperationBufferSize + 4);
-  plStack_b0 = Utf8SourcePointer;
+  SystemContextPointerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   plStack_60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -221926,7 +221926,7 @@ LAB_1801857bd:
   long long CoreEngineSignedValueC8;
   long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -221941,7 +221941,7 @@ LAB_1801857bd:
   pErrorCode = (uint32_t *)0x0;
   pSystemFlagE = (uint32_t *)0x0;
   SecondaryProcessingStatusFlag = (void *)*ContextHandleSize;
-  plStack_b0 = Utf8SourcePointer;
+  SystemContextPointerB0 = Utf8SourcePointer;
   if (SecondaryProcessingStatusFlag != (void *)OperationBufferSize[1]) {
     do {
       SystemEventTemplatePointer = SecondaryProcessingStatusFlag;
@@ -222044,7 +222044,7 @@ LAB_1801859b0:
   uint32_t CoreEngineValueC0;
   uint32_t uStack_bc;
   uint64_t MemoryOffsetValue;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   long long lStack_a8;
   long long aStackLongValue [7];
   long long *plStack_60;
@@ -222060,7 +222060,7 @@ LAB_1801859b0:
   }
   CoreEngineValueC0 = *(uint32_t *)(OperationBufferSize + 4);
   uStack_bc = *(uint32_t *)((long long)OperationBufferSize + 0x24);
-  plStack_b0 = Utf8SourcePointer;
+  SystemContextPointerB0 = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
   plStack_60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
@@ -222380,7 +222380,7 @@ LAB_180185b78:
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
   uint8_t SystemFlagH [32];
-  long long **pplStack_a8;
+  long long **pSystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   uint64_t *pSystemOperationFlag98;
   uint8_t SystemOperation90 [16];
@@ -222412,7 +222412,7 @@ LAB_180185b78:
     CalculationFunctionAddress = 0;
     StackProcessingValue78 = 0xf;
     SystemOperation90[0] = 0;
-    pplStack_a8 = &CoreEngineSignedValue70;
+    pSystemContextPointerA8 = &CoreEngineSignedValue70;
     CoreEngineSignedValue70 = (long long *)0x0;
     StackProcessingValue = 0;
     CoreEngineSignedValue70 = (long long *)FUN_180188490();
@@ -222455,13 +222455,13 @@ LAB_180185b78:
     SystemKeyPointer = 0;
     SystemStackFlag = 0xf;
     ContextHandle = *(long long **)(BufferStatus + 8);
-    pplStack_a8 = (long long **)&EncodingBuffer;
+    pSystemContextPointerA8 = (long long **)&EncodingBuffer;
     EncodingBuffer = &SystemBufferTertiary;
     SystemStackRegisterValue58 = BufferStatus;
     ppStackValidationFlag28 = &EncodingBuffer;
     (**(code **)(*ContextHandle + 0x18))(ContextHandle,SystemOperation90,&EncodingBuffer,0);
     ContextHandle = CoreEngineSignedValue70;
-    pplStack_a8 = &CoreEngineSignedValue70;
+    pSystemContextPointerA8 = &CoreEngineSignedValue70;
     FUN_1801884d0(&CoreEngineSignedValue70,CoreEngineSignedValue70[1]);
     CoreEngineSignedValue70[1] = (long long)ContextHandle;
     *CoreEngineSignedValue70 = (long long)ContextHandle;
@@ -237469,8 +237469,8 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   SystemPriorityLevel = EncodingDecodingKey ^ (unsigned long long)aBufferInitializationFlag;
   uStack_104 = 0;
   plStack_b8 = (long long *)0x0;
-  plStack_b0 = (long long *)0x0;
-  plStack_a8 = (long long *)0x0;
+  SystemContextPointerB0 = (long long *)0x0;
+  SystemContextPointerA8 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 3;
   ProcessingCounter = Utf16EndPointer;
   SystemTemporaryValue90 = ContextHandle;
@@ -237494,8 +237494,8 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   SystemBytePointer[3] = 0;
   plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,1);
   StackLongValue = ContextHandle + 0x607e0;
-  ContextHandle9 = plStack_b0;
-  pBufferIndex = plStack_a8;
+  ContextHandle9 = SystemContextPointerB0;
+  pBufferIndex = SystemContextPointerA8;
   SystemChecksum = 0;
   OperationStatus = SystemMemoryAllocationResult;
 LAB_180198f21:
@@ -237573,7 +237573,7 @@ LAB_18019914b:
       if (MemoryAllocationHandle == 0) {
 LAB_1801991d4:
         FUN_1801993a0(SystemTemporaryValue90,StackValidationData,&plStack_b8,ProcessingCounter);
-        ContextHandle9 = plStack_b0;
+        ContextHandle9 = SystemContextPointerB0;
         pBufferIndex = plStack_b8;
         uStack_104 = uStack_104 | 1;
         pSystemFlagA = &SystemNullTemplate;
@@ -237642,7 +237642,7 @@ LAB_180199282:
     ContextHandleTablePointer = *(long long **)(CharacterTablePointer6 + Utf16Char4 * 8);
     *ContextHandle9 = (long long)ContextHandleTablePointer;
     if (ContextHandleTablePointer != (long long *)0x0) {
-      plStack_b0 = SystemContextPtr;
+      SystemContextPointerB0 = SystemContextPtr;
       (**(code **)(*ContextHandlePointer + 0x28))();
       plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,MatchCounter + 1);
       ContextHandle9 = SystemContextPtr;
@@ -237688,12 +237688,12 @@ LAB_1801992e1:
   pBufferIndex = ContextHandle7 + MemoryBlockIndex;
   MatchCounter = (int)plStack_c0;
   plStack_b8 = ContextHandle7;
-  plStack_a8 = pBufferIndex;
+  SystemContextPointerA8 = pBufferIndex;
 LAB_18019937e:
   plStack_c0 = (long long *)CONCAT44(plStack_c0.HighPart,MatchCounter + 1);
   ContextHandle9 = SystemContextPtr;
   SystemChecksum = uStack_104;
-  plStack_b0 = SystemContextPtr;
+  SystemContextPointerB0 = SystemContextPtr;
   goto LAB_180198f21;
 }
 
@@ -238039,7 +238039,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
   long long SystemTemporaryValueD0;
   uint64_t *SystemCharacterStatusBufferPointer;
   long long *plStack_b8;
-  long long *plStack_b0;
+  long long *SystemContextPointerB0;
   uint64_t CoreEngineValueA8;
   uint32_t CoreEngineUnsignedValueA0;
   uint64_t SystemOperationFlag98;
@@ -238093,22 +238093,22 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
     do {
       if (*(char *)(lStack_100 + 0x2e5) == '\x04') {
         plStack_b8 = (long long *)0x0;
-        plStack_b0 = (long long *)0x0;
+        SystemContextPointerB0 = (long long *)0x0;
         CoreEngineValueA8 = 0;
         CoreEngineUnsignedValueA0 = 3;
         uStack_178 = Utf16Character;
         FUN_1802e92b0(lStack_100,&plStack_b8,0,0xffffffff);
         pPerformanceCounterPointer = (long long **                       CONCAT44(pPerformanceCounterPointer.HighPart,
                                 (int)MemoryAllocationIndex7 +
-                                (int)((long long)plStack_b0 - (long long)plStack_b8 >> 3));
+                                (int)((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3));
         BufferAllocationStatus8 = plStack_b8;
         plStack_110 = plStack_b8;
         MemoryAllocationIndexAdditional = ProcessingCounter;
         ContextHandle2 = PreviousContextPointer;
         MemoryBlockIndex = plStack_b8;
         SystemContextPtr = plStack_b8;
-        MemoryBlockListHead = plStack_b0;
-        if (plStack_b8 != plStack_b0) {
+        MemoryBlockListHead = SystemContextPointerB0;
+        if (plStack_b8 != SystemContextPointerB0) {
           do {
             MemoryBufferC = *BufferAllocationStatus8;
             pOperationStatus = &SystemNullTemplate;
@@ -238618,33 +238618,33 @@ LAB_18019a44a:
             ContextHandle2 = PreviousContextPointer;
             MemoryBlockIndex = plStack_b8;
             SystemContextPtr = plStack_b8;
-            MemoryBlockListHead = plStack_b0;
+            MemoryBlockListHead = SystemContextPointerB0;
             Utf16Character = uStack_178;
-          } while (plStack_110 != plStack_b0);
+          } while (plStack_110 != SystemContextPointerB0);
         }
-        for (; MemoryPoolBlockSizePointer = plStack_b0, BufferAllocationStatus8 = plStack_b8, ProcessingCounter = MemoryAllocationIndexAdditional, PreviousContextPointer = ContextHandle2,
-            MemoryBlockIndex != plStack_b0; MemoryBlockIndex = MemoryBlockIndex + 1) {
+        for (; MemoryPoolBlockSizePointer = SystemContextPointerB0, BufferAllocationStatus8 = plStack_b8, ProcessingCounter = MemoryAllocationIndexAdditional, PreviousContextPointer = ContextHandle2,
+            MemoryBlockIndex != SystemContextPointerB0; MemoryBlockIndex = MemoryBlockIndex + 1) {
           plStack_b8 = SystemContextPtr;
-          plStack_b0 = MemoryBlockListHead;
+          SystemContextPointerB0 = MemoryBlockListHead;
           if ((long long *)*MemoryBlockIndex != (long long *)0x0) {
             (**(code **)(*(long long *)*MemoryBlockIndex + 0x38))();
           }
           MemoryAllocationIndexAdditional = ProcessingCounter;
           ContextHandle2 = PreviousContextPointer;
           SystemContextPtr = plStack_b8;
-          MemoryBlockListHead = plStack_b0;
-          plStack_b0 = MemoryPoolBlockSizePointer;
+          MemoryBlockListHead = SystemContextPointerB0;
+          SystemContextPointerB0 = MemoryPoolBlockSizePointer;
           plStack_b8 = BufferAllocationStatus8;
         }
         if (plStack_b8 != (long long *)0x0) {
           plStack_b8 = SystemContextPtr;
-          plStack_b0 = MemoryBlockListHead;
+          SystemContextPointerB0 = MemoryBlockListHead;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(BufferAllocationStatus8);
         }
         MemoryAllocationIndex7 = (unsigned long long)pPerformanceCounterPointer & 0xffffffff;
         plStack_b8 = SystemContextPtr;
-        plStack_b0 = MemoryBlockListHead;
+        SystemContextPointerB0 = MemoryBlockListHead;
       }
       MemoryBufferC = *ContextHandle2;
       do {
@@ -240746,8 +240746,8 @@ unsigned long long FUN_18019da10(uint32_t ContextHandle,long long OperationBuffe
   long long alStackX_10 [2];
   long long ****pppPerformanceCounterPointer;
   long long ***ppplStack_b8;
-  long long ***ppplStack_b0;
-  long long ***ppplStack_a8;
+  long long ***ppSystemContextPointerB0;
+  long long ***ppSystemContextPointerA8;
   long long **pCoreEngineSignedValueA0;
   long long **pSystemStackPointer;
   long long ****ppppSystemTemporaryValue90;
@@ -240785,12 +240785,12 @@ unsigned long long FUN_18019da10(uint32_t ContextHandle,long long OperationBuffe
   *(uint8_t *)(alStackX_10[0] + 0x12c09) = *(uint8_t *)(in_RCX + 3);
   pppContextHandle3 = in_RCX[0x77];
   if (pppContextHandle3 != (long long ****)0x0) {
-    ppplStack_a8 = (long long ***)pppContextHandle3;
+    ppSystemContextPointerA8 = (long long ***)pppContextHandle3;
     ContextHandle = (*(code *)(*pppContextHandle3)[5])(pppContextHandle3);
-    ppplStack_a8 = *(long long ****)(EncodingConversionResult + 0x124b0);
+    ppSystemContextPointerA8 = *(long long ****)(EncodingConversionResult + 0x124b0);
     *(long long *****)(EncodingConversionResult + 0x124b0) = pppContextHandle3;
-    if (ppplStack_a8 != (long long ***)0x0) {
-      ContextHandle = (**(code **)((long long)*ppplStack_a8 + 0x38))();
+    if (ppSystemContextPointerA8 != (long long ***)0x0) {
+      ContextHandle = (**(code **)((long long)*ppSystemContextPointerA8 + 0x38))();
     }
   }
   pppContextHandle3 = in_RCX[0x6b];
@@ -250149,7 +250149,7 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
   unsigned long long SystemChecksum;
   uint ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
-  long long *plStack_a8;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   long long *SystemStackPointer;
   uint64_t SystemOperation90;
@@ -250178,18 +250178,18 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
   SystemTemporaryValue50 = 0;
   SystemStackPointer = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 0;
-  plStack_a8 = (long long *)0x0;
+  SystemContextPointerA8 = (long long *)0x0;
   if (OperationBufferSize != (long long *)0x0) {
     (**(code **)(*ContextHandleSize + 0x28))(OperationBufferSize);
   }
   MemoryBlockIndex = OperationBufferSize;
-  if (plStack_a8 != (long long *)0x0) {
-    AllocatedMemorySize = *plStack_a8;
-    plStack_a8 = OperationBufferSize;
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    AllocatedMemorySize = *SystemContextPointerA8;
+    SystemContextPointerA8 = OperationBufferSize;
     (**(code **)(AllocatedMemorySize + 0x38))();
-    MemoryBlockIndex = plStack_a8;
+    MemoryBlockIndex = SystemContextPointerA8;
   }
-  plStack_a8 = MemoryBlockIndex;
+  SystemContextPointerA8 = MemoryBlockIndex;
   MemoryBlockIndex = SystemStackPointer;
   CoreEngineUnsignedValueA0 = 0;
   SystemStackPointer = (long long *)0x0;
@@ -250208,7 +250208,7 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
   SystemDataValue2 = 0;
   BufferOffset = 0;
   SystemUnsignedValue54 = 0x3f800000;
-  FUN_180209470(&plStack_a8);
+  FUN_180209470(&SystemContextPointerA8);
   AllocatedMemorySize = CoreEngineMemoryContext;
   SystemChecksum = OperationResult;
   SystemMemoryAllocationResult = OperationResult;
@@ -250220,13 +250220,13 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
       SystemMemoryAllocationResult = (unsigned long long)ProcessingStatusFlag;
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)(OperationBufferSize[8] - OperationBufferSize[7] >> 4));
   }
-  FUN_180209720(ContextHandle,&plStack_a8);
-  if ((plStack_a8 != (long long *)0x0) &&
-     (EncodingValidationResult = (int)(plStack_a8[8] - plStack_a8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
+  FUN_180209720(ContextHandle,&SystemContextPointerA8);
+  if ((SystemContextPointerA8 != (long long *)0x0) &&
+     (EncodingValidationResult = (int)(SystemContextPointerA8[8] - SystemContextPointerA8[7] >> 4), AllocatedMemorySize = (long long)EncodingValidationResult, 0 < EncodingValidationResult)) {
     do {
-      CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + plStack_a8[7]) + 0x100);
+      CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + SystemContextPointerA8[7]) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
-      BufferStatus = *(long long *)(OperationResult + plStack_a8[7]);
+      BufferStatus = *(long long *)(OperationResult + SystemContextPointerA8[7]);
       *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       OperationResult = OperationResult + 0x10;
@@ -250237,8 +250237,8 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
     if (SystemStackPointer != (long long *)0x0) {
       (**(code **)(*SystemStackPointer + 0x38))();
     }
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     return;
   }
@@ -250276,7 +250276,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   unsigned long long MemoryAllocationLoopCounter;
   long long *plStack_b8;
   uint64_t SystemStackRegisterFlagB0;
-  long long *plStack_a8;
+  long long *SystemContextPointerA8;
   uint64_t CoreEngineUnsignedValueA0;
   uint64_t SystemOperationFlag98;
   uint64_t SystemOperation90;
@@ -250301,7 +250301,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
   SystemKeyPointer = 0;
   BufferOffset = 0;
   lStack_60 = 0;
-  plStack_a8 = (long long *)0x0;
+  SystemContextPointerA8 = (long long *)0x0;
   SystemStackRegisterFlagB0 = 0;
   plStack_b8 = (long long *)0x0;
   if (OperationBufferSize != (long long *)0x0) {
@@ -250320,13 +250320,13 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
     (**(code **)(*Utf16EndPointer + 0x28))(Utf16EndPointer);
   }
   MemoryBlockIndex = Utf16EndPointer;
-  if (plStack_a8 != (long long *)0x0) {
-    AllocatedMemorySize = *plStack_a8;
-    plStack_a8 = Utf16EndPointer;
+  if (SystemContextPointerA8 != (long long *)0x0) {
+    AllocatedMemorySize = *SystemContextPointerA8;
+    SystemContextPointerA8 = Utf16EndPointer;
     (**(code **)(AllocatedMemorySize + 0x38))();
-    MemoryBlockIndex = plStack_a8;
+    MemoryBlockIndex = SystemContextPointerA8;
   }
-  plStack_a8 = MemoryBlockIndex;
+  SystemContextPointerA8 = MemoryBlockIndex;
   CoreEngineUnsignedValueA0 = *AdditionalParameter1;
   SystemOperationFlag98 = AdditionalParameter1[1];
   SystemOperation90 = AdditionalParameter1[2];
@@ -250365,8 +250365,8 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
     } while (AllocatedMemorySize != 0);
   }
   if (lStack_60 == 0) {
-    if (plStack_a8 != (long long *)0x0) {
-      (**(code **)(*plStack_a8 + 0x38))();
+    if (SystemContextPointerA8 != (long long *)0x0) {
+      (**(code **)(*SystemContextPointerA8 + 0x38))();
     }
     if (plStack_b8 != (long long *)0x0) {
       (**(code **)(*plStack_b8 + 0x38))();
@@ -254937,8 +254937,8 @@ LAB_18020c9db:
   int LockOperationResult0;
   uint64_t SystemRegisterFlag;
   long long *plStack_b8;
-  long long *plStack_b0;
-  long long *plStack_a8;
+  long long *SystemContextPointerB0;
+  long long *SystemContextPointerA8;
   uint32_t CoreEngineUnsignedValueA0;
   int iStack_98;
   int iStack_94;
@@ -254962,11 +254962,11 @@ LAB_18020c9db:
   CoreEngineFinalizeSystemEvent(&plStack_b8);
   iStack_8c = InitializeSystemMemoryPool(MemoryAllocationHandle,&plStack_b8);
   plStack_b8 = (long long *)&SystemNullTemplate;
-  if (plStack_b0 != (long long *)0x0) {
+  if (SystemContextPointerB0 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
-  plStack_b0 = (long long *)0x0;
+  SystemContextPointerB0 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 0;
   plStack_b8 = (long long *)&ThreadLocalStorageTemplate;
   SecondaryProcessingStatusFlag = (void *)SystemEventTemplatePointer[2];
@@ -255026,16 +255026,16 @@ LAB_18020ce30:
     (**(code **)(*ContextHandle5 + 0x28))(ConversionContext);
   }
   plStack_b8 = (long long *)0x0;
-  plStack_b0 = (long long *)0x0;
-  plStack_a8 = (long long *)0x0;
+  SystemContextPointerB0 = (long long *)0x0;
+  SystemContextPointerA8 = (long long *)0x0;
   CoreEngineUnsignedValueA0 = 3;
   FUN_1802e8c60(ConversionContext);
-  if (plStack_b0 < plStack_a8) {
-    *plStack_b0 = (long long)ConversionContext;
-    pStringOffset = plStack_b0;
+  if (SystemContextPointerB0 < SystemContextPointerA8) {
+    *SystemContextPointerB0 = (long long)ConversionContext;
+    pStringOffset = SystemContextPointerB0;
   }
   else {
-    SystemDataTablePointer = (long long)plStack_b0 - (long long)plStack_b8 >> 3;
+    SystemDataTablePointer = (long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3;
     if (SystemDataTablePointer == 0) {
       SystemDataTablePointer = 1;
 LAB_18020ceb6:
@@ -255046,21 +255046,21 @@ LAB_18020ceb6:
       if (SystemDataTablePointer != 0) goto LAB_18020ceb6;
       pStringOffset = (long long *)0x0;
     }
-    if (plStack_b8 != plStack_b0) {
+    if (plStack_b8 != SystemContextPointerB0) {
                     // WARNING: Subroutine does not return
-      memmove(pStringOffset,plStack_b8,(long long)plStack_b0 - (long long)plStack_b8);
+      memmove(pStringOffset,plStack_b8,(long long)SystemContextPointerB0 - (long long)plStack_b8);
     }
     *pStringOffset = (long long)ConversionContext;
     if (plStack_b8 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemEventHandling();
     }
-    plStack_a8 = pStringOffset + SystemDataTablePointer;
+    SystemContextPointerA8 = pStringOffset + SystemDataTablePointer;
     plStack_b8 = pStringOffset;
   }
-  plStack_b0 = pStringOffset + 1;
+  SystemContextPointerB0 = pStringOffset + 1;
   iStack_98 = 0;
-  if ((long long)plStack_b0 - (long long)plStack_b8 >> 3 != 0) {
+  if ((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3 != 0) {
     lStack_88 = 0;
     do {
       CharacterTablePointer6 = *Utf16EndPointer;
@@ -255103,7 +255103,7 @@ LAB_18020ceb6:
       CharacterTablePointer6 = lStack_80;
       ContextHandle9 = CoreEngineSignedValue70;
     } while ((unsigned long long)(long long)iStack_98 <
-             (unsigned long long)((long long)plStack_b0 - (long long)plStack_b8 >> 3));
+             (unsigned long long)((long long)SystemContextPointerB0 - (long long)plStack_b8 >> 3));
   }
   if (plStack_b8 != (long long *)0x0) {
                     // WARNING: Subroutine does not return
