@@ -25122,7 +25122,7 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
       resultValue = 0;
 ValidationCompleteLabel:
       functionPointer = (DataBuffer *)
-               ((int64_t)*(int *)(*(int64_t *)(dataContext + SystemDataSecondaryOffset18) + (int64_t)operationIndex * 0xc) +
+               ((int64_t)*(int *)(*(int64_t *)(dataContext + SystemDataSecondaryOffset18) + (int64_t)operationIndex * ArrayElementSize12) +
                *(int64_t *)(dataContext + systemContextOffset));
       if (functionPointer != (DataBuffer *)0x0) {
         (**(FunctionPointer**)*functionPointer)();
@@ -25169,7 +25169,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   ValidationContextIndex = 0;
 ValidationCompleteLabel:
   validationStatusPointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(inputRegisterR10 + SystemDataSecondaryOffset18) + operationFlagA * 0xc) +
+           ((int64_t)*(int *)(*(int64_t *)(inputRegisterR10 + SystemDataSecondaryOffset18) + operationFlagA * ArrayElementSize12) +
            *(int64_t *)(inputRegisterR10 + 8));
   if (validationStatusPointer != (DataBuffer *)0x0) {
     (**(FunctionPointer**)*validationStatusPointer)();
@@ -25208,7 +25208,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
     return 0;
   }
   memoryResourcePointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(systemContextRegister + SystemDataSecondaryOffset18) + operationFlagA * 0xc) +
+           ((int64_t)*(int *)(*(int64_t *)(systemContextRegister + SystemDataSecondaryOffset18) + operationFlagA * ArrayElementSize12) +
            *(int64_t *)(systemContextRegister + 8));
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     systemDataStorage = systemDataBuffer;
@@ -25662,9 +25662,9 @@ CalculationLabel:
     *(int *)((int64_t)bufferPointer + BufferSizeOffsetC) = bufferSize;
     return 0;
   }
-  if (memorySize * 0xc - 1U < MaxSafeBufferSize) {
+  if (memorySize * ArrayElementSize12 - 1U < MaxSafeBufferSize) {
     newBuffer = (DataBuffer *)
-             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memorySize * 0xc,&SystemMemoryPoolB,0xf4
+             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memorySize * ArrayElementSize12,&SystemMemoryPoolB,0xf4
                            ,0);
     if (newBuffer != (DataBuffer *)0x0) {
       itemCount = (int)bufferPointer[1];
@@ -25713,12 +25713,12 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
   }
   allocatedMemory = 0;
   if (validationCount != 0) {
-    if (validationCount * 0xc - 1U < MaxSafeBufferSize) {
-      allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),validationCount * 0xc,&SystemMemoryPoolB,
+    if (validationCount * ArrayElementSize12 - 1U < MaxSafeBufferSize) {
+      allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),validationCount * ArrayElementSize12,&SystemMemoryPoolB,
                             0xf4,0,0,1);
       if (allocatedMemory != 0) {
         if ((int)contextPointer[1] != 0) {
-            memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * 0xc);
+            memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * ArrayElementSize12);
         }
         goto ResourceReleaseLabel;
       }
@@ -25757,12 +25757,12 @@ DataTransferLabel:
     *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC) = processingMode;
     return 0;
   }
-  if (inputData * 0xc - 1U < MaxSafeBufferSize) {
-    allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),inputData * 0xc,&SystemMemoryPoolB,0xf4,
+  if (inputData * ArrayElementSize12 - 1U < MaxSafeBufferSize) {
+    allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),inputData * ArrayElementSize12,&SystemMemoryPoolB,0xf4,
                           0);
     if (allocatedMemory != 0) {
       if ((int)contextPointer[1] != 0) {
-          memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * 0xc);
+          memcpy(allocatedMemory,*contextPointer,(int64_t)(int)contextPointer[1] * ArrayElementSize12);
       }
       goto ResourceReleaseLabel;
     }
