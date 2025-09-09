@@ -2730,6 +2730,15 @@
 // 异常清理相关偏移量常量
 #define ExceptionCleanupOffset48 0x48                          // 异常清理偏移量48
 #define ExceptionCleanupOffset58 0x58                          // 异常清理偏移量58
+
+// 系统上下文相关偏移量常量
+#define SystemContextOffset60 0x60                            // 系统上下文偏移量60
+#define SystemContextOffset70 0x70                            // 系统上下文偏移量70
+
+// 系统数据相关偏移量常量
+#define SystemDataOffset50 0x50                                // 系统数据偏移量50
+#define SystemDataOffset78 0x78                                // 系统数据偏移量78
+#define SystemDataOffsetb8 0xb8                                // 系统数据偏移量b8
 #define ExceptionHandlerContextOffsetFD8 0xfd8             // 异常处理上下文偏移量FD8
 #define ExceptionHandlerContextOffsetFE8 0xfe8             // 异常处理上下文偏移量FE8
 #define ExceptionHandlerContextOffsetFB0 0xfb0             // 异常处理上下文偏移量FB0
@@ -66939,14 +66948,19 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 保留参数，用于异常处理上下文
  * @param dataBuffer 异常处理参数，包含验证上下文信息
  * 
+ * @return void 无返回值
+ * 
  * @note 原始函数名：Unwind_1809061a0
+ * @note 此函数通过间接函数指针调用异常处理程序
+ * @warning 确保exceptionContextPointer有效，否则可能导致系统崩溃
+ * @see HandleSystemException, HandleSystemExceptionB0
  */
 void HandleSystemExceptionA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0xb8) + 0x70);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemDataOffsetb8) + ExceptionHandlerContextOffset70);
   if (exceptionContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }

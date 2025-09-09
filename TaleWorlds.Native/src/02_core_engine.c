@@ -69893,7 +69893,7 @@ SystemDataTableProcessingLabel:
   } while (SecondaryProcessingStatusFlag != NULL);
   if (ProcessingResult != ContextHandle) {
     if (*(int *)(ProcessingResult + 6) == 0) {
-LAB_18008d56b:
+SystemDataProcessingLabel:
       *CharacterLimit = ProcessingResult;
       return;
     }
@@ -69953,7 +69953,7 @@ void ValidateDataStructureByteComparison(long long ContextHandle
     *CharacterLimit = ContextHandle;
     return;
   }
-LAB_18008d56b:
+SystemDataProcessingLabel:
   *CharacterLimit = ProcessingResult;
   return;
 }
@@ -100035,16 +100035,16 @@ CharacterDataValidationLabel:
     if ((*(int *)(AllocatedMemorySize + 0x1dec) == OperationBufferSize) && ((*(byte *)(AllocatedMemorySize + 0x1dd4) & 2) == 0)) {
       CharacterDataValidationResult = '\0';
     }
-    goto LAB_18010f2a4;
+    goto CharacterDataValidationComplete;
   }
   if (hasComparisonResult) {
     *(void *)(AllocatedMemorySize + 0x1b00) = MemoryAllocationIndex;
   }
-  if (CharacterDataValidationResult == '\0') goto LAB_18010f4d1;
+  if (CharacterDataValidationResult == '\0') goto CharacterDataValidationFailed;
   if ((((UnicodeCodePoint & 0x40) != 0) && (*(int *)(AllocatedMemorySize + 0x1b20) != OperationBufferSize)) &&
      (*(int *)(AllocatedMemorySize + 0x1b20) != 0)) {
     CharacterDataValidationResult = '\0';
-    goto LAB_18010f4d1;
+    goto CharacterDataValidationFailed;
   }
   if (((UnicodeCodePoint >> 10 & 1) == 0) ||
      (((*(char *)(AllocatedMemorySize + 0x134) == '\0' && (*(char *)(AllocatedMemorySize + 0x135) == '\0')) &&
@@ -100099,7 +100099,7 @@ CharacterDataValidationLabel:
   }
   else {
 MemoryBlockEqualCheckLabel:
-    if (IsMemoryBlockEqual == 0) goto LAB_18010f4d1;
+    if (IsMemoryBlockEqual == 0) goto CharacterDataValidationFailed;
   }
   *(uint8_t *)(AllocatedMemorySize + 0x1d06) = 1;
 SystemContextProcessingLabel:
@@ -100251,16 +100251,16 @@ CharacterDataValidationLabel:
     if ((*(int *)(SystemContext + 0x1dec) == CharacterTablePointer) && ((*(byte *)(SystemContext + 0x1dd4) & 2) == 0)) {
       OperationStatus = '\0';
     }
-    goto LAB_18010f2a4;
+    goto CharacterDataValidationComplete;
   }
   if (HighByte) {
     *(void *)(SystemContext + SystemContextDataBufferOffset) = Utf16Char;
   }
-  if (OperationStatus == '\0') goto LAB_18010f4d1;
+  if (OperationStatus == '\0') goto CharacterDataValidationFailed;
   if ((((SystemChecksum & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
      (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     OperationStatus = '\0';
-    goto LAB_18010f4d1;
+    goto CharacterDataValidationFailed;
   }
   if (((SystemChecksum >> 10 & 1) == 0) ||
      (((*(char *)(SystemContext + 0x134) == '\0' && (*(char *)(SystemContext + 0x135) == '\0')) &&
@@ -100315,7 +100315,7 @@ CharacterDataValidationLabel:
   }
   else {
 MemoryBlockEqualCheckLabel:
-    if (SystemStatusChar == '\0') goto LAB_18010f4d1;
+    if (SystemStatusChar == '\0') goto CharacterDataValidationFailed;
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 SystemContextProcessingLabel:
@@ -100467,16 +100467,16 @@ CharacterDataValidationLabel:
     if ((*(int *)(SystemContext + 0x1dec) == CharacterTablePointer) && ((*(byte *)(SystemContext + 0x1dd4) & 2) == 0)) {
       OperationStatus = '\0';
     }
-    goto LAB_18010f2a4;
+    goto CharacterDataValidationComplete;
   }
   if (HighByte) {
     *(void *)(SystemContext + SystemContextDataBufferOffset) = Utf16Char;
   }
-  if (OperationStatus == '\0') goto LAB_18010f4d1;
+  if (OperationStatus == '\0') goto CharacterDataValidationFailed;
   if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
      (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     OperationStatus = '\0';
-    goto LAB_18010f4d1;
+    goto CharacterDataValidationFailed;
   }
   if (((RegisterEBPValue >> 10 & 1) == 0) ||
      (((*(char *)(SystemContext + 0x134) == '\0' && (*(char *)(SystemContext + 0x135) == '\0')) &&
@@ -100531,7 +100531,7 @@ CharacterDataValidationLabel:
   }
   else {
 MemoryBlockEqualCheckLabel:
-    if (CharacterStatus2 == '\0') goto LAB_18010f4d1;
+    if (CharacterStatus2 == '\0') goto CharacterDataValidationFailed;
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 SystemContextProcessingLabel:
@@ -100645,11 +100645,11 @@ char CheckSystemMemoryStatus(void
   *(void *)(SystemContext + SystemContextDataBufferOffset) = uStackX_20;
   OperationStatus = (char)SystemDataNode;
   MemoryAddressMaskPointer = (uint32_t)SystemDataNode;
-  if (RegisterR12ValueB == '\0') goto LAB_18010f4d1;
+  if (RegisterR12ValueB == '\0') goto CharacterDataValidationFailed;
   if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
      (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     RegisterR12ValueB = '\0';
-    goto LAB_18010f4d1;
+    goto CharacterDataValidationFailed;
   }
   if (((RegisterEBPValue >> 10 & 1) == 0) ||
      (((*(char *)(SystemContext + 0x134) == OperationStatus && (*(char *)(SystemContext + 0x135) == OperationStatus)) &&
@@ -100704,7 +100704,7 @@ char CheckSystemMemoryStatus(void
   }
   else {
 MemoryBlockEqualCheckLabel:
-    if (NullPointerValueB == '\0') goto LAB_18010f4d1;
+    if (NullPointerValueB == '\0') goto CharacterDataValidationFailed;
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 SystemContextProcessingLabel:
