@@ -134668,4 +134668,4 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 验证结果浮点数A
 // 功能：存储验证过程中的浮点数计算结果值
-#define ValidationResultFloatA floatResultA_09
+#define ValidationResultFloatA validationFloatResultA
