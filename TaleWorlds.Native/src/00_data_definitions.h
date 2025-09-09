@@ -6343,7 +6343,7 @@ SystemSecurityValidationRoutine:
     }
   }
   fclose(pUnsignedValue);
-SystemFilePointerCleanupLabel:
+SystemFilePointerCleanupPoint:
   SystemSecurityCheck(SecurityKey38 ^ (ulonglong)aStackStringLength);
 }
         SystemStatusFlag3 = '\x01';
@@ -6378,7 +6378,7 @@ SystemFilePointerCleanupLabel:
     NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(SystemTertiaryDataPointer + 0x54));
     strcpy_s(SystemTertiaryDataPointer + 0x14,64,NetworkRequestResult);
   }
-SystemMemoryContextFinalizationLabel:
+SystemMemoryContextFinalizationPoint:
   FinalizeSystemMemoryContext(aSystemStackVariable_260);
   SystemSecurityCheck(SystemStackVariable_28 ^ (ulonglong)aStackAlignmentValue);
 }
