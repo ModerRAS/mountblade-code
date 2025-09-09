@@ -223297,7 +223297,7 @@ LAB_18018764a:
   
   ContextHandle = (long long *)(ContextHandle + 0x30);
   BufferStatus = *ContextHandle;
-  FUN_1801884d0(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessSystemMemoryEx2(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *(long long *)(*ContextHandle + 8) = BufferStatus;
   *(long long *)*ContextHandle = BufferStatus;
   *(long long *)(*ContextHandle + 0x10) = BufferStatus;
