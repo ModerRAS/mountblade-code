@@ -3216,6 +3216,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ComponentValidationBufferSize 16                          // 组件验证缓冲区大小 - 组件验证操作使用的缓冲区大小（字节）
 #define systemContextBufferOffset 0x78                            // 系统上下文缓冲区偏移量 - 系统上下文缓冲区的存储位置
 
+// 地址计算乘数常量
+#define AddressCalculationMultiplier 0x10                         // 地址计算乘数 - 用于地址计算的乘数因子
+
 // 系统内存分配常量
 #define SystemMemoryAllocationFlag 0x315                          // 系统内存分配标志 - 系统内存分配操作的标志值
 
@@ -25344,13 +25347,13 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
         return memoryRegionBase;
       }
     }
-    operationResultPointer = (DataBuffer *)((int64_t)(int)destinationContext[3] * 0x10 + destinationContext[2]);
+    operationResultPointer = (DataBuffer *)((int64_t)(int)destinationContext[3] * AddressCalculationMultiplier + destinationContext[2]);
     *operationResultPointer = CONCAT44(SystemCleanupFlag,dataBuffer);
     operationResultPointer[1] = systemContextBuffer;
     *(int *)(destinationContext + 3) = (int)destinationContext[3] + 1;
   }
   else {
-    securityCheckResultPointer = (DataWord *)((int64_t)operationResult * 0x10 + destinationContext[2]);
+    securityCheckResultPointer = (DataWord *)((int64_t)operationResult * AddressCalculationMultiplier + destinationContext[2]);
     *(DataWord *)(destinationContext + 4) = securityCheckResultPointer[1];
     securityCheckResultPointer[1] = SystemCleanupFlag;
     *securityCheckResultPointer = *contextDataPointer;
@@ -26014,7 +26017,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           arrayIndex = (int)loopCounter;
           dataFlagCounter = (int)dataFlags;
         } while ((stackIndexBuffer[0] != -1) &&
-                (stackIndexBuffer[0] = *(int *)(exceptionContextPointer[2] + 4 + exceptionContextIndex * 0x10), stackIndexBuffer[0] != -1));
+                (stackIndexBuffer[0] = *(int *)(exceptionContextPointer[2] + 4 + exceptionContextIndex * AddressCalculationMultiplier), stackIndexBuffer[0] != -1));
         allocatedMemoryBlock = arrayIterationIndex + 1;
         isInputParameterValid = arrayIterationIndex != -1;
         arrayIterationIndex = 0;
