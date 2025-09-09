@@ -25687,29 +25687,29 @@ void CleanupSystemMemoryRegion(void* SystemContextParameter,void* MemoryRegionPa
             SystemCleanupFunction();
         }
         MemoryBlockPointer[5] = 0;
-        *(uint32_t *)(memoryPointer + 7) = 0;
-        memoryPointer[4] = &SystemMemoryAllocatorPointer;
-        *memoryPointer = &SystemGlobalDataPointer;
-        if (memoryPointer[1] == 0) {
-          memoryPointer[1] = 0;
-          *(uint32_t *)(memoryPointer + 3) = 0;
-          *memoryPointer = &SystemMemoryAllocatorPointer;
-            SystemCleanupFunction(memoryPointer);
+        *(uint32_t *)(MemoryBlockPointer + 7) = 0;
+        MemoryBlockPointer[4] = &SystemMemoryAllocatorPointer;
+        *MemoryBlockPointer = &SystemGlobalDataPointer;
+        if (MemoryBlockPointer[1] == 0) {
+          MemoryBlockPointer[1] = 0;
+          *(uint32_t *)(MemoryBlockPointer + 3) = 0;
+          *MemoryBlockPointer = &SystemMemoryAllocatorPointer;
+            SystemCleanupFunction(MemoryBlockPointer);
         }
           SystemCleanupFunction();
       }
-      *(void* *)(*(long long *)(SystemDataReference + 0x30) + blockIndex * 8) = 0;
-      blockIndex = blockIndex + 1;
-    } while (blockIndex < memoryBlockCount);
+      *(void* *)(*(long long *)(SystemMemoryPoolReference + 0x30) + CurrentBlockIndex * 8) = 0;
+      CurrentBlockIndex = CurrentBlockIndex + 1;
+    } while (CurrentBlockIndex < MemoryBlockTotalCount);
   }
-  *(void* *)(SystemDataReference + 0x38) = *(void* *)(SystemDataReference + 0x30);
-  blockIndex = SystemDataReference + 0x50;
-  ProcessMemoryBlock(blockIndex,*(void* *)(SystemDataReference + 0x60),cleanupFlag,cleanupParameter,InvalidHandleValue);
-  *(long long *)blockIndex = blockIndex;
-  *(long long *)(SystemDataReference + 0x58) = blockIndex;
-  *(void* *)(SystemDataReference + 0x60) = 0;
-  *(uint8_t *)(SystemDataReference + 0x68) = 0;
-  *(void* *)(SystemDataReference + 0x70) = 0;
+  *(void* *)(SystemMemoryPoolReference + 0x38) = *(void* *)(SystemMemoryPoolReference + 0x30);
+  CurrentBlockIndex = SystemMemoryPoolReference + 0x50;
+  ProcessMemoryBlock(CurrentBlockIndex,*(void* *)(SystemMemoryPoolReference + 0x60),CleanupFlagParameter,CleanupParameter,InvalidHandleValue);
+  *(long long *)CurrentBlockIndex = CurrentBlockIndex;
+  *(long long *)(SystemMemoryPoolReference + 0x58) = CurrentBlockIndex;
+  *(void* *)(SystemMemoryPoolReference + 0x60) = 0;
+  *(uint8_t *)(SystemMemoryPoolReference + 0x68) = 0;
+  *(void* *)(SystemMemoryPoolReference + 0x70) = 0;
   return;
 }
 
