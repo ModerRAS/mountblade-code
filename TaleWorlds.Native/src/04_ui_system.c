@@ -98736,8 +98736,20 @@ void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffe
 
 
 
- void FUN_180722aa9(void)
-void FUN_180722aa9(void)
+ /**
+ * @brief UI系统上下文数据处理器
+ * 
+ * 处理UI系统上下文数据的操作，包括：
+ * - 上下文句柄管理
+ * - 数据缓冲区操作
+ * - UI组件状态比较
+ * - 内存管理和数据验证
+ * 
+ * @note 原始函数名：FUN_180722aa9
+ * @return 处理结果状态码
+ */
+void ProcessUIContextData(void)
+void ProcessUIContextData(void)
 
 {
   UIByte result;
