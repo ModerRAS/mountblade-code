@@ -225154,7 +225154,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
     OldBufferStart = InsertPointer + 0x28;
     NewBufferStart = NewBufferPointer;
   }
-  FUN_180189bc0(CurrentBufferEnd,AllocatedMemorySizeSize,OldBufferStart,CharacterStatusBuffer,NewBufferStart,NewBufferStart,SystemStatusCode,SystemDataTablePointer);
+  ProcessSystemDataCopyAndBufferManagement(CurrentBufferEnd,AllocatedMemorySizeSize,OldBufferStart,CharacterStatusBuffer,NewBufferStart,NewBufferStart,SystemStatusCode,SystemDataTablePointer);
   AllocatedMemorySizeSize = *CharacterStatusBuffer;
   if (AllocatedMemorySizeSize != 0) {
     CurrentBufferEnd = CharacterStatusBuffer[1];

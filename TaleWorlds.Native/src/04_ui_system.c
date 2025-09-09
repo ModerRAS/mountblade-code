@@ -200259,8 +200259,32 @@ void FUN_180787908(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 处理UI上下文数据和缓冲区
+ * 
+ * 该函数负责处理UI上下文中的数据和缓冲区操作，主要功能包括：
+ * - 验证和处理UI上下文数据
+ * - 管理UI缓冲区的分配和释放
+ * - 处理UI事件和状态更新
+ * - 管理UI资源的生命周期
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，指定要处理的数据源
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，指定缓冲区的容量
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @return UIHandle 处理结果句柄，0表示成功，非0值表示失败
+ * 
+ * @retval 0 处理成功
+ * @retval 0x26 处理失败
+ * 
+ * @note 原始函数名：FUN_180787940
+ * @note 这是一个复杂的UI数据处理函数，涉及多个子系统和资源管理
+ * @warning 函数包含复杂的内存管理和资源分配逻辑
+ * @see ProcessUIContextDataWithBuffer
+ */
 UIHandle
-FUN_180787940(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword *bufferSize,
+ProcessUIContextDataWithBuffer(longlong uiContext,UIHandle dataSource,longlong targetBuffer,UIDword *bufferSize,
              longlong *resultPointer)
 
 {
