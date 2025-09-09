@@ -1182,12 +1182,12 @@ uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
 uint32_t CloseNetworkConnection(int64_t NetworkConnectionContext, uint32_t ConnectionFlags)
 {
   // 连接关闭处理变量
-  uint32_t ConnectionCloseResult;                         // 连接关闭结果状态
+  uint32_t NetworkConnectionCloseStatus;                         // 网络连接关闭状态
   uint32_t ContextValidationResult;                        // 上下文验证结果
   uint32_t FlagsValidationResult;                          // 标志验证结果
   
   // 初始化关闭结果
-  ConnectionCloseResult = NetworkValidationFailure;
+  NetworkConnectionCloseStatus = NetworkValidationFailure;
   ContextValidationResult = NetworkValidationFailure;
   FlagsValidationResult = NetworkValidationFailure;
   
@@ -1204,10 +1204,10 @@ uint32_t CloseNetworkConnection(int64_t NetworkConnectionContext, uint32_t Conne
   // 如果验证都成功，则关闭成功
   if (ContextValidationResult == NetworkValidationSuccess && 
       FlagsValidationResult == NetworkValidationSuccess) {
-    ConnectionCloseResult = NetworkValidationSuccess;
+    NetworkConnectionCloseStatus = NetworkValidationSuccess;
   }
   
-  return ConnectionCloseResult;
+  return NetworkConnectionCloseStatus;
 }
 
 // 网络系统内部辅助函数声明
@@ -4805,17 +4805,17 @@ NetworkHandle CompletePacketProcessing(NetworkHandle *PacketData, int64_t Proces
 {
   // 数据包完成处理状态变量
   uint32_t FinalizationResult;            // 处理完成结果
-  uint32_t StatusUpdateResult;          // 状态更新结果
+  uint32_t NetworkStatusUpdateResult;          // 网络状态更新结果
   uint32_t ResourceCleanupResult;       // 资源清理结果
   
   // 初始化处理完成状态
   FinalizationResult = NetworkValidationFailure;
-  StatusUpdateResult = NetworkValidationFailure;
+  NetworkStatusUpdateResult = NetworkValidationFailure;
   ResourceCleanupResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    StatusUpdateResult = NetworkOperationSuccess;       // 状态更新成功
+    NetworkStatusUpdateResult = NetworkOperationSuccess;       // 状态更新成功
   }
   
   // 验证处理数据偏移量有效性
@@ -4825,11 +4825,11 @@ NetworkHandle CompletePacketProcessing(NetworkHandle *PacketData, int64_t Proces
   
   // 验证处理完成标志有效性
   if (ProcessingCompletionFlag != 0) {
-    StatusUpdateResult &= 0x01;  // 完成标志验证通过
+    NetworkStatusUpdateResult &= 0x01;  // 完成标志验证通过
   }
   
   // 综合处理完成结果
-  FinalizationResult = StatusUpdateResult & ResourceCleanupResult;
+  FinalizationResult = NetworkStatusUpdateResult & ResourceCleanupResult;
   
   return FinalizationResult;  // 返回处理完成结果
 }
@@ -4848,14 +4848,14 @@ NetworkHandle CompletePacketProcessing(NetworkHandle *PacketData, int64_t Proces
 int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
 {
   // 连接上下文初始化变量
-  uint32_t ContextInitializationResult;          // 上下文初始化结果
+  uint32_t NetworkContextInitializationStatus;          // 网络上下文初始化状态
   uint32_t MemoryAllocationResult;               // 内存分配结果
-  uint32_t SecuritySetupResult;                  // 安全设置结果
+  uint32_t NetworkSecuritySetupStatus;                  // 网络安全设置状态
   
   // 初始化结果状态
-  ContextInitializationResult = NetworkValidationFailure;
+  NetworkContextInitializationStatus = NetworkValidationFailure;
   MemoryAllocationResult = NetworkValidationFailure;
-  SecuritySetupResult = NetworkValidationFailure;
+  NetworkSecuritySetupStatus = NetworkValidationFailure;
   
   // 验证连接句柄有效性
   if (ConnectionHandle != 0) {
@@ -4863,12 +4863,12 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
   }
   
   // 设置安全参数
-  SecuritySetupResult = NetworkOperationSuccess;  // 安全设置成功
+  NetworkSecuritySetupStatus = NetworkOperationSuccess;  // 安全设置成功
   
   // 综合初始化结果
-  ContextInitializationResult = MemoryAllocationResult & SecuritySetupResult;
+  NetworkContextInitializationStatus = MemoryAllocationResult & NetworkSecuritySetupStatus;
   
-  return ContextInitializationResult;  // 返回初始化结果
+  return NetworkContextInitializationStatus;  // 返回初始化结果
 }
 
 /**
