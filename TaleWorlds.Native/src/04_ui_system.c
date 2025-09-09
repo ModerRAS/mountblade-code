@@ -100512,22 +100512,38 @@ int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffe
 
 
 
- void FUN_180723ee0(int *uiContext,char *dataSource)
-void FUN_180723ee0(int *uiContext,char *dataSource)
+ /**
+ * @brief UI字体度量计算函数
+ * 
+ * 该函数负责计算UI元素的字体度量信息，主要功能包括：
+ * - 计算字符在字体表中的位置和度量
+ * - 处理字体度量的X和Y坐标
+ * - 优化字符显示位置和间距
+ * - 为UI文本渲染提供字体度量数据
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含字体度量相关数据
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180723ee0
+ * @note 这是一个UI字体度量计算函数，用于处理字体渲染相关计算
+ */
+void CalculateUIFontMetrics(int *uiContext,char *dataSource)
 
 {
   short fontMetricX;
   short fontMetricY;
-  longlong stringCompareIndex;
-  int tempProcessingResult;
-  char firstChar;
-  char currentChar;
-  int charIndex;
+  longlong fontComparisonIndex;
+  int metricProcessingResult;
+  char firstCharacter;
+  char currentCharacter;
+  int characterIndex;
   int fontTableIndex;
-  int maxIntValue;
-  int processedCount;
-  int distanceResult1;
-  int distanceResult2;
+  int maximumIntValue;
+  int metricProcessedCount;
+  int horizontalDistance;
+  int verticalDistance;
   
   currentChar = *dataSource;
   distanceResult1 = 0;
