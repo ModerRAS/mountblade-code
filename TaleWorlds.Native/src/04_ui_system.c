@@ -99024,52 +99024,51 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
  * @return 处理结果状态码
  */
 void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
-void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
 
 {
   UIByte result;
-  char localChar2;
-  short ContextFirstValue;
-  int TempInt4;
-  int localInt5;
-  longlong contextHandleData;
-  short *psVar7;
-  UIByte *ptrLocal8;
-  char *plocalChar9;
-  int processedCount;
-  UIByte stackBuffer [8];
-  ulonglong stackParam00000050;
-  int maxIterations;
+  char UILocalChar2;
+  short UIContextFirstValue;
+  int UIProcessingResult;
+  int UIDataValue;
+  longlong UIContextHandleData;
+  short *pUIValuePtr;
+  UIByte *pUIBytePtr;
+  char *pCharDataPtr;
+  int UIProcessedCount;
+  UIByte UIStackBuffer [8];
+  ulonglong UIStackParam;
+  int UIMaxIterations;
   
   if ((bufferSize == 0) && (*(int *)(uiBufferData + 0x970 + (longlong)targetBuffer * 4) == 0)) {
-    TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableA,8);
+    UIProcessingResult = ReadUIData(dataSource,&UIFunctionResultTableA,8);
   }
   else {
-    TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableColor,8);
-    TempInt4 = TempInt4 + 2;
+    UIProcessingResult = ReadUIData(dataSource,&UIFunctionResultTableColor,8);
+    UIProcessingResult = UIProcessingResult + 2;
   }
-  localChar2 = (char)(TempInt4 >> 1);
-  *(char *)(uiContext + 0xae5) = localChar2;
-  *(byte *)(uiContext + 0xae6) = (byte)TempInt4 & 1;
-  if (maxIterations == 2) {
+  UILocalChar2 = (char)(UIProcessingResult >> 1);
+  *(char *)(uiContext + 0xae5) = UILocalChar2;
+  *(byte *)(uiContext + 0xae6) = (byte)UIProcessingResult & 1;
+  if (UIMaxIterations == 2) {
     result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
     *(UIByte *)(uiContext + 0xac8) = result;
   }
   else {
-    localChar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)localChar2 * 8,8);
-    *(char *)(uiContext + 0xac8) = localChar2 << 3;
-    localChar2 = ReadUIData(dataSource,&UIFunctionResultTableTexture,8);
-    *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + localChar2;
+    UILocalChar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)UILocalChar2 * 8,8);
+    *(char *)(uiContext + 0xac8) = UILocalChar2 << 3;
+    UILocalChar2 = ReadUIData(dataSource,&UIFunctionResultTableTexture,8);
+    *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + UILocalChar2;
   }
-  TempInt4 = 1;
+  UIProcessingResult = 1;
   if (1 < *(int *)(uiBufferData + 0x914)) {
-    ptrLocal8 = (UIByte *)(uiContext + 0xac9);
+    pUIBytePtr = (UIByte *)(uiContext + 0xac9);
     do {
       result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
-      *ptrLocal8 = result;
-      ptrLocal8 = ptrLocal8 + 1;
-      TempInt4 = TempInt4 + 1;
-    } while (TempInt4 < *(int *)(uiBufferData + 0x914));
+      *pUIBytePtr = result;
+      pUIBytePtr = pUIBytePtr + 1;
+      UIProcessingResult = UIProcessingResult + 1;
+    } while (UIProcessingResult < *(int *)(uiBufferData + 0x914));
   }
   localChar2 = ReadUIData(dataSource,(longlong)
                                 (((int)*(char *)(uiContext + 0xae5) >> 1)                                 (int)**(short **)(uiContext + 0xac0)) +
