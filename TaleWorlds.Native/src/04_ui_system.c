@@ -7010,8 +7010,8 @@ void* UIInputDataTable;
 void* UICursorDataTable;
 void* UITouchDataTable;
 void* UIGestureDataTable;
- UI系统颜色处理回调函数
-void* UIColorBlendCallback;                            UI颜色混合回调函数
+ // UI系统颜色处理回调函数
+void* UIColorBlendCallback;                            // UI颜色混合回调函数
 void* UIAlphaBlendCallback;                            UI透明度混合回调函数
 void* UIDitherCallback;                               UI抖动处理回调函数
 void* UIFilterCallback;                               UI过滤处理回调函数
