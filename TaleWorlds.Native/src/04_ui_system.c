@@ -1513,8 +1513,8 @@ typedef enum {
 #define AudioEncodingActive IsEventProcessingActive
 #define AudioSampleCount ContextFirstValue
 #define AudioProcessingMode UIAudioProcessingMode
-#define AudioDataChunkIndex loopCounter
-#define AudioSampleRate loopCounter
+#define AudioDataChunkIndex UILoopCounter
+#define AudioSampleRate UILoopCounter
 #define AudioDataSize AudioDataSizeLocal7
 #define AudioProcessedBytes eventProcessingCounter
 #define AudioChannelCount eventProcessingStatus
@@ -100499,8 +100499,8 @@ LAB_180723f9b:
   stringCompareIndex = (longlong)(int)currentChar;
   firstChar = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
           (char)((stringCompareIndex / 3 + (stringCompareIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
-  dataSource[2] = localChar5;
-  *dataSource = localChar6 + localChar5 * -3;
+  dataSource[2] = firstChar;
+  *dataSource = currentChar + firstChar * -3;
   ProcessingResult2 = 0;
   *uiContext = processedCount;
   do {
