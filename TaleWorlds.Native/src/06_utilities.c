@@ -7906,6 +7906,9 @@ uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 // 浮点数验证数组大小常量
 #define FloatValidationArraySize 16
 
+// 系统上下文数组大小常量
+#define SystemContextArraySize 2
+
 // 浮点数验证数组变量声明
 float FloatValidationArray[FloatValidationArraySize];
 
@@ -13930,7 +13933,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   
   // 安全和缓冲区相关变量
   uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];  // 安全验证缓冲区
-  int64_t SystemContextArray[2];           // 系统上下文数组
+  int64_t SystemContextArray[SystemContextArraySize];           // 系统上下文数组
   uint8_t *DataProcessingBuffer;           // 数据处理缓冲区指针
   int32_t ResourceProcessingLoopCounter;    // 资源处理循环计数器
   uint32_t DataProcessingFlags;             // 数据处理标志
@@ -45125,7 +45128,7 @@ void SystemCallHandlerMemoryCleanup2(DataBuffer operationBase,int64_t dataBuffer
 void SystemCallHandlerMemoryCleanup3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x4a0,0x20,0x10,InitializeSystemMemoryA2);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + DataProcessingOffset70) + MemoryOperationOffset4a0,0x20,0x10,InitializeSystemMemoryA2);
   return;
 }
 
