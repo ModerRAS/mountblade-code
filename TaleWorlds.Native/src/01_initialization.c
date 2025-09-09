@@ -30149,22 +30149,22 @@ SystemIdCheck:
       SecondaryEncryptionOffset = 0;
       SecondaryStackFlagPointer = (uint8_t *)0x0;
       EncryptionOffset = 0;
-      ExecuteSystemCommand(&pUnsignedStackFlagPrimary,*(uint32_t *)(SystemAllocationFlags + 0x10));
+      ExecuteSystemCommand(&PrimaryStackFlagPointer,*(uint32_t *)(MemoryAllocationFlags + 0x10));
       if (*(int *)(SystemAllocationFlags + 0x10) != 0) {
-          memcpy(pUnsignedStackFlagSecondary,*(void* *)(SystemAllocationFlags + 8),*(int *)(SystemAllocationFlags + 0x10) + 1);
+          memcpy(SecondaryStackFlagPointer,*(void* *)(MemoryAllocationFlags + 8),*(int *)(MemoryAllocationFlags + 0x10) + 1);
       }
       if (*(long long *)(SystemAllocationFlags + 8) != 0) {
         EncryptionOffset = 0;
-        if (pUnsignedStackFlagSecondary != (uint8_t *)0x0) {
-          *pUnsignedStackFlagSecondary = 0;
+        if (SecondaryStackFlagPointer != (uint8_t *)0x0) {
+          *SecondaryStackFlagPointer = 0;
         }
-        EncryptionOffsetSecondary = EncryptionOffsetSecondary & SystemMaximumUnsigned32BitValue;
+        SecondaryEncryptionOffset = SecondaryEncryptionOffset & SystemMaximumUnsigned32BitValue;
       }
-      SystemCode = SystemMemoryAllocationOffset + 8;
-      ExecuteSystemCommand(&SystemMemoryContext,SystemCode);
+      SystemOperationCode = SystemMemoryAllocationOffset + 8;
+      ExecuteSystemCommand(&SystemMemoryContext,SystemOperationCode);
       *(void* *)(ResourceDataBufferPointer + SystemMemoryAllocationOffset) = 0x6a624f656e656353;
       *(uint8_t *)((long long)(ResourceDataBufferPointer + SystemMemoryAllocationOffset) + 8) = 0;
-      SystemMemoryAllocationOffset = SystemCode;
+      SystemMemoryAllocationOffset = SystemOperationCode;
       SystemInitializationStatusFlag = VerifySystemMemoryAllocation(&SystemMemoryContext);
       if (SystemInitializationStatusFlag == '\0') {
         pUnsignedStackFlagPrimary = &SystemGlobalDataPointer;
