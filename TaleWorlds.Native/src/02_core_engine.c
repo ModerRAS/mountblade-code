@@ -74506,7 +74506,7 @@ void CoreEngineUpdateSystemStatus(void
     }
     SystemEventPointer = &ThreadLocalStorageTemplate;
     (**(code **)(**(long long **)(MemoryBoundaryEnd + 0x1698) + 0x60))();
-LAB_180091192:
+SystemTerminationLabel:
     (**(code **)(*DataTable180C86878 + 0x10))();
   }
   else {
