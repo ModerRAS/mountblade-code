@@ -373,6 +373,9 @@
 // 数据验证偏移量常量
 #define DataValidationOffset20 0x20
 #define DataValidationOffset25 0x25
+
+// 初始化偏移量常量
+#define InitializationOffset14 0x14
 #define DataValidationOffsetA8 0xa8
 #define DataValidationOffset18 0x18
 
@@ -28837,9 +28840,9 @@ DataBuffer InitializeSystemComponentD0(DataBuffer *SystemComponentPtr,int64_t In
       if ((int)InitializationResult == 0) {
         InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset + 8,8);
         if ((int)InitializationResult == 0) {
-          InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + ExceptionHandlerCallbackOffset10);
+          InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + InitializationOffset14);
           if ((int)InitializationResult == 0) {
-            InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + 0x14);
+            InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + InitializationOffset14);
           }
         }
       }
