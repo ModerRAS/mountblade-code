@@ -97483,7 +97483,7 @@ LAB_1807217c9:
       ProcessUITransformDataWithCoefficients(TargetHandle,SourceHandle & 0xffffffff,processingResult);
     }
     else {
-      FUN_180721810(TargetHandle,SourceHandle & 0xffffffff,1);
+      ProcessUITransformDataWithCoefficients(TargetHandle,SourceHandle & 0xffffffff,1);
       processingResult = unmodifiedEBX;
       if (unmodifiedEBX != 0) goto LAB_1807217c9;
     }
@@ -99553,7 +99553,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
   }
   pstackUInt120 = astackUIntf8;
   stackUInt128 = stackUInt114;
-  FUN_180724090(uiContext,stackLong108,resultPointer,stackInt110);
+  ProcessUIFloatDataTransfer(uiContext,stackLong108,resultPointer,stackInt110);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt58 ^ (ulonglong)astackUInt148);
 }
