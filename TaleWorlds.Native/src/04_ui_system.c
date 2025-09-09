@@ -100209,7 +100209,8 @@ void ProcessUIIntegerDataCalculation(int *uiContext,longlong dataSource,longlong
  * @return 无返回值
  * @note 原始函数名：FUN_180723b34
  */
-void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+#define ProcessUIAudioData FUN_180723b34
+void ProcessUIAudioData(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 
 {
@@ -100265,9 +100266,9 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
     else {
       result = 0x7fff;
     }
-    *(UIWord *)(dataSource + 2 + localLong7 * 4) = result;
-    localLong7 = localLong7 + 1;
-  } while (localLong7 < bufferSize);
+    *(UIWord *)(dataSource + 2 + bufferOffset * 4) = result;
+    bufferOffset = bufferOffset + 1;
+  } while (bufferOffset < bufferSize);
   return;
 }
 
