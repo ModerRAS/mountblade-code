@@ -302774,23 +302774,35 @@ LAB_18084f283:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f04a(longlong *uiContext)
+/**
+ * @brief 清理UI上下文并释放相关资源
+ * 
+ * 该函数负责清理UI上下文中的资源，包括：
+ * - 释放UI组件句柄
+ * - 清理内存分配
+ * - 重置上下文状态
+ * - 处理事件队列清理
+ * 
+ * @param uiContext UI上下文指针
+ * @return ulonglong 清理操作结果码
+ */
+ulonglong CleanupUIContextAndResources(longlong *uiContext)
 
 {
-  uint *ptrResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  UIHandle ProcessingStatus;
-  uint loopCounter;
+  uint *componentDataPtr;
+  int validationStatus;
+  longlong contextIndex;
+  UIHandle componentHandle;
+  uint componentCount;
   uint maxProcessingCount;
-  int localInt7;
-  ulonglong eventProcessingCounter;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  int *pProcessingResult1;
-  longlong BasePointer;
-  uint uStack0000000000000034;
-  uint uStack000000000000003c;
+  int componentIndex;
+  ulonglong processedCount;
+  longlong dataOffset;
+  ulonglong loopResult;
+  int *nextComponentPtr;
+  longlong basePointer;
+  uint componentHash1;
+  uint componentHash2;
   
   if (BasePointer != 0) {
     CleanupUIContextState();

@@ -248824,7 +248824,7 @@ LAB_180204eec:
                           *(uint64_t **)(SystemEventTemplatePointer + 2) = StringProcessingStatus;
                           *(uint64_t **)(SystemEventTemplatePointer + 4) = StringProcessingStatus;
                           StringProcessingStatus = (void *                                   FUN_180204b50(ContextHandle,StackBuffer80,IntegerValue9,0,*CharacterStatusBuffer2,
-                                                 in_stack_fffffffffffffdb0 & 0xffffff00,1);
+                                                 CharacterEncodingFlags & 0xffffff00,1);
                           SystemUintBuffer238 = *StringProcessingStatus;
                           iStack_230 = *(int *)(StringProcessingStatus + 1);
                           uStack_22c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
@@ -248868,7 +248868,7 @@ LAB_180204eec:
                       }
                     }
                   }
-                  in_stack_fffffffffffffdb0 = SystemUintBuffer238.HighPart * IntegerValue;
+                  CharacterEncodingFlags = SystemUintBuffer238.HighPart * IntegerValue;
                   (**(code **)(**(long long **)(CoreEngineRenderContext + 0x1cd8) + 0x1a8)                            (*(long long **)(CoreEngineRenderContext + 0x1cd8),plStack_228,
                              *(void *)(CharacterStatusBuffer2 + 6),CharacterStatusBuffer2[2] * IntegerValue,(int)SystemUintBuffer238 * IntegerValue
                              ,in_stack_fffffffffffffdb0);
