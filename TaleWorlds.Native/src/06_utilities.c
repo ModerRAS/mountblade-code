@@ -110155,6 +110155,26 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 使用内存指针处理数据缓冲区（偏移0xf0）
+ * 
+ * 该函数负责使用内存指针处理数据缓冲区，调用ProcessDataBufferA5函数
+ * 进行实际的数据处理操作。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存指针信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区获取内存指针
+ * 2. 调用ProcessDataBufferA5函数处理数据
+ * 3. 传递操作标志和系统清理标志
+ * 
+ * @note 原始函数名：Unwind_18090f0f0
+ * @note 内存指针偏移量：MemoryPointerOffset
+ * @note 回调函数偏移量：ExceptionHandlerCallbackOffset10
+ */
 void ProcessDataBufferWithMemoryPointerAtOffset0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -110165,6 +110185,27 @@ void ProcessDataBufferWithMemoryPointerAtOffset0f0(DataBuffer operationBase,int6
 
 
 
+/**
+ * @brief 使用内存指针处理数据缓冲区（偏移0x100）
+ * 
+ * 该函数负责使用内存指针处理数据缓冲区，调用ProcessDataBufferA5函数
+ * 进行实际的数据处理操作。功能与ProcessDataBufferWithMemoryPointerAtOffset0f0完全相同。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存指针信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区获取内存指针
+ * 2. 调用ProcessDataBufferA5函数处理数据
+ * 3. 传递操作标志和系统清理标志
+ * 
+ * @note 原始函数名：Unwind_18090f100
+ * @note 内存指针偏移量：MemoryPointerOffset
+ * @note 回调函数偏移量：ExceptionHandlerCallbackOffset10
+ * @note 此函数与ProcessDataBufferWithMemoryPointerAtOffset0f0功能重复
+ */
 void ProcessDataBufferWithMemoryPointerAtOffset100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
