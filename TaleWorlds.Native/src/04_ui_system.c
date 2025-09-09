@@ -1332,6 +1332,14 @@ typedef enum {
 #define ProcessUIDataTransformAndNormalization ProcessUIDataTransformAndNormalization
 #define CalculateUIProcessingRatio CalculateUIProcessingRatio
 
+// UI系统内存管理函数
+#define FUN_180741e10 SetupUIResourceAllocator
+#define FUN_180742050 InitializeUIMemoryPool
+#define FUN_180742070 CleanupUIContextResources
+#define FUN_180742250 ReleaseUIResourceHandle
+#define FUN_180742190 FindUIAvailableMemorySlot
+#define FUN_180768380 UpdateUIComponentState
+
      * @param stateType 状态类型
  * @param stateFlagPtr 状态标志指针
  * @return 设置结果状态码
@@ -89823,7 +89831,7 @@ void UINoOperationHandler(void)
   UIHandle preservedRegister15;
   float baseValue0;
   UIByte aresult1 [16];
-  double dVar12;
+  double FloatingPointComparisonResult;
   UIDword preservedXMM6;
   UIDword unmodifiedXMM6_Db;
   UIDword unmodifiedXMM6_Dc;
@@ -127365,11 +127373,11 @@ LAB_180741fc4:
 
 
 
- void FUN_180742050(void)
-void FUN_180742050(void)
+ void InitializeUIMemoryPool(void)
+void InitializeUIMemoryPool(void)
 
 {
-  FUN_180741e10();
+  SetupUIResourceAllocator();
   return;
 }
 
@@ -186537,10 +186545,11 @@ undefined DAT_180be4ca8;
 // UI系统输入处理指针常量
 undefined* UIInputHandlerPointer1;         // 原始变量名：UNK_18095cc08
 undefined* UIInputHandlerPointer2;         // 原始变量名：UNK_18095cc30
-undefined UNK_18095ce68;
-undefined UNK_18095cca8;
-undefined UNK_18095cd88;
-undefined UNK_18095ce70;
+// UI系统渲染上下文指针常量
+undefined* UIRenderContextPointer1;        // 原始变量名：UNK_18095ce68
+undefined* UIRenderContextPointer2;        // 原始变量名：UNK_18095cca8
+undefined* UIRenderContextPointer3;        // 原始变量名：UNK_18095cd88
+undefined* UIRenderContextPointer4;        // 原始变量名：UNK_18095ce70
 undefined UNK_18095cef0;
 undefined UNK_18095b3c4;
 undefined UNK_18095cf70;
