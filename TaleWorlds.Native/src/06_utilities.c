@@ -320,6 +320,9 @@
 #define DataContextOffset4000 0x4000
 #define DataContextOffset8000 0x8000
 #define ExceptionContextDataOffset1193c 0x1193c
+#define MemoryOperationOffset2a0 0x2a0
+#define MemoryOperationOffset4a0 0x4a0
+#define ExceptionHandlerContextOffset3e0 0x3e0
 #define OperationBaseOffset58 0x58
 #define OperationBaseOffset5c 0x5c
 #define OperationBaseOffset60 0x60
@@ -45102,7 +45105,7 @@ void SystemCallHandlerMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
 void SystemCallHandlerMemoryCleanup2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2a0,0x20,0x10,InitializeSystemMemoryA1);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + DataProcessingOffset70) + MemoryOperationOffset2a0,0x20,0x10,InitializeSystemMemoryA1);
   return;
 }
 
