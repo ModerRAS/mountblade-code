@@ -39998,6 +39998,19 @@ ValidationErrorHandler5:
 
 
 
+/**
+ * @brief 重置系统组件
+ * 
+ * 该函数用于重置系统中的各种组件，包括内存管理、资源分配和系统状态。
+ * 它会遍历所有已注册的系统组件，执行清理和重置操作，确保系统处于一致的状态。
+ * 
+ * @return uint64_t 操作结果状态码
+ * 
+ * @note 此函数执行系统级别的重置操作，可能会影响所有正在运行的系统组件
+ * @warning 重置操作是不可逆的，调用前请确保所有数据已保存
+ * 
+ * @see ManageSystemMemory, AllocateSystemMemoryA0, CleanupSystemResourcesA0
+ */
 uint64_t ResetSystemComponents(void)
 
 {
@@ -40083,11 +40096,17 @@ void UtilityNoOperationY(void)
 /**
  * @brief 处理系统数据验证和内存分配
  * 
- * 该函数用于处理系统数据的验证操作，包括数据检查、内存分配和状态验证
+ * 该函数用于处理系统数据的验证操作，包括数据检查、内存分配和状态验证。
+ * 它执行多层安全验证，确保数据完整性和系统安全性，然后进行必要的内存分配。
  * 
- * @param exceptionHandlerContext 验证上下文参数
- * @param dataContext 数据上下文指针
- * @return 处理结果状态码
+ * @param exceptionHandlerContext 异常处理上下文参数，用于异常处理和状态管理
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @return uint64_t 处理结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 函数包含多层验证机制，包括安全验证、端口控制验证和数据结构验证
+ * @warning 如果验证失败，函数会立即返回错误码，不会继续执行后续操作
+ * 
+ * @see ExecuteSecurityValidation, ValidatePortControlRequest, ValidateDataSequence
  * 
  * @note 原始函数名：FUN_18089e820
  */
