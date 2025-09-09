@@ -108042,7 +108042,17 @@ void InitializeExceptionDataTableC(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 设置异常处理器回调C
+ * 
+ * 配置异常处理器的回调函数，建立异常处理机制。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupExceptionHandlerCallbacksC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -108056,7 +108066,17 @@ void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090ee90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 设置异常处理器回调D
+ * 
+ * 配置异常处理器的回调函数，建立异常处理机制。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupExceptionHandlerCallbacksD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -108070,7 +108090,15 @@ void Unwind_18090ee90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090eea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表D
+ * 
+ * 初始化异常数据表，设置异常处理相关的数据结构。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionDataTableD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -108158,7 +108186,15 @@ void ProcessDataBufferEEC0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eee0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器上下文A
+ * 
+ * 清理异常处理器的上下文数据，释放相关资源。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
