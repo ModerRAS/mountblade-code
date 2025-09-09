@@ -259355,11 +259355,28 @@ uint64_t * FUN_180211fa0(uint64_t *ContextHandle
 
 
 
-uint64_t FUN_180212170(uint64_t ContextHandle,unsigned long long OperationBufferSize
+/**
+ * @brief 处理系统上下文内存释放
+ * 
+ * 该函数负责根据操作缓冲区的大小标志来决定是否释放系统上下文内存：
+ * 1. 调用系统初始化函数进行预处理
+ * 2. 检查操作缓冲区大小的奇偶性标志
+ * 3. 根据标志位决定是否释放指定大小的内存
+ * 4. 返回处理后的上下文句柄
+ * 
+ * @param ContextHandle 上下文句柄，标识要处理的系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，包含内存释放的标志信息
+ * @return uint64_t 处理后的上下文句柄
+ * 
+ * @note 原始函数名：FUN_180212170 - Ghidra逆向生成的函数名已语义化
+ * @warning 内存操作需要确保在合法的地址范围内进行
+ * @see FUN_1802121b0
+ */
+uint64_t ProcessSystemContextMemoryRelease(uint64_t ContextHandle, unsigned long long OperationBufferSize)
 {
   FUN_1802121b0();
   if ((OperationBufferSize & 1) != 0) {
-    free(ContextHandle,0x4d8);
+    free(ContextHandle, 0x4d8);
   }
   return ContextHandle;
 }

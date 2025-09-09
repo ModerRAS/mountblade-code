@@ -2440,14 +2440,14 @@ typedef enum {
 #define uiSecondaryBufferPtr UISecondaryDataBufferPointer
 
 // UI系统字节指针变量美化
-#define pbVar9 UIPtrByteVar9
-#define pbVar4 UIPtrByteVar4
-#define pbVar6 UIPtrByteVar6
-#define pbVar7 UIPtrByteVar7
+#define pbVar9 UIBytePointerVariable9
+#define pbVar4 UIBytePointerVariable4
+#define pbVar6 UIBytePointerVariable6
+#define pbVar7 UIBytePointerVariable7
 
 // UI系统字符指针变量美化
-#define pisCharacterMatch UIPtrIsCharacterMatch
-#define pisCharacterMatch1 UIPtrIsCharacterMatch1
+#define pisCharacterMatch UICharacterMatchPointer
+#define pisCharacterMatch1 UICharacterMatchPointer1
 #define pisCharacterMatch3 UIPtrIsCharacterMatch3
 #define pisCharacterMatch4 UIPtrIsCharacterMatch4
 
