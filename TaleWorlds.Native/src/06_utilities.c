@@ -381,6 +381,17 @@
 #define DataPointerOffsetC0 0xc0
 #define StackFrameContextOffset1D0 0x1d0
 #define BufferPointerOffsetD0 0xd0
+
+// 操作基址偏移量常量
+#define OperationBaseOffset54 0x54
+#define OperationBaseOffset58 0x58
+#define OperationBaseOffset60 0x60
+
+// 目标上下文偏移量常量
+#define DestinationContextOffset260 0x260
+
+// 系统上下文偏移量常量
+#define SystemContextOffset114 0x114
 #define ExceptionHandlerContext4Offset10 0x10
 #define MemoryBlockOffset4C 0x4c
 #define MemoryBlockOffset58 0x58
@@ -31045,7 +31056,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
                       iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,8);
                       if (iterationCount == 0) {
                         memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                        *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + 0x1d0);
+                        *(DataBuffer *)(StackFrameContext + ArrayDataOffset) = *(DataBuffer *)(DestinationContext + DestinationContextOffset1D0);
                         iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,8);
                         if (iterationCount == 0) {
                           memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
