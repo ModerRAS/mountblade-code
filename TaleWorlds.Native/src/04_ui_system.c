@@ -189,6 +189,7 @@ typedef enum {
 #define _DAT_180be12f0 GlobalUIResourceManagerF0         // 全局UI资源管理器F0
 
 // 未美化函数名语义化定义
+#define FUN_18073902d ProcessUIDataTransfer               // 处理UI数据传输
 #define FUN_18072a9c0 ProcessUIComponentDataA9C0          // 处理UI组件数据A9C0
 #define FUN_18072f7d0 ValidateUILayoutDataF7D0            // 验证UI布局数据F7D0
 #define FUN_180736a70 RenderUIComponentA70                // 渲染UI组件A70
