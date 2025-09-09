@@ -2620,6 +2620,112 @@
 #define SystemDataOffset8188 0x8188                          // 系统数据偏移量8188
 #define SystemDataOffset81a8 0x81a8                          // 系统数据偏移量81a8
 #define SystemDataOffset81b8 0x81b8                          // 系统数据偏移量81b8
+
+// 系统管理相关偏移量常量
+#define SystemManagementOffset98 0x98                         // 系统管理偏移量98
+#define SystemManagementOffset980 0x980                       // 系统管理偏移量980
+
+// 异常数据缓冲区相关偏移量常量
+#define ExceptionDataBufferOffset250 0x250                    // 异常数据缓冲区偏移量250
+
+// 上下文相关偏移量常量
+#define ContextOffsetD8 0xd8                                 // 上下文偏移量d8
+#define ContextOffsetE8 0xe8                                 // 上下文偏移量e8
+
+// 线程本地存储相关偏移量常量
+#define ThreadLocalStorageOffset17c 0x17c                     // 线程本地存储偏移量17c
+
+// 异常状态数据相关偏移量常量
+#define ExceptionStatusDataOffset48 0x48                     // 异常状态数据偏移量48
+
+// 互斥锁相关偏移量常量
+#define MutexOffset60 0x60                                   // 互斥锁偏移量60
+#define MutexOffset68 0x68                                   // 互斥锁偏移量68
+#define MutexOffset78 0x78                                   // 互斥锁偏移量78
+#define MutexOffset88 0x88                                   // 互斥锁偏移量88
+#define MutexOffset128 0x128                                 // 互斥锁偏移量128
+#define MutexOffset148 0x148                                 // 互斥锁偏移量148
+#define MutexOffset1d0 0x1d0                                 // 互斥锁偏移量1d0
+
+// 条件变量相关偏移量常量
+#define ConditionVariableOffset30 0x30                        // 条件变量偏移量30
+#define ConditionVariableOffset88 0x88                       // 条件变量偏移量88
+
+// 系统上下文相关偏移量常量
+#define SystemContextOffset58 0x58                           // 系统上下文偏移量58
+#define SystemContextOffset90 0x90                           // 系统上下文偏移量90
+
+// 执行上下文相关偏移量常量
+#define ExecutionContextOffset2e0 0x2e0                      // 执行上下文偏移量2e0
+
+// 数据处理相关偏移量常量
+#define DataProcessingOffset70 0x70                          // 数据处理偏移量70
+
+// 异常处理上下文相关偏移量常量
+#define ExceptionHandlerContextOffset40 0x40                  // 异常处理上下文偏移量40
+#define ExceptionHandlerContextOffsetA0 0xa0                  // 异常处理上下文偏移量A0
+#define ExceptionHandlerContextOffset108 0x108                // 异常处理上下文偏移量108
+
+// 系统清理相关偏移量常量
+#define SystemCleanupOffsetAlternative 0x1c                  // 系统清理偏移量替换值
+
+// 系统偏移计算相关常量
+#define SystemOffsetC0 0xc0                                  // 系统偏移量c0
+#define SystemOffsetD0 0xd0                                  // 系统偏移量d0
+#define SystemOffsetE0 0xe0                                  // 系统偏移量e0
+
+// 异常处理引用计数相关偏移量常量
+#define ExceptionContextReferenceCountOffset 0x18            // 异常上下文引用计数偏移量
+
+// 资源迭代器相关偏移量常量
+#define ResourceIteratorOffset 0x10                          // 资源迭代器偏移量
+
+// 内存指针相关偏移量常量
+#define MemoryPointerOffset 0x8                              // 内存指针偏移量
+
+// 系统数据记录相关偏移量常量
+#define SystemDataRecordOffset198 0x198                      // 系统数据记录偏移量198
+
+// 异常上下文指针相关偏移量常量
+#define ExceptionContextPointerOffsetA0 0xa0                 // 异常上下文指针偏移量A0
+
+// 数据缓冲区相关偏移量常量
+#define DataBufferOffsetF8 0xf8                              // 数据缓冲区偏移量f8
+
+// 系统计算相关常量
+#define SystemCalculationBaseAddress 0x180c919f0             // 系统计算基地址
+
+// 系统值计算相关常量
+#define SystemCalculationValue18 0x18                       // 系统计算值18
+
+// 系统标志相关常量
+#define SystemFlag 0x1                                       // 系统标志
+
+// 系统操作相关常量
+#define SystemOperationFlag 0x2                              // 系统操作标志
+
+// 系统验证数据相关偏移量常量
+#define SystemValidationDataOffset120 0x120                  // 系统验证数据偏移量120
+
+// 系统上下文指针相关偏移量常量
+#define systemContextPointerOffset90 0x90                    // 系统上下文指针偏移量90
+#define systemContextPointerOffset900 0x900                  // 系统上下文指针偏移量900
+
+// 异常数据指针相关常量
+#define ExceptionDataPointer 0                                // 异常数据指针
+
+// 异常上下文指针相关常量
+#define ExceptionContextPtr 0                                 // 异常上下文指针
+
+// 清理标志相关常量
+#define CleanupFlagB 0                                       // 清理标志B
+
+// 操作标志相关常量
+#define OperationFlagA 0                                      // 操作标志A
+#define OperationFlagB 0                                      // 操作标志B
+
+// 异常上下文相关偏移量常量
+#define ExceptionContextOffset3a8 0x3a8                        // 异常上下文偏移量3a8
 #define ExceptionHandlerContextOffsetFD8 0xfd8             // 异常处理上下文偏移量FD8
 #define ExceptionHandlerContextOffsetFE8 0xfe8             // 异常处理上下文偏移量FE8
 #define ExceptionHandlerContextOffsetFB0 0xfb0             // 异常处理上下文偏移量FB0
@@ -124935,19 +125041,23 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-// 函数: void CleanupExceptionAtOffset48(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
-// 
-// 清理偏移量0x48处的异常处理资源
-// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
-// 
-// 参数:
-//   operationBase - 异常处理参数1
-//   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   operationFlagA - 异常处理参数3
-//   operationFlagB - 异常处理参数4
-// 
-// 返回值:
-//   无
+/**
+ * @brief 清理偏移量0x48处的异常处理资源
+ * 
+ * 该函数在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+ * 主要用于系统异常处理机制中的资源清理工作
+ * 
+ * @param operationBase 异常处理操作基址，用于定位异常处理上下文
+ * @param dataBuffer 异常上下文数据缓冲区，包含要清理的资源指针和状态信息
+ * @param operationFlagA 异常处理操作标志A，用于控制异常处理流程
+ * @param operationFlagB 异常处理操作标志B，用于控制异常处理流程
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是异常处理机制中的关键函数，负责在异常展开时清理资源
+ * @warning 调用此函数时确保dataBuffer参数有效，否则可能导致系统不稳定
+ * @see HandleSystemException, CleanupExceptionAtOffset58
+ */
 void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
