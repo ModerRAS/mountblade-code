@@ -443,6 +443,19 @@ typedef enum {
 #define pbStack_68 UIByteStack68
 #define pbStack_40 UIByteStack40
 
+// UI系统局部变量宏定义
+#define colorBufferPointer UIColorBufferPointer
+#define contextHandleData UIContextHandleData
+#define contextHandle UIContextHandle
+#define unmodifiedEBP UIPreservedEBP
+#define preservedRegister13 UIPreservedRegister13
+#define preservedRegister15 UIPreservedRegister15
+#define extraout_XMM0_Da UIXMM0Data
+#define uStack0000000000000050 UIStackBuffer50
+#define stackParam00000090 UIStackParam90
+#define lStackX_8 UILocalStackX8
+#define stack0x00000090 UIStackParam90
+
 // UI系统标签宏定义
 #define LAB_180656abd UIMemoryAllocationCheckLabel
 #define LAB_180656dbb UIResourceProcessingLabel
@@ -2544,6 +2557,11 @@ typedef enum {
 #define FUN_180742190 FindUIAvailableMemorySlot
 #define FUN_180768380 UpdateUIComponentState
 #define FUN_180786990 CheckUIStateStatus
+#define FUN_180786716 ValidateUIContextData
+#define FUN_180786877 CleanupUIResources
+#define FUN_1807868e0 ProcessUIDataTransfer
+#define FUN_1807ef110 ValidateUIResourceData
+#define FUN_1807edf30 ProcessUIRenderData
 #define FUN_18070f060 GetUIData
 #define FUN_18070f198 ProcessUIContextData
 #define FUN_18071c1b0 ProcessUIDataSource
@@ -8112,7 +8130,7 @@ UIHandle GetUIStatusFlag(void)
  * @note 会检查事件处理器是否为标准输入输出流，并进行特殊处理
  * @note 使用线程本地存储来确保线程安全的事件处理
  */
-void HandleUIEvent(code *eventHandler,UIHandle eventContext,longlong eventData,UIHandle additionalData)
+void HandleUIEvent(UIFunctionPtr *eventHandler, UIHandle eventContext, longlong eventData, UIHandle additionalData)
 
 {
   UIHandle dataBuffer;
