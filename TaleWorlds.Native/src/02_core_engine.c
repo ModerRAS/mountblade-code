@@ -867,6 +867,35 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 系统数据结构语义化宏定义
 #define SystemMemoryBuffer SystemDataMemory                       // 系统内存缓冲区 - 系统数据内存
+
+// 新增的系统栈变量语义化定义 - 基于实际代码分析
+#define SystemSecurityValidationBuffer aCoreEngineUnsignedValue318  // 系统安全验证缓冲区
+#define SystemStackUnsigned270 uStack_270                          // 系统栈无符号270
+#define SystemStackOffset268 lStack_268                           // 系统栈偏移量268
+#define SystemStackOffset258 lStack_258                           // 系统栈偏移量258
+#define SystemStackOffset248 lStack_248                           // 系统栈偏移量248
+#define SystemStackUnsigned1e0 uStack_1e0                         // 系统栈无符号1e0
+#define SystemStackUnsigned1d0 uStack_1d0                         // 系统栈无符号1d0
+#define SystemStackPointer3f8 puStack_3f8                         // 系统栈指针3f8
+#define SystemStackUnsigned3e4 uStack_3e4                         // 系统栈无符号3e4
+#define SystemStackPointer3e0 ppuStack_3e0                        // 系统栈指针3e0
+#define SystemStackPointer3d8 puStack_3d8                         // 系统栈指针3d8
+#define SystemStackOffset3d0 lStack_3d0                           // 系统栈偏移量3d0
+#define SystemStackUnsigned3c8 uStack_3c8                         // 系统栈无符号3c8
+#define SystemStackUnsigned3c0 uStack_3c0                         // 系统栈无符号3c0
+#define SystemStackOffset3b8 lStack_3b8                           // 系统栈偏移量3b8
+#define SystemStackPointer3b0 puStack_3b0                         // 系统栈指针3b0
+#define SystemStackUnsigned298 uStack_298                         // 系统栈无符号298
+#define SystemStackUnsigned2a8 uStack_2a8                         // 系统栈无符号2a8
+#define SystemStackUnsigned2b0 uStack_2b0                         // 系统栈无符号2b0
+#define SystemStackUnsigned2b8 uStack_2b8                         // 系统栈无符号2b8
+#define SystemStackUnsigned2e8 uStack_2e8                         // 系统栈无符号2e8
+#define SystemStackOffset2e0 lStack_2e0                           // 系统栈偏移量2e0
+#define SystemStackOffset2d8 lStack_2d8                           // 系统栈偏移量2d8
+#define SystemStackUnsigned2d0 uStack_2d0                         // 系统栈无符号2d0
+#define SystemStackUnsigned2a0 uStack_2a0                         // 系统栈无符号2a0
+#define SystemStackUnsigned238 uStack_238                         // 系统栈无符号238
+#define SystemStackUnsigned240 uStack_240                         // 系统栈无符号240
 #define MemoryPoolManager MemoryAllocator                         // 内存池管理器 - 内存分配器
 #define SystemConfigurationHandle SystemConfigHandle               // 系统配置句柄 - 系统配置句柄
 #define MemoryBoundaryEnd MemoryEndAddress                        // 内存边界结束 - 内存结束地址
