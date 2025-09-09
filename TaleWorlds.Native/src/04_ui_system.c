@@ -2086,10 +2086,10 @@ typedef enum {
 #define stackUInt118 UIStackUInt118             // UI栈无符号整数118
 #define localChar11 UILocalCharacterStatus11    // UI本地字符状态11
 #define contextBasePointer UIContextBasePointer  // UI上下文基础指针
-#define contextBufferHandle UIContextBufferHandle
-#define localChar2 UILocalChar2
-#define preservedRegister13D UIPreservedRegister13D
-#define preservedXMM6 UIPreservedXMM6
+#define contextBufferHandle UIContextBufferHandle  // UI上下文缓冲区句柄
+#define localChar2 UILocalChar2                    // UI本地字符2
+#define preservedRegister13D UIPreservedRegister13D  // UI保留寄存器13D
+#define preservedXMM6 UIPreservedXMM6              // UI保留XMM6寄存器
 #define unmodifiedXMM8_Da UIUnmodifiedXMM8_Data
 #define EventHandle UIEventHandle
 #define baseValue6 UIBaseValue6
