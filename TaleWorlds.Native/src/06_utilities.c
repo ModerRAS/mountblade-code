@@ -310,6 +310,9 @@
 #define ExceptionHandlerCallbackOffset2f0 0x2f0
 #define ExceptionHandlerCallbackOffset2a8 0x2a8
 
+// 异常处理器数组索引常量
+#define ExceptionHandlerCallbackIndex16 0x10
+
 // 操作基础地址偏移量常量
 #define OperationBaseOffset50 0x50
 #define OperationBaseOffset54 0x54
