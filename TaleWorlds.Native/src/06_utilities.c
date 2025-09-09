@@ -552,10 +552,8 @@
 #define ExceptionContextStatusOffset68 0x68                   // 异常上下文状态偏移量68
 
 // 异常上下文资源管理偏移量常量
-#define ResourceIteratorTableOffset1CD8 0x1cd8                // 资源迭代器表偏移量1CD8
 #define ResourceValidationOffset12E3 0x12e3                    // 资源验证偏移量12E3
 #define ResourceValidationOffset12DD 0x12dd                  // 资源验证偏移量12DD
-#define ResourceManagementOffset80D8 0x80d8                    // 资源管理偏移量80D8
 #define ResourceManagementOffset8088 0x8088                  // 资源管理偏移量8088
 #define ResourceManagementOffset80B0 0x80b0                    // 资源管理偏移量80B0
 #define MemoryBlockOffset200 200                               // 内存块偏移量200

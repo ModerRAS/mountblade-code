@@ -107106,39 +107106,38 @@ void FUN_18072e450(UIHandle uiContext)
  * @note 原始函数名：FUN_18072e4b0
  */
 void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
-void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
 
 {
-  float *pbaseValue;
-  float *ptransformCoeff1;
-  float transformCoeff2;
-  float transformCoeff3;
-  float transformCoeff4;
-  float localFloat6;
-  float resultFloat;
-  float tempFloat;
-  float localFloat9;
-  float baseValue0;
-  longlong allocatedMemory1;
-  float *pbaseValue2;
-  uint result3;
-  longlong allocatedMemory4;
-  int processingResult5;
-  longlong allocatedMemory6;
-  longlong allocatedMemory7;
-  longlong allocatedMemory8;
+  float *BaseValuePointer;
+  float *TransformCoefficient1;
+  float TransformCoefficient2;
+  float TransformCoefficient3;
+  float TransformCoefficient4;
+  float LocalFloatValue6;
+  float ResultFloatValue;
+  float TemporaryFloatValue;
+  float LocalFloatValue9;
+  float BaseValueZero;
+  longlong AllocatedMemoryBlock1;
+  float *BaseValuePointer2;
+  uint ResultValue3;
+  longlong AllocatedMemoryBlock4;
+  int ProcessingResult5;
+  longlong AllocatedMemoryBlock6;
+  longlong AllocatedMemoryBlock7;
+  longlong AllocatedMemoryBlock8;
   
-  processingResult5 = 0;
-  allocatedMemory6 = (longlong)(int)bufferSize;
+  ProcessingResult5 = 0;
+  AllocatedMemoryBlock6 = (longlong)(int)bufferSize;
   if ((bufferSize & 0xfffc) != 0) {
-    allocatedMemory8 = dataSource - uiContext;
-    allocatedMemory1 = ((ulonglong)(bufferSize & 0xfffc) - 1 >> 2) + 1;
-    processingResult5 = (int)allocatedMemory1 * 4;
-    pbaseValue2 = (float *)(uiContext + 4);
+    AllocatedMemoryBlock8 = dataSource - uiContext;
+    AllocatedMemoryBlock1 = ((ulonglong)(bufferSize & 0xfffc) - 1 >> 2) + 1;
+    ProcessingResult5 = (int)AllocatedMemoryBlock1 * 4;
+    BaseValuePointer2 = (float *)(uiContext + 4);
     do {
-      pbaseValue = pbaseValue2 + 4;
-      pbaseValue2[-1] = targetBuffer * *(float *)(allocatedMemory8 + -0x14 + (longlong)pbaseValue);
-      *pbaseValue2 = targetBuffer * *(float *)(allocatedMemory8 + -0x10 + (longlong)pbaseValue);
+      BaseValuePointer = BaseValuePointer2 + 4;
+      BaseValuePointer2[-1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x14 + (longlong)BaseValuePointer);
+      *BaseValuePointer2 = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x10 + (longlong)BaseValuePointer);
       pbaseValue2[1] = targetBuffer * *(float *)(allocatedMemory8 + -0xc + (longlong)pbaseValue);
       pbaseValue2[2] = targetBuffer * *(float *)(allocatedMemory8 + -8 + (longlong)pbaseValue);
       allocatedMemory1 = allocatedMemory1 + -1;
