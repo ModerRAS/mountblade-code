@@ -171,6 +171,26 @@
 #define UnicodeCodePoint CalculatedCodePoint              // Unicode码点
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
+// 新增系统配置偏移量常量
+#define SystemGlobalConfigFlagOffset 0x330                 // 系统全局配置标志偏移量
+#define CoreEngineSystemStatusOffset 0x1ed                // 核心引擎系统状态偏移量
+#define CoreEngineSystemFunctionTableOffset 0x2b0         // 核心引擎系统函数表偏移量
+#define CoreEngineSystemSecondaryFunctionOffset 0x98      // 核心引擎系统次函数偏移量
+#define SystemCleanupContextPrimaryOffset 0x42687        // 系统清理上下文主偏移量
+#define SystemCleanupContextSecondaryOffset 0x4267c      // 系统清理上下文次偏移量
+#define SystemCleanupContextTertiaryOffset 0x40070        // 系统清理上下文第三偏移量
+#define CoreEngineMemoryContextOffset 0x22f0             // 核心引擎内存上下文偏移量
+#define CoreEngineMemoryFunctionOffset 0x22f8             // 核心引擎内存函数偏移量
+#define SystemMemoryDataPointerOffset 0x22a0             // 系统内存数据指针偏移量
+#define ThreadLocalStorageDataOffset 0x2290              // 线程本地存储数据偏移量
+#define ThreadLocalStorageConfigOffset 0x22d8            // 线程本地存储配置偏移量
+#define SystemResourceArrayStride 0x100                   // 系统资源数组步长
+#define ThreadHandleUnicodeOffset 0x10                   // 线程句柄Unicode偏移量
+#define MemoryBoundaryStride 0x100                       // 内存边界步长
+#define CoreEngineResourceCounterOffset 0x224             // 核心引擎资源计数器偏移量
+#define SystemPrimaryReturnCodeOffset 0x180               // 系统主返回码偏移量
+#define SystemSecondaryReturnCodeOffset 0x178            // 系统次返回码偏移量
+
 // 系统上下文数据结构偏移量常量
 #define SystemContextDataBufferOffset 0x1b00               // 系统上下文数据缓冲区偏移量
 #define SystemContextSecondaryDataBufferOffset 0x1b08      // 系统上下文次数据缓冲区偏移量
