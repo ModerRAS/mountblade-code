@@ -30444,11 +30444,11 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         operationResult = 0;
         if (0 < (int)dataBuffer[DataValidationOffset68]) {
           do {
-            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * 0xc + 4);
+            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * DataItemSize + DataItemOffset);
             if (operationStatus != 0) {
               return;
             }
-            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * 0xc + 7);
+            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * DataItemSize + DataItemOffset);
             if (operationStatus != 0) {
               return;
             }
