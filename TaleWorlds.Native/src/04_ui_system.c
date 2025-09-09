@@ -118974,7 +118974,7 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   ulonglong processingCounter;
   
   loopCounter = 0;
-  allocatedMemory = FUN_180742050(*(UIHandle *)(uiContext + 0x1a0),0x127f8,targetBuffer,0x91,0);
+  allocatedMemory = InitializeUIMemoryPool(*(UIHandle *)(uiContext + 0x1a0),0x127f8,targetBuffer,0x91,0);
   iterationCount = loopCounter;
   if (allocatedMemory != 0) {
     iterationCount = FUN_180743e90(allocatedMemory);
