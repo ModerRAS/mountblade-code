@@ -10782,7 +10782,7 @@ ulonglong ValidateUIComponentData(longlong ComponentManager, longlong DataTarget
   UIDataBuffer *DataBuffer;
   ulonglong ValidationStatus;
   UIHandle CopyFlags;
-  undefined *TempBuffer;
+  void *TempBuffer;
   longlong StringData;
   uint DataLength;
   UIDword ValidationToken;
@@ -55442,11 +55442,11 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   UIByte acomponentIndex3 [15];
   UIByte acomponentIndex4 [11];
   UIByte acomponentIndex5 [13];
-  unkuint9 Var146;
+  UIByte UIComponentStatus146;
   UIByte acomponentIndex7 [15];
   UIByte acomponentIndex8 [11];
   UIByte acomponentIndex9 [13];
-  unkuint9 Var150;
+  UIByte UICounterResultStatus150;
   UIByte aCounterResult1 [15];
   UIByte aCounterResult2 [11];
   UIByte aCounterResult3 [13];
