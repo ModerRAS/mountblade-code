@@ -5,16 +5,16 @@
 #define ComponentHandleOffset 0x10                         // 组件句柄偏移量
 #define SystemContextOffset 0x8                           // 系统上下文偏移量
 #define DataBufferElementSize 4                           // 数据缓冲区元素大小
-#define FloatValidationMask 0x7f800000
-#define IntegerMinValue -0x80000000
-#define ProcessingFlagMask 0x80000000
-#define MaxSafeBufferSize 0x1000000
-#define FloatInfinityValue 0x7f800000
-#define SecurityAlignment 0xf
-#define SecurityAlignmentMask 0xfffffff0
-#define SystemCleanupFlag 0x80000000
+#define FloatValidationMask 0x7f800000                   // 浮点数验证掩码
+#define IntegerMinValue -0x80000000                       // 整数最小值
+#define ProcessingFlagMask 0x80000000                     // 处理标志掩码
+#define MaxSafeBufferSize 0x1000000                       // 最大安全缓冲区大小
+#define FloatInfinityValue 0x7f800000                     // 浮点数无穷大值
+#define SecurityAlignment 0xf                             // 安全对齐值
+#define SecurityAlignmentMask 0xfffffff0                 // 安全对齐掩码
+#define SystemCleanupFlag 0x80000000                      // 系统清理标志
 #define SystemCleanupAlignmentMask 0xfffffff8     // 系统清理对齐掩码 - 用于内存地址对齐操作
-#define NegativeZeroFloat 0x80000000
+#define NegativeZeroFloat 0x80000000                     // 负零浮点数
 #define MemoryBlockSizeAdjustment 0x27             // 内存块大小调整值 - 用于内存块计算时的调整
 #define MemoryValidationThreshold 0xfff             // 内存验证阈值 - 用于判断是否需要进行额外的内存验证
 #define MemoryOffsetValidationThreshold 0x1f        // 内存偏移验证阈值 - 用于验证内存偏移的有效性
@@ -43,8 +43,8 @@
 #define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量
 #define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量
 #define ExceptionDataBufferOffset 0x210
-#define resourcePointerStartOffset 0x208
-#define resourcePointerStep 4
+#define ResourcePointerStartOffset 0x208                  // 资源指针起始偏移量
+#define ResourcePointerStep 4                             // 资源指针步长
 #define ExceptionHandlerContextOffset 0x1800
 #define ExceptionHandlerParameterOffset 0x17f0
 #define SystemMutexCleanupBaseAddress 0x180c919f0
