@@ -525,6 +525,8 @@ typedef enum {
 #define FUN_180760c90 ProcessUIComponentResourceAllocation
 #define FUN_180749940 ValidateUIComponentHandleWithBounds
 #define FUN_180744ae0 ProcessUIComponentHandleWithEventDispatch
+#define FUN_180786104 SetupUIContextEventHandle
+#define FUN_1807861b0 InitializeUIContextDataBuffer
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -200017,7 +200019,17 @@ UIHandle FUN_180786056(int *uiContext,UIHandle dataSource,int targetBuffer)
 
 
 
-UIHandle FUN_180786104(void)
+/**
+ * @brief 设置UI上下文事件句柄
+ * 
+ * 设置UI上下文的事件句柄，配置相关的事件处理标志位
+ * 
+ * @return UIHandle 返回操作结果句柄
+ * 
+ * @note 原始函数名：FUN_180786104
+ * @note 该函数主要处理UI上下文的事件句柄设置
+ */
+UIHandle SetupUIContextEventHandle(void)
 
 {
   longlong contextHandle;
@@ -200032,7 +200044,22 @@ UIHandle FUN_180786104(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_1807861b0(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+/**
+ * @brief 初始化UI上下文数据缓冲区
+ * 
+ * 初始化UI上下文的数据缓冲区，分配必要的内存资源并设置数据源和目标缓冲区
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return UIHandle 返回操作结果句柄，0表示成功，非0表示错误代码
+ * 
+ * @note 原始函数名：FUN_1807861b0
+ * @note 该函数负责UI上下文的初始化和内存分配
+ */
+UIHandle InitializeUIContextDataBuffer(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   UIHandle result;
