@@ -16740,7 +16740,7 @@ LAB_18065a765:
   int uiProcessingTemp;
   float *contextHandle;
   longlong BasePointer;
-  char localChar5;
+  char uiLocalChar5;
   UIDword allocationFlags;
   longlong EventHandle;
   float LocalFloatValue6;
