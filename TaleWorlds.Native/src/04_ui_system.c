@@ -99946,12 +99946,12 @@ void ProcessUIContextData(void)
     characterBufferPtr = characterBufferPtr + 1;
   } while (loopCounter < *(short *)(*(longlong *)(contextHandle + 0xac0) + 2));
   if (*(int *)(contextHandle + 0x914) == 4) {
-    result = ReadUIData();
+    processingResult = ReadUIData();
   }
   else {
-    result = 4;
+    processingResult = 4;
   }
-  *(UIByte *)(contextHandle + 0xae7) = result;
+  *(UIByte *)(contextHandle + 0xae7) = processingResult;
   if (*(char *)(contextHandle + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((RegisterValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
     sVar2 = ReadUIData();
