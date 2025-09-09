@@ -40015,14 +40015,14 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x54);
+    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
       }
-      stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x58);
+      stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                         (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
       if ((int)systemDataBuffer == 0) {
@@ -41062,7 +41062,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x54);
+    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
     if ((int)systemDataBuffer != 0) {
@@ -41083,7 +41083,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x58);
+  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
   ;
   if ((int)systemDataBuffer != 0) {

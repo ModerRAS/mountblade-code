@@ -11050,7 +11050,7 @@ UIHandle * FindUIModuleByPath(UIHandle path_length, UIHandle *path_buffer, longl
         }
         modulePathPtr = (UIHandle *)*resourceManagerPtr;
       }
-LAB_1806575b7:
+LabelResourceSearchLoop:
       searchResultPtr = resourceManagerPtr;
       if (isPathMatching) {
         searchResultPtr = searchResultPtr;
@@ -11060,7 +11060,7 @@ LAB_1806575b7:
     } while (modulePathPtr != (UIHandle *)0x0);
     if (searchResultPtr != (UIHandle *)&UIDefaultResourceBuffer) {
       if (*(int *)(searchResultPtr + 6) == 0) {
-LAB_1806575f7:
+LabelDataSourceAssignment:
         *dataSource = searchResultPtr;
         return dataSource;
       }
