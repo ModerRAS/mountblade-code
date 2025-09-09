@@ -107092,8 +107092,21 @@ void FUN_18072e450(UIHandle uiContext)
 
 
 
- void FUN_18072e4b0(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
-void FUN_18072e4b0(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
+ /**
+ * @brief 处理UI数据缓冲区复制
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区复制操作，包括数据复制、缓冲区管理和内存处理。
+ * 主要用于UI数据的复制和传输。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072e4b0
+ */
+void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
+void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
 
 {
   float *pbaseValue;
@@ -108018,8 +108031,21 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
 
 
 
- void FUN_18072eb2e(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
-void FUN_18072eb2e(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
+ /**
+ * @brief 处理UI事件转换
+ * 
+ * 该函数负责处理UI系统中的事件转换操作，包括事件格式转换、数据处理和事件管理。
+ * 主要用于UI事件系统的转换和处理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072eb2e
+ */
+void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
+void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
 
 {
   float *pbaseValue;
@@ -108097,8 +108123,24 @@ void FUN_18072ec44(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072ec50(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
-void FUN_18072ec50(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI组件更新
+ * 
+ * 该函数负责处理UI系统中的组件更新操作，包括组件状态更新、数据同步和渲染处理。
+ * 主要用于UI组件的动态更新和维护。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * 
+ * @note 原始函数名：FUN_18072ec50
+ */
+void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
+void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
                   int param_6,int param_7)
 
 {
