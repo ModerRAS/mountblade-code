@@ -3125,8 +3125,18 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 内存分配标签的正确使用对内存管理至关重要
  */
 #define MemoryAllocationLabel SystemMemoryAllocationTag
-// 处理完成标签
-// 功能：标记处理操作的完成状态
+/**
+ * @brief 处理完成标签
+ * 
+ * 标记处理操作的完成状态
+ * 该宏用于：
+ * 1. 标记系统处理操作的完成状态
+ * 2. 支持处理状态的监控和跟踪
+ * 3. 便于处理流程的管理和控制
+ * 
+ * @note 原始函数名：SystemProcessCompletionTag
+ * @warning 处理完成状态的正确标记对系统运行至关重要
+ */
 #define ProcessCompleteLabel SystemProcessCompletionTag
 
 // 异常处理器常用偏移量常量定义
