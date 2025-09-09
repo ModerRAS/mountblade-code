@@ -2151,6 +2151,13 @@
 #define SystemCallbackPointerOffset170 0x170              // 系统回调指针偏移量170
 #define SystemCallbackPointerOffset178 0x178              // 系统回调指针偏移量178
 #define SystemCallbackPointerOffsetD0 0xd0                // 系统回调指针偏移量D0
+#define SystemCallbackDataOffset1C8 0x1c8                    // 系统回调数据偏移量1C8
+#define SystemValidationDataOffset120 0x120                  // 系统验证数据偏移量120
+#define SystemContextDataOffset2E0 0x2e0                     // 系统上下文数据偏移量2E0
+#define SystemExceptionDataOffset218 0x218                   // 系统异常数据偏移量218
+#define SystemExceptionHandlerOffset1F8 0x1f8                 // 系统异常处理器偏移量1F8
+#define SystemDataParameterOffset40 0x40                     // 系统数据参数偏移量40
+#define SystemExceptionDataOffset48 0x48                     // 系统异常数据偏移量48
 
 // 异常处理器相关偏移量常量
 #define ExceptionHandlerContextOffset1060 0x1060          // 异常处理上下文偏移量1060

@@ -509,20 +509,20 @@ typedef enum {
 #define _DAT_180d4a6c8 UIInputProcessorPointer
 #define _DAT_180d4a6c0 UIEventProcessorPointer
 
-// 额外的UI系统数据指针
-#define _DAT_180d4a898 UIDataProcessorPointer898
-#define _DAT_180d4a858 UIDataProcessorPointer858
-#define _DAT_180d4a820 UIDataProcessorPointer820
-#define _DAT_180d4a7e0 UIDataProcessorPointer7E0
-#define _DAT_180d4a7b0 UIDataProcessorPointer7B0
-#define _DAT_180d4a778 UIDataProcessorPointer778
-#define _DAT_180d4a750 UIDataProcessorPointer750
-#define _DAT_180d4a708 UIDataProcessorPointer708
-#define _DAT_180d4a958 UIDataProcessorPointer958
-#define _DAT_180d4a928 UIDataProcessorPointer928
-#define _DAT_180d4a910 UIDataProcessorPointer910
-#define _DAT_180d4a8c0 UIDataProcessorPointer8C0
-#define _DAT_180d4a8a8 UIDataProcessorPointer8A8
+// 额外的UI系统数据指针 - 语义化定义
+#define _DAT_180d4a898 UIVectorDataProcessor898          // UI向量数据处理器898
+#define _DAT_180d4a858 UIMatrixDataProcessor858          // UI矩阵数据处理器858
+#define _DAT_180d4a820 UITransformDataProcessor820       // UI变换数据处理器820
+#define _DAT_180d4a7e0 UICoordinateDataProcessor7E0      // UI坐标数据处理器7E0
+#define _DAT_180d4a7b0 UIColorDataProcessor7B0          // UI颜色数据处理器7B0
+#define _DAT_180d4a778 UITextureDataProcessor778         // UI纹理数据处理器778
+#define _DAT_180d4a750 UILayoutDataProcessor750         // UI布局数据处理器750
+#define _DAT_180d4a708 UIAnimationDataProcessor708       // UI动画数据处理器708
+#define _DAT_180d4a958 UIShaderDataProcessor958          // UI着色器数据处理器958
+#define _DAT_180d4a928 UIFontDataProcessor928            // UI字体数据处理器928
+#define _DAT_180d4a910 UIEventDataTable910               // UI事件数据表910
+#define _DAT_180d4a8c0 UIComponentDataTable8C0          // UI组件数据表8C0
+#define _DAT_180d4a8a8 UIRenderStateTable8A8            // UI渲染状态表8A8
 
 #define DAT_1809472f0 UIConfigurationData
 #define DAT_180956f70 UILookupTableData

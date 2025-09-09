@@ -5503,8 +5503,8 @@ static void TerminateNetworkConnection(NetworkConnectionContext *NetworkConnecti
  */
 static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
 {
-    NetworkHandle newHandle;
-    uint32_t connectionResult;
+    NetworkHandle newConnectionHandle;
+    uint32_t connectionEstablishmentResult;
     
     // 初始化连接参数
     InitializeConnectionParameters(NetworkConnectionContext);
