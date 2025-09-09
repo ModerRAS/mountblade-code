@@ -14987,9 +14987,9 @@ void SetUIComponentOpacity(longlong *component_data, float opacity)
   ulonglong ProcessingStatus;
   float TransformCoefficient4;
   float inverseSqrtValue;
-  UIByte aprocessingCounter [16];
-  float fStackX_8;
-  float fStackX_c;
+  UIByte SimdVector [16];
+  float VertexPositionY;
+  float VertexPositionX;
   
   componentIndex = *uiContext;
   result = 0;
