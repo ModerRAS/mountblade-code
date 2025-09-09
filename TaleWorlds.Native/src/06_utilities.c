@@ -137,6 +137,7 @@
 #define ExceptionHandlerContextOffset170 0x170
 #define ExceptionHandlerContextOffset190 0x190
 #define ExceptionHandlerContextOffset1B0 0x1b0
+#define ExceptionHandlerContextOffset1D0 0x1d0
 #define StackFrameContextOffset200 0x200
 #define ValueContextOffset8 0x8
 #define OperationBaseOffset8 0x8
