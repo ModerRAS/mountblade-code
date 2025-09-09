@@ -248603,7 +248603,7 @@ LAB_180204eec:
                               *(uint64_t **)(SystemEventTemplatePointer + 4) = StringProcessingStatus;
                               StringProcessingStatus = (void *                                       FUN_180204b50(ContextHandle,SystemStackRegisterFlagB0,IntegerValue9,0,
                                                      *(uint32_t *)(SystemMemoryBlock130 + 0x184),
-                                                     in_stack_fffffffffffffdb0 & 0xffffff00,1);
+                                                     CharacterEncodingFlags & 0xffffff00,1);
                               uStack_218 = *StringProcessingStatus;
                               iStack_210 = *(int *)(StringProcessingStatus + 1);
                               ProcessingCounterc = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
