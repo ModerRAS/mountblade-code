@@ -18452,19 +18452,19 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_18076a7d0 - 数据处理函数O9
 // 功能：处理数据并返回结果
-#define ProcessDataAndReturnResultO9 FUN_18076a7d0
+#define ExecuteDataProcessingAndReturnResultO9 FUN_18076a7d0
 
 // 原始函数名：FUN_18089eef2 - 系统处理函数C0
 // 功能：处理系统操作和状态
-#define ProcessSystemOperationsC0 FUN_18089eef2
+#define ExecuteSystemOperationsAndManageStateC0 FUN_18089eef2
 
 // 原始函数名：FUN_18089ef24 - 系统清理函数C1
 // 功能：清理系统资源和状态
-#define CleanupSystemStateC1 FUN_18089ef24
+#define ExecuteSystemCleanupAndReleaseStateC1 FUN_18089ef24
 
 // 原始函数名：FUN_18007f6a0 - 系统初始化函数I0
 // 功能：初始化系统资源和状态
-#define InitializeSystemResourcesI0 FUN_18007f6a0
+#define ExecuteSystemInitializationAndSetupResourcesI0 FUN_18007f6a0
 
 // 原始函数名：FUN_18089f31e - 系统配置函数C1
 // 功能：配置系统参数和选项

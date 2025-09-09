@@ -157,8 +157,8 @@ typedef enum {
 
 // UI组件实例和接口
 #define DAT_180c0c6e8 UIComponentInstanceE8               // UI组件实例E8 - 存储UI组件的实例指针
-#define UNK_180958b00 UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
-#define UNK_180958b10 UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
+#define UIComponentInterfaceID UIComponentInterfaceIDB00           // UI组件接口ID B00 - UI组件的接口标识符
+#define UIComponentInterfaceIID UIComponentInterfaceIIDB10          // UI组件接口IID B10 - UI组件的接口实例标识符
 #define UNK_180958b20 UIComponentParameterB20             // UI组件参数B20 - UI组件的配置参数
 #define UNK_180956f50 UIComponentDataF50                  // UI组件数据F50 - 存储UI组件的动态数据
 #define UNK_180956f38 UIComponentHandleF38                // UI组件句柄F38 - UI组件的句柄标识符
@@ -436,8 +436,8 @@ typedef enum {
 #define _DAT_180d4a6c0 UIEventProcessorPointer
 #define DAT_1809472f0 UIConfigurationData
 #define DAT_180956f70 UILookupTableData
-#define UNK_180958b00 UIComponentInterfaceID
-#define UNK_180958b10 UIComponentInterfaceIID
+#define UIComponentInterfaceID UIComponentInterfaceID
+#define UIComponentInterfaceIID UIComponentInterfaceIID
 #define DAT_180c0c6e8 UIComponentInstancePtr
 #define DAT_180958c80 UIComponentContextData
 #define DAT_180c0c720 UIProcessorFeatureCache
@@ -96178,8 +96178,8 @@ LAB_1807217c9:
 
 
 
- void FUN_1807217e4(void)
-void FUN_1807217e4(void)
+ void InitializeUIComponentSystem(void)
+void InitializeUIComponentSystem(void)
 
 {
   return;
@@ -96188,8 +96188,8 @@ void FUN_1807217e4(void)
 
 
 
- void FUN_1807217f4(void)
-void FUN_1807217f4(void)
+ void FinalizeUIComponentSystem(void)
+void FinalizeUIComponentSystem(void)
 
 {
   return;
@@ -109671,8 +109671,8 @@ void FUN_18072f4d0(UIByte *uiContext,longlong dataSource,uint targetBuffer)
       CharacterDataOffset = CharacterDataOffset + 1;
       *(int *)(astackUInt104 + (ulonglong)*pisCharacterMatch * 4 + -4) =
            ((localInt7 + uiValidationResult * -0x100)             ((int)*(short *)(&UIDataTableA + (longlong)uiValidationResult * 2) -
-            (int)*(short *)(&DAT_180956f70 + (longlong)uiValidationResult * 2)) +
-            *(short *)(&DAT_180956f70 + (longlong)uiValidationResult * 2) * 0x100 >> 3) + 1 >> 1;
+            (int)*(short *)(&UILookupTableData + (longlong)uiValidationResult * 2)) +
+            *(short *)(&UILookupTableData + (longlong)uiValidationResult * 2) * 0x100 >> 3) + 1 >> 1;
     } while (CharacterDataOffset < contextHandleData);
   }
   uiValidationResult = (int)targetBuffer >> 1;
@@ -229235,14 +229235,14 @@ UIHandle FUN_1808037e0(longlong uiContext)
   *(UIDword *)(uiBufferData + 0x418) = 0;
   if (*pEventDataIndex == 0) {
     stackParamffffffffffffffc8 = pEventDataIndex;
-    processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pEventDataIndex);
+    processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pEventDataIndex);
     if (processingResult == -0x7ffbfe10) {
       processingResult = CoInitializeEx(0,2);
       if (processingResult < 0) {
         return 0x33;
       }
       stackParamffffffffffffffc8 = pEventDataIndex;
-      processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pEventDataIndex);
+      processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pEventDataIndex);
     }
     if (processingResult < 0) {
       return 0x33;
@@ -229347,13 +229347,13 @@ UIHandle FUN_1808037fa(longlong uiContext)
   pEventDataIndex = (longlong *)(contextHandle + 0x720);
   *(UIDword *)(contextHandle + 0x418) = 0;
   if (*pEventDataIndex == 0) {
-    processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pEventDataIndex);
+    processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pEventDataIndex);
     if (processingResult == -0x7ffbfe10) {
       processingResult = CoInitializeEx(0,2);
       if (processingResult < 0) {
         return 0x33;
       }
-      processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pEventDataIndex);
+      processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pEventDataIndex);
     }
     if (processingResult < 0) {
       return 0x33;
@@ -229454,13 +229454,13 @@ UIHandle FUN_180803801(longlong uiContext)
   pcontextHandleData = (longlong *)(contextHandle + 0x720);
   *(uint *)(contextHandle + 0x418) = loopCounter;
   if ((longlong *)*pcontextHandleData == BasePointer) {
-    processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pcontextHandleData);
+    processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pcontextHandleData);
     if (processingResult == -0x7ffbfe10) {
       processingResult = CoInitializeEx(0,2);
       if (processingResult < 0) {
         return 0x33;
       }
-      processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pcontextHandleData);
+      processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pcontextHandleData);
     }
     if (processingResult < 0) {
       return 0x33;
@@ -229538,13 +229538,13 @@ UIHandle FUN_180803887(void)
   longlong *stackParam00000070;
   longlong *stackParam00000078;
   
-  processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10);
+  processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID);
   if (processingResult == -0x7ffbfe10) {
     processingResult = CoInitializeEx(0,2);
     if (processingResult < 0) {
       return 0x33;
     }
-    processingResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10);
+    processingResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID);
   }
   if (-1 < processingResult) {
     stackParam00000068 = BasePointer;
@@ -231402,13 +231402,13 @@ UIHandle FUN_1808051c0(longlong *uiContext)
   }
   pCharacterDataOffset = (longlong *)(allocatedMemory + 0x2c0);
   if (*pCharacterDataOffset == 0) {
-    uiValidationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pCharacterDataOffset);
+    uiValidationResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pCharacterDataOffset);
     if (uiValidationResult == -0x7ffbfe10) {
       uiValidationResult = CoInitializeEx(0,2);
       if (uiValidationResult < 0) {
         return 0x33;
       }
-      uiValidationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pCharacterDataOffset);
+      uiValidationResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pCharacterDataOffset);
     }
     if (uiValidationResult < 0) {
       return 0x33;
@@ -231523,13 +231523,13 @@ UIHandle FUN_1808051df(void)
   
   pcontextOffset = (longlong *)(contextHandle + 0x2c0);
   if (*pcontextOffset == 0) {
-    uiValidationResult = CoCreateInstance(&UNK_180958b00,0,bufferSize + 0x17,&UNK_180958b10,pcontextOffset);
+    uiValidationResult = CoCreateInstance(&UIComponentInterfaceID,0,bufferSize + 0x17,&UIComponentInterfaceIID,pcontextOffset);
     if (uiValidationResult == -0x7ffbfe10) {
       uiValidationResult = CoInitializeEx(0,2);
       if (uiValidationResult < 0) {
         return 0x33;
       }
-      uiValidationResult = CoCreateInstance(&UNK_180958b00,0,0x17,&UNK_180958b10,pcontextOffset);
+      uiValidationResult = CoCreateInstance(&UIComponentInterfaceID,0,0x17,&UIComponentInterfaceIID,pcontextOffset);
     }
     if (uiValidationResult < 0) {
       return 0x33;
