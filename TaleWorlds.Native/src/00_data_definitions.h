@@ -7082,10 +7082,10 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) +
                             ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + 0x6c8)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemStringProcessingFoundLabel;
+      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemStringProcessingDetected;
     }
     StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) + *(longlong *)(SystemContextDataPointer + 0x6c8) * 8);
-SystemStringProcessingFoundLabel:
+SystemStringProcessingDetected:
     MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2);
     ModuleInitializationResult = *(longlong *)(MemoryAddressValue + 8);
     for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryAddressValue + 0x10)) * 8);
@@ -7097,7 +7097,7 @@ SystemStringProcessingFoundLabel:
     }
     MemoryAddressValue = *(longlong *)(MemoryAddressValue + 0x10);
     StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8);
-StringProcessingValidationLabel:
+StringProcessingValidationPoint:
     if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8)) && (MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2), MemoryAddressValue != 0)
        ) goto StringProcessingSuccessLabel;
   }

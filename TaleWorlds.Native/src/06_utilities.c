@@ -50008,7 +50008,7 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
  * @param operationFlagB 操作标志B
  * @note 原始函数名: Unwind_180903910
  */
-void ConfigureExceptionHandlerContext530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ConfigureExceptionHandlerAtOffset530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50045,7 +50045,7 @@ void ConfigureExceptionHandlerContext530(DataBuffer operationBase,int64_t dataBu
  * @param operationFlagB 操作标志B
  * @note 原始函数名: Unwind_180903930
  */
-void ConfigureExceptionHandlerContext5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ConfigureExceptionHandlerAtOffset5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50082,7 +50082,7 @@ void ConfigureExceptionHandlerContext5a0(DataBuffer operationBase,int64_t dataBu
  * @param operationFlagB 操作标志B
  * @note 原始函数名: Unwind_180903950
  */
-void ConfigureExceptionHandlerContext610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ConfigureExceptionHandlerAtOffset610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50119,7 +50119,7 @@ void ConfigureExceptionHandlerContext610(DataBuffer operationBase,int64_t dataBu
  * @param operationFlagB 操作标志B
  * @note 原始函数名: Unwind_180903970
  */
-void ConfigureExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ConfigureExceptionHandlerAtOffset680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
