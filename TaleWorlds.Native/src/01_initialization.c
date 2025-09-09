@@ -30099,13 +30099,13 @@ void SystemResourceEnumerator(void)
   ulong long SystemTemporaryHandle;
   uint32_t EncryptionOffset;
   
-  int SystemResourceIndex;
+  int CurrentResourceIndex;
   SystemTemporaryHandle = 0xfffffffffffffffe;
   StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemLocalEncryptionBuffer;
   SystemStatusFlagsPointer = SystemGlobalStatusFlags;
   ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + SystemNodeResourceOffset) - *(long long *)(*SystemGlobalStatusFlags + SystemNodeCalculationOffset) >> 5;
-  SystemResourceIndex = 0;
-  SystemResourceCount = ResourceDataLocation;
+  CurrentResourceIndex = 0;
+  TotalResourceCount = ResourceDataLocation;
   if (0 < (int)ResourceDataLocation) {
     do {
       systemId = SystemResourceIndex;
