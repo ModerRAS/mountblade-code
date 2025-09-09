@@ -49995,17 +49995,24 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- UI数据操作处理器类型A
- *  uiContext UI上下文
- *  dataSource 数据源
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
- *  param_6 参数6
- *  param_7 参数7指针
- *  param_8 参数8
-  处理结果
-  原始函数名: FUN_18068e970
+ /**
+ * @brief UI数据操作处理器类型A
+ * 
+ * 处理UI系统中的数据操作，包括数据验证、缓冲区管理和结果计算
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7指针
+ * @param param_8 参数8
+ * 
+ * @return 处理结果
+ * 
+ * @note 原始函数名: FUN_18068e970
+ */
  int ProcessUIDataOperationTypeA(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIHandle resultPointer,int param_6,int *param_7,UIHandle param_8)
 
@@ -50020,17 +50027,24 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- UI数据操作处理器类型B
- *  uiContext UI上下文
- *  dataSource 数据源
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
- *  param_6 参数6
- *  param_7 参数7指针
- *  param_8 参数8
-  处理结果
-  原始函数名: FUN_18068e9f0
+ /**
+ * @brief UI数据操作处理器类型B
+ * 
+ * 处理UI系统中的数据操作，使用不同的处理策略和计算方法
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7指针
+ * @param param_8 参数8
+ * 
+ * @return 处理结果
+ * 
+ * @note 原始函数名: FUN_18068e9f0
+ */
  int ProcessUIDataOperationTypeB(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIHandle resultPointer,int param_6,int *param_7,UIHandle param_8)
 
