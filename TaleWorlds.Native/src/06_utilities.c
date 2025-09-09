@@ -105684,7 +105684,23 @@ void SetDefaultExceptionHandlerBAtOffsetD0(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090e8d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理系统异常处理器并重置状态
+ * 
+ * 该函数负责清理系统异常处理器并重置系统状态，包括：
+ * 1. 调用系统管理清理函数
+ * 2. 设置临时异常处理器
+ * 3. 检查并终止系统执行
+ * 4. 重置系统状态标志
+ * 5. 恢复默认异常处理器
+ * 6. 调用异常上下文清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090e8d0
+ */
+void CleanupSystemExceptionHandlersAndResetState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemManagementOffset98) != (int64_t *)0x0) {
@@ -105705,7 +105721,7 @@ void Unwind_18090e8d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e8e0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandlerContextAndResetFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;

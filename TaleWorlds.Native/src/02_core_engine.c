@@ -291315,3 +291315,187 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define CleanupSystemDataAndResources FUN_1800b3cc0
 
+// 更多FUN_函数的语义化定义
+// 原始函数名：FUN_18012e4e0 - 系统消息队列处理函数
+#define ProcessSystemMessageQueueEx FUN_18012e4e0
+
+// 原始函数名：FUN_18012e590 - 系统任务调度函数
+#define ScheduleSystemTaskEx FUN_18012e590
+
+// 原始函数名：FUN_18012e640 - 系统线程管理函数
+#define ManageSystemThreadsEx FUN_18012e640
+
+// 原始函数名：FUN_18012e6f0 - 系统进程管理函数
+#define ManageSystemProcessesEx FUN_18012e6f0
+
+// 原始函数名：FUN_18012e7a0 - 系统同步处理函数
+#define SynchronizeSystemOperationsEx FUN_18012e7a0
+
+// 原始函数名：FUN_18012e850 - 系统锁管理函数
+#define ManageSystemLocksEx FUN_18012e850
+
+// 原始函数名：FUN_18012e900 - 系统信号量处理函数
+#define ProcessSystemSemaphoreEx FUN_18012e900
+
+// 原始函数名：FUN_18012e9b0 - 系统互斥量管理函数
+#define ManageSystemMutexEx FUN_18012e9b0
+
+// 原始函数名：FUN_18012ea60 - 系统条件变量处理函数
+#define ProcessSystemConditionVariableEx FUN_18012ea60
+
+// 原始函数名：FUN_18012eb10 - 系统原子操作函数
+#define PerformSystemAtomicOperationEx FUN_18012eb10
+
+// 原始函数名：FUN_18012ebc0 - 系统内存屏障函数
+#define ExecuteSystemMemoryBarrierEx FUN_18012ebc0
+
+// 原始函数名：FUN_18012ec70 - 系统缓存一致性函数
+#define MaintainSystemCacheCoherenceEx FUN_18012ec70
+
+// 原始函数名：FUN_18012ed20 - 系统性能监控函数
+#define MonitorSystemPerformanceEx FUN_18012ed20
+
+// 原始函数名：FUN_18012edd0 - 系统资源统计函数
+#define CollectSystemResourceStatisticsEx FUN_18012edd0
+
+// 原始函数名：FUN_18012ee80 - 系统健康检查函数
+#define CheckSystemHealth FUN_18012ee80
+
+// 原始函数名：FUN_18012ef30 - 系统诊断函数
+#define DiagnoseSystemIssues FUN_18012ef30
+
+// 原始函数名：FUN_18012efe0 - 系统修复函数
+#define RepairSystemComponents FUN_18012efe0
+
+// 原始函数名：FUN_18012f090 - 系统恢复函数
+#define RecoverSystemState FUN_18012f090
+
+// 原始函数名：FUN_18012f140 - 系统备份函数
+#define BackupSystemData FUN_18012f140
+
+// 原始函数名：FUN_18012f1f0 - 系统还原函数
+#define RestoreSystemData FUN_18012f1f0
+
+// 原始函数名：FUN_18012f2a0 - 系统迁移函数
+#define MigrateSystemData FUN_18012f2a0
+
+// 原始函数名：FUN_18012f350 - 系统克隆函数
+#define CloneSystemData FUN_18012f350
+
+// 原始函数名：FUN_18012f400 - 系统同步函数
+#define SynchronizeSystemData FUN_18012f400
+
+// 原始函数名：FUN_18012f4b0 - 系统异步处理函数
+#define ProcessSystemAsyncOperations FUN_18012f4b0
+
+// 原始函数名：FUN_18012f560 - 系统回调处理函数
+#define HandleSystemCallbacks FUN_18012f560
+
+// 原始函数名：FUN_18012f610 - 系统事件监听函数
+#define ListenSystemEvents FUN_18012f610
+
+// 原始函数名：FUN_18012f6c0 - 系统通知处理函数
+#define ProcessSystemNotifications FUN_18012f6c0
+
+// 原始函数名：FUN_18012f770 - 系统广播函数
+#define BroadcastSystemMessage FUN_18012f770
+
+// 原始函数名：FUN_18012f820 - 系统订阅函数
+#define SubscribeSystemEvents FUN_18012f820
+
+// 原始函数名：FUN_18012f8d0 - 系统取消订阅函数
+#define UnsubscribeSystemEvents FUN_18012f8d0
+
+// 原始函数名：FUN_18012f980 - 系统发布函数
+#define PublishSystemEvents FUN_18012f980
+
+// 原始函数名：FUN_18012fa30 - 系统查询函数
+#define QuerySystemData FUN_18012fa30
+
+// 原始函数名：FUN_18012fae0 - 系统搜索函数
+#define SearchSystemData FUN_18012fae0
+
+// 原始函数名：FUN_18012fb90 - 系统过滤函数
+#define FilterSystemData FUN_18012fb90
+
+// 原始函数名：FUN_18012fc40 - 系统排序函数
+#define SortSystemData FUN_18012fc40
+
+// 原始函数名：FUN_18012fcf0 - 系统分组函数
+#define GroupSystemData FUN_18012fcf0
+
+// 原始函数名：FUN_18012fda0 - 系统聚合函数
+#define AggregateSystemData FUN_18012fda0
+
+// 原始函数名：FUN_18012fe50 - 系统映射函数
+#define MapSystemData FUN_18012fe50
+
+// 原始函数名：FUN_18012ff00 - 系统归约函数
+#define ReduceSystemData FUN_18012ff00
+
+// 原始函数名：FUN_18012ffb0 - 系统折叠函数
+#define FoldSystemData FUN_18012ffb0
+
+// 原始函数名：FUN_180130060 - 系统扫描函数
+#define ScanSystemData FUN_180130060
+
+// 原始函数名：FUN_180130110 - 系统遍历函数
+#define TraverseSystemData FUN_180130110
+
+// 原始函数名：FUN_1801301c0 - 系统迭代函数
+#define IterateSystemData FUN_1801301c0
+
+// 原始函数名：FUN_180130270 - 系统收集函数
+#define CollectSystemDataEx FUN_180130270
+
+// 原始函数名：FUN_180130320 - 系统分发函数
+#define DistributeSystemData FUN_180130320
+
+// 原始函数名：FUN_1801303d0 - 系统分区函数
+#define PartitionSystemData FUN_1801303d0
+
+// 原始函数名：FUN_180130480 - 系统分片函数
+#define ShardSystemData FUN_180130480
+
+// 原始函数名：FUN_180130530 - 系统复制函数
+#define ReplicateSystemData FUN_180130530
+
+// 原始函数名：FUN_1801305e0 - 系统镜像函数
+#define MirrorSystemData FUN_1801305e0
+
+// 原始函数名：FUN_180130690 - 系统缓存函数
+#define CacheSystemData FUN_180130690
+
+// 原始函数名：FUN_180130740 - 系统预取函数
+#define PrefetchSystemData FUN_180130740
+
+// 原始函数名：FUN_1801307f0 - 系统延迟加载函数
+#define LazyLoadSystemData FUN_1801307f0
+
+// 原始函数名：FUN_1801308a0 - 系统急切加载函数
+#define EagerLoadSystemData FUN_1801308a0
+
+// 原始函数名：FUN_180130950 - 系统按需加载函数
+#define OnDemandLoadSystemData FUN_180130950
+
+// 原始函数名：FUN_180130a00 - 系统批量加载函数
+#define BatchLoadSystemData FUN_180130a00
+
+// 原始函数名：FUN_180130ab0 - 系统流式加载函数
+#define StreamLoadSystemData FUN_180130ab0
+
+// 原始函数名：FUN_180130b60 - 系统增量加载函数
+#define IncrementalLoadSystemData FUN_180130b60
+
+// 原始函数名：FUN_180130c10 - 系统差异加载函数
+#define DifferentialLoadSystemData FUN_180130c10
+
+// 原始函数名：FUN_180130cc0 - 系统条件加载函数
+#define ConditionalLoadSystemData FUN_180130cc0
+
+// 原始函数名：FUN_180130d70 - 系统优先级加载函数
+#define PriorityLoadSystemData FUN_180130d70
+
+// 原始函数名：FUN_180130e20 - 系统并行加载函数
+#define ParallelLoadSystemData FUN_180130e20
+

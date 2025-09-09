@@ -10071,22 +10071,22 @@ longlong * GetUIComponentAndInitialize(longlong *componentPtr,longlong arrayBase
 void UIComponentCleanup(longlong uiContext)
 
 {
-  longlong *pallocatedMemory;
-  longlong *colorBufferPointer;
+  longlong *allocatedMemoryEnd;
+  longlong *currentBufferPointer;
   
-  pallocatedMemory = *(longlong **)(uiContext + 0x18);
-  colorBufferPointer = *(longlong **)(uiContext + 0x10);
-  if (colorBufferPointer != pallocatedMemory) {
+  allocatedMemoryEnd = *(longlong **)(uiContext + 0x18);
+  currentBufferPointer = *(longlong **)(uiContext + 0x10);
+  if (currentBufferPointer != allocatedMemoryEnd) {
     do {
-      if ((longlong *)*colorBufferPointer != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*colorBufferPointer + 0x38))();
+      if ((longlong *)*currentBufferPointer != (longlong *)0x0) {
+        (**(code **)(*(longlong *)*currentBufferPointer + 0x38))();
       }
-      colorBufferPointer = colorBufferPointer + 1;
-    } while (colorBufferPointer != pallocatedMemory);
+      currentBufferPointer = currentBufferPointer + 1;
+    } while (currentBufferPointer != allocatedMemoryEnd);
     *(UIHandle *)(uiContext + 0x18) = *(UIHandle *)(uiContext + 0x10);
     return;
   }
-  *(longlong **)(uiContext + 0x18) = colorBufferPointer;
+  *(longlong **)(uiContext + 0x18) = currentBufferPointer;
   return;
 }
 
@@ -32961,8 +32961,8 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   longlong allocatedMemory5;
   ulonglong TotalResult;
   int processingResult7;
-  int iStackX_8;
-  int iStackX_20;
+  int processingResultCount;
+  int loopTerminationFlag;
   uint astackUInta8 [2];
   ulonglong stackUInta0;
   longlong stackLong98;
@@ -32979,13 +32979,13 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   allocatedMemory5 = *(longlong *)(uiBufferData + 0x1e98);
   processedCount = *(int *)(uiBufferData + 0x23dc);
   processingResult7 = *(int *)(uiBufferData + 0x23d8);
-  iStackX_8 = 0;
+  processingResultCount = 0;
   stackLong78 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
   iterationCount = *(UIDword *)(dataSource + 0x54);
   uiCompareResult = *(int *)(uiBufferData + 0x1e70);
   stackLong90 = *(longlong *)(uiBufferData + 0x2398);
   stackLong88 = *(longlong *)(uiBufferData + 0x23a0);
-  iStackX_20 = 0;
+  loopTerminationFlag = 0;
   renderContextStatus = *uiContext1;
   ContextSecondValue = uiContext1[1];
   loopCounter = (int)bufferSize[1];

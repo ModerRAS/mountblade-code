@@ -29701,8 +29701,8 @@ void* SystemResourceManagerNodeHandler(void* SystemResourceManager,void* Configu
   uint8_t *StringBuffer;
   uint BufferCapacityValue;
   void* SystemStackHandle;
-  void* *ResourceHandle1;
-  void* *ResourceHandle2;
+  void* *PrimaryResourceHandle;
+  void* *SecondaryResourceHandle;
   void* SystemAllocationContext;
   uint32_t StackAllocationFlags;
   ulong long ProcessedCount;
@@ -29729,7 +29729,7 @@ ResourceCleanupComplete:
     }
     return OperationResult;
   }
-  ParameterPointer = (int *)(ResourceHandle1 + 2);
+  ParameterPointer = (int *)(PrimaryResourceHandle + 2);
   LoopCounter = AllocationSize;
 ResourceCountCheck:
   SystemStackBufferPtr = &SystemGlobalDataPointer;
@@ -39671,7 +39671,7 @@ void ProcessSystemResourceSemaphore(long long SystemResourceManager,long long *C
   
   ConfigurationMask = (void*)0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8)
                    + 0xc);
   if (ThreadLocalStorageIndex == 0xffffffff) {
     ResourceOffset = GetResourceOffsetHandler(SystemResourceManager + 0x78);
@@ -39758,7 +39758,7 @@ void ProcessSystemResourceWithIntParameter(long long SystemResourceManager,void*
   long long ResourceOffset;
   long long BufferPointer;
   
-  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8)
                    + 0xc);
   if (ThreadLocalStorageIndex == 0xffffffff) {
     ResourceOffset = GetResourceOffsetHandler(SystemResourceManager + 0x78);
@@ -42449,7 +42449,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
   char SystemLockAcquiredFlag;
   
   if ((char)SystemResourceManager[0xb] != '\0') {
-    PrimaryResourceHandle = (uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+    PrimaryResourceHandle = (uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
     do {
       SystemOperationResult = (**(code **)(*SystemResourceManager + 0x20))(SystemResourceManager,1);
       if (validationStatusFlag == '\0') {
@@ -68053,7 +68053,7 @@ SystemResourceFinalize:
   case 0xd:
     if (0 < SystemOperationResult) {
       SystemThreadHandleSecondary = 0x48;
-      SystemThreadHandle5 = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+      SystemThreadHandle5 = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)ThreadLocalStorageIndex * 8);
       MatrixElement28 = fRam0000000180d49154;
       do {
         SystemThreadHandleSecondary = *(long long *)(ConfigDataHandle + 0x68);
