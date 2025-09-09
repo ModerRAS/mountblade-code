@@ -100027,19 +100027,41 @@ void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBuf
 
 
 
+// 核心引擎浮点数据结构和内存分配处理函数
 // 原始函数名：FUN_18010f170 - 处理浮点数据结构和内存分配的函数
+#define ProcessFloatDataStructureAndMemoryAllocation FUN_18010f170
+
+/**
+ * @brief 处理浮点数据结构和内存分配
+ * 
+ * 该函数负责处理核心引擎中的浮点数据结构和内存分配操作，包括：
+ * - 内存分配和释放管理
+ * - 浮点数据计算和验证
+ * - Unicode字符处理
+ * - 系统状态检查和更新
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return unsigned long long 处理结果状态码
+ * 
+ * @note 此函数在核心引擎的内存管理和数据处理中被调用
+ * @note 负责维护系统的内存分配和浮点计算状态
+ */
 unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *ContextHandle,int OperationBufferSize,char *Utf8SourcePointer,uint8_t *Utf16EndPointer,uint AdditionalParameter1
 {
   long long PrimaryOperationResult;
-  uint64_t MemoryAllocationIndex;
+  uint64_t MemoryAllocationQwordIndex;
   uint UnicodeCodePoint;
-  bool BooleanOperationFlag4;
+  bool IsMemoryOperationValid;
   long long AllocatedMemorySize;
   char CharacterInputDataLength;
   char CharacterStatus2;
   int ComputedResult;
   unsigned long long MemoryAllocationLoopCounter;
-  uint8_t MemoryAllocationIndex;
+  uint8_t MemoryAllocationByteIndex;
   byte IsMemoryBlockEqual;
   float SystemContextPrimaryFloat2;
   
@@ -100069,7 +100091,7 @@ unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *ContextHa
     }
     return SystemMemoryAllocationResult & 0xffffffffffffff00;
   }
-  MemoryAllocationIndex = *(void *)(AllocatedMemorySize + 0x1b00);
+  MemoryAllocationQwordIndex = *(void *)(AllocatedMemorySize + 0x1b00);
   UnicodeCodePoint = AdditionalParameter1 | 2;
   if ((AdditionalParameter1 & 0x1e) != 0) {
     UnicodeCodePoint = AdditionalParameter1;

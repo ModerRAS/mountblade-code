@@ -400080,103 +400080,103 @@ void ProcessUINullOperation(void)
 UIHandle ProcessUIComponentData(UIHandle uiContext, longlong *dataSource)
 
 {
-  longlong *pallocatedMemory;
-  longlong componentIndex;
-  UIHandle eventCodeType;
-  int aiStackX_18 [2];
-  uint stackBuffer [2];
-  UIDword astackUInt68 [2];
-  longlong stackLong60;
-  UIByte astackUInt58 [32];
-  UIByte astackUInt38 [32];
+  longlong *allocatedMemoryPointer;
+  longlong componentProcessingIndex;
+  UIHandle processingResult;
+  int validationBuffer [2];
+  uint processingBuffer [2];
+  UIDword dataProcessingBuffer [2];
+  longlong temporaryStorage;
+  UIByte operationBuffer1 [32];
+  UIByte operationBuffer2 [32];
   
-  eventCodeType = FUN_1808ddc20(dataSource,astackUInt38,1,0x53505250);
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  processingResult = FUN_1808ddc20(dataSource,operationBuffer2,1,0x53505250);
+  if ((int)processingResult != 0) {
+    return processingResult;
   }
-  aiStackX_18[0] = 0;
-  eventCodeType = FUN_1808de650(dataSource,aiStackX_18);
-  if ((int)eventCodeType == 0x12) {
+  validationBuffer[0] = 0;
+  processingResult = FUN_1808de650(dataSource,validationBuffer);
+  if ((int)processingResult == 0x12) {
 LAB_18089d455:
                      WARNING: Subroutine does not return
-    FUN_1808ddf80(dataSource,astackUInt38);
+    FUN_1808ddf80(dataSource,operationBuffer2);
   }
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if ((int)processingResult != 0) {
+    return processingResult;
   }
-  if (aiStackX_18[0] < 1) goto LAB_18089d455;
-  eventCodeType = FUN_1808ddc20(dataSource,astackUInt58,0,0x504f5250);
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if (validationBuffer[0] < 1) goto LAB_18089d455;
+  processingResult = FUN_1808ddc20(dataSource,operationBuffer1,0,0x504f5250);
+  if ((int)processingResult != 0) {
+    return processingResult;
   }
-  astackUInt68[0] = 0;
+  dataProcessingBuffer[0] = 0;
   if (*(int *)(dataSource[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pallocatedMemory = (longlong *)*dataSource;
-  if (*pallocatedMemory == 0) {
-    eventCodeType = 0x1c;
+  allocatedMemoryPointer = (longlong *)*dataSource;
+  if (*allocatedMemoryPointer == 0) {
+    processingResult = 0x1c;
   }
   else {
-    if (pallocatedMemory[2] != 0) {
-      stackBuffer[0] = 0;
-      eventCodeType = func_0x00018076a7d0(*pallocatedMemory,stackBuffer);
-      if ((int)eventCodeType != 0) {
-        return eventCodeType;
+    if (allocatedMemoryPointer[2] != 0) {
+      processingBuffer[0] = 0;
+      processingResult = func_0x00018076a7d0(*allocatedMemoryPointer,processingBuffer);
+      if ((int)processingResult != 0) {
+        return processingResult;
       }
-      if ((ulonglong)pallocatedMemory[2] < (ulonglong)stackBuffer[0] + 4) {
-        eventCodeType = 0x11;
+      if ((ulonglong)allocatedMemoryPointer[2] < (ulonglong)processingBuffer[0] + 4) {
+        processingResult = 0x11;
         goto LAB_18089d378;
       }
     }
-    eventCodeType = FUN_180769ed0(*pallocatedMemory,astackUInt68,1,4,0);
+    processingResult = FUN_180769ed0(*allocatedMemoryPointer,dataProcessingBuffer,1,4,0);
   }
 LAB_18089d378:
-  if ((int)eventCodeType == 0) {
-    stackLong60 = 0;
-    eventCodeType = FUN_1808b0490(uiContext,astackUInt68[0],&stackLong60);
-    componentIndex = stackLong60;
-    if ((int)eventCodeType != 0) {
-      return eventCodeType;
+  if ((int)processingResult == 0) {
+    temporaryStorage = 0;
+    processingResult = FUN_1808b0490(uiContext,dataProcessingBuffer[0],&temporaryStorage);
+    componentProcessingIndex = temporaryStorage;
+    if ((int)processingResult != 0) {
+      return processingResult;
     }
     if (*(int *)(dataSource[1] + 0x18) == 0) {
-      eventCodeType = FUN_1808aed00(*dataSource,stackLong60 + 0x48,2);
-      if ((int)eventCodeType != 0) {
-        return eventCodeType;
+      processingResult = FUN_1808aed00(*dataSource,temporaryStorage + 0x48,2);
+      if ((int)processingResult != 0) {
+        return processingResult;
       }
       if (*(int *)(dataSource[1] + 0x18) == 0) {
-        eventCodeType = FUN_1808aed00(*dataSource,componentIndex + 0x4a,2);
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+        processingResult = FUN_1808aed00(*dataSource,componentProcessingIndex + 0x4a,2);
+        if ((int)processingResult != 0) {
+          return processingResult;
         }
-        eventCodeType = FUN_180899360(dataSource,componentIndex + 0x30);
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+        processingResult = FUN_180899360(dataSource,componentProcessingIndex + 0x30);
+        if ((int)processingResult != 0) {
+          return processingResult;
         }
-        eventCodeType = FUN_1808a79f0(dataSource,componentIndex + 0x20);
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+        processingResult = FUN_1808a79f0(dataSource,componentProcessingIndex + 0x20);
+        if ((int)processingResult != 0) {
+          return processingResult;
         }
-        eventCodeType = FUN_1808a5d60(dataSource,componentIndex + 0x10,0);
-        if ((int)eventCodeType == 0) {
-          *(UIDword *)(componentIndex + 0x44) = 0xffffffff;
+        processingResult = FUN_1808a5d60(dataSource,componentProcessingIndex + 0x10,0);
+        if ((int)processingResult == 0) {
+          *(UIDword *)(componentProcessingIndex + 0x44) = 0xffffffff;
           goto LAB_18089d435;
         }
       }
       else {
-        eventCodeType = 0x1c;
+        processingResult = 0x1c;
       }
     }
     else {
-      eventCodeType = 0x1c;
+      processingResult = 0x1c;
     }
-    if ((int)eventCodeType == 0) {
+    if ((int)processingResult == 0) {
 LAB_18089d435:
                      WARNING: Subroutine does not return
-      FUN_1808ddf80(dataSource,astackUInt58);
+      FUN_1808ddf80(dataSource,operationBuffer1);
     }
   }
-  return eventCodeType;
+  return processingResult;
 }
 
 
@@ -400192,105 +400192,112 @@ LAB_18089d435:
 UIHandle InitializeUIContext(void)
 
 {
-  longlong *pallocatedMemory;
-  longlong componentIndex;
-  UIHandle eventCodeType;
-  longlong *contextHandle;
-  UIDword stackParam00000030;
-  longlong stackParam00000038;
-  int iStack00000000000000b0;
-  uint stackParam000000b8;
+  longlong *allocatedMemoryPointer;
+  longlong componentProcessingIndex;
+  UIHandle initializationResult;
+  longlong *contextDataPointer;
+  UIDword processingBuffer;
+  longlong temporaryStorage;
+  int validationCounter;
+  uint bufferSize;
   
-  iStack00000000000000b0 = 0;
-  eventCodeType = FUN_1808de650();
-  if ((int)eventCodeType == 0x12) {
+  validationCounter = 0;
+  initializationResult = FUN_1808de650();
+  if ((int)initializationResult == 0x12) {
 LAB_18089d455:
                      WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if ((int)initializationResult != 0) {
+    return initializationResult;
   }
-  if (iStack00000000000000b0 < 1) goto LAB_18089d455;
-  eventCodeType = FUN_1808ddc20();
-  if ((int)eventCodeType != 0) {
-    return eventCodeType;
+  if (validationCounter < 1) goto LAB_18089d455;
+  initializationResult = FUN_1808ddc20();
+  if ((int)initializationResult != 0) {
+    return initializationResult;
   }
-  stackParam00000030 = 0;
-  if (*(int *)(contextHandle[1] + 0x18) != 0) {
+  processingBuffer = 0;
+  if (*(int *)(contextDataPointer[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pallocatedMemory = (longlong *)*contextHandle;
-  if (*pallocatedMemory == 0) {
-    eventCodeType = 0x1c;
+  allocatedMemoryPointer = (longlong *)*contextDataPointer;
+  if (*allocatedMemoryPointer == 0) {
+    initializationResult = 0x1c;
   }
   else {
-    if (pallocatedMemory[2] != 0) {
-      stackParam000000b8 = 0;
-      eventCodeType = func_0x00018076a7d0(*pallocatedMemory,&stack0x000000b8);
-      if ((int)eventCodeType != 0) {
-        return eventCodeType;
+    if (allocatedMemoryPointer[2] != 0) {
+      bufferSize = 0;
+      initializationResult = func_0x00018076a7d0(*allocatedMemoryPointer,&bufferSize);
+      if ((int)initializationResult != 0) {
+        return initializationResult;
       }
-      if ((ulonglong)pallocatedMemory[2] < (ulonglong)stackParam000000b8 + 4) {
-        eventCodeType = 0x11;
+      if ((ulonglong)allocatedMemoryPointer[2] < (ulonglong)bufferSize + 4) {
+        initializationResult = 0x11;
         goto LAB_18089d378;
       }
     }
-    eventCodeType = FUN_180769ed0(*pallocatedMemory,&stack0x00000030,1,4,0);
+    initializationResult = FUN_180769ed0(*allocatedMemoryPointer,&processingBuffer,1,4,0);
   }
 LAB_18089d378:
-  if ((int)eventCodeType == 0) {
-    stackParam00000038 = 0;
-    eventCodeType = FUN_1808b0490();
-    componentIndex = stackParam00000038;
-    if ((int)eventCodeType != 0) {
-      return eventCodeType;
+  if ((int)initializationResult == 0) {
+    temporaryStorage = 0;
+    initializationResult = FUN_1808b0490();
+    componentProcessingIndex = temporaryStorage;
+    if ((int)initializationResult != 0) {
+      return initializationResult;
     }
-    if (*(int *)(contextHandle[1] + 0x18) == 0) {
-      eventCodeType = FUN_1808aed00(*contextHandle,stackParam00000038 + 0x48,2);
-      if ((int)eventCodeType != 0) {
-        return eventCodeType;
+    if (*(int *)(contextDataPointer[1] + 0x18) == 0) {
+      initializationResult = FUN_1808aed00(*contextDataPointer,temporaryStorage + 0x48,2);
+      if ((int)initializationResult != 0) {
+        return initializationResult;
       }
-      if (*(int *)(contextHandle[1] + 0x18) == 0) {
-        eventCodeType = FUN_1808aed00(*contextHandle,componentIndex + 0x4a,2);
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+      if (*(int *)(contextDataPointer[1] + 0x18) == 0) {
+        initializationResult = FUN_1808aed00(*contextDataPointer,componentProcessingIndex + 0x4a,2);
+        if ((int)initializationResult != 0) {
+          return initializationResult;
         }
-        eventCodeType = FUN_180899360();
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+        initializationResult = FUN_180899360();
+        if ((int)initializationResult != 0) {
+          return initializationResult;
         }
-        eventCodeType = FUN_1808a79f0();
-        if ((int)eventCodeType != 0) {
-          return eventCodeType;
+        initializationResult = FUN_1808a79f0();
+        if ((int)initializationResult != 0) {
+          return initializationResult;
         }
-        eventCodeType = FUN_1808a5d60();
-        if ((int)eventCodeType == 0) {
-          *(UIDword *)(componentIndex + 0x44) = 0xffffffff;
+        initializationResult = FUN_1808a5d60();
+        if ((int)initializationResult == 0) {
+          *(UIDword *)(componentProcessingIndex + 0x44) = 0xffffffff;
           goto LAB_18089d435;
         }
       }
       else {
-        eventCodeType = 0x1c;
+        initializationResult = 0x1c;
       }
     }
     else {
-      eventCodeType = 0x1c;
+      initializationResult = 0x1c;
     }
-    if ((int)eventCodeType == 0) {
+    if ((int)initializationResult == 0) {
 LAB_18089d435:
                      WARNING: Subroutine does not return
       FUN_1808ddf80();
     }
   }
-  return eventCodeType;
+  return initializationResult;
 }
 
 
 
 
- void FUN_18089d47a(void)
-void FUN_18089d47a(void)
+ /**
+ * @brief UI系统空操作处理器（备用版本）
+ * 
+ * 该函数执行空操作，用于UI系统的备用占位符或默认处理函数。
+ * 
+ * @return 无返回值
+ * @note 原始函数名：FUN_18089d47a
+ */
+void ProcessUINullOperationAlternative(void)
 
 {
   return;
@@ -400298,7 +400305,15 @@ void FUN_18089d47a(void)
 
 
 
-UIHandle FUN_18089d484(void)
+/**
+ * @brief UI系统错误代码生成器
+ * 
+ * 该函数返回UI系统的标准错误代码，用于错误处理和状态报告。
+ * 
+ * @return 错误代码 0x1c
+ * @note 原始函数名：FUN_18089d484
+ */
+UIHandle GenerateUIErrorCode(void)
 
 {
   return 0x1c;
@@ -400306,18 +400321,28 @@ UIHandle FUN_18089d484(void)
 
 
 
-UIHandle FUN_18089d490(longlong uiContext,UIHandle *dataSource)
+/**
+ * @brief UI系统数据验证处理器
+ * 
+ * 该函数负责验证UI系统数据的有效性，包括数据完整性检查和安全性验证。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return 验证结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d490
+ */
+UIHandle ValidateUISystemData(longlong uiContext, UIHandle *dataSource)
 
 {
-  UIHandle result;
+  UIHandle validationResult;
   
-  result = FUN_1808dde10(dataSource,0);
-  if ((int)result == 0) {
+  validationResult = FUN_1808dde10(dataSource,0);
+  if ((int)validationResult == 0) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
-    result = FUN_180899090(*dataSource,uiContext + 0x10);
-    if (((int)result == 0) && (result = FUN_1808afc70(dataSource,uiContext + 8), (int)result == 0)) {
+    validationResult = FUN_180899090(*dataSource,uiContext + 0x10);
+    if (((int)validationResult == 0) && (validationResult = FUN_1808afc70(dataSource,uiContext + 8), (int)validationResult == 0)) {
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
