@@ -3785,7 +3785,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_1809046d0 - 异常上下文重置函数偏移量0x18
 // 功能：重置异常上下文处理器状态，设置临时异常处理器并清理状态标志
-#define ResetExceptionContextOffset18 Unwind_1809046d0
+#define ResetExceptionContextAtPrimaryOffset Unwind_1809046d0
 
 // 原始函数名：Unwind_180904750 - 同步资源清理函数
 // 功能：在异常处理过程中清理互斥锁和条件变量等同步资源
@@ -3801,7 +3801,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_180904820 - 异常上下文重置函数偏移量0x20
 // 功能：重置异常上下文处理器状态（偏移量0x20），设置临时异常处理器并清理状态标志
-#define ResetExceptionContextOffset20 Unwind_180904820
+#define ResetExceptionContextAtSecondaryOffset Unwind_180904820
 
 // 原始函数名：Unwind_180904830 - 默认异常处理器设置函数
 // 功能：设置默认异常处理器B到异常上下文中
