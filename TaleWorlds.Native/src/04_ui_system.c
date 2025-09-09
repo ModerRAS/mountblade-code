@@ -288814,10 +288814,10 @@ void FUN_18083b4a0(UIByte (*uiContext) [32])
   UIByte acontextValue [32];
   
   presultArray = uiContext + 2;
-  aiterationCount = uiContext[3];
-  aeventCodeType = *paresult;
-  aProcessingStatus = uiContext[1];
-  aloopCounter = vsubps_avx(aProcessingStatus,aiterationCount);
+  eventIterationCount = uiContext[3];
+  eventCodeType = *presultArray;
+  processingStatus = uiContext[1];
+  loopCounter = vsubps_avx(processingStatus,eventIterationCount);
   aiterationCounter = vpermilps_avx(aloopCounter,VectorPermutationMask1809813c0);
   aeventStatus = *uiContext;
   amaxProcessingCount = vsubps_avx(aeventStatus,aeventCodeType);
