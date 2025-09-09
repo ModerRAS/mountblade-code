@@ -402522,6 +402522,23 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // #define preservedRegister12 UIPreservedRegister12
 // #define preservedRegister13 UIPreservedRegister13
 
+// UI系统栈变量美化定义
+#define astackUInt278 UIComponentContextStack278
+#define astackUInt168 UIRenderContextStack168
+#define astackUInt1a8 UIEventContextStack1A8
+#define astackUInt158 UIDataBufferStack158
+#define astackUInt48 UIAnimationStateStack48
+#define astackUInt178 UILayoutParameterStack178
+#define stackUInt38 UIStackCounter38
+#define stackUInt170 UIStackCounter170
+#define stackUInt298 UIStackCounter298
+#define stackUInt20 UIStackIndex20
+#define stackUInt14 UIStackSize14
+#define stackUInt80 UIStackBuffer80
+#define stackInt20 UIEventTypeCode
+#define stackUInt98 UIStackBuffer98
+#define stackUInt90 UIStackBuffer90
+
 
 
 
