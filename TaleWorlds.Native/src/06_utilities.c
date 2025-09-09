@@ -46316,7 +46316,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x68);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(systemContext + DataProcessingOffset70) + 0x68);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -46363,7 +46363,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x88);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(systemContext + DataProcessingOffset70) + 0x88);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
