@@ -10382,85 +10382,85 @@ uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 uint8_t SystemResourceCleanupStatus[SystemResourceCleanupArraySize];   // 系统资源清理状态标志数组（索引0-7）
 
 // 系统资源指针变量声明
-void* PrimarySystemResourcePointer;     // 主系统资源指针
-void* SecondarySystemResourcePointer;    // 备用系统资源指针
-void* TertiarySystemResourcePointer;     // 第三系统资源指针
-void* QuaternarySystemResourcePointer;   // 第四系统资源指针
-void* SystemResourceCachePointer;        // 系统资源缓存指针
-void* SystemResourceBackupPointer;       // 系统资源备份指针
+SystemResource* PrimarySystemResourcePtr;     // 主系统资源指针
+SystemResource* SecondarySystemResourcePtr;    // 备用系统资源指针
+SystemResource* TertiarySystemResourcePtr;     // 第三系统资源指针
+SystemResource* QuaternarySystemResourcePtr;   // 第四系统资源指针
+SystemResource* SystemResourceCachePtr;        // 系统资源缓存指针
+SystemResource* SystemResourceBackupPtr;       // 系统资源备份指针
 
 // 系统资源数据缓冲区变量声明
-void* SystemResourceDataBuffer;            // 系统资源数据缓冲区
+SystemResourceDataBuffer* SystemResourceDataBufferPtr;            // 系统资源数据缓冲区
 
 // 系统验证相关变量声明
-void* SystemValidationContextPointer;     // 系统验证上下文指针
+ValidationContext* SystemValidationContextPtr;     // 系统验证上下文指针
 uint8_t SystemValidationCleanupFlag;          // 系统验证清理标志
-void* SystemValidationContextCleanup;     // 系统验证上下文清理指针
+ValidationContext* SystemValidationCleanupPtr;     // 系统验证上下文清理指针
 uint8_t SystemValidationTerminationFlag;     // 系统验证终止标志
 uint8_t SystemValidationSecondaryCleanupFlag; // 系统验证备用清理标志
 uint8_t SystemValidationSecondaryTerminationFlag; // 系统验证备用终止标志
 uint8_t SystemValidationTertiaryCleanupFlag;  // 系统验证第三清理标志
 
 // 系统数据缓冲区相关变量声明
-void* SystemDataBufferInput;           // 系统数据缓冲区输入
-void* SystemDataBufferProcessing;        // 系统数据缓冲区处理
-void* SystemDataBufferOutput;            // 系统数据缓冲区输出
-void* SystemDataBufferTemp;              // 系统数据缓冲区临时
+DataBuffer* SystemDataBufferInputPtr;           // 系统数据缓冲区输入
+DataBuffer* SystemDataBufferProcessingPtr;        // 系统数据缓冲区处理
+DataBuffer* SystemDataBufferOutputPtr;            // 系统数据缓冲区输出
+DataBuffer* SystemDataBufferTempPtr;              // 系统数据缓冲区临时
 
 // 数据缓冲区管理相关变量声明
-void* DataBufferStartAddress;             // 数据缓冲区起始地址
+DataBuffer* DataBufferStartAddressPtr;             // 数据缓冲区起始地址
 uint32_t DataBufferSizeCounter;              // 数据缓冲区大小计数器
-void* DataBufferEndAddress;               // 数据缓冲区结束地址
-void* DataBufferCleanupPointer;           // 数据缓冲区清理指针
+DataBuffer* DataBufferEndAddressPtr;               // 数据缓冲区结束地址
+DataBuffer* DataBufferCleanupPtr;           // 数据缓冲区清理指针
 
 // 默认异常处理器指针变量声明
-void* SystemDefaultExceptionHandlerBPointer;     // 系统默认异常处理器B指针
-void* SystemDefaultExceptionHandlerB;              // 系统默认异常处理器B
+ExceptionHandler* SystemDefaultExceptionHandlerBPtr;     // 系统默认异常处理器B指针
+ExceptionHandler* SystemDefaultExceptionHandlerB;              // 系统默认异常处理器B
 
 // 异常处理器指针变量声明
-void* PrimaryExceptionHandler;         // 主异常处理器指针
-void* SecondaryExceptionHandler;        // 备用异常处理器指针
-void* TertiaryExceptionHandler;         // 第三异常处理器指针
-void* QuaternaryExceptionHandler;       // 第四异常处理器指针
-void* DefaultExceptionHandler;          // 默认异常处理器指针
-void* FallbackExceptionHandler;         // 回退异常处理器指针
-void* CriticalExceptionHandler;         // 关键异常处理器指针
-void* MemoryExceptionHandler;           // 内存异常处理器指针
-void* IoExceptionHandler;              // 输入输出异常处理器指针
-void* SystemExceptionHandler;           // 系统异常处理器指针
-void* UserExceptionHandler;             // 用户异常处理器指针
-void* SecurityExceptionHandler;         // 安全异常处理器指针
+ExceptionHandler* PrimaryExceptionHandlerPtr;         // 主异常处理器指针
+ExceptionHandler* SecondaryExceptionHandlerPtr;        // 备用异常处理器指针
+ExceptionHandler* TertiaryExceptionHandlerPtr;         // 第三异常处理器指针
+ExceptionHandler* QuaternaryExceptionHandlerPtr;       // 第四异常处理器指针
+ExceptionHandler* DefaultExceptionHandlerPtr;          // 默认异常处理器指针
+ExceptionHandler* FallbackExceptionHandlerPtr;         // 回退异常处理器指针
+ExceptionHandler* CriticalExceptionHandlerPtr;         // 关键异常处理器指针
+ExceptionHandler* MemoryExceptionHandlerPtr;           // 内存异常处理器指针
+ExceptionHandler* IoExceptionHandlerPtr;              // 输入输出异常处理器指针
+ExceptionHandler* SystemExceptionHandlerPtr;           // 系统异常处理器指针
+ExceptionHandler* UserExceptionHandlerPtr;             // 用户异常处理器指针
+ExceptionHandler* SecurityExceptionHandlerPtr;         // 安全异常处理器指针
 
 // 系统函数表指针变量声明
-void* SystemFunctionTablePointer;       // 系统函数表指针
+SystemFunctionTable* SystemFunctionTablePtr;       // 系统函数表指针
 // 异常处理器指针变量声明（续）
-void* ThreadExceptionHandler;           // 线程异常处理器指针
-void* ProcessExceptionHandler;          // 进程异常处理器指针
-void* NetworkExceptionHandler;          // 网络异常处理器指针
-void* DatabaseExceptionHandler;         // 数据库异常处理器指针
-void* FileSystemExceptionHandler;       // 文件系统异常处理器指针
-void* GraphicsExceptionHandler;         // 图形异常处理器指针
-void* AudioExceptionHandler;            // 音频异常处理器指针
-void* InputExceptionHandler;            // 输入异常处理器指针
-void* VideoExceptionHandler;            // 视频异常处理器指针
-void* HardwareExceptionHandler;         // 硬件异常处理器指针
-void* SoftwareExceptionHandler;         // 软件异常处理器指针
-void* PerformanceExceptionHandler;      // 性能异常处理器指针
-void* DebugExceptionHandler;            // 调试异常处理器指针
-void* ValidationExceptionHandler;       // 验证异常处理器指针
-void* InitializationExceptionHandler;   // 初始化异常处理器指针
-void* CleanupExceptionHandler;          // 清理异常处理器指针
+ExceptionHandler* ThreadExceptionHandlerPtr;           // 线程异常处理器指针
+ExceptionHandler* ProcessExceptionHandlerPtr;          // 进程异常处理器指针
+ExceptionHandler* NetworkExceptionHandlerPtr;          // 网络异常处理器指针
+ExceptionHandler* DatabaseExceptionHandlerPtr;         // 数据库异常处理器指针
+ExceptionHandler* FileSystemExceptionHandlerPtr;       // 文件系统异常处理器指针
+ExceptionHandler* GraphicsExceptionHandlerPtr;         // 图形异常处理器指针
+ExceptionHandler* AudioExceptionHandlerPtr;            // 音频异常处理器指针
+ExceptionHandler* InputExceptionHandlerPtr;            // 输入异常处理器指针
+ExceptionHandler* VideoExceptionHandlerPtr;            // 视频异常处理器指针
+ExceptionHandler* HardwareExceptionHandlerPtr;         // 硬件异常处理器指针
+ExceptionHandler* SoftwareExceptionHandlerPtr;         // 软件异常处理器指针
+ExceptionHandler* PerformanceExceptionHandlerPtr;      // 性能异常处理器指针
+ExceptionHandler* DebugExceptionHandlerPtr;            // 调试异常处理器指针
+ExceptionHandler* ValidationExceptionHandlerPtr;       // 验证异常处理器指针
+ExceptionHandler* InitializationExceptionHandlerPtr;   // 初始化异常处理器指针
+ExceptionHandler* CleanupExceptionHandlerPtr;          // 清理异常处理器指针
 
 // 内存验证相关变量声明
-void* MemoryValidationStartPointer;     // 内存验证起始指针
-void* MemoryValidationEndPointer;       // 内存验证结束指针
+MemoryValidationContext* MemoryValidationStartPtr;     // 内存验证起始指针
+MemoryValidationContext* MemoryValidationEndPtr;       // 内存验证结束指针
 uint8_t MemoryValidationStatus;    // 内存验证状态
 
 // 系统资源数据管理相关变量声明
-void* SystemResourceDataManager;     // 系统资源数据管理器
-void* SystemResourceDataTable;         // 系统资源数据表
-void* SystemResourceDataBuffer;         // 系统资源数据缓冲区
-void* SystemCalculationBaseAddress;    // 系统计算基础地址
+SystemResourceDataManager* SystemResourceDataManagerPtr;     // 系统资源数据管理器
+SystemResourceDataTable* SystemResourceDataTablePtr;         // 系统资源数据表
+SystemResourceDataBuffer* SystemResourceDataBufferPtr;         // 系统资源数据缓冲区
+SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础地址
 
 // 系统初始化和重置函数宏定义
 
