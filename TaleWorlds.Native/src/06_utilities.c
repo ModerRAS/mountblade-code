@@ -20617,7 +20617,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
         return validationStatus;
       }
     }
-    *(uint *)(DataStructureHandle + 8) = *(int *)(DataStructureHandle + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
+    *(uint *)(DataStructureHandle + SystemContextOffset) = *(int *)(DataStructureHandle + SystemContextOffset) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
     validationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(dataStructurePointer + SystemConfigTertiaryOffset));
     if ((int)validationStatus == 0) {
       return 0;
@@ -21276,7 +21276,7 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
     if (((*(int *)(ExceptionHandlerContext + SystemConfigPrimaryOffset) == 0) && (*(int *)(ExceptionHandlerContext + SystemConfigSecondaryOffset) == 0)) ||
        (InitializeSystemContextA0(&stackBufferSmall),
        *(int64_t *)((int64_t)*(int *)(ExceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress) != 0)) {
-      *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
+      *(uint *)(memoryDescriptor + SystemContextOffset) = *(int *)(memoryDescriptor + SystemContextOffset) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
       OperationResult = GetSystemCurrentStateA0(*(DataBuffer *)(ExceptionHandlerContext + SystemConfigTertiaryOffset));
     }
     else {
@@ -22421,7 +22421,7 @@ int ProcessUtilityDataWithCallback(int64_t *callbackContext,int64_t dataBuffer,i
   processedBytes = processedBytes + operationResult;
   operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
-  operationResult = (**(FunctionPointer**)(*callbackContext + 8))(callbackContext,processedBytes + dataBuffer,dataSize - processedBytes);
+  operationResult = (**(FunctionPointer**)(*callbackContext + SystemContextOffset))(callbackContext,processedBytes + dataBuffer,dataSize - processedBytes);
   return operationResult + processedBytes;
 }
 
