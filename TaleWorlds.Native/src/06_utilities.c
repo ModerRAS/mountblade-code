@@ -33701,7 +33701,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xf8);
+    systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemValidationOffsetF8);
     if ((int)systemDataBuffer == 0) {
       stackByteBuffer[0] = 0;
       systemDataBuffer = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
@@ -33817,7 +33817,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  operationResult = ValidatePortControlRequest(exceptionHandlerContext,dataBlock + 0x60);
+  operationResult = ValidatePortControlRequest(exceptionHandlerContext,dataBlock + SystemContextOffset60);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -33831,7 +33831,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   if (*(int *)(exceptionHandlerContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*exceptionHandlerContext,dataBlock + 0xa4);
+  validationStatus = ValidateDataWithSecurityCheckA2(*exceptionHandlerContext,dataBlock + SystemContextOffsetA4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
