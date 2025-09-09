@@ -2384,6 +2384,29 @@ typedef enum {
 // UI系统布尔变量美化
 #define bVar4 UIBoolVar4
 
+// UI系统内部函数名美化
+#define func_0x000180024290 ProcessUIDataWithValidation
+#define func_0x000180022810 ProcessUIDataWithValidationAlt
+#define func_0x000180069ee0 ValidateUIContext
+#define func_0x000180024a80 ProcessUIComponentValidation
+#define func_0x000180024b00 ProcessUIComponentTransform
+#define func_0x000180024b80 ProcessUIComponentAnimation
+#define func_0x000180024c00 ProcessUIComponentRender
+#define func_0x000180024c80 ProcessUIComponentEvent
+#define func_0x000180024d00 ProcessUIComponentState
+#define func_0x000180024d80 ProcessUIComponentData
+#define func_0x000180024e00 ProcessUIComponentLayout
+#define func_0x000180024e80 ProcessUIComponentStyle
+#define func_0x000180024f00 ProcessUIComponentTheme
+#define func_0x000180024f80 ProcessUIComponentFont
+#define func_0x000180025000 ProcessUIComponentColor
+#define func_0x000180025080 ProcessUIComponentTexture
+#define func_0x000180025100 ProcessUIComponentShader
+#define func_0x000180025180 ProcessUIComponentMaterial
+#define func_0x000180025200 ProcessUIComponentLight
+#define func_0x000180025280 ProcessUIComponentCamera
+#define func_0x000180025300 ProcessUIComponentEffect
+
 // UI系统指针变量美化
 #define psVar5 UIPtrShortVar5
 #define psVar1 UIPtrShortVar1
@@ -2629,6 +2652,26 @@ typedef enum {
 #define FUN_180711311 InitializeUIEmptyOperationSystem            // 初始化UI空操作系统
 #define FUN_180711351 ProcessUIHandleWithFloatDataTransfer        // 处理UI句柄与浮点数据传输
 #define FUN_1807123a8 ProcessUIFloatDataWithMemoryManagement      // 处理带内存管理的UI浮点数据
+
+// UI系统核心函数语义化定义
+#define FUN_18071ab41 InitializeUISystemOperation                // 初始化UI系统操作
+#define FUN_18071ace8 ResetUIComponentState                      // 重置UI组件状态
+#define FUN_180724f7a ProcessUIDataFourParamTransform            // 处理UI数据四参数变换
+#define FUN_1807250bb CleanupUIProcessingResources               // 清理UI处理资源
+#define FUN_18072568d ProcessUIFloatDataSourceTransfer            // 处理UI浮点数据源传输
+#define FUN_1807263f2 ProcessUIDataWithHandleTransfer            // 处理带句柄的UI数据传输
+#define FUN_1807273a0 ProcessUIIntDataSourceOperation            // 处理UI整型数据源操作
+#define FUN_180727b80 ValidateUIHandleContext                    // 验证UI句柄上下文
+#define FUN_180727db0 ProcessUIFloatDataSourceQuery              // 处理UI浮点数据源查询
+#define FUN_180727db6 ProcessUIFloatDataSourceQueryAlternative    // 处理UI浮点数据源查询备选方案
+#define FUN_180728050 ProcessUIDataFourParamOperation            // 处理UI数据四参数操作
+#define FUN_180728160 ProcessUIThreeParamHandleOperation        // 处理UI三参数句柄操作
+#define FUN_1807290a0 ProcessUIDataThreeParamTransfer            // 处理UI数据三参数传输
+#define FUN_180729270 ProcessUIDataTwoParamValidation            // 处理UI数据两参数验证
+#define FUN_1807294f0 ProcessUIDataWithHandleAndBuffer          // 处理带句柄和缓冲区的UI数据
+#define FUN_180729ba0 ProcessUIDataThreeParamWithContext         // 处理带上下文的UI数据三参数操作
+#define FUN_180729c5d ProcessUITwoHandleWithULongOperation       // 处理双句柄ULong操作
+#define FUN_180729cb8 ProcessUIThreeHandleOperation              // 处理三句柄操作
 #define FUN_1807123c2 ProcessUIFloatDataWithCalculationEngine     // 处理带计算引擎的UI浮点数据
 #define FUN_180712526 ProcessUIHandleDataWithMemoryAllocation     // 处理带内存分配的UI句柄数据
 
@@ -12143,6 +12186,21 @@ void ExecuteUISystemInterrupt(void)
   componentPosition 组件位置参数
   componentSize 组件大小参数
  @return 返回创建的组件句柄
+/**
+ * @brief 创建带参数的UI组件
+ * 
+ * 根据指定的参数创建UI组件，包括组件类型、样式、位置和大小。
+ * 该函数通过渲染命令队列来创建组件，并返回组件句柄。
+ * 
+ * @param componentType 组件类型句柄，指定要创建的组件类型
+ * @param componentStyle 组件样式句柄，指定组件的视觉样式
+ * @param componentPosition 组件位置句柄，指定组件在屏幕上的位置
+ * @param componentSize 组件大小句柄，指定组件的尺寸
+ * @return UIHandle 返回创建的组件句柄，创建失败时返回0
+ * 
+ * @note 该函数使用渲染命令队列来异步创建组件
+ * @warning 确保传入的参数都是有效的句柄
+ */
 UIHandle
 CreateUIComponentWithParams(UIHandle componentType,UIHandle componentStyle,UIHandle componentPosition,UIHandle componentSize)
 
@@ -32439,7 +32497,7 @@ LAB_18066fdc2:
                    *(UIByte *)(stackUInt118 * 6 + 7 + *(longlong *)(dataSource + 0xeb0));
               *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 6) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 6);
-              iterationCount2 = (ulonglong)stackUInt13c;
+              tileIterationCount2 = (ulonglong)stackUInt13c;
               *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 7) =
                    *(UIByte *)(stackUInt118 * 7 + 7 + *(longlong *)(dataSource + 0xeb0));
               *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 7) =

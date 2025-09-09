@@ -33846,7 +33846,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
             if ((int)systemDataBuffer != 0) {
               return systemDataBuffer;
             }
-            systemDataBuffer = ProcessSystemDataStream(dataBuffer,operationBase + 0xe8,operationResult,operationBase);
+            systemDataBuffer = ProcessSystemDataStream(dataBuffer,operationBase + SystemDataStreamOffsetE8,operationResult,operationBase);
             if ((int)systemDataBuffer != 0) {
               return systemDataBuffer;
             }
@@ -33968,7 +33968,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   if (*(int *)(exceptionHandlerContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = OperateDataO0(*exceptionHandlerContext,dataBlock + 0xb0,4);
+  validationStatus = OperateDataO0(*exceptionHandlerContext,dataBlock + ExceptionHandlerContextOffsetB0,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
@@ -34038,7 +34038,7 @@ DataProcessLabelA:
       dataFlags = operationResult;
       if (0x34 < *(uint *)(dataBuffer + 8)) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-          dataFlags = OperateDataO0(*dataBuffer,operationBase + 0xbc,4);
+          dataFlags = OperateDataO0(*dataBuffer,operationBase + SystemContextOffsetBC,4);
         }
         else {
           dataFlags = 0x1c;
@@ -34048,7 +34048,7 @@ DataProcessLabelA:
         dataFlags = operationResult;
         if (0x46 < *(uint *)(dataBuffer + 8)) {
           if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-            dataFlags = OperateDataO0(*dataBuffer,operationBase + 0xc0,4);
+            dataFlags = OperateDataO0(*dataBuffer,operationBase + ExceptionHandlerContextOffsetC0,4);
           }
           else {
             dataFlags = 0x1c;
@@ -34058,7 +34058,7 @@ DataProcessLabelA:
           dataFlags = operationResult;
           if (0x47 < *(uint *)(dataBuffer + 8)) {
             if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-              dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xa0);
+              dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffsetA0,4);
             }
             else {
               dataFlags = 0x1c;
@@ -121186,6 +121186,24 @@ void ProcessExceptionCleanupAtOffset180911500(DataBuffer operationBase,int64_t d
 
 
 
+/**
+ * @brief 在偏移量180911520处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911520
+ */
 void ProcessExceptionCleanupAtOffset180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
