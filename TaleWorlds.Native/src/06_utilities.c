@@ -111303,7 +111303,23 @@ void ExecuteExceptionHandlerWithContextOffset60(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_18090fa20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表管理函数A20
+ * 
+ * 该函数负责管理异常数据表，包括设置异常数据表指针、销毁互斥锁和条件变量。
+ * 主要功能包括：
+ * - 设置异常数据表5
+ * - 销毁互斥锁
+ * - 销毁条件变量
+ * - 设置异常处理表A2
+ * - 设置异常数据表3和6
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表信息
+ * 
+ * @note 原始函数名：Unwind_18090fa20
+ */
+void ManageExceptionDataTableA20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
