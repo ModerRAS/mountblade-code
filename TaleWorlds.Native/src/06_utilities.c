@@ -16247,6 +16247,15 @@ void ExecuteSystemNoOperation(void)
  * @note 此错误码表示资源无效或不可访问
  * @note 原始函数名：FUN_180890ac7
  */
+/**
+ * @brief 返回资源无效错误码
+ * 
+ * 返回预定义的资源无效错误码，用于指示资源访问或操作失败
+ * 
+ * @return uint64_t 资源无效错误码常量值
+ * 
+ * @note 该函数提供统一的错误码返回机制
+ */
 uint64_t ReturnResourceInvalidErrorCode64(void)
 {
   return ResourceInvalidErrorCode;
@@ -61347,11 +61356,11 @@ void InitializeExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 互斥量销毁函数A0
+ * @brief 销毁线程局部互斥量
  * 
- * 销毁互斥量资源
+ * 销毁位于线程局部存储中的互斥量资源
  */
-void DestroyMutexA0(void)
+void DestroyThreadLocalMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -61361,11 +61370,11 @@ void DestroyMutexA0(void)
 
 
 /**
- * @brief 互斥量销毁函数A1
+ * @brief 销毁全局互斥量
  * 
- * 销毁互斥量资源
+ * 销毁全局作用域的互斥量资源
  */
-void DestroyMutexA1(void)
+void DestroyGlobalMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -61440,7 +61449,12 @@ void SetDefaultExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * 销毁互斥量资源
  */
-void DestroyMutexA2(void)
+/**
+ * @brief 销毁系统互斥量
+ * 
+ * 销毁系统级别的互斥量资源
+ */
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
