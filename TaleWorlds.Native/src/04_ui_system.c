@@ -94020,10 +94020,10 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
             baseValuePointer0 = transformCoefficient13 + 3;
             baseScaleFactor = transformCoefficient13 + 2;
             transformCoeff17 = *baseValuePointer7;
-            TransformCoefficient13 = TransformCoefficient13 + 4;
-            BaseValuePointer7 = BaseValuePointer7 + 4;
-            TransformCoefficient20 = *BaseValuePointer * *TransformCoefficient1 + *pTemporaryFloatValue * transformCoeff16 + TransformCoefficient20 + *baseScaleFactor * transformCoeff17 +
-                     *bufferPointer * *BaseValuePointer0;
+            transformCoefficient13 = transformCoefficient13 + 4;
+            baseValuePointer7 = baseValuePointer7 + 4;
+            transformCoefficient20 = *baseValuePointer * *transformCoefficient1 + *temporaryFloatValue * transformCoeff16 + transformCoefficient20 + *baseScaleFactor * transformCoeff17 +
+                     *bufferPointer * *baseValuePointer0;
             componentIndex1 = componentIndex1 + -1;
           } while (componentIndex1 != 0);
         }
