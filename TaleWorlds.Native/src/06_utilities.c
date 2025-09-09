@@ -89,6 +89,12 @@
 #define DataContextIntegrityOffset 0x48
 #define OperationBaseSecondaryOffset 0x30
 #define DataValidationResultOffset 0x1c
+#define ContextPointerSecondaryOffset 0x30
+#define DestinationContextProcessorExtendedOffset 0x66
+#define DestinationContextProcessorSecondaryOffset 0x68
+#define DestinationContextValidationOffset 0x70
+#define DestinationContextValidationSecondaryOffset 0x74
+#define DestinationContextStatusOffset 0x7c
 #define MemoryResourcePointerOffsetTertiary 0x130
 #define MemoryResourcePointerOffsetAlternate 0x118
 #define ExceptionHandlerContextPointerRangeStart 0xf8
@@ -32898,7 +32904,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
     }
     if ((int)validationStatus == 0) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-        validationStatus = ProcessDataBlocksInSecondaryMode(*dataBuffer,operationBase + 0x30);
+        validationStatus = ProcessDataBlocksInSecondaryMode(*dataBuffer,operationBase + OperationBaseSecondaryOffset);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -32948,7 +32954,7 @@ uint64_t ProcessDataWithValidation(void)
   ByteFlag dataSizeBuffer [2];
   ByteFlag processingBuffer [2];
   
-  dataValidationOffset = eaxRegisterValue + 0x1c;
+  dataValidationOffset = eaxRegisterValue + DataValidationResultOffset;
   if (carryFlag) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       dataHandle = *dataBuffer;
@@ -32969,7 +32975,7 @@ uint64_t ProcessDataWithValidation(void)
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + ContextPointerSecondaryOffset);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -33025,7 +33031,7 @@ uint64_t ProcessDataStream(void)
     return operationResult;
   }
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + ContextPointerSecondaryOffset);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -33302,8 +33308,8 @@ DataBuffer CleanupDataResourcesA0(void)
     stackBuffer = StackFrameContext;
     validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x60,4);
     if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 100,2), (int)validationStatus == 0)) &&
-       (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x66,2), (int)validationStatus == 0)) {
-      validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x68,8);
+       (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextProcessorExtendedOffset,2), (int)validationStatus == 0)) {
+      validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + DestinationContextProcessorSecondaryOffset,8);
     }
     if ((int)validationStatus != 0) {
       return validationStatus;
@@ -33313,14 +33319,14 @@ DataBuffer CleanupDataResourcesA0(void)
     if (*(int *)(inputDataContext + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x70);
+    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + DestinationContextValidationOffset);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
     if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
       return ResourceInvalidErrorCode;
     }
-    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x74);
+    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + DestinationContextValidationSecondaryOffset);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -33351,7 +33357,7 @@ DataBuffer CleanupDataResourcesA0(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(DestinationContext + 0x7c) = stackBuffer != (char)validationStatus;
+    *(bool *)(DestinationContext + DestinationContextStatusOffset) = stackBuffer != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -33460,7 +33466,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + 0x74);
+  operationResult = ValidateDataWithSecurityCheckA2(*registerContext,DestinationContext + DestinationContextValidationSecondaryOffset);
   if ((int)operationResult != 0) {
     return operationResult;
   }

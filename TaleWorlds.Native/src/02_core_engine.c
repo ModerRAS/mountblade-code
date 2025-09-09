@@ -560,6 +560,7 @@
 #define LAB_18008caf0 MemoryComparisonCompleteLabel          // 内存比较完成标签
 #define LAB_18008cb7e CharacterStatusBufferCheckLabel       // 字符状态缓冲区检查标签
 #define LAB_18008ce20 MemoryBufferValidationLabel            // 内存缓冲区验证标签
+#define LAB_18008cd70 MemoryBufferAllocationLabel            // 内存缓冲区分配标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120

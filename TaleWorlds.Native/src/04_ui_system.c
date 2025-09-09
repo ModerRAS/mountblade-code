@@ -189059,72 +189059,72 @@ UIByte UISystemSyncManager;
 UIByte UISystemDebugManager;
 // 原始变量名：UNK_180a215c0 - UI系统性能监控器
 #define UISystemPerformanceMonitor UNK_180a215c0
-undefined UISystemPerformanceMonitor;
+UIByte UISystemPerformanceMonitor;
 
 // 简化实现：UI系统重置函数
 // 原本实现：可能包含更复杂的重置逻辑
-undefined UIResetSystem;
-undefined UIRenderQueueData;
-undefined UIRenderQueueIndex;
-undefined UIEventBuffer;
-undefined UIEventBufferSize;
+UIByte UIResetSystem;
+UIByte UIRenderQueueData;
+UIByte UIRenderQueueIndex;
+UIByte UIEventBuffer;
+UIByte UIEventBufferSize;
 // 原始变量名：DAT_180c0fc70 - UI渲染队列头指针
 #define UIRenderQueueHeadPtr DAT_180c0fc70
-undefined UIRenderQueueHeadPtr;
+UIByte UIRenderQueueHeadPtr;
 // 原始变量名：DAT_180c0fc74 - UI渲染队列尾指针
 #define UIRenderQueueTailPtr DAT_180c0fc74
-undefined UIRenderQueueTailPtr;
+UIByte UIRenderQueueTailPtr;
 // 原始变量名：DAT_180c0faf0 - UI事件队列头指针
 #define UIEventQueueHeadPtr DAT_180c0faf0
-undefined UIEventQueueHeadPtr;
+UIByte UIEventQueueHeadPtr;
 // 原始变量名：DAT_180c0faf4 - UI事件队列尾指针
 #define UIEventQueueTailPtr DAT_180c0faf4
-undefined UIEventQueueTailPtr;
+UIByte UIEventQueueTailPtr;
 // 原始变量名：DAT_180c0fe50 - UI组件池头指针
 #define UIComponentPoolHeadPtr DAT_180c0fe50
-undefined UIComponentPoolHeadPtr;
+UIByte UIComponentPoolHeadPtr;
 // 原始变量名：DAT_180c0fe54 - UI组件池尾指针
 #define UIComponentPoolTailPtr DAT_180c0fe54
-undefined UIComponentPoolTailPtr;
+UIByte UIComponentPoolTailPtr;
 // 原始变量名：DAT_180c0fdf0 - UI资源池头指针
 #define UIResourcePoolHeadPtr DAT_180c0fdf0
-undefined UIResourcePoolHeadPtr;
+UIByte UIResourcePoolHeadPtr;
 // 原始变量名：DAT_180c0fdf4 - UI资源池尾指针
 #define UIResourcePoolTailPtr DAT_180c0fdf4
-undefined UIResourcePoolTailPtr;
+UIByte UIResourcePoolTailPtr;
 // 原始变量名：DAT_180c0fb50 - UI纹理缓存头指针
 #define UITextureCacheHeadPtr DAT_180c0fb50
-undefined UITextureCacheHeadPtr;
+UIByte UITextureCacheHeadPtr;
 // 原始变量名：DAT_180c0fb54 - UI纹理缓存尾指针
 #define UITextureCacheTailPtr DAT_180c0fb54
-undefined UITextureCacheTailPtr;
+UIByte UITextureCacheTailPtr;
 // 原始变量名：DAT_180c0fd90 - UI字体缓存头指针
 #define UIFontCacheHeadPtr DAT_180c0fd90
-undefined UIFontCacheHeadPtr;
+UIByte UIFontCacheHeadPtr;
 // 原始变量名：DAT_180c0fd94 - UI字体缓存尾指针
 #define UIFontCacheTailPtr DAT_180c0fd94
-undefined UIFontCacheTailPtr;
+UIByte UIFontCacheTailPtr;
 // 原始变量名：DAT_180c0fbb0 - UI着色器缓存头指针
 #define UIShaderCacheHeadPtr DAT_180c0fbb0
-undefined UIShaderCacheHeadPtr;
+UIByte UIShaderCacheHeadPtr;
 // 原始变量名：DAT_180c0fbb4 - UI着色器缓存尾指针
 #define UIShaderCacheTailPtr DAT_180c0fbb4
-undefined UIShaderCacheTailPtr;
+UIByte UIShaderCacheTailPtr;
 // 原始变量名：DAT_180c0fc10 - UI布局缓存头指针
 #define UILayoutCacheHeadPtr DAT_180c0fc10
-undefined UILayoutCacheHeadPtr;
+UIByte UILayoutCacheHeadPtr;
 // 原始变量名：DAT_180c0fc14 - UI布局缓存尾指针
 #define UILayoutCacheTailPtr DAT_180c0fc14
-undefined UILayoutCacheTailPtr;
+UIByte UILayoutCacheTailPtr;
 // 原始变量名：DAT_180c0fd30 - UI动画缓存头指针
 #define UIAnimationCacheHeadPtr DAT_180c0fd30
-undefined UIAnimationCacheHeadPtr;
+UIByte UIAnimationCacheHeadPtr;
 // 原始变量名：DAT_180c0fd34 - UI动画缓存尾指针
 #define UIAnimationCacheTailPtr DAT_180c0fd34
-undefined UIAnimationCacheTailPtr;
+UIByte UIAnimationCacheTailPtr;
 // 原始变量名：DAT_180c0feb0 - UI输入状态头指针
 #define UIInputStateHeadPtr DAT_180c0feb0
-undefined UIInputStateHeadPtr;
+UIByte UIInputStateHeadPtr;
 // 原始变量名：DAT_180c0feb4 - UI输入状态尾指针
 #define UIInputStateTailPtr DAT_180c0feb4
 undefined UIInputStateTailPtr;
