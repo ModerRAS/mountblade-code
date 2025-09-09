@@ -237621,7 +237621,7 @@ LAB_1801974aa:
   pppCalculationFunctionAddress = &pStackTempPointer;
   pfStack_78 = afStackX_10;
   StackProcessingVariableBuffer = &SystemStackBufferTemplate;
-  pcStack_68 = FUN_1801bc9a0;
+  pcStack_68 = ProcessSystemCharacterBuffer;
   ProcessSystemCharacterBufferOperation(&pppCalculationFunctionAddress,0,(long long)ppSystemOperationFlag98 - (long long)pStackTempPointer >> 3,0x10,
                 0xffffffffffffffff,&pppCalculationFunctionAddress);
   FloatOffsetValue = afStackX_10[0];
@@ -237670,7 +237670,7 @@ LAB_1801974aa:
         else if (ArrayIndex == 2) {
           UnicodeContextHandle = *(void *)((long long)(CharacterStatusBuffer2 + 1) + (long long)SystemCharacterStatusPointerReference);
           OperationResult = *(void *)((long long)(CharacterStatusBuffer2 + 3) + (long long)SystemCharacterStatusPointerReference);
-          SystemMemoryAllocationResult = FUN_1802fc790(UnicodeContextHandle,OperationResult);
+          SystemMemoryAllocationResult = ProcessUnicodeContextData(UnicodeContextHandle,OperationResult);
           FUN_1802fca80(UnicodeContextHandle,OperationResult,SystemMemoryAllocationResult);
         }
         else if (ArrayIndex == 3) {
@@ -238574,7 +238574,7 @@ void CompressSystemCharacterData(long long ContextHandle,long long *ContextHandl
       FUN_1802ed990(LoopCounter,1);
       ProcessSystemMemoryAllocationAndValidation(LoopCounter,OperationBufferSize,0,0,1,AdditionalParameter1);
     }
-    LockOperationResult = FUN_1802ed190(OperationBufferSize,7);
+    LockOperationResult = ProcessSystemLockOperation(OperationBufferSize,7);
     if (LockOperationResult != 0) {
       do {
         SystemContextPtr = (long long *)FUN_1802ed2b0(OperationBufferSize,&SystemContextRegister,7,CalculatedCodePoint);
