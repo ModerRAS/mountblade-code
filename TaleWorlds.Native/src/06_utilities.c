@@ -447,6 +447,29 @@
 #define SystemDataPointerOffset40 0x40
 #define ExceptionHandlerDataPointerOffset68 0x68
 #define ExceptionHandlerDataPointerOffsetC4 0xc4
+
+// 异常处理器上下文偏移量常量（补充）
+#define ExceptionHandlerContextOffset140 0x140
+#define ExceptionHandlerContextOffset130 0x130
+#define ExceptionHandlerContextOffset120 0x120
+#define ExceptionHandlerContextOffset158 0x158
+#define ExceptionHandlerContextOffset160 0x160
+#define ExceptionHandlerContextOffset168 0x168
+#define ExceptionHandlerContextOffset170 0x170
+#define ExceptionHandlerContextOffset178 0x178
+#define ExceptionHandlerContextOffset1A0 0x1a0
+
+// 系统数据偏移量常量（补充）
+#define SystemDataSecondaryOffset180 0x180
+#define ExceptionHandlerStateOffset 0x158
+#define ExceptionContextStatusOffset68 0x68
+#define ExceptionContextStatusOffset680 0x680
+#define ExceptionHandlerStateOffset808 0x808
+#define ExceptionHandlerContextOffset800 0x800
+#define systemContextPointerOffset900 0x900
+#define SystemManagementOffset980 0x980
+#define ExceptionHandlerContextOffset100 0x100
+#define ExceptionHandlerContextOffsetF0 0xf0
 #define ExceptionHandlerDataPointerOffset14 0x14
 #define ExceptionHandlerDataPointerOffset1C 0x1c
 #define DataPointerOffset58 0x58
