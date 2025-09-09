@@ -134,6 +134,33 @@
 #define DataBufferOffsetC 0xc
 #define DataBufferOffset24 0x24
 #define DataBufferOffset30 0x30
+
+// 目标上下文偏移量常量
+#define DestinationContextOffset1A0 0x1a0
+#define DestinationContextOffset194 0x194
+#define DestinationContextOffset198 0x198
+#define DestinationContextOffset19C 0x19c
+#define DestinationContextOffset1A4 0x1a4
+#define DestinationContextOffset1A8 0x1a8
+#define DestinationContextOffset1AC 0x1ac
+#define DestinationContextOffset1B4 0x1b4
+#define DestinationContextOffset1B8 0x1b8
+#define DestinationContextOffset1B0 0x1b0
+#define DestinationContextOffset1BC 0x1bc
+#define DestinationContextOffset1C0 0x1c0
+#define DestinationContextOffset1C8 0x1c8
+#define DestinationContextOffset1D0 0x1d0
+#define DestinationContextOffset1DC 0x1dc
+#define DestinationContextOffset1E0 0x1e0
+
+// 系统上下文偏移量常量
+#define SystemContextOffset104 0x104
+
+// 内存指针偏移量常量
+#define MemoryPointerOffset114 0x114
+
+// 异常上下文数据偏移量常量
+#define ExceptionContextDataSecondaryOffset6D4 0x6d4
 #define DataBufferOffset48 0x48
 #define DataBufferOffset44 0x44
 #define ExceptionHandlerContextOffset48 0x48
@@ -30155,7 +30182,7 @@ DataBuffer ExecuteSystemCheckA0(void)
       }
       processingIndex = processingIndex + 1;
       floatDataPointer = floatDataPointer + 1;
-    } while (processingIndex < *(short *)(systemContext + 0x104));
+    } while (processingIndex < *(short *)(systemContext + SystemContextOffset104));
   }
   return 0;
 }
