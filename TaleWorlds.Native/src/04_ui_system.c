@@ -200068,7 +200068,6 @@ void ProcessUIContextMemoryRelease(int *uiContext)
  * @note 该函数会调用数据源的清理函数进行资源释放
  */
 void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
-void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
@@ -200099,8 +200098,22 @@ void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18078626d(UIHandle uiContext,longlong dataSource)
-void FUN_18078626d(UIHandle uiContext,longlong dataSource)
+ /**
+ * @brief 处理UI上下文迭代清理操作
+ * 
+ * 处理UI上下文的迭代清理操作，该函数负责：
+ * - 迭代处理UI上下文中的组件
+ * - 清理组件相关的资源
+ * - 调用组件的清理函数
+ * 
+ * @param uiContext UI上下文句柄，包含要处理的上下文信息
+ * @param dataSource 数据源指针，包含要清理的数据源信息
+ * 
+ * @note 原始函数名：FUN_18078626d
+ * @note 该函数会迭代处理所有组件并调用清理函数
+ */
+void ProcessUIContextIterativeCleanup(UIHandle uiContext,longlong dataSource)
+void ProcessUIContextIterativeCleanup(UIHandle uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
