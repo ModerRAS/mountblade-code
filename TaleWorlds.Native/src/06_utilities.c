@@ -7922,6 +7922,12 @@ uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 // 内存区域缓冲区大小常量
 #define MemoryRegionBufferSize 4
 
+// 数据项大小常量
+#define DataItemSize 0xc
+
+// 数据项偏移量常量
+#define DataItemOffset 0xd
+
 // 浮点数验证数组变量声明
 float FloatValidationArray[FloatValidationArraySize];
 
@@ -14439,7 +14445,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   int64_t AllocatedResourceHandle;
   int32_t AllocationStatus;
   uint64_t ValidationResult;
-  int64_t LocalResourceBuffer[2];
+  int64_t LocalResourceBuffer[LocalResourceBufferSize];
   
   ValidationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceConfiguration + ComponentHandleOffset), LocalResourceBuffer);
   AllocatedResourceHandle = LocalResourceBuffer[ResourceHandleArrayIndex];
@@ -30446,11 +30452,11 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
             if (operationStatus != 0) {
               return;
             }
-            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * 0xc + 10);
+            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * DataItemSize + DataItemOffset);
             if (operationStatus != 0) {
               return;
             }
-            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * 0xc + 0xd);
+            operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * DataItemSize + DataItemOffset);
             if (operationStatus != 0) {
               return;
             }
@@ -90011,7 +90017,7 @@ void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x78);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + OperationBaseOffset78);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
