@@ -16046,9 +16046,9 @@ LAB_18065a2e9:
     vectorComponentX = baseValue3 - transformCoeffPointer[-10];
     FloatValue2 = ABS(vectorComponentX);
     if (0.001 <= FloatValue2) {
-      AccumulatedFloat = unmodifiedXMM8_Da;
+      accumulatedFloatValue = unmodifiedXMM8_Da;
       if (vectorComponentX < preservedXMM6) {
-        AccumulatedFloat = -1.0;
+        accumulatedFloatValue = -1.0;
       }
       if (0.05 <= FloatValue2) {
         if (0.5 <= FloatValue2) {
@@ -16058,8 +16058,8 @@ LAB_18065a2e9:
       else {
         FloatValue2 = 0.05;
       }
-      FloatValue2 = FloatValue2 * AccumulatedFloat * fStack0000000000000034 * 6.0;
-      if (FloatValue2 * AccumulatedFloat <= AccumulatedFloat * vectorComponentX) {
+      FloatValue2 = FloatValue2 * accumulatedFloatValue * animationSpeedFactor * 6.0;
+      if (FloatValue2 * accumulatedFloatValue <= accumulatedFloatValue * vectorComponentX) {
         baseValue3 = transformCoeffPointer[-10] + FloatValue2;
       }
     }
@@ -16088,13 +16088,13 @@ LAB_18065a5b3:
 LAB_18065a5d3:
     vectorComponentX = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)transformCoeffPointer);
     FloatValue2 = vectorComponentX - transformCoeffPointer[-9];
-    AccumulatedFloat = ABS(FloatValue2);
+    accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
       transformCoeff11 = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
         transformCoeff11 = -1.0;
       }
-      if (0.05 <= AccumulatedFloat) {
+      if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= AccumulatedFloat) {
           AccumulatedFloat = 0.5;
         }
@@ -16810,9 +16810,9 @@ LAB_18065a2e9:
     vectorComponentX = baseValue3 - transformCoeffPointer[-10];
     FloatValue2 = ABS(vectorComponentX);
     if (0.001 <= FloatValue2) {
-      AccumulatedFloat = unmodifiedXMM8_Da;
+      accumulatedFloatValue = unmodifiedXMM8_Da;
       if (vectorComponentX < preservedXMM6) {
-        AccumulatedFloat = -1.0;
+        accumulatedFloatValue = -1.0;
       }
       if (0.05 <= FloatValue2) {
         if (0.5 <= FloatValue2) {
@@ -16822,8 +16822,8 @@ LAB_18065a2e9:
       else {
         FloatValue2 = 0.05;
       }
-      FloatValue2 = FloatValue2 * AccumulatedFloat * fStack0000000000000034 * 6.0;
-      if (FloatValue2 * AccumulatedFloat <= AccumulatedFloat * vectorComponentX) {
+      FloatValue2 = FloatValue2 * accumulatedFloatValue * animationSpeedFactor * 6.0;
+      if (FloatValue2 * accumulatedFloatValue <= accumulatedFloatValue * vectorComponentX) {
         baseValue3 = transformCoeffPointer[-10] + FloatValue2;
       }
     }
@@ -16852,13 +16852,13 @@ LAB_18065a5b3:
 LAB_18065a5d3:
     vectorComponentX = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)transformCoeffPointer);
     FloatValue2 = vectorComponentX - transformCoeffPointer[-9];
-    AccumulatedFloat = ABS(FloatValue2);
+    accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
       transformCoeff11 = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
         transformCoeff11 = -1.0;
       }
-      if (0.05 <= AccumulatedFloat) {
+      if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= AccumulatedFloat) {
           AccumulatedFloat = 0.5;
         }
@@ -17532,13 +17532,13 @@ LAB_18065a5b3:
 LAB_18065a5d3:
     transformCoeff13 = *(float *)((longlong)afStack_60e8 + (4 - (longlong)EventHandle) + (longlong)transformCoeffPointer);
     FloatValue2 = transformCoeff13 - transformCoeffPointer[-9];
-    AccumulatedFloat = ABS(FloatValue2);
+    accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
       transformCoeff11 = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
         transformCoeff11 = -1.0;
       }
-      if (0.05 <= AccumulatedFloat) {
+      if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= AccumulatedFloat) {
           AccumulatedFloat = 0.5;
         }
