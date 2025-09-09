@@ -28519,6 +28519,20 @@ DataBuffer InitializeSystemComponentD0(DataBuffer *SystemComponentPtr,int64_t In
 
 
 
+/**
+ * @brief 验证数据序列A0
+ * 
+ * 该函数用于验证数据序列的正确性和完整性，包括内存分配验证、数据大小检查
+ * 和数据块验证。函数会按照特定的验证流程处理输入数据。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关的数据和状态信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return DataBuffer 验证结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 函数包含内存分配验证和数据完整性检查
+ * @warning 如果验证失败，函数会返回相应的错误码
+ * @see ProcessMemoryAllocationA0, ValidateDataAndReturnStatusO3
+ */
 DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
 
 {
@@ -41734,8 +41748,8 @@ void ResetExceptionStatusAndProcessEvent(void)
     return;
   }
   exceptionStatusEncryptionShiftBitCount = (SystemByteType)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> exceptionStatusEncryptionShiftBitCount |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - exceptionStatusEncryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
