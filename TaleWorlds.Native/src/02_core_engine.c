@@ -224526,7 +224526,7 @@ void ProcessSystemMemoryAllocationAndValidation(long long *ContextHandle, long l
   ProcessSystemRegistrationData(SystemRegisterBuffer,*ContextHandle,SystemDataTablePointer,Utf16EndPointer,MemoryAllocationCounter);
   if (OperationBufferSize != SystemDataTablePointer) {
                     // WARNING: Subroutine does not return
-    memmove(MemoryBoundaryEnd);
+    memmove(MemoryBoundaryLimit);
   }
                     // WARNING: Subroutine does not return
   memmove(MemoryBoundaryEnd);

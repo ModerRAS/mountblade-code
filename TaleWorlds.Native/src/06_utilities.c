@@ -27368,7 +27368,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer9 = (int64_t *)((int64_t)exceptionHandlerContextPointer9 + 0xc);
         } while ((int64_t)exceptionHandlerContextPointer4 < contextProcessingBuffer[0]);
       }
-      exceptionHandlerContext5 = operationBase[1] + 0x60;
+      exceptionHandlerContext5 = operationBase[1] + OperationBaseOffset60;
       iterationCount = ValidateContext(exceptionHandlerContext5);
       exceptionHandlerContextPointer4 = exceptionHandlerContextPointer6;
       if (0 < iterationCount) {
@@ -27394,7 +27394,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             exceptionHandlerContext1 = operationBase[4];
             if ((char)exceptionHandlerContext1 == '\0') {
               *(ByteFlag *)(operationBase + 4) = 1;
-              allocatedMemoryBlock = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),aValidationResultData);
+              allocatedMemoryBlock = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + OperationBaseOffset78),aValidationResultData);
               if (((allocatedMemoryBlock != 0) || (allocatedMemoryBlock = ProcessDataBufferA0(aValidationResultData[0],&StackLongIntegerC,0), allocatedMemoryBlock != 0)
                   ) || (allocatedMemoryBlock = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset10))(operationBase), allocatedMemoryBlock != 0))
               goto BufferValidationCheckpoint;
