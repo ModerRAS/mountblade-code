@@ -403830,8 +403830,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 
 // UI系统字符串处理和验证函数
 #define ProcessUIStringValidation ValidateUIStringFormat
-#define FUN_1808ddc20 ProcessUIStringEncodingConversion
-#define FUN_180899360 ValidateUIComponentState
+// UI系统数据签名和格式验证函数
+#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat
+// UI系统上下文数据和完整性验证函数
+#define FUN_180899360 ValidateUIContextDataAndIntegrity
 #define FUN_1808a2e00 ProcessUIComponentData
 #define FUN_1808a5d60 ProcessUIComponentEvent
 #define FUN_1808afc70 ProcessUIComponentRendering
