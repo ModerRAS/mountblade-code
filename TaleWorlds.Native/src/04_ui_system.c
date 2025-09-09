@@ -7727,61 +7727,61 @@ uint8_t ProcessUISystemRenderingPipeline;
 uint8_t g_uiRenderPipelineDataPrimary;
 
  更新UI系统渲染管线
-undefined UpdateUISystemRenderingPipeline;
+UIByte UpdateUISystemRenderingPipeline;
 
  渲染UI系统渲染管线
-undefined RenderUISystemRenderingPipeline;
+UIByte RenderUISystemRenderingPipeline;
 char UIInitializationFlag;
-undefined UILabelInitializationComplete;
-undefined UIRenderPipelineStatus;
-undefined UIRenderPipelineBuffer;
+UIByte UILabelInitializationComplete;
+UIByte UIRenderPipelineStatus;
+UIByte UIRenderPipelineBuffer;
 byte UIEventSystemStatus;
-undefined UIEventFlagPrimary;
-undefined UIEventFlagSecondary;
-undefined UIEventFlagTertiary;
-undefined g_uiRenderPipelineDataSecondary;
-undefined g_uiRenderPipelineDataTertiary;
-undefined g_uiRenderPipelineDataQuaternary;
+UIByte UIEventFlagPrimary;
+UIByte UIEventFlagSecondary;
+UIByte UIEventFlagTertiary;
+UIByte g_uiRenderPipelineDataSecondary;
+UIByte g_uiRenderPipelineDataTertiary;
+UIByte g_uiRenderPipelineDataQuaternary;
 
  销毁UI系统渲染管线
-undefined DestroyUISystemRenderingPipeline;
-undefined g_uiRenderPipelineDataQuinary;
-undefined g_uiRenderPipelineDataSenary;
-undefined g_uiRenderPipelineDataSeptenary;
-undefined g_uiRenderPipelineDataOctonary;
+UIByte DestroyUISystemRenderingPipeline;
+UIByte g_uiRenderPipelineDataQuinary;
+UIByte g_uiRenderPipelineDataSenary;
+UIByte g_uiRenderPipelineDataSeptenary;
+UIByte g_uiRenderPipelineDataOctonary;
  UI系统渲染常量
 uint32_t g_uiRenderConstantQuaternary;
-undefined g_uiRenderPipelineDataNonary;
-undefined g_uiRenderPipelineDataDenary;
-undefined g_uiRenderPipelineDataUndenary;
+UIByte g_uiRenderPipelineDataNonary;
+UIByte g_uiRenderPipelineDataDenary;
+UIByte g_uiRenderPipelineDataUndenary;
  UI系统渲染常量
 uint32_t g_uiRenderConstantQuinary;
  UI渲染数据值
 uint64_t g_uiRenderDataValuePrimary;
 uint64_t g_uiRenderDataValueSecondary;
-undefined g_uiRenderPipelineDataDuodenary;
-undefined g_uiRenderPipelineDataTerdenary;
-undefined g_uiRenderPipelineDataQuattuordenary;
-undefined g_uiRenderPipelineDataQuindenary;
-undefined g_uiRenderPipelineDataSexdenary;
-undefined g_uiRenderPipelineDataSeptendenary;
-undefined g_uiRenderPipelineDataOctodenary;
-undefined g_uiRenderPipelineDataNovendenary;
-undefined g_uiRenderPipelineDataVigesimal;
-undefined g_uiRenderPipelineDataUnvigesimal;
-undefined g_uiRenderPipelineDataDuovigesimal;
-undefined g_uiRenderPipelineDataTrevigesimal;
+UIByte g_uiRenderPipelineDataDuodenary;
+UIByte g_uiRenderPipelineDataTerdenary;
+UIByte g_uiRenderPipelineDataQuattuordenary;
+UIByte g_uiRenderPipelineDataQuindenary;
+UIByte g_uiRenderPipelineDataSexdenary;
+UIByte g_uiRenderPipelineDataSeptendenary;
+UIByte g_uiRenderPipelineDataOctodenary;
+UIByte g_uiRenderPipelineDataNovendenary;
+UIByte g_uiRenderPipelineDataVigesimal;
+UIByte g_uiRenderPipelineDataUnvigesimal;
+UIByte g_uiRenderPipelineDataDuovigesimal;
+UIByte g_uiRenderPipelineDataTrevigesimal;
 
  undefined InitializeUIResources;
-undefined InitializeUIResources;
-undefined UIResourceLoaderPrimary;
-undefined UIResourceLoaderSecondary;
-undefined UIResourceLoaderTertiary;
-undefined UIResourceLoaderQuaternary;
-undefined UIResourceLoaderQuinary;
-undefined UIResourceLoaderSenary;
-undefined UIResourceLoaderSeptenary;
-undefined UIResourceLoaderOctonary;
+UIByte InitializeUIResources;
+UIByte UIResourceLoaderPrimary;
+UIByte UIResourceLoaderSecondary;
+UIByte UIResourceLoaderTertiary;
+UIByte UIResourceLoaderQuaternary;
+UIByte UIResourceLoaderQuinary;
+UIByte UIResourceLoaderSenary;
+UIByte UIResourceLoaderSeptenary;
+UIByte UIResourceLoaderOctonary;
 
  /**
  * @brief 获取UI系统状态标志
