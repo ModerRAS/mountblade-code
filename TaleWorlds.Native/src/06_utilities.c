@@ -4655,6 +4655,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 初始化系统内存池A0
  * 
  * 初始化系统内存A0模块，设置内存分配器和内存池
+ * 该函数负责：
+ * 1. 分配初始内存池空间
+ * 2. 设置内存分配器参数
+ * 3. 初始化内存管理数据结构
+ * 4. 验证内存池完整性
+ * 5. 返回初始化状态
  * 
  * @param systemContext 系统上下文，包含系统初始化参数
  * @param memoryPoolSize 内存池大小，指定要分配的内存空间
@@ -4662,7 +4668,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @return 初始化结果状态码，0表示成功，非0表示错误
  * 
  * @note 原始函数名：FUN_180046860
- * @note 此函数负责系统内存池的初始化和配置
+ * @note 此函数必须在系统启动早期调用，确保内存管理子系统正常工作
+ * @see ExecuteMemoryOperationAndValidation, CreateExceptionDataBuffer
  */
 #define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolA0
 
