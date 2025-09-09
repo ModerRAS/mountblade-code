@@ -13822,7 +13822,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
 {
   code *NetworkRequestStatusPointer;
   byte ValidationStatusByte;
-  int IntegerCounter;
+  int ValidationCounter;
   uint64_t NetworkRequestResult;
   if (SystemInitializationCompleteFlag == '\0') {
     if (1 < SystemContextDataPointer) {
@@ -13831,7 +13831,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
       NetworkRequestResult = (*NetworkRequestStatusPointer)();
       return NetworkRequestResult;
     }
-    IntegerCounter = GetValidationStatus();
+    ValidationCounter = GetValidationStatus();
     if ((IntegerCounter == 0) || (SystemContextDataPointer != 0)) {
       ValidationStatusByte = 0x40 - ((byte)SystemSecurityMask & 0x3f) & 0x3f;
       SystemInitializationBuffer = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;

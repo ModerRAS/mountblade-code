@@ -3032,28 +3032,163 @@ uint32_t NetworkFailedConnectionAttempts;            // 网络连接总失败尝
 uint32_t NetworkAverageConnectionTimeMs;              // 网络平均连接时间
 uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
 uint32_t NetworkLastActivityTimeMs;              // 网络最后活动时间戳
+/**
+ * @brief 网络数据包序列号
+ * 
+ * 用于标识网络数据包的序列号，确保数据包的有序传输和接收
+ */
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
+
+/**
+ * @brief 网络确认号
+ * 
+ * 用于确认接收到的网络数据包，确保数据传输的可靠性
+ */
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
+
+/**
+ * @brief 网络窗口缩放
+ * 
+ * 用于动态调整网络传输窗口大小，优化网络传输效率
+ */
 uint32_t NetworkWindowScale;                         // 网络窗口缩放
+
+/**
+ * @brief 网络重传计时器
+ * 
+ * 用于管理网络数据包的重传时间，确保数据传输的可靠性
+ */
 uint32_t NetworkRetransmitTimer;                     // 网络重传计时器
+
+/**
+ * @brief 网络保持连接时间
+ * 
+ * 用于维持网络连接的活动状态，防止连接因超时而断开
+ */
 uint32_t NetworkKeepAliveTime;                        // 网络保持连接时间
+
+/**
+ * @brief 网络心跳超时时间
+ * 
+ * 用于检测网络连接的活跃状态，及时发现连接异常
+ */
 uint32_t NetworkHeartbeatTimeout;                    // 网络心跳超时时间
+
+/**
+ * @brief 网络往返时间
+ * 
+ * 用于测量网络数据包的往返时间，评估网络延迟
+ */
 uint32_t NetworkRoundTripTime;                         // 网络往返时间
+
+/**
+ * @brief 网络缓冲区管理器
+ * 
+ * 用于管理网络数据包的缓冲区，优化内存使用和数据传输
+ */
 uint32_t NetworkBufferManager;                         // 网络缓冲区管理器
+
+/**
+ * @brief 网络缓冲区大小
+ * 
+ * 定义网络数据包缓冲区的大小，影响数据传输的效率
+ */
 uint32_t NetworkBufferSize;                             // 网络缓冲区大小
+
+/**
+ * @brief 网络缓冲区索引
+ * 
+ * 用于标识网络缓冲区的当前位置，便于数据包的存取
+ */
 uint32_t NetworkBufferIndex;                            // 网络缓冲区索引
+
+/**
+ * @brief 网络数据包上下文
+ * 
+ * 存储网络数据包的上下文信息，包括连接状态、传输参数等
+ */
 uint32_t NetworkPacketContext;                           // 网络数据包上下文
+
+/**
+ * @brief 当前网络数据包上下文大小
+ * 
+ * 定义当前网络数据包上下文的大小，确保上下文数据的完整性
+ */
 uint32_t CurrentPacketContextSize;                       // 当前网络数据包上下文大小
+
+/**
+ * @brief 网络数据包数据
+ * 
+ * 存储网络数据包的实际数据内容
+ */
 uint32_t NetworkPacketData;                              // 网络数据包数据
+
+/**
+ * @brief 网络数据包索引
+ * 
+ * 用于标识网络数据包的索引位置，便于数据包的管理和查找
+ */
 uint32_t NetworkPacketIndex;                             // 网络数据包索引
+
+/**
+ * @brief 网络数据包头数据
+ * 
+ * 存储网络数据包的头部信息，包括地址、端口、协议等
+ */
 uint32_t NetworkPacketHeaderData;                        // 网络数据包头数据
+/**
+ * @brief 网络数据包头大小
+ * 
+ * 定义网络数据包头部的大小，影响数据包的解析和处理效率
+ */
 uint32_t NetworkPacketHeaderSize;                        // 网络数据包头大小
+
+/**
+ * @brief 网络数据包尾数据
+ * 
+ * 存储网络数据包的尾部信息，包括校验和、结束标记等
+ */
 uint32_t NetworkPacketTrailerData;                       // 网络数据包尾数据
+
+/**
+ * @brief 网络数据包尾大小
+ * 
+ * 定义网络数据包尾部的大小，确保数据包完整性检查的准确性
+ */
 uint32_t NetworkPacketTrailerSize;                       // 网络数据包尾大小
+
+/**
+ * @brief 数据包哈希算法
+ * 
+ * 用于网络数据包的完整性验证，确保数据在传输过程中未被篡改
+ */
 uint32_t NetworkPacketHashAlgorithm;                            // 数据包哈希算法
+/**
+ * @brief 数据包签名方法
+ * 
+ * 用于网络数据包的数字签名，确保数据包的来源可信性和完整性
+ */
 uint32_t NetworkPacketSignatureMethod;                         // 数据包签名方法
+
+/**
+ * @brief 数据包加密密钥长度
+ * 
+ * 定义网络数据包加密密钥的长度，影响数据传输的安全性
+ */
 uint32_t NetworkPacketEncryptionKeyLength;                     // 数据包加密密钥长度
+
+/**
+ * @brief 数据包验证缓冲池
+ * 
+ * 用于存储网络数据包验证过程中使用的缓冲区资源
+ */
 uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
+
+/**
+ * @brief 数据包验证缓冲区大小
+ * 
+ * 定义数据包验证缓冲区的大小，确保验证过程的顺利进行
+ */
 uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
 uint32_t NetworkPacketSecurityValidationData;                   // 数据包安全验证数据
 uint32_t NetworkPacketSecurityValidationInfo;                   // 数据包安全验证信息

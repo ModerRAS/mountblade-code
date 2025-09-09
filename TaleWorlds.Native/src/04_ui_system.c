@@ -1444,6 +1444,16 @@ typedef enum {
 #define psVar3 UIPtrShortVar3
 #define psVar4 UIPtrShortVar4
 
+// UI系统音频处理变量名美化
+#define AudioStackData UIAudioStackData
+#define AudioBytesProcessed UIAudioBytesProcessed
+#define AudioChunkCount UIAudioChunkCount
+#define AudioDataRemaining UIAudioDataRemaining
+#define AudioDataPointer UIAudioDataPointer
+#define AudioDataCounter UIAudioDataCounter
+#define AudioProcessingMode UIAudioProcessingMode
+#define AudioSampleBuffer UIAudioSampleBuffer
+
 #define UIStatusPointer7 (void*)0x1809535d8
 #define UIStatusPointer8 (void*)0x1809535c4
 #define UIStatusPointer9 (void*)0x1809535e8
@@ -200033,16 +200043,16 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
   bool isSourceValid;
   UIHandle stackParam00000060;
   
-  if ((*(code **)(SourceHandle + 0x11838) != (UIFunctionPtr *)0x0) &&
-     ((*(byte *)(SourceHandle + 0x11840) & 0x20) != 0)) {
-    (**(code **)(SourceHandle + 0x11838))();
+  if ((*(code **)(sourceHandle + 0x11838) != (UIFunctionPtr *)0x0) &&
+     ((*(byte *)(sourceHandle + 0x11840) & 0x20) != 0)) {
+    (**(code **)(sourceHandle + 0x11838))();
   }
   if ((*contextHandle != 0) && (*(char *)((longlong)contextHandle + 0xc) == '\0')) {
     func_0x000180743c20(*contextHandle,(int)contextHandle[1]);
     *(UIByte *)((longlong)contextHandle + 0xc) = 1;
   }
-  bVar4 = SourceHandle != 0;
-  if (bVar4) {
+  isSourceValid = sourceHandle != 0;
+  if (isSourceValid) {
     func_0x000180743c20();
   }
   uiCompareResult = ValidateUIMemoryOperation(*(UIHandle *)(uiContext + 0x48),0);
