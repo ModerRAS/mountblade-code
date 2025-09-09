@@ -157904,7 +157904,7 @@ SystemContextValueAdjustment:
     *(float *)(LoopIndex + 0x11c) = (ContextSecondaryFloat0 + *(float *)(LoopIndex + 0x11c)) - ContextPrimaryFloat9;
   }
 LAB_180132d15:
-  AllocateSystemFloatArray(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  AllocateSystemFloatArray(&StackBuffer0B0,4,0,0x3dcccccd,0x41200000);
   if ((MatrixRow2Col1 != 0.0) && (*(char *)(LoopIndex + 0xac) != '\0')) {
     ContextPrimaryFloat9 = *(float *)(LoopIndex + 0x8c);
     ContextSecondaryFloat0 = (float)(int)(MatrixRow2Col1 * ContextSecondaryFloat9 + ContextPrimaryFloat9);
@@ -158130,7 +158130,7 @@ LAB_180132c8d:
     *(float *)(BufferPointer + 0x11c) = (MatrixTransformX + *(float *)(BufferPointer + 0x11c)) - NormalizedValue;
   }
 LAB_180132d15:
-  AllocateSystemFloatArray(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  AllocateSystemFloatArray(&StackBuffer0B0,4,0,0x3dcccccd,0x41200000);
   if ((MatrixCoefficient1 != ReferenceFloatValue) && (*(char *)(BufferPointer + 0xac) != CharacterValidationStatus)) {
     NormalizedValue = *(float *)(BufferPointer + 0x8c);
     MatrixTransformX = (float)(int)(MatrixCoefficient1 * TertiaryMatrixFloat + NormalizedValue);
@@ -158781,7 +158781,7 @@ void ConvertUtf8ToUtf16Encoding1EB(long long ContextHandle,uint64_t OperationBuf
   fStack000000000000002c = SecondaryFloatValue;
   ConvertUtf8ToUtf16(ContextHandle,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer,NormalizedParameterValue);
   MemoryPoolBlockSize = *(long long *)(SystemRegisterR10 + 2);
-  ProcessSystemData(&stack0x00000080,MemoryPoolBlockSize,0);
+  ProcessSystemData(&StackBuffer080,MemoryPoolBlockSize,0);
   ProcessedFloatValue8 = *(float *)(MemoryPoolBlockSize + 0x8c) - fStack0000000000000080;
   fStack0000000000000084 = *(float *)(MemoryPoolBlockSize + 0x90) - fStack0000000000000084;
   SystemRegisterR10[7] = ProcessedFloatValue8 + (float)SystemRegisterR10[7];
@@ -159701,7 +159701,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       ValidationResult = 4;
-      SystemCharacterStatusBuffer = &stack0x000000a8;
+      SystemCharacterStatusBuffer = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }
@@ -159989,7 +159989,7 @@ LAB_180133c1e:
     }
     else if (*(int *)(SystemContext + 0x1cc0) == 4) {
       ValidationResult = 4;
-      SystemCharacterStatusBuffer = &stack0x000000a8;
+      SystemCharacterStatusBuffer = &StackBuffer0A8;
       goto LAB_180133c1e;
     }
   }

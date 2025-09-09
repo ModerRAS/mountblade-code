@@ -1232,9 +1232,92 @@ typedef enum {
 // UI系统数据处理函数宏定义
 #define ProcessUIDataTransformationWithValidation FUN_18071af00
 #define ProcessUIDataTransformationWithBuffer FUN_18071b080
+
+// UI系统局部变量美化
+#define fStack_144 UITimeStepDelta
+#define resultPointer UIResultPointer
+#define param_6 UIOperationParam6
+#define param_7 UIOperationParam7
+#define param_8 UIOperationParam8
+#define param_9 UIOperationParam9
+#define AccumulatedFloat UIAccumulatedFloatValue
+#define charStackVar UICharStackVariable
+#define convertedFloatResult UIConvertedFloatResult
+#define scaleMultiplier UIScaleMultiplier
+#define animationEnabled UIAnimationEnabled
+#define rotationDifference UIRotationDifference
+#define rotationDifference2 UIRotationDifferenceAlt
+#define targetRotation UITargetRotation
+#define finalRotation UIFinalRotation
+#define animationTime UIAnimationTime
+#define animationDataPtr UIAnimationDataPointer
+#define animationCount UIAnimationCount
+#define animationElementPtr UIAnimationElementPointer
+#define elementWeight UIElementWeight
+#define opacityMultiplier UIOpacityMultiplier
+#define doubleTimeStep UIDoubleTimeStep
+#define positionDifference UIPositionDifference
+#define clampedPosition UIClampedPosition
+#define vectorComponentX UIVectorComponentX
+#define stackUInt180 UIStackUInt180
+#define baseValue5 UIBaseValue5
+#define transformCoeff15 UITransformCoeff15
+#define positionX UIPositionX
+#define rotationZ UIRotationZ
+#define shaderProgramPtr UIShaderProgramPointer
+#define renderDataPtr UIRenderDataPointer
+#define renderState UIRenderState
+#define colorIntensity UIColorIntensity
+#define loopCounter UILoopCounter
+#define colorNormalizationIndex UIColorNormalizationIndex
+#define normalizedColorPtr UINormalizedColorPointer
+#define charStack_148 UICharStack148
+#define renderResult UIRenderResult
+#define positionHandle UIPositionHandle
+#define resultStack_140 UIResultStack140
+#define resultStack_130 UIResultStack130
+#define highWordFloat UIHighWordFloat
+#define stackUInt118 UIStackUInt118
+#define localChar11 UILocalChar11
+#define localChar2 UILocalChar2
+#define preservedRegister13D UIPreservedRegister13D
+#define preservedXMM6 UIPreservedXMM6
+#define unmodifiedXMM8_Da UIUnmodifiedXMM8_Data
+#define EventHandle UIEventHandle
+#define baseValue6 UIBaseValue6
+#define baseValue2 UIBaseValue2
+#define baseValue7 UIBaseValue7
+#define baseValue3 UIBaseValue3
+#define FloatValue2 UIFloatValue2
 #define ProcessUIDataTransformationWithFloat FUN_18071ebe0
 #define ProcessUIDataHandleOperation FUN_18071efcb
 #define ProcessUIDataBufferOperationWithSize FUN_18071f270
+
+// UI系统堆栈变量美化
+#define uStack0000000000000050 UIStackUInt50
+#define uStack0000000000000058 UIStackUInt58
+
+// UI系统未定义变量美化
+#define undefined6 UIUndefined6
+#define undefined7 UIUndefined7
+#define undefined3 UIUndefined3
+
+// UI系统迭代变量美化
+#define iterationCount7 UIIterationCount7
+
+// UI系统结果变量美化
+#define ResultValue3 UIResultValue3
+#define EventTypeCode0 UIEventTypeCode0
+#define EventTypeCode1 UIEventTypeCode1
+#define EventTypeCode2 UIEventTypeCode2
+#define EventTypeCode UIEventTypeCode
+#define maxProcessingCount UIMaxProcessingCount
+#define sizeData UISizeData
+#define stackParamfffffffffffffe80 UIStackParamFe80
+#define ptrResult5 UIPtrResult5
+#define TargetHandle UITargetHandle
+#define bufferSize UIBufferSize
+#define contextHandle UIContextHandle
 
 // UI系统数据操作函数宏定义
 #define ProcessUIDataBufferCopyOperation FUN_180719a90

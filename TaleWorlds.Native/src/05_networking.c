@@ -887,34 +887,34 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int
 uint32_t VerifyNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketHandle)
 {
   // 连接句柄安全验证变量
-  uint32_t SecurityValidationResult;                    // 安全验证结果状态
-  uint32_t ConnectionHandleValid;                       // 连接句柄有效性
-  uint32_t PacketHandleValid;                            // 数据包句柄有效性
+  uint32_t SecurityValidationStatus;                        // 安全验证状态结果
+  uint32_t ConnectionHandleStatus;                          // 连接句柄状态
+  uint32_t PacketHandleStatus;                               // 数据包句柄状态
   
   // 初始化验证结果
-  SecurityValidationResult = NetworkValidationFailure;
-  ConnectionHandleValid = NetworkValidationFailure;
-  PacketHandleValid = NetworkValidationFailure;
+  SecurityValidationStatus = NetworkValidationFailure;
+  ConnectionHandleStatus = NetworkValidationFailure;
+  PacketHandleStatus = NetworkValidationFailure;
   
   // 验证连接句柄有效性
   if (NetworkConnectionContext != NetworkErrorInvalidHandle && 
       NetworkConnectionContext != 0) {
-    ConnectionHandleValid = NetworkValidationSuccess;
+    ConnectionHandleStatus = NetworkValidationSuccess;
   }
   
   // 验证数据包句柄有效性
   if (NetworkPacketHandle != NetworkErrorInvalidHandle && 
       NetworkPacketHandle != 0) {
-    PacketHandleValid = NetworkValidationSuccess;
+    PacketHandleStatus = NetworkValidationSuccess;
   }
   
   // 如果两个句柄都有效，则安全验证通过
-  if (ConnectionHandleValid == NetworkValidationSuccess && 
-      PacketHandleValid == NetworkValidationSuccess) {
-    SecurityValidationResult = NetworkValidationSuccess;
+  if (ConnectionHandleStatus == NetworkValidationSuccess && 
+      PacketHandleStatus == NetworkValidationSuccess) {
+    SecurityValidationStatus = NetworkValidationSuccess;
   }
   
-  return SecurityValidationResult;
+  return SecurityValidationStatus;
 }
 
 /**
@@ -4848,33 +4848,33 @@ uint32_t AuthenticateConnectionData(NetworkHandle ConnectionHandle, void* Valida
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t PacketHeaderValidationResult;           // 数据包头部完整性验证结果
-  uint32_t HeaderContextProcessingStatus;          // 头部上下文处理状态
-  uint32_t HeaderFormatValidationResult;           // 头部格式验证结果
+  uint32_t PacketHeaderValidationStatus;                     // 数据包头部验证状态
+  uint32_t HeaderContextStatus;                               // 头部上下文状态
+  uint32_t HeaderFormatStatus;                                 // 头部格式状态
   
   // 初始化处理状态为失败状态
-  PacketHeaderValidationResult = NetworkValidationFailure;
-  HeaderContextProcessingStatus = NetworkValidationFailure;
-  HeaderFormatValidationResult = NetworkValidationFailure;
+  PacketHeaderValidationStatus = NetworkValidationFailure;
+  HeaderContextStatus = NetworkValidationFailure;
+  HeaderFormatStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData != 0) {
-    PacketHeaderValidationResult = NetworkValidationSuccess;
+    PacketHeaderValidationStatus = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    HeaderContextProcessingStatus = NetworkValidationSuccess;
+    HeaderContextStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式，只有在数据包和上下文都有效时才进行格式验证
-  if (PacketHeaderValidationResult == NetworkValidationSuccess && 
-      HeaderContextProcessingStatus == NetworkValidationSuccess) {
-    HeaderFormatValidationResult = NetworkValidationSuccess;
+  if (PacketHeaderValidationStatus == NetworkValidationSuccess && 
+      HeaderContextStatus == NetworkValidationSuccess) {
+    HeaderFormatStatus = NetworkValidationSuccess;
   }
   
   // 返回处理结果
-  if (HeaderFormatValidationResult == NetworkValidationSuccess) {
+  if (HeaderFormatStatus == NetworkValidationSuccess) {
     return NetworkOperationSuccess;  // 处理成功
   } else {
     return NetworkOperationFailure;  // 处理失败
