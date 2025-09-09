@@ -200041,7 +200041,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
   longlong *contextHandle;
   longlong sourceHandle;
   bool isSourceValid;
-  UIHandle stackParam00000060;
+  UIHandle renderParameter;
   
   if ((*(code **)(sourceHandle + 0x11838) != (UIFunctionPtr *)0x0) &&
      ((*(byte *)(sourceHandle + 0x11840) & 0x20) != 0)) {
