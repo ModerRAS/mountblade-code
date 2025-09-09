@@ -23,16 +23,16 @@
 #define SystemResourceManagerMultiplier 0x1a8         // 系统资源管理器乘数 - 用于资源管理器计算
 #define SystemResourceFlagOffset 0x352f                // 系统资源标志偏移量 - 用于设置资源标志的偏移量
 #define ExceptionContextPointerOffset 0x3508            // 异常上下文指针偏移量 - 用于异常处理上下文的指针偏移量
-#define InvalidMemoryOffset -0x8000000000000000
-#define SecurityValidationMask 0x40000000
-#define MemoryOperationFlag 0x4000000
-#define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBaseAddress 0x180c4f450
-#define ResourceCleanupAlignment 0xfffffff0
-#define DataProcessingMultiplier 0xc
-#define OperationFlagMask 0x10000000
-#define MemoryAlignmentMask 0xfbffffff
-#define SystemMemoryCleanupMask 0xffc00000
+#define InvalidMemoryOffset -0x8000000000000000               // 无效内存偏移量 - 表示无效的内存地址
+#define SecurityValidationMask 0x40000000                     // 安全验证掩码 - 用于安全验证操作的掩码
+#define MemoryOperationFlag 0x4000000                        // 内存操作标志 - 标识内存操作状态的标志
+#define ThreadLocalStorageOffset 0x17c                        // 线程本地存储偏移量 - 线程本地存储的偏移位置
+#define ThreadLocalStorageBaseAddress 0x180c4f450            // 线程本地存储基地址 - 线程本地存储的基地址
+#define ResourceCleanupAlignment 0xfffffff0                  // 资源清理对齐值 - 资源清理操作的对齐值
+#define DataProcessingMultiplier 0xc                           // 数据处理乘数 - 数据处理操作的乘数
+#define OperationFlagMask 0x10000000                          // 操作标志掩码 - 操作状态的标志掩码
+#define MemoryAlignmentMask 0xfbffffff                        // 内存对齐掩码 - 内存对齐操作的掩码
+#define SystemMemoryCleanupMask 0xffc00000                    // 系统内存清理掩码 - 系统内存清理操作的掩码
 #define MemoryOffsetAdjustment 4                            // 内存偏移调整值 - 用于内存块计算时的调整
 #define MemoryBaseOffset 0x80                                // 内存基础偏移量 - 内存块的起始偏移量
 #define MemoryBlockMultiplier 0x50                           // 内存块乘数 - 用于内存块大小计算
@@ -40,8 +40,8 @@
 #define MemoryDataOffset 0x20                                 // 内存数据偏移量 - 数据存储的起始位置
 #define MemoryExceptionCheckOffset 0xe                        // 内存异常检查偏移量 - 异常检查标志位的位置
 #define MemoryPointerTableOffset 0x70                         // 内存指针表偏移量 - 内存指针表的存储位置
-#define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量
-#define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量
+#define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量 - 资源迭代器验证的偏移位置
+#define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量 - 资源迭代器下一个元素的偏移位置
 #define ExceptionDataBufferOffset 0x210                     // 异常数据缓冲区偏移量 - 异常处理数据的存储位置
 #define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
 #define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
