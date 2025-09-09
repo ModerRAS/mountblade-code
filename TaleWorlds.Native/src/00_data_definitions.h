@@ -3049,6 +3049,16 @@ int InitializeSystemResourceManager(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemRequestHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
+/**
+ * 处理系统请求
+ * 处理来自系统各模块的请求，包括请求ID、类型、数据和标志
+ * 
+ * @param RequestId 请求ID，用于标识具体的请求类型
+ * @param RequestType 请求类型，指定请求的分类
+ * @param RequestData 请求数据，包含请求的具体参数
+ * @param RequestFlags 请求标志，用于控制请求的处理方式
+ * @return 处理成功返回0，失败返回-1
+ */
 int ProcessSystemRequest(uint64_t RequestId,uint64_t RequestType,uint64_t RequestData,uint64_t RequestFlags)
 {
   int64_t ModuleInitializationResult;
@@ -13758,7 +13768,7 @@ Label_1808fbebe:
   return 1;
 }
     SystemStringProcessingFlag = '\x01';
-    wcscpy_s(aStackLoopLimit,0x104,SystemContextDataPointer);
+    wcscpy_s(StackLoopLimitBuffer,0x104,SystemContextDataPointer);
     if ((SystemStringProcessingFlag != '\0') && (wcscat_s(aStackLoopLimit,0x104,SystemSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
       FinalizeSystemOperation(aStackLoopLimit,0);
     }

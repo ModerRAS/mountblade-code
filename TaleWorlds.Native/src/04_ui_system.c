@@ -1383,6 +1383,24 @@ typedef enum {
 // UI系统附加状态指针美化
 #define UIStatusPointer5 (void*)0x1809553a0
 #define UIStatusPointer6 (void*)0x180954b30
+
+// UI系统组件数据变量名美化
+#define ComponentData1 UIComponentData1
+#define ComponentData2 UIComponentData2
+#define ComponentData3 UIComponentData3
+#define ComponentData4 UIComponentData4
+#define ComponentData5 UIComponentData5
+#define ComponentData6 UIComponentData6
+#define ComponentData7 UIComponentData7
+#define ComponentData8 UIComponentData8
+#define ComponentData9 UIComponentData9
+#define ComponentData10 UIComponentData10
+#define ComponentData11 UIComponentData11
+#define ComponentData12 UIComponentData12
+#define ComponentData13 UIComponentData13
+#define ComponentData14 UIComponentData14
+#define ComponentData15 UIComponentData15
+#define ComponentData16 UIComponentData16
 #define UIStatusPointer7 (void*)0x1809535d8
 #define UIStatusPointer8 (void*)0x1809535c4
 #define UIStatusPointer9 (void*)0x1809535e8
