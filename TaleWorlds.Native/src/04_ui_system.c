@@ -49255,7 +49255,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aiterationCount3 [16];
   UIByte aiterationCount4 [16];
   UIDword iterationCount6;
-  undefined6 iterationCount7;
+  UIUndefined6 iterationCount7;
   UIHandle iterationCount8;
   UIByte aiterationCount9 [12];
   UIByte aEventTypeCode0 [14];
@@ -49567,7 +49567,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aiterationCount3 [16];
   UIByte aiterationCount4 [16];
   UIDword iterationCount6;
-  undefined6 iterationCount7;
+  UIUndefined6 iterationCount7;
   UIHandle iterationCount8;
   UIByte aiterationCount9 [12];
   UIByte aEventTypeCode0 [14];
@@ -49879,7 +49879,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aiterationCount3 [16];
   UIByte aiterationCount4 [16];
   UIDword iterationCount6;
-  undefined6 iterationCount7;
+  UIUndefined6 iterationCount7;
   UIHandle iterationCount8;
   UIByte aiterationCount9 [12];
   UIByte aEventTypeCode0 [14];
@@ -200248,7 +200248,7 @@ LAB_180787ed7:
   else {
     // 处理数据源字节和字符编码
     highByteDataSource = (char)((uint)dataSource >> 8);
-    charCodeValue = (undefined6)((ulonglong)contextHandle >> 0x10);
+    charCodeValue = (UIUndefined6)((ulonglong)contextHandle >> 0x10);
     tempValidationChar = (char)contextHandle;
     validationChecksum = (char)((ulonglong)contextHandle >> 8) + highByteDataSource;
     contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
@@ -316176,7 +316176,7 @@ LAB_180858c20:
       *(uint *)(uiContext + 300) = *(int *)(uiBufferData + 300) - iterationCount5;
     }
     EventTypeCode1 = (uint7)((ulonglong)stackParamfffffffffffffe88 >> 8);
-    EventTypeCode0 = (undefined7)((ulonglong)sizeData >> 8);
+    EventTypeCode0 = (UIUndefined7)((ulonglong)sizeData >> 8);
     if (stackLonga0 != 0) {
       stackUInt134 = iterationCount0;
       if (iterationCount0 == maxProcessingCount) {
@@ -318819,8 +318819,8 @@ LAB_180858c20:
       *(uint *)(uiContext + 300) = *(int *)(uiBufferData + 300) - iterationCount5;
     }
     EventTypeCode3 = (uint7)((ulonglong)stackParamfffffffffffffe88 >> 8);
-    EventTypeCode2 = (undefined7)((ulonglong)stackParamfffffffffffffe80 >> 8);
-    EventTypeCode1 = (undefined7)((ulonglong)ptrResult5 >> 8);
+    EventTypeCode2 = (UIUndefined7)((ulonglong)stackParamfffffffffffffe80 >> 8);
+    EventTypeCode1 = (UIUndefined7)((ulonglong)ptrResult5 >> 8);
     if (stackLonga0 != 0) {
       stackUInt134 = iterationCount1;
       if (iterationCount1 == iterationCount7) {
@@ -391087,7 +391087,7 @@ void FUN_18089a9f0(longlong uiContext,int *dataSource)
   int *pstackInt8;
   UIDword ProcessingStatus;
   
-  maxProcessingCount = (undefined3)((uint)bufferSize >> 8);
+  maxProcessingCount = (UIUndefined3)((uint)bufferSize >> 8);
   localChar3 = (char)bufferSize + -0x57 + in_CF;
   ProcessingStatus = CONCAT31(maxProcessingCount,localChar3);
   *(UIDword *)CONCAT44(in_register_00000004,ProcessingStatus) = ProcessingStatus;
@@ -395221,7 +395221,7 @@ ulonglong FUN_18089c86d(void)
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
-  EventTypeCode = (undefined7)(TargetHandle >> 8);
+  EventTypeCode = (UIUndefined7)(TargetHandle >> 8);
   localInt7 = 0;
   baseValue2 = extraout_XMM0_Da;
   ProcessingResult1 = localInt7;
@@ -395471,7 +395471,7 @@ ulonglong FUN_18089c872(void)
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
-  EventTypeCode = (undefined7)(TargetHandle >> 8);
+  EventTypeCode = (UIUndefined7)(TargetHandle >> 8);
   localInt7 = 0;
   baseValue2 = extraout_XMM0_Da;
   ProcessingResult1 = localInt7;
@@ -395676,7 +395676,7 @@ ulonglong FUN_18089c94a(float uiContext)
   float extraout_XMM0_Da_08;
   
   localInt9 = (int)TargetHandle;
-  EventTypeCode = (undefined7)(TargetHandle >> 8);
+  EventTypeCode = (UIUndefined7)(TargetHandle >> 8);
   ProcessingResult2 = localInt9;
   ProcessingResult1 = eventHandle;
   if (in_CF) {

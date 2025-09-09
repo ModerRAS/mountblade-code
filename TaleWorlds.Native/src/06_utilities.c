@@ -31192,7 +31192,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
             if (0 < operationResult) {
               do {
                 memoryPointer = *(int64_t *)(dataBuffer + SystemContextFunctionPointerOffset600) + memoryOffset;
-                statusFlag = *(short *)(memoryPointer + 0x114);
+                statusFlag = *(short *)(memoryPointer + MemoryPointerOffset114);
                 memoryRegionBase = ProcessDataPointer(operationBase,memoryPointer);
                 if ((int)memoryRegionBase != 0) {
                   return memoryRegionBase;
@@ -43612,7 +43612,7 @@ void ExceptionRecoveryHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xd0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + StackFrameContextOffsetD0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -43655,7 +43655,7 @@ void ExceptionRecoveryHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xa8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionResourcePointerOffsetA8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
