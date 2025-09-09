@@ -171,10 +171,10 @@ typedef enum {
 
 // 未美化变量名语义化定义
 // UI查找表和数据表
-#define DAT_180956f70 UILookupTableF70                    // UI查找表F70 - 存储UI组件的查找表数据
-#define DAT_1809536b8 UIComponentDataTableB8              // UI组件数据表B8 - 存储UI组件的基础数据
-#define DAT_1809542b0 UIContextDataTableB0                // UI上下文数据表B0 - 存储UI上下文相关数据
-#define DAT_180958c80 UIComponentContextTableC80          // UI组件上下文表C80 - 存储UI组件的上下文信息
+#define UILookupTableF70 DAT_180956f70                    // UI查找表F70 - 存储UI组件的查找表数据
+#define UIComponentDataTableB8 DAT_1809536b8              // UI组件数据表B8 - 存储UI组件的基础数据
+#define UIContextDataTableB0 DAT_1809542b0                // UI上下文数据表B0 - 存储UI上下文相关数据
+#define UIComponentContextTableC80 DAT_180958c80          // UI组件上下文表C80 - 存储UI组件的上下文信息
 
 // UI组件实例和接口
 #define DAT_180c0c6e8 UIComponentInstanceE8               // UI组件实例E8 - 存储UI组件的实例指针
