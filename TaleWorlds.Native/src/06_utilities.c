@@ -10170,9 +10170,8 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 数据同步函数A0 - 同步数据
 #define SynchronizeDataA1 SynchronizeSystemData
 
-// 原始函数名：FUN_18088c790 - 上下文清理函数A0
-// 功能：清理操作上下文
-#define CleanupOperationContextA0 FUN_18088c790
+// 上下文清理函数A0 - 清理操作上下文
+#define CleanupOperationContextA0 CleanupSystemContext
 
 // 原始函数名：ValidateSystemMemoryA0 - 系统验证函数A1
 // 功能：验证系统状态
@@ -41271,6 +41270,15 @@ void InitializeSystemStateC0(void)
 
 
 
+/**
+ * @brief 检查系统状态并返回C0
+ * 
+ * 该函数负责检查系统状态并返回状态信息。这是一个简单的状态检查函数，
+ * 用于验证系统的当前状态是否符合预期。
+ * 
+ * @note 原始函数名：CheckSystemStateAndReturnC0
+ * @warning 这是一个空实现函数，仅用于框架完整性
+ */
 void CheckSystemStateAndReturnC0(void)
 
 {
@@ -118031,7 +118039,27 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名：Unwind_180910ac0 - 异常处理器重置函数ac0
+#define ResetExceptionHandlersAtOffsetAc0 Unwind_180910ac0
+
+/**
+ * @brief 重置异常处理器和系统状态（第七组）
+ * 
+ * 该函数负责重置第七组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x14f0偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910ac0
+ * @note 这是一个异常处理和系统清理函数，处理0x14f0偏移的异常处理器
+ */
+void ResetExceptionHandlersAtOffsetAc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
