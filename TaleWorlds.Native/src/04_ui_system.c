@@ -30080,16 +30080,16 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
       *(UIDword *)(uiBufferData + 0x144) = 1;
       *(UIHandle *)(uiContext + 0x148) = UIStackCounter90;
       *(UIHandle *)(uiContext + 0x150) = UIStackCounter88;
-      *(UIDword *)(uiBufferData + 0x16c) = UIStackCountera4;
-      *(UIDword *)(uiBufferData + 0x170) = UIStackCountera4;
-      *(UIHandle *)(uiContext + 0x158) = UIStackCounter80;
+      *(UIDword *)(uiBufferData + 0x16c) = AnimationFrame;
+      *(UIDword *)(uiBufferData + 0x170) = AnimationFrame;
+      *(UIHandle *)(uiContext + 0x158) = MaterialHandle;
       *(UIHandle *)(uiContext + 0x160) = 0;
-      *(UIDword *)(uiBufferData + 0x168) = UIStackCounterb8;
-      *(UIDword *)(uiBufferData + 0x174) = UIStackCounterb8;
+      *(UIDword *)(uiBufferData + 0x168) = ComponentStyle;
+      *(UIDword *)(uiBufferData + 0x174) = ComponentStyle;
       *(UIDword *)(uiBufferData + 300) = 8;
       *(UIDword *)(uiBufferData + 0x178) = 0xc;
       *(UIHandle *)(uiContext + 0x180) = *(UIHandle *)(uiContext + 0x2b0);
-      *(UIHandle *)(uiContext + 0x188) = stackUInt70;
+      *(UIHandle *)(uiContext + 0x188) = ResourceIndex;
       *(UIHandle *)(uiContext + 400) = 0;
       *dataSource = uiContext + 0x118;
     }
@@ -300045,7 +300045,7 @@ LAB_1808491ce:
 
 
 
-UIHandle FUN_180849219(void)
+UIHandle GetUISystemHandleConstant(void)
 
 {
   return 0x26;
