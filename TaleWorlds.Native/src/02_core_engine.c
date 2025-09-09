@@ -248568,7 +248568,7 @@ LAB_180204eec:
                   do {
                     if (((*ReferenceCountPointer5 == IntegerValue9) && (ReferenceCountPointer5[-3] != -1)) && (ReferenceCountPointer5[-1] == IntegerValue6)) {
                       IntegerValue = CharacterStatusBuffer2[-0x40];
-                      in_stack_fffffffffffffdb0 = in_stack_fffffffffffffdb0 & 0xffffff00;
+                      CharacterEncodingFlags = CharacterEncodingFlags & 0xffffff00;
                       SystemPointerBuffer1d0 = CharacterStatusBuffer2;
                       FUN_180204b50(ContextHandle,&uStack_218,IntegerValue9,0,*(uint32_t *)(SystemDataTablePointer + 0x184),
                                     in_stack_fffffffffffffdb0,1);

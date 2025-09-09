@@ -28721,11 +28721,11 @@ void ProcessSystemDataD0(DataBuffer SystemContext,int64_t DataBuffer)
   
   ProcessingResult = ValidateSystemDataD0();
   if (ProcessingResult == 0) {
-    ProcessingResult = ValidateSystemDataD0(SystemContext,DataBuffer + 0xc);
+    ProcessingResult = ValidateSystemDataD0(SystemContext,DataBuffer + DataBufferSizeOffsetC);
     if (ProcessingResult == 0) {
       ProcessingResult = ValidateSystemDataD0(SystemContext,DataBuffer + SystemDataSecondaryOffset18);
       if (ProcessingResult == 0) {
-        ValidateSystemDataD0(SystemContext,DataBuffer + 0x24);
+        ValidateSystemDataD0(SystemContext,DataBuffer + DataBufferOffset24);
       }
     }
   }
