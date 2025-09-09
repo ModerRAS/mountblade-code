@@ -3217,9 +3217,32 @@ uint32_t NetworkPacketSecurityEncryptionData;                   // 数据包安�
  * 存储网络数据包安全加密的相关信息，包括加密算法和密钥信息
  */
 uint32_t NetworkPacketSecurityEncryptionInfo;                   // 数据包安全加密信息
+/**
+ * @brief 数据包安全认证数据
+ * 
+ * 存储网络数据包安全认证过程中使用的数据，验证数据包的来源合法性
+ */
 uint32_t NetworkPacketSecurityAuthenticationData;              // 数据包安全认证数据
+
+/**
+ * @brief 数据包安全认证信息
+ * 
+ * 存储网络数据包安全认证的相关信息，包括认证结果和状态
+ */
 uint32_t NetworkPacketSecurityAuthenticationInfo;              // 数据包安全认证信息
+
+/**
+ * @brief 数据包安全授权数据
+ * 
+ * 存储网络数据包安全授权过程中使用的数据，控制数据包的访问权限
+ */
 uint32_t NetworkPacketSecurityAuthorizationData;               // 数据包安全授权数据
+
+/**
+ * @brief 数据包安全授权信息
+ * 
+ * 存储网络数据包安全授权的相关信息，包括授权结果和权限状态
+ */
 uint32_t NetworkPacketSecurityAuthorizationInfo;               // 数据包安全授权信息
 uint32_t NetworkPacketSecurityAuditData;                        // 数据包安全审计数据
 uint32_t NetworkPacketSecurityAuditInfo;                        // 数据包安全审计信息
