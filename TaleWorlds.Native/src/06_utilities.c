@@ -4064,7 +4064,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_1809070a0 - 异常处理器调用函数0A0
 // 功能：调用异常处理器并传递操作标志
-#define InvokeExceptionHandlerWithFlags0A0 Unwind_1809070a0
+#define InvokeExceptionHandlerWithSecondaryFlags Unwind_1809070a0
 
 // 原始函数名：Unwind_1809070b0 - 异常上下文重置函数0B0
 // 功能：重置异常上下文处理器状态（偏移量0x70）
@@ -4080,7 +4080,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_1809071d0 - 异常处理器调用函数1D0
 // 功能：调用异常处理器并传递操作标志
-#define InvokeExceptionHandlerWithFlags1D0 Unwind_1809071d0
+#define InvokeExceptionHandlerWithTertiaryFlags Unwind_1809071d0
 
 // 原始函数名：Unwind_180907200 - 异常上下文重置函数200
 // 功能：重置异常上下文处理器状态（偏移量0x88）
