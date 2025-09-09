@@ -1498,14 +1498,14 @@
 #define ExceptionHandlerPointerOffset18 0x18
 
 // 浮点数验证常量
-#define FloatingPointDataOffset20 0x20
-#define FloatingPointDataOffset18 0x18
-#define FloatingPointDataOffset38 0x38
-#define FloatingPointDataOffset3c 0x3c
-#define FloatingPointDataOffset34 0x34
+#define FloatingPointDataValidationOffset20 0x20
+#define FloatingPointDataValidationOffset18 0x18
+#define FloatingPointDataValidationOffset38 0x38
+#define FloatingPointDataValidationOffset3c 0x3c
+#define FloatingPointDataValidationOffset34 0x34
 
 // 系统资源偏移常量
-#define SystemResourceOffset88 0x88
+#define SystemResourceManagerOffset88 0x88
 
 // 高频魔法数字常量定义
 #define SystemContextDataOffsetPrimary 0x40                    // 系统上下文数据偏移量40（845+次使用）
@@ -13048,8 +13048,8 @@ char SystemPrimaryStatusFlag;                 // 系统主状态标志
 uint8_t NetworkConnectionDataManager;
 // 网络状态监控器
 uint8_t NetworkStatusMonitor;
-uint8_t NetworkProtocolData;
-uint8_t NetworkConfigurationData;
+uint8_t NetworkProtocolValidator;
+uint8_t NetworkConfigurationValidator;
 // 系统调试数据管理器A
 uint8_t SystemDebugDataManagerA;
 // 系统调试数据管理器B
@@ -13062,7 +13062,7 @@ uint8_t SystemDebugDataManagerD;
 uint8_t SystemDebugDataManagerE;
 // 系统调试数据管理器F
 uint8_t SystemDebugDataManagerF;
-uint8_t SystemDataBufferA;
+uint8_t SystemDataBufferValidator;
 // 系统资源预留空间G
 uint8_t SystemResourceReservedSpaceG;
 // 系统状态标志变量B
