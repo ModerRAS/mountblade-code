@@ -196,6 +196,25 @@
 #define ExceptionHandlerOffset318 0x318
 #define ExceptionHandlerOffset238 0x238
 
+// 异常上下文指针偏移量常量
+#define ExceptionContextPointerOffset88 0x88
+#define ExceptionContextPointerOffsetA0 0xa0
+#define ExceptionContextPointerOffsetB0 0xb0
+#define ExceptionContextPointerOffsetC0 0xc0
+#define ExceptionContextPointerOffsetD0 0xd0
+#define ExceptionContextPointerOffsetE0 0xe0
+#define ExceptionContextPointerOffsetF0 0xf0
+#define ExceptionContextPointerOffset880 0x880
+#define ExceptionContextPointerOffset888 0x888
+#define ExceptionContextPointerOffsetA00 0xa00
+#define ExceptionContextPointerOffsetA08 0xa08
+#define ExceptionContextPointerOffsetB00 0xb00
+#define ExceptionContextPointerOffsetB08 0xb08
+#define ExceptionContextPointerOffsetC00 0xc00
+#define ExceptionContextPointerOffsetE08 0xe08
+#define ExceptionContextPointerOffsetF00 0xf00
+#define ExceptionContextPointerOffsetF08 0xf08
+
 // 异常处理数据缓冲区偏移量常量
 #define ExceptionHandlerDataBufferOffset160 0x160
 
@@ -25901,7 +25920,7 @@ void ProcessDataTypesA0(void)
           memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
           memoryResourcePointer2 = StackPointerRegisterA;
-          if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
+          if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
             operationResult4 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
             StackFrameContext[-4] = &SystemMemoryInitializationReference;
             *(DataWord *)(StackFrameContext + -2) = SystemOperationResult;
@@ -26147,7 +26166,7 @@ ValidateDataSecurity:
       memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);
       FloatRegisterR12 = StackMemoryBasePointer;
-      if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
+      if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
         operationResult3 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
         StackFrameContext[-4] = &SystemMemoryInitializationReference;
         *(DataWord *)(StackFrameContext + -2) = SystemOperationResult;
@@ -26186,7 +26205,7 @@ ValidateDataSecurity:
         systemDataBuffer7 = *(DataBuffer *)(contextPointer + SystemFloatDataOffset38);
         systemDataBuffer6 = *(DataBuffer *)(contextPointer + 0x40);
         operationResult3 = *(DataWord *)(contextPointer + 0x48);
-        operationResult = *(DataWord *)(contextPointer + 0x4c);
+        operationResult = *(DataWord *)(contextPointer + SystemDataValidationOffset4C);
         dataFlags = *(DataWord *)(contextPointer + 0x50);
         validationOutcome = *(DataWord *)(contextPointer + 0x54);
         StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
@@ -27117,7 +27136,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,StackFloatArrayE,contextProcessingBuffer);
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
-          if ((systemStatusChar == '\0') && (StackFloatArrayE[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
+          if ((systemStatusChar == '\0') && (StackFloatArrayE[0] != *(float *)(exceptionHandlerContext1 + SystemDataValidationOffset4C))) {
             ExceptionContextProcessorB = DataProcessingStruct.highWord;
             StatusCounterA = DataProcessingStruct.lowWord;
             SystemInputFloatValueA = StackFloatArrayE[0];
@@ -42771,7 +42790,7 @@ void ExceptionRecoveryHandlerB8(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x88) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffset88) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + SystemContextPointerOffset90) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
