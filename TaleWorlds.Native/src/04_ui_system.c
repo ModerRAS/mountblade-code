@@ -1427,6 +1427,20 @@ typedef enum {
 #define FUN_18089aa68 UIEmptyFunction10
 #define FUN_18089aa70 UIEmptyFunction11
 #define FUN_18089aa78 UIEmptyFunction12
+
+// UI系统堆栈变量美化
+#define afStack_6260 UIFloatStack6260
+
+// UI系统音频相关变量美化
+#define uStackX_8 UIAudioStackData8
+
+// UI系统参数美化
+#define param_6 UIParam6
+#define param_7 UIParam7
+#define param_8 UIParam8
+
+// UI系统变量美化
+#define Var77 UIVariable77
 #define FUN_18089aa80 UIEmptyFunction13
 #define FUN_18089aa88 UIEmptyFunction14
 #define FUN_18089aa90 UIEmptyFunction15
