@@ -14152,6 +14152,28 @@ void InitializeCoreEngineRenderingSystem(void) {
  * @note 使用 SystemComparisonDataTertiary 进行物理数据比较
  * @note 物理节点使用 SystemNodeIdentifierQuinary 和 SystemNodeIdentifierSenary 作为标识符
  */
+/**
+ * @brief 初始化核心引擎物理系统
+ * 
+ * 该函数负责初始化TaleWorlds引擎的物理系统组件，包括：
+ * - 物理系统节点的创建和初始化
+ * - 物理数据结构的内存分配和设置
+ * - 物理系统节点的遍历和插入操作
+ * - 物理系统初始化回调的配置
+ * 
+ * @details
+ * 函数执行以下主要步骤：
+ * 1. 获取物理系统上下文和根节点
+ * 2. 检查物理系统节点的初始化状态
+ * 3. 遍历物理系统节点链表，查找合适的插入位置
+ * 4. 根据比较结果创建新的物理系统节点
+ * 5. 设置节点标识符和物理系统数据模板
+ * 6. 配置物理系统初始化回调函数
+ * 
+ * @note 这是引擎物理系统初始化的关键组件
+ * @warning 必须在系统启动时调用此函数以确保物理系统正常工作
+ * @see CoreEngineGetSystemHandle, CoreEngineGetPhysicsInitializer, CoreEngineAllocateMemory
+ */
 void InitializeCoreEnginePhysicsSystem(void) {
   char PhysicsNodeInitializedFlag;
   void *PhysicsSystemRootNode;
