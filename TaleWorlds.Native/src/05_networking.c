@@ -1836,7 +1836,7 @@ uint32_t NetworkSocketContextData;
  * 
  * 存储网络服务器的端口号，用于网络服务监听
  */
-uint32_t NetworkServerPort;
+uint32_t NetworkServerPortNumber;
 
 /**
  * @brief 网络协议版本
@@ -1927,7 +1927,7 @@ uint32_t NetworkAuthenticationTypeId;
  * 
  * 定义网络系统使用的认证类型标识符，用于系统级别的认证
  */
-uint32_t NetworkSystemAuthenticationTypeId;
+uint32_t NetworkSystemAuthenticationType;
 
 /**
  * @brief 网络加密算法类型标识符
@@ -1948,7 +1948,7 @@ uint32_t NetworkEncryptionAlgorithmInstance;
  * 
  * 存储网络系统使用的加密算法实例，用于系统级别的加密
  */
-uint32_t NetworkSystemEncryptionAlgorithmInstance;
+uint32_t NetworkSystemEncryptionHandler;
 
 /**
  * @brief 网络压缩方法类型标识符
