@@ -259245,14 +259245,34 @@ LAB_180211e24:
 
 
 
-uint64_t FUN_180211ee0(uint64_t ContextHandle,int OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16编码转换
+ * 
+ * 该函数负责处理UTF-8字符串到UTF-16字符串的编码转换，包括：
+ * 1. 验证输入参数的有效性
+ * 2. 根据缓冲区大小选择合适的处理方式
+ * 3. 调用临时缓冲区处理函数进行数据转换
+ * 4. 执行系统内存处理和状态更新
+ * 5. 处理系统事件和错误情况
+ * 
+ * @param ContextHandle 上下文句柄，用于标识转换操作的上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定转换操作的缓冲区容量
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的UTF-8字符串
+ * @param Utf16EndPointer UTF-16结束指针，指向UTF-16目标缓冲区的结束位置
+ * @return uint64_t 转换操作的状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180211ee0 - Ghidra逆向生成的函数名已语义化
+ * @warning 该函数包含不返回的子程序调用，需要特别注意错误处理
+ * @see ProcessTemporaryBuffer, FUN_180623fd0, ProcessSystemEventHandling
+ */
+uint64_t ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle, int OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   void *LocalProcessingStatusFlag;
   long long SystemEventFlag;
   
   if (OperationBufferSize == 8) {
-    ProcessTemporaryBuffer(&LocalProcessingStatusFlag,Utf16EndPointer,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-    FUN_180623fd0(Utf8SourcePointer,&LocalProcessingStatusFlag);
+    ProcessTemporaryBuffer(&LocalProcessingStatusFlag, Utf16EndPointer, Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
+    FUN_180623fd0(Utf8SourcePointer, &LocalProcessingStatusFlag);
     LocalProcessingStatusFlag = &SystemNullTemplate;
     if (SystemEventFlag != 0) {
                     // WARNING: Subroutine does not return
