@@ -280,6 +280,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  */
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
 #define NetworkValidationFailure 0xFF                          // 验证结果：失败
+#define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 
 /**
  * @brief 网络操作结果常量
@@ -772,38 +773,38 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag)
 {
   // 网络迭代上下文初始化变量
-  uint32_t ContextInitializationResult;                      // 上下文初始化结果状态
-  uint32_t ConnectionValidationResult;                        // 连接验证结果
-  uint32_t DataValidationResult;                           // 数据验证结果
+  uint32_t InitializationStatus;                              // 初始化状态结果
+  uint32_t ConnectionContextStatus;                          // 连接上下文验证状态
+  uint32_t ValidationDataStatus;                             // 验证数据状态
   
   // 初始化所有验证结果为失败状态
-  ContextInitializationResult = NetworkValidationFailure;
-  ConnectionValidationResult = NetworkValidationFailure;
-  DataValidationResult = NetworkValidationFailure;
+  InitializationStatus = NetworkValidationFailure;
+  ConnectionContextStatus = NetworkValidationFailure;
+  ValidationDataStatus = NetworkValidationFailure;
   
   // 验证网络连接上下文的有效性
   // 只有当连接上下文不为零时才认为有效
   if (NetworkConnectionContext != 0) {
-    ConnectionValidationResult = NetworkValidationSuccess;
+    ConnectionContextStatus = NetworkValidationSuccess;
   }
   
   // 验证验证结果数据的有效性
   // 确保验证结果数据包含有效信息
   if (ValidationResultData != 0) {
-    DataValidationResult = NetworkValidationSuccess;
+    ValidationDataStatus = NetworkValidationSuccess;
   }
   
   // 检查迭代控制标志以决定是否进行初始化
   // 只有当迭代控制标志被设置时才进行初始化
   if (IterationControlFlag != 0) {
     // 只有当所有验证都成功时，才认为初始化成功
-    if (ConnectionValidationResult == NetworkValidationSuccess && 
-        DataValidationResult == NetworkValidationSuccess) {
-      ContextInitializationResult = NetworkValidationSuccess;
+    if (ConnectionContextStatus == NetworkValidationSuccess && 
+        ValidationDataStatus == NetworkValidationSuccess) {
+      InitializationStatus = NetworkValidationSuccess;
     }
   }
   
-  return ContextInitializationResult;
+  return InitializationStatus;
 }
 
 /**
@@ -828,35 +829,35 @@ uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int
 uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData)
 {
   // 协议栈数据处理变量
-  uint32_t ProtocolProcessingResult;                     // 协议处理结果状态
-  uint32_t StackValidationResult;                         // 协议栈验证结果
-  uint32_t ContextProcessingResult;                       // 上下文处理结果
+  uint32_t ProtocolProcessingStatus;                         // 协议处理状态结果
+  uint32_t StackBufferStatus;                               // 协议栈缓冲区状态
+  uint32_t ContextDataStatus;                               // 上下文数据状态
   
   // 初始化所有处理结果为失败状态
-  ProtocolProcessingResult = NetworkValidationFailure;
-  StackValidationResult = NetworkValidationFailure;
-  ContextProcessingResult = NetworkValidationFailure;
+  ProtocolProcessingStatus = NetworkValidationFailure;
+  StackBufferStatus = NetworkValidationFailure;
+  ContextDataStatus = NetworkValidationFailure;
   
   // 验证协议栈缓冲区的有效性
   // 检查缓冲区指针不为空且缓冲区内容有效
   if (NetworkProtocolStackBuffer != NULL && *NetworkProtocolStackBuffer != 0) {
-    StackValidationResult = NetworkValidationSuccess;
+    StackBufferStatus = NetworkValidationSuccess;
   }
   
   // 验证网络上下文数据的有效性
   // 确保上下文数据包含有效信息
   if (NetworkContextData != 0) {
-    ContextProcessingResult = NetworkValidationSuccess;
+    ContextDataStatus = NetworkValidationSuccess;
   }
   
   // 只有当所有验证都成功时，才认为协议处理成功
   // 这是简化实现，实际应用中需要进行更复杂的协议处理
-  if (StackValidationResult == NetworkValidationSuccess && 
-      ContextProcessingResult == NetworkValidationSuccess) {
-    ProtocolProcessingResult = NetworkValidationSuccess;
+  if (StackBufferStatus == NetworkValidationSuccess && 
+      ContextDataStatus == NetworkValidationSuccess) {
+    ProtocolProcessingStatus = NetworkValidationSuccess;
   }
   
-  return ProtocolProcessingResult;
+  return ProtocolProcessingStatus;
 }
 
 /**

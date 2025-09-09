@@ -10014,9 +10014,16 @@ UIDword * InitializeUIComponentArray(UIDword *componentArrayPtr)
 
 
 
- void SetUIComponentColor(longlong componentContext, UIDword colorValue)
- 设置UI组件颜色的函数，将颜色值应用到组件的四个通道
-void SetUIComponentColor(longlong componentContext,UIDword colorValue)
+ /**
+ * @brief 设置UI组件颜色
+ * 
+ * 将颜色值应用到UI组件的四个通道，实现颜色的统一设置。
+ * 
+ * @param componentContext 组件上下文句柄
+ * @param colorValue 要设置的颜色值
+ * @return 无返回值
+ */
+void SetUIComponentColor(longlong componentContext, UIDword colorValue)
 
 {
   UIDword colorChannel;
@@ -34477,61 +34484,61 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
   short StackTransformBA;
   ulonglong StackUIntB8;
   
-  stackUIntb8 = XorEncryptionKey ^ (ulonglong)astackUInt108;
-  psVar2 = (short *)*dataSource;
-  aEventTypeCode2 = **(UIByte (**) [16])(uiContext + 0x20);
-  aresult = (*(UIByte (**) [16])(uiContext + 0x20))[1];
-  aEventTypeCode9 = **(UIByte (**) [16])(uiContext + 8);
-  aProcessingStatus1 = (*(UIByte (**) [16])(uiContext + 8))[1];
-  aProcessingStatus3 = psraw(aEventTypeCode9,0xf);
-  aProcessingStatus4 = psraw(aProcessingStatus1,0xf);
-  aEventTypeCode9 = aProcessingStatus3 ^ aEventTypeCode9;
-  aProcessingStatus1 = aProcessingStatus4 ^ aProcessingStatus1;
-  pContextFirstValue0 = *(short **)(uiContext + 0x28);
-  sStack_f8 = aEventTypeCode9._0_2_ - aProcessingStatus3._0_2_;
-  sStack_f6 = aEventTypeCode9._2_2_ - aProcessingStatus3._2_2_;
-  sStack_f4 = aEventTypeCode9._4_2_ - aProcessingStatus3._4_2_;
-  sStack_f2 = aEventTypeCode9._6_2_ - aProcessingStatus3._6_2_;
-  sStack_f0 = aEventTypeCode9._8_2_ - aProcessingStatus3._8_2_;
-  sStack_ee = aEventTypeCode9._10_2_ - aProcessingStatus3._10_2_;
-  sStack_ec = aEventTypeCode9._12_2_ - aProcessingStatus3._12_2_;
-  sStack_ea = aEventTypeCode9._14_2_ - aProcessingStatus3._14_2_;
-  sStack_e8 = aProcessingStatus1._0_2_ - aProcessingStatus4._0_2_;
-  sStack_e6 = aProcessingStatus1._2_2_ - aProcessingStatus4._2_2_;
-  sStack_e4 = aProcessingStatus1._4_2_ - aProcessingStatus4._4_2_;
-  sStack_e2 = aProcessingStatus1._6_2_ - aProcessingStatus4._6_2_;
-  sStack_e0 = aProcessingStatus1._8_2_ - aProcessingStatus4._8_2_;
-  sStack_de = aProcessingStatus1._10_2_ - aProcessingStatus4._10_2_;
-  sStack_dc = aProcessingStatus1._12_2_ - aProcessingStatus4._12_2_;
-  sStack_da = aProcessingStatus1._14_2_ - aProcessingStatus4._14_2_;
-  sVar5 = *pContextFirstValue0;
-  sVar6 = pContextFirstValue0[1];
-  sVar7 = pContextFirstValue0[2];
-  ContextSecondValue = pContextFirstValue0[3];
-  sVar9 = pContextFirstValue0[4];
-  sVar10 = pContextFirstValue0[5];
-  sVar11 = pContextFirstValue0[6];
-  sVar12 = pContextFirstValue0[7];
-  sVar13 = pContextFirstValue0[8];
-  sVar14 = pContextFirstValue0[9];
-  BufferCapacityValue = pContextFirstValue0[10];
-  sVar16 = pContextFirstValue0[0xb];
-  sVar17 = pContextFirstValue0[0xc];
-  sVar18 = pContextFirstValue0[0xd];
-  sVar19 = pContextFirstValue0[0xe];
-  sVar20 = pContextFirstValue0[0xf];
-  pContextFirstValue0 = *(short **)(uiContext + 0x38);
-  aProcessingStatus0._0_2_ = sStack_f8 + *pContextFirstValue0;
-  aProcessingStatus0._2_2_ = sStack_f6 + pContextFirstValue0[1];
-  aProcessingStatus0._4_2_ = sStack_f4 + pContextFirstValue0[2];
-  aProcessingStatus0._6_2_ = sStack_f2 + pContextFirstValue0[3];
-  aProcessingStatus0._8_2_ = sStack_f0 + pContextFirstValue0[4];
-  aProcessingStatus0._10_2_ = sStack_ee + pContextFirstValue0[5];
-  aProcessingStatus0._12_2_ = sStack_ec + pContextFirstValue0[6];
-  aProcessingStatus0._14_2_ = sStack_ea + pContextFirstValue0[7];
-  aEventTypeCode9 = **(UIByte (**) [16])(uiContext + 0x10);
-  aProcessingStatus1 = (*(UIByte (**) [16])(uiContext + 0x10))[1];
-  psVar29 = (short *)dataSource[3];
+  StackUIntB8 = XorEncryptionKey ^ (ulonglong)StackUInt108;
+  DataSourcePointer = (short *)*dataSource;
+  EventTypeCode2 = **(UIByte (**) [16])(uiContext + 0x20);
+  TransformResult = (*(UIByte (**) [16])(uiContext + 0x20))[1];
+  EventTypeCode9 = **(UIByte (**) [16])(uiContext + 8);
+  ProcessingStatus1 = (*(UIByte (**) [16])(uiContext + 8))[1];
+  ProcessingStatus3 = psraw(EventTypeCode9,0xf);
+  ProcessingStatus4 = psraw(ProcessingStatus1,0xf);
+  EventTypeCode9 = ProcessingStatus3 ^ EventTypeCode9;
+  ProcessingStatus1 = ProcessingStatus4 ^ ProcessingStatus1;
+  ContextFirstValue0 = *(short **)(uiContext + 0x28);
+  StackTransformF8 = EventTypeCode9._0_2_ - ProcessingStatus3._0_2_;
+  StackTransformF6 = EventTypeCode9._2_2_ - ProcessingStatus3._2_2_;
+  StackTransformF4 = EventTypeCode9._4_2_ - ProcessingStatus3._4_2_;
+  StackTransformF2 = EventTypeCode9._6_2_ - ProcessingStatus3._6_2_;
+  StackTransformF0 = EventTypeCode9._8_2_ - ProcessingStatus3._8_2_;
+  StackTransformEE = EventTypeCode9._10_2_ - ProcessingStatus3._10_2_;
+  StackTransformEC = EventTypeCode9._12_2_ - ProcessingStatus3._12_2_;
+  StackTransformEA = EventTypeCode9._14_2_ - ProcessingStatus3._14_2_;
+  StackTransformE8 = ProcessingStatus1._0_2_ - ProcessingStatus4._0_2_;
+  StackTransformE6 = ProcessingStatus1._2_2_ - ProcessingStatus4._2_2_;
+  StackTransformE4 = ProcessingStatus1._4_2_ - ProcessingStatus4._4_2_;
+  StackTransformE2 = ProcessingStatus1._6_2_ - ProcessingStatus4._6_2_;
+  StackTransformE0 = ProcessingStatus1._8_2_ - ProcessingStatus4._8_2_;
+  StackTransformDE = ProcessingStatus1._10_2_ - ProcessingStatus4._10_2_;
+  StackTransformDC = ProcessingStatus1._12_2_ - ProcessingStatus4._12_2_;
+  StackTransformDA = ProcessingStatus1._14_2_ - ProcessingStatus4._14_2_;
+  TransformStep1 = *ContextFirstValue0;
+  TransformStep2 = ContextFirstValue0[1];
+  TransformStep3 = ContextFirstValue0[2];
+  ContextSecondValue = ContextFirstValue0[3];
+  TransformStep5 = ContextFirstValue0[4];
+  TransformStep6 = ContextFirstValue0[5];
+  TransformStep7 = ContextFirstValue0[6];
+  TransformStep8 = ContextFirstValue0[7];
+  TransformStep9 = ContextFirstValue0[8];
+  TransformStep10 = ContextFirstValue0[9];
+  BufferCapacityValue = ContextFirstValue0[10];
+  TransformStep12 = ContextFirstValue0[0xb];
+  TransformStep13 = ContextFirstValue0[0xc];
+  TransformStep14 = ContextFirstValue0[0xd];
+  TransformStep15 = ContextFirstValue0[0xe];
+  TransformStep16 = ContextFirstValue0[0xf];
+  ContextFirstValue0 = *(short **)(uiContext + 0x38);
+  ProcessingStatus0._0_2_ = StackTransformF8 + *ContextFirstValue0;
+  ProcessingStatus0._2_2_ = StackTransformF6 + ContextFirstValue0[1];
+  ProcessingStatus0._4_2_ = StackTransformF4 + ContextFirstValue0[2];
+  ProcessingStatus0._6_2_ = StackTransformF2 + ContextFirstValue0[3];
+  ProcessingStatus0._8_2_ = StackTransformF0 + ContextFirstValue0[4];
+  ProcessingStatus0._10_2_ = StackTransformEE + ContextFirstValue0[5];
+  ProcessingStatus0._12_2_ = StackTransformEC + ContextFirstValue0[6];
+  ProcessingStatus0._14_2_ = StackTransformEA + ContextFirstValue0[7];
+  EventTypeCode9 = **(UIByte (**) [16])(uiContext + 0x10);
+  ProcessingStatus1 = (*(UIByte (**) [16])(uiContext + 0x10))[1];
+  TransformStep26 = (short *)dataSource[3];
   astackUInt108 = *(UIByte (*) [16])(psVar29 + 8);
   sVar21 = *psVar29;
   sVar22 = psVar29[1];
@@ -100153,44 +100160,57 @@ void ProcessUISmoothTransform(UIHandle uiContext, UIHandle dataSource, float tar
   float targetTransform;
   ulonglong renderTaskParam;
   
-  BaseValuePointer = (float *)(preservedRegister13 + 0x294);
+  baseValuePtr = (float *)(contextData + 0x294);
   do {
-    RegisterValue = RegisterValue + 1;
-    transformCoeff1 = (unmodifiedXMM15_Da - *(float *)(SourceHandle + 0x1c14)) * 0.4 + *(float *)(SourceHandle + 0x1c14)
-    ;
-    *(float *)(SourceHandle + 0x1c14) = transformCoeff1;
-    BaseValuePointer[4] = transformCoeff1;
-    transformCoeff1 = (targetBuffer - *(float *)(SourceHandle + 0x1c18)) * 0.4 + *(float *)(SourceHandle + 0x1c18);
-    *(float *)(SourceHandle + 0x1c18) = transformCoeff1;
-    *BaseValuePointer = transformCoeff1;
-    BaseValuePointer = BaseValuePointer + 1;
+    registerValue = registerValue + 1;
+    transformCoeff = (targetTransform - *(float *)(sourceHandle + 0x1c14)) * 0.4 + *(float *)(sourceHandle + 0x1c14);
+    *(float *)(sourceHandle + 0x1c14) = transformCoeff;
+    baseValuePtr[4] = transformCoeff;
+    transformCoeff = (targetBuffer - *(float *)(sourceHandle + 0x1c18)) * 0.4 + *(float *)(sourceHandle + 0x1c18);
+    *(float *)(sourceHandle + 0x1c18) = transformCoeff;
+    *baseValuePtr = transformCoeff;
+    baseValuePtr = baseValuePtr + 1;
     targetBuffer = param_6;
-  } while (RegisterValue < *(int *)(SourceHandle + 0x11e0));
+  } while (registerValue < *(int *)(sourceHandle + 0x11e0));
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam000004f0 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_180725950(float *uiContext,float dataSource,float targetBuffer,uint bufferSize)
-void FUN_180725950(float *uiContext,float dataSource,float targetBuffer,uint bufferSize)
+ /**
+ * @brief 处理UI向量变换和归一化
+ * 
+ * 该函数负责处理UI向量的变换和归一化操作，包括：
+ * - 向量分量的计算和更新
+ * - 向量归一化处理
+ * - 上下文偏移量的管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源（变换参数）
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180725950
+ */
+void ProcessUIVectorTransform(float *uiContext, float dataSource, float targetBuffer, uint bufferSize)
 
 {
-  float *BaseValuePointer;
-  float transformCoeff1;
-  int uiCompareResult;
-  float *pTransformCoefficient3;
-  uint loopCounter;
-  int loopCounter;
-  int localInt7;
+  float *baseValuePtr;
+  float transformCoeff;
+  int compareResult;
+  float *transformCoeffPtr;
+  uint outerLoopCounter;
+  int innerLoopCounter;
+  int tempInt;
   longlong contextOffset;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   int processedCount;
-  longlong AllocatedMemoryBlock1;
-  longlong allocatedMemory2;
-  uint ResultValue3;
-  float vectorComponentX;
+  longlong memoryBlock1;
+  longlong memoryBlock2;
+  uint resultValue;
+  float vectorX;
   float baseValue5;
   float baseValue6;
   float baseValue7;

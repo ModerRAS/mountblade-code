@@ -301,9 +301,9 @@
 #define SystemStackPointer578 puStack_578                   // 系统栈指针578
 #define SystemStackPointer590 puStack_590                   // 系统栈指针590
 #define SystemStackPointer598 puStack_598                   // 系统栈指针598
-#define StackValidationFlag8 &stack0x00000108                 // 栈验证标志8
-#define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
-#define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
+#define StackValidationFlag8 &StackBuffer108                 // 栈验证标志8
+#define StackValidationFlag100 &StackBuffer100               // 栈验证标志100
+#define StackValidationFlag118 &StackBuffer118               // 栈验证标志118
 #define StackFloatValue5c StackFloatValue5c             // 栈浮点值5c
 #define StackValidationFlag20 StackValidationFlag20                 // 栈验证标志20
 #define StackValidationFlagD8 StackValidationFlagD8                 // 栈验证标志D8
@@ -151128,7 +151128,7 @@ e4f6(uint64_t ContextHandle,uint64_t OperationBufferSize,uint8_t Utf8SourcePoint
     SecondaryFloatValue = SystemContextPrimaryFloat2;
     NormalizedPrimaryValue = SystemContextPrimaryFloat2;
     NormalizedSecondaryValue = SystemContextPrimaryFloat3;
-    ProcessSystemBuffer(&stack0x00000080,*(uint32_t *)(MemoryBlockIndex + -0x10 + SystemDataTablePointer * 0x30),Utf8SourcePointer,
+    ProcessSystemBuffer(&StackBuffer080,*(uint32_t *)(MemoryBlockIndex + -0x10 + SystemDataTablePointer * 0x30),Utf8SourcePointer,
                         Utf16EndPointer,ContextSecondaryFloat);
     SystemDataRegistry = *(long long *)(SystemRegisterR11 + 0x1af8);
     *(void *)(SystemDataRegistry + 0x144) = 0;
@@ -153666,14 +153666,14 @@ void ProcessSystemBufferStatus(void)
   BufferStorageValue = PatternIndex;
   if ((*(uint *)(SystemContext + 0x19e8) & 0x400) != 0) {
     if (*(char *)(BufferStatus + 0x77) == ValidationStatus) {
-      SystemStatusContext = (unsigned long long *)(**(code **)(SystemContext + 0x1560))(&stack0x000000b0,BufferStatus);
+      SystemStatusContext = (unsigned long long *)(**(code **)(SystemContext + 0x1560))(&StackBuffer0B0,BufferStatus);
       BufferStorageValue = *CharacterStatusBuffer3;
     }
     else {
       BufferStorageValue = *(unsigned long long *)(BufferStatus + 8);
     }
   }
-  ProcessUtf8ToUtf16CharacterEncoding(0,0x11111111,&stack0x000000b0,&stack0x000000b8,0x400);
+  ProcessUtf8ToUtf16CharacterEncoding(0,0x11111111,&StackBuffer0B0,&StackBuffer0B8,0x400);
   MemoryAllocationCounter = PatternIndex & 0xffffffff;
   *(unsigned long long *)(SystemContext + 0x1c78) = PatternIndex;
   *(unsigned long long *)(SystemContext + 0x1c80) = PatternIndex;
@@ -153727,13 +153727,13 @@ void ProcessSystemBufferStatus(void)
       if ((*(uint *)(SystemContext + 0x19e8) & 0x400) != 0) {
         if ((*(char *)(CharacterTablePointer6 + 0x77) == ValidationStatus) && (hasComparisonResult)) {
           if (*(char *)(CharacterTablePointer6 + 0x49) != ValidationStatus) {
-            ConfigurationString = (void *)(**(code **)(SystemContext + 0x1560))(&stack0x000000b0,CharacterTablePointer6);
+            ConfigurationString = (void *)(**(code **)(SystemContext + 0x1560))(&StackBuffer0B0,CharacterTablePointer6);
             Utf16Char = *ConfigurationString;
             *(void *)(CharacterTablePointer6 + 0xd8) = Utf16Char;
             *(void *)(CharacterTablePointer6 + 8) = Utf16Char;
           }
           if (*(char *)(CharacterTablePointer6 + 0x4a) != ValidationStatus) {
-            ConfigurationString = (void *)(**(code **)(SystemContext + 0x1570))(&stack0x000000b8,CharacterTablePointer6);
+            ConfigurationString = (void *)(**(code **)(SystemContext + 0x1570))(&StackBuffer0B8,CharacterTablePointer6);
             Utf16Char = *ConfigurationString;
             *(void *)(CharacterTablePointer6 + 0xe0) = Utf16Char;
             *(void *)(CharacterTablePointer6 + 0x10) = Utf16Char;
