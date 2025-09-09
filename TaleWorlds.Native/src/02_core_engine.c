@@ -183818,7 +183818,7 @@ void InitializeContextHandleProcessingSystem(long long ContextHandle)
 long long ManageOperationBufferSize(long long ContextHandle,unsigned long long OperationBufferSize)
 {
   if ((OperationBufferSize & 2) != 0) {
-    InitializeSystemMemoryBlock(ContextHandle,0x20,*(void *)(ContextHandle + -8),FUN_1806d84a0,0xfffffffffffffffe);
+    InitializeSystemMemoryBlock(ContextHandle,0x20,*(void *)(ContextHandle + -8),ProcessSystemFinalizationCleanup,0xfffffffffffffffe);
     if ((OperationBufferSize & 1) != 0) {
       free(ContextHandle + -8,*(long long *)(ContextHandle + -8) * 0x20 + 8);
     }
@@ -187468,7 +187468,7 @@ void ProcessContextHandleConversion(long long ContextHandle,uint64_t OperationBu
   
   (*(code *)CoreEngineConsoleHandle[0x1d]            (&SystemParameterBuffer1,&SystemParameterBuffer2,(code *)CoreEngineConsoleHandle[0x1d],Utf16EndPointer,0,0xfffffffffffffffe
             );
-  (*(code *)CoreEngineConsoleHandle[0x1f])(&SystemTertiaryDataStructure,FUN_180150480);
+  (*(code *)CoreEngineConsoleHandle[0x1f])(&SystemTertiaryDataStructure,ProcessContextHandleEvent);
   ProcessContextHandleFinalization(ContextHandle);
   (**(code **)(ContextHandle + 0x68))();
   *(long long *)(ContextHandle + 0x10) = ContextHandle;
@@ -187842,7 +187842,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long ContextHandle
     NetworkConnectionStatus = 0;
     NetworkConnectionRetryCount = 0;
     NetworkConnectionMaxRetries = 3;
-    ProcessSystemResourceAndInitialize(FUN_180941ad0);
+    ProcessSystemResourceAndInitialize(InitializeNetworkConnectionHandler);
     ProcessSystemResourceAndConfigure(&GlobalTimeoutValue);
   }
   NetworkConnectionStatus = NetworkConnectionState;
@@ -193300,7 +193300,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t ContextHandle, uint64_
   } while ((&SystemStringConstant)[StringIndexCounter] != '\0');
   InputDataLength = (int)(StringIndexCounter + 1);
   if (InputDataLength < 1) {
-    ErrorHandlingPointer = FUN_18015c0a0;
+    ErrorHandlingPointer = ProcessSystemMemoryManagement;
     ValidationContextPointer = &SystemValidationBufferSecondary;
     EncodingBufferArray[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
     SystemOperationStatus98 = (uint32_t)Utf16CharacterValue;
@@ -193410,7 +193410,7 @@ void ProcessContextHandleMemoryAllocationAndReferenceCount(long long *ContextHan
       ppSystemPriorityLevel = aEnginePointerBuffer;
       CalculationFunctionAddress = &StackTempPointer;
       piStack_70 = StackIntegerArray;
-      pcStack_58 = FUN_18015c190;
+      pcStack_58 = ProcessSystemMemoryAllocationEx;
       SystemValidationPointer = &SystemValidationBuffer;
       StackProcessingValue78 = MemoryPoolBlockSizePointer;
       aEnginePointerBuffer[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
@@ -201463,7 +201463,7 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != SystemDataRegistry);
   }
   *(uint64_t **)(ContextHandle + 0x180) = SecondaryProcessingStatusFlag;
-  SetupThreadLocalStorageData(ContextHandle + 0x198,OperationBufferSize + 0x198,0x98,5,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(ContextHandle + 0x198,OperationBufferSize + 0x198,0x98,5,InitializeThreadLocalStorageBuffer,CoreEngineSetupThreadLocalStorage);
   SystemDataRegistry = *(long long *)(OperationBufferSize + 0x498) - *(long long *)(OperationBufferSize + 0x490);
   SystemDataRegistry = SystemDataRegistry / 0x26 + (SystemDataRegistry >> 0x3f);
   AllocatedMemorySize = (SystemDataRegistry >> 2) - (SystemDataRegistry >> 0x3f);
@@ -201499,8 +201499,8 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != SystemDataRegistry);
   }
   *(uint64_t **)(ContextHandle + 0x498) = SecondaryProcessingStatusFlag;
-  SetupThreadLocalStorageData(ContextHandle + 0x4b0,OperationBufferSize + 0x4b0,0x58,0x10,FUN_1800b8300,CoreEngineSetupThreadLocalStorage);
-  SetupThreadLocalStorageData(ContextHandle + 0xa30,OperationBufferSize + 0xa30,0x98,9,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(ContextHandle + 0x4b0,OperationBufferSize + 0x4b0,0x58,0x10,ProcessSystemBufferAndManageStatus,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(ContextHandle + 0xa30,OperationBufferSize + 0xa30,0x98,9,InitializeThreadLocalStorageBuffer,CoreEngineSetupThreadLocalStorage);
   ProcessCoreEngineParameters(ContextHandle + 0xf88,OperationBufferSize + 0xf88);
   ProcessCoreEngineParameters(ContextHandle + 0x1020,OperationBufferSize + 0x1020);
   SystemDataRegistry = *(long long *)(OperationBufferSize + 0x10c0) - *(long long *)(OperationBufferSize + 0x10b8);
@@ -207923,7 +207923,7 @@ void ExecuteSystemInitialization(long long ContextHandle)
   UnicodeCodePoint = GetDC(0);
                     // WARNING: Could not recover jumptable at 0x00018017167a. Too many branches
                     // WARNING: Treating indirect jump as call
-  EnumDisplayMonitors(UnicodeCodePoint,0,FUN_180170ba0,ContextHandle);
+  EnumDisplayMonitors(UnicodeCodePoint,0,ProcessCharacterEncodingConversionAndValidation,ContextHandle);
   return;
 }
 
@@ -210290,7 +210290,7 @@ void ProcessCharacterEncodingAndWindowManagement(long long ContextHandle)
     MatchCounter = InputDataLength;
   }
   uStack_4e0 = 0x2010;
-  pcStack_490 = FUN_180170da0;
+  pcStack_490 = ProcessWindowMessageAndCharacterTableOperations;
   SystemStackFlag0 = *(void *)(ContextHandle + 0x10);
   SystemStackFlag8 = 0;
   uStack_478 = 0;
@@ -211036,7 +211036,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle, long long *C
     (*pcStack_70)(&CalculationFunctionAddress,0,0);
   }
   pcStack_70 = (code *)SystemCodePointerPrimary;
-  pcStack_68 = FUN_180179e40;
+  pcStack_68 = CopyCharacterEncodingData;
   CalculationFunctionAddress = (uint32_t)uStack_1e0;
   uStack_7c = uStack_1e0.HighPart;
   StackProcessingValue78 = (uint32_t)SystemStackData;
@@ -211441,7 +211441,7 @@ uint64_t * ProcessCharacterDataAllocation(uint64_t *ContextHandle,uint Operation
   ContextHandle[0xd] = 0;
   *(uint32_t *)(ContextHandle + 0xf) = 0;
   ContextHandle[0xc] = &ThreadLocalStorageTemplate;
-  InitializeSystemMemoryBlock(ContextHandle + 5,8,3,FUN_18004ca00,MemoryAddressMaskPointer);
+  InitializeSystemMemoryBlock(ContextHandle + 5,8,3,SetupMemoryAddressMaskHandler,MemoryAddressMaskPointer);
   if ((OperationBufferSize & 1) != 0) {
     free(ContextHandle,0x80);
   }
