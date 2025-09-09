@@ -97369,16 +97369,16 @@ void ProcessUIDataValidationAndComparison(longlong uiContext,uint dataSource,int
       do {
         if (targetBuffer < 0) {
           if (uiCompareResult != 0) {
-            FUN_180721810(uiContext,result,uiCompareResult,maxProcessingCount,loopCounter);
+            ProcessUITransformDataWithCoefficients(uiContext,result,uiCompareResult,maxProcessingCount,loopCounter);
           }
           eventProcessingCounter = loopCounter;
           processingCounter = maxProcessingCount;
           uiValidationResult = 1;
 LAB_1807217c9:
-          FUN_180721810(uiContext,result,uiValidationResult,eventProcessingCounter,processingCounter);
+          ProcessUITransformDataWithCoefficients(uiContext,result,uiValidationResult,eventProcessingCounter,processingCounter);
         }
         else {
-          FUN_180721810(uiContext,result,1,loopCounter,maxProcessingCount ^ 0x80000000);
+          ProcessUITransformDataWithCoefficients(uiContext,result,1,loopCounter,maxProcessingCount ^ 0x80000000);
           if (uiCompareResult != 0) {
             processingCounter = loopCounter ^ 0x80000000;
             eventProcessingCounter = maxProcessingCount;
@@ -97435,16 +97435,16 @@ void ProcessUIDataSourceProcessing(longlong uiContext,int dataSource)
     do {
       if (preservedRegister15D < 0) {
         if (unmodifiedEBX != 0) {
-          FUN_180721810(TargetHandle,result,unmodifiedEBX,loopCounter,ProcessingStatus);
+          ProcessUITransformDataWithCoefficients(TargetHandle,result,unmodifiedEBX,loopCounter,ProcessingStatus);
         }
         allocationSize = bufferIndex;
         maxProcessingCount = loopCounter;
         uiCompareResult = 1;
 LAB_1807217c9:
-        FUN_180721810(TargetHandle,result,uiCompareResult,processingCounter,maxProcessingCount);
+        ProcessUITransformDataWithCoefficients(TargetHandle,result,uiCompareResult,processingCounter,maxProcessingCount);
       }
       else {
-        FUN_180721810(TargetHandle,result,1,ProcessingStatus,loopCounter ^ 0x80000000);
+        ProcessUITransformDataWithCoefficients(TargetHandle,result,1,ProcessingStatus,loopCounter ^ 0x80000000);
         if (unmodifiedEBX != 0) {
           maxProcessingCount = ProcessingStatus ^ 0x80000000;
           processingCounter = loopCounter;
@@ -97476,11 +97476,11 @@ void ProcessUISystemStateManager(void)
   do {
     if (preservedRegister15D < 0) {
       if (unmodifiedEBX != 0) {
-        FUN_180721810(TargetHandle,SourceHandle & 0xffffffff,unmodifiedEBX);
+        ProcessUITransformDataWithCoefficients(TargetHandle,SourceHandle & 0xffffffff,unmodifiedEBX);
       }
       processingResult = 1;
 LAB_1807217c9:
-      FUN_180721810(TargetHandle,SourceHandle & 0xffffffff,processingResult);
+      ProcessUITransformDataWithCoefficients(TargetHandle,SourceHandle & 0xffffffff,processingResult);
     }
     else {
       FUN_180721810(TargetHandle,SourceHandle & 0xffffffff,1);
@@ -133846,7 +133846,7 @@ ulonglong FUN_180745870(longlong uiContext,longlong dataSource,uint targetBuffer
     *resultPointer = pstackLong1f0;
     pEventDataIndex = pstackLong1f0;
   }
-  contextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x128,&UNK_180958000,0xf89,0);
+  contextHandleData = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x128,&UIGlobalData000,0xf89,0);
   pEventDataIndex[0x21] = contextHandleData;
   if (contextHandleData == 0) {
     return 0x26;
@@ -134002,7 +134002,7 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
     *stackParam00000260 = stackParam00000048;
     pEventDataIndex = stackParam00000048;
   }
-  contextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x128,&UNK_180958000,0xf89,0);
+  contextHandleData = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x128,&UIGlobalData000,0xf89,0);
   pEventDataIndex[0x21] = contextHandleData;
   if (contextHandleData == 0) {
     return 0x26;
