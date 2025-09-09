@@ -100144,30 +100144,30 @@ LAB_180722ca8:
 void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
 
 {
-  UIHandle *ptrResult;
-  short sVar2;
+  UIHandle *resultPointer;
+  short shortValue2;
   int uiCompareResult;
-  int TempInt4;
+  int temporaryInt4;
   uint loopCounter;
-  short sVar6;
+  short shortValue6;
   ulonglong processingCounter;
   ulonglong eventProcessingCounter;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  uint *ptrResult1;
+  longlong characterDataOffset;
+  ulonglong resultValue0;
+  uint *resultPointer1;
   longlong allocatedMemory2;
-  uint ResultValue3;
+  uint resultValue3;
   ulonglong componentIndex;
-  ulonglong CounterResult;
-  UIByte astackUInt148 [32];
+  ulonglong counterResult;
+  UIByte stackArray148 [32];
   UIDword stackUInt128;
-  uint *pstackUInt120;
+  uint *stackPointer120;
   uint stackUInt118;
   UIDword stackUInt114;
   int stackInt110;
   longlong stackLong108;
-  uint astackUIntf8 [20];
-  uint astackUInta8 [20];
+  uint stackArrayf8 [20];
+  uint stackArraya8 [20];
   ulonglong stackUInt58;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt148;

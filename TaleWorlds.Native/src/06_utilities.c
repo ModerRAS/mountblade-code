@@ -42,14 +42,14 @@
 #define MemoryPointerTableOffset 0x70                         // 内存指针表偏移量 - 内存指针表的存储位置
 #define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量
 #define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量
-#define ExceptionDataBufferOffset 0x210
-#define ResourcePointerStartOffset 0x208                  // 资源指针起始偏移量
-#define ResourcePointerStep 4                             // 资源指针步长
-#define ExceptionHandlerContextOffset 0x1800
-#define ExceptionHandlerParameterOffset 0x17f0
-#define SystemMutexCleanupBaseAddress 0x180c919f0
-#define SystemExceptionInitializerA0BaseAddress 0x180d497e0
-#define SystemExceptionInitializerB0BaseAddress 0x180d498a0
+#define ExceptionDataBufferOffset 0x210                     // 异常数据缓冲区偏移量 - 异常处理数据的存储位置
+#define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
+#define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
+#define ExceptionHandlerContextOffset 0x1800                 // 异常处理上下文偏移量 - 异常处理上下文的存储位置
+#define ExceptionHandlerParameterOffset 0x17f0              // 异常处理参数偏移量 - 异常处理参数的存储位置
+#define SystemMutexCleanupBaseAddress 0x180c919f0            // 系统互斥锁清理基地址 - 系统互斥锁清理函数的基地址
+#define SystemExceptionInitializerA0BaseAddress 0x180d497e0    // 系统异常初始化器A0基地址 - 异常初始化器A0的基地址
+#define SystemExceptionInitializerB0BaseAddress 0x180d498a0    // 系统异常初始化器B0基地址 - 异常初始化器B0的基地址
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8
@@ -170,6 +170,30 @@
 
 // 系统浮点数据偏移量常量
 #define SystemFloatDataOffset38 0x38
+
+// 异常数据上下文偏移量常量
+#define ExceptionDataContextOffset 0x70                    // 异常数据上下文偏移量
+#define SystemStatusFlagOffsetD1 0xd1                       // 系统状态标志偏移量D1
+
+// 异常处理器槽位偏移量常量
+#define PrimaryExceptionHandlerSlotOffset 0x20               // 主异常处理器槽位偏移量
+#define SecondaryExceptionHandlerSlotOffset 0x58            // 次要异常处理器槽位偏移量
+#define TertiaryExceptionHandlerSlotOffset SystemParameterValidationOffset28  // 第三异常处理器槽位偏移量
+
+// 异常处理器状态偏移量常量
+#define SecondaryExceptionHandlerStatusOffset 0x60          // 次要异常处理器状态偏移量
+#define SecondaryExceptionHandlerDataOffset 0x70            // 次要异常处理器数据偏移量
+#define TertiaryExceptionHandlerStatusOffset 0x30           // 第三异常处理器状态偏移量
+#define TertiaryExceptionHandlerDataOffset 0x40             // 第三异常处理器数据偏移量
+
+// 扩展异常处理器偏移量常量
+#define ExtendedExceptionHandlerSlotOffset 0xd8              // 扩展异常处理器槽位偏移量
+#define ExtendedExceptionHandlerTempSlotOffset 0x110          // 扩展异常处理器临时槽位偏移量
+#define ExtendedExceptionHandlerStatusOffset 0x118           // 扩展异常处理器状态偏移量
+#define ExtendedExceptionHandlerDataOffset 0x128             // 扩展异常处理器数据偏移量
+#define ExtendedExceptionHandlerSecondarySlotOffset 0xe0    // 扩展异常处理器次要槽位偏移量
+#define ExtendedExceptionHandlerSecondaryStatusOffset 0xe8  // 扩展异常处理器次要状态偏移量
+#define ExtendedExceptionHandlerSecondaryDataOffset 0xf8    // 扩展异常处理器次要数据偏移量
 
 // 异常上下文偏移量常量
 #define ExceptionHandlerContextOffset1e8 0x1e8
@@ -44845,27 +44869,27 @@ void ExceptionContextCleanupHandlerB15(DataBuffer ExceptionContext, int64_t Vali
 {
   int64_t exceptionData;
   
-  exceptionData = *(int64_t *)(ValidationContext + 0x70);
-  *(DataBuffer *)(exceptionData + 0xd8) = &ExceptionHandlerA;
-  if (*(char *)(exceptionData + SystemDataSecondaryOffset189) != '\0') {
+  exceptionData = *(int64_t *)(ValidationContext + ExceptionDataContextOffset);
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSlotOffset) = &ExceptionHandlerA;
+  if (*(char *)(exceptionData + SystemStatusFlagOffsetD1) != '\0') {
     ResetSystemStateE0();
   }
   _Mtx_destroy_in_situ();
-  *(DataBuffer *)(exceptionData + 0xd8) = &ExceptionHandlerB;
-  *(DataBuffer *)(exceptionData + 0x110) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionData + 0x118) != 0) {
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSlotOffset) = &ExceptionHandlerB;
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerTempSlotOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionData + ExtendedExceptionHandlerStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionData + 0x118) = 0;
-  *(DataWord *)(exceptionData + 0x128) = 0;
-  *(DataBuffer *)(exceptionData + 0x110) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionData + 0xe0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionData + 0xe8) != 0) {
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerStatusOffset) = 0;
+  *(DataWord *)(exceptionData + ExtendedExceptionHandlerDataOffset) = 0;
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerTempSlotOffset) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSecondarySlotOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionData + ExtendedExceptionHandlerSecondaryStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionData + 0xe8) = 0;
-  *(DataWord *)(exceptionData + 0xf8) = 0;
-  *(DataBuffer *)(exceptionData + 0xe0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSecondaryStatusOffset) = 0;
+  *(DataWord *)(exceptionData + ExtendedExceptionHandlerSecondaryDataOffset) = 0;
+  *(DataBuffer *)(exceptionData + ExtendedExceptionHandlerSecondarySlotOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
