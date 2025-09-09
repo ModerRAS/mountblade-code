@@ -229957,7 +229957,19 @@ long long InitializeContextHandleSystem(long long ContextHandle,long long Operat
 
 
 
-long long FUN_18018dff0(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理系统字符编码和内存分配
+ * 
+ * 该函数负责处理系统字符编码和内存分配操作，包括：
+ * - 字符编码处理
+ * - 内存分配管理
+ * - 系统缓冲区操作
+ * 
+ * @param ContextHandle 字符代码
+ * @param OperationBufferSize 系统缓冲区大小
+ * @return long long 返回处理结果
+ */
+long long ProcessSystemCharacterEncodingAndMemoryAllocation(uint64_t ContextHandle,long long OperationBufferSize
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
