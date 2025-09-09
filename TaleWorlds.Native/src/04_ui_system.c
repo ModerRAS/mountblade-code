@@ -10176,7 +10176,7 @@ LAB_UIContextInitialize:
               if (memoryBlockOffset != 0) goto LAB_UIContextResize;
               newMemoryAllocation = (UIHandle *)0x0;
             }
-            uiElementCount = ((longlong)currentMemoryAllocation - allocatedMemoryBlock1) / 0x18;
+            uiElementCount = ((longlong)currentMemoryAllocation - allocatedMemorySize1) / 0x18;
             currentMemoryAllocation = newMemoryAllocation;
             if (0 < uiElementCount) {
               do {
@@ -10190,9 +10190,9 @@ LAB_UIContextInitialize:
                 *(UIDword *)((longlong)currentMemoryAllocation + 0xc) = tempPropertyValue2;
                 currentMemoryAllocation[2] = *(UIHandle *)
                               ((longlong)currentMemoryAllocation + (allocatedMemorySize4 - (longlong)newMemoryAllocation) + 0x10);
-                allocatedMemoryBlock1 = allocatedMemoryBlock1 + -1;
+                allocatedMemorySize1 = allocatedMemorySize1 + -1;
                 currentMemoryAllocation = currentMemoryAllocation + 3;
-              } while (0 < allocatedMemoryBlock1);
+              } while (0 < allocatedMemorySize1);
             }
             *currentMemoryAllocation = newUIContext;
             currentMemoryAllocation[1] = (longlong)componentLayoutIndex1;
@@ -15037,7 +15037,7 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   float render_buffer [6200];
   uint64_t render_state;
   uint8_t memory_buffer [32];
-  float animation_time;
+  float local_animation_time;
   float *shader_program_ptr;
   char buffer_size_flag;
   float data_source_value;
@@ -15051,11 +15051,11 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   uint64_t color_data;
   float stencil_value;
   float blend_factor;
-  float opacity_value;
+  float local_opacity_value;
   float shadow_intensity;
-  float specularValue;
-  float ambientOcclusion;
-  ulonglong memoryAddress;
+  float specular_value;
+  float ambient_occlusion;
+  ulonglong memory_address;
   
   memoryAddress = XorEncryptionKey ^ (ulonglong)memoryBuffer;
   color_intensity = 0.0;
@@ -15071,31 +15071,31 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
       rotation_z = render_data_ptr[1];
       position_x = *render_data_ptr;
       animation_time = uiContext[0x11];
-      if (rotationZ <= positionX) {
-        positionX = positionX - dataSource * 4.0;
-        if (positionX <= rotationZ) {
-          positionX = rotationZ;
+      if (rotation_z <= position_x) {
+        position_x = position_x - data_source_value * 4.0;
+        if (position_x <= rotation_z) {
+          position_x = rotation_z;
         }
       }
       else {
-        positionX = dataSource * 4.0 + positionX;
-        if (rotationZ <= positionX) {
-          positionX = rotationZ;
+        position_x = data_source_value * 4.0 + position_x;
+        if (rotation_z <= position_x) {
+          position_x = rotation_z;
         }
       }
-      shaderProgramPtr = renderDataPtr + 0x4c9;
-      *renderDataPtr = positionX;
-      renderState = 0x1806597d3;
-      ProcessUIAnimationUpdate(*(UIHandle *)(renderDataPtr + 0x495),uiContext + 0x1854);
-      if ((*(char *)(renderDataPtr + 0x4af) == '\0') && (*(char *)(renderDataPtr + 0x4ce) != '\0')) {
-        *(UIByte *)(renderDataPtr + 0x4af) = 1;
+      shader_program_ptr = render_data_ptr + 0x4c9;
+      *render_data_ptr = position_x;
+      render_state = 0x1806597d3;
+      ProcessUIAnimationUpdate(*(UIHandle *)(render_data_ptr + 0x495),uiContext + 0x1854);
+      if ((*(char *)(render_data_ptr + 0x4af) == '\0') && (*(char *)(render_data_ptr + 0x4ce) != '\0')) {
+        *(UIByte *)(render_data_ptr + 0x4af) = 1;
       }
-      if ((*(char *)(renderDataPtr + 0x4c8) == '\0') && (*(char *)(renderDataPtr + 0x4d4) != '\0')) {
-        *(UIByte *)(renderDataPtr + 0x4c8) = 1;
+      if ((*(char *)(render_data_ptr + 0x4c8) == '\0') && (*(char *)(render_data_ptr + 0x4d4) != '\0')) {
+        *(UIByte *)(render_data_ptr + 0x4c8) = 1;
       }
-      colorIntensity = colorIntensity + *renderDataPtr;
-      renderDataPtr = renderDataPtr + 0x4d6;
-      loopCounter = loopCounter + 1;
+      color_intensity = color_intensity + *render_data_ptr;
+      render_data_ptr = render_data_ptr + 0x4d6;
+      loop_counter = loop_counter + 1;
     } while (loopCounter < (int)uiContext[0x18]);
     if (((0.0 < colorIntensity) && (colorIntensity != 1.0)) && (0 < (int)uiContext[0x18])) {
       do {
