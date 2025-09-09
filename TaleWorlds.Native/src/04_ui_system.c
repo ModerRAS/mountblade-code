@@ -25047,8 +25047,8 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
   ProcessUIVector(&scaledFinalCrossY, ResourceHandle);
   
    计算最终的角度值
-  float finalAngle = (float)atan2f(finalParameter * scaledFinalCrossX - vectorLength * parameter2 * scaledFinalCrossY,
-                         finalParameter * scaledFinalCrossY + vectorLength * parameter2 * scaledFinalCrossX);
+  float FinalAngle = (float)atan2f(FinalParameter * scaledFinalCrossX - VectorLength * Parameter2 * scaledFinalCrossY,
+                         FinalParameter * scaledFinalCrossY + VectorLength * Parameter2 * scaledFinalCrossX);
   
    处理角度值（函数不返回）
   ProcessUIAngleValue(finalAngle * 0.5f);
