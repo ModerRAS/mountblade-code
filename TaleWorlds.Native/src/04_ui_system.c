@@ -102667,8 +102667,8 @@ void FUN_180724f7a(longlong uiContext,longlong dataSource,longlong targetBuffer,
 
 
 
- void FUN_1807250bb(void)
-void FUN_1807250bb(void)
+ void ProcessUIAnimationUpdate(void)
+void ProcessUIAnimationUpdate(void)
 
 {
   int processingResult;
@@ -102808,8 +102808,8 @@ void FUN_1807250bb(void)
 
 
 
- void FUN_18072568d(int uiContext,UIHandle dataSource,float targetBuffer)
-void FUN_18072568d(int uiContext,UIHandle dataSource,float targetBuffer)
+ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
+void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
 
 {
   float *BaseValuePointer;
@@ -103498,8 +103498,8 @@ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle ta
 
 
 
- void FUN_1807263f2(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_1807263f2(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float *BaseValuePointer;
