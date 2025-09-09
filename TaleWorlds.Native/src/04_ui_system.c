@@ -43365,7 +43365,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   aiterationCount3._0_16_ = ZEXT116(0) * aresult + ZEXT116(1) * aiterationCount2;
   aiterationCount3._16_16_ = ZEXT116(1) * aresult;
   uiIterationCount = vpacksswb_avx(*param_6,*param_6);
-  aTotalResult._16_16_ = aiterationCount;
+  uiTotalResult._16_16_ = uiIterationCount;
   aTotalResult._0_16_ = aiterationCount;
   aiterationCounter = vpshufb_avx2(aTotalResult,_DAT_180947080);
   aeventProcessingCounter = vpshufb_avx2(aTotalResult,_DAT_1809470c0);
