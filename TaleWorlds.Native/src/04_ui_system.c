@@ -92225,8 +92225,8 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
   if (*(int *)(uiBufferData + 0x1244) == 0) {
     ProcessUIMemoryAllocation(uiContext,basePointer + 0x21b0,basePointer + 0x35e0,allocatedMemory,
                   *(UIDword *)(uiBufferData + 0x13ec));
-    FUN_180724f40(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory);
-    FUN_1807263d0(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
+    ProcessUIFloatTransform(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory);
+    ProcessUIComponentBuffer(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
     FUN_180726700(uiContext,basePointer + 0x21b0,bufferSize);
     if ((*(int *)(uiBufferData + 0x17d8) != 0) && (0x4d < *(int *)(uiBufferData + 0x11b0))) {
       *(UIDword *)(uiBufferData + 0x127c + (longlong)*(int *)(uiBufferData + 0x167c) * 4) = 1;
@@ -92270,8 +92270,8 @@ void InitializeUIContextSystem(void)
   UIDword stackData54;
   
   ProcessUIMemoryAllocation();
-  FUN_180724f40();
-  FUN_1807263d0();
+  ProcessUIFloatTransform();
+  ProcessUIComponentBuffer();
   FUN_180726700();
   if ((*(int *)(contextHandle + 0x17d8) != 0) && (0x4d < *(int *)(contextHandle + 0x11b0))) {
     *(UIDword *)(contextHandle + 0x127c + (longlong)*(int *)(contextHandle + 0x167c) * 4) = 1;
@@ -100073,8 +100073,8 @@ void FUN_180724eff(int uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180724f40(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
-void FUN_180724f40(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
+ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
+void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targetBuffer,longlong bufferSize)
 
 {
   int processingResult;
@@ -101361,8 +101361,8 @@ void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle t
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807263d0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
-void FUN_1807263d0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
+ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
+void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize,
                   UIDword resultPointer)
 
 {

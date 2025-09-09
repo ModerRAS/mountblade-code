@@ -221057,23 +221057,23 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
   BufferOffset = EncodingDecodingKey ^ (unsigned long long)aDataContentStatus;
   CharacterStatusBuffer2 = NULL;
   CoreEngineUnsignedValue = 0;
-  lStack_110 = 0;
+  StackBufferOffset110 = 0;
   pProcessingCounter = NULL;
   pSystemFlagA = NULL;
-  lStack_140 = 0;
+  StackBufferOffset140 = 0;
   memoryAllocationBuffer = NULL;
   DataProcessingBuffer = NULL;
   SystemCharacterStatusBuffer = (void *)*ContextHandleSize;
   CoreEngineSignedValueE8 = ContextHandle;
-  plStack_c0 = Utf8SourcePointer;
+  StackBufferPointerC0 = Utf8SourcePointer;
   if (SystemCharacterStatusBuffer != (void *)OperationBufferSize[1]) {
     do {
       pMemoryAddressMaskPointer = pProcessingCounter;
-      lStack_128 = 0;
+      StackBufferOffset128 = 0;
       DataProcessingFlags = 0;
       SystemTemporaryRegister118 = 0;
       if (DataProcessingBuffer == memoryAllocationBuffer) {
-        FUN_180188910(&lStack_140);
+        FUN_180188910(&StackBufferOffset140);
       }
       else {
         *memoryAllocationBuffer = 0;
