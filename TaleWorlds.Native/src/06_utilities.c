@@ -13,8 +13,11 @@
 #define SecurityAlignment 0xf
 #define SecurityAlignmentMask 0xfffffff0
 #define SystemCleanupFlag 0x80000000
-#define SystemCleanupFlagAlternative 0xfffffffe
+#define SystemCleanupAlignmentMask 0xfffffff8     // 系统清理对齐掩码 - 用于内存地址对齐操作
 #define NegativeZeroFloat 0x80000000
+#define MemoryBlockSizeAdjustment 0x27             // 内存块大小调整值 - 用于内存块计算时的调整
+#define MemoryValidationThreshold 0xfff             // 内存验证阈值 - 用于判断是否需要进行额外的内存验证
+#define MemoryOffsetValidationThreshold 0x1f        // 内存偏移验证阈值 - 用于验证内存偏移的有效性
 #define InvalidMemoryOffset -0x8000000000000000
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
@@ -127913,12 +127916,12 @@ void ValidateAndCleanMemoryL0(void)
   uint64_t memoryBlockSize;
   
   if (MemoryValidationStartPointer != 0) {
-    memoryBlockSize = MemoryValidationEndPointer - MemoryValidationStartPointer & SystemCleanupFlagfffffff8;
+    memoryBlockSize = MemoryValidationEndPointer - MemoryValidationStartPointer & SystemCleanupAlignmentMask;
     memoryValidationContext = MemoryValidationStartPointer;
-    if (0xfff < memoryBlockSize) {
+    if (MemoryValidationThreshold < memoryBlockSize) {
       memoryValidationContext = *(int64_t *)(MemoryValidationStartPointer + -8);
-      memoryBlockSize = memoryBlockSize + 0x27;
-      if (0x1f < (MemoryValidationStartPointer - memoryValidationContext) - 8U) {
+      memoryBlockSize = memoryBlockSize + MemoryBlockSizeAdjustment;
+      if (MemoryOffsetValidationThreshold < (MemoryValidationStartPointer - memoryValidationContext) - 8U) {
           _invalid_parameter_noinfo_noreturn();
       }
     }
