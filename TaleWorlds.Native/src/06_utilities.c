@@ -96948,8 +96948,6 @@ void ConfigureTemporaryAndDefaultExceptionHandlersCF20(DataBuffer operationBase,
  * 
  * @note 原始函数名：Unwind_18090cf30
  */
-/**
- * @brief 初始化异常处理器内存块F30
  * 
  * 该函数负责初始化异常处理器的内存块功能，检查内存块大小偏移量
  * 并在存在有效内存块时调用相应的函数指针
