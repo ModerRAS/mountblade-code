@@ -9996,10 +9996,9 @@ LAB_UIContextInitialize:
  清理UI组件使用的各种资源，包括内存缓冲区、加密数据等。
  * 执行必要的清理操作以释放系统资源。
  * 
-  无返回值
- * 
-  该函数使用XOR加密来保护敏感数据
- void CleanupUIComponent(void)
+ * @return 无返回值
+ */
+void CleanupUIComponent(void)
 
 {
   UIByte encryptionBuffer [144];
@@ -15000,9 +14999,9 @@ LAB_180659b1a:
   if (baseValue5 <= 0.75) {
     baseValue5 = 0.75;
   }
-  AccumulatedFloat = baseValue5 - uiContext[0x16];
-  if (0.001 <= ABS(AccumulatedFloat)) {
-    baseValue5 = AccumulatedFloat * fStack_144 + uiContext[0x16];
+  accumulatedFloatValue = baseValue5 - uiContext[0x16];
+  if (0.001 <= ABS(accumulatedFloatValue)) {
+    baseValue5 = accumulatedFloatValue * animationSpeedFactor + uiContext[0x16];
   }
   uiContext[0x16] = baseValue5;
   if ((transformCoeff15 <= 0.0) || (uiContext[0x1854] <= 0.0)) {
