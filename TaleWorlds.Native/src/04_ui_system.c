@@ -7328,22 +7328,22 @@ UIComponentStateBuffer* g_uiComponentStateBufferSeptenquadragesimal;
 UIComponentStateBuffer* g_uiComponentStateBufferOctoquadragesimal;
 
  UI组件渲染函数
-undefined UIRenderComponent;
-undefined g_uiRenderDataQuaternary;
-undefined g_uiRenderDataQuinary;
-undefined g_uiRenderDataSenary;
-undefined g_uiRenderDataSeptenary;
-undefined g_uiRenderDataOctonary;
-undefined g_uiRenderDataNonary;
-undefined g_uiRenderDataDenary;
-undefined g_uiRenderDataUndenary;
-undefined g_uiRenderDataDuodenary;
-undefined g_uiRenderDataTerdenary;
-undefined g_uiRenderDataQuattuordenary;
-undefined g_uiRenderDataQuindenary;
-undefined g_uiRenderDataSexdenary;
+UIComponent UIRenderComponent;
+UIRenderData g_uiRenderDataQuaternary;
+UIRenderData g_uiRenderDataQuinary;
+UIRenderData g_uiRenderDataSenary;
+UIRenderData g_uiRenderDataSeptenary;
+UIRenderData g_uiRenderDataOctonary;
+UIRenderData g_uiRenderDataNonary;
+UIRenderData g_uiRenderDataDenary;
+UIRenderData g_uiRenderDataUndenary;
+UIRenderData g_uiRenderDataDuodenary;
+UIRenderData g_uiRenderDataTerdenary;
+UIRenderData g_uiRenderDataQuattuordenary;
+UIRenderData g_uiRenderDataQuindenary;
+UIRenderData g_uiRenderDataSexdenary;
 float *uiRenderFloatPointer;
-undefined *uiRenderDataPointer;
+UIRenderData *uiRenderDataPointer;
 uint uiRenderDataSize;
 longlong g_uiRenderDataOffset;
  UI渲染数据缓冲区
@@ -201584,7 +201584,7 @@ int ProcessUIComponentDataValidationAndCleanup(longlong uiContext,UIDword dataSo
   bool IsValidationComplete;
   UIHandle uStackX_8;
   
-  allocatedMemory = *(longlong *)(uiBufferData + 0x48);
+  EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
   if ((*(code **)(allocatedMemory + 0x11838) != (UIFunctionPtr *)0x0) && ((*(byte *)(allocatedMemory + 0x11840) & 0x20) != 0)) {
     (**(code **)(allocatedMemory + 0x11838))(allocatedMemory,0x20,0,0,*(UIHandle *)(allocatedMemory + 0x11670));
   }
@@ -201703,7 +201703,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
       uiCompareResult = FUN_180749940(*(UIHandle *)(uiContext + 0x48));
       if (uiCompareResult == 0) {
         FUN_180744ae0(*(UIHandle *)(uiContext + 0x48),0x100001,0,0);
-        allocatedMemory = *(longlong *)(uiBufferData + 0x48);
+        EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
         if ((*(code **)(allocatedMemory + 0x11838) != (UIFunctionPtr *)0x0) &&
            ((*(uint *)(allocatedMemory + 0x11840) & 0x100) != 0)) {
           (**(code **)(allocatedMemory + 0x11838))(allocatedMemory,0x100,0,0,*(UIHandle *)(allocatedMemory + 0x11670));
@@ -202852,7 +202852,7 @@ UIHandle ValidateAndReleaseUIResourceHandle(void **UIContextPointer)
 UIHandle ProcessUIEventsAndManageResources(void *UIContext)
 
 {
-  void *AllocatedMemory;
+  void *EventMemoryAllocation;
   UIHandle *EventIterator;
   UIHandle EventTypeCode;
   UIHandle *BufferPointer;
@@ -202875,7 +202875,7 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f0) = 0;
   if ((*(code **)(uiContext + 0x358) == (UIFunctionPtr *)0x0) ||
      (EventTypeCode = (**(code **)(uiContext + 0x358))(uiContext + 8), (int)EventTypeCode == 0)) {
-    allocatedMemory = *(longlong *)(uiBufferData + 0x48);
+    EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
     processingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
     if (*(longlong *)(allocatedMemory + 0x10f88) == 0) {
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
@@ -334174,7 +334174,7 @@ UIHandle FUN_180866d00(longlong uiContext,int dataSource,char targetBuffer,char 
   
   TempInt4 = *(int *)(uiBufferData + 0x38);
   plocalLong7 = (longlong *)0x0;
-  allocatedMemory = *(longlong *)(uiBufferData + 0x48);
+  EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
   *(UIDword *)(uiBufferData + 0x38) = 0;
   *(int *)(uiBufferData + 0x6c) = dataSource;
   if (TempInt4 == 2) {
