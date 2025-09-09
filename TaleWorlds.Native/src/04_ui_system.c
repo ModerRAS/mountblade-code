@@ -227,6 +227,14 @@ typedef enum {
 #define FUN_18072f890 ProcessUITextProcessing           // UI文本处理函数
 
 // 额外的UNK变量定义
+
+// UI系统函数补充定义
+#define FUN_1807234d0 ProcessUIWordDataTransfer              // 处理UI字数据传输
+#define FUN_1807238f3 GetUIWordDataPointer                  // 获取UI字数据指针
+#define FUN_18072390f GetUIContextHandleData                 // 获取UI上下文句柄数据
+#define FUN_180723b20 ProcessUIIntegerDataCalculation        // 处理UI整数数据计算
+#define FUN_180723b34 ProcessUIIntegerParameterValidation    // 处理UI整数参数验证
+#define FUN_180724090 ProcessUIFloatDataTransfer             // 处理UI浮点数据传输
 #define UNK_180958ac0 UIComponentFunctionTableAC0         // UI组件函数表AC0
 #define UNK_1809536a8 UIComponentValidationTableA8         // UI组件验证表A8
 #define UI_INITIALIZATION_FLAG 0xfffffffffffffffe // UI初始化标志
@@ -535,14 +543,14 @@ typedef enum {
 #define _DAT_180d4a8c0 UIComponentDataTable8C0          // UI组件数据表8C0
 #define _DAT_180d4a8a8 UIRenderStateTable8A8            // UI渲染状态表8A8
 
-#define DAT_1809472f0 UIConfigurationData
-#define DAT_180956f70 UILookupTableData
-#define UIComponentInterfaceID UIComponentInterfaceID
-#define UIComponentInterfaceIID UIComponentInterfaceIID
-#define DAT_180c0c6e8 UIComponentInstancePtr
-#define DAT_180958c80 UIComponentContextData
-#define DAT_180c0c720 UIProcessorFeatureCache
-#define _DAT_180c0c6e8 UIComponentInstanceGlobalPtr
+#define DAT_1809472f0 UIConfigurationData2F0              // UI配置数据2F0 - 存储UI系统的配置信息
+#define DAT_180956f70 UILookupTableDataF70                // UI查找表数据F70 - 存储UI系统的查找表数据
+#define UIComponentInterfaceID UIComponentInterfaceIDB00  // UI组件接口ID B00 - UI组件的接口标识符
+#define UIComponentInterfaceIID UIComponentInterfaceIIDB10 // UI组件接口IID B10 - UI组件的接口实例标识符
+#define DAT_180c0c6e8 UIComponentInstancePtrE8            // UI组件实例指针E8 - 指向UI组件实例的指针
+#define DAT_180958c80 UIComponentContextDataC80           // UI组件上下文数据C80 - 存储UI组件的上下文信息
+#define DAT_180c0c720 UIProcessorFeatureCache720           // UI处理器功能缓存720 - 存储UI处理器功能的缓存数据
+#define _DAT_180c0c6e8 UIComponentInstanceGlobalPtrE8     // 全局UI组件实例指针E8 - 指向全局UI组件实例的指针
 // UI系统函数宏定义 - 初始化UI组件上下文
 #define InitializeUIComponentContext FUN_18076b6f0
 
