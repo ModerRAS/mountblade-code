@@ -127205,18 +127205,18 @@ UIHandle ThunkUIDataProcess(longlong *uiContext)
   
   if (((*(byte *)(uiContext + 0x66) & 1) != 0) && (*uiContext != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957e20,0x14b,1);
+    ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957e20,0x14b,1);
   }
-  colorBufferPointer = uiContext + 2;
-  stringCompareIndex = 100;
+  bufferPointer = uiContext + 2;
+  iterationCount = 100;
   do {
-    if (*colorBufferPointer != 0) {
+    if (*bufferPointer != 0) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*colorBufferPointer,&UNK_180957e20,0x152,1);
+      ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*bufferPointer,&UNK_180957e20,0x152,1);
     }
-    colorBufferPointer = colorBufferPointer + 1;
-    stringCompareIndex = stringCompareIndex + -1;
-  } while (stringCompareIndex != 0);
+    bufferPointer = bufferPointer + 1;
+    iterationCount = iterationCount + -1;
+  } while (iterationCount != 0);
   uiContext[0x6b] = (longlong)&UNK_180741cf0;
   uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
   uiContext[0x6d] = (longlong)&UIContextDataPointer;
@@ -127228,7 +127228,7 @@ UIHandle ThunkUIDataProcess(longlong *uiContext)
   *(uint *)(uiContext + 0x66) = result & 0xfffffffe;
   uiContext[0x6e] = 0;
   if (uiContext[0x6f] != 0) {
-    FUN_180768380(uiContext[0x6f],~(byte)(result >> 1) & 1);
+    UpdateUIComponentState(uiContext[0x6f],~(byte)(result >> 1) & 1);
     uiContext[0x6f] = 0;
   }
   return 0;
@@ -127394,18 +127394,18 @@ UIHandle CleanupUIContextResources(longlong *uiContext)
   
   if (((*(byte *)(uiContext + 0x66) & 1) != 0) && (*uiContext != 0)) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957e20,0x14b,1);
+    ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957e20,0x14b,1);
   }
-  colorBufferPointer = uiContext + 2;
-  stringCompareIndex = 100;
+  bufferPointer = uiContext + 2;
+  iterationCount = 100;
   do {
-    if (*colorBufferPointer != 0) {
+    if (*bufferPointer != 0) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*colorBufferPointer,&UNK_180957e20,0x152,1);
+      ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*bufferPointer,&UNK_180957e20,0x152,1);
     }
-    colorBufferPointer = colorBufferPointer + 1;
-    stringCompareIndex = stringCompareIndex + -1;
-  } while (stringCompareIndex != 0);
+    bufferPointer = bufferPointer + 1;
+    iterationCount = iterationCount + -1;
+  } while (iterationCount != 0);
   uiContext[0x6b] = (longlong)&UNK_180741cf0;
   uiContext[0x6c] = (longlong)&UIResourceTableRegistryPointer;
   uiContext[0x6d] = (longlong)&UIContextDataPointer;
@@ -127417,7 +127417,7 @@ UIHandle CleanupUIContextResources(longlong *uiContext)
   *(uint *)(uiContext + 0x66) = result & 0xfffffffe;
   uiContext[0x6e] = 0;
   if (uiContext[0x6f] != 0) {
-    FUN_180768380(uiContext[0x6f],~(byte)(result >> 1) & 1);
+    UpdateUIComponentState(uiContext[0x6f],~(byte)(result >> 1) & 1);
     uiContext[0x6f] = 0;
   }
   return 0;
@@ -127425,22 +127425,22 @@ UIHandle CleanupUIContextResources(longlong *uiContext)
 
 
 
-int FUN_180742190(longlong *uiContext,uint dataSource,int targetBuffer,int bufferSize)
+int FindUIAvailableMemorySlot(longlong *uiContext,uint dataSource,int targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
   longlong componentIndex;
   int uiCompareResult;
-  int TempInt4;
+  int bitMask;
   
   uiCompareResult = 0;
-  TempInt4 = 1 << ((byte)dataSource & 7);
+  bitMask = 1 << ((byte)dataSource & 7);
   if (0 < bufferSize) {
     componentIndex = (longlong)(int)dataSource >> 3;
     do {
       if ((targetBuffer <= (int)dataSource) || (*(int *)((longlong)uiContext + 0x33c) <= (int)dataSource)) break;
       allocatedMemory = *uiContext;
-      if (((*(byte *)(allocatedMemory + componentIndex) & (byte)TempInt4) == 0) &&
+      if (((*(byte *)(allocatedMemory + componentIndex) & (byte)bitMask) == 0) &&
          (((dataSource & 0x1f) != 0 || (*(int *)(allocatedMemory + componentIndex) != -1)))) {
         uiCompareResult = uiCompareResult + 1;
       }
@@ -127453,9 +127453,9 @@ int FUN_180742190(longlong *uiContext,uint dataSource,int targetBuffer,int buffe
       }
       else {
         dataSource = dataSource + 1;
-        TempInt4 = TempInt4 * 2;
+        bitMask = bitMask * 2;
         if ((dataSource & 7) == 0) {
-          TempInt4 = 1;
+          bitMask = 1;
           componentIndex = componentIndex + 1;
         }
       }
@@ -127472,8 +127472,8 @@ int FUN_180742190(longlong *uiContext,uint dataSource,int targetBuffer,int buffe
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180742250(longlong *uiContext,int *dataSource)
-void FUN_180742250(longlong *uiContext,int *dataSource)
+ void ReleaseUIResourceHandle(longlong *uiContext,int *dataSource)
+void ReleaseUIResourceHandle(longlong *uiContext,int *dataSource)
 
 {
   int processingResult;
