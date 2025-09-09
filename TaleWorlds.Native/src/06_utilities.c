@@ -307,6 +307,8 @@
 #define ExceptionDataBufferOffsetE8 0xe8
 #define MemoryResourcePointerOffsetE0 0xe0
 #define ResourcePointerStepSize 4
+#define ResourceListEndOffset 0x50
+#define ResourceListStartOffset 0x48
 
 // 异常处理器偏移量常量
 #define ExceptionHandlerPrimaryOffset 0x2d68
@@ -43002,11 +43004,11 @@ void ProcessResourceCleanupChain(DataBuffer exceptionContext, int64_t resourceMa
   DataBuffer cleanupFlag;
   
   cleanupFlag = SystemCleanupFlagAlternative;
-  resourceListEnd = *(DataBuffer **)(resourceManager + 0x50);
-  for (currentResource = *(DataBuffer **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
+  resourceListEnd = *(DataBuffer **)(resourceManager + ResourceListEndOffset);
+  for (currentResource = *(DataBuffer **)(resourceManager + ResourceListStartOffset); currentResource != resourceListEnd; currentResource = currentResource + ResourcePointerStepSize) {
     (**(FunctionPointer**)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
   }
-  if (*(int64_t *)(resourceManager + 0x48) == 0) {
+  if (*(int64_t *)(resourceManager + ResourceListStartOffset) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
@@ -43035,11 +43037,11 @@ void ProcessResourceCleanupChainAlt(DataBuffer exceptionContext, int64_t resourc
   DataBuffer cleanupFlag;
   
   cleanupFlag = SystemCleanupFlagAlternative;
-  resourceListEnd = *(DataBuffer **)(resourceManager + 0x50);
-  for (currentResource = *(DataBuffer **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
+  resourceListEnd = *(DataBuffer **)(resourceManager + ResourceListEndOffset);
+  for (currentResource = *(DataBuffer **)(resourceManager + ResourceListStartOffset); currentResource != resourceListEnd; currentResource = currentResource + ResourcePointerStepSize) {
     (**(FunctionPointer**)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
   }
-  if (*(int64_t *)(resourceManager + 0x48) == 0) {
+  if (*(int64_t *)(resourceManager + ResourceListStartOffset) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
@@ -107934,7 +107936,15 @@ void ExecuteExceptionHandlerCallbackOffset150(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表A
+ * 
+ * 设置异常处理相关的数据表指针，用于异常处理系统的初始化。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionDataTableA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -107948,7 +107958,17 @@ void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 设置异常处理器回调A
+ * 
+ * 配置异常处理器的回调函数指针，建立异常处理机制。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupExceptionHandlerCallbacksA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -107962,7 +107982,15 @@ void Unwind_18090ee40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090ee50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表B
+ * 
+ * 初始化异常处理上下文指针，设置异常处理器的函数指针。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionDataTableB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
