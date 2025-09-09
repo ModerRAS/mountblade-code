@@ -217472,7 +217472,20 @@ void ProcessUtf16CharacterAndContextManagement(uint64_t ContextHandle, uint64_t 
 
 
 
-7c7e0(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_18017c7e0(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 系统数据内容处理和配置管理函数C7E0
+ * 
+ * 该函数负责处理系统数据内容和配置管理，包括：
+ * 1. 处理字符状态缓冲区
+ * 2. 管理系统上下文和事件变量
+ * 3. 处理内存分配和缓冲区初始化
+ * 4. 管理系统标志和配置参数
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @note 原始函数名：FUN_18017c7e0
+ */
+void ProcessSystemDataContentAndConfigurationManagement(uint64_t ContextHandle, long long OperationBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -217561,7 +217574,20 @@ void ProcessUtf16CharacterAndContextManagement(uint64_t ContextHandle, uint64_t 
 
 
 
-7c830(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017c830(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 系统事件模板处理和内存管理函数C830
+ * 
+ * 该函数负责处理系统事件模板和内存管理，包括：
+ * 1. 处理字符状态缓冲区
+ * 2. 管理内存分配索引
+ * 3. 处理系统事件模板和内存地址掩码
+ * 4. 管理系统配置栈和验证数据
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @note 原始函数名：FUN_18017c830
+ */
+void ProcessSystemEventTemplateAndMemoryManagement(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
