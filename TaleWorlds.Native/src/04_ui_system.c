@@ -2899,13 +2899,13 @@ typedef enum {
  #define CleanupUIBuffers CleanupUIBuffers
 
 // UI系统数据处理函数美化
-#define FUN_180705530 ProcessUIContextEventDispatch
-#define FUN_180705870 ProcessUIRenderData
-#define FUN_1807058d0 CleanupUIResources
-#define FUN_180705980 ProcessUIComponentData
-#define FUN_1807069e0 ProcessUIEvent
-#define FUN_18070e140 CalculateUIComponentMemoryOffset
-#define FUN_18070737d CalculateUIRenderDataWeightedSum
+#define FUN_180705530 ProcessUIContextEventDispatchAndHandling      // 处理UI上下文事件分发和处理
+#define FUN_180705870 ProcessUIRenderDataAndTransformation          // 处理UI渲染数据和变换
+#define FUN_1807058d0 CleanupUIResourcesAndMemory                  // 清理UI资源和内存
+#define FUN_180705980 ProcessUIComponentDataAndValidation          // 处理UI组件数据和验证
+#define FUN_1807069e0 ProcessUIEventAndHandling                     // 处理UI事件和处理
+#define FUN_18070e140 CalculateUIComponentMemoryOffsetAndAlignment // 计算UI组件内存偏移和对齐
+#define FUN_18070737d CalculateUIRenderDataWeightedSumAndAverage   // 计算UI渲染数据加权和平均值
 #define FUN_180711674 ProcessUIDataMatrixTransform
 #define FUN_180711810 ProcessUIContextInitialization
 #define FUN_180706b30 ProcessUIEventBuffer
@@ -20087,10 +20087,10 @@ void UpdateUIElementTransform(longlong uiContext, longlong dataSource, float *ta
   float weightMultiplier;
   float currentWeight;
   
-  componentIndex = (longlong)*(int *)(uiBufferData + 0x60);
+  componentCount = (longlong)*(int *)(uiBufferData + 0x60);
   if (*(int *)(uiBufferData + 0x60) == 0) {
     if ('\0' < bufferSize) {
-      for (componentIndex = (longlong)bufferSize; componentIndex != 0; componentIndex = componentIndex + -1) {
+      for (componentCount = (longlong)bufferSize; componentCount != 0; componentCount = componentCount + -1) {
         *targetBuffer = 0.0;
         targetBuffer = targetBuffer + 1;
       }
@@ -20098,29 +20098,29 @@ void UpdateUIElementTransform(longlong uiContext, longlong dataSource, float *ta
     }
   }
   else {
-    localLong7 = 0;
-    result = *(ulonglong *)(dataSource + 0x150);
-    LocalFloatValue9 = 1.0;
-    if (3 < componentIndex) {
-      pTransformCoefficient3 = (float *)(uiContext + 0x6c);
-      contextHandleData = (componentIndex - 4U >> 2) + 1;
-      localLong7 = contextHandleData * 4;
+    processedCount = 0;
+    transformFlags = *(ulonglong *)(dataSource + 0x150);
+    currentWeight = 1.0;
+    if (3 < componentCount) {
+      transformMatrixPtr = (float *)(uiContext + 0x6c);
+      batchCount = (componentCount - 4U >> 2) + 1;
+      processedCount = batchCount * 4;
       do {
-        if (((int)pTransformCoefficient3[2] - 2U < 2) && (LocalFloatValue9 = LocalFloatValue9 - *pTransformCoefficient3, LocalFloatValue9 <= 0.0)) {
-          LocalFloatValue9 = 0.0;
+        if (((int)transformMatrixPtr[2] - 2U < 2) && (currentWeight = currentWeight - *transformMatrixPtr, currentWeight <= 0.0)) {
+          currentWeight = 0.0;
         }
-        if (((int)pTransformCoefficient3[0x4d8] - 2U < 2) && (LocalFloatValue9 = LocalFloatValue9 - pTransformCoefficient3[0x4d6], LocalFloatValue9 <= 0.0)) {
-          LocalFloatValue9 = 0.0;
+        if (((int)transformMatrixPtr[0x4d8] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0x4d6], currentWeight <= 0.0)) {
+          currentWeight = 0.0;
         }
-        if (((int)pTransformCoefficient3[0x9ae] - 2U < 2) && (LocalFloatValue9 = LocalFloatValue9 - pTransformCoefficient3[0x9ac], LocalFloatValue9 <= 0.0)) {
-          LocalFloatValue9 = 0.0;
+        if (((int)transformMatrixPtr[0x9ae] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0x9ac], currentWeight <= 0.0)) {
+          currentWeight = 0.0;
         }
-        if (((int)pTransformCoefficient3[0xe84] - 2U < 2) && (LocalFloatValue9 = LocalFloatValue9 - pTransformCoefficient3[0xe82], LocalFloatValue9 <= 0.0)) {
-          LocalFloatValue9 = 0.0;
+        if (((int)transformMatrixPtr[0xe84] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0xe82], currentWeight <= 0.0)) {
+          currentWeight = 0.0;
         }
-        pTransformCoefficient3 = pTransformCoefficient3 + 0x1358;
-        contextHandleData = contextHandleData + -1;
-      } while (contextHandleData != 0);
+        transformMatrixPtr = transformMatrixPtr + 0x1358;
+        batchCount = batchCount - 1;
+      } while (batchCount != 0);
     }
     if (localLong7 < componentIndex) {
       pTransformCoefficient3 = (float *)(uiContext + 0x6c + localLong7 * 0x1358);
