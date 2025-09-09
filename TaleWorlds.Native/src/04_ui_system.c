@@ -401695,16 +401695,16 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define ProcessUIComponentEvent HandleUIComponentEvent
 
 // UI系统布局管理函数
-#define CalculateUILayout FUN_180706410
-#define UpdateUILayout FUN_180706470
-#define ValidateUILayout FUN_1807064d0
-#define MeasureUILayout FUN_180706530
-#define ArrangeUILayout FUN_180706590
-#define OptimizeUILayout FUN_1807065f0
-#define RefreshLayout FUN_180706650
-#define InvalidateLayout FUN_1807066b0
-#define GetLayoutBounds FUN_180706710
-#define SetLayoutBounds FUN_180706770
+#define CalculateUILayout ComputeUILayout
+#define UpdateUILayout ModifyUILayout
+#define ValidateUILayout CheckUILayoutValidity
+#define MeasureUILayout DetermineUILayoutDimensions
+#define ArrangeUILayout OrganizeUILayout
+#define OptimizeUILayout EnhanceUILayout
+#define RefreshLayout RedrawLayout
+#define InvalidateLayout MarkLayoutInvalid
+#define GetLayoutBounds RetrieveLayoutBounds
+#define SetLayoutBounds DefineLayoutBounds
 
 // UI系统动画管理函数
 #define CreateUIAnimation FUN_1807067d0
