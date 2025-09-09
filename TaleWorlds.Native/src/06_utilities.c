@@ -297,6 +297,15 @@
 #define SystemStatusCheckOffset44 0x44
 #define SystemStatusCheckOffset24 0x24
 #define SystemStatusCheckOffset48 0x48
+
+// 异常处理器回调偏移量常量（补充）
+#define ExceptionHandlerCallbackOffset290 0x290
+#define SystemParameterValidationOffset280 0x280
+#define SystemContextFunctionPointerOffset600 0x600
+#define ExceptionHandlerCallbackOffset238 0x238
+#define ExceptionHandlerCallbackOffset240 0x240
+#define ExceptionHandlerCallbackOffset250 0x250
+#define SystemDataStatusOffset0 0x0
 #define SystemStatusCheckOffset150 0x150
 
 // 操作基础地址偏移量常量
@@ -63492,10 +63501,10 @@ void SetExceptionHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
 
 
 /**
- * @brief 在偏移量60处设置未知处理器
+ * @brief 在偏移量60处设置异常处理器
  * 
- * 该函数在上下文数据的偏移量60处设置一个指向未知处理器的指针。
- * 这个处理器可能是用于特定系统操作或异常处理的回调函数。
+ * 该函数在上下文数据的偏移量60处设置一个指向异常处理器的指针。
+ * 这个处理器用于系统异常处理的回调函数。
  * 
  * @param systemContext 系统上下文，包含系统状态信息
  * @param contextData 上下文数据，用于设置处理器指针
