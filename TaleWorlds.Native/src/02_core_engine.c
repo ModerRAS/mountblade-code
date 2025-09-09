@@ -539,6 +539,27 @@
 #define LAB_18010f4c5 MemoryBlockValidationLabel          // 内存块验证标签
 #define LAB_18010f2a4 DataProcessingContinueLabel          // 数据处理继续标签
 
+// 新增标签语义化宏定义
+#define LAB_180087f16 CharacterDataAllocationLabel          // 字符数据分配标签
+#define LAB_18008917c StringComparisonCompleteLabel        // 字符串比较完成标签
+#define LAB_18008927d MemoryBlockListUpdateLabel            // 内存块列表更新标签
+#define LAB_1800897d5 MemoryBlockProcessingCompleteLabel    // 内存块处理完成标签
+#define LAB_18008984e IntegerValueValidationLabel           // 整数值验证标签
+#define LAB_180089861 StackValidationLabel                  // 栈验证标签
+#define LAB_180089891 CharacterDataValidationLabel          // 字符数据验证标签
+#define LAB_18008a310 SystemStringProcessingLabel           // 系统字符串处理标签
+#define LAB_18008a327 StringIndexValidationLabel            // 字符串索引验证标签
+#define LAB_18008a32f SystemStringIndexCheckLabel          // 系统字符串索引检查标签
+#define LAB_18008a841 ValidationStatusCheckLabel            // 验证状态检查标签
+#define LAB_18008acc1 SystemEventProcessingLabel            // 系统事件处理标签
+#define LAB_18008b7ea SystemEventTemplateCheckLabel         // 系统事件模板检查标签
+#define LAB_18008c531 PrimaryProcessingStatusCheckLabel     // 主处理状态检查标签
+#define LAB_18008cc42 ParentNodeValidationLabel              // 父节点验证标签
+#define LAB_18008cdfe HighByteValidationLabel                // 高字节验证标签
+#define LAB_18008ce85 MemoryBufferCheckLabel                 // 内存缓冲区检查标签
+#define LAB_18008caf0 MemoryComparisonCompleteLabel          // 内存比较完成标签
+#define LAB_18008cb7e CharacterStatusBufferCheckLabel       // 字符状态缓冲区检查标签
+
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
 #define SystemValidationFlag ValidationFlag119             // 系统验证标志119
@@ -66118,7 +66139,7 @@ CharacterDataAllocationLAB180087f16:
                 else {
                   CharacterTablePointer = CharacterTablePointer * 2;
                   ContextHandleData = ContextHandle8;
-                  if (CharacterTablePointer != 0) goto LAB_180087f16;
+                  if (CharacterTablePointer != 0) goto CharacterDataAllocationLabel;
                 }
                 if (CharacterStatusBufferCurrent != PrimaryProcessingStatusFlag4) {
                     // WARNING: Subroutine does not return
