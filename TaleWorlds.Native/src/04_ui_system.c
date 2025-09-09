@@ -2321,6 +2321,7 @@ typedef enum {
 #define FUN_180742050 InitializeUIMemoryPool
 #define FUN_180742070 CleanupUIContextResources
 #define FUN_180742250 ReleaseUIResourceHandle
+#define FUN_180742460 InitializeUIComponentInstance
 #define FUN_180742190 FindUIAvailableMemorySlot
 #define FUN_180768380 UpdateUIComponentState
 
