@@ -97134,27 +97134,27 @@ void ProcessUITransformDataWithCoefficientsOptimized(float *uiContext,int dataSo
   float simdCoeff2;
   float simdCoeff3;
   
-  if (3 < unmodifiedEBX) {
+  if (3 < dataCount) {
     ProcessingStatus = dataSource + 1U >> 2;
     loopCounter = (ulonglong)ProcessingStatus;
     dataSource = dataSource + ProcessingStatus * -4;
     do {
       baseValue = *uiContext;
       transformCoeff1 = uiContext[bufferSize];
-      uiContext[bufferSize] = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
+      uiContext[bufferSize] = transformCoeff1 * simdCoeff1 + baseValue * simdCoeff3;
       TransformCoefficient2 = uiContext[-1];
-      *uiContext = transformCoeff1 * preservedXMM6 + baseValue * in_XMM5_Da;
+      *uiContext = transformCoeff1 * simdCoeff2 + baseValue * simdCoeff1;
       baseValue = uiContext[bufferSize + -1];
-      uiContext[bufferSize + -1] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
+      uiContext[bufferSize + -1] = baseValue * simdCoeff1 + TransformCoefficient2 * simdCoeff3;
       transformCoeff1 = uiContext[-2];
-      uiContext[-1] = baseValue * preservedXMM6 + TransformCoefficient2 * in_XMM5_Da;
+      uiContext[-1] = baseValue * simdCoeff2 + TransformCoefficient2 * simdCoeff1;
       baseValue = uiContext[bufferSize + -2];
-      uiContext[bufferSize + -2] = baseValue * in_XMM5_Da + transformCoeff1 * preservedXMM7;
+      uiContext[bufferSize + -2] = baseValue * simdCoeff1 + transformCoeff1 * simdCoeff3;
       TransformCoefficient2 = uiContext[-3];
-      uiContext[-2] = baseValue * preservedXMM6 + transformCoeff1 * in_XMM5_Da;
+      uiContext[-2] = baseValue * simdCoeff2 + transformCoeff1 * simdCoeff1;
       baseValue = uiContext[bufferSize + -3];
-      uiContext[bufferSize + -3] = baseValue * in_XMM5_Da + TransformCoefficient2 * preservedXMM7;
-      uiContext[-3] = baseValue * preservedXMM6 + TransformCoefficient2 * in_XMM5_Da;
+      uiContext[bufferSize + -3] = baseValue * simdCoeff1 + TransformCoefficient2 * simdCoeff3;
+      uiContext[-3] = baseValue * simdCoeff2 + TransformCoefficient2 * simdCoeff1;
       uiContext = uiContext + -4;
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
@@ -97162,8 +97162,8 @@ void ProcessUITransformDataWithCoefficientsOptimized(float *uiContext,int dataSo
   for (; -1 < dataSource; dataSource = dataSource + -1) {
     baseValue = *uiContext;
     transformCoeff1 = uiContext[bufferSize];
-    uiContext[bufferSize] = transformCoeff1 * in_XMM5_Da + baseValue * preservedXMM7;
-    *uiContext = transformCoeff1 * preservedXMM6 + baseValue * in_XMM5_Da;
+    uiContext[bufferSize] = transformCoeff1 * simdCoeff1 + baseValue * simdCoeff3;
+    *uiContext = transformCoeff1 * simdCoeff2 + baseValue * simdCoeff1;
     uiContext = uiContext + -1;
   }
   return;
