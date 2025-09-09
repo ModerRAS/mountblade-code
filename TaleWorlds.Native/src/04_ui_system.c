@@ -231,7 +231,7 @@ typedef enum {
 // UI系统函数补充定义
 #define FUN_1807234d0 ProcessUIWordDataTransfer              // 处理UI字数据传输
 #define FUN_1807238f3 GetUIWordDataPointer                  // 获取UI字数据指针
-#define FUN_18072390f GetUIContextHandleData                 // 获取UI上下文句柄数据
+#define FUN_18072390f CalculateUIComponentSimilarityScore     // 计算UI组件相似度加权得分
 #define FUN_180723b20 ProcessUIIntegerDataCalculation        // 处理UI整数数据计算
 #define FUN_180723b34 ProcessUIIntegerParameterValidation    // 处理UI整数参数验证
 #define FUN_180724090 ProcessUIFloatDataTransfer             // 处理UI浮点数据传输
@@ -664,7 +664,7 @@ typedef enum {
 #define FUN_180724090 ProcessUIWordDataTransfer
 #define FUN_1807234d0 ProcessUIWordDataValidation
 #define FUN_1807238f3 GetUIWordDataPointer
-#define FUN_18072390f GetUIContextHandleData
+#define FUN_18072390f CalculateUIComponentSimilarityScore
 #define FUN_180723ee0 ProcessUICharacterDataValidation
 #define FUN_180723c9b UIEmptyProcessingFunction
 

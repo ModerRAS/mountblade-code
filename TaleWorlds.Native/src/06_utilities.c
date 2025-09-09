@@ -82328,7 +82328,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
       TerminateSystemExecutionAndCleanupResources();
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
-  calculatedIndex = validationStatusPointer[0xffa];
+  calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
   }
@@ -82472,7 +82472,7 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
       TerminateSystemExecutionAndCleanupResources();
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
-  calculatedIndex = validationStatusPointer[0xffa];
+  calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
   }
@@ -83823,7 +83823,7 @@ void ProcessExceptionContextCleanupA0(DataBuffer operationBase,int64_t dataBuffe
       TerminateSystemExecutionAndCleanupResources();
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
-  calculatedIndex = validationStatusPointer[0xffa];
+  calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
   }
