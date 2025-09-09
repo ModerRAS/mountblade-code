@@ -1362,6 +1362,27 @@ typedef enum {
 #define aeventProcessingStatus UnsignedVector9
 #define aeventProcessingCounter0 UnsignedVector80
 #define aeventProcessingCounter1 UnsignedVector81
+
+// UI系统短整型变量美化
+#define sVar14 UIShortVar14
+#define sVar1 UIShortVar1
+#define sVar2 UIShortVar2
+#define sVar9 UIShortVar9
+#define sVar4 UIShortVar4
+
+// UI系统长整型变量美化
+#define stackLong70 UIStackLong70
+#define stackLong88 UIStackLong88
+#define stackIntd8 UIStackIntD8
+#define localLong7 UILocalLong7
+#define ContextSecondValue UIContextSecondValue
+#define uiCompareResult UICompareResult
+
+// UI系统处理结果变量美化
+#define processingResult7 UIProcessingResult7
+#define processingResult4 UIProcessingResult4
+#define processedCount UIProcessedCount
+#define contextHandleData UIContextHandleData
 #define aeventProcessingCounter2 UnsignedVector82
 #define aeventProcessingCounter3 UnsignedVector83
 #define sVar122 SignedValue122
