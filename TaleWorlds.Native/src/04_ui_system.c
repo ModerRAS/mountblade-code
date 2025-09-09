@@ -28707,7 +28707,7 @@ void InitializeCPUFunctionPointers(void)
     }
     _UIThreadLockCriticalSection = componentIndex;
     UNLOCK();
-    if (bVar4) {
+    if (UIBoolVar4) {
       DeleteCriticalSection(stringCompareIndex);
       free(stringCompareIndex);
     }
@@ -28720,9 +28720,9 @@ void InitializeCPUFunctionPointers(void)
     LOCK();
     processingResult = _UIThreadLockReferenceCount + -1;
     UNLOCK();
-    bVar4 = _UIThreadLockReferenceCount == 1;
+    UIBoolVar4 = _UIThreadLockReferenceCount == 1;
     _UIThreadLockReferenceCount = processingResult;
-    if (bVar4) {
+    if (UIBoolVar4) {
       DeleteCriticalSection(_UIThreadLockCriticalSection);
       free(_UIThreadLockCriticalSection);
       _UIThreadLockCriticalSection = 0;
@@ -28777,9 +28777,9 @@ void InitializeCPUFunctionPointers(void)
   LOCK();
   processingResult = _UIThreadLockReferenceCount + -1;
   UNLOCK();
-  bVar4 = _UIThreadLockReferenceCount == 1;
+  UIBoolVar4 = _UIThreadLockReferenceCount == 1;
   _UIThreadLockReferenceCount = processingResult;
-  if (bVar4) {
+  if (UIBoolVar4) {
     DeleteCriticalSection(_UIThreadLockCriticalSection);
     free(_UIThreadLockCriticalSection);
     _UIThreadLockCriticalSection = 0;
@@ -29051,31 +29051,31 @@ void InitializeUIRenderingFunctions(void)
     UIShaderProcessorPointer = (UIFunctionPtr *)&UIShaderProcessorFallbackImplementation;
   }
   UIAnimationProcessorPointer = (UIFunctionPtr *)&UIAnimationProcessorFallbackImplementation;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIAnimationProcessorPointer = InitializeUIAnimationProcessor;
   }
   UILayoutProcessorPointer = (UIFunctionPtr *)&UILayoutProcessorFallbackImplementation;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UILayoutProcessorPointer = InitializeUILayoutProcessor;
   }
   UIInputProcessorPointer = (UIFunctionPtr *)&UIInputProcessorFallbackImplementation;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIInputProcessorPointer = InitializeUIInputProcessor;
   }
   UIEventProcessorPointer = (UIFunctionPtr *)&UIEventProcessorFallbackImplementation;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIEventProcessorPointer = InitializeUIEventProcessor;
   }
   UISpareProcessorPointer1 = (UIFunctionPtr *)&UISystemNullHandlerFunction;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpareProcessorPointer1 = InitializeUISpareProcessorOne;
   }
   UISpareProcessorPointer2 = (UIFunctionPtr *)&UISystemEmptyProcessorFunction;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpareProcessorPointer2 = InitializeUISpareProcessorTwo;
   }
   UISpareProcessorPointer3 = (UIFunctionPtr *)&UISystemIdleProcessorFunction;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpareProcessorPointer3 = InitializeUISpareProcessorThree;
   }
   UISpecialFunctionProcessorPointer1 = CalculateImageBlockAbsoluteDifferenceAdvanced;
@@ -29087,23 +29087,23 @@ void InitializeUIRenderingFunctions(void)
     UISpecialFunctionProcessorPointer2 = (UIFunctionPtr *)&UISystemSpecialFunction2;
   }
   UISpecialFunctionProcessorPointer3 = (UIFunctionPtr *)&UISystemSpecialFunction3;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpecialFunctionProcessorPointer3 = CalculateImagePixelMaximum;
   }
   UISpecialFunctionProcessorPointer4 = (UIFunctionPtr *)&UISystemSpecialFunction4;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpecialFunctionProcessorPointer4 = CalculateImagePixelMedian;
   }
   UISpecialFunctionProcessorPointer5 = (UIFunctionPtr *)&UISystemSpecialFunction5;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpecialFunctionProcessorPointer5 = CalculateImagePixelSum;
   }
   UISpecialFunctionProcessorPointer6 = (UIFunctionPtr *)&UISystemSpecialFunction6;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpecialFunctionProcessorPointer6 = CalculateImagePixelMinimum;
   }
   UISpecialFunctionProcessorPointer7 = (UIFunctionPtr *)&UISystemSpecialFunction7;
-  if (bVar4) {
+  if (UIBoolVar4) {
     UISpecialFunctionProcessorPointer7 = CalculateImagePixelocalLongiance;
   }
   UIExtendedFunctionProcessorPointer1 = CalculateImagePixelAverageAdvanced;
@@ -29146,7 +29146,7 @@ void InitializeUIRenderingFunctions(void)
   if (bVar6) {
     UIFunctionTablePointer5 = ProcessUIBasicData10;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIFunctionTablePointer5 = ProcessUISpecialData;
   }
   UIFunctionTablePointer6 = ProcessUIBasicData11;
@@ -29169,7 +29169,7 @@ void InitializeUIRenderingFunctions(void)
   if (bVar6) {
     UIGlobalDataConversionProcessor = ProcessUIDataEncoding;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIGlobalDataConversionProcessor = ProcessUIDataFallback;
   }
   UIGlobalResourceValidationProcessor = ValidateUIResourceIntegrity;
@@ -29204,7 +29204,7 @@ void InitializeUIRenderingFunctions(void)
   if (bVar6) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataSpecialOperation;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataFallbackOperation;
   }
   UIEventDispatchProcessor = FUN_18068f150;
@@ -29227,7 +29227,7 @@ void InitializeUIRenderingFunctions(void)
   if (bVar6) {
     _DAT_180d4a7b0 = FUN_18068f9a0;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a7b0 = FUN_180695750;
   }
   _DAT_180d4a778 = FUN_18068fb30;
@@ -29243,23 +29243,23 @@ void InitializeUIRenderingFunctions(void)
     _DAT_180d4a708 = FUN_18068fd60;
   }
   _DAT_180d4a958 = FUN_18068fdd0;
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a958 = FUN_180695820;
   }
   _DAT_180d4a928 = FUN_18068fe10;
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a928 = FUN_180695870;
   }
   _DAT_180d4a910 = FUN_18068ff60;
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a910 = FUN_1806958c0;
   }
   _DAT_180d4a8c0 = FUN_180690200;
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a8c0 = FUN_180695990;
   }
   _DAT_180d4a8a8 = FUN_1806903c0;
-  if (bVar4) {
+  if (UIBoolVar4) {
     _DAT_180d4a8a8 = FUN_180695ac0;
   }
   return;
@@ -67507,12 +67507,12 @@ LAB_18069b66c:
     LOCK();
     bVar4 = _DAT_180c0c210 != 0;
     componentIndex = stringCompareIndex;
-    if (bVar4) {
+    if (UIBoolVar4) {
       componentIndex = _DAT_180c0c210;
     }
     _DAT_180c0c210 = componentIndex;
     UNLOCK();
-    if (bVar4) {
+    if (UIBoolVar4) {
       DeleteCriticalSection(stringCompareIndex);
       free(stringCompareIndex);
     }
@@ -67527,7 +67527,7 @@ LAB_18069b66c:
     UNLOCK();
     bVar4 = _DAT_180c0c218 == 1;
     _DAT_180c0c218 = processingResult;
-    if (bVar4) {
+    if (UIBoolVar4) {
       DeleteCriticalSection(_DAT_180c0c210);
       free(_DAT_180c0c210);
       _DAT_180c0c210 = 0;
@@ -67564,7 +67564,7 @@ void InitializeUICriticalSectionResource(void)
   }
   g_UICriticalSectionInstance = criticalSectionIndex;
   UNLOCK();
-  if (bVar4) {
+  if (UIBoolVar4) {
     DeleteCriticalSection(stringCompareIndex);
     free(stringCompareIndex);
   }
@@ -67579,7 +67579,7 @@ void InitializeUICriticalSectionResource(void)
   UNLOCK();
   bVar4 = _DAT_180c0c218 == 1;
   _DAT_180c0c218 = processingResult;
-  if (bVar4) {
+  if (UIBoolVar4) {
     DeleteCriticalSection(_DAT_180c0c210);
     free(_DAT_180c0c210);
     _DAT_180c0c210 = 0;
@@ -151155,7 +151155,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
     *(ulonglong *)(uiContext + 0x70) = eventProcessingStatus;
     *(UIDword *)(*(longlong *)(*(longlong *)(uiBufferData + 0xa8) + 0x107b8) + 0x30) = 1;
     if ((localChar6 != '\0') && (allocatedMemory != 0)) {
-      if (bVar4) {
+      if (UIBoolVar4) {
                      WARNING: Subroutine does not return
         ProcessUISystemCleanup(allocatedMemory,3);
       }
@@ -176599,7 +176599,7 @@ int FUN_18076f111(longlong uiContext,ulonglong dataSource,UIHandle targetBuffer,
         }
         plocalLong7 = colorBufferPointer;
       } while (colorBufferPointer != pallocatedMemory);
-      if (bVar4) {
+      if (UIBoolVar4) {
         *(UIDword *)(uiBufferData + 0x298) = 1;
       }
     }
@@ -192165,7 +192165,7 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
       *(float *)(uiContext + 0x21c) = baseValue5;
     }
     bVar4 = *(float *)(uiContext + 0x280) != *(float *)(uiContext + 0x220);
-    if (bVar4) {
+    if (UIBoolVar4) {
       *(float *)(uiContext + 0x220) = *(float *)(uiContext + 0x280);
       uStackX_10 = 1;
     }
@@ -198766,7 +198766,7 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
   contextHandleData = 0;
   stackUInt48 = 0;
   eventProcessingStatus = dataSource;
-  if (bVar4) {
+  if (UIBoolVar4) {
     contextHandleData = FUN_180741e10(stringCompareIndex + 0x10bd0,aiStackX_8[0] * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,
                           stackParamffffffffffffff90 & 0xffffff00,1);
     eventProcessingStatus = contextHandleData + 0x1fU & 0xffffffffffffffe0;
@@ -318010,7 +318010,7 @@ LAB_18085a6b0:
 LAB_18085a6ac:
     IsValidationComplete = true;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     allocatedMemory7 = *(longlong *)(BasePointer + 0x57);
     if (IsValidationComplete) goto LAB_18085a8c1;
     loopCounter = FUN_18085ab70(allocatedMemory7);
@@ -363211,7 +363211,7 @@ LAB_1808820fa:
     uiCompareResult = unmodifiedEBX + 1;
     bVar4 = unmodifiedEBX != -1;
     unmodifiedEBX = 0;
-    if (bVar4) {
+    if (UIBoolVar4) {
       unmodifiedEBX = uiCompareResult;
     }
     if (unmodifiedEBX != (int)EventHandle[1]) {
@@ -363441,7 +363441,7 @@ LAB_18088229d:
     uiCompareResult = unmodifiedEBX + 1;
     bVar4 = unmodifiedEBX != -1;
     unmodifiedEBX = 0;
-    if (bVar4) {
+    if (UIBoolVar4) {
       unmodifiedEBX = uiCompareResult;
     }
     if (unmodifiedEBX != (int)EventHandle[1]) {
@@ -382332,7 +382332,7 @@ void FUN_180892e50(longlong uiContext,UIHandle dataSource)
   if (processingResult == 0) {
     bVar4 = astackLong58[0] == 0;
     astackLong58[0] = astackLong58[0] + -8;
-    if (bVar4) {
+    if (UIBoolVar4) {
       astackLong58[0] = 0;
     }
     componentIndex = (longlong)*(int *)(uiBufferData + 0x18);
@@ -396170,7 +396170,7 @@ LAB_18089d034:
 LAB_18089d06e:
     return (ulonglong)EventTypeCode;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     *(UIDword *)(uiBufferData + 0x10) = 3;
   }
 LAB_18089d07f:
@@ -396290,7 +396290,7 @@ LAB_18089d034:
 LAB_18089d06e:
     return (ulonglong)EventTypeCode;
   }
-  if (bVar4) {
+  if (UIBoolVar4) {
     *(UIDword *)(EventHandle + 0x10) = 3;
   }
 LAB_18089d07f:

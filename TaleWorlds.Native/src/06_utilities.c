@@ -447,6 +447,27 @@
 #define ExceptionHandlerHighLevelOffset 0x1eb8
 #define ExceptionHandlerFinalCleanupOffset 0x2e10
 
+// 异常上下文数据偏移量常量（用于异常处理器）
+#define ExceptionContextDataOffset1Cd0 0x1cd0
+#define ExceptionContextDataOffset1Cc0 0x1cc0
+#define ExceptionContextDataOffset1C98 0x1c98
+#define ExceptionContextDataOffset1Ca0 0x1ca0
+#define ExceptionContextDataOffset1Cb0 0x1cb0
+#define ExceptionContextDataOffset1C78 0x1c78
+#define ExceptionContextDataOffset1C80 0x1c80
+#define ExceptionContextDataOffset1C90 0x1c90
+#define ExceptionContextDataOffset1Ce8 0x1ce8
+#define ExceptionContextDataOffset1Cf0 0x1cf0
+#define ExceptionContextDataOffset1D00 0x1d00
+#define ExceptionContextDataOffset1D08 0x1d08
+#define ExceptionContextDataOffset1D10 0x1d10
+#define ExceptionContextDataOffset1D20 0x1d20
+#define ExceptionContextDataOffset1D30 0x1d30
+#define ExceptionContextDataOffset1D40 0x1d40
+
+// 系统参数验证偏移量常量
+#define SystemParameterValidationOffset280 0x280
+
 // 系统状态验证相关偏移量常量
 #define SystemStatusValidationOffset82 0x82
 #define SystemStatusValidationOffset8A 0x8a
@@ -100070,7 +100091,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x150);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset150);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
