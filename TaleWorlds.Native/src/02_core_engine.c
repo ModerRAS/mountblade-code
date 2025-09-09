@@ -24528,7 +24528,7 @@ int CoreEngineGetThreadSystemStatus(void
     CoreEngineSystemStatusCheck(SystemIterationCounter,0x4000000000000000,0xffff7fff,0);
     SystemIterationCounter = SystemIterationCounter + 1;
   } while (SystemIterationCounter < 0xd);
-  *(uint *)(SystemGlobalConfigData + 0x330) = *(uint *)(SystemGlobalConfigData + 0x330) | 4;
+  *(uint *)(SystemGlobalConfigData + SystemGlobalConfigFlagOffset) = *(uint *)(SystemGlobalConfigData + SystemGlobalConfigFlagOffset) | 4;
   SystemGlobalValidationStatus = 0xffffffff;
   StatusCheckResult = SystemStatusCheck(&SystemInitializationCheckerA);
   return (StatusCheckResult != 0) - 1;
@@ -24905,7 +24905,7 @@ void InitializeSystemDataLinkage(long long systemContext)
   }
 ValidateDataLinkNode:
   CoreEngineCleanupSystemContext(*(void *)(systemContext + 0x20));
-  if (*(char *)(CoreEngineSystemContext + 0x1ed) != '\0') {
+  if (*(char *)(CoreEngineSystemContext + CoreEngineSystemStatusOffset) != '\0') {
     DataLinkNode = (long long *)MemoryAllocate(MemoryPoolManager,0x28,8,3);
     *DataLinkNode = (long long)&DataNodeTemplateA;
     *DataLinkNode = (long long)&DataNodeTemplateB;
@@ -26832,7 +26832,7 @@ void CoreEngineInitializeSystemResources(long long *systemResourcePtr,uint64_t *
   (**(code **)(*SystemResourceAllocator + 0x28))(SystemResourceAllocator);
   CoreEngineProcessTimeoutQueue(AllocationSize,&SystemResourcePointer);
   (**(code **)(*SystemResourceAllocator + 0x38))(SystemResourceAllocator);
-  CoreEngineResourceCounter = (long long)*(int *)(CoreEngineSystemContext + 0x224);
+  CoreEngineResourceCounter = (long long)*(int *)(CoreEngineSystemContext + CoreEngineResourceCounterOffset);
   CoreEngineInitializeSystemEvent(&CoreEngineResourceBuffer,OperationBufferSize);
   *ContextHandleSize = &SystemNullTemplate;
   if (OperationBufferSize[1] != 0) {
@@ -26940,7 +26940,7 @@ void CoreEngineInitializeRuntimeEnvironment(void
   SystemContextId = 0xfffffffffffffffe;
   StackDataSecurityKey = EncodingDecodingKey ^ (unsigned long long)EncodingKeyBuffer;
   ProcessingStateFlag = 0;
-  if (*(int *)(CoreEngineSystemContext + 0x224) - CoreEngineResourceCounter < 0xfb) {
+  if (*(int *)(CoreEngineSystemContext + CoreEngineResourceCounterOffset) - CoreEngineResourceCounter < 0xfb) {
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(StackDataSecurityKey ^ (unsigned long long)EncodingKeyBuffer);
   }
@@ -27379,7 +27379,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   DataProcessingStatus = 0;
   SystemMemoryPointer = NULL;
   MemoryOffsetValue = 0;
-  SystemPrimaryReturnCode = *(uint *)(CoreEngineSystemContext + 0x180);
+  SystemPrimaryReturnCode = *(uint *)(CoreEngineSystemContext + SystemPrimaryReturnCodeOffset);
   MemoryAllocationIndex = (unsigned long long)SystemPrimaryReturnCode;
   if (*(long long *)(CoreEngineSystemContext + 0x178) != 0) {
     CoreEngineProcessSystemEvent(&SystemCharacterStatusBufferPointer,MemoryAllocationIndex,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
