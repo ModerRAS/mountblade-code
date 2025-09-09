@@ -108579,7 +108579,7 @@ void ProcessDataBufferWithMemoryPointerAtOffset100(DataBuffer operationBase,int6
 
 
 
-void Unwind_18090f110(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateAndCleanupExceptionContextAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -108610,7 +108610,7 @@ void Unwind_18090f110(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f120(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallbackAtOffset120(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -108624,7 +108624,7 @@ void Unwind_18090f120(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f130(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallbackAtOffset130(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

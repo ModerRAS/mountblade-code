@@ -89502,35 +89502,35 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
       }
       aResultValue3._0_4_ = BaseValue1 - TransformCoefficient;
       aResultValue3._4_12_ = aCounterResult;
-      result2 = aResultValue3._0_8_;
-      if ((iStack0000000000000130 < 0) && (baseValue6 < aResultValue3._0_4_)) {
-        acomponentIndex._0_4_ = aResultValue3._0_4_ - baseValue6;
-        acomponentIndex._4_12_ = aCounterResult;
-        result2 = acomponentIndex._0_8_;
-        iStack0000000000000130 = (int)acomponentIndex._0_4_ + iStack0000000000000130;
-        if (0 < iStack0000000000000130) {
-          iStack0000000000000130 = 0;
+      Result2 = aResultValue3._0_8_;
+      if ((StackParam130 < 0) && (BaseValue6 < aResultValue3._0_4_)) {
+        aComponentIndex._0_4_ = aResultValue3._0_4_ - BaseValue6;
+        aComponentIndex._4_12_ = aCounterResult;
+        Result2 = aComponentIndex._0_8_;
+        StackParam130 = (int)aComponentIndex._0_4_ + StackParam130;
+        if (0 < StackParam130) {
+          StackParam130 = 0;
         }
       }
-      uiValidationResult = iStack0000000000000130;
-      TempInt4 = 0x1f;
+      UIValidationResult = StackParam130;
+      TemporaryInt4 = 0x1f;
       if (*(uint *)(SourceHandle + 0x20) != 0) {
-        for (; *(uint *)(SourceHandle + 0x20) >> TempInt4 == 0; TempInt4 = TempInt4 + -1) {
+        for (; *(uint *)(SourceHandle + 0x20) >> TemporaryInt4 == 0; TemporaryInt4 = TemporaryInt4 + -1) {
         }
       }
-      loopCounter = (TempInt4 - *(int *)(SourceHandle + 0x18)) + 1;
-      TempInt4 = loopCounter + localInt9;
-      if ((allocationFlags != register10D) && (TempInt4 < 0x1e)) {
-        if ((TempInt4 < 0x18) && (1 < iStack0000000000000130)) {
-          iStack0000000000000130 = iStack0000000000000160;
+      LoopCounter = (TemporaryInt4 - *(int *)(SourceHandle + 0x18)) + 1;
+      TemporaryInt4 = LoopCounter + LocalInt9;
+      if ((AllocationFlags != Register10D) && (TemporaryInt4 < 0x1e)) {
+        if ((TemporaryInt4 < 0x18) && (1 < StackParam130)) {
+          StackParam130 = StackParam160;
         }
-        if ((TempInt4 < 0x10) && (iStack0000000000000130 < -1)) {
-          iStack0000000000000130 = -1;
+        if ((TemporaryInt4 < 0x10) && (StackParam130 < -1)) {
+          StackParam130 = -1;
         }
       }
-      TempInt4 = iStack0000000000000130;
-      if (((bufferSize != 0) && (1 < allocationFlags)) && (TempInt4 = 0, iStack0000000000000130 < 0)) {
-        TempInt4 = iStack0000000000000130;
+      TemporaryInt4 = StackParam130;
+      if (((bufferSize != 0) && (1 < AllocationFlags)) && (TemporaryInt4 = 0, StackParam130 < 0)) {
+        TemporaryInt4 = StackParam130;
       }
       iStack0000000000000130 = TempInt4;
       loopCounter = loopCounter + targetBuffer;
