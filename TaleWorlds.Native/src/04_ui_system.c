@@ -35958,7 +35958,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   if (*(int *)(uiBufferData + 0x23d4) < (int)(short)loopCounter) {
     TempInt4 = *(int *)(uiBufferData + 0x23d4);
   }
-  sVar14 = (short)TempInt4;
+  shortValue14 = (short)TempInt4;
   bufferSize[1] = sVar14;
   loopCounter = (int)*bufferSize;
   if (*bufferSize < processingResult7) {
@@ -107553,40 +107553,40 @@ void UIEmptyOperation(void)
 void ProcessUIDataAndConvert(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
-  double dVar1;
-  double dVar2;
+  double InputValueA;
+  double InputValueB;
   double CalculationResultValue;
-  UIByte aProcessingStatus [16];
-  longlong EventDataIndex;
-  double *pScalingFactorValue;
-  longlong localLong7;
-  longlong contextOffset;
-  ulonglong eventProcessingStatus;
-  ulonglong result0;
+  UIByte ProcessingStatusBuffer [16];
+  longlong DataProcessingIndex;
+  double *ScalingFactorPointer;
+  longlong ContextDataOffset;
+  longlong MemoryAlignmentOffset;
+  ulonglong ProcessingStatusFlags;
+  ulonglong IntermediateResult;
   longlong AllocatedMemoryBlock1;
-  UIByte (*paresult2) [16];
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  UIDword CounterResult;
-  UIDword TotalResult;
-  double dVar17;
-  UIByte astackUInt1b8 [8];
-  double adStack_1b0 [49];
-  ulonglong stackUInt28;
+  UIByte (*ProcessingResultArray) [16];
+  longlong TemporaryMemoryBlock3;
+  longlong TemporaryMemoryBlock4;
+  UIDword CounterValue;
+  UIDword TotalValue;
+  double ProcessedFloatValue;
+  UIByte EncryptionBuffer [8];
+  double CalculationStackBuffer [49];
+  ulonglong EncryptedDataValue;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt1b8;
-  eventProcessingStatus = (ulonglong)targetBuffer;
-  EventDataIndex = 0;
-  paresult2 = (UIByte (*) [16])astackUInt1b8;
+  EncryptedDataValue = XorEncryptionKey ^ (ulonglong)EncryptionBuffer;
+  ProcessingStatusFlags = (ulonglong)targetBuffer;
+  DataProcessingIndex = 0;
+  ProcessingResultArray = (UIByte (*) [16])EncryptionBuffer;
   do {
-    dVar17 = (double)*(float *)(dataSource + EventDataIndex * 4);
-    EventDataIndex = EventDataIndex + 1;
-    aProcessingStatus._8_4_ = SUB84(dVar17,0);
-    aProcessingStatus._0_8_ = dVar17;
-    aProcessingStatus._12_4_ = (int)((ulonglong)dVar17 >> 0x20);
-    *paresult2 = aProcessingStatus;
-    paresult2 = paresult2 + 1;
-  } while (EventDataIndex <= (longlong)eventProcessingStatus);
+    ProcessedFloatValue = (double)*(float *)(dataSource + DataProcessingIndex * 4);
+    DataProcessingIndex = DataProcessingIndex + 1;
+    ProcessingStatusBuffer._8_4_ = SUB84(ProcessedFloatValue,0);
+    ProcessingStatusBuffer._0_8_ = ProcessedFloatValue;
+    ProcessingStatusBuffer._12_4_ = (int)((ulonglong)ProcessedFloatValue >> 0x20);
+    *ProcessingResultArray = ProcessingStatusBuffer;
+    ProcessingResultArray = ProcessingResultArray + 1;
+  } while (DataProcessingIndex <= (longlong)ProcessingStatusFlags);
   if (0 < targetBuffer) {
     allocatedMemory4 = 0;
     AllocatedMemoryBlock1 = 8;
