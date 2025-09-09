@@ -312,6 +312,11 @@
 #define SystemStatusCheckOffset48 0x48
 
 // 异常处理器回调偏移量常量（补充）
+#define SystemContextOffset50 0x50
+#define SystemContextOffset60 0x60
+#define SystemContextOffset70 0x70
+#define SystemContextOffset78 0x78
+#define SystemDataBufferOffsetThreshold 0x8000
 #define ExceptionHandlerCallbackOffset290 0x290
 #define SystemParameterValidationOffset280 0x280
 #define SystemContextFunctionPointerOffset600 0x600
@@ -30019,7 +30024,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
     securityCheckResult = floatResultA;
     if (0 < (int)systemContext) {
       do {
-        resourceIterator = *(int64_t *)(systemContext + 0x50) + memoryPointer;
+        resourceIterator = *(int64_t *)(systemContext + SystemContextOffset50) + memoryPointer;
         operationStatus = ProcessDataPointerA0(securityCheckResult,resourceIterator);
         if (operationStatus != 0) {
           return;
