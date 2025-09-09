@@ -138,6 +138,12 @@ typedef enum {
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
 #define DAT_1809472f0 UIConfigurationData
+#define DAT_180956f70 UILookupTableData
+#define UNK_180958b00 UIComponentInterfaceID
+#define UNK_180958b10 UIComponentInterfaceIID
+#define DAT_180c0c6e8 UIComponentInstancePtr
+#define DAT_180958c80 UIComponentContextData
+#define _DAT_180c0c6e8 UIComponentInstanceGlobalPtr
 
 // UI系统查找表变量宏定义
 #define UIPrimaryLookupTable UISystemPrimaryLookupTable
@@ -45423,29 +45429,29 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
           aiterationCount19 = psraw(aresult93,2);
           paiterationCount5[4] = aiterationCount54;
           paiterationCount5[8] = aiterationCount19;
-          aEventTypeCode24._0_2_ = sVar118 + (ushort)(0 < sVar118) + ContextFirstValue65;
+          aEventTypeCode24._0_2_ = sVar118 + (ushort)(0 < sVar118) + UIContextFirstValue65;
           aEventTypeCode24._2_2_ = sVar119 + (ushort)(0 < sVar119) + sVar115;
-          aEventTypeCode24._4_2_ = sVar249 + (ushort)(0 < sVar249) + ContextSecondValue7;
+          aEventTypeCode24._4_2_ = sVar249 + (ushort)(0 < sVar249) + UIContextSecondValue7;
           aEventTypeCode24._6_2_ = sVar129 + (ushort)(0 < sVar129) + sVar75;
-          aEventTypeCode24._8_2_ = ContextSecondValue4 + (ushort)(0 < ContextSecondValue4) + sVar120;
+          aEventTypeCode24._8_2_ = UIContextSecondValue4 + (ushort)(0 < UIContextSecondValue4) + sVar120;
           aEventTypeCode24._10_2_ = sVar160 + (ushort)(0 < sVar160) + sVar274;
           aEventTypeCode24._12_2_ = sVar74 + (ushort)(0 < sVar74) + sVar132;
           aEventTypeCode24._14_2_ = sVar165 + (ushort)(0 < sVar165) + sVar245;
           aiterationCount54 = psraw(aEventTypeCode24,2);
-          aiterationCount43._0_2_ = ContextSecondValue8 + (ushort)(0 < ContextSecondValue8) + ContextFirstValue65;
-          aiterationCount43._2_2_ = ContextFirstValue91 + (ushort)(0 < ContextFirstValue91) + sVar115;
-          aiterationCount43._4_2_ = ContextSecondValue0 + (ushort)(0 < ContextSecondValue0) + ContextSecondValue7;
-          aiterationCount43._6_2_ = ContextFirstValue72 + (ushort)(0 < ContextFirstValue72) + sVar75;
-          aiterationCount43._8_2_ = ContextSecondValue5 + (ushort)(0 < ContextSecondValue5) + sVar120;
+          aiterationCount43._0_2_ = UIContextSecondValue8 + (ushort)(0 < UIContextSecondValue8) + UIContextFirstValue65;
+          aiterationCount43._2_2_ = UIContextFirstValue91 + (ushort)(0 < UIContextFirstValue91) + sVar115;
+          aiterationCount43._4_2_ = UIContextSecondValue0 + (ushort)(0 < UIContextSecondValue0) + UIContextSecondValue7;
+          aiterationCount43._6_2_ = UIContextFirstValue72 + (ushort)(0 < UIContextFirstValue72) + sVar75;
+          aiterationCount43._8_2_ = UIContextSecondValue5 + (ushort)(0 < UIContextSecondValue5) + sVar120;
           aiterationCount43._10_2_ = sVar70 + (ushort)(0 < sVar70) + sVar274;
           aiterationCount43._12_2_ = sVar250 + (ushort)(0 < sVar250) + sVar132;
           aiterationCount43._14_2_ = BufferCapacityValue7 + (ushort)(0 < BufferCapacityValue7) + sVar245;
           aiterationCount19 = psraw(aiterationCount43,2);
           paiterationCount5[0xc] = aiterationCount54;
-          aEventTypeCode64._0_2_ = ContextSecondValue9 + (ushort)(0 < ContextSecondValue9) + ContextFirstValue65;
-          aEventTypeCode64._2_2_ = ContextFirstValue92 + (ushort)(0 < ContextFirstValue92) + sVar115;
-          aEventTypeCode64._4_2_ = ContextSecondValue1 + (ushort)(0 < ContextSecondValue1) + ContextSecondValue7;
-          aEventTypeCode64._6_2_ = ContextFirstValue87 + (ushort)(0 < ContextFirstValue87) + sVar75;
+          aEventTypeCode64._0_2_ = UIContextSecondValue9 + (ushort)(0 < UIContextSecondValue9) + UIContextFirstValue65;
+          aEventTypeCode64._2_2_ = UIContextFirstValue92 + (ushort)(0 < UIContextFirstValue92) + sVar115;
+          aEventTypeCode64._4_2_ = UIContextSecondValue1 + (ushort)(0 < UIContextSecondValue1) + UIContextSecondValue7;
+          aEventTypeCode64._6_2_ = UIContextFirstValue87 + (ushort)(0 < UIContextFirstValue87) + sVar75;
           aEventTypeCode64._8_2_ = sVar275 + (ushort)(0 < sVar275) + sVar120;
           aEventTypeCode64._10_2_ = sVar71 + (ushort)(0 < sVar71) + sVar274;
           aEventTypeCode64._12_2_ = sVar251 + (ushort)(0 < sVar251) + sVar132;
@@ -92501,10 +92507,34 @@ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,lo
   return;
 }
 
+// 原始函数名：FUN_18071f2ed - UI变换矩阵处理器
+#define ProcessUITransformMatrix FUN_18071f2ed
 
-
-
- void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint bufferSize,
+/**
+ * @brief 处理UI变换矩阵计算
+ * 
+ * 该函数负责处理UI系统中的变换矩阵计算，主要功能包括：
+ * - 计算2D/3D变换矩阵的乘法和加法运算
+ * - 处理旋转变换和平移变换
+ * - 计算缩放和倾斜变换参数
+ * - 执行复杂的向量变换运算
+ * - 处理UI元素的坐标变换
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，包含变换所需的输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储变换结果
+ * @param bufferSize 缓冲区大小，指定数据处理的范围
+ * @param resultPointer 结果指针，指向变换计算的输出位置
+ * @param param_6 附加参数6，包含变换配置信息
+ * @param param_7 附加参数7，包含变换索引信息
+ * @param param_8 附加参数8，包含变换标志信息
+ * @param param_9 浮点参数9，包含变换系数
+ * 
+ * @note 此函数是UI系统中变换处理的核心函数
+ * @note 包含复杂的矩阵运算和向量计算
+ * @note 用于UI元素的旋转、缩放、平移等变换操作
+ */
+void ProcessUITransformMatrix(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint bufferSize,
 void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong param_7,UIHandle param_8,
                   float *param_9)

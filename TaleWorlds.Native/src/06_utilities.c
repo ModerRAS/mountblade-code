@@ -109253,7 +109253,7 @@ void Unwind_18090f2f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f310(void)
+void DestroyMutexInSituAtOffset310(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -109262,7 +109262,7 @@ void Unwind_18090f310(void)
 
 
 
-void Unwind_18090f330(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextIterationAtOffset330(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
