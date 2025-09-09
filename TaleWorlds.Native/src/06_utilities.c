@@ -41858,7 +41858,7 @@ void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataB
 void ExceptionUnwindHandlerA22(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xf0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetF0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -41898,7 +41898,7 @@ void SetDefaultExceptionHandlerAtOffset30(DataBuffer operationBase, int64_t data
 void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xf0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetF0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -58170,7 +58170,7 @@ void ResetTemporaryExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetE0) = 0;
-  *(DataWord *)(dataBuffer + 0xf0) = 0;
+  *(DataWord *)(dataBuffer + ExceptionContextPointerOffsetF0) = 0;
   *(DataBuffer *)(dataBuffer + 0xd8) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -92848,7 +92848,7 @@ void ComplexExceptionHandlerAndReset(DataBuffer operationBase,int64_t dataBuffer
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetE0) = 0;
-  *(DataWord *)(dataBuffer + 0xf0) = 0;
+  *(DataWord *)(dataBuffer + ExceptionContextPointerOffsetF0) = 0;
   *(DataBuffer *)(dataBuffer + 0xd8) = &SystemDefaultExceptionHandlerB;
   if (*(int64_t **)(dataBuffer + 0xd0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xd0) + SystemFloatDataOffset38))();
@@ -92942,7 +92942,7 @@ void ValidateAndExecuteContextCallbackC0(DataBuffer operationBase,int64_t dataBu
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetE0) = 0;
-  *(DataWord *)(dataBuffer + 0xf0) = 0;
+  *(DataWord *)(dataBuffer + ExceptionContextPointerOffsetF0) = 0;
   *(DataBuffer *)(dataBuffer + 0xd8) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -104570,7 +104570,7 @@ void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0xf0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionContextPointerOffsetF0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
