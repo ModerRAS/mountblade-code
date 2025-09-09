@@ -1348,6 +1348,21 @@ typedef enum {
 #define FUN_180742190 FindUIAvailableMemorySlot
 #define FUN_180768380 UpdateUIComponentState
 
+// UI系统验证函数
+#define FUN_18089ee64 ValidateUIContextHandle
+#define FUN_18089ee87 ValidateUIContextData
+#define FUN_18089eef2 HandleUIValidationError
+#define FUN_18089ef24 UIEmptyOperation
+#define FUN_18089ef40 ProcessUIHandleWithContext
+#define FUN_18089f530 ValidateUIDataSource
+#define FUN_18089f571 ProcessUIContextValidation
+#define FUN_1808aed00 ValidateUIBufferData
+#define FUN_1808ddf80 HandleUIValidationError
+#define FUN_1808a1090 CheckUIProcessingState
+#define FUN_180899ef0 ProcessUIContextOperation
+#define FUN_1808a1870 ValidateUIContextMemory
+#define FUN_1808de000 HandleUIValidationError
+
      * @param stateType 状态类型
  * @param stateFlagPtr 状态标志指针
  * @return 设置结果状态码
@@ -11832,11 +11847,11 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
     polygonCount = uiContext[0x11];
     matrixSize = (int)(uiContext[0x12] - polygonCount >> 3);
     polygonIndex = (longlong)matrixSize;
-    fStackX_10 = 0.0;
-    fStackX_14 = 0.0;
+    TransformMinX = 0.0;
+    TransformMinY = 0.0;
     maxY = 3.4028235e+38;
-    fStackX_18 = 0.0;
-    fStackX_1c = 0.0;
+    TransformMinZ = 0.0;
+    TransformMinW = 0.0;
     pfStackX_20 = bufferSize;
     clipMaxZ = minX;
     clipNear = scaleX;
@@ -11862,14 +11877,14 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         stackUInt198 = *(UIDword *)((componentIndex3 - contextHandleData) + -4 + (longlong)shaderHandle);
         stackUInt194 = *(UIDword *)((componentIndex3 - contextHandleData) + (longlong)shaderHandle);
         componentIndex2 = (longlong)(uiValidationResult4 % processingResult8);
-        stackUInt188 = *(UIDword *)(componentIndex3 + componentIndex2 * 8);
-        stackUInt184 = *(UIDword *)(componentIndex3 + 4 + componentIndex2 * 8);
-        CalculateUIDistanceTransform(&stackUInt188,&stackUInt198,&fStack_1b8,&fStack_1c8,&fStack_138,&fStack_178);
+        VertexIndexX = *(UIDword *)(componentIndex3 + componentIndex2 * 8);
+        VertexIndexY = *(UIDword *)(componentIndex3 + 4 + componentIndex2 * 8);
+        CalculateUIDistanceTransform(&VertexIndexX,&VertexIndexY,&DistanceX,&DistanceY,&DistanceZ,&DistanceW);
         stackUInt164 = *shaderHandle;
         stackUInt154 = *(UIDword *)(contextHandleData + 4 + componentIndex2 * 8);
-        TransformCoefficient20 = (fStack_174 - fStack_134) * (fStack_174 - fStack_134) +
-                 (fStack_178 - fStack_138) * (fStack_178 - fStack_138) +
-                 (fStack_170 - fStack_130) * (fStack_170 - fStack_130);
+        DistanceSquared = (VertexW - VertexZ) * (VertexW - VertexZ) +
+                 (DistanceW - DistanceZ) * (DistanceW - DistanceZ) +
+                 (VertexY - VertexX) * (VertexY - VertexX);
         stackUInt168 = shaderHandle[-1];
         stackUInt158 = *(UIDword *)(contextHandleData + componentIndex2 * 8);
         if (TransformCoefficient20 < transformCoeff16) {

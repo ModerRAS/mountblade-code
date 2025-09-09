@@ -1615,6 +1615,29 @@
 #define ProcessSystemDataTable FUN_1800b88d0                   // 处理系统数据表
 #define ProcessSystemTimeoutEx FUN_18005e770                  // 处理系统超时扩展
 #define CleanupSystemDataTable FUN_1800b8500                   // 清理系统数据表
+
+// 新增的函数语义化映射 - 基于实际调用分析
+#define ProcessSystemStatusFlag FUN_1801504b0                 // 处理系统状态标志
+#define ProcessCharacterEncodingConversionEx FUN_1802aaef0    // 处理字符编码转换扩展
+#define ProcessCharacterEncodingValidation FUN_1800ba230      // 处理字符编码验证
+#define ProcessSystemMemoryStatus FUN_180370550               // 处理系统内存状态
+#define ProcessSystemStringValidation FUN_1800c2ab0           // 处理系统字符串验证
+#define ProcessSystemMemoryManager FUN_1800b33d0              // 处理系统内存管理器
+#define ProcessSystemCharacterStatusBuffer FUN_1800befa0      // 处理系统字符状态缓冲区
+#define ProcessSystemMemoryAllocationAdvanced FUN_180181d80   // 处理系统内存分配高级
+#define ProcessSystemPrimaryCharacterStatus FUN_180188560    // 处理系统主字符状态
+#define ProcessSystemSecondaryCharacterStatus FUN_18018a610   // 处理系统次字符状态
+#define ProcessSystemTertiaryCharacterStatus FUN_180188910   // 处理系统第三字符状态
+#define ProcessSystemQuaternaryCharacterStatus FUN_1801887a0  // 处理系统第四字符状态
+#define ProcessSystemQuinaryCharacterStatus FUN_180188b30    // 处理系统第五字符状态
+#define ProcessSystemSenaryCharacterStatus FUN_180189900      // 处理系统第六字符状态
+#define ProcessSystemSeptenaryCharacterStatus FUN_180188d20   // 处理系统第七字符状态
+#define ProcessSystemOctonaryCharacterStatus FUN_180189600    // 处理系统第八字符状态
+#define ProcessSystemNonaryCharacterStatus FUN_180188620     // 处理系统第九字符状态
+#define ProcessSystemCharacterEncoding FUN_1801836e0          // 处理系统字符编码
+#define ProcessSystemUnicodeCodePoint FUN_180187f00          // 处理系统Unicode代码点
+#define ProcessSystemEventDispatcher FUN_18018a130           // 处理系统事件调度器
+#define ProcessSystemCharacterTable FUN_180067110             // 处理系统字符表
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
 #define IdentifySystemIdentifierByPatternVariantX FUN_1802258a7
@@ -218765,7 +218788,7 @@ void SystemDataProcessingFunction(void
     *pppppcStack_178 = (code ****)&SystemDataStructureTertiary;
     *(code ******)(SystemDataTablePointer + 0x40) = pppppcStack_178;
     ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0x238,8,3);
-    ProcessingStatusFlag = FUN_1801504b0(ProcessingStatusFlag);
+    ProcessingStatusFlag = ProcessSystemStatusFlag(ProcessingStatusFlag);
     (**(code **)(**(long long **)(SystemDataTablePointer + 0x40) + 8))(*(long long **)(SystemDataTablePointer + 0x40),ProcessingStatusFlag);
     (**(code **)(**(long long **)(SystemDataTablePointer + 0x2b0) + 0x80)              (*(long long **)(SystemDataTablePointer + 0x2b0),*(void *)(SystemDataTablePointer + 0x40));
     pppppValidationStatus = (code ******)pppppcStack_188;
@@ -218783,10 +218806,10 @@ void SystemDataProcessingFunction(void
         do {
           LoopIndex = *ContextHandle8;
           if ((*(long long *)(LoopIndex + 0x15b8) == 0) && (*(int *)(LoopIndex + 0x16c0) != 0)) {
-            EncodingConversionResult = FUN_1802aaef0(CharacterTablePointer + 0xac0,LoopIndex + 0x16b0);
+            EncodingConversionResult = ProcessCharacterEncodingConversionEx(CharacterTablePointer + 0xac0,LoopIndex + 0x16b0);
             if (EncodingConversionResult == 0) {
               ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0x50,0x10,3);
-              EncodingConversionResult = FUN_1800ba230(ProcessingStatusFlag,LoopIndex + 0x16b0);
+              EncodingConversionResult = ProcessCharacterEncodingValidation(ProcessingStatusFlag,LoopIndex + 0x16b0);
               SetSystemEncodingConversion(CharacterTablePointer + 0xac0,EncodingConversionResult);
             }
             *(long long *)(LoopIndex + 0x15b8) = EncodingConversionResult;
@@ -219225,7 +219248,7 @@ LAB_180180381:
           }
           (**(code **)(**(long long **)(CoreEngineSystemContext + 0x2b0) + 0x128))();
           ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xc0,8,3);
-          ProcessingStatusFlag = FUN_180370550(ProcessingStatusFlag);
+          ProcessingStatusFlag = ProcessSystemMemoryStatus(ProcessingStatusFlag);
           *(void *)(SystemDataTablePointer + 0x3e0) = ProcessingStatusFlag;
           if ((*(int *)(SystemDataTablePointer + 0x3c) != -1) &&
              (*(int *)(SystemDataTablePointer + 0x3c) <= *(int *)(SystemDataTablePointer + 0x318) + 1)) goto LAB_18018054e;
@@ -219588,7 +219611,7 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
       SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
     }
     if ((SecondaryProcessingStatusFlag == StringProcessingStatus) || (*(int *)(SecondaryProcessingStatusFlag + 6) != 0)) {
-      SecondaryProcessingStatusFlag = (void *)FUN_1800c2ab0(StringProcessingStatus,aSystemPriorityLevel);
+      SecondaryProcessingStatusFlag = (void *)ProcessSystemStringValidation(StringProcessingStatus,aSystemPriorityLevel);
       SecondaryProcessingStatusFlag = (void *)*SecondaryProcessingStatusFlag;
     }
     *(int *)(SecondaryProcessingStatusFlag + 8) = IntegerValue;
@@ -219982,7 +220005,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
               SystemStringIndex = SystemStringIndex + 1;
             } while (Utf16Char4 < CoreEngineValueA8);
           }
-          ContextHandle2 = (long long *)FUN_1800b33d0(SystemMemoryManagerPointer,&AdditionalParameter1,&pMemoryOffsetValue);
+          ContextHandle2 = (long long *)ProcessSystemMemoryManager(SystemMemoryManagerPointer,&AdditionalParameter1,&pMemoryOffsetValue);
           SecondaryProcessingStatusFlag = pSystemStackRegisterFlagB0;
           if (AdditionalParameter1 == (long long *)0x0) {
             if ((CoreEngineValueA8 == 0xb) && (SystemOperationResult = strcmp(pSystemStackRegisterFlagB0,&SystemEventTemplateSecondary), SystemOperationResult == 0)) {
@@ -219994,7 +220017,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
                 CharacterStatusBuffer5 = SecondaryProcessingStatusFlag;
               }
               InitializeSystemEventTemplateData(&SystemEventTemplatePrimary,CharacterStatusBuffer5,&SystemMemoryBlockIndex);
-              SystemStatusContext = (void *)FUN_1800befa0(SystemCharacterStatusBufferPointerA,&pCoreEngineSignedValueC8);
+              SystemStatusContext = (void *)ProcessSystemCharacterStatusBuffer(SystemCharacterStatusBufferPointerA,&pCoreEngineSignedValueC8);
               BufferAllocationStatus = (long long *)*CharacterStatusBuffer3;
               *SystemStatusContext = 0;
               if (AdditionalParameter1 != (long long *)0x0) {
@@ -220027,7 +220050,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
           pMemoryOffsetValue = &ThreadLocalStorageTemplate;
         }
         else if (ComputedResult == 9) {
-          MemoryAllocationIndex = FUN_180181d80(ContextHandle,0x20,SystemPrimaryReturnCode,IntegerValue9,UnicodeCodePoint0);
+          MemoryAllocationIndex = ProcessSystemMemoryAllocationAdvanced(ContextHandle,0x20,SystemPrimaryReturnCode,IntegerValue9,UnicodeCodePoint0);
           aMemoryAllocationOffset._8_4_ = (int)VectorResultB;
           aMemoryAllocationOffset.Low64Part = VectorCalculationResult;
           aMemoryAllocationOffset.High32Part = (int)((unsigned long long)VectorResultB >> 0x20);
@@ -220786,7 +220809,7 @@ void ProcessAsyncCallback(uint32_t ContextHandle, long long *ContextHandleSize, 
           else {
 LAB_180184411:
             StackProcessingValue78 = ReferenceCountPointer;
-            lStack_88 = FUN_18018a610(&primaryCharacterStatusBufferPointer,primaryCharacterStatusBufferPointer,&StackProcessingValue78);
+            lStack_88 = ProcessSystemSecondaryCharacterStatus(&primaryCharacterStatusBufferPointer,primaryCharacterStatusBufferPointer,&StackProcessingValue78);
             ProcessUtf8ToUtf16CharacterEncodingVariant(&primaryCharacterStatusBufferPointer,&ppSystemValidationPointer,pppSystemCharacterStatusBuffer,lStack_88 + 0x1c);
             pppSystemCharacterStatusBuffer = (uint64_t ****)ppSystemValidationPointer;
           }
