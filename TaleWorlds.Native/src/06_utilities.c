@@ -22853,7 +22853,7 @@ void ProcessFloatComparisonAndValidation(void)
   rangeCheckValue = *(float *)(CONCAT44(registerHighWord,registerLowWord) + SystemFloatDataOffset38);
   inputFloatValue = *(float *)(registerDataPointer + SystemDataSecondaryOffset18);
   if ((rangeCheckValue <= inputFloatValue) &&
-     (rangeCheckValue = *(float *)(CONCAT44(registerHighValue,registerLowValue) + SystemDataRecordOffset3c), inputFloatValue <= rangeCheckValue)) {
+     (rangeCheckValue = *(float *)(CONCAT44(registerHighWord,registerLowWord) + SystemDataRecordOffset3c), inputFloatValue <= rangeCheckValue)) {
     rangeCheckValue = inputFloatValue;
   }
   *(float *)(registerDataPointer + SystemDataSecondaryOffset18) = rangeCheckValue;
@@ -23122,18 +23122,18 @@ void ProcessFloatRangeValidation(void)
 {
   float currentValue;
   DataBuffer *resultPointer;
-  DataWord registerPartLow;
+  DataWord registerLowPart;
   int validationStatus;
-  DataWord registerPartHigh;
+  DataWord registerHighPart;
   int64_t contextPointer;
   int64_t systemHandle;
   float processedValue;
   DataWord DataProcessingOffset;
   
-  processedValue = *(float *)(CONCAT44(registerPartHigh,registerPartLow) + SystemFloatDataOffset38);
+  processedValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + SystemFloatDataOffset38);
   currentValue = *(float *)(contextPointer + ExceptionHandlerCallbackOffset);
   if ((processedValue <= currentValue) &&
-     (processedValue = *(float *)(CONCAT44(registerPartHigh,registerPartLow) + SystemDataRecordOffset3c), currentValue <= processedValue)) {
+     (processedValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + SystemDataRecordOffset3c), currentValue <= processedValue)) {
     processedValue = currentValue;
   }
   *(float *)(contextPointer + ExceptionHandlerCallbackOffset) = processedValue;
