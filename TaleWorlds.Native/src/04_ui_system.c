@@ -2272,6 +2272,19 @@ typedef enum {
 #define uiContext1 UIContext1
 #define uiContext0 UIContext0
 #define componentHeaderPointer UIComponentHeaderPointer
+
+// UI系统短整型变量美化
+#define sVar1 UIShortVar1
+#define sVar2 UIShortVar2
+#define sVar9 UIShortVar9
+#define sVar14 UIShortVar14
+
+// UI系统栈变量美化
+#define stackInt158 UIStackInt158
+#define stackUInt140 UIStackUInt140
+#define stackInte8 UIStackInte8
+#define sStack_f8 UIStack_f8
+#define sStack_d8 UIStack_d8
 #define extendedBufferSize UIExtendedBufferSize
 #define uiContextType UIContextType
 #define componentResult UIComponentResult
