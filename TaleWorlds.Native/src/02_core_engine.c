@@ -199,6 +199,44 @@
 #define CurrentSystemCharacter4 ValidationStatus4         // 当前系统字符4
 #define CharacterProcessingStatus2 CharacterStatus2       // 字符处理状态2
 
+// 缺失的系统状态变量语义化宏定义
+#define BufferStatus SystemBufferStatus                    // 缓冲区状态
+#define SystemMemoryFlagA SystemMemoryFlag1                // 系统内存标志1
+#define SystemMemoryFlagB SystemMemoryFlag2                // 系统内存标志2
+#define SystemMemoryFlagC SystemMemoryFlag3                // 系统内存标志3
+#define SystemMemoryFlagD SystemMemoryFlag4                // 系统内存标志4
+#define SystemMemoryFlagE SystemMemoryFlag5                // 系统内存标志5
+#define SystemMemoryFlagF SystemMemoryFlag6                // 系统内存标志6
+#define SystemMemoryFlagG SystemMemoryFlag7                // 系统内存标志7
+#define SystemMemoryFlagH SystemMemoryFlag8                // 系统内存标志8
+#define SystemPriorityLevel SystemThreadPriority           // 系统线程优先级
+#define BufferOffset SystemBufferOffset                     // 系统缓冲区偏移量
+#define ThreadPriorityComparisonResult ThreadPriorityComparison // 线程优先级比较结果
+#define ThreadConfigurationFlags1 ThreadConfigFlags1       // 线程配置标志1
+#define ThreadConfigurationFlags2 ThreadConfigFlags2       // 线程配置标志2
+#define ThreadConfigurationFlags3 ThreadConfigFlags3       // 线程配置标志3
+#define MemoryOffsetValue SystemMemoryOffsetValue         // 系统内存偏移值
+#define ThreadMemoryOffset ThreadMemoryBaseOffset          // 线程内存基础偏移量
+#define ThreadMemoryPointer ThreadMemoryBasePointer        // 线程内存基础指针
+#define ThreadMemoryAlignment ThreadMemoryAlignMask        // 线程内存对齐掩码
+#define ThreadMemoryStatus ThreadMemoryAllocStatus        // 线程内存分配状态
+#define ThreadMemoryFlag ThreadMemoryLockFlag             // 线程内存锁定标志
+#define StackValidationData ThreadStackValidationData      // 线程栈验证数据
+#define ThreadMemoryPoolBlockSize ThreadMemoryBlockSize   // 线程内存块大小
+#define ThreadMemoryHandle ThreadMemoryAllocationHandle   // 线程内存分配句柄
+#define pppTemporaryBuffer TemporaryBufferPointer          // 临时缓冲区指针
+
+// 系统模板和异常处理变量语义化宏定义
+#define SystemNullTemplate SystemNullDataTemplate          // 系统空数据模板
+#define ThreadLocalStorageTemplate ThreadLocalStorageDataTemplate // 线程本地存储数据模板
+#define ExceptionList SystemExceptionList                  // 系统异常列表
+#define BufferAllocationComplete MemoryAllocationCompleteLabel // 内存分配完成标签
+#define CoreEngineDataTemplate CoreEngineSystemDataTemplate    // 核心引擎系统数据模板
+
+// 系统函数语义化宏定义
+#define CONCAT71 Concatenate71BitValues                    // 连接71位值
+#define HandleMemoryAllocationException ProcessMemoryAllocationException // 处理内存分配异常
+
 // 栈变量语义化宏定义
 #define StackPointer88 pcStack_88                          // 栈指针88
 #define CharacterBuffer80 CharacterBuffer80               // 字符缓冲区80
