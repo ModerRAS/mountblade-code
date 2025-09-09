@@ -114764,7 +114764,17 @@ void CallExceptionHandlerFunctionAtOffset260(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_1809104d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理函数 - 上下文偏移量0x1c00
+ * 
+ * 处理异常上下文中的数据管理和内存块操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809104d0
+ */
+void ProcessExceptionContextAtOffset1C00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -114786,7 +114796,17 @@ void Unwind_1809104d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809104f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源处理函数 - 上下文偏移量0x1c80
+ * 
+ * 处理内存资源的引用计数和内存块管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809104f0
+ */
+void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
