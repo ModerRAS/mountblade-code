@@ -128,6 +128,13 @@
 #define StackFrameContextOffset1D0 0x1d0
 #define BufferPointerOffsetD0 0xd0
 #define ExceptionHandlerContext4Offset10 0x10
+#define MemoryBlockOffset4C 0x4c
+#define MemoryBlockOffset58 0x58
+#define MemoryBlockOffset50 0x50
+#define ExceptionHandlerContext5OffsetD0 0xd0
+#define OperationResult0Offset10 0x10
+#define DataContextOffset58 0x58
+#define DataContextOffset50 0x50
 
 // 内存资源释放相关偏移量常量
 #define MemoryResourceReleaseOffset30 0x30
@@ -25821,7 +25828,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             statusFlag = CheckSystemStatus(memoryBlockOffset,1);
             exceptionBuffer6 = TemporaryPointerBufferB;
             // 验证浮点数比较结果
-            if ((statusFlag == '\0') && (*(float *)(memoryBlockOffset + 0x4c) != *(float *)(calculatedIndex + SystemParameterValidationOffset28))) {
+            if ((statusFlag == '\0') && (*(float *)(memoryBlockOffset + MemoryBlockOffset4C) != *(float *)(calculatedIndex + SystemParameterValidationOffset28))) {
               // 执行安全验证数据操作
               SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
@@ -25832,11 +25839,11 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + SystemContextPointerOffset90) + bufferPointer * 8);
               TemporaryByteFlagA = 0;
               // 根据内存块偏移量选择异常数据缓冲区
-              if (*(int *)(memoryBlockOffset + 0x58) < 1) {
+              if (*(int *)(memoryBlockOffset + MemoryBlockOffset58) < 1) {
                 exceptionDataBuffer = &SystemResourceDataBuffer;
               }
               else {
-                exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + 0x50);
+                exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + MemoryBlockOffset50);
               }
               // 初始化内存并验证数据完整性
               InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer,0x80);
@@ -26081,7 +26088,7 @@ void ProcessDataTypesA0(void)
   StackFloatRegisterA = dataPointerD;
   StackPointerRegisterA = memoryResourcePointer2;
   exceptionHandlerContext5 = (*(code *)*inputAccumulatorRegister)(memoryResourcePointer2);
-  resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + 0xd0),&validationBuffer);
+  resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + ExceptionHandlerContext5OffsetD0),&validationBuffer);
   if (resourceValidationStatus == 0) {
     systemErrorHandlingBuffer = &DataValidationErrorBase;
     *(DataWord *)(StackFrameContext + -0xf) = SystemOperationResult;
@@ -48295,7 +48302,7 @@ void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextDa
   
   dataContext = *(int64_t **)(contextData + 0x40);
   exceptionHandlerContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x50) {
+  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockOffset50) {
     ValidateExceptionContext(memoryBlockOffset);
   }
   if (*dataContext == 0) {
@@ -92757,7 +92764,7 @@ void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
     systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + 0xa8);
     dataContext = *(int64_t *)(memoryBlockOffset + 0xa0);
     **(int64_t **)(memoryBlockOffset + 0x30) = dataContext;
-    **(int64_t **)(memoryBlockOffset + 0x50) = dataContext;
+    **(int64_t **)(memoryBlockOffset + MemoryBlockOffset50) = dataContext;
     **(int **)(memoryBlockOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + 0x94) != '\0') {
