@@ -400014,7 +400014,19 @@ void FUN_18089e811(void)
 
 
 
-ulonglong FUN_18089e820(longlong uiContext,longlong *dataSource)
+/**
+ * @brief 处理UI上下文数据验证和事件处理
+ * 
+ * 该函数负责验证UI上下文数据的完整性，处理各种事件类型，
+ * 并管理数据源缓冲区的操作。支持多种事件类型的验证和处理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针数组
+ * @return 处理状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_18089e820
+ */
+ulonglong ProcessUIContextDataValidationAndEventHandling(longlong uiContext, longlong *dataSource)
 
 {
   longlong allocatedMemory;
