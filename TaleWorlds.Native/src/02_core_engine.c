@@ -5268,6 +5268,10 @@ void* SystemDataTemplatePrimaryPointer;
 void* SystemDataTemplateSecondaryPointer;
 void* SystemDataTemplatePointer;
 
+// 系统数据模板常量
+const void* const SystemDataTemplate4F08 = (void*)0x180a00320;
+const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
+
 // 函数语义化宏定义
 
 /**

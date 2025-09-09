@@ -30070,11 +30070,11 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
     ProcessingResult = RefreshUIComponent(*(longlong *)(uiBufferData + 0x1b0),&LayoutFlags,&ComponentStateHandle,&RenderStateHandle);
     if (ProcessingResult == 0) {
       *(int *)(uiBufferData + 0x13c) = AlignmentOffset;
-      *(int *)(uiBufferData + 0x134) = StackValuec4;
+      *(int *)(uiBufferData + 0x134) = AlignmentOffset;
       *(UIDword *)(uiBufferData + 0x118) = 0x102;
-      *(uint *)(uiContext + 0x128) = StackValuec4 + 0x4fU & 0xfffffff0;
-      *(UIDword *)(uiBufferData + 0x138) = UIStackCounterc8;
-      *(UIDword *)(uiBufferData + 0x130) = UIStackCounterc8;
+      *(uint *)(uiContext + 0x128) = AlignmentOffset + 0x4fU & 0xfffffff0;
+      *(UIDword *)(uiBufferData + 0x138) = LayoutFlags;
+      *(UIDword *)(uiBufferData + 0x130) = LayoutFlags;
       *(UIDword *)(uiBufferData + 0x124) = UIStackCounterb8;
       *(UIDword *)(uiBufferData + 0x140) = 1;
       *(UIDword *)(uiBufferData + 0x144) = 1;
