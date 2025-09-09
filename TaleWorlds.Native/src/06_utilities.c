@@ -36560,7 +36560,7 @@ ValidationErrorHandler2:
         securityCheckResult = *(uint *)(StackFrameContext + 0x77) & -(operationResult & 1);
         memoryRegionBase = (uint64_t)securityCheckResult;
         *(uint *)(StackFrameContext + 0x77) = securityCheckResult;
-        secondaryFloatResult = ValidationFloatResultA;
+        secondaryFloatResult = ValidationResultFloatA;
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
@@ -36817,7 +36817,7 @@ ValidationErrorHandler2:
         statusCounter = *(uint *)(StackFrameContext + 0x77) & -(memoryRegionBase & 1);
         DestinationContext = (uint64_t)statusCounter;
         *(uint *)(StackFrameContext + 0x77) = statusCounter;
-        ValidationFloatValue2 = ValidationFloatResultA;
+        ValidationFloatValue2 = ValidationResultFloatA;
       } while ((int)securityCheckResult < (int)(memoryRegionBase >> 1));
     }
   }
@@ -37074,7 +37074,7 @@ ValidationErrorHandler2:
         statusCounter = *(uint *)(StackFrameContext + 0x77) & -(memoryRegionBase & 1);
         DestinationContext = (uint64_t)statusCounter;
         *(uint *)(StackFrameContext + 0x77) = statusCounter;
-        ValidationFloatValue2 = ValidationFloatResultA;
+        ValidationFloatValue2 = ValidationResultFloatA;
       } while ((int)securityCheckResult < (int)(memoryRegionBase >> 1));
     }
   }
