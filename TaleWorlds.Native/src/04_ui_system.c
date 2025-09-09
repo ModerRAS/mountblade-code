@@ -400555,6 +400555,35 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define ValidateUIHandleOperation FUN_18089fac2
 #define ProcessUIHandleValidation FUN_18089fad8
 
+// UI系统数据处理函数
+#define ProcessUIFloatDataWithValidation FUN_18071fef0
+#define ValidateUIResource FUN_1807201ce
+#define ProcessUIBufferDataWithValidation FUN_180720e10
+#define ProcessUIDataWithValidationAndMetrics FUN_180721650
+#define ProcessUIDataWithSourceAndTarget FUN_180721698
+#define FinalizeUIDataOperation FUN_18072174a
+#define ProcessUIDataWithResultAndMetrics FUN_180721810
+
+// UI系统数据初始化函数
+#define InitializeUIDataBuffer FUN_18071ab41
+#define InitializeUIDataContext FUN_18071ace8
+
+// UI系统寄存器变量美化
+#define unmodifiedEBX UIPreservedEBX
+#define unmodifiedXMM8_Da UIPreservedXMM8_Data
+#define unmodifiedXMM9_Da UIPreservedXMM9_Data
+#define unmodifiedXMM10_Da UIPreservedXMM10_Data
+#define unmodifiedXMM12_Da UIPreservedXMM12_Data
+#define unmodifiedXMM12_Db UIPreservedXMM12_DataB
+#define unmodifiedXMM12_Dc UIPreservedXMM12_DataC
+#define unmodifiedXMM12_Dd UIPreservedXMM12_DataD
+#define unmodifiedXMM13_Da UIPreservedXMM13_Data
+#define unmodifiedXMM14_Da UIPreservedXMM14_Data
+#define unmodifiedXMM15_Da UIPreservedXMM15_Data
+#define preservedRegister15 UIPreservedRegister15
+#define preservedRegister12 UIPreservedRegister12
+#define preservedRegister13 UIPreservedRegister13
+
 
 
 
