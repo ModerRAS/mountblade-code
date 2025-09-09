@@ -28603,47 +28603,47 @@ void InitializeUIRenderingFunctions(void)
     HasOSXSAVESupport = false;
     HasAVX2Support = false;
     if (((EventTypeCode & 0x18000000) == 0x18000000) && ((in_XCR0 & 6) == 6)) {
-      IsValidationComplete = true;
-      bVar4 = false;
+      HasOSXSAVESupport = true;
+      HasAVX2Support = false;
       if ((6 < *ptrResult) &&
-         (componentIndex = cpuid_Extended_Feature_Enumeration_info(7), bVar4 = false,
+         (componentIndex = cpuid_Extended_Feature_Enumeration_info(7), HasAVX2Support = false,
          (*(uint *)(componentIndex + 4) & 0x20) != 0)) {
-        IsValidationComplete = true;
-        bVar4 = true;
+        HasOSXSAVESupport = true;
+        HasAVX2Support = true;
       }
     }
   }
   g_uiSystemMainData1 = ProcessUIMainData;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemMainData1 = ProcessUIMainDataAlternative;
   }
-  if (bVar4) {
+  if (HasAVX2Support) {
     g_uiSystemMainData1 = ProcessUIMainDataOptimized;
   }
   g_uiSystemRendererData2 = TriggerUIRenderingUpdate;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemRendererData2 = ResetUIRenderingState;
   }
   g_uiSystemRendererData1 = ProcessUIRendererData1;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemRendererData1 = ProcessUIRendererData1Basic;
   }
   g_uiSystemRendererData3 = ProcessUIRendererData3;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemRendererData3 = ProcessUIRendererData3Basic;
   }
   g_uiSystemRendererData4 = ProcessUIRendererData4;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemRendererData4 = ProcessUIRendererData4Basic;
   }
-  if (bVar4) {
+  if (HasAVX2Support) {
     g_uiSystemRendererData4 = ProcessUIRendererData4Optimized;
   }
   g_uiSystemRendererData5 = ProcessUIRendererData5;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemRendererData5 = ProcessUIRendererData5Basic;
   }
-  if (bVar4) {
+  if (HasAVX2Support) {
     g_uiSystemRendererData5 = ProcessUIRendererData5Optimized;
   }
   g_uiSystemNullHandler = ProcessUINullHandler;
