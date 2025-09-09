@@ -189127,66 +189127,66 @@ UIByte UIAnimationCacheTailPtr;
 UIByte UIInputStateHeadPtr;
 // 原始变量名：DAT_180c0feb4 - UI输入状态尾指针
 #define UIInputStateTailPtr DAT_180c0feb4
-undefined UIInputStateTailPtr;
+UIByte UIInputStateTailPtr;
 // 原始变量名：UNK_18095aaa0 - UI系统主题管理器
 #define UISystemThemeManager UNK_18095aaa0
-undefined UISystemThemeManager;
+UIByte UISystemThemeManager;
 // 原始变量名：DAT_180c10880 - UI系统配置标志
 #define UISystemConfigFlag DAT_180c10880
 char UISystemConfigFlag;
 // 原始变量名：DAT_180c10890 - UI系统状态标志
 #define UISystemStatusFlag DAT_180c10890
-undefined UISystemStatusFlag;
+UIByte UISystemStatusFlag;
 // 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
 // 注意：已在文件开头定义为 GlobalUIComponentInstanceE8
 // #define UISystemCOMInterfacePtr DAT_180c0c6e8
-// undefined UISystemCOMInterfacePtr;
+// UIByte UISystemCOMInterfacePtr;
 
 // 原始变量名：DAT_180958c80 - UI系统字符映射表
 // 注意：已在文件开头定义为 UIComponentContextTableC80
 // #define UISystemCharacterMappingTable DAT_180958c80
-// undefined UISystemCharacterMappingTable;
+// UIByte UISystemCharacterMappingTable;
 // 原始变量名：UNK_18095ab70 - UI系统样式管理器
 #define UISystemStyleManager UNK_18095ab70
-undefined UISystemStyleManager;
+UIByte UISystemStyleManager;
 // 原始变量名：UNK_18095ab80 - UI系统颜色管理器
 #define UISystemColorManager UNK_18095ab80
-undefined UISystemColorManager;
+UIByte UISystemColorManager;
 // 原始变量名：UNK_180785d90 - UI系统字体管理器
 #define UISystemFontManager UNK_180785d90
-undefined UISystemFontManager;
+UIByte UISystemFontManager;
 // 原始变量名：UNK_18095ac00 - UI系统图标管理器
 #define UISystemIconManager UNK_18095ac00
-undefined UISystemIconManager;
+UIByte UISystemIconManager;
 // 原始变量名：UNK_18095ac78 - UI系统光标管理器
 #define UISystemCursorManager UNK_18095ac78
-undefined UISystemCursorManager;
+UIByte UISystemCursorManager;
 // 原始变量名：UNK_18095ac80 - UI系统工具提示管理器
 #define UISystemTooltipManager UNK_18095ac80
-undefined UISystemTooltipManager;
+UIByte UISystemTooltipManager;
 // 原始变量名：UNK_1807880a0 - UI系统对话框管理器
 #define UISystemDialogManager UNK_1807880a0
-undefined UISystemDialogManager;
+UIByte UISystemDialogManager;
 // 原始变量名：UNK_18095acf0 - UI系统菜单管理器
 #define UISystemMenuManager UNK_18095acf0
-undefined UISystemMenuManager;
+UIByte UISystemMenuManager;
 
  简化实现：UI系统清理函数
  原本实现：可能包含更复杂的清理逻辑
-undefined UICleanupSystem;
+UIByte UICleanupSystem;
 
  简化实现：UI系统暂停函数
  原本实现：可能包含更复杂的暂停逻辑
-undefined UIPauseSystem;
-undefined UIResourceOffsetTable;
-undefined UIResourceManagerHandle;
-undefined UIResourceAllocator;
+UIByte UIPauseSystem;
+UIByte UIResourceOffsetTable;
+UIByte UIResourceManagerHandle;
+UIByte UIResourceAllocator;
 
  简化实现：UI系统恢复函数
  原本实现：可能包含更复杂的恢复逻辑
-undefined UIResumeSystem;
-undefined UIResourceValidator;
-undefined UIResourceCache;
+UIByte UIResumeSystem;
+UIByte UIResourceValidator;
+UIByte UIResourceCache;
 undefined UIResourceDataPointer;
 undefined UIResourceSizeInfo;
 undefined UIResourceConfigData;
