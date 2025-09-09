@@ -50072,26 +50072,26 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(contextOffset + 0x40);
+  exceptionDataBuffer = *(DataBuffer **)(contextOffset + ExceptionHandlerContextOffset40);
   *exceptionDataBuffer = &DefaultExceptionHandlerC;
   exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[ExceptionDataBufferIndex19] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
-  *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
+  *(DataWord *)(exceptionDataBuffer + ExceptionDataWordOffset) = 0;
   exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + ExceptionDataBufferIndex12,exceptionDataBuffer[ExceptionDataBufferIndex14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[ExceptionDataBufferIndexD] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[9] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex9] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[5] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex5] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  if (exceptionDataBuffer[1] != 0) {
+  if (exceptionDataBuffer[ExceptionDataBufferIndex1] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
