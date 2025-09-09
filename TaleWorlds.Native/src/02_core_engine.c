@@ -216880,7 +216880,19 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *ContextHandle,uin
 
 
 
-7b850(long long ContextHandlevoid FUN_18017b850(long long ContextHandle
+/**
+ * @brief 系统字符串处理状态管理函数B850
+ * 
+ * 该函数负责管理系统字符串处理状态，包括：
+ * 1. 配置系统数据结构偏移量
+ * 2. 初始化渲染上下文和内存块
+ * 3. 处理内存块验证和分配
+ * 4. 管理系统渲染状态和字符串数据
+ * 
+ * @param ContextHandle 上下文句柄
+ * @note 原始函数名：FUN_18017b850
+ */
+void ManageSystemStringProcessingState(long long ContextHandle)
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
@@ -217001,7 +217013,19 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *ContextHandle,uin
 
 
 
-7bc20(uint64_t ContextHandlevoid FUN_18017bc20(uint64_t ContextHandle
+/**
+ * @brief 系统标志处理和上下文验证函数BC20
+ * 
+ * 该函数负责处理系统标志和上下文验证，包括：
+ * 1. 处理系统标志状态
+ * 2. 管理错误代码和指针缓冲区
+ * 3. 验证系统上下文状态
+ * 4. 处理核心引擎值和指针
+ * 
+ * @param ContextHandle 上下文句柄
+ * @note 原始函数名：FUN_18017bc20
+ */
+void ProcessSystemFlagsAndContextValidation(uint64_t ContextHandle)
 {
   uint8_t auStack_118 [32];
   uint32_t SystemFlagB;

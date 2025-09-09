@@ -21152,7 +21152,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
       return operationResult;
     }
   }
-  *(uint *)(dataDescriptor + DataDescriptorOffset8) = *(int *)(dataDescriptor + DataDescriptorOffset8) + 0xfU & 0xfffffff0;
+  *(uint *)(dataDescriptor + DataDescriptorOffset8) = *(int *)(dataDescriptor + DataDescriptorOffset8) + DataAlignmentValue & SecurityAlignmentMask;
   operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(dataContext + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
@@ -27961,7 +27961,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   uint64_t securityCheckValue;
   
   *(ByteFlag *)(operationBase + 4) = 1;
-  operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),&validationStackBuffer);
+  operationResult = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + RegisterContextDataOffset),&validationStackBuffer);
   if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(validationStackBuffer,temporaryStackArray,0), (int)operationResult == 0)) &&
      (operationResult = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset10))(operationBase), (int)operationResult == 0)) {
     validationStatus = (uint64_t)(temporaryStackArray[0] * 48000) / (uint64_t)*(uint *)((int64_t)operationBase + SystemParameterOffset1C);
@@ -28944,7 +28944,7 @@ void ProcessDataBlockOperationA0(DataBuffer systemContext,int64_t dataBufferPtr)
     if (validationResult == 0) {
       validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + FloatValueOffset);
       if (validationResult == 0) {
-        ValidateSystemDataD0(systemContext,dataBufferPtr + 0x24);
+        ValidateSystemDataD0(systemContext,dataBufferPtr + DataBufferValidationOffset);
       }
     }
   }
