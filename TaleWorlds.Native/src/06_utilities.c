@@ -4555,10 +4555,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：Unwind_180909f20
  */
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA15 Unwind_180909f20
+#define CleanupsystemContextA15 ReleaseSystemContextResources
 // 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA16 Unwind_180909f40
+#define CleanupsystemContextA16 FreeSystemContextMemory
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
 // 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
@@ -131948,10 +131948,10 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_180909f20
  */
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA15 Unwind_180909f20
+#define CleanupsystemContextA15 ReleaseSystemContextResources
 // 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA16 Unwind_180909f40
+#define CleanupsystemContextA16 FreeSystemContextMemory
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
 // 功能：清理内存资源的引用计数，处理内存块的释放和引用关系更新
 #define CleanupMemoryResourceReferenceCount ReleaseMemoryResourceReferences
