@@ -11600,7 +11600,7 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
       }
     }
   }
-Label_18062f2b6:
+NetworkBooleanProcessingComplete:
   pNetworkRequestStatus0 = "file";
   do {
     pcVar8 = pNetworkRequestStatus0;
@@ -11625,12 +11625,12 @@ Label_18062f2b6:
       MemoryDataPointer = (longlong)&NetworkResponseProcessingBuffer2 - (longlong)pNetworkRequestStatus0;
       while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[MemoryDataPointer]) {
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
-        if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f340;
+        if (pcVar4 <= pNetworkRequestStatus0) goto NetworkFileProcessingComplete;
       }
     }
     pUnsignedValue = (uint64_t *)pUnsignedValue[0xb];
   } while( true );
-Label_18062f340:
+NetworkFileProcessingComplete:
   pStackParameter1 = &SystemNullPointer;
   SecurityKey38 = 0;
   pcStack_48 = (char *)0x0;
