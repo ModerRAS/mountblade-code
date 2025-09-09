@@ -10158,21 +10158,17 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define ProcessOperationContextA1 FUN_18088c740
 
 // 异常处理和回调函数语义化宏定义
-// 原始函数名：func_0x00018008d310 - 异常处理函数
-// 功能：处理系统异常和错误状态
-#define HandleSystemException func_0x00018008d310
+// 异常处理函数 - 处理系统异常和错误状态
+#define HandleSystemException HandleSystemExceptionAndErrors
 
-// 原始函数名：func_0x0001808fd8d4 - 操作结果检查函数
-// 功能：检查系统操作结果状态
-#define CheckOperationResult func_0x0001808fd8d4
+// 操作结果检查函数 - 检查系统操作结果状态
+#define CheckOperationResult ValidateSystemOperationResult
 
-// 原始函数名：func_0x0001808fd024 - 回调执行函数
-// 功能：执行系统回调函数
-#define ExecuteSystemCallback func_0x0001808fd024
+// 回调执行函数 - 执行系统回调函数
+#define ExecuteSystemCallback ExecuteSystemCallbackFunction
 
-// 原始函数名：FUN_180882c20 - 数据同步函数A0
-// 功能：同步数据
-#define SynchronizeDataA1 FUN_180882c20
+// 数据同步函数A0 - 同步数据
+#define SynchronizeDataA1 SynchronizeSystemData
 
 // 原始函数名：FUN_18088c790 - 上下文清理函数A0
 // 功能：清理操作上下文
@@ -11267,7 +11263,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackFloatValueSecondary InputFloatValueB    // 栈浮点值次变量
 #define StackDataBufferPrimary TemporaryDataBufferA    // 栈数据缓冲区主变量
 #define StackDataBufferSecondary TemporaryDataBufferB    // 栈数据缓冲区次变量
-#define StackDataBufferTertiary StackDataBufferC    // 栈数据缓冲区第三变量
+#define StackDataBufferTertiary TemporaryDataBufferC    // 栈数据缓冲区第三变量
 #define StackDataBufferQuaternary StackDataBufferD    // 栈数据缓冲区第四变量
 #define StackDataBufferQuinary StackDataBufferE    // 栈数据缓冲区第五变量
 #define StackDataBufferSenary StackDataBufferF    // 栈数据缓冲区第六变量
@@ -26397,13 +26393,13 @@ SecurityValidationLabel:
         SecurityValidationData = *(uint *)(exceptionHandlerContext + ExceptionContextDataOffset14);
         MemoryManagementData = *(DataWord *)(exceptionHandlerContext + SystemDataSecondaryOffset18);
         ResourceManagementData = *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1C);
-        SystemDataTablePointer = &SystemDataTableReference;
+        GlobalSystemDataTable = &SystemDataTableReference;
         arrayIndex = LoopCounter + 1;
         OperationContextData = PrimaryContextData;
-        ValidationStatusD = allocatedMemoryBlock;
+        ValidationResultFlag = allocatedMemoryBlock;
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
-        LoopCounter = ValidateDataIntegrityA0(operationBase,&SystemDataTablePointer);
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
@@ -26444,13 +26440,13 @@ SecurityValidationLabel:
         SecurityValidationData = *(uint *)(exceptionHandlerContext + ExceptionContextDataOffset14);
         MemoryManagementData = *(DataWord *)(exceptionHandlerContext + SystemDataSecondaryOffset18);
         ResourceManagementData = *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1C);
-        SystemDataTablePointer = &SystemDataTableReference;
+        GlobalSystemDataTable = &SystemDataTableReference;
         arrayIndex = LoopCounter + 1;
         OperationContextData = PrimaryContextData;
-        ValidationStatusD = allocatedMemoryBlock;
+        ValidationResultFlag = allocatedMemoryBlock;
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
-        LoopCounter = ValidateDataIntegrityA0(operationBase,&SystemDataTablePointer);
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
@@ -26491,13 +26487,13 @@ SecurityValidationLabel:
         SecurityValidationData = *(uint *)(exceptionHandlerContext + ExceptionContextDataOffset14);
         MemoryManagementData = *(DataWord *)(exceptionHandlerContext + SystemDataSecondaryOffset18);
         ResourceManagementData = *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1C);
-        SystemDataTablePointer = &SystemDataTableReference;
+        GlobalSystemDataTable = &SystemDataTableReference;
         arrayIndex = LoopCounter + 1;
         OperationContextData = PrimaryContextData;
-        ValidationStatusD = allocatedMemoryBlock;
+        ValidationResultFlag = allocatedMemoryBlock;
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
-        LoopCounter = ValidateDataIntegrityA0(operationBase,&SystemDataTablePointer);
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
@@ -26538,13 +26534,13 @@ SecurityValidationLabel:
         SecurityValidationData = *(uint *)(exceptionHandlerContext + ExceptionContextDataOffset14);
         MemoryManagementData = *(DataWord *)(exceptionHandlerContext + SystemDataSecondaryOffset18);
         ResourceManagementData = *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1C);
-        SystemDataTablePointer = &SystemDataTableReference;
+        GlobalSystemDataTable = &SystemDataTableReference;
         arrayIndex = LoopCounter + 1;
         OperationContextData = PrimaryContextData;
-        ValidationStatusD = allocatedMemoryBlock;
+        ValidationResultFlag = allocatedMemoryBlock;
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
-        LoopCounter = ValidateDataIntegrityA0(operationBase,&SystemDataTablePointer);
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
         if ((LoopCounter != 0) || (LoopCounter = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), LoopCounter != 0))
         GOTO_SecurityCheckFailed;
         if (ValidationFloatArrayC[0] != 1.0) {
@@ -26588,13 +26584,13 @@ SecurityValidationLabel:
         SecurityValidationData = *(uint *)(exceptionHandlerContext + ExceptionContextDataOffset14);
         MemoryManagementData = *(DataWord *)(exceptionHandlerContext + SystemDataSecondaryOffset18);
         ResourceManagementData = *(DataWord *)(exceptionHandlerContext + ExceptionContextDataOffset1C);
-        SystemDataTablePointer = &SystemDataValidationReference;
+        GlobalSystemDataTable = &SystemDataValidationReference;
         arrayIndex = LoopCounter + 1;
         OperationContextData = PrimaryContextData;
-        ValidationStatusD = allocatedMemoryBlock;
+        ValidationResultFlag = allocatedMemoryBlock;
         SecurityFlagData = operationFlagA;
         ValidationStatusE = LoopCounter;
-        LoopCounter = ValidateDataIntegrityA0(operationBase,&SystemDataTablePointer);
+        LoopCounter = ValidateDataIntegrityA0(operationBase,&GlobalSystemDataTable);
         if ((LoopCounter != 0) || (allocatedMemoryBlock = ValidateDataA2(dataContext,ValidationFloatArrayC,0), allocatedMemoryBlock != 0)) break;
         LoopCounter = arrayIndex;
         if (ValidationFloatArrayC[0] != 1.0) {
@@ -39724,14 +39720,14 @@ uint64_t ProcessSystemValidation(void)
     return operationResult;
   }
   validationOutcome = 0;
-  StackDataBufferC = 0;
+  TemporaryDataBufferC = 0;
   operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   StackDataBufferD = 0;
-  memoryRegionBase = StackDataBufferC & 1;
-  dataFlags = StackDataBufferC >> 1;
+  memoryRegionBase = TemporaryDataBufferC & 1;
+  dataFlags = TemporaryDataBufferC >> 1;
   operationResult = validationOutcome;
   if (dataFlags != 0) {
     do {
@@ -39782,9 +39778,9 @@ uint64_t ProcessSystemValidation(void)
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
-    *(uint *)(systemContext + 0x4c) = StackDataBufferC;
+    *(uint *)(systemContext + 0x4c) = TemporaryDataBufferC;
     operationResult = 0xd;
-    if (StackDataBufferC < 7) {
+    if (TemporaryDataBufferC < 7) {
       operationResult = validationOutcome;
     }
     if ((int)operationResult == 0) {
@@ -39830,14 +39826,14 @@ uint64_t ValidateSystemIntegrity(void)
     return operationResult;
   }
   validationOutcome = 0;
-  StackDataBufferC = 0;
+  TemporaryDataBufferC = 0;
   operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   StackDataBufferD = 0;
-  memoryRegionBase = StackDataBufferC & 1;
-  dataFlags = StackDataBufferC >> 1;
+  memoryRegionBase = TemporaryDataBufferC & 1;
+  dataFlags = TemporaryDataBufferC >> 1;
   operationResult = validationOutcome;
   if (dataFlags != 0) {
     do {
@@ -39888,9 +39884,9 @@ uint64_t ValidateSystemIntegrity(void)
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
-    *(uint *)(systemContext + 0x4c) = StackDataBufferC;
+    *(uint *)(systemContext + 0x4c) = TemporaryDataBufferC;
     operationResult = 0xd;
-    if (StackDataBufferC < 7) {
+    if (TemporaryDataBufferC < 7) {
       operationResult = validationOutcome;
     }
     if ((int)operationResult == 0) {
@@ -40057,7 +40053,7 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
         if ((int)memoryRegionBase != 0) {
           return memoryRegionBase;
         }
-        memoryRegionBase = OperateDataO0(operationResult,&StackDataBufferC,8);
+        memoryRegionBase = OperateDataO0(operationResult,&TemporaryDataBufferC,8);
       }
       else {
         memoryRegionBase = SystemOperationCode0x1c;
@@ -40066,13 +40062,13 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
     if ((((int)memoryRegionBase == 0) && (memoryRegionBase = ValidateSystemOperationA0(dataBuffer,operationBase + SystemFloatDataOffset38,0), (int)memoryRegionBase == 0)) &&
        (memoryRegionBase = ValidateSystemOperationA0(dataBuffer,operationBase + 0x48,0), (int)memoryRegionBase == 0)) {
       if (*(uint *)(dataBuffer + 8) < 0x84) {
-        SystemDataTablePointer = (DataWord *)0x0;
-        ValidationStatusD = 0;
-        validationStatus = InitializeSystemComponentA0(dataBuffer,&SystemDataTablePointer,0);
+        GlobalSystemDataTable = (DataWord *)0x0;
+        ValidationResultFlag = 0;
+        validationStatus = InitializeSystemComponentA0(dataBuffer,&GlobalSystemDataTable,0);
         memoryRegionBase = (uint64_t)validationStatus;
         if (validationStatus != 0) {
 ValidationErrorHandler5:
-          CleanupSystemResourcesA0(&SystemDataTablePointer);
+          CleanupSystemResourcesA0(&GlobalSystemDataTable);
           return memoryRegionBase;
         }
         operationResultPointer = StackPointerWordAF;
@@ -132268,7 +132264,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈数据缓冲区C
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferC uStack_e4
+#define TemporaryDataBufferC uStack_e4
 
 // 原始变量名：PrimaryContextData - 栈数据字T
 // 功能：存储资源分配过程中的临时数据字
