@@ -20008,7 +20008,7 @@ void CleanupUIElementResources(longlong uiContext)
       UILocalProcessingCounter7 = UILocalProcessingCounter7 + 1;
       pUILocalCharPointer6 = pUILocalCharPointer6 + 100;
       pUITemporaryFloatValue = pUITemporaryFloatValue + 6;
-    } while (localInt7 < 2);
+    } while (UILocalProcessingCounter7 < 2);
     pcStack0000000000000088 = pcStack0000000000000088 + 0x1358;
     stackParam00000060._4_4_ = stackParam00000060._4_4_ + 1;
     SourceHandle = stackParam000001c0;
@@ -20090,26 +20090,26 @@ void InitializeUIRenderer(longlong uiContext)
 void UpdateUIRendererState(longlong uiContext)
 
 {
-  int unmodifiedEBX;
+  int UIUnmodifiedRegisterValue;
   float *BaseValuePointer;
   longlong TargetHandle;
-  int RegisterPointerD;
+  int UIRegisterPointerD;
   float transformCoeff1;
   
   transformCoeff1 = 0.0;
   BaseValuePointer = (float *)(uiContext + 0x6c);
   do {
     if (transformCoeff1 < *BaseValuePointer) {
-      if (RegisterPointerD < unmodifiedEBX) {
-        InitializeUIComponentLayout((longlong)RegisterPointerD * 0x1358 + 0x68 + TargetHandle,
-                            TargetHandle + 0x68 + (longlong)unmodifiedEBX * 0x1358);
+      if (UIRegisterPointerD < UIUnmodifiedRegisterValue) {
+        InitializeUIComponentLayout((longlong)UIRegisterPointerD * 0x1358 + 0x68 + TargetHandle,
+                            TargetHandle + 0x68 + (longlong)UIUnmodifiedRegisterValue * 0x1358);
       }
-      RegisterPointerD = RegisterPointerD + 1;
+      UIRegisterPointerD = UIRegisterPointerD + 1;
     }
-    unmodifiedEBX = unmodifiedEBX + 1;
+    UIUnmodifiedRegisterValue = UIUnmodifiedRegisterValue + 1;
     BaseValuePointer = BaseValuePointer + 0x4d6;
-  } while (unmodifiedEBX < *(int *)(TargetHandle + 0x60));
-  *(int *)(TargetHandle + 0x60) = RegisterPointerD;
+  } while (UIUnmodifiedRegisterValue < *(int *)(TargetHandle + 0x60));
+  *(int *)(TargetHandle + 0x60) = UIRegisterPointerD;
   return;
 }
 
