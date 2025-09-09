@@ -10699,17 +10699,17 @@ DataProcessor* UtilityQuinaryDataProcessorInstancePtr;
  * 
  * @note 原始函数名：UtilityProcessData5
  */
-void* UtilityProcessDataQuinary;
+DataProcessor* UtilityProcessDataQuinaryPtr;
 
 /**
  * @brief 数据缓冲区实例
  */
-void* UtilityPrimaryDataBufferInstance;
-void* UtilitySeptenaryDataProcessorPointer;
-void* UtilitySecondaryDataBufferInstance;
-void* UtilityTertiaryDataBufferInstance;
-void* UtilityQuaternaryDataBufferInstance;
-void* UtilityQuinaryDataBufferInstance;
+DataBuffer* UtilityPrimaryDataBufferInstancePtr;
+DataProcessor* UtilitySeptenaryDataProcessorPtr;
+DataBuffer* UtilitySecondaryDataBufferInstancePtr;
+DataBuffer* UtilityTertiaryDataBufferInstancePtr;
+DataBuffer* UtilityQuaternaryDataBufferInstancePtr;
+DataBuffer* UtilityQuinaryDataBufferInstancePtr;
 
 /**
  * @brief 处理工具数据6
@@ -10718,12 +10718,12 @@ void* UtilityQuinaryDataBufferInstance;
  * 
  * @note 原始函数名：UtilityProcessData6
  */
-void* UtilityProcessDataSenary;
-void* UtilityDataProcessorPointerOctonary;
-void* UtilityDataBufferInstanceSenary;
-void* UtilityDataBufferInstanceSeptenary;
-void* UtilityDataBufferInstanceOctonary;
-void* UtilityDataBufferInstanceNonary;
+DataProcessor* UtilityProcessDataSenaryPtr;
+DataProcessor* UtilityDataProcessorPointerOctonaryPtr;
+DataBuffer* UtilityDataBufferInstanceSenaryPtr;
+DataBuffer* UtilityDataBufferInstanceSeptenaryPtr;
+DataBuffer* UtilityDataBufferInstanceOctonaryPtr;
+DataBuffer* UtilityDataBufferInstanceNonaryPtr;
 
 // 函数指针: int32_t UtilityCompareObject(void)
 // 
