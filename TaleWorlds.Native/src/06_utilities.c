@@ -134635,6 +134635,6 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ProcessSystemDataValidation Unwind_18090e770
 
-// 原始变量名：floatResultA_09 - 浮点数计算结果A
+// 验证结果浮点数A
 // 功能：存储验证过程中的浮点数计算结果值
 #define ValidationResultFloatA floatResultA_09
