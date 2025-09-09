@@ -1617,6 +1617,16 @@
 #define ArrayIndexMultiplier 0xc                           // 数组索引乘数
 #define SystemDataTableOffset8 8                            // 系统数据表偏移量8
 #define ResourceReferenceDataOffset330 0x330                // 资源引用数据偏移量330
+
+// 常用操作基础偏移量常量
+#define OperationStatusOffset30 0x30                       // 操作状态偏移量30
+#define OperationValidationOffsetC 0xc                      // 操作验证偏移量C
+#define OperationDataOffset54 0x54                         // 操作数据偏移量54
+#define OperationDataOffset58 0x58                         // 操作数据偏移量58
+#define OperationDataOffset60 0x60                         // 操作数据偏移量60
+#define OperationDataOffset40 0x40                         // 操作数据偏移量40
+#define OperationDataOffset66 0x66                         // 操作数据偏移量66
+
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
@@ -27557,7 +27567,7 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
      (operationStatus = ValidateSystemMemoryA0(operationBase + SystemParameterValidationOffset28,iterationCount), operationStatus != 0)) {
     return;
   }
-  operationStatus = *(int *)(operationBase + 0x30);
+  operationStatus = *(int *)(operationBase + OperationStatusOffset30);
   if (iterationCount <= operationStatus) {
     *(int *)(operationBase + 0x30) = iterationCount;
       memcpy((int64_t)inputParameter + *(int64_t *)(operationBase + SystemParameterValidationOffset28),dataBuffer,(int64_t)operationResult);
