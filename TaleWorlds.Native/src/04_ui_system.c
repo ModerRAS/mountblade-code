@@ -101828,7 +101828,7 @@ void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDwo
     *(int *)(uiBufferData + 8) = uiValidationResult;
     stackUInt58 = dataSource;
     stackUInt50 = targetBuffer;
-    FUN_18072ad20(dataSource,astackUInt40,astackUInt48,uiContext);
+    ProcessUIParameterValidation(dataSource,astackUInt40,astackUInt48,uiContext);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt30 ^ (ulonglong)astackUInt78);
@@ -101857,7 +101857,7 @@ void ProcessUIComponentResource(longlong uiContext,UIHandle dataSource,UIHandle 
     uiValidationResult = processingResult;
   }
   *(int *)(TargetHandle + 8) = uiValidationResult;
-  FUN_18072ad20();
+  ProcessUIParameterValidation();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000048 ^ (ulonglong)&stack0x00000000);
 }
@@ -101878,7 +101878,7 @@ void ValidateUIComponent(int uiContext)
     processingResult = uiContext;
   }
   *(int *)(TargetHandle + 8) = processingResult;
-  FUN_18072ad20();
+  ProcessUIParameterValidation();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000048 ^ (ulonglong)&stack0x00000000);
 }
