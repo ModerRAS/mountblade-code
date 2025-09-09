@@ -23402,10 +23402,11 @@ void CoreEngineInitializeCharacterStatusBufferProcessor(void
  * 
  * @return 返回初始化状态，成功返回0，失败返回0xffffffff
  */
-uint64_t CoreEngineInitializeThreadLocalStorageCallbacks(void
+uint64_t CoreEngineInitializeThreadLocalStorageCallbacks(void)
 {
   int64_t ThreadLocalStorageData;
   int* CallbackTablePointer;
+  void* ThreadLocalStoragePointer;  // 线程本地存储指针
   
   ThreadLocalStorageData = *(int64_t*)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(void**)(ThreadLocalStorageData + 0x18) = &ThreadLocalStorageTemplate;
