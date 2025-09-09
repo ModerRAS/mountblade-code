@@ -30325,13 +30325,13 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
           operationStatus = CheckSystemStateAndReturnStatusA2(statusCounter,systemContext + SystemContextOffset60);
           if (operationStatus == 0) {
             exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
-            operationStatus = *(int *)(systemContext + 0x78);
+            operationStatus = *(int *)(systemContext + SystemContextOffset78);
             *(int *)(StackFrameContext + ArrayDataOffset) = operationStatus;
             operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,4);
             if (operationResult == 0) {
               if (0 < operationStatus) {
                 do {
-                  memoryPointer = *(int64_t *)(systemContext + 0x70);
+                  memoryPointer = *(int64_t *)(systemContext + SystemContextOffset70);
                   exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
                   *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(memoryPointer + validationOutcome * 8);
                   operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,4);
@@ -30410,7 +30410,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
         if (operationStatus != 0) {
           return;
         }
-        operationStatus = CheckSystemStatusAndReturnO0(calculatedFloatValue,resourceIterator + 0x14);
+        operationStatus = CheckSystemStatusAndReturnO0(calculatedFloatValue,resourceIterator + ResourceIteratorOffset14);
         if (operationStatus != 0) {
           return;
         }
@@ -30422,13 +30422,13 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
     operationStatus = CheckSystemStateAndReturnStatusA2(securityCheckResult,systemContext + 0x60);
     if (operationStatus == 0) {
       memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-      operationStatus = *(int *)(systemContext + 0x78);
+      operationStatus = *(int *)(systemContext + SystemContextOffset78);
       *(int *)(StackFrameContext + ArrayDataOffset) = operationStatus;
       arrayIndex = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
       if (arrayIndex == 0) {
         if (0 < operationStatus) {
           do {
-            memoryPointer = *(int64_t *)(systemContext + 0x70);
+            memoryPointer = *(int64_t *)(systemContext + SystemContextOffset70);
             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
             *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(memoryPointer + DestinationContext * 8);
             arrayIndex = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
@@ -30489,10 +30489,10 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
   if (((((inputParameter == 0) && (inputParameter = CheckSystemStatusAndReturnO0(SystemContext,DataItemPointer + 1), inputParameter == 0)) &&
        (((*(SystemByteType *)(DataItemPointer + 1) & 0x20) == 0 ||
         (inputParameter = ValidateAndProcessDataA0(SystemContext,DataItemPointer + 2), inputParameter == 0)))) &&
-      (((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0xe), inputParameter == 0 &&
-        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0xf), inputParameter == 0)) &&
+      (((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + DataItemPointerOffsetE), inputParameter == 0 &&
+        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + DataItemPointerOffsetF), inputParameter == 0)) &&
        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + ExceptionHandlerCallbackOffset10), inputParameter == 0)))) &&
-     (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x11), inputParameter == 0)) {
+     (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + DataItemPointerOffset11), inputParameter == 0)) {
     if ((DataItemPointer[1] & 0x100) != 0) {
       parameterBuffer[0] = DataItemPointer[SecurityCheckOffset12];
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))
@@ -33479,7 +33479,7 @@ ValidateDataWithDirectAllocation:
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
+       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + SystemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
@@ -33632,7 +33632,7 @@ DataProcessSectionA:
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
+       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + SystemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
@@ -33781,7 +33781,7 @@ DataProcessLabelA:
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
           (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
-       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
+       ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + SystemContextOffset70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0)) &&
          (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa8), (int)operationResult == 0)) &&
         (((operationResult = securityCheckResult, *(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0 &&
@@ -45205,7 +45205,7 @@ void InitializeExceptionHandlerA0(DataBuffer exceptionContext,int64_t systemCont
 {
   int64_t handlerContext;
   
-  handlerContext = *(int64_t *)(systemContext + 0x70);
+  handlerContext = *(int64_t *)(systemContext + SystemContextOffset70);
   *(DataBuffer *)(handlerContext + 0x40) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(handlerContext + 0x48) != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -49098,7 +49098,7 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x141);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
@@ -49477,7 +49477,7 @@ void CleanupSystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x141);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
@@ -49663,7 +49663,7 @@ void CleanupSystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x141);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
@@ -63170,7 +63170,7 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(DataBuffer exceptionCon
   }
   resourceIterator = threadLocalStorage[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x141);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
         TerminateSystemOnError();
@@ -63705,7 +63705,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x141);
+    validationFlag = (char *)(resourceIterator + ResourceIteratorOffset141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
         TerminateSystemExecutionAndCleanupResources();
@@ -76126,7 +76126,7 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
   int64_t dataContext;
   DataBuffer validationStatus;
   
-  dataContext = *(int64_t *)(systemContext + 0x70);
+  dataContext = *(int64_t *)(systemContext + SystemContextOffset70);
   validationStatus = SystemCleanupFlagAlternative;
   InitializeSystemValidation();
   ProcessSystemDataValidation(dataContext + SystemDataOffset40,*(DataBuffer *)(dataContext + DataContextOffset50),dataParameter,validationParameter,validationStatus);
