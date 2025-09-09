@@ -7099,11 +7099,11 @@ SystemStringProcessingDetected:
     StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8);
 StringProcessingValidationPoint:
     if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8)) && (MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2), MemoryAddressValue != 0)
-       ) goto StringProcessingSuccessLabel;
+       ) goto StringProcessingSuccessful;
   }
   InitializeSystemDataTemplate(SystemDataTemplateAddress);
   MemoryAddressValue = SystemDataTemplateAddress;
-StringProcessingSuccessLabel:
+StringProcessingSuccessful:
   StringIndex = _Mtx_unlock(SystemContextDataPointer + 0x6e8);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
@@ -7139,7 +7139,7 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
       if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemParameterValidationSuccessLabel;
     }
     StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) + *(longlong *)(SystemContextDataPointer + SystemContextStringHashModuloOffset) * 8);
-SystemParameterValidationSuccessLabel:
+SystemParameterValidationSuccessful:
     MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + SystemContextParameterValidationOffset);
     ModuleInitializationResult = *(longlong *)(MemoryCounterValue + SystemContextModuleInitializationOffset);
     for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + SystemContextMemoryCounterOffset)) * 8);
