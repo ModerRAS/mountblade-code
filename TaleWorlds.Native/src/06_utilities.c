@@ -30038,7 +30038,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
               if (operationResult != 0) {
                 return;
               }
-              operationResult = CheckSystemStatusAndReturnO0(accumulatedFloatValue,memoryPointer + 0x14);
+              operationResult = CheckSystemStatusAndReturnO0(accumulatedFloatValue,memoryPointer + ResourceIteratorDataOffset);
               if (operationResult != 0) {
                 return;
               }
@@ -31866,7 +31866,7 @@ DataCheckpointB:
     return memoryRegionBase;
   }
   memoryRegionBase = operationResult;
-  if (0x41 < *(uint *)(registerContext + 8)) {
+  if (MinimumContextSize < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
       memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + 0xcc,4);
     }
@@ -31878,7 +31878,7 @@ DataCheckpointB:
     return memoryRegionBase;
   }
   memoryRegionBase = operationResult;
-  if (0x41 < *(uint *)(registerContext + 8)) {
+  if (MinimumContextSize < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
       memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + 0xd0,4);
     }
