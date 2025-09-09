@@ -1447,6 +1447,31 @@ char SystemConfigDataTemplateSeptenary[] = "SystemConfigTemplateSeptenary";
 char SystemConfigDataTemplateOctonary[] = "SystemConfigTemplateOctonary";
 char SystemConfigDataTemplateNonary[] = "SystemConfigTemplateNonary";
 char SystemConfigDataTemplateDenary[] = "SystemConfigTemplateDenary";
+
+// 系统魔法数值常量 - 用于颜色处理和浮点运算
+#define SystemColorMultiplier 0.007843138f          // 颜色转换乘数 (1/127.5)
+#define SystemColorMultiplierPrecision 3.0518044e-05f  // 精确颜色转换乘数 (1/32767.5)
+#define SystemColorNormalizationFactor 0.003921569f    // 颜色归一化因子 (1/255)
+#define SystemColorPrecisionFactor 1.5258789e-05f      // 颜色精度因子 (1/65535)
+#define SystemColorScaleFactor 1.5259022e-05f          // 颜色缩放因子
+#define SystemColorRangeMultiplier 0.33333334f         // 颜色范围乘数 (1/3)
+#define SystemFloatEpsilon 1.1920929e-07f              // 浮点数极小值
+#define SystemFloatLargeValue 3.4028235e+38f           // 浮点数最大值
+#define SystemFloatSmallValue 1.1754944e-38f           // 浮点数最小正值
+#define SystemFloatZeroPointOne 0.1f                    // 0.1的浮点表示
+#define SystemFloatZeroPointZeroOne 0.01f               // 0.01的浮点表示
+#define SystemFloatZeroPointZeroZeroOne 0.001f          // 0.001的浮点表示
+
+// 系统字符串常量 - 用于错误消息和状态报告
+#define SystemErrorMessagePrefix "Error: "
+#define SystemWarningMessagePrefix "Warning: "
+#define SystemInfoMessagePrefix "Info: "
+#define SystemDebugMessagePrefix "Debug: "
+#define SystemSuccessMessage "Operation completed successfully"
+#define SystemFailureMessage "Operation failed"
+#define SystemInvalidHandleMessage "Invalid handle encountered"
+#define SystemMemoryAllocationMessage "Memory allocation failed"
+#define SystemSecurityViolationMessage "Security violation detected"
 char SystemConfigDataTemplateUndenary[] = "SystemConfigTemplateUndenary";
 char SystemConfigDataTemplateDuodenary[] = "SystemConfigTemplateDuodenary";
 char SystemConfigDataTemplateTerdenary[] = "SystemConfigTemplateTerdenary";
@@ -1508,7 +1533,7 @@ char SystemModuleConfigTemplateTerdenaryTertiary[] = "SystemModuleConfigTerdenar
 
 /**
  * 初始化渲染系统模块
- * 设置渲染系统所需的全局数据结构和状态标志
+ * 设置渲染系统所需的全局数据结构和渲染参数
  * 
  * @return 初始化成功返回0，失败返回-1
  */
@@ -14506,5 +14531,41 @@ int RegisterSystemNetworkModule(void);
 #define TemporaryDataStackJ ConfigurationManagementStackPointer
 #define TemporaryDataStackK SystemStateStackPointer
 #define TemporaryDataStackL CleanupOperationStackPointer
+
+// 系统错误代码定义
+#define SystemErrorCodeSuccess 0x00000000        // 操作成功
+#define SystemErrorCodeFailure 0x00000001        // 一般错误
+#define SystemErrorCodeInvalidParameter 0x00000002  // 无效参数
+#define SystemErrorCodeOutOfMemory 0x00000003    // 内存不足
+#define SystemErrorCodeTimeout 0x00000004       // 超时错误
+#define SystemErrorCodeAccessDenied 0x00000005   // 访问被拒绝
+#define SystemErrorCodeNotFound 0x00000006       // 未找到
+#define SystemErrorCodeBusy 0x00000007           // 系统忙
+#define SystemErrorCodeCorrupted 0x00000008      // 数据损坏
+#define SystemErrorCodeNotSupported 0x00000009   // 不支持的操作
+#define SystemErrorCodeAborted 0x0000000A       // 操作中止
+
+// 系统日志级别定义
+#define SystemLogLevelError 0x01                  // 错误级别
+#define SystemLogLevelWarning 0x02                // 警告级别
+#define SystemLogLevelInfo 0x04                   // 信息级别
+#define SystemLogLevelDebug 0x08                  // 调试级别
+#define SystemLogLevelTrace 0x10                  // 跟踪级别
+
+// 系统性能计数器常量
+#define SystemPerformanceCounterFrames 0x01     // 帧计数器
+#define SystemPerformanceCounterTime 0x02        // 时间计数器
+#define SystemPerformanceCounterMemory 0x04      // 内存计数器
+#define SystemPerformanceCounterCPU 0x08         // CPU计数器
+#define SystemPerformanceCounterGPU 0x10         // GPU计数器
+#define SystemPerformanceCounterNetwork 0x20     // 网络计数器
+
+// 系统内存管理常量
+#define SystemMemoryPageSize 0x1000              // 内存页大小 (4KB)
+#define SystemMemoryAlignment 0x1000             // 内存对齐大小
+#define SystemMemoryHeapInitialSize 0x100000      // 堆初始大小 (1MB)
+#define SystemMemoryHeapMaxSize 0x10000000       // 堆最大大小 (256MB)
+#define SystemMemoryPoolBlockSize 0x1000        // 内存池块大小 (4KB)
+#define SystemMemoryPoolMaxBlocks 0x1000         // 内存池最大块数
 
 #endif // DATA_DEFINITIONS_H
