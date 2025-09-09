@@ -400555,10 +400555,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统渲染函数
 #define ProcessUIRenderData RenderUIData
 #define CleanupUIResources ReleaseUIResources
-#define InitializeUIRenderer FUN_180705930
-#define SetupUIRenderPipeline FUN_180705990
-#define ConfigureUIRenderSettings FUN_1807059f0
-#define ValidateUIRenderContext FUN_180705a50
+#define InitializeUIRenderer CreateUIRenderer
+#define SetupUIRenderPipeline ConfigureUIRenderPipeline
+#define ConfigureUIRenderSettings SetUIRenderSettings
+#define ValidateUIRenderContext CheckUIRenderContext
 #define ProcessUIRenderBatch FUN_180705ab0
 #define SubmitUIRenderCommands FUN_180705b10
 #define FlushUIRenderQueue FUN_180705b70
