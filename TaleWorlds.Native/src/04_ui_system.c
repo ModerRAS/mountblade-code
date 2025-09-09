@@ -2552,22 +2552,22 @@ typedef enum {
 #define ProcessUIContextDataWithHandle ProcessUIContextDataWithHandle
 #define ProcessUIContextWithSemaphore ProcessUIContextWithSemaphore
 #define ProcessUIFloatDataConversion ProcessUIFloatDataConversion
-#define FUN_180711037 ProcessUIFloatDataSimplified
-#define FUN_18071103e ProcessUIFloatDataWithHandle
-#define FUN_180711311 InitializeUIEmptyOperation
-#define FUN_180711351 ProcessUIHandleWithFloatData
-#define FUN_1807123a8 ProcessUIFloatDataWithMemory
-#define FUN_1807123c2 ProcessUIFloatDataCalculation
-#define FUN_180712526 ProcessUIHandleDataWithMemory
+#define FUN_180711037 ProcessUIFloatDataBasicOperation            // 处理UI浮点数据基本操作
+#define FUN_18071103e ProcessUIFloatDataWithHandleManagement       // 处理带句柄管理的UI浮点数据
+#define FUN_180711311 InitializeUIEmptyOperationSystem            // 初始化UI空操作系统
+#define FUN_180711351 ProcessUIHandleWithFloatDataTransfer        // 处理UI句柄与浮点数据传输
+#define FUN_1807123a8 ProcessUIFloatDataWithMemoryManagement      // 处理带内存管理的UI浮点数据
+#define FUN_1807123c2 ProcessUIFloatDataWithCalculationEngine     // 处理带计算引擎的UI浮点数据
+#define FUN_180712526 ProcessUIHandleDataWithMemoryAllocation     // 处理带内存分配的UI句柄数据
 
 // UI系统高级处理函数
-#define FUN_180711359 ProcessUIHandleDataAdvanced
-#define FUN_180711576 ProcessUIHandleTransformation
-#define FUN_180711674 ProcessUIDataConversion
-#define FUN_180711810 ProcessUIEventDispatch
-#define FUN_180712541 ProcessUIDataSource
-#define FUN_180712943 ProcessUIFloatCalculation
-#define FUN_180712bf0 InitializeUIEmptyOperationAdvanced
+#define FUN_180711359 ProcessUIHandleDataAdvancedProcessing       // 处理UI句柄数据高级处理
+#define FUN_180711576 ProcessUIHandleDataTransformationSystem     // 处理UI句柄数据变换系统
+#define FUN_180711674 ProcessUIDataConversionAndValidation        // 处理UI数据转换和验证
+#define FUN_180711810 ProcessUIEventDispatchAndHandling           // 处理UI事件分发和处理
+#define FUN_180712541 ProcessUIDataSourceAndManagement            // 处理UI数据源和管理
+#define FUN_180712943 ProcessUIFloatDataCalculationEngine         // 处理UI浮点数据计算引擎
+#define FUN_180712bf0 InitializeUIEmptyOperationAdvancedSystem   // 初始化UI空操作高级系统
 #define FUN_180716572 ClearUIBufferMemory
 #define FUN_180716f10 ProcessUIContextDataAndSystemConfiguration
 #define FUN_180718590 ProcessUIFloatDataTransformationAndScaling
