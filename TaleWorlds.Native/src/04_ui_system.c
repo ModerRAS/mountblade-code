@@ -208,7 +208,7 @@ typedef enum {
 #define ProcessUIFloatData FUN_180721f4c                     // 处理UI浮点数据
 #define ProcessUIDoubleParameter FUN_180721fa6               // 处理UI双精度参数
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
-#define FUN_180722370 ProcessUIIntArray                      // 处理UI整数数组
+#define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
 #define FUN_1807226f0 ProcessUIComponentTransform           // 处理UI组件变换
 
 // 新增的FUN_函数语义化定义
