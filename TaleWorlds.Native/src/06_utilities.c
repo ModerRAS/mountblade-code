@@ -4309,7 +4309,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
  * @see ProcessSystemOperations, ValidateSystemParametersAndConfiguration
  */
-#define ExecuteSystemCoreCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 /**
  * @brief 系统操作处理函数
@@ -4332,7 +4332,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统操作可能影响系统整体性能和稳定性
  * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndStateFlags
  */
-#define ProcessSystemOperations FUN_1800ad6f0
+#define ProcessSystemOperations ProcessSystemOperations
 
 /**
  * @brief 验证和处理数据函数
@@ -4341,7 +4341,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800f74f0
  */
-#define ValidateAndProcessData FUN_1800f74f0
+#define ValidateAndProcessData ValidateAndProcessData
 
 /**
  * @brief 验证和执行操作函数A1
@@ -4350,7 +4350,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18005d560
  */
-#define ValidateAndExecuteOperationsA1 FUN_18005d560
+#define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
@@ -7468,7 +7468,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 系统命令执行函数 - 系统命令执行函数
 // 功能：执行系统命令和操作
-#define ExecuteSystemCoreCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
@@ -131244,7 +131244,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
 // 数据数组处理函数
-#define ProcessDataArrayWithValidation FUN_180057010
+#define ProcessDataArrayWithValidation ProcessDataArrayWithValidation
 
 // 数据缓冲区初始化函数
 // 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
@@ -131254,17 +131254,17 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
 // 系统命令执行函数
-#define ExecuteSystemCoreCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 // 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
 // 系统操作处理函数
-#define ProcessSystemOperations FUN_1800ad6f0
+#define ProcessSystemOperations ProcessSystemOperations
 
 // 验证和处理数据函数
 // 功能：验证数据的有效性并执行相应的数据处理操作
 // 数据验证和处理函数
-#define ValidateAndProcessData FUN_1800f74f0
+#define ValidateAndProcessData ValidateAndProcessData
 
 // 数据块处理函数
 #define ProcessSystemDataBlocks FUN_180152b00
@@ -131281,7 +131281,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 验证和执行操作函数A1
 // 功能：验证操作参数的有效性并执行相应的系统操作
 // 验证和执行操作函数
-#define ValidateAndExecuteOperationsA1 FUN_18005d560
+#define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
