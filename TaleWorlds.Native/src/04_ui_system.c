@@ -3499,6 +3499,7 @@ typedef enum {
   原始函数名: FUN_180677100
  #define CalculateImagePixelSumAdvanced FUN_180677100
 
+ 
  UI系统初始化函数指针
 void* InitializeUISystem;
  全局UI状态缓冲区
@@ -15077,7 +15078,25 @@ void CleanupUIMemoryPool(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, char render_mode, char blend_mode,
+ /**
+ * @brief 渲染UI元素
+ * 
+ * 渲染单个UI元素到屏幕上，包括顶点处理、纹理映射和动画效果。
+ * 此函数用于处理UI元素的完整渲染流程。
+ * 
+ * @param vertex_buffer 顶点缓冲区指针
+ * @param opacity 透明度值
+ * @param element_id 元素ID
+ * @param render_mode 渲染模式
+ * @param blend_mode 混合模式
+ * @param depth_test_enabled 深度测试启用标志
+ * @param render_contextHandle 渲染上下文句柄
+ * @param texture_handle 纹理句柄
+ * @param animation_time 动画时间
+ * @param ui_contextHandle UI上下文句柄
+ * 
+ * @note 原始函数名：RenderUIElement
+ */
 void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, char render_mode, char blend_mode,
                   char depth_test_enabled, uint64_t render_contextHandle, uint64_t texture_handle, float animation_time,
                   uint64_t ui_contextHandle)
@@ -101016,8 +101035,8 @@ LAB_180724486:
 
 
 
- void FUN_1807245b0(UIHandle uiContext,int *dataSource)
-void FUN_1807245b0(UIHandle uiContext,int *dataSource)
+ void ProcessUIIntegerPointerData(UIHandle uiContext,int *dataSource)
+void ProcessUIIntegerPointerData(UIHandle uiContext,int *dataSource)
 
 {
   int processingResult;
