@@ -10137,12 +10137,12 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
     if ((int)uiElementCount != 0) {
       uiElementCount = uiElementCount & 0xffffffff;
       do {
-        resultPointer4 = (UIHandle *)0x0;
-        resultPointer5 = (UIHandle *)0x0;
-        transformMatrix24 = 0;
-        TransformCoefficient25 = 3;
-        stackArray[0] = 0x40;
-        elementCounter = elementCount;
+        uiTransformResultPointer4 = (UIHandle *)0x0;
+        uiTransformResultPointer5 = (UIHandle *)0x0;
+        uiTransformMatrix24 = 0;
+        uiTransformCoefficient25 = 3;
+        uiParameterStack[0] = 0x40;
+        elementProcessingCounter = uiElementCount;
         if (sourceDataBlock[1] != 0) {
           ProcessUIData(sourceDataBlock,&resultPointer4,stackArray);
         }
