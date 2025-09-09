@@ -174,11 +174,11 @@
 
 // 异常处理器偏移量常量
 #define ExceptionHandlerPrimaryOffset 0x2d68
-#define ExceptionHandlerSecondaryOffset2D58 0x2d58
-#define ExceptionHandlerTertiaryOffset2D48 0x2d48
-#define ExceptionHandlerSystemLevelOffset2DD8 0x2dd8
-#define ExceptionHandlerHighLevelOffset1EB8 0x1eb8
-#define ExceptionHandlerFinalCleanupOffset2E10 0x2e10
+#define ExceptionHandlerSecondaryOffset 0x2d58
+#define ExceptionHandlerTertiaryOffset 0x2d48
+#define ExceptionHandlerSystemLevelOffset 0x2dd8
+#define ExceptionHandlerHighLevelOffset 0x1eb8
+#define ExceptionHandlerFinalCleanupOffset 0x2e10
 
 // 系统状态验证相关偏移量常量
 #define SystemStatusValidationOffset82 0x82
@@ -229,7 +229,7 @@
 #define ResourceManagementOffset80B0 0x80b0
 #define MemoryBlockOffset200 200
 #define MemoryBlockOffsetD0 0xd0
-#define SystemResourceBaseOffset7F20 0x7f20
+#define SystemResourceBaseOffset 0x7f20
 #define ResourceValidationFlagOffset60 0x60
 #define ExceptionHandlerPointerOffset120 0x120
 #define ExceptionHandlerPointerOffset7F0 0x7f0
@@ -1381,7 +1381,7 @@
 #define SystemDataOffset40 0x40
 #define MemoryOperationResultMask 0x1f
 #define MemoryBlockSize 0x100
-#define SystemCleanupFlagffffffe0 0xffffffe0
+#define SystemCleanupFlagAlternative 0xffffffe0
 #define MemoryAllocationBlockSize 0x20
 #define SystemMemoryBoundary 0x8000000000000000
 #define MemoryAddressCalculationMultiplier 8
@@ -1461,7 +1461,7 @@
 #define DataBufferQuinaryOffset774 0x774
 
 // 异常上下文扩展偏移常量
-#define ExceptionContextExtendedOffset1193C 0x1193c
+#define ExceptionContextExtendedOffsetPrimary 0x1193c
 #define ExceptionContextExtendedOffset6D4 0x6d4
 #define ExceptionContextExtendedOffset1160C 0x1160c
 #define ExceptionContextExtendedOffset11610 0x11610
@@ -6656,7 +6656,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SystemFloatDataOffset38 0x38                 // 系统浮点数据偏移量38
 #define ExceptionHandlerOffset300 0x300              // 异常处理器偏移量300
 #define ExceptionHandlerOffset3c0 0x3c0              // 异常处理器偏移量3c0
-#define SystemCleanupFlagffc00000 0xffc00000         // 系统清理标志ffc00000
+#define SystemCleanupFlagExtended 0xffc00000         // 系统清理标志扩展
 
 // 原始函数名：FUN_1809423a0 - 全局指针设置函数A33
 // 功能：设置全局数据指针A33到指定地址
@@ -27101,7 +27101,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
             if ((int)operationResult == 0) {
               operationResult = *(DataWord *)(memoryBlockOffset + ExceptionHandlerCallbackOffset10);
               operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryBlockOffset + 4),
-                                    *(DataWord *)(memoryBlockOffset + 8),*(DataWord *)(memoryBlockOffset + 0xc),operationResult,
+                                    *(DataWord *)(memoryBlockOffset + 8),*(DataWord *)(memoryBlockOffset + DataBufferOffsetC),operationResult,
                                     dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
               if ((((int)operationResult == 0) &&
                   (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA8,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataBufferOffset1E0),
@@ -27362,7 +27362,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer4 = (int64_t *)((int64_t)exceptionHandlerContextPointer4 + 1);
           exceptionHandlerContextPointer0 = exceptionHandlerContextPointer0 + 6;
           exceptionHandlerContextPointer = (int64_t *)(uint64_t)((int)ValidationFloatValue8 + 1);
-          exceptionHandlerContextPointer9 = (int64_t *)((int64_t)exceptionHandlerContextPointer9 + 0xc);
+          exceptionHandlerContextPointer9 = (int64_t *)((int64_t)exceptionHandlerContextPointer9 + DataStructureItemSize);
         } while ((int64_t)exceptionHandlerContextPointer4 < contextProcessingBuffer[0]);
       }
       exceptionHandlerContext5 = operationBase[1] + OperationBaseOffset60;
@@ -27587,8 +27587,8 @@ DataBuffer ProcessDataA0(int64_t *DataPointer,int ProcessingFlags)
   DataBuffer operationResult;
   uint validationStatus;
   
-  validationStatus = (int)*(uint *)((int64_t)operationBase + 0xc) >> 0x1f;
-  if (((int)((*(uint *)((int64_t)operationBase + 0xc) ^ validationStatus) - validationStatus) < dataBuffer) &&
+  validationStatus = (int)*(uint *)((int64_t)operationBase + DataBufferOffsetC) >> 0x1f;
+  if (((int)((*(uint *)((int64_t)operationBase + DataBufferOffsetC) ^ validationStatus) - validationStatus) < dataBuffer) &&
      (operationResult = ValidateSystemMemoryA0(operationBase,dataBuffer), (int)operationResult != 0)) {
     return operationResult;
   }
