@@ -16226,7 +16226,23 @@ DataWord ValidateResourceHandleAndReleaseAlternate(void)
 
 /**
  * @brief 系统终止函数
- * @details 调用系统终止函数，程序将不会返回
+ * 
+ * 该函数负责安全地终止系统运行。它会释放系统资源并确保系统安全关闭。
+ * 这是一个系统级的终止函数，用于在系统需要完全关闭时调用。
+ * 
+ * 函数执行流程：
+ * 1. 释放系统关键资源
+ * 2. 执行系统关闭序列
+ * 3. 安全终止系统运行
+ * 
+ * @note 此函数是系统关闭流程的关键组件
+ * @warning 函数执行过程中不会返回，会导致系统立即关闭
+ * @warning 调用此函数后系统将无法继续运行
+ * 
+ * @see ReleaseResource, EmergencyShutdown, ExecuteSystemShutdown
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
  */
 void TerminateSystem(void)
 
@@ -16239,7 +16255,23 @@ void TerminateSystem(void)
 
 /**
  * @brief 空操作函数
- * @details 执行空操作，直接返回
+ * 
+ * 该函数不执行任何操作，直接返回。主要用于系统同步、占位符或函数指针占位。
+ * 这是一个标准的空操作函数，用于保持代码结构的完整性。
+ * 
+ * 函数执行流程：
+ * 1. 不执行任何操作
+ * 2. 直接返回
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统同步和占位
+ * @warning 调用此函数不会产生任何效果
+ * @note 此函数常用于需要函数指针但不执行实际操作的场景
+ * 
+ * @see SystemReturnEmptyFunction, ExecuteSystemNoOperation
+ * 
+ * @since 系统版本 1.0
  */
 void PerformNoOperation(void)
 
