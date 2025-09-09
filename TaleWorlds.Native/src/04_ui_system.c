@@ -202975,17 +202975,17 @@ UIHandle CleanupUIEventHandlersD0(void)
 UIHandle CleanupUIEventHandlersE0(void)
 
 {
-  longlong contextHandle;
-  longlong SourceHandle;
-  longlong *TargetHandle;
-  UIByte *pStackData1;
-  UIByte *pStackData2;
+  longlong UIContext;
+  longlong EventSourceHandle;
+  longlong *EventTargetHandle;
+  UIByte *StackDataPointer1;
+  UIByte *StackDataPointer2;
   
   do {
-    pStackData2 = &stack0x00000080;
-    pStackData1 = &stack0x00000088;
-    (**(code **)(contextHandle + 0x3a8))
-              (contextHandle + 8,(int)TargetHandle[4],TargetHandle[3],(longlong)TargetHandle + 0x24,
+    StackDataPointer2 = &stack0x00000080;
+    StackDataPointer1 = &stack0x00000088;
+    (**(code **)(UIContext + 0x3a8))
+              (UIContext + 8,(int)EventTargetHandle[4],EventTargetHandle[3],(longlong)EventTargetHandle + 0x24,
                &stack0x00000090);
     TargetHandle = (longlong *)*TargetHandle;
   } while (TargetHandle != (longlong *)SourceHandle);
