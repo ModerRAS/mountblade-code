@@ -3872,8 +3872,8 @@ void* UIGestureCoordinates;
 #define UIRenderParameterLightingData UIRenderLightingData
 
  // UI系统数据缓冲区语义化定义
-#define UIDataBufferPrimary UNK_1809535b4
-#define UIDataBufferSecondary UNK_1809535bc
+#define UIDataBufferPrimary UIDataBufferPrimary
+#define UIDataBufferSecondary UIDataBufferSecondary
 #define UIDataBufferTertiary UNK_180953648
 #define UIDataBufferQuaternary UNK_180953668
 #define UIDataBufferQuinary UNK_180953688
