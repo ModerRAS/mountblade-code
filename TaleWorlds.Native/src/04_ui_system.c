@@ -200081,71 +200081,71 @@ LAB_180787e12:
     EventIterationCount = UIEventPointerArray[6];
     EventTypeIdentifier = UIEventPointerArray[7];
     *(undefined **)(StackFrameBasePointer + -0x49) = &UIEventDispatcherPointer;
-    *(UIHandle *)(BasePointer + -0x21) = iterationCount;
-    *(UIHandle *)(BasePointer + -0x19) = EventTypeCode;
-    ProcessingStatus = ProcessUIDataTransfer(ProcessingStatus,BasePointer + -0x51,0,pEventDataIndex + 2,eventProcessingStatus);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    *(UIHandle *)(StackFrameBasePointer + -0x21) = EventIterationCount;
+    *(UIHandle *)(StackFrameBasePointer + -0x19) = EventTypeIdentifier;
+    EventProcessingStatus = ProcessUIDataTransfer(EventProcessingStatus,StackFrameBasePointer + -0x51,0,EventDataIndexArray + 2,EventFlags);
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    ProcessingStatus = func_0x000180762af0(pEventDataIndex[2],0,*(UIDword *)(BasePointer + 0x5f));
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    EventProcessingStatus = func_0x000180762af0(EventDataIndexArray[2],0,*(UIDword *)(StackFrameBasePointer + 0x5f));
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    switch(*(UIDword *)(BasePointer + 0x5f)) {
+    switch(*(UIDword *)(StackFrameBasePointer + 0x5f)) {
     case 1:
-      ProcessingStatus = 2;
+      EventProcessingStatus = 2;
       break;
     case 2:
-      ProcessingStatus = 3;
+      EventProcessingStatus = 3;
       break;
     default:
-      ProcessingStatus = 1;
+      EventProcessingStatus = 1;
       break;
     case 4:
-      ProcessingStatus = 4;
+      EventProcessingStatus = 4;
       break;
     case 5:
-      ProcessingStatus = 5;
+      EventProcessingStatus = 5;
       break;
     case 6:
-      ProcessingStatus = 6;
+      EventProcessingStatus = 6;
       break;
     case 8:
-      ProcessingStatus = 7;
+      EventProcessingStatus = 7;
       break;
     case 0xc:
-      ProcessingStatus = 8;
+      EventProcessingStatus = 8;
     }
-    ProcessingStatus = FUN_1807621f0(pEventDataIndex[2],0,*(UIDword *)(BasePointer + 0x5f),ProcessingStatus);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    EventProcessingStatus = FUN_1807621f0(EventDataIndexArray[2],0,*(UIDword *)(StackFrameBasePointer + 0x5f),EventProcessingStatus);
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    localLong7 = *(longlong *)(uiContext + 0x48);
-    *(UIHandle *)(BasePointer + -0x79) = 0;
-    pallocatedMemory = *(longlong **)(localLong7 + 0x116e0);
-    ProcessingStatus = (**(code **)(*pallocatedMemory + 0x120))(pallocatedMemory,0,BasePointer + -0x79);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    MemoryContextPointer = *(longlong *)(UIContextPointer + 0x48);
+    *(UIHandle *)(StackFrameBasePointer + -0x79) = 0;
+    AllocatedMemoryPointer = *(longlong **)(MemoryContextPointer + 0x116e0);
+    EventProcessingStatus = (**(code **)(*AllocatedMemoryPointer + 0x120))(AllocatedMemoryPointer,0,StackFrameBasePointer + -0x79);
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    *(UIHandle *)(BasePointer + -0x71) = 0;
-    lStack0000000000000028 = 0;
-    result0 = CONCAT71((int7)((ulonglong)eventProcessingStatus >> 8),1);
-    ProcessingStatus = FUN_180759220(*(UIHandle *)(BasePointer + -0x79),pEventDataIndex[2],BasePointer + -0x71,0,result0);
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    *(UIHandle *)(StackFrameBasePointer + -0x71) = 0;
+    EventProcessingCounter = 0;
+    OperationResult = CONCAT71((int7)((ulonglong)EventFlags >> 8),1);
+    EventProcessingStatus = FUN_180759220(*(UIHandle *)(StackFrameBasePointer + -0x79),EventDataIndexArray[2],StackFrameBasePointer + -0x71,0,OperationResult);
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    result0 = result0 & 0xffffffffffffff00;
-    ProcessingStatus = FUN_180765c40(*(UIHandle *)(BasePointer + -0x71));
-    if ((int)ProcessingStatus != 0) {
-      return ProcessingStatus;
+    OperationResult = OperationResult & 0xffffffffffffff00;
+    EventProcessingStatus = FUN_180765c40(*(UIHandle *)(StackFrameBasePointer + -0x71));
+    if ((int)EventProcessingStatus != 0) {
+      return EventProcessingStatus;
     }
-    if (*(int *)(*(longlong *)(uiContext + 0x48) + 0x6d0) != iStack0000000000000044) {
-      iStack0000000000000040 = (int)ProcessingStatus;
-      ProcessingStatus = func_0x000180746360(*(longlong *)(uiContext + 0x48),&stack0x00000040,0);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+    if (*(int *)(*(longlong *)(UIContextPointer + 0x48) + 0x6d0) != UIContextStatus) {
+      ProcessingResult = (int)EventProcessingStatus;
+      EventProcessingStatus = func_0x000180746360(*(longlong *)(UIContextPointer + 0x48),&ContextStackBuffer,0);
+      if ((int)EventProcessingStatus != 0) {
+        return EventProcessingStatus;
       }
-      *(int *)(BasePointer + -0x69) = iStack0000000000000040;
+      *(int *)(StackFrameBasePointer + -0x69) = ProcessingResult;
       *(UIDword *)(BasePointer + -0x65) = *(UIDword *)(BasePointer + 0x5f);
       *(UIByte *)(BasePointer + -0x5d) = 1;
       *(UIDword *)(BasePointer + -0x61) = 5;

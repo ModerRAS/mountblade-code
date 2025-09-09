@@ -66552,14 +66552,14 @@ MemoryAddressProcessing:
               CharacterTablePointer = (long long)BufferAllocationStatus8 - (long long)pMemoryBufferC >> 3;
               if (CharacterTablePointer == 0) {
                 CharacterTablePointer = 1;
-LAB_18008ae5a:
+BufferAllocation:
                 ContextHandle6 = (long long *)BufferAllocate(MemoryPoolManager,CharacterTablePointer * 8,(char)ContextHandleTablePointer[3]);
                 BufferAllocationStatus8 = (long long *)ContextHandleTablePointer[1];
                 pMemoryBufferC = (long long *)*ContextHandlePointer;
               }
               else {
                 CharacterTablePointer = CharacterTablePointer * 2;
-                if (CharacterTablePointer != 0) goto LAB_18008ae5a;
+                if (CharacterTablePointer != 0) goto BufferAllocation;
                 ContextHandle6 = (long long *)0x0;
               }
               if (pMemoryBufferC != BufferAllocationStatus8) {
@@ -66874,10 +66874,10 @@ void UpdateSystemValidationData(unsigned long long ContextHandle,int OperationBu
         SystemEventTemplatePointer = (void *)SystemEventTemplatePointer[1];
       }
     } while (SystemEventTemplatePointer != NULL);
-    if ((CharacterStatusBuffer != Utf8SourcePointer) && ((unsigned long long)CharacterStatusBuffer[4] <= ContextHandle)) goto LAB_18008b3e2;
+    if ((CharacterStatusBuffer != Utf8SourcePointer) && ((unsigned long long)CharacterStatusBuffer[4] <= ContextHandle)) goto CodePointProcessing;
   }
   CharacterStatusBuffer = Utf8SourcePointer;
-LAB_18008b3e2:
+CodePointProcessing:
   CalculatedCodePoint = *(uint *)(CharacterStatusBuffer + 5);
   if (CalculatedCodePoint < MemoryAddressMaskPointer) {
     *(uint *)(CharacterStatusBuffer + 5) = MemoryAddressMaskPointer;
@@ -67071,7 +67071,7 @@ void ProcessSystemDataTableCopy(long long ContextHandle,long long *ContextHandle
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemDataTablePointer);
   }
-LAB_18008b7ea:
+MemoryPoolProcessing:
   if ((SystemEventTemplatePointer == CharacterStatusBuffer) || (MemoryPoolBlockSize = 1, *(unsigned long long *)(SystemDataTablePointer + 0x20) < (unsigned long long)SystemEventTemplatePointer[4])) {
     MemoryPoolBlockSize = MemoryBoundaryEnd;
   }
@@ -67347,12 +67347,12 @@ void ValidateSystemDataIntegrity(uint64_t ContextHandle,long long OperationBuffe
     if (*(char *)((long long)Utf8SourcePointer + 0x44) != '\0') {
       LocalProcessingStatusFlag8 = &SystemConfigDataH;
       ValidateSystemConfiguration(SystemConfigHandle,0,0x80000000000,9);
-      if (*(char *)((long long)Utf8SourcePointer + 0x44) != '\0') goto LAB_18008c01e;
+      if (*(char *)((long long)Utf8SourcePointer + 0x44) != '\0') goto FilePointerProcessing;
     }
     MemoryPoolBlockSize = MemoryPoolBlockSize + *Utf16EndPointer;
     ProcessingStatusFlag = (uint)Utf16EndPointer[1];
   }
-LAB_18008c01e:
+FilePointerProcessing:
   SetFilePointerEx(MemoryBoundaryEnd,MemoryPoolBlockSize,aSystemValue2b0,0);
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,0x20,8,3);
   *MemoryBlockHandle = 0;
