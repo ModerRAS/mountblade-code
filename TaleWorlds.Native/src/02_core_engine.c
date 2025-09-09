@@ -67542,7 +67542,7 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(MemoryBoundaryEnd);
   }
-LAB_18008c531:
+MemoryComparison:
   if ((PrimaryProcessingStatusFlag == CharacterStatusBuffer) || (MemoryMatchResult = memcmp(MemoryBoundaryEnd + 0x20,PrimaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
     MemoryAddressMaskPointer = 0;
   }
@@ -67625,7 +67625,7 @@ void ProcessDataStructureInsertionAndSorting(long long Context, long long *DataA
         ParentNodePointer = &StackNodePointer1;
         TreeNodePointer = (uint64_t *****)StackNodePointer3;
         if ((uint64_t *****)StackNodePointer3 == (uint64_t *****)0x0) {
-LAB_18008cc42:
+TreeNodeProcessing:
           ParentNodePointer = &StackNodePointer1;
         }
         else {
@@ -67678,7 +67678,7 @@ LAB_18008cc42:
         ProcessMemoryData(LongPointer1,LongPointer4);
         if (ContextHandle8 != BufferAllocationStatus3) {
           ContextHandle6 = MemoryBlockListHead + 0x36;
-LAB_18008cd70:
+DataTableProcessing:
           SystemDataTablePointer = *ContextHandle8;
           IntegerValue4 = (int)ContextHandle8[1];
           ContextHandle3 = ContextHandle6;
@@ -67716,7 +67716,7 @@ LAB_18008cd70:
         }
       }
     }
-LAB_18008ce20:
+BufferAllocationComplete:
     OperationBufferSize[1] = *ContextHandleSize;
     BufferAllocationStatus3 = MemoryBlockListHead;
     SystemDataTablePointer = PerformanceCounterValue;
