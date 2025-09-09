@@ -269,6 +269,13 @@ typedef enum {
 #define isProcessingComplete UIIsProcessingComplete
 #define AudioFormatType UIAudioFormatType
 
+// UI系统寄存器变量宏定义
+#define in_register_0000131c UIRegisterValue131c
+#define in_register_0000125c UIRegisterValue125c
+
+// UI系统布尔变量宏定义
+#define bVar2 UIIsEventProcessingActive
+
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
 
