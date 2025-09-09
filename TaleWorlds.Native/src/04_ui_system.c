@@ -9837,38 +9837,38 @@ void InitializeUIComponent(longlong uiContext,UIHandle dataSource)
 
 {
   UIResultBuffer *pResultPointer;
-  undefined *pSemaphoreHandle;
+  UISemaphoreHandle *pSemaphoreHandle;
   longlong *pDataStackPointer;
-  undefined *pStackBuffer50;
-  undefined *pStackBuffer48;
+  UIStackBuffer *pStackBuffer50;
+  UIStackBuffer *pStackBuffer48;
   UIDword stackData38;
-  undefined *pStackBuffer30;
-  undefined *pStackBuffer28;
+  UIStackBuffer *pStackBuffer30;
+  UIStackBuffer *pStackBuffer28;
   
   plStackX_10 = dataSource;
   UpdateUIState(uiContext + 0x168,&plStackX_10,targetBuffer,bufferSize,0xfffffffffffffffe);
   (**(code **)(*dataSource + 8))(dataSource,&pstackUInt30);
   (**(code **)(*dataSource + 0x10))(dataSource,&pstackUInt50);
   piterationCount = &UIDefaultDataBuffer;
-  if (pstackUInt48 != (undefined *)0x0) {
+  if (pstackUInt48 != (UIStackBuffer *)0x0) {
     piterationCount = pstackUInt48;
   }
   ptrResult = &UIDefaultDataBuffer;
-  if (pstackUInt28 != (undefined *)0x0) {
+  if (pstackUInt28 != (UIStackBuffer *)0x0) {
     ptrResult = pstackUInt28;
   }
   (**(code **)(ManagedInterface + 0xe8))(ptrResult,piterationCount);
   (**(code **)*dataSource)(dataSource);
   pstackUInt50 = &PrimaryUIBuffer;
-  if (pstackUInt48 != (undefined *)0x0) {
+  if (pstackUInt48 != (UIStackBuffer *)0x0) {
                      WARNING: Subroutine does not return
     DestroyUIComponent();
   }
-  pstackUInt48 = (undefined *)0x0;
+  pstackUInt48 = (UIStackBuffer *)0x0;
   stackUInt38 = 0;
   pstackUInt50 = &SecondaryUIBuffer;
   pstackUInt30 = &PrimaryUIBuffer;
-  if (pstackUInt28 != (undefined *)0x0) {
+  if (pstackUInt28 != (UIStackBuffer *)0x0) {
                      WARNING: Subroutine does not return
     DestroyUIComponent();
   }
@@ -9885,7 +9885,7 @@ void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong
 
 {
   code *controllerMethod;
-  undefined *iterationCount;
+  UIIterationCounter *iterationCount;
   undefined *targetBufferHandle;
   
   controllerMethod = ControllerMethods;
