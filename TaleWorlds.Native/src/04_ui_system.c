@@ -258,7 +258,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_180705870
  */
-#define ProcessUIRenderData ProcessUIRenderDataSystem870
+#define ProcessUIRenderData FUN_180705870
 
 /**
  * @brief 清理UI资源
@@ -273,7 +273,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_1807058d0
  */
-#define CleanupUIResources CleanupUIResourcesSystem8D0
+#define CleanupUIResources FUN_1807058d0
 
  /**
  * @brief 计算UI组件内存偏移量
