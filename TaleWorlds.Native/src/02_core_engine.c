@@ -9701,10 +9701,10 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define InitializeRenderMaterials FUN_18011c060
 #define ConfigureRenderLights FUN_18011c080
 #define SetupRenderCameras FUN_18011c0a0
-#define InitializeRenderEffectsc0c0) InitializeRenderEffects
-#define ConfigureRenderMeshesc0e0) ConfigureRenderMeshes
-#define SetupRenderAnimationsc100) SetupRenderAnimations
-#define InitializeRenderPhysicsc120) InitializeRenderPhysics
+#define InitializeRenderEffects(FUN_1800c0c0) InitializeRenderEffects
+#define ConfigureRenderMeshes(FUN_1800c0e0) ConfigureRenderMeshes
+#define SetupRenderAnimations(FUN_1800c100) SetupRenderAnimations
+#define InitializeRenderPhysics(FUN_1800c120) InitializeRenderPhysics
 #define ConfigureRenderAudioc140) ConfigureRenderAudio
 #define SetupRenderUIc160) SetupRenderUI
 #define InitializeRenderNetworkc180) InitializeRenderNetwork
@@ -10061,7 +10061,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemMemoryManager(FUN_1800842a0) ProcessSystemMemoryManager
 #define ProcessSystemResourceCleanup(FUN_180099f90) ProcessSystemResourceCleanup
 #define ProcessSystemStackInitialization(FUN_1801299b0) ProcessSystemStackInitialization
-#define ProcessSystemCoreEngineConfigf6f0) ProcessSystemCoreEngineConfig
+#define ProcessSystemCoreEngineConfig(FUN_1800cf6f0) ProcessSystemCoreEngineConfig
 #define ProcessSystemFloatConstants(FUN_180112210) ProcessSystemFloatConstants
 
 // 字符串处理函数
@@ -10317,7 +10317,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemMemoryManager(FUN_1800842a0) ProcessSystemMemoryManager
 #define ProcessSystemResourceCleanup(FUN_180099f90) ProcessSystemResourceCleanup
 #define ProcessSystemStackInitialization(FUN_1801299b0) ProcessSystemStackInitialization
-#define ProcessSystemCoreEngineConfigf6f0) ProcessSystemCoreEngineConfig
+#define ProcessSystemCoreEngineConfig(FUN_1800cf6f0) ProcessSystemCoreEngineConfig
 #define ProcessSystemFloatConstants(FUN_180112210) ProcessSystemFloatConstants
 
 // 未定义的FUN_函数宏定义
