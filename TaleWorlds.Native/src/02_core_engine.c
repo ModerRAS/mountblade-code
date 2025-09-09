@@ -144,6 +144,12 @@
 #define UnicodeCodePoint CalculatedCodePoint              // Unicode码点
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
+// 浮点寄存器变量语义化宏定义
+#define unaff_XMM7_Dc FloatRegisterX7_C                    // XMM7寄存器C部分（浮点计算）
+#define unaff_XMM7_Dd FloatRegisterX7_D                    // XMM7寄存器D部分（浮点计算）
+#define unaff_XMM9_Db AuxiliaryCalculationFloat9           // XMM9寄存器B部分（辅助计算浮点值）
+#define unaff_XMM9_Dd XMM9RegisterD                        // XMM9寄存器D部分（浮点计算）
+
 // 寄存器变量语义化宏定义
 #define RegisterRCX in_RCX                                // RCX寄存器（主参数寄存器）
 #define RegisterEAX in_EAX                                // EAX寄存器（累加器）
