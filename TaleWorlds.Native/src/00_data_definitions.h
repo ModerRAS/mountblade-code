@@ -1453,7 +1453,7 @@ int InitializeStringProcessorValidation(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorH(void)
+int InitializeStringProcessorMemory(void)
 {
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorHFlags;
