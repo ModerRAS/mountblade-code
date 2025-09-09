@@ -2090,16 +2090,16 @@ typedef enum {
 #define localChar2 UILocalChar2                    // UI本地字符2
 #define preservedRegister13D UIPreservedRegister13D  // UI保留寄存器13D
 #define preservedXMM6 UIPreservedXMM6              // UI保留XMM6寄存器
-#define unmodifiedXMM8_Da UIUnmodifiedXMM8_Data
-#define EventHandle UIEventHandle
-#define baseValue6 UIBaseValue6
-#define baseValue2 UIBaseValue2
-#define baseValue7 UIBaseValue7
-#define baseValue3 UIBaseValue3
-#define FloatValue2 UIFloatValue2
-#define ProcessUIDataTransformationWithFloat FUN_18071ebe0
-#define ProcessUIDataHandleOperation FUN_18071efcb
-#define ProcessUIDataBufferOperationWithSize FUN_18071f270
+#define unmodifiedXMM8_Da UIUnmodifiedXMM8_Data  // UI未修改XMM8数据
+#define EventHandle UIEventHandle                 // UI事件句柄
+#define baseValue6 UIBaseValue6                  // UI基础值6
+#define baseValue2 UIBaseValue2                  // UI基础值2
+#define baseValue7 UIBaseValue7                  // UI基础值7
+#define baseValue3 UIBaseValue3                  // UI基础值3
+#define FloatValue2 UIFloatValue2                // UI浮点值2
+#define ProcessUIDataTransformationWithFloat FUN_18071ebe0  // 使用浮点数处理UI数据变换
+#define ProcessUIDataHandleOperation FUN_18071efcb    // 处理UI数据句柄操作
+#define ProcessUIDataBufferOperationWithSize FUN_18071f270  // 处理UI数据缓冲区大小操作
 
 // UI系统堆栈变量美化
 #define uStack0000000000000050 UIStackBufferOffset
