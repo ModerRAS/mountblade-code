@@ -29546,6 +29546,21 @@ int ValidateUIComponentState(UIHandle *uiContext,UIHandle *dataSource,UIHandle t
 
 
 
+/**
+ * @brief 验证UI组件可见性
+ * 
+ * 验证UI组件的可见性状态，检查组件是否应该被显示或隐藏。
+ * 该函数会根据组件的上下文和数据源信息来确定组件的可见性。
+ * 
+ * @param uiContext UI组件上下文指针，包含组件的可见性状态信息
+ * @param dataSource UI组件数据源指针，包含组件的显示数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储验证结果
+ * @param bufferSize 缓冲区大小，指定验证操作的数据范围
+ * @return 验证结果状态码，0表示可见，非0表示不可见或错误状态
+ * 
+ * @note 原始函数名: ValidateUIComponentVisibility
+ * @note 用于UI组件可见性检查和显示控制
+ */
 int ValidateUIComponentVisibility(UIHandle *uiContext,UIHandle *dataSource,UIHandle targetBuffer,uint bufferSize)
 
 {
@@ -49590,6 +49605,25 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
 
 
 
+/**
+ * @brief 执行UI数据计算
+ * 
+ * 执行UI系统中的数据计算操作，包括数值计算和数据处理。
+ * 该函数通过调用底层计算函数来处理UI相关的数据运算。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储计算结果
+ * @param bufferSize 缓冲区大小，指定计算操作的数据范围
+ * @param resultPointer 结果指针，用于返回计算状态
+ * @param param_6 计算参数6，具体的计算参数
+ * @param param_7 参数7指针，用于返回计算结果
+ * @param param_8 计算参数8，具体的计算参数
+ * @return 计算结果值，根据计算类型返回相应的数值结果
+ * 
+ * @note 原始函数名: PerformUIDataCalculation
+ * @note 用于UI系统中的数据计算和数值处理
+ */
 longlong PerformUIDataCalculation(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                                    UIHandle resultPointer,uint param_6,uint *param_7,UIHandle param_8)
 
@@ -49604,6 +49638,25 @@ longlong PerformUIDataCalculation(UIHandle uiContext,int dataSource,UIHandle tar
 
 
 
+/**
+ * @brief 计算UI数据指标
+ * 
+ * 计算UI系统中的数据指标，包括性能指标、使用率指标等。
+ * 该函数通过调用底层计算函数来处理UI相关的指标计算。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储计算结果
+ * @param bufferSize 缓冲区大小，指定计算操作的数据范围
+ * @param resultPointer 结果指针，用于返回计算状态
+ * @param param_6 计算参数6，具体的计算参数
+ * @param param_7 参数7指针，用于返回计算结果
+ * @param param_8 计算参数8，具体的计算参数
+ * @return 计算结果值，根据指标类型返回相应的数值结果
+ * 
+ * @note 原始函数名: CalculateUIDataMetrics
+ * @note 用于UI系统中的数据指标计算和性能分析
+ */
 longlong CalculateUIDataMetrics(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                                 UIHandle resultPointer,uint param_6,uint *param_7,UIHandle param_8)
 
@@ -49618,6 +49671,25 @@ longlong CalculateUIDataMetrics(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
+/**
+ * @brief 验证UI数据完整性
+ * 
+ * 验证UI系统中的数据完整性，检查数据是否损坏或不一致。
+ * 该函数通过调用底层验证函数来确保UI数据的完整性和一致性。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区句柄，用于存储验证结果
+ * @param bufferSize 缓冲区大小，指定验证操作的数据范围
+ * @param resultPointer 结果指针，用于返回验证状态
+ * @param param_6 验证参数6，具体的验证参数
+ * @param param_7 参数7指针，用于返回验证结果
+ * @param param_8 验证参数8，具体的验证参数
+ * @return 验证结果状态码，0表示成功，非0表示失败或警告
+ * 
+ * @note 原始函数名: ValidateUIDataIntegrity
+ * @note 用于UI系统中的数据完整性检查和错误检测
+ */
 int ValidateUIDataIntegrity(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                             UIHandle resultPointer,int param_6,int *param_7,UIHandle param_8)
 
@@ -107389,7 +107461,30 @@ void ProcessUIBufferAdvancedOperation(int uiContext, UIHandle dataSource, uint t
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize)
+// 原始函数名：FUN_18072ab70 - UI系统数据处理函数
+#define ProcessUIDataAndComponents FUN_18072ab70
+/**
+ * @brief 处理UI系统数据和组件
+ * 
+ * 该函数负责处理UI系统的数据和组件，包括：
+ * - UI组件的初始化和配置
+ * - 数据缓冲区的处理和管理
+ * - 事件状态的检查和更新
+ * - 组件上下文的处理
+ * - 数据验证和结果处理
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含要处理的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制处理的数据量
+ * 
+ * @return 处理结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 此函数是UI系统核心数据处理函数
+ * @note 负责确保UI数据的正确处理和组件管理
+ * @note 包含复杂的错误检查和状态管理逻辑
+ */
+ulonglong ProcessUIDataAndComponents(longlong uiContext,longlong dataSource,uint targetBuffer,uint bufferSize)
 
 {
   longlong allocatedMemory;
@@ -109786,7 +109881,7 @@ void FUN_18072cc1b(void)
       }
       else {
         processingResult8 = 0xc;
-        pstackUInt32_70 = &UNK_180956f38;
+        pstackUInt32_70 = &UIComponentHandleF38;
         allocatedMemory9 = 0xc;
       }
       dVar28 = (double)FUN_18072b3a0(*(longlong *)(BasePointer + -0x60) +
@@ -115345,7 +115440,7 @@ void FUN_1807342b0(short uiContext,char dataSource,int *targetBuffer,int bufferS
     CharacterDataOffset = 0x22;
   }
   else {
-    ptrLocal6 = &UNK_180956f38;
+    ptrLocal6 = &UIComponentHandleF38;
     CharacterDataOffset = 0xc;
   }
   uiCompareResult = (int)(short)bufferSize;
