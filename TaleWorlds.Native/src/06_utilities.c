@@ -1473,7 +1473,7 @@
 #define SystemOperationCode0xd 0xd                  // 系统操作码0xd
 #define SystemTertiaryDataOffset 0x38
 #define SystemContextOffset90 0x90
-#define systemContextOffset554 0x554
+#define SystemContextOffset554 0x554
 #define SystemCleanupContextOffset 0x90
 #define SystemExceptionHandlerOffset10 0x10
 #define SystemOperationValidationOffset 0x1c
@@ -2733,7 +2733,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统上下文相关偏移量常量
 #define systemContextDataOffset 0x18              // 系统上下文数据偏移量
 #define SystemContextOffset90 0x90                // 系统上下文偏移量90
-#define systemContextOffset554 0x554              // 系统上下文偏移量554
+#define SystemContextOffset554 0x554              // 系统上下文偏移量554
 
 // 系统内存管理器偏移量常量
 #define SystemMemoryManagerOffset1a0 0x1a0         // 系统内存管理器偏移量1a0
