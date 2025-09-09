@@ -53256,7 +53256,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   UIByte aiterationCounter4 [14];
   UIByte aiterationCounter5 [14];
   UIByte aiterationCounter6 [15];
-  unkuint9 Var77;
+  UIByte UIEventProcessingStatus77;
   UIByte aiterationCounter8 [11];
   UIByte aiterationCounter9 [13];
   UIByte aeventProcessingCounter0 [15];
@@ -55407,35 +55407,35 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   UIByte adataPointer8 [11];
   UIByte adataPointer9 [12];
   UIByte aresult10 [15];
-  unkuint9 Var111;
+  UIByte UIResultStatus111;
   UIByte aresult12 [11];
   UIByte aresult13 [13];
   UIByte aresult14 [15];
-  unkuint9 Var115;
+  UIByte UIResultStatus115;
   UIByte aresult16 [11];
   UIByte aresult17 [13];
   UIByte aresult18 [15];
-  unkuint9 Var119;
+  UIByte UIResultStatus119;
   UIByte bufferValue0 [11];
   UIByte bufferValue1 [13];
-  unkuint9 Var122;
+  UIByte UIBufferStatus122;
   UIByte bufferValue3 [15];
-  unkuint9 Var124;
+  UIByte UIBufferStatus124;
   UIByte bufferValue5 [11];
   UIByte bufferValue6 [13];
   UIByte bufferValue7 [15];
   UIByte bufferValue8 [11];
   UIByte bufferValue9 [13];
   UIByte acontextValue0 [15];
-  unkuint9 Var131;
+  UIByte UIBufferStatus131;
   UIByte acontextValue2 [11];
   UIByte acontextValue3 [13];
   UIByte acontextValue4 [15];
-  unkuint9 Var135;
+  UIByte UIContextStatus135;
   UIByte acontextValue6 [11];
   UIByte acontextValue7 [13];
   UIByte acontextValue8 [15];
-  unkuint9 Var139;
+  UIByte UIContextStatus139;
   UIByte acomponentIndex0 [11];
   UIByte acomponentIndex1 [13];
   unkuint9 Var142;
@@ -120684,17 +120684,17 @@ void ProcessUIDataTransfer(UIHandle uiContext,UIHandle dataSource,UIHandle targe
   *(UIHandle *)(RegisterPointer + -0x18) = BasePointer;
   *(UIHandle *)(RegisterPointer + -0x28) = EventHandle;
   lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  processingResult = InitializeUIContext(uiContext,&stack0x00000038,&stack0x00000030);
   if (processingResult == 0) {
-    processingResult = FUN_180745640(stackParam00000038,dataSource,targetBuffer);
+    processingResult = TransferUIData(stackParam00000038,dataSource,targetBuffer);
     if (processingResult == 0) goto FUN_180738fbf;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     uiValidationResult = CopyUIDataBuffer(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    uiCompareResult = CompareUIBufferData(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     CopyUIDataBuffer(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957458,&stack0x00000040);
+    ExecuteUIDataTransfer(processingResult,1,uiContext,&UIUnknownData458,&stack0x00000040);
   }
 FUN_180738fbf:
   if (lStack0000000000000030 != 0) {
