@@ -6617,23 +6617,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：CheckSystemStatus - 系统状态检查函数
 // 功能：检查系统状态和标志位
-#define CheckSystemStatus CheckSystemStatus
+#define CheckSystemStatus CheckSystemStatusAndHealth
 
 // 系统命令执行函数 - 系统命令执行函数
 // 功能：执行系统命令和操作
 #define ExecuteSystemCommand FUN_18009fb60
 
-// 原始函数名：ProcessDataOperationA0 - 数据处理函数A0
-// 功能：处理数据和缓冲区操作
-#define ProcessDataOperationA0 ProcessDataOperationA0
-
-// 原始函数名：ProcessDataOperationA1 - 数据处理函数A1
-// 功能：处理数据和验证操作
-#define ProcessDataOperationA1 ProcessDataOperationA1
-
-// 原始函数名：ValidateDataIntegrityA0 - 数据验证函数A0
-// 功能：验证数据完整性和状态
-#define ValidateDataIntegrityA0 ValidateDataIntegrityA0
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
 // 功能：处理数据同步操作
@@ -108580,7 +108569,7 @@ void ProcessDataBufferWithMemoryPointerAtOffset0f0(DataBuffer operationBase,int6
 
 
 
-void Unwind_18090f100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessDataBufferWithMemoryPointerAtOffset100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA5(*(int64_t *)(dataBuffer + MemoryPointerOffset),*(DataBuffer *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerCallbackOffset10),

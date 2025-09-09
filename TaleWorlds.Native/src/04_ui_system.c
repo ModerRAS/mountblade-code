@@ -11885,21 +11885,21 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         DistanceSquared = (VertexW - VertexZ) * (VertexW - VertexZ) +
                  (DistanceW - DistanceZ) * (DistanceW - DistanceZ) +
                  (VertexY - VertexX) * (VertexY - VertexX);
-        stackUInt168 = shaderHandle[-1];
-        stackUInt158 = *(UIDword *)(contextHandleData + componentIndex2 * 8);
-        if (TransformCoefficient20 < transformCoeff16) {
-          transformCoeff19 = fStack_178;
-          TransformCoefficient21 = fStack_174;
-          transformCoeff16 = TransformCoefficient20;
+        ShaderIndex = shaderHandle[-1];
+        ComponentOffset = *(UIDword *)(contextHandleData + componentIndex2 * 8);
+        if (DistanceSquared < MinDistanceSquared) {
+          BestDistanceW = DistanceW;
+          BestVertexY = VertexY;
+          MinDistanceSquared = DistanceSquared;
         }
-        CalculateUIDistanceTransform(&stackUInt158,&stackUInt168,&fStack_1b8,&fStack_1c8,&fStack_148,&fStack_128);
-        TransformCoefficient20 = (fStack_124 - fStack_144) * (fStack_124 - fStack_144) +
-                 (fStack_128 - fStack_148) * (fStack_128 - fStack_148) +
+        CalculateUIDistanceTransform(&ComponentOffset,&ShaderIndex,&SecondaryDistanceX,&SecondaryDistanceY,&SecondaryDistanceZ,&SecondaryDistanceW);
+        SecondaryDistanceSquared = (fStack_124 - fStack_144) * (fStack_124 - fStack_144) +
+                 (SecondaryDistanceW - SecondaryDistanceZ) * (SecondaryDistanceW - SecondaryDistanceZ) +
                  (fStack_120 - fStack_140) * (fStack_120 - fStack_140);
-        if (TransformCoefficient20 < transformCoeff18) {
-          TransformCoefficient23 = fStack_148;
-          AccumulatedFloat = fStack_144;
-          transformCoeff18 = TransformCoefficient20;
+        if (SecondaryDistanceSquared < MinSecondaryDistanceSquared) {
+          BestSecondaryDistanceZ = SecondaryDistanceZ;
+          BestSecondaryVertexZ = SecondaryVertexZ;
+          MinSecondaryDistanceSquared = SecondaryDistanceSquared;
         }
         uiValidationResult4 = uiValidationResult4 + 1;
         shaderHandle = shaderHandle + 2;
@@ -28290,7 +28290,7 @@ void InitializeUIRenderingFunctions(void)
   if (bVar4) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataFallbackOperation;
   }
-  _DAT_180d4a898 = FUN_18068f150;
+  UIEventDispatchProcessor = FUN_18068f150;
   if (bVar6) {
     _DAT_180d4a898 = FUN_18068f240;
   }
@@ -89425,60 +89425,60 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
 int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int targetBuffer, int bufferSize)
 
 {
-  float baseValue;
-  int uiValidationResult;
-  float TransformCoefficient2;
-  int tempInt4;
-  uint vectorLoopCounter;
-  int loopCounter;
-  longlong localLong7;
-  longlong contextOffset;
-  longlong contextHandle;
-  longlong sourceHandle;
-  int allocationFlags;
-  int register10D;
-  longlong registerPointer;
-  longlong preservedRegister12;
-  int localInt9;
-  int eventHandle;
-  int preservedRegister15D;
-  float *BaseValuePointer0;
-  float baseValue1;
-  UIByte counterResult [12];
-  UIByte vectorResult3 [16];
-  UIByte componentIndex [16];
-  float baseValue6;
-  UIByte vectorResult7 [16];
+  float BaseValue;
+  int UIValidationResult;
+  float TransformCoefficient;
+  int TemporaryInt4;
+  uint VectorLoopCounter;
+  int LoopCounter;
+  longlong LocalLong7;
+  longlong ContextOffset;
+  longlong ContextHandle;
+  longlong SourceHandle;
+  int AllocationFlags;
+  int Register10D;
+  longlong RegisterPointer;
+  longlong PreservedRegister12;
+  int LocalInt9;
+  int EventHandle;
+  int PreservedRegister15D;
+  float *BaseValuePointer;
+  float BaseValue1;
+  UIByte CounterResult [12];
+  UIByte VectorResult3 [16];
+  UIByte ComponentIndex [16];
+  float BaseValue6;
+  UIByte VectorResult7 [16];
   double ComparisonResult;
-  float floatValue2;
-  float accumulatedFloat;
-  float unmodifiedXMM10_Da;
-  float unmodifiedXMM14_Da;
-  int stackX_20;
-  int stackParam00000108;
-  int stackParam00000110;
-  longlong stackParam00000118;
-  longlong stackParam00000120;
-  int stackParam00000128;
-  int stack0000000000000130;
-  longlong stackParam00000138;
-  longlong stackParam00000140;
-  int stackParam00000150;
-  int stack0000000000000160;
-  float stackParam00000168;
-  int stackParam00000170;
-  UIHandle result2;
+  float FloatValue2;
+  float AccumulatedFloat;
+  float UnmodifiedXMM10_Da;
+  float UnmodifiedXMM14_Da;
+  int StackX20;
+  int StackParam108;
+  int StackParam110;
+  longlong StackParam118;
+  longlong StackParam120;
+  int StackParam128;
+  int StackParam130;
+  longlong StackParam138;
+  longlong StackParam140;
+  int StackParam150;
+  int StackParam160;
+  float StackParam168;
+  int StackParam170;
+  UIHandle Result2;
   
-  TransformCoefficient2 = stackParam00000168;
-  iStack0000000000000160 = 1;
+  TransformCoefficient = StackParam168;
+  StackParam160 = 1;
   do {
-    BaseValuePointer0 = (float *)&stack0x00000028;
-    localInt9 = targetBuffer + (preservedRegister15D - allocationFlags) * uiContext * -3;
+    BaseValuePointer = (float *)&stack0x00000028;
+    LocalInt9 = targetBuffer + (PreservedRegister15D - AllocationFlags) * uiContext * -3;
     do {
-      TempInt4 = eventHandle * *(int *)(preservedRegister12 + 8) + allocationFlags;
-      contextOffset = (longlong)TempInt4;
-      FloatValue2 = *(float *)(stackParam00000120 + contextOffset * 4);
-      baseValue6 = *(float *)(RegisterPointer + contextOffset * 4);
+      TemporaryInt4 = EventHandle * *(int *)(PreservedRegister12 + 8) + AllocationFlags;
+      ContextOffset = (longlong)TemporaryInt4;
+      FloatValue2 = *(float *)(StackParam120 + ContextOffset * 4);
+      BaseValue6 = *(float *)(RegisterPointer + ContextOffset * 4);
       if (FloatValue2 < -9.0) {
         FloatValue2 = -9.0;
       }
