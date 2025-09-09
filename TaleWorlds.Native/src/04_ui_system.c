@@ -195,12 +195,12 @@ typedef enum {
 #define ValidateAndProcessUIData FUN_180739085           // 验证和处理UI数据
 #define CleanupUIResourcesAndExecuteRender FUN_1807390fd  // 清理UI资源并执行渲染
 #define ProcessUIDataBuffer FUN_18073915d                 // 处理UI数据缓冲区
-#define ProcessUIComponentDataA9C0 FUN_18072a9c0          // 处理UI组件数据A9C0
-#define ValidateUILayoutDataF7D0 FUN_18072f7d0            // 验证UI布局数据F7D0
-#define RenderUIComponentA70 FUN_180736a70                // 渲染UI组件A70
-#define ValidateUIComponentContext4160 FUN_180734160     // 验证UI组件上下文4160
-#define ProcessUIBufferDataA10 FUN_180736a10              // 处理UI缓冲区数据A10
-#define InitializeUIComponent1E10 FUN_180741e10           // 初始化UI组件1E10
+#define ProcessUIComponentDataAndValidation FUN_18072a9c0          // 处理UI组件数据和验证
+#define ValidateUILayoutDataAndFormatting FUN_18072f7d0            // 验证UI布局数据和格式
+#define RenderUIComponentAndDisplay FUN_180736a70                // 渲染UI组件和显示
+#define ValidateUIComponentContextAndState FUN_180734160     // 验证UI组件上下文和状态
+#define ProcessUIBufferDataAndTransfer FUN_180736a10              // 处理UI缓冲区数据和传输
+#define InitializeUIComponentAndResources FUN_180741e10           // 初始化UI组件和资源
 #define ProcessUIContextDataTransfer FUN_180728660          // 处理UI上下文数据传输
 #define TransferUIDataToBuffer FUN_180728720                // 传输UI数据到缓冲区
 #define ProcessUITransformDataWithCoefficients FUN_180721810 // 处理UI变换数据与系数
@@ -512,6 +512,18 @@ typedef enum {
 #define uStack000000000000005c UIStackBuffer5C
 #define uStack00000000000000dc UIStackBufferDC
 #define uStack00000000000000fc UIStackBufferFC
+
+// UI系统指针栈变量宏定义（补充）
+#define puStack00000000000000b0 UIStackPointerBufferB0
+#define puStack0000000000000058 UIStackPointerBuffer58
+
+// UI系统长整型栈变量宏定义（补充）
+#define lStack0000000000000058 UILongStackSize58
+#define lStack0000000000000030 UILongStackContext30
+#define lStack0000000000000028 UILongStackContext28
+#define lStack0000000000000048 UILongStackContext48
+#define lStack00000000000000b8 UILongStackCounterB8
+#define lStack0000000000000050 UILongStackOffset50
 #define LAB_1806575b7 UIProcessingCompleteLabel
 #define LAB_1806575f7 UICharacterCodeValidationLabel
 #define LAB_1806577f1 UIProcessingCounterValidationLabel
