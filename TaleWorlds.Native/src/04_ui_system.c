@@ -5733,22 +5733,16 @@ void* UITransitionController;
  void UpdateUIAnimationState;
 
  void HandleUIEventDispatch(void);
-void HandleUIEventDispatch(void);
 
  void UpdateUILayoutState(void);
-void UpdateUILayoutState(void);
 
  void ProcessUIAnimation(void);
-void ProcessUIAnimation(void);
 
  void HandleUITouchEvent(void);
-void HandleUITouchEvent(void);
 
  void ProcessUIGesture(void);
-void ProcessUIGesture(void);
 
  void UpdateUIFocus(void);
-void UpdateUIFocus(void);
 // UI系统渲染数据表
 void* UIVertexBufferTable;
 void* UIIndexBufferTable;
