@@ -1414,6 +1414,28 @@
  * 
  * @note 原始函数名：FUN_18015c0a0
  */
+// 缺失的FUN_函数语义化宏定义
+#define ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation FUN_1801676b0  // 处理UTF-8到UTF-16的字符编码转换和内存分配
+#define ProcessSystemConfigurationAndStringMatching FUN_18016cacd            // 处理系统配置和字符串匹配操作
+#define ProcessSystemCharacterEncodingAndMemoryManagement FUN_180170da0      // 处理系统字符编码和内存管理
+#define ProcessCharacterEncodingWithContextHandle FUN_180170e20            // 处理带字符代码的字符编码
+#define ProcessSystemCharacterValidationAndFinalization FUN_180171101       // 处理系统字符验证和最终化
+#define ProcessSystemDataConversionAndMemoryAllocation FUN_180177c00        // 处理系统数据转换和内存分配
+#define ProcessContextHandleWithSizeAndData FUN_18017b070                   // 处理带大小和数据的字符代码
+#define ProcessContextHandleWithSizeParameters FUN_18017b240                // 处理带大小参数的字符代码
+#define ProcessContextHandleWithSizeData FUN_18017b259                     // 处理带大小数据的字符代码
+#define ProcessSystemCharacterEncodingCleanup FUN_18017b28d                // 处理系统字符编码清理
+#define ProcessCharacterEncodingWithContextHandle FUN_18017b2ed             // 处理带字符代码的字符编码
+#define ProcessCharacterEncodingWithMultipleData FUN_18017b400              // 处理带多数据的字符编码
+#define ProcessContextHandleWithMultipleParameters FUN_18017b480           // 处理带多参数的字符代码
+#define ProcessCharacterEncodingWithValidationFlags FUN_18017b6e0           // 处理带验证标志的字符编码
+#define ProcessSystemCharacterEncodingAndBufferSize FUN_18017d800          // 处理系统字符编码和缓冲区大小
+#define ProcessSystemCharacterEncodingAndOperationSize FUN_18017da00        // 处理系统字符编码和操作大小
+#define ProcessSystemCharacterEncodingAndBufferConfiguration FUN_18017da50  // 处理系统字符编码和缓冲区配置
+#define ProcessSystemCharacterEncodingAndDataValidation FUN_18017dbd0       // 处理系统字符编码和数据验证
+#define ProcessSystemCharacterEncodingAndMemoryManagement FUN_18017dd10     // 处理系统字符编码和内存管理
+#define ProcessSystemCharacterEncodingAndResourceAllocation FUN_18017dd60    // 处理系统字符编码和资源分配
+
 #define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展

@@ -10143,41 +10143,41 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
         uiTransformCoefficient25 = 3;
         uiParameterStack[0] = 0x40;
         elementProcessingCounter = uiElementCount;
-        if (sourceDataBlock[1] != 0) {
-          ProcessUIData(sourceDataBlock,&resultPointer4,stackArray);
+        if (uiDataSourceBlock[1] != 0) {
+          ProcessUIData(uiDataSourceBlock,&uiTransformResultPointer4,uiParameterStack);
         }
-        dataPointer2 = resultPointer5;
-        dataPointer1 = resultPointer4;
-        currentMemoryBlock = resultPointer4;
-        if (((longlong)resultPointer5 - (longlong)resultPointer4 & 0xffffffffffffffe0U) == 0x60) {
-          OperateUIBuffer(&resultPointer3,resultPointer4);
-          componentIndex1 = atoi(dataPointer1[5]);
-          componentIndex2 = atoi(dataPointer1[9]);
-          newContext = CreateUIContext(&resultPointer3);
-          currentMemoryBlock = (UIHandle *)uiContext[1];
-          if (currentMemoryBlock < (UIHandle *)uiContext[2]) {
-            *currentMemoryBlock = newContext;
-            currentMemoryBlock[1] = (longlong)componentIndex1;
-            currentMemoryBlock[2] = (longlong)componentIndex2;
+        uiDataPointer2 = uiTransformResultPointer5;
+        uiDataPointer1 = uiTransformResultPointer4;
+        currentMemoryAllocation = uiTransformResultPointer4;
+        if (((longlong)uiTransformResultPointer5 - (longlong)uiTransformResultPointer4 & 0xffffffffffffffe0U) == 0x60) {
+          OperateUIBuffer(&uiTransformResultPointer3,uiTransformResultPointer4);
+          componentLayoutIndex1 = atoi(uiDataPointer1[5]);
+          componentLayoutIndex2 = atoi(uiDataPointer1[9]);
+          newUIContext = CreateUIContext(&uiTransformResultPointer3);
+          currentMemoryAllocation = (UIHandle *)uiContext[1];
+          if (currentMemoryAllocation < (UIHandle *)uiContext[2]) {
+            *currentMemoryAllocation = newUIContext;
+            currentMemoryAllocation[1] = (longlong)componentLayoutIndex1;
+            currentMemoryAllocation[2] = (longlong)componentLayoutIndex2;
             uiContext[1] = uiContext[1] + 0x18;
           }
           else {
-            AllocatedMemoryBlock1 = *uiContext;
-            blockOffset = ((longlong)currentMemoryBlock - AllocatedMemoryBlock1) / 0x18;
-            if (blockOffset == 0) {
-              blockOffset = 1;
+            allocatedMemoryBlock1 = *uiContext;
+            memoryBlockOffset = ((longlong)currentMemoryAllocation - allocatedMemoryBlock1) / 0x18;
+            if (memoryBlockOffset == 0) {
+              memoryBlockOffset = 1;
 LAB_UIContextInitialize:
-              newMemoryBlock = (UIHandle *)CreateUIContext(UIContextManager,blockOffset * 0x18,(char)uiContext[3]);
-              currentMemoryBlock = (UIHandle *)uiContext[1];
-              AllocatedMemoryBlock1 = *uiContext;
+              newMemoryAllocation = (UIHandle *)CreateUIContext(UIContextManager,memoryBlockOffset * 0x18,(char)uiContext[3]);
+              currentMemoryAllocation = (UIHandle *)uiContext[1];
+              allocatedMemoryBlock1 = *uiContext;
             }
             else {
-              blockOffset = blockOffset * 2;
-              if (blockOffset != 0) goto LAB_UIContextResize;
-              newMemoryBlock = (UIHandle *)0x0;
+              memoryBlockOffset = memoryBlockOffset * 2;
+              if (memoryBlockOffset != 0) goto LAB_UIContextResize;
+              newMemoryAllocation = (UIHandle *)0x0;
             }
-            elementCount = ((longlong)currentMemoryBlock - AllocatedMemoryBlock1) / 0x18;
-            currentMemoryBlock = newMemoryBlock;
+            uiElementCount = ((longlong)currentMemoryAllocation - allocatedMemoryBlock1) / 0x18;
+            currentMemoryAllocation = newMemoryAllocation;
             if (0 < elementCount) {
               do {
                 ptrResult = (UIDword *)((longlong)currentMemoryBlock + (allocatedMemory4 - (longlong)newMemoryBlock));
