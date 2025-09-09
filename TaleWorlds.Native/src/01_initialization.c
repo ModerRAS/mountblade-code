@@ -19872,7 +19872,7 @@ int InitializeThreadSafetyMutex(void)
 void WotsMainSDLL(void* SystemParameter)
 
 {
-  void* stackVariables [2];
+  void* SystemStackVariables [2];
   
   // SDL主入口点初始化
 
@@ -21371,18 +21371,18 @@ void ProcessSystemThreeParameterData(long long sourceStringPointer, long long ta
   long long stringSearchResult;
   long long sourceStringLength;
   long long targetStringLength;
-  uint8_t stackSecurityBuffer [32];
+  uint8_t SystemSecurityValidationBuffer [32];
   void* securityFlags;
   void* *memoryReference;
   uint8_t *dataBuffer;
   uint32_t bufferLength;
-  uint8_t tempDataBuffer [32];
+  uint8_t SystemTemporaryDataBuffer [32];
   ulong long checksumValue;
   
   securityFlags = SystemInvalidHandleTemplate;
-  checksumValue = SystemEncryptionKeyTemplate ^ (ulong long)stackSecurityBuffer;
+  checksumValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemSecurityValidationBuffer;
   memoryReference = &SystemMemoryTemplateQuinary;
-  dataBuffer = tempDataBuffer;
+  dataBuffer = SystemTemporaryDataBuffer;
   bufferLength = 0;
   tempDataBuffer[0] = 0;
   stringSearchResult = strstr(*(void* *)(sourceStringPointer + 8));

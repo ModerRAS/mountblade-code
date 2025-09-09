@@ -28399,16 +28399,16 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
     if (contextIndex < allocatedMemoryBlock) {
       operationResult = systemContext + contextIndex;
       statusCounterPointer = operationResult + -1;
-      if (systemContext < pstatusCounter) {
+      if (systemContext < statusCounterPointer) {
         do {
           systemDataBuffer = *systemContext;
-          *systemContext = *pstatusCounter;
+          *systemContext = *statusCounterPointer;
           systemContext = systemContext + 1;
-          *pstatusCounter = systemDataBuffer;
-          pstatusCounter = pstatusCounter + -1;
-        } while (systemContext < pstatusCounter);
+          *statusCounterPointer = systemDataBuffer;
+          statusCounterPointer = statusCounterPointer + -1;
+        } while (systemContext < statusCounterPointer);
       }
-      *operationResult = (char)dataPointerD;
+      *operationResult = (char)processingDataValue;
     }
     else {
       pdataFlags = systemContext + (int)basePointer;
