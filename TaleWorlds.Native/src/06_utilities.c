@@ -33889,7 +33889,7 @@ DataProcessLabelA:
   }
   dataFlags = securityCheckResult;
   if ((((*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) &&
-       (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x94), (int)dataFlags == 0)) &&
+       (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffset94), (int)dataFlags == 0)) &&
       (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) &&
      ((dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemManagementOffset98), (int)dataFlags == 0 &&
       (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)))) {
