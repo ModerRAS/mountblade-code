@@ -11682,9 +11682,9 @@ uint32_t UtilitySyncDataVersion;
  * @see UtilityDecodeData, SynchronizeUtilityData, InitializeUtilitySystem
  */
 uint8_t UtilityEncodeData(void);
-uint8_t* UtilityEncodingBuffer;
-uint8_t* UtilityEncodeInputData;
-uint8_t* UtilityEncodeOutputBuffer;
+UtilityEncodingBuffer* UtilityEncodingBufferPtr;
+UtilityEncodeInputData* UtilityEncodeInputDataPtr;
+UtilityEncodeOutputBuffer* UtilityEncodeOutputBufferPtr;
 uint32_t UtilityEncodeKey;
 uint32_t UtilityEncodeResult;
 
@@ -105002,10 +105002,10 @@ void ExecuteExceptionHandlerCallbackE650(DataBuffer operationBase, int64_t dataB
 void ExecuteExceptionHandlerCallbackE660(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0xe8) + 8);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + 0xe8) + 8);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
