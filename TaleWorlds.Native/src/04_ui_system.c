@@ -205,6 +205,23 @@ typedef enum {
 #define FUN_180722370 ProcessUIIntArray                      // 处理UI整数数组
 #define FUN_1807226f0 ProcessUIComponentTransform           // 处理UI组件变换
 
+// 新增的FUN_函数语义化定义
+#define FUN_18072ab70 ProcessUINumericDataCalculation     // UI数值数据处理计算
+#define FUN_18072ad20 ProcessUIParameterValidation         // UI参数验证处理
+#define FUN_18072b3a0 CalculateUIMetricValue            // UI度量值计算
+#define FUN_18072b830 ProcessUIMatrixTransformation       // UI矩阵变换处理
+#define FUN_18072e9a0 ProcessUIResourceAllocation        // UI资源分配处理
+#define FUN_1807270a0 ProcessUIContextInitialization     // UI上下文初始化
+#define FUN_18072eb00 ProcessUIEventBufferManagement     // UI事件缓冲区管理
+#define FUN_18072e720 ProcessUIGraphicsParameters        // UI图形参数处理
+#define FUN_180726fd0 ProcessUIRenderContext           // UI渲染上下文处理
+#define FUN_18072ec50 ProcessUIComponentLayout          // UI组件布局处理
+#define FUN_18072e4b0 ProcessUICoefficientCalculation   // UI系数计算处理
+#define FUN_18072fba0 ProcessUISurfaceRendering         // UI表面渲染处理
+#define FUN_180730e60 ProcessUIInterfaceRendering        // UI界面渲染处理
+#define FUN_180733080 ProcessUINavigationSystem          // UI导航系统处理
+#define FUN_18072f890 ProcessUITextProcessing           // UI文本处理函数
+
 // 额外的UNK变量定义
 #define UNK_180958ac0 UIComponentFunctionTableAC0         // UI组件函数表AC0
 #define UNK_1809536a8 UIComponentValidationTableA8         // UI组件验证表A8
@@ -199588,20 +199605,20 @@ int ValidateUIComponentData(longlong uiContext,int dataSource,ulonglong targetBu
   ulonglong iterationCounter;
   
   componentIndex = *(longlong *)(uiBufferData + 0x48);
-  ptrLocal3 = *(UIHandle **)(componentIndex + 0x6c0);
+  componentPointer = *(UIHandle **)(componentIndex + 0x6c0);
   while( true ) {
-    if (ptrLocal3 == (UIHandle *)(componentIndex + 0x6c0)) {
+    if (componentPointer == (UIHandle *)(componentIndex + 0x6c0)) {
       return 0x1e;
     }
-    if (*(int *)((longlong)ptrLocal3 + 0x24) == dataSource) break;
-    ptrLocal3 = (UIHandle *)*ptrLocal3;
+    if (*(int *)((longlong)componentPointer + 0x24) == dataSource) break;
+    componentPointer = (UIHandle *)*componentPointer;
   }
-  if (ptrLocal3 == (UIHandle *)0x0) {
+  if (componentPointer == (UIHandle *)0x0) {
     return 0x1e;
   }
   contextHandleData = 0;
-  processingResult = *(int *)((longlong)ptrLocal3 + 0x2c);
-  stackUInt38 = 0;
+  processingResult = *(int *)((longlong)componentPointer + 0x2c);
+  iterationCounter = 0;
   processingCounter = targetBuffer;
   if (processingResult != 5) {
     contextHandleData = FUN_180741e10(componentIndex + 0x10bd0,*(int *)(ptrLocal3 + 6) * bufferSize * 4 + 0x20,&UIDefaultDataBuffer,0
