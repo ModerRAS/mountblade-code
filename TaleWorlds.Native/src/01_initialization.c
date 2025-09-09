@@ -30043,22 +30043,22 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
 void SystemResourceEnumerator(void)
 
 {
-  uint ResourceIndex;
-  long long *resourcePoolPointer;
+  uint ResourceEnumerationIndex;
+  long long *SystemResourcePoolPointer;
   void* *ResourceNodePointer;
-  char StatusFlag;
+  char ResourceStatusFlag;
   void* *ResourceDataPointer;
   uint8_t *ResourceBufferPointer;
-  uint32_t *PreviousNode;
+  uint32_t *PreviousResourceNode;
   int SystemOperationCode;
-  int SystemIdentifier;
-  long long AllocationFlags;
-  ulong long ResourceCount;
+  int SystemResourceIdentifier;
+  long long MemoryAllocationFlags;
+  ulong long TotalResourceCount;
   void* *ResourceArrayPointer;
   int SystemStatus;
   long long MemoryPointer;
   uint *ResourceFlagPointer;
-  void** SystemDataPointer;
+  void** SystemGlobalDataPointer;
   uint32_t SystemResourceID;
   uint8_t SystemLocalEncryptionBuffer [32];
   void* *SystemResourceHandleTertiary;
