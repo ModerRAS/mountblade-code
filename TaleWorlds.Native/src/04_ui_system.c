@@ -50005,12 +50005,12 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
  *  targetBuffer 目标缓冲区指针
  *  bufferSize 缓冲区大小
  *  resultPointer 结果指针
- *  param_6 操作参数6
- *  param_7 输出参数7，用于存储处理结果
+ *  operationParameter 操作参数
+ *  resultAccumulator 输出参数，用于存储处理结果
   处理结果状态码
   原始函数名: FUN_18068f9a0
  longlong ProcessUIDataOperationParallel(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                                      longlong resultPointer,int param_6,uint *param_7)
+                                      longlong resultPointer,int operationParameter,uint *resultAccumulator)
 
 {
   int primaryOperationResult;
@@ -50021,20 +50021,20 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   longlong dataSourceValue;
   int stackBuffer [2];
   
-  operationParameter = (longlong)param_6;
+  operationParameter = (longlong)operationParameter;
   dataSourceValue = (longlong)dataSource;
-  primaryOperationResult = func_0x000180024290(uiContext,dataSourceValue,targetBuffer,bufferSize,resultPointer,operationParameter,0x40,&param_6,0,0);
+  primaryOperationResult = func_0x000180024290(uiContext,dataSourceValue,targetBuffer,bufferSize,resultPointer,operationParameter,0x40,&operationParameter,0,0);
   secondaryValidationResult = func_0x000180024290(uiContext + 0x10,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x10,operationParameter,0x40,stackBuffer,0,0);
-  param_6 = param_6 + stackBuffer[0];
+  operationParameter = operationParameter + stackBuffer[0];
   tertiaryOperationResult = func_0x000180024290(uiContext + 0x20,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x20,operationParameter,0x40,stackBuffer,0,0);
-  param_6 = param_6 + stackBuffer[0];
+  operationParameter = operationParameter + stackBuffer[0];
   quaternaryOperationResult = func_0x000180024290(uiContext + 0x30,dataSourceValue,targetBuffer & 0xffffffff,bufferSize & 0xffffffff,
                               resultPointer + 0x30,operationParameter,0x40,stackBuffer,0,0);
-  *param_7 = param_6 + stackBuffer[0];
+  *resultAccumulator = operationParameter + stackBuffer[0];
   operationParameter = (longlong)(primaryOperationResult + secondaryValidationResult + tertiaryOperationResult + quaternaryOperationResult);
-  return (ulonglong)(uint)(param_6 + stackBuffer[0]) - (operationParameter * operationParameter >> 0xc);
+  return (ulonglong)(uint)(operationParameter + stackBuffer[0]) - (operationParameter * operationParameter >> 0xc);
 }
 
 
@@ -99998,13 +99998,13 @@ void ProcessUIContextDataBufferManagement(UIHandle uiContext, int dataSource, in
 void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
-  UIDword astackUInt48 [2];
-  UIHandle stackUInt40;
-  ulonglong stackUInt38;
+  UIDword encryptedDataBuffer [2];
+  UIHandle uiContextHandle;
+  ulonglong xorResult;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt48;
-  astackUInt48[0] = bufferSize;
-  stackUInt40 = uiContext;
+  xorResult = XorEncryptionKey ^ (ulonglong)encryptedDataBuffer;
+  encryptedDataBuffer[0] = bufferSize;
+  uiContextHandle = uiContext;
                      WARNING: Subroutine does not return
   ProcessUIRenderingUpdate();
 }
@@ -100018,13 +100018,13 @@ void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,
 void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
 
 {
-  ulonglong result;
-  ulonglong iterationCount;
-  UIByte astackUInt48 [8];
-  UIHandle stackUInt40;
-  ulonglong stackUInt30;
+  ulonglong calculationResult;
+  ulonglong loopIterationCount;
+  UIByte encryptedBuffer [8];
+  UIHandle dataSourceHandle;
+  ulonglong xorCalculationResult;
   
-  stackUInt30 = XorEncryptionKey ^ (ulonglong)astackUInt48;
+  xorCalculationResult = XorEncryptionKey ^ (ulonglong)encryptedBuffer;
   result = (longlong)(*(int *)(uiBufferData + 0x10c) + *(int *)(uiBufferData + 0x114)) * 4;
   iterationCount = result + 0xf;
   if (iterationCount <= result) {
@@ -102214,55 +102214,55 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, longlong ta
   temporaryFloatValue = (float)(1.0 / (tempDoubleValue + 1.0));
   animationData[0xaf] = temporaryFloatValue;
   if (*(int *)(uiBufferData + 0x1240) == 0) {
-    ResultFloatValue = 1.0 - (float)*(int *)(uiBufferData + 0x11b0) * 0.00390625;
-    baseValue1 = baseValue1 + (LocalFloatValue9 * 0.5 + 0.5) * TemporaryFloatValue * -2.0 * ResultFloatValue * ResultFloatValue;
+    resultFloatValue = 1.0 - (float)*(int *)(uiBufferData + 0x11b0) * 0.00390625;
+    baseValueB = baseValueB + (localFloatValue * 0.5 + 0.5) * temporaryFloatValue * -2.0 * resultFloatValue * resultFloatValue;
   }
   uiElementIndex = 0;
-  TemporaryFloatValue = 0.0;
+  temporaryFloatValue = 0.0;
   if (*(char *)(uiContext + 0x12a5) == '\x02') {
-    LocalFloatValue9 = *(float *)(uiContext + 0x275c) + *(float *)(uiContext + 0x275c);
+    localFloatValue = *(float *)(uiContext + 0x275c) + *(float *)(uiContext + 0x275c);
     *(UIByte *)(uiContext + 0x12a6) = 0;
   }
   else {
-    ResultFloatValue = 0.0;
-    processingResult = *(int *)(uiBufferData + 0x11dc) * 2;
-    uiCompareResult = 0;
-    TempInt4 = (*(short *)(uiContext + 0x11e0) * 5) / 2;
-    LocalFloatValue9 = (6.0 - (float)*(int *)(uiBufferData + 0x1274) * 0.003125) * (1.0 - LocalFloatValue9);
-    if (0 < TempInt4) {
-      baseValue0 = 0.0;
+    resultFloatValue = 0.0;
+    transformResult = *(int *)(uiBufferData + 0x11dc) * 2;
+    comparisonResult = 0;
+    tempIntValue = (*(short *)(uiContext + 0x11e0) * 5) / 2;
+    localFloatValue = (6.0 - (float)*(int *)(uiBufferData + 0x1274) * 0.003125) * (1.0 - localFloatValue);
+    if (0 < tempIntValue) {
+      baseValueA = 0.0;
       do {
-        dVar6 = (double)CalculateUIMetricValue(targetBuffer,processingResult);
-        dVar6 = (double)log10((double)((float)dVar6 + (float)processingResult));
-        if (0 < uiCompareResult) {
-          ResultFloatValue = ResultFloatValue + ABS((float)(dVar6 * 3.32192809488736) - baseValue0);
+        tempDoubleValue = (double)CalculateUIMetricValue(targetBuffer,transformResult);
+        tempDoubleValue = (double)log10((double)((float)tempDoubleValue + (float)transformResult));
+        if (0 < comparisonResult) {
+          resultFloatValue = resultFloatValue + ABS((float)(tempDoubleValue * 3.32192809488736) - baseValueA);
         }
-        targetBuffer = targetBuffer + (longlong)processingResult * 4;
-        uiCompareResult = uiCompareResult + 1;
-        baseValue0 = (float)(dVar6 * 3.32192809488736);
-      } while (uiCompareResult < TempInt4);
+        targetBuffer = targetBuffer + (longlong)transformResult * 4;
+        comparisonResult = comparisonResult + 1;
+        baseValueA = (float)(tempDoubleValue * 3.32192809488736);
+      } while (comparisonResult < tempIntValue);
     }
-    if (ResultFloatValue <= (float)(TempInt4 + -1) * 0.6) {
+    if (resultFloatValue <= (float)(tempIntValue + -1) * 0.6) {
       *(UIByte *)(uiContext + 0x12a6) = 1;
     }
     else {
       *(UIByte *)(uiContext + 0x12a6) = 0;
     }
   }
-  fStack0000000000000044 = LocalFloatValue9 + baseValue1;
-  TempInt4 = 1;
-  processingResult = *(int *)(uiBufferData + 0x11e0);
-  if (processingResult < 1) {
-    dVar6 = (double)pow(0x4000000000000000,(double)(fStack0000000000000044 * -0.16));
-    uiCompareResult = 0;
-    TransformCoefficient1 = preservedRegister13;
-    if (0 < processingResult) {
+  stackValue44 = localFloatValue + baseValueB;
+  tempIntValue = 1;
+  transformResult = *(int *)(uiBufferData + 0x11e0);
+  if (transformResult < 1) {
+    tempDoubleValue = (double)pow(0x4000000000000000,(double)(stackValue44 * -0.16));
+    comparisonResult = 0;
+    transformCoefficients = animationData;
+    if (0 < transformResult) {
       do {
-        uiCompareResult = uiCompareResult + 1;
-        *TransformCoefficient1 = (float)dVar6 * *TransformCoefficient1 + 1.2483306;
-        processingResult = *(int *)(uiBufferData + 0x11e0);
-        TransformCoefficient1 = TransformCoefficient1 + 1;
-      } while (uiCompareResult < processingResult);
+        comparisonResult = comparisonResult + 1;
+        *transformCoefficients = (float)tempDoubleValue * *transformCoefficients + 1.2483306;
+        transformResult = *(int *)(uiBufferData + 0x11e0);
+        transformCoefficients = transformCoefficients + 1;
+      } while (comparisonResult < transformResult);
     }
     uiCompareResult = *(int *)(uiBufferData + 0x11b0);
     LocalFloatValue9 = ((float)*(int *)(uiBufferData + 0x1260) * 2.3841858e-07 + 0.0078125) * (float)uiCompareResult;
@@ -200000,7 +200000,23 @@ UIDword FUN_180786030(int *uiContext,longlong *dataSource,int targetBuffer,char 
 
 
 
-UIHandle FUN_180786056(int *uiContext,UIHandle dataSource,int targetBuffer)
+// UI系统事件处理函数语义化定义
+#define FUN_180786056 ConfigureUIElementVisibilityFlags
+#define FUN_180786104 SetupUIContextEventHandle
+#define FUN_1807861b0 InitializeUIContextDataBuffer
+
+// UI系统事件处理变量语义化定义
+#define localInt5 UIElementIndex
+#define stack0x00000048 UIEventStackParameter
+#define uiBufferData UIBufferDataContext
+#define BasePointer UIBaseContextPointer
+#define contextHandleData UIContextHandleData
+#define colorBufferPointer UIColorBufferPointer
+#define uiCompareResult UIComparisonResult
+#define ptrResult UIResultPointer
+#define EventHandle UIEventHandle
+#define stackParam00000048 UIStackParameter48
+#define preservedRegister15B UIPreservedRegister15B
 
 {
   uint *ptrResult;
