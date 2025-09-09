@@ -202868,15 +202868,15 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
   uint EventProcessingStatus;
   uint64_t EventProcessingCounter;
   
-  loopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
-  eventProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
+  LoopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
+  EventProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f4) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f2) = 0;
   *(UIWord *)(*(longlong *)(uiBufferData + 0x48) + 0x127f0) = 0;
   if ((*(code **)(uiContext + 0x358) == (UIFunctionPtr *)0x0) ||
      (EventTypeCode = (**(code **)(uiContext + 0x358))(uiContext + 8), (int)EventTypeCode == 0)) {
     EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
-    processingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
+    ProcessingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
     if (*(longlong *)(allocatedMemory + 0x10f88) == 0) {
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (EventTypeCode = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad08,&UNK_1807872a0,uiContext,
