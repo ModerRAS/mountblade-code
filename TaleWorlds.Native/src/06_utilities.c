@@ -110153,7 +110153,7 @@ void InvokeExceptionHandlerAtOffset468(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090f590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionWithOperationFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA7(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x470,
@@ -110164,7 +110164,7 @@ void Unwind_18090f590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f5b0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleExceptionResourceDeallocation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -110178,7 +110178,7 @@ void Unwind_18090f5b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f5d0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseExceptionMemoryResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -110192,7 +110192,7 @@ void Unwind_18090f5d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f5f0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
