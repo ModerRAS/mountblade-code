@@ -403208,6 +403208,26 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // #define ProcessUIDataWithHandles FUN_180721864
 #define ProcessUIDataFinalization CompleteUIDataProcessing
 
+// UI系统字符串处理和验证函数
+#define ProcessUIStringValidation ValidateUIStringFormat
+#define FUN_1808ddc20 ProcessUIStringEncodingConversion
+#define FUN_180899360 ValidateUIComponentState
+#define FUN_1808a2e00 ProcessUIComponentData
+#define FUN_1808a5d60 ProcessUIComponentEvent
+#define FUN_1808afc70 ProcessUIComponentRendering
+#define FUN_1808995c0 ProcessUIComponentStateUpdate
+#define FUN_1808ddf80 ProcessUIStringFinalization
+#define FUN_18089e230 ProcessUIStringDataValidation
+#define FUN_1808aed00 ProcessUIComponentAnimation
+#define FUN_1808afe30 ProcessUIComponentMetrics
+#define FUN_1808dde10 ProcessUIComponentTransform
+#define FUN_1808a8120 ProcessUIComponentLayout
+#define FUN_1808a7c90 ProcessUIComponentValidation
+#define FUN_1808de000 ProcessUIStringCleanup
+#define FUN_18089f112 ProcessUIStatusCodeReturn
+#define FUN_180769ed0 ProcessUIColorValidation
+#define func_0x00018076a7d0 ProcessUIColorBuffer
+
 // 注意：以下寄存器变量已经在文件前面定义过了，这里删除重复定义
 // UI系统寄存器变量美化
 // #define unmodifiedEBX UIPreservedEBX
