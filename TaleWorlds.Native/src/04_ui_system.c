@@ -11041,7 +11041,7 @@ LAB_UIDataInitialize: // UI数据初始化标签
           goto LAB_180656d5b;
         }
       }
-LabelCleanupPhase:
+LabelCleanupPhase: // 清理阶段标签
       pstackUIntb8 = &PrimaryUIBuffer;
       if (pbStack_b0 != (byte *)0x0) {
                      WARNING: Subroutine does not return
