@@ -20196,54 +20196,58 @@ void CoreEngineInitializeConnectionInitializer(void)
 
 
 
- void CoreEngineInitializeSystemConnectionTemplateA(void/**
+ /**
  * @brief 初始化核心引擎系统连接模板A
  * 
  * 该函数负责初始化核心引擎的系统连接模板A，设置系统连接的基本配置
  * 和数据结构。用于管理引擎的系统连接。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：包含未美化的变量名，已进行语义化处理
  */
-void CoreEngineInitializeSystemConnectionTemplateA(void
+void CoreEngineInitializeSystemConnectionTemplateA(void)
 {
-  char SystemNodeStatusFlag;
-  void *ContextHandle;
-  int MemoryCompareResult;
+  char SystemNodeStatusIndicator;
+  void *SystemContextHandle;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
-  void *CurrentNode;
-  void *PreviousNode;
-  void *NextNode;
+  void *CurrentSystemNode;
+  void *PreviousSystemNode;
+  void *NextSystemNode;
   uint64_t *NewMemoryNode;
-  uint64_t ConnectionTemplateData;
+  uint64_t ConnectionTemplateConfiguration;
   
   EngineContext = (long long *)CoreEngineGetSystemContext();
-  ContextHandle = (void *)*EngineContext;
-  SystemNodeStatusFlag = *(char *)((long long)ContextHandle[1] + SystemNodeStatusOffset);
-  ConnectionTemplateData = 0;
-  PreviousNode = ContextHandle;
-  CurrentNode = (void *)ContextHandle[1];
-  while (SystemNodeStatusFlag == '\0') {
-    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryCompareResult < 0) {
-      NextNode = (void *)CurrentNode[2];
-      CurrentNode = PreviousNode;
+  SystemContextHandle = (void *)*EngineContext;
+  SystemNodeStatusIndicator = *(char *)((long long)SystemContextHandle[1] + SystemNodeStatusOffset);
+  ConnectionTemplateConfiguration = 0;
+  PreviousSystemNode = SystemContextHandle;
+  CurrentSystemNode = (void *)SystemContextHandle[1];
+  while (SystemNodeStatusIndicator == '\0') {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextSystemNode = (void *)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextSystemNode = (void *)*CurrentSystemNode;
     }
-    PreviousNode = CurrentNode;
-    CurrentNode = NextNode;
-    SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    SystemNodeStatusIndicator = *(char *)((long long)NextSystemNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryCompareResult = memcmp(&SystemComparisonDataQuaternary,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousSystemNode == SystemContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,PreviousSystemNode + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(EngineContext);
-    CoreEngineSetupMemoryNode(EngineContext,&NewMemoryNode,PreviousNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
-    PreviousNode = NewMemoryNode;
+    CoreEngineSetupMemoryNode(EngineContext,&NewMemoryNode,PreviousSystemNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    PreviousSystemNode = NewMemoryNode;
   }
-  PreviousNode[6] = 0x4b2d79e470ee4e2c;
-  PreviousNode[7] = 0x9c552acd3ed5548d;
-  PreviousNode[8] = &SystemConnectionTemplateA;
-  PreviousNode[9] = 0;
-  PreviousNode[10] = ConnectionTemplateData;
+  PreviousSystemNode[6] = 0x4b2d79e470ee4e2c;
+  PreviousSystemNode[7] = 0x9c552acd3ed5548d;
+  PreviousSystemNode[8] = &SystemConnectionTemplateA;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = ConnectionTemplateConfiguration;
   return;
 }
 
