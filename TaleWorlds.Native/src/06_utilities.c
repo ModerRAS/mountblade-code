@@ -23215,7 +23215,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   InitializeSystemComponentDL0(systemContext + SystemDataSecondaryOffset18);
   
   // 获取验证上下文
-  exceptionHandlerContext = (int64_t *)(systemContext + 8);
+  exceptionHandlerContext = (int64_t *)(systemContext + SystemContextOffset);
   validationCounter = *(uint *)(systemContext + SystemValidationCounterOffset14);
   
   // 验证数据完整性
@@ -23635,7 +23635,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
           ((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (dataBufferSize == *(int *)(systemContext + FloatProcessingBufferSizeOffset))))) {
 MemoryCopyLabel:
-          memcpy(dataCopyDestinationBuffer, recordDataPointer, (int64_t)*(int *)(recordDataPointer + 8));
+          memcpy(dataCopyDestinationBuffer, recordDataPointer, (int64_t)*(int *)(recordDataPointer + SystemContextOffset));
       }
     }
     else {
@@ -23714,7 +23714,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
   int *statusPointer;
   
   arrayIndex = CONCAT44(processFlags,currentIndex) + CONCAT44(processFlags,currentIndex) * 2;
-  allocatedMemoryBlock = (int64_t)*(int *)(dataPointer + arrayIndex * 4) + *(int64_t *)(systemContext + 8);
+  allocatedMemoryBlock = (int64_t)*(int *)(dataPointer + arrayIndex * 4) + *(int64_t *)(systemContext + SystemContextOffset);
   dataType = *(char *)(dataPointer + 8 + arrayIndex * 4);
   *(int64_t *)(stackPointer + StackFrameContextNegativeOffset80) = arrayIndex;
   if (dataType == typeCheck) {
@@ -23765,7 +23765,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
        (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryCopyLabel:
-        memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
+        memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + SystemContextOffset));
     }
   }
   else {
@@ -23932,7 +23932,7 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
 ValidationCompleteLabel:
       functionPointer = (DataBuffer *)
                ((int64_t)*(int *)(*(int64_t *)(dataContext + SystemDataSecondaryOffset18) + (int64_t)operationIndex * 0xc) +
-               *(int64_t *)(dataContext + 8));
+               *(int64_t *)(dataContext + SystemContextOffset));
       if (functionPointer != (DataBuffer *)0x0) {
         (**(FunctionPointer**)*functionPointer)();
       }
