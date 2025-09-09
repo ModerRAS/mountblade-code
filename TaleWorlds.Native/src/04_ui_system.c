@@ -29348,15 +29348,19 @@ ulonglong UIMemoryAllocateAligned(longlong alignmentSize,longlong allocationSize
 
 
 
- 处理UI队列元素状态重置
- 重置UI队列元素的状态，包括计数器更新和状态标志设置
- * 主要用于UI系统的队列状态管理和同步操作
-  uiContext UI上下文指针，包含UI系统的状态信息
-  处理结果，0表示成功
+ /**
+ * 处理UI队列元素状态重置
  * 
-  原始函数名: FUN_18066e9db
-  简化实现：该函数是队列状态管理的简化版本
- uint64_t ResetUIQueueElementState(void* uiContext)
+ * 重置UI队列元素的状态，包括计数器更新和状态标志设置
+ * 主要用于UI系统的队列状态管理和同步操作
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @return 处理结果，0表示成功
+ * 
+ * @note 原始函数名: FUN_18066e9db
+ * @note 简化实现：该函数是队列状态管理的简化版本
+ */
+uint64_t ResetUIQueueElementState(void* uiContext)
 {
   int* queueCounter;
   int queueIndex;
@@ -29377,16 +29381,18 @@ ulonglong UIMemoryAllocateAligned(longlong alignmentSize,longlong allocationSize
 
 
 
- 获取UI系统默认状态标志
+ /**
+ * 获取UI系统默认状态标志
  * 
  * 该函数返回UI系统的默认状态标志，用于初始化和状态检查
  * 主要用于UI系统的状态管理和初始化过程
  * 
-  状态标志值，返回1表示默认状态
+ * @return 状态标志值，返回1表示默认状态
  * 
-  原始函数名: FUN_18066ea6a
-  简化实现：该函数返回固定的默认状态值
- uint64_t GetUIDefaultStatusFlag(void)
+ * @note 原始函数名: FUN_18066ea6a
+ * @note 简化实现：该函数返回固定的默认状态值
+ */
+uint64_t GetUIDefaultStatusFlag(void)
 {
   return 1;
 }
