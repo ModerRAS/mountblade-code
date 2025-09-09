@@ -205,6 +205,18 @@
 #define SystemStatusCheckOffset48 0x48
 #define SystemStatusCheckOffset150 0x150
 
+// 操作基础地址偏移量常量
+#define OperationBaseOffset50 0x50
+#define OperationBaseOffset54 0x54
+#define OperationBaseOffset58 0x58
+#define OperationBaseOffset5c 0x5c
+#define OperationBaseOffset60 0x60
+#define OperationBaseOffset68 0x68
+#define OperationBaseOffset6c 0x6c
+#define OperationBaseOffset70 0x70
+#define OperationBaseOffset74 0x74
+#define OperationBaseOffset78 0x78
+
 // 异常上下文资源管理偏移量常量
 #define ResourceCounterOffset130 0x130
 #define ResourceIteratorTableOffset1CD8 0x1cd8
@@ -39996,7 +40008,7 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x50);
+  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
   ;
   if ((int)systemDataBuffer == 0) {
@@ -41041,7 +41053,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x50);
+    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                       (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
     if ((int)systemDataBuffer != 0) {
