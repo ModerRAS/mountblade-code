@@ -221,6 +221,8 @@
 #define OperationDataOffset48 0x48
 #define OperationDataOffsetB8 0xb8
 #define OperationDataOffsetF8 0xf8
+#define ContextDataOffset48 0x48
+#define SystemContextOffset48 0x48
 
 // 异常上下文资源管理偏移量常量
 #define ResourceCounterOffset130 0x130
@@ -29675,7 +29677,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
         } while ((int)memoryRegionBase < operationStatus);
       }
       exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
-      operationStatus = *(int *)(systemContext + 0x48);
+      operationStatus = *(int *)(systemContext + SystemContextOffset48);
       *(int *)(StackFrameContext + ArrayDataOffset) = operationStatus;
       operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,4);
       if (operationResult == 0) {
@@ -29944,7 +29946,7 @@ void ValidateSystemDataIntegrity(void)
     if ((((inputParameter == 0) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) &&
         (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) {
       if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
-        ValidationDataBuffer = *(DataWord *)(registerContext + 0x48);
+        ValidationDataBuffer = *(DataWord *)(registerContext + ContextDataOffset48);
         inputParameter = (**(FunctionPointer**)**(DataBuffer **)(DestinationContext + 8))
                           (*(DataBuffer **)(DestinationContext + 8),&ValidationDataBuffer,4);
         if (inputParameter != 0) {
@@ -31323,7 +31325,7 @@ DataBuffer ResetDataCacheA0(void)
         return operationResult;
       }
       if (*(int *)(DestinationContext + 0x50) == 0x14) {
-        validationStatusPointer = (DataBuffer *)**(int64_t **)(DestinationContext + 0x48);
+        validationStatusPointer = (DataBuffer *)**(int64_t **)(DestinationContext + ContextDataOffset48);
         if (*(int *)(validationStatusPointer + 2) == (int)StackFrameContext) {
           ValidationFloatValue = *(float *)(validationStatusPointer + 3);
           if (validationStatusPointer != (DataBuffer *)0x0) {
@@ -31339,7 +31341,7 @@ DataBuffer ResetDataCacheA0(void)
           *validationStatusPointer = &ValidationStatusTable;
           *(DataWord *)(validationStatusPointer + 2) = 1;
           *(int *)(validationStatusPointer + 3) = (int)StackFrameContext;
-          **(DataBuffer **)(DestinationContext + 0x48) = validationStatusPointer;
+          **(DataBuffer **)(DestinationContext + ContextDataOffset48) = validationStatusPointer;
           *(int *)(validationStatusPointer + 3) = (int)ValidationFloatValue;
           goto ProcessCheckpointValidationStart;
         }

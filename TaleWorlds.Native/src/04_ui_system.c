@@ -84385,8 +84385,8 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
   int processingResult6;
   float baseValue7;
   float FloatValue1;
-  double dVar19;
-  double dVar20;
+  double ExponentialDecayFactor1;
+  double ExponentialDecayFactor2;
   float transformCoeff11;
   UIByte in_XMM1 [16];
   UIByte aiterationCount2 [16];
@@ -84401,7 +84401,7 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
     do {
       result0 = (int)*(short *)(allocatedMemory3 + 2 + *(longlong *)(uiBufferData + 0x20)) -
                (int)*(short *)(allocatedMemory3 + *(longlong *)(uiBufferData + 0x20));
-      dVar19 = (double)exp((double)((float)(int)((*ptrLocalInt6 + 1U) / result0 >> (IsValidationComplete & 0x1f)) * -0.125
+      ExponentialDecayFactor1 = (double)exp((double)((float)(int)((*ptrLocalInt6 + 1U) / result0 >> (IsValidationComplete & 0x1f)) * -0.125
                                    ) * 0.6931471805599453,
                            (ulonglong)(*ptrLocalInt6 + 1U) % (ulonglong)result0);
       ProcessingResult5 = 0;
@@ -84435,13 +84435,13 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
         if (baseValue7 <= 0.0) {
           baseValue7 = 0.0;
         }
-        dVar20 = (double)exp((double)-baseValue7 * 0.6931471805599453);
-        transformCoeff11 = (float)dVar20 + (float)dVar20;
+        ExponentialDecayFactor2 = (double)exp((double)-baseValue7 * 0.6931471805599453);
+        transformCoeff11 = (float)ExponentialDecayFactor2 + (float)ExponentialDecayFactor2;
         if (bufferSize == 3) {
           transformCoeff11 = transformCoeff11 * 1.4142135;
         }
-        if ((float)dVar19 * 0.5 <= transformCoeff11) {
-          transformCoeff11 = (float)dVar19 * 0.5;
+        if ((float)ExponentialDecayFactor1 * 0.5 <= transformCoeff11) {
+          transformCoeff11 = (float)ExponentialDecayFactor1 * 0.5;
         }
         ProcessingResult1 = 0;
         transformCoeff11 = transformCoeff11 * (1.0 / (float)aiterationCount2._0_8_);
