@@ -198,6 +198,14 @@ typedef enum {
 #define PrimaryUIBuffer UIPrimaryDataBuffer
 #define SecondaryUIBuffer UISecondaryDataBuffer
 #define UIStringFormatTemplate UIStringFormattingTemplate
+#define piterationCount UIProcessingIterationCount
+#define ptrResult UIPtrResult
+#define dataSource UIDataSource
+#define targetBuffer UITargetBuffer
+#define bufferSize UIBufferSize
+#define uiEncryptionKey UIEncryptionKey
+#define XorEncryptionKey UIXorEncryptionKey
+#define uiContext UIContextPointer
 
 // UI组件数据验证和清理函数局部变量宏定义
 #define allocatedMemory UIAllocatedMemoryBlock
@@ -206,6 +214,20 @@ typedef enum {
 #define TempInt4 UIProcessingResult
 #define IsValidationComplete UIValidationStatus
 #define uStackX_8 UIStackDataBuffer
+
+// UI系统事件处理变量宏定义
+#define eventCompareResult UIEventCompareResult
+#define eventIterationCount UIEventIterationCount
+#define processingCounter UIProcessingCounter
+#define uiCompareResult UICompareResult
+#define EventDataIndex UIEventDataIndex
+#define uiValidationResult UIValidationResult
+#define stackInt40 UIStackInt40
+#define pcStack_48 UICharStackPtr48
+#define processingResult6 UIProcessingResult6
+#define uiValidationResultLocal5 UIValidationResultLocal5
+#define AudioStackData UIAudioStackData
+#define uiRenderDataBuffer UIRenderDataBuffer
 
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation

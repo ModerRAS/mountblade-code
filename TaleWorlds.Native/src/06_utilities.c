@@ -7932,13 +7932,13 @@ uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 float FloatValidationArray[FloatValidationArraySize];
 
 // 数据处理上下文变量声明
-void* DataProcessingContextPrimary;
+DataProcessingContext* PrimaryDataProcessingContext;
 
 // 验证上下文变量声明
-void* ValidationContextPrimary;
+ValidationContext* PrimaryValidationContext;
 
 // 异常数据表地址变量声明
-void* ExceptionDataTableAddress;
+ExceptionDataTable* ExceptionDataTableAddressPtr;
 
 // 验证上下文A1
 // 功能：存储验证操作的上下文信息
