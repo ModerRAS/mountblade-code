@@ -12557,6 +12557,15 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define ProcessSystemMemoryPointer FUN_180188620
 
 /**
+ * @brief 处理系统数据复制和缓冲区管理
+ * 
+ * 该函数处理系统数据复制和缓冲区管理
+ * 
+ * @note 原始函数名：FUN_180189bc0
+ */
+#define ProcessSystemDataCopyAndBufferManagement FUN_180189bc0
+
+/**
  * @brief 系统节点处理函数
  * 
  * 该函数处理系统节点操作
@@ -225043,13 +225052,13 @@ uint32_t * ReallocateCharacterStatusBufferAndInsertElement(long long *CharacterS
   SystemStatusContext = PrimaryProcessingStatusFlag;
   CharacterStatusBuffer5 = PrimaryProcessingStatusFlag;
   if (InsertPosition != BufferStartAddress) {
-    FUN_180189b30(*CharacterStatusBuffer,InsertPosition,NewBufferPointer,CharacterStatusBuffer,PrimaryProcessingStatusFlag,Utf16Char4,PrimaryProcessingStatusFlag);
+    ProcessContextHandleTripleData(*CharacterStatusBuffer,InsertPosition,NewBufferPointer,CharacterStatusBuffer,PrimaryProcessingStatusFlag,Utf16Char4,PrimaryProcessingStatusFlag);
     StringProcessingStatus = PrimaryProcessingStatusFlag + 10;
     BufferStartAddress = CharacterStatusBuffer[1];
     StringOffset = InsertPosition;
     SystemStatusContext = NewBufferPointer;
   }
-  FUN_180189b30(StringOffset,BufferStartAddress,StringProcessingStatus,CharacterStatusBuffer,CharacterStatusBuffer3,Utf16Char4,CharacterStatusBuffer5);
+  ProcessContextHandleTripleData(StringOffset,BufferStartAddress,StringProcessingStatus,CharacterStatusBuffer,CharacterStatusBuffer3,Utf16Char4,CharacterStatusBuffer5);
   BufferStartAddress = *CharacterStatusBuffer;
   if (BufferStartAddress != 0) {
     StringOffset = CharacterStatusBuffer[1];
