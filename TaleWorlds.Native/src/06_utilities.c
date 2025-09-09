@@ -40006,11 +40006,11 @@ uint64_t ResetSystemComponents(void)
   int operationStatus;
   uint64_t memoryRegionBase;
   int64_t resourceIterator;
-  DataWord *pdataFlags;
+  DataWord *dataFlagsPointer;
   DataBuffer registerContext;
   int64_t systemStackPointer;
-  DataWord *pvalidationOutcome;
-  int64_t DestinationContext;
+  DataWord *validationOutcomePointer;
+  int64_t destinationContext;
   int64_t contextPointer;
   
   if (*(uint *)(DestinationContext + 0x40) < 0x84) {

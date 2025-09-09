@@ -131067,7 +131067,7 @@ InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UI
   
   if (*(longlong *)((longlong)dataSource * 8 + 0x10f90 + uiContext) == 0) {
     pallocatedMemory = (longlong *)
-             FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x3c0,&UIMemoryPoolData,0x264,0);
+             InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x3c0,&UIMemoryPoolData,0x264,0);
     if (pallocatedMemory == (longlong *)0x0) {
       return 0x26;
     }
