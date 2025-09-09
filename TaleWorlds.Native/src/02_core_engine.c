@@ -72079,7 +72079,7 @@ joined_r0x00018008edee:
   SystemDataTablePointer = ContextHandle;
   ContextHandle1 = OperationBufferSize;
   if (*(int *)(MemoryBlockIndex + 0x78) == 0) {
-LAB_18008eecc:
+MemoryPoolManagerProcessingLabel:
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryBlockIndex;
     if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto EncodingConversionResultLabel;
@@ -72146,7 +72146,7 @@ joined_r0x00018008ef35:
     }
   }
   EncodingConversionResult = StringOffset;
-LAB_18008ef40:
+SystemContextProcessingLabel:
   do {
     while( true ) {
       MemoryPoolBlockSize = *SystemDataTablePointer;
@@ -72259,7 +72259,7 @@ joined_r0x00018008edee:
   SystemDataTablePointer = ContextHandle;
   ContextHandle1 = OperationBufferSize;
   if (*(int *)(MemoryBlockIndex + 0x78) == 0) {
-LAB_18008eecc:
+MemoryPoolManagerProcessingLabel:
     StringOffset = OperationBufferSize[-1];
     EncodingConversionResult = MemoryBlockIndex;
     if ((*(int *)(StringOffset + 0x78) == 0) || (EncodingConversionResult = MemoryPoolBlockSize, *(int *)(MemoryPoolBlockSize + 0x78) == 0)    goto EncodingConversionResultLabel;
@@ -72326,7 +72326,7 @@ joined_r0x00018008ef35:
     }
   }
   EncodingConversionResult = StringOffset;
-LAB_18008ef40:
+SystemContextProcessingLabel:
   do {
     while( true ) {
       MemoryPoolBlockSize = *SystemDataTablePointer;
@@ -72413,7 +72413,7 @@ LAB_18008ee00:
     MemoryPoolBlockSizePointer = NullPointerValue;
     ContextHandleTablePointer = CharacterLimit;
     if (*(int *)(BufferStatus + 0x78) == 0) {
-LAB_18008eecc:
+MemoryPoolManagerProcessingLabel:
       SystemDataTablePointer = CharacterLimit[-1];
       StringOffset = BufferStatus;
       if ((*(int *)(SystemDataTablePointer + 0x78) == 0) || (StringOffset = MemoryBoundaryEnd, *(int *)(MemoryBoundaryEnd + 0x78) == 0)      goto EncodingConversionResultLabel;
@@ -72480,7 +72480,7 @@ joined_r0x00018008ef35:
       }
     }
     StringOffset = SystemDataTablePointer;
-LAB_18008ef40:
+SystemContextProcessingLabel:
     do {
       while( true ) {
         MemoryBoundaryEnd = *MemoryPoolBlockSizePointer;

@@ -4567,19 +4567,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CleanupsystemContextA18 ClearSystemContextData
 // 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA19 Unwind_180909fa0
+#define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA20 Unwind_180909fc0
+#define CleanupsystemContextA20 DeallocateSystemContext
 // 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA21 Unwind_180909fe0
+#define CleanupsystemContextA21 TerminateSystemContext
 // 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA22 Unwind_18090a000
+#define CleanupsystemContextA22 DestroySystemContext
 
 // 异常处理器执行函数宏定义
-#define ExecuteExceptionHandlerAtPrimaryPosition Unwind_1809070d0
+#define ExecuteExceptionHandlerAtPrimaryPosition InvokePrimaryExceptionHandler
 #define ExecuteValidatorAtPrimaryOffset Unwind_1809070e0
 #define ExecuteValidatorAtSecondaryOffset Unwind_1809070f0
 #define ExecuteValidatorAtCombinedOffsets Unwind_180907100
@@ -131960,16 +131960,16 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define CleanupsystemContextA18 ClearSystemContextData
 // 原始函数名：Unwind_180909fa0 - 系统上下文清理函数A19
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA19 Unwind_180909fa0
+#define CleanupsystemContextA19 ResetSystemContextPointers
 // 原始函数名：Unwind_180909fc0 - 系统上下文清理函数A20
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA20 Unwind_180909fc0
+#define CleanupsystemContextA20 DeallocateSystemContext
 // 原始函数名：Unwind_180909fe0 - 系统上下文清理函数A21
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA21 Unwind_180909fe0
+#define CleanupsystemContextA21 TerminateSystemContext
 // 原始函数名：Unwind_18090a000 - 系统上下文清理函数A22
 // 功能：清理系统上下文，释放相关资源
-#define CleanupsystemContextA22 Unwind_18090a000
+#define CleanupsystemContextA22 DestroySystemContext
 
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
