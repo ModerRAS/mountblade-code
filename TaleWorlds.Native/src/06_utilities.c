@@ -17347,7 +17347,7 @@ DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(requestPointer + ExceptionHandlerCallbackOffset10),contextBuffer);
   if ((int)operationResult == 0) {
     *(DataWord *)(*(int64_t *)(contextBuffer[0] + ExceptionHandlerCallbackOffset10) + SystemContextPointerOffset) = *(DataWord *)(requestPointer + SystemContextDataOffset);
-    if ((*(int64_t *)(contextBuffer[0] + 8) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
+    if ((*(int64_t *)(contextBuffer[0] + SystemContextOffset) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
       return operationResult;
     }
     operationResult = 0;
@@ -18711,7 +18711,7 @@ DataBuffer HandlePermissionRequest(int64_t permissionRequestContext,int64_t syst
   
   permissionResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(permissionRequestContext + ExceptionHandlerCallbackOffset10),&permissionContext);
   if ((int)permissionResult == 0) {
-    if (*(int64_t *)(permissionContext + 8) == 0) {
+    if (*(int64_t *)(permissionContext + SystemContextOffset) == 0) {
       return ResourceAccessDenied;
     }
     *(DataBuffer *)(permissionRequestContext + PermissionRequestDataOffset18) = *(DataBuffer *)(*(int64_t *)(permissionContext + PermissionContextOffset8) + PermissionDataOffset78);
@@ -20011,7 +20011,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
         return validationResult;
       }
     }
-    *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
+    *(uint *)(dataPtr + SystemContextOffset) = *(int *)(dataPtr + SystemContextOffset) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
     validationResult = GetSystemCurrentStateA0(*(DataBuffer *)(targetDataBuffer + SystemConfigTertiaryOffset));
     if ((int)validationResult == 0) {
       return 0;
