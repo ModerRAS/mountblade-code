@@ -10051,12 +10051,18 @@ void UpdateUIComponentGeometry(longlong uiContext)
   
   if (uiContext == 0) {
 
-/* * 复制UI字符串数据到全局缓冲区
+/**
+ * @brief 复制UI字符串数据到全局缓冲区
  * 
  * 此函数计算输入字符串的长度，并将字符串数据复制到全局缓冲区中
  * 主要用于UI系统中的字符串处理和存储
-  stringPtr 字符串指针
- void CopyUIStringToBuffer(longlong stringPtr)
+ * 
+ * @param stringPtr 字符串指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名: CopyUIStringToBuffer
+ */
+void CopyUIStringToBuffer(longlong stringPtr)
 
 {
   uint stringLength;
