@@ -32944,11 +32944,11 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
                  short *colorData)
 
 {
-  short sVar1;
+  short renderContextStatus;
   UIDword iterationCount;
   int uiCompareResult;
-  int TempInt4;
-  short *psVar5;
+  int tempIntegerValue;
+  short *componentStatePointer;
   int loopCounter;
   uint processingCounter;
   short ContextSecondValue;
@@ -32957,7 +32957,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   longlong allocatedMemory1;
   ulonglong result2;
   int *pProcessingResult3;
-  short sVar14;
+  short componentRenderStatus;
   longlong allocatedMemory5;
   ulonglong TotalResult;
   int processingResult7;
@@ -32986,7 +32986,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   stackLong90 = *(longlong *)(uiBufferData + 0x2398);
   stackLong88 = *(longlong *)(uiBufferData + 0x23a0);
   iStackX_20 = 0;
-  sVar1 = *uiContext1;
+  renderContextStatus = *uiContext1;
   ContextSecondValue = uiContext1[1];
   loopCounter = (int)bufferSize[1];
   if ((int)bufferSize[1] < *(int *)(uiBufferData + 0x23d0)) {

@@ -12527,6 +12527,340 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define ProcessSystemMemoryEx2 FUN_1801884d0
 
 /**
+ * @brief 系统栈处理函数
+ * 
+ * 该函数处理系统栈操作
+ * 
+ * @param StackPointer - 栈指针
+ * 
+ * @note 原始函数名：FUN_180188b30
+ */
+#define ProcessSystemStack FUN_180188b30
+
+/**
+ * @brief 系统内存块处理函数2
+ * 
+ * 该函数处理系统内存块操作（变体2）
+ * 
+ * @param StackPointer - 栈指针
+ * @param MemoryAddressMaskPointer - 内存地址掩码指针
+ * 
+ * @note 原始函数名：FUN_180188b30
+ */
+#define ProcessSystemMemoryBlockEx FUN_180188b30
+
+/**
+ * @brief 系统数据复制函数
+ * 
+ * 该函数复制系统数据
+ * 
+ * @param StackPointer - 栈指针
+ * @param MemoryAllocationBuffer - 内存分配缓冲区
+ * 
+ * @note 原始函数名：FUN_180189900
+ */
+#define CopySystemData FUN_180189900
+
+/**
+ * @brief 系统数据处理函数3
+ * 
+ * 该函数处理系统数据操作（变体3）
+ * 
+ * @param StackPointer - 栈指针
+ * @param SystemFlag - 系统标志
+ * @param ErrorCode - 错误码
+ * 
+ * @note 原始函数名：FUN_1801887a0
+ */
+#define ProcessSystemDataEx2 FUN_1801887a0
+
+/**
+ * @brief 系统数据分配函数2
+ * 
+ * 该函数分配系统数据资源（变体2）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180185cf0
+ */
+#define AllocateSystemDataEx FUN_180185cf0
+
+/**
+ * @brief 系统内存分配器函数3
+ * 
+ * 该函数分配系统内存资源（变体3）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180185a90
+ */
+#define AllocateSystemMemoryEx2 FUN_180185a90
+
+/**
+ * @brief 系统数据处理函数4
+ * 
+ * 该函数处理系统数据操作（变体4）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180185040
+ */
+#define ProcessSystemDataEx3 FUN_180185040
+
+/**
+ * @brief 系统内存分配器函数4
+ * 
+ * 该函数分配系统内存资源（变体4）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param ContextHandleSize - 上下文句柄大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180185120
+ */
+#define AllocateSystemMemoryEx3 FUN_180185120
+
+/**
+ * @brief 系统数据处理函数5
+ * 
+ * 该函数处理系统数据操作（变体5）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_1801845b0
+ */
+#define ProcessSystemDataEx4 FUN_1801845b0
+
+/**
+ * @brief 系统数据处理函数6
+ * 
+ * 该函数处理系统数据操作（变体6）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180184660
+ */
+#define ProcessSystemDataEx5 FUN_180184660
+
+/**
+ * @brief 系统内存处理函数4
+ * 
+ * 该函数处理系统内存相关操作（变体4）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * @param UnicodeCodePoint - Unicode码点
+ * 
+ * @note 原始函数名：FUN_180184740
+ */
+#define ProcessSystemMemoryEx3 FUN_180184740
+
+/**
+ * @brief 系统内存分配器函数5
+ * 
+ * 该函数分配系统内存资源（变体5）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180184da0
+ */
+#define AllocateSystemMemoryEx4 FUN_180184da0
+
+/**
+ * @brief 系统数据处理函数7
+ * 
+ * 该函数处理系统数据操作（变体7）
+ * 
+ * @param SystemDataRegistry - 系统数据注册表
+ * @param Parameter1 - 参数1
+ * @param BufferOffset - 缓冲区偏移量
+ * 
+ * @note 原始函数名：FUN_180188d20
+ */
+#define ProcessSystemDataEx6 FUN_180188d20
+
+/**
+ * @brief 系统数据处理函数8
+ * 
+ * 该函数处理系统数据操作（变体8）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180185840
+ */
+#define ProcessSystemDataEx7 FUN_180185840
+
+/**
+ * @brief 系统内存处理函数5
+ * 
+ * 该函数处理系统内存相关操作（变体5）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param ContextHandleSize - 上下文句柄大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_1801853d0
+ */
+#define ProcessSystemMemoryEx4 FUN_1801853d0
+
+/**
+ * @brief 系统内存处理函数6
+ * 
+ * 该函数处理系统内存相关操作（变体6）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param ContextHandleSize - 上下文句柄大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180185a90
+ */
+#define ProcessSystemMemoryEx5 FUN_180185a90
+
+/**
+ * @brief 系统内存处理函数7
+ * 
+ * 该函数处理系统内存相关操作（变体7）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180186360
+ */
+#define ProcessSystemMemoryEx6 FUN_180186360
+
+/**
+ * @brief 系统数据处理函数9
+ * 
+ * 该函数处理系统数据操作（变体9）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180186430
+ */
+#define ProcessSystemDataEx8 FUN_180186430
+
+/**
+ * @brief 系统内存处理函数8
+ * 
+ * 该函数处理系统内存相关操作（变体8）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_1801864e0
+ */
+#define ProcessSystemMemoryEx7 FUN_1801864e0
+
+/**
+ * @brief 系统数据处理函数10
+ * 
+ * 该函数处理系统数据操作（变体10）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_1801864e0
+ */
+#define ProcessSystemDataEx9 FUN_1801864e0
+
+/**
+ * @brief 系统配置处理函数
+ * 
+ * 该函数处理系统配置操作
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param ContextHandleSize - 上下文句柄大小
+ * 
+ * @note 原始函数名：FUN_1801865a0
+ */
+#define ProcessSystemConfiguration FUN_1801865a0
+
+/**
+ * @brief 系统内存处理函数9
+ * 
+ * 该函数处理系统内存相关操作（变体9）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180186800
+ */
+#define ProcessSystemMemoryEx8 FUN_180186800
+
+/**
+ * @brief 系统内存分配器函数6
+ * 
+ * 该函数分配系统内存资源（变体6）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param ContextHandleSize - 上下文句柄大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * 
+ * @note 原始函数名：FUN_180186880
+ */
+#define AllocateSystemMemoryEx5 FUN_180186880
+
+/**
+ * @brief 系统内存处理函数10
+ * 
+ * 该函数处理系统内存相关操作（变体10）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180186ca0
+ */
+#define ProcessSystemMemoryEx9 FUN_180186ca0
+
+/**
+ * @brief 系统数据初始化函数
+ * 
+ * 该函数初始化系统数据
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * 
+ * @note 原始函数名：FUN_180186a90
+ */
+#define InitializeSystemData FUN_180186a90
+
+/**
  * @brief 初始化核心引擎数据结构
  * 
  * 该函数负责初始化核心引擎的数据结构，包括节点创建、内存分配和数据初始化。
