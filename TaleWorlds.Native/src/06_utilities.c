@@ -7304,7 +7304,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MemoryResourceOffset48 0x48                    // 内存资源偏移量48
 #define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
 #define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
-#define MemoryPointerTableOffset70 0x70               // 内存指针表偏移量70
 #define systemContextOffset80 0x80                   // 系统上下文偏移量80
 #define systemContextOffset90 0x90                   // 系统上下文偏移量90
 #define DataSecondaryOffset18 0x18                    // 数据次级偏移量18
