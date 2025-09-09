@@ -94028,9 +94028,9 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
           } while (componentIndex1 != 0);
         }
         for (; allocatedMemoryBlock8 < componentIndex5; allocatedMemoryBlock8 = allocatedMemoryBlock8 + 1) {
-          transformCoeff16 = *TransformCoefficient13;
-          TransformCoefficient13 = TransformCoefficient13 + 1;
-          TransformCoefficient20 = TransformCoefficient20 + *(float *)(dataSource + AllocatedMemoryBlock8 * 4) * transformCoeff16;
+          transformCoeff16 = *transformCoefficient13;
+          transformCoefficient13 = transformCoefficient13 + 1;
+          transformCoefficient20 = transformCoefficient20 + *(float *)(dataSource + allocatedMemoryBlock8 * 4) * transformCoeff16;
         }
       }
       transformCoeff16 = 1.0;
