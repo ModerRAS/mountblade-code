@@ -10639,7 +10639,7 @@ uint32_t UtilityPrimaryDataProcessingStatus;
  * @brief 主要数据处理缓冲区
  */
 uint32_t UtilityPrimaryDataProcessingBuffer;
-void* UtilityPrimaryDataProcessingPointer;
+DataProcessingContext* UtilityPrimaryDataProcessingPtr;
 
 /**
  * @brief 处理工具数据2
@@ -10667,10 +10667,10 @@ uint32_t UtilityPrimaryDataProcessingConfig;
 /**
  * @brief 数据处理指针
  */
-void* UtilitySecondaryDataProcessingPointer;
-void* UtilityTertiaryDataProcessingPointer;
+DataProcessingContext* UtilitySecondaryDataProcessingPtr;
+DataProcessingContext* UtilityTertiaryDataProcessingPtr;
 uint32_t UtilitySecondaryDataProcessingBuffer;
-void* UtilityQuaternaryDataProcessingPointer;
+DataProcessingContext* UtilityQuaternaryDataProcessingPtr;
 
 /**
  * @brief 处理工具数据Quaternary
@@ -10679,18 +10679,18 @@ void* UtilityQuaternaryDataProcessingPointer;
  * 
  * @note 原始函数名：UtilityProcessData4
  */
-void* UtilityProcessDataQuaternary;
+DataProcessor* UtilityProcessDataQuaternaryPtr;
 
 /**
  * @brief 数据处理器实例
  */
-void* UtilityPrimaryDataProcessorInstance;
-void* UtilitySecondaryDataProcessorInstance;
-void* UtilityQuinaryDataProcessorPointer;
-void* UtilitySenaryDataProcessorPointer;
-void* UtilityTertiaryDataProcessorInstance;
-void* UtilityQuaternaryDataProcessorInstance;
-void* UtilityQuinaryDataProcessorInstance;
+DataProcessor* UtilityPrimaryDataProcessorInstancePtr;
+DataProcessor* UtilitySecondaryDataProcessorInstancePtr;
+DataProcessor* UtilityQuinaryDataProcessorPtr;
+DataProcessor* UtilitySenaryDataProcessorPtr;
+DataProcessor* UtilityTertiaryDataProcessorInstancePtr;
+DataProcessor* UtilityQuaternaryDataProcessorInstancePtr;
+DataProcessor* UtilityQuinaryDataProcessorInstancePtr;
 
 /**
  * @brief 处理工具数据Quinary
