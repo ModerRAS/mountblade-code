@@ -19479,11 +19479,11 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
 void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
 
 {
-  int operationResult;
+  int resetStatus;
   int64_t systemContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemConfig + ExceptionHandlerCallbackOffset),&systemContext);
-  if (operationResult == 0) {
+  resetStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemConfig + ExceptionHandlerCallbackOffset),&systemContext);
+  if (resetStatus == 0) {
     *(DataWord *)(systemContext + systemContextOffset30) = 0;
       CleanupSystemEventA0(*(DataBuffer *)(cleanupContext + SystemOperationDataOffset98),systemConfig);
   }
@@ -19513,29 +19513,29 @@ void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
 DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
 
 {
-  int resourceCounter;
-  uint64_t operationResult;
+  int resourceReferenceCount;
+  uint64_t managementResult;
   int64_t resourceContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceManager + ExceptionHandlerCallbackOffset),&resourceContext);
-  if ((int)operationResult == 0) {
+  managementResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceManager + ExceptionHandlerCallbackOffset),&resourceContext);
+  if ((int)managementResult == 0) {
     if (*(int *)(resourceContext + systemContextOffset34) != 0) {
       return SystemOperationFailure;
     }
-    resourceCounter = *(int *)(resourceContext + systemContextOffset28);
-    if (resourceCounter < 0) {
+    resourceReferenceCount = *(int *)(resourceContext + systemContextOffset28);
+    if (resourceReferenceCount < 0) {
       return ResourceInvalidErrorCode;
     }
-    if (resourceCounter == 0) {
+    if (resourceReferenceCount == 0) {
       return ResourceAccessDenied;
     }
-    *(int *)(resourceContext + ResourceCounterOffset) = resourceCounter + -1;
-    if (resourceCounter == 1) {
+    *(int *)(resourceContext + ResourceCounterOffset) = resourceReferenceCount + -1;
+    if (resourceReferenceCount == 1) {
         CleanupSystemEventA0(*(DataBuffer *)(systemParams + SystemEventOffset),resourceManager);
     }
-    operationResult = 0;
+    managementResult = 0;
   }
-  return operationResult;
+  return managementResult;
 }
 
 

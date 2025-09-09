@@ -20122,39 +20122,39 @@ void UpdateUIElementTransform(longlong uiContext, longlong dataSource, float *ta
         batchCount = batchCount - 1;
       } while (batchCount != 0);
     }
-    if (localLong7 < componentIndex) {
-      pTransformCoefficient3 = (float *)(uiContext + 0x6c + localLong7 * 0x1358);
-      componentIndex = componentIndex - localLong7;
+    if (processedCount < componentCount) {
+      transformMatrixPtr = (float *)(uiContext + 0x6c + processedCount * 0x1358);
+      componentCount = componentCount - processedCount;
       do {
-        if (((int)pTransformCoefficient3[2] - 2U < 2) && (LocalFloatValue9 = LocalFloatValue9 - *pTransformCoefficient3, LocalFloatValue9 <= 0.0)) {
-          LocalFloatValue9 = 0.0;
+        if (((int)transformMatrixPtr[2] - 2U < 2) && (currentWeight = currentWeight - *transformMatrixPtr, currentWeight <= 0.0)) {
+          currentWeight = 0.0;
         }
-        pTransformCoefficient3 = pTransformCoefficient3 + 0x4d6;
-        componentIndex = componentIndex + -1;
-      } while (componentIndex != 0);
+        transformMatrixPtr = transformMatrixPtr + 0x4d6;
+        componentCount = componentCount + -1;
+      } while (componentCount != 0);
     }
-    TemporaryFloatValue = *(float *)(uiContext + 0x6150);
-    loopCounter = (ulonglong)(uint)(int)bufferSize;
-    LocalFloatValue9 = ((TemporaryFloatValue * 6.0 - 15.0) * TemporaryFloatValue + 10.0) * TemporaryFloatValue * TemporaryFloatValue * TemporaryFloatValue * LocalFloatValue9;
+    weightMultiplier = *(float *)(uiContext + 0x6150);
+    iterationCounter = (ulonglong)(uint)(int)bufferSize;
+    currentWeight = ((weightMultiplier * 6.0 - 15.0) * weightMultiplier + 10.0) * weightMultiplier * weightMultiplier * weightMultiplier * currentWeight;
     if ('\0' < bufferSize) {
-      EventTypeCode = 1;
+      transformType = 1;
       do {
-        if ((result & EventTypeCode) == 0) {
+        if ((transformFlags & transformType) == 0) {
 LAB_18065bd31:
-          TemporaryFloatValue = 0.0;
+          weightMultiplier = 0.0;
         }
-        else if (1.001358e-05 < LocalFloatValue9) {
-          TemporaryFloatValue = 1.0 - LocalFloatValue9;
-          if (0.99999 < LocalFloatValue9) goto LAB_18065bd31;
+        else if (1.001358e-05 < currentWeight) {
+          weightMultiplier = 1.0 - currentWeight;
+          if (0.99999 < currentWeight) goto LAB_18065bd31;
         }
         else {
-          TemporaryFloatValue = 1.0;
+          weightMultiplier = 1.0;
         }
-        *targetBuffer = TemporaryFloatValue;
+        *targetBuffer = weightMultiplier;
         targetBuffer = targetBuffer + 1;
-        EventTypeCode = EventTypeCode << 1 | (ulonglong)((longlong)EventTypeCode < 0);
-        loopCounter = loopCounter - 1;
-      } while (loopCounter != 0);
+        transformType = transformType << 1 | (ulonglong)((longlong)transformType < 0);
+        iterationCounter = iterationCounter - 1;
+      } while (iterationCounter != 0);
     }
   }
   return;
@@ -20163,56 +20163,68 @@ LAB_18065bd31:
 
 
 
- void ProcessUIElementUpdate(longlong uiContext,longlong dataSource,float *targetBuffer)
-void ProcessUIElementUpdate(longlong uiContext,longlong dataSource,float *targetBuffer)
+ /**
+ * @brief 处理UI元素更新
+ * 
+ * 根据UI上下文和数据源处理UI元素的更新操作，包括变换矩阵计算、
+ * 权重调整和结果缓冲区填充。此函数负责批量处理UI元素的更新。
+ * 
+ * @param uiContext UI上下文指针，包含UI元素的状态信息
+ * @param dataSource 数据源指针，包含更新相关的数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * 
+ * @note 原始函数名：ProcessUIElementUpdate
+ * @note 此函数处理UI元素的批量更新操作
+ */
+void ProcessUIElementUpdate(longlong uiContext, longlong dataSource, float *targetBuffer)
 
 {
-  ulonglong result;
-  longlong registerAX;
+  ulonglong updateFlags;
+  longlong elementCount;
   ulonglong iterationCount;
-  float *pTransformCoefficient2;
-  ulonglong ProcessingStatus;
-  longlong EventDataIndex;
-  longlong contextHandleData;
-  char register10B;
-  longlong RegisterPointer;
-  float ResultFloatValue;
-  float TemporaryFloatValue;
+  float *transformMatrixPtr;
+  ulonglong processingStatus;
+  longlong processedIndex;
+  longlong batchCount;
+  char statusFlag;
+  longlong contextPointer;
+  float resultValue;
+  float currentWeight;
   
-  EventDataIndex = 0;
-  result = *(ulonglong *)(dataSource + 0x150);
-  TemporaryFloatValue = 1.0;
-  if (3 < registerAX) {
-    pTransformCoefficient2 = (float *)(uiContext + 0x6c);
-    contextHandleData = (registerAX - 4U >> 2) + 1;
-    EventDataIndex = contextHandleData * 4;
+  processedIndex = 0;
+  updateFlags = *(ulonglong *)(dataSource + 0x150);
+  currentWeight = 1.0;
+  if (3 < elementCount) {
+    transformMatrixPtr = (float *)(uiContext + 0x6c);
+    batchCount = (elementCount - 4U >> 2) + 1;
+    processedIndex = batchCount * 4;
     do {
-      if (((int)pTransformCoefficient2[2] - 2U < 2) && (TemporaryFloatValue = TemporaryFloatValue - *pTransformCoefficient2, TemporaryFloatValue <= 0.0)) {
-        TemporaryFloatValue = 0.0;
+      if (((int)transformMatrixPtr[2] - 2U < 2) && (currentWeight = currentWeight - *transformMatrixPtr, currentWeight <= 0.0)) {
+        currentWeight = 0.0;
       }
-      if (((int)pTransformCoefficient2[0x4d8] - 2U < 2) && (TemporaryFloatValue = TemporaryFloatValue - pTransformCoefficient2[0x4d6], TemporaryFloatValue <= 0.0)) {
-        TemporaryFloatValue = 0.0;
+      if (((int)transformMatrixPtr[0x4d8] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0x4d6], currentWeight <= 0.0)) {
+        currentWeight = 0.0;
       }
-      if (((int)pTransformCoefficient2[0x9ae] - 2U < 2) && (TemporaryFloatValue = TemporaryFloatValue - pTransformCoefficient2[0x9ac], TemporaryFloatValue <= 0.0)) {
-        TemporaryFloatValue = 0.0;
+      if (((int)transformMatrixPtr[0x9ae] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0x9ac], currentWeight <= 0.0)) {
+        currentWeight = 0.0;
       }
-      if (((int)pTransformCoefficient2[0xe84] - 2U < 2) && (TemporaryFloatValue = TemporaryFloatValue - pTransformCoefficient2[0xe82], TemporaryFloatValue <= 0.0)) {
-        TemporaryFloatValue = 0.0;
+      if (((int)transformMatrixPtr[0xe84] - 2U < 2) && (currentWeight = currentWeight - transformMatrixPtr[0xe82], currentWeight <= 0.0)) {
+        currentWeight = 0.0;
       }
-      pTransformCoefficient2 = pTransformCoefficient2 + 0x1358;
-      contextHandleData = contextHandleData + -1;
-    } while (contextHandleData != 0);
+      transformMatrixPtr = transformMatrixPtr + 0x1358;
+      batchCount = batchCount - 1;
+    } while (batchCount != 0);
   }
-  if (EventDataIndex < registerAX) {
-    pTransformCoefficient2 = (float *)(RegisterPointer + 0x6c + EventDataIndex * 0x1358);
-    EventDataIndex = registerAX - EventDataIndex;
+  if (processedIndex < elementCount) {
+    transformMatrixPtr = (float *)(contextPointer + 0x6c + processedIndex * 0x1358);
+    processedIndex = elementCount - processedIndex;
     do {
-      if (((int)pTransformCoefficient2[2] - 2U < 2) && (TemporaryFloatValue = TemporaryFloatValue - *pTransformCoefficient2, TemporaryFloatValue <= 0.0)) {
-        TemporaryFloatValue = 0.0;
+      if (((int)transformMatrixPtr[2] - 2U < 2) && (currentWeight = currentWeight - *transformMatrixPtr, currentWeight <= 0.0)) {
+        currentWeight = 0.0;
       }
-      pTransformCoefficient2 = pTransformCoefficient2 + 0x4d6;
-      EventDataIndex = EventDataIndex + -1;
-    } while (EventDataIndex != 0);
+      transformMatrixPtr = transformMatrixPtr + 0x4d6;
+      processedIndex = processedIndex + -1;
+    } while (processedIndex != 0);
   }
   ResultFloatValue = *(float *)(RegisterPointer + 0x6150);
   ProcessingStatus = (ulonglong)(uint)(int)register10B;
