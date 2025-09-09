@@ -316964,7 +316964,7 @@ ulonglong FUN_18085aca0(longlong uiContext)
   bool ProcessingFlag0;
   UIByte EventTypeCode1;
   ulonglong **stackParamfffffffffffffe78;
-  undefined7 EventTypeCode2;
+  UIByte EventTypeCode2;
   int *stackParamfffffffffffffe80;
   uint7 EventTypeCode3;
   longlong stackParamfffffffffffffe88;
