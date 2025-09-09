@@ -25292,7 +25292,7 @@ void ProcessFloatingPointDataWithValidation(void)
   if (((systemContextValidationFlag != '\0') || (*(int *)(*(int64_t *)(systemDataPointer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == processingLoopCounter)) &&
      (systemResourceAllocationResult = ConfigureSystemParametersA0(), systemResourceAllocationResult == 0)) {
     for (systemResourceAllocationResult = 0; (-1 < systemResourceAllocationResult && (systemResourceAllocationResult < *(int *)(systemDataPointer + SystemDataPointerOffset48))); systemResourceAllocationResult = systemResourceAllocationResult + 1) {
-      exceptionHandlerDataPointer = *(int64_t *)(*(int64_t *)(systemDataPointer + 0x40) + (int64_t)systemResourceAllocationResult * 8);
+      exceptionHandlerDataPointer = *(int64_t *)(*(int64_t *)(systemDataPointer + SystemDataPointerOffset40) + (int64_t)systemResourceAllocationResult * 8);
       dataContext = *(int64_t *)(exceptionHandlerDataPointer + 0x68);
       if (((*(SystemByteType *)(exceptionHandlerDataPointer + 0xc4) & 1) != 0) && (dataContext != 0)) {
         SystemOperationResult = 0;
