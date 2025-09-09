@@ -95951,8 +95951,8 @@ void TriggerUIRenderingUpdate(UIHandle uiContext, UIHandle dataSource, UIHandle 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180720e10(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
-void FUN_180720e10(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
+ void ProcessUIBufferOperationWithParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
+void ProcessUIBufferOperationWithParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize,
                   int resultPointer,UIHandle param_6)
 
 {
@@ -96014,8 +96014,8 @@ void ProcessUIComplexData(void)
 
 
 
- void FUN_180721650(longlong uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
-void FUN_180721650(longlong uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
+ void ProcessUIDataValidationAndComparison(longlong uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
+void ProcessUIDataValidationAndComparison(longlong uiContext,uint dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
 
 {
   ulonglong result;

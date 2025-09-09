@@ -31805,7 +31805,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
     if (*(int *)(ParameterArray[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x54);
+    systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset54);
     if ((int)systemDataBuffer == 0) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
@@ -32705,7 +32705,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x54);
+    operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset54);
     if ((int)operationResult != 0) {
       return operationResult;
     }
