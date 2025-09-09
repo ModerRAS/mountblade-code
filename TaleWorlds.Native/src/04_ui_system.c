@@ -100096,26 +100096,26 @@ void ProcessUITransformAnimation(UIHandle uiContext, UIHandle dataSource, float 
   float baseTransform;
   ulonglong renderTaskParam;
   
-  baseValue = *(float *)(SourceHandle + 0x275c);
-  transformCoeff1 = *(float *)(preservedRegister13 + 700);
-  TransformCoefficient2 = *(float *)(preservedRegister13 + 0x2b8);
-  if (0 < unmodifiedEBX) {
-    pTransformCoefficient3 = (float *)(preservedRegister13 + 0x294);
+  baseValue = *(float *)(sourceHandle + 0x275c);
+  transformCoeff1 = *(float *)(contextData + 700);
+  transformCoeff2 = *(float *)(contextData + 0x2b8);
+  if (0 < loopCounter) {
+    transformCoeffPtr = (float *)(contextData + 0x294);
     do {
-      RegisterValue = RegisterValue + 1;
-      TransformCoefficient4 = (SQRT(baseValue)                ((unmodifiedXMM13_Da - (unmodifiedXMM13_Da - transformCoeff1) * TransformCoefficient2) * in_XMM5_Da + 0.3) -
-              *(float *)(SourceHandle + 0x1c14)) * 0.4 + *(float *)(SourceHandle + 0x1c14);
-      *(float *)(SourceHandle + 0x1c14) = TransformCoefficient4;
-      pTransformCoefficient3[4] = TransformCoefficient4;
-      TransformCoefficient4 = (targetBuffer - *(float *)(SourceHandle + 0x1c18)) * 0.4 + *(float *)(SourceHandle + 0x1c18);
-      *(float *)(SourceHandle + 0x1c18) = TransformCoefficient4;
-      *pTransformCoefficient3 = TransformCoefficient4;
-      pTransformCoefficient3 = pTransformCoefficient3 + 1;
+      registerValue = registerValue + 1;
+      transformResult = (SQRT(baseValue)                ((baseTransform - (baseTransform - transformCoeff1) * transformCoeff2) * animationParam + 0.3) -
+              *(float *)(sourceHandle + 0x1c14)) * 0.4 + *(float *)(sourceHandle + 0x1c14);
+      *(float *)(sourceHandle + 0x1c14) = transformResult;
+      transformCoeffPtr[4] = transformResult;
+      transformResult = (targetBuffer - *(float *)(sourceHandle + 0x1c18)) * 0.4 + *(float *)(sourceHandle + 0x1c18);
+      *(float *)(sourceHandle + 0x1c18) = transformResult;
+      *transformCoeffPtr = transformResult;
+      transformCoeffPtr = transformCoeffPtr + 1;
       targetBuffer = param_6;
-    } while (RegisterValue < *(int *)(SourceHandle + 0x11e0));
+    } while (registerValue < *(int *)(sourceHandle + 0x11e0));
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam000004f0 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
