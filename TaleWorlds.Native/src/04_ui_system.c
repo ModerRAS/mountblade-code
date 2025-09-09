@@ -188429,19 +188429,19 @@ undefined UIConfigDataQuaternary;
 #define DAT_180be35f8 UIConfigDataTable35f8
 
 // UI系统计数器和阈值变量语义化定义
-#define DAT_180c4ea98 UIThresholdCounter
-#define DAT_180c4ea94 UIThresholdCounterValue
+#define DAT_180c4ea98 UIEventThresholdCounter
+#define DAT_180c4ea94 UIEventThresholdCounterValue
 
-undefined DAT_180be3600;
-undefined DAT_180be34f0;
-undefined DAT_180be34f4;
-undefined DAT_180c11744;
+undefined UIConfigDataTable3600;
+undefined UIConfigDataTable34f0;
+undefined UIConfigDataTable34f4;
+undefined UIResourceDataTable1744;
 
  undefined FUN_18079cd20;
 undefined FUN_18079cd20;
-undefined DAT_180be3650;
-undefined DAT_180c11730;
-undefined DAT_180be3658;
+undefined UIConfigDataTable3650;
+undefined UIResourceDataTable1730;
+undefined UIConfigDataTable3658;
 
  undefined FUN_18079cda0;
 undefined FUN_18079cda0;
