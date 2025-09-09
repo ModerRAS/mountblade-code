@@ -10192,22 +10192,22 @@ LAB_UIContextInitialize:
                               ((longlong)currentMemoryAllocation + (allocatedMemorySize4 - (longlong)newMemoryAllocation) + 0x10);
                 allocatedMemoryBlock1 = allocatedMemoryBlock1 + -1;
                 currentMemoryAllocation = currentMemoryAllocation + 3;
-              } while (0 < AllocatedMemoryBlock1);
+              } while (0 < allocatedMemoryBlock1);
             }
-            *currentMemoryBlock = newContext;
-            currentMemoryBlock[1] = (longlong)componentIndex1;
-            currentMemoryBlock[2] = (longlong)componentIndex2;
+            *currentMemoryAllocation = newUIContext;
+            currentMemoryAllocation[1] = (longlong)componentLayoutIndex1;
+            currentMemoryAllocation[2] = (longlong)componentLayoutIndex2;
             if (*uiContext != 0) {
                      WARNING: Subroutine does not return
               DestroyUIComponent();
             }
-            *uiContext = (longlong)newMemoryBlock;
-            uiContext[1] = (longlong)(currentMemoryBlock + 3);
-            uiContext[2] = (longlong)(newMemoryBlock + allocatedMemory2 * 3);
-            elementCount = elementCounter;
+            *uiContext = (longlong)newMemoryAllocation;
+            uiContext[1] = (longlong)(currentMemoryAllocation + 3);
+            uiContext[2] = (longlong)(newMemoryAllocation + allocatedMemorySize2 * 3);
+            uiElementCount = elementProcessingCounter;
           }
-          resultPointer3 = &PrimaryUIBuffer;
-          if (transformResult != 0) {
+          uiTransformResultPointer3 = &PrimaryUIBuffer;
+          if (uiTransformCalculationResult != 0) {
                      WARNING: Subroutine does not return
             DestroyUIComponent();
           }
