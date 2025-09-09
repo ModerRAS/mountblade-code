@@ -10492,8 +10492,8 @@ uint32_t UtilityAudioModuleConfig;
  */
 bool UtilityCoreModuleActiveState;
 uint32_t UtilityDatabaseModuleConfig;
-uint32_t UtilityModuleEighthConfig;
-bool UtilityModuleSecondaryActiveState;
+uint32_t UtilityFileSystemModuleConfig;
+bool UtilitySystemModuleActiveState;
 
 /**
  * @brief 工具模块资源指针
