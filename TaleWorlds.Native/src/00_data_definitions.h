@@ -4043,17 +4043,17 @@ LabelSystemOperationExit:
   SystemBufferPointer310 = &SystemBufferTemplate;
   SystemSecurityCheck(SecurityKey38 ^ (ulonglong)SecurityBuffer368);
   while (BytePointer = BytePointer + 1, UnsignedIndex != 0) {
-InitializationCompleteLabel:
+InitializationCompleted:
     CharValue = *BytePointer;
     UnsignedIndex = (uint)BytePointer[SystemDataPointer];
     if (CharValue != UnsignedIndex) break;
   }
   if ((int)(CharValue - UnsignedIndex) < 1) {
-SystemReadyLabel:
+SystemInitializationReady:
     BufferSize7 = 1;
   }
   else {
-DataTransferOperationReadyLabel:
+DataTransferOperationReady:
     BufferSize7 = 0;
   }
   SystemModuleInitialize(MemoryAddressPointer,ModuleInitializationResult0,StringSearchResult,BufferSize7);
@@ -4061,7 +4061,7 @@ DataTransferOperationReadyLabel:
     BufferSize8 = (ulonglong)(LoopCounterValue + 1);
     BufferSize1 = BufferSize1 + 1;
     if ((longlong)(int)(UnsignedIndex - 0xe) <= (longlong)BufferSize1) break;
-BufferSizeValidationCheckLabel:
+BufferSizeValidationCheckpoint:
     LoopCounterValue = (int)BufferSize8;
     BufferSize8 = BufferSize9;
     BufferSize5 = BufferSize9;
@@ -4074,7 +4074,7 @@ BufferSizeValidationCheckLabel:
     } while ((longlong)BufferSize8 < 0xf);
     if (BufferSize6 == 0xf) goto BufferSizeValidationConfirmedLabel;
   }
-BufferSizeValidationCompleteLabel:
+BufferSizeValidationCompleted:
   LoopCounterValue = -1;
 BufferSizeValidationConfirmedLabel:
   SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pMemoryAddress4);
