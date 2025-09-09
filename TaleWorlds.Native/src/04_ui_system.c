@@ -11489,9 +11489,9 @@ UIHandle ProcessUIComponentEx(ulonglong uiContext,UIHandle *dataSource,UIHandle 
         } while (processingCounter != 0);
         if ((int)(isCharacterMatch - processingCounter) < 1) goto LAB_1806577f1;
       }
-LAB_1806577d7:
+LAB_1806577d7: // 内存分配结果处理标签
       result1 = (ulonglong)pallocatedMemory0 & 0xffffffffffffff00;
-LAB_1806577da:
+LAB_1806577da: // 上下文数据转换标签
       if (pcontextOffset != (longlong *)0x0) {
         ConvertUIData(uiContext,dataSource,pcontextOffset,result1,resultPointer);
         return dataSource;
