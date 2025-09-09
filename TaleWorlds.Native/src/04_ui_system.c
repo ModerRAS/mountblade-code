@@ -100467,11 +100467,11 @@ void FUN_180723ee0(int *uiContext,char *dataSource)
   int distanceResult1;
   int distanceResult2;
   
-  localChar6 = *dataSource;
-  ProcessingResult1 = 0;
-  localInt9 = 0x7fffffff;
-  ProcessingResult2 = 0x7fffffff;
-  localInt8 = 0;
+  currentChar = *dataSource;
+  distanceResult1 = 0;
+  maxIntValue = 0x7fffffff;
+  distanceResult2 = 0x7fffffff;
+  fontTableIndex = 0;
   do {
     localInt7 = 0;
     sVar1 = *(short *)(&FontMetricTableX + (longlong)localInt8 * 2);
