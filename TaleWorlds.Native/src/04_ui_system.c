@@ -200177,13 +200177,13 @@ LAB_180787e12:
       if (MemoryContextPointer == 0) goto EventProcessingCompleteLabel;
       *(UIHandle *)(MemoryContextPointer + 0xa8) = *(UIHandle )(UITargetHandle + 0x48);
       *(longlong )(EventDataIndexArray[10] + 0xd8) = *(longlong *)(UIContextPointer + 0x48) + 0x11848;
-      *(UIDword *)(pEventDataIndex[10] + 0xe0) =
-           *(UIDword *)(*(longlong *)(uiContext + 0x48) + 0x116b8);
-      ProcessingStatus = FUN_18075a230(pEventDataIndex[10],BasePointer + -0x11);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      *(UIDword *)(EventDataIndexArray[10] + 0xe0) =
+           *(UIDword *)(*(longlong *)(UIContextPointer + 0x48) + 0x116b8);
+      EventProcessingStatus = FUN_18075a230(EventDataIndexArray[10],StackFrameBasePointer + -0x11);
+      if ((int)EventProcessingStatus != 0) {
+        return EventProcessingStatus;
       }
-      *(UIDword *)(pEventDataIndex[10] + 0x2b8) = 0xffffffff;
+      *(UIDword *)(EventDataIndexArray[10] + 0x2b8) = 0xffffffff;
       *(code **)(pEventDataIndex[10] + 0x298) = FUN_1807868e0;
       *(longlong **)(pEventDataIndex[10] + 0x1e8) = pEventDataIndex;
       *(float *)(pEventDataIndex[10] + 0x230) = (float)iStack0000000000000044;
