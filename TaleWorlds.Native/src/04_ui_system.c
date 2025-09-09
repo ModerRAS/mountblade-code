@@ -5675,13 +5675,13 @@ void* UICommandBufferTable;
 void* UIFrameBufferTable;
 void* UIConstantBufferTable;
 char UIInitializationComplete;
- UI系统状态变量
+// UI系统状态变量
 void* UIInputEventProcessor;
 void* UIEventDispatcher;
 void* UILayoutManager;
 void* UIAnimationController;
 void* UIInputHandlerSystem;
- UI系统数据表
+// UI系统数据表
 void* UIComponentDataTable;
 void* UIResourceDataTable;
 void* UIStateDataTable;
