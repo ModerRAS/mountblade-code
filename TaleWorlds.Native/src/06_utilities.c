@@ -31899,7 +31899,7 @@ DataCheckpointB:
       return memoryRegionBase;
     }
   }
-  if (0x6e < *(uint *)(registerContext + 8)) {
+  if (LargeContextSize < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
       operationResult = OperateDataO0(*registerContext,StackFrameContext + 200,4);
     }
