@@ -106617,8 +106617,8 @@ void ProcessUIBufferAdvancedOperation(int uiContext, UIHandle dataSource, uint t
   short *eventDataPointer;
   int *preservedRegister15;
   
-  if (unmodifiedEBP < unmodifiedEBX) {
-    targetBuffer = targetBuffer + ((uint)((int)EventHandle[unmodifiedEBP] * (int)EventHandle[unmodifiedEBP]) >>
+  if (preservedRegisterEBP < preservedRegisterEBX) {
+    targetBuffer = targetBuffer + ((uint)((int)eventDataPointer[preservedRegisterEBP] * (int)eventDataPointer[preservedRegisterEBP]) >>
                         ((byte)uiContext & 0x1f));
   }
   if (targetBuffer == 0) {
@@ -106630,29 +106630,29 @@ void ProcessUIBufferAdvancedOperation(int uiContext, UIHandle dataSource, uint t
       for (; targetBuffer >> loopCounter == 0; loopCounter = loopCounter + -1) {
       }
     }
-    loopCounter = RegisterPointerD - loopCounter;
+    loopCounter = registerValueD - loopCounter;
   }
   loopCounter = (uiContext - loopCounter) + 3;
   if (loopCounter < 0) {
     loopCounter = bufferSize;
   }
-  localInt7 = bufferSize;
-  if (0 < unmodifiedESI) {
-    EventTypeCode = (unmodifiedESI - 1U >> 1) + 1;
-    loopCounter = (ulonglong)EventTypeCode;
-    localInt7 = EventTypeCode * 2;
-    psVar4 = EventHandle;
+  localVariable7 = bufferSize;
+  if (0 < preservedRegisterESI) {
+    iterationCount = (preservedRegisterESI - 1U >> 1) + 1;
+    processingCounter = (ulonglong)iterationCount;
+    localVariable7 = iterationCount * 2;
+    dataPointer4 = eventDataPointer;
     do {
-      psVar1 = psVar4 + 1;
-      sVar2 = *psVar4;
-      psVar4 = psVar4 + 2;
-      bufferSize = bufferSize + ((uint)((int)sVar2 * (int)sVar2 + (int)*psVar1 * (int)*psVar1) >>
+      dataPointer1 = dataPointer4 + 1;
+      dataValue2 = *dataPointer4;
+      dataPointer4 = dataPointer4 + 2;
+      bufferSize = bufferSize + ((uint)((int)dataValue2 * (int)dataValue2 + (int)*dataPointer1 * (int)*dataPointer1) >>
                           ((byte)loopCounter & 0x1f));
-      loopCounter = loopCounter - 1;
-    } while (loopCounter != 0);
+      processingCounter = processingCounter - 1;
+    } while (processingCounter != 0);
   }
-  if (localInt7 < unmodifiedEBX) {
-    bufferSize = bufferSize + ((uint)((int)EventHandle[localInt7] * (int)EventHandle[localInt7]) >>
+  if (localVariable7 < preservedRegisterEBX) {
+    bufferSize = bufferSize + ((uint)((int)eventDataPointer[localVariable7] * (int)eventDataPointer[localVariable7]) >>
                         ((byte)loopCounter & 0x1f));
   }
   *preservedRegister15 = loopCounter;
