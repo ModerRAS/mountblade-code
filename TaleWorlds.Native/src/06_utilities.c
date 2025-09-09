@@ -2772,17 +2772,17 @@
 #define systemContextPointerOffset900 0x900                  // 系统上下文指针偏移量900
 
 // 异常数据指针相关常量
-#define ExceptionDataPointer 0                                // 异常数据指针
+#define ExceptionDataPointer SystemExceptionDataPointer        // 异常数据指针
 
 // 异常上下文指针相关常量
 #define ExceptionContextPtr SystemExceptionContextPtr         // 异常上下文指针
 
 // 清理标志相关常量
-#define CleanupFlagB 0                                       // 清理标志B
+#define CleanupFlagB SystemCleanupFlagB                       // 清理标志B
 
 // 操作标志相关常量
-#define OperationFlagA 0                                      // 操作标志A
-#define OperationFlagB 0                                      // 操作标志B
+#define OperationFlagA SystemOperationFlagA                     // 操作标志A
+#define OperationFlagB SystemOperationFlagB                     // 操作标志B
 
 // 异常上下文相关偏移量常量
 #define ExceptionContextOffset3a8 0x3a8                        // 异常上下文偏移量3a8
@@ -27800,6 +27800,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataBuffer TemporaryDataBufferV;
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorProcessingData;
+  DataWord StackDataWordA;              // 堆栈数据字A - 用于存储临时的堆栈数据
+  DataWord *StackPointerBufferC;        // 堆栈指针缓冲区C - 用于存储堆栈指针的缓冲区
+  int64_t StackLongIntegerA;             // 堆栈长整型A - 用于存储临时的长整型数据
+  DataBuffer *TemporaryPointerBufferB;   // 临时指针缓冲区B - 用于存储临时的指针数据
   
   // 安全验证：计算颜色处理数据的加密值
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
@@ -80040,12 +80044,12 @@ void CleanupSystemMutexB(void)
 void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int mutexUnlockResult;
+  int systemMutexUnlockResult;
   
   ExceptionContextPtr = *(DataBuffer *)(stackFrame + 0x70);
-  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
-  if (mutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
+  systemMutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
+  if (systemMutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemMutexUnlockResult);
   }
   return;
 }
