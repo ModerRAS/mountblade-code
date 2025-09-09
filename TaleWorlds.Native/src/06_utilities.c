@@ -2008,6 +2008,12 @@
 #define DataOperationOffset24 0x24                  // 数据操作偏移量24
 #define DataOperationOffset30 0x30                  // 数据操作偏移量30
 
+// 异常处理偏移量常量
+#define ExceptionDataBufferOffset88 0x88            // 异常数据缓冲区偏移量88
+#define ExceptionHandlerCallbackOffset30 0x30       // 异常处理器回调偏移量30
+#define ExceptionHandlerContextOffset40 0x40        // 异常上下文处理器偏移量40
+#define ExceptionHandlerContextOffset150 0x150       // 异常上下文处理器偏移量150
+
 // 内存管理偏移量常量
 #define MemoryManagementOffset1A0 0x1a0             // 内存管理偏移量1A0
 #define MemoryAlignmentSize32 0x20                   // 内存对齐大小32
@@ -107749,12 +107755,22 @@ void ExecuteExceptionContextProcessorOffset88(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_18090ee00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表配置函数偏移量0x88
+ * 
+ * 该函数负责配置异常数据表，设置异常处理所需的表格数据
+ * 使用偏移量0x88获取异常数据缓冲区指针
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ee00
+ */
+void ConfigureExceptionDataTableOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x88);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset88);
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
   return;
@@ -107762,23 +107778,44 @@ void Unwind_18090ee00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表6设置函数偏移量0x88
+ * 
+ * 该函数负责设置异常数据表6，使用偏移量0x88获取数据缓冲区指针
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ee10
+ */
+void SetExceptionDataTable6Offset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x88) = &ExceptionDataTable6;
+  **(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset88) = &ExceptionDataTable6;
   return;
 }
 
 
 
-void Unwind_18090ee20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数偏移量0x150
+ * 
+ * 该函数负责执行异常处理器回调，使用偏移量0x150和0x10获取回调函数指针
+ * 如果回调函数有效，则执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090ee20
+ */
+void ExecuteExceptionHandlerCallbackOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + ExceptionHandlerCallbackOffset10);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset150) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset150),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
