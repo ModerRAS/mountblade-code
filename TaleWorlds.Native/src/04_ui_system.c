@@ -168328,7 +168328,7 @@ UIDword FUN_1807686d0(void)
   }
   _DAT_180c0c6f0 = ptrLocal3;
   if (ptrLocal3 != (UIHandle *)0x0) {
-    processingResult = (**(code **)(*_DAT_180c0c6e8 + 0x30))();
+    processingResult = (**(code **)(*_GlobalUIComponentInstanceE8 + 0x30))();
     if (processingResult < 0) {
       return 0x33;
     }
