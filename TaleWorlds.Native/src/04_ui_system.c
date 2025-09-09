@@ -49997,19 +49997,27 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- 处理UI数据操作（标准模式）
- 处理UI系统中的数据操作，使用标准处理模式
-  uiContext UI上下文指针
- *  dataSource 数据源标识符
- *  targetBuffer 目标缓冲区指针
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
- *  param_6 操作参数6
- *  param_7 参数7指针，用于返回处理结果
-  操作结果状态码
+ /**
+ * @brief 处理UI数据操作（标准模式）
  * 
-  原始函数名：FUN_18068fba0
- int ProcessUIDataOperationStandard(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ * 处理UI系统中的数据操作，使用标准处理模式。该函数负责：
+ * - 数据源和目标缓冲区之间的数据传输
+ * - 数据验证和完整性检查
+ * - 处理结果的状态计算和返回
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定要处理的数据来源
+ * @param targetBuffer 目标缓冲区指针，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，用于存储处理过程中的中间结果
+ * @param param_6 操作参数6，控制处理模式的具体参数
+ * @param param_7 参数7指针，用于返回处理结果的状态码
+ * @return int 操作结果状态码，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_18068fba0
+ * @note 该函数使用0x10作为处理模式标志
+ */
+int ProcessUIDataOperationStandard(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIHandle resultPointer,int param_6,int *param_7)
 
 {
@@ -50023,19 +50031,27 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- 处理UI数据操作（模式4）
- 处理UI系统中的数据操作，使用模式4处理
-  uiContext UI上下文指针
- *  dataSource 数据源标识符
- *  targetBuffer 目标缓冲区指针
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
- *  param_6 操作参数6
- *  param_7 参数7指针，用于返回处理结果
-  操作结果状态码
+ /**
+ * @brief 处理UI数据操作（模式4）
  * 
-  原始函数名：FUN_18068fc10
- int ProcessUIDataOperationMode4(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+ * 处理UI系统中的数据操作，使用模式4处理。该函数负责：
+ * - 数据源和目标缓冲区之间的数据传输
+ * - 数据验证和完整性检查
+ * - 处理结果的状态计算和返回
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定要处理的数据来源
+ * @param targetBuffer 目标缓冲区指针，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，用于存储处理过程中的中间结果
+ * @param param_6 操作参数6，控制处理模式的具体参数
+ * @param param_7 参数7指针，用于返回处理结果的状态码
+ * @return int 操作结果状态码，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_18068fc10
+ * @note 该函数使用4作为处理模式标志
+ */
+int ProcessUIDataOperationMode4(UIHandle uiContext,int dataSource,UIHandle targetBuffer,UIHandle bufferSize,
                  UIHandle resultPointer,int param_6,int *param_7)
 
 {
@@ -50127,10 +50143,19 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- 执行UI系统初始化检查并返回状态值
-  系统状态检查结果
-  原始函数名: FUN_18068fdd0
- int PerformUIInitializationCheck(void)
+ /**
+ * @brief 执行UI系统初始化检查并返回状态值
+ * 
+ * 执行UI系统的初始化状态检查，该函数负责：
+ * - 检查UI系统是否正确初始化
+ * - 处理UI渲染队列中的待处理项目
+ * - 返回系统状态检查结果
+ * 
+ * @return int 系统状态检查结果，0表示初始化失败，非0表示成功
+ * 
+ * @note 原始函数名: FUN_18068fdd0
+ */
+int PerformUIInitializationCheck(void)
 
 {
   int *statusParameter;
@@ -50142,17 +50167,26 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
 
 
 
- 处理UI系统上下文数据操作
- 处理UI系统中的上下文数据操作，包括数据验证、内存分配和结果计算
-  uiContext UI上下文指针数组
- *  dataSource 数据源标识符
- *  targetBuffer 目标缓冲区地址
- *  bufferSize 缓冲区大小
- *  resultPointer 结果指针
-  操作结果状态码
+ /**
+ * @brief 处理UI系统上下文数据操作
  * 
-  原始函数名：FUN_18068fe10
- ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,longlong targetBuffer,int bufferSize,
+ * 处理UI系统中的上下文数据操作，包括数据验证、内存分配和结果计算。该函数负责：
+ * - UI上下文数据的验证和处理
+ * - 内存块的分配和管理
+ * - 事件类型的处理和计数
+ * - 处理结果的计算和返回
+ * 
+ * @param uiContext UI上下文指针数组，包含16字节的上下文信息
+ * @param dataSource 数据源标识符，指定要处理的数据来源
+ * @param targetBuffer 目标缓冲区地址，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，用于存储处理过程中的中间结果
+ * @return ulonglong 操作结果状态码，0表示失败，非0表示成功
+ * 
+ * @note 原始函数名：FUN_18068fe10
+ * @note 该函数处理复杂的UI上下文数据操作，涉及多个内存块的管理
+ */
+ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,longlong targetBuffer,int bufferSize,
                        uint *resultPointer)
 
 {
@@ -199970,8 +200004,21 @@ UIHandle FUN_1807861b0(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180786250(int *uiContext)
-void FUN_180786250(int *uiContext)
+ /**
+ * @brief 处理UI上下文内存释放操作
+ * 
+ * 处理UI上下文的内存释放操作，该函数负责：
+ * - 释放UI上下文相关的内存块
+ * - 清理UI组件的资源
+ * - 调用组件的清理函数
+ * 
+ * @param uiContext UI上下文指针数组，包含要处理的上下文信息
+ * 
+ * @note 原始函数名：FUN_180786250
+ * @note 该函数会调用组件的清理函数进行资源释放
+ */
+void ProcessUIContextMemoryRelease(int *uiContext)
+void ProcessUIContextMemoryRelease(int *uiContext)
 
 {
   longlong allocatedMemory;

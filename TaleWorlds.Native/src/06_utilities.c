@@ -117276,11 +117276,32 @@ void ResetExceptionHandlersAtOffset9c0(DataBuffer operationBase,int64_t dataBuff
 
 
 void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名：Unwind_1809109e0 - 异常处理器重置函数9e0
+#define ResetExceptionHandlersAtOffset9e0 Unwind_1809109e0
+
+/**
+ * @brief 重置异常处理器和系统状态（第三组）
+ * 
+ * 该函数负责重置第三组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x11e0偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809109e0
+ * @note 这是一个异常处理和系统清理函数，处理0x11e0偏移的异常处理器
+ */
+void ResetExceptionHandlersAtOffset9e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionHandlerContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x11e0) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 0x11e0))(exceptionHandlerContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117304,11 +117325,32 @@ void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名：Unwind_180910a00 - 异常处理器重置函数a00
+#define ResetExceptionHandlersAtOffsetA00 Unwind_180910a00
+
+/**
+ * @brief 重置异常处理器和系统状态（第四组）
+ * 
+ * 该函数负责重置第四组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x1250偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910a00
+ * @note 这是一个异常处理和系统清理函数，处理0x1250偏移的异常处理器
+ */
+void ResetExceptionHandlersAtOffsetA00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionHandlerContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x1250) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 0x1250))(exceptionHandlerContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
