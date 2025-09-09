@@ -102644,6 +102644,20 @@ void Unwind_CleanupMemoryResourceAtOffset3B0(DataBuffer operationBase,int64_t da
 
 
 
+/**
+ * @brief 执行内存清理操作A0
+ * 
+ * 该函数执行内存清理操作，在异常处理上下文中释放指定的内存资源。
+ * 它会调用ExecuteMemoryOperation函数来处理内存释放操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 该函数处理偏移量0x908处的内存操作
+ * @note 使用ProcessMemoryOperationA4作为处理函数
+ * 
+ * @see ExecuteMemoryOperation, ProcessMemoryOperationA4
+ */
 void ExecuteMemoryCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -102653,6 +102667,20 @@ void ExecuteMemoryCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 执行内存清理操作A1
+ * 
+ * 该函数执行内存清理操作，在异常处理上下文中释放指定的内存资源。
+ * 它会调用ExecuteMemoryOperation函数来处理内存释放操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 该函数处理偏移量0x50处的内存操作
+ * @note 使用ProcessMemoryOperationA2作为处理函数
+ * 
+ * @see ExecuteMemoryOperation, ProcessMemoryOperationA2
+ */
 void ExecuteMemoryCleanupOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
