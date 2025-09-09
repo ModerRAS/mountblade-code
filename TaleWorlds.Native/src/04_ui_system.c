@@ -12240,10 +12240,10 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       }
       processingResult6 = processingResult6 + 1;
       pbaseValue0 = pbaseValue0 + 2;
-      stackParam00000050 = stackParam00000050 + -1;
+      UIRenderParameter2 = UIRenderParameter2 + -1;
       FloatValue1 = unmodifiedXMM10_Da;
       FloatValue2 = baseValue7;
-    } while (stackParam00000050 != 0);
+    } while (UIRenderParameter2 != 0);
     preservedRegister12 = *(longlong *)(BasePointer + 0x40);
     preservedRegister13 = *(float **)(BasePointer + 0x46);
     *(UIHandle *)(BasePointer + 0x44) = result1;
@@ -12252,7 +12252,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     *(UIHandle *)(BasePointer + 0x42) = TargetHandle;
     unmodifiedXMM15_Da = BasePointer[0x43];
     unmodifiedXMM14_Da = BasePointer[0x42];
-    stackParam00000050 = 0;
+    UIRenderParameter2 = 0;
   }
   allocatedMemory5 = 0;
   isCharacterMatch = true;
@@ -196449,7 +196449,7 @@ void FUN_180785c52(longlong uiContext)
   uStack0000000000000044 = *(UIDword *)(preservedRegister12 + 1);
   stackParam00000048 = 1.0;
   fStack000000000000004c = 1.0;
-  stackParam00000050 = 0;
+  UIRenderParameter2 = 0;
   FUN_1807e4630(*(UIHandle *)(BasePointer + 0x1a0),&UIFontManagerData,&stack0x00000030);
   if (EventHandle != (float *)0x0) {
     *EventHandle = 1.0 - stackParam00000048;
@@ -198092,7 +198092,7 @@ void FUN_1807872e6(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,i
   stackParam00000078 = CharacterDataOffset + 0x1fU & 0xffffffffffffffe0;
   if (stackParam00000078 != 0) {
     _iStack0000000000000058 = 0;
-    stackParam00000050 = 0;
+    UIRenderParameter2 = 0;
     if (0 < contextOffset) {
       CharacterDataOffset = stackParam00000078 + (longlong)TempInt4 * 4;
       *(longlong *)(BasePointer + -0x68) = (longlong)loopCounter;
@@ -199945,7 +199945,7 @@ UIHandle FUN_180788a27(void)
   }
   processingResult = *(int *)(TargetHandle + 0x1c);
   if ((float)processingResult != *(float *)(*(longlong *)(uiContext + 0x40) + 0x6c)) {
-    stackParam00000050 = 0;
+    UIRenderParameter2 = 0;
     stackParam00000058 = 0;
     uStack000000000000005c = 1;
     componentContextPtr = (UIHandle *)func_0x0001807e5100();
@@ -204697,7 +204697,7 @@ void ProcessUIContextEventLoop(longlong uiContext)
     ptrLocal3 = (UIHandle *)*ptrResult;
     baseValue3 = 0.0;
     stackParam00000048 = 0;
-    stackParam00000050 = 0;
+    UIRenderParameter2 = 0;
     stackParam00000058 = 0;
     stackParam00000060 = 0;
     stackParam00000068 = 0;
@@ -207160,7 +207160,7 @@ LAB_18078ec15:
                                      (pstringCompareIndex2,*(UIHandle *)(lStack0000000000000070 + 0x11720));
                       if (stackParam00000050 != 0) goto LAB_18078f72d;
                       pstringCompareIndex2 = (longlong *)BasePointer[-0xb];
-                      stackParam00000050 = 0;
+                      UIRenderParameter2 = 0;
                     }
                     allocatedMemory5 = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),200,
                                            &UNK_18095b430,0x516,iterationCount6 & 0xffffffff00000000);
@@ -207345,7 +207345,7 @@ LAB_18078fa18:
                              (**(code **)(*pstringCompareIndex1 + 0xd8))
                                        (pstringCompareIndex1,*(UIHandle *)(lStack0000000000000070 + 0x11720)),
                        colorBufferPointer9 = pstringCompareIndex2, stackParam00000050 != 0)) goto LAB_18078fe1a;
-                    stackParam00000050 = 0;
+                    UIRenderParameter2 = 0;
                     if ((BasePointer[-0xf] == 0) && (iStack0000000000000060 == 0)) {
                       FUN_180744ae0(lStack0000000000000070,0x100008,pstringCompareIndex1,0);
                       allocatedMemory5 = BasePointer[-0xd];
@@ -207367,7 +207367,7 @@ LAB_18078fa18:
                            (*(UIFunctionPtr *)stackParam00000068[0x10])
                                      (stackParam00000068,iStack0000000000000060);
                       if (stackParam00000050 != 0) goto LAB_18078fe1a;
-                      stackParam00000050 = 0;
+                      UIRenderParameter2 = 0;
                     }
                     if ((iStack0000000000000060 == 0) && ((_cStack0000000000000058 & 0x200) == 0)) {
                       colorBufferPointer8 = stackParam00000068;
@@ -207384,7 +207384,7 @@ LAB_18078fa18:
                                         (int)*(float *)((longlong)pstringCompareIndex1 + 0x6c),0,iterationCount6);
                         if (stackParam00000050 != 0) goto LAB_18078fe1a;
                         *(uint *)(BasePointer[-7] + 0x2c) = *(uint *)(BasePointer[-7] + 0x2c) | 0x200;
-                        stackParam00000050 = 0;
+                        UIRenderParameter2 = 0;
                       }
                     }
                     pstringCompareIndex1 = stackParam00000068;
@@ -208175,7 +208175,7 @@ LAB_18078fa18:
             }
           }
           if ((uStack0000000000000058 >> 0x1c & 1) == 0) {
-            stackParam00000050 = 0;
+            UIRenderParameter2 = 0;
             if ((uStack0000000000000058 >> 0xd & 1) == 0) {
               if ((uStack0000000000000058 >> 9 & 1) == 0) {
                 TempInt4 = *(int *)(BasePointer + 0x17);
@@ -208239,7 +208239,7 @@ LAB_18078fd4b:
           if (CharacterDataOffset == 0) goto LAB_18078f978;
           pProcessingResult1 = *(int **)(CharacterDataOffset + 0x28);
           if (pProcessingResult1 == (int *)0x0) goto LAB_18078f95c;
-          stackParam00000050 = 0;
+          UIRenderParameter2 = 0;
           if (0 < *(int *)(CharacterDataOffset + 0x30)) {
             do {
               if (*pProcessingResult1 == iStack0000000000000060) goto LAB_18078f95c;
@@ -267538,7 +267538,7 @@ void FUN_18082d365(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
       in_ZMM2 = ZEXT464((uint)(stackParam00000050[-1] * *targetBuffer));
       aProcessingStatus = vfmsub132ss_fma(ZEXT416(*RegisterPointer),ZEXT416((uint)(stackParam00000050[-1] * *targetBuffer)),
                                ZEXT416(*(uint *)(allocatedMemory0 + (longlong)targetBuffer)));
-      stackParam00000050 = stackParam00000050 + -1;
+      UIRenderParameter2 = UIRenderParameter2 + -1;
       targetBuffer = targetBuffer + 1;
       *(int *)(*uiContext + 4) = aProcessingStatus._0_4_;
       uiContext = (UIByte (*) [32])(*uiContext + 8);
@@ -267583,7 +267583,7 @@ void FUN_18082d365(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
   if (stackParam00000070 != 0) {
     CharacterDataOffset = (longlong)stackParam00000048 - (longlong)stackParam00000050;
     do {
-      stackParam00000050 = stackParam00000050 + -1;
+      UIRenderParameter2 = UIRenderParameter2 + -1;
       *(uint *)*uiContext = *(uint *)(CharacterDataOffset + (longlong)stackParam00000050) ^ 0x80000000;
       *(float *)(*uiContext + 4) = -*stackParam00000050;
       stackParam00000070 = stackParam00000070 - 1;
@@ -267807,7 +267807,7 @@ void FUN_18082d36a(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
       in_ZMM2 = ZEXT464((uint)(stackParam00000050[-1] * *targetBuffer));
       aProcessingStatus = vfmsub132ss_fma(ZEXT416(*RegisterPointer),ZEXT416((uint)(stackParam00000050[-1] * *targetBuffer)),
                                ZEXT416(*(uint *)(allocatedMemory0 + (longlong)targetBuffer)));
-      stackParam00000050 = stackParam00000050 + -1;
+      UIRenderParameter2 = UIRenderParameter2 + -1;
       targetBuffer = targetBuffer + 1;
       *(int *)(*uiContext + 4) = aProcessingStatus._0_4_;
       uiContext = (UIByte (*) [32])(*uiContext + 8);
@@ -267852,7 +267852,7 @@ void FUN_18082d36a(UIByte (*uiContext) [32],uint dataSource,float *targetBuffer,
   if (stackParam00000070 != 0) {
     CharacterDataOffset = (longlong)stackParam00000048 - (longlong)stackParam00000050;
     do {
-      stackParam00000050 = stackParam00000050 + -1;
+      UIRenderParameter2 = UIRenderParameter2 + -1;
       *(uint *)*uiContext = *(uint *)(CharacterDataOffset + (longlong)stackParam00000050) ^ 0x80000000;
       *(float *)(*uiContext + 4) = -*stackParam00000050;
       stackParam00000070 = stackParam00000070 - 1;
@@ -305920,7 +305920,7 @@ UIHandle FUN_18085186c(longlong uiContext,UIHandle dataSource,UIByte targetBuffe
         if ((colorBufferPointer == pcontextHandleData) || (colorBufferPointer = (longlong *)*colorBufferPointer, colorBufferPointer == pcontextHandleData))
         goto LAB_180851913;
       }
-      stackParam00000050 = 0;
+      UIRenderParameter2 = 0;
       EventTypeCode = FUN_18073cb70(*(UIHandle *)(TargetHandle + 0x78),&stack0x00000050,targetBuffer,bufferSize,
                             pcontextHandleData);
       if ((int)EventTypeCode != 0) {
@@ -305954,7 +305954,7 @@ LAB_180851913:
     *(UIHandle *)(TargetHandle + 0x60) = 0;
   }
   if ((*(uint *)(TargetHandle + 0xc0) >> 3 & 1) != 0) {
-    stackParam00000050 = 0;
+    UIRenderParameter2 = 0;
     EventTypeCode = FUN_18073cb70(*(UIHandle *)(TargetHandle + 0x78),&stack0x00000050);
     if ((int)EventTypeCode != 0) {
       return EventTypeCode;
@@ -391736,7 +391736,7 @@ void FUN_18089be41(void)
            (longlong)(int)(ProcessingStatus - processingResult) << 4);
   }
   *(uint *)(preservedRegister15 + 0x18) = ProcessingStatus;
-  stackParam00000050 = 0;
+  UIRenderParameter2 = 0;
   processingResult = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
@@ -391761,7 +391761,7 @@ void FUN_18089be41(void)
       stackParam00000050 = stackParam00000050 & -(uStack0000000000000068 & 1);
     } while (processingResult < (int)ProcessingStatus);
   }
-  stackParam00000050 = 0;
+  UIRenderParameter2 = 0;
   uiValidationResult = FUN_1808afe30(*contextHandle,&stack0x00000050);
   processingResult = stackParam00000050;
   if (uiValidationResult != 0) {
