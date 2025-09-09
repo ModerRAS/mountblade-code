@@ -130026,16 +130026,16 @@ uint8_t SystemExceptionHandlerStateTable;
 #define StackDataWordAK StatusCounterB
 
 // 原始变量名：ResourcePointerA - 栈数据字AL
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAL ResourcePointerA
+// 功能：存储资源管理器的临时指针数据
+#define ResourcePointerDataA ResourcePointerA
 
 // 原始变量名：ResourcePointerB - 栈数据字AM
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAM ResourcePointerB
+// 功能：存储资源管理器的临时指针数据
+#define ResourcePointerDataB ResourcePointerB
 
 // 原始变量名：uStack_2a4 - 栈数据字AN
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAN uStack_2a4
+#define DataProcessingTempDataAN uStack_2a4
 
 // 验证上下文缓冲区
 // 功能：存储验证过程中的上下文数据
@@ -130067,7 +130067,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_34 - 栈数据字AU
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAU uStack_34
+#define DataProcessingTempDataAU uStack_34
 
 // 原始变量名：uStack_30 - 栈数据字AV
 // 功能：存储数据处理过程中的临时数据字
