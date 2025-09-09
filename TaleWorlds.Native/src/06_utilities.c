@@ -132,6 +132,10 @@
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetCC 0xcc
 #define StackFrameContextOffsetD0 0xd0
+
+// 异常处理器上下文偏移量常量
+#define ExceptionHandlerContextOffset170 0x170
+#define ExceptionHandlerContextOffset190 0x190
 #define StackFrameContextOffset200 0x200
 #define ValueContextOffset8 0x8
 #define OperationBaseOffset8 0x8
@@ -100028,7 +100032,7 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
@@ -100064,7 +100068,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 400);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset190);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -100076,7 +100080,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
+      *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
