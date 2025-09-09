@@ -188,7 +188,7 @@
 #define SystemContextDataOffsetPrimary 0x40
 #define SystemContextDataOffsetSecondary 0x50
 #define SystemContextDataOffsetTertiary 0x58
-#define systemContextDataOffsetD4 0xd4
+#define SystemContextDataOffsetD4 0xd4
 #define DataBufferValidationOffset 0x24
 #define ExceptionHandlerDataBufferOffsetD8 0xd8
 #define ExceptionHandlerContextOffset1B8 0x1b8
