@@ -3084,12 +3084,95 @@ void* RenderUISystemFunction;
 void* UIRenderTarget;
 
 // UI系统数据处理函数
+
+/**
+ * @brief 在上下文中处理UI数据
+ * 
+ * 该函数负责在指定的UI上下文中处理数据，包括数据验证、转换和更新
+ * 
+ * @note 原始函数名：FUN_180707df0
+ */
 #define FUN_180707df0 ProcessUIDataWithContext
+
+/**
+ * @brief 初始化UI数据处理器
+ * 
+ * 该函数负责初始化UI数据处理器的状态和配置
+ * 
+ * @note 原始函数名：FUN_180707a56
+ */
 #define FUN_180707a56 InitializeUIDataProcessor
+
+/**
+ * @brief 处理UI动画数据
+ * 
+ * 该函数负责处理UI元素的动画数据，包括动画状态更新和插值计算
+ * 
+ * @note 原始函数名：FUN_1807075c0
+ */
 #define FUN_1807075c0 ProcessUIAnimationData
+
+/**
+ * @brief 验证UI缓冲区状态
+ * 
+ * 该函数负责验证UI缓冲区的状态，确保缓冲区数据的完整性和有效性
+ * 
+ * @note 原始函数名：FUN_1808a87d0
+ */
+#define FUN_1808a87d0 ValidateUIBufferState
+
+/**
+ * @brief 处理UI上下文操作
+ * 
+ * 该函数负责处理UI上下文的相关操作，包括上下文切换和状态管理
+ * 
+ * @note 原始函数名：FUN_1808ddd30
+ */
+#define FUN_1808ddd30 ProcessUIContextOperation
+
+/**
+ * @brief 检查UI数据完整性
+ * 
+ * 该函数负责检查UI数据的完整性，确保数据没有损坏或丢失
+ * 
+ * @note 原始函数名：FUN_1808acf30
+ */
+#define FUN_1808acf30 CheckUIDataIntegrity
+
+/**
+ * @brief 获取UI信号量句柄
+ * 
+ * 该函数负责获取UI系统的信号量句柄，用于线程同步和资源管理
+ * 
+ * @note 原始函数名：FUN_18070e250
+ */
 #define FUN_18070e250 AcquireUISemaphoreHandle
+
+/**
+ * @brief 处理UI组件事件
+ * 
+ * 该函数负责处理UI组件的事件，包括点击、悬停、焦点等事件
+ * 
+ * @note 原始函数名：FUN_18070ba50
+ */
 #define FUN_18070ba50 ProcessUIComponentEvent
+
+/**
+ * @brief 处理带变换的UI渲染数据
+ * 
+ * 该函数负责处理带有变换操作的UI渲染数据，包括位置、旋转、缩放等变换
+ * 
+ * @note 原始函数名：FUN_18070e950
+ */
 #define FUN_18070e950 ProcessUIRenderDataWithTransform
+
+/**
+ * @brief 获取UI元素数量
+ * 
+ * 该函数负责获取当前UI系统中元素的数量
+ * 
+ * @note 原始函数名：ProcessUIResourceAllocation
+ */
 #define ProcessUIResourceAllocation GetUIElementCount
 #define SetUIElementState SetUIElementState
 #define UpdateUIElementData UpdateUIElementData
@@ -100212,9 +100295,9 @@ void ProcessUICharacterEncodingExtended(void)
         loopCounter = localInt5;
         if (localInt5 < localChar4) {
 LAB_180724b88:
-          localChar4 = (char)loopCounter;
-          *SourceHandle = localChar4;
-          *contextHandle = localChar4;
+          normalizedChar = (char)charIndex;
+          *sourceBuffer = normalizedChar;
+          *contextBuffer = normalizedChar;
         }
         else {
           if (normalizedChar < '?') {
@@ -137593,8 +137676,8 @@ UIHandle FUN_18074a895(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18074a970(longlong uiContext,int dataSource,UIHandle *targetBuffer)
-void FUN_18074a970(longlong uiContext,int dataSource,UIHandle *targetBuffer)
+ void SetUITargetBuffer(longlong uiContext,int dataSource,UIHandle *targetBuffer)
+void SetUITargetBuffer(longlong uiContext,int dataSource,UIHandle *targetBuffer)
 
 {
   float baseValue;
@@ -137648,7 +137731,7 @@ LAB_18074a9ef:
           targetBuffer = (UIHandle *)0x6;
           break;
         case 7:
-          targetBuffer = (UIHandle *)&DAT_00000008;
+          targetBuffer = (UIHandle *)&UITargetBufferPointer;
           break;
         case 8:
           targetBuffer = (UIHandle *)0xc;
@@ -187677,7 +187760,7 @@ undefined UIResourceEventHandler;
  简化实现：UI系统更新函数
  原本实现：可能包含更复杂的更新逻辑
 undefined UIUpdateSystem;
-UIHandle UNK_00011670;
+UIHandle UIActiveHandle;
 undefined UIResourceCleanupHandler;
 // UI系统状态变量语义化定义
 #define UNK_18095af28 UIStatusFlagAf28
@@ -332218,7 +332301,7 @@ LAB_1808659de:
         do {
           pCharacterDataOffset = pcontextOffset + 2;
           if (pcontextOffset == (longlong *)0x0) {
-            pCharacterDataOffset = (longlong *)&DAT_00000018;
+            pCharacterDataOffset = (longlong *)&UIDefaultCharacterDataOffset;
           }
           if ((*(uint *)(*pCharacterDataOffset + 0x34) >> 1 & 1) == 0) {
             plocalLong7 = pcontextOffset + -1;
@@ -332331,7 +332414,7 @@ LAB_1808659de:
       do {
         pCharacterDataOffset = pcontextOffset + 2;
         if (pcontextOffset == (longlong *)0x0) {
-          pCharacterDataOffset = (longlong *)&DAT_00000018;
+          pCharacterDataOffset = (longlong *)&UIDefaultCharacterDataOffset;
         }
         if ((*(uint *)(*pCharacterDataOffset + 0x34) >> 1 & 1) == 0) {
           plocalLong7 = pcontextOffset + -1;
@@ -380760,7 +380843,7 @@ void FUN_1808916f0(longlong uiContext,longlong dataSource)
       }
       pstringCompareIndex = pallocatedMemory + 2;
       if (pallocatedMemory == (longlong *)0x0) {
-        pstringCompareIndex = (longlong *)&DAT_00000018;
+        pstringCompareIndex = (longlong *)&UIDefaultCharacterDataOffset;
       }
       pallocatedMemory = pcontextHandleData;
     } while ((*pstringCompareIndex == 0) || (uiValidationResult = FUN_18088aca0(dataSource), uiValidationResult == 0));

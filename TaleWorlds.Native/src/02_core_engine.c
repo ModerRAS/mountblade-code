@@ -224038,7 +224038,7 @@ LAB_18018802f:
     else if (-1 < InputDataLength) goto LAB_18018802f;
   }
   SystemDataRegistry = ProcessSystemEventDispatcher(ContextHandle);
-  FUN_18018a1c0(ContextHandle,&stack0x00000080,SecondaryProcessingStatusFlag,SystemDataRegistry + 0x20,SystemDataRegistry);
+  ProcessSystemMemoryValidation(ContextHandle,&stack0x00000080,SecondaryProcessingStatusFlag,SystemDataRegistry + 0x20,SystemDataRegistry);
   return (void *)(StackProcessingParameter3 + 0x40);
 }
 
@@ -224100,8 +224100,8 @@ LAB_18018802f:
     }
     else if (-1 < InputDataLength) goto LAB_18018802f;
   }
-  FUN_18018a130();
-  FUN_18018a1c0();
+  ProcessSystemMemoryAllocation();
+  ProcessSystemMemoryValidation();
   return (void *)(StackProcessingParameter3 + 0x40);
 }
 
