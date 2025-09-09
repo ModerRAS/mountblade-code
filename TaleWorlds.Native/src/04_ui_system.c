@@ -263,6 +263,12 @@ typedef enum {
 #define UI_COMPONENT_STATE_FLAG 0xfffffffffffffffe // UI组件状态标志
 #define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
 
+// UI系统状态标志常量
+#define UI_STATUS_ACTIVE_FLAG 0x00000001           // UI系统活跃标志
+#define UI_STATUS_INITIALIZED_FLAG 0x00000002      // UI系统已初始化标志
+#define UI_STATUS_VISIBLE_FLAG 0x00000004          // UI系统可见标志
+#define UI_STATUS_ENABLED_FLAG 0x00000008          // UI系统启用标志
+
 #define ProcessUIDataWrite WriteUIDataToBuffer
 
  #define InitializeUIContext InitializeUIContextSystem
@@ -8463,10 +8469,22 @@ UIByte UIResourceLoaderOctonary;
  * 
  * @return UIHandle 状态标志值，1表示UI系统正常运行
  */
+/**
+ * @brief 获取UI系统状态标志
+ * 
+ * 获取当前UI系统的状态标志，用于检查UI系统的运行状态。
+ * 该函数返回UI系统的基本状态信息，包括初始化状态、运行状态等。
+ * 
+ * @return UIHandle UI系统状态标志，包含系统状态信息
+ * 
+ * @note 这是一个简化实现，实际应该返回系统的真实状态
+ * @see InitializeUISystem, CleanupUISystem
+ */
 UIHandle GetUIStatusFlag(void)
-
 {
-  return 1;
+    // 简化实现：返回系统活跃状态
+    // 实际实现应该检查系统的真实状态并返回相应的标志
+    return UI_STATUS_ACTIVE_FLAG;
 }
 
 
