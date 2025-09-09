@@ -200162,16 +200162,16 @@ LAB_180787e12:
       *(UIHandle *)(StackFrameBasePointer + 0xf) = UIEventPointerArray[4];
       *(UIHandle *)(StackFrameBasePointer + 0x17) = EventProcessingStatus;
       EventProcessingStatus = UIEventPointerArray[6];
-      iterationCount = ptrLocal6[7];
-      *(longlong *)(BasePointer + 0xf) = BasePointer + -0x69;
-      *(UIHandle *)(BasePointer + 0x1f) = ProcessingStatus;
-      *(UIHandle *)(BasePointer + 0x27) = iterationCount;
-      localLong7 = FUN_180742050(*(UIHandle *)(localLong7 + 0x1a0),0x2d8,&UNK_18095ac80,0x55d,result0);
-      if (localLong7 == 0) {
-        localLong7 = 0;
+      EventIterationCount = UIEventPointerArray[7];
+      *(longlong *)(StackFrameBasePointer + 0xf) = StackFrameBasePointer + -0x69;
+      *(UIHandle *)(StackFrameBasePointer + 0x1f) = EventProcessingStatus;
+      *(UIHandle *)(StackFrameBasePointer + 0x27) = EventIterationCount;
+      MemoryContextPointer = FUN_180742050(*(UIHandle *)(MemoryContextPointer + 0x1a0),0x2d8,&UIEventHandlerTable,0x55d,OperationResult);
+      if (MemoryContextPointer == 0) {
+        MemoryContextPointer = 0;
       }
       else {
-        localLong7 = FUN_1807e4c10(localLong7);
+        MemoryContextPointer = FUN_1807e4c10(MemoryContextPointer);
       }
       pEventDataIndex[10] = localLong7;
       if (localLong7 == 0) goto LAB_180787e12;

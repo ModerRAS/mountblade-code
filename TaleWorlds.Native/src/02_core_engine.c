@@ -67732,7 +67732,7 @@ BufferAllocationComplete:
           MemoryBufferC = (long long)ContextHandle8 - (long long)ContextHandle6 >> 3;
           if (MemoryBufferC == 0) {
             MemoryBufferC = 1;
-LAB_18008ce85:
+MemoryBufferAllocation:
             ContextHandle3 = (long long *)BufferAllocate(MemoryPoolManager,MemoryBufferC * 8,(char)OperationBufferSize[3]);
             ContextHandle8 = (long long *)OperationBufferSize[1];
             ContextHandle6 = (long long *)*ContextHandleSize;
