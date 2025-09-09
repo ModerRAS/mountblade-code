@@ -93332,25 +93332,40 @@ void ExecuteUIRenderTaskWrapper(void)
 
 
  void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
-void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize,
-                  UIHandle resultPointer,byte param_6,UIHandle param_7,longlong param_8)
+/**
+ * @brief UI变换矩阵处理器
+ * 
+ * 该函数处理UI组件的变换矩阵运算，包括缩放、旋转和平移操作。
+ * 用于实现复杂的UI变换效果。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 变换类型参数
+ * @param param_7 附加参数句柄
+ * @param param_8 变换矩阵参数
+ */
+void ProcessUITransformMatrix(float uiContext, UIHandle dataSource, UIHandle targetBuffer, int bufferSize,
+                             UIHandle resultPointer, byte param_6, UIHandle param_7, longlong param_8)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
-  float TransformCoefficient2;
-  short sVar4;
+  float *baseValuePointer;
+  float *transformCoefficient1;
+  float transformCoefficient2;
+  short operationType;
   uint loopCounter;
-  float *pLocalFloatValue6;
-  float *pResultFloatValue;
+  float *localFloatValue6;
+  float *resultFloatValue;
   longlong contextOffset;
   longlong contextHandle;
-  longlong CharacterDataOffset;
-  byte unmodifiedSIL;
+  longlong characterDataOffset;
+  byte shiftAmount;
   longlong allocatedMemory0;
-  uint *TargetHandle;
+  uint *targetHandle;
   float *baseScaleFactor;
-  float *BaseValuePointer2;
+  float *baseValuePointer2;
   longlong allocatedMemory3;
   ulonglong componentIndex;
   float *preservedRegister12;
@@ -93359,17 +93374,17 @@ void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
   float baseValue5;
   float baseValue6;
   float baseValue7;
-  float FloatValue1;
-  float FloatValue2;
-  float AccumulatedFloat;
+  float floatValue1;
+  float floatValue2;
+  float accumulatedFloat;
   float unmodifiedXMM9_Da;
   ulonglong stackParam00000068;
   
   do {
-    uiContext = (float)FUN_18071e580(uiContext,bufferSize,*TargetHandle);
+    uiContext = (float)FUN_18071e580(uiContext,bufferSize,*targetHandle);
     bufferSize = preservedRegister15D;
     while( true ) {
-      TargetHandle = TargetHandle + -1;
+      targetHandle = targetHandle + -1;
       preservedRegister13D = preservedRegister13D + -1;
       if (preservedRegister13D < 0) {
                      WARNING: Subroutine does not return
@@ -93379,18 +93394,18 @@ void FUN_18071fb5a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
         preservedRegister15D = 1;
       }
       else {
-        preservedRegister15D = (int)*(short *)(param_8 + 10 + (longlong)TargetHandle);
+        preservedRegister15D = (int)*(short *)(param_8 + 10 + (longlong)targetHandle);
       }
-      sVar4 = *(short *)(param_8 + 0xc + (longlong)TargetHandle);
-      if (sVar4 == 2) break;
-      if (sVar4 == 3) {
-        loopCounter = *TargetHandle;
+      operationType = *(short *)(param_8 + 0xc + (longlong)targetHandle);
+      if (operationType == 2) break;
+      if (operationType == 3) {
+        loopCounter = *targetHandle;
         contextOffset = (longlong)bufferSize;
-        allocatedMemory0 = (longlong)(int)(loopCounter << (unmodifiedSIL & 0x1f));
-        CharacterDataOffset = (longlong)(bufferSize * 2);
-        TransformCoefficient2 = *(float *)(*(longlong *)(contextHandle + 0x38) + 4 + contextOffset * allocatedMemory0 * 8);
+        allocatedMemory0 = (longlong)(int)(loopCounter << (shiftAmount & 0x1f));
+        characterDataOffset = (longlong)(bufferSize * 2);
+        transformCoefficient2 = *(float *)(*(longlong *)(contextHandle + 0x38) + 4 + contextOffset * allocatedMemory0 * 8);
         bufferSize = preservedRegister15D;
-        unmodifiedSIL = param_6;
+        shiftAmount = param_6;
         if (0 < (int)loopCounter) {
           componentIndex = (ulonglong)loopCounter;
           baseScaleFactor = preservedRegister12;
