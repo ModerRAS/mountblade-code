@@ -8572,7 +8572,7 @@ extern void* SystemPrimaryResourceTable;
 
 // 原始函数名：FUN_18064d630 - 异常处理函数E0
 // 功能：处理异常情况
-#define HandleExceptionE0 FUN_18064d630
+#define HandleExceptionE0 HandleMemoryResourceException
 
 // 原始函数名：FUN_180639250 - 系统重置函数E0
 // 功能：重置系统状态
@@ -51520,7 +51520,7 @@ void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,Da
  * 
  * @note 原始函数名：Unwind_180903d10
  */
-void HandleExceptionE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51581,7 +51581,7 @@ void HandleExceptionE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903d30
  */
-void HandleExceptionE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51642,7 +51642,7 @@ void HandleExceptionE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903d50
  */
-void HandleExceptionE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51703,7 +51703,7 @@ void HandleExceptionE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903d70
  */
-void HandleExceptionE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51764,7 +51764,7 @@ void HandleExceptionE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903d90
  */
-void HandleExceptionE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51825,7 +51825,7 @@ void HandleExceptionE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903db0
  */
-void HandleExceptionE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51886,7 +51886,7 @@ void HandleExceptionE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903dd0
  */
-void HandleExceptionE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -51947,7 +51947,7 @@ void HandleExceptionE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
  * 
  * @note 原始函数名：Unwind_180903df0
  */
-void HandleExceptionE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -69248,7 +69248,7 @@ void ExecuteContextCallbackDuringUnwind(DataBuffer operationBase,int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180907010
  */
-void HandleExceptionDuringUnwind(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
+void HandleExceptionDuringUnwindProcess(DataBuffer ExceptionContext, int64_t HandlerContext, DataBuffer UnusedParam1, DataBuffer ExceptionData)
 
 {
   if (*(FunctionPointer**)(HandlerContext + 0xe8) != (code *)0x0) {
@@ -74768,7 +74768,7 @@ void CleanupResourcePointer(DataBuffer operationBase, int64_t dataBuffer)
  * @param ExceptionHandler 异常处理器，用于处理特定类型的异常
  * @param RecoveryHandler 恢复处理器，用于系统恢复操作
  */
-void HandleExceptionA1(DataBuffer ContextParameter, int64_t SystemContext, DataBuffer ExceptionHandler, DataBuffer RecoveryHandler)
+void HandleExceptionWithContextA1(DataBuffer ContextParameter, int64_t SystemContext, DataBuffer ExceptionHandler, DataBuffer RecoveryHandler)
 
 {
   DataBuffer *ExceptionHandlerPointer;
@@ -74793,7 +74793,7 @@ void HandleExceptionA1(DataBuffer ContextParameter, int64_t SystemContext, DataB
  * @param ExceptionHandler 异常处理器，用于处理特定类型的异常
  * @param RecoveryHandler 恢复处理器，用于系统恢复操作
  */
-void HandleExceptionA2(DataBuffer ContextParameter, int64_t SystemContext, DataBuffer ExceptionHandler, DataBuffer RecoveryHandler)
+void HandleExceptionWithContextA2(DataBuffer ContextParameter, int64_t SystemContext, DataBuffer ExceptionHandler, DataBuffer RecoveryHandler)
 
 {
   DataBuffer *ExceptionHandlerPointer;
@@ -74816,7 +74816,7 @@ void HandleExceptionA2(DataBuffer ContextParameter, int64_t SystemContext, DataB
  * @param ContextParameter 上下文参数，包含异常处理的相关信息
  * @param SystemContext 系统上下文，包含系统状态信息
  */
-void HandleExceptionA3(DataBuffer ContextParameter, int64_t SystemContext)
+void HandleExceptionWithContextA3(DataBuffer ContextParameter, int64_t SystemContext)
 
 {
   int *ReferenceCounter;
@@ -75645,7 +75645,7 @@ void HandleSystemExceptionWithCallback(DataBuffer operationBase,int64_t dataBuff
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Catch_180908220
  */
-void HandleExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer)
+void HandleExceptionAtContextOffset58(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58));
@@ -75660,7 +75660,7 @@ void HandleExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Catch_180908240
  */
-void HandleExceptionAtOffset90(DataBuffer operationBase, int64_t dataBuffer)
+void HandleExceptionAtContextOffset90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + SystemContextPointerOffset90));
@@ -75675,7 +75675,7 @@ void HandleExceptionAtOffset90(DataBuffer operationBase, int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Catch_180908270
  */
-void HandleExceptionAtOffset40(DataBuffer operationBase, int64_t dataBuffer)
+void HandleExceptionAtContextOffset40(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40));
@@ -75690,7 +75690,7 @@ void HandleExceptionAtOffset40(DataBuffer operationBase, int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Catch_180908290
  */
-void HandleExceptionAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
+void HandleExceptionAtContextOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0));
@@ -121537,7 +121537,7 @@ void HandleDataBufferExceptionAtOffset240(DataBuffer operationBase,int64_t dataB
  * @note 原始函数名：Unwind_180912260
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset40_D0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtOffsets40AndD0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -121875,7 +121875,7 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer, Dat
  * @note 原始函数名：Unwind_180912350
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset48_8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtOffsets48And8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
