@@ -2078,14 +2078,14 @@ typedef enum {
 #define colorNormalizationIndex UIColorNormalizationIndex  // UI颜色标准化索引
 #define normalizedColorPtr UINormalizedColorPointer    // UI标准化颜色指针
 #define charStack_148 UICharStack148                   // UI字符栈148
-#define renderResult UIRenderResult
-#define positionHandle UIPositionHandle
-#define resultStack_140 UIResultStack140
-#define resultStack_130 UIResultStack130
-#define highWordFloat UIHighWordFloat
-#define stackUInt118 UIStackUInt118
-#define localChar11 UILocalCharacterStatus11
-#define contextBasePointer UIContextBasePointer
+#define renderResult UIRenderResult         // UI渲染结果
+#define positionHandle UIPositionHandle     // UI位置句柄
+#define resultStack_140 UIResultStack140     // UI结果栈140
+#define resultStack_130 UIResultStack130     // UI结果栈130
+#define highWordFloat UIHighWordFloat           // UI高位浮点数
+#define stackUInt118 UIStackUInt118             // UI栈无符号整数118
+#define localChar11 UILocalCharacterStatus11    // UI本地字符状态11
+#define contextBasePointer UIContextBasePointer  // UI上下文基础指针
 #define contextBufferHandle UIContextBufferHandle
 #define localChar2 UILocalChar2
 #define preservedRegister13D UIPreservedRegister13D
