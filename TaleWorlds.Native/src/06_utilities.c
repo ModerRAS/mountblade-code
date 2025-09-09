@@ -4660,7 +4660,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18004c090
  * @note 此函数负责系统内存A2模块的初始化
  */
-#define InitializeSystemMemoryAndSetupA2 FUN_18004c090
+#define InitializeSystemMemoryAndSetupA2 InitializeSystemMemoryAndSetupA2
 
 /**
  * @brief 系统值计算函数
@@ -4669,7 +4669,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18062b420
  */
-#define CalculateSystemMetricsAndValues FUN_18062b420
+#define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
 
 /**
  * @brief 系统上下文值获取函数
