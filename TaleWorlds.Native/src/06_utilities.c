@@ -41723,7 +41723,7 @@ void ExceptionUnwindHandlerA17(void)
 void ResetExceptionStatusAndProcessEvent(void)
 
 {
-  SystemByteType encryptionShiftBitCount;
+  SystemByteType exceptionStatusEncryptionShiftBitCount;
   
   EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA1 = 0;
@@ -41733,7 +41733,7 @@ void ResetExceptionStatusAndProcessEvent(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
+  exceptionStatusEncryptionShiftBitCount = (SystemByteType)ExceptionEncryptionKeyValue & 0x3f;
                           (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
             (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
@@ -67262,7 +67262,7 @@ void CleanupExceptionResources(DataBuffer exceptionContext, int64_t cleanupConte
 void ResetSystemEventState(void)
 
 {
-  SystemByteType encryptionShiftBits;
+  SystemByteType systemEventEncryptionShiftBits;
   
   EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA2 = 0;
@@ -67272,9 +67272,9 @@ void ResetSystemEventState(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
+  systemEventEncryptionShiftBits = (SystemByteType)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> systemEventEncryptionShiftBits |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - systemEventEncryptionShiftBits))(ExceptionProcessParameterAddress);
   return;
 }
 

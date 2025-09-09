@@ -3516,7 +3516,7 @@ LabelValidateSpaceCharacter:
                 } while (LoopCounterValue + 1U < StackValidationLimit);
               }
               LoopCounterValue = -1;
-FirstSpaceCharacterFoundLabel:
+FirstSpaceCharacterDetected:
               UnsignedIndex = LoopCounterValue + 1;
               BufferSize1 = (ulonglong)(int)systemMode;
               if (UnsignedIndex < StackValidationLimit) {
@@ -3529,7 +3529,7 @@ FirstSpaceCharacterFoundLabel:
                 } while (BufferSize6 < StackValidationLimit);
               }
               BufferSize1 = 0xffffffff;
-SecondSpaceFoundLabel:
+SecondSpaceCharacterDetected:
               if (LoopCounterValue != -1) {
                 ProcessBufferData(&StackBufferPointer5,&StackBufferPointer6,UnsignedIndex,BufferSize1);
                 LoopCounterValue = LoopCounterValue;
@@ -3586,7 +3586,7 @@ SecondSpaceFoundLabel:
                   } while (UnsignedIndex < StackValidationLimit);
                 }
                 BufferSize1 = 0xffffffff;
-CompatibilityModeSpaceFoundLabel:
+CompatibilityModeSpaceDetected:
                 UnsignedIndex = (int)BufferSize1 + 1;
                 BufferSize8 = (ulonglong)(int)UnsignedIndex;
                 if (UnsignedIndex < StackValidationLimit) {
@@ -3599,7 +3599,7 @@ CompatibilityModeSpaceFoundLabel:
                   } while (BufferSize6 < StackValidationLimit);
                 }
                 BufferSize8 = 0xffffffff;
-SecondCompatibilitySpaceFoundLabel:
+SecondCompatibilitySpaceDetected:
                 if ((int)BufferSize1 != -1) {
                   ProcessBufferData(&StackDataBuffer,&StackOutputBuffer,UnsignedIndex,BufferSize8);
                   FinalizeDataBuffer(&StackOutputBuffer);
@@ -3672,11 +3672,11 @@ SecondCompatibilitySpaceFoundLabel:
                     SystemMemoryStatus = 1;
                     goto SystemModeSetLabel;
                   }
-ModeCheckFailedLabel:
+ModeValidationFailed:
                   BooleanCondition = false;
                 }
                 else {
-                  if (UnsignedIndex != 0x12) goto ModeCheckFailedLabel;
+                  if (UnsignedIndex != 0x12) goto ModeValidationFailed;
                   LoopCounterValue = strcmp(pMemoryAddress1,&SystemEncryptionModeString);
                   BooleanCondition = LoopCounterValue == 0;
                 }
@@ -3694,7 +3694,7 @@ ModeCheckFailedLabel:
                     } while (UnsignedIndex < StackValidationLimit2);
                   }
                   BufferSize1 = 0xffffffff;
-EncryptionModeSpaceFoundLabel:
+EncryptionModeSpaceDetected:
                   UnsignedIndex = (int)BufferSize1 + 1;
                   BufferSize8 = (ulonglong)(int)UnsignedIndex;
                   if (UnsignedIndex < StackValidationLimit2) {
@@ -3707,7 +3707,7 @@ EncryptionModeSpaceFoundLabel:
                     } while (BufferSize6 < StackValidationLimit2);
                   }
                   BufferSize8 = 0xffffffff;
-StringSpaceFoundLabel:
+StringSpaceDetected:
                   if ((int)BufferSize1 != -1) {
                     SystemDataProcess(&StackBufferPointer9,&StackBufferPointer10,UnsignedIndex,BufferSize8);
                     SystemBufferInitialize(&StackBufferPointer10,1);
@@ -3749,11 +3749,11 @@ StringSpaceFoundLabel:
                       SystemModuleStatus = 1;
                       goto SystemDataProcessingLabel;
                     }
-ModeValidationCheckLabel:
+ModeValidationCheckpoint:
                     BooleanCondition = false;
                   }
                   else {
-                    if (UnsignedIndex != 0xb) goto ModeValidationCheckLabel;
+                    if (UnsignedIndex != 0xb) goto ModeValidationCheckpoint;
                     LoopCounterValue = strcmp(pMemoryAddress1,&SystemComparisonStringB);
                     BooleanCondition = LoopCounterValue == 0;
                   }
@@ -3860,7 +3860,7 @@ LabelStringProcessingExit:
                         } while (UnsignedIndex < StackParameter13);
                       }
                       UnsignedIndex = 0xffffffff;
-PathSeparatorFoundLabel:
+PathSeparatorDetected:
                       if (UnsignedIndex != 0xffffffff) {
                         SystemDataPointer = SystemDataProcess(&StackBufferPointer14,&StackDataPointer,0);
                         if (StackCharacterBuffer != (char *)0x0) {
@@ -12948,7 +12948,7 @@ MemoryAllocationReset:
     }
     MemoryAllocationResult = 0;
   }
-NetworkOperationCompleteLabel:
+NetworkOperationCompletionLabel:
   NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&CurrentMemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,1);
   if ((int)NetworkRequestResult == 0) {
     *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
