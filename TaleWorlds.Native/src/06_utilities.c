@@ -18912,7 +18912,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  * 
  * @note 原始函数名：FUN_180769ed0
  */
-#define ValidateDataAndReturnStatusO3 FUN_180769ed0
+#define ValidateDataAndReturnStatusO3 ValidateDataAndReturnStatusWithValidation    // 带验证的数据验证和状态返回函数
 
 // 原始函数名：FUN_18076a7d0 - 数据处理函数O9
 // 功能：处理数据并返回结果
@@ -33463,10 +33463,10 @@ DataBuffer ResetDataProcessorA1(void)
   uint processingOffset;
   
   exceptionContext = *registerContext;
-  validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x60);
+  validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + DestinationContextProcessorOffset);
   if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 100,2), (int)validationStatus == 0)) &&
-     (validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x66,2), (int)validationStatus == 0)) {
-    validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x68,8);
+     (validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + DestinationContextProcessorExtendedOffset,2), (int)validationStatus == 0)) {
+    validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + DestinationContextProcessorSecondaryOffset,8);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -33497,7 +33497,7 @@ DataBuffer ResetDataProcessorA1(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(destinationContext + 0x7c) = stackValidationFlag != (char)validationStatus;
+    *(bool *)(destinationContext + DestinationContextStatusOffset) = stackValidationFlag != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -33536,7 +33536,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   if (validationFlag != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationResult = ValidateDataWithSecurityCheckA2(*systemContext,dataContext + 0x70);
+  validationResult = ValidateDataWithSecurityCheckA2(*systemContext,dataContext + DestinationContextValidationOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -33574,7 +33574,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)operationResult == 0) {
-    *(bool *)(DestinationContext + 0x7c) = ValidationDataBuffer != (char)operationResult;
+    *(bool *)(DestinationContext + DestinationContextStatusOffset) = ValidationDataBuffer != (char)operationResult;
   }
   return operationResult;
 }
@@ -110069,30 +110069,50 @@ void ProcessMemoryBlocksInExceptionHandler(DataBuffer operationBase,int64_t data
 
 
 
-void ProcessExceptionContextCallbacksAtOffset0d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文回调函数
+ * 
+ * 该函数负责处理异常上下文中的回调函数，遍历回调函数指针数组
+ * 并依次执行这些回调函数。这是异常处理机制中的重要组成部分。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区获取异常上下文指针
+ * 2. 遍历回调函数指针数组
+ * 3. 对于每个有效的回调函数指针，执行相应的回调函数
+ * 4. 如果数据处理完成则正常返回
+ * 5. 如果出现异常情况则终止系统执行
+ * 
+ * @note 原始函数名：Unwind_18090f0d0
+ * @note 回调函数指针数组步长：4字节
+ * @note 每个回调函数指针使用SystemFloatDataOffset38偏移量
+ */
+void ProcessExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
-  int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *callbackContext;
+  int64_t *callbackPointer;
   
-  dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
-  exceptionContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 4) {
-    if ((int64_t *)memoryBlockOffset[3] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[3] + SystemFloatDataOffset38))();
+  callbackContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
+  exceptionContextPointer = (int64_t *)callbackContext[1];
+  for (callbackPointer = (int64_t *)*callbackContext; callbackPointer != exceptionContextPointer; callbackPointer = callbackPointer + 4) {
+    if ((int64_t *)callbackPointer[3] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)callbackPointer[3] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[2] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[2] + SystemFloatDataOffset38))();
+    if ((int64_t *)callbackPointer[2] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)callbackPointer[2] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[1] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[1] + SystemFloatDataOffset38))();
+    if ((int64_t *)callbackPointer[1] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)callbackPointer[1] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+    if ((int64_t *)*callbackPointer != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*callbackPointer + SystemFloatDataOffset38))();
     }
   }
-  if (*dataContext == 0) {
+  if (*callbackContext == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
@@ -110100,7 +110120,28 @@ void ProcessExceptionContextCallbacksAtOffset0d0(DataBuffer operationBase,int64_
 
 
 
-void ExecuteExceptionHandlerCallbackAtOffset0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调函数
+ * 
+ * 该函数负责执行异常处理器的回调函数，通过指定的偏移量获取回调函数指针
+ * 并调用该函数。这是异常处理机制中的关键环节。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * 功能说明：
+ * 1. 从异常上下文中获取回调函数指针
+ * 2. 检查回调函数指针的有效性
+ * 3. 如果有效则执行回调函数
+ * 4. 传递异常上下文参数和操作标志
+ * 
+ * @note 原始函数名：Unwind_18090f0e0
+ * @note 回调函数指针偏移量：0x68
+ * @note 回调函数参数偏移量：0x58
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
