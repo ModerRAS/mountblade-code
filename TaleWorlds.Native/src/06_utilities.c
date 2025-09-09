@@ -80072,6 +80072,22 @@ void CleanupResourceHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 处理系统操作B0
+ * 
+ * 该函数负责处理系统级别的操作，包括异常处理器的配置和系统状态的维护。
+ * 主要功能包括：
+ * 1. 设置临时异常处理器
+ * 2. 检查系统状态并执行必要的终止操作
+ * 3. 重置异常处理器状态
+ * 4. 配置默认异常处理器
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统操作上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908dc0
+ * @see TerminateSystemExecutionAndCleanupResources
+ */
 void ProcessSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -80090,6 +80106,17 @@ void ProcessSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行系统操作B0
+ * 
+ * 该函数负责执行系统级别的操作，主要功能是配置异常处理上下文。
+ * 通过获取异常处理上下文并设置临时异常处理器来维护系统的稳定性。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统操作上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908dd0
+ */
 void ExecuteSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -80108,6 +80135,22 @@ void ExecuteSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理系统操作B0
+ * 
+ * 该函数负责清理系统操作相关的资源，包括内存管理和引用计数处理。
+ * 主要功能包括：
+ * 1. 获取内存资源指针
+ * 2. 计算内存区域基址
+ * 3. 处理内存块的引用计数
+ * 4. 执行资源清理或内存管理操作
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统操作上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908de0
+ * @see HandleExceptionE0, ManageMemory
+ */
 void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -80144,6 +80187,17 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 重置系统操作B0
+ * 
+ * 该函数负责重置系统操作相关的异常处理器配置。
+ * 通过将指定位置的异常处理器重置为默认异常处理器B来恢复系统状态。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统操作上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908df0
+ */
 void ResetSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
