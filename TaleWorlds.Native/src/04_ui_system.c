@@ -106900,14 +106900,14 @@ void ProcessUIDataMatrixOperation(longlong uiContext, int *dataSource, int *targ
                                   int processingCount)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  UIWord EventTypeCode;
-  int TempInt4;
-  longlong EventDataIndex;
+  int targetValue;
+  int sourceValue;
+  UIWord eventTypeCode;
+  int tempValue;
+  longlong eventDataIndex;
   int loopCounter;
   longlong localLong7;
-  longlong contextOffset;
+  longlong processingOffset;
   
   processingResult = *targetBuffer;
   uiValidationResult = targetBuffer[1];

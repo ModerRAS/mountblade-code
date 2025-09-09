@@ -2209,6 +2209,7 @@
 #define SystemManagementOffsetB8 0xb8                   // 系统管理偏移量B8
 #define ExceptionHandlerContextOffset1cc0 0x1cc0         // 异常上下文处理器偏移量1cc0
 #define ExceptionHandlerContextOffset1cc8 0x1cc8         // 异常上下文处理器偏移量1cc8
+#define ExceptionHandlerContextOffset1cd0 0x1cd0         // 异常上下文处理器偏移量1cd0
 
 // 系统管理相关偏移量常量
 #define SystemManagementOffset98 0x98
