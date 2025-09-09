@@ -100049,7 +100049,7 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
 
 
 /**
- * @brief 内存资源释放函数D2E0
+ * @brief 内存资源释放函数（偏移量210）
  * 
  * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
  * 函数从数据缓冲区的0x210偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
@@ -132583,10 +132583,7 @@ uint8_t SystemExceptionHandlerStateTable;
 #define FinalizeExceptionProcessingComplete Unwind_18090c320
 
 // 内存资源管理相关偏移量常量
-#define MemoryResourcePointerOffset1D0 0x1d0
-#define MemoryResourcePointerOffset1F0 0x1f0
-#define MemoryResourcePointerOffset210 0x210
-#define MemoryPointerTableOffset70 0x70
+// 宏定义已在文件开头定义
 
 /**
  * @brief 内存资源释放函数（偏移量D2B0）
