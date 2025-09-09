@@ -471,6 +471,12 @@ typedef enum {
 #define LAB_180657812 UIResourceProcessingLoopLabel
 #define LAB_180657835 UIProcessingCompleteExitLabel
 #define LAB_1807217c9 UIDataProcessingLoopLabel
+#define LAB_1806579e7 UIEventProcessingStatusLabel
+#define LAB_1806579f0 UIEventProcessingCompleteLabel
+#define LAB_1806588f2 UIContextCreationLabel
+#define LAB_180659172 UIVertexTransformSkipLabel
+#define LAB_180659a1a UIRotationNormalizationLabel
+#define LAB_180659b1a UIAnimationProcessingLabel
 
 // UI系统处理变量宏定义
 #define memoryBlockAddress UIMemoryBlockAddress
@@ -3083,6 +3089,7 @@ typedef enum {
 
 // UI系统堆栈变量美化补充
 #define fStack_a50 UIFloatStackA50
+#define cStack_148 UICharStack148
 
 // UI系统寄存器输出变量美化
 #define extraout_XMM0_Da UIRegisterOutputDa
@@ -3133,6 +3140,13 @@ typedef enum {
 #define astackUInt1c8 UIStackArray1C8
 #define stackUInt1a8 UIStackUInt1A8
 #define stackUInt1a0 UIStackUInt1A0
+#define fStack_118 UIAnimationParameter118
+#define fStack_114 UITransformParameter114
+#define fStack_110 UITransformParameter110
+#define fStack_fc UITimeOffsetFC
+#define fStack_f0 UITimeOffsetF0
+#define fStack_f4 UITimeOffsetF4
+#define fStack_f8 UIFadeOutFactor
 
  渲染UI组件
  渲染UI组件到显示设备
@@ -15646,21 +15660,21 @@ LAB_18065a17c:
 LAB_18065a2e9:
   baseValue3 = uiContext[0x14];
   transformCoeff14 = 0.0;
-  fStack_124 = (1.0 - baseValue3) * (1.0 - FloatValue2);
-  fStack_ec = (1.0 - FloatValue2) * baseValue3;
-  fStack_128 = (1.0 - transformCoeff15) * fStack_124;
-  fStack_10c = (1.0 - vectorComponentX) * transformCoeff15 * fStack_124;
-  fStack_108 = (1.0 - vectorComponentX) * fStack_128;
-  stackUInt130 = CONCAT44(stackUInt130._4_4_,fStack_10c);
-  fStack_120 = transformCoeff15 * fStack_124 * vectorComponentX;
-  fStack_128 = fStack_128 * vectorComponentX;
-  fStack_124 = fStack_124 * vectorComponentX;
-  fStack_104 = fStack_120 * fStack_138;
-  fStack_100 = fStack_128 * fStack_138;
-  fStack_f8 = (1.0 - fStack_138) * fStack_128;
-  fStack_11c = (1.0 - fStack_138) * fStack_120;
-  stackUInt118 = CONCAT44(stackUInt118._4_4_,fStack_f8);
-  if ((cStack_148 == '\0') || (0.0 < fStack_138)) {
+  UIAlphaBlendFactor124 = (1.0 - baseValue3) * (1.0 - FloatValue2);
+  UIBlendFactor = (1.0 - FloatValue2) * baseValue3;
+  UITransformFactor128 = (1.0 - transformCoeff15) * UIAlphaBlendFactor124;
+  UIVertexComponentX10C = (1.0 - vectorComponentX) * transformCoeff15 * UIAlphaBlendFactor124;
+  UIVertexComponentY108 = (1.0 - vectorComponentX) * UITransformFactor128;
+  UIAnimationParameter130 = CONCAT44(UIAnimationParameter130._4_4_,UIVertexComponentX10C);
+  UIAnimationFactor120 = transformCoeff15 * UIAlphaBlendFactor124 * vectorComponentX;
+  UITransformFactor128 = UITransformFactor128 * vectorComponentX;
+  UIAlphaBlendFactor124 = UIAlphaBlendFactor124 * vectorComponentX;
+  UITimeScaleFactor104 = UIAnimationFactor120 * UIAnimationProgress138;
+  UIInterpolationFactor100 = UITransformFactor128 * UIAnimationProgress138;
+  UIFadeOutFactor = (1.0 - UIAnimationProgress138) * UITransformFactor128;
+  UIFadeInFactor11C = (1.0 - UIAnimationProgress138) * UIAnimationFactor120;
+  UIAnimationParameter118 = CONCAT44(UIAnimationParameter118._4_4_,UIFadeOutFactor);
+  if ((UICharStack148 == '\0') || (0.0 < UIAnimationProgress138)) {
     if (baseValue3 <= 0.0) {
       transformCoeff15 = 3.0;
     }
@@ -15673,13 +15687,13 @@ LAB_18065a2e9:
   }
   baseValue3 = uiContext[0x184a];
   if (FloatValue2 <= baseValue3) {
-    baseValue3 = baseValue3 - transformCoeff15 * fStack_144;
+    baseValue3 = baseValue3 - transformCoeff15 * UITimeStepDelta144;
     if (baseValue3 <= FloatValue2) {
       baseValue3 = FloatValue2;
     }
   }
   else {
-    baseValue3 = baseValue3 + transformCoeff15 * fStack_144;
+    baseValue3 = baseValue3 + transformCoeff15 * UITimeStepDelta144;
     if (FloatValue2 <= baseValue3) {
       baseValue3 = FloatValue2;
     }
