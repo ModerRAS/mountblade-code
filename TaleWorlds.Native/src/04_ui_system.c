@@ -107654,81 +107654,95 @@ void ProcessUIDataAndConvert(longlong uiContext,longlong dataSource,int targetBu
 
 
  void FUN_18072afa1(void)
-void FUN_18072afa1(void)
+/**
+ * @brief UI浮点数矩阵变换处理器
+ * 
+ * 处理UI系统中的浮点数矩阵变换运算，包括数据变换和矩阵计算
+ * 该函数负责：
+ * 1. 执行浮点数矩阵变换计算
+ * 2. 处理UI数据的迭代变换
+ * 3. 执行复杂数学运算优化
+ * 4. 管理数据缓冲区的迭代处理
+ * 
+ * @note 原始函数名：FUN_18072afa1
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ProcessUIFloatMatrixTransform(void)
 
 {
-  double dVar1;
-  double dVar2;
-  double CalculationResultValue;
-  double *pTemporalDoubleValue;
-  longlong EventDataIndex;
-  longlong contextHandleData;
-  int unmodifiedEBX;
-  longlong SourceHandle;
-  longlong TargetHandle;
-  ulonglong processingCounter;
-  longlong contextOffset;
-  longlong CharacterDataOffset;
-  longlong RegisterPointer;
-  double dVar10;
-  double in_XMM5_Qa;
-  double adStackX_8 [4];
+  double firstOperandValue;
+  double secondOperandValue;
+  double matrixTransformResult;
+  double *matrixDataPointer;
+  longlong eventIterationIndex;
+  longlong uiContextHandle;
+  int loopCounter;
+  longlong sourceMatrixHandle;
+  longlong targetMatrixHandle;
+  ulonglong dataProcessingOffset;
+  longlong contextDataOffset;
+  longlong characterDataOffset;
+  longlong registerBasePointer;
+  double comparisonValue;
+  double thresholdValue;
+  double matrixStackBuffer [4];
   
-  processingCounter = (ulonglong)((int)RegisterPointer + 8);
-  contextOffset = RegisterPointer + -8;
+  dataProcessingOffset = (ulonglong)((int)registerBasePointer + 8);
+  contextDataOffset = registerBasePointer + -8;
   do {
-    dVar10 = adStackX_8[0];
-    if (adStackX_8[0] <= in_XMM5_Qa) {
-      dVar10 = in_XMM5_Qa;
+    comparisonValue = matrixStackBuffer[0];
+    if (matrixStackBuffer[0] <= thresholdValue) {
+      comparisonValue = thresholdValue;
     }
-    contextHandleData = (longlong)unmodifiedEBX;
-    pTemporalDoubleValue = (double *)((longlong)adStackX_8 + processingCounter + 0x10);
-    CharacterDataOffset = 0;
-    dVar10 = (-1.0 / dVar10) * *(double *)((longlong)adStackX_8 + processingCounter);
-    *(float *)(SourceHandle + RegisterPointer * 4) = (float)dVar10;
-    if (3 < contextHandleData) {
-      EventDataIndex = (contextHandleData - 4U >> 2) + 1;
-      CharacterDataOffset = EventDataIndex * 4;
+    uiContextHandle = (longlong)loopCounter;
+    matrixDataPointer = (double *)((longlong)matrixStackBuffer + dataProcessingOffset + 0x10);
+    characterDataOffset = 0;
+    comparisonValue = (-1.0 / comparisonValue) * *(double *)((longlong)matrixStackBuffer + dataProcessingOffset);
+    *(float *)(sourceMatrixHandle + registerBasePointer * 4) = (float)comparisonValue;
+    if (3 < uiContextHandle) {
+      eventIterationIndex = (uiContextHandle - 4U >> 2) + 1;
+      characterDataOffset = eventIterationIndex * 4;
       do {
-        dVar1 = *(double *)((longlong)pTemporalDoubleValue + contextOffset + -0x10);
-        dVar2 = pTemporalDoubleValue[-2];
-        pTemporalDoubleValue[-2] = dVar1 * dVar10 + dVar2;
-        CalculationResultValue = *(double *)((longlong)pTemporalDoubleValue + contextOffset);
-        *(double *)((longlong)pTemporalDoubleValue + contextOffset + -0x10) = dVar2 * dVar10 + dVar1;
-        dVar1 = *pTemporalDoubleValue;
-        *pTemporalDoubleValue = CalculationResultValue * dVar10 + dVar1;
-        dVar2 = *(double *)((longlong)pTemporalDoubleValue + contextOffset + 0x10);
-        *(double *)((longlong)pTemporalDoubleValue + contextOffset) = dVar1 * dVar10 + CalculationResultValue;
-        dVar1 = pTemporalDoubleValue[2];
-        pTemporalDoubleValue[2] = dVar2 * dVar10 + dVar1;
-        CalculationResultValue = *(double *)((longlong)pTemporalDoubleValue + contextOffset + 0x20);
-        *(double *)((longlong)pTemporalDoubleValue + contextOffset + 0x10) = dVar1 * dVar10 + dVar2;
-        dVar1 = pTemporalDoubleValue[4];
-        pTemporalDoubleValue[4] = CalculationResultValue * dVar10 + dVar1;
-        *(double *)((longlong)pTemporalDoubleValue + contextOffset + 0x20) = dVar1 * dVar10 + CalculationResultValue;
-        pTemporalDoubleValue = pTemporalDoubleValue + 8;
-        EventDataIndex = EventDataIndex + -1;
-      } while (EventDataIndex != 0);
+        firstOperandValue = *(double *)((longlong)matrixDataPointer + contextDataOffset + -0x10);
+        secondOperandValue = matrixDataPointer[-2];
+        matrixDataPointer[-2] = firstOperandValue * comparisonValue + secondOperandValue;
+        matrixTransformResult = *(double *)((longlong)matrixDataPointer + contextDataOffset);
+        *(double *)((longlong)matrixDataPointer + contextDataOffset + -0x10) = secondOperandValue * comparisonValue + firstOperandValue;
+        firstOperandValue = *matrixDataPointer;
+        *matrixDataPointer = matrixTransformResult * comparisonValue + firstOperandValue;
+        secondOperandValue = *(double *)((longlong)matrixDataPointer + contextDataOffset + 0x10);
+        *(double *)((longlong)matrixDataPointer + contextDataOffset) = firstOperandValue * comparisonValue + matrixTransformResult;
+        firstOperandValue = matrixDataPointer[2];
+        matrixDataPointer[2] = secondOperandValue * comparisonValue + firstOperandValue;
+        matrixTransformResult = *(double *)((longlong)matrixDataPointer + contextDataOffset + 0x20);
+        *(double *)((longlong)matrixDataPointer + contextDataOffset + 0x10) = firstOperandValue * comparisonValue + secondOperandValue;
+        firstOperandValue = matrixDataPointer[4];
+        matrixDataPointer[4] = matrixTransformResult * comparisonValue + firstOperandValue;
+        *(double *)((longlong)matrixDataPointer + contextDataOffset + 0x20) = firstOperandValue * comparisonValue + matrixTransformResult;
+        matrixDataPointer = matrixDataPointer + 8;
+        eventIterationIndex = eventIterationIndex + -1;
+      } while (eventIterationIndex != 0);
     }
-    if (CharacterDataOffset < contextHandleData) {
-      pTemporalDoubleValue = adStackX_8 + CharacterDataOffset * 2;
-      contextHandleData = contextHandleData - CharacterDataOffset;
+    if (characterDataOffset < uiContextHandle) {
+      matrixDataPointer = matrixStackBuffer + characterDataOffset * 2;
+      uiContextHandle = uiContextHandle - characterDataOffset;
       do {
-        dVar1 = *pTemporalDoubleValue;
-        dVar2 = *(double *)(processingCounter + (longlong)pTemporalDoubleValue);
-        *(double *)(processingCounter + (longlong)pTemporalDoubleValue) = dVar1 * dVar10 + dVar2;
-        *pTemporalDoubleValue = dVar2 * dVar10 + dVar1;
-        pTemporalDoubleValue = pTemporalDoubleValue + 2;
-        contextHandleData = contextHandleData + -1;
-      } while (contextHandleData != 0);
+        firstOperandValue = *matrixDataPointer;
+        secondOperandValue = *(double *)(dataProcessingOffset + (longlong)matrixDataPointer);
+        *(double *)(dataProcessingOffset + (longlong)matrixDataPointer) = firstOperandValue * comparisonValue + secondOperandValue;
+        *matrixDataPointer = secondOperandValue * comparisonValue + firstOperandValue;
+        matrixDataPointer = matrixDataPointer + 2;
+        uiContextHandle = uiContextHandle + -1;
+      } while (uiContextHandle != 0);
     }
-    unmodifiedEBX = unmodifiedEBX + -1;
-    RegisterPointer = RegisterPointer + 1;
-    contextOffset = contextOffset + -0x10;
-    processingCounter = processingCounter + 0x10;
-  } while (RegisterPointer < TargetHandle);
+    loopCounter = loopCounter + -1;
+    registerBasePointer = registerBasePointer + 1;
+    contextDataOffset = contextDataOffset + -0x10;
+    dataProcessingOffset = dataProcessingOffset + 0x10;
+  } while (registerBasePointer < targetMatrixHandle);
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask((float)adStackX_8[0]);
+  ExecuteUIRenderTask((float)matrixStackBuffer[0]);
 }
 
 
