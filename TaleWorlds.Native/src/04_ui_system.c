@@ -100684,32 +100684,45 @@ void ProcessUIEventData(UIHandle uiContext,longlong dataSource,int targetBuffer,
 
 
 
- void FUN_1807240d8(void)
-void FUN_1807240d8(void)
+ /**
+ * @brief UI组件数据处理函数
+ * 
+ * 该函数负责处理UI组件的数据，主要功能包括：
+ * - 遍历和更新UI组件的数据
+ * - 处理组件的数据读取和写入
+ * - 更新组件的状态信息
+ * - 处理组件的索引和句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807240d8
+ * @note 这是一个UI组件数据处理函数，用于处理UI组件的数据更新
+ */
+void ProcessUIComponentData(void)
 
 {
-  short sVar1;
+  short componentData;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  longlong TargetHandle;
-  longlong EventHandle;
-  longlong stackParam00000078;
+  longlong dataIndex;
+  longlong componentHandle;
+  longlong eventHandle;
+  longlong componentDataPointer;
   
-  stringCompareIndex = 0;
+  dataIndex = 0;
   do {
-    if (0 < *(int *)(stackParam00000078 + stringCompareIndex * 4)) {
+    if (0 < *(int *)(componentDataPointer + dataIndex * 4)) {
       componentIndex = 0;
       do {
-        if (0 < *(short *)(TargetHandle + componentIndex * 2)) {
-          sVar1 = ReadUIData();
-          *(short *)(TargetHandle + componentIndex * 2) = *(short *)(TargetHandle + componentIndex * 2) * (sVar1 * 2 + -1);
+        if (0 < *(short *)(componentHandle + componentIndex * 2)) {
+          componentData = ReadUIData();
+          *(short *)(componentHandle + componentIndex * 2) = *(short *)(componentHandle + componentIndex * 2) * (componentData * 2 + -1);
         }
         componentIndex = componentIndex + 1;
       } while (componentIndex < 0x10);
     }
-    TargetHandle = TargetHandle + 0x20;
-    stringCompareIndex = stringCompareIndex + 1;
-  } while (stringCompareIndex < EventHandle);
+    componentHandle = componentHandle + 0x20;
+    dataIndex = dataIndex + 1;
+  } while (dataIndex < eventHandle);
   return;
 }
 
