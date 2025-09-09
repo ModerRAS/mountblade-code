@@ -99707,7 +99707,7 @@ LAB_18010f4c5:
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 LAB_18010f4d1:
-  if ((((*(int *)(SystemContext + 0x1ca0) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
+  if ((((*(int *)(SystemContext + SystemContextValidationOffset1) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
       (*(char *)(SystemContext + 0x1d07) != '\0')) &&
      (((RemainingSpace = *(int *)(SystemContext + SystemContextProcessingCounterOffset), RemainingSpace == 0 || (RemainingSpace == CharacterTablePointer)) ||
       (RemainingSpace == *(int *)(CharacterLimit + 0x84))))) {
@@ -99923,7 +99923,7 @@ LAB_18010f4c5:
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 LAB_18010f4d1:
-  if ((((*(int *)(SystemContext + 0x1ca0) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
+  if ((((*(int *)(SystemContext + SystemContextValidationOffset1) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
       (*(char *)(SystemContext + 0x1d07) != '\0')) &&
      (((RemainingSpace = *(int *)(SystemContext + SystemContextProcessingCounterOffset), RemainingSpace == 0 || (RemainingSpace == CharacterTablePointer)) ||
       (RemainingSpace == *(int *)(CharacterLimit + 0x84))))) {
@@ -100096,7 +100096,7 @@ LAB_18010f4c5:
   }
   *(uint8_t *)(SystemContext + 0x1d06) = 1;
 LAB_18010f4d1:
-  if ((((*(int *)(SystemContext + 0x1ca0) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == OperationStatus)) &&
+  if ((((*(int *)(SystemContext + SystemContextValidationOffset1) == CharacterTablePointer) && (*(char *)(SystemContext + 0x1d06) == OperationStatus)) &&
       (*(char *)(SystemContext + 0x1d07) != OperationStatus)) &&
      (((RemainingSpace = *(int *)(SystemContext + SystemContextProcessingCounterOffset), RemainingSpace == 0 || (RemainingSpace == CharacterTablePointer)) ||
       (RemainingSpace == *(int *)(CharacterLimit + 0x84))))) {
@@ -100864,7 +100864,7 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   TertiaryStatusValue = CharacterStatusBuffer[2];
   StackProcessedFloat4c = (float)CharacterStatusBuffer[3] * *(float *)(SystemContext + 0x1628);
   UnicodeCodePoint = ValidateSystemData(&DataStackBuffer);
-  if (RegisterValueEDI == *(int *)(SystemContext + 0x1ca0)) {
+  if (RegisterValueEDI == *(int *)(SystemContext + SystemContextValidationOffset1)) {
     ProcessMemoryLock(&TertiaryDataBuffer,1);
   }
   ProcessSystemDataConcatenation(CONCAT44(StackFloatValue54,StackFloatValue50),StackProcessingParameter58,UnicodeCodePoint,1,
@@ -102885,7 +102885,7 @@ uint8_t ValidateSystemOperation(void
   TemporaryFloatStack44 = (float)CharacterStatusBuffer[3];
   *(float *)(StackFrameAddressPointer + -0x7d) = TemporaryFloatStack44 * *(float *)(SystemContext + 0x1628);
   OperationResult = ValidateSystemData(&SystemChecksumStackBuffer);
-  if (CharacterTablePointer == *(int *)(SystemContext + 0x1ca0)) {
+  if (CharacterTablePointer == *(int *)(SystemContext + SystemContextValidationOffset1)) {
     ProcessMemoryLock(StackFrameAddressPointer + -0x79,1);
   }
   if (AuxiliaryFloatValue11 <= AuxiliaryCalculationFloat10) {
@@ -103023,7 +103023,7 @@ uint8_t UpdateSystemStatus(void
   StackFloatValue44 = (float)CharacterStatusBufferPointer[3];
   *(float *)(StackFrameAddressPointer + -0x7d) = StackFloatValue44 * *(float *)(SystemContext + 0x1628);
   OperationResult = ValidateSystemData(&StackProcessingParameter38);
-  if (CharacterTablePointer == *(int *)(SystemContext + 0x1ca0)) {
+  if (CharacterTablePointer == *(int *)(SystemContext + SystemContextValidationOffset1)) {
     ProcessMemoryLock(StackFrameAddressPointer + -0x79,1);
   }
   if (UnassignedFloatValueB <= UnassignedFloatValueA) {
@@ -105674,7 +105674,7 @@ void ProcessSystemFloatDataTransferAndConfiguration(void)
   StackUint7c = MemoryAllocationIndex;
   MemoryAllocationIndex = ValidateSystemData(&StackBuffer58);
   TemporaryStackValue58 = CONCAT44(TemporaryStackValue5c,MemoryAllocationIndex);
-  if (CharacterLimitD == *(int *)(SystemContext + 0x1ca0)) {
+  if (CharacterLimitD == *(int *)(SystemContext + SystemContextValidationOffset1)) {
     ProcessMemoryLock(StackFrameAddressPointer + -0x80,1);
     SystemContext = SystemConfigurationHandle;
     MemoryAllocationIndex = TemporaryStackValue58;
@@ -158515,7 +158515,7 @@ void ProcessSystemStateAndResourceAllocation(void)
      ((*(char *)(SystemContext + 0x1d06) == '\0' || (*(char *)(SystemContext + 0x1d0a) != '\0')))) {
     EncodingValidationResult = *(int *)(SystemContext + 0x1cfc);
     CharacterStatus2 = *(char *)(SystemContext + 0x1d0a);
-    *(int *)(SystemContext + 0x1ca0) = MatchCounter;
+    *(int *)(SystemContext + SystemContextValidationOffset1) = MatchCounter;
     *(int *)(*(long long *)(SystemContext + 0x1c98) + 0x3c8 + (long long)EncodingValidationResult * 4) = MatchCounter;
     if (CharacterStatus2 != '\0') {
       MemoryAllocationOffset = *(void *)(SystemContext + 0x1d18);
@@ -158584,7 +158584,7 @@ void ProcessSystemStateAndResourceAllocation(void)
   }
   *(char *)(SystemContext + 0x391) = CharacterStatus2;
   CharacterTablePointer = SystemConfigurationHandle;
-  if ((((CharacterStatus2 == '\0') || (*(int *)(SystemContext + 0x1ca0) == 0)) ||
+  if ((((CharacterStatus2 == '\0') || (*(int *)(SystemContext + SystemContextValidationOffset1) == 0)) ||
       (*(char *)(SystemContext + 0x1d06) != '\0')) &&
      ((*(long long *)(SystemContext + 0x1cd8) == 0 && (*(char *)(SystemContext + 0x1d09) == '\0')))) {
     ProcessingStatusFlag = 0;
@@ -158641,7 +158641,7 @@ void ProcessSystemStateAndResourceAllocation(void)
       *(void *)(CharacterTablePointer + 0x1b50) = 0;
     }
   }
-  MatchCounter = *(int *)(SystemContext + 0x1ca0);
+  MatchCounter = *(int *)(SystemContext + SystemContextValidationOffset1);
   *(void *)(SystemContext + 0x1cac) = 0;
   *(void *)(SystemContext + 0x1ca4) = 0;
   if (((MatchCounter != 0) && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
@@ -158806,7 +158806,7 @@ LAB_1801327bd:
     *(uint8_t *)(SystemContext + 0x1d21) = 1;
     *(int *)(SystemContext + 0x1d30) = *(int *)(SystemContext + 0x1d2c);
 SystemContextProcessingComplete:
-    if (*(int *)(SystemContext + 0x1ca0) == 0) {
+    if (*(int *)(SystemContext + SystemContextValidationOffset1) == 0) {
       *(uint16_t *)(SystemContext + 0x1d09) = 0x101;
       *(uint32_t *)(SystemContext + 0x1d0c) = 0;
       *(uint8_t *)(SystemContext + 0x1d06) = 0;
@@ -159277,7 +159277,7 @@ void ProcessSystemFloatMatrixOperations(void
       }
       *(float *)(BufferStatus + 0x3d8) = NormalizedParameterValue;
       *(float *)(BufferStatus + 0x3dc) = PrimaryFloatValue;
-      *(int *)(SystemContext + 0x1ca0) = CharacterLimitD;
+      *(int *)(SystemContext + SystemContextValidationOffset1) = CharacterLimitD;
     }
     *(char *)(SystemContext + 0x1d20) = (char)CharacterLimitD;
   }
