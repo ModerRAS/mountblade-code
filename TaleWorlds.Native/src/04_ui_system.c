@@ -95465,47 +95465,59 @@ void ClearUIDataBuffer(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
 
 
 
- void FUN_18072081d(void)
-void FUN_18072081d(void)
+ /**
+ * @brief UI系统数据转换和浮点计算函数
+ * 
+ * 该函数负责处理UI系统中的数据转换和浮点数计算操作，包括：
+ * - 浮点数据的变换和计算
+ * - 向量组件的处理
+ * - 数据格式的转换
+ * - 内存数据的读写操作
+ * - 数据验证和错误处理
+ * 
+ * 该函数是UI数据处理系统的核心组件，确保数据在不同格式间的正确转换和计算。
+ */
+void ProcessUIDataTransformAndCalculation(void)
+void ProcessUIDataTransformAndCalculation(void)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
-  float *pTransformCoefficient2;
-  float *pTransformCoefficient3;
+  float *baseValuePointer;
+  float *transformCoefficient1;
+  float *transformCoefficient2;
+  float *transformCoefficient3;
   float *transformCoeffPointer;
-  float *pLocalFloatValue6;
-  float *pResultFloatValue;
+  float *localFloatValue6;
+  float *resultFloatValue;
   longlong contextOffset;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   uint result0;
   longlong contextHandle;
-  float *SourceHandle;
-  float *baseScaleFactor;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  float *pvectorComponentX;
-  uint RegisterPointerD;
+  float *sourceDataPointer;
+  float *scaleFactorPointer;
+  longlong memoryAllocation2;
+  longlong memoryAllocation3;
+  float *vectorComponentX;
+  uint registerPointerD;
   int eventHandle;
   float baseValue5;
   float baseValue6;
   float baseValue7;
-  float FloatValue1;
-  float FloatValue2;
-  float AccumulatedFloat;
+  float floatValue1;
+  float floatValue2;
+  float accumulatedFloat;
   float transformCoeff11;
   float transformCoeff12;
   float preservedXMM6;
   float preservedXMM7;
   
-  allocatedMemory3 = 0;
-  baseScaleFactor = SourceHandle + 1;
+  memoryAllocation3 = 0;
+  scaleFactorPointer = sourceDataPointer + 1;
   while( true ) {
-    CharacterDataOffset = 0;
+    characterDataOffset = 0;
     baseValue5 = preservedXMM7;
     if ((0 < (int)RegisterPointerD) && (7 < RegisterPointerD)) {
-      FloatValue2 = 0.0;
-      AccumulatedFloat = 0.0;
+      floatValue2 = 0.0;
+      accumulatedFloat = 0.0;
       transformCoeff11 = 0.0;
       transformCoeff12 = 0.0;
       baseValue5 = 0.0;
