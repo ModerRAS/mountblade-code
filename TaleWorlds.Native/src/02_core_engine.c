@@ -220134,7 +220134,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
           ContextSecondaryFloat9 = (float)(int)ContextSecondaryFloat9 * 0.2;
         }
         else {
-          ContextSecondaryFloat1 = (float)FUN_180181d80();
+          ContextSecondaryFloat1 = (float)ProcessSystemMemoryAllocationAdvanced();
           ContextSecondaryFloat9 = ContextSecondaryFloat9 + ContextSecondaryFloat1 * MatrixTransformMultiplier;
         }
         SystemPrimaryReturnCode = Utf8SourcePointer & 0xffffffff;
@@ -220831,7 +220831,7 @@ void ProcessAsyncCallback(uint32_t ContextHandle, long long *ContextHandleSize, 
       SystemStatusCode = 0;
       primaryCharacterStatusBufferPointer = (uint64_t ***)0x0;
       StackProcessingUnsignedValue60 = 0;
-      primaryCharacterStatusBufferPointer = (uint64_t ***)FUN_180188560();
+      primaryCharacterStatusBufferPointer = (uint64_t ***)ProcessSystemPrimaryCharacterStatus();
       StackProcessingVariable70 = *(void *)(Utf8SourcePointer + 0x40);
       if (*(long long *)(OperationBufferSize + 0x10) != 0) {
         do {
@@ -221108,7 +221108,7 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
       DataProcessingFlags = 0;
       SystemTemporaryRegister118 = 0;
       if (DataProcessingBuffer == memoryAllocationBuffer) {
-        FUN_180188910(&StackBufferOffset140);
+        ProcessSystemTertiaryCharacterStatus(&StackBufferOffset140);
       }
       else {
         *memoryAllocationBuffer = 0;
@@ -221150,7 +221150,7 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
           SystemFlagB = (uint64_t **)MemoryBlockListHead;
           OperationStatus = (long long)MemoryBoundaryPointer;
           if ((uint32_t *)memoryAllocationBuffer[-1] == PrimaryProcessingStatusFlag) {
-            FUN_1801887a0();
+            ProcessSystemQuaternaryCharacterStatus();
           }
           else {
             SystemFlagB.LowPart = SUB84(MemoryBlockListHead,0);
@@ -221201,7 +221201,7 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
         SystemOperation90 = memoryAllocationBuffer[-3];
       }
       if (CharacterStatusBuffer2 == pMemoryAddressMaskPointer) {
-        FUN_180188b30(&lStack_110,pMemoryAddressMaskPointer);
+        ProcessSystemQuinaryCharacterStatus(&lStack_110,pMemoryAddressMaskPointer);
         CharacterStatusBuffer2 = pSystemFlagA;
       }
       else {
@@ -221256,7 +221256,7 @@ LAB_180184aa5:
     ProcessingContextPointerBuffer = (uint64_t **)0x0;
   }
   if (StackBufferOffset140 != 0) {
-    FUN_180189900(StackBufferOffset140,memoryAllocationBuffer);
+    ProcessSystemSenaryCharacterStatus(StackBufferOffset140,memoryAllocationBuffer);
     SystemMemoryAllocationResult = (((long long)DataProcessingBuffer - StackBufferOffset140) / 0x18) * 0x18;
     MemoryPoolBlockSize = StackBufferOffset140;
     if (0xfff < SystemMemoryAllocationResult) {
@@ -221429,7 +221429,7 @@ LAB_180184d09:
           ReallocateContextHandle(&BufferOffset);
           FunctionAddress = *(uint8_t *)(*Utf8SourcePointer + 8 + MemoryAddressMaskPointer);
           if (StackProcessingVariableBuffer == CoreEnginePointerBuffer78) {
-            FUN_180188d20(&pCalculationFunctionAddress,CoreEnginePointerBuffer78,&BufferOffset);
+            ProcessSystemSeptenaryCharacterStatus(&pCalculationFunctionAddress,CoreEnginePointerBuffer78,&BufferOffset);
           }
           else {
             pSystemOperation90 = CoreEnginePointerBuffer78;
