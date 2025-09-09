@@ -202903,12 +202903,12 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
     if (*(longlong *)(uiBufferData + 0x3a8) != 0) {
       BufferPointer = (UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
       for (EventIterator = (UIHandle *)*BufferPointer; EventIterator != BufferPointer; EventIterator = (UIHandle *)*EventIterator) {
-        bufferValidation[0] = 0;
+        BufferValidation[0] = 0;
         transformParameterArray[0] = 0;
         auStackX_8[0] = 0;
         (**(code **)(uiContext + 0x3a8))
-                  (uiContext + 8,*(UIDword *)(piterationCount + 4),piterationCount[3],(longlong)piterationCount + 0x24,
-                   bufferValidation,auStackX_10,auStackX_8);
+                  (uiContext + 8,*(UIDword *)(EventIterator + 4),EventIterator[3],(longlong)EventIterator + 0x24,
+                   BufferValidation,auStackX_10,auStackX_8);
       }
     }
     EventTypeCode = 0;
