@@ -10250,53 +10250,53 @@ LAB_EventProcessingContinue:
     eventCompareResult = strcmp(stackLong28,&UIStringTable_DefaultFont);
     if (((eventCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'w' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'x') && (pcStack_48[1] == '\0')) {
-        processingCounter = 4;
+        eventProcessingCounter = 4;
         goto LAB_EventHandlerReturn;
       }
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
-        processingCounter = 8;
+        eventProcessingCounter = 8;
         goto LAB_EventHandlerReturn;
       }
       if (*pcStack_48 == 'z') {
-        localChar1 = pcStack_48[1];
+        localEventChar = pcStack_48[1];
 LAB_EventSystemInitialize:
-        if (localChar1 == '\0') {
-          processingCounter = 0xc;
+        if (localEventChar == '\0') {
+          eventProcessingCounter = 0xc;
           goto LAB_EventHandlerReturn;
         }
       }
     }
   }
   else if (stackInt20 == 6) {
-    EventDataIndex = 0;
+    eventIterationCount = 0;
     do {
-      contextHandleData = EventDataIndex + 1;
-      if (*(char *)(stackLong28 + EventDataIndex) != (&UIStringComparisonData)[EventDataIndex]) goto LAB_EventValidationFailed;
-      EventDataIndex = contextHandleData;
-    } while (contextHandleData != 7);
+      eventProcessingStep = eventIterationCount + 1;
+      if (*(char *)(stackLong28 + eventIterationCount) != (&UIStringComparisonData)[eventIterationCount]) goto LAB_EventValidationFailed;
+      eventIterationCount = eventProcessingStep;
+    } while (eventProcessingStep != 7);
     if (stackInt40 == 7) {
-      EventDataIndex = 0;
+      eventIterationCount = 0;
       do {
-        contextHandleData = EventDataIndex + 1;
-        if (pcStack_48[EventDataIndex] != (&UIStringTable_TitleFont)[EventDataIndex]) break;
-        EventDataIndex = contextHandleData;
-      } while (contextHandleData != 8);
+        eventProcessingStep = eventIterationCount + 1;
+        if (pcStack_48[eventIterationCount] != (&UIStringTable_TitleFont)[eventIterationCount]) break;
+        eventIterationCount = eventProcessingStep;
+      } while (eventProcessingStep != 8);
     }
     else {
       if (stackInt40 == 10) {
-        ptrLocal6 = &UIStringTable_HeaderFont;
+        eventDataTypePointer = &UIStringTable_HeaderFont;
         goto LAB_EventContextSetup;
       }
       if (stackInt40 == 0xd) {
-        uiCompareResult = strcmp(pcStack_48,&UIStringTable_SubtitleFont);
-        IsFontMatchFound = uiCompareResult == 0;
+        eventCompareResult = strcmp(pcStack_48,&UIStringTable_SubtitleFont);
+        EventProcessingResult = eventCompareResult == 0;
         goto LAB_EventFocusCheck;
       }
     }
   }
   else if (stackInt20 == 0x12) {
-    uiCompareResult = strcmp(stackLong28,&UIStringTable_BodyFont);
-    if (uiCompareResult == 0) goto LAB_ComparisonResultCheck;
+    eventCompareResult = strcmp(stackLong28,&UIStringTable_BodyFont);
+    if (eventCompareResult == 0) goto LAB_ComparisonResultCheck;
     uiCompareResult = strcmp(EventDataIndex,&UIStringTable_SmallFont);
     if (((uiCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
