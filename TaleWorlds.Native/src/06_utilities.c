@@ -4032,7 +4032,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180085530
  */
-#define ValidateSystemStatusAndHealthCheck FUN_180085530
+#define ValidateSystemStatusAndHealthCheck ValidateSystemStatusAndHealthCheck
 
 /**
  * @brief 系统状态更新函数A0
@@ -4041,7 +4041,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180089640
  */
-#define UpdateSystemStatusAndStateFlags FUN_180089640
+#define UpdateSystemStatusAndStateFlags UpdateSystemStatusAndStateFlags
 
 /**
  * @brief 系统值和指标计算函数
@@ -4059,7 +4059,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 此函数可能涉及系统性能敏感计算，应避免频繁调用
  * @see ValidateSystemParametersAndConfiguration, UpdateSystemStatusAndStateFlags
  */
-#define CalculateSystemMetricsAndValues FUN_1800ba100
+#define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
 
 /**
  * @brief 系统参数和配置验证函数
