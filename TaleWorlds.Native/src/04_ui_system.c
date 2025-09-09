@@ -89482,25 +89482,25 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
       if (FloatValue2 < -9.0) {
         FloatValue2 = -9.0;
       }
-      baseValue = *BaseValuePointer0;
+      BaseValue = *BaseValuePointer;
       ComparisonResult = 0.0;
-      AccumulatedFloat = (baseValue6 - FloatValue2 * unmodifiedXMM10_Da) - baseValue;
-      baseValue1 = AccumulatedFloat + 0.5;
-      aresult7._0_8_ = (double)baseValue1;
-      localLong7 = (longlong)baseValue1;
-      if ((localLong7 != contextHandle) && (ComparisonResult = (double)localLong7, ComparisonResult != aresult7._0_8_)) {
+      AccumulatedFloat = (BaseValue6 - FloatValue2 * UnmodifiedXMM10_Da) - BaseValue;
+      BaseValue1 = AccumulatedFloat + 0.5;
+      aresult7._0_8_ = (double)BaseValue1;
+      LocalLong7 = (longlong)BaseValue1;
+      if ((LocalLong7 != ContextHandle) && (ComparisonResult = (double)LocalLong7, ComparisonResult != aresult7._0_8_)) {
         aresult7._8_8_ = aresult7._0_8_;
-        loopCounter = movmskpd(TempInt4,aresult7);
-        aresult7._0_8_ = (double)(longlong)(localLong7 - (ulonglong)(loopCounter & 1));
+        LoopCounter = movmskpd(TemporaryInt4,aresult7);
+        aresult7._0_8_ = (double)(longlong)(LocalLong7 - (ulonglong)(LoopCounter & 1));
       }
-      iStack0000000000000130 = (int)aresult7._0_8_;
-      baseValue1 = *(float *)(stackParam00000120 + contextOffset * 4);
+      StackParam130 = (int)aresult7._0_8_;
+      BaseValue1 = *(float *)(StackParam120 + ContextOffset * 4);
       aCounterResult = (UIByte  [12])0x0;
-      if (baseValue1 <= -28.0) {
+      if (BaseValue1 <= -28.0) {
         aCounterResult = ZEXT412(0);
-        baseValue1 = -28.0;
+        BaseValue1 = -28.0;
       }
-      aResultValue3._0_4_ = baseValue1 - TransformCoefficient2;
+      aResultValue3._0_4_ = BaseValue1 - TransformCoefficient;
       aResultValue3._4_12_ = aCounterResult;
       result2 = aResultValue3._0_8_;
       if ((iStack0000000000000130 < 0) && (baseValue6 < aResultValue3._0_4_)) {
