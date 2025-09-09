@@ -303,7 +303,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_180705980
  */
-#define ProcessUIComponentData ProcessUIComponentDataManagement980
+#define ProcessUIComponentData FUN_180705980
 
 /**
  * @brief 处理UI事件
@@ -1026,6 +1026,11 @@ typedef enum {
 #define localChar34 PreviousComponentContext
 #define localChar8 CurrentComponentContext
 #define localChar26 ComponentContextBackup
+#define plocalChar4 UIFunctionPointer4
+#define plocalChar6 UICharacterPointer6
+#define plocalChar8 UICharacterPointer8
+#define plocalChar9 UICharacterPointer9
+#define plocalChar16 UICharacterPointer16
 #define AllocatedMemoryBlock1 MemoryAllocation1
 #define allocatedMemory3 MemoryAllocation3
 #define allocatedMemory4 MemoryAllocation4
