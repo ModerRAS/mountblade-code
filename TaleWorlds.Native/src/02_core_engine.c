@@ -66563,7 +66563,7 @@ CharacterStatusBufferProcessing:
           if (StringComparisonByte != byteComparisonValue) break;
           SystemBytePointer = SystemBytePointer + 1;
         } while (OperationResult != 0);
-        if ((int)(StringComparisonByte - OperationResult) < 1) goto LAB_18008917c;
+        if ((int)(StringComparisonByte - OperationResult) < 1) goto StringComparisonCompleteLabel;
       }
     }
   }
