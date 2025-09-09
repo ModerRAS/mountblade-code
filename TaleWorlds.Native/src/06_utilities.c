@@ -58313,12 +58313,12 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
   systemDataBuffer = *(uint64_t *)(dataBuffer + MemoryPointerOffset);
   dataContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0);
   memoryBlockOffset = *(int64_t *)(dataContext + SystemDataOffset40);
-  *(DataBuffer *)(dataContext + 0x70) = *(DataBuffer *)(dataBuffer + DataBufferOffset30);
-  *(DataBuffer *)(dataContext + 0x60) = *(DataBuffer *)(dataBuffer + 0xb8);
+  *(DataBuffer *)(dataContext + DataOperationOffset70) = *(DataBuffer *)(dataBuffer + DataBufferOffset30);
+  *(DataBuffer *)(dataContext + ContextLoopCounterOffset60) = *(DataBuffer *)(dataBuffer + DataBufferOffsetB8);
   memoryOffset = *(int64_t *)(dataBuffer + ValidationResultOffset);
   calculatedIndex = memoryOffset;
   if (memoryOffset == 0) {
-    calculatedIndex = *(int64_t *)(dataBuffer + 0xb0);
+    calculatedIndex = *(int64_t *)(dataBuffer + ResourceAllocationSizeB0);
   }
   *(int64_t *)(dataContext + SystemDataOffset40) = calculatedIndex;
   operationResult = *(uint64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
