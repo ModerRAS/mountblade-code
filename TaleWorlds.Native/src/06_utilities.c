@@ -111611,12 +111611,23 @@ void SetTemporaryExceptionHandlerAF0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090fb00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器函数B00
+ * 
+ * 该函数负责调用位于偏移量0x120+0x58处的异常处理器。
+ * 首先获取异常处理器上下文指针，然后调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fb00
+ */
+void CallExceptionHandlerB00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x120) + 0x58);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerPointerOffset120) + ExceptionHandlerContextOffset58);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
