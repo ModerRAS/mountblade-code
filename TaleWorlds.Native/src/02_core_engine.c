@@ -224129,8 +224129,8 @@ LAB_18018802f:
     }
     else if (-1 < InputDataLength) goto LAB_18018802f;
   }
-  FUN_18018a130();
-  FUN_18018a1c0();
+  ProcessSystemMemoryAllocation();
+  ProcessSystemMemoryValidation();
   return StackProcessingParameter3 + 0x40;
 }
 

@@ -532,7 +532,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkConnectionCompletionHandle 0x7d                   // 连接完成状态句柄值 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
-#define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
 #define NetworkValidationMagicMask 0x03                     // 魔数验证掩码
