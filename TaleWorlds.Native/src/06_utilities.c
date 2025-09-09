@@ -31001,7 +31001,7 @@ DataBuffer CleanupDataProcessorA0(void)
     if (currentSize < cleanupSize) {
         memset((int64_t)currentSize + *dataBuffer,0,(int64_t)(cleanupSize - currentSize));
     }
-    *(int *)(dataBuffer + 1) = cleanupSize;
+    *(int *)(dataBuffer + DataBufferOffset1) = cleanupSize;
     cleanupResult = ValidateSystemMemoryBlock();
     if ((int)cleanupResult != 0) {
       return cleanupResult;
@@ -31129,7 +31129,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
   systemOperationBuffer = CONCAT44(systemOperationBuffer._4_4_,*dataBuffer);
   inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,4);
   if (inputParameter == 0) {
-    operationDataBuffer = *(DataBuffer *)(dataBuffer + 2);
+    operationDataBuffer = *(DataBuffer *)(dataBuffer + DataBufferOffset2);
     inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&operationDataBuffer,8);
     if ((inputParameter == 0) && (inputParameter = ValidateDataAndReturnCodeA1(operationBase,dataBuffer + 4), inputParameter == 0)) {
       inputParameter = dataBuffer[10];
@@ -31820,7 +31820,7 @@ void ProcessDataWithCallback(int64_t systemContext, DataWord *dataBuffer)
   systemContextBuffer[0] = *dataBuffer;
   callbackResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + SystemContextDataOffset8))(*(DataBuffer **)(systemContext + SystemContextDataOffset8),systemContextBuffer,4);
   if (callbackResult == 0) {
-    systemContextBuffer[0].LowWord = *(BytePair *)(dataBuffer + 1);
+    systemContextBuffer[0].LowWord = *(BytePair *)(dataBuffer + DataBufferOffset1);
     callbackResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + SystemContextDataOffset8))(*(DataBuffer **)(systemContext + SystemContextDataOffset8),systemContextBuffer,2);
     if (callbackResult == 0) {
       systemContextBuffer[0] = CONCAT22(systemContextBuffer[0].HighWord,*(BytePair *)((int64_t)dataBuffer + 6));
@@ -31888,7 +31888,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
   systemWorkingBuffer = CONCAT44(systemWorkingBuffer._4_4_,*dataBuffer);
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + SystemContextDataOffset8))(*(DataBuffer **)(systemContext + SystemContextDataOffset8),&workingBuffer,4);
   if (operationResult == 0) {
-    workingBuffer = *(DataBuffer *)(dataBuffer + 2);
+    workingBuffer = *(DataBuffer *)(dataBuffer + DataBufferOffset2);
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + SystemContextDataOffset8))(*(DataBuffer **)(systemContext + SystemContextDataOffset8),&workingBuffer,8);
     if (operationResult == 0) {
       validationFlags = SetBitFlag(validationFlags.byteFlags,*(ByteFlag *)(dataBuffer + ExceptionHandlerDataBufferOffset68));
@@ -32394,7 +32394,7 @@ DataBuffer ProcessDataStreamA0(int64_t operationBase,DataWord *dataBuffer)
   stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,*dataBuffer);
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
   if ((int)operationResult == 0) {
-    streamDataBuffer = *(DataBuffer *)(dataBuffer + 2);
+    streamDataBuffer = *(DataBuffer *)(dataBuffer + DataBufferOffset2);
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),&streamDataBuffer,8);
     if ((int)operationResult == 0) {
       inputParameter = dataBuffer[6];
@@ -32545,8 +32545,8 @@ DataBuffer ProcessDataConversionA0(int64_t operationBase,DataBuffer *dataBuffer)
   DataWord systemDataBuffer [2];
   DataWord stackDataBuffer [2];
   
-  operationResult = *(int *)(dataBuffer + 1) - 1;
-  if (*(int *)(dataBuffer + 1) < 1) {
+  operationResult = *(int *)(dataBuffer + DataBufferOffset1) - 1;
+  if (*(int *)(dataBuffer + DataBufferOffset1) < 1) {
     operationResult = 0;
   }
   if (operationResult < 0x8000) {
@@ -32587,7 +32587,7 @@ uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuff
   uint stackByteBuffer [2];
   uint systemBufferA [6];
   
-  arrayIndex = *(int *)(dataBuffer + 1);
+  arrayIndex = *(int *)(dataBuffer + DataBufferOffset1);
   stackIndexBuffer[0] = arrayIndex;
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackIndexBuffer,4);
   if ((int)systemDataBuffer == 0) {
