@@ -3190,9 +3190,32 @@ uint32_t PacketValidationBufferPool;                     // 数据包验证缓�
  * 定义数据包验证缓冲区的大小，确保验证过程的顺利进行
  */
 uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
+/**
+ * @brief 数据包安全验证数据
+ * 
+ * 存储网络数据包安全验证过程中使用的数据，确保数据包的安全性
+ */
 uint32_t NetworkPacketSecurityValidationData;                   // 数据包安全验证数据
+
+/**
+ * @brief 数据包安全验证信息
+ * 
+ * 存储网络数据包安全验证的相关信息，包括验证结果和状态
+ */
 uint32_t NetworkPacketSecurityValidationInfo;                   // 数据包安全验证信息
+
+/**
+ * @brief 数据包安全加密数据
+ * 
+ * 存储网络数据包安全加密过程中使用的数据，保护数据传输的安全性
+ */
 uint32_t NetworkPacketSecurityEncryptionData;                   // 数据包安全加密数据
+
+/**
+ * @brief 数据包安全加密信息
+ * 
+ * 存储网络数据包安全加密的相关信息，包括加密算法和密钥信息
+ */
 uint32_t NetworkPacketSecurityEncryptionInfo;                   // 数据包安全加密信息
 uint32_t NetworkPacketSecurityAuthenticationData;              // 数据包安全认证数据
 uint32_t NetworkPacketSecurityAuthenticationInfo;              // 数据包安全认证信息
