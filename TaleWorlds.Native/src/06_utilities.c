@@ -43459,7 +43459,7 @@ void SetDefaultExceptionHandlerToSecondary(DataBuffer operationBase, int64_t dat
  * @note 原始函数名：未指定
  * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
-void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dataBuffer)
+void SetDefaultExceptionHandlerToTertiary(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + DefaultExceptionHandlerOffset138) = &SystemTemporaryExceptionHandler;
@@ -43484,7 +43484,7 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dat
  * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_180902180
  */
-void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
+void SetDefaultExceptionHandlerToQuaternary(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
   *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1a0) = &SystemTemporaryExceptionHandler;
