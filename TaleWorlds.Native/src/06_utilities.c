@@ -3943,11 +3943,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_180906d20 - 异常处理器调用函数D20
 // 功能：在偏移量0x38处调用异常处理器
-#define InvokeExceptionHandlerAtOffset38D20 Unwind_180906d20
+#define InvokeExceptionHandlerAtQuadPosition Unwind_180906d20
 
 // 原始函数名：Unwind_180906d30 - 异常处理器调用函数D30
 // 功能：在偏移量0x40处调用异常处理器
-#define InvokeExceptionHandlerAtOffset40D30 Unwind_180906d30
+#define InvokeExceptionHandlerAtPentaPosition Unwind_180906d30
 
 // 原始函数名：Unwind_1809092e0 - 异常上下文清理函数A0
 // 功能：清理异常上下文数据，重置异常处理器状态
