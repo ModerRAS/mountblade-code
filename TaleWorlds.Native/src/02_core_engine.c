@@ -217418,7 +217418,19 @@ void CopySystemEventDataStructure(uint64_t ContextHandle,uint64_t OperationBuffe
 
 
 
-7c7a0(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017c7a0(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief UTF-16字符处理和上下文管理函数C7A0
+ * 
+ * 该函数负责处理UTF-16字符和系统上下文管理，包括：
+ * 1. 处理UTF-16字符转换
+ * 2. 管理系统上下文状态
+ * 3. 处理操作缓冲区大小
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @note 原始函数名：FUN_18017c7a0
+ */
+void ProcessUtf16CharacterAndContextManagement(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   void *SystemContext;

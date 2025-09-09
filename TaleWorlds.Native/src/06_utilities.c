@@ -29869,7 +29869,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                   if (operationResult != 0) {
                     return;
                   }
-                  operationResult = CheckSystemStatusAndReturnO0(operationBase,resourceIterator + 0x14);
+                  operationResult = CheckSystemStatusAndReturnO0(operationBase,resourceIterator + ResourceIteratorDataOffset);
                   if (operationResult != 0) {
                     return;
                   }
@@ -30001,7 +30001,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
           do {
             exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
             *(DataWord *)(StackFrameContext + ArrayDataOffset) =
-                 *(DataWord *)(*(int64_t *)(systemContext + 0x40) + operationResult * 4);
+                 *(DataWord *)(*(int64_t *)(systemContext + SystemContextDataOffset40) + operationResult * 4);
             operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,4);
             if (operationResult != 0) {
               return;
