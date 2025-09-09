@@ -11824,16 +11824,19 @@ UtilityEncodeOutputBuffer* UtilityEncodeOutputBufferPtr;
 uint32_t UtilityEncodeKey;
 uint32_t UtilityEncodeResult;
 
-// 函数: uint8_t UtilityDecodeData(void);
-// 
-// 解码工具数据
-// 对已编码的工具数据进行解码处理
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 解码结果状态
+/**
+ * @brief 解码工具数据
+ * 
+ * 对已编码的工具数据进行解码处理，恢复原始数据格式。
+ * 该函数支持多种解码算法，包括逆向编码、数据验证和格式转换。
+ * 
+ * @return uint8_t 解码结果状态码：
+ *         - 0: 解码成功
+ *         - 非0: 具体错误码
+ * 
+ * @note 该函数使用预设的解码密钥和缓冲区进行解码操作
+ * @see UtilityEncodeData, SynchronizeUtilityData
+ */
 uint8_t UtilityDecodeData(void);
 uint8_t* UtilityDecodeBuffer;
 uint8_t* UtilityDecodeInputData;
@@ -11842,16 +11845,20 @@ uint32_t UtilityDecodeKey;
 uint32_t UtilityDecodeResult;
 uint32_t UtilityDecodeStatus;
 
-// 函数: uint8_t UtilitySerializeData(void);
-// 
-// 序列化工具数据
-// 将工具数据序列化为可存储或传输的格式
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 序列化结果状态
+/**
+ * @brief 序列化工具数据
+ * 
+ * 将工具数据序列化为可存储或传输的格式。
+ * 该函数负责将内存中的数据结构转换为线性字节流，
+ * 便于数据持久化存储或网络传输。
+ * 
+ * @return uint8_t 序列化结果状态码：
+ *         - 0: 序列化成功
+ *         - 非0: 具体错误码
+ * 
+ * @note 序列化后的数据可以通过UtilityDeserializeData函数恢复
+ * @see UtilityDeserializeData, UtilityEncodeData
+ */
 uint8_t UtilitySerializeData(void);
 uint8_t* SerializationDataBuffer;
 uint32_t SerializationDataSize;
@@ -111771,7 +111778,22 @@ void ProcessDataArrayAtOffset0C(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090fb70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常数据缓冲区处理器（偏移量0xd0）
+ * 
+ * 该函数负责设置异常数据缓冲区的处理器。
+ * 主要功能包括：
+ * - 获取异常数据缓冲区指针
+ * - 设置临时异常处理器
+ * - 检查异常状态，必要时终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fb70
+ * @note 该函数处理偏移量0xd0处的异常数据缓冲区处理器设置
+ */
+void SetExceptionDataBufferHandlerAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -113503,7 +113525,23 @@ void ConfigureTemporaryExceptionHandlerAndReset(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_180910130(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器初始化（偏移量0x60）
+ * 
+ * 该函数负责初始化异常上下文处理器，设置临时异常处理器，并在需要时终止系统执行。
+ * 主要功能包括：
+ * - 获取异常上下文处理器
+ * - 设置临时异常处理器
+ * - 检查异常处理器状态，必要时终止系统执行
+ * - 重置异常处理器状态并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910130
+ * @note 该函数处理偏移量0x60处的异常上下文初始化
+ */
+void InitializeExceptionHandlerContextAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -114201,7 +114239,24 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
 
 
 
-void Unwind_180910330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 内存资源处理器清理（偏移量0xd0和0x200）
+ * 
+ * 该函数负责清理内存资源处理器，遍历内存资源指针并调用清理函数。
+ * 主要功能包括：
+ * - 获取异常数据缓冲区和内存资源指针
+ * - 遍历内存资源，调用清理函数
+ * - 检查数据缓冲区状态，必要时终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910330
+ * @note 该函数处理偏移量0xd0和0x200处的内存资源清理
+ */
+void CleanupMemoryResourceHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -114673,7 +114728,22 @@ void ExecuteExceptionHandlerFunctionB(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809104b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器函数（偏移量0x260）
+ * 
+ * 该函数负责调用异常上下文处理器中的指定函数。
+ * 主要功能包括：
+ * - 获取异常上下文处理器指针
+ * - 检查指针有效性
+ * - 调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809104b0
+ * @note 该函数处理偏移量0x260处的异常上下文处理器函数调用
+ */
+void CallExceptionHandlerFunctionAtOffset260(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -120013,7 +120083,20 @@ void CleanupExceptionAtOffset2210(DataBuffer exceptionContext,int64_t contextPoi
 
 
 
-void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常清理函数 - 上下文偏移量0x2280
+ * 
+ * 清理验证上下文中偏移量0x2280处的异常处理状态
+ * 设置临时异常处理器，然后重置为默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911700
+ */
+void CleanupExceptionAtOffset2280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
