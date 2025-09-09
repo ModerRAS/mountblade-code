@@ -157598,7 +157598,7 @@ void ProcessSystemStateAndResourceAllocation(void)
     if ((((*(byte *)(SystemContext + 8) & 4) != 0) &&
         ((((*(byte *)(SystemContext + 0xc) & 4) != 0 && (*(char *)(SystemContext + 0x1d06) == '\0')) &&
          (*(char *)(SystemContext + 0x1d07) != '\0')))) && (*(long long *)(SystemContext + 0x1c98) != 0)) {
-      SystemStatusContext = (uint32_t *)InitializeSystemConfiguration(&stack0x000000b0);
+      SystemStatusContext = (uint32_t *)InitializeSystemConfiguration(&StackBuffer0B0);
       MemoryAllocationIndex = *CharacterStatusBuffer3;
       MemoryAllocationIndex = CharacterStatusBuffer3[1];
       *(uint32_t *)(SystemContext + 0x3b4) = MemoryAllocationIndex;
