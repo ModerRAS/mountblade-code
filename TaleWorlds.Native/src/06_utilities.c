@@ -28354,11 +28354,11 @@ DataBuffer ProcessDataA3(int64_t *DataHandle,int DataSize)
     return 0x26;
   }
 ValidationCheckpoint:
-  if ((0 < *(int *)((int64_t)DataHandle + 0xc)) && (*DataHandle != 0)) {
+  if ((0 < *(int *)((int64_t)DataHandle + DataBufferOffsetC)) && (*DataHandle != 0)) {
       ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataHandle,&SystemMemoryPoolB,0x100,1);
   }
   *DataHandle = (int64_t)ValidationBuffer;
-  *(int *)((int64_t)DataHandle + 0xc) = DataSize;
+  *(int *)((int64_t)DataHandle + DataBufferOffsetC) = DataSize;
   return 0;
 }
 
@@ -92619,7 +92619,7 @@ void ValidateExceptionC2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ManageMemoryResourceC2d0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -92655,7 +92655,7 @@ void ManageMemoryResourceC2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ReleaseMemoryResourceC2e0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
