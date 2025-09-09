@@ -312,6 +312,13 @@
 
 // 异常处理器数组索引常量
 #define ExceptionHandlerCallbackIndex16 0x10
+#define DataBufferIndex77 0x77
+#define DataBufferIndex76 0x76
+#define DataBufferIndex78 0x78
+#define OperationResultIndex2E 0x2e
+#define OperationResultIndex4A 0x4a
+#define OperationResultIndex3D 0x3d
+#define MemoryResourcePointerIndex11 0x11
 
 // 操作基础地址偏移量常量
 #define OperationBaseOffset50 0x50
@@ -30507,11 +30514,11 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                               if (operationResult == 0) {
-                                stackDataBuffer.highWord = dataBuffer[0x77];
+                                stackDataBuffer.highWord = dataBuffer[DataBufferIndex77];
                                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                 if (operationResult == 0) {
-                                  stackDataBuffer.highWord = dataBuffer[0x76];
+                                  stackDataBuffer.highWord = dataBuffer[DataBufferIndex76];
                                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                   if (operationResult == 0) {
