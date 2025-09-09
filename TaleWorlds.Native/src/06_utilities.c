@@ -15342,6 +15342,17 @@ DataBuffer ConditionalResourceRelease(char releaseFlag)
  * @warning 调用此函数不会产生任何效果
  * @note 原始函数名：FUN_1808908a0
  */
+/**
+ * @brief 系统主要空操作函数
+ * 
+ * 该函数是一个主要的空操作函数，不执行任何操作，直接返回。主要用于系统初始化
+ * 过程中的占位符，或者在需要函数指针但不执行实际操作的场景中使用。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空操作函数，主要用于系统初始化时的占位符
+ * @warning 调用此函数不会产生任何效果
+ */
 void SystemPrimaryNoOperation(void)
 
 {
@@ -67454,14 +67465,13 @@ void ExecuteExceptionHandlerContextB(DataBuffer operationBase, int64_t dataBuffe
  * @note 原始函数名：Unwind_180906680
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer)
-
+void ExecuteExceptionHandlerContextC(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b8);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b8);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -67480,14 +67490,13 @@ void ExecuteExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_1809066a0
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContextD(DataBuffer operationBase,int64_t dataBuffer)
-
+void ExecuteExceptionHandlerContextD(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1c0);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1c0);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }

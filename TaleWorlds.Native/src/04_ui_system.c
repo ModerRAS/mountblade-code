@@ -6677,13 +6677,34 @@ void InitializeUIRenderPipeline;
  */
 void ConfigureUIRenderPipeline;
 
- 执行UI渲染管线
+ /**
+ * @brief 执行UI渲染管线
+ * 
+ * 该函数执行UI系统的渲染管线，处理所有UI元素的渲染操作，
+ * 包括批处理、状态管理和实际的渲染调用。
+ * 
+ * @note 原始函数名: 未指定
+ */
 void ExecuteUIRenderPipeline;
 
- 清理UI渲染管线
+ /**
+ * @brief 清理UI渲染管线
+ * 
+ * 该函数清理UI系统的渲染管线，释放渲染资源，
+ * 重置渲染状态，为下一次渲染做准备。
+ * 
+ * @note 原始函数名: 未指定
+ */
 void CleanupUIRenderPipeline;
 
- 重置UI渲染管线
+ /**
+ * @brief 重置UI渲染管线
+ * 
+ * 该函数重置UI系统的渲染管线到初始状态，
+ * 清除所有渲染状态和缓存，确保渲染管线的清洁状态。
+ * 
+ * @note 原始函数名: 未指定
+ */
 void ResetUIRenderPipeline;
 
  验证UI渲染管线
