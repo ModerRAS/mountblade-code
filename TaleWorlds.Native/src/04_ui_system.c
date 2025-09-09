@@ -98846,8 +98846,8 @@ LAB_180722ca8:
 
 
 
- void FUN_180722b3e(void)
-void FUN_180722b3e(void)
+ void CleanupUIComponentResources(void)
+void CleanupUIComponentResources(void)
 
 {
   UIByte result;
@@ -99412,8 +99412,8 @@ void ProcessUIContextDataBufferManagement(UIHandle uiContext, int dataSource, in
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180723150(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
-void FUN_180723150(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+ void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+void TransferUIBufferDataWithDwordParams(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
   UIDword astackUInt48 [2];
@@ -99432,8 +99432,8 @@ void FUN_180723150(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180723360(longlong uiContext,UIHandle dataSource)
-void FUN_180723360(longlong uiContext,UIHandle dataSource)
+ void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
+void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
 
 {
   ulonglong result;
@@ -160459,35 +160459,45 @@ FUN_180760650(longlong *uiContext,longlong dataSource,longlong targetBuffer,UIHa
 
 
 
-UIHandle FUN_180760790(longlong uiContext,uint dataSource,UIDword targetBuffer)
+/**
+ * @brief 处理UI组件数据源
+ * 
+ * 该函数处理UI组件的数据源，包括内存分配、数据验证和处理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区
+ * @return UIHandle 处理结果的句柄
+ */
+UIHandle ProcessUIComponentDataSource(longlong uiContext,uint dataSource,UIDword targetBuffer)
 
 {
-  longlong *pallocatedMemory;
-  ulonglong *piterationCount;
+  longlong *allocatedMemoryPointer;
+  ulonglong *iterationCounterPointer;
   longlong stringCompareIndex;
-  ulonglong ProcessingStatus;
-  UIByte aloopCounter [16];
+  ulonglong processingStatus;
+  UIByte loopCounter [16];
   UIByte maxProcessingCount;
-  int localInt7;
-  int localInt8;
+  int bufferIndex;
+  int processingResult;
   UIDword eventProcessingStatus;
-  uint result0;
-  ulonglong result1;
-  int ProcessingResult2;
-  ulonglong ResultValue3;
-  longlong allocatedMemory4;
+  uint tempResult0;
+  ulonglong tempResult1;
+  int currentProcessingResult;
+  ulonglong dataSourceValue;
+  longlong allocatedMemoryIndex;
   
-  ResultValue3 = (ulonglong)dataSource;
-  ProcessingResult2 = 0;
+  dataSourceValue = (ulonglong)dataSource;
+  currentProcessingResult = 0;
   if (*(int *)(uiBufferData + 0xc) == 0) {
     return 0;
   }
   *(UIDword *)
    (*(longlong *)(*(longlong *)(uiBufferData + 0x20) + -8 + (longlong)*(int *)(uiBufferData + 0xc) * 8) + 0x24
    ) = 0x100000;
-  localInt7 = *(int *)(uiBufferData + 0xc) + -1;
-  allocatedMemory4 = (longlong)localInt7;
-  if (localInt7 < 0) {
+  bufferIndex = *(int *)(uiBufferData + 0xc) + -1;
+  allocatedMemoryIndex = (longlong)bufferIndex;
+  if (bufferIndex < 0) {
     return 0;
   }
   do {
