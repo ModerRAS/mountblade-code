@@ -399694,41 +399694,48 @@ UIHandle FUN_18089fc50(longlong uiContext,UIHandle *dataSource)
 
 
  /**
- * @brief 处理UI系统事件验证
+ * @brief 处理UI系统事件验证和分发
  * 
- * 处理UI系统的事件验证逻辑，用于验证UI事件的有效性和处理流程
+ * 该函数负责处理UI事件系统的验证和分发操作，主要功能包括：
+ * - 验证UI事件组件的有效性
+ * - 处理UI事件链的调用和分发
+ * - 执行事件回退处理逻辑
+ * - 管理事件的生命周期和终止
  * 
- * @param eventHandler 事件处理器指针
- * @param eventData 事件数据指针
- * @return 处理结果，0表示成功，非0表示错误
+ * @param eventHandler 事件处理器指针，包含事件处理逻辑和回调函数
+ * @param eventData 事件数据指针，包含事件类型、参数和状态信息
+ * @return uint64_t 处理结果状态码，0表示成功，非0表示错误或异常
  * 
  * @note 原始函数名: FUN_18089ffe0
+ * @warning 此函数包含不返回的子例程调用(HandleUIEventTermination)
  */
- uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
+uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 {
-  uint64_t result;
-  uint8_t stackBuffer[32];
+  uint64_t validationResult;
+  uint8_t eventStackBuffer[32];
   
+  // 检查事件类型是否在有效范围内(0x30以下)
   if (*(uint32_t *)(eventData + 0x40) < 0x31) {
-    result = ValidateUIEventComponent(eventHandler, eventData, 0x544e5645);
-    if ((int32_t)result == 0) {
-      result = 0;
+    validationResult = ValidateUIEventComponent(eventHandler, eventData, 0x544e5645);
+    if ((int32_t)validationResult == 0) {
+      validationResult = 0;
     }
   }
   else {
-    result = ProcessUIEventChain(eventData, stackBuffer, 1, 0x5453494c, 0x544e5645);
-    if ((int32_t)result == 0) {
-      result = ValidateUIEventComponent(eventHandler, eventData, 0x42545645);
-      if ((int32_t)result == 0) {
-        result = HandleUIEventFallback(eventHandler, eventData);
-        if ((int32_t)result == 0) {
-           WARNING: Subroutine does not return
-          HandleUIEventTermination(eventData, stackBuffer);
+    // 处理复杂事件链和分发逻辑
+    validationResult = ProcessUIEventChain(eventData, eventStackBuffer, 1, 0x5453494c, 0x544e5645);
+    if ((int32_t)validationResult == 0) {
+      validationResult = ValidateUIEventComponent(eventHandler, eventData, 0x42545645);
+      if ((int32_t)validationResult == 0) {
+        validationResult = HandleUIEventFallback(eventHandler, eventData);
+        if ((int32_t)validationResult == 0) {
+           // WARNING: Subroutine does not return
+          HandleUIEventTermination(eventData, eventStackBuffer);
         }
       }
     }
   }
-  return result;
+  return validationResult;
 }
 
 // =============================================================================
