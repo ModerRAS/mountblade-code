@@ -99598,13 +99598,13 @@ char ValidateSystemMemoryAllocation(uint64_t ContextHandle,uint OperationBufferS
   char *RenderCharacterStatusBuffer;
   uint8_t *RenderResultBuffer;
   
-  Utf16Char = *(void *)(SystemContext + 0x1b00);
+  Utf16Char = *(void *)(SystemContext + SystemContextDataBufferOffset);
   SystemChecksum = OperationBufferSize | 2;
   if ((OperationBufferSize & 0x1e) != 0) {
     SystemChecksum = OperationBufferSize;
   }
   if (((SystemChecksum & 0x20) == 0) ||
-     (*(long long *)(SystemContext + 0x1b08) != *(long long *)(CharacterLimit + 0x3a0))) {
+     (*(long long *)(SystemContext + SystemContextSecondaryDataBufferOffset) != *(long long *)(CharacterLimit + 0x3a0))) {
     HighByte = false;
   }
   else {
@@ -99619,13 +99619,13 @@ LAB_18010f2a4:
        ((*(byte *)(SystemContext + 0x1dd4) & 4) == 0)) {
       OperationStatus = AllocateSystemBuffer(0x20);
       if (OperationStatus != '\0') {
-        *(int *)(SystemContext + 0x1b18) = LoopCounter;
+        *(int *)(SystemContext + SystemContextCounterOffset) = LoopCounter;
         OperationStatus = '\x01';
-        *(uint8_t *)(SystemContext + 0x1b1c) = 0;
-        if ((CharacterTablePointer != 0) && (*(int *)(SystemContext + 0x1b20) != CharacterTablePointer)) {
-          *(void *)(SystemContext + 0x1b24) = 0;
+        *(uint8_t *)(SystemContext + SystemContextStatusFlagOffset) = 0;
+        if ((CharacterTablePointer != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) {
+          *(void *)(SystemContext + SystemContextFloatParameterOffset) = 0;
         }
-        NormalizedParameterValue = *(float *)(SystemContext + 0x1b24) + 0.0001;
+        NormalizedParameterValue = *(float *)(SystemContext + SystemContextFloatParameterOffset) + 0.0001;
         RemainingSpace = CalculateFloatValue(NormalizedParameterValue,NormalizedParameterValue - *(float *)(SystemContext + 0x18),0x3c23d70a,0x3f333333
                                    );
         if (RemainingSpace != 0) {
@@ -99642,11 +99642,11 @@ LAB_18010f2a4:
     goto LAB_18010f2a4;
   }
   if (HighByte) {
-    *(void *)(SystemContext + 0x1b00) = Utf16Char;
+    *(void *)(SystemContext + SystemContextDataBufferOffset) = Utf16Char;
   }
   if (OperationStatus == '\0') goto LAB_18010f4d1;
-  if ((((SystemChecksum & 0x40) != 0) && (*(int *)(SystemContext + 0x1b20) != CharacterTablePointer)) &&
-     (*(int *)(SystemContext + 0x1b20) != 0)) {
+  if ((((SystemChecksum & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
+     (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     OperationStatus = '\0';
     goto LAB_18010f4d1;
   }
@@ -99674,8 +99674,8 @@ LAB_18010f2a4:
         }
         *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
         *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-        *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-        *(void *)(SystemContext + 0x1b50) = 0;
+        *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+        *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
       }
       ProcessSystemLoop();
     }
@@ -99692,8 +99692,8 @@ LAB_18010f2a4:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
     }
     if ((((SystemChecksum & 1) == 0) || (*(int *)(SystemContext + 0x1b2c) != CharacterTablePointer)) ||
        (*(float *)(SystemContext + 0x424) <= 0.0)) goto LAB_18010f4c5;
@@ -99752,8 +99752,8 @@ LAB_18010f4d1:
         }
         *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
         *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-        *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-        *(void *)(SystemContext + 0x1b50) = 0;
+        *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+        *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
         OperationResult = 0;
       }
       else {
@@ -99771,8 +99771,8 @@ LAB_18010f4d1:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
     }
   }
   if (RenderCharacterStatusBuffer != (char *)0x0) {
@@ -99815,12 +99815,12 @@ char ValidateSystemMemoryAllocationSecondary(uint64_t ContextHandle,uint Operati
   char *RenderCharacterStatusBuffer;
   uint8_t *RenderResultBuffer;
   
-  Utf16Char = *(void *)(SystemContext + 0x1b00);
+  Utf16Char = *(void *)(SystemContext + SystemContextDataBufferOffset);
   if ((in_AL & 0x1e) != 0) {
     RegisterEBPValue = OperationBufferSize;
   }
   if (((RegisterEBPValue & 0x20) == 0) ||
-     (*(long long *)(SystemContext + 0x1b08) != *(long long *)(CharacterLimit + 0x3a0))) {
+     (*(long long *)(SystemContext + SystemContextSecondaryDataBufferOffset) != *(long long *)(CharacterLimit + 0x3a0))) {
     HighByte = false;
   }
   else {
@@ -99835,13 +99835,13 @@ LAB_18010f2a4:
        ((*(byte *)(SystemContext + 0x1dd4) & 4) == 0)) {
       OperationStatus = AllocateSystemBuffer(0x20);
       if (OperationStatus != '\0') {
-        *(int *)(SystemContext + 0x1b18) = LoopCounter;
+        *(int *)(SystemContext + SystemContextCounterOffset) = LoopCounter;
         OperationStatus = '\x01';
-        *(uint8_t *)(SystemContext + 0x1b1c) = 0;
-        if ((CharacterTablePointer != 0) && (*(int *)(SystemContext + 0x1b20) != CharacterTablePointer)) {
-          *(void *)(SystemContext + 0x1b24) = 0;
+        *(uint8_t *)(SystemContext + SystemContextStatusFlagOffset) = 0;
+        if ((CharacterTablePointer != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) {
+          *(void *)(SystemContext + SystemContextFloatParameterOffset) = 0;
         }
-        ProcessedFloatValue8 = *(float *)(SystemContext + 0x1b24) + 0.0001;
+        ProcessedFloatValue8 = *(float *)(SystemContext + SystemContextFloatParameterOffset) + 0.0001;
         RemainingSpace = CalculateFloatValue(ProcessedFloatValue8,ProcessedFloatValue8 - *(float *)(SystemContext + 0x18),0x3c23d70a,0x3f333333
                                    );
         if (RemainingSpace != 0) {
@@ -99858,11 +99858,11 @@ LAB_18010f2a4:
     goto LAB_18010f2a4;
   }
   if (HighByte) {
-    *(void *)(SystemContext + 0x1b00) = Utf16Char;
+    *(void *)(SystemContext + SystemContextDataBufferOffset) = Utf16Char;
   }
   if (OperationStatus == '\0') goto LAB_18010f4d1;
-  if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + 0x1b20) != CharacterTablePointer)) &&
-     (*(int *)(SystemContext + 0x1b20) != 0)) {
+  if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
+     (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     OperationStatus = '\0';
     goto LAB_18010f4d1;
   }
@@ -99890,8 +99890,8 @@ LAB_18010f2a4:
         }
         *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
         *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-        *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-        *(void *)(SystemContext + 0x1b50) = 0;
+        *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+        *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
       }
       ProcessSystemLoop();
     }
@@ -99908,8 +99908,8 @@ LAB_18010f2a4:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
     }
     if ((((RegisterEBPValue & 1) == 0) || (*(int *)(SystemContext + 0x1b2c) != CharacterTablePointer)) ||
        (*(float *)(SystemContext + 0x424) <= 0.0)) goto LAB_18010f4c5;
@@ -99968,8 +99968,8 @@ LAB_18010f4d1:
         }
         *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
         *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-        *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-        *(void *)(SystemContext + 0x1b50) = 0;
+        *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+        *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
         OperationResult = 0;
       }
       else {
@@ -99987,8 +99987,8 @@ LAB_18010f4d1:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
     }
   }
   if (RenderCharacterStatusBuffer != (char *)0x0) {
@@ -100030,12 +100030,12 @@ char CheckSystemMemoryStatus(void
   uint8_t *RenderResultBuffer;
   uint32_t MemoryAddressMaskPointer;
   
-  *(void *)(SystemContext + 0x1b00) = uStackX_20;
+  *(void *)(SystemContext + SystemContextDataBufferOffset) = uStackX_20;
   OperationStatus = (char)SystemDataNode;
   MemoryAddressMaskPointer = (uint32_t)SystemDataNode;
   if (RegisterR12ValueB == '\0') goto LAB_18010f4d1;
-  if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + 0x1b20) != CharacterTablePointer)) &&
-     (*(int *)(SystemContext + 0x1b20) != 0)) {
+  if ((((RegisterEBPValue & 0x40) != 0) && (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != CharacterTablePointer)) &&
+     (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) != 0)) {
     RegisterR12ValueB = '\0';
     goto LAB_18010f4d1;
   }
@@ -122143,8 +122143,8 @@ LAB_18011ee7f:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
       goto LAB_18011efb0;
     }
     ScaledValue = 0.0;
@@ -122462,8 +122462,8 @@ LAB_18011f1e4:
       }
       *(uint32_t *)(SystemContext + SystemContextProcessingCounterOffset) = 0;
       *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset) = 0;
-      *(uint8_t *)(SystemContext + 0x1b3d) = 0;
-      *(void *)(SystemContext + 0x1b50) = 0;
+      *(uint8_t *)(SystemContext + SystemContextSecondaryBooleanFlagOffset) = 0;
+      *(void *)(SystemContext + SystemContextDataPointerOffset) = 0;
       goto LAB_18011f326;
     }
     MatrixTransformMultiplier1 = 0.0;
@@ -129236,8 +129236,8 @@ LAB_180125a82:
       *(uint8_t *)(MemoryBlockIndex + 0x1b3f) = 1;
     }
   }
-  IntegerValue = *(int *)(SystemContext + 0x1b18);
-  if (*(int *)(SystemContext + 0x1b20) == 0) {
+  IntegerValue = *(int *)(SystemContext + SystemContextCounterOffset);
+  if (*(int *)(SystemContext + SystemContextCharacterTablePointerOffset) == 0) {
     *(uint32_t *)(SystemContext + 0x1b24) = 0;
   }
   else if ((IntegerValue == 0) || (*(int *)(SystemContext + 0x1b2c) != IntegerValue)) goto LAB_180125a82;
@@ -129246,12 +129246,12 @@ LAB_180125a82:
   PrimaryFloatValue = *(float *)(SystemContext + 0x18);
   EncodingValidationResult = *(int *)(SystemContext + 0x1b2c);
   if ((IntegerValue != 0) &&
-     (*(float *)(SystemContext + 0x1b24) = PrimaryFloatValue + *(float *)(SystemContext + 0x1b24), EncodingValidationResult != IntegerValue)) {
+     (*(float *)(SystemContext + SystemContextFloatParameterOffset) = PrimaryFloatValue + *(float *)(SystemContext + SystemContextFloatParameterOffset), EncodingValidationResult != IntegerValue)) {
     *(float *)(SystemContext + 0x1b28) = PrimaryFloatValue + *(float *)(SystemContext + 0x1b28);
   }
-  *(int *)(SystemContext + 0x1b20) = IntegerValue;
+  *(int *)(SystemContext + SystemContextCharacterTablePointerOffset) = IntegerValue;
   *(uint32_t *)(SystemContext + 0x1b18) = 0;
-  *(uint8_t *)(SystemContext + 0x1b1c) = 0;
+  *(uint8_t *)(SystemContext + SystemContextStatusFlagOffset) = 0;
   if (((*(int *)(SystemContext + 0x1b34) != EncodingValidationResult) && (*(int *)(SystemContext + 0x1b30) == EncodingValidationResult)) &&
      (EncodingValidationResult != 0)) {
     *(bool *)(MemoryBlockIndex + 0x1b3c) = *(int *)(MemoryBlockIndex + 0x1b2c) != 0;
