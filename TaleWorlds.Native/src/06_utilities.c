@@ -30500,14 +30500,14 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
       if (inputParameter != 0) {
         return;
       }
-      inputParameter = ProcessDataPointer(SystemContext,DataItemPointer + 0x13);
+      inputParameter = ProcessDataPointer(SystemContext,DataItemPointer + DataItemPointerOffset13);
       if (inputParameter != 0) {
         return;
       }
     }
     if (((DataItemPointer[1] & 0x800) == 0) ||
        ((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + SystemDataSecondaryOffset18), inputParameter == 0 &&
-        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x17), inputParameter == 0)))) {
+        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + DataItemPointerOffset17), inputParameter == 0)))) {
       ProcessDataAndExecuteOperationO10(SystemContext,DataItemPointer + 0x19);
     }
   }
