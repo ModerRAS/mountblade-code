@@ -11151,6 +11151,11 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackDataBufferSenary StackDataBufferF    // 栈数据缓冲区第六变量
 #define StackDataBufferSeptenary StackDataBufferG    // 栈数据缓冲区第七变量
 
+// 系统数据管理变量语义化定义
+#define StackDataBufferD TemporaryMemoryAllocationBuffer    // 临时内存分配缓冲区
+#define SystemContextBuffer50 SystemValidationContextBuffer    // 系统验证上下文缓冲区
+#define SystemOperationCount SystemOperationProcessingCounter    // 系统操作处理计数器
+
 // 异常处理系统全局变量
 ExceptionHandlerTable* ExceptionHandlerTablePtr;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
@@ -18049,7 +18054,7 @@ DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(requestPointer + ExceptionHandlerCallbackOffset10),contextBuffer);
   if ((int)operationResult == OperationSuccessCode) {
     *(DataWord *)(*(int64_t *)(contextBuffer[0] + ExceptionHandlerCallbackOffset10) + systemContextPointerOffset) = *(DataWord *)(requestPointer + systemContextDataOffset);
-    if ((*(int64_t *)(contextBuffer[0] + systemContextOffset) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
+    if ((*(int64_t *)(contextBuffer[0] + systemContextOffset) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != OperationSuccessCode)) {
       return operationResult;
     }
     operationResult = 0;
