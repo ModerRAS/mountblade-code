@@ -22373,34 +22373,34 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 void ProcessFloatComparisonAndValidation(void)
 
 {
-  float inputValue;
-  DataWord registerLowPart;
-  int operationResult;
-  DataWord registerHighPart;
-  int64_t registerContext;
-  int64_t systemContext;
-  float rangeValue;
-  DataWord stackParameter;
-  int64_t dataRangeContext;
+  float inputFloatValue;
+  DataWord registerLowValue;
+  int validationStatus;
+  DataWord registerHighValue;
+  int64_t registerDataPointer;
+  int64_t systemContextPointer;
+  float rangeCheckValue;
+  DataWord parameterStack;
+  int64_t dataRangeContextPointer;
   
   // 初始化变量
-  registerLowPart = 0;
-  registerHighPart = 0;
-  registerContext = 0;
-  systemContext = 0;
-  stackParameter = 0;
-  dataRangeContext = 0;
+  registerLowValue = 0;
+  registerHighValue = 0;
+  registerDataPointer = 0;
+  systemContextPointer = 0;
+  parameterStack = 0;
+  dataRangeContextPointer = 0;
   
-  rangeValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + SystemFloatDataOffset38);
-  inputValue = *(float *)(registerContext + SystemDataSecondaryOffset18);
-  if ((rangeValue <= inputValue) &&
-     (rangeValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + SystemDataRecordOffset3c), inputValue <= rangeValue)) {
-    rangeValue = inputValue;
+  rangeCheckValue = *(float *)(CONCAT44(registerHighValue,registerLowValue) + SystemFloatDataOffset38);
+  inputFloatValue = *(float *)(registerDataPointer + SystemDataSecondaryOffset18);
+  if ((rangeCheckValue <= inputFloatValue) &&
+     (rangeCheckValue = *(float *)(CONCAT44(registerHighValue,registerLowValue) + SystemDataRecordOffset3c), inputFloatValue <= rangeCheckValue)) {
+    rangeCheckValue = inputFloatValue;
   }
-  *(float *)(registerContext + SystemDataSecondaryOffset18) = rangeValue;
-  operationResult = ValidateOperationRangeA0(systemContext + SystemOperationContextOffset60,stackParameter,rangeValue);
-  if (operationResult == 0) {
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + systemContextOffset98),systemContext);
+  *(float *)(registerDataPointer + SystemDataSecondaryOffset18) = rangeCheckValue;
+  validationStatus = ValidateOperationRangeA0(systemContextPointer + SystemOperationContextOffset60,parameterStack,rangeCheckValue);
+  if (validationStatus == 0) {
+      CleanupSystemEventA0(*(DataBuffer *)(systemContextPointer + systemContextOffset98),systemContextPointer);
   }
   return;
 }
@@ -22411,34 +22411,34 @@ void ProcessFloatComparisonAndValidation(void)
 DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
 
 {
-  float eventDataValue;
-  DataBuffer operationResult;
-  int64_t dataRangeOffset;
-  DataWord eventDataBuffer [2];
+  float eventFloatData;
+  DataBuffer processingResult;
+  int64_t rangeDataOffset;
+  DataWord eventProcessingBuffer [2];
   
-  eventDataBuffer[0] = 0;
-  operationResult = ProcessSystemDataTransferA0(systemContext + SystemOperationContextOffset60,eventContext + ComponentHandleOffset,eventDataBuffer);
-  if ((int)operationResult == 0) {
-    dataRangeOffset = GetOperationRangeDataA0(systemContext + SystemOperationContextOffset60,eventDataBuffer[0]);
-    if ((*(uint *)(dataRangeOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
+  eventProcessingBuffer[0] = 0;
+  processingResult = ProcessSystemDataTransferA0(systemContext + SystemOperationContextOffset60,eventContext + ComponentHandleOffset,eventProcessingBuffer);
+  if ((int)processingResult == 0) {
+    rangeDataOffset = GetOperationRangeDataA0(systemContext + SystemOperationContextOffset60,eventProcessingBuffer[0]);
+    if ((*(uint *)(rangeDataOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
-    operationResult = ProcessDataValidationA0(dataRangeOffset,eventContext + EventContextValidationOffset1D,eventContext + SystemDataSecondaryOffset18);
-    if ((int)operationResult == 0) {
-      eventDataValue = *(float *)(eventContext + SystemDataSecondaryOffset18);
-      if ((eventDataValue < *(float *)(dataRangeOffset + SystemFloatDataOffset38)) ||
-         (*(float *)(dataRangeOffset + SystemDataRecordOffset3c) <= eventDataValue && eventDataValue != *(float *)(dataRangeOffset + SystemDataRecordOffset3c))) {
-        operationResult = ValidationErrorCode;
+    processingResult = ProcessDataValidationA0(rangeDataOffset,eventContext + EventContextValidationOffset1D,eventContext + SystemDataSecondaryOffset18);
+    if ((int)processingResult == 0) {
+      eventFloatData = *(float *)(eventContext + SystemDataSecondaryOffset18);
+      if ((eventFloatData < *(float *)(rangeDataOffset + SystemFloatDataOffset38)) ||
+         (*(float *)(rangeDataOffset + SystemDataRecordOffset3c) <= eventFloatData && eventFloatData != *(float *)(rangeDataOffset + SystemDataRecordOffset3c))) {
+        processingResult = ValidationErrorCode;
       }
       else {
-        operationResult = ValidateOperationRangeA0(systemContext + SystemOperationContextOffset60,eventDataBuffer[0]);
-        if ((int)operationResult == 0) {
+        processingResult = ValidateOperationRangeA0(systemContext + SystemOperationContextOffset60,eventProcessingBuffer[0]);
+        if ((int)processingResult == 0) {
             CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemEventOffset),eventContext);
         }
       }
     }
   }
-  return operationResult;
+  return processingResult;
 }
 
 
