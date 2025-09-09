@@ -100574,13 +100574,13 @@ void CalculateUIFontMetrics(int *uiContext,char *dataSource)
     fontTableIndex = fontTableIndex + 1;
   } while (fontTableIndex < 0xf);
 LAB_180723f9b:
-  stringCompareIndex = (longlong)(int)currentChar;
-  firstChar = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
-          (char)((stringCompareIndex / 3 + (stringCompareIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
-  dataSource[2] = firstChar;
-  *dataSource = currentChar + firstChar * -3;
-  ProcessingResult2 = 0;
-  *uiContext = processedCount;
+  fontComparisonIndex = (longlong)(int)currentCharacter;
+  firstCharacter = (char)((ulonglong)(fontComparisonIndex * 0x55555556) >> 0x20) +
+          (char)((fontComparisonIndex / 3 + (fontComparisonIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
+  dataSource[2] = firstCharacter;
+  *dataSource = currentCharacter + firstCharacter * -3;
+  metricProcessingResult = 0;
+  *uiContext = metricProcessedCount;
   do {
     TempInt4 = 0;
     sVar1 = *(short *)(&FontMetricTableX + (longlong)ProcessingResult2 * 2);
