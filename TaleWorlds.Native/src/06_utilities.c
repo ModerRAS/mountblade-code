@@ -102653,7 +102653,7 @@ void ExecuteMemoryCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090ddb0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x50,2,ProcessMemoryOperationA2);
@@ -102677,7 +102677,7 @@ void Unwind_18090ddb0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @see ExecuteMemoryOperation, ProcessMemoryOperationA1
  */
-void Unwind_18090dde0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x98,2,ProcessMemoryOperationA1);
@@ -103039,7 +103039,7 @@ void InvokeExceptionHandlerAtOffset13B8(DataBuffer operationBase, int64_t dataBu
 
 
 
-void Unwind_18090df40(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103053,7 +103053,7 @@ void Unwind_18090df40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090df60(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103067,7 +103067,7 @@ void Unwind_18090df60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090df80(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103081,7 +103081,7 @@ void Unwind_18090df80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dfa0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103095,7 +103095,7 @@ void Unwind_18090dfa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dfc0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA7(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103109,7 +103109,7 @@ void Unwind_18090dfc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dfe0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103889,7 +103889,7 @@ void DestroyMutexE3F0(void)
 
 
 
-void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0xe8));
