@@ -13550,10 +13550,10 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   DataProcessingFlags = 0;
   
   // 栈保护变量
-  uint64_t stackSecurityGuard;
+  uint64_t StackSecurityGuard;
   
   // 执行栈保护检查，防止栈溢出攻击
-  stackSecurityGuard = ExceptionEncryptionKeyValue ^ (uint64_t)SecurityValidationBuffer;
+  StackSecurityGuard = ExceptionEncryptionKeyValue ^ (uint64_t)SecurityValidationBuffer;
   
   // 查询和检索系统数据，获取系统上下文信息
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
@@ -13598,7 +13598,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     }
   }
   // 执行最终的安全验证检查
-  ExecuteSecurityCheck(stackSecurityGuard ^ (uint64_t)SecurityValidationBuffer);
+  ExecuteSecurityCheck(StackSecurityGuard ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
