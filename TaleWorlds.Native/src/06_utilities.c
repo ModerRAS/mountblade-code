@@ -30434,7 +30434,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   int64_t stackFrameContext;
   
   iterationCount = 0;
-  if (0 < *(int *)(destinationContext + 0x1a0)) {
+  if (0 < *(int *)(destinationContext + DestinationContextOffset1A0)) {
     do {
       calculatedIndex = (int64_t)iterationCount * 0x30 + destinationContext;
       operationStatus = ValidateAndExecuteOperationsA1(operationBase,calculatedIndex + ExceptionHandlerCallbackOffset10);
@@ -30455,7 +30455,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
       }
       iterationCount = iterationCount + 1;
       operationBase = interpolatedFloatValue;
-    } while (iterationCount < *(int *)(destinationContext + 0x1a0));
+    } while (iterationCount < *(int *)(destinationContext + DestinationContextOffset1A0));
   }
   systemDataBuffer = *(uint *)(destinationContext + 400);
   memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
@@ -30470,10 +30470,10 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,stackFrameContext + ArrayDataOffset,operationResult);
   if (iterationCount == 0) {
     memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-    *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x194);
+    *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextOffset194);
     iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
-    if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(validationFloatValue,DestinationContext + 0x198), iterationCount == 0))
-       && (iterationCount = ValidateParametersA1(accumulatedFloatValue,DestinationContext + 0x19c), iterationCount == 0)) {
+    if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(validationFloatValue,DestinationContext + DestinationContextOffset198), iterationCount == 0))
+       && (iterationCount = ValidateParametersA1(accumulatedFloatValue,DestinationContext + DestinationContextOffset19C), iterationCount == 0)) {
       memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
       *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1a4);
       iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
