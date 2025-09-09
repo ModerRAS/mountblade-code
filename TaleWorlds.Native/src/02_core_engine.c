@@ -77895,7 +77895,7 @@ SystemErrorHandlingLabel:
     }
   }
   CharacterStatusBuffer = SystemCharacterStatusBuffer;
-LAB_18009556a:
+SystemErrorHandlingCompleteLabel:
   SystemTemplatePointer = &SystemNullTemplate;
   if (ValidationBytePointer48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -77920,7 +77920,7 @@ LAB_18009556a:
     do {
       if (*(int *)(CharacterStatusBuffer3 + 6) == 0) {
         LowByte = true;
-LAB_180095648:
+CharacterStatusBufferProcessingLabel:
         TemporaryBuffer = (void *)*CharacterStatusBuffer3;
       }
       else {
@@ -77932,7 +77932,7 @@ LAB_180095648:
           SystemBytePointer = SystemBytePointer + 1;
         } while (SystemChecksum != 0);
         LowByte = 0 < ComputedResult;
-        if (0 < ComputedResult) goto LAB_180095648;
+        if (0 < ComputedResult) goto CharacterStatusBufferProcessingLabel;
         TemporaryBuffer = (void *)CharacterStatusBuffer3[1];
       }
       if (LowByte) {
