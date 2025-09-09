@@ -37147,22 +37147,22 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
   uiComponentDataPtr = (short *)*dataSource;
   loopCounterBuffer1 = loopCounterBuffer1 ^ animationIterationBuffer;
   transformShearY = loopCounterBuffer1._0_2_ - animationIterationBuffer._0_2_;
-  sVar52 = aloopCounter1._2_2_ - aiterationCount1._2_2_;
-  sVar53 = aloopCounter1._4_2_ - aiterationCount1._4_2_;
-  sVar54 = aloopCounter1._6_2_ - aiterationCount1._6_2_;
-  sVar55 = aloopCounter1._8_2_ - aiterationCount1._8_2_;
-  sVar56 = aloopCounter1._10_2_ - aiterationCount1._10_2_;
-  sVar57 = aloopCounter1._12_2_ - aiterationCount1._12_2_;
-  sVar58 = aloopCounter1._14_2_ - aiterationCount1._14_2_;
-  aloopCounter0 = aloopCounter0 ^ aEventTypeCode8;
-  *psVar1 = sVar49;
-  psVar1[1] = sVar52;
-  psVar1[2] = sVar53;
-  psVar1[3] = sVar54;
-  psVar1[4] = sVar55;
-  psVar1[5] = sVar56;
-  psVar1[6] = sVar57;
-  psVar1[7] = sVar58;
+  transformShearZ = loopCounterBuffer1._2_2_ - animationIterationBuffer._2_2_;
+  transformPerspectiveX = loopCounterBuffer1._4_2_ - animationIterationBuffer._4_2_;
+  transformPerspectiveY = loopCounterBuffer1._6_2_ - animationIterationBuffer._6_2_;
+  transformPerspectiveZ = loopCounterBuffer1._8_2_ - animationIterationBuffer._8_2_;
+  transformProjectionX = loopCounterBuffer1._10_2_ - animationIterationBuffer._10_2_;
+  transformProjectionY = loopCounterBuffer1._12_2_ - animationIterationBuffer._12_2_;
+  transformProjectionZ = loopCounterBuffer1._14_2_ - animationIterationBuffer._14_2_;
+  loopCounterBuffer0 = loopCounterBuffer0 ^ eventTypeCodeBuffer;
+  *uiComponentDataPtr = transformShearY;
+  uiComponentDataPtr[1] = transformShearZ;
+  uiComponentDataPtr[2] = transformPerspectiveX;
+  uiComponentDataPtr[3] = transformPerspectiveY;
+  uiComponentDataPtr[4] = transformPerspectiveZ;
+  uiComponentDataPtr[5] = transformProjectionX;
+  uiComponentDataPtr[6] = transformProjectionY;
+  uiComponentDataPtr[7] = transformProjectionZ;
   ContextFirstValue9 = aloopCounter0._0_2_ - aEventTypeCode8._0_2_;
   sVar42 = aloopCounter0._2_2_ - aEventTypeCode8._2_2_;
   sVar43 = aloopCounter0._4_2_ - aEventTypeCode8._4_2_;
@@ -205503,8 +205503,15 @@ UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
 
 
 
- void FUN_1807895a2(void)
-void FUN_1807895a2(void)
+ /**
+ * @brief 初始化UI系统空函数
+ * 
+ * 该函数是一个空的初始化函数，可能用于UI系统的初始化过程中的占位符。
+ * 
+ * @note 原始函数名：FUN_1807895a2
+ */
+void InitializeUIEmptyFunction(void)
+void InitializeUIEmptyFunction(void)
 
 {
   return;
