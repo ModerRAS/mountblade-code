@@ -302948,20 +302948,31 @@ UIDword GetUICriticalSectionStatus(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f2d0(longlong *uiContext)
+/**
+ * @brief 释放UI上下文资源
+ * 
+ * 该函数负责释放UI上下文中的所有资源，包括：
+ * - 清理组件句柄
+ * - 释放内存分配
+ * - 重置上下文状态
+ * 
+ * @param uiContext UI上下文指针
+ * @return ulonglong 释放操作结果码
+ */
+ulonglong ReleaseUIContextResources(longlong *uiContext)
 
 {
-  uint *ptrResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  UIHandle ProcessingStatus;
-  uint loopCounter;
+  uint *componentDataPtr;
+  int validationStatus;
+  longlong contextIndex;
+  UIHandle componentHandle;
+  uint componentCount;
   uint maxProcessingCount;
-  int localInt7;
-  ulonglong eventProcessingCounter;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  int *pProcessingResult1;
+  int componentIndex;
+  ulonglong processedCount;
+  longlong dataOffset;
+  ulonglong loopResult;
+  int *nextComponentPtr;
   
   stringCompareIndex = uiContext[5];
   if (stringCompareIndex != 0) {
