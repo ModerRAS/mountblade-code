@@ -59562,8 +59562,8 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   void* SystemInitializationStatusFlags;
   ulong long *SystemStatusFlagPointer;
   long long *SystemPoolPointer;
-  code *SystemFunctionPointer70;
-  code *SystemFunctionPointer68;
+  code *TertiarySystemFunctionPointer;
+  code *QuaternarySystemFunctionPointer;
   void* ThreadContext;
   void* SystemProcessFlags;
   void* ConcatenatedSystemValue;
@@ -59581,11 +59581,11 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
       if ((char)ConfigurationDataPointer[2] != '\0') {
         SystemStatusFlagPointer = (ulong long *)0x0;
         SystemPoolPointer = (long long *)0x0;
-        SystemFunctionPointer70 = (code *)0x0;
-        SystemFunctionPointer68 = _guard_check_icall;
+        TertiarySystemFunctionPointer = (code *)0x0;
+        QuaternarySystemFunctionPointer = _guard_check_icall;
         ProcessSystemResourceValidation(SystemValidationResult,SystemResourceManager,&SystemStatusFlagPointer);
-        if (SystemFunctionPointer70 != (code *)0x0) {
-          (*SystemFunctionPointer70)(&SystemStatusFlagPointer,0,0);
+        if (TertiarySystemFunctionPointer != (code *)0x0) {
+          (*TertiarySystemFunctionPointer)(&SystemStatusFlagPointer,0,0);
         }
       }
       SystemInitializationStatusFlag = ValidateSystemResourceManagerStatus(SystemResourceManager);
@@ -66236,7 +66236,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   long long SystemConfigurationFlags;
   uint32_t SystemConfigurationFlag;
   long long *aSystemPoolPointer [2];
-  code *SystemFunctionPointer68;
+  code *QuaternarySystemFunctionPointer;
   void* *systemContextPointer;
   void* SystemProcessFlags;
   long long *pLocalSystemValue1;
@@ -66392,7 +66392,7 @@ LabelCheckThreadFlags2:
       ThreadContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xe0,8,3);
       (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
       (**(code **)(*PrimaryResourceDataPointer + 0x28))(PrimaryResourceDataPointer);
-      SystemFunctionPointer68 = SystemMemoryAllocationCallback;
+      QuaternarySystemFunctionPointer = SystemMemoryAllocationCallback;
       pSystemThreadContext = &SystemValueTableA;
       SystemContextReference = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
       *SystemContextReference = SystemResourceManager;
@@ -67057,7 +67057,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
   uint8_t SystemProcessingBuffer1 [16];
   code *SecondarySystemFunctionPointer;
   uint8_t SystemProcessingBuffer2 [16];
-  code *SystemFunctionPointer3;
+  code *TertiarySystemFunctionPointer;
   
   SystemStackParameter = SystemInvalidHandleTemplate;
   resourcePoolPointer = (long long *)*ConfigurationFlag;
@@ -67099,8 +67099,8 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
     }
     SetupSystemProcessingBuffer(SystemProcessingBuffer2,&SystemThreadLocalStorageBasePointer);
     (*SystemCodePointer)(LocalBufferPointer,&SystemInitializationData,SystemResourceManager + 0x17,0,SystemProcessingBuffer2,&SystemStatusFlag1);
-    if (SystemFunctionPointer3 != (code *)0x0) {
-      (*SystemFunctionPointer3)(SystemProcessingBuffer2,0,0);
+    if (TertiarySystemFunctionPointer != (code *)0x0) {
+      (*TertiarySystemFunctionPointer)(SystemProcessingBuffer2,0,0);
     }
     if (PrimarySystemFunctionPointer != (code *)0x0) {
       (*PrimarySystemFunctionPointer)(&SystemStatusFlag1,0,0);
