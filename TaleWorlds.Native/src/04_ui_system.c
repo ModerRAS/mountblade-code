@@ -1468,6 +1468,15 @@ typedef enum {
 #define sVar16 UIShortVar16
 #define sVar17 UIShortVar17
 #define BufferCapacityValue UIBufferCapacityValue
+
+// UI系统字节指针变量美化
+#define pbVar9 UIPtrByteVar9
+
+// UI系统堆栈变量美化
+#define stackInt158 UIStackInt158
+#define isCharacterMatch2 UIIsCharacterMatch2
+#define isCharacterMatch3 UIIsCharacterMatch3
+#define ProcessingFlag UIProcessingFlag
 #define FUN_18089aa80 UIEmptyFunction13
 #define FUN_18089aa88 UIEmptyFunction14
 #define FUN_18089aa90 UIEmptyFunction15
