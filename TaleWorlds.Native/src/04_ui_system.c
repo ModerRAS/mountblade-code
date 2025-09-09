@@ -4750,15 +4750,15 @@ void* UIGestureCoordinates;
 #define UIComponentStateTable UNK_1809535b0                  // UI组件状态表
 
  // UI系统验证数据表美化
-#define UIValidationDataTableInput UNK_180954770
-#define UIValidationDataTableState UNK_1809536c0
-#define UIValidationDataTableSecurity UNK_180953704
+#define UIValidationDataTableInput UNK_180954770     // UI验证数据表输入 - 存储输入验证数据
+#define UIValidationDataTableState UNK_1809536c0     // UI验证数据表状态 - 存储状态验证数据
+#define UIValidationDataTableSecurity UNK_180953704   // UI验证数据表安全 - 存储安全验证数据
 
  // UI系统数据表美化
-#define UIDataTableGlobal UNK_180956f72
-#define UIDataTableComponent UNK_18097edf8
-#define UIDataTableEvent UNK_180980dc0
-#define UIDataTableResource UNK_180981620
+#define UIDataTableGlobal UNK_180956f72     // UI全局数据表 - 存储全局UI数据
+#define UIDataTableComponent UNK_18097edf8   // UI组件数据表 - 存储组件相关数据
+#define UIDataTableEvent UNK_180980dc0       // UI事件数据表 - 存储事件相关数据
+#define UIDataTableResource UNK_180981620    // UI资源数据表 - 存储资源相关数据
 
  // UI系统渲染缓冲区指针宏定义
 #define UIComponentDataBufferPointer UNK_18097f660        // UI组件数据缓冲区指针
