@@ -70104,8 +70104,8 @@ void InitializeSystemAndExecuteCallback(DataBuffer operationBase, int64_t dataBu
 
 {
   InitializeSystemResourcesI0();
-  if (*(int64_t **)(dataBuffer + 0xd0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xd0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + SystemCallbackPointerOffsetD0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemCallbackPointerOffsetD0) + SystemFloatDataOffset38))();
   }
   return;
 }

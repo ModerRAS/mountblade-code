@@ -478,7 +478,7 @@ typedef enum {
 #define DAT_180be2ee8 UIDataTableQuinaryE8                   // UI第五数据表E8 - 存储UI系统的第五级数据
 #define DAT_180980640 UIDataTableSenary40                    // UI第六数据表40 - 存储UI系统的第六级数据
 #define DAT_1809473f0 UIVectorCalculationMask3F0             // UI向量计算掩码3F0 - 用于向量运算的掩码
-#define DAT_180947510 UIVectorMultiplyMask30
+#define DAT_180947510 UIVectorCalculationMask510             // UI向量计算掩码510 - 用于向量运算的掩码
 #define DAT_180947370 UIVectorMultiplyMask4
 #define DAT_180a40580 UIXOREncryptionKey
 #define _DAT_180d4a8b8 UIPixelProcessorPointer
