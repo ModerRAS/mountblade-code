@@ -539,6 +539,8 @@ typedef enum {
 #define FUN_180744ae0 ProcessUIComponentHandleWithEventDispatch
 #define FUN_180786104 SetupUIContextEventHandle
 #define FUN_1807861b0 InitializeUIContextDataBuffer
+#define FUN_180786250 ProcessUIContextMemoryRelease
+#define FUN_180786262 ProcessUIContextDataSourceValidation
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -100038,7 +100040,7 @@ void ProcessUIContextDataSource(longlong uiContext,UIHandle dataSource)
   
   xorCalculationResult = XorEncryptionKey ^ (ulonglong)encryptedBuffer;
   calculationResult = (longlong)(*(int *)(uiBufferData + 0x10c) + *(int *)(uiBufferData + 0x114)) * 4;
-  iterationCount = result + 0xf;
+  loopIterationCount = calculationResult + 0xf;
   if (iterationCount <= result) {
     iterationCount = 0xffffffffffffff0;
   }
