@@ -14859,13 +14859,13 @@ DataWord ReleaseStackResource(void)
   }
   
   // 检查栈数据指针
-  stackDataPointer = (int64_t *)(calculatedStackResourcePointer + ExceptionHandlerCallbackOffset10);
-  if (*stackDataPointer == 0) {
+  systemStackDataPointer = (int64_t *)(calculatedStackResourcePointer + ExceptionHandlerCallbackOffset10);
+  if (*systemStackDataPointer == 0) {
     return ResourceInvalidErrorCode;  // 返回资源无效错误代码
   }
   
   // 释放栈资源（注意：此函数不会返回）
-  ReleaseResource(*stackDataPointer, 1);
+  ReleaseResource(*systemStackDataPointer, 1);
 }
 
 
@@ -24655,15 +24655,15 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   ByteFlag validationBuffer1 [8];
   ByteFlag validationBuffer2 [8];
   ByteFlag extendedValidationBuffer [40];
-  DataWord *stackDataPointerInput;
+  DataWord *systemStackDataPointerInput;
   DataWord *systemResourceDataPointer;
   DataWord *systemValidationDataPointer;
-  DataWord *stackDataPointer2;
-  DataWord *stackDataPointer3;
-  DataWord *stackDataPointer4;
-  DataWord *stackDataPointer5;
-  DataWord *stackDataPointer6;
-  DataWord *stackDataPointer7;
+  DataWord *systemStackDataPointer2;
+  DataWord *systemStackDataPointer3;
+  DataWord *systemStackDataPointer4;
+  DataWord *systemStackDataPointer5;
+  DataWord *systemStackDataPointer6;
+  DataWord *systemStackDataPointer7;
   DataWord stackDataOffsetPrimary;
   DataWord stackDataOffsetSecondary;
   DataWord stackDataOffsetTertiary;
