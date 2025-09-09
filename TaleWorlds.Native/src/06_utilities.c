@@ -2199,6 +2199,12 @@
 #define OperationBaseOffsetB0 0xb0
 #define OperationBaseOffset98 0x98
 
+// 系统恢复操作偏移量常量
+#define SystemRecoveryContextOffset 0x50                // 系统恢复上下文偏移量
+#define SystemUpdateContextOffset 0x58                  // 系统更新上下文偏移量
+#define SystemUpgradeContextOffset 0x60                // 系统升级上下文偏移量
+#define SystemMaintenanceContextOffset 0x68            // 系统维护上下文偏移量
+
 // 系统管理相关偏移量常量
 #define SystemManagementOffset98 0x98
 
@@ -82019,7 +82025,7 @@ void ExecuteSystemRecoveryA0(DataBuffer operationBase, int64_t dataBuffer)
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x50);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemRecoveryContextOffset);
   if (exceptionContextPointer != (int64_t *)0x0) {
     // 执行异常处理回调函数
     (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
@@ -82051,7 +82057,7 @@ void ExecuteSystemUpdateA0(DataBuffer operationBase, int64_t dataBuffer)
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x58);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemUpdateContextOffset);
   if (exceptionContextPointer != (int64_t *)0x0) {
     // 执行异常处理回调函数
     (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
@@ -82083,7 +82089,7 @@ void ExecuteSystemUpgradeA0(DataBuffer operationBase, int64_t dataBuffer)
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x60);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemUpgradeContextOffset);
   if (exceptionContextPointer != (int64_t *)0x0) {
     // 执行异常处理回调函数
     (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
@@ -82115,7 +82121,7 @@ void ExecuteSystemMaintenanceA0(DataBuffer operationBase, int64_t dataBuffer)
   int64_t *exceptionContextPointer;   // 异常处理上下文指针
   
   // 获取异常处理上下文指针
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x68);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + SystemMaintenanceContextOffset);
   if (exceptionContextPointer != (int64_t *)0x0) {
     // 执行异常处理回调函数
     (**(FunctionPointer**)(*exceptionContextPointer + SystemComponentContextOffset))();
