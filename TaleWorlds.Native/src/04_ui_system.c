@@ -2571,6 +2571,40 @@ typedef enum {
 #define baseValue7 UIBaseValue7
 #define preservedXMM6 UIPreservedXMM6
 
+// UI系统寄存器变量美化补充
+#define unmodifiedXMM9_Da UIUnmodifiedXMM9_Data
+#define unmodifiedXMM10_Da UIUnmodifiedXMM10_Data
+#define unmodifiedXMM12_Da UIUnmodifiedXMM12_Data
+#define unmodifiedXMM12_Db UIUnmodifiedXMM12_DataB
+#define unmodifiedXMM12_Dc UIUnmodifiedXMM12_DataC
+#define unmodifiedXMM12_Dd UIUnmodifiedXMM12_DataD
+#define unmodifiedXMM14_Da UIUnmodifiedXMM14_Data
+#define unmodifiedXMM15_Da UIUnmodifiedXMM15_Data
+#define preservedXMM7 UIPreservedXMM7
+
+// UI系统堆栈变量美化补充
+#define fStack0000000000000030 UITransformStack30
+#define fStack0000000000000034 UITransformStack34
+#define fStack0000000000000038 UITransformStack38
+#define fStack000000000000003c UITransformStack3c
+#define fStack0000000000000040 UITransformStack40
+#define fStack0000000000000044 UITransformStack44
+#define fStack0000000000000048 UITransformStack48
+#define fStack000000000000004c UITransformStack4c
+
+// UI系统堆栈变量美化补充
+#define bStack_a48 UIBoolStackA48
+#define cStack_a47 UICharStackA47
+#define stackUInta44 UIStackUIntA44
+#define stackUInta38 UIStackUIntA38
+#define stackUInta30 UIStackUIntA30
+#define stackUInta28 UIStackUIntA28
+#define stackUInta20 UIStackUIntA20
+#define fStack_a18 UIFloatStackA18
+#define fStack_a14 UIFloatStackA14
+#define stackLonga10 UIStackLongA10
+#define pstackUInta08 UIPtrStackUIntA08
+
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
