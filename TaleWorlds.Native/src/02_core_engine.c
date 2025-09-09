@@ -223578,7 +223578,7 @@ void ProcessContextHandleAndUnicodeCalculation(long long *ContextHandle,uint64_t
   unsigned long long UnicodeCodePoint;
   
   if (*ContextHandle != 0) {
-    FUN_180189900(*ContextHandle,ContextHandle[1],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    ProcessSystemMemoryCleanup(*ContextHandle,ContextHandle[1],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     CharacterTablePointer = *ContextHandle;
     UnicodeCodePoint = ((ContextHandle[2] - CharacterTablePointer) / 0x18) * 0x18;
     BufferStatus = LoopCounter;

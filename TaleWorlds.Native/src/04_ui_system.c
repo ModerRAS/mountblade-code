@@ -100220,8 +100220,8 @@ LAB_180724b88:
           if (localChar4 < '?') {
             localChar4 = '?';
           }
-          *SourceHandle = localChar4;
-          *contextHandle = localChar4;
+          *sourceBuffer = normalizedChar;
+          *contextBuffer = normalizedChar;
         }
       }
     }
