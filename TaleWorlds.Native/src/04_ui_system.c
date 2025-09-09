@@ -50070,22 +50070,21 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   该函数使用AVX2指令集进行高性能像素处理
   支持多种缓冲区大小和处理模式
   原始函数名: FUN_180691080
- int CalculateUIImageBlockDifference(UIByte (*uiContext) [32],int dataSource,int targetBuffer,int bufferSize,
-                 UIByte (*resultPointer) [32],int param_6,uint param_7,int *param_8)
+ int CalculateUIImageBlockDifference(UIByte (*sourceImageData) [32],int sourceStride,int targetBuffer,int processingMode,
+                 UIByte (*targetImageData) [32],int targetStride,uint pixelCount,int *differenceResult)
 
 {
-  ulonglong pixelCount;
-  UIByte tempVector1 [32];
+  ulonglong remainingPixels;
+  UIByte sourceVector1 [32];
   UIByte zeroVector [32];
-  UIByte tempVector3 [32];
-  UIByte tempVector4 [32];
-  UIByte tempVector5 [32];
-  UIByte tempVector6 [32];
-  UIByte tempVector7 [32];
-  UIByte tempVector8 [32];
-  UIByte tempVector9 [32];
-  UIByte sumResult0 [64];
-  UIByte sumResult1 [64];
+  UIByte sourceVector2 [32];
+  UIByte targetVector1 [32];
+  UIByte diffVector1 [32];
+  UIByte diffVector2 [32];
+  UIByte tempVector1 [32];
+  UIByte tempVector2 [32];
+  UIByte squaredSum0 [64];
+  UIByte squaredSum1 [64];
   
   zeroVector = ZEXT832(0) << 0x40;
   sumResult0 = ZEXT3264(zeroVector);
@@ -116595,6 +116594,24 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief UI系统数据分配和初始化函数
+ * 
+ * 该函数负责在UI系统中分配内存并初始化数据结构。
+ * 主要功能包括：
+ * 1. 分配UI系统内存资源
+ * 2. 初始化迭代计数器
+ * 3. 验证内存分配状态
+ * 4. 处理字符串比较索引
+ * 5. 返回处理状态
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return UIHandle 处理状态句柄，0x26表示失败，0表示成功
+ * 
+ * @note 原始函数名：FUN_1807388f6
+ */
 UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
@@ -116646,6 +116663,20 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief UI系统目标句柄设置函数
+ * 
+ * 该函数负责设置UI系统中的目标句柄，并将其存储到相应的数据结构中。
+ * 主要功能包括：
+ * 1. 验证UI系统状态
+ * 2. 设置目标句柄到内存映射表
+ * 3. 更新句柄索引信息
+ * 4. 返回操作状态
+ * 
+ * @return UIHandle 操作状态句柄，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_1807389a0
+ */
 UIHandle FUN_1807389a0(void)
 
 {
