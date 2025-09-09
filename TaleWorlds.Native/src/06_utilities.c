@@ -3956,7 +3956,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 上下文验证失败可能导致系统行为异常
  * @see ValidateSystemParametersAndConfig, ProcessSystemDataA0
  */
-#define ValidatesystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 FUN_180090b80
 
 /**
  * @brief 数据数组处理函数A0
@@ -3979,7 +3979,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
  * @see InitializeDataBuffer, ValidateSystemParametersAndConfig
  */
-#define ProcessDataArrayA0 FUN_180057010
+#define ProcessDataArrayWithValidation FUN_180057010
 
 /**
  * @brief 数据缓冲区初始化函数
@@ -4000,7 +4000,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800a19c0
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
- * @see ProcessDataArrayA0, ProcessSystemDataA0
+ * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
 #define InitializeDataBuffer FUN_1800a19c0
 
@@ -4631,7 +4631,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808af280
  */
-#define ValidatesystemContextA0 FUN_1808af280
+#define ValidateSystemContextA0 FUN_1808af280
 
 /**
  * @brief 数据数组处理函数B0
@@ -37379,7 +37379,7 @@ ValidationContextHandler2:
     if (0x3ff < validationBuffer[0]) {
       return 0xd;
     }
-    validationStatus = ValidatesystemContextA0(operationBase + 0x48);
+    validationStatus = ValidateSystemContextA0(operationBase + 0x48);
     if ((int)validationStatus == 0) goto ProcessCheckpointValidationState;
   }
   else {
@@ -37392,7 +37392,7 @@ ValidationStateHandler:
   arrayIndex = 0;
   if (0 < (int)validationBuffer[0]) {
     do {
-      validationStatus = ProcessDataArrayA0(operationBase,dataBuffer,arrayIndex);
+      validationStatus = ProcessDataArrayWithValidation(operationBase,dataBuffer,arrayIndex);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -37461,7 +37461,7 @@ ValidationContextHandler2:
     if (0x3ff < StackDataBufferB) {
       return 0xd;
     }
-    validationStatus = ValidatesystemContextA0(StackFrameContext + 0x48);
+    validationStatus = ValidateSystemContextA0(StackFrameContext + 0x48);
     if ((int)validationStatus == 0) goto ProcessCheckpointValidationState;
   }
   else {
@@ -37474,7 +37474,7 @@ ValidationStateHandler:
   arrayIndex = 0;
   if (0 < (int)StackDataBufferB) {
     do {
-      validationStatus = ProcessDataArrayA0();
+      validationStatus = ProcessDataArrayWithValidation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -69866,7 +69866,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180906db0
  */
-void ValidatesystemContextA0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateSystemContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -77790,7 +77790,7 @@ void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
   cleanupFlag = SystemCleanupFlagAlternative;
   *(int64_t *)(contextBase + 0x15d8) =
        *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -0x186a0;
-  ValidatesystemContextA0((int64_t *)(contextBase + 0x8b0));
+  ValidateSystemContextA0((int64_t *)(contextBase + 0x8b0));
   *(DataWord *)(contextBase + 0x15e8) = 0;
   memoryresourcePointer = *(int64_t **)(contextBase + 0x15d0);
   *(DataBuffer *)(contextBase + 0x15d0) = 0;
@@ -79307,7 +79307,7 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
 void ProcessDataArrayAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerContextOffset170);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerContextOffset170);
   return;
 }
 
@@ -79469,7 +79469,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
 void ProcessDataArrayAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerContextOffset170);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerContextOffset170);
   return;
 }
 
@@ -79487,7 +79487,7 @@ void ProcessDataArrayAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayAtOffset420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerContextOffset170);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerContextOffset170);
   return;
 }
 
@@ -80174,19 +80174,19 @@ void SetDefaultExceptionHandlerToGlobalPointerA1(void)
 /**
  * @brief 处理数据数组操作A0
  * 
- * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayWithValidation函数
  * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
  * 
  * @param operationBase 操作基础缓冲区（未使用）
  * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
  * 
  * @note 原始函数名：Unwind_180908d50
- * @see ProcessDataArrayA0
+ * @see ProcessDataArrayWithValidation
  */
 void ProcessDataArrayOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
   return;
 }
 
@@ -80195,19 +80195,19 @@ void ProcessDataArrayOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 处理数据数组操作A1
  * 
- * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayWithValidation函数
  * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
  * 
  * @param operationBase 操作基础缓冲区（未使用）
  * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
  * 
  * @note 原始函数名：Unwind_180908d60
- * @see ProcessDataArrayA0
+ * @see ProcessDataArrayWithValidation
  */
 void ProcessDataArrayOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
   return;
 }
 
@@ -80216,19 +80216,19 @@ void ProcessDataArrayOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 处理数据数组操作A2
  * 
- * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayWithValidation函数
  * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
  * 
  * @param operationBase 操作基础缓冲区（未使用）
  * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
  * 
  * @note 原始函数名：Unwind_180908d70
- * @see ProcessDataArrayA0
+ * @see ProcessDataArrayWithValidation
  */
 void ProcessDataArrayOperationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
+  ProcessDataArrayWithValidation(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
   return;
 }
 
@@ -93760,7 +93760,7 @@ void SetupExceptionHandlerC260(DataBuffer operationBase,int64_t dataBuffer,DataB
 void InitializeExceptionContextC270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + FloatValueOffset0);
   return;
 }
 
@@ -93823,7 +93823,7 @@ void ManageExceptionProcessingC2A0(DataBuffer operationBase,int64_t dataBuffer,D
 void ProcessFloatArrayC2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + FloatValueOffset0);
   return;
 }
 
@@ -93832,7 +93832,7 @@ void ProcessFloatArrayC2b0(DataBuffer operationBase,int64_t dataBuffer)
 void ValidateExceptionC2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + FloatValueOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + FloatValueOffset0);
   return;
 }
 
@@ -112442,7 +112442,7 @@ void ValidateAndProcessExceptionDataAtOffset58(DataBuffer operationBase,int64_t 
 /**
  * @brief 处理数据数组A0 - 偏移量0x0
  * 
- * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 该函数调用ProcessDataArrayWithValidation函数处理数据缓冲区偏移量0x0处的数据数组。
  * 这是一个简单的数据处理函数，用于处理验证结果数据。
  * 
  * @param operationBase 操作基础数据缓冲区
@@ -112453,7 +112453,7 @@ void ValidateAndProcessExceptionDataAtOffset58(DataBuffer operationBase,int64_t 
 void ProcessDataArrayAtOffset0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + ValidationResultOffset0);
   return;
 }
 
@@ -112512,7 +112512,7 @@ void ValidateAndProcessExceptionDataAtOffset58VariantC(DataBuffer operationBase,
 /**
  * @brief 处理数据数组A0 - 偏移量0x0
  * 
- * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 该函数调用ProcessDataArrayWithValidation函数处理数据缓冲区偏移量0x0处的数据数组。
  * 这是一个简单的数据处理函数，用于处理验证结果数据。
  * 
  * @param operationBase 操作基础数据缓冲区
@@ -112523,7 +112523,7 @@ void ValidateAndProcessExceptionDataAtOffset58VariantC(DataBuffer operationBase,
 void ProcessDataArrayAtOffset0B(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + ValidationResultOffset0);
   return;
 }
 
@@ -112532,7 +112532,7 @@ void ProcessDataArrayAtOffset0B(DataBuffer operationBase, int64_t dataBuffer)
 /**
  * @brief 处理数据数组A0 - 偏移量0x0
  * 
- * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 该函数调用ProcessDataArrayWithValidation函数处理数据缓冲区偏移量0x0处的数据数组。
  * 这是一个简单的数据处理函数，用于处理验证结果数据。
  * 
  * @param operationBase 操作基础数据缓冲区
@@ -112543,7 +112543,7 @@ void ProcessDataArrayAtOffset0B(DataBuffer operationBase, int64_t dataBuffer)
 void ProcessDataArrayAtOffset0C(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
+  ProcessDataArrayWithValidation(dataBuffer + ValidationResultOffset0);
   return;
 }
 
@@ -113348,7 +113348,7 @@ void ReleaseSharedLockE90(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayEA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
+  ProcessDataArrayWithValidation(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
@@ -113389,7 +113389,7 @@ void CleanupResourceHandlerEB0(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayEE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
+  ProcessDataArrayWithValidation(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
@@ -113408,7 +113408,7 @@ void ProcessDataArrayEE0(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayEF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + SystemOperationDataOffset);
+  ProcessDataArrayWithValidation(dataBuffer + SystemOperationDataOffset);
   return;
 }
 
@@ -125655,7 +125655,7 @@ void CleanupMemoryResourcesAtOffset48(DataBuffer operationBase,int64_t dataBuffe
 void ProcessDataArrayAtOffset120(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x120);
+  ProcessDataArrayWithValidation(dataBuffer + 0x120);
   return;
 }
 
@@ -125675,7 +125675,7 @@ void ProcessDataArrayAtOffset120(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayAtOffset120Alt(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x120);
+  ProcessDataArrayWithValidation(dataBuffer + 0x120);
   return;
 }
 
@@ -125695,7 +125695,7 @@ void ProcessDataArrayAtOffset120Alt(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessDataArrayAtOffset120Secondary(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ProcessDataArrayA0(dataBuffer + 0x120);
+  ProcessDataArrayWithValidation(dataBuffer + 0x120);
   return;
 }
 
@@ -130424,12 +130424,12 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
 // 系统上下文验证函数
-#define ValidatesystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 FUN_180090b80
 
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
 // 数据数组处理函数
-#define ProcessDataArrayA0 FUN_180057010
+#define ProcessDataArrayWithValidation FUN_180057010
 
 // 数据缓冲区初始化函数
 // 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
