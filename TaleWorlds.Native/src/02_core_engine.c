@@ -70602,11 +70602,11 @@ void ProcessSystemMemoryValidation(long long ContextHandle,uint64_t OperationBuf
     EncodingValidationResult = memcmp(AdditionalParameter1,Utf8SourcePointer + 0x20,0x10);
     if (-1 < EncodingValidationResult) {
       OperationResult = 1;
-      goto LAB_18008e13f;
+      goto SystemEventHandlingLabel;
     }
   }
   OperationResult = 0;
-LAB_18008e13f:
+SystemEventHandlingLabel:
   AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x38,*(uint8_t *)(ContextHandle + 0x28));
   Utf16Char = AdditionalParameter1[1];
   MemoryAllocationIndex = AdditionalParameter1[2];
