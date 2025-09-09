@@ -7519,13 +7519,55 @@ void ExecuteUIErrorHandler(void);
  void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
 void* ProcessUIPixels;
 
- 执行图像块差异计算
+ /**
+ * @brief 执行图像块差异计算
+ * 
+ * 计算两个图像块之间的差异，用于UI图像比较和变化检测。
+ * 该函数通过逐像素比较来计算图像差异，并将结果存储在差异数组中。
+ * 
+ * @param sourceBuffer 源图像缓冲区指针
+ * @param sourceStride 源图像步长（每行字节数）
+ * @param targetBuffer 目标图像缓冲区指针
+ * @param targetStride 目标图像步长（每行字节数）
+ * @param differenceResults 差异计算结果数组指针
+ * @return 计算结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 用于UI图像比较和变化检测算法
+ */
 int ExecuteImageBlockDifferenceCalculation(longlong sourceBuffer, int sourceStride, longlong targetBuffer, int targetStride, int *differenceResults);
 
- 计算UI元素边界
+ /**
+ * @brief 计算UI元素边界
+ * 
+ * 计算UI元素的边界框，用于碰撞检测、布局计算和渲染优化。
+ * 该函数根据元素数据和边界数据计算出元素的精确边界范围。
+ * 
+ * @param elementData UI元素数据指针
+ * @param elementWidth UI元素宽度
+ * @param boundaryData 边界数据指针
+ * @param boundaryHeight 边界高度
+ * @param boundaryResults 边界计算结果数组指针
+ * @return 计算结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 用于UI布局计算和碰撞检测
+ */
 int CalculateUIElementBoundary(longlong elementData, int elementWidth, longlong boundaryData, int boundaryHeight, int *boundaryResults);
 
- 执行UI纹理映射
+ /**
+ * @brief 执行UI纹理映射
+ * 
+ * 执行UI纹理映射操作，将纹理数据映射到UI元素上。
+ * 该函数处理纹理坐标转换、采样和映射计算，用于UI渲染。
+ * 
+ * @param textureData 纹理数据指针
+ * @param textureWidth 纹理宽度
+ * @param mappingData 映射数据指针
+ * @param mappingHeight 映射高度
+ * @param mappingResults 映射结果数组指针
+ * @return 映射结果状态码，0表示成功，非0表示失败
+ * 
+ * @note 用于UI纹理渲染和映射处理
+ */
 int ExecuteUITextureMapping(longlong textureData, int textureWidth, longlong mappingData, int mappingHeight, int *mappingResults);
 
  计算UI渲染深度
