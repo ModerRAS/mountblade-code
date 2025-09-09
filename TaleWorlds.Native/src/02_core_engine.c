@@ -64859,8 +64859,8 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
   long long LoopIndex;
   uint8_t aCoreEngineUnsignedValue318 [32];
   uint8_t SystemInitializationFlags;
-  int iStack_2e8;
-  long long *plStack_2e0;
+  int SystemStackInteger2e8;
+  long long *SystemStackPointer2e0;
   long long lStack_2d8;
   void *pSystemValue2d0;
   uint8_t *pLoopCounter;
@@ -183905,7 +183905,7 @@ void ProcessContextHandleAndUtf8SourceConversion(long long *ContextHandle,float 
   long long *stackProcessingStatusFlag2f8;
   void **ppSystemInitializationMode;
   uint64_t uStack_2e8;
-  long long *plStack_2e0;
+  long long *SystemStackPointer2e0;
   uint64_t *pSystemStateFlag;
   float *pfStack_2d0;
   uint64_t LoopCounter;
@@ -238888,7 +238888,7 @@ LAB_18019a44a:
   uint32_t uStack_2f4;
   uint SystemInitializationMode;
   long long *plStack_2e8;
-  long long *plStack_2e0;
+  long long *SystemStackPointer2e0;
   uint64_t SystemStateFlag;
   uint64_t SystemValue2d0;
   uint64_t LoopCounter;
