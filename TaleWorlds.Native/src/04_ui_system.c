@@ -16749,7 +16749,7 @@ LAB_18065a765:
   float LocalFloatValue9;
   float baseValue0;
   float baseValue1;
-  UIByte aresult2 [16];
+  UIByte uiResultBuffer [16];
   uint in_XMM5_Da;
   float baseValue3;
   float preservedXMM6;
@@ -18466,11 +18466,11 @@ void CleanupUIElementResources(longlong uiContext)
   float *pTemporaryFloatValue;
   float LocalFloatValue9;
   float baseValue0;
-  longlong lStack0000000000000028;
-  longlong lStack0000000000000030;
-  UIDword StackData3;
-  UIDword StackData4;
-  UIDword StackHandle1;
+  longlong uiContextStack28;
+  longlong uiContextStack30;
+  UIDword uiStackData3;
+  UIDword uiStackData4;
+  UIDword uiStackHandle1;
   UIDword uStack0000000000000050;
   UIDword uStack0000000000000058;
   UIHandle stackParam00000060;
@@ -132434,7 +132434,20 @@ ulonglong GetUITargetBufferData(longlong uiContext,int dataSource,UIDword *targe
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,UIHandle bufferSize)
+/**
+ * @brief 处理UI系统数据转换
+ * 
+ * 该函数处理UI系统中的数据转换操作，包括数据验证、比较和处理状态管理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区标识
+ * @param bufferSize 缓冲区大小句柄
+ * @return ulonglong 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180746bf0
+ */
+ulonglong ProcessUIDataConversion(longlong uiContext,uint dataSource,uint targetBuffer,UIHandle bufferSize)
 
 {
   int processingResult;
@@ -132445,15 +132458,15 @@ ulonglong FUN_180746bf0(longlong uiContext,uint dataSource,uint targetBuffer,UIH
   longlong *pcontextHandleData;
   UIHandle processingCounter;
   UIHandle *ptrLocal8;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   uint result0;
   ulonglong result1;
-  int aiStackX_10 [4];
+  int stackArray10 [4];
   UIHandle bufferSizeParameter;
   ulonglong stackParamffffffffffffff58;
   int *pProcessingResult2;
   UIHandle stackParamffffffffffffff60;
-  UIDword ResultValue3;
+  UIDword resultValue3;
   int stackInt68;
   int stackInt64;
   int stackInt60;

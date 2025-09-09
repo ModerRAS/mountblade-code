@@ -1399,7 +1399,7 @@ int InitializeExtendedStringProcessor(void)
  * 初始化字符串处理器F
  * 设置字符串处理所需的数据结构和回调
  */
-int InitializeStringProcessorF(void)
+int InitializeStringProcessorUnicode(void)
 {
   int64_t SystemCallbackRegistrationResult;
   uint64_t StringProcessorFFlags;
@@ -1417,7 +1417,7 @@ int InitializeStringProcessorF(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeModuleConfigurationA(void)
+int InitializeModuleConfigurationPrimary(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t ModuleConfigurationFlags;
@@ -1435,7 +1435,7 @@ int InitializeModuleConfigurationA(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorG(void)
+int InitializeStringProcessorValidation(void)
 {
   int64_t SystemModuleRegistrationResult;
   uint64_t StringProcessorGFlags;
@@ -6104,7 +6104,7 @@ SystemMemoryAllocationPoint:
       FloatInterpolationResult298 = (FloatSourceValue28c - FloatInterpolationResult298) * FloatResult + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue288 - FloatInterpolationResult294) * FloatResult + FloatInterpolationResult294;
       FloatInterpolationResult290 = (FloatSourceValue284 - FloatInterpolationResult290) * FloatResult + FloatInterpolationResult290;
-      fVar16 = (((FloatTargetValue270 - FloatTargetValue27c) * FloatResult + FloatTargetValue27c) - FloatInterpolationResult294) * FloatCalculationResult +
+      float RedColorComponent = (((FloatTargetValue270 - FloatTargetValue27c) * FloatResult + FloatTargetValue27c) - FloatInterpolationResult294) * FloatCalculationResult +
                FloatInterpolationResult294;
       FloatTemp = (((FloatBaseValue26c - FloatTargetValue278) * FloatResult + FloatTargetValue278) - FloatInterpolationResult290) * FloatCalculationResult +
                FloatInterpolationResult290;
@@ -6112,7 +6112,7 @@ SystemMemoryAllocationPoint:
                FloatInterpolationResult298;
     }
     else {
-      fVar16 = (float)StackProcessingBuffer1;
+      RedColorComponent = (float)StackProcessingBuffer1;
       FloatTemp = (float)StackProcessingBuffer1;
       FloatCalculationResult = (float)StackProcessingBuffer1;
     }
@@ -7938,17 +7938,17 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
       }
       FloatResult = (float)StringIndex * 0.33333334;
       FloatCalculationResult = FloatResult * 10.05 + 4.9500003;
-      fVar9 = FloatResult * 2.9999998 + 4.5;
-      fVar12 = FloatCalculationResult + fVar9;
-      fVar9 = fVar12 + fVar9;
+      float PrimaryColorComponent = FloatResult * 2.9999998 + 4.5;
+      float SecondaryColorComponent = FloatCalculationResult + PrimaryColorComponent;
+      PrimaryColorComponent = SecondaryColorComponent + PrimaryColorComponent;
       FloatValue = FloatResult * 13.5 + 4.5;
-      NormalizationFactor = fVar9 + FloatValue;
+      NormalizationFactor = PrimaryColorComponent + FloatValue;
       FloatValue = FloatValue + NormalizationFactor;
       ColorMagnitude = FloatResult * 37.5 + 12.5 + FloatValue;
       FloatResult = FloatResult * 45.0 + 15.0 + ColorMagnitude;
       *(float *)(SystemContextDataPointer + 0x68) = FloatCalculationResult * FloatCalculationResult;
-      *(float *)((longlong)SystemContextDataPointer + 0x344) = fVar12 * fVar12;
-      *(float *)(SystemContextDataPointer + 0x69) = fVar9 * fVar9;
+      *(float *)((longlong)SystemContextDataPointer + 0x344) = SecondaryColorComponent * SecondaryColorComponent;
+      *(float *)(SystemContextDataPointer + 0x69) = PrimaryColorComponent * PrimaryColorComponent;
       *(float *)((longlong)SystemContextDataPointer + 0x34c) = NormalizationFactor * NormalizationFactor;
       *(float *)(SystemContextDataPointer + 0x6a) = FloatValue * FloatValue;
       *(float *)((longlong)SystemContextDataPointer + 0x354) = ColorMagnitude * ColorMagnitude;
