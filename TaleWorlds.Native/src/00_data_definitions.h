@@ -10245,9 +10245,9 @@ NetworkConfigValidationError2:
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam2);
                     if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError4;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam3);
-                    if (NetworkRequestStatus != '\0') goto Label_180609d4c;
+                    if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError5;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam4);
-                    if (NetworkRequestStatus != '\0') goto Label_180609d6a;
+                    if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError6;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam5);
                     if (NetworkRequestStatus != '\0') goto NetworkRequestStatusCheck4;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam6);
@@ -10407,7 +10407,7 @@ NetworkAuthValidationCheck26:
             if (NetworkRequestStatus == '\0') {
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataK,1);
               if (NetworkRequestStatus != '\0') {
-Label_180609cf8:
+NetworkConfigValidationError3:
                 StringProcessingResult = 7;
                 goto NetworkRequestProcessingComplete;
               }
@@ -10422,7 +10422,7 @@ Label_180609d4c:
                 goto NetworkRequestProcessingComplete;
               }
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataO,1);
-              if (NetworkRequestStatus != '\0') goto Label_180609d6a;
+              if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError6;
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataP,1);
               if (NetworkRequestStatus != '\0') goto NetworkRequestStatusCheck4;
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataQ,1);
