@@ -3997,16 +3997,31 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：在偏移量0x28处调用异常处理器
 #define InvokeExceptionHandlerAtSecondaryPosition Unwind_180906d00
 
-// 原始函数名：Unwind_180906d10 - 异常处理器调用函数D10
-// 功能：在偏移量0x30处调用异常处理器
+/**
+ * @brief 异常处理器调用函数（偏移量D10）
+ * 
+ * 在偏移量0x30处调用异常处理器，处理异常情况
+ * 
+ * @note 原始函数名：Unwind_180906d10
+ */
 #define InvokeExceptionHandlerAtTertiaryPosition Unwind_180906d10
 
-// 原始函数名：Unwind_180906d20 - 异常处理器调用函数D20
-// 功能：在偏移量0x38处调用异常处理器
+/**
+ * @brief 异常处理器调用函数（偏移量D20）
+ * 
+ * 在偏移量0x38处调用异常处理器，处理异常情况
+ * 
+ * @note 原始函数名：Unwind_180906d20
+ */
 #define InvokeExceptionHandlerAtQuadPosition Unwind_180906d20
 
-// 原始函数名：Unwind_180906d30 - 异常处理器调用函数D30
-// 功能：在偏移量0x40处调用异常处理器
+/**
+ * @brief 异常处理器调用函数（偏移量D30）
+ * 
+ * 在偏移量0x40处调用异常处理器，处理异常情况
+ * 
+ * @note 原始函数名：Unwind_180906d30
+ */
 #define InvokeExceptionHandlerAtPentaPosition Unwind_180906d30
 
 // 原始函数名：Unwind_1809092e0 - 异常上下文清理函数A0

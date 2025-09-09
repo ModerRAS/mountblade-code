@@ -200615,6 +200615,15 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
   uint32_t SystemStatusValue;
   uint16_t *MemoryCopyBufferPointer;
   uint32_t EncodingValidationResult;
+  uint16_t *UnicodeConversionBuffer;
+  uint32_t UnicodeCharacterValue;
+  uint32_t StackControlFlag;
+  uint64_t StackDataBufferC0;
+  uint64_t StackDataBufferC8;
+  void *SystemValidationFunction;
+  uint64_t FunctionAddress;
+  uint8_t *StackSecurityBuffer;
+  void *ThreadLocalStoragePointer;
   
   // 初始化系统栈参数和函数地址
   SystemStackValidationParameter = 0xfffffffffffffffe;
@@ -200678,7 +200687,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
       ProcessSystemEventHandling();
     }
     SystemMemoryOffsetB0 = 0;
-    StackOperationFlagA0 = 0;
+    SystemStackOperationFlagA0 = 0;
     SystemResourcePointerB8 = &ThreadLocalStorageTemplate;
     StackValidationFlag = 2;
     SystemContextPointer = &SystemNullTemplate;
@@ -200707,7 +200716,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
         CharacterStatusBuffer = MemoryAllocationPointer;
       }
       SystemStatusValue = 0x118;
-      MemoryCopyBufferPointer = MemoryCopyBuffer;
+      MemoryCopyBufferPointer = MemoryCopyDataBuffer;
       EncodingValidationResult = MultiByteToWideChar(0xfde9,0,CharacterStatusBuffer,0xffffffff);
       if (0x22f < (unsigned long long)((long long)EncodingValidationResult * 2)) {
 SystemMemoryValidationError:
@@ -200716,15 +200725,15 @@ SystemMemoryValidationError:
         (*SystemValidationFunction)();
         return;
       }
-      MemoryCopyBuffer[EncodingValidationResult] = 0;
+      MemoryCopyDataBuffer[EncodingValidationResult] = 0;
       if (0x22f < (unsigned long long)((long long)(EncodingValidationResult + 1) * 2)) {
         CoreEngineSetupNetworkConnection();
-        goto LAB_180167a3b;
+        goto SystemMemoryValidationError;
       }
-      MemoryCopyBuffer[EncodingValidationResult + 1] = 0;
+      MemoryCopyDataBuffer[EncodingValidationResult + 1] = 0;
       SystemResourcePointer = NULL;
       StackMemoryOffset = CONCAT44(StackMemoryOffset.HighPart,3);
-      UnicodeConversionBuffer = MemoryCopyBuffer;
+      UnicodeConversionBuffer = MemoryCopyDataBuffer;
       StackAddress = 0;
       UnicodeCharacterValue = 0x14;
       StackControlFlag = 0;
@@ -200752,7 +200761,7 @@ SystemMemoryValidationError:
   }
   StackValidationFlag = 0;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)StackSecurityBuffer);
+  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)SystemSecurityValidationBuffer);
 }
 
 
