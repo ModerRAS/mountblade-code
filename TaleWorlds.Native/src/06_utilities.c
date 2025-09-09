@@ -15440,6 +15440,21 @@ DataBuffer ConditionalResourceRelease(char releaseFlag)
  * @note 此函数为空操作函数，主要用于系统初始化时的占位符
  * @warning 调用此函数不会产生任何效果
  */
+/**
+ * @brief 系统主要空操作函数
+ * 
+ * 该函数是一个主要的空操作函数，不执行任何实际操作，仅执行返回语句。
+ * 这种函数通常用于系统初始化、占位符或测试目的。
+ * 
+ * 主要用途：
+ * - 系统初始化过程中的占位符
+ * - 测试和调试过程中的空操作
+ * - 保持函数调用接口的一致性
+ * - 作为默认的空实现函数
+ * 
+ * @note 原始函数名: FUN_18093ed60
+ * @return void 无返回值
+ */
 void SystemPrimaryNoOperation(void)
 
 {
