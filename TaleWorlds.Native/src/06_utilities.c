@@ -4619,16 +4619,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ProcessExceptionHandlerAtOcta HandleExceptionHandlerAtOcta
 
 // 异常处理器清理函数组
-// 原始函数名：Unwind_180904370 - 异常上下文处理器清理函数A0
-#define CleanupExceptionHandlerContextA0 Unwind_180904370
-// 原始函数名：Unwind_180904390 - 异常上下文处理器清理函数A1
-#define CleanupExceptionHandlerContextA1 Unwind_180904390
-// 原始函数名：Unwind_1809043b0 - 异常上下文处理器清理函数A2
-#define CleanupExceptionHandlerContextA2 Unwind_1809043b0
-// 原始函数名：Unwind_1809043d0 - 异常上下文处理器清理函数A3
-#define CleanupExceptionHandlerContextA3 Unwind_1809043d0
-// 原始函数名：Unwind_1809043f0 - 异常上下文处理器清理函数A4
-#define CleanupExceptionHandlerContextA4 Unwind_1809043f0
+// 异常上下文处理器清理函数A0-A4
+#define CleanupExceptionHandlerContextA0 ClearExceptionHandlerContextA0
+#define CleanupExceptionHandlerContextA1 ClearExceptionHandlerContextA1
+#define CleanupExceptionHandlerContextA2 ClearExceptionHandlerContextA2
+#define CleanupExceptionHandlerContextA3 ClearExceptionHandlerContextA3
+#define CleanupExceptionHandlerContextA4 ClearExceptionHandlerContextA4
 // 原始函数名：Unwind_180904410 - 异常上下文处理器清理函数A5
 #define CleanupExceptionHandlerContextA5 Unwind_180904410
 // 原始函数名：Unwind_180904430 - 异常上下文处理器清理函数A6
