@@ -62608,12 +62608,12 @@ void ProcessFloatDataStructure(float *ContextHandle,long long OperationBufferSiz
   float scaleFactor = aUnicodeCodePoint.LowPart;
   float refinedScaleFactor = scaleFactor * 0.5 * (3.0 - magnitudeSquared * scaleFactor * scaleFactor);
   matrixElementY = matrixElementY * refinedScaleFactor;
-  matrixElementX = in_XMM0_Dc * refinedScaleFactor;
+  matrixElementX = Xmm0RegisterComponent * refinedScaleFactor;
   matrixElementW = matrixElementW * refinedScaleFactor;
   refinedScaleFactor = refinedScaleFactor * magnitudeSquared;
   magnitudeSquared = *(float *)(OperationBufferSize + 0xc0) * matrixElementX - *(float *)(OperationBufferSize + 200) * matrixElementW;
-  CalculatedDistance = *(float *)(OperationBufferSize + 200) * matrixElementY - in_XMM5_Da * matrixElementX;
-  crossProductZ = in_XMM5_Da * matrixElementW - *(float *)(OperationBufferSize + 0xc0) * matrixElementY;
+  CalculatedDistance = *(float *)(OperationBufferSize + 200) * matrixElementY - Xmm5RegisterFloat * matrixElementX;
+  crossProductZ = Xmm5RegisterFloat * matrixElementW - *(float *)(OperationBufferSize + 0xc0) * matrixElementY;
   ContextHandle[4] = CalculatedDistance;
   ContextHandle[5] = magnitudeSquared;
   ContextHandle[6] = crossProductZ;
@@ -98565,7 +98565,7 @@ void ValidateSystemDataStructureIntegrity(uint64_t ContextHandle
   uint MemoryAllocationIndex;
   int MatchCounter;
   float SystemContextPrimaryFloat2;
-  float in_XMM0_Dd;
+  float Xmm0RegisterDouble;
   float SystemContextPrimaryFloat3;
   float SystemContextPrimaryFloat4;
   float SecondaryFloatValue;
