@@ -347,6 +347,23 @@
 #define ExceptionContextPointerOffsetF00 0xf00
 #define ExceptionContextPointerOffsetF08 0xf08
 
+// 数据块上下文偏移量常量
+#define DataBlockContextOffset30 0x30
+#define DataBlockContextOffset1C 0x1c
+
+// 数据缓冲区偏移量常量
+#define DataBufferOffset10 0x10
+#define DataBufferOffset14 0x14
+
+// 异常上下文指针偏移量常量
+#define ExceptionHandlerContextOffset50 0x50
+
+// 浮点数验证偏移量常量
+#define FloatValidationOffset10 0x10
+
+// 系统参数偏移量常量
+#define SystemParameterOffset1C 0x1c
+
 // 异常处理数据缓冲区偏移量常量
 #define ExceptionHandlerDataBufferOffset160 0x160
 

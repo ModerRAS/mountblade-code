@@ -168,6 +168,10 @@ typedef enum {
 // 原始函数名：FUN_1807160c0 - UI系统数据验证
 #define ValidateUIData FUN_1807160c0
 
+// UI系统数据转换函数
+// 原始函数名：FUN_180723060 - UI系统数据转换
+#define TransformUIData FUN_180723060
+
 // UI系统上下文处理函数
 // 原始函数名：FUN_180718bd0 - UI系统上下文处理
 #define ProcessUIContext FUN_180718bd0
@@ -89345,7 +89349,7 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
           if (dataSourceIndex < 0x14) {
             enableTransform = dataSourceIndex;
           }
-          FUN_180723060(stringCompareIndex,&param_7,(ulonglong)*(byte *)(enableTransform * 2 + param_8) << 7,
+          TransformUIData(stringCompareIndex,&Param7,(ulonglong)*(byte *)(enableTransform * 2 + param_8) << 7,
                         (ulonglong)*(byte *)((longlong)(enableTransform * 2) + 1 + param_8) << 6);
           enableTransform = uiContext5;
         }
@@ -89571,7 +89575,7 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
         if (AllocationFlags < 0x14) {
           TemporaryInt4 = AllocationFlags;
         }
-        FUN_180723060(Result2,&stack0x00000130,
+        TransformUIData(Result2,&Stack130,
                       (ulonglong)*(byte *)(TemporaryInt4 * 2 + StackParam138) << 7,
                       (ulonglong)*(byte *)((longlong)(TemporaryInt4 * 2) + 1 + StackParam138) << 6);
         RegisterPointer = StackParam118;
