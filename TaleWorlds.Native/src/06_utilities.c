@@ -22,6 +22,7 @@
 #define SystemBufferConfigMultiplier 0x278           // 系统缓冲区配置乘数 - 用于系统缓冲区配置计算
 #define SystemResourceManagerMultiplier 0x1a8         // 系统资源管理器乘数 - 用于资源管理器计算
 #define SystemResourceFlagOffset 0x352f                // 系统资源标志偏移量 - 用于设置资源标志的偏移量
+#define ExceptionContextPointerOffset 0x3508            // 异常上下文指针偏移量 - 用于异常处理上下文的指针偏移量
 #define InvalidMemoryOffset -0x8000000000000000
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
@@ -65066,7 +65067,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
   memoryBlockOffset = (int64_t *)(dataBuffer + ValidationResultOffset);
   ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + DataBufferOffset30) & MemoryOffsetValidationThreshold) * SystemResourceManagerMultiplier + *memoryBlockOffset);
   LOCK();
-  exceptionContextPointer = (int64_t *)(*memoryBlockOffset + 0x3508);
+  exceptionContextPointer = (int64_t *)(*memoryBlockOffset + ExceptionContextPointerOffset);
   resourceIterator = *exceptionContextPointer;
   *exceptionContextPointer = *exceptionContextPointer + 1;
   UNLOCK();

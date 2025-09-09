@@ -400000,11 +400000,11 @@ ulonglong FUN_18089e230(longlong uiContext,longlong *dataSource)
   UIByte astackUInt48 [32];
   ulonglong loopCounter;
   
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt48,1,0x50414e53);
+  iterationCount = ProcessUIStringValidation(dataSource,astackUInt48,1,0x50414e53);
   if ((int)iterationCount != 0) {
     return iterationCount;
   }
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt68,0,0x42414e53);
+  iterationCount = ProcessUIStringValidation(dataSource,astackUInt68,0,0x42414e53);
   if ((int)iterationCount != 0) {
     return iterationCount;
   }
