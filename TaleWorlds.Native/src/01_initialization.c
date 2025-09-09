@@ -30108,46 +30108,46 @@ void SystemResourceEnumerator(void)
   TotalResourceCount = ResourceDataLocation;
   if (0 < (int)ResourceDataLocation) {
     do {
-      systemId = SystemResourceIndex;
+      SystemResourceIdentifier = CurrentResourceIndex;
       SystemInitializationStatus = 0;
-      if (SystemResourceIndex < 0) {
+      if (CurrentResourceIndex < 0) {
 StringIterationCheck:
-        SystemAllocationFlags = RetrieveSystemStatusFlags();
+        MemoryAllocationFlags = RetrieveSystemStatusFlags();
       }
       else {
-        SystemAllocationFlags = *(long long *)(*SystemGlobalStatusFlags + 0x888);
-        if ((ulong long)(*(long long *)(*SystemGlobalStatusFlags + 0x890) - SystemAllocationFlags >> 5) <=
-            (ulong long)(long long)SystemResourceIndex) goto StringIterationCheck;
-        SystemAllocationFlags = (long long)SystemResourceIndex * 0x20 + SystemAllocationFlags;
+        MemoryAllocationFlags = *(long long *)(*SystemGlobalStatusFlags + 0x888);
+        if ((ulong long)(*(long long *)(*SystemGlobalStatusFlags + 0x890) - MemoryAllocationFlags >> 5) <=
+            (ulong long)(long long)CurrentResourceIndex) goto StringIterationCheck;
+        MemoryAllocationFlags = (long long)CurrentResourceIndex * 0x20 + MemoryAllocationFlags;
       }
       SystemMemoryContext = &SystemGlobalDataPointer;
       SystemThreadContexts = 0;
       ResourceDataBufferPointer = (uint8_t *)0x0;
       SystemMemoryAllocationOffset = 0;
-      ExecuteSystemCommand(&SystemMemoryContext,*(uint32_t *)(SystemAllocationFlags + 0x10));
-      if (*(int *)(SystemAllocationFlags + 0x10) != 0) {
-          memcpy(ResourceDataBufferPointer,*(void* *)(SystemAllocationFlags + 8),*(int *)(SystemAllocationFlags + 0x10) + 1);
+      ExecuteSystemCommand(&SystemMemoryContext,*(uint32_t *)(MemoryAllocationFlags + 0x10));
+      if (*(int *)(MemoryAllocationFlags + 0x10) != 0) {
+          memcpy(ResourceDataBufferPointer,*(void* *)(MemoryAllocationFlags + 8),*(int *)(MemoryAllocationFlags + 0x10) + 1);
       }
-      if (*(long long *)(SystemAllocationFlags + 8) != 0) {
+      if (*(long long *)(MemoryAllocationFlags + 8) != 0) {
         SystemMemoryAllocationOffset = 0;
         if (ResourceDataBufferPointer != (uint8_t *)0x0) {
           *ResourceDataBufferPointer = 0;
         }
         SystemThreadContexts = SystemThreadContexts & SystemMaximumUnsigned32BitValue;
       }
-      if (SystemResourceIndex < 0) {
+      if (CurrentResourceIndex < 0) {
 SystemIdCheck:
-        SystemAllocationFlags = RetrieveSystemStatusFlags();
+        MemoryAllocationFlags = RetrieveSystemStatusFlags();
       }
       else {
-        SystemAllocationFlags = *(long long *)(*SystemGlobalStatusFlags + 0x8a8);
-        if ((ulong long)(*(long long *)(*SystemGlobalStatusFlags + 0x8b0) - SystemAllocationFlags >> 5) <
-            (ulong long)(long long)systemId) goto SystemIdCheck;
-        SystemAllocationFlags = (long long)systemId * 0x20 + SystemAllocationFlags;
+        MemoryAllocationFlags = *(long long *)(*SystemGlobalStatusFlags + 0x8a8);
+        if ((ulong long)(*(long long *)(*SystemGlobalStatusFlags + 0x8b0) - MemoryAllocationFlags >> 5) <
+            (ulong long)(long long)SystemResourceIdentifier) goto SystemIdCheck;
+        MemoryAllocationFlags = (long long)SystemResourceIdentifier * 0x20 + MemoryAllocationFlags;
       }
-      pUnsignedStackFlagPrimary = &SystemGlobalDataPointer;
-      EncryptionOffsetSecondary = 0;
-      pUnsignedStackFlagSecondary = (uint8_t *)0x0;
+      PrimaryStackFlagPointer = &SystemGlobalDataPointer;
+      SecondaryEncryptionOffset = 0;
+      SecondaryStackFlagPointer = (uint8_t *)0x0;
       EncryptionOffset = 0;
       ExecuteSystemCommand(&pUnsignedStackFlagPrimary,*(uint32_t *)(SystemAllocationFlags + 0x10));
       if (*(int *)(SystemAllocationFlags + 0x10) != 0) {
