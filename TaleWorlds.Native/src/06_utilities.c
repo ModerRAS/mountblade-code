@@ -32052,7 +32052,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     ExceptionHandlerContext = *dataBuffer;
     OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationDataOffset60,4);
     if ((((int)OperationResult == 0) && (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 100,2), (int)OperationResult == 0)) &&
-       (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x66,2), (int)OperationResult == 0)) {
+       (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationDataOffset66,2), (int)OperationResult == 0)) {
       OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationBaseOffset68,8);
     }
     ValidationResult = StackValidationFlag;
@@ -47439,7 +47439,7 @@ void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataB
 
 
 
-void ResetMemoryState110(DataBuffer operationBase,int64_t dataBuffer)
+void ResetMemoryStateWithExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -47618,7 +47618,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupResourceState170(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceStateWithTermination(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
