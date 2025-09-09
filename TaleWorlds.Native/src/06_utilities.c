@@ -1626,6 +1626,18 @@
 #define OperationDataOffset60 0x60                         // 操作数据偏移量60
 #define OperationDataOffset40 0x40                         // 操作数据偏移量40
 #define OperationDataOffset66 0x66                         // 操作数据偏移量66
+#define OperationDataOffset44 0x44                         // 操作数据偏移量44
+#define OperationDataOffset94 0x94                         // 操作数据偏移量94
+#define OperationDataOffset84 0x84                         // 操作数据偏移量84
+#define OperationDataOffset88 0x88                         // 操作数据偏移量88
+#define OperationDataOffsetA8 0xa8                         // 操作数据偏移量A8
+#define OperationDataOffset9C 0x9c                         // 操作数据偏移量9C
+#define OperationDataOffsetB4 0xb4                         // 操作数据偏移量B4
+#define OperationDataOffsetBC 0xbc                         // 操作数据偏移量BC
+#define OperationDataOffsetC0 0xc0                         // 操作数据偏移量C0
+#define OperationDataOffset14 0x14                         // 操作数据偏移量14
+#define OperationDataOffsetD8 0xd8                         // 操作数据偏移量D8
+#define OperationDataOffsetE8 0xe8                         // 操作数据偏移量E8
 
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
@@ -27391,7 +27403,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             SystemResetFlagLocal = 0;
             StackPointerVariableE = &ValidationContextBuffer;
             ExceptionContextProcessorA = ExceptionContextProcessorA & 0xffffff00;
-            if (*(int *)(exceptionHandlerContext1 + 0x58) < 1) {
+            if (*(int *)(exceptionHandlerContext1 + DataContextOffset58) < 1) {
               exceptionDataBuffer = &SystemResourceDataBuffer;
             }
             else {
