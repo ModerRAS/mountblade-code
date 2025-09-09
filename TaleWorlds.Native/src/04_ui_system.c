@@ -1725,14 +1725,14 @@ typedef enum {
 #define ComponentData16 UIComponentData16
 
 // UI系统布尔变量名美化
-#define bVar1 UIBoolVar1
-#define bVar3 UIBoolVar3
-#define bVar5 UIBoolVar5
-#define bVar6 UIBoolVar6
-#define bVar7 UIBoolVar7
-#define bVar8 UIBoolVar8
-#define bVar9 UIBoolVar9
-#define bVar10 UIBoolVar10
+#define bVar1 UIIsActiveFlag
+#define bVar3 UIIsProcessingFlag
+#define bVar5 UIIsVisibleFlag
+#define bVar6 UIIsEnabledFlag
+#define bVar7 UIHasFocusFlag
+#define bVar8 UIIsHoveredFlag
+#define bVar9 UIIsSelectedFlag
+#define bVar10 UIIsDisabledFlag
 
 // UI系统无符号变量名美化
 #define uVar1 UIUnsignedVar1

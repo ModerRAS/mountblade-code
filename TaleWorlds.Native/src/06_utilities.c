@@ -12011,7 +12011,7 @@ uint8_t EncryptionOperationStatus;
 uint8_t UtilityEncryptionKeyBuffer;
 uint8_t UtilityEncryptionDataBuffer;
 uint8_t UtilityEncryptionIVBuffer;
-uint8_t UtilityEncryptionQuaternaryBuffer;
+uint8_t UtilityEncryptionResultBuffer;
 uint8_t UtilityEncryptionStatus;
 
 // 原始函数名：FUN_180942300 - 数据解密函数A1
@@ -12020,8 +12020,8 @@ uint8_t UtilityEncryptionStatus;
 
 // 解密操作状态标志
 uint8_t DecryptionOperationStatus;
-uint8_t UtilityDecryptionPrimaryBuffer;
-uint8_t UtilityDecryptionSecondaryBuffer;
+uint8_t UtilityDecryptionKeyBuffer;
+uint8_t UtilityDecryptionDataBuffer;
 uint8_t UtilityDecryptionTertiaryBuffer;
 uint8_t UtilityDecryptionQuaternaryBuffer;
 uint8_t UtilityDecryptionStatus;
