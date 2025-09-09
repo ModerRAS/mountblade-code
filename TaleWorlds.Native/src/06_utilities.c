@@ -3159,6 +3159,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerSetupMask 0xfffffffb
 #define ExceptionHandlerDataValidationOffset 0x2a0
 #define ExceptionHandlerFloatValueOffset 8
+#define ExceptionHandlerContextPrimaryOffset 0x1a8
+#define DataBufferIntegrityValidationOffset 0x150
+#define DataBufferStartPointerOffset 0x148
+#define DataBufferPointerStepSize 4
 #define ExceptionHandlerLevel5_QuinaryStatusOffset 0xe58
 #define ExceptionHandlerLevel5_QuinaryStateOffset 0xe68
 #define ExceptionHandlerLevel5_SenaryHandlerOffset 0xe30
@@ -60054,7 +60058,7 @@ void SetupExceptionHandlerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffe
 void SetupExceptionHandlerAtOffset1E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset1a8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerContextPrimaryOffset) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -60068,11 +60072,11 @@ void SetupExceptionHandlerAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
   DataBuffer validationStatus;
   
   validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityOffset150);
-  for (memoryresourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset148); memoryresourcePointer != exceptionDataBuffer; memoryresourcePointer = memoryresourcePointer + 4) {
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityValidationOffset);
+  for (memoryresourcePointer = *(DataBuffer **)(dataBuffer + DataBufferStartPointerOffset); memoryresourcePointer != exceptionDataBuffer; memoryresourcePointer = memoryresourcePointer + DataBufferPointerStepSize) {
     (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
-  if (*(int64_t *)(dataBuffer + DataBufferOffset148) == 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferStartPointerOffset) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
