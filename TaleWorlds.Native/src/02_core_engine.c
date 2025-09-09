@@ -1814,6 +1814,19 @@
 #define GetCharacterTablePointer FUN_18018a9f0                  // 获取字符表指针
 #define ProcessCharacterDataEx FUN_18018c050                     // 处理字符数据扩展
 #define ValidateCharacterDataEx FUN_180371c60                     // 验证字符数据扩展
+#define ProcessCharacterDataBuffer FUN_180184320                   // 处理字符数据缓冲区
+#define CalculateSystemMemoryBoundary FUN_1800c4800                // 计算系统内存边界
+#define ValidateSystemOperationStatus FUN_180190530                // 验证系统操作状态
+#define ProcessSystemMemoryIndex FUN_180191560                     // 处理系统内存索引
+#define AllocateSystemMemoryEx FUN_180193bc0                       // 分配系统内存扩展
+#define ProcessSystemKeyData FUN_180631000                         // 处理系统密钥数据
+#define GetSystemDataRegistry FUN_180085e10                       // 获取系统数据注册表
+#define CalculateUnicodeCodePointEx FUN_1802d1460                  // 计算Unicode代码点扩展
+#define ProcessSystemStringTemplate FUN_180095000                 // 处理系统字符串模板
+#define ProcessSystemDataConversion FUN_1802e6b00                  // 处理系统数据转换
+#define ProcessSystemCharacterBuffer FUN_1801bc9a0                  // 处理系统字符缓冲区
+#define ProcessUnicodeContextData FUN_1802fc790                   // 处理Unicode上下文数据
+#define ProcessSystemLockOperation FUN_1802ed190                  // 处理系统锁定操作
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
 #define IdentifySystemIdentifierByPatternVariantX FUN_1802258a7
@@ -221655,7 +221668,7 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
   }
   plStack_220 = MemoryBlockIndex;
   if (ContextHandle[0xf] != 0) {
-    pcStack_1d8 = FUN_180184320;
+    pcStack_1d8 = ProcessCharacterDataBuffer;
     SystemDataRegistry = AllocateSystemMemoryPool(0x48);
     plStack_170 = (long long *)0x0;
     CharacterStatusBuffer = (void *)ContextHandle[0xf];
@@ -231045,7 +231058,7 @@ LAB_18018f515:
   if (puStack_4f0 != NULL) {
     SystemCharacterStatusBuffer = puStack_4f0;
   }
-  MemoryBoundaryEnd = FUN_1800c4800(aStackProcessingUnsignedValue600,SystemCharacterStatusBuffer,1);
+  MemoryBoundaryEnd = CalculateSystemMemoryBoundary(aStackProcessingUnsignedValue600,SystemCharacterStatusBuffer,1);
   if (MemoryBoundaryEnd == 0) {
     _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               ((long long)alStack_618 + (long long)*(int *)(alStack_618[0] + 4),2);
@@ -232647,20 +232660,20 @@ LAB_180190d41:
       return;
     }
     BufferStatus = ((OperationBufferSize - ContextHandle) / 0x690) * 0x348 + ContextHandle;
-    ValidationStatus = FUN_180190530(OperationBufferSize - ContextHandle,ContextHandle,BufferStatus);
+    ValidationStatus = ValidateSystemOperationStatus(OperationBufferSize - ContextHandle,ContextHandle,BufferStatus);
     if (ValidationStatus == '\0') {
-      ValidationStatus = FUN_180190530();
+      ValidationStatus = ValidateSystemOperationStatus();
       MemoryBlockIndex = ContextHandle;
       if (ValidationStatus == '\0') {
-        ValidationStatus = FUN_180190530();
+        ValidationStatus = ValidateSystemOperationStatus();
         goto LAB_180190f00;
       }
     }
     else {
-      ValidationStatus = FUN_180190530();
+      ValidationStatus = ValidateSystemOperationStatus();
       MemoryBlockIndex = BufferStatus;
       if (ValidationStatus == '\0') {
-        ValidationStatus = FUN_180190530();
+        ValidationStatus = ValidateSystemOperationStatus();
         BufferStatus = ContextHandle;
 LAB_180190f00:
         MemoryBlockIndex = BufferStatus;
@@ -232670,7 +232683,7 @@ LAB_180190f00:
       }
     }
     FUN_18018e7e0(SystemArrayBuffer368,MemoryBlockIndex);
-    MemoryBlockIndex = FUN_180191560(ContextHandle,OperationBufferSize,SystemArrayBuffer368);
+    MemoryBlockIndex = ProcessSystemMemoryIndex(ContextHandle,OperationBufferSize,SystemArrayBuffer368);
     ProcessCharacterInitializeSystem(SystemArrayBuffer368);
     Utf8SourcePointer = Utf8SourcePointer + -1;
     FUN_180190e30(MemoryBlockIndex,OperationBufferSize,Utf8SourcePointer,Utf16EndPointer);
