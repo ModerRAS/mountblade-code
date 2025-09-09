@@ -100097,10 +100097,10 @@ unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *ContextHa
     UnicodeCodePoint = AdditionalParameter1;
   }
   if (((UnicodeCodePoint & 0x20) == 0) || (*(long long *)(AllocatedMemorySize + 0x1b08) != *(long long *)(CharacterTablePointer + 0x3a0))) {
-    hasComparisonResult = false;
+    IsMemoryOperationValid = false;
   }
   else {
-    hasComparisonResult = true;
+    IsMemoryOperationValid = true;
     *(long long *)(AllocatedMemorySize + 0x1b00) = LoopCounter;
   }
   IsMemoryBlockEqual = 0;
