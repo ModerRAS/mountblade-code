@@ -224397,7 +224397,16 @@ void ProcessSystemMemory(uint64_t ContextHandle, long long *ContextHandleSize
  (ram,0x000180188693 (ram,0x00018018869c (ram,0x0001801886e8// WARNING: Restarted to delay deadcode elimination for space: stack
 
 
-88620(long long ContextHandle,uint64_t *ContextHandleSizevoid FUN_180188620(long long ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 系统编码处理函数
+ * 
+ * 处理系统编码转换和数据验证操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @note 原始函数名：FUN_180188620
+ */
+void ProcessSystemEncoding(long long ContextHandle, uint64_t *ContextHandleSize
 {
   uint64_t Utf16Char;
   uint8_t SystemFlagH [32];
