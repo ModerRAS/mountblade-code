@@ -10091,35 +10091,35 @@ UIHandle GetManagedInterface(void)
 void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
 
 {
-  UIDword *result;
-  UIDword iterationCount;
-  UIDword tempValue1;
-  UIDword tempValue2;
-  UIHandle *dataPointer1;
-  UIHandle *dataPointer2;
-  int componentIndex1;
-  int componentIndex2;
-  ulonglong elementCount;
-  UIHandle *newMemoryBlock;
-  longlong allocatedMemoryBlock1;
-  longlong allocatedMemoryBlock2;
-  UIHandle *currentMemoryBlock;
-  longlong allocatedMemoryBlock4;
-  UIHandle *sourceDataBlock;
-  UIWord stackArray [4];
-  ulonglong elementCounter;
-  UIHandle newContext;
-  UIHandle *resultPointer1;
-  UIHandle *resultPointer2;
-  UIHandle transformCoefficient21;
-  UIDword transformCoefficient22;
-  undefined *transformResultPointer3;
-  longlong transformCalculationResult;
-  UIDword transformCoefficient23;
-  UIHandle *transformResultPointer4;
-  UIHandle *transformResultPointer5;
-  UIHandle transformMatrix24;
-  UIDword transformCoefficient25;
+  UIDword *uiProcessingResult;
+  UIDword propertyIterationCount;
+  UIDword tempPropertyValue1;
+  UIDword tempPropertyValue2;
+  UIHandle *uiDataPointer1;
+  UIHandle *uiDataPointer2;
+  int componentLayoutIndex1;
+  int componentLayoutIndex2;
+  ulonglong uiElementCount;
+  UIHandle *newMemoryAllocation;
+  longlong allocatedMemorySize1;
+  longlong allocatedMemorySize2;
+  UIHandle *currentMemoryAllocation;
+  longlong allocatedMemorySize4;
+  UIHandle *uiDataSourceBlock;
+  UIWord uiParameterStack [4];
+  ulonglong elementProcessingCounter;
+  UIHandle newUIContext;
+  UIHandle *uiResultPointer1;
+  UIHandle *uiResultPointer2;
+  UIHandle uiTransformCoefficient21;
+  UIDword uiTransformCoefficient22;
+  undefined *uiTransformResultPointer3;
+  longlong uiTransformCalculationResult;
+  UIDword uiTransformCoefficient23;
+  UIHandle *uiTransformResultPointer4;
+  UIHandle *uiTransformResultPointer5;
+  UIHandle uiTransformMatrix24;
+  UIDword uiTransformCoefficient25;
   
   if (*(int *)(dataSource + 0x10) != 0) {
     resultPointer1 = (UIHandle *)0x0;
@@ -10346,7 +10346,7 @@ void CleanupUIComponent(void)
 
 {
   char *stringPointer;
-  undefined *dataHandle;
+  UIPointer *uiDataHandle;
   longlong stringLength;
   ulonglong elementCount;
   longlong bufferOffset;
@@ -10359,7 +10359,7 @@ void CleanupUIComponent(void)
   longlong loopCounter;
   
   bufferOffset = 0;
-  InitializeUIDataBuffer(&resultBuffer,&UIDefaultDataBuffer,targetBuffer,bufferSize,0,0xfffffffffffffffe);
+  InitializeUIDataBuffer(&uiResultBuffer,&UIDefaultDataBuffer,targetBuffer,bufferSize,0,0xfffffffffffffffe);
   loopCounter = -1;
   do {
     stringLength = loopCounter + 1;
@@ -10370,7 +10370,7 @@ void CleanupUIComponent(void)
     elementCount = uiContext[1] - *uiContext >> 5;
     if ((int)elementCount == 0) {
       InitializeUIDataBuffer(dataSource,&UIDataUpdateHandler);
-      resultBuffer = &PrimaryUIBuffer;
+      uiResultBuffer = &PrimaryUIBuffer;
       if (bufferHandle == 0) {
         return dataSource;
       }
@@ -100086,32 +100086,48 @@ void UINullOperationFourth(void)
 
 
 
- void FUN_180723b20(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180723b20(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+ /**
+ * @brief UI整数数据计算处理函数
+ * 
+ * 处理UI系统中的整数数据计算和转换操作：
+ * - 从目标缓冲区读取数据并进行缩放处理
+ * - 执行数据验证和转换计算
+ * - 将结果写入数据源缓冲区
+ * - 处理数据范围检查和溢出保护
+ * 
+ * @param uiContext UI上下文指针数组，包含处理参数
+ * @param dataSource 数据源地址，用于存储处理结果
+ * @param targetBuffer 目标缓冲区地址，包含输入数据
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @return 无返回值
+ * @note 原始函数名：FUN_180723b20
+ */
+void ProcessUIIntegerDataCalculation(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+void ProcessUIIntegerDataCalculation(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 
 {
   UIWord result;
   int uiValidationResult;
   int uiCompareResult;
-  int TempInt4;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
+  int scaledInputValue;
+  int previousContextValue;
+  int processingCounter;
+  longlong bufferIndex;
   
   if (0 < bufferSize) {
-    localLong7 = 0;
+    bufferIndex = 0;
     do {
-      TempInt4 = *(short *)(targetBuffer + localLong7 * 2) * 0x400;
-      uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - *uiContext) * 0x6d2) >> 0x10);
-      localInt5 = *uiContext + uiValidationResult;
-      *uiContext = uiValidationResult + TempInt4;
-      uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[1]) * 0x3a8a) >> 0x10);
-      loopCounter = uiContext[1] + uiCompareResult;
+      scaledInputValue = *(short *)(targetBuffer + bufferIndex * 2) * 0x400;
+      uiValidationResult = (int)((ulonglong)((longlong)(scaledInputValue - *uiContext) * 0x6d2) >> 0x10);
+      previousContextValue = *uiContext + uiValidationResult;
+      *uiContext = uiValidationResult + scaledInputValue;
+      uiCompareResult = (int)((ulonglong)((longlong)(previousContextValue - uiContext[1]) * 0x3a8a) >> 0x10);
+      processingCounter = uiContext[1] + uiCompareResult;
       uiValidationResult = uiContext[2];
-      uiContext[1] = localInt5 + uiCompareResult;
-      uiCompareResult = loopCounter - uiValidationResult;
+      uiContext[1] = previousContextValue + uiCompareResult;
+      uiCompareResult = processingCounter - uiValidationResult;
       uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x6755) >> 0x10) + uiCompareResult;
-      uiContext[2] = loopCounter + uiCompareResult;
+      uiContext[2] = processingCounter + uiCompareResult;
       uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
       if (uiValidationResult < 0x8000) {
         result = (UIWord)uiValidationResult;
@@ -100122,17 +100138,17 @@ void FUN_180723b20(int *uiContext,longlong dataSource,longlong targetBuffer,int 
       else {
         result = 0x7fff;
       }
-      *(UIWord *)(dataSource + localLong7 * 4) = result;
-      uiValidationResult = (int)((ulonglong)((longlong)(TempInt4 - uiContext[3]) * 0x1ac6) >> 0x10);
-      localInt5 = uiContext[3] + uiValidationResult;
-      uiContext[3] = uiValidationResult + TempInt4;
-      uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[4]) * 0x64a9) >> 0x10);
-      TempInt4 = uiContext[4] + uiCompareResult;
+      *(UIWord *)(dataSource + bufferIndex * 4) = result;
+      uiValidationResult = (int)((ulonglong)((longlong)(scaledInputValue - uiContext[3]) * 0x1ac6) >> 0x10);
+      previousContextValue = uiContext[3] + uiValidationResult;
+      uiContext[3] = uiValidationResult + scaledInputValue;
+      uiCompareResult = (int)((ulonglong)((longlong)(previousContextValue - uiContext[4]) * 0x64a9) >> 0x10);
+      scaledInputValue = uiContext[4] + uiCompareResult;
       uiValidationResult = uiContext[5];
-      uiContext[4] = localInt5 + uiCompareResult;
-      uiCompareResult = TempInt4 - uiValidationResult;
+      uiContext[4] = previousContextValue + uiCompareResult;
+      uiCompareResult = scaledInputValue - uiValidationResult;
       uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x270a) >> 0x10) + uiCompareResult;
-      uiContext[5] = TempInt4 + uiCompareResult;
+      uiContext[5] = scaledInputValue + uiCompareResult;
       uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
       if (uiValidationResult < 0x8000) {
         result = (UIWord)uiValidationResult;
@@ -100143,9 +100159,9 @@ void FUN_180723b20(int *uiContext,longlong dataSource,longlong targetBuffer,int 
       else {
         result = 0x7fff;
       }
-      *(UIWord *)(dataSource + 2 + localLong7 * 4) = result;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < bufferSize);
+      *(UIWord *)(dataSource + 2 + bufferIndex * 4) = result;
+      bufferIndex = bufferIndex + 1;
+    } while (bufferIndex < bufferSize);
   }
   return;
 }
