@@ -81909,8 +81909,8 @@ long long * ManageSystemMemoryBlock(long long *ContextHandle,long long Operation
   int ProcessIterationCount;
   long long *SystemDataTablePointer;
   long long systemLoopCounter;
-  long long lStackX_8;
-  uint8_t auStack_18 [16];
+  long long StackValueX8;
+  uint8_t StackBuffer18 [16];
   
   MemoryBlockListHead = ContextHandle;
   if ((long long *)ContextHandle[2] != (long long *)0x0) {
@@ -81986,7 +81986,7 @@ LAB_18009b737:
       SystemContextPtr = MemoryBlockListHead;
 LAB_18009b73a:
       if (SystemContextPtr != (long long *)0x0) {
-        ProcessSystemDataAndCopyBuffer(ContextHandle,&lStackX_8,SystemContextPtr,Utf16EndPointer,OperationBufferSize);
+        ProcessSystemDataAndCopyBuffer(ContextHandle,&StackValueX8,SystemContextPtr,Utf16EndPointer,OperationBufferSize);
         goto LAB_18009b76b;
       }
     }
@@ -82023,10 +82023,10 @@ LAB_18009b73a:
     }
   }
 LAB_18009b758:
-  MemoryBlockListHead = (long long *)ProcessSystemDataAndAllocateList(ContextHandle,auStack_18,SystemContextPtr,OperationBufferSize);
-  lStackX_8 = *MemoryBlockListHead;
+  MemoryBlockListHead = (long long *)ProcessSystemDataAndAllocateList(ContextHandle,StackBuffer18,SystemContextPtr,OperationBufferSize);
+  StackValueX8 = *MemoryBlockListHead;
 LAB_18009b76b:
-  return (long long *)(lStackX_8 + 0x40);
+  return (long long *)(StackValueX8 + 0x40);
 }
 
 
