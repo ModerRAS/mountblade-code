@@ -523,6 +523,14 @@ typedef enum {
 #define localInt4 UILocalProcessingIndex4
 #define localInt6 UILocalProcessingIndex6
 
+// UI系统数组变量语义化定义
+#define tempBuffer1 UITempBuffer1
+#define tempBuffer2 UITempBuffer2
+#define stackBuffer1 UIStackBuffer1
+#define stackBuffer2 UIStackBuffer2
+#define aiterationCount2 UIIterationCountArray2
+#define afStack_60e8 UIAnimationFloatStack60E8
+
 // UI系统栈变量宏定义（补充）
 #define uStack000000000000005c UIStackBuffer5C
 #define uStack00000000000000dc UIStackBufferDC
