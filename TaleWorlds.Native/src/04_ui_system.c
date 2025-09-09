@@ -8947,7 +8947,7 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
     baseValue5 = targetY * targetBuffer[1] + baseValue * *targetBuffer + targetZ * targetBuffer[2];
     baseValue6 = bufferY * bufferSize[1] + bufferX * *bufferSize + bufferZ * bufferSize[2];
     baseValue = dataSource[5];
-    sourceZ2 = dataSource[6];
+    sourceZSecondary = dataSource[6];
     baseValue0 = targetBuffer[4];
     baseValue1 = dataSource[4];
     baseValue2 = targetBuffer[4];
@@ -106123,32 +106123,32 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
 
 {
   longlong allocatedMemory;
-  short *psVar2;
-  byte ProcessingFlag;
-  uint ProcessingStatus;
+  short *uiComponentPointer;
+  byte dataProcessingFlag;
+  uint dataProcessingStatus;
   ulonglong *componentContextPtr;
   ulonglong maxProcessingCount;
   ulonglong processingCounter;
   longlong contextOffset;
   uint eventProcessingStatus;
-  longlong AllocatedMemoryBlock1;
+  longlong allocatedMemoryBlock1;
   longlong allocatedMemory2;
-  uint ResultValue3;
+  uint validationResult3;
   int processingResult4;
-  int ProcessingResult5;
+  int processingResult5;
   int processingResult8;
   int processingResult9;
   int uiValidationResult0;
   int uiValidationResult1;
-  UIByte aTotalResult [16];
+  UIByte totalResult [16];
   int uiValidationResult2;
-  UIByte aresult7 [16];
+  UIByte resultBuffer7 [16];
   int uiValidationResult3;
-  UIByte aiterationCount4 [16];
-  UIByte aiterationCount5 [16];
-  UIByte in_XMM2 [16];
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount7 [16];
+  UIByte iterationCount4 [16];
+  UIByte iterationCount5 [16];
+  UIByte registerXMM2 [16];
+  UIByte iterationCount6 [16];
+  UIByte iterationCount7 [16];
   ulonglong result0;
   
   processingCounter = 0;
