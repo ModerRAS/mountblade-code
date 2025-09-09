@@ -225148,7 +225148,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
   OldBufferStart = NewBufferPointer;
   NewBufferStart = InsertPointer;
   if (InsertPosition != AllocatedMemorySizeSize) {
-    FUN_180189bc0(*CharacterStatusBuffer,InsertPosition,NewBufferPointer,CharacterStatusBuffer,InsertPointer,NewBufferStart,SystemStatusCode,SystemDataTablePointer);
+    ProcessSystemDataCopyAndBufferManagement(*CharacterStatusBuffer,InsertPosition,NewBufferPointer,CharacterStatusBuffer,InsertPointer,NewBufferStart,SystemStatusCode,SystemDataTablePointer);
     AllocatedMemorySizeSize = CharacterStatusBuffer[1];
     CurrentBufferEnd = InsertPosition;
     OldBufferStart = InsertPointer + 0x28;

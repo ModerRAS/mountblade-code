@@ -1485,7 +1485,7 @@
 #define VectorComponentAdditionalOffset38 0x38
 #define SystemContextSecondaryOffset1c 0x1c
 #define ResourceAccessRequestOffset98 0x98
-#define ResourceDescriptorOffset18 0x18
+#define resourceDescriptorOffset18 0x18
 #define ValidationStatusOffset34 0x34
 #define ValidationStatusOffset38 0x38
 #define ValidationStatusOffset3c 0x3c
@@ -1744,7 +1744,7 @@
 #define MemoryRegionBaseOffset 0x20
 #define MemoryRegionSizeOffset 0x28
 #define MemoryAccessPointerOffset 0x10
-#define ResourceDescriptorOffset 0x10
+#define resourceDescriptorOffset 0x10
 
 // 异常处理器调用偏移量常量
 #define ExceptionHandlerContextOffset60 0x60
@@ -1769,9 +1769,9 @@
 #define ExceptionHandlerNonaryOffset440 0x440
 #define ExceptionHandlerDenaryOffset448 0x448
 #define ExceptionHandlerUndenaryOffset450 0x450
-#define ResourceDescriptorPrimaryOffset 0x18
-#define ResourceDescriptorSecondaryOffset 0x20
-#define ResourceDescriptorTertiaryOffset 0x24
+#define resourceDescriptorPrimaryOffset 0x18
+#define resourceDescriptorSecondaryOffset 0x20
+#define resourceDescriptorTertiaryOffset 0x24
 
 // 资源队列和链表常量
 #define ResourceQueueEntrySize 0x1a8
@@ -1812,7 +1812,7 @@
 #define ResourceDataPointerBackupOffset 0x20
 #define ResourceValidationCheckOffset 0xe
 #define ExceptionListOffset 0x70
-#define ResourceDescriptorQuaternaryOffset 0x1c
+#define resourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
 #define ExceptionHandlerContextOffset 0x50
 #define ConfigurationDataOffset 0x3d0
@@ -2489,8 +2489,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ResourceValidationFlag2 0x12dd
 
 // 资源描述符偏移量常量
-#define ResourceDescriptorValidationOffset 0x1c    // 资源描述符验证偏移量
-#define ResourceDescriptorDataOffset 0x20         // 资源描述符数据偏移量
+#define resourceDescriptorValidationOffset 0x1c    // 资源描述符验证偏移量
+#define resourceDescriptorDataOffset 0x20         // 资源描述符数据偏移量
 
 // 异常处理相关偏移量常量
 #define ExceptionHandlerContextOffset 0x48         // 异常处理上下文偏移量
@@ -15386,14 +15386,14 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
     contextData[0] = 0;
     
     // 验证资源访问权限
-    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + ResourceDescriptorPrimaryOffset, contextData);
+    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + resourceDescriptorPrimaryOffset, contextData);
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
         if (*(int64_t *)(contextData[0] + PointerDataOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + PointerDataOffset),*(DataWord *)(resourceDescriptor + ResourceDescriptorSecondaryOffset),
-                                       *(ByteFlag *)(resourceDescriptor + ResourceDescriptorTertiaryOffset));
+        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + PointerDataOffset),*(DataWord *)(resourceDescriptor + resourceDescriptorSecondaryOffset),
+                                       *(ByteFlag *)(resourceDescriptor + resourceDescriptorTertiaryOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -15430,7 +15430,7 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
     
     // 初始化访问上下文
     accessContext[0] = 0;
-    validationResult = ValidateResourceAccess(resourceData[0], resourceDescriptor + ResourceDescriptorSecondaryOffset, accessContext);
+    validationResult = ValidateResourceAccess(resourceData[0], resourceDescriptor + resourceDescriptorSecondaryOffset, accessContext);
     if ((int)validationResult == 0) {
       if (accessContext[0] != 0) {
         // 验证指针数据有效性
@@ -15440,8 +15440,8 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
         
         // 处理资源数据
         validationResult = ProcessResourceData(*(int64_t *)(accessContext[0] + PointerDataOffset), 
-                                             *(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
-                                             *(ByteFlag *)(resourceDescriptor + ResourceDescriptorQuaternaryOffset));
+                                             *(DataWord *)(resourceDescriptor + resourceDescriptorPrimaryOffset),
+                                             *(ByteFlag *)(resourceDescriptor + resourceDescriptorQuaternaryOffset));
         if ((int)validationResult != 0) {
           return validationResult;
         }
@@ -15509,7 +15509,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   uint64_t simdRegister;
   
   // 查询系统数据并获取上下文
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset), &systemContextBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(resourceDescriptor + resourceDescriptorValidationOffset), &systemContextBuffer);
   if ((int32_t)operationResult != 0) {
     return operationResult;
   }
@@ -15517,7 +15517,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   // 获取验证上下文
   exceptionHandlerContext = *(int64_t *)(systemContextBuffer + PointerDataOffset);
   if (exceptionHandlerContext != 0) {
-    inputFloatValue = *(float *)(resourceDescriptor + ResourceDescriptorDataOffset);
+    inputFloatValue = *(float *)(resourceDescriptor + resourceDescriptorDataOffset);
     
     // 遍历浮点数组并进行验证
     for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextArrayOffset);
@@ -15925,7 +15925,7 @@ DataBuffer ValidateUtilitySystemState(void)
           return ResourceInvalidErrorCode;
         }
         validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalDataStorage + SystemContextOffset),*DataValidationContext,
-                              *(ByteFlag *)(StackFrameContext + ResourceDescriptorValidationOffset));
+                              *(ByteFlag *)(StackFrameContext + resourceDescriptorValidationOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -16536,7 +16536,7 @@ void ReturnEmptyFunctionD(void)
 
 
 
-// 函数: DataBuffer ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
+// 函数: DataBuffer ProcessresourceDescriptorValidation(int64_t resourceDescriptor)
 // 
 // 资源描述符验证处理函数
 // 处理资源描述符的验证过程，确保资源描述符的有效性
@@ -16546,7 +16546,7 @@ void ReturnEmptyFunctionD(void)
 // 
 // 返回值:
 //   成功返回0，失败返回错误代码
-DataBuffer ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
+DataBuffer ProcessresourceDescriptorValidation(int64_t resourceDescriptor)
 
 {
   DataBuffer validationStatus;
@@ -17026,7 +17026,7 @@ void ProcessUtilitySystemOperation(int64_t operationParams,uint64_t systemContex
   resourceDescriptor = operationParams;
   
   // 执行系统操作
-  operationResult = ExecuteSystemOperation(systemContext,operationParams,*(uint32_t *)(resourceDescriptor + ResourceDescriptorValidationOffset),callbackData);
+  operationResult = ExecuteSystemOperation(systemContext,operationParams,*(uint32_t *)(resourceDescriptor + resourceDescriptorValidationOffset),callbackData);
   
   // 如果操作成功，执行回调函数
   if (operationResult == 0) {
@@ -17234,9 +17234,9 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + SystemContextConversionOffset),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
     DataCount = *(int *)(contextHandle + SystemDataCountOffset);
-    if ((0 < DataCount) && (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) < 2)) {
+    if ((0 < DataCount) && (*(uint *)(contextHandle + resourceDescriptorValidationOffset) < 2)) {
       dataPointer = 0;
-      if (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) == 0) {
+      if (*(uint *)(contextHandle + resourceDescriptorValidationOffset) == 0) {
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 1;
         dataPointer = contextData;
@@ -17726,8 +17726,8 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
   
   eventProcessingResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventPointer + ExceptionHandlerCallbackOffset10),&systemEventData);
   if (eventProcessingResult == 0) {
-    *(DataWord *)(eventPointer + ResourceDescriptorPrimaryOffset) = *(DataWord *)(systemEventData + SystemEventDataOffset);
-    *(DataWord *)(eventPointer + ResourceDescriptorQuaternaryOffset) = *(DataWord *)(systemEventData + SystemEventDataSecondaryOffset);
+    *(DataWord *)(eventPointer + resourceDescriptorPrimaryOffset) = *(DataWord *)(systemEventData + SystemEventDataOffset);
+    *(DataWord *)(eventPointer + resourceDescriptorQuaternaryOffset) = *(DataWord *)(systemEventData + SystemEventDataSecondaryOffset);
     ProcessSystemEventB0(*(DataBuffer *)(contextPointer + SystemOperationDataOffset98),eventPointer);
   }
   return;
@@ -20167,7 +20167,7 @@ void ExecuteSecurityValidation(void)
 #define SystemConfigTertiaryOffset 0x2f8
 #define SystemContextOffset 0x2f8
 #define SystemResourceOffset88 0x88
-#define ResourceDescriptorOffset18 0x18
+#define resourceDescriptorOffset18 0x18
 #define ResourceAccessRequestOffset98 0x98
 
 /**
@@ -20235,7 +20235,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   isVectorZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset28Infinity = FloatInfinityValidationResult;
+    isVector28Infinity = FloatInfinityValidationResult;
   }
   isVectorXInfinity = isVectorZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
@@ -20245,12 +20245,12 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
     isVector20Infinity = FloatInfinityValidationResult;
   }
-  if ((isOffset28Infinity != 0 || isVectorXInfinity != 0) || isVectorYInfinity != 0) {
+  if ((isVector28Infinity != 0 || isVectorXInfinity != 0) || isVectorYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  isOffset28Infinity = isVectorZInfinity;
+  isVector28Infinity = isVectorZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset28Infinity = FloatInfinityValidationResult;
+    isVector28Infinity = FloatInfinityValidationResult;
   }
   isVectorXInfinity = isVectorZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
@@ -20259,7 +20259,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
     isVector2cInfinity = FloatInfinityValidationResult;
   }
-  if ((isOffset28Infinity != 0 || isVectorXInfinity != 0) || isVector2cInfinity != 0) {
+  if ((isVector28Infinity != 0 || isVectorXInfinity != 0) || isVector2cInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
@@ -20277,9 +20277,9 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     isOffset1cInfinity = 0x1d;
   }
   if (((uint)vectorYFloatComponent & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset28Infinity = 0x1d;
+    isVector28Infinity = 0x1d;
   }
-  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isOffset28Infinity == 0) {
+  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isVector28Infinity == 0) {
     if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
        (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
@@ -20347,23 +20347,23 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
 // 
 // 返回值:
 //   无 - 验证结果通过系统状态返回
-void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
+void ValidateResourceAccess(int64_t resourceDescriptor, int64_t accessRequest)
 
 {
-  int QueryResult;
-  int64_t ResourcePointer;
-  DataBuffer SystemContext;
+  int queryResult;
+  int64_t resourcePointer;
+  DataBuffer systemContext;
   
-  QueryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(ResourceDescriptor + ExceptionHandlerCallbackOffset10));
-  if (QueryResult == 0) {
+  queryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset10));
+  if (queryResult == 0) {
     if (SystemContext == 0) {
       ResourcePointer = 0;
     }
     else {
       ResourcePointer = SystemContext + -8;
     }
-    *(DataWord *)(ResourcePointer + SystemResourceOffset88) = *(DataWord *)(ResourceDescriptor + ResourceDescriptorOffset18);
-      UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + ResourceAccessRequestOffset98),ResourceDescriptor);
+    *(DataWord *)(ResourcePointer + SystemResourceOffset88) = *(DataWord *)(resourceDescriptor + resourceDescriptorOffset18);
+      UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + ResourceAccessRequestOffset98),resourceDescriptor);
   }
   return;
 }
@@ -20859,7 +20859,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
  * 
  * @param DataStructureHandle 数据结构句柄，指向要处理的数据结构
  * @param ProcessingContext 处理上下文，包含系统状态信息
- * @param ResourceDescriptor 资源描述符，包含资源相关数据
+ * @param resourceDescriptor 资源描述符，包含资源相关数据
  * @param OperationFlags 操作标志，控制处理行为
  * @return 处理结果状态码：
  *         - 0: 处理成功
@@ -20871,7 +20871,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
  * @note 该函数会修改数据结构中的浮点数值和系统状态
  * @warning 函数包含多个不返回的子例程调用，确保在调用前系统状态稳定
  */
-DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t ProcessingContext, DataBuffer ResourceDescriptor, DataBuffer OperationFlags)
+DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t ProcessingContext, DataBuffer resourceDescriptor, DataBuffer OperationFlags)
 
 {
   float inputFloatValue;
@@ -20905,13 +20905,13 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     return ResourceNotFoundCode;
   }
   if ((*(SystemByteType *)(dataOffset + SystemDataValidationOffset34) & 0x11) == 0) {
-    inputFloatValue = *(float *)(ResourceDescriptor + SystemDataParameterOffset20);
+    inputFloatValue = *(float *)(resourceDescriptor + SystemDataParameterOffset20);
     calculatedFloatValue = *(float *)(dataOffset + SystemFloatDataOffset38);
     if ((*(float *)(dataOffset + SystemFloatDataOffset38) <= inputFloatValue) &&
        (calculatedFloatValue = *(float *)(dataOffset + FloatDataValidationOffset3C), inputFloatValue <= *(float *)(dataOffset + FloatDataValidationOffset3C))) {
       calculatedFloatValue = inputFloatValue;
     }
-    *(float *)(ResourceDescriptor + SystemDataParameterOffset20) = calculatedFloatValue;
+    *(float *)(resourceDescriptor + SystemDataParameterOffset20) = calculatedFloatValue;
     *(float *)(dataStructurePointer + 4) = calculatedFloatValue;
     validationStatus = ValidateAndProcessSystemResourceA0(dataStructurePointer,DataStructureHandle + DataStructureHandleOffset1C);
     if ((int)validationStatus != 0) {
@@ -20920,7 +20920,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     dataStructurePointer = *(int64_t *)(ProcessingContext + SystemManagementOffset98);
     if ((*(int *)(dataStructurePointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataStructurePointer + SystemConfigSecondaryOffset) != 0)) {
       stackBuffer = 0;
-      InitializeSystemContextA0(&stackBuffer,DataStructureHandle,ResourceDescriptor,OperationFlags,systemContext);
+      InitializeSystemContextA0(&stackBuffer,DataStructureHandle,resourceDescriptor,OperationFlags,systemContext);
       if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
         validationStatus = ProcessSystemDataEC0(dataStructurePointer,DataStructureHandle);
         if ((int)validationStatus == 0) {
@@ -21327,7 +21327,7 @@ RangeValidationSuccess:
     memoryBlockOffset = LocalStackOffset + -8;
   }
   *(DataWord *)(memoryBlockOffset + DataOperationOffsetA4 + (int64_t)*(int *)(operationBase + SystemDataSecondaryOffset18) * 4) =
-       *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
+       *(DataWord *)(resourceDescriptor + resourceDescriptorValidationOffset);
   memoryBlockOffset = *(int64_t *)(dataBuffer + SystemManagementOffset98);
   if ((*(int *)(memoryBlockOffset + SystemConfigPrimaryOffset) != 0) || (*(int *)(memoryBlockOffset + SystemConfigSecondaryOffset) != 0)) {
     LocalStackOffset = 0;
@@ -21376,7 +21376,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
     dataContext = transferSize + -8;
   }
   *(DataWord *)(dataContext + DataOperationOffset94 + (int64_t)*(int *)(dataDescriptor + SystemDataSecondaryOffset18) * 4) =
-       *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
+       *(DataWord *)(resourceDescriptor + resourceDescriptorValidationOffset);
   dataContext = *(int64_t *)(systemContext + SystemManagementOffset98);
   if ((*(int *)(dataContext + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataContext + SystemConfigSecondaryOffset) != 0)) {
     transferSize = 0;
@@ -30237,7 +30237,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                 if (operationResult == 0) {
                   if (0 < inputParameter) {
                     do {
-                      resourceIterator = *(int64_t *)(dataBuffer + ResourceDescriptorValidationOffset);
+                      resourceIterator = *(int64_t *)(dataBuffer + resourceDescriptorValidationOffset);
                       stackDataBuffer.highWord = *(DataWord *)(resourceIterator + dataFlags * 8);
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
                                         (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
@@ -30253,7 +30253,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                       dataFlags = dataFlags + 1;
                     } while ((int64_t)dataFlags < (int64_t)inputParameter);
                   }
-                  stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,dataBuffer[ResourceDescriptorDataOffset]);
+                  stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,dataBuffer[resourceDescriptorDataOffset]);
                   (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
                             (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
                 }
@@ -38143,7 +38143,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
           *(DataWord *)(DataContext + SystemDataParameterOffset200) = *(DataWord *)(DataContext + ExceptionHandlerCallbackOffset10);
           *(DataWord *)(DataContext + SystemDataParameterOffset204) = *(DataWord *)(DataContext + 0x14);
           *(DataWord *)(DataContext + SystemDataParameterOffset208) = *(DataWord *)(DataContext + SystemDataSecondaryOffset18);
-          *(DataWord *)(DataContext + SystemDataParameterOffset20c) = *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
+          *(DataWord *)(DataContext + SystemDataParameterOffset20c) = *(DataWord *)(resourceDescriptor + resourceDescriptorValidationOffset);
             ExecutePortControlOperation(SecurityBuffer,portControlBuffer);
         }
       }
