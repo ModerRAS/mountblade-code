@@ -1002,6 +1002,28 @@
 #define DataValidationOffset20 0x20
 #define DataValidationOffset25 0x25
 
+// 通用数组索引常量
+#define ArrayIndex0 0
+#define ArrayIndex1 1
+#define ArrayIndex2 2
+#define ArrayIndex3 3
+#define ArrayIndex4 4
+#define ArrayIndex5 5
+#define ArrayIndex6 6
+#define ArrayIndex7 7
+#define ArrayIndex8 8
+#define ArrayIndex9 9
+#define ArrayIndex10 10
+
+// 异常处理器数组索引常量
+#define ExceptionHandlerIndex0 ArrayIndex0
+#define ExceptionHandlerIndex1 ArrayIndex1
+#define ExceptionHandlerIndex2 ArrayIndex2
+#define ExceptionHandlerIndex4 ArrayIndex4
+#define ExceptionHandlerIndex7 ArrayIndex7
+#define ExceptionHandlerIndex8 ArrayIndex8
+#define ExceptionHandlerIndex10 ArrayIndex10
+
 // 初始化偏移量常量
 #define InitializationOffset14 0x14
 #define DataValidationOffsetA8 0xa8
@@ -60021,19 +60043,19 @@ void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
   _Mtx_destroy_in_situ();
   *exceptionDataBuffer = &ExceptionHandlerB;
-  exceptionDataBuffer[7] = &SystemTemporaryExceptionHandler;
-  if (exceptionDataBuffer[8] != 0) {
+  exceptionDataBuffer[ExceptionHandlerIndex7] = &SystemTemporaryExceptionHandler;
+  if (exceptionDataBuffer[ExceptionHandlerIndex8] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  exceptionDataBuffer[8] = 0;
-  *(DataWord *)(exceptionDataBuffer + 10) = 0;
-  exceptionDataBuffer[7] = &SystemDefaultExceptionHandlerB;
-  exceptionDataBuffer[1] = &SystemTemporaryExceptionHandler;
-  if (exceptionDataBuffer[2] != 0) {
+  exceptionDataBuffer[ExceptionHandlerIndex8] = 0;
+  *(DataWord *)(exceptionDataBuffer + ExceptionHandlerIndex10) = 0;
+  exceptionDataBuffer[ExceptionHandlerIndex7] = &SystemDefaultExceptionHandlerB;
+  exceptionDataBuffer[ExceptionHandlerIndex1] = &SystemTemporaryExceptionHandler;
+  if (exceptionDataBuffer[ExceptionHandlerIndex2] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  exceptionDataBuffer[2] = 0;
-  *(DataWord *)(exceptionDataBuffer + 4) = 0;
+  exceptionDataBuffer[ExceptionHandlerIndex2] = 0;
+  *(DataWord *)(exceptionDataBuffer + ExceptionHandlerIndex4) = 0;
   exceptionDataBuffer[DefaultExceptionHandlerBOffset] = &SystemDefaultExceptionHandlerB;
   return;
 }

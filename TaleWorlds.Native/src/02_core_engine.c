@@ -78035,7 +78035,7 @@ CharacterStatusBufferFinalLabel:
     }
   }
   CharacterStatusBuffer = SystemCharacterStatusBuffer;
-LAB_18009580a:
+CharacterStatusBufferCompleteLabel:
   SystemTemplatePointer = &SystemNullTemplate;
   if (ValidationBytePointer48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -78060,7 +78060,7 @@ LAB_18009580a:
     do {
       if (*(int *)(CharacterStatusBuffer3 + 6) == 0) {
         LowByte = true;
-LAB_1800958e8:
+CharacterStatusBufferValidationLabel:
         TemporaryBuffer = (void *)*CharacterStatusBuffer3;
       }
       else {
@@ -78072,7 +78072,7 @@ LAB_1800958e8:
           SystemBytePointer = SystemBytePointer + 1;
         } while (SystemChecksum != 0);
         LowByte = 0 < ComputedResult;
-        if (0 < ComputedResult) goto LAB_1800958e8;
+        if (0 < ComputedResult) goto CharacterStatusBufferValidationLabel;
         TemporaryBuffer = (void *)CharacterStatusBuffer3[1];
       }
       if (LowByte) {
@@ -78329,7 +78329,7 @@ void InitializeSystemCoreComponents(void
         }
         CharacterStatusBuffer = (void *)*TemporaryBuffer;
       }
-LAB_1800960d8:
+StringProcessingStatusLabel:
       StringProcessingStatus = TemporaryBuffer;
       if (HighByte) {
         StringProcessingStatus = SecondaryProcessingStatusFlag;
@@ -78338,7 +78338,7 @@ LAB_1800960d8:
       TemporaryBuffer = CharacterStatusBuffer;
     } while (CharacterStatusBuffer != NULL);
     if (StringProcessingStatus != StringProcessingStatus) {
-      if (*(int *)(StringProcessingStatus + 6) == 0) goto LAB_18009611a;
+      if (*(int *)(StringProcessingStatus + 6) == 0) goto StringProcessingStatusLabel;
       if (SystemValidationFlag != 0) {
         ValidationBytePointer = (byte *)StringProcessingStatus[5];
         SystemStringIndex = (long long)DataValidationBuffer - (long long)ValidationBytePointer;
@@ -78353,7 +78353,7 @@ LAB_1800960d8:
     }
   }
   StringProcessingStatus = StringProcessingStatus;
-LAB_18009611a:
+StringProcessingCompleteLabel:
   LocalProcessingStatusFlag = &SystemNullTemplate;
   if (DataValidationBuffer == (byte *)0x0) {
     ByteStack28 = (byte *)0x0;
@@ -78551,7 +78551,7 @@ void CoreEngineProcessDataBuffer(uint64_t ContextHandle,long long OperationBuffe
         BufferAllocationStatus5 = MemoryBlockListHead + 0x1c;
         ProcessMemoryBlockListOperation(MemoryBlockListHead,BufferAllocationStatus5,CharacterStatusBuffer2);
         if (BufferAllocationStatus5 != BufferAllocationStatus) {
-LAB_180096990:
+MemoryBlockListProcessingLabel:
           SystemStringIndex = *BufferAllocationStatus5;
           MemoryBlockListHead = BufferAllocationStatus5;
           do {
