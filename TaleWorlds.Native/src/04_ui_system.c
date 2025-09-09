@@ -10052,7 +10052,8 @@ ulonglong UIProcessEventCallback(UIHandle uiContext,UIHandle dataSource,UIHandle
   longlong eventLoopCounter2;
   undefined *eventDataTypePointer;
   ulonglong eventProcessingCounter;
-  bool EventProcessingResult;   was EventProcessingStatus
+  ulonglong eventProcessingStep;
+  bool EventProcessingResult;   // was EventProcessingStatus
   undefined *eventDataBufferPtr1;
   char *eventDataStringPtr;
   int eventDataStringLength;
@@ -10060,6 +10061,12 @@ ulonglong UIProcessEventCallback(UIHandle uiContext,UIHandle dataSource,UIHandle
   undefined *eventDataBufferPtr2;
   longlong eventDataAddress;
   int eventTypeId;
+  
+  // 额外的变量定义
+  int stackInt20;
+  int stackInt40;
+  longlong stackLong28;
+  char *pcStack_48;
   
   InitializeUIDataBuffer(&eventDataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
   InitializeUIDataBuffer(&eventDataBufferPtr1,dataSource);
@@ -10143,105 +10150,105 @@ LAB_UIEventProcessingCheck:
       else if (eventDataStringLength == 8) {
         eventDataTypePointer = &UIEventTypeSelect;
 UIEventTypeSelectCheck:
-        uiCompareResult = strcmp(eventStringPtr,eventTypePointer);
-        if (uiCompareResult == 0) {
-          processingCounter = 0x10;
+        eventCompareResult = strcmp(eventDataStringPtr,eventDataTypePointer);
+        if (eventCompareResult == 0) {
+          eventProcessingCounter = 0x10;
           goto LAB_EventHandlerReturn;
         }
       }
-      else if (stringLength == 5) {
-        loopCounter2 = 0;
+      else if (eventDataStringLength == 5) {
+        eventLoopCounter2 = 0;
         do {
-          loopCounter1 = loopCounter2;
-          if (eventStringPtr[loopCounter1] != (&UIEventTypeChange)[loopCounter1]) goto LAB_EventValidationFailed;
-          loopCounter2 = loopCounter1 + 1;
-        } while (loopCounter1 + 1 != 6);
-        processingCounter = (ulonglong)((int)loopCounter1 + 0x3b);
+          eventLoopCounter1 = eventLoopCounter2;
+          if (eventDataStringPtr[eventLoopCounter1] != (&UIEventTypeChange)[eventLoopCounter1]) goto LAB_EventValidationFailed;
+          eventLoopCounter2 = eventLoopCounter1 + 1;
+        } while (eventLoopCounter1 + 1 != 6);
+        eventProcessingCounter = (ulonglong)((int)eventLoopCounter1 + 0x3b);
         goto LAB_EventHandlerReturn;
       }
     }
   }
-  else if (eventTypeIndex == 0xb) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeAxis);
-    if (uiCompareResult == 0) {
+  else if (eventTypeId == 0xb) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeAxis);
+    if (eventCompareResult == 0) {
 UIAxisEventProcessing:
-      if ((stringLength == 1) &&
-         (((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')) && (*eventStringPtr == 'y')))) {
-        EventProcessingResult = eventStringPtr[1] == '\0';
+      if ((eventDataStringLength == 1) &&
+         (((*eventDataStringPtr != 'x' || (eventDataStringPtr[1] != '\0')) && (*eventDataStringPtr == 'y')))) {
+        EventProcessingResult = eventDataStringPtr[1] == '\0';
         goto LAB_EventResultReturn;
       }
     }
   }
-  else if (eventTypeIndex == 0x16) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeBlur);
-    if (((uiCompareResult == 0) && (stringLength == 1)) && ((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')))) {
-      if ((*eventStringPtr == 'y') && (eventStringPtr[1] == '\0')) {
-        processingCounter = 4;
+  else if (eventTypeId == 0x16) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeBlur);
+    if (((eventCompareResult == 0) && (eventDataStringLength == 1)) && ((*eventDataStringPtr != 'x' || (eventDataStringPtr[1] != '\0')))) {
+      if ((*eventDataStringPtr == 'y') && (eventDataStringPtr[1] == '\0')) {
+        eventProcessingCounter = 4;
         goto LAB_EventHandlerReturn;
       }
-      if (*eventStringPtr == 'z') {
-        EventProcessingResult = eventStringPtr[1] == '\0';
+      if (*eventDataStringPtr == 'z') {
+        EventProcessingResult = eventDataStringPtr[1] == '\0';
 LAB_EventProcessingContinue:
         if (EventProcessingResult) {
-          processingCounter = 8;
+          eventProcessingCounter = 8;
           goto LAB_EventHandlerReturn;
         }
       }
     }
   }
-  else if (eventTypeIndex == 7) {
-    processingCounter = 8;
-    loopCounter2 = 0;
+  else if (eventTypeId == 7) {
+    eventProcessingCounter = 8;
+    eventLoopCounter2 = 0;
     do {
-      loopCounter1 = loopCounter2 + 1;
-      if (*(char *)(eventDataPtr + loopCounter2) != (&UIEventTypeScroll)[loopCounter2]) {
-        loopCounter2 = 0;
+      eventLoopCounter1 = eventLoopCounter2 + 1;
+      if (*(char *)(eventDataAddress + eventLoopCounter2) != (&UIEventTypeScroll)[eventLoopCounter2]) {
+        eventLoopCounter2 = 0;
         goto LAB_EventStringCompare;
       }
-      loopCounter2 = loopCounter1;
-    } while (loopCounter1 != 8);
-    if ((((stringLength == 1) && ((*eventStringPtr != 's' || (eventStringPtr[1] != '\0')))) &&
-        (*eventStringPtr == 'f')) && (eventStringPtr[1] == '\0')) goto LAB_EventHandlerReturn;
+      eventLoopCounter2 = eventLoopCounter1;
+    } while (eventLoopCounter1 != 8);
+    if ((((eventDataStringLength == 1) && ((*eventDataStringPtr != 's' || (eventDataStringPtr[1] != '\0')))) &&
+        (*eventDataStringPtr == 'f')) && (eventDataStringPtr[1] == '\0')) goto LAB_EventHandlerReturn;
   }
-  else if (eventTypeIndex == 0xf) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeFocus);
-    if (uiCompareResult == 0) {
-      if (stringLength == 3) {
-        loopCounter2 = 0;
+  else if (eventTypeId == 0xf) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeFocus);
+    if (eventCompareResult == 0) {
+      if (eventDataStringLength == 3) {
+        eventLoopCounter2 = 0;
         do {
-          loopCounter1 = loopCounter2 + 1;
-          if (eventStringPtr[loopCounter2] != (&UIEventTypeZoom)[loopCounter2]) break;
-          loopCounter2 = loopCounter1;
-        } while (loopCounter1 != 4);
+          eventLoopCounter1 = eventLoopCounter2 + 1;
+          if (eventDataStringPtr[eventLoopCounter2] != (&UIEventTypeZoom)[eventLoopCounter2]) break;
+          eventLoopCounter2 = eventLoopCounter1;
+        } while (eventLoopCounter1 != 4);
       }
-      else if (((stringLength == 1) && (*eventStringPtr == 'o')) && (eventStringPtr[1] == '\0')) {
-        processingCounter = 0x30;
+      else if (((eventDataStringLength == 1) && (*eventDataStringPtr == 'o')) && (eventDataStringPtr[1] == '\0')) {
+        eventProcessingCounter = 0x30;
         goto LAB_EventHandlerReturn;
       }
     }
   }
-  else if (eventTypeIndex == 0x13) {
-    uiCompareResult = strcmp(eventDataPtr,&UIEventTypeButton);
-    if (uiCompareResult == 0) {
-      if (stringLength == 10) {
-        strcmp(eventStringPtr,&UIEventTypeButtonPress);
+  else if (eventTypeId == 0x13) {
+    eventCompareResult = strcmp(eventDataAddress,&UIEventTypeButton);
+    if (eventCompareResult == 0) {
+      if (eventDataStringLength == 10) {
+        strcmp(eventDataStringPtr,&UIEventTypeButtonPress);
       }
       else {
-        if (stringLength == 0x10) {
-          eventTypePointer = &UIEventTypeButtonRelease;
+        if (eventDataStringLength == 0x10) {
+          eventDataTypePointer = &UIEventTypeButtonRelease;
           goto LAB_EventFocusCheck;
         }
-        if (stringLength == 0x11) {
-          uiCompareResult = strcmp(eventStringPtr,&UIEventTypeButtonHold);
-          EventProcessingResult = uiCompareResult == 0;
+        if (eventDataStringLength == 0x11) {
+          eventCompareResult = strcmp(eventDataStringPtr,&UIEventTypeButtonHold);
+          EventProcessingResult = eventCompareResult == 0;
           goto LAB_EventProcessingContinue;
         }
       }
     }
   }
   else if (stackInt20 == 0xd) {
-    uiCompareResult = strcmp(stackLong28,&UIStringTable_DefaultFont);
-    if (((uiCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'w' || (pcStack_48[1] != '\0')))) {
+    eventCompareResult = strcmp(stackLong28,&UIStringTable_DefaultFont);
+    if (((eventCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'w' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'x') && (pcStack_48[1] == '\0')) {
         processingCounter = 4;
         goto LAB_EventHandlerReturn;
