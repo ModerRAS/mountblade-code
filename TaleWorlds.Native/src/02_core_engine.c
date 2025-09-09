@@ -13953,6 +13953,27 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * 
  * 该函数是引擎启动时的关键初始化步骤，确保数据结构正确建立
  */
+/**
+ * @brief 初始化核心引擎数据结构
+ * 
+ * 该函数负责初始化TaleWorlds引擎的核心数据结构，包括：
+ * - 系统节点树的构建和初始化
+ * - 数据结构的内存分配和设置
+ * - 节点遍历和插入操作
+ * - 系统上下文的配置
+ * 
+ * @details
+ * 函数执行以下主要步骤：
+ * 1. 获取引擎系统上下文和根节点
+ * 2. 检查系统节点初始化状态
+ * 3. 遍历系统节点链表，查找合适的插入位置
+ * 4. 根据比较结果创建新的系统节点
+ * 5. 配置数据结构和内存分配
+ * 
+ * @note 这是引擎启动时的关键初始化函数
+ * @warning 必须在系统启动早期调用此函数
+ * @see CoreEngineGetSystemHandle, CoreEngineGetDataInitializer, CoreEngineAllocateMemory
+ */
 void InitializeCoreEngineDataStructure(void) {
   bool SystemNodeInitializedFlag;          // 系统节点初始化标志
   void *SystemRootNode;                    // 系统根节点指针
@@ -25033,7 +25054,7 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
   SystemInfoStackValidationValue = 0;
   if (*(char *)(SystemConfigHandle + 0x18) == '\0') {
     CoreEngineInitializeSystemInfo(&SystemInfoThreadContext);
-    (**(code **)(**(long long **)(CoreEngineSystemContext + 0x2b0) + 0x98)              (*(long long **)(CoreEngineSystemContext + 0x2b0),&SystemInfoThreadContext);
+    (**(code **)(**(long long **)(CoreEngineSystemContext + CoreEngineSystemFunctionTableOffset) + CoreEngineSystemSecondaryFunctionOffset)              (*(long long **)(CoreEngineSystemContext + CoreEngineSystemFunctionTableOffset),&SystemInfoThreadContext);
     CoreEngineSetupSystemInfoContext();
     SystemInfoConfigurationPointer = SystemConfigHandle;
     SystemInfoMemoryBlock = MemoryAllocate(MemoryPoolManager,0x70,8,3);
@@ -26073,7 +26094,7 @@ void CoreEngineMemoryConfigure(uint64_t MemoryConfigHandle,uint32_t MemoryConfig
   uint32_t ConfigStackBuffer [6];
   
   MemoryContext = CoreEngineMemoryContext;
-  if ((*(long long *)(CoreEngineMemoryContext + 0x22f0) != 0) &&
+  if ((*(long long *)(CoreEngineMemoryContext + CoreEngineMemoryContextOffset) != 0) &&
      (ConfigStackDataBuffer[0] = MemoryConfigParam, OperationResult = (**(code **)(CoreEngineMemoryContext + 0x22f8))(ConfigStackBuffer),
      MemoryConfigParam = ConfigStackDataBuffer[0], OperationResult == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
@@ -27381,7 +27402,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
   MemoryOffsetValue = 0;
   SystemPrimaryReturnCode = *(uint *)(CoreEngineSystemContext + SystemPrimaryReturnCodeOffset);
   MemoryAllocationIndex = (unsigned long long)SystemPrimaryReturnCode;
-  if (*(long long *)(CoreEngineSystemContext + 0x178) != 0) {
+  if (*(long long *)(CoreEngineSystemContext + SystemSecondaryReturnCodeOffset) != 0) {
     CoreEngineProcessSystemEvent(&SystemCharacterStatusBufferPointer,MemoryAllocationIndex,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
   }
   if (SystemPrimaryReturnCode != 0) {
