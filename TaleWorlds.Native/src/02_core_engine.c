@@ -218624,37 +218624,55 @@ LAB_18018054e:
 
 
 
-long long * FUN_180180730(long long ContextHandle,long long *ContextHandleSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统上下文和UTF-8/UTF-16字符编码转换
+ * 
+ * 该函数负责处理系统上下文的内存分配、字符编码转换和内存管理。
+ * 主要功能包括：
+ * - 分配系统内存缓冲区
+ * - 处理UTF-8到UTF-16的字符编码转换
+ * - 管理内存块的生命周期
+ * - 验证和处理字符状态缓冲区
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 处理结果的指针
+ * 
+ * @note 原始函数名：FUN_180180730
+ */
+long long * ProcessSystemContextAndCharacterEncoding(long long ContextHandle, long long *ContextHandleSize, long long Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  uint64_t *CharacterStatusBuffer;
-  byte SystemHighByte;
-  uint UnicodeCodePoint;
-  long long SystemDataRegistry;
-  long long AllocatedMemorySize;
-  byte *Utf8OutputPointer;
-  long long MemoryPoolBlockSize;
-  uint64_t ProcessingStatusFlag;
-  uint64_t *pSystemRegisterFlag;
-  long long lStackX_10;
+  uint64_t *CharacterStatusBuffer;      // 字符状态缓冲区指针
+  byte SystemHighByte;                  // 系统高字节
+  uint UnicodeCodePoint;                // Unicode码点
+  long long SystemDataRegistry;         // 系统数据注册表
+  long long AllocatedMemorySize;        // 已分配内存大小
+  byte *Utf8OutputPointer;              // UTF-8输出指针
+  long long MemoryPoolBlockSize;        // 内存池块大小
+  uint64_t ProcessingStatusFlag;        // 处理状态标志
+  uint64_t *SystemRegisterFlagPointer;  // 系统寄存器标志指针
+  long long SystemStackOffset10;        // 系统栈偏移量10
   
-  SystemDataRegistry = BufferAllocate(MemoryPoolManager,0xc0,*(uint8_t *)(ContextHandle + 0x28),Utf16EndPointer,
+  SystemDataRegistry = BufferAllocate(MemoryPoolManager, 0xc0, *(uint8_t *)(ContextHandle + 0x28), Utf16EndPointer,
                         0xfffffffffffffffe);
   CharacterStatusBuffer = (void *)(SystemDataRegistry + 0x20);
-  pSystemRegisterFlag = CharacterStatusBuffer;
-  ProcessCoreEngineParameters(CharacterStatusBuffer,Utf8SourcePointer);
+  SystemRegisterFlagPointer = CharacterStatusBuffer;
+  ProcessCoreEngineParameters(CharacterStatusBuffer, Utf8SourcePointer);
   *(uint32_t *)(SystemDataRegistry + 0xb8) = *(uint32_t *)(Utf8SourcePointer + 0x58);
-  lStackX_10 = SystemDataRegistry;
-    AllocatedMemorySize = AllocateSystemMemoryBlock(ContextHandle,&pSystemRegisterFlag,CharacterStatusBuffer);
-  if ((char)pSystemRegisterFlag == '\0') {
+  SystemStackOffset10 = SystemDataRegistry;
+  AllocatedMemorySize = AllocateSystemMemoryBlock(ContextHandle, &SystemRegisterFlagPointer, CharacterStatusBuffer);
+  if ((char)SystemRegisterFlagPointer == '\0') {
     *CharacterStatusBuffer = &ThreadLocalStorageTemplate;
     if (SystemDataRegistry != 0) {
-      pSystemRegisterFlag = CharacterStatusBuffer;
+      SystemRegisterFlagPointer = CharacterStatusBuffer;
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(SystemDataRegistry);
     }
     *ContextHandleSize = AllocatedMemorySize;
-    *(uint8_t *)(OperationBufferSize + 1) = 0;
-    return OperationBufferSize;
+    *(uint8_t *)(ContextHandle + 1) = 0;
+    return ContextHandle;
   }
   if (AllocatedMemorySize != ContextHandle) {
     if (*(int *)(AllocatedMemorySize + 0x30) == 0) {

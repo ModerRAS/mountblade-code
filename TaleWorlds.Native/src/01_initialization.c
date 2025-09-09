@@ -25387,16 +25387,16 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   ConfigurationParameter = ConfigurationFlag;
   SystemHashNodeData = (ulong long *)SystemGlobalDataAllocate();
   SystemProcessFlags = 0;
-  memoryAllocationEnd = &StackParameter2;
-  __stdio_common_vsprintf(*SystemHashNodeData | 1,ConfigurationBuffer,0x20,ConfigurationDataPointer);
+  MemoryAllocationEndPointer = &StackParameter2;
+  __stdio_common_vsprintf(*SystemHashNodeData | 1,GameSettingsBuffer,0x20,ConfigurationDataPointer);
   resourceDataIndex = -1;
   do {
     SystemProcessBufferPtr = ResourceDataIndex;
     resourceDataIndex = SystemProcessingBufferPointer + 1;
-  } while (ConfigurationBuffer[SystemProcessingBufferPointer + 1] != '\0');
+  } while (GameSettingsBuffer[SystemProcessingBufferPointer + 1] != '\0');
   mutexOperationResult = (int)(SystemProcessingBufferPointer + 1);
   if ((0 < mutexOperationResult) && (*(uint *)(SystemResourceManager + 0x10) + mutexOperationResult < 0x1f)) {
-      memcpy((ulong long)*(uint *)(SystemResourceManager + 0x10) + *(long long *)(SystemResourceManager + 8),ConfigurationBuffer,
+      memcpy((ulong long)*(uint *)(SystemResourceManager + 0x10) + *(long long *)(SystemResourceManager + 8),GameSettingsBuffer,
            (long long)((int)SystemProcessingBufferPointer + 2));
   }
     ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)EncryptionBuffer);
@@ -25448,38 +25448,58 @@ void* * GetSystemDataBufferConfigurationD(void* *SystemResourceManager,ulong lon
 
 
 
-int SystemStringFormatProcess(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统字符串格式化处理器
+ * 
+ * 该函数负责处理系统字符串的格式化操作，使用标准库的vsprintf功能
+ * 来格式化字符串。它会分配必要的内存资源，执行格式化操作，
+ * 并处理可能出现的错误情况。
+ * 
+ * @param SystemResourceManager 目标缓冲区，用于存储格式化后的字符串
+ * @param ConfigurationDataPointer 格式化字符串模板
+ * @param AdditionalParameter 格式化参数列表
+ * @param ConfigurationFlag 本地化信息（当前未使用，传入0）
+ * 
+ * @return 成功返回格式化的字符数，失败返回-1
+ * 
+ * @note 该函数使用系统全局数据分配器来获取格式化所需的资源
+ * @note 格式化失败时会自动清理分配的资源
+ */
+int FormatSystemStringWithValidation(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  int SystemInitializationStatus;
-  ulong long *ResourceHashEntryPointer;
+  int FormatOperationStatus;
+  ulong long *StringFormatResourcePointer;
   
-  ResourceHashEntryPointer = (ulong long *)SystemGlobalDataAllocate();
-  SystemInitializationStatus = __stdio_common_vsprintf(*ResourceHashEntryPointer | 1,SystemResourceManager,ConfigurationDataPointer,AdditionalParameter,0,ConfigurationFlag);
-  if (SystemInitializationStatus < 0) {
-    SystemInitializationStatus = -1;
+  StringFormatResourcePointer = (ulong long *)SystemGlobalDataAllocate();
+  FormatOperationStatus = __stdio_common_vsprintf(*StringFormatResourcePointer | 1,SystemResourceManager,ConfigurationDataPointer,AdditionalParameter,0,ConfigurationFlag);
+  if (FormatOperationStatus < 0) {
+    FormatOperationStatus = -1;
   }
-  return SystemInitializationStatus;
+  return FormatOperationStatus;
 }
 
 
 
 
 /**
- * @brief 系统初始化器A
+ * @brief 系统主初始化器
  * 
- * 该函数负责系统的初始化工作，调用核心初始化函数
- * 来完成系统组件的初始化。
+ * 该函数负责系统的主要初始化工作，调用核心初始化函数
+ * 来完成系统组件的初始化。这是系统启动过程中的关键函数。
  * 
- * @param systemContext 系统上下文指针
- * @param initParameter 初始化参数
- * @param initFlag 初始化标志
- * @param initContext 初始化上下文
+ * @param SystemContextPointer 系统上下文指针，包含系统状态和配置信息
+ * @param InitializationParameter 初始化参数，传递给核心初始化器
+ * @param InitializationFlag 初始化标志，控制初始化行为
+ * @param InitializationContext 初始化上下文，提供额外的初始化环境信息
+ * 
+ * @note 该函数会从系统上下文中提取资源管理器指针进行初始化
+ * @note 使用InvalidHandleValue作为默认句柄值
  */
-void SystemInitializerA(long long systemContext,void* initParameter,void* initFlag,void* initContext)
+void InitializeSystemPrimaryComponents(long long SystemContextPointer,void* InitializationParameter,void* InitializationFlag,void* InitializationContext)
 
 {
-  SystemCoreInitializer(systemContext,*(void* *)(systemContext + 0x10),initFlag,initContext,InvalidHandleValue);
+  SystemCoreInitializer(SystemContextPointer,*(void* *)(SystemContextPointer + 0x10),InitializationFlag,InitializationContext,InvalidHandleValue);
   return;
 }
 
@@ -25487,20 +25507,23 @@ void SystemInitializerA(long long systemContext,void* initParameter,void* initFl
 
 
 /**
- * @brief 系统初始化器B
+ * @brief 系统辅助初始化器
  * 
- * 该函数负责系统的初始化工作，与SystemInitializerA功能相似，
- * 用于不同场景下的系统初始化。
+ * 该函数负责系统的辅助初始化工作，与主初始化器功能相似，
+ * 用于不同场景下的系统初始化，提供备用初始化路径。
  * 
- * @param systemContext 系统上下文指针
- * @param initParameter 初始化参数
- * @param initFlag 初始化标志
- * @param initContext 初始化上下文
+ * @param SystemContextPointer 系统上下文指针，包含系统状态和配置信息
+ * @param InitializationParameter 初始化参数，传递给核心初始化器
+ * @param InitializationFlag 初始化标志，控制初始化行为
+ * @param InitializationContext 初始化上下文，提供额外的初始化环境信息
+ * 
+ * @note 该函数与主初始化器具有相同的实现，但用于不同的初始化场景
+ * @note 同样使用InvalidHandleValue作为默认句柄值
  */
-void SystemInitializerB(long long systemContext,void* initParameter,void* initFlag,void* initContext)
+void InitializeSystemSecondaryComponents(long long SystemContextPointer,void* InitializationParameter,void* InitializationFlag,void* InitializationContext)
 
 {
-  SystemCoreInitializer(systemContext,*(void* *)(systemContext + 0x10),initFlag,initContext,InvalidHandleValue);
+  SystemCoreInitializer(SystemContextPointer,*(void* *)(SystemContextPointer + 0x10),InitializationFlag,InitializationContext,InvalidHandleValue);
   return;
 }
 
@@ -25512,18 +25535,22 @@ void SystemInitializerB(long long systemContext,void* initParameter,void* initFl
  * @brief 系统数据指针设置器
  * 
  * 该函数负责设置系统数据指针，并解锁系统互斥锁。
+ * 它会更新系统数据头存储，并确保互斥锁正确释放。
  * 
- * @param dataPointer 数据指针参数
+ * @param DataPointerParameter 数据指针参数，包含要设置的系统数据指针
+ * 
+ * @note 该函数假设SystemPrimaryMutexAddress已正确初始化
+ * @note 互斥锁解锁失败时会抛出系统错误
  */
-void SystemDataPointerSetter(void* *dataPointer)
+void SetSystemDataPointerAndReleaseMutex(void* *DataPointerParameter)
 
 {
-  int MutexUnLockOperationResult;
+  int MutexUnlockOperationResult;
   
-  SystemDataHeaderStorage = *dataPointer;
-  MutexUnLockOperationResult = _Mtx_unlock(SystemPrimaryMutexAddress);
-  if (MutexUnLockOperationResult != 0) {
-    ThrowSystemError(MutexUnLockOperationResult);
+  SystemDataHeaderStorage = *DataPointerParameter;
+  MutexUnlockOperationResult = _Mtx_unlock(SystemPrimaryMutexAddress);
+  if (MutexUnlockOperationResult != 0) {
+    ThrowSystemError(MutexUnlockOperationResult);
   }
   return;
 }
@@ -25532,20 +25559,23 @@ void SystemDataPointerSetter(void* *dataPointer)
 
 
 /**
- * @brief 系统配置初始化器A
+ * @brief 系统主配置初始化器
  * 
- * 该函数负责系统配置的初始化工作，调用核心配置初始化函数
- * 来完成系统配置的设置。
+ * 该函数负责系统的主要配置初始化工作，调用核心配置初始化函数
+ * 来完成系统配置的设置。这是系统配置过程中的关键函数。
  * 
- * @param systemContext 系统上下文指针
- * @param configParameter 配置参数
- * @param configFlag 配置标志
- * @param configContext 配置上下文
+ * @param SystemContextPointer 系统上下文指针，包含系统状态和配置信息
+ * @param ConfigurationParameter 配置参数，传递给核心配置初始化器
+ * @param ConfigurationFlag 配置标志，控制配置初始化行为
+ * @param ConfigurationContext 配置上下文，提供额外的配置环境信息
+ * 
+ * @note 该函数会从系统上下文中提取资源管理器指针进行配置初始化
+ * @note 使用InvalidHandleValue作为默认句柄值
  */
-void SystemConfigInitializerA(long long systemContext,void* configParameter,void* configFlag,void* configContext)
+void InitializeSystemPrimaryConfiguration(long long SystemContextPointer,void* ConfigurationParameter,void* ConfigurationFlag,void* ConfigurationContext)
 
 {
-  SystemCoreConfigInitializer(systemContext,*(void* *)(systemContext + 0x10),configFlag,configContext,InvalidHandleValue);
+  SystemCoreConfigInitializer(SystemContextPointer,*(void* *)(SystemContextPointer + 0x10),ConfigurationFlag,ConfigurationContext,InvalidHandleValue);
   return;
 }
 
@@ -25553,20 +25583,23 @@ void SystemConfigInitializerA(long long systemContext,void* configParameter,void
 
 
 /**
- * @brief 系统配置初始化器B
+ * @brief 系统辅助配置初始化器
  * 
- * 该函数负责系统配置的初始化工作，与SystemConfigInitializerA功能相似，
- * 用于不同场景下的系统配置初始化。
+ * 该函数负责系统的辅助配置初始化工作，与主配置初始化器功能相似，
+ * 用于不同场景下的系统配置初始化，提供备用配置初始化路径。
  * 
- * @param systemContext 系统上下文指针
- * @param configParameter 配置参数
- * @param configFlag 配置标志
- * @param configContext 配置上下文
+ * @param SystemContextPointer 系统上下文指针，包含系统状态和配置信息
+ * @param ConfigurationParameter 配置参数，传递给核心配置初始化器
+ * @param ConfigurationFlag 配置标志，控制配置初始化行为
+ * @param ConfigurationContext 配置上下文，提供额外的配置环境信息
+ * 
+ * @note 该函数与主配置初始化器具有相同的实现，但用于不同的配置场景
+ * @note 同样使用InvalidHandleValue作为默认句柄值
  */
-void SystemConfigInitializerB(long long systemContext,void* configParameter,void* configFlag,void* configContext)
+void InitializeSystemSecondaryConfiguration(long long SystemContextPointer,void* ConfigurationParameter,void* ConfigurationFlag,void* ConfigurationContext)
 
 {
-  SystemCoreConfigInitializer(systemContext,*(void* *)(systemContext + 0x10),configFlag,configContext,InvalidHandleValue);
+  SystemCoreConfigInitializer(SystemContextPointer,*(void* *)(SystemContextPointer + 0x10),ConfigurationFlag,ConfigurationContext,InvalidHandleValue);
   return;
 }
 
@@ -25577,14 +25610,18 @@ void SystemConfigInitializerB(long long systemContext,void* configParameter,void
  * @brief 系统内存释放器
  * 
  * 该函数负责释放系统内存，调用核心内存释放函数
- * 来完成内存的释放工作。
+ * 来完成内存的释放工作。它会处理指定的内存偏移量，
+ * 并释放相应的系统内存资源。
  * 
- * @param memoryOffset 内存偏移量参数
+ * @param MemoryOffsetParameter 内存偏移量参数，指定要释放的内存位置
+ * 
+ * @note 该函数会在内存偏移量基础上加上0x60的固定偏移
+ * @note 这是系统内存管理的重要组成部分，用于确保内存资源的正确释放
  */
-void SystemMemoryReleaser(long long memoryOffset)
+void ReleaseSystemMemoryWithOffset(long long MemoryOffsetParameter)
 
 {
-  ReleaseSystemMemory(memoryOffset + 0x60);
+  ReleaseSystemMemory(MemoryOffsetParameter + 0x60);
   return;
 }
 
@@ -25596,15 +25633,18 @@ void SystemMemoryReleaser(long long memoryOffset)
  * @brief 系统内存偏移处理器
  * 
  * 该函数处理系统内存中的偏移量，通过调用底层内存管理函数来处理
- * 指定偏移位置的操作。
+ * 指定偏移位置的操作。它会清理指定偏移量处的系统资源。
  * 
- * @param memoryOffset 内存偏移量参数
+ * @param MemoryOffsetParameter 内存偏移量参数，指定要处理的内存位置
+ * 
+ * @note 该函数会在内存偏移量基础上加上0x60的固定偏移
  * @note 这是系统内存管理的重要组成部分，用于处理特定内存位置的操作
+ * @note 调用SystemResourceCleaner来执行实际的资源清理工作
  */
-void SystemMemoryAllocationOffsetHandler(long long memoryOffset)
+void ProcessSystemMemoryOffsetAndCleanup(long long MemoryOffsetParameter)
 
 {
-  SystemResourceCleaner(memoryOffset + 0x60);
+  SystemResourceCleaner(MemoryOffsetParameter + 0x60);
   return;
 }
 
@@ -25619,32 +25659,34 @@ void SystemMemoryAllocationOffsetHandler(long long memoryOffset)
  * 该函数负责清理系统内存区域，包括重置内存指针、清理数据结构、
  * 释放内存资源等操作。它会遍历内存区域中的所有指针，进行安全清理。
  * 
- * @param systemContext 系统上下文指针
- * @param memoryRegion 内存区域指针
- * @param cleanupFlag 清理标志
- * @param cleanupParameter 清理参数
+ * @param SystemContextParameter 系统上下文指针，包含系统状态信息
+ * @param MemoryRegionParameter 内存区域指针，指定要清理的内存区域
+ * @param CleanupFlagParameter 清理标志，控制清理行为
+ * @param CleanupParameter 清理参数，提供额外的清理配置
+ * 
  * @note 这是系统内存管理的关键函数，确保内存资源的正确释放和重置
+ * @note 该函数会遍历内存池中的所有块并进行清理
  */
-void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* cleanupFlag,void* cleanupParameter)
+void CleanupSystemMemoryRegion(void* SystemContextParameter,void* MemoryRegionParameter,void* CleanupFlagParameter,void* CleanupParameter)
 
 {
-  void* *memoryPointer;
-  long long SystemDataReference;
-  int memoryBlockCount;
-  long long blockIndex;
+  void* *MemoryBlockPointer;
+  long long SystemMemoryPoolReference;
+  int MemoryBlockTotalCount;
+  long long CurrentBlockIndex;
   
-  SystemDataReference = SystemMemoryPoolPointer;
-  memoryBlockCount = (int)(*(long long *)(SystemMemoryPoolPointer + 0x38) - *(long long *)(SystemMemoryPoolPointer + 0x30) >> 3);
-  blockIndex = 0;
-  if (0 < memoryBlockCount) {
+  SystemMemoryPoolReference = SystemMemoryPoolPointer;
+  MemoryBlockTotalCount = (int)(*(long long *)(SystemMemoryPoolPointer + 0x38) - *(long long *)(SystemMemoryPoolPointer + 0x30) >> 3);
+  CurrentBlockIndex = 0;
+  if (0 < MemoryBlockTotalCount) {
     do {
-      memoryPointer = *(void* **)(*(long long *)(SystemDataReference + 0x30) + blockIndex * 8);
-      if (memoryPointer != (void* *)0x0) {
-        memoryPointer[4] = &SystemGlobalDataPointer;
-        if (memoryPointer[5] != 0) {
+      MemoryBlockPointer = *(void* **)(*(long long *)(SystemMemoryPoolReference + 0x30) + CurrentBlockIndex * 8);
+      if (MemoryBlockPointer != (void* *)0x0) {
+        MemoryBlockPointer[4] = &SystemGlobalDataPointer;
+        if (MemoryBlockPointer[5] != 0) {
             SystemCleanupFunction();
         }
-        memoryPointer[5] = 0;
+        MemoryBlockPointer[5] = 0;
         *(uint32_t *)(memoryPointer + 7) = 0;
         memoryPointer[4] = &SystemMemoryAllocatorPointer;
         *memoryPointer = &SystemGlobalDataPointer;
