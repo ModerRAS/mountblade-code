@@ -96948,7 +96948,19 @@ void ConfigureTemporaryAndDefaultExceptionHandlersCF20(DataBuffer operationBase,
  * 
  * @note 原始函数名：Unwind_18090cf30
  */
-void Unwind_InitializeExceptionHandlerF30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器内存块F30
+ * 
+ * 该函数负责初始化异常处理器的内存块功能，检查内存块大小偏移量
+ * 并在存在有效内存块时调用相应的函数指针
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cf30
+ */
+void InitializeExceptionHandlerMemoryBlockF30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + MemoryBlockSizeOffset) != (int64_t *)0x0) {
