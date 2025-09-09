@@ -100144,22 +100144,22 @@ LAB_180722ca8:
 void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
 
 {
-  UIHandle *resultPointer;
-  short shortValue2;
-  int uiCompareResult;
-  int temporaryInt4;
-  uint loopCounter;
-  short shortValue6;
-  ulonglong processingCounter;
+  UIHandle *resultHandlePointer;
+  short shortCalculationValue2;
+  int uiComparisonResult;
+  int temporaryIntValue4;
+  uint iterationCounter;
+  short shortCalculationValue6;
+  ulonglong dataProcessingCounter;
   ulonglong eventProcessingCounter;
   longlong characterDataOffset;
   ulonglong resultValue0;
   uint *resultPointer1;
   longlong allocatedMemory2;
-  uint resultValue3;
+  uint finalResultValue3;
   ulonglong componentIndex;
   ulonglong counterResult;
-  UIByte stackArray148 [32];
+  UIByte stackBuffer148 [32];
   UIDword stackUInt128;
   uint *stackPointer120;
   uint stackUInt118;
@@ -100170,22 +100170,22 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
   uint stackArraya8 [20];
   ulonglong stackUInt58;
   
-  stackUInt58 = XorEncryptionKey ^ (ulonglong)stackArray148;
-  loopCounter = resultParamPointer >> 4;
-  ResultValue3 = loopCounter + 1;
-  if (resultPointer <= (int)(loopCounter * 0x10)) {
-    ResultValue3 = loopCounter;
+  stackUInt58 = XorEncryptionKey ^ (ulonglong)stackBuffer148;
+  iterationCounter = resultPointer >> 4;
+  finalResultValue3 = iterationCounter + 1;
+  if (resultPointer <= (int)(iterationCounter * 0x10)) {
+    finalResultValue3 = iterationCounter;
   }
-  CounterResult = (ulonglong)ResultValue3;
-  stackUInt118 = ResultValue3;
+  counterResult = (ulonglong)finalResultValue3;
+  stackUInt118 = finalResultValue3;
   stackUInt114 = bufferSize;
   stackInt110 = targetBuffer;
   stackLong108 = dataSource;
-  uiCompareResult = ReadUIData(uiContext,&UIComparisonTableEntry + ((longlong)targetBuffer >> 1) * 9,8);
+  uiComparisonResult = ReadUIData(uiContext,&UIComparisonTableEntry + ((longlong)targetBuffer >> 1) * 9,8);
   componentIndex = 0;
-  eventProcessingCounter = CounterResult;
-  result0 = componentIndex;
-  if (0 < (int)ResultValue3) {
+  eventProcessingCounter = counterResult;
+  resultValue0 = componentIndex;
+  if (0 < (int)finalResultValue3) {
     do {
       *(UIDword *)((longlong)astackUInta8 + result0) = 0;
       TempInt4 = ReadUIData(uiContext,&UIComponentDataTable + (longlong)uiCompareResult * 0x12,8);
@@ -107527,8 +107527,30 @@ void UIEmptyOperation(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072af30(longlong uiContext,longlong dataSource,int targetBuffer)
-void FUN_18072af30(longlong uiContext,longlong dataSource,int targetBuffer)
+ // 原始函数名：FUN_18072af30 - UI数据处理和转换函数
+#define ProcessUIDataAndConvert FUN_18072af30
+
+/**
+ * @brief 处理UI数据并执行转换操作
+ * 
+ * 该函数负责处理UI上下文中的数据，执行必要的数据转换和计算操作：
+ * - 从数据源读取浮点数数据
+ * - 将数据转换为UI系统内部格式
+ * - 执行数据加密和安全处理
+ * - 处理数据缓冲区和内存分配
+ * - 执行数值计算和验证
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含要处理的原始数据
+ * @param targetBuffer 目标缓冲区大小，指定要处理的数据量
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI数据需要处理和转换时被调用
+ * @note 使用XOR加密进行数据安全处理
+ * @note 负责确保数据格式转换的正确性
+ */
+void ProcessUIDataAndConvert(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   double dVar1;
