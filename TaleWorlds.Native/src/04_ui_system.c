@@ -105375,7 +105375,22 @@ void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 
 
- void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI组件动画
+ * 
+ * 该函数负责处理UI组件的动画效果，包括：
+ * - 动画状态管理
+ * - 动画参数计算
+ * - 动画帧更新
+ * - 动画插值处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180729bbd
+ */
 void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targetBuffer)
 
 {
