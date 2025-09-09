@@ -8771,14 +8771,20 @@ UIHandle GetUIStatusFlag(void)
  */
 void InitializeUISystem(UIFunctionPtr *SystemCallback)
 {
-    UIFunctionPtr *SystemCallHandler;
-    uint64_t BufferIndex;
+    UIFunctionPtr *SystemCallHandler;      // 系统调用处理器指针
+    uint64_t BufferIndex;                  // 缓冲区索引
+    uint64_t MaxBufferSize = 0x8000;       // 最大缓冲区大小
+    uint64_t BufferThreshold = 0x8001;     // 缓冲区阈值
     
+    // 系统同步锁操作
     LOCK();
     UNLOCK();
-    if (UIBufferIndex < 0x8001) {
+    
+    // 检查缓冲区索引是否在有效范围内
+    if (UIBufferIndex < BufferThreshold) {
         BufferIndex = UIBufferIndex;
-        if (0x8000 < UIBufferIndex) {
+        if (MaxBufferSize < UIBufferIndex) {
+            // 缓冲区溢出处理
             UIBufferIndex = UIBufferIndex + 1;
             TriggerUIErrorHandler();
             SystemCallHandler = (UIFunctionPtr *)swi(3);
@@ -8787,12 +8793,16 @@ void InitializeUISystem(UIFunctionPtr *SystemCallback)
         }
     }
     else {
-        BufferIndex = 0x8000;
+        // 缓冲区索引超过阈值，重置为最大值
+        BufferIndex = MaxBufferSize;
     }
+    
+    // 更新缓冲区索引并设置回调
     UIBufferIndex = UIBufferIndex + 1;
     *(UIByte *)(BufferIndex + UI_SYSTEM_CALLBACK_ID) = 0;
     (*SystemCallback)(UI_SYSTEM_CALLBACK_ID, 0);
     *(UIByte *)(BufferIndex + UI_SYSTEM_CALLBACK_ID) = 10;
+    
     return;
 }
 

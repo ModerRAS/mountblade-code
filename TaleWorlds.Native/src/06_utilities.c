@@ -4625,36 +4625,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CleanupExceptionHandlerContextA2 ClearExceptionHandlerContextA2
 #define CleanupExceptionHandlerContextA3 ClearExceptionHandlerContextA3
 #define CleanupExceptionHandlerContextA4 ClearExceptionHandlerContextA4
-// 原始函数名：Unwind_180904410 - 异常上下文处理器清理函数A5
-#define CleanupExceptionHandlerContextA5 Unwind_180904410
-// 原始函数名：Unwind_180904430 - 异常上下文处理器清理函数A6
-#define CleanupExceptionHandlerContextA6 Unwind_180904430
-// 原始函数名：Unwind_180904450 - 异常上下文处理器清理函数A7
-#define CleanupExceptionHandlerContextA7 Unwind_180904450
-// 原始函数名：Unwind_180904470 - 异常上下文处理器清理函数A8
-#define CleanupExceptionHandlerContextA8 Unwind_180904470
-// 原始函数名：Unwind_180904490 - 异常上下文处理器清理函数A9
-#define CleanupExceptionHandlerContextA9 Unwind_180904490
-// 原始函数名：Unwind_1809044b0 - 异常上下文处理器清理函数A10
-#define CleanupExceptionHandlerContextA10 Unwind_1809044b0
-// 原始函数名：Unwind_1809044d0 - 异常上下文处理器清理函数A11
-#define CleanupExceptionHandlerContextA11 Unwind_1809044d0
-// 原始函数名：Unwind_1809044f0 - 异常上下文处理器清理函数A12
-#define CleanupExceptionHandlerContextA12 Unwind_1809044f0
-// 原始函数名：Unwind_180904510 - 异常上下文处理器清理函数A13
-#define CleanupExceptionHandlerContextA13 Unwind_180904510
-// 原始函数名：Unwind_180904530 - 异常上下文处理器清理函数A14
-#define CleanupExceptionHandlerContextA14 Unwind_180904530
-// 原始函数名：Unwind_180904550 - 异常上下文处理器清理函数A15
-#define CleanupExceptionHandlerContextA15 Unwind_180904550
-// 原始函数名：Unwind_180904570 - 异常上下文处理器清理函数A16
-#define CleanupExceptionHandlerContextA16 Unwind_180904570
-// 原始函数名：Unwind_180904590 - 异常上下文处理器清理函数A17
-#define CleanupExceptionHandlerContextA17 Unwind_180904590
-// 原始函数名：Unwind_1809045b0 - 异常上下文处理器清理函数A18
-#define CleanupExceptionHandlerContextA18 Unwind_1809045b0
-// 原始函数名：Unwind_1809045c0 - 异常上下文处理器清理函数A19
-#define CleanupExceptionHandlerContextA19 Unwind_1809045c0
+// 异常上下文处理器清理函数A5-A14
+#define CleanupExceptionHandlerContextA5 ClearExceptionHandlerContextA5
+#define CleanupExceptionHandlerContextA6 ClearExceptionHandlerContextA6
+#define CleanupExceptionHandlerContextA7 ClearExceptionHandlerContextA7
+#define CleanupExceptionHandlerContextA8 ClearExceptionHandlerContextA8
+#define CleanupExceptionHandlerContextA9 ClearExceptionHandlerContextA9
+#define CleanupExceptionHandlerContextA10 ClearExceptionHandlerContextA10
+#define CleanupExceptionHandlerContextA11 ClearExceptionHandlerContextA11
+#define CleanupExceptionHandlerContextA12 ClearExceptionHandlerContextA12
+#define CleanupExceptionHandlerContextA13 ClearExceptionHandlerContextA13
+#define CleanupExceptionHandlerContextA14 ClearExceptionHandlerContextA14
+// 异常上下文处理器清理函数A15-A19
+#define CleanupExceptionHandlerContextA15 ClearExceptionHandlerContextA15
+#define CleanupExceptionHandlerContextA16 ClearExceptionHandlerContextA16
+#define CleanupExceptionHandlerContextA17 ClearExceptionHandlerContextA17
+#define CleanupExceptionHandlerContextA18 ClearExceptionHandlerContextA18
+#define CleanupExceptionHandlerContextA19 ClearExceptionHandlerContextA19
 
 // 原始函数名：Unwind_18090af50 - 异常上下文处理器回调函数AF50
 // 功能：处理异常上下文回调，从0x50偏移量的0x298处获取异常上下文指针并执行回调
