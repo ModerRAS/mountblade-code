@@ -114471,30 +114471,46 @@ LAB_18073414c:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180734160(ulonglong *uiContext,uint dataSource)
-void FUN_180734160(ulonglong *uiContext,uint dataSource)
+ /**
+ * @brief 验证UI组件上下文和状态
+ * 
+ * 该函数负责验证UI组件的上下文信息和状态，包括：
+ * - 组件上下文验证
+ * - 事件类型代码处理
+ * - 处理状态检查
+ * - 数据源验证
+ * - 结果状态返回
+ * 
+ * @param uiContext UI上下文指针数组，包含组件上下文信息
+ * @param dataSource 数据源标识符，用于验证数据来源
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_180734160 - UI组件上下文验证处理器
+ */
+int ValidateUIComponentContextAndState(ulonglong *uiContext,uint dataSource)
+int ValidateUIComponentContextAndState(ulonglong *uiContext,uint dataSource)
 
 {
-  ulonglong result;
-  ulonglong iterationCount;
-  UIByte aEventTypeCode [12];
-  UIByte aProcessingStatus [12];
-  uint loopCounter;
-  int *ptrLocalInt6;
-  longlong localLong7;
-  int localInt8;
-  ulonglong *ptrLocal9;
-  int processedCount;
-  int ProcessingResult1;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  int processingResult4;
-  int ProcessingResult5;
-  int processingResult6;
-  int processingResult7;
+  ulonglong validationResult;
+  ulonglong eventIterationCount;
+  UIByte eventTypeCodeArray [12];
+  UIByte processingStatusArray [12];
+  uint eventLoopCounter;
+  int *contextDataPointer;
+  longlong contextHandleIndex;
+  int eventStatusCode;
+  ulonglong *resultPointer;
+  int processedEventCount;
+  int validationStep1Result;
+  int validationStep2Result;
+  int validationStep3Result;
+  int validationStep4Result;
+  int validationStep5Result;
+  int validationStep6Result;
+  int validationStep7Result;
   int uiValidationResult2;
   int uiValidationResult3;
-  UIByte aresult8 [16];
+  UIByte resultBuffer [16];
   int uiValidationResult7;
   int uiValidationResult8;
   UIByte aiterationCount4 [16];
