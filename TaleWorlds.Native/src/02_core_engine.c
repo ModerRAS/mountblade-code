@@ -68400,7 +68400,7 @@ void ProcessSystemDataTableCopy(long long ContextHandle,long long *ContextHandle
   }
   ContextHandleTablePointer = SystemEventTemplatePointer;
   if (IsSystemContextValidationResult) {
-    if (SystemEventTemplatePointer == *(uint64_t **)(ContextHandle + 0xb8)) goto LAB_18008b7ea;
+    if (SystemEventTemplatePointer == *(uint64_t **)(ContextHandle + 0xb8)) goto SystemEventTemplateCheckLabel;
     ContextHandleTablePointer = (void *)GetPreviousMemoryBlockIndex(SystemEventTemplatePointer);
   }
   if (*(unsigned long long *)(SystemDataTablePointer + 0x20) <= (unsigned long long)ContextHandleTablePointer[4]) {
@@ -68870,7 +68870,7 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
   }
   TertiaryNode = PrimaryStatusBlock;
   if (StringComparisonByte2) {
-    if (PrimaryProcessingStatusFlag == (void *)ContextHandleTablePointer[7]) goto LAB_18008c531;
+    if (PrimaryProcessingStatusFlag == (void *)ContextHandleTablePointer[7]) goto PrimaryProcessingStatusCheckLabel;
     StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
   }
   MemoryMatchResult = memcmp(StringProcessingStatus + 4,MemoryBoundaryEnd + 0x20,0x10);

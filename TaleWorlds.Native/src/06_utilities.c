@@ -24048,7 +24048,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
   itemCount = (int)parameterContext[1];
   if (itemCount < 0) {
     // 清理负数项的参数内存
-    memset(*parameterContext + (int64_t)itemCount * 0xc,0,(int64_t)-itemCount * 0xc);
+    memset(*parameterContext + (int64_t)itemCount * DataStructureElementSize,0,(int64_t)-itemCount * DataStructureElementSize);
   }
   
   // 重置参数状态标志
@@ -24104,7 +24104,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
   if (parameterCount < 0) {
     cleanupCounter = (int64_t)-parameterCount;
     if (parameterCount < 0) {
-      parameterDataPointer = (DataWord *)((int64_t)parameterCount * 0x10 + *parameterContext + 4);
+      parameterDataPointer = (DataWord *)((int64_t)parameterCount * DataStructureTableElementSize + *parameterContext + MemoryOffsetAdjustment);
       do {
         parameterDataPointer[-1] = 0;
         *parameterDataPointer = SystemCleanupFlag;
@@ -24181,7 +24181,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
         allocatedMemoryBlock = (int *)(*operationBase + ResourceTraversalIndex * 4);
         calculatedSize = *(int *)(*operationBase + ResourceTraversalIndex * 4);
         while (calculatedSize != -1) {
-          allocatedMemoryBlock = (int *)(operationBase[2] + 4 + (int64_t)calculatedSize * 0x10);
+          allocatedMemoryBlock = (int *)(operationBase[2] + MemoryOffsetAdjustment + (int64_t)calculatedSize * DataStructureTableElementSize);
           calculatedSize = *allocatedMemoryBlock;
         }
         *allocatedMemoryBlock = (int)statusCounter;
