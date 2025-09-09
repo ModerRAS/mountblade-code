@@ -4147,6 +4147,18 @@
 
 // 系统数据结构大小常量
 #define SystemDataStructureSize 0x10
+
+// 新增的FUN_函数语义化宏定义
+#define ProcessSystemMemoryValidation FUN_18018a1c0              // 处理系统内存验证
+#define ProcessCharacterEncodingWithValidation FUN_1801884d0     // 处理带验证的字符编码
+#define ProcessSystemMemoryBlockAllocation FUN_180067110          // 处理系统内存块分配
+#define ProcessSystemCharacterStatusUpdate FUN_1801899b0         // 处理系统字符状态更新
+#define ProcessSystemCharacterStatus FUN_180189990              // 处理系统字符状态
+#define ProcessSystemMemoryAllocationEx FUN_18018a000            // 处理系统内存分配扩展
+#define CalculateCharacterCodePoint FUN_180188490                // 计算字符代码点
+#define ProcessSystemMemoryCleanup FUN_180189900                 // 处理系统内存清理
+#define ProcessSystemStringEncoding FUN_1801836e0                 // 处理系统字符串编码
+#define ProcessSystemConfigurationWithParameters FUN_180061f80    // 处理带参数的系统配置
 #define SystemNodeHeaderSize 4
 #define SystemNodeNextPointerOffset 2
 #define SystemNodeDataOffset 6
