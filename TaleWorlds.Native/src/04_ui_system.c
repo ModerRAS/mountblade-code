@@ -167711,7 +167711,7 @@ LAB_180767ff9:
   plocalChar13 = _DAT_180be12f0;
   plocalChar15 = uiContext;
   if (*dataPointer == (code)0x0 || SCARRY1((char)localChar4,isCharacterMatch6) != (char)*dataPointer < '\0') {
-    targetBuffer = &UNK_180958b20;
+    targetBuffer = &UIComponentParameterB20;
     register0x00000020 = (BADSPACEBASE *)&stackUInt8;
   }
   else {
@@ -167804,7 +167804,7 @@ void FUN_180768000(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UNK_180958b20,0x266,1);
+  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UIComponentParameterB20,0x266,1);
 }
 
 
@@ -167837,7 +167837,7 @@ UIHandle FUN_180768090(longlong uiContext,UIHandle dataSource)
   stringCompareIndex = *pallocatedMemory;
   if (stringCompareIndex != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stringCompareIndex,&UNK_180958b20,0xd5,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),stringCompareIndex,&UIComponentParameterB20,0xd5,1);
   }
   maxProcessingCount = 0;
   loopCounter = 0;
@@ -167845,7 +167845,7 @@ UIHandle FUN_180768090(longlong uiContext,UIHandle dataSource)
   if (TempInt4 != 0) {
     colorBufferPointer = (longlong *)(uiContext + 0x208);
     if (0xff < TempInt4) {
-      uiContext = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),TempInt4 * 2,&UNK_180958b20,0xe7,
+      uiContext = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),TempInt4 * 2,&UIComponentParameterB20,0xe7,
                               loopCounter & 0xffffffff00000000,maxProcessingCount & 0xffffff00,1);
       *pallocatedMemory = uiContext;
     }
