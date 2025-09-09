@@ -27486,7 +27486,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
                   ) || (allocatedMemoryBlock = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset10))(operationBase), allocatedMemoryBlock != 0))
               goto BufferValidationCheckpoint;
               statusCounter = (uint64_t)(StackLongIntegerC * 48000) /
-                      (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
+                      (uint64_t)*(uint *)((int64_t)operationBase + SystemParameterOffset1C);
               calculatedIndex = operationBase[2];
               StackLongIntegerPointerB = (int64_t *)&SystemValidationTable;
               SystemCleanupFlagLocal = SystemCleanupFlagLocal & ZeroValue;

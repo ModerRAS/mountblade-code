@@ -107,6 +107,15 @@ typedef enum {
 #define astackUInt168 UIStackUInt168
 #define astackUInt1a8 UIStackUInt1a8
 #define astackUInt158 UIStackUInt158
+
+// 栈变量宏定义
+#define stack0x00000000 UIStackBasePointer
+#define stack0x00000030 UIStackMatrixParam3
+#define stack0x00000040 UIStackMatrixParam4
+#define stack0x00000060 UIStackMatrixParam6
+#define stack0x00000070 UIStackMatrixParam7
+#define stack0x00000078 UIStackLayoutParam8
+#define stack0x00000130 UIStackTransformParam130
 #define astackUIntf8 UIStackUIntf8
 #define astackUInt48 UIStackUInt48
 #define afStack_6260 UIFloatStack6260
@@ -100053,23 +100062,39 @@ void FUN_18072568d(int uiContext,UIHandle dataSource,float targetBuffer)
 
 
 
- void FUN_180725856(UIHandle uiContext,UIHandle dataSource,float targetBuffer,UIHandle bufferSize,
-void FUN_180725856(UIHandle uiContext,UIHandle dataSource,float targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,float param_6)
+ /**
+ * @brief 处理UI变换和动画效果
+ * 
+ * 该函数负责计算和应用UI元素的变换效果，包括：
+ * - 平移、缩放和旋转变换
+ * - 动画插值计算
+ * - 变换系数的动态调整
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区（变换目标值）
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数（动画时间或插值系数）
+ * 
+ * @note 原始函数名：FUN_180725856
+ */
+void ProcessUITransformAnimation(UIHandle uiContext, UIHandle dataSource, float targetBuffer, UIHandle bufferSize,
+                                UIHandle resultPointer, float param_6)
 
 {
   float baseValue;
   float transformCoeff1;
-  float TransformCoefficient2;
-  float *pTransformCoefficient3;
-  int unmodifiedEBX;
-  longlong SourceHandle;
-  int RegisterValue;
-  longlong preservedRegister13;
-  float TransformCoefficient4;
-  float in_XMM5_Da;
-  float unmodifiedXMM13_Da;
-  ulonglong stackParam000004f0;
+  float transformCoeff2;
+  float *transformCoeffPtr;
+  int loopCounter;
+  longlong sourceHandle;
+  int registerValue;
+  longlong contextData;
+  float transformResult;
+  float animationParam;
+  float baseTransform;
+  ulonglong renderTaskParam;
   
   baseValue = *(float *)(SourceHandle + 0x275c);
   transformCoeff1 = *(float *)(preservedRegister13 + 700);
