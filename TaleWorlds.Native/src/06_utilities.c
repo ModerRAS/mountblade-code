@@ -3319,18 +3319,18 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
-#define UnwindCleanupContextA0 Unwind_180909d20
-#define UnwindCleanupContextA1 Unwind_180909d60
-#define UnwindCleanupContextA2 Unwind_180909d80
-#define UnwindCleanupContextA3 Unwind_180909da0
-#define UnwindCleanupContextA4 Unwind_180909dc0
-#define UnwindCleanupContextA5 Unwind_180909de0
-#define UnwindCleanupContextA6 Unwind_180909e00
-#define UnwindCleanupContextA7 Unwind_180909e20
-#define UnwindCleanupContextA8 Unwind_180909e40
-#define UnwindCleanupContextA9 Unwind_180909e60
-#define UnwindCleanupContextA10 Unwind_180909e80
-#define UnwindCleanupContextA11 Unwind_180909ea0
+#define UnwindCleanupContextA0 CleanupSystemContextA0
+#define UnwindCleanupContextA1 CleanupSystemContextA1
+#define UnwindCleanupContextA2 CleanupSystemContextA2
+#define UnwindCleanupContextA3 CleanupSystemContextA3
+#define UnwindCleanupContextA4 CleanupSystemContextA4
+#define UnwindCleanupContextA5 CleanupSystemContextA5
+#define UnwindCleanupContextA6 CleanupSystemContextA6
+#define UnwindCleanupContextA7 CleanupSystemContextA7
+#define UnwindCleanupContextA8 CleanupSystemContextA8
+#define UnwindCleanupContextA9 CleanupSystemContextA9
+#define UnwindCleanupContextA10 CleanupSystemContextA10
+#define UnwindCleanupContextA11 CleanupSystemContextA11
 // 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
 /**
  * @brief 销毁互斥锁清理函数A12
@@ -3340,7 +3340,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：Unwind_180909ec0
  */
 // 功能：销毁互斥锁，清理线程同步资源
-#define DestroyMutexCleanupA12 Unwind_180909ec0
+#define DestroyMutexCleanupA12 CleanupMutexLockA12
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
 /**
  * @brief 销毁互斥锁清理函数A13
@@ -3350,7 +3350,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：Unwind_180909ee0
  */
 // 功能：销毁互斥锁，清理线程同步资源
-#define DestroyMutexCleanupA13 Unwind_180909ee0
+#define DestroyMutexCleanupA13 CleanupMutexLockA13
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 /**
  * @brief 销毁互斥锁清理函数A14
@@ -127689,18 +127689,18 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ProcessMemoryOperationA0 FUN_18004c030
 
 // Unwind函数宏定义 - 异常处理清理函数
-#define UnwindCleanupContextA0 Unwind_180909d20
-#define UnwindCleanupContextA1 Unwind_180909d60
-#define UnwindCleanupContextA2 Unwind_180909d80
-#define UnwindCleanupContextA3 Unwind_180909da0
-#define UnwindCleanupContextA4 Unwind_180909dc0
-#define UnwindCleanupContextA5 Unwind_180909de0
-#define UnwindCleanupContextA6 Unwind_180909e00
-#define UnwindCleanupContextA7 Unwind_180909e20
-#define UnwindCleanupContextA8 Unwind_180909e40
-#define UnwindCleanupContextA9 Unwind_180909e60
-#define UnwindCleanupContextA10 Unwind_180909e80
-#define UnwindCleanupContextA11 Unwind_180909ea0
+#define UnwindCleanupContextA0 CleanupSystemContextA0
+#define UnwindCleanupContextA1 CleanupSystemContextA1
+#define UnwindCleanupContextA2 CleanupSystemContextA2
+#define UnwindCleanupContextA3 CleanupSystemContextA3
+#define UnwindCleanupContextA4 CleanupSystemContextA4
+#define UnwindCleanupContextA5 CleanupSystemContextA5
+#define UnwindCleanupContextA6 CleanupSystemContextA6
+#define UnwindCleanupContextA7 CleanupSystemContextA7
+#define UnwindCleanupContextA8 CleanupSystemContextA8
+#define UnwindCleanupContextA9 CleanupSystemContextA9
+#define UnwindCleanupContextA10 CleanupSystemContextA10
+#define UnwindCleanupContextA11 CleanupSystemContextA11
 // 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
 /**
  * @brief 销毁互斥锁清理函数A12
@@ -127710,7 +127710,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_180909ec0
  */
 // 功能：销毁互斥锁，清理线程同步资源
-#define DestroyMutexCleanupA12 Unwind_180909ec0
+#define DestroyMutexCleanupA12 CleanupMutexLockA12
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
 /**
  * @brief 销毁互斥锁清理函数A13
@@ -127720,7 +127720,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_180909ee0
  */
 // 功能：销毁互斥锁，清理线程同步资源
-#define DestroyMutexCleanupA13 Unwind_180909ee0
+#define DestroyMutexCleanupA13 CleanupMutexLockA13
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
 /**
  * @brief 销毁互斥锁清理函数A14

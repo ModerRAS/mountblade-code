@@ -8010,11 +8010,11 @@ void ProcessGraphicsTransformationAndBufferData(void)
   SystemStackVariable_114 = pUnsignedIndex[1];
   SystemOperationCounter = pUnsignedIndex[2];
   SystemStackVariable_10c = pUnsignedIndex[3];
-  fVar4 = *(float *)(SystemSecondaryDataPointer + 0x400);
-  fVar5 = *(float *)(SystemSecondaryDataPointer + 0x404);
-  fVar6 = *(float *)(SystemSecondaryDataPointer + 0x408);
+  VectorComponentX = *(float *)(SystemSecondaryDataPointer + 0x400);
+  VectorComponentY = *(float *)(SystemSecondaryDataPointer + 0x404);
+  VectorComponentZ = *(float *)(SystemSecondaryDataPointer + 0x408);
   SystemStackVariable_fc = *(uint32_t *)(SystemSecondaryDataPointer + 0x40c);
-  fVar18 = 1e+08;
+  FloatMaximumBound = 1e+08;
   FloatValue = 1e+08;
   FloatStackMaximum = 1e+08;
   FloatStackLarge = 1e+08;
@@ -8029,16 +8029,16 @@ void ProcessGraphicsTransformationAndBufferData(void)
   ModuleInitializationResult1 = (longlong)IntegerError;
   FloatCalculationResult = -1e+08;
   FloatResult = -1e+08;
-  fVar16 = -1e+08;
+  FloatMinimumBound = -1e+08;
   MemoryAddress7 = 0;
   MemoryAddress9 = 0;
   if (-1 < IntegerError) {
     SystemStackVariable_16c = 0x7f7fffff;
     SystemStackVariable_15c = 0x7f7fffff;
     ModuleInitializationResult2 = ModuleInitializationResult1 * 0x30;
-    VectorComponentX = fVar4;
-    VectorComponentY = fVar5;
-    VectorComponentZ = fVar6;
+    OriginalVectorX = VectorComponentX;
+    OriginalVectorY = VectorComponentY;
+    OriginalVectorZ = VectorComponentZ;
     do {
       ModuleInitializationResult0 = *(longlong *)(SystemContextDataPointer + 0x850) + ModuleInitializationResult2;
       NetworkRequestStatus = *(char *)(ModuleInitializationResult0 + 0x2c);
