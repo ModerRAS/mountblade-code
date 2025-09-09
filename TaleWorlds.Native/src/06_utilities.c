@@ -20012,17 +20012,23 @@ DataBuffer ConfigureUtilityDataA1(int64_t configPointer,int64_t dataPointer)
 
 
 
-// 函数: DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_t executionContext)
-//
-// 资源验证与执行处理函数
-// 验证资源上下文并执行相关操作，遍历资源列表进行验证处理
-//
-// 参数:
-//   resourceContext - 资源上下文指针，包含资源相关信息
-//   executionContext - 执行上下文指针，包含执行环境信息
-//
-// 返回值:
-//   DataBuffer - 返回操作结果状态码，0x1f表示失败，0x1e表示资源不存在，其他值表示具体状态
+/**
+ * @brief 处理资源验证和执行操作
+ * 
+ * 该函数负责验证系统资源的完整性并执行相关操作。它会遍历资源列表，
+ * 对每个资源进行验证，并在验证通过后执行相应的处理逻辑。
+ * 
+ * @param resourceContext 资源上下文指针，包含资源的相关信息和配置
+ * @param executionContext 执行上下文指针，包含执行环境和状态信息
+ * @return DataBuffer 操作结果状态码：
+ *         - SystemComponentDataValidationFailure (0x1f): 组件数据验证失败
+ *         - SystemResourceNotFoundCode (0x1e): 资源未找到
+ *         - SystemResourceValidationSuccess: 资源验证成功
+ *         - 其他值: 具体的操作状态码
+ * 
+ * @note 该函数会进行多层验证，包括资源存在性检查、完整性验证和执行状态检查
+ * @warning 如果资源验证失败，函数会立即返回错误状态
+ */
 DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_t executionContext)
 
 {
@@ -20082,16 +20088,20 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
 
 
 
-// 函数: DataBuffer ProcessSystemResourceValidationWithStack(void)
-//
-// 系统资源验证处理函数（使用栈参数）
-// 验证系统资源并执行相关操作，使用栈传递的参数进行资源处理
-//
-// 参数:
-//   无（参数通过栈传递）
-//
-// 返回值:
-//   DataBuffer - 返回操作结果状态码，0x1e表示资源不存在，0x4a表示处理完成
+/**
+ * @brief 处理系统资源验证（栈参数版本）
+ * 
+ * 该函数负责验证系统资源的完整性，使用栈传递的参数进行资源处理。
+ * 它会从栈中获取必要的参数信息，然后进行资源验证和处理操作。
+ * 
+ * @return DataBuffer 操作结果状态码：
+ *         - SystemResourceNotFoundCode (0x1e): 资源未找到
+ *         - ResourceProcessingComplete (0x4a): 资源处理完成
+ *         - 其他值: 具体的操作状态码
+ * 
+ * @note 该函数使用栈参数传递机制，适合在特定的调用场景中使用
+ * @warning 调用者需要确保栈参数的正确性和完整性
+ */
 DataBuffer ProcessSystemResourceValidationWithStack(void)
 
 {

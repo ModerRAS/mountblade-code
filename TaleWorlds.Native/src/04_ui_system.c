@@ -202877,32 +202877,32 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
      (EventTypeCode = (**(code **)(uiContext + 0x358))(uiContext + 8), (int)EventTypeCode == 0)) {
     EventMemoryAllocation = *(longlong *)(uiBufferData + 0x48);
     ProcessingCounter = (uint7)((ulonglong)stackParamffffffffffffffb0 >> 8);
-    if (*(longlong *)(allocatedMemory + 0x10f88) == 0) {
+    if (*(longlong *)(EventMemoryAllocation + 0x10f88) == 0) {
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (EventTypeCode = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad08,&UNK_1807872a0,uiContext,
-                                (ulonglong)loopCounter << 0x20,(ulonglong)processingCounter << 8,
-                                (ulonglong)eventProcessingStatus << 0x20,allocatedMemory,1), (int)EventTypeCode != 0)) {
+                                (ulonglong)LoopCounter << 0x20,(ulonglong)ProcessingCounter << 8,
+                                (ulonglong)EventProcessingStatus << 0x20,EventMemoryAllocation,1), (int)EventTypeCode != 0)) {
         return EventTypeCode;
       }
     }
     else {
-      eventProcessingCounter = (ulonglong)eventProcessingStatus << 0x20;
-      maxProcessingCount = CONCAT71(processingCounter,1);
+      EventProcessingCounter = (ulonglong)EventProcessingStatus << 0x20;
+      MaxProcessingCount = CONCAT71(ProcessingCounter,1);
       EventTypeCode = FUN_180767c00(uiContext + 0x70,&UNK_18095ad08,FUN_1807863b0,uiContext,
-                            (ulonglong)loopCounter << 0x20,maxProcessingCount,eventProcessingCounter,allocatedMemory,1);
+                            (ulonglong)LoopCounter << 0x20,MaxProcessingCount,EventProcessingCounter,EventMemoryAllocation,1);
       if ((int)EventTypeCode != 0) {
         return EventTypeCode;
       }
       if ((*(longlong *)(uiBufferData + 0x380) != 0) &&
          (EventTypeCode = FUN_180767c00(uiContext + 0x1c0,&UNK_18095ad20,&UNK_1807872a0,uiContext,1,
-                                maxProcessingCount & 0xffffffffffffff00,eventProcessingCounter & 0xffffffff00000000,
+                                MaxProcessingCount & 0xffffffffffffff00,EventProcessingCounter & 0xffffffff00000000,
                                 *(UIHandle *)(uiContext + 0x48),1), (int)EventTypeCode != 0)) {
         return EventTypeCode;
       }
     }
     if (*(longlong *)(uiBufferData + 0x3a8) != 0) {
-      bufferPtr = (UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
-      for (piterationCount = (UIHandle *)*bufferPtr; piterationCount != bufferPtr; piterationCount = (UIHandle *)*piterationCount) {
+      BufferPointer = (UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
+      for (EventIterator = (UIHandle *)*BufferPointer; EventIterator != BufferPointer; EventIterator = (UIHandle *)*EventIterator) {
         bufferValidation[0] = 0;
         transformParameterArray[0] = 0;
         auStackX_8[0] = 0;
