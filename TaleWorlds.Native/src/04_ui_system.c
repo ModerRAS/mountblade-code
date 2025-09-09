@@ -90756,7 +90756,7 @@ void ProcessUIElementData(longlong uiContext,int dataSource,int targetBuffer,lon
 
 
 
- void FUN_18071b080(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+ void ProcessUIDataTransformationWithBuffer(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
 /**
  * @brief 处理UI数据缓冲区比较和验证操作
  * 
@@ -91083,7 +91083,7 @@ int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int target
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071b790(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ void CleanupUIResources(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 /**
  * @brief UI缓冲区数据对齐和加密处理函数
  * 
