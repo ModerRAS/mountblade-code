@@ -317,6 +317,16 @@ typedef enum {
 #define astackUInt48 UIAnimationStateStack48
 #define afStack_6260 UIAnimationSpeedStack6260               // UI动画速度栈6260 - 存储UI动画速度的栈变量
 #define astackUInt178 UILayoutParameterStack178
+#define astackUInt278 UIComponentContextStack278
+#define astackUInt168 UIRenderContextStack168
+#define astackUInt1a8 UIEventContextStack1A8
+#define astackUInt158 UIDataBufferStack158
+#define astackUInt7b8 UIStackBuffer7B8
+#define astackUInt848 UIStackBuffer848
+#define astackUInt9f8 UIStackArray9F8
+#define astackUInt9c0 UIStackArray9C0
+#define astackUInt928 UIStackArray928
+#define astackUInt1c8 UIStackArray1C8
 
 // 浮点栈变量宏定义
 #define fStack0000000000000034 UIAnimationSpeedFactor
