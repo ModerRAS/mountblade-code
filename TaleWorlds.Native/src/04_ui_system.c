@@ -8875,12 +8875,12 @@ void ProcessUIMessages(void)
   if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
     dataBuffer = *(undefined **)(layoutContext + 8);
   }
-  pathSeparator1 = strrchr(dataBuffer,0x5c);
+  pathSeparatorPosition1 = strrchr(dataBuffer,0x5c);
   dataBuffer = &UIDefaultDataBuffer;
   if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
     dataBuffer = *(undefined **)(layoutContext + 8);
   }
-  pathSeparator2 = strrchr(dataBuffer,0x5c);
+  pathSeparatorPosition2 = strrchr(dataBuffer,0x5c);
   if (pathSeparator1 == 0) {
     if (pathSeparator2 == 0) {
       sourceString = "";

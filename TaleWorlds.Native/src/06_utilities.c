@@ -3875,7 +3875,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18013ea00
  * @warning 清理操作失败可能会导致内存泄漏，需要确保所有资源都被正确释放
  */
-#define CleanupDataBuffer CleanupDataBufferAndMemory
+#define CleanupDataBufferAndReleaseMemory CleanupDataBufferAndMemory
 
 /**
  * @brief 系统状态检查函数
@@ -134759,7 +134759,7 @@ float ValidationIntermediateResultFloatA;
  * @note 原始变量名：ValidationResultFloatB
  * @warning 浮点数操作需要考虑精度和溢出问题
  */
-float ValidationResultFloatB;
+float ValidationIntermediateResultFloatB;
 
 /**
  * @brief 验证结果整数A
