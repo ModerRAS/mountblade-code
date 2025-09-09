@@ -104428,8 +104428,8 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
 
 
 
- void FUN_1807273a0(int *uiContext,longlong dataSource)
-void FUN_1807273a0(int *uiContext,longlong dataSource)
+ void ValidateUIContext(int *uiContext,longlong dataSource)
+void ValidateUIContext(int *uiContext,longlong dataSource)
 
 {
   short sVar1;
@@ -104620,8 +104620,8 @@ void ProcessUIRenderingUpdateAndDataHandling(longlong uiContext,UIHandle dataSou
 
 
 
- void FUN_180727b80(UIHandle uiContext)
-void FUN_180727b80(UIHandle uiContext)
+ void ProcessUIEventHandling(UIHandle uiContext)
+void ProcessUIEventHandling(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -105224,8 +105224,8 @@ LAB_180727edb:
 
 
 
- void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *bufferSize)
-void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *bufferSize)
+ void ProcessUIBufferData(longlong uiContext,int dataSource,int targetBuffer,longlong *bufferSize)
+void ProcessUIBufferData(longlong uiContext,int dataSource,int targetBuffer,longlong *bufferSize)
 
 {
   longlong *pallocatedMemory;
@@ -105406,8 +105406,8 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180728160(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_180728160(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+ void UpdateUIComponentState(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+void UpdateUIComponentState(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   UIByte astackUInte8 [16];
@@ -105441,7 +105441,7 @@ void FUN_180728160(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
  * @note 原始函数名：FUN_180728660
  * @warning 该函数涉及底层内存操作，调用时需确保参数有效性
  */
-void FUN_180728660(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,
+void ProcessUILayoutCalculation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize,
                   UIDword resultPointer)
 
 {
@@ -105559,7 +105559,7 @@ LAB_180729492:
  * @note 原始函数名：FUN_180728720
  * @warning 该函数涉及底层内存操作，调用时需确保参数有效性
  */
-void FUN_180728720(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+void ProcessUIResourceManagement(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
   ulonglong result;
@@ -105585,8 +105585,8 @@ void FUN_180728720(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_1807290a0(longlong uiContext,longlong dataSource,int targetBuffer)
-void FUN_1807290a0(longlong uiContext,longlong dataSource,int targetBuffer)
+ void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBuffer)
+void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   byte isCharacterMatch;
@@ -105690,8 +105690,8 @@ void FUN_1807290a0(longlong uiContext,longlong dataSource,int targetBuffer)
 
 
 
- void FUN_180729270(longlong uiContext,longlong dataSource)
-void FUN_180729270(longlong uiContext,longlong dataSource)
+ void ProcessUIInputEvent(longlong uiContext,longlong dataSource)
+void ProcessUIInputEvent(longlong uiContext,longlong dataSource)
 
 {
   uint result;
@@ -105776,8 +105776,8 @@ LAB_180729492:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807294f0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_1807294f0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
+ void ProcessUIClickEvent(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
+void ProcessUIClickEvent(longlong uiContext,longlong dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
@@ -105863,8 +105863,8 @@ void FUN_1807294f0(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
-void FUN_180729ba0(longlong uiContext,longlong dataSource,int targetBuffer)
+ void ProcessUIHoverEvent(longlong uiContext,longlong dataSource,int targetBuffer)
+void ProcessUIHoverEvent(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
   short sVar1;
