@@ -100103,10 +100103,10 @@ LAB_180722ba9:
     shortCalculationResult = ReadUIData();
     *(short *)(contextHandle + 0xae2) = shortCalculationResult * (short)(*(int *)(contextHandle + 0x90c) >> 1);
     shortCalculationResult = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + sVar2;
-    sVar2 = *(short *)(contextHandle + 0xae2);
+    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + shortCalculationResult;
+    shortCalculationResult = *(short *)(contextHandle + 0xae2);
   }
-  *(short *)(contextHandle + 0x96c) = sVar2;
+  *(short *)(contextHandle + 0x96c) = shortCalculationResult;
   processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae4) = processingResult;
   processingResult = ReadUIData();
