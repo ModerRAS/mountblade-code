@@ -2445,6 +2445,34 @@ typedef enum {
   原始函数名: CleanupUIBuffers
  #define CleanupUIBuffers CleanupUIBuffers
 
+// UI系统数据处理函数美化
+#define FUN_180705530 ProcessUIContextEventDispatch
+#define FUN_180705870 ProcessUIRenderData
+#define FUN_1807058d0 CleanupUIResources
+#define FUN_180705980 ProcessUIComponentData
+#define FUN_1807069e0 ProcessUIEvent
+#define FUN_18070e140 CalculateUIComponentMemoryOffset
+#define FUN_18070737d CalculateUIRenderDataWeightedSum
+#define FUN_180711674 ProcessUIDataMatrixTransform
+#define FUN_180711810 ProcessUIContextInitialization
+#define FUN_180706b30 ProcessUIEventBuffer
+#define FUN_180706b61 ProcessUIEventQueue
+#define FUN_180725856 ProcessUITransformAnimation
+#define FUN_18076b6f0 InitializeUIComponentContext
+#define FUN_180787e70 ProcessUIComponentDataValidationAndCleanup
+
+// UI系统组件管理函数美化
+#define FUN_18072a9c0 ProcessUIComponentDataA9C0
+#define FUN_18072f7d0 ValidateUILayoutDataF7D0
+#define FUN_180736a70 RenderUIComponentA70
+#define FUN_180734160 ValidateUIComponentContext4160
+#define FUN_180736a10 ProcessUIBufferDataA10
+#define FUN_180741e10 InitializeUIComponent1E10
+
+// UI系统高级功能函数美化
+#define FUN_180722340 GetFontRenderData
+#define FUN_180722370 CalculateFontMetricData
+
  处理UI组件
  处理UI组件的通用操作
    *   *    处理结果状态码

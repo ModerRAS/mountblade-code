@@ -224926,7 +224926,7 @@ void ExpandCharacterStatusBufferAndInsertElement(long long *CharacterStatusBuffe
   PrimaryProcessingStatusFlag[4] = ElementData[4];
   BufferStartAddress = CharacterStatusBuffer[1];
   PerformanceCounterValue = StringOffset;
-  FUN_18018a000(SystemRegisterFlagBuffer,*CharacterStatusBuffer);
+  ExecuteSystemMemoryOperation(SystemRegisterFlagBuffer,*CharacterStatusBuffer);
   if (InsertPosition != BufferStartAddress) {
                     // WARNING: Subroutine does not return
     memmove(StringOffset);
