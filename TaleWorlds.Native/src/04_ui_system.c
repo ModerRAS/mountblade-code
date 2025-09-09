@@ -428,6 +428,13 @@ typedef enum {
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
+// UI系统函数宏定义 - 上下文清理和验证
+#define FUN_1807864f0 CleanupUIContext
+#define FUN_180760790 ProcessUIComponentDataSource
+#define FUN_180760c90 ProcessUIComponentResource
+#define FUN_180749940 ValidateUIComponentHandle
+#define FUN_180744ae0 ProcessUIComponentHandle
+
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
@@ -1983,9 +1990,9 @@ typedef enum {
 #define register10 UIRegister10
 
 // UI系统未定义变量美化
-#define undefined6 UIUndefined6
-#define undefined7 UIUndefined7
-#define undefined3 UIUndefined3
+#define undefined6 UIAnimationStateUndefined
+#define undefined7 UIResourceStateUndefined  
+#define undefined3 UIComponentStateUndefined
 
 // UI系统迭代变量美化
 #define iterationCount7 UIIterationCount7

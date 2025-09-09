@@ -104,8 +104,8 @@
 #define ExceptionHandlerPointerOffset158 0x158
 #define ExceptionHandlerPointerOffset160 0x160
 #define ExceptionHandlerPointerOffset178 0x178
-#define ExceptionHandlerPointerOffset1A0 0x1a0
-#define ExceptionHandlerPointerOffset1B0 0x1b0
+#define ExceptionHandlerPointerOffsetQuaternary 0x1a0
+#define ExceptionHandlerPointerOffsetQuinary 0x1b0
 #define ExceptionHandlerPointerOffset3E0 0x3e0
 #define ExceptionHandlerPointerOffset528 0x528
 #define ExceptionHandlerPointerOffset530 0x530
