@@ -57005,7 +57005,7 @@ void CloseHandleCleanupA(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_1809049c0
  */
-void CloseSystemHandle9c0(DataBuffer operationBase,int64_t dataBuffer)
+void CloseSystemHandleAtOffset9C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(**(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40));
@@ -68027,7 +68027,7 @@ void ValidateContextStateB(DataBuffer exceptionHandlerContext, int64_t validatio
  * 
  * @note 原始函数名：Unwind_180906c80
  */
-void CleanupResourceReferenceCount6c80(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -68078,7 +68078,7 @@ void CleanupResourceReferenceCount6c80(DataBuffer operationBase, int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180906c90
  */
-void CleanupResourceReferenceCount6c90(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
