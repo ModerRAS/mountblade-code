@@ -99820,8 +99820,16 @@ UIWord * FUN_18072390f(UIHandle uiContext,longlong dataSource)
 
 
 
- void FUN_180723afd(void)
-void FUN_180723afd(void)
+ /**
+ * @brief UI系统空操作函数（第三种）
+ * 
+ * 执行空操作，用于UI系统的第三种占位符或默认处理函数。
+ * 
+ * @note 原始函数名：FUN_180723afd
+ * @return 无返回值
+ */
+void UINullOperationThird(void)
+void UINullOperationThird(void)
 
 {
   return;
@@ -99830,8 +99838,16 @@ void FUN_180723afd(void)
 
 
 
- void FUN_180723b02(void)
-void FUN_180723b02(void)
+ /**
+ * @brief UI系统空操作函数（第四种）
+ * 
+ * 执行空操作，用于UI系统的第四种占位符或默认处理函数。
+ * 
+ * @note 原始函数名：FUN_180723b02
+ * @return 无返回值
+ */
+void UINullOperationFourth(void)
+void UINullOperationFourth(void)
 
 {
   return;
