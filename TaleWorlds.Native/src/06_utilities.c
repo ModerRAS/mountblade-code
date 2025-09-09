@@ -31436,6 +31436,23 @@ uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuff
 
 
 
+/**
+ * @brief 处理二进制数据A0
+ * 
+ * 该函数负责处理二进制数据，执行数据验证和转换操作。
+ * 根据不同的数据类型和操作标志，执行相应的数据处理逻辑。
+ * 
+ * @details 函数执行以下操作：
+ * - 遍历数据缓冲区，根据操作标志处理不同类型的数据
+ * - 处理系统数据指针和上下文信息
+ * - 根据数据类型执行相应的验证和转换操作
+ * - 返回处理结果或错误代码
+ * 
+ * @return 处理结果，成功返回处理后的数据，失败返回错误代码
+ * 
+ * @note 原始函数名：FUN_18089a8b4
+ * @note 该函数是二进制数据处理系列的一部分
+ */
 uint64_t ProcessBinaryDataA0(void)
 
 {
@@ -31514,8 +31531,15 @@ uint64_t ProcessBinaryDataA0(void)
 
 
 
-// 工具系统空操作函数
-// 功能：执行空操作，用于占位或初始化
+/**
+ * @brief 工具系统空操作函数
+ * 
+ * 执行空操作，用于系统初始化或占位符。
+ * 该函数不执行任何实际操作，直接返回。
+ * 
+ * @note 原始函数名：UtilitySystemNoOperation
+ * @note 该函数用于系统初始化和同步操作
+ */
 void UtilitySystemNoOperation(void)
 
 {
