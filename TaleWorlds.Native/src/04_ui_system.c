@@ -2573,9 +2573,69 @@ typedef enum {
 #define BaseValuePointer3 UIBaseValuePointer3
 #define BaseValuePointer7 UIBaseValuePointer7
 // UI数据差异计算函数系列
+/**
+ * @brief 计算UI数据差异并应用Alpha混合
+ * 
+ * 该函数用于计算UI元素之间的数据差异，并应用Alpha混合效果。
+ * 主要用于UI元素的渐变过渡和动画效果处理。
+ * 
+ * @param sourceData 源数据指针
+ * @param targetData 目标数据指针
+ * @param alphaValue Alpha混合值（0.0-1.0）
+ * @return 混合后的数据结果
+ * 
+ * @note 原始函数名：FUN_18068f150
+ * @note 该函数在UI事件分发处理器中使用
+ * @see UIEventDispatchProcessor
+ */
 #define FUN_18068f150 CalculateUIDataDifferenceWithAlpha
+
+/**
+ * @brief 计算UI数据差异并应用Beta混合
+ * 
+ * 该函数用于计算UI元素之间的数据差异，并应用Beta混合效果。
+ * 主要用于UI元素的高级渐变和特殊效果处理。
+ * 
+ * @param sourceData 源数据指针
+ * @param targetData 目标数据指针
+ * @param betaValue Beta混合值
+ * @return 混合后的数据结果
+ * 
+ * @note 原始函数名：FUN_18068f240
+ * @see UIVectorDataProcessor898
+ */
 #define FUN_18068f240 CalculateUIDataDifferenceWithBeta
+
+/**
+ * @brief 计算UI数据差异并应用Gamma校正
+ * 
+ * 该函数用于计算UI元素之间的数据差异，并应用Gamma校正效果。
+ * 主要用于UI颜色空间的转换和亮度调整。
+ * 
+ * @param sourceData 源数据指针
+ * @param targetData 目标数据指针
+ * @param gammaValue Gamma校正值
+ * @return 校正后的数据结果
+ * 
+ * @note 原始函数名：FUN_18068f330
+ * @see UIMatrixDataProcessor858
+ */
 #define FUN_18068f330 CalculateUIDataDifferenceWithGamma
+
+/**
+ * @brief 计算UI数据差异并应用Delta变换
+ * 
+ * 该函数用于计算UI元素之间的数据差异，并应用Delta变换效果。
+ * 主要用于UI元素的动态变化和增量更新。
+ * 
+ * @param sourceData 源数据指针
+ * @param targetData 目标数据指针
+ * @param deltaValue Delta变换值
+ * @return 变换后的数据结果
+ * 
+ * @note 原始函数名：FUN_18068f3a0
+ * @see UITransformDataProcessor820
+ */
 #define FUN_18068f3a0 CalculateUIDataDifferenceWithDelta
 #define FUN_18068f410 CalculateUIDataDifferenceWithEpsilon
 #define FUN_18068f480 CalculateUIDataDifferenceWithZeta
