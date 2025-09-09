@@ -86,8 +86,8 @@
 #define ExceptionHandlerOffsetTertiary 0xf8
 #define ExceptionHandlerOffsetQuaternary 0x100
 #define CleanupHandlerOffsetPrimary 0x108
-#define SystemParameterValidationOffset28 0x28
-#define SystemDataParameterOffset20 0x20
+#define SystemParameterValidationOffsetPrimary 0x28
+#define SystemDataParameterOffsetPrimary 0x20
 #define systemContextPointerOffset90 0x90
 #define ResourceManagementOffset80 0x80
 #define systemContextOffsetPointer90 0x90
@@ -283,9 +283,9 @@
 #define ExceptionHandlerContextOffset290 0x290
 
 // 系统数据参数偏移量常量
-#define SystemParameterValidationOffset28 0x28
+#define SystemParameterValidationOffsetPrimary 0x28
 #define SystemDataSecondaryOffset18 0x18
-#define SystemDataParameterOffset20 0x20
+#define SystemDataParameterOffsetPrimary 0x20
 #define ValidationResultOffset0 0x0
 #define MemoryPointerOffset0 0x0
 #define MemoryPointerOffset8 0x8
@@ -923,7 +923,7 @@
 #define ResourceCounterOffset2B0 0x2b0                         // 资源计数器偏移量2B0
 #define ExceptionHandlerPointerOffset240 0x240                // 异常处理器指针偏移量240
 #define ExceptionHandlerContextOffset600 0x600                // 异常处理器上下文偏移量600
-#define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
+#define SystemDataParameterOffsetPrimary 0x20                      // 系统数据参数偏移量20
 #define ExceptionHandlerPointerOffset2A0 0x2a0                // 异常处理器指针偏移量2A0
 #define ExceptionContextStatusOffset68 0x68                   // 异常上下文状态偏移量68
 
@@ -1213,8 +1213,8 @@
 #define SystemManagementOffset98 0x98                        // 系统管理偏移量98
 #define SystemFloatDataOffset38 0x38                         // 系统浮点数据偏移量38
 #define systemContextPointerOffset90 0x90                    // 系统上下文指针偏移量90
-#define SystemParameterValidationOffset28 0x28               // 系统参数验证偏移量28
-#define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
+#define SystemParameterValidationOffsetPrimary 0x28               // 系统参数验证偏移量28
+#define SystemDataParameterOffsetPrimary 0x20                      // 系统数据参数偏移量20
 #define SystemDataRecordMultiplier 0x18                      // 系统数据记录乘数18
 #define SystemDataRecordOffset3c 0x3c                         // 系统数据记录偏移量3c
 #define ExceptionHandlerHierarchyB1_CleanupStateOffsetEB8 0xeb8  // 清理状态偏移量EB8
@@ -1975,7 +1975,7 @@
 #define systemContextValidationOffset1C8 0x1c8            // 系统上下文验证偏移量1C8
 #define DataProcessingParameterOffset30 0x30              // 数据处理参数偏移量30
 #define SecurityContextValidationOffset5F0 0x5f0         // 安全上下文验证偏移量5F0
-#define SystemDataParameterOffset20 0x20                 // 系统数据参数偏移量20
+#define SystemDataParameterOffsetPrimary 0x20                 // 系统数据参数偏移量20
 #define OperationBaseControlOffset 0x58                        // 操作基础偏移量58
 #define OperationBaseOffset6C 0x6c                        // 操作基础偏移量6C
 #define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
