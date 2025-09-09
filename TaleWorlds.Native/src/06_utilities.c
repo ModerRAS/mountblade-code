@@ -2140,6 +2140,31 @@
 #define ExceptionHandlerCleanupQuinaryStateOffsetAa8 0xaa8 // 异常处理器清理五级状态偏移量Aa8
 #define ExceptionHandlerCleanupQuinaryFlagOffsetAb8 0xab8 // 异常处理器清理五级标志偏移量Ab8
 
+// 系统回调相关偏移量常量
+#define SystemCallbackPointerOffset120 0x120              // 系统回调指针偏移量120
+#define SystemCallbackPointerOffset170 0x170              // 系统回调指针偏移量170
+#define SystemCallbackPointerOffset178 0x178              // 系统回调指针偏移量178
+#define SystemCallbackPointerOffsetD0 0xd0                // 系统回调指针偏移量D0
+
+// 异常处理器相关偏移量常量
+#define ExceptionHandlerContextOffset1060 0x1060          // 异常处理上下文偏移量1060
+#define ExceptionHandlerContextOffset1050 0x1050          // 异常处理上下文偏移量1050
+#define ExceptionHandlerContextOffset1030 0x1030          // 异常处理上下文偏移量1030
+#define ExceptionHandlerContextOffset1038 0x1038          // 异常处理上下文偏移量1038
+#define ExceptionHandlerContextOffset1048 0x1048          // 异常处理上下文偏移量1048
+#define ExceptionHandlerContextOffset1010 0x1010          // 异常处理上下文偏移量1010
+#define ExceptionHandlerContextOffset1018 0x1018          // 异常处理上下文偏移量1018
+#define ExceptionHandlerContextOffset1028 0x1028          // 异常处理上下文偏移量1028
+#define ExceptionHandlerContextOffsetFF0 0xff0             // 异常处理上下文偏移量FF0
+#define ExceptionHandlerContextOffsetFF8 0xff8             // 异常处理上下文偏移量FF8
+#define ExceptionHandlerContextOffset1008 0x1008          // 异常处理上下文偏移量1008
+#define ExceptionHandlerContextOffsetFD0 0xfd0             // 异常处理上下文偏移量FD0
+#define ExceptionHandlerContextOffsetFD8 0xfd8             // 异常处理上下文偏移量FD8
+#define ExceptionHandlerContextOffsetFE8 0xfe8             // 异常处理上下文偏移量FE8
+#define ExceptionHandlerContextOffsetFB0 0xfb0             // 异常处理上下文偏移量FB0
+#define ExceptionHandlerContextOffsetFB8 0xfb8             // 异常处理上下文偏移量FB8
+#define ExceptionHandlerContextOffsetFC8 0xfc8             // 异常处理上下文偏移量FC8
+
 // 异常处理器偏移量常量定义
 #define ExceptionHandlerContextOffset80 0x80            // 异常处理上下文偏移量80
 #define ExceptionHandlerCallbackOffsetB40 0xb40        // 异常处理器回调偏移量B40
@@ -70005,8 +70030,8 @@ void ExecuteSystemCallbackA(DataBuffer operationBase, int64_t dataBuffer)
 void ExecuteSystemCallbackB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x120) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x120) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + SystemCallbackPointerOffset120) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemCallbackPointerOffset120) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -70029,8 +70054,8 @@ void ExecuteSystemCallbackB(DataBuffer operationBase, int64_t dataBuffer)
 void ExecuteSystemCallbackC(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((int64_t *)**(int64_t **)(dataBuffer + ExceptionHandlerContextOffset170) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + ExceptionHandlerContextOffset170) + SystemFloatDataOffset38))();
+  if ((int64_t *)**(int64_t **)(dataBuffer + SystemCallbackPointerOffset170) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + SystemCallbackPointerOffset170) + SystemFloatDataOffset38))();
   }
   return;
 }
@@ -70053,8 +70078,8 @@ void ExecuteSystemCallbackC(DataBuffer operationBase, int64_t dataBuffer)
 void ExecuteSystemCallbackD(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((int64_t *)**(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + 0x178) + SystemFloatDataOffset38))();
+  if ((int64_t *)**(int64_t **)(dataBuffer + SystemCallbackPointerOffset178) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)**(int64_t **)(dataBuffer + SystemCallbackPointerOffset178) + SystemFloatDataOffset38))();
   }
   return;
 }
