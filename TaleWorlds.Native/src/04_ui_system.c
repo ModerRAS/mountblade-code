@@ -1517,13 +1517,13 @@ typedef enum {
 #define AudioSampleRate UILoopCounter
 #define AudioDataSize AudioDataSizeLocal7
 #define AudioProcessedBytes UIEventCounter
-#define AudioChannelCount eventProcessingStatus
-#define AudioChunkCount result0
-#define AudioBytesProcessed result1
-#define AudioSampleBuffer psVar12
-#define AudioDataRemaining ResultValue3
-#define AudioDataPointer pisCharacterMatch4
-#define AudioDataCounter CounterResult
+#define AudioChannelCount UIEventStatus
+#define AudioChunkCount UIResult0
+#define AudioBytesProcessed UIResult1
+#define AudioSampleBuffer UIPtrShortVar12
+#define AudioDataRemaining UIResultValue3
+#define AudioDataPointer UIProcessingResultPointer4
+#define AudioDataCounter UICounterResult
 #define AudioStackData uStackX_8
 
 // UI系统变量名美化
@@ -100209,9 +100209,8 @@ void ProcessUIIntegerDataCalculation(int *uiContext,longlong dataSource,longlong
  * @return 无返回值
  * @note 原始函数名：FUN_180723b34
  */
-#define ProcessUIAudioData FUN_180723b34
-void ProcessUIAudioData(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+#define ProcessUIIntegerParameterValidation FUN_180723b34
+void ProcessUIIntegerParameterValidation(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 
 {
   UIWord result;
@@ -100255,7 +100254,7 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
     uiContext[4] = uiCalculatedValue + uiCompareResult;
     uiCompareResult = uiProcessingResult - uiValidationResult;
     uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x270a) >> 0x10) + uiCompareResult;
-    uiContext[5] = TempInt4 + uiCompareResult;
+    uiContext[5] = uiProcessingResult + uiCompareResult;
     uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
     if (uiValidationResult < 0x8000) {
       result = (UIWord)uiValidationResult;
