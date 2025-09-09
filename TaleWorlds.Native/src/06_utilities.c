@@ -18946,7 +18946,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_1808a5a90 - 系统验证函数A0
 // 功能：执行系统验证操作，检查数据完整性
-#define ValidateSystemOperationA0 FUN_1808a5a90
+#define ValidateSystemOperationA0 ValidateSystemDataIntegrity
 
 
 // 原始函数名：CleanupSystemResourcesA0 - 系统清理函数A0
