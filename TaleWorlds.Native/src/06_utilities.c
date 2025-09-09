@@ -5409,7 +5409,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180898d84
  */
-#define ProcessDataBufferWithValidation FUN_180898d84
+#define ProcessDataBufferWithValidation ProcessDataBufferWithValidationFunction
 
 /**
  * @brief 返回固定状态码A0
@@ -5418,7 +5418,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180898e56
  */
-#define ReturnFixedValidationStatus FUN_180898e56
+#define ReturnFixedValidationStatus ReturnFixedValidationStatusFunction
 
 /**
  * @brief 验证数据块状态A0
@@ -5454,7 +5454,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180898f40
  */
-#define ProcessDataBlockOperationA1 FUN_180898f40
+#define ProcessDataBlockOperationA1 ProcessDataBlockOperationFunction
 
 /**
  * @brief 验证数据序列A0
@@ -5463,7 +5463,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899220
  */
-#define ValidateDataSequence FUN_180899220
+#define ValidateDataSequence ValidateDataSequenceFunction
 
 /**
  * @brief 处理数据序列A0
@@ -5472,7 +5472,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089923e
  */
-#define ProcessDataSequence FUN_18089923e
+#define ProcessDataSequence ProcessDataSequenceFunction
 
 /**
  * @brief 验证端口控制请求A0
@@ -5481,7 +5481,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899360
  */
-#define ValidatePortControlRequest FUN_180899360
+#define ValidatePortControlRequest ValidatePortControlRequestFunction
 
 /**
  * @brief 执行数据验证
@@ -5526,7 +5526,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808997f0
  */
-#define InitializeDataProcessorA0 FUN_1808997f0
+#define InitializeDataProcessorA0 InitializeDataProcessorFunction
 
 /**
  * @brief 清理数据处理器

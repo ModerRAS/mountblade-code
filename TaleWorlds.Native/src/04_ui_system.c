@@ -99975,25 +99975,25 @@ LAB_180722ba9:
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
     bufferPtr = (UIByte *)(contextHandle + 0xacc);
     do {
-      result = ReadUIData();
-      *bufferPtr = result;
+      processingResult = ReadUIData();
+      *bufferPtr = processingResult;
       bufferPtr = bufferPtr + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
-  if (RegisterValue == 0) {
-    result = ReadUIData();
-    *(UIByte *)(contextHandle + 0xae9) = result;
+  if (registerValue == 0) {
+    processingResult = ReadUIData();
+    *(UIByte *)(contextHandle + 0xae9) = processingResult;
   }
   else {
     *(UIByte *)(contextHandle + 0xae9) = 0;
   }
 LAB_180722ca8:
   *(int *)(contextHandle + 0x968) = (int)*(char *)(contextHandle + 0xae5);
-  result = ReadUIData();
-  *(UIByte *)(contextHandle + 0xaea) = result;
+  processingResult = ReadUIData();
+  *(UIByte *)(contextHandle + 0xaea) = processingResult;
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000050 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(stackParameter50 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -100015,16 +100015,16 @@ void ProcessUIDataReader(void)
 void ProcessUIDataReader(void)
 
 {
-  UIByte result;
-  short sVar2;
+  UIByte processingResult;
+  short shortCalculationResult;
   longlong contextHandle;
-  UIByte *ptrLocal3;
-  int RegisterValue;
+  UIByte *bufferPointer;
+  int registerValue;
   int preservedRegister15D;
-  ulonglong stackParam00000050;
+  ulonglong stackParameter50;
   
   if (*(int *)(contextHandle + 0x914) == 4) {
-    result = ReadUIData();
+    processingResult = ReadUIData();
   }
   else {
     result = 4;
@@ -100046,21 +100046,21 @@ LAB_180722ba9:
     sVar2 = *(short *)(contextHandle + 0xae2);
   }
   *(short *)(contextHandle + 0x96c) = sVar2;
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae4) = result;
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae8) = result;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
     ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
     do {
-      result = ReadUIData();
+      processingResult = ReadUIData();
       *ptrLocal3 = result;
       ptrLocal3 = ptrLocal3 + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
   if (RegisterValue == 0) {
-    result = ReadUIData();
+    processingResult = ReadUIData();
     *(UIByte *)(contextHandle + 0xae9) = result;
   }
   else {
@@ -100068,7 +100068,7 @@ LAB_180722ba9:
   }
 LAB_180722ca8:
   *(int *)(contextHandle + 0x968) = (int)*(char *)(contextHandle + 0xae5);
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xaea) = result;
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000050 ^ (ulonglong)&stack0x00000000);
@@ -100089,7 +100089,7 @@ void CleanupUIComponentResources(void)
   int preservedRegister15D;
   ulonglong stackParam00000050;
   
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae7) = result;
   if (*(char *)(contextHandle + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((RegisterValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
@@ -100107,21 +100107,21 @@ LAB_180722ba9:
     sVar2 = *(short *)(contextHandle + 0xae2);
   }
   *(short *)(contextHandle + 0x96c) = sVar2;
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae4) = result;
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae8) = result;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
     ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
     do {
-      result = ReadUIData();
+      processingResult = ReadUIData();
       *ptrLocal3 = result;
       ptrLocal3 = ptrLocal3 + 1;
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
   if (RegisterValue == 0) {
-    result = ReadUIData();
+    processingResult = ReadUIData();
     *(UIByte *)(contextHandle + 0xae9) = result;
   }
   else {
@@ -100129,7 +100129,7 @@ LAB_180722ba9:
   }
 LAB_180722ca8:
   *(int *)(contextHandle + 0x968) = (int)*(char *)(contextHandle + 0xae5);
-  result = ReadUIData();
+  processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xaea) = result;
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000050 ^ (ulonglong)&stack0x00000000);
