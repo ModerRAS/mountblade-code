@@ -1,34 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 06_utilities.c
- * @brief 工具系统和实用函数模块
- * 
- * TaleWorlds引擎的工具函数和实用程序，包括系统初始化、内存管理、
- * 异常处理、数据验证和线程管理等核心功能。
- * 
- * @section 主要功能模块
- * - 系统初始化和配置管理
- * - 内存管理和资源分配
- * - 异常处理和错误恢复
- * - 数据验证和安全检查
- * - 线程本地存储管理
- * - 浮点数处理和计算
- * - 系统状态监控和健康检查
- * 
- * @section 关键数据结构
- * - ExceptionHandlerContext: 异常处理上下文结构
- * - SystemContext: 系统上下文结构
- * - MemoryBlock: 内存块管理结构
- * - ThreadLocalStorage: 线程本地存储结构
- * 
- * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
- *       替换为具有语义的名称。
- * 
- * @version 2.0
- * @date 2025-09-09
- */
-
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10
