@@ -80545,12 +80545,26 @@ void CallExceptionHandlerWithContextOffset1cc8(DataBuffer operationBase, int64_t
 /**
  * @brief 调用异常上下文处理器B（偏移量0x1cd0）
  * 
- * 该函数从数据缓冲区的特定偏移量获取异常上下文处理器指针，并调用相应的处理函数
+ * 该函数从数据缓冲区的特定偏移量获取异常上下文处理器指针，并调用相应的处理函数。
+ * 这是一个标准的异常处理回调调用模式，用于处理特定偏移量的异常情况。
  * 
- * @param operationBase 操作基础数据缓冲区
+ * @param operationBase 操作基础数据缓冲区（未使用）
  * @param dataBuffer 数据缓冲区，包含异常上下文信息
  * 
+ * @return 无返回值
+ * 
  * @note 原始函数名：Unwind_180909270
+ * @note 偏移量：0x1cd0 - 异常上下文处理器的存储位置
+ * 
+ * @details
+ * 该函数执行以下操作：
+ * 1. 从数据缓冲区的0x40偏移量获取异常上下文基址
+ * 2. 从0x1cd0偏移量获取异常上下文处理器指针
+ * 3. 验证指针的有效性
+ * 4. 调用异常处理函数（偏移量0x38处的函数指针）
+ * 
+ * @warning 异常上下文指针必须有效，否则可能导致程序崩溃
+ * @see CallExceptionHandlerWithContextOffset1cc8, CallExceptionHandlerWithContextOffset1cc0
  */
 void CallExceptionHandlerWithContextOffset1cd0(DataBuffer operationBase, int64_t dataBuffer)
 {
