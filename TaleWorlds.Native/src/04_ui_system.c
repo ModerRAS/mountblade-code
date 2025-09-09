@@ -1516,7 +1516,7 @@ typedef enum {
 #define AudioDataChunkIndex UILoopCounter
 #define AudioSampleRate UILoopCounter
 #define AudioDataSize AudioDataSizeLocal7
-#define AudioProcessedBytes eventProcessingCounter
+#define AudioProcessedBytes UIEventCounter
 #define AudioChannelCount eventProcessingStatus
 #define AudioChunkCount result0
 #define AudioBytesProcessed result1
