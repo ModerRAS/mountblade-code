@@ -106947,51 +106947,63 @@ void ProcessUIDataMatrixOperation(longlong uiContext, int *dataSource, int *targ
 
 
 
- void FUN_18072ad65(uint uiContext,UIHandle dataSource,UIHandle targetBuffer,short bufferSize)
-void FUN_18072ad65(uint uiContext,UIHandle dataSource,UIHandle targetBuffer,short bufferSize)
-
+ /**
+ * @brief 处理UI上下文数据转换
+ * 
+ * 该函数负责处理UI上下文中的数据转换操作，包括数据验证、字符串比较
+ * 和上下文句柄处理。函数执行数据转换和验证操作，确保UI上下文数据的正确性。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18072ad65 - Ghidra逆向生成的函数名已语义化
+ */
+void ProcessUIContextDataConversion(uint uiContext,UIHandle dataSource,UIHandle targetBuffer,short bufferSize)
 {
-  short in_AX;
-  UIWord result;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  int *contextHandle;
-  int *SourceHandle;
-  longlong TargetHandle;
-  longlong contextHandleData;
-  int localInt5;
-  longlong contextHandleData;
-  ulonglong register10;
-  longlong RegisterPointer;
-  UIWord *stackParam00000050;
+  short inputParameter;
+  UIWord conversionResult;
+  int validationStatus;
+  longlong stringComparisonIndex;
+  int *contextHandlePointer;
+  int *sourceDataPointer;
+  longlong targetDataHandle;
+  longlong contextData;
+  int localProcessingValue;
+  longlong contextDataCopy;
+  ulonglong registerValue;
+  longlong registerPointer;
+  UIWord *stackBufferPointer;
   
-  contextHandleData = TargetHandle - (longlong)stackParam00000050;
+  contextData = targetDataHandle - (longlong)stackBufferPointer;
   do {
-    contextHandleData = (longlong)*(short *)(contextHandleData + (longlong)stackParam00000050);
-    localInt5 = *contextHandle * 4 + (int)((ulonglong)(*SourceHandle * contextHandleData) >> 0x10) * 4;
-    stringCompareIndex = (longlong)localInt5;
-    uiValidationResult = (((int)((register10 & 0xffffffff) * stringCompareIndex >> 0x10) >> 0xd) + 1 >> 1) +
-            (int)((ulonglong)(in_AX * stringCompareIndex) >> 0x10) + contextHandle[1];
-    *contextHandle = uiValidationResult;
-    *contextHandle = (int)((ulonglong)(SourceHandle[1] * contextHandleData) >> 0x10) + uiValidationResult;
-    uiValidationResult = (((int)((ulonglong)uiContext * stringCompareIndex >> 0x10) >> 0xd) + 1 >> 1) +
-            (int)((ulonglong)(bufferSize * stringCompareIndex) >> 0x10);
-    contextHandle[1] = uiValidationResult;
-    contextHandle[1] = (int)((ulonglong)(SourceHandle[2] * contextHandleData) >> 0x10) + uiValidationResult;
-    uiValidationResult = localInt5 + 0x3fff >> 0xe;
-    if (uiValidationResult < 0x8000) {
-      result = (UIWord)uiValidationResult;
-      if (uiValidationResult < -0x8000) {
-        result = 0x8000;
+    contextData = (longlong)*(short *)(contextData + (longlong)stackBufferPointer);
+    localProcessingValue = *contextHandlePointer * 4 + (int)((ulonglong)(*sourceDataPointer * contextData) >> 0x10) * 4;
+    stringComparisonIndex = (longlong)localProcessingValue;
+    validationStatus = (((int)((registerValue & 0xffffffff) * stringComparisonIndex >> 0x10) >> 0xd) + 1 >> 1) +
+            (int)((ulonglong)(inputParameter * stringComparisonIndex) >> 0x10) + contextHandlePointer[1];
+    *contextHandlePointer = validationStatus;
+    *contextHandlePointer = (int)((ulonglong)(sourceDataPointer[1] * contextData) >> 0x10) + validationStatus;
+    validationStatus = (((int)((ulonglong)uiContext * stringComparisonIndex >> 0x10) >> 0xd) + 1 >> 1) +
+            (int)((ulonglong)(bufferSize * stringComparisonIndex) >> 0x10);
+    contextHandlePointer[1] = validationStatus;
+    contextHandlePointer[1] = (int)((ulonglong)(sourceDataPointer[2] * contextData) >> 0x10) + validationStatus;
+    validationStatus = localProcessingValue + 0x3fff >> 0xe;
+    if (validationStatus < 0x8000) {
+      conversionResult = (UIWord)validationStatus;
+      if (validationStatus < -0x8000) {
+        conversionResult = 0x8000;
       }
     }
     else {
-      result = 0x7fff;
+      conversionResult = 0x7fff;
     }
-    *stackParam00000050 = result;
-    stackParam00000050 = stackParam00000050 + 1;
-    RegisterPointer = RegisterPointer + -1;
-  } while (RegisterPointer != 0);
+    *stackBufferPointer = conversionResult;
+    stackBufferPointer = stackBufferPointer + 1;
+    registerPointer = registerPointer + -1;
+  } while (registerPointer != 0);
   return;
 }
 
