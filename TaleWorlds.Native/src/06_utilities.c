@@ -4024,16 +4024,31 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define InvokeExceptionHandlerAtPentaPosition Unwind_180906d30
 
-// 原始函数名：Unwind_1809092e0 - 异常上下文清理函数A0
-// 功能：清理异常上下文数据，重置异常处理器状态
+/**
+ * @brief 异常上下文清理函数（偏移量A0）
+ * 
+ * 清理异常上下文数据，重置异常处理器状态
+ * 
+ * @note 原始函数名：Unwind_1809092e0
+ */
 #define CleanupExceptionContextA0 Unwind_1809092e0
 
-// 原始函数名：Unwind_1809092f0 - 异常上下文清理函数A1
-// 功能：清理异常上下文数据，重置异常处理器状态
+/**
+ * @brief 异常上下文清理函数（偏移量A1）
+ * 
+ * 清理异常上下文数据，重置异常处理器状态
+ * 
+ * @note 原始函数名：Unwind_1809092f0
+ */
 #define CleanupExceptionContextA1 Unwind_1809092f0
 
-// 原始函数名：Unwind_180909400 - 异常处理器重置函数A0
-// 功能：重置异常处理器状态，清理异常处理上下文
+/**
+ * @brief 异常处理器重置函数（偏移量A0）
+ * 
+ * 重置异常处理器状态，清理异常处理上下文
+ * 
+ * @note 原始函数名：Unwind_180909400
+ */
 #define ResetExceptionHandlerA0 Unwind_180909400
 
 // 原始函数名：Unwind_1809094a0 - 异常数据清理函数A0
