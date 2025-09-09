@@ -47977,7 +47977,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aresult9 [16];
   UIByte aiterationCount0 [16];
   UIDword iterationCount2;
-  undefined6 iterationCount3;
+  uint16_t iterationCount3;
   UIHandle iterationCount4;
   UIByte aiterationCount5 [12];
   UIByte aiterationCount6 [14];
@@ -47989,7 +47989,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aEventTypeCode3 [16];
   UIByte aEventTypeCode4 [16];
   UIDword EventTypeCode7;
-  undefined6 EventTypeCode8;
+  uint16_t EventTypeCode8;
   UIHandle EventTypeCode9;
   UIByte aProcessingStatus0 [12];
   UIByte aProcessingStatus1 [14];
@@ -48292,7 +48292,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aEventTypeCode7 [16];
   UIByte aEventTypeCode8 [16];
   UIDword ProcessingStatus1;
-  undefined6 ProcessingStatus2;
+  uint16_t ProcessingStatus2;
   UIHandle ProcessingStatus3;
   UIByte aProcessingStatus4 [12];
   UIByte aProcessingStatus5 [14];
@@ -48604,7 +48604,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aEventTypeCode7 [16];
   UIByte aEventTypeCode8 [16];
   UIDword ProcessingStatus1;
-  undefined6 ProcessingStatus2;
+  uint16_t ProcessingStatus2;
   UIHandle ProcessingStatus3;
   UIByte aProcessingStatus4 [12];
   UIByte aProcessingStatus5 [14];
@@ -48916,7 +48916,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte aEventTypeCode7 [16];
   UIByte aEventTypeCode8 [16];
   UIDword ProcessingStatus1;
-  undefined6 ProcessingStatus2;
+  uint16_t ProcessingStatus2;
   UIHandle ProcessingStatus3;
   UIByte aProcessingStatus4 [12];
   UIByte aProcessingStatus5 [14];
@@ -67297,7 +67297,7 @@ void RenderUISliderInternal(longlong uiContext,int dataSource,UIByte (*targetBuf
   UIByte result09;
   UIByte result11;
   UIDword result14;
-  undefined6 result15;
+  uint16_t result15;
   UIHandle result16;
   UIByte aresult17 [12];
   UIByte aresult18 [14];
@@ -102047,7 +102047,7 @@ float CalculateUIVectorDistanceAndTargetBuffer(UIHandle uiContext, UIHandle data
   uint register8D;
   uint processingStatus;
   short register10W;
-  undefined6 in_register_00000092;
+  uint16_t in_register_00000092;
   short processingCounter;
   uint maxProcessingCount;
   float resultFloat;
@@ -136676,7 +136676,7 @@ void FUN_18074b093(void)
   longlong contextHandleData;
   longlong contextHandle;
   char unmodifiedBPL;
-  undefined7 unmodified00000029;
+  uint64_t unmodified00000029;
   longlong *pEventDataIndex;
   ulonglong maxProcessingCount;
   ulonglong processingCounter;
@@ -145289,7 +145289,7 @@ UIHandle FUN_180754c5c(void)
   longlong BasePointer;
   longlong SourceHandle;
   UIHandle iterationCount;
-  undefined7 EventTypeCode;
+  uint64_t EventTypeCode;
   UIHandle preservedRegister12;
   longlong EventHandle;
   longlong preservedRegister15;
@@ -198903,7 +198903,7 @@ int ProcessUICharacterValidation(longlong uiContext,UIDword dataSource,longlong 
   char localChar11;
   char localChar12;
   longlong *contextHandle;
-  undefined6 result3;
+  uint16_t result3;
   UIByte *ptrResult4;
   longlong *BasePointer;
   ulonglong SourceHandle;
@@ -228340,7 +228340,7 @@ void FUN_180803cf0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *
   UIWord stackUInt5e;
   uint stackUInt5c;
   UIWord stackUInt58;
-  undefined6 stackUInt56;
+  uint16_t stackUInt56;
   UIHandle stackUInt50;
   ulonglong stackUInt48;
   
@@ -252282,7 +252282,7 @@ void FUN_18081e5c0(float *uiContext,ulonglong dataSource,longlong targetBuffer,i
   int uiValidationResult1;
   int uiValidationResult2;
   int uiValidationResult3;
-  undefined6 iterationCount4;
+  uint16_t iterationCount4;
   UIByte aiterationCount5 [12];
   UIByte aiterationCount6 [12];
   UIByte aiterationCount7 [12];
@@ -393735,7 +393735,7 @@ ulonglong FUN_18089c86d(void)
 {
   longlong *pallocatedMemory;
   longlong componentIndex;
-  undefined7 EventTypeCode;
+  uint64_t EventTypeCode;
   uint ProcessingStatus;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -393984,7 +393984,7 @@ ulonglong FUN_18089c872(void)
 {
   longlong *pallocatedMemory;
   longlong componentIndex;
-  undefined7 EventTypeCode;
+  uint64_t EventTypeCode;
   uint ProcessingStatus;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;
@@ -394234,7 +394234,7 @@ ulonglong FUN_18089c94a(float uiContext)
 {
   longlong *pallocatedMemory;
   longlong componentIndex;
-  undefined7 EventTypeCode;
+  uint64_t EventTypeCode;
   uint ProcessingStatus;
   ulonglong loopCounter;
   ulonglong maxProcessingCount;

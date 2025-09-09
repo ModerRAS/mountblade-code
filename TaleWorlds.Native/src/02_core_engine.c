@@ -100020,36 +100020,36 @@ void ProcessRenderParameterCalculation(int ContextHandle
   else {
     RenderTransformRotationZ = *(float *)(MemoryBoundaryEnd + 0x168c);
   }
-  RenderParameter3 = *(float *)(SystemDataRegistry + 0x7c);
+  RenderTransformScaleY = *(float *)(SystemDataRegistry + 0x7c);
   StackFloat1 = *(float *)(SystemDataRegistry + 0x40) + *(float *)(SystemDataRegistry + 0x48);
   StackFloat2 = *(float *)(SystemDataRegistry + 0x44) + *(float *)(SystemDataRegistry + 0x4c);
   if (ContextHandle == 0) {
-    StackFloat3 = *(float *)(SystemDataRegistry + 0x40) + RenderParameter3;
+    StackFloat3 = *(float *)(SystemDataRegistry + 0x40) + RenderTransformScaleY;
     RenderParameter1 = StackFloat2 - *(float *)(MemoryBoundaryEnd + 0x168c);
-    StackFloat5 = StackFloat2 - RenderParameter3;
-    StackFloat6 = (StackFloat1 - RenderParameter6) - RenderParameter3;
+    StackFloat5 = StackFloat2 - RenderTransformScaleY;
+    StackFloat6 = (StackFloat1 - RenderTransformRotationZ) - RenderTransformScaleY;
   }
   else {
     ExtendedUtf16Char = (unsigned long long)*(uint *)(SystemDataRegistry + 0xc);
-    RenderParameter1 = *(float *)(SystemDataRegistry + 0x44) + RenderParameter3;
+    RenderParameter1 = *(float *)(SystemDataRegistry + 0x44) + RenderTransformScaleY;
     StackFloat3 = StackFloat1 - *(float *)(MemoryBoundaryEnd + 0x168c);
-    StackFloat6 = StackFloat1 - RenderParameter3;
-    StackFloat5 = (StackFloat2 - RenderParameter6) - RenderParameter3;
+    StackFloat6 = StackFloat1 - RenderTransformScaleY;
+    StackFloat5 = (StackFloat2 - RenderTransformRotationZ) - RenderTransformScaleY;
     if ((*(uint *)(SystemDataRegistry + 0xc) >> 10 & 1) == 0) {
-      RenderParameter3 = 0.0;
+      RenderTransformScaleY = 0.0;
     }
     else {
       StackFloat4 = RenderParameter1;
-      RenderParameter3 = (float)GetSystemParameters(SystemDataRegistry);
+      RenderTransformScaleY = (float)GetSystemParameters(SystemDataRegistry);
     }
     if ((ExtendedUtf16Char & 1) == 0) {
-      RenderParameter8 = *(float *)(MemoryBoundaryEnd + 0x19fc) * *(float *)(SystemDataRegistry + 0x2d8) * *(float *)(SystemDataRegistry + 0x2dc) +
+      RenderTransformTranslationX = *(float *)(MemoryBoundaryEnd + 0x19fc) * *(float *)(SystemDataRegistry + 0x2d8) * *(float *)(SystemDataRegistry + 0x2dc) +
                *(float *)(MemoryBoundaryEnd + 0x1660) + *(float *)(MemoryBoundaryEnd + 0x1660);
     }
     else {
-      RenderParameter8 = 0.0;
+      RenderTransformTranslationX = 0.0;
     }
-    RenderParameter1 = RenderParameter8 + RenderParameter3 + RenderParameter1;
+    RenderParameter1 = RenderTransformTranslationX + RenderTransformScaleY + RenderParameter1;
   }
   RenderParameter5 = StackFloat5;
   RenderParameter8 = StackFloat6;

@@ -11681,30 +11681,30 @@ uint8_t UtilityFilterBufferD;
 // 功能：设置全局数据指针A35到指定地址
 #define SetGlobalDataPointerA35 SetGlobalDataPointerToAddressA35
 
-// 全局数据指针A35配置缓冲区
-// 功能：存储全局数据指针A35的配置信息
+// 全局数据指针配置缓冲区
+// 功能：存储全局数据指针的配置信息
 #define GlobalDataPointerA35ConfigBuffer GlobalDataConfigurationBuffer
-uint8_t GlobalDataPointerA35ConfigBuffer;
+uint8_t GlobalDataConfigurationBuffer;
 
-// 全局数据指针A35存储区
-// 功能：存储全局数据指针A35的相关信息
+// 全局数据指针存储区
+// 功能：存储全局数据指针的相关信息
 #define GlobalDataPointerA35Storage GlobalDataStorageArea
-uint8_t GlobalDataPointerA35Storage;
+uint8_t GlobalDataStorageArea;
 
-// 全局数据指针A35状态区
-// 功能：存储全局数据指针A35的状态信息
+// 全局数据指针状态区
+// 功能：存储全局数据指针的状态信息
 #define GlobalDataPointerA35Status GlobalDataStatusFlags
-uint8_t GlobalDataPointerA35Status;
+uint8_t GlobalDataStatusFlags;
 
-// 全局数据指针A35配置区
-// 功能：存储全局数据指针A35的配置信息
+// 全局数据指针配置区
+// 功能：存储全局数据指针的配置信息
 #define GlobalDataPointerA35Config GlobalDataConfigurationSettings
-uint8_t GlobalDataPointerA35Config;
+uint8_t GlobalDataConfigurationSettings;
 
-// 全局数据指针A35缓存区
-// 功能：存储全局数据指针A35的缓存数据
+// 全局数据指针缓存区
+// 功能：存储全局数据指针的缓存数据
 #define GlobalDataPointerA35Cache GlobalDataCacheBuffer
-uint8_t GlobalDataPointerA35Cache;
+uint8_t GlobalDataCacheBuffer;
 
 // 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
@@ -12824,28 +12824,28 @@ uint8_t SystemResourceSecondaryDestructorContext;
 uint8_t SystemResourceSecondaryDestructorFlag;
 uint8_t SystemResourceSecondaryDestructorMemory;
 uint8_t SystemResourceTertiaryDestructorMemory;
-uint8_t ResourceDestroyerMemoryA2;
-uint8_t ResourceDestroyerHandleA2;
-uint8_t ResourceDestroyerContextA2;
-uint8_t ResourceDestroyerFlagA2;
-uint8_t ResourceDestroyerStatusA2;
-uint8_t ResourceDestroyerCounterA2;
-uint8_t ResourceDestroyerIndexA2;
-uint8_t ResourceDestroyerDataA2;
-uint8_t ResourceDestroyerConfigA2;
-uint8_t ResourceDestroyerQueueA2;
-uint8_t ResourceDestroyerThreadA2;
-uint8_t ResourceDestroyerEventA2;
-uint8_t ResourceDestroyerSizeA2;
-uint8_t ResourceDestroyerCapacityA2;
-uint8_t ResourceDestroyerAlignmentA2;
-uint8_t ResourceDestroyerChecksumA2;
-uint8_t ResourceDestroyerVersionA2;
-uint8_t ResourceDestroyerValidatorA2;
-uint8_t ResourceDestroyerManagerA2;
-uint8_t ResourceDestroyerControllerA2;
-uint8_t ResourceDestroyerProcessorA2;
-uint8_t ResourceDestroyerHandlerA2;
+uint8_t ResourceCleanupMemory;
+uint8_t ResourceCleanupHandle;
+uint8_t ResourceCleanupContext;
+uint8_t ResourceCleanupFlag;
+uint8_t ResourceCleanupStatus;
+uint8_t ResourceCleanupCounter;
+uint8_t ResourceCleanupIndex;
+uint8_t ResourceCleanupData;
+uint8_t ResourceCleanupConfig;
+uint8_t ResourceCleanupQueue;
+uint8_t ResourceCleanupThread;
+uint8_t ResourceCleanupEvent;
+uint8_t ResourceCleanupSize;
+uint8_t ResourceCleanupCapacity;
+uint8_t ResourceCleanupAlignment;
+uint8_t ResourceCleanupChecksum;
+uint8_t ResourceCleanupVersion;
+uint8_t ResourceCleanupValidator;
+uint8_t ResourceCleanupManager;
+uint8_t ResourceCleanupController;
+uint8_t ResourceCleanupProcessor;
+uint8_t ResourceCleanupHandler;
 // 系统配置表A5
 uint8_t SystemConfigurationTableA5;
 uint8_t SystemConfigurationHandleA5;
