@@ -2386,12 +2386,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FloatValidationDataAddress 0x180985054          // 浮点数验证数据地址
 #define SystemMutexObjectAddress 0x180c91970            // 系统互斥对象地址
 #define ExceptionCriticalSectionAddress 0x180c82210      // 异常临界区地址
+#define SystemMutexObjectSecondaryAddress 0x180c91f70   // 系统互斥对象辅助地址
 
 // 系统数据偏移量常量定义
 #define systemContextDataOffset 0x18                    // 系统上下文数据偏移量
 #define systemContextOperationOffset 0x20               // 系统上下文操作偏移量
 #define systemContextConversionOffset 0x24              // 系统上下文转换偏移量
 #define systemContextValidationOffset 0x78              // 系统上下文验证偏移量
+
+// 魔法数字常量定义
+#define IsOffset1cInfinityValue 0x1d                     // 偏移量1c无穷大值
+#define MemoryAlignmentMask 0xfbffffff                   // 内存对齐掩码
+#define OperationFlagMask 0x6000000                      // 操作标志掩码
+#define SystemCleanupFlag 0xfffffffe                    // 系统清理标志
 #define systemContextPointerOffset 0x50                // 系统上下文指针偏移量
 
 // 数据处理偏移量常量定义
@@ -36427,7 +36434,7 @@ ValidationErrorHandler2:
         securityCheckResult = *(uint *)(StackFrameContext + 0x77) & -(operationResult & 1);
         memoryRegionBase = (uint64_t)securityCheckResult;
         *(uint *)(StackFrameContext + 0x77) = securityCheckResult;
-        secondaryFloatResult = floatResultA_09;
+        secondaryFloatResult = ValidationFloatResultA;
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
@@ -134467,3 +134474,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * @warning 数据验证处理必须在适当的上下文中进行
  */
 #define ProcessSystemDataValidation Unwind_18090e770
+
+// 原始变量名：floatResultA_09 - 浮点数计算结果A
+// 功能：存储浮点数计算过程中的临时结果值
+#define ValidationFloatResultA floatResultA_09
