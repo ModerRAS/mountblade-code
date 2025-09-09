@@ -171733,11 +171733,11 @@ void ProcessCharacterEncodingConversion(long long ContextHandle,int OperationBuf
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
-  long long lStackX_8;
+  long long StackValueX8;
   
   CharacterTablePointer = *(long long *)(ContextHandle + 0x10);
   while( true ) {
-    lStackX_8 = ContextHandle;
+    StackValueX8 = ContextHandle;
     if (CharacterTablePointer == 0) {
       ProcessSystemDataTable(Utf16EndPointer,&StackValueX8);
       return;
@@ -259834,7 +259834,7 @@ uint64_t FUN_180213440(long long ContextHandle,long long OperationBufferSize,cha
   long long lStackX_8;
   uint64_t uStackX_10;
   
-  lStackX_8 = ContextHandle;
+  StackValueX8 = ContextHandle;
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213627;
   pMemoryAddressMaskPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
   *(uint8_t *)pMemoryAddressMaskPointer = 0;
