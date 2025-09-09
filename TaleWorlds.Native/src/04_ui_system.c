@@ -2340,32 +2340,32 @@ typedef enum {
 #define UpdateUIRenderBuffer UpdateUIRenderBufferInternal
 
 // UI系统函数宏定义补充
-#define FUN_18089a9d5 UIEmptyFunction1
-#define FUN_18089a9dd UIEmptyFunction2
-#define FUN_18089a9f0 ProcessUIContextDataWithBuffer
-#define FUN_18089aa30 UIEmptyFunction3
-#define FUN_18089aa38 UIEmptyFunction4
-#define FUN_18089aa40 UIEmptyFunction5
-#define FUN_1808995c0 ValidateUIResourceHandle
-#define FUN_18089aa48 UIEmptyFunction6
-#define FUN_18089aa50 UIEmptyFunction7
-#define FUN_18089aa58 UIEmptyFunction8
-#define FUN_18089aa60 UIEmptyFunction9
-#define FUN_18089aa68 UIEmptyFunction10
-#define FUN_18089aa70 UIEmptyFunction11
-#define FUN_18089aa78 UIEmptyFunction12
+#define FUN_18089a9d5 UIEmptyOperationFunction1
+#define FUN_18089a9dd UIEmptyOperationFunction2
+#define FUN_18089a9f0 ProcessUIContextDataWithBufferOperation
+#define FUN_18089aa30 UIEmptyOperationFunction3
+#define FUN_18089aa38 UIEmptyOperationFunction4
+#define FUN_18089aa40 UIEmptyOperationFunction5
+#define FUN_1808995c0 ValidateUIResourceHandleWithSecurity
+#define FUN_18089aa48 UIEmptyOperationFunction6
+#define FUN_18089aa50 UIEmptyOperationFunction7
+#define FUN_18089aa58 UIEmptyOperationFunction8
+#define FUN_18089aa60 UIEmptyOperationFunction9
+#define FUN_18089aa68 UIEmptyOperationFunction10
+#define FUN_18089aa70 UIEmptyOperationFunction11
+#define FUN_18089aa78 UIEmptyOperationFunction12
 
 // UI系统数据处理函数宏定义
 #define FUN_180721810 ProcessUITransformDataWithCoefficients
-#define FUN_18072182d ProcessUISimpleDataTransform
-#define FUN_180721864 ProcessUIComplexDataTransform
-#define FUN_180721984 ResetUITransformState
-#define FUN_1807219ee ProcessUIBufferWithTransform
+#define FUN_18072182d ProcessUISimpleDataTransformOperation
+#define FUN_180721864 ProcessUIComplexDataTransformOperation
+#define FUN_180721984 ResetUITransformStateOperation
+#define FUN_1807219ee ProcessUIBufferWithTransformOperation
 
 // UI系统数据处理函数宏定义
-#define FUN_180787940 ProcessUIContextDataWithBuffer
-#define FUN_1807e4c10 ProcessUIEventDataIndex
-#define FUN_18075a230 ProcessUIContextAndDataSource
+#define FUN_180787940 ProcessUIContextDataWithBufferOperation
+#define FUN_1807e4c10 ProcessUIEventDataIndexOperation
+#define FUN_18075a230 ProcessUIContextAndDataSourceOperation
 
 // UI系统堆栈变量美化
 // afStack_6260 已在上面定义为 UIAnimationSpeedStack6260
@@ -2385,16 +2385,16 @@ typedef enum {
 #define bVar4 UIBoolVar4
 
 // UI系统内部函数名美化
-#define func_0x000180024290 ProcessUIDataWithValidation
-#define func_0x000180022810 ProcessUIDataWithValidationAlt
-#define func_0x000180069ee0 ValidateUIContext
-#define func_0x000180024a80 ProcessUIComponentValidation
-#define func_0x000180024b00 ProcessUIComponentTransform
-#define func_0x000180024b80 ProcessUIComponentAnimation
-#define func_0x000180024c00 ProcessUIComponentRender
-#define func_0x000180024c80 ProcessUIComponentEvent
-#define func_0x000180024d00 ProcessUIComponentState
-#define func_0x000180024d80 ProcessUIComponentData
+#define func_0x000180024290 ProcessUIDataWithValidationOperation
+#define func_0x000180022810 ProcessUIDataWithValidationAlternative
+#define func_0x000180069ee0 ValidateUIContextOperation
+#define func_0x000180024a80 ProcessUIComponentValidationOperation
+#define func_0x000180024b00 ProcessUIComponentTransformOperation
+#define func_0x000180024b80 ProcessUIComponentAnimationOperation
+#define func_0x000180024c00 ProcessUIComponentRenderOperation
+#define func_0x000180024c80 ProcessUIComponentEventOperation
+#define func_0x000180024d00 ProcessUIComponentStateOperation
+#define func_0x000180024d80 ProcessUIComponentDataOperation
 #define func_0x000180024e00 ProcessUIComponentLayout
 #define func_0x000180024e80 ProcessUIComponentStyle
 #define func_0x000180024f00 ProcessUIComponentTheme
