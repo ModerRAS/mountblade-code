@@ -14781,7 +14781,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 {
   int64_t resourceContextPtr;
   uint64_t resourceDecrementStatus;
-  int resourceReleaseResult;
+  int ResourceCleanupStatus;
   int64_t resourceDecrementBuffer [2];
   
   resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),resourceDecrementBuffer);
@@ -30322,7 +30322,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
               statusCounter = processedFloatValue;
             } while ((int64_t)securityCheckResult < (int64_t)operationStatus);
           }
-          operationStatus = CheckSystemStateAndReturnStatusA2(statusCounter,systemContext + 0x60);
+          operationStatus = CheckSystemStateAndReturnStatusA2(statusCounter,systemContext + SystemContextOffset60);
           if (operationStatus == 0) {
             exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
             operationStatus = *(int *)(systemContext + 0x78);
@@ -131739,16 +131739,52 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ResetExceptionHandlingStateA10 Unwind_18090ca10
 
-// 原始函数名：Unwind_18090ca20 - 异常处理初始化函数a20
-// 功能：初始化异常处理系统
+/**
+ * @brief 异常处理初始化函数A20
+ * 
+ * 初始化异常处理系统，设置异常处理的环境和参数，确保异常处理的正确启动。
+ * 该函数负责：
+ * 1. 初始化异常处理系统
+ * 2. 设置异常处理的环境和参数
+ * 3. 配置异常处理的初始状态
+ * 4. 确保异常处理系统的正确启动
+ * 
+ * @note 原始函数名：Unwind_18090ca20
+ * @warning 异常处理初始化必须在系统启动时进行
+ * @see ConfigureExceptionHandlerA00, ResetExceptionHandlingStateA10
+ */
 #define InitializeExceptionHandlingA20 Unwind_18090ca20
 
-// 原始函数名：Unwind_18090ca30 - 异常处理完成函数a30
-// 功能：完成异常处理操作
+/**
+ * @brief 异常处理完成函数A30
+ * 
+ * 完成异常处理操作，清理异常处理的资源，确保异常处理的正确结束。
+ * 该函数负责：
+ * 1. 完成异常处理的操作
+ * 2. 清理异常处理的资源
+ * 3. 释放异常处理的内存
+ * 4. 确保异常处理的正确结束
+ * 
+ * @note 原始函数名：Unwind_18090ca30
+ * @warning 异常处理完成必须在异常处理结束时进行
+ * @see InitializeExceptionHandlingA20, ResetExceptionHandlingStateA10
+ */
 #define FinalizeExceptionHandlingA30 Unwind_18090ca30
 
-// 原始函数名：Unwind_18090ca40 - 异常处理资源分配函数a40
-// 功能：分配异常处理的资源
+/**
+ * @brief 异常处理资源分配函数A40
+ * 
+ * 分配异常处理的资源，为异常处理系统分配内存和其他系统资源。
+ * 该函数负责：
+ * 1. 分配异常处理的内存资源
+ * 2. 分配异常处理的系统资源
+ * 3. 初始化资源的状态和计数器
+ * 4. 确保资源分配的成功
+ * 
+ * @note 原始函数名：Unwind_18090ca40
+ * @warning 异常处理资源分配必须在异常处理初始化时进行
+ * @see InitializeExceptionHandlingA20, FinalizeExceptionHandlingA30
+ */
 #define AllocateExceptionHandlingResourcesA40 Unwind_18090ca40
 
 // 原始函数名：Unwind_18090ca50 - 异常处理验证函数a50
