@@ -100047,32 +100047,32 @@ int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffe
   if ((int)eventProcessingCounter < param_6) {
     eventProcessingCounter = (ulonglong)(ushort)param_6;
   }
-  allocatedMemory0 = (longlong)(short)eventProcessingCounter;
-  *bufferSize = *bufferSize + (int)((ulonglong)(((uiValidationResult << (bVar4 & 0x1f)) - *bufferSize) * allocatedMemory0) >> 0x10);
-  aiStackX_20[0] =
-       aiStackX_20[0] +
-       (int)((ulonglong)((longlong)sVar9 * (longlong)aiStackX_8[0]) >> 0x10) * 0x40 +
-       (int)((ulonglong)((longlong)processingResult * (longlong)(short)localInt5) >> 0x10) * -0x10;
-  localInt7 = func_0x000180723cb0();
-  processingResult = bufferSize[1] + (int)((ulonglong)(((localInt7 << (bVar4 & 0x1f)) - bufferSize[1]) * allocatedMemory0) >> 0x10)
+  allocatedMemorySize = (longlong)(short)eventProcessingCounter;
+  *bufferSize = *bufferSize + (int)((ulonglong)(((uiValidationResult << (processingFlag & 0x1f)) - *bufferSize) * allocatedMemorySize) >> 0x10);
+  contextStackArray20[0] =
+       contextStackArray20[0] +
+       (int)((ulonglong)((longlong)memoryAllocationHigh * (longlong)contextStackArray8[0]) >> 0x10) * 0x40 +
+       (int)((ulonglong)((longlong)processingResult * (longlong)(short)bitShiftResult) >> 0x10) * -0x10;
+  alignmentAdjustment = CalculateUIEventThreshold();
+  processingResult = bufferSize[1] + (int)((ulonglong)(((alignmentAdjustment << (processingFlag & 0x1f)) - bufferSize[1]) * allocatedMemorySize) >> 0x10)
   ;
   bufferSize[1] = processingResult;
-  localInt7 = 1;
+  alignmentAdjustment = 1;
   if (1 < *bufferSize) {
-    localInt7 = *bufferSize;
+    alignmentAdjustment = *bufferSize;
   }
-  localInt7 = FUN_18071b660(processingResult,localInt7,0xe);
-  if (localInt7 < 0x8000) {
+  alignmentAdjustment = ValidateUIProcessingResult(processingResult,alignmentAdjustment,0xe);
+  if (alignmentAdjustment < 0x8000) {
     processingResult = 0;
-    if (-1 < localInt7) {
-      processingResult = localInt7;
+    if (-1 < alignmentAdjustment) {
+      processingResult = alignmentAdjustment;
     }
     *uiContext = processingResult;
   }
   else {
     *uiContext = 0x7fff;
   }
-  return localInt5;
+  return bitShiftResult;
 }
 
 
