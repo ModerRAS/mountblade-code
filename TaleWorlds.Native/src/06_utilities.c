@@ -897,12 +897,21 @@
 #define OperationBaseDataOffset78 0x78                        // 操作基础数据偏移量78
 
 // 异常数据缓冲区索引常量
-#define ExceptionDataBufferIndexE 0xe                         // 异常数据缓冲区索引E
-#define ExceptionDataBufferIndex18 0x18                       // 异常数据缓冲区索引18
-#define ExceptionDataBufferIndex19 0x19                       // 异常数据缓冲区索引19
-#define ExceptionDataBufferIndex12 0x12                       // 异常数据缓冲区索引12
-#define ExceptionDataBufferIndex14 0x14                       // 异常数据缓冲区索引14
-#define ExceptionDataBufferIndexD 0xd                         // 异常数据缓冲区索引D
+#define ExceptionDataBufferIndexE 0xe                         // 异常数据缓冲区索引E - 异常处理器状态索引
+#define ExceptionDataBufferIndex18 0x18                       // 异常数据缓冲区索引18 - 临时异常处理器索引
+#define ExceptionDataBufferIndex19 0x19                       // 异常数据缓冲区索引19 - 异常处理器清理标志索引
+#define ExceptionDataBufferIndex12 0x12                       // 异常数据缓冲区索引12 - 异常处理数据起始索引
+#define ExceptionDataBufferIndex14 0x14                       // 异常数据缓冲区索引14 - 异常处理参数索引
+#define ExceptionDataBufferIndexD 0xd                         // 异常数据缓冲区索引D - 异常处理器验证标志索引
+
+// 异常数据缓冲区其他索引常量
+#define ExceptionDataBufferIndex9 0x9                          // 异常数据缓冲区索引9 - 异常处理器状态标志9
+#define ExceptionDataBufferIndex5 0x5                          // 异常数据缓冲区索引5 - 异常处理器状态标志5
+#define ExceptionDataBufferIndex1 0x1                          // 异常数据缓冲区索引1 - 异常处理器状态标志1
+
+// 异常处理器偏移量常量
+#define ExceptionHandlerContextOffset40 0x40                    // 异常处理器上下文偏移量40
+#define ExceptionDataWordOffset 0x1b                           // 异常数据字偏移量
 
 // 系统安全检查偏移量常量
 #define SecurityCheckOffset12 0x12                            // 安全检查偏移量12
