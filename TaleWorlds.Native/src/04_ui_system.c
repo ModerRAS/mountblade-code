@@ -2104,6 +2104,7 @@ typedef enum {
 
 // UI系统数据处理函数宏定义
 #define FUN_180787940 ProcessUIContextDataWithBuffer
+#define FUN_1807e4c10 ProcessUIEventDataIndex
 
 // UI系统堆栈变量美化
 #define afStack_6260 UIFloatStack6260
