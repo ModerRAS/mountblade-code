@@ -145001,6 +145001,22 @@ LAB_18012ce0f:
 
 
 
+/**
+ * @brief 处理系统内存分配和资源管理
+ * 
+ * 该函数负责处理系统的内存分配操作，包括：
+ * - 内存缓冲区的分配和初始化
+ * - 字符状态缓冲区的管理
+ * - 系统参数的配置和验证
+ * - 浮点数参数的处理和转换
+ * - 系统状态的更新和维护
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定内存分配的大小
+ * 
+ * @note 该函数涉及复杂的内存管理和状态处理逻辑
+ * @note 包含多个条件分支用于处理不同的系统状态
+ */
 void ProcessSystemMemoryAllocation(uint64_t ContextHandle,long long OperationBufferSize)
 {
   uint16_t *CharacterStatusBuffer;
