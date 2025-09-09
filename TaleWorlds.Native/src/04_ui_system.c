@@ -167875,7 +167875,7 @@ UIHandle FUN_18076810a(void)
   
   pallocatedMemory = (longlong *)(contextHandle + 0x208);
   if (0xff < bufferSize) {
-    contextHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),bufferSize * 2,&UNK_180958b20,0xe7
+    contextHandle = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),bufferSize * 2,&UIComponentParameterB20,0xe7
                               ,preservedRegister15D);
     *SourceHandle = contextHandle;
   }
@@ -168092,7 +168092,7 @@ UIDword InitializeUIContextState(longlong *uiContext,char dataSource)
   longlong allocatedMemory;
   
   if (dataSource == '\0') {
-    allocatedMemory = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180958b20,0x2d9,0x200000
+    allocatedMemory = FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x28,&UIComponentParameterB20,0x2d9,0x200000
                           ,0,1);
     if (allocatedMemory == 0) {
       return 0x26;
@@ -168134,7 +168134,7 @@ UIDword FUN_180768380(longlong uiContext,char dataSource)
   DeleteCriticalSection(uiContext);
   if (dataSource == '\0') {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UNK_180958b20,0x2f9,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UIComponentParameterB20,0x2f9,1);
   }
   return 0;
 }
