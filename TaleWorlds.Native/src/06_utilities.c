@@ -130709,6 +130709,60 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  */
 #define InitializeExceptionHandlerA14 Unwind_180910a00
 
+/**
+ * @brief 初始化异常处理器A15
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910a20
+ */
+#define InitializeExceptionHandlerA15 Unwind_180910a20
+
+/**
+ * @brief 初始化异常处理器A16
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910a40
+ */
+#define InitializeExceptionHandlerA16 Unwind_180910a40
+
+/**
+ * @brief 初始化异常处理器A17
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910a60
+ */
+#define InitializeExceptionHandlerA17 Unwind_180910a60
+
+/**
+ * @brief 初始化异常处理器A18
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910a80
+ */
+#define InitializeExceptionHandlerA18 Unwind_180910a80
+
+/**
+ * @brief 初始化异常处理器A19
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910aa0
+ */
+#define InitializeExceptionHandlerA19 Unwind_180910aa0
+
+/**
+ * @brief 初始化异常处理器A20
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910ac0
+ */
+#define InitializeExceptionHandlerA20 Unwind_180910ac0
+
 // 系统安全验证标志变量已声明为实际变量，无需#define定义
 // 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
 // 数据验证和系统缓冲区变量
