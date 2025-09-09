@@ -47304,13 +47304,13 @@ void HandleSystemDataValidation(uint64_t ContextHandle, uint64_t OperationBuffer
 {
   void *CharacterStatusBuffer;
   char SystemCheckResult;
-  uint32_t aStackProcessingConfigurationFlag [4];
+  uint32_t StackProcessingConfigurationFlag [4];
   void *LocalProcessingStatusFlag;
   long long SystemEventFlag;
   
   ValidateSystemConfigurationEx(SystemConfigHandle,0,0x100000000,0,&SystemPrimaryStatusData,OperationBufferSize,0xfffffffffffffffe);
   if (CoreEngineThreadStatus == '\0') {
-    aStackProcessingConfigurationFlag[0] = 0xffff0000;
+    StackProcessingConfigurationFlag[0] = 0xffff0000;
     ProcessTemporaryBuffer(&LocalProcessingStatusFlag,OperationBufferSize);
     CharacterStatusBuffer = *(void **)*SystemCallbackTable;
     if (CharacterStatusBuffer == &SystemMemoryTemplate) {
@@ -47353,13 +47353,13 @@ void ProcessSystemDataStream(uint64_t ContextHandle, uint64_t OperationBufferSiz
 {
   void *CharacterStatusBuffer;
   char SystemCheckResult;
-  uint32_t aStackProcessingConfigurationFlag [4];
+  uint32_t StackProcessingConfigurationFlag [4];
   void *LocalProcessingStatusFlag;
   long long SystemEventFlag;
   
   ValidateSystemConfigurationEx(SystemConfigHandle,0,0x100000000,1,&SystemSecondaryStatusData,OperationBufferSize,0xfffffffffffffffe);
   if (CoreEngineThreadStatus == '\0') {
-    aStackProcessingConfigurationFlag[0] = 0xff00ff00;
+    StackProcessingConfigurationFlag[0] = 0xff00ff00;
     ProcessTemporaryBuffer(&LocalProcessingStatusFlag,OperationBufferSize);
     CharacterStatusBuffer = *(void **)*SystemCallbackTable;
     if (CharacterStatusBuffer == &SystemMemoryTemplate) {

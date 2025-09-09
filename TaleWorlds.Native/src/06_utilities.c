@@ -82311,7 +82311,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
       *(DataBuffer *)(dataFlags * 8 + *exceptionContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *exceptionContextPointer;
-    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[SystemDataOffset1013] - calculatedIndex >> 3));
   }
   validationStatusPointer[SystemDataOffset1013] = calculatedIndex;
   memoryResourcePointer = (DataBuffer *)validationStatusPointer[SystemDataOffset1043];
@@ -82329,10 +82329,10 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
-  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  for (resourceIterator = validationStatusPointer[SystemDataOffsetff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + ResourceProcessingStep) {
     ProcessDataBlocks(resourceIterator);
   }
-  if (validationStatusPointer[0xff9] != 0) {
+  if (validationStatusPointer[SystemDataOffsetff9] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -82419,13 +82419,13 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
   
   validationStatusPointer = *(DataBuffer **)(dataBuffer + systemContextPointerOffset90);
   *validationStatusPointer = &SystemResourceTableA;
-  if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
+  if ((int64_t *)validationStatusPointer[SystemDataOffset1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + SystemFloatDataOffset38))();
   }
   dataFlags = 0;
   exceptionContextPointer = validationStatusPointer + 0x1012;
   calculatedIndex = *exceptionContextPointer;
-  if (validationStatusPointer[0x1013] - calculatedIndex >> 3 != 0) {
+  if (validationStatusPointer[SystemDataOffset1013] - calculatedIndex >> 3 != 0) {
     do {
       memoryResourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (memoryResourcePointer != (DataBuffer *)0x0) {
@@ -82455,7 +82455,7 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)(dataFlags * 8 + *exceptionContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *exceptionContextPointer;
-    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[SystemDataOffset1013] - calculatedIndex >> 3));
   }
   validationStatusPointer[SystemDataOffset1013] = calculatedIndex;
   memoryResourcePointer = (DataBuffer *)validationStatusPointer[SystemDataOffset1043];
@@ -82473,10 +82473,10 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
-  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  for (resourceIterator = validationStatusPointer[SystemDataOffsetff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + ResourceProcessingStep) {
     ProcessDataBlocks(resourceIterator);
   }
-  if (validationStatusPointer[0xff9] != 0) {
+  if (validationStatusPointer[SystemDataOffsetff9] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -83770,13 +83770,13 @@ void ProcessExceptionContextCleanupA0(DataBuffer operationBase,int64_t dataBuffe
   
   validationStatusPointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
   *validationStatusPointer = &SystemResourceTableA;
-  if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
+  if ((int64_t *)validationStatusPointer[SystemDataOffset1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + SystemFloatDataOffset38))();
   }
   dataFlags = 0;
   exceptionContextPointer = validationStatusPointer + 0x1012;
   calculatedIndex = *exceptionContextPointer;
-  if (validationStatusPointer[0x1013] - calculatedIndex >> 3 != 0) {
+  if (validationStatusPointer[SystemDataOffset1013] - calculatedIndex >> 3 != 0) {
     do {
       memoryResourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (memoryResourcePointer != (DataBuffer *)0x0) {
@@ -83806,7 +83806,7 @@ void ProcessExceptionContextCleanupA0(DataBuffer operationBase,int64_t dataBuffe
       *(DataBuffer *)(dataFlags * 8 + *exceptionContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *exceptionContextPointer;
-    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[SystemDataOffset1013] - calculatedIndex >> 3));
   }
   validationStatusPointer[SystemDataOffset1013] = calculatedIndex;
   memoryResourcePointer = (DataBuffer *)validationStatusPointer[SystemDataOffset1043];
@@ -83824,10 +83824,10 @@ void ProcessExceptionContextCleanupA0(DataBuffer operationBase,int64_t dataBuffe
   }
   ExecuteMemoryOperation(validationStatusPointer + SystemDataOffsetffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[SystemDataOffsetffa];
-  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  for (resourceIterator = validationStatusPointer[SystemDataOffsetff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + ResourceProcessingStep) {
     ProcessDataBlocks(resourceIterator);
   }
-  if (validationStatusPointer[0xff9] != 0) {
+  if (validationStatusPointer[SystemDataOffsetff9] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
