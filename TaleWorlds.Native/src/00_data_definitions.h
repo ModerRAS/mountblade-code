@@ -8094,7 +8094,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       SecondaryTransformX = (BoundingVolumeMinZ + pfVar9[2]) - OriginalVectorZ;
       SecondaryTransformY = (BoundingVolumeMinY + pfVar9[1]) - OriginalVectorY;
       SecondaryTransformZ = (BoundingVolumeMinX + *pfVar9) - OriginalVectorX;
-      ProcessMatrixTransformation(&SystemStackVariable_118,&MatrixTransformResult128,&MatrixTransformResult168);
+      ProcessMatrixTransformation(&TextureIndexValue,&MatrixTransformResult128,&MatrixTransformResult168);
       FloatCalculationResult = *(float *)(ModuleInitializationResult0 + 0x24);
       TransformedMaxX = MatrixTransformResult128;
       FloatComparisonResult1 = MatrixTransformResult138;
