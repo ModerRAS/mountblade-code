@@ -23523,7 +23523,7 @@ MemoryCopyLabel:
       }
     }
     else {
-      if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6C) & 4) != 0)) goto MemoryCopyLabel;
+      if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryCopyLabel;
       DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + SystemDataParameterOffset20);
       arrayIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + 4);
       if (arrayIndex != 0) goto ValidationSuccessLabel;
@@ -24414,7 +24414,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   int dataFlagCounter;
   int arrayIterationIndex;
   
-  securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6C);
+  securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6c);
   dataFlags = 0;
   arrayIndex = 0;
   if ((securityCheckResult >> SecurityCheckBitMask26 & SecurityCheckBitMask1) == 0) goto ProcessCheckpointSecurityCheck;
@@ -24672,8 +24672,8 @@ ProcessCompleteLabel:
     *(DataWord *)(operationBase + SystemContextPointerOffset90) = SystemCleanupFlag;
     *(DataWord *)(operationBase + OperationBaseOffset94) = 0;
   }
-  *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) & 0xfbffffff;
-  securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6C);
+  *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) & 0xfbffffff;
+  securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6c);
 ResourceCleanupLabel:
   if ((securityCheckResult >> 0x19 & 1) != 0) {
     resourceIterator = *(int64_t *)(operationBase + OperationBaseOffsetA0);
@@ -24681,7 +24681,7 @@ ResourceCleanupLabel:
     if ((int)dataFlags != 0) {
       return dataFlags;
     }
-    if ((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x18 & 1) == 0) {
+    if ((*(uint *)(operationBase + OperationBaseOffset6c) >> 0x18 & 1) == 0) {
       if ((*(int *)(operationBase + OperationBaseOffsetB0) == -1) || (*(int *)(operationBase + OperationBaseOffsetAC) <= *(int *)(operationBase + OperationBaseOffsetB0))
          ) {
         stackDataBuffer[0] = CONCAT31(stackDataBuffer[0].HighPart,1);
@@ -24695,7 +24695,7 @@ ResourceCleanupLabel:
       }
       else {
         *(DataBuffer *)(operationBase + OperationBaseOffsetA8) = 0;
-        *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) | 0x6000000;
+        *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) | 0x6000000;
         *(DataBuffer *)(operationBase + SystemManagementOffset98) = 0;
         *(DataBuffer *)(operationBase + OperationBaseOffsetA0) = 0;
       }
@@ -31111,12 +31111,12 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
               if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
                 return ResourceInvalidErrorCode;
               }
-              systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset6C);
+              systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset6c);
               if ((int)systemDataBuffer == 0) {
                 if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
                   return ResourceInvalidErrorCode;
                 }
-                systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
+                systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset70);
                 if ((int)systemDataBuffer == 0) {
                   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
                     return ResourceInvalidErrorCode;
@@ -32033,7 +32033,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    OperationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x70);
+    OperationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset70);
     if ((int)OperationResult != 0) {
       return OperationResult;
     }
@@ -32608,7 +32608,7 @@ DataProcessLabelA:
          ((dataFlags = ValidateDataWithSecurityCheckA2(dataContext,operationBase + 0x84), (int)dataFlags == 0 &&
           (dataFlags = ValidateDataSequence(dataBuffer,operationBase + 0x88), (int)dataFlags == 0)))) &&
         (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) &&
-       ((((dataFlags = ProcessDataBlocksA1(*dataBuffer,operationBase + 0x70), (int)dataFlags == 0 &&
+       ((((dataFlags = ProcessDataBlocksA1(*dataBuffer,operationBase + OperationBaseOffset70), (int)dataFlags == 0 &&
           (dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) &&
          (dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xa8), (int)dataFlags == 0)) &&
         (((dataFlags = securityCheckResult, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0 &&
@@ -36868,7 +36868,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
     else {
       validationStatus = operationResult;
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-        validationStatus = ProcessSystemDataWithValidation(*dataBuffer,operationBase + 0x70);
+        validationStatus = ProcessSystemDataWithValidation(*dataBuffer,operationBase + OperationBaseOffset70);
       }
     }
     if ((int)validationStatus != 0) {
@@ -38126,7 +38126,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + OperationBaseOffset6C);
+    systemDataBuffer = GetMemoryAddressA0(*dataBuffer,operationBase + OperationBaseOffset6c);
     if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + 0x48,0), (int)systemDataBuffer == 0)) {
       if ((*(int *)(dataBuffer + 8) - 0x4aU < 0x11) &&
          (systemDataBuffer = GetContextData(dataBuffer,operationBase + 0x44), (int)systemDataBuffer != 0)) {
@@ -40034,8 +40034,8 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
                           (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
         if (((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 100), (int)systemDataBuffer == 0))
             && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset68), (int)systemDataBuffer == 0)) &&
-           (((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset6C), (int)systemDataBuffer == 0 &&
-             (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x70), (int)systemDataBuffer == 0)) &&
+           (((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset6c), (int)systemDataBuffer == 0 &&
+             (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset70), (int)systemDataBuffer == 0)) &&
             ((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x74), (int)systemDataBuffer == 0 &&
              (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x78), (int)systemDataBuffer == 0)))))) {
           systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + 0x5c,0x74);
@@ -41106,7 +41106,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
       }
     }
     else {
-      systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x70);
+      systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset70);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }

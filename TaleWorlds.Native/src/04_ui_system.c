@@ -2217,7 +2217,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask29 _DAT_180947500
 #define UIVectorMultiplyMask30 _DAT_180947510
  #define UIVectorMultiplyMask31 _DAT_180947520
-#define UIVectorAdditionConstant _DAT_180948080
+#define UIVectorAdditionConstant UIVectorAdditionConstant
 #define UIRenderingConstant2 _DAT_1809480a0
 #define UIRenderingConstant3 _DAT_1809480b0
 #define UIRenderingConstant4 _DAT_1809480c0
@@ -49414,10 +49414,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         aprocessingCounter = vpunpckhbw_avx2(aProcessingStatus,*uiContext);
         aprocessingCounter = vpmaddubsw_avx2(aprocessingCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
         aiterationCount = vpunpcklbw_avx2(aProcessingStatus,*uiContext);
-        aProcessingStatus = vpaddw_avx2(aprocessingCounter,_DAT_180948080);
+        aProcessingStatus = vpaddw_avx2(aprocessingCounter,UIVectorAdditionConstant);
         aprocessingCounter = vpmaddubsw_avx2(aiterationCount,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
         aiterationCount = vpsraw_avx2(aProcessingStatus,4);
-        aProcessingStatus = vpaddw_avx2(aprocessingCounter,_DAT_180948080);
+        aProcessingStatus = vpaddw_avx2(aprocessingCounter,UIVectorAdditionConstant);
         aProcessingStatus = vpsraw_avx2(aProcessingStatus,4);
         aProcessingStatus = vpackuswb_avx2(aProcessingStatus,aiterationCount);
         aProcessingStatus = vpavgb_avx2(aProcessingStatus,*param_7);
@@ -49510,11 +49510,11 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
           aiterationCount = vpavgb_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
           aloopCounter = vpunpckhbw_avx2(aprocessingCounter,aiterationCount);
           aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+          aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
           amaxProcessingCount = vpsraw_avx2(aloopCounter,4);
           aloopCounter = vpunpcklbw_avx2(aprocessingCounter,aiterationCount);
           aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+          aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
           aloopCounter = vpsraw_avx2(aloopCounter,4);
           aloopCounter = vpackuswb_avx2(aloopCounter,amaxProcessingCount);
           aloopCounter = vpavgb_avx2(aloopCounter,*param_7);
@@ -49548,10 +49548,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
           aProcessingStatus = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
           aProcessingStatus = vpmaddubsw_avx2(aProcessingStatus,*(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer));
           aloopCounter = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
-          aProcessingStatus = vpaddw_avx2(aProcessingStatus,_DAT_180948080);
+          aProcessingStatus = vpaddw_avx2(aProcessingStatus,UIVectorAdditionConstant);
           aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer));
           aprocessingCounter = vpsraw_avx2(aProcessingStatus,4);
-          aProcessingStatus = vpaddw_avx2(aloopCounter,_DAT_180948080);
+          aProcessingStatus = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
           aProcessingStatus = vpsraw_avx2(aProcessingStatus,4);
           aProcessingStatus = vpackuswb_avx2(aProcessingStatus,aprocessingCounter);
           aProcessingStatus = vpavgb_avx2(aProcessingStatus,*param_7);
@@ -49583,10 +49583,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         amaxProcessingCount = *(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer);
         aiterationCount = vpmaddubsw_avx2(aiterationCount,amaxProcessingCount);
         aeventProcessingCounter = vpunpcklbw_avx2(aprocessingCounter,*(UIByte (*) [32])(*uiContext + 1));
-        aprocessingCounter = vpaddw_avx2(aiterationCount,_DAT_180948080);
+        aprocessingCounter = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
         aiterationCount = vpsraw_avx2(aprocessingCounter,4);
         aprocessingCounter = vpmaddubsw_avx2(aeventProcessingCounter,amaxProcessingCount);
-        aprocessingCounter = vpaddw_avx2(aprocessingCounter,_DAT_180948080);
+        aprocessingCounter = vpaddw_avx2(aprocessingCounter,UIVectorAdditionConstant);
         aprocessingCounter = vpsraw_avx2(aprocessingCounter,4);
         aprocessingCounter = vpackuswb_avx2(aprocessingCounter,aiterationCount);
         if (0 < (int)param_9) {
@@ -49598,10 +49598,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
             aloopCounter = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
             aloopCounter = vpmaddubsw_avx2(aloopCounter,amaxProcessingCount);
             aiterationCount = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aiterationCount = vpmaddubsw_avx2(aiterationCount,amaxProcessingCount);
             aeventProcessingCounter = vpsraw_avx2(aloopCounter,4);
-            aloopCounter = vpaddw_avx2(aiterationCount,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aiterationCount = vpackuswb_avx2(aloopCounter,aeventProcessingCounter);
             aloopCounter = vpavgb_avx2(aprocessingCounter,aiterationCount);
@@ -49630,10 +49630,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         amaxProcessingCount = *(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer);
         aiterationCount = vpmaddubsw_avx2(aiterationCount,amaxProcessingCount);
         aeventProcessingCounter = vpunpcklbw_avx2(aprocessingCounter,*(UIByte (*) [32])(*uiContext + 1));
-        aprocessingCounter = vpaddw_avx2(aiterationCount,_DAT_180948080);
+        aprocessingCounter = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
         aiterationCount = vpsraw_avx2(aprocessingCounter,4);
         aprocessingCounter = vpmaddubsw_avx2(aeventProcessingCounter,amaxProcessingCount);
-        aprocessingCounter = vpaddw_avx2(aprocessingCounter,_DAT_180948080);
+        aprocessingCounter = vpaddw_avx2(aprocessingCounter,UIVectorAdditionConstant);
         aprocessingCounter = vpsraw_avx2(aprocessingCounter,4);
         aprocessingCounter = vpackuswb_avx2(aprocessingCounter,aiterationCount);
         if (0 < (int)param_9) {
@@ -49645,21 +49645,21 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
             aloopCounter = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
             aloopCounter = vpmaddubsw_avx2(aloopCounter,amaxProcessingCount);
             aiterationCount = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aiterationCount = vpmaddubsw_avx2(aiterationCount,amaxProcessingCount);
             aeventProcessingCounter = vpsraw_avx2(aloopCounter,4);
-            aloopCounter = vpaddw_avx2(aiterationCount,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aiterationCount = vpackuswb_avx2(aloopCounter,aeventProcessingCounter);
             aloopCounter = vpunpckhbw_avx2(aprocessingCounter,aiterationCount);
             aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)))
             ;
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aeventProcessingCounter = vpsraw_avx2(aloopCounter,4);
             aloopCounter = vpunpcklbw_avx2(aprocessingCounter,aiterationCount);
             aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)))
             ;
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aloopCounter = vpackuswb_avx2(aloopCounter,aeventProcessingCounter);
             aloopCounter = vpavgb_avx2(aloopCounter,*param_7);
@@ -49804,13 +49804,13 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         resultPointer = (UIByte (*) [32])(*resultPointer + param_6);
         tempVector6 = vpunpcklbw_avx2(tempVector9,*uiContext);
         tempVector6 = vpmaddubsw_avx2(tempVector6,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-        tempVector6 = vpaddw_avx2(tempVector6,_DAT_180948080);
+        tempVector6 = vpaddw_avx2(tempVector6,UIVectorAdditionConstant);
         tempVector9 = vpunpckhbw_avx2(tempVector9,*uiContext);
         tempVector1 = vpsraw_avx2(tempVector6,4);
         tempVector6 = vpunpcklbw_avx2(tempVector5,zeroVector);
         tempVector6 = vpsubw_avx2(tempVector1,tempVector6);
         tempVector9 = vpmaddubsw_avx2(tempVector9,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-        tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+        tempVector9 = vpaddw_avx2(tempVector9,UIVectorAdditionConstant);
         tempVector1 = vpsraw_avx2(tempVector9,4);
         tempVector9 = vpunpckhbw_avx2(tempVector5,zeroVector);
         tempVector1 = vpsubw_avx2(tempVector1,tempVector9);
@@ -49892,13 +49892,13 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
           tempVector1 = vpavgb_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
           tempVector5 = vpunpcklbw_avx2(tempVector6,tempVector1);
           tempVector5 = vpmaddubsw_avx2(tempVector5,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          tempVector5 = vpaddw_avx2(tempVector5,_DAT_180948080);
+          tempVector5 = vpaddw_avx2(tempVector5,UIVectorAdditionConstant);
           tempVector4 = vpsraw_avx2(tempVector5,4);
           tempVector5 = vpunpckhbw_avx2(tempVector6,tempVector1);
           tempVector6 = vpunpcklbw_avx2(tempVector9,zeroVector);
           tempVector6 = vpsubw_avx2(tempVector4,tempVector6);
           tempVector5 = vpmaddubsw_avx2(tempVector5,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          tempVector5 = vpaddw_avx2(tempVector5,_DAT_180948080);
+          tempVector5 = vpaddw_avx2(tempVector5,UIVectorAdditionConstant);
           tempVector5 = vpsraw_avx2(tempVector5,4);
           tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
           tempVector4 = vpsubw_avx2(tempVector5,tempVector9);
@@ -49924,13 +49924,13 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         do {
           tempVector9 = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
           tempVector9 = vpmaddubsw_avx2(tempVector9,*(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer));
-          tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+          tempVector9 = vpaddw_avx2(tempVector9,UIVectorAdditionConstant);
           tempVector6 = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
           tempVector5 = vpsraw_avx2(tempVector9,4);
           tempVector9 = vpunpcklbw_avx2(*resultPointer,zeroVector);
           tempVector5 = vpsubw_avx2(tempVector5,tempVector9);
           tempVector9 = vpmaddubsw_avx2(tempVector6,*(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer));
-          tempVector9 = vpaddw_avx2(tempVector9,_DAT_180948080);
+          tempVector9 = vpaddw_avx2(tempVector9,UIVectorAdditionConstant);
           tempVector6 = vpsraw_avx2(tempVector9,4);
           tempVector9 = vpunpckhbw_avx2(*resultPointer,zeroVector);
           tempVector6 = vpsubw_avx2(tempVector6,tempVector9);
@@ -49955,10 +49955,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         aProcessingStatus = *(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer);
         aiterationCount = vpmaddubsw_avx2(aiterationCount,aProcessingStatus);
         aprocessingCounter = vpunpcklbw_avx2(amaxProcessingCount,*(UIByte (*) [32])(*uiContext + 1));
-        amaxProcessingCount = vpaddw_avx2(aiterationCount,_DAT_180948080);
+        amaxProcessingCount = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
         aiterationCount = vpsraw_avx2(amaxProcessingCount,4);
         amaxProcessingCount = vpmaddubsw_avx2(aprocessingCounter,aProcessingStatus);
-        amaxProcessingCount = vpaddw_avx2(amaxProcessingCount,_DAT_180948080);
+        amaxProcessingCount = vpaddw_avx2(amaxProcessingCount,UIVectorAdditionConstant);
         amaxProcessingCount = vpsraw_avx2(amaxProcessingCount,4);
         amaxProcessingCount = vpackuswb_avx2(amaxProcessingCount,aiterationCount);
         if (0 < (int)param_7) {
@@ -49970,10 +49970,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
             aloopCounter = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
             aloopCounter = vpmaddubsw_avx2(aloopCounter,aProcessingStatus);
             aiterationCount = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aprocessingCounter = vpsraw_avx2(aloopCounter,4);
             aloopCounter = vpmaddubsw_avx2(aiterationCount,aProcessingStatus);
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aiterationCount = vpackuswb_avx2(aloopCounter,aprocessingCounter);
             aloopCounter = vpavgb_avx2(amaxProcessingCount,aiterationCount);
@@ -50000,10 +50000,10 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
         aProcessingStatus = *(UIByte (*) [32])(&g_uiRenderLookupTable + targetBuffer);
         aiterationCount = vpmaddubsw_avx2(aiterationCount,aProcessingStatus);
         aprocessingCounter = vpunpcklbw_avx2(amaxProcessingCount,*(UIByte (*) [32])(*uiContext + 1));
-        amaxProcessingCount = vpaddw_avx2(aiterationCount,_DAT_180948080);
+        amaxProcessingCount = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
         aiterationCount = vpsraw_avx2(amaxProcessingCount,4);
         amaxProcessingCount = vpmaddubsw_avx2(aprocessingCounter,aProcessingStatus);
-        amaxProcessingCount = vpaddw_avx2(amaxProcessingCount,_DAT_180948080);
+        amaxProcessingCount = vpaddw_avx2(amaxProcessingCount,UIVectorAdditionConstant);
         amaxProcessingCount = vpsraw_avx2(amaxProcessingCount,4);
         amaxProcessingCount = vpackuswb_avx2(amaxProcessingCount,aiterationCount);
         if (0 < (int)param_7) {
@@ -50015,21 +50015,21 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
             aloopCounter = vpunpckhbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
             aloopCounter = vpmaddubsw_avx2(aloopCounter,aProcessingStatus);
             aiterationCount = vpunpcklbw_avx2(*uiContext,*(UIByte (*) [32])(*uiContext + 1));
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             aiterationCount = vpmaddubsw_avx2(aiterationCount,aProcessingStatus);
             aprocessingCounter = vpsraw_avx2(aloopCounter,4);
-            aloopCounter = vpaddw_avx2(aiterationCount,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aiterationCount,UIVectorAdditionConstant);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aiterationCount = vpackuswb_avx2(aloopCounter,aprocessingCounter);
             aloopCounter = vpunpcklbw_avx2(amaxProcessingCount,aiterationCount);
             aloopCounter = vpmaddubsw_avx2(aloopCounter,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)))
             ;
-            aloopCounter = vpaddw_avx2(aloopCounter,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(aloopCounter,UIVectorAdditionConstant);
             amaxProcessingCount = vpunpckhbw_avx2(amaxProcessingCount,aiterationCount);
             amaxProcessingCount = vpmaddubsw_avx2(amaxProcessingCount,*(UIByte (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)))
             ;
             aeventProcessingCounter = vpsraw_avx2(aloopCounter,4);
-            aloopCounter = vpaddw_avx2(amaxProcessingCount,_DAT_180948080);
+            aloopCounter = vpaddw_avx2(amaxProcessingCount,UIVectorAdditionConstant);
             aprocessingCounter = vpunpcklbw_avx2(aeventProcessingStatus,aEventTypeCode);
             aloopCounter = vpsraw_avx2(aloopCounter,4);
             aeventProcessingStatus = vpunpckhbw_avx2(aeventProcessingStatus,aEventTypeCode);
@@ -58486,7 +58486,7 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   amaxProcessingCount3 = vpaddw_avx2(amaxProcessingCount3,amaxProcessingCount5);
   amaxProcessingCount6 = vpaddw_avx2(amaxProcessingCount5,amaxProcessingCount6);
   amaxProcessingCount3 = vpaddw_avx2(amaxProcessingCount3,aloopCounter5);
-  amaxProcessingCount5 = vpaddw_avx2(amaxProcessingCount3,_DAT_180948080);
+  amaxProcessingCount5 = vpaddw_avx2(amaxProcessingCount3,UIVectorAdditionConstant);
   amaxProcessingCount3 = vpaddw_avx2(amaxProcessingCount7,aiterationCount2);
   amaxProcessingCount6 = vpaddw_avx2(amaxProcessingCount6,_DAT_1809481a0);
   amaxProcessingCount3 = vpaddw_avx2(amaxProcessingCount3,amaxProcessingCount5);

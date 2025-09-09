@@ -40146,7 +40146,7 @@ void InitializeSystemDataMemoryContext(void* SystemResourceManager,long long *Co
     characterProcessingFlag = (**(code **)(*resourcePoolPointer + 0x20))(resourcePoolPointer,AdditionalParameter,*(code **)(*resourcePoolPointer + 0x20),ConfigurationFlag,ResourceAddress);
     if (characterProcessingFlag == '\0') {
       systemFunctionPointer = *(code **)(*(long long *)*ConfigurationDataPointer + 0x80);
-      if (systemFunctionPointer == (code *)&SystemFunctionPointer2) {
+      if (systemFunctionPointer == (code *)&SecondarySystemFunctionPointer) {
         ProcessConfigurationData((long long *)*ConfigurationDataPointer + 4);
       }
       else {
@@ -40215,7 +40215,7 @@ void ProcessSystemResourceAllocationAndCallback(void* SystemResourceManager,long
         if (ResourceStatusFlag == '\0') {
           SystemResourceOffsetPointer = *(long long **)(ResourceAddress * 8 + *ConfigurationDataPointer);
           systemFunctionPointer = *(code **)(*SystemResourceOffsetPointer + 0x80);
-          if (systemFunctionPointer == (code *)&SystemFunctionPointer2) {
+          if (systemFunctionPointer == (code *)&SecondarySystemFunctionPointer) {
             ProcessConfigurationData(SystemResourceOffsetPointer + 4);
           }
           else {
@@ -41344,8 +41344,8 @@ void SystemNoOperation(void)
 ulong long ProcessSystemResourceData(long long SystemResourceManager,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  uint *systemDataPointer1;
-  uint32_t *systemDataPointer2;
+  uint *PrimaryDataPointer;
+  uint32_t *SecondaryDataPointer;
   uint systemInitializationPrimaryStatus;
   uint systemInitializationSecondaryStatus;
   long long *localMemorySystemDataPointer;
@@ -41653,7 +41653,7 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
 
 {
   ulong long *SystemResourceHandle1;
-  uint *systemDataPointer1;
+  uint *PrimaryDataPointer;
   uint systemOperationPrimaryStatus;
   uint systemOperationSecondaryStatus;
   long long *localMemorySystemDataPointer;
@@ -67055,7 +67055,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
   void* SystemStackParameter;
   long long **SystemDoublePointer;
   uint8_t SystemProcessingBuffer1 [16];
-  code *SystemFunctionPointer2;
+  code *SecondarySystemFunctionPointer;
   uint8_t SystemProcessingBuffer2 [16];
   code *SystemFunctionPointer3;
   
@@ -67122,8 +67122,8 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
     }
     SetupSystemProcessingBuffer(SystemProcessingBuffer1,&SystemDataPointer1);
     SystemCharacterFlag = (*SystemCodePointer)(LocalBufferPointer,&SystemInitializationData,SystemResourceManager + 0x17,0,SystemProcessingBuffer1);
-    if (SystemFunctionPointer2 != (code *)0x0) {
-      (*SystemFunctionPointer2)(SystemProcessingBuffer1,0,0);
+    if (SecondarySystemFunctionPointer != (code *)0x0) {
+      (*SecondarySystemFunctionPointer)(SystemProcessingBuffer1,0,0);
     }
     if (SystemCharacterFlag == '\0') {
       HashTablePointer = &SystemStringTemplate;

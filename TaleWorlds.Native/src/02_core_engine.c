@@ -12099,6 +12099,198 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  */
 #define ProcessSystemCharacterEncodingAdvanced FUN_180158f40
 
+// 新增函数重命名 - 代码中实际调用的FUN_函数
+/**
+ * @brief 处理系统状态标志
+ * 
+ * 该函数处理系统状态标志，用于控制系统状态流转
+ * 
+ * @param ProcessingStatusFlag - 处理状态标志
+ * @return 处理后的状态标志
+ * 
+ * @note 原始函数名：FUN_1801504b0
+ */
+#define ProcessSystemStatusFlag FUN_1801504b0
+
+/**
+ * @brief 系统超时处理函数
+ * 
+ * 该函数处理系统超时相关操作
+ * 
+ * @param TimeoutValueStorage - 超时值存储
+ * @param SystemDataTablePointer - 系统数据表指针
+ * @param Parameter - 参数
+ * 
+ * @note 原始函数名：FUN_18005e770
+ */
+#define ProcessSystemTimeout FUN_18005e770
+
+/**
+ * @brief 系统数据表清理函数
+ * 
+ * 该函数清理系统数据表资源
+ * 
+ * @param SystemDataTablePointer - 系统数据表指针
+ * 
+ * @note 原始函数名：FUN_1800b8500
+ */
+#define CleanupSystemDataTable FUN_1800b8500
+
+/**
+ * @brief 系统编码转换函数
+ * 
+ * 该函数执行系统编码转换操作
+ * 
+ * @param CharacterTablePointer - 字符表指针
+ * @param Offset - 偏移量
+ * @return 转换结果
+ * 
+ * @note 原始函数名：FUN_1802aaef0
+ */
+#define ConvertSystemEncoding FUN_1802aaef0
+
+/**
+ * @brief 系统编码转换设置函数
+ * 
+ * 该函数设置系统编码转换参数
+ * 
+ * @param CharacterTablePointer - 字符表指针
+ * @param EncodingResult - 编码结果
+ * 
+ * @note 原始函数名：FUN_1802ab0c0
+ */
+#define SetSystemEncodingConversion FUN_1802ab0c0
+
+/**
+ * @brief 系统字符表清理函数
+ * 
+ * 该函数清理系统字符表资源
+ * 
+ * @param CharacterTablePointer - 字符表指针
+ * 
+ * @note 原始函数名：FUN_1800b3cc0
+ */
+#define CleanupCharacterTable FUN_1800b3cc0
+
+/**
+ * @brief 系统事件处理函数
+ * 
+ * 该函数处理系统相关事件
+ * 
+ * @note 原始函数名：FUN_18018ee00
+ */
+#define ProcessSystemEvent FUN_18018ee00
+
+/**
+ * @brief 系统性能计数器处理函数
+ * 
+ * 该函数处理系统性能计数器相关操作
+ * 
+ * @param PerformanceCounter - 性能计数器
+ * @return 处理后的性能计数器值
+ * 
+ * @note 原始函数名：FUN_180370550
+ */
+#define ProcessPerformanceCounter FUN_180370550
+
+/**
+ * @brief 系统数据表状态检查函数
+ * 
+ * 该函数检查系统数据表状态
+ * 
+ * @param SystemDataTablePointer - 系统数据表指针
+ * @param StackParameter - 栈参数
+ * @param ReturnPointer - 返回指针
+ * 
+ * @note 原始函数名：FUN_1800b88d0
+ */
+#define CheckSystemDataTableStatus FUN_1800b88d0
+
+/**
+ * @brief 系统浮点数处理函数
+ * 
+ * 该函数处理系统浮点数相关计算
+ * 
+ * @param CoreEngineSignedValue70 - 引擎签名值70
+ * @param FloatStack80 - 浮点栈80
+ * @param MatrixElementO - 矩阵元素O
+ * @param FloatStackX18 - 浮点栈X18
+ * @param AdditionalParameter2 - 附加参数2
+ * @param AdditionalParameter4 - 附加参数4
+ * @param SystemStatusCode - 系统状态码
+ * 
+ * @note 原始函数名：FUN_180235ae0
+ */
+#define ProcessSystemFloatCalculation FUN_180235ae0
+
+/**
+ * @brief 系统内存分配函数
+ * 
+ * 该函数分配系统内存资源
+ * 
+ * @param SystemMemoryManagerPointer - 系统内存管理器指针
+ * @param AdditionalParameter1 - 附加参数1
+ * @param MemoryOffsetPointer - 内存偏移量指针
+ * @return 分配的内存指针
+ * 
+ * @note 原始函数名：FUN_1800b33d0
+ */
+#define AllocateSystemMemoryResource FUN_1800b33d0
+
+/**
+ * @brief 系统事件模板清理函数
+ * 
+ * 该函数清理系统事件模板资源
+ * 
+ * @param SystemEventTemplatePrimary - 主系统事件模板
+ * @param SystemEventTemplateSecondary - 次系统事件模板
+ * 
+ * @note 原始函数名：FUN_180626ee0
+ */
+#define CleanupSystemEventTemplate FUN_180626ee0
+
+/**
+ * @brief 系统事件模板初始化函数
+ * 
+ * 该函数初始化系统事件模板
+ * 
+ * @param SystemEventTemplatePrimary - 主系统事件模板
+ * @param CharacterStatusBuffer5 - 字符状态缓冲区5
+ * @param SystemMemoryBlockIndex - 系统内存块索引
+ * 
+ * @note 原始函数名：FUN_180627020
+ */
+#define InitializeSystemEventTemplateData FUN_180627020
+
+/**
+ * @brief 系统字符状态缓冲区处理函数
+ * 
+ * 该函数处理系统字符状态缓冲区
+ * 
+ * @param SystemCharacterStatusBufferPointerA - 系统字符状态缓冲区指针A
+ * @param CoreEngineSignedValueC8 - 引擎签名值C8
+ * @return 处理后的状态指针
+ * 
+ * @note 原始函数名：FUN_1800befa0
+ */
+#define ProcessCharacterStatusBuffer FUN_1800befa0
+
+/**
+ * @brief 系统数据分配函数
+ * 
+ * 该函数分配系统数据资源
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param Parameter1 - 参数1
+ * @param SystemPrimaryReturnCode - 系统主返回码
+ * @param IntegerValue9 - 整数值9
+ * @param UnicodeCodePoint0 - Unicode码点0
+ * @return 分配结果
+ * 
+ * @note 原始函数名：FUN_180181d80
+ */
+#define AllocateSystemData FUN_180181d80
+
 /**
  * @brief 初始化核心引擎数据结构
  * 
