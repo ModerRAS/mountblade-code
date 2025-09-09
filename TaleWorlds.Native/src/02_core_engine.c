@@ -248440,7 +248440,7 @@ LAB_180204eec:
   int iStackX_18;
   uint CharacterEncodingFlags;
   uint64_t SystemUintBuffer238;
-  int iStack_230;
+  int EncodingStatusIndex;
   uint32_t uStack_22c;
   long long *plStack_228;
   long long *plStack_220;
@@ -248871,7 +248871,7 @@ LAB_180204eec:
                   CharacterEncodingFlags = SystemUintBuffer238.HighPart * IntegerValue;
                   (**(code **)(**(long long **)(CoreEngineRenderContext + 0x1cd8) + 0x1a8)                            (*(long long **)(CoreEngineRenderContext + 0x1cd8),plStack_228,
                              *(void *)(CharacterStatusBuffer2 + 6),CharacterStatusBuffer2[2] * IntegerValue,(int)SystemUintBuffer238 * IntegerValue
-                             ,in_stack_fffffffffffffdb0);
+                             ,CharacterEncodingFlags);
                   uStack_1c0 = 0xffffffffffffffff;
                   *(void *)(CharacterStatusBuffer2 + 2) = 0xffffffffffffffff;
                   plStack_148 = *(long long **)(CharacterStatusBuffer2 + 6);
@@ -257076,7 +257076,18 @@ OperationCompleteLabel:
 
 
 
-uint64_t FUN_18020f940(long long ContextHandle
+/**
+ * @brief 释放字符状态缓冲区并处理线程同步
+ * 
+ * 该函数负责释放字符状态缓冲区，处理线程锁和条件变量同步，
+ * 确保在释放资源前正确处理所有线程同步操作。
+ * 
+ * @param ContextHandle 上下文句柄，包含线程同步信息
+ * @return 操作结果，成功返回0
+ * 
+ * @note 原始函数名：FUN_18020f940
+ */
+uint64_t ReleaseCharacterStatusBufferWithThreadSync(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
@@ -257104,13 +257115,25 @@ uint64_t FUN_18020f940(long long ContextHandle
 
 
 
-long long FUN_18020fa10(long long ContextHandle,long long OperationBufferSize
+/**
+ * @brief 计算字符串哈希值并查找内存位置
+ * 
+ * 该函数使用FNV-1a哈希算法计算字符串的哈希值，然后在哈希表中查找对应的内存位置。
+ * 主要用于字符串的快速查找和内存管理。
+ * 
+ * @param ContextHandle 上下文句柄，包含哈希表信息
+ * @param OperationBufferSize 操作缓冲区大小，包含字符串数据
+ * @return 找到的内存位置或计算结果
+ * 
+ * @note 原始函数名：FUN_18020fa10
+ */
+long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long long OperationBufferSize)
 {
-  byte StringComparisonByte;
-  unsigned long long MemoryAllocationIndex;
-  byte *LowBytePointer;
-  uint MemoryAddressMaskPointer;
-  long long lStack_18;
+  byte CurrentHashByte;
+  unsigned long long HashValue;
+  byte *StringPointer;
+  uint StringLength;
+  long long MemoryLocationResult;
   
   LowBytePointer = &CoreEngineDataTemplate;
   if (*(byte **)(OperationBufferSize + 8) != (byte *)0x0) {

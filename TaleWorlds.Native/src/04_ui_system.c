@@ -302923,16 +302923,23 @@ void ProcessUIMemoryAllocationHandler(void)
 
 
 
-UIDword FUN_18084f2ae(void)
+/**
+ * @brief 获取UI临界区状态
+ * 
+ * 该函数检查并返回UI临界区的状态
+ * 
+ * @return UIDword 临界区状态码
+ */
+UIDword GetUICriticalSectionStatus(void)
 
 {
-  longlong BasePointer;
-  UIHandle StackData1;
+  longlong basePointer;
+  UIHandle stackHandle;
   
-  if (BasePointer == 0) {
+  if (basePointer == 0) {
     return 0x1c;
   }
-  StackData1 = 0x180768417;
+  stackHandle = 0x180768417;
   LeaveCriticalSection();
   return 0;
 }
