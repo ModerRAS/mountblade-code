@@ -1731,7 +1731,7 @@ uint32_t NetworkSocketCategory;                                // 网络套接�
  * 
  * 定义网络套接字使用的协议类型标识符，如TCP、UDP等
  */
-uint32_t NetworkSocketProtocolTypeId;
+uint32_t NetworkSocketProtocolType;
 
 /**
  * @brief 网络套接字类型标识符
@@ -1745,7 +1745,7 @@ uint32_t NetworkSocketTypeId;                              // 网络套接字类
  * 
  * 存储网络套接字使用的具体协议实例信息
  */
-uint32_t NetworkSocketProtocolInstance;
+uint32_t NetworkSocketProtocolHandler;
 
 /**
  * @brief 网络连接优先级级别
