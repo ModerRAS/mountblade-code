@@ -2410,16 +2410,16 @@ typedef enum {
 // UI系统指针变量美化
 #define psVar5 UIPointerVariable5
 #define psVar1 UIPointerVariable1
-#define pProcessingResult3 UIPtrProcessingResult3
-#define pprocessingResult6 UIPtrProcessingResult6
-#define allocatedMemory7 UIAllocatedMemory7
-#define allocatedMemory4 UIAllocatedMemory4
+#define pProcessingResult3 UIProcessingResultPointer3
+#define pprocessingResult6 UIProcessingResultPointer6
+#define allocatedMemory7 UIAllocatedMemoryBlock7
+#define allocatedMemory4 UIAllocatedMemoryBlock4
 // UI系统数据缓冲区变量美化
-#define uiBufferData UIBufferData
-#define uiElementIndex UIElementIndex
-#define uiContextStackOffset UIContextStackOffset
-#define uiPrimaryBufferPtr UIPrimaryBufferPtr
-#define uiSecondaryBufferPtr UISecondaryBufferPtr
+#define uiBufferData UIDataBuffer
+#define uiElementIndex UIElementDataIndex
+#define uiContextStackOffset UIContextStackDataOffset
+#define uiPrimaryBufferPtr UIPrimaryDataBufferPointer
+#define uiSecondaryBufferPtr UISecondaryDataBufferPointer
 
 // UI系统字节指针变量美化
 #define pbVar9 UIPtrByteVar9

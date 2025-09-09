@@ -6,46 +6,161 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 变量名美化定义 - 将Ghidra生成的变量名替换为语义化名称
-#define fVar12 FloatColorComponent                    // 浮点颜色组件
-#define fVar16 FloatMatrixComponent1                   // 浮点矩阵组件1
-#define fVar20 FloatColorRedComponent                  // 浮点颜色红色组件
-#define fVar21 FloatColorGreenComponent                // 浮点颜色绿色组件
-#define fVar25 FloatNormalizationFactor                // 浮点归一化因子
-#define fVar26 FloatVectorComponentX                   // 浮点向量X组件
-#define fVar27 FloatVectorComponentY                   // 浮点向量Y组件
-#define fVar28 FloatVectorComponentZ                   // 浮点向量Z组件
-#define fVar29 FloatVectorComponentW                   // 浮点向量W组件
-#define fVar30 FloatMatrixComponent2                   // 浮点矩阵组件2
-#define iStack_2c8 StackDataPointer2c8                 // 栈数据指针2c8
-#define pfVar3 FloatPointer3                           // 浮点指针3
-#define pfVar5 FloatPointer5                           // 浮点指针5
+/**
+ * @brief 变量名美化定义 - 将Ghidra生成的变量名替换为语义化名称
+ * 
+ * 这些定义将Ghidra逆向工程工具自动生成的变量名替换为具有语义的名称，
+ * 提高代码的可读性和维护性。每个变量都根据其在代码中的用途和上下文
+ * 进行了重命名。
+ */
 
-// 系统全局数据指针
+// 浮点颜色和矩阵组件变量
+#define fVar12 FloatColorComponent                    // 浮点颜色组件 - 用于颜色计算
+#define fVar16 FloatMatrixComponent1                   // 浮点矩阵组件1 - 矩阵变换计算
+#define fVar20 FloatColorRedComponent                  // 浮点颜色红色组件 - RGB红色通道
+#define fVar21 FloatColorGreenComponent                // 浮点颜色绿色组件 - RGB绿色通道
+#define fVar25 FloatNormalizationFactor                // 浮点归一化因子 - 用于向量归一化
+#define fVar26 FloatVectorComponentX                   // 浮点向量X组件 - 3D向量X坐标
+#define fVar27 FloatVectorComponentY                   // 浮点向量Y组件 - 3D向量Y坐标
+#define fVar28 FloatVectorComponentZ                   // 浮点向量Z组件 - 3D向量Z坐标
+#define fVar29 FloatVectorComponentW                   // 浮点向量W组件 - 齐次坐标W分量
+#define fVar30 FloatMatrixComponent2                   // 浮点矩阵组件2 - 矩阵变换计算
+
+// 额外的浮点变量语义化定义
+#define fVar18 FloatInterpolationFactor                // 浮点插值因子 - 用于动画和过渡计算
+#define fVar19 FloatScaleFactor                        // 浮点缩放因子 - 用于缩放变换
+
+// 栈指针变量
+#define iStack_2c8 StackDataPointer2c8                 // 栈数据指针2c8 - 栈帧数据访问
+#define pfVar3 FloatPointer3                           // 浮点指针3 - 浮点数据间接访问
+#define pfVar5 FloatPointer5                           // 浮点指针5 - 浮点数据间接访问
+
+// 栈变量语义化定义
+#define lStack_28 SystemStringProcessingPointer        // 系统字符串处理指针 - 字符串操作
+#define lStack_68 SystemMemoryOperationPointer         // 系统内存操作指针 - 内存管理操作
+#define lStack_b0 SystemSecondaryDataPointer           // 系统二级数据指针 - 辅助数据处理
+#define lStack_a8 SystemTertiaryDataPointer            // 系统三级数据指针 - 第三级数据处理
+#define lStack_278 SystemNetworkDataPointer            // 系统网络数据指针 - 网络通信数据
+#define lStack_d0 SystemConfigurationDataPointer       // 系统配置数据指针 - 系统配置参数
+#define iStack_20 SystemValidationStatusCode           // 系统验证状态码 - 验证操作结果
+#define iStack_40 SystemProcessingIndex                // 系统处理索引 - 数据处理索引
+#define iStack_60 SystemIterationCounter               // 系统迭代计数器 - 循环迭代计数
+#define iStack_78 SystemMemoryAllocationSize           // 系统内存分配大小 - 内存分配参数
+
+// 复杂指针变量语义化定义
+#define ppplStack_68 SystemPerformanceCounterPointer    // 系统性能计数器指针 - 性能监控
+#define ppplStack_b8 SystemMemoryManagerPointer         // 系统内存管理器指针 - 内存管理
+#define ppppppplStack_108 SystemComplexDataPointer     // 系统复杂数据指针 - 复杂数据结构
+#define ppppppplStack_f8 SystemMemoryContextPointer     // 系统内存上下文指针 - 内存上下文
+#define ppppppuStackX_10 SystemParameterPointer         // 系统参数指针 - 函数参数传递
+
+// 音频处理栈变量语义化定义
+#define afStack_2e8 AudioProcessingBuffer              // 音频处理缓冲区 - 音频数据处理
+#define fStack_370 AudioProcessingResult               // 音频处理结果 - 音频处理输出
+
+// 系统栈变量语义化定义
+#define plStack_2f8 SystemPerformanceData              // 系统性能数据 - 性能统计信息
+#define plStack_60 SystemMemoryPointerArray           // 系统内存指针数组 - 内存指针集合
+#define alStack_30 SystemMemoryHandleArray             // 系统内存句柄数组 - 内存句柄集合
+#define alStack_3d0 SystemFileHandleArray               // 系统文件句柄数组 - 文件句柄集合
+
+// =============================================================================
+// 系统全局数据结构和缓冲区定义
+// =============================================================================
+
+/**
+ * @brief 游戏引擎全局数据指针
+ * 
+ * 指向游戏引擎的核心全局数据结构，包含引擎运行时所需的所有
+ * 基础数据和状态信息。这是整个系统的数据访问入口点。
+ */
 void* GameEngineGlobalData;
 
-// 游戏字符串缓冲区 - 用于存储游戏字符串数据
+/**
+ * @brief 游戏字符串缓冲区数组
+ * 
+ * 用于存储游戏中的字符串数据，支持多语言文本和本地化。
+ * 数组大小为32，可同时处理多个字符串缓冲区。
+ * 
+ * @note 缓冲区大小：32个字符串指针
+ * @usage 字符串存储、文本处理、本地化支持
+ */
 void* GameStringBuffer[32];
 
-// 游戏内存池 - 用于动态内存分配
+/**
+ * @brief 游戏内存池
+ * 
+ * 用于动态内存分配的主要内存池，为游戏运行时提供内存管理服务。
+ * 支持高效的内存分配和回收操作。
+ * 
+ * @usage 动态内存分配、对象实例化、资源管理
+ */
 void* GameMemoryPool;
 
-// 游戏内存配置缓冲区 - 用于存储内存配置数据
+/**
+ * @brief 游戏内存配置缓冲区
+ * 
+ * 用于存储内存管理相关的配置数据，包括内存分配策略、
+ * 缓存配置和性能优化参数。
+ * 
+ * @note 缓冲区大小：18个配置项
+ * @usage 内存配置管理、性能优化、缓存策略
+ */
 void* GameMemoryConfigBuffer[18];
 
-// 游戏内存池缓冲区 - 用于存储内存池数据
+/**
+ * @brief 游戏内存池缓冲区
+ * 
+ * 用于存储内存池的管理数据和状态信息，包括内存块分配表、
+ * 碎片整理信息和内存使用统计。
+ * 
+ * @note 缓冲区大小：4个内存池管理块
+ * @usage 内存池管理、碎片整理、使用统计
+ */
 void* GameMemoryPoolBuffer[4];
 
-// 游戏字符串内存缓冲区 - 用于存储字符串内存数据
+/**
+ * @brief 游戏字符串内存缓冲区
+ * 
+ * 专门用于字符串处理的内存缓冲区，提供高效的字符串存储和
+ * 操作功能，支持Unicode和多字节字符集。
+ * 
+ * @note 缓冲区大小：4个字符串内存块
+ * @usage 字符串存储、文本处理、字符编码转换
+ */
 void* GameStringMemoryBuffer[4];
 
-// 游戏状态标志 - 用于存储游戏运行状态
+/**
+ * @brief 游戏引擎状态标志
+ * 
+ * 用于存储游戏引擎的运行状态信息，包括初始化状态、
+ * 错误状态、性能警告等关键状态标志。
+ * 
+ * @note 标志大小：2字节状态标志
+ * @usage 状态监控、错误处理、性能警告
+ */
 char GameEngineStatusFlags[2];
 
-// 游戏字符串数据缓冲区 - 用于存储字符串处理数据
+/**
+ * @brief 游戏字符串数据缓冲区
+ * 
+ * 用于存储字符串处理过程中的临时数据和中间结果，
+ * 支持字符串转换、格式化和验证操作。
+ * 
+ * @note 缓冲区大小：3个数据缓冲区
+ * @usage 字符串处理、数据转换、格式化操作
+ */
 void* GameStringDataBuffer[3];
 
-// 游戏字符串处理状态标志 - 用于存储字符串处理状态
+/**
+ * @brief 游戏字符串处理状态标志
+ * 
+ * 用于跟踪字符串处理过程中的状态信息，包括处理进度、
+ * 错误状态和完成标志等。
+ * 
+ * @note 标志大小：3字节状态标志
+ * @usage 处理状态跟踪、错误检测、进度监控
+ */
 char GameStringProcessingStatusFlags[3];
 
 // 游戏配置缓冲区 - 用于存储游戏配置数据
