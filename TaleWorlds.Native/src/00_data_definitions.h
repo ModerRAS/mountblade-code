@@ -6420,7 +6420,7 @@ SystemMemoryContextFinalizationPoint:
   else {
     ProcessSystemStringAllocation(&SystemConfigUndenary);
   }
-  SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackParameter8);
+  SystemSecurityCheck(StackProcessingCounter ^ (ulonglong)StackParameter8);
 }
 /**
  * @brief 系统参数验证函数
@@ -13792,7 +13792,7 @@ Label_1808fbebe:
     }
     _set_invalid_parameter_handler(MemoryAddress);
   }
-  SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackParameter8);
+  SystemSecurityCheck(StackProcessingCounter ^ (ulonglong)StackParameter8);
 }
   SystemStringProcessingFlag = '\x01';
   wcscpy_s(SystemStringBuffer,0x104);
