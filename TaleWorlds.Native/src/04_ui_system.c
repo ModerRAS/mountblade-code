@@ -22635,7 +22635,7 @@ void ProcessUIAnimation(longlong uiContext,longlong dataSource,UIHandle targetBu
   ulonglong EventTypeCode8;
   ulonglong EventTypeCode9;
   longlong contextHandleData0;
-  bool bVar41;
+  bool IsComponentValid;
   float TransformCoefficient32;
   float TransformCoefficient33;
   float TransformCoefficient34;
@@ -23393,12 +23393,12 @@ LAB_180663a5e:
                 IsComponentValid = *(int *)((longlong)ComponentContextIndex * 0x1b0 + 0x110 + *(longlong *)(param_6 + 0x140))
                          < 0;
                 EventTypeCode0 = EventTypeCode9;
-                if (bVar41) {
+                if (IsComponentValid) {
                   EventTypeCode0 = EventTypeCode8;
                 }
                 localChar26 = localChar36;
                 uiValidationResult7 = (int)EventTypeCode5;
-                if (bVar41) {
+                if (IsComponentValid) {
                   localChar26 = localChar34;
                   uiValidationResult7 = uiCompareResult7;
                 }
