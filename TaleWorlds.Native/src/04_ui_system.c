@@ -102528,9 +102528,10 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
   UIDword xmm14DoubleWordC;
   UIDword xmm14DoubleWordD;
   UIDword stackValue34;
-  longlong lStack0000000000000038;
-  float fStack0000000000000044;
-  ulonglong stackParam000004f0;
+  // 栈变量
+  longlong stackValue38;
+  float stackValue44;
+  ulonglong stackParam4f0;
   
   *(UIHandle *)(RegisterPointer + -0x30) = TargetHandle;
   *(UIHandle *)(RegisterPointer + -0x40) = preservedRegister15;
