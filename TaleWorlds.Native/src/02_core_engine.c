@@ -70110,7 +70110,7 @@ void InsertDataStructureIntoTree(uint64_t *ContextHandle,uint64_t OperationBuffe
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(MemoryBlockIndex);
   }
-LAB_18008d7a0:
+SystemStackProcessingLabel:
   if ((PrimaryProcessingStatusFlag == ContextHandle) || (*(unsigned long long *)(MemoryBlockIndex + 0x20) < (unsigned long long)PrimaryProcessingStatusFlag[4])) {
     InsertionPositionFlag = 0;
   }
@@ -70595,7 +70595,7 @@ void ProcessSystemDataStructure(long long *ContextHandle,long long OperationBuff
                          0xfffffffffffffffe);
   StringProcessingStatus = (void *)ContextHandle[1];
   pMemoryAddressMaskPointer = (void *)*ContextHandle;
-LAB_18008dde0:
+SystemDataProcessingLabel:
   ContextHandleTablePointer = CharacterStatusBuffer;
   if (MemoryAddressMaskPointer != StringProcessingStatus) {
     StringOffset = (long long)CharacterStatusBuffer - (long long)pMemoryAddressMaskPointer;
@@ -71849,7 +71849,7 @@ void CompareDataStructuresAndProcessMemoryBounds(long long *ContextHandle,long l
     lStack_20 = MemoryBoundaryPointer[1];
     MemoryBoundaryPointer = ContextHandle;
     ContextHandle1 = OperationBufferSize;
-LAB_18008ebc0:
+ContextHandleProcessingLabel:
     if ((int)MemoryBoundaryPointer[1] == EncodingValidationResult) {
       if (*(int *)(SystemEventFlag + 0x78) == 0) {
         HighByte = false;
