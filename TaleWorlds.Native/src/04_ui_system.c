@@ -43359,7 +43359,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   UIByte tempVector14 [16];
   UIByte tempVector15 [16];
   
-  acomponentIndex = _DAT_180947040;
+  uiComponentIndex = _DAT_180947040;
   aiterationCount2 = *(UIByte (*) [16])(*uiContext + dataSource);
   aresult = *(UIByte (*) [16])(*uiContext + dataSource * 2);
   aiterationCount3._0_16_ = ZEXT116(0) * aresult + ZEXT116(1) * aiterationCount2;
