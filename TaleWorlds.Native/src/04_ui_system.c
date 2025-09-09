@@ -37040,15 +37040,15 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
  *  dataSource 状态数据指针
  * 
   原始函数名: UpdateUIComponents
- void UpdateUIComponentState(longlong uiContext,longlong *dataSource)
+ void UpdateUIComponentState(longlong uiContext, longlong *dataSource)
 
 {
-  short *psVar1;
+  short *uiComponentDataPtr;
   longlong componentIndex;
-  short ContextFirstValue;
-  bool bVar4;
-  short sVar5;
-  short sVar6;
+  short primaryContextValue;
+  bool isComponentActive;
+  short componentWidth;
+  short componentHeight;
   short sVar7;
   short ContextSecondValue;
   short sVar9;
