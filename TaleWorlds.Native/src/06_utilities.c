@@ -77,6 +77,10 @@
 
 // 内存资源偏移量常量
 #define MemoryResourcePointerOffsetSecondary 0x120
+#define DataStructureElementSize 0xc
+#define DataStructureTableElementSize 0x10
+#define DataStructureSecondaryOffset18 0x12
+#define DataStructureTableOffset8 0x8
 #define MemoryResourcePointerOffsetTertiary 0x130
 #define MemoryResourcePointerOffsetAlternate 0x118
 #define ExceptionHandlerContextPointerRangeStart 0xf8
@@ -23199,7 +23203,7 @@ int ProcessUtilityDataWithEncryptionB(int64_t *encryptionContext,int64_t dataBuf
   processedBytes = ProcessSystemBufferDataA0(dataBuffer,dataSize,&SystemDataBufferC);
   operationResult = ProcessSystemBufferDataA0(dataBuffer + processedBytes,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
-  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)encryptionContext[3] * 0xc + SystemDataParameterOffset20);
+  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)encryptionContext[3] * DataProcessingMultiplier + SystemDataParameterOffset20);
   processedBytes = processedBytes + operationResult;
   operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
