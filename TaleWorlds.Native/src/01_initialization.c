@@ -71,6 +71,43 @@
 #define SystemLookupTableSize               0xffff  // 系统查找表大小
 #define SystemFullRangeMask                  SystemMaxHandleValue  // 系统全范围掩码
 
+// 系统内存管理器地址偏移量
+#define SystemResourceManagerPrimaryOffset      0x4267c  // 系统资源管理器主偏移量
+#define SystemResourceManagerSecondaryOffset    0x40070  // 系统资源管理器次偏移量
+
+// 系统初始化标志偏移量
+#define SystemInitializationFlagStatusOffset   0x2d     // 系统初始化标志状态偏移量
+
+// 系统资源处理器偏移量
+#define SystemResourceHandlerPrimaryOffset     0x1e     // 系统资源处理器主偏移量
+#define SystemResourceHandlerSecondaryOffset   0xf      // 系统资源处理器次偏移量
+
+// 系统全局数据指针偏移量
+#define SystemGlobalDataPrimaryOffset          0x10     // 系统全局数据主偏移量
+#define SystemGlobalDataSecondaryOffset        0x10     // 系统全局数据次偏移量
+
+// 系统全局控制器偏移量
+#define SystemGlobalControllerOffset           0x68     // 系统全局控制器偏移量
+
+// 系统管理器存储偏移量
+#define SystemManagerStorageStatusOffset       0x80     // 系统管理器存储状态偏移量
+
+// 系统配置数据偏移量
+#define SystemConfigDataBaseOffset             0x22f0   // 系统配置数据库偏移量
+#define SystemConfigFunctionOffset             0x22f8   // 系统配置函数偏移量
+#define SystemConfigErrorOffset                0x22a0   // 系统配置错误偏移量
+#define SystemConfigStatusOffset               0x2290   // 系统配置状态偏移量
+#define SystemConfigValidationOffset           0x22d8   // 系统配置验证偏移量
+
+// 系统缓冲区偏移量
+#define SystemBufferStatusOffset               0x10     // 系统缓冲区状态偏移量
+
+// 系统回调参数偏移量
+#define SystemCallbackFunctionOffset           0x38     // 系统回调函数偏移量
+
+// 系统表地址偏移量
+#define SystemTableAddressIncrement            0x40     // 系统表地址增量
+
 // 系统地址和偏移量常量
 #define SystemMemoryPageAlignment            0xffc00000  // 系统内存页对齐
 #define SystemMemoryAllocationAlignment       0xfffffff8  // 系统内存分配对齐
@@ -20122,7 +20159,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     else {
       if (0xf < ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) goto HandleMemoryBufferOverflow;
       *(uint8_t *)((long long)SystemComputerNameBufferPointer + ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) = 0;
-      (**(code **)(SystemGlobalDataPointerPrimary + 0x10))(&SystemGlobalDataPointerPrimary,SystemComputerNameBufferPointer);
+      (**(code **)(SystemGlobalDataPointerPrimary + SystemGlobalDataPrimaryOffset))(&SystemGlobalDataPointerPrimary,SystemComputerNameBufferPointer);
     }
     UserNameBufferSize = (long long *)ConcatenatedSystemValue(UserNameBufferSize.HighPart,0x101);
     SystemOperationResult = GetUserNameA(UserNameBuffer,&SystemMemoryBufferSize);
@@ -20139,7 +20176,7 @@ HandleMemoryBufferOverflow:
         return;
       }
       UserNameBuffer[(ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue] = 0;
-      (**(code **)(SystemGlobalDataPointerSecondary + 0x10))(&SystemGlobalDataPointerSecondary,UserNameBuffer);
+      (**(code **)(SystemGlobalDataPointerSecondary + SystemGlobalDataSecondaryOffset))(&SystemGlobalDataPointerSecondary,UserNameBuffer);
     }
     SystemStringTemplatePointer = &SystemStringTemplate;
     if (SystemTertiaryStringBuffer != (void* *)0x0) {
@@ -20554,9 +20591,9 @@ uint32_t FinalSystemInitialization(void)
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
         SystemCleanupFunction();
     }
-    SystemResourceManager = (long long ***)(SystemMemoryPageBase + 0x4267c);
+    SystemResourceManager = (long long ***)(SystemMemoryPageBase + SystemResourceManagerPrimaryOffset);
     _Mtx_destroy_in_situ();
-    SystemResourceManagerSecondary = (long long ***)(SystemMemoryPageBase + 0x40070);
+    SystemResourceManagerSecondary = (long long ***)(SystemMemoryPageBase + SystemResourceManagerSecondaryOffset);
     _Mtx_destroy_in_situ();
     ConfigureSystemProcessingBuffer(SystemMemoryPageBase);
     if (AllocationFlags != 0) {
@@ -20571,7 +20608,7 @@ uint32_t FinalSystemInitialization(void)
       SystemCleanupFunction(AllocationFlags);
   }
   SystemAllocationTemplate = 0;
-  *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;
+  *(uint32_t *)(SystemInitializationFlag + SystemInitializationFlagStatusOffset) = 2;
   SystemResourceHandler = SystemResourceHandler;
   if (SystemResourceHandler == (long long ****)0x0) {
     SystemInitializationFlag = (long long ****)0x0;
@@ -20587,8 +20624,8 @@ uint32_t FinalSystemInitialization(void)
     (*(code *)(*pppSystemThreadFlagsPointer)[7])(pppSystemThreadFlagsPointer);
     return ResourceAddress;
   }
-  ReleaseSystemResource(SystemResourceHandler + 0x1e);
-  ReleaseSystemResource(SystemResourceHandler + 0xf);
+  ReleaseSystemResource(SystemResourceHandler + SystemResourceHandlerPrimaryOffset);
+  ReleaseSystemResource(SystemResourceHandler + SystemResourceHandlerSecondaryOffset);
   ReleaseSystemResource(SystemResourceHandler);
     SystemCleanupFunction(SystemResourceHandler);
 }
