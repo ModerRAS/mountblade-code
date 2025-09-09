@@ -89551,33 +89551,33 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
           }
         }
         else {
-          TempInt4 = 1;
-          if (iStack0000000000000130 < 1) {
-            TempInt4 = iStack0000000000000130;
+          TemporaryInt4 = 1;
+          if (StackParam130 < 1) {
+            TemporaryInt4 = StackParam130;
           }
-          if (TempInt4 < -1) {
-            TempInt4 = -1;
+          if (TemporaryInt4 < -1) {
+            TemporaryInt4 = -1;
           }
-          iStack0000000000000130 = TempInt4;
-          WriteUIDataToBuffer(result2,TempInt4 >> 0x1f ^ TempInt4 * 2,&UiStateBuffer,2);
-          RegisterPointer = stackParam00000118;
-          targetBuffer = stackParam00000128;
-          register10D = stackParam00000108;
-          bufferSize = stackParam00000170;
+          StackParam130 = TemporaryInt4;
+          WriteUIDataToBuffer(Result2,TemporaryInt4 >> 0x1f ^ TemporaryInt4 * 2,&UiStateBuffer,2);
+          RegisterPointer = StackParam118;
+          targetBuffer = StackParam128;
+          Register10D = StackParam108;
+          bufferSize = StackParam170;
         }
       }
       else {
-        TempInt4 = 0x14;
-        if (allocationFlags < 0x14) {
-          TempInt4 = allocationFlags;
+        TemporaryInt4 = 0x14;
+        if (AllocationFlags < 0x14) {
+          TemporaryInt4 = AllocationFlags;
         }
-        FUN_180723060(result2,&stack0x00000130,
-                      (ulonglong)*(byte *)(TempInt4 * 2 + stackParam00000138) << 7,
-                      (ulonglong)*(byte *)((longlong)(TempInt4 * 2) + 1 + stackParam00000138) << 6);
-        RegisterPointer = stackParam00000118;
-        targetBuffer = stackParam00000128;
-        register10D = stackParam00000108;
-        bufferSize = stackParam00000170;
+        FUN_180723060(Result2,&stack0x00000130,
+                      (ulonglong)*(byte *)(TemporaryInt4 * 2 + StackParam138) << 7,
+                      (ulonglong)*(byte *)((longlong)(TemporaryInt4 * 2) + 1 + StackParam138) << 6);
+        RegisterPointer = StackParam118;
+        targetBuffer = StackParam128;
+        Register10D = StackParam108;
+        bufferSize = StackParam170;
       }
       uiContext = stackParam00000150;
       *(float *)(stackParam00000140 +
