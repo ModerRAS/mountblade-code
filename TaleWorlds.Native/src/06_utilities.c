@@ -24142,7 +24142,7 @@ DataBuffer PerformNoOperation(void)
 uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
 
 {
-  SystemByteType *byteDataPointer;
+  SystemByteType *systemByteDataPointer;
   DataWord operationResult;
   DataBuffer validationStatus;
   int arrayIndex;
@@ -24456,8 +24456,8 @@ ProcessCompleteLabel:
   if (0 < *(int *)(operationBase + SystemDataParameterOffset20)) {
     do {
       securityCheckResult = (int)loopCounter + 1;
-      dataFlagPointer = (byte *)(dataFlags + DataFlagsOffsetB + *(int64_t *)(operationBase + SystemDataSecondaryOffset18));
-      *dataFlagPointer = *dataFlagPointer & 0xfe;
+      dataFlagsPointer = (SystemByteType *)(dataFlags + DataFlagsOffsetB + *(int64_t *)(operationBase + SystemDataSecondaryOffset18));
+      *dataFlagsPointer = *dataFlagsPointer & 0xfe;
       dataFlags = dataFlags + DataFlagsOffsetC;
       loopCounter = (uint64_t)securityCheckResult;
     } while ((int)securityCheckResult < *(int *)(operationBase + SystemDataParameterOffset20));
@@ -25882,7 +25882,7 @@ void ProcessDataTypesA0(void)
   DataWord FloatRegisterB;                // 浮点寄存器B - 浮点寄存器B的值
   DataWord SystemOperationResult;         // 系统操作结果 - 系统操作的结果状态
   char SystemNameBuffer [4];              // 系统名称缓冲区 - 存储系统名称的缓冲区
-  SystemByteType *byteDataBuffer;         // 字节数据缓冲区 - 字节数据的缓冲区指针
+  SystemByteType *systemByteDataBuffer;         // 系统字节数据缓冲区 - 系统字节数据的缓冲区指针
   float floatInputValue;                  // 浮点输入值 - 输入的浮点数值
   DataWord dataWordInputValue;            // 数据字输入值 - 输入的数据字值
   float FloatValidationValue1;            // 浮点验证值1 - 第一个浮点验证值
@@ -25893,7 +25893,7 @@ void ProcessDataTypesA0(void)
   DataBuffer *ResourceDataPointer;       // 资源数据指针 - 指向资源数据的指针
   int64_t stackDataBuffer;               // 栈数据缓冲区 - 栈中的数据缓冲区
   int64_t stackOperationContext;         // 栈操作上下文 - 栈操作的上下文信息
-  uint8_t *byteDataBufferSecondary;      // 次要字节数据缓冲区 - 第二个字节数据缓冲区
+  uint8_t *secondarySystemByteDataBuffer;      // 次要系统字节数据缓冲区 - 第二个系统字节数据缓冲区
   float floatInputValueSecondary;        // 次要浮点输入值 - 第二个浮点输入值
   DataWord dataWordInputValueExtended;   // 扩展的数据字输入值 - 扩展的数据字输入值
   DataWord dataWordInputValueExtendedSecondary; // 次要扩展数据字输入值 - 第二个扩展数据字输入值
@@ -41677,7 +41677,7 @@ void CleanupSecondaryExceptionResources(void* cleanupContext, int64_t contextDat
 void ExceptionUnwindHandlerA17(void)
 
 {
-  SystemByteType encryptionShiftBits;
+  SystemByteType exceptionEncryptionShiftBits;
   
   EnterCriticalSection(ExceptionCriticalSection);
   ExceptionStatusFlagA0 = 0;
@@ -41687,9 +41687,9 @@ void ExceptionUnwindHandlerA17(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
+  exceptionEncryptionShiftBits = (SystemByteType)ExceptionEncryptionKeyValue & 0x3f;
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> exceptionEncryptionShiftBits |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - exceptionEncryptionShiftBits))(ExceptionProcessParameter);
   return;
 }
 
@@ -97041,7 +97041,7 @@ void InitializeExceptionHandlerValidationResultF60(DataBuffer operationBase,int6
  * 
  * @note 原始函数名：Unwind_18090cf70
  */
-void Unwind_InitializeExceptionHandlerF70(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerDataBufferF70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x2b0) != (int64_t *)0x0) {
@@ -97064,7 +97064,7 @@ void Unwind_InitializeExceptionHandlerF70(DataBuffer operationBase,int64_t dataB
  * 
  * @note 原始函数名：Unwind_18090cf80
  */
-void Unwind_ConfigureValidationDataExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureValidationDataExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x2b8) = &SystemTemporaryExceptionHandler;
@@ -97090,7 +97090,7 @@ void Unwind_ConfigureValidationDataExceptionHandler(DataBuffer operationBase,int
  * 
  * @note 原始函数名：Unwind_18090cf90
  */
-void Unwind_InitializeExceptionHandlerF90(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerSecondaryValidationF90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) != (int64_t *)0x0) {
@@ -97112,7 +97112,7 @@ void Unwind_InitializeExceptionHandlerF90(DataBuffer operationBase,int64_t dataB
  * 
  * @note 原始函数名：Unwind_18090cfa0
  */
-void Unwind_InitializeExceptionHandlerFA0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerSystemValidationFA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x3b0) != (int64_t *)0x0) {
@@ -97135,7 +97135,7 @@ void Unwind_InitializeExceptionHandlerFA0(DataBuffer operationBase,int64_t dataB
  * 
  * @note 原始函数名：Unwind_18090cfb0
  */
-void Unwind_ConfigureSystemDataRecordExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureSystemDataRecordExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x3b8) = &SystemTemporaryExceptionHandler;
@@ -97161,7 +97161,7 @@ void Unwind_ConfigureSystemDataRecordExceptionHandler(DataBuffer operationBase,i
  * 
  * @note 原始函数名：Unwind_18090cfc0
  */
-void Unwind_InitializeExceptionHandlerFC0(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandlerDataManagementFC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 1000) != (int64_t *)0x0) {
@@ -97185,7 +97185,7 @@ void Unwind_InitializeExceptionHandlerFC0(DataBuffer operationBase,int64_t dataB
  * 
  * @note 原始函数名：Unwind_18090cfd0
  */
-void Unwind_ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
