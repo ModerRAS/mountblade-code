@@ -98590,8 +98590,24 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
 
 
 
- void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
-void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
+ /**
+ * @brief UI系统数据处理器
+ * 
+ * 处理UI系统中的数据读写操作，包括：
+ * - 从数据源读取UI数据
+ * - 处理缓冲区大小和目标缓冲区
+ * - 管理UI上下文数据
+ * - 处理颜色、着色器、纹理等UI属性数据
+ * 
+ * @note 原始函数名：FUN_18072292c
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区标识
+ * @param bufferSize 缓冲区大小
+ * @return 处理结果状态码
+ */
+void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
+void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
 
 {
   UIByte result;
@@ -397547,8 +397563,16 @@ void UINullOperation(void)
 
 
 
- void FUN_18089d0a3(void)
-void FUN_18089d0a3(void)
+ /**
+ * @brief UI系统空操作函数（备用）
+ * 
+ * 执行空操作，用于UI系统的备用占位符或默认处理函数。
+ * 
+ * @note 原始函数名：FUN_18089d0a3
+ * @return 无返回值
+ */
+void UINullOperationAlternative(void)
+void UINullOperationAlternative(void)
 
 {
   return;
