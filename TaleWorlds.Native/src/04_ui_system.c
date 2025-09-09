@@ -30054,38 +30054,38 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
   UIHandle UIStackCounter24;
   ulonglong UIStackCounter18;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt108;
+  UIStackCounter18 = XorEncryptionKey ^ (ulonglong)UIStackBuffer108;
   if ((*dataSource == 0) && (*(longlong *)(uiBufferData + 0x1b0) != 0)) {
-    stackUIntd0 = 0;
-    stackUIntd8 = 0;
-    stackUInt38 = 0;
-    stackUInt34 = 0;
-    stackUInt2c = 0;
-    stackUInt24 = 0;
+    UIStackCounterd0 = 0;
+    UIStackCounterd8 = 0;
+    UIStackCounter38 = 0;
+    UIStackCounter34 = 0;
+    UIStackCounter2c = 0;
+    UIStackCounter24 = 0;
     if ((*(uint *)(uiContext + 8) & 0x10000) != 0) {
-      stackUInt38 = *(UIDword *)(uiBufferData + 0xfc);
-      stackUInt34 = *(UIHandle *)(uiContext + 0x100);
+      UIStackCounter38 = *(UIDword *)(uiBufferData + 0xfc);
+      UIStackCounter34 = *(UIHandle *)(uiContext + 0x100);
     }
-    pstackUInte8 = &stackUInt38;
-    processingResult = RefreshUIComponent(*(longlong *)(uiBufferData + 0x1b0),&stackUIntc8,&stackUIntd0,&stackUIntd8);
-    if (processingResult == 0) {
-      *(int *)(uiBufferData + 0x13c) = stackIntc4;
-      *(int *)(uiBufferData + 0x134) = stackIntc4;
+    PointerStackValuee8 = &UIStackCounter38;
+    ProcessingResult = RefreshUIComponent(*(longlong *)(uiBufferData + 0x1b0),&UIStackCounterc8,&UIStackCounterd0,&UIStackCounterd8);
+    if (ProcessingResult == 0) {
+      *(int *)(uiBufferData + 0x13c) = StackValuec4;
+      *(int *)(uiBufferData + 0x134) = StackValuec4;
       *(UIDword *)(uiBufferData + 0x118) = 0x102;
-      *(uint *)(uiContext + 0x128) = stackIntc4 + 0x4fU & 0xfffffff0;
-      *(UIDword *)(uiBufferData + 0x138) = stackUIntc8;
-      *(UIDword *)(uiBufferData + 0x130) = stackUIntc8;
-      *(UIDword *)(uiBufferData + 0x124) = stackUIntb8;
+      *(uint *)(uiContext + 0x128) = StackValuec4 + 0x4fU & 0xfffffff0;
+      *(UIDword *)(uiBufferData + 0x138) = UIStackCounterc8;
+      *(UIDword *)(uiBufferData + 0x130) = UIStackCounterc8;
+      *(UIDword *)(uiBufferData + 0x124) = UIStackCounterb8;
       *(UIDword *)(uiBufferData + 0x140) = 1;
       *(UIDword *)(uiBufferData + 0x144) = 1;
-      *(UIHandle *)(uiContext + 0x148) = stackUInt90;
-      *(UIHandle *)(uiContext + 0x150) = stackUInt88;
-      *(UIDword *)(uiBufferData + 0x16c) = stackUInta4;
-      *(UIDword *)(uiBufferData + 0x170) = stackUInta4;
-      *(UIHandle *)(uiContext + 0x158) = stackUInt80;
+      *(UIHandle *)(uiContext + 0x148) = UIStackCounter90;
+      *(UIHandle *)(uiContext + 0x150) = UIStackCounter88;
+      *(UIDword *)(uiBufferData + 0x16c) = UIStackCountera4;
+      *(UIDword *)(uiBufferData + 0x170) = UIStackCountera4;
+      *(UIHandle *)(uiContext + 0x158) = UIStackCounter80;
       *(UIHandle *)(uiContext + 0x160) = 0;
-      *(UIDword *)(uiBufferData + 0x168) = stackUIntb8;
-      *(UIDword *)(uiBufferData + 0x174) = stackUIntb8;
+      *(UIDword *)(uiBufferData + 0x168) = UIStackCounterb8;
+      *(UIDword *)(uiBufferData + 0x174) = UIStackCounterb8;
       *(UIDword *)(uiBufferData + 300) = 8;
       *(UIDword *)(uiBufferData + 0x178) = 0xc;
       *(UIHandle *)(uiContext + 0x180) = *(UIHandle *)(uiContext + 0x2b0);
