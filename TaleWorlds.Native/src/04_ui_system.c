@@ -2568,11 +2568,11 @@ typedef enum {
 #define FUN_180712541 ProcessUIDataSourceAndManagement            // 处理UI数据源和管理
 #define FUN_180712943 ProcessUIFloatDataCalculationEngine         // 处理UI浮点数据计算引擎
 #define FUN_180712bf0 InitializeUIEmptyOperationAdvancedSystem   // 初始化UI空操作高级系统
-#define FUN_180716572 ClearUIBufferMemory
-#define FUN_180716f10 ProcessUIContextDataAndSystemConfiguration
-#define FUN_180718590 ProcessUIFloatDataTransformationAndScaling
-#define FUN_180718a8d GetUIRenderFlagsAndStatus
-#define FUN_180718bd0 ProcessUIContextDataAndMemoryManagement
+#define FUN_180716572 ClearUIBufferMemoryAndResources            // 清除UI缓冲区内存和资源
+#define FUN_180716f10 ProcessUIContextDataAndSystemConfiguration   // 处理UI上下文数据和系统配置
+#define FUN_180718590 ProcessUIFloatDataTransformationAndScaling  // 处理UI浮点数据变换和缩放
+#define FUN_180718a8d GetUIRenderFlagsAndStatusInformation        // 获取UI渲染标志和状态信息
+#define FUN_180718bd0 ProcessUIContextDataAndMemoryManagement     // 处理UI上下文数据和内存管理
 #define ProcessUIDataOperation ProcessUIDataOperation
 #define FUN_180712cdf ProcessUIDataBuffer
 #define FUN_180712e3f ProcessUIDataStream
