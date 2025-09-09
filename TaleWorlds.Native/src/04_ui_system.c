@@ -598,11 +598,71 @@ typedef enum {
 /**
  * @brief 获取UI系统信息
  * 
- * 该函数负责获取UI系统的基本信息。
+ * 该函数负责获取UI系统的基本信息和状态。
+ * 
+ * @note 原始函数名：FUN_180718e3f
+ */
+#define GetUISystemInformation FUN_180718e3f
+
+// UI系统函数宏定义 - 处理UI数据写入
+/**
+ * @brief 处理UI数据写入
+ * 
+ * 该函数负责处理UI数据的写入操作。
+ * 
+ * @note 原始函数名：FUN_180719a90
+ */
+#define WriteUIDataBuffer FUN_180719a90
+
+// UI系统函数宏定义 - 处理UI数据处理
+/**
+ * @brief 处理UI数据处理
+ * 
+ * 该函数负责处理UI数据的处理操作。
+ * 
+ * @note 原始函数名：FUN_1807165a0
+ */
+#define ProcessUIDataOperation FUN_1807165a0
+
+// UI系统函数宏定义 - 验证UI数据
+/**
+ * @brief 验证UI数据
+ * 
+ * 该函数负责验证UI数据的有效性。
+ * 
+ * @note 原始函数名：FUN_1807160c0
+ */
+#define ValidateUIDataOperation FUN_1807160c0
+
+// UI系统函数宏定义 - 处理UI数据移位
+/**
+ * @brief 处理UI数据移位
+ * 
+ * 该函数负责处理UI数据的移位操作。
+ * 
+ * @note 原始函数名：FUN_180716aa0
+ */
+#define ShiftUIDataOperation FUN_180716aa0
+
+// UI系统函数宏定义 - 处理UI数据写入操作
+/**
+ * @brief 处理UI数据写入操作
+ * 
+ * 该函数负责处理UI数据的写入操作。
+ * 
+ * @note 原始函数名：FUN_1807197a0
+ */
+#define ProcessUIDataWriteOperation FUN_1807197a0
+
+// UI系统函数宏定义 - 获取UI系统配置
+/**
+ * @brief 获取UI系统配置
+ * 
+ * 该函数负责获取UI系统的配置信息。
  * 
  * @note 原始函数名：FUN_180718f58
  */
-#define GetUISystemInfo FUN_180718f58
+#define GetUISystemConfiguration FUN_180718f58
 
 // UI系统函数宏定义 - 处理UI浮点数据
 /**
@@ -656,6 +716,26 @@ typedef enum {
  * @note 原始函数名：ProcessUIDataRegisterOperation
  */
 #define ProcessUIRendering ProcessUIDataRegisterOperation
+
+// UI系统函数宏定义 - 处理UI数据最大处理
+/**
+ * @brief 处理UI数据最大处理
+ * 
+ * 该函数负责处理UI数据的最大处理数量计算。
+ * 
+ * @note 原始函数名：FUN_180721540
+ */
+#define CalculateUIDataMaxProcessing FUN_180721540
+
+// UI系统函数宏定义 - 处理UI数据最小处理
+/**
+ * @brief 处理UI数据最小处理
+ * 
+ * 该函数负责处理UI数据的最小处理数量计算。
+ * 
+ * @note 原始函数名：FUN_1807213f0
+ */
+#define CalculateUIDataMinProcessing FUN_1807213f0
 
  // UI系统函数宏定义 - 处理UI渲染缓冲区
 /**
