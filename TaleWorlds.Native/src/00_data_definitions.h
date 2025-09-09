@@ -4302,30 +4302,30 @@ Label_CharacterValidationComplete:
     InitializeGameEngine(SystemEngineInitializationAddress);
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
-  if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
-    (**(code **)(**(longlong **)(SystemContextDataPointer + MemoryDataFunctionTableOffset) + MemoryDataExceptionHandlerOffset))();
-    *(int *)(SystemContextDataPointer + MemoryDataOperationCounterOffset) = *(int *)(SystemContextDataPointer + MemoryDataOperationCounterOffset) + 1;
+  if (*(char *)(GameSystemContextPointer + 0x1ee) == '\0') {
+    (**(code **)(**(longlong **)(GameSystemContextPointer + MemoryDataFunctionTableOffset) + MemoryDataExceptionHandlerOffset))();
+    *(int *)(GameSystemContextPointer + MemoryDataOperationCounterOffset) = *(int *)(GameSystemContextPointer + MemoryDataOperationCounterOffset) + 1;
     if (*(int *)(SystemPerformanceData + 0xe0) == 0) {
-      if (*(char *)(SystemContextDataPointer + 0x264) == '\0') {
+      if (*(char *)(GameSystemContextPointer + 0x264) == '\0') {
         LoopCounterValue = 10;
         if (10 < *(int *)(SystemPerformanceData + 0xbd0)) {
           LoopCounterValue = *(int *)(SystemPerformanceData + 0xbd0);
         }
-        FloatValue = (float)*(double *)(SystemContextDataPointer + 0x208);
-        if (1.0 / (float)LoopCounterValue <= (float)*(double *)(SystemContextDataPointer + 0x208)) {
+        FloatValue = (float)*(double *)(GameSystemContextPointer + 0x208);
+        if (1.0 / (float)LoopCounterValue <= (float)*(double *)(GameSystemContextPointer + 0x208)) {
           FloatValue = 1.0 / (float)LoopCounterValue;
         }
       }
       else {
-        FloatValue = *(float *)(SystemContextDataPointer + 0x268);
+        FloatValue = *(float *)(GameSystemContextPointer + 0x268);
       }
-      *(float *)(SystemContextDataPointer + 0x220) = FloatValue;
+      *(float *)(GameSystemContextPointer + 0x220) = FloatValue;
     }
     else {
-      *(uint32_t *)(SystemContextDataPointer + 0x220) = SystemFloatOneThirdValue;
+      *(uint32_t *)(GameSystemContextPointer + 0x220) = SystemFloatOneThirdValue;
       FloatValue = 0.033333335;
     }
-    ProcessInputEvent(SystemContextDataPointer,FloatValue);
+    ProcessInputEvent(GameSystemContextPointer,FloatValue);
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
@@ -4363,10 +4363,10 @@ Label_CharacterValidationComplete:
       }
     }
     else {
-      if (*(char *)(SystemContextDataPointer + 0x22c) != '\0') {
+      if (*(char *)(GameSystemContextPointer + 0x22c) != '\0') {
         InitializeNetworkStack();
       }
-      *(uint32_t *)(SystemContextDataPointer + MemoryDataOperationTimestampOffset) = *(uint32_t *)(SystemContextDataPointer + MemoryDataOperationCounterOffset);
+      *(uint32_t *)(GameSystemContextPointer + MemoryDataOperationTimestampOffset) = *(uint32_t *)(GameSystemContextPointer + MemoryDataOperationCounterOffset);
       StartNetworkService();
       ConfigureNetworkSettings();
     }
@@ -4375,26 +4375,26 @@ Label_CharacterValidationComplete:
     FrameCounter = FrameCounter + 1;
     DoubleDelta = DoubleTime - LastFrameTimestamp;
     if (1.0 < DoubleDelta) {
-      *(float *)(SystemContextDataPointer + 500) = (float)((double)FrameCounter / DoubleDelta);
+      *(float *)(GameSystemContextPointer + 500) = (float)((double)FrameCounter / DoubleDelta);
       FrameCounter = 0;
       LastFrameTimestamp = DoubleTime;
-      *(float *)(SystemContextDataPointer + MemoryDataPerformanceMetricOffset) = (float)(1000.0 / *(double *)(SystemContextDataPointer + MemoryDataProcessingTimeOffset));
+      *(float *)(GameSystemContextPointer + MemoryDataPerformanceMetricOffset) = (float)(1000.0 / *(double *)(GameSystemContextPointer + MemoryDataProcessingTimeOffset));
     }
     if (0.0 < *(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset)) {
-      ProcessGameLogic(SystemContextDataPointer,(float)*(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset));
+      ProcessGameLogic(GameSystemContextPointer,(float)*(double *)(GameEngineDataAddress + GameEngineFrameTimeOffset));
     }
-    if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
-      FloatValue = *(float *)(SystemContextDataPointer + 0x200);
-      DoubleTime = *(double *)(SystemContextDataPointer + 0x218);
+    if (*(char *)(GameSystemContextPointer + 0x1ee) == '\0') {
+      FloatValue = *(float *)(GameSystemContextPointer + 0x200);
+      DoubleTime = *(double *)(GameSystemContextPointer + 0x218);
       do {
         QueryPerformanceCounter(&PerformanceCounterTimeout);
       } while ((double)PerformanceCounterTimeout * PerformanceCounterFactor < (double)FloatValue + DoubleTime);
       QueryPerformanceCounter(&PerformanceCounterCurrent);
       SystemStateValue = PerformanceCounterCurrent - LastPerformanceCounter;
       LastPerformanceCounter = PerformanceCounterCurrent;
-      *(double *)(SystemContextDataPointer + 0x208) = (double)SystemStateValue * PerformanceCounterFactor;
+      *(double *)(GameSystemContextPointer + 0x208) = (double)SystemStateValue * PerformanceCounterFactor;
       QueryPerformanceCounter(&PerformanceCounterFinal);
-      *(double *)(SystemContextDataPointer + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
+      *(double *)(GameSystemContextPointer + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
     }
   }
   return;
@@ -4621,25 +4621,25 @@ Label_ModuleConfigurationStart:
   StackCounter48 = pModuleInitializationResult4;
   InitializeNetworkSystem();
   FinalizeNetworkSystem();
-  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  if (((*(int *)(GameSystemContextPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
     (**(code **)(NetworkModuleDataAddress + 0x98))();
   }
-  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x30))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
-  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  (**(code **)(**(longlong **)(GameSystemContextPointer + 0x2b0) + 0x30))(*(longlong **)(GameSystemContextPointer + 0x2b0),GameSecondaryDataPointer);
+  if (((*(int *)(GameSystemContextPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
     (*(code *)SystemModuleCallbackTable[7])();
   }
-  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  if (((*(int *)(GameSystemContextPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
-    *(uint64_t *)(*(longlong *)(SystemContextDataPointer + 0x3c0) + 0x18) =
-         *(uint64_t *)(*(longlong *)(SystemContextDataPointer + 0x3c0) + 0x10);
+    *(uint64_t *)(*(longlong *)(GameSystemContextPointer + 0x3c0) + 0x18) =
+         *(uint64_t *)(*(longlong *)(GameSystemContextPointer + 0x3c0) + 0x10);
     pModuleInitializationResult4 = (longlong *)(SystemModuleData + 0x2030);
     MemoryAddress3 = MemoryAddress1;
     if (*(longlong *)(SystemModuleData + 0x2038) - *pModuleInitializationResult4 >> 2 != 0) {
       do {
         StackCounter2f0 = *(uint32_t *)(MemoryAddress3 + *pModuleInitializationResult4);
-        ModuleInitializationResult2 = *(longlong *)(SystemContextDataPointer + 0x3c0) + 0x10;
+        ModuleInitializationResult2 = *(longlong *)(GameSystemContextPointer + 0x3c0) + 0x10;
         SetModuleParameter(ModuleInitializationResult2,&StackCounter2f0);
         SetModuleParameter(ModuleInitializationResult2,(longlong)&StackCounter2f0 + 1);
         SetModuleParameter(ModuleInitializationResult2,(longlong)&StackCounter2f0 + 2);
@@ -4653,8 +4653,8 @@ Label_ModuleConfigurationStart:
     }
     (**(code **)(NetworkModuleDataAddress + 0xa8))();
   }
-  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x38))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
-  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x40))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
+  (**(code **)(**(longlong **)(GameSystemContextPointer + 0x2b0) + 0x38))(*(longlong **)(GameSystemContextPointer + 0x2b0),GameSecondaryDataPointer);
+  (**(code **)(**(longlong **)(GameSystemContextPointer + 0x2b0) + 0x40))(*(longlong **)(GameSystemContextPointer + 0x2b0),GameSecondaryDataPointer);
   InitializeGlobalState();
   if (SystemInitializationFlag != '\0') {
     StackSystemPointer = &SystemNullPointer;
@@ -4704,7 +4704,7 @@ Label_ModuleConfigurationStart:
  * 配置内存缓冲区
  * 将内存缓冲区的特定位置设置为0，并在偏移量0x46处设置为3
  * 
- * @param SystemContextDataPointer 要配置的内存缓冲区指针
+ * @param GameSystemContextPointer 要配置的内存缓冲区指针
  * @return 返回配置后的内存缓冲区指针
  */
 uint64_t * ConfigureMemoryBuffer(uint64_t *memoryBufferPtr)
@@ -4789,9 +4789,9 @@ uint64_t * ConfigureMemoryBuffer(uint64_t *memoryBufferPtr)
  * 处理内存分配操作
  * 根据参数条件执行内存分配或释放操作
  * 
- * @param SystemContextDataPointer 内存地址指针
- * @param SystemSecondaryDataPointer 控制标志位
- * @param SystemTertiaryDataPointer 内存参数3
+ * @param GameSystemContextPointer 内存地址指针
+ * @param GameSecondaryDataPointer 控制标志位
+ * @param GameTertiaryDataPointer 内存参数3
  * @param SystemQuaternaryDataPointer 内存参数4
  * @return 返回处理后的内存地址指针
  */
@@ -4872,7 +4872,7 @@ uint ProcessMutexOperations(void)
   return &SystemReturnBuffer;
 }
     SystemInitializationFlag = '\x01';
-    SystemBufferInitialize(SystemContextDataPointer,CONCAT71((int7)((ulonglong)StringProcessingResultPointer >> 8),1));
+    SystemBufferInitialize(GameSystemContextPointer,CONCAT71((int7)((ulonglong)StringProcessingResultPointer >> 8),1));
   }
   SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackStringLength);
 }
@@ -5091,7 +5091,7 @@ InitializeCoreSystem();
       CleanupSystemResources();
     }
     *(uint64_t *)(GameEngineDataAddress + GameEngineFrameDataArrayOffset + (longlong)(int)SystemFrameCounter * 8) = 0;
-    SystemSecondaryDataPointer = StackValidationLimit2;
+    GameSecondaryDataPointer = StackValidationLimit2;
   }
   FinalizeSystemInitialization();
   SystemModuleContext = MemoryAddress4;
@@ -5140,7 +5140,7 @@ Label_ModuleInitializationComplete:
   StackCounter58 = 0;
   aStackCounter50[0] = 0;
   SystemOperationCode = 0x19;
-  SystemSecondaryDataPointerCopy = SystemSecondaryDataPointer;
+  GameSecondaryDataPointerCopy = GameSecondaryDataPointer;
   StackPointerArray = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,32,8,3);
   *StackPointerArray = (longlong *)&SystemBufferTemplate;
   StackPointerArray[1] = (longlong *)0x0;
@@ -5183,7 +5183,7 @@ Label_ModuleInitializationComplete:
   SystemStackDataEnd = 0;
   SystemStackAlignment = 0;
   SystemStackAlignmentValue = 3;
-  ProcessGameDataStructure(GameEngineDataAddress,SystemSecondaryDataPointer,&SystemStackDataStart);
+  ProcessGameDataStructure(GameEngineDataAddress,GameSecondaryDataPointer,&SystemStackDataStart);
   ModuleDataPointer = SystemStackDataStart;
   ModuleResult = SystemStackDataEnd;
   MemoryAddress = BufferSize0;
@@ -5247,10 +5247,10 @@ Label_ModuleInitializationComplete:
   if (pMemoryAddressValue != (longlong *)0x0) {
     (**(code **)(*pMemoryAddressValue + 8))(pMemoryAddressValue);
   }
-  SystemContextData = *(uint64_t **)(*SystemContextDataPointer + 0x18);
+  SystemContextData = *(uint64_t **)(*GameSystemContextPointer + 0x18);
   pcVar3 = *(code **)*SystemContextData;
   SystemStackPointerArray = &SystemStackPointer;
-  SystemStackPointer = *(longlong **)(*SystemContextDataPointer + 0x10);
+  SystemStackPointer = *(longlong **)(*GameSystemContextPointer + 0x10);
   if (SystemStackPointer != (longlong *)0x0) {
     (**(code **)(*SystemStackPointer + 0x28))();
   }
@@ -5279,20 +5279,20 @@ Label_ModuleInitializationComplete:
       ValidateSystemConfigurationData(&SystemConfigurationDataTable);
     }
   }
-  return &SystemDataStructureArray + (longlong)SystemContextDataPointer * 0x58;
+  return &SystemDataStructureArray + (longlong)GameSystemContextPointer * 0x58;
 }
   SystemThreadStatus = SystemThreadStatus == '\0';
-  *SystemContextDataPointer = &SystemBufferTemplate;
-  SystemContextDataPointer[1] = 0;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
-  *SystemContextDataPointer = &SystemNullPointer;
-  SystemContextDataPointer[3] = 0;
-  SystemContextDataPointer[1] = 0;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
-  SystemBufferCopy(SystemContextDataPointer,3,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
-  *(uint32_t *)SystemContextDataPointer[1] = 0x2e6b4f;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 3;
-  return SystemContextDataPointer;
+  *GameSystemContextPointer = &SystemBufferTemplate;
+  GameSystemContextPointer[1] = 0;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 0;
+  *GameSystemContextPointer = &SystemNullPointer;
+  GameSystemContextPointer[3] = 0;
+  GameSystemContextPointer[1] = 0;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 0;
+  SystemBufferCopy(GameSystemContextPointer,3,GameTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
+  *(uint32_t *)GameSystemContextPointer[1] = 0x2e6b4f;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 3;
+  return GameSystemContextPointer;
 }
 /**
  * @brief 内存区域清理和数据迁移函数
@@ -5311,11 +5311,11 @@ longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longl
   uint64_t *SystemContextData;
   longlong IndexValue;
   longlong DataValue;
-  MemoryAddressValue = SystemSecondaryDataPointer - SystemContextDataPointer >> 5;
+  MemoryAddressValue = GameSecondaryDataPointer - GameSystemContextPointer >> 5;
   if (0 < MemoryAddressValue) {
-    MemoryIndexValue = SystemTertiaryDataPointer - SystemSecondaryDataPointer;
-    SystemTertiaryDataPointer = SystemTertiaryDataPointer + MemoryAddressValue * -0x20;
-    SystemContextData = (uint64_t *)(SystemSecondaryDataPointer + 8);
+    MemoryIndexValue = GameTertiaryDataPointer - GameSecondaryDataPointer;
+    GameTertiaryDataPointer = GameTertiaryDataPointer + MemoryAddressValue * -0x20;
+    SystemContextData = (uint64_t *)(GameSecondaryDataPointer + 8);
     do {
       pMemoryAddress = SystemContextData + -4;
       if (*(longlong *)(MemoryIndexValue + -0x20 + (longlong)SystemContextData) != 0) {
@@ -5335,7 +5335,7 @@ longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longl
       SystemContextData = pMemoryAddress;
     } while (0 < MemoryAddressValue);
   }
-  return SystemTertiaryDataPointer;
+  return GameTertiaryDataPointer;
 }
 /**
  * @brief 批量内存清理和资源释放函数
@@ -5355,22 +5355,22 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   uint64_t *StringProcessingResultPointer;
   longlong StackFramePointer;
   longlong LoopCounterRegister;
-  SystemTertiaryDataPointer = SystemTertiaryDataPointer - SystemSecondaryDataPointer;
+  GameTertiaryDataPointer = GameTertiaryDataPointer - GameSecondaryDataPointer;
   MemoryCounterValue = LoopCounterRegister * -0x20;
-  StringProcessingResultPointer = (uint64_t *)(SystemSecondaryDataPointer + 8);
+  StringProcessingResultPointer = (uint64_t *)(GameSecondaryDataPointer + 8);
   do {
     pMemoryAddress = StringProcessingResultPointer + -4;
-    if (*(longlong *)(SystemTertiaryDataPointer + -0x20 + (longlong)StringProcessingResultPointer) != 0) {
+    if (*(longlong *)(GameTertiaryDataPointer + -0x20 + (longlong)StringProcessingResultPointer) != 0) {
       CleanupSystemResources();
     }
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = 0;
     LoopCounterRegister = LoopCounterRegister + -1;
-    *(uint64_t *)(SystemTertiaryDataPointer + (longlong)pMemoryAddress) = 0;
-    *(uint32_t *)(SystemTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = 0;
-    *(uint32_t *)(SystemTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -3);
-    *(uint64_t *)(SystemTertiaryDataPointer + (longlong)pMemoryAddress) = *pMemoryAddress;
-    *(uint32_t *)(SystemTertiaryDataPointer + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)StringProcessingResultPointer + -0xc);
-    *(uint32_t *)(SystemTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -2);
+    *(uint64_t *)(GameTertiaryDataPointer + (longlong)pMemoryAddress) = 0;
+    *(uint32_t *)(GameTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = 0;
+    *(uint32_t *)(GameTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -3);
+    *(uint64_t *)(GameTertiaryDataPointer + (longlong)pMemoryAddress) = *pMemoryAddress;
+    *(uint32_t *)(GameTertiaryDataPointer + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)StringProcessingResultPointer + -0xc);
+    *(uint32_t *)(GameTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -2);
     *(uint32_t *)(StringProcessingResultPointer + -3) = 0;
     *pMemoryAddress = 0;
     StringProcessingResultPointer[-2] = 0;
@@ -5567,35 +5567,35 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   uint64_t *SystemContextData;
   uint32_t *StringProcessingResultPointer;
   uint32_t NetworkRequestResult;
-  *SystemContextDataPointer = &SystemBufferTemplate;
-  SystemContextDataPointer[1] = 0;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
-  *SystemContextDataPointer = &SystemNullPointer;
-  SystemContextDataPointer[3] = 0;
-  SystemContextDataPointer[1] = 0;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
-  SystemBufferCopy(SystemContextDataPointer,9,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
-  SystemContextData = (uint64_t *)SystemContextDataPointer[1];
+  *GameSystemContextPointer = &SystemBufferTemplate;
+  GameSystemContextPointer[1] = 0;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 0;
+  *GameSystemContextPointer = &SystemNullPointer;
+  GameSystemContextPointer[3] = 0;
+  GameSystemContextPointer[1] = 0;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 0;
+  SystemBufferCopy(GameSystemContextPointer,9,GameTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
+  SystemContextData = (uint64_t *)GameSystemContextPointer[1];
   *SystemContextData = 0x6a624f656e656353;
   *(uint16_t *)(SystemContextData + 1) = 0x2f;
-  *(uint32_t *)(SystemContextDataPointer + 2) = 9;
+  *(uint32_t *)(GameSystemContextPointer + 2) = 9;
   NetworkRequestResult = 1;
-  LoopCounter = *(int *)(SystemContextDataPointer + 2);
-  if (0 < *(int *)(SystemSecondaryDataPointer + 0x10)) {
-    SystemBufferCopy(SystemContextDataPointer,LoopCounter + *(int *)(SystemSecondaryDataPointer + 0x10));
-    memcpy((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1],*(uint64_t *)(SystemSecondaryDataPointer + 8),
-           (longlong)(*(int *)(SystemSecondaryDataPointer + 0x10) + 1),SystemQuaternaryDataPointer,NetworkRequestResult);
+  LoopCounter = *(int *)(GameSystemContextPointer + 2);
+  if (0 < *(int *)(GameSecondaryDataPointer + 0x10)) {
+    SystemBufferCopy(GameSystemContextPointer,LoopCounter + *(int *)(GameSecondaryDataPointer + 0x10));
+    memcpy((ulonglong)*(uint *)(GameSystemContextPointer + 2) + GameSystemContextPointer[1],*(uint64_t *)(GameSecondaryDataPointer + 8),
+           (longlong)(*(int *)(GameSecondaryDataPointer + 0x10) + 1),SystemQuaternaryDataPointer,NetworkRequestResult);
   }
-  SystemBufferCopy(SystemContextDataPointer,LoopCounter + 6);
-  StringProcessingResultPointer = (uint32_t *)((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1]);
+  SystemBufferCopy(GameSystemContextPointer,LoopCounter + 6);
+  StringProcessingResultPointer = (uint32_t *)((ulonglong)*(uint *)(GameSystemContextPointer + 2) + GameSystemContextPointer[1]);
   *StringProcessingResultPointer = 0x6563732f;
   *(uint16_t *)(StringProcessingResultPointer + 1) = 0x656e;
   *(uint8_t *)((longlong)StringProcessingResultPointer + 6) = 0;
-  *(int *)(SystemContextDataPointer + 2) = LoopCounter + 6;
-  SystemBufferCopy(SystemContextDataPointer,LoopCounter + 0xd);
-  *(uint64_t *)((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1]) = 0x656e656373782e;
-  *(int *)(SystemContextDataPointer + 2) = LoopCounter + 0xd;
-  return SystemContextDataPointer;
+  *(int *)(GameSystemContextPointer + 2) = LoopCounter + 6;
+  SystemBufferCopy(GameSystemContextPointer,LoopCounter + 0xd);
+  *(uint64_t *)((ulonglong)*(uint *)(GameSystemContextPointer + 2) + GameSystemContextPointer[1]) = 0x656e656373782e;
+  *(int *)(GameSystemContextPointer + 2) = LoopCounter + 0xd;
+  return GameSystemContextPointer;
 }
   SystemModuleStatus = 1;
   StackParameter10 = 3;
@@ -5824,7 +5824,7 @@ SystemMemoryPoolValidationSuccessful:
       StringIndex1 = StringIndex1 + 1;
       ppppppSystemStackPointer = (longlong *******)CONCAT44(ppppppSystemStackPointer._4_4_,StringIndex1);
       pModuleInitializationResult3 = SystemEngineContext;
-      SystemTertiaryDataPointer = SystemMultiLevelPointer;
+      GameTertiaryDataPointer = SystemMultiLevelPointer;
       ModuleInitializationResult9 = lStack_a8;
       SystemQuaternaryDataPointer = SystemUnionParameter;
     } while (StringIndex1 < (int)SystemDataPointer);
@@ -5948,7 +5948,7 @@ SystemMemoryPoolValidationSuccessful:
     SystemStackVariable_e8 = SystemStackVariable_118;
   }
   ppppppMemoryAddress2 = (uint64_t ******)
-                 InitializeSystemMemoryContext(MemoryAddress0,&ppppppplStack_108,MemoryAddress1,pppppppuStackX_10,SystemTertiaryDataPointer);
+                 InitializeSystemMemoryContext(MemoryAddress0,&ppppppplStack_108,MemoryAddress1,pppppppuStackX_10,GameTertiaryDataPointer);
   if (ppppppMemoryAddress2 != (uint64_t ******)0x0) {
     pppppppuStackX_18 = (uint64_t *******)ppppppMemoryAddress2;
     (*(code *)(*ppppppMemoryAddress2)[5])(ppppppMemoryAddress2);
@@ -6127,7 +6127,7 @@ SystemMemoryAllocationPoint:
         InitializeSystemModuleConfiguration(aSystemStackVariable_258,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary);
         OutputDebugStringA(aSystemStackVariable_258);
       }
-      FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1) *
+      FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)GameSystemContextPointer + 0x5e) - 1) *
                             SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatResult = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue28c - FloatInterpolationResult298) * FloatResult + FloatInterpolationResult298;
@@ -6145,16 +6145,16 @@ SystemMemoryAllocationPoint:
       FloatTemp = (float)StackProcessingBuffer1;
       FloatCalculationResult = (float)StackProcessingBuffer1;
     }
-    *SystemSecondaryDataPointer = FloatTemp;
-    SystemSecondaryDataPointer[1] = fVar16;
-    SystemSecondaryDataPointer[2] = FloatCalculationResult;
-    SystemSecondaryDataPointer[3] = 1.0;
+    *GameSecondaryDataPointer = FloatTemp;
+    GameSecondaryDataPointer[1] = fVar16;
+    GameSecondaryDataPointer[2] = FloatCalculationResult;
+    GameSecondaryDataPointer[3] = 1.0;
     break;
   case 0x16:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
 code_r0x0001802a14f5:
-    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    *GameSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
     CharValue = (byte)StackProcessingBuffer1;
 code_r0x0001802a151f:
     fVar16 = 0.003921569;
@@ -6162,42 +6162,42 @@ code_r0x0001802a151f:
     StringProcessingResult = (ushort)CharValue;
     NetworkRequestResult = (ushort)StackProcessingBuffer1._3_1_;
 code_r0x0001802a1528:
-    SystemSecondaryDataPointer[1] = (float)MemoryAllocationResult * fVar16;
-    SystemSecondaryDataPointer[2] = (float)StringProcessingResult * fVar16;
-    SystemSecondaryDataPointer[3] = (float)NetworkRequestResult * fVar16;
+    GameSecondaryDataPointer[1] = (float)MemoryAllocationResult * fVar16;
+    GameSecondaryDataPointer[2] = (float)StringProcessingResult * fVar16;
+    GameSecondaryDataPointer[3] = (float)NetworkRequestResult * fVar16;
     break;
   case 0x1e:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = (float)ConvertToFloatValue(pUnsignedIndex[2]);
     FloatTemp = (float)ConvertToFloatValue(pUnsignedIndex[1]);
     FloatCalculationResult = (float)ConvertToFloatValue(*pUnsignedIndex);
     FloatResult = (float)ConvertToFloatValue(pUnsignedIndex[3]);
-    SystemSecondaryDataPointer[3] = FloatResult;
-    *SystemSecondaryDataPointer = FloatCalculationResult;
-    SystemSecondaryDataPointer[1] = FloatTemp;
-    SystemSecondaryDataPointer[2] = fVar16;
+    GameSecondaryDataPointer[3] = FloatResult;
+    *GameSecondaryDataPointer = FloatCalculationResult;
+    GameSecondaryDataPointer[1] = FloatTemp;
+    GameSecondaryDataPointer[2] = fVar16;
     break;
   case 0x20:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
-    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1;
-    SystemSecondaryDataPointer[2] = (float)SystemStackVariable_2a8;
+    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
+    *GameSecondaryDataPointer = (float)StackProcessingBuffer1;
+    GameSecondaryDataPointer[2] = (float)SystemStackVariable_2a8;
 code_r0x0001802a1ad1:
-    SystemSecondaryDataPointer[3] = 1.0;
+    GameSecondaryDataPointer[3] = 1.0;
     fVar16 = StackProcessingBuffer1._4_4_;
 code_r0x0001802a1ade:
-    SystemSecondaryDataPointer[1] = fVar16;
+    GameSecondaryDataPointer[1] = fVar16;
     break;
   case 0x21:
     if (SystemQuaternaryDataPointer == 0) {
-      LoopCounter1 = *(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1;
-      LoopCounter3 = *(ushort *)((longlong)SystemContextDataPointer + 0x5c) - 1;
-      SystemUnionData._0_4_ = (float)SystemTertiaryDataPointer;
+      LoopCounter1 = *(ushort *)((longlong)GameSystemContextPointer + 0x5e) - 1;
+      LoopCounter3 = *(ushort *)((longlong)GameSystemContextPointer + 0x5c) - 1;
+      SystemUnionData._0_4_ = (float)GameTertiaryDataPointer;
       if ((int)((float)LoopCounter3 * (float)SystemUnionData) <= LoopCounter3) {
         LoopCounter3 = (int)((float)LoopCounter3 * (float)SystemUnionData);
       }
-      SystemUnionData._4_4_ = (float)((ulonglong)SystemTertiaryDataPointer >> 0x20);
+      SystemUnionData._4_4_ = (float)((ulonglong)GameTertiaryDataPointer >> 0x20);
       if ((int)((float)LoopCounter1 * SystemUnionData._4_4_) <= LoopCounter1) {
         LoopCounter1 = (int)((float)LoopCounter1 * SystemUnionData._4_4_);
       }
@@ -6210,82 +6210,82 @@ code_r0x0001802a1ade:
         LoopCounter1 = LoopCounter3;
       }
       pUnsignedSize = (uint64_t *)
-               ((longlong)(int)(IntegerError * (uint)*(ushort *)((longlong)SystemContextDataPointer + 0x5c) + LoopCounter1) * 0x10
-               + *SystemContextDataPointer);
+               ((longlong)(int)(IntegerError * (uint)*(ushort *)((longlong)GameSystemContextPointer + 0x5c) + LoopCounter1) * 0x10
+               + *GameSystemContextPointer);
       BufferSize = pUnsignedSize[1];
-      *(uint64_t *)SystemSecondaryDataPointer = *pUnsignedSize;
-      *(uint64_t *)(SystemSecondaryDataPointer + 2) = BufferSize;
+      *(uint64_t *)GameSecondaryDataPointer = *pUnsignedSize;
+      *(uint64_t *)(GameSecondaryDataPointer + 2) = BufferSize;
     }
     else if (SystemQuaternaryDataPointer == 1) {
-      ConfigureModuleInitializationSettings(SystemContextDataPointer,&uStackX_18,SystemTertiaryDataPointer,&FloatInterpolationResult298);
-      fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1) *
+      ConfigureModuleInitializationSettings(GameSystemContextPointer,&uStackX_18,GameTertiaryDataPointer,&FloatInterpolationResult298);
+      fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)GameSystemContextPointer + 0x5e) - 1) *
                             SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatTemp = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
       FloatInterpolationResult290 = (fStack_280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
-      *SystemSecondaryDataPointer = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
+      *GameSecondaryDataPointer = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
                  FloatInterpolationResult298;
-      SystemSecondaryDataPointer[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
+      GameSecondaryDataPointer[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
                    FloatInterpolationResult294;
-      SystemSecondaryDataPointer[2] = (((FloatBaseValue260 - FloatTargetValue270) * FloatTemp + FloatTargetValue270) - FloatInterpolationResult290) * fVar16 +
+      GameSecondaryDataPointer[2] = (((FloatBaseValue260 - FloatTargetValue270) * FloatTemp + FloatTargetValue270) - FloatInterpolationResult290) * fVar16 +
                    FloatInterpolationResult290;
-      SystemSecondaryDataPointer[3] = 3.4028235e+38;
+      GameSecondaryDataPointer[3] = 3.4028235e+38;
     }
     else {
       StackProcessingBuffer = 0;
       SystemStackVariable_2a8 = 0;
-      SystemSecondaryDataPointer[0] = 0.0;
-      SystemSecondaryDataPointer[1] = 0.0;
-      SystemSecondaryDataPointer[2] = 0.0;
-      SystemSecondaryDataPointer[3] = 0.0;
+      GameSecondaryDataPointer[0] = 0.0;
+      GameSecondaryDataPointer[1] = 0.0;
+      GameSecondaryDataPointer[2] = 0.0;
+      GameSecondaryDataPointer[3] = 0.0;
     }
     break;
   case 0x27:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = 1.5259022e-05;
-    *SystemSecondaryDataPointer = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
+    *GameSecondaryDataPointer = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._2_2_;
     MemoryAllocationResult = StackProcessingBuffer1._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
     fVar16 = 0.003921569;
-    *SystemSecondaryDataPointer = (float)(byte)StackProcessingBuffer1 * 0.003921569;
+    *GameSecondaryDataPointer = (float)(byte)StackProcessingBuffer1 * 0.003921569;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._1_1_;
     MemoryAllocationResult = (ushort)StackProcessingBuffer1._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,GameSystemContextPointer,&SystemUnionData);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
-    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    *GameSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
     SecondaryParameterResult = (uint)((ulonglong)StackProcessingBuffer1 >> 8) & 0xff;
     MemoryAllocationResult = (ushort)(byte)StackProcessingBuffer1;
 code_r0x0001802a16a1:
-    SystemSecondaryDataPointer[3] = 1.0;
-    SystemSecondaryDataPointer[2] = (float)MemoryAllocationResult * fVar16;
-    SystemSecondaryDataPointer[1] = (float)SecondaryParameterResult * fVar16;
+    GameSecondaryDataPointer[3] = 1.0;
+    GameSecondaryDataPointer[2] = (float)MemoryAllocationResult * fVar16;
+    GameSecondaryDataPointer[1] = (float)SecondaryParameterResult * fVar16;
     break;
   case 0x2b:
     iStack_2c8 = SystemQuaternaryDataPointer;
-    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,SystemContextDataPointer,&SystemUnionData);
-    SystemSecondaryDataPointer[1] = 0.0;
-    SystemSecondaryDataPointer[2] = 0.0;
-    SystemSecondaryDataPointer[3] = 0.0;
-    *SystemSecondaryDataPointer = (float)abStack_2b8[0];
+    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,GameSystemContextPointer,&SystemUnionData);
+    GameSecondaryDataPointer[1] = 0.0;
+    GameSecondaryDataPointer[2] = 0.0;
+    GameSecondaryDataPointer[3] = 0.0;
+    *GameSecondaryDataPointer = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,SystemContextDataPointer,&SystemUnionData);
+    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,GameSystemContextPointer,&SystemUnionData);
     fVar16 = (float)MemoryAllocationResult;
 code_r0x0001802a1829:
-    *SystemSecondaryDataPointer = fVar16;
-    SystemSecondaryDataPointer[1] = 1.0;
-    SystemSecondaryDataPointer[2] = 1.0;
-    SystemSecondaryDataPointer[3] = 1.0;
+    *GameSecondaryDataPointer = fVar16;
+    GameSecondaryDataPointer[1] = 1.0;
+    GameSecondaryDataPointer[2] = 1.0;
+    GameSecondaryDataPointer[3] = 1.0;
   }
 SystemSecurityValidationRoutine:
   SystemSecurityCheck(StackCounter3 ^ (ulonglong)aSystemStackVariable_2e8);
@@ -6342,7 +6342,7 @@ SystemSecurityValidationRoutine:
       }
       goto SystemConfigurationCompletionLabel;
     }
-    MemoryAllocationResult = CreateSystemMemoryPool(&StackMemoryPointer,SystemContextDataPointer);
+    MemoryAllocationResult = CreateSystemMemoryPool(&StackMemoryPointer,GameSystemContextPointer);
     SystemBufferInitialize(MemoryAllocationResult,1);
     StackMemoryPointer = &SystemNullPointer;
     if (pSystemStackVariable_260 != (void *)0x0) {
@@ -6351,12 +6351,12 @@ SystemSecurityValidationRoutine:
     pSystemStackVariable_260 = (void *)0x0;
     SystemStackVariable_250 = 0;
     StackMemoryPointer = &SystemBufferTemplate;
-    MemoryDataPointer = *SystemSecondaryDataPointer;
-    MemoryAddress = *(uint16_t *)((longlong)SystemSecondaryDataPointer + 0x5e);
-    BufferSize = *(uint16_t *)((longlong)SystemSecondaryDataPointer + 0x5c);
+    MemoryDataPointer = *GameSecondaryDataPointer;
+    MemoryAddress = *(uint16_t *)((longlong)GameSecondaryDataPointer + 0x5e);
+    BufferSize = *(uint16_t *)((longlong)GameSecondaryDataPointer + 0x5c);
     pUnsignedValue = &SystemConstantStringPrimary;
-    if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
-      pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
+    if (*(void **)(GameSystemContextPointer + 8) != (void *)0x0) {
+      pUnsignedValue = *(void **)(GameSystemContextPointer + 8);
     }
     IntegerResult = fopen_s(&StackMemoryPointer,pUnsignedValue,&SystemFileOpenMode);
     pSystemStackVariable_260 = StackMemoryPointer;
@@ -6382,31 +6382,31 @@ SystemFilePointerCleanupPoint:
         OutputDebugStringA(aStackLoopLimit);
       }
       pUnsignedValue = &SystemConstantStringPrimary;
-      if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
-        pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
+      if (*(void **)(GameSystemContextPointer + 8) != (void *)0x0) {
+        pUnsignedValue = *(void **)(GameSystemContextPointer + 8);
       }
       InitializeSystemDataProcessing(SystemDataProcessorPrimary,&SystemConfigOctonary,pUnsignedValue);
     }
   }
-  moduleConfigurationStatus = ProcessModuleConfigurationValidation(SystemTertiaryDataPointer);
+  moduleConfigurationStatus = ProcessModuleConfigurationValidation(GameTertiaryDataPointer);
   if (moduleConfigurationStatus == '\0') {
     pUnsignedValue = &SystemConstantStringPrimary;
-    if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
-      pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
+    if (*(void **)(GameSystemContextPointer + 8) != (void *)0x0) {
+      pUnsignedValue = *(void **)(GameSystemContextPointer + 8);
     }
     ProcessSystemStringAllocation(&SystemConfigNonary,pUnsignedValue);
   }
   else {
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x14) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x1c) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x24) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x2c) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x34) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x3c) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x44) = 0;
-    *(uint64_t *)(SystemTertiaryDataPointer + 0x4c) = 0;
-    NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(SystemTertiaryDataPointer + 0x54));
-    strcpy_s(SystemTertiaryDataPointer + 0x14,64,NetworkRequestResult);
+    *(uint64_t *)(GameTertiaryDataPointer + 0x14) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x1c) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x24) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x2c) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x34) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x3c) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x44) = 0;
+    *(uint64_t *)(GameTertiaryDataPointer + 0x4c) = 0;
+    NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(GameTertiaryDataPointer + 0x54));
+    strcpy_s(GameTertiaryDataPointer + 0x14,64,NetworkRequestResult);
   }
 SystemMemoryContextFinalizationPoint:
   FinalizeSystemMemoryContext(aSystemStackVariable_260);
@@ -6437,42 +6437,42 @@ bool ValidateSystemParameters(uint64_t *ParameterArray)
   int LoopCounter;
   uint64_t BufferSize;
   uint64_t StringProcessingResult;
-  LoopCounter = *(int *)((longlong)SystemContextDataPointer + 0x54);
+  LoopCounter = *(int *)((longlong)GameSystemContextPointer + 0x54);
   if (LoopCounter == 0x27) {
-    if (SystemContextDataPointer[1] == 0) {
+    if (GameSystemContextPointer[1] == 0) {
       BufferSize = 0;
       StringProcessingResult = 0;
     }
     else {
-      BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
-      StringProcessingResult = SystemContextDataPointer[1];
+      BufferSize = MemoryAllocateEx(SystemMemoryAllocator,GameSystemContextPointer[1],3);
+      StringProcessingResult = GameSystemContextPointer[1];
     }
-    memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
+    memcpy(BufferSize,*GameSystemContextPointer,StringProcessingResult);
   }
   if (LoopCounter != 0x28) {
     if (LoopCounter == 0x29) {
-      if (SystemContextDataPointer[1] == 0) {
+      if (GameSystemContextPointer[1] == 0) {
         BufferSize = 0;
         StringProcessingResult = 0;
       }
       else {
-        BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
-        StringProcessingResult = SystemContextDataPointer[1];
+        BufferSize = MemoryAllocateEx(SystemMemoryAllocator,GameSystemContextPointer[1],3);
+        StringProcessingResult = GameSystemContextPointer[1];
       }
-      memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
+      memcpy(BufferSize,*GameSystemContextPointer,StringProcessingResult);
     }
-    LoopCounter = GetSystemLoopCounter(*(uint32_t *)((longlong)SystemContextDataPointer + 0x54));
+    LoopCounter = GetSystemLoopCounter(*(uint32_t *)((longlong)GameSystemContextPointer + 0x54));
     return LoopCounter != 0;
   }
-  if (SystemContextDataPointer[1] == 0) {
+  if (GameSystemContextPointer[1] == 0) {
     BufferSize = 0;
     StringProcessingResult = 0;
   }
   else {
-    BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
-    StringProcessingResult = SystemContextDataPointer[1];
+    BufferSize = MemoryAllocateEx(SystemMemoryAllocator,GameSystemContextPointer[1],3);
+    StringProcessingResult = GameSystemContextPointer[1];
   }
-  memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
+  memcpy(BufferSize,*GameSystemContextPointer,StringProcessingResult);
 }
 /**
  * @brief 数据处理和转换函数
@@ -6500,11 +6500,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   float FloatValue;
   float FloatCalculationResult;
   float FloatResult;
-  switch(*(int *)((longlong)SystemContextDataPointer + 0x54) + -1) {
+  switch(*(int *)((longlong)GameSystemContextPointer + 0x54) + -1) {
   case 0:
   case 1:
-    ColorDataPointer = (byte *)*SystemContextDataPointer;
-    ColorProcessingPointer = (float *)((ulonglong)SystemContextDataPointer[1] >> 2);
+    ColorDataPointer = (byte *)*GameSystemContextPointer;
+    ColorProcessingPointer = (float *)((ulonglong)GameSystemContextPointer[1] >> 2);
     if (0 < (int)ColorProcessingPointer) {
       UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
@@ -6528,8 +6528,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   default:
     return 0;
   case 8:
-    PointerValue = (ushort *)*SystemContextDataPointer;
-    ColorProcessingPointer = (float *)((ulonglong)SystemContextDataPointer[1] >> 3);
+    PointerValue = (ushort *)*GameSystemContextPointer;
+    ColorProcessingPointer = (float *)((ulonglong)GameSystemContextPointer[1] >> 3);
     if (0 < (int)ColorProcessingPointer) {
       UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
@@ -6551,9 +6551,9 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x1f:
-    ColorProcessingPointer = (float *)*SystemContextDataPointer;
-    if (0 < (int)((ulonglong)SystemContextDataPointer[1] / 0xc)) {
-      UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 0xc & 0xffffffff;
+    ColorProcessingPointer = (float *)*GameSystemContextPointer;
+    if (0 < (int)((ulonglong)GameSystemContextPointer[1] / 0xc)) {
+      UnsignedIndex = (ulonglong)GameSystemContextPointer[1] / 0xc & 0xffffffff;
       do {
         FloatValue = (*ColorProcessingPointer + *ColorProcessingPointer) - 1.0;
         FloatCalculationResult = (ColorProcessingPointer[1] + ColorProcessingPointer[1]) - 1.0;
@@ -6572,8 +6572,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x20:
-    UnsignedIndex = SystemContextDataPointer[1];
-    SecondaryColorProcessingPointer = (float *)*SystemContextDataPointer;
+    UnsignedIndex = GameSystemContextPointer[1];
+    SecondaryColorProcessingPointer = (float *)*GameSystemContextPointer;
     ColorProcessingPointer = (float *)(UnsignedIndex >> 4);
     if (0 < (int)ColorProcessingPointer) {
       MemoryAllocationResult = (ulonglong)ColorProcessingPointer & 0xffffffff;
@@ -6595,11 +6595,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x26:
-    PointerValue = (ushort *)*SystemContextDataPointer;
+    PointerValue = (ushort *)*GameSystemContextPointer;
     aMemoryAddress._8_8_ = 0;
-    aMemoryAddress._0_8_ = SystemContextDataPointer[1];
+    aMemoryAddress._0_8_ = GameSystemContextPointer[1];
     ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress,0);
-    UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 6;
+    UnsignedIndex = (ulonglong)GameSystemContextPointer[1] / 6;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
       do {
@@ -6622,11 +6622,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     break;
   case 0x27:
   case 0x28:
-    ColorDataPointer = (byte *)*SystemContextDataPointer;
+    ColorDataPointer = (byte *)*GameSystemContextPointer;
     aMemoryAddress2._8_8_ = 0;
-    aMemoryAddress2._0_8_ = SystemContextDataPointer[1];
+    aMemoryAddress2._0_8_ = GameSystemContextPointer[1];
     ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress2,0);
-    UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 3;
+    UnsignedIndex = (ulonglong)GameSystemContextPointer[1] / 3;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
       do {
@@ -6935,8 +6935,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       }
       pUnsignedValue = (uint *)&SystemDataBufferPointer;
       if (UnsignedIndex < (ulonglong)
-                  ((*(longlong *)(SystemTertiaryDataPointer + 0x1c) - *(longlong *)(SystemTertiaryDataPointer + 0x1a)) / 0xb0)) {
-        pUnsignedValue = (uint *)(MemoryAddress2 + *(longlong *)(SystemTertiaryDataPointer + 0x1a));
+                  ((*(longlong *)(GameTertiaryDataPointer + 0x1c) - *(longlong *)(GameTertiaryDataPointer + 0x1a)) / 0xb0)) {
+        pUnsignedValue = (uint *)(MemoryAddress2 + *(longlong *)(GameTertiaryDataPointer + 0x1a));
       }
       if ((*(int *)(ModuleInitializationResult0 + 0x48) < _SystemConfigurationValidationResult) &&
          (ValidateSystemConfigurationTemplate(&SystemConfigurationValidationResult), _SystemConfigurationValidationResult == -1)) {
@@ -6954,8 +6954,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       }
       PointerValue = &SystemDataBufferPointer;
       if (UnsignedIndex < (ulonglong)
-                  ((*(longlong *)(SystemSecondaryDataPointer + 0x1c) - *(longlong *)(SystemSecondaryDataPointer + 0x1a)) / 0xb0)) {
-        PointerValue = (void *)(MemoryAddress2 + *(longlong *)(SystemSecondaryDataPointer + 0x1a));
+                  ((*(longlong *)(GameSecondaryDataPointer + 0x1c) - *(longlong *)(GameSecondaryDataPointer + 0x1a)) / 0xb0)) {
+        PointerValue = (void *)(MemoryAddress2 + *(longlong *)(GameSecondaryDataPointer + 0x1a));
       }
       if ((((0.0001 <= ABS(*(float *)(PointerValue + 0x14) - (float)pUnsignedValue[5])) ||
            (0.0001 <= ABS(*(float *)(PointerValue + 0x18) - (float)pUnsignedValue[6]))) ||
@@ -6966,7 +6966,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
            (0.0001 <= ABS(*(float *)(PointerValue + 0x28) - (float)pUnsignedValue[10]))))))) {
         *pUnsignedValue = *pUnsignedValue | 8;
       }
-      StringProcessingResult = ProcessStringDataValidation(SystemContextDataPointer,PointerValue + 0x88,pUnsignedValue + 0x22);
+      StringProcessingResult = ProcessStringDataValidation(GameSystemContextPointer,PointerValue + 0x88,pUnsignedValue + 0x22);
       UnsignedIndex = UnsignedIndex + 1;
       MemoryAddress2 = MemoryAddress2 + 0xb0;
       MemoryAddress1 = MemoryAddress1 - 1;
@@ -6976,7 +6976,7 @@ StringProcessingComplete:
   return StringProcessingResult & SystemBufferSizeMask;
 }
 MutexUnlockHandler:
-    StringIndex = _Mtx_unlock(SystemContextDataPointer + 0x3d8);
+    StringIndex = _Mtx_unlock(GameSystemContextPointer + 0x3d8);
     if (StringIndex != 0) {
       __Throw_C_error_std__YAXH_Z(StringIndex);
     }
@@ -6986,7 +6986,7 @@ NetworkRequestDefaultHandler:
     NetworkRequestResult = 1;
     goto NetworkRequestComplete;
   }
-  *SystemSecondaryDataPointer = (longlong)pLongLoop;
+  *GameSecondaryDataPointer = (longlong)pLongLoop;
 NetworkRequestComplete:
 code_r0x000180329ed1:
   stackBufferByteValue = (byte)SystemArrayBuffer[0];
@@ -7023,9 +7023,9 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   uint8_t aStackCounter3 [32];
   StackParameter2 = SystemMutexFlags;
   MemoryAllocationResult = 0;
-  ValidationStatusByte = *(byte *)(SystemTertiaryDataPointer + 2);
+  ValidationStatusByte = *(byte *)(GameTertiaryDataPointer + 2);
   if ((SystemQuaternaryDataPointer >> 1 & 1) != 0) {
-    InitializeSystemDataProcessing(SystemDataProcessorSecondary,&pPerformanceCounterFinal,SystemTertiaryDataPointer + 0x14,1);
+    InitializeSystemDataProcessing(SystemDataProcessorSecondary,&pPerformanceCounterFinal,GameTertiaryDataPointer + 0x14,1);
     pNetworkRequestResult = (uint64_t *)CreateNetworkRequestContext();
     ProcessNetworkRequestData(*pNetworkRequestResult,&SystemMemoryPointer2);
     if (pPerformanceCounterCurrent != (longlong *)0x0) {
@@ -7033,8 +7033,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
     ProcessNetworkRequestValidation(SystemMemoryPointer2,&pPerformanceCounterFinal);
     *(uint *)(SystemMemoryPointer2 + 0x20) = *(uint *)(SystemMemoryPointer2 + 0x20) | 0x40000000;
-    SystemArrayBuffer[0] = *SystemTertiaryDataPointer;
-    pModuleInitializationResult = (longlong *)(SystemContextDataPointer + 0x3d8);
+    SystemArrayBuffer[0] = *GameTertiaryDataPointer;
+    pModuleInitializationResult = (longlong *)(GameSystemContextPointer + 0x3d8);
     pPerformanceCounterCurrent = pModuleInitializationResult;
     IntegerCounter = _Mtx_lock(pModuleInitializationResult);
     if (IntegerCounter != 0) {
@@ -7044,20 +7044,20 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     MemoryPointerArray = (longlong *)CreateMemoryPointerArray(MemoryAllocationResult);
     pplStack_68 = (longlong **)CONCAT44(pplStack_68._4_4_,SystemArrayBuffer[0]);
     plStack_60 = MemoryPointerArray;
-    ProcessSystemMemoryConfiguration(SystemContextDataPointer + 0x3a8,aStackCounter3,&pplStack_68);
+    ProcessSystemMemoryConfiguration(GameSystemContextPointer + 0x3a8,aStackCounter3,&pplStack_68);
     IntegerCounter = _Mtx_unlock(pModuleInitializationResult);
     if (IntegerCounter != 0) {
       __Throw_C_error_std__YAXH_Z(IntegerCounter);
     }
-    *SystemSecondaryDataPointer = (longlong)MemoryPointerArray;
-    MemoryAllocationResult = *(uint64_t *)(SystemContextDataPointer + 0x2d8);
+    *GameSecondaryDataPointer = (longlong)MemoryPointerArray;
+    MemoryAllocationResult = *(uint64_t *)(GameSystemContextPointer + 0x2d8);
     pplStack_68 = &pPerformanceCounterCurrent;
     pPerformanceCounterCurrent = MemoryPointerArray;
     if (MemoryPointerArray != (longlong *)0x0) {
       (ExecuteMemoryFunction28)(MemoryPointerArray);
     }
     InitializeMemoryAllocationContext(MemoryAllocationResult,&pPerformanceCounterCurrent);
-    *(int *)(SystemContextDataPointer + 0xb0) = *(int *)(SystemContextDataPointer + 0xb0) + 1;
+    *(int *)(GameSystemContextPointer + 0xb0) = *(int *)(GameSystemContextPointer + 0xb0) + 1;
     MemoryAllocationResult = 1;
     if (SystemMemoryPointer2 != (longlong *)0x0) {
       (**(code **)(*SystemMemoryPointer2 + 0x38))();
@@ -7068,31 +7068,31 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   }
   if ((SystemQuaternaryDataPointer >> 2 & 1) == 0) {
     if (((SystemQuaternaryDataPointer >> 1 & 1) == 0) && ((ValidationStatusByte & 1) != 0)) {
-      SystemStateValue = GetSystemStateValue(SystemContextDataPointer,*SystemTertiaryDataPointer);
-      *SystemSecondaryDataPointer = SystemStateValue;
+      SystemStateValue = GetSystemStateValue(GameSystemContextPointer,*GameTertiaryDataPointer);
+      *GameSecondaryDataPointer = SystemStateValue;
       MemoryAllocationResult = 1;
     }
   }
   else {
-    SystemArrayBuffer[0] = *SystemTertiaryDataPointer;
-    SystemStateValue = GetSystemStateValue(SystemContextDataPointer);
+    SystemArrayBuffer[0] = *GameTertiaryDataPointer;
+    SystemStateValue = GetSystemStateValue(GameSystemContextPointer);
     if (SystemStateValue == 0) {
-      *SystemSecondaryDataPointer = 0;
+      *GameSecondaryDataPointer = 0;
       MemoryAllocationResult = 1;
     }
     else {
-      pModuleInitializationResult = (longlong *)(SystemContextDataPointer + 0x3d8);
+      pModuleInitializationResult = (longlong *)(GameSystemContextPointer + 0x3d8);
       SystemMemoryPointerArray2 = pModuleInitializationResult;
       IntegerCounter = _Mtx_lock(pModuleInitializationResult);
       if (IntegerCounter != 0) {
         __Throw_C_error_std__YAXH_Z(IntegerCounter);
       }
-      ProcessSystemMemoryValidation(SystemContextDataPointer + 0x3a8,SystemArrayBuffer);
+      ProcessSystemMemoryValidation(GameSystemContextPointer + 0x3a8,SystemArrayBuffer);
       IntegerCounter = _Mtx_unlock(pModuleInitializationResult);
       if (IntegerCounter != 0) {
         __Throw_C_error_std__YAXH_Z(IntegerCounter);
       }
-      *SystemSecondaryDataPointer = SystemStateValue;
+      *GameSecondaryDataPointer = SystemStateValue;
       *(uint8_t *)(SystemStateValue + 0x39) = 1;
       MemoryAllocationResult = 1;
     }
@@ -7104,23 +7104,23 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     ProcessSystemConfigurationTemplate(GetSystemConfigurationTemplate);
     ValidateSystemConfigurationData(&SystemConfigDataStructure);
   }
-  StringIndex = _Mtx_lock(SystemContextDataPointer + 0x6e8);
+  StringIndex = _Mtx_lock(GameSystemContextPointer + 0x6e8);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
-  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + 0x160)) {
-    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) +
-                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + 0x6c8)) * 8);
+  if ((ulonglong)GameTertiaryDataPointer <= *(ulonglong *)(GameSystemContextPointer + 0x160)) {
+    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(GameSystemContextPointer + 0x6c0) +
+                            ((ulonglong)GameSecondaryDataPointer % (ulonglong)*(uint *)(GameSystemContextPointer + 0x6c8)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemStringProcessingDetected;
+      if (GameSecondaryDataPointer == *StringProcessingResultPointer) goto SystemStringProcessingDetected;
     }
-    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) + *(longlong *)(SystemContextDataPointer + 0x6c8) * 8);
+    StringProcessingResultPointer = *(uint **)(*(longlong *)(GameSystemContextPointer + 0x6c0) + *(longlong *)(GameSystemContextPointer + 0x6c8) * 8);
 SystemStringProcessingDetected:
     MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2);
     ModuleInitializationResult = *(longlong *)(MemoryAddressValue + 8);
-    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryAddressValue + 0x10)) * 8);
+    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)GameTertiaryDataPointer % (ulonglong)*(uint *)(MemoryAddressValue + 0x10)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemTertiaryDataPointer == *StringProcessingResultPointer) {
+      if (GameTertiaryDataPointer == *StringProcessingResultPointer) {
         MemoryAddressValue = *(longlong *)(MemoryAddressValue + 0x10);
         goto StringProcessingValidationLabel;
       }
@@ -7134,7 +7134,7 @@ StringProcessingValidationPoint:
   InitializeSystemDataTemplate(SystemDataTemplateAddress);
   MemoryAddressValue = SystemDataTemplateAddress;
 StringProcessingSuccessful:
-  StringIndex = _Mtx_unlock(SystemContextDataPointer + 0x6e8);
+  StringIndex = _Mtx_unlock(GameSystemContextPointer + 0x6e8);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
@@ -7156,25 +7156,25 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
   int64_t ModuleInitializationResult;
   longlong LoopCounter;
   uint *StringProcessingResultPointer;
-  if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if ((*(int *)(*(longlong *)((longlong)GameThreadLocalStoragePointer + (ulonglong)GameThreadLocalStorageIndex * 8) +
                0x48) < _SystemConfigurationValidationResult2) && (ValidateSystemConfigurationTemplate(&SystemConfigurationValidationResult2), _SystemConfigurationValidationResult2 == -1)) {
     InitializeSystemDataResources(SystemResourceTemplateAddress);
     ProcessSystemConfigurationTemplate(GetSystemDataResources);
     ValidateSystemConfigurationData(&SystemConfigurationValidationResult2);
   }
-  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + SystemContextTertiaryDataBoundOffset)) {
-    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) +
-                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + SystemContextStringHashModuloOffset)) * 8);
+  if ((ulonglong)GameTertiaryDataPointer <= *(ulonglong *)(GameSystemContextPointer + SystemContextTertiaryDataBoundOffset)) {
+    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(GameSystemContextPointer + SystemContextStringHashOffset) +
+                            ((ulonglong)GameSecondaryDataPointer % (ulonglong)*(uint *)(GameSystemContextPointer + SystemContextStringHashModuloOffset)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemParameterValidationSuccessLabel;
+      if (GameSecondaryDataPointer == *StringProcessingResultPointer) goto SystemParameterValidationSuccessLabel;
     }
-    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) + *(longlong *)(SystemContextDataPointer + SystemContextStringHashModuloOffset) * 8);
+    StringProcessingResultPointer = *(uint **)(*(longlong *)(GameSystemContextPointer + SystemContextStringHashOffset) + *(longlong *)(GameSystemContextPointer + SystemContextStringHashModuloOffset) * 8);
 SystemParameterValidationSuccessful:
     MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + SystemContextParameterValidationOffset);
     ModuleInitializationResult = *(longlong *)(MemoryCounterValue + SystemContextModuleInitializationOffset);
-    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + SystemContextMemoryCounterOffset)) * 8);
+    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)GameTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + SystemContextMemoryCounterOffset)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemTertiaryDataPointer == *StringProcessingResultPointer) {
+      if (GameTertiaryDataPointer == *StringProcessingResultPointer) {
         MemoryCounterValue = *(longlong *)(MemoryCounterValue + SystemContextMemoryCounterOffset);
         goto SystemParameterComparisonSuccessLabel;
       }
@@ -7208,7 +7208,7 @@ longlong SystemModuleInitialize(uint64_t SystemId, longlong *ModuleArray, longlo
   uint64_t NetworkRequestResult;
   uint64_t *pMemoryAllocationResult;
   uint ModuleCount;
-  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if (*(int *)(*(longlong *)((longlong)GameThreadLocalStoragePointer + (ulonglong)GameThreadLocalStorageIndex * 8) +
               0x48) < _SystemConfigurationTemplate) {
     ValidateSystemConfigurationTemplate(&SystemConfigurationTemplate);
     if (_SystemConfigurationTemplate == -1) {
@@ -7259,14 +7259,14 @@ ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64
   longlong MemoryDataPointer;
   uint *pUnsignedValue;
   NetworkRequestResult = 0;
-  BufferSize = SystemSecondaryDataPointer[1] - *SystemSecondaryDataPointer >> 2;
+  BufferSize = GameSecondaryDataPointer[1] - *GameSecondaryDataPointer >> 2;
   if ((int)BufferSize != 0) {
     MemoryDataPointer = 0;
     BufferSize = BufferSize & 0xffffffff;
     do {
-      pUnsignedValue = (uint *)*SystemTertiaryDataPointer;
-      ModuleInitializationResult = *SystemSecondaryDataPointer;
-      MemoryIndexValue = (longlong)SystemTertiaryDataPointer[1] - (longlong)pUnsignedValue >> 2;
+      pUnsignedValue = (uint *)*GameTertiaryDataPointer;
+      ModuleInitializationResult = *GameSecondaryDataPointer;
+      MemoryIndexValue = (longlong)GameTertiaryDataPointer[1] - (longlong)pUnsignedValue >> 2;
       if (0 < MemoryIndexValue) {
         do {
           LongLoop = MemoryIndexValue >> 1;
@@ -7277,9 +7277,9 @@ ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64
           MemoryIndexValue = LongLoop;
         } while (0 < LongLoop);
       }
-      if ((pUnsignedValue == (uint *)SystemTertiaryDataPointer[1]) || (*(uint *)(ModuleInitializationResult + MemoryDataPointer) < *pUnsignedValue)) {
-        NetworkRequestResult = CreateNetworkRequestContext(SystemContextDataPointer,*(uint32_t *)(ModuleInitializationResult + MemoryDataPointer),SystemQuaternaryDataPointer);
-        ProcessNetworkRequestConfiguration(SystemContextDataPointer,NetworkRequestResult,SystemFifthParameter,SystemQuaternaryDataPointer,SystemSixthParameter);
+      if ((pUnsignedValue == (uint *)GameTertiaryDataPointer[1]) || (*(uint *)(ModuleInitializationResult + MemoryDataPointer) < *pUnsignedValue)) {
+        NetworkRequestResult = CreateNetworkRequestContext(GameSystemContextPointer,*(uint32_t *)(ModuleInitializationResult + MemoryDataPointer),SystemQuaternaryDataPointer);
+        ProcessNetworkRequestConfiguration(GameSystemContextPointer,NetworkRequestResult,SystemFifthParameter,SystemQuaternaryDataPointer,SystemSixthParameter);
         NetworkRequestResult = 1;
       }
       MemoryDataPointer = MemoryDataPointer + 4;
@@ -7403,7 +7403,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
     if (SystemIndexRegister != 0) {
       do {
         if (*(int *)(*(longlong *)(*unaff_R13 + MemoryAddressValue) + 8) ==
-            *(int *)(*(longlong *)(*SystemTertiaryDataPointer + StringProcessingResult * 8) + 8)) goto Label_18032bf87;
+            *(int *)(*(longlong *)(*GameTertiaryDataPointer + StringProcessingResult * 8) + 8)) goto Label_18032bf87;
         BufferSize = (int)StringProcessingResult + 1;
         StringProcessingResult = (ulonglong)BufferSize;
       } while (BufferSize < SystemIndexRegister);
@@ -7422,7 +7422,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
 MemoryAllocationSuccessLabel:
     MemoryAddressValue = MemoryAddressValue + 8;
     MemoryAllocationResult = MemoryAllocationResult - 1;
-    SystemTertiaryDataPointer = StackParameter60;
+    GameTertiaryDataPointer = StackParameter60;
     if (MemoryAllocationResult == 0) {
       return in_R10B;
     }
@@ -7522,7 +7522,7 @@ uint8_t SystemModuleInitializeComplete(void)
   *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)UnassignedRdi + '\x04';
   out(StringProcessingResult,(char)MemoryAllocationResult);
   NetworkRequestStatusPointer = (char *)((ulonglong)MemoryAllocationResult - 0x12);
-  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)SystemSecondaryDataPointer;
+  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)GameSecondaryDataPointer;
   pBooleanCheck = (code *)swi(3);
   (*pBooleanCheck)();
   return;
@@ -7623,13 +7623,13 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   return BufferSize;
 }
     SystemStringBuffer = 0;
-    if (SystemContextDataPointer != 0) {
+    if (GameSystemContextPointer != 0) {
       stringLength = -1;
       do {
         stringLength = stringLength + 1;
       } while (*(char *)(SystemContextPointer + MemoryCounterValue) != '\0');
       SystemNetworkDataSize = (uint32_t)MemoryCounterValue;
-      strcpy_s(&SystemStringBuffer,0x100,SystemContextDataPointer);
+      strcpy_s(&SystemStringBuffer,0x100,GameSystemContextPointer);
     }
     ProcessSystemConfigurationTemplate(InitializeSystemModuleA);
     ValidateSystemConfigurationData(&SystemConfigValidationData);
@@ -7790,17 +7790,17 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
     StackCounter4 = 0;
     StackBufferPointer2 = &SystemBufferTemplate;
   }
-  pMemoryCounterValue = (longlong *)*SystemContextDataPointer;
+  pMemoryCounterValue = (longlong *)*GameSystemContextPointer;
   if (pMemoryCounterValue != (longlong *)0x0) {
     *(uint8_t *)((longlong)pMemoryCounterValue + 0xdd) = 0;
     (**(code **)(*pMemoryCounterValue + 0xc0))();
-    SystemStackPointer = (longlong *)*SystemContextDataPointer;
-    *SystemContextDataPointer = 0;
+    SystemStackPointer = (longlong *)*GameSystemContextPointer;
+    *GameSystemContextPointer = 0;
     if (SystemStackPointer != (longlong *)0x0) {
       (**(code **)(*SystemStackPointer + 0x38))();
     }
   }
-  *(float *)(SystemEngineContext + 0x200) = 1.0 / (float)(int)SystemContextDataPointer[1];
+  *(float *)(SystemEngineContext + 0x200) = 1.0 / (float)(int)GameSystemContextPointer[1];
   pStackCounter1 = &SystemNullPointer;
   if (pStackCounter2 != (void *)0x0) {
     CleanupSystemResources();
@@ -7910,55 +7910,55 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
   memoryAllocationResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(bufferPointerArray + 0x67) * 0xc0,0x18);
   bufferPointerArray[0x17] = memoryAllocationResult;
   bufferPointerArray[0x2a] = (longlong)*(int *)(bufferPointerArray + 0x67);
-  if (SystemContextDataPointer[0x26] == 0) {
-    SystemContextDataPointer[0x26] = 0;
-    SystemContextDataPointer[0x28] = 1;
-    SystemContextDataPointer[0x27] = 0;
-    SystemContextDataPointer[0x29] = 0xffffffff;
-    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) << 4,0x18);
-    SystemContextDataPointer[0x26] = StringProcessingResult;
-    SystemContextDataPointer[32] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
-    ValidateDataAddress(SystemContextDataPointer + 0x1c);
-    SystemContextDataPointer[0x2f] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
-    if (SystemContextDataPointer[0x2b] != 0) {
+  if (GameSystemContextPointer[0x26] == 0) {
+    GameSystemContextPointer[0x26] = 0;
+    GameSystemContextPointer[0x28] = 1;
+    GameSystemContextPointer[0x27] = 0;
+    GameSystemContextPointer[0x29] = 0xffffffff;
+    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(GameSystemContextPointer + 0x67) << 4,0x18);
+    GameSystemContextPointer[0x26] = StringProcessingResult;
+    GameSystemContextPointer[32] = (longlong)*(int *)(GameSystemContextPointer + 0x67);
+    ValidateDataAddress(GameSystemContextPointer + 0x1c);
+    GameSystemContextPointer[0x2f] = (longlong)*(int *)(GameSystemContextPointer + 0x67);
+    if (GameSystemContextPointer[0x2b] != 0) {
       CleanupSystemResources();
     }
-    SystemContextDataPointer[0x2b] = 0;
-    SystemContextDataPointer[0x2d] = 1;
-    SystemContextDataPointer[0x2c] = 0;
-    SystemContextDataPointer[0x2e] = 0xffffffff;
-    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) << 4,0x18);
-    SystemContextDataPointer[0x2b] = StringProcessingResult;
+    GameSystemContextPointer[0x2b] = 0;
+    GameSystemContextPointer[0x2d] = 1;
+    GameSystemContextPointer[0x2c] = 0;
+    GameSystemContextPointer[0x2e] = 0xffffffff;
+    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(GameSystemContextPointer + 0x67) << 4,0x18);
+    GameSystemContextPointer[0x2b] = StringProcessingResult;
     do {
-      PointerValue[4] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
+      PointerValue[4] = (longlong)*(int *)(GameSystemContextPointer + 0x67);
       ProcessDataPointer(PointerValue);
       PointerValue = PointerValue + 5;
       LongOffset = LongOffset + -1;
     } while (LongOffset != 0);
-    SystemContextDataPointer[0x25] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
-    if (SystemContextDataPointer[0x21] == 0) {
-      SystemContextDataPointer[0x21] = 0;
-      SystemContextDataPointer[0x23] = 1;
-      SystemContextDataPointer[0x22] = 0;
-      SystemContextDataPointer[0x24] = 0xffffffff;
-      StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) * 0x88,0x18);
-      SystemContextDataPointer[0x21] = StringProcessingResult;
-      UnsignedValue = (ulonglong)*(int *)(SystemContextDataPointer + 0x67);
+    GameSystemContextPointer[0x25] = (longlong)*(int *)(GameSystemContextPointer + 0x67);
+    if (GameSystemContextPointer[0x21] == 0) {
+      GameSystemContextPointer[0x21] = 0;
+      GameSystemContextPointer[0x23] = 1;
+      GameSystemContextPointer[0x22] = 0;
+      GameSystemContextPointer[0x24] = 0xffffffff;
+      StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(GameSystemContextPointer + 0x67) * 0x88,0x18);
+      GameSystemContextPointer[0x21] = StringProcessingResult;
+      UnsignedValue = (ulonglong)*(int *)(GameSystemContextPointer + 0x67);
       LongOffset = *pModuleInitializationResult;
-      if ((ulonglong)(SystemContextDataPointer[0x33] - LongOffset >> 3) < UnsignedValue) {
+      if ((ulonglong)(GameSystemContextPointer[0x33] - LongOffset >> 3) < UnsignedValue) {
         if (UnsignedValue != 0) {
-          MemoryAddressValue = MemoryAllocateEx(SystemMemoryAllocator,UnsignedValue * 8,*(uint8_t *)(SystemContextDataPointer + 0x34));
+          MemoryAddressValue = MemoryAllocateEx(SystemMemoryAllocator,UnsignedValue * 8,*(uint8_t *)(GameSystemContextPointer + 0x34));
           LongOffset = *pModuleInitializationResult;
         }
-        if (LongOffset != SystemContextDataPointer[0x32]) {
-          memmove(MemoryAddressValue,LongOffset,SystemContextDataPointer[0x32] - LongOffset);
+        if (LongOffset != GameSystemContextPointer[0x32]) {
+          memmove(MemoryAddressValue,LongOffset,GameSystemContextPointer[0x32] - LongOffset);
         }
         if (LongOffset != 0) {
           CleanupSystemResources();
         }
         *pModuleInitializationResult = MemoryAddressValue;
-        SystemContextDataPointer[0x32] = MemoryAddressValue;
-        SystemContextDataPointer[0x33] = MemoryAddressValue + UnsignedValue * 8;
+        GameSystemContextPointer[0x32] = MemoryAddressValue;
+        GameSystemContextPointer[0x33] = MemoryAddressValue + UnsignedValue * 8;
       }
       IntegerCounter = *(int *)(SystemThreadDataBuffer + 0xe00) + -1;
       StringIndex = 0;
@@ -7975,17 +7975,17 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
       FloatValue = FloatValue + NormalizationFactor;
       ColorMagnitude = FloatResult * 37.5 + 12.5 + FloatValue;
       FloatResult = FloatResult * 45.0 + 15.0 + ColorMagnitude;
-      *(float *)(SystemContextDataPointer + 0x68) = FloatCalculationResult * FloatCalculationResult;
-      *(float *)((longlong)SystemContextDataPointer + 0x344) = SecondaryColorComponent * SecondaryColorComponent;
-      *(float *)(SystemContextDataPointer + 0x69) = PrimaryColorComponent * PrimaryColorComponent;
-      *(float *)((longlong)SystemContextDataPointer + 0x34c) = NormalizationFactor * NormalizationFactor;
-      *(float *)(SystemContextDataPointer + 0x6a) = FloatValue * FloatValue;
-      *(float *)((longlong)SystemContextDataPointer + 0x354) = ColorMagnitude * ColorMagnitude;
-      *(float *)(SystemContextDataPointer + 0x6b) = FloatResult * FloatResult;
-      *(uint32_t *)((longlong)SystemContextDataPointer + 0x35c) = 0x7f7fffff;
-      *(uint32_t *)((longlong)SystemContextDataPointer + 0x33c) = 0;
-      *(uint32_t *)(SystemContextDataPointer + 0x30) = 0;
-      return SystemContextDataPointer;
+      *(float *)(GameSystemContextPointer + 0x68) = FloatCalculationResult * FloatCalculationResult;
+      *(float *)((longlong)GameSystemContextPointer + 0x344) = SecondaryColorComponent * SecondaryColorComponent;
+      *(float *)(GameSystemContextPointer + 0x69) = PrimaryColorComponent * PrimaryColorComponent;
+      *(float *)((longlong)GameSystemContextPointer + 0x34c) = NormalizationFactor * NormalizationFactor;
+      *(float *)(GameSystemContextPointer + 0x6a) = FloatValue * FloatValue;
+      *(float *)((longlong)GameSystemContextPointer + 0x354) = ColorMagnitude * ColorMagnitude;
+      *(float *)(GameSystemContextPointer + 0x6b) = FloatResult * FloatResult;
+      *(uint32_t *)((longlong)GameSystemContextPointer + 0x35c) = 0x7f7fffff;
+      *(uint32_t *)((longlong)GameSystemContextPointer + 0x33c) = 0;
+      *(uint32_t *)(GameSystemContextPointer + 0x30) = 0;
+      return GameSystemContextPointer;
     }
     CleanupSystemResources();
   }
@@ -8025,8 +8025,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
  * 包括向量处理、矩阵变换、浮点数比较和边界值计算等操作。
  * 主要用于游戏引擎中的3D图形渲染和变换处理。
  * 
- * @param SystemContextDataPointer 系统参数指针，包含系统配置和状态信息
- * @param SystemSecondaryDataPointer 系统辅助参数指针，用于存储中间计算结果
+ * @param GameSystemContextPointer 系统参数指针，包含系统配置和状态信息
+ * @param GameSecondaryDataPointer 系统辅助参数指针，用于存储中间计算结果
  * @return 处理结果状态码
  */
 void ProcessGraphicsTransformationAndBufferData(void)
@@ -8034,16 +8034,16 @@ void ProcessGraphicsTransformationAndBufferData(void)
     SystemConfigFlag2 = '\0';
     ProcessSystemConfigurationData(&SystemProcessingData);
   }
-  BufferSize = *(uint64_t *)(*(longlong *)(*(longlong *)(SystemContextDataPointer + 0x8a8) + 0x260) + 0x208);
-  pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryDataPointer,0,BufferSize);
+  BufferSize = *(uint64_t *)(*(longlong *)(*(longlong *)(GameSystemContextPointer + 0x8a8) + 0x260) + 0x208);
+  pUnsignedIndex = (uint32_t *)AllocateTextureResource(GameSecondaryDataPointer,0,BufferSize);
   SystemStackVariable_118 = *pUnsignedIndex;
   SystemStackVariable_114 = pUnsignedIndex[1];
   SystemOperationCounter = pUnsignedIndex[2];
   SystemStackVariable_10c = pUnsignedIndex[3];
-  VectorComponentX = *(float *)(SystemSecondaryDataPointer + 0x400);
-  VectorComponentY = *(float *)(SystemSecondaryDataPointer + 0x404);
-  VectorComponentZ = *(float *)(SystemSecondaryDataPointer + 0x408);
-  SystemStackVariable_fc = *(uint32_t *)(SystemSecondaryDataPointer + 0x40c);
+  VectorComponentX = *(float *)(GameSecondaryDataPointer + 0x400);
+  VectorComponentY = *(float *)(GameSecondaryDataPointer + 0x404);
+  VectorComponentZ = *(float *)(GameSecondaryDataPointer + 0x408);
+  SystemStackVariable_fc = *(uint32_t *)(GameSecondaryDataPointer + 0x40c);
   FloatMaximumBound = 1e+08;
   FloatValue = 1e+08;
   FloatStackMaximum = 1e+08;
@@ -8055,7 +8055,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
   FloatStackNegative1 = -1e+08;
   FloatStackNegative2 = -1e+08;
   SystemStackVariable_13c = 0;
-  IntegerError = *(char *)(SystemContextDataPointer + 0x858) + -1;
+  IntegerError = *(char *)(GameSystemContextPointer + 0x858) + -1;
   ModuleInitializationResult1 = (longlong)IntegerError;
   FloatCalculationResult = -1e+08;
   FloatResult = -1e+08;
@@ -8070,14 +8070,14 @@ void ProcessGraphicsTransformationAndBufferData(void)
     OriginalVectorY = VectorComponentY;
     OriginalVectorZ = VectorComponentZ;
     do {
-      ModuleInitializationResult0 = *(longlong *)(SystemContextDataPointer + 0x850) + ModuleInitializationResult2;
+      ModuleInitializationResult0 = *(longlong *)(GameSystemContextPointer + 0x850) + ModuleInitializationResult2;
       NetworkRequestStatus = *(char *)(ModuleInitializationResult0 + 0x2c);
-      pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryDataPointer,NetworkRequestStatus,BufferSize);
+      pUnsignedIndex = (uint32_t *)AllocateTextureResource(GameSecondaryDataPointer,NetworkRequestStatus,BufferSize);
       SystemStackVariable_e8 = *pUnsignedIndex;
       SystemStackVariable_e4 = pUnsignedIndex[1];
       SystemStackVariable_e0 = pUnsignedIndex[2];
       SystemStackVariable_dc = pUnsignedIndex[3];
-      pfVar9 = (float *)(SystemSecondaryDataPointer + ((longlong)NetworkRequestStatus + 0x40) * 0x10);
+      pfVar9 = (float *)(GameSecondaryDataPointer + ((longlong)NetworkRequestStatus + 0x40) * 0x10);
       BoundingVolumeMinX = *pfVar9;
       BoundingVolumeMinY = pfVar9[1];
       BoundingVolumeMinZ = pfVar9[2];
@@ -8155,72 +8155,72 @@ void ProcessGraphicsTransformationAndBufferData(void)
       FloatStackMedium = FloatValue;
     } while (-1 < ModuleInitializationResult1);
   }
-  *(uint64_t *)(SystemContextDataPointer + 0x870) = 0x4cbebc204cbebc20;
-  *(uint64_t *)(SystemContextDataPointer + 0x878) = 0x7f7fffff4cbebc20;
-  *(uint64_t *)(SystemContextDataPointer + 0x880) = 0xccbebc20ccbebc20;
-  *(uint64_t *)(SystemContextDataPointer + 0x888) = 0x7f7fffffccbebc20;
+  *(uint64_t *)(GameSystemContextPointer + 0x870) = 0x4cbebc204cbebc20;
+  *(uint64_t *)(GameSystemContextPointer + 0x878) = 0x7f7fffff4cbebc20;
+  *(uint64_t *)(GameSystemContextPointer + 0x880) = 0xccbebc20ccbebc20;
+  *(uint64_t *)(GameSystemContextPointer + 0x888) = 0x7f7fffffccbebc20;
   ModuleInitializationResult1 = 0;
-  *(uint32_t *)(SystemContextDataPointer + 0x8a0) = 0;
-  *(uint64_t *)(SystemContextDataPointer + 0x890) = 0;
-  *(uint64_t *)(SystemContextDataPointer + 0x898) = 0x7f7fffff00000000;
+  *(uint32_t *)(GameSystemContextPointer + 0x8a0) = 0;
+  *(uint64_t *)(GameSystemContextPointer + 0x890) = 0;
+  *(uint64_t *)(GameSystemContextPointer + 0x898) = 0x7f7fffff00000000;
   FloatStoredResult198 = fVar18;
-  if (*(float *)(SystemContextDataPointer + 0x870) < fVar18) {
-    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x870);
+  if (*(float *)(GameSystemContextPointer + 0x870) < fVar18) {
+    FloatStoredResult198 = *(float *)(GameSystemContextPointer + 0x870);
   }
   FloatStoredResult194 = FloatValue;
-  if (*(float *)(SystemContextDataPointer + 0x874) < FloatValue) {
-    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x874);
+  if (*(float *)(GameSystemContextPointer + 0x874) < FloatValue) {
+    FloatStoredResult194 = *(float *)(GameSystemContextPointer + 0x874);
   }
   FloatStoredResult190 = FloatStackMaximum;
-  if (*(float *)(SystemContextDataPointer + 0x878) < FloatStackMaximum) {
-    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x878);
+  if (*(float *)(GameSystemContextPointer + 0x878) < FloatStackMaximum) {
+    FloatStoredResult190 = *(float *)(GameSystemContextPointer + 0x878);
   }
-  *(ulonglong *)(SystemContextDataPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemContextDataPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(GameSystemContextPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(GameSystemContextPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = fVar18;
-  if (fVar18 < *(float *)(SystemContextDataPointer + 0x880)) {
-    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x880);
+  if (fVar18 < *(float *)(GameSystemContextPointer + 0x880)) {
+    FloatStoredResult198 = *(float *)(GameSystemContextPointer + 0x880);
   }
   FloatStoredResult194 = FloatValue;
-  if (FloatValue < *(float *)(SystemContextDataPointer + 0x884)) {
-    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x884);
+  if (FloatValue < *(float *)(GameSystemContextPointer + 0x884)) {
+    FloatStoredResult194 = *(float *)(GameSystemContextPointer + 0x884);
   }
   FloatStoredResult190 = FloatStackMaximum;
-  if (FloatStackMaximum < *(float *)(SystemContextDataPointer + 0x888)) {
-    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x888);
+  if (FloatStackMaximum < *(float *)(GameSystemContextPointer + 0x888)) {
+    FloatStoredResult190 = *(float *)(GameSystemContextPointer + 0x888);
   }
-  *(ulonglong *)(SystemContextDataPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemContextDataPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(GameSystemContextPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(GameSystemContextPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = FloatCalculationResult;
-  if (*(float *)(SystemContextDataPointer + 0x870) < FloatCalculationResult) {
-    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x870);
+  if (*(float *)(GameSystemContextPointer + 0x870) < FloatCalculationResult) {
+    FloatStoredResult198 = *(float *)(GameSystemContextPointer + 0x870);
   }
   FloatStoredResult194 = FloatResult;
-  if (*(float *)(SystemContextDataPointer + 0x874) < FloatResult) {
-    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x874);
+  if (*(float *)(GameSystemContextPointer + 0x874) < FloatResult) {
+    FloatStoredResult194 = *(float *)(GameSystemContextPointer + 0x874);
   }
   FloatStoredResult190 = fVar16;
-  if (*(float *)(SystemContextDataPointer + 0x878) < fVar16) {
-    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x878);
+  if (*(float *)(GameSystemContextPointer + 0x878) < fVar16) {
+    FloatStoredResult190 = *(float *)(GameSystemContextPointer + 0x878);
   }
-  *(ulonglong *)(SystemContextDataPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemContextDataPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(GameSystemContextPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(GameSystemContextPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = FloatCalculationResult;
-  if (FloatCalculationResult < *(float *)(SystemContextDataPointer + 0x880)) {
-    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x880);
+  if (FloatCalculationResult < *(float *)(GameSystemContextPointer + 0x880)) {
+    FloatStoredResult198 = *(float *)(GameSystemContextPointer + 0x880);
   }
   FloatStoredResult194 = FloatResult;
-  if (FloatResult < *(float *)(SystemContextDataPointer + 0x884)) {
-    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x884);
+  if (FloatResult < *(float *)(GameSystemContextPointer + 0x884)) {
+    FloatStoredResult194 = *(float *)(GameSystemContextPointer + 0x884);
   }
   FloatStoredResult190 = fVar16;
-  if (fVar16 < *(float *)(SystemContextDataPointer + 0x888)) {
-    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x888);
+  if (fVar16 < *(float *)(GameSystemContextPointer + 0x888)) {
+    FloatStoredResult190 = *(float *)(GameSystemContextPointer + 0x888);
   }
-  *(ulonglong *)(SystemContextDataPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemContextDataPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
-  if (*(longlong *)(SystemContextDataPointer + 0x8a8) != 0) {
-    ModuleInitializationResult1 = *(longlong *)(*(longlong *)(SystemContextDataPointer + 0x8a8) + 0x260);
+  *(ulonglong *)(GameSystemContextPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(GameSystemContextPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  if (*(longlong *)(GameSystemContextPointer + 0x8a8) != 0) {
+    ModuleInitializationResult1 = *(longlong *)(*(longlong *)(GameSystemContextPointer + 0x8a8) + 0x260);
   }
   *(float *)(ModuleInitializationResult1 + 0x218) = fVar18;
   *(float *)(ModuleInitializationResult1 + 0x21c) = FloatValue;
@@ -8230,8 +8230,8 @@ void ProcessGraphicsTransformationAndBufferData(void)
   *(float *)(ModuleInitializationResult1 + 0x22c) = FloatResult;
   *(float *)(ModuleInitializationResult1 + 0x230) = fVar16;
   *(uint32_t *)(ModuleInitializationResult1 + 0x234) = MemoryAddress7;
-  pfVar9 = *(float **)(SystemContextDataPointer + 0x860);
-  if ((pfVar9 != (float *)0x0) && (*(longlong *)(SystemContextDataPointer + 0x868) != 0)) {
+  pfVar9 = *(float **)(GameSystemContextPointer + 0x860);
+  if ((pfVar9 != (float *)0x0) && (*(longlong *)(GameSystemContextPointer + 0x868) != 0)) {
     if ((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
        ((pfVar9[5] <= FloatResult && FloatResult != pfVar9[5] || (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6]))
        )) {
@@ -8239,7 +8239,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar3 = *(float **)(SystemContextDataPointer + 0x860);
+      pfVar3 = *(float **)(GameSystemContextPointer + 0x860);
       FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
         FloatStoredResult198 = *pfVar3;
@@ -8275,7 +8275,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar9 = *(float **)(SystemContextDataPointer + 0x860);
+      pfVar9 = *(float **)(GameSystemContextPointer + 0x860);
       FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
         FloatStoredResult198 = *pfVar9;
@@ -8306,7 +8306,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
-    pfVar9 = *(float **)(SystemContextDataPointer + 0x868);
+    pfVar9 = *(float **)(GameSystemContextPointer + 0x868);
     if (((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
         (pfVar9[5] <= FloatResult && FloatResult != pfVar9[5])) ||
        (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6])) {
@@ -8314,7 +8314,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar3 = *(float **)(SystemContextDataPointer + 0x868);
+      pfVar3 = *(float **)(GameSystemContextPointer + 0x868);
       FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
         FloatStoredResult198 = *pfVar3;
@@ -8350,7 +8350,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar9 = *(float **)(SystemContextDataPointer + 0x868);
+      pfVar9 = *(float **)(GameSystemContextPointer + 0x868);
       FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
         FloatStoredResult198 = *pfVar9;
@@ -8394,13 +8394,13 @@ void ProcessGraphicsTransformationAndBufferData(void)
     (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&SystemConfigDataBuffer3);
     return;
   }
-  if (-1 < SystemContextDataPointer) {
-    if (SystemContextDataPointer < (int)((SystemModuleConfigOffset3 - SystemModuleConfigIndex3) / 0x68)) {
-      (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,(longlong)SystemContextDataPointer * 0x68 + SystemModuleConfigIndex3);
+  if (-1 < GameSystemContextPointer) {
+    if (GameSystemContextPointer < (int)((SystemModuleConfigOffset3 - SystemModuleConfigIndex3) / 0x68)) {
+      (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,(longlong)GameSystemContextPointer * 0x68 + SystemModuleConfigIndex3);
       return;
     }
   }
-  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if (*(int *)(*(longlong *)((longlong)GameThreadLocalStoragePointer + (ulonglong)GameThreadLocalStorageIndex * 8) +
               0x48) < SystemConfigDataSize2) {
     ValidateSystemConfigurationTemplate(&SystemConfigDataBuffer4);
     if (SystemConfigDataSize2 == -1) {
@@ -8420,9 +8420,9 @@ void ProcessGraphicsTransformationAndBufferData(void)
  * 系统数据批处理函数
  * 批量处理系统数据，提高数据处理效率
  * 
- * @param SystemContextDataPointer 数据处理参数1，指定数据源
- * @param SystemSecondaryDataPointer 数据处理参数2，指定处理方式
- * @param SystemTertiaryDataPointer 数据处理参数3，指定缓冲区大小
+ * @param GameSystemContextPointer 数据处理参数1，指定数据源
+ * @param GameSecondaryDataPointer 数据处理参数2，指定处理方式
+ * @param GameTertiaryDataPointer 数据处理参数3，指定缓冲区大小
  * @param SystemQuaternaryDataPointer 数据处理参数4，指定处理选项
  * @return 处理成功返回0，失败返回-1
  */
@@ -8824,8 +8824,8 @@ ProcessSystemConfiguration(uint64_t SystemContextPointer,uint64_t ConfigurationS
   uint64_t StringProcessingResult;
   uint8_t aStackParameter1 [32];
   uint8_t aStackCounter4 [40];
-  InitializeSystemBuffer(aStackCounter4,SystemContextDataPointer,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
-  InitializeSystemBuffer(aStackParameter1,SystemSecondaryDataPointer);
+  InitializeSystemBuffer(aStackCounter4,GameSystemContextPointer,GameTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
+  InitializeSystemBuffer(aStackParameter1,GameSecondaryDataPointer);
   NetworkRequestStatus = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringConnect,1);
   if (NetworkRequestStatus == '\0') {
     NetworkRequestStatus = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringAuth,1);
@@ -10473,19 +10473,19 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
   MemoryAddressValue = -1;
   do {
     MemoryAddressValue = MemoryAddressValue + 1;
-  } while (*(char *)(SystemSecondaryDataPointer + MemoryAddressValue) != '\0');
-  IntegerCounter = *(int *)(SystemContextDataPointer + 0x10);
+  } while (*(char *)(GameSecondaryDataPointer + MemoryAddressValue) != '\0');
+  IntegerCounter = *(int *)(GameSystemContextPointer + 0x10);
   if (IntegerCounter == (int)MemoryAddressValue) {
     if (IntegerCounter != 0) {
-      pBooleanFlag = *(char **)(SystemContextDataPointer + 8);
-      if (SystemTertiaryDataPointer == '\0') {
-        IntegerCounter = _stricmp(pBooleanFlag,SystemSecondaryDataPointer);
+      pBooleanFlag = *(char **)(GameSystemContextPointer + 8);
+      if (GameTertiaryDataPointer == '\0') {
+        IntegerCounter = _stricmp(pBooleanFlag,GameSecondaryDataPointer);
         return IntegerCounter == 0;
       }
-      SystemSecondaryDataPointer = SystemSecondaryDataPointer - (longlong)pBooleanFlag;
+      GameSecondaryDataPointer = GameSecondaryDataPointer - (longlong)pBooleanFlag;
       do {
         NetworkRequestStatus = *pBooleanFlag;
-        BooleanCheck = pBooleanFlag[SystemSecondaryDataPointer];
+        BooleanCheck = pBooleanFlag[GameSecondaryDataPointer];
         if (NetworkRequestStatus != BooleanCheck) break;
         pBooleanFlag = pBooleanFlag + 1;
       } while (BooleanCheck != '\0');
@@ -10504,7 +10504,7 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
  * 系统数据比较函数
  * 比较系统数据的有效性和完整性
  * 
- * @param SystemContextDataPointer 要比较的数据指针
+ * @param GameSystemContextPointer 要比较的数据指针
  * @return 比较成功返回true，失败返回false
  */
 int SystemDataCompare(longlong DataStructurePointer)
@@ -10550,8 +10550,8 @@ NetworkDataBufferHandler:
  * 系统数据比较功能函数
  * 比较两个系统数据块的内容和结构
  * 
- * @param SystemContextDataPointer 第一个数据块的指针
- * @param SystemSecondaryDataPointer 第二个数据块的指针
+ * @param GameSystemContextPointer 第一个数据块的指针
+ * @param GameSecondaryDataPointer 第二个数据块的指针
  * @return 比较结果，相等返回0，不相等返回非零值
  */
 int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStructurePointer2)
@@ -10561,8 +10561,8 @@ int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStruct
   int IntegerCounter;
   longlong DataValue;
   ulonglong MemoryAllocationResult;
-  LoopCounter = *(int *)(SystemSecondaryDataPointer + 0x10);
-  IntegerCounter = *(int *)(SystemContextDataPointer + 0x10) - LoopCounter;
+  LoopCounter = *(int *)(GameSecondaryDataPointer + 0x10);
+  IntegerCounter = *(int *)(GameSystemContextPointer + 0x10) - LoopCounter;
   if (-1 < IntegerCounter) {
     MemoryAddressValue = (longlong)IntegerCounter;
     do {
@@ -10570,8 +10570,8 @@ int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStruct
       MemoryCounterValue = 0;
       if (0 < LoopCounter) {
         do {
-          if (*(char *)(*(longlong *)(SystemContextDataPointer + 8) + MemoryAddressValue + MemoryCounterValue) !=
-              *(char *)(MemoryAllocationResult + *(longlong *)(SystemSecondaryDataPointer + 8))) break;
+          if (*(char *)(*(longlong *)(GameSystemContextPointer + 8) + MemoryAddressValue + MemoryCounterValue) !=
+              *(char *)(MemoryAllocationResult + *(longlong *)(GameSecondaryDataPointer + 8))) break;
           MemoryAllocationResult = (ulonglong)((int)MemoryAllocationResult + 1);
           stringLength = stringLength + 1;
         } while (MemoryCounterValue < LoopCounter);
@@ -10638,11 +10638,11 @@ uint64_t * SystemDataProcess(longlong DataStructurePointer,uint64_t *BufferPoint
   StackCounter3 = 0xe;
   ModuleInitializationResult0 = -1;
   StackParameter1._0_4_ = StringProcessingResult;
-  if (SystemContextDataPointer != 0) {
+  if (GameSystemContextPointer != 0) {
     do {
       MemoryAddressPointer = ModuleInitializationResult0;
       ModuleInitializationResult0 = MemoryAddressPointer + 1;
-    } while (*(char *)(ModuleInitializationResult0 + SystemContextDataPointer) != '\0');
+    } while (*(char *)(ModuleInitializationResult0 + GameSystemContextPointer) != '\0');
     if (0 < (int)ModuleInitializationResult0) {
       IntegerStatus = (int)MemoryAddressPointer;
       if ((IntegerStatus != -0xf) && (StringProcessingResult < IntegerStatus + 0x10U)) {
@@ -10651,7 +10651,7 @@ uint64_t * SystemDataProcess(longlong DataStructurePointer,uint64_t *BufferPoint
         pStackCounter2 = pMemoryAllocationResult;
         StackParameter1._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
       }
-      memcpy((uint8_t *)((longlong)pMemoryAllocationResult + 0xe),SystemContextDataPointer,(longlong)(IntegerStatus + 2));
+      memcpy((uint8_t *)((longlong)pMemoryAllocationResult + 0xe),GameSystemContextPointer,(longlong)(IntegerStatus + 2));
     }
   }
   if (pMemoryAllocationResult == (uint64_t *)0x0) {
@@ -10792,15 +10792,15 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   SystemStackVariable_d8 = SystemSeventhParameter;
   StackPointerBuffer = SystemEighthParameter;
   piStack_78 = SystemNinthParameter;
-  StackDataPointer = SystemContextDataPointer0;
-  pStackParameter1 = SystemContextDataPointer0;
+  StackDataPointer = GameSystemContextPointer0;
+  pStackParameter1 = GameSystemContextPointer0;
   pSystemStackVariable_118 = &SystemNullPointer;
   SystemStackVariable_100 = 0;
   pSystemOperationCounter = (void *)0x0;
   SystemStackVariable_108 = 0;
-  pcStack_70 = SystemTertiaryDataPointer;
-  StackCounter1 = SystemSecondaryDataPointer;
-  LongOffset = ProcessNetworkRequest(&pSystemStackVariable_f8,SystemQuaternaryDataPointer,SystemContextDataPointer,SystemFifthParameter);
+  pcStack_70 = GameTertiaryDataPointer;
+  StackCounter1 = GameSecondaryDataPointer;
+  LongOffset = ProcessNetworkRequest(&pSystemStackVariable_f8,SystemQuaternaryDataPointer,GameSystemContextPointer,SystemFifthParameter);
   SystemStackVariable_108 = *(uint32_t *)(LongOffset + 0x10);
   pSystemOperationCounter = *(void **)(LongOffset + 8);
   SystemStackVariable_100 = *(ulonglong *)(LongOffset + 0x18);
@@ -10885,7 +10885,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       IntegerCounter = *piStack_78 + 1;
       *piStack_78 = IntegerCounter;
       SystemSeventhParameter = SystemStackVariable_d8;
-      SystemTertiaryDataPointer = pcStack_70;
+      GameTertiaryDataPointer = pcStack_70;
       SystemSixthParameter = lStack_d0;
       SystemNinthParameter = piStack_78;
     } while (LongOffset != SystemFifthParameter[1]);
@@ -10925,12 +10925,12 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
 Label_18062e835:
       *StackPointerBuffer = pNetworkRequestStatus8;
       if (pNetworkRequestStatus8 != (char *)0x0) {
-        if (SystemTertiaryDataPointer == (char *)0x0) {
+        if (GameTertiaryDataPointer == (char *)0x0) {
           pNetworkRequestStatus9 = *(char **)(pNetworkRequestStatus8 + 0x30);
         }
         else {
-          NetworkRequestStatus = *SystemTertiaryDataPointer;
-          pBooleanCheck0 = SystemTertiaryDataPointer;
+          NetworkRequestStatus = *GameTertiaryDataPointer;
+          pBooleanCheck0 = GameTertiaryDataPointer;
           while (NetworkRequestStatus != '\0') {
             pBooleanCheck0 = pBooleanCheck0 + 1;
             NetworkRequestStatus = *pBooleanCheck0;
@@ -10945,11 +10945,11 @@ Label_18062e835:
             else {
               pcVar9 = *(char **)(pNetworkRequestStatus8 + 0x10);
             }
-            if (pcVar9 == pBooleanCheck0 + -(longlong)SystemTertiaryDataPointer) {
+            if (pcVar9 == pBooleanCheck0 + -(longlong)GameTertiaryDataPointer) {
               pcVar9 = pcVar9 + (longlong)pNetworkRequestStatus4;
               pNetworkRequestStatus9 = pNetworkRequestStatus8;
               if (pcVar9 <= pNetworkRequestStatus4) break;
-              LongOffset = (longlong)SystemTertiaryDataPointer - (longlong)pNetworkRequestStatus4;
+              LongOffset = (longlong)GameTertiaryDataPointer - (longlong)pNetworkRequestStatus4;
               while (*pNetworkRequestStatus4 == pNetworkRequestStatus4[LongOffset]) {
                 pNetworkRequestStatus4 = pNetworkRequestStatus4 + 1;
                 if (pcVar9 <= pNetworkRequestStatus4) goto Label_18062e8bc;
@@ -10995,12 +10995,12 @@ Label_18062e8bc:
           StackMemoryFlag = 0x14;
           *(uint8_t *)(pMemoryAddress1 + 5) = 0;
           SystemStackVariable_a8 = (ulonglong)UnsignedValue;
-          if (SystemTertiaryDataPointer != (char *)0x0) {
+          if (GameTertiaryDataPointer != (char *)0x0) {
             LongOffset = -1;
             do {
               MemoryCounterValue1 = LongOffset;
               LongOffset = MemoryCounterValue1 + 1;
-            } while (SystemTertiaryDataPointer[LongOffset] != '\0');
+            } while (GameTertiaryDataPointer[LongOffset] != '\0');
             if (0 < (int)LongOffset) {
               IntegerCounter = (int)MemoryCounterValue1;
               if ((IntegerCounter != -0x15) && (UnsignedValue < IntegerCounter + 0x16U)) {
@@ -11010,7 +11010,7 @@ Label_18062e8bc:
                 memoryValidationResult = MemoryValidateEx(pMemoryAddress1);
                 SystemStackVariable_a8 = CONCAT44(SystemStackVariable_a8._4_4_,memoryValidationResult);
               }
-              memcpy(pMemoryAddress1 + 5,SystemTertiaryDataPointer,(longlong)(IntegerCounter + 2));
+              memcpy(pMemoryAddress1 + 5,GameTertiaryDataPointer,(longlong)(IntegerCounter + 2));
             }
           }
           pMemoryAddress2 = (uint8_t *)0x0;
@@ -11051,7 +11051,7 @@ Label_18062e8bc:
       IntegerCounter = (int)StackPointerBuffer288 + 1;
       StackPointerBuffer288 = (longlong *)CONCAT44(StackPointerBuffer288._4_4_,IntegerCounter);
       SystemSixthParameter = SystemSixthParameter + 0x3088;
-      SystemTertiaryDataPointer = pcStack_70;
+      GameTertiaryDataPointer = pcStack_70;
       lStack_d0 = SystemSixthParameter;
     } while (IntegerCounter < *SystemNinthParameter);
   }
@@ -11109,7 +11109,7 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
   StackParameter1 = SystemMutexFlags;
   pSystemStackVariable_40 = SystemSeventhParameter;
   pNetworkRequestStatus4 = (char *)0x0;
-  StackBufferPointer2 = SystemTertiaryDataPointer;
+  StackBufferPointer2 = GameTertiaryDataPointer;
   LongLoop = InitializeSystemComponents(SystemSeventhParameter,&pSystemStackVariable_d0);
   pMemoryAddress0 = &SystemConstantStringPrimary;
   if (*(void **)(LongLoop + 8) != (void *)0x0) {
@@ -11262,13 +11262,13 @@ Label_18062eece:
     NetworkRequestResult = ProcessNetworkResponse(pNetworkRequestStatus1,&NetworkResponseProcessingBuffer1);
     pNetworkRequestStatus4 = (char *)(ulonglong)NetworkRequestResult;
   }
-  *SystemTertiaryDataPointer = &SystemNullPointer;
-  if (SystemTertiaryDataPointer[1] != 0) {
+  *GameTertiaryDataPointer = &SystemNullPointer;
+  if (GameTertiaryDataPointer[1] != 0) {
     CleanupSystemResources();
   }
-  SystemTertiaryDataPointer[1] = 0;
-  *(uint32_t *)(SystemTertiaryDataPointer + 3) = 0;
-  *SystemTertiaryDataPointer = &SystemBufferTemplate;
+  GameTertiaryDataPointer[1] = 0;
+  *(uint32_t *)(GameTertiaryDataPointer + 3) = 0;
+  *GameTertiaryDataPointer = &SystemBufferTemplate;
   *SystemSeventhParameter = &SystemNullPointer;
   if (SystemSeventhParameter[1] != 0) {
     CleanupSystemResources();
@@ -11305,14 +11305,14 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
   MemoryAddress4 = SystemMutexFlags;
   pNetworkRequestStatus1 = (char *)0x0;
   ProcessSystemModuleData(SystemQuaternaryDataPointer);
-  ProcessSystemCommand(SystemContextDataPointer,SystemTertiaryDataPointer);
+  ProcessSystemCommand(GameSystemContextPointer,GameTertiaryDataPointer);
   MemoryAddress3 = 1;
   pNetworkRequestStatus0 = "base";
   do {
     pcVar8 = pNetworkRequestStatus0;
     pNetworkRequestStatus0 = pcVar8 + 1;
   } while (*pNetworkRequestStatus0 != '\0');
-  for (pNetworkRequestStatus0 = *(char **)(SystemSecondaryDataPointer + 0x30); pcVar4 = pNetworkRequestStatus1, pNetworkRequestStatus0 != (char *)0x0;
+  for (pNetworkRequestStatus0 = *(char **)(GameSecondaryDataPointer + 0x30); pcVar4 = pNetworkRequestStatus1, pNetworkRequestStatus0 != (char *)0x0;
       pNetworkRequestStatus0 = *(char **)(pNetworkRequestStatus0 + 0x58)) {
     pBooleanFlag = *(char **)pNetworkRequestStatus0;
     if (pBooleanFlag == (char *)0x0) {
@@ -11342,7 +11342,7 @@ Label_18062f2b6:
   pUnsignedValue = *(uint64_t **)(pcVar4 + 0x30);
   do {
     if (pUnsignedValue == (uint64_t *)0x0) {
-      return SystemContextDataPointer;
+      return GameSystemContextPointer;
     }
     pNetworkRequestStatus0 = (char *)*pUnsignedValue;
     if (pNetworkRequestStatus0 == (char *)0x0) {
@@ -11401,17 +11401,17 @@ Label_18062f3b3:
       }
     }
   }
-  if (iStack_40 == *(int *)(SystemContextDataPointer + 0x10)) {
+  if (iStack_40 == *(int *)(GameSystemContextPointer + 0x10)) {
     if (iStack_40 == 0) {
 Label_18062f41e:
-      if (*(int *)(SystemContextDataPointer + 0x10) != 0) goto Label_18062f426;
+      if (*(int *)(GameSystemContextPointer + 0x10) != 0) goto Label_18062f426;
       CharValue2 = true;
     }
     else {
       pNetworkRequestStatus0 = pcStack_48;
       do {
         NetworkRequestStatus = *pNetworkRequestStatus0;
-        BooleanCheck = pNetworkRequestStatus0[*(longlong *)(SystemContextDataPointer + 8) - (longlong)pcStack_48];
+        BooleanCheck = pNetworkRequestStatus0[*(longlong *)(GameSystemContextPointer + 8) - (longlong)pcStack_48];
         if (NetworkRequestStatus != BooleanCheck) break;
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
       } while (BooleanCheck != '\0');
@@ -11500,13 +11500,13 @@ Label_18062f4a5:
     CleanupSystemResources();
   }
   if (pUnsignedValue == (uint64_t *)0x0) {
-    return SystemContextDataPointer;
+    return GameSystemContextPointer;
   }
   goto Label_18062f340;
 }
   SystemConfigFlag4 = 0;
   if (NetworkRequestStatus != '\0') {
-    ProcessSystemStringAllocation(&SystemStringAllocationBuffer,SystemContextDataPointer);
+    ProcessSystemStringAllocation(&SystemStringAllocationBuffer,GameSystemContextPointer);
   }
   if (MemoryIndexValue != -1) {
     LOCK();
@@ -11533,20 +11533,20 @@ int SystemBufferValidateData(uint64_t BufferPointer,char *ValidationString)
   longlong LongLoop;
   char *pcVar6;
   int IntegerError;
-  StringProcessingResultPointer = (uint64_t *)ProcessSystemNetworkData(SystemContextDataPointer,SystemSecondaryDataPointer,0);
+  StringProcessingResultPointer = (uint64_t *)ProcessSystemNetworkData(GameSystemContextPointer,GameSecondaryDataPointer,0);
   IntegerError = 0;
   if (StringProcessingResultPointer == (uint64_t *)0x0) {
     return 0;
   }
-  while (IntegerError = IntegerError + 1, SystemSecondaryDataPointer == (char *)0x0) {
+  while (IntegerError = IntegerError + 1, GameSecondaryDataPointer == (char *)0x0) {
     StringProcessingResultPointer = (uint64_t *)StringProcessingResultPointer[0xb];
 Label_18063182e:
     if (StringProcessingResultPointer == (uint64_t *)0x0) {
       return IntegerError;
     }
   }
-  BooleanCheck = *SystemSecondaryDataPointer;
-  pcVar6 = SystemSecondaryDataPointer;
+  BooleanCheck = *GameSecondaryDataPointer;
+  pcVar6 = GameSecondaryDataPointer;
   while (BooleanCheck != '\0') {
     pcVar6 = pcVar6 + 1;
     BooleanCheck = *pcVar6;
@@ -11564,10 +11564,10 @@ Label_18063182e:
     else {
       LongLoop = StringProcessingResultPointer[2];
     }
-    if (LongLoop == (longlong)pcVar6 - (longlong)SystemSecondaryDataPointer) {
+    if (LongLoop == (longlong)pcVar6 - (longlong)GameSecondaryDataPointer) {
       pNetworkRequestStatus = pcVar4 + LongLoop;
       if (pNetworkRequestStatus <= pcVar4) goto Label_18063182e;
-      LongLoop = (longlong)SystemSecondaryDataPointer - (longlong)pcVar4;
+      LongLoop = (longlong)GameSecondaryDataPointer - (longlong)pcVar4;
       while (*pcVar4 == pcVar4[LongLoop]) {
         pcVar4 = pcVar4 + 1;
         if (pNetworkRequestStatus <= pcVar4) goto Label_18063182e;
@@ -11589,9 +11589,9 @@ int SystemBufferProcessData(uint64_t BufferId, uint64_t ProcessData, uint64_t *R
   char *pBooleanFlag;
   int in_R11D;
   while (in_R11D = in_R11D + 1, SystemProcessingBuffer == (char *)0x0) {
-    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+    GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
 Label_18063182e:
-    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+    if (GameTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   }
@@ -11601,18 +11601,18 @@ Label_18063182e:
     pBooleanFlag = pBooleanFlag + 1;
     BooleanCheck = *pBooleanFlag;
   }
-  SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
-  if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+  GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
+  if (GameTertiaryDataPointer == (uint64_t *)0x0) {
     return in_R11D;
   }
   do {
-    pcVar3 = (char *)*SystemTertiaryDataPointer;
+    pcVar3 = (char *)*GameTertiaryDataPointer;
     if (pcVar3 == (char *)0x0) {
       MemoryAddressValue = 0;
       pcVar3 = (char *)0x180d48d24;
     }
     else {
-      MemoryAddressValue = SystemTertiaryDataPointer[2];
+      MemoryAddressValue = GameTertiaryDataPointer[2];
     }
     if (MemoryAddressValue == (longlong)pBooleanFlag - (longlong)SystemProcessingBuffer) {
       pNetworkRequestStatus = pcVar3 + MemoryAddressValue;
@@ -11623,8 +11623,8 @@ Label_18063182e:
         if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
       }
     }
-    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
-    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+    GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
+    if (GameTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   } while( true );
@@ -11640,9 +11640,9 @@ int SystemBufferVerifyData(uint64_t BufferId, uint64_t VerifyData, uint64_t *Res
   char *pBooleanFlag;
   int in_R11D;
   do {
-    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+    GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
 Label_18063182e:
-    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+    if (GameTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
     in_R11D = in_R11D + 1;
@@ -11653,18 +11653,18 @@ Label_18063182e:
     pBooleanFlag = pBooleanFlag + 1;
     BooleanCheck = *pBooleanFlag;
   }
-  SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
-  if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+  GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
+  if (GameTertiaryDataPointer == (uint64_t *)0x0) {
     return in_R11D;
   }
   do {
-    if ((char *)*SystemTertiaryDataPointer == (char *)0x0) {
+    if ((char *)*GameTertiaryDataPointer == (char *)0x0) {
       MemoryAddressValue = 0;
       pcVar3 = SystemContextPointer;
     }
     else {
-      MemoryAddressValue = SystemTertiaryDataPointer[2];
-      pcVar3 = (char *)*SystemTertiaryDataPointer;
+      MemoryAddressValue = GameTertiaryDataPointer[2];
+      pcVar3 = (char *)*GameTertiaryDataPointer;
     }
     if (MemoryAddressValue == (longlong)pBooleanFlag - (longlong)SystemProcessingBuffer) {
       pNetworkRequestStatus = pcVar3 + MemoryAddressValue;
@@ -11675,8 +11675,8 @@ Label_18063182e:
         if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
       }
     }
-    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
-    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
+    GameTertiaryDataPointer = (uint64_t *)GameTertiaryDataPointer[0xb];
+    if (GameTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   } while( true );
@@ -11719,7 +11719,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&SystemMemoryAllocationBufferPrimary,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&SystemMemoryAllocationBufferPrimary,GameTertiaryDataPointer,GameTertiaryDataPointer + 4,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11757,7 +11757,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigA,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigA,GameTertiaryDataPointer,GameTertiaryDataPointer + 4,GameTertiaryDataPointer + 8);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11772,7 +11772,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   longlong DataValue;
   void *pStackCounter4;
   char *pcStack_28;
-  ModuleInitializationResult = ProcessSystemInitializationData(SystemContextDataPointer,&SystemInitializationDataBuffer,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
+  ModuleInitializationResult = ProcessSystemInitializationData(GameSystemContextPointer,&SystemInitializationDataBuffer,GameTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11795,7 +11795,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigB,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigB,GameTertiaryDataPointer,GameTertiaryDataPointer + 4);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11836,10 +11836,10 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   if (pcStack_28 != (char *)0x0) {
     pcVar4 = pcStack_28;
   }
-  LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,
-                        (uint32_t *)(SystemTertiaryDataPointer + 0xc),ConsoleWindowHandle);
+  LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,GameTertiaryDataPointer,GameTertiaryDataPointer + 4,GameTertiaryDataPointer + 8,
+                        (uint32_t *)(GameTertiaryDataPointer + 0xc),ConsoleWindowHandle);
   if (LoopCounter == 3) {
-    *(uint32_t *)(SystemTertiaryDataPointer + 0xc) = SystemFloatOneValue;
+    *(uint32_t *)(GameTertiaryDataPointer + 0xc) = SystemFloatOneValue;
   }
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
@@ -11857,7 +11857,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   void *pStackCounter4;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
-  ModuleInitializationResult = ProcessSystemInitializationData(SystemContextDataPointer,&SystemInitializationBuffer1);
+  ModuleInitializationResult = ProcessSystemInitializationData(GameSystemContextPointer,&SystemInitializationBuffer1);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -11880,7 +11880,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigC,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0xc,SystemTertiaryDataPointer,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigC,GameTertiaryDataPointer + 4,GameTertiaryDataPointer + 8,GameTertiaryDataPointer + 0xc,GameTertiaryDataPointer,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
@@ -11918,8 +11918,8 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     if (pcStack_28 != (char *)0x0) {
       pcVar4 = pcStack_28;
     }
-    ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigD,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0x10,
-                  SystemTertiaryDataPointer + 0x14,SystemTertiaryDataPointer + 0x18,SystemTertiaryDataPointer + 0x20,SystemTertiaryDataPointer + 0x24,SystemTertiaryDataPointer + 0x28);
+    ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigD,GameTertiaryDataPointer,GameTertiaryDataPointer + 4,GameTertiaryDataPointer + 8,GameTertiaryDataPointer + 0x10,
+                  GameTertiaryDataPointer + 0x14,GameTertiaryDataPointer + 0x18,GameTertiaryDataPointer + 0x20,GameTertiaryDataPointer + 0x24,GameTertiaryDataPointer + 0x28);
     pStackCounter4 = &SystemNullPointer;
     if (pcStack_28 != (char *)0x0) {
       CleanupSystemResources();
@@ -11960,10 +11960,10 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     if (pcStack_50 != (char *)0x0) {
       pcVar4 = pcStack_50;
     }
-    ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0xc,SystemTertiaryDataPointer + 0x10
-                  ,SystemTertiaryDataPointer + 0x14,SystemTertiaryDataPointer + 0x18,SystemTertiaryDataPointer + 0x1c,SystemTertiaryDataPointer + 0x20,SystemTertiaryDataPointer + 0x24,
-                  SystemTertiaryDataPointer + 0x28,SystemTertiaryDataPointer + 0x2c,SystemTertiaryDataPointer + 0x30,SystemTertiaryDataPointer + 0x34,SystemTertiaryDataPointer + 0x38,
-                  SystemTertiaryDataPointer + 0x3c,MemoryCounterValue,ConsoleWindowHandle);
+    ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,GameTertiaryDataPointer,GameTertiaryDataPointer + 4,GameTertiaryDataPointer + 8,GameTertiaryDataPointer + 0xc,GameTertiaryDataPointer + 0x10
+                  ,GameTertiaryDataPointer + 0x14,GameTertiaryDataPointer + 0x18,GameTertiaryDataPointer + 0x1c,GameTertiaryDataPointer + 0x20,GameTertiaryDataPointer + 0x24,
+                  GameTertiaryDataPointer + 0x28,GameTertiaryDataPointer + 0x2c,GameTertiaryDataPointer + 0x30,GameTertiaryDataPointer + 0x34,GameTertiaryDataPointer + 0x38,
+                  GameTertiaryDataPointer + 0x3c,MemoryCounterValue,ConsoleWindowHandle);
     pStackCounter3 = &SystemNullPointer;
     if (pcStack_50 != (char *)0x0) {
       CleanupSystemResources();
@@ -11986,8 +11986,8 @@ longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *
     }
     StringProcessingResultPointer = (uint64_t *)ProcessStringData(aStackCounter5,MemoryAddressValue);
     MemoryAddress = StringProcessingResultPointer[1];
-    *SystemTertiaryDataPointer = *StringProcessingResultPointer;
-    SystemTertiaryDataPointer[1] = MemoryAddress;
+    *GameTertiaryDataPointer = *StringProcessingResultPointer;
+    GameTertiaryDataPointer[1] = MemoryAddress;
     return MemoryAddressValue;
   }
   return 0;
@@ -12002,7 +12002,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   uint8_t SystemByteArray [8];
   StringProcessingResult = 0x180d48d24;
   if (!in_ZF) {
-    StringProcessingResult = SystemContextDataPointer;
+    StringProcessingResult = GameSystemContextPointer;
   }
   SystemContextData = (uint64_t *)ProcessStringData(SystemByteArray,StringProcessingResult);
   MemoryAddress = SystemContextData[1];
@@ -12048,7 +12048,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
     BufferSize = FlsAlloc(&SystemFlsConfigurationBuffer);
     SystemConfigBufferSize1 = BufferSize;
     *(uint64_t *)
-     (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x10) =
+     (*(longlong *)((longlong)GameThreadLocalStoragePointer + (ulonglong)GameThreadLocalStorageIndex * 8) + 0x10) =
          0x180bf4000;
     FlsSetValue(BufferSize);
   }
@@ -12072,7 +12072,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   FlsSetValue(SystemConfigBufferSize1,0);
   FlsFree(SystemConfigBufferSize1);
   ProcessSystemEvent(*(uint64_t *)
-                 (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+                 (*(longlong *)((longlong)GameThreadLocalStoragePointer + (ulonglong)GameThreadLocalStorageIndex * 8) +
                  0x10),1);
   if (SystemMemoryConfigFlag3 == 0) {
     ProcessBufferSize(&SystemMemoryConfigBuffer3);
@@ -12113,7 +12113,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
-  memcpy(&SystemConfigurationDataBuffer,SystemContextDataPointer,(longlong)(int)MemoryAddress);
+  memcpy(&SystemConfigurationDataBuffer,GameSystemContextPointer,(longlong)(int)MemoryAddress);
 }
   SystemConfigFlag10 = 0;
   return;
@@ -12183,7 +12183,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   return MemoryIndexValue;
 }
       SystemInitializationFlag = '\x01';
-      SystemContextDataPointer = SystemStackVariable_378;
+      GameSystemContextPointer = SystemStackVariable_378;
     }
     pfVar3 = afStack_2e8;
     MemoryDataPointer = 0;
@@ -12193,18 +12193,18 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       fVar28 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a8);
       ColorComponentA = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a4);
       fVar30 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a0);
-      fVar20 = fVar30 * *SystemTertiaryDataPointer + ColorComponentA * SystemTertiaryDataPointer[4] + fVar28 * SystemTertiaryDataPointer[8] + SystemTertiaryDataPointer[0xc];
-      fVar21 = fVar30 * SystemTertiaryDataPointer[1] + ColorComponentA * SystemTertiaryDataPointer[5] + fVar28 * SystemTertiaryDataPointer[9] + SystemTertiaryDataPointer[0xd];
-      ColorComponentG = fVar30 * SystemTertiaryDataPointer[2] + ColorComponentA * SystemTertiaryDataPointer[6] + fVar28 * SystemTertiaryDataPointer[10] + SystemTertiaryDataPointer[0xe];
-      ColorComponentA = fVar30 * SystemTertiaryDataPointer[3] + ColorComponentA * SystemTertiaryDataPointer[7] + fVar28 * SystemTertiaryDataPointer[0xb] + SystemTertiaryDataPointer[0xf];
+      fVar20 = fVar30 * *GameTertiaryDataPointer + ColorComponentA * GameTertiaryDataPointer[4] + fVar28 * GameTertiaryDataPointer[8] + GameTertiaryDataPointer[0xc];
+      fVar21 = fVar30 * GameTertiaryDataPointer[1] + ColorComponentA * GameTertiaryDataPointer[5] + fVar28 * GameTertiaryDataPointer[9] + GameTertiaryDataPointer[0xd];
+      ColorComponentG = fVar30 * GameTertiaryDataPointer[2] + ColorComponentA * GameTertiaryDataPointer[6] + fVar28 * GameTertiaryDataPointer[10] + GameTertiaryDataPointer[0xe];
+      ColorComponentA = fVar30 * GameTertiaryDataPointer[3] + ColorComponentA * GameTertiaryDataPointer[7] + fVar28 * GameTertiaryDataPointer[0xb] + GameTertiaryDataPointer[0xf];
       *(float *)((longlong)afStack_2e8 + MemoryDataPointer) = fVar20;
       *(float *)((longlong)afStack_2e8 + MemoryDataPointer + 4) = fVar21;
       *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer) = ColorComponentG;
       *(float *)((longlong)&SystemStackVariable_2e0 + MemoryDataPointer + 4) = ColorComponentA;
-      if (SystemSecondaryDataPointer != 0) {
+      if (GameSecondaryDataPointer != 0) {
         SystemStackVariable_378 = SystemStackVariable_378 & SystemMemoryAlignmentMask;
-        if (*(longlong *)(SystemSecondaryDataPointer + 0x2908) == 0) {
-          ProcessParameterValidation(SystemSecondaryDataPointer,pfVar3,0x31b189,&SystemStackVariable_378);
+        if (*(longlong *)(GameSecondaryDataPointer + 0x2908) == 0) {
+          ProcessParameterValidation(GameSecondaryDataPointer,pfVar3,0x31b189,&SystemStackVariable_378);
           fVar20 = (float)SystemStackVariable_378;
         }
         else {
@@ -12218,7 +12218,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           SystemStackVariable_360 = CONCAT44(ColorComponentA,ColorComponentG);
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
-          ProcessSystemParameters(SystemSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
+          ProcessSystemParameters(GameSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
@@ -12230,12 +12230,12 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       MemoryDataPointer = MemoryDataPointer + 0x10;
       SystemStateValue = SystemStateValue + -1;
     } while (SystemStateValue != 0);
-    fVar20 = SystemTertiaryDataPointer[0xe];
-    fVar21 = SystemTertiaryDataPointer[0xd];
-    ColorComponentG = SystemTertiaryDataPointer[0xc];
-    ColorComponentA = SystemTertiaryDataPointer[9];
-    fVar28 = SystemTertiaryDataPointer[8];
-    fVar30 = SystemTertiaryDataPointer[10];
+    fVar20 = GameTertiaryDataPointer[0xe];
+    fVar21 = GameTertiaryDataPointer[0xd];
+    ColorComponentG = GameTertiaryDataPointer[0xc];
+    ColorComponentA = GameTertiaryDataPointer[9];
+    fVar28 = GameTertiaryDataPointer[8];
+    fVar30 = GameTertiaryDataPointer[10];
     SystemStackVariable_36c = 0x7f7fffff;
     pfVar3 = afStack_2e8;
     MemoryDataPointer = 32;
@@ -12262,13 +12262,13 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       pfVar3 = pfVar3 + 4;
       MemoryDataPointer = MemoryDataPointer + -1;
     } while (MemoryDataPointer != 0);
-    if (SystemSecondaryDataPointer != 0) {
+    if (GameSecondaryDataPointer != 0) {
       pfVar3 = (float *)&SystemStackVariable_2e0;
       pfVar5 = afStack_2e8;
       do {
         SystemStackVariable_378 = SystemStackVariable_378 & SystemMemoryAlignmentMask;
-        if (*(longlong *)(SystemSecondaryDataPointer + 0x2908) == 0) {
-          ProcessParameterValidation(SystemSecondaryDataPointer,pfVar5,0x31b189,&SystemStackVariable_378);
+        if (*(longlong *)(GameSecondaryDataPointer + 0x2908) == 0) {
+          ProcessParameterValidation(GameSecondaryDataPointer,pfVar5,0x31b189,&SystemStackVariable_378);
           fVar20 = (float)SystemStackVariable_378;
         }
         else {
@@ -12282,7 +12282,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           SystemStackVariable_360 = *(uint64_t *)pfVar3;
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
-          ProcessSystemParameters(SystemSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
+          ProcessSystemParameters(GameSecondaryDataPointer,&SystemStackVariable_368,0,aSystemStackVariable_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
@@ -12301,7 +12301,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       if (NetworkRequestResult != 0x1f) {
         SystemStateValue = MemoryDataPointer + 1;
       }
-      if (((SystemContextDataPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
+      if (((GameSystemContextPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
          (NetworkRequestStatus = CalculateSystemValue((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)SystemSixthParameter,0),
                                 (double)SystemSeventhParameter), NetworkRequestStatus != '\0')) {
         fStack_370 = *(float *)(&SystemStackVariable_2e0 + SystemStateValue * 2) - *(float *)(&SystemStackVariable_2e0 + MemoryDataPointer * 2);
@@ -12309,14 +12309,14 @@ longlong SystemMemoryFree(longlong *memoryPtr)
                               afStack_2e8[SystemStateValue * 4] - afStack_2e8[MemoryDataPointer * 4]);
         SystemStackVariable_36c = 0x7f7fffff;
         SecurityKey380 = 0;
-        SecurityKey388 = CONCAT31(SecurityKey388._1_3_,SystemContextDataPointer1);
-        ProcessSystemValidation(SystemContextDataPointer,afStack_2e8 + MemoryDataPointer * 4,&SystemStackVariable_378,SystemEighthParameter);
+        SecurityKey388 = CONCAT31(SecurityKey388._1_3_,GameSystemContextPointer1);
+        ProcessSystemValidation(GameSystemContextPointer,afStack_2e8 + MemoryDataPointer * 4,&SystemStackVariable_378,SystemEighthParameter);
       }
       NetworkRequestResult = NetworkRequestResult + 1;
       MemoryDataPointer = MemoryDataPointer + 1;
     } while ((int)NetworkRequestResult < 0x20);
   }
-  StringIndex = _Mtx_unlock(SystemContextDataPointer);
+  StringIndex = _Mtx_unlock(GameSystemContextPointer);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
@@ -12324,7 +12324,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
 }
                     NetworkRequestStatusCounter = NetworkRequestStatusCounter + NetworkRequestStatus2;
                     if (NetworkRequestStatusCounter != '\0' && ValidationStatusByte7 == NetworkRequestStatusCounter < '\0') {
-                      out((short)SystemSecondaryDataPointer,LoopCounter1);
+                      out((short)GameSecondaryDataPointer,LoopCounter1);
                       halt_baddata();
                     }
                     in_OF = SCARRY1((char)*SystemContextPointer,NetworkRequestStatus4);
@@ -12349,7 +12349,7 @@ Label_180768051:
             in_RAX = (int *)CONCAT71((int7)((ulonglong)in_RAX >> 8),NetworkRequestStatus0 + NetworkRequestStatus4);
 Label_180768028_1:
             pStringIndex = (int *)(((ulonglong)in_RAX & SystemAddressAlignment32Mask) - 0x75);
-            *pStringIndex = *pStringIndex + (int)SystemContextDataPointer;
+            *pStringIndex = *pStringIndex + (int)GameSystemContextPointer;
             *(int *)(((ulonglong)in_RAX & SystemAddressAlignment32Mask) - 0x17ffffff) = (int)SystemContextData3;
             halt_baddata();
           }
@@ -12362,12 +12362,12 @@ Label_180768028_1:
 Label_18076802d:
   UnsignedValue = *(uint64_t *)(pNetworkRequestStatus3 + 0x1a0);
   *(uint8_t **)((longlong)register0x00000020 + -8) = &Label_180768039;
-  ProcessSystemOperation(UnsignedValue,pNetworkRequestStatus5,SystemTertiaryDataPointer,SystemQuaternaryDataPointer);
+  ProcessSystemOperation(UnsignedValue,pNetworkRequestStatus5,GameTertiaryDataPointer,SystemQuaternaryDataPointer);
 }
     SystemConfigurationStatusFlag = '\x01';
   }
-  if (SystemTertiaryDataPointer != (int *)0x0) {
-    *SystemTertiaryDataPointer = ((SystemSecondaryDataPointer + 1) / 2) * 0x48d0;
+  if (GameTertiaryDataPointer != (int *)0x0) {
+    *GameTertiaryDataPointer = ((GameSecondaryDataPointer + 1) / 2) * 0x48d0;
   }
   if (SystemQuaternaryDataPointer != (uint32_t *)0x0) {
     *SystemQuaternaryDataPointer = 0x480;
@@ -12471,7 +12471,7 @@ uint64_t SystemDataInitialize(int initFlags)
   pLoopCounter2 = (int *)0x180be5774;
   SecondaryColorProcessingPointer = (float *)SystemColorProcessingStartAddress;
   SystemConfigurationDataAddress = SystemColorProcessingStartAddress;
-  SystemContextDataPointer = -SystemContextDataPointer;
+  GameSystemContextPointer = -GameSystemContextPointer;
   LoopCounter8 = 2;
   LoopCounter7 = 0x100;
   ModuleInitializationResult5 = 0x140;
@@ -12479,7 +12479,7 @@ uint64_t SystemDataInitialize(int initFlags)
   do {
     MemoryAddress6 = MemoryAddress3;
     if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-      ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)SystemContextDataPointer;
+      ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)GameSystemContextPointer;
       *SecondaryColorProcessingPointer = ColorComponentA;
       SecondaryColorProcessingPointer[16] = ColorComponentA;
     }
@@ -12487,9 +12487,9 @@ uint64_t SystemDataInitialize(int initFlags)
     if (((byte)MemoryAddress6 & 0x1f) != 0x1f) {
       pfVar5 = SecondaryColorProcessingPointer;
     }
-    LoopCounterValue = -SystemContextDataPointer;
+    LoopCounterValue = -GameSystemContextPointer;
     if (((byte)MemoryAddress6 & 0x3f) != 0x3f) {
-      LoopCounterValue = SystemContextDataPointer;
+      LoopCounterValue = GameSystemContextPointer;
     }
     if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
@@ -12602,9 +12602,9 @@ uint64_t SystemDataInitialize(int initFlags)
       SecondaryColorProcessingPointer[32] = ColorComponentA;
       SecondaryColorProcessingPointer[0x30] = ColorComponentA;
     }
-    SystemContextDataPointer = -LoopCounterValue;
+    GameSystemContextPointer = -LoopCounterValue;
     if ((CharValue + 5 & 0x3f) != 0x3f) {
-      SystemContextDataPointer = LoopCounterValue;
+      GameSystemContextPointer = LoopCounterValue;
     }
     MemoryAddressValue = -0xefc;
     if ((CharValue + 5 & 0x1f) != 0x1f) {
@@ -12622,7 +12622,7 @@ uint64_t SystemDataInitialize(int initFlags)
       LoopCounter7 = (0x3f - (0x1fc - MemoryAddress3 >> 2)) * 4;
       do {
         if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-          ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)SystemContextDataPointer;
+          ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)GameSystemContextPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;
         }
@@ -12638,9 +12638,9 @@ uint64_t SystemDataInitialize(int initFlags)
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffc0) + 1;
         }
-        LoopCounter8 = -SystemContextDataPointer;
+        LoopCounter8 = -GameSystemContextPointer;
         if (StringProcessingResult != 0x3f) {
-          LoopCounter8 = SystemContextDataPointer;
+          LoopCounter8 = GameSystemContextPointer;
         }
         if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)pLoopCounter2[1] * 1.5258789e-05 * (float)LoopCounter8;
@@ -12701,9 +12701,9 @@ uint64_t SystemDataInitialize(int initFlags)
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffc0) + 1;
         }
-        SystemContextDataPointer = -LoopCounter8;
+        GameSystemContextPointer = -LoopCounter8;
         if (StringProcessingResult != 0x3f) {
-          SystemContextDataPointer = LoopCounter8;
+          GameSystemContextPointer = LoopCounter8;
         }
         StringProcessingResult = MemoryAddress6 + 1 & 0x8000001f;
         if ((int)StringProcessingResult < 0) {
@@ -12723,7 +12723,7 @@ uint64_t SystemDataInitialize(int initFlags)
       pLoopCounter2 = (int *)((longlong)LoopCounter7 * 4 + 0x180be5770);
       do {
         if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-          ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)SystemContextDataPointer;
+          ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)GameSystemContextPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;
         }
@@ -12742,11 +12742,11 @@ uint64_t SystemDataInitialize(int initFlags)
         pLoopCounter2 = pLoopCounter2 + -1;
         MemoryAddress3 = MemoryAddress3 + 1;
         SecondaryColorProcessingPointer = pfVar5 + 0x20;
-        LoopCounter8 = -SystemContextDataPointer;
+        LoopCounter8 = -GameSystemContextPointer;
         if (MemoryAddress6 != 0x3f) {
-          LoopCounter8 = SystemContextDataPointer;
+          LoopCounter8 = GameSystemContextPointer;
         }
-        SystemContextDataPointer = LoopCounter8;
+        GameSystemContextPointer = LoopCounter8;
       } while ((int)MemoryAddress3 < 0x200);
     }
   }
@@ -13213,33 +13213,33 @@ int SystemAudioProcessData(uint32_t AudioBufferPointer,byte *AudioDataPointer)
   if (SystemProcessingEnabledFlag == '\0') {
     return -0x7f6dfffb;
   }
-  if (SystemSecondaryDataPointer == (byte *)0x0) {
+  if (GameSecondaryDataPointer == (byte *)0x0) {
     return -0x7f6dffff;
   }
   StringIndex = GetLoopCounter();
   if (StringIndex != 0) {
     return -0x7f6dff01;
   }
-  StringIndex = GetStringIndex(SystemContextDataPointer);
+  StringIndex = GetStringIndex(GameSystemContextPointer);
   if (StringIndex < 0) {
     ClearSystemBuffer();
     return -0x7f6dfffd;
   }
-  MemoryIndexValue = GetMemoryIndex(SystemContextDataPointer,0);
+  MemoryIndexValue = GetMemoryIndex(GameSystemContextPointer,0);
   if (MemoryIndexValue != 0) {
     NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(MemoryIndexValue + 2),*(uint16_t *)(MemoryIndexValue + 4));
-    if ((((NetworkRequestStatus == '\0') && (*SystemSecondaryDataPointer < 0xd)) && (SystemSecondaryDataPointer[1] < 0xd)) && (SystemSecondaryDataPointer[2] < 0xd)) {
+    if ((((NetworkRequestStatus == '\0') && (*GameSecondaryDataPointer < 0xd)) && (GameSecondaryDataPointer[1] < 0xd)) && (GameSecondaryDataPointer[2] < 0xd)) {
       ClearSystemBuffer();
       return -0x7f6dfffa;
     }
-    StringIndex = ProcessStringIndex(SystemContextDataPointer,SystemSecondaryDataPointer);
+    StringIndex = ProcessStringIndex(GameSystemContextPointer,GameSecondaryDataPointer);
     if (-1 < StringIndex) {
-      *(byte *)(MemoryIndexValue + 0x23e8) = *SystemSecondaryDataPointer;
-      *(byte *)(MemoryIndexValue + 0x23e9) = SystemSecondaryDataPointer[1];
-      *(byte *)(MemoryIndexValue + 0x23ea) = SystemSecondaryDataPointer[2];
-      *(byte *)(MemoryIndexValue + 0x23ec) = *SystemSecondaryDataPointer;
-      *(byte *)(MemoryIndexValue + 0x23ed) = SystemSecondaryDataPointer[1];
-      *(byte *)(MemoryIndexValue + 0x23ee) = SystemSecondaryDataPointer[2];
+      *(byte *)(MemoryIndexValue + 0x23e8) = *GameSecondaryDataPointer;
+      *(byte *)(MemoryIndexValue + 0x23e9) = GameSecondaryDataPointer[1];
+      *(byte *)(MemoryIndexValue + 0x23ea) = GameSecondaryDataPointer[2];
+      *(byte *)(MemoryIndexValue + 0x23ec) = *GameSecondaryDataPointer;
+      *(byte *)(MemoryIndexValue + 0x23ed) = GameSecondaryDataPointer[1];
+      *(byte *)(MemoryIndexValue + 0x23ee) = GameSecondaryDataPointer[2];
       ClearSystemBuffer();
       return StringIndex;
     }
@@ -13302,7 +13302,7 @@ uint64_t SystemAudioGetDevice(void)
   return 0x809200ff;
 }
           SystemCharacterCounter = CharValue;
-          *SystemSecondaryDataPointer = IntegerCounter;
+          *GameSecondaryDataPointer = IntegerCounter;
           *(int *)(MemoryAddressValue + 0x10) = IntegerCounter;
           *(int *)(MemoryAddressValue + 0x18) = IntegerCounter;
           ProcessMemoryAddressValue(MemoryAddressValue);
@@ -13319,7 +13319,7 @@ uint64_t SystemAudioGetDevice(void)
   }
   IntegerCounter = (uint)CharValue * 0x100 + IntegerCounter;
   SystemCharacterCounter = CharValue;
-  *SystemSecondaryDataPointer = IntegerCounter;
+  *GameSecondaryDataPointer = IntegerCounter;
   *pStringIndex = IntegerCounter;
   pStringIndex[2] = IntegerCounter;
   ProcessMemoryAddressValue(pStringIndex + -4);
@@ -13355,20 +13355,20 @@ uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,
   BitMask = 0;
   IntegerCounter = 0;
   IntegerResult = IntegerCounter;
-  if (0 < SystemTertiaryDataPointer) {
+  if (0 < GameTertiaryDataPointer) {
     do {
-      ValidationStatusByte = (byte)SystemSecondaryDataPointer & 7;
-      IntegerResult = SystemSecondaryDataPointer;
-      if (SystemSecondaryDataPointer < 0) {
-        IntegerResult = SystemSecondaryDataPointer + 7;
+      ValidationStatusByte = (byte)GameSecondaryDataPointer & 7;
+      IntegerResult = GameSecondaryDataPointer;
+      if (GameSecondaryDataPointer < 0) {
+        IntegerResult = GameSecondaryDataPointer + 7;
         ValidationStatusByte = ValidationStatusByte - 8;
       }
-      SystemSecondaryDataPointer = SystemSecondaryDataPointer + 1;
-      BitMask = *(byte *)((IntegerResult >> 3) + SystemContextDataPointer) >> (ValidationStatusByte & 0x1f) & 1;
+      GameSecondaryDataPointer = GameSecondaryDataPointer + 1;
+      BitMask = *(byte *)((IntegerResult >> 3) + GameSystemContextPointer) >> (ValidationStatusByte & 0x1f) & 1;
       IntegerResult = IntegerCounter + 1;
       MemoryAllocationResult = MemoryAllocationResult | BitMask << ((byte)IntegerCounter & 0x1f);
       IntegerCounter = IntegerResult;
-    } while (IntegerResult < SystemTertiaryDataPointer);
+    } while (IntegerResult < GameTertiaryDataPointer);
   }
   if (((SystemQuaternaryDataPointer != '\0') && (BitMask != 0)) && (IntegerResult < 0x20)) {
     ValidationStatusByte = (byte)IntegerResult & 0x1f;
@@ -13401,12 +13401,12 @@ uint32_t SystemProcessAudioData(byte AudioFormatParameter,byte *AudioDataPointer
   uint *pMemoryAddress;
   byte ValidationStatusByte;
   uint StringProcessingResult;
-  SystemTertiaryDataPointer = SystemTertiaryDataPointer + -4;
-  pMemoryAddress = (uint *)(SystemSecondaryDataPointer + SystemTertiaryDataPointer);
-  StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~SystemContextDataPointer * 4) ^ 0xffffff;
-  for (; 0 < SystemTertiaryDataPointer; SystemTertiaryDataPointer = SystemTertiaryDataPointer + -1) {
-    ValidationStatusByte = *SystemSecondaryDataPointer;
-    SystemSecondaryDataPointer = SystemSecondaryDataPointer + 1;
+  GameTertiaryDataPointer = GameTertiaryDataPointer + -4;
+  pMemoryAddress = (uint *)(GameSecondaryDataPointer + GameTertiaryDataPointer);
+  StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~GameSystemContextPointer * 4) ^ 0xffffff;
+  for (; 0 < GameTertiaryDataPointer; GameTertiaryDataPointer = GameTertiaryDataPointer + -1) {
+    ValidationStatusByte = *GameSecondaryDataPointer;
+    GameSecondaryDataPointer = GameSecondaryDataPointer + 1;
     StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)(ValidationStatusByte ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
@@ -13436,26 +13436,26 @@ float * SystemProcessAudioBuffer(float *InputBufferPointer,float *OutputBufferPo
   float InputSample6;
   float InputSample7;
   float InputSample8;
-  InputSample1 = *SystemTertiaryDataPointer;
-  InputSample2 = SystemContextDataPointer[3];
-  InputSample3 = SystemContextDataPointer[1];
-  InputSample4 = *SystemContextDataPointer;
-  InputSample5 = SystemTertiaryDataPointer[1];
-  InputSample6 = SystemContextDataPointer[2];
-  InputSample7 = SystemTertiaryDataPointer[2];
-  InputSample8 = SystemTertiaryDataPointer[3];
-  *SystemSecondaryDataPointer = (InputSample4 * InputSample8 + InputSample1 * InputSample2 + InputSample3 * InputSample7) - InputSample6 * InputSample5;
-  SystemSecondaryDataPointer[1] = (InputSample3 * InputSample8 + InputSample5 * InputSample2 + InputSample6 * InputSample1) - InputSample7 * InputSample4;
-  SystemSecondaryDataPointer[3] = ((InputSample8 * InputSample2 - InputSample4 * InputSample1) - InputSample5 * InputSample3) - InputSample6 * InputSample7;
-  SystemSecondaryDataPointer[2] = (InputSample6 * InputSample8 + InputSample7 * InputSample2 + InputSample5 * InputSample4) - InputSample3 * InputSample1;
-  return SystemSecondaryDataPointer;
+  InputSample1 = *GameTertiaryDataPointer;
+  InputSample2 = GameSystemContextPointer[3];
+  InputSample3 = GameSystemContextPointer[1];
+  InputSample4 = *GameSystemContextPointer;
+  InputSample5 = GameTertiaryDataPointer[1];
+  InputSample6 = GameSystemContextPointer[2];
+  InputSample7 = GameTertiaryDataPointer[2];
+  InputSample8 = GameTertiaryDataPointer[3];
+  *GameSecondaryDataPointer = (InputSample4 * InputSample8 + InputSample1 * InputSample2 + InputSample3 * InputSample7) - InputSample6 * InputSample5;
+  GameSecondaryDataPointer[1] = (InputSample3 * InputSample8 + InputSample5 * InputSample2 + InputSample6 * InputSample1) - InputSample7 * InputSample4;
+  GameSecondaryDataPointer[3] = ((InputSample8 * InputSample2 - InputSample4 * InputSample1) - InputSample5 * InputSample3) - InputSample6 * InputSample7;
+  GameSecondaryDataPointer[2] = (InputSample6 * InputSample8 + InputSample7 * InputSample2 + InputSample5 * InputSample4) - InputSample3 * InputSample1;
+  return GameSecondaryDataPointer;
 }
 uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParameterPointer)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = GetMemoryIndex(SystemContextDataPointer,0);
+  ModuleInitializationResult = GetMemoryIndex(GameSystemContextPointer,0);
   if (ModuleInitializationResult != 0) {
-    *SystemSecondaryDataPointer = *(uint32_t *)(ModuleInitializationResult + 100);
+    *GameSecondaryDataPointer = *(uint32_t *)(ModuleInitializationResult + 100);
     return 0;
   }
   return 0x8001002d;
@@ -13512,7 +13512,7 @@ uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParam
       }
     }
     if (SystemDebugFlag == '\0') {
-      SetLastError(SystemSecondaryDataPointer & 0xffffffff);
+      SetLastError(GameSecondaryDataPointer & 0xffffffff);
       goto Label_1808fa963;
     }
   }
@@ -13527,21 +13527,21 @@ SystemValidationHandler:
       }
       SystemBooleanFlag2 = SystemBooleanFlag1 == '\0';
       if (FileSystemHandle == 0) {
-        MemoryAddressValue = _wfsopen(SystemContextDataPointer,&SystemFileOpenMode,0x40);
+        MemoryAddressValue = _wfsopen(GameSystemContextPointer,&SystemFileOpenMode,0x40);
         if (MemoryAddressValue == 0) {
-          ProcessSystemBuffer(&SystemBufferName1,0xc1,&SystemBufferName2,&SystemBufferName3,SystemContextDataPointer);
+          ProcessSystemBuffer(&SystemBufferName1,0xc1,&SystemBufferName2,&SystemBufferName3,GameSystemContextPointer);
           CharValue0 = false;
         }
         else {
           fclose(MemoryAddressValue);
-          HandleSystemOperation(&SystemBufferName1,200,&SystemBufferName2,&SystemBufferName4,SystemContextDataPointer);
-          MemoryDataPointer = _wcsdup(SystemContextDataPointer);
+          HandleSystemOperation(&SystemBufferName1,200,&SystemBufferName2,&SystemBufferName4,GameSystemContextPointer);
+          MemoryDataPointer = _wcsdup(GameSystemContextPointer);
           MemoryAddressValue = -1;
           if (MemoryDataPointer != 0) {
             do {
               SystemStateValue = MemoryAddressValue;
               MemoryAddressValue = SystemStateValue + 1;
-            } while (*(short *)(SystemContextDataPointer + 2 + SystemStateValue * 2) != 0);
+            } while (*(short *)(GameSystemContextPointer + 2 + SystemStateValue * 2) != 0);
             MemoryAddressValue = SystemStateValue;
             while( true ) {
               MemoryAddressPointer = 0;
@@ -13573,7 +13573,7 @@ Label_1808fbdeb:
               if (FileSystemHandle != 0) {
                 pUnsignedIndex = &SystemIndexName1;
                 MemoryAllocationResult = 0xeb;
-                SystemContextDataPointer = MemoryAddressValue;
+                GameSystemContextPointer = MemoryAddressValue;
                 goto Label_1808fbebe;
               }
               IntegerCounter = IntegerCounter + 1;
@@ -13582,7 +13582,7 @@ Label_1808fbdeb:
             pUnsignedIndex = &SystemIndexName2;
             MemoryAllocationResult = 0xef;
 Label_1808fbebe:
-            ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex,SystemContextDataPointer);
+            ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex,GameSystemContextPointer);
             free(MemoryDataPointer);
             free(MemoryAddressValue);
           }
@@ -13590,7 +13590,7 @@ Label_1808fbebe:
         }
       }
       else {
-        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&SystemCommandBuffer01,SystemContextDataPointer);
+        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&SystemCommandBuffer01,GameSystemContextPointer);
         CharValue0 = true;
       }
       return CharValue0;
@@ -13787,8 +13787,8 @@ Label_1808fbebe:
   return 1;
 }
     SystemStringProcessingFlag = '\x01';
-    wcscpy_s(StackLoopLimitBuffer,0x104,SystemContextDataPointer);
-    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(StackLoopLimitBuffer,0x104,SystemSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
+    wcscpy_s(StackLoopLimitBuffer,0x104,GameSystemContextPointer);
+    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(StackLoopLimitBuffer,0x104,GameSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
       FinalizeSystemOperation(StackLoopLimitBuffer,0);
     }
     _set_invalid_parameter_handler(MemoryAddress);
@@ -13826,14 +13826,14 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
   int ValidationCounter;
   uint64_t NetworkRequestResult;
   if (SystemInitializationCompleteFlag == '\0') {
-    if (1 < SystemContextDataPointer) {
+    if (1 < GameSystemContextPointer) {
       ProcessSystemCleanup(5);
       NetworkRequestStatusPointer = (code *)swi(3);
       NetworkRequestResult = (*NetworkRequestStatusPointer)();
       return NetworkRequestResult;
     }
     ValidationCounter = GetValidationStatus();
-    if ((IntegerCounter == 0) || (SystemContextDataPointer != 0)) {
+    if ((IntegerCounter == 0) || (GameSystemContextPointer != 0)) {
       ValidationStatusByte = 0x40 - ((byte)SystemSecurityMask & 0x3f) & 0x3f;
       SystemInitializationBuffer = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;
       SystemInitializationBuffer = SystemInitializationBuffer;
@@ -13858,7 +13858,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
  * 该函数负责计算内存地址的映射关系，遍历映像节头表来找到指定地址
  * 对应的物理地址和虚拟地址映射。主要用于内存管理和地址转换。
  * 
- * @param SystemContextDataPointer 输入的内存地址参数
+ * @param GameSystemContextPointer 输入的内存地址参数
  * @return 计算后的内存地址映射结果
  * 
  * @note 此函数处理PE文件格式的节头映射
