@@ -27512,11 +27512,11 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&SystemValidationWordA);
   if (iterationCount == 0) {
     // 初始化异常缓冲区和资源验证
-    exceptionBuffer6 = (DataBuffer *)(dataBuffer + 8);
+    exceptionBuffer6 = (DataBuffer *)(dataBuffer + SystemContextDataOffset8);
     SystemResourceValidationWord = 0;
     SystemresourcePointerBuffer = exceptionBuffer6;
     // 执行异常缓冲区操作
-    bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionBuffer6);
+    bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionBuffer6);
     // 验证系统资源完整性
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + BufferPointerOffsetD0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
@@ -84723,13 +84723,13 @@ void SetTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 void SetTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 8) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + SystemContextDataOffset8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + ExceptionHandlerCallbackOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ExceptionHandlerCallbackOffset) = 0;
   *(DataWord *)(dataBuffer + MemoryPointerOffset) = 0;
-  *(DataBuffer *)(dataBuffer + 8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + SystemContextDataOffset8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
