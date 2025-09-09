@@ -187,6 +187,8 @@ typedef enum {
 // UI系统全局数据
 #define _DAT_180c0c6e8 GlobalUIComponentInstanceE8        // 全局UI组件实例E8
 #define _DAT_180be12f0 GlobalUIResourceManagerF0         // 全局UI资源管理器F0
+#define UIContextHandleTable180954878 UIContextHandleTable878  // UI上下文句柄表878
+#define UIComponentTypeTable1809535e0 UIComponentTypeTable5E0  // UI组件类型表5E0
 
 // 未美化函数名语义化定义
 #define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
@@ -104135,7 +104137,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
     } while (CharacterDataOffset < contextOffset);
   }
   if (*(char *)(targetBuffer + 0x1d) == '\x02') {
-    stackInt468 = (int)*(short *)(&UIComponentTypeTable1809535e0 + (longlong)*(char *)(targetBuffer + 0x21) * 2);
+    stackInt468 = (int)*(short *)(&UIComponentTypeTable5E0 + (longlong)*(char *)(targetBuffer + 0x21) * 2);
   }
   uiCompareResult = *(int *)(uiBufferData + 0x11e4);
   if (0 < (longlong)uiCompareResult) {
@@ -106108,7 +106110,7 @@ void ProcessUIComponentData(void)
   ulonglong stackParam00000070;
   
   ValidateUIContextParameters(*(UIWord *)(contextHandle + 0xae2),*(UIByte *)(contextHandle + 0xae4));
-  componentIndex = *(longlong *)(&UIContextHandleTable180954878 + (longlong)*(char *)(contextHandle + 0xae8) * 8);
+  componentIndex = *(longlong *)(&UIContextHandleTable878 + (longlong)*(char *)(contextHandle + 0xae8) * 8);
   if (allocationFlags < *(int *)(contextHandle + 0x914)) {
     plocalChar5 = (char *)(contextHandle + 0xacc);
     psVar4 = (short *)(SourceHandle + 0x62);
@@ -106126,7 +106128,7 @@ void ProcessUIComponentData(void)
     } while (allocationFlags < *(int *)(contextHandle + 0x914));
   }
   *(int *)(SourceHandle + 0x88) =
-       (int)*(short *)(&UIComponentTypeTable1809535e0 + (longlong)*(char *)(contextHandle + 0xae9) * 2);
+       (int)*(short *)(&UIComponentTypeTable5E0 + (longlong)*(char *)(contextHandle + 0xae9) * 2);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000070 ^ (ulonglong)&stack0x00000000);
 }
@@ -106389,22 +106391,22 @@ void CalculateAudioSignalAmplitudeAndEnergy(int *uiContext,int *dataSource,short
 
 
 
- void FUN_18072aa3e(int *uiContext,int *dataSource,short *targetBuffer,int bufferSize)
-void FUN_18072aa3e(int *uiContext,int *dataSource,short *targetBuffer,int bufferSize)
+ void ProcessUIIntegerDataValidation(int *uiContext,int *dataSource,short *targetBuffer,int bufferSize)
+void ProcessUIIntegerDataValidation(int *uiContext,int *dataSource,short *targetBuffer,int bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint EventTypeCode;
-  byte bVar4;
-  uint unmodifiedEBX;
+  short *shortPointer1;
+  short shortValue2;
+  uint eventTypeCode;
+  byte byteValue4;
+  uint unmodifiedRegister;
   ulonglong loopCounter;
   uint maxProcessingCount;
-  short *psVar7;
+  short *shortPointer7;
   int localInt8;
   int localInt9;
   int processedCount;
-  int ProcessingResult1;
+  int processingResult1;
   
   if (bufferSize == 0) {
     localInt9 = 0x20;
@@ -112011,7 +112013,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
     localInt9 = 0;
     uiCompareResult = 0;
     loopCounter = *bufferSize;
-    stackUInt50 = *(UIHandle *)(&UIContextHandleTable180954878 + stackLong68);
+    stackUInt50 = *(UIHandle *)(&UIContextHandleTable878 + stackLong68);
     stackUInt58 = *(UIHandle *)(&UNK_180954890 + stackLong68);
     stackInt84 = (int)*pcStack_70;
     if (0 < (int)param_9) {
@@ -112053,7 +112055,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
     stackLong68 = stackLong68 + 8;
     pcStack_70 = pcStack_70 + 1;
     if (2 < stackInt88) {
-      contextHandleData = *(longlong *)(&UIContextHandleTable180954878 + (longlong)*targetBuffer * 8);
+      contextHandleData = *(longlong *)(&UIContextHandleTable878 + (longlong)*targetBuffer * 8);
       if (0 < (int)param_9) {
         processingCounter = (ulonglong)param_9;
         do {
@@ -189609,6 +189611,13 @@ undefined UIConfigDataTable34f0;
 undefined UIConfigDataTable34f4;
 undefined UIResourceDataTable1744;
 
+// UI系统缺失变量语义化定义
+#define DAT_180a06430 UIParameterBuffer6430
+#define DAT_180c108d8 UIProcessingStatusTableD8
+#define DAT_180c108e0 UIProcessingStatusTableE0
+#define DAT_180c10a70 UIResourcePointerA70
+#define DAT_180c11744 UIDataTable11744
+
  undefined FUN_18079cd20;
 undefined FUN_18079cd20;
 undefined UIConfigDataTable3650;
@@ -200065,8 +200074,8 @@ void FUN_180785c80(longlong uiContext)
 
 
 
- void FUN_180785cba(void)
-void FUN_180785cba(void)
+ void ProcessUIContextDataHandlerAlternative(void)
+void ProcessUIContextDataHandlerAlternative(void)
 
 {
   longlong BasePointer;
@@ -200101,20 +200110,20 @@ void FUN_180785cba(void)
 
 
 
- void FUN_180785d56(void)
-void FUN_180785d56(void)
+ void ResetUIHandleData(void)
+void ResetUIHandleData(void)
 
 {
-  UIDword *SourceHandle;
-  UIDword *register9;
-  longlong EventHandle;
-  ulonglong stackParam00000058;
+  UIDword *uiSourceHandle;
+  UIDword *uiRegister9;
+  longlong uiEventHandle;
+  ulonglong uiStackParameter;
   
-  if (EventHandle != 0) {
-    *register9 = 0;
+  if (uiEventHandle != 0) {
+    *uiRegister9 = 0;
   }
-  if (SourceHandle != (UIDword *)0x0) {
-    *SourceHandle = 0;
+  if (uiSourceHandle != (UIDword *)0x0) {
+    *uiSourceHandle = 0;
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam00000058 ^ (ulonglong)&stack0x00000000);
