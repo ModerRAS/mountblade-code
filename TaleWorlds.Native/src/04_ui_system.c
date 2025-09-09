@@ -28735,15 +28735,15 @@ void InitializeUIRenderingFunctions(void)
     UIDataBufferPtr = (UIFunctionPtr *)&UIDataBufferFallbackImplementation;
   }
   UIComponentPoolPtr = &UIComponentPoolMainImplementation;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIComponentPoolPtr = &UIComponentPoolFallbackImplementation;
   }
   UIResourcePoolPtr = &UIResourcePoolMainImplementation;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIResourcePoolPtr = &UIResourcePoolFallbackImplementation;
   }
   g_uiSystemEventDispatcher = InitializeUIEventDispatcher;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemEventDispatcher = (UIFunctionPtr *)&UISystemEventDispatcherFallbackImplementation;
   }
   g_uiSystemStateUpdater = InitializeUIStateUpdater;
