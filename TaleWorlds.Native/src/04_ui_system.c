@@ -88952,7 +88952,7 @@ UIDword GetUIRenderFlagsAndStatus(void)
   UIDword stackFramePointer;
   uint eventProcessingCounter;
   longlong sourceHandle;
-  ulonglong registerR15;
+  ulonglong preservedRegister15;
   int stackParameter80;
   
   eventProcessingCounter = (uint)SourceHandle;
