@@ -99930,7 +99930,7 @@ void ProcessUIContextData(void)
   int preservedRegister15D;
   ulonglong stackParameter50;
   
-  plocalChar5 = (char *)(contextHandle + 0xad1);
+  characterBufferPtr = (char *)(contextHandle + 0xad1);
   do {
     uiCompareResult = ReadUIData();
     if (uiCompareResult == 0) {
@@ -99941,10 +99941,10 @@ void ProcessUIContextData(void)
       uiCompareResult = ReadUIData();
       uiCompareResult = uiCompareResult + 8;
     }
-    unmodifiedEBP = unmodifiedEBP + 1;
-    *plocalChar5 = (char)uiCompareResult + -4;
-    plocalChar5 = plocalChar5 + 1;
-  } while (unmodifiedEBP < *(short *)(*(longlong *)(contextHandle + 0xac0) + 2));
+    loopCounter = loopCounter + 1;
+    *characterBufferPtr = (char)uiCompareResult + -4;
+    characterBufferPtr = characterBufferPtr + 1;
+  } while (loopCounter < *(short *)(*(longlong *)(contextHandle + 0xac0) + 2));
   if (*(int *)(contextHandle + 0x914) == 4) {
     result = ReadUIData();
   }
