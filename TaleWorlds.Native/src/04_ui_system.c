@@ -160501,14 +160501,14 @@ UIHandle ProcessUIComponentDataSource(longlong uiContext,uint dataSource,UIDword
     return 0;
   }
   do {
-    pallocatedMemory = *(longlong **)(*(longlong *)(uiBufferData + 0x20) + allocatedMemory4 * 8);
-    piterationCount = (ulonglong *)pallocatedMemory[6];
-    stringCompareIndex = pallocatedMemory[0xc];
-    *pallocatedMemory = pallocatedMemory[1];
-    *(UIByte *)((longlong)pallocatedMemory + 0x29) = *(UIByte *)((longlong)piterationCount + 0x29);
-    if (*(uint *)((longlong)piterationCount + 0x24) == 0) {
-      ResultValue3 = 0;
-      *(UIDword *)((longlong)pallocatedMemory + 0x24) = 0;
+    allocatedMemoryPointer = *(longlong **)(*(longlong *)(uiBufferData + 0x20) + allocatedMemoryIndex * 8);
+    iterationCounterPointer = (ulonglong *)allocatedMemoryPointer[6];
+    stringCompareIndex = allocatedMemoryPointer[0xc];
+    *allocatedMemoryPointer = allocatedMemoryPointer[1];
+    *(UIByte *)((longlong)allocatedMemoryPointer + 0x29) = *(UIByte *)((longlong)iterationCounterPointer + 0x29);
+    if (*(uint *)((longlong)iterationCounterPointer + 0x24) == 0) {
+      dataSourceValue = 0;
+      *(UIDword *)((longlong)allocatedMemoryPointer + 0x24) = 0;
     }
     else {
       localInt7 = (int)ResultValue3;
