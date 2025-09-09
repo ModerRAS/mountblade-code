@@ -9895,12 +9895,12 @@ void ProcessUIComponentCallbacks(longlong uiContext,longlong dataSource,longlong
   }
   else {
     iterationCount = &UIDefaultDataBuffer;
-    if *(UIDataBuffer **)(dataSource + 8) != (UIDataBuffer *)0x0) {
+    if (*(UIDataBuffer **)(dataSource + 8) != (UIDataBuffer *)0x0) {
       iterationCount = *(UIDataBuffer **)(dataSource + 8);
     }
     targetBufferHandle = &UIDefaultDataBuffer;
-    if (*(undefined **)(targetBuffer + 8) != (undefined *)0x0) {
-      targetBufferHandle = *(undefined **)(targetBuffer + 8);
+    if (*(UIDataBuffer **)(targetBuffer + 8) != (UIDataBuffer *)0x0) {
+      targetBufferHandle = *(UIDataBuffer **)(targetBuffer + 8);
     }
     (*controllerMethod)(iterationCount,targetBufferHandle,UIEventContext,UIRenderContext);
   }
