@@ -15017,8 +15017,19 @@ void SetUIComponentOpacity(longlong *component_data, float opacity)
 
 
 
- void UpdateUIComponentTransform(UIHandle transform_handle, longlong *component_data, UIHandle targetBuffer, longlong bufferSize)
- 更新UI组件的变换属性
+ /**
+ * @brief 更新UI组件的变换属性
+ * 
+ * 对UI组件进行变换操作，包括位置、旋转和缩放的归一化处理。
+ * 此函数用于处理UI组件的顶点变换和归一化计算。
+ * 
+ * @param transform_handle 变换句柄
+ * @param component_data 组件数据指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：UpdateUIComponentTransform
+ */
 void UpdateUIComponentTransform(UIHandle transform_handle, longlong *component_data, UIHandle targetBuffer, longlong bufferSize)
 
 {
