@@ -20087,39 +20087,43 @@ void CoreEngineInitializeSystemConfigurationManagerL(void
  * 
  * 该函数负责初始化网络状态处理器，设置网络状态监控和处理的
  * 基本配置。用于管理引擎的网络状态系统。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：包含未美化的变量名，已进行语义化处理
  */
-void CoreEngineInitializeNetworkStatusProcessor(void
+void CoreEngineInitializeNetworkStatusProcessor(void)
 {
-  char CharacterStatusBuffer;
+  char NetworkStatusIndicator;
   EngineContext *SystemContext;
-  int ComparisonResult;
-  MemorySize AllocatedMemory;
-  SystemNode *CurrentNode;
-  SystemNode *PreviousNode;
-  SystemNode *NextNode;
+  int MemoryComparisonResult;
+  MemorySize AllocatedMemorySize;
+  SystemNode *CurrentSystemNode;
+  SystemNode *PreviousSystemNode;
+  SystemNode *NextSystemNode;
   StackPointer *TemporaryStackPointer;
-  FunctionCallback *ConnectionCallback;
+  FunctionCallback *NetworkStatusCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  CharacterStatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
-  functionCallback = CoreEngineProcessNetworkStatus;
+  NetworkStatusIndicator = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  NetworkStatusCallback = CoreEngineProcessNetworkStatus;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
+  while (NetworkStatusIndicator == '\0') {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextSystemNode = (void *)CurrentSystemNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextSystemNode = (void *)*CurrentSystemNode;
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    CurrentSystemNode = NextSystemNode;
+    NetworkStatusIndicator = *(char *)((long long)NextSystemNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -20128,7 +20132,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
   StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
-  StringProcessingStatus[10] = functionCallback;
+  StringProcessingStatus[10] = NetworkStatusCallback;
   return;
 }
 
@@ -20140,39 +20144,43 @@ void CoreEngineInitializeNetworkStatusProcessor(void
  * 
  * 该函数负责初始化连接初始化管理器，设置连接初始化的
  * 基本配置。用于管理引擎的连接初始化系统。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：包含未美化的变量名，已进行语义化处理
  */
-void CoreEngineInitializeConnectionInitializer(void
+void CoreEngineInitializeConnectionInitializer(void)
 {
-  char CharacterStatusBuffer;
+  char ConnectionStatusIndicator;
   EngineContext *SystemContext;
-  int ComparisonResult;
-  MemorySize AllocatedMemory;
-  SystemNode *CurrentNode;
-  SystemNode *PreviousNode;
-  SystemNode *NextNode;
+  int MemoryComparisonResult;
+  MemorySize AllocatedMemorySize;
+  SystemNode *CurrentSystemNode;
+  SystemNode *PreviousSystemNode;
+  SystemNode *NextSystemNode;
   StackPointer *TemporaryStackPointer;
-  FunctionCallback *ConnectionCallback;
+  FunctionCallback *ConnectionInitializerCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  CharacterStatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
-  functionCallback = CoreEngineGetConnectionInitializer;
+  ConnectionStatusIndicator = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  ConnectionInitializerCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
-  while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
-      NextNode = (void *)CurrentNode[2];
+  while (ConnectionStatusIndicator == '\0') {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextSystemNode = (void *)CurrentSystemNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
     else {
-      NextNode = (void *)*CurrentNode;
+      NextSystemNode = (void *)*CurrentSystemNode;
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
-    CurrentNode = NextNode;
-    ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
+    CurrentSystemNode = NextSystemNode;
+    ConnectionStatusIndicator = *(char *)((long long)NextSystemNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -20181,7 +20189,7 @@ void CoreEngineInitializeConnectionInitializer(void
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
   StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
-  StringProcessingStatus[10] = functionCallback;
+  StringProcessingStatus[10] = ConnectionInitializerCallback;
   return;
 }
 
