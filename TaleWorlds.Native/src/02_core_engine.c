@@ -72389,13 +72389,13 @@ LAB_18008ef40:
         } while (MemoryAddressMaskPointer != 0);
       } while (0 < (int)(StringComparisonByte - MemoryAddressMaskPointer));
 LAB_18008efb7:
-      if (ContextHandleTablePointer <= MemoryPoolBlockSizePointer) goto LAB_18008efcb;
+      if (ContextHandleTablePointer <= MemoryPoolBlockSizePointer) goto MemoryPoolSizeCheckLabel;
       *MemoryPoolBlockSizePointer = BufferStatus;
       *ContextHandlePointer = MemoryBoundaryEnd;
       MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 1;
     } while( true );
   }
-  goto LAB_18008eff7;
+  goto SystemMemoryAllocationLabel;
 LAB_18008efcb:
   RegisterR12Value = RegisterR12Value + -1;
   ProcessSystemDataStructureValidation(MemoryPoolBlockSizePointer,CharacterLimit,RegisterR12Value,RegisterValueBL);
@@ -72422,7 +72422,7 @@ LAB_18008eff7:
     }
     return;
   }
-  goto LAB_18008ee00;
+  goto SystemCharacterProcessingLabel;
 }
 
 
@@ -72710,11 +72710,11 @@ ProcessDataStructureAllocation(long long *targetDataStructure,uint64_t *sourceDa
       if (reservedParameter2 == *(uint64_t **)*targetDataStructure) {
         *(long long **)*targetDataStructure = additionalParameter2;
       }
-      goto LAB_18008f4f4;
+      goto SystemDataValidationLabel;
     }
     reservedParameter2[2] = additionalParameter2;
     AllocatedMemorySize = *targetDataStructure;
-    if (reservedParameter2 != *(uint64_t **)(AllocatedMemorySize + 0x10)) goto LAB_18008f4f4;
+    if (reservedParameter2 != *(uint64_t **)(AllocatedMemorySize + 0x10)) goto SystemDataValidationLabel;
   }
   *(long long **)(AllocatedMemorySize + 0x10) = additionalParameter2;
 LAB_18008f4f4:
