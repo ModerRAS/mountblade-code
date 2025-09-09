@@ -1401,6 +1401,49 @@ typedef enum {
 #define ComponentData14 UIComponentData14
 #define ComponentData15 UIComponentData15
 #define ComponentData16 UIComponentData16
+
+// UI系统布尔变量名美化
+#define bVar1 UIBoolVar1
+#define bVar3 UIBoolVar3
+#define bVar5 UIBoolVar5
+#define bVar6 UIBoolVar6
+#define bVar7 UIBoolVar7
+#define bVar8 UIBoolVar8
+#define bVar9 UIBoolVar9
+#define bVar10 UIBoolVar10
+
+// UI系统无符号变量名美化
+#define uVar1 UIUnsignedVar1
+#define uVar2 UIUnsignedVar2
+#define uVar3 UIUnsignedVar3
+#define uVar4 UIUnsignedVar4
+#define uVar5 UIUnsignedVar5
+
+// UI系统整数变量名美化
+#define iVar1 UIIntegerVar1
+#define iVar2 UIIntegerVar2
+#define iVar3 UIIntegerVar3
+#define iVar4 UIIntegerVar4
+#define iVar5 UIIntegerVar5
+
+// UI系统指针变量名美化
+#define piVar1 UIPtrIntegerVar1
+#define piVar2 UIPtrIntegerVar2
+#define piVar3 UIPtrIntegerVar3
+#define pbVar1 UIPtrByteVar1
+#define pbVar2 UIPtrByteVar2
+#define pbVar3 UIPtrByteVar3
+#define puVar1 UIPtrUnsignedVar1
+#define puVar2 UIPtrUnsignedVar2
+#define plVar1 UIPtrLongVar1
+#define plVar2 UIPtrLongVar2
+#define pcVar1 UIPtrCharVar1
+#define pcVar2 UIPtrCharVar2
+#define pfVar1 UIPtrFloatVar1
+#define pfVar2 UIPtrFloatVar2
+#define psVar3 UIPtrShortVar3
+#define psVar4 UIPtrShortVar4
+
 #define UIStatusPointer7 (void*)0x1809535d8
 #define UIStatusPointer8 (void*)0x1809535c4
 #define UIStatusPointer9 (void*)0x1809535e8
