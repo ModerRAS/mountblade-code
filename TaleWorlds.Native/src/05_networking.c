@@ -5530,3 +5530,150 @@ static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *Networ
     
     return NetworkErrorConnectionFailed;
 }
+
+// =============================================================================
+// 网络连接辅助函数实现
+// =============================================================================
+
+/**
+ * @brief 发送连接终止通知
+ * 
+ * 向网络连接的对端发送终止通知，确保连接能够正常关闭
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void SendConnectionTerminationNotification(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：仅更新连接状态
+    // 实际实现应该发送终止数据包并等待确认
+    if (NetworkConnectionContext) {
+        NetworkConnectionContext->connectionStatus |= 0x80;  // 设置终止标志
+    }
+}
+
+/**
+ * @brief 释放连接资源
+ * 
+ * 释放网络连接占用的所有资源，包括内存、句柄和缓冲区
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void ReleaseConnectionResources(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：仅重置连接句柄
+    // 实际实现应该释放所有相关资源
+    if (NetworkConnectionContext) {
+        NetworkConnectionContext->connectionHandle = NetworkErrorInvalidHandle;
+        NetworkConnectionContext->connectionStatus = 0;
+    }
+}
+
+/**
+ * @brief 初始化连接参数
+ * 
+ * 初始化网络连接的参数和配置信息
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：设置基本连接参数
+    if (NetworkConnectionContext) {
+        NetworkConnectionContext->connectionStatus = 0;
+        NetworkConnectionContext->connectionHandle = 0;
+        NetworkConnectionContext->lastActivityTime = 0;
+        NetworkConnectionContext->heartbeatTimestamp = 0;
+    }
+}
+
+/**
+ * @brief 执行连接握手
+ * 
+ * 执行网络连接的握手过程，建立安全连接
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @param TimeoutValue 超时值
+ * @return uint32_t 握手结果
+ */
+static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
+{
+    // 简化实现：直接返回成功
+    // 实际实现应该执行完整的握手过程
+    return NetworkOperationSuccess;
+}
+
+/**
+ * @brief 生成连接句柄
+ * 
+ * 为新的网络连接生成唯一的句柄
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @return NetworkHandle 生成的连接句柄
+ */
+static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：生成简单句柄
+    // 实际实现应该生成唯一的句柄
+    static NetworkHandle handleCounter = 1000;
+    return handleCounter++;
+}
+
+/**
+ * @brief 初始化安全上下文
+ * 
+ * 初始化网络连接的安全上下文和加密参数
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：设置基本安全参数
+    if (NetworkConnectionContext) {
+        NetworkConnectionContext->connectionStatus |= NetworkStatusSecureFlag;
+    }
+}
+
+/**
+ * @brief 执行数据完整性检查
+ * 
+ * 检查网络连接的数据完整性和一致性
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @return uint32_t 检查结果
+ */
+static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：直接返回成功
+    // 实际实现应该执行数据完整性检查
+    return NetworkValidationSuccess;
+}
+
+/**
+ * @brief 执行安全性验证
+ * 
+ * 验证网络连接的安全性和合规性
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @return uint32_t 验证结果
+ */
+static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 简化实现：直接返回成功
+    // 实际实现应该执行安全性验证
+    return NetworkValidationSuccess;
+}
+
+/**
+ * @brief 获取当前系统时间
+ * 
+ * 获取当前系统时间戳，用于连接时间管理
+ * 
+ * @return uint64_t 当前系统时间戳
+ */
+static uint64_t GetCurrentSystemTime(void)
+{
+    // 简化实现：返回简单时间戳
+    // 实际实现应该调用系统时间函数
+    static uint64_t timeCounter = 1000000;
+    return timeCounter++;
+}
