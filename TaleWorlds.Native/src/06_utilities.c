@@ -211,6 +211,7 @@
 #define OperationBaseOffset58 0x58
 #define OperationBaseOffset5c 0x5c
 #define OperationBaseOffset60 0x60
+#define OperationBaseOffset64 0x64
 #define OperationBaseOffset68 0x68
 #define OperationBaseOffset6c 0x6c
 #define OperationBaseOffset70 0x70
@@ -31101,7 +31102,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
           if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
             return ResourceInvalidErrorCode;
           }
-          systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 100);
+          systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset64);
           if ((int)systemDataBuffer == 0) {
             if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
               return ResourceInvalidErrorCode;
