@@ -5653,8 +5653,8 @@ static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkC
     // 2. 实现句柄池管理
     // 3. 检查句柄唯一性
     // 4. 避免使用系统保留值
-    static NetworkHandle handleCounter = 1000;
-    return handleCounter++;
+    static NetworkHandle connectionHandleCounter = 1000;
+    return connectionHandleCounter++;
 }
 
 /**

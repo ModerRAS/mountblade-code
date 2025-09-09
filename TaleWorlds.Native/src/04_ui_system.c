@@ -106167,20 +106167,33 @@ void ConvertUIDataFormat(int *uiContext,longlong dataSource,longlong targetBuffe
 
 
 
- void FUN_18072aa30(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
-void FUN_18072aa30(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
+ /**
+ * @brief 计算数据幅度和位偏移
+ * 
+ * 该函数计算数据的幅度（平方和）并确定适当的位偏移量。
+ * 主要用于数据处理和信号处理中的幅度计算。
+ * 
+ * @param uiContext 输出上下文指针，存储计算结果
+ * @param dataSource 输出数据源指针，存储位偏移量
+ * @param targetBuffer 输入数据缓冲区指针
+ * @param bufferSize 数据缓冲区大小
+ * 
+ * @note 函数处理成对的数据进行平方和计算
+ * @note 自动计算最佳的位偏移量以避免溢出
+ */
+void CalculateDataAmplitudeAndBitOffset(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint EventTypeCode;
-  byte bVar4;
+  short *nextDataPointer;
+  short currentDataValue;
+  uint eventIterationCount;
+  byte bitShiftFactor;
   ulonglong loopCounter;
-  uint maxProcessingCount;
-  short *psVar7;
-  int localInt8;
-  int localInt9;
-  int processedCount;
+  uint magnitudeAccumulator;
+  short *dataIterator;
+  int amplitudeResult;
+  int bitOffsetResult;
+  int processedDataCount;
   
   if (bufferSize == 0) {
     localInt9 = 0x20;
