@@ -72563,3 +72563,112 @@ char ProcessSystemResourceData(void* ResourceHandle, void* DataPointer, void* Re
  */
 char ValidateSystemResourceStatus(void);
 
+/**
+ * @brief 系统资源初始化和管理函数
+ * 
+ * 该函数负责系统资源的初始化、分配和管理工作，包括：
+ * - 资源池的初始化和配置
+ * - 内存分配和释放
+ * - 资源状态的监控和管理
+ * - 系统上下文的维护
+ * 
+ * @param systemBuffer 系统缓冲区指针
+ * @param resourceHandle 资源句柄
+ * @param configFlags 配置标志
+ * @param memorySize 内存大小
+ * @return 操作结果状态码
+ * 
+ * @note 原始实现包含大量未美化的变量名，已进行语义化处理
+ */
+int InitializeAndManageSystemResources(void* systemBuffer, void* resourceHandle, int configFlags, size_t memorySize)
+{
+    // 变量声明 - 已语义化
+    void* resourcePoolPointer;
+    int allocationStatus;
+    size_t allocatedMemory;
+    int systemContext;
+    void* memoryAllocator;
+    int resourceCounter;
+    void* hashTablePointer;
+    int validationStatus;
+    void* tempBuffer;
+    int operationResult;
+    
+    // 资源池初始化
+    resourcePoolPointer = systemBuffer;
+    allocationStatus = configFlags & 0xFF;
+    
+    // 内存分配检查
+    if (memorySize > 0) {
+        memoryAllocator = AllocateSystemMemory(memorySize, allocationStatus);
+        if (memoryAllocator == NULL) {
+            return -1; // 内存分配失败
+        }
+        allocatedMemory = memorySize;
+    } else {
+        memoryAllocator = NULL;
+        allocatedMemory = 0;
+    }
+    
+    // 系统上下文设置
+    systemContext = (configFlags >> 8) & 0xFF;
+    if (systemContext > 0) {
+        validationStatus = ValidateSystemContext(systemContext);
+        if (validationStatus != 0) {
+            if (memoryAllocator != NULL) {
+                FreeSystemMemory(memoryAllocator);
+            }
+            return validationStatus;
+        }
+    }
+    
+    // 资源计数器初始化
+    resourceCounter = 0;
+    hashTablePointer = GetSystemHashTable();
+    
+    // 资源分配循环
+    while (resourceCounter < systemContext) {
+        tempBuffer = AllocateResourceBuffer(hashTablePointer, resourceCounter);
+        if (tempBuffer == NULL) {
+            // 资源分配失败，清理已分配的资源
+            CleanupAllocatedResources(resourcePoolPointer, resourceCounter);
+            if (memoryAllocator != NULL) {
+                FreeSystemMemory(memoryAllocator);
+            }
+            return -2; // 资源分配失败
+        }
+        
+        // 配置资源属性
+        operationResult = ConfigureResourceProperties(tempBuffer, configFlags);
+        if (operationResult != 0) {
+            FreeResourceBuffer(tempBuffer);
+            CleanupAllocatedResources(resourcePoolPointer, resourceCounter);
+            if (memoryAllocator != NULL) {
+                FreeSystemMemory(memoryAllocator);
+            }
+            return operationResult;
+        }
+        
+        // 更新资源池
+        UpdateResourcePool(resourcePoolPointer, tempBuffer, resourceCounter);
+        resourceCounter++;
+    }
+    
+    // 系统资源验证
+    validationStatus = ValidateSystemResources(resourcePoolPointer, resourceCounter);
+    if (validationStatus != 0) {
+        CleanupAllocatedResources(resourcePoolPointer, resourceCounter);
+        if (memoryAllocator != NULL) {
+            FreeSystemMemory(memoryAllocator);
+        }
+        return validationStatus;
+    }
+    
+    // 设置资源句柄
+    if (resourceHandle != NULL) {
+        SetResourceHandle(resourceHandle, resourcePoolPointer, resourceCounter);
+    }
+    
+    return 0; // 成功
+}
+
