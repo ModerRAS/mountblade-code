@@ -28647,27 +28647,27 @@ void InitializeUIRenderingFunctions(void)
     g_uiSystemRendererData5 = ProcessUIRendererData5Optimized;
   }
   g_uiSystemNullHandler = ProcessUINullHandler;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemNullHandler = (UIFunctionPtr *)&g_UINullFunctionHandler;
   }
   g_uiSystemDefaultHandler = ProcessUIDefaultHandler;
-  if (bVar6) {
+  if (HasSSE41Support) {
     g_uiSystemDefaultHandler = (UIFunctionPtr *)&g_UIDefaultFunctionHandler;
   }
   g_uiSystemErrorHandler = ProcessUIErrorHandler;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIErrorHandlerPtr = (UIFunctionPtr *)&g_UIErrorHandler;
   }
   UIEventDispatchPtr = DispatchUIEvents;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIEventDispatchPtr = UIEventDispatchFallbackPtr;
   }
   UIStateUpdatePtr = UpdateUIState;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIStateUpdatePtr = UIStateUpdateFallbackPtr;
   }
   UIComponentSyncPtr = SynchronizeUIComponents;
-  if (bVar6) {
+  if (HasSSE41Support) {
     UIComponentSyncPtr = UIComponentSyncFallbackPtr;
   }
   UIDataProcessPtr = ProcessUIData;
