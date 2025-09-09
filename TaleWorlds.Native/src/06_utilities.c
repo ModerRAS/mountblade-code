@@ -10524,7 +10524,7 @@ void ResetSystemExceptionHandlerPointers(void);
 uint32_t UtilityCorePointerResetConfig;
 uint32_t UtilitySystemPointerResetConfig;
 uint32_t UtilityNetworkPointerResetConfig;
-uint32_t UtilityQuaternaryPointerResetConfig;
+uint32_t UtilitySecurityPointerResetConfig;
 
 /**
  * @brief 重置工具模块指针组2
