@@ -93959,14 +93959,14 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
   dataPointer = *(uint **)(uiContext + 8);
   transformCoefficient13 = *(float **)(uiContext + 0x10);
   totalResult = dataPointer[1];
-  if (0 < (longlong)(int)TotalResult) {
+  if (0 < (longlong)(int)totalResult) {
     componentIndex2 = 0;
-    iterationCount0 = *ptrLocal3;
+    iterationCount0 = *dataPointer;
     componentIndex5 = (longlong)(int)iterationCount0;
     do {
-      TransformCoefficient20 = *TransformCoefficient13;
-      AllocatedMemoryBlock8 = 0;
-      TransformCoefficient13 = TransformCoefficient13 + 1;
+      transformCoefficient20 = *transformCoefficient13;
+      allocatedMemoryBlock8 = 0;
+      transformCoefficient13 = transformCoefficient13 + 1;
       if ((0 < (int)iterationCount0) && (7 < iterationCount0)) {
         transformCoeff16 = 0.0;
         transformCoeff17 = 0.0;
