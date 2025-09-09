@@ -190,6 +190,13 @@
 #define FloatXMM4Secondary in_XMM4_Db                    // XMM4寄存器（浮点数4 - 次要值）
 #define FloatXMM4Tertiary in_XMM4_Dc                     // XMM4寄存器（浮点数4 - 第三值）
 #define ZeroFlagRegister in_ZF                            // 零标志寄存器（用于条件判断）
+#define RegisterR12ValueB CharacterValidationStatus       // R12寄存器值B（字符验证状态）
+#define RegisterEBPValue StackFramePointer                 // EBP寄存器值（栈帧指针）
+
+// 标签变量语义化宏定义
+#define LAB_18010f4d1 CharacterValidationCompleteLabel     // 字符验证完成标签
+#define LAB_18010f4c5 MemoryBlockValidationLabel          // 内存块验证标签
+#define LAB_18010f2a4 DataProcessingContinueLabel          // 数据处理继续标签
 
 // 字符状态变量语义化宏定义
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
