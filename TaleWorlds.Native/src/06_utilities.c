@@ -234,6 +234,66 @@
 #define DataBufferOffset178 0x178
 #define DataBufferOffset260 0x260
 
+// 内存块大小常量
+#define MemoryBlockSizeD0 0xd0                              // 内存块大小D0
+
+// 异常处理器回调偏移量常量
+#define ExceptionHandlerCallbackOffset56 0x56                // 异常处理器回调偏移量56
+
+// 系统清理标志常量
+#define SystemCleanupFlagffc00000 0xffc00000                 // 系统清理标志ffc00000
+#define SystemCleanupFlagAlternative 0x8                      // 替代系统清理标志
+
+// 异常列表偏移量常量
+#define ExceptionListOffset 0x10                              // 异常列表偏移量
+
+// 内存异常检查偏移量常量
+#define MemoryExceptionCheckOffset 0xe                       // 内存异常检查偏移量
+
+// 内存数据偏移量常量
+#define MemoryDataOffset 0x20                                 // 内存数据偏移量
+#define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
+#define SystemDataSecondaryOffset18 0x18                      // 系统数据次要偏移量18
+
+// 内存引用偏移量常量
+#define MemoryReferenceOffset 0x18                            // 内存引用偏移量
+
+// 内存偏移调整常量
+#define MemoryOffsetAdjustment 4                              // 内存偏移调整值
+
+// 内存基础偏移量常量
+#define MemoryBaseOffset 0x80                                 // 内存基础偏移量
+
+// 内存块乘数常量
+#define MemoryBlockMultiplier 0x50                            // 内存块乘数
+
+// 资源管理偏移量常量
+#define ResourceManagementOffset80 0x80                       // 资源管理偏移量80
+#define ResourceSecondaryDataOffset 0x120                     // 资源次要数据偏移量
+
+// 系统上下文缓冲区偏移量常量
+#define systemContextBufferOffset 0x8                         // 系统上下文缓冲区偏移量
+
+// 系统上下文指针偏移量常量
+#define systemContextPointerOffset 0x90                       // 系统上下文指针偏移量
+
+// 内存指针偏移量常量
+#define MemoryPointerOffset 0x38                              // 内存指针偏移量
+
+// 系统上下文数据偏移量常量
+#define SystemContextDataOffset8 0x8                          // 系统上下文数据偏移量8
+
+// 异常处理数据缓冲区偏移量常量
+#define ExceptionHandlerDataBufferOffset78 0x78               // 异常处理数据缓冲区偏移量78
+
+// 异常处理上下文偏移量常量
+#define ExceptionHandlerContextOffset30 0x30                  // 异常处理上下文偏移量30
+#define ExceptionHandlerContextOffset40 0x40                  // 异常处理上下文偏移量40
+#define ExceptionHandlerContextOffset58 0x58                  // 异常处理上下文偏移量58
+
+// 数据处理偏移量常量
+#define DataProcessingOffset70 0x70                           // 数据处理偏移量70
+
 // 寄存器上下文偏移量常量
 #define RegisterContextDataOffset 0x78
 #define SystemContextDataOffsetPrimary 0x40
@@ -2715,7 +2775,7 @@
 #define ExceptionDataPointer 0                                // 异常数据指针
 
 // 异常上下文指针相关常量
-#define ExceptionContextPtr 0                                 // 异常上下文指针
+#define ExceptionContextPtr SystemExceptionContextPtr         // 异常上下文指针
 
 // 清理标志相关常量
 #define CleanupFlagB 0                                       // 清理标志B
@@ -83042,14 +83102,24 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
 
 
 
-// 原始函数名：Unwind_1809092b0 - 异常上下文处理器调用函数
-// 功能：调用异常上下文处理器，执行异常处理回调
+/**
+ * @brief 调用异常上下文处理器回调函数
+ * 
+ * 该函数从系统上下文缓冲区中获取异常上下文指针，并调用相应的异常处理回调函数。
+ * 如果异常上下文指针有效，则执行回调函数进行异常处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809092b0
+ * @note 异常处理：调用异常处理回调函数
+ */
 void InvokeExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + 0x110);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + systemContextBufferOffset) + ResourceSecondaryDataOffset + ExtendedExceptionHandlerTempSlotOffset);
   if (exceptionContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerCallbackOffset56))();
   }

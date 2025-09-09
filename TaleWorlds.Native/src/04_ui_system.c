@@ -134870,13 +134870,13 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
           ptrLocal3 = (UIHandle *)(uiContext + 0x11768);
           piterationCount = (UIHandle *)*ptrLocal3;
           while (piterationCount != ptrLocal3) {
-            maxProcessingCount = FUN_180789cf0(piterationCount);
+            maxProcessingCount = ReleaseUIComponentResources(piterationCount);
             if ((int)maxProcessingCount != 0) {
               return maxProcessingCount;
             }
             piterationCount = (UIHandle *)*ptrLocal3;
           }
-          maxProcessingCount = FUN_180785a50(uiContext + UIRenderQueueOffset);
+          maxProcessingCount = ProcessUIRenderQueue(uiContext + UIRenderQueueOffset);
           if ((int)maxProcessingCount == 0) {
             *(UIByte *)(uiContext + 8) = 0;
           }
@@ -134884,11 +134884,10 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
       }
     }
     else {
-      FUN_180788f70();
+      ProcessUIRenderingSystem();
       if (dataPointer == 0) {
-                     WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(UIHandle *)(uiContext + 0x10f88),
-                      &UNK_180958000,0x2fb,1);
+        ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), *(UIHandle *)(uiContext + 0x10f88),
+                                &UIComponentDataF50, 0x2fb, 1);
       }
       maxProcessingCount = (ulonglong)dataPointer;
     }
@@ -199572,7 +199571,7 @@ UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, floa
   longlong *pallocatedMemory;
   longlong componentIndex;
   longlong stringCompareIndex;
-  float TransformCoefficient3;
+  float calculatedTransformValue;
   
   switch(dataSource) {
   case 1:
