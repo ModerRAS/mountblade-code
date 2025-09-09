@@ -8127,7 +8127,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数负责处理数据标志并返回处理结果，包括标志位设置、清除和验证。
  * 它会确保数据标志的正确性和一致性。
  * 
+ * @details 具体功能包括：
+ * - 检查数据标志的有效性
+ * - 设置或清除特定的标志位
+ * - 验证标志状态的完整性
+ * - 返回标志处理的结果状态
+ * 
  * @note 原始函数名：FUN_1808a54c0
+ * @see ValidateDataIntegrityA1, CleanupDataBufferA0
  */
 #define ProcessDataFlagsA0 FUN_1808a54c0
 
@@ -8137,12 +8144,31 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数负责清理数据缓冲区和相关资源，包括内存释放、资源清理和状态重置。
  * 它会确保数据资源的正确释放和清理。
  * 
+ * @details 具体功能包括：
+ * - 释放已分配的内存缓冲区
+ * - 清理数据结构和相关资源
+ * - 重置数据状态标志
+ * - 验证清理操作的完整性
+ * 
  * @note 原始函数名：FUN_1808aef40
+ * @see ProcessDataFlagsA0, ValidateDataIntegrityA1
  */
 #define CleanupDataBufferA0 FUN_1808aef40
 
-// 原始函数名：FUN_180883750 - 内存状态检查函数A0
-// 功能：检查内存状态和访问权限
+/**
+ * @brief 内存状态检查函数A0
+ * 
+ * 该函数负责检查内存状态和访问权限，确保内存操作的安全性和有效性。
+ * 
+ * @details 具体功能包括：
+ * - 检查内存分配状态
+ * - 验证内存访问权限
+ * - 检测内存泄漏和损坏
+ * - 返回内存状态检查结果
+ * 
+ * @note 原始函数名：FUN_180883750
+ * @see ProcessDataWithValidationA0, ValidateDataIntegrityA1
+ */
 #define CheckMemoryStatusA0 FUN_180883750
 
 // 原始函数名：FUN_1808aec50 - 数据验证函数A1
