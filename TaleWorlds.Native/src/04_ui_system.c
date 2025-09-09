@@ -9745,12 +9745,16 @@ void pass_managed_initialize_method_pointer(UIHandle uiContext)
 
 
 
- 释放UI组件数据内存
- 根据标志位决定是否释放组件数据占用的内存
- 参数：
-   uiContext: 要释放的内存地址
-   dataSource: 控制标志位，bit0为1时执行释放操作
- 返回值：传入的内存地址
+ /**
+ * @brief 释放UI组件数据内存
+ * 
+ * 根据标志位决定是否释放组件数据占用的内存
+ * 
+ * @param uiContext 要释放的内存地址
+ * @param dataSource 控制标志位，bit0为1时执行释放操作
+ * @return UIHandle 返回传入的内存地址
+ * @note 原始函数名：FreeUIComponentData
+ */
 UIHandle FreeUIComponentData(UIHandle uiContext,ulonglong dataSource)
 
 {
@@ -9766,14 +9770,20 @@ UIHandle FreeUIComponentData(UIHandle uiContext,ulonglong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ClearUIComponentData(UIHandle *uiContext)
+ /**
+ * @brief 清除UI组件数据
+ * 
+ * 清除UI组件的数据并重置为默认状态
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名：ClearUIComponentData
+ */
 void ClearUIComponentData(UIHandle *uiContext)
 
 {
   *uiContext = &UIEventHandler;
   ManagedInterface = 0;
   if (uiContext[0x2d] != 0) {
-                     WARNING: Subroutine does not return
     DestroyUIComponent();
   }
   uiContext[1] = &UIContextData;
