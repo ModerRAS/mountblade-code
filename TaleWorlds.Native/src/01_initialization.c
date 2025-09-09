@@ -30167,13 +30167,13 @@ SystemIdCheck:
       SystemMemoryAllocationOffset = SystemOperationCode;
       SystemInitializationStatusFlag = VerifySystemMemoryAllocation(&SystemMemoryContext);
       if (SystemInitializationStatusFlag == '\0') {
-        pUnsignedStackFlagPrimary = &SystemGlobalDataPointer;
-        if (pUnsignedStackFlagSecondary != (uint8_t *)0x0) {
+        PrimaryStackFlagPointer = &SystemGlobalDataPointer;
+        if (SecondaryStackFlagPointer != (uint8_t *)0x0) {
             SystemCleanupFunction();
         }
-        pUnsignedStackFlagSecondary = (uint8_t *)0x0;
-        EncryptionOffsetSecondary = EncryptionOffsetSecondary & SystemMemoryAlignmentMask;
-        pUnsignedStackFlagPrimary = &SystemMemoryAllocatorPointer;
+        SecondaryStackFlagPointer = (uint8_t *)0x0;
+        SecondaryEncryptionOffset = SecondaryEncryptionOffset & SystemMemoryAlignmentMask;
+        PrimaryStackFlagPointer = &SystemMemoryAllocatorPointer;
         SystemMemoryContext = &SystemGlobalDataPointer;
         if (ResourceDataBufferPointer != (uint8_t *)0x0) {
             SystemCleanupFunction();
