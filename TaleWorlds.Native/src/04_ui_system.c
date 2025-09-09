@@ -96585,8 +96585,23 @@ void FinalizeUIComponentSystem(void)
 
 
 
- void FUN_180721810(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
-void FUN_180721810(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
+ // 函数: void FUN_180721810(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
+/**
+ * @brief 使用系数处理UI变换数据
+ * 
+ * 该函数负责处理UI系统中的变换数据，使用提供的系数对数据进行变换处理。
+ * 函数会根据输入的缓冲区大小和结果指针来计算变换后的数据值。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源索引，指定要处理的数据位置
+ * @param targetBuffer 目标缓冲区索引，指定处理结果的存储位置
+ * @param bufferSize 缓冲区大小，用于控制变换的幅度
+ * @param resultPointer 结果指针，用于变换计算的参考值
+ * 
+ * @note 原始函数名：FUN_180721810
+ * @note 这是UI系统中用于数据变换的核心函数
+ */
+void ProcessUITransformDataWithCoefficients(float *uiContext,int dataSource,int targetBuffer,float bufferSize,float resultPointer)
 
 {
   float baseValue;
@@ -96918,8 +96933,19 @@ void ProcessUIDataWithHandles(longlong uiContext,UIHandle dataSource,UIHandle ta
 
 
 
- void FUN_180721984(void)
-void FUN_180721984(void)
+ /**
+ * @brief UI数据最终化处理函数
+ * 
+ * 对UI数据进行最终化处理，包括：
+ * - 数据变换的最终计算
+ * - 缓冲区状态的最终确认
+ * - 处理结果的最终验证
+ * - 清理临时数据和状态
+ * 
+ * @note 原始函数名：FUN_180721984
+ */
+void ProcessUIDataFinalization(void)
+void ProcessUIDataFinalization(void)
 
 {
   float baseValue;
