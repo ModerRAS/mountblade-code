@@ -144641,16 +144641,27 @@ static UIHandle InitializeUIMemoryAllocation(longlong uiContext)
 
 
 
-UIHandle FUN_180750000(longlong *uiContext,int dataSource,int targetBuffer)
-
+/**
+ * @brief 处理UI数据迭代和处理
+ * 
+ * 这个函数负责处理UI系统中的数据迭代和处理逻辑，包括数据比较、迭代计数和缓冲区管理。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据的来源
+ * @param targetBuffer 目标缓冲区类型，决定数据处理方式
+ * @return UIHandle 返回操作状态，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180750000
+ */
+static UIHandle ProcessUIDataIteration(longlong *uiContext, int dataSource, int targetBuffer)
 {
   int processingResult;
   UIHandle iterationCount;
   int uiCompareResult;
-  longlong lStackX_8;
-  int aiStackX_10 [2];
-  int aiStackX_18 [2];
-  longlong lStackX_20;
+  longlong stackBuffer8;
+  int stackArray10[2];
+  int stackArray18[2];
+  longlong stackBuffer20;
   
   uiCompareResult = 1;
   if ((*(uint *)((longlong)uiContext + 0x2c) & 0x200) == 0) {
