@@ -100473,25 +100473,25 @@ void FUN_180723ee0(int *uiContext,char *dataSource)
   distanceResult2 = 0x7fffffff;
   fontTableIndex = 0;
   do {
-    localInt7 = 0;
-    sVar1 = *(short *)(&FontMetricTableX + (longlong)localInt8 * 2);
-    sVar2 = *(short *)(&FontMetricTableY + (longlong)localInt8 * 2);
-    TempInt4 = ProcessingResult2;
-    processedCount = ProcessingResult1;
+    charIndex = 0;
+    fontMetricX = *(short *)(&FontMetricTableX + (longlong)fontTableIndex * 2);
+    fontMetricY = *(short *)(&FontMetricTableY + (longlong)fontTableIndex * 2);
+    tempProcessingResult = distanceResult2;
+    processedCount = distanceResult1;
     do {
-      ProcessingResult1 = (int)(short)((short)localInt7 * 2 + 1)                (int)(short)((ulonglong)(uint)((int)sVar2 - (int)sVar1) * 0x199a >> 0x10) +
-               (int)sVar1;
-      ProcessingResult2 = *uiContext - ProcessingResult1;
-      if (*uiContext - ProcessingResult1 < 1) {
-        ProcessingResult2 = ProcessingResult1 - *uiContext;
+      distanceResult1 = (int)(short)((short)charIndex * 2 + 1)                (int)(short)((ulonglong)(uint)((int)fontMetricY - (int)fontMetricX) * 0x199a >> 0x10) +
+               (int)fontMetricX;
+      distanceResult2 = *uiContext - distanceResult1;
+      if (*uiContext - distanceResult1 < 1) {
+        distanceResult2 = distanceResult1 - *uiContext;
       }
-      if (TempInt4 <= ProcessingResult2) goto LAB_180723f9b;
-      dataSource[1] = (char)localInt7;
-      localInt7 = localInt7 + 1;
-      localChar6 = (char)localInt8;
-      *dataSource = localChar6;
-      TempInt4 = ProcessingResult2;
-      processedCount = ProcessingResult1;
+      if (tempProcessingResult <= distanceResult2) goto LAB_180723f9b;
+      dataSource[1] = (char)charIndex;
+      charIndex = charIndex + 1;
+      currentChar = (char)fontTableIndex;
+      *dataSource = currentChar;
+      tempProcessingResult = distanceResult2;
+      processedCount = distanceResult1;
     } while (localInt7 < 5);
     localInt8 = localInt8 + 1;
   } while (localInt8 < 0xf);
