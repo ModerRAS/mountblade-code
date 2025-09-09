@@ -6707,7 +6707,14 @@ void CleanupUIRenderPipeline;
  */
 void ResetUIRenderPipeline;
 
- 验证UI渲染管线
+ /**
+ * @brief 验证UI渲染管线
+ * 
+ * 该函数验证UI系统的渲染管线状态，检查所有必要的
+ * 渲染资源和状态是否正确配置，确保渲染可以正常进行。
+ * 
+ * @note 原始函数名: 未指定
+ */
 void ValidateUIRenderPipeline;
 
  UI组件初始化函数

@@ -67539,14 +67539,13 @@ void InitializeSystemMemoryConditionally(DataBuffer operationBase,int64_t dataBu
  */
 #define ExecuteExceptionHandlerCallback Unwind_1809066e0
 
-void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
-
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x210);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x210);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
