@@ -249885,16 +249885,16 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
                   if (SystemDataTablePointer == 0) {
                     CharacterTablePointer6 = FUN_1801efdb0(CharacterTablePointer6,EncodingConversionResult);
                     Utf16Character = StackProcessingValue;
-                    if ((CharacterTablePointer6 == 0) || (LockOperationResult1 = *(int *)(CharacterTablePointer6 + 0x18), LockOperationResult1 == 0)                    goto LAB_180208aa2;
+                    if ((CharacterTablePointer6 == 0) || (LockOperationResult1 = *(int *)(CharacterTablePointer6 + 0x18), LockOperationResult1 == 0)                    goto SystemCharacterValidationCheck;
                     UnicodeContextHandle = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
                   }
                   else {
                     SystemContextValidationFlag = FUN_1801ef300(CharacterTablePointer6,EncodingConversionResult,SystemDataTablePointer);
                     if (SystemContextValidationFlag == '\0') {
-                      InitializeSystemEvent(&SystemEventInitializationTemplate);
+                      InitializeSystemEvent(&SystemEventTemplate);
                       IntegerValue4 = *(int *)(BufferIndex + CoreEngineSignedValue48);
                       Utf16Character = StackProcessingValue;
-                      goto LAB_180208aa2;
+                      goto SystemCharacterValidationCheck;
                     }
                     CharacterTablePointer6 = FUN_1801ef620(VectorCalculationResult,EncodingConversionResult,SystemDataTablePointer);
                     UnicodeContextHandle = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
@@ -249926,7 +249926,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
                 }
                 else {
 LAB_180208aa2:
-                  if (IntegerValue4 < 0) goto LAB_180208d4a;
+                  if (IntegerValue4 < 0) goto SystemCharacterProcessingContinue;
                 }
                 CharacterStatusBuffer8 = (uint *)((long long)*(int *)(CoreEngineSystemContext + 0x9c8) * 0x488 +
                                   CoreEngineSystemContext + 0xb8);
@@ -250117,17 +250117,17 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
               LoopIndex = ProcessCharacterCodeValidation(LoopIndex,StringOffset);
               Utf8SourcePointer = AdditionalParameter5;
               MemoryAllocationHandle = (uint)AdditionalParameter2;
-              if ((LoopIndex == 0) || (LockOperationResult0 = *(int *)(LoopIndex + 0x18), LockOperationResult0 == 0)              goto LAB_180208aa2;
+              if ((LoopIndex == 0) || (LockOperationResult0 = *(int *)(LoopIndex + 0x18), LockOperationResult0 == 0)              goto SystemCharacterValidationCheck;
               PrimaryReturnCode = *(uint32_t *)(LoopIndex + 0x2c);
             }
             else {
               CharacterValidationResult = ValidateCharacterDataStructure(LoopIndex,StringOffset,SystemDataRegistry);
               if (CharacterValidationResult == '\0') {
-                InitializeSystemEvent(&SystemEventInitializationTemplate);
+                InitializeSystemEvent(&SystemEventTemplate);
                 IntegerValue5 = *(int *)(SystemStringIndex + MemoryAllocationIndex7);
                 Utf8SourcePointer = AdditionalParameter5;
                 MemoryAllocationHandle = (uint)AdditionalParameter2;
-                goto LAB_180208aa2;
+                goto SystemCharacterValidationCheck;
               }
               LoopIndex = ProcessCharacterVectorOperation(VectorCalculationResult,StringOffset,SystemDataRegistry);
               PrimaryReturnCode = *(uint32_t *)(LoopIndex + 0x2c);
