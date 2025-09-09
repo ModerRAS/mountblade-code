@@ -401665,10 +401665,10 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define SetupUIRenderPipeline ConfigureUIRenderPipeline
 #define ConfigureUIRenderSettings SetUIRenderSettings
 #define ValidateUIRenderContext CheckUIRenderContext
-#define ProcessUIRenderBatch FUN_180705ab0
-#define SubmitUIRenderCommands FUN_180705b10
-#define FlushUIRenderQueue FUN_180705b70
-#define ResetUIRenderState FUN_180705bd0
+#define ProcessUIRenderBatch RenderUIBatchData
+#define SubmitUIRenderCommands SubmitUIRenderCommandQueue
+#define FlushUIRenderQueue ClearUIRenderQueue
+#define ResetUIRenderState ReinitializeUIRenderState
 
 // UI系统事件处理函数
 #define ProcessUIEvent FUN_180705c30
