@@ -196,7 +196,7 @@
 #define SystemStackPointerB0 SystemContextPointerB0                    // 系统栈指针B0
 #define SystemStackPointerA8 SystemContextPointerA8                    // 系统栈指针A8
 #define ValidationBytePointer48 ValidationBytePointer48                 // 验证字节指针48
-#define SystemStackInteger40 iStack_40                     // 系统栈整数40
+#define SystemStackInteger40 SystemStackInteger40                     // 系统栈整数40
 #define SystemStackOffsetB0 lStack_b0                      // 系统栈偏移量B0
 #define SystemStackInteger2e8 iStack_2e8                   // 系统栈整数2e8
 #define SystemStackPointer2e0 plStack_2e0                   // 系统栈指针2e0
@@ -64036,7 +64036,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
   long long OperationResult13;
   void *SystemValidationPointer;
   byte *ValidationBytePointer48;
-  int iStack_40;
+  int SystemStackInteger40;
   unsigned long long FunctionAddress;
   
   long long AllocatedMemorySize = *(long long *)(ContextHandle + 0x80);
@@ -64048,7 +64048,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
     SystemTemplatePointer = &SystemNullTemplate;
     FunctionAddress = 0;
     ValidationBytePointer48 = (byte *)0x0;
-    iStack_40 = 0;
+    SystemStackInteger40 = 0;
     CoreEngineProcessSystemEvent(&SystemValidationPointer,*(uint32_t *)(OperationBufferSize + 0x10));
     if (0 < *(int *)(OperationBufferSize + 0x10)) {
       StringProcessingStatus = &CoreEngineDataTemplate;
@@ -64058,7 +64058,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
                     // WARNING: Subroutine does not return
       memcpy(ValidationBytePointer48,StringProcessingStatus,(long long)(*(int *)(OperationBufferSize + 0x10) + 1));
     }
-    if ((*(long long *)(OperationBufferSize + 8) != 0) && (iStack_40 = 0, ValidationBytePointer48 != (byte *)0x0)) {
+    if ((*(long long *)(OperationBufferSize + 8) != 0) && (SystemStackInteger40 = 0, ValidationBytePointer48 != (byte *)0x0)) {
       *ValidationBytePointer48 = 0;
     }
     SystemCharacterStatusBuffer = *(uint64_t **)(AllocatedMemorySize + 0x70);
@@ -64069,7 +64069,7 @@ SystemHandlerLAB180087337:
     }
     else {
       do {
-        if (iStack_40 == 0) {
+        if (SystemStackInteger40 == 0) {
           LowByte = false;
           CharacterStatusBuffer2 = (void *)SystemCharacterStatusBuffer[1];
         }
@@ -64103,7 +64103,7 @@ MemoryHandlerLAB1800872f7:
       } while (CharacterStatusBuffer2 != NULL);
       if (CharacterStatusBuffer == CharacterStatusBuffer) goto BufferValidationLAB180087337;
       if (*(int *)(CharacterStatusBuffer + 6) != 0) {
-        if (iStack_40 != 0) {
+        if (SystemStackInteger40 != 0) {
           ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
           SystemDataTablePointer = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
           do {
@@ -76303,7 +76303,7 @@ uint64_t CalculateEngineParameterValue(void
   long long LoopIndex;
   void *SystemValidationPointer;
   byte *ValidationBytePointer48;
-  int iStack_40;
+  int SystemStackInteger40;
   uint32_t FunctionAddress;
   
   LoopIndex = CoreEngineConfigFlag;
@@ -76313,7 +76313,7 @@ uint64_t CalculateEngineParameterValue(void
   TemporaryBuffer = SystemCharacterStatusBuffer;
   if (CharacterStatusBuffer3 != NULL) {
     do {
-      if (iStack_40 == 0) {
+      if (SystemStackInteger40 == 0) {
         LowByte = false;
         CharacterStatusBuffer2 = (void *)CharacterStatusBuffer3[1];
       }
@@ -76348,7 +76348,7 @@ LAB_180095527:
     SystemStatusContext = NULL;
     if (CharacterStatusBuffer != SystemCharacterStatusBuffer) {
       if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009556a;
-      if (iStack_40 != 0) {
+      if (SystemStackInteger40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
         LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
         do {
@@ -76443,7 +76443,7 @@ uint64_t CalculateEngineSecondaryParameter(void
   long long LoopIndex;
   void *SystemValidationPointer;
   byte *ValidationBytePointer48;
-  int iStack_40;
+  int SystemStackInteger40;
   uint32_t FunctionAddress;
   
   LoopIndex = CoreEngineConfigFlag;
@@ -76453,7 +76453,7 @@ uint64_t CalculateEngineSecondaryParameter(void
   TemporaryBuffer = SystemCharacterStatusBuffer;
   if (CharacterStatusBuffer3 != NULL) {
     do {
-      if (iStack_40 == 0) {
+      if (SystemStackInteger40 == 0) {
         LowByte = false;
         CharacterStatusBuffer2 = (void *)CharacterStatusBuffer3[1];
       }
@@ -76488,7 +76488,7 @@ LAB_1800957c7:
     SystemStatusContext = NULL;
     if (CharacterStatusBuffer != SystemCharacterStatusBuffer) {
       if (*(int *)(CharacterStatusBuffer + 6) == 0) goto LAB_18009580a;
-      if (iStack_40 != 0) {
+      if (SystemStackInteger40 != 0) {
         ValidationBytePointer = (byte *)CharacterStatusBuffer[5];
         LoopIndex = (long long)ValidationBytePointer48 - (long long)ValidationBytePointer;
         do {
