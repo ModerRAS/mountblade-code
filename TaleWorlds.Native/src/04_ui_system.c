@@ -625,21 +625,88 @@ typedef enum {
  // UI系统函数宏定义 - 更新UI纹理
 #define UpdateUITexture ProcessUIRenderDataTransform
 
- // UI系统函数宏定义 - 处理UI动画
+ /**
+ * @brief 处理UI动画
+ * 
+ * 该函数负责处理UI元素的动画效果，包括：
+ * - 动画状态更新
+ * - 动画插值计算
+ * - 动画帧同步
+ * 
+ * @note 原始函数名：FUN_1807075c0
+ */
 #define ProcessUIAnimation FUN_1807075c0
 
- // UI系统函数宏定义 - 更新UI动画状态
+/**
+ * @brief 更新UI动画状态
+ * 
+ * 该函数负责更新UI元素的动画状态，包括：
+ * - 动画时间计算
+ * - 动画过渡处理
+ * - 动画事件触发
+ * 
+ * @note 原始函数名：FUN_180707950
+ */
 #define UpdateUIAnimationState FUN_180707950
 
- // UI系统函数宏定义 - 处理UI布局
+/**
+ * @brief 处理UI布局
+ * 
+ * 该函数负责处理UI元素的布局计算，包括：
+ * - 元素位置计算
+ * - 尺寸调整
+ * - 层级关系处理
+ * 
+ * @note 原始函数名：FUN_180707988
+ */
 #define ProcessUILayout FUN_180707988
 
- // UI系统函数宏定义 - 获取UI布局数据
+/**
+ * @brief 获取UI布局数据
+ * 
+ * 该函数负责获取UI元素的布局数据，包括：
+ * - 布局参数查询
+ * - 元素尺寸信息
+ * - 位置坐标数据
+ * 
+ * @note 原始函数名：FUN_1807079df
+ */
 #define GetUILayoutData FUN_1807079df
 
- // UI系统函数宏定义 - 初始化UI布局系统
+/**
+ * @brief 初始化UI布局系统
+ * 
+ * 该函数负责初始化UI布局系统，包括：
+ * - 布局管理器创建
+ * - 布局规则设置
+ * - 默认参数配置
+ * 
+ * @note 原始函数名：FUN_18069ccd0
+ */
 #define InitializeUILayoutSystem FUN_18069ccd0
+
+/**
+ * @brief 计算UI布局指标
+ * 
+ * 该函数负责计算UI布局的各项指标，包括：
+ * - 布局边界计算
+ * - 元素间距计算
+ * - 对齐方式处理
+ * 
+ * @note 原始函数名：FUN_180707aa0
+ */
 #define CalculateUILayoutMetrics FUN_180707aa0
+
+/**
+ * @brief 同步UI资源
+ * 
+ * 该函数负责同步UI系统的资源状态，包括：
+ * - 资源状态检查
+ * - 资源更新同步
+ * - 资源释放管理
+ * 
+ * @note 原始函数名：FUN_18069d8a0
+ */
 #define SynchronizeUIResources FUN_18069d8a0
 
 // UI系统函数宏定义 - 验证UI数据并处理缓冲区操作
