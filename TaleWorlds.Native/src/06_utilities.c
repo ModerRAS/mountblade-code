@@ -3905,7 +3905,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 此函数可能涉及系统性能敏感计算，应避免频繁调用
  * @see ValidateSystemParametersAndConfig, UpdateSystemStatusAndState
  */
-#define CalculateSystemValueAndMetrics FUN_1800ba100
+#define CalculateSystemMetricsAndValues FUN_1800ba100
 
 /**
  * @brief 系统参数和配置验证函数
@@ -3924,7 +3924,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180047e40
  * @warning 参数验证失败可能导致系统不稳定
- * @see CalculateSystemValueAndMetrics, ValidateSystemStatusAndHealth
+ * @see CalculateSystemMetricsAndValues, ValidateSystemStatusAndHealth
  */
 #define ValidateSystemParametersAndConfig FUN_180047e40
 
@@ -4025,7 +4025,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
  * @see ProcessSystemOperations, ValidateSystemParametersAndConfig
  */
-#define ExecuteSystemCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand FUN_18009fb60
 
 /**
  * @brief 系统操作处理函数
@@ -4046,7 +4046,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800ad6f0
  * @warning 系统操作可能影响系统整体性能和稳定性
- * @see ExecuteSystemCommand, UpdateSystemStatusAndState
+ * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndState
  */
 #define ProcessSystemOperations FUN_1800ad6f0
 
@@ -4385,7 +4385,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18062b420
  */
-#define CalculateSystemValueAndMetrics FUN_18062b420
+#define CalculateSystemMetricsAndValues FUN_18062b420
 
 /**
  * @brief 系统上下文值获取函数
@@ -4658,7 +4658,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：func_0x00018006d490
  */
-#define ExecuteSystemCoreCommand ExecuteSystemCommand
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 // 全局指针设置函数宏定义
 /**
@@ -7184,7 +7184,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 系统命令执行函数 - 系统命令执行函数
 // 功能：执行系统命令和操作
-#define ExecuteSystemCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand FUN_18009fb60
 
 
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
@@ -81153,7 +81153,7 @@ void SystemValidationContextHandler(DataBuffer operationBase, int64_t dataBuffer
        &SystemValidationFlagA;
   operationResult = *(int *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 4);
   *(int *)((int64_t)operationResult + -0xac + exceptionHandlerContext) = operationResult + -0xa8;
-  ExecuteSystemCommand(dataBuffer + 0x88);
+  ExecuteSystemCoreCommand(dataBuffer + 0x88);
   BasicOStreamFlush(dataBuffer + systemContextPointerOffset90);
                                     BasicIoStreamCleanup(exceptionHandlerContext);
   return;
@@ -115452,7 +115452,7 @@ void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
        &SystemExecutionBuffer;
   operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
-  ExecuteSystemCommand(memoryBlockOffset + 0x138);
+  ExecuteSystemCoreCommand(memoryBlockOffset + 0x138);
   DestroyBasicIstream(memoryBlockOffset + 0x140);
                              DestroyBasicIos(exceptionHandlerContext);
   return;
@@ -115798,7 +115798,7 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
        &SystemExecutionBuffer;
   operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
-  ExecuteSystemCommand(memoryBlockOffset + 0x138);
+  ExecuteSystemCoreCommand(memoryBlockOffset + 0x138);
   DestroyBasicIstream(memoryBlockOffset + 0x140);
                              DestroyBasicIos(exceptionHandlerContext);
   return;
@@ -130439,7 +130439,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
 // 系统命令执行函数
-#define ExecuteSystemCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand FUN_18009fb60
 
 // 系统操作处理函数
 // 功能：处理系统级操作，包括资源管理和状态控制
