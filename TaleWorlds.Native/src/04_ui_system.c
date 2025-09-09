@@ -94541,27 +94541,26 @@ void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *t
 
 
 
- void FUN_18071ffb4(void)
-void FUN_18071ffb4(void)
+ void ProcessUITransformCoefficients(void)
 
 {
   float *BaseValuePointer;
   float *TransformCoefficient1;
-  UIByte aEventTypeCode [16];
-  UIByte aProcessingStatus [16];
-  double dVar5;
+  UIByte EventTypeCode [16];
+  UIByte ProcessingStatus [16];
+  double TransformFactor;
   float LocalFloatValue6;
-  float *pResultFloatValue;
-  float *pTemporaryFloatValue;
-  float *bufferPointer;
+  float *ResultFloatValue;
+  float *TemporaryFloatValue;
+  float *BufferPointer;
   float *BaseValuePointer0;
-  float *baseScaleFactor;
+  float *BaseScaleFactor;
   float *BaseValuePointer2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
+  longlong AllocatedMemory3;
+  longlong AllocatedMemory4;
   uint CounterResult;
-  float *registerAX;
-  longlong allocatedMemory6;
+  float *RegisterAX;
+  longlong AllocatedMemory6;
   uint result7;
   uint result8;
   longlong allocatedMemory9;
