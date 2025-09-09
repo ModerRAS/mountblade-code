@@ -43,6 +43,7 @@ char GameConfigurationStatusFlag;
 char* GameEngineConstantString;
 
 // 游戏网络配置参数 - 用于存储网络配置的各种参数数据
+// 包括认证信息、连接设置、服务器地址等网络相关配置
 
 /**
  * @brief 游戏网络配置认证类型
