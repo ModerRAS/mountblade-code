@@ -219987,50 +219987,59 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t ContextHandle, uint64_t Op
 
 
 
-7da00(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017da00(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 初始化系统内存分配和事件模板
+ * 
+ * 该函数负责初始化系统内存分配和事件模板的处理，包括内存分配、
+ * 事件模板设置和系统状态管理。
+ * 
+ * @param ContextHandle 系统上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定处理缓冲区的大小
+ */
+void InitializeSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
-  uint32_t Utf16Char;
-  void *SystemContext;
-  uint64_t *SystemEventTemplatePointer;
-  void *pMemoryOffsetValue;
-  uint64_t *pSystemStackRegisterFlagB0;
-  uint32_t CoreEngineValueA8;
-  uint64_t CoreEngineUnsignedValueA0;
+  uint32_t ConvertedUtf16Character;
+  void *SystemContextPointer;
+  uint64_t *EventTemplateBuffer;
+  void *MemoryOffsetPointer;
+  uint64_t *StackRegisterFlagBuffer;
+  uint32_t CoreEngineStatusValue;
+  uint64_t CoreEngineUnsignedValue;
   uint64_t FunctionAddress;
-  uint64_t ProcessingFlags;
+  uint64_t SystemProcessingFlags;
   
-  ProcessingFlags = 0x18017da2a;
-  PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3);
+  SystemProcessingFlags = 0x18017da2a;
+  SystemProcessingStatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3);
   FunctionAddress = 0xfffffffffffffffe;
-  SystemEventTemplatePointer = PrimaryProcessingStatusFlag;
-  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,OperationBufferSize,ContextHandle);
-  *SystemEventTemplatePointer = &SystemEventTemplateDataPrimary;
-  *(uint32_t *)(PrimaryProcessingStatusFlag + 0x14) = 0x3f800000;
-  PrimaryProcessingStatusFlag[0xe] = 0x4044000000000000;
-  PrimaryProcessingStatusFlag[0xf] = 0x4010000000000000;
-  *(uint32_t *)(PrimaryProcessingStatusFlag + 0x12) = 0;
-  *(uint32_t *)((long long)PrimaryProcessingStatusFlag + 0x94) = 0;
-  *(uint32_t *)(PrimaryProcessingStatusFlag + 0x13) = 0;
-  *(uint32_t *)((long long)PrimaryProcessingStatusFlag + 0x9c) = 0;
-  *(uint32_t *)(PrimaryProcessingStatusFlag + 0x14) = 0x3f800000;
-  PrimaryProcessingStatusFlag[0x10] = 0x4024000000000000;
-  PrimaryProcessingStatusFlag[0x11] = 0x3fd0000000000000;
-  pMemoryOffsetValue = &SystemNullTemplate;
-  CoreEngineUnsignedValueA0 = 0;
-  pSystemStackRegisterFlagB0 = NULL;
-  CoreEngineValueA8 = 0;
-  SystemEventTemplatePointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)SystemEventTemplatePointer = 0;
-  pSystemStackRegisterFlagB0 = SystemEventTemplatePointer;
-  Utf16Char = GetMemoryAllocationInfo(SystemEventTemplatePointer);
-  CoreEngineUnsignedValueA0 = CONCAT44(CoreEngineUnsignedValueA0.HighPart,Utf16Char);
-  *SystemEventTemplatePointer = 0x6f6d412065766f4d;
-  *(uint32_t *)(SystemEventTemplatePointer + 1) = 0x746e75;
-  CoreEngineValueA8 = 0xb;
-  ProcessSystemEventTemplateAndMemoryAllocation(PrimaryProcessingStatusFlag,&pMemoryOffsetValue,PrimaryProcessingStatusFlag + 0xe,1);
-  pMemoryOffsetValue = &SystemNullTemplate;
+  EventTemplateBuffer = SystemProcessingStatusBuffer;
+  ProcessSystemStatusAndBufferSize(SystemProcessingStatusBuffer,OperationBufferSize,ContextHandle);
+  *EventTemplateBuffer = &SystemEventTemplateDataPrimary;
+  *(uint32_t *)(SystemProcessingStatusBuffer + 0x14) = 0x3f800000;
+  SystemProcessingStatusBuffer[0xe] = 0x4044000000000000;
+  SystemProcessingStatusBuffer[0xf] = 0x4010000000000000;
+  *(uint32_t *)(SystemProcessingStatusBuffer + 0x12) = 0;
+  *(uint32_t *)((long long)SystemProcessingStatusBuffer + 0x94) = 0;
+  *(uint32_t *)(SystemProcessingStatusBuffer + 0x13) = 0;
+  *(uint32_t *)((long long)SystemProcessingStatusBuffer + 0x9c) = 0;
+  *(uint32_t *)(SystemProcessingStatusBuffer + 0x14) = 0x3f800000;
+  SystemProcessingStatusBuffer[0x10] = 0x4024000000000000;
+  SystemProcessingStatusBuffer[0x11] = 0x3fd0000000000000;
+  MemoryOffsetPointer = &SystemNullTemplate;
+  CoreEngineUnsignedValue = 0;
+  StackRegisterFlagBuffer = NULL;
+  CoreEngineStatusValue = 0;
+  EventTemplateBuffer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)EventTemplateBuffer = 0;
+  StackRegisterFlagBuffer = EventTemplateBuffer;
+  ConvertedUtf16Character = GetMemoryAllocationInfo(EventTemplateBuffer);
+  CoreEngineUnsignedValue = CONCAT44(CoreEngineUnsignedValue.HighPart,ConvertedUtf16Character);
+  *EventTemplateBuffer = 0x6f6d412065766f4d;
+  *(uint32_t *)(EventTemplateBuffer + 1) = 0x746e75;
+  CoreEngineStatusValue = 0xb;
+  ProcessSystemEventTemplateAndMemoryAllocation(SystemProcessingStatusBuffer,&MemoryOffsetPointer,SystemProcessingStatusBuffer + 0xe,1);
+  MemoryOffsetPointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
+  CoreEngineFreeSystemMemory(EventTemplateBuffer);
 }
 
 

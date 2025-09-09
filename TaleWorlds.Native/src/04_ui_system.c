@@ -400067,7 +400067,17 @@ void ProcessUINullOperation(void)
 
 
 
-UIHandle FUN_18089d250(UIHandle uiContext,longlong *dataSource)
+/**
+ * @brief UI系统组件数据处理器
+ * 
+ * 该函数负责处理UI组件数据，包括数据验证、转换和存储操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return 处理结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d250
+ */
+UIHandle ProcessUIComponentData(UIHandle uiContext, longlong *dataSource)
 
 {
   longlong *pallocatedMemory;
@@ -400171,7 +400181,15 @@ LAB_18089d435:
 
 
 
-UIHandle FUN_18089d281(void)
+/**
+ * @brief UI系统上下文初始化器
+ * 
+ * 该函数负责初始化UI系统上下文，为后续的UI操作准备环境。
+ * 
+ * @return 初始化结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d281
+ */
+UIHandle InitializeUIContext(void)
 
 {
   longlong *pallocatedMemory;
