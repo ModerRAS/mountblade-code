@@ -31548,6 +31548,17 @@ void UtilitySystemNoOperation(void)
 
 
 
+/**
+ * @brief 验证数据同步A0
+ * 
+ * 验证数据同步状态，确保数据的一致性和完整性。
+ * 当前实现返回固定的错误代码，表示验证失败。
+ * 
+ * @return 验证结果，当前实现返回ResourceInvalidErrorCode
+ * 
+ * @note 原始函数名：ValidateDataSynchronizationA0
+ * @note 该函数是数据同步验证系列的一部分
+ */
 DataBuffer ValidateDataSynchronizationA0(void)
 
 {
@@ -31557,6 +31568,24 @@ DataBuffer ValidateDataSynchronizationA0(void)
 
 
 
+/**
+ * @brief 处理系统数据并执行验证
+ * 
+ * 处理系统数据并执行各种验证操作，确保数据的完整性和正确性。
+ * 该函数负责数据解析、验证标志处理和内存操作。
+ * 
+ * @param SystemContext 系统上下文指针
+ * @param ParameterArray 参数数组指针
+ * 
+ * @details 函数执行以下操作：
+ * - 处理系统数据和参数数组
+ * - 执行数据验证和完整性检查
+ * - 管理内存区域和地址寄存器
+ * - 处理循环计数器和标志位
+ * 
+ * @note 原始函数名：ProcessSystemDataWithValidation
+ * @note 该函数是系统数据处理和验证的核心组件
+ */
 void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
 
 {
@@ -31569,7 +31598,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   DataWord AddressRegister;
   uint StackFrameRegister;
   char carryFlag;
-  int *StackIntegerPointerD;
+  int *stackIntegerPointer;
   DataWord memoryRegionBase;
   
   dataFlags = (ByteTriple)((uint)InputAccumulator >> 8);
