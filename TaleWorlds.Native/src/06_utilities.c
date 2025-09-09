@@ -109331,6 +109331,18 @@ void InitializeExceptionContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行异常处理器回调
+ * 
+ * 该函数在异常处理过程中执行回调函数，从异常上下文中获取回调函数指针并调用。
+ * 主要用于异常处理链中的回调执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f1a0
+ * @note 这是一个异常处理回调函数，用于在异常处理过程中执行用户定义的回调
+ */
 void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -109426,6 +109438,18 @@ void DestroyMutexInSitu(void)
 
 
 
+/**
+ * @brief 在异常条件下终止系统执行
+ * 
+ * 该函数检查异常处理上下文中的特定条件，如果满足终止条件，
+ * 则调用系统终止函数并清理资源，同时销毁互斥锁。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f200
+ * @note 这是一个系统终止函数，用于在严重异常情况下安全地终止系统
+ */
 void TerminateSystemOnExceptionCondition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
