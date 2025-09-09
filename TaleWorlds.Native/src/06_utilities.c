@@ -30010,7 +30010,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
           } while ((int64_t)operationResult < (int64_t)operationStatus);
         }
         exceptionDataBuffer = *(DataBuffer **)(registerContext + 8);
-        operationStatus = *(int *)(systemContext + 0x58);
+        operationStatus = *(int *)(systemContext + SystemContextDataOffset58);
         *(int *)(StackFrameContext + ArrayDataOffset) = operationStatus;
         operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,4);
         if (operationResult == 0) {
@@ -30019,7 +30019,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
           statusCounter = validationFloatValue;
           if (0 < operationStatus) {
             do {
-              memoryPointer = *(int64_t *)(systemContext + 0x50) + operationResult;
+              memoryPointer = *(int64_t *)(systemContext + SystemContextDataOffset50) + operationResult;
               operationResult = ProcessDataPointer(statusCounter,memoryPointer);
               if (operationResult != 0) {
                 return;
