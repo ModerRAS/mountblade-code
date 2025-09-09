@@ -5732,6 +5732,6 @@ static uint64_t GetCurrentSystemTime(void)
 {
     // 简化实现：返回简单时间戳
     // 实际实现应该调用系统时间函数
-    static uint64_t timeCounter = 1000000;
-    return timeCounter++;
+    static uint64_t systemTimeCounter = 1000000;
+    return systemTimeCounter++;
 }

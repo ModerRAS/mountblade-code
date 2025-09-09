@@ -106002,15 +106002,29 @@ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targ
 
 
 
- void FUN_180729c5d(UIHandle uiContext,UIHandle dataSource,ulonglong targetBuffer)
-void FUN_180729c5d(UIHandle uiContext,UIHandle dataSource,ulonglong targetBuffer)
+ /**
+ * @brief 处理UI数据缓冲区变换
+ * 
+ * 该函数负责处理UI数据缓冲区的变换操作，包括：
+ * - 数据缓冲区的迭代处理
+ * - 数据值的计算和变换
+ * - 内存数据的复制和更新
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @note 该函数使用了栈缓冲区和迭代处理方式
+ * @note 函数内部调用了其他UI处理函数
+ */
+void ProcessUIDataBufferTransform(UIHandle uiContext,UIHandle dataSource,ulonglong targetBuffer)
 
 {
-  short sVar1;
-  char in_AL;
+  short sourceValue;
+  char transformFactor;
   longlong contextHandle;
-  longlong SourceHandle;
-  longlong TargetHandle;
+  longlong sourceDataHandle;
+  longlong targetDataHandle;
   ulonglong iterationCount;
   
   iterationCount = targetBuffer & 0xffffffff;
