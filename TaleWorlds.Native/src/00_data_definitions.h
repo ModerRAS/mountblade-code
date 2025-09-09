@@ -14,54 +14,261 @@
  * 进行了重命名。
  */
 
-// 浮点颜色和矩阵组件变量
-#define fVar12 FloatColorComponent                    // 浮点颜色组件 - 用于颜色计算
-#define fVar16 FloatMatrixComponent1                   // 浮点矩阵组件1 - 矩阵变换计算
-#define fVar20 FloatColorRedComponent                  // 浮点颜色红色组件 - RGB红色通道
-#define fVar21 FloatColorGreenComponent                // 浮点颜色绿色组件 - RGB绿色通道
-#define fVar25 FloatNormalizationFactor                // 浮点归一化因子 - 用于向量归一化
-#define fVar26 FloatVectorComponentX                   // 浮点向量X组件 - 3D向量X坐标
-#define fVar27 FloatVectorComponentY                   // 浮点向量Y组件 - 3D向量Y坐标
-#define fVar28 FloatVectorComponentZ                   // 浮点向量Z组件 - 3D向量Z坐标
-#define fVar29 FloatVectorComponentW                   // 浮点向量W组件 - 齐次坐标W分量
-#define fVar30 FloatMatrixComponent2                   // 浮点矩阵组件2 - 矩阵变换计算
+// =============================================================================
+// Ghidra自动生成的变量名美化定义
+// =============================================================================
 
-// 额外的浮点变量语义化定义
-#define fVar18 FloatInterpolationFactor                // 浮点插值因子 - 用于动画和过渡计算
-#define fVar19 FloatScaleFactor                        // 浮点缩放因子 - 用于缩放变换
+// 基础类型变量语义化定义
+#define iVar1 IntegerParameter1                      // 整数参数1 - 函数参数传递
+#define iVar2 IntegerParameter2                      // 整数参数2 - 函数参数传递
+#define iVar3 IntegerParameter3                      // 整数参数3 - 函数参数传递
+#define iVar4 IntegerParameter4                      // 整数参数4 - 函数参数传递
+#define iVar5 IntegerParameter5                      // 整数参数5 - 函数参数传递
+#define iVar6 IntegerParameter6                      // 整数参数6 - 函数参数传递
+#define iVar7 IntegerParameter7                      // 整数参数7 - 函数参数传递
+#define iVar8 IntegerParameter8                      // 整数参数8 - 函数参数传递
+#define iVar9 IntegerParameter9                      // 整数参数9 - 函数参数传递
+#define iVar10 IntegerParameter10                    // 整数参数10 - 函数参数传递
 
-// 栈指针变量
-#define iStack_2c8 StackDataPointer2c8                 // 栈数据指针2c8 - 栈帧数据访问
-#define pfVar3 FloatPointer3                           // 浮点指针3 - 浮点数据间接访问
-#define pfVar5 FloatPointer5                           // 浮点指针5 - 浮点数据间接访问
+// 浮点变量语义化定义
+#define fVar1 FloatParameter1                        // 浮点参数1 - 函数参数传递
+#define fVar2 FloatParameter2                        // 浮点参数2 - 函数参数传递
+#define fVar3 FloatParameter3                        // 浮点参数3 - 函数参数传递
+#define fVar4 FloatParameter4                        // 浮点参数4 - 函数参数传递
+#define fVar5 FloatParameter5                        // 浮点参数5 - 函数参数传递
+#define fVar6 FloatParameter6                        // 浮点参数6 - 函数参数传递
+#define fVar7 FloatParameter7                        // 浮点参数7 - 函数参数传递
+#define fVar8 FloatParameter8                        // 浮点参数8 - 函数参数传递
+#define fVar9 FloatParameter9                        // 浮点参数9 - 函数参数传递
+#define fVar10 FloatParameter10                      // 浮点参数10 - 函数参数传递
 
+// 长整型变量语义化定义
+#define lVar1 LongParameter1                         // 长整型参数1 - 函数参数传递
+#define lVar2 LongParameter2                         // 长整型参数2 - 函数参数传递
+#define lVar3 LongParameter3                         // 长整型参数3 - 函数参数传递
+#define lVar4 LongParameter4                         // 长整型参数4 - 函数参数传递
+#define lVar5 LongParameter5                         // 长整型参数5 - 函数参数传递
+#define lVar6 LongParameter6                         // 长整型参数6 - 函数参数传递
+#define lVar7 LongParameter7                         // 长整型参数7 - 函数参数传递
+#define lVar8 LongParameter8                         // 长整型参数8 - 函数参数传递
+#define lVar9 LongParameter9                         // 长整型参数9 - 函数参数传递
+#define lVar10 LongParameter10                       // 长整型参数10 - 函数参数传递
+
+// 指针变量语义化定义
+#define pVar1 PointerParameter1                      // 指针参数1 - 函数参数传递
+#define pVar2 PointerParameter2                      // 指针参数2 - 函数参数传递
+#define pVar3 PointerParameter3                      // 指针参数3 - 函数参数传递
+#define pVar4 PointerParameter4                      // 指针参数4 - 函数参数传递
+#define pVar5 PointerParameter5                      // 指针参数5 - 函数参数传递
+#define pVar6 PointerParameter6                      // 指针参数6 - 函数参数传递
+#define pVar7 PointerParameter7                      // 指针参数7 - 函数参数传递
+#define pVar8 PointerParameter8                      // 指针参数8 - 函数参数传递
+#define pVar9 PointerParameter9                      // 指针参数9 - 函数参数传递
+#define pVar10 PointerParameter10                    // 指针参数10 - 函数参数传递
+
+// 布尔变量语义化定义
+#define bVar1 BooleanParameter1                      // 布尔参数1 - 函数参数传递
+#define bVar2 BooleanParameter2                      // 布尔参数2 - 函数参数传递
+#define bVar3 BooleanParameter3                      // 布尔参数3 - 函数参数传递
+#define bVar4 BooleanParameter4                      // 布尔参数4 - 函数参数传递
+#define bVar5 BooleanParameter5                      // 布尔参数5 - 函数参数传递
+#define bVar6 BooleanParameter6                      // 布尔参数6 - 函数参数传递
+#define bVar7 BooleanParameter7                      // 布尔参数7 - 函数参数传递
+#define bVar8 BooleanParameter8                      // 布尔参数8 - 函数参数传递
+#define bVar9 BooleanParameter9                      // 布尔参数9 - 函数参数传递
+#define bVar10 BooleanParameter10                    // 布尔参数10 - 函数参数传递
+
+// 无符号变量语义化定义
+#define uVar1 UnsignedParameter1                     // 无符号参数1 - 函数参数传递
+#define uVar2 UnsignedParameter2                     // 无符号参数2 - 函数参数传递
+#define uVar3 UnsignedParameter3                     // 无符号参数3 - 函数参数传递
+#define uVar4 UnsignedParameter4                     // 无符号参数4 - 函数参数传递
+#define uVar5 UnsignedParameter5                     // 无符号参数5 - 函数参数传递
+#define uVar6 UnsignedParameter6                     // 无符号参数6 - 函数参数传递
+#define uVar7 UnsignedParameter7                     // 无符号参数7 - 函数参数传递
+#define uVar8 UnsignedParameter8                     // 无符号参数8 - 函数参数传递
+#define uVar9 UnsignedParameter9                     // 无符号参数9 - 函数参数传递
+#define uVar10 UnsignedParameter10                   // 无符号参数10 - 函数参数传递
+
+// 字符变量语义化定义
+#define cVar1 CharacterParameter1                    // 字符参数1 - 函数参数传递
+#define cVar2 CharacterParameter2                    // 字符参数2 - 函数参数传递
+#define cVar3 CharacterParameter3                    // 字符参数3 - 函数参数传递
+#define cVar4 CharacterParameter4                    // 字符参数4 - 函数参数传递
+#define cVar5 CharacterParameter5                    // 字符参数5 - 函数参数传递
+#define cVar6 CharacterParameter6                    // 字符参数6 - 函数参数传递
+#define cVar7 CharacterParameter7                    // 字符参数7 - 函数参数传递
+#define cVar8 CharacterParameter8                    // 字符参数8 - 函数参数传递
+#define cVar9 CharacterParameter9                    // 字符参数9 - 函数参数传递
+#define cVar10 CharacterParameter10                  // 字符参数10 - 函数参数传递
+
+// 双精度变量语义化定义
+#define dVar1 DoubleParameter1                       // 双精度参数1 - 函数参数传递
+#define dVar2 DoubleParameter2                       // 双精度参数2 - 函数参数传递
+#define dVar3 DoubleParameter3                       // 双精度参数3 - 函数参数传递
+#define dVar4 DoubleParameter4                       // 双精度参数4 - 函数参数传递
+#define dVar5 DoubleParameter5                       // 双精度参数5 - 函数参数传递
+#define dVar6 DoubleParameter6                       // 双精度参数6 - 函数参数传递
+#define dVar7 DoubleParameter7                       // 双精度参数7 - 函数参数传递
+#define dVar8 DoubleParameter8                       // 双精度参数8 - 函数参数传递
+#define dVar9 DoubleParameter9                       // 双精度参数9 - 函数参数传递
+#define dVar10 DoubleParameter10                     // 双精度参数10 - 函数参数传递
+
+// 短整型变量语义化定义
+#define sVar1 ShortParameter1                        // 短整型参数1 - 函数参数传递
+#define sVar2 ShortParameter2                        // 短整型参数2 - 函数参数传递
+#define sVar3 ShortParameter3                        // 短整型参数3 - 函数参数传递
+#define sVar4 ShortParameter4                        // 短整型参数4 - 函数参数传递
+#define sVar5 ShortParameter5                        // 短整型参数5 - 函数参数传递
+#define sVar6 ShortParameter6                        // 短整型参数6 - 函数参数传递
+#define sVar7 ShortParameter7                        // 短整型参数7 - 函数参数传递
+#define sVar8 ShortParameter8                        // 短整型参数8 - 函数参数传递
+#define sVar9 ShortParameter9                        // 短整型参数9 - 函数参数传递
+#define sVar10 ShortParameter10                      // 短整型参数10 - 函数参数传递
+
+// =============================================================================
 // 栈变量语义化定义
-#define lStack_28 SystemStringProcessingPointer        // 系统字符串处理指针 - 字符串操作
-#define lStack_68 SystemMemoryOperationPointer         // 系统内存操作指针 - 内存管理操作
-#define lStack_b0 SystemSecondaryDataPointer           // 系统二级数据指针 - 辅助数据处理
-#define lStack_a8 SystemTertiaryDataPointer            // 系统三级数据指针 - 第三级数据处理
-#define lStack_278 SystemNetworkDataPointer            // 系统网络数据指针 - 网络通信数据
-#define lStack_d0 SystemConfigurationDataPointer       // 系统配置数据指针 - 系统配置参数
+// =============================================================================
+
+// 基础栈变量定义
 #define iStack_20 SystemValidationStatusCode           // 系统验证状态码 - 验证操作结果
 #define iStack_40 SystemProcessingIndex                // 系统处理索引 - 数据处理索引
 #define iStack_60 SystemIterationCounter               // 系统迭代计数器 - 循环迭代计数
 #define iStack_78 SystemMemoryAllocationSize           // 系统内存分配大小 - 内存分配参数
+#define iStack_2c8 StackDataPointer2c8                 // 栈数据指针2c8 - 栈帧数据访问
 
+// 长整型栈变量定义
+#define lStack_28 SystemStringProcessingPointer        // 系统字符串处理指针 - 字符串操作
+#define lStack_68 SystemMemoryOperationPointer         // 系统内存操作指针 - 内存管理操作
+#define lStack_a8 SystemTertiaryDataPointer            // 系统三级数据指针 - 第三级数据处理
+#define lStack_b0 SystemSecondaryDataPointer           // 系统二级数据指针 - 辅助数据处理
+#define lStack_d0 SystemConfigurationDataPointer       // 系统配置数据指针 - 系统配置参数
+#define lStack_278 SystemNetworkDataPointer            // 系统网络数据指针 - 网络通信数据
+
+// 浮点指针栈变量定义
+#define pfVar3 FloatPointer3                           // 浮点指针3 - 浮点数据间接访问
+#define pfVar5 FloatPointer5                           // 浮点指针5 - 浮点数据间接访问
+
+// =============================================================================
 // 复杂指针变量语义化定义
+// =============================================================================
+
+// 双重指针栈变量定义
+#define ppStack_8 DoublePointerStack8                  // 双重指针栈8 - 二级指针访问
+#define ppStack_10 DoublePointerStack10                // 双重指针栈10 - 二级指针访问
+#define ppStack_18 DoublePointerStack18                // 双重指针栈18 - 二级指针访问
+#define ppStack_20 DoublePointerStack20                // 双重指针栈20 - 二级指针访问
+#define ppStack_28 DoublePointerStack28                // 双重指针栈28 - 二级指针访问
+#define ppStack_30 DoublePointerStack30                // 双重指针栈30 - 二级指针访问
+#define ppStack_38 DoublePointerStack38                // 双重指针栈38 - 二级指针访问
+#define ppStack_40 DoublePointerStack40                // 双重指针栈40 - 二级指针访问
+#define ppStack_48 DoublePointerStack48                // 双重指针栈48 - 二级指针访问
+#define ppStack_50 DoublePointerStack50                // 双重指针栈50 - 二级指针访问
+
+// 三重指针栈变量定义
+#define pppStack_8 TriplePointerStack8                  // 三重指针栈8 - 三级指针访问
+#define pppStack_10 TriplePointerStack10                // 三重指针栈10 - 三级指针访问
+#define pppStack_18 TriplePointerStack18                // 三重指针栈18 - 三级指针访问
+#define pppStack_20 TriplePointerStack20                // 三重指针栈20 - 三级指针访问
+#define pppStack_28 TriplePointerStack28                // 三重指针栈28 - 三级指针访问
+#define pppStack_30 TriplePointerStack30                // 三重指针栈30 - 三级指针访问
+#define pppStack_38 TriplePointerStack38                // 三重指针栈38 - 三级指针访问
+#define pppStack_40 TriplePointerStack40                // 三重指针栈40 - 三级指针访问
+#define pppStack_48 TriplePointerStack48                // 三重指针栈48 - 三级指针访问
+#define pppStack_50 TriplePointerStack50                // 三重指针栈50 - 三级指针访问
+
+// 四重指针栈变量定义
+#define ppppStack_8 QuadruplePointerStack8              // 四重指针栈8 - 四级指针访问
+#define ppppStack_10 QuadruplePointerStack10            // 四重指针栈10 - 四级指针访问
+#define ppppStack_18 QuadruplePointerStack18            // 四重指针栈18 - 四级指针访问
+#define ppppStack_20 QuadruplePointerStack20            // 四重指针栈20 - 四级指针访问
+#define ppppStack_28 QuadruplePointerStack28            // 四重指针栈28 - 四级指针访问
+#define ppppStack_30 QuadruplePointerStack30            // 四重指针栈30 - 四级指针访问
+#define ppppStack_38 QuadruplePointerStack38            // 四重指针栈38 - 四级指针访问
+#define ppppStack_40 QuadruplePointerStack40            // 四重指针栈40 - 四级指针访问
+#define ppppStack_48 QuadruplePointerStack48            // 四重指针栈48 - 四级指针访问
+#define ppppStack_50 QuadruplePointerStack50            // 四重指针栈50 - 四级指针访问
+
+// 五重指针栈变量定义
+#define pppppStack_8 QuintuplePointerStack8            // 五重指针栈8 - 五级指针访问
+#define pppppStack_10 QuintuplePointerStack10           // 五重指针栈10 - 五级指针访问
+#define pppppStack_18 QuintuplePointerStack18           // 五重指针栈18 - 五级指针访问
+#define pppppStack_20 QuintuplePointerStack20           // 五重指针栈20 - 五级指针访问
+#define pppppStack_28 QuintuplePointerStack28           // 五重指针栈28 - 五级指针访问
+#define pppppStack_30 QuintuplePointerStack30           // 五重指针栈30 - 五级指针访问
+#define pppppStack_38 QuintuplePointerStack38           // 五重指针栈38 - 五级指针访问
+#define pppppStack_40 QuintuplePointerStack40           // 五重指针栈40 - 五级指针访问
+#define pppppStack_48 QuintuplePointerStack48           // 五重指针栈48 - 五级指针访问
+#define pppppStack_50 QuintuplePointerStack50           // 五重指针栈50 - 五级指针访问
+
+// 六重指针栈变量定义
+#define ppppppStack_8 SextuplePointerStack8             // 六重指针栈8 - 六级指针访问
+#define ppppppStack_10 SextuplePointerStack10           // 六重指针栈10 - 六级指针访问
+#define ppppppStack_18 SextuplePointerStack18           // 六重指针栈18 - 六级指针访问
+#define ppppppStack_20 SextuplePointerStack20           // 六重指针栈20 - 六级指针访问
+#define ppppppStack_28 SextuplePointerStack28           // 六重指针栈28 - 六级指针访问
+#define ppppppStack_30 SextuplePointerStack30           // 六重指针栈30 - 六级指针访问
+#define ppppppStack_38 SextuplePointerStack38           // 六重指针栈38 - 六级指针访问
+#define ppppppStack_40 SextuplePointerStack40           // 六重指针栈40 - 六级指针访问
+#define ppppppStack_48 SextuplePointerStack48           // 六重指针栈48 - 六级指针访问
+#define ppppppStack_50 SextuplePointerStack50           // 六重指针栈50 - 六级指针访问
+
+// 七重指针栈变量定义
+#define pppppppStack_8 SeptuplePointerStack8            // 七重指针栈8 - 七级指针访问
+#define pppppppStack_10 SeptuplePointerStack10          // 七重指针栈10 - 七级指针访问
+#define pppppppStack_18 SeptuplePointerStack18          // 七重指针栈18 - 七级指针访问
+#define pppppppStack_20 SeptuplePointerStack20          // 七重指针栈20 - 七级指针访问
+#define pppppppStack_28 SeptuplePointerStack28          // 七重指针栈28 - 七级指针访问
+#define pppppppStack_30 SeptuplePointerStack30          // 七重指针栈30 - 七级指针访问
+#define pppppppStack_38 SeptuplePointerStack38          // 七重指针栈38 - 七级指针访问
+#define pppppppStack_40 SeptuplePointerStack40          // 七重指针栈40 - 七级指针访问
+#define pppppppStack_48 SeptuplePointerStack48          // 七重指针栈48 - 七级指针访问
+#define pppppppStack_50 SeptuplePointerStack50          // 七重指针栈50 - 七级指针访问
+
+// 特殊复杂指针变量定义
 #define ppplStack_68 SystemPerformanceCounterPointer    // 系统性能计数器指针 - 性能监控
 #define ppplStack_b8 SystemMemoryManagerPointer         // 系统内存管理器指针 - 内存管理
 #define ppppppplStack_108 SystemComplexDataPointer     // 系统复杂数据指针 - 复杂数据结构
 #define ppppppplStack_f8 SystemMemoryContextPointer     // 系统内存上下文指针 - 内存上下文
 #define ppppppuStackX_10 SystemParameterPointer         // 系统参数指针 - 函数参数传递
 
+// =============================================================================
 // 音频处理栈变量语义化定义
+// =============================================================================
+
+// 音频处理栈变量定义
 #define afStack_2e8 AudioProcessingBuffer              // 音频处理缓冲区 - 音频数据处理
 #define fStack_370 AudioProcessingResult               // 音频处理结果 - 音频处理输出
 
+// =============================================================================
 // 系统栈变量语义化定义
-#define plStack_2f8 SystemPerformanceData              // 系统性能数据 - 性能统计信息
+// =============================================================================
+
+// 长整型指针栈变量定义
+#define plStack_8 LongPointerStack8                    // 长整型指针栈8 - 长整型指针访问
+#define plStack_10 LongPointerStack10                  // 长整型指针栈10 - 长整型指针访问
+#define plStack_18 LongPointerStack18                  // 长整型指针栈18 - 长整型指针访问
+#define plStack_20 LongPointerStack20                  // 长整型指针栈20 - 长整型指针访问
+#define plStack_28 LongPointerStack28                  // 长整型指针栈28 - 长整型指针访问
+#define plStack_30 LongPointerStack30                  // 长整型指针栈30 - 长整型指针访问
+#define plStack_38 LongPointerStack38                  // 长整型指针栈38 - 长整型指针访问
+#define plStack_40 LongPointerStack40                  // 长整型指针栈40 - 长整型指针访问
+#define plStack_48 LongPointerStack48                  // 长整型指针栈48 - 长整型指针访问
+#define plStack_50 LongPointerStack50                  // 长整型指针栈50 - 长整型指针访问
 #define plStack_60 SystemMemoryPointerArray           // 系统内存指针数组 - 内存指针集合
+#define plStack_2f8 SystemPerformanceData              // 系统性能数据 - 性能统计信息
+
+// 数组型栈变量定义
+#define alStack_8 ArrayStack8                          // 数组栈8 - 数组数据访问
+#define alStack_10 ArrayStack10                        // 数组栈10 - 数组数据访问
+#define alStack_18 ArrayStack18                        // 数组栈18 - 数组数据访问
+#define alStack_20 ArrayStack20                        // 数组栈20 - 数组数据访问
+#define alStack_28 ArrayStack28                        // 数组栈28 - 数组数据访问
 #define alStack_30 SystemMemoryHandleArray             // 系统内存句柄数组 - 内存句柄集合
+#define alStack_38 ArrayStack38                        // 数组栈38 - 数组数据访问
+#define alStack_40 ArrayStack40                        // 数组栈40 - 数组数据访问
+#define alStack_48 ArrayStack48                        // 数组栈48 - 数组数据访问
+#define alStack_50 ArrayStack50                        // 数组栈50 - 数组数据访问
 #define alStack_3d0 SystemFileHandleArray               // 系统文件句柄数组 - 文件句柄集合
 
 // =============================================================================
@@ -14532,40 +14739,80 @@ int RegisterSystemNetworkModule(void);
 #define TemporaryDataStackK SystemStateStackPointer
 #define TemporaryDataStackL CleanupOperationStackPointer
 
+// =============================================================================
 // 系统错误代码定义
-#define SystemErrorCodeSuccess 0x00000000        // 操作成功
-#define SystemErrorCodeFailure 0x00000001        // 一般错误
-#define SystemErrorCodeInvalidParameter 0x00000002  // 无效参数
-#define SystemErrorCodeOutOfMemory 0x00000003    // 内存不足
-#define SystemErrorCodeTimeout 0x00000004       // 超时错误
-#define SystemErrorCodeAccessDenied 0x00000005   // 访问被拒绝
-#define SystemErrorCodeNotFound 0x00000006       // 未找到
-#define SystemErrorCodeBusy 0x00000007           // 系统忙
-#define SystemErrorCodeCorrupted 0x00000008      // 数据损坏
-#define SystemErrorCodeNotSupported 0x00000009   // 不支持的操作
-#define SystemErrorCodeAborted 0x0000000A       // 操作中止
+// =============================================================================
 
+/**
+ * @brief 系统错误代码枚举
+ * 
+ * 定义了系统中可能出现的各种错误代码，用于错误处理和状态报告。
+ * 每个错误代码都有特定的含义和处理方式。
+ */
+
+#define SystemErrorCodeSuccess 0x00000000        // 操作成功 - 无错误发生
+#define SystemErrorCodeFailure 0x00000001        // 一般错误 - 未指定的通用错误
+#define SystemErrorCodeInvalidParameter 0x00000002  // 无效参数 - 函数参数不符合要求
+#define SystemErrorCodeOutOfMemory 0x00000003    // 内存不足 - 系统内存分配失败
+#define SystemErrorCodeTimeout 0x00000004       // 超时错误 - 操作超时未完成
+#define SystemErrorCodeAccessDenied 0x00000005   // 访问被拒绝 - 权限不足或资源不可访问
+#define SystemErrorCodeNotFound 0x00000006       // 未找到 - 请求的资源或对象不存在
+#define SystemErrorCodeBusy 0x00000007           // 系统忙 - 资源正在使用中
+#define SystemErrorCodeCorrupted 0x00000008      // 数据损坏 - 数据完整性验证失败
+#define SystemErrorCodeNotSupported 0x00000009   // 不支持的操作 - 请求的操作不被支持
+#define SystemErrorCodeAborted 0x0000000A       // 操作中止 - 操作被用户或系统中断
+
+// =============================================================================
 // 系统日志级别定义
-#define SystemLogLevelError 0x01                  // 错误级别
-#define SystemLogLevelWarning 0x02                // 警告级别
-#define SystemLogLevelInfo 0x04                   // 信息级别
-#define SystemLogLevelDebug 0x08                  // 调试级别
-#define SystemLogLevelTrace 0x10                  // 跟踪级别
+// =============================================================================
 
+/**
+ * @brief 系统日志级别定义
+ * 
+ * 定义了系统日志的不同级别，用于控制日志输出的详细程度。
+ * 支持位掩码组合，可以同时启用多个日志级别。
+ */
+
+#define SystemLogLevelError 0x01                  // 错误级别 - 仅记录严重错误
+#define SystemLogLevelWarning 0x02                // 警告级别 - 记录警告和错误
+#define SystemLogLevelInfo 0x04                   // 信息级别 - 记录一般信息
+#define SystemLogLevelDebug 0x08                  // 调试级别 - 记录调试信息
+#define SystemLogLevelTrace 0x10                  // 跟踪级别 - 记录详细跟踪信息
+
+// =============================================================================
 // 系统性能计数器常量
-#define SystemPerformanceCounterFrames 0x01     // 帧计数器
-#define SystemPerformanceCounterTime 0x02        // 时间计数器
-#define SystemPerformanceCounterMemory 0x04      // 内存计数器
-#define SystemPerformanceCounterCPU 0x08         // CPU计数器
-#define SystemPerformanceCounterGPU 0x10         // GPU计数器
-#define SystemPerformanceCounterNetwork 0x20     // 网络计数器
+// =============================================================================
 
+/**
+ * @brief 系统性能计数器类型
+ * 
+ * 定义了系统性能监控的不同计数器类型，用于性能分析和优化。
+ * 支持多种性能指标的监控和统计。
+ */
+
+#define SystemPerformanceCounterFrames 0x01     // 帧计数器 - 渲染帧数统计
+#define SystemPerformanceCounterTime 0x02        // 时间计数器 - 执行时间统计
+#define SystemPerformanceCounterMemory 0x04      // 内存计数器 - 内存使用统计
+#define SystemPerformanceCounterCPU 0x08         // CPU计数器 - CPU使用率统计
+#define SystemPerformanceCounterGPU 0x10         // GPU计数器 - GPU使用率统计
+#define SystemPerformanceCounterNetwork 0x20     // 网络计数器 - 网络流量统计
+
+// =============================================================================
 // 系统内存管理常量
-#define SystemMemoryPageSize 0x1000              // 内存页大小 (4KB)
-#define SystemMemoryAlignment 0x1000             // 内存对齐大小
-#define SystemMemoryHeapInitialSize 0x100000      // 堆初始大小 (1MB)
-#define SystemMemoryHeapMaxSize 0x10000000       // 堆最大大小 (256MB)
-#define SystemMemoryPoolBlockSize 0x1000        // 内存池块大小 (4KB)
-#define SystemMemoryPoolMaxBlocks 0x1000         // 内存池最大块数
+// =============================================================================
+
+/**
+ * @brief 系统内存管理参数
+ * 
+ * 定义了系统内存管理的各种参数和限制，包括内存页大小、
+ * 对齐要求、堆大小限制等。这些参数影响内存分配策略和性能。
+ */
+
+#define SystemMemoryPageSize 0x1000              // 内存页大小 - 4KB页面对齐
+#define SystemMemoryAlignment 0x1000             // 内存对齐大小 - 4KB对齐要求
+#define SystemMemoryHeapInitialSize 0x100000      // 堆初始大小 - 1MB初始堆空间
+#define SystemMemoryHeapMaxSize 0x10000000       // 堆最大大小 - 256MB堆空间限制
+#define SystemMemoryPoolBlockSize 0x1000        // 内存池块大小 - 4KB池块大小
+#define SystemMemoryPoolMaxBlocks 0x1000         // 内存池最大块数 - 4096个池块限制
 
 #endif // DATA_DEFINITIONS_H
