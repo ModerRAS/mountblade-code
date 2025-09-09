@@ -186548,11 +186548,11 @@ undefined UIAnimationData;
 undefined UITimerData;
 undefined UISchedulerData;
 
- undefined FUN_18082ed00;
-undefined FUN_18082ed00;
+ undefined UIEventProcessor;
+undefined UIEventProcessor;
 
- undefined FUN_18082e800;
-undefined FUN_18082e800;
+ undefined UIInputHandler;
+undefined UIInputHandler;
 undefined UNK_180981b58;
 undefined UNK_180981be0;
 undefined UNK_180981c08;
