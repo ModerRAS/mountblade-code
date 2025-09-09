@@ -100215,70 +100215,88 @@ UIWord * GetUIWordDataPointer(void)
 
 
 
-UIWord * FUN_18072390f(UIHandle uiContext,longlong dataSource)
-
+/**
+ * @brief 计算UI组件相似度加权得分
+ * 
+ * 该函数计算UI组件之间的相似度加权得分，用于UI组件匹配和排序。
+ * 通过多重加权计算，评估组件间的相似程度，返回处理后的状态数据。
+ * 
+ * @param UIContext UI上下文句柄
+ * @param DataSource 数据源标识符
+ * @return UIWord* 指向处理后的UI状态数据数组的指针
+ * 
+ * @details 算法细节：
+ * - 使用9元素权重数组进行加权计算
+ * - 通过16位偏移量计算组件索引
+ * - 支持动态权重调整和阈值限制
+ * - 结果限制在0x7fff范围内防止溢出
+ * 
+ * @note 原始函数名：FUN_18072390f
+ * @warning 计算结果受权重数组影响，需要确保权重数据正确性
+ */
+UIWord * CalculateUIComponentSimilarityScore(UIHandle UIContext, longlong DataSource)
 {
-  short *psVar1;
-  longlong componentIndex;
-  longlong stringCompareIndex;
-  UIWord *contextHandle;
-  int unmodifiedEBP;
-  int unmodifiedESI;
-  int allocationFlags;
-  UIWord ProcessingStatus;
-  int localInt5;
-  int *ptrLocalInt6;
-  int RegisterValue;
-  longlong preservedRegister13;
-  longlong EventHandle;
-  int stackParam00000060;
+  short *ComponentWeightArray;
+  longlong ComponentIndex;
+  longlong StringCompareIndex;
+  UIWord *ContextHandle;
+  int LoopEndFlag;
+  int MinimumThreshold;
+  int AllocationFlags;
+  UIWord SimilarityScore;
+  int CalculatedScore;
+  int *WeightDataTable;
+  int ComponentCount;
+  longlong PreservedRegister13;
+  longlong EventDataHandle;
+  int StepIncrement;
   
   do {
-    ptrLocalInt6 = (int *)(((longlong)allocationFlags >> 0x10) * 4 + preservedRegister13);
-    localInt5 = (int)((ulonglong)(ushort)allocationFlags * dataSource >> 0x10);
-    psVar1 = (short *)(EventHandle + (longlong)(localInt5 * 9) * 2);
-    stringCompareIndex = (longlong)((RegisterValue - localInt5) * 9);
-    componentIndex = EventHandle + stringCompareIndex * 2;
-    localInt5 = ((int)((ulonglong)((longlong)ptrLocalInt6[0x11] * (longlong)*(short *)(componentIndex + -0x12)) >> 0x10
-                  ) + (int)((ulonglong)((longlong)*(short *)(componentIndex + -4) * (longlong)ptrLocalInt6[10]) >>
+    WeightDataTable = (int *)(((longlong)AllocationFlags >> 0x10) * 4 + PreservedRegister13);
+    CalculatedScore = (int)((ulonglong)(ushort)AllocationFlags * DataSource >> 0x10);
+    ComponentWeightArray = (short *)(EventDataHandle + (longlong)(CalculatedScore * 9) * 2);
+    StringCompareIndex = (longlong)((ComponentCount - CalculatedScore) * 9);
+    ComponentIndex = EventDataHandle + StringCompareIndex * 2;
+    CalculatedScore = ((int)((ulonglong)((longlong)WeightDataTable[0x11] * (longlong)*(short *)(ComponentIndex + -0x12)) >> 0x10
+                  ) + (int)((ulonglong)((longlong)*(short *)(ComponentIndex + -4) * (longlong)WeightDataTable[10]) >>
                            0x10) +
-                      (int)((ulonglong)((longlong)*(short *)(componentIndex + -8) * (longlong)ptrLocalInt6[0xc]) >>
+                      (int)((ulonglong)((longlong)*(short *)(ComponentIndex + -8) * (longlong)WeightDataTable[0xc]) >>
                            0x10) +
-                      (int)((ulonglong)((longlong)ptrLocalInt6[0xe] * (longlong)*(short *)(componentIndex + -0xc))
+                      (int)((ulonglong)((longlong)WeightDataTable[0xe] * (longlong)*(short *)(ComponentIndex + -0xc))
                            >> 0x10) +
                       (int)((ulonglong)
-                            ((longlong)ptrLocalInt6[0xf]                             (longlong)*(short *)(EventHandle + -0xe + stringCompareIndex * 2)) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[8] * (longlong)ptrLocalInt6[8]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[7] * (longlong)ptrLocalInt6[7]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[6] * (longlong)ptrLocalInt6[6]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[5] * (longlong)ptrLocalInt6[5]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[4] * (longlong)ptrLocalInt6[4]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[3] * (longlong)ptrLocalInt6[3]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[2] * (longlong)ptrLocalInt6[2]) >> 0x10) +
-                      (int)((ulonglong)((longlong)psVar1[1] * (longlong)ptrLocalInt6[1]) >> 0x10) +
-                      (int)((ulonglong)((longlong)*psVar1 * (longlong)*ptrLocalInt6) >> 0x10) +
+                            ((longlong)WeightDataTable[0xf] * (longlong)*(short *)(EventDataHandle + -0xe + StringCompareIndex * 2)) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[8] * (longlong)WeightDataTable[8]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[7] * (longlong)WeightDataTable[7]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[6] * (longlong)WeightDataTable[6]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[5] * (longlong)WeightDataTable[5]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[4] * (longlong)WeightDataTable[4]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[3] * (longlong)WeightDataTable[3]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[2] * (longlong)WeightDataTable[2]) >> 0x10) +
+                      (int)((ulonglong)((longlong)ComponentWeightArray[1] * (longlong)WeightDataTable[1]) >> 0x10) +
+                      (int)((ulonglong)((longlong)*ComponentWeightArray * (longlong)*WeightDataTable) >> 0x10) +
                       (int)((ulonglong)
-                            ((longlong)ptrLocalInt6[0x10] * (longlong)*(short *)(componentIndex + -0x10)) >> 0x10)
-                      + (int)((ulonglong)((longlong)*(short *)(componentIndex + -10) * (longlong)ptrLocalInt6[0xd])
+                            ((longlong)WeightDataTable[0x10] * (longlong)*(short *)(ComponentIndex + -0x10)) >> 0x10)
+                      + (int)((ulonglong)((longlong)*(short *)(ComponentIndex + -10) * (longlong)WeightDataTable[0xd])
                              >> 0x10) +
-                      (int)((ulonglong)((longlong)*(short *)(componentIndex + -6) * (longlong)ptrLocalInt6[0xb]) >>
+                      (int)((ulonglong)((longlong)*(short *)(ComponentIndex + -6) * (longlong)WeightDataTable[0xb]) >>
                            0x10) +
-                      (int)((ulonglong)((longlong)*(short *)(componentIndex + -2) * (longlong)ptrLocalInt6[9]) >>
+                      (int)((ulonglong)((longlong)*(short *)(ComponentIndex + -2) * (longlong)WeightDataTable[9]) >>
                            0x10) >> 5) + 1 >> 1;
-    if (localInt5 < 0x8000) {
-      ProcessingStatus = (UIWord)localInt5;
-      if (localInt5 < unmodifiedESI) {
-        ProcessingStatus = (UIWord)unmodifiedESI;
+    if (CalculatedScore < 0x8000) {
+      SimilarityScore = (UIWord)CalculatedScore;
+      if (CalculatedScore < MinimumThreshold) {
+        SimilarityScore = (UIWord)MinimumThreshold;
       }
     }
     else {
-      ProcessingStatus = 0x7fff;
+      SimilarityScore = 0x7fff;
     }
-    allocationFlags = allocationFlags + stackParam00000060;
-    *contextHandle = ProcessingStatus;
-    contextHandle = contextHandle + 1;
-  } while (allocationFlags < unmodifiedEBP);
-  return contextHandle;
+    AllocationFlags = AllocationFlags + StepIncrement;
+    *ContextHandle = SimilarityScore;
+    ContextHandle = ContextHandle + 1;
+  } while (AllocationFlags < LoopEndFlag);
+  return ContextHandle;
 }
 
 
