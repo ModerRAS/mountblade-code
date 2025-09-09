@@ -15093,7 +15093,7 @@ LAB_180659b1a:
     }
     if (0.0 <= transformCoeff14 * transformCoeff11) {
       if (ABS(transformCoeff11) < ABS(transformCoeff14)) {
-        AccumulatedFloat = transformCoeff14;
+        accumulatedFloatValue = transformCoeff14;
       }
     }
     else {
