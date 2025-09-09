@@ -20504,7 +20504,7 @@ uint32_t FinalSystemInitialization(void)
         SystemActiveStatus = *(char *)(SystemGlobalControllerPointer + 2) != '\0';
       }
       else {
-        SystemActiveStatus = (**(code **)((void* *)*SystemGlobalControllerPointer + 0x68))();
+        SystemActiveStatus = (**(code **)((void* *)*SystemGlobalControllerPointer + SystemGlobalControllerOffset))();
       }
       if (SystemActiveStatus != '\0') break;
       Sleep(1);
