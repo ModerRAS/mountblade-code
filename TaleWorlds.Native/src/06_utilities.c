@@ -105604,7 +105604,18 @@ void ValidateSystemResourcesAndHandleExceptionsE890(DataBuffer operationBase,int
 
 
 
-void Unwind_18090e8a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置偏移量0x218处的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的偏移量0x218处设置系统默认异常处理器B。
+ * 这是一个标准的异常处理器设置操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e8a0
+ */
+void SetDefaultExceptionHandlerBAtOffset218(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x218) = &SystemDefaultExceptionHandlerB;
@@ -105613,7 +105624,18 @@ void Unwind_18090e8a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e8b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置偏移量8处的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的偏移量8处设置系统默认异常处理器B。
+ * 这是一个标准的异常处理器设置操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e8b0
+ */
+void SetDefaultExceptionHandlerBAtOffset8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ValidationResultOffset8) = &SystemDefaultExceptionHandlerB;
@@ -105622,7 +105644,18 @@ void Unwind_18090e8b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e8c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置偏移量0xD0处的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的偏移量0xD0处设置系统默认异常处理器B。
+ * 这是一个标准的异常处理器设置操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090e8c0
+ */
+void SetDefaultExceptionHandlerBAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xd0) = &SystemDefaultExceptionHandlerB;

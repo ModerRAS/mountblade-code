@@ -100040,14 +100040,14 @@ void ProcessRenderParameterCalculation(int ContextHandle
   else {
     ExtendedUtf16Char = (unsigned long long)*(uint *)(SystemDataRegistry + 0xc);
     RenderParameter1 = *(float *)(SystemDataRegistry + 0x44) + RenderTransformScaleY;
-    StackFloat3 = StackFloat1 - *(float *)(MemoryBoundaryEnd + 0x168c);
-    StackFloat6 = StackFloat1 - RenderTransformScaleY;
-    StackFloat5 = (StackFloat2 - RenderTransformRotationZ) - RenderTransformScaleY;
+    TransformScaleZ = TransformScaleX - *(float *)(MemoryBoundaryEnd + 0x168c);
+    TransformRotationZ = TransformScaleX - RenderTransformScaleY;
+    TransformRotationY = (TransformScaleY - RenderTransformRotationZ) - RenderTransformScaleY;
     if ((*(uint *)(SystemDataRegistry + 0xc) >> 10 & 1) == 0) {
       RenderTransformScaleY = 0.0;
     }
     else {
-      StackFloat4 = RenderParameter1;
+      TransformRotationX = RenderParameter1;
       RenderTransformScaleY = (float)GetSystemParameters(SystemDataRegistry);
     }
     if ((ExtendedUtf16Char & 1) == 0) {
@@ -100059,9 +100059,9 @@ void ProcessRenderParameterCalculation(int ContextHandle
     }
     RenderParameter1 = RenderTransformTranslationX + RenderTransformScaleY + RenderParameter1;
   }
-  RenderTransformRotationX = StackFloat5;
-  RenderTransformTranslationX = StackFloat6;
-  RenderTransformScaleY = StackFloat3;
+  RenderTransformRotationX = TransformRotationY;
+  RenderTransformTranslationX = TransformRotationZ;
+  RenderTransformScaleY = TransformScaleZ;
   SecondaryRenderParameter = StackFloat6 - StackFloat3;
   if ((0.0 < SecondaryRenderParameter) && (RenderParameter4 = StackFloat5 - RenderParameter1, 0.0 < RenderParameter4)) {
     if (ContextHandle == 0) {

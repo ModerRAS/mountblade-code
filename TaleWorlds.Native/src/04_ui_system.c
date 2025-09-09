@@ -196606,7 +196606,7 @@ void FUN_180785c80(longlong uiContext)
   longlong BasePointer;
   float *SourceHandle;
   UIByte unmodifiedDIL;
-  undefined7 unmodified00000039;
+  uint64_t unmodified00000039;
   UIHandle *preservedRegister12;
   UIHandle *preservedRegister13;
   float *EventHandle;
