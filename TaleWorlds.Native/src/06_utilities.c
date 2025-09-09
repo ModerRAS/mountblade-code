@@ -190,6 +190,10 @@
 #define ExceptionRecoveryHandlerOffset80 0x80
 #define ExceptionRecoveryHandlerOffset90 0x90
 #define ExceptionRecoveryHandlerOffset148 0x148
+#define ExceptionRecoveryHandlerOffsetB0 0xb0
+#define ExceptionRecoveryHandlerOffsetC0 0xc0
+#define ExceptionRecoveryHandlerOffsetD8 0xd8
+#define ExceptionRecoveryHandlerOffsetE8 0xe8
 #define ExceptionContextPointerOffsetD0 0xd0
 
 // 目标上下文偏移量常量
@@ -43186,13 +43190,13 @@ void SetExceptionHandlerOffset150(DataBuffer exceptionContext, int64_t handlerTa
 void InitializeExceptionHandlerA8(DataBuffer exceptionContext, int64_t handlerTable)
 
 {
-  *(DataBuffer *)(handlerTable + 0xa8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(handlerTable + 0xb0) != 0) {
+  *(DataBuffer *)(handlerTable + ExceptionResourcePointerOffsetA8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(handlerTable + ExceptionRecoveryHandlerOffsetB0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(handlerTable + 0xb0) = 0;
-  *(DataWord *)(handlerTable + 0xc0) = 0;
-  *(DataBuffer *)(handlerTable + 0xa8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(handlerTable + ExceptionRecoveryHandlerOffsetB0) = 0;
+  *(DataWord *)(handlerTable + ExceptionRecoveryHandlerOffsetC0) = 0;
+  *(DataBuffer *)(handlerTable + ExceptionResourcePointerOffsetA8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -43213,11 +43217,11 @@ void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetD0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0xd8) != 0) {
+  if (*(int64_t *)(dataBuffer + ExceptionRecoveryHandlerOffsetD8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0xd8) = 0;
-  *(DataWord *)(dataBuffer + 0xe8) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionRecoveryHandlerOffsetD8) = 0;
+  *(DataWord *)(dataBuffer + ExceptionRecoveryHandlerOffsetE8) = 0;
   *(DataBuffer *)(dataBuffer + ExceptionContextPointerOffsetD0) = &SystemDefaultExceptionHandlerB;
   return;
 }
