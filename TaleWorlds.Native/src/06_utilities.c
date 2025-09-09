@@ -147,6 +147,7 @@
 #define SystemContextDataOffsetTertiary 0x58
 #define systemContextDataOffsetD4 0xd4
 #define DataBufferValidationOffset 0x24
+#define ExceptionHandlerDataBufferOffsetD8 0xd8
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetSecondary 0xcc
@@ -80009,8 +80010,8 @@ void ExceptionHandlerResetRoutine(void* resetContext, int64_t contextData)
 void ExceptionHandlerFinalChecker(void* finalContext, int64_t contextData)
 
 {
-  if (*(int64_t **)(contextData + 0xd8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(contextData + 0xd8) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(contextData + ExceptionHandlerDataBufferOffsetD8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(contextData + ExceptionHandlerDataBufferOffsetD8) + SystemFloatDataOffset38))();
   }
   return;
 }
