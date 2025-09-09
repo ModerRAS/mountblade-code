@@ -216299,7 +216299,7 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long l
  * @note 原始函数名：FUN_18017b28d
  */
 #define ProcessSystemDataNodeAndMemoryAllocation FUN_18017b28d
-void ProcessSystemDataNodeAndMemoryAllocation(void
+void ProcessSystemDataNodeAndMemoryAllocation(void)
 {
   long long PrimaryOperationResult;
   long long *SystemContext;
@@ -216347,7 +216347,7 @@ void ProcessSystemDataNodeAndMemoryAllocation(void
  * @note 原始函数名：FUN_18017b2ed
  */
 #define ProcessContextHandleAndSystemContextManagement FUN_18017b2ed
-void ProcessContextHandleAndSystemContextManagement(long long ContextHandle
+void ProcessContextHandleAndSystemContextManagement(long long ContextHandle)
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
@@ -216500,7 +216500,7 @@ void ProcessContextHandlePointerOperations(long long *ContextHandle
  * @note 原始函数名：FUN_18017b400
  */
 #define ProcessSystemMemoryAllocationAndEventHandling FUN_18017b400
-void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   if (OperationBufferSize != NULL) {
     ProcessSystemMemoryAllocationAndEventHandling(ContextHandle,*ContextHandleSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -216535,7 +216535,7 @@ void ProcessSystemMemoryAllocationAndEventHandling(uint64_t ContextHandle,uint64
  * @note 原始函数名：FUN_18017b480
  */
 #define ProcessSystemDataValidationAndCharacterEncoding FUN_18017b480
-void ProcessSystemDataValidationAndCharacterEncoding(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer
+void ProcessSystemDataValidationAndCharacterEncoding(long long *ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer)
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -223706,7 +223706,8 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
 
 
 
-87cd0(long long *ContextHandlevoid FUN_180187cd0(long long *ContextHandle
+// 函数: void FUN_180187cd0(long long *ContextHandle)
+void FUN_180187cd0(long long *ContextHandle)
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
