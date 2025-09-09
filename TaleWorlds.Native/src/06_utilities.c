@@ -4879,7 +4879,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808a54c0
  */
-#define ProcessSystemStatusWithValidation FUN_1808a54c0
+#define ProcessSystemStatusWithValidation ProcessSystemStatusWithValidation
 
 /**
  * @brief 系统参数验证函数A0
@@ -4888,7 +4888,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180883750
  */
-#define ValidateSystemParametersWithSecurityCheck FUN_180883750
+#define ValidateSystemParametersWithSecurityCheck ValidateSystemParametersWithSecurityCheck
 
 /**
  * @brief 系统数据处理函数A0
@@ -4906,7 +4906,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808af8b0
  */
-#define ValidateSystemStatusWithIntegrityCheck FUN_1808af8b0
+#define ValidateSystemStatusWithIntegrityCheck ValidateSystemStatusWithIntegrityCheck
 
 /**
  * @brief 系统上下文验证函数A0
@@ -4915,7 +4915,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808af280
  */
-#define ValidateSystemContextA0 FUN_1808af280
+#define ValidateSystemContextA0 ValidateSystemContextA0
 
 /**
  * @brief 数据数组处理函数B0

@@ -603,15 +603,15 @@ typedef enum {
 #define UIQuaternaryLookupTable UISystemQuaternaryLookupTable  // UI第四查找表 - 存储第四级的UI组件查找信息
 
 // UI系统函数宏定义 - 计算UI事件距离
-#define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
+#define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3  // 计算UI事件距离 - 计算UI组件事件之间的距离
 
 // UI系统数据处理函数宏定义
-#define WriteUIData SetUIData                        // UI系统数据写入函数
-#define ProcessUIData HandleUIData                    // UI系统数据处理函数
-#define ValidateUIData CheckUIData                    // UI系统数据验证函数
-#define TransformUIData ConvertUIData                 // UI系统数据转换函数
-#define ProcessUIContext ManageUIContext              // UI系统上下文处理函数
-#define ShiftUIData MoveUIData                        // UI系统数据移位函数
+#define WriteUIData SetUIData                        // UI系统数据写入函数 - 写入UI数据到指定位置
+#define ProcessUIData HandleUIData                    // UI系统数据处理函数 - 处理UI数据的逻辑
+#define ValidateUIData CheckUIData                    // UI系统数据验证函数 - 验证UI数据的有效性
+#define TransformUIData ConvertUIData                 // UI系统数据转换函数 - 转换UI数据的格式
+#define ProcessUIContext ManageUIContext              // UI系统上下文处理函数 - 管理UI上下文
+#define ShiftUIData MoveUIData                        // UI系统数据移位函数 - 移动UI数据位置
 
 // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0
