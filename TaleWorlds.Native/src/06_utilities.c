@@ -24573,7 +24573,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
     dataBuffer[3] = 0;
     dataBuffer[4] = 0;
     dataBuffer[5] = 0;
-    *dataBuffer = dataSize + 0x19;
+    *dataBuffer = dataSize + DataSizeAdditionalOffset19;
     *(BytePair *)(dataBuffer + 2) = 0x508;
     *(ByteFlag *)((int64_t)dataBuffer + 10) = 3;
     dataBuffer[3] = 1;
