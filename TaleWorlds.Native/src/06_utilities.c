@@ -20903,6 +20903,21 @@ OperationComplete:
 #define PermissionValidationOffset 0x60
 #define SystemEventCleanupOffset 0x98
 
+/**
+ * @brief 执行安全验证操作
+ * 
+ * 该函数执行系统安全验证，包括权限检查、数据验证和系统上下文验证。
+ * 函数会验证系统上下文的有效性，执行安全验证函数，并检查权限指针的有效性。
+ * 
+ * @param securityContext 安全上下文指针，包含安全验证所需的信息
+ * @param operationDescriptor 操作描述符，描述要执行的安全操作
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ExecuteSecurityValidation
+ * @note 该函数使用栈保护机制防止栈溢出攻击
+ * @warning 确保传入的安全上下文和操作描述符有效，否则可能导致未定义行为
+ * @see QueryAndRetrieveSystemDataA0, ValidateSystemDataA0, ExecuteSecurityCheck
+ */
 void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescriptor)
 {
   int64_t validationCtx;
@@ -22026,23 +22041,20 @@ DataBuffer ValidateSystemConfigurationA0(void)
 
 
 
-// 函数: void InitializeResourceContext(int64_t operationBase, DataBuffer dataBuffer)
-//
-// 资源上下文初始化函数
-// 初始化资源操作的上下文环境，设置必要的参数和状态
-// 
 /**
  * @brief 初始化资源上下文
  * 
  * 初始化系统资源上下文，分配必要的资源并设置初始状态。
- * 该函数负责管理系统资源的初始化过程，包括内存分配和状态设置。
+ * 该函数负责管理系统资源的初始化过程，包括内存分配、安全验证和状态设置。
  * 
  * @param contextDescriptor 上下文描述符，包含初始化所需的配置信息
  * @param initializationOptions 初始化选项，指定初始化的模式和参数
+ * @return void 无返回值，初始化结果通过系统状态返回
  * 
- * @return 无 - 初始化结果通过系统状态返回
- * 
- * @note 该函数处理资源分配、安全验证和状态初始化
+ * @note 原始函数名：InitializeResourceContext
+ * @note 该函数使用栈保护机制防止栈溢出攻击
+ * @warning 确保传入的上下文描述符有效，否则可能导致内存分配失败
+ * @see QueryAndRetrieveSystemDataA0, AllocateSystemResourcesA0
  */
 void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializationOptions)
 
@@ -22475,7 +22487,21 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
 
 
 
-// 函数: void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operationHandle)
+/**
+ * @brief 处理上下文验证和执行操作
+ * 
+ * 该函数验证给定的上下文数据，并在验证成功后执行相应的操作。
+ * 函数首先验证上下文数据的有效性，然后执行上下文操作，最后执行关键操作。
+ * 
+ * @param contextHandle 上下文句柄，指向要处理的上下文数据
+ * @param operationHandle 操作句柄，包含要执行的操作信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ProcessContextValidationAndExecution
+ * @note 该函数采用链式验证模式，只有前一步验证成功才会执行后续操作
+ * @warning 确保传入的上下文句柄和操作句柄有效，否则可能导致验证失败
+ * @see ValidateContextData, ExecuteContextOperation, ExecuteCriticalOperation
+ */
 void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operationHandle)
 
 {
@@ -22495,7 +22521,21 @@ void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operatio
 
 
 
-// 函数: void ProcessExtendedContextValidation(int64_t contextHandle,int64_t operationHandle)
+/**
+ * @brief 处理扩展上下文验证操作
+ * 
+ * 该函数验证扩展上下文数据的有效性，并在验证成功后执行相应的操作。
+ * 函数首先验证扩展上下文，然后从扩展上下文中提取操作参数并执行操作。
+ * 
+ * @param contextHandle 上下文句柄，指向要处理的上下文数据
+ * @param operationHandle 操作句柄，包含要执行的操作信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ProcessExtendedContextValidation
+ * @note 该函数处理扩展的上下文验证，支持更复杂的上下文结构
+ * @warning 确保传入的上下文句柄和操作句柄有效，否则可能导致验证失败
+ * @see ValidateExtendedContext, ExecuteContextOperation
+ */
 void ProcessExtendedContextValidation(int64_t contextHandle,int64_t operationHandle)
 
 {

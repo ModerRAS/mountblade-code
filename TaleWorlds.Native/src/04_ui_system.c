@@ -120637,13 +120637,16 @@ void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle data
                      WARNING: Subroutine does not return
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957458);
   }
-FUN_180738fbf:
-  if (stackLong148 != 0) {
-    ReleaseUIMemoryResource();
-  }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
-}
+/**
+ * @brief 释放UI内存资源
+ * 
+ * 释放UI系统中的内存资源，清理不再使用的内存块
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数负责UI内存资源的释放和清理
+ */
+void ReleaseUIMemoryResource(void);
 
 
 
