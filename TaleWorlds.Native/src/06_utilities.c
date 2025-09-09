@@ -16275,22 +16275,22 @@ DataBuffer ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
 
 {
   DataBuffer validationStatus;
-  int64_t stackPointer;
+  int64_t systemStackPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset10),&stackPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset10),&systemStackPointer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  if (stackPointer == 0) {
-    stackPointer = 0;
+  if (systemStackPointer == 0) {
+    systemStackPointer = 0;
   }
   else {
-    stackPointer = stackPointer + -8;
+    systemStackPointer = systemStackPointer + -8;
   }
-  if (*(int64_t *)(stackPointer + ExceptionHandlerCallbackOffset10) == 0) {
+  if (*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(stackPointer + ExceptionHandlerCallbackOffset10),1);
+    ReleaseResource(*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10),1);
 }
 
 
@@ -19859,6 +19859,9 @@ void ExecuteSecurityValidation(void)
 
 
 
+// 浮点数验证常量
+#define FloatInfinityValidationResult 0x1d
+
 /**
  * @brief 验证和处理浮点数数据
  * 
@@ -19876,6 +19879,7 @@ void ExecuteSecurityValidation(void)
  * 
  * @return DataBuffer 返回操作状态码，0表示成功，非零表示错误
  *   - ComponentDataValidationFailure: 数据验证失败
+ *   - FloatInfinityValidationResult: 浮点数无穷大验证结果
  *   - 其他错误码: 具体的系统错误状态
  * 
  * @note 原始函数名可能为FUN_开头，已重命名为语义化名称
@@ -19908,15 +19912,15 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   isOffset18Infinity = 0;
   isOffset2cInfinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset2cInfinity = 0x1d;
+    isOffset2cInfinity = FloatInfinityValidationResult;
   }
   isOffset1cInfinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset1cInfinity = 0x1d;
+    isOffset1cInfinity = FloatInfinityValidationResult;
   }
   isOffset20Infinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset20Infinity = 0x1d;
+    isOffset20Infinity = FloatInfinityValidationResult;
   }
   if ((isOffset2cInfinity != 0 || isOffsetXInfinity != 0) || isOffsetYInfinity != 0) {
     return ComponentDataValidationFailure;
@@ -60004,25 +60008,25 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionCo
 
 
 
-void ExecuteExceptionHandlerAtOffset50(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset50(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  if (*(FunctionPointer**)(exceptionContext + 0x50) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50) != (code *)0x0) {
+    (**(FunctionPointer**)(ExceptionContext + ExceptionHandlerOffset50))(ExceptionContext + ExceptionHandlerContextOffset40, 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void ExecuteExceptionHandlerAtOffsetF0(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF0(DataBuffer ExceptionHandlerContext, int64_t ExceptionContext, DataBuffer OperationFlag, DataBuffer ExceptionData)
 
 {
-  code *exceptionHandler;
+  code *ExceptionHandlerFunction;
   
-  exceptionHandler = *(FunctionPointer**)(*(int64_t *)(exceptionContext + 0xf0) + ExceptionHandlerCallbackOffset10);
-  if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(int64_t *)(exceptionContext + 0xf0),0,0,exceptionData,SystemCleanupFlagAlternative);
+  ExceptionHandlerFunction = *(FunctionPointer**)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF0) + ExceptionHandlerCallbackOffset10);
+  if (ExceptionHandlerFunction != (code *)0x0) {
+    (*ExceptionHandlerFunction)(*(int64_t *)(ExceptionContext + ExceptionHandlerOffsetF0), 0, 0, ExceptionData, SystemCleanupFlagAlternative);
   }
   return;
 }
