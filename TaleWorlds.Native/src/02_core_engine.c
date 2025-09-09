@@ -53171,9 +53171,9 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t ContextHandle, ui
   VelocityCoefficient54 = Utf16EndPointer * FloatXMM4Secondary + FilterInputValue * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8;
   AccelerationCoefficient58 = Utf16EndPointer * FloatXMM4Tertiary + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
-  StackFloatValue60 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatOffsetValue + SystemDataNode[0xc];
-  TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8 + SystemDataNode[0xd];
-  TemporaryFloatStack68 = Utf8SourcePointer * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + SystemDataNode[0xe];
+  StackFloatValue60 = Utf8SourcePointer * Xmm4RegisterFloat + ContextSecondaryFloat * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatOffsetValue + SystemDataNode[0xc];
+  TemporaryFloatStack64 = Utf8SourcePointer * Xmm4RegisterSecondary + ContextSecondaryFloat * MatrixTransformMultiplier + SystemContextPrimaryFloat * ProcessedFloatValue8 + SystemDataNode[0xd];
+  TemporaryFloatStack68 = Utf8SourcePointer * Xmm4RegisterTertiary + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + SystemDataNode[0xe];
   StackProcessingParameterE8 = StackProcessingParameterE8;
   StackUintValue6c = 0x3f800000;
   TemporaryStackValue5c = 0;
@@ -53511,8 +53511,8 @@ void ProcessFloatDataStructureAndParameterCalculationWithFloats(float ContextHan
   float SecondaryFloatValue;
   
   PrimaryFloatValue = (*(float *)(ProcessingResult + 0x74) * OperationBufferSize - Utf8SourcePointer * Utf16EndPointer) * *(float *)(ProcessingResult + 0x90);
-  CalculateFloatValue(PrimaryFloatValue,(Utf8SourcePointer * in_XMM4_Da - ContextHandle * OperationBufferSize) * *(float *)(ProcessingResult + 0x94                             + PrimaryFloatValue +
-                             (in_XMM5_Da * Utf16EndPointer - *(float *)(ProcessingResult + 0x74) * in_XMM4_Da) *
+  CalculateFloatValue(PrimaryFloatValue,(Utf8SourcePointer * Xmm4RegisterFloat - ContextHandle * OperationBufferSize) * *(float *)(ProcessingResult + 0x94                             + PrimaryFloatValue +
+                             (Xmm5RegisterFloat * Utf16EndPointer - *(float *)(ProcessingResult + 0x74) * Xmm4RegisterFloat) *
                              *(float *)(ProcessingResult + 0x98) < SecondaryFloatValue);
   if (*(long long *)(in_RCX + 0x1b8) == 0) {
 SystemMemoryCheck:
@@ -62593,17 +62593,17 @@ void ProcessFloatDataStructure(float *ContextHandle,long long OperationBufferSiz
   matrixElementW = (float)RegisterXMM0Value;
   ContextHandle[8] = matrixElementW;
   ContextHandle[9] = matrixElementX;
-  ContextHandle[10] = in_XMM0_Dc;
-  ContextHandle[0xb] = in_XMM0_Dd;
-  magnitudeSquared = in_XMM4_Da * matrixElementW + matrixElementX * matrixElementX + in_XMM0_Dc * in_XMM0_Dc;
+  ContextHandle[10] = Xmm0RegisterComponent;
+  ContextHandle[0xb] = Xmm0RegisterDouble;
+  magnitudeSquared = Xmm4RegisterFloat * matrixElementW + matrixElementX * matrixElementX + Xmm0RegisterComponent * Xmm0RegisterComponent;
   aMemoryAllocationIndex.HighPart = MemoryAddressMaskPointer;
   aMemoryAllocationIndex.LowPart = magnitudeSquared;
-  aMemoryAllocationIndex._8_4_ = in_XMM3_Dc;
-  aMemoryAllocationIndex.High32Part = in_XMM3_Dd;
+  aMemoryAllocationIndex._8_4_ = Xmm3RegisterComponent;
+  aMemoryAllocationIndex.High32Part = Xmm3RegisterDouble;
   aUnicodeCodePoint.HighPart = MemoryAddressMaskPointer;
   aUnicodeCodePoint.LowPart = magnitudeSquared;
-  aUnicodeCodePoint._8_4_ = in_XMM3_Dc;
-  aUnicodeCodePoint.High32Part = in_XMM3_Dd;
+  aUnicodeCodePoint._8_4_ = Xmm3RegisterComponent;
+  aUnicodeCodePoint.High32Part = Xmm3RegisterDouble;
   aUnicodeCodePoint = rsqrtss(aMemoryAllocationIndex,aUnicodeCodePoint);
   float scaleFactor = aUnicodeCodePoint.LowPart;
   float refinedScaleFactor = scaleFactor * 0.5 * (3.0 - magnitudeSquared * scaleFactor * scaleFactor);
