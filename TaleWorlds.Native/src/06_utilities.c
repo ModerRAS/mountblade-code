@@ -31106,7 +31106,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
             if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
               return ResourceInvalidErrorCode;
             }
-            systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x68);
+            systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset68);
             if ((int)systemDataBuffer == 0) {
               if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
                 return ResourceInvalidErrorCode;
@@ -32022,7 +32022,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
     OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x60,4);
     if ((((int)OperationResult == 0) && (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 100,2), (int)OperationResult == 0)) &&
        (OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x66,2), (int)OperationResult == 0)) {
-      OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + 0x68,8);
+      OperationResult = OperateDataO0(ExceptionHandlerContext,operationBase + OperationBaseOffset68,8);
     }
     ValidationResult = StackValidationFlag;
     if ((int)OperationResult != 0) {
@@ -33918,7 +33918,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(dataBuffer + 8)) && (operationResult = 0x1c, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
-    operationResult = OperateDataO0(*dataBuffer,operationBase + 0x68,4);
+    operationResult = OperateDataO0(*dataBuffer,operationBase + OperationBaseOffset68,4);
   }
   if (operationResult != 0) {
     return (uint64_t)operationResult;
@@ -38140,7 +38140,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
         systemDataBuffer = 0;
       }
       else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x68);
+        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset68);
       }
       else {
         systemDataBuffer = 0x1c;
@@ -40029,11 +40029,11 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
           return ResourceInvalidErrorCode;
         }
-        stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x60);
+        stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset60);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                           (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
         if (((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 100), (int)systemDataBuffer == 0))
-            && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x68), (int)systemDataBuffer == 0)) &&
+            && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset68), (int)systemDataBuffer == 0)) &&
            (((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset6C), (int)systemDataBuffer == 0 &&
              (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x70), (int)systemDataBuffer == 0)) &&
             ((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0x74), (int)systemDataBuffer == 0 &&
