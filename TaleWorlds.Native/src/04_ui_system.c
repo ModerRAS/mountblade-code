@@ -645,6 +645,22 @@ typedef enum {
  // UI系统函数宏定义 - 设置UI数据
 #define SetUIData SetUIDataValue
 
+// UI系统额外函数美化定义
+#define FUN_18089e811 UIEmptyOperationFunction
+#define FUN_1808ddc20 ValidateUIDataSignature
+#define FUN_1808aed00 ValidateUIEventData
+#define FUN_180899360 ValidateUIContextData
+#define FUN_1808ad130 ProcessUIDataValidation
+#define FUN_18071ab41 UIInitializeOperationFunction
+#define FUN_18071ace8 UIResetOperationFunction
+#define FUN_180721810 ProcessUIDataTransformOperation
+#define FUN_180724090 ProcessUIWordDataTransfer
+#define FUN_1807234d0 ProcessUIWordDataValidation
+#define FUN_1807238f3 GetUIWordDataPointer
+#define FUN_18072390f GetUIContextHandleData
+#define FUN_180723ee0 ProcessUICharacterDataValidation
+#define FUN_180723c9b UIEmptyProcessingFunction
+
  /**
  * @brief 处理UI渲染数据
  * 
@@ -1510,7 +1526,7 @@ typedef enum {
 
 // UI音频数据处理函数变量美化
 #define AudioFormatType UIIsCharacterMatch
-#define AudioEncodingActive IsEventProcessingActive
+#define AudioEncodingActive UIIsEventProcessingActive
 #define AudioSampleCount UIContextFirstValue
 #define AudioProcessingMode UIAudioProcessingMode
 #define AudioDataChunkIndex UILoopCounter
@@ -1543,7 +1559,7 @@ typedef enum {
 // UI系统函数宏定义补充
 
 // UI系统变量名美化补充
-#define bVar41 IsComponentValid
+#define bVar41 UIIsComponentValid
 #define localChar36 ComponentContextIndex
 #define localChar34 PreviousComponentContext
 #define localChar8 CurrentComponentContext
@@ -2486,6 +2502,16 @@ typedef enum {
  * @note 原始函数名：InitializeUIMemoryPool
  */
 #define InitializeUIMemoryPool InitializeUIMemoryPool
+
+#define pbVar4 UIProcessingStatusPtr
+#define pbVar6 UIContextFlagsPtr
+#define pbVar7 UIResourceFlagsPtr
+#define pbVar9 UIDataFlagsPtr
+#define bVar4 UIProcessingFlag
+#define stackInt158 UIComparisonResult
+#define isCharacterMatch2 UIDataMatchResult1
+#define isCharacterMatch3 UIDataMatchResult2
+#define processingCounter UIProcessingCounter
 
 // UI系统函数参数语义化定义
 // RenderUIElement函数参数语义化定义
