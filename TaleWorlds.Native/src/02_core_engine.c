@@ -69176,7 +69176,7 @@ LAB_18008cdfe:
   ContextHandle8 = ContextHandle8 + 2;
   ContextHandle6 = ContextHandle6 + 2;
   if (ContextHandle8 == BufferAllocationStatus3) goto MemoryBufferValidationLabel;
-  goto LAB_18008cd70;
+  goto MemoryBufferAllocationLabel;
 }
 
 
