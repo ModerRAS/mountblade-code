@@ -78778,15 +78778,6 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
 /**
  * @brief 处理1E0偏移量的内存资源引用计数
  * 
- * 该函数负责处理位于1E0偏移量的内存资源引用计数
- * 
- * @param operationBase 操作基础数据
- * @param dataBuffer 数据缓冲区指针
- * @note 原始函数名：Unwind_180908a60
- */
-/**
- * @brief 处理1E0偏移量的内存资源引用计数
- * 
  * 该函数负责处理位于1E0偏移量的内存资源引用计数，包括：
  * - 获取内存资源指针
  * - 计算内存区域基地址
