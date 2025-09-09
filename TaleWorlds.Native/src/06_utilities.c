@@ -7912,6 +7912,9 @@ uint8_t ExceptionStatusFlagSecondary;       // 异常状态标志Secondary
 // 系统上下文数组大小常量
 #define SystemContextArraySize 2
 
+// 内存区域缓冲区大小常量
+#define MemoryRegionBufferSize 4
+
 // 浮点数验证数组变量声明
 float FloatValidationArray[FloatValidationArraySize];
 
@@ -14487,7 +14490,7 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
   int64_t memoryRegionBlock;
   uint64_t memoryUpdateStatus;
   int64_t *memoryRegionIterator;
-  int64_t MemoryRegionBuffer [4];
+  int64_t MemoryRegionBuffer [MemoryRegionBufferSize];
   
   memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + MemoryConfigOffset),MemoryRegionBuffer);
   if ((int)memoryUpdateStatus == 0) {
@@ -80032,7 +80035,7 @@ void ProcessUncaughtExceptionAndFlushStream(DataBuffer operationBase, int64_t da
       (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerCallbackOffset10))();
       return;
     }
-    if (exceptionHandlerContextPointer[0x10] != 0) {
+    if (exceptionHandlerContextPointer[ExceptionHandlerCallbackIndex16] != 0) {
       _unlock_file();
       return;
     }
@@ -80067,7 +80070,7 @@ void ProcessExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffe
       (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerCallbackOffset10))();
       return;
     }
-    if (exceptionHandlerContextPointer[0x10] != 0) {
+    if (exceptionHandlerContextPointer[ExceptionHandlerCallbackIndex16] != 0) {
       _unlock_file();
       return;
     }
@@ -80099,7 +80102,7 @@ void SystemExceptionHandlerCleanup(DataBuffer operationBase, int64_t dataBuffer)
       (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerCallbackOffset10))();
       return;
     }
-    if (exceptionHandlerContextPointer[0x10] != 0) {
+    if (exceptionHandlerContextPointer[ExceptionHandlerCallbackIndex16] != 0) {
       UnlockSystemFile();
       return;
     }
