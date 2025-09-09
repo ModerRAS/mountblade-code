@@ -12209,8 +12209,11 @@ void* UtilitySystemMemoryDataQuaternary;
 // 函数: void* SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
 void* SetupUtilitySystemMemory;
+// 内存池指针数组大小常量
+#define MemoryPoolPointerArraySize 4
+
 // 系统数据缓冲区内存管理指针
-void* SystemDataBufferMemoryPool[4];      // 内存池指针数组（AEF0, AEF8, AF00, AF08）
+void* SystemDataBufferMemoryPool[MemoryPoolPointerArraySize];      // 内存池指针数组（AEF0, AEF8, AF00, AF08）
 
 // 函数: void* ProcessUtilitySystemConfiguration;
 #define ProcessUtilitySystemConfiguration FUN_1809427d0
@@ -37592,7 +37595,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
           securityValidationResult = 0;
         }
         else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-          securityValidationResult = OperateDataO0(*dataBuffer,operationBase + 0x21c,4);
+          securityValidationResult = OperateDataO0(*dataBuffer,operationBase + OperationBaseOffset21c,4);
         }
         else {
           securityValidationResult = 0x1c;
@@ -37641,7 +37644,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
         inputParameter = 0;
       }
       else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-        inputParameter = OperateDataO0(*registerContext,DestinationContext + 0x210,8);
+        inputParameter = OperateDataO0(*registerContext,DestinationContext + OperationBaseOffset210,8);
       }
       else {
         inputParameter = 0x1c;
@@ -37652,7 +37655,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
           inputParameter = 0;
         }
         else if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-          inputParameter = OperateDataO0(*registerContext,DestinationContext + 0x2f4,4);
+          inputParameter = OperateDataO0(*registerContext,DestinationContext + OperationBaseOffset2f4,4);
         }
         else {
           inputParameter = 0x1c;
