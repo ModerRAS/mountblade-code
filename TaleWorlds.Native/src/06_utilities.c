@@ -4789,8 +4789,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 异常处理器调用函数（偏移量D20）
  * 
  * 在偏移量0x38处调用异常处理器，处理异常情况
+ * 该函数负责：
+ * 1. 定位偏移量0x38处的异常处理器
+ * 2. 准备异常处理上下文数据
+ * 3. 执行异常处理器调用
+ * 4. 处理异常执行结果
+ * 5. 维护异常处理系统状态
  * 
  * @note 原始函数名：Unwind_180906d20
+ * @note 此函数用于异常处理机制中的关键调用点
+ * @see InvokeExceptionHandlerAtTertiaryPosition, InvokeExceptionHandlerAtPentaPosition
  */
 #define InvokeExceptionHandlerAtQuadPosition Unwind_180906d20
 
