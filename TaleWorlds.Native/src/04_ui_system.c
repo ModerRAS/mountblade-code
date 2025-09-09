@@ -16387,7 +16387,7 @@ LAB_18065a765:
                   UIHandle uiContext0,UIHandle uiContext1,float uiContext2)
 
 {
-  undefined3 UIProcessingResult;
+  uint8_t UIProcessingResult;
   float *ptransformCoeff1;
   int uiCompareResult;
   int TempInt4;
@@ -16625,7 +16625,7 @@ LAB_18065a765:
            (((((float)uiContext0 + (float)uiContext1) * param_8 + uiContext0._4_4_) - uiContext1._4_4_) -
            uiContext2) - uiContext0._4_4_;
       resultFloat = transformValue * transformValue + uiContext0._4_4_ * uiContext0._4_4_;
-      result = (undefined3)((uint)allocationFlags >> 8);
+      result = (uint8_t)((uint)allocationFlags >> 8);
       resultFloat = (float)CONCAT31(result,resultFloat <= 1.1754944e-38) * 1.1754944e-38 + resultFloat;
       aresult2 = rsqrtss(ZEXT416((uint)resultFloat),ZEXT416((uint)resultFloat));
       localFloat6 = aresult2._0_4_;
@@ -16680,7 +16680,7 @@ void UpdateUIComponentTransform(UIHandle uiContext,float dataSource,UIHandle tar
                   UIHandle uiContext0,UIHandle uiContext1,float uiContext2)
 
 {
-  undefined3 UIProcessingResult;
+  uint8_t UIProcessingResult;
   float *ptransformCoeff1;
   int uiCompareResult;
   int TempInt4;
@@ -16881,7 +16881,7 @@ LAB_18065a765:
            (((((float)uiContext0 + (float)uiContext1) * param_8 + uiContext0._4_4_) - uiContext1._4_4_) -
            uiContext2) - uiContext0._4_4_;
       localFloat6 = param_9 * param_9 + uiContext0._4_4_ * uiContext0._4_4_;
-      result = (undefined3)((uint)allocationFlags >> 8);
+      result = (uint8_t)((uint)allocationFlags >> 8);
       localFloat6 = (float)CONCAT31(result,localFloat6 <= 1.1754944e-38) * 1.1754944e-38 + localFloat6;
       aresult1 = rsqrtss(ZEXT416((uint)localFloat6),ZEXT416((uint)localFloat6));
       resultFloat = aresult1._0_4_;
@@ -16944,7 +16944,7 @@ LAB_18065a765:
  void CalculateUITransformMatrix(void* UIRenderContext, float ScaleX, float ScaleY, float RotationAngle, void* TransformMatrix)
 
 {
-  undefined3 UITempFlag;
+  uint8_t UITempFlag;
   longlong RenderContext;
   UIDword RenderFlags;
   longlong TransformData;
@@ -16988,7 +16988,7 @@ LAB_18065a765:
   localFloat6 = ((((unmodifiedXMM12_Da + fStack0000000000000058) * inputString + unmodifiedXMM15_Da) -
            fStack000000000000005c) - UIRenderParameter4) - unmodifiedXMM15_Da;
   transformCoeff1 = stackParam00000048 * stackParam00000048 + localFloat6 * localFloat6;
-  result = (undefined3)((uint)allocationFlags >> 8);
+  result = (uint8_t)((uint)allocationFlags >> 8);
   transformCoeff1 = (float)CONCAT31(result,transformCoeff1 <= 1.1754944e-38) * 1.1754944e-38 + transformCoeff1;
   aProcessingStatus = rsqrtss(ZEXT416((uint)transformCoeff1),ZEXT416((uint)transformCoeff1));
   transformCoeff2 = aProcessingStatus._0_4_;
@@ -34100,7 +34100,7 @@ void HandleUIInputEvent(longlong inputContext,longlong inputData,longlong inputD
   short sVar17;
   short sVar18;
   short sVar19;
-  undefined6 iterationCount0;
+  uint16_t iterationCount0;
   UIByte aiterationCount1 [16];
   ushort iterationCount2;
   ushort iterationCount3;
@@ -36298,7 +36298,7 @@ void ProcessUIEncryptedPixels(longlong uiContext,longlong dataSource,longlong ta
   UIByte aresult2 [12];
   UIByte aresult3 [12];
   UIWord componentIndex;
-  undefined6 CounterResult;
+  uint16_t CounterResult;
   UIByte aTotalResult [12];
   ulonglong *ptrResult7;
   ulonglong result8;
@@ -36550,7 +36550,7 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
   UIByte pixelDataBuffer1 [12];
   UIByte pixelDataBuffer2 [12];
   UIWord colorDepth;
-  undefined6 paddingData;
+  uint16_t paddingData;
   UIByte pixelDataBuffer3 [12];
   int pixelBufferSize;
   ulonglong *textureDataPointer;
@@ -46257,7 +46257,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
   UIByte TotalResult [16];
   UIByte result7 [16];
   UIDword renderResult2;
-  undefined6 renderResult3;
+  uint16_t renderResult3;
   UIHandle iterationCount2;
   UIByte iterationCount3 [12];
   UIByte iterationCount4 [14];
@@ -46269,7 +46269,7 @@ void ProcessUIEventProcessor(longlong uiContext,UIHandle *dataSource,int targetB
   UIByte aiterationCount9 [16];
   UIByte aEventTypeCode0 [16];
   UIDword EventTypeCode3;
-  undefined6 EventTypeCode4;
+  uint16_t EventTypeCode4;
   UIHandle EventTypeCode5;
   UIByte aEventTypeCode6 [12];
   UIByte aEventTypeCode7 [14];

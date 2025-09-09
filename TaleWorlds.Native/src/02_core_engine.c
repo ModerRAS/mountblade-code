@@ -99974,13 +99974,13 @@ void ProcessRenderParameterCalculation(int ContextHandle
   unsigned long long ExtendedUtf16Char;
   float RenderParameter1;
   float SecondaryRenderParameter;
-  float RenderParameter3;
-  float RenderParameter4;
-  float RenderParameter5;
-  float RenderParameter6;
-  float RenderParameter7;
-  float RenderParameter8;
-  float RenderParameter9;
+  float RenderTransformScaleY;
+  float RenderTransformScaleZ;
+  float RenderTransformRotationX;
+  float RenderTransformRotationZ;
+  float RenderTransformTranslationX;
+  float RenderTransformTranslationY;
+  float RenderTransformTranslationZ;
   char StackDataBuffer1 [8];
   char StackDataBuffer2 [8];
   float MinimumRenderBoundX;
@@ -100015,10 +100015,10 @@ void ProcessRenderParameterCalculation(int ContextHandle
     ValidationStatus = *(char *)(SystemDataRegistry + 0xac);
   }
   if (ValidationStatus == '\0') {
-    RenderParameter6 = 0.0;
+    RenderTransformRotationZ = 0.0;
   }
   else {
-    RenderParameter6 = *(float *)(MemoryBoundaryEnd + 0x168c);
+    RenderTransformRotationZ = *(float *)(MemoryBoundaryEnd + 0x168c);
   }
   RenderParameter3 = *(float *)(SystemDataRegistry + 0x7c);
   StackFloat1 = *(float *)(SystemDataRegistry + 0x40) + *(float *)(SystemDataRegistry + 0x48);
