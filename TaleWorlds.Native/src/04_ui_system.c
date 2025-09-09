@@ -106522,20 +106522,20 @@ void ProcessUIBufferDataOperation(int uiContext, UIHandle dataSource, uint targe
   short *eventDataPointer;
   int *preservedRegister15;
   
-  EventTypeCode = (bufferSize >> 1) + 1;
-  ProcessingStatus = (ulonglong)EventTypeCode;
-  loopCounter = EventTypeCode * 2;
-  psVar5 = EventHandle;
+  iterationCount = (bufferSize >> 1) + 1;
+  processingStatus = (ulonglong)iterationCount;
+  loopCounter = iterationCount * 2;
+  dataPointer5 = eventDataPointer;
   do {
-    psVar1 = psVar5 + 1;
-    sVar2 = *psVar5;
-    psVar5 = psVar5 + 2;
-    targetBuffer = targetBuffer + ((uint)((int)*psVar1 * (int)*psVar1 + (int)sVar2 * (int)sVar2) >>
+    dataPointer1 = dataPointer5 + 1;
+    dataValue2 = *dataPointer5;
+    dataPointer5 = dataPointer5 + 2;
+    targetBuffer = targetBuffer + ((uint)((int)*dataPointer1 * (int)*dataPointer1 + (int)dataValue2 * (int)dataValue2) >>
                         ((byte)uiContext & 0x1f));
-    ProcessingStatus = ProcessingStatus - 1;
-  } while (ProcessingStatus != 0);
-  if (loopCounter < unmodifiedEBX) {
-    targetBuffer = targetBuffer + ((uint)((int)EventHandle[loopCounter] * (int)EventHandle[loopCounter]) >>
+    processingStatus = processingStatus - 1;
+  } while (processingStatus != 0);
+  if (loopCounter < preservedRegisterEBX) {
+    targetBuffer = targetBuffer + ((uint)((int)eventDataPointer[loopCounter] * (int)eventDataPointer[loopCounter]) >>
                         ((byte)uiContext & 0x1f));
   }
   if (targetBuffer == 0) {
@@ -106547,29 +106547,29 @@ void ProcessUIBufferDataOperation(int uiContext, UIHandle dataSource, uint targe
       for (; targetBuffer >> loopCounter == 0; loopCounter = loopCounter + -1) {
       }
     }
-    loopCounter = RegisterPointerD - loopCounter;
+    loopCounter = registerValueD - loopCounter;
   }
   loopCounter = (uiContext - loopCounter) + 3;
   if (loopCounter < 0) {
     loopCounter = bufferSize;
   }
-  localInt7 = bufferSize;
-  if (0 < unmodifiedESI) {
-    EventTypeCode = (unmodifiedESI - 1U >> 1) + 1;
-    ProcessingStatus = (ulonglong)EventTypeCode;
-    localInt7 = EventTypeCode * 2;
-    psVar5 = EventHandle;
+  localVariable7 = bufferSize;
+  if (0 < preservedRegisterESI) {
+    iterationCount = (preservedRegisterESI - 1U >> 1) + 1;
+    processingStatus = (ulonglong)iterationCount;
+    localVariable7 = iterationCount * 2;
+    dataPointer5 = eventDataPointer;
     do {
-      psVar1 = psVar5 + 1;
-      sVar2 = *psVar5;
-      psVar5 = psVar5 + 2;
-      bufferSize = bufferSize + ((uint)((int)sVar2 * (int)sVar2 + (int)*psVar1 * (int)*psVar1) >>
+      dataPointer1 = dataPointer5 + 1;
+      dataValue2 = *dataPointer5;
+      dataPointer5 = dataPointer5 + 2;
+      bufferSize = bufferSize + ((uint)((int)dataValue2 * (int)dataValue2 + (int)*dataPointer1 * (int)*dataPointer1) >>
                           ((byte)loopCounter & 0x1f));
-      ProcessingStatus = ProcessingStatus - 1;
-    } while (ProcessingStatus != 0);
+      processingStatus = processingStatus - 1;
+    } while (processingStatus != 0);
   }
-  if (localInt7 < unmodifiedEBX) {
-    bufferSize = bufferSize + ((uint)((int)EventHandle[localInt7] * (int)EventHandle[localInt7]) >>
+  if (localVariable7 < preservedRegisterEBX) {
+    bufferSize = bufferSize + ((uint)((int)eventDataPointer[localVariable7] * (int)eventDataPointer[localVariable7]) >>
                         ((byte)loopCounter & 0x1f));
   }
   *preservedRegister15 = loopCounter;
@@ -106580,23 +106580,41 @@ void ProcessUIBufferDataOperation(int uiContext, UIHandle dataSource, uint targe
 
 
 
- void FUN_18072aac5(int uiContext,UIHandle dataSource,uint targetBuffer,int bufferSize)
-void FUN_18072aac5(int uiContext,UIHandle dataSource,uint targetBuffer,int bufferSize)
+ /**
+ * @brief UI缓冲区高级数据处理函数
+ * 
+ * 该函数负责处理UI缓冲区的高级数据操作，主要功能包括：
+ * - 执行复杂的数据累加和位运算
+ * - 处理UI事件数据的平方和计算
+ * - 管理多级缓冲区的数据处理
+ * - 优化UI数据的处理流程
+ * 
+ * @param uiContext UI上下文参数，用于控制处理流程
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区，存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理范围
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18072aac5
+ * @note 这是一个UI缓冲区高级数据处理函数，用于处理复杂的数据运算
+ */
+void ProcessUIBufferAdvancedOperation(int uiContext, UIHandle dataSource, uint targetBuffer, int bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint EventTypeCode;
-  int unmodifiedEBX;
-  int unmodifiedEBP;
-  int unmodifiedESI;
-  short *psVar4;
-  ulonglong loopCounter;
-  int RegisterPointerD;
+  short *dataPointer1;
+  short dataValue2;
+  uint iterationCount;
+  int preservedRegisterEBX;
+  int preservedRegisterEBP;
+  int preservedRegisterESI;
+  short *dataPointer4;
+  ulonglong processingCounter;
+  int registerValueD;
   int loopCounter;
-  int localInt7;
+  int localVariable7;
   int *preservedRegister12;
-  short *EventHandle;
+  short *eventDataPointer;
   int *preservedRegister15;
   
   if (unmodifiedEBP < unmodifiedEBX) {
