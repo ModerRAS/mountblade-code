@@ -25592,6 +25592,21 @@ DataBuffer * InitializeDataBlockPointerA0(DataBuffer *dataBlockPointer,uint64_t 
 
 
 
+/**
+ * @brief 初始化数据块指针A1
+ * 
+ * 该函数负责初始化数据块指针，首先将其指向数据块指针表A1，
+ * 然后处理数据和指针，最后重新指向数据块指针表A0。
+ * 根据初始化标志，可以选择释放内存资源。
+ * 
+ * @param dataBlockPointer 数据块指针，指向要初始化的数据块
+ * @param initializationFlags 初始化标志，用于控制是否释放内存
+ * @return DataBuffer* 返回初始化后的数据块指针
+ * 
+ * @note 如果初始化标志的第0位为1，则会释放0x38字节的内存
+ * @note 函数会调用ProcessDataAndPointerA0处理偏移量5处的数据和指针
+ * @see DataBlockPointerTableA0, DataBlockPointerTableA1, ProcessDataAndPointerA0
+ */
 DataBuffer * InitializeDataBlockPointerA1(DataBuffer *dataBlockPointer,uint64_t initializationFlags)
 
 {
@@ -25607,16 +25622,24 @@ DataBuffer * InitializeDataBlockPointerA1(DataBuffer *dataBlockPointer,uint64_t 
 
 
 
-// 函数: void ResetResourceState(int64_t *resourceHandle)
-//
-// 资源状态重置函数
-// 重置指定资源句柄的状态，调用资源的重置函数并更新状态标志
-// 
-// 参数:
-//   resourceHandle - 资源句柄指针，指向要重置的资源对象
-// 
-// 返回值:
-//   无 - 直接修改资源句柄的状态
+/**
+ * @brief 重置资源状态
+ * 
+ * 该函数负责重置指定资源句柄的状态。它会调用资源的重置函数，
+ * 并根据重置结果更新资源的状态标志。
+ * 
+ * 函数执行流程：
+ * 1. 调用资源对象的回调函数执行重置操作
+ * 2. 检查重置操作的返回值
+ * 3. 如果重置成功，清除异常处理器指针标志
+ * 
+ * @param resourceHandle 资源句柄指针，指向要重置的资源对象
+ * @return void 无返回值，直接修改资源句柄的状态
+ * 
+ * @note 资源重置函数通过资源回调数据偏移量获取
+ * @note 只有重置成功时才会清除异常处理器指针标志
+ * @see ResourceCallbackDataOffset, ExceptionHandlerPointerOffset4
+ */
 void ResetResourceState(int64_t *resourceHandle)
 
 {
@@ -25632,16 +25655,30 @@ void ResetResourceState(int64_t *resourceHandle)
 
 
 
-// 函数: DataBuffer ProcessResourceData(int64_t resourceContext)
-//
-// 资源数据处理函数
-// 处理指定资源上下文中的数据，分配内存并复制数据到新的缓冲区
-// 
-// 参数:
-//   resourceContext - 资源上下文指针，包含要处理的数据信息
-// 
-// 返回值:
-//   DataBuffer - 返回0表示处理成功
+/**
+ * @brief 处理资源数据
+ * 
+ * 该函数负责处理指定资源上下文中的数据，分配内存并复制数据到新的缓冲区。
+ * 它会处理大数据量的情况，计算调整后的数据大小，并初始化数据缓冲区。
+ * 
+ * 函数执行流程：
+ * 1. 验证资源上下文的有效性并获取数据大小
+ * 2. 处理大数据量情况（超过0x40000字节）
+ * 3. 分配系统内存并初始化缓冲区
+ * 4. 设置数据缓冲区的各种标志和参数
+ * 5. 获取系统数据句柄并设置到缓冲区
+ * 6. 复制源数据到新的缓冲区
+ * 
+ * @param resourceContext 资源上下文指针，包含要处理的数据信息
+ * @return DataBuffer 返回0表示处理成功
+ * 
+ * @note 如果数据大小超过0x40000字节，会调用CalculateSystemDataSize计算调整后的大小
+ * @note 数据缓冲区会初始化为0，然后设置特定的标志位
+ * @note 内存分配包含安全偏移量以确保边界安全
+ * 
+ * @see CalculateSystemDataSize, AllocateSystemMemoryA0, AcquireSystemDataHandle
+ * @see SystemMemoryManagerPointer, SystemStatusDataTable
+ */
 DataBuffer ProcessResourceData(int64_t resourceContext)
 
 {
