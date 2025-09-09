@@ -288,7 +288,7 @@ typedef enum {
  * 
  * @note 原始函数名：FUN_18070e140
  */
-#define CalculateUIComponentMemoryOffset CalculateUIComponentMemoryOffsetE140
+#define CalculateUIComponentMemoryOffset FUN_18070e140
 
 /**
  * @brief 处理UI组件数据
