@@ -4360,7 +4360,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 FUN_18004c030
+#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0
@@ -4590,7 +4590,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808a5780
  */
-#define CreateExceptionDataBuffer FUN_1808a5780
+#define CreateExceptionDataBuffer CreateExceptionDataBuffer
 
 /**
  * @brief 系统安全状态获取函数
@@ -131291,7 +131291,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 FUN_18004c030
+#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0
