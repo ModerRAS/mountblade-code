@@ -3002,97 +3002,150 @@ void* UIGestureCoordinates;
 
  UI系统数学计算函数
 
- 计算UI角度
- 计算UI系统中的角度值，用于旋转和方向计算
-  angleData 角度数据指针
-  计算后的角度值
- #define CalculateUIAngle CalculateUIAngleInternal
-
- 计算UI变换
- 计算UI系统的变换矩阵，用于位置、旋转和缩放变换
-  transformData 变换数据指针
-  计算后的变换矩阵
- #define ComputeUITransform ComputeUITransformInternal
-
- 处理UI浮点数值
- 处理UI系统中的浮点数值运算
-  floatValue 浮点数值
- *  operationType 操作类型
-  处理后的浮点数值
- #define ProcessUIFloatValue ProcessUIFloatValueInternal
-
- 获取UI资源处理器
- 获取UI系统的资源处理器，用于管理UI资源
+ /**
+ * @brief 计算UI角度
  * 
-  资源处理器指针
- #define GetUIResourceHandler GetUIResourceHandlerInternal
-
- 获取UI渲染处理器
- 获取UI系统的渲染处理器，用于处理渲染操作
+ * 计算UI系统中的角度值，用于旋转和方向计算
  * 
-  渲染处理器指针
- #define GetUIRenderHandler GetUIRenderHandlerInternal
+ * @param angleData 角度数据指针
+ * @return 计算后的角度值
+ */
+#define CalculateUIAngle CalculateUIAngleInternal
 
- 计算图像块绝对差异
- 计算图像块之间的绝对差异，用于图像比较和处理
-  uiContext UI上下文
- *  dataSource 数据源指针
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  原始函数名: FUN_18072dde7
- #define CalculateImageBlockAbsoluteDifference FUN_18072dde7
+/**
+ * @brief 计算UI变换
+ * 
+ * 计算UI系统的变换矩阵，用于位置、旋转和缩放变换
+ * 
+ * @param transformData 变换数据指针
+ * @return 计算后的变换矩阵
+ */
+#define ComputeUITransform ComputeUITransformInternal
 
- 计算图像加权绝对差异
- 计算图像块之间的加权绝对差异，用于高级图像处理
-  uiContext UI上下文
- *  dataSource 数据源指针
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  原始函数名: FUN_18072df00
- #define CalculateImageWeightedAbsoluteDifference FUN_18072df00
+/**
+ * @brief 处理UI浮点数值
+ * 
+ * 处理UI系统中的浮点数值运算
+ * 
+ * @param floatValue 浮点数值
+ * @param operationType 操作类型
+ * @return 处理后的浮点数值
+ */
+#define ProcessUIFloatValue ProcessUIFloatValueInternal
 
- UI系统组件操作函数
+/**
+ * @brief 获取UI资源处理器
+ * 
+ * 获取UI系统的资源处理器，用于管理UI资源
+ * 
+ * @return 资源处理器指针
+ */
+#define GetUIResourceHandler GetUIResourceHandlerInternal
 
- 验证UI组件
- 验证UI组件的有效性和完整性，确保组件可以正常使用
-    验证结果状态码
- #define ValidateUIComponent ValidateUIComponentInternal
+/**
+ * @brief 获取UI渲染处理器
+ * 
+ * 获取UI系统的渲染处理器，用于处理渲染操作
+ * 
+ * @return 渲染处理器指针
+ */
+#define GetUIRenderHandler GetUIRenderHandlerInternal
 
- 处理UI组件数据
- 处理UI组件的数据，包括数据的更新和同步
-   *  dataBuffer 数据缓冲区
-  处理结果状态码
- #define ProcessUIComponentData ProcessUIComponentDataInternal
+/**
+ * @brief 计算图像块绝对差异
+ * 
+ * 计算图像块之间的绝对差异，用于图像比较和处理
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果
+ * @note 原始函数名：FUN_18072dde7
+ */
+#define CalculateImageBlockAbsoluteDifference FUN_18072dde7
 
- 处理UI组件事件
- 处理UI组件的事件，包括用户输入和系统事件
-   *  eventData 事件数据指针
-  处理结果状态码
- #define ProcessUIComponentEvent ProcessUIComponentEventInternal
+ /**
+ * @brief 计算图像加权绝对差异
+ * 
+ * 计算图像块之间的加权绝对差异，用于高级图像处理
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果
+ * @note 原始函数名：FUN_18072df00
+ */
+#define CalculateImageWeightedAbsoluteDifference FUN_18072df00
 
- 更新UI组件变换
- 更新UI组件的变换状态，包括位置、旋转和缩放
-   *  transformData 变换数据
-  更新结果状态码
- #define UpdateUIComponentTransform UpdateUIComponentTransformInternal
+// UI系统组件操作函数
 
- 更新UI组件
- 更新UI组件的数据和状态，处理颜色和尺寸信息
-  uiContext UI上下文指针
- *  dataSource 数据源指针
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  原始函数名: FUN_180679bf0
- #define UpdateUIComponent FUN_180679bf0
+/**
+ * @brief 验证UI组件
+ * 
+ * 验证UI组件的有效性和完整性，确保组件可以正常使用
+ * 
+ * @return 验证结果状态码
+ */
+#define ValidateUIComponent ValidateUIComponentInternal
 
- 分配UI组件内存
- 为UI组件分配内存，初始化组件的数据结构
-  componentSize 组件大小
- *  componentType 组件类型
-  分配的组件指针
- #define AllocateUIComponentMemory AllocateUIComponentMemoryInternal
+/**
+ * @brief 处理UI组件数据
+ * 
+ * 处理UI组件的数据，包括数据的更新和同步
+ * 
+ * @param dataBuffer 数据缓冲区
+ * @return 处理结果状态码
+ */
+#define ProcessUIComponentData ProcessUIComponentDataInternal
 
- UI系统渲染器函数
+/**
+ * @brief 处理UI组件事件
+ * 
+ * 处理UI组件的事件，包括用户输入和系统事件
+ * 
+ * @param eventData 事件数据指针
+ * @return 处理结果状态码
+ */
+#define ProcessUIComponentEvent ProcessUIComponentEventInternal
+
+/**
+ * @brief 更新UI组件变换
+ * 
+ * 更新UI组件的变换状态，包括位置、旋转和缩放
+ * 
+ * @param transformData 变换数据
+ * @return 更新结果状态码
+ */
+#define UpdateUIComponentTransform UpdateUIComponentTransformInternal
+
+/**
+ * @brief 更新UI组件
+ * 
+ * 更新UI组件的数据和状态，处理颜色和尺寸信息
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 更新结果状态码
+ * @note 原始函数名：FUN_180679bf0
+ */
+#define UpdateUIComponent FUN_180679bf0
+
+/**
+ * @brief 分配UI组件内存
+ * 
+ * 为UI组件分配内存，初始化组件的数据结构
+ * 
+ * @param componentSize 组件大小
+ * @param componentType 组件类型
+ * @return 分配的组件指针
+ */
+#define AllocateUIComponentMemory AllocateUIComponentMemoryInternal
+
+ // UI系统渲染器函数
 #define GetUIComponentRenderer GetUIComponentRendererInternal
 #define GetUIAlternativeRenderer GetUIAlternativeRendererInternal
 #define UpdateUIComponent UpdateUIComponentInternal
@@ -3110,33 +3163,39 @@ void* UIGestureCoordinates;
 #define GetUIRendererData4 GetUIRendererData4Internal
 #define GetUIRendererData4Alt GetUIRendererData4AltInternal
 
- UI系统主数据函数
+// UI系统主数据函数
 #define GetUISystemMainData1 GetUISystemMainData1Internal
 #define GetUISystemMainData1Alt GetUISystemMainData1AltInternal
 #define GetUISystemMainData1Alt2 GetUISystemMainData1Alt2Internal
 #define GetUISystemRendererData2 GetUISystemRendererData2Internal
 
- UI系统组件状态管理函数
+// UI系统组件状态管理函数
 #define FindUIComponentIndex FindUIComponentIndexInternal
 #define UpdateUIComponentStateData UpdateUIComponentStateDataInternal
 #define HandleUIValidationError HandleUIValidationErrorInternal
 #define ValidateUIComponentState ValidateUIComponentStateInternal
 #define ProcessUIComponentData ProcessUIComponentDataInternal
 
- UI系统状态查询函数
+// UI系统状态查询函数
 #define QueryUISystemStatus QueryUISystemStatusInternal
 
- UI系统资源访问函数
+// UI系统资源访问函数
 #define AccessUIResource AccessUIResourceInternal
 #define InitializeUIComponent InitializeUIComponentInternal
 
- UI系统内存管理函数
- 初始化UI系统内存锁
- 初始化UI系统的内存锁机制，确保多线程安全
+// UI系统内存管理函数
+
+/**
+ * @brief 初始化UI系统内存锁
+ * 
+ * 初始化UI系统的内存锁机制，确保多线程安全
  * 使用临界区来保护共享资源的访问
-  initCallback 初始化回调函数指针
-  原始函数名: FUN_18066e230
- #define InitializeUIMemoryLock FUN_18066e230
+ * 
+ * @param initCallback 初始化回调函数指针
+ * @return 初始化结果
+ * @note 原始函数名：FUN_18066e230
+ */
+#define InitializeUIMemoryLock FUN_18066e230
 
  UI系统内存锁包装函数
  * 
