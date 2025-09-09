@@ -2494,7 +2494,7 @@ int InitializeStringProcessingSystemQuality(void)
   StringProcessingSystemQ_DataBuffer = 0;
   StringProcessingSystemQ_BufferSize = 0x1f;
   strcpy_s(&StringProcessingSystemQ_DataBuffer,64,&StringProcessingSystemQ_Template,StringProcessorFlags,SystemMutexFlags);
-  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQ);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQuality);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
