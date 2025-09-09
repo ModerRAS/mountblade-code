@@ -331,6 +331,14 @@
 #define ExceptionHandlerMemoryRegionOffset14 0x14
 #define ExceptionHandlerStatusFlagsOffsetC4 0xc4
 
+// 系统资源次级偏移量常量
+#define SystemResourceSecondaryOffset2D0 0x2d0
+#define SystemResourceSecondaryOffset2E0 0x2e0
+#define SystemResourceSecondaryOffset2E8 0x2e8
+#define SystemResourceSecondaryOffset2F0 0x2f0
+#define SystemResourceSecondaryOffset2F8 0x2f8
+#define SystemResourceSecondaryOffset300 0x300
+
 // 操作状态偏移量常量
 #define OperationStatusOffset24 0x24
 
@@ -90018,11 +90026,11 @@ void ExecuteExceptionHandlerCallbackB7(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x2d0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemResourceSecondaryOffset2D0);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -90032,11 +90040,11 @@ void InvokeExceptionHandlerAtOffset2F0(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x2e0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemResourceSecondaryOffset2E0);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -90046,11 +90054,11 @@ void InvokeExceptionHandlerAtOffset2E0(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset2E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataBufferPointerOffset);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemResourceSecondaryOffset2E8);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -90060,11 +90068,11 @@ void InvokeExceptionHandlerAtOffset2E8(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x2f0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemResourceSecondaryOffset2F0);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
