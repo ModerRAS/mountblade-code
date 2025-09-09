@@ -3977,7 +3977,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180057010
  * @warning 数组操作可能导致内存访问错误，需要确保参数有效性
- * @see InitializeDataBuffer, ValidateSystemParametersAndConfig
+ * @see InitializeSystemDataBuffer, ValidateSystemParametersAndConfig
  */
 #define ProcessDataArrayWithValidation FUN_180057010
 
@@ -4002,7 +4002,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
  * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
-#define InitializeDataBuffer FUN_1800a19c0
+#define InitializeSystemDataBuffer FUN_1800a19c0
 
 /**
  * @brief 系统命令执行函数
@@ -4649,7 +4649,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：func_0x000180060150
  */
-#define InitializeSystemDataBuffer InitializeDataBuffer
+#define InitializeSystemDataBuffer InitializeSystemDataBuffer
 
 /**
  * @brief 系统操作函数A0
@@ -80962,7 +80962,7 @@ void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffe
     **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
-    InitializeDataBuffer(memoryRegionBase);
+    InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
   return;
@@ -81230,7 +81230,7 @@ void SetSystemValidationStatusTable(DataBuffer operationBase, int64_t dataBuffer
     **(int **)(dataBuffer + 0xd8) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(dataBuffer + DataBufferOffset104) != '\0') {
-    InitializeDataBuffer(validationStatusPointer);
+    InitializeSystemDataBuffer(validationStatusPointer);
   }
   DestroyBasicStreambuf(validationStatusPointer);
   return;
@@ -93740,7 +93740,7 @@ void ValidateExceptionHandlerC240(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
-    InitializeDataBuffer(memoryRegionBase);
+    InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
   return;
@@ -94079,7 +94079,7 @@ void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
     **(int **)(memoryBlockOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + 0x94) != '\0') {
-    InitializeDataBuffer(memoryRegionBase);
+    InitializeSystemDataBuffer(memoryRegionBase);
   }
   DestroyBasicStreambuf(memoryRegionBase);
   return;
@@ -115741,7 +115741,7 @@ void ManageMemoryRegionAndCleanupStreambufAtOffset580(DataBuffer operationBase,i
     **(int **)(memoryBlockOffset + 0x60) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + 0x8c) != '\0') {
-    InitializeDataBuffer(memoryRegionBase);
+    InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
   return;
@@ -116020,7 +116020,7 @@ void ProcessDataBufferAndMemoryRegionAtOffset6a0(DataBuffer operationBase,int64_
     **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
-    InitializeDataBuffer(memoryRegionBase);
+    InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
   return;
@@ -130434,7 +130434,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 数据缓冲区初始化函数
 // 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
 // 数据缓冲区初始化函数
-#define InitializeDataBuffer FUN_1800a19c0
+#define InitializeSystemDataBuffer FUN_1800a19c0
 
 // 系统命令执行函数
 // 功能：执行系统级命令，处理命令参数和返回结果
@@ -131926,7 +131926,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_180909110 - 数据缓冲区初始化函数
 // 功能：初始化数据缓冲区，设置系统参数
-#define InitializeDataBufferA Unwind_180909110
+#define InitializeSystemDataBufferA Unwind_180909110
 
 // 原始函数名：Unwind_180909130 - 系统资源处理函数
 // 功能：处理系统资源，管理资源分配
