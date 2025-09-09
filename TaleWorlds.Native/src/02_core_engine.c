@@ -223707,7 +223707,22 @@ void ProcessUtf16CharacterAndMemoryBlockManagement(long long *ContextHandle,uint
 
 
 // 函数: void FUN_180187cd0(long long *ContextHandle)
-void FUN_180187cd0(long long *ContextHandle)
+/**
+ * @brief 处理字符表和数据初始化
+ * 
+ * 该函数负责处理字符表的初始化和数据管理操作。
+ * 主要功能包括：
+ * - 初始化字符表指针
+ * - 处理UTF8到UTF16的编码转换
+ * - 设置循环计数器
+ * - 管理系统内存分配
+ * 
+ * @param ContextHandle 字符代码指针
+ * 
+ * @note 原始函数名：FUN_180187cd0
+ */
+#define ProcessCharacterTableAndDataInitialization FUN_180187cd0
+void ProcessCharacterTableAndDataInitialization(long long *ContextHandle)
 {
   long long PrimaryOperationResult;
   long long BufferStatus;
