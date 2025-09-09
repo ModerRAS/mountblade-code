@@ -69,6 +69,9 @@
 #define MemoryResourcePointerOffset 0x2d0
 #define MemoryBlockShift 0x10
 #define MemoryManagementFlagMask 0xff000000
+#define MemoryResourcePointerOffset1F0 0x1f0
+#define MemoryResourcePointerOffset210 0x210
+#define MemoryResourcePointerOffset1D0 0x1d0
 
 // 异常处理器管理常量
 #define ExceptionHandlerContextDataOffset 0x70
@@ -127,6 +130,9 @@
 #define ExceptionHandlerContextOffset4b8 0x4b8
 #define ExceptionHandlerContextOffset480 0x480
 #define ExceptionHandlerContextOffset488 0x488
+#define ExceptionHandlerContextOffset160 0x160
+#define ExceptionHandlerContextOffset168 0x168
+#define ExceptionHandlerContextOffset1A0 0x1a0
 
 // 系统浮点数据偏移量常量
 #define SystemFloatDataOffset388 0x388
@@ -99992,7 +99998,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 内存资源释放函数D2D0
+ * @brief 内存资源释放函数（偏移量1F0）
  * 
  * 该函数负责释放内存资源，管理资源引用计数，并在适当的时候处理异常情况。
  * 函数从数据缓冲区的0x1f0偏移量获取内存资源指针，然后根据内存区域掩码计算内存区域基地址。
@@ -100006,7 +100012,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 从数据缓冲区的0x1f0偏移量获取内存资源指针
  * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
  */
-void ReleaseMemoryResourceD2D0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100057,7 +100063,7 @@ void ReleaseMemoryResourceD2D0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 从数据缓冲区的0x210偏移量获取内存资源指针
  * @note 使用MemoryRegionMask (0xffc00000) 掩码计算内存区域基地址
  */
-void ReleaseMemoryResourceD2E0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
