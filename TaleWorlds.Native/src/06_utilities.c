@@ -47657,7 +47657,7 @@ void ResetResourcePointer180(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupExceptionTable190(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -107399,7 +107399,7 @@ void InitializeExceptionDataTablePointers(DataBuffer operationBase, int64_t data
  * 
  * @note 原始函数名：Unwind_18090edc0
  */
-void SetExceptionDataTableEDC0(DataBuffer operationBase,int64_t dataBuffer)
+void SetExceptionDataTableWithValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x150) = &ExceptionDataTable6;
