@@ -400550,6 +400550,11 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统数据验证函数
 #define ValidateUIDataIntegrity FUN_18089f830
 
+// UI系统句柄管理函数
+#define ProcessUIHandleAllocation FUN_18089fa3c
+#define ValidateUIHandleOperation FUN_18089fac2
+#define ProcessUIHandleValidation FUN_18089fad8
+
 
 
 
