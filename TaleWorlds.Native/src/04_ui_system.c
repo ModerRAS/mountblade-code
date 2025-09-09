@@ -20060,19 +20060,32 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
 
 
 
- void UpdateUIElementTransform(longlong uiContext,longlong dataSource,float *targetBuffer,char bufferSize)
-void UpdateUIElementTransform(longlong uiContext,longlong dataSource,float *targetBuffer,char bufferSize)
+ /**
+ * @brief 更新UI元素变换矩阵
+ * 
+ * 根据UI上下文和数据源计算并更新UI元素的变换矩阵。
+ * 此函数处理元素的平移、旋转和缩放变换，并应用到目标缓冲区。
+ * 
+ * @param uiContext UI上下文指针，包含UI元素的状态信息
+ * @param dataSource 数据源指针，包含变换相关的数据
+ * @param targetBuffer 目标缓冲区指针，用于存储计算结果
+ * @param bufferSize 缓冲区大小，指定要处理的元素数量
+ * 
+ * @note 原始函数名：UpdateUIElementTransform
+ * @note 此函数处理UI元素的3D变换计算
+ */
+void UpdateUIElementTransform(longlong uiContext, longlong dataSource, float *targetBuffer, char bufferSize)
 
 {
-  ulonglong result;
-  longlong componentIndex;
-  ulonglong EventTypeCode;
-  float *pTransformCoefficient3;
-  ulonglong loopCounter;
-  longlong contextHandleData;
-  longlong localLong7;
-  float TemporaryFloatValue;
-  float LocalFloatValue9;
+  ulonglong transformFlags;
+  longlong componentCount;
+  ulonglong transformType;
+  float *transformMatrixPtr;
+  ulonglong iterationCounter;
+  longlong batchCount;
+  longlong processedCount;
+  float weightMultiplier;
+  float currentWeight;
   
   componentIndex = (longlong)*(int *)(uiBufferData + 0x60);
   if (*(int *)(uiBufferData + 0x60) == 0) {
