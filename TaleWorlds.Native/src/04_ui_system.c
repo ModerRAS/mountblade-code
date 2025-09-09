@@ -200059,167 +200059,203 @@ int ProcessUICharacterValidation(longlong uiContext, UIDword dataSource, longlon
   UIByte stackBuffer[48];              // 栈缓冲区
   UIByte *secondaryResultPtr;          // 次要结果指针
   
-  allocatedMemory6 = 0xc700787a;
-  ptrLocal8 = (UIByte *)DataRegister;
-  if (in_PF) {
-    pisCharacterMatch = (byte *)(registerAX + -0x77);
-    *pisCharacterMatch = *pisCharacterMatch >> 4 | *pisCharacterMatch << 4;
+  // 初始化内存分配标志
+  memoryAllocationFlag = 0xc700787a;
+  dataRegisterPtr = (UIByte *)DataRegister;
+  
+  if (processorFlag) {
+    // 处理字符匹配标志位操作
+    characterMatchFlag = (UIByte *)(registerAX + -0x77);
+    *characterMatchFlag = *characterMatchFlag >> 4 | *characterMatchFlag << 4;
+    
 InputValidationCheck:
-    DataRegister = (BADSPACEBASE *)ptrLocal8;
-    *(UIHandle *)((longlong)register0x00000020 + 0x20) = *(UIHandle *)(SourceHandle + 0x11670);
+    // 重置数据寄存器并设置UI句柄
+    DataRegister = (BADSPACEBASE *)dataRegisterPtr;
+    *(UIHandle *)((longlong)register0x00000020 + 0x20) = *(UIHandle *)(sourceHandle + 0x11670);
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787ecf;
-    (*register10)(SourceHandle,0x20,0);
+    (*cleanupFunction)(sourceHandle, 0x20, 0);
+    
 LAB_180787ecf:
     uiContext = *contextHandle;
     if (uiContext != 0) {
 LAB_180787ed7:
-      localChar11 = *(char *)((longlong)contextHandle + 0xc);
+      validationChecksum = *(char *)((longlong)contextHandle + 0xc);
       goto LAB_180787edb;
     }
   }
   else {
-    localChar12 = (char)((uint)dataSource >> 8);
-    ResultValue3 = (undefined6)((ulonglong)contextHandle >> 0x10);
-    localChar10 = (char)contextHandle;
-    localChar11 = (char)((ulonglong)contextHandle >> 8) + localChar12;
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) == 0) goto InputValidationCheck;
-    localChar11 = localChar11 + (byte)uiContext;
-    if ((POPCOUNT(localChar11) & 1U) == 0) {
-                     WARNING: Bad instruction - Truncating control flow here
+    // 处理数据源字节和字符编码
+    highByteDataSource = (char)((uint)dataSource >> 8);
+    charCodeValue = (undefined6)((ulonglong)contextHandle >> 0x10);
+    tempValidationChar = (char)contextHandle;
+    validationChecksum = (char)((ulonglong)contextHandle >> 8) + highByteDataSource;
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) goto InputValidationCheck;
+    validationChecksum = validationChecksum + (byte)uiContext;
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) {
+      // 遇到错误指令，终止处理
       halt_baddata();
     }
-    localChar11 = localChar11 + (char)dataSource;
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) == 0) {
+    
+    validationChecksum = validationChecksum + (char)dataSource;
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) {
+      // 更新UI上下文和字符匹配标志
       *(byte *)(uiContext + -1) = *(byte *)(uiContext + -1) & (byte)registerAX;
-      pisCharacterMatch = (byte *)(registerAX + -0x75);
-      IsValidationComplete = (byte)uiContext & 7;
-      *pisCharacterMatch = *pisCharacterMatch >> IsValidationComplete | *pisCharacterMatch << 8 - IsValidationComplete;
-      register0x00000020 = (BADSPACEBASE *)(BasePointer + 1);
-      BasePointer = (longlong *)*BasePointer;
+      characterMatchFlag = (byte *)(registerAX + -0x75);
+      isValidationComplete = (byte)uiContext & 7;
+      *characterMatchFlag = *characterMatchFlag >> isValidationComplete | *characterMatchFlag << 8 - isValidationComplete;
+      register0x00000020 = (BADSPACEBASE *)(basePointer + 1);
+      basePointer = (longlong *)*basePointer;
       goto LAB_180787ecf;
     }
-    localChar11 = localChar11 + localChar10;
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) == 0) goto LAB_180787ecf;
-    localChar11 = localChar11 + localChar12;
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) == 0) goto LAB_180787ecf;
-    localChar11 = localChar11 + (char)((ulonglong)registerAX >> 8);
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) == 0) goto LAB_180787ed7;
-    localChar11 = localChar11 + localChar12;
-    contextHandle = (longlong *)CONCAT62(ResultValue3,CONCAT11(localChar11,localChar10));
-    if ((POPCOUNT(localChar11) & 1U) != 0) {
-      if ((POPCOUNT(localChar11 + localChar12) & 1U) != 0) {
-        localChar12 = localChar11 + localChar12 + localChar12;
-        if ((POPCOUNT(localChar12) & 1U) == 0) {
-          SourceHandle = (ulonglong)((int)SourceHandle + 1);
+    
+    validationChecksum = validationChecksum + tempValidationChar;
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) goto LAB_180787ecf;
+    validationChecksum = validationChecksum + highByteDataSource;
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) goto LAB_180787ecf;
+    validationChecksum = validationChecksum + (char)((ulonglong)registerAX >> 8);
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) == 0) goto LAB_180787ed7;
+    validationChecksum = validationChecksum + highByteDataSource;
+    contextHandle = (longlong *)CONCAT62(charCodeValue, CONCAT11(validationChecksum, tempValidationChar));
+    
+    if ((POPCOUNT(validationChecksum) & 1U) != 0) {
+      if ((POPCOUNT(validationChecksum + highByteDataSource) & 1U) != 0) {
+        highByteDataSource = validationChecksum + highByteDataSource + highByteDataSource;
+        if ((POPCOUNT(highByteDataSource) & 1U) == 0) {
+          sourceHandle = (ulonglong)((int)sourceHandle + 1);
         }
-        else if ((POPCOUNT(localChar12 + (char)((ulonglong)uiContext >> 8)) & 1U) != 0) {
+        else if ((POPCOUNT(highByteDataSource + (char)((ulonglong)uiContext >> 8)) & 1U) != 0) {
+          // 更新字符数据和缓冲区指针
           *(char *)(registerAX + 0x53) = *(char *)(registerAX + 0x53) + (byte)registerAX;
-          ptrResult4 = astackUInt50;
-          ptrResult5 = astackUInt50;
-          SourceHandle = *(ulonglong *)(uiContext + 0x48);
-          register10 = *(code **)(SourceHandle + 0x11838);
-          preservedRegister15B = '\0';
+          resultBufferPtr = stackBuffer;
+          secondaryResultPtr = stackBuffer;
+          sourceHandle = *(ulonglong *)(uiContext + 0x48);
+          cleanupFunction = *(UIFunctionPtr **)(sourceHandle + 0x11838);
+          preservedRegisterFlag = '\0';
           contextHandle = targetBuffer;
-          register0x00000020 = (BADSPACEBASE *)astackUInt50;
-          allocatedMemory6 = uiContext;
-          EventHandle = bufferSize;
-          RegisterValue = dataSource;
-          if ((register10 != (UIFunctionPtr *)0x0) &&
-             (register0x00000020 = (BADSPACEBASE *)ptrResult5, ptrLocal8 = ptrResult4,
-             (*(byte *)(SourceHandle + 0x11840) & 0x20) != 0)) goto InputValidationCheck;
+          register0x00000020 = (BADSPACEBASE *)stackBuffer;
+          memoryAllocationFlag = uiContext;
+          eventHandle = bufferSize;
+          registerValue = dataSource;
+          
+          if ((cleanupFunction != (UIFunctionPtr *)0x0) &&
+             (register0x00000020 = (BADSPACEBASE *)secondaryResultPtr, dataRegisterPtr = resultBufferPtr,
+             (*(byte *)(sourceHandle + 0x11840) & 0x20) != 0)) goto InputValidationCheck;
           goto LAB_180787ecf;
         }
       }
       goto LAB_180787ee9;
     }
+    
 LAB_180787edb:
-    if (localChar11 == '\0') {
+    if (validationChecksum == '\0') {
       contextHandleData = contextHandle[1];
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787ee5;
-      func_0x000180743c20(uiContext,(int)contextHandleData);
+      func_0x000180743c20(uiContext, (int)contextHandleData);
       *(UIByte *)((longlong)contextHandle + 0xc) = 1;
     }
   }
+  
 LAB_180787ee9:
-  if (SourceHandle != 0) {
+  // 处理源句柄清理
+  if (sourceHandle != 0) {
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787efb;
-    func_0x000180743c20(SourceHandle,2);
-    preservedRegister15B = '\x01';
+    func_0x000180743c20(sourceHandle, 2);
+    preservedRegisterFlag = '\x01';
   }
-  iterationCount = *(UIHandle *)(allocatedMemory6 + 0x48);
-  *(longlong **)((longlong)register0x00000020 + 0x68) = BasePointer;
+  
+  // 验证UI内存操作
+  iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
+  *(longlong **)((longlong)register0x00000020 + 0x68) = basePointer;
   *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787f0e;
-  localInt9 = ValidateUIMemoryOperation(iterationCount,0);
-  if (localInt9 == 0) {
-    contextHandleData = *EventHandle;
-    if ((contextHandleData != 0) && (*(char *)((longlong)EventHandle + 0xc) == '\0')) {
-      localLong7 = EventHandle[1];
+  processingResult = ValidateUIMemoryOperation(iterationCount, 0);
+  
+  if (processingResult == 0) {
+    contextHandleData = *eventHandle;
+    if ((contextHandleData != 0) && (*(char *)((longlong)eventHandle + 0xc) == '\0')) {
+      characterDataOffset = eventHandle[1];
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787f2f;
-      func_0x000180743c20(contextHandleData,(int)localLong7);
-      *(UIByte *)((longlong)EventHandle + 0xc) = 1;
+      func_0x000180743c20(contextHandleData, (int)characterDataOffset);
+      *(UIByte *)((longlong)eventHandle + 0xc) = 1;
     }
+    
+    // 清理UI资源
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787f3e;
-    FUN_1807864f0(allocatedMemory6,0);
-    *(UIDword *)(*(longlong *)(allocatedMemory6 + 0x48) + 0x116e8) = *(UIDword *)(allocatedMemory6 + 0x318);
-    contextHandleData = *(longlong *)(*(longlong *)(allocatedMemory6 + 0x48) + 0x107b8);
+    FUN_1807864f0(memoryAllocationFlag, 0);
+    *(UIDword *)(*(longlong *)(memoryAllocationFlag + 0x48) + 0x116e8) = *(UIDword *)(memoryAllocationFlag + 0x318);
+    contextHandleData = *(longlong *)(*(longlong *)(memoryAllocationFlag + 0x48) + 0x107b8);
+    
     if (*(int *)(contextHandleData + 0x30) == 0) {
-      *(int *)(allocatedMemory6 + 0x318) = *(int *)(allocatedMemory6 + 0x318) + 1;
+      *(int *)(memoryAllocationFlag + 0x318) = *(int *)(memoryAllocationFlag + 0x318) + 1;
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787fd1;
-      localInt9 = FUN_180760790(contextHandleData,RegisterValue);
+      processingResult = FUN_180760790(contextHandleData, registerValue);
       *(UIDword *)(contextHandleData + 0x34) = 0;
     }
     else {
-      pstringCompareIndex = *(longlong **)(*(longlong *)(allocatedMemory6 + 0x48) + 0x116e0);
-      plocalChar4 = *(code **)(*pstringCompareIndex + 0x120);
+      stringCompareIndex = *(longlong **)(*(longlong *)(memoryAllocationFlag + 0x48) + 0x116e0);
+      validationFunction = *(UIFunctionPtr **)(*stringCompareIndex + 0x120);
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787f76;
-      localInt9 = (*plocalChar4)(pstringCompareIndex,0,(UIByte *)((longlong)register0x00000020 + 0x60));
-      if (localInt9 != 0) goto LAB_180788061;
+      processingResult = (*validationFunction)(stringCompareIndex, 0, (UIByte *)((longlong)register0x00000020 + 0x60));
+      
+      if (processingResult != 0) goto LAB_180788061;
       iterationCount = *(UIHandle *)((longlong)register0x00000020 + 0x60);
       *(UIDword *)(contextHandleData + 0xc) = 0;
       *(UIDword *)(contextHandleData + 0x30) = 0;
       *(UIDword *)(contextHandleData + 0x34) = 1;
-      *(int *)(allocatedMemory6 + 0x318) = *(int *)(allocatedMemory6 + 0x318) + 1;
+      *(int *)(memoryAllocationFlag + 0x318) = *(int *)(memoryAllocationFlag + 0x318) + 1;
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787fb3;
-      localInt9 = FUN_180760c90(contextHandleData,iterationCount,RegisterValue);
+      processingResult = FUN_180760c90(contextHandleData, iterationCount, registerValue);
     }
-    if ((SourceHandle != 0) && (preservedRegister15B != '\0')) {
-                     WARNING: Subroutine does not return
+    
+    if ((sourceHandle != 0) && (preservedRegisterFlag != '\0')) {
+      // 清理UI系统资源
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787ff4;
-      ProcessUISystemCleanup(SourceHandle,2);
+      ProcessUISystemCleanup(sourceHandle, 2);
     }
-    if (localInt9 == 0) {
-      iterationCount = *(UIHandle *)(allocatedMemory6 + 0x48);
+    
+    if (processingResult == 0) {
+      iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
       *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180788001;
-      localInt9 = FUN_180749940(iterationCount);
-      if (localInt9 == 0) {
-        iterationCount = *(UIHandle *)(allocatedMemory6 + 0x48);
+      processingResult = FUN_180749940(iterationCount);
+      
+      if (processingResult == 0) {
+        iterationCount = *(UIHandle *)(memoryAllocationFlag + 0x48);
         *(UIHandle *)((longlong)register0x00000020 + -8) = 0x18078801b;
-        FUN_180744ae0(iterationCount,0x100001,0,0);
-        contextHandleData = *(longlong *)(allocatedMemory6 + 0x48);
-        plocalChar4 = *(code **)(contextHandleData + 0x11838);
-        if ((plocalChar4 != (UIFunctionPtr *)0x0) && ((*(uint *)(contextHandleData + 0x11840) & 0x100) != 0)) {
+        FUN_180744ae0(iterationCount, 0x100001, 0, 0);
+        contextHandleData = *(longlong *)(memoryAllocationFlag + 0x48);
+        validationFunction = *(UIFunctionPtr **)(contextHandleData + 0x11838);
+        
+        if ((validationFunction != (UIFunctionPtr *)0x0) && ((*(uint *)(contextHandleData + 0x11840) & 0x100) != 0)) {
           *(UIHandle *)((longlong)register0x00000020 + 0x20) = *(UIHandle *)(contextHandleData + 0x11670);
           *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180788051;
-          (*plocalChar4)(contextHandleData,0x100,0,0);
+          (*validationFunction)(contextHandleData, 0x100, 0, 0);
         }
+        
         *(UIHandle *)((longlong)register0x00000020 + -8) = 0x18078805e;
-        FUN_1807864f0(allocatedMemory6,2);
-        localInt9 = 0;
+        FUN_1807864f0(memoryAllocationFlag, 2);
+        processingResult = 0;
       }
     }
   }
+  
 LAB_180788061:
-  if ((preservedRegister15B != '\0') && (SourceHandle != 0)) {
-                     WARNING: Subroutine does not return
+  // 最终清理操作
+  if ((preservedRegisterFlag != '\0') && (sourceHandle != 0)) {
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180788091;
-    ProcessUISystemCleanup(SourceHandle,2);
+    ProcessUISystemCleanup(sourceHandle, 2);
   }
-  return localInt9;
+  
+  return processingResult;
 }
 
 
