@@ -67720,7 +67720,7 @@ MemoryBoundaryCheck:
               ValidationStatus8 = (char *)PrimaryProcessingStatusFlag7[1];
               LoopIndex = (long long)puStack_3e0 - (long long)ValidationStatus8;
               do {
-                if (*ValidationStatus8 != ValidationStatus8[LoopIndex]) goto LAB_18008a841;
+                if (*ValidationStatus8 != ValidationStatus8[LoopIndex]) goto ValidationStatusCheckLabel;
                 MemoryAllocationIndexAdditional = MemoryAllocationIndexAdditional + 1;
                 ValidationStatus8 = ValidationStatus8 + 1;
               } while (MemoryAllocationIndexAdditional < uStack_3d8);
@@ -67957,7 +67957,7 @@ BufferAllocation:
             puStack_550 = (uint8_t *)0x0;
             SystemUnsignedValue540 = (unsigned long long)SystemUnsignedValue540.HighPart << 0x20;
             puStack_558 = &ThreadLocalStorageTemplate;
-            goto LAB_18008acc1;
+            goto SystemEventProcessingLabel;
           }
           if (puStack_550 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return

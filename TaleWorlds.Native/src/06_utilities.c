@@ -23233,7 +23233,7 @@ int ProcessDataBufferWithValidation(int64_t *bufferContext,int64_t dataBuffer,in
   initialProcessedBytes = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&SystemDataBufferD);
   subsequentProcessedBytes = ProcessSystemBufferDataA0(dataBuffer + initialProcessedBytes,bufferSize - initialProcessedBytes,&SystemDataBufferA);
   initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
-  subsequentProcessedBytes = EncryptSystemData(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,((int)bufferContext[2] + 2) * 0xc);
+  subsequentProcessedBytes = EncryptSystemData(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,((int)bufferContext[2] + 2) * DataProcessingMultiplier);
   initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
   subsequentProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
   initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
