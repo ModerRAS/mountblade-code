@@ -93707,7 +93707,7 @@ void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuf
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUIntb8;
   stackUInt78 = 0;
-  uiCompareResult = resultPointer >> 4;
+  uiCompareResult = resultParamPointer >> 4;
   stackUInt70 = 0;
   stackUInt68 = 0;
   stackUInt60 = 0;
@@ -100171,7 +100171,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
   ulonglong stackUInt58;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)stackArray148;
-  loopCounter = resultPointer >> 4;
+  loopCounter = resultParamPointer >> 4;
   ResultValue3 = loopCounter + 1;
   if (resultPointer <= (int)(loopCounter * 0x10)) {
     ResultValue3 = loopCounter;
@@ -100706,7 +100706,7 @@ UIWord FUN_1807234d0(UIWord *uiContext,longlong dataSource,short *targetBuffer,i
         shortPointer1 = targetBuffer + innerLoopCounter * 9;
         componentIndex = (longlong)((resultPointer - innerLoopCounter) * 9);
         innerLoopCounter = ((int)((ulonglong)((longlong)compareResultPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
-                 + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)puiCompareResult[10]) >> 0x10)
+                 + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)compareResultPointer[10]) >> 0x10)
                    + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)puiCompareResult[0xc]) >>
                           0x10) +
                      (int)((ulonglong)((longlong)puiCompareResult[0xe] * (longlong)targetBuffer[componentIndex + -6]) >>
