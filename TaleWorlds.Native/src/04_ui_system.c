@@ -97944,48 +97944,48 @@ int ValidateUIFloatParameter(float uiContext,float dataSource,float targetBuffer
 
 
 
-int FUN_180721f4c(UIHandle uiContext,float dataSource,float targetBuffer)
+int ProcessUIFloatData(UIHandle uiContext,float dataSource,float targetBuffer)
 
 {
-  UIByte aresult [16];
-  double dVar2;
-  uint EventTypeCode;
+  UIByte resultArray [16];
+  double calculationResult;
+  uint eventTypeCode;
   longlong contextHandleData;
-  float TransformCoefficient4;
+  float transformCoefficient;
   float in_XMM4_Da;
   float in_XMM5_Da;
   float preservedXMM6;
   float preservedXMM7;
   
-  TransformCoefficient4 = ((((preservedXMM7 * 0.43157974 + preservedXMM6) * in_XMM5_Da) / dataSource + in_XMM4_Da) -
+  transformCoefficient = ((((preservedXMM7 * 0.43157974 + preservedXMM6) * in_XMM5_Da) / dataSource + in_XMM4_Da) -
           targetBuffer) * 10430.382 + 0.5;
-  dVar2 = (double)TransformCoefficient4;
-  contextHandleData = (longlong)TransformCoefficient4;
-  if ((contextHandleData != -0x8000000000000000) && ((double)contextHandleData != dVar2)) {
-    aresult._8_4_ = SUB84(dVar2,0);
-    aresult._0_8_ = dVar2;
-    aresult._12_4_ = (int)((ulonglong)dVar2 >> 0x20);
-    EventTypeCode = movmskpd(0,aresult);
-    dVar2 = (double)(longlong)(contextHandleData - (ulonglong)(EventTypeCode & 1));
+  calculationResult = (double)transformCoefficient;
+  contextHandleData = (longlong)transformCoefficient;
+  if ((contextHandleData != -0x8000000000000000) && ((double)contextHandleData != calculationResult)) {
+    resultArray._8_4_ = SUB84(calculationResult,0);
+    resultArray._0_8_ = calculationResult;
+    resultArray._12_4_ = (int)((ulonglong)calculationResult >> 0x20);
+    eventTypeCode = movmskpd(0,resultArray);
+    calculationResult = (double)(longlong)(contextHandleData - (ulonglong)(eventTypeCode & 1));
   }
-  return (int)dVar2;
+  return (int)calculationResult;
 }
 
 
 
-int FUN_180721fa6(double uiContext)
+int ProcessUIDoubleParameter(double uiContext)
 
 {
-  UIByte aresult [16];
+  UIByte resultArray [16];
   UIDword bufferSize;
   uint iterationCount;
   longlong registerCX;
   
   if ((double)registerCX != uiContext) {
-    aresult._8_4_ = SUB84(uiContext,0);
-    aresult._0_8_ = uiContext;
-    aresult._12_4_ = (int)((ulonglong)uiContext >> 0x20);
-    iterationCount = movmskpd(bufferSize,aresult);
+    resultArray._8_4_ = SUB84(uiContext,0);
+    resultArray._0_8_ = uiContext;
+    resultArray._12_4_ = (int)((ulonglong)uiContext >> 0x20);
+    iterationCount = movmskpd(bufferSize,resultArray);
     uiContext = (double)(longlong)(registerCX - (ulonglong)(iterationCount & 1));
   }
   return (int)uiContext;
@@ -98228,8 +98228,8 @@ void ProcessUIBufferData(short *uiContext,UIDword *dataSource,UIDword *targetBuf
 
 
 
- void FUN_180722340(UIHandle uiContext,UIDword *dataSource)
-void FUN_180722340(UIHandle uiContext,UIDword *dataSource)
+ void ProcessUIDwordArray(UIHandle uiContext,UIDword *dataSource)
+void ProcessUIDwordArray(UIHandle uiContext,UIDword *dataSource)
 
 {
   UIDword result;
@@ -98244,8 +98244,8 @@ void FUN_180722340(UIHandle uiContext,UIDword *dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180722370(UIHandle uiContext,int *dataSource)
-void FUN_180722370(UIHandle uiContext,int *dataSource)
+ void ProcessUIIntArray(UIHandle uiContext,int *dataSource)
+void ProcessUIIntArray(UIHandle uiContext,int *dataSource)
 
 {
   UIDword result;
@@ -98253,9 +98253,9 @@ void FUN_180722370(UIHandle uiContext,int *dataSource)
   short *pContextFirstValue;
   longlong contextHandleData;
   int localInt5;
-  UIByte astackUInt58 [32];
+  UIByte stackArray58 [32];
   int stackInt38;
-  short asStack_34 [2];
+  short stackArray34 [2];
   int stackInt30;
   int stackInt2c;
   short sStack_28;
@@ -129235,7 +129235,7 @@ UIHandle FUN_180741b80(int *uiContext)
     if ((int)result != 0) {
       return result;
     }
-    result = FUN_180768820();
+    result = UISystemCleanup();
     if ((int)result != 0) {
       return result;
     }
@@ -181504,7 +181504,7 @@ UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
       plocalLong7 = (longlong *)*plocalLong7) {
     if ((int)plocalLong7[0x18] == dataSource) {
       if (plocalLong7[0x17] != 0) {
-        FUN_1807687d0();
+        UILibraryReleaseHandler();
       }
       loopCounter = 0x290;
       *(longlong *)plocalLong7[1] = *plocalLong7;
@@ -181518,7 +181518,7 @@ UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
       plocalLong7 = (longlong *)*plocalLong7) {
     if ((int)plocalLong7[0x12] == dataSource) {
       if (plocalLong7[0x11] != 0) {
-        FUN_1807687d0();
+        UILibraryReleaseHandler();
       }
       loopCounter = 0x2a1;
       *(longlong *)plocalLong7[1] = *plocalLong7;
@@ -181570,7 +181570,7 @@ UIHandle FUN_180772950(longlong uiContext,int dataSource,char targetBuffer)
         *(UIHandle *)(uiContext + 0x3a8 + (longlong)processingResult * 8) = 0;
       }
       if (plocalLong7[5] != 0) {
-        FUN_1807687d0();
+        UILibraryReleaseHandler();
       }
       pcontextHandleData = plocalLong7 + 9;
       *(longlong *)plocalLong7[10] = *pcontextHandleData;
@@ -181627,7 +181627,7 @@ void FUN_180772ae2(void)
     *(UIHandle *)(SourceHandle + 0x3a8 + (longlong)uiValidationResult * 8) = 0;
   }
   if (contextHandle[5] != 0) {
-    FUN_1807687d0();
+    UILibraryReleaseHandler();
   }
   pallocatedMemory = contextHandle + 9;
   *(longlong *)contextHandle[10] = *pallocatedMemory;
@@ -181661,7 +181661,7 @@ void FUN_180772b52(void)
     *(UIHandle *)(SourceHandle + 0x3a8 + (longlong)uiValidationResult * 8) = 0;
   }
   if (contextHandle[5] != 0) {
-    FUN_1807687d0();
+    UILibraryReleaseHandler();
   }
   pallocatedMemory = contextHandle + 9;
   *(longlong *)contextHandle[10] = *pallocatedMemory;
@@ -188353,11 +188353,15 @@ char UISystemConfigFlag;
 #define UISystemStatusFlag DAT_180c10890
 undefined UISystemStatusFlag;
 // 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
-#define UISystemCOMInterfacePtr DAT_180c0c6e8
-undefined UISystemCOMInterfacePtr;
+// 原始变量名：DAT_180c0c6e8 - UI系统COM接口指针
+// 注意：已在文件开头定义为 GlobalUIComponentInstanceE8
+// #define UISystemCOMInterfacePtr DAT_180c0c6e8
+// undefined UISystemCOMInterfacePtr;
+
 // 原始变量名：DAT_180958c80 - UI系统字符映射表
-#define UISystemCharacterMappingTable DAT_180958c80
-undefined UISystemCharacterMappingTable;
+// 注意：已在文件开头定义为 UIComponentContextTableC80
+// #define UISystemCharacterMappingTable DAT_180958c80
+// undefined UISystemCharacterMappingTable;
 // 原始变量名：UNK_18095ab70 - UI系统样式管理器
 #define UISystemStyleManager UNK_18095ab70
 undefined UISystemStyleManager;
