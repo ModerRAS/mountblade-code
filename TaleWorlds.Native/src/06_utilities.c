@@ -34086,33 +34086,33 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     goto ProcessCheckpointCalculationResult;
   }
   if (*(uint *)(dataBuffer + 8) < 0x6a) {
-    stackDataPointer = (DataBuffer *)0x0;
-    stackDataBuffer = 0;
-    dataFlags = ProcessDataFlagsA0(dataBuffer,&stackDataPointer,0);
+    systemStackDataPointer = (DataBuffer *)0x0;
+    systemStackDataBuffer = 0;
+    dataFlags = ProcessDataFlagsA0(dataBuffer,&systemStackDataPointer,0);
     validationOutcome = (uint64_t)dataFlags;
     if (dataFlags != 0) {
 ValidationLabelB:
-      dataFlags = stackDataBuffer.lowWord;
-      if ((int64_t)stackDataBuffer < 0) {
-        dataFlags = -stackDataBuffer.lowWord;
+      dataFlags = systemStackDataBuffer.lowWord;
+      if ((int64_t)systemStackDataBuffer < 0) {
+        dataFlags = -systemStackDataBuffer.lowWord;
       }
-      resourceValidationStatus = (int)stackDataBuffer;
-      statusCounter = stackDataBuffer.lowWord;
+      resourceValidationStatus = (int)systemStackDataBuffer;
+      statusCounter = systemStackDataBuffer.lowWord;
       if ((int)dataFlags < 0) {
-        if (0 < (int)stackDataBuffer) {
+        if (0 < (int)systemStackDataBuffer) {
           return validationOutcome;
         }
-        if ((0 < (int)stackDataBuffer.lowWord) && (stackDataPointer != (DataBuffer *)0x0)) {
-            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
+        if ((0 < (int)systemStackDataBuffer.lowWord) && (systemStackDataPointer != (DataBuffer *)0x0)) {
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),systemStackDataPointer,&SystemMemoryPoolB,0x100,1);
         }
-        stackDataPointer = (DataBuffer *)0x0;
-        stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
+        systemStackDataPointer = (DataBuffer *)0x0;
+        systemStackDataBuffer = systemStackDataBuffer & SystemCleanupFlag;
         statusCounter = operationResult;
       }
       if (resourceValidationStatus < 0) {
         exceptionHandlerContext2 = (int64_t)-resourceValidationStatus;
         if (resourceValidationStatus < 0) {
-          exceptionHandlerContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + 0x14 + (int64_t)stackDataPointer;
+          exceptionHandlerContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + 0x14 + (int64_t)systemStackDataPointer;
           do {
             psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
             operationResult = psecurityCheckResult[1];
@@ -34126,17 +34126,17 @@ ValidationLabelB:
             exceptionHandlerContext2 = exceptionHandlerContext2 + -1;
             exceptionHandlerContext1 = exceptionHandlerContext1 + SystemDataSecondaryOffset18;
           } while (exceptionHandlerContext2 != 0);
-          statusCounter = stackDataBuffer.lowWord;
+          statusCounter = systemStackDataBuffer.lowWord;
         }
       }
-      stackDataBuffer = stackDataBuffer & ZeroValue;
+      systemStackDataBuffer = systemStackDataBuffer & ZeroValue;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
         return validationOutcome;
       }
-      CleanupDataResourcesA0(&stackDataPointer,0);
+      CleanupDataResourcesA0(&systemStackDataPointer,0);
       return validationOutcome;
     }
     if ((int)stackDataBuffer == 0) {
