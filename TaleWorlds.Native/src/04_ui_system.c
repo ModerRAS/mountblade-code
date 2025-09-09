@@ -10032,12 +10032,17 @@ LAB_UIContextInitialize:
 
 
 
-  更新UI组件几何信息
- 更新UI组件的几何信息，包括位置、尺寸等属性
+  /**
+ * @brief 更新UI组件几何信息
+ * 
+ * 更新UI组件的几何信息，包括位置、尺寸等属性
  * 主要用于UI布局和渲染的几何计算
-  uiContext UI上下文指针
-  原始函数名: UpdateUIComponentGeometry
- void UpdateUIComponentGeometry(longlong uiContext)
+ * 
+ * @param uiContext UI上下文指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名: UpdateUIComponentGeometry
+ */
 void UpdateUIComponentGeometry(longlong uiContext)
 
 {
