@@ -3001,28 +3001,36 @@ typedef enum {
   原始函数名: FUN_180697340
  #define CalculateImageBlockAbsoluteDifference FUN_180697340
 
- 使用AVX2指令计算图像加权绝对差值和
+ /**
+ * @brief 使用AVX2指令计算图像加权绝对差值和
  * 
  * 该函数使用AVX2指令集计算加权绝对差值和
  * 用于图像处理中的加权比较和特征匹配
-  uiContext UI上下文缓冲区
- *  dataSource 数据源偏移量
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  计算结果，包含加权差异值
-  原始函数名: FUN_1806973c0
+ * 
+ * @param uiContext UI上下文缓冲区
+ * @param dataSource 数据源偏移量
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，包含加权差异值
+ * 
+ * @note 原始函数名: FUN_1806973c0
+ */
  #define CalculateImageWeightedAbsoluteDifference FUN_1806973c0
 
- 使用AVX2指令计算图像像素平均值
+ /**
+ * @brief 使用AVX2指令计算图像像素平均值
  * 
  * 该函数使用AVX2指令集计算图像像素的平均值
  * 用于图像处理中的亮度计算和统计分析
-  uiContext UI上下文缓冲区
- *  dataSource 数据源偏移量
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  计算结果，包含像素平均值
-  原始函数名: FUN_180697460
+ * 
+ * @param uiContext UI上下文缓冲区
+ * @param dataSource 数据源偏移量
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 计算结果，包含像素平均值
+ * 
+ * @note 原始函数名: FUN_180697460
+ */
  #define CalculateImagePixelAverage FUN_180697460
 
  使用AVX2指令计算图像像素方差
