@@ -15358,7 +15358,7 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
         operationResult = *(int32_t *)(baseAddress + (int64_t)dataPointerArray);
         if (operationResult != -1) {
           exceptionHandlerContext = *(int64_t *)(contextPointer + DataPointerOffset) + (int64_t)operationResult * ArrayElementSize;
-          if ((exceptionHandlerContext == 0) || (exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + 8), exceptionHandlerContext == 0)) {
+          if ((exceptionHandlerContext == 0) || (exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + SystemContextOffset), exceptionHandlerContext == 0)) {
             return ResourceInvalidErrorCode;
           }
           queryStatus = ProcessFloatingPointDataValidationA0(exceptionHandlerContext, *dataPointerArray, 0);
@@ -15428,7 +15428,7 @@ uint64_t ProcessUtilitySystemInitialization(void)
       registryEntryIndex = *(int *)(addressOffsetDelta + (int64_t)dataElementPointer);
       if (registryEntryIndex != -1) {
         systemResourceHandle = *(int64_t *)(memoryBaseAddress + DataPointerOffset) + (int64_t)registryEntryIndex * ArrayElementSize;
-        if ((systemResourceHandle == 0) || (systemResourceHandle = *(int64_t *)(systemResourceHandle + 8), systemResourceHandle == 0)) {
+        if ((systemResourceHandle == 0) || (systemResourceHandle = *(int64_t *)(systemResourceHandle + SystemContextOffset), systemResourceHandle == 0)) {
           return ResourceInvalidErrorCode;
         }
         validationResult = ProcessFloatingPointDataValidationA0(systemResourceHandle,*dataElementPointer,0);
@@ -15571,12 +15571,12 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
           }
           
           // 检查系统上下文缓冲区中的指针是否有效
-          if (*(int64_t *)(systemContextBuffer + 8) == 0) {
+          if (*(int64_t *)(systemContextBuffer + SystemContextOffset) == 0) {
             return ResourceInvalidErrorCode;
           }
           
           // 执行浮点数数据验证
-          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(systemContextBuffer + 8), *validationDataContext, *(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset));
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(systemContextBuffer + SystemContextOffset), *validationDataContext, *(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset));
           
           if ((int)validationStatus != 0) {
             return validationStatus;
@@ -15646,10 +15646,10 @@ DataBuffer ValidateUtilitySystemState(void)
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if (*(int64_t *)(LocalDataStorage + 8) == 0) {
+        if (*(int64_t *)(LocalDataStorage + SystemContextOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalDataStorage + 8),*DataValidationContext,
+        validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalDataStorage + SystemContextOffset),*DataValidationContext,
                               *(ByteFlag *)(StackFrameContext + ResourceDescriptorValidationOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
@@ -16794,7 +16794,7 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  dataContextPointer = *(int64_t *)(stackTempValue + 8);
+  dataContextPointer = *(int64_t *)(stackTempValue + SystemContextOffset);
   if (dataContextPointer != 0) {
     floatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
     for (dataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
