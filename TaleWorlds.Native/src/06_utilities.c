@@ -66065,19 +66065,18 @@ void CleanupExceptionHandlerStateA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 异常处理上下文状态清理函数5A0
+ * @brief 清理异常处理器状态B
  * 
- * 该函数负责清理异常处理上下文的状态，验证特定偏移量处的数据状态。
- * 如果发现异常状态，会调用系统终止函数，然后重置相关状态。
+ * 该函数负责清理异常处理器的状态标记，将相关状态置零
+ * 如果发现异常状态不为零，会调用系统终止函数
  * 
  * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器状态信息
  * 
  * @note 原始函数名：Unwind_1809065a0
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常处理器状态
  */
-#define CleanupExceptionHandlerState5A0 Unwind_1809065a0
-
-void CleanupExceptionHandlerState5A0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandlerStateB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
