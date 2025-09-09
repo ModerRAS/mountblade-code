@@ -116267,7 +116267,7 @@ void ResetExceptionContextAndConfigureHandlers(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void InitializeExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -116753,7 +116753,7 @@ void CleanupExceptionMemoryBlocksA61(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void InitializeExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -116781,7 +116781,7 @@ void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -130762,6 +130762,33 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_180910ac0
  */
 #define InitializeExceptionHandlerA20 Unwind_180910ac0
+
+/**
+ * @brief 初始化异常处理器A21
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910ae0
+ */
+#define InitializeExceptionHandlerA21 Unwind_180910ae0
+
+/**
+ * @brief 初始化异常处理器A22
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910b00
+ */
+#define InitializeExceptionHandlerA22 Unwind_180910b00
+
+/**
+ * @brief 初始化异常处理器A23
+ * 
+ * 该函数用于初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180910b20
+ */
+#define InitializeExceptionHandlerA23 Unwind_180910b20
 
 // 系统安全验证标志变量已声明为实际变量，无需#define定义
 // 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
