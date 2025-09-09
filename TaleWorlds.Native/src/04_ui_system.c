@@ -32407,10 +32407,10 @@ LAB_18066fdc2:
                  (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 2 + allocatedMemoryBlock8) =
                      *(UIByte *)(stringCompareIndex + *(longlong *)(dataSource + 0xea8));
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 3 + AllocatedMemoryBlock8) =
-                     *(UIByte *)(allocatedMemory6 + 0xf + *(longlong *)(dataSource + 0xea8));
-                AllocatedMemoryBlock8 = AllocatedMemoryBlock8 + 4;
-              } while (AllocatedMemoryBlock8 < 0x10);
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 3 + allocatedMemoryBlock8) =
+                     *(UIByte *)(allocatedMemoryBlock6 + 0xf + *(longlong *)(dataSource + 0xea8));
+                allocatedMemoryBlock8 = allocatedMemoryBlock8 + 4;
+              } while (allocatedMemoryBlock8 < 0x10);
               **(UIByte **)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb0) + 7);
               **(UIByte **)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) =
