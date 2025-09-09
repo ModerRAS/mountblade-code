@@ -4076,7 +4076,7 @@ BufferSizeValidationCheckpoint:
   }
 BufferSizeValidationCompleted:
   LoopCounterValue = -1;
-BufferSizeValidationConfirmedLabel:
+BufferSizeValidationConfirmed:
   SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pMemoryAddress4);
   SystemBufferPointerE8 = (uint64_t *)0x0;
   SystemBufferPointerE0 = (uint64_t *)0x0;
