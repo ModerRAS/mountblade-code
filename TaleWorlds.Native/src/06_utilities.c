@@ -27262,11 +27262,11 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
     (**(FunctionPointer**)(*dataContext + 8))(dataContext,&DataProcessingConfigurationTableA2);
     if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
-       (operationResult = ValidateResourceA0(dataContext,*(DataBuffer *)(dataContext[1] + 0xc0),0,1), operationResult == 0)) {
+       (operationResult = ValidateResourceA0(dataContext,*(DataBuffer *)(dataContext[1] + CurrentResourceDataOffsetC0),0,1), operationResult == 0)) {
       currentResource = dataContext[1];
-      resourceList = (int64_t *)(currentResource + 0x50);
-      contextPointer = (int64_t *)(*(int64_t *)(currentResource + 0x50) + -8);
-      if (*(int64_t *)(currentResource + 0x50) == 0) {
+      resourceList = (int64_t *)(currentResource + CurrentResourceListOffset50);
+      contextPointer = (int64_t *)(*(int64_t *)(currentResource + CurrentResourceListOffset50) + -8);
+      if (*(int64_t *)(currentResource + CurrentResourceListOffset50) == 0) {
         contextPointer = nullPointer;
       }
       resourceIterator = nullPointer;
