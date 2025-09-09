@@ -94502,16 +94502,23 @@ void ProcessUIComponentTransformations(void)
 
  void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
 /**
- * @brief UI内存管理处理器
+ * @brief 处理UI渲染缓冲区数据
  * 
- * 该函数处理UI系统中的内存管理操作，包括数据复制、缓冲区管理和内存分配。
- * 用于优化UI组件的内存使用和性能。
+ * 该函数负责处理UI系统中的渲染缓冲区数据，包括：
+ * - 数据转换和矩阵运算
+ * - 变换系数的计算和应用
+ * - 加密数据处理
+ * - 缓冲区内存管理
  * 
- * @param uiContext UI上下文
- * @param dataSource 数据源
- * @param targetBuffer 目标缓冲区
+ * @param uiContext UI上下文句柄，包含渲染状态和配置信息
+ * @param dataSource 数据源句柄，指向原始渲染数据
+ * @param targetBuffer 目标缓冲区，存储处理后的渲染数据
+ * 
+ * @note 该函数使用XOR加密密钥进行数据安全处理
+ * @note 支持复杂的数学变换和矩阵运算
+ * @note 主要用于UI渲染管线的数据预处理阶段
  */
-void ProcessUIMemoryManagement(longlong uiContext, longlong dataSource, float *targetBuffer)
+void ProcessUIRenderBufferData(longlong uiContext, longlong dataSource, float *targetBuffer)
 
 {
   float *baseValuePointer;
