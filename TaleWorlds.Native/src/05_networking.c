@@ -5571,34 +5571,57 @@ static void ReleaseConnectionResources(NetworkConnectionContext *NetworkConnecti
 /**
  * @brief 初始化连接参数
  * 
- * 初始化网络连接的参数和配置信息
+ * 初始化网络连接的参数和配置信息，为建立连接做准备
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
+ * 
+ * @details 实现细节：
+ * - 重置连接状态为初始值
+ * - 清空连接句柄
+ * - 重置活动时间戳
+ * - 重置心跳时间戳
+ * 
+ * @note 这是简化实现，实际应用中需要设置更多连接参数
+ * @warning 调用此函数前需确保NetworkConnectionContext指针有效
  */
 static void InitializeConnectionParameters(NetworkConnectionContext *NetworkConnectionContext)
 {
     // 简化实现：设置基本连接参数
     if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionStatus = 0;
-        NetworkConnectionContext->connectionHandle = 0;
-        NetworkConnectionContext->lastActivityTime = 0;
-        NetworkConnectionContext->heartbeatTimestamp = 0;
+        NetworkConnectionContext->connectionStatus = 0;              // 重置连接状态为未连接
+        NetworkConnectionContext->connectionHandle = 0;              // 清空连接句柄
+        NetworkConnectionContext->lastActivityTime = 0;               // 重置最后活动时间
+        NetworkConnectionContext->heartbeatTimestamp = 0;            // 重置心跳时间戳
     }
 }
 
 /**
  * @brief 执行连接握手
  * 
- * 执行网络连接的握手过程，建立安全连接
+ * 执行网络连接的握手过程，建立安全连接通道
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
- * @param TimeoutValue 超时值
- * @return uint32_t 握手结果
+ * @param TimeoutValue 超时值（毫秒）
+ * @return uint32_t 握手结果，NetworkOperationSuccess表示成功
+ * 
+ * @details 实现细节：
+ * - 发送握手请求到对端
+ * - 等待握手响应
+ * - 验证握手数据完整性
+ * - 建立安全加密通道
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的TCP三次握手或自定义握手协议
+ * @warning 握手过程需要在指定的超时时间内完成
  */
 static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
 {
     // 简化实现：直接返回成功
-    // 实际实现应该执行完整的握手过程
+    // 实际实现应该执行完整的握手过程，包括：
+    // 1. 发送SYN包
+    // 2. 等待SYN-ACK响应
+    // 3. 发送ACK确认
+    // 4. 验证连接参数
+    // 5. 建立安全通道
     return NetworkOperationSuccess;
 }
 
