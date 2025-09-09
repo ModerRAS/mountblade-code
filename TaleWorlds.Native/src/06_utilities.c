@@ -101575,14 +101575,17 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
  * @brief 异常上下文处理函数D280
  * 
  * 该函数处理异常上下文中的内存资源，包括内存资源引用计数管理、
- * 内存块偏移计算、内存区域验证和异常处理。
+ * 内存块偏移计算、内存区域验证和异常处理。这是一个关键的异常处理函数，
+ * 确保在异常情况下能够正确管理和释放内存资源。
  * 
- * @param operationBase 操作基地址
- * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationBase 操作基地址 - 用于系统操作的基础数据结构
+ * @param dataBuffer 数据缓冲区指针 - 包含异常上下文信息的数据缓冲区
  * 
  * @note 原始函数名：Unwind_18090d280
+ * @note 这是异常处理系统的核心函数之一
+ * @note 函数会处理内存引用计数，确保资源正确释放
  */
-void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -101590,29 +101593,45 @@ void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuf
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
+  // 从异常上下文中获取内存资源指针
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1D0);
+  
+  // 检查内存资源指针是否为空
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
+  
+  // 计算内存区域基地址
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
+  
   if (memoryRegionBase != 0) {
+    // 计算内存块偏移量
     memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    
+    // 检查是否属于异常列表且异常检查通过
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针和数据
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+      
+      // 减少资源引用计数
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
+      
+      // 如果引用计数为0，处理异常
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
+      // 调用内存管理函数处理资源
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
+  
   return;
 }
 
