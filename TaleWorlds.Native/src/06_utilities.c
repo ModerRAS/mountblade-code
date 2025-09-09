@@ -125,8 +125,8 @@
 // 寄存器上下文偏移量常量
 #define RegisterContextDataOffset 0x78
 #define SystemContextDataOffsetPrimary 0x40
-#define systemContextDataOffset50 0x50
-#define systemContextDataOffset58 0x58
+#define SystemContextDataOffsetSecondary 0x50
+#define SystemContextDataOffsetTertiary 0x58
 #define systemContextDataOffsetD4 0xd4
 #define DataBufferValidationOffset 0x24
 #define ResourceIteratorDataOffset 0x14
@@ -868,7 +868,7 @@
 #define ExceptionDataBufferOffset50 0x50                     // 异常数据缓冲区偏移量
 
 // 系统上下文数据偏移量常量
-#define systemContextDataOffset50 0x50                       // 系统上下文数据偏移量
+#define SystemContextDataOffsetSecondary 0x50                       // 系统上下文数据偏移量
 
 // 目标上下文数据偏移量常量
 #define DestinationContextDataOffset50 0x50                  // 目标上下文数据偏移量
