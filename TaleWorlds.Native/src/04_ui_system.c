@@ -2574,16 +2574,16 @@ typedef enum {
 #define FUN_180718a8d GetUIRenderFlagsAndStatusInformation        // 获取UI渲染标志和状态信息
 #define FUN_180718bd0 ProcessUIContextDataAndMemoryManagement     // 处理UI上下文数据和内存管理
 #define ProcessUIDataOperation ProcessUIDataOperation
-#define FUN_180712cdf ProcessUIDataBuffer
-#define FUN_180712e3f ProcessUIDataStream
-#define FUN_180712f20 ProcessUIDataValidation
-#define FUN_180712f5f ProcessUIDataTransformation
-#define FUN_180712fbc ProcessUIDataOptimization
-#define FUN_180713020 ProcessUIDataFinalization
-#define FUN_180713126 ProcessUIDataProcessing
-#define FUN_180713394 ProcessUIDataManagement
+#define FUN_180712cdf ProcessUIDataBufferManagement              // 处理UI数据缓冲区管理
+#define FUN_180712e3f ProcessUIDataStreamTransmission              // 处理UI数据流传输
+#define FUN_180712f20 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实
+#define FUN_180712f5f ProcessUIDataTransformationAndConversion    // 处理UI数据变换和转换
+#define FUN_180712fbc ProcessUIDataOptimizationAndPerformance     // 处理UI数据优化和性能
+#define FUN_180713020 ProcessUIDataFinalizationAndCleanup         // 处理UI数据最终化和清理
+#define FUN_180713126 ProcessUIDataProcessingAndAnalysis          // 处理UI数据处理和分析
+#define FUN_180713394 ProcessUIDataManagementAndControl           // 处理UI数据管理和控制
 #define ProcessUIDataIteration ProcessUIDataIteration
-#define FUN_18071565d CleanupUIRenderer
+#define FUN_18071565d CleanupUIRendererAndResources              // 清理UI渲染器和资源
 #define InitializeUIRenderDataProcessor InitializeUIRenderDataProcessor
 #define ClearUIDataBuffer ClearUIDataBuffer
 #define NormalizeUIData NormalizeUIData
