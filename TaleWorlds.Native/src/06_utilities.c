@@ -111636,7 +111636,23 @@ void CallExceptionHandlerB00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证和处理异常数据（偏移量0x58）
+ * 
+ * 该函数负责验证和处理异常上下文数据。
+ * 主要功能包括：
+ * - 调用数据验证和处理函数
+ * - 传递异常处理标志
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090fb10
+ * @note 该函数处理偏移量0x58处的异常数据验证
+ */
+void ValidateAndProcessExceptionDataAtOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateAndProcessData(dataBuffer + ExceptionHandlerContextOffset58,*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -111665,7 +111681,23 @@ void ProcessDataArrayAtOffset0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090fb30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证和处理异常数据（偏移量0x58）- 变体B
+ * 
+ * 该函数负责验证和处理异常上下文数据，是前一个函数的变体。
+ * 主要功能包括：
+ * - 调用数据验证和处理函数
+ * - 传递异常处理标志
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090fb30
+ * @note 该函数处理偏移量0x58处的异常数据验证，变体B
+ */
+void ValidateAndProcessExceptionDataAtOffset58VariantB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateAndProcessData(dataBuffer + ExceptionHandlerContextOffset58,*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
