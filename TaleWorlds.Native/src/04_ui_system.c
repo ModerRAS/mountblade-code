@@ -35959,7 +35959,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
     TempInt4 = *(int *)(uiBufferData + 0x23d4);
   }
   shortValue14 = (short)TempInt4;
-  bufferSize[1] = sVar14;
+  bufferSize[1] = shortValue14;
   loopCounter = (int)*bufferSize;
   if (*bufferSize < processingResult7) {
     loopCounter = processingResult7;
@@ -36492,7 +36492,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
     stackUInt70 = ResultValue3;
     localInt7 = stackIntb4;
     do {
-      sVar9 = (short)processedCount;
+      shortValue9 = (short)processedCount;
       stackLonga0 = allocatedMemory4;
       loopCounter = stackInta4;
       if (stackInta4 + 2 < localInt7) {
@@ -36656,7 +36656,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
     allocatedMemory2 = (longlong)stackIntd4 + allocatedMemory2 + processedCount * stackInte8;
     localInt7 = stackInte0;
     do {
-      sVar9 = (short)processedCount;
+      shortValue9 = (short)processedCount;
       stackLongb0 = allocatedMemory2;
       loopCounter = stackIntd4;
       if (stackIntd4 + 7 < localInt7) {
@@ -144432,9 +144432,14 @@ LAB_18074faa2:
 
 
 
- void FUN_18074faf6(void)
-void FUN_18074faf6(void)
-
+ /**
+ * @brief 空函数 - 占位符函数
+ * 
+ * 这是一个空函数，用于占位或作为函数指针的默认实现
+ * 
+ * @return 无返回值
+ */
+static void EmptyPlaceholderFunction(void)
 {
   return;
 }
