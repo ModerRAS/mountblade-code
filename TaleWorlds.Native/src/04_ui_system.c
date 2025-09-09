@@ -10013,12 +10013,12 @@ UIDword * CreateUIColorBuffer(UIDword *uiContext)
   (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer);
   result = (**(code **)(*colorBufferPointer + 8))(colorBufferPointer);
   (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer);
-  stackUInt20 = SUB84(colorBufferPointer,0);
-  stackUInt1c = (UIDword)((ulonglong)colorBufferPointer >> 0x20);
-  *uiContext = stackUInt20;
-  uiContext[1] = stackUInt1c;
+  bufferAddressLow = SUB84(colorBufferPointer,0);
+  bufferAddressHigh = (UIDword)((ulonglong)colorBufferPointer >> 0x20);
+  *uiContext = bufferAddressLow;
+  uiContext[1] = bufferAddressHigh;
   uiContext[2] = result;
-  uiContext[3] = stackUInt14;
+  uiContext[3] = bufferFlags;
   (**(code **)(*colorBufferPointer + 0x38))(colorBufferPointer);
   return uiContext;
 }
