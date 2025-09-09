@@ -7196,17 +7196,17 @@ UIEventData* g_uiEventDataSecondary;
 UIEventData* g_uiEventDataTertiary;
 UIComponentStateBuffer* g_uiComponentStateBufferQuaternary;
 UIComponentStateBuffer* g_uiComponentStateBufferQuinary;
-UIComponentStateBuffer* g_uiComponentStateBufferSenary;
-UIComponentStateBuffer* g_uiComponentStateBufferSeptenary;
-UIComponentStateBuffer* g_uiComponentStateBufferOctonary;
-UIComponentStateBuffer* g_uiComponentStateBufferNonary;
-UIComponentStateBuffer* g_uiComponentStateBufferDenary;
-UIComponentStateBuffer* g_uiComponentStateBufferUndenary;
-UIComponentStateBuffer* g_uiComponentStateBufferDuodenary;
-UIComponentStateBuffer* g_uiComponentStateBufferTerdenary;
-UIComponentStateBuffer* g_uiComponentStateBufferQuattuordenary;
-UIComponentStateBuffer* g_uiComponentStateBufferQuindenary;
-UIComponentStateBuffer* g_uiComponentStateBufferSexdenary;
+undefined g_uiComponentStateBufferSenary;
+undefined g_uiComponentStateBufferSeptenary;
+undefined g_uiComponentStateBufferOctonary;
+undefined g_uiComponentStateBufferNonary;
+undefined g_uiComponentStateBufferDenary;
+undefined g_uiComponentStateBufferUndenary;
+undefined g_uiComponentStateBufferDuodenary;
+undefined g_uiComponentStateBufferTerdenary;
+undefined g_uiComponentStateBufferQuattuordenary;
+undefined g_uiComponentStateBufferQuindenary;
+undefined g_uiComponentStateBufferSexdenary;
 undefined g_uiComponentStateBufferSeptendenary;
 undefined g_uiComponentStateBufferOctodenary;
 undefined g_uiComponentStateBufferNovendenary;
@@ -100212,30 +100212,39 @@ void FUN_180724170(UIHandle uiContext,longlong dataSource,int targetBuffer,short
 
 
 
- void FUN_1807241b8(void)
-void FUN_1807241b8(void)
+ /**
+ * @brief UI组件内存清理器
+ * 
+ * 该函数用于清理UI组件的内存分配，遍历所有组件并释放未使用的内存。
+ * 主要用于UI系统的内存管理和垃圾回收。
+ * 
+ * @param 无
+ * @return 无
+ */
+void UICleanupMemoryAllocator(void)
+void UICleanupMemoryAllocator(void)
 
 {
-  longlong allocatedMemory;
-  longlong componentIndex;
-  longlong TargetHandle;
-  longlong EventHandle;
-  longlong stackParam00000078;
+  longlong memoryAllocationSize;
+  longlong componentIterator;
+  longlong componentHandle;
+  longlong eventHandle;
+  longlong memoryPoolPointer;
   
-  componentIndex = 0;
+  componentIterator = 0;
   do {
-    if (0 < *(int *)(stackParam00000078 + componentIndex * 4)) {
-      allocatedMemory = 0;
+    if (0 < *(int *)(memoryPoolPointer + componentIterator * 4)) {
+      memoryAllocationSize = 0;
       do {
-        if (*(char *)(allocatedMemory + TargetHandle) != '\0') {
+        if (*(char *)(memoryAllocationSize + componentHandle) != '\0') {
           WriteUIDataToBuffer();
         }
-        allocatedMemory = allocatedMemory + 1;
-      } while (allocatedMemory < 0x10);
+        memoryAllocationSize = memoryAllocationSize + 1;
+      } while (memoryAllocationSize < 0x10);
     }
-    TargetHandle = TargetHandle + 0x10;
-    componentIndex = componentIndex + 1;
-  } while (componentIndex < EventHandle);
+    componentHandle = componentHandle + 0x10;
+    componentIterator = componentIterator + 1;
+  } while (componentIterator < eventHandle);
   return;
 }
 
