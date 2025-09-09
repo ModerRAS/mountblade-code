@@ -100773,13 +100773,13 @@ void ProcessUIEventDataIteration(UIHandle uiContext,longlong dataSource,int targ
                   longlong iterationParameter)
 
 {
-  uint result;
-  uint iterationCount;
-  longlong stringCompareIndex;
-  longlong contextHandleData;
-  longlong EventDataIndex;
-  UIByte stackUInt28;
-  UIByte stackUInt27;
+  uint processingResult;
+  uint iterationCounter;
+  longlong dataIndex;
+  longlong contextData;
+  longlong eventDataIndex;
+  UIByte eventProcessingFlag;
+  UIByte systemFlag;
   
   stackUInt27 = 0;
   EventDataIndex = (longlong)(targetBuffer + 8) >> 4;
