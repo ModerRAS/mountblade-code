@@ -32965,7 +32965,7 @@ DataProcessLabelA:
     if (memoryRegionBase != 0) {
       return (uint64_t)memoryRegionBase;
     }
-    *(uint *)(dataBlock + 0xb8) = (*(uint *)(dataBlock + 0xb8) | validationOutcome) & ~validationStatus;
+    *(uint *)(dataBlock + OperationDataOffsetB8) = (*(uint *)(dataBlock + OperationDataOffsetB8) | validationOutcome) & ~validationStatus;
   }
   else {
     if (*(int *)(exceptionHandlerContext[1] + SystemDataSecondaryOffset18) != 0) {
