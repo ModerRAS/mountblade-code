@@ -1,5 +1,23 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @file 05_networking.c
+ * @brief Mount & Blade: Native API - 网络系统模块
+ * 
+ * 本文件实现了游戏网络系统的核心功能，包括：
+ * - 网络连接建立和管理
+ * - 数据包发送和接收
+ * - 网络状态监控和维护
+ * - 安全验证和加密通信
+ * - 连接池管理和资源分配
+ * 
+ * 该模块为游戏提供稳定可靠的网络通信基础设施，支持多种网络协议和传输模式。
+ * 
+ * @author Ghidra逆向工程 + 语义化美化
+ * @version 1.0
+ * @date 2025-09-09
+ */
+
 
 /**
  * @brief 网络状态类型
