@@ -19799,138 +19799,138 @@ void ExecuteSecurityValidation(void)
 DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPtr)
 
 {
-  float floatComponentZ;
-  uint VectorComponentX;
-  uint VectorComponentY;
-  uint VectorComponentZ;
-  uint VectorComponentW;
-  DataBuffer result;
-  int primaryInfinityFlag;
-  int secondaryInfinityFlag;
-  int tertiaryInfinityFlag;
-  int quaternaryInfinityFlag;
-  int64_t dataBufferPtr;
-  int64_t systemContextBuffer [2];
-  uint PackedColorData;
-  float ComponentYFloat;
-  int componentWInfinityFlag;
-  int componentXInfinityFlag;
-  int componentYInfinityFlag;
-  int componentZInfinityFlag;
+  float vectorZComponent;
+  uint vectorXRawData;
+  uint vectorYRawData;
+  uint vectorZRawData;
+  uint vectorWRawData;
+  DataBuffer validationResult;
+  int isOffset20Infinity;
+  int isOffset1cInfinity;
+  int isOffset18Infinity;
+  int isOffset2cInfinity;
+  int64_t targetDataBuffer;
+  int64_t systemContextArray [2];
+  uint colorData;
+  float vectorYFloatComponent;
+  int isOffset28Infinity;
+  int isOffsetXInfinity;
+  int isOffsetYInfinity;
+  int isOffsetZInfinity;
   
-  dataBufferPtr = 0;
-  tertiaryInfinityFlag = 0;
-  quaternaryInfinityFlag = tertiaryInfinityFlag;
+  targetDataBuffer = 0;
+  isOffset18Infinity = 0;
+  isOffset2cInfinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    quaternaryInfinityFlag = 0x1d;
+    isOffset2cInfinity = 0x1d;
   }
-  primaryInfinityFlag = tertiaryInfinityFlag;
+  isOffset1cInfinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
-    primaryInfinityFlag = 0x1d;
+    isOffset1cInfinity = 0x1d;
   }
-  secondaryInfinityFlag = tertiaryInfinityFlag;
+  isOffset20Infinity = isOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
-    secondaryInfinityFlag = 0x1d;
+    isOffset20Infinity = 0x1d;
   }
-  if ((quaternaryInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
+  if ((isOffset2cInfinity != 0 || isOffsetXInfinity != 0) || isOffsetYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  componentZInfinityFlag = 0;
+  isOffsetZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    componentWInfinityFlag = 0x1d;
+    isOffset28Infinity = 0x1d;
   }
-  componentXInfinityFlag = componentZInfinityFlag;
+  isOffsetXInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
-    primaryInfinityFlag = 0x1d;
+    isOffset1cInfinity = 0x1d;
   }
-  componentYInfinityFlag = componentZInfinityFlag;
+  isOffsetYInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    secondaryInfinityFlag = 0x1d;
+    isOffset20Infinity = 0x1d;
   }
-  if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
+  if ((isOffset28Infinity != 0 || isOffsetXInfinity != 0) || isOffsetYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  componentWInfinityFlag = componentZInfinityFlag;
+  isOffset28Infinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    componentWInfinityFlag = 0x1d;
+    isOffset28Infinity = 0x1d;
   }
-  componentXInfinityFlag = componentZInfinityFlag;
+  isOffsetXInfinity = isOffsetZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    primaryInfinityFlag = 0x1d;
+    isOffset1cInfinity = 0x1d;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    quaternaryInfinityFlag = 0x1d;
+    isOffset2cInfinity = 0x1d;
   }
-  if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || quaternaryInfinityFlag != 0) {
+  if ((isOffset28Infinity != 0 || isOffsetXInfinity != 0) || isOffset2cInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  floatComponentZ = *(float *)(dataPtr + VectorComponentZOffset);
-  tertiaryInfinityFlag = 0;
-  VectorComponentW = *(uint *)(dataPtr + VectorComponentWOffset);
-  ComponentYFloat = *(float *)(dataPtr + VectorComponentYFloatOffset);
+  vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
+  isOffset18Infinity = 0;
+  vectorWRawData = *(uint *)(dataPtr + VectorComponentWOffset);
+  vectorYFloatComponent = *(float *)(dataPtr + VectorComponentYFloatOffset);
   // 合并浮点数组件Z到系统上下文缓冲区
-  systemContextBuffer[0] = MergeFloatComponents(systemContextBuffer[0].HighPart, floatComponentZ);
-  quaternaryInfinityFlag = tertiaryInfinityFlag;
-  if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
-    quaternaryInfinityFlag = 0x1d;
+  systemContextArray[0] = MergeFloatComponents(systemContextArray[0].HighPart, vectorZComponent);
+  isOffset2cInfinity = isOffset18Infinity;
+  if (((uint)vectorZComponent & FloatInfinityValue) == FloatInfinityValue) {
+    isOffset2cInfinity = 0x1d;
   }
-  primaryInfinityFlag = tertiaryInfinityFlag;
-  if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
-    primaryInfinityFlag = 0x1d;
+  isOffset1cInfinity = isOffset18Infinity;
+  if ((vectorWRawData & FloatInfinityValue) == FloatInfinityValue) {
+    isOffset1cInfinity = 0x1d;
   }
-  if (((uint)ComponentYFloat & FloatInfinityValue) == FloatInfinityValue) {
-    componentWInfinityFlag = 0x1d;
+  if (((uint)vectorYFloatComponent & FloatInfinityValue) == FloatInfinityValue) {
+    isOffset28Infinity = 0x1d;
   }
-  if ((componentZInfinityFlag == 0 && componentXInfinityFlag == 0) && componentWInfinityFlag == 0) {
+  if ((isOffsetZInfinity == 0 && isOffsetXInfinity == 0) && isOffset28Infinity == 0) {
     if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
        (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
     }
-    if (((ComponentYFloat == 0.0) && (*(float *)(dataPtr + VectorComponentWOffset) == 0.0)) && (floatComponentZ == 0.0)) {
+    if (((vectorYFloatComponent == 0.0) && (*(float *)(dataPtr + VectorComponentWOffset) == 0.0)) && (vectorZComponent == 0.0)) {
       return ComponentDataValidationFailure;
     }
-    result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + ExceptionHandlerCallbackOffset10),systemContextBuffer);
-    if ((int)result != 0) {
-      return result;
+    validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + ExceptionHandlerCallbackOffset10),systemContextArray);
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
-    if (systemContextBuffer[0] != 0) {
-      dataBufferPtr = systemContextBuffer[0] + -8;
+    if (systemContextArray[0] != 0) {
+      targetDataBuffer = systemContextArray[0] + -8;
     }
-    result = *(DataBuffer *)(dataPtr + DataBufferResultOffset);
-    *(DataBuffer *)(dataBufferPtr + DataBufferTargetOffset38) = *(DataBuffer *)(dataPtr + DataBufferReferenceOffset18);
-    *(DataBuffer *)(dataBufferPtr + DataBufferTargetOffset40) = result;
-    VectorComponentX = *(DataWord *)(dataPtr + DataBufferComponentOffset2c);
-    VectorComponentY = *(DataWord *)(dataPtr + VectorComponentXOffset);
-    VectorComponentZ = *(DataWord *)(dataPtr + VectorComponentYOffset);
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset48) = *(DataWord *)(dataPtr + DataBufferComponentOffset28);
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset4c) = VectorComponentX;
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset50) = VectorComponentY;
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset54) = VectorComponentZ;
-    VectorComponentX = *(DataWord *)(dataPtr + VectorComponentYFloatOffset);
-    VectorComponentY = *(DataWord *)(dataPtr + VectorComponentWOffset);
-    VectorComponentZ = *(DataWord *)(dataPtr + VectorComponentZOffset);
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset58) = *(DataWord *)(dataPtr + VectorComponentAdditionalOffset38);
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset5c) = VectorComponentX;
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset60) = VectorComponentY;
-    *(DataWord *)(dataBufferPtr + DataBufferTargetOffset64) = VectorComponentZ;
-    dataBufferPtr = *(int64_t *)(contextPtr + SystemOperationDataOffset98);
-    if ((*(int *)(dataBufferPtr + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataBufferPtr + SystemConfigSecondaryOffset) != 0)) {
-      systemContextBuffer[0] = 0;
-      InitializeSystemContextA0(systemContextBuffer);
-      if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
-        result = ProcessSystemDataEC0(dataBufferPtr,dataPtr);
-        if ((int)result == 0) {
+    validationResult = *(DataBuffer *)(dataPtr + DataBufferResultOffset);
+    *(DataBuffer *)(targetDataBuffer + DataBufferTargetOffset38) = *(DataBuffer *)(dataPtr + DataBufferReferenceOffset18);
+    *(DataBuffer *)(targetDataBuffer + DataBufferTargetOffset40) = validationResult;
+    vectorXRawData = *(DataWord *)(dataPtr + DataBufferComponentOffset2c);
+    vectorYRawData = *(DataWord *)(dataPtr + VectorComponentXOffset);
+    vectorZRawData = *(DataWord *)(dataPtr + VectorComponentYOffset);
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset48) = *(DataWord *)(dataPtr + DataBufferComponentOffset28);
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset4c) = vectorXRawData;
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset50) = vectorYRawData;
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset54) = vectorZRawData;
+    vectorXRawData = *(DataWord *)(dataPtr + VectorComponentYFloatOffset);
+    vectorYRawData = *(DataWord *)(dataPtr + VectorComponentWOffset);
+    vectorZRawData = *(DataWord *)(dataPtr + VectorComponentZOffset);
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset58) = *(DataWord *)(dataPtr + VectorComponentAdditionalOffset38);
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset5c) = vectorXRawData;
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset60) = vectorYRawData;
+    *(DataWord *)(targetDataBuffer + DataBufferTargetOffset64) = vectorZRawData;
+    targetDataBuffer = *(int64_t *)(contextPtr + SystemOperationDataOffset98);
+    if ((*(int *)(targetDataBuffer + SystemConfigPrimaryOffset) != 0) || (*(int *)(targetDataBuffer + SystemConfigSecondaryOffset) != 0)) {
+      systemContextArray[0] = 0;
+      InitializeSystemContextA0(systemContextArray);
+      if (systemContextArray[0] == *(int64_t *)((int64_t)*(int *)(targetDataBuffer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
+        validationResult = ProcessSystemDataEC0(targetDataBuffer,dataPtr);
+        if ((int)validationResult == 0) {
           return 0;
         }
-        return result;
+        return validationResult;
       }
     }
     *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-    result = GetSystemCurrentStateA0(*(DataBuffer *)(dataBufferPtr + SystemConfigTertiaryOffset));
-    if ((int)result == 0) {
+    validationResult = GetSystemCurrentStateA0(*(DataBuffer *)(targetDataBuffer + SystemConfigTertiaryOffset));
+    if ((int)validationResult == 0) {
       return 0;
     }
-    return result;
+    return validationResult;
   }
   return ComponentDataValidationFailure;
 }
@@ -20002,51 +20002,51 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
 DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t systemDataPointer)
 
 {
-  float inputValue;
-  int64_t dataPointer;
-  DataBuffer result;
-  float maximumRangeValue;
-  int64_t systemContextBuffer;
-  int64_t queryBuffer [2];
+  float inputFloatValue;
+  int64_t targetDataPointer;
+  DataBuffer validationResult;
+  float maxRangeValue;
+  int64_t systemContextValue;
+  int64_t systemQueryArray [2];
   
-  // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
-  systemContextBuffer = MergeHighLowWords(systemContextBuffer.HighPart, *(uint *)(contextPointer + FloatingPointDataOffset20));
+  // 从上下文指针中提取浮点数值并初始化系统上下文值
+  systemContextValue = MergeHighLowWords(systemContextValue.HighPart, *(uint *)(contextPointer + FloatingPointDataOffset20));
   if ((*(uint *)(contextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  result = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + ExceptionHandlerCallbackOffset10),queryBuffer);
-  if ((int)result == 0) {
-    if (queryBuffer[0] == 0) {
-      queryBuffer[0] = 0;
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + ExceptionHandlerCallbackOffset10),systemQueryArray);
+  if ((int)validationResult == 0) {
+    if (systemQueryArray[0] == 0) {
+      systemQueryArray[0] = 0;
     }
     else {
-      queryBuffer[0] = queryBuffer[0] + -8;
+      systemQueryArray[0] = systemQueryArray[0] + -8;
     }
-    systemContextBuffer = 0;
-    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + FloatingPointDataOffset18,&systemContextBuffer);
-    if ((int)result == 0) {
-      if (systemContextBuffer == 0) {
+    systemContextValue = 0;
+    validationResult = ValidateSystemDataRange(systemQueryArray[0],contextPointer + FloatingPointDataOffset18,&systemContextValue);
+    if ((int)validationResult == 0) {
+      if (systemContextValue == 0) {
         return OperationSuccessCode;
       }
-      dataPointer = *(int64_t *)(systemContextBuffer + ExceptionHandlerCallbackOffset10);
-      if (dataPointer == 0) {
+      targetDataPointer = *(int64_t *)(systemContextValue + ExceptionHandlerCallbackOffset10);
+      if (targetDataPointer == 0) {
         return ResourceNotFoundCode;
       }
-      if ((*(SystemByteType *)(dataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
+      if ((*(SystemByteType *)(targetDataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
         return ComponentDataValidationFailure;
       }
-      inputValue = *(float *)(contextPointer + FloatingPointDataOffset20);
-      maximumRangeValue = *(float *)(dataPointer + FloatingPointDataOffset38);
-      if ((*(float *)(dataPointer + FloatingPointDataOffset38) <= inputValue) &&
-         (maximumRangeValue = *(float *)(dataPointer + FloatingPointDataOffset3c), inputValue <= *(float *)(dataPointer + FloatingPointDataOffset3c))) {
-        maximumRangeValue = inputValue;
+      inputFloatValue = *(float *)(contextPointer + FloatingPointDataOffset20);
+      maxRangeValue = *(float *)(targetDataPointer + FloatingPointDataOffset38);
+      if ((*(float *)(targetDataPointer + FloatingPointDataOffset38) <= inputFloatValue) &&
+         (maxRangeValue = *(float *)(targetDataPointer + FloatingPointDataOffset3c), inputFloatValue <= *(float *)(targetDataPointer + FloatingPointDataOffset3c))) {
+        maxRangeValue = inputFloatValue;
       }
-      *(float *)(contextPointer + FloatingPointDataOffset20) = maximumRangeValue;
-      *(float *)(systemContextBuffer + 4) = maximumRangeValue;
+      *(float *)(contextPointer + FloatingPointDataOffset20) = maxRangeValue;
+      *(float *)(systemContextValue + 4) = maxRangeValue;
         UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + SystemResourceOffset98),contextPointer);
     }
   }
-  return result;
+  return validationResult;
 }
 
 
