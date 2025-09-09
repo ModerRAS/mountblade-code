@@ -2447,16 +2447,16 @@ typedef enum {
 #define func_0x000180024c00 ProcessUIComponentRenderOperation        // 处理UI组件渲染操作
 #define func_0x000180024c80 ProcessUIComponentEventOperation         // 处理UI组件事件操作
 #define func_0x000180024d00 ProcessUIComponentStateOperation          // 处理UI组件状态操作
-#define func_0x000180024d80 ProcessUIComponentDataOperation
-#define func_0x000180024e00 ProcessUIComponentLayoutOperation
-#define func_0x000180024e80 ProcessUIComponentStyleOperation
-#define func_0x000180024f00 ProcessUIComponentThemeOperation
-#define func_0x000180024f80 ProcessUIComponentFontOperation
-#define func_0x000180025000 ProcessUIComponentColorOperation
-#define func_0x000180025080 ProcessUIComponentTextureOperation
-#define func_0x000180025100 ProcessUIComponentShaderOperation
-#define func_0x000180025180 ProcessUIComponentMaterialOperation
-#define func_0x000180025200 ProcessUIComponentLightOperation
+#define func_0x000180024d80 ProcessUIComponentDataOperation          // 处理UI组件数据操作
+#define func_0x000180024e00 ProcessUIComponentLayoutOperation        // 处理UI组件布局操作
+#define func_0x000180024e80 ProcessUIComponentStyleOperation         // 处理UI组件样式操作
+#define func_0x000180024f00 ProcessUIComponentThemeOperation         // 处理UI组件主题操作
+#define func_0x000180024f80 ProcessUIComponentFontOperation          // 处理UI组件字体操作
+#define func_0x000180025000 ProcessUIComponentColorOperation         // 处理UI组件颜色操作
+#define func_0x000180025080 ProcessUIComponentTextureOperation       // 处理UI组件纹理操作
+#define func_0x000180025100 ProcessUIComponentShaderOperation        // 处理UI组件着色器操作
+#define func_0x000180025180 ProcessUIComponentMaterialOperation      // 处理UI组件材质操作
+#define func_0x000180025200 ProcessUIComponentLightOperation         // 处理UI组件光照操作
 #define func_0x000180025280 ProcessUIComponentCameraOperation
 #define func_0x000180025300 ProcessUIComponentEffectOperation
 
