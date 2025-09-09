@@ -5644,7 +5644,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899dc7
  */
-#define ExecuteSystemCheckA0 FUN_180899dc7
+#define ExecuteSystemCheckA0 ValidateSystemConfiguration
 
 /**
  * @brief 处理高级数据操作
@@ -5653,7 +5653,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a370
  */
-#define ProcessAdvancedDataOperationA0 FUN_18089a370
+#define ProcessAdvancedDataOperationA0 ExecuteAdvancedDataProcessing
 
 /**
  * @brief 执行数据清理A0
@@ -5662,7 +5662,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089a51d
  */
-#define ExecuteDataCleanupA0 FUN_18089a51d
+#define ExecuteDataCleanupA0 CleanupDataResources
 
 /**
  * @brief 处理数据流A0
@@ -28345,8 +28345,8 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = ValidateDataIntegrityA0(validationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
-      loopCounterFloat = (float)((int)loopCounterFloat + 1);
-      floatArrayPointer = floatArrayPointer + 1;
+      validationIndexCounter = (float)((int)validationIndexCounter + 1);
+      floatValidationArrayPointer = floatValidationArrayPointer + 1;
     } while ((int)validationCounter < 6);
     validationStatus = ValidateParameters(systemContext + SystemContextDataOffset200);
     dataFlags = calculatedFloatValue;

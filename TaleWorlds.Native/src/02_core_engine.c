@@ -69253,7 +69253,7 @@ MemoryBufferAllocation:
   CharacterStatusBufferCurrent = CharacterStatusBuffer;
   CharacterStatusBuffer9 = *(uint64_t **)(ContextHandle + 0xf0);
   if (*(uint64_t **)(ContextHandle + 0xf0) == NULL) {
-LAB_18008caf0:
+CharacterStatusBufferCheckLabel:
     CharacterStatusBufferCurrent = CharacterStatusBuffer;
   }
   else {
@@ -69299,7 +69299,7 @@ LAB_18008caf0:
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemDataTablePointer);
   }
-LAB_18008cb7e:
+MemoryComparisonCompleteLabel:
   if ((ppppCharacterStatusBuffer == &ppProcessingContextPointerBuffer) || (*(uint64_t *****)(SystemDataTablePointer + 0x20) < ppppCharacterStatusBuffer[4])) {
     SystemChecksum = 0;
   }
@@ -69308,7 +69308,7 @@ LAB_18008cb7e:
   }
                     // WARNING: Subroutine does not return
   AllocateMemoryWithFlags(SystemDataTablePointer,ppppCharacterStatusBuffer,&ppProcessingContextPointerBuffer,SystemChecksum);
-LAB_18008cdfe:
+CharacterStatusBufferValidationLabel:
   *BufferAllocationStatus1 = SystemDataTablePointer;
   *(int *)(BufferAllocationStatus1 + 1) = IntegerValue4;
   ContextHandle8 = ContextHandle8 + 2;
@@ -69878,7 +69878,7 @@ void ProcessDataStructureValidation(uint64_t *ContextHandle
       }
       SecondaryProcessingStatusFlag = (void *)*SystemRegisterR10;
     }
-LAB_18008d51d:
+SystemDataTableProcessingLabel:
     if (HighByte) {
       SystemRegisterR10 = ProcessingResult;
     }
