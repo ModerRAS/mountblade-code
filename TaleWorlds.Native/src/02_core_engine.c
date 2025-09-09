@@ -217753,7 +217753,20 @@ void ProcessSystemContextAndBufferManagement(uint64_t ContextHandle, uint64_t Op
 
 
 
-7ca60(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017ca60(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 系统缓冲区分配和内存块管理函数CA60
+ * 
+ * 该函数负责处理系统缓冲区分配和内存块管理，包括：
+ * 1. 处理上下文句柄和缓冲区分配状态
+ * 2. 管理内存块索引和内存地址掩码
+ * 3. 处理上下文指针和当前节点
+ * 4. 管理缓冲区初始化标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @note 原始函数名：FUN_18017ca60
+ */
+void ProcessSystemBufferAllocationAndMemoryBlockManagement(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
   long long *BufferAllocationStatus;
