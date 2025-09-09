@@ -19998,9 +19998,9 @@ void CleanupUIElementResources(longlong uiContext)
         }
       }
       SourceHandle = SourceHandle + 1;
-      localInt7 = localInt7 + 1;
-      plocalChar6 = plocalChar6 + 100;
-      pTemporaryFloatValue = pTemporaryFloatValue + 6;
+      UILocalProcessingCounter7 = UILocalProcessingCounter7 + 1;
+      pUILocalCharPointer6 = pUILocalCharPointer6 + 100;
+      pUITemporaryFloatValue = pUITemporaryFloatValue + 6;
     } while (localInt7 < 2);
     pcStack0000000000000088 = pcStack0000000000000088 + 0x1358;
     stackParam00000060._4_4_ = stackParam00000060._4_4_ + 1;
