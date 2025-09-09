@@ -17019,15 +17019,15 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
       DataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
-      BitShiftedProcessingFlags = DataProcessingFlags >> ProcessingFlagsShift;
-      if ((BitShiftedProcessingFlags & 1) == 0) {
+      processingFlagBitShift = DataProcessingFlags >> ProcessingFlagsShift;
+      if ((processingFlagBitShift & 1) == 0) {
         if ((((DataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
            ((float)integerConversionResult != floatProcessingValue)) {
           vectorRegister.xComponent = floatProcessingValue;
           vectorRegister.yComponent = floatProcessingValue;
           vectorRegister.zComponent = 0;
-          maskOperationResult = movmskps(bitShiftedProcessingFlags,vectorRegister);
-          floatProcessingValue = (float)(int)(integerConversionResult - (maskOperationResult & 1));
+          validationMaskResult = movmskps(processingFlagBitShift,vectorRegister);
+          floatProcessingValue = (float)(int)(integerConversionResult - (validationMaskResult & 1));
         }
         floatProcessingValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatProcessingValue);
         if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
