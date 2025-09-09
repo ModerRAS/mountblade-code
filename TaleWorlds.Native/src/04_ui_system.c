@@ -314316,7 +314316,7 @@ ulonglong FUN_180857e50(longlong uiContext,uint *dataSource,int targetBuffer,uin
   bool IsEventProcessingActive8;
   bool IsEventProcessingActive9;
   longlong **stackParamfffffffffffffe78;
-  undefined7 EventTypeCode0;
+  UIByte EventTypeCode0;
   longlong stackParamfffffffffffffe88;
   uint7 EventTypeCode1;
   uint stackUInt168;
@@ -316962,7 +316962,7 @@ ulonglong FUN_18085aca0(longlong uiContext)
   longlong *colorBufferPointer8;
   bool IsEventProcessingActive9;
   bool ProcessingFlag0;
-  undefined7 EventTypeCode1;
+  UIByte EventTypeCode1;
   ulonglong **stackParamfffffffffffffe78;
   undefined7 EventTypeCode2;
   int *stackParamfffffffffffffe80;

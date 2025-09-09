@@ -723,6 +723,9 @@
 #define DataOperationOffset78 0x78                           // 数据操作偏移量78
 #define DataOperationOffset94 0x94                           // 数据操作偏移量94
 #define SystemDataBufferOffset80 0x80                        // 系统数据缓冲区偏移量80
+#define SystemContextDataOffset80 0x80                        // 系统上下文数据偏移量80
+#define BasicContextOffset88 0x88                             // 基本上下文偏移量88
+#define AuxiliaryContextOffset88 0x88                          // 辅助上下文偏移量88
 #define DataContextOffset48 0x48                             // 数据上下文偏移量48
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
 #define DataContextOffset50 0x50                             // 数据上下文偏移量50
