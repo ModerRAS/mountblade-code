@@ -10044,9 +10044,32 @@ LayoutValidationSkip:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIRendering(longlong uiContext)
+ /**
+ * @brief 处理UI渲染操作
+ * 
+ * 处理UI系统的渲染操作，包括组件管理、资源分配和渲染任务执行：
+ * - 初始化组件优先级和列表迭代器
+ * - 管理组件的插入和排序
+ * - 处理UI输入和资源清理
+ * - 执行渲染任务和组件设置
+ * 
+ * @param uiContext UI上下文句柄，包含渲染所需的上下文信息
+ * 
+ * @details 实现细节：
+ * - 初始化组件状态标志和加密密钥
+ * - 设置组件优先级和插入位置
+ * - 遍历组件列表进行排序操作
+ * - 处理UI输入和资源分配
+ * - 验证组件布局和状态
+ * - 执行最终的渲染任务
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 完整的组件生命周期管理
+ * - 更复杂的渲染管线处理
+ * - 完善的错误处理机制
+ * @warning 包含不返回的子程序调用，使用时需谨慎
+ */
 void ProcessUIRendering(longlong uiContext)
-
 {
   short *componentPriority;
   UIHandle *componentListIterator;
@@ -10054,7 +10077,6 @@ void ProcessUIRendering(longlong uiContext)
   UIDataBuffer *bufferPtr;
   UIHandle *componentInsertPosition;
   ulonglong bufferSize;
-   UI组件状态缓冲区
   uint8_t componentStateBuffer [32];
   short **componentPriorityPointer;
   short *componentPriorityValue;

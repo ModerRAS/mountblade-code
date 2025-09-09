@@ -250063,38 +250063,38 @@ void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *Con
 
 
 
-05470(uint64_t ContextHandle,unsigned long long OperationBufferSizevoid FUN_180205470(uint64_t ContextHandle,unsigned long long OperationBufferSize
+void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsigned long long MemoryBufferSize)
 {
-  long long *ContextHandle;
+  long long *SystemContextPointer;
   unsigned long long *PrimaryProcessingStatusFlag;
   unsigned long long *SystemEventTemplatePointer;
   unsigned long long *MemoryAddressMaskPointer;
   uint CalculatedCodePoint;
   unsigned long long *SecondaryProcessingStatusFlag;
   unsigned long long *StringProcessingStatus;
-  long long secondaryLoopCounter;
-  uint64_t SystemMemoryAllocationResult;
+  long long CleanupLoopCounter;
+  uint64_t MemoryAllocationResult;
   
   SystemDataTablePointer = _SystemFloatTableAddress;
-  SystemMemoryAllocationResult = 0xfffffffffffffffe;
+  MemoryAllocationResult = 0xfffffffffffffffe;
   SecondaryProcessingStatusFlag = (unsigned long long *)0x0;
-  if ((OperationBufferSize != 0) && (*(char *)(OperationBufferSize + 0x180) == '\0')) {
+  if ((MemoryBufferSize != 0) && (*(char *)(MemoryBufferSize + 0x180) == '\0')) {
     PrimaryProcessingStatusFlag = (unsigned long long *             (*(long long *)(_SystemFloatTableAddress + 8) +
-             (OperationBufferSize % (unsigned long long)*(uint *)(_SystemFloatTableAddress + 0x10)) * 8);
+             (MemoryBufferSize % (unsigned long long)*(uint *)(_SystemFloatTableAddress + 0x10)) * 8);
     SystemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
-    while ((SystemEventTemplatePointer != (unsigned long long *)0x0 && (OperationBufferSize != *SystemEventTemplatePointer))) {
+    while ((SystemEventTemplatePointer != (unsigned long long *)0x0 && (MemoryBufferSize != *SystemEventTemplatePointer))) {
       PrimaryProcessingStatusFlag = SystemEventTemplatePointer + 1;
       SystemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
     }
     StringProcessingStatus = SecondaryProcessingStatusFlag;
     if (SystemEventTemplatePointer != (unsigned long long *)0x0) {
       do {
-        pMemoryAddressMaskPointer = SystemEventTemplatePointer;
-        if (OperationBufferSize != *pMemoryAddressMaskPointer) break;
-        *PrimaryProcessingStatusFlag = pMemoryAddressMaskPointer[1];
-        pMemoryAddressMaskPointer[1] = (unsigned long long)StringProcessingStatus;
-        ContextHandle = (long long *)(SystemDataTablePointer + 0x18);
-        *ContextHandle = *ContextHandle + -1;
+        MemoryAddressMaskPointer = SystemEventTemplatePointer;
+        if (MemoryBufferSize != *MemoryAddressMaskPointer) break;
+        *PrimaryProcessingStatusFlag = MemoryAddressMaskPointer[1];
+        MemoryAddressMaskPointer[1] = (unsigned long long)StringProcessingStatus;
+        SystemContextPointer = (long long *)(SystemDataTablePointer + 0x18);
+        *SystemContextPointer = *SystemContextPointer + -1;
         SystemEventTemplatePointer = (unsigned long long *)*PrimaryProcessingStatusFlag;
         StringProcessingStatus = MemoryAddressMaskPointer;
       } while ((unsigned long long *)*PrimaryProcessingStatusFlag != (unsigned long long *)0x0);
@@ -250104,18 +250104,18 @@ void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *Con
       }
     }
   }
-  if (OperationBufferSize != 0) {
-    if (0 < *(int *)(OperationBufferSize + 0x188)) {
+  if (MemoryBufferSize != 0) {
+    if (0 < *(int *)(MemoryBufferSize + 0x188)) {
       do {
-        FUN_180204e40(SystemDataTablePointer,OperationBufferSize + (long long)(int)SecondaryProcessingStatusFlag * 0x18);
+        FUN_180204e40(SystemDataTablePointer,MemoryBufferSize + (long long)(int)SecondaryProcessingStatusFlag * 0x18);
         CalculatedCodePoint = (int)SecondaryProcessingStatusFlag + 1;
         SecondaryProcessingStatusFlag = (unsigned long long *)(unsigned long long)CalculatedCodePoint;
         SystemDataTablePointer = _SystemFloatTableAddress;
-      } while ((int)CalculatedCodePoint < *(int *)(OperationBufferSize + 0x188));
+      } while ((int)CalculatedCodePoint < *(int *)(MemoryBufferSize + 0x188));
     }
-    InitializeSystemMemoryBlock(OperationBufferSize,0x18,0x10,FUN_1800586e0,SystemMemoryAllocationResult);
+    InitializeSystemMemoryBlock(MemoryBufferSize,0x18,0x10,FUN_1800586e0,MemoryAllocationResult);
                     // WARNING: Subroutine does not return
-    CoreEngineFreeSystemMemory(OperationBufferSize);
+    CoreEngineFreeSystemMemory(MemoryBufferSize);
   }
   return;
 }
