@@ -878,28 +878,26 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int
 }
 
 /**
- * @brief 验证网络连接结果句柄安全性
+ * @brief 验证网络连接句柄安全性
  * 
- * 验证网络连接句柄的有效性和安全性，确保连接操作的合法性
+ * 验证网络连接句柄和数据包句柄的有效性和安全性，确保连接操作的合法性。
+ * 该函数是网络安全验证的重要组成部分，用于防止非法连接和恶意数据包。
  * 
  * @param NetworkConnectionContext 网络连接上下文句柄，包含连接的上下文信息
- * @param NetworkPacketHandle 网络数据包数据句柄，包含待验证的数据包信息
- * @return uint32_t 验证结果句柄，0表示验证成功，其他值表示验证失败的具体错误码
+ * @param NetworkPacketHandle 网络数据包句柄，包含待验证的数据包信息
+ * @return uint32_t 验证结果状态码，0表示验证成功，其他值表示验证失败的具体错误码
  * 
- * @retval 0 验证成功
- * @retval 0x1 网络连接上下文句柄无效
- * @retval 0x2 网络数据包数据句柄无效
- * @retval 0x3 安全验证失败
- * @retval 0x4 权限验证失败
+ * @retval 0 验证成功，连接和数据包都通过安全验证
+ * @retval 0x1 网络连接上下文句柄无效或为空
+ * @retval 0x2 网络数据包句柄无效或为空
+ * @retval 0x3 安全验证失败，可能存在安全风险
+ * @retval 0x4 权限验证失败，连接权限不足
  * 
- * @note 此函数会进行多重安全验证，调用者需要确保参数有效
- * @warning 如果验证失败，相关的网络操作将被拒绝
- * @see InitializeNetworkConnection, GetNetworkConnectionResultHandle
- */
+ * @note 此函数会进行多重安全验证，包括句柄有效性检查和权限验证
+ * @warning 如果验证失败，相关的网络操作将被拒绝以保护系统安全
+ * @see InitializeNetworkConnection, GetNetworkConnectionHandle
  * 
- * @param NetworkConnectionContext 网络连接上下文句柄
- * @param NetworkPacketHandle 网络数据包句柄
- * @return uint32_t 验证结果，0表示成功，其他值表示错误码
+ * 原始实现：简化实现，只进行基本的句柄有效性验证
  */
 uint32_t VerifyNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketHandle)
 {
@@ -935,19 +933,22 @@ uint32_t VerifyNetworkConnectionHandleSecurity(NetworkHandle NetworkConnectionCo
 }
 
 /**
- * @brief 获取网络连接结果句柄
+ * @brief 获取网络连接句柄
  * 
- * 获取网络连接的句柄，用于后续的网络操作和连接管理
+ * 从网络连接上下文中提取有效的网络连接句柄，用于后续的网络操作和连接管理。
+ * 该函数是网络连接管理的基础功能，为上层应用提供统一的连接标识符。
  * 
  * @param NetworkConnectionContext 网络连接上下文指针，包含连接的配置和状态信息
- * @return NetworkHandle 连接句柄，返回有效的网络连接句柄，如果失败则返回无效句柄值
+ * @return NetworkHandle 网络连接句柄，用于标识和管理网络连接
  * 
- * @retval NetworkHandle 获取成功，返回有效的网络连接句柄
- * @retval NetworkErrorInvalidHandle 获取失败，返回无效句柄值
+ * @retval 有效的NetworkHandle 获取成功，返回可用的网络连接句柄
+ * @retval NetworkErrorInvalidHandle 获取失败，上下文无效或连接不存在
  * 
- * @note 此函数会从连接上下文中提取句柄信息，调用者需要确保上下文有效
- * @warning 如果连接上下文无效，返回的句柄可能无法正常使用
- * @see InitializeNetworkConnection, ValidateNetworkConnectionHandleSecurity
+ * @note 此函数会验证连接上下文的有效性，并从中提取句柄信息
+ * @warning 返回的句柄可能因为连接状态变化而失效，建议在使用前重新验证
+ * @see InitializeNetworkConnection, VerifyNetworkConnectionHandleSecurity
+ * 
+ * 原始实现：简化实现，通过位掩码从上下文中提取句柄信息
  */
 NetworkHandle GetNetworkConnectionHandle(int64_t *NetworkConnectionContext)
 {
