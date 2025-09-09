@@ -40108,9 +40108,9 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
   char stackCharBuffer;
   char additionalBuffer [4];
   uint stackBuffer;
-  ByteFlag stackAllocation1 [40];
-  ByteFlag stackAllocation2 [32];
-  ByteFlag stackAllocation3 [32];
+  ByteFlag securityValidationBuffer [40];
+  ByteFlag dataProcessingBuffer [32];
+  ByteFlag resourceManagementBuffer [32];
   
   dataFlags = 1;
   memoryRegionBase = ExecuteSecurityValidation(dataBuffer,acolorDataWord,1,0x4e415254);
