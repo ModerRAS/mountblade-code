@@ -50001,12 +50001,26 @@ void CleanupSystemDataWithReferenceCount(DataBuffer operationBase, int64_t dataB
 /**
  * @brief 系统上下文完整清理器
  * 
- * 该函数负责完整清理系统上下文，包括验证状态、资源迭代器和异常处理
+ * 该函数负责完整清理系统上下文，包括验证状态、资源迭代器和异常处理。
+ * 这是系统关闭时的关键清理函数，确保所有资源都被正确释放。
  * 
- * @param operationBase 操作基址
+ * @param operationBase 操作基址，用于内存操作的基础地址
  * @param dataBuffer 数据缓冲区，包含完整的上下文信息
  * 
+ * @return void
+ * 
  * @note 原始函数名：Unwind_180903580
+ * 
+ * @details
+ * 该函数执行以下清理步骤：
+ * 1. 从数据缓冲区获取上下文指针
+ * 2. 验证并清理验证状态指针
+ * 3. 检查异常处理器回调并终止系统执行
+ * 4. 遍历资源迭代器并清理资源
+ * 5. 处理内存引用计数和资源释放
+ * 
+ * @warning 此函数会修改系统状态，可能导致系统终止
+ * @see TerminateSystemE0, TerminateSystemExecutionAndCleanupResources, HandleExceptionE0
  */
 void CleanupsystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer)
 
