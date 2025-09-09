@@ -69128,7 +69128,7 @@ LAB_18008caf0:
       }
       CharacterStatusBuffer9 = PrimaryProcessingStatusFlag0;
     } while (PrimaryProcessingStatusFlag0 != NULL);
-    if ((CharacterStatusBufferCurrent == CharacterStatusBuffer) || (ValidationResult = memcmp(SystemChecksum,CharacterStatusBufferCurrent + 4,0x10), ValidationResult < 0)    goto LAB_18008caf0;
+    if ((CharacterStatusBufferCurrent == CharacterStatusBuffer) || (ValidationResult = memcmp(SystemChecksum,CharacterStatusBufferCurrent + 4,0x10), ValidationResult < 0)    goto MemoryComparisonCompleteLabel;
   }
   if (CharacterStatusBufferCurrent != CharacterStatusBuffer) {
     IntegerValue4 = *(int *)(CharacterStatusBufferCurrent + 6);

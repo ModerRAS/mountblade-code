@@ -189038,25 +189038,25 @@ UIByte UISystemLayoutManager;
 UIByte UISystemAnimationManager;
 // 原始变量名：UNK_18095a618 - UI系统输入管理器
 #define UISystemInputManager UNK_18095a618
-undefined UISystemInputManager;
+UIByte UISystemInputManager;
 // 原始变量名：UNK_18095a628 - UI系统状态管理器
 #define UISystemStateManager UNK_18095a628
-undefined UISystemStateManager;
+UIByte UISystemStateManager;
 // 原始变量名：UNK_18095a638 - UI系统资源管理器
 #define UISystemResourceManager UNK_18095a638
-undefined UISystemResourceManager;
+UIByte UISystemResourceManager;
 // 原始变量名：UNK_18095a648 - UI系统内存管理器
 #define UISystemMemoryManager UNK_18095a648
-undefined UISystemMemoryManager;
+UIByte UISystemMemoryManager;
 // 原始变量名：UNK_18095a650 - UI系统线程管理器
 #define UISystemThreadManager UNK_18095a650
-undefined UISystemThreadManager;
+UIByte UISystemThreadManager;
 // 原始变量名：UNK_18095a658 - UI系统同步管理器
 #define UISystemSyncManager UNK_18095a658
-undefined UISystemSyncManager;
+UIByte UISystemSyncManager;
 // 原始变量名：UNK_18095a668 - UI系统调试管理器
 #define UISystemDebugManager UNK_18095a668
-undefined UISystemDebugManager;
+UIByte UISystemDebugManager;
 // 原始变量名：UNK_180a215c0 - UI系统性能监控器
 #define UISystemPerformanceMonitor UNK_180a215c0
 undefined UISystemPerformanceMonitor;

@@ -82,6 +82,13 @@
 #define DataStructureSecondaryOffset18 0x12
 #define DataStructureTableOffset8 0x8
 #define BitShift32Bits 0x20
+#define DestinationContextProcessorOffset 0x60
+#define DestinationContextMemoryOffset 0x40
+#define RegisterContextValidationOffset 0x40
+#define DestinationContextOperationOffset 0x50
+#define DataContextIntegrityOffset 0x48
+#define OperationBaseSecondaryOffset 0x30
+#define DataValidationResultOffset 0x1c
 #define MemoryResourcePointerOffsetTertiary 0x130
 #define MemoryResourcePointerOffsetAlternate 0x118
 #define ExceptionHandlerContextPointerRangeStart 0xf8
@@ -32402,7 +32409,7 @@ DataBuffer CleanupDataCacheA0(void)
   int64_t DestinationContext;
   
   if (*(int *)(systemInputAccumulator + SystemDataSecondaryOffset18) == 0) {
-    systemDataBuffer = QuerySystemStatusA0(*registerContext,DestinationContext + 0x60,0x25);
+    systemDataBuffer = QuerySystemStatusA0(*registerContext,DestinationContext + DestinationContextProcessorOffset,0x25);
     if ((int)systemDataBuffer == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
         systemDataBuffer = 0;
