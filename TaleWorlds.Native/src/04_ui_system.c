@@ -15017,20 +15017,20 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     vertexProcessingSize = (int)UIVertexAllocationCount * 4;
     totalVertexMemory = UIVertexAllocationCount * 4;
     do {
-      allocatedMemory0 = (longlong)((ProcessingResult5 + -1) % ProcessingResult2);
+      vertexIndex = (longlong)((ProcessingResult5 + -1) % ProcessingResult2);
       if ((!IsGeometryValid) ||
-         ((FloatValue2 = (baseScaleFactor[-4] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (AccumulatedFloat - baseScaleFactor[-5]) -
-                    (transformCoeff11 - baseScaleFactor[-4]) * (baseScaleFactor[-5] - *(float *)(componentIndex + allocatedMemory0 * 8)),
-          FloatValue2 <= preservedXMM6 && (FloatValue2 < preservedXMM6)))) {
+         ((geometryCheckValue = (baseScaleFactor[-4] - *(float *)(componentIndex + 4 + vertexIndex * 8)) * (AccumulatedFloat - baseScaleFactor[-5]) -
+                    (transformCoefficientX - baseScaleFactor[-4]) * (baseScaleFactor[-5] - *(float *)(componentIndex + vertexIndex * 8)),
+          geometryCheckValue <= preservedXMM6 && (geometryCheckValue < preservedXMM6)))) {
         IsGeometryValid = false;
       }
       else {
         IsGeometryValid = true;
       }
       if ((!IsGeometryValid) ||
-         ((FloatValue2 = (baseScaleFactor[-2] - *(float *)(componentIndex + 4 + (longlong)(ProcessingResult5 % ProcessingResult2) * 8))                     (AccumulatedFloat - baseScaleFactor[-3]) -
-                    (transformCoeff11 - baseScaleFactor[-2])                     (baseScaleFactor[-3] - *(float *)(componentIndex + (longlong)(ProcessingResult5 % ProcessingResult2) * 8)),
-          FloatValue2 <= preservedXMM6 && (FloatValue2 < preservedXMM6)))) {
+         ((geometryCheckValue = (baseScaleFactor[-2] - *(float *)(componentIndex + 4 + (longlong)(ProcessingResult5 % ProcessingResult2) * 8)) * (AccumulatedFloat - baseScaleFactor[-3]) -
+                    (transformCoefficientX - baseScaleFactor[-2]) * (baseScaleFactor[-3] - *(float *)(componentIndex + (longlong)(ProcessingResult5 % ProcessingResult2) * 8)),
+          geometryCheckValue <= preservedXMM6 && (geometryCheckValue < preservedXMM6)))) {
         IsGeometryValid = false;
       }
       else {
