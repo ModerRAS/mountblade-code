@@ -1814,6 +1814,11 @@ typedef enum {
 #define transformCoeff20 UITransformCoefficient20
 #define allocatedMemory1 UIAllocatedMemory1
 #define allocatedMemory2 UIAllocatedMemory2
+#define allocatedMemory3 UIAllocatedMemory3
+#define allocatedMemory4 UIAllocatedMemory4
+#define allocatedMemory5 UIAllocatedMemory5
+#define allocatedMemory6 UIAllocatedMemory6
+#define allocatedMemory7 UIAllocatedMemory7
 #define allocatedMemory8 UIAllocatedMemory8
 #define allocatedMemory9 UIAllocatedMemory9
 #define allocatedMemory10 UIAllocatedMemory10
@@ -2103,6 +2108,8 @@ typedef enum {
 #define TargetHandle UITargetHandle
 #define bufferSize UIBufferSize
 #define contextHandle UIContextHandle
+#define RenderPoolCounter UIRenderPoolCounter
+#define transformCoeff UITransformCoeff
 
 // UI系统数据操作函数宏定义
 #define ProcessUIDataBufferCopyOperation FUN_180719a90
