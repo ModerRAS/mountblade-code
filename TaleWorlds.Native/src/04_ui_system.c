@@ -89600,9 +89600,9 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
     PreservedRegister15D = StackParam110;
   } while (AllocationFlags < StackParam110);
   if (bufferSize != 0) {
-    iStackX_20 = 0;
+    StackX20 = 0;
   }
-  return iStackX_20;
+  return StackX20;
 }
 
 
