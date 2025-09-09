@@ -127385,12 +127385,12 @@ void InitializeUIMemoryPool(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180742070(longlong *uiContext)
+UIHandle CleanupUIContextResources(longlong *uiContext)
 
 {
   uint result;
-  longlong *colorBufferPointer;
-  longlong stringCompareIndex;
+  longlong *bufferPointer;
+  longlong iterationCount;
   
   if (((*(byte *)(uiContext + 0x66) & 1) != 0) && (*uiContext != 0)) {
                      WARNING: Subroutine does not return
