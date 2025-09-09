@@ -14370,10 +14370,10 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t *contextData;                       // 上下文数据指针
   int64_t *moduleData;                        // 模块数据指针
   int64_t *validationContext;                  // 验证上下文指针
-  int64_t stackContext;                       // 栈上下文
-  int64_t tempStackContext;                   // 临时栈上下文
+  int64_t systemStackContext;                       // 系统栈上下文
+  int64_t tempSystemStackContext;                   // 临时系统栈上下文
   
-  moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
+  moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempSystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
   if (initializationStatus == 0) {
     validationContext = (int64_t *)0x0;
@@ -14848,7 +14848,7 @@ DataWord ReleaseStackResource(void)
 {
   int64_t processorRegisterValue = 0;
   int64_t calculatedStackResourcePointer;
-  int64_t* stackDataPointer;
+  int64_t* systemStackDataPointer;
   
   // 根据处理器寄存器值计算栈资源指针
   if (processorRegisterValue == 0) {
