@@ -10,9 +10,6 @@
  * - 系统状态监控和管理
  * - 硬件抽象层初始化
  * - 网络和通信系统初始化
- * 
- * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
- *       替换为具有语义的名称，提高了代码的可读性和维护性。
  */
 
 // 系统管理器表偏移量
@@ -49778,7 +49775,20 @@ ResourcePoolCheckPoint:
 
 
 
-// 函数: void ConfigureSystemProcessingBuffer(void* *SystemResourceManager)
+/**
+ * @brief 配置系统处理缓冲区
+ * 
+ * 该函数负责配置和清理系统处理缓冲区，包括：
+ * - 初始化系统临界区模板
+ * - 清理系统资源数据表
+ * - 销毁互斥体和条件变量
+ * - 挂起系统线程
+ * - 执行系统清理回调函数
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * 
+ * @note 这是一个系统清理函数，通常在系统关闭或重置时调用
+ */
 void ConfigureSystemProcessingBuffer(void* *SystemResourceManager)
 
 {
@@ -49844,7 +49854,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long *TertiaryResourcePoolPointer;
   void* *QuaternaryHashEntryPointer;
   ulong long SecurityParameter;
-  uint8_t SystemMemoryAllocationOffsetBuffer [32];
+  uint8_t SystemMemoryEncryptionBuffer [32];
   ulong long SystemHashValidationValue;
   void* **SystemDataBufferOffsetPointer;
   long long *SystemResourceHandle;
@@ -49883,11 +49893,11 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   ulong long SystemContextReference;
   
   SystemMaxOperationCountSecondary = 0xfffffffffffffffe;
-  SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemMemoryAllocationOffsetBuffer;
+  SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemMemoryEncryptionBuffer;
   char CharacterOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   do {
     if ((charOutput == '\0') || (SystemContextReference = 0, *(char *)(SystemResourceManager + SystemInitializationOffset0x400) != '\0')) {
-        ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemMemoryAllocationOffsetBuffer);
+        ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemMemoryEncryptionBuffer);
     }
     SystemSecondaryGlobalDataReferencePtr = &SystemMemoryAllocatorTemplate;
     SystemResourceNameBuffer = SystemResourceNameArray;
@@ -49901,13 +49911,12 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     MemoryBaseAddress = -1;
     SystemMemoryAllocatorStatus = SystemMaxHandleValue;
     SystemMemoryManagerHandle = SystemMaxHandleValue;
-    SystemMemoryAllocationOffset = 0;
     SystemMemoryAllocationCounter = 0;
     SystemDataBuffer = 0;
     ResourceDataIndexPrimary = *(long long *)(SystemResourceManager + 0x3c8);
-    ResourceDataIndexCounter = *(long long *)(SystemResourceManager + 0x3d0) - ResourceDataIndexPrimary;
-    SystemAllocationFlags = ResourceDataIndexCounter >> 0x3f;
-    if (ResourceDataIndexCounter / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
+    ResourceDataIndexCount = *(long long *)(SystemResourceManager + 0x3d0) - ResourceDataIndexPrimary;
+    SystemAllocationFlags = ResourceDataIndexCount >> 0x3f;
+    if (ResourceDataIndexCount / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
       charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
       if (SystemAvailabilityFlag == '\0') {
         ResourceDataIndexPrimary = SystemResourceManager + 0x378;
@@ -49919,20 +49928,20 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         }
         SystemMemoryAlignment = 1;
         SystemAllocationFlags = _Xtime_get_ticks();
-        ResourceDataIndexCounter = (SystemAllocationFlags + 50000) * 100;
-        SystemAllocationFlags = ResourceDataIndexCounter / 1000000000;
-        StackInteger48 = (int)SystemAllocationFlags;
-        StackInteger210 = (int)ResourceDataIndexCounter + StackInteger48 * -1000000000;
+        ResourceDataIndexCount = (SystemAllocationFlags + 50000) * 100;
+        SystemAllocationFlags = ResourceDataIndexCount / 1000000000;
+        SystemTimeoutSeconds = (int)SystemAllocationFlags;
+        SystemTimeoutMilliseconds = (int)ResourceDataIndexCount + SystemTimeoutSeconds * -1000000000;
         SystemAllocationFlags.LowPart = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
-        SystemFlagComponent = SystemAllocationFlags.LowPart;
+        SystemTimeoutHighPart = SystemAllocationFlags.LowPart;
         SystemInitializationFlag = SystemMaxOperationCountSecondary;
         SystemAllocationFlags = SystemAllocationFlags;
-        StackInteger40 = StackInteger210;
+        SystemTimeoutRemaining = SystemTimeoutMilliseconds;
         SystemInitializationStatusPrimary = _Mtx_current_owns(ResourceDataIndexPrimary);
         if (SystemInitializationStatusPrimary == 0) {
           ThrowCppSystemError(4);
         }
-        SystemInitializationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,ResourceDataIndexPrimary,&StackInteger48);
+        SystemInitializationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,ResourceDataIndexPrimary,&SystemTimeoutSeconds);
         if ((SystemInitializationStatusFlags & SystemMemoryFlagMask) != 0) {
           ThrowSystemError(SystemInitializationStatusFlags);
         }
