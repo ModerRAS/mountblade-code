@@ -15037,7 +15037,7 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   float render_buffer [6200];
   uint64_t render_state;
   uint8_t memory_buffer [32];
-  float local_animation_time;
+  float currentAnimationTime;
   float *shader_program_ptr;
   char buffer_size_flag;
   float data_source_value;
@@ -15051,7 +15051,7 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   uint64_t color_data;
   float stencil_value;
   float blend_factor;
-  float local_opacity_value;
+  float currentOpacityValue;
   float shadow_intensity;
   float specular_value;
   float ambient_occlusion;
@@ -100248,10 +100248,10 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
     uiValidationResult = (int)((ulonglong)((longlong)(uiProcessingResult - uiContext[3]) * 0x1ac6) >> 0x10);
     uiCalculatedValue = uiContext[3] + uiValidationResult;
     uiContext[3] = uiValidationResult + uiProcessingResult;
-    uiCompareResult = (int)((ulonglong)((longlong)(localInt5 - uiContext[4]) * 0x64a9) >> 0x10);
-    TempInt4 = uiContext[4] + uiCompareResult;
+    uiCompareResult = (int)((ulonglong)((longlong)(uiCalculatedValue - uiContext[4]) * 0x64a9) >> 0x10);
+    uiProcessingResult = uiContext[4] + uiCompareResult;
     uiValidationResult = uiContext[5];
-    uiContext[4] = localInt5 + uiCompareResult;
+    uiContext[4] = uiCalculatedValue + uiCompareResult;
     uiCompareResult = TempInt4 - uiValidationResult;
     uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x270a) >> 0x10) + uiCompareResult;
     uiContext[5] = TempInt4 + uiCompareResult;
@@ -200030,14 +200030,14 @@ UIHandle FreeUIResource(longlong uiContext,int dataSource)
 int ValidateUIComponentData(longlong uiContext,int dataSource,ulonglong targetBuffer,int bufferSize)
 
 {
-  int processingResult;
+  int validationResult;
   longlong componentIndex;
   UIHandle *componentPointer;
   longlong *contextHandlePointer;
   int validationFlag;
   longlong contextHandleData;
   ulonglong processingCounter;
-  UIDword stackBuffer [2];
+  UIDword tempBuffer [2];
   uint paddingParam;
   ulonglong iterationCounter;
   
