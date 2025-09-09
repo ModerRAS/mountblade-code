@@ -209,9 +209,8 @@ typedef enum {
 // UI系统标签宏定义 - 事件处理相关
 #define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
 
-// UI系统变换动画函数
-// 原始函数名：FUN_180725856 - UI系统变换和动画效果
-#define ProcessUITransformAnimation FUN_180725856
+// UI系统动画处理函数宏定义
+#define ProcessUITransformAnimation FUN_180725856     // UI系统变换和动画效果函数
 #define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
 #define LAB_EventStringComparison LAB_EventStringComparison
 #define LAB_EventHandlerReturn LAB_EventHandlerReturn
