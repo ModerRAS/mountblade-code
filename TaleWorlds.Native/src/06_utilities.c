@@ -50176,7 +50176,7 @@ void CleanupSystemResourcePointerWithMemoryManagement(DataBuffer operationBase, 
  * 
  * @note 原始函数名：Unwind_180903540
  */
-void CleanupValidationContext(DataBuffer operationBase, int64_t dataBuffer)
+void CleanupValidationContextWithExceptionHandling(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
