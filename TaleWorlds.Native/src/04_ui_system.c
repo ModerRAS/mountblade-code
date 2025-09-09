@@ -32975,7 +32975,7 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   longlong stackLong60;
   longlong stackLong58;
   
-  psVar5 = resultPointer;
+  componentStatePointer = resultPointer;
   allocatedMemory5 = *(longlong *)(uiBufferData + 0x1e98);
   processedCount = *(int *)(uiBufferData + 0x23dc);
   processingResult7 = *(int *)(uiBufferData + 0x23d8);
