@@ -89579,26 +89579,26 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
         Register10D = StackParam108;
         bufferSize = StackParam170;
       }
-      uiContext = stackParam00000150;
-      *(float *)(stackParam00000140 +
-                (longlong)(eventHandle * *(int *)(preservedRegister12 + 8) + allocationFlags) * 4) =
-           AccumulatedFloat - (float)iStack0000000000000130;
-      contextHandle = -0x8000000000000000;
-      loopCounter = uiValidationResult - iStack0000000000000130 >> 0x1f;
-      iStackX_20 = iStackX_20 + ((uiValidationResult - iStack0000000000000130 ^ loopCounter) - loopCounter);
-      baseValue6 = (float)iStack0000000000000130;
-      TempInt4 = eventHandle + 1;
-      *(float *)(stackParam00000120 +
-                (longlong)(eventHandle * *(int *)(preservedRegister12 + 8) + allocationFlags) * 4) =
-           baseValue + FloatValue2 * unmodifiedXMM10_Da + baseValue6;
-      *BaseValuePointer0 = (baseValue + baseValue6) - baseValue6 * unmodifiedXMM14_Da;
-      BaseValuePointer0 = BaseValuePointer0 + 1;
-      eventHandle = TempInt4;
-    } while (TempInt4 < uiContext);
-    allocationFlags = allocationFlags + 1;
-    eventHandle = 0;
-    preservedRegister15D = stackParam00000110;
-  } while (allocationFlags < stackParam00000110);
+      uiContext = StackParam150;
+      *(float *)(StackParam140 +
+                (longlong)(EventHandle * *(int *)(PreservedRegister12 + 8) + AllocationFlags) * 4) =
+           AccumulatedFloat - (float)StackParam130;
+      ContextHandle = -0x8000000000000000;
+      LoopCounter = UIValidationResult - StackParam130 >> 0x1f;
+      StackX20 = StackX20 + ((UIValidationResult - StackParam130 ^ LoopCounter) - LoopCounter);
+      BaseValue6 = (float)StackParam130;
+      TemporaryInt4 = EventHandle + 1;
+      *(float *)(StackParam120 +
+                (longlong)(EventHandle * *(int *)(PreservedRegister12 + 8) + AllocationFlags) * 4) =
+           BaseValue + FloatValue2 * UnmodifiedXMM10_Da + BaseValue6;
+      *BaseValuePointer = (BaseValue + BaseValue6) - BaseValue6 * UnmodifiedXMM14_Da;
+      BaseValuePointer = BaseValuePointer + 1;
+      EventHandle = TemporaryInt4;
+    } while (TemporaryInt4 < uiContext);
+    AllocationFlags = AllocationFlags + 1;
+    EventHandle = 0;
+    PreservedRegister15D = StackParam110;
+  } while (AllocationFlags < StackParam110);
   if (bufferSize != 0) {
     iStackX_20 = 0;
   }
