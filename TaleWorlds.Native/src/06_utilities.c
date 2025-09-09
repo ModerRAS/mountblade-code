@@ -10513,10 +10513,10 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackDataBufferSeptenary StackDataBufferG    // 栈数据缓冲区第七变量
 
 // 异常处理系统全局变量
-void* ExceptionHandlerTablePointer;        // 异常处理器表指针
+ExceptionHandlerTable* ExceptionHandlerTablePtr;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
 int SystemExceptionCleanupFlag;           // 系统异常清理标志
-void* SystemTemporaryExceptionHandler;     // 系统临时异常处理器
+ExceptionHandler* SystemTemporaryExceptionHandlerPtr;     // 系统临时异常处理器
 
 /**
  * @brief 重置工具模块指针组3
