@@ -31810,7 +31810,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
       }
-      systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
+      systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset58);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
           return ResourceInvalidErrorCode;
@@ -32722,7 +32722,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
+  operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset58);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -34493,7 +34493,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     return validationOutcome;
   }
   if (0x81 < *(uint *)(dataBuffer + 8)) {
-    validationOutcome = ValidateDataSecurityA0(dataBuffer,operationBase + 0x58);
+    validationOutcome = ValidateDataSecurityA0(dataBuffer,operationBase + OperationBaseOffset58);
     if ((int)validationOutcome != 0) {
       return validationOutcome;
     }
@@ -34633,7 +34633,7 @@ ValidationLabelC:
       (*(uint64_t *)(operationBase + 0x48) <= validationOutcome &&
       (validationOutcome < (int64_t)*(int *)(operationBase + 0x50) * 0x1c + *(uint64_t *)(operationBase + 0x48)));
       validationOutcome = validationOutcome + 0x1c) {
-    InitializeSystemComponentA0(operationBase + 0x58);
+    InitializeSystemComponentA0(operationBase + OperationBaseOffset58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(dataBuffer + 8)) && (operationResult = ValidationErrorCode, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
@@ -38852,7 +38852,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
         return systemDataBuffer;
       }
       if ((0x52 < *(uint *)(dataBuffer + 8)) &&
-         (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + 0x58,0), (int)systemDataBuffer != 0)) {
+         (systemDataBuffer = ValidateMemoryAllocation(dataBuffer,operationBase + OperationBaseOffset58,0), (int)systemDataBuffer != 0)) {
         return systemDataBuffer;
       }
       if (*(uint *)(dataBuffer + 8) < 0x88) {
@@ -39397,7 +39397,7 @@ ValidationErrorHandler5:
             *(DataWord *)(memoryPointer + ExceptionHandlerCallbackOffset10) = systemDataBuffer;
             *(DataBuffer *)(memoryPointer + SystemDataSecondaryOffset18) = 0;
             *(DataWord *)(memoryPointer + SystemDataParameterOffset20) = 0;
-            validationStatus = ConvertData(operationBase + 0x58,memoryPointer);
+            validationStatus = ConvertData(operationBase + OperationBaseOffset58,memoryPointer);
             memoryRegionBase = (uint64_t)validationStatus;
             if (validationStatus != 0) goto ProcessCheckpointValidationError4;
           }
@@ -39405,7 +39405,7 @@ ValidationErrorHandler5:
         CleanupSystemResourcesA0(&StackPointerWordAF);
       }
       else {
-        memoryRegionBase = GetSecurityCheckResult(dataBuffer,operationBase + 0x58);
+        memoryRegionBase = GetSecurityCheckResult(dataBuffer,operationBase + OperationBaseOffset58);
         if ((int)memoryRegionBase != 0) {
           return memoryRegionBase;
         }
@@ -39709,7 +39709,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x58);
+  validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset58);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
