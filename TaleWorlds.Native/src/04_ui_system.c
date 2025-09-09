@@ -91497,7 +91497,7 @@ UIHandle ConvertUICoordinateData(UIHandle uiContext,longlong dataSource,longlong
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071c290(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
+ void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
 /**
  * @brief UI系统数据流处理器
  * 
