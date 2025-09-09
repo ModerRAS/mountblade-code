@@ -19744,7 +19744,7 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
     }
     if ((0 < *(int *)(registerContext + RegisterContextCountOffset)) && (*(int64_t *)(registerContext + RegisterContextDataPointerOffset) != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + RegisterContextDataPointerOffset),
-                    &SystemMemoryPoolB,0x100,1);
+                    &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
     *(int64_t *)(registerContext + RegisterContextDataPointerOffset) = systemContext;
     *(int *)(registerContext + RegisterContextCountOffset) = operationResult;
