@@ -491,6 +491,22 @@ typedef enum {
 #define _DAT_180d4a6e8 UILayoutProcessorPointer
 #define _DAT_180d4a6c8 UIInputProcessorPointer
 #define _DAT_180d4a6c0 UIEventProcessorPointer
+
+// 额外的UI系统数据指针
+#define _DAT_180d4a898 UIDataProcessorPointer898
+#define _DAT_180d4a858 UIDataProcessorPointer858
+#define _DAT_180d4a820 UIDataProcessorPointer820
+#define _DAT_180d4a7e0 UIDataProcessorPointer7E0
+#define _DAT_180d4a7b0 UIDataProcessorPointer7B0
+#define _DAT_180d4a778 UIDataProcessorPointer778
+#define _DAT_180d4a750 UIDataProcessorPointer750
+#define _DAT_180d4a708 UIDataProcessorPointer708
+#define _DAT_180d4a958 UIDataProcessorPointer958
+#define _DAT_180d4a928 UIDataProcessorPointer928
+#define _DAT_180d4a910 UIDataProcessorPointer910
+#define _DAT_180d4a8c0 UIDataProcessorPointer8C0
+#define _DAT_180d4a8a8 UIDataProcessorPointer8A8
+
 #define DAT_1809472f0 UIConfigurationData
 #define DAT_180956f70 UILookupTableData
 #define UIComponentInterfaceID UIComponentInterfaceID
