@@ -258,13 +258,13 @@ typedef enum {
 #define fStack_128 UITransformFactor128                    // UI变换因子128 - 用于UI元素变换计算的因子
 #define fStack_10c UIVertexComponentX10C                    // UI顶点组件X坐标10C - 存储UI顶点X坐标分量的变量
 #define fStack_108 UIVertexComponentY108                    // UI顶点组件Y坐标108 - 存储UI顶点Y坐标分量的变量
-#define fStack_120 UIAnimationFactor
-#define fStack_104 UITimeScaleFactor
-#define fStack_100 UIInterpolationFactor
+#define fStack_120 UIAnimationFactor120                    // UI动画因子120 - 用于控制UI动画播放的因子
+#define fStack_104 UITimeScaleFactor104                    // UI时间缩放因子104 - 用于控制UI时间缩放的因子
+#define fStack_100 UIInterpolationFactor100                // UI插值因子100 - 用于UI插值计算的因子
 #define fStack_f8 UIFadeOutFactor
-#define fStack_11c UIFadeInFactor
-#define fStack_144 UITimeStepDelta
-#define fStack_138 UIAnimationProgress
+#define fStack_11c UIFadeInFactor11C                      // UI淡入因子11C - 用于控制UI元素淡入效果的因子
+#define fStack_144 UITimeStepDelta144                     // UI时间步长增量144 - 存储UI动画时间步长的变量
+#define fStack_138 UIAnimationProgress138                  // UI动画进度138 - 存储UI动画播放进度的变量
 
 // 栈参数变量宏定义
 #define stackParam00000048 UIStackRenderParam48
@@ -2160,7 +2160,7 @@ typedef enum {
 #define FUN_18075a230 ProcessUIContextAndDataSource
 
 // UI系统堆栈变量美化
-#define afStack_6260 UIFloatStack6260
+// afStack_6260 已在上面定义为 UIAnimationSpeedStack6260
 
 // UI系统音频相关变量美化
 #define uStackX_8 UIAudioStackData8
@@ -131408,12 +131408,12 @@ LAB_1807439ba:
   }
 LAB_180743a60:
   if ((*(int *)(uiBufferData + 0x11654) == dataSource) &&
-     (((pcontextHandleData = (longlong *)(uiContext + 0x12758), (longlong *)*pcontextHandleData != pcontextHandleData ||
-       (*(longlong **)(uiContext + 0x12760) != pcontextHandleData)) && (bufferSize == '\0')))) {
+     (((pcontextHandleData = (longlong *)(uiContext + UIComponentListOffset), (longlong *)*pcontextHandleData != pcontextHandleData ||
+       (*(longlong **)(uiContext + UIComponentListOffset + 8) != pcontextHandleData)) && (bufferSize == '\0')))) {
     EventTypeCode = 0;
   }
   else {
-    EventTypeCode = FUN_1807676b0(allocatedMemory + 0x12638,targetBuffer);
+    EventTypeCode = FUN_1807676b0(allocatedMemory + UIComponentDataOffset - 0xa48,targetBuffer);
   }
   return EventTypeCode;
 }
@@ -132611,8 +132611,8 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
     }
     *(UIHandle *)(uiContext + 0x11720) = 0;
   }
-  ptrLocal3 = *(UIHandle **)(uiContext + 0x12758);
-  while (maxProcessingCount = result1, ptrLocal3 != (UIHandle *)(uiContext + 0x12758)) {
+  ptrLocal3 = *(UIHandle **)(uiContext + UIComponentListOffset);
+  while (maxProcessingCount = result1, ptrLocal3 != (UIHandle *)(uiContext + UIComponentListOffset)) {
     piterationCount = (UIHandle *)*ptrLocal3;
     maxProcessingCount = FUN_1807675e0(ptrLocal3[2],1);
     ptrLocal3 = piterationCount;
@@ -132727,7 +132727,7 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
             }
             piterationCount = (UIHandle *)*ptrLocal3;
           }
-          maxProcessingCount = FUN_180785a50(uiContext + 0x12438);
+          maxProcessingCount = FUN_180785a50(uiContext + UIRenderQueueOffset);
           if ((int)maxProcessingCount == 0) {
             *(UIByte *)(uiContext + 8) = 0;
           }
@@ -137041,7 +137041,7 @@ void ThunkUIBufferOperation(longlong uiContext)
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
     if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = ValidateUIContext(), ProcessingResult == 0)) {
-      ComponentIterator = (UIHandle *)(uiContext + 0x12758);
+      ComponentIterator = (UIHandle *)(uiContext + UIComponentListOffset);
       ComponentPointer = (UIHandle *)*ComponentIterator;
       AlphaValue = 0.0;
       TransformMatrix1 = 0;
@@ -137054,7 +137054,7 @@ void ThunkUIBufferOperation(longlong uiContext)
         ComponentStatus = ComponentPointer[2];
         ProcessUIComponent(ComponentStatus,ValidationBuffer);
         if (ValidationBuffer[0] != '\0') {
-          FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
+          FUN_1807671a0(ComponentStatus,uiContext + UIComponentDataOffset,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
             ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
@@ -206930,7 +206930,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
     }
     *(uint *)(uiContext + 0x116b4) = RenderFlags;
     if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (ProcessingResult = ValidateUIContext(), ProcessingResult == 0)) {
-      ComponentIterator = (UIHandle *)(uiContext + 0x12758);
+      ComponentIterator = (UIHandle *)(uiContext + UIComponentListOffset);
       ComponentPointer = (UIHandle *)*ComponentIterator;
       AlphaValue = 0.0;
       TransformMatrix1 = 0;
@@ -206943,7 +206943,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
         ComponentStatus = ComponentPointer[2];
         ProcessUIComponent(ComponentStatus,ValidationBuffer);
         if (ValidationBuffer[0] != '\0') {
-          FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
+          FUN_1807671a0(ComponentStatus,uiContext + UIComponentDataOffset,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
             ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
