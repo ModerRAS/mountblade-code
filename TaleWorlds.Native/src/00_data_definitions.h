@@ -10007,9 +10007,9 @@ NetworkAuthValidationCheck11:
                           NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterF50);
                           if (NetworkRequestStatus == '\0') {
                             NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter048);
-                            if (NetworkRequestStatus != '\0') goto Label_18060a4de;
+                            if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError1;
                             NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter038);
-                            if (NetworkRequestStatus != '\0') goto Label_18060a500;
+                            if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError2;
                           }
                         }
                       }
@@ -10211,13 +10211,13 @@ NetworkAuthValidationCheck32:
                   if (NetworkRequestStatus == '\0') {
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter988);
                     if (NetworkRequestStatus != '\0') {
-Label_18060a4de:
+NetworkConfigValidationError1:
                       StringProcessingResult = 1;
                       goto NetworkRequestProcessingComplete;
                     }
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameter970);
                     if (NetworkRequestStatus != '\0') {
-Label_18060a500:
+NetworkConfigValidationError2:
                       StringProcessingResult = 2;
                       goto NetworkRequestProcessingComplete;
                     }
