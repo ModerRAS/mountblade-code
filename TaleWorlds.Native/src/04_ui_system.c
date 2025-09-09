@@ -99999,7 +99999,7 @@ UIWord FUN_1807234d0(UIWord *uiContext,longlong dataSource,short *targetBuffer,i
 
 
 
-UIWord * FUN_1807238f3(void)
+UIWord * GetUIWordDataPointer(void)
 
 {
   short *psVar1;
