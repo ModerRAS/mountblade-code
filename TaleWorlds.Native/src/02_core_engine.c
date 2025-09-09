@@ -248571,7 +248571,7 @@ LAB_180204eec:
                       CharacterEncodingFlags = CharacterEncodingFlags & 0xffffff00;
                       SystemPointerBuffer1d0 = CharacterStatusBuffer2;
                       FUN_180204b50(ContextHandle,&uStack_218,IntegerValue9,0,*(uint32_t *)(SystemDataTablePointer + 0x184),
-                                    in_stack_fffffffffffffdb0,1);
+                                    CharacterEncodingFlags,1);
                       if (iStack_210 == -1) {
                         EncodingValidationResult = (int)(((long long)stackPointer1B0 - (long long)ConfigurationString) / 0x18);
                         IntegerValue7 = 0;
