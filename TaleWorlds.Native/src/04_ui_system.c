@@ -199452,36 +199452,45 @@ void FUN_1807863b0(longlong uiContext)
 
 
 
-UIHandle FUN_1807864f0(longlong uiContext,UIDword dataSource)
+/**
+ * @brief 清理UI上下文
+ * 
+ * 该函数清理UI上下文相关的内存和资源，包括颜色缓冲区和字符串比较索引。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @return UIHandle 清理操作的句柄
+ */
+UIHandle CleanupUIContext(longlong uiContext,UIDword dataSource)
 
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  longlong *pstringCompareIndex;
-  UIHandle stackUInt48;
-  UIHandle stackUInt40;
-  UIHandle stackUInt38;
-  UIHandle stackUInt30;
-  UIHandle stackUInt28;
-  longlong stackLong20;
-  ulonglong stackUInt18;
+  longlong *stringCompareIndexPointer;
+  UIHandle callbackParam1;
+  UIHandle callbackParam2;
+  UIHandle callbackParam3;
+  UIHandle callbackParam4;
+  UIHandle callbackParam5;
+  longlong callbackContext;
+  ulonglong callbackFlag;
   
   allocatedMemory = *(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x11418);
-  pstringCompareIndex = (longlong *)(allocatedMemory + 0x160);
-  colorBufferPointer = (longlong *)*pstringCompareIndex;
-  if (colorBufferPointer != pstringCompareIndex) goto LAB_180786530;
-  if (*(longlong **)(allocatedMemory + 0x168) != pstringCompareIndex) {
-    for (; colorBufferPointer != pstringCompareIndex; colorBufferPointer = (longlong *)*colorBufferPointer) {
+  stringCompareIndexPointer = (longlong *)(allocatedMemory + 0x160);
+  colorBufferPointer = (longlong *)*stringCompareIndexPointer;
+  if (colorBufferPointer != stringCompareIndexPointer) goto LAB_180786530;
+  if (*(longlong **)(allocatedMemory + 0x168) != stringCompareIndexPointer) {
+    for (; colorBufferPointer != stringCompareIndexPointer; colorBufferPointer = (longlong *)*colorBufferPointer) {
 LAB_180786530:
       if (*(code **)(*(longlong *)colorBufferPointer[2] + 0xd0) != (UIFunctionPtr *)0x0) {
-        stackUInt48 = 0;
-        stackUInt40 = 0;
-        stackUInt38 = 0;
-        stackUInt30 = 0;
-        stackUInt28 = 0;
-        stackUInt18 = (ulonglong)*(uint *)(*(longlong *)(uiBufferData + 0x48) + 0x116b8);
-        stackLong20 = *(longlong *)(uiBufferData + 0x48) + 0x11848;
-        (**(code **)(*(longlong *)colorBufferPointer[2] + 0xd0))(&stackUInt48,dataSource);
+        callbackParam1 = 0;
+        callbackParam2 = 0;
+        callbackParam3 = 0;
+        callbackParam4 = 0;
+        callbackParam5 = 0;
+        callbackFlag = (ulonglong)*(uint *)(*(longlong *)(uiBufferData + 0x48) + 0x116b8);
+        callbackContext = *(longlong *)(uiBufferData + 0x48) + 0x11848;
+        (**(code **)(*(longlong *)colorBufferPointer[2] + 0xd0))(&callbackParam1,dataSource);
       }
     }
   }
@@ -199492,21 +199501,30 @@ LAB_180786530:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_1807865b0(longlong uiContext,int dataSource)
+/**
+ * @brief 释放UI资源
+ * 
+ * 该函数释放UI相关的资源，包括颜色缓冲区和事件类型代码。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @return UIHandle 释放操作的句柄
+ */
+UIHandle FreeUIResource(longlong uiContext,int dataSource)
 
 {
-  longlong *pallocatedMemory;
+  longlong *allocatedMemoryPointer;
   longlong *colorBufferPointer;
-  UIHandle EventTypeCode;
+  UIHandle eventTypeCode;
   
   colorBufferPointer = (longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
-  pallocatedMemory = (longlong *)*colorBufferPointer;
+  allocatedMemoryPointer = (longlong *)*colorBufferPointer;
   while( true ) {
-    if (pallocatedMemory == colorBufferPointer) {
+    if (allocatedMemoryPointer == colorBufferPointer) {
       return 0x1e;
     }
-    if (*(int *)((longlong)pallocatedMemory + 0x24) == dataSource) break;
-    pallocatedMemory = (longlong *)*pallocatedMemory;
+    if (*(int *)((longlong)allocatedMemoryPointer + 0x24) == dataSource) break;
+    allocatedMemoryPointer = (longlong *)*allocatedMemoryPointer;
   }
   colorBufferPointer = pallocatedMemory + 5;
   *(int *)colorBufferPointer = (int)*colorBufferPointer + -1;
