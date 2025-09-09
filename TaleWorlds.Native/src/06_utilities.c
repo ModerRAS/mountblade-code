@@ -49999,6 +49999,11 @@ void ExceptionSystemInitializer370(DataBuffer systemContext, int64_t initializat
 
 
 
+// 异常处理器注册偏移量常量
+#define ExceptionProcessorRegistrationOffset 0x50
+#define ExceptionProcessorRegistrationType 0x58
+#define ExceptionProcessorRegistrationFlags 4
+
 /**
  * @brief 异常处理器注册器3B0
  * 
@@ -50010,7 +50015,7 @@ void ExceptionSystemInitializer370(DataBuffer systemContext, int64_t initializat
 void ExceptionProcessorRegistrar3B0(DataBuffer processorContext, int64_t registrationData)
 
 {
-  RegisterExceptionProcessor(*(int64_t *)(registrationData + 0x50) + SystemParameterValidationOffset288, 0x58, 4, InitializeExceptionHandlers);
+  RegisterExceptionProcessor(*(int64_t *)(registrationData + ExceptionProcessorRegistrationOffset) + SystemParameterValidationOffset288, ExceptionProcessorRegistrationType, ExceptionProcessorRegistrationFlags, InitializeExceptionHandlers);
   return;
 }
 
