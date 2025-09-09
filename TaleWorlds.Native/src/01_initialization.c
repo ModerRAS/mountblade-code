@@ -34718,8 +34718,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   void* stackBasePointer;
   void* stackFramePointer;
   void* *******stackTopPointer;
-  void* localStackPointerSecondary;
-  void* localStackPointerTertiary;
+  void* SecondaryStackPointer;
+  void* LocalSystemStackPointer;
   uint32_t globalStatusFlags;
   uint32_t stackIterationCount;
   long long StackRegisterValuePrimary;
@@ -34742,8 +34742,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   stackBasePointer = &stackBasePointer;
   stackFramePointer = &stackBasePointer;
   stackTopPointer = (void* *******)0x0;
-  localStackPointerSecondary = 0;
-  localStackPointerTertiary = 0;
+  SecondaryStackPointer = 0;
+  LocalSystemStackPointer = 0;
   globalStatusFlags = *SystemGlobalStatusFlags;
   stackIterationCount = 0;
   SystemAllocationFlags = *(long long *)(stackValue16 + 0x8a8);
@@ -49935,7 +49935,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   byte *SystemResourceNameBuffer;
   int ResourceProcessingCounter;
   byte SystemResourceNameArray [256];
-  void* StackPointerTertiary;
+  void* SystemStackPointer;
   ulong long SystemMemoryAllocatorStatus;
   long long ContextMemoryOffset;
   long long StackMemoryPointer;
@@ -60243,7 +60243,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* MemoryBufferPointer;
   void* StackPointerFloatingPoint;
   void* StackPointerExtendedPrimary;
-  void* StackPointerTertiary;
+  void* SystemStackPointer;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerQuaternary;
   float MatrixResult1;
@@ -65153,7 +65153,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* MemoryBufferPointer;
   void* StackPointerFloatingPoint;
   void* StackPointerExtendedPrimary;
-  void* StackPointerTertiary;
+  void* SystemStackPointer;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerQuaternary;
   void* StackPointerExtendedSecondary;

@@ -189,14 +189,14 @@ typedef enum {
 #define _DAT_180be12f0 GlobalUIResourceManagerF0         // 全局UI资源管理器F0
 
 // 未美化函数名语义化定义
-#define FUN_18073902d ProcessUIDataTransfer               // 处理UI数据传输
-#define FUN_180739085 ValidateAndProcessUIData           // 验证和处理UI数据
-#define FUN_1807390fd CleanupUIResourcesAndExecuteRender  // 清理UI资源并执行渲染
-#define FUN_18073915d ProcessUIDataBuffer                 // 处理UI数据缓冲区
-#define FUN_18072a9c0 ProcessUIComponentDataA9C0          // 处理UI组件数据A9C0
-#define FUN_18072f7d0 ValidateUILayoutDataF7D0            // 验证UI布局数据F7D0
-#define FUN_180736a70 RenderUIComponentA70                // 渲染UI组件A70
-#define FUN_180734160 ValidateUIComponentContext4160     // 验证UI组件上下文4160
+#define ProcessUIDataTransfer FUN_18073902d               // 处理UI数据传输
+#define ValidateAndProcessUIData FUN_180739085           // 验证和处理UI数据
+#define CleanupUIResourcesAndExecuteRender FUN_1807390fd  // 清理UI资源并执行渲染
+#define ProcessUIDataBuffer FUN_18073915d                 // 处理UI数据缓冲区
+#define ProcessUIComponentDataA9C0 FUN_18072a9c0          // 处理UI组件数据A9C0
+#define ValidateUILayoutDataF7D0 FUN_18072f7d0            // 验证UI布局数据F7D0
+#define RenderUIComponentA70 FUN_180736a70                // 渲染UI组件A70
+#define ValidateUIComponentContext4160 FUN_180734160     // 验证UI组件上下文4160
 #define FUN_180736a10 ProcessUIBufferDataA10              // 处理UI缓冲区数据A10
 #define FUN_180741e10 InitializeUIComponent1E10           // 初始化UI组件1E10
 #define FUN_180728660 ProcessUIContextDataTransfer          // 处理UI上下文数据传输
