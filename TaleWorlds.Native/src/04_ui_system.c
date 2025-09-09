@@ -300217,11 +300217,11 @@ UIStatus ProcessUIEventContextData(longlong *uiContext)
   eventProcessingCounter = *(uint *)((longlong)uiContext + 0xc);
   if ((int)((eventProcessingCounter ^ (int)eventProcessingCounter >> 0x1f) - ((int)eventProcessingCounter >> 0x1f)) < 0) {
     if (0 < (int)uiContext[1]) {
-      return;
+      return UIStatusInactive;
     }
     if ((0 < (int)eventProcessingCounter) && (*uiContext != 0)) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UIResourceBuffer180957f70,0x100,1);
+      ProcessUIResourceOperation(*(UIHandle *)(UIManagerCore + 0x1a0),*uiContext,&UIResourceBuffer180957f70,0x100,1);
     }
     *uiContext = 0;
     *(UIDword *)((longlong)uiContext + 0xc) = 0;
@@ -300233,14 +300233,14 @@ UIStatus ProcessUIEventContextData(longlong *uiContext)
     if (processingResult < 0) {
       contextHandleData = *uiContext + 0x14 + (longlong)processingResult * 0x18;
       do {
-        componentContextPtr = (UIDword *)FUN_180847820();
+        componentContextPtr = (UIDword *)GetComponentContextData();
         iterationCount = componentContextPtr[1];
-        EventTypeCode = componentContextPtr[2];
-        ProcessingStatus = componentContextPtr[3];
+        eventTypeCode = componentContextPtr[2];
+        processingStatus = componentContextPtr[3];
         *(UIDword *)(contextHandleData + -0x14) = *componentContextPtr;
         *(UIDword *)(contextHandleData + -0x10) = iterationCount;
-        *(UIDword *)(contextHandleData + -0xc) = EventTypeCode;
-        *(UIDword *)(contextHandleData + -8) = ProcessingStatus;
+        *(UIDword *)(contextHandleData + -0xc) = eventTypeCode;
+        *(UIDword *)(contextHandleData + -8) = processingStatus;
         *(UIHandle *)(contextHandleData + -4) = 0;
         localLong7 = localLong7 + -1;
         contextHandleData = contextHandleData + 0x18;
@@ -300250,95 +300250,115 @@ UIStatus ProcessUIEventContextData(longlong *uiContext)
   }
   *(UIDword *)(uiBufferData + 1) = 0;
   if (0 < (int)((eventProcessingCounter ^ (int)eventProcessingCounter >> 0x1f) - ((int)eventProcessingCounter >> 0x1f))) {
-    FUN_18084d3f0(uiContext,0);
+    ProcessUIEventContext(uiContext,0);
   }
-  return;
+  return UIStatusActive;
 }
 
 
 
 
- void FUN_18084c612(UIDword uiContext,int dataSource,uint targetBuffer)
-void FUN_18084c612(UIDword uiContext,int dataSource,uint targetBuffer)
-
+ /**
+ * @brief 处理UI事件数据缓冲区
+ * 
+ * 该函数负责处理UI事件数据的缓冲区操作，包括：
+ * - 事件数据复制
+ * - 缓冲区管理
+ * - 事件状态更新
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @return 处理结果
+ */
+UIStatus ProcessUIEventDataBuffer(UIDword uiContext,int dataSource,uint targetBuffer)
 {
-  UIDword result;
+  UIStatus result;
   UIDword iterationCount;
-  UIDword EventTypeCode;
+  UIDword eventTypeCode;
   longlong registerAX;
   UIDword *bufferPtr;
   longlong registerCX;
-  longlong EventDataIndex;
-  UIHandle BasePointer;
+  longlong eventDataIndex;
+  UIHandle basePointer;
   longlong contextHandleData;
-  longlong TargetHandle;
+  longlong targetHandle;
   
   contextHandleData = (longlong)dataSource;
   if (0 < dataSource) {
-    EventDataIndex = registerAX + 0x14 + registerCX * 8;
+    eventDataIndex = registerAX + 0x14 + registerCX * 8;
     do {
-      bufferPtr = (UIDword *)FUN_180847820();
+      bufferPtr = (UIDword *)GetComponentContextData();
       uiContext = *bufferPtr;
       result = bufferPtr[1];
       iterationCount = bufferPtr[2];
-      EventTypeCode = bufferPtr[3];
-      *(UIDword *)(EventDataIndex + -0x14) = uiContext;
-      *(UIDword *)(EventDataIndex + -0x10) = result;
-      *(UIDword *)(EventDataIndex + -0xc) = iterationCount;
-      *(UIDword *)(EventDataIndex + -8) = EventTypeCode;
-      *(UIHandle *)(EventDataIndex + -4) = BasePointer;
+      eventTypeCode = bufferPtr[3];
+      *(UIDword *)(eventDataIndex + -0x14) = uiContext;
+      *(UIDword *)(eventDataIndex + -0x10) = result;
+      *(UIDword *)(eventDataIndex + -0xc) = iterationCount;
+      *(UIDword *)(eventDataIndex + -8) = eventTypeCode;
+      *(UIHandle *)(eventDataIndex + -4) = basePointer;
       contextHandleData = contextHandleData + -1;
-      EventDataIndex = EventDataIndex + 0x18;
+      eventDataIndex = eventDataIndex + 0x18;
     } while (contextHandleData != 0);
-    targetBuffer = *(uint *)(TargetHandle + 0xc);
+    targetBuffer = *(uint *)(targetHandle + 0xc);
   }
-  *(int *)(TargetHandle + 8) = (int)BasePointer;
+  *(int *)(targetHandle + 8) = (int)basePointer;
   if (0 < (int)((targetBuffer ^ (int)targetBuffer >> 0x1f) - ((int)targetBuffer >> 0x1f))) {
-    FUN_18084d3f0(uiContext,0);
+    ProcessUIEventContext(uiContext,0);
   }
-  return;
+  return UIStatusActive;
 }
 
 
 
 
- void FUN_18084c61e(longlong uiContext)
-void FUN_18084c61e(longlong uiContext)
-
+ /**
+ * @brief 处理UI组件上下文数据
+ * 
+ * 该函数负责处理UI组件的上下文数据，包括：
+ * - 组件数据复制
+ * - 上下文状态管理
+ * - 事件处理
+ * 
+ * @param uiContext UI上下文
+ * @return 处理结果状态码
+ */
+UIStatus ProcessUIComponentContextData(longlong uiContext)
 {
-  UIDword result;
+  UIStatus result;
   UIDword iterationCount;
-  UIDword EventTypeCode;
-  UIDword ProcessingStatus;
+  UIDword eventTypeCode;
+  UIDword processingStatus;
   longlong registerAX;
   UIDword *componentContextPtr;
   uint maxProcessingCount;
   longlong localLong7;
-  UIHandle BasePointer;
-  longlong SourceHandle;
-  longlong TargetHandle;
+  UIHandle basePointer;
+  longlong sourceHandle;
+  longlong targetHandle;
   
   localLong7 = registerAX + 0x14 + uiContext * 8;
   do {
-    componentContextPtr = (UIDword *)FUN_180847820();
+    componentContextPtr = (UIDword *)GetComponentContextData();
     result = *componentContextPtr;
     iterationCount = componentContextPtr[1];
-    EventTypeCode = componentContextPtr[2];
-    ProcessingStatus = componentContextPtr[3];
+    eventTypeCode = componentContextPtr[2];
+    processingStatus = componentContextPtr[3];
     *(UIDword *)(localLong7 + -0x14) = result;
     *(UIDword *)(localLong7 + -0x10) = iterationCount;
-    *(UIDword *)(localLong7 + -0xc) = EventTypeCode;
-    *(UIDword *)(localLong7 + -8) = ProcessingStatus;
-    *(UIHandle *)(localLong7 + -4) = BasePointer;
-    SourceHandle = SourceHandle + -1;
+    *(UIDword *)(localLong7 + -0xc) = eventTypeCode;
+    *(UIDword *)(localLong7 + -8) = processingStatus;
+    *(UIHandle *)(localLong7 + -4) = basePointer;
+    sourceHandle = sourceHandle + -1;
     localLong7 = localLong7 + 0x18;
-  } while (SourceHandle != 0);
-  *(int *)(TargetHandle + 8) = (int)BasePointer;
-  maxProcessingCount = (int)*(uint *)(TargetHandle + 0xc) >> 0x1f;
-  if (0 < (int)((*(uint *)(TargetHandle + 0xc) ^ maxProcessingCount) - maxProcessingCount)) {
-    FUN_18084d3f0(result,0);
+  } while (sourceHandle != 0);
+  *(int *)(targetHandle + 8) = (int)basePointer;
+  maxProcessingCount = (int)*(uint *)(targetHandle + 0xc) >> 0x1f;
+  if (0 < (int)((*(uint *)(targetHandle + 0xc) ^ maxProcessingCount) - maxProcessingCount)) {
+    ProcessUIEventContext(result,0);
   }
-  return;
+  return UIStatusActive;
 }
 
 
