@@ -93446,14 +93446,14 @@ void ProcessUITransformMatrix(float uiContext, UIHandle dataSource, UIHandle tar
           } while (componentIndex != 0);
         }
       }
-      else if (sVar4 == 4) {
-        uiContext = (float)FUN_18071ebe0(uiContext,(longlong)(int)(*TargetHandle << (unmodifiedSIL & 0x1f)));
+      else if (operationType == 4) {
+        uiContext = (float)FUN_18071ebe0(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
         bufferSize = preservedRegister15D;
       }
       else {
         bufferSize = preservedRegister15D;
-        if (sVar4 == 5) {
-          uiContext = (float)FUN_18071f270(uiContext,(longlong)(int)(*TargetHandle << (unmodifiedSIL & 0x1f)));
+        if (operationType == 5) {
+          uiContext = (float)FUN_18071f270(uiContext,(longlong)(int)(*targetHandle << (shiftAmount & 0x1f)));
         }
       }
     }
