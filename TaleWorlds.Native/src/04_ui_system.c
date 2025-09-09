@@ -2247,9 +2247,6 @@ typedef enum {
 #define EventDataIndex UIEventDataIndex
 #define contextHandle UIContextHandle
 #define allocationFlags UIAllocationFlags
-#define preservedRegister15 UIPreservedRegister15
-
-// UI系统基础变量美化
 #define BaseValuePointer3 UIBaseValuePointer3
 #define BaseValuePointer7 UIBaseValuePointer7
 #define BasePointer UIBasePointer
