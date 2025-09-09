@@ -400346,13 +400346,13 @@ UIHandle ValidateUISystemData(longlong uiContext, UIHandle *dataSource)
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
-      result = FUN_1808aed00(*dataSource,uiContext + 0xc,4);
-      if ((int)result == 0) {
-        result = FUN_1808de0e0(dataSource,0);
+      validationResult = FUN_1808aed00(*dataSource,uiContext + 0xc,4);
+      if ((int)validationResult == 0) {
+        validationResult = FUN_1808de0e0(dataSource,0);
       }
     }
   }
-  return result;
+  return validationResult;
 }
 
 
