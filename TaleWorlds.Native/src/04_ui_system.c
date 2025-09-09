@@ -522,9 +522,9 @@ typedef enum {
 // UI系统函数宏定义 - 上下文清理和验证
 #define FUN_1807864f0 CleanupUIContextWithMemoryRelease
 #define FUN_180760790 ProcessUIComponentDataSourceAndValidation
-#define FUN_180760c90 ProcessUIComponentResource
-#define FUN_180749940 ValidateUIComponentHandle
-#define FUN_180744ae0 ProcessUIComponentHandle
+#define FUN_180760c90 ProcessUIComponentResourceAllocation
+#define FUN_180749940 ValidateUIComponentHandleWithBounds
+#define FUN_180744ae0 ProcessUIComponentHandleWithEventDispatch
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
