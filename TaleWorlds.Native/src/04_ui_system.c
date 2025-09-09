@@ -92176,7 +92176,7 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
   StackDwordData6 = bufferSize;
   StackHandleData2 = dataSource;
   StackLongData = AllocatedMemory;
-  FUN_180724e90(uiContext + 0x10,uiContext + 0x13f2,*(UIDword *)(uiBufferData + 0x11e4));
+  ProcessUIContextWithEncryption(uiContext + 0x10,uiContext + 0x13f2,*(UIDword *)(uiBufferData + 0x11e4));
   LoopCounter = *(int *)(uiBufferData + 0x11e4) + -1;
   AllocatedMemorySize = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5);
   ContextOffset = (longlong)LoopCounter;
@@ -92223,7 +92223,7 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
   contextOffset = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5 + (*(int *)(uiBufferData + 0x11e4) >> 3) * 7);
   *(float *)(allocatedMemory + contextOffset * 4) = *(float *)(allocatedMemory + contextOffset * 4) - 1e-06;
   if (*(int *)(uiBufferData + 0x1244) == 0) {
-    FUN_1807260d0(uiContext,basePointer + 0x21b0,basePointer + 0x35e0,allocatedMemory,
+    ProcessUIMemoryAllocation(uiContext,basePointer + 0x21b0,basePointer + 0x35e0,allocatedMemory,
                   *(UIDword *)(uiBufferData + 0x13ec));
     FUN_180724f40(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory);
     FUN_1807263d0(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
@@ -92269,7 +92269,7 @@ void InitializeUIContextSystem(void)
   UIDword stackData4c;
   UIDword stackData54;
   
-  FUN_1807260d0();
+  ProcessUIMemoryAllocation();
   FUN_180724f40();
   FUN_1807263d0();
   FUN_180726700();
@@ -99983,8 +99983,8 @@ void FUN_180724e37(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180724e90(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
-void FUN_180724e90(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
+ void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
+void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDword targetBuffer)
 
 {
   int processingResult;
@@ -101334,8 +101334,8 @@ void ProcessUIVectorTransform(float *uiContext, float dataSource, float targetBu
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807260d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_1807260d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIMemoryAllocation(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   longlong allocatedMemory;
