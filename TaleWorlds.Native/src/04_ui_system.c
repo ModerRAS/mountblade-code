@@ -3874,13 +3874,13 @@ void* UIGestureCoordinates;
  // UI系统数据缓冲区语义化定义
 #define UIDataBufferPrimary UIDataBufferPrimary
 #define UIDataBufferSecondary UIDataBufferSecondary
-#define UIDataBufferTertiary UNK_180953648
-#define UIDataBufferQuaternary UNK_180953668
-#define UIDataBufferQuinary UNK_180953688
+#define UIDataBufferTertiary UIDataBufferTertiary
+#define UIDataBufferQuaternary UIDataBufferQuaternary
+#define UIDataBufferQuinary UIDataBufferQuinary
 
  // UI系统坐标数据表语义化定义
-#define UICoordinateDataTable2D UNK_1809536a6
-#define UICoordinateDataTable3D UNK_1809536a8
+#define UICoordinateDataTable2D UICoordinateDataTable2D
+#define UICoordinateDataTable3D UICoordinateDataTable3D
 
  // UI系统函数结果表语义化定义
 #define UIFunctionResultTableTransform UNK_1809535ec
@@ -392435,7 +392435,9 @@ void FUN_18089a9d5(void)
 
 
 
-UIHandle FUN_18089a9dd(void)
+// UI系统空操作函数2
+// 执行空操作，返回固定句柄值
+UIHandle UIEmptyFunction2(void)
 
 {
   return 0x1c;
