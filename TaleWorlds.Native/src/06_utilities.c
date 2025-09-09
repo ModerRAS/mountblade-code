@@ -10480,7 +10480,7 @@ void InitializeUtilityModule(void);
 /**
  * @brief 工具模块配置参数
  */
-uint32_t UtilityPrimaryModuleConfig;
+uint32_t UtilityCoreModuleConfig;
 uint32_t UtilitySecondaryModuleConfig;
 uint32_t UtilityTertiaryModuleConfig;
 uint32_t UtilityQuaternaryModuleConfig;
@@ -47984,7 +47984,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x88);
+  memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset88);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -65434,8 +65434,8 @@ void CleanupSystemStatusG0(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupExceptionAtOffset8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x44) & 1) != 0) {
-    *(uint *)(dataBuffer + 0x44) = *(uint *)(dataBuffer + 0x44) & 0xfffffffe;
+  if ((*(uint *)(dataBuffer + DataBufferOffset44) & 1) != 0) {
+    *(uint *)(dataBuffer + DataBufferOffset44) = *(uint *)(dataBuffer + DataBufferOffset44) & 0xfffffffe;
     CleanupResourceHandler(dataBuffer + SystemDataBufferOffset200);
   }
   return;
@@ -65647,8 +65647,8 @@ void CleanupExceptionAtOffset144(DataBuffer exceptionContext,int64_t systemState
 void CleanupExceptionAtOffset160(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x54) & 4) != 0) {
-    *(uint *)(dataBuffer + 0x54) = *(uint *)(dataBuffer + 0x54) & 0xfffffffb;
+  if ((*(uint *)(dataBuffer + DataBufferOffset54) & 4) != 0) {
+    *(uint *)(dataBuffer + DataBufferOffset54) = *(uint *)(dataBuffer + DataBufferOffset54) & 0xfffffffb;
     CleanupResourceHandler(dataBuffer + ExceptionHandlerContextOffset58);
   }
   return;
