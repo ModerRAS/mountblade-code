@@ -50063,8 +50063,8 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     }
     PrimaryHashEntryPointer = *(void* **)(SystemResourceManager + SystemResourceManagerPoolOffset);
     if ((void* *)*PrimaryHashEntryPointer == &SystemMemoryManagerTemplate) {
-      charOutput = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + SystemHashEntryMappingOffset,&SystemResourceHandle);
-      while (charOutput != '\0') {
+      ResourceNameCharacter = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + SystemHashEntryMappingOffset,&SystemResourceHandle);
+      while (ResourceNameCharacter != '\0') {
         ResourcePoolPointer = (long long *)PrimaryHashEntryPointer[SystemHashEntryPoolIndex];
         if (SystemResourceHandle != (long long *)0x0) {
           *(uint8_t *)(SystemResourceHandle + SystemResourceNodeStatusFlagOffset) = 0;
@@ -50105,7 +50105,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
             SecondaryResourceHandle = (long long *)PrimaryResourceDataPointer[2];
           }
         }
-        charOutput = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + 2,&SystemResourceHandle);
+        ResourceNameCharacter = FindSystemResourceManagerMapping(PrimaryHashEntryPointer + 2,&SystemResourceHandle);
       }
     }
     else {
@@ -50184,7 +50184,7 @@ StackCheckPoint3:
         }
         if (((SystemHashEntryValue < SystemAllocationFlags + SystemContextReference) ||
             ((ulong long)(long long)*(int *)(SystemResourceManager + 0x3fc) < (long long)SystemInitializationStatusPrimary + 1U)) ||
-           (charOutput = (**(code **)*PrimaryHashEntryPointer)(PrimaryHashEntryPointer,ResourceDataOffset,&SystemSecondaryGlobalDataReferencePtr), charOutput == '\0')) {
+           (ResourceNameCharacter = (**(code **)*PrimaryHashEntryPointer)(PrimaryHashEntryPointer,ResourceDataOffset,&SystemSecondaryGlobalDataReferencePtr), ResourceNameCharacter == '\0')) {
           LOCK();
           *(long long *)(SystemResourceManager + 0x3f0) = *(long long *)(SystemResourceManager + 0x3f0) - SystemContextReference;
           UNLOCK();
