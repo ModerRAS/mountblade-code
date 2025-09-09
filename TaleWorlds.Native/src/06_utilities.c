@@ -27569,7 +27569,7 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
   }
   operationStatus = *(int *)(operationBase + OperationStatusOffset30);
   if (iterationCount <= operationStatus) {
-    *(int *)(operationBase + 0x30) = iterationCount;
+    *(int *)(operationBase + OperationStatusOffset30) = iterationCount;
       memcpy((int64_t)inputParameter + *(int64_t *)(operationBase + SystemParameterValidationOffset28),dataBuffer,(int64_t)operationResult);
   }
     memset((int64_t)operationStatus + *(int64_t *)(operationBase + SystemParameterValidationOffset28),0,(int64_t)(iterationCount - operationStatus));
