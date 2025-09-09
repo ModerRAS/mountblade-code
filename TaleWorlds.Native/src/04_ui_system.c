@@ -94529,7 +94529,7 @@ void ProcessUIComponentTransformations(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
+ void ProcessUIRenderBufferData(longlong uiContext,longlong dataSource,float *targetBuffer)
 /**
  * @brief 处理UI渲染缓冲区数据
  * 

@@ -30508,7 +30508,7 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
     if (((DataItemPointer[1] & 0x800) == 0) ||
        ((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + SystemDataSecondaryOffset18), inputParameter == 0 &&
         (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + DataItemPointerOffset17), inputParameter == 0)))) {
-      ProcessDataAndExecuteOperationO10(SystemContext,DataItemPointer + 0x19);
+      ProcessDataAndExecuteOperationO10(SystemContext,DataItemPointer + DataItemPointerOffset19);
     }
   }
   return;
@@ -30975,7 +30975,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = ValidateAndExecuteOperationsA1(floatResultA,calculatedIndex + 0x1c);
+      operationStatus = ValidateAndExecuteOperationsA1(floatResultA,calculatedIndex + CalculatedIndexOffset1C);
       if (operationStatus != 0) {
         return;
       }
@@ -31049,7 +31049,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
                         iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,8);
                         if (iterationCount == 0) {
                           memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-                          *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1dc);
+                          *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextOffset1DC);
                           iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
                           if (iterationCount == 0) {
                             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
