@@ -3958,7 +3958,7 @@ typedef enum {
  * 
  * @note 原始函数名: FUN_1806974e0
  */
- #define CalculateImagePixelocalLongiance FUN_1806974e0
+ #define CalculateImagePixelLocalVariance FUN_1806974e0
 
  /**
  * @brief 使用AVX2指令计算图像像素标准差
@@ -5007,7 +5007,7 @@ void* UIGestureCoordinates;
 #define ProcessUIRendererData5Optimized FUN_180677530
 
  原始函数名：FUN_1806978b0 - UI系统图像像素方差计算函数
-#define CalculateImagePixelocalLongiance FUN_1806978b0
+#define CalculateImagePixelLocalVariance FUN_1806978b0
 
  原始函数名：FUN_1806968e0 - UI系统图像块绝对差值计算函数
 #define CalculateImageBlockAbsoluteDifferenceAdvanced FUN_1806968e0
@@ -7005,7 +7005,7 @@ void* UICommandBufferData;
 void* UIDescriptorTable;
 void* UIRenderTargetTable;
 void* UIPipelineStateTable;
- UI系统输入数据表
+ // UI系统输入数据表
 void* UIInputDataTable;
 void* UICursorDataTable;
 void* UITouchDataTable;
@@ -19981,26 +19981,26 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
                   UIByte *resultPointer, char *param_6)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
-  float *pTransformCoefficient2;
-  float *pTransformCoefficient3;
-  char localChar5;
+  float *transformMatrix1;
+  float *transformMatrix2;
+  float *transformMatrix3;
+  float *transformMatrix4;
+  char collisionFlag;
   UIHandle maxProcessingCount;
-  UIByte aiterationCounter [16];
-  UIByte aeventProcessingCounter [16];
-  UIByte aeventStatus [16];
-  UIByte adataPointer [16];
-  uint result1;
-  longlong allocatedMemory2;
-  float *BaseValuePointer3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  longlong allocatedMemory6;
-  longlong allocatedMemory7;
-  ulonglong result8;
-  ulonglong result9;
-  longlong componentIndex0;
+  UIByte iterationCounter [16];
+  UIByte eventProcessingCounter [16];
+  UIByte eventStatus [16];
+  UIByte dataPointer [16];
+  uint collisionResult;
+  longlong allocatedMemorySize;
+  float *componentDataPointer;
+  longlong loopCounter1;
+  longlong loopCounter2;
+  longlong memoryOffset1;
+  longlong memoryOffset2;
+  ulonglong hashValue1;
+  ulonglong hashValue2;
+  longlong componentIndex;
   float *TransformCoefficient11;
   UIByte *animationDataPointer;
   float transformCoeff13;
@@ -31092,7 +31092,7 @@ void InitializeUIRenderingFunctions(void)
   }
   UISpecialFunctionProcessorPointer7 = (UIFunctionPtr *)&UISystemSpecialFunction7;
   if (UIBoolVar4) {
-    UISpecialFunctionProcessorPointer7 = CalculateImagePixelocalLongiance;
+    UISpecialFunctionProcessorPointer7 = CalculateImagePixelLocalVariance;
   }
   UIExtendedFunctionProcessorPointer1 = CalculateImagePixelAverageAdvanced;
   if (EventProcessingStatus) {
@@ -65027,7 +65027,7 @@ CalculateImagePixelAverage(UIByte (*uiContext) [32],int dataSource,UIByte (*targ
   计算结果，包含像素方差值和指针位置
   原始函数名: FUN_1806974e0
  UIHandle
-CalculateImagePixelocalLongiance(UIByte (*uiContext) [32],int dataSource,UIByte (*targetBuffer) [32],int bufferSize,
+CalculateImagePixelLocalVariance(UIByte (*uiContext) [32],int dataSource,UIByte (*targetBuffer) [32],int bufferSize,
                            UIByte (*resultPointer) [32])
 
 {
