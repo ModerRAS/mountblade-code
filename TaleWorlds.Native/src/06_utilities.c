@@ -22502,7 +22502,7 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
  * - 检查系统状态和数据完整性
  * - 确保内存操作的安全性
  */
-#define ValidateAndProcessDataOperation FUN_18089379d
+#define ValidateAndProcessDataOperation ValidateAndProcessSystemDataWithValidation
 
 int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlags)
 
@@ -130589,7 +130589,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
 // 复杂数据处理和验证相关宏定义
 // 原始函数名：FUN_18089379d - 数据验证和处理操作函数
 // 功能：验证并处理数据操作，确保数据正确性
-#define ValidateAndProcessDataOperation FUN_18089379d
+#define ValidateAndProcessDataOperation ValidateAndProcessSystemDataWithValidation
 #define ReturnFixedErrorCode FUN_1808938ab
 #define ValidateContextAndUpdateState FUN_1808938c0
 #define ValidateDataStateAndProcess FUN_180893930
