@@ -200009,35 +200009,55 @@ LAB_180787df9:
  
  WARNING: Control flow encountered bad instruction data
 
-int ProcessUICharacterValidation(longlong uiContext,UIDword dataSource,longlong *targetBuffer,longlong *bufferSize)
-
+/**
+ * @brief 处理UI字符验证和数据转换
+ * 
+ * 该函数负责验证UI字符数据的有效性，处理字符编码转换，
+ * 并管理相关的内存资源。函数执行以下主要操作：
+ * 1. 验证输入字符数据的有效性
+ * 2. 处理字符编码转换和格式化
+ * 3. 管理UI上下文数据和内存资源
+ * 4. 执行字符匹配和比较操作
+ * 5. 清理和释放相关资源
+ * 
+ * @param uiContext UI上下文指针，用于访问UI系统状态和数据
+ * @param dataSource 数据源标识符，指定输入数据的来源
+ * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小指针，用于管理缓冲区容量
+ * @return int 处理结果状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：ProcessUICharacterValidation
+ * @warning 该函数包含复杂的字符编码处理逻辑，需要仔细验证
+ * @see ValidateUIMemoryOperation, FUN_180760790, FUN_180760c90
+ */
+int ProcessUICharacterValidation(longlong uiContext, UIDword dataSource, longlong *targetBuffer, longlong *bufferSize)
 {
-  byte *pisCharacterMatch;
-  UIHandle iterationCount;
-  longlong *pstringCompareIndex;
-  code *plocalChar4;
-  byte IsValidationComplete;
-  longlong contextHandleData;
-  longlong localLong7;
-  UIByte *ptrLocal8;
-  int localInt9;
-  longlong registerAX;
-  char localChar10;
-  char localChar11;
-  char localChar12;
-  longlong *contextHandle;
-  uint16_t ResultValue3;
-  UIByte *ptrResult4;
-  longlong *BasePointer;
-  ulonglong SourceHandle;
-  longlong allocatedMemory6;
-  code *register10;
-  UIDword RegisterValue;
-  longlong *EventHandle;
-  char preservedRegister15B;
-  bool in_PF;
-  UIByte astackUInt50 [48];
-  UIByte *ptrResult5;
+  UIByte *characterMatchFlag;         // 字符匹配标志指针
+  UIHandle iterationCount;            // 迭代计数器
+  longlong *stringCompareIndex;       // 字符串比较索引指针
+  UIFunctionPtr *validationFunction;  // 验证函数指针
+  UIByte isValidationComplete;        // 验证完成标志
+  longlong contextHandleData;         // 上下文句柄数据
+  longlong characterDataOffset;       // 字符数据偏移量
+  UIByte *dataRegisterPtr;            // 数据寄存器指针
+  int processingResult;               // 处理结果状态
+  longlong registerAX;                 // AX寄存器值
+  char highByteDataSource;            // 数据源高字节
+  char validationChecksum;            // 验证校验和
+  char tempValidationChar;             // 临时验证字符
+  longlong *contextHandle;            // 上下文句柄指针
+  uint16_t charCodeValue;             // 字符编码值
+  UIByte *resultBufferPtr;            // 结果缓冲区指针
+  longlong *basePointer;               // 基础指针
+  ulonglong sourceHandle;              // 源句柄
+  longlong memoryAllocationFlag;       // 内存分配标志
+  UIFunctionPtr *cleanupFunction;      // 清理函数指针
+  UIDword registerValue;               // 寄存器值
+  longlong *eventHandle;               // 事件句柄指针
+  char preservedRegisterFlag;         // 保留寄存器标志
+  bool processorFlag;                  // 处理器状态标志
+  UIByte stackBuffer[48];              // 栈缓冲区
+  UIByte *secondaryResultPtr;          // 次要结果指针
   
   allocatedMemory6 = 0xc700787a;
   ptrLocal8 = (UIByte *)DataRegister;
