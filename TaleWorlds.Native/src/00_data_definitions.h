@@ -1680,12 +1680,12 @@ int InitializeStringProcessorFormatting(void)
   return (CallbackResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器K
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器压缩
+ * 设置字符串处理压缩所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorK(void)
+int InitializeStringProcessorCompression(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorKFlags;
@@ -1698,12 +1698,12 @@ int InitializeStringProcessorK(void)
   return (CallbackResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器L
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器加密
+ * 设置字符串处理加密所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorL(void)
+int InitializeStringProcessorEncryption(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorLFlags;
@@ -2012,12 +2012,12 @@ int InitializeMultiStringProcessorSystem(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器AD
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器认证
+ * 设置字符串处理认证所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorAD(void)
+int InitializeStringProcessorAuthentication(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorOperationFlags;
@@ -2036,12 +2036,12 @@ int InitializeStringProcessorAD(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器AE
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器授权
+ * 设置字符串处理授权所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorAE(void)
+int InitializeStringProcessorAuthorization(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorOperationFlags;
@@ -2054,12 +2054,12 @@ int InitializeStringProcessorAE(void)
   return (CallbackResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器AF
- * 设置字符串处理所需的数据结构和回调
+ * 初始化字符串处理器验证
+ * 设置字符串处理验证所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorAF(void)
+int InitializeStringProcessorVerification(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorOperationFlags;
@@ -2144,12 +2144,12 @@ int InitializeStringProcessorAA(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器K
- * 设置字符串处理K所需的数据结构和回调
+ * 初始化字符串处理器压缩
+ * 设置字符串处理压缩所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorK(void)
+int InitializeStringProcessorCompression(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorKFlags;
@@ -2162,12 +2162,12 @@ int InitializeStringProcessorK(void)
   return (CallbackResult != 0) - 1;
 }
 /**
- * 初始化字符串处理器L
- * 设置字符串处理L所需的数据结构和回调
+ * 初始化字符串处理器加密
+ * 设置字符串处理加密所需的数据结构和回调
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessorL(void)
+int InitializeStringProcessorEncryption(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorLFlags;
@@ -2360,12 +2360,12 @@ int InitializeStringProcessorV(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化系统模块B
- * 设置系统模块B所需的配置和数据结构
+ * 初始化系统模块次要
+ * 设置系统模块次要所需的配置和数据结构
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeSystemModuleB(void)
+int InitializeSystemModuleSecondary(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
@@ -2378,12 +2378,12 @@ int InitializeSystemModuleB(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化系统模块C
- * 设置系统模块C所需的配置和数据结构
+ * 初始化系统模块第三级
+ * 设置系统模块第三级所需的配置和数据结构
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeSystemModuleC(void)
+int InitializeSystemModuleTertiary(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
@@ -2395,7 +2395,7 @@ int InitializeSystemModuleC(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
-int InitializeSystemModuleD(void)
+int InitializeSystemModuleQuaternary(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
@@ -2408,12 +2408,12 @@ int InitializeSystemModuleD(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理系统模块M
- * 设置字符串处理系统模块M所需的数据结构和缓冲区
+ * 初始化字符串处理系统模块高级
+ * 设置字符串处理系统模块高级所需的数据结构和缓冲区
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessingSystemM(void)
+int InitializeStringProcessingSystemAdvanced(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
@@ -2426,12 +2426,12 @@ int InitializeStringProcessingSystemM(void)
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
- * 初始化字符串处理系统模块N
- * 设置字符串处理系统模块N所需的数据结构和缓冲区
+ * 初始化字符串处理系统模块增强
+ * 设置字符串处理系统模块增强所需的数据结构和缓冲区
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeStringProcessingSystemN(void)
+int InitializeStringProcessingSystemEnhanced(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
@@ -3049,7 +3049,7 @@ int InitializeSystemResourceManager(void)
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemRequestHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
-int HandleSystemRequest(uint64_t RequestId,uint64_t RequestType,uint64_t RequestData,uint64_t RequestFlags)
+int ProcessSystemRequest(uint64_t RequestId,uint64_t RequestType,uint64_t RequestData,uint64_t RequestFlags)
 {
   int64_t ModuleInitializationResult;
   _Mtx_init_in_situ(RequestMutexAddress,2,MutexParameter3,MutexParameter4,SystemMutexFlags);
@@ -3170,7 +3170,7 @@ int InitializeSystemSecurityManager(void)
   FinalizeSystemSetup();
   return;
 }
-void InitializeNativeSDLL(uint64_t InitFlags)
+void InitializeNativeCoreDLL(uint64_t InitFlags)
 {
   uint64_t SystemModuleHandleArray [2];
   SystemConfigurationStatus = 0;
@@ -4672,13 +4672,13 @@ Label_ModuleConfigurationStart:
   SystemSecurityCheck(StackCounter1 ^ (ulonglong)aStackErrorCode);
 }
 /**
- * 初始化内存缓冲区
+ * 配置内存缓冲区
  * 将内存缓冲区的特定位置设置为0，并在偏移量0x46处设置为3
  * 
- * @param SystemContextDataPointer 要初始化的内存缓冲区指针
- * @return 返回初始化后的内存缓冲区指针
+ * @param SystemContextDataPointer 要配置的内存缓冲区指针
+ * @return 返回配置后的内存缓冲区指针
  */
-uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
+uint64_t * ConfigureMemoryBuffer(uint64_t *memoryBufferPtr)
 {
   *memoryBufferPtr = 0;
   memoryBufferPtr[0x43] = 0;
@@ -4814,7 +4814,7 @@ Label_MemoryPoolInitialized:
  * 
  * @return 返回操作结果，成功返回0，失败返回错误码
  */
-uint HandleMutexOperations(void)
+uint ProcessMutexOperations(void)
 {
   uint in_EAX;
   int LoopCounter;

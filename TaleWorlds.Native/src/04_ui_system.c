@@ -1262,6 +1262,47 @@ typedef enum {
 #define sourceZ UISourceZ
 #define sourceZ2 UISourceZ2
 #define dataSource UIDataSource
+#define FloatValue1 UIFloatValue1
+#define FloatValue2 UIFloatValue2
+#define FloatValue3 UIFloatValue3
+#define FloatValue4 UIFloatValue4
+#define FloatValue5 UIFloatValue5
+#define FloatValue6 UIFloatValue6
+#define FloatValue7 UIFloatValue7
+#define FloatValue8 UIFloatValue8
+#define FloatValue9 UIFloatValue9
+#define crossProductZ UICrossProductZ
+#define vectorComponentX UIVectorComponentX
+#define vectorComponentY UIVectorComponentY
+#define vectorComponentZ UIVectorComponentZ
+#define bufferPointer UIBufferPointer
+#define transformCoeff1 UITransformCoeff1
+#define transformCoeff2 UITransformCoeff2
+#define transformCoeff3 UITransformCoeff3
+#define transformCoeff4 UITransformCoeff4
+#define transformCoeff5 UITransformCoeff5
+#define transformCoeff6 UITransformCoeff6
+#define transformCoeff7 UITransformCoeff7
+#define transformCoeff8 UITransformCoeff8
+#define transformCoeff9 UITransformCoeff9
+#define transformCoeff10 UITransformCoeff10
+#define transformCoeff11 UITransformCoeff11
+#define transformCoeff12 UITransformCoeff12
+#define transformCoeff13 UITransformCoeff13
+#define transformCoeff14 UITransformCoeff14
+#define transformCoeff15 UITransformCoeff15
+#define transformCoeff16 UITransformCoeff16
+#define transformCoeff17 UITransformCoeff17
+#define transformCoeff18 UITransformCoeff18
+#define transformCoeff19 UITransformCoeff19
+#define transformCoeff20 UITransformCoeff20
+#define allocatedMemory1 UIAllocatedMemory1
+#define allocatedMemory2 UIAllocatedMemory2
+#define allocatedMemory8 UIAllocatedMemory8
+#define allocatedMemory9 UIAllocatedMemory9
+#define allocatedMemory10 UIAllocatedMemory10
+#define EventProcessingStatus UIEventProcessingStatus
+#define validationFlag UIValidationFlag
 #define ProcessUIDataSimple FUN_18071f82d
 #define ProcessUIDataWithHandles FUN_18071f864
 #define FinalizeUIDataProcessing FUN_18071f984
@@ -50202,14 +50243,14 @@ int ValidateUIResourceIntegrity(UIHandle uiContext,int dataSource,UIHandle targe
   UIByte squaredSum1 [64];
   
   zeroVector = ZEXT832(0) << 0x40;
-  sumResult0 = ZEXT3264(zeroVector);
-  sumResult1 = ZEXT3264(zeroVector);
-  tempVector9 = zeroVector;
-  tempVector5 = zeroVector;
+  squaredSum0 = ZEXT3264(zeroVector);
+  squaredSum1 = ZEXT3264(zeroVector);
+  tempVector2 = zeroVector;
+  diffVector1 = zeroVector;
   if (targetBuffer == 0) {
-    if (bufferSize == 0) {
-      if (0 < (int)param_7) {
-        pixelCount = (ulonglong)param_7;
+    if (processingMode == 0) {
+      if (0 < (int)pixelCount) {
+        remainingPixels = (ulonglong)pixelCount;
         do {
           tempVector9 = vpunpcklbw_avx2(*resultPointer,zeroVector);
           tempVector5 = vpunpcklbw_avx2(*uiContext,zeroVector);
