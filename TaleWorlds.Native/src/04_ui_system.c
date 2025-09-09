@@ -1397,8 +1397,58 @@ typedef enum {
 #define ApplyUITransformEffects ApplyUITransformEffectsInternal
 
 #define UpdateUIRenderBuffer UpdateUIRenderBufferInternal
+
+// UI系统函数宏定义补充
+#define FUN_18089a9d5 UIEmptyFunction1
+#define FUN_18089a9dd UIEmptyFunction2
+#define FUN_18089a9f0 ProcessUIContextDataWithBuffer
+#define FUN_18089aa30 UIEmptyFunction3
+#define FUN_18089aa38 UIEmptyFunction4
+#define FUN_18089aa40 UIEmptyFunction5
+#define FUN_18089aa48 UIEmptyFunction6
+#define FUN_18089aa50 UIEmptyFunction7
+#define FUN_18089aa58 UIEmptyFunction8
+#define FUN_18089aa60 UIEmptyFunction9
+#define FUN_18089aa68 UIEmptyFunction10
+#define FUN_18089aa70 UIEmptyFunction11
+#define FUN_18089aa78 UIEmptyFunction12
+#define FUN_18089aa80 UIEmptyFunction13
+#define FUN_18089aa88 UIEmptyFunction14
+#define FUN_18089aa90 UIEmptyFunction15
+#define FUN_18089aa98 UIEmptyFunction16
+#define FUN_18089aaa0 UIEmptyFunction17
+#define FUN_18089aaa8 UIEmptyFunction18
+#define FUN_18089aab0 UIEmptyFunction19
+#define FUN_18089aab8 UIEmptyFunction20
+#define FUN_18089aac0 UIEmptyFunction21
+#define FUN_18089aac8 UIEmptyFunction22
+#define FUN_18089aad0 UIEmptyFunction23
+#define FUN_18089aad8 UIEmptyFunction24
+#define FUN_18089aae0 UIEmptyFunction25
+#define FUN_18089aae8 UIEmptyFunction26
+#define FUN_18089aaf0 UIEmptyFunction27
+#define FUN_18089aaf8 UIEmptyFunction28
+#define FUN_18089ab00 UIEmptyFunction29
+#define FUN_18089ab08 UIEmptyFunction30
+
+/**
+ * @brief 计算UI布局参数
+ * 
+ * 该函数计算UI组件的布局参数，包括位置、大小和间距等。
+ * 支持响应式布局和自适应调整。
+ * 
+ * @note 原始函数名：CalculateUILayoutParametersInternal
+ */
 #define CalculateUILayoutParameters CalculateUILayoutParametersInternal
 
+/**
+ * @brief 初始化UI内存池
+ * 
+ * 该函数初始化UI系统的内存池，用于管理UI组件的内存分配。
+ * 提供高效的内存管理和垃圾回收功能。
+ * 
+ * @note 原始函数名：InitializeUIMemoryPool
+ */
 #define InitializeUIMemoryPool InitializeUIMemoryPool
 
 // UI系统函数参数语义化定义
