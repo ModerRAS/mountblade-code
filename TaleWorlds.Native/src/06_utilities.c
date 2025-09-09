@@ -30827,34 +30827,36 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
 DataBuffer ProcessDataConversionA0(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
-  DataBuffer systemDataBuffer;
+  DataBuffer conversionResult;
   uint operationResult;
   unsigned int stackParameterBuffer [2];
+  DataWord systemDataBuffer [2];
+  DataWord stackDataBuffer [2];
   
   operationResult = *(int *)(dataBuffer + 1) - 1;
   if (*(int *)(dataBuffer + 1) < 1) {
     operationResult = 0;
   }
   if (operationResult < 0x8000) {
-    systemUIntBuffer[0] = CONCAT22(systemUIntBuffer[0]._2_2_,(short)operationResult);
-    systemDataBuffer = 2;
+    systemDataBuffer[0] = CONCAT22(systemDataBuffer[0]._2_2_,(short)operationResult);
+    conversionResult = 2;
   }
   else {
-    systemDataBuffer = 4;
-    stackUIntBuffer[0] = (operationResult & 0xffffc000 | 0x4000) * 2 | operationResult & 0x7fff;
+    conversionResult = 4;
+    stackDataBuffer[0] = (operationResult & 0xffffc000 | 0x4000) * 2 | operationResult & 0x7fff;
   }
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackUIntBuffer,systemDataBuffer);
-  if ((int)systemDataBuffer == 0) {
+  conversionResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
+                    (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,conversionResult);
+  if ((int)conversionResult == 0) {
     if ((operationResult != 0) &&
-       (systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
+       (conversionResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),*dataBuffer,(int64_t)(int)operationResult),
-       (int)systemDataBuffer != 0)) {
-      return systemDataBuffer;
+       (int)conversionResult != 0)) {
+      return conversionResult;
     }
-    systemDataBuffer = 0;
+    conversionResult = 0;
   }
-  return systemDataBuffer;
+  return conversionResult;
 }
 
 
@@ -41057,24 +41059,24 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  DataWord stackUIntBuffer [6];
+  DataWord stackProcessingBuffer [6];
   
   if (*(uint *)(dataBuffer + 8) < 0x55) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
+    stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset50);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                      (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                      (*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4);
     if ((int)systemDataBuffer != 0) {
       return systemDataBuffer;
     }
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
+    stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset54);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                      (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                      (*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4);
     if ((int)systemDataBuffer != 0) {
       return systemDataBuffer;
     }
@@ -41083,9 +41085,9 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset78);
+    stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset78);
     systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
-                      (*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4);
+                      (*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4);
     if ((int)systemDataBuffer != 0) {
       return systemDataBuffer;
     }
@@ -41093,8 +41095,8 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
+  stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset58);
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4)
   ;
   if ((int)systemDataBuffer != 0) {
     return systemDataBuffer;
@@ -41102,8 +41104,8 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset5c);
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
+  stackProcessingBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset5c);
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackProcessingBuffer,4)
   ;
   if ((int)systemDataBuffer == 0) {
     if (*(uint *)(dataBuffer + 8) < 0x53) {
