@@ -233831,7 +233831,7 @@ LAB_180191cda:
   *(void *)(ThreadLocalStorageData + 0x20) = 0;
   *(long long *)(ContextHandle + 0x30) = LoopCounter;
   *(int *)(ContextHandle + 0x40) = OperationBufferSize;
-  MemoryAllocationIndex = FUN_180193bc0((long long)OperationBufferSize);
+  MemoryAllocationIndex = AllocateSystemMemoryEx((long long)OperationBufferSize);
   *(void *)(ContextHandle + 0x38) = MemoryAllocationIndex;
   CalculatedCodePoint = UnicodeCodePoint;
   if (0 < *(int *)(ContextHandle + 0x40)) {
@@ -233960,19 +233960,19 @@ LAB_180193610:
   }
   CoreEngineInitializeSystemEvent(ContextHandle + 0x28,ContextHandle + 8);
 LAB_18019368b:
-  SystemDataRegistry = FUN_180631000(OperationBufferSize,&SystemKeyStringDynamicFriction,SystemKeyBuffer);
+  SystemDataRegistry = ProcessSystemKeyData(OperationBufferSize,&SystemKeyStringDynamicFriction,SystemKeyBuffer);
   if ((SystemDataRegistry != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(ContextHandle + 0x48) = *(byte *)(ContextHandle + 0x48) | 1;
   }
-  SystemDataRegistry = FUN_180631000(OperationBufferSize,&SystemKeyStringRestitution,SystemKeyBuffer);
+  SystemDataRegistry = ProcessSystemKeyData(OperationBufferSize,&SystemKeyStringRestitution,SystemKeyBuffer);
   if ((SystemDataRegistry != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(ContextHandle + 0x48) = *(byte *)(ContextHandle + 0x48) | 4;
   }
-  SystemDataRegistry = FUN_180631000(OperationBufferSize,&SystemKeyStringDensity,SystemKeyBuffer);
+  SystemDataRegistry = ProcessSystemKeyData(OperationBufferSize,&SystemKeyStringDensity,SystemKeyBuffer);
   if ((SystemDataRegistry != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(ContextHandle + 0x48) = *(byte *)(ContextHandle + 0x48) | 2;
   }
-  SystemDataRegistry = FUN_180631000(OperationBufferSize,&SystemKeyStringFrictionCombine,SystemKeyBuffer);
+  SystemDataRegistry = ProcessSystemKeyData(OperationBufferSize,&SystemKeyStringFrictionCombine,SystemKeyBuffer);
   if ((SystemDataRegistry != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(ContextHandle + 0x48) = *(byte *)(ContextHandle + 0x48) | 8;
   }
@@ -235028,7 +235028,7 @@ uint64_t * FUN_1801940f0(long long ContextHandle,uint64_t *ContextHandleSize,lon
           SystemDataRegistry = AllocateBufferMemory();
         }
         if (*(long long *)(SystemDataRegistry + 0x1b0) != 0) {
-          SystemDataRegistry = FUN_180085e10();
+          SystemDataRegistry = GetSystemDataRegistry();
         }
         if (0 < *(int *)(SystemDataRegistry + 0x208)) {
           *(float *)(CharacterTablePointer + 0x2dc) = (float)Utf16EndPointer;
@@ -236752,7 +236752,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   *(uint8_t *)(ContextHandle + 0x522) = 0;
   ContextHandle[0x523] = 0;
   CalculatedCodePoint = MemoryAllocate(MemoryPoolManager,0xb60,8,3);
-  CalculatedCodePoint = FUN_1802d1460(CalculatedCodePoint,ContextHandle);
+  CalculatedCodePoint = CalculateUnicodeCodePointEx(CalculatedCodePoint,ContextHandle);
   ContextHandle[0x4c] = CalculatedCodePoint;
   *(uint8_t *)(ContextHandle + 9) = 0;
   ContextHandle[0x4b] = 0;
@@ -237009,7 +237009,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   if (plStack_190 != (long long *)0x0) {
     MemoryAddressMaskPointer = (**(code **)(*plStack_190 + 0x38))();
   }
-  CalculatedCodePoint = FUN_180095000(MemoryAddressMaskPointer,&plStack_100,&SystemStringTemplatePrimary,0);
+  CalculatedCodePoint = ProcessSystemStringTemplate(MemoryAddressMaskPointer,&plStack_100,&SystemStringTemplatePrimary,0);
   HandleOperationBufferSize(MemoryPoolBlockSizePointer,CalculatedCodePoint);
   if (plStack_100 != (long long *)0x0) {
     (**(code **)(*plStack_100 + 0x38))();
@@ -237033,7 +237033,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   } while (SystemMemoryAllocationResult < 0x20);
   FUN_18005d580(&SystemFlagF);
   CalculatedCodePoint = MemoryAllocate(MemoryPoolManager,0x2f0,0x10,3);
-  CalculatedCodePoint = FUN_1802e6b00(CalculatedCodePoint,4);
+  CalculatedCodePoint = ProcessSystemDataConversion(CalculatedCodePoint,4);
   StoreSystemMemoryStatus(ContextHandle + 0x12,CalculatedCodePoint);
   ContextHandle[0x13] = 0;
   FUN_1801afbc0(ContextHandle);
