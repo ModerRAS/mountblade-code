@@ -497,6 +497,21 @@ typedef enum {
 #define LAB_180656d5b UIDefaultResourceCheckLabel
 #define LAB_180656e1e UICharacterValidationLabel
 #define LAB_1806572f9 UIEventDataValidationLabel
+
+// UI系统数组栈变量宏定义
+#define aiStackX_10 UIValidationStackArray10
+
+// UI系统局部整数变量宏定义（补充）
+#define localInt1 UILocalProcessingIndex1
+#define localInt2 UILocalProcessingIndex2
+#define localInt3 UILocalProcessingIndex3
+#define localInt4 UILocalProcessingIndex4
+#define localInt6 UILocalProcessingIndex6
+
+// UI系统栈变量宏定义（补充）
+#define uStack000000000000005c UIStackBuffer5C
+#define uStack00000000000000dc UIStackBufferDC
+#define uStack00000000000000fc UIStackBufferFC
 #define LAB_1806575b7 UIProcessingCompleteLabel
 #define LAB_1806575f7 UICharacterCodeValidationLabel
 #define LAB_1806577f1 UIProcessingCounterValidationLabel
