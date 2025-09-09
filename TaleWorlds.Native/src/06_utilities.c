@@ -9917,6 +9917,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define inputParameter2 validationParameter2    // 验证参数2
 #define inputParameter4 validationParameter4    // 验证参数4
 #define inputParameter6 validationParameter6    // 验证参数6
+#define inputParameter8 dataBufferSize    // 数据缓冲区大小
 #define inputParameter9 validationParameter9    // 验证参数9
 #define exceptionDataBuffer exceptionBuffer2    // 异常缓冲区2
 #define exceptionBuffer3 exceptionBuffer3    // 异常缓冲区3
@@ -9926,6 +9927,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define systemDataBuffer5 systemBuffer5    // 系统缓冲区5
 #define DestinationContext destinationContext    // 目标上下文
 #define SourceContext sourceContext    // 源上下文
+#define InputParam78 dataProcessingContext    // 数据处理上下文
 #define operationBase operationBaseAddress    // 操作基地址
 #define StackFrameContext stackFrameContext    // 栈帧上下文
 #define registerContext registerContextPointer    // 寄存器上下文指针
