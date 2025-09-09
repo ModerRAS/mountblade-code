@@ -302,6 +302,10 @@
 #define StackFrameContextNegativeOffset78 -0x78
 #define StackFrameContextNegativeOffset70 -0x70
 #define StackFrameContextNegativeOffset68 -0x68
+#define StackFrameContextNegativeOffset64 -0x64
+#define StackFrameContextNegativeOffset60 -0x60
+#define StackFrameContextNegativeOffset5c -0x5c
+#define StackFrameContextNegativeOffset58 -0x58
 #define StackFrameContextNegativeOffset54 -0x54
 #define StackFrameContextNegativeOffset10 -0x10
 #define SystemStatusCheckOffset24 0x24
@@ -23750,7 +23754,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
        (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryCopyLabel:
-        memcpy(StackFrameContext + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
+        memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
     }
   }
   else {
@@ -25598,17 +25602,17 @@ void ProcessFloatingPointDataWithValidation(void)
         memoryRegionBase = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerDataPointerOffset14);
         operationResult = *(DataWord *)(exceptionHandlerDataPointer + SystemDataSecondaryOffset18);
         dataFlags = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerDataPointerOffset1C);
-        *(DataWord *)(StackFrameContext + -0x78) = 0;
-        *(int *)(StackFrameContext + -0x68) = processingLoopCounter;
-        *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset78) = 0;
+        *(int *)(StackFrameContext + StackFrameContextNegativeOffset68) = processingLoopCounter;
+        *(uint8_t **)(StackFrameContext + StackFrameContextNegativeOffset80) = &SystemDataTableReference;
         processingLoopCounter = processingLoopCounter + 1;
-        *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
-        *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
-        *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
-        *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
-        *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
-        validationSizeResult = ValidateDataIntegrityA0(validationStatus,StackFrameContext + -0x80);
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset54) = SystemOperationResult;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset70) = basePointer;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset64) = validationStatus;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset60) = memoryRegionBase;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset5c) = operationResult;
+        *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset58) = dataFlags;
+        validationSizeResult = ValidateDataIntegrityA0(validationStatus,StackFrameContext + StackFrameContextNegativeOffset80);
         if ((validationSizeResult != 0) || (validationSizeResult = SynchronizeDataEQ0(dataContext,&NormalizedParameterValue), validationSizeResult != 0))
         goto SizeValidationCheckpoint;
         processedFloatValue = NormalizedParameterValue;
