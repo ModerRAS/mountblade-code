@@ -72848,7 +72848,7 @@ ProcessDataStructureAllocation(long long *targetDataStructure,uint64_t *sourceDa
     if (reservedParameter2 != *(uint64_t **)(AllocatedMemorySize + 0x10)) goto SystemDataValidationLabel;
   }
   *(long long **)(AllocatedMemorySize + 0x10) = additionalParameter2;
-LAB_18008f4f4:
+SystemResourceReleaseLabel:
   statusFlag = *(char *)(additionalParameter2[1] + 0x18);
   systemDataTablePointer = additionalParameter2;
   do {

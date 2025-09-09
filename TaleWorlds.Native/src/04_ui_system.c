@@ -134831,34 +134831,33 @@ ulonglong ProcessUIResourceData(ulonglong uiContext, char dataSource)
           return maxProcessingCount;
         }
         if (*(longlong *)(uiBufferData + 0x11418) != 0) {
-          maxProcessingCount = FUN_1807726d0(*(longlong *)(uiBufferData + 0x11418),1);
+          maxProcessingCount = ProcessUIResourceCleanup(*(longlong *)(uiBufferData + 0x11418), 1);
           if ((int)maxProcessingCount != 0) {
             return maxProcessingCount;
           }
           *(UIHandle *)(uiContext + 0x11418) = 0;
           *(UIByte *)(uiContext + 9) = 0;
         }
-        ValidateUIMemoryOperation(uiContext,1);
-        FUN_18078c0a0(uiContext,0);
+        ValidateUIMemoryOperation(uiContext, 1);
+        ProcessUIResourceRequest(uiContext, 0);
       }
       if ((*(longlong *)(uiBufferData + 0x107b8) != 0) &&
          (contextOffset = *(longlong *)(*(longlong *)(uiBufferData + 0x107b8) + 0x18), contextOffset != 0)) {
-                     WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),contextOffset,&UNK_180958000,0x343,1);
+        ProcessUIResourceRequest(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0), contextOffset, &UIComponentDataF50, 0x343, 1);
       }
-      maxProcessingCount = FUN_1807437c0(uiContext);
-      if ((((int)maxProcessingCount == 0) && (maxProcessingCount = ValidateUIMemoryOperation(uiContext,1), (int)maxProcessingCount == 0)) &&
+      maxProcessingCount = ValidateUIComponentState(uiContext);
+      if ((((int)maxProcessingCount == 0) && (maxProcessingCount = ValidateUIMemoryOperation(uiContext, 1), (int)maxProcessingCount == 0)) &&
          (maxProcessingCount = CheckUIMemoryStatus(uiContext), (int)maxProcessingCount == 0)) {
-        func_0x00018078a4c0(uiContext + 0x720,auStackX_8);
-        maxProcessingCount = FUN_18078a260(uiContext + 0x720);
-        if ((((int)maxProcessingCount == 0) && (maxProcessingCount = FUN_180742070(uiContext + 0x10848), (int)maxProcessingCount == 0)) &&
-           ((maxProcessingCount = FUN_180742070(uiContext + 0x10bd0), (int)maxProcessingCount == 0 &&
-            ((maxProcessingCount = FUN_180743880(uiContext), (int)maxProcessingCount == 0 &&
-             (maxProcessingCount = FUN_18076fc40(uiContext + 0x12798), (int)maxProcessingCount == 0)))))) {
+        ProcessUIContextData(uiContext + 0x720, auStackX_8);
+        maxProcessingCount = ProcessUIContextValidation(uiContext + 0x720);
+        if ((((int)maxProcessingCount == 0) && (maxProcessingCount = ValidateUIResourceData(uiContext + 0x10848), (int)maxProcessingCount == 0)) &&
+           ((maxProcessingCount = ValidateUIResourceData(uiContext + 0x10bd0), (int)maxProcessingCount == 0 &&
+            ((maxProcessingCount = ValidateUIComponentState(uiContext), (int)maxProcessingCount == 0 &&
+             (maxProcessingCount = CheckUIResourceHandle(uiContext + 0x12798), (int)maxProcessingCount == 0)))))) {
           pCharacterDataOffset = (longlong *)(uiContext + 0x11530);
           do {
             if (*pCharacterDataOffset != 0) {
-              maxProcessingCount = FUN_180768380(*pCharacterDataOffset,0);
+              maxProcessingCount = ReleaseUIResourceHandle(*pCharacterDataOffset, 0);
               if ((int)maxProcessingCount != 0) {
                 return maxProcessingCount;
               }
