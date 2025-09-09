@@ -18468,15 +18468,15 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_18089f31e - 系统配置函数C1
 // 功能：配置系统参数和选项
-#define ConfigureSystemOptionsC1 FUN_18089f31e
+#define ExecuteSystemConfigurationAndSetupOptionsC1 FUN_18089f31e
 
 // 原始函数名：FUN_18089f474 - 空操作函数Z
 // 功能：空操作函数，无实际功能
-#define UtilityNoOperationZ FUN_18089f474
+#define ExecuteNoOperationAndReturnZ FUN_18089f474
 
 // 原始函数名：FUN_18089f47c - 空操作函数AA
 // 功能：空操作函数，无实际功能
-#define UtilityNoOperationAA FUN_18089f47c
+#define ExecuteNoOperationAndReturnAA FUN_18089f47c
 
 /**
  * @brief 系统状态验证函数C2
