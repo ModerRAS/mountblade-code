@@ -89418,7 +89418,7 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
   UIByte componentIndex [16];
   float baseValue6;
   UIByte vectorResult7 [16];
-  double dVar18;
+  double ComparisonResult;
   float floatValue2;
   float accumulatedFloat;
   float unmodifiedXMM10_Da;
@@ -89452,12 +89452,12 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
         FloatValue2 = -9.0;
       }
       baseValue = *BaseValuePointer0;
-      dVar18 = 0.0;
+      ComparisonResult = 0.0;
       AccumulatedFloat = (baseValue6 - FloatValue2 * unmodifiedXMM10_Da) - baseValue;
       baseValue1 = AccumulatedFloat + 0.5;
       aresult7._0_8_ = (double)baseValue1;
       localLong7 = (longlong)baseValue1;
-      if ((localLong7 != contextHandle) && (dVar18 = (double)localLong7, dVar18 != aresult7._0_8_)) {
+      if ((localLong7 != contextHandle) && (ComparisonResult = (double)localLong7, ComparisonResult != aresult7._0_8_)) {
         aresult7._8_8_ = aresult7._0_8_;
         loopCounter = movmskpd(TempInt4,aresult7);
         aresult7._0_8_ = (double)(longlong)(localLong7 - (ulonglong)(loopCounter & 1));

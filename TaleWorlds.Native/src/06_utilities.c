@@ -20195,8 +20195,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   unsigned int validationDataBuffer [2];
   int64_t systemContextBuffer;
   int64_t resourceDataPointer;
-  int64_t resourceIterator;
-  int64_t memoryBlockOffset;
+  int64_t ResourceTraversalIndex;
+  int64_t MemoryAllocationOffset;
   
   validationDataBuffer[0] = *(uint *)(systemContext + SystemDataSecondaryOffset18);
   if ((validationDataBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
@@ -30082,51 +30082,51 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
 DataBuffer ExecuteSystemCheckA0(void)
 
 {
-  DataBuffer SystemDataBuffer;
-  float *SystemFloatPointer;
-  int64_t SystemStackFramePointer;
-  int64_t SystemContext;
-  int OperationStatus;
-  float NormalizedValue;
-  BytePair StackValueBuffer;
+  DataBuffer checkResult;
+  float *floatDataPointer;
+  int64_t stackFramePointer;
+  int64_t systemContext;
+  int processingIndex;
+  float normalizedValue;
+  BytePair stackValueBuffer;
   
-  OperationStatus = 0;
-  if (0 < *(short *)(SystemContext + FloatDataArraySizeOffset)) {
-    SystemFloatPointer = (float *)(SystemContext + FloatDataPointerOffset84);
+  processingIndex = 0;
+  if (0 < *(short *)(systemContext + FloatDataArraySizeOffset)) {
+    floatDataPointer = (float *)(systemContext + FloatDataPointerOffset84);
     do {
-      NormalizedValue = SystemFloatPointer[-FloatDataPreprocessorOffset20] * 0.25;
-      if (0.0 <= NormalizedValue) {
-        if (1.0 <= NormalizedValue) {
-          NormalizedValue = 1.0;
+      normalizedValue = floatDataPointer[-FloatDataPreprocessorOffset20] * 0.25;
+      if (0.0 <= normalizedValue) {
+        if (1.0 <= normalizedValue) {
+          normalizedValue = 1.0;
         }
       }
       else {
-        NormalizedValue = 0.0;
+        normalizedValue = 0.0;
       }
-      StackValueBuffer = (BytePair)(int)(NormalizedValue * 65535.0);
-      SystemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(SystemStackFramePointer + 8))
-                        (*(DataBuffer **)(SystemStackFramePointer + 8), &systemErrorHandlingBuffer, 2);
-      if ((int)SystemDataBuffer != 0) {
-        return SystemDataBuffer;
+      stackValueBuffer = (BytePair)(int)(normalizedValue * 65535.0);
+      checkResult = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
+                        (*(DataBuffer **)(stackFramePointer + 8), &systemErrorHandlingBuffer, 2);
+      if ((int)checkResult != 0) {
+        return checkResult;
       }
-      NormalizedValue = *SystemFloatPointer * 0.25;
-      if (0.0 <= NormalizedValue) {
-        if (1.0 <= NormalizedValue) {
-          NormalizedValue = 1.0;
+      normalizedValue = *floatDataPointer * 0.25;
+      if (0.0 <= normalizedValue) {
+        if (1.0 <= normalizedValue) {
+          normalizedValue = 1.0;
         }
       }
       else {
-        NormalizedValue = 0.0;
+        normalizedValue = 0.0;
       }
-      StackValueBuffer = (BytePair)(int)(NormalizedValue * 65535.0);
-      SystemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(SystemStackFramePointer + 8))
-                        (*(DataBuffer **)(SystemStackFramePointer + 8), &systemErrorHandlingBuffer, 2);
-      if ((int)SystemDataBuffer != 0) {
-        return SystemDataBuffer;
+      stackValueBuffer = (BytePair)(int)(normalizedValue * 65535.0);
+      checkResult = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
+                        (*(DataBuffer **)(stackFramePointer + 8), &systemErrorHandlingBuffer, 2);
+      if ((int)checkResult != 0) {
+        return checkResult;
       }
-      OperationStatus = OperationStatus + 1;
-      SystemFloatPointer = SystemFloatPointer + 1;
-    } while (OperationStatus < *(short *)(SystemContext + 0x104));
+      processingIndex = processingIndex + 1;
+      floatDataPointer = floatDataPointer + 1;
+    } while (processingIndex < *(short *)(systemContext + 0x104));
   }
   return 0;
 }
@@ -30134,8 +30134,13 @@ DataBuffer ExecuteSystemCheckA0(void)
 
 
 
-// 函数: void ExecuteNoOperationFunction(void)
-// 功能：空操作函数，不执行任何操作
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，仅作为占位符函数使用。
+ * 
+ * @note 原始函数名：ExecuteNoOperationFunction
+ */
 void ExecuteNoOperationFunction(void)
 
 {
