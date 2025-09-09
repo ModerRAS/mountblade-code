@@ -206544,7 +206544,7 @@ void FUN_18078b880(longlong uiContext)
   ulonglong stackUInt68;
   
   stackUInt68 = XorEncryptionKey ^ (ulonglong)astackUInt148;
-  ptrResult = (UIHandle *)(uiContext + 0x12758);
+  ptrResult = (UIHandle *)(uiContext + UIComponentListOffset);
   piterationCount = (UIHandle *)*ptrResult;
   stackUIntd8 = 0;
   stackUIntd0 = 0;
@@ -206557,7 +206557,7 @@ void FUN_18078b880(longlong uiContext)
     EventTypeCode = piterationCount[2];
     ProcessUIComponent(EventTypeCode,acStack_118);
     if (acStack_118[0] != '\0') {
-      FUN_1807671a0(EventTypeCode,uiContext + 0x11080,&fStack_110,&fStack_114);
+      FUN_1807671a0(EventTypeCode,uiContext + UIComponentDataOffset,&fStack_110,&fStack_114);
       if (0.0 < fStack_110) {
         ProcessUIComponentOpacity(EventTypeCode,astackUInta8,0,0);
         pfStack_128 = &fStack_10c;
