@@ -5369,7 +5369,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808997b0
  */
-#define SynchronizeData FUN_1808997b0
+#define SynchronizeData SynchronizeSystemDataAndState
 
 /**
  * @brief 内存管理A0
@@ -5378,7 +5378,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899891
  */
-#define ManageMemory FUN_180899891
+#define ManageMemory ManageSystemMemoryAndResources
 
 // 高级数据处理函数宏定义 (F系列)
 
@@ -5390,7 +5390,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180896800
  */
-#define InitializeDataBlockWithMemoryRelease FUN_180896800
+#define InitializeDataBlockWithMemoryRelease InitializeDataBlockAndReleaseMemory
 
 /**
  * @brief 初始化数据块指针A1
@@ -5490,7 +5490,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808993e0
  */
-#define ExecuteDataValidation FUN_1808993e0
+#define ExecuteDataValidation ExecuteSystemDataValidationAndIntegrityCheck
 
 /**
  * @brief 处理复杂数据结构
@@ -5499,7 +5499,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899650
  */
-#define ProcessComplexDataStructure FUN_180899650
+#define ProcessComplexDataStructure ProcessComplexSystemDataStructureWithValidation
 
 /**
  * @brief 验证数据格式
@@ -5508,7 +5508,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899740
  */
-#define ValidateDataFormat FUN_180899740
+#define ValidateDataFormat ValidateSystemDataFormatAndStructure
 
 /**
  * @brief 获取系统状态
@@ -5517,7 +5517,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899763
  */
-#define GetSystemStatus FUN_180899763
+#define GetSystemStatus GetSystemOperatingStatusAndStateFlags
 
 /**
  * @brief 初始化数据处理器
@@ -22561,7 +22561,7 @@ int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlag
  * @security
  * 该函数不涉及安全敏感操作，是一个简单的常量返回函数
  */
-#define ReturnFixedErrorCode FUN_1808938ab
+#define ReturnFixedErrorCode ReturnComponentDataValidationError
 
 DataBuffer ReturnFixedErrorCode(void)
 
@@ -22610,7 +22610,7 @@ DataBuffer ReturnFixedErrorCode(void)
  * - 检查组件数据状态的完整性
  * - 确保状态更新操作的安全性
  */
-#define ValidateContextAndUpdateState FUN_1808938c0
+#define ValidateContextAndUpdateState ValidateSystemContextAndUpdateComponentState
 
 void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle)
 
@@ -22637,7 +22637,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
 
 // 原始函数名：FUN_180893930 - 数据状态验证和处理函数
 // 功能：验证数据状态并根据不同状态执行相应的数据处理操作
-#define ValidateDataStateAndProcess FUN_180893930
+#define ValidateDataStateAndProcess ValidateComponentDataStateAndProcessOperation
 
 int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
 
@@ -119985,7 +119985,7 @@ void ProcessExceptionCleanupAtOffset180911020(DataBuffer operationBase,int64_t d
 
 
 /**
- * @brief 在偏移量180911040处理异常清理
+ * @brief 异常清理处理器 - 偏移量180911040
  * 
  * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
  * 它执行以下操作：
@@ -120001,8 +120001,10 @@ void ProcessExceptionCleanupAtOffset180911020(DataBuffer operationBase,int64_t d
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180911040
+ * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void ProcessExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -120031,7 +120033,7 @@ void ProcessExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t d
 
 
 /**
- * @brief 在偏移量180911060处理异常清理
+ * @brief 异常清理处理器 - 偏移量180911060
  * 
  * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
  * 它执行以下操作：
@@ -120047,8 +120049,10 @@ void ProcessExceptionCleanupAtOffset180911040(DataBuffer operationBase,int64_t d
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180911060
+ * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void ProcessExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -120077,7 +120081,7 @@ void ProcessExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t d
 
 
 /**
- * @brief 在偏移量180911080处理异常清理
+ * @brief 异常清理处理器 - 偏移量180911080
  * 
  * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
  * 它执行以下操作：
@@ -120093,8 +120097,10 @@ void ProcessExceptionCleanupAtOffset180911060(DataBuffer operationBase,int64_t d
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180911080
+ * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void ProcessExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -130590,10 +130596,10 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
 // 原始函数名：FUN_18089379d - 数据验证和处理操作函数
 // 功能：验证并处理数据操作，确保数据正确性
 #define ValidateAndProcessDataOperation ValidateAndProcessSystemDataWithValidation
-#define ReturnFixedErrorCode FUN_1808938ab
-#define ValidateContextAndUpdateState FUN_1808938c0
-#define ValidateDataStateAndProcess FUN_180893930
-#define ProcessDataByCondition FUN_180893964
+#define ReturnFixedErrorCode ReturnComponentDataValidationError
+#define ValidateContextAndUpdateState ValidateSystemContextAndUpdateComponentState
+#define ValidateDataStateAndProcess ValidateComponentDataStateAndProcessOperation
+#define ProcessDataByCondition ProcessSystemDataBasedOnConditionFlags
 
 // 系统安全和验证相关宏定义
 #define ReturnErrorCode31 FUN_180893a63
