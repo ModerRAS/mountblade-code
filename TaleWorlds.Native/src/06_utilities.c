@@ -1403,7 +1403,7 @@
  * 
  * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
  */
-#define ProcessSystemDataTransferWithValidation FUN_180062300
+#define ProcessSystemDataTransferWithValidation TransferSystemDataWithValidation
 
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
@@ -2913,7 +2913,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18004b790
  */
-#define ValidateSystemDataBufferAndCheckIntegrity FUN_18004b790
+#define ValidateSystemDataBufferAndCheckIntegrity CheckSystemDataBufferIntegrity
 
 /**
  * @brief 系统数据指针清理函数
@@ -2925,7 +2925,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define CleanupSystemDataPointerAndReleaseMemory FUN_18064e900
+#define CleanupSystemDataPointerAndReleaseMemory ReleaseSystemDataPointerAndMemory
 
 /**
  * @brief 系统上下文处理函数
@@ -2939,7 +2939,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcessSystemContextAndValidateState FUN_18007f840
+#define ProcessSystemContextAndValidateState ValidateSystemContextAndState
 
 /**
  * @brief 数据类型转换函数
@@ -2954,7 +2954,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ConvertDataTypeWithValidation FUN_18007f6a0
+#define ConvertDataTypeWithValidation ConvertAndValidateDataType
 
 /**
  * @brief 系统内存管理函数
@@ -102644,7 +102644,7 @@ void Unwind_CleanupMemoryResourceAtOffset3B0(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_18090dd80(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x908,2,ProcessMemoryOperationA4);

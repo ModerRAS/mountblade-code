@@ -8066,10 +8066,10 @@ void ProcessGraphicsTransformationAndBufferData(void)
       SecondaryTransformZ = (BoundingVolumeMinX + *pfVar9) - OriginalVectorX;
       ProcessMatrixTransformation(&SystemStackVariable_118,&MatrixTransformResult128,&MatrixTransformResult168);
       FloatCalculationResult = *(float *)(ModuleInitializationResult0 + 0x24);
-      fVar18 = MatrixTransformResult128;
+      TransformedMaxX = MatrixTransformResult128;
       FloatComparisonResult1 = MatrixTransformResult138;
       if (MatrixTransformResult138 < MatrixTransformResult128) {
-        fVar18 = MatrixTransformResult138;
+        TransformedMaxX = MatrixTransformResult138;
         FloatStoredResult198 = MatrixTransformResult128;
       }
       FloatValue = FloatComparisonValue134;
@@ -8089,9 +8089,9 @@ void ProcessGraphicsTransformationAndBufferData(void)
       FloatComparisonResult1 = FloatComparisonResult1 + FloatCalculationResult;
       FloatStackMaximum = FloatStackMaximum - FloatCalculationResult;
       FloatValue = FloatValue - FloatCalculationResult;
-      fVar18 = fVar18 - FloatCalculationResult;
-      if (FloatStackLarge < fVar18) {
-        fVar18 = FloatStackLarge;
+      TransformedMaxX = TransformedMaxX - FloatCalculationResult;
+      if (FloatStackLarge < TransformedMaxX) {
+        TransformedMaxX = FloatStackLarge;
       }
       if (FloatStackMedium < FloatValue) {
         FloatValue = FloatStackMedium;
@@ -8118,10 +8118,10 @@ void ProcessGraphicsTransformationAndBufferData(void)
       ModuleInitializationResult1 = ModuleInitializationResult1 + -1;
       FloatCalculationResult = FloatStoredResult198;
       FloatResult = FloatStoredResult194;
-      fVar16 = FloatStoredResult190;
+      FloatStoredResult190 = FloatStoredResult190;
       MemoryAddress7 = StackCounter5c;
       MemoryAddress9 = SystemStackVariable_17c;
-      FloatStackLarge = fVar18;
+      FloatStackLarge = TransformedMaxX;
       FloatStackMedium = FloatValue;
     } while (-1 < ModuleInitializationResult1);
   }
