@@ -117374,11 +117374,32 @@ void ResetExceptionHandlersAtOffsetA00(DataBuffer operationBase,int64_t dataBuff
 
 
 void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名：Unwind_180910a20 - 异常处理器重置函数a20
+#define ResetExceptionHandlersAtOffsetA20 Unwind_180910a20
+
+/**
+ * @brief 重置异常处理器和系统状态（第五组）
+ * 
+ * 该函数负责重置第五组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x12c0偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910a20
+ * @note 这是一个异常处理和系统清理函数，处理0x12c0偏移的异常处理器
+ */
+void ResetExceptionHandlersAtOffsetA20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionHandlerContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x12c0) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + 0x12c0))(exceptionHandlerContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
