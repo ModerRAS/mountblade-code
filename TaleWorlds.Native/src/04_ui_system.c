@@ -656,10 +656,10 @@ typedef enum {
 
 // UI系统额外函数美化定义
 #define FUN_18089e811 UIEmptyOperationFunction
-#define FUN_1808ddc20 ValidateUIDataSignature
-#define FUN_1808aed00 ValidateUIEventData
-#define FUN_180899360 ValidateUIContextData
-#define FUN_1808ad130 ProcessUIDataValidation
+#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式
+#define FUN_1808aed00 ValidateUIEventDataAndStructure              // 验证UI事件数据和结构
+#define FUN_180899360 ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性
+#define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实
 #define FUN_18071ab41 UIInitializeOperationFunction
 #define FUN_18071ace8 UIResetOperationFunction
 #define FUN_180721810 ProcessUIDataTransformOperation
@@ -2620,14 +2620,14 @@ typedef enum {
 #define FUN_18089eef2 HandleUIValidationError
 #define FUN_18089ef24 UIEmptyOperation
 #define FUN_18089ef40 ProcessUIHandleWithContext
-#define FUN_18089f530 ValidateUIDataSource
-#define FUN_18089f571 ProcessUIContextValidation
-#define FUN_1808aed00 ValidateUIBufferData
-#define FUN_1808ddf80 HandleUIValidationError
-#define FUN_1808a1090 CheckUIProcessingState
-#define FUN_180899ef0 ProcessUIContextOperation
-#define FUN_1808a1870 ValidateUIContextMemory
-#define FUN_1808de000 HandleUIValidationError
+#define FUN_18089f530 ValidateUIDataSourceAndFormat                // 验证UI数据源和格式
+#define FUN_18089f571 ProcessUIContextValidationAndVerification     // 处理UI上下文验证和核实
+#define FUN_1808aed00 ValidateUIBufferDataAndStructure             // 验证UI缓冲区数据和结构
+#define FUN_1808ddf80 HandleUIValidationErrorAndRecovery            // 处理UI验证错误和恢复
+#define FUN_1808a1090 CheckUIProcessingStateAndStatus               // 检查UI处理状态和状态
+#define FUN_180899ef0 ProcessUIContextOperationAndManagement       // 处理UI上下文操作和管理
+#define FUN_1808a1870 ValidateUIContextMemoryAndAllocation         // 验证UI上下文内存和分配
+#define FUN_1808de000 HandleUIValidationErrorAndLogging             // 处理UI验证错误和日志记录
 
 // UI系统函数宏定义 - 处理UI混合数据传输
 /**
@@ -3728,7 +3728,7 @@ void* UIRenderTarget;
  * 
  * @note 原始函数名：FUN_1808a87d0
  */
-#define FUN_1808a87d0 ValidateUIBufferState
+#define FUN_1808a87d0 ValidateUIBufferStateAndIntegrity            // 验证UI缓冲区状态和完整性
 
 /**
  * @brief 处理UI上下文操作
