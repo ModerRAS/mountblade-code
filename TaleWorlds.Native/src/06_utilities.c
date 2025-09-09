@@ -30867,7 +30867,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
         iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
         if (iterationCount == 0) {
           memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
-          *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x1ac);
+          *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + DestinationContextDataOffset1ac);
           iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,4);
           if (iterationCount == 0) {
             memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
