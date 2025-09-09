@@ -40013,7 +40013,7 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  DataWord stackUIntBuffer [6];
+  DataWord stackValidationBuffer [6];
   
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
