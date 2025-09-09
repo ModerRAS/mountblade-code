@@ -106070,9 +106070,9 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
   }
   else {
     localInt8 = 0xc;
-    plocalChar13 = &UNK_180956f50;
+    plocalChar13 = &UIComponentDataF50;
     stackInte4 = 0xc;
-    renderDataPointer = &UNK_180956f38;
+    renderDataPointer = &UIComponentHandleF38;
   }
   dataSource = dataSource + (longlong)(bufferSize * 4) * 4;
   stackInte8 = bufferSize;
