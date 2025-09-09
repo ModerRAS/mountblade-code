@@ -200184,14 +200184,14 @@ LAB_180787e12:
         return EventProcessingStatus;
       }
       *(UIDword *)(EventDataIndexArray[10] + 0x2b8) = 0xffffffff;
-      *(code **)(pEventDataIndex[10] + 0x298) = FUN_1807868e0;
-      *(longlong **)(pEventDataIndex[10] + 0x1e8) = pEventDataIndex;
-      *(float *)(pEventDataIndex[10] + 0x230) = (float)iStack0000000000000044;
-      ProcessingStatus = (**(code **)(*(longlong *)pEventDataIndex[10] + 0x38))();
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      *(code **)(EventDataIndexArray[10] + 0x298) = FUN_1807868e0;
+      *(longlong **)(EventDataIndexArray[10] + 0x1e8) = EventDataIndexArray;
+      *(float *)(EventDataIndexArray[10] + 0x230) = (float)UIContextStatus;
+      EventProcessingStatus = (**(code **)(*(longlong *)EventDataIndexArray[10] + 0x38))();
+      if ((int)EventProcessingStatus != 0) {
+        return EventProcessingStatus;
       }
-      ProcessingStatus = (**(code **)(*(longlong *)pEventDataIndex[10] + 0x28))((longlong *)pEventDataIndex[10],0,0,0);
+      EventProcessingStatus = (**(code **)(*(longlong *)EventDataIndexArray[10] + 0x28))((longlong *)EventDataIndexArray[10],0,0,0);
       if ((int)ProcessingStatus != 0) {
         return ProcessingStatus;
       }
