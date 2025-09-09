@@ -203,7 +203,7 @@ typedef enum {
 #define InitializeUIComponent1E10 FUN_180741e10           // 初始化UI组件1E10
 #define ProcessUIContextDataTransfer FUN_180728660          // 处理UI上下文数据传输
 #define TransferUIDataToBuffer FUN_180728720                // 传输UI数据到缓冲区
-#define FUN_180721810 ProcessUITransformDataWithCoefficients // 处理UI变换数据与系数
+#define ProcessUITransformDataWithCoefficients FUN_180721810 // 处理UI变换数据与系数
 #define FUN_180721f12 ValidateUIFloatParameter               // 验证UI浮点参数
 #define FUN_180721f4c ProcessUIFloatData                     // 处理UI浮点数据
 #define FUN_180721fa6 ProcessUIDoubleParameter               // 处理UI双精度参数

@@ -22592,7 +22592,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
   int64_t DataStateBuffer;
   
   dataState = *(uint *)(dataContext + DataOperationOffset1C);
-  if ((((dataState != 1) || ((*(SystemByteType *)(dataContext + ExceptionHandlerCallbackOffset) & 0x1f) == 0)) && (0 < *(int *)(dataContext + SystemDataSecondaryOffset18))
+  if ((((dataState != 1) || ((*(SystemByteType *)(dataContext + ExceptionHandlerCallbackOffset) & MemoryOffsetValidationThreshold) == 0)) && (0 < *(int *)(dataContext + SystemDataSecondaryOffset18))
       ) && (dataState < 2)) {
     if (dataState == 0) {
       allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int *)(dataContext + SystemDataSecondaryOffset18),0x20,
