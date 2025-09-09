@@ -2029,35 +2029,35 @@ typedef enum {
 #define targetRotation UITargetRotation
 
 // UI系统计算变量美化
-#define sVar5 UICalculationValue5
-#define sVar6 UICalculationValue6
-#define sVar7 UICalculationValue7
-#define sVar9 UICalculationValue9
-#define sVar10 UICalculationValue10
-#define sVar11 UICalculationValue11
-#define sVar12 UICalculationValue12
-#define sVar19 UICalculationValue19
-#define sVar24 UICalculationValue24
-#define sVar25 UICalculationValue25
-#define sVar26 UICalculationValue26
-#define sVar27 UICalculationValue27
-#define sVar28 UICalculationValue28
-#define sVar29 UICalculationValue29
-#define ContextFirstValue0 UIContextFirstValue
-#define ContextSecondValue UIContextSecondValue
+#define sVar5 UICalculationValue5          // UI计算值5 - 用于UI坐标计算
+#define sVar6 UICalculationValue6          // UI计算值6 - 用于UI坐标计算
+#define sVar7 UICalculationValue7          // UI计算值7 - 用于UI坐标计算
+#define sVar9 UICalculationValue9          // UI计算值9 - 用于UI坐标计算
+#define sVar10 UICalculationValue10        // UI计算值10 - 用于UI坐标计算
+#define sVar11 UICalculationValue11        // UI计算值11 - 用于UI坐标计算
+#define sVar12 UICalculationValue12        // UI计算值12 - 用于UI坐标计算
+#define sVar19 UICalculationValue19        // UI计算值19 - 用于UI渲染计算
+#define sVar24 UICalculationValue24        // UI计算值24 - 用于UI渲染计算
+#define sVar25 UICalculationValue25        // UI计算值25 - 用于UI渲染计算
+#define sVar26 UICalculationValue26        // UI计算值26 - 用于UI渲染计算
+#define sVar27 UICalculationValue27        // UI计算值27 - 用于UI渲染计算
+#define sVar28 UICalculationValue28        // UI计算值28 - 用于UI渲染计算
+#define sVar29 UICalculationValue29        // UI计算值29 - 用于UI渲染计算
+#define ContextFirstValue0 UIContextFirstValue    // UI上下文第一值
+#define ContextSecondValue UIContextSecondValue  // UI上下文第二值
 
 // UI系统处理状态变量美化
-#define plocalChar16 UIProcessingCharBuffer
-#define result7 UIProcessingResult7
-#define result8 UIProcessingResult8
-#define SourceHandle UISourceHandle
-#define allocationFlags UIAllocationFlags
-#define stackParam000000f8 UIStackParameterF8
-#define stackParam00000110 UIStackParameter110
-#define finalRotation UIFinalRotation
-#define animationTime UIAnimationTime
-#define animationDataPtr UIAnimationDataPointer
-#define animationCount UIAnimationCount
+#define plocalChar16 UIProcessingCharBuffer      // UI处理字符缓冲区
+#define result7 UIProcessingResult7              // UI处理结果7
+#define result8 UIProcessingResult8              // UI处理结果8
+#define SourceHandle UISourceHandle               // UI源句柄
+#define allocationFlags UIAllocationFlags         // UI分配标志
+#define stackParam000000f8 UIStackParameterF8    // UI栈参数F8
+#define stackParam00000110 UIStackParameter110   // UI栈参数110
+#define finalRotation UIFinalRotation            // UI最终旋转值
+#define animationTime UIAnimationTime            // UI动画时间
+#define animationDataPtr UIAnimationDataPointer  // UI动画数据指针
+#define animationCount UIAnimationCount           // UI动画计数
 #define animationElementPtr UIAnimationElementPointer
 #define elementWeight UIElementWeight
 #define opacityMultiplier UIOpacityMultiplier
