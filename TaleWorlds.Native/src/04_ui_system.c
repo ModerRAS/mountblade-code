@@ -1049,7 +1049,22 @@ typedef enum {
 #define WriteUIDataToBuffer WriteUIDataToBuffer
 
 // UI系统渲染参数美化
-#define renderParam1 stackParam00000048
+#define renderParam1 UIRenderParameter1
+#define renderParam2 UIRenderParameter2
+#define renderParam3 UIRenderParameter3
+#define renderParam4 UIRenderParameter4
+#define renderParam5 UIRenderParameter5
+#define renderParam6 UIRenderParameter6
+
+// UI系统颜色寄存器美化
+#define colorRegister9_Dc UIColorRegister9_DoubleComponent
+#define colorRegister9_Da UIColorRegister9_Data
+#define colorRegister8_Dc UIColorRegister8_DoubleComponent
+#define colorRegister8_Da UIColorRegister8_Data
+#define colorRegister7_Dc UIColorRegister7_DoubleComponent
+#define colorRegister7_Da UIColorRegister7_Data
+#define colorRegister6_Dc UIColorRegister6_DoubleComponent
+#define colorRegister6_Da UIColorRegister6_Data
 
 // UI系统状态指针美化
 #define UIStatusPointer1 (void*)0x180954814
@@ -1074,19 +1089,6 @@ typedef enum {
 
 // UI系统上下文美化
 #define UIContextDataTable (void*)0x18095362c
-#define renderParam2 stackParam00000050
-#define renderParam3 stackParam00000058
-#define renderParam4 stackParam00000060
-#define renderParam5 stackParam00000068
-#define renderParam6 stackParam00000070
-#define colorRegister9_Dc stackParam00000128
-#define colorRegister9_Da stackParam00000120
-#define colorRegister8_Dc stackParam00000138
-#define colorRegister8_Da stackParam00000130
-#define colorRegister7_Dc stackParam00000148
-#define colorRegister7_Da stackParam00000140
-#define colorRegister6_Dc stackParam00000158
-#define colorRegister6_Da stackParam00000150
 
 // UI系统函数宏定义 - 查找UI数据索引
 #define FindUIDataIndex FUN_18087b530
@@ -8752,7 +8754,7 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,UIHandle targetB
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                      WARNING: Subroutine does not return
                      WARNING: Treating indirect jump as call
-  memcpy((longlong)RegisterValue + *(longlong *)(SourceHandle + 0x10),stackParam00000058);
+  memcpy((longlong)RegisterValue + *(longlong *)(SourceHandle + 0x10),UIRenderParameter3);
   return;
 }
 
