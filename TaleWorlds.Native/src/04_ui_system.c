@@ -99999,27 +99999,27 @@ void ThunkUIComponentSync(int *uiContext,longlong dataSource,longlong targetBuff
 
 
 
-int FUN_180723d20(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int *bufferSize,UIDword resultPointer
+int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,int *bufferSize,UIDword resultPointer
                  ,int param_6)
 
 {
   int processingResult;
   int uiValidationResult;
-  uint EventTypeCode;
-  byte bVar4;
-  int localInt5;
+  uint eventTypeCode;
+  byte processingFlag;
+  int bitShiftResult;
   uint maxProcessingCount;
-  int localInt7;
+  int alignmentAdjustment;
   ulonglong eventProcessingCounter;
-  short sVar9;
-  longlong allocatedMemory0;
-  int aiStackX_8 [2];
-  int aiStackX_20 [2];
+  short memoryAllocationHigh;
+  longlong allocatedMemorySize;
+  int contextStackArray8 [2];
+  int contextStackArray20 [2];
   uint stackUInt38;
-  uint astackUInt34 [3];
+  uint processingArray34 [3];
   
-  FUN_18072aa30(aiStackX_8,astackUInt34,dataSource,resultPointer);
-  FUN_18072aa30(aiStackX_20,&stackUInt38,targetBuffer,resultPointer);
+  InitializeUIContextArrays(contextStackArray8,processingArray34,dataSource,resultPointer);
+  InitializeUIContextArrays(contextStackArray20,&stackUInt38,targetBuffer,resultPointer);
   EventTypeCode = stackUInt38;
   if ((int)stackUInt38 < (int)astackUInt34[0]) {
     EventTypeCode = astackUInt34[0];
@@ -202987,8 +202987,8 @@ UIHandle CleanupUIEventHandlersE0(void)
     (**(code **)(UIContext + 0x3a8))
               (UIContext + 8,(int)EventTargetHandle[4],EventTargetHandle[3],(longlong)EventTargetHandle + 0x24,
                &stack0x00000090);
-    TargetHandle = (longlong *)*TargetHandle;
-  } while (TargetHandle != (longlong *)SourceHandle);
+    EventTargetHandle = (longlong *)*EventTargetHandle;
+  } while (EventTargetHandle != (longlong *)EventSourceHandle);
   return 0;
 }
 
