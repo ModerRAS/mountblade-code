@@ -114888,7 +114888,20 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理IOS对象函数530
+ * 
+ * 根据数据缓冲区的标志位，清理和销毁IOS对象
+ * 该函数负责：
+ * 1. 检查数据缓冲区的标志位状态
+ * 2. 清理标志位状态
+ * 3. 销毁对应的IOS对象
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910530
+ */
+void CleanupIosObjectAtOffset530(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + DataBufferOffset30) & 1) != 0) {
@@ -114900,7 +114913,19 @@ void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理Istream对象函数560
+ * 
+ * 销毁数据缓冲区中的基本Istream对象
+ * 该函数负责：
+ * 1. 获取数据缓冲区的上下文
+ * 2. 销毁对应的Istream对象
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910560
+ */
+void CleanupIstreamObjectAtOffset560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
                                  DestroyBasicIstream(*(int64_t *)(dataBuffer + DataContextOffset68) + SystemDataSecondaryOffset18);
@@ -114909,7 +114934,21 @@ void Unwind_180910560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存区域管理和流缓冲区清理函数580
+ * 
+ * 管理内存区域的初始化和清理流缓冲区对象
+ * 该函数负责：
+ * 1. 设置内存区域基地址
+ * 2. 验证系统上下文和参数
+ * 3. 初始化数据缓冲区（如果需要）
+ * 4. 清理流缓冲区对象
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910580
+ */
+void ManageMemoryRegionAndCleanupStreambufAtOffset580(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
@@ -114936,7 +114975,19 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据缓冲区指针设置函数590
+ * 
+ * 设置异常处理上下文中的数据缓冲区指针
+ * 该函数负责：
+ * 1. 获取异常处理上下文偏移量
+ * 2. 设置数据缓冲区指针A2
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180910590
+ */
+void SetDataBufferPointerAtOffset590(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40) = &DataBufferPointerA2;
