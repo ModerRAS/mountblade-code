@@ -90082,11 +90082,11 @@ void InvokeExceptionHandlerAtOffset2F0(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset2F8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x2f8);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemResourceSecondaryOffset2F8);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -90105,11 +90105,11 @@ void InvokeExceptionHandlerAtOffset2F8(DataBuffer operationBase,int64_t dataBuff
 void InvokeExceptionHandlerAtOffset300(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemExceptionHandlerPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset300);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  systemExceptionHandlerPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemResourceSecondaryOffset300);
+  if (systemExceptionHandlerPointer != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*systemExceptionHandlerPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
