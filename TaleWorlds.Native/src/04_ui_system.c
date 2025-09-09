@@ -55438,7 +55438,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   UIByte UIContextStatus139;
   UIByte acomponentIndex0 [11];
   UIByte acomponentIndex1 [13];
-  unkuint9 Var142;
+  UIByte UIComponentStatus142;
   UIByte acomponentIndex3 [15];
   UIByte acomponentIndex4 [11];
   UIByte acomponentIndex5 [13];

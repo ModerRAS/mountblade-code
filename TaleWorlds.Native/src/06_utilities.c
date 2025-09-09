@@ -3832,6 +3832,31 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerTempOffset1d58 0x1d58               // 异常处理器临时偏移量1d58
 #define ExceptionHandlerStateOffset1d60 0x1d60              // 异常处理器状态偏移量1d60
 #define ExceptionHandlerStatusOffset1d70 0x1d70             // 异常处理器状态偏移量1d70
+
+// 新增常量定义 - 用于替换硬编码偏移量
+#define SystemContextDataOffset8 8                          // 系统上下文数据偏移量8
+#define SystemContextDataOffset100 100                      // 系统上下文数据偏移量100
+#define SystemContextDataOffset200 200                      // 系统上下文数据偏移量200
+#define DataProcessingOffset30 0x30                         // 数据处理偏移量30
+#define DataProcessingOffset60 0x60                         // 数据处理偏移量60
+#define DataProcessingOffset68 0x68                         // 数据处理偏移量68
+#define DataProcessingOffset88 0x88                         // 数据处理偏移量88
+#define DataBufferOffset4 4                                 // 数据缓冲区偏移量4
+#define DataBufferOffsetC 0xc                               // 数据缓冲区偏移量C
+#define DataBufferOffset1 1                                 // 数据缓冲区偏移量1
+#define DataBufferOffset2 2                                 // 数据缓冲区偏移量2
+#define DataBufferOffset3 3                                 // 数据缓冲区偏移量3
+#define ValidationStatusOffset1 1                           // 验证状态偏移量1
+#define ValidationStatusOffset2 2                           // 验证状态偏移量2
+#define ValidationStatusOffset3 3                           // 验证状态偏移量3
+#define ExceptionHandlerContextOffset28 0x28                // 异常处理上下文偏移量28
+#define ExceptionHandlerContextOffset30 0x30                // 异常处理上下文偏移量30
+#define ExceptionHandlerContextOffset40 0x40                // 异常处理上下文偏移量40
+#define FloatValueOffset1 1                                 // 浮点数值偏移量1
+#define FloatValueOffset4 4                                 // 浮点数值偏移量4
+#define MemoryPointerOffset70 0x70                          // 内存指针偏移量70
+#define SystemDataOffset30 0x30                            // 系统数据偏移量30
+#define SystemContextOffset90 0x90                          // 系统上下文偏移量90
 // 异常处理器1e90系列偏移量常量
 #define ExceptionHandlerCallbackOffset1e90 0x1e90            // 异常处理器回调偏移量1e90
 #define ExceptionHandlerCallbackParamOffset1e80 0x1e80      // 异常处理器回调参数偏移量1e80
