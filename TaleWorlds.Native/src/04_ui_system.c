@@ -100226,12 +100226,12 @@ LAB_180724b88:
       }
     }
     else {
-      localChar4 = localChar4 - *contextHandle;
-      SourceHandle[localLong7] = localChar4;
-      localInt5 = *contextHandle + 8;
-      if (localInt5 < localChar4) {
-        localChar4 = (char)((localChar4 - localInt5) + 1 >> 1) + (char)localInt5;
-        SourceHandle[localLong7] = localChar4;
+      normalizedChar = normalizedChar - *contextBuffer;
+      sourceBuffer[dataOffset] = normalizedChar;
+      charCodeValue = *contextBuffer + 8;
+      if (charCodeValue < normalizedChar) {
+        normalizedChar = (char)((normalizedChar - charCodeValue) + 1 >> 1) + (char)charCodeValue;
+        sourceBuffer[dataOffset] = normalizedChar;
       }
       if (normalizedChar < '%') {
         if (normalizedChar < -4) {

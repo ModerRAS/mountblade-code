@@ -223376,7 +223376,7 @@ LAB_18018764a:
       }
       TemporaryBuffer = SystemEventDispatcher;
       pCoreEnginePointerBuffer110 = &SystemEventDispatcher;
-      FUN_1801884d0(&SystemEventDispatcher,SystemEventDispatcher[1]);
+      AllocateSystemMemoryEx(&SystemEventDispatcher,SystemEventDispatcher[1]);
       SystemEventDispatcher[1] = TemporaryBuffer;
       *SystemEventDispatcher = TemporaryBuffer;
       SystemEventDispatcher[2] = TemporaryBuffer;
