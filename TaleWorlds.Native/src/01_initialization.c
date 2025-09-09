@@ -41365,8 +41365,8 @@ ulong long ProcessSystemResourceData(long long SystemResourceManager,long long *
   ulong long systemResourceValue8;
   uint32_t *TertiaryDataPointer;
   uint32_t *QuaternaryDataPointer;
-  long long systemHandle1;
-  long long systemHandle2;
+  long long PrimarySystemHandle;
+  long long SecondarySystemHandle;
   ulong long systemResourceValue9;
   bool OperationStatus;
   ulong long stackParameter1;

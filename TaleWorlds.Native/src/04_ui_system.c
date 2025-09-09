@@ -33329,10 +33329,10 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
                  int offset,UIHandle *callback,longlong *resultData,short *resultCoordinates)
 
 {
-  short sVar1;
-  short sVar2;
+  short bufferWidth;
+  short bufferHeight;
   short ContextFirstValue;
-  short sVar4;
+  short contextOffsetValue;
   uint loopCounter;
   UIDword maxProcessingCount;
   longlong localLong7;
@@ -33352,15 +33352,15 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   uint stackBuffer [2];
   
   loopCounter = *(uint *)(uiContext + 0x1e70);
-  sVar1 = *bufferSize;
-  sVar2 = bufferSize[1];
+  bufferWidth = *bufferSize;
+  bufferHeight = bufferSize[1];
   allocatedMemory8 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
   maxProcessingCount = *(UIDword *)(dataSource + 0x54);
   localLong7 = *(longlong *)(uiBufferData + 0x23a0);
   allocatedMemory6 = (longlong)*(int *)(targetBuffer + 0x20) + *(longlong *)(uiBufferData + 0x1e98);
   contextOffset = *(longlong *)(uiBufferData + 0x2398);
   ContextFirstValue = *param_9;
-  sVar4 = param_9[1];
+  contextOffsetValue = param_9[1];
   *(short *)(targetBuffer + 0x30) = sVar1;
   *(short *)(targetBuffer + 0x32) = sVar2;
   allocatedMemory9 = (int)((int)sVar1 * loopCounter) + allocatedMemory6 + (longlong)sVar2;

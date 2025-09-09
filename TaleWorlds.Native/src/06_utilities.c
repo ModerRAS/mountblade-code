@@ -105721,6 +105721,22 @@ void CleanupSystemExceptionHandlersAndResetState(DataBuffer operationBase,int64_
 
 
 
+/**
+ * @brief 清理异常处理器上下文并重置标志
+ * 
+ * 该函数负责清理异常处理器上下文并重置相关标志，包括：
+ * 1. 调用异常上下文清理函数
+ * 2. 设置临时异常处理器
+ * 3. 检查并终止系统执行
+ * 4. 重置异常上下文状态
+ * 5. 恢复默认异常处理器
+ * 6. 调用异常数据清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090e8e0
+ */
 void CleanupExceptionHandlerContextAndResetFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -107029,7 +107045,7 @@ void ProcessExceptionHandlerContextAtOffsetF8AndCleanup(DataBuffer operationBase
 
 
 
-void Unwind_18090ed30(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
