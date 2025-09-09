@@ -219896,98 +219896,58 @@ void ProcessSystemDataAndStackManagement(uint64_t ContextHandle)
 
 
 
-7d800(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017d800(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 初始化系统数据结构处理器
+ * 
+ * 该函数负责初始化系统数据结构的处理，包括内存分配、数据结构设置和验证。
+ * 用于系统核心组件的初始化和数据管理。
+ * 
+ * @param ContextHandle 系统上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定处理缓冲区的大小
+ */
+void InitializeSystemDataStructureProcessor(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
-  uint32_t Utf16Char;
-  void *SystemContext;
-  uint32_t *SystemEventTemplatePointer;
-  uint64_t *MemoryAddressMaskPointer;
-  void *pSystemPriorityLevel;
-  uint32_t *pFunctionAddress;
-  uint32_t ProcessingFlags;
-  uint64_t SystemStackOffset28;
+  uint32_t ConvertedUtf16Character;
+  void *SystemContextPointer;
+  uint32_t *EventTemplateBuffer;
+  uint64_t *MemoryAddressMaskBuffer;
+  void *SystemPriorityLevelPointer;
+  uint32_t *FunctionAddressPointer;
+  uint32_t SystemProcessingFlags;
+  uint64_t StackOffset28;
   
-  PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
-  pMemoryAddressMaskPointer = PrimaryProcessingStatusFlag;
-  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,OperationBufferSize,ContextHandle);
-  *pMemoryAddressMaskPointer = &SystemMemoryAddressMaskPointerTertiary;
-  pMemoryAddressMaskPointer[0xe] = OperationBufferSize;
-  pMemoryAddressMaskPointer[0xf] = 0;
-  *(uint32_t *)(pMemoryAddressMaskPointer + 0x10) = 0;
-  *(uint8_t *)((long long)pMemoryAddressMaskPointer + 0x84) = 0;
-  pSystemPriorityLevel = &SystemNullTemplate;
+  SystemProcessingStatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
+  MemoryAddressMaskBufferPointer = SystemProcessingStatusBuffer;
+  ProcessSystemStatusAndBufferSize(SystemProcessingStatusBuffer,OperationBufferSize,ContextHandle);
+  *MemoryAddressMaskBufferPointer = &SystemMemoryAddressMaskPointerTertiary;
+  MemoryAddressMaskBufferPointer[0xe] = OperationBufferSize;
+  MemoryAddressMaskBufferPointer[0xf] = 0;
+  *(uint32_t *)(MemoryAddressMaskBufferPointer + 0x10) = 0;
+  *(uint8_t *)((long long)MemoryAddressMaskBufferPointer + 0x84) = 0;
+  SystemPriorityLevelPointer = &SystemNullTemplate;
   StackValidationFlag28 = 0;
-  pFunctionAddress = (uint32_t *)0x0;
-  ProcessingFlags = 0;
-  SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)SystemEventTemplatePointer = 0;
-  pFunctionAddress = SystemEventTemplatePointer;
-  Utf16Char = GetMemoryAllocationInfo(SystemEventTemplatePointer);
-  StackValidationFlag28 = CONCAT44(StackValidationFlag28.HighPart,Utf16Char);
-  *SystemEventTemplatePointer = 0x64676152;
-  SystemEventTemplatePointer[1] = 0x206c6c6f;
-  SystemEventTemplatePointer[2] = 0x62616e45;
-  SystemEventTemplatePointer[3] = 0x64656c;
-  ProcessingFlags = 0xf;
-  ProcessSystemEventTemplateAndMemoryAllocation(PrimaryProcessingStatusFlag,&pSystemPriorityLevel,(long long)PrimaryProcessingStatusFlag + 0x84,3);
-  pSystemPriorityLevel = &SystemNullTemplate;
+  FunctionAddressPointer = (uint32_t *)0x0;
+  SystemProcessingFlags = 0;
+  EventTemplateBuffer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)EventTemplateBuffer = 0;
+  FunctionAddressPointer = EventTemplateBuffer;
+  ConvertedUtf16Character = GetMemoryAllocationInfo(EventTemplateBuffer);
+  StackValidationFlag28 = CONCAT44(StackValidationFlag28.HighPart,ConvertedUtf16Character);
+  *EventTemplateBuffer = 0x64676152;
+  EventTemplateBuffer[1] = 0x206c6c6f;
+  EventTemplateBuffer[2] = 0x62616e45;
+  EventTemplateBuffer[3] = 0x64656c;
+  SystemProcessingFlags = 0xf;
+  ProcessSystemEventTemplateAndMemoryAllocation(SystemProcessingStatusBuffer,&SystemPriorityLevelPointer,(long long)SystemProcessingStatusBuffer + 0x84,3);
+  SystemPriorityLevelPointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
+  CoreEngineFreeSystemMemory(EventTemplateBuffer);
 }
 
 
 
 
 
-void InitializeSystemDataStructureProcessor(uint64_t ContextHandle, uint64_t OperationBufferSize/**
- * @brief 初始化系统数据结构处理器
- * 
- * 该函数负责初始化系统数据结构的处理，包括内存分配、数据结构设置和验证。
- * 用于系统核心组件的初始化和数据管理。
- * 
- * @param ContextHandle 目标数据结构指针，用于存储处理后的数据
- * @param OperationBufferSize 源数据结构指针，包含要处理的数据
- * 
- 18017d940，InitializeSystemDataStructureProcessor
- */
-void InitializeSystemDataStructureProcessor(uint64_t ContextHandle, uint64_t OperationBufferSize
-{
-  long long *SystemContext;
-  uint32_t MemoryMemoryAllocationIndex;
-  uint64_t *EventTemplatePointer;
-  uint64_t *MemoryMaskPointer;
-  uint64_t ValidationValue;
-  long long *MemoryBoundaryPointer;
-  void *OperationFlagA;
-  uint64_t *OperationFlagB;
-  uint32_t StackValidationData;
-  uint64_t FunctionAddress;
-  
-  EventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager, 0xa0, 8, 3);
-  ValidationValue = 0xfffffffffffffffe;
-  MemoryMaskPointer = EventTemplatePointer;
-  ProcessSystemStatusAndBufferSize(EventTemplatePointer, OperationBufferSize, ContextHandle);
-  *MemoryMaskPointer = &SystemMemoryMaskBuffer;
-  SystemContext = MemoryMaskPointer + 0xe;
-  *SystemContext = (long long)&ThreadLocalStorageTemplate;
-  MemoryMaskPointer[0xf] = 0;
-  *(uint32_t *)(MemoryMaskPointer + 0x10) = 0;
-  *SystemContext = (long long)&SystemNullTemplate;
-  MemoryMaskPointer[0x11] = 0;
-  MemoryMaskPointer[0xf] = 0;
-  *(uint32_t *)(MemoryMaskPointer + 0x10) = 0;
-  MemoryMaskPointer[0x12] = 0;
-  MemoryBoundaryPointer = SystemContext;
-  (**(code **)(*SystemContext + 0x10))(SystemContext, &CoreEngineDataTemplate);
-  OperationFlagA = &SystemNullTemplate;
-  FunctionAddress = 0;
-  OperationFlagB = NULL;
-  StackValidationData = 0;
-  MemoryMaskPointer = (void *)BufferAllocate(MemoryPoolManager, 0x10, 0x13);
-  *(uint8_t *)MemoryMaskPointer = 0;
-  OperationFlagB = MemoryMaskPointer;
-  MemoryMemoryAllocationIndex = GetMemoryAllocationInfo(MemoryMaskPointer);
-  FunctionAddress = CONCAT44(FunctionAddress.HighPart, MemoryMemoryAllocationIndex);
   *MemoryMaskPointer = 0x6d614e2068746150;
   *(uint16_t *)(MemoryMaskPointer + 1) = 0x65;
   StackValidationData = 9;

@@ -399841,8 +399841,17 @@ void UINullOperationAlternative(void)
 
 
 
- void FUN_18089d0b0(longlong uiContext,UIHandle dataSource)
-void FUN_18089d0b0(longlong uiContext,UIHandle dataSource)
+ /**
+ * @brief UI系统上下文数据处理器
+ * 
+ * 该函数负责处理UI上下文数据，根据处理结果决定是否执行后续操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @return 无返回值
+ * @note 原始函数名：FUN_18089d0b0
+ */
+void ProcessUIContextData(longlong uiContext, UIHandle dataSource)
 
 {
   int processingResult;
@@ -399856,7 +399865,17 @@ void FUN_18089d0b0(longlong uiContext,UIHandle dataSource)
 
 
 
-ulonglong FUN_18089d0f0(longlong uiContext,UIHandle *dataSource)
+/**
+ * @brief UI系统事件数据验证器
+ * 
+ * 该函数负责验证UI事件数据的有效性，包括格式检查和安全性验证。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return 验证结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d0f0
+ */
+ulonglong ValidateUIEventData(longlong uiContext, UIHandle *dataSource)
 
 {
   uint result;
@@ -399909,7 +399928,15 @@ ulonglong FUN_18089d0f0(longlong uiContext,UIHandle *dataSource)
 
 
 
-ulonglong FUN_18089d171(void)
+/**
+ * @brief UI系统资源管理器初始化函数
+ * 
+ * 该函数负责初始化UI系统资源管理器，为后续的资源分配和管理做准备。
+ * 
+ * @return 初始化结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d171
+ */
+ulonglong InitializeUIResourceManager(void)
 
 {
   uint result;
@@ -399955,7 +399982,15 @@ ulonglong FUN_18089d171(void)
 
 
 
-ulonglong FUN_18089d193(void)
+/**
+ * @brief UI系统资源管理器初始化函数（备用版本）
+ * 
+ * 该函数是资源管理器初始化的备用版本，提供不同的初始化策略。
+ * 
+ * @return 初始化结果，0表示成功，非0表示错误代码
+ * @note 原始函数名：FUN_18089d193
+ */
+ulonglong InitializeUIResourceManagerAlternative(void)
 
 {
   uint result;
@@ -399998,8 +400033,15 @@ ulonglong FUN_18089d193(void)
 
 
 
- void FUN_18089d208(void)
-void FUN_18089d208(void)
+ /**
+ * @brief UI系统紧急错误处理器
+ * 
+ * 该函数负责处理UI系统中的紧急错误情况，确保系统稳定性。
+ * 
+ * @return 无返回值
+ * @note 原始函数名：FUN_18089d208
+ */
+void HandleUIEmergencyError(void)
 
 {
                      WARNING: Subroutine does not return
@@ -400009,8 +400051,15 @@ void FUN_18089d208(void)
 
 
 
- void FUN_18089d23a(void)
-void FUN_18089d23a(void)
+ /**
+ * @brief UI系统空操作处理器
+ * 
+ * 该函数执行空操作，用于UI系统的默认处理或占位符。
+ * 
+ * @return 无返回值
+ * @note 原始函数名：FUN_18089d23a
+ */
+void ProcessUINullOperation(void)
 
 {
   return;
