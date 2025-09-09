@@ -169,7 +169,8 @@ typedef enum {
 #define DAT_180958c80 UIComponentContextData
 #define DAT_180c0c720 UIProcessorFeatureCache
 #define _DAT_180c0c6e8 UIComponentInstanceGlobalPtr
-#define FUN_18076b6f0 InitializeUIComponentContext
+// UI系统函数宏定义 - 初始化UI组件上下文
+#define InitializeUIComponentContext FUN_18076b6f0
 
 // UI系统查找表变量宏定义
 #define UIPrimaryLookupTable UISystemPrimaryLookupTable

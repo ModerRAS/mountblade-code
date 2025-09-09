@@ -64035,7 +64035,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long ContextHandle,long long Op
   uint64_t *CharacterStatusBuffer2;
   long long OperationResult13;
   void *SystemValidationPointer;
-  byte *pbStack_48;
+  byte *ValidationBytePointer48;
   int iStack_40;
   unsigned long long FunctionAddress;
   
@@ -76302,7 +76302,7 @@ uint64_t CalculateEngineParameterValue(void
   uint64_t *CharacterStatusBuffer3;
   long long LoopIndex;
   void *SystemValidationPointer;
-  byte *pbStack_48;
+  byte *ValidationBytePointer48;
   int iStack_40;
   uint32_t FunctionAddress;
   
@@ -76442,7 +76442,7 @@ uint64_t CalculateEngineSecondaryParameter(void
   uint64_t *CharacterStatusBuffer3;
   long long LoopIndex;
   void *SystemValidationPointer;
-  byte *pbStack_48;
+  byte *ValidationBytePointer48;
   int iStack_40;
   uint32_t FunctionAddress;
   
@@ -257149,9 +257149,9 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
       HashValue = (HashValue ^ CurrentHashByte) * 0x100000001b3;
     } while (StringLength < *(uint *)(OperationBufferSize + 0x10));
   }
-  lStack_18 = FUN_180218bc0((unsigned long long)*(uint *)(ContextHandle + 0x10),
+  MemoryLocationResult = FUN_180218bc0((unsigned long long)*(uint *)(ContextHandle + 0x10),
                                   *(void *                                   (*(long long *)(ContextHandle + 8) +
-                                   (MemoryAllocationIndex % (unsigned long long)*(uint *)(ContextHandle + 0x10)) * 8),OperationBufferSize);
+                                   (HashValue % (unsigned long long)*(uint *)(ContextHandle + 0x10)) * 8),OperationBufferSize);
   if (lStack_18 == 0) {
     lStack_18 = *(long long *)(*(long long *)(ContextHandle + 8) + *(long long *)(ContextHandle + 0x10) * 8);
   }
