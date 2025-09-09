@@ -224459,57 +224459,68 @@ LAB_18018873e:
     SystemPointerPointer = (void **)0x0;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemFlagH);
+  CoreEngineExecuteUtilityFunction(StackChecksumValue ^ (unsigned long long)SystemFlagBuffer);
 }
 
 
 
 
-887a0(long long *ContextHandle,long long OperationBufferSize,uint32_t *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801887a0(long long *ContextHandle,long long OperationBufferSize,uint32_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 系统内存分配和验证函数
+ * 
+ * 处理系统内存分配、边界检查和数据验证操作
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @note 原始函数名：FUN_1801887a0
+ */
+void ProcessSystemMemoryAllocationAndValidation(long long *ContextHandle, long long OperationBufferSize, uint32_t *Utf8SourcePointer, uint64_t Utf16EndPointer
 {
-  code *ValidationStatus;
-  uint32_t MemoryAllocationIndex;
+  code *ValidationStatusPointer;
+  uint32_t MemoryAllocationCounter;
   uint32_t UnicodeCodePoint;
-  uint32_t MemoryAddressMaskPointer;
-  unsigned long long CalculatedCodePoint;
-  long long MemoryBoundaryEnd;
-  unsigned long long SystemChecksum;
-  long long secondaryLoopCounter;
-  uint32_t *TemporaryBuffer;
-  uint8_t SystemRegisterFlagBuffer [8];
-  unsigned long long uStackX_10;
-  long long PerformanceCounterValue;
-  uint64_t MemoryAllocationIndex;
+  uint32_t MemoryAddressMask;
+  unsigned long long CalculatedMemorySize;
+  long long MemoryBoundaryLimit;
+  unsigned long long SystemDataChecksum;
+  long long SecondaryLoopCounter;
+  uint32_t *TemporaryBufferPointer;
+  uint8_t SystemRegisterBuffer [8];
+  unsigned long long CalculatedBufferSize;
+  long long PerformanceCounter;
+  uint64_t MemoryAllocationStatus;
   
-  MemoryAllocationIndex = 0xfffffffffffffffe;
+  MemoryAllocationStatus = 0xfffffffffffffffe;
   SystemDataTablePointer = *ContextHandle;
-  MemoryBoundaryEnd = ContextHandle[1] - SystemDataTablePointer >> 4;
-  if (MemoryBoundaryEnd == 0xfffffffffffffff) {
-    FUN_180189990();
-    ValidationStatus = (code *)swi(3);
-    (*ValidationStatus)();
+  MemoryBoundaryLimit = ContextHandle[1] - SystemDataTablePointer >> 4;
+  if (MemoryBoundaryLimit == 0xfffffffffffffff) {
+    TriggerSystemError();
+    ValidationStatusPointer = (code *)swi(3);
+    (*ValidationStatusPointer)();
     return;
   }
-  SystemChecksum = MemoryBoundaryEnd + 1;
-  CalculatedCodePoint = ContextHandle[2] - SystemDataTablePointer >> 4;
-  uStackX_10 = SystemChecksum;
-  if ((CalculatedCodePoint <= 0xfffffffffffffff - (CalculatedCodePoint >> 1)) &&
-     (uStackX_10 = (CalculatedCodePoint >> 1) + CalculatedCodePoint, uStackX_10 < SystemChecksum)) {
-    uStackX_10 = SystemChecksum;
+  SystemDataChecksum = MemoryBoundaryLimit + 1;
+  CalculatedMemorySize = ContextHandle[2] - SystemDataTablePointer >> 4;
+  CalculatedBufferSize = SystemDataChecksum;
+  if ((CalculatedMemorySize <= 0xfffffffffffffff - (CalculatedMemorySize >> 1)) &&
+     (CalculatedBufferSize = (CalculatedMemorySize >> 1) + CalculatedMemorySize, CalculatedBufferSize < SystemDataChecksum)) {
+    CalculatedBufferSize = SystemDataChecksum;
   }
-  MemoryBoundaryEnd = uStackX_10 << 4;
-  if (0xfffffffffffffff < uStackX_10) {
-    MemoryBoundaryEnd = -1;
+  MemoryBoundaryLimit = CalculatedBufferSize << 4;
+  if (0xfffffffffffffff < CalculatedBufferSize) {
+    MemoryBoundaryLimit = -1;
   }
-  MemoryBoundaryEnd = FUN_180067110(MemoryBoundaryEnd);
-  TemporaryBuffer = (uint32_t *)((OperationBufferSize - SystemDataTablePointer & 0xfffffffffffffff0U) + MemoryBoundaryEnd);
-  MemoryAllocationIndex = Utf8SourcePointer[1];
+  MemoryBoundaryLimit = CalculateMemoryBoundaryLimit(MemoryBoundaryLimit);
+  TemporaryBufferPointer = (uint32_t *)((OperationBufferSize - SystemDataTablePointer & 0xfffffffffffffff0U) + MemoryBoundaryLimit);
+  MemoryAllocationCounter = Utf8SourcePointer[1];
   UnicodeCodePoint = Utf8SourcePointer[2];
-  MemoryAddressMaskPointer = Utf8SourcePointer[3];
-  *TemporaryBuffer = *Utf8SourcePointer;
-  TemporaryBuffer[1] = MemoryAllocationIndex;
-  TemporaryBuffer[2] = UnicodeCodePoint;
-  TemporaryBuffer[3] = MemoryAddressMaskPointer;
+  MemoryAddressMask = Utf8SourcePointer[3];
+  *TemporaryBufferPointer = *Utf8SourcePointer;
+  TemporaryBufferPointer[1] = MemoryAllocationCounter;
+  TemporaryBufferPointer[2] = UnicodeCodePoint;
+  TemporaryBufferPointer[3] = MemoryAddressMask;
   SystemDataTablePointer = ContextHandle[1];
   PerformanceCounterValue = MemoryBoundaryEnd;
   FUN_18018a000(SystemRegisterFlagBuffer,*ContextHandle,SystemDataTablePointer,Utf16EndPointer,MemoryAllocationIndex);

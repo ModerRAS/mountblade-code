@@ -1423,6 +1423,9 @@
 #define OffsetStackDataOffset260 0x260
 #define ExceptionHandlerDataOffset268 0x268
 #define ResourceEntryDataOffsetD0 0xd0
+#define ResourceManagementOffset350 0x350
+#define OperationBaseOffset78 0x78
+#define OperationBaseOffset60 0x60
 #define ExceptionDataEndOffset 0x3d0
 #define ExceptionHandlerCleanupThreshold 0x8000
 
@@ -26897,9 +26900,9 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   do {
     if ((resourceIndex < 0) || (*(int *)(resourceManager + ResourceManagerOffset1A8) <= resourceIndex)) goto ProcessCheckpointResourceValidation;
     resourceEntry = *(int64_t *)(*(int64_t *)(resourceManager + ResourceManagerOffset1A0) + (int64_t)resourceIndex * 8);
-    if (**(int **)(resourceEntry + 0xd0) != 0) {
+    if (**(int **)(resourceEntry + ResourceEntryDataOffsetD0) != 0) {
       validationBuffer[0] = 0;
-      validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + 0xd0),validationBuffer);
+      validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + ResourceEntryDataOffsetD0),validationBuffer);
       if (validationResult != 0) {
 OperationFailedLabel:
           ExecuteSecurityCheck(securityToken ^ (uint64_t)securityBuffer);
@@ -26917,7 +26920,7 @@ OperationFailedLabel:
       validationResult = ValidateDataIntegrityA0(contextHandle,&callbackPointer);
       if (validationResult != 0) goto ProcessCheckpointResourceValidation;
       currentIteration = 0;
-      maxIterations = PerformSystemValidationCheck(*(DataBuffer *)(resourceEntry + 0xd0));
+      maxIterations = PerformSystemValidationCheck(*(DataBuffer *)(resourceEntry + ResourceEntryDataOffsetD0));
       validationResult = processCount + 1;
       if (0 < maxIterations) {
         do {
@@ -27062,7 +27065,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   stackOperationFlags = 0x20214;
   operationResult = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
   if ((int)operationResult == 0) {
-    exceptionHandlerContext = *(int64_t *)(operationBase[1] + 0x78);
+    exceptionHandlerContext = *(int64_t *)(operationBase[1] + OperationBaseOffset78);
     memoryBlockOffset = GetSystemCalculatedOffsetA0();
     if (memoryBlockOffset == 0) {
       operationResult = 0x1c;
@@ -27445,7 +27448,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               do {
                 do {
                   exceptionHandlerContext5 = *(int64_t *)(exceptionHandlerContextPointer4[2] + 8 + (int64_t)iterationCount * 0x10);
-                  if (((*(int64_t *)(exceptionHandlerContext5 + ResourceManagementOffset80) != 0) && (*(int64_t *)(exceptionHandlerContext5 + 0x350) == 0))
+                  if (((*(int64_t *)(exceptionHandlerContext5 + ResourceManagementOffset80) != 0) && (*(int64_t *)(exceptionHandlerContext5 + ResourceManagementOffset350) == 0))
                      && (calculatedSize = ConvertAndValidateDataA0(operationBase), calculatedSize != 0)) goto BufferValidationCheckpoint;
                 } while ((iterationCount != -1) &&
                         (iterationCount = *(int *)(exceptionHandlerContextPointer4[2] + 4 + (int64_t)iterationCount * 0x10), iterationCount != -1));
