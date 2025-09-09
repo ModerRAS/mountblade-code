@@ -218794,8 +218794,8 @@ void SystemDataProcessingFunction(void
           ContextHandle8 = ContextHandle8 + 1;
         } while (ContextHandle8 != *(long long **)(CharacterTablePointer + 0x140));
       }
-      FUN_1800b3cc0(CharacterTablePointer);
-      FUN_18018ee00();
+      CleanupCharacterTable(CharacterTablePointer);
+      ProcessSystemEvent();
       if (*(int *)(SystemDataTablePointer + 0x3c) != -1) {
         if (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c)) {
           *(int *)(SystemDataTablePointer + 0x318) = *(int *)(SystemDataTablePointer + 0x318) + 1;
@@ -219151,7 +219151,7 @@ LAB_180180381:
           ProcessSystemTimeout(TimeoutValueStorage,SystemDataTablePointer + 800,0);
           CleanupSystemDataTable(SystemDataTablePointer + 800);
           (**(code **)(**(long long **)(CoreEngineSystemContext + 0x2b0) + 0x120)                    (*(long long **)(CoreEngineSystemContext + 0x2b0),0);
-          FUN_18021e0a0();
+          ProcessSystemEvent();
           if (*(int *)(SystemDataTablePointer + 0x3c) != -1) {
             if (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c)) {
               *(int *)(SystemDataTablePointer + 0x318) = *(int *)(SystemDataTablePointer + 0x318) + 1;
@@ -219250,7 +219250,7 @@ LAB_180180381:
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_180);
+      ProcessSystemDataTable(SystemDataTablePointer + 800,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
@@ -219277,7 +219277,7 @@ LAB_180180381:
         (*(code *)(*ppppValidationStatus1)[5])(ppppValidationStatus1);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_180);
+      ProcessSystemDataTable(SystemDataTablePointer + 800,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
       SystemUnsignedValue160 = &SystemUnsignedValueBufferQuinary;
@@ -219305,7 +219305,7 @@ LAB_180180381:
         (*(code *)(*pppppValidationStatus)[5])(pppppValidationStatus);
       }
       ProcessPerformanceCounter(ProcessingStatusFlag,&pppppcStack_188);
-      FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_180);
+      ProcessSystemDataTable(SystemDataTablePointer + 800,&pppppcStack_180);
       pppppValidationStatus = (code ******)pppppcStack_180;
       if ((*(int *)(SystemDataTablePointer + 0x3c) == -1) ||
          (*(int *)(SystemDataTablePointer + 0x318) + 1 < *(int *)(SystemDataTablePointer + 0x3c))) {
@@ -219364,7 +219364,7 @@ LAB_18018054e:
     ProcessSystemEventQueueData(&SystemCharacterStatusBufferPrimary,PrimaryProcessingStatusFlag);
   }
   else {
-    FUN_1800aecf0(SystemConfigData,&SystemPriorityLevel);
+    ProcessSystemConfigurationData(SystemConfigData,&SystemPriorityLevel);
     SystemDataRegistry = lStack_38;
     if (lStack_38 != 0) {
       fclose(lStack_38);
@@ -220787,7 +220787,7 @@ void ProcessAsyncCallback(uint32_t ContextHandle, long long *ContextHandleSize, 
 LAB_180184411:
             StackProcessingValue78 = ReferenceCountPointer;
             lStack_88 = FUN_18018a610(&primaryCharacterStatusBufferPointer,primaryCharacterStatusBufferPointer,&StackProcessingValue78);
-            FUN_18018a660(&primaryCharacterStatusBufferPointer,&ppSystemValidationPointer,pppSystemCharacterStatusBuffer,lStack_88 + 0x1c);
+            ProcessUtf8ToUtf16CharacterEncodingVariant(&primaryCharacterStatusBufferPointer,&ppSystemValidationPointer,pppSystemCharacterStatusBuffer,lStack_88 + 0x1c);
             pppSystemCharacterStatusBuffer = (uint64_t ****)ppSystemValidationPointer;
           }
           *(int *)(pppSystemCharacterStatusBuffer + 4) = InputDataLength;

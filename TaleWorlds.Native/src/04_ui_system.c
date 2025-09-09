@@ -33497,16 +33497,16 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   stackLong90 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
   stackUIntac = *(UIDword *)(dataSource + 0x54);
   ContextFirstValue = param_9[1];
-  *(short *)(targetBuffer + 0x30) = sVar9;
-  *(short *)(targetBuffer + 0x32) = sVar1;
-  stackInta8 = sVar9 + param_6;
-  stackInta4 = sVar1 - param_6;
-  stackIntb4 = sVar1 + param_6;
+  *(short *)(targetBuffer + 0x30) = bufferWidth;
+  *(short *)(targetBuffer + 0x32) = bufferHeight;
+  stackInta8 = bufferWidth + param_6;
+  stackInta4 = bufferHeight - param_6;
+  stackIntb4 = bufferHeight + param_6;
   stackLong80 = (longlong)(ContextFirstValue >> 3);
-  stackLong88 = (longlong)(sVar2 >> 3);
-  allocatedMemory6 = (int)((int)sVar9 * result2) + stackLonga0 + (longlong)sVar1;
-  processedCount = *(int *)(EventDataIndex + (sVar1 - stackLong80) * 4);
-  localInt7 = *(int *)(contextHandleData + (sVar9 - stackLong88) * 4);
+  stackLong88 = (longlong)(contextValue >> 3);
+  allocatedMemory6 = (int)((int)bufferWidth * result2) + stackLonga0 + (longlong)bufferHeight;
+  processedCount = *(int *)(EventDataIndex + (bufferHeight - stackLong80) * 4);
+  localInt7 = *(int *)(contextHandleData + (bufferWidth - stackLong88) * 4);
   stackUIntb8 = result2;
   stackLong78 = uiContext;
   loopCounter = (*(UIFunctionPtr *)*param_7)(stackLong90,stackUIntac,allocatedMemory6,result2);
@@ -186035,9 +186035,6 @@ undefined UILayoutCacheHeadPtr;
 // 原始变量名：DAT_180c0fc14 - UI布局缓存尾指针
 #define UILayoutCacheTailPtr DAT_180c0fc14
 undefined UILayoutCacheTailPtr;
-// 原始变量名：DAT_1809472f0 - UI组件数据结构
-#define UIComponentDataStructure DAT_1809472f0
-undefined UIComponentDataStructure;
 // 原始变量名：DAT_180c0fd30 - UI动画缓存头指针
 #define UIAnimationCacheHeadPtr DAT_180c0fd30
 undefined UIAnimationCacheHeadPtr;
