@@ -27840,7 +27840,7 @@ void ProcessDataTypesA0(void)
             resourceValidationStatus = ValidateDataIntegrityA0(operationResult4,StackFrameContext + -4);
             if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
           }
-          dataPointerD = 0.0;
+          processedFloatValue = 0.0;
           operationResult3 = operationResult3 + 1;
           operationResult0 = operationResult0 + SystemDataSecondaryOffset18;
           systemContext = SystemStackInputParameterA;
@@ -27865,7 +27865,7 @@ void ProcessDataTypesA0(void)
             StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
             StackFrameContext[StackFrameSecurityCheckOffsetNegativeB] = systemDataBuffer7;
             StackFrameContext[StackFrameDataOffsetNegative10] = systemDataBuffer6;
-            *(float *)(StackFrameContext + StackFrameSecurityCheckOffsetNegativeD) = dataPointerD;
+            *(float *)(StackFrameContext + StackFrameSecurityCheckOffsetNegativeD) = processedFloatValue;
             securityCheckResult = *(DataWord *)(contextPointer + ContextSecurityCheckResultOffset58);
             statusCounter = *(DataWord *)(contextPointer + ContextStatusCounterOffset5C);
             loopCounter = *(DataWord *)(contextPointer + ContextLoopCounterOffset60);
