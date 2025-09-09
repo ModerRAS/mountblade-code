@@ -92405,7 +92405,7 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
     uiValidationResult = resultPointer;
   }
   uiCompareResult = ProcessUIRenderingUpdateTask(uiContext,uiValidationResult);
-  eventProcessingResult = FUN_18071dfc0(uiContext,uiValidationResult,dataSource[6]);
+  eventProcessingResult = ProcessUIEventTypeValidationAndStateConfiguration(uiContext,uiValidationResult,dataSource[6]);
   stateManagementResult = func_0x00018071dd40(uiContext,dataSource[9]);
   *(UIDword *)(uiBufferData + 0x1204) = dataSource[8];
   uiValidationResult = dataSource[0xb];
@@ -92443,7 +92443,7 @@ int InitializeUISystemState(void)
   
   func_0x000180727c30();
   processingResult = ProcessUIRenderingUpdateTask();
-  uiValidationResult = FUN_18071dfc0();
+  uiValidationResult = ProcessUIEventTypeValidationAndStateConfiguration();
   uiCompareResult = func_0x00018071dd40();
   *(UIDword *)(SourceHandle + 0x1204) = *(UIDword *)(EventHandle + 0x20);
   localInt5 = *(int *)(EventHandle + 0x2c);

@@ -221180,9 +221180,9 @@ void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *Conte
       SystemCharacterStatusBuffer = SystemCharacterStatusBuffer + 8;
     } while (SystemCharacterStatusBuffer != (void *)OperationBufferSize[1]);
   }
-  MemoryBlockIndex = lStack_110;
-  lStack_e0 = lStack_110;
-  lStack_d8 = ((long long)pProcessingCounter - lStack_110) / 0x28;
+  MemoryBlockIndex = StackBufferOffset110;
+  StackBufferOffsetE0 = StackBufferOffset110;
+  StackBufferOffsetD8 = ((long long)pProcessingCounter - StackBufferOffset110) / 0x28;
   SystemTemporaryValueD0 = (long long)(OperationBufferSize + 3);
   if (0xf < (unsigned long long)OperationBufferSize[6]) {
     SystemTemporaryValueD0 = *(long long *)SystemTemporaryValueD0;
