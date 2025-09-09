@@ -152,6 +152,11 @@
 #define ResourceCleanupFlagOffset30 0x30
 #define SecondaryResourceOffset40 0x40
 #define MemoryOperationModeE9 0xe9
+#define MemoryAllocationFlagsF4 0xf4
+#define MemoryAllocationFlags0 0
+#define MemoryAllocationFlags1 1
+#define MemoryAllocationSize100 0x100
+#define MemoryAllocationFlag1 1
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetSecondary 0xcc
@@ -19584,7 +19589,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     if (requiredCapacity != 0) {
       if ((MaximumMemoryBufferSize < requiredCapacity * 8 - 1U) ||
          (memoryResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
-                                0xf4,0), memoryResourcePointer == 0)) goto ErrorHandlingLabel;
+                                MemoryAllocationFlagsF4,MemoryAllocationFlags0), memoryResourcePointer == 0)) goto ErrorHandlingLabel;
       if (*(int *)(queueInfo + QUEUE_SIZE_OFFSET) != 0) {
           memcpy(memoryResourcePointer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
                (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) << 3);
@@ -19593,7 +19598,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     if ((0 < *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET)) && (*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) != 0))
     {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
-                    &SystemMemoryPoolB,0x100,1);
+                    &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
     *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = memoryResourcePointer;
     *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = requiredCapacity;
@@ -19655,7 +19660,7 @@ void ResetUtilitySystemToInitialState(void)
     if (resourceValidationStatus < *(int *)(registerContext + RegisterContextValidationStatusOffset)) goto ErrorHandlingLabel;
     if (resourceValidationStatus != 0) {
       if (MaximumMemoryBufferSize < resourceValidationStatus * 8 - 1U) goto ErrorHandlingLabel;
-      memoryBufferPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),resourceValidationStatus * 8,&SystemMemoryPoolB,0xf4,0)
+      memoryBufferPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),resourceValidationStatus * 8,&SystemMemoryPoolB,MemoryAllocationFlagsF4,MemoryAllocationFlags0)
       ;
       if (memoryBufferPointer == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + RegisterContextValidationStatusOffset) != 0) {
@@ -19664,7 +19669,7 @@ void ResetUtilitySystemToInitialState(void)
     }
     if ((0 < *(int *)(registerContext + RegisterContextOperationFlagsOffset)) && (*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset),
-                    &SystemMemoryPoolB,0x100,1);
+                    &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
     *(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) = memoryBlockOffset;
     *(int *)(registerContext + RegisterContextOperationFlagsOffset) = validationCount;
@@ -19730,7 +19735,7 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
     if (operationResult != 0) {
       if (MaximumMemoryBufferSize < operationResult * 8 - 1U) goto ErrorHandlingLabel;
       systemContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),operationResult * 8,&SystemMemoryPoolB,
-                                0xf4);
+                                MemoryAllocationFlagsF4);
       if (systemContext == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + RegisterContextDataSizeOffset) != 0) {
           memcpy(systemContext,*(DataBuffer *)(registerContext + RegisterContextDataPointerOffset),(int64_t)*(int *)(registerContext + RegisterContextDataSizeOffset) << 3
