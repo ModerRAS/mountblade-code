@@ -48898,9 +48898,9 @@ void CleanupExceptionResourceAtOffset88(DataBuffer operationBase,int64_t dataBuf
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x88) + ExceptionHandlerCallbackOffset10);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + BasicContextOffset88) + ExceptionHandlerCallbackOffset10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + BasicContextOffset88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
       TerminateSystemE0(exceptionDataBuffer);
   }
   return;
