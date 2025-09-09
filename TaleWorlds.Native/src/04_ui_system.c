@@ -100241,30 +100241,30 @@ LAB_180724b88:
       else {
         localChar4 = '$';
       }
-      SourceHandle[localLong7] = localChar4;
-      if (localInt5 < localChar4) {
-        localChar1 = (localChar4 * '\x02' - (char)localInt5) + *contextHandle;
-        localChar4 = '?';
-        if (localChar1 < '?') {
-          localChar4 = localChar1;
+      sourceBuffer[dataOffset] = normalizedChar;
+      if (charCodeValue < normalizedChar) {
+        processedChar = (normalizedChar * '\x02' - (char)charCodeValue) + *contextBuffer;
+        normalizedChar = '?';
+        if (processedChar < '?') {
+          normalizedChar = processedChar;
         }
       }
       else {
-        localChar4 = *contextHandle + localChar4;
+        normalizedChar = *contextBuffer + normalizedChar;
       }
-      *contextHandle = localChar4;
-      SourceHandle[localLong7] = SourceHandle[localLong7] + '\x04';
-      localChar4 = *contextHandle;
+      *contextBuffer = normalizedChar;
+      sourceBuffer[dataOffset] = sourceBuffer[dataOffset] + '\x04';
+      normalizedChar = *contextBuffer;
     }
-    loopCounter = (int)((ulonglong)((longlong)localChar4 * 0x1d1c71) >> 0x10) + 0x82a;
-    localInt5 = 0xf7f;
-    if (loopCounter < 0xf7f) {
-      localInt5 = loopCounter;
+    charIndex = (int)((ulonglong)((longlong)normalizedChar * 0x1d1c71) >> 0x10) + 0x82a;
+    charCodeValue = 0xf7f;
+    if (charIndex < 0xf7f) {
+      charCodeValue = charIndex;
     }
-    EventTypeCode = func_0x00018070b9e0(localInt5);
-    *(UIDword *)(preservedRegister15 + localLong7 * 4) = EventTypeCode;
-    localLong7 = localLong7 + 1;
-    if (EventHandle <= localLong7) {
+    eventTypeCode = func_0x00018070b9e0(charCodeValue);
+    *(UIDword *)(preservedRegister + dataOffset * 4) = eventTypeCode;
+    dataOffset = dataOffset + 1;
+    if (eventCount <= dataOffset) {
       return;
     }
   } while( true );
