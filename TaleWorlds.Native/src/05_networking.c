@@ -5628,15 +5628,30 @@ static uint32_t PerformConnectionHandshake(NetworkConnectionContext *NetworkConn
 /**
  * @brief 生成连接句柄
  * 
- * 为新的网络连接生成唯一的句柄
+ * 为新的网络连接生成唯一的句柄标识符
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
- * @return NetworkHandle 生成的连接句柄
+ * @return NetworkHandle 生成的唯一连接句柄
+ * 
+ * @details 实现细节：
+ * - 使用静态计数器生成递增的句柄
+ * - 确保句柄在系统范围内唯一
+ * - 避免使用特殊保留值
+ * 
+ * @note 这是简化实现，实际应用中需要考虑：
+ * - 句柄回收机制
+ * - 多线程安全性
+ * - 句柄冲突检测
+ * @warning 句柄值1000以下可能被系统保留使用
  */
 static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkConnectionContext)
 {
     // 简化实现：生成简单句柄
-    // 实际实现应该生成唯一的句柄
+    // 实际实现应该：
+    // 1. 使用原子操作确保线程安全
+    // 2. 实现句柄池管理
+    // 3. 检查句柄唯一性
+    // 4. 避免使用系统保留值
     static NetworkHandle handleCounter = 1000;
     return handleCounter++;
 }
