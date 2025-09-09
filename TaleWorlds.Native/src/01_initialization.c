@@ -41780,8 +41780,8 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
       SystemLocalContextPointer[1] = SystemOperationCounter;
     }
     else {
-      charOutput = ExpandSystemResourceAllocator(SystemResourceManager);
-      if (charOutput == '\0') goto StringProcessingComplete;
+      ResourceNameCharacter = ExpandSystemResourceAllocator(SystemResourceManager);
+      if (ResourceNameCharacter == '\0') goto StringProcessingComplete;
       SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60);
       SystemOperationCounter = *SystemLocalContextPointer - 1U & SystemLocalContextPointer[1] + 1U;
       ResourceHashEntryPointer = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationCounter * 8);
@@ -50327,7 +50327,7 @@ StackCheckPoint5:
     }
     ppSystemDataBufferOffset = &SystemSecondaryGlobalDataReferencePtr;
     SystemGlobalDataPointerPtrSecondary = &SystemMemoryAllocatorPointer;
-    charOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
+    ResourceNameCharacter = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   } while( true );
 }
 
