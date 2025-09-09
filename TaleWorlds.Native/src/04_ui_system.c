@@ -5698,7 +5698,7 @@ void* UIIndexDataTable;
 void* UICursorDataTable;
 void* UITouchDataTable;
 void* UIGestureDataTable;
- UI系统控制变量
+// UI系统控制变量
 void* UIFocusController;
 void* UINavigationController;
 void* UITouchController;
@@ -5707,19 +5707,14 @@ void* UIAnimationController;
 void* UITransitionController;
 
  void SetupUILayout(void);
-void SetupUILayout(void);
 
  void ProcessUIInput(void);
-void ProcessUIInput(void);
 
  void HandleUIEvents(void);
-void HandleUIEvents(void);
 
  void UpdateUIAnimation(void);
-void UpdateUIAnimation(void);
 
  void RenderUIFrame(void);
-void RenderUIFrame(void);
 
  uint8_t ProcessUIInputEvent;
 uint8_t ProcessUIInputEvent;
@@ -5762,7 +5757,7 @@ void ProcessUIGesture(void);
 
  void UpdateUIFocus(void);
 void UpdateUIFocus(void);
- UI系统渲染数据表
+// UI系统渲染数据表
 void* UIVertexBufferTable;
 void* UIIndexBufferTable;
 void* UITextureBufferTable;
