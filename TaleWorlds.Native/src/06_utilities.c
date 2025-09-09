@@ -34834,9 +34834,9 @@ uint64_t * ValidateSystemDataProcessing(void)
   DataWord OperationResult;
   DataWord ValidationStatus;
   DataWord MemoryBaseAddress;
-  float CoordinateValue5;
-  float CoordinateValue6;
-  float CoordinateValue7;
+  float CoordinateValueX;
+  float CoordinateValueY;
+  float CoordinateValueZ;
   uint SecurityCheckResult;
   uint StatusCounter;
   uint LoopCounter;
@@ -115684,7 +115684,7 @@ void InvokeExceptionHandlerAtOffset5e0(DataBuffer operationBase,int64_t dataBuff
  * @note 原始函数名：Unwind_180910600
  * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
  */
-void Unwind_180910600(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset600(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
