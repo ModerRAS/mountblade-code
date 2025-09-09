@@ -225204,7 +225204,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
   OldBufferStart = *CharacterStatusBuffer;
   CurrentElementCount = CharacterStatusBuffer[1] - OldBufferStart >> 6;
   if (CurrentElementCount == 0x3ffffffffffffff) {
-    FUN_180189990();
+    ProcessSystemValidationRoutine();
     SystemValidationFunction = (code *)swi(3);
     OldBufferStart = (*SystemValidationFunction)();
     return OldBufferStart;
@@ -225219,7 +225219,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
   if (0x3ffffffffffffff < CalculatedElementCount) {
     CurrentElementCount = -1;
   }
-  NewBufferPointer = FUN_180067110(CurrentElementCount);
+  NewBufferPointer = AllocateSystemMemoryBlock(CurrentElementCount);
   CurrentElementCount = InsertPosition - OldBufferStart & 0xffffffffffffffc0;
   NewBufferEnd = CurrentElementCount + NewBufferPointer;
   ProcessSystemMemoryAllocationEx(NewBufferEnd, ElementData);

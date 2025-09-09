@@ -2519,6 +2519,51 @@ typedef enum {
   原始函数名: ProcessUIEvent
  #define ProcessUIEvent ProcessUIEvent
 
+// UI系统变量美化补充
+#define layoutContext UILayoutContext
+#define CreatedUIContext UICreatedContext
+#define dataSourcePointer UIDataSourcePointer
+#define stringBufferLength UIStringBufferLength
+#define stringDestinationBuffer UIDestinationBuffer
+#define currentBufferPointer UICurrentBufferPointer
+#define uiElementPtr UIElementPtr
+#define uiColorBuffer UIColorBuffer
+#define uiMemoryPtr UIMemoryPtr
+#define pathStringPointer UIPathStringPointer
+#define stringCompareIndex UIStringCompareIndex
+#define renderDataPtr UIRenderDataPtr
+#define pTemporaryFloatValue UIPtrTemporaryFloatValue
+#define EventHandle UIEventHandle
+#define contextHandleData UIContextHandleData
+#define ComponentIndex UIComponentIndex
+#define ComponentOffset UIComponentOffset
+#define ResultValueX UIResultValueX
+#define BasePointer UIBasePointer
+#define unmodifiedXMM8_Da UIUnmodifiedXMM8Da
+#define unmodifiedXMM13_Da UIUnmodifiedXMM13Da
+#define ResultFloatValue UIResultFloatValue
+#define TemporaryFloatValue UITemporaryFloatValue
+#define TransformCoefficient21 UITransformCoefficient21
+#define TransformCoefficient23 UITransformCoefficient23
+#define componentIndex3 UIComponentIndex3
+#define componentIndex2 UIComponentIndex2
+#define componentIndex7 UIComponentIndex7
+#define bufferX UIBufferX
+#define bufferY UIBufferY
+#define bufferZ UIBufferZ
+#define targetY UITargetY
+#define targetZ UITargetZ
+#define sourceZ UISourceZ
+#define crossProductZ UICrossProductZ
+#define vectorComponentX UIVectorComponentX
+#define FloatValue1 UIFloatValue1
+#define FloatValue2 UIFloatValue2
+#define baseValue UIBaseValue
+#define baseValue5 UIBaseValue5
+#define baseValue6 UIBaseValue6
+#define baseValue7 UIBaseValue7
+#define preservedXMM6 UIPreservedXMM6
+
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
@@ -2568,6 +2613,34 @@ typedef enum {
   处理结果状态码
   原始函数名: FUN_18069bd60
  #define ProcessUIRenderData FUN_18069bd60
+
+// UI系统堆栈变量美化补充
+#define stackLong28 UIStackLong28
+#define stackInt20 UIStackInt20
+#define stackUInt98 UIStackUInt98
+#define stackUInt90 UIStackUInt90
+#define stackUInt78 UIStackUInt78
+#define stackUInt70 UIStackUInt70
+#define stackUInt68 UIStackUInt68
+#define stackUInt180 UIStackUInt180
+#define stackUInt118 UIStackUInt118
+#define stackLong70 UIStackLong70
+#define stackLong88 UIStackLong88
+#define stackIntd8 UIStackIntD8
+
+// UI系统缓冲区变量美化
+#define pstackUInt30 UIPtrStackUInt30
+#define pstackUInt50 UIPtrStackUInt50
+#define pstackUInt48 UIPtrStackUInt48
+#define pstackUInt28 UIPtrStackUInt28
+#define pstackUInt180 UIPtrStackUInt180
+#define pstackUInt178 UIPtrStackUInt178
+#define pstackLong68 UIPtrStackLong68
+
+// UI系统音频变量美化
+#define uStackX_8 UIAudioStackData8
+#define AudioSampleBuffer UIAudioSampleBuffer
+#define AudioProcessingMode UIAudioProcessingMode
 
  清空UI渲染缓冲区
  清空UI渲染的缓冲区，准备下一次渲染
