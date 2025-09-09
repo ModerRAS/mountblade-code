@@ -137700,7 +137700,16 @@ UIHandle FUN_18074a895(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void SetUITargetBuffer(longlong uiContext,int dataSource,UIHandle *targetBuffer)
+ /**
+ * @brief 设置UI目标缓冲区
+ * 
+ * 根据数据源类型设置相应的UI目标缓冲区指针
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源类型，决定使用哪种目标缓冲区
+ * @param targetBuffer 目标缓冲区指针的引用
+ */
+void SetUITargetBuffer(longlong uiContext,int dataSource,UIHandle *targetBuffer)
 void SetUITargetBuffer(longlong uiContext,int dataSource,UIHandle *targetBuffer)
 
 {
