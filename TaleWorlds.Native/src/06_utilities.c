@@ -10037,21 +10037,17 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 系统状态获取函数 - 获取系统当前状态
 #define GetSystemCurrentState GetCurrentSystemStatus
 
-// 原始函数名：GetsystemContextHandle - 范围数据获取函数
-// 功能：获取系统操作范围数据
-#define GetOperationRangeData GetsystemContextHandle
+// 范围数据获取函数 - 获取系统操作范围数据
+#define GetOperationRangeData GetSystemOperationRange
 
-// 原始函数名：func_0x000180867960 - 范围验证函数A0
-// 功能：验证系统操作范围
-#define ValidateOperationRangeA0 func_0x000180867960
+// 范围验证函数A0 - 验证系统操作范围
+#define ValidateOperationRangeA0 ValidateSystemOperationRange
 
-// 原始函数名：func_0x000180867660 - 数据处理函数A0
-// 功能：处理系统数据
-#define ProcessSystemDataA0 func_0x000180867660
+// 数据处理函数A0 - 处理系统数据
+#define ProcessSystemDataA0 ProcessSystemDataOperation
 
-// 原始函数名：FUN_1808c44f0 - 系统操作函数A0
-// 功能：执行系统操作和状态检查
-#define ExecuteSystemOperationWithStatusCheck FUN_1808c44f0
+// 系统操作函数A0 - 执行系统操作和状态检查
+#define ExecuteSystemOperationWithStatusCheck ExecuteSystemOperationWithValidation
 
 // 原始函数名：FUN_180894860 - 上下文验证函数A0
 // 功能：验证操作上下文有效性
@@ -11269,8 +11265,8 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
 #define StackInputParameterValidation StackInputParameterE    // 栈输入参数验证变量
 #define StackFloatValuePrimary SystemInputFloatValueA    // 栈浮点值主变量
 #define StackFloatValueSecondary InputFloatValueB    // 栈浮点值次变量
-#define StackDataBufferPrimary StackDataBufferA    // 栈数据缓冲区主变量
-#define StackDataBufferSecondary StackDataBufferB    // 栈数据缓冲区次变量
+#define StackDataBufferPrimary TemporaryDataBufferA    // 栈数据缓冲区主变量
+#define StackDataBufferSecondary TemporaryDataBufferB    // 栈数据缓冲区次变量
 #define StackDataBufferTertiary StackDataBufferC    // 栈数据缓冲区第三变量
 #define StackDataBufferQuaternary StackDataBufferD    // 栈数据缓冲区第四变量
 #define StackDataBufferQuinary StackDataBufferE    // 栈数据缓冲区第五变量
@@ -37782,12 +37778,12 @@ uint64_t ProcessDataAndReturnResult(void)
     }
     else {
       if (exceptionContextPointer[2] != 0) {
-        StackDataBufferA = 0;
+        TemporaryDataBufferA = 0;
         validationStatus = AllocateMemory(*exceptionContextPointer,&StackDataBufferR);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if ((uint64_t)exceptionContextPointer[2] < (uint64_t)StackDataBufferA + 4) {
+        if ((uint64_t)exceptionContextPointer[2] < (uint64_t)TemporaryDataBufferA + 4) {
           validationStatus = 0x11;
           goto ProcessCheckpointValidationContext2;
         }
@@ -37798,7 +37794,7 @@ ValidationContextHandler2:
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
-    if (0x3ff < StackDataBufferB) {
+    if (0x3ff < TemporaryDataBufferB) {
       return 0xd;
     }
     validationStatus = ValidateSystemContextA0(StackFrameContext + 0x48);
@@ -37812,14 +37808,14 @@ ValidationContextHandler2:
   }
 ValidationStateHandler:
   arrayIndex = 0;
-  if (0 < (int)StackDataBufferB) {
+  if (0 < (int)TemporaryDataBufferB) {
     do {
       validationStatus = ProcessDataArrayWithValidation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
       arrayIndex = arrayIndex + 1;
-    } while (arrayIndex < (int)StackDataBufferB);
+    } while (arrayIndex < (int)TemporaryDataBufferB);
   }
   if (*(uint *)(systemContext + 8) < 0x6e) {
     operationResult = 0;
@@ -40049,15 +40045,15 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
     if (*(uint *)(dataBuffer + 8) < 0x6d) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
         operationResult = *dataBuffer;
-        memoryRegionBase = OperateDataO0(operationResult,&StackDataBufferA,4);
+        memoryRegionBase = OperateDataO0(operationResult,&TemporaryDataBufferA,4);
         if ((int)memoryRegionBase != 0) {
           return memoryRegionBase;
         }
-        memoryRegionBase = OperateDataO0(operationResult,&StackDataBufferB,2);
+        memoryRegionBase = OperateDataO0(operationResult,&TemporaryDataBufferB,2);
         if ((int)memoryRegionBase != 0) {
           return memoryRegionBase;
         }
-        memoryRegionBase = OperateDataO0(operationResult,(int64_t)&StackDataBufferB + 2,2);
+        memoryRegionBase = OperateDataO0(operationResult,(int64_t)&TemporaryDataBufferB + 2,2);
         if ((int)memoryRegionBase != 0) {
           return memoryRegionBase;
         }
@@ -132220,11 +132216,11 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈数据缓冲区A
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferA uStack_140
+#define TemporaryDataBufferA uStack_140
 
 // 栈数据缓冲区B
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferB uStack_138
+#define TemporaryDataBufferB uStack_138
 
 // 栈数据字J
 // 功能：存储异常上下文的数据字1
