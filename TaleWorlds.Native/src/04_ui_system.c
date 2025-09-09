@@ -614,47 +614,47 @@ typedef enum {
 #define ShiftUIData MoveUIData                        // UI系统数据移位函数 - 移动UI数据位置
 
 // UI系统函数宏定义 - 处理UI组件事件
-#define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0
-#define ProcessUIComponentState ProcessUIComponentStateManagement7C0
-#define ValidateUIComponentState ValidateUIComponentStateIntegrityE80
-#define CheckUIComponentCondition CheckUIComponentConditionValidation120
-#define UpdateUIComponentState UpdateUIComponentStateData8A0
-#define ValidateUIComponentEvent ValidateUIComponentEventHandlingFC0
+#define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0       // 处理UI组件事件 - 处理UI组件的事件逻辑
+#define ProcessUIComponentState ProcessUIComponentStateManagement7C0     // 处理UI组件状态 - 管理UI组件的状态变化
+#define ValidateUIComponentState ValidateUIComponentStateIntegrityE80   // 验证UI组件状态 - 验证UI组件状态的完整性
+#define CheckUIComponentCondition CheckUIComponentConditionValidation120 // 检查UI组件条件 - 验证UI组件的条件是否满足
+#define UpdateUIComponentState UpdateUIComponentStateData8A0            // 更新UI组件状态 - 更新UI组件的状态数据
+#define ValidateUIComponentEvent ValidateUIComponentEventHandlingFC0     // 验证UI组件事件 - 验证UI组件事件的有效性
 
 // UI系统函数宏定义 - 处理UI上下文管理
-#define InitializeUIContext InitializeUIContextSystemCD9
-#define ProcessUIContextAllocation ProcessUIContextMemoryAllocationCF0
-#define ValidateUIContextData ValidateUIContextDataIntegrityE60
-#define AllocateUIResource AllocateUIResourceMemory250
-#define ReleaseUIMemory ReleaseUIMemoryResources380
-#define GetUIcontextHandle GetUIContextSystemHandle050
+#define InitializeUIContext InitializeUIContextSystemCD9                 // 初始化UI上下文 - 初始化UI系统的上下文
+#define ProcessUIContextAllocation ProcessUIContextMemoryAllocationCF0    // 处理UI上下文分配 - 分配UI上下文的内存
+#define ValidateUIContextData ValidateUIContextDataIntegrityE60          // 验证UI上下文数据 - 验证UI上下文数据的完整性
+#define AllocateUIResource AllocateUIResourceMemory250                   // 分配UI资源 - 分配UI系统所需的资源
+#define ReleaseUIMemory ReleaseUIMemoryResources380                       // 释放UI内存 - 释放UI系统占用的内存
+#define GetUIcontextHandle GetUIContextSystemHandle050                  // 获取UI上下文句柄 - 获取UI上下文的系统句柄
 
 // UI系统标签宏定义 - 事件处理相关
-#define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
+#define LAB_EventTypeStringCompare LAB_EventTypeStringCompare          // 事件类型字符串比较标签 - 用于比较事件类型的字符串
 
 // UI系统动画处理函数宏定义
-#define ProcessUITransformAnimation FUN_180725856     // UI系统变换和动画效果函数
-#define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
-#define LAB_EventStringComparison LAB_EventStringComparison
-#define LAB_EventHandlerReturn LAB_EventHandlerReturn
-#define LAB_EventProcessingContinue LAB_EventProcessingContinue
-#define LAB_EventValidationFailed LAB_EventValidationFailed
-#define LAB_EventStringCompare LAB_EventStringCompare
-#define LAB_EventFocusCheck LAB_EventFocusCheck
-#define LAB_EventValidationCheck LAB_EventValidationCheck
-#define LAB_EventProcessingComplete LAB_EventProcessingComplete
-#define LAB_EventComponentCheck LAB_EventComponentValidationCheck
-#define LAB_EventTypeHandler LAB_EventTypeHandlerRoutine
-#define LAB_EventStringMatch LAB_EventStringComparisonMatch
-#define LAB_EventDataProcess LAB_EventDataProcessingRoutine
-#define LAB_EventResultReturn LAB_EventResultReturnHandler
-#define LAB_EventFocusCheck LAB_EventFocusValidationCheck
-#define LAB_EventSystemInitialize LAB_EventSystemInitialize
-#define LAB_EventContextSetup LAB_EventContextInitializationSetup
-#define LAB_UISystemCleanup LAB_UISystemCleanupRoutine
-#define LAB_UIResourceRelease LAB_UIResourceReleaseHandler
-#define LAB_UIMemoryFree LAB_UIMemoryFreeRoutine
-#define LAB_UIContextReset LAB_UIContextResetHandler
+#define ProcessUITransformAnimation FUN_180725856     // UI系统变换和动画效果函数 - 处理UI变换和动画效果
+#define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck           // 事件类型验证检查标签 - 验证事件类型
+#define LAB_EventStringComparison LAB_EventStringComparison                // 事件字符串比较标签 - 比较事件字符串
+#define LAB_EventHandlerReturn LAB_EventHandlerReturn                      // 事件处理程序返回标签 - 事件处理程序返回点
+#define LAB_EventProcessingContinue LAB_EventProcessingContinue          // 事件处理继续标签 - 继续处理事件
+#define LAB_EventValidationFailed LAB_EventValidationFailed              // 事件验证失败标签 - 事件验证失败时的处理
+#define LAB_EventStringCompare LAB_EventStringCompare                    // 事件字符串比较标签 - 比较事件字符串
+#define LAB_EventFocusCheck LAB_EventFocusCheck                          // 事件焦点检查标签 - 检查事件焦点
+#define LAB_EventValidationCheck LAB_EventValidationCheck                // 事件验证检查标签 - 验证事件的有效性
+#define LAB_EventProcessingComplete LAB_EventProcessingComplete         // 事件处理完成标签 - 事件处理完成
+#define LAB_EventComponentCheck LAB_EventComponentValidationCheck       // 事件组件检查标签 - 验证事件组件
+#define LAB_EventTypeHandler LAB_EventTypeHandlerRoutine                // 事件类型处理程序标签 - 处理特定类型事件
+#define LAB_EventStringMatch LAB_EventStringComparisonMatch             // 事件字符串匹配标签 - 匹配事件字符串
+#define LAB_EventDataProcess LAB_EventDataProcessingRoutine             // 事件数据处理标签 - 处理事件数据
+#define LAB_EventResultReturn LAB_EventResultReturnHandler              // 事件结果返回标签 - 返回事件处理结果
+#define LAB_EventFocusCheck LAB_EventFocusValidationCheck               // 事件焦点验证检查标签 - 验证事件焦点
+#define LAB_EventSystemInitialize LAB_EventSystemInitialize            // 事件系统初始化标签 - 初始化事件系统
+#define LAB_EventContextSetup LAB_EventContextInitializationSetup       // 事件上下文设置标签 - 设置事件上下文
+#define LAB_UISystemCleanup LAB_UISystemCleanupRoutine                 // UI系统清理标签 - 清理UI系统
+#define LAB_UIResourceRelease LAB_UIResourceReleaseHandler             // UI资源释放标签 - 释放UI资源
+#define LAB_UIMemoryFree LAB_UIMemoryFreeRoutine                       // UI内存释放标签 - 释放UI内存
+#define LAB_UIContextReset LAB_UIContextResetHandler                   // UI上下文重置标签 - 重置UI上下文
 #define LAB_UIStateRestore LAB_UIStateRestoreRoutine
 #define LAB_UIDataInitialize LAB_UIDataInitializationRoutine
 #define LAB_UIComponentDestroy LAB_UIComponentDestructionHandler

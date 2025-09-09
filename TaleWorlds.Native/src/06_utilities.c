@@ -4924,7 +4924,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808acb90
  */
-#define ProcessDataArrayWithSecurityCheck FUN_1808acb90
+#define ProcessDataArrayWithSecurityCheck ProcessDataArrayWithSecurityCheck
 
 /**
  * @brief 数据初始化函数A0
@@ -5171,7 +5171,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatusWithValidation FUN_180893e69
+#define UpdateSystemStatusWithValidation UpdateSystemStatusWithValidation
 
 /**
  * @brief 带安全检查的数据块处理
@@ -5181,7 +5181,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180897d20
  */
-#define ProcessDataBlockWithSecurityCheck FUN_180897d20
+#define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
 /**
  * @brief 验证和处理数据
@@ -5190,7 +5190,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899040
  */
-#define ValidateAndProcessData FUN_180899040
+#define ValidateAndProcessDataA2 ValidateAndProcessDataA2
 
 /**
  * @brief 处理数据块
@@ -5199,7 +5199,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899090
  */
-#define ProcessDataBlocks FUN_180899090
+#define ProcessDataBlocks ProcessDataBlocks
 
 /**
  * @brief 验证并执行操作
@@ -5208,7 +5208,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899100
  */
-#define ValidateAndExecuteOperations FUN_180899100
+#define ValidateAndExecuteOperations ValidateAndExecuteOperations
 
 /**
  * @brief 初始化系统组件A0
@@ -5217,7 +5217,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponents FUN_1808992c4
+#define InitializeSystemComponentsA2 InitializeSystemComponentsA2
 
 /**
  * @brief 带安全检查的数据验证A2
@@ -5226,7 +5226,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808995c0
  */
-#define ValidateDataWithSecurityCheck FUN_1808995c0
+#define ValidateDataWithSecurityCheck ValidateDataWithSecurityCheck
 
 /**
  * @brief 清理系统资源A0
@@ -5235,7 +5235,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180899790
  */
-#define CleanupSystemResources FUN_180899790
+#define CleanupSystemResources CleanupSystemResources
 
 /**
  * @brief 重置系统状态A0
@@ -7529,7 +7529,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180897d20 - 数据块处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
-#define ProcessDataBlockWithSecurityCheck FUN_180897d20
+#define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构并执行相关操作
