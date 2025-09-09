@@ -2438,15 +2438,15 @@ typedef enum {
 #define bVar4 UIBoolVar4
 
 // UI系统内部函数名美化
-#define func_0x000180024290 ProcessUIDataWithValidationOperation
-#define func_0x000180022810 ProcessUIDataWithValidationAlternative
-#define func_0x000180069ee0 ValidateUIContextOperation
-#define func_0x000180024a80 ProcessUIComponentValidationOperation
-#define func_0x000180024b00 ProcessUIComponentTransformOperation
-#define func_0x000180024b80 ProcessUIComponentAnimationOperation
-#define func_0x000180024c00 ProcessUIComponentRenderOperation
-#define func_0x000180024c80 ProcessUIComponentEventOperation
-#define func_0x000180024d00 ProcessUIComponentStateOperation
+#define func_0x000180024290 ProcessUIDataWithValidationOperation     // 处理带验证的UI数据操作
+#define func_0x000180022810 ProcessUIDataWithValidationAlternative   // 处理UI数据验证的替代方案
+#define func_0x000180069ee0 ValidateUIContextOperation               // 验证UI上下文操作
+#define func_0x000180024a80 ProcessUIComponentValidationOperation     // 处理UI组件验证操作
+#define func_0x000180024b00 ProcessUIComponentTransformOperation     // 处理UI组件变换操作
+#define func_0x000180024b80 ProcessUIComponentAnimationOperation     // 处理UI组件动画操作
+#define func_0x000180024c00 ProcessUIComponentRenderOperation        // 处理UI组件渲染操作
+#define func_0x000180024c80 ProcessUIComponentEventOperation         // 处理UI组件事件操作
+#define func_0x000180024d00 ProcessUIComponentStateOperation          // 处理UI组件状态操作
 #define func_0x000180024d80 ProcessUIComponentDataOperation
 #define func_0x000180024e00 ProcessUIComponentLayoutOperation
 #define func_0x000180024e80 ProcessUIComponentStyleOperation
