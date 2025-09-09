@@ -200071,15 +200071,15 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
     }
     else {
       colorBufferPointer = *(longlong **)(*(longlong *)(uiBufferData + 0x48) + 0x116e0);
-      uiCompareResult = (**(code **)(*colorBufferPointer + 0x120))(colorBufferPointer,0,&stack0x00000060);
+      uiCompareResult = (**(code **)(*colorBufferPointer + 0x120))(colorBufferPointer,0,&renderParameter);
       if (uiCompareResult != 0) goto LAB_180788061;
       *(UIDword *)(allocatedMemory + 0xc) = 0;
       *(UIDword *)(allocatedMemory + 0x30) = 0;
       *(UIDword *)(allocatedMemory + 0x34) = 1;
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
-      uiCompareResult = FUN_180760c90(allocatedMemory,stackParam00000060,dataSource);
+      uiCompareResult = FUN_180760c90(allocatedMemory,renderParameter,dataSource);
     }
-    if ((SourceHandle != 0) && (bVar4)) {
+    if ((sourceHandle != 0) && (isSourceValid)) {
                      WARNING: Subroutine does not return
       ProcessUISystemCleanup();
     }
