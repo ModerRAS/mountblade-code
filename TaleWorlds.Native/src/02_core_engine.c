@@ -221008,7 +221008,7 @@ InitializeContextHandlePointer(uint64_t *ContextHandle,unsigned long long Operat
 
 
 
-84740(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180184740(long long ContextHandle,long long *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessUnicodeCharacterConversion(long long ContextHandle, long long *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   char ValidationStatus;
   uint32_t *PrimaryProcessingStatusFlag;

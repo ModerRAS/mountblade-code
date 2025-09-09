@@ -21384,7 +21384,7 @@ void ProcessSystemThreeParameterData(long long sourceStringPointer, long long ta
   memoryReference = &SystemMemoryTemplateQuinary;
   dataBuffer = SystemTemporaryDataBuffer;
   bufferLength = 0;
-  tempDataBuffer[0] = 0;
+  SystemTemporaryDataBuffer[0] = 0;
   stringSearchResult = strstr(*(void* *)(sourceStringPointer + 8));
   if (stringSearchResult != 0) {
     sourceStringLength = -1;
@@ -21398,7 +21398,7 @@ void ProcessSystemThreeParameterData(long long sourceStringPointer, long long ta
       memcpy(dataBuffer,*(long long *)(sourceStringPointer + 8),stringSearchResult - *(long long *)(sourceStringPointer + 8));
   }
   memoryReference = &SystemMemoryAllocatorPointer;
-    ValidateSystemChecksum(checksumValue ^ (ulong long)stackSecurityBuffer);
+    ValidateSystemChecksum(checksumValue ^ (ulong long)SystemSecurityValidationBuffer);
 }
 
 
@@ -24010,7 +24010,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   SystemDataBuffer = SystemInvalidHandleTemplate;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionDataBuffer;
   UnsignedStackFlagPointer = &SystemDataBufferTemplateSecondary;
-  stackOperationParameter = SystemStackConfigurationBuffer;
+  SystemStackOperationParameter = SystemStackConfigurationBuffer;
   SystemConfigurationValue = 0;
   SystemStackConfigurationBuffer[0] = 0;
   resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
