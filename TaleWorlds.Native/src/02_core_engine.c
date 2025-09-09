@@ -250128,6 +250128,22 @@ void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *Con
 
 
 
+/**
+ * @brief 处理系统内存分配和清理
+ * 
+ * 该函数负责系统内存的分配、使用和清理操作。
+ * 主要功能包括：
+ * - 初始化系统数据表和内存分配结果
+ * - 处理内存缓冲区的字符串终止符检查
+ * - 管理系统事件模板和内存地址掩码
+ * - 执行内存清理循环和引用计数管理
+ * - 处理系统内存块的初始化和释放
+ * 
+ * @param SystemContextHandle 系统上下文句柄
+ * @param MemoryBufferSize 内存缓冲区大小
+ * @note 原始函数名：FUN_180205470
+ * @return 无返回值
+ */
 void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsigned long long MemoryBufferSize)
 {
   long long *SystemContextPointer;
