@@ -101734,8 +101734,8 @@ void ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIHandl
 
 
 
- void FUN_180724e37(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180724e37(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIComponentContext(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIComponentContext(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   UIHandle *RegisterPointer;
@@ -101772,7 +101772,7 @@ void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDwo
     processingResult = *(int *)(uiBufferData + 8);
     TempInt4 = processingResult * -0x400 + 0x40000;
     uiCompareResult = TempInt4 >> 0x10;
-    FUN_180724c50(astackUInt40,astackUInt48,uiCompareResult,TempInt4 + uiCompareResult * -0x10000);
+    ProcessUIContextDataTransfer(astackUInt40,astackUInt48,uiCompareResult,TempInt4 + uiCompareResult * -0x10000);
     processingResult = processingResult + uiValidationResult;
     uiValidationResult = 0x100;
     if ((processingResult < 0x101) && (uiValidationResult = 0, -1 < processingResult)) {
@@ -101790,8 +101790,8 @@ void ProcessUIContextWithEncryption(longlong uiContext,UIHandle dataSource,UIDwo
 
 
 
- void FUN_180724ebf(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_180724ebf(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+ void ProcessUIComponentResource(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+void ProcessUIComponentResource(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   int processingResult;
@@ -101803,7 +101803,7 @@ void FUN_180724ebf(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   processingResult = *(int *)(uiBufferData + 8);
   bufferSize = bufferSize + processingResult * -0x400;
   uiValidationResult = bufferSize >> 0x10;
-  FUN_180724c50(&stack0x00000038,&stack0x00000030,uiValidationResult,bufferSize + uiValidationResult * -0x10000);
+  ProcessUIContextDataTransfer(&stack0x00000038,&stack0x00000030,uiValidationResult,bufferSize + uiValidationResult * -0x10000);
   processingResult = processingResult + unmodifiedEBP;
   uiValidationResult = 0x100;
   if ((processingResult < 0x101) && (uiValidationResult = 0, -1 < processingResult)) {
@@ -101818,8 +101818,8 @@ void FUN_180724ebf(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_180724eff(int uiContext)
-void FUN_180724eff(int uiContext)
+ void ValidateUIComponent(int uiContext)
+void ValidateUIComponent(int uiContext)
 
 {
   int processingResult;
@@ -105683,7 +105683,7 @@ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targ
   ulonglong loopCounter;
   
   contextHandleData = 0;
-  FUN_1807249d0(SourceHandle + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2,
+  ProcessUICharacterDataConversion(SourceHandle + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2,
                 *(UIDword *)(uiBufferData + 0x914));
   FUN_180734390(&stack0x00000030,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
   FUN_18072f4d0(SourceHandle + 0x40,&stack0x00000030,*(UIDword *)(uiBufferData + 0x924),
