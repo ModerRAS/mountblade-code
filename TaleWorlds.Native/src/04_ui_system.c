@@ -200035,100 +200035,117 @@ LAB_180786c1b:
 
 
 
-int FUN_180786cb0(longlong uiContext,ulonglong dataSource,int targetBuffer)
+/**
+ * @brief 处理UI事件数据流
+ * 
+ * 该函数负责处理UI系统中的事件数据流，包括内存分配、事件处理和数据验证。
+ * 主要功能包括：
+ * - 分配和管理事件处理所需的内存
+ * - 处理UI事件数据的验证和转换
+ * - 管理UI组件的状态和事件队列
+ * - 执行事件回调和处理逻辑
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区大小
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180786cb0
+ */
+int ProcessUIEventDataStream(longlong uiContext,ulonglong dataSource,int targetBuffer)
 
 {
-  longlong *pallocatedMemory;
+  longlong *allocatedMemoryPointer;
   longlong componentIndex;
-  UIHandle *ptrLocal3;
-  int TempInt4;
-  longlong *pEventDataIndex;
-  int loopCounter;
-  longlong localLong7;
+  UIHandle *uiComponentPointer;
+  int componentCount;
+  longlong *eventDataPointer;
+  int processingStatus;
+  longlong uiContextHandle;
   ulonglong eventProcessingCounter;
-  UIHandle *ptrLocal9;
-  ulonglong uStackX_8;
-  longlong lStackX_20;
+  UIHandle *eventHandlePointer;
+  ulonglong bufferAllocationSize;
+  longlong allocatedBufferOffset;
   
   componentIndex = *(longlong *)(uiBufferData + 0x48);
-  TempInt4 = *(int *)(componentIndex + 0x6d4);
-  uStackX_8 = 0;
-  lStackX_20 = 0;
+  componentCount = *(int *)(componentIndex + 0x6d4);
+  bufferAllocationSize = 0;
+  allocatedBufferOffset = 0;
   eventProcessingCounter = dataSource;
   if (*(longlong *)(componentIndex + 0x10f78) != 0) {
-    lStackX_20 = FUN_180741e10(componentIndex + 0x10bd0,TempInt4 * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,0,1);
-    eventProcessingCounter = lStackX_20 + 0x1fU & 0xffffffffffffffe0;
-    uStackX_8 = eventProcessingCounter;
+    allocatedBufferOffset = FUN_180741e10(componentIndex + 0x10bd0,componentCount * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,0,1);
+    eventProcessingCounter = allocatedBufferOffset + 0x1fU & 0xffffffffffffffe0;
+    bufferAllocationSize = eventProcessingCounter;
     if (eventProcessingCounter == 0) {
-      loopCounter = 0x26;
+      processingStatus = 0x26;
       goto LAB_180786fc2;
     }
   }
-  localLong7 = *(longlong *)(uiBufferData + 0x48);
-  if (*(longlong *)(localLong7 + 0x10f88) != 0) {
-    pallocatedMemory = (longlong *)(localLong7 + 0x6c0);
-    pEventDataIndex = (longlong *)*pallocatedMemory;
-    if (pEventDataIndex != pallocatedMemory) {
+  uiContextHandle = *(longlong *)(uiBufferData + 0x48);
+  if (*(longlong *)(uiContextHandle + 0x10f88) != 0) {
+    allocatedMemoryPointer = (longlong *)(uiContextHandle + 0x6c0);
+    eventDataPointer = (longlong *)*allocatedMemoryPointer;
+    if (eventDataPointer != allocatedMemoryPointer) {
       do {
-        if (*(char *)((longlong)pEventDataIndex + 0x59) != '\0') {
-          loopCounter = FUN_1807ef140(pEventDataIndex[2],*(UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x10f88),1
+        if (*(char *)((longlong)eventDataPointer + 0x59) != '\0') {
+          processingStatus = FUN_1807ef140(eventDataPointer[2],*(UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x10f88),1
                                 ,0);
-          if (loopCounter != 0) goto LAB_180786fc2;
-          *(UIByte *)((longlong)pEventDataIndex + 0x59) = 0;
+          if (processingStatus != 0) goto LAB_180786fc2;
+          *(UIByte *)((longlong)eventDataPointer + 0x59) = 0;
         }
-        pEventDataIndex = (longlong *)*pEventDataIndex;
-      } while (pEventDataIndex != pallocatedMemory);
-      localLong7 = *(longlong *)(uiBufferData + 0x48);
+        eventDataPointer = (longlong *)*eventDataPointer;
+      } while (eventDataPointer != allocatedMemoryPointer);
+      uiContextHandle = *(longlong *)(uiBufferData + 0x48);
     }
-    pallocatedMemory = *(longlong **)(localLong7 + 0x10f88);
-    targetBuffer = (int)pallocatedMemory[3] * targetBuffer;
-    if (*(int *)((longlong)pallocatedMemory + 0x14) < targetBuffer) {
+    allocatedMemoryPointer = *(longlong **)(uiContextHandle + 0x10f88);
+    targetBuffer = (int)allocatedMemoryPointer[3] * targetBuffer;
+    if (*(int *)((longlong)allocatedMemoryPointer + 0x14) < targetBuffer) {
                      WARNING: Subroutine does not return
       memset(eventProcessingCounter,0,(longlong)targetBuffer);
     }
-    if ((*(int *)((longlong)pallocatedMemory + 0x2c) - (int)pallocatedMemory[5]) * (int)pallocatedMemory[3] < targetBuffer) {
+    if ((*(int *)((longlong)allocatedMemoryPointer + 0x2c) - (int)allocatedMemoryPointer[5]) * (int)allocatedMemoryPointer[3] < targetBuffer) {
                      WARNING: Subroutine does not return
       memset(eventProcessingCounter,0,(longlong)targetBuffer);
     }
-    TempInt4 = (int)pallocatedMemory[4] * (int)pallocatedMemory[3];
-    if (*(int *)((longlong)pallocatedMemory + 0x14) < TempInt4 + targetBuffer) {
+    componentCount = (int)allocatedMemoryPointer[4] * (int)allocatedMemoryPointer[3];
+    if (*(int *)((longlong)allocatedMemoryPointer + 0x14) < componentCount + targetBuffer) {
                      WARNING: Subroutine does not return
-      memcpy(eventProcessingCounter,(longlong)TempInt4 + *pallocatedMemory,(longlong)(*(int *)((longlong)pallocatedMemory + 0x14) - TempInt4));
+      memcpy(eventProcessingCounter,(longlong)componentCount + *allocatedMemoryPointer,(longlong)(*(int *)((longlong)allocatedMemoryPointer + 0x14) - componentCount));
     }
                      WARNING: Subroutine does not return
-    memcpy(eventProcessingCounter,(longlong)TempInt4 + *pallocatedMemory,(longlong)targetBuffer);
+    memcpy(eventProcessingCounter,(longlong)componentCount + *allocatedMemoryPointer,(longlong)targetBuffer);
   }
-  loopCounter = FUN_180787080(uiContext,eventProcessingCounter,targetBuffer);
-  if ((loopCounter == 0) && (loopCounter = FUN_1807872c0(uiContext,eventProcessingCounter,TempInt4,targetBuffer,targetBuffer), loopCounter == 0)) {
+  processingStatus = FUN_180787080(uiContext,eventProcessingCounter,targetBuffer);
+  if ((processingStatus == 0) && (processingStatus = FUN_1807872c0(uiContext,eventProcessingCounter,componentCount,targetBuffer,targetBuffer), processingStatus == 0)) {
     if (*(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x10f88) != 0) {
-      ptrLocal9 = (UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
-      for (ptrLocal3 = (UIHandle *)*ptrLocal9; ptrLocal3 != ptrLocal9; ptrLocal3 = (UIHandle *)*ptrLocal3) {
-        TempInt4 = *(int *)(ptrLocal3 + 6) * targetBuffer * 4;
-        if (*(char *)((longlong)ptrLocal3 + 0x5a) != '\0') {
+      eventHandlePointer = (UIHandle *)(*(longlong *)(uiBufferData + 0x48) + 0x6c0);
+      for (uiComponentPointer = (UIHandle *)*eventHandlePointer; uiComponentPointer != eventHandlePointer; uiComponentPointer = (UIHandle *)*uiComponentPointer) {
+        componentCount = *(int *)(uiComponentPointer + 6) * targetBuffer * 4;
+        if (*(char *)((longlong)uiComponentPointer + 0x5a) != '\0') {
                      WARNING: Subroutine does not return
-          memset((ulonglong)*(uint *)(ptrLocal3 + 8) + ptrLocal3[7],0,TempInt4);
+          memset((ulonglong)*(uint *)(uiComponentPointer + 8) + uiComponentPointer[7],0,componentCount);
         }
-        loopCounter = FUN_1807ef110(ptrLocal3[2],(ulonglong)*(uint *)(ptrLocal3 + 8) + ptrLocal3[7],targetBuffer);
-        if (loopCounter != 0) goto LAB_180786fc2;
-        *(int *)(ptrLocal3 + 8) = *(int *)(ptrLocal3 + 8) + TempInt4;
+        processingStatus = FUN_1807ef110(uiComponentPointer[2],(ulonglong)*(uint *)(uiComponentPointer + 8) + uiComponentPointer[7],targetBuffer);
+        if (processingStatus != 0) goto LAB_180786fc2;
+        *(int *)(uiComponentPointer + 8) = *(int *)(uiComponentPointer + 8) + componentCount;
       }
-      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (loopCounter = ValidateUIContextState(), loopCounter != 0))
+      if ((*(longlong *)(uiBufferData + 0x198) != 0) && (processingStatus = ValidateUIContextState(), processingStatus != 0))
       goto LAB_180786fc2;
     }
-    pallocatedMemory = *(longlong **)(*(longlong *)(uiBufferData + 0x48) + 0x10f78);
-    if ((pallocatedMemory == (longlong *)0x0) ||
-       (loopCounter = (**(code **)(*pallocatedMemory + 0x10))(pallocatedMemory,eventProcessingCounter,dataSource,targetBuffer), loopCounter == 0)) {
-      localLong7 = *(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x670);
-      loopCounter = func_0x0001807eed30(dataSource,targetBuffer,*(UIDword *)(localLong7 + 0x58),
-                                  *(UIDword *)(localLong7 + 0x5c));
+    allocatedMemoryPointer = *(longlong **)(*(longlong *)(uiBufferData + 0x48) + 0x10f78);
+    if ((allocatedMemoryPointer == (longlong *)0x0) ||
+       (processingStatus = (**(code **)(*allocatedMemoryPointer + 0x10))(allocatedMemoryPointer,eventProcessingCounter,dataSource,targetBuffer), processingStatus == 0)) {
+      uiContextHandle = *(longlong *)(*(longlong *)(uiBufferData + 0x48) + 0x670);
+      processingStatus = func_0x0001807eed30(dataSource,targetBuffer,*(UIDword *)(uiContextHandle + 0x58),
+                                  *(UIDword *)(uiContextHandle + 0x5c));
     }
   }
 LAB_180786fc2:
-  if (uStackX_8 != 0) {
+  if (bufferAllocationSize != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(componentIndex + 0x10bd0,lStackX_20,&UIDefaultDataBuffer,0,1);
+    FUN_180742250(componentIndex + 0x10bd0,allocatedBufferOffset,&UIDefaultDataBuffer,0,1);
   }
-  return loopCounter;
+  return processingStatus;
 }
 
 
