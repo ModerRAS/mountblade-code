@@ -3470,33 +3470,33 @@ void InitializeNativeCoreDLL(uint64_t InitFlags)
   MemoryManagerDataAddress = InitializeMemoryBlock(MemoryAllocationResult);
   InitializeStackBuffer(&StackBufferPointer,SystemContextPointer);
   StringProcessingResult = ValidateStackData(&StackBufferPointer,&SystemStackValidationTemplate);
-  MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
+  StringMemoryOffset = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < StackBufferSize) {
-    StringPointer = (char *)(StringProcessingStack + MemoryAddress4);
+    StringPointer = (char *)(StringProcessingStack + StringMemoryOffset);
     do {
-      StringIndex = (int)MemoryAddress4;
+      StringIndex = (int)StringMemoryOffset;
       if (*StringPointer == ' ') goto LabelStringProcessingSpaceCheck1;
-      MemoryAddress4 = (ulonglong)(StringIndex + 1U);
+      StringMemoryOffset = (ulonglong)(StringIndex + 1U);
       StringPointer = StringPointer + 1;
     } while (StringIndex + 1U < StackBufferSize);
   }
   StringIndex = -1;
 LabelStringProcessingSpaceCheck1:
   StringProcessingResult = StringIndex + 1;
-  MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
+  StringMemoryOffset = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < StackBufferSize) {
-    StringPointer = (char *)(StringProcessingStack + MemoryAddress4);
+    StringPointer = (char *)(StringProcessingStack + StringMemoryOffset);
     do {
       if (*StringPointer == ' ') goto LabelStringProcessingSpaceCheck2;
-      MemoryAddress5 = (int)MemoryAddress4 + 1;
-      MemoryAddress4 = (ulonglong)MemoryAddress5;
+      StringNextOffset = (int)StringMemoryOffset + 1;
+      StringMemoryOffset = (ulonglong)StringNextOffset;
       StringPointer = StringPointer + 1;
-    } while (MemoryAddress5 < StackBufferSize);
+    } while (StringNextOffset < StackBufferSize);
   }
-  MemoryAddress4 = SystemMaximumUnsignedValue;
+  StringMemoryOffset = SystemMaximumUnsignedValue;
 LabelStringProcessingSpaceCheck2:
   if (StringIndex != -1) {
-    ProcessStackOperation(&StackBufferPointer,&StackDataBuffer,StringProcessingResult,MemoryAddress4);
+    ProcessStackOperation(&StackBufferPointer,&StackDataBuffer,StringProcessingResult,StringMemoryOffset);
     pMemoryAddress3 = &SystemConstantStringPrimary;
     if (StackPointer != (void *)0x0) {
       pMemoryAddress3 = StackPointer;
@@ -4209,7 +4209,7 @@ PathSeparatorDetected:
                       StackProcessingCounter = 0;
                       BufferSize6 = StackParameter15 | 1;
                       pMemoryAddress1 = pMemoryAddress6;
-                      pMemoryAddress4 = pMemoryAddress6;
+                      pStringMemoryOffset = pMemoryAddress6;
                       StackParameter15 = BufferSize6;
                       StackBufferSize = BufferSize7;
                       if (UnsignedIndex != 0) {
@@ -4217,10 +4217,10 @@ PathSeparatorDetected:
                         if (LoopCounterValue < 0x10) {
                           LoopCounterValue = 16;
                         }
-                        pMemoryAddress4 = (uint8_t *)MemoryAllocateEx(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
-                        *pMemoryAddress4 = 0;
-                        StackBufferPointer = pMemoryAddress4;
-                        pMemoryAddress1 = (uint8_t *)MemoryValidateEx(pMemoryAddress4);
+                        pStringMemoryOffset = (uint8_t *)MemoryAllocateEx(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
+                        *pStringMemoryOffset = 0;
+                        StackBufferPointer = pStringMemoryOffset;
+                        pMemoryAddress1 = (uint8_t *)MemoryValidateEx(pStringMemoryOffset);
                         StackProcessIdentifier = CONCAT44(StackProcessIdentifier._4_4_,(int)SystemMemoryBufferPointer);
                       }
                       SystemDataPointer = 1;
@@ -4237,28 +4237,28 @@ PathSeparatorDetected:
                           BufferSize1 = (ulonglong)BufferSize3;
                           if (BufferSize3 != 0) {
                             BufferSize6 = LoopCounterValue + 2;
-                            if (pMemoryAddress4 == (uint8_t *)0x0) {
+                            if (pStringMemoryOffset == (uint8_t *)0x0) {
                               if ((int)BufferSize6 < 0x10) {
                                 BufferSize6 = 16;
                               }
-                              pMemoryAddress4 = (uint8_t *)
+                              pStringMemoryOffset = (uint8_t *)
                                         MemoryAllocateEx(SystemMemoryAllocator,(longlong)(int)BufferSize6,0x13);
-                              *pMemoryAddress4 = 0;
+                              *pStringMemoryOffset = 0;
                             }
                             else {
                               if (BufferSize6 <= (uint)pMemoryAddress1) goto Label_BufferSizeMaximumLimitReached;
                               StackErrorCode = 0x13;
-                              pMemoryAddress4 = (uint8_t *)
-                                        MemoryCopyEx(SystemMemoryAllocator,pMemoryAddress4,BufferSize6,0x10);
+                              pStringMemoryOffset = (uint8_t *)
+                                        MemoryCopyEx(SystemMemoryAllocator,pStringMemoryOffset,BufferSize6,0x10);
                             }
-                            StackBufferPointer = pMemoryAddress4;
-                            BufferSize6 = MemoryValidateEx(pMemoryAddress4);
+                            StackBufferPointer = pStringMemoryOffset;
+                            BufferSize6 = MemoryValidateEx(pStringMemoryOffset);
                             StackProcessIdentifier = CONCAT44(StackProcessIdentifier._4_4_,BufferSize6);
                             pMemoryAddress1 = (uint8_t *)(ulonglong)BufferSize6;
                           }
 BufferSizeLimitExceeded:
-                          pMemoryAddress6[(longlong)pMemoryAddress4] = BufferSize;
-                          pMemoryAddress4[BufferSize1] = 0;
+                          pMemoryAddress6[(longlong)pStringMemoryOffset] = BufferSize;
+                          pStringMemoryOffset[BufferSize1] = 0;
                           pMemoryAddress6 = (uint8_t *)(ulonglong)BufferSize3;
                           StringProcessingResult0 = StringProcessingResult0 + 1;
                           SystemDataPointer = SystemDataPointer + 1;
@@ -4270,8 +4270,8 @@ BufferSizeLimitExceeded:
                       ProcessMemoryData(pMemoryAddress1,&StackSystemPointer,BufferSize7);
                       StackParameter15 = BufferSize6 & 0xfffffffe;
                       StackSystemPointer = &SystemNullPointer;
-                      if (pMemoryAddress4 != (uint8_t *)0x0) {
-                        SystemBufferValidate(pMemoryAddress4);
+                      if (pStringMemoryOffset != (uint8_t *)0x0) {
+                        SystemBufferValidate(pStringMemoryOffset);
                       }
                       StackBufferPointer = (uint8_t *)0x0;
                       StackProcessIdentifier = StackProcessIdentifier & SystemMemoryAlignmentMask;
@@ -4282,14 +4282,14 @@ BufferSizeLimitExceeded:
                     else {
                       CharacterProcessingFlag = '\0';
                       if (pMemoryAddress1 != (uint8_t *)0x0) {
-                        SystemBufferCopy(SystemControlDataAddress + 0x28,pMemoryAddress4);
+                        SystemBufferCopy(SystemControlDataAddress + 0x28,pStringMemoryOffset);
                       }
                       if (UnsignedIndex != 0) {
-                        memcpy(*(uint64_t *)(SystemDataPointer + 0x30),pMemoryAddress1,pMemoryAddress4);
+                        memcpy(*(uint64_t *)(SystemDataPointer + 0x30),pMemoryAddress1,pStringMemoryOffset);
                       }
                       *(uint32_t *)(SystemDataPointer + 0x38) = 0;
                       if (*(longlong *)(SystemDataPointer + 0x30) != 0) {
-                        pMemoryAddress4[*(longlong *)(SystemDataPointer + 0x30)] = 0;
+                        pStringMemoryOffset[*(longlong *)(SystemDataPointer + 0x30)] = 0;
                       }
                       *(uint32_t *)(SystemDataPointer + 0x44) = StackAlignmentMask._4_4_;
                     }
@@ -4300,7 +4300,7 @@ BufferSizeLimitExceeded:
           }
         }
 LabelSystemOperationExit:
-        pMemoryAddress4 = (uint8_t *)0x0;
+        pStringMemoryOffset = (uint8_t *)0x0;
         StackCounter40 = 0;
         SystemDataPointer = SystemDataPointerBackup;
         if (pMemoryAddress1 != (uint8_t *)0x0) {
@@ -4311,8 +4311,8 @@ LabelSystemOperationExit:
         SystemBufferCopy(&SystemBufferPointer310,UnsignedIndex + 1);
         StackProcessingBuffer[StackCounter40] = CharValue;
         StackCounter40 = StackCounter40 + 1;
-        pMemoryAddress4 = (uint8_t *)(ulonglong)StackCounter40;
-        pMemoryAddress4[(longlong)StackProcessingBuffer] = 0;
+        pStringMemoryOffset = (uint8_t *)(ulonglong)StackCounter40;
+        pStringMemoryOffset[(longlong)StackProcessingBuffer] = 0;
         SystemMemoryBufferPointer = StackProcessingBuffer;
       }
       StackCounter2f0 = StackCounter2f0 + 1;
@@ -4373,7 +4373,7 @@ BufferSizeValidationCheckpoint:
 BufferSizeValidationCompleted:
   LoopCounterValue = -1;
 BufferSizeValidationConfirmed:
-  SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pMemoryAddress4);
+  SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pStringMemoryOffset);
   SystemBufferPointerE8 = (uint64_t *)0x0;
   SystemBufferPointerE0 = (uint64_t *)0x0;
   SystemStackValue216 = 0;
@@ -5157,21 +5157,21 @@ uint ProcessMutexOperations(void)
   }
 Label_MutexOperationComplete:
   if (*(char *)(SystemEngineContext + 0xa0) != '\0') {
-    MemoryAddress4 = AllocateSystemMemoryRegion(ModuleInitializationResult6);
-    *(uint64_t *)(SystemEngineContext + 0xa8) = MemoryAddress4;
-    MemoryAddress4 = InitializeSystemMemoryBuffer(ModuleInitializationResult6);
-    *(uint64_t *)(SystemEngineContext + 0xb0) = MemoryAddress4;
+    StringMemoryOffset = AllocateSystemMemoryRegion(ModuleInitializationResult6);
+    *(uint64_t *)(SystemEngineContext + 0xa8) = StringMemoryOffset;
+    StringMemoryOffset = InitializeSystemMemoryBuffer(ModuleInitializationResult6);
+    *(uint64_t *)(SystemEngineContext + 0xb0) = StringMemoryOffset;
   }
   StringPointer = MemoryManagerDataAddress;
   if (*MemoryManagerDataAddress != '\0') {
-    pMemoryAddress5 = (uint64_t *)*SystemModulePointer;
+    pStringNextOffset = (uint64_t *)*SystemModulePointer;
     LoopCounter3 = _Mtx_lock(SystemMutexAddressA);
     if (LoopCounter3 != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
-    MemoryAddress4 = SystemModuleContext;
+    StringMemoryOffset = SystemModuleContext;
     SystemPointerPointerStack1b8 = (longlong **)SystemModuleContext;
-    SystemModuleContext = *pMemoryAddress5;
+    SystemModuleContext = *pStringNextOffset;
     SystemInitializeSecondary(&SystemDataRatioCalculator,0,0);
     double InitialCalculationResult = 0.0;
     double AccumulatedResultA = 0.0;
@@ -5197,21 +5197,21 @@ Label_MutexOperationComplete:
     }
     CalculateSystemDataRatio(&SystemDataRatioSecondary,AccumulatedResultA / AccumulatedResultB);
     FinalizeSystemComponent();
-    SystemModuleContext = MemoryAddress4;
+    SystemModuleContext = StringMemoryOffset;
     LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);
     if (LoopCounter3 != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
   }
   if (*(char *)(SystemConfigurationData + 0x1626) != '\0') {
-    MemoryAddress4 = *(uint64_t *)(SystemEngineContext + 0x138);
+    StringMemoryOffset = *(uint64_t *)(SystemEngineContext + 0x138);
     *(uint64_t *)(SystemEngineContext + 0x138) = 0;
     SystemPointerStackB8 = &SystemMemoryPool;
     SystemPointerMemoryFlag = SystemArrayStackA0;
     SystemArrayStackA0[0] = 0;
     SystemUnsignedStackA8 = 0x18;
     BufferSize4 = strcpy_s(SystemArrayStackA0,64,&SystemBufferTemplateString);
-    InitializeSystemMemoryRegion(BufferSize4,&SystemPointerStackB8,MemoryAddress4,1);
+    InitializeSystemMemoryRegion(BufferSize4,&SystemPointerStackB8,StringMemoryOffset,1);
     SystemPointerStackB8 = &SystemBufferTemplate;
   }
   if (*(int *)(SystemModuleStatusPointer + 0x60) == 1) {
@@ -5224,8 +5224,8 @@ Label_MutexOperationComplete:
   MemoryAddress9 = BufferSize0;
   if (0 < (int)ModuleInitializationResult8) {
     do {
-      pMemoryAddress5 = (uint64_t *)ProcessModuleInitialization(ModuleInitializationResult8,&pStackStringData3,(longlong)(int)MemoryAddress9);
-      (**(code **)(*(longlong *)*pMemoryAddress5 + 0x98))();
+      pStringNextOffset = (uint64_t *)ProcessModuleInitialization(ModuleInitializationResult8,&pStackStringData3,(longlong)(int)MemoryAddress9);
+      (**(code **)(*(longlong *)*pStringNextOffset + 0x98))();
       if (pStackStringData3 != (longlong *)0x0) {
         (**(code **)(*pStackStringData3 + 0x38))();
       }
@@ -5260,24 +5260,24 @@ InitializeCoreSystem();
   }
   MemoryIndexValue = SystemConfigurationData;
   ModuleInitializationResult8 = GameEngineDataAddress;
-  MemoryAddress4 = *(uint64_t *)(SystemConfigurationData + 0x161c);
+  StringMemoryOffset = *(uint64_t *)(SystemConfigurationData + 0x161c);
   *(uint64_t *)(GameEngineDataAddress + GameEngineConfigDataOffset) = *(uint64_t *)(SystemConfigurationData + GameEngineConfigDataBaseOffset);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x12d8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x162c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x12d8) = StringMemoryOffset;
+  StringMemoryOffset = *(uint64_t *)(MemoryIndexValue + 0x162c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12e0) = *(uint64_t *)(MemoryIndexValue + 0x1624);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x12e8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x163c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x12e8) = StringMemoryOffset;
+  StringMemoryOffset = *(uint64_t *)(MemoryIndexValue + 0x163c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12f0) = *(uint64_t *)(MemoryIndexValue + 0x1634);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x12f8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x164c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x12f8) = StringMemoryOffset;
+  StringMemoryOffset = *(uint64_t *)(MemoryIndexValue + 0x164c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1300) = *(uint64_t *)(MemoryIndexValue + 0x1644);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1308) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x165c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1308) = StringMemoryOffset;
+  StringMemoryOffset = *(uint64_t *)(MemoryIndexValue + 0x165c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1310) = *(uint64_t *)(MemoryIndexValue + 0x1654);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1318) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x166c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1318) = StringMemoryOffset;
+  StringMemoryOffset = *(uint64_t *)(MemoryIndexValue + 0x166c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1320) = *(uint64_t *)(MemoryIndexValue + 0x1664);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1328) = MemoryAddress4;
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1328) = StringMemoryOffset;
   BufferSize4 = *(uint32_t *)(MemoryIndexValue + 0x1678);
   MemoryAddress0 = *(uint32_t *)(MemoryIndexValue + 0x167c);
   MemoryAddress1 = *(uint32_t *)(MemoryIndexValue + 0x1680);
@@ -5317,14 +5317,14 @@ InitializeCoreSystem();
   if ((int)SystemFrameCounter < 0) {
     SystemFrameCounter = (SystemFrameCounter - 1 | 0xfffffffe) + 1;
   }
-  pMemoryAddress5 = (uint64_t *)*SystemModulePointer;
+  pStringNextOffset = (uint64_t *)*SystemModulePointer;
   LoopCounter3 = _Mtx_lock(SystemMutexAddressA);
   if (LoopCounter3 != 0) {
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
   }
-  MemoryAddress4 = SystemModuleContext;
+  StringMemoryOffset = SystemModuleContext;
   SystemPointerPointerStack220 = (longlong **)SystemModuleContext;
-  SystemModuleContext = *pMemoryAddress5;
+  SystemModuleContext = *pStringNextOffset;
   ModuleInitializationResult8 = *(longlong *)(GameEngineDataAddress + GameEngineFrameDataArrayOffset + (longlong)(int)SystemFrameCounter * 8);
   if (ModuleInitializationResult8 != 0) {
     MemoryAddress9 = BufferSize0;
@@ -5361,7 +5361,7 @@ InitializeCoreSystem();
     GameSecondaryDataPointer = StackValidationLimit2;
   }
   FinalizeSystemInitialization();
-  SystemModuleContext = MemoryAddress4;
+  SystemModuleContext = StringMemoryOffset;
   LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);
   if (LoopCounter3 != 0) {
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
@@ -5653,15 +5653,15 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   }
   ModuleInitializationResult0 = SystemModuleArray[0];
   if ((*(int *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x110) != 0) &&
-     (MemoryAddress2 = MemoryAddress6, MemoryAddress5 = MemoryAddress6, (longlong)in_RCX[0x1d] - (longlong)in_RCX[0x1c] >> 3 != 0))
+     (MemoryAddress2 = MemoryAddress6, StringNextOffset = MemoryAddress6, (longlong)in_RCX[0x1d] - (longlong)in_RCX[0x1c] >> 3 != 0))
   {
     do {
       (**(code **)(**(longlong **)(MemoryAddress2 + (longlong)in_RCX[0x1c]) + 0x60))
                 (*(longlong **)(MemoryAddress2 + (longlong)in_RCX[0x1c]),in_RCX,ModuleInitializationResult0);
-      MemoryAddress4 = (int)MemoryAddress5 + 1;
+      StringMemoryOffset = (int)StringNextOffset + 1;
       MemoryAddress2 = MemoryAddress2 + 8;
-      MemoryAddress5 = (ulonglong)MemoryAddress4;
-    } while ((ulonglong)(longlong)(int)MemoryAddress4 <
+      StringNextOffset = (ulonglong)StringMemoryOffset;
+    } while ((ulonglong)(longlong)(int)StringMemoryOffset <
              (ulonglong)((longlong)in_RCX[0x1d] - (longlong)in_RCX[0x1c] >> 3));
   }
   ppplStack_b8 = (longlong ***)0x0;
@@ -5788,11 +5788,11 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
              in_RCX + (longlong)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       }
     }
-    MemoryAddress4 = *(int *)(in_RCX + 0xa39) + 1U & 0x80000001;
-    if ((int)MemoryAddress4 < 0) {
-      MemoryAddress4 = (MemoryAddress4 - 1 | 0xfffffffe) + 1;
+    StringMemoryOffset = *(int *)(in_RCX + 0xa39) + 1U & 0x80000001;
+    if ((int)StringMemoryOffset < 0) {
+      StringMemoryOffset = (StringMemoryOffset - 1 | 0xfffffffe) + 1;
     }
-    *(uint *)(in_RCX + 0xa39) = MemoryAddress4;
+    *(uint *)(in_RCX + 0xa39) = StringMemoryOffset;
   }
   while (IntegerError = (int)MemoryAddress6, (ulonglong)(longlong)IntegerError < (ulonglong)*(uint *)(in_RCX + 0xb5b)) {
     ppppModuleInitializationResult3 = in_RCX[(MemoryAddress6 >> 10) + 0xb5c] +
@@ -5998,13 +5998,13 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
               SystemStackVariable_1b0._4_4_ = *(uint *)((longlong)ppppSystemContextData2 + 0x14);
               SystemStackVariable_1b8 = MemoryAddress;
               SystemBufferCopy(&pStackValidationLimit2,0x12);
-              pMemoryAddress4 = (uint32_t *)(pStackProcessCounter + SystemStackVariable_1b8);
-              *pMemoryAddress4 = 0x6563732f;
-              pMemoryAddress4[1] = 0x782e656e;
-              pMemoryAddress4[2] = 0x2e6f6373;
-              pMemoryAddress4[3] = 0x65637378;
-              *(uint16_t *)(pMemoryAddress4 + 4) = 0x656e;
-              *(uint8_t *)((longlong)pMemoryAddress4 + 0x12) = 0;
+              pStringMemoryOffset = (uint32_t *)(pStackProcessCounter + SystemStackVariable_1b8);
+              *pStringMemoryOffset = 0x6563732f;
+              pStringMemoryOffset[1] = 0x782e656e;
+              pStringMemoryOffset[2] = 0x2e6f6373;
+              pStringMemoryOffset[3] = 0x65637378;
+              *(uint16_t *)(pStringMemoryOffset + 4) = 0x656e;
+              *(uint8_t *)((longlong)pStringMemoryOffset + 0x12) = 0;
               SystemStackVariable_1b8 = 0x12;
               BooleanFlag = ValidateSystemMemoryPool(&pStackValidationLimit2);
               if (BooleanFlag != '\0') goto SystemMemoryPoolValidationSuccessLabel;
@@ -6109,16 +6109,16 @@ SystemMemoryPoolValidationSuccessful:
       ppppppPointerValue = pppppppUnsignedSize + 4;
       pppppppUnsignedIndex = &SystemMultiLevelBuffer138;
       if (ppppppSystemBufferPointer128 != (uint64_t *******)0x0) {
-        pppppppMemoryAddress5 = ppppppSystemBufferPointer128;
+        pppppppStringNextOffset = ppppppSystemBufferPointer128;
         do {
-          if (*(int *)(pppppppMemoryAddress5 + 4) < *(int *)ppppppPointerValue) {
-            pppppppMemoryAddress5 = (uint64_t *******)*pppppppMemoryAddress5;
+          if (*(int *)(pppppppStringNextOffset + 4) < *(int *)ppppppPointerValue) {
+            pppppppStringNextOffset = (uint64_t *******)*pppppppStringNextOffset;
           }
           else {
-            pppppppUnsignedIndex = pppppppMemoryAddress5;
-            pppppppMemoryAddress5 = (uint64_t *******)pppppppMemoryAddress5[1];
+            pppppppUnsignedIndex = pppppppStringNextOffset;
+            pppppppStringNextOffset = (uint64_t *******)pppppppStringNextOffset[1];
           }
-        } while (pppppppMemoryAddress5 != (uint64_t *******)0x0);
+        } while (pppppppStringNextOffset != (uint64_t *******)0x0);
       }
       if (((uint64_t ********)pppppppUnsignedIndex == &SystemMultiLevelBuffer138) ||
          (*(int *)ppppppPointerValue < *(int *)(pppppppUnsignedIndex + 4))) {
@@ -11560,7 +11560,7 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
   char *pNetworkRequestStatus1;
   bool CharValue2;
   uint32_t MemoryAddress3;
-  uint64_t MemoryAddress4;
+  uint64_t StringMemoryOffset;
   void *pStackParameter2;
   longlong lStack_68;
   int iStack_60;
@@ -11569,7 +11569,7 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
   char *pcStack_48;
   int iStack_40;
   uint64_t SecurityKey38;
-  MemoryAddress4 = SystemMutexFlags;
+  StringMemoryOffset = SystemMutexFlags;
   pNetworkRequestStatus1 = (char *)0x0;
   ProcessSystemModuleData(SystemQuaternaryDataPointer);
   ProcessSystemCommand(GameSystemContextPointer,GameTertiaryDataPointer);
@@ -11658,7 +11658,7 @@ Label_18062f3b3:
         if (pUnsignedSize[1] != 0) {
           MemoryDataPointer = pUnsignedSize[1];
         }
-        ProcessSystemCall(&pStackParameter1,MemoryDataPointer,pcVar4,pUnsignedSize,MemoryAddress3,MemoryAddress4);
+        ProcessSystemCall(&pStackParameter1,MemoryDataPointer,pcVar4,pUnsignedSize,MemoryAddress3,StringMemoryOffset);
         break;
       }
       MemoryDataPointer = (longlong)&NetworkResponseProcessingBuffer3 - (longlong)pNetworkRequestStatus0;
