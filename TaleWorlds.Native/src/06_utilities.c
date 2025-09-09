@@ -20089,7 +20089,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
           resourceData = &SystemResourceDataBuffer;
         }
         else {
-          resourceData = *(uint8_t **)(memoryresourcePointer + ResourceDataBufferOffset);
+          resourceData = *(uint8_t **)(memoryResourcePointer + ResourceDataBufferOffset);
         }
         validationStatus = ValidateResourceDataIntegrityA0(resourceData, resourceContext + ResourceDataSecondaryOffset);
         if (validationStatus == 0) {
@@ -20163,7 +20163,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
       }
       operationResult = ValidateResourceDataIntegrityA0(memoryRegionBase);
       if (operationResult == 0) {
-        validationStatus = ValidateAndProcessSystemResourceA0(memoryresourcePointer,systemContext + SystemResourceValidationContextOffset);
+        validationStatus = ValidateAndProcessSystemResourceA0(memoryResourcePointer,systemContext + SystemResourceValidationContextOffset);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -24709,7 +24709,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
            *(int64_t *)(systemContextRegister + 8));
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     systemDataStorage = systemDataBuffer;
-    (**(FunctionPointer**)*memoryresourcePointer)();
+    (**(FunctionPointer**)*memoryResourcePointer)();
   }
   *validationResultPointer = 0;
   return 0;
@@ -27141,7 +27141,7 @@ void ProcessDataTypesA0(void)
   memoryresourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = dataPointerD;
   StackPointerRegisterA = memoryresourcePointer2;
-  exceptionHandlerContext5 = (*(code *)*systemInputAccumulator)(memoryresourcePointer2);
+  exceptionHandlerContext5 = (*(code *)*systemInputAccumulator)(memoryResourcePointer2);
   resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + ExceptionHandlerContext5OffsetD0),&validationBuffer);
   if (resourceValidationStatus == 0) {
     systemErrorHandlingBuffer = &DataValidationErrorBase;
@@ -27187,7 +27187,7 @@ void ProcessDataTypesA0(void)
         } while ((int64_t)operationResult3 < dataSize);
       }
       systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
-      systemDataBuffer6 = (**(FunctionPointer**)*memoryresourcePointer2)(memoryresourcePointer2);
+      systemDataBuffer6 = (**(FunctionPointer**)*memoryResourcePointer2)(memoryResourcePointer2);
       resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,SystemNameBuffer);
       if (resourceValidationStatus == 0) {
         operationResult4 = calculatedFloatValue;
@@ -28347,7 +28347,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           StatusCounterA = (DataWord)statusCounter;
           StatusCounterB = (DataWord)(statusCounter >> 0x20);
           memoryResourcePointer = (DataBuffer *)(exceptionHandlerContext5 + MemoryresourcePointerOffsetF0 + (int64_t)exceptionContextPointer0);
-          resourcePointerA = *memoryresourcePointer;
+          resourcePointerA = *memoryResourcePointer;
           resourcePointerB = memoryResourcePointer[1];
           validationStatusPointer = (DataWord *)(exceptionHandlerContext5 + ValidationStatusPointerOffset100 + (int64_t)exceptionContextPointer0);
           ValidationStatusPointerA = *validationStatusPointer;
@@ -29548,7 +29548,7 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
   firstParameterBuffer[0] = *dataBuffer;
   exceptionContext = *systemContext;
   memoryResourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-  validationStatus = (**(FunctionPointer**)*memoryresourcePointer)(memoryresourcePointer,firstParameterBuffer,4);
+  validationStatus = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,firstParameterBuffer,4);
   if ((int)validationStatus == 0) {
     memoryResourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
     secondParameterBuffer[0] = dataBuffer[1];
