@@ -106909,37 +106909,37 @@ void ProcessUIDataMatrixOperation(longlong uiContext, int *dataSource, int *targ
   longlong localLong7;
   longlong processingOffset;
   
-  processingResult = *targetBuffer;
-  uiValidationResult = targetBuffer[1];
-  contextOffset = (longlong)param_6;
-  if (0 < contextOffset) {
+  targetValue = *targetBuffer;
+  sourceValue = targetBuffer[1];
+  processingOffset = (longlong)processingCount;
+  if (0 < processingOffset) {
     uiContext = uiContext - (longlong)resultPointer;
     do {
       localLong7 = (longlong)*(short *)(uiContext + (longlong)resultPointer);
       loopCounter = *bufferSize * 4 + (int)((ulonglong)(*dataSource * localLong7) >> 0x10) * 4;
-      EventDataIndex = (longlong)loopCounter;
-      TempInt4 = (((int)((ulonglong)(-processingResult & 0x3fff) * EventDataIndex >> 0x10) >> 0xd) + 1 >> 1) +
-              (int)((ulonglong)((short)(-processingResult >> 0xe) * EventDataIndex) >> 0x10) + bufferSize[1];
-      *bufferSize = TempInt4;
-      *bufferSize = (int)((ulonglong)(dataSource[1] * localLong7) >> 0x10) + TempInt4;
-      TempInt4 = (((int)((ulonglong)(-uiValidationResult & 0x3fff) * EventDataIndex >> 0x10) >> 0xd) + 1 >> 1) +
-              (int)((ulonglong)((short)(-uiValidationResult >> 0xe) * EventDataIndex) >> 0x10);
-      bufferSize[1] = TempInt4;
-      bufferSize[1] = (int)((ulonglong)(dataSource[2] * localLong7) >> 0x10) + TempInt4;
-      TempInt4 = loopCounter + 0x3fff >> 0xe;
-      if (TempInt4 < 0x8000) {
-        EventTypeCode = (UIWord)TempInt4;
-        if (TempInt4 < -0x8000) {
-          EventTypeCode = 0x8000;
+      eventDataIndex = (longlong)loopCounter;
+      tempValue = (((int)((ulonglong)(-targetValue & 0x3fff) * eventDataIndex >> 0x10) >> 0xd) + 1 >> 1) +
+              (int)((ulonglong)((short)(-targetValue >> 0xe) * eventDataIndex) >> 0x10) + bufferSize[1];
+      *bufferSize = tempValue;
+      *bufferSize = (int)((ulonglong)(dataSource[1] * localLong7) >> 0x10) + tempValue;
+      tempValue = (((int)((ulonglong)(-sourceValue & 0x3fff) * eventDataIndex >> 0x10) >> 0xd) + 1 >> 1) +
+              (int)((ulonglong)((short)(-sourceValue >> 0xe) * eventDataIndex) >> 0x10);
+      bufferSize[1] = tempValue;
+      bufferSize[1] = (int)((ulonglong)(dataSource[2] * localLong7) >> 0x10) + tempValue;
+      tempValue = loopCounter + 0x3fff >> 0xe;
+      if (tempValue < 0x8000) {
+        eventTypeCode = (UIWord)tempValue;
+        if (tempValue < -0x8000) {
+          eventTypeCode = 0x8000;
         }
       }
       else {
-        EventTypeCode = 0x7fff;
+        eventTypeCode = 0x7fff;
       }
-      *resultPointer = EventTypeCode;
+      *resultPointer = eventTypeCode;
       resultPointer = resultPointer + 1;
-      contextOffset = contextOffset + -1;
-    } while (contextOffset != 0);
+      processingOffset = processingOffset + -1;
+    } while (processingOffset != 0);
   }
   return;
 }
