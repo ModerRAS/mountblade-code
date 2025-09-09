@@ -109,6 +109,16 @@
 #define DataBufferOffset44 0x44
 #define ExceptionHandlerContextOffset48 0x48
 #define ExceptionHandlerContextOffsetD0 0xd0
+#define OperationBaseOffset10 0x10
+#define ValidationStatusIncrement 0x10
+#define DestinationContextOffsetC0 0xc0
+#define SystemDataPointerOffset48 0x48
+#define SystemDataPointerOffset40 0x40
+#define ExceptionHandlerDataPointerOffset68 0x68
+#define ExceptionHandlerDataPointerOffsetC4 0xc4
+#define ExceptionHandlerDataPointerOffset14 0x14
+#define ExceptionHandlerDataPointerOffset1C 0x1c
+#define DataPointerOffset58 0x58
 
 // 内存资源释放相关偏移量常量
 #define MemoryResourceReleaseOffset30 0x30
@@ -22645,7 +22655,7 @@ void NoOperationB(void)
  * 上下文验证和处理函数 - 验证系统上下文并执行相应操作
  * 
  * 此函数根据传入的上下文参数执行系统验证和处理操作：
- * 1. 使用dataBuffer和operationBase + 0x10调用ValidateNetworkConnectionA0()进行初始验证
+ * 1. 使用dataBuffer和operationBase + OperationBaseOffset10调用ValidateNetworkConnectionA0()进行初始验证
  * 2. 如果初始验证通过，使用dataBuffer和operationBase + SystemDataSecondaryOffset18调用ValidateNetworkConfigurationA0()进行二级验证
  * 3. 如果二级验证通过，使用dataBuffer和计算出的地址调用ExecuteNetworkOperationA0()进行三级验证
  * 4. 如果所有验证都通过，调用InitializeNetworkConnectionA0()执行最终操作
@@ -23180,7 +23190,7 @@ DataBuffer UtilityNoOperationK(void)
         statusCounter = statusCounter + 1;
         securityCheckResult = (uint64_t)((int)securityCheckResult + 1);
         *(DataWord *)(registerContext[2] + 4 + validationStatus) = SystemCleanupFlag;
-        validationStatus = validationStatus + 0x10;
+        validationStatus = validationStatus + ValidationStatusIncrement;
       } while ((int64_t)statusCounter < (int64_t)(int)exceptionHandlerContext);
     }
   }
@@ -23433,7 +23443,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     }
     if (*(int64_t *)(DestinationContext + DestinationContextDataOffsetC0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
-      operationStatus = (**(FunctionPointer**)(DestinationContext + 0xc0))
+      operationStatus = (**(FunctionPointer**)(DestinationContext + DestinationContextOffsetC0))
                         (dataFlags,basePointer,*(DataWord *)(bufferPointer + SystemDataSecondaryOffset18),
                          *(DataBuffer *)(DestinationContext + DestinationContextBufferOffsetB8));
       operationFlagA = ProcessedFloatValue;
@@ -25281,7 +25291,7 @@ void ProcessFloatingPointDataWithValidation(void)
   
   if (((systemContextValidationFlag != '\0') || (*(int *)(*(int64_t *)(systemDataPointer + SystemDataBufferPointerOffset) + SystemDataValidationOffset34) == processingLoopCounter)) &&
      (systemResourceAllocationResult = ConfigureSystemParametersA0(), systemResourceAllocationResult == 0)) {
-    for (systemResourceAllocationResult = 0; (-1 < systemResourceAllocationResult && (systemResourceAllocationResult < *(int *)(systemDataPointer + 0x48))); systemResourceAllocationResult = systemResourceAllocationResult + 1) {
+    for (systemResourceAllocationResult = 0; (-1 < systemResourceAllocationResult && (systemResourceAllocationResult < *(int *)(systemDataPointer + SystemDataPointerOffset48))); systemResourceAllocationResult = systemResourceAllocationResult + 1) {
       exceptionHandlerDataPointer = *(int64_t *)(*(int64_t *)(systemDataPointer + 0x40) + (int64_t)systemResourceAllocationResult * 8);
       dataContext = *(int64_t *)(exceptionHandlerDataPointer + 0x68);
       if (((*(SystemByteType *)(exceptionHandlerDataPointer + 0xc4) & 1) != 0) && (dataContext != 0)) {
@@ -33327,7 +33337,7 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
   memoryRegionBase = (int)*(uint *)(operationBase + 0x1c) >> 0x1f;
   operationResult = validationBuffer[0] >> 1;
   if (((int)((*(uint *)(operationBase + 0x1c) ^ memoryRegionBase) - memoryRegionBase) < (int)operationResult) &&
-     (operationResult = ValidateSystemMemoryAccess(operationBase + 0x10,operationResult), operationResult != 0)) {
+     (operationResult = ValidateSystemMemoryAccess(operationBase + OperationBaseOffset10,operationResult), operationResult != 0)) {
     return;
   }
   operationResult = *(int *)(operationBase + SystemDataSecondaryOffset18);
@@ -37424,7 +37434,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
            ((*(uint *)(dataBuffer + 8) < 0x8e && (*(int *)(operationBase + 0xf8) == 0x7fffffff)))) {
           *(DataWord *)(operationBase + 0xf8) = 0x21;
         }
-        validationStatus = ValidateDataStructureA1(dataBuffer,operationBase + 0x100);
+        validationStatus = ValidateDataStructureA1(dataBuffer,operationBase + OperationBaseOffset100);
         if ((int)validationStatus == 0) {
           memoryRegionBase = SystemOperationCode0x1c;
           if (*(uint *)(dataBuffer + 8) < 0x68) {
@@ -37463,7 +37473,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
               }
               if (((int)validationStatus == 0) &&
                  ((*(uint *)(dataBuffer + 8) < 0x85 ||
-                  (validationStatus = ValidateDataSequence(dataBuffer,operationBase + 0x108), (int)validationStatus == 0)))) {
+                  (validationStatus = ValidateDataSequence(dataBuffer,operationBase + OperationBaseOffset108), (int)validationStatus == 0)))) {
                   CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
               }
             }
@@ -38887,7 +38897,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
     return ResourceInvalidErrorCode;
   }
   exceptionHandlerContext = *dataBuffer;
-  validationStatus = OperateDataO0(exceptionHandlerContext,operationBase + 0x10,4);
+  validationStatus = OperateDataO0(exceptionHandlerContext,operationBase + OperationBaseOffset10,4);
   memoryRegionBase = (uint64_t)validationStatus;
   if (validationStatus == 0) {
     validationStatus = OperateDataO0(exceptionHandlerContext,operationBase + 0x14,2);
