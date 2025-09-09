@@ -2342,7 +2342,7 @@ typedef enum {
 #define FUN_180769ed0 ProcessUIComponentDataTransfer
 #define func_0x00018076a7d0 ValidateUIComponentIndex
 #define FUN_180742250 AllocateUIMemoryResources
-#define UNK_180984cd0 UIResourceBufferCD0
+#define UNK_180984cd0 UIResourceAllocationBufferCD0         // UI资源分配缓冲区CD0
 #define LAB_18089eb22 UIComponentDataTransferLabel
 #define LAB_18089eb3c UIEventValidationLabel
 #define FUN_180721f12 ValidateUIFloatParameterWithBuffers
