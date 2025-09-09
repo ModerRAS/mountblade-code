@@ -108525,7 +108525,7 @@ void ProcessMemoryBlocksInExceptionHandler(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090f0d0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextCallbacksAtOffset0d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -108556,7 +108556,7 @@ void Unwind_18090f0d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallbackAtOffset0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -109331,7 +109331,7 @@ void Unwind_18090f370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessDataBufferWithContextAtOffset390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA6(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataStatusOffset8,
@@ -109342,7 +109342,7 @@ void Unwind_18090f390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f3b0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionCallbacksAtOffset3b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -109372,7 +109372,7 @@ void Unwind_18090f3b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f3d0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryOperationAtOffset3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x3a8,8,0xd,ValidateDataHandler);
