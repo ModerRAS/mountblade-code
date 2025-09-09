@@ -6053,7 +6053,20 @@ void InitializeSystemNetworkManager(void)
  * 该函数负责初始化系统的配置管理器节点，用于管理系统配置信息。
  * 它会在系统数据表中查找或创建配置管理器节点，并设置相关的配置参数。
  * 
+ * @details 函数执行以下操作：
+ * 1. 获取系统根表和配置根节点引用
+ * 2. 遍历配置节点链表，查找合适的插入位置
+ * 3. 比较节点标识符以确定插入点
+ * 4. 如果需要，分配内存创建新的配置节点
+ * 5. 设置配置节点的标识符、数据指针和回调函数
+ * 6. 配置节点的状态标志
+ * 
  * @note 这是系统初始化过程中的重要组成部分，确保配置管理器正确建立
+ * @note 使用 SystemConfigurationManagerIdentifier 作为比较模板
+ * @note 配置节点创建后会关联系统配置管理器功能函数
+ * 
+ * @warning 函数会修改系统数据表结构，调用时需确保系统处于初始化阶段
+ * @see GetSystemConfigurationManagerFunction, AllocateSystemMemory
  */
 void InitializeSystemConfigurationManager(void)
 {
