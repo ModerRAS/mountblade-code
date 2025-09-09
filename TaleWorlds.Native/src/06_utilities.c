@@ -43813,7 +43813,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -43823,7 +43823,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -44226,7 +44226,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -44236,7 +44236,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -45480,7 +45480,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45490,7 +45490,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -45543,7 +45543,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45553,7 +45553,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -45655,7 +45655,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45665,7 +45665,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -45702,7 +45702,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -45712,7 +45712,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -46354,7 +46354,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -46364,7 +46364,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -46875,7 +46875,7 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -46885,7 +46885,7 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -46986,7 +46986,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -46996,7 +46996,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47032,7 +47032,7 @@ void CleanupresourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47042,7 +47042,7 @@ void CleanupresourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47080,7 +47080,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47090,7 +47090,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47137,7 +47137,7 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47147,7 +47147,7 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47173,7 +47173,7 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47183,7 +47183,7 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47336,7 +47336,7 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47346,7 +47346,7 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47372,7 +47372,7 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47382,7 +47382,7 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47675,7 +47675,7 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47685,7 +47685,7 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47711,7 +47711,7 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47721,7 +47721,7 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47747,7 +47747,7 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -47757,7 +47757,7 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -47849,7 +47849,7 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -47903,7 +47903,7 @@ void CleanupExceptionHandlerReferences(DataBuffer operationBase,int64_t dataBuff
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryFlags + 0x70) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -48115,7 +48115,7 @@ void CleanupResourceReference(DataBuffer operationBase, int64_t dataBuffer)
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新资源指针链表
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       
       // 减少资源引用计数
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
@@ -48582,7 +48582,7 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48592,7 +48592,7 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -48618,7 +48618,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48628,7 +48628,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -48686,7 +48686,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48696,7 +48696,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -48761,7 +48761,7 @@ void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48771,7 +48771,7 @@ void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -48871,7 +48871,7 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48881,7 +48881,7 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -48907,7 +48907,7 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -48917,7 +48917,7 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49202,7 +49202,7 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49212,7 +49212,7 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49597,7 +49597,7 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49607,7 +49607,7 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49643,7 +49643,7 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49653,7 +49653,7 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49689,7 +49689,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49699,7 +49699,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49735,7 +49735,7 @@ void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49745,7 +49745,7 @@ void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -49781,7 +49781,7 @@ void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -49829,7 +49829,7 @@ void ManageResourceReferenceCount500(DataBuffer operationBase,int64_t dataBuffer
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -49948,7 +49948,7 @@ void CleanupSystemresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -49958,7 +49958,7 @@ void CleanupSystemresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -50018,7 +50018,7 @@ void CleanupSystemDataWithReferenceCount(DataBuffer operationBase, int64_t dataB
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -50217,7 +50217,7 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -50265,7 +50265,7 @@ void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -56629,7 +56629,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -56639,7 +56639,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -57625,7 +57625,7 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -57635,7 +57635,7 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -57675,7 +57675,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -57685,7 +57685,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -57979,7 +57979,7 @@ void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t d
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -57989,7 +57989,7 @@ void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t d
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -58026,7 +58026,7 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -58036,7 +58036,7 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -58074,7 +58074,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -58084,7 +58084,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -58407,7 +58407,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -58417,7 +58417,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -58462,7 +58462,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -58472,7 +58472,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -59179,7 +59179,7 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59189,7 +59189,7 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -59343,7 +59343,7 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59353,7 +59353,7 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -59543,7 +59543,7 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59553,7 +59553,7 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -59748,7 +59748,7 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59758,7 +59758,7 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -59818,7 +59818,7 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -59828,7 +59828,7 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -60391,7 +60391,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60401,7 +60401,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -60476,7 +60476,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60486,7 +60486,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -60556,7 +60556,7 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60566,7 +60566,7 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -60839,7 +60839,7 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -60849,7 +60849,7 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -61409,7 +61409,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -61419,7 +61419,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -61503,7 +61503,7 @@ void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -61513,7 +61513,7 @@ void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -61548,7 +61548,7 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -61558,7 +61558,7 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -62472,7 +62472,7 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -62482,7 +62482,7 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -65789,7 +65789,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -65799,7 +65799,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -65837,7 +65837,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -65847,7 +65847,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -65884,7 +65884,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -65894,7 +65894,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -66049,7 +66049,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -66059,7 +66059,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -66501,7 +66501,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -68555,7 +68555,7 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -68565,7 +68565,7 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -68751,7 +68751,7 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -68761,7 +68761,7 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -68797,7 +68797,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -68807,7 +68807,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69059,7 +69059,7 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69069,7 +69069,7 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69110,7 +69110,7 @@ void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69120,7 +69120,7 @@ void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69161,7 +69161,7 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69171,7 +69171,7 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69245,7 +69245,7 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69255,7 +69255,7 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69295,7 +69295,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69305,7 +69305,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69379,7 +69379,7 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69389,7 +69389,7 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69427,7 +69427,7 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69437,7 +69437,7 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69475,7 +69475,7 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69485,7 +69485,7 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69555,7 +69555,7 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69565,7 +69565,7 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69752,7 +69752,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69762,7 +69762,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69803,7 +69803,7 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69813,7 +69813,7 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -69860,7 +69860,7 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69912,7 +69912,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -69922,7 +69922,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -70012,7 +70012,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -70022,7 +70022,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -71920,7 +71920,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -71930,7 +71930,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -71969,7 +71969,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -71979,7 +71979,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -72018,7 +72018,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -72028,7 +72028,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -72379,7 +72379,7 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -72389,7 +72389,7 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -72435,7 +72435,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -72445,7 +72445,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -72481,7 +72481,7 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -72491,7 +72491,7 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -73564,7 +73564,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -73574,7 +73574,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74074,7 +74074,7 @@ void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -74112,7 +74112,7 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74122,7 +74122,7 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74179,7 +74179,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74189,7 +74189,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74307,7 +74307,7 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74317,7 +74317,7 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74355,7 +74355,7 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74365,7 +74365,7 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74922,7 +74922,7 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74932,7 +74932,7 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75055,7 +75055,7 @@ void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75065,7 +75065,7 @@ void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75102,7 +75102,7 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75112,7 +75112,7 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75406,7 +75406,7 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75416,7 +75416,7 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75736,7 +75736,7 @@ void ProcessReferenceCountAndresourcePointers(DataBuffer operationBase,int64_t d
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75746,7 +75746,7 @@ void ProcessReferenceCountAndresourcePointers(DataBuffer operationBase,int64_t d
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75782,7 +75782,7 @@ void ProcessReferenceCountAndresourcePointersOffset38(DataBuffer operationBase,i
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75792,7 +75792,7 @@ void ProcessReferenceCountAndresourcePointersOffset38(DataBuffer operationBase,i
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75828,7 +75828,7 @@ void ProcessReferenceCountAndresourcePointersOffset60(DataBuffer operationBase,i
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75838,7 +75838,7 @@ void ProcessReferenceCountAndresourcePointersOffset60(DataBuffer operationBase,i
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75874,7 +75874,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V2(DataBuffer operationBase
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75884,7 +75884,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V2(DataBuffer operationBase
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -75920,7 +75920,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -75930,7 +75930,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -76304,7 +76304,7 @@ void CleanupresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -76314,7 +76314,7 @@ void CleanupresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -76398,7 +76398,7 @@ void HandleExceptionWithContextA3(DataBuffer ContextParameter, int64_t systemCon
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -76408,7 +76408,7 @@ void HandleExceptionWithContextA3(DataBuffer ContextParameter, int64_t systemCon
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -77802,7 +77802,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -77812,7 +77812,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -78234,7 +78234,7 @@ void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -78244,7 +78244,7 @@ void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -78422,7 +78422,7 @@ void CleanupMemoryresourcePointer(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -78432,7 +78432,7 @@ void CleanupMemoryresourcePointer(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -78471,7 +78471,7 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -78481,7 +78481,7 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -78575,7 +78575,7 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -78585,7 +78585,7 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79026,7 +79026,7 @@ void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79036,7 +79036,7 @@ void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79069,7 +79069,7 @@ void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79079,7 +79079,7 @@ void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79112,7 +79112,7 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79122,7 +79122,7 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79162,7 +79162,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79172,7 +79172,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79212,7 +79212,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79222,7 +79222,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79260,7 +79260,7 @@ void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79270,7 +79270,7 @@ void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79308,7 +79308,7 @@ void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79318,7 +79318,7 @@ void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79356,7 +79356,7 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79366,7 +79366,7 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79422,7 +79422,7 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79432,7 +79432,7 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79470,7 +79470,7 @@ void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79480,7 +79480,7 @@ void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79518,7 +79518,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79528,7 +79528,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -79633,7 +79633,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -79643,7 +79643,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80434,7 +80434,7 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80444,7 +80444,7 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80504,7 +80504,7 @@ void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase,int6
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80514,7 +80514,7 @@ void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase,int6
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80553,7 +80553,7 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80563,7 +80563,7 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80641,7 +80641,7 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80651,7 +80651,7 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80677,7 +80677,7 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80687,7 +80687,7 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -80713,7 +80713,7 @@ void CleanupSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -80723,7 +80723,7 @@ void CleanupSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -81362,7 +81362,7 @@ void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int6
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -81490,7 +81490,7 @@ void ExecuteSystemOptimizationA0(DataBuffer operationBase, int64_t dataBuffer)
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       
       // 管理引用计数
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
@@ -81924,7 +81924,7 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
       if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         // 更新内存资源指针和引用计数
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -83386,7 +83386,7 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -83396,7 +83396,7 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -83437,7 +83437,7 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -83447,7 +83447,7 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -83486,7 +83486,7 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -83496,7 +83496,7 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -83537,7 +83537,7 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -83547,7 +83547,7 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -83589,7 +83589,7 @@ void CleanupMemoryresourcePointer(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -83599,7 +83599,7 @@ void CleanupMemoryresourcePointer(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -84333,7 +84333,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -84343,7 +84343,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -84730,7 +84730,7 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -84740,7 +84740,7 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -84842,7 +84842,7 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -84852,7 +84852,7 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -84889,7 +84889,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -84899,7 +84899,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -85358,7 +85358,7 @@ void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -86021,7 +86021,7 @@ void CleanupMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataB
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -86955,7 +86955,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -87303,7 +87303,7 @@ void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -87313,7 +87313,7 @@ void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -87348,7 +87348,7 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -87358,7 +87358,7 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -87649,7 +87649,7 @@ void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -87659,7 +87659,7 @@ void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -87715,7 +87715,7 @@ void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -87725,7 +87725,7 @@ void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -88072,7 +88072,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       
@@ -88085,7 +88085,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
     else {
       // 管理内存资源
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -88111,7 +88111,7 @@ void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -88121,7 +88121,7 @@ void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -88447,7 +88447,7 @@ void ExceptionHandlerC7(DataBuffer operationBase,int64_t dataBuffer)
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -88485,7 +88485,7 @@ void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -88540,7 +88540,7 @@ void ReleaseMemoryResourceAndManageReferenceCountA(DataBuffer operationBase, int
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -88596,7 +88596,7 @@ void ReleaseMemoryResourceAndManageReferenceCountB(DataBuffer operationBase, int
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -88652,7 +88652,7 @@ void ReleaseMemoryResourceAndManageReferenceCountC(DataBuffer operationBase, int
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
       if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -93341,7 +93341,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -93351,7 +93351,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -93650,7 +93650,7 @@ void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -93660,7 +93660,7 @@ void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -93863,7 +93863,7 @@ void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -93873,7 +93873,7 @@ void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -93935,7 +93935,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -93945,7 +93945,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -93971,7 +93971,7 @@ void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -93981,7 +93981,7 @@ void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -94209,7 +94209,7 @@ void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -94219,7 +94219,7 @@ void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -94313,7 +94313,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       
@@ -94773,7 +94773,7 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -94783,7 +94783,7 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -95331,7 +95331,7 @@ void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataB
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -95341,7 +95341,7 @@ void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataB
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -95379,7 +95379,7 @@ void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -95389,7 +95389,7 @@ void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -98988,7 +98988,7 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -98998,7 +98998,7 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99034,7 +99034,7 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99044,7 +99044,7 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99080,7 +99080,7 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99090,7 +99090,7 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99126,7 +99126,7 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99136,7 +99136,7 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99176,7 +99176,7 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99186,7 +99186,7 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99226,7 +99226,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99272,7 +99272,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99318,7 +99318,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99328,7 +99328,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99365,7 +99365,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99375,7 +99375,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99412,7 +99412,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99422,7 +99422,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99448,7 +99448,7 @@ void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99458,7 +99458,7 @@ void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99501,7 +99501,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99511,7 +99511,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99555,7 +99555,7 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99565,7 +99565,7 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99600,7 +99600,7 @@ void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99610,7 +99610,7 @@ void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99655,7 +99655,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99665,7 +99665,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99710,7 +99710,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99720,7 +99720,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99765,7 +99765,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99775,7 +99775,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99820,7 +99820,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99830,7 +99830,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99875,7 +99875,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99885,7 +99885,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99930,7 +99930,7 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99940,7 +99940,7 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -99975,7 +99975,7 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -99985,7 +99985,7 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100022,7 +100022,7 @@ void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100032,7 +100032,7 @@ void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100069,7 +100069,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100079,7 +100079,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100116,7 +100116,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100126,7 +100126,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100163,7 +100163,7 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100173,7 +100173,7 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100231,7 +100231,7 @@ void ManageResourceReferenceCountA3(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100241,7 +100241,7 @@ void ManageResourceReferenceCountA3(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100278,7 +100278,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100288,7 +100288,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100325,7 +100325,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100335,7 +100335,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100372,7 +100372,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100382,7 +100382,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100419,7 +100419,7 @@ void ManageResourceReferenceCountC2(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100429,7 +100429,7 @@ void ManageResourceReferenceCountC2(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100466,7 +100466,7 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100476,7 +100476,7 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100513,7 +100513,7 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100523,7 +100523,7 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100560,7 +100560,7 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100570,7 +100570,7 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100607,7 +100607,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100617,7 +100617,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100654,7 +100654,7 @@ void ManageResourceReferenceCountD0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100664,7 +100664,7 @@ void ManageResourceReferenceCountD0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100701,7 +100701,7 @@ void ManageResourceReferenceCountD1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100711,7 +100711,7 @@ void ManageResourceReferenceCountD1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100748,7 +100748,7 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
@@ -100758,7 +100758,7 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100796,7 +100796,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
@@ -100806,7 +100806,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100844,7 +100844,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
@@ -100854,7 +100854,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100891,7 +100891,7 @@ void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
@@ -100901,7 +100901,7 @@ void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100940,7 +100940,7 @@ void Unwind_ProcessExceptionContextD290(DataBuffer operationBase,int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -100950,7 +100950,7 @@ void Unwind_ProcessExceptionContextD290(DataBuffer operationBase,int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -100994,7 +100994,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101004,7 +101004,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101045,7 +101045,7 @@ void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101055,7 +101055,7 @@ void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101096,7 +101096,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101106,7 +101106,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101147,7 +101147,7 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101157,7 +101157,7 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101198,7 +101198,7 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101208,7 +101208,7 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101251,7 +101251,7 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101261,7 +101261,7 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101303,7 +101303,7 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101313,7 +101313,7 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101355,7 +101355,7 @@ void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101365,7 +101365,7 @@ void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101520,7 +101520,7 @@ void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101530,7 +101530,7 @@ void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101572,7 +101572,7 @@ void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101582,7 +101582,7 @@ void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101624,7 +101624,7 @@ void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101634,7 +101634,7 @@ void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101676,7 +101676,7 @@ void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101686,7 +101686,7 @@ void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101728,7 +101728,7 @@ void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101738,7 +101738,7 @@ void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101780,7 +101780,7 @@ void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101790,7 +101790,7 @@ void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101832,7 +101832,7 @@ void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101842,7 +101842,7 @@ void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101884,7 +101884,7 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101894,7 +101894,7 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101936,7 +101936,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101946,7 +101946,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -101988,7 +101988,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,in
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -101998,7 +101998,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,in
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102033,7 +102033,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102043,7 +102043,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102078,7 +102078,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102088,7 +102088,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102132,7 +102132,7 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102142,7 +102142,7 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102177,7 +102177,7 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102187,7 +102187,7 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102222,7 +102222,7 @@ void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102232,7 +102232,7 @@ void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102268,7 +102268,7 @@ void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102278,7 +102278,7 @@ void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102314,7 +102314,7 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102324,7 +102324,7 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102366,7 +102366,7 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102376,7 +102376,7 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102418,7 +102418,7 @@ void ManageMemoryResourceReferenceCount480(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102428,7 +102428,7 @@ void ManageMemoryResourceReferenceCount480(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102470,7 +102470,7 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102480,7 +102480,7 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102506,7 +102506,7 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102516,7 +102516,7 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102542,7 +102542,7 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102552,7 +102552,7 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102587,7 +102587,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102597,7 +102597,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102623,7 +102623,7 @@ void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102633,7 +102633,7 @@ void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102675,7 +102675,7 @@ void ManageMemoryResourceReferenceCount4E0(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102685,7 +102685,7 @@ void ManageMemoryResourceReferenceCount4E0(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -102727,7 +102727,7 @@ void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dat
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -102737,7 +102737,7 @@ void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dat
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -103658,7 +103658,7 @@ void ExecuteExceptionContextCleanupAndMemoryManagement(DataBuffer operationBase,
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -103668,7 +103668,7 @@ void ExecuteExceptionContextCleanupAndMemoryManagement(DataBuffer operationBase,
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -104580,7 +104580,7 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -104590,7 +104590,7 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -104968,7 +104968,7 @@ void ManageExceptionHandlerResourcesE000(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -104978,7 +104978,7 @@ void ManageExceptionHandlerResourcesE000(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -105569,7 +105569,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -105579,7 +105579,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -105619,7 +105619,7 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -105629,7 +105629,7 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -109043,7 +109043,7 @@ void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dat
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -109053,7 +109053,7 @@ void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dat
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -109108,7 +109108,7 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -109118,7 +109118,7 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -109178,7 +109178,7 @@ void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -109188,7 +109188,7 @@ void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -109248,7 +109248,7 @@ void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -109258,7 +109258,7 @@ void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -109299,7 +109299,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -109309,7 +109309,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110232,7 +110232,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110242,7 +110242,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110268,7 +110268,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110278,7 +110278,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110337,7 +110337,7 @@ void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110347,7 +110347,7 @@ void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110385,7 +110385,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110395,7 +110395,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110433,7 +110433,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110443,7 +110443,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110481,7 +110481,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110491,7 +110491,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110517,7 +110517,7 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110527,7 +110527,7 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110553,7 +110553,7 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110563,7 +110563,7 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -110609,7 +110609,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -110619,7 +110619,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -113687,7 +113687,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -113697,7 +113697,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115071,7 +115071,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115081,7 +115081,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115154,7 +115154,7 @@ void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuff
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115164,7 +115164,7 @@ void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuff
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115201,7 +115201,7 @@ void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115211,7 +115211,7 @@ void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115328,7 +115328,7 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115338,7 +115338,7 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115677,7 +115677,7 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115687,7 +115687,7 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -115723,7 +115723,7 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -115733,7 +115733,7 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116017,7 +116017,7 @@ void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116027,7 +116027,7 @@ void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116053,7 +116053,7 @@ void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116063,7 +116063,7 @@ void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116176,7 +116176,7 @@ void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116186,7 +116186,7 @@ void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116279,7 +116279,7 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116289,7 +116289,7 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116363,7 +116363,7 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116373,7 +116373,7 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116411,7 +116411,7 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116421,7 +116421,7 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -116459,7 +116459,7 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -116469,7 +116469,7 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -121971,7 +121971,7 @@ void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuf
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -121981,7 +121981,7 @@ void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuf
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -125885,7 +125885,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryresourcePointer;
+      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -125895,7 +125895,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
     }
     else {
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryresourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
   }
   return;
