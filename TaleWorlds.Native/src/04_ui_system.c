@@ -186524,7 +186524,8 @@ undefined DAT_180c2c260;
 undefined DAT_180c2c25c;
 undefined DAT_180c2c258;
 undefined DAT_180c2c254;
-undefined UNK_18095c920;
+// UI系统布局数据指针常量
+undefined* UILayoutDataPointer1;           // 原始变量名：UNK_18095c920
 undefined DAT_180c2c2c0;
 undefined UNK_18095ca44;
 undefined UNK_18095ca50;

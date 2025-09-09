@@ -20220,8 +20220,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     if ((int)memoryRegionBase != 0) {
       return memoryRegionBase;
     }
-    resourceIterator = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
-    memoryBlockOffset = *(int64_t *)(resourceIterator + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
+    ResourceTraversalIndex = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
+    MemoryAllocationOffset = *(int64_t *)(ResourceTraversalIndex + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
     if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & 0x11) == 0) {
       inputValue = *(float *)(dataBuffer + FloatValueOffset);
       resultValue = *(float *)(memoryBlockOffset + SystemFloatDataOffset38);
@@ -20231,7 +20231,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
       }
       *(float *)(dataBuffer + FloatValueOffset) = resultValue;
       dataContext = *(int64_t *)(dataContext + SystemContextPointerOffset90);
-      *(float *)(resourceIterator + 4 + (int64_t)(int)stackBuffer[0] * SystemDataRecordMultiplier) = resultValue;
+      *(float *)(ResourceTraversalIndex + 4 + (int64_t)(int)stackBuffer[0] * SystemDataRecordMultiplier) = resultValue;
       *(DataBuffer *)(dataBuffer + MemoryPointerOffset) = *(DataBuffer *)(dataContext + (int64_t)(int)stackBuffer[0] * 8);
         CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + SystemManagementOffset98),dataBuffer);
     }
