@@ -31471,9 +31471,9 @@ uint64_t ProcessBinaryDataA0(void)
       default:
         return ResourceInvalidErrorCode;
       case 0x10:
-        systemErrorHandlingBuffer = DestinationContext[1];
+        systemErrorContext = DestinationContext[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&systemErrorHandlingBuffer,4);
+                          (*(DataBuffer **)(systemContext + 8),&systemErrorContext,4);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -31481,7 +31481,7 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -8;
         break;
       case 0x11:
-        systemDataBuffer = ProcessDataPointer(floatResultA,DestinationContext + 1);
+        systemDataBuffer = ProcessDataPointer(floatResult,DestinationContext + 1);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
