@@ -16737,7 +16737,7 @@ LAB_18065a765:
   uint8_t UIProcessingResult;
   float *TransformCoefficient1;
   int uiCompareResult;
-  int TempInt4;
+  int uiProcessingTemp;
   float *contextHandle;
   longlong BasePointer;
   char localChar5;
