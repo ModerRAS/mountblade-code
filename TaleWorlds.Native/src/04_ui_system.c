@@ -43360,8 +43360,8 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   UIByte tempVector15 [16];
   
   uiComponentIndex = _DAT_180947040;
-  aiterationCount2 = *(UIByte (*) [16])(*uiContext + dataSource);
-  aresult = *(UIByte (*) [16])(*uiContext + dataSource * 2);
+  uiIterationCount2 = *(UIByte (*) [16])(*uiContext + dataSource);
+  uiResult = *(UIByte (*) [16])(*uiContext + dataSource * 2);
   aiterationCount3._0_16_ = ZEXT116(0) * aresult + ZEXT116(1) * aiterationCount2;
   aiterationCount3._16_16_ = ZEXT116(1) * aresult;
   aiterationCount = vpacksswb_avx(*param_6,*param_6);
