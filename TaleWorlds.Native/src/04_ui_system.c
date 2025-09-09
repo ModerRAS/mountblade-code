@@ -10961,7 +10961,7 @@ LAB_UIResourceRelease:
             }
             ResourceNamePointer = *(byte **)ResourceIterator;
           }
-LAB_UIMemoryFree:
+LAB_UIMemoryFree: // UI内存释放标签
           CharacterComparisonPointer = ResourceIterator;
           ResourceIterator = ResourceNamePointer;
           if (ShouldSkipResourceValidation) {
@@ -10969,7 +10969,7 @@ LAB_UIMemoryFree:
           }
         }
         if (ResourcePointer == &UIDefaultResourceBuffer) {
-LAB_UIContextReset:
+LAB_UIContextReset: // UI上下文重置标签
           ComponentResult = (UIHandle *)ProcessUIComponentEx(&StackPointerB8,&StackPointerX8,CharacterComparisonResult,ResourcePointer,&StackPointerB8);
           ResourcePointer = (byte *)*ComponentResult;
         }
@@ -10988,7 +10988,7 @@ LAB_UIContextReset:
           }
           goto LAB_UIContextReset;
         }
-LAB_UIStateRestore:
+LAB_UIStateRestore: // UI状态恢复标签
         *(longlong *)(ResourcePointer + 0x40) = contextHandleData;
       }
       else {
@@ -210030,17 +210030,17 @@ UIHandle FUN_180790930(longlong uiContext)
 UIHandle ProcessUIContextCleanup(longlong uiContext)
 
 {
-  longlong *pallocatedMemory;
-  char localChar2;
-  longlong *pstringCompareIndex;
-  int TempInt4;
-  int localInt5;
+  longlong *contextPointer;
+  char isValidContext;
+  longlong *stringComparePointer;
+  int iterationCounter;
+  int elementIndex;
   
-  pallocatedMemory = *(longlong **)(uiContext + 8);
-  localChar2 = (**(code **)(*pallocatedMemory + 0x18))(pallocatedMemory);
-  pstringCompareIndex = (longlong *)0x0;
-  if (localChar2 != '\0') {
-    pstringCompareIndex = pallocatedMemory;
+  contextPointer = *(longlong **)(uiContext + 8);
+  isValidContext = (**(code **)(*contextPointer + 0x18))(contextPointer);
+  stringComparePointer = (longlong *)0x0;
+  if (isValidContext != '\0') {
+    stringComparePointer = contextPointer;
   }
   if (pallocatedMemory[7] != 0) {
     TempInt4 = 0;

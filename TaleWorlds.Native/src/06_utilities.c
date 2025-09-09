@@ -162,6 +162,13 @@
 #define ExceptionHandlerCallbackOffset3a8 0x3a8
 #define SystemDataValidationOffset3b0 0x3b0
 #define SystemDataRecordOffset3c0 0x3c0
+#define SystemDataStatusOffset8 0x8
+#define ExceptionHandlerCallbackOffset300 0x300
+#define ExceptionHandlerCallbackOffset2f0 0x2f0
+#define ExceptionHandlerCallbackOffset2d0 0x2d0
+#define ExceptionHandlerCallbackOffset2e0 0x2e0
+#define ExceptionHandlerCallbackOffset2a8 0x2a8
+#define ExceptionHandlerCallbackOffset2b0 0x2b0
 #define DestinationContextOffset1C0 0x1c0
 #define DestinationContextOffset1C8 0x1c8
 #define DestinationContextOffset1D0 0x1d0
