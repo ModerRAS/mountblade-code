@@ -160520,64 +160520,64 @@ UIHandle ProcessUIComponentDataSource(longlong uiContext,uint dataSource,UIDword
         if (0xffffffff < tempResult1) {
           eventProcessingStatus = 0xffffffff;
         }
-        *(UIDword *)((longlong)pallocatedMemory + 0x24) = eventProcessingStatus;
-        localInt8 = ProcessingResult2;
-        if (ProcessingStatus != 0) {
-          if (*piterationCount <= ProcessingStatus) {
-            aloopCounter._8_8_ = 0;
-            aloopCounter._0_8_ = ProcessingStatus - *piterationCount;
-            aloopCounter = aloopCounter / ZEXT416(*(uint *)((longlong)piterationCount + 0x24));
-            if (aloopCounter._0_8_ < ResultValue3) {
-              localInt8 = aloopCounter._0_4_;
-              ResultValue3 = (ulonglong)(uint)(localInt7 - localInt8);
-              localInt8 = ProcessingResult2 + localInt8;
+        *(UIDword *)((longlong)allocatedMemoryPointer + 0x24) = eventProcessingStatus;
+        processingResult = currentProcessingResult;
+        if (processingStatus != 0) {
+          if (*iterationCounterPointer <= processingStatus) {
+            loopCounter._8_8_ = 0;
+            loopCounter._0_8_ = processingStatus - *iterationCounterPointer;
+            loopCounter = loopCounter / ZEXT416(*(uint *)((longlong)iterationCounterPointer + 0x24));
+            if (loopCounter._0_8_ < dataSourceValue) {
+              processingResult = loopCounter._0_4_;
+              dataSourceValue = (ulonglong)(uint)(bufferIndex - processingResult);
+              processingResult = currentProcessingResult + processingResult;
             }
             else {
-              ResultValue3 = 0;
-              localInt8 = localInt7;
+              dataSourceValue = 0;
+              processingResult = bufferIndex;
             }
           }
           *(UIDword *)(uiBufferData + 0x30) = 1;
         }
-        ProcessingStatus = pallocatedMemory[3];
-        if (ProcessingStatus != 0) {
-          piterationCount = (ulonglong *)pallocatedMemory[6];
-          if (ProcessingStatus < piterationCount[1]) {
-            if (*piterationCount < ProcessingStatus) {
-              result0 = ((int)((ProcessingStatus - *piterationCount) / (ulonglong)*(uint *)((longlong)piterationCount + 0x24)) -
-                       localInt8) + ProcessingResult2;
-              ProcessingResult2 = localInt8;
-              if ((uint)ResultValue3 < result0) goto LAB_1807608dd;
-              ResultValue3 = (ulonglong)result0;
+        processingStatus = allocatedMemoryPointer[3];
+        if (processingStatus != 0) {
+          iterationCounterPointer = (ulonglong *)allocatedMemoryPointer[6];
+          if (processingStatus < iterationCounterPointer[1]) {
+            if (*iterationCounterPointer < processingStatus) {
+              tempResult0 = ((int)((processingStatus - *iterationCounterPointer) / (ulonglong)*(uint *)((longlong)iterationCounterPointer + 0x24)) -
+                       processingResult) + currentProcessingResult;
+              currentProcessingResult = processingResult;
+              if ((uint)dataSourceValue < tempResult0) goto LAB_1807608dd;
+              dataSourceValue = (ulonglong)tempResult0;
             }
             else {
-              ResultValue3 = 0;
+              dataSourceValue = 0;
             }
-            maxProcessingCount = *(UIByte *)((longlong)pallocatedMemory + 0x29);
-            if ((char)pallocatedMemory[5] != '\0') {
+            maxProcessingCount = *(UIByte *)((longlong)allocatedMemoryPointer + 0x29);
+            if ((char)allocatedMemoryPointer[5] != '\0') {
               maxProcessingCount = 1;
             }
-            *(UIByte *)((longlong)pallocatedMemory + 0x29) = maxProcessingCount;
+            *(UIByte *)((longlong)allocatedMemoryPointer + 0x29) = maxProcessingCount;
           }
           *(UIDword *)(uiBufferData + 0x30) = 1;
         }
-        pallocatedMemory[1] = *(uint *)((longlong)pallocatedMemory + 0x24) * ResultValue3 + *pallocatedMemory;
-        ProcessingResult2 = localInt8;
+        allocatedMemoryPointer[1] = *(uint *)((longlong)allocatedMemoryPointer + 0x24) * dataSourceValue + *allocatedMemoryPointer;
+        currentProcessingResult = processingResult;
       }
     }
 LAB_1807608dd:
-    *(short *)(pallocatedMemory + 10) = (short)ProcessingResult2;
-    *(short *)((longlong)pallocatedMemory + 0x52) = (short)ResultValue3;
+    *(short *)(allocatedMemoryPointer + 10) = (short)currentProcessingResult;
+    *(short *)((longlong)allocatedMemoryPointer + 0x52) = (short)dataSourceValue;
     LOCK();
-    *(uint *)((longlong)pallocatedMemory + 0x5c) = *(uint *)((longlong)pallocatedMemory + 0x5c) | 0x8000;
+    *(uint *)((longlong)allocatedMemoryPointer + 0x5c) = *(uint *)((longlong)allocatedMemoryPointer + 0x5c) | 0x8000;
     UNLOCK();
     if ((*(byte *)(stringCompareIndex + 0x11a) & 1) != 0) {
       *(longlong *)(stringCompareIndex + 0xb0) = stringCompareIndex;
       (**(code **)(stringCompareIndex + 0x120))((longlong *)(stringCompareIndex + 0xb0),1,0,0);
     }
-    allocatedMemory4 = allocatedMemory4 + -1;
-    *(UIDword *)(pallocatedMemory + 0xb) = targetBuffer;
-    if (allocatedMemory4 < 0) {
+    allocatedMemoryIndex = allocatedMemoryIndex + -1;
+    *(UIDword *)(allocatedMemoryPointer + 0xb) = targetBuffer;
+    if (allocatedMemoryIndex < 0) {
       return 0;
     }
   } while( true );
