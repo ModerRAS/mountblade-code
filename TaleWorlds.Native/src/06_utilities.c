@@ -339,6 +339,9 @@
 #define SystemResourceSecondaryOffset2F8 0x2f8
 #define SystemResourceSecondaryOffset300 0x300
 
+// 系统数据偏移量常量
+#define SystemDataOffset300 0x300                    // 系统数据偏移量300
+
 // 操作状态偏移量常量
 #define OperationStatusOffset24 0x24
 
