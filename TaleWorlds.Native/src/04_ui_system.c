@@ -2379,32 +2379,32 @@ void* UIGestureCoordinates;
 #define NormalizeUIVector NormalizeUIVectorInternal
 
  // UI系统处理器指针宏定义
-#define UIPixelProcessorPointer _DAT_180d4a8b8
-#define UIImageProcessorPointer _DAT_180d4a860
-#define UIColorProcessorPointer _DAT_180d4a800
-#define UITextureProcessorPointer _DAT_180d4a7c8
-#define UIFontRendererPointer _DAT_180d4a768
-#define UIShaderProcessorPointer _DAT_180d4a738
-#define UIAnimationProcessorPointer _DAT_180d4a720
-#define UILayoutProcessorPointer _DAT_180d4a6e8
-#define UIInputProcessorPointer _DAT_180d4a6c8
-#define UIEventProcessorPointer _DAT_180d4a6c0
-#define UISpareProcessorPointer1 _DAT_180d4a6a0
-#define UISpareProcessorPointer2 _DAT_180d4a960
-#define UISpareProcessorPointer3 _DAT_180d4a940
-#define UISpecialFunctionProcessorPointer1 _DAT_180d4a908
-#define UISpecialFunctionProcessorPointer2 _DAT_180d4a8e8
-#define UISpecialFunctionProcessorPointer3 _DAT_180d4a8a0
-#define UISpecialFunctionProcessorPointer4 _DAT_180d4a878
-#define UISpecialFunctionProcessorPointer5 _DAT_180d4a840
-#define UISpecialFunctionProcessorPointer6 _DAT_180d4a818
-#define UISpecialFunctionProcessorPointer7 _DAT_180d4a7d8
-#define UIExtendedFunctionProcessorPointer1 _DAT_180d4a7a0
-#define UIExtendedFunctionProcessorPointer2 _DAT_180d4a770
-#define UIExtendedFunctionProcessorPointer3 _DAT_180d4a6f0
-#define UIExtendedFunctionProcessorPointer4 _DAT_180d4a6d8
-#define UIExtendedFunctionProcessorPointer5 _DAT_180d4a6b0
-#define UIFunctionTablePointer1 _DAT_180d4a930
+#define UIPixelProcessorPointer _DAT_180d4a8b8              // UI像素处理器指针
+#define UIImageProcessorPointer _DAT_180d4a860              // UI图像处理器指针
+#define UIColorProcessorPointer _DAT_180d4a800              // UI颜色处理器指针
+#define UITextureProcessorPointer _DAT_180d4a7c8            // UI纹理处理器指针
+#define UIFontRendererPointer _DAT_180d4a768                // UI字体渲染器指针
+#define UIShaderProcessorPointer _DAT_180d4a738             // UI着色器处理器指针
+#define UIAnimationProcessorPointer _DAT_180d4a720          // UI动画处理器指针
+#define UILayoutProcessorPointer _DAT_180d4a6e8             // UI布局处理器指针
+#define UIInputProcessorPointer _DAT_180d4a6c8             // UI输入处理器指针
+#define UIEventProcessorPointer _DAT_180d4a6c0              // UI事件处理器指针
+#define UISpareProcessorPointer1 _DAT_180d4a6a0             // UI备用处理器指针1
+#define UISpareProcessorPointer2 _DAT_180d4a960             // UI备用处理器指针2
+#define UISpareProcessorPointer3 _DAT_180d4a940             // UI备用处理器指针3
+#define UISpecialFunctionProcessorPointer1 _DAT_180d4a908    // UI特殊功能处理器指针1
+#define UISpecialFunctionProcessorPointer2 _DAT_180d4a8e8    // UI特殊功能处理器指针2
+#define UISpecialFunctionProcessorPointer3 _DAT_180d4a8a0    // UI特殊功能处理器指针3
+#define UISpecialFunctionProcessorPointer4 _DAT_180d4a878    // UI特殊功能处理器指针4
+#define UISpecialFunctionProcessorPointer5 _DAT_180d4a840    // UI特殊功能处理器指针5
+#define UISpecialFunctionProcessorPointer6 _DAT_180d4a818       // UI特殊功能处理器指针6
+#define UISpecialFunctionProcessorPointer7 _DAT_180d4a7d8       // UI特殊功能处理器指针7
+#define UIExtendedFunctionProcessorPointer1 _DAT_180d4a7a0     // UI扩展功能处理器指针1
+#define UIExtendedFunctionProcessorPointer2 _DAT_180d4a770     // UI扩展功能处理器指针2
+#define UIExtendedFunctionProcessorPointer3 _DAT_180d4a6f0     // UI扩展功能处理器指针3
+#define UIExtendedFunctionProcessorPointer4 _DAT_180d4a6d8     // UI扩展功能处理器指针4
+#define UIExtendedFunctionProcessorPointer5 _DAT_180d4a6b0     // UI扩展功能处理器指针5
+#define UIFunctionTablePointer1 _DAT_180d4a930                // UI函数表指针1
 #define UIFunctionTablePointer2 _DAT_180d4a900
 #define UIFunctionTablePointer3 _DAT_180d4a8d8
 #define UIFunctionTablePointer4 _DAT_180d4a8b0
