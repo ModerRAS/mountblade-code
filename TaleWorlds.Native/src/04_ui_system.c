@@ -92227,7 +92227,7 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
                   *(UIDword *)(uiBufferData + 0x13ec));
     ProcessUIFloatTransform(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory);
     ProcessUIComponentBuffer(uiContext,basePointer + 0x21b0,componentIndex,allocatedMemory,bufferSize);
-    FUN_180726700(uiContext,basePointer + 0x21b0,bufferSize);
+    ProcessUIDataTransformationAndValidation(uiContext,basePointer + 0x21b0,bufferSize);
     if ((*(int *)(uiBufferData + 0x17d8) != 0) && (0x4d < *(int *)(uiBufferData + 0x11b0))) {
       *(UIDword *)(uiBufferData + 0x127c + (longlong)*(int *)(uiBufferData + 0x167c) * 4) = 1;
                      WARNING: Subroutine does not return
@@ -92272,7 +92272,7 @@ void InitializeUIContextSystem(void)
   ProcessUIMemoryAllocation();
   ProcessUIFloatTransform();
   ProcessUIComponentBuffer();
-  FUN_180726700();
+  ProcessUIDataTransformationAndValidation();
   if ((*(int *)(contextHandle + 0x17d8) != 0) && (0x4d < *(int *)(contextHandle + 0x11b0))) {
     *(UIDword *)(contextHandle + 0x127c + (longlong)*(int *)(contextHandle + 0x167c) * 4) = 1;
                      WARNING: Subroutine does not return
@@ -92396,7 +92396,7 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
   if ((*(int *)(uiBufferData + 0x1238) != 0) && (*(int *)(uiBufferData + 0x1244) == 0)) {
     processingResult = 0;
     if ((uiValidationResult != *(int *)(uiBufferData + 0x11cc)) && (processingResult = 0, 0 < *(int *)(uiBufferData + 0x11dc))) {
-      processingResult = FUN_18071e260(uiContext);
+      processingResult = ProcessUIRenderingUpdateTask(uiContext);
     }
     return processingResult;
   }
@@ -92404,7 +92404,7 @@ int ProcessUIDataValidationAndStateManagement(longlong uiContext,UIDword *dataSo
   if (resultPointer != 0) {
     uiValidationResult = resultPointer;
   }
-  uiCompareResult = FUN_18071e260(uiContext,uiValidationResult);
+  uiCompareResult = ProcessUIRenderingUpdateTask(uiContext,uiValidationResult);
   eventProcessingResult = FUN_18071dfc0(uiContext,uiValidationResult,dataSource[6]);
   stateManagementResult = func_0x00018071dd40(uiContext,dataSource[9]);
   *(UIDword *)(uiBufferData + 0x1204) = dataSource[8];
@@ -92442,7 +92442,7 @@ int InitializeUISystemState(void)
   longlong EventHandle;
   
   func_0x000180727c30();
-  processingResult = FUN_18071e260();
+  processingResult = ProcessUIRenderingUpdateTask();
   uiValidationResult = FUN_18071dfc0();
   uiCompareResult = func_0x00018071dd40();
   *(UIDword *)(SourceHandle + 0x1204) = *(UIDword *)(EventHandle + 0x20);
