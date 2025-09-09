@@ -153979,13 +153979,13 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
     if ((*(uint *)(SystemContext + 0x19e8) & 0x400) != 0) {
       if ((*(char *)(BufferStatus + 0x77) == ValidationStatus0) && (hasComparisonResult)) {
         if (*(char *)(BufferStatus + 0x49) != ValidationStatus0) {
-          SecondaryProcessingStatusFlag = (void *)(**(code **)(SystemContext + 0x1560))(&stack0x000000b0,BufferStatus);
+          SecondaryProcessingStatusFlag = (void *)(**(code **)(SystemContext + 0x1560))(&StackBuffer0B0,BufferStatus);
           Utf16Char = *SecondaryProcessingStatusFlag;
           *(void *)(BufferStatus + 0xd8) = Utf16Char;
           *(void *)(BufferStatus + 8) = Utf16Char;
         }
         if (*(char *)(BufferStatus + 0x4a) != ValidationStatus0) {
-          SecondaryProcessingStatusFlag = (void *)(**(code **)(SystemContext + 0x1570))(&stack0x000000b8,BufferStatus);
+          SecondaryProcessingStatusFlag = (void *)(**(code **)(SystemContext + 0x1570))(&StackBuffer0B8,BufferStatus);
           Utf16Char = *SecondaryProcessingStatusFlag;
           *(void *)(BufferStatus + 0xe0) = Utf16Char;
           *(void *)(BufferStatus + 0x10) = Utf16Char;

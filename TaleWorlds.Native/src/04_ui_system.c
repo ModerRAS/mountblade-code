@@ -10040,9 +10040,16 @@ void SetUIComponentColor(longlong componentContext, UIDword colorValue)
 
 
 
- void SetUIComponentAlpha(longlong componentContext, UIDword alphaValue)
- 设置UI组件透明度的函数，将透明度值应用到组件的四个通道
-void SetUIComponentAlpha(longlong componentContext,UIDword alphaValue)
+ /**
+ * @brief 设置UI组件透明度
+ * 
+ * 将透明度值应用到UI组件的四个通道，实现透明度的统一设置。
+ * 
+ * @param componentContext 组件上下文句柄
+ * @param alphaValue 要设置的透明度值
+ * @return 无返回值
+ */
+void SetUIComponentAlpha(longlong componentContext, UIDword alphaValue)
 
 {
   UIDword alphaChannel;
@@ -165846,14 +165853,25 @@ UIHandle FUN_180768180(void)
  WARNING: Removing unreachable block (ram,0x0001807681c0)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_1807681a0(uint uiContext)
-
+/**
+ * @brief 检查UI系统CPU特性支持
+ * 
+ * 该函数检查CPU是否支持UI系统所需的特定指令集和特性，
+ * 包括AVX、AVX2等SIMD指令集的支持情况。
+ * 
+ * @param uiContext UI上下文句柄
+ * @return bool 返回true表示支持指定的CPU特性
+ * 
+ * @note 原始函数名：FUN_1807681a0
+ * @warning 该函数包含CPUID指令调用，用于检测处理器特性
+ */
+bool CheckUICPUFeatureSupport(uint uiContext)
 {
-  int *pprocessingResult;
-  longlong componentIndex;
-  uint EventTypeCode;
-  uint ProcessingStatus;
-  byte in_XCR0;
+  int *cpuInfoResult;
+  longlong featureIndex;
+  uint featureFlags;
+  uint supportStatus;
+  byte xcr0State;
   
   if (_DAT_180c0c720 == 0) {
     pprocessingResult = (int *)cpuid_basic_info(0);
