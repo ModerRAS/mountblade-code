@@ -218,7 +218,7 @@ typedef enum {
 #define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
 #define ProcessUIContextInitialization FUN_1807270a0     // UI上下文初始化
-#define FUN_18072eb00 ProcessUIEventBufferManagement     // UI事件缓冲区管理
+#define ProcessUIEventBufferManagement FUN_18072eb00     // UI事件缓冲区管理
 #define FUN_18072e720 ProcessUIGraphicsParameters        // UI图形参数处理
 #define FUN_180726fd0 ProcessUIRenderContext           // UI渲染上下文处理
 #define FUN_18072ec50 ProcessUIComponentLayout          // UI组件布局处理
