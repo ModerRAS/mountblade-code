@@ -109228,23 +109228,23 @@ void ProcessUITransformDataWithCoefficients(float *UIContext,int DataSource,int 
           }
         }
         else {
-          localInt5 = ProcessingResult3;
-          if ((ProcessingResult2 <= ProcessingResult3) && (localInt5 = ProcessingResult2, ProcessingResult2 < stackParam00000058)) {
-            localInt5 = stackParam00000058;
+          ComponentSize = MaxProcessingCount;
+          if ((ProcessingResult <= MaxProcessingCount) && (ComponentSize = ProcessingResult, ProcessingResult < StackParam58)) {
+            ComponentSize = StackParam58;
           }
         }
-        *pprocessingResult8 = localInt5;
-        plocalChar10 = plocalChar10 + componentIndex0;
-        pprocessingResult8 = pprocessingResult8 + 1;
-        result1 = result1 - 1;
-      } while (result1 != 0);
-      sVar14 = (short)loopCounter - (short)stackParam00000058;
+        *ProcessingResultPointer = ComponentSize;
+        CharacterDataPointer = CharacterDataPointer + ComponentIndex;
+        ProcessingResultPointer = ProcessingResultPointer + 1;
+        IterationCount = IterationCount - 1;
+      } while (IterationCount != 0);
+      ComponentType = (short)LoopCounter - (short)StackParam58;
     }
   }
-  **(short **)(BasePointer + -0x58) = sVar14;
-  **(UIByte **)(BasePointer + -0x50) = (char)_StackHandle1;
+  **(short **)(UIBasePointer + -0x58) = ComponentType;
+  **(UIByte **)(UIBasePointer + -0x50) = (char)StackHandle;
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(BasePointer + 0x2b60) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(UIBasePointer + 0x2b60) ^ (ulonglong)&DataBufferPointer);
 }
 
 

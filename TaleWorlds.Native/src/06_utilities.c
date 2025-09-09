@@ -4615,7 +4615,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808fc8a8
  * @note 此函数负责底层的内存操作和验证
  */
-#define ExecuteMemoryOperationAndValidation FUN_1808fc8a8
+#define ExecuteMemoryOperationAndValidation ExecuteMemoryOperationAndValidation
 
 /**
  * @brief 初始化系统内存池A0
@@ -4630,7 +4630,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180046860
  * @note 此函数负责系统内存池的初始化和配置
  */
-#define InitializeSystemMemoryPoolA0 FUN_180046860
+#define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolA0
 
 /**
  * @brief 初始化系统内存池并配置缓存
