@@ -220910,7 +220910,7 @@ LAB_180184411:
   long long PrimaryOperationResult;
   
   CharacterTablePointer = *ContextHandle;
-  FUN_1801884d0(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  AllocateSystemMemoryEx(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *(long long *)(*ContextHandle + 8) = LoopCounter;
   *(long long *)*ContextHandle = LoopCounter;
   *(long long *)(*ContextHandle + 0x10) = LoopCounter;
@@ -224408,28 +224408,28 @@ void ProcessSystemMemory(uint64_t ContextHandle, long long *ContextHandleSize
  */
 void ProcessSystemEncoding(long long ContextHandle, uint64_t *ContextHandleSize
 {
-  uint64_t Utf16Char;
-  uint8_t SystemFlagH [32];
-  uint64_t CoreEngineValueA8;
-  void *pSystemOperationFlag98;
-  uint64_t SystemOperation90;
-  uint8_t StackValidationData;
-  uint8_t uStack_87;
-  uint64_t CalculationFunctionAddress;
-  void **PointerPointerStack60;
-  long long ArrayStack58 [7];
-  long long *SystemPointer20;
-  unsigned long long uStack_18;
+  uint64_t Utf16Character;
+  uint8_t SystemFlagBuffer [32];
+  uint64_t CoreEngineSystemValue;
+  void *SystemOperationFlagPointer;
+  uint64_t SystemOperationValue;
+  uint8_t StackValidationFlag;
+  uint8_t StackFlag87;
+  uint64_t CalculationFunctionPointer;
+  void **SystemPointerPointer;
+  long long SystemArrayBuffer [7];
+  long long *SystemContextPointer;
+  unsigned long long StackChecksumValue;
   
-  CoreEngineValueA8 = 0xfffffffffffffffe;
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)SystemFlagH;
-  SystemOperation90 = *ContextHandleSize;
-  StackValidationData = *(uint8_t *)(OperationBufferSize + 1);
-  uStack_87 = *(uint8_t *)((long long)OperationBufferSize + 9);
-  CalculationFunctionAddress = OperationBufferSize[2];
-  pSystemOperationFlag98 = &SystemBufferOctonary;
-  PointerPointerStack60 = &pSystemOperationFlag98;
-  SystemPointer20 = (long long *)0x0;
+  CoreEngineSystemValue = 0xfffffffffffffffe;
+  StackChecksumValue = EncodingDecodingKey ^ (unsigned long long)SystemFlagBuffer;
+  SystemOperationValue = *ContextHandleSize;
+  StackValidationFlag = *(uint8_t *)(OperationBufferSize + 1);
+  StackFlag87 = *(uint8_t *)((long long)OperationBufferSize + 9);
+  CalculationFunctionPointer = OperationBufferSize[2];
+  SystemOperationFlagPointer = &SystemBufferOctonary;
+  SystemPointerPointer = &SystemOperationFlagPointer;
+  SystemContextPointer = (long long *)0x0;
   if ((PointerPointerStack60 != (void **)0x0) &&
      (SystemPointer20 = (long long *)(*(code *)&SystemFunctionDispatchPointer)(PointerPointerStack60,ArrayStack58),
      PointerPointerStack60 != (void **)0x0)) {
