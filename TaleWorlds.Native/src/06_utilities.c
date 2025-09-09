@@ -59199,7 +59199,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(int64_t *)(dataContext + SystemDataOffset40) = calculatedIndex;
   operationResult = *(uint64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if ((operationResult & 0x1f) == 0) {
+  if ((operationResult & MemoryOffsetValidationThreshold) == 0) {
     memoryOffset = *(int64_t *)(dataBuffer + 0xb0);
   }
   *(uint64_t *)(dataBuffer + MemoryPointerOffset) = operationResult;
@@ -59212,7 +59212,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
     if (operationResult != securityCheckResult) {
       do {
         dataFlags = operationResult + 1;
-        CalculateMemoryAddressOffset(memoryOffset + (uint64_t)((uint)operationResult & 0x1f) * 8);
+        CalculateMemoryAddressOffset(memoryOffset + (uint64_t)((uint)operationResult & MemoryOffsetValidationThreshold) * 8);
         operationResult = dataFlags;
       } while (dataFlags != securityCheckResult);
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = dataFlags;
@@ -59245,7 +59245,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
   memoryRegionBase = *(uint64_t *)(dataBuffer + DataBufferOffset30);
   dataContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0);
   memoryPointer = *(int64_t *)(dataBuffer + 0xa8);
-  if ((memoryRegionBase & 0x1f) == 0) {
+  if ((memoryRegionBase & MemoryOffsetValidationThreshold) == 0) {
     memoryPointer = dataContext;
   }
   *(uint64_t *)(dataBuffer + MemoryPointerOffset) = memoryRegionBase;
@@ -59258,7 +59258,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
     if (memoryRegionBase != validationOutcome) {
       do {
         operationResult = memoryRegionBase + 1;
-        CalculateMemoryAddressOffset(memoryPointer + (uint64_t)((uint)memoryRegionBase & 0x1f) * 8);
+        CalculateMemoryAddressOffset(memoryPointer + (uint64_t)((uint)memoryRegionBase & MemoryOffsetValidationThreshold) * 8);
         memoryRegionBase = operationResult;
       } while (operationResult != validationOutcome);
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = operationResult;
@@ -64995,7 +64995,7 @@ void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
   uint32_t maskValue;
   uint64_t memoryBlockOffset;
   
-  maskValue = *(uint *)(processData + 0x30) & 0x1f;
+  maskValue = *(uint *)(processData + 0x30) & MemoryOffsetValidationThreshold;
   memoryBlockOffset = (uint64_t)maskValue * SystemResourceManagerMultiplier + *(int64_t *)(processData + SystemParameterValidationOffset28);
   ProcessSystemConfigurationA0(memoryBlockOffset);
   *(ByteFlag *)((*(int64_t *)(processData + SystemParameterValidationOffset28) - (uint64_t)maskValue) + SystemResourceFlagOffset) = 1;

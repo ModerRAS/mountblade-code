@@ -209,15 +209,15 @@ typedef enum {
 #define ProcessUIDoubleParameter FUN_180721fa6               // 处理UI双精度参数
 #define ProcessUIDwordArray FUN_180722340                   // 处理UIDword数组
 #define ProcessUIIntArray FUN_180722370                      // 处理UI整数数组
-#define FUN_1807226f0 ProcessUIComponentTransform           // 处理UI组件变换
+#define ProcessUIComponentTransform FUN_1807226f0           // 处理UI组件变换
 
 // 新增的FUN_函数语义化定义
-#define FUN_18072ab70 ProcessUINumericDataCalculation     // UI数值数据处理计算
-#define FUN_18072ad20 ProcessUIParameterValidation         // UI参数验证处理
-#define FUN_18072b3a0 CalculateUIMetricValue            // UI度量值计算
-#define FUN_18072b830 ProcessUIMatrixTransformation       // UI矩阵变换处理
-#define FUN_18072e9a0 ProcessUIResourceAllocation        // UI资源分配处理
-#define FUN_1807270a0 ProcessUIContextInitialization     // UI上下文初始化
+#define ProcessUINumericDataCalculation FUN_18072ab70     // UI数值数据处理计算
+#define ProcessUIParameterValidation FUN_18072ad20         // UI参数验证处理
+#define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
+#define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
+#define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
+#define ProcessUIContextInitialization FUN_1807270a0     // UI上下文初始化
 #define FUN_18072eb00 ProcessUIEventBufferManagement     // UI事件缓冲区管理
 #define FUN_18072e720 ProcessUIGraphicsParameters        // UI图形参数处理
 #define FUN_180726fd0 ProcessUIRenderContext           // UI渲染上下文处理
