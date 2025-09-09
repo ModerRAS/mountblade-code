@@ -10239,11 +10239,11 @@ NetworkConfigValidationError2:
                       goto NetworkRequestProcessingComplete;
                     }
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterA28);
-                    if (NetworkRequestStatus != '\0') goto Label_180609cf8;
+                    if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError3;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam1);
                     if (NetworkRequestStatus != '\0') goto NetworkRequestStatusCheck3;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam2);
-                    if (NetworkRequestStatus != '\0') goto Label_180609d2e;
+                    if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError4;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam3);
                     if (NetworkRequestStatus != '\0') goto Label_180609d4c;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam4);
@@ -10414,7 +10414,7 @@ Label_180609cf8:
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataL,1);
               if (NetworkRequestStatus != '\0') goto NetworkRequestStatusCheck3;
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataM,1);
-              if (NetworkRequestStatus != '\0') goto Label_180609d2e;
+              if (NetworkRequestStatus != '\0') goto NetworkConfigValidationError4;
               NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataN,1);
               if (NetworkRequestStatus != '\0') {
 Label_180609d4c:
