@@ -120129,7 +120129,7 @@ void HandleExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t da
 
 
 /**
- * @brief 在偏移量1809110a0处理异常清理
+ * @brief 异常清理处理器 - 偏移量1809110a0
  * 
  * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
  * 它执行以下操作：
@@ -120145,8 +120145,10 @@ void HandleExceptionCleanupAtOffset180911080(DataBuffer operationBase,int64_t da
  * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_1809110a0
+ * @warning 此函数包含系统终止调用，在特定条件下会终止系统执行
+ * @see SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void ProcessExceptionCleanupAtOffset1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanupAtOffset1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
