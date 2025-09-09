@@ -15022,15 +15022,29 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
  * 该函数负责减少工具资源的引用计数，并在计数器达到特定条件时执行资源清理。
  * 这是一个重要的资源管理函数，确保资源在不再使用时能够被正确释放。
  * 
+ * 函数执行流程：
+ * 1. 查询和检索资源配置数据
+ * 2. 验证资源引用计数是否有效
+ * 3. 减少资源引用计数
+ * 4. 检查资源是否需要清理（当主计数器、次计数器和第三计数器之和为0时）
+ * 5. 如果需要清理，则执行资源释放操作
+ * 6. 验证系统参数并清理资源缓冲区
+ * 
  * @param resourceContext 资源上下文指针，包含要管理的资源信息
  * @param decrementValue 递减值，用于控制资源计数的减少量
- * @return DataBuffer 操作结果状态码：
+ * @return uint64_t 操作结果状态码：
  *         - 0: 资源递减操作成功
  *         - 0x1c: 资源计数器不足，无法执行递减操作
  *         - 其他值: 具体的错误代码
  * 
  * @note 该函数会修改资源计数器，并在条件满足时触发资源释放
  * @warning 资源清理操作是不可逆的，确保在调用前资源可以安全释放
+ * @warning 函数使用复杂的计数器逻辑，需要确保所有相关计数器状态正确
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ValidateResourceHandle, CleanupResourceData, ValidateSystemParameters
+ * 
+ * @since 系统版本 1.0
+ * @security_level 中
  */
 uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrementValue)
 
@@ -15075,10 +15089,26 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
  * 该函数用于增加指定资源的引用计数，并进行状态检查以确保资源引用的有效性。
  * 引用计数是资源管理的重要组成部分，用于跟踪资源被引用的次数。
  * 
- * @param resourceHandle 资源句柄，指向要更新引用计数的资源
- * @return 操作状态码，0表示成功，非0表示错误
+ * 函数执行流程：
+ * 1. 查询和检索系统上下文数据
+ * 2. 验证资源句柄的有效性
+ * 3. 调整系统上下文缓冲区指针
+ * 4. 获取内存资源指针
+ * 5. 增加资源引用计数
  * 
- * @note 原始函数名：UpdateResourceReferenceCount
+ * @param resourceHandle 资源句柄，指向要更新引用计数的资源
+ * @return DataBuffer 操作结果状态码：
+ *         - 0: 引用计数更新成功
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会增加资源的引用计数，确保资源不会被意外释放
+ * @warning 引用计数的增加必须与相应的释放操作配对，避免内存泄漏
+ * @warning 函数会修改系统上下文和资源引用计数，需要确保操作的安全性
+ * 
+ * @see QueryAndRetrieveSystemDataA0
+ * 
+ * @since 系统版本 1.0
+ * @security_level 中
  */
 DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
 
