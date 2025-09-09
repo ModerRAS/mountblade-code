@@ -176,7 +176,28 @@ typedef enum {
 #define localChar36 UIComponentContextIndex
 #define localChar34 UIPreviousComponentContext
 #define localChar26 UIComponentContextBackup
+#define localChar23 UIComponentContextCurrent
 #define cStack_148 UIStackChar148
+#define cStack_e8 UIValidationCharE8
+#define cStack_d0 UIValidationCharD0
+#define cStack_b00 UIComponentValidationChar
+#define cStack_a47 UIComponentContextChar
+#define stackLongf0 UIComponentContextPtrF0
+#define stackLongd8 UIComponentContextPtrD8
+#define stackLonga10 UIComponentContextPtrA10
+#define astackUInt7b8 UIStackBuffer7B8
+#define astackUInt848 UIStackBuffer848
+#define validationFlag UIComponentValidationStatus
+#define uiValidationResult6 UIValidationResult6
+#define pstackUInt30 UIPrimaryBufferPtr30
+#define pstackUInt50 UISecondaryBufferPtr50
+#define pstackUInt48 UITertiaryBufferPtr48
+#define pstackUInt28 UIQuaternaryBufferPtr28
+#define pstackUInt180 UIStringFormatBufferPtr180
+#define pstackUInt178 UIStringResultBufferPtr178
+#define PrimaryUIBuffer UIPrimaryDataBuffer
+#define SecondaryUIBuffer UISecondaryDataBuffer
+#define UIStringFormatTemplate UIStringFormattingTemplate
 
 // UI组件数据验证和清理函数局部变量宏定义
 #define allocatedMemory UIAllocatedMemoryBlock
