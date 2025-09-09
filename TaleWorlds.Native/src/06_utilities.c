@@ -98,6 +98,42 @@
 #define DefaultExceptionHandlerB_Position3_Offset 0x248
 
 // 寄存器上下文偏移量常量
+#define RegisterContextDataOffset 0x78
+#define SystemContextDataOffset40 0x40
+#define SystemContextDataOffset50 0x50
+#define SystemContextDataOffset58 0x58
+#define DataBufferValidationOffset 0x24
+#define ResourceIteratorDataOffset 0x14
+#define StackFrameContextOffsetC4 0xc4
+#define StackFrameContextOffsetCC 0xcc
+#define StackFrameContextOffsetD0 0xd0
+#define StackFrameContextOffset200 0x200
+#define ValueContextOffset8 0x8
+#define OperationBaseOffset8 0x8
+#define DataDescriptorOffset8 0x8
+#define SystemParameterOffset1C 0x1c
+#define ExceptionHandlerContextOffset58 0x58
+#define ExceptionHandlerContextOffset60 0x60
+#define ExceptionDataBufferOffset60 0x60
+#define MemoryPointerOffset 0x20
+#define ResourceIteratorOffset 0x40
+
+// 数据验证常量
+#define MinimumContextSize 0x41
+#define MediumContextSize 0x5a
+#define LargeContextSize 0x6e
+#define MaximumContextSize 0x8b
+#define DataAlignmentValue 0xf
+#define SecurityAlignmentValue 0xf
+#define MemoryAllocationErrorCode 0x11
+#define ValidationErrorCode 0x1c
+#define ProcessingErrorCode 0x4a
+
+// 异常处理器回调偏移量常量
+#define ExceptionHandlerCallbackOffsetE8 0xe8
+#define ExceptionHandlerContextOffsetD8 0xd8
+#define ExceptionHandlerDataBufferOffset68 0x68
+#define ExceptionHandlerContextOffset58 0x58
 #define RegisterContextDataPointerOffset 0x20
 #define RegisterContextDataSizeOffset 0x28
 #define RegisterContextCountOffset 0x2c
