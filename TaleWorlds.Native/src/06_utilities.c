@@ -111336,7 +111336,18 @@ void ManageExceptionDataTableA20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器（偏移量0x130+0xc0）
+ * 
+ * 该函数处理位于偏移量0x130+0xc0处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 这是异常上下文处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090fa30
+ */
+void ExecuteExceptionHandlerWithContextOffset130C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -111350,7 +111361,18 @@ void Unwind_18090fa30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常数据缓冲区处理器（偏移量0x148）
+ * 
+ * 该函数处理位于偏移量0x148处的异常数据缓冲区，并在有效时调用相应的异常处理函数。
+ * 这是异常数据缓冲区处理器系列的一部分，处理特定偏移量的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常数据缓冲区信息
+ * 
+ * @note 原始函数名：Unwind_18090fa50
+ */
+void ExecuteExceptionHandlerWithDataBufferOffset148(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + DataBufferOffset148) != (int64_t *)0x0) {
@@ -111361,7 +111383,18 @@ void Unwind_18090fa50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fa60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放共享锁函数A60
+ * 
+ * 该函数负责在特定条件下释放共享锁（SRWLock）。
+ * 当偏移量0x150处的字符不为0时，释放位于偏移量0x148处的共享锁。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含锁状态信息
+ * 
+ * @note 原始函数名：Unwind_18090fa60
+ */
+void ReleaseSharedLockA60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0x150) != '\0') {
