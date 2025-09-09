@@ -24278,8 +24278,8 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
                           );
         if (processingResultIndex != 0) GOTO_ValidationFailed;
       }
-      if (((((dataValidationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryOffset < processingDataContext - memoryManagementPointer) &&
-           (processingResultIndex = *stackIntegerPointerC, *stackIntegerPointerC = processingResultIndex + 1, processingResultIndex < 10)) &&
+      if (((((dataValidationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryManagementOffset < processingDataContext - memoryManagementPointer) &&
+           (processingResultIndex = *processingResultCounter, *processingResultCounter = processingResultIndex + 1, processingResultIndex < 10)) &&
           ((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (dataBufferSize == *(int *)(systemContext + FloatProcessingBufferSizeOffset))))) {
 MemoryCopyLabel:
@@ -26783,10 +26783,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataWord SystemDataValidationWord;
   DataWord SystemOperationResultWord;
   DataWord SystemConfigurationDataWordL;
-  DataWord systemContextOffsetData54;
-  DataWord systemContextOffsetData58;
-  DataWord systemContextOffsetData5C;
-  DataWord systemContextOffsetData60;
+  DataWord systemConfigurationData54;
+  DataWord systemConfigurationData58;
+  DataWord systemConfigurationData5C;
+  DataWord systemConfigurationData60;
   DataWord SecurityValidationResultA;
   uint8_t *SecurityValidationTempBuffer;
   DataWord SecurityCheckResult;
@@ -26887,14 +26887,14 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               SystemConfigurationDataWordJ = *(DataWord *)(dataContext + DataOperationOffset48);
               SystemConfigurationDataWordK = *(DataWord *)(dataContext + DataOperationOffset4c);
               SystemConfigurationDataWordL = *(DataWord *)(dataContext + DataOperationOffset50);
-              systemContextOffsetData54 = *(DataWord *)(dataContext + DataOperationOffset54);
+              systemConfigurationData54 = *(DataWord *)(dataContext + DataOperationOffset54);
               // 初始化安全检查和重置数据
               StackPointerBufferD = &SystemSecurityCheckReference;
               SystemResetDataWordH = 0;
               // 获取系统上下文偏移数据
-              systemContextOffsetData58 = *(DataWord *)(dataContext + DataOperationOffset58);
-              systemContextOffsetData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
-              systemContextOffsetData60 = *(DataWord *)(dataContext + DataOperationOffset60);
+              systemConfigurationData58 = *(DataWord *)(dataContext + DataOperationOffset58);
+              systemConfigurationData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
+              systemConfigurationData60 = *(DataWord *)(dataContext + DataOperationOffset60);
               // 获取系统安全验证数据
               SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
               SystemStackDataWordI = StackDataWordA;
@@ -29199,42 +29199,42 @@ DataWord QuerySystemStatusWithValidation(void)
   int statusContextPointer;
   int *statusValidationParameter;
   
-  arrayIndex = (int)StackFrameContext;
-  if (arrayIndex != 0) {
-    if (contextPointerD < arrayIndex) {
-      operationResult = systemContext + contextPointerD;
-      memoryresourcePointer = operationResult + -1;
-      if (systemContext < memoryresourcePointer) {
+  statusArrayIndex = (int)StackFrameContext;
+  if (statusArrayIndex != 0) {
+    if (statusContextPointer < statusArrayIndex) {
+      statusOperationResult = systemContext + statusContextPointer;
+      memoryResourcePointer = statusOperationResult + -1;
+      if (systemContext < memoryResourcePointer) {
         do {
-          systemDataBuffer = *systemContext;
-          *systemContext = *memoryresourcePointer;
+          statusDataBuffer = *systemContext;
+          *systemContext = *memoryResourcePointer;
           systemContext = systemContext + 1;
-          *memoryresourcePointer = systemDataBuffer;
-          memoryresourcePointer = memoryresourcePointer + -1;
-        } while (systemContext < memoryresourcePointer);
+          *memoryResourcePointer = statusDataBuffer;
+          memoryResourcePointer = memoryResourcePointer + -1;
+        } while (systemContext < memoryResourcePointer);
       }
-      *operationResult = (char)dataPointerD;
+      *statusOperationResult = (char)statusDataPointer;
     }
     else {
-      validationStatusPointer = systemContext + basePointer;
-      memoryresourcePointer = validationStatusPointer + -1;
-      operationResult = systemContext;
-      if (systemContext < memoryresourcePointer) {
+      validationStatusPointer = systemContext + memoryBasePointer;
+      memoryResourcePointer = validationStatusPointer + -1;
+      statusOperationResult = systemContext;
+      if (systemContext < memoryResourcePointer) {
         do {
-          systemDataBuffer = *operationResult;
-          *operationResult = *memoryresourcePointer;
-          operationResult = operationResult + 1;
-          *memoryresourcePointer = systemDataBuffer;
-          memoryresourcePointer = memoryresourcePointer + -1;
-        } while (operationResult < memoryresourcePointer);
+          statusDataBuffer = *statusOperationResult;
+          *statusOperationResult = *memoryResourcePointer;
+          statusOperationResult = statusOperationResult + 1;
+          *memoryResourcePointer = statusDataBuffer;
+          memoryResourcePointer = memoryResourcePointer + -1;
+        } while (statusOperationResult < memoryResourcePointer);
       }
-      memoryresourcePointer = validationStatusPointer + (int64_t)(arrayIndex - basePointer) + -1;
-      if (validationStatusPointer < memoryresourcePointer) {
+      memoryResourcePointer = validationStatusPointer + (int64_t)(statusArrayIndex - memoryBasePointer) + -1;
+      if (validationStatusPointer < memoryResourcePointer) {
         do {
-          systemDataBuffer = *validationStatusPointer;
-          *validationStatusPointer = *memoryresourcePointer;
+          statusDataBuffer = *validationStatusPointer;
+          *validationStatusPointer = *memoryResourcePointer;
           validationStatusPointer = validationStatusPointer + 1;
-          *memoryresourcePointer = systemDataBuffer;
+          *memoryResourcePointer = statusDataBuffer;
           memoryresourcePointer = memoryresourcePointer + -1;
         } while (validationStatusPointer < memoryresourcePointer);
       }

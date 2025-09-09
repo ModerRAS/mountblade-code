@@ -401707,52 +401707,52 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define SetLayoutBounds DefineLayoutBounds
 
 // UI系统动画管理函数
-#define CreateUIAnimation FUN_1807067d0
-#define DestroyUIAnimation FUN_180706830
-#define UpdateUIAnimation FUN_180706890
-#define ProcessUIAnimation FUN_1807068f0
-#define ValidateUIAnimation FUN_180706950
-#define StartUIAnimation FUN_1807069b0
-#define StopUIAnimation FUN_180706a10
-#define PauseUIAnimation FUN_180706a70
-#define ResumeUIAnimation FUN_180706ad0
-#define GetUIAnimationState FUN_180706b30
+#define CreateUIAnimation GenerateUIAnimation
+#define DestroyUIAnimation RemoveUIAnimation
+#define UpdateUIAnimation RefreshUIAnimation
+#define ProcessUIAnimation HandleUIAnimation
+#define ValidateUIAnimation VerifyUIAnimation
+#define StartUIAnimation BeginUIAnimation
+#define StopUIAnimation EndUIAnimation
+#define PauseUIAnimation SuspendUIAnimation
+#define ResumeUIAnimation ContinueUIAnimation
+#define GetUIAnimationState RetrieveUIAnimationState
 
 // UI系统资源管理函数
-#define AllocateUIResource FUN_180706b90
-#define FreeUIResource FUN_180706bf0
-#define LoadUIResource FUN_180706c50
-#define UnloadUIResource FUN_180706cb0
-#define FindUIResource FUN_180706d10
-#define ValidateUIResource FUN_180706d70
-#define CacheUIResource FUN_180706dd0
-#define FlushUIResourceCache FUN_180706e300
-#define GetUIResourceInfo FUN_180706e90
-#define SetUIResourceInfo FUN_180706ef0
+#define AllocateUIResource AssignUIResource
+#define FreeUIResource ReleaseUIResource
+#define LoadUIResource ImportUIResource
+#define UnloadUIResource ExportUIResource
+#define FindUIResource SearchUIResource
+#define ValidateUIResource ConfirmUIResource
+#define CacheUIResource StoreUIResourceInCache
+#define FlushUIResourceCache ClearUIResourceCache
+#define GetUIResourceInfo ObtainUIResourceInfo
+#define SetUIResourceInfo UpdateUIResourceInfo
 
 // UI系统数据管理函数
-#define ProcessUIData FUN_180706f50
-#define ValidateUIData FUN_180706fb0
-#define UpdateUIData FUN_180707010
-#define SyncUIData FUN_180707070
-#define BackupUIData FUN_1807070d0
-#define RestoreUIData FUN_180707130
-#define MigrateUIData FUN_180707190
-#define ConvertUIData FUN_1807071f0
-#define NormalizeUIData FUN_180707250
-#define OptimizeUIData FUN_1807072b0
+#define ProcessUIData HandleUIDataProcessing
+#define ValidateUIData VerifyUIDataValidity
+#define UpdateUIData ModifyUIData
+#define SyncUIData SynchronizeUIData
+#define BackupUIData CreateUIDataBackup
+#define RestoreUIData RecoverUIDataFromBackup
+#define MigrateUIData TransferUIData
+#define ConvertUIData TransformUIData
+#define NormalizeUIData StandardizeUIData
+#define OptimizeUIData EnhanceUIData
 
 // UI系统状态管理函数
-#define GetUIState FUN_180707310
-#define SetUIState FUN_180707370
-#define UpdateUIState FUN_1807073d0
-#define ValidateUIState FUN_180707430
-#define ResetUIState FUN_180707490
-#define SaveUIState FUN_1807074f0
-#define LoadUIState FUN_180707550
-#define BackupUIState FUN_1807075b0
-#define RestoreUIState FUN_180707610
-#define SyncUIState FUN_180707670
+#define GetUIState RetrieveUIState
+#define SetUIState ConfigureUIState
+#define UpdateUIState RefreshUIState
+#define ValidateUIState CheckUIStateValidity
+#define ResetUIState ReinitializeUIState
+#define SaveUIState StoreUIState
+#define LoadUIState RestoreUIStateFromFile
+#define BackupUIState CreateUIStateBackup
+#define RestoreUIState RecoverUIStateFromBackup
+#define SyncUIState SynchronizeUIState
 
 // 注意：以下函数已经在文件前面定义过了，这里删除重复定义
 // UI系统数据处理函数
@@ -401766,12 +401766,12 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // #define ProcessUIComplexData FUN_180721540
 
 // UI系统数据验证函数
-#define ValidateUIDataIntegrity FUN_18089f830
+#define ValidateUIDataIntegrity CheckUIDataIntegrity
 
 // UI系统句柄管理函数
-#define ProcessUIHandleAllocation FUN_18089fa3c
-#define ValidateUIHandleOperation FUN_18089fac2
-#define ProcessUIHandleValidation FUN_18089fad8
+#define ProcessUIHandleAllocation HandleUIHandleAssignment
+#define ValidateUIHandleOperation VerifyUIHandleOperation
+#define ProcessUIHandleValidation ConfirmUIHandleValidity
 
 // 注意：以下函数已经在文件前面定义过了，这里删除重复定义
 // UI系统数据处理函数
@@ -401790,7 +401790,7 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统数据变换处理函数
 // #define ProcessUIDataWithSimpleTransform FUN_18072182d
 // #define ProcessUIDataWithHandles FUN_180721864
-#define ProcessUIDataFinalization FUN_180721984
+#define ProcessUIDataFinalization CompleteUIDataProcessing
 
 // 注意：以下寄存器变量已经在文件前面定义过了，这里删除重复定义
 // UI系统寄存器变量美化
