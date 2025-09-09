@@ -20085,54 +20085,54 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
  * @warning 函数包含多个验证步骤，确保输入数据的有效性
  * @see QueryAndRetrieveSystemDataA0, ValidateSystemDataRange, UpdateSystemFloatingPointValue
  */
-DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t systemDataPointer)
+DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t SystemDataPointer)
 
 {
-  float inputFloatValue;
-  int64_t targetDataPointer;
-  DataBuffer validationResult;
-  float maxRangeValue;
-  int64_t systemContextValue;
-  int64_t systemQueryArray [2];
+  float InputFloatValue;
+  int64_t TargetDataPointer;
+  DataBuffer ValidationResult;
+  float MaxRangeValue;
+  int64_t SystemContextValue;
+  int64_t SystemQueryArray [2];
   
   // 从上下文指针中提取浮点数值并初始化系统上下文值
-  systemContextValue = MergeHighLowWords(systemContextValue.HighPart, *(uint *)(contextPointer + FloatingPointDataOffset20));
-  if ((*(uint *)(contextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
+  SystemContextValue = MergeHighLowWords(SystemContextValue.HighPart, *(uint *)(ContextPointer + FloatingPointDataOffset20));
+  if ((*(uint *)(ContextPointer + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + ExceptionHandlerCallbackOffset10),systemQueryArray);
-  if ((int)validationResult == 0) {
-    if (systemQueryArray[0] == 0) {
-      systemQueryArray[0] = 0;
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(ContextPointer + ExceptionHandlerCallbackOffset10),SystemQueryArray);
+  if ((int)ValidationResult == 0) {
+    if (SystemQueryArray[0] == 0) {
+      SystemQueryArray[0] = 0;
     }
     else {
-      systemQueryArray[0] = systemQueryArray[0] + -8;
+      SystemQueryArray[0] = SystemQueryArray[0] + -8;
     }
-    systemContextValue = 0;
-    validationResult = ValidateSystemDataRange(systemQueryArray[0],contextPointer + FloatingPointDataOffset18,&systemContextValue);
-    if ((int)validationResult == 0) {
-      if (systemContextValue == 0) {
+    SystemContextValue = 0;
+    ValidationResult = ValidateSystemDataRange(SystemQueryArray[0],ContextPointer + FloatingPointDataOffset18,&SystemContextValue);
+    if ((int)ValidationResult == 0) {
+      if (SystemContextValue == 0) {
         return OperationSuccessCode;
       }
-      targetDataPointer = *(int64_t *)(systemContextValue + ExceptionHandlerCallbackOffset10);
-      if (targetDataPointer == 0) {
+      TargetDataPointer = *(int64_t *)(SystemContextValue + ExceptionHandlerCallbackOffset10);
+      if (TargetDataPointer == 0) {
         return ResourceNotFoundCode;
       }
-      if ((*(SystemByteType *)(targetDataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
+      if ((*(SystemByteType *)(TargetDataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
         return ComponentDataValidationFailure;
       }
-      inputFloatValue = *(float *)(contextPointer + FloatingPointDataOffset20);
-      maxRangeValue = *(float *)(targetDataPointer + FloatingPointDataOffset38);
-      if ((*(float *)(targetDataPointer + FloatingPointDataOffset38) <= inputFloatValue) &&
-         (maxRangeValue = *(float *)(targetDataPointer + FloatingPointDataOffset3c), inputFloatValue <= *(float *)(targetDataPointer + FloatingPointDataOffset3c))) {
-        maxRangeValue = inputFloatValue;
+      InputFloatValue = *(float *)(ContextPointer + FloatingPointDataOffset20);
+      MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointDataOffset38);
+      if ((*(float *)(TargetDataPointer + FloatingPointDataOffset38) <= InputFloatValue) &&
+         (MaxRangeValue = *(float *)(TargetDataPointer + FloatingPointDataOffset3c), InputFloatValue <= *(float *)(TargetDataPointer + FloatingPointDataOffset3c))) {
+        MaxRangeValue = InputFloatValue;
       }
-      *(float *)(contextPointer + FloatingPointDataOffset20) = maxRangeValue;
-      *(float *)(systemContextValue + 4) = maxRangeValue;
-        UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + SystemResourceOffset98),contextPointer);
+      *(float *)(ContextPointer + FloatingPointDataOffset20) = MaxRangeValue;
+      *(float *)(SystemContextValue + 4) = MaxRangeValue;
+        UpdateSystemFloatingPointValue(*(DataBuffer *)(SystemDataPointer + SystemResourceOffset98),ContextPointer);
     }
   }
-  return validationResult;
+  return ValidationResult;
 }
 
 
