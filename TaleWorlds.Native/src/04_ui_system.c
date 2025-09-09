@@ -99070,32 +99070,32 @@ void ProcessUIDataHandler(longlong uiContext,UIHandle dataSource,int targetBuffe
       UIProcessingResult = UIProcessingResult + 1;
     } while (UIProcessingResult < *(int *)(uiBufferData + 0x914));
   }
-  localChar2 = ReadUIData(dataSource,(longlong)
+  UILocalChar2 = ReadUIData(dataSource,(longlong)
                                 (((int)*(char *)(uiContext + 0xae5) >> 1)                                 (int)**(short **)(uiContext + 0xac0)) +
                                 *(longlong *)(*(short **)(uiContext + 0xac0) + 0xc),8);
-  *(char *)(uiContext + 0xad0) = localChar2;
-  ProcessUIBufferDataOperation(&stack0x00000030,stackBuffer,*(UIHandle *)(uiContext + 0xac0),(int)localChar2);
-  contextHandleData = *(longlong *)(uiBufferData + 0xac0);
-  processedCount = 0;
-  TempInt4 = 0;
-  if (0 < *(short *)(contextHandleData + 2)) {
-    psVar7 = (short *)&stack0x00000030;
-    plocalChar9 = (char *)(uiContext + 0xad1);
+  *(char *)(uiContext + 0xad0) = UILocalChar2;
+  ProcessUIBufferDataOperation(&stack0x00000030,UIStackBuffer,*(UIHandle *)(uiContext + 0xac0),(int)UILocalChar2);
+  UIContextHandleData = *(longlong *)(uiBufferData + 0xac0);
+  UIProcessedCount = 0;
+  UIProcessingResult = 0;
+  if (0 < *(short *)(UIContextHandleData + 2)) {
+    pUIValuePtr = (short *)&stack0x00000030;
+    pCharDataPtr = (char *)(uiContext + 0xad1);
     do {
-      localInt5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(contextHandleData + 0x30),8);
-      if (localInt5 == 0) {
-        localInt5 = ReadUIData(dataSource,&UIFunctionResultTableE,8);
-        localInt5 = -localInt5;
+      UIDataValue = ReadUIData(dataSource,(longlong)*pUIValuePtr + *(longlong *)(UIContextHandleData + 0x30),8);
+      if (UIDataValue == 0) {
+        UIDataValue = ReadUIData(dataSource,&UIFunctionResultTableE,8);
+        UIDataValue = -UIDataValue;
       }
-      else if (localInt5 == 8) {
-        localInt5 = ReadUIData(dataSource,&UIFunctionResultTableE,8);
-        localInt5 = localInt5 + 8;
+      else if (UIDataValue == 8) {
+        UIDataValue = ReadUIData(dataSource,&UIFunctionResultTableE,8);
+        UIDataValue = UIDataValue + 8;
       }
-      TempInt4 = TempInt4 + 1;
-      *plocalChar9 = (char)localInt5 + -4;
-      psVar7 = psVar7 + 1;
-      contextHandleData = *(longlong *)(uiBufferData + 0xac0);
-      plocalChar9 = plocalChar9 + 1;
+      UIProcessingResult = UIProcessingResult + 1;
+      *pCharDataPtr = (char)UIDataValue + -4;
+      pUIValuePtr = pUIValuePtr + 1;
+      UIContextHandleData = *(longlong *)(uiBufferData + 0xac0);
+      pCharDataPtr = pCharDataPtr + 1;
     } while (TempInt4 < *(short *)(contextHandleData + 2));
   }
   if (*(int *)(uiBufferData + 0x914) == 4) {
