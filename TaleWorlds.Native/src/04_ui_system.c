@@ -28112,7 +28112,7 @@ void InitializeCPUFunctionPointers(void)
   longlong componentIndex;
   longlong stringCompareIndex;
   code *TargetHandle;
-  bool bVar4;
+  bool isCriticalSectionInitialized;
   
   LOCK();
   _UIThreadLockReferenceCount = _UIThreadLockReferenceCount + 1;
@@ -28120,14 +28120,14 @@ void InitializeCPUFunctionPointers(void)
   stringCompareIndex = malloc(0x28);
   InitializeCriticalSection(stringCompareIndex);
   LOCK();
-  bVar4 = _UIThreadLockCriticalSection != 0;
+  isCriticalSectionInitialized = _UIThreadLockCriticalSection != 0;
   componentIndex = stringCompareIndex;
-  if (bVar4) {
+  if (isCriticalSectionInitialized) {
     componentIndex = _UIThreadLockCriticalSection;
   }
   _UIThreadLockCriticalSection = componentIndex;
   UNLOCK();
-  if (bVar4) {
+  if (isCriticalSectionInitialized) {
     DeleteCriticalSection(stringCompareIndex);
     free(stringCompareIndex);
   }
@@ -302804,111 +302804,117 @@ ulonglong CleanupUIContextAndResources(longlong *uiContext)
   uint componentHash1;
   uint componentHash2;
   
-  if (BasePointer != 0) {
+  if (basePointer != 0) {
     CleanupUIContextState();
   }
-  eventProcessingCounter = 0;
+  processedCount = 0;
   if (*(int *)((longlong)uiContext + 0x24) != 0) {
-    uiValidationResult = (int)uiContext[1];
-    if (uiValidationResult != 0) {
-      pProcessingResult1 = (int *)*uiContext;
-      result0 = eventProcessingCounter;
+    validationStatus = (int)uiContext[1];
+    if (validationStatus != 0) {
+      nextComponentPtr = (int *)*uiContext;
+      loopResult = processedCount;
       do {
-        if (*pProcessingResult1 != -1) {
-          localInt7 = ((int *)*uiContext)[(int)result0];
+        if (*nextComponentPtr != -1) {
+          componentIndex = ((int *)*uiContext)[(int)loopResult];
           goto LAB_18084f0bc;
         }
-        result0 = (ulonglong)((int)result0 + 1);
-        eventProcessingCounter = eventProcessingCounter + 1;
-        pProcessingResult1 = pProcessingResult1 + 1;
-      } while (eventProcessingCounter != (longlong)uiValidationResult);
+        loopResult = (ulonglong)((int)loopResult + 1);
+        processedCount = processedCount + 1;
+        nextComponentPtr = nextComponentPtr + 1;
+      } while (processedCount != (longlong)validationStatus);
     }
-    localInt7 = -1;
+    componentIndex = -1;
 LAB_18084f0bc:
-    stringCompareIndex = uiContext[2];
-    ProcessingStatus = *(UIHandle *)((longlong)localInt7 * 0x20 + 0x18 + stringCompareIndex);
-    ptrResult = (uint *)((longlong)localInt7 * 0x20 + stringCompareIndex);
-    uStack0000000000000034 = ptrResult[1];
-    uStack000000000000003c = ptrResult[3];
-    if ((*(int *)((longlong)uiContext + 0x24) != 0) && (uiValidationResult != 0)) {
-      CharacterDataOffset = (longlong)
-              (int)((uStack000000000000003c ^ uStack0000000000000034 ^ *ptrResult ^ ptrResult[2]) &
-                   uiValidationResult - 1U);
-      pProcessingResult1 = (int *)(*uiContext + CharacterDataOffset * 4);
-      uiValidationResult = *(int *)(*uiContext + CharacterDataOffset * 4);
-      while (uiValidationResult != -1) {
-        CharacterDataOffset = (longlong)uiValidationResult * 0x20;
-        if ((*(longlong *)(CharacterDataOffset + stringCompareIndex) == *(longlong *)ptrResult) &&
-           (*(longlong *)(CharacterDataOffset + 8 + stringCompareIndex) == *(longlong *)(ptrResult + 2))) {
-          uiValidationResult = *pProcessingResult1;
-          CharacterDataOffset = (longlong)uiValidationResult * 0x20;
-          *(UIHandle *)(CharacterDataOffset + 0x18 + stringCompareIndex) = 0;
-          *pProcessingResult1 = *(int *)(CharacterDataOffset + 0x10 + stringCompareIndex);
-          *(int *)(CharacterDataOffset + 0x10 + stringCompareIndex) = (int)uiContext[4];
+    contextIndex = uiContext[2];
+    componentHandle = *(UIHandle *)((longlong)componentIndex * 0x20 + 0x18 + contextIndex);
+    componentDataPtr = (uint *)((longlong)componentIndex * 0x20 + contextIndex);
+    componentHash1 = componentDataPtr[1];
+    componentHash2 = componentDataPtr[3];
+    if ((*(int *)((longlong)uiContext + 0x24) != 0) && (validationStatus != 0)) {
+      dataOffset = (longlong)
+              (int)((componentHash2 ^ componentHash1 ^ *componentDataPtr ^ componentDataPtr[2]) &
+                   validationStatus - 1U);
+      nextComponentPtr = (int *)(*uiContext + dataOffset * 4);
+      validationStatus = *(int *)(*uiContext + dataOffset * 4);
+      while (validationStatus != -1) {
+        dataOffset = (longlong)validationStatus * 0x20;
+        if ((*(longlong *)(dataOffset + contextIndex) == *(longlong *)componentDataPtr) &&
+           (*(longlong *)(dataOffset + 8 + contextIndex) == *(longlong *)(componentDataPtr + 2))) {
+          validationStatus = *nextComponentPtr;
+          dataOffset = (longlong)validationStatus * 0x20;
+          *(UIHandle *)(dataOffset + 0x18 + contextIndex) = 0;
+          *nextComponentPtr = *(int *)(dataOffset + 0x10 + contextIndex);
+          *(int *)(dataOffset + 0x10 + contextIndex) = (int)uiContext[4];
           *(int *)((longlong)uiContext + 0x24) = *(int *)((longlong)uiContext + 0x24) + -1;
-          *(int *)(uiBufferData + 4) = uiValidationResult;
+          *(int *)(uiBufferData + 4) = validationStatus;
           break;
         }
-        pProcessingResult1 = (int *)(stringCompareIndex + 0x10 + CharacterDataOffset);
-        uiValidationResult = *pProcessingResult1;
+        nextComponentPtr = (int *)(contextIndex + 0x10 + dataOffset);
+        validationStatus = *nextComponentPtr;
       }
     }
-    FUN_1808bb9a0(ProcessingStatus);
+    ReleaseUIComponentHandle(componentHandle);
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),ProcessingStatus,&UNK_180984cd0,0x62,1);
+    ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),componentHandle,&UNK_180984cd0,0x62,1);
   }
-  stringCompareIndex = uiContext[5];
-  if (stringCompareIndex != 0) {
-    CleanupUIContextState(stringCompareIndex);
+  contextIndex = uiContext[5];
+  if (contextIndex != 0) {
+    CleanupUIContextState(contextIndex);
   }
-  eventProcessingCounter = FUN_180744cc0(uiContext);
-  if ((int)eventProcessingCounter == 0) {
+  processedCount = GetUIContextStatus(uiContext);
+  if ((int)processedCount == 0) {
     maxProcessingCount = *(uint *)((longlong)uiContext + 0x1c);
-    loopCounter = maxProcessingCount ^ (int)maxProcessingCount >> 0x1f;
-    eventProcessingCounter = (ulonglong)loopCounter;
-    if ((int)(loopCounter - ((int)maxProcessingCount >> 0x1f)) < 0) {
+    componentCount = maxProcessingCount ^ (int)maxProcessingCount >> 0x1f;
+    processedCount = (ulonglong)componentCount;
+    if ((int)(componentCount - ((int)maxProcessingCount >> 0x1f)) < 0) {
       if (0 < (int)uiContext[3]) goto LAB_18084f283;
       if ((0 < (int)maxProcessingCount) && (uiContext[2] != 0)) {
                      WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[2],&UIResourceBuffer180957f70,0x100,1);
+        ReleaseUIResourceHandle(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext[2],&UIResourceBuffer180957f70,0x100,1);
       }
       uiContext[2] = 0;
       *(UIDword *)((longlong)uiContext + 0x1c) = 0;
       maxProcessingCount = 0;
     }
-    uiValidationResult = (int)uiContext[3];
-    if (uiValidationResult < 0) {
+    validationStatus = (int)uiContext[3];
+    if (validationStatus < 0) {
                      WARNING: Subroutine does not return
-      memset((longlong)uiValidationResult * 0x20 + uiContext[2],0,(longlong)-uiValidationResult << 5);
+      memset((longlong)validationStatus * 0x20 + uiContext[2],0,(longlong)-validationStatus << 5);
     }
     *(UIDword *)(uiBufferData + 3) = 0;
     maxProcessingCount = (maxProcessingCount ^ (int)maxProcessingCount >> 0x1f) - ((int)maxProcessingCount >> 0x1f);
-    eventProcessingCounter = (ulonglong)maxProcessingCount;
-    if (((int)maxProcessingCount < 1) || (eventProcessingCounter = FUN_1808532e0(uiContext + 2,0), (int)eventProcessingCounter == 0)) {
+    processedCount = (ulonglong)maxProcessingCount;
+    if (((int)maxProcessingCount < 1) || (processedCount = ProcessUIEventQueue(uiContext + 2,0), (int)processedCount == 0)) {
       *(UIDword *)(uiBufferData + 4) = 0xffffffff;
       *(UIDword *)((longlong)uiContext + 0x24) = 0;
     }
   }
 LAB_18084f283:
-  if (stringCompareIndex != 0) {
+  if (contextIndex != 0) {
                      WARNING: Subroutine does not return
-    ProcessUIMemoryAllocation(stringCompareIndex);
+    ProcessUIMemoryAllocation(contextIndex);
   }
-  if (BasePointer != 0) {
-    if (BasePointer == 0) {
+  if (basePointer != 0) {
+    if (basePointer == 0) {
       return 0x1c;
     }
     LeaveCriticalSection();
     return 0;
   }
-  return eventProcessingCounter;
+  return processedCount;
 }
 
 
 
 
- void FUN_18084f297(void)
-void FUN_18084f297(void)
+ /**
+ * @brief 处理UI内存分配
+ * 
+ * 该函数负责处理UI系统的内存分配请求
+ * 这是一个不返回的函数，会调用内存分配处理程序
+ */
+void ProcessUIMemoryAllocationHandler(void)
+void ProcessUIMemoryAllocationHandler(void)
 
 {
                      WARNING: Subroutine does not return
