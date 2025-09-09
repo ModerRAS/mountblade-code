@@ -217,6 +217,10 @@
 #define OperationBaseOffset70 0x70
 #define OperationBaseOffset74 0x74
 #define OperationBaseOffset78 0x78
+#define OperationDataOffset40 0x40
+#define OperationDataOffset48 0x48
+#define OperationDataOffsetB8 0xb8
+#define OperationDataOffsetF8 0xf8
 
 // 异常上下文资源管理偏移量常量
 #define ResourceCounterOffset130 0x130
