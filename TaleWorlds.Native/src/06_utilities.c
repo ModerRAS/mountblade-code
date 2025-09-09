@@ -182,6 +182,16 @@
 #define DataBufferOffset24 0x24
 #define DataBufferOffset30 0x30
 
+// 对象析构函数回调偏移量常量
+#define ObjectDestructorCallbackOffset 0xc8
+
+// 异常恢复处理器偏移量常量
+#define ExceptionRecoveryHandlerOffset78 0x78
+#define ExceptionRecoveryHandlerOffset80 0x80
+#define ExceptionRecoveryHandlerOffset90 0x90
+#define ExceptionRecoveryHandlerOffset148 0x148
+#define ExceptionContextPointerOffsetD0 0xd0
+
 // 目标上下文偏移量常量
 #define DestinationContextOffset1A0 0x1a0
 #define DestinationContextOffset194 0x194
@@ -43135,8 +43145,8 @@ void InitializeExceptionHandler78(DataBuffer exceptionContext, int64_t handlerTa
 void InvokeDestructorCallback(DataBuffer exceptionContext, int64_t objectContext)
 
 {
-  if (*(int64_t **)(objectContext + 200) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(objectContext + 200) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(objectContext + ObjectDestructorCallbackOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(objectContext + ObjectDestructorCallbackOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
