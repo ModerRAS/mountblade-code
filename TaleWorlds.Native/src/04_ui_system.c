@@ -137058,7 +137058,7 @@ void ThunkUIBufferOperation(longlong uiContext)
           if (0.0 < ScaleValue) {
             ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
-            ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
+            ProcessingResult = FUN_180785c10(uiContext + UIRenderQueueOffset,uiContext + UIComponentDataOffset,EventDataBuffer,0);
             if (ProcessingResult != 0) goto ExitFunction;
             ScaleValue = ScaleValue * (1.0 - ColorArray[0]);
             OpacityValue = OpacityValue * (1.0 - ColorArray[0]);
@@ -206947,7 +206947,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
           if (0.0 < ScaleValue) {
             ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
-            ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
+            ProcessingResult = FUN_180785c10(uiContext + UIRenderQueueOffset,uiContext + UIComponentDataOffset,EventDataBuffer,0);
             if (ProcessingResult != 0) goto ExitFunction;
             ScaleValue = ScaleValue * (1.0 - ColorArray[0]);
             OpacityValue = OpacityValue * (1.0 - ColorArray[0]);
