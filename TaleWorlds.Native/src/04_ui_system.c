@@ -200192,10 +200192,10 @@ LAB_180787e12:
         return EventProcessingStatus;
       }
       EventProcessingStatus = (**(code **)(*(longlong *)EventDataIndexArray[10] + 0x28))((longlong *)EventDataIndexArray[10],0,0,0);
-      if ((int)ProcessingStatus != 0) {
-        return ProcessingStatus;
+      if ((int)EventProcessingStatus != 0) {
+        return EventProcessingStatus;
       }
-      ProcessingStatus = FUN_180762070(pEventDataIndex[10],1);
+      EventProcessingStatus = FUN_180762070(EventDataIndexArray[10],1);
       if ((int)ProcessingStatus != 0) {
         return ProcessingStatus;
       }
