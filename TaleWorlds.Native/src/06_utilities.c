@@ -3681,21 +3681,21 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：清理系统上下文，释放相关资源
 #define CleanupSystemContextA22 Unwind_18090a000
 
-// 新美化的Unwind函数宏定义
-#define ExecuteHandlerAtOffset108 Unwind_1809070d0
-#define ExecuteValidatorAtOffset10 Unwind_1809070e0
-#define ExecuteValidatorAtOffset18 Unwind_1809070f0
-#define ExecuteValidatorAtOffset18And10 Unwind_180907100
-#define ExecuteValidatorAtOffset20 Unwind_180907110
-#define ExecuteValidatorAtOffset20And18 Unwind_180907120
+// 异常处理器执行函数宏定义
+#define ExecuteExceptionHandlerAtPrimaryPosition Unwind_1809070d0
+#define ExecuteValidatorAtPrimaryOffset Unwind_1809070e0
+#define ExecuteValidatorAtSecondaryOffset Unwind_1809070f0
+#define ExecuteValidatorAtCombinedOffsets Unwind_180907100
+#define ExecuteValidatorAtTertiaryOffset Unwind_180907110
+#define ExecuteValidatorAtQuadOffsets Unwind_180907120
 #define ResetSystemStatusFlag Unwind_180907130
 #define ValidateAndProcessDataBuffer Unwind_180907140
 
 // 系统终止条件检查函数宏定义
-#define CheckSystemTerminationConditionAtOffset8 Unwind_1809076c0
-#define CheckSystemTerminationConditionAtOffset30 Unwind_1809076d0
-#define CheckSystemTerminationConditionAtOffset40_8 Unwind_1809076e0
-#define CheckSystemTerminationConditionAtOffset40_30 Unwind_1809076f0
+#define CheckSystemTerminationConditionAtPrimary Unwind_1809076c0
+#define CheckSystemTerminationConditionAtSecondary Unwind_1809076d0
+#define CheckSystemTerminationConditionAtTertiaryA Unwind_1809076e0
+#define CheckSystemTerminationConditionAtTertiaryB Unwind_1809076f0
 
 // 异常处理器初始化函数宏定义
 #define InitializeExceptionHandlerWithDefaults Unwind_180907700
@@ -3711,15 +3711,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SetExceptionHandlerPointerA8 Unwind_1809077f0
 
 // 异常上下文处理函数宏定义
-#define ProcessExceptionHandlerAtOffset0 Unwind_18090f8e0
-#define ProcessExceptionHandlerAtOffset8 Unwind_18090f8f0
-#define ProcessExceptionHandlerAtOffset16 Unwind_18090f970
-#define ProcessExceptionHandlerAtOffset32 Unwind_18090f980
-#define ProcessExceptionHandlerAtOffset48 Unwind_18090f990
-#define ProcessExceptionHandlerAtOffset64 Unwind_18090f9a0
-#define ProcessExceptionHandlerAtOffset80 Unwind_18090f9b0
-#define ProcessExceptionHandlerAtOffset96 Unwind_18090f9c0
-#define ProcessExceptionHandlerAtOffset112 Unwind_18090f9d0
+#define ProcessExceptionHandlerAtRoot Unwind_18090f8e0
+#define ProcessExceptionHandlerAtPrimary Unwind_18090f8f0
+#define ProcessExceptionHandlerAtSecondary Unwind_18090f970
+#define ProcessExceptionHandlerAtTertiary Unwind_18090f980
+#define ProcessExceptionHandlerAtQuad Unwind_18090f990
+#define ProcessExceptionHandlerAtPenta Unwind_18090f9a0
+#define ProcessExceptionHandlerAtHexa Unwind_18090f9b0
+#define ProcessExceptionHandlerAtHepta Unwind_18090f9c0
+#define ProcessExceptionHandlerAtOcta Unwind_18090f9d0
 
 // 异常处理器清理函数组
 // 原始函数名：Unwind_180904370 - 异常上下文处理器清理函数A0
