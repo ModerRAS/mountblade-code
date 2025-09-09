@@ -10162,14 +10162,14 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
             uiContext[1] = uiContext[1] + 0x18;
           }
           else {
-            allocatedMemoryBlock1 = *uiContext;
-            memoryBlockOffset = ((longlong)currentMemoryAllocation - allocatedMemoryBlock1) / 0x18;
+            allocatedMemorySize1 = *uiContext;
+            memoryBlockOffset = ((longlong)currentMemoryAllocation - allocatedMemorySize1) / 0x18;
             if (memoryBlockOffset == 0) {
               memoryBlockOffset = 1;
 LAB_UIContextInitialize:
               newMemoryAllocation = (UIHandle *)CreateUIContext(UIContextManager,memoryBlockOffset * 0x18,(char)uiContext[3]);
               currentMemoryAllocation = (UIHandle *)uiContext[1];
-              allocatedMemoryBlock1 = *uiContext;
+              allocatedMemorySize1 = *uiContext;
             }
             else {
               memoryBlockOffset = memoryBlockOffset * 2;
@@ -15058,19 +15058,19 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   ulonglong memoryAddress;
   
   memoryAddress = XorEncryptionKey ^ (ulonglong)memoryBuffer;
-  colorIntensity = 0.0;
-  loopCounter = 0;
-  colorData = uiContext0;
-  bufferSizeFlag = bufferSize;
-  dataSourceValue = dataSource;
+  color_intensity = 0.0;
+  loop_counter = 0;
+  color_data = uiContext0;
+  buffer_size_flag = bufferSize;
+  data_source_value = dataSource;
   if (0 < (int)uiContext[0x18]) {
     componentDataPtr = uiContext + 0x1b;
     renderDataPtr = componentDataPtr;
     loopCounter = loopCounter;
     do {
-      rotationZ = renderDataPtr[1];
-      positionX = *renderDataPtr;
-      animationTime = uiContext[0x11];
+      rotation_z = render_data_ptr[1];
+      position_x = *render_data_ptr;
+      animation_time = uiContext[0x11];
       if (rotationZ <= positionX) {
         positionX = positionX - dataSource * 4.0;
         if (positionX <= rotationZ) {
