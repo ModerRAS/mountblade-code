@@ -4607,12 +4607,12 @@ void* UIGestureCoordinates;
 #define UIExtendedFunctionProcessorPointer4 _DAT_180d4a6d8     // UI扩展功能处理器指针4
 #define UIExtendedFunctionProcessorPointer5 _DAT_180d4a6b0     // UI扩展功能处理器指针5
 #define UIFunctionTablePointer1 _DAT_180d4a930                // UI函数表指针1
-#define UIFunctionTablePointer2 _DAT_180d4a900
-#define UIFunctionTablePointer3 _DAT_180d4a8d8
-#define UIFunctionTablePointer4 _DAT_180d4a8b0
-#define UIFunctionTablePointer5 _DAT_180d4a870
-#define UIFunctionTablePointer6 _DAT_180d4a830
-#define UIFunctionTablePointer7 _DAT_180d4a7e8
+#define UIFunctionTablePointer2 _DAT_180d4a900     // UI函数表指针2 - 事件处理函数表
+#define UIFunctionTablePointer3 _DAT_180d4a8d8     // UI函数表指针3 - 渲染处理函数表
+#define UIFunctionTablePointer4 _DAT_180d4a8b0     // UI函数表指针4 - 动画处理函数表
+#define UIFunctionTablePointer5 _DAT_180d4a870     // UI函数表指针5 - 输入处理函数表
+#define UIFunctionTablePointer6 _DAT_180d4a830     // UI函数表指针6 - 布局处理函数表
+#define UIFunctionTablePointer7 _DAT_180d4a7e8     // UI函数表指针7 - 状态处理函数表
 
  // UI系统全局状态标志宏定义
 #define UIGlobalStatusFlag1 _DAT_180d4a788               // UI全局状态标志1
@@ -8509,37 +8509,37 @@ UIHandle GetUIStatusFlag(void)
  ulonglong BlendImageBuffersSIMD(ulonglong destBuffer,uint *srcBuffer1,uint *srcBuffer2,uint bufferSize)
 
 {
-  uint PixelValue;
-  short RedChannel1;
-  short GreenChannel1;
-  short BlueChannel1;
-  short AlphaChannel1;
-  short RedChannel2;
-  short GreenChannel2;
-  short BlueChannel2;
-  short AlphaChannel2;
-  uint8_t BlendFactorVector [16];
-  byte *DestinationPointer;
-  uint AlignedBufferSize;
-  longlong SourceOffset;
-  longlong DestinationOffset;
-  int PixelIndex;
-  int ProcessedPixels;
-  int RemainingPixels;
-  uint *SourcePointer;
-  uint8_t XmmRegister1 [16];
-  uint8_t SourceVector1 [16];
-  uint8_t XmmRegister2 [16];
-  uint8_t SourceVector2 [16];
-  uint8_t BlendedVector1 [16];
-  uint8_t BlendedVector2 [16];
-  uint8_t BlendedVector3 [16];
-  uint8_t BlendedVector4 [16];
-  uint8_t BlendedVector5 [16];
-  uint8_t BlendedVector6 [16];
-  uint8_t BlendedVector7 [16];
-  uint8_t BlendedVector8 [16];
-  uint8_t ShiftVector [16];
+  uint PixelValue;                      // 像素值
+  short RedChannel1;                    // 源图像1红色通道
+  short GreenChannel1;                  // 源图像1绿色通道
+  short BlueChannel1;                   // 源图像1蓝色通道
+  short AlphaChannel1;                  // 源图像1透明通道
+  short RedChannel2;                    // 源图像2红色通道
+  short GreenChannel2;                  // 源图像2绿色通道
+  short BlueChannel2;                   // 源图像2蓝色通道
+  short AlphaChannel2;                  // 源图像2透明通道
+  uint8_t BlendFactorVector [16];       // 混合因子向量
+  byte *DestinationPointer;             // 目标缓冲区指针
+  uint AlignedBufferSize;               // 对齐缓冲区大小
+  longlong SourceOffset;                // 源数据偏移量
+  longlong DestinationOffset;           // 目标数据偏移量
+  int PixelIndex;                       // 像素索引
+  int ProcessedPixels;                  // 已处理像素数
+  int RemainingPixels;                  // 剩余像素数
+  uint *SourcePointer;                  // 源数据指针
+  uint8_t XmmRegister1 [16];            // SIMD寄存器1
+  uint8_t SourceVector1 [16];           // 源向量1
+  uint8_t XmmRegister2 [16];            // SIMD寄存器2
+  uint8_t SourceVector2 [16];           // 源向量2
+  uint8_t BlendedVector1 [16];          // 混合向量1
+  uint8_t BlendedVector2 [16];          // 混合向量2
+  uint8_t BlendedVector3 [16];          // 混合向量3
+  uint8_t BlendedVector4 [16];          // 混合向量4
+  uint8_t BlendedVector5 [16];          // 混合向量5
+  uint8_t BlendedVector6 [16];          // 混合向量6
+  uint8_t BlendedVector7 [16];          // 混合向量7
+  uint8_t BlendedVector8 [16];          // 混合向量8
+  uint8_t ShiftVector [16];              // 位移向量
   
   BlendFactorVector = GlobalColorBlendFactor;
   ProcessedPixels = 0;
@@ -8825,12 +8825,14 @@ void InitializeUISystem(UIFunctionPtr *SystemCallback)
  */
 void CleanupUISystem(void)
 {
-    UIFunctionPtr *CleanupCallback;
-    int64_t CleanupContext;
+    UIFunctionPtr *CleanupCallback;     // 清理回调函数指针
+    int64_t CleanupContext;             // 清理上下文
     
+    // 设置清理状态并调用清理回调
     *(UIByte *)(CleanupContext + UI_SYSTEM_CALLBACK_ID) = 0;
     (*CleanupCallback)(UI_SYSTEM_CALLBACK_ID, 0);
     *(UIByte *)(CleanupContext + UI_SYSTEM_CALLBACK_ID) = 10;
+    
     return;
 }
 

@@ -53033,8 +53033,8 @@ void ConfigureExceptionHandlerB60(DataBuffer operationBase, int64_t dataBuffer, 
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e0) != 0) {
@@ -54057,8 +54057,8 @@ void HandleExceptionWithFlagsE6(DataBuffer operationBase,int64_t dataBuffer,Data
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e8) != 0) {
@@ -56041,8 +56041,8 @@ void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e8) != 0) {

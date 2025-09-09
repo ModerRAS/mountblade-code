@@ -67,6 +67,12 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 系统参数语义化宏定义
+#define SystemParameter1 FirstSystemParameter              // 系统参数1
+#define SystemParameter2 SecondSystemParameter             // 系统参数2
+#define SystemParameter3 ThirdSystemParameter              // 系统参数3
+#define SystemParameter4 FourthSystemParameter             // 系统参数4
+
 // 核心引擎数据访问常量
 #define LockOperationResultOffset 0x200                    // 字符字节计数偏移量
 #define Utf16ConversionContextOffset 0x24                  // UTF16转换上下文偏移量
@@ -293012,6 +293018,20 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define SystemContextPrimaryFloat4 ContextPrimaryFloat4      // 系统上下文主浮点4
 #define SystemContextPrimaryFloat6 ContextPrimaryFloat6      // 系统上下文主浮点6
 #define SystemContextPrimaryFloat8 ContextPrimaryFloat8      // 系统上下文主浮点8
+
+// 系统处理状态语义化宏定义
+#define OperationStatus ProcessingOperationStatus            // 操作状态
+#define MemoryAllocationHandle MemoryAllocationFlag          // 内存分配句柄
+#define MemoryAllocationOffset MemoryAllocationPosition      // 内存分配偏移量
+
+// 事件数据结构语义化宏定义
+#define EventDataStructureHandle EventDataStructurePointer  // 事件数据结构句柄
+#define EventDataStructureStatusOffset EventDataStatusOffset // 事件数据结构状态偏移量
+
+// 系统处理状态语义化宏定义
+#define OperationStatus ProcessingOperationStatus            // 操作状态
+#define MemoryAllocationHandle MemoryAllocationFlag          // 内存分配句柄
+#define MemoryAllocationOffset MemoryAllocationPosition      // 内存分配偏移量
 
 // 其他变量语义化宏定义
 #define SecondaryFloatValue SecondaryParameterValue           // 次要浮点值
