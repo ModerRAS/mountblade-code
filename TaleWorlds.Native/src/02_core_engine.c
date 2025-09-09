@@ -4357,6 +4357,171 @@ const void* const SystemEventTemplateDataPrimary = (void*)0x180a10570;
 
 // 系统事件队列数据表常量
 const void* const SystemEventQueueDataTable = (void*)0x180a10600;
+
+// 系统渲染数据常量 - 用于替换UNK_180a0b2xx变量
+const void* const SystemRenderDataVertexShader = (void*)0x180a0b200;
+const void* const SystemRenderDataPixelShader = (void*)0x180a0b220;
+const void* const SystemRenderDataGeometryShader = (void*)0x180a0b240;
+const void* const SystemRenderDataComputeShader = (void*)0x180a0b260;
+const void* const SystemRenderDataHullShader = (void*)0x180a0b280;
+const void* const SystemRenderDataDomainShader = (void*)0x180a0b2a0;
+
+// 系统纹理数据常量 - 用于替换UNK_180a0b2xx变量
+const void* const SystemTextureDataDiffuse = (void*)0x180a0b2c0;
+const void* const SystemTextureDataNormal = (void*)0x180a0b2e0;
+const void* const SystemTextureDataSpecular = (void*)0x180a0b300;
+const void* const SystemTextureDataHeight = (void*)0x180a0b320;
+const void* const SystemTextureDataAmbientOcclusion = (void*)0x180a0b340;
+
+// 系统材质数据常量 - 用于替换UNK_180a0b3xx变量
+const void* const SystemMaterialDataAlbedo = (void*)0x180a0b360;
+const void* const SystemMaterialDataRoughness = (void*)0x180a0b380;
+const void* const SystemMaterialDataMetallic = (void*)0x180a0b3a0;
+const void* const SystemMaterialDataEmissive = (void*)0x180a0b3c0;
+
+// 系统动画数据常量 - 用于替换UNK_180a0b3xx变量
+const void* const SystemAnimationDataSkeleton = (void*)0x180a0b3e0;
+const void* const SystemAnimationDataKeyframe = (void*)0x180a0b400;
+const void* const SystemAnimationDataBlendShape = (void*)0x180a0b420;
+const void* const SystemAnimationDataController = (void*)0x180a0b440;
+
+// 系统物理数据常量 - 用于替换UNK_180a0b4xx变量
+const void* const SystemPhysicsDataRigidBody = (void*)0x180a0b460;
+const void* const SystemPhysicsDataCollider = (void*)0x180a0b480;
+const void* const SystemPhysicsDataJoint = (void*)0x180a0b4a0;
+const void* const SystemPhysicsDataConstraint = (void*)0x180a0b4c0;
+
+// 系统音频数据常量 - 用于替换UNK_180a0b4xx变量
+const void* const SystemAudioDataBuffer = (void*)0x180a0b4e0;
+const void* const SystemAudioDataSource = (void*)0x180a0b500;
+const void* const SystemAudioDataListener = (void*)0x180a0b520;
+const void* const SystemAudioDataEffect = (void*)0x180a0b540;
+
+// 系统输入数据常量 - 用于替换UNK_180a0b5xx变量
+const void* const SystemInputDataKeyboard = (void*)0x180a0b560;
+const void* const SystemInputDataMouse = (void*)0x180a0b580;
+const void* const SystemInputDataGamepad = (void*)0x180a0b5a0;
+const void* const SystemInputDataTouch = (void*)0x180a0b5c0;
+
+// 系统网络数据常量 - 用于替换UNK_180a0b5xx变量
+const void* const SystemNetworkDataConnection = (void*)0x180a0b5e0;
+const void* const SystemNetworkDataPacket = (void*)0x180a0b600;
+const void* const SystemNetworkDataSocket = (void*)0x180a0b620;
+const void* const SystemNetworkDataProtocol = (void*)0x180a0b640;
+
+// 系统UI数据常量 - 用于替换UNK_180a0b6xx变量
+const void* const SystemUIDataWidget = (void*)0x180a0b660;
+const void* const SystemUIDataLayout = (void*)0x180a0b680;
+const void* const SystemUIDataStyle = (void*)0x180a0b6a0;
+const void* const SystemUIDataTheme = (void*)0x180a0b6c0;
+
+// 系统资源数据常量 - 用于替换UNK_180a0b6xx变量
+const void* const SystemResourceDataTexture = (void*)0x180a0b6e0;
+const void* const SystemResourceDataMesh = (void*)0x180a0b700;
+const void* const SystemResourceDataShader = (void*)0x180a0b720;
+const void* const SystemResourceDataAudio = (void*)0x180a0b740;
+
+// 系统配置数据常量 - 用于替换UNK_180a0b7xx变量
+const void* const SystemConfigDataVideo = (void*)0x180a0b760;
+const void* const SystemConfigDataAudio = (void*)0x180a0b780;
+const void* const SystemConfigDataControls = (void*)0x180a0b7a0;
+const void* const SystemConfigDataGameplay = (void*)0x180a0b7c0;
+
+// 系统调试数据常量 - 用于替换UNK_180a0b7xx变量
+const void* const SystemDebugDataLog = (void*)0x180a0b7e0;
+const void* const SystemDebugDataProfiler = (void*)0x180a0b800;
+const void* const SystemDebugDataConsole = (void*)0x180a0b820;
+const void* const SystemDebugDataInspector = (void*)0x180a0b840;
+
+// 系统工具数据常量 - 用于替换UNK_180a0b8xx变量
+const void* const SystemUtilityDataMath = (void*)0x180a0b860;
+const void* const SystemUtilityDataString = (void*)0x180a0b880;
+const void* const SystemUtilityDataTime = (void*)0x180a0b8a0;
+const void* const SystemUtilityDataRandom = (void*)0x180a0b8c0;
+
+// 系统平台数据常量 - 用于替换UNK_180a0b8xx变量
+const void* const SystemPlatformDataWindow = (void*)0x180a0b8e0;
+const void* const SystemPlatformDataGraphics = (void*)0x180a0b900;
+const void* const SystemPlatformDataInput = (void*)0x180a0b920;
+const void* const SystemPlatformDataAudio = (void*)0x180a0b940;
+
+// 系统内存数据常量 - 用于替换UNK_180a0b9xx变量
+const void* const SystemMemoryDataAllocator = (void*)0x180a0b960;
+const void* const SystemMemoryDataPool = (void*)0x180a0b980;
+const void* const SystemMemoryDataCache = (void*)0x180a0b9a0;
+const void* const SystemMemoryDataGarbageCollector = (void*)0x180a0b9c0;
+
+// 系统线程数据常量 - 用于替换UNK_180a0b9xx变量
+const void* const SystemThreadDataMainThread = (void*)0x180a0b9e0;
+const void* const SystemThreadDataWorkerPool = (void*)0x180a0ba00;
+const void* const SystemThreadDataTaskQueue = (void*)0x180a0ba20;
+const void* const SystemThreadDataScheduler = (void*)0x180a0ba40;
+
+// 系统任务数据常量 - 用于替换UNK_180a0baxx变量
+const void* const SystemTaskDataJob = (void*)0x180a0ba60;
+const void* const SystemTaskDataCoroutine = (void*)0x180a0ba80;
+const void* const SystemTaskDataFiber = (void*)0x180a0baa0;
+const void* const SystemTaskDataFuture = (void*)0x180a0bac0;
+
+// 系统序列化数据常量 - 用于替换UNK_180a0baxx变量
+const void* const SystemSerializationDataBinary = (void*)0x180a0bae0;
+const void* const SystemSerializationDataJson = (void*)0x180a0bb00;
+const void* const SystemSerializationDataXml = (void*)0x180a0bb20;
+const void* const SystemSerializationDataCsv = (void*)0x180a0bb40;
+
+// 系统数据库数据常量 - 用于替换UNK_180a0bbxx变量
+const void* const SystemDatabaseDataConnection = (void*)0x180a0bb60;
+const void* const SystemDatabaseDataQuery = (void*)0x180a0bb80;
+const void* const SystemDatabaseDataTransaction = (void*)0x180a0bba0;
+const void* const SystemDatabaseDataSchema = (void*)0x180a0bbc0;
+
+// 系统文件数据常量 - 用于替换UNK_180a0bbxx变量
+const void* const SystemFileDataHandle = (void*)0x180a0bbe0;
+const void* const SystemFileDataStream = (void*)0x180a0bc00;
+const void* const SystemFileDataPath = (void*)0x180a0bc20;
+const void* const SystemFileDataPermission = (void*)0x180a0bc40;
+
+// 系统压缩数据常量 - 用于替换UNK_180a0bcxx变量
+const void* const SystemCompressionDataZip = (void*)0x180a0bc60;
+const void* const SystemCompressionDataGzip = (void*)0x180a0bc80;
+const void* const SystemCompressionDataBrotli = (void*)0x180a0bca0;
+const void* const SystemCompressionDataLz4 = (void*)0x180a0bcc0;
+
+// 系统加密数据常量 - 用于替换UNK_180a0bcxx变量
+const void* const SystemEncryptionDataAes = (void*)0x180a0bce0;
+const void* const SystemEncryptionDataRsa = (void*)0x180a0bd00;
+const void* const SystemEncryptionDataSha = (void*)0x180a0bd20;
+const void* const SystemEncryptionDataMd5 = (void*)0x180a0bd40;
+
+// 系统哈希数据常量 - 用于替换UNK_180a0bdxx变量
+const void* const SystemHashDataCrc32 = (void*)0x180a0bd60;
+const void* const SystemHashDataMurmur = (void*)0x180a0bd80;
+const void* const SystemHashDataFNV = (void*)0x180a0bda0;
+const void* const SystemHashDataBlake2 = (void*)0x180a0bdc0;
+
+// 系统网络协议数据常量 - 用于替换UNK_180a0bdxx变量
+const void* const SystemProtocolDataHttp = (void*)0x180a0bde0;
+const void* const SystemProtocolDataTcp = (void*)0x180a0be00;
+const void* const SystemProtocolDataUdp = (void*)0x180a0be20;
+const void* const SystemProtocolDataWebSocket = (void*)0x180a0be40;
+
+// 系统网络服务数据常量 - 用于替换UNK_180a0bexx变量
+const void* const SystemServiceDataRest = (void*)0x180a0be60;
+const void* const SystemServiceDataSoap = (void*)0x180a0be80;
+const void* const SystemServiceDataGraphQL = (void*)0x180a0bea0;
+const void* const SystemServiceDataGrpc = (void*)0x180a0bec0;
+
+// 系统缓存数据常量 - 用于替换UNK_180a0bexx变量
+const void* const SystemCacheDataMemory = (void*)0x180a0bee0;
+const void* const SystemCacheDataDisk = (void*)0x180a0bf00;
+const void* const SystemCacheDataDistributed = (void*)0x180a0bf20;
+const void* const SystemCacheDataRedis = (void*)0x180a0bf40;
+
+// 系统消息队列数据常量 - 用于替换UNK_180a0bfxx变量
+const void* const SystemMessageQueueDataKafka = (void*)0x180a0bf60;
+const void* const SystemMessageQueueDataRabbitMQ = (void*)0x180a0bf80;
+const void* const SystemMessageQueueDataActiveMQ = (void*)0x180a0bfa0;
+const void* const SystemMessageQueueDataZeroMQ = (void*)0x180a0bfc0;
 const void* const SystemEventQueueDataTableSecondary = (void*)0x180a10618;
 const void* const SystemEventQueueDataTableTertiary = (void*)0x180a105e0;
 const void* const SystemEventQueueDataTableQuaternary = (void*)0x180a105f0;

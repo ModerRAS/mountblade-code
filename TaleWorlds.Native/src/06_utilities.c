@@ -34847,14 +34847,14 @@ uint64_t * ValidateSystemDataProcessing(void)
   float *PCoordinateValue14;
   uint64_t SystemDataBuffer5;
   DataBuffer *exceptionBuffer6;
-  int64_t ValidationContext7;
+  int64_t ValidationContextPrimary;
   int64_t SystemStackFramePointer;
   int64_t systemContext;
   DataBuffer *DestinationIndexRegister;
-  int64_t ValidationContext8;
-  int InputParameterIndex9;
+  int64_t ValidationContextSecondary;
+  int InputParameterIndex;
   DataWord FloatResultA;
-  DataWord OperationResult0;
+  DataWord OperationResultInitial;
   float FloatResultA_Array[5];
   float CalculatedFloatValue;
   
@@ -34868,11 +34868,11 @@ uint64_t * ValidateSystemDataProcessing(void)
   exceptionDataBuffer = (DataWord *)ExecuteSystemResourceOperation();
   exceptionDataBuffer1 = (DataBuffer *)0x0;
   statusCounter = *(uint *)(DestinationContext + 8);
-  operationResult0 = *exceptionDataBuffer;
+  operationResultInitial = *exceptionDataBuffer;
   operationResult = exceptionDataBuffer[1];
   validationStatus = exceptionDataBuffer[2];
   memoryRegionBase = exceptionDataBuffer[3];
-  *(DataWord *)(StackFrameContext + -0x19) = operationResult0;
+  *(DataWord *)(StackFrameContext + -0x19) = operationResultInitial;
   *(DataWord *)(StackFrameContext + -0x15) = operationResult;
   *(DataWord *)(StackFrameContext + -0x11) = validationStatus;
   *(DataWord *)(StackFrameContext + -0xd) = memoryRegionBase;
@@ -115712,7 +115712,7 @@ void InvokeExceptionHandlerAtOffset600(DataBuffer operationBase,int64_t dataBuff
  * @note 这是一个异常上下文清理函数，用于遍历和执行多个异常处理器
  * @warning 如果数据上下文为空且异常处理器未正确处理，会调用TerminateSystemE0终止系统
  */
-void Unwind_180910620(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextHandlersAtOffset620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -115734,7 +115734,7 @@ void Unwind_180910620(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910640(DataBuffer operationBase,int64_t dataBuffer)
+void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -115770,7 +115770,7 @@ void Unwind_180910640(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
+void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -115806,7 +115806,7 @@ void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910680(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyBasicIStreamAtOffset680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
                                         DestroyBasicIstream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + -0x98);
@@ -115815,7 +115815,7 @@ void Unwind_180910680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessDataBufferAndMemoryRegionAtOffset6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
@@ -115842,7 +115842,7 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809106c0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteDataBufferCleanupCallbackAtOffset6c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78) != (int64_t *)0x0) {
