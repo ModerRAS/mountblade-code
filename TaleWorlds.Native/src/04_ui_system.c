@@ -202937,18 +202937,18 @@ UIHandle ProcessUIEventsAndManageResources(void *UIContext)
 UIHandle CleanupUIEventHandlersD0(void)
 
 {
-  UIHandle *ptrResult;
-  longlong contextHandle;
-  UIHandle *piterationCount;
-  UIByte *pStackData1;
-  UIByte *pStackData2;
+  UIHandle *EventHandlerResult;
+  longlong UIContext;
+  UIHandle *EventHandlerIterator;
+  UIByte *StackDataPointer1;
+  UIByte *StackDataPointer2;
   
-  piterationCount = (UIHandle *)(*(longlong *)(contextHandle + 0x48) + 0x6c0);
-  for (ptrResult = (UIHandle *)*piterationCount; ptrResult != piterationCount; ptrResult = (UIHandle *)*ptrResult) {
-    pStackData2 = &stack0x00000080;
-    pStackData1 = &stack0x00000088;
-    (**(code **)(contextHandle + 0x3a8))
-              (contextHandle + 8,*(UIDword *)(ptrResult + 4),ptrResult[3],(longlong)ptrResult + 0x24,
+  EventHandlerIterator = (UIHandle *)(*(longlong *)(UIContext + 0x48) + 0x6c0);
+  for (EventHandlerResult = (UIHandle *)*EventHandlerIterator; EventHandlerResult != EventHandlerIterator; EventHandlerResult = (UIHandle *)*EventHandlerResult) {
+    StackDataPointer2 = &stack0x00000080;
+    StackDataPointer1 = &stack0x00000088;
+    (**(code **)(UIContext + 0x3a8))
+              (UIContext + 8,*(UIDword *)(EventHandlerResult + 4),EventHandlerResult[3],(longlong)EventHandlerResult + 0x24,
                &stack0x00000090);
   }
   return 0;
