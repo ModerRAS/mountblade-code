@@ -114842,7 +114842,17 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180910510(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源管理函数 - 上下文偏移量0x1d00
+ * 
+ * 管理内存资源的引用计数和内存块操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910510
+ */
+void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
