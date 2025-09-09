@@ -22237,18 +22237,18 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   int64_t dataHandle;
   DataBuffer validationStatus;
   float rangeValue;
-  uint stackBufferLowPart;
-  DataWord stackBufferHighPart;
+  uint stackBufferLowValue;
+  DataWord stackBufferHighValue;
   
-  stackBufferLowPart = *(uint *)(allocationContext + AllocationContextValueOffset14);
-  if ((stackBufferLowPart & FloatInfinityValue) == FloatInfinityValue) {
+  stackBufferLowValue = *(uint *)(allocationContext + AllocationContextValueOffset14);
+  if ((stackBufferLowValue & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + ExceptionHandlerCallbackOffset),&stackBufferLowPart);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + ExceptionHandlerCallbackOffset),&stackBufferLowValue);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  dataHandle = *(int64_t *)(MergeHighLowWords(stackBufferHighPart, stackBufferLowPart) + ExceptionHandlerCallbackOffset);
+  dataHandle = *(int64_t *)(MergeHighLowWords(stackBufferHighValue, stackBufferLowValue) + ExceptionHandlerCallbackOffset);
   if (dataHandle == 0) {
     return ResourceNotFoundCode;
   }
@@ -22262,7 +22262,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
     rangeValue = inputValue;
   }
   *(float *)(allocationContext + AllocationContextValueOffset14) = rangeValue;
-  *(float *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 4) = rangeValue;
+  *(float *)(CONCAT44(stackBufferHighValue,stackBufferLowValue) + 4) = rangeValue;
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + systemContextOffset98),allocationContext);
 }
 
@@ -22833,9 +22833,9 @@ void ProcessFloatComparisonAndValidation(void)
 
 {
   float inputFloatValue;
-  DataWord registerLowValue;
+  DataWord registerLowWord;
   int validationStatus;
-  DataWord registerHighValue;
+  DataWord registerHighWord;
   int64_t registerDataPointer;
   int64_t systemContextPointer;
   float rangeCheckValue;
@@ -22843,14 +22843,14 @@ void ProcessFloatComparisonAndValidation(void)
   int64_t dataRangeContextPointer;
   
   // 初始化变量
-  registerLowValue = 0;
-  registerHighValue = 0;
+  registerLowWord = 0;
+  registerHighWord = 0;
   registerDataPointer = 0;
   systemContextPointer = 0;
   parameterStack = 0;
   dataRangeContextPointer = 0;
   
-  rangeCheckValue = *(float *)(CONCAT44(registerHighValue,registerLowValue) + SystemFloatDataOffset38);
+  rangeCheckValue = *(float *)(CONCAT44(registerHighWord,registerLowWord) + SystemFloatDataOffset38);
   inputFloatValue = *(float *)(registerDataPointer + SystemDataSecondaryOffset18);
   if ((rangeCheckValue <= inputFloatValue) &&
      (rangeCheckValue = *(float *)(CONCAT44(registerHighValue,registerLowValue) + SystemDataRecordOffset3c), inputFloatValue <= rangeCheckValue)) {
