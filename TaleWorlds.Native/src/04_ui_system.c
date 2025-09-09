@@ -10842,7 +10842,7 @@ void LoadUIModules(ulonglong *module_list)
           EventDataIndex = (longlong)pprocessingCounter - (longlong)ptrLocal8 >> 3;
           if (EventDataIndex == 0) {
             EventDataIndex = 1;
-LAB_1806572f9:
+LabelEventDataProcessingLoop:
             ptrLocal6 = (UIHandle *)CreateUIContext(UIContextManager,EventDataIndex * 8,(char)uiContext[3]);
             pprocessingCounter = (UIHandle *)uiContext[1];
             ptrLocal8 = (UIHandle *)*uiContext;

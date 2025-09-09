@@ -729,6 +729,7 @@
 #define ExceptionHandlerContextOffset88 0x88                     // 异常处理上下文偏移量88
 #define ExceptionHandlerCallbackOffset60 0x60                    // 异常处理器回调偏移量60
 #define ExceptionHandlerContextOffset50 0x50                     // 异常处理上下文偏移量50
+#define SystemManagementOffsetA8 0xa8                            // 系统管理偏移量A8
 #define DataContextOffset48 0x48                             // 数据上下文偏移量48
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
 #define DataContextOffset50 0x50                             // 数据上下文偏移量50
@@ -60045,7 +60046,7 @@ void InitializeExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + SystemManagementOffset98) = 0;
-  *(DataWord *)(dataBuffer + 0xa8) = 0;
+  *(DataWord *)(dataBuffer + SystemManagementOffsetA8) = 0;
   *(DataBuffer *)(dataBuffer + SystemContextPointerOffset90) = &SystemDefaultExceptionHandlerB;
   return;
 }
@@ -60068,7 +60069,7 @@ void InitializeExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + SystemManagementOffset98) = 0;
-  *(DataWord *)(dataBuffer + 0xa8) = 0;
+  *(DataWord *)(dataBuffer + SystemManagementOffsetA8) = 0;
   *(DataBuffer *)(dataBuffer + SystemContextPointerOffset90) = &SystemDefaultExceptionHandlerB;
   return;
 }
