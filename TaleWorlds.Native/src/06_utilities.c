@@ -1347,6 +1347,24 @@
 #define DataOperationOffset60 0x60                           // 数据操作偏移量60
 #define DataOperationOffset70 0x70                           // 数据操作偏移量70
 #define DataOperationOffset78 0x78                           // 数据操作偏移量78
+
+// 异常上下文数据偏移量常量
+#define ExceptionContextDataOffset14e0 0x14e0                 // 异常上下文数据偏移量14e0
+#define ExceptionContextDataOffset14f0 0x14f0                 // 异常上下文数据偏移量14f0
+#define ExceptionContextDataOffset14b8 0x14b8                 // 异常上下文数据偏移量14b8
+#define ExceptionContextDataOffset14c0 0x14c0                 // 异常上下文数据偏移量14c0
+#define ExceptionContextDataOffset14d0 0x14d0                 // 异常上下文数据偏移量14d0
+#define ExceptionContextDataOffset1498 0x1498                 // 异常上下文数据偏移量1498
+#define ExceptionContextDataOffset14a0 0x14a0                 // 异常上下文数据偏移量14a0
+#define ExceptionContextDataOffset14b0 0x14b0                 // 异常上下文数据偏移量14b0
+#define ExceptionContextDataOffset1560 0x1560                 // 异常上下文数据偏移量1560
+#define ExceptionContextDataOffset1550 0x1550                 // 异常上下文数据偏移量1550
+#define ExceptionContextDataOffset1528 0x1528                 // 异常上下文数据偏移量1528
+#define ExceptionContextDataOffset1530 0x1530                 // 异常上下文数据偏移量1530
+#define ExceptionContextDataOffset1540 0x1540                 // 异常上下文数据偏移量1540
+#define ExceptionContextDataOffset1508 0x1508                 // 异常上下文数据偏移量1508
+#define ExceptionContextDataOffset1510 0x1510                 // 异常上下文数据偏移量1510
+#define ExceptionContextDataOffset1520 0x1520                 // 异常上下文数据偏移量1520
 #define DataOperationOffset94 0x94                           // 数据操作偏移量94
 #define SystemDataBufferOffset80 0x80                        // 系统数据缓冲区偏移量80
 #define systemContextDataOffset80 0x80                        // 系统上下文数据偏移量80
