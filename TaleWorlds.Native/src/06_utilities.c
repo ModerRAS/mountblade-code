@@ -10522,8 +10522,8 @@ void ResetSystemExceptionHandlerPointers(void);
  * @brief 指针重置配置参数
  */
 uint32_t UtilityCorePointerResetConfig;
-uint32_t UtilitySecondaryPointerResetConfig;
-uint32_t UtilityTertiaryPointerResetConfig;
+uint32_t UtilitySystemPointerResetConfig;
+uint32_t UtilityNetworkPointerResetConfig;
 uint32_t UtilityQuaternaryPointerResetConfig;
 
 /**
