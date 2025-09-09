@@ -30092,10 +30092,10 @@ void SetupUIComponentConfiguration(longlong uiContext,longlong *dataSource)
       *(uint *)(uiContext + 0x128) = AlignmentOffset + 0x4fU & 0xfffffff0;
       *(UIDword *)(uiBufferData + 0x138) = LayoutFlags;
       *(UIDword *)(uiBufferData + 0x130) = LayoutFlags;
-      *(UIDword *)(uiBufferData + 0x124) = UIStackCounterb8;
+      *(UIDword *)(uiBufferData + 0x124) = ComponentStyle;
       *(UIDword *)(uiBufferData + 0x140) = 1;
       *(UIDword *)(uiBufferData + 0x144) = 1;
-      *(UIHandle *)(uiContext + 0x148) = UIStackCounter90;
+      *(UIHandle *)(uiContext + 0x148) = TextureHandle;
       *(UIHandle *)(uiContext + 0x150) = UIStackCounter88;
       *(UIDword *)(uiBufferData + 0x16c) = AnimationFrame;
       *(UIDword *)(uiBufferData + 0x170) = AnimationFrame;

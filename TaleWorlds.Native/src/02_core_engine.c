@@ -250003,21 +250003,21 @@ LAB_180204eec:
 
 
 
-04f57(voidvoid FUN_180204f57(void
+void ProcessOperationBufferSizeAndMemoryBlockIndexManagement(void)
 {
-  uint64_t *PatternIndex;
-  uint64_t StackConfigurationData30;
-  long long *plStack0000000000000038;
+  uint64_t *MemoryPatternIndex;
+  uint64_t SystemStackConfigurationData;
+  long long *SystemCleanupCallbackPointer;
   
-  StackConfigurationData30 = 0xffffffffffffffff;
-  *PatternIndex = 0xffffffffffffffff;
-  plStack0000000000000038 = (long long *)PatternIndex[2];
-  PatternIndex[2] = 0;
-  if (plStack0000000000000038 != (long long *)0x0) {
-    (**(code **)(*plStack0000000000000038 + 0x38))();
+  SystemStackConfigurationData = 0xffffffffffffffff;
+  *MemoryPatternIndex = 0xffffffffffffffff;
+  SystemCleanupCallbackPointer = (long long *)MemoryPatternIndex[2];
+  MemoryPatternIndex[2] = 0;
+  if (SystemCleanupCallbackPointer != (long long *)0x0) {
+    (**(code **)(*SystemCleanupCallbackPointer + 0x38))();
   }
-  *(uint32_t *)((long long)PatternIndex + 0xc) = 0x10;
-  *(uint32_t *)(PatternIndex + 1) = 0xffffffff;
+  *(uint32_t *)((long long)MemoryPatternIndex + 0xc) = 0x10;
+  *(uint32_t *)(MemoryPatternIndex + 1) = 0xffffffff;
   return;
 }
 
@@ -250025,30 +250025,30 @@ LAB_180204eec:
 
 
 
-04f70(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointervoid FUN_180204f70(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer
+void ProcessContextHandleAndUtf8SourceData(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer)
 {
   long long PrimaryOperationResult;
-  uint8_t auStack_218 [32];
-  code *pcStack_1f8;
+  uint8_t EncodingBufferArray [32];
+  code *MemoryAllocationCallback;
   uint8_t SystemStackData;
-  uint32_t uStack_1d4;
-  long long lStack_1d0;
-  long long *SystemStackPointer448;
-  uint64_t StackProcessingVariable1B8;
-  uint64_t StackProcessingVariable;
-  long long *plStack_190;
-  unsigned long long SystemStackFlag;
+  uint32_t ContextHandleData;
+  long long LoopCounterValue;
+  long long *OperationBufferSizePointer;
+  uint64_t Utf8SourceDataPointer;
+  uint64_t ProcessingStatusFlag;
+  long long *CharacterTablePointer;
+  unsigned long long EncodingKeyFlag;
   
-  StackProcessingVariable = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_218;
+  ProcessingStatusFlag = 0xfffffffffffffffe;
+  EncodingKeyFlag = EncodingDecodingKey ^ (unsigned long long)EncodingBufferArray;
   SystemStackData = *(uint8_t *)(*ContextHandleSize + 0x15);
-  uStack_1d4 = *(uint32_t *)(*ContextHandleSize + 0x10);
-  SystemStackPointer448 = OperationBufferSize;
-  StackProcessingVariable1B8 = Utf8SourcePointer;
-  plStack_190 = OperationBufferSize;
+  ContextHandleData = *(uint32_t *)(*ContextHandleSize + 0x10);
+  OperationBufferSizePointer = OperationBufferSize;
+  Utf8SourceDataPointer = Utf8SourcePointer;
+  CharacterTablePointer = OperationBufferSize;
   CharacterTablePointer = MemoryAllocate(MemoryPoolManager,0x2c0,8,0x20);
-  pcStack_1f8 = ProcessSystemMemoryAllocation;
-  lStack_1d0 = LoopCounter;
+  MemoryAllocationCallback = ProcessSystemMemoryAllocation;
+  LoopCounterValue = LoopCounter;
   ProcessSystemResourceInitialization(LoopCounter,0x18,0x10,FUN_180207e00);
   *(void *)(ThreadLocalStorageData + 0x184) = 0xffffffffffffffff;
   *(void *)(ThreadLocalStorageData + 0x18c) = 0xffffffffffffffff;
