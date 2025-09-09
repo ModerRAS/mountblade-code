@@ -10083,11 +10083,17 @@ void CopyUIStringToBuffer(longlong stringPtr)
 
 
 
-/* * 执行UI系统软中断处理
+/**
+ * @brief 执行UI系统软中断处理
  * 
  * 此函数调用UI系统的软中断处理程序，用于处理系统级UI操作
  * 主要用于UI系统的底层控制和中断处理
- void ExecuteUISystemInterrupt(void)
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名: ExecuteUISystemInterrupt
+ */
+void ExecuteUISystemInterrupt(void)
 
 {
   code *interruptHandler;

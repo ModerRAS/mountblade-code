@@ -115655,10 +115655,18 @@ void ExecuteExceptionHandlerAtOffset238(DataBuffer operationBase,int64_t dataBuf
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
  * 
+ * @brief 异常处理器调用函数5e0
+ * 
+ * 该函数负责在指定偏移量0x600处调用异常处理器。
+ * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * 
  * @note 原始函数名：Unwind_1809105e0
  * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
  */
-void Unwind_1809105e0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset5e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
