@@ -106029,15 +106029,15 @@ void ProcessUIDataBufferTransform(UIHandle uiContext,UIHandle dataSource,ulonglo
   
   iterationCount = targetBuffer & 0xffffffff;
   do {
-    sVar1 = *(short *)((contextHandle - (longlong)&stack0x00000030) + 0x928 +
-                      (longlong)(&stack0x00000030 + TargetHandle));
-    *(short *)(&stack0x00000050 + TargetHandle) =
-         (short)(((int)*(short *)(&stack0x00000030 + TargetHandle) - (int)sVar1) * (int)in_AL >> 2) +
-         sVar1;
-    TargetHandle = TargetHandle + 2;
+    sourceValue = *(short *)((contextHandle - (longlong)&stack0x00000030) + 0x928 +
+                      (longlong)(&stack0x00000030 + targetDataHandle));
+    *(short *)(&stack0x00000050 + targetDataHandle) =
+         (short)(((int)*(short *)(&stack0x00000030 + targetDataHandle) - (int)sourceValue) * (int)transformFactor >> 2) +
+         sourceValue;
+    targetDataHandle = targetDataHandle + 2;
     iterationCount = iterationCount - 1;
   } while (iterationCount != 0);
-  FUN_18072f4d0(SourceHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
+  FUN_18072f4d0(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(contextHandle + 0x928,&stack0x00000030,(longlong)*(int *)(contextHandle + 0x924) * 2);
 }
@@ -106045,14 +106045,27 @@ void ProcessUIDataBufferTransform(UIHandle uiContext,UIHandle dataSource,ulonglo
 
 
 
- void FUN_180729cb8(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180729cb8(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 执行UI数据缓冲区处理
+ * 
+ * 该函数负责执行UI数据缓冲区的处理操作，包括：
+ * - 调用UI处理函数进行数据转换
+ * - 复制处理后的数据到目标内存区域
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 该函数调用了其他UI处理函数并执行内存复制操作
+ * @note 函数使用了栈缓冲区进行中间数据处理
+ */
+void ExecuteUIDataBufferProcessing(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   longlong contextHandle;
-  longlong SourceHandle;
+  longlong sourceDataHandle;
   
-  FUN_18072f4d0(SourceHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
+  FUN_18072f4d0(sourceDataHandle + 0x20,&stack0x00000050,targetBuffer,*(UIDword *)(contextHandle + 0x1060));
                      WARNING: Subroutine does not return
   memcpy(contextHandle + 0x928,&stack0x00000030,(longlong)*(int *)(contextHandle + 0x924) * 2);
 }
