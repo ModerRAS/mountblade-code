@@ -2649,6 +2649,76 @@ typedef enum {
  */
 #define FUN_1807249d0 ProcessUICharacterDataConversion
 
+// UI系统函数宏定义 - 验证UI数据操作
+/**
+ * @brief 验证UI数据操作
+ * 
+ * 该函数负责验证UI数据操作的有效性。
+ * 
+ * @note 原始函数名：FUN_180724aa1
+ */
+#define FUN_180724aa1 ValidateUIDataOperation
+
+// UI系统函数宏定义 - 处理UI组件数据
+/**
+ * @brief 处理UI组件数据
+ * 
+ * 该函数负责处理UI组件数据的操作。
+ * 
+ * @note 原始函数名：FUN_180724c38
+ */
+#define FUN_180724c38 ProcessUIComponentData
+
+// UI系统函数宏定义 - 处理UI上下文数据传输
+/**
+ * @brief 处理UI上下文数据传输
+ * 
+ * 该函数负责处理UI上下文数据的传输操作。
+ * 
+ * @note 原始函数名：FUN_180724c50
+ */
+#define FUN_180724c50 ProcessUIContextDataTransfer
+
+// UI系统函数宏定义 - 处理UI数据缓冲区操作
+/**
+ * @brief 处理UI数据缓冲区操作
+ * 
+ * 该函数负责处理UI数据缓冲区的操作。
+ * 
+ * @note 原始函数名：FUN_180724c7e
+ */
+#define FUN_180724c7e ProcessUIDataBufferOperation
+
+// UI系统函数宏定义 - 处理UI组件上下文
+/**
+ * @brief 处理UI组件上下文
+ * 
+ * 该函数负责处理UI组件的上下文操作。
+ * 
+ * @note 原始函数名：FUN_180724e37
+ */
+#define FUN_180724e37 ProcessUIComponentContext
+
+// UI系统函数宏定义 - 处理UI组件资源
+/**
+ * @brief 处理UI组件资源
+ * 
+ * 该函数负责处理UI组件资源的操作。
+ * 
+ * @note 原始函数名：FUN_180724ebf
+ */
+#define FUN_180724ebf ProcessUIComponentResource
+
+// UI系统函数宏定义 - 验证UI组件
+/**
+ * @brief 验证UI组件
+ * 
+ * 该函数负责验证UI组件的有效性。
+ * 
+ * @note 原始函数名：FUN_180724eff
+ */
+#define FUN_180724eff ValidateUIComponent
+
 // UI系统函数宏定义 - 重置UI系统状态
 /**
  * @brief 重置UI系统状态
