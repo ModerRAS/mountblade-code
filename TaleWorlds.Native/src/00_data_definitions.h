@@ -6578,7 +6578,7 @@ SystemSecurityValidationRoutine:
   SystemProcessingBuffer[2] = (((ColorMaxB - ColorMinB) * ScaleFactor +
                   ColorMinB) - TransformX) * NormalizedValue + TransformX;
   SystemProcessingBuffer[3] = 1.0;
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 400) ^ (ulonglong)&SecurityStackPointer);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + SystemMemorySextenaryStackOffset) ^ (ulonglong)&SecurityStackPointer);
 }
   SystemInitializationFlag = 1;
   InitializeSystemModuleConfiguration(SystemStackFrame + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
@@ -6600,7 +6600,7 @@ SystemSecurityValidationRoutine:
   SystemProcessingBuffer[2] = (((ColorMaxB - ColorMinB) * ScaleFactor +
                   ColorMinB) - TransformX) * NormalizedValue + TransformX;
   SystemProcessingBuffer[3] = 1.0;
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 400) ^ (ulonglong)&SecurityStackPointer);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + SystemMemorySextenaryStackOffset) ^ (ulonglong)&SecurityStackPointer);
 }
         SystemStatusFlag2 = '\x01';
         lStack_278 = CONCAT44(lStack_278._4_4_,0x4ea);

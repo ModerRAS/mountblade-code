@@ -100239,7 +100239,7 @@ LAB_180724b88:
         }
       }
       else {
-        localChar4 = '$';
+        normalizedChar = '$';
       }
       sourceBuffer[dataOffset] = normalizedChar;
       if (charCodeValue < normalizedChar) {
