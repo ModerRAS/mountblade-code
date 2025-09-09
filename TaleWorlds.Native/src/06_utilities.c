@@ -95,9 +95,9 @@
 #define RegisterContextCountOffset 0x2c
 #define RegisterContextAllocationOffset 0x30
 
-// 系统数据结构偏移量常量
-#define SystemDataArrayPointerOffset 0x20
-#define SystemDataArraySizeOffset 0x28
+// 数据结构大小常量
+#define DataStructureItemSize 0xc
+#define DataStructureItemSizeMask 0xfffffffc
 #define SystemDataItemSizeOffset 0x18
 #define SystemDataItemPointerOffset 0x10
 #define SystemDataValidationOffset 0x28
@@ -558,7 +558,6 @@
 #define ResourceManagementOffset80B0 0x80b0                    // 资源管理偏移量80B0
 #define MemoryBlockOffset200 200                               // 内存块偏移量200
 #define MemoryBlockOffsetD0 0xd0                               // 内存块偏移量D0
-#define SystemResourceBaseOffset7F20 0x7f20                    // 系统资源基础偏移量7F20
 #define ResourceValidationFlagOffset60 0x60                    // 资源验证标志偏移量60
 
 // 系统管理偏移量常量
@@ -24159,7 +24158,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
             *destinationPointer = *(DataBuffer *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
             *(DataWord *)(destinationPointer + 1) =
                  *(DataWord *)((sourceBuffer - (int64_t)newBuffer) + 8 + (int64_t)destinationPointer);
-            destinationPointer = (DataBuffer *)((int64_t)destinationPointer + 0xc);
+            destinationPointer = (DataBuffer *)((int64_t)destinationPointer + DataStructureItemSize);
             itemsToCopy = itemsToCopy + -1;
           } while (itemsToCopy != 0);
         }
@@ -24228,7 +24227,7 @@ CalculationLabel:
           *destinationPointer = *(DataBuffer *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
           *(DataWord *)(destinationPointer + 1) =
                *(DataWord *)((sourceBuffer - (int64_t)newBuffer) + 8 + (int64_t)destinationPointer);
-          destinationPointer = (DataBuffer *)((int64_t)destinationPointer + 0xc);
+          destinationPointer = (DataBuffer *)((int64_t)destinationPointer + DataStructureItemSize);
           itemsToCopy = itemsToCopy + -1;
         } while (itemsToCopy != 0);
       }
