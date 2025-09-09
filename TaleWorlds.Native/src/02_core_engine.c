@@ -246,8 +246,24 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * @brief 处理音频缓冲区
  * 
  * 管理音频数据的缓冲区，包括音频数据的读取、写入和处理
+ * 该函数负责：
+ * 1. 管理音频缓冲区的内存分配和释放
+ * 2. 处理音频数据的格式转换和编码
+ * 3. 控制音频播放的同步和时序
+ * 4. 处理音频流的中断和恢复
+ * 
+ * @param audioBuffer 音频缓冲区指针
+ * @param bufferSize 缓冲区大小（字节）
+ * @param audioFormat 音频格式（PCM/MP3/WAV等）
+ * @param sampleRate 采样率（Hz）
+ * @param channels 声道数（1=单声道，2=立体声）
+ * @return 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 非0值: 处理失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180047d40
+ * @warning 音频缓冲区处理失败可能导致音频播放中断或系统崩溃
+ * @see ProcessSystemInfo, ProcessCoreEngineSystemData
  */
 #define ProcessAudioBuffer FUN_180047d40
 
@@ -255,8 +271,23 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * @brief 处理内存栈
  * 
  * 管理系统的内存栈，包括栈的分配、释放和清理
+ * 该函数负责：
+ * 1. 管理内存栈的分配和释放操作
+ * 2. 跟踪内存栈的使用状态和剩余容量
+ * 3. 处理内存栈的溢出和下溢保护
+ * 4. 清理不再使用的内存栈空间
+ * 
+ * @param stackPointer 栈指针，指向当前栈顶位置
+ * @param stackSize 栈的总大小（字节）
+ * @param operationType 操作类型（分配/释放/清理）
+ * @param dataSize 要操作的数据大小（字节）
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 操作失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180623de0
+ * @warning 内存栈操作失败可能导致内存泄漏或系统崩溃
+ * @see GetAllocatedMemorySizeInfo, ProcessCoreEngineSystemData
  */
 #define ProcessMemoryStack FUN_180623de0
 
