@@ -2062,22 +2062,22 @@ typedef enum {
 #define elementWeight UIElementWeight                   // UI元素权重
 #define opacityMultiplier UIOpacityMultiplier           // UI不透明度乘数
 #define doubleTimeStep UIDoubleTimeStep                 // UI双倍时间步长
-#define positionDifference UIPositionDifference
-#define clampedPosition UIClampedPosition
-#define vectorComponentX UIVectorComponentX
-#define stackUInt180 UIStackUInt180
-#define baseValue5 UIBaseValue5
-#define transformCoeff15 UITransformCoeff15
-#define positionX UIPositionX
-#define rotationZ UIRotationZ
-#define shaderProgramPtr UIShaderProgramPointer
-#define renderDataPtr UIRenderDataPointer
-#define renderState UIRenderState
-#define colorIntensity UIColorIntensity
-#define loopCounter UILoopCounter
-#define colorNormalizationIndex UIColorNormalizationIndex
-#define normalizedColorPtr UINormalizedColorPointer
-#define charStack_148 UICharStack148
+#define positionDifference UIPositionDifference    // UI位置差异
+#define clampedPosition UIClampedPosition          // UI限制位置
+#define vectorComponentX UIVectorComponentX        // UI向量分量X
+#define stackUInt180 UIStackUInt180                // UI栈无符号整数180
+#define baseValue5 UIBaseValue5           // UI基础值5
+#define transformCoeff15 UITransformCoeff15  // UI变换系数15
+#define positionX UIPositionX             // UI位置X
+#define rotationZ UIRotationZ              // UI旋转Z
+#define shaderProgramPtr UIShaderProgramPointer  // UI着色器程序指针
+#define renderDataPtr UIRenderDataPointer       // UI渲染数据指针
+#define renderState UIRenderState               // UI渲染状态
+#define colorIntensity UIColorIntensity         // UI颜色强度
+#define loopCounter UILoopCounter                     // UI循环计数器
+#define colorNormalizationIndex UIColorNormalizationIndex  // UI颜色标准化索引
+#define normalizedColorPtr UINormalizedColorPointer    // UI标准化颜色指针
+#define charStack_148 UICharStack148                   // UI字符栈148
 #define renderResult UIRenderResult
 #define positionHandle UIPositionHandle
 #define resultStack_140 UIResultStack140
