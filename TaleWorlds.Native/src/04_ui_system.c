@@ -2605,6 +2605,49 @@ typedef enum {
 #define stackLonga10 UIStackLongA10
 #define pstackUInta08 UIPtrStackUIntA08
 
+// UI系统堆栈变量美化补充
+#define astackUInt9f8 UIStackArray9F8
+#define pstackUInt9e8 UIPtrStackUInt9E8
+#define stackUInt9d8 UIStackUInt9D8
+#define stackUInt9d0 UIStackUInt9D0
+#define pfStack_9c8 UIPtrFloatStack9C8
+#define astackUInt9c0 UIStackArray9C0
+#define fStack_9b8 UIFloatStack9B8
+#define stackUInt9b4 UIStackUInt9B4
+#define stackUInt9a8 UIStackUInt9A8
+#define stackUInt9a0 UIStackUInt9A0
+#define stackUInt998 UIStackUInt998
+#define stackUInt990 UIStackUInt990
+#define stackUInt988 UIStackUInt988
+#define stackUInt980 UIStackUInt980
+#define stackUInt978 UIStackUInt978
+#define stackUInt970 UIStackUInt970
+#define fStack_968 UIFloatStack968
+#define stackUInt958 UIStackUInt958
+#define fStack_950 UIFloatStack950
+#define fStack_94c UIFloatStack94C
+#define stackUInt948 UIStackUInt948
+#define stackUInt940 UIStackUInt940
+#define stackUInt938 UIStackUInt938
+#define stackUInt930 UIStackUInt930
+#define astackUInt928 UIStackArray928
+#define fStack_918 UIFloatStack918
+#define fStack_914 UIFloatStack914
+#define fStack_910 UIFloatStack910
+#define fStack_90c UIFloatStack90C
+#define stackUInt908 UIStackUInt908
+#define stackUInt900 UIStackUInt900
+#define stackUInt8f8 UIStackUInt8F8
+#define stackUInt8f0 UIStackUInt8F0
+#define stackLong8e8 UIStackLong8E8
+#define stackUInt8e0 UIStackUInt8E0
+#define stackUInt8d8 UIStackUInt8D8
+#define fStack_8d0 UIFloatStack8D0
+#define fStack_8cc UIFloatStack8CC
+
+// UI系统堆栈变量美化补充
+#define fStack_a50 UIFloatStackA50
+
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
