@@ -15111,10 +15111,31 @@ void TriggerSystemShutdown(void)
 /**
  * @brief 系统空返回函数
  * 
- * 不执行任何操作的空函数，仅执行返回操作。
- * 用于系统初始化或作为占位符函数。
+ * 该函数是一个纯粹的空操作函数，不执行任何实际操作，仅执行返回语句。
+ * 主要用于系统初始化流程、异常处理或作为函数指针的占位符。
  * 
- * @note 原始函数名：SystemReturnEmptyFunction
+ * 函数特点：
+ * - 不包含任何实际操作逻辑
+ * - 立即返回，不产生任何副作用
+ * - 用于保持系统接口的一致性
+ * - 在系统初始化和清理过程中使用
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为系统占位符函数，用于需要函数指针但不执行操作的场景
+ * @note 与PerformNoOperation不同，此函数不返回任何状态码
+ * @warning 调用此函数不会产生任何效果或状态变化
+ * @warning 适用于需要void返回类型的函数指针场景
+ * 
+ * @see PerformNoOperation, SystemPrimaryNoOperation
+ * 
+ * @since 系统版本 1.0
+ * @performance_impact 无（最小可能的函数调用开销）
+ * @thread_safety 线程安全（无状态修改）
+ * 
+ * @usage_example 
+ * void (*callback)(void) = SystemReturnEmptyFunction;
+ * callback(); // 安全调用，无任何效果
  */
 void SystemReturnEmptyFunction(void)
 
@@ -21625,8 +21646,45 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
 
  (ram,SYSTEM_DEBUG_ADDRESS_001)
 
-// 原始函数名：FUN_18089379d - 数据验证和处理函数
-// 功能：验证参数有效性并根据条件执行相应的数据处理操作
+/**
+ * @brief 验证并处理数据操作
+ * 
+ * 该函数负责验证数据上下文的有效性，并根据操作标志执行相应的数据处理操作。
+ * 函数会根据不同的条件分支执行不同的操作路径，包括系统验证、内存分配和数据复制等。
+ * 
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @param operationFlags 操作标志，指定要执行的操作类型
+ * 
+ * @return int 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 函数根据operationFlags的值选择不同的执行路径：
+ *       - 当operationFlags < 1时，执行系统验证和数据状态更新
+ *       - 当dataContext中的句柄为0时，返回参数无效错误
+ *       - 其他情况下，尝试分配内存并复制数据
+ * 
+ * @warning 如果内存分配失败，函数会返回内存错误代码
+ * @warning 确保传入的dataContext和operationFlags参数有效
+ * 
+ * @see ExecuteSystemValidationA0, QueryAndRetrieveSystemDataA0, AllocateSystemMemoryA0
+ * 
+ * @details
+ * 该函数执行以下步骤：
+ * 1. 检查operationFlags的值，决定执行路径
+ * 2. 如果flags < 1，执行系统验证并查询系统数据
+ * 3. 验证成功后更新数据状态并清理系统事件
+ * 4. 如果flags >= 1，检查数据上下文句柄的有效性
+ * 5. 如果句柄无效，返回参数错误
+ * 6. 如果句柄有效，分配内存缓冲区并复制数据
+ * 7. 返回相应的操作结果状态码
+ * 
+ * @security
+ * 该函数包含安全检查机制：
+ * - 验证数据上下文句柄的有效性
+ * - 检查系统状态和数据完整性
+ * - 确保内存操作的安全性
+ */
 #define ValidateAndProcessDataOperation FUN_18089379d
 
 int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlags)
