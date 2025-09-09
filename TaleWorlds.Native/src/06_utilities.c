@@ -66474,10 +66474,10 @@ void ExecuteExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer
 void ExecuteExceptionHandlerContextD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1c0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1c0);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
