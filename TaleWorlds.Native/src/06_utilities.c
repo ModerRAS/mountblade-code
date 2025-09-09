@@ -105154,7 +105154,19 @@ void DecrementSystemResourceCounterAndExecuteFunctionF(void)
 
 
 
-void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E860
+ * 
+ * 该函数负责验证系统资源并处理异常情况。它会检查系统上下文状态，
+ * 处理资源迭代器，执行数据验证，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e860
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE860(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -105217,7 +105229,19 @@ void DecrementSystemResourceCounterAndExecuteFunctionG(void)
 
 
 
-void Unwind_18090e880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E880
+ * 
+ * 该函数负责验证系统资源并处理异常情况。它会检查系统上下文状态，
+ * 处理资源迭代器，执行数据验证，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e880
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE880(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 800) = &SystemDefaultExceptionHandlerB;
@@ -105226,7 +105250,19 @@ void Unwind_18090e880(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源验证和异常处理函数E890
+ * 
+ * 该函数负责验证系统资源并处理异常情况。它会检查系统上下文状态，
+ * 处理资源迭代器，执行数据验证，并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_18090e890
+ * @warning 函数执行过程中可能会调用系统操作和验证函数
+ */
+void ValidateSystemResourcesAndHandleExceptionsE890(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset1a8) = &SystemDefaultExceptionHandlerB;
