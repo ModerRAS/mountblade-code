@@ -173,7 +173,7 @@
 #define ResourcePointerStepSize 4
 
 // 异常处理器偏移量常量
-#define ExceptionHandlerPrimaryOffset2D68 0x2d68
+#define ExceptionHandlerPrimaryOffset 0x2d68
 #define ExceptionHandlerSecondaryOffset2D58 0x2d58
 #define ExceptionHandlerTertiaryOffset2D48 0x2d48
 #define ExceptionHandlerSystemLevelOffset2DD8 0x2dd8
@@ -24145,9 +24145,9 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
   }
   newBuffer = (DataBuffer *)0x0;
   if (bufferSize != 0) {
-    if (bufferSize * 0xc - 1U < MaxSafeBufferSize) {
+    if (bufferSize * DataStructureItemSize - 1U < MaxSafeBufferSize) {
       newBuffer = (DataBuffer *)
-               AllocateMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),bufferSize * 0xc,&SystemMemoryPoolB,
+               AllocateMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),bufferSize * DataStructureItemSize,&SystemMemoryPoolB,
                              0xf4,0,0,1);
       if (newBuffer != (DataBuffer *)0x0) {
         itemCount = (int)bufferPointer[1];
