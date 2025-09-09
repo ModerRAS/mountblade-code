@@ -106,7 +106,7 @@
 #define ExceptionHandlerPointerOffset178 0x178
 #define ExceptionHandlerPointerOffsetQuaternary 0x1a0
 #define ExceptionHandlerPointerOffsetQuinary 0x1b0
-#define ExceptionHandlerPointerOffset3E0 0x3e0
+#define ExceptionHandlerPointerOffsetSpecial 0x3e0
 #define ExceptionHandlerPointerOffset528 0x528
 #define ExceptionHandlerPointerOffset530 0x530
 #define ExceptionHandlerPointerOffset540 0x540
@@ -131,7 +131,7 @@
 #define DataBufferValidationOffset 0x24
 #define ResourceIteratorDataOffset 0x14
 #define StackFrameContextOffsetC4 0xc4
-#define StackFrameContextOffsetCC 0xcc
+#define StackFrameContextOffsetSecondary 0xcc
 #define StackFrameContextOffsetD0 0xd0
 #define StackFrameContextOffsetD4 0xd4
 
@@ -144,7 +144,7 @@
 #define ValueContextOffset8 0x8
 #define OperationBaseOffset8 0x8
 #define DataDescriptorOffset8 0x8
-#define SystemParameterOffset1C 0x1c
+#define SystemParameterOffsetSecondary 0x1c
 #define ExceptionHandlerContextOffset58 0x58
 #define ExceptionHandlerContextOffsetSecondary 0x60
 #define ExceptionDataBufferOffset60 0x60
@@ -653,7 +653,7 @@
 #define FloatValidationOffset10 0x10
 
 // 系统参数偏移量常量
-#define SystemParameterOffset1C 0x1c
+#define SystemParameterOffsetSecondary 0x1c
 
 // 数据缓冲区大小偏移量常量
 #define DataBufferSizeOffsetC 0xc
