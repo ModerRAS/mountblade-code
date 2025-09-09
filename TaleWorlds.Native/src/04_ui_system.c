@@ -102111,15 +102111,26 @@ void ProcessUIFloatTransform(longlong uiContext,float *dataSource,longlong targe
 
 
 
- void FUN_180724f73(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize)
-void FUN_180724f73(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize)
-
+ /**
+ * @brief 处理UI组件变换数据
+ * 
+ * 该函数负责处理UI组件的变换数据，包括：
+ * - 变换系数计算
+ * - 缓冲区数据处理
+ * - 渲染任务执行
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ */
+void ProcessUITransformData(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize)
 {
-  int processingResult;
-  longlong registerAX;
-  float *TransformCoefficient1;
-  int uiCompareResult;
-  int TempInt4;
+  int transformResult;
+  longlong transformOffset;
+  float *transformCoefficients;
+  int comparisonResult;
+  int tempIntValue;
   UIHandle contextHandle;
   UIHandle TargetHandle;
   longlong RegisterPointer;
