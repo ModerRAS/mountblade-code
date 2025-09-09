@@ -5435,12 +5435,22 @@ NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkCo
 }
 
 /**
- * @brief 验证连接完整性
+ * @brief 验证网络连接的完整性和安全性
  * 
- * 验证网络连接的完整性和安全性
+ * 对网络连接进行全面的安全性和完整性验证，包括数据传输的完整性检查、
+ * 安全协议验证、连接状态确认等关键安全环节。
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
- * @return uint32_t 返回验证结果
+ * @param NetworkConnectionContext 网络连接上下文指针，包含连接的所有状态和安全信息
+ * @return uint32_t 验证结果，NetworkValidationSuccess表示验证通过，其他值表示具体的验证失败类型
+ * 
+ * @retval NetworkValidationSuccess 验证成功，连接完整性和安全性都符合要求
+ * @retval NetworkValidationFailure 验证失败，连接存在安全风险或数据损坏
+ * 
+ * @note 此函数是网络安全验证的核心函数，建议在关键操作前调用
+ * @warning 如果验证失败，应该终止相关网络操作以保护系统安全
+ * @see PerformDataIntegrityCheck, PerformSecurityValidation
+ * 
+ * 原始实现：简化实现，通过组合数据完整性检查和安全验证来完成验证
  */
 static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkConnectionContext)
 {

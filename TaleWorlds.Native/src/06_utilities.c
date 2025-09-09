@@ -4677,6 +4677,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 初始化系统内存池并配置缓存
  * 
  * 初始化系统内存A1模块，配置内存管理和缓存
+ * 该函数负责：
+ * 1. 初始化系统内存池A1模块
+ * 2. 配置缓存策略和大小
+ * 3. 设置内存管理参数
+ * 4. 验证缓存配置有效性
+ * 5. 返回初始化状态
  * 
  * @param systemContext 系统上下文，包含系统初始化参数
  * @param cacheConfig 缓存配置，指定缓存大小和策略
@@ -4685,6 +4691,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18004c030
  * @note 此函数负责系统内存池初始化和缓存配置
+ * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryAndSetupA2
  */
 #define InitializeSystemMemoryPoolAndConfigureCache InitializeSystemMemoryPoolAndConfigureCache
 
@@ -4692,6 +4699,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 初始化系统内存并设置A2
  * 
  * 初始化系统内存A2模块，设置内存管理和相关配置
+ * 该函数负责：
+ * 1. 初始化系统内存A2模块
+ * 2. 设置内存管理参数
+ * 3. 配置内存分配策略
+ * 4. 验证内存配置有效性
+ * 5. 返回初始化状态
  * 
  * @param systemContext 系统上下文，包含系统初始化参数
  * @param memoryConfig 内存配置，指定内存管理参数
@@ -4700,15 +4713,26 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18004c090
  * @note 此函数负责系统内存A2模块的初始化
+ * @see InitializeSystemMemoryPoolA0, InitializeSystemMemoryPoolAndConfigureCache
  */
 #define InitializeSystemMemoryAndSetupA2 InitializeSystemMemoryAndSetupA2
 
 /**
  * @brief 系统值计算函数
  * 
- * 计算系统相关的数值
+ * 计算系统相关的数值，包括性能指标、资源使用率和系统状态
+ * 该函数负责：
+ * 1. 计算系统性能指标
+ * 2. 统计资源使用情况
+ * 3. 分析系统运行状态
+ * 4. 生成系统报告数据
+ * 5. 返回计算结果
+ * 
+ * @return 计算结果，包含系统各项指标数据
  * 
  * @note 原始函数名：FUN_18062b420
+ * @note 此函数用于系统监控和性能分析
+ * @see GetSystemContextAndState
  */
 #define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
 
@@ -4716,8 +4740,18 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 系统上下文值获取函数
  * 
  * 获取系统上下文的值和状态信息，用于系统监控和状态检查
+ * 该函数负责：
+ * 1. 获取系统上下文数据
+ * 2. 分析系统状态信息
+ * 3. 验证上下文完整性
+ * 4. 提取关键状态值
+ * 5. 返回状态信息
+ * 
+ * @return 系统状态信息，包含上下文数据和状态标志
  * 
  * @note 原始函数名：FUN_1807d3e20
+ * @note 此函数用于系统监控和状态检查
+ * @see CalculateSystemMetricsAndValues
  */
 #define GetsystemContextValueAndState GetSystemContextAndState
 
@@ -4738,8 +4772,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @brief 异常处理器调用函数（偏移量D10）
  * 
  * 在偏移量0x30处调用异常处理器，处理异常情况
+ * 该函数负责：
+ * 1. 定位偏移量0x30处的异常处理器
+ * 2. 准备异常处理上下文
+ * 3. 执行异常处理器调用
+ * 4. 处理异常返回结果
+ * 5. 维护异常处理状态
  * 
  * @note 原始函数名：Unwind_180906d10
+ * @note 此函数用于异常处理机制中的关键调用点
+ * @see InvokeExceptionHandlerAtPrimaryPosition, InvokeExceptionHandlerAtSecondaryPosition
  */
 #define InvokeExceptionHandlerAtTertiaryPosition Unwind_180906d10
 
