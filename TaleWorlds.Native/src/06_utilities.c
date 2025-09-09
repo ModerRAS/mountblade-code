@@ -28650,7 +28650,7 @@ void ProcessMultiSegmentDataA0(DataBuffer SystemContext,int64_t DataBuffer)
       if (OperationResult == 0) {
         OperationResult = OperateDataO0(SystemContext,DataBuffer + 8,8);
         if (OperationResult == 0) {
-          OperateDataO0(SystemContext,DataBuffer + 0x10,4);
+          OperateDataO0(SystemContext,DataBuffer + DataBufferOffset10,4);
         }
       }
     }
