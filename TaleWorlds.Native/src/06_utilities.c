@@ -108528,7 +108528,15 @@ void ProcessDataBufferWithFlags(DataBuffer operationBase, int64_t dataBuffer, Da
 
 
 
-void Unwind_18090efe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器状态A
+ * 
+ * 重置异常处理器的状态，恢复到初始状态。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void ResetExceptionHandlerStateA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -109258,7 +109266,15 @@ void ConfigureExceptionHandlerA4(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090f190(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常上下文A
+ * 
+ * 初始化异常处理的上下文，设置异常处理环境。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ */
+void InitializeExceptionContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
