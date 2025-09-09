@@ -217695,7 +217695,20 @@ void InitializeSystemEventTemplateAndMemoryAllocation(uint64_t ContextHandle,uin
 
 
 
-7ca10(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017ca10(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 系统上下文处理和缓冲区管理函数CA10
+ * 
+ * 该函数负责处理系统上下文和缓冲区管理，包括：
+ * 1. 处理系统上下文句柄和操作缓冲区
+ * 2. 管理内存地址掩码和系统优先级
+ * 3. 处理事件配置标志和系统事件模板
+ * 4. 管理系统内存分配和释放
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @note 原始函数名：FUN_18017ca10
+ */
+void ProcessSystemContextAndBufferManagement(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   void *SystemContext;
