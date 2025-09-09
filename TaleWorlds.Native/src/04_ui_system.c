@@ -269,8 +269,8 @@ typedef enum {
 
  #define UIStatusVector UIComponentStatusVector
 #define VectorPermutationMask1809813c0 UIVectorPermutationMask
-#define in_register_0000131c UIregisterValue131c
-#define in_register_0000125c UIregisterValue125c
+#define in_register_0000131c UIRegisterValue131c
+#define in_register_0000125c UIRegisterValue125c
 // UI系统结果指针语义化定义
 #define paresult2 UIComponentResultPointer2
 #define paResultValue3 UIEventDataResultPointer3
@@ -289,7 +289,7 @@ typedef enum {
 #define localInt7 UILocalProcessingCounter7
 #define plocalChar6 pUILocalCharPointer6
 #define pTemporaryFloatValue pUITemporaryFloatValue
-#define unmodifiedEBX UIUnmodifiedregisterValue
+#define unmodifiedEBX UIUnmodifiedRegisterValue
 #define RegisterPointerD UIRegisterPointerD
 
 // UI系统事件处理变量语义化定义
@@ -550,8 +550,8 @@ typedef enum {
 #define AudioFormatType UIAudioFormatType
 
 // UI系统寄存器变量宏定义
-#define in_register_0000131c UIregisterValue131c
-#define in_register_0000125c UIregisterValue125c
+#define in_register_0000131c UIRegisterValue131c
+#define in_register_0000125c UIRegisterValue125c
 
 // UI系统布尔变量宏定义
 #define bVar2 UIIsEventProcessingActive
@@ -2566,7 +2566,7 @@ typedef enum {
 #define componentIndex UIComponentIndex
 #define EventTypeCode UIEventTypeCode
 #define BasePointer UIBasePointer
-#define registerValue UIregisterValue
+#define RegisterValue UIRegisterValue
 #define targetBuffer UITargetBuffer
 #define ProcessingStatus UIProcessingStatus
 #define EventProcessingStatus UIEventProcessingStatus
@@ -11687,7 +11687,7 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,UIHandle targetB
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                      WARNING: Subroutine does not return
                      WARNING: Treating indirect jump as call
-  memcpy((longlong)registerValue + *(longlong *)(SourceHandle + 0x10),UIRenderParameter3);
+  memcpy((longlong)RegisterValue + *(longlong *)(SourceHandle + 0x10),UIRenderParameter3);
   return;
 }
 
@@ -11701,7 +11701,7 @@ void ClearUIState(void)
   UIHandle contextHandle;
   longlong SourceHandle;
   longlong TargetHandle;
-  int registerValue;
+  int RegisterValue;
   UIHandle *preservedRegister15;
   
   if (TargetHandle != 0) {
@@ -11712,7 +11712,7 @@ void ClearUIState(void)
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                      WARNING: Subroutine does not return
                      WARNING: Treating indirect jump as call
-  memcpy((longlong)registerValue + *(longlong *)(SourceHandle + 0x10));
+  memcpy((longlong)RegisterValue + *(longlong *)(SourceHandle + 0x10));
   return;
 }
 
@@ -11724,13 +11724,13 @@ void UpdateUIComponentPosition(longlong uiContext,UIHandle dataSource,UIHandle t
 
 {
   longlong SourceHandle;
-  int registerValue;
+  int RegisterValue;
   
   *(longlong *)(SourceHandle + 0x18) = uiContext + bufferSize;
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                      WARNING: Subroutine does not return
                      WARNING: Treating indirect jump as call
-  memcpy((longlong)registerValue + *(longlong *)(SourceHandle + 0x10));
+  memcpy((longlong)RegisterValue + *(longlong *)(SourceHandle + 0x10));
   return;
 }
 
@@ -21213,7 +21213,7 @@ void InitializeUIRenderer(longlong uiContext)
 void UpdateUIRendererState(longlong uiContext)
 
 {
-  int UIUnmodifiedregisterValue;
+  int UIUnmodifiedRegisterValue;
   float *BaseValuePointer;
   longlong TargetHandle;
   int UIRegisterPointerD;
@@ -21223,15 +21223,15 @@ void UpdateUIRendererState(longlong uiContext)
   BaseValuePointer = (float *)(uiContext + 0x6c);
   do {
     if (transformCoeff1 < *BaseValuePointer) {
-      if (UIRegisterPointerD < UIUnmodifiedregisterValue) {
+      if (UIRegisterPointerD < UIUnmodifiedRegisterValue) {
         InitializeUIComponentLayout((longlong)UIRegisterPointerD * 0x1358 + 0x68 + TargetHandle,
-                            TargetHandle + 0x68 + (longlong)UIUnmodifiedregisterValue * 0x1358);
+                            TargetHandle + 0x68 + (longlong)UIUnmodifiedRegisterValue * 0x1358);
       }
       UIRegisterPointerD = UIRegisterPointerD + 1;
     }
-    UIUnmodifiedregisterValue = UIUnmodifiedregisterValue + 1;
+    UIUnmodifiedRegisterValue = UIUnmodifiedRegisterValue + 1;
     BaseValuePointer = BaseValuePointer + 0x4d6;
-  } while (UIUnmodifiedregisterValue < *(int *)(TargetHandle + 0x60));
+  } while (UIUnmodifiedRegisterValue < *(int *)(TargetHandle + 0x60));
   *(int *)(TargetHandle + 0x60) = UIRegisterPointerD;
   return;
 }
@@ -65910,7 +65910,7 @@ void ProcessUIFilterOperation(void)
   longlong TargetHandle;
   UIDword register10D;
   int RegisterPointerD;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   UIDword eventHandle;
   UIDword preservedRegister15D;
@@ -65926,10 +65926,10 @@ void ProcessUIFilterOperation(void)
   *contextHandle = eventHandle;
   *(longlong *)(contextHandle + 0xe) = unmodifiedESI * uiValidationResult + bufferSize + TargetHandle;
   contextHandle[1] = preservedRegister15D;
-  contextHandle[9] = registerValue;
+  contextHandle[9] = RegisterValue;
   *(UIHandle *)(contextHandle + 10) = 0;
   contextHandle[0xc] = 0;
-  allocatedMemory = (uiValidationResult / 2) * registerValue + bufferSize + (longlong)(uiValidationResult / 2);
+  allocatedMemory = (uiValidationResult / 2) * RegisterValue + bufferSize + (longlong)(uiValidationResult / 2);
   contextHandle[0x19] = uiValidationResult;
   contextHandle[0x1a] = unmodifiedEBP;
   *(UIHandle *)(contextHandle + 0x14) = 0;
@@ -66265,7 +66265,7 @@ void ProcessUIFilterOperation(void)
   longlong localLong7;
   longlong register9;
   longlong register10;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIHandle preservedRegister13;
   byte *EventHandle;
   int preservedRegister15D;
@@ -66312,21 +66312,21 @@ void ProcessUIFilterOperation(void)
            ((ulonglong)*(byte *)((register10 + 0x32) * 0x40 + ProcessingStatus + register9) + 0xc0) * 0x10 + register9;
       if (0 < preservedRegister15D) {
         pStackData1 = (UIByte *)&stack0x00000040;
-        RenderUIButtonInternal(contextHandleData,EventDataIndex,localLong7,registerValue,EventTypeCode);
+        RenderUIButtonInternal(contextHandleData,EventDataIndex,localLong7,RegisterValue,EventTypeCode);
       }
       if (!IsEventProcessingActive) {
         pStackData1 = (UIByte *)&stack0x00000040;
-        RenderUITextInternal(contextHandleData,EventDataIndex,localLong7,registerValue,EventTypeCode);
+        RenderUITextInternal(contextHandleData,EventDataIndex,localLong7,RegisterValue,EventTypeCode);
       }
       if (0 < stackParam000000b0) {
         pStackData1 = (UIByte *)&stack0x00000040;
-        RenderUIImageInternal(contextHandleData,EventDataIndex,localLong7,registerValue,EventTypeCode);
+        RenderUIImageInternal(contextHandleData,EventDataIndex,localLong7,RegisterValue,EventTypeCode);
       }
       register9 = stackParam00000030;
       register10 = lStack0000000000000038;
       if (!IsEventProcessingActive) {
         pStackData1 = (UIByte *)&stack0x00000040;
-        RenderUIPanelInternal(contextHandleData,EventDataIndex,localLong7,registerValue,EventTypeCode);
+        RenderUIPanelInternal(contextHandleData,EventDataIndex,localLong7,RegisterValue,EventTypeCode);
         register10 = lStack0000000000000038;
       }
     }
@@ -67134,7 +67134,7 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
   uint unmodifiedEBP;
   longlong SourceHandle;
   int allocationFlags;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   UIHandle *EventHandle;
   int preservedRegister15D;
@@ -67198,7 +67198,7 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
   if ((unmodifiedEBP & 4) != 0) {
     if ((*(int *)(SourceHandle + 0x2230) != preservedRegister15D) || (*(int *)(SourceHandle + 0x2234) != preservedRegister13D)
        ) {
-      ProcessUIComponentBuffer((int *)(SourceHandle + 0x2230),registerValue - preservedRegister15D,preservedRegister13D);
+      ProcessUIComponentBuffer((int *)(SourceHandle + 0x2230),RegisterValue - preservedRegister15D,preservedRegister13D);
     }
     func_0x000180028cc5(*(UIHandle *)(SourceHandle + 0xaa8),SourceHandle + 0x2238,SourceHandle + 0x2e40,
                         SourceHandle + 0x2e50,SourceHandle + 0x2e60);
@@ -67246,14 +67246,14 @@ UIHandle CopyUIContextData(void)
   int processingResult;
   UIHandle iterationCount;
   longlong SourceHandle;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   UIHandle *EventHandle;
   int preservedRegister15D;
   
   if ((*(int *)(SourceHandle + 0x2230) != preservedRegister15D) || (*(int *)(SourceHandle + 0x2234) != preservedRegister13D))
   {
-    ProcessUIComponentBuffer((int *)(SourceHandle + 0x2230),registerValue - preservedRegister15D,preservedRegister13D);
+    ProcessUIComponentBuffer((int *)(SourceHandle + 0x2230),RegisterValue - preservedRegister15D,preservedRegister13D);
   }
   func_0x000180028cc5(*(UIHandle *)(SourceHandle + 0xaa8),SourceHandle + 0x2238,SourceHandle + 0x2e40,
                       SourceHandle + 0x2e50,SourceHandle + 0x2e60);
@@ -72277,7 +72277,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
   UIDword *ptrLocal6;
   longlong register10;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   int *ptrLocalInt7;
   int localInt8;
   longlong EventHandle;
@@ -72301,7 +72301,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
   longlong stackParam000000d0;
   ulonglong stackParam000000e8;
   
-  localInt8 = registerValue + 4;
+  localInt8 = RegisterValue + 4;
   do {
     iStack00000000000000a8 = 0;
     if (0 < *(int *)(BasePointer + 3000)) {
@@ -72409,7 +72409,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
         SourceHandle = SourceHandle + 0x4c;
         registerAX = (longlong)preservedRegister15D;
         dataSource = stackParam00000098;
-        registerValue = iStack00000000000000ac;
+        RegisterValue = iStack00000000000000ac;
         uiContext = stackUInt32_70;
         stackParam00000078 = register10;
         stackParam00000080 = bufferSize;
@@ -72422,7 +72422,7 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
     }
     uiCompareResult = *(int *)(BasePointer + 3000);
     SourceHandle = SourceHandle + 0x4c;
-    registerValue = registerValue + 1;
+    RegisterValue = RegisterValue + 1;
     register10 = register10 + (*(int *)(dataSource + 0x10) - uiCompareResult) * 0x10;
     contextHandleData = (longlong)((*(int *)(dataSource + 0x24) - uiCompareResult) * 8);
     bufferSize = bufferSize + contextHandleData;
@@ -72438,10 +72438,10 @@ void UpdateUIComponentContext(UIDword uiContext,longlong dataSource,longlong tar
     stackParam00000088 = targetBuffer;
     stackParam00000090 = RegisterPointer;
     maxAllocations = EventHandle;
-    iStack00000000000000ac = registerValue;
+    iStack00000000000000ac = RegisterValue;
     stackParam000000b0 = TargetHandle;
     maxIterations = SourceHandle;
-  } while (registerValue < *(int *)(BasePointer + 0xbb4));
+  } while (RegisterValue < *(int *)(BasePointer + 0xbb4));
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000000e8 ^ (ulonglong)&stack0x00000000);
 }
@@ -74151,7 +74151,7 @@ LAB_1806a011c:
   ulonglong eventProcessingStatus;
   longlong allocatedMemory0;
   longlong AllocatedMemoryBlock1;
-  int registerValue;
+  int RegisterValue;
   float *preservedRegister13;
   int ProcessingResult2;
   ulonglong preservedRegister15;
@@ -74194,7 +74194,7 @@ LAB_1806a011c:
     SourceHandle = (ulonglong)maxIterations;
     preservedRegister15 = (ulonglong)stackParam000000b0;
     preservedRegister13 = stackParam000000d0;
-    registerValue = stackParam000000d8;
+    RegisterValue = stackParam000000d8;
   }
   AllocatedMemoryBlock1 = 0;
   localInt5 = (int)SourceHandle;
@@ -74210,7 +74210,7 @@ LAB_1806a011c:
       eventProcessingStatus = eventProcessingStatus - 1;
     } while (eventProcessingStatus != 0);
   }
-  if (registerValue != 0) {
+  if (RegisterValue != 0) {
     ProcessingResult2 = 0;
     if (3 < TempInt4) {
       contextOffset = (longlong)(localInt5 * 2);
@@ -77785,7 +77785,7 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
   ulonglong componentIndex;
   uint CounterResult;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   UIHandle EventHandle;
   bool IsMatchFound;
   float FloatValue1;
@@ -77824,10 +77824,10 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
       StackData1 = StackParam2;
       ProcessUIDataWithContext();
       TempInt9 = TempInt9 - uiContext / 0x32;
-      registerValue = StackParam1;
+      RegisterValue = StackParam1;
     } while (0 < TempInt9);
   }
-  *(int *)(BasePointer + 0x1d1c) = ProcessingResult1 - registerValue;
+  *(int *)(BasePointer + 0x1d1c) = ProcessingResult1 - RegisterValue;
   *(UIDword *)StackParam7 = 0;
   ProcessingResult1 = *(int *)(BasePointer + 0x2054);
   TempInt9 = *(int *)(BasePointer + 0x2050);
@@ -77838,7 +77838,7 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
   }
   componentIndex = 0;
   TempInt4 = 0;
-  if (((*(int *)(BasePointer + 8) / 0x32 < registerValue) && (ProcessingResult1 != localInt9)) &&
+  if (((*(int *)(BasePointer + 8) / 0x32 < RegisterValue) && (ProcessingResult1 != localInt9)) &&
      (ProcessingResult1 = ProcessingResult1 + 1, ProcessingResult1 == 100)) {
     ProcessingResult1 = 0;
   }
@@ -77893,7 +77893,7 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
   }
   *(float *)((longlong)stackParam000000d8 + 4) = FloatValue1;
   *(int *)(BasePointer + 0x2058) =
-       *(int *)(BasePointer + 0x2058) + registerValue / (*(int *)(BasePointer + 8) / 400);
+       *(int *)(BasePointer + 0x2058) + RegisterValue / (*(int *)(BasePointer + 8) / 400);
   ProcessingResult1 = *(int *)(BasePointer + 0x2058);
   localInt9 = *(int *)(BasePointer + 0x2054);
   if (7 < ProcessingResult1) {
@@ -78255,7 +78255,7 @@ void ProcessUIEventDispatchAndDataSourceManagement(UIHandle uiContext, int dataS
   }
   *(float *)((longlong)stackParam000000d8 + 4) = FloatValue1;
   *(int *)(BasePointer + 0x2058) =
-       *(int *)(BasePointer + 0x2058) + registerValue / (*(int *)(BasePointer + 8) / 400);
+       *(int *)(BasePointer + 0x2058) + RegisterValue / (*(int *)(BasePointer + 8) / 400);
   localInt9 = *(int *)(BasePointer + 0x2058);
   localInt5 = *(int *)(BasePointer + 0x2054);
   if (7 < localInt9) {
@@ -83698,7 +83698,7 @@ void ProcessUIMatrixTransformation(float *UiContext, UIHandle DataSource, UIHand
   float *TargetVectorPointer;
   float *SourceVectorPointer;
   ulonglong ElementCounter;
-  int registerValue;
+  int RegisterValue;
   longlong SourceDataStart;
   float *EventContextPointer;
   float *TransformResultPointer;
@@ -83792,7 +83792,7 @@ void ProcessUIMatrixTransformation(float *UiContext, UIHandle DataSource, UIHand
   if (3 < loopCounter) {
     ProcessedElements = (loopCounter - 4U >> 2) + 1;
     ElementCounter = (ulonglong)ProcessedElements;
-    registerValue = ProcessedElements * 4;
+    RegisterValue = ProcessedElements * 4;
     do {
       MatrixElementX = *SourceDataPointer;
       MatrixElementY = *ResultDataPointer;
@@ -83825,10 +83825,10 @@ void ProcessUIMatrixTransformation(float *UiContext, UIHandle DataSource, UIHand
       CounterResult = CounterResult - 1;
     } while (CounterResult != 0);
   }
-  if (registerValue < localInt7) {
+  if (RegisterValue < localInt7) {
     CharacterDataOffset = (longlong)pvectorComponentX - (longlong)BaseValuePointer2;
     contextOffset = (longlong)BaseValuePointer6 - (longlong)BaseValuePointer3;
-    CounterResult = (ulonglong)(uint)(localInt7 - registerValue);
+    CounterResult = (ulonglong)(uint)(localInt7 - RegisterValue);
     do {
       baseValue = *BaseValuePointer2;
       transformCoeff1 = *BaseValuePointer3;
@@ -84104,7 +84104,7 @@ void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle
   if (3 < localInt7) {
     eventProcessingCounter = (localInt7 - 4U >> 2) + 1;
     ResultValue3 = (ulonglong)eventProcessingCounter;
-    registerValue = eventProcessingCounter * 4;
+    RegisterValue = eventProcessingCounter * 4;
     do {
       baseValue = *bufferPointer;
       transformCoeff1 = *BaseValuePointer0;
@@ -84137,10 +84137,10 @@ void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle
       ResultValue3 = ResultValue3 - 1;
     } while (ResultValue3 != 0);
   }
-  if (registerValue < localInt7) {
+  if (RegisterValue < localInt7) {
     allocatedMemory2 = (longlong)baseScaleFactor - (longlong)bufferPointer;
     allocatedMemory5 = (longlong)pvectorComponentX - (longlong)BaseValuePointer0;
-    ResultValue3 = (ulonglong)(uint)(localInt7 - registerValue);
+    ResultValue3 = (ulonglong)(uint)(localInt7 - RegisterValue);
     do {
       baseValue = *bufferPointer;
       transformCoeff1 = *BaseValuePointer0;
@@ -96447,7 +96447,7 @@ void ProcessUIComponentTransformations(void)
   float *BaseValuePointer2;
   longlong allocatedMemory3;
   ulonglong componentIndex;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister15D;
   float baseValue5;
   float baseValue6;
@@ -96466,12 +96466,12 @@ void ProcessUIComponentTransformations(void)
     while( true ) {
       contextOffset = TargetHandle;
       TargetHandle = contextOffset + -4;
-      registerValue = registerValue + -1;
-      if (registerValue < 0) {
+      RegisterValue = RegisterValue + -1;
+      if (RegisterValue < 0) {
                      WARNING: Subroutine does not return
         ExecuteUIRenderTask(stackParam00000060 ^ (ulonglong)&stack0x00000000);
       }
-      if (registerValue == 0) {
+      if (RegisterValue == 0) {
         preservedRegister15D = 1;
       }
       else {
@@ -100027,29 +100027,29 @@ void ProcessUIDataReader(void)
     processingResult = ReadUIData();
   }
   else {
-    result = 4;
+    processingResult = 4;
   }
-  *(UIByte *)(contextHandle + 0xae7) = result;
+  *(UIByte *)(contextHandle + 0xae7) = processingResult;
   if (*(char *)(contextHandle + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((registerValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
     shortCalculationResult = ReadUIData();
-    if (sVar2 < 1) goto LAB_180722ba9;
-    sVar2 = *(short *)(contextHandle + 0x96c) + -9 + sVar2;
-    *(short *)(contextHandle + 0xae2) = sVar2;
+    if (shortCalculationResult < 1) goto LAB_180722ba9;
+    shortCalculationResult = *(short *)(contextHandle + 0x96c) + -9 + shortCalculationResult;
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult;
   }
   else {
 LAB_180722ba9:
     shortCalculationResult = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = sVar2 * (short)(*(int *)(contextHandle + 0x90c) >> 1);
+    *(short *)(contextHandle + 0xae2) = shortCalculationResult * (short)(*(int *)(contextHandle + 0x90c) >> 1);
     shortCalculationResult = ReadUIData();
-    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + sVar2;
-    sVar2 = *(short *)(contextHandle + 0xae2);
+    *(short *)(contextHandle + 0xae2) = *(short *)(contextHandle + 0xae2) + shortCalculationResult;
+    shortCalculationResult = *(short *)(contextHandle + 0xae2);
   }
-  *(short *)(contextHandle + 0x96c) = sVar2;
+  *(short *)(contextHandle + 0x96c) = shortCalculationResult;
   processingResult = ReadUIData();
-  *(UIByte *)(contextHandle + 0xae4) = result;
+  *(UIByte *)(contextHandle + 0xae4) = processingResult;
   processingResult = ReadUIData();
-  *(UIByte *)(contextHandle + 0xae8) = result;
+  *(UIByte *)(contextHandle + 0xae8) = processingResult;
   if (preservedRegister15D < *(int *)(contextHandle + 0x914)) {
     ptrLocal3 = (UIByte *)(contextHandle + 0xacc);
     do {
@@ -100059,7 +100059,7 @@ LAB_180722ba9:
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
-  if (registerValue == 0) {
+  if (RegisterValue == 0) {
     processingResult = ReadUIData();
     *(UIByte *)(contextHandle + 0xae9) = result;
   }
@@ -100085,14 +100085,14 @@ void CleanupUIComponentResources(void)
   short sVar2;
   longlong contextHandle;
   UIByte *ptrLocal3;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister15D;
   ulonglong stackParam00000050;
   
   processingResult = ReadUIData();
   *(UIByte *)(contextHandle + 0xae7) = result;
   if (*(char *)(contextHandle + 0xae5) != '\x02') goto LAB_180722ca8;
-  if ((registerValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
+  if ((RegisterValue == 2) && (*(int *)(contextHandle + 0x968) == 2)) {
     shortCalculationResult = ReadUIData();
     if (sVar2 < 1) goto LAB_180722ba9;
     sVar2 = *(short *)(contextHandle + 0x96c) + -9 + sVar2;
@@ -100120,7 +100120,7 @@ LAB_180722ba9:
       preservedRegister15D = preservedRegister15D + 1;
     } while (preservedRegister15D < *(int *)(contextHandle + 0x914));
   }
-  if (registerValue == 0) {
+  if (RegisterValue == 0) {
     processingResult = ReadUIData();
     *(UIByte *)(contextHandle + 0xae9) = result;
   }
@@ -100460,10 +100460,10 @@ void ProcessUIContextDataBufferManagement(UIHandle uiContext, UIHandle dataSourc
   uint ProcessingCounter;
   uint TempValue8;
   int TempValue9;
-  int registerValue10;
+  int RegisterValue10;
   int RegisterPointerD;
   
-  EventStatusCode = registerValue10 >> 0x1f;
+  EventStatusCode = RegisterValue10 >> 0x1f;
   TempValue5 = 1;
   TempValue8 = EventStatusCode + BufferSize ^ EventStatusCode;
   MaxProcessingCount = (0x7fe0 - targetBuffer) * (0x4000 - RegisterPointerD);
@@ -100860,7 +100860,7 @@ UIWord * GetUIWordDataPointer(void)
   UIWord loopCounter;
   int loopCounter;
   int *ptrLocalInt7;
-  int registerValue;
+  int RegisterValue;
   longlong preservedRegister13;
   longlong EventHandle;
   int stackParam00000058;
@@ -100870,9 +100870,9 @@ UIWord * GetUIWordDataPointer(void)
   if (0 < stackParam00000058) {
     do {
       ptrLocalInt7 = (int *)(((longlong)TempInt4 >> 0x10) * 4 + preservedRegister13);
-      loopCounter = (int)((ulonglong)(ushort)TempInt4 * (longlong)(short)registerValue >> 0x10);
+      loopCounter = (int)((ulonglong)(ushort)TempInt4 * (longlong)(short)RegisterValue >> 0x10);
       psVar1 = (short *)(EventHandle + (longlong)(loopCounter * 9) * 2);
-      stringCompareIndex = (longlong)((registerValue - loopCounter) * 9);
+      stringCompareIndex = (longlong)((RegisterValue - loopCounter) * 9);
       componentIndex = EventHandle + stringCompareIndex * 2;
       loopCounter = ((int)((ulonglong)((longlong)ptrLocalInt7[0x11] * (longlong)*(short *)(componentIndex + -0x12)) >>
                     0x10) +
@@ -102792,7 +102792,7 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, longlong ta
   float localFloatValue;
   UIHandle xmm6RegisterA;
   UIHandle xmm6RegisterB;
-  UIDword xmm7registerValue;
+  UIDword xmm7RegisterValue;
   UIDword xmm7RegisterB;
   UIDword xmm7RegisterC;
   UIDword xmm7RegisterD;
@@ -102828,7 +102828,7 @@ void ProcessUITransformData(longlong uiContext, longlong dataSource, longlong ta
   *(UIHandle *)(registerPointer + -0x40) = preservedRegister15;
   *(UIHandle *)(registerPointer + -0x58) = xmm6RegisterA;
   *(UIHandle *)(registerPointer + -0x50) = xmm6RegisterB;
-  *(UIDword *)(registerPointer + -0x68) = xmm7registerValue;
+  *(UIDword *)(registerPointer + -0x68) = xmm7RegisterValue;
   *(UIDword *)(registerPointer + -100) = xmm7RegisterB;
   *(UIDword *)(registerPointer + -0x60) = xmm7RegisterC;
   *(UIDword *)(registerPointer + -0x5c) = xmm7RegisterD;
@@ -103221,7 +103221,7 @@ void ProcessUIAnimationUpdate(void)
   int TempInt4;
   longlong SourceHandle;
   longlong TargetHandle;
-  int registerValue;
+  int RegisterValue;
   float *preservedRegister13;
   bool in_ZF;
   double dVar5;
@@ -103240,7 +103240,7 @@ void ProcessUIAnimationUpdate(void)
   
   if (in_ZF) {
     TemporaryFloatValue = *(float *)(SourceHandle + 0x275c) + *(float *)(SourceHandle + 0x275c);
-    *(char *)(SourceHandle + 0x12a6) = (char)registerValue;
+    *(char *)(SourceHandle + 0x12a6) = (char)RegisterValue;
   }
   else {
     LocalFloatValue6 = 0.0;
@@ -103249,7 +103249,7 @@ void ProcessUIAnimationUpdate(void)
     TemporaryFloatValue = (6.0 - (float)*(int *)(SourceHandle + 0x1274) * 0.003125)             (unmodifiedXMM13_Da - preservedXMM6);
     if (0 < processingResult) {
       ResultFloatValue = 0.0;
-      uiCompareResult = registerValue;
+      uiCompareResult = RegisterValue;
       do {
         dVar5 = (double)FUN_18072b3a0(TargetHandle,TempInt4);
         dVar5 = (double)log10((double)((float)dVar5 + (float)TempInt4));
@@ -103267,7 +103267,7 @@ void ProcessUIAnimationUpdate(void)
       *(UIByte *)(SourceHandle + 0x12a6) = 1;
     }
     else {
-      *(char *)(SourceHandle + 0x12a6) = (char)registerValue;
+      *(char *)(SourceHandle + 0x12a6) = (char)RegisterValue;
     }
   }
   fStack0000000000000044 = TemporaryFloatValue + unmodifiedXMM9_Da;
@@ -103276,7 +103276,7 @@ void ProcessUIAnimationUpdate(void)
   if (TempInt4 < 1) {
     dVar5 = (double)pow(0x4000000000000000,(double)(fStack0000000000000044 * -0.16));
     TransformCoefficient1 = preservedRegister13;
-    uiCompareResult = registerValue;
+    uiCompareResult = RegisterValue;
     if (0 < TempInt4) {
       do {
         uiCompareResult = uiCompareResult + 1;
@@ -103290,7 +103290,7 @@ void ProcessUIAnimationUpdate(void)
     if (*(char *)(SourceHandle + 0x12a5) == '\x02') {
       if (0 < TempInt4) {
         TransformCoefficient1 = preservedRegister13 + 0x9d;
-        processingResult = registerValue;
+        processingResult = RegisterValue;
         do {
           processingResult = processingResult + 1;
           TemporaryFloatValue = 3.0 / (float)(int)TransformCoefficient1[-100] + 0.2 / (float)*(int *)(SourceHandle + 0x11dc);
@@ -103327,7 +103327,7 @@ void ProcessUIAnimationUpdate(void)
     if (0 < TempInt4) {
       TransformCoefficient1 = preservedRegister13 + 0xa5;
       do {
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         TemporaryFloatValue = (unmodifiedXMM15_Da - *(float *)(SourceHandle + 0x1c14)) * 0.4 +
                 *(float *)(SourceHandle + 0x1c14);
         *(float *)(SourceHandle + 0x1c14) = TemporaryFloatValue;
@@ -103336,7 +103336,7 @@ void ProcessUIAnimationUpdate(void)
         *(float *)(SourceHandle + 0x1c18) = TemporaryFloatValue;
         *TransformCoefficient1 = TemporaryFloatValue;
         TransformCoefficient1 = TransformCoefficient1 + 1;
-      } while (registerValue < *(int *)(SourceHandle + 0x11e0));
+      } while (RegisterValue < *(int *)(SourceHandle + 0x11e0));
     }
                      WARNING: Subroutine does not return
     ExecuteUIRenderTask(stackParam000004f0 ^ (ulonglong)&stack0x00000000);
@@ -103360,7 +103360,7 @@ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
   int uiValidationResult;
   int uiCompareResult;
   longlong SourceHandle;
-  int registerValue;
+  int RegisterValue;
   float *preservedRegister13;
   int preservedRegister15D;
   float TransformCoefficient3;
@@ -103383,7 +103383,7 @@ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
   if (*(char *)(SourceHandle + 0x12a5) == '\x02') {
     if (0 < uiCompareResult) {
       BaseValuePointer = preservedRegister13 + 0x9d;
-      uiValidationResult = registerValue;
+      uiValidationResult = RegisterValue;
       do {
         uiValidationResult = uiValidationResult + 1;
         TransformCoefficient3 = 3.0 / (float)(int)BaseValuePointer[-100] + 0.2 / (float)*(int *)(SourceHandle + 0x11dc);
@@ -103420,7 +103420,7 @@ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
   if (0 < uiCompareResult) {
     BaseValuePointer = preservedRegister13 + 0xa5;
     do {
-      registerValue = registerValue + 1;
+      RegisterValue = RegisterValue + 1;
       TransformCoefficient4 = (unmodifiedXMM15_Da - *(float *)(SourceHandle + 0x1c14)) * 0.4 +
               *(float *)(SourceHandle + 0x1c14);
       *(float *)(SourceHandle + 0x1c14) = TransformCoefficient4;
@@ -103430,7 +103430,7 @@ void UpdateUIComponentData(int uiContext,UIHandle dataSource,float targetBuffer)
       *(float *)(SourceHandle + 0x1c18) = TransformCoefficient4;
       *BaseValuePointer = TransformCoefficient4;
       BaseValuePointer = BaseValuePointer + 1;
-    } while (registerValue < *(int *)(SourceHandle + 0x11e0));
+    } while (RegisterValue < *(int *)(SourceHandle + 0x11e0));
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackParam000004f0 ^ (ulonglong)&stack0x00000000);
@@ -115884,7 +115884,7 @@ void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
 {
   longlong BasePointer;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   UIHandle preservedRegister13;
   UIHandle preservedRegister15;
   UIDword preservedXMM6;
@@ -115904,7 +115904,7 @@ void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   StackData1 = uiContext;
   iStack000000000000003c = bufferSize;
   StackData4 = dataSource;
-  FUN_18072b3a0(dataSource,bufferSize * registerValue);
+  FUN_18072b3a0(dataSource,bufferSize * RegisterValue);
                      WARNING: Subroutine does not return
   memset(BasePointer + 0x1b0,0,0xc0);
 }
@@ -115977,7 +115977,7 @@ void FUN_180734f59(void)
   ulonglong register10;
   uint loopCounter7;
   ulonglong loopCounter8;
-  uint registerValue;
+  uint RegisterValue;
   uint eventHandle;
   longlong preservedRegister15;
   double dVar59;
@@ -116013,7 +116013,7 @@ void FUN_180734f59(void)
   lStack0000000000000030 = (longlong)unmodifiedEBX;
   iStack0000000000000038 = 1;
   while( true ) {
-    if (0 < (int)registerValue) {
+    if (0 < (int)RegisterValue) {
       loopCounter8 = (ulonglong)*(uint *)(BasePointer + 0x440);
       EventDataIndex3 = lStack0000000000000030 - loopCounter4;
       contextHandleData6 = EventDataIndex3 * 4 + -4;
@@ -116140,7 +116140,7 @@ void FUN_180734f59(void)
         loopCounter8 = loopCounter8 - 1;
       } while (loopCounter8 != 0);
       eventHandle = *(uint *)(BasePointer + 0x448);
-      registerValue = *(uint *)(BasePointer + 0x440);
+      RegisterValue = *(uint *)(BasePointer + 0x440);
     }
     ScalingFactorValue0 = *(double *)(BasePointer + 0x1b0 + loopCounter4 * 8);
     loopCounter7 = iStack0000000000000038 - 1;
@@ -116640,8 +116640,8 @@ LAB_180735ce2:
                                          unmodifiedXMM11_Da);
           }
         }
-        if (0 < (int)registerValue) {
-          loopCounter4 = (ulonglong)registerValue;
+        if (0 < (int)RegisterValue) {
+          loopCounter4 = (ulonglong)RegisterValue;
           contextHandleData6 = inputString;
           do {
             dVar59 = (double)FUN_18072b3a0(contextHandleData6,eventHandle);
@@ -116700,7 +116700,7 @@ void FUN_180735d0e(void)
   ulonglong iterationCount3;
   int register9D;
   ulonglong register10;
-  uint registerValue;
+  uint RegisterValue;
   uint eventHandle;
   double dVar24;
   double dVar25;
@@ -116907,8 +116907,8 @@ void FUN_180735d0e(void)
                                      unmodifiedXMM11_Da);
       }
     }
-    if (0 < (int)registerValue) {
-      iterationCount3 = (ulonglong)registerValue;
+    if (0 < (int)RegisterValue) {
+      iterationCount3 = (ulonglong)RegisterValue;
       do {
         dVar24 = (double)FUN_18072b3a0(inputString,eventHandle);
         inputString = inputString + (longlong)stackParam00000038._4_4_ * 4;
@@ -116951,7 +116951,7 @@ void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   uint result8;
   ulonglong result9;
   ulonglong register10;
-  uint registerValue;
+  uint RegisterValue;
   uint eventHandle;
   double dVar20;
   uint unmodifiedXMM11_Da;
@@ -117040,8 +117040,8 @@ void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
                                    unmodifiedXMM11_Da);
     }
   }
-  if (0 < (int)registerValue) {
-    result9 = (ulonglong)registerValue;
+  if (0 < (int)RegisterValue) {
+    result9 = (ulonglong)RegisterValue;
     do {
       dVar20 = (double)FUN_18072b3a0(param_8,eventHandle);
       param_8 = param_8 + (longlong)param_7._4_4_ * 4;
@@ -118931,7 +118931,7 @@ void FUN_180737b3f(void)
   int RegisterPointerD;
   uint eventProcessingCounter;
   ulonglong eventProcessingStatus;
-  int registerValue;
+  int RegisterValue;
   longlong EventHandle;
   
   ptrLocalInt6 = (int *)(EventHandle + 4);
@@ -118959,7 +118959,7 @@ void FUN_180737b3f(void)
     localInt5 = (int)contextHandle;
   } while (RegisterPointerD < localInt5);
   eventProcessingStatus = contextHandle & 0xffffffff;
-  if (localInt5 < registerValue) {
+  if (localInt5 < RegisterValue) {
     ptrLocalInt6 = (int *)(EventHandle + contextHandle * 4);
     do {
       uiCompareResult = *ptrLocalInt6;
@@ -118984,7 +118984,7 @@ void FUN_180737b3f(void)
       eventProcessingCounter = (int)eventProcessingStatus + 1;
       eventProcessingStatus = (ulonglong)eventProcessingCounter;
       ptrLocalInt6 = ptrLocalInt6 + 1;
-    } while ((int)eventProcessingCounter < registerValue);
+    } while ((int)eventProcessingCounter < RegisterValue);
   }
   return;
 }
@@ -119006,11 +119006,11 @@ void FUN_180737bad(void)
   longlong contextHandleData;
   uint processingCounter;
   ulonglong eventProcessingCounter;
-  int registerValue;
+  int RegisterValue;
   longlong EventHandle;
   
   eventProcessingCounter = contextHandle & 0xffffffff;
-  if ((int)contextHandle < registerValue) {
+  if ((int)contextHandle < RegisterValue) {
     ptrLocalInt5 = (int *)(EventHandle + contextHandle * 4);
     do {
       processingResult = *ptrLocalInt5;
@@ -119035,7 +119035,7 @@ void FUN_180737bad(void)
       processingCounter = (int)eventProcessingCounter + 1;
       eventProcessingCounter = (ulonglong)processingCounter;
       ptrLocalInt5 = ptrLocalInt5 + 1;
-    } while ((int)processingCounter < registerValue);
+    } while ((int)processingCounter < RegisterValue);
   }
   return;
 }
@@ -129663,7 +129663,7 @@ void FUN_18074076a(void)
   int uiValidationResult;
   UIDword unmodifiedEBX;
   UIDword unmodifiedESI;
-  UIDword registerValue;
+  UIDword RegisterValue;
   
   processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
@@ -129679,7 +129679,7 @@ void FUN_18074076a(void)
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
   uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  func_0x00018074b7d0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),registerValue);
+  func_0x00018074b7d0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult),RegisterValue);
                      WARNING: Subroutine does not return
   FUN_180749ef0(unmodifiedESI,7);
 }
@@ -132106,12 +132106,12 @@ void FUN_180742eec(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   longlong *pallocatedMemory;
   longlong BasePointer;
   longlong TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIDword unmodified000000a4;
   
   pallocatedMemory = (longlong *)InitializeUIMemoryPool(*(UIHandle *)(uiContext + 0x1a0),bufferSize + -0x5e);
   if (pallocatedMemory != (longlong *)0x0) {
-    pallocatedMemory[2] = CONCAT44(unmodified000000a4,registerValue);
+    pallocatedMemory[2] = CONCAT44(unmodified000000a4,RegisterValue);
     pallocatedMemory[3] = BasePointer;
     pallocatedMemory[1] = (longlong)pallocatedMemory;
     *pallocatedMemory = (longlong)pallocatedMemory;
@@ -145613,7 +145613,7 @@ ulonglong FUN_1807513d1(void)
   ulonglong SourceHandle;
   int TempInt4;
   int localInt5;
-  int registerValue;
+  int RegisterValue;
   uint maxProcessingCount;
   uint eventHandle;
   int localInt7;
@@ -145621,7 +145621,7 @@ ulonglong FUN_1807513d1(void)
   longlong lStack0000000000000030;
   
   maxProcessingCount = 0;
-  localInt7 = eventHandle * registerValue;
+  localInt7 = eventHandle * RegisterValue;
   *(int *)(BasePointer + -0x39) = localInt7;
   do {
     if (localInt7 == 0) break;
@@ -162289,7 +162289,7 @@ UIHandle FUN_1807607b9(longlong uiContext,UIHandle dataSource,longlong targetBuf
   uint unmodifiedESI;
   uint result1;
   uint allocationFlags;
-  uint registerValue;
+  uint RegisterValue;
   uint result2;
   longlong allocatedMemory3;
   UIDword preservedRegister15D;
@@ -162301,7 +162301,7 @@ UIHandle FUN_1807607b9(longlong uiContext,UIHandle dataSource,longlong targetBuf
   if (localInt7 < 0) {
     return 0;
   }
-  result2 = registerValue + 1;
+  result2 = RegisterValue + 1;
   do {
     pallocatedMemory = *(longlong **)(*(longlong *)(BasePointer + 0x20) + allocatedMemory3 * 8);
     piterationCount = (ulonglong *)pallocatedMemory[6];
@@ -162309,8 +162309,8 @@ UIHandle FUN_1807607b9(longlong uiContext,UIHandle dataSource,longlong targetBuf
     *pallocatedMemory = pallocatedMemory[1];
     *(UIByte *)((longlong)pallocatedMemory + 0x29) = *(UIByte *)((longlong)piterationCount + 0x29);
     if (*(uint *)((longlong)piterationCount + 0x24) == 0) {
-      *(uint *)((longlong)pallocatedMemory + 0x24) = registerValue;
-      allocationFlags = registerValue;
+      *(uint *)((longlong)pallocatedMemory + 0x24) = RegisterValue;
+      allocationFlags = RegisterValue;
     }
     else if (allocationFlags != 0) {
       ProcessingStatus = pallocatedMemory[2];
@@ -162327,7 +162327,7 @@ UIHandle FUN_1807607b9(longlong uiContext,UIHandle dataSource,longlong targetBuf
         if ((*piterationCount <= ProcessingStatus) &&
            (aloopCounter._8_8_ = 0, aloopCounter._0_8_ = ProcessingStatus - *piterationCount,
            aloopCounter = aloopCounter / ZEXT416(*(uint *)((longlong)piterationCount + 0x24)), result1 = allocationFlags,
-           eventProcessingStatus = registerValue, aloopCounter._0_8_ < (ulonglong)allocationFlags)) {
+           eventProcessingStatus = RegisterValue, aloopCounter._0_8_ < (ulonglong)allocationFlags)) {
           localInt7 = aloopCounter._0_4_;
           result1 = unmodifiedESI + localInt7;
           eventProcessingStatus = allocationFlags - localInt7;
@@ -162339,14 +162339,14 @@ UIHandle FUN_1807607b9(longlong uiContext,UIHandle dataSource,longlong targetBuf
       if (ProcessingStatus != 0) {
         piterationCount = (ulonglong *)pallocatedMemory[6];
         if (ProcessingStatus < piterationCount[1]) {
-          eventProcessingStatus = registerValue;
+          eventProcessingStatus = RegisterValue;
           if ((*piterationCount < ProcessingStatus) &&
              (eventProcessingStatus = ((int)((ProcessingStatus - *piterationCount) / (ulonglong)*(uint *)((longlong)piterationCount + 0x24)) -
                       result1) + unmodifiedESI, unmodifiedESI = result1, allocationFlags < eventProcessingStatus))
           goto LAB_1807608dd;
           allocationFlags = eventProcessingStatus;
           bVar6 = *(byte *)((longlong)pallocatedMemory + 0x29);
-          if ((char)pallocatedMemory[5] != (char)registerValue) {
+          if ((char)pallocatedMemory[5] != (char)RegisterValue) {
             bVar6 = (byte)result2;
           }
           *(byte *)((longlong)pallocatedMemory + 0x29) = bVar6;
@@ -163646,7 +163646,7 @@ void FUN_180760e8e(UIDword uiContext)
   char unmodifiedDIL;
   longlong allocatedMemory9;
   uint iterationCount0;
-  uint registerValue;
+  uint RegisterValue;
   longlong *colorBufferPointer1;
   longlong preservedRegister13;
   longlong *colorBufferPointer2;
@@ -163668,7 +163668,7 @@ void FUN_180760e8e(UIDword uiContext)
   longlong stackParam00000068;
   UIDword iterationCount7;
   
-  if ((registerValue == 0) || ((*(uint *)(contextHandle + 100) & 0x10001) != 0)) {
+  if ((RegisterValue == 0) || ((*(uint *)(contextHandle + 100) & 0x10001) != 0)) {
 LAB_180761b18:
     if ((unmodifiedDIL != '\0') &&
        (ptrResult4 = *(UIHandle **)(contextHandle + 0x138), ptrResult4 != (UIHandle *)0x0)) {
@@ -163703,7 +163703,7 @@ LAB_180761b18:
       if (*(longlong *)(contextHandle + 0x138) != 0) {
         preservedRegister13 = *(longlong *)(*(longlong *)(contextHandle + 0x138) + 0x10);
       }
-      localInt7 = ProcessUIEventDispatch(uiContext,preservedRegister13,registerValue,*(UIDword *)(contextHandle + 0x148),allocatedMemory5);
+      localInt7 = ProcessUIEventDispatch(uiContext,preservedRegister13,RegisterValue,*(UIDword *)(contextHandle + 0x148),allocatedMemory5);
       if (localInt7 != 0) {
         if ((IsEventProcessingActive3) && (AllocatedMemoryBlock1 != 0)) {
                      WARNING: Subroutine does not return
@@ -163922,7 +163922,7 @@ LAB_180761ebf:
       }
                      WARNING: Subroutine does not return
       memcpy(extraout_XMM0_Da_00,preservedRegister13,
-             (ulonglong)(*(int *)(contextHandle + 0x148) * registerValue) << 2);
+             (ulonglong)(*(int *)(contextHandle + 0x148) * RegisterValue) << 2);
     }
     ptrResult4 = (UIHandle *)BasePointer[-0xe];
   }
@@ -164126,7 +164126,7 @@ LAB_180760f3a:
           }
           preservedRegister13 = 0;
           ptrResult4 = (UIHandle *)BasePointer[-0xe];
-          registerValue = StackHandle1;
+          RegisterValue = StackHandle1;
           if (ptrResult4 != (UIHandle *)0x0) {
             localInt7 = *(int *)(ptrResult4 + 1);
             if (0 < localInt7) {
@@ -171484,7 +171484,7 @@ ulonglong FUN_180769f12(longlong uiContext,int dataSource)
   byte EventProcessingStatus;
   uint eventProcessingStatus;
   int register10D;
-  uint registerValue;
+  uint RegisterValue;
   char preservedRegister13B;
   ulonglong EventHandle;
   uint *preservedRegister15;
@@ -171574,7 +171574,7 @@ ulonglong FUN_180769f12(longlong uiContext,int dataSource)
   }
 LAB_18076a1af:
   ProcessingStatus = (uint)EventHandle;
-  if (registerValue == 2) {
+  if (RegisterValue == 2) {
     if (((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0) && (ProcessingStatus >> 1 != 0)) {
       EventTypeCode = (ulonglong)(ProcessingStatus >> 1);
       componentContextPtr = preservedRegister15;
@@ -171585,7 +171585,7 @@ LAB_18076a1af:
       } while (EventTypeCode != 0);
     }
   }
-  else if (((registerValue == 4) && ((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0)) &&
+  else if (((RegisterValue == 4) && ((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0)) &&
           (EventTypeCode = EventHandle >> 2 & 0x3fffffff, componentContextPtr = preservedRegister15, (int)EventTypeCode != 0)) {
     do {
       eventProcessingStatus = *componentContextPtr;
@@ -171614,8 +171614,8 @@ LAB_18076a1af:
       preservedRegister15 = (uint *)((longlong)preservedRegister15 + 1);
     } while (EventTypeCode != 0);
   }
-  if (registerValue != 0) {
-    ProcessingStatus = (uint)((EventHandle & 0xffffffff) / (ulonglong)registerValue);
+  if (RegisterValue != 0) {
+    ProcessingStatus = (uint)((EventHandle & 0xffffffff) / (ulonglong)RegisterValue);
   }
   if (stackParam00000080 != (uint *)0x0) {
     *stackParam00000080 = ProcessingStatus;
@@ -171645,7 +171645,7 @@ ulonglong FUN_180769f55(void)
   uint allocationFlags;
   byte bVar9;
   int register10D;
-  uint registerValue;
+  uint RegisterValue;
   char preservedRegister13B;
   ulonglong EventHandle;
   uint *preservedRegister15;
@@ -171723,7 +171723,7 @@ ulonglong FUN_180769f55(void)
   }
 LAB_18076a1af:
   loopCounter = (uint)EventHandle;
-  if (registerValue == 2) {
+  if (RegisterValue == 2) {
     if (((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0) && (loopCounter >> 1 != 0)) {
       ProcessingStatus = (ulonglong)(loopCounter >> 1);
       ptrLocal6 = preservedRegister15;
@@ -171734,7 +171734,7 @@ LAB_18076a1af:
       } while (ProcessingStatus != 0);
     }
   }
-  else if (((registerValue == 4) && ((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0)) &&
+  else if (((RegisterValue == 4) && ((*(uint *)((longlong)contextHandle + 0x194) & 4) != 0)) &&
           (ProcessingStatus = EventHandle >> 2 & 0x3fffffff, ptrLocal6 = preservedRegister15, (int)ProcessingStatus != 0)) {
     do {
       iterationCount = *ptrLocal6;
@@ -171763,8 +171763,8 @@ LAB_18076a1af:
       preservedRegister15 = (uint *)((longlong)preservedRegister15 + 1);
     } while (ProcessingStatus != 0);
   }
-  if (registerValue != 0) {
-    loopCounter = (uint)((EventHandle & 0xffffffff) / (ulonglong)registerValue);
+  if (RegisterValue != 0) {
+    loopCounter = (uint)((EventHandle & 0xffffffff) / (ulonglong)RegisterValue);
   }
   if (stackParam00000080 != (uint *)0x0) {
     *stackParam00000080 = loopCounter;
@@ -171797,7 +171797,7 @@ int FUN_18076a0fa(void)
   ulonglong maxProcessingCount;
   longlong contextHandle;
   byte bVar7;
-  uint registerValue;
+  uint RegisterValue;
   char preservedRegister13B;
   ulonglong EventHandle;
   uint *preservedRegister15;
@@ -171810,7 +171810,7 @@ int FUN_18076a0fa(void)
     if ((*(int *)(contextHandle + 0x164) == *(int *)(contextHandle + 0x15c)) &&
        (*(int *)(contextHandle + 0x20) == -1)) {
 LAB_18076a1a6:
-      if (registerValue == 2) {
+      if (RegisterValue == 2) {
         if (((*(uint *)(contextHandle + 0x194) & 4) != 0) && (EventTypeCode >> 1 != 0)) {
           maxProcessingCount = (ulonglong)(EventTypeCode >> 1);
           bufferPtr = preservedRegister15;
@@ -171821,7 +171821,7 @@ LAB_18076a1a6:
           } while (maxProcessingCount != 0);
         }
       }
-      else if (((registerValue == 4) && ((*(uint *)(contextHandle + 0x194) & 4) != 0)) &&
+      else if (((RegisterValue == 4) && ((*(uint *)(contextHandle + 0x194) & 4) != 0)) &&
               (maxProcessingCount = EventHandle >> 2 & 0x3fffffff, bufferPtr = preservedRegister15, (int)maxProcessingCount != 0)) {
         do {
           result = *bufferPtr;
@@ -171851,8 +171851,8 @@ LAB_18076a1a6:
           preservedRegister15 = (uint *)((longlong)preservedRegister15 + 1);
         } while (maxProcessingCount != 0);
       }
-      if (registerValue != 0) {
-        EventTypeCode = (uint)((EventHandle & 0xffffffff) / (ulonglong)registerValue);
+      if (RegisterValue != 0) {
+        EventTypeCode = (uint)((EventHandle & 0xffffffff) / (ulonglong)RegisterValue);
       }
       if (stackParam00000080 != (uint *)0x0) {
         *stackParam00000080 = EventTypeCode;
@@ -184193,7 +184193,7 @@ UIDword FUN_180773305(void)
   longlong contextHandleData;
   longlong contextHandle;
   longlong BasePointer;
-  UIDword registerValue;
+  UIDword RegisterValue;
   
   pallocatedMemory = *(longlong **)(contextHandle + 0x170);
   contextHandleData = 0;
@@ -184235,7 +184235,7 @@ LAB_1807733df:
   if (*(UIDword **)(BasePointer + 0x7f) != (UIDword *)0x0) {
     **(UIDword **)(BasePointer + 0x7f) = *(UIDword *)(BasePointer + 0x67);
   }
-  return registerValue;
+  return RegisterValue;
 }
 
 
@@ -184245,10 +184245,10 @@ UIDword FUN_1807733f3(void)
 {
   UIDword *registerAX;
   UIDword allocationFlags;
-  UIDword registerValue;
+  UIDword RegisterValue;
   
   *registerAX = allocationFlags;
-  return registerValue;
+  return RegisterValue;
 }
 
 
@@ -187426,7 +187426,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
   short *psVar10;
   float *register10;
   float *RegisterPointer;
-  uint registerValue;
+  uint RegisterValue;
   ulonglong result1;
   int eventHandle;
   int preservedRegister15D;
@@ -187449,7 +187449,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
   int *stackParam00000138;
   
   do {
-    if (registerValue == 0) break;
+    if (RegisterValue == 0) break;
     processingCounter = bufferSize;
     if ((uint)(allocationFlags + uiContext) < bufferSize) {
       processingCounter = allocationFlags + uiContext;
@@ -187466,8 +187466,8 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
     if (processingCounter - allocationFlags < EventTypeCode - unmodifiedESI) {
       result = processingCounter - allocationFlags;
     }
-    processingCounter = registerValue;
-    if (ProcessingStatus - eventHandle < registerValue) {
+    processingCounter = RegisterValue;
+    if (ProcessingStatus - eventHandle < RegisterValue) {
       processingCounter = ProcessingStatus - eventHandle;
     }
     if (result < processingCounter) {
@@ -187480,7 +187480,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
       result1 = (ulonglong)processingCounter;
       do {
         localInt9 = 0;
-        baseValue5 = (float)registerValue * 0.00048828125;
+        baseValue5 = (float)RegisterValue * 0.00048828125;
         if (3 < preservedRegister15D) {
           vectorComponentX = 1.0 - baseValue5;
           EventTypeCode = (preservedRegister15D - 4U >> 2) + 1;
@@ -187595,7 +187595,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
         }
         for (; (int)bufferSize <= eventHandle; eventHandle = eventHandle - bufferSize) {
         }
-        registerValue = registerValue - 1;
+        RegisterValue = RegisterValue - 1;
         result1 = result1 - 1;
       } while (result1 != 0);
     }
@@ -187605,7 +187605,7 @@ UIHandle FUN_180776362(int uiContext,UIHandle dataSource,UIHandle targetBuffer,u
   *stackParam000000f0 = unmodifiedESI;
   *stackParam000000f8 = eventHandle;
   *stackParam00000138 = allocationFlags;
-  *stackParam00000130 = registerValue;
+  *stackParam00000130 = RegisterValue;
   *stackParam000000e0 = register10;
   *stackParam000000d8 = (longlong)RegisterPointer;
   *stackParam00000120 = uiContext;
@@ -187625,14 +187625,14 @@ ValidateUIComponentData(UIDword uiContext,UIHandle *dataSource,UIDword *targetBu
   UIDword allocationFlags;
   UIHandle register10;
   UIHandle RegisterPointer;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIDword *preservedRegister13;
   UIDword eventHandle;
   
   *BasePointer = unmodifiedESI;
   *preservedRegister13 = eventHandle;
   *bufferSize = allocationFlags;
-  *contextHandle = registerValue;
+  *contextHandle = RegisterValue;
   *registerAX = register10;
   *dataSource = RegisterPointer;
   *targetBuffer = uiContext;
@@ -193073,7 +193073,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   float *pResultFloatValue;
   uint eventProcessingCounter;
   int RegisterPointerD;
-  uint registerValue;
+  uint RegisterValue;
   longlong EventHandle;
   uint preservedRegister15D;
   float LocalFloatValue9;
@@ -193103,7 +193103,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   if (RegisterPointerD == 2) {
     if (3 < preservedRegister15D) {
       do {
-        eventProcessingCounter = registerValue * 2;
+        eventProcessingCounter = RegisterValue * 2;
         FloatValue1 = 1.0 / *(float *)(uiContext + 0x424);
         transformCoeff12 = *(float *)(uiContext + 0x2a4);
         transformCoeff19 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)eventProcessingCounter * 4);
@@ -193158,7 +193158,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
                  *(float *)(uiContext + 0x42c) * baseValue) * FloatValue1;
         *(float *)(uiContext + 0x328) = FloatValue1;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 3) * 4) = FloatValue1;
-        EventTypeCode = (registerValue + 3) * 2 - 2;
+        EventTypeCode = (RegisterValue + 3) * 2 - 2;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 2) * 4) = transformCoeff12;
         transformCoeff18 = *(float *)(BasePointer + (ulonglong)EventTypeCode * 4) - TransformCoefficient20;
         transformCoeff12 = *(float *)(uiContext + 0x2a4);
@@ -193186,9 +193186,9 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(uiContext + 0x328) = transformCoeff12;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 5) * 4) = transformCoeff12;
         *(float *)(EventHandle + (ulonglong)EventTypeCode * 4) = transformCoeff15;
-        EventTypeCode = (registerValue + 3) * 2;
+        EventTypeCode = (RegisterValue + 3) * 2;
         FloatValue1 = TransformCoefficient20 + *(float *)(BasePointer + (ulonglong)EventTypeCode * 4);
-        registerValue = registerValue + 4;
+        RegisterValue = RegisterValue + 4;
         transformCoeff12 = *(float *)(uiContext + 0x2a4);
         transformCoeff15 = *(float *)(uiContext + 0x224);
         baseValue5 = *(float *)(uiContext + 0x2a8);
@@ -193215,10 +193215,10 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(uiContext + 0x328) = transformCoeff12;
         *(float *)(EventHandle + (ulonglong)EventTypeCode * 4) = transformCoeff15;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 7) * 4) = transformCoeff12;
-      } while (registerValue < bufferSize - 3U);
+      } while (RegisterValue < bufferSize - 3U);
     }
-    for (; registerValue < preservedRegister15D; registerValue = registerValue + 1) {
-      eventProcessingCounter = registerValue * 2;
+    for (; RegisterValue < preservedRegister15D; RegisterValue = RegisterValue + 1) {
+      eventProcessingCounter = RegisterValue * 2;
       TransformCoefficient20 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)eventProcessingCounter * 4);
       FloatValue1 = 1.0 / *(float *)(uiContext + 0x424);
       transformCoeff12 = *(float *)(uiContext + 0x2a4);
@@ -193255,7 +193255,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
       do {
         transformCoeff12 = *(float *)(SourceHandle + 0x434);
         transformCoeff15 = *(float *)(SourceHandle + 0x438);
-        eventProcessingCounter = registerValue * 6;
+        eventProcessingCounter = RegisterValue * 6;
         baseValue5 = *(float *)(SourceHandle + 0x428);
         transformCoeff13 = fStackX_8 + *(float *)(BasePointer + (ulonglong)(eventProcessingCounter + 1) * 4);
         AccumulatedFloat = *(float *)(SourceHandle + 0x42c);
@@ -193302,7 +193302,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(SourceHandle + 0x2b0) = FloatValue1;
         *(float *)(SourceHandle + 0x2b4) = transformCoeff18;
         *(float *)(SourceHandle + 0x238) = LocalFloatValue9;
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         *(float *)(SourceHandle + 0x3b8) = *(float *)(SourceHandle + 0x338);
         fStackX_8 = -fStackX_8;
         *(float *)(SourceHandle + 0x324) = baseValue7;
@@ -193322,14 +193322,14 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 3) * 4) = AccumulatedFloat;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 4) * 4) = baseValue5;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 5) * 4) = vectorComponentX;
-      } while (registerValue < preservedRegister15D);
+      } while (RegisterValue < preservedRegister15D);
     }
   }
   else if (RegisterPointerD == 8) {
     if (preservedRegister15D != 0) {
       do {
         transformCoeff12 = *(float *)(SourceHandle + 0x430);
-        eventProcessingCounter = registerValue * 8;
+        eventProcessingCounter = RegisterValue * 8;
         transformCoeff15 = *(float *)(SourceHandle + 0x434);
         baseValue5 = *(float *)(SourceHandle + 0x438);
         transformCoeff17 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(eventProcessingCounter + 1) * 4);
@@ -193418,16 +193418,16 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 6) * 4) = baseValue5;
         *(float *)(EventHandle + (ulonglong)(eventProcessingCounter + 7) * 4) = transformCoeff15;
         _DAT_180be2198 = -_DAT_180be2198;
-        registerValue = registerValue + 1;
-      } while (registerValue < preservedRegister15D);
+        RegisterValue = RegisterValue + 1;
+      } while (RegisterValue < preservedRegister15D);
     }
   }
   else if (0 < RegisterPointerD) {
     pResultFloatValue = (float *)(uiContext + 0x224);
     transformCoeff12 = _DAT_180be2198;
-    eventProcessingCounter = registerValue;
+    eventProcessingCounter = RegisterValue;
     do {
-      EventTypeCode = registerValue;
+      EventTypeCode = RegisterValue;
       if (3 < preservedRegister15D) {
         loopCounter = 3;
         do {
@@ -193532,7 +193532,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
   float *BaseValuePointer2;
   uint ResultValue3;
   int RegisterPointerD;
-  uint registerValue;
+  uint RegisterValue;
   longlong EventHandle;
   uint preservedRegister15D;
   float vectorComponentX;
@@ -193557,7 +193557,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
     if (preservedRegister15D != 0) {
       do {
         transformCoeff15 = *(float *)(SourceHandle + 0x430);
-        eventProcessingStatus = registerValue * 8;
+        eventProcessingStatus = RegisterValue * 8;
         transformCoeff14 = *(float *)(SourceHandle + 0x434);
         transformCoeff16 = *(float *)(SourceHandle + 0x438);
         TransformCoefficient20 = _DAT_180be2198 + *(float *)(BasePointer + (ulonglong)(eventProcessingStatus + 1) * 4);
@@ -193646,16 +193646,16 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(EventHandle + (ulonglong)(eventProcessingStatus + 6) * 4) = transformCoeff16;
         *(float *)(EventHandle + (ulonglong)(eventProcessingStatus + 7) * 4) = transformCoeff14;
         _DAT_180be2198 = -_DAT_180be2198;
-        registerValue = registerValue + 1;
-      } while (registerValue < preservedRegister15D);
+        RegisterValue = RegisterValue + 1;
+      } while (RegisterValue < preservedRegister15D);
     }
   }
   else if (0 < RegisterPointerD) {
     BaseValuePointer2 = (float *)(uiContext + 0x224);
     transformCoeff15 = _DAT_180be2198;
-    eventProcessingStatus = registerValue;
+    eventProcessingStatus = RegisterValue;
     do {
-      ResultValue3 = registerValue;
+      ResultValue3 = RegisterValue;
       if (3 < preservedRegister15D) {
         ProcessingResult1 = 3;
         do {
@@ -195468,7 +195468,7 @@ FUN_18077e927(longlong uiContext,longlong dataSource,UIHandle targetBuffer,float
   longlong register9;
   float *pTemporaryFloatValue;
   uint *RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   uint preservedRegister13D;
   longlong EventHandle;
   longlong *pCharacterDataOffset;
@@ -195476,8 +195476,8 @@ FUN_18077e927(longlong uiContext,longlong dataSource,UIHandle targetBuffer,float
   
   pCharacterDataOffset = (longlong *)(contextHandle + 0x230);
   do {
-    pResultFloatValue = (float *)(dataSource + (longlong)registerValue * 4);
-    pTemporaryFloatValue = (float *)(register9 + (longlong)registerValue * 4);
+    pResultFloatValue = (float *)(dataSource + (longlong)RegisterValue * 4);
+    pTemporaryFloatValue = (float *)(register9 + (longlong)RegisterValue * 4);
     if (preservedRegister13D != 0) {
       maxProcessingCount = (ulonglong)*RegisterPointer;
       EventTypeCode = RegisterPointer[2];
@@ -195542,7 +195542,7 @@ FUN_18077e927(longlong uiContext,longlong dataSource,UIHandle targetBuffer,float
         dataSource = lStackX_20;
       } while (loopCounter != 0);
     }
-    registerValue = registerValue + 1;
+    RegisterValue = RegisterValue + 1;
     pCharacterDataOffset = pCharacterDataOffset + 1;
     RegisterPointer = RegisterPointer + 1;
     uiContext = uiContext + -1;
@@ -200192,7 +200192,7 @@ void FUN_1807851dd(int uiContext,UIHandle dataSource)
   longlong CharacterDataOffset;
   ulonglong result0;
   ulonglong result1;
-  int registerValue;
+  int RegisterValue;
   UIDword unmodified000000a4;
   UIHandle preservedRegister15;
   float baseValue2;
@@ -200211,7 +200211,7 @@ void FUN_1807851dd(int uiContext,UIHandle dataSource)
   
   if (uiContext == 0) {
     if (((int)dataSource == 2) || ((int)dataSource == 3)) {
-      preservedRegister15 = CONCAT44(unmodified000000a4,registerValue);
+      preservedRegister15 = CONCAT44(unmodified000000a4,RegisterValue);
     }
     else {
       func_0x00018074a3d0(*(UIHandle *)(contextHandle + 0xa8),dataSource,&stack0x00000068);
@@ -200261,7 +200261,7 @@ void FUN_1807851dd(int uiContext,UIHandle dataSource)
         if (0 < localInt7) {
           pLocalFloatValue6 = (float *)&stack0x00000070;
           ptrLocal8 = (UIDword *)(contextHandle + 0x2d8);
-          localInt7 = registerValue;
+          localInt7 = RegisterValue;
           do {
             baseValue2 = (float)ptrLocal8[-3];
             if (preservedXMM7 < baseValue2) {
@@ -200289,10 +200289,10 @@ void FUN_1807851dd(int uiContext,UIHandle dataSource)
                   acomponentIndex._0_8_ = FUN_180784b00();
                   acomponentIndex._8_8_ = extraout_XMM0_Qb_01;
                 }
-                registerValue = registerValue + 1;
+                RegisterValue = RegisterValue + 1;
                 pLocalFloatValue6 = pLocalFloatValue6 + 1;
                 CharacterDataOffset = CharacterDataOffset + 0x14;
-              } while (registerValue < *(int *)(contextHandle + 0x2c8));
+              } while (RegisterValue < *(int *)(contextHandle + 0x2c8));
             }
             result = *(uint *)(contextHandle + 0x248);
             result0 = (ulonglong)result;
@@ -205521,7 +205521,7 @@ void InitializeUIEmptyFunction(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_1807895b5(void)
+UIHandle ProcessUIComponentHandler(void)
 
 {
   ulonglong result;
@@ -205583,28 +205583,28 @@ UIHandle FUN_1807895b5(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_18078961b(UIHandle uiContext)
+UIHandle ProcessUIContextValidation(UIHandle uiContext)
 
 {
   UIHandle result;
   ulonglong contextHandle;
   int uiValidationResult;
   longlong SourceHandle;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   longlong preservedRegister15;
   
   *(ulonglong *)(SourceHandle + 0x30) = contextHandle & 0xfffffffffffffff0;
   if (0 < (int)preservedRegister15 / 2) {
                      WARNING: Subroutine does not return
-    FUN_1808fd400(uiContext,(float)registerValue * -6.2831855 * (1.0 / (float)preservedRegister15));
+    FUN_1808fd400(uiContext,(float)RegisterValue * -6.2831855 * (1.0 / (float)preservedRegister15));
   }
   uiValidationResult = preservedRegister13D;
   if (preservedRegister13D != 0) {
     do {
       if (0 < (int)(uiValidationResult + (uiValidationResult >> 0x1f & 3U)) >> 2) {
                      WARNING: Subroutine does not return
-        FUN_1808fd400(uiContext,(float)registerValue * 6.2831855 * (1.0 / (float)uiValidationResult));
+        FUN_1808fd400(uiContext,(float)RegisterValue * 6.2831855 * (1.0 / (float)uiValidationResult));
       }
       uiValidationResult = uiValidationResult >> 1;
     } while (uiValidationResult != 0);
@@ -205627,7 +205627,7 @@ UIHandle FUN_1807896ae(UIHandle uiContext)
   UIHandle result;
   int unmodifiedEBP;
   longlong SourceHandle;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   UIDword preservedRegister15D;
   float preservedXMM7;
@@ -205636,7 +205636,7 @@ UIHandle FUN_1807896ae(UIHandle uiContext)
   do {
     if (0 < (int)(unmodifiedEBP + (unmodifiedEBP >> 0x1f & 3U)) >> 2) {
                      WARNING: Subroutine does not return
-      FUN_1808fd400(uiContext,(float)registerValue * preservedXMM7 * (unmodifiedXMM8_Da / (float)unmodifiedEBP));
+      FUN_1808fd400(uiContext,(float)RegisterValue * preservedXMM7 * (unmodifiedXMM8_Da / (float)unmodifiedEBP));
     }
     unmodifiedEBP = unmodifiedEBP >> 1;
   } while (unmodifiedEBP != 0);
@@ -209364,7 +209364,7 @@ void FUN_18078c188(float uiContext)
   uint eventProcessingCounter;
   longlong *pCharacterDataOffset;
   ulonglong result0;
-  UIDword registerValue;
+  UIDword RegisterValue;
   char preservedRegister13B;
   ulonglong result1;
   longlong preservedRegister15;
@@ -226539,7 +226539,7 @@ UIHandle FUN_18079e1df(longlong *uiContext)
   UIHandle SourceHandle;
   uint EventTypeCode;
   UIHandle TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIHandle preservedRegister15;
   ulonglong loopCounter;
   int maxAllocations;
@@ -226562,7 +226562,7 @@ UIHandle FUN_18079e1df(longlong *uiContext)
         *(UIDword *)(*(longlong *)(allocatedMemory + 0xc228) + 0x14034 + iterationCount) =
              *(UIDword *)(allocatedMemory + 0xc238);
         FUN_1807a0c70(*(longlong *)(allocatedMemory + 0xc228) + loopCounter,*(UIDword *)(allocatedMemory + 0xc218),
-                      registerValue,*(UIDword *)(allocatedMemory + 0xc220),(float)*(int *)(allocatedMemory + 0xc230));
+                      RegisterValue,*(UIDword *)(allocatedMemory + 0xc220),(float)*(int *)(allocatedMemory + 0xc230));
         EventTypeCode = (int)ProcessingStatus + 1;
         ProcessingStatus = (ulonglong)EventTypeCode;
         iterationCount = iterationCount + 0x14048;
@@ -226587,7 +226587,7 @@ UIHandle FUN_18079e20b(void)
   int unmodifiedESI;
   uint iterationCount;
   UIHandle TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIHandle preservedRegister15;
   ulonglong ProcessingStatus;
   int iStack0000000000000038;
@@ -226607,7 +226607,7 @@ UIHandle FUN_18079e20b(void)
            *(UIDword *)(contextHandle + 0xc238);
       iStack0000000000000038 = (int)EventTypeCode;
       FUN_1807a0c70(*(longlong *)(contextHandle + 0xc228) + ProcessingStatus,*(UIDword *)(contextHandle + 0xc218),
-                    registerValue,*(UIDword *)(contextHandle + 0xc220),
+                    RegisterValue,*(UIDword *)(contextHandle + 0xc220),
                     (float)*(int *)(contextHandle + 0xc230));
       iterationCount = (int)EventTypeCode + 1;
       EventTypeCode = (ulonglong)iterationCount;
@@ -226629,7 +226629,7 @@ UIHandle FUN_18079e219(void)
   ulonglong result;
   int unmodifiedESI;
   uint allocationFlags;
-  UIDword registerValue;
+  UIDword RegisterValue;
   UIHandle preservedRegister15;
   ulonglong iterationCount;
   uint StackData3;
@@ -226645,7 +226645,7 @@ UIHandle FUN_18079e219(void)
          *(UIDword *)(contextHandle + 0xc238);
     StackData3 = allocationFlags;
     FUN_1807a0c70(*(longlong *)(contextHandle + 0xc228) + iterationCount,*(UIDword *)(contextHandle + 0xc218),
-                  registerValue,*(UIDword *)(contextHandle + 0xc220),(float)*(int *)(contextHandle + 0xc230)
+                  RegisterValue,*(UIDword *)(contextHandle + 0xc220),(float)*(int *)(contextHandle + 0xc230)
                  );
     allocationFlags = allocationFlags + 1;
     result = result + 0x14048;
@@ -247994,7 +247994,7 @@ UIHandle FUN_180815d01(int uiContext,longlong dataSource,UIHandle targetBuffer,u
   longlong stringCompareIndex;
   longlong contextHandleData;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   longlong EventDataIndex;
   longlong contextHandleData;
   longlong lStack0000000000000030;
@@ -248015,15 +248015,15 @@ UIHandle FUN_180815d01(int uiContext,longlong dataSource,UIHandle targetBuffer,u
     allocatedMemory = lStack0000000000000038 + contextHandleData;
     if (*(int *)(contextHandleData + 0x4868) == 2) {
       componentIndex = lStack0000000000000030 * 4;
-      FUN_180814240(contextHandleData + ((ulonglong)(*(int *)(contextHandleData + 0x48a4) + registerValue & 0xf) +
-                            (ulonglong)(uint)(registerValue * 0x120)) * 4,componentIndex + allocatedMemory,EventDataIndex);
+      FUN_180814240(contextHandleData + ((ulonglong)(*(int *)(contextHandleData + 0x48a4) + RegisterValue & 0xf) +
+                            (ulonglong)(uint)(RegisterValue * 0x120)) * 4,componentIndex + allocatedMemory,EventDataIndex);
       contextHandleData = *(longlong *)(BasePointer + 0x178);
       dataSource = stackParam00000098;
       RegisterPointer = maxAllocations;
     }
     if (*(int *)(contextHandleData + 0x4868) == 3) {
-      FUN_180814240(contextHandleData + ((ulonglong)(*(int *)(contextHandleData + 0x48a4) + registerValue & 0xf) +
-                            (ulonglong)(uint)(registerValue * 0x120)) * 4,componentIndex + allocatedMemory,stringCompareIndex + RegisterPointer)
+      FUN_180814240(contextHandleData + ((ulonglong)(*(int *)(contextHandleData + 0x48a4) + RegisterValue & 0xf) +
+                            (ulonglong)(uint)(RegisterValue * 0x120)) * 4,componentIndex + allocatedMemory,stringCompareIndex + RegisterPointer)
       ;
       dataSource = stackParam00000098;
     }
@@ -251666,7 +251666,7 @@ void FUN_180818d9a(void)
   longlong AllocatedMemoryBlock1;
   longlong allocatedMemory2;
   longlong allocatedMemory3;
-  int registerValue;
+  int RegisterValue;
   uint preservedRegister13D;
   int iStackX_20;
   int iStackX_24;
@@ -251691,8 +251691,8 @@ LAB_180818dc0:
     }
     else if ((unmodifiedESI == 0) || (preservedRegister13D != 0)) {
       if (unmodifiedEBP != 0) {
-        registerValue = registerValue + (processingResult + unmodifiedEBP >> 2);
-        iStackX_20 = registerValue;
+        RegisterValue = RegisterValue + (processingResult + unmodifiedEBP >> 2);
+        iStackX_20 = RegisterValue;
       }
     }
     else {
@@ -251725,7 +251725,7 @@ LAB_180818dc0:
       if (AllocatedMemoryBlock1 < CharacterDataOffset) {
         allocatedMemory3 = allocatedMemory3 + *(longlong *)(stringCompareIndex + 8 + AllocatedMemoryBlock1 * 0x10);
       }
-      allocatedMemory3 = allocatedMemory2 + (localLong7 - registerValue) + allocatedMemory3;
+      allocatedMemory3 = allocatedMemory2 + (localLong7 - RegisterValue) + allocatedMemory3;
       *(longlong *)(contextHandle + 0x78) = allocatedMemory3;
       if (allocatedMemory3 < 0) {
         *(UIHandle *)(contextHandle + 0x78) = 0;
@@ -251747,7 +251747,7 @@ LAB_180818d56:
     *(UIHandle *)(contextHandle + 0x78) = loopCounter;
     goto LAB_180818d56;
   }
-  registerValue = iStackX_20;
+  RegisterValue = iStackX_20;
   if (*(int *)(contextHandle + 0x80) < 3) {
 LAB_180818ed4:
     uiValidationResult = func_0x00018082f880(&stack0x00000028);
@@ -253169,7 +253169,7 @@ UIHandle FUN_18081a9ee(void)
   uint result0;
   uint result1;
   int ProcessingResult2;
-  int registerValue;
+  int RegisterValue;
   uint preservedRegister13D;
   uint *preservedRegister15;
   uint *stackParam00000050;
@@ -253181,7 +253181,7 @@ UIHandle FUN_18081a9ee(void)
     ptrResult = preservedRegister15 + 1;
     sVar4 = (short)*preservedRegister15;
     ProcessingResult2 = (int)sVar4;
-    registerValue = registerValue + -1;
+    RegisterValue = RegisterValue + -1;
     result0 = *preservedRegister15 >> 0x10 & 0xff;
     if (0x58 < result0) {
       return 0xd;
@@ -253334,7 +253334,7 @@ LAB_18081ac45:
     }
     preservedRegister15 = (uint *)((longlong)preservedRegister15 + (ulonglong)preservedRegister13D);
     stackParam00000050 = preservedRegister15;
-    if (registerValue == 0) {
+    if (RegisterValue == 0) {
       return 0;
     }
   } while( true );
@@ -259969,7 +259969,7 @@ void FUN_1808240c2(int uiContext,UIHandle dataSource,UIHandle targetBuffer,int b
   ulonglong processingCounter;
   UIWord *register10;
   uint *RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   int eventHandle;
   int preservedRegister15D;
@@ -260024,7 +260024,7 @@ void FUN_1808240c2(int uiContext,UIHandle dataSource,UIHandle targetBuffer,int b
     aeventProcessingCounter._20_4_ = result;
     aeventProcessingCounter._24_4_ = result;
     aeventProcessingCounter._28_4_ = result;
-    result = RegisterPointer[registerValue];
+    result = RegisterPointer[RegisterValue];
     aiterationCount1._4_4_ = result;
     aiterationCount1._0_4_ = result;
     aiterationCount1._8_4_ = result;
@@ -260246,7 +260246,7 @@ void FUN_1808242d2(UIHandle uiContext,UIHandle dataSource,int targetBuffer,int b
   int allocationFlags;
   UIWord *register10;
   uint *RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   int eventHandle;
   int preservedRegister15D;
@@ -260309,7 +260309,7 @@ void FUN_1808242d2(UIHandle uiContext,UIHandle dataSource,int targetBuffer,int b
       aprocessingCounter._28_4_ = iterationCount;
       aloopCounter = vblendps_avx(aloopCounter,aprocessingCounter,0x10);
     case 3:
-      iterationCount = RegisterPointer[registerValue];
+      iterationCount = RegisterPointer[RegisterValue];
       aeventProcessingCounter._4_4_ = iterationCount;
       aeventProcessingCounter._0_4_ = iterationCount;
       aeventProcessingCounter._8_4_ = iterationCount;
@@ -267688,7 +267688,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
   float *TargetHandle;
   float *register10;
   float *RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   uint eventHandle;
   int localInt54;
@@ -267776,7 +267776,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           pscaleFactor35[1] = baseValue6 * TransformCoefficient4 + TransformCoefficient20 * TemporaryFloatValue;
           pscaleFactor35[2] = AccumulatedFloat * TransformCoefficient4 + transformMatrix24 * TemporaryFloatValue;
           pscaleFactor35[3] = transformCoeff14 * TransformCoefficient4 + transformMatrix28 * TemporaryFloatValue;
-          pscaleFactor35 = RegisterPointer + (longlong)registerValue + (longlong)localInt52;
+          pscaleFactor35 = RegisterPointer + (longlong)RegisterValue + (longlong)localInt52;
           *pscaleFactor35 = baseValue2 * TransformCoefficient3 + transformCoeff17 * LocalFloatValue9;
           pscaleFactor35[1] = baseValue5 * TransformCoefficient3 + TransformCoefficient21 * LocalFloatValue9;
           pscaleFactor35[2] = FloatValue2 * TransformCoefficient3 + TransformCoefficient25 * LocalFloatValue9;
@@ -267811,7 +267811,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           baseValue6 = pTransformCoefficient33[3];
           RegisterPointer[TempInt46] = pscaleFactor35[3] * LocalFloatValue6 + *pTransformCoefficient33 * ResultFloatValue;
           RegisterPointer[TempInt46 + targetBuffer] = baseValue3 * TransformCoefficient4 + vectorComponentX * TemporaryFloatValue;
-          RegisterPointer[(longlong)TempInt46 + (longlong)registerValue] = baseValue2 * TransformCoefficient3 + baseValue5 * LocalFloatValue9;
+          RegisterPointer[(longlong)TempInt46 + (longlong)RegisterValue] = baseValue2 * TransformCoefficient3 + baseValue5 * LocalFloatValue9;
           RegisterPointer[TempInt46 + contextHandleData1] = baseValue1 * TransformCoefficient2 + baseValue6 * baseValue0;
           loopCounter0 = loopCounter0 - 1;
           preservedRegister13D = stackParam00000110;
@@ -267922,7 +267922,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           pscaleFactor35[1] = baseValue5 * TransformCoefficient4 - TransformCoefficient25 * TemporaryFloatValue;
           pscaleFactor35[2] = FloatValue2 * TransformCoefficient4 - TransformCoefficient21 * TemporaryFloatValue;
           pscaleFactor35[3] = transformCoeff13 * TransformCoefficient4 - TransformCoefficient29 * TemporaryFloatValue;
-          pscaleFactor35 = RegisterPointer + (longlong)localInt52 + (longlong)registerValue;
+          pscaleFactor35 = RegisterPointer + (longlong)localInt52 + (longlong)RegisterValue;
           *pscaleFactor35 = baseValue2 * TransformCoefficient3 - transformCoeff17 * LocalFloatValue9;
           pscaleFactor35[1] = baseValue6 * TransformCoefficient3 - transformMatrix24 * LocalFloatValue9;
           pscaleFactor35[2] = AccumulatedFloat * TransformCoefficient3 - TransformCoefficient20 * LocalFloatValue9;
@@ -267957,7 +267957,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           baseValue6 = pTransformCoefficient33[3];
           RegisterPointer[TempInt48] = *pTransformCoefficient33 * LocalFloatValue6 - pscaleFactor35[3] * ResultFloatValue;
           RegisterPointer[TempInt48 + targetBuffer] = vectorComponentX * TransformCoefficient4 - baseValue3 * TemporaryFloatValue;
-          RegisterPointer[(longlong)TempInt48 + (longlong)registerValue] = baseValue5 * TransformCoefficient3 - baseValue2 * LocalFloatValue9;
+          RegisterPointer[(longlong)TempInt48 + (longlong)RegisterValue] = baseValue5 * TransformCoefficient3 - baseValue2 * LocalFloatValue9;
           RegisterPointer[TempInt48 + contextHandleData1] = baseValue6 * TransformCoefficient2 - baseValue1 * baseValue0;
           loopCounter0 = loopCounter0 - 1;
           preservedRegister13D = stackParam00000110;
@@ -268044,7 +268044,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           pscaleFactor35[1] = TemporaryFloatValue * -1.0;
           pscaleFactor35[2] = baseValue2 * -1.0;
           pscaleFactor35[3] = baseValue6 * -1.0;
-          pscaleFactor35 = RegisterPointer + (longlong)registerValue + (longlong)localInt52;
+          pscaleFactor35 = RegisterPointer + (longlong)RegisterValue + (longlong)localInt52;
           *pscaleFactor35 = TransformCoefficient3 * -1.0;
           pscaleFactor35[1] = ResultFloatValue * -1.0;
           pscaleFactor35[2] = baseValue1 * -1.0;
@@ -268070,7 +268070,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           TransformCoefficient4 = pscaleFactor35[2];
           RegisterPointer[TempInt48] = pscaleFactor35[3] * -1.0;
           RegisterPointer[TempInt48 + targetBuffer] = TransformCoefficient4 * -1.0;
-          RegisterPointer[(longlong)registerValue + (longlong)TempInt48] = TransformCoefficient3 * -1.0;
+          RegisterPointer[(longlong)RegisterValue + (longlong)TempInt48] = TransformCoefficient3 * -1.0;
           RegisterPointer[(longlong)preservedRegister13D + (longlong)TempInt48] = TransformCoefficient2 * -1.0;
           loopCounter0 = loopCounter0 - 1;
           TempInt48 = TempInt48 + 1;
@@ -268133,7 +268133,7 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
   float *register10;
   float *TransformCoefficient17;
   float *RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   int preservedRegister13D;
   uint eventHandle;
   int uiValidationResult8;
@@ -268210,7 +268210,7 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
           pAccumulatedFloat[1] = ResultFloatValue * -1.0;
           pAccumulatedFloat[2] = baseValue1 * -1.0;
           pAccumulatedFloat[3] = baseValue5 * -1.0;
-          pAccumulatedFloat = RegisterPointer + (longlong)registerValue + (longlong)uiValidationResult6;
+          pAccumulatedFloat = RegisterPointer + (longlong)RegisterValue + (longlong)uiValidationResult6;
           *pAccumulatedFloat = TransformCoefficient2 * -1.0;
           pAccumulatedFloat[1] = LocalFloatValue6 * -1.0;
           pAccumulatedFloat[2] = baseValue0 * -1.0;
@@ -268236,7 +268236,7 @@ void FUN_18082bc49(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
           TransformCoefficient3 = pAccumulatedFloat[2];
           RegisterPointer[uiValidationResult2] = pAccumulatedFloat[3] * -1.0;
           RegisterPointer[uiValidationResult2 + targetBuffer] = TransformCoefficient3 * -1.0;
-          RegisterPointer[(longlong)registerValue + (longlong)uiValidationResult2] = TransformCoefficient2 * -1.0;
+          RegisterPointer[(longlong)RegisterValue + (longlong)uiValidationResult2] = TransformCoefficient2 * -1.0;
           RegisterPointer[(longlong)preservedRegister13D + (longlong)uiValidationResult2] = transformCoeff1 * -1.0;
           iterationCount4 = iterationCount4 - 1;
           uiValidationResult2 = uiValidationResult2 + 1;
@@ -282744,7 +282744,7 @@ void FUN_180836a6a(UIHandle uiContext)
   uint eventProcessingCounter;
   uint *TargetHandle;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   longlong EventHandle;
   longlong *preservedRegister15;
   UIByte aeventProcessingStatus [16];
@@ -282840,8 +282840,8 @@ void FUN_180836a6a(UIHandle uiContext)
     contextHandle = contextHandle + 1;
     aresult2 = vpaddq_avx2(aresult2,aresult9);
     aResultValue3 = vpaddq_avx2(aResultValue3,aresult9);
-    registerValue = registerValue + -1;
-  } while (registerValue != 0);
+    RegisterValue = RegisterValue + -1;
+  } while (RegisterValue != 0);
   *(longlong *)TargetHandle = aresult2._0_8_;
   for (eventProcessingCounter = unmodifiedESI & 7; eventProcessingCounter != 0; eventProcessingCounter = eventProcessingCounter - 1) {
                      WARNING: Read-only address (ram,0x000180980c40) is written
@@ -286743,7 +286743,7 @@ UIHandle FUN_180839e32(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
   longlong AllocatedMemoryBlock8;
   longlong allocatedMemory9;
   uint register10D;
-  uint registerValue;
+  uint RegisterValue;
   longlong preservedRegister13;
   longlong EventHandle;
   ulonglong iterationCount0;
@@ -286758,11 +286758,11 @@ UIHandle FUN_180839e32(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
     if (componentIndex == *(uint *)(targetBuffer + allocatedMemory2 * 4)) {
       ProcessingResult5 = componentIndex * *(int *)(preservedRegister13 + 0x38);
       loopCounter = *(ushort *)(*(longlong *)(preservedRegister13 + 0x10) + allocatedMemory2 * 2);
-      registerValue = (uint)loopCounter;
+      RegisterValue = (uint)loopCounter;
       processingResult7 = ProcessingResult5 - unmodifiedESI;
-      loopCounter = (processingResult7 * 0x100000) / (int)(registerValue - bufferSize);
+      loopCounter = (processingResult7 * 0x100000) / (int)(RegisterValue - bufferSize);
       componentIndex = (uint)loopCounter;
-      if ((int)register10D <= (int)registerValue) {
+      if ((int)register10D <= (int)RegisterValue) {
         componentIndex = register10D;
       }
       ProcessingResult1 = loopCounter * 4;
@@ -286791,7 +286791,7 @@ UIHandle FUN_180839e32(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
         preservedRegister13 = stackParam00000078;
       }
       for (componentIndex = componentIndex - bufferSize & 3; targetBuffer = stackParam00000080, unmodifiedESI = ProcessingResult5,
-          bufferSize = registerValue, register10D = stackParam00000070, componentIndex != 0; componentIndex = componentIndex - 1) {
+          bufferSize = RegisterValue, register10D = stackParam00000070, componentIndex != 0; componentIndex = componentIndex - 1) {
         allocatedMemory2 = (longlong)processingResult7;
         processingResult7 = processingResult7 + loopCounter;
         *BaseValuePointer0 = *(float *)(&UIDataTableC + (allocatedMemory2 >> 0x14) * 4) * *BaseValuePointer0;
@@ -286801,7 +286801,7 @@ UIHandle FUN_180839e32(UIHandle uiContext,UIHandle dataSource,longlong targetBuf
     unmodifiedEBP = unmodifiedEBP + 1;
     iterationCount0 = iterationCount0 + 1;
   } while ((int)unmodifiedEBP < *(int *)(preservedRegister13 + 0x34));
-  allocatedMemory2 = (longlong)(int)registerValue;
+  allocatedMemory2 = (longlong)(int)RegisterValue;
   allocatedMemory9 = (longlong)(int)register10D;
   if (allocatedMemory2 < allocatedMemory9) {
     if (3 < allocatedMemory9 - allocatedMemory2) {
@@ -286844,10 +286844,10 @@ UIHandle FUN_18083a016(void)
   longlong contextHandleData;
   int register10D;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   longlong EventHandle;
   
-  stringCompareIndex = (longlong)registerValue;
+  stringCompareIndex = (longlong)RegisterValue;
   contextHandleData = (longlong)register10D;
   if (stringCompareIndex < contextHandleData) {
     if (3 < contextHandleData - stringCompareIndex) {
@@ -304008,7 +304008,7 @@ void FUN_18084cf13(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffe
   uint *TargetHandle;
   uint eventProcessingStatus;
   longlong *pallocatedMemory0;
-  int registerValue;
+  int RegisterValue;
   UIHandle *EventHandle;
   uint stackParam00000050;
   
@@ -304026,7 +304026,7 @@ void FUN_18084cf13(longlong uiContext,UIHandle *dataSource,UIHandle *targetBuffe
     *TargetHandle = ProcessingStatus;
     if ((*(int *)(componentIndex + 0x48) < _DAT_180c4ea98) &&
        (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = registerValue;
+      _DAT_180c4ea94 = RegisterValue;
       FUN_1808fcb30(&DAT_180c4ea98);
     }
     ProcessingStatus = (uint)BasePointer;
@@ -304171,7 +304171,7 @@ void FUN_18084d068(void)
   uint *TargetHandle;
   uint eventProcessingCounter;
   longlong *pCharacterDataOffset;
-  int registerValue;
+  int RegisterValue;
   UIHandle *EventHandle;
   int *preservedRegister15;
   uint stackParam00000050;
@@ -304179,7 +304179,7 @@ void FUN_18084d068(void)
   do {
     FUN_1808fcb90(&DAT_180c4ea98);
     if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = registerValue;
+      _DAT_180c4ea94 = RegisterValue;
       FUN_1808fcb30(&DAT_180c4ea98);
     }
     do {
@@ -305111,7 +305111,7 @@ UIHandle FUN_18084d86d(void)
   UIByte *ptrLocal6;
   UIByte *pprocessingCounter;
   int localInt8;
-  uint registerValue;
+  uint RegisterValue;
   double *preservedRegister13;
   int localInt9;
   longlong preservedRegister15;
@@ -305133,7 +305133,7 @@ UIHandle FUN_18084d86d(void)
   componentContextPtr = (UIByte *)0x0;
   while (((pprocessingCounter = ptrLocal6, ptrLocal6 = (UIByte *)0x0, localInt9 = 0, ptrResult <= pprocessingCounter &&
           (pprocessingCounter < ptrResult + (longlong)*(int *)(preservedRegister15 + 0x90) * 0x20)) &&
-         (ptrLocal6 = pprocessingCounter, localInt9 = localInt8, *(uint *)(pprocessingCounter + 0x18) <= registerValue))) {
+         (ptrLocal6 = pprocessingCounter, localInt9 = localInt8, *(uint *)(pprocessingCounter + 0x18) <= RegisterValue))) {
     localInt8 = localInt8 + 1;
     componentContextPtr = pprocessingCounter;
     ptrLocal6 = pprocessingCounter + 0x20;
@@ -305148,8 +305148,8 @@ UIHandle FUN_18084d86d(void)
       pprocessingCounter = (UIByte *)0x0;
       ProcessingStatus = unmodifiedEBP;
       if (ptrLocal6 != (UIByte *)0x0) {
-        ProcessingStatus = *(int *)(ptrLocal6 + 0x18) - registerValue;
-        registerValue = *(uint *)(ptrLocal6 + 0x18);
+        ProcessingStatus = *(int *)(ptrLocal6 + 0x18) - RegisterValue;
+        RegisterValue = *(uint *)(ptrLocal6 + 0x18);
         localInt9 = localInt9 + 1;
         if (localInt9 < *(int *)(preservedRegister15 + 0x90)) {
           pprocessingCounter = ptrResult + (longlong)localInt9 * 0x20;
@@ -305188,7 +305188,7 @@ UIHandle FUN_18084d93b(UIHandle uiContext,int dataSource)
   UIByte *TargetHandle;
   UIByte *componentContextPtr;
   longlong RegisterPointer;
-  int registerValue;
+  int RegisterValue;
   double *preservedRegister13;
   int eventHandle;
   longlong preservedRegister15;
@@ -305206,8 +305206,8 @@ UIHandle FUN_18084d93b(UIHandle uiContext,int dataSource)
       componentContextPtr = (UIByte *)0x0;
       EventTypeCode = unmodifiedEBP;
       if (TargetHandle != (UIByte *)0x0) {
-        EventTypeCode = *(int *)(TargetHandle + 0x18) - registerValue;
-        registerValue = *(int *)(TargetHandle + 0x18);
+        EventTypeCode = *(int *)(TargetHandle + 0x18) - RegisterValue;
+        RegisterValue = *(int *)(TargetHandle + 0x18);
         eventHandle = eventHandle + 1;
         if (eventHandle < *(int *)(preservedRegister15 + 0x90)) {
           componentContextPtr = (UIByte *)((longlong)eventHandle * 0x20 + RegisterPointer);
@@ -305623,7 +305623,7 @@ UIHandle FUN_18084df94(UIHandle uiContext)
   longlong BasePointer;
   UIDword unmodifiedESI;
   longlong *TargetHandle;
-  int registerValue;
+  int RegisterValue;
   longlong preservedRegister13;
   longlong componentIndex;
   longlong preservedRegister15;
@@ -305638,8 +305638,8 @@ UIHandle FUN_18084df94(UIHandle uiContext)
     *ptrResult = *(UIDword *)(componentIndex + (longlong)ptrResult);
     *(UIHandle *)(componentIndex + -0xc + (longlong)ptrResult) = uiContext;
     *(UIHandle *)(componentIndex + -4 + (longlong)ptrResult) = 0;
-    FUN_180840270((longlong)registerValue * 0x10 + preservedRegister13);
-    registerValue = registerValue + 1;
+    FUN_180840270((longlong)RegisterValue * 0x10 + preservedRegister13);
+    RegisterValue = RegisterValue + 1;
     ptrResult = ptrResult + 4;
     uiContext = 0;
     preservedRegister15 = preservedRegister15 + -1;
@@ -310168,7 +310168,7 @@ void FUN_180851421(void)
   longlong BasePointer;
   longlong SourceHandle;
   longlong TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   longlong preservedRegister13;
   longlong EventHandle;
   UIHandle stackParam00000030;
@@ -310179,19 +310179,19 @@ void FUN_180851421(void)
   
   **(UIHandle **)(BasePointer + -0x38) = stackParam00000030;
   if (stackParam00000048._4_1_ == '\0') {
-    *(UIDword *)(TargetHandle + 0x60) = registerValue;
+    *(UIDword *)(TargetHandle + 0x60) = RegisterValue;
     FUN_18084f560(TargetHandle + 0x30);
   }
   if (cStack0000000000000050 == '\0') {
-    *(UIDword *)(SourceHandle + 0x60) = registerValue;
+    *(UIDword *)(SourceHandle + 0x60) = RegisterValue;
     FUN_18084f040(SourceHandle + 0x30);
   }
   if (cStack0000000000000054 == '\0') {
-    *(UIDword *)(EventHandle + 0x1d0) = registerValue;
+    *(UIDword *)(EventHandle + 0x1d0) = RegisterValue;
     FUN_18084f040(EventHandle + 0x1a0);
   }
   if (stackParam00000058 == '\0') {
-    *(UIDword *)(preservedRegister13 + 0x60) = registerValue;
+    *(UIDword *)(preservedRegister13 + 0x60) = RegisterValue;
     FUN_18084f2d0(preservedRegister13 + 0x30);
   }
                      WARNING: Subroutine does not return
@@ -336324,7 +336324,7 @@ UIHandle FUN_180867092(void)
   UIByte unmodifiedBPL;
   UIHandle *SourceHandle;
   UIHandle *TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   longlong *EventHandle;
   longlong preservedRegister15;
   UIHandle stackParam00000050;
@@ -336332,7 +336332,7 @@ UIHandle FUN_180867092(void)
   allocatedMemory = EventHandle[4];
   *SourceHandle = registerAX;
   SourceHandle[1] = registerAX;
-  *(UIDword *)SourceHandle = registerValue;
+  *(UIDword *)SourceHandle = RegisterValue;
   iterationCount = (**(code **)*TargetHandle)();
   *(UIByte *)((longlong)SourceHandle + 9) = unmodifiedBPL;
   *(UIByte *)(SourceHandle + 1) = iterationCount;
@@ -337517,7 +337517,7 @@ void FUN_180868363(void)
   ulonglong maxProcessingCount;
   UIHandle TargetHandle;
   longlong RegisterPointer;
-  uint registerValue;
+  uint RegisterValue;
   UIDword unmodified000000a4;
   int eventHandle;
   UIHandle *preservedRegister15;
@@ -337526,17 +337526,17 @@ void FUN_180868363(void)
   
   *(UIHandle *)(RegisterPointer + 0x18) = contextHandle;
   *(UIHandle *)(RegisterPointer + 0x20) = SourceHandle;
-  maxProcessingCount = (ulonglong)registerValue;
+  maxProcessingCount = (ulonglong)RegisterValue;
   *(UIHandle *)(RegisterPointer + -0x28) = TargetHandle;
   do {
     allocatedMemory = *(longlong *)(maxProcessingCount + 0x10 + *(longlong *)(BasePointer + 0x20));
     if (allocatedMemory != 0) {
       pEventDataIndex = preservedRegister15 + 0x97;
       if (preservedRegister15 == (UIHandle *)0xffffffffffffff08) {
-        pEventDataIndex = (longlong *)CONCAT44(unmodified000000a4,registerValue);
+        pEventDataIndex = (longlong *)CONCAT44(unmodified000000a4,RegisterValue);
       }
       if (pEventDataIndex != (longlong *)0x0) {
-        if (((*(uint *)((longlong)pEventDataIndex + 0x24) != registerValue) && ((int)pEventDataIndex[1] != 0)) &&
+        if (((*(uint *)((longlong)pEventDataIndex + 0x24) != RegisterValue) && ((int)pEventDataIndex[1] != 0)) &&
            (uiValidationResult = *(int *)(*pEventDataIndex +
                             (longlong)
                             (int)((*(uint *)(allocatedMemory + 0x1c) ^ *(uint *)(allocatedMemory + 0x18) ^
@@ -356740,7 +356740,7 @@ void FUN_180879232(void)
   uint TotalResult;
   ulonglong result7;
   longlong *TargetHandle;
-  int registerValue;
+  int RegisterValue;
   uint result8;
   UIDword *shaderHandle;
   longlong preservedRegister13;
@@ -356754,7 +356754,7 @@ void FUN_180879232(void)
   do {
     iterationCount0 = FUN_1808fcb90(&DAT_180c4ea98);
     if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = registerValue;
+      _DAT_180c4ea94 = RegisterValue;
       iterationCount0 = FUN_1808fcb30(&DAT_180c4ea98);
     }
     do {
@@ -356801,7 +356801,7 @@ void FUN_180879232(void)
           SourceHandle = (longlong *)(allocatedMemory2 + 0x68);
           TargetHandle = *(longlong **)(allocatedMemory2 + 0x68);
         } while (TargetHandle == SourceHandle);
-        registerValue = 0;
+        RegisterValue = 0;
         EventHandle = 0x48;
         preservedRegister13 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       }
@@ -374815,13 +374815,13 @@ UIDword FUN_180889d5e(UIHandle uiContext,UIHandle dataSource,longlong *targetBuf
   int unmodifiedEBX;
   longlong BasePointer;
   int allocationFlags;
-  int registerValue;
+  int RegisterValue;
   UIHandle *componentTransformData;
   bool isCharacterMatch1;
   
   do {
     do {
-      localLong7 = *(longlong *)(targetBuffer[2] + 0x18 + (longlong)registerValue * 0x20);
+      localLong7 = *(longlong *)(targetBuffer[2] + 0x18 + (longlong)RegisterValue * 0x20);
       for (componentTransformData = *(UIHandle **)(localLong7 + 0x288);
           (*(UIHandle **)(localLong7 + 0x288) <= componentTransformData &&
           (componentTransformData < (UIHandle *)
@@ -374865,9 +374865,9 @@ LAB_180889e09:
         unmodifiedEBX = *(int *)(BasePointer + -0x4c);
       }
       targetBuffer = *(longlong **)(BasePointer + -0x48);
-    } while ((registerValue != -1) &&
-            (registerValue = *(int *)(targetBuffer[2] + 0x10 + (longlong)registerValue * 0x20),
-            registerValue != -1));
+    } while ((RegisterValue != -1) &&
+            (RegisterValue = *(int *)(targetBuffer[2] + 0x10 + (longlong)RegisterValue * 0x20),
+            RegisterValue != -1));
     localInt5 = allocationFlags + 1;
     isCharacterMatch1 = allocationFlags != -1;
     allocationFlags = 0;
@@ -374878,17 +374878,17 @@ LAB_180889e09:
       localLong7 = (longlong)allocationFlags;
       do {
         if (*(int *)(*targetBuffer + localLong7 * 4) != -1) {
-          registerValue = *(int *)(*targetBuffer + (longlong)allocationFlags * 4);
+          RegisterValue = *(int *)(*targetBuffer + (longlong)allocationFlags * 4);
           goto LAB_180889e8c;
         }
         allocationFlags = allocationFlags + 1;
         localLong7 = localLong7 + 1;
       } while (localLong7 != (int)targetBuffer[1]);
     }
-    registerValue = -1;
-    allocationFlags = registerValue;
+    RegisterValue = -1;
+    allocationFlags = RegisterValue;
 LAB_180889e8c:
-    if (registerValue == -1) {
+    if (RegisterValue == -1) {
       localLong7 = *(longlong *)(BasePointer + 0x28);
       if (*(longlong *)(BasePointer + 0x30) != 0) {
                      WARNING: Subroutine does not return
@@ -389212,7 +389212,7 @@ void FUN_180896e11(void)
   int localInt9;
   UIDword unmodifiedEBX;
   longlong BasePointer;
-  int registerValue;
+  int RegisterValue;
   longlong preservedRegister13;
   char preservedRegister15B;
   float extraout_XMM0_Da;
@@ -389231,7 +389231,7 @@ void FUN_180896e11(void)
   UIDword inputString;
   float stackParam00000048;
   
-  if (((preservedRegister15B != '\0') || (*(int *)(*(longlong *)(preservedRegister13 + 0x2e8) + 0x34) == registerValue)) &&
+  if (((preservedRegister15B != '\0') || (*(int *)(*(longlong *)(preservedRegister13 + 0x2e8) + 0x34) == RegisterValue)) &&
      (localInt7 = FUN_180897b40(), localInt7 == 0)) {
     for (localInt7 = 0; (-1 < localInt7 && (localInt7 < *(int *)(preservedRegister13 + 0x48))); localInt7 = localInt7 + 1) {
       allocatedMemory = *(longlong *)(*(longlong *)(preservedRegister13 + 0x40) + (longlong)localInt7 * 8);
@@ -389245,9 +389245,9 @@ void FUN_180896e11(void)
         loopCounter = *(UIDword *)(allocatedMemory + 0x18);
         maxProcessingCount = *(UIDword *)(allocatedMemory + 0x1c);
         *(UIDword *)(BasePointer + -0x78) = 0;
-        *(int *)(BasePointer + -0x68) = registerValue;
+        *(int *)(BasePointer + -0x68) = RegisterValue;
         *(undefined **)(BasePointer + -0x80) = &UNK_1809830b8;
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         *(UIDword *)(BasePointer + -0x54) = uStackX_20;
         *(UIDword *)(BasePointer + -0x70) = unmodifiedEBX;
         *(UIDword *)(BasePointer + -100) = EventTypeCode;
@@ -389298,9 +389298,9 @@ void FUN_180896e11(void)
         loopCounter = *(UIDword *)(allocatedMemory + 0x18);
         maxProcessingCount = *(UIDword *)(allocatedMemory + 0x1c);
         *(UIDword *)(BasePointer + -0x78) = 0;
-        *(int *)(BasePointer + -0x68) = registerValue;
+        *(int *)(BasePointer + -0x68) = RegisterValue;
         *(undefined **)(BasePointer + -0x80) = &UNK_1809830b8;
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         *(UIDword *)(BasePointer + -0x54) = uStackX_20;
         *(UIDword *)(BasePointer + -0x70) = unmodifiedEBX;
         *(UIDword *)(BasePointer + -100) = EventTypeCode;
@@ -389351,9 +389351,9 @@ void FUN_180896e11(void)
         loopCounter = *(UIDword *)(allocatedMemory + 0x18);
         maxProcessingCount = *(UIDword *)(allocatedMemory + 0x1c);
         *(UIDword *)(BasePointer + -0x78) = 0;
-        *(int *)(BasePointer + -0x68) = registerValue;
+        *(int *)(BasePointer + -0x68) = RegisterValue;
         *(undefined **)(BasePointer + -0x80) = &UNK_1809830b8;
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         *(UIDword *)(BasePointer + -0x54) = uStackX_20;
         *(UIDword *)(BasePointer + -0x70) = unmodifiedEBX;
         *(UIDword *)(BasePointer + -100) = EventTypeCode;
@@ -389404,9 +389404,9 @@ void FUN_180896e11(void)
         loopCounter = *(UIDword *)(allocatedMemory + 0x18);
         maxProcessingCount = *(UIDword *)(allocatedMemory + 0x1c);
         *(UIDword *)(BasePointer + -0x78) = 0;
-        *(int *)(BasePointer + -0x68) = registerValue;
+        *(int *)(BasePointer + -0x68) = RegisterValue;
         *(undefined **)(BasePointer + -0x80) = &UNK_1809830b8;
-        registerValue = registerValue + 1;
+        RegisterValue = RegisterValue + 1;
         *(UIDword *)(BasePointer + -0x54) = uStackX_20;
         *(UIDword *)(BasePointer + -0x70) = unmodifiedEBX;
         *(UIDword *)(BasePointer + -100) = EventTypeCode;
@@ -396280,7 +396280,7 @@ void FUN_18089be41(void)
   UIHandle *contextHandle;
   uint ProcessingStatus;
   longlong EventDataIndex;
-  int registerValue;
+  int RegisterValue;
   longlong preservedRegister15;
   uint stackParam00000050;
   uint stackUInt32_68;
@@ -396359,7 +396359,7 @@ void FUN_18089be41(void)
     }
   }
 LAB_18089bfc7:
-  if (registerValue == 0) {
+  if (RegisterValue == 0) {
     processingResult = FUN_1808a84c0();
   }
   else {
@@ -401665,7 +401665,7 @@ ulonglong FUN_18089e87d(void)
   ulonglong loopCounter;
   longlong BasePointer;
   longlong *TargetHandle;
-  int registerValue;
+  int RegisterValue;
   longlong preservedRegister15;
   bool bVar6;
   bool bVar7;
@@ -401675,16 +401675,16 @@ ulonglong FUN_18089e87d(void)
     return 0x1c;
   }
   allocatedMemory = *TargetHandle;
-  EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x10,registerValue + 3);
+  EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x10,RegisterValue + 3);
   ProcessingStatus = (ulonglong)EventTypeCode;
   if (EventTypeCode == 0) {
-    EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x14,registerValue + 1);
+    EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x14,RegisterValue + 1);
     ProcessingStatus = (ulonglong)EventTypeCode;
     if (EventTypeCode == 0) {
-      EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x16,registerValue + 1);
+      EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x16,RegisterValue + 1);
       ProcessingStatus = (ulonglong)EventTypeCode;
       if (EventTypeCode == 0) {
-        EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x18,registerValue + 7);
+        EventTypeCode = FUN_1808aed00(allocatedMemory,preservedRegister15 + 0x18,RegisterValue + 7);
         ProcessingStatus = (ulonglong)EventTypeCode;
       }
     }
@@ -401737,7 +401737,7 @@ ulonglong FUN_18089e87d(void)
   }
   else if (colorBufferPointer[2] == 0) {
 LAB_18089ea0f:
-    ProcessingStatus = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x41,registerValue,4,0);
+    ProcessingStatus = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x41,RegisterValue,4,0);
   }
   else {
     *(UIDword *)(BasePointer + 0x77) = 0;
@@ -401771,7 +401771,7 @@ LAB_18089eaae:
       else {
         if (colorBufferPointer[2] == 0) {
 LAB_18089ea93:
-          EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,registerValue,registerValue,0);
+          EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,RegisterValue,RegisterValue,0);
           goto LAB_18089eaae;
         }
         *(UIDword *)(BasePointer + -0x45) = 0;
@@ -401807,7 +401807,7 @@ LAB_18089ea93:
       }
       else if (colorBufferPointer[2] == 0) {
 LAB_18089eb22:
-        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,registerValue,registerValue,0);
+        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,RegisterValue,RegisterValue,0);
       }
       else {
         *(UIDword *)(BasePointer + -0x45) = 0;
@@ -401843,7 +401843,7 @@ LAB_18089eb22:
       }
       else if (colorBufferPointer[2] == 0) {
 LAB_18089ebaa:
-        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,registerValue,registerValue,0);
+        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,RegisterValue,RegisterValue,0);
       }
       else {
         *(UIDword *)(BasePointer + -0x45) = 0;
@@ -401879,7 +401879,7 @@ LAB_18089ebaa:
       }
       else if (colorBufferPointer[2] == 0) {
 LAB_18089ec32:
-        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,registerValue,registerValue,0);
+        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,RegisterValue,RegisterValue,0);
       }
       else {
         *(UIDword *)(BasePointer + -0x45) = 0;
@@ -401915,7 +401915,7 @@ LAB_18089ec32:
       }
       else if (colorBufferPointer[2] == 0) {
 LAB_18089ecba:
-        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,registerValue,registerValue,0);
+        EventTypeCode = FUN_180769ed0(*colorBufferPointer,BasePointer + -0x49,RegisterValue,RegisterValue,0);
       }
       else {
         *(UIDword *)(BasePointer + -0x45) = 0;
@@ -401943,9 +401943,9 @@ LAB_18089ecba:
   }
   if ((((!bVar6) && (*(char *)(BasePointer + 0x77) == '\0')) && (*(char *)(BasePointer + 0x7f) == '\0'))
      && (!EventProcessingStatus)) {
-    registerValue = 0;
+    RegisterValue = 0;
   }
-  *(int *)(preservedRegister15 + 0x38) = registerValue;
+  *(int *)(preservedRegister15 + 0x38) = RegisterValue;
   EventTypeCode = *(uint *)(TargetHandle + 8);
 LAB_18089ed1b:
   ProcessingStatus = 0;
@@ -401973,7 +401973,7 @@ ulonglong FUN_18089e9af(UIHandle uiContext,UIHandle dataSource,ulonglong targetB
   ulonglong loopCounter;
   longlong BasePointer;
   longlong *TargetHandle;
-  UIDword registerValue;
+  UIDword RegisterValue;
   longlong preservedRegister15;
   bool bVar6;
   bool bVar7;
@@ -401992,7 +401992,7 @@ ulonglong FUN_18089e9af(UIHandle uiContext,UIHandle dataSource,ulonglong targetB
   else {
     if (pallocatedMemory[2] == targetBuffer) {
 LAB_18089ea0f:
-      ProcessingStatus = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x41,registerValue,4,targetBuffer);
+      ProcessingStatus = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x41,RegisterValue,4,targetBuffer);
     }
     else {
       *(int *)(BasePointer + 0x77) = (int)targetBuffer;
@@ -402034,7 +402034,7 @@ LAB_18089eaae:
     else {
       if (pallocatedMemory[2] == 0) {
 LAB_18089ea93:
-        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,registerValue,registerValue,0);
+        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,RegisterValue,RegisterValue,0);
         goto LAB_18089eaae;
       }
       *(int *)(BasePointer + -0x45) = (int)targetBuffer;
@@ -402072,7 +402072,7 @@ LAB_18089ea93:
     else {
       if (pallocatedMemory[2] == 0) {
 LAB_18089eb22:
-        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,registerValue,registerValue,targetBuffer);
+        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,RegisterValue,RegisterValue,targetBuffer);
       }
       else {
         *(int *)(BasePointer + -0x45) = (int)targetBuffer;
@@ -402115,7 +402115,7 @@ LAB_18089eb3c:
     else {
       if (pallocatedMemory[2] == 0) {
 LAB_18089ebaa:
-        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,registerValue,registerValue,targetBuffer);
+        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,RegisterValue,RegisterValue,targetBuffer);
       }
       else {
         *(int *)(BasePointer + -0x45) = (int)targetBuffer;
@@ -402158,7 +402158,7 @@ LAB_18089ebc4:
     else {
       if (pallocatedMemory[2] == 0) {
 LAB_18089ec32:
-        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,registerValue,registerValue,targetBuffer);
+        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,RegisterValue,RegisterValue,targetBuffer);
       }
       else {
         *(int *)(BasePointer + -0x45) = (int)targetBuffer;
@@ -402201,7 +402201,7 @@ LAB_18089ec4c:
     else {
       if (pallocatedMemory[2] == 0) {
 LAB_18089ecba:
-        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,registerValue,registerValue,targetBuffer);
+        EventTypeCode = FUN_180769ed0(*pallocatedMemory,BasePointer + -0x49,RegisterValue,RegisterValue,targetBuffer);
       }
       else {
         *(int *)(BasePointer + -0x45) = (int)targetBuffer;
@@ -402234,9 +402234,9 @@ LAB_18089ecd4:
   }
   if ((((!bVar6) && (*(char *)(BasePointer + 0x77) == '\0')) && (*(char *)(BasePointer + 0x7f) == '\0'))
      && (!EventProcessingStatus)) {
-    registerValue = (UIDword)targetBuffer;
+    RegisterValue = (UIDword)targetBuffer;
   }
-  *(UIDword *)(preservedRegister15 + 0x38) = registerValue;
+  *(UIDword *)(preservedRegister15 + 0x38) = RegisterValue;
   bufferSize = *(uint *)(TargetHandle + 8);
 LAB_18089ed1b:
   if (bufferSize < 0x7f) {
