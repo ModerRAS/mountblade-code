@@ -19539,7 +19539,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
          (memoryResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
                                 0xf4,0), memoryResourcePointer == 0)) goto ErrorHandlingLabel;
       if (*(int *)(queueInfo + QUEUE_SIZE_OFFSET) != 0) {
-          memcpy(memoryresourcePointer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
+          memcpy(memoryResourcePointer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
                (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) << 3);
       }
     }
@@ -19548,7 +19548,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = memoryresourcePointer;
+    *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = memoryResourcePointer;
     *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = requiredCapacity;
   }
   *(int64_t *)
