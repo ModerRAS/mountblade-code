@@ -107010,9 +107010,17 @@ void ProcessUIContextDataConversion(uint uiContext,UIHandle dataSource,UIHandle 
 
 
 
- void FUN_18072ae6c(void)
-void FUN_18072ae6c(void)
-
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于UI系统的占位或初始化操作。
+ * 函数不执行任何实际操作，直接返回。
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18072ae6c - Ghidra逆向生成的函数名已语义化
+ */
+void UIEmptyOperation(void)
 {
   return;
 }
