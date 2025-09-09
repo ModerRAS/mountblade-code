@@ -12292,6 +12292,241 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define AllocateSystemData FUN_180181d80
 
 /**
+ * @brief 系统浮点数转换函数
+ * 
+ * 该函数进行系统浮点数转换操作
+ * 
+ * @return 转换后的浮点数值
+ * 
+ * @note 原始函数名：FUN_180181d80
+ */
+#define ConvertSystemFloatValue FUN_180181d80
+
+/**
+ * @brief 系统内存分配器函数
+ * 
+ * 该函数分配系统内存资源
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @return 分配的内存指针
+ * 
+ * @note 原始函数名：FUN_18018a130
+ */
+#define AllocateSystemMemory FUN_18018a130
+
+/**
+ * @brief 系统内存配置函数
+ * 
+ * 该函数配置系统内存参数
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param Parameter1 - 参数1
+ * @param Parameter2 - 参数2
+ * @param Size1 - 大小1
+ * @param Size2 - 大小2
+ * 
+ * @note 原始函数名：FUN_18018a1c0
+ */
+#define ConfigureSystemMemory FUN_18018a1c0
+
+/**
+ * @brief 系统数据处理函数
+ * 
+ * 该函数处理系统数据操作
+ * 
+ * @param SystemDataRegistry - 系统数据注册表
+ * @param Parameter1 - 参数1
+ * 
+ * @note 原始函数名：FUN_1801881a0
+ */
+#define ProcessSystemData FUN_1801881a0
+
+/**
+ * @brief 系统内存分配检查函数
+ * 
+ * 该函数检查系统内存分配状态
+ * 
+ * @return 检查结果
+ * 
+ * @note 原始函数名：FUN_180188560
+ */
+#define CheckSystemMemoryAllocation FUN_180188560
+
+/**
+ * @brief 系统内存分配器函数2
+ * 
+ * 该函数分配系统内存资源（变体2）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * @param UnicodeCodePoint - Unicode码点
+ * 
+ * @note 原始函数名：FUN_1801884d0
+ */
+#define AllocateSystemMemoryEx FUN_1801884d0
+
+/**
+ * @brief 系统内存处理函数
+ * 
+ * 该函数处理系统内存相关操作
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1801885a0
+ */
+#define ProcessSystemMemory FUN_1801885a0
+
+/**
+ * @brief 系统内存管理器函数
+ * 
+ * 该函数管理系统内存资源
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180188620
+ */
+#define ManageSystemMemory FUN_180188620
+
+/**
+ * @brief 系统内存处理函数2
+ * 
+ * 该函数处理系统内存相关操作（变体2）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param OperationBufferSize - 操作缓冲区大小
+ * @param Utf8SourcePointer - UTF8源指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * @param ReturnCode - 返回码
+ * 
+ * @note 原始函数名：FUN_1801887a0
+ */
+#define ProcessSystemMemoryEx FUN_1801887a0
+
+/**
+ * @brief 系统内存边界获取函数
+ * 
+ * 该函数获取系统内存边界
+ * 
+ * @param MemoryBoundaryEnd - 内存边界结束
+ * @return 内存边界值
+ * 
+ * @note 原始函数名：FUN_180067110
+ */
+#define GetSystemMemoryBoundary FUN_180067110
+
+/**
+ * @brief 系统内存操作函数
+ * 
+ * 该函数执行系统内存操作
+ * 
+ * @param SystemRegisterFlagBuffer - 系统寄存器标志缓冲区
+ * @param ContextHandle - 上下文句柄
+ * @param SystemDataTablePointer - 系统数据表指针
+ * @param Utf16EndPointer - UTF16结束指针
+ * @param MemoryAllocationIndex - 内存分配索引
+ * 
+ * @note 原始函数名：FUN_18018a000
+ */
+#define ExecuteSystemMemoryOperation FUN_18018a000
+
+/**
+ * @brief 系统处理状态检查函数
+ * 
+ * 该函数检查系统处理状态
+ * 
+ * @note 原始函数名：FUN_180189990
+ */
+#define CheckSystemProcessingStatus FUN_180189990
+
+/**
+ * @brief 系统内存块处理函数
+ * 
+ * 该函数处理系统内存块操作
+ * 
+ * @param StackPointer - 栈指针
+ * @param ProcessingContextPointer - 处理上下文指针
+ * @param StackArray - 栈数组
+ * 
+ * @note 原始函数名：FUN_180189600
+ */
+#define ProcessSystemMemoryBlock FUN_180189600
+
+/**
+ * @brief 系统内存指针处理函数
+ * 
+ * 该函数处理系统内存指针操作
+ * 
+ * @param SystemValidationStackArray - 系统验证栈数组
+ * @param ProcessingContextPointer - 处理上下文指针
+ * 
+ * @note 原始函数名：FUN_180188620
+ */
+#define ProcessSystemMemoryPointer FUN_180188620
+
+/**
+ * @brief 系统节点处理函数
+ * 
+ * 该函数处理系统节点操作
+ * 
+ * @return 系统节点指针
+ * 
+ * @note 原始函数名：FUN_180188560
+ */
+#define ProcessSystemNode FUN_180188560
+
+/**
+ * @brief 系统节点处理函数2
+ * 
+ * 该函数处理系统节点操作（变体2）
+ * 
+ * @param ContextHandle - 上下文句柄
+ * @param StackArray - 栈数组
+ * 
+ * @note 原始函数名：FUN_180183a20
+ */
+#define ProcessSystemNodeEx FUN_180183a20
+
+/**
+ * @brief UTF-16字符处理函数
+ * 
+ * 该函数处理UTF-16字符
+ * 
+ * @return UTF-16字符值
+ * 
+ * @note 原始函数名：FUN_1801836e0
+ */
+#define ProcessUtf16Character FUN_1801836e0
+
+/**
+ * @brief 系统数据指针处理函数
+ * 
+ * 该函数处理系统数据指针操作
+ * 
+ * @param CoreEngineSignedValue70 - 引擎签名值70
+ * @param EncodingBuffer - 编码缓冲区
+ * @return 处理结果
+ * 
+ * @note 原始函数名：FUN_180187f00
+ */
+#define ProcessSystemDataPointer FUN_180187f00
+
+/**
+ * @brief 系统内存处理函数3
+ * 
+ * 该函数处理系统内存相关操作（变体3）
+ * 
+ * @param CoreEngineSignedValue70 - 引擎签名值70
+ * @param Parameter - 参数
+ * 
+ * @note 原始函数名：FUN_1801884d0
+ */
+#define ProcessSystemMemoryEx2 FUN_1801884d0
+
+/**
  * @brief 初始化核心引擎数据结构
  * 
  * 该函数负责初始化核心引擎的数据结构，包括节点创建、内存分配和数据初始化。

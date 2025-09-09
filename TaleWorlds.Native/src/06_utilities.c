@@ -31081,7 +31081,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
   if (*(int *)(ParameterArray[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  StatusResult = ProcessSystemDataD2(*ParameterArray, SystemContext + 0x50);
+  StatusResult = ProcessSystemDataD2(*ParameterArray, SystemContext + OperationBaseOffset50);
   if ((int)StatusResult == 0) {
     if (*(int *)(ParameterArray[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -31132,7 +31132,7 @@ DataBuffer ValidateSystemStatus(int64_t SystemContext, DataBuffer *ParameterArra
                         systemDataBuffer = 0;
                       }
                       else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-                        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x5c);
+                        systemDataBuffer = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset5c);
                       }
                       else {
                         systemDataBuffer = 0x1c;
@@ -32010,7 +32010,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x5c);
+  operationResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseOffset5c);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -36326,7 +36326,7 @@ ValidationStateHandler:
     operationResult = 0;
   }
   else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-    operationResult = GetMemoryAddressA0(*dataBuffer,operationBase + 0x5c);
+    operationResult = GetMemoryAddressA0(*dataBuffer,operationBase + OperationBaseOffset5c);
   }
   if (operationResult == 0) {
       ExecutePortControlOperation(dataBuffer,systemBufferA);
@@ -40038,7 +40038,7 @@ DataBuffer ExecuteDataValidationA2(int64_t operationBase,int64_t *dataBuffer)
              (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset70), (int)systemDataBuffer == 0)) &&
             ((systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset74), (int)systemDataBuffer == 0 &&
              (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + OperationBaseOffset78), (int)systemDataBuffer == 0)))))) {
-          systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + 0x5c,0x74);
+          systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + OperationBaseOffset5c,0x74);
         }
       }
     }
@@ -41092,7 +41092,7 @@ DataBuffer InitializeDataProcessorA1(int64_t operationBase,int64_t *dataBuffer)
   if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  stackUIntBuffer[0] = *(DataWord *)(operationBase + 0x5c);
+  stackUIntBuffer[0] = *(DataWord *)(operationBase + OperationBaseOffset5c);
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))(*(DataBuffer **)(*dataBuffer + 8),stackUIntBuffer,4)
   ;
   if ((int)systemDataBuffer == 0) {

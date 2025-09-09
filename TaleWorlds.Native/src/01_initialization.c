@@ -41359,11 +41359,11 @@ ulong long ProcessSystemResourceData(long long SystemResourceManager,long long *
   ulong long systemResourceValue3;
   ulong long systemResourceValue4;
   ulong long systemResourceValue5;
-  ulong long *SystemResourceHandle1;
+  ulong long *PrimaryResourceHandle;
   ulong long systemResourceValue6;
   ulong long systemResourceValue7;
   ulong long systemResourceValue8;
-  uint32_t *systemDataPointer3;
+  uint32_t *TertiaryDataPointer;
   uint32_t *systemDataPointer4;
   long long systemHandle1;
   long long systemHandle2;
@@ -41652,7 +41652,7 @@ ResourceInitializationComplete:
 ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  ulong long *SystemResourceHandle1;
+  ulong long *PrimaryResourceHandle;
   uint *PrimaryDataPointer;
   uint systemOperationPrimaryStatus;
   uint systemOperationSecondaryStatus;
