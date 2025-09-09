@@ -131707,12 +131707,36 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：检查异常处理的状态
 #define CheckExceptionHandlingStatus8F0 Unwind_1809058f0
 
-// 原始函数名：Unwind_18090ca00 - 异常处理器配置函数a00
-// 功能：配置异常处理器的参数
+/**
+ * @brief 异常处理器配置函数A00
+ * 
+ * 配置异常处理器的参数和选项，设置异常处理的环境和上下文。
+ * 该函数负责：
+ * 1. 配置异常处理器的参数
+ * 2. 设置异常处理的选项和标志
+ * 3. 初始化异常处理的环境
+ * 4. 确保异常处理器的正确配置
+ * 
+ * @note 原始函数名：Unwind_18090ca00
+ * @warning 异常处理器配置必须在适当的上下文中进行
+ * @see CheckExceptionHandlingStatus8F0, InitializeExceptionContextEnvironment
+ */
 #define ConfigureExceptionHandlerA00 Unwind_18090ca00
 
-// 原始函数名：Unwind_18090ca10 - 异常处理状态重置函数a10
-// 功能：重置异常处理的状态
+/**
+ * @brief 异常处理状态重置函数A10
+ * 
+ * 重置异常处理的状态，清除异常处理的标志和计数器，恢复到初始状态。
+ * 该函数负责：
+ * 1. 重置异常处理的状态标志
+ * 2. 清除异常处理的计数器
+ * 3. 恢复异常处理到初始状态
+ * 4. 确保异常处理状态的正确重置
+ * 
+ * @note 原始函数名：Unwind_18090ca10
+ * @warning 异常处理状态重置必须在适当的上下文中进行
+ * @see ConfigureExceptionHandlerA00, CheckExceptionHandlingStatus8F0
+ */
 #define ResetExceptionHandlingStateA10 Unwind_18090ca10
 
 // 原始函数名：Unwind_18090ca20 - 异常处理初始化函数a20
