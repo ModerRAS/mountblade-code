@@ -3927,7 +3927,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
 // 功能：在偏移量0x38处调用异常处理器
-#define InvokeExceptionHandlerAtOffset38 Unwind_180906b80
+#define InvokeExceptionHandlerAtPrimaryPosition Unwind_180906b80
 
 // 原始函数名：Unwind_180906b90 - 系统资源初始化和异常处理器调用函数B90
 // 功能：初始化系统资源并在偏移量0x58处调用异常处理器
