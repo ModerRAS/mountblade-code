@@ -106286,20 +106286,33 @@ void CalculateDataAmplitudeAndBitOffset(int *uiContext,int *dataSource,short *ta
 
 
 
- void FUN_18072aa36(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
-void FUN_18072aa36(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
+ /**
+ * @brief 计算音频信号幅度和能量
+ * 
+ * 该函数负责计算音频信号的幅度和能量值，通过对信号样本进行平方和运算
+ * 来获取信号的整体能量水平，用于音频处理和音量控制。
+ * 
+ * @param uiContext UI上下文指针，用于存储计算结果
+ * @param dataSource 数据源指针，用于存储位移参数
+ * @param targetBuffer 目标缓冲区，包含要处理的音频样本数据
+ * @param bufferSize 缓冲区大小，指定要处理的样本数量
+ * 
+ * @note 原始函数名：FUN_18072aa36
+ * @note 该函数主要用于音频信号处理和音量计算
+ */
+void CalculateAudioSignalAmplitudeAndEnergy(int *uiContext,int *dataSource,short *targetBuffer,uint bufferSize)
 
 {
-  short *psVar1;
-  short sVar2;
-  uint EventTypeCode;
-  byte bVar4;
-  ulonglong loopCounter;
-  uint maxProcessingCount;
-  short *psVar7;
-  int localInt8;
-  int localInt9;
-  int processedCount;
+  short *nextSamplePointer;
+  short currentSample;
+  uint samplePairCount;
+  byte bitShiftAmount;
+  ulonglong processingCounter;
+  uint maxAmplitude;
+  short *bufferPointer;
+  int amplitudeAccumulator;
+  int calculatedShift;
+  int processedSampleCount;
   
   if (bufferSize == 0) {
     localInt9 = 0x20;
