@@ -28598,10 +28598,10 @@ void InitializeUIRenderingFunctions(void)
     componentIndex = cpuid_Version_info(1);
     EventTypeCode = *(uint *)(componentIndex + 0xc);
     EventProcessingStatus = (EventTypeCode & 1) != 0;
-    bVar6 = (EventTypeCode >> 9 & 1) != 0;
-    bVar7 = (EventTypeCode >> 0x13 & 1) != 0;
-    IsValidationComplete = false;
-    bVar4 = false;
+    HasSSE41Support = (EventTypeCode >> 9 & 1) != 0;
+    HasAVXSupport = (EventTypeCode >> 0x13 & 1) != 0;
+    HasOSXSAVESupport = false;
+    HasAVX2Support = false;
     if (((EventTypeCode & 0x18000000) == 0x18000000) && ((in_XCR0 & 6) == 6)) {
       IsValidationComplete = true;
       bVar4 = false;
