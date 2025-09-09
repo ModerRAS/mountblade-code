@@ -60004,6 +60004,17 @@ void CleanupExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
+/**
+ * @brief 清理异常处理器D
+ * 
+ * 该函数负责清理异常处理器的资源，包括内存指针管理和引用计数处理
+ * 主要用于系统资源回收和内存管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d0a0
+ */
 void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60040,6 +60051,19 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理异常处理器E
+ * 
+ * 该函数负责清理异常处理器的资源，支持多个操作标志参数
+ * 主要用于复杂的异常处理场景和资源清理工作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的异常数据信息
+ * @param operationFlagA 操作标志A，用于控制清理行为的标志位
+ * @param operationFlagB 操作标志B，用于控制清理行为的标志位
+ * 
+ * @note 原始函数名：Unwind_18090d0c0
+ */
 void CleanupExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -60060,6 +60084,17 @@ void CleanupExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
+/**
+ * @brief 清理异常处理器F
+ * 
+ * 该函数负责清理异常处理器的资源，类似于CleanupExceptionHandlerD
+ * 主要用于系统资源回收和内存管理，使用不同的偏移量
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d0e0
+ */
 void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
 
 {
