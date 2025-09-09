@@ -10106,16 +10106,21 @@ void ExecuteUISystemInterrupt(void)
 
 
 
- 转换UI字符串
- 转换UI系统中的字符串数据，包括字符编码转换
+ /**
+ * @brief 转换UI字符串
+ * 
+ * 转换UI系统中的字符串数据，包括字符编码转换
  * 和缓冲区管理。主要用于多语言支持和字符串处理
-  uiContext UI上下文指针
- *  dataSource 数据源指针
- *  targetBuffer 目标缓冲区
- *  bufferSize 缓冲区大小
-  转换后的字符串指针
-  原始函数名: ConvertUIString
- UIHandle ConvertUIString(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return 转换后的字符串指针
+ * 
+ * @note 原始函数名: ConvertUIString
+ */
+UIHandle ConvertUIString(UIHandle *uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   UIHandle conversionResult;
