@@ -18415,15 +18415,15 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_180899d90 - 验证数据安全性并返回验证码
 // 功能：验证数据的安全性并返回安全验证码
-#define ValidateDataSecurityAndReturnCode FUN_180899d90
+#define ExecuteDataSecurityValidationAndReturnCode FUN_180899d90
 
 // 原始函数名：FUN_18089a370 - 处理数据并返回处理值
 // 功能：处理数据并返回处理后的值，支持多种数据类型
-#define ProcessDataAndReturnProcessedValue FUN_18089a370
+#define ExecuteDataProcessingAndReturnResult FUN_18089a370
 
 // 原始函数名：FUN_18089cc80 - 处理数据并返回数据块
 // 功能：处理数据并返回处理后的数据块，支持大数据处理
-#define ProcessDataAndReturnDataBlock FUN_18089cc80
+#define ExecuteDataProcessingAndReturnDataBlock FUN_18089cc80
 
 // 原始函数名：FUN_1808ddf80 - 清理系统状态并释放资源
 // 功能：清理系统状态并释放所有占用的资源

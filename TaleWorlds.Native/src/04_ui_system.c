@@ -96142,8 +96142,8 @@ LAB_1807217c9:
 
 
 
- void FUN_18072174a(void)
-void FUN_18072174a(void)
+ void ProcessUISystemStateManager(void)
+void ProcessUISystemStateManager(void)
 
 {
   int unmodifiedEBX;
@@ -104176,8 +104176,8 @@ void TransferUIData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer
 
 
 
- void FUN_18072a9c0(int *uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,int resultPointer)
-void FUN_18072a9c0(int *uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,int resultPointer)
+ void ConvertUIDataFormat(int *uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,int resultPointer)
+void ConvertUIDataFormat(int *uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,int resultPointer)
 
 {
   int processingResult;
