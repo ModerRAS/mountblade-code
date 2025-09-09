@@ -5378,3 +5378,149 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
     return NetworkOperationFailure;  // 处理失败
   }
 }
+
+/**
+ * @brief 处理网络连接状态
+ * 
+ * 该函数负责处理网络连接的状态变化，包括连接建立、维护和断开
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @param ConnectionStatus 连接状态指针
+ * @param TimeoutValue 超时值
+ * @return NetworkHandle 返回网络句柄
+ */
+NetworkHandle ProcessNetworkConnectionStatus(NetworkConnectionContext *NetworkConnectionContext, NetworkConnectionStatus *ConnectionStatus, uint32_t TimeoutValue)
+{
+    NetworkHandle connectionHandle;
+    uint32_t validationStatus;
+    
+    // 验证连接上下文有效性
+    if (NetworkConnectionContext == NULL || ConnectionStatus == NULL) {
+        return NetworkErrorInvalidHandle;
+    }
+    
+    // 检查连接状态
+    if (*ConnectionStatus & NetworkStatusConnectedFlag) {
+        // 连接已建立，执行连接维护操作
+        validationStatus = ValidateConnectionIntegrity(NetworkConnectionContext);
+        
+        if (validationStatus == NetworkValidationSuccess) {
+            // 连接状态良好，更新连接时间戳
+            UpdateConnectionTimestamp(NetworkConnectionContext);
+            connectionHandle = NetworkConnectionContext->connectionHandle;
+        } else {
+            // 连接验证失败，断开连接
+            TerminateNetworkConnection(NetworkConnectionContext);
+            connectionHandle = NetworkErrorConnectionFailed;
+        }
+    } else {
+        // 连接未建立，尝试建立新连接
+        connectionHandle = EstablishNetworkConnection(NetworkConnectionContext, TimeoutValue);
+        
+        if (connectionHandle != NetworkErrorConnectionFailed) {
+            // 连接成功，更新状态
+            *ConnectionStatus |= NetworkStatusConnectedFlag;
+            NetworkConnectionContext->connectionHandle = connectionHandle;
+        }
+    }
+    
+    return connectionHandle;
+}
+
+/**
+ * @brief 验证连接完整性
+ * 
+ * 验证网络连接的完整性和安全性
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @return uint32_t 返回验证结果
+ */
+static uint32_t ValidateConnectionIntegrity(NetworkConnectionContext *NetworkConnectionContext)
+{
+    uint32_t integrityCheck;
+    uint32_t securityValidation;
+    
+    // 执行数据完整性检查
+    integrityCheck = PerformDataIntegrityCheck(NetworkConnectionContext);
+    
+    // 执行安全性验证
+    securityValidation = PerformSecurityValidation(NetworkConnectionContext);
+    
+    // 综合验证结果
+    if (integrityCheck == NetworkValidationSuccess && 
+        securityValidation == NetworkValidationSuccess) {
+        return NetworkValidationSuccess;
+    }
+    
+    return NetworkValidationFailure;
+}
+
+/**
+ * @brief 更新连接时间戳
+ * 
+ * 更新网络连接的最后活动时间戳
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void UpdateConnectionTimestamp(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 获取当前系统时间
+    uint64_t currentTime = GetCurrentSystemTime();
+    
+    // 更新连接时间戳
+    NetworkConnectionContext->lastActivityTime = currentTime;
+    NetworkConnectionContext->heartbeatTimestamp = currentTime;
+}
+
+/**
+ * @brief 终止网络连接
+ * 
+ * 安全地终止网络连接并释放相关资源
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ */
+static void TerminateNetworkConnection(NetworkConnectionContext *NetworkConnectionContext)
+{
+    // 发送连接终止通知
+    SendConnectionTerminationNotification(NetworkConnectionContext);
+    
+    // 释放连接资源
+    ReleaseConnectionResources(NetworkConnectionContext);
+    
+    // 清理连接状态
+    NetworkConnectionContext->connectionStatus = 0;
+    NetworkConnectionContext->connectionHandle = NetworkErrorInvalidHandle;
+}
+
+/**
+ * @brief 建立网络连接
+ * 
+ * 建立新的网络连接
+ * 
+ * @param NetworkConnectionContext 网络连接上下文指针
+ * @param TimeoutValue 超时值
+ * @return NetworkHandle 返回网络句柄
+ */
+static NetworkHandle EstablishNetworkConnection(NetworkConnectionContext *NetworkConnectionContext, uint32_t TimeoutValue)
+{
+    NetworkHandle newHandle;
+    uint32_t connectionResult;
+    
+    // 初始化连接参数
+    InitializeConnectionParameters(NetworkConnectionContext);
+    
+    // 执行连接建立过程
+    connectionResult = PerformConnectionHandshake(NetworkConnectionContext, TimeoutValue);
+    
+    if (connectionResult == NetworkOperationSuccess) {
+        // 连接成功，生成连接句柄
+        newHandle = GenerateConnectionHandle(NetworkConnectionContext);
+        
+        // 初始化连接安全上下文
+        InitializeSecurityContext(NetworkConnectionContext);
+        
+        return newHandle;
+    }
+    
+    return NetworkErrorConnectionFailed;
+}
