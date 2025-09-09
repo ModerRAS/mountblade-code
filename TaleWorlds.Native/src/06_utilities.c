@@ -4032,15 +4032,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_180906ec0 - 异常上下文重置函数EC0
 // 功能：重置异常上下文处理器状态（偏移量0x40）
-#define ResetExceptionContextOffset40 Unwind_180906ec0
+#define ResetExceptionContextAtTertiaryOffset Unwind_180906ec0
 
 // 原始函数名：Unwind_180906ed0 - 异常上下文重置函数ED0
 // 功能：重置异常上下文处理器状态（偏移量0x48）
-#define ResetExceptionContextOffset48 Unwind_180906ed0
+#define ResetExceptionContextAtQuadOffset Unwind_180906ed0
 
 // 原始函数名：Unwind_180906ee0 - 异常上下文重置函数EE0
 // 功能：重置异常上下文处理器状态（偏移量0x50）
-#define ResetExceptionContextOffset50EE0 Unwind_180906ee0
+#define ResetExceptionContextAtPentaOffset Unwind_180906ee0
 
 // 原始函数名：Unwind_180906ef0 - 异常处理器调用函数EF0
 // 功能：调用异常处理器并传递操作标志
@@ -4048,19 +4048,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_180906f00 - 异常上下文重置函数F00
 // 功能：重置异常上下文处理器状态（偏移量0x58）
-#define ResetExceptionContextOffset58 Unwind_180906f00
+#define ResetExceptionContextAtHexaOffset Unwind_180906f00
 
 // 原始函数名：Unwind_180906f10 - 异常上下文重置函数F10
 // 功能：重置异常上下文处理器状态（偏移量0x60）
-#define ResetExceptionContextOffset60 Unwind_180906f10
+#define ResetExceptionContextAtHeptaOffset Unwind_180906f10
 
 // 原始函数名：Unwind_180906f20 - 异常上下文重置函数F20
 // 功能：重置异常上下文处理器状态（偏移量0x68）
-#define ResetExceptionContextOffset68 Unwind_180906f20
+#define ResetExceptionContextAtOctaOffset Unwind_180906f20
 
 // 原始函数名：Unwind_180907090 - 异常处理器调用函数090
 // 功能：调用异常处理器并传递操作标志
-#define InvokeExceptionHandlerWithFlags090 Unwind_180907090
+#define InvokeExceptionHandlerWithPrimaryFlags Unwind_180907090
 
 // 原始函数名：Unwind_1809070a0 - 异常处理器调用函数0A0
 // 功能：调用异常处理器并传递操作标志
@@ -4068,15 +4068,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_1809070b0 - 异常上下文重置函数0B0
 // 功能：重置异常上下文处理器状态（偏移量0x70）
-#define ResetExceptionContextOffset70 Unwind_1809070b0
+#define ResetExceptionContextAtNonaOffset Unwind_1809070b0
 
 // 原始函数名：Unwind_1809070c0 - 异常上下文重置函数0C0
 // 功能：重置异常上下文处理器状态（偏移量0x78）
-#define ResetExceptionContextOffset78 Unwind_1809070c0
+#define ResetExceptionContextAtDecaOffset Unwind_1809070c0
 
 // 原始函数名：Unwind_180907180 - 异常上下文重置函数180
 // 功能：重置异常上下文处理器状态（偏移量0x80）
-#define ResetExceptionContextOffset80 Unwind_180907180
+#define ResetExceptionContextAtUltimaOffset Unwind_180907180
 
 // 原始函数名：Unwind_1809071d0 - 异常处理器调用函数1D0
 // 功能：调用异常处理器并传递操作标志
@@ -4084,7 +4084,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：Unwind_180907200 - 异常上下文重置函数200
 // 功能：重置异常上下文处理器状态（偏移量0x88）
-#define ResetExceptionContextOffset88 Unwind_180907200
+#define ResetExceptionContextAtFinalOffset Unwind_180907200
 
 /**
  * @brief 系统状态处理函数A0
