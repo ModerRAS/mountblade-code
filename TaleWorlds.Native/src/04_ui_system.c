@@ -2473,7 +2473,7 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag22 _DAT_180d4a8c0              // UI全局状态标志22
 #define UIGlobalStatusFlag23 _DAT_180d4a8a8              // UI全局状态标志23
 
- UI系统向量操作掩码和常数定义
+ // UI系统向量操作掩码和常数定义
 #define UIVectorOperationMask0 _DAT_180946ec0
 #define UIVectorOperationMask1 _DAT_180946ed0
 #define UIVectorOperationMask2 _DAT_180946ee0
