@@ -49945,9 +49945,9 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   
   SystemMaxOperationCountSecondary = 0xfffffffffffffffe;
   SystemContextValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemMemoryEncryptionBuffer;
-  char CharacterOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
+  char ResourceNameCharacter = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   do {
-    if ((charOutput == '\0') || (SystemContextReference = 0, *(char *)(SystemResourceManager + SystemInitializationOffset0x400) != '\0')) {
+    if ((ResourceNameCharacter == '\0') || (SystemContextReference = 0, *(char *)(SystemResourceManager + SystemInitializationOffset0x400) != '\0')) {
         ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemMemoryEncryptionBuffer);
     }
     SystemSecondaryGlobalDataReferencePtr = &SystemMemoryAllocatorTemplate;
@@ -49968,7 +49968,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     ResourceDataIndexCount = *(long long *)(SystemResourceManager + 0x3d0) - ResourceDataIndexPrimary;
     SystemAllocationFlags = ResourceDataIndexCount >> 0x3f;
     if (ResourceDataIndexCount / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
-      charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
+      ResourceNameCharacter = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
       if (SystemAvailabilityFlag == '\0') {
         ResourceDataIndexPrimary = SystemResourceManager + 0x378;
         SystemMemoryAlignment = 0;
@@ -49996,7 +49996,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         if ((SystemInitializationStatusFlags & SystemMemoryFlagMask) != 0) {
           ThrowSystemError(SystemInitializationStatusFlags);
         }
-        charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
+        ResourceNameCharacter = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
         if (SystemAvailabilityFlag == '\0') {
           SystemInitializationStatusPrimary = _Mtx_unlock(ResourceDataIndexPrimary);
           if (SystemInitializationStatusPrimary != 0) {
