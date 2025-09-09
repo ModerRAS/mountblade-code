@@ -100253,7 +100253,7 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
     uiProcessingResult = uiContext[4] + uiCompareResult;
     uiValidationResult = uiContext[5];
     uiContext[4] = uiCalculatedValue + uiCompareResult;
-    uiCompareResult = TempInt4 - uiValidationResult;
+    uiCompareResult = uiProcessingResult - uiValidationResult;
     uiCompareResult = (int)((ulonglong)((longlong)uiCompareResult * -0x270a) >> 0x10) + uiCompareResult;
     uiContext[5] = TempInt4 + uiCompareResult;
     uiValidationResult = (uiValidationResult + uiCompareResult >> 9) + 1 >> 1;
