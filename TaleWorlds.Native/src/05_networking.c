@@ -593,7 +593,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkQueueInitialized 0x01                               // 队列已初始化
 #define NetworkCallbackInvalid 0xFFFFFFFF                           // 无效回调句柄
 #define NetworkTimeoutInvalid 0xFFFFFFFF                            // 无效超时句柄
-#define InvalidCallbackHandle CallbackInvalid              // 无效回调句柄别名
+#define InvalidCallbackHandle NetworkCallbackInvalid              // 无效回调句柄别名
 #define InvalidTimeoutHandle TimeoutInvalid                 // 无效超时句柄别名
 #define NetworkContextInitialized 0x01                              // 上下文已初始化
 #define NetworkReliabilityHigh 0x01                                // 高可靠性
