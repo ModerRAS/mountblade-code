@@ -50125,15 +50125,15 @@ void InitializeSystemResourceExceptionHandler(DataBuffer exceptionContext,int64_
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x480) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset480) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x488) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -50593,15 +50593,15 @@ void InitializeExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x480) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset480) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x488) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -52710,14 +52710,14 @@ void HandleExceptionWithFlagsE5(DataBuffer operationBase,int64_t dataBuffer,Data
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -54691,14 +54691,14 @@ void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffe
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4c0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset4b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset4a0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
