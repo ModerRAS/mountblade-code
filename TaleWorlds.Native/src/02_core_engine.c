@@ -250232,7 +250232,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
           }
           else {
             LOCK();
-            Utf16Char = *CharacterStatusBufferCurrent;
+            ProcessedUtf16Character = *CharacterStatusBufferCurrent;
             *CharacterStatusBufferCurrent = *CharacterStatusBufferCurrent + InputDataLength;
             UNLOCK();
             MemoryAllocationCounter = (unsigned long long)(Utf16Char >> 0xb);
