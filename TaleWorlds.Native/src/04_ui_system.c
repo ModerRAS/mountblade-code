@@ -1122,6 +1122,14 @@ typedef enum {
 #define ProcessUIFloatDataValidation FUN_180712cdf
 #define ProcessUIFloatDataProcessing FUN_180712e3f
 
+// UI系统变换数据处理函数
+#define ProcessUITransformData FUN_18071f88a
+#define ProcessUITransformDataAdvanced FUN_18071fb5a
+#define ExecuteUIRenderTaskWrapper FUN_18071fb3f
+#define ProcessUITransformCoefficients FUN_18071e580
+#define ProcessUITransformDataComplex FUN_18071ebe0
+#define ProcessUITransformDataWithScale FUN_18071f270
+
 // UI系统数据指针美化
 #define UIDataBufferRegistryPointer (void*)0x180741cf0
 #define UIResourceTableRegistryPointer (void*)0x180741d00
