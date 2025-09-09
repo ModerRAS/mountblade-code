@@ -20310,18 +20310,18 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   uint vectorZRawData;
   uint vectorWRawData;
   DataBuffer validationResult;
-  int isVector20Infinity;
-  int isVector1cInfinity;
-  int isVector18Infinity;
-  int isVector2cInfinity;
+  int isVectorOffset20Infinity;
+  int isVectorOffset1cInfinity;
+  int isVectorOffset18Infinity;
+  int isVectorOffset2cInfinity;
   int64_t targetDataBuffer;
   int64_t systemContextArray [2];
   uint colorData;
   float vectorYFloatComponent;
-  int isVector28Infinity;
-  int isVectorXInfinity;
-  int isVectorYInfinity;
-  int isVectorZInfinity;
+  int isVectorOffset28Infinity;
+  int isVectorComponentXInfinity;
+  int isVectorComponentYInfinity;
+  int isVectorComponentZInfinity;
   
   targetDataBuffer = 0;
   isVector18Infinity = 0;
@@ -115650,14 +115650,6 @@ void ExecuteExceptionHandlerAtOffset238(DataBuffer operationBase,int64_t dataBuf
  * @brief 异常处理器调用函数5E0
  * 
  * 该函数负责在指定偏移量600处调用异常处理器。
- * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
- * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
- * 
- * @brief 异常处理器调用函数5e0
- * 
- * 该函数负责在指定偏移量0x600处调用异常处理器。
  * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
  * 
  * @param operationBase 操作基础数据缓冲区
