@@ -10059,26 +10059,26 @@ int ProcessUIEvent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   int stackInt20;
   
   InitializeUIDataBuffer(&pstackUInt30,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
-  characterPosition = stackLong28;
-  if (stackInt20 == 0x19) {
-    processingResult = strcmp(stackLong28,&UIStringConstant1);
-    if (processingResult == 0) {
-      processingResult = 0x84;
+  UICharacterPosition = UIEventCharacterPosition;
+  if (UIEventTypeCode == 0x19) {
+    UIProcessingResult = strcmp(UIEventCharacterPosition,&UIStringConstant1);
+    if (UIProcessingResult == 0) {
+      UIProcessingResult = 0x84;
       goto LAB_EventTypeResultReturn;
     }
   }
-  else if (stackInt20 == 0x18) {
-    processingResult = strcmp(stackLong28,&UIStringConstant2);
-    if (processingResult == 0) {
-      processingResult = 0x10;
+  else if (UIEventTypeCode == 0x18) {
+    UIProcessingResult = strcmp(UIEventCharacterPosition,&UIStringConstant2);
+    if (UIProcessingResult == 0) {
+      UIProcessingResult = 0x10;
       goto LAB_EventTypeResultReturn;
     }
 LAB_UIStringCompareStart:
-    bufferPtr = &UIStringConstant3;
+    UIBufferPointer = &UIStringConstant3;
 LAB_UIStringCompareLoop:
-    processingResult = strcmp(characterPosition,bufferPtr);
-    if (processingResult == 0) {
-      processingResult = 4;
+    UIProcessingResult = strcmp(UICharacterPosition,UIBufferPointer);
+    if (UIProcessingResult == 0) {
+      UIProcessingResult = 4;
       goto LAB_EventTypeResultReturn;
     }
   }
