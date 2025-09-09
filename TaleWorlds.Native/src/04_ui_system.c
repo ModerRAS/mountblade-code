@@ -10122,13 +10122,13 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
   UIDword uiTransformCoefficient25;
   
   if (*(int *)(dataSource + 0x10) != 0) {
-    resultPointer1 = (UIHandle *)0x0;
-    resultPointer2 = (UIHandle *)0x0;
-    TransformCoefficient21 = 0;
-    TransformCoefficient22 = 3;
-    stackArray[0] = 10;
+    uiResultPointer1 = (UIHandle *)0x0;
+    uiResultPointer2 = (UIHandle *)0x0;
+    uiTransformCoefficient21 = 0;
+    uiTransformCoefficient22 = 3;
+    uiParameterStack[0] = 10;
     if (*(longlong *)(dataSource + 8) != 0) {
-      ProcessUIData(dataSource,&resultPointer1,stackArray);
+      ProcessUIData(dataSource,&uiResultPointer1,uiParameterStack);
     }
     elementCount = (longlong)resultPointer2 - (longlong)resultPointer1 >> 5;
     sourceDataBlock = resultPointer1;
