@@ -8133,9 +8133,9 @@ UIHandle GetUIStatusFlag(void)
 void HandleUIEvent(UIFunctionPtr *eventHandler, UIHandle eventContext, longlong eventData, UIHandle additionalData)
 
 {
-  UIHandle dataBuffer;
-  code *streamHandler;
-  char *threadFlag;
+  UIHandle eventDataBuffer;
+  UIFunctionPtr *standardStreamHandler;
+  char *threadProcessingFlag;
   
   if (((eventHandler != (UIFunctionPtr *)0x0) && (streamHandler = (UIFunctionPtr *)__acrt_iob_func(1), eventHandler != streamHandler)) &&
      (streamHandler = (UIFunctionPtr *)__acrt_iob_func(2), eventHandler != streamHandler)) {
@@ -35022,17 +35022,17 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   int processingResult7;
   int processingResultCount;
   int loopTerminationFlag;
-  uint astackUInta8 [2];
-  ulonglong stackUInta0;
-  longlong stackLong98;
-  longlong stackLong90;
-  longlong stackLong88;
-  ulonglong stackUInt80;
-  longlong stackLong78;
-  longlong stackLong70;
-  longlong stackLong68;
-  longlong stackLong60;
-  longlong stackLong58;
+  uint uiRenderContextArray [2];
+  ulonglong uiStackCounterA0;
+  longlong uiStackPointer98;
+  longlong uiStackPointer90;
+  longlong uiStackPointer88;
+  ulonglong uiStackCounter80;
+  longlong uiStackPointer78;
+  longlong uiStackPointer70;
+  longlong uiStackPointer68;
+  longlong uiStackPointer60;
+  longlong uiStackPointer58;
   
   componentStatePointer = resultPointer;
   allocatedMemory5 = *(longlong *)(uiBufferData + 0x1e98);
@@ -200034,6 +200034,18 @@ LAB_180786862:
 
 
 
+/**
+ * @brief 验证UI上下文数据
+ * 
+ * 验证UI上下文数据的有效性和完整性，包括：
+ * - 检查上下文句柄的有效性
+ * - 验证颜色缓冲区的状态
+ * - 处理内存分配和释放
+ * - 确保数据一致性
+ * 
+ * @param uiContext UI上下文数据
+ * @return int 验证结果状态码，0表示成功，非0表示失败
+ */
 int FUN_180786716(UIDword uiContext)
 
 {
@@ -200098,7 +200110,16 @@ LAB_180786862:
 
 
 
- void FUN_180786877(void)
+ /**
+ * @brief 清理UI资源
+ * 
+ * 释放UI系统占用的资源，包括：
+ * - 释放内存分配
+ * - 清理缓冲区数据
+ * - 重置系统状态
+ * 
+ * 该函数不返回，直接调用资源释放函数
+ */
 void FUN_180786877(void)
 
 {
@@ -200111,7 +200132,21 @@ void FUN_180786877(void)
 
 
 
- void FUN_1807868e0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int *bufferSize,int *resultPointer)
+ /**
+ * @brief 处理UI数据传输
+ * 
+ * 在数据源和目标缓冲区之间传输UI数据，包括：
+ * - 验证数据缓冲区的有效性
+ * - 执行内存拷贝操作
+ * - 处理数据格式转换
+ * - 确保数据完整性
+ * 
+ * @param uiContext UI上下文数据
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ */
 void FUN_1807868e0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,int *bufferSize,int *resultPointer)
 
 {
@@ -299990,7 +300025,18 @@ void FUN_18084b6c0(longlong uiContext,longlong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084b760(longlong uiContext,longlong dataSource)
+ /**
+ * @brief 处理UI渲染任务的验证和执行
+ * 
+ * 该函数负责验证UI渲染任务的有效性，并根据条件执行相应的渲染操作。
+ * 函数会检查数据源中的浮点值，并根据结果决定是否执行渲染任务。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含渲染所需的数据
+ * 
+ * @note 原始函数名：FUN_18084b760
+ * @warning 此函数不返回，会直接调用ExecuteUIRenderTask
+ */
 void FUN_18084b760(longlong uiContext,longlong dataSource)
 
 {
@@ -300000,6 +300046,14 @@ void FUN_18084b760(longlong uiContext,longlong dataSource)
   byte abStack_48 [8];
   UIByte astackUInt40 [40];
   ulonglong stackUInt18;
+  
+  // 变量语义化定义
+  int RenderTaskValidationResult = processingResult;
+  longlong UIComponentMemoryIndex = componentIndex;
+  UIByte EncryptionBuffer68 [32] = astackUInt68;
+  byte RenderStatusBuffer48 [8] = abStack_48;
+  UIByte ComponentDataBuffer40 [40] = astackUInt40;
+  ulonglong EncryptedTaskHandle = stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt68;
   if (1.1920929e-07 < *(float *)(dataSource + 0x94)) {
