@@ -130225,7 +130225,6 @@ void SetDefaultExceptionHandlerB(void)
 
 
 
-942fc0(void)
 // 函数: void InitializeExceptionHandler(void)
 // 功能：初始化异常处理器，设置默认异常处理回调
 // 返回值：无
