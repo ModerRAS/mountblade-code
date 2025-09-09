@@ -1661,8 +1661,8 @@ void* SystemSecurityModuleTemplate;  // 系统安全模块模板
 
 // 系统内存分配表条目 - 用于存储内存分配的结果
 void* SystemMemoryAllocationPrimaryEntry;    // 系统内存分配表主条目
-void* SystemMemoryAllocationSecondaryEntry;  // 系统内存分配表次条目
-void* SystemMemoryAllocationTertiaryEntry;   // 系统内存分配表第三条目
+void* MemoryAllocationSecondaryEntry;  // 系统内存分配表次条目
+void* MemoryAllocationTertiaryEntry;   // 系统内存分配表第三条目
 void* SystemMemoryAllocationTableEntryQuaternary; // 系统内存分配表条目第四个
 void* SystemMemoryAllocationTableEntryQuinary;    // 系统内存分配表条目第五个
 void* SystemMemoryAllocationTableEntrySenary;    // 系统内存分配表条目第六个
@@ -10027,8 +10027,8 @@ void InitializeSystemExtensionManager(void)
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigurationValue = 0x16; // 配置缓冲区大小 (22字节)
-  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantA,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationSecondaryEntry = MemoryAllocationFunction(&ParameterPointer);
+  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantPrimary,SystemRegisterValue,InvalidHandleValue);
+  MemoryAllocationSecondaryEntry = MemoryAllocationFunction(&ParameterPointer);
   return;
 }
 
@@ -10051,8 +10051,8 @@ void InitializeSystemLibraryManager(void)
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigurationValue = 0x16;
-  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantB,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTertiaryEntry = MemoryAllocationFunction(&ParameterPointer);
+  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantSecondary,SystemRegisterValue,InvalidHandleValue);
+  MemoryAllocationTertiaryEntry = MemoryAllocationFunction(&ParameterPointer);
   return;
 }
 
@@ -19525,7 +19525,7 @@ CallbackTableInitializationComplete:
  * 
  * @note 使用SystemDataBufferMainTemplateA作为模板数据
  * @note 字符串缓冲区大小为0x17(23)字节
- * @note 使用SystemStringConstantBufferTemplateD作为字符串常量
+ * @note 使用SystemStringConstantSecondaryufferTemplateD作为字符串常量
  */
 void InitializeEngineModuleD(void)
 
@@ -19540,7 +19540,7 @@ void InitializeEngineModuleD(void)
   SystemBufferPointer = SystemStringBuffer;
   SystemStringBuffer[0] = 0;
   SystemBufferSize = 0x17;
-  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantBufferTemplateD, SystemRegisterParameter, InvalidHandleValue);
+  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantSecondaryufferTemplateD, SystemRegisterParameter, InvalidHandleValue);
   SystemMemoryRegionCacheD = MemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }
@@ -19560,7 +19560,7 @@ void InitializeEngineModuleD(void)
  * 
  * @note 使用SystemDataBufferMainTemplateA作为模板数据
  * @note 字符串缓冲区大小为0x11(17)字节
- * @note 使用SystemStringConstantBufferCapacityValueE作为字符串常量
+ * @note 使用SystemStringConstantSecondaryufferCapacityValueE作为字符串常量
  */
 void InitializeEngineModuleE(void)
 
@@ -19575,7 +19575,7 @@ void InitializeEngineModuleE(void)
   SystemBufferPointer = SystemStringBuffer;
   SystemStringBuffer[0] = 0;
   SystemBufferSize = 0x11;
-  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantBufferCapacityValueE, SystemRegisterParameter, InvalidHandleValue);
+  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantSecondaryufferCapacityValueE, SystemRegisterParameter, InvalidHandleValue);
   SystemMemoryRegionCacheE = MemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }
@@ -72545,8 +72545,8 @@ long long *SystemModuleExecutionCounter;                     // 系统模块执�
 void* SystemStringConstantErrorMessageCritical;
 void* SystemStringConstantErrorMessageWarning;
 void* SystemStringConstantConfigPathDefault;
-void* SystemStringConstantBufferTemplateStandard;
-void* SystemStringConstantBufferCapacityValueDefault;
+void* SystemStringConstantSecondaryufferTemplateStandard;
+void* SystemStringConstantSecondaryufferCapacityValueDefault;
 void* SystemStringConstantComputerNameError;
 void* SystemStringConstantUserNameError;
 void* SystemStringConstantLibraryNameDefault;
