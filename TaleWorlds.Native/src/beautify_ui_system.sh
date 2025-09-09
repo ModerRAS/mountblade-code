@@ -55,7 +55,27 @@ sed -i 's/FUN_180707950/UpdateUIAnimationState/g' "$TEMP_FILE"
 sed -i 's/FUN_180707988/ProcessUILayout/g' "$TEMP_FILE"
 sed -i 's/FUN_1807079df/GetUILayoutData/g' "$TEMP_FILE"
 
-# 4. 处理local_变量名
+# UI上下文数据传输相关函数 (180786xxx)
+sed -i 's/FUN_180786cc3/ProcessUIContextDataTransfer/g' "$TEMP_FILE"
+sed -i 's/FUN_180787080/ValidateUIContextTransfer/g' "$TEMP_FILE"
+sed -i 's/FUN_1807872c0/ProcessUIContextDataWithMetrics/g' "$TEMP_FILE"
+
+# UI事件数据传输相关函数 (1807edfxxx)
+sed -i 's/FUN_1807edf30/ValidateUIEventDataTransfer/g' "$TEMP_FILE"
+sed -i 's/FUN_180772cf0/CleanupUIEventResources/g' "$TEMP_FILE"
+sed -i 's/FUN_180742250/ReleaseUIContextMemory/g' "$TEMP_FILE"
+sed -i 's/FUN_1807ef140/ProcessUIEventValidation/g' "$TEMP_FILE"
+sed -i 's/FUN_1807ef110/ProcessUIEventCleanup/g' "$TEMP_FILE"
+sed -i 's/FUN_1807eed30/FinalizeUIContextTransfer/g' "$TEMP_FILE"
+
+# 4. 处理栈变量名
+echo "正在处理栈变量名..."
+sed -i 's/lStack0000000000000040/UIContextStack40/g' "$TEMP_FILE"
+sed -i 's/uStack0000000000000090/UIContextDataBuffer90/g' "$TEMP_FILE"
+sed -i 's/stackParam00000098/UIStackParam98/g' "$TEMP_FILE"
+sed -i 's/lStack00000000000000a8/UIContextDataBufferA8/g' "$TEMP_FILE"
+
+# 5. 处理local_变量名
 echo "正在处理local_变量名..."
 sed -i 's/local_[0-9]\+/uiLocalVar/g' "$TEMP_FILE"
 
