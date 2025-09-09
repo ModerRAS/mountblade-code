@@ -6667,7 +6667,14 @@ void UpdateUIInputStateFlag;
  初始化UI渲染管线
 void InitializeUIRenderPipeline;
 
- 配置UI渲染管线
+ /**
+ * @brief 配置UI渲染管线
+ * 
+ * 该函数负责配置UI系统的渲染管线，包括设置渲染状态、
+ * 着色器参数、混合模式等渲染相关的配置。
+ * 
+ * @note 原始函数名: 未指定
+ */
 void ConfigureUIRenderPipeline;
 
  执行UI渲染管线
@@ -100073,7 +100080,23 @@ void FUN_180723b20(int *uiContext,longlong dataSource,longlong targetBuffer,int 
 
 
 
- void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+ /**
+ * @brief UI整数参数验证处理函数
+ * 
+ * 处理UI系统中的整数参数验证和转换操作：
+ * - 从目标缓冲区读取数据
+ * - 执行数据验证和转换计算
+ * - 将结果写入数据源
+ * - 处理数据范围检查和溢出保护
+ * 
+ * @param uiContext UI上下文指针数组，包含处理参数
+ * @param dataSource 数据源地址，用于存储处理结果
+ * @param targetBuffer 目标缓冲区地址，包含输入数据
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @return 无返回值
+ * @note 原始函数名：FUN_180723b34
+ */
+void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 
 {
@@ -100138,7 +100161,16 @@ void FUN_180723b34(int *uiContext,longlong dataSource,longlong targetBuffer,int 
 
 
 
- void FUN_180723c9b(void)
+ /**
+ * @brief UI系统重置函数
+ * 
+ * 重置UI系统的状态，用于系统初始化或清理操作。
+ * 该函数执行简单的空操作，作为系统重置的占位符。
+ * 
+ * @return 无返回值
+ * @note 原始函数名：FUN_180723c9b
+ */
+void FUN_180723c9b(void)
 void FUN_180723c9b(void)
 
 {

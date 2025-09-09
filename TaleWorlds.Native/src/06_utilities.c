@@ -67404,14 +67404,13 @@ void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180906640
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
-
+void ExecuteExceptionHandlerContextA(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x118);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x118);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
@@ -67430,14 +67429,13 @@ void ExecuteExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_180906660
  * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
  */
-void ExecuteExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
-
+void ExecuteExceptionHandlerContextB(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExceptionHandlerContext *exceptionContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContext;
   
-  exceptionContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b0);
-  if (exceptionContextPointer != (ExceptionHandlerContext *)0x0) {
-    (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
+  exceptionHandlerContext = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x1b0);
+  if (exceptionHandlerContext != (ExceptionHandlerContext *)0x0) {
+    (**(FunctionPointer**)(*exceptionHandlerContext + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
