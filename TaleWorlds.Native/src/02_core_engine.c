@@ -218702,27 +218702,42 @@ ProcessMemoryAllocation:
 
  (ram,0x000180362701 (ram,0x000180362738 (ram,0x000180362708 (ram,0x000180362712 (ram,0x000180362720 (ram,0x000180362727 (ram,0x000180362732 (ram,0x00018036273a (ram,0x00018036275a (ram,0x000180362770 (ram,0x00018036277e (ram,0x000180362785 (ram,0x00018036273f (ram,0x0001803627bb
 
-80930(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_180180930(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 初始化系统内存地址掩码和缓冲区
+ * 
+ * 该函数负责初始化系统的内存地址掩码、缓冲区分配和系统数据表设置。
+ * 主要功能包括：
+ * - 分配内存地址掩码缓冲区
+ * - 初始化系统数据表指针
+ * - 设置处理状态和缓冲区大小
+ * - 配置线程本地存储模板
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180180930
+ */
+void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
-  long long PrimaryOperationResult;
-  void *SystemContext;
-  uint32_t UnicodeCodePoint;
-  uint64_t *MemoryAddressMaskPointer;
-  uint8_t *ContextHandlePointer;
-  void *CurrentNode;
-  void *PreviousNode;
-  long long *SystemDataTablePointer;
-  int IntegerValue9;
-  long long *ContextHandlePointer;
-  long long SystemStringIndex;
-  int IntegerValue;
-  void *pBufferInitializationFlag;
-  uint64_t *pDataProcessingFlags;
-  uint32_t uStack_118;
-  unsigned long long uStack_110;
-  uint64_t SystemStackOffset48;
-  uint8_t aSystemPriorityLevel [8];
-  long long SystemContextValue;
+  long long PrimaryOperationResult;           // 主要操作结果
+  void *SystemContext;                     // 系统上下文
+  uint32_t UnicodeCodePoint;                // Unicode码点
+  uint64_t *MemoryAddressMaskPointer;       // 内存地址掩码指针
+  uint8_t *ContextHandlePointer;           // 上下文句柄指针
+  void *CurrentNode;                        // 当前节点
+  void *PreviousNode;                       // 前一个节点
+  long long *SystemDataTablePointer;         // 系统数据表指针
+  int SystemRegisterValue9;                 // 系统寄存器值9
+  long long *ContextHandleTablePointer;     // 上下文句柄表指针
+  long long SystemStringIndex;              // 系统字符串索引
+  int LoopCounter;                          // 循环计数器
+  void *BufferInitializationFlag;          // 缓冲区初始化标志
+  uint64_t *DataProcessingFlags;            // 数据处理标志
+  uint32_t SystemStackValue118;             // 系统栈值118
+  unsigned long long SystemStackValue110;   // 系统栈值110
+  uint64_t SystemStackOffset48;             // 系统栈偏移量48
+  uint8_t SystemPriorityLevel[8];          // 系统优先级数组
+  long long SystemContextValue;             // 系统上下文值
   
   pMemoryAddressMaskPointer = (void *)MemoryAllocate(MemoryPoolManager,0x150,8,3);
   SystemStackFlag = 0xfffffffffffffffe;

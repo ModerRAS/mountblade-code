@@ -250,6 +250,30 @@
 #define ConfigurationFlagValidationOffset       0x1f  // 配置标志验证偏移量
 #define ConfigurationFlagResourceOffset         0x1c  // 配置标志资源偏移量
 
+// 系统资源管理器偏移量常量
+#define SystemResourceManagerSecondaryStatusOffset 0x1c  // 系统资源管理器次状态偏移量
+#define SystemResourceManagerTertiaryStatusOffset 0x1d  // 系统资源管理器第三状态偏移量
+#define SystemResourceManagerQuaternaryStatusOffset 0x1e  // 系统资源管理器第四状态偏移量
+#define SystemResourceManagerQuinaryStatusOffset 0x21  // 系统资源管理器第五状态偏移量
+#define SystemResourceManagerSenaryStatusOffset 0x2e  // 系统资源管理器第六状态偏移量
+#define SystemResourceManagerSeptenaryStatusOffset 0x32  // 系统资源管理器第七状态偏移量
+#define SystemResourceManagerOctonaryStatusOffset 0x39  // 系统资源管理器第八状态偏移量
+#define SystemResourceManagerNonaryStatusOffset 0x4e  // 系统资源管理器第九状态偏移量
+#define SystemResourceManagerDenaryStatusOffset 0x52  // 系统资源管理器第十状态偏移量
+#define SystemResourceManagerUndenaryStatusOffset 0x58  // 系统资源管理器第十一状态偏移量
+#define SystemResourceManagerDuodenaryStatusOffset 0x5c  // 系统资源管理器第十二状态偏移量
+#define SystemResourceManagerTredecenaryStatusOffset 0x6d  // 系统资源管理器第十三状态偏移量
+#define SystemResourceManagerPrimaryValueOffset 0x3d  // 系统资源管理器主值偏移量
+#define SystemResourceManagerSecondaryValueOffset 0x1ed  // 系统资源管理器次值偏移量
+#define SystemResourceManagerTertiaryValueOffset 0xfc  // 系统资源管理器第三值偏移量
+#define SystemResourceManagerQuaternaryValueOffset 0x104  // 系统资源管理器第四值偏移量
+#define SystemResourceManagerQuinaryValueOffset 0x224  // 系统资源管理器第五值偏移量
+#define SystemResourceManagerSenaryValueOffset 0x22c  // 系统资源管理器第六值偏移量
+#define SystemResourceManagerSeptenaryValueOffset 0x264  // 系统资源管理器第七值偏移量
+#define SystemResourceManagerOctonaryValueOffset 0x1f4  // 系统资源管理器第八值偏移量
+#define SystemResourceManagerNonaryValueOffset 0x254  // 系统资源管理器第九值偏移量
+#define SystemResourceManagerDenaryValueOffset 0x25c  // 系统资源管理器第十值偏移量
+
 // 系统资源管理器扩展偏移量
 #define SystemResourceManagerCleanupOffset      0x5c  // 系统资源管理器清理偏移量
 #define SystemResourceManagerCleanupDataOffset  0x5e  // 系统资源管理器清理数据偏移量
@@ -26498,7 +26522,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   long long SystemAllocationFlags;
   void* *ParameterStackArray [3];
   
-  *(uint8_t *)((long long)SystemResourceManager + 0x1c) = 0;
+  *(uint8_t *)((long long)SystemResourceManager + SystemResourceManagerSecondaryStatusOffset) = 0;
   SystemResourceManager[2] = 0;
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   SystemResourceManager[8] = 0;
@@ -26506,7 +26530,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   SystemResourceManager[SystemResourceManagerStatusOffset] = 0;
   SystemResourceManager[SystemResourceManagerMemoryOffset] = 0;
   SystemResourceManager[SystemResourceManagerConfigOffset] = 0;
-  *(uint32_t *)(SystemResourceManager + 0x12) = 3;
+  *(uint32_t *)(SystemResourceManager + SystemResourceManagerTertiaryStatusOffset) = 3;
   SystemResourceManager[SystemResourceManagerSecondaryDataOffset] = &SystemMemoryAllocatorPointer;
   SystemResourceManager[SystemResourceManagerTertiaryDataOffset] = 0;
   *(uint32_t *)(SystemResourceManager + NodeActiveFlagOffset) = 0;
@@ -26517,12 +26541,12 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   SystemResourceManager[SystemResourceManagerGlobalDataOffset] = 0;
   SystemResourceManager[SystemResourceManagerSecondaryConfigOffset] = 0;
   SystemResourceManager[SystemResourceManagerTertiaryConfigOffset] = 0;
-  *(uint32_t *)(SystemResourceManager + 0x1e) = 3;
-  PrimaryResourceHandle = SystemResourceManager + 0x21;
+  *(uint32_t *)(SystemResourceManager + SystemResourceManagerQuaternaryStatusOffset) = 3;
+  PrimaryResourceHandle = SystemResourceManager + SystemResourceManagerQuinaryStatusOffset;
   *PrimaryResourceHandle = 0;
   SystemResourceManager[SystemResourceManagerQuaternaryConfigOffset] = 0;
   SystemResourceManager[SystemResourceManagerQuinaryConfigOffset] = 0;
-  *(uint32_t *)(SystemResourceManager + 0x24) = 3;
+  *(uint32_t *)(SystemResourceManager + SystemResourceManagerSenaryStatusOffset) = 3;
   SystemResourceManager[SystemResourceManagerMemoryPoolOffset] = &SystemMemoryAllocatorPointer;
   SystemResourceManager[SystemResourceManagerDataBufferOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x2b) = 0;
