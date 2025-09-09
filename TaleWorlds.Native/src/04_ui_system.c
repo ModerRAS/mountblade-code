@@ -100492,9 +100492,9 @@ void FUN_180723ee0(int *uiContext,char *dataSource)
       *dataSource = currentChar;
       tempProcessingResult = distanceResult2;
       processedCount = distanceResult1;
-    } while (localInt7 < 5);
-    localInt8 = localInt8 + 1;
-  } while (localInt8 < 0xf);
+    } while (charIndex < 5);
+    fontTableIndex = fontTableIndex + 1;
+  } while (fontTableIndex < 0xf);
 LAB_180723f9b:
   stringCompareIndex = (longlong)(int)localChar6;
   localChar5 = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
