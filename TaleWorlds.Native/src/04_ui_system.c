@@ -100582,81 +100582,101 @@ LAB_180723f9b:
   metricProcessingResult = 0;
   *uiContext = metricProcessedCount;
   do {
-    TempInt4 = 0;
-    sVar1 = *(short *)(&FontMetricTableX + (longlong)ProcessingResult2 * 2);
-    sVar2 = *(short *)(&FontMetricTableY + (longlong)ProcessingResult2 * 2);
-    localInt8 = processedCount;
-    ProcessingResult1 = localInt9;
+    tempCharacterIndex = 0;
+    fontMetricX = *(short *)(&FontMetricTableX + (longlong)metricProcessingResult * 2);
+    fontMetricY = *(short *)(&FontMetricTableY + (longlong)metricProcessingResult * 2);
+    horizontalDistance = metricProcessedCount;
+    verticalDistance = metricDistance;
     do {
-      processedCount = (int)(short)((short)TempInt4 * 2 + 1)                (int)(short)((ulonglong)(uint)((int)sVar2 - (int)sVar1) * 0x199a >> 0x10) +
-               (int)sVar1;
-      localInt9 = uiContext[1] - processedCount;
-      if (uiContext[1] - processedCount < 1) {
-        localInt9 = processedCount - uiContext[1];
+      metricProcessedCount = (int)(short)((short)tempCharacterIndex * 2 + 1)                (int)(short)((ulonglong)(uint)((int)fontMetricY - (int)fontMetricX) * 0x199a >> 0x10) +
+               (int)fontMetricX;
+      metricDistance = uiContext[1] - metricProcessedCount;
+      if (uiContext[1] - metricProcessedCount < 1) {
+        metricDistance = metricProcessedCount - uiContext[1];
       }
-      if (ProcessingResult1 <= localInt9) goto LAB_18072403c;
-      dataSource[4] = (char)TempInt4;
-      TempInt4 = TempInt4 + 1;
-      dataSource[3] = (char)ProcessingResult2;
-      localInt8 = processedCount;
-      ProcessingResult1 = localInt9;
-    } while (TempInt4 < 5);
-    ProcessingResult2 = ProcessingResult2 + 1;
-  } while (ProcessingResult2 < 0xf);
+      if (verticalDistance <= metricDistance) goto LAB_18072403c;
+      dataSource[4] = (char)tempCharacterIndex;
+      tempCharacterIndex = tempCharacterIndex + 1;
+      dataSource[3] = (char)metricProcessingResult;
+      horizontalDistance = metricProcessedCount;
+      verticalDistance = metricDistance;
+    } while (tempCharacterIndex < 5);
+    metricProcessingResult = metricProcessingResult + 1;
+  } while (metricProcessingResult < 0xf);
 LAB_18072403c:
-  stringCompareIndex = (longlong)(int)dataSource[3];
-  localChar6 = (char)((ulonglong)(stringCompareIndex * 0x55555556) >> 0x20) +
-          (char)((stringCompareIndex / 3 + (stringCompareIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
-  dataSource[5] = localChar6;
-  dataSource[3] = dataSource[3] + localChar6 * -3;
-  uiContext[1] = localInt8;
-  *uiContext = *uiContext - localInt8;
+  fontComparisonIndex = (longlong)(int)dataSource[3];
+  optimizedCharacter = (char)((ulonglong)(fontComparisonIndex * 0x55555556) >> 0x20) +
+          (char)((fontComparisonIndex / 3 + (fontComparisonIndex >> 0x3f) & 0xffffffffU) >> 0x1f);
+  dataSource[5] = optimizedCharacter;
+  dataSource[3] = dataSource[3] + optimizedCharacter * -3;
+  uiContext[1] = horizontalDistance;
+  *uiContext = *uiContext - horizontalDistance;
   return;
 }
 
 
 
 
- void FUN_180724090(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
-void FUN_180724090(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
-                  longlong param_6)
+ /**
+ * @brief UI事件数据处理函数
+ * 
+ * 该函数负责处理UI系统的事件数据，主要功能包括：
+ * - 处理UI事件的类型和状态
+ * - 管理事件数据的索引和处理
+ * - 更新UI事件的处理结果
+ * - 处理事件数据的缓冲区操作
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param eventParameter 事件参数，包含事件相关信息
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180724090
+ * @note 这是一个UI事件数据处理函数，用于处理UI系统的事件相关操作
+ */
+void ProcessUIEventData(UIHandle uiContext,longlong dataSource,int targetBuffer,short bufferSize,short resultPointer,
+                  longlong eventParameter)
 
 {
-  uint result;
-  short sVar2;
-  uint EventTypeCode;
-  longlong contextHandleData;
-  longlong EventDataIndex;
-  longlong contextHandleData;
-  UIByte stackUInt28;
-  UIByte stackUInt27;
+  uint processingResult;
+  short dataValue;
+  uint eventTypeCode;
+  longlong contextIndex;
+  longlong eventDataIndex;
+  longlong contextData;
+  UIByte eventProcessingFlag;
+  UIByte systemFlag;
   
-  stackUInt27 = 0;
-  contextHandleData = (longlong)(targetBuffer + 8) >> 4;
-  if (0 < contextHandleData) {
-    EventDataIndex = 0;
+  systemFlag = 0;
+  contextIndex = (longlong)(targetBuffer + 8) >> 4;
+  if (0 < contextIndex) {
+    eventDataIndex = 0;
     do {
-      EventTypeCode = *(uint *)(param_6 + EventDataIndex * 4);
-      if (0 < (int)EventTypeCode) {
-        EventTypeCode = EventTypeCode & 0x1f;
-        result = 6;
-        if (EventTypeCode < 6) {
-          result = EventTypeCode;
+      eventTypeCode = *(uint *)(eventParameter + eventDataIndex * 4);
+      if (0 < (int)eventTypeCode) {
+        eventTypeCode = eventTypeCode & 0x1f;
+        processingResult = 6;
+        if (eventTypeCode < 6) {
+          processingResult = eventTypeCode;
         }
-        contextHandleData = 0;
-        stackUInt28 = (&UIEventProcessingDataTable)
-                    [(ulonglong)result + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
+        contextData = 0;
+        eventProcessingFlag = (&UIEventProcessingDataTable)
+                    [(ulonglong)processingResult + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
         do {
-          if (0 < *(short *)(dataSource + contextHandleData * 2)) {
-            sVar2 = ReadUIData(uiContext,&stackUInt28,8);
-            *(short *)(dataSource + contextHandleData * 2) = *(short *)(dataSource + contextHandleData * 2) * (sVar2 * 2 + -1);
+          if (0 < *(short *)(dataSource + contextData * 2)) {
+            dataValue = ReadUIData(uiContext,&eventProcessingFlag,8);
+            *(short *)(dataSource + contextData * 2) = *(short *)(dataSource + contextData * 2) * (dataValue * 2 + -1);
           }
-          contextHandleData = contextHandleData + 1;
-        } while (contextHandleData < 0x10);
+          contextData = contextData + 1;
+        } while (contextData < 0x10);
       }
       dataSource = dataSource + 0x20;
-      EventDataIndex = EventDataIndex + 1;
-    } while (EventDataIndex < contextHandleData);
+      eventDataIndex = eventDataIndex + 1;
+    } while (eventDataIndex < contextIndex);
   }
   return;
 }
