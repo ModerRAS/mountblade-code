@@ -24999,52 +24999,52 @@ UIHandle DestroyUIComponentManager(UIHandle *manager_ptr,ulonglong flags,UIHandl
    应用最终的UI向量变换
   TransformUIVector(&scaledTransformZ, &scaledFinalCrossY, &transformPair);
    计算内存偏移和获取参数值
-  longlong memoryOffset = allocatedMemory7 * 0x1b0;
-  float parameter1 = *(float *)(memoryOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
-  longlong contextHandleOffset = (longlong)localChar2 * 0x1b0;
-  float parameter2 = *(float *)(contextHandleOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
-  float scaledParameter = (parameter1 + parameter1) * parameter2;
+  longlong MemoryOffset = AllocatedMemory7 * 0x1b0;
+  float Parameter1 = *(float *)(MemoryOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
+  longlong ContextHandleOffset = (longlong)LocalChar2 * 0x1b0;
+  float Parameter2 = *(float *)(ContextHandleOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
+  float ScaledParameter = (Parameter1 + Parameter1) * Parameter2;
   
    初始化验证标志和计算向量长度
-  uint validationFlag = 1;
-  float vectorLength = scaledFinalCrossY * scaledFinalCrossY + scaledFinalCrossX * scaledFinalCrossX;
+  uint ValidationFlag = 1;
+  float VectorLength = ScaledFinalCrossY * ScaledFinalCrossY + ScaledFinalCrossX * ScaledFinalCrossX;
   
    检查缩放参数是否在有效范围内
-  if (scaledParameter <= 0.0001f) {
-    scaledParameter = (parameter2 + parameter1) * (parameter2 + parameter1);
-    if ((vectorLength < scaledParameter - 0.0001f) || (scaledParameter + 0.0001f < vectorLength)) {
-      validationFlag = 0;
+  if (ScaledParameter <= 0.0001f) {
+    ScaledParameter = (Parameter2 + Parameter1) * (Parameter2 + Parameter1);
+    if ((VectorLength < ScaledParameter - 0.0001f) || (ScaledParameter + 0.0001f < VectorLength)) {
+      ValidationFlag = 0;
     }
-    scaledParameter = 1.0f;
-    vectorLength = 0.0f;
+    ScaledParameter = 1.0f;
+    VectorLength = 0.0f;
   }
   else {
      计算点积并进行范围检查
-    scaledParameter = ((vectorLength - parameter1 * parameter1) - parameter2 * parameter2) / scaledParameter;
-    if ((scaledParameter < -1.0f) || (1.0f < scaledParameter)) {
-      validationFlag = 0;
-      if (-1.0f <= scaledParameter) {
-        if (1.0f <= scaledParameter) {
-          scaledParameter = 1.0f;
+    ScaledParameter = ((VectorLength - Parameter1 * Parameter1) - Parameter2 * Parameter2) / ScaledParameter;
+    if ((ScaledParameter < -1.0f) || (1.0f < ScaledParameter)) {
+      ValidationFlag = 0;
+      if (-1.0f <= ScaledParameter) {
+        if (1.0f <= ScaledParameter) {
+          ScaledParameter = 1.0f;
         }
       }
       else {
-        scaledParameter = -1.0f;
+        ScaledParameter = -1.0f;
       }
     }
     
      计算反余弦和正弦值
-    float angleResult = acosf(scaledParameter);
-    vectorLength = (float)sinf(angleResult ^ 0x80000000);
+    float AngleResult = acosf(ScaledParameter);
+    VectorLength = (float)sinf(AngleResult ^ 0x80000000);
   }
   
    设置验证标志并计算最终参数
-  *(UIByte *)(uiContext + 0x1c4) = validationFlag;
-  float finalParameter = scaledParameter * parameter2 + parameter1;
+  *(UIByte *)(uiContext + 0x1c4) = ValidationFlag;
+  float FinalParameter = ScaledParameter * Parameter2 + Parameter1;
   
    分配UI资源并处理向量
-  void* resourceHandle = AllocateUIResource(targetBuffer, &scaledTransformZ);
-  ProcessUIVector(&scaledFinalCrossY, resourceHandle);
+  void* ResourceHandle = AllocateUIResource(targetBuffer, &scaledTransformZ);
+  ProcessUIVector(&scaledFinalCrossY, ResourceHandle);
   
    计算最终的角度值
   float finalAngle = (float)atan2f(finalParameter * scaledFinalCrossX - vectorLength * parameter2 * scaledFinalCrossY,
