@@ -8040,13 +8040,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统重置函数 - 重置系统状态和清理资源
 #define ResetSystemComponents ResetSystemStateAndCleanupResources
 
-// 原始函数名：FUN_18089e87d - 系统验证函数
-// 功能：验证系统状态和配置
-#define ValidateSystemConfiguration FUN_18089e87d
+// 系统验证函数 - 验证系统状态和配置
+#define ValidateSystemConfiguration ValidateSystemStateAndConfiguration
 
-// 原始函数名：FUN_18089e9af - 数据处理函数
-// 功能：处理数据和执行验证操作
-#define ProcessDataWithValidation FUN_18089e9af
+// 数据处理函数 - 处理数据和执行验证操作
+#define ProcessDataWithValidation ProcessDataAndExecuteValidation
 
 // 原始函数名：FUN_18089f530 - 多参数数据处理函数
 // 功能：处理多参数数据操作和验证
@@ -15493,19 +15491,19 @@ DataBuffer CheckNullPointerAccess(void)
 
 {
   int64_t systemRegisterValue = 0;
-  int64_t calculatedresourcePointer;
+  int64_t calculatedResourcePointer;
   int64_t* resourceDataPointer;
   
   // 根据系统寄存器值计算资源指针
   if (systemRegisterValue == 0) {
-    calculatedresourcePointer = 0;
+    calculatedResourcePointer = 0;
   }
   else {
-    calculatedresourcePointer = systemRegisterValue - 8;
+    calculatedResourcePointer = systemRegisterValue - 8;
   }
   
   // 检查资源数据指针
-  resourceDataPointer = (int64_t *)(calculatedresourcePointer + ResourceDataOffset);
+  resourceDataPointer = (int64_t *)(calculatedResourcePointer + ResourceDataOffset);
   if (*resourceDataPointer != 0) {
     // 调用资源释放函数（注意：此函数不会返回）
     ReleaseResource(*resourceDataPointer, 1);
@@ -82034,7 +82032,18 @@ void CallExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-// 异常处理函数B1 - 在偏移量0xA0处调用异常处理器
+/**
+ * @brief 在偏移量0xA0处调用异常处理器
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理器。
+ * 它会获取异常处理上下文指针，并在偏移量0xA0处执行异常处理回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809091b0
+ * @note 此函数用于异常处理系统中的资源清理和状态管理
+ */
 void CallExceptionHandlerAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
@@ -82051,7 +82060,18 @@ void CallExceptionHandlerAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-// 异常处理函数B2 - 在偏移量0xA8处调用异常处理器
+/**
+ * @brief 在偏移量0xA8处调用异常处理器
+ * 
+ * 该函数负责在系统上下文的指定偏移量处调用异常处理器。
+ * 它会获取异常处理上下文指针，并在偏移量0xA8处执行异常处理回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809091d0
+ * @note 此函数用于异常处理系统中的资源清理和状态管理
+ */
 void CallExceptionHandlerAtOffsetA8(DataBuffer operationBase, int64_t dataBuffer)
 
 {

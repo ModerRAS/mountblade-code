@@ -8151,20 +8151,24 @@ void CleanupUISystem(void)
 
 
 
- 重置UI系统到初始状态
- 清除所有UI组件和状态，恢复系统到默认配置
- * 触发错误处理器并执行系统调用重置系统状态
+ /**
+ * @brief 重置UI系统到初始状态
  * 
-  原始函数名: ResetUISystem
- void ResetUISystem(void)
-
+ * 清除所有UI组件和状态，恢复系统到默认配置。
+ * 触发错误处理器并执行系统调用重置系统状态。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: ResetUISystem
+ */
+void ResetUISystem(void)
 {
-  code *systemCallHandler;
-  
-  TriggerUIErrorHandler();
-  systemCallHandler = (UIFunctionPtr *)swi(3);
-  (*systemCallHandler)();
-  return;
+    UIFunctionPtr *SystemCallHandler;
+    
+    TriggerUIErrorHandler();
+    SystemCallHandler = (UIFunctionPtr *)swi(3);
+    (*SystemCallHandler)();
+    return;
 }
 
 
@@ -8172,54 +8176,58 @@ void CleanupUISystem(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 处理UI组件的主函数
- 处理UI组件的生命周期管理，包括组件的初始化、更新和销毁。
+ /**
+ * @brief 处理UI组件的主函数
+ * 
+ * 处理UI组件的生命周期管理，包括组件的初始化、更新和销毁。
  * 它会检查UI系统是否已初始化，然后根据传入的组件参数进行相应的处理。
-  ComponentData UI组件的指针，包含组件的状态和数据信息
-  无返回值
-  原始函数名: ProcessUIComponent
- void ProcessUIComponent(UIByte *ComponentData)
-
+ * 
+ * @param ComponentData UI组件的指针，包含组件的状态和数据信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: ProcessUIComponent
+ */
+void ProcessUIComponent(UIByte *ComponentData)
 {
-  ulonglong CurrentBufferIndex;
-  longlong ComponentStringLength;
-  longlong RemainingCharacters;
-  UIByte *UIBufferPointer;
-  
-  if (UIRendererInitialized == '\0') {
-    _cputs();
-  }
-  CurrentBufferIndex = UIBufferIndex;
-  if ((uiContext != (UIByte *)0x0) && (UIBufferIndex < 0x8000)) {
-    ComponentStringLength = -1;
-    do {
-      ComponentStringLength = ComponentStringLength + 1;
-    } while (uiContext[ComponentStringLength] != '\0');
+    uint64_t CurrentBufferIndex;
+    int64_t ComponentStringLength;
+    int64_t RemainingCharacters;
+    UIByte *UIBufferPointer;
+    
+    if (UIRendererInitialized == '\0') {
+        _cputs();
+    }
+    CurrentBufferIndex = UIBufferIndex;
+    if ((UIContext != (UIByte *)0x0) && (UIBufferIndex < 0x8000)) {
+        ComponentStringLength = -1;
+        do {
+            ComponentStringLength = ComponentStringLength + 1;
+    } while (UIContext[ComponentStringLength] != '\0');
     if (ComponentStringLength != 0) {
-      LOCK();
-      CurrentBufferIndex = UIBufferIndex + ComponentStringLength;
-      UNLOCK();
-      if (UIBufferIndex < 0x8000) {
-        RemainingCharacters = 0x7fff - UIBufferIndex;
-        if (UIBufferIndex + ComponentStringLength < 0x8000) {
-          RemainingCharacters = ComponentStringLength;
+        LOCK();
+        CurrentBufferIndex = UIBufferIndex + ComponentStringLength;
+        UNLOCK();
+        if (UIBufferIndex < 0x8000) {
+            RemainingCharacters = 0x7fff - UIBufferIndex;
+            if (UIBufferIndex + ComponentStringLength < 0x8000) {
+                RemainingCharacters = ComponentStringLength;
+            }
+            UIBufferPointer = (UIByte *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
+            UIBufferIndex = CurrentBufferIndex;
+            if (UISystemEnabled == '\0') {
+                WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
+                WARNING: Subroutine does not return
+                WARNING: Treating indirect jump as call
+                memcpy();
+                return;
+            }
+            for (; RemainingCharacters != 0; RemainingCharacters = RemainingCharacters + -1) {
+                *UIBufferPointer = *ComponentData;
+                ComponentData = ComponentData + 1;
+                UIBufferPointer = UIBufferPointer + 1;
+            }
+            return;
         }
-        UIBufferPointer = (UIByte *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
-        UIBufferIndex = CurrentBufferIndex;
-        if (UISystemEnabled == '\0') {
-                     WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-          memcpy();
-          return;
-        }
-        for (; RemainingCharacters != 0; RemainingCharacters = RemainingCharacters + -1) {
-          *UIBufferPointer = *ComponentData;
-          ComponentData = ComponentData + 1;
-          UIBufferPointer = UIBufferPointer + 1;
-        }
-        return;
-      }
     }
   }
   UIBufferIndex = CurrentBufferIndex;
