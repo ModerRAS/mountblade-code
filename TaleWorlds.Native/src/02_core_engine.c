@@ -120184,18 +120184,21 @@ void SystemNullOperation(void) {
  * @note 内存块大小为OperationBufferSize << 2字节（即*4）
  */
 void ExpandUtf8BufferShift2(int *ContextHandle,int OperationBufferSize) {
-  uint64_t Utf16Char;
+  uint64_t NewMemoryBuffer;
+  int CurrentBufferSize;
+  void *CurrentBufferPointer;
   
-  if (ContextHandle[1] < OperationBufferSize) {
+  CurrentBufferSize = ContextHandle[1];
+  if (CurrentBufferSize < OperationBufferSize) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    Utf16Char = SystemCallMemoryAccess((long long)OperationBufferSize << 2,SystemMemoryPoolBase);
-    if (*(long long *)(ContextHandle + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(Utf16Char,*(long long *)(ContextHandle + 2),(long long)*ContextHandle << 2);
+    NewMemoryBuffer = SystemCallMemoryAccess((long long)OperationBufferSize << 2,SystemMemoryPoolBase);
+    CurrentBufferPointer = *(void **)(ContextHandle + 2);
+    if (CurrentBufferPointer != NULL) {
+      memcpy(NewMemoryBuffer,CurrentBufferPointer,(long long)CurrentBufferSize << 2);
     }
-    *(void *)(ContextHandle + 2) = Utf16Char;
+    *(void **)(ContextHandle + 2) = NewMemoryBuffer;
     ContextHandle[1] = OperationBufferSize;
   }
   return;
@@ -120219,21 +120222,24 @@ void ExpandUtf8BufferShift2(int *ContextHandle,int OperationBufferSize) {
  * @note 内存块大小为SystemDataNode << 2字节（即*4）
  */
 void ExpandUtf8BufferShift2NoArgs(void) {
-  long long ProcessingResult;
-  uint64_t Utf16Char;
+  long long ConfigHandle;
+  uint64_t NewMemoryBuffer;
   int *SystemContext;
-  long long SystemDataNode;
+  long long RequiredBufferSize;
+  void *CurrentBufferPointer;
+  int CurrentBufferSize;
   
-  if (ProcessingResult != 0) {
-    *(int *)(ProcessingResult + 0x3a8) = *(int *)(ProcessingResult + 0x3a8) + 1;
+  if (ConfigHandle != 0) {
+    *(int *)(ConfigHandle + 0x3a8) = *(int *)(ConfigHandle + 0x3a8) + 1;
   }
-  Utf16Char = SystemCallMemoryAccess(SystemDataNode << 2,SystemMemoryPoolBase);
-  if (*(long long *)(SystemContext + 2) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(Utf16Char,*(long long *)(SystemContext + 2),(long long)*SystemContext << 2);
+  NewMemoryBuffer = SystemCallMemoryAccess(RequiredBufferSize << 2,SystemMemoryPoolBase);
+  CurrentBufferPointer = *(void **)(SystemContext + 2);
+  if (CurrentBufferPointer != NULL) {
+    CurrentBufferSize = *SystemContext;
+    memcpy(NewMemoryBuffer,CurrentBufferPointer,(long long)CurrentBufferSize << 2);
   }
-  *(void *)(SystemContext + 2) = Utf16Char;
-  SystemContext[1] = (int)SystemDataNode;
+  *(void **)(SystemContext + 2) = NewMemoryBuffer;
+  SystemContext[1] = (int)RequiredBufferSize;
   return;
 }
 
@@ -224905,7 +224911,7 @@ void ExpandCharacterStatusBufferAndInsertElement(long long *CharacterStatusBuffe
   if (0x666666666666666 < CalculatedBufferSize) {
     StringOffset = -1;
   }
-  StringOffset = FUN_180067110(StringOffset);
+  StringOffset = AllocateSystemMemoryBlock(StringOffset);
   PrimaryProcessingStatusFlag = (void *)(StringOffset + ((InsertPosition - BufferStartAddress) / 0x28) * 0x28);
   ProcessingStatusFlag = ElementData[1];
   *PrimaryProcessingStatusFlag = *ElementData;

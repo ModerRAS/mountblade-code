@@ -2303,6 +2303,98 @@ typedef enum {
  */
  #define SetUIComponentState SetUIComponentState
 
+// UI系统指针变量美化
+#define pallocatedMemory0 UIPtrAllocatedMemory0
+#define pallocatedMemory1 UIPtrAllocatedMemory1
+#define pallocatedMemory5 UIPtrAllocatedMemory5
+#define pallocatedMemory8 UIPtrAllocatedMemory8
+#define pallocatedMemory9 UIPtrAllocatedMemory9
+
+// UI系统内存块变量美化
+#define currentMemoryBlock UICurrentMemoryBlock
+#define newMemoryBlock UINewMemoryBlock
+#define originalMemoryBlock UIOriginalMemoryBlock
+#define temporaryMemoryBlock UITemporaryMemoryBlock
+
+// UI系统处理状态变量美化
+#define uiRenderStateValue1 UIRenderStateValue1
+#define uiRenderStateValue2 UIRenderStateValue2
+#define uiRenderStateValue3 UIRenderStateValue3
+#define uiRenderStateValue4 UIRenderStateValue4
+
+// UI系统循环计数器美化
+#define loopCounter1 UILoopCounter1
+#define loopCounter2 UILoopCounter2
+#define loopCounter3 UILoopCounter3
+#define loopCounter4 UILoopCounter4
+#define loopCounter5 UILoopCounter5
+#define loopCounter6 UILoopCounter6
+#define loopCounter7 UILoopCounter7
+#define loopCounter8 UILoopCounter8
+#define loopCounter9 UILoopCounter9
+#define loopCounter10 UILoopCounter10
+
+// UI系统处理结果变量美化
+#define pixelBufferChannel UIPixelBufferChannel
+#define pixelVector4 UIPixelVector4
+#define registerXMM2 UIRegisterXMM2
+#define pixelBufferPtr UIPixelBufferPtr
+
+// UI系统事件处理变量美化
+#define aEventTypeCode9 UIEventTypeCodeVector9
+#define ProcessingStatus1 UIProcessingStatus1
+#define ProcessingStatus2 UIProcessingStatus2
+#define sVar40 UIShortVar40
+
+// UI系统内存管理变量美化
+#define allocatedMemory2 UIAllocatedMemory2
+#define allocatedMemory3 UIAllocatedMemory3
+#define allocatedMemory4 UIAllocatedMemory4
+#define allocatedMemory5 UIAllocatedMemory5
+#define allocatedMemory6 UIAllocatedMemory6
+#define allocatedMemory7 UIAllocatedMemory7
+#define allocatedMemory8 UIAllocatedMemory8
+#define allocatedMemory9 UIAllocatedMemory9
+#define allocatedMemory10 UIAllocatedMemory10
+
+// UI系统最大处理计数器美化
+#define maxProcessingCount0 UIMaxProcessingCount0
+#define maxProcessingCount1 UIMaxProcessingCount1
+#define maxProcessingCount2 UIMaxProcessingCount2
+#define maxProcessingCount3 UIMaxProcessingCount3
+#define amaxProcessingCount4 UIMaxProcessingCountVector4
+
+// UI系统向量结果美化
+#define paResultValue3 UIPtrResultValueVector3
+#define paeventProcessingStatus UIPtrEventProcessingStatusVector
+#define paeventProcessingCounter UIPtrEventProcessingCounterVector
+#define aprocessingCounter0 UIProcessingCounterVector0
+
+// UI系统纹理处理变量美化
+#define textureHandle UITextureHandle
+#define result8 UIResult8
+
+// UI系统字符串处理变量美化
+#define StringDataPointer UIStringDataPointer
+#define _UIDefaultResourceBuffer UIDefaultResourceBuffer
+
+// UI系统组件缓冲区变量美化
+#define ComponentBuffer UIComponentBuffer
+#define ComponentValueZ UIComponentValueZ
+#define TransformValueY UITransformValueY
+
+// UI系统数学计算变量美化
+#define FloatValue1 UIFloatValue1
+#define FloatValue2 UIFloatValue2
+#define crossProductZ UICrossProductZ
+#define vectorComponentX UIVectorComponentX
+#define sourceZ UISourceZ
+#define targetZ UITargetZ
+#define bufferX UIBufferX
+#define bufferY UIBufferY
+#define bufferZ UIBufferZ
+#define targetY UITargetY
+
  /**
  * @brief 读取UI数据
  * 
