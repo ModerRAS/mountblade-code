@@ -35039,11 +35039,11 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   processedCount = *(int *)(uiBufferData + 0x23dc);
   processingResult7 = *(int *)(uiBufferData + 0x23d8);
   processingResultCount = 0;
-  stackLong78 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
+  uiStackPointer78 = (longlong)*(int *)(dataSource + 0x50) + **(longlong **)(dataSource + 0x48);
   iterationCount = *(UIDword *)(dataSource + 0x54);
   uiCompareResult = *(int *)(uiBufferData + 0x1e70);
-  stackLong90 = *(longlong *)(uiBufferData + 0x2398);
-  stackLong88 = *(longlong *)(uiBufferData + 0x23a0);
+  uiStackPointer90 = *(longlong *)(uiBufferData + 0x2398);
+  uiStackPointer88 = *(longlong *)(uiBufferData + 0x23a0);
   loopTerminationFlag = 0;
   renderContextStatus = *uiContext1;
   ContextSecondValue = uiContext1[1];
@@ -35065,28 +35065,28 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   if (processedCount < (short)loopCounter) {
     processingResult7 = processedCount;
   }
-  stackLong68 = (longlong)(ContextSecondValue >> 3);
+  uiStackPointer68 = (longlong)(ContextSecondValue >> 3);
   ContextSecondValue = (short)processingResult7;
   *bufferSize = ContextSecondValue;
   *param_8 = 0;
   *resultPointer = ContextSecondValue;
   resultPointer[1] = sVar14;
-  stackLong70 = (longlong)(sVar1 >> 3);
+  uiStackPointer70 = (longlong)(sVar1 >> 3);
   AllocatedMemoryBlock1 = *(int *)(targetBuffer + 0x20) + allocatedMemory5 + (longlong)(ContextSecondValue * uiCompareResult) + (longlong)sVar14;
-  processedCount = *(int *)(stackLong90 + (ContextSecondValue - stackLong70) * 4);
-  processingResult7 = *(int *)(stackLong88 + (sVar14 - stackLong68) * 4);
-  stackLong98 = AllocatedMemoryBlock1;
-  stackLong58 = AllocatedMemoryBlock1;
-  loopCounter = (*(UIFunctionPtr *)*param_9)(stackLong78,iterationCount,AllocatedMemoryBlock1,uiCompareResult);
+  processedCount = *(int *)(uiStackPointer90 + (ContextSecondValue - uiStackPointer70) * 4);
+  processingResult7 = *(int *)(uiStackPointer88 + (sVar14 - uiStackPointer68) * 4);
+  uiStackPointer98 = AllocatedMemoryBlock1;
+  uiStackPointer58 = AllocatedMemoryBlock1;
+  loopCounter = (*(UIFunctionPtr *)*param_9)(uiStackPointer78,iterationCount,AllocatedMemoryBlock1,uiCompareResult);
   result2 = 1;
   resultPointer._0_4_ = loopCounter + ((processedCount + processingResult7) * param_7 + 0x80 >> 8);
   allocatedMemory5 = *(longlong *)(uiBufferData + 0x2348) + (longlong)(*(int *)(uiBufferData + 0x2354) * param_6) * 8;
   processingCounter = *(int *)(uiBufferData + 0x2350) / *(int *)(uiBufferData + 0x2354) - param_6;
-  stackLong60 = allocatedMemory5;
+  uiStackPointer60 = allocatedMemory5;
   if (0 < (int)processingCounter) {
     eventProcessingStatus = 0;
-    stackUInt80 = (ulonglong)processingCounter;
-    stackUInta0 = 0;
+    uiStackCounter80 = (ulonglong)processingCounter;
+    uiStackCounterA0 = 0;
     processedCount = 0;
     TotalResult = result2;
     do {
