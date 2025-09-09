@@ -1977,12 +1977,12 @@ typedef enum {
 #define ProcessUIDataBufferOperationWithSize FUN_18071f270
 
 // UI系统堆栈变量美化
-#define uStack0000000000000050 UIStackUInt50
-#define uStack0000000000000058 UIStackUInt58
-#define pcStack0000000000000088 UICharacterStack88
-#define piStack0000000000000030 UIIntegerStack30
-#define puStack0000000000000050 UIPointerStack50
-#define pcStack0000000000000038 UICharacterStack38
+#define uStack0000000000000050 UIStackBufferOffset
+#define uStack0000000000000058 UIStackBufferSize
+#define pcStack0000000000000088 UIStackCharacterBuffer
+#define piStack0000000000000030 UIStackIntegerPointer
+#define puStack0000000000000050 UIStackPointerBuffer
+#define pcStack0000000000000038 UIStackCharacterPointer
 
 // UI系统寄存器变量美化
 #define register9B UIRegister9B
