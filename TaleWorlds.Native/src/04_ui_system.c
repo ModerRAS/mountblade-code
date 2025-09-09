@@ -15057,7 +15057,7 @@ void RenderUIElement(float *vertex_buffer, float opacity, longlong element_id, c
   float ambient_occlusion;
   ulonglong memory_address;
   
-  memoryAddress = XorEncryptionKey ^ (ulonglong)memoryBuffer;
+  memory_address = XorEncryptionKey ^ (ulonglong)memory_buffer;
   color_intensity = 0.0;
   loop_counter = 0;
   color_data = uiContext0;
@@ -20029,24 +20029,38 @@ LAB_18065bd31:
  这是一个占位符函数，不执行任何操作。
  通常用于接口兼容性或预留扩展点
  
+/**
+ * @brief UI系统空操作函数
+ * 
+ * 这是一个占位符函数，不执行任何操作。
+ * 通常用于接口兼容性或预留扩展点。
+ * 
+ * @note 原始函数名：UIEmptyOperation
+ */
 void UIEmptyOperation(void)
 
 {
   return;
 }
 
-
-
-
- void ValidateUIElementState(longlong uiContext)
-void ValidateUIElementState(longlong uiContext)
+/**
+ * @brief 验证UI元素状态
+ * 
+ * 验证UI元素的当前状态，确保其处于有效的工作状态。
+ * 此函数检查UI元素的完整性和一致性。
+ * 
+ * @param ui_context UI上下文指针
+ * 
+ * @note 原始函数名：ValidateUIElementState
+ */
+void ValidateUIElementState(longlong ui_context)
 
 {
-  UIHandle *ptrResult;
-  longlong componentIndex;
-  longlong stringCompareIndex;
-  UIHandle *bufferPtr;
-  UIHandle *componentContextPtr;
+  UIHandle *ptr_result;
+  longlong component_index;
+  longlong string_compare_index;
+  UIHandle *buffer_ptr;
+  UIHandle *component_context_ptr;
   longlong contextHandleData;
   
   componentContextPtr = (UIHandle *)(uiContext + 0x1398);
@@ -119263,18 +119277,29 @@ FUN_180738fbf:
  * 
  * @return 处理结果状态码
  */
+/**
+ * 验证和处理UI数据
+ * 
+ * 该函数负责验证和处理UI系统中的数据，包括：
+ * - 初始化UI数据缓冲区
+ * - 比较和验证缓冲区数据
+ * - 完成数据处理任务
+ * - 执行验证任务
+ * 
+ * @return 无返回值
+ */
 void ValidateAndProcessUIData(void)
 
 {
-  int processingResult;
-  int validationStatus;
-  UIDword executionParameter;
+  int bufferInitResult;
+  int dataValidationStatus;
+  UIDword taskExecutionParameter;
   
-  processingResult = InitializeUIDataBuffer(&stack0x00000040, 0x100);
-  validationStatus = CompareUIBufferData(&stack0x00000040 + processingResult, 0x100 - processingResult, &UIBufferControlData);
-  FinalizeUIDataProcessing(&stack0x00000040 + (processingResult + validationStatus), 0x100 - (processingResult + validationStatus));
+  bufferInitResult = InitializeUIDataBuffer(&stack0x00000040, 0x100);
+  dataValidationStatus = CompareUIBufferData(&stack0x00000040 + bufferInitResult, 0x100 - bufferInitResult, &UIBufferControlData);
+  FinalizeUIDataProcessing(&stack0x00000040 + (bufferInitResult + dataValidationStatus), 0x100 - (bufferInitResult + dataValidationStatus));
                      WARNING: Subroutine does not return
-  ExecuteUIValidationTask(executionParameter, 1);
+  ExecuteUIValidationTask(taskExecutionParameter, 1);
 }
 
 

@@ -71,32 +71,35 @@
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
 
-// 核心引擎系统变量语义化定义
-#define CharacterTablePointer6 CharacterTableIterator      // 字符表迭代器指针
-#define HighByte4 SystemValidationFlag4                    // 系统验证标志4
-#define HighByte7 SystemValidationFlag7                    // 系统验证标志7
-#define FilterInputValue0 InputFilterParameter0            // 输入过滤参数0
-#define FilterInputValue1 InputFilterParameter1            // 输入过滤参数1
-#define FilterInputValue2 InputFilterParameter2            // 输入过滤参数2
-#define FilterInputValue4 InputFilterParameter4            // 输入过滤参数4
-#define ContextSecondaryFloat8 SystemFloatContext8         // 系统浮点上下文8
-#define ContextSecondaryFloat9 SystemFloatContext9         // 系统浮点上下文9
-#define SystemParameter1 PrimarySystemParameter            // 主系统参数
-#define SystemParameter2 SecondarySystemParameter          // 次系统参数
-#define pSystemContextPrimaryFloat4 SystemContextFloatArrayPtr4 // 系统上下文浮点数组指针4
-#define BufferIndex DataBufferIndex                        // 数据缓冲区索引
-#define SystemMemoryAllocationResult MemoryAllocationStatus // 内存分配状态
-#define StackProcessingParameter0 StackProcessingParameter  // 栈处理参数
-#define ProcessingStatusFlag DataProcessingStatus          // 数据处理状态
-#define ScalingFactor MatrixTransformScaling               // 矩阵变换缩放因子
-#define RenderingParameter1 RenderTransformParameter1      // 渲染变换参数1
-#define RenderingParameter2 RenderTransformParameter2      // 渲染变换参数2
-#define RenderingParameter4 RenderTransformParameter4      // 渲染变换参数4
-#define MemoryContextPointer MemoryBlockContextPointer     // 内存块上下文指针
-#define SystemStatusCode SystemOperationStatusCode          // 系统操作状态码
-#define SystemConfigurationHandle SystemConfigHandle        // 系统配置句柄
-#define LockOperationResult2 StringComparisonResult        // 字符串比较结果
-#define SystemStringConstant400 SystemStringConstant        // 系统字符串常量
+// 系统初始化和配置函数语义化定义
+#define ConfigureCoreEnginePointers FUN_18062db60
+#define ValidateProcessingStatusFlag FUN_18005f430
+#define ValidateMemoryReference FUN_18005ff50
+#define InitializeSystemMemoryManager FUN_1801570c0
+#define ProcessCoreEngineInitialization FUN_180066320
+#define CheckRenderParameterStatus FUN_1808fcb90
+#define UpdateRenderParameterStatus FUN_1808fcb30
+#define ProcessCoreEngineSystemContext FUN_18004caf0
+#define GetAllocatedMemorySizeInfo FUN_18005c2a0
+#define GetIntegerValuePointer FUN_180171f10
+#define ProcessAudioBuffer FUN_180047d40
+#define ProcessMemoryStack FUN_180623de0
+#define ProcessSystemInfo FUN_180060680
+#define ProcessCoreEngineSystemData FUN_180052200
+#define ReleaseDataProcessorResource FUN_1800567c0
+#define CleanupSystemMemoryPointers FUN_180057790
+#define DecrementMemoryReferenceCount FUN_180057796
+#define SafeReleaseMemoryReferenceCount FUN_180057814
+#define ProcessSystemEventQueue FUN_180057830
+#define ProcessCharacterStatusBufferReturnPointer FUN_180057b00
+#define InitializeSystemResourcesReturnPointer FUN_180057cb0
+#define ProcessSystemDataWithTimeout FUN_180057d70
+#define InitializeSystemDataHandler FUN_180057f30
+#define ProcessSystemContextData FUN_180058000
+#define FindMatchingDataNode FUN_180058080
+#define ReleaseMemoryReferenceCountHandler FUN_180058160
+#define InitializeCoreEngineSystemState FUN_180058826
+#define CleanupCoreEngineSystemResources FUN_180058830
 
 // 系统上下文偏移量常量
 #define SystemContextStatusOffset 0x10c                    // 系统上下文状态偏移量
