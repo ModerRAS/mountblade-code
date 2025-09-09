@@ -110848,9 +110848,9 @@ unsigned long long CoreEngineSystemProcessor(uint64_t ContextHandle,char *Contex
   uint64_t Utf8SourcePointerParameter;
   char SystemValidationStatus;
   byte SystemValidationFlag;
-  byte bStack_25a;
-  byte bStack_259;
-  uint aSystemUintBuffer258 [2];
+  byte SystemOperationStatus;
+  byte SystemProcessingStatus;
+  uint SystemParameterBuffer [2];
   float fStack_250;
   float fStack_24c;
   char SystemLockOperationResult;
@@ -111062,8 +111062,8 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
   else if (*(char *)(MemoryBlockIndex9 + 0x410) != '\0') {
     ProcessingByte4 = true;
   }
-  bStack_25a = 0;
-  bStack_259 = 0;
+  SystemOperationStatus = 0;
+  SystemProcessingStatus = 0;
   fStack_250 = 0.0;
   if (*(float *)(MemoryBlockIndex9 + 0x1b2c) == MatrixTransformMultiplier1) {
     if ((SystemValidationFlag == 0) && (*(char *)(MemoryBlockIndex9 + 0x1b3c) == '\0')) {
@@ -111135,10 +111135,10 @@ LAB_180116f58:
           ((ValidationStatus8 == '\0' || (*(char *)(MemoryBlockIndex9 + 0x137) == '\0')))) &&
          (((SystemValidationFlag != 0 && (!IsMemoryBlockEqual)) && (UnicodeCodePoint7 = 0, MemoryAllocationIndex7 = UnicodeCodePoint7, 0 < *ReferenceCountPointer)))) {
         do {
-          aSystemUintBuffer258[0] = (uint)*(ushort *)(MemoryAllocationIndex7 + *(long long *)(MemoryBlockIndex9 + 0x1538));
-          ValidationStatus7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
+          SystemParameterBuffer[0] = (uint)*(ushort *)(MemoryAllocationIndex7 + *(long long *)(MemoryBlockIndex9 + 0x1538));
+          ValidationStatus7 = ValidateSystemParametersAndCheckStatus(SystemParameterBuffer,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
           if (ValidationStatus7 != '\0') {
-            ProcessSystemDataEx(BufferStatusRegister8,MemoryBlockIndex9 + 0x1ef0,aSystemUintBuffer258[0]);
+            ProcessSystemDataEx(BufferStatusRegister8,MemoryBlockIndex9 + 0x1ef0,SystemParameterBuffer[0]);
             *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
             *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
           }
@@ -111404,9 +111404,9 @@ LAB_1801177f4:
         if ((((ValidationStatus7 != '\0') &&
              ((*(char *)(MemoryBlockIndex9 + 0x134) == '\0' && (*(char *)(MemoryBlockIndex9 + 0x135) == '\0')))) &&
             (*(char *)(MemoryBlockIndex9 + 0x136) == '\0')) && (SystemValidationFlag != 0)) {
-          aSystemUintBuffer258[0] = 9;
-          ValidationStatus7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
-          UnicodeCodePoint6 = aSystemUintBuffer258[0];
+          SystemParameterBuffer[0] = 9;
+          ValidationStatus7 = ValidateSystemParametersAndCheckStatus(SystemParameterBuffer,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3);
+          UnicodeCodePoint6 = SystemParameterBuffer[0];
           if (ValidationStatus7 != '\0') goto LAB_180117375;
           goto LAB_18011743c;
         }
@@ -111502,16 +111502,16 @@ LAB_1801177f4:
               ValidationStatus7 = *SystemValidationFunction9;
               ProcessingCounter0 = SystemEventTemplatePointer0;
               while (ValidationStatus7 != '\0') {
-                EncodingValidationResult4 = ValidateSystemDataEx(aSystemUintBuffer258,SystemValidationFunction9,0);
+                EncodingValidationResult4 = ValidateSystemDataEx(SystemParameterBuffer,SystemValidationFunction9,0);
                 MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)ContextHandleTablePointer3 >> 0x20);
                 MemoryAllocationCounter = (uint32_t)((unsigned long long)Utf8SourcePointerParameter >> 0x20);
                 SystemValidationFunction9 = SystemValidationFunction9 + EncodingValidationResult4;
                 MemoryBlockIndex9 = lStack_1a8;
-                if (aSystemUintBuffer258[0] == 0) break;
-                if ((aSystemUintBuffer258[0] < 0x10000) &&
-                   (ValidationStatus7 = ValidateSystemParametersAndCheckStatus(aSystemUintBuffer258,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3), ValidationStatus7 != '\0')) {
+                if (SystemParameterBuffer[0] == 0) break;
+                if ((SystemParameterBuffer[0] < 0x10000) &&
+                   (ValidationStatus7 = ValidateSystemParametersAndCheckStatus(SystemParameterBuffer,AdditionalParameter1,AdditionalParameter2,AdditionalParameter3), ValidationStatus7 != '\0')) {
                   LockOperationResult0 = LockOperationResult0 + 1;
-                  *SystemEventTemplatePointer0 = (uint16_t)aSystemUintBuffer258[0];
+                  *SystemEventTemplatePointer0 = (uint16_t)SystemParameterBuffer[0];
                   SystemEventTemplatePointer0 = SystemEventTemplatePointer0 + 1;
                 }
                 MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)ContextHandleTablePointer3 >> 0x20);
@@ -111560,7 +111560,7 @@ LAB_1801177b9:
     }
     ProcessingByte4 = true;
     IsSystemContextValidationResult = true;
-    bStack_259 = 1;
+    SystemProcessingStatus = 1;
     pFilterInputValue4 = (float *)(MemoryBlockIndex9 + 0x1ea8);
     IsSystemContextValidationResult = false;
   }
@@ -111723,7 +111723,7 @@ LAB_180117d84:
         strncpy(pcStackX_10,*(void *)(MemoryBlockIndex9 + 0x1ed8),BufferStatusRegister8);
         pcStackX_10[BufferStatusRegister8 + -1] = '\0';
       }
-      bStack_25a = 1;
+      SystemOperationStatus = 1;
     }
     *(uint32_t *)(MemoryBlockIndex9 + 0x2d1c) = 0;
     *(void *)(MemoryBlockIndex9 + 0x2d20) = 0;
@@ -112106,16 +112106,16 @@ LAB_18011890c:
     ProcessSystemConfigurationAndStack(CONCAT44(fStack_214 + *(float *)(MemoryBlockIndex9 + 0x1660),
                            fStack_210 + *(float *)(MemoryBlockIndex9 + 0x1674)),ContextHandle,0,1);
   }
-  if (bStack_25a != 0) {
+  if (SystemOperationStatus != 0) {
     MemoryBlockIndex2 = (long long *)(SystemConfigurationHandle + 0x1af8);
     *(uint8_t *)(SystemConfigurationHandle + 0x1b3e) = 1;
     SystemEventTemplatePointer = (uint *)(*MemoryBlockIndex2 + 0x148);
     *SystemEventTemplatePointer = *SystemEventTemplatePointer | 4;
   }
   if ((AdditionalParameter1 & 0x20) != 0) {
-    bStack_25a = bStack_259;
+    SystemOperationStatus = SystemProcessingStatus;
   }
-  return (unsigned long long)bStack_25a;
+  return (unsigned long long)SystemOperationStatus;
 }
 
 
@@ -222066,7 +222066,7 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
-  uint8_t aSystemUintBuffer258 [48];
+  uint8_t SystemParameterBuffer [48];
   uint32_t OperationStatus;
   long long *plStack_220;
   long long lStack_218;
@@ -222086,7 +222086,7 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
   unsigned long long FunctionAddress;
   
   StackProcessingVariable1B8 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemUintBuffer258;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemParameterBuffer;
   OperationStatus = 0;
   MemoryBlockIndex = (long long *)AllocateSystemMemoryPool(0x18);
   *MemoryBlockIndex = (long long)&SystemMemoryAddressPrimary;
@@ -257632,7 +257632,7 @@ long long FUN_18020dd10(long long *ContextHandle,long long *ContextHandleSize,in
   apuStack_478[0] = &ThreadLocalStorageTemplate;
   puStack_6b8 = &ThreadLocalStorageTemplate;
   uStack_810 = 0x118;
-  puStack_818 = aSystemUintBuffer258;
+  puStack_818 = SystemParameterBuffer;
   MultiByteToWideChar(0xfde9,0,puStack_590,0xffffffff);
   puStack_7d8 = &SystemStringSecondaryTemplate;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(auStack_730);
@@ -257643,7 +257643,7 @@ long long FUN_18020dd10(long long *ContextHandle,long long *ContextHandleSize,in
   *(int *)((long long)&iStack_7dc + (long long)*(int *)(puStack_7d8 + 4)) =
        *(int *)(puStack_7d8 + 4) + -0xa8;
   FUN_18009ec20(auStack_7d0);
-  CharacterTablePointer = FUN_18009ec80(auStack_7d0,aSystemUintBuffer258,0x12);
+  CharacterTablePointer = FUN_18009ec80(auStack_7d0,SystemParameterBuffer,0x12);
   if (CharacterTablePointer == 0) {
     _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               (auStack_7d0 + (long long)*(int *)(puStack_7d8 + 4) + -8,2);
