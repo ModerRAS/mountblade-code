@@ -25301,7 +25301,7 @@ void ProcessFloatingPointDataWithValidation(void)
         validationStatus = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerCallbackOffset10);
         memoryRegionBase = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerDataPointerOffset14);
         operationResult = *(DataWord *)(exceptionHandlerDataPointer + SystemDataSecondaryOffset18);
-        dataFlags = *(DataWord *)(exceptionHandlerDataPointer + 0x1c);
+        dataFlags = *(DataWord *)(exceptionHandlerDataPointer + ExceptionHandlerDataPointerOffset1C);
         *(DataWord *)(StackFrameContext + -0x78) = 0;
         *(int *)(StackFrameContext + -0x68) = processingLoopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
@@ -25344,7 +25344,7 @@ void ProcessFloatingPointDataWithValidation(void)
         }
       }
     }
-    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + 0x58))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
+    for (allocatedMemoryBlock = 0; (-1 < allocatedMemoryBlock && (allocatedMemoryBlock < *(int *)(dataPointer + DataPointerOffset58))); allocatedMemoryBlock = allocatedMemoryBlock + 1) {
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataPointer + 0x50) + (int64_t)allocatedMemoryBlock * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68);
       if (((*(SystemByteType *)(exceptionHandlerContext + ExceptionContextValidationOffsetC4) & 1) != 0) && (dataContext != 0)) {
