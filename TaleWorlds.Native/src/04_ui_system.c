@@ -349,6 +349,7 @@ typedef enum {
 #define localLong9 UICharacterDataOffset
 #define localLong5 UIEventDataIndex
 #define localChar1 UIValidationFlag
+#define localChar6 UILocalChar6
 #define localChar3 UIProcessingFlag
 #define localChar9 UISystemStatus
 #define localChar8 UIBoundingBoxValidationFlag
@@ -2246,6 +2247,22 @@ typedef enum {
 #define uiContextStackOffset UIContextStackOffset
 #define uiPrimaryBufferPtr UIPrimaryBufferPtr
 #define uiSecondaryBufferPtr UISecondaryBufferPtr
+
+// UI系统字节指针变量美化
+#define pbVar9 UIPtrByteVar9
+#define pbVar4 UIPtrByteVar4
+#define pbVar6 UIPtrByteVar6
+#define pbVar7 UIPtrByteVar7
+
+// UI系统字符指针变量美化
+#define pisCharacterMatch UIPtrIsCharacterMatch
+#define pisCharacterMatch1 UIPtrIsCharacterMatch1
+#define pisCharacterMatch3 UIPtrIsCharacterMatch3
+#define pisCharacterMatch4 UIPtrIsCharacterMatch4
+
+// UI系统短整型指针变量美化
+#define psVar2 UIPtrShortVar2
+#define pIsEventProcessingActive UIPtrIsEventProcessingActive
 #define uiSecondaryFlags UISecondaryFlags
 #define uiOperationFlags UIOperationFlags
 #define uiContextFlags UIContextFlags
