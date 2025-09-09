@@ -6491,7 +6491,7 @@ code_r0x0001802a1ade:
       FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
       FloatInterpolationResult290 = (StackFloatValue280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
-      *GameSecondaryDataPointer = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
+      *GameSecondaryDataPointer = (((StackFloatValue268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
                  FloatInterpolationResult298;
       GameSecondaryDataPointer[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
                    FloatInterpolationResult294;

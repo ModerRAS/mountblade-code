@@ -1195,7 +1195,7 @@
 #define SystemContextOffsetB4 0xb4                           // 系统上下文偏移量B4
 #define SystemContextOffsetA8 0xa8                           // 系统上下文偏移量A8
 #define SystemContextOffset68 0x68                           // 系统上下文偏移量68
-#define systemContextOffsetA0 0xa0                           // 系统上下文偏移量A0
+#define SystemContextOffsetA0 0xa0                           // 系统上下文偏移量A0
 
 // 数据上下文偏移量常量
 #define DataContextOffset29 0x29                             // 数据上下文偏移量29
@@ -1472,7 +1472,7 @@
 #define SystemOperationCode0x1c 0x1c                // 系统操作码0x1c
 #define SystemOperationCode0xd 0xd                  // 系统操作码0xd
 #define SystemTertiaryDataOffset 0x38
-#define systemContextOffset90 0x90
+#define SystemContextOffset90 0x90
 #define systemContextOffset554 0x554
 #define SystemCleanupContextOffset 0x90
 #define SystemExceptionHandlerOffset10 0x10
@@ -1605,12 +1605,12 @@
 #define ValidationStatusOffset34 0x34
 #define ValidationStatusOffset38 0x38
 #define ValidationStatusOffset3c 0x3c
-#define systemContextOffset90 0x90
+#define SystemContextOffset90 0x90
 #define systemContextOffset98 0x98
 #define systemContextOffsetBc 0xbc
 #define systemContextOffset84 0x84
 #define systemContextOffsetBd 0xbd
-#define systemContextOffsetA0 0xa0
+#define SystemContextOffsetA0 0xa0
 #define systemContextOffsetA4 0xa4
 #define systemContextOffset8c 0x8c
 #define systemContextOffset14 0x14
@@ -2732,7 +2732,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 系统上下文相关偏移量常量
 #define systemContextDataOffset 0x18              // 系统上下文数据偏移量
-#define systemContextOffset90 0x90                // 系统上下文偏移量90
+#define SystemContextOffset90 0x90                // 系统上下文偏移量90
 #define systemContextOffset554 0x554              // 系统上下文偏移量554
 
 // 系统内存管理器偏移量常量
@@ -7438,7 +7438,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerContextOffset50 0x50          // 异常处理上下文偏移量50
 #define ExceptionHandlerContextOffset58 0x58          // 异常处理上下文偏移量58
 #define systemContextOffset80 0x80                   // 系统上下文偏移量80
-#define systemContextOffset90 0x90                   // 系统上下文偏移量90
+#define SystemContextOffset90 0x90                   // 系统上下文偏移量90
 #define DataSecondaryOffset18 0x18                    // 数据次级偏移量18
 #define DataParameterOffset20 0x20                   // 数据参数偏移量20
 #define SystemParameterOffset28 0x28                 // 系统参数偏移量28
