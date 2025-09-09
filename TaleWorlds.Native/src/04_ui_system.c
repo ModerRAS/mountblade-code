@@ -97101,19 +97101,33 @@ void ProcessUIDataFinalization(void)
 
 
 
- void FUN_1807219ee(float *uiContext,int dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_1807219ee(float *uiContext,int dataSource,UIHandle targetBuffer,longlong bufferSize)
+ /**
+ * @brief 使用系数处理UI变换数据（优化版本）
+ * 
+ * 该函数负责处理UI系统中的变换数据，使用提供的系数对数据进行变换处理。
+ * 函数会根据输入的缓冲区大小和结果指针来计算变换后的数据值。
+ * 这是一个优化版本的变换函数，使用SIMD指令进行批量处理。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源索引，指定要处理的数据位置
+ * @param targetBuffer 目标缓冲区句柄，指定处理结果的存储位置
+ * @param bufferSize 缓冲区大小，用于控制变换的幅度
+ * 
+ * @note 原始函数名：FUN_1807219ee
+ * @note 这是UI系统中用于数据变换的优化函数，使用SIMD指令
+ */
+void ProcessUITransformDataWithCoefficientsOptimized(float *uiContext,int dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float baseValue;
   float transformCoeff1;
   float TransformCoefficient2;
   uint ProcessingStatus;
-  int unmodifiedEBX;
+  int dataCount;
   ulonglong loopCounter;
-  float in_XMM5_Da;
-  float preservedXMM6;
-  float preservedXMM7;
+  float simdCoeff1;
+  float simdCoeff2;
+  float simdCoeff3;
   
   if (3 < unmodifiedEBX) {
     ProcessingStatus = dataSource + 1U >> 2;
