@@ -2117,6 +2117,12 @@ typedef enum {
 #define localChar11 UILocalCharacterStatus11    // UI本地字符状态11
 #define contextBasePointer UIContextBasePointer  // UI上下文基础指针
 #define contextBufferHandle UIContextBufferHandle  // UI上下文缓冲区句柄
+
+// 新增的UI系统变量美化
+#define BasePointer UIBasePointer
+#define unmodifiedESI UIUnmodifiedRegisterESI
+#define preservedRegister15D UIPreservedRegister15D
+#define TemporaryFloatValue UITemporaryFloatValue
 #define localChar2 UILocalChar2                    // UI本地字符2
 #define preservedRegister13D UIPreservedRegister13D  // UI保留寄存器13D
 #define preservedXMM6 UIPreservedXMM6              // UI保留XMM6寄存器
@@ -9170,17 +9176,24 @@ void CreateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuf
 
 
 
- 复制UI数据
- 将UI数据从源位置复制到目标位置，包括各种UI组件的状态和属性
-  uiContext UI上下文指针
- *  dataSource 数据源指针
-  复制完成的UI上下文指针
-  原始函数名: CopyUIData
- longlong CopyUIData(longlong uiContext,longlong dataSource)
+ /**
+ * @brief 复制UI数据
+ * 
+ * 将UI数据从源位置复制到目标位置，包括各种UI组件的状态和属性。
+ * 此函数用于深度复制UI上下文数据，确保所有相关数据都被正确复制。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @return longlong 复制完成的UI上下文指针
+ * 
+ * @note 原始函数名：CopyUIData
+ */
+longlong CopyUIData(longlong uiContext,longlong dataSource)
 
 {
-  UIHandle copyResult;
+  UIHandle dataCopyResult;
   
+  // 执行基础UI数据复制操作
   CopyUIData();
   // 复制UI基础数据（偏移量0x20）
   CopyUIData(uiContext + UIContextBaseDataOffset, dataSource + UIContextBaseDataOffset);
@@ -9197,7 +9210,7 @@ void CreateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuf
   // 复制UI高级数据（偏移量0x78）
   CopyUIData(uiContext + UIContextAdvancedDataOffset, dataSource + UIContextAdvancedDataOffset);
   // 获取复制结果句柄（偏移量0xa0）
-  copyResult = *(UIHandle *)(dataSource + UIContextCopyResultOffset);
+  dataCopyResult = *(UIHandle *)(dataSource + UIContextCopyResultOffset);
   // 复制结果句柄（偏移量0x98）
   *(UIHandle *)(uiContext + UIContextResultHandleOffset) = *(UIHandle *)(dataSource + UIContextResultHandleOffset);
   // 设置复制结果（偏移量0xa0）
