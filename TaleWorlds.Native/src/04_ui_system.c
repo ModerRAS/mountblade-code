@@ -131147,7 +131147,7 @@ UIDword FUN_180742e60(longlong uiContext)
     return 0x26;
   }
   colorBufferPointer = (longlong *)
-           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x20,&UIMemoryPoolData,0x7e,0);
+           InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x20,&UIMemoryPoolData,0x7e,0);
   if (colorBufferPointer != (longlong *)0x0) {
     colorBufferPointer[2] = 0;
     colorBufferPointer[3] = allocatedMemory;
@@ -131177,7 +131177,7 @@ void FUN_180742eec(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   UIDword RegisterValue;
   UIDword unmodified000000a4;
   
-  pallocatedMemory = (longlong *)FUN_180742050(*(UIHandle *)(uiContext + 0x1a0),bufferSize + -0x5e);
+  pallocatedMemory = (longlong *)InitializeUIMemoryPool(*(UIHandle *)(uiContext + 0x1a0),bufferSize + -0x5e);
   if (pallocatedMemory != (longlong *)0x0) {
     pallocatedMemory[2] = CONCAT44(unmodified000000a4,RegisterValue);
     pallocatedMemory[3] = BasePointer;
@@ -131225,7 +131225,7 @@ UIHandle FUN_180743010(longlong uiContext)
   *pallocatedMemory = (longlong)pallocatedMemory;
   pallocatedMemory[2] = 0;
   colorBufferPointer = (longlong *)
-           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x2000,&UIMemoryPoolData,0xd6,0);
+           InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x2000,&UIMemoryPoolData,0xd6,0);
   if (colorBufferPointer == (longlong *)0x0) {
                      WARNING: Subroutine does not return
     FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pallocatedMemory,&UIMemoryPoolData,0xd9,1);
@@ -132765,7 +132765,7 @@ UIHandle FUN_180744780(longlong uiContext)
   loopCounter = (ulonglong)*(uint *)(uiContext + 0x6dc) / (ulonglong)maxProcessingCount;
   processingResult = (int)loopCounter;
   colorBufferPointer = (longlong *)
-           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),(maxProcessingCount + 0x16) * processingResult * 4 + 0x40,
+           InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),(maxProcessingCount + 0x16) * processingResult * 4 + 0x40,
                          &UNK_180958000,0x3b5,0);
   if (colorBufferPointer == (longlong *)0x0) {
     return 0x26;
@@ -133827,7 +133827,7 @@ ulonglong FUN_180745870(longlong uiContext,longlong dataSource,uint targetBuffer
     return (ulonglong)EventTypeCode;
   }
   if ((char)targetBuffer < '\0') {
-    contextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
+    contextHandleData = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x198,&UIGlobalData000,0xf59,0);
     if (contextHandleData == 0) {
       return 0x26;
     }
@@ -133983,7 +133983,7 @@ ulonglong FUN_1807458a3(UIDword uiContext,UIDword dataSource,UIHandle targetBuff
     return (ulonglong)EventTypeCode;
   }
   if ((char)preservedRegister15D < '\0') {
-    contextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
+    contextHandleData = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x198,&UIGlobalData000,0xf59,0);
     if (contextHandleData == 0) {
       return 0x26;
     }
@@ -134117,7 +134117,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
   if ((preservedRegister15D >> 0x10 & 1) != 0) {
     StackData4 = 0;
     if ((char)preservedRegister15D < '\0') {
-      contextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
+      contextHandleData = InitializeUIMemoryPool(*(UIHandle *)(GlobalUIResourceManagerF0 + 0x1a0),0x198,&UIGlobalData000,0xf59,0);
       if (contextHandleData == 0) {
         return 0x26;
       }

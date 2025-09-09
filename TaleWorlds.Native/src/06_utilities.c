@@ -40013,7 +40013,7 @@ uint64_t ResetSystemComponents(void)
   int64_t destinationContext;
   int64_t contextPointer;
   
-  if (*(uint *)(DestinationContext + 0x40) < 0x84) {
+  if (*(uint *)(destinationContext + 0x40) < 0x84) {
     *(DataBuffer *)(StackFrameContext + -0x29) = registerContext;
     *(DataBuffer *)(StackFrameContext + -0x21) = registerContext;
     operationResult = ManageSystemMemory();
@@ -40025,14 +40025,14 @@ ValidationErrorHandler5:
     }
     operationStatus = *(int *)(StackFrameContext + -0x21);
     if (operationStatus != 0) {
-      pdataFlags = *(DataWord **)(StackFrameContext + -0x29);
-      for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + operationStatus)); pvalidationOutcome = pvalidationOutcome + 1) {
+      dataFlagsPointer = *(DataWord **)(StackFrameContext + -0x29);
+      for (validationOutcomePointer = dataFlagsPointer; (dataFlagsPointer <= validationOutcomePointer && (validationOutcomePointer < dataFlagsPointer + operationStatus)); validationOutcomePointer = validationOutcomePointer + 1) {
         resourceIterator = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),0x28,&SystemMemoryAllocationBuffer,0xc1c);
         if (resourceIterator == 0) {
           memoryRegionBase = 0x26;
           goto ProcessCheckpointValidationError4;
         }
-        systemDataBuffer = *pvalidationOutcome;
+        systemDataBuffer = *validationOutcomePointer;
         *(int64_t *)resourceIterator = resourceIterator;
         *(int64_t *)(resourceIterator + 8) = resourceIterator;
         *(DataWord *)(resourceIterator + ExceptionHandlerCallbackOffset10) = systemDataBuffer;
@@ -40042,7 +40042,7 @@ ValidationErrorHandler5:
         memoryRegionBase = (uint64_t)operationResult;
         if (operationResult != 0) goto ProcessCheckpointValidationError4;
         operationStatus = *(int *)(StackFrameContext + -0x21);
-        pdataFlags = *(DataWord **)(StackFrameContext + -0x29);
+        dataFlagsPointer = *(DataWord **)(StackFrameContext + -0x29);
       }
     }
     CleanupSystemResourcesA0(StackFrameContext + -0x29);
