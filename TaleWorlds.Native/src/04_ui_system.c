@@ -489,6 +489,11 @@ typedef enum {
 #define stackParam00000090 UIStackParam90
 #define lStackX_8 UILocalStackX8
 #define stack0x00000090 UIStackParam90
+#define stack0x00000038 UIStackContext38
+#define stack0x00000040 UIStackContext40
+#define stack0x00000068 UIStackParameter68
+#define stackParam00000070 UIStackParameter70
+#define stackParam00000078 UIStackParameter78
 
 // UI系统标签宏定义
 #define LAB_180656abd UIMemoryAllocationCheckLabel
