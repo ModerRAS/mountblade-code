@@ -72897,7 +72897,7 @@ SystemResourceReleaseLabel:
             MemoryPoolBlockSizePointer[2] = (long long)MemoryBoundaryPointer;
           }
         }
-LAB_18008f669:
+SystemStateResetLabel:
         MemoryBoundaryPointer[1] = (long long)MemoryPoolBlockSizePointer;
       }
     }
@@ -73258,7 +73258,7 @@ void ProcessMemoryBlockAllocation(long long ContextHandle,long long OperationBuf
     SystemDataTablePointer = Utf16EndPointer + -1 >> 1;
     SystemDataRegistry = *(long long *)(ContextHandle + SystemDataTablePointer * 8);
     if (*(int *)(MemoryPoolBlockSize + 0x78) == 0) {
-LAB_18008fb99:
+SystemFinalizationLabel:
       *(long long *)(ContextHandle + Utf16EndPointer * 8) = MemoryPoolBlockSize;
       return;
     }

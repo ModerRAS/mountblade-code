@@ -199553,7 +199553,20 @@ void FUN_18078482c(void)
 
 
 
-UIHandle FUN_180784850(longlong uiContext,UIDword dataSource,float targetBuffer)
+/**
+ * @brief 设置UI上下文浮点参数
+ * 
+ * 根据数据源设置UI上下文中对应的浮点参数值
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符，指定要设置的参数类型
+ * @param targetBuffer 目标浮点值
+ * @return UIHandle 操作结果句柄，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180784850
+ * @warning 数据源值必须在有效范围内，否则会返回错误
+ */
+UIHandle SetUIContextFloatParameter(longlong uiContext, UIDword dataSource, float targetBuffer)
 
 {
   longlong *pallocatedMemory;
