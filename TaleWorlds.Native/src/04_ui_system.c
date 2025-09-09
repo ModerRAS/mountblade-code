@@ -92536,7 +92536,6 @@ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,lo
  * @note 用于UI元素的旋转、缩放、平移等变换操作
  */
 void ProcessUITransformMatrix(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint bufferSize,
-void FUN_18071f2ed(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,uint bufferSize,
                   UIHandle resultPointer,UIHandle param_6,longlong param_7,UIHandle param_8,
                   float *param_9)
 
