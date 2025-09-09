@@ -50824,7 +50824,7 @@ void InitializeBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t basicHandlerContext;
   
-  basicHandlerContext = *(int64_t *)(dataBuffer + 0x88);
+  basicHandlerContext = *(int64_t *)(dataBuffer + BasicContextOffset88);
   *(DataBuffer *)(basicHandlerContext + 8) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(basicHandlerContext + ExceptionHandlerCallbackOffset10) != 0) {
       TerminateSystemExecutionAndCleanupResources();
