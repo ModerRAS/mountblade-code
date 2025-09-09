@@ -9711,14 +9711,14 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ConfigureRenderInput(FUN_1800c1a0) ConfigureRenderInput
 #define SetupRenderDebug(FUN_1800c1c0) SetupRenderDebug
 #define InitializeRenderProfile(FUN_1800c1e0) InitializeRenderProfile
-#define ConfigureRenderStatsc200) ConfigureRenderStats
-#define SetupRenderOptimizationc220) SetupRenderOptimization
-#define InitializeRenderCachec240) InitializeRenderCache
-#define ConfigureRenderStreamingc260) ConfigureRenderStreaming
-#define SetupRenderCompressionc280) SetupRenderCompression
-#define InitializeRenderValidationc2a0) InitializeRenderValidation
-#define ConfigureRenderSecurityc2c0) ConfigureRenderSecurity
-#define SetupRenderMonitoringc2e0) SetupRenderMonitoring
+#define ConfigureRenderStats(FUN_1800c200) ConfigureRenderStats
+#define SetupRenderOptimization(FUN_1800c220) SetupRenderOptimization
+#define InitializeRenderCache(FUN_1800c240) InitializeRenderCache
+#define ConfigureRenderStreaming(FUN_1800c260) ConfigureRenderStreaming
+#define SetupRenderCompression(FUN_1800c280) SetupRenderCompression
+#define InitializeRenderValidation(FUN_1800c2a0) InitializeRenderValidation
+#define ConfigureRenderSecurity(FUN_1800c2c0) ConfigureRenderSecurity
+#define SetupRenderMonitoring(FUN_1800c2e0) SetupRenderMonitoring
 
 // 系统内存管理函数
 #define InitializeSystemMemory(FUN_18012d6a0) InitializeSystemMemory
