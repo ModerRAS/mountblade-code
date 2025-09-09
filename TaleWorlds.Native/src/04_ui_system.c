@@ -470,6 +470,7 @@ typedef enum {
 #define LAB_1806577da UIContextDataTransformLabel
 #define LAB_180657812 UIResourceProcessingLoopLabel
 #define LAB_180657835 UIProcessingCompleteExitLabel
+#define LAB_1807217c9 UIDataProcessingLoopLabel
 
 // UI系统处理变量宏定义
 #define memoryBlockAddress UIMemoryBlockAddress
@@ -8997,47 +8998,63 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
  *  transformMatrix 变换矩阵指针
  *  scaleValue 缩放值
  *  rotationValue 旋转值
-  计算成功标志
- bool CalculateUIMatrix(float *outputMatrix,float *transformMatrix,float scaleValue,float rotationValue)
+  /**
+ * @brief 计算UI矩阵变换
+ * 
+ * 计算UI元素的矩阵变换，包括旋转、缩放和平移操作。
+ * 此函数用于处理UI元素的变换矩阵计算。
+ * 
+ * @param outputMatrix 输出矩阵指针
+ * @param transformMatrix 变换矩阵指针
+ * @param scaleValue 缩放值
+ * @param rotationValue 旋转值
+ * @return bool 计算成功标志
+ * 
+ * @note 原始函数名：CalculateUIMatrix
+ */
+bool CalculateUIMatrix(float *outputMatrix,float *transformMatrix,float scaleValue,float rotationValue)
 
 {
-  float matrixValue1;
-  float matrixValue2;
-  float matrixValue3;
-  float matrixValue4;
-  float matrixValue5;
-  float matrixValue6;
-  float *rotationMatrix;
-  float *translationMatrix;
-  float transformValue1;
-  float transformValue2;
-  float crossProductValue1;
-  float transformValue3;
-  float transformValue4;
-  float transformValue5;
-  float transformValue6;
-  float transformValue7;
-  float transformValue8;
-  float transformValue9;
-  float transformValue10;
+  float sourceMatrixValue1;
+  float sourceMatrixValue2;
+  float sourceMatrixValue3;
+  float rotationMatrixValue1;
+  float rotationMatrixValue2;
+  float rotationMatrixValue3;
+  float *rotationMatrixPtr;
+  float *translationMatrixPtr;
+  float scaleFactor;
+  float rotationFactor;
+  float crossProductResult;
+  float translationValue1;
+  float translationValue2;
+  float translationValue3;
+  float translationValue4;
+  float translationValue5;
+  float translationValue6;
+  float translationValue7;
+  float translationValue8;
+  float translationValue9;
+  float translationValue10;
+  float translationValue11;
   
-  float determinant = transformValue3 * transformMatrix[1] + transformValue2 * *transformMatrix + transformValue1 * transformMatrix[2];
-  scaleValue = 1.0 / scaleValue;
-  matrixValue1 = transformMatrix[4];
-  crossProductValue1 = transformValue8 * rotationMatrix[1] + rotationValue * *rotationMatrix + transformValue10 * rotationMatrix[2];
-  transformValue4 = transformValue9 * translationMatrix[1] + transformValue11 * *translationMatrix + transformValue7 * translationMatrix[2];
-  matrixValue2 = transformMatrix[5];
-  matrixValue3 = transformMatrix[6];
-  matrixValue4 = rotationMatrix[4];
-  matrixValue5 = transformMatrix[4];
-  matrixValue6 = rotationMatrix[4];
-  *outputMatrix = ((transformValue6 * transformValue9 - transformMatrix[5] * transformValue7) * crossProductValue1 +
-                   determinant * transformValue4 +
-                  (transformMatrix[5] * transformValue10 - transformMatrix[6] * transformValue8) * transformValue4) * scaleValue;
-  outputMatrix[1] = ((matrixValue1 * transformValue7 - matrixValue3 * transformValue11) * crossProductValue1 + determinant * transformValue5 +
-                    (matrixValue3 * matrixValue4 - matrixValue5 * transformValue10) * transformValue4) * scaleValue;
-  outputMatrix[2] = ((matrixValue2 * transformValue11 - matrixValue5 * transformValue9) * crossProductValue1 + determinant * transformValue6 +
-                    (matrixValue5 * transformValue8 - matrixValue2 * matrixValue6) * transformValue4) * scaleValue;
+  float determinant = translationValue3 * transformMatrix[1] + translationValue2 * *transformMatrix + translationValue1 * transformMatrix[2];
+  scaleFactor = 1.0 / scaleValue;
+  sourceMatrixValue1 = transformMatrix[4];
+  crossProductResult = translationValue8 * rotationMatrixPtr[1] + rotationFactor * *rotationMatrixPtr + translationValue10 * rotationMatrixPtr[2];
+  translationValue4 = translationValue9 * translationMatrixPtr[1] + translationValue11 * *translationMatrixPtr + translationValue7 * translationMatrixPtr[2];
+  sourceMatrixValue2 = transformMatrix[5];
+  sourceMatrixValue3 = transformMatrix[6];
+  rotationMatrixValue1 = rotationMatrixPtr[4];
+  rotationMatrixValue2 = transformMatrix[4];
+  rotationMatrixValue3 = rotationMatrixPtr[4];
+  *outputMatrix = ((translationValue6 * translationValue9 - transformMatrix[5] * translationValue7) * crossProductResult +
+                   determinant * translationValue4 +
+                  (transformMatrix[5] * translationValue10 - transformMatrix[6] * translationValue8) * translationValue4) * scaleFactor;
+  outputMatrix[1] = ((sourceMatrixValue1 * translationValue7 - sourceMatrixValue3 * translationValue11) * crossProductResult + determinant * translationValue5 +
+                    (sourceMatrixValue3 * rotationMatrixValue1 - rotationMatrixValue2 * translationValue10) * translationValue4) * scaleFactor;
+  outputMatrix[2] = ((sourceMatrixValue2 * translationValue11 - rotationMatrixValue2 * translationValue9) * crossProductResult + determinant * translationValue6 +
+                    (rotationMatrixValue2 * translationValue8 - sourceMatrixValue2 * rotationMatrixValue3) * translationValue4) * scaleFactor;
   outputMatrix[3] = 3.4028235e+38;
   return true;
 }
@@ -9055,41 +9072,48 @@ void ProcessUIMessages(void)
 
 
 
- 处理UI布局
- 处理UI元素的布局计算和路径处理
-  layoutContext 布局上下文指针
- *  targetBuffer 目标缓冲区指针
- void ProcessUILayout(longlong layoutContext,longlong targetBuffer)
+ /**
+ * @brief 处理UI布局
+ * 
+ * 处理UI元素的布局计算和路径处理，包括路径分隔符的处理和字符串复制。
+ * 此函数用于处理UI元素的布局路径和文件路径相关操作。
+ * 
+ * @param layoutContext 布局上下文指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：ProcessUILayout
+ */
+void ProcessUILayout(longlong layoutContext,longlong targetBuffer)
 
 {
-  char currentChar;
-  ulonglong pathSeparatorPosition1;
-  ulonglong pathSeparatorPosition2;
-  undefined *dataBuffer;
-  char *sourceString;
+  char currentCharacter;
+  ulonglong firstPathSeparatorPos;
+  ulonglong secondPathSeparatorPos;
+  undefined *dataBufferPointer;
+  char *sourceStringPointer;
   
-  dataBuffer = &UIDefaultDataBuffer;
+  dataBufferPointer = &UIDefaultDataBuffer;
   if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
-    dataBuffer = *(undefined **)(layoutContext + 8);
+    dataBufferPointer = *(undefined **)(layoutContext + 8);
   }
-  pathSeparatorPosition1 = strrchr(dataBuffer,0x5c);
-  dataBuffer = &UIDefaultDataBuffer;
+  firstPathSeparatorPos = strrchr(dataBufferPointer,0x5c);
+  dataBufferPointer = &UIDefaultDataBuffer;
   if (*(undefined **)(layoutContext + 8) != (undefined *)0x0) {
-    dataBuffer = *(undefined **)(layoutContext + 8);
+    dataBufferPointer = *(undefined **)(layoutContext + 8);
   }
-  pathSeparatorPosition2 = strrchr(dataBuffer,0x5c);
-  if (pathSeparatorPosition1 == 0) {
-    if (pathSeparatorPosition2 == 0) {
-      sourceString = "";
+  secondPathSeparatorPos = strrchr(dataBufferPointer,0x5c);
+  if (firstPathSeparatorPos == 0) {
+    if (secondPathSeparatorPos == 0) {
+      sourceStringPointer = "";
       if (*(char **)(layoutContext + 8) != (char *)0x0) {
-        sourceString = *(char **)(layoutContext + 8);
+        sourceStringPointer = *(char **)(layoutContext + 8);
       }
-      targetBuffer = targetBuffer - (longlong)sourceString;
+      targetBuffer = targetBuffer - (longlong)sourceStringPointer;
       do {
-        currentChar = *sourceString;
-        sourceString[targetBuffer] = currentChar;
-        sourceString = sourceString + 1;
-      } while (currentChar != '\0');
+        currentCharacter = *sourceStringPointer;
+        sourceStringPointer[targetBuffer] = currentCharacter;
+        sourceStringPointer = sourceStringPointer + 1;
+      } while (currentCharacter != '\0');
     }
     else {
       sourceString = (char *)(pathSeparatorPosition2 + 1);
