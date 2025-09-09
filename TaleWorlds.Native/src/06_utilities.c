@@ -66524,10 +66524,10 @@ void InitializeSystemMemoryConditionally(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x210);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x210);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -66554,14 +66554,14 @@ void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t data
 
 {
   DataBuffer *exceptionDataBuffer;
-  int64_t *dataContext;
-  DataBuffer *validationStatusPointer;
+  ExceptionDataContext *dataContext;
+  ValidationStatusPointer *validationStatusPointer;
   DataBuffer memoryRegionBase;
   
-  dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x218);
+  dataContext = (ExceptionDataContext *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x218);
   memoryRegionBase = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x220);
-  for (validationStatusPointer = (DataBuffer *)*dataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
+  for (validationStatusPointer = (ValidationStatusPointer *)*dataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryRegionBase);
   }
   if (*dataContext == 0) {
@@ -66575,10 +66575,10 @@ void CleanupExceptionResourcesWithFlags700(DataBuffer operationBase,int64_t data
 void CleanupExceptionContextAtOffset720(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  ExceptionHandlerContext *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x268);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+  exceptionHandlerContextPointer = *(ExceptionHandlerContext **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x268);
+  if (exceptionHandlerContextPointer != (ExceptionHandlerContext *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
@@ -66643,9 +66643,9 @@ void InitializeSystemMemoryA2At760(DataBuffer operationBase,int64_t dataBuffer)
 void ResetExceptionDataBufferAtOffset780(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  DataBuffer *exceptionDataBuffer;
+  ExceptionDataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
+  exceptionDataBuffer = *(ExceptionDataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
   return;
