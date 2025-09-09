@@ -86281,8 +86281,8 @@ void ProcessDataStructureSortingAndSwapping(long long *ContextHandle,long long *
       }
       if (LowByte) {
         *ContextHandle2 = BufferStatus;
-        lStackX_8 = SystemDataTablePointer;
-        ProcessSystemDataAndProcessBuffer(ContextHandle,0,MemoryPoolBlockSize,0,&lStackX_8,Utf16EndPointer);
+        StackValueX8 = SystemDataTablePointer;
+        ProcessSystemDataAndProcessBuffer(ContextHandle,0,MemoryPoolBlockSize,0,&StackValueX8,Utf16EndPointer);
       }
       SystemMemoryAllocationResult = SystemMemoryAllocationResult + 1;
       OperationBufferSize = SystemRegisterPointerX10;
@@ -151519,13 +151519,13 @@ d7c0(long long ContextHandlevoid ProcessSystemMemoryAddress(long long ContextHan
   uint64_t ProcessingCounter;
   
   SystemDataTablePointer = SystemConfigurationHandle;
-  lStackX_8 = ContextHandle;
-  if ((ContextHandle == 0) && (lStackX_8 = *(long long *)(SystemConfigurationHandle + 0xb0), lStackX_8 == 0)) {
-    lStackX_8 = **(long long **)(*(long long *)(SystemConfigurationHandle + 0xa0) + 0x48);
+  StackValueX8 = ContextHandle;
+  if ((ContextHandle == 0) && (StackValueX8 = *(long long *)(SystemConfigurationHandle + 0xb0), StackValueX8 == 0)) {
+    StackValueX8 = **(long long **)(*(long long *)(SystemConfigurationHandle + 0xa0) + 0x48);
   }
-  SystemDataRegistry = lStackX_8;
-  ProcessCharacterEncoding(lStackX_8);
-  ProcessSystemDataTable(SystemDataTablePointer + 0x1ba0,&lStackX_8);
+  SystemDataRegistry = StackValueX8;
+  ProcessCharacterEncoding(StackValueX8);
+  ProcessSystemDataTable(SystemDataTablePointer + 0x1ba0,&StackValueX8);
   MemoryAllocationIndex = *(void *)(*(long long *)(SystemDataRegistry + 0x58) + 8);
   ValidationResultPointer = *(int **)(*(long long *)(SystemDataTablePointer + 0x1af8) + 0x2e8);
   ArrayIndex = ValidationResultPointer[0x1c];
@@ -171739,7 +171739,7 @@ void ProcessCharacterEncodingConversion(long long ContextHandle,int OperationBuf
   while( true ) {
     lStackX_8 = ContextHandle;
     if (CharacterTablePointer == 0) {
-      ProcessSystemDataTable(Utf16EndPointer,&lStackX_8);
+      ProcessSystemDataTable(Utf16EndPointer,&StackValueX8);
       return;
     }
     if (((*(byte *)(CharacterTablePointer + 0xa0) & 4) != 0) &&

@@ -27396,7 +27396,7 @@ void ProcessDataTypesA0(void)
             StackFloatRegisterD = validationFloatValue;
             if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
           }
-          resourceValidationStatus = ValidateDataA3(StackFloatRegisterD,&systemContextBuffer50,0);
+          resourceValidationStatus = ValidateDataA3(StackFloatRegisterD,&SystemValidationContextBuffer,0);
           if (resourceValidationStatus == 0) {
             if (StackInputParameterB != 1.0) {
               StackFloatRegisterB = StackInputParameterB;
@@ -27642,7 +27642,7 @@ ValidateDataSecurity:
         ProcessedFloatValue.lowWord = interpolatedFloatValue;
         if (resourceValidationStatus != 0) GOTO_SecurityTerminationA1;
       }
-      resourceValidationStatus = ValidateDataA3(ProcessedFloatValue.lowWord,&systemContextBuffer50,0);
+      resourceValidationStatus = ValidateDataA3(ProcessedFloatValue.lowWord,&SystemValidationContextBuffer,0);
       if (resourceValidationStatus == 0) {
         if (StackInputParameterB != 1.0) {
           StackFloatRegisterB = StackInputParameterB;
@@ -27805,7 +27805,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     inputValue = floatResultA;
     if (operationResult != 0) GOTO_ValidationFailure;
   }
-  operationResult = ValidateDataA3(inputValue,&systemContextBuffer50,0);
+  operationResult = ValidateDataA3(inputValue,&SystemValidationContextBuffer,0);
   if (operationResult == 0) {
     if (secondaryInputValue != 1.0) {
       stackInputValue = secondaryInputValue;
@@ -30027,7 +30027,7 @@ DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
   else {
     if (DataSequencePointer[2] != 0) {
       dataProcessingOffset = 0;
-      systemDataBuffer = AllocateMemory(*DataSequencePointer,&StackDataBufferD);
+      systemDataBuffer = AllocateMemory(*DataSequencePointer,&TemporaryMemoryAllocationBuffer);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }
@@ -30036,12 +30036,12 @@ DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
         goto ProcessCheckpointDataValidation;
       }
     }
-    systemDataBuffer = ValidateDataAndReturnStatusO3(*DataSequencePointer,&systemContextBuffer50,1,4,0);
+    systemDataBuffer = ValidateDataAndReturnStatusO3(*DataSequencePointer,&SystemValidationContextBuffer,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)systemDataBuffer == 0) {
-    *DestinationContext = systemOperationCount;
-    if (2 < systemOperationCount) {
+    *DestinationContext = SystemOperationProcessingCounter;
+    if (2 < SystemOperationProcessingCounter) {
       return 0xd;
     }
     systemDataBuffer = OperateDataO0(DataSequencePointer,DestinationContext + 1,4);
@@ -33421,7 +33421,7 @@ DataBuffer CleanupDataResourcesA0(void)
   else {
     if (dataContext[2] != 0) {
       processingOffset = 0;
-      validationStatus = AllocateMemory(*dataContext,&StackDataBufferD);
+      validationStatus = AllocateMemory(*dataContext,&TemporaryMemoryAllocationBuffer);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -33484,7 +33484,7 @@ DataBuffer ResetDataProcessorA1(void)
   else {
     if (dataContext[2] != 0) {
       processingOffset = 0;
-      validationStatus = AllocateMemory(*dataContext,&StackDataBufferD);
+      validationStatus = AllocateMemory(*dataContext,&TemporaryMemoryAllocationBuffer);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -33561,7 +33561,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   else {
     if (exceptionContextPointer[2] != 0) {
       StackValidationCounter = 0;
-      operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferD);
+      operationResult = AllocateMemory(*exceptionContextPointer,&TemporaryMemoryAllocationBuffer);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -33601,7 +33601,7 @@ void ValidateContextStatus(void)
   else {
     if (exceptionContextPointer[2] != 0) {
       StackValidationCounter = 0;
-      operationResult = AllocateMemory(*exceptionContextPointer,&StackDataBufferD);
+      operationResult = AllocateMemory(*exceptionContextPointer,&TemporaryMemoryAllocationBuffer);
       if (operationResult != 0) {
         return;
       }
@@ -34812,7 +34812,7 @@ void CheckSystemStatusB0(void)
     } while (SystemParameter < (int)MemoryRegionBase);
   }
   SystemOperationCount = 0;
-  SystemOperationResult = ExecuteDataValidationOperation(*SystemRegisterContext,&systemContextBuffer50);
+  SystemOperationResult = ExecuteDataValidationOperation(*SystemRegisterContext,&SystemValidationContextBuffer);
   SystemParameter = SystemOperationCount;
   if (SystemOperationResult != 0) {
     return;
