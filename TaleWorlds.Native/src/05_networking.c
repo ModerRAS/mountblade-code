@@ -4037,8 +4037,8 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
     ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ConnectionValidationStatusCode;
-    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = DataIntegrityCheckResult;
-    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityComplianceCheckResult;
+    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationResultIndex] = DataIntegrityCheckResult;
+    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationResultIndex] = SecurityComplianceCheckResult;
     ((uint32_t*)SecurityValidationData)[ValidationModeDataIndex] = ValidationMode;
   }
 }
