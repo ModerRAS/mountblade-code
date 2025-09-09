@@ -66396,12 +66396,34 @@ SystemCleanupAndTerminate:
 /**
  * @brief 系统状态内存管理处理函数
  * 
- * 该函数用于处理系统状态和内存管理操作
- * 通过线程池和内存边界检查来管理系统资源分配
+ * 该函数负责处理系统状态和内存管理操作，通过线程池和内存边界检查来管理系统资源分配。
+ * 这是核心引擎的关键函数，负责系统的内存管理和状态监控。
  * 
- * @param ContextHandle 目标数据结构指针
- * @param OperationBufferSize 源数据结构值
- * @return void 无返回值
+ * @details 函数执行流程：
+ * 1. 初始化系统线程池和内存管理器
+ * 2. 设置系统安全验证缓冲区和配置标志
+ * 3. 遍历系统数据表，处理每个数据块的内存分配
+ * 4. 验证数据结构的完整性和状态
+ * 5. 执行系统事件处理和配置管理
+ * 6. 清理内存块和释放系统资源
+ * 7. 验证系统配置的完整性
+ * 
+ * @param ContextHandle 目标数据结构指针，用于标识要处理的数据结构
+ * @param OperationBufferSize 源数据结构值，指定操作缓冲区的大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数是系统内存管理的核心，涉及复杂的内存分配和释放操作
+ * @note 函数使用线程池技术来提高内存管理效率
+ * @note 包含多层循环和条件判断来处理不同类型的内存块
+ * @note 使用了多种验证机制来确保系统稳定性
+ * 
+ * @warning 函数包含多个不返回的子程序调用，需要谨慎处理
+ * @warning 内存操作涉及复杂的指针运算，需要确保地址对齐和边界检查
+ * @warning 系统资源释放必须按照正确的顺序进行
+ * 
+ * @see CoreEngineGetSystemContext, CoreEngineProcessSystemEvent, CoreEngineValidateSystemStatus
+ * @see ProcessSystemContextConfiguration, ValidateSystemConfiguration
  */
 void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSize
 {
@@ -66560,7 +66582,7 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         if (pCharacterTablePointer != (uint8_t *)0x0) {
           *pCharacterTablePointer = 0;
         }
-        SystemValue2b8 = SystemValue2b8 & 0xffffffff;
+        SystemStackUnsigned2b8 = SystemStackUnsigned2b8 & 0xffffffff;
       }
       SystemConfigHandle = &SystemNullTemplate;
       StackValidationFlag278 = 0;
@@ -66584,9 +66606,9 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
         }
         SystemStackInteger2e8 = SystemStackInteger2e8 + 1;
         DataProcessingStatus = 0;
-        uStack_1e0 = 0;
+        SystemStackUnsigned1e0 = 0;
         SystemStackData = 0;
-        uStack_1d0 = 3;
+        SystemStackUnsigned1d0 = 3;
         CharacterStatusBuffer2 = &CoreEngineDataTemplate;
         if (SystemCharacterStatusBufferPointer != NULL) {
           CharacterStatusBuffer2 = SystemCharacterStatusBufferPointer;
@@ -66666,11 +66688,33 @@ MemoryManagementCompletion:
 /**
  * @brief 系统状态验证函数
  * 
- * 该函数用于验证系统状态的完整性和正确性
- * 通过检查内存块和状态缓冲区来确保系统正常运行
+ * 该函数负责验证系统状态的完整性和正确性，通过检查内存块和状态缓冲区来确保系统正常运行。
+ * 这是系统稳定性的重要保障机制，用于检测和预防系统异常状态。
  * 
- * @param ContextHandle 目标数据结构指针
+ * @details 函数执行流程：
+ * 1. 检查系统上下文的有效性和完整性
+ * 2. 验证系统事件模板的状态
+ * 3. 执行字符串比较和字节级别的验证
+ * 4. 检查系统配置的合法性
+ * 5. 验证内存块的完整性和边界
+ * 6. 返回验证结果供上层系统使用
+ * 
+ * @param ContextHandle 目标数据结构指针，指向需要验证的系统上下文
+ * 
  * @return bool 返回验证结果，true表示验证成功，false表示验证失败
+ * 
+ * @note 此函数是系统健康检查的重要组成部分
+ * @note 验证过程包括多个层次的检查，从字节到数据结构
+ * @note 函数返回的结果直接影响系统的运行状态
+ * 
+ * @warning 验证失败可能导致系统进入安全模式或停止运行
+ * @warning 上下文指针必须有效，否则会导致未定义行为
+ * 
+ * @see SystemStatusMemoryManager, CoreEngineGetSystemContext
+ * @see CoreEngineValidateSystemStatus, ProcessSystemContextConfiguration
+ * 
+ * @version 1.0
+ * @date 2025-09-09
  */
 bool SystemStatusValidator(long long *ContextHandle
 {
