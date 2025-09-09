@@ -202,6 +202,10 @@
 #define ExceptionHandlerContextOffset4b8 0x4b8
 #define ExceptionHandlerContextOffset480 0x480
 #define ExceptionHandlerContextOffset488 0x488
+#define ExceptionHandlerContextOffset498 0x498        // 异常处理器上下文标志偏移量498
+#define ExceptionHandlerContextOffset460 0x460        // 异常处理器上下文偏移量460
+#define ExceptionHandlerContextOffset468 0x468        // 异常处理器上下文状态偏移量468
+#define ExceptionHandlerContextOffset478 0x478        // 异常处理器上下文标志偏移量478
 #define ExceptionHandlerContextOffset160 0x160
 #define ExceptionHandlerContextOffset168 0x168
 #define ExceptionHandlerContextOffset1A0 0x1a0
@@ -50130,7 +50134,7 @@ void InitializeSystemResourceExceptionHandler(DataBuffer exceptionContext,int64_
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x498) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset498) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
@@ -50598,7 +50602,7 @@ void InitializeExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuff
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x498) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset498) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &SystemDefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
