@@ -110206,7 +110206,7 @@ void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionCleanupWithFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateAndProcessData(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x40e0,
@@ -110217,7 +110217,7 @@ void Unwind_18090f610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f630(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataWithFlags(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA3(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x4110,
