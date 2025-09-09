@@ -15032,10 +15032,10 @@ LAB_180659b1a:
     do {
       stackUInt180 = 0x180659e3d;
       baseValue6 = (float)ProcessUIFloatValue(uiContext,uiElementIndex);
-      AccumulatedFloat = *pResultFloatValue;
+      accumulatedFloatValue = *pResultFloatValue;
       uiElementIndex = uiElementIndex + 1;
       pResultFloatValue = pResultFloatValue + 0x4d6;
-      baseValue5 = baseValue5 + baseValue6 * AccumulatedFloat;
+      baseValue5 = baseValue5 + baseValue6 * accumulatedFloatValue;
     } while (uiElementIndex < (int)transformCoeff15);
   }
   if (FloatValue2 < 1.0) {
@@ -15081,7 +15081,7 @@ LAB_180659b1a:
   }
   uiContext[0x13] = transformCoeff15;
   vectorComponentX = baseValue7;
-  AccumulatedFloat = transformCoeff11;
+  accumulatedFloatValue = transformCoeff11;
   if ((baseValue3 != 0.0) || (transformCoeff14 != 0.0)) {
     if (0.0 <= baseValue7 * baseValue3) {
       if (ABS(baseValue7) < ABS(baseValue3)) {
