@@ -100021,13 +100021,21 @@ void ProcessRenderParameterCalculation(int ContextHandle
     RenderTransformRotationZ = *(float *)(MemoryBoundaryEnd + 0x168c);
   }
   RenderTransformScaleY = *(float *)(SystemDataRegistry + 0x7c);
-  StackFloat1 = *(float *)(SystemDataRegistry + 0x40) + *(float *)(SystemDataRegistry + 0x48);
-  StackFloat2 = *(float *)(SystemDataRegistry + 0x44) + *(float *)(SystemDataRegistry + 0x4c);
+  // 栈浮点变量语义化定义
+  #define StackFloat1 TransformScaleX
+  #define StackFloat2 TransformScaleY
+  #define StackFloat3 TransformScaleZ
+  #define StackFloat4 TransformRotationX
+  #define StackFloat5 TransformRotationY
+  #define StackFloat6 TransformRotationZ
+  
+  TransformScaleX = *(float *)(SystemDataRegistry + 0x40) + *(float *)(SystemDataRegistry + 0x48);
+  TransformScaleY = *(float *)(SystemDataRegistry + 0x44) + *(float *)(SystemDataRegistry + 0x4c);
   if (ContextHandle == 0) {
-    StackFloat3 = *(float *)(SystemDataRegistry + 0x40) + RenderTransformScaleY;
-    RenderParameter1 = StackFloat2 - *(float *)(MemoryBoundaryEnd + 0x168c);
-    StackFloat5 = StackFloat2 - RenderTransformScaleY;
-    StackFloat6 = (StackFloat1 - RenderTransformRotationZ) - RenderTransformScaleY;
+    TransformScaleZ = *(float *)(SystemDataRegistry + 0x40) + RenderTransformScaleY;
+    RenderParameter1 = TransformScaleY - *(float *)(MemoryBoundaryEnd + 0x168c);
+    TransformRotationY = TransformScaleY - RenderTransformScaleY;
+    TransformRotationZ = (TransformScaleX - RenderTransformRotationZ) - RenderTransformScaleY;
   }
   else {
     ExtendedUtf16Char = (unsigned long long)*(uint *)(SystemDataRegistry + 0xc);
