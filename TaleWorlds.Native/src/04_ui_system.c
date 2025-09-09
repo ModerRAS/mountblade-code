@@ -97434,7 +97434,21 @@ int CalculateUIDataSimilarity(longlong uiContext,longlong dataSource,int targetB
 
 
 
-int FUN_180721cf4(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+/**
+ * @brief UI数据归一化处理器优化版本
+ * 
+ * 对UI数据进行归一化处理，优化版本，用于精确的数值计算和转换
+ * 
+ * @param uiContext 第一个UI上下文数据指针
+ * @param dataSource 第二个UI上下文数据指针
+ * @param targetBuffer 目标缓冲区参数，控制处理方式
+ * @param bufferSize 缓冲区大小，指定数据范围
+ * 
+ * @return int 归一化处理后的整数值
+ * 
+ * @note 原始函数名：FUN_180721cf4
+ */
+int NormalizeUIDataOptimized(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
   float *BaseValuePointer;
@@ -97647,41 +97661,56 @@ int FUN_180721fa6(double uiContext)
 
 
 
- void FUN_180721fe0(short *uiContext,UIDword *dataSource,UIDword *targetBuffer,short *bufferSize,int resultPointer
-void FUN_180721fe0(short *uiContext,UIDword *dataSource,UIDword *targetBuffer,short *bufferSize,int resultPointer
+ /**
+ * @brief UI缓冲区数据处理器
+ * 
+ * 该函数负责处理UI系统中的缓冲区数据，包括数据的读取、写入和转换操作。
+ * 函数会根据输入的参数对缓冲区中的数据进行处理，并更新相关的数据结构。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源指针，用于存储和读取数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于控制处理的数据量
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param param_6 额外参数，用于控制处理的具体行为
+ * 
+ * @note 原始函数名：FUN_180721fe0
+ * @note 这是UI系统中用于缓冲区数据处理的函数
+ */
+void ProcessUIBufferData(short *uiContext,UIDword *dataSource,UIDword *targetBuffer,short *bufferSize,int resultPointer
                   ,uint param_6)
 
 {
   ulonglong result;
   ulonglong iterationCount;
-  short ContextFirstValue;
-  short sVar4;
-  UIByte aloopCounter [12];
-  UIByte amaxProcessingCount [12];
-  short sVar7;
+  short contextFirstValue;
+  short contextSecondValue;
+  UIByte loopCounterArray [12];
+  UIByte maxProcessingCountArray [12];
+  short contextThirdValue;
   uint eventProcessingCounter;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   int processedCount;
   ulonglong *ptrResult1;
-  int ProcessingResult2;
+  int processingResult2;
   longlong allocatedMemory3;
-  short sVar14;
-  short BufferCapacityValue;
+  short contextFourthValue;
+  short bufferCapacityValue;
   int processingResult6;
   int processingResult7;
-  short *psVar18;
+  short *ptrContextValue;
   longlong allocatedMemory9;
   longlong componentIndex0;
-  UIByte aiterationCount1 [16];
-  UIByte aiterationCount2 [16];
+  UIByte iterationCount1 [16];
+  UIByte iterationCount2 [16];
   int uiCompareResult0;
-  UIByte aiterationCount5 [16];
-  UIByte aiterationCount8 [16];
-  UIByte aiterationCount9 [16];
-  UIByte aiterationCount3 [16];
+  UIByte iterationCount5 [16];
+  UIByte iterationCount8 [16];
+  UIByte iterationCount9 [16];
+  UIByte iterationCount3 [16];
   UIWord iterationCount4;
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount7 [16];
+  UIByte iterationCount6 [16];
+  UIByte iterationCount7 [16];
   
   allocatedMemory3 = (longlong)(int)param_6;
   *dataSource = *(UIDword *)(uiBufferData + 2);
