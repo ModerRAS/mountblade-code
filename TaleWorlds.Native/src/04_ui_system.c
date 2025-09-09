@@ -300017,14 +300017,23 @@ UIHandle FUN_18084c55b(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084c5a0(longlong *uiContext)
-void FUN_18084c5a0(longlong *uiContext)
-
+ /**
+ * @brief 处理UI事件上下文数据
+ * 
+ * 该函数负责处理UI事件上下文的数据，包括：
+ * - 事件处理计数器验证
+ * - 上下文数据初始化
+ * - 事件状态管理
+ * 
+ * @param uiContext UI上下文指针
+ * @return 处理结果状态码
+ */
+UIStatus ProcessUIEventContextData(longlong *uiContext)
 {
-  int processingResult;
+  UIStatus processingResult;
   UIDword iterationCount;
-  UIDword EventTypeCode;
-  UIDword ProcessingStatus;
+  UIDword eventTypeCode;
+  UIDword processingStatus;
   UIDword *componentContextPtr;
   longlong contextHandleData;
   longlong localLong7;
