@@ -2137,6 +2137,19 @@
 #define StackFrameContextOffsetNegative64 -0x64            // 栈帧上下文负偏移量64
 #define SystemDataSecondaryOffset18 0x18                  // 系统数据二级偏移量18
 #define SystemDataFunctionOffset50 0x50                   // 系统数据函数偏移量50
+
+// 系统配置和验证常量
+#define SystemConfigurationOffsetD8 0xd8                  // 系统配置偏移量D8
+#define SystemValidationOffsetF8 0xf8                       // 系统验证偏移量F8
+#define SystemContextOffset60 0x60                         // 系统上下文偏移量60
+#define SystemContextOffsetA4 0xa4                         // 系统上下文偏移量A4
+#define SystemContextOffset94 0x94                         // 系统上下文偏移量94
+#define SystemContextOffset84 0x84                         // 系统上下文偏移量84
+#define SystemContextOffset88 0x88                         // 系统上下文偏移量88
+#define SystemContextOffset9C 0x9c                         // 系统上下文偏移量9C
+#define SystemContextOffsetA0 0xa0                         // 系统上下文偏移量A0
+#define SystemContextOffsetA8 0xa8                         // 系统上下文偏移量A8
+#define SystemContextOffsetAC 0xac                         // 系统上下文偏移量AC
 #define ArrayIndexMultiplier 0xc                           // 数组索引乘数
 #define SystemDataTableOffset8 8                            // 系统数据表偏移量8
 #define ResourceReferenceDataOffset330 0x330                // 资源引用数据偏移量330
@@ -33684,7 +33697,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
   if (((((int)systemDataBuffer == 0) &&
        (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer,0,0x42495645), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)systemDataBuffer == 0)) &&
-     (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0xd8), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + SystemConfigurationOffsetD8), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -110216,28 +110229,48 @@ void ProcessDataBufferWithMemoryPointerAtOffset100(DataBuffer operationBase,int6
 
 
 
-void ValidateAndCleanupExceptionContextAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证并清理异常上下文（偏移0x110）
+ * 
+ * 该函数负责验证异常上下文的有效性，并在必要时清理相关资源。
+ * 这是异常处理机制中的清理环节，确保系统资源的正确释放。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区获取异常上下文指针
+ * 2. 检查异常上下文状态
+ * 3. 遍历内存块偏移量数组
+ * 4. 检查每个内存块的有效性
+ * 5. 如果发现未清理的资源则终止系统
+ * 6. 清理异常上下文状态
+ * 
+ * @note 原始函数名：Unwind_18090f110
+ * @note 如果发现任何未清理的资源，会调用TerminateSystemExecutionAndCleanupResources终止系统
+ */
+void ValidateAndCleanupExceptionContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionContextPointer;
-  int64_t dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t validationContext;
+  int64_t *memoryBlockIterator;
   
   exceptionContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
-  dataContext = *exceptionContextPointer;
-  if (dataContext != 0) {
-    memoryBlockOffset = (int64_t *)exceptionContextPointer[5];
-    if (memoryBlockOffset < (int64_t *)(exceptionContextPointer[9] + 8)) {
+  validationContext = *exceptionContextPointer;
+  if (validationContext != 0) {
+    memoryBlockIterator = (int64_t *)exceptionContextPointer[5];
+    if (memoryBlockIterator < (int64_t *)(exceptionContextPointer[9] + 8)) {
       do {
-        dataContext = *memoryBlockOffset;
-        memoryBlockOffset = memoryBlockOffset + 1;
-        if (dataContext != 0) {
+        validationContext = *memoryBlockIterator;
+        memoryBlockIterator = memoryBlockIterator + 1;
+        if (validationContext != 0) {
             TerminateSystemExecutionAndCleanupResources();
         }
-      } while (memoryBlockOffset < (int64_t *)(exceptionContextPointer[9] + 8));
-      dataContext = *exceptionContextPointer;
+      } while (memoryBlockIterator < (int64_t *)(exceptionContextPointer[9] + 8));
+      validationContext = *exceptionContextPointer;
     }
-    if (dataContext != 0) {
+    if (validationContext != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
     *exceptionContextPointer = 0;
