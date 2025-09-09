@@ -12505,6 +12505,15 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define CheckSystemProcessingStatus FUN_180189990
 
 /**
+ * @brief 分配和初始化字符代码缓冲区
+ * 
+ * 该函数分配和初始化字符代码缓冲区
+ * 
+ * @note 原始函数名：FUN_180189c50
+ */
+#define AllocateAndInitializeContextHandleBuffer FUN_180189c50
+
+/**
  * @brief 系统内存块处理函数
  * 
  * 该函数处理系统内存块操作
@@ -225169,7 +225178,7 @@ void CopyStructureData(uint64_t TargetPointer, long long SourcePointer, long lon
   *(uint8_t *)(TargetPointer + 0x20) = *(uint8_t *)(SourcePointer + 0x20);
   *(uint32_t *)(TargetPointer + 0x24) = *(uint32_t *)(SourcePointer + 0x24);
   *(uint32_t *)(TargetPointer + 0x28) = *(uint32_t *)(SourcePointer + 0x28);
-  FUN_180189c50(TargetPointer + 0x30, SourcePointer + 0x30);
+  AllocateAndInitializeContextHandleBuffer(TargetPointer + 0x30, SourcePointer + 0x30);
   return;
 }
 
@@ -225226,7 +225235,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
   *(uint8_t *)(NewBufferEnd + 0x20) = *(uint8_t *)(ElementData + 0x20);
   *(uint32_t *)(NewBufferEnd + 0x24) = *(uint32_t *)(ElementData + 0x24);
   *(uint32_t *)(NewBufferEnd + 0x28) = *(uint32_t *)(ElementData + 0x28);
-  FUN_180189c50(NewBufferEnd + 0x30, ElementData + 0x30);
+  AllocateAndInitializeContextHandleBuffer(NewBufferEnd + 0x30, ElementData + 0x30);
   OldBufferStart = CharacterStatusBuffer[1];
   if (InsertPosition == OldBufferStart) {
     NewBufferEnd = NewBufferPointer;
@@ -225235,7 +225244,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
       *(uint8_t *)(NewBufferEnd + 0x20) = *(uint8_t *)(OldBufferEnd + 0x20);
       *(uint32_t *)(NewBufferEnd + 0x24) = *(uint32_t *)(OldBufferEnd + 0x24);
       *(uint32_t *)(NewBufferEnd + 0x28) = *(uint32_t *)(OldBufferEnd + 0x28);
-      FUN_180189c50(NewBufferEnd + 0x30, OldBufferEnd + 0x30);
+      AllocateAndInitializeContextHandleBuffer(NewBufferEnd + 0x30, OldBufferEnd + 0x30);
       NewBufferEnd = NewBufferEnd + 0x40;
     }
     for (; OldBufferEnd != NewBufferEnd; OldBufferEnd = OldBufferEnd + 0x40) {
@@ -225243,7 +225252,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
     }
   }
   else {
-    FUN_1801899b0(CharacterStatusBuffer, *CharacterStatusBuffer, InsertPosition, NewBufferPointer, NewBufferEnd);
+    ProcessContextHandleBufferData(CharacterStatusBuffer, *CharacterStatusBuffer, InsertPosition, NewBufferPointer, NewBufferEnd);
     FUN_1801899b0(CharacterStatusBuffer, InsertPosition, CharacterStatusBuffer[1], NewBufferEnd + 0x40, NewBufferPointer);
   }
   OldBufferStart = *CharacterStatusBuffer;

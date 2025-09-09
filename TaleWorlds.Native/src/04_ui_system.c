@@ -100152,47 +100152,55 @@ LAB_180724b88:
 
 
 
- void FUN_180724ae6(void)
-void FUN_180724ae6(void)
+ /**
+ * @brief 处理UI字符编码转换（扩展版本）
+ * 
+ * 该函数是ProcessUICharacterEncoding的扩展版本，处理更复杂的字符编码转换场景。
+ * 包含额外的参数验证和错误处理机制。
+ * 
+ * @note 原始函数名：FUN_180724ae6
+ * @note 这是一个扩展的字符处理函数，用于处理更复杂的UI字符编码转换
+ */
+void ProcessUICharacterEncodingExtended(void)
 
 {
-  char localChar1;
-  short sVar2;
-  UIDword EventTypeCode;
-  char localChar4;
-  int localInt5;
-  int loopCounter;
-  char *contextHandle;
-  int unmodifiedEBP;
-  char *SourceHandle;
-  longlong localLong7;
-  longlong EventHandle;
-  longlong preservedRegister15;
+  char processedChar;
+  short uiProcessingValue;
+  UIDword eventTypeCode;
+  char normalizedChar;
+  int charCodeValue;
+  int charIndex;
+  char *contextBuffer;
+  int bufferFlags;
+  char *sourceBuffer;
+  longlong dataOffset;
+  longlong eventCount;
+  longlong preservedRegister;
   
-  localLong7 = 0;
+  dataOffset = 0;
   do {
-    sVar2 = GetUIProcessingValue(*(UIDword *)(preservedRegister15 + localLong7 * 4));
-    localChar4 = (char)((ulonglong)((longlong)(short)(sVar2 + -0x82a) * 0x8cb) >> 0x10);
-    SourceHandle[localLong7] = localChar4;
-    if (localChar4 < *contextHandle) {
-      localChar4 = localChar4 + '\x01';
+    uiProcessingValue = GetUIProcessingValue(*(UIDword *)(preservedRegister + dataOffset * 4));
+    normalizedChar = (char)((ulonglong)((longlong)(short)(uiProcessingValue + -0x82a) * 0x8cb) >> 0x10);
+    sourceBuffer[dataOffset] = normalizedChar;
+    if (normalizedChar < *contextBuffer) {
+      normalizedChar = normalizedChar + '\x01';
     }
-    if (localChar4 < '@') {
-      if (localChar4 < '\0') {
-        localChar4 = '\0';
+    if (normalizedChar < '@') {
+      if (normalizedChar < '\0') {
+        normalizedChar = '\0';
       }
     }
     else {
-      localChar4 = '?';
+      normalizedChar = '?';
     }
-    SourceHandle[localLong7] = localChar4;
-    if ((localLong7 == 0) && (unmodifiedEBP == 0)) {
-      localInt5 = *contextHandle + -4;
-      if (localInt5 < 0x40) {
-        if (localChar4 < '@') {
-          loopCounter = (int)localChar4;
-          if (localChar4 < localInt5) {
-            loopCounter = localInt5;
+    sourceBuffer[dataOffset] = normalizedChar;
+    if ((dataOffset == 0) && (bufferFlags == 0)) {
+      charCodeValue = *contextBuffer + -4;
+      if (charCodeValue < 0x40) {
+        if (normalizedChar < '@') {
+          charIndex = (int)normalizedChar;
+          if (normalizedChar < charCodeValue) {
+            charIndex = charCodeValue;
           }
           goto LAB_180724b88;
         }
