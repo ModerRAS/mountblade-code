@@ -29358,8 +29358,8 @@ DataBuffer InitializeDataProcessorA0(DataBuffer processorContext,int64_t *dataPo
   }
   else {
     requiredSize = sizeBuffer[0] + 1;
-    capacityCheck = (int)*(uint *)((int64_t)dataPointer + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((int64_t)dataPointer + 0xc) ^ capacityCheck) - capacityCheck) < requiredSize) &&
+    capacityCheck = (int)*(uint *)((int64_t)dataPointer + DataBufferSizeOffsetC) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)dataPointer + DataBufferSizeOffsetC) ^ capacityCheck) - capacityCheck) < requiredSize) &&
        (initResult = ValidateSystemMemoryA0(dataPointer,requiredSize), (int)initResult != 0)) {
       return initResult;
     }

@@ -28054,7 +28054,7 @@ void InitializeCPUFunctionPointers(void)
   int processingResult;
   longlong componentIndex;
   longlong stringCompareIndex;
-  bool bVar4;
+  bool isCriticalSectionInitialized;
   
   if (_UIThreadLockInitialized == 0) {
     LOCK();
@@ -28063,9 +28063,9 @@ void InitializeCPUFunctionPointers(void)
     stringCompareIndex = malloc(0x28);
     InitializeCriticalSection(stringCompareIndex);
     LOCK();
-    bVar4 = _UIThreadLockCriticalSection != 0;
+    isCriticalSectionInitialized = _UIThreadLockCriticalSection != 0;
     componentIndex = stringCompareIndex;
-    if (bVar4) {
+    if (isCriticalSectionInitialized) {
       componentIndex = _UIThreadLockCriticalSection;
     }
     _UIThreadLockCriticalSection = componentIndex;

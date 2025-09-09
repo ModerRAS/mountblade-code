@@ -248793,8 +248793,8 @@ LAB_180204eec:
                 CharacterStatusBuffer2 = (uint32_t *)*PrimaryProcessingStatusFlag0;
                 if (((CharacterStatusBuffer2[5] == IntegerValue9) && (CharacterStatusBuffer2[2] != -1)) && (CharacterStatusBuffer2[4] == IntegerValue6)) {
                   IntegerValue = (*(byte *)(CharacterStatusBuffer2 + 1) & 1) * 2 + 2;
-                  in_stack_fffffffffffffdb0 = in_stack_fffffffffffffdb0 & 0xffffff00;
-                  FUN_180204b50(ContextHandle,&SystemUintBuffer238,IntegerValue9,0,*CharacterStatusBuffer2,in_stack_fffffffffffffdb0,1);
+                  CharacterEncodingFlags = CharacterEncodingFlags & 0xffffff00;
+                  FUN_180204b50(ContextHandle,&SystemUintBuffer238,IntegerValue9,0,*CharacterStatusBuffer2,CharacterEncodingFlags,1);
                   if (iStack_230 == -1) {
                     EncodingValidationResult = (int)(((long long)puStack_190 - (long long)ProcessingContextPointer) / 0x18);
                     IntegerValue7 = 0;
