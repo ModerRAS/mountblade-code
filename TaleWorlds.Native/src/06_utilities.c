@@ -26596,6 +26596,20 @@ void ExecuteSecurityCheckAndTerminateA2(void)
  */
 #define ExecuteSecurityCheckAndTerminateA3 FUN_180897b16
 
+/**
+ * @brief 安全检查并终止函数A3
+ * 
+ * 执行安全检查操作，如果检查失败则终止程序
+ * 该函数负责：
+ * 1. 获取系统堆栈帧指针
+ * 2. 从栈帧上下文中获取安全检查参数
+ * 3. 执行异或运算和安全检查
+ * 4. 根据检查结果决定是否终止程序
+ * 
+ * @note 原始函数名：FUN_180897b16
+ * @warning 此函数在安全检查失败时会终止程序执行
+ * @see ExecuteSecurityCheck, StackFrameContext, securityBuffer
+ */
 void ExecuteSecurityCheckAndTerminateA3(void)
 
 {
