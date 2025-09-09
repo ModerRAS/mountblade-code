@@ -110079,7 +110079,7 @@ void FUN_18072fba0(longlong uiContext,longlong dataSource,longlong targetBuffer,
   *(int *)(dataSource + 0x10f4) = (int)*(char *)(targetBuffer + 0x22);
   stackUInt94 = *(UIDword *)(dataSource + 0x10e8);
   astackUInt98[0] = *(UIByte *)(targetBuffer + 0x1f);
-  stackInt88 = (int)*(short *)(&UNK_1809536b8 +
+  stackInt88 = (int)*(short *)(&UIComponentDataTableB8 +
                              ((longlong)*(char *)(targetBuffer + 0x1e) +
                              ((longlong)*(char *)(targetBuffer + 0x1d) >> 1) * 2) * 2);
   result = (longlong)(*(int *)(uiBufferData + 0x11e4) + *(int *)(uiBufferData + 0x11ec)) * 4;
