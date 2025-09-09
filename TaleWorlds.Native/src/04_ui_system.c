@@ -200018,7 +200018,6 @@ UIHandle FUN_1807861b0(int *uiContext,UIHandle dataSource,UIHandle targetBuffer,
  * @note 该函数会调用组件的清理函数进行资源释放
  */
 void ProcessUIContextMemoryRelease(int *uiContext)
-void ProcessUIContextMemoryRelease(int *uiContext)
 
 {
   longlong allocatedMemory;
@@ -200054,8 +200053,22 @@ void ProcessUIContextMemoryRelease(int *uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180786262(int *uiContext,longlong dataSource)
-void FUN_180786262(int *uiContext,longlong dataSource)
+ /**
+ * @brief 处理UI上下文数据源验证操作
+ * 
+ * 处理UI上下文的数据源验证操作，该函数负责：
+ * - 验证UI上下文的数据源
+ * - 清理数据源相关的资源
+ * - 调用数据源的清理函数
+ * 
+ * @param uiContext UI上下文指针数组，包含要处理的上下文信息
+ * @param dataSource 数据源指针，包含要验证的数据源信息
+ * 
+ * @note 原始函数名：FUN_180786262
+ * @note 该函数会调用数据源的清理函数进行资源释放
+ */
+void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
+void ProcessUIContextDataSourceValidation(int *uiContext,longlong dataSource)
 
 {
   longlong allocatedMemory;
