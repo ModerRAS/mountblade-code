@@ -200077,7 +200077,7 @@ int ProcessUIComponentDataValidation(longlong uiContext,UIDword dataSource,UIHan
       *(UIDword *)(allocatedMemory + 0x30) = 0;
       *(UIDword *)(allocatedMemory + 0x34) = 1;
       *(int *)(uiBufferData + 0x318) = *(int *)(uiBufferData + 0x318) + 1;
-      uiCompareResult = FUN_180760c90(allocatedMemory,renderParameter,dataSource);
+      uiCompareResult = ProcessUIRenderParameter(allocatedMemory,renderParameter,dataSource);
     }
     if ((sourceHandle != 0) && (isSourceValid)) {
                      WARNING: Subroutine does not return
