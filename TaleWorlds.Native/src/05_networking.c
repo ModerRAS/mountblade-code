@@ -499,8 +499,8 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkAuthenticationTypePassword 0x01                            // 密码认证类型
 #define NetworkEncryptionAlgorithmAES 0x01                               // AES加密算法
 #define NetworkCompressionMethodZLIB 0x01                             // ZLIB压缩方法
-#define NetworkHashAlgorithmSha256 0x01                        // SHA-256哈希算法
-#define NetworkSignatureMethodRsa 0x01                         // RSA签名方法
+#define NetworkHashAlgorithmSHA256 0x01                        // SHA-256哈希算法
+#define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
 #define NetworkEncryptionKeyLength256Bit 256                  // 256位加密密钥长度
 #define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
 /**
@@ -2827,8 +2827,8 @@ void InitializeNetworkDataReception(void)
 void InitializeNetworkPacketSecurityValidation(void)
 {
   // 初始化验证参数
-  NetworkPacketHashAlgorithm = NetworkHashAlgorithmSha256;                         // 设置哈希算法为SHA-256
-  NetworkPacketSignatureMethod = NetworkSignatureMethodRsa;                        // 设置签名方法为RSA
+  NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
+  NetworkPacketSignatureMethod = NetworkSignatureMethodRSA;                        // 设置签名方法为RSA
   NetworkPacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bit;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
@@ -4923,7 +4923,7 @@ void CleanupNetworkConnectionStack(void* NetworkConnectionStackBuffer)
  * 该函数确保数据复制过程的安全性和完整性，包括数据验证、
  * 安全检查和完整性保护等关键步骤。
  * 
- * @param SourceBuffer 源缓冲区指针，指向需要复制的连接缓冲区
+ * @param NetworkConnectionSourceBuffer 网络连接源缓冲区指针，指向需要复制的连接缓冲区
  * @return void 无返回值
  * 
  * @note 此函数在需要创建连接数据备份时调用

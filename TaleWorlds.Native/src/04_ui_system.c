@@ -3706,6 +3706,181 @@ void* UIGestureCoordinates;
 #define UIGlobalOperationProcessorTypeX _DAT_180d4a8c0
 #define UIGlobalOperationProcessorTypeY _DAT_180d4a8a8
 
+// UI系统组件数据指针宏定义
+#define UIComponentDataPointerE60 UNK_180956e60
+#define UIComponentDataPointerF30 UNK_180956f30
+#define UIComponentDataPointerF6E UNK_180956f6e
+#define UIComponentDataPointerDF8 UNK_180956df8
+#define UIComponentDataPointerDE8 UNK_180956de8
+#define UIComponentHandleData860 UNK_180954860
+#define UIComponentHandleData890 UNK_180954890
+
+// UI系统函数指针表宏定义
+#define UIFunctionPointerCF0 UNK_180741cf0
+#define UIContextData080 UNK_180957080
+#define UIContextData488 UNK_180957488
+#define UIContextData458 UNK_180957458
+#define UIContextData2A8 UNK_1809572a8
+#define UIContextData470 UNK_180957470
+#define UIContextData440 UNK_180957440
+#define UIContextData538 UNK_180957538
+#define UIContextData378 UNK_180957378
+#define UIContextData320 UNK_180957320
+#define UIContextData228 UNK_180957228
+#define UIContextData410 UNK_180957410
+#define UIContextData3F0 UNK_1809573f0
+#define UIContextData1E8 UNK_1809571e8
+#define UIContextData2C8 UNK_1809572c8
+#define UIContextData4D0 UNK_1809574d0
+#define UIContextData3B8 UNK_1809573b8
+#define UIContextData170 UNK_180957170
+#define UIContextData140 UNK_180957140
+#define UIContextData428 UNK_180957428
+#define UIContextData4F0 UNK_1809574f0
+#define UIContextData128 UNK_180957128
+#define UIContextData278 UNK_180957278
+#define UIContextData110 UNK_180957110
+#define UIContextData290 UNK_180957290
+#define UIContextData560 UNK_180957560
+#define UIContextData1A8 UNK_1809571a8
+#define UIContextData398 UNK_180957398
+#define UIContextData3D8 UNK_1809573d8
+#define UIContextData300 UNK_180957300
+#define UIContextData5B0 UNK_1809575b0
+#define UIContextData4C0 UNK_1809574c0
+#define UIContextData4A8 UNK_1809574a8
+#define UIContextData580 UNK_180957580
+#define UIContextData598 UNK_180957598
+#define UIContextData2E8 UNK_1809572e8
+#define UIContextData0E8 UNK_1809570e8
+#define UIContextData358 UNK_180957358
+#define UIContextData338 UNK_180957338
+#define UIContextData208 UNK_180957208
+#define UIContextData248 UNK_180957248
+#define UIContextData1C8 UNK_1809571c8
+#define UIContextData158 UNK_180957158
+#define UIContextData0F8 UNK_1809570f8
+#define UIContextData188 UNK_180957188
+#define UIContextData260 UNK_180957260
+#define UIContextData310 UNK_180957310
+
+// UI系统渲染数据宏定义
+#define UIRenderData898 UNK_180957898
+#define UIRenderData810 UNK_180957810
+#define UIRenderData6A0 UNK_1809576a0
+#define UIRenderData880 UNK_180957880
+#define UIRenderData7B0 UNK_1809577b0
+#define UIRenderData8D0 UNK_1809578d0
+#define UIRenderData7F0 UNK_1809577f0
+#define UIRenderData758 UNK_180957758
+#define UIRenderData620 UNK_180957620
+#define UIRenderData6E0 UNK_1809576e0
+#define UIRenderData5C8 UNK_1809575c8
+#define UIRenderData680 UNK_180957680
+#define UIRenderData770 UNK_180957770
+#define UIRenderData8B0 UNK_1809578b0
+#define UIRenderData858 UNK_180957858
+#define UIRenderData8F0 UNK_1809578f0
+#define UIRenderData910 UNK_180957910
+#define UIRenderData7D0 UNK_1809577d0
+#define UIRenderData830 UNK_180957830
+#define UIRenderData790 UNK_180957790
+#define UIRenderData740 UNK_180957740
+#define UIRenderData700 UNK_180957700
+#define UIRenderData600 UNK_180957600
+#define UIRenderData6C0 UNK_1809576c0
+#define UIRenderData718 UNK_180957718
+#define UIRenderData640 UNK_180957640
+#define UIRenderData660 UNK_180957660
+#define UIRenderData5E8 UNK_1809575e8
+
+// UI系统验证数据宏定义
+#define UIValidationData980 UNK_180957980
+#define UIValidationData9C8 UNK_1809579c8
+#define UIValidationData9B0 UNK_1809579b0
+#define UIValidationDataA30 UNK_180957a30
+#define UIValidationDataA20 UNK_180957a20
+#define UIValidationData9E0 UNK_1809579e0
+#define UIValidationData998 UNK_180957998
+#define UIValidationData948 UNK_180957948
+#define UIValidationData938 UNK_180957938
+#define UIValidationData968 UNK_180957968
+#define UIValidationDataA10 UNK_180957a10
+#define UIValidationData958 UNK_180957958
+
+// UI系统处理数据宏定义
+#define UIProcessingDataA60 UNK_180957a60
+#define UIProcessingDataAF0 UNK_180957af0
+#define UIProcessingDataA98 UNK_180957a98
+#define UIProcessingDataAD0 UNK_180957ad0
+#define UIProcessingDataA78 UNK_180957a78
+#define UIProcessingDataAB0 UNK_180957ab0
+#define UIProcessingDataA48 UNK_180957a48
+
+// UI系统事件数据宏定义
+#define UIEventDataBA8 UNK_180957ba8
+#define UIEventDataBE0 UNK_180957be0
+#define UIEventDataB58 UNK_180957b58
+#define UIEventDataB90 UNK_180957b90
+#define UIEventDataB70 UNK_180957b70
+#define UIEventDataBC8 UNK_180957bc8
+#define UIEventDataB40 UNK_180957b40
+#define UIEventDataB28 UNK_180957b28
+
+// UI系统控制数据宏定义
+#define UIControlDataC20 UNK_180957c20
+#define UIControlDataC30 UNK_180957c30
+#define UIControlDataDD0 UNK_180957dd0
+#define UIControlDataD78 UNK_180957d78
+#define UIControlDataDB8 UNK_180957db8
+#define UIControlDataD38 UNK_180957d38
+#define UIControlDataD20 UNK_180957d20
+#define UIControlDataD50 UNK_180957d50
+#define UIControlDataD08 UNK_180957d08
+#define UIControlDataC08 UNK_180957c08
+#define UIControlDataD68 UNK_180957d68
+#define UIControlDataD88 UNK_180957d88
+#define UIControlDataBF8 UNK_180957bf8
+#define UIControlDataC80 UNK_180957c80
+#define UIControlDataC48 UNK_180957c48
+#define UIControlDataC58 UNK_180957c58
+#define UIControlDataC90 UNK_180957c90
+#define UIControlDataC68 UNK_180957c68
+#define UIControlDataDA0 UNK_180957da0
+#define UIControlDataCD8 UNK_180957cd8
+#define UIControlDataCF0 UNK_180957cf0
+#define UIControlDataCA8 UNK_180957ca8
+#define UIControlDataCC0 UNK_180957cc0
+
+// UI系统资源数据宏定义
+#define UIResourceDataDE8 UNK_180957de8
+#define UIResourceDataE00 UNK_180957e00
+#define UIResourceDataE20 UNK_180957e20
+#define UIResourceDataFE0 UNK_180957fe0
+#define UIResourceDataF58 UNK_180957f58
+
+// UI系统全局数据宏定义
+#define UIGlobalData000 UNK_180958000
+#define UIGlobalData070 UNK_180958070
+#define UIGlobalData098 UNK_180958098
+#define UIGlobalData0B8 UNK_1809580b8
+#define UIGlobalData0D0 UNK_1809580d0
+#define UIGlobalData180 UNK_180958180
+#define UIGlobalData170 UNK_180958170
+#define UIGlobalData1B4 UNK_1809581b4
+#define UIGlobalData1C0 UNK_1809581c0
+#define UIGlobalData1D8 UNK_1809581d8
+#define UIGlobalData1F8 UNK_1809581f8
+#define UIGlobalData1BC UNK_1809581bc
+#define UIGlobalData1E8 UNK_1809581e8
+
+// UI系统外部数据宏定义
+#define UIExternalDataD050 UNK_18097d050
+#define UIExternalDataCFE0 UNK_18097cfe0
+#define UIExternalDataB500 UNK_18095b500
+#define UIExternalDataFE7F8 UNK_1809fe7f8
+#define UIExternalDataFD0A0 UNK_1809fd0a0
+
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
 #define UIUnknownFunctionTable2 UIUnknownFunctionTable2
