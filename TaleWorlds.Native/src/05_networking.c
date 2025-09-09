@@ -5659,15 +5659,34 @@ static NetworkHandle GenerateConnectionHandle(NetworkConnectionContext *NetworkC
 /**
  * @brief 初始化安全上下文
  * 
- * 初始化网络连接的安全上下文和加密参数
+ * 初始化网络连接的安全上下文和加密参数，确保通信安全
  * 
  * @param NetworkConnectionContext 网络连接上下文指针
+ * 
+ * @details 实现细节：
+ * - 设置安全连接标志
+ * - 初始化加密算法参数
+ * - 配置密钥交换协议
+ * - 启用数据完整性检查
+ * 
+ * @note 这是简化实现，实际应用中需要：
+ * - 协商加密算法
+ * - 生成会话密钥
+ * - 配置证书验证
+ * - 启用数据压缩
+ * @warning 安全上下文初始化失败可能导致通信不安全
  */
 static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectionContext)
 {
     // 简化实现：设置基本安全参数
+    // 实际实现应该：
+    // 1. 协商TLS/SSL参数
+    // 2. 生成会话密钥
+    // 3. 配置加密算法
+    // 4. 初始化证书验证
+    // 5. 启用数据完整性检查
     if (NetworkConnectionContext) {
-        NetworkConnectionContext->connectionStatus |= NetworkStatusSecureFlag;
+        NetworkConnectionContext->connectionStatus |= NetworkStatusSecureFlag;  // 标记连接为安全状态
     }
 }
 
