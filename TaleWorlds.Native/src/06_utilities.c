@@ -31211,9 +31211,9 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
        (systemDataBuffer = ValidatePortControlRequest(dataBuffer,acolorDataWord,0,0x42464542), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)systemDataBuffer == 0)) &&
      ((0x5a < *(uint *)(dataBuffer + 8) ||
-      (systemDataBuffer = ManageSystemMemoryA0(dataBuffer,operationBase + 0x44), (int)systemDataBuffer == 0)))) {
+      (systemDataBuffer = ManageSystemMemoryA0(dataBuffer,operationBase + OperationDataOffset44), (int)systemDataBuffer == 0)))) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-      systemDataBuffer = QuerySystemStatusA0(*dataBuffer,operationBase + 0x60,0x25);
+      systemDataBuffer = QuerySystemStatusA0(*dataBuffer,operationBase + OperationDataOffset60,0x25);
       if ((int)systemDataBuffer == 0) {
         if (*(uint *)(dataBuffer + 8) < 0x3d) {
           systemDataBuffer = 0;
