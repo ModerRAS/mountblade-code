@@ -178,6 +178,14 @@ typedef enum {
 #define localChar26 UIComponentContextBackup
 #define cStack_148 UIStackChar148
 
+// UI组件数据验证和清理函数局部变量宏定义
+#define allocatedMemory UIAllocatedMemoryBlock
+#define componentIndex UIComponentIndex
+#define pstringCompareIndex UIStringCompareIndex
+#define TempInt4 UIProcessingResult
+#define IsValidationComplete UIValidationStatus
+#define uStackX_8 UIStackDataBuffer
+
  // // UI系统函数宏定义 - 处理UI缓冲区操作
 #define ProcessUIBufferOperation ProcessUIBufferDataOperation
 
@@ -196,6 +204,9 @@ typedef enum {
 #define ProcessUIBufferAllocation AllocateUIBufferMemory
 #define ProcessUIValueCalculation CalculateUIValueOperation
 #define ProcessUIRenderDataUpdate UpdateUIRenderData
+
+// UI系统函数宏定义 - 数据验证和清理
+#define FUN_180787e70 ProcessUIComponentDataValidationAndCleanup
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
