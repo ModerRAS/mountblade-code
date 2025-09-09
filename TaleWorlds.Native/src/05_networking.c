@@ -750,29 +750,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 /**
  * @brief 初始化网络迭代上下文
  * 
- * 初始化网络连接迭代处理的上下文数据，设置迭代控制参数
- * 
- * @param NetworkConnectionContext 网络连接上下文数据，包含连接的配置信息
- * @param ValidationResultData 验证结果数据，包含连接验证的状态信息
- * @param IterationControlFlag 迭代控制标志，用于控制迭代处理的行为
- * @return uint32_t 初始化结果状态码，0表示初始化成功，非0值表示初始化失败的具体错误码
- * 
- * @retval 0 初始化成功
- * @retval 0x1 网络连接上下文无效
- * @retval 0x2 验证结果数据无效
- * @retval 0x3 迭代控制标志无效
- * @retval 0x4 内存分配失败
- * 
- * @note 此函数在网络连接迭代处理开始前调用
- * @warning 如果初始化失败，后续的迭代处理将无法正常进行
- * @see HandleNetworkProtocolStackData, VerifyNetworkConnectionHandleSecurity
- */
-/**
- * @brief 初始化网络迭代上下文
- * 
  * 该函数负责初始化网络连接的迭代上下文，为后续的网络操作提供必要的状态信息。
  * 函数会验证连接上下文的有效性、结果数据的完整性，并根据迭代控制标志决定是否进行初始化。
- * 
+ *
  * @param NetworkConnectionContext 网络连接上下文，包含网络连接的状态和配置信息
  * @param ValidationResultData 验证结果数据，包含连接验证的结果信息
  * @param IterationControlFlag 迭代控制标志，用于控制是否进行迭代初始化
@@ -781,10 +761,10 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  *         - 1: 初始化失败（连接上下文无效）
  *         - 2: 初始化失败（验证结果数据无效）
  *         - 3: 初始化失败（迭代控制标志未设置）
- * 
+ *
  * @retval NetworkValidationSuccess 初始化成功
  * @retval NetworkValidationFailure 初始化失败
- * 
+ *
  * @note 此函数是网络迭代操作的基础初始化函数，必须在执行网络迭代前调用
  * @warning 如果连接上下文或验证结果数据无效，将导致初始化失败
  * @see HandleNetworkProtocolStackData, ValidateNetworkConnectionSecurity
@@ -898,10 +878,6 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int
  * @warning 如果验证失败，相关的网络操作将被拒绝
  * @see InitializeNetworkConnection, GetNetworkConnectionResultHandle
  */
-/**
- * @brief 验证网络连接句柄安全性
- * 
- * 验证网络连接句柄和数据包句柄的安全性，确保连接操作的安全性
  * 
  * @param NetworkConnectionContext 网络连接上下文句柄
  * @param NetworkPacketHandle 网络数据包句柄
@@ -1081,14 +1057,6 @@ void ResetNetworkConnectionState(void);
  * 处理网络验证队列中的项目，进行连接验证
  * 
  * @param ValidationContext 验证上下文
- * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
- */
-/**
- * @brief 处理网络验证队列
- * 
- * 处理网络验证队列中的验证请求，进行数据包验证和安全检查
- * 
- * @param ValidationContext 验证上下文
  * @return uint32_t 处理结果，0表示成功，其他值表示错误码
  */
 uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext)
@@ -1127,14 +1095,6 @@ void ClearNetworkConnectionCache(void);
  * 初始化网络缓冲区，设置缓冲区参数
  * 
  * @param BufferPointer 缓冲区指针
- * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
- */
-/**
- * @brief 初始化网络缓冲区
- * 
- * 初始化网络缓冲区，设置缓冲区参数
- * 
- * @param BufferPointer 缓冲区指针
  * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
  */
 uint32_t InitializeNetworkBuffer(int64_t BufferPointer)
@@ -1160,15 +1120,6 @@ uint32_t InitializeNetworkBuffer(int64_t BufferPointer)
   return BufferInitializationResult;
 }
 
-/**
- * @brief 处理网络数组数据
- * 
- * 处理网络数组数据，进行数据验证和处理
- * 
- * @param NetworkContextArray 网络上下文数组
- * @param ArrayIndex 数组索引
- * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
- */
 /**
  * @brief 处理网络数组数据
  * 
