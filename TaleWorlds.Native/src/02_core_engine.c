@@ -219993,7 +219993,7 @@ void ProcessSystemCharacterValidation(uint64_t ContextHandle,long long Operation
               if (SecondaryProcessingStatusFlag != NULL) {
                 CharacterStatusBuffer5 = SecondaryProcessingStatusFlag;
               }
-              FUN_180627020(&SystemEventTemplatePrimary,CharacterStatusBuffer5,&SystemMemoryBlockIndex);
+              InitializeSystemEventTemplateData(&SystemEventTemplatePrimary,CharacterStatusBuffer5,&SystemMemoryBlockIndex);
               SystemStatusContext = (void *)FUN_1800befa0(SystemCharacterStatusBufferPointerA,&pCoreEngineSignedValueC8);
               BufferAllocationStatus = (long long *)*CharacterStatusBuffer3;
               *SystemStatusContext = 0;
@@ -220348,7 +220348,7 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
     NVGSDK_Release();
   }
   if (ContextHandle[2] != 0) {
-    FUN_180188120();
+    ReleaseSystemResources();
   }
   *ContextHandle = &SystemMemoryAddressMaskPointerPrimary;
   if ((OperationBufferSize & 1) != 0) {
@@ -220423,12 +220423,12 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
     OperationStatus = 3;
     *(void *)(SystemDataRegistry + 0x38) = 0;
     lStack_218 = SystemDataRegistry;
-    FUN_1801881a0(SystemDataRegistry,alStack_1a8);
+    ProcessSystemData(SystemDataRegistry,alStack_1a8);
     *(void *)(SystemDataRegistry + 0x40) = DataContentStatus;
     PatternMatchStatus = SearchStartIndex[2];
     MemoryBlockIndex[2] = SystemDataRegistry;
     if (BufferStatus != 0) {
-      FUN_180188120();
+      ReleaseSystemResources();
     }
     OperationStatus = 1;
     plStack_220 = alStack_1a8;

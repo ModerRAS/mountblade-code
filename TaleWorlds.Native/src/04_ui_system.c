@@ -33486,8 +33486,8 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   
   stackUInt50 = XorEncryptionKey ^ (ulonglong)astackUInte8;
   result2 = *(uint *)(uiContext + 0x1e70);
-  sVar9 = *bufferSize;
-  sVar1 = bufferSize[1];
+  bufferWidth = *bufferSize;
+  bufferHeight = bufferSize[1];
   contextHandleData = *(longlong *)(uiBufferData + 0x2398);
   EventDataIndex = *(longlong *)(uiBufferData + 0x23a0);
   stackLonga0 = (longlong)*(int *)(targetBuffer + 0x20) + *(longlong *)(uiBufferData + 0x1e98);
