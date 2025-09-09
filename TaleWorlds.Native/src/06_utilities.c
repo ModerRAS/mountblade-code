@@ -34068,7 +34068,7 @@ DataProcessLabelA:
             dataFlags = operationResult;
             if (0x4f < *(uint *)(dataBuffer + 8)) {
               if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0xac);
+                validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffsetAC,4);
                 dataFlags = (uint64_t)validationStatus;
               }
               else {
