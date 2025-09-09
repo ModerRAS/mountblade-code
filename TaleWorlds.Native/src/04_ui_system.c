@@ -126,12 +126,12 @@ typedef enum {
 #define ProcessUIDataTransformationAndValidation ValidateAndTransformUIData
 #define ProcessUIRenderingUpdateAndDataHandling UpdateUIRenderingAndData
 #define ProcessUIDataTransformation TransformUIDataStructure
-#define ProcessUIEventUpdate FUN_1807270a0
-#define ProcessUIBufferAllocation FUN_18072eb00
-#define ProcessUIValueCalculation FUN_18072e720
-#define ProcessUIRenderDataUpdate FUN_180726fd0
-#define ProcessUIComponentUpdate FUN_18072ec50
-#define ProcessUIDataBufferCopy FUN_18072e4b0
+#define ProcessUIEventUpdate UpdateUIEventProcessing
+#define ProcessUIBufferAllocation AllocateUIBufferMemory
+#define ProcessUIValueCalculation CalculateUIValueOperation
+#define ProcessUIRenderDataUpdate UpdateUIRenderData
+#define ProcessUIComponentUpdate UpdateUIComponentData
+#define ProcessUIDataBufferCopy CopyUIDataBuffer
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -84647,13 +84647,13 @@ void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHand
       if (baseValue5 <= 0.0) {
         baseValue5 = 0.0;
       }
-      dVar18 = (double)exp((double)-baseValue5 * 0.6931471805599453);
-      FloatValue2 = (float)dVar18 + (float)dVar18;
+      ExponentialDecayFactor4 = (double)exp((double)-baseValue5 * 0.6931471805599453);
+      FloatValue2 = (float)ExponentialDecayFactor4 + (float)ExponentialDecayFactor4;
       if (unmodifiedEBP == 3) {
         FloatValue2 = FloatValue2 * 1.4142135;
       }
-      if ((float)dVar17 * 0.5 <= FloatValue2) {
-        FloatValue2 = (float)dVar17 * 0.5;
+      if ((float)ExponentialDecayFactor3 * 0.5 <= FloatValue2) {
+        FloatValue2 = (float)ExponentialDecayFactor3 * 0.5;
       }
       processedCount = 0;
       FloatValue2 = FloatValue2 * (1.0 / (float)aiterationCount0._0_8_);
@@ -186514,7 +186514,8 @@ undefined* UIComponentStatusPointer2;      // 原始变量名：UNK_18095c5cc
 undefined* UIComponentStatusPointer3;      // 原始变量名：UNK_18095c5d4
 undefined* UIComponentStatusPointer4;      // 原始变量名：UNK_18095c5f4
 undefined DAT_180c2c270;
-undefined UNK_18095c998;
+// UI系统事件处理指针常量
+undefined* UIEventHandlerPointer1;         // 原始变量名：UNK_18095c998
 undefined DAT_180c2c250;
 undefined DAT_180c2c26c;
 undefined DAT_180c2c268;
