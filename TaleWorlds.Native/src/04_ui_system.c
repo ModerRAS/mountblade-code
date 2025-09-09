@@ -100030,107 +100030,121 @@ void FUN_180724aa1(void)
 
 
 
- void FUN_180724ac0(char *uiContext,longlong dataSource,char *targetBuffer,int bufferSize,int resultPointer)
-void FUN_180724ac0(char *uiContext,longlong dataSource,char *targetBuffer,int bufferSize,int resultPointer)
+ /**
+ * @brief 处理UI字符编码转换
+ * 
+ * 该函数负责处理UI字符的编码转换，包括字符验证、转换和规范化处理。
+ * 主要用于将输入的字符数据转换为UI系统可用的格式。
+ * 
+ * @param uiContext UI上下文缓冲区，存储处理后的字符数据
+ * @param dataSource 数据源指针，包含原始字符数据
+ * @param targetBuffer 目标缓冲区，用于存储转换后的字符
+ * @param bufferSize 缓冲区大小参数
+ * @param resultPointer 结果指针，指示处理的数据量
+ * 
+ * @note 原始函数名：FUN_180724ac0
+ * @note 这是一个字符处理函数，用于UI系统的字符编码转换
+ */
+void ProcessUICharacterEncoding(char *uiContext, longlong dataSource, char *targetBuffer, int bufferSize, int resultPointer)
 
 {
-  char localChar1;
-  short sVar2;
-  UIDword EventTypeCode;
-  char localChar4;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
+  char processedChar;
+  short uiProcessingValue;
+  UIDword eventTypeCode;
+  char normalizedChar;
+  int charCodeValue;
+  int charIndex;
+  longlong dataOffset;
   
   if (0 < (longlong)resultPointer) {
-    localLong7 = 0;
+    dataOffset = 0;
     do {
-      sVar2 = GetUIProcessingValue(*(UIDword *)(dataSource + localLong7 * 4));
-      localChar4 = (char)((ulonglong)((longlong)(short)(sVar2 + -0x82a) * 0x8cb) >> 0x10);
-      uiContext[localLong7] = localChar4;
-      if (localChar4 < *targetBuffer) {
-        localChar4 = localChar4 + '\x01';
+      uiProcessingValue = GetUIProcessingValue(*(UIDword *)(dataSource + dataOffset * 4));
+      normalizedChar = (char)((ulonglong)((longlong)(short)(uiProcessingValue + -0x82a) * 0x8cb) >> 0x10);
+      uiContext[dataOffset] = normalizedChar;
+      if (normalizedChar < *targetBuffer) {
+        normalizedChar = normalizedChar + '\x01';
       }
-      if (localChar4 < '@') {
-        if (localChar4 < '\0') {
-          localChar4 = '\0';
+      if (normalizedChar < '@') {
+        if (normalizedChar < '\0') {
+          normalizedChar = '\0';
         }
       }
       else {
-        localChar4 = '?';
+        normalizedChar = '?';
       }
-      uiContext[localLong7] = localChar4;
-      if ((localLong7 == 0) && (bufferSize == 0)) {
-        localInt5 = *targetBuffer + -4;
-        if (localInt5 < 0x40) {
-          if (localChar4 < '@') {
-            loopCounter = (int)localChar4;
-            if (localChar4 < localInt5) {
-              loopCounter = localInt5;
+      uiContext[dataOffset] = normalizedChar;
+      if ((dataOffset == 0) && (bufferSize == 0)) {
+        charCodeValue = *targetBuffer + -4;
+        if (charCodeValue < 0x40) {
+          if (normalizedChar < '@') {
+            charIndex = (int)normalizedChar;
+            if (normalizedChar < charCodeValue) {
+              charIndex = charCodeValue;
             }
             goto LAB_180724b88;
           }
           *uiContext = '?';
           *targetBuffer = '?';
-          localChar4 = '?';
+          normalizedChar = '?';
         }
         else {
-          loopCounter = localInt5;
-          if (localInt5 < localChar4) {
+          charIndex = charCodeValue;
+          if (charCodeValue < normalizedChar) {
 LAB_180724b88:
-            localChar4 = (char)loopCounter;
-            *uiContext = localChar4;
-            *targetBuffer = localChar4;
+            normalizedChar = (char)charIndex;
+            *uiContext = normalizedChar;
+            *targetBuffer = normalizedChar;
           }
           else {
-            if (localChar4 < '?') {
-              localChar4 = '?';
+            if (normalizedChar < '?') {
+              normalizedChar = '?';
             }
-            *uiContext = localChar4;
-            *targetBuffer = localChar4;
+            *uiContext = normalizedChar;
+            *targetBuffer = normalizedChar;
           }
         }
       }
       else {
-        localChar4 = localChar4 - *targetBuffer;
-        uiContext[localLong7] = localChar4;
-        localInt5 = *targetBuffer + 8;
-        if (localInt5 < localChar4) {
-          localChar4 = (char)((localChar4 - localInt5) + 1 >> 1) + (char)localInt5;
-          uiContext[localLong7] = localChar4;
+        normalizedChar = normalizedChar - *targetBuffer;
+        uiContext[dataOffset] = normalizedChar;
+        charCodeValue = *targetBuffer + 8;
+        if (charCodeValue < normalizedChar) {
+          normalizedChar = (char)((normalizedChar - charCodeValue) + 1 >> 1) + (char)charCodeValue;
+          uiContext[dataOffset] = normalizedChar;
         }
-        if (localChar4 < '%') {
-          if (localChar4 < -4) {
-            localChar4 = -4;
+        if (normalizedChar < '%') {
+          if (normalizedChar < -4) {
+            normalizedChar = -4;
           }
         }
         else {
-          localChar4 = '$';
+          normalizedChar = '$';
         }
-        uiContext[localLong7] = localChar4;
-        if (localInt5 < localChar4) {
-          localChar1 = (localChar4 * '\x02' - (char)localInt5) + *targetBuffer;
-          localChar4 = '?';
-          if (localChar1 < '?') {
-            localChar4 = localChar1;
+        uiContext[dataOffset] = normalizedChar;
+        if (charCodeValue < normalizedChar) {
+          processedChar = (normalizedChar * '\x02' - (char)charCodeValue) + *targetBuffer;
+          normalizedChar = '?';
+          if (processedChar < '?') {
+            normalizedChar = processedChar;
           }
         }
         else {
-          localChar4 = *targetBuffer + localChar4;
+          normalizedChar = *targetBuffer + normalizedChar;
         }
-        *targetBuffer = localChar4;
-        uiContext[localLong7] = uiContext[localLong7] + '\x04';
-        localChar4 = *targetBuffer;
+        *targetBuffer = normalizedChar;
+        uiContext[dataOffset] = uiContext[dataOffset] + '\x04';
+        normalizedChar = *targetBuffer;
       }
-      loopCounter = (int)((ulonglong)((longlong)localChar4 * 0x1d1c71) >> 0x10) + 0x82a;
-      localInt5 = 0xf7f;
-      if (loopCounter < 0xf7f) {
-        localInt5 = loopCounter;
+      charIndex = (int)((ulonglong)((longlong)normalizedChar * 0x1d1c71) >> 0x10) + 0x82a;
+      charCodeValue = 0xf7f;
+      if (charIndex < 0xf7f) {
+        charCodeValue = charIndex;
       }
-      EventTypeCode = func_0x00018070b9e0(localInt5);
-      *(UIDword *)(dataSource + localLong7 * 4) = EventTypeCode;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < resultPointer);
+      eventTypeCode = func_0x00018070b9e0(charCodeValue);
+      *(UIDword *)(dataSource + dataOffset * 4) = eventTypeCode;
+      dataOffset = dataOffset + 1;
+    } while (dataOffset < resultPointer);
   }
   return;
 }
