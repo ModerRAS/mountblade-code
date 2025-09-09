@@ -15036,11 +15036,11 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       else {
         IsGeometryValid = true;
       }
-      allocatedMemory0 = (longlong)((ProcessingResult5 + 1) % ProcessingResult2);
+      vertexIndex = (longlong)((ProcessingResult5 + 1) % ProcessingResult2);
       if ((!IsGeometryValid) ||
-         ((FloatValue2 = (*baseScaleFactor - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (AccumulatedFloat - baseScaleFactor[-1]) -
-                    (transformCoeff11 - *baseScaleFactor) * (baseScaleFactor[-1] - *(float *)(componentIndex + allocatedMemory0 * 8)),
-          FloatValue2 <= preservedXMM6 && (FloatValue2 < preservedXMM6)))) {
+         ((geometryCheckValue = (*baseScaleFactor - *(float *)(componentIndex + 4 + vertexIndex * 8)) * (AccumulatedFloat - baseScaleFactor[-1]) -
+                    (transformCoefficientX - *baseScaleFactor) * (baseScaleFactor[-1] - *(float *)(componentIndex + vertexIndex * 8)),
+          geometryCheckValue <= preservedXMM6 && (geometryCheckValue < preservedXMM6)))) {
         IsGeometryValid = false;
       }
       else {
@@ -288797,7 +288797,7 @@ void FUN_18083b3d0(UIByte (*uiContext) [32])
 void FUN_18083b4a0(UIByte (*uiContext) [32])
 
 {
-  UIByte (*paresult) [32];
+  UIByte (*presultArray) [32];
   UIByte aiterationCount [32];
   UIByte aeventCodeType [32];
   UIByte aProcessingStatus [32];
