@@ -59899,11 +59899,11 @@ void DestroyMutexA2(void)
 
 
 /**
- * @brief 互斥量销毁函数A3
+ * @brief 销毁辅助互斥量
  * 
- * 销毁互斥量资源
+ * 销毁系统辅助互斥量资源
  */
-void DestroyMutexA3(void)
+void DestroySecondaryMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -59913,14 +59913,14 @@ void DestroyMutexA3(void)
 
 
 /**
- * @brief 资源引用计数管理函数A1
+ * @brief 管理主资源引用计数
  * 
- * 管理资源的引用计数，当引用计数为0时处理异常
+ * 管理系统主资源的引用计数，当引用计数为0时处理异常
  * 
  * @param operationBase 操作基础地址
  * @param dataBuffer 数据缓冲区
  */
-void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
+void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -59957,15 +59957,15 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 资源引用计数管理函数A2
+ * @brief 管理辅助资源引用计数
  * 
- * 管理资源的引用计数，当引用计数为0时处理异常
+ * 管理系统辅助资源的引用计数，当引用计数为0时处理异常
  * 
  * @param operationBase 操作基础地址
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Unwind_1809055c0
  */
-void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
+void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -60002,13 +60002,13 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 互斥量销毁函数A4
+ * @brief 销毁系统互斥量
  * 
- * 销毁互斥量资源
+ * 销毁系统级互斥量资源
  * 
  * @note 原始函数名：Unwind_1809055d0
  */
-void DestroyMutexA4(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -60018,13 +60018,13 @@ void DestroyMutexA4(void)
 
 
 /**
- * @brief 互斥量销毁函数A5
+ * @brief 销毁全局互斥量
  * 
- * 销毁互斥量资源
+ * 销毁全局互斥量资源
  * 
  * @note 原始函数名：Unwind_1809055f0
  */
-void DestroyMutexA5(void)
+void DestroyGlobalMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -60034,15 +60034,15 @@ void DestroyMutexA5(void)
 
 
 /**
- * @brief 设置默认异常处理器B到数据缓冲区A1
+ * @brief 设置默认异常处理器到主缓冲区
  * 
- * 该函数用于设置默认的异常处理器B到指定的数据缓冲区位置
+ * 该函数用于设置默认的异常处理器到指定的主数据缓冲区位置
  * 
  * @param operationBase 操作基础地址
  * @param dataBuffer 数据缓冲区指针
  * @note 原始函数名：Unwind_180905610
  */
-void SetDefaultExceptionHandlerBToBufferA1(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerToPrimaryBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 8) = &SystemDefaultExceptionHandlerB;
