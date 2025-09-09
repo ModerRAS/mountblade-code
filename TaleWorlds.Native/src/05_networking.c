@@ -3546,7 +3546,7 @@ uint32_t NetworkPacketSecurityAuthenticationInfo;              // 数据包安�
  * 
  * 存储网络数据包安全授权过程中使用的数据，控制数据包的访问权限
  */
-uint32_t NetworkPacketSecurityAuthorizationData;               // 数据包安全授权数据
+uint32_t NetworkPacketSecurityAuthorizationBuffer;               // 数据包安全授权数据
 
 /**
  * @brief 数据包安全授权信息
@@ -3554,15 +3554,15 @@ uint32_t NetworkPacketSecurityAuthorizationData;               // 数据包安�
  * 存储网络数据包安全授权的相关信息，包括授权结果和权限状态
  */
 uint32_t NetworkPacketSecurityAuthorizationInfo;               // 数据包安全授权信息
-uint32_t NetworkPacketSecurityAuditData;                        // 数据包安全审计数据
+uint32_t NetworkPacketSecurityAuditBuffer;                        // 数据包安全审计数据
 uint32_t NetworkPacketSecurityAuditInfo;                        // 数据包安全审计信息
-uint32_t NetworkPacketSecurityPolicyData;                       // 数据包安全策略数据
+uint32_t NetworkPacketSecurityPolicyBuffer;                       // 数据包安全策略数据
 uint32_t NetworkPacketSecurityPolicyInfo;                       // 数据包安全策略信息
-uint32_t NetworkPacketSecurityCertificateData;                  // 数据包安全证书数据
+uint32_t NetworkPacketSecurityCertificateBuffer;                  // 数据包安全证书数据
 uint32_t NetworkPacketSecurityCertificateInfo;                  // 数据包安全证书信息
-uint32_t NetworkPacketDataCompressionLevel;                  // 网络数据包数据压缩级别
-uint32_t NetworkPacketCompressionDataLevel;                  // 网络数据包压缩数据级别
-uint32_t NetworkPacketCompressionLevel;                       // 网络数据包压缩级别
+uint32_t NetworkPacketPayloadCompressionLevel;                  // 网络数据包数据压缩级别
+uint32_t NetworkPacketHeaderCompressionLevel;                  // 网络数据包压缩数据级别
+uint32_t NetworkPacketOverallCompressionLevel;                       // 网络数据包压缩级别
 uint32_t NetworkPacketCompressionAlgorithmType;               // 网络数据包压缩算法类型
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列管理器
