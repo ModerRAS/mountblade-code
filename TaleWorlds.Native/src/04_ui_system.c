@@ -89547,7 +89547,7 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
             RegisterPointer = StackParam118;
             targetBuffer = StackParam128;
             Register10D = StackParam108;
-            bufferSize = stackParam00000170;
+            bufferSize = StackParam170;
           }
         }
         else {
