@@ -33749,15 +33749,15 @@ void ProcessUIEvents(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
         }
         else {
 LAB_18066fdc2:
-          pbVar9 = *(byte **)(contextHandle + 0xf00);
-          bVar4 = *pbVar9;
-          if (((bVar4 == 4) || (bVar4 == 9)) || (isCharacterMatch3 = true, pbVar9[9] == 0)) {
+          bytePointer9 = *(byte **)(contextHandle + 0xf00);
+          byteValue4 = *bytePointer9;
+          if (((byteValue4 == 4) || (byteValue4 == 9)) || (isCharacterMatch3 = true, bytePointer9[9] == 0)) {
             isCharacterMatch3 = false;
           }
-          bVar4 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar4 + 0xd00 + TargetHandle + 0x1ed0) +
+          byteValue4 = *(byte *)((ulonglong)*(byte *)((ulonglong)byteValue4 + 0xd00 + TargetHandle + 0x1ed0) +
                             TargetHandle + 0x1ed0 + 0xc40 +
-                           ((ulonglong)pbVar9[2] + (ulonglong)pbVar9[0xb] * 4) * 4);
-          uStack0000000000000058 = (uint)bVar4;
+                           ((ulonglong)bytePointer9[2] + (ulonglong)bytePointer9[0xb] * 4) * 4);
+          uStack0000000000000058 = (uint)byteValue4;
           if (iStack000000000000003c != *(int *)(TargetHandle + 0x1e74) + -1) {
             ptrResult = (UIDword *)(result9 * 0xf + *(longlong *)(contextHandle + 0xea8));
             result0 = ptrResult[1];
