@@ -200038,7 +200038,7 @@ UIHandle ConfigureUIElementVisibilityFlags(int *uiContext,UIHandle dataSource,in
   char stackParam00000048;
   
   if (targetBuffer == -1) {
-    uiElementIndex = 0;
+    localInt5 = 0;
     if (0 < *uiContext) {
       contextHandleData = 0;
       do {
@@ -200052,7 +200052,7 @@ UIHandle ConfigureUIElementVisibilityFlags(int *uiContext,UIHandle dataSource,in
           *EventHandle = (longlong)colorBufferPointer;
           return 0;
         }
-        uiElementIndex = uiElementIndex + 1;
+        localInt5 = localInt5 + 1;
         contextHandleData = contextHandleData + 8;
       } while (localInt5 < *BasePointer);
     }
