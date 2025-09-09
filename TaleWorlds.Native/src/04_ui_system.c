@@ -160511,13 +160511,13 @@ UIHandle ProcessUIComponentDataSource(longlong uiContext,uint dataSource,UIDword
       *(UIDword *)((longlong)allocatedMemoryPointer + 0x24) = 0;
     }
     else {
-      localInt7 = (int)ResultValue3;
-      if (localInt7 != 0) {
-        ProcessingStatus = pallocatedMemory[2];
-        result1 = (ulonglong)*(uint *)(pallocatedMemory + 4) * (ulonglong)*(uint *)((longlong)piterationCount + 0x24) >>
+      bufferIndex = (int)dataSourceValue;
+      if (bufferIndex != 0) {
+        processingStatus = allocatedMemoryPointer[2];
+        tempResult1 = (ulonglong)*(uint *)(allocatedMemoryPointer + 4) * (ulonglong)*(uint *)((longlong)iterationCounterPointer + 0x24) >>
                  0x14;
-        eventProcessingStatus = (UIDword)result1;
-        if (0xffffffff < result1) {
+        eventProcessingStatus = (UIDword)tempResult1;
+        if (0xffffffff < tempResult1) {
           eventProcessingStatus = 0xffffffff;
         }
         *(UIDword *)((longlong)pallocatedMemory + 0x24) = eventProcessingStatus;
