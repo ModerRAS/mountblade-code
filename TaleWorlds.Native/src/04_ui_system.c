@@ -2095,6 +2095,13 @@ typedef enum {
 #define FUN_18089aa70 UIEmptyFunction11
 #define FUN_18089aa78 UIEmptyFunction12
 
+// UI系统数据处理函数宏定义
+#define FUN_180721810 ProcessUITransformDataWithCoefficients
+#define FUN_18072182d ProcessUISimpleDataTransform
+#define FUN_180721864 ProcessUIComplexDataTransform
+#define FUN_180721984 ResetUITransformState
+#define FUN_1807219ee ProcessUIBufferWithTransform
+
 // UI系统堆栈变量美化
 #define afStack_6260 UIFloatStack6260
 
@@ -96797,8 +96804,24 @@ void ProcessUIDataWithSimpleTransform(float *uiContext,int dataSource,int target
 
 
 
- void FUN_180721864(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180721864(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+ /**
+ * @brief UI句柄数据处理函数
+ * 
+ * 使用UI句柄对数据进行变换处理，包括：
+ * - 基于句柄的数据源和目标缓冲区管理
+ * - 数据变换系数的计算和应用
+ * - 支持不同大小的数据处理
+ * - 处理UI组件间的数据传递
+ * 
+ * @param uiContext UI上下文数据指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180721864
+ */
+void ProcessUIDataWithHandles(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIDataWithHandles(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float baseValue;

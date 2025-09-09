@@ -20136,6 +20136,39 @@ void ExecuteSecurityValidation(void)
 
 // 浮点数验证常量
 #define FloatInfinityValidationResult 0x1d
+#define VectorComponentXOffset 0x30
+#define VectorComponentYOffset 0x34
+#define VectorComponentZOffset 0x38
+#define VectorComponentWOffset 0x3c
+#define VectorComponentYFloatOffset 0x40
+#define VectorComponentAdditionalOffset38 0x38
+#define FloatingPointDataOffset18 0x18
+#define FloatingPointDataOffset1c 0x1c
+#define FloatingPointDataOffset20 0x20
+#define FloatingPointDataOffset28 0x28
+#define FloatingPointDataOffset2c 0x2c
+#define DataBufferResultOffset 0x48
+#define DataBufferReferenceOffset18 0x18
+#define DataBufferComponentOffset28 0x28
+#define DataBufferComponentOffset2c 0x2c
+#define DataBufferTargetOffset38 0x38
+#define DataBufferTargetOffset40 0x40
+#define DataBufferTargetOffset48 0x48
+#define DataBufferTargetOffset4c 0x4c
+#define DataBufferTargetOffset50 0x50
+#define DataBufferTargetOffset54 0x54
+#define DataBufferTargetOffset58 0x58
+#define DataBufferTargetOffset5c 0x5c
+#define DataBufferTargetOffset60 0x60
+#define DataBufferTargetOffset64 0x64
+#define SystemOperationDataOffset98 0x98
+#define SystemConfigPrimaryOffset 0x2e0
+#define SystemConfigSecondaryOffset 0x2a8
+#define SystemConfigTertiaryOffset 0x2f8
+#define SystemContextOffset 0x2f8
+#define SystemResourceOffset88 0x88
+#define ResourceDescriptorOffset18 0x18
+#define ResourceAccessRequestOffset98 0x98
 
 /**
  * @brief 验证和处理浮点数数据
