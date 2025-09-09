@@ -100454,18 +100454,18 @@ int ProcessUIContextData(int *uiContext,UIHandle dataSource,UIHandle targetBuffe
 void FUN_180723ee0(int *uiContext,char *dataSource)
 
 {
-  short sVar1;
-  short sVar2;
+  short fontMetricX;
+  short fontMetricY;
   longlong stringCompareIndex;
-  int TempInt4;
-  char localChar5;
-  char localChar6;
-  int localInt7;
-  int localInt8;
-  int localInt9;
+  int tempProcessingResult;
+  char firstChar;
+  char currentChar;
+  int charIndex;
+  int fontTableIndex;
+  int maxIntValue;
   int processedCount;
-  int ProcessingResult1;
-  int ProcessingResult2;
+  int distanceResult1;
+  int distanceResult2;
   
   localChar6 = *dataSource;
   ProcessingResult1 = 0;
