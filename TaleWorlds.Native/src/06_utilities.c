@@ -28690,7 +28690,7 @@ void ProcessDataBlockOperationA0(DataBuffer systemContext,int64_t dataBufferPtr)
   
   validationResult = ValidateSystemDataD0();
   if (validationResult == 0) {
-    validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + 0xc);
+    validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + DataBufferSizeOffsetC);
     if (validationResult == 0) {
       validationResult = ValidateSystemDataD0(systemContext,dataBufferPtr + FloatValueOffset);
       if (validationResult == 0) {

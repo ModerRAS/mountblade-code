@@ -1477,6 +1477,14 @@ typedef enum {
 #define isCharacterMatch2 UIIsCharacterMatch2
 #define isCharacterMatch3 UIIsCharacterMatch3
 #define ProcessingFlag UIProcessingFlag
+
+// UI系统临时变量美化
+#define TempBuffer UITempBuffer
+#define TempPointer UITempPointer
+#define TempValueX UITempValueX
+#define TempValueY UITempValueY
+#define TempValueZ UITempValueZ
+#define TempValueW UITempValueW
 #define FUN_18089aa80 UIEmptyFunction13
 #define FUN_18089aa88 UIEmptyFunction14
 #define FUN_18089aa90 UIEmptyFunction15
