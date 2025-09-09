@@ -20568,7 +20568,7 @@ uint32_t FinalSystemInitialization(void)
     (*(code *)(*SystemPrimaryMemoryManager)[7])(SystemPrimaryMemoryManager);
   }
   SystemMemoryManager = SystemManagerPointerStorage;
-  *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
+  *(uint8_t *)(SystemManagerPointerStorage[1] + SystemManagerStorageStatusOffset) = 1;
   while( true ) {
     SystemControllerInstance = *SystemMemoryManager[1];
     if (SystemControllerInstance == (long long **)&SystemControllerDefaultTable) {
@@ -21210,20 +21210,20 @@ void UpdateSystemConfigurationParameter(uint64_t ConfigHandle, uint32_t Configur
   uint32_t ParameterStack [6];
   
   SystemConfigBase = SystemConfigurationDataBase;
-  if ((*(long long *)(SystemConfigurationDataBase + 0x22f0) != 0) &&
-     (ParameterStack[0] = ConfigurationValue, ValidationResult = (**(code **)(SystemConfigurationDataBase + 0x22f8))(ParameterStack),
+  if ((*(long long *)(SystemConfigurationDataBase + SystemConfigDataBaseOffset) != 0) &&
+     (ParameterStack[0] = ConfigurationValue, ValidationResult = (**(code **)(SystemConfigurationDataBase + SystemConfigFunctionOffset))(ParameterStack),
      ConfigurationValue = ParameterStack[0], ValidationResult == '\0')) {
     if (SystemDebugModeEnabled == '\0') {
       ErrorMessagePointer = &SystemErrorMessageTemplate;
-      if (*(void **)(SystemConfigBase + 0x22a0) != (void *)0x0) {
-        ErrorMessagePointer = *(void **)(SystemConfigBase + 0x22a0);
+      if (*(void **)(SystemConfigBase + SystemConfigErrorOffset) != (void *)0x0) {
+        ErrorMessagePointer = *(void **)(SystemConfigBase + SystemConfigErrorOffset);
       }
       LogSystemErrorMessage(&SystemErrorLogBuffer,ErrorMessagePointer);
     }
-    *(uint32_t *)(SystemConfigBase + 0x2290) = *(uint32_t *)(SystemConfigBase + 0x22d8);
+    *(uint32_t *)(SystemConfigBase + SystemConfigStatusOffset) = *(uint32_t *)(SystemConfigBase + SystemConfigValidationOffset);
     return;
   }
-  *(uint32_t *)(SystemConfigBase + 0x2290) = ConfigurationValue;
+  *(uint32_t *)(SystemConfigBase + SystemConfigStatusOffset) = ConfigurationValue;
   return;
 }
 
@@ -21281,7 +21281,7 @@ void CopySystemStringWithLengthLimit(long long targetBuffer,long long sourceStri
   long long StringLength;
   
   if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
     **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
@@ -21290,13 +21290,13 @@ void CopySystemStringWithLengthLimit(long long targetBuffer,long long sourceStri
     stringLength = stringLength + 1;
   } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x20) {
-    *(int *)(targetBuffer + 0x10) = (int)stringLength;
+    *(int *)(targetBuffer + SystemBufferStatusOffset) = (int)stringLength;
                     0001800463b7. Too many branches
                         strcpy_s(*(void* *)(targetBuffer + 8),0x20);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x20,sourceString);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
@@ -21321,7 +21321,7 @@ void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,in
       memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   return;
 }
 
@@ -24284,7 +24284,7 @@ void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString
   long long ResourceDataIndex;
   
   if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
     **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
@@ -24293,13 +24293,13 @@ void ProcessSystemStringCopyMedium(long long targetBuffer,long long sourceString
     resourceDataIndex = ResourceDataIndex + 1;
   } while (*(char *)(sourceString + ResourceDataIndex) != '\0');
   if ((int)ResourceDataIndex < 0x80) {
-    *(int *)(targetBuffer + 0x10) = (int)ResourceDataIndex;
+    *(int *)(targetBuffer + SystemBufferStatusOffset) = (int)ResourceDataIndex;
                     00018004a1b9. Too many branches
                         strcpy_s(*(void* *)(targetBuffer + 8),0x80);
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x80,sourceString);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
@@ -31636,7 +31636,7 @@ void ProcessSystemString(long long SystemResourceManager,long long Configuration
     ResourceHashEntryPointer = *(void* **)(ConfigurationDataPointer + 8);
   }
   if (ResourceHashEntryPointer == (void* *)0x0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
     **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
@@ -31651,7 +31651,7 @@ void ProcessSystemString(long long SystemResourceManager,long long Configuration
     return;
   }
   InitializeSystemMemoryBuffer(&SystemMemoryTemplateSeptenary,0x400);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
@@ -35801,7 +35801,7 @@ void CopySystemProcessingBufferData(long long SystemResourceManager,void* Config
       memcpy(*(uint8_t **)(SystemResourceManager + 8),ConfigurationDataPointer,(long long)AdditionalParameter);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   return;
 }
 
@@ -38478,7 +38478,7 @@ long long TransferSystemResourceConfigurationData(long long SystemResourceManage
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
   *(void* *)(SystemResourceManager + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  *(uint32_t *)(targetBuffer + SystemBufferStatusOffset) = 0;
   *(uint32_t *)(SystemResourceManager + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   *(void* *)(SystemResourceManager + 8) = *(void* **)(ConfigDataHandle + 8);
   *(uint32_t *)(SystemResourceManager + 0x1c) = *(uint32_t *)(ConfigurationDataPointer + 0x1c);
