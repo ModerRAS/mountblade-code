@@ -470,10 +470,10 @@ typedef enum {
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UISystemDataRegistryPrimary
 // 注意：这个变量已经在上面定义为 GlobalUIResourceManagerF0
-#define DAT_180c4ea98 UIThresholdCounter
-#define DAT_180be2198 UIDataTablePrimary
-#define DAT_180be2df8 UIDataTableSecondary
-#define DAT_180be2288 UIDataTableTertiary
+#define DAT_180c4ea98 UIEventThresholdCounterA8              // UI事件阈值计数器A8 - 存储UI事件处理的阈值计数
+#define DAT_180be2198 UIDataTablePrimary198                    // UI主数据表198 - 存储UI系统的主要数据
+#define DAT_180be2df8 UIDataTableSecondaryF8                  // UI次数据表F8 - 存储UI系统的次要数据
+#define DAT_180be2288 UIDataTableTertiary88                   // UI第三数据表88 - 存储UI系统的第三级数据
 #define DAT_180be2d08 UIDataTableQuaternary
 #define DAT_180be2ee8 UIDataTableQuinary
 #define DAT_180980640 UIDataTableSenary
