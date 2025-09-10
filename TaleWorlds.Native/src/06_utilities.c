@@ -616,6 +616,15 @@
 #define DestinationContextOffset1B4 0x1b4
 #define DestinationContextOffset1B8 0x1b8
 #define DestinationContextOffset1B0 0x1b0
+
+// 内存管理相关常量
+#define MemoryResourcePointerTableOffset 0x48                    // 内存资源指针表偏移量
+#define MemoryRegionAlignmentShift 0x10                            // 内存区域对齐位移量
+#define MemoryPointerTableOffset70 0x70                           // 内存指针表偏移量70
+#define MemoryExceptionListCheckOffset 0x0                       // 内存异常列表检查偏移量
+
+// 句柄管理相关常量
+#define HandleCloseOffset68 0x68                                 // 句柄关闭偏移量68
 #define DestinationContextOffset1BC 0x1bc
 
 // 异常处理回调偏移量常量
@@ -60002,7 +60011,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x48);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + MemoryResourcePointerTableOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
