@@ -224798,7 +224798,25 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 
 
 
-86430(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180186430(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180186430(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统内存块和缓冲区清理
+ * 
+ * 该函数负责处理系统内存块和缓冲区的清理操作，主要功能包括：
+ * - 处理内存块链表的释放和清理
+ * - 管理系统数据注册表和内存块索引
+ * - 执行系统栈数据的处理和清理
+ * - 更新缓冲区状态和内存块指针
+ * 
+ * @param ContextHandle 上下文句柄，用于标识要处理的内存块
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180186430
+ */
+#define ProcessSystemMemoryBlockAndBufferCleanup FUN_180186430
+void ProcessSystemMemoryBlockAndBufferCleanup(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -224833,7 +224851,25 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 
 
 
-864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_1801864e0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符表指针和Unicode码点清理
+ * 
+ * 该函数负责处理字符表指针和Unicode码点的清理操作，主要功能包括：
+ * - 验证字符表指针的有效性
+ * - 计算和处理Unicode码点
+ * - 执行内存释放和指针清理
+ * - 处理无效参数的安全检查
+ * 
+ * @param ContextHandle 上下文句柄指针，包含字符表信息
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801864e0
+ */
+#define ProcessCharacterTablePointerAndUnicodeCleanup FUN_1801864e0
+void ProcessCharacterTablePointerAndUnicodeCleanup(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   long long BufferStatus;
@@ -224863,7 +224899,23 @@ void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t Operat
 
 
 
-865a0(uint64_t ContextHandle,uint64_t *ContextHandleSizevoid FUN_1801865a0(uint64_t ContextHandle,uint64_t *ContextHandleSize
+// 函数: void FUN_1801865a0(uint64_t ContextHandle,uint64_t *ContextHandleSize)
+/**
+ * @brief 处理上下文句柄大小和系统缓冲区状态
+ * 
+ * 该函数负责处理上下文句柄大小和系统缓冲区状态，主要功能包括：
+ * - 管理上下文句柄大小和缓冲区状态
+ * - 处理系统标志和编码解码操作
+ * - 执行内存地址掩码和边界检查
+ * - 管理系统栈寄存器和处理计数器
+ * 
+ * @param ContextHandle 上下文句柄，用于标识要处理的对象
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @note 原始函数名：FUN_1801865a0
+ */
+#define ProcessContextHandleSizeAndSystemBufferStatus FUN_1801865a0
+void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64_t *ContextHandleSize)
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -234207,7 +234259,24 @@ LAB_180190d41:
 
 
 
-90e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180190e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer
+// 函数: void FUN_180190e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
+/**
+ * @brief 处理系统字符编码和缓冲区操作
+ * 
+ * 该函数负责处理系统字符编码和缓冲区操作，主要功能包括：
+ * - 处理缓冲区状态和内存地址掩码
+ * - 执行系统操作状态验证
+ * - 管理内存块索引和字符初始化
+ * - 递归处理字符编码和缓冲区操作
+ * 
+ * @param ContextHandle 上下文句柄，用于标识要处理的对象
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180190e30
+ */
+void FUN_180190e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   char ValidationStatus;
   long long BufferStatus;
