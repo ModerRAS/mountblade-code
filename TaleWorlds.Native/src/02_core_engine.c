@@ -220355,6 +220355,17 @@ void ProcessSystemMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBuff
 
 
 
+/**
+ * @brief 处理系统资源清理
+ * 
+ * 该函数负责系统资源的清理和释放，确保系统资源的正确回收
+ * 和内存泄漏的预防。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定清理操作的缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18017dd60
+ */
 void ProcessSystemResourceCleanup(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
@@ -220411,6 +220422,16 @@ void ProcessSystemResourceCleanup(uint64_t ContextHandle,uint64_t OperationBuffe
 
 
 
+/**
+ * @brief 处理系统上下文数据
+ * 
+ * 该函数负责处理系统上下文数据，包括数据的读取、写入和验证操作，
+ * 确保上下文数据的完整性和一致性。
+ * 
+ * @param ContextHandle 上下文句柄指针，指向系统上下文的句柄
+ * 
+ * @note 原始函数名：FUN_18017ee80
+ */
 void ProcessSystemContextData(long long *ContextHandle)
 {
   uint64_t Utf16Char;
