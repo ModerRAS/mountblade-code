@@ -231709,7 +231709,7 @@ LAB_1801909bf:
   
   if (ContextHandle != OperationBufferSize) {
     for (TemporaryBuffer = ContextHandle + 0x69; TemporaryBuffer != OperationBufferSize; TemporaryBuffer = TemporaryBuffer + 0x69) {
-      FUN_18018e7e0(SystemArrayBuffer368,TemporaryBuffer);
+      ProcessSystemBufferDataTransfer(SystemArrayBuffer368,TemporaryBuffer);
       CharacterStatusBuffer = TemporaryBuffer;
       if (TemporaryBuffer != ContextHandle) {
         SystemCharacterStatusBuffer = TemporaryBuffer + 2;
