@@ -4947,7 +4947,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180062300
  */
-#define FUN_180062300 ProcessSystemDataTransferAndValidation
+#define ProcessSystemDataTransferAndValidation ProcessSystemDataTransferAndValidation
 
 /**
  * @brief 系统操作和任务处理器
@@ -4957,7 +4957,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180069530
  */
-#define FUN_180069530 ProcessSystemOperationsAndTasks
+#define ProcessSystemOperationsAndTasks ProcessSystemOperationsAndTasks
 
 /**
  * @brief 系统数据读写处理器
@@ -4967,7 +4967,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180074a80
  */
-#define FUN_180074a80 ProcessSystemDataReadWrite
+#define ProcessSystemDataReadWrite ProcessSystemDataReadWrite
 
 /**
  * @brief 系统数据加密器
@@ -4977,7 +4977,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define FUN_18064e900 EncryptSystemDataForSecurity
+#define EncryptSystemDataForSecurity EncryptSystemDataForSecurity
 
 /**
  * @brief 系统上下文生命周期管理器
