@@ -169,6 +169,9 @@
 #define CalculateCharacterEncodingValue FUN_180641cd0              // 计算字符编码值
 #define ProcessCharacterTableOperation FUN_180226430              // 处理字符表操作
 
+// 内存管理和数据处理函数
+#define ProcessSystemMemoryBlockAndContextData FUN_1801993a0       // 处理系统内存块和上下文数据
+
 /**
  * @brief 配置核心引擎指针
  * 
@@ -225098,7 +225101,20 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
 
 
 
-86800(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180186800(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存缓冲区和UTF转换
+ * 
+ * 该函数负责处理系统内存缓冲区的管理和UTF字符编码的转换操作。
+ * 主要用于内存数据的处理和字符编码的转换。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180186800
+ */
+void ProcessSystemMemoryBufferAndUtfConversion(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   long long BufferStatus;
@@ -240907,54 +240923,68 @@ LAB_18019937e:
 
 
 
-long long * FUN_1801993a0(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,char Utf16EndPointer
+/**
+ * @brief 处理系统内存块和上下文数据
+ * 
+ * 该函数负责管理系统内存块的分配和初始化，处理上下文数据的设置和配置。
+ * 支持UTF-8和UTF-16字符编码的转换和处理。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param ContextHandleSize 上下文大小指针，用于返回处理后的上下文大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向要处理的UTF-8数据
+ * @param Utf16EndPointer UTF-16结束字符，用于标识UTF-16数据的结束
+ * @return long long* 返回操作缓冲区大小的指针
+ * 
+ * @note 原始函数名：FUN_1801993a0
+ */
+long long * ProcessSystemMemoryBlockAndContextData(uint64_t ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,char Utf16EndPointer)
 {
-  long long MainCalculationResult;
+  long long *SystemMemoryBlockPointer;
   uint64_t MemoryPoolIndex;
   long long *MemoryBlockIndex;
-  long long *plStack_30;
-  long long *pSystemEventFlag;
+  long long *StackProcessingBuffer;
+  long long *SystemEventFlagPointer;
   uint64_t ProcessingCounter;
-  long long **StackProcessingStatusFlag18;
+  long long **StackProcessingStatusPointer;
   
   ProcessingCounter = 0xfffffffffffffffe;
   *ContextHandleSize = 0;
   if (Utf16EndPointer == '\0') {
     MemoryBlockIndex = (long long *)FUN_18019eb80(ContextHandle,Utf8SourcePointer,Utf8SourcePointer,0,1);
     if (MemoryBlockIndex != (long long *)0x0) {
-      pSystemEventFlag = MemoryBlockIndex;
+      SystemEventFlagPointer = MemoryBlockIndex;
       (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
     }
-    pSystemEventFlag = (long long *)*ContextHandleSize;
+    SystemEventFlagPointer = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
   }
   else {
-    FUN_1801a0860(ContextHandle,&pSystemEventFlag);
+    FUN_1801a0860(ContextHandle,&SystemEventFlagPointer);
     MemoryPoolIndex = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
     MemoryBlockIndex = (long long *)FUN_180275090(MemoryPoolIndex);
     if (MemoryBlockIndex != (long long *)0x0) {
-      plStack_30 = MemoryBlockIndex;
+      StackProcessingBuffer = MemoryBlockIndex;
       (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
     }
-    plStack_30 = (long long *)*ContextHandleSize;
+    StackProcessingBuffer = (long long *)*ContextHandleSize;
     *ContextHandleSize = (long long)MemoryBlockIndex;
-    if (plStack_30 != (long long *)0x0) {
-      (**(code **)(*plStack_30 + 0x38))();
+    if (StackProcessingBuffer != (long long *)0x0) {
+      (**(code **)(*StackProcessingBuffer + 0x38))();
     }
     CharacterTablePointer = *ContextHandleSize;
-    StackProcessingStatusFlag18 = &plStack_30;
-    plStack_30 = pSystemEventFlag;
-    if (pSystemEventFlag != (long long *)0x0) {
-      (**(code **)(*pSystemEventFlag + 0x28))();
+    StackProcessingStatusPointer = &StackProcessingBuffer;
+    StackProcessingBuffer = SystemEventFlagPointer;
+    if (SystemEventFlagPointer != (long long *)0x0) {
+      (**(code **)(*SystemEventFlagPointer + 0x28))();
     }
-    FUN_180275cf0(LoopCounter,0,&plStack_30,1);
+    FUN_180275cf0(LoopCounter,0,&StackProcessingBuffer,1);
     (**(code **)(*(long long *)*ContextHandleSize + 0x100))((long long *)*ContextHandleSize,0);
     (**(code **)(*(long long *)(*ContextHandleSize + 0x1f0) + 0x10)              ((long long *)(*ContextHandleSize + 0x1f0),&SystemEventTemplateQuinary);
     FUN_180276f30(*ContextHandleSize,*ContextHandleSize + 0x214,1);
     (**(code **)(*(long long *)*ContextHandleSize + 0x148))((long long *)*ContextHandleSize,&SystemDataTemplate); /* 系统数据模板 - 用于数据结构初始化 */
   }
-  if (pSystemEventFlag != (long long *)0x0) {
-    (**(code **)(*pSystemEventFlag + 0x38))();
+  if (SystemEventFlagPointer != (long long *)0x0) {
+    (**(code **)(*SystemEventFlagPointer + 0x38))();
   }
   return OperationBufferSize;
 }
