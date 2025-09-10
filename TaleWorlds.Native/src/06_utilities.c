@@ -38994,11 +38994,12 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float systemMemoryBuffer;     // 系统数据缓冲区1，替换系统相关变量
   float operationBase;         // 操作基数，替换操作相关变量
   float stackFrameContext;     // 栈帧指针，替换栈相关变量
-  float registerR12Value;          // 寄存器R12值，替换寄存器相关变量
+  float registerValueR12;      // 寄存器R12值，替换寄存器相关变量
   float exceptionDataBufferD;  // 异常数据缓冲区D，替换异常相关变量
   float exceptionContextG; // 异常处理上下文G，替换异常处理相关变量
   float exceptionContextF; // 异常处理上下文F，替换异常处理相关变量
   float exceptionDataBufferB;  // 异常数据缓冲区B，替换异常相关变量
+  float inputParameterTertiary; // 输入参数Tertiary，替换参数相关变量
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
