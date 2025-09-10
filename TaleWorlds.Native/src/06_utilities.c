@@ -105113,24 +105113,37 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
   
   // 从数据缓冲区的0x2f0偏移量获取内存资源指针
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset2F0);
+  
+  // 检查内存资源指针的有效性
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
+  
+  // 计算内存区域的基地址（使用内存区域掩码）
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
+    // 计算内存块偏移量
     memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
     memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    
+    // 检查内存区域是否在异常列表中并且异常检查标志为0
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针和数据
       *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      
+      // 减少引用计数
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
+      
+      // 如果引用计数归零，调用异常处理函数
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
+      // 调用内存管理函数处理资源
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
