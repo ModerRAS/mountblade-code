@@ -628,6 +628,8 @@ typedef enum {
 // UI系统函数宏定义 - 变换数据处理
 #define FUN_18072e5f4 ProcessUITransformDataScaling
 #define FUN_18072e9ce ProcessUIComponentBatchTransform
+#define FUN_18072e943 ResetUIRenderState
+#define FUN_18072e96d ClearUIRenderCache
 #define FUN_18072eaed ClearUIComponentState
 #define FUN_18072eb00 ProcessUIBufferAllocationInternal
 #define FUN_18072f881 InitializeUISystemState
@@ -112413,7 +112415,7 @@ void ProcessUIComponentRenderTransform(UIHandle uiContext, UIHandle dataSource, 
   do {
     eventProcessingCounter = *(UIDword *)(TargetHandle + 0x121c);
     ProcessUIComponentOperation(&stack0x000006b0,TargetHandle + 0x1190);
-    FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(TargetHandle + 0x121c),
+    ProcessUIDataUnpackingAndConversion(&stack0x00000030,&stack0x000006b0,*(UIDword *)(TargetHandle + 0x121c),
                   *(UIDword *)(TargetHandle + 0x13ec),eventProcessingCounter);
     ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030);
     processingResult = *(int *)(TargetHandle + 0x121c);
