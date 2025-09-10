@@ -294963,6 +294963,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 原始函数名：FUN_180187950 - 系统字符串索引和字符表操作函数
 #define ProcessSystemStringIndexAndCharacterTableOperation FUN_180187950
 
+// 原始函数名：FUN_180198890 - 系统上下文初始化函数
+#define InitializeSystemContextAndBuffer FUN_180198890
+
 /**
  * @brief 处理系统编码缓冲区和内存分配
  * 
