@@ -180,6 +180,11 @@
 // 内存管理和数据处理函数
 #define ProcessSystemMemoryBlockAndContextData FUN_1801993a0       // 处理系统内存块和上下文数据
 
+// 系统缓冲区和数据处理函数
+#define ProcessSystemBufferDataTransfer FUN_18018e7e0               // 处理系统缓冲区数据传输
+#define ProcessSystemEncodingConversion FUN_1801917b0              // 处理系统编码转换
+#define ProcessSystemConfigurationData FUN_1802759e0               // 处理系统配置数据
+
 /**
  * @brief 配置核心引擎指针
  * 

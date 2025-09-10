@@ -5601,7 +5601,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents InitializeSystemComponentsA0
+#define InitializeSystemComponents FUN_18004c090
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
@@ -6557,7 +6557,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponents InitializeSystemComponentsB0
+#define InitializeSystemComponentsB0 FUN_18004c0a0
 
 /**
  * @brief 带安全检查的数据验证A2
@@ -9820,7 +9820,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateAndProcessDataOperation ValidateDataAndExecuteProcessing
 
 // 系统初始化函数A0 - 初始化系统组件和状态
-#define InitializeSystemComponentsA0 InitializeSystemComponentsAndState
+#define InitializeSystemComponentsA0 FUN_18004c0b0
 
 // 系统重置函数 - 重置系统状态和清理资源
 #define ResetSystemComponents ResetSystemStateAndCleanupResources
@@ -135177,7 +135177,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents InitializeSystemComponentsA0
+#define InitializeSystemComponents FUN_18004c090
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
