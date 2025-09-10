@@ -8208,28 +8208,109 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：处理数据同步操作
 #define ProcessDataSynchronizationA0 FUN_180893d8f
 
-// 原始函数名：FUN_180893e30 - 事件处理函数A0
-// 功能：处理事件操作
+/**
+ * @brief 事件处理函数A0
+ * 
+ * 该函数负责处理系统事件，包括事件的接收、分发和处理。
+ * 主要功能包括：
+ * - 事件队列管理
+ * - 事件分发和路由
+ * - 事件处理器调用
+ * - 事件状态跟踪
+ * 
+ * @return int 事件处理结果状态码：
+ *         - 0: 事件处理成功
+ *         - 非0值: 事件处理失败或错误代码
+ * 
+ * @note 原始函数名：FUN_180893e30
+ * @warning 事件处理可能涉及系统关键操作，需要确保处理器的可靠性
+ * @see ProcessDataSynchronizationA0, ValidateSystemConfigurationA0
+ */
 #define ProcessEventA0 FUN_180893e30
 
 // 原始函数名：FUN_180893e69 - 状态更新函数A0
 // 功能：更新系统状态
 // 注意：此函数在前面已经定义过
 
-// 原始函数名：FUN_180893e94 - 配置加载函数A0
-// 功能：加载系统配置
+/**
+ * @brief 配置加载函数A0
+ * 
+ * 该函数负责加载系统配置文件，解析配置参数并初始化系统配置。
+ * 主要功能包括：
+ * - 配置文件读取和解析
+ * - 配置参数验证
+ * - 配置数据结构初始化
+ * - 配置错误处理
+ * 
+ * @return int 配置加载结果状态码：
+ *         - 0: 配置加载成功
+ *         - 非0值: 配置加载失败或错误代码
+ * 
+ * @note 原始函数名：FUN_180893e94
+ * @warning 配置文件损坏可能导致系统启动失败，需要确保配置文件的完整性
+ * @see SaveSystemConfigurationA0, ValidateSystemConfigurationA0
+ */
 #define LoadSystemConfigurationA0 FUN_180893e94
 
-// 原始函数名：FUN_180893f00 - 配置保存函数A0
-// 功能：保存系统配置
+/**
+ * @brief 配置保存函数A0
+ * 
+ * 该函数负责保存系统配置到配置文件，确保配置数据的持久化存储。
+ * 主要功能包括：
+ * - 配置数据序列化
+ * - 配置文件写入
+ * - 配置数据验证
+ * - 写入错误处理
+ * 
+ * @return int 配置保存结果状态码：
+ *         - 0: 配置保存成功
+ *         - 非0值: 配置保存失败或错误代码
+ * 
+ * @note 原始函数名：FUN_180893f00
+ * @warning 配置保存失败可能导致配置丢失，需要确保存储介质的可靠性
+ * @see LoadSystemConfigurationA0, ValidateSystemConfigurationA0
+ */
 #define SaveSystemConfigurationA0 FUN_180893f00
 
-// 原始函数名：FUN_180893f64 - 配置验证函数A0
-// 功能：验证系统配置
+/**
+ * @brief 配置验证函数A0
+ * 
+ * 该函数负责验证系统配置的有效性和完整性，确保配置参数符合系统要求。
+ * 主要功能包括：
+ * - 配置参数格式验证
+ * - 配置值范围检查
+ * - 配置依赖关系验证
+ * - 配置一致性检查
+ * 
+ * @return int 配置验证结果状态码：
+ *         - 0: 配置验证成功
+ *         - 非0值: 配置验证失败或错误代码
+ * 
+ * @note 原始函数名：FUN_180893f64
+ * @warning 配置验证失败可能导致系统运行异常，需要确保配置的正确性
+ * @see LoadSystemConfigurationA0, SaveSystemConfigurationA0
+ */
 #define ValidateSystemConfigurationA0 FUN_180893f64
 
-// 全局指针设置函数A24
-// 功能：设置全局数据指针A24到指定地址
+/**
+ * @brief 全局指针设置函数A24
+ * 
+ * 该函数负责设置全局数据指针A24到指定地址，用于系统全局数据访问。
+ * 主要功能包括：
+ * - 全局指针地址设置
+ * - 指针有效性验证
+ * - 指针访问权限设置
+ * - 指针状态初始化
+ * 
+ * @param targetAddress 目标地址，用于设置全局指针
+ * @return int 指针设置结果状态码：
+ *         - 0: 指针设置成功
+ *         - 非0值: 指针设置失败或错误代码
+ * 
+ * @note 原始函数名：ConfigureGlobalDataPointerA24
+ * @warning 全局指针设置错误可能导致系统崩溃，需要确保地址的有效性
+ * @see SetGlobalDataPointerA25, SetGlobalDataPointerA26
+ */
 #define SetGlobalDataPointerA24 ConfigureGlobalDataPointerA24
 
 // 全局指针设置函数A25
