@@ -233371,11 +233371,11 @@ joined_r0x0001801906da:
     }
     FUN_180190e30(ContextHandle,OperationBufferSize,(long long)(ValidationResult + -1) * 2,Utf8SourcePointer,0xfffffffffffffffe);
     if (SystemDataTablePointer < 0x1d) {
-      FUN_180190ae0(ContextHandle,OperationBufferSize);
+      ProcessSystemCharacterEncodingAndStatusManagementEx(ContextHandle,OperationBufferSize);
     }
     else {
       SystemDataTablePointer = ContextHandle + 0x5be0;
-      FUN_180190ae0(ContextHandle,SystemDataTablePointer);
+      ProcessSystemCharacterEncodingAndStatusManagementEx(ContextHandle,SystemDataTablePointer);
       if (SystemDataTablePointer != OperationBufferSize) {
         ContextHandle = ContextHandle + 0x5898;
 LAB_1801908b0:
