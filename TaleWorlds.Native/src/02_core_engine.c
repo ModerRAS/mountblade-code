@@ -2304,10 +2304,10 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define AudioManagerStatusFlag AudioSystemManagerStatusFlag   // 音频管理器状态标志
 #define InputManagerStatusFlag InputSystemManagerStatusFlag   // 输入管理器状态标志
 #define PhysicsManagerNodeStatusFlag PhysicsSystemManagerNodeStatusFlag // 物理管理器节点状态标志
-#define NetworkManagerStatusFlag NetworkManagerStatusFlag // 网络管理器状态标志
-#define SceneManagerStatusFlag SceneManagerStatusFlag   // 场景管理器状态标志
-#define CameraManagerStatusFlag CameraManagerStatusFlag   // 相机管理器状态标志
-#define SystemNodeStatusFlag SystemNodeStatusFlag           // 系统节点状态标志
+#define NetworkManagerStatusFlag NetworkSystemManagerStatusFlag // 网络管理器状态标志
+#define SceneManagerStatusFlag SceneSystemManagerStatusFlag   // 场景管理器状态标志
+#define CameraManagerStatusFlag CameraSystemManagerStatusFlag   // 相机管理器状态标志
+#define SystemNodeStatusFlag SystemComponentNodeStatusFlag           // 系统节点状态标志
 #define ValidationStatusFlag ValidationStatusFlag      // 验证状态标志
 #define ConfigStatusFlag ConfigStatusFlag             // 配置状态标志
 #define DataStatusFlag DataStatusFlag                 // 数据状态标志
@@ -228119,7 +228119,7 @@ ConvertUtf8ToUtf16Encoding(long long *ContextHandle,uint64_t *ContextHandleSize,
   uint64_t FunctionAddressArray[2];
   
   if (ContextHandle[1] == 0) {
-    FUN_18018aa30(ContextHandle,OperationBufferSize,1,*ContextHandle);
+    ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,1,*ContextHandle);
     return OperationBufferSize;
   }
   MemoryBlockListHead = (long long *)*ContextHandle;
@@ -228142,7 +228142,7 @@ ConvertUtf8ToUtf16Encoding(long long *ContextHandle,uint64_t *ContextHandleSize,
     if (InputDataLength == 0) {
       if (MemoryPoolIndex < Utf16Char) {
 LAB_18018a278:
-        FUN_18018aa30(ContextHandle,OperationBufferSize,1,Utf8SourcePointer);
+        ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,1,Utf8SourcePointer);
         return OperationBufferSize;
       }
     }
@@ -228169,7 +228169,7 @@ LAB_18018a278:
     if (InputDataLength == 0) {
       if (MemoryPoolIndex < Utf16Char) {
 LAB_18018a2f8:
-        FUN_18018aa30(ContextHandle,OperationBufferSize,0,BufferStatus);
+        ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,0,BufferStatus);
         return OperationBufferSize;
       }
     }
@@ -228246,10 +228246,10 @@ LAB_18018a370:
       if (MemoryComparisonResult < 0) {
 LAB_18018a5c5:
         if (*(char *)(MemoryPoolBlockSizePointer[2] + SystemNodeStatusOffset) != '\0') {
-          FUN_18018aa30(ContextHandle,OperationBufferSize,0,MemoryPoolBlockSizePointer);
+          ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,0,MemoryPoolBlockSizePointer);
           return OperationBufferSize;
         }
-        FUN_18018aa30(ContextHandle,OperationBufferSize,1,Utf8SourcePointer);
+        ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,1,Utf8SourcePointer);
         return OperationBufferSize;
       }
     }
@@ -228317,10 +228317,10 @@ LAB_18018a57c:
   }
 LAB_18018a53f:
   if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) != '\0') {
-    FUN_18018aa30(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
+    ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
     return OperationBufferSize;
   }
-  FUN_18018aa30(ContextHandle,OperationBufferSize,1,MemoryPoolBlockSizePointer);
+  ProcessUtf8CharacterEncodingAndInputBuffer(ContextHandle,OperationBufferSize,1,MemoryPoolBlockSizePointer);
   return OperationBufferSize;
 }
 

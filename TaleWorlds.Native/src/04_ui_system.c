@@ -229,6 +229,7 @@ typedef enum {
 #define ProcessUIInterfaceRendering FUN_180730e60        // UI界面渲染处理
 #define ProcessUINavigationSystem FUN_180733080          // UI导航系统处理
 #define ProcessUITextProcessing FUN_18072f890           // UI文本处理函数
+#define ProcessUIResourceValidation FUN_180734390       // UI资源验证处理
 
 // 额外的UNK变量定义
 #define UNK_18095ad08 UIEventDataProcessorA8            // UI事件数据处理器A8
@@ -106810,7 +106811,7 @@ void ProcessUIComponentAnimation(longlong uiContext,UIHandle dataSource,int targ
   contextDataHandle = 0;
   ProcessUICharacterDataConversion(componentData + 0x10,uiContext + 0xac8,uiContext + 0x908,targetBuffer == 2,
                 *(UIDword *)(uiBufferData + 0x914));
-  FUN_180734390(&stack0x00000030,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
+  ProcessUIResourceValidation(&stack0x00000030,uiContext + 0xad0,*(UIHandle *)(uiContext + 0xac0));
   ExecuteUIBufferDataOperation(componentData + 0x40,&stack0x00000030,*(UIDword *)(uiBufferData + 0x924),
                 *(UIDword *)(uiBufferData + 0x1060));
   if (*(int *)(uiBufferData + 0x948) == 1) {
@@ -108834,7 +108835,7 @@ void ProcessUIComponentDataTransformation(longlong uiContext,longlong dataSource
       AllocatedMemoryBlock1 = 0;
       stackInt158 = ((int)plocalChar10[1] - (int)*plocalChar10) + 1;
       stackUInt150 = param_7;
-      FUN_180712f20(dataSource,dataSource + (stringCompareIndex + RenderContextSize) * -4,astackUIntc0 + 2,bufferSize);
+      ProcessUIDataValidationAndVerification(dataSource,dataSource + (stringCompareIndex + RenderContextSize) * -4,astackUIntc0 + 2,bufferSize);
       if (CharacterDataOffset <= stringCompareIndex) {
         contextDataHandle = stringCompareIndex - CharacterDataOffset;
         if (3 < contextDataHandle + 1) {
@@ -108958,7 +108959,7 @@ void ProcessUIRenderDataUpdate(UIHandle uiContext,UIHandle dataSource,int target
     contextOffset = (longlong)*basePointer;
     CharacterDataOffset = 0;
     resultPointer._0_4_ = stackParam000001b0;
-    FUN_180712f20(preservedRegister12,preservedRegister12 + (stringCompareIndex + lStack0000000000000050) * -4,&stack0x000000c0,
+    ProcessUIDataValidationAndVerification(preservedRegister12,preservedRegister12 + (stringCompareIndex + lStack0000000000000050) * -4,&stack0x000000c0,
                   bufferSize,((int)basePointer[1] - (int)*basePointer) + 1);
     if (contextOffset <= stringCompareIndex) {
       contextDataHandle = stringCompareIndex - contextOffset;
@@ -109112,7 +109113,7 @@ void ProcessUIDataTransform(longlong uiContext,longlong dataSource,int targetBuf
     stackLongd8 = (longlong)bufferSize * 4;
     do {
       allocatedMemory0 = dataSource + (longlong)(*plocalChar13 + stackInte0) * -4;
-      dVar20 = (double)FUN_18072b3a0(allocatedMemory0,stackInte8);
+      dVar20 = (double)CalculateUIMetricValue(allocatedMemory0,stackInte8);
       localChar4 = *plocalChar13;
       contextDataHandle = 1;
       dVar20 = dVar20 + 0.001;
