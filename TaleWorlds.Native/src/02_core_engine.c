@@ -15889,7 +15889,7 @@ void CoreEngineInitializeMemoryManager(void
 {
   char IsMemoryNodeActive;
   void *SystemRootPointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContextHandle;
   long long MemoryAllocationOffset;
   void *CurrentMemoryNode;
@@ -15905,8 +15905,8 @@ void CoreEngineInitializeMemoryManager(void
   PreviousMemoryNode = SystemRootPointer;
   CurrentMemoryNode = (void *)SystemRootPointer[1];
   while (IsMemoryNodeActive == '\0') {
-    MemoryMatchResult = memcmp(CurrentMemoryNode + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentMemoryNode + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextMemoryNode = (void *)CurrentMemoryNode[2];
       CurrentMemoryNode = PreviousMemoryNode;
     }
@@ -15917,7 +15917,7 @@ void CoreEngineInitializeMemoryManager(void
     CurrentMemoryNode = NextMemoryNode;
     IsMemoryNodeActive = *(char *)((long long)NextMemoryNode + SystemNodeStatusOffset);
   }
-  if ((PreviousMemoryNode == SystemRootPointer) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,PreviousMemoryNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousMemoryNode == SystemRootPointer) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,PreviousMemoryNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationOffset = CoreEngineAllocateMemory(SystemContextHandle);
     CoreEngineSetupMemoryNode(SystemContextHandle,&NewMemoryNode,PreviousMemoryNode,MemoryAllocationOffset + 0x20,MemoryAllocationOffset);
     PreviousMemoryNode = NewMemoryNode;
@@ -16514,7 +16514,7 @@ void CoreEngineInitializeUIManager(void
 {
   char LockOperationResult;
   void **ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemHandle;
   long long SearchStartIndex;
   void **CurrentNodePointer;
@@ -16530,8 +16530,8 @@ void CoreEngineInitializeUIManager(void
   PreviousNodePointer = ContextHandle;
   CurrentNodePointer = (void **)ContextHandle[1];
   while (LockOperationResult == '\0') {
-    MemoryMatchResult = memcmp(CurrentNodePointer + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNodePointer + SystemNodeHeaderSize, &SystemComparisonDataQuaternary, SystemDataStructureSize);
+    if (MemoryComparisonResult < 0) {
       NextNodePointer = (void **)CurrentNodePointer[2];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -16542,7 +16542,7 @@ void CoreEngineInitializeUIManager(void
     CurrentNodePointer = NextNodePointer;
     LockOperationResult = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((PreviousNodePointer == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary, PreviousNodePointer + SystemNodeHeaderSize, SystemDataStructureSize), MemoryMatchResult < 0)) {
+  if ((PreviousNodePointer == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary, PreviousNodePointer + SystemNodeHeaderSize, SystemDataStructureSize), MemoryComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateMemory(SystemHandle);
     CoreEngineSetupMemoryNode(SystemHandle,&ResultNodePointer,PreviousNodePointer,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
     PreviousNodePointer = ResultNodePointer;
@@ -16746,7 +16746,7 @@ void CoreEngineInitializeEventSystem(void
 {
   char SystemLockOperationResult;
   void *SystemRootNode;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContextHandle;
   long long MemoryAllocationOffset;
   void *CurrentSystemNode;
@@ -16762,8 +16762,8 @@ void CoreEngineInitializeEventSystem(void
   PreviousSystemNode = SystemRootNode;
   CurrentSystemNode = (void *)SystemRootNode[1];
   while (SystemLockOperationResult == '\0') {
-    MemoryMatchResult = memcmp(CurrentSystemNode + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextSystemNode = (void *)CurrentSystemNode[2];
       CurrentSystemNode = PreviousSystemNode;
     }
@@ -16774,7 +16774,7 @@ void CoreEngineInitializeEventSystem(void
     CurrentSystemNode = NextSystemNode;
     SystemLockOperationResult = *(char *)((long long)NextSystemNode + SystemNodeStatusOffset);
   }
-  if ((PreviousSystemNode == SystemRootNode) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,PreviousSystemNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousSystemNode == SystemRootNode) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,PreviousSystemNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationOffset = CoreEngineAllocateMemory(SystemContextHandle);
     CoreEngineSetupMemoryNode(SystemContextHandle,&NewSystemNode,PreviousSystemNode,MemoryAllocationOffset + 0x20,MemoryAllocationOffset);
     PreviousSystemNode = NewSystemNode;
@@ -16799,7 +16799,7 @@ void CoreEngineInitializeEventSystem(void
 void CoreEngineInitializeResourceLoader(void) {
   char SystemNodeStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -16815,8 +16815,8 @@ void CoreEngineInitializeResourceLoader(void) {
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SystemNodeStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -16827,7 +16827,7 @@ void CoreEngineInitializeResourceLoader(void) {
     CurrentNode = NextNode;
     SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewResourceNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewResourceNode;
@@ -16853,7 +16853,7 @@ void CoreEngineInitializeTextureManager(void
 {
   char SystemNodeStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -16869,8 +16869,8 @@ void CoreEngineInitializeTextureManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SystemNodeStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -16881,7 +16881,7 @@ void CoreEngineInitializeTextureManager(void
     CurrentNode = NextNode;
     SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewTextureNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewTextureNode;
@@ -17123,7 +17123,7 @@ void CoreEngineInitializeAudioSystemManager(void
 {
   char SystemNodeStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17139,8 +17139,8 @@ void CoreEngineInitializeAudioSystemManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SystemNodeStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17151,7 +17151,7 @@ void CoreEngineInitializeAudioSystemManager(void
     CurrentNode = NextNode;
     SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewAudioNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewAudioNode;
@@ -17506,7 +17506,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
 {
   char SystemNodeStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17522,8 +17522,8 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SystemNodeStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17534,7 +17534,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
     CurrentNode = NextNode;
     SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewNetworkNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewNetworkNode;
@@ -17582,8 +17582,8 @@ void CoreEngineInitializeConnectionPoolManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -17594,7 +17594,7 @@ void CoreEngineInitializeConnectionPoolManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -17627,7 +17627,7 @@ void CoreEngineInitializeNetworkResourceManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -17643,8 +17643,8 @@ void CoreEngineInitializeNetworkResourceManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -17655,7 +17655,7 @@ void CoreEngineInitializeNetworkResourceManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -17689,7 +17689,7 @@ void CoreEngineInitializeNetworkSecurityContextManager(void
 {
   char SecurityFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17705,8 +17705,8 @@ void CoreEngineInitializeNetworkSecurityContextManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SecurityFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17717,7 +17717,7 @@ void CoreEngineInitializeNetworkSecurityContextManager(void
     CurrentNode = NextNode;
     SecurityFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewSecurityNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewSecurityNode;
@@ -17751,7 +17751,7 @@ void CoreEngineInitializeNetworkPacketValidator(void)
 {
   char ValidationFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17767,8 +17767,8 @@ void CoreEngineInitializeNetworkPacketValidator(void)
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (ValidationFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17779,7 +17779,7 @@ void CoreEngineInitializeNetworkPacketValidator(void)
     CurrentNode = NextNode;
     ValidationFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewValidationNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewValidationNode;
@@ -17802,7 +17802,7 @@ void CoreEngineInitializeNetworkConnectionAuthenticator(void
 {
   char AuthenticationFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17818,8 +17818,8 @@ void CoreEngineInitializeNetworkConnectionAuthenticator(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (AuthenticationFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17830,7 +17830,7 @@ void CoreEngineInitializeNetworkConnectionAuthenticator(void
     CurrentNode = NextNode;
     AuthenticationFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewAuthNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewAuthNode;
@@ -17864,7 +17864,7 @@ void CoreEngineInitializeNetworkDataStreamManager(void
 {
   char DataStreamFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -17880,8 +17880,8 @@ void CoreEngineInitializeNetworkDataStreamManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (DataStreamFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -17892,7 +17892,7 @@ void CoreEngineInitializeNetworkDataStreamManager(void
     CurrentNode = NextNode;
     DataStreamFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewDataStreamNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewDataStreamNode;
@@ -18129,8 +18129,8 @@ void CoreEngineInitializeConnectionManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18141,7 +18141,7 @@ void CoreEngineInitializeConnectionManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18236,8 +18236,8 @@ void CoreEngineInitializeQueueManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18248,7 +18248,7 @@ void CoreEngineInitializeQueueManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18274,7 +18274,7 @@ void CoreEngineInitializeThreadPoolManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -18290,8 +18290,8 @@ void CoreEngineInitializeThreadPoolManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18302,7 +18302,7 @@ void CoreEngineInitializeThreadPoolManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18335,7 +18335,7 @@ void CoreEngineInitializeGameSystem(void)
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
@@ -18350,8 +18350,8 @@ void CoreEngineInitializeGameSystem(void)
   GameSystemNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18362,7 +18362,7 @@ void CoreEngineInitializeGameSystem(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18526,8 +18526,8 @@ void InitializeNetworkConfigurationNode(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18538,7 +18538,7 @@ void InitializeNetworkConfigurationNode(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18580,8 +18580,8 @@ void InitializeNetworkAuthenticationNode(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataNonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18592,7 +18592,7 @@ void InitializeNetworkAuthenticationNode(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataNonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataNonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18634,8 +18634,8 @@ void InitializeNetworkValidationNode(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataDenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataDenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18646,7 +18646,7 @@ void InitializeNetworkValidationNode(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataDenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataDenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18848,7 +18848,7 @@ void InitializeNetworkProtocolNode(void)
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
@@ -18863,8 +18863,8 @@ void InitializeNetworkProtocolNode(void)
   ProtocolNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)StringProcessingStatus[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18875,7 +18875,7 @@ void InitializeNetworkProtocolNode(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18917,8 +18917,8 @@ void InitializeNetworkSecurityNode(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18929,7 +18929,7 @@ void InitializeNetworkSecurityNode(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -18956,7 +18956,7 @@ void InitializeNetworkBufferNode(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -18972,8 +18972,8 @@ void InitializeNetworkBufferNode(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -18984,7 +18984,7 @@ void InitializeNetworkBufferNode(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19011,7 +19011,7 @@ void InitializeNetworkEventHandlerNode(void)
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
@@ -19026,8 +19026,8 @@ void InitializeNetworkEventHandlerNode(void)
   EventHandlerNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19038,7 +19038,7 @@ void InitializeNetworkEventHandlerNode(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19064,7 +19064,7 @@ void SystemConnectionManagerInitialize(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -19080,8 +19080,8 @@ void SystemConnectionManagerInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19092,7 +19092,7 @@ void SystemConnectionManagerInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19227,8 +19227,8 @@ void NetworkStatusProcessorInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19239,7 +19239,7 @@ void NetworkStatusProcessorInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19280,8 +19280,8 @@ void ConnectionManagerInitialize(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19292,7 +19292,7 @@ void ConnectionManagerInitialize(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19318,7 +19318,7 @@ void SystemConnectionTemplateAInitialize(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -19334,8 +19334,8 @@ void SystemConnectionTemplateAInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19346,7 +19346,7 @@ void SystemConnectionTemplateAInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19387,8 +19387,8 @@ void NetworkSecurityProcessorInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19399,7 +19399,7 @@ void NetworkSecurityProcessorInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19425,7 +19425,7 @@ void SystemConnectionTemplateCInitialize(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -19441,8 +19441,8 @@ void SystemConnectionTemplateCInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19453,7 +19453,7 @@ void SystemConnectionTemplateCInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19479,7 +19479,7 @@ void FileSystemProcessorInitialize(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -19495,8 +19495,8 @@ void FileSystemProcessorInitialize(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -19507,7 +19507,7 @@ void FileSystemProcessorInitialize(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19533,7 +19533,7 @@ void CoreEngineInitializeSystemConnectionNode(void
 {
   char SystemValidationStatus;
   uint64_t *SystemNodePointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long AllocatedMemorySize;
   uint64_t *NextNodePointer;
@@ -19549,8 +19549,8 @@ void CoreEngineInitializeSystemConnectionNode(void
   CurrentNodePointer = SystemNodePointer;
   TargetNodePointer = (uint64_t *)SystemNodePointer[1];
   while (SystemValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(TargetNodePointer + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(TargetNodePointer + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNodePointer = (uint64_t *)TargetNodePointer[2];
       TargetNodePointer = CurrentNodePointer;
     }
@@ -19561,7 +19561,7 @@ void CoreEngineInitializeSystemConnectionNode(void
     TargetNodePointer = NextNodePointer;
     SystemValidationStatus = *(char *)((long long)NextNodePointer + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -19685,7 +19685,7 @@ void CoreEngineInitializeSystemConfigManager(void
 {
   char ConfigStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -19701,8 +19701,8 @@ void CoreEngineInitializeSystemConfigManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (ConfigStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemConfigurationDataTemplate,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemConfigurationDataTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -19713,7 +19713,7 @@ void CoreEngineInitializeSystemConfigManager(void
     CurrentNode = NextNode;
     ConfigStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemConfigurationDataTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemConfigurationDataTemplate,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewConfigNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewConfigNode;
@@ -19747,7 +19747,7 @@ void CoreEngineInitializeSystemDataManager(void
 {
   char DataStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -19763,8 +19763,8 @@ void CoreEngineInitializeSystemDataManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (DataStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemConfigurationHandleTemplate,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemConfigurationHandleTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -19775,7 +19775,7 @@ void CoreEngineInitializeSystemDataManager(void
     CurrentNode = NextNode;
     DataStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemConfigurationHandleTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemConfigurationHandleTemplate,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewDataNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewDataNode;
@@ -19809,7 +19809,7 @@ void CoreEngineInitializeSystemStateManager(void
 {
   char StateStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -19825,8 +19825,8 @@ void CoreEngineInitializeSystemStateManager(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (StateStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemStateConfigurationTemplate,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemStateConfigurationTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -19837,7 +19837,7 @@ void CoreEngineInitializeSystemStateManager(void
     CurrentNode = NextNode;
     StateStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemStateConfigurationTemplate,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemStateConfigurationTemplate,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewStateNode,PreviousNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     PreviousNode = NewStateNode;
@@ -19924,7 +19924,7 @@ void SystemMemoryTemplateManagerInitialize(void
 {
   char SystemNodeStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *MemoryPoolPointer;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -19940,8 +19940,8 @@ void SystemMemoryTemplateManagerInitialize(void
   PreviousNode = ContextHandle;
   CurrentNode = (void *)ContextHandle[1];
   while (SystemNodeStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(CurrentNode + 4,&SystemMemoryTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,&SystemMemoryTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
@@ -19952,7 +19952,7 @@ void SystemMemoryTemplateManagerInitialize(void
     CurrentNode = NextNode;
     SystemNodeStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((PreviousNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemMemoryTemplateSecondary,PreviousNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PreviousNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemMemoryTemplateSecondary,PreviousNode + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(MemoryPoolPointer);
     CoreEngineSetupMemoryNode(MemoryPoolPointer,&NewMemoryNode,PreviousNode,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     PreviousNode = NewMemoryNode;
@@ -20292,8 +20292,8 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -20304,7 +20304,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21037,8 +21037,8 @@ void CoreEngineInitializeSystemDataTemplateUI(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21049,7 +21049,7 @@ void CoreEngineInitializeSystemDataTemplateUI(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21082,7 +21082,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21098,8 +21098,8 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21110,7 +21110,7 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21214,8 +21214,8 @@ void CoreEngineInitializeSystemManager(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21226,7 +21226,7 @@ void CoreEngineInitializeSystemManager(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21252,7 +21252,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21268,8 +21268,8 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21280,7 +21280,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21306,7 +21306,7 @@ void CoreEngineInitializeConfigurationManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21322,8 +21322,8 @@ void CoreEngineInitializeConfigurationManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21334,7 +21334,7 @@ void CoreEngineInitializeConfigurationManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21375,8 +21375,8 @@ void CoreEngineInitializeResourceManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21387,7 +21387,7 @@ void CoreEngineInitializeResourceManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21428,8 +21428,8 @@ void CoreEngineInitializeMemoryAllocator(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21440,7 +21440,7 @@ void CoreEngineInitializeMemoryAllocator(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21466,7 +21466,7 @@ void CoreEngineInitializeThreadScheduler(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21482,8 +21482,8 @@ void CoreEngineInitializeThreadScheduler(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21494,7 +21494,7 @@ void CoreEngineInitializeThreadScheduler(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21535,8 +21535,8 @@ void CoreEngineInitializeEventManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21547,7 +21547,7 @@ void CoreEngineInitializeEventManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21573,7 +21573,7 @@ void CoreEngineInitializeRenderManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21589,8 +21589,8 @@ void CoreEngineInitializeRenderManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21601,7 +21601,7 @@ void CoreEngineInitializeRenderManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21627,7 +21627,7 @@ void CoreEngineInitializePhysicsManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21643,8 +21643,8 @@ void CoreEngineInitializePhysicsManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21655,7 +21655,7 @@ void CoreEngineInitializePhysicsManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21681,7 +21681,7 @@ void CoreEngineInitializeAudioManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21697,8 +21697,8 @@ void CoreEngineInitializeAudioManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21709,7 +21709,7 @@ void CoreEngineInitializeAudioManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21750,8 +21750,8 @@ void CoreEngineInitializeNetworkManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21762,7 +21762,7 @@ void CoreEngineInitializeNetworkManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21803,8 +21803,8 @@ void CoreEngineInitializeInputManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21815,7 +21815,7 @@ void CoreEngineInitializeInputManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21841,7 +21841,7 @@ void CoreEngineInitializeFileSystemManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21857,8 +21857,8 @@ void CoreEngineInitializeFileSystemManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21869,7 +21869,7 @@ void CoreEngineInitializeFileSystemManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21910,8 +21910,8 @@ void CoreEngineInitializeSecurityManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21922,7 +21922,7 @@ void CoreEngineInitializeSecurityManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -21948,7 +21948,7 @@ void CoreEngineInitializeDatabaseManager(void)
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -21964,8 +21964,8 @@ void CoreEngineInitializeDatabaseManager(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSextenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -21976,7 +21976,7 @@ void CoreEngineInitializeDatabaseManager(void)
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSextenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22010,7 +22010,7 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
 {
   char NetworkConnectionStatusFlag;
   void *ContextHandle;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *SystemContext;
   long long MemoryAllocationResult;
   void *CurrentNode;
@@ -22026,8 +22026,8 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
   CurrentNode = ContextHandle;
   PreviousNode = (void *)ContextHandle[1];
   while (NetworkConnectionStatusFlag == '\0') {
-    MemoryMatchResult = memcmp(PreviousNode + 4,&SystemMemoryTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(PreviousNode + 4,&SystemMemoryTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)PreviousNode[2];
       PreviousNode = CurrentNode;
     }
@@ -22038,7 +22038,7 @@ void CoreEngineInitializeNetworkConnectionStateManager(void
     PreviousNode = NextNode;
     NetworkConnectionStatusFlag = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((CurrentNode == ContextHandle) || (MemoryMatchResult = memcmp(&SystemMemoryTemplatePrimary,CurrentNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((CurrentNode == ContextHandle) || (MemoryComparisonResult = memcmp(&SystemMemoryTemplatePrimary,CurrentNode + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAllocationResult = CoreEngineAllocateMemory(SystemContext);
     CoreEngineSetupMemoryNode(SystemContext,&NewNodePointer,CurrentNode,MemoryAllocationResult + 0x20,MemoryAllocationResult);
     CurrentNode = NewNodePointer;
@@ -22212,8 +22212,8 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22224,7 +22224,7 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConfigTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22264,7 +22264,7 @@ void CoreEngineInitializeMemoryNodeA(void
   uint64_t *StringProcessingStatus;
   char ValidationStatus;
   int StackProcessingConfigurationFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long AllocatedMemorySize;
   void *TemporaryBuffer;
   
@@ -22275,8 +22275,8 @@ void CoreEngineInitializeMemoryNodeA(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemDataTemplateTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemDataTemplateTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22287,7 +22287,7 @@ void CoreEngineInitializeMemoryNodeA(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemDataTemplateTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemDataTemplateTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22327,7 +22327,7 @@ void CoreEngineInitializeMemoryNodeB(void
   uint64_t *StringProcessingStatus;
   char ValidationStatus;
   void (*FunctionCallback)(void);
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long AllocatedMemorySize;
   void *TemporaryBuffer;
   
@@ -22338,8 +22338,8 @@ void CoreEngineInitializeMemoryNodeB(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22350,7 +22350,7 @@ void CoreEngineInitializeMemoryNodeB(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemThreadTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22376,7 +22376,7 @@ void CoreEngineInitializeThreadSystem(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -22392,8 +22392,8 @@ void CoreEngineInitializeThreadSystem(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22404,7 +22404,7 @@ void CoreEngineInitializeThreadSystem(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22430,7 +22430,7 @@ void CoreEngineProcessThreadQueue(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -22446,8 +22446,8 @@ void CoreEngineProcessThreadQueue(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22458,7 +22458,7 @@ void CoreEngineProcessThreadQueue(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22484,7 +22484,7 @@ void CoreEngineManageThreadResources(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -22500,8 +22500,8 @@ void CoreEngineManageThreadResources(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22512,7 +22512,7 @@ void CoreEngineManageThreadResources(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22560,8 +22560,8 @@ void CoreEngineHandleThreadEvents(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (SystemNodeStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataPrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22572,7 +22572,7 @@ void CoreEngineHandleThreadEvents(void)
     CurrentNode = NextNode;
     SystemNodeStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataPrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22613,8 +22613,8 @@ void CoreEngineInitializeThreadSynchronization(void)
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (SystemNodeStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataUndenary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataUndenary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22625,7 +22625,7 @@ void CoreEngineInitializeThreadSynchronization(void)
     CurrentNode = NextNode;
     SystemNodeStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataUndenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataUndenary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22666,8 +22666,8 @@ void CoreEngineSetupThreadPriorities(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22678,7 +22678,7 @@ void CoreEngineSetupThreadPriorities(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22713,8 +22713,8 @@ void CoreEngineSetupThreadPriorities(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22725,7 +22725,7 @@ void CoreEngineSetupThreadPriorities(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22766,8 +22766,8 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22778,7 +22778,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22813,8 +22813,8 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataTertiary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22825,7 +22825,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataTertiary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22845,7 +22845,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -22861,8 +22861,8 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22873,7 +22873,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -22908,8 +22908,8 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuinary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -22920,7 +22920,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23054,7 +23054,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -23070,8 +23070,8 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23082,7 +23082,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23108,7 +23108,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -23124,8 +23124,8 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemFileSystemComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23136,7 +23136,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemFileSystemComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemFileSystemComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23156,7 +23156,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -23172,8 +23172,8 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureA,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23184,7 +23184,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&DataTableStructureA,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23204,7 +23204,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -23220,8 +23220,8 @@ void CoreEngineInitializeSystemDataTemplateSession(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23232,7 +23232,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23685,7 +23685,7 @@ void CoreEngineInitializeDataStreamManager(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -23701,8 +23701,8 @@ void CoreEngineInitializeDataStreamManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&DataTableStructureB,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23713,7 +23713,7 @@ void CoreEngineInitializeDataStreamManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&DataTableStructureB,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23748,8 +23748,8 @@ void CoreEngineInitializeDataStreamManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMonitorComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23760,7 +23760,7 @@ void CoreEngineInitializeDataStreamManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemMonitorComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -23795,8 +23795,8 @@ void CoreEngineInitializeDataStreamManager(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConnectionComparisonData,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -23807,7 +23807,7 @@ void CoreEngineInitializeDataStreamManager(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConnectionComparisonData,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24145,7 +24145,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24161,8 +24161,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataOctonary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24173,7 +24173,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemComparisonDataOctonary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24208,8 +24208,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24220,7 +24220,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConfigurationTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24240,7 +24240,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24256,8 +24256,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigurationTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24268,7 +24268,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigurationTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConfigurationTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24288,7 +24288,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24304,8 +24304,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemStateTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemStateTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24316,7 +24316,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemStateTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemStateTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24336,7 +24336,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24352,8 +24352,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24364,7 +24364,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemMemoryTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24384,7 +24384,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24400,8 +24400,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemMemoryTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24412,7 +24412,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemMemoryTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemMemoryTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24432,7 +24432,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24448,8 +24448,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplatePrimary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemConfigTemplatePrimary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24460,7 +24460,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemConfigTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemConfigTemplatePrimary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -24680,7 +24680,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
 {
   char ValidationStatus;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -24696,8 +24696,8 @@ void CoreEngineInitializeSystemThreadNodeJ(void
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (ValidationStatus == '\0') {
-    MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemThreadTemplateSecondary,0x10);
+    if (MemoryComparisonResult < 0) {
       NextNode = (void *)CurrentNode[2];
       SecondaryProcessingStatusFlag = StringProcessingStatus;
     }
@@ -24708,7 +24708,7 @@ void CoreEngineInitializeSystemThreadNodeJ(void
     CurrentNode = NextNode;
     ValidationStatus = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
-  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
+  if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryComparisonResult = memcmp(&SystemThreadTemplateSecondary,StringProcessingStatus + 4,0x10), MemoryComparisonResult < 0)) {
     AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
     CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
@@ -27409,7 +27409,7 @@ void CoreEngineInitializeRuntimeEnvironment(void
 {
   uint64_t SystemStatusUtf16Char;
   char SystemValidationFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long ***SystemContextTriplePtr;
   unsigned long long SystemStatusValue;
   long long DataTableOffset;
@@ -27777,7 +27777,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t configHandle, uint64_t config
 {
   byte SystemValidationStatus;
   bool BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *configProcessingStatusFlag;
   uint validationHashValue;
   byte *ByteProcessingStatusFlag;
@@ -30671,7 +30671,7 @@ uint64_t CoreEngineProcessModuleConfiguration(uint64_t ContextHandle,uint64_t Op
 {
   long long MainCalculationResult;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   void *SystemEventPointer;
   uint64_t *SystemMemoryBufferPointer;
@@ -31085,7 +31085,7 @@ void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *Syst
 {
   uint32_t *CharacterStatusBuffer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint8_t SystemSecurityValidationBuffer [32];
   void **SystemSecondaryProcessingStatusFlag;
   uint64_t ResourceLoopCounter;
@@ -32476,7 +32476,7 @@ void MergeAndCompareDataStructures(long long ContextHandle
 {
   char comparisonStatus;
   char nextChar;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *DataBufferPointer;
   unsigned long long currentIndex;
   int arrayIndex;
@@ -38493,7 +38493,7 @@ void InitializeSystemMemoryManager(uint64_t *MemoryManagerPointer
 {
   long long *ContextHandle;
   int *LockOperationResultPointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -38888,7 +38888,7 @@ void InitializeSystemContext(long long *ContextHandle
 {
   long long *ContextHandle;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t SystemRegisterFlag;
   long long *SystemPointer20;
   char MutexLockStatus;
@@ -42736,7 +42736,7 @@ void ValidateSystemCoreConfiguration(uint64_t SystemContext,uint64_t Configurati
 {
   long long MainCalculationResult;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t ValidationResult;
   uint64_t *pComparisonValue;
   int DebuggerStatus;
@@ -43801,7 +43801,7 @@ uint64_t ProcessDataValidation(long long ContextHandle,long long OperationBuffer
 {
   unsigned long long Utf16Char;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
   void *CurrentNode;
@@ -46491,7 +46491,7 @@ void ProcessSystemDataStructureValidation(uint64_t ContextHandle,long long Opera
 {
   code *ValidationStatus;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   int RemainingSpace;
   uint OperationResult;
@@ -47103,7 +47103,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t ContextHandle,uint64_t *
 {
   uint32_t ValidationReturnCode;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t *pComparisonProcessingStatusFlag;
   void *CurrentProcessingNode;
@@ -59383,7 +59383,7 @@ void InitializeContextHandle(int *ContextHandle,uint64_t *ContextHandleSize
 {
   uint64_t Utf16Char;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   
   InputDataLength = *ContextHandle;
@@ -63476,7 +63476,7 @@ AllocateAndInitializeSystemBuffer(unsigned long long ContextHandle,uint64_t Oper
 {
   unsigned long long *CharacterStatusBuffer;
   unsigned long long *PrimaryProcessingStatusFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   if (ContextHandle == 0) {
     return (unsigned long long *)0x0;
@@ -68975,7 +68975,7 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
@@ -69031,8 +69031,8 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
   ContextHandleTablePointer = CharacterStatusBuffer;
   PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x88);
   while (PrimaryProcessingStatusFlag != NULL) {
-    MemoryMatchResult = memcmp(PrimaryProcessingStatusFlag + 4,MemoryAddressMaskPointer,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(PrimaryProcessingStatusFlag + 4,MemoryAddressMaskPointer,0x10);
+    if (MemoryComparisonResult < 0) {
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
     }
     else {
@@ -69040,7 +69040,7 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
       PrimaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
     }
   }
-  if ((ContextHandleTablePointer == CharacterStatusBuffer) || (MemoryMatchResult = memcmp(MemoryAddressMaskPointer,ContextHandleTablePointer + 4,0x10), MemoryMatchResult < 0)) {
+  if ((ContextHandleTablePointer == CharacterStatusBuffer) || (MemoryComparisonResult = memcmp(MemoryAddressMaskPointer,ContextHandleTablePointer + 4,0x10), MemoryComparisonResult < 0)) {
     uStack_8c8 = MemoryAddressMaskPointer;
     ContextHandleTablePointer = (void *)GetSystemValidationData(CharacterStatusBuffer,auStack_890);
     ContextHandleTablePointer = (void *)*ContextHandlePointer;
@@ -69060,7 +69060,7 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
   PrimaryProcessingStatusFlag = CharacterStatusBuffer;
   StringProcessingStatus = (void *)ContextHandleTablePointer[8];
   while (StringProcessingStatus != NULL) {
-    MemoryMatchResult = memcmp(MemoryBoundaryEnd + 0x20,StringProcessingStatus + 4,0x10);
+    MemoryComparisonResult = memcmp(MemoryBoundaryEnd + 0x20,StringProcessingStatus + 4,0x10);
     StringComparisonByte2 = InputDataLength < 0;
     PrimaryProcessingStatusFlag = StringProcessingStatus;
     if (StringComparisonByte2) {
@@ -69075,13 +69075,13 @@ void SynchronizeSystemDataStructure(long long ContextHandle,long long *ContextHa
     if (PrimaryProcessingStatusFlag == (void *)ContextHandleTablePointer[7]) goto PrimaryProcessingStatusCheckLabel;
     StringProcessingStatus = (void *)GetPreviousMemoryBlockIndex(PrimaryProcessingStatusFlag);
   }
-  MemoryMatchResult = memcmp(StringProcessingStatus + 4,MemoryBoundaryEnd + 0x20,0x10);
+  MemoryComparisonResult = memcmp(StringProcessingStatus + 4,MemoryBoundaryEnd + 0x20,0x10);
   if (-1 < InputDataLength) {
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(MemoryBoundaryEnd);
   }
 MemoryComparison:
-  if ((PrimaryProcessingStatusFlag == CharacterStatusBuffer) || (MemoryMatchResult = memcmp(MemoryBoundaryEnd + 0x20,PrimaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)) {
+  if ((PrimaryProcessingStatusFlag == CharacterStatusBuffer) || (MemoryComparisonResult = memcmp(MemoryBoundaryEnd + 0x20,PrimaryProcessingStatusFlag + 4,0x10), MemoryComparisonResult < 0)) {
     MemoryAddressMaskPointer = 0;
   }
   else {
@@ -70099,15 +70099,15 @@ uint64_t * InsertTreeNode(uint64_t *ContextHandle,uint64_t OperationBufferSize
 {
   uint64_t *CurrentNode;
   void *TreeTraversalPointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *BestMatchNode;
   uint8_t SystemFlagBuffer [8];
   
   TreeTraversalPointer = (void *)ContextHandle[2];
   BestMatchNode = ContextHandle;
   while (CurrentNode = TreeTraversalPointer, CurrentNode != NULL) {
-    MemoryMatchResult = memcmp(CurrentNode + 4,OperationBufferSize,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(CurrentNode + 4,OperationBufferSize,0x10);
+    if (MemoryComparisonResult < 0) {
       TreeTraversalPointer = (void *)*CurrentNode;
     }
     else {
@@ -70115,7 +70115,7 @@ uint64_t * InsertTreeNode(uint64_t *ContextHandle,uint64_t OperationBufferSize
       BestMatchNode = CurrentNode;
     }
   }
-  if ((BestMatchNode == ContextHandle) || (MemoryMatchResult = memcmp(OperationBufferSize,BestMatchNode + 4,0x10), MemoryMatchResult < 0)) {
+  if ((BestMatchNode == ContextHandle) || (MemoryComparisonResult = memcmp(OperationBufferSize,BestMatchNode + 4,0x10), MemoryComparisonResult < 0)) {
     BestMatchNode = (void *)CreateTreeNode(ContextHandle,SystemFlagBuffer);
     BestMatchNode = (void *)*BestMatchNode;
   }
@@ -72725,7 +72725,7 @@ CoreEngineSetupMemoryNode(long long *ContextHandle,uint64_t *ContextHandleSize,l
 {
   long long *ContextHandle;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
@@ -72738,23 +72738,23 @@ CoreEngineSetupMemoryNode(long long *ContextHandle,uint64_t *ContextHandleSize,l
   }
   ContextHandle = (long long *)*ContextHandle;
   if (Utf8SourcePointer == (long long *)*ContextHandle) {
-    MemoryMatchResult = memcmp(Utf16EndPointer,Utf8SourcePointer + 4,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(Utf16EndPointer,Utf8SourcePointer + 4,0x10);
+    if (MemoryComparisonResult < 0) {
       ProcessSystemDataStructureInsertion(ContextHandle,OperationBufferSize,1,Utf8SourcePointer);
       return OperationBufferSize;
     }
   }
   else if (Utf8SourcePointer == ContextHandle) {
     BufferStatus = ContextHandle[2];
-    MemoryMatchResult = memcmp(BufferStatus + 0x20,Utf16EndPointer,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(BufferStatus + 0x20,Utf16EndPointer,0x10);
+    if (MemoryComparisonResult < 0) {
       ProcessSystemDataStructureInsertion(ContextHandle,OperationBufferSize,0,BufferStatus);
       return OperationBufferSize;
     }
   }
   else {
-    MemoryMatchResult = memcmp(Utf16EndPointer,Utf8SourcePointer + 4,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(Utf16EndPointer,Utf8SourcePointer + 4,0x10);
+    if (MemoryComparisonResult < 0) {
       if (*(char *)((long long)Utf8SourcePointer + SystemNodeStatusOffset) == '\0') {
         ContextHandle = Utf8SourcePointer;
         MemoryBoundaryPointer = (long long *)*Utf8SourcePointer;
@@ -72778,8 +72778,8 @@ CoreEngineSetupMemoryNode(long long *ContextHandle,uint64_t *ContextHandleSize,l
       else {
         MemoryBlockListHead = (long long *)Utf8SourcePointer[2];
       }
-      MemoryMatchResult = memcmp(MemoryBlockListHead + 4,Utf16EndPointer,0x10);
-      if (MemoryMatchResult < 0) {
+      MemoryComparisonResult = memcmp(MemoryBlockListHead + 4,Utf16EndPointer,0x10);
+      if (MemoryComparisonResult < 0) {
         if (*(char *)(MemoryBlockListHead[2] + SystemNodeStatusOffset) != '\0') {
           ProcessSystemDataStructureInsertion(ContextHandle,OperationBufferSize,0,MemoryBlockListHead);
           return OperationBufferSize;
@@ -72788,8 +72788,8 @@ CoreEngineSetupMemoryNode(long long *ContextHandle,uint64_t *ContextHandleSize,l
         return OperationBufferSize;
       }
     }
-    MemoryMatchResult = memcmp(Utf8SourcePointer + 4,Utf16EndPointer,0x10);
-    if (MemoryMatchResult < 0) {
+    MemoryComparisonResult = memcmp(Utf8SourcePointer + 4,Utf16EndPointer,0x10);
+    if (MemoryComparisonResult < 0) {
       ContextHandle = (long long *)Utf8SourcePointer[2];
       MemoryBoundaryPointer = Utf8SourcePointer;
       if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) == '\0') {
@@ -72806,7 +72806,7 @@ CoreEngineSetupMemoryNode(long long *ContextHandle,uint64_t *ContextHandleSize,l
           MemoryBoundaryPointer = MemoryBlockListHead;
         } while (isSystemContextNull);
       }
-      if ((MemoryBlockListHead == (long long *)*ContextHandle) || (MemoryMatchResult = memcmp(Utf16EndPointer,MemoryBlockListHead + 4,0x10), MemoryMatchResult < 0)      {
+      if ((MemoryBlockListHead == (long long *)*ContextHandle) || (MemoryComparisonResult = memcmp(Utf16EndPointer,MemoryBlockListHead + 4,0x10), MemoryComparisonResult < 0)      {
         if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) != '\0') {
           ProcessSystemDataStructureCopy(ContextHandle,OperationBufferSize,0,Utf8SourcePointer);
           return OperationBufferSize;
@@ -73106,7 +73106,7 @@ long long * CompareAndSelectDataStructure(long long *ContextHandle,long long *Co
 {
   byte StringComparisonByte;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   bool shouldReturnSource;
   byte *Utf8OutputPointer;
@@ -73471,7 +73471,7 @@ void ProcessSystemDataStructureValidation(long long ContextHandle,long long Oper
 {
   int LockResult;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   bool shouldReturnSource;
   long long MemoryBoundaryEnd;
@@ -74162,7 +74162,7 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
 {
   float SystemContextPrimaryFloat;
   long long *BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -76586,7 +76586,7 @@ void InitializeSystemMemoryPool(void
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint64_t OperationResult;
@@ -78340,7 +78340,7 @@ void InitializeSystemCoreComponents(void
 {
   byte StringComparisonByte;
   bool HighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   void *CurrentNode;
@@ -81452,7 +81452,7 @@ void ProcessSystemConfigurationHandle(uint32_t *DataConfigurationPointer
 {
   uint32_t ConfigurationValue;
   uint16_t SystemDataNode;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemMemoryBase;
   int ComparisonValueA;
   int ComparisonValueB;
@@ -87270,7 +87270,7 @@ int * Process32BitSystemDataStructureComparison(int *ContextHandle,int *ContextH
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   void *CurrentNode;
@@ -88160,7 +88160,7 @@ uint GetSystemDataStreamBufferPointer(void
 {
   uint8_t *CharacterStatusBuffer;
   uint8_t *PrimaryProcessingStatusFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemContext;
   uint RegisterValueEDI;
   
@@ -88504,7 +88504,7 @@ long long ProcessDataStreamReadOperation(long long ContextHandle,uint64_t Operat
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   if (*(long long *)(ContextHandle + 0x68) != 0) {
@@ -88611,7 +88611,7 @@ uint64_t * ProcessSystemFilePositioning(long long ContextHandle,uint64_t *Contex
 {
   uint64_t Utf16Char;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t SystemRegisterFlag;
   
   if (((**(long long **)(ContextHandle + 0x38) == ContextHandle + 0x70) && (Utf16EndPointer == 1)) &&
@@ -91929,7 +91929,7 @@ void InitializeSystemCoreStateValidation(void
   long long ProcessingResult;
   long long *SystemContext;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int StackOffset30;
   int StackOffset34;
   
@@ -92279,7 +92279,7 @@ uint64_t ProcessSystemDataStructureValidationAndConfiguration(uint64_t ContextHa
 {
   int LockResult;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   void *MemoryAddressMaskPointer;
   
   int InputDataLength = *(int *)(OperationBufferSize + 0x10);
@@ -92736,7 +92736,7 @@ int ValidateSystemConfigurationAndInitialize(void
 {
   bool StringComparisonByte;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   int RemainingSpace;
   int ValidationResult;
@@ -99897,7 +99897,7 @@ f040(uint64_t ContextHandle,uint64_t OperationBufferSizevoid ProcessDataStructur
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   BufferStatus = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
@@ -102679,7 +102679,7 @@ void ProcessSystemMemoryAllocation(void)
 {
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   bool BooleanOperationFlag4;
   long long AllocatedMemorySize;
   float CalculatedDistance;
@@ -102906,7 +102906,7 @@ void ValidateSystemMemoryOperation(void)
 {
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   bool BooleanOperationFlag4;
   long long AllocatedMemorySize;
   float CalculatedDistance;
@@ -107905,7 +107905,7 @@ void FormatDataStructureToString(float *ContextHandle,int OperationBufferSize,ui
 {
   long long MainCalculationResult;
   char FormatCharacter;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   char *FormatPointer;
   long long AllocatedMemorySize;
   char *CharacterPointer;
@@ -109091,7 +109091,7 @@ int ValidateDataStructureMemoryBoundary(long long ContextHandle,int OperationBuf
 {
   short SystemShortValue1;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   LockOperationResult = *(int *)(ContextHandle + 0x3c);
@@ -109115,7 +109115,7 @@ int ValidateDataStructureMemoryBoundary(long long ContextHandle,int OperationBuf
     } while (SystemDataRegistry < LockOperationResult);
     InputDataLength = OperationBufferSize - LockOperationResult;
   }
-  if (OperationBufferSize != LockOperationResult && SBORROW4(OperationBufferSize,LockOperationResult) == MemoryMatchResult < 0) {
+  if (OperationBufferSize != LockOperationResult && SBORROW4(OperationBufferSize,LockOperationResult) == MemoryComparisonResult < 0) {
     OperationBufferSize = LockOperationResult;
   }
   return OperationBufferSize;
@@ -109286,7 +109286,7 @@ int CalculateSystemDistanceAndValidate(long long ContextHandle,float OperationBu
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
   float CalculatedDistance;
@@ -109587,7 +109587,7 @@ void ProcessSystemContextUtf8Buffer(long long ContextHandle,int *ContextHandleSi
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   IntegerValue = *(int *)(ContextHandle + 0x3c);
   LockOperationResult = OperationBufferSize[1];
@@ -110301,7 +110301,7 @@ void ProcessUtf16CharacterData(uint64_t ContextHandle,uint64_t OperationBufferSi
 {
   uint8_t aUtf16Char [16];
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long ProcessingResult;
   int *SystemContext;
   long long StackFrameAddressPointer;
@@ -114452,7 +114452,7 @@ void SystemResourceCleaner(void)
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint32_t RegisterEBPValue;
   long long SystemDataNode;
@@ -121420,7 +121420,7 @@ void ValidateSystemContextData(int *ContextHandle,uint32_t *ContextHandleSize)
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   InputDataLength = *ContextHandle;
   LockOperationResult = ContextHandle[1];
@@ -121458,7 +121458,7 @@ void ProcessSystemDataStructureEx(int *ContextHandle,uint64_t *ContextHandleSize
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   InputDataLength = *ContextHandle;
   LockOperationResult = ContextHandle[1];
@@ -122182,7 +122182,7 @@ ProcessUnsignedIntegerVectorConversion(float *ContextHandle,int OperationBufferS
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   int RemainingSpace;
   uint OperationResult;
@@ -122331,7 +122331,7 @@ uint8_t ProcessEngineDataInterpolation(float *ContextHandle,int OperationBufferS
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint8_t OperationResult;
@@ -124290,7 +124290,7 @@ void ConvertUtf8ToUtf16Character(uint64_t ContextHandle, uint64_t OperationBuffe
   // 数据处理相关变量
   long long MainCalculationResult;              // 主要数据大小
   int LockOperationResult;                // 字符字节计数
-  int MemoryMatchResult;                 // 内存匹配结果
+  int MemoryComparisonResult;                 // 内存匹配结果
   long long SystemDataRegistry;        // 数据结构计数器
   int RemainingSpace;                    // 剩余空间
   int InputDataLength;                    // 验证代码
@@ -125497,7 +125497,7 @@ void ValidateSystemStatus(int *ContextHandle,uint64_t OperationBufferSize,uint64
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   int RemainingSpace;
   long long MemoryBoundaryEnd;
@@ -127932,7 +127932,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 {
   byte StringComparisonByte;
   byte *HighBytePointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   void *CurrentNode;
@@ -128160,7 +128160,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *ContextHandle,long long Oper
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   
   MemoryAddressMaskPointer = 0xfffffffffffffffe;
@@ -128512,7 +128512,7 @@ uint64_t UpdateSystemParameterCounters(long long ContextHandle,int OperationBuff
 {
   char ValidationStatus;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   
@@ -130972,7 +130972,7 @@ LAB_180125a82:
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   InputDataLength = *ContextHandle;
@@ -131062,7 +131062,7 @@ void ProcessCharacterEncodingValidation(int *ContextHandle, int *ContextHandleSi
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   int InputDataLength = *ContextHandleSize;
   if (InputDataLength != 0) {
@@ -133719,7 +133719,7 @@ void ProcessSystemMemoryAllocation(void)
 {
   long long MainCalculationResult;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemContext;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
@@ -133758,7 +133758,7 @@ void ProcessSystemMemoryAllocation(void)
   **(char **)(SystemContext + 0xa0) = (char)RegisterR12ValueD;
   *(unsigned long long *)(SystemContext + 0x128) = CONCAT44(SystemValidationStatusHigh,RegisterR12ValueD);
   InputDataLength = *(int *)(SystemContext + 0x1534);
-  if (MemoryMatchResult < 0) {
+  if (MemoryComparisonResult < 0) {
     InputDataLength = InputDataLength / 2 + InputDataLength;
     EncodingValidationResult = RegisterR12ValueD;
     if (0 < InputDataLength) {
@@ -133813,7 +133813,7 @@ void ProcessSystemCharacterStatusBuffer(void)
 {
   int *ReferenceCountPointer;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   int ValidationResult;
@@ -134026,7 +134026,7 @@ void ProcessSystemMemoryCleanupAndValidation(void)
 {
   int *ReferenceCountPointer;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   int RemainingSpace;
   int ValidationResult;
@@ -135307,7 +135307,7 @@ void ProcessContextHandleSystemOperations(uint64_t ContextHandle)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   uint32_t OperationResult;
@@ -135466,7 +135466,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t ContextHandle,uint64_t OperationBu
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -151548,7 +151548,7 @@ void ProcessSystemCharacterValidation2(int ContextHandle)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   int RemainingSpace;
   uint OperationResult;
@@ -151787,7 +151787,7 @@ void ProcessSystemFloatValidation(void)
 {
   int *ReferenceCountPointer;
   float *pContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -152397,7 +152397,7 @@ e1b0(uint64_t ContextHandlevoid CleanupSystemResources(uint64_t ContextHandle
 {
   long long MainCalculationResult;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   int *pRemainingSpace;
   long long MemoryBoundaryEnd;
@@ -153324,7 +153324,7 @@ void ProcessSystemMemoryManagement(uint32_t ContextHandle,uint64_t OperationBuff
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long in_RCX;
   int EncodingValidationResult;
   int *SystemContext;
@@ -153453,7 +153453,7 @@ void ValidateLockOperationResult(long long ContextHandle)
 {
   int LockResult;
   bool HighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   int RemainingSpace;
   long long StackFrameAddressPointer;
@@ -153528,7 +153528,7 @@ void ProcessLockOperationResultValidation(void)
 {
   int LockResult;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   int InputDataLength;
   long long StackFrameAddressPointer;
@@ -153667,7 +153667,7 @@ void ProcessUtf8CharacterEncoding(int ContextHandle,char OperationBufferSize)
 {
   long long MainCalculationResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   CharacterTablePointer = SystemConfigurationHandle;
@@ -153783,7 +153783,7 @@ long long InitializeSystemCoreComponents(void
 {
   long long MainCalculationResult;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint8_t SystemStackFlagArray [32];
   uint64_t SystemStackOffset28;
   uint64_t ProcessingCounter;
@@ -156601,7 +156601,7 @@ unsigned long long ProcessSystemFloatData(long long ContextHandle,float *Context
 {
   float SystemContextPrimaryFloat;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   byte shouldReturnSource;
   float CalculatedDistance;
@@ -156787,7 +156787,7 @@ unsigned long long CalculateUtf8ToUtf16Distance(uint64_t ContextHandle,uint64_t 
 {
   float MinXCoordinate;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   byte shouldReturnSource;
   float *BoundingBoxArray;
@@ -160277,7 +160277,7 @@ void ProcessSystemConfigurationUpdate(void
 {
   int *ReferenceCountPointer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint64_t CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -163163,7 +163163,7 @@ void ProcessSystemMemoryContext(long long ContextHandle,long long OperationBuffe
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   float CalculatedDistance;
@@ -163320,7 +163320,7 @@ int * FindOrCreateUtf8EncodingEntry(long long ContextHandle,int OperationBufferS
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   int *pRemainingSpace;
   unsigned long long SearchIndex;
@@ -164616,7 +164616,7 @@ void HandleCharacterEncodingBufferExpansion(long long ContextHandle
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int *EncodingBufferSizePointer;
   uint64_t SystemFunctionAddress;
   
@@ -165603,7 +165603,7 @@ long long AllocateSystemMemoryPool(uint64_t ContextHandle,uint64_t *ContextHandl
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   BufferStatus = SystemConfigurationHandle;
   strncpy(SystemConfigurationHandle + 0x1df8,SystemStringConstant400,0x21);
@@ -166902,7 +166902,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long ContextHandle,int Operat
 {
   long long MainCalculationResult;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   InputDataLength = 0;
@@ -167333,7 +167333,7 @@ void ProcessMemoryAllocationEx(uint32_t *ContextHandle, long long OperationBuffe
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   uint OperationResult;
@@ -173981,7 +173981,7 @@ void ProcessCharacterEncodingAndBufferManagement(long long ContextHandle, uint64
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   int *RemainingSpacePointer;
   unsigned long long OperationResult;
@@ -174721,7 +174721,7 @@ uint64_t * ProcessContextHandleAndCreateCharacterStatus(byte *ContextHandle)
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -174811,7 +174811,7 @@ uint64_t * ProcessContextHandleWithChecksum(byte *ContextHandle)
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -174922,7 +174922,7 @@ uint64_t * GetCharacterStatusBuffer(void)
 {
   uint32_t *CharacterStatusBuffer;          // 字符状态缓冲区指针
   byte SystemHighByte;                      // 系统高字节
-  int MemoryMatchResult;                    // 内存匹配结果
+  int MemoryComparisonResult;                    // 内存匹配结果
   long long SystemDataRegistry;             // 系统数据寄存器
   byte *SystemBytePointer;                  // 系统字节指针
   uint64_t OperationResult;                        // 数据大小
@@ -174998,7 +174998,7 @@ uint64_t * GetCharacterStatusBufferByCode(int ContextHandle)
 {
   uint32_t *CharacterStatusBuffer;          // 字符状态缓冲区指针
   byte SystemHighByte;                      // 系统高字节
-  int MemoryMatchResult;                    // 内存匹配结果
+  int MemoryComparisonResult;                    // 内存匹配结果
   long long SystemDataRegistry;             // 系统数据寄存器
   byte *SystemBytePointer;                  // 系统字节指针
   uint64_t OperationResult;                        // 数据大小
@@ -175541,7 +175541,7 @@ long long ProcessContextHandleData(long long *ContextHandle)
 {
   int *ReferenceCountPointer;                // 引用计数指针
   uint MemoryPoolIndex;                // 内存分配索引
-  int MemoryMatchResult;                    // 内存匹配结果
+  int MemoryComparisonResult;                    // 内存匹配结果
   long long SystemDataRegistry;             // 系统数据寄存器
   unsigned long long CalculatedCodePoint;    // 计算出的Unicode码点
   unsigned long long OperationResult;               // 数据大小
@@ -175553,7 +175553,7 @@ long long ProcessContextHandleData(long long *ContextHandle)
   StringLength = (int)PatternIndex;
   *(int *)(SystemDataNode + 0x2e04) = StringLength;
   InputDataLength = *(int *)(SystemDataNode + 0x2e0c);
-  if (MemoryMatchResult < 0) {
+  if (MemoryComparisonResult < 0) {
     CalculatedCodePoint = PatternIndex & 0xffffffff;
     MemoryPoolIndex = InputDataLength / 2 + InputDataLength;
     if (0 < (int)MemoryPoolIndex) {
@@ -175738,7 +175738,7 @@ uint64_t * ProcessContextHandleValidation(uint64_t ContextHandle,uint64_t Operat
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -175863,7 +175863,7 @@ uint64_t * ProcessUtf16CharacterEncodingConversion(uint64_t ContextHandle,uint64
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -175977,7 +175977,7 @@ uint64_t * AllocateSystemConfigurationString(void
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   long long MemoryBoundaryEnd;
@@ -176954,7 +176954,7 @@ long long ProcessCharacterEncodingAndClipboardOperation(uint64_t ContextHandle, 
 {
   uint64_t Utf16Char;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   InputDataLength = OpenClipboard(0);
@@ -177347,7 +177347,7 @@ void ProcessContextHandleLookup(int ContextHandle
   int LockResult;
   uint64_t MemoryPoolIndex;
   int *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int RegisterValueEDI;
   
   if (ContextHandle == 0) {
@@ -177712,7 +177712,7 @@ int ProcessCharacterValidateOperation(int ContextHandle)
   int LockResult;
   uint64_t MemoryPoolIndex;
   int *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int RegisterValueEDI;
   
   if (ContextHandle == 0) {
@@ -177790,7 +177790,7 @@ void FinalizeSystemDataStructure(int *ContextHandle,uint64_t *ContextHandleSize)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   int RemainingSpace;
   int ValidationResult;
@@ -177838,7 +177838,7 @@ void FinalizeSystemDataStructure(int *ContextHandle,uint64_t *ContextHandleSize)
 {
   int LockResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   int RemainingSpace;
   
@@ -178315,7 +178315,7 @@ long long ProcessUtf8BufferAllocationAndConfiguration(int *ContextHandle,long lo
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   int RemainingSpace;
   long long MemoryBoundaryEnd;
@@ -178662,7 +178662,7 @@ int ValidateUtf8ContextHandle(int ContextHandle)
   int LockResult;
   uint64_t MemoryPoolIndex;
   int *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int RegisterValueEDI;
   
   if (ContextHandle == 0) {
@@ -179374,7 +179374,7 @@ unsigned long long InitializeSystemMemoryPool(long long *ContextHandle
 {
   char ValidationStatus;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   uint CalculatedCodePoint;
   int ValidationResult;
@@ -179422,7 +179422,7 @@ unsigned long long InitializeSystemMemoryPool(long long *ContextHandle
   SystemOperation90 = 9;
   InputDataLength = CoreEngineValidateSystemContext(&SystemMemoryPointer,&StackTempPointer);
   Utf16Char4 = 0;
-  if ((MemoryMatchResult < 0) && (ContextHandle[1] - *ContextHandle >> 5 != 0)) {
+  if ((MemoryComparisonResult < 0) && (ContextHandle[1] - *ContextHandle >> 5 != 0)) {
     pCalculationFunctionAddress = &SystemNullTemplate;
     StackProcessingValue = 0;
     CoreEnginePointerBuffer78 = (uint16_t *)0x0;
@@ -181403,7 +181403,7 @@ void ProcessContextHandleMemoryMatchingAndAddressMask(long long ContextHandle, l
 {
   int *ReferenceCountPointer;
   ushort MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int in_EAX;
   uint MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
@@ -184623,7 +184623,7 @@ void ProcessContextHandleWithUtf8BufferValidation(long long *ContextHandle,uint6
 {
   int LockResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
   unsigned long long OperationResult;
@@ -189235,7 +189235,7 @@ void ProcessCharacterStatusAndStringComparison(uint64_t ContextHandle,long long 
 {
   uint64_t *CharacterStatusBuffer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   uint8_t *SecondaryProcessingStatusFlag;
@@ -189365,7 +189365,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long ContextHandle
 {
   void **pCharacterStatusBuffer;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   long long MemoryBoundaryEnd;
@@ -190796,12 +190796,12 @@ uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, lo
 {
   long long MainCalculationResult;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   void *MemoryAddressMaskPointer;
   uint ConfigurationStackBuffer [2];
   
   if ((*(int *)(OperationBufferSize + 0x10) == 0x15) &&
-     (MemoryMatchResult = strcmp(*(void *)(OperationBufferSize + 8),&SystemRenderConfigParameterS), MemoryMatchResult == 0)) {
+     (MemoryComparisonResult = strcmp(*(void *)(OperationBufferSize + 8),&SystemRenderConfigParameterS), MemoryComparisonResult == 0)) {
     MemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if (*(void **)(Utf8SourcePointer + 8) != NULL) {
       MemoryAddressMaskPointer = *(void **)(Utf8SourcePointer + 8);
@@ -190824,13 +190824,13 @@ uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, lo
     return 1;
   }
   if ((*(int *)(OperationBufferSize + 0x10) == 0x12) &&
-     (MemoryMatchResult = strcmp(*(void *)(OperationBufferSize + 8),&SystemStringComparisonTemplate), MemoryMatchResult == 0)) {
+     (MemoryComparisonResult = strcmp(*(void *)(OperationBufferSize + 8),&SystemStringComparisonTemplate), MemoryComparisonResult == 0)) {
     MemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if (*(void **)(Utf8SourcePointer + 8) != NULL) {
       MemoryAddressMaskPointer = *(void **)(Utf8SourcePointer + 8);
     }
-    MemoryMatchResult = atoi(MemoryAddressMaskPointer);
-    ConfigurationStackDataBuffer[0] = (uint)(MemoryMatchResult != 0);
+    MemoryComparisonResult = atoi(MemoryAddressMaskPointer);
+    ConfigurationStackDataBuffer[0] = (uint)(MemoryComparisonResult != 0);
     if ((*(long long *)(SystemContext + 0xa00) != 0) &&
        (SystemCheckResult = (**(code **)(SystemContext + 0xa08))(ConfigurationStackBuffer), SystemCheckResult == '\0')) {
       if (CoreEngineThreadStatus == '\0') {
@@ -192244,7 +192244,7 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *ContextHandle, 
 {
   char ValidationStatus;
   int MutexLockResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t *MemoryAddressMaskPointer;
   uint32_t *ContextHandlePointer;
   uint32_t *SecondaryProcessingStatusFlag;
@@ -192793,7 +192793,7 @@ void ProcessSystemCharacterStatusFinalization(uint64_t ContextHandle,long long O
 {
   byte *CurrentBytePointer;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   bool shouldReturnSource;
   long long *MemoryBoundaryPointer;
@@ -192902,7 +192902,7 @@ void ProcessSystemDataFinalization(uint64_t ContextHandle,long long OperationBuf
 {
   byte *CurrentBytePointer;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
   long long *MemoryBoundaryPointer;
@@ -193743,7 +193743,7 @@ ReleaseMemoryPool(long long *ContextHandle,long long *ContextHandleSize,uint64_t
 {
   long long *ContextHandle;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   void *MemoryAddressMaskPointer;
   long long *SystemContextRegister;
   long long *SystemRegisterPointerX10;
@@ -194076,7 +194076,7 @@ long long * ProcessCharacterEncodingAndMemoryValidation(long long ContextHandle,
 {
   long long MainCalculationResult;
   long long *BufferAllocationStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int *EncodingValidationPointer;
   long long AllocatedMemorySize;
   
@@ -194130,7 +194130,7 @@ uint64_t ProcessCharacterTableMemoryAllocation(long long ContextHandle,int Opera
 {
   long long MainCalculationResult;
   long long *BufferAllocationStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   long long AllocatedMemorySize;
   uint32_t *SecondaryProcessingStatusFlag;
@@ -195927,7 +195927,7 @@ void ProcessSystemCharacterEncodingConversion(uint64_t ContextHandle,int Operati
 {
   uint32_t Utf16Char;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   long long AllocatedMemorySize;
   int ValidationResult;
@@ -197800,7 +197800,7 @@ void ValidateAndConvertContextHandleData(long long ContextHandle, uint64_t Opera
 {
   long long *ContextHandle;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t ProcessingResult;
   int *pEncodingValidationResult;
   int *pRemainingSpace;
@@ -198180,7 +198180,7 @@ void InitializeSystemMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   long long StackFrameAddressPointer;
@@ -198294,7 +198294,7 @@ LAB_1801606a8:
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -198437,7 +198437,7 @@ void ProcessFloatContextHandleConversion(float ContextHandle,long long Operation
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   char in_AL;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
@@ -198572,7 +198572,7 @@ void ProcessFloatContextHandleConversionWithUtf8Pointer(float ContextHandle, lon
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   char in_AL;
   unsigned long long MemoryOffsetValue;
   long long AllocatedMemorySize;
@@ -200307,7 +200307,7 @@ long long SearchContextHandleDataStructure(long long ContextHandle,long long Ope
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long BaseMemoryAddress;
   long long CurrentMemoryEntry;
@@ -200320,8 +200320,8 @@ long long SearchContextHandleDataStructure(long long ContextHandle,long long Ope
     do {
       CurrentMemoryEntry = *(long long *)(SystemDataRegistry + BaseMemoryAddress);
       LockOperationResult = *(int *)(OperationBufferSize + 0x10);
-      MemoryMatchResult = *(int *)(CurrentMemoryEntry + 0x10);
-      if (MemoryMatchResult == LockOperationResult) {
+      MemoryComparisonResult = *(int *)(CurrentMemoryEntry + 0x10);
+      if (MemoryComparisonResult == LockOperationResult) {
         if (LockResult != 0) {
           LockOperationResult = _stricmp(*(void *)(CurrentMemoryEntry + 8),*(void *)(OperationBufferSize + 8));
         }
@@ -200330,7 +200330,7 @@ LAB_180161e6a:
           return CurrentMemoryEntry;
         }
       }
-      else if (MemoryMatchResult == 0) goto LAB_180161e6a;
+      else if (MemoryComparisonResult == 0) goto LAB_180161e6a;
       BaseMemoryAddress = *(long long *)(ContextHandle + 0x28);
       SearchIndex = SearchIndex + 1;
       SystemDataRegistry = SystemDataRegistry + 8;
@@ -202170,7 +202170,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
 void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer)
 {
   uint16_t ConvertedUtf16Character;
-  code *CharacterValidationFunctionPointer;
+  code *CharacterValidatorFunction;
   char SystemOperationStatusCode;
   int CharacterEncodingValidationStatus;
   long long SystemAllocatedMemorySize;
@@ -204087,7 +204087,7 @@ void ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t ContextHandle
 {
   uint Utf16Character;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMask;
   uint UnicodeCodePoint;
   uint16_t *ProcessingStatusFlag;
@@ -207447,7 +207447,7 @@ uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t ContextHandle
 {
   long long MainCalculationResult;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   void *MemoryAddressMaskPointer;
   void *pFunctionAddress;
   void *LocalProcessingStatusFlag;
@@ -209110,7 +209110,7 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long ContextHandle)
 {
   void *CharacterStatusBuffer;                         // 字符状态缓冲区指针
   uint8_t MemoryPoolIndex;                       // 内存分配索引
-  int MemoryMatchResult;                              // 内存匹配结果
+  int MemoryComparisonResult;                              // 内存匹配结果
   long long SystemDataRegistry;               // 系统数据结构注册表
   uint64_t CalculatedCodePoint;                       // 计算得到的码点值
   void *SecondaryProcessingStatusFlag;                 // 次要处理状态标志指针
@@ -210058,7 +210058,7 @@ int * ProcessSystemDataStructureAndContext(long long ContextHandle,int *ContextH
 {
   long long MainCalculationResult;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint CalculatedCodePoint;
   
@@ -210261,7 +210261,7 @@ void UpdateSystemStatusAndNotify(long long ContextHandle, char OperationBufferSi
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   long long *AllocatedMemorySizePointer;
   long long *SystemContextRegister;
@@ -211473,7 +211473,7 @@ void ProcessSystemCharacterBuffer(long long ContextHandle, int OperationBufferSi
 {
   int LockResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint CalculatedCodePoint;
   uint OperationResult;
@@ -211581,7 +211581,7 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
 {
   long long MainCalculationResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
@@ -211931,7 +211931,7 @@ void ProcessCharacterEncodingAndWindowManagement(long long ContextHandle)
 {
   long long MainCalculationResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   uint CalculatedCodePoint;
   uint64_t OperationResult;
@@ -213271,7 +213271,7 @@ void ProcessCharacterEncodingAndSystemValidation(void)
 {
   long long *ContextHandle;
   code *SystemValidationFunction;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long ProcessingResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
@@ -213287,7 +213287,7 @@ void ProcessCharacterEncodingAndSystemValidation(void)
   SystemDataRegistry = InitializeSystemDataRegistry();
   ContextHandle = *(long long **)(AllocatedMemorySize + 0x8400);
   InputDataLength = (**(code **)(*ContextHandle + 0x70))(ContextHandle,*(void *)(SystemDataRegistry + 8),0,1,0);
-  if (MemoryMatchResult < 0) {
+  if (MemoryComparisonResult < 0) {
     ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemValidationBuffer);
   }
   InputDataLength = (**(code **)(**(long long **)(PatternIndex + 0x50) + 0xa8)                    (*(long long **)(PatternIndex + 0x50),DataStorageValue,
@@ -213556,7 +213556,7 @@ void GetSystemMemoryInfo(uint64_t *ContextHandle)
   // 系统内存信息处理变量
   uint64_t *CharacterStatusBuffer;                            // 状态缓冲区指针
   void *SystemContext;                              // 系统上下文
-  int MemoryMatchResult;                            // 内存匹配结果
+  int MemoryComparisonResult;                            // 内存匹配结果
   uint MemoryAddressMaskPointer;                           // 内存地址掩码
   long long AllocatedMemorySize;                    // 已分配内存大小
   void *CurrentNode;                                // 当前节点
@@ -221206,7 +221206,7 @@ LAB_18018054e:
 {
   uint32_t *CharacterStatusBuffer;
   void *PrimaryProcessingStatusFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t SystemPriorityLevel;
   long long lStack_38;
@@ -222607,7 +222607,7 @@ void ProcessAsyncCallback(uint32_t ContextHandle, long long *ContextHandleSize, 
 {
   int *ReferenceCountPointer;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   uint64_t ***ppContextHandleTablePointer;
   code *CharacterPointer;
@@ -224717,7 +224717,7 @@ void ProcessCharacterEncodingAndMemoryManagement(uint64_t ContextHandle, uint64_
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
@@ -224814,7 +224814,7 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
 {
   unsigned long long Utf16Char;
   uint8_t *PrimaryProcessingStatusFlag;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t CalculatedCodePoint;
   void *CurrentNode;
@@ -224945,7 +224945,7 @@ void ProcessSystemMemoryAndValidation(void **ContextHandle, long long OperationB
               if (ProcessingStatusFlag < Utf16Char) {
                 ValidationResult = ProcessingStatusFlag;
               }
-              MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag,StringProcessingStatus,ValidationResult);
+              MemoryComparisonResult = memcmp(SecondaryProcessingStatusFlag,StringProcessingStatus,ValidationResult);
               if (InputDataLength == 0) {
                 if (Utf16Char < ProcessingStatusFlag) goto LAB_180187642;
 LAB_1801875f6:
@@ -224973,11 +224973,11 @@ LAB_180187642:
             if (Utf16Char < ProcessingStatusFlag) {
               Utf16Char4 = Utf16Char;
             }
-            MemoryMatchResult = memcmp(StringProcessingStatus,pMemoryAddressMaskPointer,Utf16Char4);
+            MemoryComparisonResult = memcmp(StringProcessingStatus,pMemoryAddressMaskPointer,Utf16Char4);
             if (InputDataLength == 0) {
               if (ProcessingStatusFlag < Utf16Char) goto LAB_18018764a;
             }
-            else if (MemoryMatchResult < 0) goto LAB_18018764a;
+            else if (MemoryComparisonResult < 0) goto LAB_18018764a;
           }
           else {
 LAB_18018764a:
@@ -225635,7 +225635,7 @@ uint64_t * ProcessUtf16CharacterAndManageMemoryAllocation(uint64_t ContextHandle
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   uint64_t *SystemContext;
@@ -225655,14 +225655,14 @@ uint64_t * ProcessUtf16CharacterAndManageMemoryAllocation(uint64_t ContextHandle
       if (0xf < (unsigned long long)StringProcessingStatus[7]) {
         MemoryBlockListHead = (long long *)*MemoryBlockListHead;
       }
-      MemoryMatchResult = memcmp(MemoryBlockListHead);
+      MemoryComparisonResult = memcmp(MemoryBlockListHead);
       if (InputDataLength == 0) {
         if (Utf16Char <= MemoryPoolIndex) goto LAB_180187f7e;
 LAB_180188024:
         StringProcessingStatus = (void *)StringProcessingStatus[2];
       }
       else {
-        if (MemoryMatchResult < 0) goto LAB_180188024;
+        if (MemoryComparisonResult < 0) goto LAB_180188024;
 LAB_180187f7e:
         StringProcessingStatus = (void *)*StringProcessingStatus;
         SecondaryProcessingStatusFlag = StringProcessingStatus;
@@ -225673,7 +225673,7 @@ LAB_180187f7e:
   if (SecondaryProcessingStatusFlag != SystemContext) {
     Utf16Char = SecondaryProcessingStatusFlag[6];
     MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
-    MemoryMatchResult = memcmp();
+    MemoryComparisonResult = memcmp();
     if (InputDataLength == 0) {
       if (Utf16Char <= MemoryPoolIndex) {
 LAB_18018802f:
@@ -225703,7 +225703,7 @@ uint64_t * ProcessUtf16CharacterWithEngineContext(uint64_t ContextHandle,long lo
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   uint64_t *SystemContext;
   long long PatternMatchStatus;
@@ -225719,14 +225719,14 @@ uint64_t * ProcessUtf16CharacterWithEngineContext(uint64_t ContextHandle,long lo
     if (0xf < (unsigned long long)SystemDataNode[7]) {
       SystemContextPtr = (long long *)*SystemContextPtr;
     }
-    MemoryMatchResult = memcmp(SystemContextPtr);
+    MemoryComparisonResult = memcmp(SystemContextPtr);
     if (InputDataLength == 0) {
       if (Utf16Char <= MemoryPoolIndex) goto LAB_180187f7e;
 LAB_180188024:
       ContextHandleTablePointer = (void *)SystemDataNode[2];
     }
     else {
-      if (MemoryMatchResult < 0) goto LAB_180188024;
+      if (MemoryComparisonResult < 0) goto LAB_180188024;
 LAB_180187f7e:
       ContextHandleTablePointer = (void *)*SystemDataNode;
       SystemContext = SystemDataNode;
@@ -225736,7 +225736,7 @@ LAB_180187f7e:
   if (SystemContext != RegisterR13Value) {
     Utf16Char = SystemContext[6];
     MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
-    MemoryMatchResult = memcmp();
+    MemoryComparisonResult = memcmp();
     if (InputDataLength == 0) {
       if (Utf16Char <= MemoryPoolIndex) {
 LAB_18018802f:
@@ -225764,7 +225764,7 @@ long long ProcessSystemCharacterDataAndMemoryManagement(void
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemContext;
   long long PatternMatchStatus;
   long long RegisterR13Value;
@@ -225773,7 +225773,7 @@ long long ProcessSystemCharacterDataAndMemoryManagement(void
   if (SystemContext != RegisterR13Value) {
     Utf16Char = *(unsigned long long *)(SystemContext + 0x30);
     MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
-    MemoryMatchResult = memcmp();
+    MemoryComparisonResult = memcmp();
     if (InputDataLength == 0) {
       if (Utf16Char <= MemoryPoolIndex) {
 LAB_18018802f:
@@ -225803,14 +225803,14 @@ long long ProcessSystemCharacterDataValidationAndConversion(void
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemContext;
   long long PatternMatchStatus;
   long long StackProcessingParameter3;
   
   Utf16Char = *(unsigned long long *)(SystemContext + 0x30);
   MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
-  MemoryMatchResult = memcmp();
+  MemoryComparisonResult = memcmp();
   if (InputDataLength == 0) {
     if (Utf16Char <= MemoryPoolIndex) {
 LAB_18018802f:
@@ -225837,7 +225837,7 @@ uint64_t * ProcessUtf16CharacterEncodingConversion(void
 {
   unsigned long long Utf16CharacterValue;
   unsigned long long MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   uint64_t *SystemContext;
   long long PatternMatchStatus;
@@ -225856,7 +225856,7 @@ LAB_180188024:
       if (SystemContext != RegisterR13Value) {
         Utf16CharacterValue = SystemContext[6];
         MemoryPoolIndex = *(unsigned long long *)(PatternIndex + 0x10);
-        MemoryMatchResult = memcmp();
+        MemoryComparisonResult = memcmp();
         if (InputDataLength == 0) {
           if (Utf16CharacterValue <= MemoryPoolIndex) {
 LAB_18018802f:
@@ -225874,7 +225874,7 @@ LAB_18018802f:
     if (0xf < (unsigned long long)SystemDataNode[7]) {
       SystemContextPtr = (long long *)*SystemContextPtr;
     }
-    MemoryMatchResult = memcmp(SystemContextPtr);
+    MemoryComparisonResult = memcmp(SystemContextPtr);
     StatusFlag = InputDataLength < 0;
     if (InputDataLength != 0) goto code_r0x00018018801e;
     if (Utf16CharacterValue < CharacterLimit) goto LAB_180188024;
@@ -227800,7 +227800,7 @@ ConvertUtf8ToUtf16Encoding(long long *ContextHandle,uint64_t *ContextHandleSize,
     if (Utf16Char < MemoryPoolIndex) {
       SystemMemoryAllocationResult = Utf16Char;
     }
-    MemoryMatchResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,SystemMemoryAllocationResult);
+    MemoryComparisonResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,SystemMemoryAllocationResult);
     if (InputDataLength == 0) {
       if (MemoryPoolIndex < Utf16Char) {
 LAB_18018a278:
@@ -227808,7 +227808,7 @@ LAB_18018a278:
         return OperationBufferSize;
       }
     }
-    else if (MemoryMatchResult < 0) goto LAB_18018a278;
+    else if (MemoryComparisonResult < 0) goto LAB_18018a278;
     goto LAB_18018a57c;
   }
   if (Utf8SourcePointer == MemoryBlockListHead) {
@@ -227827,7 +227827,7 @@ LAB_18018a278:
     if (Utf16Char < MemoryPoolIndex) {
       SystemMemoryAllocationResult = Utf16Char;
     }
-    MemoryMatchResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,SystemMemoryAllocationResult);
+    MemoryComparisonResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,SystemMemoryAllocationResult);
     if (InputDataLength == 0) {
       if (MemoryPoolIndex < Utf16Char) {
 LAB_18018a2f8:
@@ -227835,7 +227835,7 @@ LAB_18018a2f8:
         return OperationBufferSize;
       }
     }
-    else if (MemoryMatchResult < 0) goto LAB_18018a2f8;
+    else if (MemoryComparisonResult < 0) goto LAB_18018a2f8;
     goto LAB_18018a57c;
   }
   MemoryBlockListHead = Utf8SourcePointer + 4;
@@ -227853,14 +227853,14 @@ LAB_18018a2f8:
   if (Utf16Char < MemoryPoolIndex) {
     ProcessingStatusFlag = Utf16Char;
   }
-  MemoryMatchResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,ProcessingStatusFlag);
+  MemoryComparisonResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,ProcessingStatusFlag);
   if (InputDataLength == 0) {
     if (MemoryPoolIndex < Utf16Char) goto LAB_18018a370;
     if (MemoryPoolIndex <= Utf16Char) goto LAB_18018a36e;
   }
   else {
 LAB_18018a36e:
-    if (MemoryMatchResult < 0) {
+    if (MemoryComparisonResult < 0) {
 LAB_18018a370:
       if (*(char *)((long long)Utf8SourcePointer + SystemNodeStatusOffset) == '\0') {
         MemoryBlockListHead = Utf8SourcePointer;
@@ -227900,12 +227900,12 @@ LAB_18018a370:
       if (MemoryPoolIndex < Utf16Char) {
         ProcessingStatusFlag = MemoryPoolIndex;
       }
-      MemoryMatchResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,ProcessingStatusFlag);
+      MemoryComparisonResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,ProcessingStatusFlag);
       if (InputDataLength == 0) {
         if (Utf16Char < MemoryPoolIndex) goto LAB_18018a5c5;
         if (MemoryPoolIndex < Utf16Char) goto LAB_18018a3ee;
       }
-      if (MemoryMatchResult < 0) {
+      if (MemoryComparisonResult < 0) {
 LAB_18018a5c5:
         if (*(char *)(MemoryPoolBlockSizePointer[2] + SystemNodeStatusOffset) != '\0') {
           FUN_18018aa30(ContextHandle,OperationBufferSize,0,MemoryPoolBlockSizePointer);
@@ -227930,7 +227930,7 @@ LAB_18018a3ee:
   if (MemoryPoolIndex < Utf16Char) {
     SystemMemoryAllocationResult = MemoryPoolIndex;
   }
-  MemoryMatchResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,SystemMemoryAllocationResult);
+  MemoryComparisonResult = memcmp(MemoryBlockListHead,pMemoryAddressMaskPointer,SystemMemoryAllocationResult);
   if (InputDataLength == 0) {
     if (MemoryPoolIndex <= Utf16Char) goto LAB_18018a57c;
   }
@@ -227967,11 +227967,11 @@ LAB_18018a3ee:
       SystemMemoryAllocationResult = Utf16Char;
     }
     aFunctionAddress[0] = MemoryPoolIndex;
-    MemoryMatchResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,SystemMemoryAllocationResult);
+    MemoryComparisonResult = memcmp(pMemoryAddressMaskPointer,MemoryBlockListHead,SystemMemoryAllocationResult);
     if (InputDataLength == 0) {
       if (MemoryPoolIndex < Utf16Char) goto LAB_18018a53f;
     }
-    else if (MemoryMatchResult < 0) goto LAB_18018a53f;
+    else if (MemoryComparisonResult < 0) goto LAB_18018a53f;
 LAB_18018a57c:
     pMemoryAddressMaskPointer = (void *)FUN_18018ac60(ContextHandle,aFunctionAddress,0,Utf16EndPointer,AdditionalParameter1);
     *ContextHandleSize = *pMemoryAddressMaskPointer;
@@ -229206,7 +229206,7 @@ LAB_18018baff:
 {
   uint32_t Utf16Char;
   int *LockOperationResultPointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t *MemoryAddressMaskPointer;
   
   pMemoryAddressMaskPointer = (uint32_t *)OperationBufferSize[1];
@@ -230785,7 +230785,7 @@ long long ProcessSystemCharacterEncodingAndMemoryAllocation(uint64_t ContextHand
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   int RemainingSpace;
   byte *Utf8OutputPointer;
@@ -231680,7 +231680,7 @@ LAB_18018f515:
 {
   byte StringComparisonByte;
   uint32_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   uint64_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
@@ -235701,7 +235701,7 @@ uint64_t * FUN_1801940f0(long long ContextHandle,uint64_t *ContextHandleSize,lon
 {
   long long MainCalculationResult;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   unsigned long long OperationResult;
@@ -236956,7 +236956,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
 {
   long long *ContextHandle;
   uint8_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t MemoryAddressMaskPointer;
   uint64_t CalculatedCodePoint;
   uint32_t *SecondaryProcessingStatusFlag;
@@ -238887,7 +238887,7 @@ LAB_18019797c:
 {
   long long MainCalculationResult;
   long long *BufferAllocationStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   unsigned long long MemoryOffsetValue;
   long long lStackX_10;
   
@@ -239792,7 +239792,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
 {
   long long *ContextHandle;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   float *FloatVariablePointer4;
   long long AllocatedMemorySize;
   unsigned long long OperationResult;
@@ -246437,7 +246437,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   float *FloatVariablePointer4;
   uint8_t aCalculatedCodePoint [16];
   uint8_t aOperationResult [16];
@@ -246643,7 +246643,7 @@ void ExecuteSystemInitializationAndCleanup(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   float *FloatVariablePointer4;
   uint8_t aCalculatedCodePoint [16];
   uint8_t aOperationResult [16];
@@ -249052,7 +249052,7 @@ joined_r0x0001802045de:
 {
   long long MainCalculationResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   bool BooleanOperationFlag4;
   uint64_t CalculatedCodePoint;
   uint64_t OperationResult;
@@ -249664,7 +249664,7 @@ joined_r0x0001802045de:
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint64_t CalculatedCodePoint;
   uint64_t OperationResult;
@@ -249752,7 +249752,7 @@ joined_r0x0001802045de:
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint64_t CalculatedCodePoint;
   uint64_t OperationResult;
@@ -249844,7 +249844,7 @@ joined_r0x0001802045de:
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   bool shouldReturnSource;
   long long MemoryBoundaryEnd;
@@ -251260,7 +251260,7 @@ uint64_t * FUN_1802064e0(long long ContextHandle,uint64_t *ContextHandleSize,uin
 {
   int *ReferenceCountPointer;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   uint64_t OperationResult;
@@ -251606,7 +251606,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
 {
   int LockResult;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   code *CharacterPointer;
@@ -251674,7 +251674,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long *EngineContext;
   uint64_t CalculatedCodePoint;
   long long *SystemContextRegister;
@@ -251688,7 +251688,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
     *(uint32_t *)(BufferStatus + 0x16c) = *(uint32_t *)(CoreEngineSystemContext + 0x224);
     SystemContextPtr = *(long long **)(CharacterTablePointer + 0x8400);
     InputDataLength = (**(code **)(*SystemContextPtr + 0x70)                      (SystemContextPtr,*(void *)(BufferStatus + 0x10),0,4,0,auStack_18,0,0xfffffffffffffffe);
-    if (MemoryMatchResult < 0) {
+    if (MemoryComparisonResult < 0) {
       ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemMutexLock);
     }
     *(void *)(AdditionalParameter1 + 8) = auStack_18[0];
@@ -251988,7 +251988,7 @@ LAB_1802078c3:
 {
   int *ReferenceCountPointer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   uint CalculatedCodePoint;
   long long *MemoryBoundaryPointer;
@@ -252168,7 +252168,7 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
 {
   uint *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   
@@ -254544,7 +254544,7 @@ long long * FUN_180209980(long long *ContextHandle,long long *ContextHandleSize,
 {
   uint Utf16Char;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   char *pOperationStatus;
   long long *AllocatedMemorySizePointer;
   char *CharacterPointer;
@@ -256046,7 +256046,7 @@ LAB_18020b6e6:
 {
   char *ValidationStatus;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t MemoryAddressMaskPointer;
   uint8_t *ContextHandlePointer;
   char *CharacterPointer;
@@ -256224,7 +256224,7 @@ void *SearchContextHandleTableForMatchingData(long long ContextHandle, long long
 {
   long long *ContextHandlePointer;
   byte *HighBytePointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   byte *SystemBytePointer;
   int ValidationResult;
@@ -256257,7 +256257,7 @@ void *SearchContextHandleTableForMatchingData(long long ContextHandle, long long
               do {
                 HighBytePointer = SystemBytePointer + StringOffset;
                 ValidationResult = (uint)*SystemBytePointer - (uint)*HighBytePointer;
-                if (MemoryMatchResult != 0) break;
+                if (MemoryComparisonResult != 0) break;
                 SystemBytePointer = SystemBytePointer + 1;
               } while (*HighBytePointer != 0);
             }
@@ -256907,7 +256907,7 @@ LAB_18020c9db:
 {
   long long *ContextHandle;
   void *SystemContext;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   unsigned long long OperationResult;
@@ -259051,7 +259051,7 @@ OperationCompleteLabel:
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   if (*(long long *)(ContextHandle + 0x20) != 0) {
     free(*(long long *)(ContextHandle + 0x20),0x10,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -259127,7 +259127,7 @@ OperationCompleteLabel:
 {
   uint64_t Utf16Char;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   
   Utf16Char = *(void *)(ContextHandle + 8);
   MemoryPoolIndex = *(void *)(ContextHandle + 0x10);
@@ -260783,7 +260783,7 @@ LAB_180214064:
 {
   uint32_t Utf16Char;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint8_t aStackProcessingValue78 [32];
   uint32_t BufferOffset;
   uint32_t SystemUnsignedValue54;
@@ -261565,7 +261565,7 @@ void ProcessContextHandleAndMemoryAllocation(long long ContextHandle)
 {
   uint32_t Utf16Char;
   uint MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
@@ -262295,7 +262295,7 @@ void CleanupSystemCharacterStatusBufferAndMemory(long long ContextHandle
 {
   uint64_t *CharacterStatusBufferPointer;
   long long BufferSize;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t MemoryAddressMaskPointer;
   uint64_t *StatusEntryPointer;
   unsigned long long EntryCount;
@@ -262353,7 +262353,7 @@ int ProcessUtf8StringComparisonAndMemoryAllocation(long long ContextHandle,long 
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
   byte *Utf8OutputPointer;
@@ -264059,7 +264059,7 @@ LAB_180216e0c:
 {
   int LockResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   int aiStackX_8 [2];
   int aiStackX_20 [2];
@@ -264095,7 +264095,7 @@ LAB_180216e0c:
 {
   int LockResult;
   int *LockOperationResultPointer;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMaskPointer;
   
   InputDataLength = _Mtx_lock(ContextHandle + 0x260);
@@ -264119,7 +264119,7 @@ LAB_180216e0c:
 {
   long long *ContextHandle;
   char SystemCheckResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t MemoryAddressMaskPointer;
   uint32_t *ContextHandlePointer;
   long long MemoryBoundaryEnd;
@@ -266984,7 +266984,7 @@ code*** GetSystemDataStructureHandle(void
 {
   long long MainCalculationResult;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   
   FUN_180191ea0();
@@ -270279,7 +270279,7 @@ int ParseSystemIdentifier(long long ContextHandle
 {
   char *ValidationStatus;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   long long SystemDataRegistry;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
@@ -280955,7 +280955,7 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
 {
   char ValidationStatus;
   char *SystemValidationFunction;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint32_t *MemoryAddressMaskPointer;
   uint32_t CalculatedCodePoint;
   
@@ -281640,7 +281640,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
 {
   long long *ContextHandle;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   long long *AllocatedMemorySizePointer;
   void *SecondaryProcessingStatusFlag;
@@ -286053,7 +286053,7 @@ uint64_t FUN_18022bbe0(long long ContextHandle,int OperationBufferSize
 {
   uint32_t *CharacterStatusBuffer;
   long long BufferStatus;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint64_t MemoryAddressMaskPointer;
   long long *AllocatedMemorySizePointer;
   void *CurrentNode;
@@ -286111,8 +286111,8 @@ LAB_18022bda0:
         }
         else {
           do {
-            MemoryMatchResult = memcmp(TemporaryBuffer + 4,CharacterStatusBuffer,0x10);
-            if (MemoryMatchResult < 0) {
+            MemoryComparisonResult = memcmp(TemporaryBuffer + 4,CharacterStatusBuffer,0x10);
+            if (MemoryComparisonResult < 0) {
               CharacterStatusBuffer = (void *)*TemporaryBuffer;
             }
             else {
@@ -286121,7 +286121,7 @@ LAB_18022bda0:
             }
             TemporaryBuffer = CharacterStatusBuffer;
           } while (CharacterStatusBuffer != NULL);
-          if ((SecondaryProcessingStatusFlag == StringProcessingStatus) || (MemoryMatchResult = memcmp(CharacterStatusBuffer,SecondaryProcessingStatusFlag + 4,0x10), MemoryMatchResult < 0)          goto LAB_18022bda0;
+          if ((SecondaryProcessingStatusFlag == StringProcessingStatus) || (MemoryComparisonResult = memcmp(CharacterStatusBuffer,SecondaryProcessingStatusFlag + 4,0x10), MemoryComparisonResult < 0)          goto LAB_18022bda0;
         }
         if (SecondaryProcessingStatusFlag == StringProcessingStatus) {
           MemoryAddressMaskPointer = MemoryAllocate(MemoryPoolManager,0x3b0,0x10,3);
@@ -287371,7 +287371,7 @@ uint GetMemoryAllocationStatus(long long ContextHandle,long long *ContextHandleS
 {
   byte *CurrentBytePointer;
   int LockOperationResult;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   byte *ValidationBytePointer;
   int RemainingSpace;
   void *SecondaryProcessingStatusFlag;
@@ -287442,7 +287442,7 @@ LAB_18022d7ef:
 {
   void *CharacterStatusBuffer;
   uint64_t MemoryPoolIndex;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   uint MemoryAddressMaskPointer;
   unsigned long long CalculatedCodePoint;
   unsigned long long OperationResult;
@@ -289960,7 +289960,7 @@ uint64_t CalculateAudioSignalAverage(int ContextHandle,uint64_t OperationBufferS
   float *pContextSecondaryFloat;
   int InputDataLength;
   long long SystemDataNode;
-  int MemoryMatchResult;
+  int MemoryComparisonResult;
   int SystemParameterD;
   float *SystemRegisterR11;
   float FloatingPointRegisterA;
