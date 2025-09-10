@@ -209291,20 +209291,20 @@ void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
   uint64_t *MemoryAddressMaskIterator;
   unsigned long long CalculatedCodePoint;
   
-  PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x20);
-  for (MemoryAddressMaskIterator = *(uint64_t **)(ContextHandle + 0x18); MemoryAddressMaskIterator != PrimaryProcessingStatusFlag; MemoryAddressMaskIterator = MemoryAddressMaskIterator + 0xe) {
+  PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + ReferenceCountContextOffset);
+  for (MemoryAddressMaskIterator = *(uint64_t **)(ContextHandle + MemoryAddressMaskContextOffset); MemoryAddressMaskIterator != PrimaryProcessingStatusFlag; MemoryAddressMaskIterator = MemoryAddressMaskIterator + MemoryAddressMaskStep) {
     *MemoryAddressMaskIterator = &ThreadLocalStorageTemplate;
   }
-  PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + 0x18);
+  PrimaryProcessingStatusFlag = *(uint64_t **)(ContextHandle + MemoryAddressMaskContextOffset);
   if (PrimaryProcessingStatusFlag != NULL) {
-    CalculatedCodePoint = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
+    CalculatedCodePoint = (unsigned long long)PrimaryProcessingStatusFlag & MemoryAddressAlignmentMask;
     if (CalculatedCodePoint != 0) {
-      MemoryBlockIndex = CalculatedCodePoint + 0x80 + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * 0x50;
+      MemoryBlockIndex = CalculatedCodePoint + MemoryBlockBaseOffset + ((long long)PrimaryProcessingStatusFlag - CalculatedCodePoint >> 0x10) * MemoryBlockMultiplier;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
-      if ((*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList) && (*(char *)(MemoryBlockIndex + 0xe) == '\0')) {
+      if ((*(void ***)(CalculatedCodePoint + ExceptionListOffset) == &ExceptionList) && (*(char *)(MemoryBlockIndex + MemoryValidationFlagOffset) == '\0')) {
         *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
         *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
-        ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
+        ReferenceCountPointer = (int *)(MemoryBlockIndex + ReferenceCountOffset);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
           ReleaseMemoryReferenceCount();
@@ -209312,7 +209312,7 @@ void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + ExceptionListOffset) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -209331,6 +209331,26 @@ void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
 #define CharacterStateIndexOffset 0x13c                      // 字符状态索引偏移量
 #define CharacterStatusBufferPrimaryOffset 0xac               // 字符状态缓冲区主偏移量
 #define CharacterStatusBufferSecondaryOffset 0xbc             // 字符状态缓冲区次偏移量
+
+// 引用计数和系统上下文管理常量
+#define ReferenceCountContextOffset 0x20                     // 引用计数上下文偏移量
+#define MemoryAddressMaskContextOffset 0x18                  // 内存地址掩码上下文偏移量
+#define MemoryAddressMaskStep 0xe                            // 内存地址掩码步长
+#define MemoryAddressAlignmentMask 0xffffffffffc00000         // 内存地址对齐掩码
+#define MemoryBlockBaseOffset 0x80                           // 内存块基础偏移量
+#define MemoryBlockMultiplier 0x50                           // 内存块乘数
+#define ExceptionListOffset 0x70                             // 异常列表偏移量
+#define MemoryValidationFlagOffset 0xe                        // 内存验证标志偏移量
+#define ReferenceCountOffset 0x18                            // 引用计数偏移量
+#define SystemMemoryAllocationBaseOffset 0x80                // 系统内存分配基础偏移量
+
+// 字符表指针和系统上下文操作常量
+#define CharacterTableContextOffset 0x20                     // 字符表上下文偏移量
+#define CharacterTableDataOffset 0x18                        // 字符表数据偏移量
+#define SystemContextParameter1Offset 0x30                   // 系统上下文参数1偏移量
+#define SystemContextParameter2Offset 0x34                   // 系统上下文参数2偏移量
+#define SystemContextParameter3Offset 0x38                   // 系统上下文参数3偏移量
+#define CharacterTableProcessingDataOffset 0x38              // 字符表处理数据偏移量
 #define CharacterStatusBufferTertiaryOffset 0xcc             // 字符状态缓冲区第三偏移量
 #define CharacterStatusBufferQuaternaryOffset 0xdc            // 字符状态缓冲区第四偏移量
 #define CharacterStatusBufferFinalOffset 0xec                 // 字符状态缓冲区最终偏移量
@@ -209738,19 +209758,19 @@ void LoadCursorResourceAndSetToDataNode(void)
  * @note 原始函数名：FUN_180171101
  */
 #define ProcessCharacterTablePointerAndSystemContextOperations FUN_180171101
-void ProcessCharacterTablePointerAndSystemContextOperations(long long ContextHandle
+void ProcessCharacterTablePointerAndSystemContextOperations(long long ContextHandle)
 {
-  long long MainCalculationResult;
+  long long CharacterTablePointer;
   long long SystemContext;
-  long long SystemStackLong40;
-  unsigned long long DataStorageValue;
+  long long SystemDataOffset;
+  unsigned long long EncodedDataValue;
   
-  CharacterTablePointer = *(long long *)(ContextHandle + 0x20);
-  SystemStackLong40 = CharacterTablePointer + 0x18;
-  ProcessSystemCharacterBuffer(LoopCounter,*(uint32_t *)(SystemContext + 0x30),*(uint32_t *)(SystemContext + 0x34),
-                *(uint8_t *)(SystemContext + 0x38),CharacterTablePointer + 0x38);
+  CharacterTablePointer = *(long long *)(ContextHandle + CharacterTableContextOffset);
+  SystemDataOffset = CharacterTablePointer + CharacterDataFieldOffset;
+  ProcessSystemCharacterBuffer(LoopCounter,*(uint32_t *)(SystemContext + CharacterTableSizeOffset),*(uint32_t *)(SystemContext + CharacterTableSecondarySizeOffset),
+                *(uint8_t *)(SystemContext + CharacterTableTertiarySizeOffset),CharacterTablePointer + CharacterTableDataOffset);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(EncodedDataValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
