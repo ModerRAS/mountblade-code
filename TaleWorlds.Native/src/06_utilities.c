@@ -140959,6 +140959,20 @@ int ValidationIntermediateResultIntegerA;
  * @warning 内存操作必须确保在合法的地址范围内进行
  * @see ValidationIntermediateResultFloatA, ValidationIntermediateResultFloatB, ValidationIntermediateResultIntegerA
  */
+/**
+ * @brief 处理内存缓冲区并执行验证
+ * 
+ * 对内存缓冲区进行处理，包括边界检查、数据验证和安全检查。
+ * 该函数支持多种验证模式，确保数据的完整性和安全性。
+ * 
+ * @param MemoryBufferPointer 内存缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param ValidationFlags 验证标志位，控制验证类型
+ * @return int 处理结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 支持边界检查和数据验证两种模式
+ * @warning 缓冲区大小必须在有效范围内
+ */
 int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t BufferSize, uint32_t ValidationFlags)
 {
     // 缓冲区和验证相关变量
@@ -141041,6 +141055,21 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
  * @note 这是一个新增的美化函数示例
  * @warning 加密密钥必须安全存储，防止密钥泄露
  * @see ValidateMemoryBoundary, SecureClearMemory, ProcessMemoryBufferWithValidation
+ */
+/**
+ * @brief 加密系统数据并执行验证
+ * 
+ * 对系统数据进行加密处理，包括参数验证、内存分配和加密操作。
+ * 该函数使用XOR加密算法，支持标准加密模式。
+ * 
+ * @param DataBufferPointer 数据缓冲区指针
+ * @param DataBufferSize 数据缓冲区大小
+ * @param EncryptionKey 加密密钥指针
+ * @param EncryptionFlags 加密标志位，控制加密模式
+ * @return int 加密结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 使用XOR加密算法，支持标准加密模式
+ * @warning 需要确保密钥的有效性和数据大小的合理性
  */
 int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBufferSize, void *EncryptionKey, uint32_t EncryptionFlags)
 {
@@ -141149,6 +141178,20 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
  * @note 原始函数名：FUN_180123456
  * @warning 调用者需要确保参数的有效性
  * @see AllocateSystemMemoryA0, ValidateMemoryBoundary, ProcessMemoryBufferWithValidation
+ */
+/**
+ * @brief 管理系统内存缓冲区
+ * 
+ * 管理系统内存缓冲区的生命周期，包括分配、验证、处理和清理操作。
+ * 支持内存分配、数据处理和清理等多种操作模式。
+ * 
+ * @param MemoryBufferPointer 内存缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param OperationFlags 操作标志位，控制操作类型
+ * @return int 操作结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 支持内存分配、数据处理和清理三种操作模式
+ * @warning 内存操作必须确保在合法的地址范围内进行
  */
 int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uint32_t OperationFlags)
 {
