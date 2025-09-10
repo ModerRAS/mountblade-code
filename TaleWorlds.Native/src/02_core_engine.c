@@ -294931,6 +294931,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 原始函数名：FUN_1801878a0 - 字符表清理函数
 #define CleanupCharacterTableAndBuffer FUN_1801878a0
 
+// 原始函数名：FUN_180187950 - 系统字符串索引和字符表操作函数
+#define ProcessSystemStringIndexAndCharacterTableOperation FUN_180187950
+
 /**
  * @brief 处理系统编码缓冲区和内存分配
  * 
