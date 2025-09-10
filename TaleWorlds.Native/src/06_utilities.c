@@ -3228,6 +3228,115 @@
 #define ValidationStepSize 0x10                     // 验证步长大小
 #define ValidationSecondaryStep 0x18                // 验证次级步长
 
+// 数组和循环相关常量
+#define ArrayElementSize16 0x10                    // 数组元素大小16字节
+#define ArrayElementSize32 0x20                    // 数组元素大小32字节
+#define LoopStepIncrement4 0x4                     // 循环步长增量4
+#define LoopStepDecrement1 -1                      // 循环步长减量1
+
+// 栈帧和内存访问相关常量
+#define StackFrameOffsetNegative14 -0x14            // 栈帧负偏移量14
+#define StackFrameOffsetNegativeC -0xc             // 栈帧负偏移量C
+#define StackFrameOffsetNegative25 -0x25           // 栈帧负偏移量25
+#define StackFrameOffsetNegative45 -0x45           // 栈帧负偏移量45
+#define StackFrameOffset77 0x77                     // 栈帧偏移量77
+
+// 浮点数和验证相关常量
+#define FloatValidationOffset10 0x10               // 浮点验证偏移量10
+#define ValidationBufferSize 0x3ff                 // 验证缓冲区大小
+#define ValidationErrorCode1C 0x1c                  // 验证错误码1C
+#define ValidationStatusOffset7E 0x7e              // 验证状态偏移量7E
+#define ValidationOffset52 0x52                     // 验证偏移量52
+#define ValidationOffset65 0x65                     // 验证偏移量65
+
+// 数据处理和状态相关常量
+#define DataProcessingOffset8 0x8                  // 数据处理偏移量8
+#define DataProcessingOffset14 0x14                // 数据处理偏移量14
+#define DataProcessingOffset18 0x18                // 数据处理偏移量18
+#define DataProcessingOffset20 0x20                // 数据处理偏移量20
+#define DataProcessingOffset1D 0x1d                // 数据处理偏移量1D
+#define DataProcessingOffset1E 0x1e                // 数据处理偏移量1E
+#define DataProcessingOffset32 0x32                // 数据处理偏移量32
+#define DataProcessingOffset34 0x34                // 数据处理偏移量34
+#define DataProcessingOffset52 0x52                // 数据处理偏移量52
+#define DataProcessingOffset70 0x70                // 数据处理偏移量70
+
+// 位操作和掩码相关常量
+#define BitMask8 0x8                              // 位掩码8
+#define BitMask100 0x100                           // 位掩码100
+#define BitMask800 0x800                           // 位掩码800
+#define BitMaskC000 0xc000                         // 位掩码C000
+#define BitMask7FFF 0x7fff                         // 位掩码7FFF
+#define BitMaskFFFFC000 0xffffc000                 // 位掩码FFFFC000
+
+// 系统状态和错误码相关常量
+#define SystemStatusB 0xb                          // 系统状态B
+#define SystemStatusC 0xc                          // 系统状态C
+#define SystemStatusD 0xd                          // 系统状态D
+#define SystemStatusE 0xe                          // 系统状态E
+#define SystemStatusF 0xf                          // 系统状态F
+#define SystemStatus10 0x10                        // 系统状态10
+#define SystemStatus11 0x11                        // 系统状态11
+#define SystemStatus12 0x12                        // 系统状态12
+#define SystemStatus13 0x13                        // 系统状态13
+#define SystemStatus14 0x14                        // 系统状态14
+#define SystemStatus15 0x15                        // 系统状态15
+#define SystemStatus16 0x16                        // 系统状态16
+#define SystemStatus17 0x17                        // 系统状态17
+#define SystemStatus18 0x18                        // 系统状态18
+#define SystemStatus19 0x19                        // 系统状态19
+#define SystemStatus1A 0x1a                        // 系统状态1A
+#define SystemStatus1B 0x1b                        // 系统状态1B
+#define SystemStatus1C 0x1c                        // 系统状态1C
+#define SystemStatus1D 0x1d                        // 系统状态1D
+#define SystemStatus1E 0x1e                        // 系统状态1E
+#define SystemStatus1F 0x1f                        // 系统状态1F
+#define SystemStatus20 0x20                        // 系统状态20
+#define SystemStatus21 0x21                        // 系统状态21
+#define SystemStatus22 0x22                        // 系统状态22
+#define SystemStatus23 0x23                        // 系统状态23
+#define SystemStatus24 0x24                        // 系统状态24
+
+// 资源和内存管理相关常量
+#define ResourceOffsetD 0xd                         // 资源偏移量D
+#define ResourceOffsetE 0xe                         // 资源偏移量E
+#define ResourceOffsetF 0xf                         // 资源偏移量F
+#define ResourceOffset10 0x10                       // 资源偏移量10
+#define ResourceOffset11 0x11                       // 资源偏移量11
+#define ResourceTableIndex1049 0x1049               // 资源表索引1049
+#define SystemDataOffset1049 0x1049                // 系统数据偏移量1049
+#define SystemFloatDataOffset38 0x38                // 系统浮点数据偏移量38
+#define MemoryResourcePointerOffsetD 0xd           // 内存资源指针偏移量D
+#define MemoryResourcePointerOffsetE 0xe           // 内存资源指针偏移量E
+#define MemoryResourcePointerOffset10 0x10         // 内存资源指针偏移量10
+#define MemoryResourcePointerIndex11 0x11          // 内存资源指针索引11
+#define MemoryBlockDataOffset200 0x200             // 内存块数据偏移量200
+#define MemoryBlockDataOffsetD0 0xd0               // 内存块数据偏移量D0
+#define OperationResultIndex3D 0x3d                // 操作结果索引3D
+#define SystemCleanupOffset 0x27                   // 系统清理偏移量
+
+// 上下文和验证相关常量
+#define ExceptionContextStatusOffset60 0x60         // 异常上下文状态偏移量60
+#define ExceptionContextStatusOffset68 0x68         // 异常上下文状态偏移量68
+#define ContextStatusOffset60 0x60                  // 上下文状态偏移量60
+#define ResourceValidationOffset490 0x490          // 资源验证偏移量490
+#define ResourceIteratorTableOffset1cd8 0x1cd8     // 资源迭代器表偏移量1CD8
+#define ResourceStatusFlagOffset12e3 0x12e3         // 资源状态标志偏移量12E3
+#define ResourceStatusFlagOffset12dd 0x12dd         // 资源状态标志偏移量12DD
+#define ResourceManagementOffset80d8 0x80d8         // 资源管理偏移量80D8
+#define ResourceManagementOffset8088 0x8088         // 资源管理偏移量8088
+#define ResourceManagementOffset80b0 0x80b0         // 资源管理偏移量80B0
+#define ResourceManagementOffset7f20 0x7f20         // 资源管理偏移量7F20
+#define ExceptionResourceValidationIndex 0x3         // 异常资源验证索引
+#define DataValidationOffsetC4 0xc4                 // 数据验证偏移量C4
+#define ColorComponentMask 0xff                     // 颜色组件掩码
+#define DataBufferSecondaryOffset18 0x18            // 数据缓冲区次偏移量18
+
+// 操作基址相关常量
+#define OperationBaseOffset800 0x800                // 操作基址偏移量800
+#define OperationBaseOffset14 0x14                 // 操作基址偏移量14
+#define OperationBaseOffset4C 0x4c                  // 操作基址偏移量4C
+
 // 数据类型定义
 typedef uint32_t DataWord;                  // 数据字类型 - 32位无符号整数，用于系统数据交换
 typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无符号整数，用于数据缓冲区操作
