@@ -113713,8 +113713,7 @@ void InitializeUISystemState(void)
 
 
 
- void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *bufferSize,int *resultPointer,
-/**
+ /**
  * @brief UI文本数据编码处理
  * 
  * 该函数负责处理UI系统中的文本数据编码和转换。
@@ -405404,7 +405403,28 @@ void ValidateUIDataSource(longlong uiContext,UIHandle dataSource)
 
 
 
-UIHandle FUN_18089fba0(longlong uiContext,UIHandle *dataSource)
+/**
+ * @brief UI数据源验证处理器
+ * 
+ * 该函数负责验证和处理UI系统中的数据源。
+ * 主要功能：
+ * 1. 验证数据源的有效性和完整性
+ * 2. 执行数据源的安全检查
+ * 3. 处理数据源的配置和状态
+ * 4. 返回验证结果和状态码
+ * 
+ * @param uiContext UI上下文指针，包含验证的状态信息
+ * @param dataSource 数据源句柄指针，指向待验证的数据源
+ * @return UIHandle 验证结果句柄：
+ *         - 0: 验证成功
+ *         - 0x1c: 数据源配置错误
+ *         - 其他: 验证失败的具体错误码
+ * 
+ * @note 原始函数名：FUN_18089fba0
+ * @warning 该函数涉及数据源验证，需要注意安全性
+ * @see ValidateUIDataSource, ProcessUIBufferData
+ */
+UIHandle ValidateAndProcessUIDataSource(longlong uiContext,UIHandle *dataSource)
 
 {
   UIHandle result;

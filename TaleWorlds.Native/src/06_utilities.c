@@ -30032,11 +30032,11 @@ void ProcessFloatingPointData(float inputValue)
   float SystemContextBuffer40;
   float SystemContextBuffer44;
   float secondaryInputValue;
-  float ValidationFloatValue;    // 验证浮点数值
+  float validationFloatValue;    // 验证浮点数值
   float arrayIterationCounter;   // 数组迭代计数器
   float *floatDataArrayPointer;  // 浮点数据数组指针
   
-  // 初始化新变量，用于替换原始的Ghidra生成变量名
+  // 初始化验证和迭代变量
   validationFloatValue = 0.0f;
   arrayIterationCounter = 0.0f;
   floatDataArrayPointer = NULL;
