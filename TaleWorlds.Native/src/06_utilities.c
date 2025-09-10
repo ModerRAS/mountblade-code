@@ -3516,6 +3516,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MemoryCleanupSizeDW0 0x428                      // 内存清理大小DW0 - 用于CleanupSystemResourceDW0函数
 #define ValidationContextArraySize 0x58                 // 验证上下文数组大小 - 用于各种验证上下文指针数组
 #define DataBufferCleanupSize 0x40                       // 数据缓冲区清理大小 - 用于数据缓冲区清理操作
+#define ExceptionMemoryDataOffset 0x2e0                 // 异常内存数据偏移量 - 用于FreeExceptionMemory函数
 
 // 魔法数字常量定义
 #define IsOffset1cInfinityValue 0x1d                     // 偏移量1c无穷大值
@@ -28088,7 +28089,7 @@ DataBuffer * InitializeDataBlockPointerA1(DataBuffer *dataBlockPointer,uint64_t 
   ProcessDataAndPointerA0(dataBlockPointer + 5);
   *dataBlockPointer = &DataBlockPointerTableA0;
   if ((initializationFlags & 1) != 0) {
-    free(dataBlockPointer,0x38);
+    free(dataBlockPointer,DataBlockMemorySizeA1);
   }
   return dataBlockPointer;
 }
@@ -65171,7 +65172,7 @@ void ExecuteValidationContextCleanup(DataBuffer cleanupContext, int64_t exceptio
 void FreeExceptionMemory(DataBuffer memoryContext, int64_t memoryPointer)
 
 {
-  free(*(DataBuffer *)(memoryPointer + 0x2e0),0x428);
+  free(*(DataBuffer *)(memoryPointer + ExceptionMemoryDataOffset),MemoryCleanupSizeDW0);
   return;
 }
 
