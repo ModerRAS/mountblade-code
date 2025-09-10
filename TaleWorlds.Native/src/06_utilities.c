@@ -141183,3 +141183,18 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @note 原始函数名：FUN_1808a5780
  */
 #define LogSystemMessageA0 FUN_1808a5780
+
+/**
+ * @brief 系统资源监控函数A0
+ * 
+ * 监控系统资源使用情况，执行资源分析和优化
+ * 包括CPU、内存、磁盘和网络资源的监控
+ * 
+ * @param MonitorHandle 监控句柄
+ * @param ResourceFlags 资源标志位
+ * @param SampleInterval 采样间隔
+ * @return int 监控结果状态码
+ * 
+ * @note 原始函数名：FUN_1808b5430
+ */
+#define MonitorSystemResourcesA0 FUN_1808b5430

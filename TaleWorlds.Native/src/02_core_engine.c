@@ -263617,11 +263617,25 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t ContextHandle,uint64_t Oper
 
 
 
-uint64_t FUN_180216cc0(long long ContextHandle,int OperationBufferSize
+/**
+ * @brief 验证系统上下文状态
+ * 
+ * 验证系统上下文的激活状态和操作缓冲区的有效性
+ * 通过检查上下文句柄的特定偏移量来验证状态
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @return uint64_t 验证结果，1表示验证成功，0表示验证失败
+ * 
+ * @note 原始函数名：FUN_180216cc0
+ */
+uint64_t ValidateSystemContextStatus(long long ContextHandle, int OperationBufferSize)
 {
   char ValidationStatus;
   
+  // 检查上下文句柄的激活状态
   if (*(char *)(ContextHandle + 0x430) != '\0') {
+    // 执行上下文验证操作
     ValidationStatus = (**(code **)(**(long long **)(ContextHandle + 0x438 + (long long)OperationBufferSize * 8) + 0x80))();
     if (ValidationStatus != '\0') {
       return 1;
@@ -266267,7 +266281,21 @@ LAB_180219fcf:
 
 
 
-uint64_t FUN_18021a590(uint64_t ContextHandle,unsigned long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief UTF-16字符处理函数
+ * 
+ * 处理UTF-16字符的转换和内存管理操作
+ * 执行系统上下文清理和线程本地存储设置
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 处理后的上下文句柄
+ * 
+ * @note 原始函数名：FUN_18021a590
+ */
+uint64_t ProcessUtf16Character(uint64_t ContextHandle, unsigned long long OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
@@ -266276,7 +266304,7 @@ uint64_t FUN_18021a590(uint64_t ContextHandle,unsigned long long OperationBuffer
   ProcessThreadLocalStorageSetup();
   FUN_1801570c0(ContextHandle);
   if ((OperationBufferSize & 1) != 0) {
-    free(ContextHandle,0x2a0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
+    free(ContextHandle, 0x2a0, Utf8SourcePointer, Utf16EndPointer, Utf16Char);
   }
   return ContextHandle;
 }
