@@ -77,6 +77,14 @@
 #define SystemExceptionInitializerPrimaryAddress 0x180d497e0    // 系统异常初始化器主地址 - 异常初始化器的主基地址
 #define SystemExceptionInitializerSecondaryAddress 0x180d498a0  // 系统异常初始化器辅助地址 - 异常初始化器的辅助基地址
 
+// 系统初始化错误码定义
+#define SystemInitializationSuccess 0x0                         // 系统初始化成功
+#define SystemMemoryStructureInitFailed 0x1                     // 系统内存结构初始化失败
+#define SystemConfigurationFailed 0x2                            // 系统配置失败
+#define SystemMemoryManagerInitFailed 0x3                       // 系统内存管理器初始化失败
+#define SystemExceptionHandlerInitFailed 0x4                     // 系统异常处理器初始化失败
+#define SystemStateValidationFailed 0x5                          // 系统状态验证失败
+
 // 浮点数数据偏移量常量
 #define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
 #define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
@@ -12918,7 +12926,7 @@ void InitializeUtilityModule(void)
     SystemInitializationStatus = InitializeSystemMemoryStructure();
     if (SystemInitializationStatus != 0) {
         // 初始化失败，记录错误状态
-        UtilitySystemInitializationStatus = 0x1;
+        UtilitySystemInitializationStatus = SystemMemoryStructureInitFailed;
         return;
     }
     
@@ -12926,7 +12934,7 @@ void InitializeUtilityModule(void)
     ResourceConfigurationStatus = ConfigureSystemParameters();
     if (ResourceConfigurationStatus != 0) {
         // 配置失败，记录错误状态
-        UtilitySystemInitializationStatus = 0x2;
+        UtilitySystemInitializationStatus = SystemConfigurationFailed;
         return;
     }
     
@@ -12934,7 +12942,7 @@ void InitializeUtilityModule(void)
     MemoryManagementStatus = InitializeMemoryManager();
     if (MemoryManagementStatus != 0) {
         // 内存管理器初始化失败
-        UtilitySystemInitializationStatus = 0x3;
+        UtilitySystemInitializationStatus = SystemMemoryManagerInitFailed;
         return;
     }
     
@@ -12942,19 +12950,19 @@ void InitializeUtilityModule(void)
     ExceptionHandlerStatus = ConfigureExceptionHandler();
     if (ExceptionHandlerStatus != 0) {
         // 异常处理配置失败
-        UtilitySystemInitializationStatus = 0x4;
+        UtilitySystemInitializationStatus = SystemExceptionHandlerInitFailed;
         return;
     }
     
     // 验证系统状态
     if (ValidateSystemState() != 0) {
         // 系统状态验证失败
-        UtilitySystemInitializationStatus = 0x5;
+        UtilitySystemInitializationStatus = SystemStateValidationFailed;
         return;
     }
     
     // 所有初始化步骤成功完成
-    UtilitySystemInitializationStatus = 0x0;
+    UtilitySystemInitializationStatus = SystemInitializationSuccess;
     
     return;
 }
