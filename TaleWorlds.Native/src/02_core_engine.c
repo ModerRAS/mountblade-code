@@ -63350,6 +63350,18 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
 
 
 
+/**
+ * @brief 初始化浮点数据结构
+ * @param ContextHandle 目标浮点数据结构指针
+ * @param OperationBufferSize 源数据缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * 该函数初始化浮点数据结构，根据不同的源数据类型进行相应的处理：
+ * - 当Utf8SourcePointer为0时，直接从Utf16EndPointer复制数据
+ * - 否则进行复杂的浮点数计算和变换操作
+ * - 支持矩阵变换和向量计算
+ */
 void InitializeFloatDataStructure(float *ContextHandle,long long OperationBufferSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer)
 {
   uint64_t Utf16Char;
@@ -63440,7 +63452,7 @@ void InitializeFloatDataStructure(float *ContextHandle,long long OperationBuffer
     ContextHandle[0xf] = 1.0;
     return;
   }
-  ProcessSystemCalculationOperation(Utf16EndPointer,&fStack_68);
+  ProcessSystemCalculationOperation(Utf16EndPointer,&StackCalculationMultiplier68);
   Utf16Char = *(void *)(OperationBufferSize + 200);
   MemoryPoolIndex = *(void *)(OperationBufferSize + 0xd0);
   UnicodeCodePoint = *(void *)(OperationBufferSize + 0xd8);
@@ -63452,15 +63464,15 @@ void InitializeFloatDataStructure(float *ContextHandle,long long OperationBuffer
   *(void *)(ContextHandle + 6) = UnicodeCodePoint;
   *(void *)(ContextHandle + 8) = Utf16Char;
   *(void *)(ContextHandle + 10) = MemoryAddressMaskPointer;
-  ContextHandle[1] = fStack_68 * ContextHandle[1];
-  *ContextHandle = fStack_68 * *ContextHandle;
-  ContextHandle[2] = fStack_68 * ContextHandle[2];
-  ContextHandle[4] = fStack_64 * ContextHandle[4];
-  ContextHandle[5] = fStack_64 * ContextHandle[5];
-  ContextHandle[6] = fStack_64 * ContextHandle[6];
-  ContextHandle[8] = fStack_60 * ContextHandle[8];
-  ContextHandle[9] = fStack_60 * ContextHandle[9];
-  ContextHandle[10] = fStack_60 * ContextHandle[10];
+  ContextHandle[1] = StackCalculationMultiplier68 * ContextHandle[1];
+  *ContextHandle = StackCalculationMultiplier68 * *ContextHandle;
+  ContextHandle[2] = StackCalculationMultiplier68 * ContextHandle[2];
+  ContextHandle[4] = StackCalculationMultiplier64 * ContextHandle[4];
+  ContextHandle[5] = StackCalculationMultiplier64 * ContextHandle[5];
+  ContextHandle[6] = StackCalculationMultiplier64 * ContextHandle[6];
+  ContextHandle[8] = StackCalculationMultiplier60 * ContextHandle[8];
+  ContextHandle[9] = StackCalculationMultiplier60 * ContextHandle[9];
+  ContextHandle[10] = StackCalculationMultiplier60 * ContextHandle[10];
   ContextHandle[3] = 0.0;
   ContextHandle[7] = 0.0;
   ContextHandle[0xb] = 0.0;
