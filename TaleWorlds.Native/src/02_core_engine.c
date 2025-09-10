@@ -6251,6 +6251,8 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemStatusFlag FUN_180084ea0                  // 处理系统状态标志
 #define ProcessSystemCharacterDataValidation FUN_1800d6260      // 处理系统字符数据验证
 #define ProcessSystemVectorCalculation FUN_1800df980           // 处理系统向量计算
+#define ProcessSystemDataAccess FUN_180080810                   // 处理系统数据访问
+#define ProcessSystemDataProcessing FUN_180083b20              // 处理系统数据处理
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200

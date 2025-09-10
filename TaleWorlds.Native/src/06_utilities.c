@@ -1,7 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 系统常量定义
-#define DefaultSystemDataAddress 0x18                    // 默认系统数据地址
+#define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10                         // 组件句柄偏移量
 #define SystemContextOffset 0x8                           // 系统上下文偏移量
 #define DataBufferElementSize 4                           // 数据缓冲区元素大小
@@ -1115,6 +1114,14 @@
 
 // 系统回调相关偏移量常量
 #define SystemCallbackTableOffset 0xb0
+
+// 数据处理相关偏移量常量
+#define ValidationDataBufferOffset7C 0x7c                    // 验证数据缓冲区偏移量
+#define OperationBaseParameterOffset30 0x30                  // 操作基础参数偏移量
+#define OperationBaseSecondaryOffset48 0x48                  // 操作基础次级偏移量
+#define MemoryOperationStatusOffset14 0x14                   // 内存操作状态偏移量
+#define ExceptionContextSecondaryOffset14 0x14               // 异常上下文次级偏移量
+#define ProcessingResultIncrementOffset1C 0x1c               // 处理结果增量偏移量
 
 // 资源管理相关偏移量常量
 #define ResourceManagementOffset1d8 0x1d8
@@ -16722,56 +16729,79 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
  */
 void ProcessResourceCleanup(void)
 
+/**
+ * @brief 处理资源清理操作
+ * 
+ * 该函数负责安全地清理系统资源，包括释放内存、句柄和系统对象。
+ * 它会遍历所有注册的资源，确保每个资源都被正确释放，并执行安全验证。
+ * 
+ * @param ResourceHandle 资源句柄，用于标识要清理的资源
+ * @param SystemRegistry 系统注册表，包含系统配置信息
+ * @param systemContext 系统上下文，包含系统状态信息
+ * 
+ * @return int 返回操作结果，0表示成功，非0表示失败
+ * 
+ * @note 此函数包含栈保护机制，防止栈溢出攻击
+ * @warning 在某些情况下，资源释放操作可能不会返回
+ * 
+ * @see ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource
+ */
+int ProcessResourceCleanupOperations(uint64_t ResourceHandle, int64_t SystemRegistry, int64_t systemContext)
 {
   // 资源管理相关变量
-  uint64_t ResourceHandle;              // 资源句柄
-  int OperationResult;                  // 操作结果
-  int64_t systemContext;                // 系统上下文
-  int64_t SystemRegistry;               // 系统注册表
-  int64_t ResourceOffset;               // 资源偏移量
-  int CleanupCounter;                    // 清理计数器
-  uint8_t *StackBuffer;                 // 栈缓冲区指针
-  int ResourceCount;                     // 资源数量
-  uint32_t CleanupFlags;                 // 清理标志
+  uint64_t CurrentResourceHandle;           // 当前处理的资源句柄
+  int OperationResult;                      // 操作执行结果
+  int64_t ResourceContext;                  // 资源上下文指针
+  int64_t SystemConfigurationRegistry;      // 系统配置注册表
+  int64_t ResourceProcessingOffset;         // 资源处理偏移量
+  int ProcessedResourceCount;               // 已处理的资源计数
+  uint8_t *ResourceProcessingBuffer;        // 资源处理缓冲区
+  int TotalResourceCount;                   // 总资源数量
+  uint32_t ResourceCleanupFlags;             // 资源清理标志
   
   // 安全验证相关变量
-  uint64_t SecurityParameter;            // 安全参数
-  uint64_t ResourceCleanupBuffer;       // 资源清理缓冲区
-  uint64_t FunctionCallBuffer;          // 函数调用缓冲区
-  uint64_t SecurityValidationBuffer;    // 安全验证缓冲区
+  uint64_t StackProtectionGuard;            // 栈保护守卫
+  uint64_t ResourceCleanupBuffer;           // 资源清理缓冲区
+  uint64_t FunctionCallContext;             // 函数调用上下文
+  uint64_t SecurityValidationContext;       // 安全验证上下文
+  
+  // 执行栈保护检查，防止栈溢出攻击
+  StackProtectionGuard = ExceptionEncryptionKeyValue ^ (uint64_t)&ResourceCleanupBuffer;
   
   // 检查系统上下文是否有效
   if (*(int64_t *)(systemContext + systemContextOffset) != 0) {
     // 初始化清理缓冲区和计数器
-    StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
-    CleanupCounter = 0;
-    ResourceCount = 0;
-    CleanupFlags = ProcessingFlagMask;
+    ResourceProcessingBuffer = (uint8_t *)&ResourceCleanupBuffer;
+    ProcessedResourceCount = 0;
+    TotalResourceCount = 0;
+    ResourceCleanupFlags = ProcessingFlagMask;
     
     // 执行核心功能获取资源列表
-    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + DataConfigurationOffset),*(int64_t *)(systemContext + systemContextOffset),
-                          &FunctionCallBuffer);
+    OperationResult = ExecuteCoreFunction(
+        *(uint64_t *)(SystemRegistry + DataConfigurationOffset),
+        *(int64_t *)(systemContext + systemContextOffset),
+        &FunctionCallContext);
     
     // 处理执行结果
     if (OperationResult == SystemSuccessStatus) {
       // 如果有资源需要清理，遍历资源列表
-      if (0 < ResourceCount) {
-        ResourceOffset = 0;
+      if (0 < TotalResourceCount) {
+        ResourceProcessingOffset = 0;
         do {
-          // 获取资源句柄
-          ResourceHandle = *(uint64_t *)(StackBuffer + ResourceOffset);
+          // 获取当前资源句柄
+          CurrentResourceHandle = *(uint64_t *)(ResourceProcessingBuffer + ResourceProcessingOffset);
           
           // 处理资源操作
-          OperationResult = ProcessUtilityOperation(ResourceHandle);
+          OperationResult = ProcessUtilityOperation(CurrentResourceHandle);
           if (OperationResult != SystemErrorStatus) {
             // 释放资源（此调用不会返回）
-            ReleaseResource(ResourceHandle,1);
+            ReleaseResource(CurrentResourceHandle, 1);
           }
           
           // 更新计数器和偏移量
-          CleanupCounter = CleanupCounter + 1;
-          ResourceOffset = ResourceOffset + ResourceHandleSize;
-        } while (CleanupCounter < ResourceCount);
+          ProcessedResourceCount = ProcessedResourceCount + 1;
+          ResourceProcessingOffset = ResourceProcessingOffset + ResourceHandleSize;
+        } while (ProcessedResourceCount < TotalResourceCount);
       }
       
       // 清理函数调用缓冲区
@@ -16784,7 +16814,10 @@ void ProcessResourceCleanup(void)
   }
   
   // 执行安全验证（此调用不会返回）
-  ExecuteSecurityCheck(SecurityParameter ^ (uint64_t)&SecurityValidationBuffer);
+  ExecuteSecurityCheck(StackProtectionGuard ^ (uint64_t)&ResourceCleanupBuffer);
+  
+  // 返回操作结果
+  return OperationResult;
 }
 
 
@@ -16831,11 +16864,11 @@ void ProcessResourceCleanup(void)
  */
 void ExecuteSystemShutdown(void)
 {
-  uint64_t securityContext;              // 安全上下文参数
-  uint64_t systemSecurityBuffer;         // 系统安全缓冲区
+  uint64_t SystemSecurityContext;         // 系统安全上下文参数
+  uint64_t SystemSecurityValidationBuffer;// 系统安全验证缓冲区
   
   // 执行安全检查，使用XOR操作提供基本的安全保护
-  ExecuteSecurityCheck(securityContext ^ (uint64_t)&systemSecurityBuffer);
+  ExecuteSecurityCheck(SystemSecurityContext ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -16865,19 +16898,19 @@ void ExecuteSystemShutdown(void)
  */
 void ValidateSystemState(void)
 {
-  int64_t systemContextPointer;           // 系统上下文指针
-  uint64_t systemValidationParameter;     // 系统验证参数
-  uint64_t systemCleanupBuffer;           // 系统清理缓冲区
-  uint64_t systemSecurityBuffer;          // 系统安全缓冲区
+  int64_t SystemContextPointer;           // 系统上下文指针
+  uint64_t SystemValidationParameter;     // 系统验证参数
+  uint64_t SystemCleanupBuffer;           // 系统清理缓冲区
+  uint64_t SystemSecurityValidationBuffer;// 系统安全验证缓冲区
   
   // 检查系统上下文中的状态标志位（第7位）
-  if ((*(uint32_t *)(systemContextPointer + SystemStateFlagsExtendedOffset) >> 7 & 1) != 0) {
+  if ((*(uint32_t *)(SystemContextPointer + SystemStateFlagsExtendedOffset) >> 7 & 1) != 0) {
     ReleaseResource();
   }
   
   // 清理内存缓冲区并执行安全验证
-  CleanupMemory(&systemCleanupBuffer);
-  ExecuteSecurityCheck(systemValidationParameter ^ (uint64_t)&systemSecurityBuffer);
+  CleanupMemory(&SystemCleanupBuffer);
+  ExecuteSecurityCheck(SystemValidationParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -35928,7 +35961,7 @@ void ValidateContextStatus(void)
   }
 ProcessCheckpointDataFlowControl:
   if (operationResult == 0) {
-    *(bool *)(DestinationContext + 0x7c) = ValidationDataBuffer != '\0';
+    *(bool *)(DestinationContext + ValidationDataBufferOffset7C) = ValidationDataBuffer != '\0';
   }
   return;
 }
@@ -36927,7 +36960,7 @@ DataBuffer ProcessDataSequenceWithValidation(int64_t operationBase,DataBuffer *d
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
-    dataProcessingResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + 0x30);
+    dataProcessingResult = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + OperationBaseParameterOffset30);
     if ((int)dataProcessingResult == 0) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
@@ -37221,8 +37254,8 @@ uint64_t ValidateAndAllocateMemory(int64_t MemoryContext, DataBuffer *Allocation
     return AllocatedMemoryAddress;
   }
   MemoryAllocationSize = (int64_t)MemoryValidationBuffer[0];
-  MemoryOperationOutcome = (int)*(uint *)(MemoryContext + 0x14) >> 0x1f;
-  if (((int)((*(uint *)(MemoryContext + 0x14) ^ MemoryOperationOutcome) - MemoryOperationOutcome) < MemoryValidationBuffer[0]) &&
+  MemoryOperationOutcome = (int)*(uint *)(MemoryContext + MemoryOperationStatusOffset14) >> 0x1f;
+  if (((int)((*(uint *)(MemoryContext + MemoryOperationStatusOffset14) ^ MemoryOperationOutcome) - MemoryOperationOutcome) < MemoryValidationBuffer[0]) &&
      (AllocatedMemoryAddress = AllocateMemoryWithContext(MemoryContext + 8,MemoryValidationBuffer[0]), (int)AllocatedMemoryAddress != 0)) {
     return AllocatedMemoryAddress;
   }
@@ -37494,7 +37527,7 @@ ValidationLabelB:
     }
   }
   else {
-    validationOutcome = ProcessDataOperationA1(dataBuffer,operationBase + 0x48);
+    validationOutcome = ProcessDataOperationA1(dataBuffer,operationBase + OperationBaseSecondaryOffset48);
     if ((int)validationOutcome != 0) {
       return validationOutcome;
     }
