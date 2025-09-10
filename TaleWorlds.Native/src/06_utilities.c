@@ -100114,7 +100114,10 @@ void ResetSystemExceptionHandlerCE60(DataBuffer operationBase, int64_t dataBuffe
   return;
 }
 
-
+// 异常上下文处理相关常量
+#define ExceptionContextProcessorOffset 0x58                      // 异常上下文处理器偏移量
+#define ExceptionContextTemporaryHandlerOffset 0x28                // 异常上下文临时处理器偏移量
+#define ExceptionContextControlOffset 0x40                         // 异常上下文控制偏移量
 
 /**
  * @brief 异常上下文处理函数CE70

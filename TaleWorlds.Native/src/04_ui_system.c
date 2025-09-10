@@ -4904,10 +4904,10 @@ void* UIGestureCoordinates;
 #define UIContextData3B8 (void*)0x1809573b8
 #define UIContextData170 (void*)0x180957170
 #define UIContextData140 (void*)0x180957140
-#define UIContextData428 UNK_180957428
-#define UIContextData4F0 UNK_1809574f0
-#define UIContextData128 UNK_180957128
-#define UIContextData278 UNK_180957278
+#define UIContextData428 (void*)0x180957428
+#define UIContextData4F0 (void*)0x1809574f0
+#define UIContextData128 (void*)0x180957128
+#define UIContextData278 (void*)0x180957278
 #define UIContextData110 UNK_180957110
 #define UIContextData290 UNK_180957290
 #define UIContextData560 UNK_180957560
