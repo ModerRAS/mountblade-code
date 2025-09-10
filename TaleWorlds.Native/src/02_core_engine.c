@@ -240137,7 +240137,7 @@ LAB_18019a44a:
   ContextHandleData = (long long *)0x0;
   plStack_1d8 = ContextHandle;
   if ((*(int *)(OperationBufferSize[0x6b0] + 0x110) != 0) && ((*(byte *)(OperationBufferSize + 0x37b) & 2) != 0)) {
-    FUN_180094c20(alStack_188);
+    ProcessSystemDataConversion(alStack_188);
     MemoryBufferC = 2;
     BufferIndex = 2;
     ContextHandle7 = OperationBufferSize + 6;
@@ -240347,7 +240347,7 @@ LAB_18019a44a:
   }
   if ((int)ContextHandle[0x4f8] < 7) {
     *(uint8_t *)(OperationBufferSize + 0x38c) = 1;
-    MemoryPoolIndex = FUN_1800e2bf0(CoreEngineSystemContext,OperationBufferSize);
+    MemoryPoolIndex = ProcessSystemMemoryPoolIndex(CoreEngineSystemContext,OperationBufferSize);
     *(uint8_t *)((long long)OperationBufferSize + 0x1c61) = MemoryPoolIndex;
     if ((int)OperationBufferSize[1] == -1) {
       HighByte4 = 0;
