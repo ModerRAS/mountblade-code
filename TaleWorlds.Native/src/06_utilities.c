@@ -105838,7 +105838,16 @@ void CleanupMemoryResourceAtOffset390(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_CleanupMemoryResourceAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源函数3B0
+ * 
+ * 执行内存操作以清理特定偏移量的内存资源
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809053B0
+ */
+void CleanupMemoryResourceAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x248,2,ProcessMemoryOperationA0);
