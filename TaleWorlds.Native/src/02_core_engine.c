@@ -226757,10 +226757,22 @@ void ReleaseMemoryBlock16Bytes(uint64_t ContextHandle, char OperationBufferSize,
 
 
 
-89e60(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180189e60(uint64_t ContextHandle,char OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 释放内存块（24字节）
+ * 
+ * 该函数负责释放24字节的内存块，根据操作缓冲区大小决定是否执行释放操作。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小，决定是否执行释放
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180189e60
+ */
+void ReleaseMemoryBlock24Bytes(uint64_t ContextHandle, char OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   if (OperationBufferSize != '\0') {
-    free(ContextHandle,0x18,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    free(ContextHandle, 0x18, Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
   }
   return;
 }
