@@ -229886,7 +229886,7 @@ LAB_18018b93a:
   CharacterStatusBuffer = *(uint **)(OperationBufferSize + 8) + 1;
   *(uint **)(OperationBufferSize + 8) = CharacterStatusBuffer;
   if (UnicodeCodePoint != 0) {
-    FUN_180045f60(&puStack_458,CharacterStatusBuffer,UnicodeCodePoint);
+    ProcessUnicodeCharacter(&puStack_458,CharacterStatusBuffer,UnicodeCodePoint);
     *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
   pStringOffset = (long long *)0x180bf6740;
@@ -245965,7 +245965,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
       pSystemStatusValue = PrimaryProcessingStatusFlag8;
     }
     (**(code **)(*(long long *)(SystemMemoryAllocatorA + 0x20) + 0x10))(SystemMemoryAllocatorA + 0x20,pSystemStatusValue);
-    SystemStringIndex = FUN_180623de0(apProcessingCounter);
+    SystemStringIndex = ProcessMemoryStack(apProcessingCounter);
     PrimaryProcessingStatusFlag8 = &CoreEngineDataTemplate;
     if (*(void **)(SystemStringIndex + 8) != NULL) {
       PrimaryProcessingStatusFlag8 = *(void **)(SystemStringIndex + 8);
@@ -282159,7 +282159,7 @@ InitializeSystemPrimaryDataTemplate(uint64_t *ContextHandle,unsigned long long O
   *(uint **)(OperationBufferSize + 8) = StringProcessingStatus;
   pcStack_468 = ContextHandle;
   if (UnicodeCodePoint != 0) {
-    FUN_180045f60(&puStack_458,StringProcessingStatus,UnicodeCodePoint);
+    ProcessUnicodeCharacter(&puStack_458,StringProcessingStatus,UnicodeCodePoint);
     *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
   pStringOffset = (long long *)0x180bf7e20;
