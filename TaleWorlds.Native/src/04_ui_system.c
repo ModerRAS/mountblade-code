@@ -5156,19 +5156,19 @@ void* UIGestureCoordinates;
 #define UIResourceDataF58 (void*)0x180957f58
 
 // UI系统全局数据宏定义
-#define UIGlobalData000 UNK_180958000
-#define UIGlobalData070 UNK_180958070
-#define UIGlobalData098 UNK_180958098
-#define UIGlobalData0B8 UNK_1809580b8
-#define UIGlobalData0D0 UNK_1809580d0
-#define UIGlobalData180 UNK_180958180
-#define UIGlobalData170 UNK_180958170
-#define UIGlobalData1B4 UNK_1809581b4
-#define UIGlobalData1C0 UNK_1809581c0
-#define UIGlobalData1D8 UNK_1809581d8
-#define UIGlobalData1F8 UNK_1809581f8
-#define UIGlobalData1BC UNK_1809581bc
-#define UIGlobalData1E8 UNK_1809581e8
+#define UIGlobalData000 (void*)0x180958000
+#define UIGlobalData070 (void*)0x180958070
+#define UIGlobalData098 (void*)0x180958098
+#define UIGlobalData0B8 (void*)0x1809580b8
+#define UIGlobalData0D0 (void*)0x1809580d0
+#define UIGlobalData180 (void*)0x180958180
+#define UIGlobalData170 (void*)0x180958170
+#define UIGlobalData1B4 (void*)0x1809581b4
+#define UIGlobalData1C0 (void*)0x1809581c0
+#define UIGlobalData1D8 (void*)0x1809581d8
+#define UIGlobalData1F8 (void*)0x1809581f8
+#define UIGlobalData1BC (void*)0x1809581bc
+#define UIGlobalData1E8 (void*)0x1809581e8
 
 // UI系统外部数据宏定义
 #define UIExternalDataD050 UNK_18097d050
