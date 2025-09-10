@@ -34349,7 +34349,7 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
 
 
 
-DataBuffer ProcessDataConversionA0(int64_t operationBase,DataBuffer *dataBuffer)
+DataBuffer ProcessDataConversionPrimary(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
   DataBuffer conversionResult;
@@ -45167,7 +45167,7 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext, int64_t unwindParam)
   if (exceptionMemoryRegion != 0) {
     // 计算异常处理器内存块地址
     exceptionHandlerMemoryBlock = exceptionMemoryRegion + ExceptionMemoryRegionOffset + 
-                                ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * ExceptionMemoryBlockMultiplier;
+                                ((int64_t)exceptionHandlerPointer - exceptionMemoryRegion >> BitShift16Bits) * ExceptionMemoryBlockMultiplier;
     exceptionHandlerMemoryBlock = exceptionHandlerMemoryBlock - (uint64_t)*(uint *)(exceptionHandlerMemoryBlock + ExceptionHandlerPointerOffset4);
     
     // 检查异常链表和处理器的有效性
