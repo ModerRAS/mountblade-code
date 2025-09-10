@@ -288036,7 +288036,20 @@ unsigned long long ValidateContextHandle(long long ContextHandle
 
 
 
-long long FUN_18022e5f7(void
+/**
+ * @brief 获取系统处理结果和状态标志
+ * 
+ * 该函数用于获取系统处理结果和状态标志，主要功能包括：
+ * - 检查系统事件模板和处理状态
+ * - 执行字符串比较和状态验证
+ * - 返回处理结果状态码
+ * 
+ * @return long long 返回系统处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18022e5f7
+ */
+#define GetSystemProcessingResultAndStatus FUN_18022e5f7
+long long GetSystemProcessingResultAndStatus(void
 {
   bool StringComparisonByte;
   long long BufferStatus;
