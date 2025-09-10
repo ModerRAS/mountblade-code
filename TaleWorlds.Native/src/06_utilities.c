@@ -111780,7 +111780,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x130);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + MemoryResourcePointerOffsetTertiary);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -111816,7 +111816,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x150);
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerPointerOffset150);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }

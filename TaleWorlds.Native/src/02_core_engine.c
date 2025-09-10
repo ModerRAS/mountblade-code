@@ -200008,33 +200008,33 @@ ProcessInputBuffer(uint64_t *ContextHandle,uint64_t OperationBufferSize,uint64_t
 uint64_t *
 ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *ContextHandleSize,uint64_t Utf8SourcePointer)
 {
-  int LockResult;
+  int SystemLockResult;
   double TimeDifferenceInSeconds;
   uint UnicodeCodePoint;
-  uint32_t MemoryAddressMaskPointer;
-  uint8_t *ContextHandlePointer;
-  void *CurrentNode;
+  uint32_t MemoryAddressMask;
+  uint8_t *SystemContextPointer;
+  void *CurrentProcessingNode;
   void *StringProcessingStatus;
   unsigned long long ProcessingStatusFlag;
   uint8_t *TemporaryBuffer;
   unsigned long long Utf16Char;
   uint8_t ProcessedCharacter;
   long long SystemContextValue;
-  int IntegerValue;
-  uint Utf16Char4;
-  uint64_t *CharacterStatusBuffer5;
+  int OperationMode;
+  uint Utf16CharValue;
+  uint64_t *CharacterStatusBuffer;
   uint8_t *SystemCharacterStatusPointer;
   uint SystemRegisterFlag;
   uint64_t *SystemMemoryPointer;
-  uint64_t *pMemoryOffsetValue;
-  uint SystemStackRegisterFlagB0;
-  uint CoreEngineValueA8;
-  uint32_t StackCharacterValueA4;
-  void *SystemConfigurationStackPointer;
-  void *pSystemOperationFlag98;
+  uint64_t *MemoryOffsetPointer;
+  uint SystemStackRegisterFlag;
+  uint CoreEngineStatusValue;
+  uint32_t StackCharacterValue;
+  void *SystemConfigurationPointer;
+  void *SystemOperationFlag;
   uint32_t StackValidationData;
-  uint64_t *pCalculationFunctionAddress;
-  uint64_t *CoreEnginePointerBuffer78;
+  uint64_t *CalculationFunctionAddress;
+  uint64_t *CoreEngineBufferPointer;
   uint32_t StackProcessingValue;
   uint64_t *EncodingBuffer;
   uint64_t *BufferOffset;
@@ -200042,8 +200042,8 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
   
   SystemPriorityLevel = 0xfffffffffffffffe;
   TemporaryBuffer = (uint8_t *)0x0;
-  IntegerValue = *(int *)(ContextHandle + 0x20);
-  if (LockResult == 0) {
+  OperationMode = *(int *)(SystemContextHandle + 0x20);
+  if (SystemLockResult == 0) {
     *ContextHandleSize = &ThreadLocalStorageTemplate;
     OperationBufferSize[1] = 0;
     *(uint32_t *)(OperationBufferSize + 2) = 0;
@@ -200058,18 +200058,18 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
     *(uint32_t *)(OperationBufferSize + 2) = 0xf;
   }
   else {
-    if (IntegerValue == 1) {
+    if (OperationMode == 1) {
       CoreEngineFinalizeSystemEvent(&StackTempPointer,Utf8SourcePointer);
-      ProcessSystemCalculationFunctionAddress(&pCalculationFunctionAddress,&StackTempPointer);
+      ProcessSystemCalculationFunctionAddress(&CalculationFunctionAddress,&StackTempPointer);
       StackTempPointer = &SystemNullTemplate;
-      if (pSystemOperationFlag98 != NULL) {
+      if (SystemOperationFlag != NULL) {
                     // WARNING: Subroutine does not return
         ProcessSystemEventHandling();
       }
-      pSystemOperationFlag98 = NULL;
+      SystemOperationFlag = NULL;
       StackValidationData = 0;
       StackTempPointer = &ThreadLocalStorageTemplate;
-      SystemContextValue = (**(code **)(ContextHandle + 0x68))(&StackTempPointer,ContextHandle,&pCalculationFunctionAddress);
+      SystemContextValue = (**(code **)(SystemContextHandle + 0x68))(&StackTempPointer,SystemContextHandle,&CalculationFunctionAddress);
       *ContextHandleSize = &ThreadLocalStorageTemplate;
       OperationBufferSize[1] = 0;
       *(uint32_t *)(OperationBufferSize + 2) = 0;
@@ -200092,16 +200092,16 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
       pSystemOperationFlag98 = NULL;
       StackValidationData = 0;
       StackTempPointer = &ThreadLocalStorageTemplate;
-      SystemMemoryPointer = pCalculationFunctionAddress;
-      for (SecondaryProcessingStatusFlag = pCalculationFunctionAddress; SecondaryProcessingStatusFlag != CoreEnginePointerBuffer78; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4) {
-        pCalculationFunctionAddress = SystemMemoryPointer;
+      SystemMemoryPointer = CalculationFunctionAddress;
+      for (SecondaryProcessingStatusFlag = CalculationFunctionAddress; SecondaryProcessingStatusFlag != CoreEngineBufferPointer; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4) {
+        CalculationFunctionAddress = SystemMemoryPointer;
         (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
-        SystemMemoryPointer = pCalculationFunctionAddress;
+        SystemMemoryPointer = CalculationFunctionAddress;
       }
     }
     else {
-      if (IntegerValue != 2) {
-        if (IntegerValue != 3) {
+      if (OperationMode != 2) {
+        if (OperationMode != 3) {
           *ContextHandleSize = &ThreadLocalStorageTemplate;
           OperationBufferSize[1] = 0;
           *(uint32_t *)(OperationBufferSize + 2) = 0;
