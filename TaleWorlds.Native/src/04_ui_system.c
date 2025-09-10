@@ -123911,40 +123911,40 @@ void ExecuteUIRenderTaskWithKeyValidation(void)
 
 
  void FUN_180739a50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180739a50(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+void ProcessUIDataFinalWithValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceHandle;
+  UIHandle processedContext;
+  UIByte dataTransferBuffer [256];
+  ulonglong encryptedDataKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  encryptedDataKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  resourceHandle = 0;
+  processingResult = ProcessUIContextData(uiContext,&processedContext,&resourceHandle);
   if (processingResult == 0) {
-    processingResult = func_0x000180746360(stackUInt140,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180739b3f;
+    processingResult = ProcessUIDataWithValidation(processedContext,dataSource,targetBuffer);
+    if (processingResult == 0) goto CleanupUIResources;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074ba80(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataBuffer(dataTransferBuffer,0x100,dataSource);
+    uiCompareResult = CompareUIDataBuffers(dataTransferBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    TransferUIDataToTargetBuffer(dataTransferBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataBufferPointer = dataTransferBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextResourceHandler);
   }
-FUN_180739b3f:
-  if (stackLong148 != 0) {
+CleanupUIResources:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
@@ -193812,10 +193812,49 @@ undefined UNK_180986170;
  */
 #define InitializeUISystem FUN_18088ea60
 undefined FUN_18088ea60;
+/**
+ * @brief UI系统事件处理器状态指针
+ * 
+ * 存储UI系统事件处理器的当前状态和配置信息
+ * 用于管理事件处理的上下文和状态转换
+ */
+#define UIEventHandlerState UNK_180986218
 undefined UNK_180986218;
+
+/**
+ * @brief UI系统组件管理器指针
+ * 
+ * 管理UI系统组件的生命周期和状态
+ * 负责组件的创建、销毁和更新
+ */
+#define UIComponentManager UNK_180986240
 undefined UNK_180986240;
+
+/**
+ * @brief UI系统渲染状态指针
+ * 
+ * 存储UI系统的渲染状态和配置
+ * 控制UI元素的绘制和更新
+ */
+#define UIRenderState UNK_180986244
 undefined UNK_180986244;
+
+/**
+ * @brief UI系统输入处理器指针
+ * 
+ * 处理用户输入事件和交互逻辑
+ * 管理键盘、鼠标和触摸输入
+ */
+#define UIInputHandler UNK_180986248
 undefined UNK_180986248;
+
+/**
+ * @brief UI系统布局管理器指针
+ * 
+ * 管理UI元素的布局和位置
+ * 处理元素的排列和对齐
+ */
+#define UILayoutManager UNK_18098624c
 undefined UNK_18098624c;
 undefined UNK_180986250;
 undefined UNK_180986268;
