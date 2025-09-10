@@ -4681,6 +4681,9 @@ const long long SystemNodeIdentifierOctonary = 0x9c552acd3ed5548d;
 const long long SystemNodeIdentifierNonary = 0x49086ba08ab981a7;
 const long long SystemNodeIdentifierUndenary = 0xa9191d34ad910696;
 
+// 系统比较数据主常量 - 用于系统数据结构比较操作
+const long long SystemComparisonDataPrimary = 0x0;
+
 /**
  * @brief 处理字符字符串编码
  * 
@@ -202153,7 +202156,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
 
 
 
-// 函数: void FUN_1801676b0(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer)
+// 函数: void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer)
 /**
  * @brief 处理UTF-8到UTF-16的字符编码转换和内存分配
  * 
@@ -202163,8 +202166,6 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t ContextHandle,uint6
  * @param ContextHandle 字符代码
  * @param OperationBufferSize 系统缓冲区大小
  * @param Utf8SourcePointer UTF-8源指针
- * 
- * @note 原始函数名：FUN_1801676b0
  */
 void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize,long long *Utf8SourcePointer)
 {
@@ -227044,7 +227045,7 @@ void ExpandCharacterStatusBufferAndInsert64BitElement(long long *CharacterStatus
       *ElementPointer = 0;
       ElementPointer = ElementPointer + 1;
     }
-    FUN_18018a000(aStackProcessingConfigurationFlag, *CharacterStatusBuffer, CharacterStatusBuffer[1], Flags, 0, ProcessingStatusFlag);
+    ExecuteSystemMemoryOperation(aStackProcessingConfigurationFlag, *CharacterStatusBuffer, CharacterStatusBuffer[1], Flags, 0, ProcessingStatusFlag);
                     // WARNING: Subroutine does not return
     memmove(NewBufferPointer);
   }
@@ -227136,7 +227137,7 @@ LAB_180189786:
     CharacterStatusBuffer[1] = OldBufferPointer;
     CharacterStatusBuffer[2] = CurrentElementCount * 4 + OldBufferPointer;
   }
-  FUN_18018a000(auStackX_20);
+  ExecuteSystemMemoryOperation(auStackX_20);
                     // WARNING: Subroutine does not return
   memmove(OldBufferPointer, SourceData, OperationResult);
 }
@@ -248502,7 +248503,7 @@ LAB_1802042b6:
           paMemoryAddressMaskPointer = paOperationResult;
           if (StringComparisonByte) {
             aStackValidationFlag28 = aFunctionAddress;
-            FUN_18018a000(SystemRegisterFlagBuffer);
+            ExecuteSystemMemoryOperation(SystemRegisterFlagBuffer);
                     // WARNING: Subroutine does not return
             memmove((long long)paSystemChecksum - ((long long)paOperationResult - (long long)ContextHandle),ContextHandle);
           }
@@ -265432,7 +265433,7 @@ LAB_18021943e:
       if (*(int *)(*ContextHandle + 0x10) != 0) {
         if (*(int *)(MemoryBlockIndex + 0x10) == 0) {
 LAB_18021937f:
-          FUN_18018a000(&lStackX_8);
+          ExecuteSystemMemoryOperation(&lStackX_8);
                     // WARNING: Subroutine does not return
           memmove((long long)MemoryPoolBlockSizePointer - ((long long)SystemDataTablePointer - (long long)ContextHandle),ContextHandle);
         }
