@@ -78970,7 +78970,7 @@ void InitializeSystemDataStructureAndCoreEngineParameters(uint64_t ContextHandle
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
   BufferStatus = *(long long *)(*(long long *)(BufferStatus + 0x1af8) + 0x210);
   if (BufferStatus == 0) {
-LAB_180096e94:
+SystemMemoryRelease:
     ProcessSystemErrorHandling(0,3);
   }
   else if ((*(int *)(BufferStatus + 0x10) != 3) || (*(int *)(BufferStatus + 4) != 0)) {
