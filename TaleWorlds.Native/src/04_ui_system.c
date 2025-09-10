@@ -7260,9 +7260,16 @@ void UpdateUIElement(void);
  /**
  * @brief 渲染UI元素
  * 
- * 渲染UI系统中的元素到屏幕上
+ * 渲染UI系统中的元素到屏幕上。该函数负责：
+ * - 执行UI元素的绘制操作
+ * - 处理纹理映射和材质应用
+ * - 管理渲染队列和批次处理
+ * - 处理透明度和混合模式
+ * - 应用着色器和渲染效果
+ * - 优化渲染性能和减少绘制调用
  * 
  * @note 原始函数名: 未指定
+ * @see UpdateUIElement, ConfigureUIRendererSettings, ProcessUIRenderData
  */
 void RenderUIElement(void);
 void* UIGlobalState;
