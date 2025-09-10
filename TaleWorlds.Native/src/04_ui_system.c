@@ -399051,16 +399051,16 @@ UIHandle * FUN_18089c22e(void)
   }
   if (0x81 < *(uint *)(uiTargetHandle + 8)) {
     componentHandle = (UIHandle *)FUN_1808a79f0(iterationCounter,uiComponentData + 0x58);
-    transformCoeff11 = extraout_XMM0_Da_00;
+    transformCoefficient = extraout_XMM0_Da_00;
     if ((int)componentHandle != 0) {
       return componentHandle;
     }
     goto LAB_18089c300;
   }
-  if (*(uint *)(TargetHandle + 8) < 0x6a) {
-    *(UIHandle *)(basePointer + -0x29) = 0;
-    *(UIHandle *)(basePointer + -0x21) = 0;
-    eventStatus = FUN_1808a54c0(iterationCount0,basePointer + -0x29,0);
+  if (*(uint *)(uiTargetHandle + 8) < 0x6a) {
+    *(UIHandle *)(uiContextBasePointer + -0x29) = 0;
+    *(UIHandle *)(uiContextBasePointer + -0x21) = 0;
+    eventStatus = FUN_1808a54c0(iterationCounter,uiContextBasePointer + -0x29,0);
     renderDataPointer = (UIHandle *)(ulonglong)eventStatus;
     if (eventStatus != 0) {
 LAB_18089c40a:
