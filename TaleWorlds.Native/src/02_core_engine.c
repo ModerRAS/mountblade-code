@@ -208068,7 +208068,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t ContextHandle,uint
 
 
 
-// 函数: void FUN_180170da0(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: void ProcessWindowMessageAndCharacterEncoding(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理窗口消息和字符表操作
  * 
@@ -208085,8 +208085,8 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t ContextHandle,uint
  * 
  * @note 原始函数名：FUN_180170da0
  */
-#define ProcessWindowMessageAndCharacterTableOperations FUN_180170da0
-void ProcessWindowMessageAndCharacterTableOperations(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+#define ProcessWindowMessageAndCharacterEncoding FUN_180170da0
+void ProcessWindowMessageAndCharacterEncoding(uint64_t ContextHandle,uint32_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   
