@@ -230371,7 +230371,7 @@ long long * ProcessSystemContextAndCharacterData(long long *ContextHandle,uint64
   lStack_38 = 0;
   ProcessingCounter = 0;
   TemporaryBuffer = OperationBufferSize;
-  MemoryPoolBlockSizePointer = (long long *)FUN_18018ca20();
+  MemoryPoolBlockSizePointer = (long long *)GetMemoryPoolBlockSizePointer();
   if (MemoryPoolBlockSizePointer != &MemoryOperationStatus) {
     MemoryPoolBlockSizePointer[1] = *MemoryPoolBlockSizePointer;
     CharacterTablePointer = *MemoryPoolBlockSizePointer;
@@ -230984,7 +230984,7 @@ LAB_18018cbb7:
       SystemContextPtr = MemoryBlockListHead;
 LAB_18018cbba:
       if (SystemContextPtr != (long long *)0x0) {
-        FUN_18018cde0(ContextHandle,&lStackX_8,SystemContextPtr,Utf16EndPointer,OperationBufferSize);
+        ParseSystemCharacterData(ContextHandle,&lStackX_8,SystemContextPtr,Utf16EndPointer,OperationBufferSize);
         goto LAB_18018cbeb;
       }
     }
@@ -231021,7 +231021,7 @@ LAB_18018cbba:
     }
   }
 LAB_18018cbd8:
-  MemoryBlockListHead = (long long *)FUN_18018cc00(ContextHandle,auStack_18,SystemContextPtr,OperationBufferSize);
+  MemoryBlockListHead = (long long *)ProcessSystemCharacterEncodingConversion(ContextHandle,auStack_18,SystemContextPtr,OperationBufferSize);
   lStackX_8 = *MemoryBlockListHead;
 LAB_18018cbeb:
   return (long long *)(lStackX_8 + 0x40);

@@ -9567,6 +9567,16 @@ uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 #define ExceptionHandlerContextOffset728 0x728            // 异常处理上下文偏移量728
 #define ExceptionHandlerContextOffset730 0x730            // 异常处理上下文偏移量730
 #define ExceptionHandlerContextOffset740 0x740            // 异常处理上下文偏移量740
+
+// 数据缓冲区偏移量常量
+#define DataBufferOffsetD0 0xd0                              // 数据缓冲区偏移量D0
+#define DataBufferOffsetE0 0xe0                              // 数据缓冲区偏移量E0
+#define DataBufferOffsetF0 0xf0                              // 数据缓冲区偏移量F0
+#define DataBufferOffsetF8 0xf8                              // 数据缓冲区偏移量F8
+#define DataBufferOffsetA8 0xa8                              // 数据缓冲区偏移量A8
+
+// 系统清理标志常量
+#define SystemCleanupFlagAlternative 0x80000000              // 系统清理标志替代值
 #define ExceptionHandlerContextOffset708 0x708            // 异常处理上下文偏移量708
 #define ExceptionHandlerContextOffset710 0x710            // 异常处理上下文偏移量710
 #define ExceptionHandlerContextOffset720 0x720            // 异常处理上下文偏移量720
