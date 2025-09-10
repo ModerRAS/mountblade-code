@@ -50032,9 +50032,9 @@ void CleanupSystemThreadContext(DataBuffer operationBase,int64_t dataBuffer,Data
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
   validationStatus = SystemCleanupFlagAlternative;
   *exceptionDataBuffer = &ExceptionDataTable7;
-  characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  while (characterFlag != '\0') {
-    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
+  characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  while (characterProcessingFlag != '\0') {
+    characterProcessingFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
