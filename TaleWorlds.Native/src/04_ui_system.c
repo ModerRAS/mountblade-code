@@ -120860,33 +120860,33 @@ void ProcessUIComponentDataSorting(void)
 
 
 
- void FUN_180737c30(longlong uiContext,int dataSource)
-void FUN_180737c30(longlong uiContext,int dataSource)
+ void SortUIContextDataByValue(longlong uiContext,int dataSource)
+void SortUIContextDataByValue(longlong uiContext,int dataSource)
 
 {
-  short sVar1;
-  short sVar2;
-  longlong stringCompareIndex;
-  int sourceDataInt;
-  longlong eventDataIndex;
-  int loopCounter;
+  short currentValue;
+  short compareValue;
+  longlong searchIndex;
+  int comparisonPosition;
+  longlong dataIndex;
+  int insertionCounter;
   
   if (1 < (longlong)dataSource) {
-    eventDataIndex = 1;
-    loopCounter = 0;
+    dataIndex = 1;
+    insertionCounter = 0;
     do {
-      sVar1 = *(short *)(uiContext + eventDataIndex * 2);
-      sourceDataInt = loopCounter;
-      stringCompareIndex = eventDataIndex;
-      while ((stringCompareIndex = stringCompareIndex + -1, -1 < sourceDataInt &&
-             (sVar2 = *(short *)(uiContext + stringCompareIndex * 2), sVar1 < sVar2))) {
-        *(short *)(uiContext + 2 + stringCompareIndex * 2) = sVar2;
-        sourceDataInt = sourceDataInt + -1;
+      currentValue = *(short *)(uiContext + dataIndex * 2);
+      comparisonPosition = insertionCounter;
+      searchIndex = dataIndex;
+      while ((searchIndex = searchIndex + -1, -1 < comparisonPosition &&
+             (compareValue = *(short *)(uiContext + searchIndex * 2), currentValue < compareValue))) {
+        *(short *)(uiContext + 2 + searchIndex * 2) = compareValue;
+        comparisonPosition = comparisonPosition + -1;
       }
-      loopCounter = loopCounter + 1;
-      *(short *)(uiContext + 2 + stringCompareIndex * 2) = sVar1;
-      eventDataIndex = eventDataIndex + 1;
-    } while (eventDataIndex < dataSource);
+      insertionCounter = insertionCounter + 1;
+      *(short *)(uiContext + 2 + searchIndex * 2) = currentValue;
+      dataIndex = dataIndex + 1;
+    } while (dataIndex < dataSource);
   }
   return;
 }
