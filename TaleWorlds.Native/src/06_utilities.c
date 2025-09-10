@@ -50227,7 +50227,7 @@ void CleanupClassMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   dataContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   validationStatus = SystemCleanupFlagAlternative;
   *(int64_t *)(dataContext + DataContextSystemConfigOffset) =
-       *(int64_t *)(&SystemConfigurationTable + (int64_t)*(int *)(dataContext + DataContextConfigIndexOffset) * 8) + -0x186a0;
+       *(int64_t *)(&SystemConfigurationTable + (int64_t)*(int *)(dataContext + DataContextConfigIndexOffset) * SystemTableIndexMultiplier) + ExceptionDataTableNegativeOffset;
   ValidateSystemConfigurationA0((int64_t *)(dataContext + 0x8b0));
   *(DataWord *)(dataContext + DataContextConfigStatusOffset) = 0;
   exceptionContextPointer = *(int64_t **)(dataContext + DataContextCallbackOffset);
@@ -80868,7 +80868,7 @@ void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
   contextBase = *(int64_t *)(unwindInfo + 0x50);
   cleanupFlag = SystemCleanupFlagAlternative;
   *(int64_t *)(contextBase + 0x15d8) =
-       *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -0x186a0;
+       *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * SystemTableIndexMultiplier) + ExceptionDataTableNegativeOffset;
   ValidateSystemContextA0((int64_t *)(contextBase + 0x8b0));
   *(DataWord *)(contextBase + 0x15e8) = 0;
   memoryResourcePointer = *(int64_t **)(contextBase + 0x15d0);
@@ -84052,7 +84052,7 @@ void ExecuteExceptionFunctionAtOffset70(DataBuffer operationBase,int64_t dataBuf
 void DestroyBasicOstreamOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  DestroyBasicOstream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + -0x98);
+  DestroyBasicOstream(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + OutputStreamNegativeOffset);
   return;
 }
 
@@ -84277,7 +84277,7 @@ void SystemValidationContextHandler(DataBuffer operationBase, int64_t dataBuffer
   int operationResult;
   
   exceptionContext = dataBuffer + DataBufferOffset128;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 4) + -0xa8 + exceptionHandlerContext) =
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 4) + StreamBufferNegativeOffsetA + exceptionHandlerContext) =
        &SystemValidationFlagA;
   operationResult = *(int *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 4);
   *(int *)((int64_t)operationResult + -0xac + exceptionHandlerContext) = operationResult + -0xa8;
@@ -96902,7 +96902,7 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
   int cleanupResult;
   
   streamContext = recoveryContext + 0x138;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(recoveryContext + ResourceManagementOffset80) + 4) + -0xb8 + streamContext) =
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(recoveryContext + ResourceManagementOffset80) + 4) + StreamBufferNegativeOffsetB + streamContext) =
        &DefaultStreamCleanupHandler;
   cleanupResult = *(int *)(*(int64_t *)(recoveryContext + ResourceManagementOffset80) + 4);
   *(int *)((int64_t)cleanupResult + -0xbc + streamContext) = cleanupResult + -0xb8;
