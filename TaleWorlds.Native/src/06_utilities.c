@@ -21698,23 +21698,25 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     return ComponentDataValidationFailure;
   }
   vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
-  isVector18Infinity = 0;
+  int isDataVector18Infinity = 0;
   vectorWRawData = *(uint *)(dataPtr + VectorComponentWOffset);
   vectorYFloatComponent = *(float *)(dataPtr + VectorComponentYFloatOffset);
   // 合并浮点数组件Z到系统上下文缓冲区
   systemContextArray[0] = MergeFloatComponents(systemContextArray[0].HighPart, vectorZComponent);
-  isVector2cInfinity = isVector18Infinity;
+  int isDataVector2cInfinity = isDataVector18Infinity;
   if (((uint)vectorZComponent & FloatInfinityValue) == FloatInfinityValue) {
-    isVector2cInfinity = 0x1d;
+    isDataVector2cInfinity = 0x1d;
   }
-  isVector1cInfinity = isVector18Infinity;
+  int isDataVector1cInfinity = isDataVector18Infinity;
   if ((vectorWRawData & FloatInfinityValue) == FloatInfinityValue) {
-    isOffset1cInfinity = 0x1d;
+    int isDataOffset1cInfinity = 0x1d;
   }
   if (((uint)vectorYFloatComponent & FloatInfinityValue) == FloatInfinityValue) {
-    isVector28Infinity = 0x1d;
+    int isDataVector28Infinity = 0x1d;
   }
-  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isVector28Infinity == 0) {
+  int isDataVectorZInfinity = 0;
+  int isDataVectorXInfinity = 0;
+  if ((isDataVectorZInfinity == 0 && isDataVectorXInfinity == 0) && isDataVector28Infinity == 0) {
     if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
        (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
