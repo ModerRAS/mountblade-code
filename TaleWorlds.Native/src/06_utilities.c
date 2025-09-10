@@ -130775,7 +130775,7 @@ void ExecuteSecurityCheckCallProtection670(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionContextFromMemoryPointer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -130792,7 +130792,7 @@ void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809126b0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionHandlerSecurityCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset78),**(ByteFlag **)(dataBuffer + ExceptionHandlerDataBufferOffset68),
@@ -130802,7 +130802,7 @@ void Unwind_1809126b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809126e0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionHandlerContextCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),**(ByteFlag **)(dataBuffer + DataBufferOffset30),
