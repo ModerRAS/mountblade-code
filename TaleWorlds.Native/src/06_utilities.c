@@ -3510,6 +3510,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define systemContextConversionOffset 0x24              // 系统上下文转换偏移量
 #define systemContextValidationOffset 0x78              // 系统上下文验证偏移量
 
+// 内存分配大小常量定义
+#define DataBlockMemorySizeA0 0x28                      // 数据块内存大小A0 - 用于InitializeDataBlockPointerA0函数
+#define DataBlockMemorySizeA1 0x38                      // 数据块内存大小A1 - 用于InitializeDataBlockPointerA1函数
+#define MemoryCleanupSizeDW0 0x428                      // 内存清理大小DW0 - 用于CleanupSystemResourceDW0函数
+#define ValidationContextArraySize 0x58                 // 验证上下文数组大小 - 用于各种验证上下文指针数组
+#define DataBufferCleanupSize 0x40                       // 数据缓冲区清理大小 - 用于数据缓冲区清理操作
+
 // 魔法数字常量定义
 #define IsOffset1cInfinityValue 0x1d                     // 偏移量1c无穷大值
 #define MemoryAlignmentMask 0xfbffffff                   // 内存对齐掩码
