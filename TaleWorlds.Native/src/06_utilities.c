@@ -29106,20 +29106,20 @@ void ProcessDataTypes(void)
   DataBuffer SystemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
   uint8_t *exceptionDataBuffer8;        // 异常数据缓冲区8 - 第八个异常数据缓冲区
   float CalculationResult19;             // 计算结果19 - 第19个计算结果
-  uint64_t operationResult0;             // 操作结果0 - 第0个操作结果
+  uint64_t OperationResult0;             // 操作结果0 - 第0个操作结果
   float *poutputValue21;                 // 输出值21指针 - 指向第21个输出值的指针
   DataBuffer *StackFrameContext;         // 栈帧上下文 - 栈帧的上下文信息
   int64_t systemContext;                 // 系统上下文 - 系统的上下文信息
   DataBuffer *memoryResourcePointer2;    // 内存资源指针2 - 第二个内存资源指针
   float dataPointerD;                    // 数据指针D - D类型数据的指针
   int64_t systemContext;                 // 系统上下文 - 系统的上下文信息（重复定义）
-  uint64_t operationResult3;             // 操作结果3 - 第3个操作结果
-  int64_t contextPointer;                  // 上下文指针 - 指向上下文信息的指针
-  DataWord floatResultA;                  // 浮点结果A - 第一个浮点计算结果
+  uint64_t OperationResult3;             // 操作结果3 - 第3个操作结果
+  int64_t ContextPointer;                  // 上下文指针 - 指向上下文信息的指针
+  DataWord FloatResultA;                  // 浮点结果A - 第一个浮点计算结果
   DataWord SystemOperationResult4;         // 系统操作结果4 - 第四个系统操作结果
-  DataWord calculatedFloatValue;          // 计算的浮点值 - 用于存储计算的浮点数值
-  DataWord normalizedFloatValue;          // 标准化的浮点值 - 标准化后的浮点数值
-  DataWord interpolatedFloatValue;         // 插值的浮点值 - 插值计算后的浮点数值
+  DataWord CalculatedFloatValue;          // 计算的浮点值 - 用于存储计算的浮点数值
+  DataWord NormalizedFloatValue;          // 标准化的浮点值 - 标准化后的浮点数值
+  DataWord InterpolatedFloatValue;         // 插值的浮点值 - 插值计算后的浮点数值
   float floatValidationValue;             // 浮点验证值 - 用于验证浮点数据
   DataWord accumulatedFloatValue;         // 累积的浮点值 - 累积计算后的浮点数值
   DataWord processedFloatValue;            // 处理后的浮点值 - 处理后的浮点数值
