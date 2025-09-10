@@ -3378,6 +3378,27 @@ typedef enum {
 #define FUN_1808a1870 ValidateUIContextMemoryAndAllocation         // 验证UI上下文内存和分配
 #define ProcessUIStringDataCleanupAndValidation HandleUIValidationErrorAndLogging             // 处理UI验证错误和日志记录
 
+// UI数据处理函数宏定义
+/**
+ * @brief 处理UI组件数据验证和处理
+ * 
+ * 该函数负责处理UI组件数据的验证和处理操作，包括数据格式检查、
+ * 有效性验证和后续处理步骤。确保UI组件数据的完整性和正确性。
+ * 
+ * @note 原始函数名：FUN_1808a7f40
+ */
+#define FUN_1808a7f40 ProcessUIComponentDataValidationAndProcessing
+
+/**
+ * @brief 处理UI数据缓冲区验证
+ * 
+ * 该函数负责处理UI数据缓冲区的验证操作，包括缓冲区完整性检查、
+ * 数据一致性验证和安全性检查。确保UI数据缓冲区的可靠性和安全性。
+ * 
+ * @note 原始函数名：FUN_1808de0e0
+ */
+#define FUN_1808de0e0 ValidateUIDataBufferIntegrityAndSecurity
+
 // UI系统函数宏定义 - 处理UI混合数据传输
 /**
  * @brief 处理UI混合数据传输
@@ -397302,11 +397323,11 @@ UIHandle FUN_18089b630(longlong uiContext,UIHandle *dataSource)
             if ((int)result != 0) {
               return result;
             }
-            result = FUN_1808a7f40(dataSource,uiContext + 0xe8,uiValidationResult,uiContext);
+            result = ProcessUIComponentDataValidationAndProcessing(dataSource,uiContext + 0xe8,uiValidationResult,uiContext);
             if ((int)result != 0) {
               return result;
             }
-            result = FUN_1808de0e0(dataSource,bufferValidation);
+            result = ValidateUIDataBufferIntegrityAndSecurity(dataSource,bufferValidation);
             if ((int)result != 0) {
               return result;
             }
@@ -397347,11 +397368,11 @@ void FUN_18089b6df(void)
       if (uiValidationResult != 0) {
         return;
       }
-      uiValidationResult = FUN_1808a7f40();
+      uiValidationResult = ProcessUIComponentDataValidationAndProcessing();
       if (uiValidationResult != 0) {
         return;
       }
-      uiValidationResult = FUN_1808de0e0();
+      uiValidationResult = ValidateUIDataBufferIntegrityAndSecurity();
       if (uiValidationResult != 0) {
         return;
       }
@@ -398055,7 +398076,7 @@ void FUN_18089bc10(longlong uiContext,UIHandle *dataSource)
             if (localInt5 != 0) {
               return;
             }
-            localInt5 = FUN_1808de0e0(dataSource,bufferValidation);
+            localInt5 = ValidateUIDataBufferIntegrityAndSecurity(dataSource,bufferValidation);
             if (localInt5 != 0) {
               return;
             }
@@ -398117,7 +398138,7 @@ void FUN_18089bc5a(void)
           if (localInt5 != 0) {
             return;
           }
-          localInt5 = FUN_1808de0e0();
+          localInt5 = ValidateUIDataBufferIntegrityAndSecurity();
           if (localInt5 != 0) {
             return;
           }
@@ -398159,7 +398180,7 @@ UIHandle FUN_18089bd70(longlong uiContext,UIHandle *dataSource)
         return 0x1c;
       }
       result = ValidateUIComponentRecomponentData(*dataSource,uiContext + 0x34);
-      if (((int)result == 0) && (result = FUN_1808de0e0(dataSource,0), (int)result == 0)) {
+      if (((int)result == 0) && (result = ValidateUIDataBufferIntegrityAndSecurity(dataSource,0), (int)result == 0)) {
         if ((0x6b < *(uint *)(dataSource + 8)) &&
            (result = FUN_1808a6150(dataSource,uiContext + 0x38,0), (int)result != 0)) {
           return result;
@@ -398228,7 +398249,7 @@ void FUN_18089be10(longlong uiContext,UIHandle *dataSource,int targetBuffer)
       if (uiCompareResult != 0) {
         return;
       }
-      uiCompareResult = FUN_1808de0e0(dataSource,auStackX_8);
+      uiCompareResult = ValidateUIDataBufferIntegrityAndSecurity(dataSource,auStackX_8);
       if (uiCompareResult != 0) {
         return;
       }
@@ -398337,7 +398358,7 @@ void FUN_18089be41(void)
       if (uiValidationResult != 0) {
         return;
       }
-      uiValidationResult = FUN_1808de0e0();
+      uiValidationResult = ValidateUIDataBufferIntegrityAndSecurity();
       if (uiValidationResult != 0) {
         return;
       }
