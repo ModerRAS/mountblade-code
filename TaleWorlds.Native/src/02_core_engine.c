@@ -74728,7 +74728,7 @@ SystemExitLabel:
 SystemCleanupCompleteLabel:
   ProcessSystemMemoryRelease(MemoryBoundaryEnd);
   ProcessSystemMemoryFree(MemoryBoundaryEnd + 0x30);
-  if ((CoreEngineThreadStatus == '\0') && (*(int *)(DataTable180C86908 + 0x7e0) == 0)) {
+  if ((CoreEngineThreadStatus == '\0') && (*(int *)(SystemMemoryManagementTable + 0x7e0) == 0)) {
     if ((**(char **)(CoreEngineSystemDataTable + 0x2010) == '\0') ||
        (*(char *)(*(long long *)(CoreEngineSystemContext + 8) + 0xbc +
                  (unsigned long long)(*(uint *)(*(long long *)(CoreEngineSystemContext + 8) + 0x13c) & 1) * 0x48) ==
@@ -74967,7 +74967,7 @@ void InitializeSystemMemoryManager(void
     if (SystemMemoryAllocationBlock128 != (long long **)0x0) {
       (*(code *)(*SystemMemoryAllocationBlock128)[7])();
     }
-    IntegerValue = *(int *)(DataTable180C8AA08 + 0x30c);
+    IntegerValue = *(int *)(SystemIntegerDataTable + 0x30c);
     if (LockResult != 0) {
       ThreadLocalStorageBuffer = &SystemNullTemplate;
       SystemProcessFlagA = 0;
@@ -75378,10 +75378,10 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
         Utf16Character = Utf16Character + 8;
       } while ((unsigned long long)(long long)(int)SystemPrimaryReturnCode < (unsigned long long)(MemoryBoundaryPointer[0x30e] - BufferIndex >> 3));
     }
-    SystemStringIndex = DataTable180C86880;
-    BufferIndex = *(long long *)(DataTable180C86880 + 0x18);
+    SystemStringIndex = SystemStringBufferTable;
+    BufferIndex = *(long long *)(SystemStringBufferTable + 0x18);
     Utf16Char4 = MemoryPoolIndexAdditional;
-    if (*(long long *)(DataTable180C86880 + 0x20) - BufferIndex >> 3 != 0) {
+    if (*(long long *)(SystemStringBufferTable + 0x20) - BufferIndex >> 3 != 0) {
       do {
         CharacterTablePointer = TimeoutValueStorage;
         BufferIndex = *(long long *)(MemoryPoolIndexAdditional + BufferIndex);

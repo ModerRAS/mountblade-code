@@ -12542,7 +12542,7 @@ DataBuffer* UtilityDataBufferInstanceNonaryPtr;
 // 返回值:
 //   int32_t - 比较结果（相等、大于、小于）
 int32_t UtilityCompareObject;
-void* UtilityCompareObjectPointerPrimary;
+void* UtilityCompareObjectPointer;
 int32_t UtilityPrimaryCompareData;
 int32_t UtilitySecondaryCompareData;
 int32_t UtilityTertiaryCompareData;
