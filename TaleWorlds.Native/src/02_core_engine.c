@@ -225396,7 +225396,21 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 
 
-883f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_1801883f0(uint64_t ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符表指针和内存边界验证（8字节操作）
+ * 
+ * 该函数负责处理字符表指针和内存边界验证，主要功能包括：
+ * - 验证字符表指针的有效性
+ * - 处理8字节操作的边界检查
+ * - 执行内存分配和释放操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801883f0
+ */
+void ProcessCharacterTableBoundaryValidation8Byte(uint64_t ContextHandle, long long OperationBufferSize, long long Utf8SourcePointer)
 {
   long long MainCalculationResult;
   
@@ -225404,11 +225418,9 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
   if (0xfff < (unsigned long long)(Utf8SourcePointer * 8)) {
     CharacterTablePointer = *(long long *)(OperationBufferSize + -8);
     if (0x1f < (OperationBufferSize - CharacterTablePointer) - 8U) {
-        _invalid_parameter_noinfo_noreturn(LoopCounter,Utf8SourcePointer * 8 + 0x27);
+        _invalid_parameter_noinfo_noreturn(LoopCounter, Utf8SourcePointer * 8 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
   free(CharacterTablePointer);
   return;
 }
