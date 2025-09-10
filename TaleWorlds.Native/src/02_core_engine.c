@@ -121942,21 +121942,36 @@ void SystemNullOperationTerminate(void) {
 
 
 
-void ProcessSystemReferenceCountAndValidate(int *ContextHandle,int OperationBufferSize)
+/**
+ * @brief 处理系统引用计数并进行验证
+ * 
+ * 该函数负责处理系统资源的引用计数管理，并在需要时重新分配内存缓冲区：
+ * - 检查当前缓冲区容量是否满足需求
+ * - 更新系统配置的引用计数
+ * - 分配新的内存缓冲区并复制现有数据
+ * - 更新上下文信息
+ * 
+ * @param contextHandle 上下文句柄指针，包含缓冲区信息和引用计数
+ * @param requiredBufferSize 需要的缓冲区大小
+ * 
+ * @note 涉及系统内存管理和引用计数操作
+ * @note 在缓冲区容量不足时会自动扩容
+ * @note 使用系统内存池进行内存分配
+ */
+void ProcessSystemReferenceCountAndValidate(int *contextHandle, int requiredBufferSize)
 {
-  uint64_t AllocatedMemoryBuffer;
+  uint64_t newMemoryBuffer;
   
-  if (ContextHandle[1] < OperationBufferSize) {
+  if (contextHandle[1] < requiredBufferSize) {
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    AllocatedMemoryBuffer = SystemCallMemoryAccess((long long)OperationBufferSize * 2,SystemMemoryPoolBase);
-    if (*(long long *)(ContextHandle + 2) != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(AllocatedMemoryBuffer,*(long long *)(ContextHandle + 2),(long long)*ContextHandle * 2);
+    newMemoryBuffer = SystemCallMemoryAccess((long long)requiredBufferSize * 2, SystemMemoryPoolBase);
+    if (*(long long *)(contextHandle + 2) != 0) {
+      memcpy(newMemoryBuffer, *(long long *)(contextHandle + 2), (long long)*contextHandle * 2);
     }
-    *(void *)(ContextHandle + 2) = AllocatedMemoryBuffer;
-    ContextHandle[1] = OperationBufferSize;
+    *(void *)(contextHandle + 2) = newMemoryBuffer;
+    contextHandle[1] = requiredBufferSize;
   }
   return;
 }
