@@ -21,32 +21,50 @@
  * @date 2025-09-10
  */
 
-#define DefaultSystemDataAddress 0x18
+// === 系统基础常量定义 ===
+#define DefaultSystemDataAddress 0x18                      // 默认系统数据地址
 #define ComponentHandleOffset 0x10                         // 组件句柄偏移量
-#define SystemContextOffset 0x8                           // 系统上下文偏移量
-#define DataBufferElementSize 4                           // 数据缓冲区元素大小
-#define FloatValidationMask 0x7f800000                   // 浮点数验证掩码
-#define IntegerMinValue -0x80000000                       // 整数最小值
-#define ProcessingFlagMask 0x80000000                     // 处理标志掩码
-#define MaxSafeBufferSize 0x1000000                       // 最大安全缓冲区大小
-#define FloatInfinityValue 0x7f800000                     // 浮点数无穷大值
-#define SecurityAlignment 0xf                             // 安全对齐值
-#define SecurityAlignmentMask 0xfffffff0                 // 安全对齐掩码
-#define SystemCleanupFlag 0x80000000                      // 系统清理标志
-#define SystemCleanupAlignmentMask 0xfffffff8     // 系统清理对齐掩码 - 用于内存地址对齐操作
-#define NegativeZeroFloat 0x80000000                     // 负零浮点数
-#define MemoryBlockSizeAdjustment 0x27             // 内存块大小调整值 - 用于内存块计算时的调整
-#define MemoryValidationThreshold 0xfff             // 内存验证阈值 - 用于判断是否需要进行额外的内存验证
-#define MemoryOffsetValidationThreshold 0x1f        // 内存偏移验证阈值 - 用于验证内存偏移的有效性
-#define SignBitShiftCount 0x1f                       // 符号位位移计数 - 用于提取符号位的位移操作（31位）
-#define SystemBufferConfigMultiplier 0x278           // 系统缓冲区配置乘数 - 用于系统缓冲区配置计算
-#define SystemResourceManagerMultiplier 0x1a8         // 系统资源管理器乘数 - 用于资源管理器计算
-#define SystemResourceFlagOffset 0x352f                // 系统资源标志偏移量 - 用于设置资源标志的偏移量
-#define ExceptionContextPointerOffset 0x3508            // 异常上下文指针偏移量 - 用于异常处理上下文的指针偏移量
-#define InvalidMemoryOffset -0x8000000000000000               // 无效内存偏移量 - 表示无效的内存地址
+#define SystemContextOffset 0x8                            // 系统上下文偏移量
+#define DataBufferElementSize 4                            // 数据缓冲区元素大小
+
+// === 数值处理常量 ===
+#define FloatValidationMask 0x7f800000                     // 浮点数验证掩码 - 用于验证浮点数有效性
+#define IntegerMinValue -0x80000000                        // 整数最小值 - 32位有符号整数最小值
+#define ProcessingFlagMask 0x80000000                      // 处理标志掩码 - 标识处理状态的最高位
+#define MaxSafeBufferSize 0x1000000                        // 最大安全缓冲区大小 - 16MB安全限制
+#define FloatInfinityValue 0x7f800000                      // 浮点数无穷大值 - IEEE 754标准
+#define NegativeZeroFloat 0x80000000                      // 负零浮点数 - IEEE 754标准负零
+
+// === 安全和对齐常量 ===
+#define SecurityAlignment 0xf                              // 安全对齐值 - 16字节对齐
+#define SecurityAlignmentMask 0xfffffff0                  // 安全对齐掩码 - 用于地址对齐操作
+#define SystemCleanupFlag 0x80000000                       // 系统清理标志 - 标识系统需要清理
+#define SystemCleanupAlignmentMask 0xfffffff8             // 系统清理对齐掩码 - 用于内存地址对齐操作
+// === 内存管理常量 ===
+#define MemoryBlockSizeAdjustment 0x27                        // 内存块大小调整值 - 用于内存块计算时的调整
+#define MemoryValidationThreshold 0xfff                      // 内存验证阈值 - 用于判断是否需要进行额外的内存验证
+#define MemoryOffsetValidationThreshold 0x1f                 // 内存偏移验证阈值 - 用于验证内存偏移的有效性
+#define MemoryOffsetAdjustment 4                             // 内存偏移调整值 - 用于内存块计算时的调整
+#define MemoryBaseOffset 0x80                                // 内存基础偏移量 - 内存块的起始偏移量
+#define MemoryBlockMultiplier 0x50                           // 内存块乘数 - 用于内存块大小计算
+#define MemoryReferenceOffset 0x18                           // 内存引用偏移量 - 引用计数的存储位置
+#define MemoryDataOffset 0x20                                 // 内存数据偏移量 - 数据存储的起始位置
+#define MemoryExceptionCheckOffset 0xe                        // 内存异常检查偏移量 - 异常检查标志位的位置
+#define MemoryPointerTableOffset 0x70                        // 内存指针表偏移量 - 内存指针表的存储位置
+#define InvalidMemoryOffset -0x8000000000000000              // 无效内存偏移量 - 表示无效的内存地址
+#define MemoryAlignmentMask 0xfbffffff                        // 内存对齐掩码 - 内存对齐操作的掩码
+#define SystemMemoryCleanupMask 0xffc00000                    // 系统内存清理掩码 - 系统内存清理操作的掩码
+
+// === 系统配置常量 ===
+#define SystemBufferConfigMultiplier 0x278                    // 系统缓冲区配置乘数 - 用于系统缓冲区配置计算
+#define SystemResourceManagerMultiplier 0x1a8                  // 系统资源管理器乘数 - 用于资源管理器计算
+#define SignBitShiftCount 0x1f                                // 符号位位移计数 - 用于提取符号位的位移操作（31位）
+#define DataProcessingMultiplier 0xc                          // 数据处理乘数 - 数据处理操作的乘数
+
+// === 安全和验证常量 ===
 #define SecurityValidationMask 0x40000000                     // 安全验证掩码 - 用于安全验证操作的掩码
 #define MemoryOperationFlag 0x4000000                        // 内存操作标志 - 标识内存操作状态的标志
-#define ThreadLocalStorageOffset 0x17c                        // 线程本地存储偏移量 - 线程本地存储的偏移位置
+#define OperationFlagMask 0x10000000                          // 操作标志掩码 - 操作状态的标志掩码
 // 系统线程存储配置常量
 #define ThreadLocalStoragePrimaryAddress 0x180c4f450            // 线程本地存储主地址 - 线程本地存储的主基地址
 #define ThreadLocalStorageSecondaryAddress 0x180c4f460         // 线程本地存储辅助地址 - 线程本地存储的辅助基地址

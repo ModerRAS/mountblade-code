@@ -120217,58 +120217,65 @@ void ProcessUIComponentDataScalingAndValidation(void)
   iterationCounter = (uiContextBasePointer - 2U >> 1) + 1;
   pContextSecondValue = (short *)(componentData + 4);
   do {
-    loopCounter = (int)uiTargetHandle;
-    psVar1 = pContextSecondValue + 2;
-    uiValidationResult = loopCounter;
-    if (loopCounter < (int)*pContextSecondValue - (int)pContextSecondValue[-1]) {
+    processedCount = (int)uiTargetHandle;
+    dataIterator = pContextSecondValue + 2;
+    uiValidationResult = processedCount;
+    if (processedCount < (int)*pContextSecondValue - (int)pContextSecondValue[-1]) {
       uiValidationResult = (int)*pContextSecondValue - (int)pContextSecondValue[-1];
     }
     uiCompareResult = (int)(0x20000 / (longlong)uiValidationResult);
     uiValidationResult = uiCompareResult + eventHandle;
-    loopCounter = (short)register9D;
-    if (uiValidationResult < (int)register9D) {
+    loopCounter = (short)maxScaleValue;
+    if (uiValidationResult < (int)maxScaleValue) {
       loopCounter = (short)uiValidationResult;
     }
-    *(UIWord *)((preservedRegister15 - componentData) + -6 + (longlong)psVar1) = loopCounter;
+    *(UIWord *)((preservedRegister15 - componentData) + -6 + (longlong)dataIterator) = loopCounter;
     uiValidationResult = loopCounter;
     if (loopCounter < (int)pContextSecondValue[1] - (int)*pContextSecondValue) {
       uiValidationResult = (int)pContextSecondValue[1] - (int)*pContextSecondValue;
     }
     eventHandle = (int)(0x20000 / (longlong)uiValidationResult);
     uiCompareResult = eventHandle + uiCompareResult;
-    loopCounter = (short)register9D;
-    if (uiCompareResult < (int)register9D) {
+    loopCounter = (short)maxScaleValue;
+    if (uiCompareResult < (int)maxScaleValue) {
       loopCounter = (short)uiCompareResult;
     }
-    *(UIWord *)((preservedRegister15 - componentData) + -4 + (longlong)psVar1) = loopCounter;
-    localLong7 = localLong7 - uiTargetHandle;
-    pContextSecondValue = psVar1;
-  } while (localLong7 != 0);
+    *(UIWord *)((preservedRegister15 - componentData) + -4 + (longlong)dataIterator) = loopCounter;
+    iterationCounter = iterationCounter - uiTargetHandle;
+    pContextSecondValue = dataIterator;
+  } while (iterationCounter != 0);
   uiValidationResult = 0x8000 - *(short *)(componentData + uiContextBasePointer * 2);
   if (loopCounter < uiValidationResult) {
     loopCounter = uiValidationResult;
   }
-  processStatus = (int)(0x20000 / (longlong)loopCounter) + eventHandle;
-  if ((int)processingStatus < (int)register9D) {
-    register9D = processingStatus & 0xffff;
+  processingStatus = (int)(0x20000 / (longlong)loopCounter) + eventHandle;
+  if ((int)processingStatus < (int)maxScaleValue) {
+    maxScaleValue = processingStatus & 0xffff;
   }
-  *(short *)(preservedRegister15 + uiContextBasePointer * 2) = (short)register9D;
+  *(short *)(preservedRegister15 + uiContextBasePointer * 2) = (short)maxScaleValue;
   return;
 }
 
 
 
 
- void FUN_180737202(void)
-void FUN_180737202(void)
+ /**
+ * @brief 简化版UI组件数据缩放处理
+ * 
+ * 该函数是UI组件数据缩放处理的简化版本，执行基本的缩放计算和验证。
+ * 主要用于快速处理简单的UI数据缩放需求。
+ * 
+ * @note 原始函数名：FUN_180737202
+ */
+void ProcessUIComponentDataScalingSimple(void)
 
 {
-  uint result;
+  uint scaledResult;
   int uiValidationResult;
   longlong uiContextBasePointer;
   longlong componentData;
   int allocationFlags;
-  uint register9D;
+  uint maxScaleValue;
   int eventHandle;
   longlong preservedRegister15;
   
@@ -120276,11 +120283,11 @@ void FUN_180737202(void)
   if (allocationFlags < uiValidationResult) {
     allocationFlags = uiValidationResult;
   }
-  result = (int)(0x20000 / (longlong)allocationFlags) + eventHandle;
-  if ((int)result < (int)register9D) {
-    register9D = result & 0xffff;
+  scaledResult = (int)(0x20000 / (longlong)allocationFlags) + eventHandle;
+  if ((int)scaledResult < (int)maxScaleValue) {
+    maxScaleValue = scaledResult & 0xffff;
   }
-  *(short *)(preservedRegister15 + uiContextBasePointer * 2) = (short)register9D;
+  *(short *)(preservedRegister15 + uiContextBasePointer * 2) = (short)maxScaleValue;
   return;
 }
 
