@@ -4927,7 +4927,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents InitializeSystemComponents
+#define InitializeSystemComponents FUN_18007f840
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
@@ -29433,7 +29433,7 @@ DataBuffer GetSystemState(void)
 // 功能：不执行任何操作，直接返回
 #define ExecuteNoOperationA0 FUN_18089802e
 
-void ExecuteNoOperationA0(void)
+void ExecuteNoOperation(void)
 
 {
   return;
@@ -132825,7 +132825,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents InitializeSystemComponents
+#define InitializeSystemComponents FUN_18007f840
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
@@ -136228,7 +136228,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_180909540
  */
-#define InitializeSystemComponents InitializeSystemComponentsAndSetState
+#define InitializeSystemComponents FUN_18007f840AndSetState
 
 /**
  * @brief 系统启动函数
