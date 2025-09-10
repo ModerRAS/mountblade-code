@@ -45,6 +45,11 @@
 #define SignBitShiftCount 0x1f
 #define DataProcessingMultiplier 0xc
 
+// 数据处理操作偏移常量
+#define DataOperationParameterOffset10 0x10                  // 数据操作参数偏移量10 - 用于数据操作的第一参数
+#define DataOperationParameterOffset14 0x14                  // 数据操作参数偏移量14 - 用于数据操作的第二参数
+#define DataOperationParameterOffset16 0x16                  // 数据操作参数偏移量16 - 用于数据操作的第三参数
+
 // 安全和验证常量
 #define SecurityValidationMask 0x40000000
 #define MemoryOperationFlag 0x4000000
@@ -43548,13 +43553,13 @@ uint64_t ProcessSystemDataValidation(void)
     return ResourceInvalidErrorCode;
   }
   exceptionContext = *DestinationContext;
-  validationStatus = OperateDataO0(exceptionContext,contextPointer + 0x10,loopCounter + 3);
+  validationStatus = OperateDataO0(exceptionContext,contextPointer + DataOperationParameterOffset10,loopCounter + 3);
   memoryRegionBase = (uint64_t)validationStatus;
   if (validationStatus == 0) {
-    validationStatus = OperateDataO0(exceptionContext,contextPointer + 0x14,loopCounter + 1);
+    validationStatus = OperateDataO0(exceptionContext,contextPointer + DataOperationParameterOffset14,loopCounter + 1);
     memoryRegionBase = (uint64_t)validationStatus;
     if (validationStatus == 0) {
-      validationStatus = OperateDataO0(exceptionContext,contextPointer + 0x16,loopCounter + 1);
+      validationStatus = OperateDataO0(exceptionContext,contextPointer + DataOperationParameterOffset16,loopCounter + 1);
       memoryRegionBase = (uint64_t)validationStatus;
       if (validationStatus == 0) {
         validationStatus = OperateDataO0(exceptionContext,contextPointer + SystemDataSecondaryOffset18,loopCounter + 7);

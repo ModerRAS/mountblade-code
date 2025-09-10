@@ -93583,6 +93583,27 @@ void UINoOperationHandler(void)
 #define ValidateUIComponentState FUN_1807391b5            // 验证UI组件状态
 #define ProcessUIEventHandling FUN_18073922d              // 处理UI事件处理
 
+// UI系统数据操作函数语义化定义
+#define ProcessUIDataSource FUN_180739350                  // 处理UI数据源
+#define ProcessUIDataWithParameters FUN_180739420          // 处理带参数的UI数据
+#define ProcessUIDataWithExtendedParameters FUN_18073943d // 处理带扩展参数的UI数据
+#define HandleUIDataCleanup FUN_1807394c5                 // 处理UI数据清理
+#define ProcessUIDataValidation FUN_1807395df             // 处理UI数据验证
+#define HandleUIStateManagement FUN_180739619              // 处理UI状态管理
+#define ProcessUIDataWithBufferSize FUN_180739640          // 处理带缓冲区大小的UI数据
+#define ProcessUIDataWithBufferSizeEx FUN_18073965d        // 处理带缓冲区大小的UI数据扩展版本
+#define HandleUIResourceRelease FUN_1807396c5              // 处理UI资源释放
+#define ProcessUIDataTransfer FUN_180739773                // 处理UI数据传输
+#define HandleUIComponentUpdate FUN_18073979d              // 处理UI组件更新
+#define ProcessUIDataSimple FUN_1807397c0                  // 处理简单UI数据
+#define ProcessUIDataAdvanced FUN_180739890                // 处理高级UI数据
+#define ProcessUIDataFull FUN_180739950                    // 处理完整UI数据
+#define HandleUIDataFinalization FUN_1807399b2             // 处理UI数据最终化
+#define ProcessUIDataCompletion FUN_180739a2a               // 处理UI数据完成
+#define ProcessUIDataFinal FUN_180739a50                   // 处理最终UI数据
+#define ProcessUIDataFinalEx FUN_180739a6d                 // 处理最终UI数据扩展版本
+#define HandleUIOperationComplete FUN_180739ac7            // 处理UI操作完成
+
 // 函数: void FUN_18071ace8(void)
 /**
  * @brief UI系统空返回函数
@@ -122852,15 +122873,27 @@ void CleanupUIResourcesAndExecuteRender(void)
 
 
 
- void FUN_18073911f(void)
-void FUN_18073911f(void)
+ /**
+ * @brief UI资源清理执行器
+ * 
+ * 负责清理UI系统资源并执行渲染任务
+ * 该函数负责：
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18073911f
+ */
+void ReleaseUIResourcesAndExecuteRender(void)
+void ReleaseUIResourcesAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
