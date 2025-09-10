@@ -28640,7 +28640,7 @@ int64_t CoreEngineCopyDataStructure(int64_t TargetStructure,int64_t SourceStruct
   *(void *)(TargetStructure + 0xe0) = 0;
   *(void *)(TargetStructure + 0xe8) = 0;
   *(void *)(TargetStructure + 0xf0) = 0;
-  *(uint32_t *)(TargetStructure + 0xf8) = *(uint32_t *)(SourceStructure + 0xf8);
+  *(uint32_t *)(TargetStructure + SystemMemoryFunctionOffsetF8) = *(uint32_t *)(SourceStructure + SystemMemoryFunctionOffsetF8);
   *CharacterStatusBuffer = CharacterStatusBuffer;
   *(uint64_t **)(TargetStructure + 0xd8) = CharacterStatusBuffer;
   *(void *)(TargetStructure + 0xe0) = 0;
@@ -31252,7 +31252,7 @@ void CoreEngineProcessConfigurationUpdateAndParameterCalculation(long long *Syst
     if (*(long long *)(SystemMemoryManager + 0x1870) - LoopIndex >> 3 != 0) {
       do {
         if (*(long long **)(ArrayIndex + LoopIndex) != (long long *)0x0) {
-          (**(code **)(**(long long **)(ArrayIndex + LoopIndex) + 0x108))();
+          (**(code **)(**(long long **)(ArrayIndex + LoopIndex) + SystemMemoryFunctionOffset108))();
         }
         Counter = (int)CharacterTablePointer + 1;
         ArrayIndex = ArrayIndex + 8;
@@ -32007,7 +32007,7 @@ IndexValidationLoop: // 原始标签：LAB_180054912，IndexValidationLoop
       }
       else {
         MemoryAddress = *(long long *)(*CoreEngineSystemContext + SystemMemoryEventOffset8A8);
-        if ((unsigned long long)(*(long long *)(*CoreEngineSystemContext + 0x8b0) - MemoryAddress >> SystemEventContextShiftCount) <
+        if ((unsigned long long)(*(long long *)(*CoreEngineSystemContext + SystemMemoryEventOffset8B0) - MemoryAddress >> SystemEventContextShiftCount) <
             (unsigned long long)(long long)QueueIndex) goto IndexValidationLoop;
         MemoryAddress = (long long)QueueIndex * 0x20 + MemoryAddress;
       }
@@ -36777,7 +36777,7 @@ void ProcessContextHandle(long long *ContextHandle
   *(uint32_t *)(EncodingConversionResult + 0x1e0) = *(uint32_t *)(CoreEngineMemoryContext + 0x1d50);
   *(uint32_t *)(EncodingConversionResult + 0x1e4) = SystemChecksum;
   SystemStatus30 = 0x180059066;
-  (**(code **)(**(long long **)(*ContextHandle + 0x2b0) + 0xf8))();
+  (**(code **)(**(long long **)(*ContextHandle + 0x2b0) + SystemMemoryFunctionOffsetF8))();
   SystemStatus298 = 0xfffffffffffffffe;
   MemoryAddress38 = EncodingDecodingKey ^ (unsigned long long)SystemStackDataBuffer3b8;
   OperationResult378 = 0;
@@ -38115,7 +38115,7 @@ void CoreEngineInitializeBufferManager(void
     return;
   }
   *(void *)(ThreadLocalStorageData + 0x100) = 0;
-  *(void *)(ThreadLocalStorageData + 0x108) = 0;
+  *(void *)(ThreadLocalStorageData + SystemMemoryFunctionOffset108) = 0;
   *(uint32_t *)(ThreadLocalStorageData + 0x130) = 0;
   *(void *)(ThreadLocalStorageData + 0x138) = 0;
   *(uint16_t *)(bufferMemoryAddress + 0x140) = 0x100;
@@ -38673,7 +38673,7 @@ CheckMemoryPoolBlockSize:
           LOCK();
           LockOperationResultPointer = (int *)(MemoryPoolBlockSize + 0x130);
           InputDataLength = *LockOperationResultPointer;
-          *LockOperationResultPointer = *LockOperationResultPointer + 0x7fffffff;
+          *LockOperationResultPointer = *LockOperationResultPointer + SystemMaximumIncrementValue;
           UNLOCK();
           SystemDataTablePointer = MemoryBoundaryEnd;
         } while (InputDataLength == 1);
@@ -38774,7 +38774,7 @@ void ProcessMemoryReferenceCountAndBlockManagement(uint64_t *ContextHandle
             LOCK();
             ReferenceCountPointer = (int *)(StringOffset + 0x130);
             LockOperationResult = *ReferenceCountPointer;
-            *ReferenceCountPointer = *ReferenceCountPointer + 0x7fffffff;
+            *ReferenceCountPointer = *ReferenceCountPointer + SystemMaximumIncrementValue;
             UNLOCK();
             SystemDataTablePointer = MemoryPoolBlockSize;
           } while (LockOperationResult == 1);
@@ -38817,7 +38817,7 @@ MemoryBlockProcessing: // 原始标签：LAB_1800604d1
         LOCK();
         ReferenceCountPointer = (int *)(StringOffset + 0x130);
         LockOperationResult = *ReferenceCountPointer;
-        *ReferenceCountPointer = *ReferenceCountPointer + 0x7fffffff;
+        *ReferenceCountPointer = *ReferenceCountPointer + SystemMaximumIncrementValue;
         UNLOCK();
         SystemDataTablePointer = MemoryPoolBlockSize;
       } while (LockOperationResult == 1);
@@ -39338,7 +39338,7 @@ uint64_t ProcessContextHandleMemoryAllocation(long long ContextHandle,uint64_t O
         (**(code **)(*ContextHandle + 0x38))();
       }
       LOCK();
-      ContextHandle = (long long *)(MemoryBoundaryEnd + 0x108);
+      ContextHandle = (long long *)(MemoryBoundaryEnd + SystemMemoryFunctionOffset108);
       AllocatedMemorySize = *ContextHandle;
       *ContextHandle = *ContextHandle + 1;
       UNLOCK();
@@ -39426,7 +39426,7 @@ uint64_t ProcessSystemMemoryAllocation(void
     (**(code **)(*SystemContextPtr + 0x38))();
   }
   LOCK();
-  SystemContextPtr = (long long *)(MemoryBoundaryEnd + 0x108);
+  SystemContextPtr = (long long *)(MemoryBoundaryEnd + SystemMemoryFunctionOffset108);
   MemoryBlockIndex = *SystemContextPtr;
   *SystemContextPtr = *SystemContextPtr + PatternIndex;
   UNLOCK();
@@ -40423,7 +40423,7 @@ void ProcessSystemOperationByType(long long operationDataStructure
       }
       ProcessSystemMemoryData(*(long long *)(ContextHandle + 0x20) + 0x20,TemporaryDataBuffer,SystemConfigurationFlag);
       MemoryPoolBlockSizePointer = (long long *)(*(long long *)(ContextHandle + 0x20) + 0x20);
-      (**(code **)(*MemoryPoolBlockSizePointer + 0x108))(MemoryPoolBlockSizePointer,1);
+      (**(code **)(*MemoryPoolBlockSizePointer + SystemMemoryFunctionOffset108))(MemoryPoolBlockSizePointer,1);
       MemoryPoolBlockSizePointer = (long long *)(*(long long *)(ContextHandle + 0x20) + 0x20);
       (**(code **)(*MemoryPoolBlockSizePointer + 0x70))(MemoryPoolBlockSizePointer,&SystemFunctionPointerB);
       StackProcessingVariableBuffer = &SystemNullTemplate;
@@ -40487,7 +40487,7 @@ CheckUnderscoreCharacter:
       }
       ProcessSystemMemoryData(*(long long *)(ContextHandle + 0x20) + 0xd8,CharacterStatusBuffer,aStackProcessingConfigurationFlag);
       MemoryPoolBlockSizePointer = (long long *)(*(long long *)(ContextHandle + 0x20) + 0xd8);
-      (**(code **)(*MemoryPoolBlockSizePointer + 0x108))(MemoryPoolBlockSizePointer,1);
+      (**(code **)(*MemoryPoolBlockSizePointer + SystemMemoryFunctionOffset108))(MemoryPoolBlockSizePointer,1);
       MemoryPoolBlockSizePointer = (long long *)(*(long long *)(ContextHandle + 0x20) + 0xd8);
       (**(code **)(*MemoryPoolBlockSizePointer + 0x70))(MemoryPoolBlockSizePointer,&SystemFunctionPointerB);
       break;
@@ -44185,7 +44185,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *ContextHandle,uint64_t
           SystemDataRegistry = *(long long *)(MemoryBlockIndex + 8);
           *ContextHandleSize = *(void *)(SystemDataRegistry + (unsigned long long)((uint)ProcessingStatusFlag & 0x1f) * 8);
           LOCK();
-          ContextHandle = (long long *)(SystemDataRegistry + 0x108);
+          ContextHandle = (long long *)(SystemDataRegistry + SystemMemoryFunctionOffset108);
           SystemDataRegistry = *ContextHandle;
           *ContextHandle = *ContextHandle + 1;
           UNLOCK();
@@ -44294,7 +44294,7 @@ uint64_t ProcessDataStructureReference(long long ContextHandle, uint64_t *Contex
       MemoryBlockIndex = *(long long *)(AllocatedMemorySize + 8);
       *ContextHandleSize = *(void *)(MemoryBlockIndex + (unsigned long long)((uint)MemoryAddressMaskPointer & 0x1f) * 8);
       LOCK();
-      ContextHandle = (long long *)(MemoryBlockIndex + 0x108);
+      ContextHandle = (long long *)(MemoryBlockIndex + SystemMemoryFunctionOffset108);
       MemoryBlockIndex = *ContextHandle;
       *ContextHandle = *ContextHandle + 1;
       UNLOCK();
@@ -44925,7 +44925,7 @@ void ProcessSystemMemoryReferenceManagement(uint64_t *ContextHandle
             LOCK();
             ReferenceCountPointer = (int *)(StringOffset + 0x130);
             LockOperationResult = *ReferenceCountPointer;
-            *ReferenceCountPointer = *ReferenceCountPointer + 0x7fffffff;
+            *ReferenceCountPointer = *ReferenceCountPointer + SystemMaximumIncrementValue;
             UNLOCK();
             SystemDataTablePointer = MemoryPoolBlockSize;
           } while (LockOperationResult == 1);
@@ -44965,7 +44965,7 @@ MemoryBlockProcessing: // 原始标签：LAB_180069842，MemoryBlockProcessing
         LOCK();
         ReferenceCountPointer = (int *)(StringOffset + 0x130);
         LockOperationResult = *ReferenceCountPointer;
-        *ReferenceCountPointer = *ReferenceCountPointer + 0x7fffffff;
+        *ReferenceCountPointer = *ReferenceCountPointer + SystemMaximumIncrementValue;
         UNLOCK();
         SystemDataTablePointer = MemoryPoolBlockSize;
       } while (LockOperationResult == 1);
@@ -45231,7 +45231,7 @@ unsigned long long ProcessMemoryBlockDataCopy(uint64_t ContextHandle, uint64_t *
       }
       ComparisonResult = ValidateMemoryReference(*(void *)(SystemDataRegistry + 0x50));
       if (ComparisonResult != 0) {
-        *(void *)(ComparisonResult + 0x108) = 0;
+        *(void *)(ComparisonResult + SystemMemoryFunctionOffset108) = 0;
         SecondaryProcessingStatusFlag[1] = ComparisonResult;
         *(unsigned long long *)(SystemDataRegistry + 0x40) = ComparisonResult;
         goto MemoryAllocationProceed;
@@ -51005,7 +51005,7 @@ long long * ProcessCoreEngineDataStructureAndContext(long long *ContextHandle,lo
   *(uint32_t *)(MemoryBlockIndex + 700) = MemoryPoolIndex;
   *(int *)(MemoryBlockIndex + 0x2c0) = (int)SystemStringIndex;
   *(uint32_t *)(MemoryBlockIndex + 0x2c4) = MemoryAddressMaskPointer;
-  *(int *)(*ContextHandleSize + 0x108) = (int)ContextHandle[0x21];
+  *(int *)(*ContextHandleSize + SystemMemoryFunctionOffset108) = (int)ContextHandle[0x21];
   if ((long long *)(*ContextHandleSize + 0x218) != ContextHandle + 0x43) {
     ProcessOperationBufferSize((long long *)(*ContextHandleSize + 0x218),ContextHandle[0x43],ContextHandle[0x44]);
   }
@@ -52224,7 +52224,7 @@ SystemBufferValidationError:
               InputDataLength = 0xffffffff;
             }
             else {
-              InputDataLength = *(uint32_t *)(ContextHandle + 0x108);
+              InputDataLength = *(uint32_t *)(ContextHandle + SystemMemoryFunctionOffset108);
             }
             *(uint32_t *)(BufferInitializationPointerArray[0] + 3) = InputDataLength;
             if ((*(long long *)(ContextHandle + 0x2d0) == 0) ||
@@ -52244,7 +52244,7 @@ SystemBufferValidationError:
             }
             *(uint32_t *)(BufferInitializationPointerArray[0] + 4) = InputDataLength;
             *(byte *)((long long)BufferInitializationPointerArray[0] + 0x4e) = *(byte *)(ContextHandle + 0xfe) >> 3 & 1;
-            if (*(int *)(ContextHandle + 0x108) != -1) {
+            if (*(int *)(ContextHandle + SystemMemoryFunctionOffset108) != -1) {
               ProcessingStatusFlagPointer9 = *(uint32_t **)(ContextHandle + 0x2d0);
               InputDataLength = ProcessingStatusFlagPointer9[1];
               SystemChecksum = ProcessingStatusFlagPointer9[2];
@@ -54803,7 +54803,7 @@ void ProcessFloatDataNormalization(long long ContextHandle
   VectorComponentZ = (VectorComponentY * *pSourceMatrixData - CrossProductZ * pSourceMatrixData[8]) + NormalizationFactor * pSourceMatrixData[0xc];
   *(float *)(ContextHandle + 0xf4) = VectorComponentZ;
   VectorComponentX = (CrossProductZ * pSourceMatrixData[4] - CrossProductY * *pSourceMatrixData) - VectorDotProduct * pSourceMatrixData[0xc];
-  *(float *)(ContextHandle + 0xf8) = VectorComponentX;
+  *(float *)(ContextHandle + SystemMemoryFunctionOffsetF8) = VectorComponentX;
   VectorLengthX = (CrossProductResultX * *pSourceMatrixData - NormalizationFactor * pSourceMatrixData[4]) + VectorDotProduct * pSourceMatrixData[8];
   *(float *)(ContextHandle + 0xfc) = VectorLengthX;
   MatrixElementW = CrossProductResultY * pSourceMatrixData[4] + CrossProductResultX * *pSourceMatrixData + CrossProductResultZ * pSourceMatrixData[8];
@@ -54820,7 +54820,7 @@ void ProcessFloatDataNormalization(long long ContextHandle
     *(float *)(ContextHandle + 0xe8) = CrossProductZ * MatrixElementW;
     *(float *)(ContextHandle + 0xf0) = MatrixMultiplier2 * MatrixElementW;
     *(float *)(ContextHandle + 0xf4) = VectorComponentZ * MatrixElementW;
-    *(float *)(ContextHandle + 0xf8) = VectorComponentX * MatrixElementW;
+    *(float *)(ContextHandle + SystemMemoryFunctionOffsetF8) = VectorComponentX * MatrixElementW;
     *(float *)(ContextHandle + 0xfc) = VectorLengthX * MatrixElementW;
   }
   return;
@@ -55323,7 +55323,7 @@ void ProcessMatrixTransformationAndMemoryManagement(long long ContextHandle,long
           MemoryAddressMaskPointer8 = (unsigned long long)(UnicodeCodePoint6 >> 0xb);
           MemoryAddressMaskPointer9 = (unsigned long long)(ValidationStatus6 + -1 + UnicodeCodePoint6 >> 0xb);
           if (MemoryAddressMaskPointer8 <= MemoryAddressMaskPointer9) {
-            pOperationStatus1 = (char *)((long long)pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 + 0x108);
+            pOperationStatus1 = (char *)((long long)pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 + SystemMemoryFunctionOffset108);
             MemoryBlockIndex3 = (MemoryAddressMaskPointer9 - MemoryAddressMaskPointer8) + 1;
             pMemoryAddressMaskPointer7 = pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 * 2 + 2;
             do {
@@ -55338,7 +55338,7 @@ void ProcessMatrixTransformationAndMemoryManagement(long long ContextHandle,long
                 UNLOCK();
                 if (shouldReturnSource0) {
                   LOCK();
-                  *(uint8_t *)((long long)EncodingValidationResult5 + 0x108 + (long long)pMemoryAddressMaskPointer2) = 0;
+                  *(uint8_t *)((long long)EncodingValidationResult5 + SystemMemoryFunctionOffset108 + (long long)pMemoryAddressMaskPointer2) = 0;
                   UNLOCK();
                 }
                 else {
@@ -55638,7 +55638,7 @@ void ProcessDataStructureTransformation(long long ContextHandle
           MemoryAddressMaskPointer8 = (unsigned long long)(UnicodeCodePoint6 >> 0xb);
           MemoryAddressMaskPointer9 = (unsigned long long)(ValidationStatus6 + -1 + UnicodeCodePoint6 >> 0xb);
           if (MemoryAddressMaskPointer8 <= MemoryAddressMaskPointer9) {
-            pOperationStatus1 = (char *)((long long)pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 + 0x108);
+            pOperationStatus1 = (char *)((long long)pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 + SystemMemoryFunctionOffset108);
             MemoryBlockIndex3 = (MemoryAddressMaskPointer9 - MemoryAddressMaskPointer8) + 1;
             pMemoryAddressMaskPointer7 = pMemoryAddressMaskPointer2 + MemoryAddressMaskPointer8 * 2 + 2;
             do {
@@ -55653,7 +55653,7 @@ void ProcessDataStructureTransformation(long long ContextHandle
                 UNLOCK();
                 if (shouldReturnSource0) {
                   LOCK();
-                  *(uint8_t *)((long long)EncodingValidationResult5 + 0x108 + (long long)pMemoryAddressMaskPointer2) = 0;
+                  *(uint8_t *)((long long)EncodingValidationResult5 + SystemMemoryFunctionOffset108 + (long long)pMemoryAddressMaskPointer2) = 0;
                   UNLOCK();
                 }
                 else {
@@ -55933,7 +55933,7 @@ void ProcessSystemContextAndFloatCalculations(void
           MemoryAddressMaskPointer6 = (unsigned long long)(UnicodeCodePoint3 >> 0xb);
           MemoryAddressMaskPointer7 = (unsigned long long)(ValidationStatus4 + -1 + UnicodeCodePoint3 >> 0xb);
           if (MemoryAddressMaskPointer6 <= MemoryAddressMaskPointer7) {
-            FunctionPointer8 = (char *)((long long)SystemEventTemplatePointer9 + MemoryAddressMaskPointer6 + 0x108);
+            FunctionPointer8 = (char *)((long long)SystemEventTemplatePointer9 + MemoryAddressMaskPointer6 + SystemMemoryFunctionOffset108);
             MemoryBlockIndex1 = (MemoryAddressMaskPointer7 - MemoryAddressMaskPointer6) + 1;
             pMemoryAddressMaskPointer5 = SystemEventTemplatePointer9 + MemoryAddressMaskPointer6 * 2 + 2;
             do {
@@ -55948,7 +55948,7 @@ void ProcessSystemContextAndFloatCalculations(void
                 UNLOCK();
                 if (isMemorySlotEmpty) {
                   LOCK();
-                  *(uint8_t *)((long long)EncodingValidationResult2 + 0x108 + (long long)SystemEventTemplatePointer9) = 0;
+                  *(uint8_t *)((long long)EncodingValidationResult2 + SystemMemoryFunctionOffset108 + (long long)SystemEventTemplatePointer9) = 0;
                   UNLOCK();
                 }
                 else {
@@ -56229,7 +56229,7 @@ void ProcessDataStructureParametersAndFloatCalculations(long long ContextHandle,
           MemoryAddressMaskPointer5 = (unsigned long long)(MemoryAddressMaskPointer0 >> 0xb);
           MemoryAddressMaskPointer6 = (unsigned long long)(ValidationStatus4 + -1 + MemoryAddressMaskPointer0 >> 0xb);
           if (MemoryAddressMaskPointer5 <= MemoryAddressMaskPointer6) {
-            FunctionPointer7 = (char *)((long long)SystemEventTemplatePointer8 + MemoryAddressMaskPointer5 + 0x108);
+            FunctionPointer7 = (char *)((long long)SystemEventTemplatePointer8 + MemoryAddressMaskPointer5 + SystemMemoryFunctionOffset108);
             MemoryBlockIndex1 = (MemoryAddressMaskPointer6 - MemoryAddressMaskPointer5) + 1;
             pMemoryAddressMaskPointer4 = SystemEventTemplatePointer8 + MemoryAddressMaskPointer5 * 2 + 2;
             do {
@@ -56244,7 +56244,7 @@ void ProcessDataStructureParametersAndFloatCalculations(long long ContextHandle,
                 UNLOCK();
                 if (isSecondaryMemorySlotEmpty) {
                   LOCK();
-                  *(uint8_t *)((long long)EncodingValidationResult2 + 0x108 + (long long)SystemEventTemplatePointer8) = 0;
+                  *(uint8_t *)((long long)EncodingValidationResult2 + SystemMemoryFunctionOffset108 + (long long)SystemEventTemplatePointer8) = 0;
                   UNLOCK();
                 }
                 else {
@@ -56445,7 +56445,7 @@ void CleanupSystemBuffer(void)
           MemoryBlockOffset = (unsigned long long)(UnicodeCharacterValue >> 0xb);
           MemoryBlockSize = (unsigned long long)(BufferOperationStatus + -1 + UnicodeCharacterValue >> 0xb);
           if (MemoryBlockOffset <= MemoryBlockSize) {
-            SystemStringSystemValidationStatus = (char *)((long long)CharacterStatusBuffer5 + MemoryAllocationOffset + 0x108);
+            SystemStringSystemValidationStatus = (char *)((long long)CharacterStatusBuffer5 + MemoryAllocationOffset + SystemMemoryFunctionOffset108);
             SystemContextValue = (InputDataLength - MemoryAllocationOffset) + 1;
             ProcessingStatusPointer = CharacterStatusBuffer5 + MemoryAllocationOffset * 2 + 2;
             do {
@@ -56460,7 +56460,7 @@ void CleanupSystemBuffer(void)
                 UNLOCK();
                 if (HighByte4) {
                   LOCK();
-                  *(uint8_t *)((long long)IntegerValue9 + 0x108 + (long long)CharacterStatusBuffer5) = 0;
+                  *(uint8_t *)((long long)IntegerValue9 + SystemMemoryFunctionOffset108 + (long long)CharacterStatusBuffer5) = 0;
                   UNLOCK();
                 }
                 else {
@@ -58318,7 +58318,7 @@ uint ProcessMemoryAllocationRequest(uint *memoryAllocationPointer, int allocatio
   validationValue = (unsigned long long)(allocationResult >> 0xd);
   dataSize = (unsigned long long)(allocationSize + -1 + allocationResult >> 0xd);
   if (validationValue <= dataSize) {
-    memoryPagePointer = (char *)((long long)memoryAllocationPointer + validationValue + 0x108);
+    memoryPagePointer = (char *)((long long)memoryAllocationPointer + validationValue + SystemMemoryFunctionOffset108);
     memoryBlockSize = (dataSize - validationValue) + 1;
     pageTablePointer = memoryAllocationPointer + (unsigned long long)(allocationResult >> 0xd) * 2 + 2;
     do {
@@ -58333,7 +58333,7 @@ uint ProcessMemoryAllocationRequest(uint *memoryAllocationPointer, int allocatio
         UNLOCK();
         if (isPageAllocated) {
           LOCK();
-          *(uint8_t *)((long long)pageIndex + 0x108 + (long long)memoryAllocationPointer) = 0;
+          *(uint8_t *)((long long)pageIndex + SystemMemoryFunctionOffset108 + (long long)memoryAllocationPointer) = 0;
           UNLOCK();
         }
         else {
@@ -58375,7 +58375,7 @@ uint32_t GetSystemContextStatus(long long systemContext
   uint32_t systemRegisterValue;
   bool booleanFlag7;
   
-  functionPointer = (char *)(systemContext + 0x108 + registerPatternIndex);
+  functionPointer = (char *)(systemContext + SystemMemoryFunctionOffset108 + registerPatternIndex);
   AllocatedMemorySize = (dataIndex - registerPatternIndex) + 1;
   memoryBoundaryEndPointer = (long long *)(systemContext + 8 + registerRAX * 8);
   do {
@@ -58391,7 +58391,7 @@ uint32_t GetSystemContextStatus(long long systemContext
       UNLOCK();
       if (isSystemContextNull) {
         LOCK();
-        *(uint8_t *)((long long)EncodingValidationResult + 0x108 + StackFrameAddressPointer) = 0;
+        *(uint8_t *)((long long)EncodingValidationResult + SystemMemoryFunctionOffset108 + StackFrameAddressPointer) = 0;
         UNLOCK();
       }
       else {
@@ -59441,7 +59441,7 @@ void ProcessSystemMemoryAllocation(uint *ContextHandle, int *ContextHandleSize, 
       for (; MemoryOffset < IntegerValue; MemoryOffset = MemoryOffset + 1) {
       }
       LOCK();
-      *(uint8_t *)(MemoryBlockIndex + 0x108 + (long long)ContextHandle) = 0;
+      *(uint8_t *)(MemoryBlockIndex + SystemMemoryFunctionOffset108 + (long long)ContextHandle) = 0;
       UNLOCK();
     }
     else {
@@ -59449,12 +59449,12 @@ void ProcessSystemMemoryAllocation(uint *ContextHandle, int *ContextHandleSize, 
           ProcessSystemEventHandling();
       }
       do {
-      } while (*(char *)(MemoryBlockIndex + 0x108 + (long long)ContextHandle) != '\0');
+      } while (*(char *)(MemoryBlockIndex + SystemMemoryFunctionOffset108 + (long long)ContextHandle) != '\0');
     }
   }
   else {
     do {
-    } while (*(char *)(MemoryBlockIndex + 0x108 + (long long)ContextHandle) != '\0');
+    } while (*(char *)(MemoryBlockIndex + SystemMemoryFunctionOffset108 + (long long)ContextHandle) != '\0');
   }
   SystemDataRegistry = *Utf8SourcePointer;
   MemoryBoundaryEnd = (long long *           (*(long long *)(ContextHandle + MemoryBlockIndex * 2 + 2) + (unsigned long long)(MemoryPoolIndex + MemoryPoolBlockSize * -0x800) * 0x10);
@@ -73639,7 +73639,7 @@ void DestroySystemContextManager(long long systemContext
   _Mtx_destroy_in_situ();
   InitializeSystemMemoryBlock(systemContext + 0x3b0,0x20,0x20,ReleaseSystemResource,cleanupFlags);
   ExecuteSystemCleanupRoutine();
-  InitializeSystemMemoryBlock(systemContext + 0x108,8,0x20,ProcessSystemBufferCleanup);
+  InitializeSystemMemoryBlock(systemContext + SystemMemoryFunctionOffset108,8,0x20,ProcessSystemBufferCleanup);
   InitializeSystemMemoryBlock(systemContext + 8,8,0x20,ProcessSystemBufferCleanup);
   return;
 }
@@ -73934,7 +73934,7 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
       ProcessingStatus = 0x3f800000;
       uStack_184 = 0x3f800000;
       SystemUnsignedValue180 = 0x3f800000;
-      (**(code **)(**(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2) + 0x108)                (*(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2),&ProcessingStatus);
+      (**(code **)(**(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2) + SystemMemoryFunctionOffset108)                (*(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2),&ProcessingStatus);
       BufferAllocationStatus = *(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2);
       if (*(code **)(*BufferAllocationStatus + 0xc0) == (code *)&MemoryAllocationChecker) {
         SystemStatusChar = (BufferAllocationStatus[8] - BufferAllocationStatus[7] & 0xfffffffffffffff0U) == 0;
@@ -75318,7 +75318,7 @@ void UpdateSystemCoordinates(uint64_t targetDataStructure, int sourceXCoordinate
       do {
         ContextHandle = *(long long **)(AllocatedMemorySize + MemoryBlockIndex);
         if (ContextHandle != (long long *)0x0) {
-          (**(code **)(*ContextHandle + 0xf8)                    (ContextHandle,(int)*(float *)(BufferStatus + 0x17ec),(int)*(float *)(BufferStatus + 0x17f0));
+          (**(code **)(*ContextHandle + SystemMemoryFunctionOffsetF8)                    (ContextHandle,(int)*(float *)(BufferStatus + 0x17ec),(int)*(float *)(BufferStatus + 0x17f0));
         }
         MemoryBlockIndex = *(long long *)(BufferStatus + 0x1868);
         EncodingValidationResult = EncodingValidationResult + 1;
@@ -75364,7 +75364,7 @@ void SetSystemFloatParameter(float targetValue, long long sourceData, float para
     do {
       ContextHandle = *(long long **)(MemoryBlockIndex + OperationBufferSize);
       if (ContextHandle != (long long *)0x0) {
-        (**(code **)(*ContextHandle + 0xf8)                  (ContextHandle,(int)*(float *)(SystemContext + 0x17ec),(int)*(float *)(SystemContext + 0x17f0));
+        (**(code **)(*ContextHandle + SystemMemoryFunctionOffsetF8)                  (ContextHandle,(int)*(float *)(SystemContext + 0x17ec),(int)*(float *)(SystemContext + 0x17f0));
       }
       OperationBufferSize = *(long long *)(SystemContext + 0x1868);
       LockOperationResult = LockOperationResult + 1;
@@ -75407,7 +75407,7 @@ void ProcessSystemDataTransfer(uint64_t targetDataStructure, long long sourceDat
   do {
     ContextHandle = *(long long **)(MemoryPoolIndex + OperationBufferSize);
     if (ContextHandle != (long long *)0x0) {
-      (**(code **)(*ContextHandle + 0xf8)                (ContextHandle,(int)*(float *)(SystemContext + 0x17ec),(int)*(float *)(SystemContext + 0x17f0));
+      (**(code **)(*ContextHandle + SystemMemoryFunctionOffsetF8)                (ContextHandle,(int)*(float *)(SystemContext + 0x17ec),(int)*(float *)(SystemContext + 0x17f0));
     }
     OperationBufferSize = *(long long *)(SystemContext + 0x1868);
     CharacterTablePointer = CharacterTablePointer + 1;
@@ -76985,11 +76985,11 @@ long long InitializeSystemDataStructureMemory(long long ContextHandle
   *(uint32_t *)(ContextHandle + 0xec) = 0;
   *(uint32_t *)(ContextHandle + 0xf0) = 0;
   *(uint32_t *)(ContextHandle + 0xf4) = 0;
-  *(uint32_t *)(ContextHandle + 0xf8) = 0;
+  *(uint32_t *)(ContextHandle + SystemMemoryFunctionOffsetF8) = 0;
   *(uint32_t *)(ContextHandle + 0xfc) = 0x3f800000;
   *(uint8_t *)(ContextHandle + 0x100) = 1;
   *(uint32_t *)(ContextHandle + 0x104) = 0xbf800000;
-  *(uint32_t *)(ContextHandle + 0x108) = 0x3f800000;
+  *(uint32_t *)(ContextHandle + SystemMemoryFunctionOffset108) = 0x3f800000;
   *(uint32_t *)(ContextHandle + 0x110) = 0xbf800000;
   *(uint32_t *)(ContextHandle + 0x10c) = 0x3f800000;
   *(uint32_t *)(ContextHandle + 0x114) = 0x3f800000;
@@ -79080,7 +79080,7 @@ void InitializeCoreEngineDataStructure(long long *ContextHandle,int OperationBuf
   *(uint *)(MemoryBlockIndex + 8) = *(uint *)(MemoryBlockIndex + 8) | 0x40;
   *(void *)(MemoryBlockIndex + 0x110) = Utf16EndPointer;
   *(void **)(MemoryBlockIndex + 0x100) = &SystemUnknownProcessingStatusFlagJ;
-  *(code **)(MemoryBlockIndex + 0xf8) = ProcessSystemMemoryBlockInitialize;
+  *(code **)(MemoryBlockIndex + SystemMemoryFunctionOffsetF8) = ProcessSystemMemoryBlockInitialize;
   CalculatedCodePoint = MemoryAllocate(MemoryPoolManager,0xa0,8,3);
   MemoryBoundaryPointer = (long long *)ValidateUnsignedValue(CalculatedCodePoint);
   CoreEngineSignedValue70 = MemoryBoundaryPointer;
@@ -80585,12 +80585,12 @@ long long InitializeSystemDataStructure(long long ContextHandle,uint64_t Operati
   *(uint8_t *)(ContextHandle + 0xd8) = 0;
   *(void *)(ContextHandle + 0xe0) = 0;
   CharacterTablePointer = ContextHandle + 0xf0;
-  *(void *)(ContextHandle + 0x108) = 0;
+  *(void *)(ContextHandle + SystemMemoryFunctionOffset108) = 0;
   *(uint32_t *)(ContextHandle + 0x118) = 3;
   *(long long *)CharacterTablePointer = LoopCounter;
-  *(long long *)(ContextHandle + 0xf8) = LoopCounter;
+  *(long long *)(ContextHandle + SystemMemoryFunctionOffsetF8) = LoopCounter;
   *(void *)(ContextHandle + 0x100) = 0;
-  *(uint8_t *)(ContextHandle + 0x108) = 0;
+  *(uint8_t *)(ContextHandle + SystemMemoryFunctionOffset108) = 0;
   *(void *)(ContextHandle + 0x110) = 0;
   _Mtx_init_in_situ(ContextHandle + 0x128,0x102,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *(uint16_t *)(ContextHandle + 0x124) = 1;
@@ -93196,7 +93196,7 @@ void CoreEngineInitializeRenderingSystem(long long ContextHandle
   ProcessSystemContextAllocation(ContextHandle + 8,&SystemRegisterFlag);
   ConfigureRenderStats(aCoreEngineUnsignedValue,0);
   *(uint32_t *)(ContextHandle + 0x1078) = 0;
-  CopySystemDataStructure(ContextHandle + 0x1080,aCoreEngineUnsignedValue);
+  CopySystemDataStructure(ContextHandle + SystemMemoryFunctionOffset1080,aCoreEngineUnsignedValue);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(aCoreEngineUnsignedValue,0,0);
   }
@@ -95566,8 +95566,8 @@ LAB_18010a4a0:
     if (SystemContextValidationFlag == '\0') {
       if (CoreEngineThreadStatus == '\0') {
         StringProcessingStatus = &CoreEngineDataTemplate;
-        if (*(void **)(ContextHandle + 0x1080) != NULL) {
-          StringProcessingStatus = *(void **)(ContextHandle + 0x1080);
+        if (*(void **)(ContextHandle + SystemMemoryFunctionOffset1080) != NULL) {
+          StringProcessingStatus = *(void **)(ContextHandle + SystemMemoryFunctionOffset1080);
         }
         InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
@@ -95585,8 +95585,8 @@ LAB_18010a4a0:
     if (SystemContextValidationFlag == '\0') {
       if (CoreEngineThreadStatus == '\0') {
         StringProcessingStatus = &CoreEngineDataTemplate;
-        if (*(void **)(ContextHandle + 0x1080) != NULL) {
-          StringProcessingStatus = *(void **)(ContextHandle + 0x1080);
+        if (*(void **)(ContextHandle + SystemMemoryFunctionOffset1080) != NULL) {
+          StringProcessingStatus = *(void **)(ContextHandle + SystemMemoryFunctionOffset1080);
         }
         InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,StringProcessingStatus);
       }
@@ -111155,7 +111155,7 @@ LAB_1801177f4:
                           *(long long *)(MemoryBlockIndex9 + 0x1eb8) + (long long)InputDataLength5 * 2,
                           *(long long *)(MemoryBlockIndex9 + 0x1eb8) + (long long)EncodingValidationResult3 * 2);
             if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-              (**(code **)(SystemConfigurationHandle + 0x100)                        (*(void *)(SystemConfigurationHandle + 0x108),*(void *)(MemoryBlockIndex9 + 0x1ed8));
+              (**(code **)(SystemConfigurationHandle + 0x100)                        (*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),*(void *)(MemoryBlockIndex9 + 0x1ed8));
             }
           }
           pFilterInputValue4 = (float *)(MemoryBlockIndex9 + 0x1ea8);
@@ -112377,7 +112377,7 @@ LAB_1801177f4:
                           *(long long *)(PatternIndex + 0x1eb8) + (long long)InputDataLength2 * 2,
                           *(long long *)(PatternIndex + 0x1eb8) + (long long)EncodingValidationResult0 * 2);
             if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-              (**(code **)(SystemConfigurationHandle + 0x100)                        (*(void *)(SystemConfigurationHandle + 0x108),*(void *)(PatternIndex + 0x1ed8                        );
+              (**(code **)(SystemConfigurationHandle + 0x100)                        (*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),*(void *)(PatternIndex + 0x1ed8                        );
             }
           }
           pFilterInputValue1 = (float *)(PatternIndex + 0x1ea8);
@@ -134759,7 +134759,7 @@ void ProcessSystemStringAndEncodingConversion(void)
       if ((SystemDataTablePointer != 0) && (1 < *LockOperationResultPointer + -1)) {
         if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
           pSystemPriorityLevel = (void *)0x18012d0e1;
-          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),SystemDataTablePointer);
+          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),SystemDataTablePointer);
           SystemDataTablePointer = *(long long *)(StringOffset + 0x2e50);
         }
         StringOffset = SystemConfigurationHandle;
@@ -146540,7 +146540,7 @@ LAB_18012a70f:
   }
   else {
     FilterInputValue0 = *(float *)(SystemParameter2 + 0xf0) -
-             *(float *)(SystemParameter2 + 0xf8) * *(float *)(SystemParameter2 + 0x50);
+             *(float *)(SystemParameter2 + SystemMemoryFunctionOffsetF8) * *(float *)(SystemParameter2 + 0x50);
     ContextSecondaryFloat9 = *(float *)(SystemParameter2 + 0xf4) -
              *(float *)(SystemParameter2 + 0x54) * *(float *)(SystemParameter2 + 0xfc);
     if (FilterInputValue0 <= *(float *)(PatternIndex + 0x16b4)) {
@@ -147432,7 +147432,7 @@ LAB_18012b510:
   *(uint32_t *)(eventDataStructureHandle + 0x110) = *SystemCharacterStatusBuffer;
   *(uint32_t *)(eventDataStructureHandle + 0x114) = ProcessingStatusFlag;
   *(void *)(SystemParameter2 + 0x100) = *(void *)(SystemParameter2 + 0x110);
-  *(void *)(SystemParameter2 + 0x108) = *(void *)(SystemParameter2 + 0x110);
+  *(void *)(SystemParameter2 + SystemMemoryFunctionOffset108) = *(void *)(SystemParameter2 + 0x110);
   *(void *)(SystemParameter2 + 0x118) = *(void *)(SystemParameter2 + 0x110);
   SystemCharacterStatusBuffer = (uint32_t *)ValidateSystemDataStructure(StackFrameAddressPointer + -0x18);
   ProcessingStatusFlag = SystemCharacterStatusBuffer[1];
@@ -148503,7 +148503,7 @@ LAB_18012b510:
   *(uint32_t *)(eventDataStructureHandle + 0x110) = *ConfigurationString;
   *(uint32_t *)(eventDataStructureHandle + 0x114) = SystemChecksum;
   *(void *)(SystemParameter2 + 0x100) = *(void *)(SystemParameter2 + 0x110);
-  *(void *)(SystemParameter2 + 0x108) = *(void *)(SystemParameter2 + 0x110);
+  *(void *)(SystemParameter2 + SystemMemoryFunctionOffset108) = *(void *)(SystemParameter2 + 0x110);
   *(void *)(SystemParameter2 + 0x118) = *(void *)(SystemParameter2 + 0x110);
   ConfigurationString = (uint32_t *)ValidateSystemDataStructure(StackFrameAddressPointer + -0x18);
   SystemChecksum = ConfigurationString[1];
@@ -149352,7 +149352,7 @@ void ExecuteSystemCoreDataProcessing(void)
   *(uint32_t *)(eventDataStructureHandle + 0x110) = *ConfigurationString;
   *(uint32_t *)(eventDataStructureHandle + 0x114) = CalculatedCodePoint;
   *(void *)(SystemParameter2 + 0x100) = *(void *)(SystemParameter2 + 0x110);
-  *(void *)(SystemParameter2 + 0x108) = *(void *)(SystemParameter2 + 0x110);
+  *(void *)(SystemParameter2 + SystemMemoryFunctionOffset108) = *(void *)(SystemParameter2 + 0x110);
   *(void *)(SystemParameter2 + 0x118) = *(void *)(SystemParameter2 + 0x110);
   ConfigurationString = (uint32_t *)ValidateSystemDataStructure(StackFrameAddressPointer + -0x18);
   CalculatedCodePoint = ConfigurationString[1];
@@ -149705,7 +149705,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   *(uint32_t *)(eventDataStructureHandle + 0x110) = *CharacterStatusBuffer;
   *(uint32_t *)(eventDataStructureHandle + 0x114) = ProcessingStatusFlag;
   *(void *)(SystemParameter2 + 0x100) = *(void *)(SystemParameter2 + 0x110);
-  *(void *)(SystemParameter2 + 0x108) = *(void *)(SystemParameter2 + 0x110);
+  *(void *)(SystemParameter2 + SystemMemoryFunctionOffset108) = *(void *)(SystemParameter2 + 0x110);
   *(void *)(SystemParameter2 + 0x118) = *(void *)(SystemParameter2 + 0x110);
   CharacterStatusBuffer = (uint32_t *)ValidateSystemDataStructure(StackFrameAddressPointer + -0x18);
   ProcessingStatusFlag = CharacterStatusBuffer[1];
@@ -150447,7 +150447,7 @@ void ExecuteSystemConfigurationFilter(void
       MemoryPoolBlockSize = *(long long *)(SystemDataTablePointer + 0x2e50);
       if ((MemoryPoolBlockSize != 0) && (1 < *LockOperationResultPointer + -1)) {
         if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),MemoryPoolBlockSize);
+          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),MemoryPoolBlockSize);
           MemoryPoolBlockSize = *(long long *)(SystemDataTablePointer + 0x2e50);
         }
         SystemDataTablePointer = SystemConfigurationHandle;
@@ -150549,7 +150549,7 @@ void InitializeSystemDataProcessor(void)
     MemoryPoolBlockSize = *(long long *)(SystemContext + 0x2e50);
     if ((MemoryPoolBlockSize != 0) && (1 < *LockOperationResultPointer + -1)) {
       if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-        (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),MemoryPoolBlockSize);
+        (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),MemoryPoolBlockSize);
         MemoryPoolBlockSize = *(long long *)(SystemContext + 0x2e50);
       }
       AllocatedMemorySize = SystemConfigurationHandle;
@@ -150637,7 +150637,7 @@ void ProcessSystemDataValidation(void)
     long long AllocatedMemorySize = *(long long *)(SystemContext + 0x2e50);
     if ((AllocatedMemorySize != 0) && (1 < *(int *)(SystemContext + 0x2e48) + -1)) {
       if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-        (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),AllocatedMemorySize);
+        (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),AllocatedMemorySize);
         long long AllocatedMemorySize = *(long long *)(SystemContext + 0x2e50);
       }
       SystemDataRegistry = SystemConfigurationHandle;
@@ -150724,7 +150724,7 @@ void InitializeSystemContextManager(void)
   SystemDataRegistry = *(long long *)(SystemContext + 0x2e50);
   if ((SystemDataRegistry != 0) && (1 < *(int *)(SystemContext + 0x2e48) + -1)) {
     if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-      (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),SystemDataRegistry);
+      (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),SystemDataRegistry);
       SystemDataRegistry = *(long long *)(SystemContext + 0x2e50);
     }
     MemoryBlockIndex = SystemConfigurationHandle;
@@ -153455,7 +153455,7 @@ void InitializeSystemCharacterStatusBuffer(void)
       SystemContextValue = *(long long *)(SystemDataTablePointer + 0x2e50);
       if ((SystemContextValue != 0) && (1 < *ReferenceCountPointer + -1)) {
         if (*(code **)(SystemConfigurationHandle + 0x100) != (code *)0x0) {
-          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + 0x108),SystemContextValue);
+          (**(code **)(SystemConfigurationHandle + 0x100))(*(void *)(SystemConfigurationHandle + SystemMemoryFunctionOffset108),SystemContextValue);
           SystemContextValue = *(long long *)(SystemDataTablePointer + 0x2e50);
         }
         SystemDataTablePointer = SystemConfigurationHandle;
@@ -181178,7 +181178,7 @@ void ProcessContextHandleEncodingValidationAndFloatData(long long ContextHandle,
   else {
     (**(code **)(OperationBufferSize + 0x18))(OperationBufferSize);
   }
-  ReferenceCountPointer = (int *)(ContextHandle + 0x108 + ProcessedCharacter * 4);
+  ReferenceCountPointer = (int *)(ContextHandle + SystemMemoryFunctionOffset108 + ProcessedCharacter * 4);
   *ReferenceCountPointer = *ReferenceCountPointer + 1;
   if (*(code **)(OperationBufferSize + 0x10) != (code *)0x0) {
     (**(code **)(OperationBufferSize + 0x10))(OperationBufferSize,0,0);
@@ -182846,11 +182846,11 @@ void ProcessUtf8ToUtf16ConversionEx(long long ContextHandle,uint64_t OperationBu
   SystemPrimaryReturnCode = *(uint32_t *)(StackFrameAddressPointer + -9);
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x29);
   MemoryAddressMaskPointer = *(void *)(StackFrameAddressPointer + -0x21);
-  *(void *)(PatternIndex + 0xf8) = *(void *)(StackFrameAddressPointer + -0x39);
+  *(void *)(PatternIndex + SystemMemoryFunctionOffsetF8) = *(void *)(StackFrameAddressPointer + -0x39);
   *(void *)(PatternIndex + 0x100) = MemoryPoolIndex;
   MemoryPoolIndex = *(void *)(StackFrameAddressPointer + -0x19);
   CalculatedCodePoint = *(void *)(StackFrameAddressPointer + -0x11);
-  *(void *)(PatternIndex + 0x108) = UnicodeCodePoint;
+  *(void *)(PatternIndex + SystemMemoryFunctionOffset108) = UnicodeCodePoint;
   *(void *)(PatternIndex + 0x110) = MemoryAddressMaskPointer;
   *(void *)(PatternIndex + 0x118) = MemoryPoolIndex;
   *(void *)(PatternIndex + 0x120) = CalculatedCodePoint;
@@ -183049,11 +183049,11 @@ void ProcessContextHandleValidationWithFloat(int ContextHandle,unsigned long lon
   UnicodeContextHandle = *(uint32_t *)(StackFrameAddressPointer + -9);
   MemoryAddressMaskPointer = *(void *)(StackFrameAddressPointer + -0x29);
   CalculatedCodePoint = *(void *)(StackFrameAddressPointer + -0x21);
-  *(void *)(PatternIndex + 0xf8) = *(void *)(StackFrameAddressPointer + -0x39);
+  *(void *)(PatternIndex + SystemMemoryFunctionOffsetF8) = *(void *)(StackFrameAddressPointer + -0x39);
   *(void *)(PatternIndex + 0x100) = UnicodeCodePoint;
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x19);
   OperationResult = *(void *)(StackFrameAddressPointer + -0x11);
-  *(void *)(PatternIndex + 0x108) = MemoryAddressMaskPointer;
+  *(void *)(PatternIndex + SystemMemoryFunctionOffset108) = MemoryAddressMaskPointer;
   *(void *)(PatternIndex + 0x110) = CalculatedCodePoint;
   *(void *)(PatternIndex + 0x118) = UnicodeCodePoint;
   *(void *)(PatternIndex + 0x120) = OperationResult;
@@ -183183,11 +183183,11 @@ void ProcessUtf8ToUtf16ConversionWithValidation(uint64_t ContextHandle,uint64_t 
   Utf16ConversionContext = *(uint32_t *)(StackFrameAddressPointer + -9);
   MemoryAddressMaskPointer = *(void *)(StackFrameAddressPointer + -0x29);
   CalculatedCodePoint = *(void *)(StackFrameAddressPointer + -0x21);
-  *(void *)(PatternIndex + 0xf8) = *(void *)(StackFrameAddressPointer + -0x39);
+  *(void *)(PatternIndex + SystemMemoryFunctionOffsetF8) = *(void *)(StackFrameAddressPointer + -0x39);
   *(void *)(PatternIndex + 0x100) = UnicodeCodePoint;
   UnicodeCodePoint = *(void *)(StackFrameAddressPointer + -0x19);
   OperationResult = *(void *)(StackFrameAddressPointer + -0x11);
-  *(void *)(PatternIndex + 0x108) = MemoryAddressMaskPointer;
+  *(void *)(PatternIndex + SystemMemoryFunctionOffset108) = MemoryAddressMaskPointer;
   *(void *)(PatternIndex + 0x110) = CalculatedCodePoint;
   *(void *)(PatternIndex + 0x118) = UnicodeCodePoint;
   *(void *)(PatternIndex + 0x120) = OperationResult;
@@ -191567,7 +191567,7 @@ LAB_1801565db:
   StringProcessingStatus = ConfigurationString;
   if (SystemMemoryAllocationResult != 0) {
     do {
-      (**(code **)(*ContextHandle + 0x108))(ContextHandle,*StringProcessingStatus);
+      (**(code **)(*ContextHandle + SystemMemoryFunctionOffset108))(ContextHandle,*StringProcessingStatus);
       LockOperationResult = LockOperationResult + 1;
       StringProcessingStatus = StringProcessingStatus + 1;
     } while ((unsigned long long)(long long)LockOperationResult < SystemMemoryAllocationResult);
@@ -192985,7 +192985,7 @@ LAB_180158404:
       RandomSeedValue = RandomSeedValue << 0xd ^ RandomSeedValue;
       RandomSeedValue = RandomSeedValue >> 0x11 ^ RandomSeedValue;
       RandomSeedValue = RandomSeedValue << 5 ^ RandomSeedValue;
-      (**(code **)(*(long long *)*ContextHandleSize + 0xf8)                ((long long *)*ContextHandleSize,
+      (**(code **)(*(long long *)*ContextHandleSize + SystemMemoryFunctionOffsetF8)                ((long long *)*ContextHandleSize,
                  (float)(RandomSeedValue - 1) * 2.3283064e-10 *
                  (*(float *)(Utf8SourcePointer + 0x50) - *(float *)(Utf8SourcePointer + 0x4c)) +
                  *(float *)(Utf8SourcePointer + 0x4c));
@@ -193452,7 +193452,7 @@ void ProcessSystemCharacterEncodingAndSizeManagement(uint64_t ContextHandle,long
     CharacterDataValidationResult = (**(code **)(**(long long **)(SystemDataTablePointer + 8) + 0xd8))();
     if ((CharacterDataValidationResult != '\0') && (SystemDataRegistry == OperationBufferSize)) {
       (**(code **)(**(long long **)(SystemDataTablePointer + 8) + 0x78))();
-      (**(code **)(**(long long **)(SystemDataTablePointer + 8) + 0xf8)                (*(long long **)(SystemDataTablePointer + 8),*(uint32_t *)(CoreEngineMemoryContext + 0x1500));
+      (**(code **)(**(long long **)(SystemDataTablePointer + 8) + SystemMemoryFunctionOffsetF8)                (*(long long **)(SystemDataTablePointer + 8),*(uint32_t *)(CoreEngineMemoryContext + 0x1500));
     }
     SystemDataTablePointer = *(long long *)(SystemDataTablePointer + 0x10);
     while (SystemDataTablePointer == 0) {
@@ -202152,7 +202152,7 @@ long long InitializeContextHandleProcessingAndSystemBufferManagement(long long C
   *(uint64_t **)(ContextHandle + 0x498) = SecondaryProcessingStatusFlag;
   SetupThreadLocalStorageData(ContextHandle + 0x4b0,OperationBufferSize + 0x4b0,0x58,0x10,ProcessSystemBufferAndManageStatus,CoreEngineSetupThreadLocalStorage);
   SetupThreadLocalStorageData(ContextHandle + 0xa30,OperationBufferSize + 0xa30,0x98,9,InitializeThreadLocalStorageBuffer,CoreEngineSetupThreadLocalStorage);
-  ProcessCoreEngineParameters(ContextHandle + 0xf88,OperationBufferSize + 0xf88);
+  ProcessCoreEngineParameters(ContextHandle + SystemMemoryFunctionOffsetF88,OperationBufferSize + SystemMemoryFunctionOffsetF88);
   ProcessCoreEngineParameters(ContextHandle + 0x1020,OperationBufferSize + 0x1020);
   SystemDataRegistry = *(long long *)(OperationBufferSize + 0x10c0) - *(long long *)(OperationBufferSize + 0x10b8);
   SystemDataRegistry = SystemDataRegistry / 0x26 + (SystemDataRegistry >> 0x3f);
@@ -214227,7 +214227,7 @@ void ProcessContextHandleSizeAndUtf8SourceData(uint64_t ContextHandle, uint64_t 
     EncodingConversionResult = 0;
     do {
       BufferStatus = *(long long *)(*(long long *)(SystemDataRegistry + 0xc0) + EncodingConversionResult * 8);
-      UnicodeCodePoint = *(void *)(SystemDataRegistry + 0xf8);
+      UnicodeCodePoint = *(void *)(SystemDataRegistry + SystemMemoryFunctionOffsetF8);
       CharacterTablePointer = BufferStatus + 8;
       SystemTemporaryValue900 = LoopCounter;
       ValidationResult = _Mtx_lock();
@@ -230033,11 +230033,11 @@ long long InitializeContextHandleSystem(long long ContextHandle,long long Operat
   OperationResult = *(void *)(OperationBufferSize + 0xfc);
   *(void *)(ContextHandle + 0xf4) = *(void *)(OperationBufferSize + 0xf4);
   *(void *)(ContextHandle + 0xfc) = OperationResult;
-  UnicodeCodePoint = *(uint32_t *)(OperationBufferSize + 0x108);
+  UnicodeCodePoint = *(uint32_t *)(OperationBufferSize + SystemMemoryFunctionOffset108);
   MemoryAddressMaskPointer = *(uint32_t *)(OperationBufferSize + 0x10c);
   CalculatedCodePoint = *(uint32_t *)(OperationBufferSize + 0x110);
   *(uint32_t *)(ContextHandle + 0x104) = *(uint32_t *)(OperationBufferSize + 0x104);
-  *(uint32_t *)(ContextHandle + 0x108) = UnicodeCodePoint;
+  *(uint32_t *)(ContextHandle + SystemMemoryFunctionOffset108) = UnicodeCodePoint;
   *(uint32_t *)(ContextHandle + 0x10c) = MemoryAddressMaskPointer;
   *(uint32_t *)(ContextHandle + 0x110) = CalculatedCodePoint;
   *(uint32_t *)(ContextHandle + 0x114) = *(uint32_t *)(OperationBufferSize + 0x114);
@@ -230571,7 +230571,7 @@ ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t *ContextHandle,lon
   CalculatedCodePoint = *(void *)(OperationBufferSize + 0xfc);
   *(void *)((long long)ContextHandle + 0xf4) = *(void *)(OperationBufferSize + 0xf4);
   *(void *)((long long)ContextHandle + 0xfc) = CalculatedCodePoint;
-  MemoryPoolIndex = *(uint32_t *)(OperationBufferSize + 0x108);
+  MemoryPoolIndex = *(uint32_t *)(OperationBufferSize + SystemMemoryFunctionOffset108);
   UnicodeCodePoint = *(uint32_t *)(OperationBufferSize + 0x10c);
   MemoryAddressMaskPointer = *(uint32_t *)(OperationBufferSize + 0x110);
   *(uint32_t *)((long long)ContextHandle + 0x104) = *(uint32_t *)(OperationBufferSize + 0x104);
@@ -231430,7 +231430,7 @@ uint64_t * ProcessUtf8ToUtf16Conversion(long long *ContextHandle,long long Opera
     CalculatedCodePoint = *(void *)(OperationBufferSize + 0xfc);
     *(void *)((long long)SecondaryProcessingStatusFlag + 0xf4) = *(void *)(OperationBufferSize + 0xf4);
     *(void *)((long long)SecondaryProcessingStatusFlag + 0xfc) = CalculatedCodePoint;
-    MemoryPoolIndex = *(uint32_t *)(OperationBufferSize + 0x108);
+    MemoryPoolIndex = *(uint32_t *)(OperationBufferSize + SystemMemoryFunctionOffset108);
     UnicodeCodePoint = *(uint32_t *)(OperationBufferSize + 0x10c);
     MemoryAddressMaskPointer = *(uint32_t *)(OperationBufferSize + 0x110);
     *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x104) = *(uint32_t *)(OperationBufferSize + 0x104);
@@ -233660,11 +233660,11 @@ LAB_180191a1c:
   SystemChecksum = *(void *)(AdditionalParameter1 + 0xfc);
   *(void *)(ContextHandle + 0xf4) = *(void *)(AdditionalParameter1 + 0xf4);
   *(void *)(ContextHandle + 0xfc) = SystemChecksum;
-  MemoryAddressMaskPointer = *(uint32_t *)(AdditionalParameter1 + 0x108);
+  MemoryAddressMaskPointer = *(uint32_t *)(AdditionalParameter1 + SystemMemoryFunctionOffset108);
   CalculatedCodePoint = *(uint32_t *)(AdditionalParameter1 + 0x10c);
   OperationResult = *(uint32_t *)(AdditionalParameter1 + 0x110);
   *(uint32_t *)(ContextHandle + 0x104) = *(uint32_t *)(AdditionalParameter1 + 0x104);
-  *(uint32_t *)(ContextHandle + 0x108) = MemoryAddressMaskPointer;
+  *(uint32_t *)(ContextHandle + SystemMemoryFunctionOffset108) = MemoryAddressMaskPointer;
   *(uint32_t *)(ContextHandle + 0x10c) = CalculatedCodePoint;
   *(uint32_t *)(ContextHandle + 0x110) = OperationResult;
   *(uint32_t *)(ContextHandle + 0x114) = *(uint32_t *)(AdditionalParameter1 + 0x114);
@@ -236982,7 +236982,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   *(uint8_t *)(ContextHandle + 0x506) = 1;
   *(uint8_t *)(ContextHandle + 0xac) = 0;
   if (*(int *)(CoreEngineSystemContext + SystemContextEventOffset340) != 0) {
-    InputDataLength = (**(code **)(CoreEngineEventHandler + 0xf8))();
+    InputDataLength = (**(code **)(CoreEngineEventHandler + SystemMemoryFunctionOffsetF8))();
     iStackX_20 = InputDataLength;
     if ((InputDataLength != 0) && (CoreEngineConsoleHandle != 0)) {
       (**(code **)(CoreEngineConsoleHandle + 0x30))(InputDataLength);
@@ -237974,7 +237974,7 @@ LAB_1801974aa:
         FUN_1802e7e20(BufferStatus);
       }
       else {
-        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + 0xf8,BufferStatus + 0x70);
+        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
       }
       *(uint16_t *)(BufferStatus + 0x2b0) = *(uint16_t *)(BufferStatus + 0x2b4);
     }
@@ -238075,7 +238075,7 @@ LAB_18019797c:
         FUN_1802e7e20(BufferStatus);
       }
       else {
-        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + 0xf8,BufferStatus + 0x70);
+        FUN_18063ad30(*(long long *)(BufferStatus + 0x28),*(long long *)(BufferStatus + 0x28) + SystemMemoryFunctionOffsetF8,BufferStatus + 0x70);
       }
       *(uint16_t *)(BufferStatus + 0x2b0) = *(uint16_t *)(BufferStatus + 0x2b4);
     }
@@ -243085,14 +243085,14 @@ long long * FUN_18019eb80(long long ContextHandle,long long *ContextHandleSize
         fStack_128 = ContextSecondaryFloat4;
         fStack_120 = fStack_124;
         fStack_11c = fStack_124;
-        if (*(long long *)(SystemConfigurationIterator + 0xf8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
+        if (*(long long *)(SystemConfigurationIterator + SystemMemoryFunctionOffsetF8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
           (**(code **)(*(long long *)**(uint64_t **)(SystemConfigurationIterator + 0xf0) + 0x178))();
         }
-        if (*(long long *)(LoopIndex + 0xf8) - (long long)*(uint64_t **)(LoopIndex + 0xf0) >> 3 != 0) {
+        if (*(long long *)(LoopIndex + SystemMemoryFunctionOffsetF8) - (long long)*(uint64_t **)(LoopIndex + 0xf0) >> 3 != 0) {
           (**(code **)(*(long long *)**(uint64_t **)(LoopIndex + 0xf0) + 0x178))();
         }
         if (IntegerValue != 0) {
-          if (*(long long *)(SystemConfigurationIterator + 0xf8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
+          if (*(long long *)(SystemConfigurationIterator + SystemMemoryFunctionOffsetF8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
             (**(code **)(*(long long *)**(uint64_t **)(SystemConfigurationIterator + 0xf0) + 0x178))();
           }
           LoopIndex = SystemCharacterStatusBufferPointerA;
@@ -243250,7 +243250,7 @@ long long * FUN_18019eb80(long long ContextHandle,long long *ContextHandleSize
         MemoryCopyBuffer = SystemChecksum;
         SystemUintBuffer260 = UnicodeCodePoint;
         FUN_1801a20e0();
-        if (*(long long *)(SystemConfigurationIterator + 0xf8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
+        if (*(long long *)(SystemConfigurationIterator + SystemMemoryFunctionOffsetF8) - (long long)*(uint64_t **)(SystemConfigurationIterator + 0xf0) >> 3 != 0) {
           (**(code **)(*(long long *)**(uint64_t **)(SystemConfigurationIterator + 0xf0) + 0x178))();
         }
         LockOperationResult0 = 0;
@@ -243723,7 +243723,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             }
             IntegerValue9 = iStack_448;
             CharacterTablePointer6 = *(long long *)(LoopIndex + 0xf0);
-            if (*(long long *)(LoopIndex + 0xf8) - CharacterTablePointer6 >> 3 != 0) {
+            if (*(long long *)(LoopIndex + SystemMemoryFunctionOffsetF8) - CharacterTablePointer6 >> 3 != 0) {
               MemoryAllocationCounter = 0;
               MemoryAllocationBase = MemoryAllocationCounter;
               do {
@@ -243827,7 +243827,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
                 MemoryAllocationCounter = (unsigned long long)MemoryAllocationOffset;
                 MemoryAllocationBase = MemoryAllocationBase + 8;
               } while ((unsigned long long)(long long)(int)MemoryAllocationOffset <
-                       (unsigned long long)(*(long long *)(LoopIndex + 0xf8) - CharacterTablePointer6 >> 3));
+                       (unsigned long long)(*(long long *)(LoopIndex + SystemMemoryFunctionOffsetF8) - CharacterTablePointer6 >> 3));
             }
           }
         }
@@ -244224,7 +244224,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             } while (SystemCheckResult6 < *(char *)(BufferStatus4 + 0x20));
           }
           BufferStatus1 = *(long long *)(CharacterTablePointer + 0xf0);
-          if (*(long long *)(CharacterTablePointer + 0xf8) - BufferStatus1 >> 3 != 0) {
+          if (*(long long *)(CharacterTablePointer + SystemMemoryFunctionOffsetF8) - BufferStatus1 >> 3 != 0) {
             MemoryPoolIndexSecondary = 0;
             MemoryPoolIndex7 = MemoryPoolIndexSecondary;
             do {
@@ -244347,7 +244347,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
               MemoryPoolIndexSecondary = (unsigned long long)InputDataLength;
               MemoryPoolIndex7 = MemoryPoolIndex7 + 8;
             } while ((unsigned long long)(long long)(int)InputDataLength <
-                     (unsigned long long)(*(long long *)(CharacterTablePointer + 0xf8) - BufferStatus1 >> 3));
+                     (unsigned long long)(*(long long *)(CharacterTablePointer + SystemMemoryFunctionOffsetF8) - BufferStatus1 >> 3));
             BufferStatus4 = *(long long *)(StackFrameAddressPointer + -0x20);
           }
         }
@@ -246052,7 +246052,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
   *(double *)(ContextHandle + 0xf0) =
        ((1.0 / TimeDifferenceInSeconds7) * CalculatedDifference2 + CalculatedDifference3 * *(double *)(ContextHandle + 0xf0)) * DoubleVariable15;
   CalculatedDifference2 = 0.0;
-  *(double *)(ContextHandle + 0xf8) = (CalculatedDifference3 * *(double *)(ContextHandle + 0xf8) + TimeDifferenceInSeconds9 / DoubleVariable12) * DoubleVariable15;
+  *(double *)(ContextHandle + SystemMemoryFunctionOffsetF8) = (CalculatedDifference3 * *(double *)(ContextHandle + SystemMemoryFunctionOffsetF8) + TimeDifferenceInSeconds9 / DoubleVariable12) * DoubleVariable15;
   *(double *)(ContextHandle + 0x100) = (CalculatedDifference3 * *(double *)(ContextHandle + 0x100) + CalculatedDifference1 / DoubleVariable14) * DoubleVariable15;
   pContextSecondaryFloat4 = *(float **)(ContextHandle + 0x88);
   MemoryPoolIndexAdditional = *(long long *)(ContextHandle + 0x90) - (long long)pContextSecondaryFloat4 >> 2;
@@ -246088,8 +246088,8 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle)
     } while ((unsigned long long)(long long)(int)MemoryAllocationOffset < MemoryPoolIndexAdditional);
   }
   *(int *)(ContextHandle + 0xdc) = InputDataLength + 1;
-  *(double *)(ContextHandle + 0x108) =
-       (CalculatedDifference3 * *(double *)(ContextHandle + 0x108) + (1.0 / TimeDifferenceInSeconds7) * TimeDifferenceInSeconds8) * DoubleVariable15;
+  *(double *)(ContextHandle + SystemMemoryFunctionOffset108) =
+       (CalculatedDifference3 * *(double *)(ContextHandle + SystemMemoryFunctionOffset108) + (1.0 / TimeDifferenceInSeconds7) * TimeDifferenceInSeconds8) * DoubleVariable15;
   *(double *)(ContextHandle + 0x110) = (CalculatedDifference3 * *(double *)(ContextHandle + 0x110) + CalculatedDifference0 / DoubleVariable11) * DoubleVariable15;
   *(double *)(ContextHandle + 0x118) = (CalculatedDifference3 * *(double *)(ContextHandle + 0x118) + CalculatedDifference2 / DoubleVariable13) * DoubleVariable15;
   *(double *)(ContextHandle + 0xe0) =
@@ -246262,8 +246262,8 @@ void ExecuteSystemInitializationAndCleanup(void)
   *(double *)(CharacterLimit + 0xf0) =
        ((1.0 / TimeDifferenceInSeconds1) * TimeDifferenceInSeconds6 + CalculatedDifference0 * *(double *)(CharacterLimit + 0xf0)) * CalculatedDifference1;
   TimeDifferenceInSeconds6 = 0.0;
-  *(double *)(CharacterLimit + 0xf8) =
-       (CalculatedDifference0 * *(double *)(CharacterLimit + 0xf8) + TimeDifferenceInSeconds3 / TimeDifferenceInSeconds8) * CalculatedDifference1;
+  *(double *)(CharacterLimit + SystemMemoryFunctionOffsetF8) =
+       (CalculatedDifference0 * *(double *)(CharacterLimit + SystemMemoryFunctionOffsetF8) + TimeDifferenceInSeconds3 / TimeDifferenceInSeconds8) * CalculatedDifference1;
   *(double *)(CharacterLimit + 0x100) =
        (CalculatedDifference0 * *(double *)(CharacterLimit + 0x100) + TimeDifferenceInSeconds5 / DoubleVariable11) * CalculatedDifference1;
   pSystemFloatValue = *(float **)(CharacterLimit + 0x88);
@@ -246298,8 +246298,8 @@ void ExecuteSystemInitializationAndCleanup(void)
     } while ((unsigned long long)(long long)(int)Utf16Char4 < Utf16Character);
   }
   *(int *)(CharacterLimit + 0xdc) = InputDataLength + 1;
-  *(double *)(CharacterLimit + 0x108) =
-       (CalculatedDifference0 * *(double *)(CharacterLimit + 0x108) + (1.0 / TimeDifferenceInSeconds1) * TimeDifferenceInSeconds2) * CalculatedDifference1;
+  *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) =
+       (CalculatedDifference0 * *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) + (1.0 / TimeDifferenceInSeconds1) * TimeDifferenceInSeconds2) * CalculatedDifference1;
   *(double *)(CharacterLimit + 0x110) =
        (CalculatedDifference0 * *(double *)(CharacterLimit + 0x110) + TimeDifferenceInSeconds4 / TimeDifferenceInSeconds7) * CalculatedDifference1;
   *(double *)(CharacterLimit + 0x118) =
@@ -246404,8 +246404,8 @@ void ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle,double OperationBufferS
   TimeDifferenceInSeconds5 = (double)(IntegerValue + -1);
   *(double *)(CharacterLimit + 0xf0) =
        ((Utf8SourcePointer / OperationBufferSize) * XMMRegister6_Qa + TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + 0xf0)) * TimeDifferenceInSeconds6;
-  *(double *)(CharacterLimit + 0xf8) =
-       (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + 0xf8) + in_XMM4_Qa / unaff_XMM7_Qa) * TimeDifferenceInSeconds6;
+  *(double *)(CharacterLimit + SystemMemoryFunctionOffsetF8) =
+       (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + SystemMemoryFunctionOffsetF8) + in_XMM4_Qa / unaff_XMM7_Qa) * TimeDifferenceInSeconds6;
   *(double *)(CharacterLimit + 0x100) =
        (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + 0x100) + in_XMM5_Qa / unaff_XMM8_Qa) * TimeDifferenceInSeconds6;
   pContextSecondaryFloat0 = *(float **)(CharacterLimit + 0x88);
@@ -246450,8 +246450,8 @@ void ProcessUtf8ToUtf16Conversion(uint64_t ContextHandle,double OperationBufferS
     } while ((unsigned long long)(long long)(int)MemoryAllocationHandle < Utf16Char4);
   }
   *(int *)(CharacterLimit + 0xdc) = IntegerValue + 1;
-  *(double *)(CharacterLimit + 0x108) =
-       (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + 0x108) + (Utf8SourcePointer / OperationBufferSize) * in_XMM3_Qa) * TimeDifferenceInSeconds6;
+  *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) =
+       (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) + (Utf8SourcePointer / OperationBufferSize) * in_XMM3_Qa) * TimeDifferenceInSeconds6;
   *(double *)(CharacterLimit + 0x110) =
        (TimeDifferenceInSeconds5 * *(double *)(CharacterLimit + 0x110) + TimeDifferenceInSeconds1 / TimeDifferenceInSeconds3) * TimeDifferenceInSeconds6;
   *(double *)(CharacterLimit + 0x118) =
@@ -246540,8 +246540,8 @@ void ProcessAdvancedUtf8ToUtf16Conversion(uint64_t ContextHandle,uint64_t Operat
     in_R8 = in_R8 + 1;
   } while ((unsigned long long)(long long)(int)MemoryPoolIndex < SystemParameter);
   *(int *)(CharacterLimit + 0xdc) = InputDataLength + 1;
-  *(double *)(CharacterLimit + 0x108) =
-       (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0x108) + unaff_XMM11_Qa * Utf16EndPointer) *
+  *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) =
+       (unaff_XMM9_Qa * *(double *)(CharacterLimit + SystemMemoryFunctionOffset108) + unaff_XMM11_Qa * Utf16EndPointer) *
        (double)CONCAT44(XMM10RegisterB,AuxiliaryCalculationFloat10);
   *(double *)(CharacterLimit + 0x110) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0x110) + in_XMM4_Qa / XMMRegister6_Qa) *
@@ -251658,7 +251658,7 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
       CharacterStatusBuffer = (uint *)(*(long long *)(SystemDataRegistry + *(long long *)(*SystemBufferHandle + 0x38)) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
       BufferStatus = *(long long *)(SystemDataRegistry + *(long long *)(*SystemBufferHandle + 0x38));
-      *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
+      *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       SystemDataRegistry = SystemDataRegistry + 0x10;
       AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -251769,7 +251769,7 @@ void CleanupSystemBufferData(long long *SystemBufferHandle)
       CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + SystemContextPointerA8[7]) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
       BufferStatus = *(long long *)(OperationResult + SystemContextPointerA8[7]);
-      *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
+      *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       OperationResult = OperationResult + 0x10;
       AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -251899,7 +251899,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
       CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + plStack_b8[7]) + 0x100);
       *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
       BufferStatus = *(long long *)(OperationResult + plStack_b8[7]);
-      *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
+      *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
       *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
       OperationResult = OperationResult + 0x10;
       AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -251997,7 +251997,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
         CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + BufferStatus) + 0x100);
         *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
         BufferStatus = *(long long *)(OperationResult + *(long long *)(MemoryPoolBlockSize + 0x38));
-        *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
+        *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
         *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
         if (*(long long *)(*(long long *)(OperationResult + *(long long *)(MemoryPoolBlockSize + 0x38)) + 0x2d0) != 0) {
             ProcessSystemEventHandling();
@@ -252050,7 +252050,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
         CharacterStatusBuffer = (uint *)(*(long long *)(OperationResult + BufferStatus) + 0x100);
         *CharacterStatusBuffer = *CharacterStatusBuffer & 0xfffff7ff;
         BufferStatus = *(long long *)(OperationResult + *(long long *)(MemoryBlockIndex + 0x38));
-        *(void *)(BufferStatus + 0x108) = 0xffffffffffffffff;
+        *(void *)(BufferStatus + SystemMemoryFunctionOffset108) = 0xffffffffffffffff;
         *(uint32_t *)(BufferStatus + 0x110) = 0xffffffff;
         if (*(long long *)(*(long long *)(OperationResult + *(long long *)(MemoryBlockIndex + 0x38)) + 0x2d0) != 0) {
             ProcessSystemEventHandling();
@@ -252397,7 +252397,7 @@ void ProcessSystemCharacterStream(uint64_t ContextHandle,long long *ContextHandl
                   }
                   *(uint32_t *)(EncodingConversionResult + 0x110) = UnicodeCodePoint;
                   *(byte *)(EncodingConversionResult + 0xfe) = *(byte *)(EncodingConversionResult + 0xfe) | hasMemoryBoundaryChanged;
-                  *(uint32_t *)(EncodingConversionResult + 0x108) = UnicodeContextHandle;
+                  *(uint32_t *)(EncodingConversionResult + SystemMemoryFunctionOffset108) = UnicodeContextHandle;
                   StringProcessingStatus = (void *)MemoryAllocate(MemoryAddressMaskPointer,0x20,8,3);
                   *StringProcessingStatus = 0;
                   *(uint32_t *)(StringProcessingStatus + 1) = 0;
@@ -252630,7 +252630,7 @@ void InitializeSystemCharacterHandler(uint64_t ContextHandle,uint64_t OperationB
             }
             *(uint32_t *)(StringOffset + 0x110) = UnicodeCodePoint;
             *(byte *)(StringOffset + 0xfe) = *(byte *)(StringOffset + 0xfe) | SystemContextNullFlag;
-            *(uint32_t *)(StringOffset + 0x108) = SystemPrimaryReturnCode;
+            *(uint32_t *)(StringOffset + SystemMemoryFunctionOffset108) = SystemPrimaryReturnCode;
             StringProcessingStatus = (unsigned long long *)MemoryAllocate(CalculatedCharacterCodePoint,0x20,8,3);
             *StringProcessingStatus = CharacterLimit;
             *(uint *)(StringProcessingStatus + 1) = InputDataLength;
@@ -255872,7 +255872,7 @@ LAB_18020c1b3:
     do {
       SystemDataRegistry = *(long long *)(StackParameter20 + MemoryBoundaryEnd);
       SystemConfigurationIterator = 0;
-      LockOperationResultSecondary = (int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
+      LockOperationResultSecondary = (int)(*(long long *)(SystemDataRegistry + SystemMemoryFunctionOffsetF8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
       if (0 < LockOperationResultSecondary) {
         do {
           if ((-1 < *(char *)(SystemDataRegistry + 0x2e8)) ||
@@ -255977,7 +255977,7 @@ LAB_18020c2f3:
                 do {
                   SystemDataRegistry = *(long long *)((long long)SystemDataTablePointer + CoreEngineSignedValueC8);
                   SystemTemporaryValueD0 = 0;
-                  CoreEngineSignedValue70 = (long long)(int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
+                  CoreEngineSignedValue70 = (long long)(int)(*(long long *)(SystemDataRegistry + SystemMemoryFunctionOffsetF8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
                   TemporaryBuffer = SystemCharacterStatusBuffer;
                   CharacterStatusBuffer9 = CharacterStatusBuffer8;
                   if (0 < CoreEngineSignedValue70) {
@@ -258090,7 +258090,7 @@ LAB_18020f107:
               (**(code **)(*(long long *)*ContextHandlePointer + 0x38))();
             }
             LOCK();
-            ContextHandleTablePointer = (long long *)(BufferStatus + 0x108);
+            ContextHandleTablePointer = (long long *)(BufferStatus + SystemMemoryFunctionOffset108);
             MemoryBlockIndex = *ContextHandlePointer;
             *ContextHandlePointer = *ContextHandlePointer + 1;
             UNLOCK();
@@ -263590,7 +263590,7 @@ LAB_180216e0c:
           }
         }
         else {
-          ProcessedFloatValue8 = (float)(**(code **)((void *)*ContextHandle + 0x108))(ContextHandle);
+          ProcessedFloatValue8 = (float)(**(code **)((void *)*ContextHandle + SystemMemoryFunctionOffset108))(ContextHandle);
         }
         ProcessSystemEventQueueData(&SystemEventQueueData,SystemValidationStackArray,(double)ProcessedFloatValue8);
         SystemProcessingStatusFlag = &SystemNullTemplate;
@@ -279867,7 +279867,7 @@ void ProcessVectorRegisterOperation(uint64_t ContextHandle,uint64_t OperationBuf
   SystemUnsignedValue6C = 0;
   SystemDataValue1 = 0;
   SystemDataValue2 = 0;
-  (**(code **)(*ContextHandle + 0x108))(ContextHandle,Utf16EndPointer,alStack_a8);
+  (**(code **)(*ContextHandle + SystemMemoryFunctionOffset108))(ContextHandle,Utf16EndPointer,alStack_a8);
   ProcessSystemDataBufferConfiguration(OperationBufferSize,alStack_a8,Utf8SourcePointer);
   if (SystemOperationFlag98._1_1_ == '\0') {
     if (((char)SystemOperationFlag98 == '\0') && (alStack_a8[0] != 0)) {
@@ -281411,7 +281411,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
       FUN_18040cec0(*(long long *)(ContextHandle + 0x140) + UnicodeCodePoint7,
                     lStack_188 + 0xa0 + *(long long *)(LongStackOffset170 + 0x20));
       *(uint8_t *)(*(long long *)(ContextHandle + 0x140) + 0x104 + UnicodeCodePoint7) =
-           *(uint8_t *)(UnicodeCodePoint8 + 0xf8 + *(long long *)(Utf8SourcePointer + 0x24));
+           *(uint8_t *)(UnicodeCodePoint8 + SystemMemoryFunctionOffsetF8 + *(long long *)(Utf8SourcePointer + 0x24));
       *(uint32_t *)(*(long long *)(*(long long *)(ContextHandle + 0x140) + 0x180 + UnicodeCodePoint7) + 0x58) =
            *(uint32_t *)(UnicodeCodePoint8 + 0xfc + *(long long *)(Utf8SourcePointer + 0x24));
       BufferStatus3 = *(long long *)(Utf8SourcePointer + 0x24);
@@ -282046,7 +282046,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       CharacterPointer = (char *)0x180bf7d28;
       SystemMemoryAllocationResult = Utf16Char4;
       do {
-        if (*CharacterPointer == *(char *)(ProcessedCharacter + 0xf8 + MemoryBlockIndex)) {
+        if (*CharacterPointer == *(char *)(ProcessedCharacter + SystemMemoryFunctionOffsetF8 + MemoryBlockIndex)) {
           FUN_180639de0(OperationBufferSize,*(void *)(SystemMemoryAllocationResult * 0x10 + 0x180bf7d20));
           break;
         }
@@ -282068,7 +282068,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       }
       *StringProcessingStatus = *(uint32_t *)(ProcessedCharacter + 0x104 + MemoryBlockIndex);
       OperationBufferSize[1] = OperationBufferSize[1] + 4;
-      *(uint32_t *)OperationBufferSize[1] = *(uint32_t *)(ProcessedCharacter + 0x108 + MemoryBlockIndex);
+      *(uint32_t *)OperationBufferSize[1] = *(uint32_t *)(ProcessedCharacter + SystemMemoryFunctionOffset108 + MemoryBlockIndex);
       OperationBufferSize[1] = OperationBufferSize[1] + 4;
       *(uint32_t *)OperationBufferSize[1] = *(uint32_t *)(ProcessedCharacter + 0x10c + MemoryBlockIndex);
       OperationBufferSize[1] = OperationBufferSize[1] + 4;
@@ -282259,7 +282259,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       CharacterPointer = (char *)0x180bf7d28;
       SystemMemoryAllocationResult = Utf16Char4;
       do {
-        if (*CharacterPointer == *(char *)(ProcessedCharacter + 0xf8 + MemoryBlockIndex)) {
+        if (*CharacterPointer == *(char *)(ProcessedCharacter + SystemMemoryFunctionOffsetF8 + MemoryBlockIndex)) {
           Utf16ConversionContext = FUN_180639de0(Utf16ConversionContext,*(void *)(SystemMemoryAllocationResult * 0x10 + 0x180bf7d20));
           break;
         }
@@ -282281,7 +282281,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
       }
       *StringProcessingStatus = *(uint32_t *)(ProcessedCharacter + 0x104 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
-      *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessedCharacter + 0x108 + MemoryBlockIndex);
+      *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessedCharacter + SystemMemoryFunctionOffset108 + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
       *(uint32_t *)SystemContext[1] = *(uint32_t *)(ProcessedCharacter + 0x10c + MemoryBlockIndex);
       SystemContext[1] = SystemContext[1] + 4;
@@ -282418,7 +282418,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
     ProcessDataStructureSerialization();
     pOperationStatus = (char *)0x180bf7d28;
     do {
-      if (*pOperationStatus == *(char *)(SystemDataTablePointer + 0xf8 + MemoryBlockIndex)) {
+      if (*pOperationStatus == *(char *)(SystemDataTablePointer + SystemMemoryFunctionOffsetF8 + MemoryBlockIndex)) {
         FUN_180639de0();
         break;
       }
@@ -282439,7 +282439,7 @@ void ProcessContextHandleAndCharacterEncodingConversion(uint32_t *ContextHandle,
     }
     *SecondaryProcessingStatusFlag = *(uint32_t *)(SystemDataTablePointer + 0x104 + MemoryBlockIndex);
     SystemContext[1] = SystemContext[1] + 4;
-    *(uint32_t *)SystemContext[1] = *(uint32_t *)(SystemDataTablePointer + 0x108 + MemoryBlockIndex);
+    *(uint32_t *)SystemContext[1] = *(uint32_t *)(SystemDataTablePointer + SystemMemoryFunctionOffset108 + MemoryBlockIndex);
     SystemContext[1] = SystemContext[1] + 4;
     *(uint32_t *)SystemContext[1] = *(uint32_t *)(SystemDataTablePointer + 0x10c + MemoryBlockIndex);
     SystemContext[1] = SystemContext[1] + 4;
@@ -282828,7 +282828,7 @@ LAB_180228e3e:
           }
 LAB_180229003:
           if (IntegerValue9 == 0) {
-            *(uint8_t *)(MemoryBoundaryEnd + 0xf8 + BufferStatus1) = *(uint8_t *)(BufferIndex * 0x10 + 0x180bf7d28);
+            *(uint8_t *)(MemoryBoundaryEnd + SystemMemoryFunctionOffsetF8 + BufferStatus1) = *(uint8_t *)(BufferIndex * 0x10 + 0x180bf7d28);
             break;
           }
         }
@@ -282840,7 +282840,7 @@ LAB_180229003:
       *(uint32_t *)(MemoryBoundaryEnd + 0xfc + BufferStatus1) = **(uint32_t **)(OperationBufferSize + 8);
       BufferIndex = *(long long *)(OperationBufferSize + 8);
       *(uint32_t *)(MemoryBoundaryEnd + 0x104 + BufferStatus1) = *(uint32_t *)(BufferIndex + 4);
-      *(uint32_t *)(MemoryBoundaryEnd + 0x108 + BufferStatus1) = *(uint32_t *)(BufferIndex + 8);
+      *(uint32_t *)(MemoryBoundaryEnd + SystemMemoryFunctionOffset108 + BufferStatus1) = *(uint32_t *)(BufferIndex + 8);
       *(uint32_t *)(MemoryBoundaryEnd + 0x10c + BufferStatus1) = *(uint32_t *)(BufferIndex + 0xc);
       *(uint32_t *)(MemoryBoundaryEnd + 0x110 + BufferStatus1) = *(uint32_t *)(BufferIndex + 0x10);
       *(uint32_t *)(MemoryBoundaryEnd + 0x114 + BufferStatus1) = *(uint32_t *)(BufferIndex + 0x14);

@@ -133,7 +133,7 @@
 #define ExceptionHandlerParameterOffsetFa0 0xfa0         // 异常处理器参数偏移量Fa0 - 用于异常处理器参数存储
 #define ExceptionHandlerParameterOffset4000 4000         // 异常处理器参数偏移量4000 - 用于异常处理器参数存储
 #define ExceptionContextSecondaryCleanupOffset 0xf0            // 异常上下文辅助清理偏移量 - 用于辅助异常上下文的清理操作
-#define ExceptionHandlerFunctionOffset1020 0x1020        // 异常处理器函数偏移量1020 - 用于异常处理器函数指针
+#define ExceptionHandlerFunctionOffset1020 0x1020        // 异常处理器主函数指针偏移量 - 用于存储主要的异常处理函数指针
 #define ExceptionHandlerParameterOffset1010 0x1010       // 异常处理器参数偏移量1010 - 用于异常处理器参数存储
 #define ExceptionHandlerCleanupOffsetFe8 0xfe8          // 异常处理器清理偏移量Fe8 - 用于异常处理器清理操作
 #define ExceptionHandlerStatusOffsetFf0 0xff0           // 异常处理器状态偏移量Ff0 - 用于异常处理器状态检查
@@ -121314,7 +121314,7 @@ void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,Da
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionOffset1020) != (code *)0x0) {
+  if (*(FunctionPointer**)(exceptionContext + ExceptionHandlerFunctionOffset1020) != (code *)0x0) {
     (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerFunctionOffset1020))(exceptionHandlerContext + ExceptionHandlerParameterOffset1010,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffsetFe8) = &SystemTemporaryExceptionHandler;
