@@ -67158,7 +67158,7 @@ StringLengthValidation:
     uStack_338 = 0;
     SystemTemplatePointer = (uint8_t *)0x0;
     iStack_340 = 0;
-    uStack_3e4 = MemoryPoolIndexAdditional;
+    StackMemoryPoolIndex = MemoryPoolIndexAdditional;
     CoreEngineProcessSystemEvent(&puStack_350);
     MemoryAddressMaskPointer = SystemTemplatePointer;
     if (0 < *(int *)(pCharacterStatusBuffer + 2)) {
@@ -67175,12 +67175,12 @@ StringLengthValidation:
     if ((MemoryPoolIndexAdditional & 2) != 0) {
       MemoryPoolIndexAdditional = MemoryPoolIndexAdditional & 0xfffffffd;
       pSystemValue1a8 = &ThreadLocalStorageTemplate;
-      uStack_3e4 = MemoryPoolIndexAdditional;
+      StackMemoryPoolIndex = MemoryPoolIndexAdditional;
     }
     if ((MemoryPoolIndexAdditional & 1) != 0) {
       MemoryPoolIndexAdditional = MemoryPoolIndexAdditional & 0xfffffffe;
       aSystemProcessingStatusFlag[0] = &ThreadLocalStorageTemplate;
-      uStack_3e4 = MemoryPoolIndexAdditional;
+      StackMemoryPoolIndex = MemoryPoolIndexAdditional;
     }
     MemoryPoolIndex7 = (unsigned long long)MemoryPoolIndexAdditional;
     LocalProcessingStatusFlag8 = &SystemNullTemplate;
