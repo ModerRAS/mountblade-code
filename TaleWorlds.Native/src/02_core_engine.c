@@ -231847,7 +231847,7 @@ LAB_180190603:
 
 
 
-uint64_t * FUN_180190630(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+uint64_t * ProcessUtf8ToUtf16Conversion(long long *ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *ContextHandle;
   uint32_t MemoryAllocationIndex;
