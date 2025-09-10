@@ -148,6 +148,18 @@
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
 
+// 系统内存管理常量
+#define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48
+#define SystemMemoryRegionOffset50 0x50                         // 系统内存区域偏移量50
+#define SystemMemoryRegionSize1C 0x1c                           // 系统内存区域大小1C
+#define SystemMemoryDataBufferOffset14 0x14                     // 系统内存数据缓冲区偏移量14
+#define SystemMemoryDataBufferOffset2 0x2                       // 系统内存数据缓冲区偏移量2
+#define SystemMemoryDataBufferOffset30 0x30                     // 系统内存数据缓冲区偏移量30
+#define SystemMemoryDataBufferOffset4C 0x4c                     // 系统内存数据缓冲区偏移量4C
+
+// 数据处理相关常量
+#define DataProcessingMultiplier1C 0x1c                         // 数据处理乘数1C
+
 // 数据验证阈值常量
 #define DataValidationThreshold55 0x55                           // 数据验证阈值55 - 用于数据大小验证
 #define DataValidationThreshold6A 0x6a                           // 数据验证阈值6A - 用于数据大小验证
@@ -38630,10 +38642,10 @@ ValidationLabelB:
     }
   }
 ValidationLabelC:
-  for (systemDataBuffer5 = *(uint64_t *)(systemContext + 0x48);
-      (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
-      (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
-      systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
+  for (systemDataBuffer5 = *(uint64_t *)(systemContext + SystemMemoryRegionOffset48);
+      (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemDataBuffer5 &&
+      (systemDataBuffer5 < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
+      systemDataBuffer5 = systemDataBuffer5 + DataProcessingMultiplier1C) {
     calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
@@ -38827,8 +38839,8 @@ ValidationProcessingLabel:
         *exceptionDataBuffer = *exceptionBuffer6;
         exceptionDataBuffer[1] = systemDataBuffer;
         *(DataWord *)(exceptionDataBuffer + 2) = *(DataWord *)(exceptionBuffer6 + 2);
-        calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + 0x14) + *(float *)(exceptionBuffer6 + 2);
-        *(float *)((int64_t)exceptionDataBuffer + 0x14) = calculatedFloatValue;
+        calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + SystemMemoryDataBufferOffset14) + *(float *)(exceptionBuffer6 + SystemMemoryDataBufferOffset2);
+        *(float *)((int64_t)exceptionDataBuffer + SystemMemoryDataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionDataBuffer + 3) = 1;
         inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
         exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -38886,10 +38898,10 @@ ValidationProcessingLabel:
     }
   }
 ValidationLabelC:
-  for (systemDataBuffer5 = *(uint64_t *)(systemContext + 0x48);
-      (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
-      (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
-      systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
+  for (systemDataBuffer5 = *(uint64_t *)(systemContext + SystemMemoryRegionOffset48);
+      (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemDataBuffer5 &&
+      (systemDataBuffer5 < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
+      systemDataBuffer5 = systemDataBuffer5 + DataProcessingMultiplier1C) {
     calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
@@ -39068,8 +39080,8 @@ ValidationLabelB:
         *exceptionDataBuffer4 = *exceptionDataBuffer5;
         exceptionDataBuffer4[1] = validationOutcome;
         *(DataWord *)(exceptionDataBuffer4 + 2) = *(DataWord *)(exceptionDataBuffer5 + 2);
-        calculatedResultValue = *(float *)((int64_t)exceptionDataBuffer5 + 0x14) + *(float *)(exceptionDataBuffer5 + 2);
-        *(float *)((int64_t)exceptionDataBuffer4 + 0x14) = calculatedResultValue;
+        calculatedResultValue = *(float *)((int64_t)exceptionDataBuffer5 + SystemMemoryDataBufferOffset14) + *(float *)(exceptionDataBuffer5 + SystemMemoryDataBufferOffset2);
+        *(float *)((int64_t)exceptionDataBuffer4 + SystemMemoryDataBufferOffset14) = calculatedResultValue;
         *(ByteFlag *)(exceptionDataBuffer4 + 3) = 1;
         inputParameter8 = *(int *)(StackFrameContext + -0x21);
         exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -39127,10 +39139,10 @@ ValidationLabelB:
     }
   }
 ValidationLabelC:
-  for (systemMemoryBuffer = *(uint64_t *)(systemContext + 0x48);
-      (*(uint64_t *)(systemContext + 0x48) <= systemMemoryBuffer &&
-      (systemMemoryBuffer < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
-      systemMemoryBuffer = systemMemoryBuffer + 0x1c) {
+  for (systemMemoryBuffer = *(uint64_t *)(systemContext + SystemMemoryRegionOffset48);
+      (*(uint64_t *)(systemContext + SystemMemoryRegionOffset48) <= systemMemoryBuffer &&
+      (systemMemoryBuffer < (int64_t)*(int *)(systemContext + SystemMemoryRegionOffset50) * DataProcessingMultiplier1C + *(uint64_t *)(systemContext + SystemMemoryRegionOffset48)));
+      systemMemoryBuffer = systemMemoryBuffer + DataProcessingMultiplier1C) {
     calculatedResultValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
@@ -39376,7 +39388,7 @@ FinalOperationLabel:
     validationStatus = 0xd;
     goto ProcessCheckpointDataTransfer;
   }
-  *(DataWord *)(operationBase + 0x30) = memoryRegionBase;
+  *(DataWord *)(operationBase + SystemMemoryDataBufferOffset30) = memoryRegionBase;
   validationStatus = dataFlags;
 OperationLabelD:
   if ((int)validationStatus != 0) {
@@ -42691,7 +42703,7 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      operationResult = ProcessDataWithValidationA1(dataBuffer,operationBase + 0x30,operationResult,operationBase);
+      operationResult = ProcessDataWithValidationA1(dataBuffer,operationBase + SystemMemoryDataBufferOffset30,operationResult,operationBase);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -131492,22 +131504,34 @@ void ConfigureExceptionHandlerAtOffset3A8(DataBuffer operationBase, int64_t data
 
 DataWord SystemDataWord;
 
-// 函数: void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
-// 功能：处理工具系统参数1，执行状态检查和操作
-// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
-// 返回值：无
-void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext)
-
+/**
+ * @brief 处理工具系统参数1，执行状态检查和重置操作
+ * 
+ * 该函数负责处理工具系统的第一个参数，执行系统状态检查
+ * 并在满足条件时重置系统标志。用于维护系统状态的稳定性。
+ * 
+ * @param systemContextHandle 系统上下文句柄，包含系统状态信息
+ * @param dataContext 数据上下文，包含操作参数和状态数据
+ * 
+ * @note 原始函数名：UtilityProcessParameter1
+ * @see CheckOperationResult, ResetSystemFlag
+ */
+void ProcessUtilitySystemParameter1(DataBuffer systemContextHandle, int64_t dataContext)
 {
-  char statusFlag;
-  int operationResult;
+  char systemStatusFlag;
+  int operationResultCode;
   
-  statusFlag = *(char *)(dataContext + 0x40);
-  operationResult = CheckOperationResult();
-  if ((operationResult != 0) && (statusFlag == '\0')) {
-    LOCK();
+  // 获取系统状态标志
+  systemStatusFlag = *(char *)(dataContext + SystemDataOperationOffset40);
+  
+  // 检查操作结果
+  operationResultCode = CheckOperationResult();
+  
+  // 如果操作结果非零且状态标志为空，则重置系统标志
+  if ((operationResultCode != 0) && (systemStatusFlag == '\0')) {
+    AcquireSystemLock();
     SystemResetFlag = 0;
-    UNLOCK();
+    ReleaseSystemLock();
   }
   return;
 }
@@ -131516,23 +131540,37 @@ void UtilityProcessParameter1(DataBuffer systemContextHandle,int64_t dataContext
 
 
 
-// 函数: void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
-// 功能：处理工具系统参数2，执行状态检查和操作
-// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
-// 返回值：无
-void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext)
-
+/**
+ * @brief 处理工具系统参数2，执行系统状态检查和重置操作
+ * 
+ * 该函数负责处理工具系统的第二个参数，首先检查系统状态，
+ * 然后根据检查结果执行相应的重置操作。用于确保系统运行状态的稳定性。
+ * 
+ * @param systemContextHandle 系统上下文句柄，包含系统状态信息
+ * @param dataContext 数据上下文，包含操作参数和状态数据
+ * 
+ * @note 原始函数名：UtilityProcessParameter2
+ * @see CheckSystemStatus, CheckOperationResult, ResetSystemFlag
+ */
+void ProcessUtilitySystemParameter2(DataBuffer systemContextHandle, int64_t dataContext)
 {
-  char statusFlag;
-  int systemCheckResult;
+  char systemStatusCode;
+  int systemValidationResult;
   
+  // 检查当前系统状态
   CheckSystemStatus();
-  statusFlag = *(char *)(dataContext + SystemFloatDataOffset38);
-  systemCheckResult = CheckOperationResult();
-  if ((systemCheckResult != 0) && (statusFlag == '\0')) {
-    LOCK();
+  
+  // 获取系统状态代码
+  systemStatusCode = *(char *)(dataContext + SystemFloatDataOffset38);
+  
+  // 验证系统操作结果
+  systemValidationResult = CheckOperationResult();
+  
+  // 如果系统验证通过且状态代码为空，则重置系统标志
+  if ((systemValidationResult != 0) && (systemStatusCode == '\0')) {
+    AcquireSystemLock();
     SystemResetFlag = 0;
-    UNLOCK();
+    ReleaseSystemLock();
   }
   return;
 }
@@ -131540,15 +131578,29 @@ void UtilityProcessParameter2(DataBuffer systemContextHandle,int64_t dataContext
 
 
 
-// 函数: void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
-// 功能：执行工具系统操作，处理数据和函数调用
-// 参数：systemContextHandle - 系统上下文句柄，dataContext - 数据上下文
-// 返回值：无
-void ExecuteUtilityOperation(DataBuffer *systemContextHandle,int64_t dataContext)
-
+/**
+ * @brief 执行工具系统操作，处理数据和函数调用
+ * 
+ * 该函数负责执行工具系统的核心操作，通过调用参数化的操作函数
+ * 来处理数据缓冲区和验证任务。它是工具系统的主要执行入口点。
+ * 
+ * @param systemContextHandle 系统上下文句柄指针，包含系统状态和配置信息
+ * @param dataContext 数据上下文，包含操作所需的参数和数据缓冲区
+ * 
+ * @note 原始函数名：ExecuteUtilityOperation
+ * @see ExecuteUtilityOperationWithParams, ProcessSystemValidation
+ */
+void ExecuteUtilityOperation(DataBuffer *systemContextHandle, int64_t dataContext)
 {
-  ExecuteUtilityOperationWithParams(*(DataBuffer *)(dataContext + ResourceValidationFlagOffset60),*(DataWord *)(dataContext + 0x68),
-                *(DataBuffer *)(dataContext + 0x70),ProcessSystemValidation,*(DataWord *)*systemContextHandle,systemContextHandle);
+  // 从数据上下文中提取参数并执行工具系统操作
+  ExecuteUtilityOperationWithParams(
+    *(DataBuffer *)(dataContext + ResourceValidationFlagOffset60),    // 资源验证标志参数
+    *(DataWord *)(dataContext + SystemDataBufferOffset68),           // 数据字参数
+    *(DataBuffer *)(dataContext + SystemDataBufferOffset70),        // 数据缓冲区参数
+    ProcessSystemValidation,                                         // 系统验证函数
+    *(DataWord *)*systemContextHandle,                               // 系统上下文数据字
+    systemContextHandle                                              // 系统上下文句柄
+  );
   return;
 }
 

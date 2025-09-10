@@ -25,6 +25,66 @@
 #define DestroyBasicIostreamFinal DestroyInputOutputStreamObjectFinal
 #define InitializeBasicIostream InitializeInputOutputStreamObject
 
+// 核心引擎函数语义化宏定义
+#define FUN_18017b070 ProcessSystemBufferAllocation              // 处理系统缓冲区分配
+#define FUN_18017b240 InitializeSystemContext                    // 初始化系统上下文
+#define FUN_18017b259 CleanupSystemContext                       // 清理系统上下文
+#define FUN_18017b28d ResetSystemMemoryManager                   // 重置系统内存管理器
+#define FUN_18017b2ed ReleaseSystemContext                       // 释放系统上下文
+#define FUN_18017b400 ProcessSystemMemoryOperation               // 处理系统内存操作
+#define FUN_18017b480 HandleSystemContextTransfer                // 处理系统上下文传输
+#define FUN_18017b6e0 ConvertUtf8ToUtf16Context                 // 转换UTF-8到UTF-16上下文
+#define FUN_180186430 ProcessSystemOperationBuffer              // 处理系统操作缓冲区
+#define FUN_1801864e0 HandleSystemContextOperation              // 处理系统上下文操作
+#define FUN_1801865a0 FinalizeSystemContext                     // 完成系统上下文处理
+#define FUN_1801879d0 ExecuteSystemBufferOperation              // 执行系统缓冲区操作
+#define FUN_180187a30 ProcessSystemDataTransfer                 // 处理系统数据传输
+#define FUN_180187aa0 HandleSystemMemoryAllocation              // 处理系统内存分配
+#define FUN_180187b40 ManageSystemResourceOperation            // 管理系统资源操作
+#define FUN_180187bd0 ReleaseSystemResources                    // 释放系统资源
+#define FUN_180187c00 FinalizeSystemBufferOperation             // 完成系统缓冲区操作
+#define FUN_180187cd0 CleanupSystemOperations                   // 清理系统操作
+#define FUN_18018b8c0 ValidateSystemContext                      // 验证系统上下文
+#define FUN_18018b9e0 ProcessSystemMemoryAllocation              // 处理系统内存分配
+#define FUN_18018bbd0 HandleSystemContextValidation               // 处理系统上下文验证
+#define FUN_18018bd0d ProcessSystemHandleOperation                // 处理系统句柄操作
+#define FUN_18018bd5f ResetSystemDataProcessing                  // 重置系统数据处理
+#define FUN_18018c050 ExecuteSystemStringEncodingOperation       // 执行系统字符串编码操作
+#define FUN_18018cef0 ProcessSystemUnicodeConversion              // 处理系统Unicode转换
+#define FUN_18018e0f0 HandleSystemStringEncoding                 // 处理系统字符串编码
+#define FUN_18018f6a0 ProcessSystemContextOperation              // 处理系统上下文操作
+#define FUN_18018fb50 InitializeSystemDataProcessor              // 初始化系统数据处理器
+#define FUN_18019067c ValidateSystemHandle                       // 验证系统句柄
+#define FUN_180190743 ResetSystemOperationState                  // 重置系统操作状态
+#define FUN_180190780 ReleaseSystemHandle                        // 释放系统句柄
+#define FUN_1801907f0 ProcessSystemByteOperation                // 处理系统字节操作
+#define FUN_180190a20 InitializeSystemContextTransfer            // 初始化系统上下文传输
+#define FUN_180190a35 FinalizeSystemContextTransfer              // 完成系统上下文传输
+#define FUN_180190a4d ResetSystemTransferState                   // 重置系统传输状态
+#define FUN_180190ad0 InitializeSystemMemoryManager              // 初始化系统内存管理器
+#define FUN_180190adc CleanupSystemMemoryManager                 // 清理系统内存管理器
+#define FUN_180190ae0 ProcessSystemMemoryTransfer                // 处理系统内存传输
+#define FUN_180190c90 HandleSystemDataProcessing                 // 处理系统数据处理
+#define FUN_180190c9f FinalizeSystemDataProcessing                // 完成系统数据处理
+#define FUN_180190cc0 InitializeSystemContextManager              // 初始化系统上下文管理器
+#define FUN_180190e00 ResetSystemContextManager                  // 重置系统上下文管理器
+#define FUN_180190e0a CleanupSystemContextManager                 // 清理系统上下文管理器
+#define FUN_180190e30 ProcessSystemContextData                    // 处理系统上下文数据
+#define FUN_180190fa0 HandleSystemContextTransfer                 // 处理系统上下文传输
+#define FUN_180190fbb FinalizeSystemContextTransfer              // 完成系统上下文传输
+#define FUN_1801911b1 ResetSystemStringEncoding                  // 重置系统字符串编码
+#define FUN_1801912b0 ProcessSystemStringEncoding               // 处理系统字符串编码
+#define FUN_180191d40 ExecuteSystemDataValidation                 // 执行系统数据验证
+#define FUN_180191df0 ValidateSystemContext                       // 验证系统上下文
+#define FUN_180191ea0 InitializeSystemValidator                  // 初始化系统验证器
+#define FUN_1801934d0 ProcessSystemMemoryValidation              // 处理系统内存验证
+#define FUN_18013f220 CreateSystemContext                         // 创建系统上下文
+#define FUN_180193de0 ResetSystemDataValidator                    // 重置系统数据验证器
+#define FUN_180193e88 HandleSystemDataEncoding                    // 处理系统数据编码
+#define FUN_1801940f0 InitializeSystemDataProcessing              // 初始化系统数据处理
+#define FUN_180194530 ProcessSystemSignedValue                    // 处理系统有符号值
+#define FUN_180194350 FinalizeSystemContextOperation              // 完成系统上下文操作
+
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
 #define ContextHandleTableBaseOffset 0x2003d0
@@ -216769,7 +216829,7 @@ void CleanupSystemDataTable(long long *ContextHandle
 
 
 
-// 函数: long long * FUN_18017b070(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+// 函数: long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
  * @brief 处理系统缓冲区分配和内存管理
  * 
@@ -216789,8 +216849,8 @@ void CleanupSystemDataTable(long long *ContextHandle
  * 
  * @note 原始函数名：FUN_18017b070
  */
-#define ProcessSystemBufferAllocationAndMemoryManagement FUN_18017b070
-long long * ProcessSystemBufferAllocationAndMemoryManagement(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+#define AllocateWindowContextBuffer FUN_18017b070
+long long * AllocateWindowContextBuffer(long long *ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint Utf16Char;
   long long *BufferAllocationState;
@@ -249898,43 +249958,73 @@ joined_r0x0001802045de:
 
 
 
-uint64_t * FUN_180204a00(uint64_t *ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 重置和清理系统上下文资源
+ * 
+ * 该函数负责重置系统上下文句柄并清理相关资源。
+ * 主要功能包括：
+ * - 重置上下文句柄的值
+ * - 释放相关的缓冲区资源
+ * - 清理内存分配状态
+ * - 调用相应的清理函数
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * 
+ * @return 返回处理后的上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180204a00
+ */
+uint64_t * ResetSystemContextResources(uint64_t *ContextHandle,uint64_t *ContextHandleSize
 {
-  long long *ContextHandle;
+  long long *ResourceHandle;
   long long *BufferAllocationState;
   
+  // 重置主上下文句柄
   ContextHandle[1] = 0;
   ContextHandle[2] = 0;
   *ContextHandle = *ContextHandleSize;
-  ContextHandle = (long long *)OperationBufferSize[1];
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
+  
+  // 处理第一个资源句柄
+  ResourceHandle = (long long *)OperationBufferSize[1];
+  if (ResourceHandle != (long long *)0x0) {
+    (**(code **)(*ResourceHandle + 0x28))(ResourceHandle);
   }
+  
+  // 清理第一个缓冲区分配状态
   BufferAllocationState = (long long *)ContextHandle[1];
   ContextHandle[1] = ContextHandle;
   if (BufferAllocationState != (long long *)0x0) {
     (**(code **)(*BufferAllocationState + 0x38))();
   }
-  ContextHandle = (long long *)OperationBufferSize[2];
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
+  
+  // 处理第二个资源句柄
+  ResourceHandle = (long long *)OperationBufferSize[2];
+  if (ResourceHandle != (long long *)0x0) {
+    (**(code **)(*ResourceHandle + 0x28))(ResourceHandle);
   }
+  
+  // 清理第二个缓冲区分配状态
   BufferAllocationState = (long long *)ContextHandle[2];
   ContextHandle[2] = ContextHandle;
   if (BufferAllocationState != (long long *)0x0) {
     (**(code **)(*BufferAllocationState + 0x38))();
   }
+  
+  // 重置上下文大小并清理操作缓冲区
   *ContextHandleSize = 0;
-  ContextHandle = (long long *)OperationBufferSize[1];
+  ResourceHandle = (long long *)OperationBufferSize[1];
   OperationBufferSize[1] = 0;
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x38))();
+  if (ResourceHandle != (long long *)0x0) {
+    (**(code **)(*ResourceHandle + 0x38))();
   }
-  ContextHandle = (long long *)OperationBufferSize[2];
+  
+  ResourceHandle = (long long *)OperationBufferSize[2];
   OperationBufferSize[2] = 0;
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x38))();
+  if (ResourceHandle != (long long *)0x0) {
+    (**(code **)(*ResourceHandle + 0x38))();
   }
+  
   return ContextHandle;
 }
 
