@@ -625,6 +625,21 @@
 
 // 句柄管理相关常量
 #define HandleCloseOffset68 0x68                                 // 句柄关闭偏移量68
+
+// 数据上下文偏移量常量
+#define DataContextSystemConfigOffset 0x15d8                     // 数据上下文系统配置偏移量
+#define DataContextConfigIndexOffset 0x15e0                      // 数据上下文配置索引偏移量
+#define DataContextConfigStatusOffset 0x15e8                     // 数据上下文配置状态偏移量
+
+// 异常上下文指针偏移量常量
+#define ExceptionContextPointerOffset1600 0x1600                 // 异常上下文指针偏移量1600
+#define ExceptionContextPointerOffset1698 0x1698                 // 异常上下文指针偏移量1698
+
+// 异常处理器回调偏移量常量
+#define ExceptionHandlerCallbackOffset10D0 0x10d0               // 异常处理器回调偏移量10D0
+#define ExceptionHandlerCallbackOffset10C0 0x10c0               // 异常处理器回调偏移量10C0
+#define ExceptionHandlerTempCallbackOffset1098 0x1098           // 异常处理器临时回调偏移量1098
+#define ExceptionHandlerStatusOffset10A0 0x10a0                 // 异常处理器状态偏移量10A0
 #define DestinationContextOffset1BC 0x1bc
 
 // 异常处理回调偏移量常量
