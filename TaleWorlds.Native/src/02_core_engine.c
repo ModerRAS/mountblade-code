@@ -250581,7 +250581,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                       IntegerValue = CharacterStatusBuffer2[-0x40];
                       CharacterEncodingFlags = CharacterEncodingFlags & 0xffffff00;
                       SystemPointerBuffer1d0 = CharacterStatusBuffer2;
-                      FUN_180204b50(ContextHandle,&uStack_218,IntegerValue9,0,*(uint32_t *)(SystemDataTablePointer + 0x184),
+                      ProcessFloatingPointContextHandleAndEncoding(ContextHandle,&uStack_218,IntegerValue9,0,*(uint32_t *)(SystemDataTablePointer + 0x184),
                                     CharacterEncodingFlags,1);
                       if (iStack_210 == -1) {
                         EncodingValidationResult = (int)(((long long)stackPointer1B0 - (long long)ConfigurationString) / 0x18);
@@ -250612,7 +250612,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                               *(uint32_t *)(StringProcessingStatus + 2) = *SystemEventTemplatePointer;
                               *(uint64_t **)(SystemEventTemplatePointer + 2) = StringProcessingStatus;
                               *(uint64_t **)(SystemEventTemplatePointer + 4) = StringProcessingStatus;
-                              StringProcessingStatus = (void *                                       FUN_180204b50(ContextHandle,SystemStackRegisterFlagB0,IntegerValue9,0,
+                              StringProcessingStatus = (void *                                       ProcessFloatingPointContextHandleAndEncoding(ContextHandle,SystemStackRegisterFlagB0,IntegerValue9,0,
                                                      *(uint32_t *)(SystemMemoryBlock130 + 0x184),
                                                      CharacterEncodingFlags & 0xffffff00,1);
                               uStack_218 = *StringProcessingStatus;
@@ -250639,7 +250639,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                           } while (EncodingConversionResult < EncodingValidationResult);
                         }
                         if (iStack_210 == -1) {
-                          StringProcessingStatus = (void *                                   FUN_180204b50(ContextHandle,SystemOperationBuffer,IntegerValue9,0,
+                          StringProcessingStatus = (void *                                   ProcessFloatingPointContextHandleAndEncoding(ContextHandle,SystemOperationBuffer,IntegerValue9,0,
                                                  *(uint32_t *)(SystemDataTablePointer + 0x184),1,1);
                           uStack_218 = *StringProcessingStatus;
                           iStack_210 = *(int *)(StringProcessingStatus + 1);
@@ -250805,7 +250805,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                 if (((CharacterStatusBuffer2[5] == IntegerValue9) && (CharacterStatusBuffer2[2] != -1)) && (CharacterStatusBuffer2[4] == IntegerValue6)) {
                   IntegerValue = (*(byte *)(CharacterStatusBuffer2 + 1) & 1) * 2 + 2;
                   CharacterEncodingFlags = CharacterEncodingFlags & 0xffffff00;
-                  FUN_180204b50(ContextHandle,&SystemUintBuffer238,IntegerValue9,0,*CharacterStatusBuffer2,CharacterEncodingFlags,1);
+                  ProcessFloatingPointContextHandleAndEncoding(ContextHandle,&SystemUintBuffer238,IntegerValue9,0,*CharacterStatusBuffer2,CharacterEncodingFlags,1);
                   if (iStack_230 == -1) {
                     EncodingValidationResult = (int)(((long long)puStack_190 - (long long)ProcessingContextPointer) / 0x18);
                     IntegerValue7 = 0;
@@ -250834,7 +250834,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                           *(uint32_t *)(StringProcessingStatus + 2) = *SystemEventTemplatePointer;
                           *(uint64_t **)(SystemEventTemplatePointer + 2) = StringProcessingStatus;
                           *(uint64_t **)(SystemEventTemplatePointer + 4) = StringProcessingStatus;
-                          StringProcessingStatus = (void *                                   FUN_180204b50(ContextHandle,StackBuffer80,IntegerValue9,0,*CharacterStatusBuffer2,
+                          StringProcessingStatus = (void *                                   ProcessFloatingPointContextHandleAndEncoding(ContextHandle,StackBuffer80,IntegerValue9,0,*CharacterStatusBuffer2,
                                                  CharacterEncodingFlags & 0xffffff00,1);
                           SystemUintBuffer238 = *StringProcessingStatus;
                           iStack_230 = *(int *)(StringProcessingStatus + 1);
@@ -250860,7 +250860,7 @@ void ProcessSystemMemoryAllocationAndCleanup(uint64_t SystemContextHandle,unsign
                       } while (EncodingConversionResult < EncodingValidationResult);
                     }
                     if (iStack_230 == -1) {
-                      StringProcessingStatus = (void *)FUN_180204b50(ContextHandle,aStackProcessingValue,IntegerValue9,0,*CharacterStatusBuffer2,1,1                      ;
+                      StringProcessingStatus = (void *)ProcessFloatingPointContextHandleAndEncoding(ContextHandle,aStackProcessingValue,IntegerValue9,0,*CharacterStatusBuffer2,1,1                      ;
                       SystemUintBuffer238 = *StringProcessingStatus;
                       iStack_230 = *(int *)(StringProcessingStatus + 1);
                       uStack_22c = *(uint32_t *)((long long)StringProcessingStatus + 0xc);
@@ -251258,7 +251258,7 @@ uint64_t * FUN_1802064e0(long long ContextHandle,uint64_t *ContextHandleSize,uin
   iStack_158 = EncodingValidationResult;
   piStack_118 = pComputedResult;
   piStack_110 = ReferenceCountPointer;
-  TemporaryBuffer = (void *)FUN_180204b50(MemoryPoolBlockSize,aProcessingCounter,(InputDataLength == 4) + '\x0e',SystemCheckResult);
+  TemporaryBuffer = (void *)ProcessFloatingPointContextHandleAndEncoding(MemoryPoolBlockSize,aProcessingCounter,(InputDataLength == 4) + '\x0e',SystemCheckResult);
   *(void *)ReferenceCountPointer = *TemporaryBuffer;
   pComputedResult[4] = *(int *)(TemporaryBuffer + 1);
   pComputedResult[5] = *(int *)((long long)TemporaryBuffer + 0xc);
@@ -251580,7 +251580,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t ContextHandle,long lon
         }
         else {
           InputDataLength = CharacterStatusBuffer[-0x40];
-          FUN_180204b50(_SystemFloatTableAddress,aiStack_50,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
+          ProcessFloatingPointContextHandleAndEncoding(_SystemFloatTableAddress,aiStack_50,*TemporaryBuffer,*(char *)(OperationBufferSize + 0x180),IntegerValue,1,1);
           FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),SecondaryContextPointer,aiStack_50[0] * InputDataLength,
                         *(void *)(*(long long *)(Utf8SourcePointer + SystemChecksum * 8) + 0x10),InputDataLength * IntegerValue,0);
           FUN_1802075c0(OperationBufferSize,aiStack_50,ProcessingStatusFlag,*CharacterStatusBuffer,InputDataLength);
@@ -251686,7 +251686,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *ContextHandle,int *
   else {
     FUN_180204e40(_SystemFloatTableAddress,OperationBufferSize + 2);
     IntegerValue = (*(byte *)(OperationBufferSize + 1) & 1) * 2 + 2;
-    CalculatedCodePoint = FUN_180204b50(CalculatedCodePoint,aProcessingCounter,(*(byte *)(OperationBufferSize + 1) & 1) + 0xe,(char)OperationBufferSize[8],
+    CalculatedCodePoint = ProcessFloatingPointContextHandleAndEncoding(CalculatedCodePoint,aProcessingCounter,(*(byte *)(OperationBufferSize + 1) & 1) + 0xe,(char)OperationBufferSize[8],
                           *ContextHandleSize,1,1);
     FUN_180206260(OperationBufferSize + 2,CalculatedCodePoint);
     if (plStack_10 != (long long *)0x0) {
