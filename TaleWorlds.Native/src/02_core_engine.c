@@ -2245,6 +2245,16 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationVariantB FUN_1800ba230     // 处理系统内存分配变体B
 #define ProcessSystemMemoryPoolCleanup FUN_1802ab0c0            // 处理系统内存池清理
 
+// 上下文句柄和系统缓冲区管理函数语义化映射
+#define ProcessContextHandleAndUtfConversion FUN_1801879d0     // 处理上下文句柄和UTF转换操作
+#define ProcessContextHandleAndCharacterEncodingConversion FUN_180187a30  // 处理上下文句柄和字符编码转换操作
+#define ProcessContextHandleAndDataBufferManagement FUN_180187aa0      // 处理上下文句柄和数据缓冲区管理操作
+#define ProcessContextHandleAndSystemBufferOperations FUN_180187b40    // 处理上下文句柄和系统缓冲区操作
+#define ProcessContextHandleMemoryManagement FUN_180187bd0            // 处理上下文句柄的内存管理操作
+#define ProcessContextHandleAndSystemResourceManagement FUN_180187c00  // 处理上下文句柄和系统资源管理操作
+#define ProcessContextHandleResourceCleanup FUN_180187cd0            // 处理上下文句柄的资源清理操作
+#define GetMemoryPoolBlockSizePointer FUN_18018ca20                // 获取内存池块大小指针
+
 // 系统内存管理和数据清理函数语义化映射
 #define ReleaseSystemMemoryRegistry FUN_1800b3cc0               // 释放系统内存注册表
 #define ResetSystemDataPointers FUN_1800d7810                   // 重置系统数据指针
@@ -225881,6 +225891,20 @@ void ProcessCharacterTableAndUnicodeAdvancedCalculation(long long *ContextHandle
 
 // 函数: void FUN_180187bd0(long long *ContextHandle)
 /**
+ * @brief 处理上下文句柄的内存管理操作
+ * 
+ * 该函数负责处理上下文句柄的内存管理操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存分配和释放
+ * - 验证上下文句柄的有效性
+ * - 管理内存资源的清理
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * 
+ * @note 原始函数名：FUN_180187bd0
+ */
+#define ProcessContextHandleMemoryManagement FUN_180187bd0
+/**
  * @brief 处理字符代码指针和函数调用
  * 
  * 该函数负责处理字符代码指针和函数调用，主要功能包括：
@@ -225908,6 +225932,23 @@ void ProcessContextHandlePointerAndFunctionCall(long long *ContextHandle)
 
 
 // 函数: void FUN_180187c00(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理上下文句柄和系统资源管理操作
+ * 
+ * 该函数负责处理上下文句柄、操作缓冲区大小和系统资源管理操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存管理
+ * - 管理系统资源的分配和释放
+ * - 验证数据缓冲区的有效性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187c00
+ */
+#define ProcessContextHandleAndSystemResourceManagement FUN_180187c00
 /**
  * @brief 处理UTF-16字符和内存块管理
  * 
@@ -262003,7 +262044,20 @@ uint64_t ExecuteSystemContextFloatingPointCalculationAndMatrixTransform(uint64_t
 
 
 
-uint64_t FUN_180214b09(float *ContextHandle,float *ContextHandleSize
+/**
+ * @brief 浮点数据归一化和处理函数
+ * 
+ * 该函数负责处理浮点数据并进行归一化操作，包括：
+ * - 处理浮点数组的批量操作
+ * - 执行浮点值的归一化计算
+ * - 更新上下文中的浮点数据
+ * - 管理浮点值的范围和边界
+ * 
+ * @param ContextHandle 浮点数据上下文指针
+ * @param ContextHandleSize 浮点数据大小指针
+ * @return uint64_t 返回处理结果状态码
+ */
+uint64_t ProcessAndNormalizeFloatData(float *ContextHandle,float *ContextHandleSize
 {
   // 变量语义化定义
   float *pSystemContextPrimaryFloat;                       // 系统上下文主浮点指针
@@ -262097,7 +262151,20 @@ uint64_t FUN_180214b09(float *ContextHandle,float *ContextHandleSize
 
 
 
-uint64_t FUN_180214b21(float *ContextHandle,float *ContextHandleSize
+/**
+ * @brief 浮点数据距离计算和处理函数
+ * 
+ * 该函数负责处理浮点数据并计算距离值，包括：
+ * - 浮点数据的批量处理
+ * - 距离值的计算和更新
+ * - 内存偏移量管理
+ * - 系统寄存器状态维护
+ * 
+ * @param ContextHandle 浮点数据上下文指针
+ * @param ContextHandleSize 浮点数据大小指针
+ * @return uint64_t 返回处理结果状态码
+ */
+uint64_t ProcessFloatDataAndCalculateDistance(float *ContextHandle,float *ContextHandleSize
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -265569,7 +265636,14 @@ LAB_1802186de:
 
 
 
-long long FUN_180218724(void
+/**
+ * @brief 获取系统上下文偏移量
+ * 
+ * 该函数返回系统上下文的固定偏移量，用于内存访问和系统配置
+ * 
+ * @return long long 返回系统上下文偏移量
+ */
+long long GetSystemContextOffset(void
 {
   long long SystemContext;
   
@@ -265579,7 +265653,17 @@ long long FUN_180218724(void
 
 
 
-uint64_t * FUN_180218739(void
+/**
+ * @brief 获取系统事件模板指针
+ * 
+ * 该函数负责获取系统事件模板指针，包括：
+ * - 系统数据节点的遍历
+ * - 字符限制的比较和验证
+ * - 事件模板的搜索和返回
+ * 
+ * @return uint64_t* 返回系统事件模板指针
+ */
+uint64_t * GetSystemEventTemplatePointer(void
 {
   long long MainCalculationResult;
   void *SystemContext;
@@ -265685,7 +265769,21 @@ LAB_18021878d:
 
 
 
-long long FUN_180218920(long long *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理UTF16字符编码和转换
+ * 
+ * 该函数负责处理UTF16字符的编码转换，包括：
+ * - UTF16字符的处理和验证
+ * - 内存边界检查和管理
+ * - 编码转换结果的计算
+ * - 系统验证函数的调用
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @return long long 返回编码转换结果
+ */
+long long ProcessUtf16CharacterEncoding(long long *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
 {
   unsigned long long Utf16Char;
   code *SystemValidationFunction;
@@ -265749,7 +265847,22 @@ long long FUN_180218920(long long *ContextHandle,uint64_t *ContextHandleSize,uin
 
 
 
-long long FUN_180218a80(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF8到UTF16的字符转换
+ * 
+ * 该函数负责处理UTF8到UTF16的字符转换，包括：
+ * - UTF8源指针和UTF16结束指针的处理
+ * - 字符编码转换的核心逻辑
+ * - 上下文和操作缓冲区的管理
+ * - 转换结果的验证和返回
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return long long 返回转换结果
+ */
+long long ProcessUtf8ToUtf16Conversion(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long MainCalculationResult;
   uint MemoryPoolIndex;
@@ -266773,7 +266886,21 @@ LAB_180219bd7:
 
 
 
-long long FUN_180219d60(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF8字符数据的系统函数
+ * 
+ * 该函数负责处理UTF8字符数据，包括：
+ * - UTF8字符的读取和解析
+ * - 上下文和缓冲区的管理
+ * - 字符数据的验证和处理
+ * - 系统状态的更新和维护
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return long long 返回处理结果
+ */
+long long ProcessUtf8CharacterData(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
   uint Utf16Char;
   long long *BufferAllocationStatus;
@@ -266810,7 +266937,21 @@ long long FUN_180219d60(long long ContextHandle,long long OperationBufferSize,lo
 
 
 
-long long FUN_180219d98(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF8字符数据的验证函数
+ * 
+ * 该函数负责处理UTF8字符数据的验证，包括：
+ * - UTF8字符的验证和检查
+ * - 操作缓冲区大小的管理
+ * - 上下文状态的处理
+ * - 验证结果的返回
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return long long 返回验证结果
+ */
+long long ValidateUtf8CharacterData(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
 {
   uint Utf16Char;
   long long *BufferAllocationStatus;

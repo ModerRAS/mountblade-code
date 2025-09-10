@@ -2547,6 +2547,19 @@
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
+
+// 复杂数据处理函数专用常量
+#define CharacterValidationOffset7 7                       // 字符验证偏移量7
+#define CharacterComparisonOffset3 3                      // 字符比较偏移量3
+#define CharacterMatchStepSize 2                           // 字符匹配步长
+#define StringComparisonStartOffset1 1                     // 字符串比较起始偏移量1
+#define NullPointerValue 0x0                               // 空指针值
+#define DataMask24Bits 0xffffff                            // 24位数据掩码
+#define AddressMultiplier8 8                               // 地址乘数8
+#define OperationParameterIndex4 4                          // 操作参数索引4
+#define OperationParameterIndex2 2                          // 操作参数索引2
+#define OperationParameterIndex3 3                          // 操作参数索引3
+#define ByteShift24Bits 0x18                              // 24位位移值
 #define ExceptionHandlerTempCallbackOffsetEA8 0xea8     // 异常处理器临时回调偏移量EA8
 #define ExceptionHandlerTempCallbackOffsetE70 0xe70     // 异常处理器临时回调偏移量E70
 #define ExceptionHandlerTempCallbackOffsetE78 0xe78     // 异常处理器临时回调偏移量E78
@@ -5179,7 +5192,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数必须在系统启动早期调用，确保内存管理子系统正常工作
  * @see ExecuteMemoryOperationAndValidation, CreateExceptionDataBuffer
  */
-#define InitializeSystemMemoryPoolA0 InitializeSystemMemoryPoolA0
+#define InitializeSystemMemoryPoolA0 FUN_180046860
 
 /**
  * @brief 初始化系统内存池并配置缓存
@@ -9992,35 +10005,35 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089b813 - 内存释放函数A0
 // 功能：释放内存并返回释放结果
-#define FreeMemoryA0 FUN_18089b813
+#define FreeMemoryA0 FreeMemoryWithSizeValidation
 
 // 原始函数名：FUN_18089b86d - 内存复制函数A0
 // 功能：复制内存并返回复制结果
-#define CopyMemoryA0 FUN_18089b86d
+#define CopyMemoryA0 CopyMemoryWithBoundsChecking
 
 // 原始函数名：FUN_18089b896 - 内存移动函数A0
 // 功能：移动内存并返回移动结果
-#define MoveMemoryA0 FUN_18089b896
+#define MoveMemoryA0 MoveMemoryWithOverlapProtection
 
 // 原始函数名：FUN_18089bd70 - 内存验证函数A0
 // 功能：验证内存并返回验证结果
-#define ValidateMemoryA0 FUN_18089bd70
+#define ValidateMemoryA0 ValidateMemoryWithSecurityChecks
 
 // 原始函数名：FUN_18089c030 - 内存初始化函数A0
 // 功能：初始化内存并返回初始化结果
-#define InitializeMemoryA0 FUN_18089c030
+#define InitializeMemoryA0 InitializeMemoryWithPattern
 
 // 原始函数名：FUN_18089c190 - 内存清零函数A0
 // 功能：清零内存并返回清零结果
-#define ZeroMemoryA0 FUN_18089c190
+#define ZeroMemoryA0 ZeroMemoryWithSecurityClear
 
 // 原始函数名：FUN_18089c2d8 - 内存比较函数A0
 // 功能：比较内存并返回比较结果
-#define CompareMemoryA0 FUN_18089c2d8
+#define CompareMemoryA0 CompareMemoryWithOptimization
 
 // 原始函数名：FUN_18089c630 - 内存查找函数A0
 // 功能：查找内存并返回查找结果
-#define FindInMemoryA0 FUN_18089c630
+#define FindInMemoryA0 FindInMemoryWithPatternMatching
 // 功能：执行栈安全检查和数据验证
 #define ExecuteSecurityCheck FUN_1808fc050
 
@@ -21710,14 +21723,14 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   int isDataVector1cInfinity = isDataVector18Infinity;
   if ((vectorWRawData & FloatInfinityValue) == FloatInfinityValue) {
-    int isDataOffset1cInfinity = 0x1d;
+    isDataVector1cInfinity = 0x1d;
   }
   if (((uint)vectorYFloatComponent & FloatInfinityValue) == FloatInfinityValue) {
-    int isDataVector28Infinity = 0x1d;
+    isDataVector28Infinity = 0x1d;
   }
-  int isDataVectorZInfinity = 0;
-  int isDataVectorXInfinity = 0;
-  if ((isDataVectorZInfinity == 0 && isDataVectorXInfinity == 0) && isDataVector28Infinity == 0) {
+  int isVectorZInfinity = 0;
+  int isVectorXInfinity = 0;
+  if ((isVectorZInfinity == 0 && isVectorXInfinity == 0) && isDataVector28Infinity == 0) {
     if (((*(float *)(dataPtr + VectorComponentXOffset) == 0.0) && (*(float *)(dataPtr + VectorComponentYOffset) == 0.0)) &&
        (*(float *)(dataPtr + VectorComponentAdditionalOffset38) == 0.0)) {
       return ComponentDataValidationFailure;
@@ -29929,29 +29942,29 @@ DataBuffer ProcessComplexDataA2(int64_t *OperationBase,char *InputDataBuffer,Dat
   uint *ExceptionHandlingBuffer;
   
   ExceptionHandlingBuffer = (uint *)*OperationBase;
-  if (((ExceptionHandlingBuffer != (uint *)0x0) && (OperationBase[4] != 0)) && (OperationBase[2] != 0)) {
+  if (((ExceptionHandlingBuffer != (uint *)NullPointerValue) && (OperationBase[OperationParameterIndex4] != 0)) && (OperationBase[OperationParameterIndex2] != 0)) {
     CharacterProcessingCounter = 0;
     CurrentCharacter = *InputDataBuffer;
     while (CurrentCharacter != '\0') {
-      ValidationStatusFlag = *(SystemByteType *)((int64_t)ExceptionHandlingBuffer + 7);
+      ValidationStatusFlag = *(SystemByteType *)((int64_t)ExceptionHandlingBuffer + CharacterValidationOffset7);
       if (ValidationStatusFlag == 0) {
         return OperationSuccessCode;
       }
       CurrentCharacter = ProcessCharacterDataA0(CurrentCharacter);
-      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & 0xffffff) * 8);
+      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & DataMask24Bits) * AddressMultiplier8);
       CharacterMatchIndex = 0;
       if (ValidationStatusFlag == 0) {
         return OperationSuccessCode;
       }
-      while (*(char *)((int64_t)ExceptionHandlingBuffer + 3) != CurrentCharacter) {
+      while (*(char *)((int64_t)ExceptionHandlingBuffer + CharacterComparisonOffset3) != CurrentCharacter) {
         CharacterMatchIndex = CharacterMatchIndex + 1;
-        ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
+        ExceptionHandlingBuffer = ExceptionHandlingBuffer + CharacterMatchStepSize;
         if ((int)(uint)ValidationStatusFlag <= CharacterMatchIndex) {
           return OperationSuccessCode;
         }
       }
       InputDataBuffer = InputDataBuffer + 1;
-      StringComparisonPointer = (char *)(OperationBase[4] + 1 + (uint64_t)(*ExceptionHandlingBuffer & 0xffffff));
+      StringComparisonPointer = (char *)(OperationBase[OperationParameterIndex4] + StringComparisonStartOffset1 + (uint64_t)(*ExceptionHandlingBuffer & DataMask24Bits));
       CurrentCharacter = *InputDataBuffer;
       while (CurrentCharacter != '\0') {
         if (*StringComparisonPointer == '\0') goto ProcessCheckpointStringValidation;
@@ -29969,22 +29982,22 @@ DataBuffer ProcessComplexDataA2(int64_t *OperationBase,char *InputDataBuffer,Dat
 SystemCheckpointA:
       CurrentCharacter = *InputDataBuffer;
     }
-    ValidationStatusFlag = *(SystemByteType *)((int64_t)ExceptionHandlingBuffer + 7);
+    ValidationStatusFlag = *(SystemByteType *)((int64_t)ExceptionHandlingBuffer + CharacterValidationOffset7);
     if (ValidationStatusFlag != 0) {
-      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & 0xffffff) * 8);
+      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & DataMask24Bits) * AddressMultiplier8);
       if (ValidationStatusFlag != 0) {
         do {
-          if (*(char *)((int64_t)ExceptionHandlingBuffer + 3) == '\0') goto ProcessCheckpointExceptionHandling;
+          if (*(char *)((int64_t)ExceptionHandlingBuffer + CharacterComparisonOffset3) == '\0') goto ProcessCheckpointExceptionHandling;
           CharacterProcessingCounter = CharacterProcessingCounter + 1;
-          ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
+          ExceptionHandlingBuffer = ExceptionHandlingBuffer + CharacterMatchStepSize;
         } while (CharacterProcessingCounter < (int)(uint)ValidationStatusFlag);
       }
       return OperationSuccessCode;
     }
 SystemCheckpointB:
-    SecurityValidationResult = ExceptionHandlingBuffer[1] & 0xffffff;
-    if (((char)(ExceptionHandlingBuffer[1] >> 0x18) == '\0') && ((int)SecurityValidationResult < (int)OperationBase[3])) {
-      ResourceDataPointer = (DataBuffer *)(OperationBase[2] + (uint64_t)SecurityValidationResult * ArrayElementSize16);
+    SecurityValidationResult = ExceptionHandlingBuffer[1] & DataMask24Bits;
+    if (((char)(ExceptionHandlingBuffer[1] >> ByteShift24Bits) == '\0') && ((int)SecurityValidationResult < (int)OperationBase[OperationParameterIndex3])) {
+      ResourceDataPointer = (DataBuffer *)(OperationBase[OperationParameterIndex2] + (uint64_t)SecurityValidationResult * ArrayElementSize16);
       MemoryBaseAddress = ResourceDataPointer[1];
       *OperationResultFlag = *ResourceDataPointer;
       OperationResultFlag[1] = MemoryBaseAddress;
@@ -49994,7 +50007,7 @@ void CleanupResourceStateWithTermination(DataBuffer operationBase,int64_t dataBu
 
 
 
-void ResetresourcePointer180(DataBuffer operationBase,int64_t dataBuffer)
+void ResetResourcePointerAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
