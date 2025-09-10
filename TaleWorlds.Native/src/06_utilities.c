@@ -10528,10 +10528,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CleanupExceptionContext810 Unwind_180912810
 
 // 异常处理数据变量语义化宏定义
-// 异常数据表1地址
+// 异常数据表1地址 - 主要异常处理例程表
 #define ExceptionDataTable1Address 0x18098bdc8
 
-// 异常数据表2地址
+// 异常数据表2地址 - 辅助异常处理例程表
 #define ExceptionDataTable2Address 0x180a21690
 
 // C++标准库函数宏定义
