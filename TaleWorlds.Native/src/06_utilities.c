@@ -10312,6 +10312,191 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：异常展开清理函数A30
 #define ExceptionUnwindHandlerA30 Unwind_1809021e0
 
+// 异常处理函数批量美化定义 -第二批：高级异常处理函数
+// 原始函数名：Unwind_180911380 - 异常处理回调执行函数380
+// 功能：在偏移量0x380处执行异常处理回调，处理临时异常处理器和状态清理
+#define ExecuteExceptionHandlerCallback380 Unwind_180911380
+
+// 原始函数名：Unwind_1809113a0 - 异常处理回调执行函数3a0
+// 功能：在偏移量0x3a0处执行异常处理回调，使用扩展异常处理偏移量
+#define ExecuteExceptionHandlerCallback3A0 Unwind_1809113a0
+
+// 原始函数名：Unwind_1809113c0 - 异常处理回调执行函数3c0
+// 功能：在偏移量0x3c0处执行异常处理回调，使用备用异常处理偏移量
+#define ExecuteExceptionHandlerCallback3C0 Unwind_1809113c0
+
+// 原始函数名：Unwind_1809113e0 - 异常处理回调执行函数3e0
+// 功能：在偏移量0x3e0处执行异常处理回调，处理异常上下文清理
+#define ExecuteExceptionHandlerCallback3E0 Unwind_1809113e0
+
+// 原始函数名：Unwind_180911400 - 异常处理回调执行函数400
+// 功能：在偏移量0x400处执行异常处理回调，管理异常状态和资源
+#define ExecuteExceptionHandlerCallback400 Unwind_180911400
+
+// 原始函数名：Unwind_180911420 - 异常处理回调执行函数420
+// 功能：在偏移量0x420处执行异常处理回调，处理高级异常清理操作
+#define ExecuteExceptionHandlerCallback420 Unwind_180911420
+
+// 原始函数名：Unwind_180911440 - 异常处理回调执行函数440
+// 功能：在偏移量0x440处执行异常处理回调，执行完整的异常恢复流程
+#define ExecuteExceptionHandlerCallback440 Unwind_180911440
+
+// 原始函数名：Unwind_180911540 - 异常处理回调执行函数540
+// 功能：在偏移量0x540处执行异常处理回调，处理系统级异常恢复
+#define ExecuteExceptionHandlerCallback540 Unwind_180911540
+
+// 原始函数名：Unwind_180911620 - 异常处理回调执行函数620
+// 功能：在偏移量0x620处执行异常处理回调，管理异常处理链表
+#define ExecuteExceptionHandlerCallback620 Unwind_180911620
+
+// 原始函数名：Unwind_180911640 - 异常处理回调执行函数640
+// 功能：在偏移量0x640处执行异常处理回调，处理异常数据缓冲区
+#define ExecuteExceptionHandlerCallback640 Unwind_180911640
+
+// 原始函数名：Unwind_180911660 - 异常处理回调执行函数660
+// 功能：在偏移量0x660处执行异常处理回调，执行异常状态同步
+#define ExecuteExceptionHandlerCallback660 Unwind_180911660
+
+// 原始函数名：Unwind_180911680 - 异常处理回调执行函数680
+// 功能：在偏移量0x680处执行异常处理回调，处理系统异常恢复
+#define ExecuteExceptionHandlerCallback680 Unwind_180911680
+
+// 原始函数名：Unwind_180911760 - 异常处理回调执行函数760
+// 功能：在偏移量0x760处执行异常处理回调，管理异常处理资源
+#define ExecuteExceptionHandlerCallback760 Unwind_180911760
+
+// 原始函数名：Unwind_180911800 - 异常处理回调执行函数800
+// 功能：在偏移量0x800处执行异常处理回调，执行高级异常处理操作
+#define ExecuteExceptionHandlerCallback800 Unwind_180911800
+
+// 原始函数名：Unwind_180911a70 - 异常处理回调执行函数a70
+// 功能：在偏移量0xa70处执行异常处理回调，处理异常上下文初始化
+#define ExecuteExceptionHandlerCallbackA70 Unwind_180911a70
+
+// 原始函数名：Unwind_180911a80 - 异常处理回调执行函数a80
+// 功能：在偏移量0xa80处执行异常处理回调，管理异常处理状态
+#define ExecuteExceptionHandlerCallbackA80 Unwind_180911a80
+
+// 原始函数名：Unwind_180911c00 - 异常上下文清理函数c00
+// 功能：在偏移量0xc00处清理异常上下文，释放相关资源
+#define CleanupExceptionContextC00 Unwind_180911c00
+
+// 原始函数名：Unwind_180911c30 - 异常处理回调执行函数c30
+// 功能：在偏移量0xc30处执行异常处理回调，处理异常数据结构
+#define ExecuteExceptionHandlerCallbackC30 Unwind_180911c30
+
+// 原始函数名：Unwind_180911c40 - 异常处理回调执行函数c40
+// 功能：在偏移量0xc40处执行异常处理回调，管理异常处理流程
+#define ExecuteExceptionHandlerCallbackC40 Unwind_180911c40
+
+// 原始函数名：Unwind_180911c60 - 异常处理回调执行函数c60
+// 功能：在偏移量0xc60处执行异常处理回调，处理异常状态转换
+#define ExecuteExceptionHandlerCallbackC60 Unwind_180911c60
+
+// 原始函数名：Unwind_180911c80 - 异常处理回调执行函数c80
+// 功能：在偏移量0xc80处执行异常处理回调，执行异常恢复操作
+#define ExecuteExceptionHandlerCallbackC80 Unwind_180911c80
+
+// 原始函数名：Unwind_180911ca0 - 异常处理回调执行函数ca0
+// 功能：在偏移量0xca0处执行异常处理回调，管理异常处理资源
+#define ExecuteExceptionHandlerCallbackCA0 Unwind_180911ca0
+
+// 原始函数名：Unwind_180911cc0 - 异常处理回调执行函数cc0
+// 功能：在偏移量0xcc0处执行异常处理回调，处理异常数据缓冲区
+#define ExecuteExceptionHandlerCallbackCC0 Unwind_180911cc0
+
+// 原始函数名：Unwind_180911ce0 - 异常处理回调执行函数ce0
+// 功能：在偏移量0xce0处执行异常处理回调，执行异常状态同步
+#define ExecuteExceptionHandlerCallbackCE0 Unwind_180911ce0
+
+// 原始函数名：Unwind_180911d00 - 异常处理回调执行函数d00
+// 功能：在偏移量0xd00处执行异常处理回调，处理系统异常恢复
+#define ExecuteExceptionHandlerCallbackD00 Unwind_180911d00
+
+// 原始函数名：Unwind_180911d20 - 异常处理回调执行函数d20
+// 功能：在偏移量0xd20处执行异常处理回调，管理异常处理链表
+#define ExecuteExceptionHandlerCallbackD20 Unwind_180911d20
+
+// 原始函数名：Unwind_180911d40 - 异常处理回调执行函数d40
+// 功能：在偏移量0xd40处执行异常处理回调，处理异常上下文清理
+#define ExecuteExceptionHandlerCallbackD40 Unwind_180911d40
+
+// 原始函数名：Unwind_180911d60 - 异常处理回调执行函数d60
+// 功能：在偏移量0xd60处执行异常处理回调，执行高级异常处理操作
+#define ExecuteExceptionHandlerCallbackD60 Unwind_180911d60
+
+// 原始函数名：Unwind_180911d80 - 异常处理回调执行函数d80
+// 功能：在偏移量0xd80处执行异常处理回调，管理异常处理状态
+#define ExecuteExceptionHandlerCallbackD80 Unwind_180911d80
+
+// 原始函数名：Unwind_180911da0 - 异常处理回调执行函数da0
+// 功能：在偏移量0xda0处执行异常处理回调，处理异常数据结构
+#define ExecuteExceptionHandlerCallbackDA0 Unwind_180911da0
+
+// 原始函数名：Unwind_180911dc0 - 异常处理回调执行函数dc0
+// 功能：在偏移量0xdc0处执行异常处理回调，执行异常恢复操作
+#define ExecuteExceptionHandlerCallbackDC0 Unwind_180911dc0
+
+// 原始函数名：Unwind_180911f50 - 异常处理回调执行函数f50
+// 功能：在偏移量0xf50处执行异常处理回调，管理异常处理资源
+#define ExecuteExceptionHandlerCallbackF50 Unwind_180911f50
+
+// 原始函数名：Unwind_180911f70 - 异常处理回调执行函数f70
+// 功能：在偏移量0xf70处执行异常处理回调，处理异常状态转换
+#define ExecuteExceptionHandlerCallbackF70 Unwind_180911f70
+
+// 原始函数名：Unwind_180911fb0 - 异常处理回调执行函数fb0
+// 功能：在偏移量0xfb0处执行异常处理回调，执行异常状态同步
+#define ExecuteExceptionHandlerCallbackFB0 Unwind_180911fb0
+
+// 原始函数名：Unwind_180911fc0 - 异常处理回调执行函数fc0
+// 功能：在偏移量0xfc0处执行异常处理回调，处理系统异常恢复
+#define ExecuteExceptionHandlerCallbackFC0 Unwind_180911fc0
+
+// 原始函数名：Unwind_180911fd0 - 异常处理回调执行函数fd0
+// 功能：在偏移量0xfd0处执行异常处理回调，管理异常处理链表
+#define ExecuteExceptionHandlerCallbackFD0 Unwind_180911fd0
+
+// 原始函数名：Unwind_180911fe0 - 异常处理回调执行函数fe0
+// 功能：在偏移量0xfe0处执行异常处理回调，处理异常上下文清理
+#define ExecuteExceptionHandlerCallbackFE0 Unwind_180911fe0
+
+// 原始函数名：Unwind_180912550 - 异常上下文清理函数550
+// 功能：在偏移量0x550处清理异常上下文，释放相关资源
+#define CleanupExceptionContext550 Unwind_180912550
+
+// 原始函数名：Unwind_180912580 - 异常处理回调执行函数580
+// 功能：在偏移量0x580处执行异常处理回调，处理异常数据结构
+#define ExecuteExceptionHandlerCallback580 Unwind_180912580
+
+// 原始函数名：Unwind_1809126a0 - 异常处理回调执行函数6a0
+// 功能：在偏移量0x6a0处执行异常处理回调，执行高级异常处理操作
+#define ExecuteExceptionHandlerCallback6A0 Unwind_1809126a0
+
+// 原始函数名：Unwind_1809126b0 - 异常上下文清理函数6b0
+// 功能：在偏移量0x6b0处清理异常上下文，释放相关资源
+#define CleanupExceptionContext6B0 Unwind_1809126b0
+
+// 原始函数名：Unwind_1809126e0 - 异常上下文清理函数6e0
+// 功能：在偏移量0x6e0处清理异常上下文，管理异常处理状态
+#define CleanupExceptionContext6E0 Unwind_1809126e0
+
+// 原始函数名：Unwind_180912710 - 异常上下文清理函数710
+// 功能：在偏移量0x710处清理异常上下文，处理异常数据缓冲区
+#define CleanupExceptionContext710 Unwind_180912710
+
+// 原始函数名：Unwind_180912740 - 异常上下文清理函数740
+// 功能：在偏移量0x740处清理异常上下文，执行异常恢复操作
+#define CleanupExceptionContext740 Unwind_180912740
+
+// 原始函数名：Unwind_180912770 - 异常处理回调执行函数770
+// 功能：在偏移量0x770处执行异常处理回调，管理异常处理资源
+#define ExecuteExceptionHandlerCallback770 Unwind_180912770
+
+// 原始函数名：Unwind_180912810 - 异常上下文清理函数810
+// 功能：在偏移量0x810处清理异常上下文，处理异常状态转换
+#define CleanupExceptionContext810 Unwind_180912810
+
 // 异常处理数据变量语义化宏定义
 // 异常数据表1地址
 #define ExceptionDataTable1Address 0x18098bdc8
@@ -124559,7 +124744,7 @@ void ResetExceptionHandlerAtOffset15d0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124587,7 +124772,7 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback3A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -124615,7 +124800,7 @@ void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback3C0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
