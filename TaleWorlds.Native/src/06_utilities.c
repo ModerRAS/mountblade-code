@@ -20306,7 +20306,7 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHandle)
 
 {
-  uint OperationResult;
+  uint32_t OperationResult;
   uint64_t conversionResult;
   int64_t dataPointer;
   DataBuffer systemContextBuffer;
