@@ -271,6 +271,35 @@ typedef enum {
 #define ProcessUIDataWithIntSize FUN_180734dc1              // 处理UI数据与Int大小
 #define FinalizeUIDataProcessing FUN_180734f59             // 完成UI数据处理
 
+// UI内存管理相关函数
+#define CleanupUIMemory FUN_180735d0e                        // 清理UI内存
+#define ProcessUIWithByteParameters FUN_180735d37           // 处理UI与Byte参数
+#define ProcessUIWithUIntSource FUN_18073619d               // 处理UI与UInt源
+#define ResetUIMemoryState FUN_1807362fc                     // 重置UI内存状态
+#define ProcessUIDataWithMetrics FUN_1807369a3              // 处理UI数据与度量
+#define InitializeUIDataTransfer FUN_180736a0e              // 初始化UI数据传输
+#define ProcessUIDataWithUIntBuffer FUN_180736a70           // 处理UI数据与UInt缓冲区
+#define ProcessUIDataWithHandleTarget FUN_180736a9b         // 处理UI数据与句柄目标
+#define ReleaseUIResources FUN_180736b7a                     // 释放UI资源
+#define CleanupUIBuffer FUN_180736c49                        // 清理UI缓冲区
+#define FreeUITemporaryMemory FUN_180736d59                  // 释放UI临时内存
+#define ProcessUIDataWithByteParameters FUN_180736dc0       // 处理UI数据与Byte参数
+#define ProcessUIDataWithIntSource FUN_180736e4a             // 处理UI数据与Int源
+#define AllocateUITemporaryMemory FUN_1807370ea             // 分配UI临时内存
+#define ProcessUIDataWithWordSource FUN_180737100            // 处理UI数据与Word源
+#define ReleaseUITemporaryMemory FUN_180737176               // 释放UI临时内存
+#define InitializeUIDataBuffer FUN_180737202                // 初始化UI数据缓冲区
+#define ProcessUIDataWithShortSource FUN_180737240           // 处理UI数据与Short源
+#define ProcessUIDataWithShortParameters FUN_1807376c0       // 处理UI数据与Short参数
+#define ProcessUIDataWithLongBuffer FUN_180737a50            // 处理UI数据与Long缓冲区
+#define ReleaseUIDataBuffer FUN_180737b3f                    // 释放UI数据缓冲区
+#define FreeUIEventMemory FUN_180737bad                      // 释放UI事件内存
+#define ProcessUIDataWithIntSource FUN_180737c30            // 处理UI数据与Int源
+#define ProcessUIDataWithLongParameters FUN_180737ca0       // 处理UI数据与Long参数
+#define ProcessUIDataWithHandleParameters FUN_180737ccf     // 处理UI数据与句柄参数
+#define ReleaseUIDataParameters FUN_180737de4                // 释放UI数据参数
+#define ProcessUIDataWithCharParameters FUN_180737df0       // 处理UI数据与Char参数
+
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
 #define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0

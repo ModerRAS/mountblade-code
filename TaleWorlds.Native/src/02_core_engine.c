@@ -4843,7 +4843,7 @@ const long long SystemNetworkMonitorIdentifierPrimary = 0x406be72011d07d37;
 const long long SystemNetworkMonitorIdentifierSecondary = 0x71876af946c867ab;
 
 // 内存地址常量
-const void* const DataTableStartAddress = (void*)0x180c8aa70;
+const void* const SystemDataTableStartAddress = (void*)0x180c8aa70;
 const void* const DataTableEndAddress = (void*)0x180c8ea71;
 const void* const DataTableSecondaryAddress = (void*)0x180c8eb70;
 const void* const MutexInitializationAddress = (void*)0x180c962c0;
@@ -17332,7 +17332,7 @@ void CoreEngineCalculateAudioAttenuationCoefficients(void
   float *CurrentTablePointer;
   float AttenuationValue;
   
-  CurrentTablePointer = (float *)DataTableStartAddress;
+  CurrentTablePointer = (float *)SystemDataTableStartAddress;
   BaseIndex = 0;
   DistanceOffset = -3;
   TableSize = BaseIndex;
