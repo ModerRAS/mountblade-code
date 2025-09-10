@@ -15566,36 +15566,56 @@ void ProcessUtilitySystemData(void);
 /**
  * @brief 验证工具系统数据
  * 
- * 验证工具系统的数据完整性和有效性，确保数据符合系统要求
+ * 验证工具系统的数据完整性和有效性，确保数据符合系统要求。
+ * 该函数执行以下验证操作：
+ * 1. 检查数据格式和结构的正确性
+ * 2. 验证数据范围和边界条件
+ * 3. 确保数据一致性和完整性
+ * 4. 检测数据损坏或异常情况
+ * 5. 生成验证报告和状态信息
  * 
  * @note 原始函数名: FUN_1809429f0
+ * @param void 无参数
+ * @return void 无返回值
+ * @warning 验证失败将触发系统错误处理机制
+ * @see ProcessUtilitySystemData, ConfigureUtilitySystemBufferC
  */
-void ValidateUtilitySystemData(void);               // 验证工具系统数据
-void* UtilitySystemPrimaryValidationDataPointer;
-void* UtilitySystemSecondaryValidationDataPointer;
-void* UtilitySystemTertiaryValidationDataPointer;
-uint8_t UtilitySystemPrimaryValidationStatus;
-void* UtilitySystemQuaternaryValidationDataPointer;
-uint8_t UtilitySystemSecondaryValidationStatus;
-void* UtilitySystemQuinaryValidationDataPointer;
-uint8_t UtilitySystemTertiaryValidationStatus;
-void* UtilitySystemPrimaryProcessDataPointer;
-void* UtilitySystemSecondaryProcessDataPointer;
-void* UtilitySystemTertiaryProcessDataPointer;
-void* UtilitySystemQuaternaryProcessDataPointer;
+void ValidateUtilitySystemData(void);
+void* UtilitySystemPrimaryValidationDataPointer;     // 主要验证数据指针 - 存储第一级验证数据
+void* UtilitySystemSecondaryValidationDataPointer;   // 次要验证数据指针 - 存储第二级验证数据
+void* UtilitySystemTertiaryValidationDataPointer;    // 第三验证数据指针 - 存储第三级验证数据
+uint8_t UtilitySystemPrimaryValidationStatus;        // 主要验证状态 - 记录第一级验证结果
+void* UtilitySystemQuaternaryValidationDataPointer;   // 第四验证数据指针 - 存储第四级验证数据
+uint8_t UtilitySystemSecondaryValidationStatus;      // 次要验证状态 - 记录第二级验证结果
+void* UtilitySystemQuinaryValidationDataPointer;     // 第五验证数据指针 - 存储第五级验证数据
+uint8_t UtilitySystemTertiaryValidationStatus;       // 第三验证状态 - 记录第三级验证结果
+void* UtilitySystemPrimaryProcessDataPointer;      // 主要处理数据指针 - 存储第一级处理数据
+void* UtilitySystemSecondaryProcessDataPointer;    // 次要处理数据指针 - 存储第二级处理数据
+void* UtilitySystemTertiaryProcessDataPointer;     // 第三处理数据指针 - 存储第三级处理数据
+void* UtilitySystemQuaternaryProcessDataPointer;    // 第四处理数据指针 - 存储第四级处理数据
 
 /**
  * @brief 配置工具系统回调函数
  * 
- * 设置工具系统的各种回调函数，包括事件处理、状态更新等回调
+ * 设置工具系统的各种回调函数，包括事件处理、状态更新等回调。
+ * 该函数负责：
+ * 1. 注册事件处理回调函数
+ * 2. 设置状态更新通知机制
+ * 3. 配置错误处理回调
+ * 4. 初始化异步操作完成回调
+ * 5. 建立回调函数与系统组件的关联
  * 
  * @note 原始函数名: FUN_180942a60
+ * @param void 无参数
+ * @return void 无返回值
+ * @warning 回调配置错误可能导致系统事件处理异常
+ * @see ProcessUtilitySystemData, ValidateUtilitySystemData
  */
-void ConfigureUtilitySystemCallbacks(void);         // 配置工具系统回调函数
-void* UtilitySystemPrimaryCallbackDataPointer;
-void* UtilitySystemSecondaryCallbackDataPointer;
-void* UtilitySystemTertiaryCallbackDataPointer;
-void* UtilitySystemQuaternaryCallbackDataPointer;
+void ConfigureUtilitySystemCallbacks(void);
+void* UtilitySystemPrimaryCallbackDataPointer;    // 主要回调数据指针 - 存储第一级回调数据
+void* UtilitySystemSecondaryCallbackDataPointer;  // 次要回调数据指针 - 存储第二级回调数据
+void* UtilitySystemTertiaryCallbackDataPointer;   // 第三回调数据指针 - 存储第三级回调数据
+void* UtilitySystemQuaternaryCallbackDataPointer;  // 第四回调数据指针 - 存储第四级回调数据
 
 /**
  * @brief 设置工具系统配置

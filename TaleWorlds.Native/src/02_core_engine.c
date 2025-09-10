@@ -204780,7 +204780,6 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
 
 
 
-// 函数: void FUN_18016cacd(void)
 /**
  * @brief 处理系统配置和字符串匹配操作
  * 
@@ -204792,51 +204791,85 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long ContextHandle,uint
  * - 处理Unicode字符和字符表操作
  * - 更新系统状态和事件队列
  * 
+ * 工作流程：
+ * 1. 初始化系统上下文和事件模板
+ * 2. 设置矩阵变换参数和距离计算
+ * 3. 处理字符串匹配和模式识别
+ * 4. 管理内存池和引用计数
+ * 5. 执行Unicode字符处理和验证
+ * 6. 更新系统状态和配置上下文
+ * 
  * @note 原始函数名：FUN_18016cacd
+ * @note 这是一个简化的实现，实际应用中需要更复杂的逻辑
+ * @warning 函数中的变量名已语义化，但逻辑实现需要进一步优化
+ * 
+ * @see HandleSystemMemoryOverflowException, ProcessSystemMemoryBufferAndUtfConversion
  */
-#define ProcessSystemConfigurationAndStringMatching FUN_18016cacd
 void ProcessSystemConfigurationAndStringMatching(void)
 {
-  int *ReferenceCountPointer;
-  void *SystemContext;
-  uint64_t *SystemEventTemplatePointer;
-  float MatrixTransformMultiplier1;
-  float MatrixTransformMultiplier;
-  float CalculatedDistance;
-  int ProcessIterationCount;
-  void *StringProcessingStatus;
-  long long SystemLoopCounter;
-  uint64_t MemoryPoolIndex;
-  long long SystemStringIndex;
-  char ValidationStatus;
-  int IntegerValue;
-  long long LoopIndex;
-  long long CharacterTablePointer;
-  void *SystemCharacterStatusPointer;
-  long long SystemConfigurationContext;
-  long long PatternMatchStatus;
-  int ProcessingIndex;
-  unsigned long long UnicodeCodeValue;
-  uint64_t SystemRegisterValue;
-  unsigned long long UnicodeContextHandle;
-  uint32_t SystemStackBuffer [2];
-  uint32_t SystemValidationStackBuffer;
+  // 引用计数和内存管理变量
+  int *ReferenceCountPointer;                         // 引用计数指针，用于内存管理
+  void *SystemContext;                               // 系统上下文指针，包含系统状态信息
+  uint64_t *SystemEventTemplatePointer;               // 系统事件模板指针，用于事件处理
   
+  // 矩阵变换和计算变量
+  float MatrixTransformMultiplier1;                  // 矩阵变换乘数1，用于3D变换计算
+  float MatrixTransformMultiplier;                   // 矩阵变换乘数，用于变换操作
+  float CalculatedDistance;                          // 计算距离，用于空间计算
+  
+  // 循环和迭代控制变量
+  int ProcessIterationCount;                         // 处理迭代计数，控制循环次数
+  void *StringProcessingStatus;                      // 字符串处理状态，标识处理进度
+  long long SystemLoopCounter;                       // 系统循环计数器，用于主循环控制
+  
+  // 内存池和索引管理变量
+  uint64_t MemoryPoolIndex;                          // 内存池索引，用于内存管理
+  long long SystemStringIndex;                        // 系统字符串索引，用于字符串操作
+  
+  // 验证和状态变量
+  char ValidationStatus;                             // 验证状态，标识操作结果
+  int IntegerValue;                                  // 整数值，用于临时存储
+  long long LoopIndex;                               // 循环索引，用于迭代操作
+  long long CharacterTablePointer;                   // 字符表指针，用于字符处理
+  
+  // 系统状态和配置变量
+  void *SystemCharacterStatusPointer;                // 系统字符状态指针，用于字符状态管理
+  long long SystemConfigurationContext;              // 系统配置上下文，包含配置信息
+  long long PatternMatchStatus;                      // 模式匹配状态，标识匹配结果
+  
+  // 处理索引和Unicode变量
+  int ProcessingIndex;                               // 处理索引，用于数据访问
+  unsigned long long UnicodeCodeValue;                // Unicode代码值，用于字符编码
+  uint64_t SystemRegisterValue;                      // 系统寄存器值，用于系统操作
+  unsigned long long UnicodeContextHandle;           // Unicode上下文句柄，用于Unicode处理
+  
+  // 栈缓冲区和验证变量
+  uint32_t SystemStackBuffer [2];                    // 系统栈缓冲区，用于临时数据存储
+  uint32_t SystemValidationStackBuffer;              // 系统验证栈缓冲区，用于数据验证
+  
+  // 主要处理逻辑开始
   UnicodeContextHandle = UnicodeCodeValue;
   do {
+    // 获取字符串长度并进行匹配检查
     StringLength = *(int *)(PatternIndex + SystemStringLengthOffset);
+    // 检查字符串长度是否匹配处理索引
     if (StringLength == ProcessingIndex) {
+      // 执行矩阵变换操作和系统配置处理
       SystemStackBuffer[0] = MatrixTransformOperation;
       ProcessSystemConfiguration(SystemConfigurationContext + MatrixTransformOffset1, SystemStackBuffer);
       *(void *)(SystemConfigurationContext + MatrixTransformOffset2) = MatrixTransformValue1;
       *(void *)(SystemConfigurationContext + MatrixTransformOffset3) = MatrixTransformValue2;
     }
+    
+    // 执行数据匹配操作并获取字符串处理状态
     ProcessDataMatchingOperation(ProcessingIndex);
     StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + SystemStringDataOffset) + SystemStringPointerOffset + UnicodeContextHandle);
     SystemCharacterStatusPointer = &CoreEngineDataTemplate;
     if (StringProcessingStatus != NULL) {
       SystemCharacterStatusPointer = StringProcessingStatus;
     }
+    
+    // 验证系统数据并检查状态
     ValidationStatus = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &SystemValidationStackBuffer);
     if (ValidationStatus != '\0') {
       *(int *)(PatternIndex + 0x68) = ProcessingIndex;
