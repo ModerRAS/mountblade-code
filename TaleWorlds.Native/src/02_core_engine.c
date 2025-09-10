@@ -26115,7 +26115,7 @@ uint32_t SystemShutdownAndCleanup(void
       OperationCompletionFlag = *(char *)(SystemContext + 2) != '\0';
     }
     else {
-      OperationCompletionFlag = (*(void *)(*SystemContext)[0xd])(SystemContext);
+      OperationCompletionFlag = (*(void *)(*SystemContext)[SystemContextOperationOffsetD])(SystemContext);
     }
     if (OperationCompletionFlag != '\0') break;
     Sleep(1);
