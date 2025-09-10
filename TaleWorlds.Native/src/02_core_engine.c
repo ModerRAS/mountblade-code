@@ -1728,6 +1728,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemDataFinalization FUN_180156e40                 // 处理系统数据最终化
 #define ProcessMemoryBoundaryManagementEx FUN_180159820            // 处理内存边界管理扩展
 #define ProcessSystemContextAndUtf8SourceOperations FUN_1801853d0   // 处理系统上下文和UTF8源操作
+#define ProcessSystemContextAndEncodingOperations FUN_180213bb0     // 处理系统上下文和编码操作
 #define ProcessCharacterResourceRelease FUN_1801570c0               // 处理字符资源释放
 #define ExecuteCharacterDataCleanup FUN_18015bdc0                    // 执行字符数据清理
 #define ExecuteSystemResourceOptimization FUN_18015b4f0             // 执行系统资源优化
@@ -261328,6 +261329,26 @@ SkipContextValidation:
 
 
 
+/**
+ * @brief 处理系统上下文和编码操作
+ * 
+ * 该函数负责处理系统上下文和编码相关的复杂操作，包括：
+ * 1. 线程同步和互斥锁管理
+ * 2. 内存分配和缓冲区管理
+ * 3. Unicode代码点处理
+ * 4. 系统配置验证
+ * 5. 字符编码和系统事件处理
+ * 
+ * @param ContextHandle 系统上下文句柄，用于访问系统资源
+ * @param OperationBufferSize 操作缓冲区大小，指定处理的数据大小
+ * 
+ * @return uint64_t 返回操作结果状态码，0表示成功
+ * 
+ * @note 原始函数名：FUN_180213bb0
+ * @note 线程安全：函数使用互斥锁确保线程安全
+ * @note 内存管理：函数会动态分配内存并进行相应的清理
+ * @note 错误处理：包含完整的错误处理和异常管理机制
+ */
 uint64_t FUN_180213bb0(long long ContextHandle,uint32_t OperationBufferSize
 {
   // 变量语义化定义
