@@ -111890,8 +111890,8 @@ void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64
   float XMM3RegisterValueC;
   float XMM3RegisterValueD;
   
-  finalResult = (float)((ulonglong)bufferSize >> 0x20);
-  baseValue6 = (float)bufferSize;
+  FinalResult = (float)((uint64_t)BufferSize >> 0x20);
+  BaseValue6 = (float)BufferSize;
   if (((ulonglong)(register10 + uiContext * 4) < (ulonglong)(RegisterPointer + targetBuffer * 4)) ||
      ((ulonglong)(RegisterPointer + uiContext * 4) < (ulonglong)(register10 + targetBuffer * 4))) {
     dataSource = dataSource & 0x8000000f;
