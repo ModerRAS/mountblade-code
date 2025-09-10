@@ -13697,9 +13697,20 @@ void* UtilitySystemConfigBufferC;
 /**
  * @brief 配置工具系统缓冲区C
  * 
- * 配置工具系统的第三个缓冲区，设置缓冲区参数和内存分配
+ /**
+ * @brief 配置工具系统缓冲区C
+ * 
+ * 配置工具系统的第三个缓冲区，设置缓冲区参数和内存分配。
+ * 该函数负责初始化工具系统的关键缓冲区，包括：
+ * - 分配缓冲区内存空间
+ * - 设置缓冲区大小和对齐参数
+ * - 初始化缓冲区状态标志
+ * - 配置缓冲区访问权限
+ * - 建立缓冲区与系统其他组件的连接
  * 
  * @note 原始函数名: FUN_180942930
+ * @warning 缓冲区配置失败可能导致系统性能下降或内存泄漏
+ * @see ProcessUtilitySystemData, ValidateUtilitySystemData
  */
 void ConfigureUtilitySystemBufferC(void);           // 配置工具系统缓冲区C
 
