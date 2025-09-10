@@ -144,6 +144,7 @@
 
 // 字符验证常量
 #define CharacterValidationOffset 0x57                           // 字符验证偏移量
+#define SystemDataRecordHeaderOffset 0x14                       // 系统数据记录头偏移量
 
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
@@ -38289,7 +38290,7 @@ ValidationLabelB:
       if (resourceValidationStatus < 0) {
         exceptionContext2 = (int64_t)-resourceValidationStatus;
         if (resourceValidationStatus < 0) {
-          exceptionContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + 0x14 + (int64_t)systemStackDataPointer;
+          exceptionContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)systemStackDataPointer;
           do {
             psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
             operationResult = psecurityCheckResult[1];
@@ -38360,7 +38361,7 @@ ValidationLabelB:
     if (resourceValidationStatus < 0) {
       exceptionContext2 = (int64_t)-resourceValidationStatus;
       if (resourceValidationStatus < 0) {
-        exceptionContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + 0x14 + (int64_t)stackDataPointer;
+        exceptionContext1 = (int64_t)resourceValidationStatus * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)stackDataPointer;
         do {
           psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
           operationResult = psecurityCheckResult[1];
@@ -38544,7 +38545,7 @@ ValidationLabelB:
       if (inputParameter9 < 0) {
         exceptionContext8 = (int64_t)-inputParameter9;
         if (inputParameter9 < 0) {
-          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBuffer1;
+          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionDataBuffer1;
           do {
             exceptionDataBuffer = (DataWord *)ExecuteSystemResourceOperation();
             OperationResultPrimary = exceptionDataBuffer[1];
@@ -38800,7 +38801,7 @@ ValidationProcessingLabel:
       if (inputParameter9 < 0) {
         exceptionContext8 = (int64_t)-inputParameter9;
         if (inputParameter9 < 0) {
-          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionBuffer3;
+          exceptionContext7 = (int64_t)inputParameter9 * SystemDataRecordMultiplier + SystemDataRecordHeaderOffset + (int64_t)exceptionBuffer3;
           do {
             exceptionDataBuffer1 = (DataWord *)ExecuteSystemResourceOperation();
             OperationResultPrimary = exceptionDataBuffer1[1];
