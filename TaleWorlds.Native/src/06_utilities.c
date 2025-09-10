@@ -6353,7 +6353,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089fba0
  */
-#define ValidateDataSynchronization FUN_18089fba0
+#define ValidateDataSynchronization CheckDataSynchronizationStatusA1
 
 /**
  * @brief 执行数据清理A1
