@@ -130029,10 +130029,21 @@ bool CheckUtilitySystemStatus(DataBuffer *systemContextHandle)
 
 
 
-// 函数: void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
-// 功能：处理工具系统事件，根据条件执行相应操作
-// 参数：eventTypeHandle - 事件类型句柄，eventDataContext - 事件数据上下文
-// 返回值：无
+/**
+ * @brief 处理工具系统事件
+ * 
+ * 该函数负责处理工具系统中发生的各种事件，根据事件数据上下文中的
+ * 特定条件来执行相应的验证和处理操作。它是事件驱动系统的核心组件。
+ * 
+ * @param eventTypeHandle 事件类型句柄，用于标识事件类型
+ * @param eventDataContext 事件数据上下文，包含事件相关的数据和处理参数
+ * @return void 无返回值
+ * 
+ * @note 该函数通过检查MemoryPointerOffset位置的字符来决定是否执行验证操作
+ * @note 如果条件满足，会调用ValidateDataWithParams进行数据验证
+ * @warning 事件数据上下文必须正确初始化，否则可能导致未定义行为
+ * @see ValidateDataWithParams, HandleUtilitySystemRequest
+ */
 void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataContext)
 
 {
