@@ -6244,9 +6244,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * 该函数用于初始化数据缓冲区，设置数据缓冲区的初始状态
  * 
- * @note 原始函数名：func_0x000180060150
+ * @note 原始函数名：FUN_180060150
  */
-#define InitializeSystemDataBuffer InitializeSystemDataBuffer
+#define InitializeSystemDataBufferB FUN_180060150
 
 /**
  * @brief 系统操作函数A0
