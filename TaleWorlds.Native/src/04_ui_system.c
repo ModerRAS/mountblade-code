@@ -100988,29 +100988,29 @@ UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource,
         componentDataPointer = targetBuffer + innerLoopCounter * 9;
         componentIndex = (longlong)((resultPointer - innerLoopCounter) * 9);
         calculatedResult = ((int)((ulonglong)((longlong)transformMatrixPointer[0x11] * (longlong)targetBuffer[componentIndex + -9]) >> 0x10)
-                 + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)compareResultPointer[10]) >> 0x10)
-                   + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)compareResultPointer[0xc]) >>
+                 + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -2] * (longlong)transformMatrixPointer[10]) >> 0x10)
+                   + (int)((ulonglong)((longlong)targetBuffer[componentIndex + -4] * (longlong)transformMatrixPointer[0xc]) >>
                           0x10) +
-                     (int)((ulonglong)((longlong)puiCompareResult[0xe] * (longlong)targetBuffer[componentIndex + -6]) >>
+                     (int)((ulonglong)((longlong)transformMatrixPointer[0xe] * (longlong)targetBuffer[componentIndex + -6]) >>
                           0x10) +
-                     (int)((ulonglong)((longlong)puiCompareResult[0xf] * (longlong)targetBuffer[componentIndex + -7]) >>
+                     (int)((ulonglong)((longlong)transformMatrixPointer[0xf] * (longlong)targetBuffer[componentIndex + -7]) >>
                           0x10) +
-                     (int)((ulonglong)((longlong)psVar1[8] * (longlong)puiCompareResult[8]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[7] * (longlong)puiCompareResult[7]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[6] * (longlong)puiCompareResult[6]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[5] * (longlong)puiCompareResult[5]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[4] * (longlong)puiCompareResult[4]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[3] * (longlong)puiCompareResult[3]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[2] * (longlong)puiCompareResult[2]) >> 0x10) +
-                     (int)((ulonglong)((longlong)psVar1[1] * (longlong)puiCompareResult[1]) >> 0x10) +
-                     (int)((ulonglong)((longlong)*psVar1 * (longlong)*puiCompareResult) >> 0x10) +
-                     (int)((ulonglong)((longlong)puiCompareResult[0x10] * (longlong)targetBuffer[componentIndex + -8]) >>
+                     (int)((ulonglong)((longlong)componentDataPointer[8] * (longlong)transformMatrixPointer[8]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[7] * (longlong)transformMatrixPointer[7]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[6] * (longlong)transformMatrixPointer[6]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[5] * (longlong)transformMatrixPointer[5]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[4] * (longlong)transformMatrixPointer[4]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[3] * (longlong)transformMatrixPointer[3]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[2] * (longlong)transformMatrixPointer[2]) >> 0x10) +
+                     (int)((ulonglong)((longlong)componentDataPointer[1] * (longlong)transformMatrixPointer[1]) >> 0x10) +
+                     (int)((ulonglong)((longlong)*componentDataPointer * (longlong)*transformMatrixPointer) >> 0x10) +
+                     (int)((ulonglong)((longlong)transformMatrixPointer[0x10] * (longlong)targetBuffer[componentIndex + -8]) >>
                           0x10) +
-                     (int)((ulonglong)((longlong)targetBuffer[componentIndex + -5] * (longlong)puiCompareResult[0xd]) >>
+                     (int)((ulonglong)((longlong)targetBuffer[componentIndex + -5] * (longlong)transformMatrixPointer[0xd]) >>
                           0x10) +
-                     (int)((ulonglong)((longlong)targetBuffer[componentIndex + -3] * (longlong)puiCompareResult[0xb]) >>
+                     (int)((ulonglong)((longlong)targetBuffer[componentIndex + -3] * (longlong)transformMatrixPointer[0xb]) >>
                           0x10) +
-                   (int)((ulonglong)((longlong)targetBuffer[componentIndex + -1] * (longlong)puiCompareResult[9]) >> 0x10)
+                   (int)((ulonglong)((longlong)targetBuffer[componentIndex + -1] * (longlong)transformMatrixPointer[9]) >> 0x10)
                 >> 5) + 1 >> 1;
         if (loopCounter < 0x8000) {
           loopCounter = (UIWord)loopCounter;
@@ -109295,21 +109295,36 @@ void ProcessUIRenderDataProcessor(UIHandle uiContext,UIHandle dataSource,int tar
 
 
 
- void FUN_18072bf1a(void)
-void FUN_18072bf1a(void)
+ /**
+ * @brief UI渲染任务执行器B
+ * 
+ * 执行UI渲染任务的包装器函数，负责调用核心渲染任务
+ * 
+ * @note 原始函数名：FUN_18072bf1a
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ExecuteUIRenderTaskWrapperB(void)
 
 {
   ulonglong maxAllocations;
   
-                     WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_18072bf40(void)
-void FUN_18072bf40(void)
+ /**
+ * @brief UI渲染任务执行器C
+ * 
+ * 执行UI渲染任务的包装器函数，负责调用核心渲染任务
+ * 
+ * @note 原始函数名：FUN_18072bf40
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ExecuteUIRenderTaskWrapperC(void)
 
 {
                      WARNING: Subroutine does not return
