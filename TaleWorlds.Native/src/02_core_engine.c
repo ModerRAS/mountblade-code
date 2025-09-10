@@ -210044,6 +210044,16 @@ void InitializeUtf8CharacterEncodingProcessingBuffer(long long ContextHandle,uin
 
 
 
+/**
+ * @brief 处理系统数据结构和上下文
+ * 
+ * 该函数负责处理系统数据结构和上下文的管理，包括数据表的访问、
+ * 内存分配和数据处理操作。
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小
+ * @return 处理结果的指针
+ */
 int * ProcessSystemDataStructureAndContext(long long ContextHandle,int *ContextHandleSize
 {
   long long PrimaryOperationResult;
