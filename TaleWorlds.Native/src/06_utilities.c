@@ -237,6 +237,10 @@
 #define TertiaryExceptionHandlerStatusOffset 0x30           // 第三异常处理器状态偏移量
 #define TertiaryExceptionHandlerDataOffset 0x40             // 第三异常处理器数据偏移量
 
+// 浮点数常量
+#define FloatOneValue 0x3f800000                           // 浮点数1.0的十六进制表示
+#define ByteMask 0xffffff00                                // 字节掩码，用于保留高3字节
+
 // 扩展异常处理器偏移量常量
 #define ExtendedExceptionHandlerSlotOffset 0xd8              // 扩展异常处理器槽位偏移量
 #define ExtendedExceptionHandlerTempSlotOffset 0x110          // 扩展异常处理器临时槽位偏移量
