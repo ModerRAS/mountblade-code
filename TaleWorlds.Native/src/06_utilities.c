@@ -14082,11 +14082,11 @@ uint8_t UtilitySystemStatusFlagPrimary;
 
 // 函数: void ConfigureUtilitySystemBufferA();
 void ConfigureUtilitySystemPrimaryBuffer(void);     // 配置工具系统主缓冲区
-void* UtilitySystemConfigBufferB;
+void* UtilitySystemConfigBufferSecondary;
 
 // 函数: void ConfigureUtilitySystemBufferB();
 void ConfigureUtilitySystemSecondaryBuffer(void);   // 配置工具系统次缓冲区
-void* UtilitySystemConfigBufferC;
+void* UtilitySystemConfigBufferTertiary;
 
 /**
  * @brief 配置工具系统缓冲区C
