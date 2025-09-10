@@ -647,6 +647,13 @@ typedef enum {
 #define _DAT_180d4a7c8 UITextureProcessorPointer          // UI纹理处理器指针 - 处理UI纹理数据
 #define _DAT_180d4a768 UIFontRendererPointer              // UI字体渲染器指针 - 渲染UI字体
 #define _DAT_180d4a738 UIShaderProcessorPointer          // UI着色器处理器指针 - 处理UI着色器
+#define _DAT_180d4a898 UIFunctionTable898                 // UI函数表898 - 存储UI函数指针
+#define _DAT_180d4a858 UIFunctionTable858                 // UI函数表858 - 存储UI函数指针
+#define _DAT_180d4a820 UIFunctionTable820                 // UI函数表820 - 存储UI函数指针
+#define _DAT_180d4a7e0 UIFunctionTable7e0                 // UI函数表7e0 - 存储UI函数指针
+#define _DAT_180d4a7b0 UIFunctionTable7b0                 // UI函数表7b0 - 存储UI函数指针
+#define _DAT_180d4a778 UIFunctionTable778                 // UI函数表778 - 存储UI函数指针
+#define _DAT_180d4a750 UIFunctionTable750                 // UI函数表750 - 存储UI函数指针
 #define _DAT_180d4a720 UIAnimationProcessorPointer       // UI动画处理器指针 - 处理UI动画
 #define _DAT_180d4a6e8 UILayoutProcessorPointer          // UI布局处理器指针 - 处理UI布局
 #define _DAT_180d4a6c8 UIInputProcessorPointer           // UI输入处理器指针 - 处理UI输入
@@ -31367,17 +31374,17 @@ void InitializeUIRenderingFunctions(void)
   }
   UIEventDispatchProcessor = FUN_18068f150;
   if (bVar6) {
-    _DAT_180d4a898 = FUN_18068f240;
+    UIFunctionTable898 = FUN_18068f240;
   }
-  _DAT_180d4a858 = FUN_18068f330;
+  UIFunctionTable858 = FUN_18068f330;
   if (bVar6) {
-    _DAT_180d4a858 = FUN_18068f3a0;
+    UIFunctionTable858 = FUN_18068f3a0;
   }
-  _DAT_180d4a820 = FUN_18068f410;
+  UIFunctionTable820 = FUN_18068f410;
   if (bVar6) {
-    _DAT_180d4a820 = FUN_18068f480;
+    UIFunctionTable820 = FUN_18068f480;
   }
-  _DAT_180d4a7e0 = FUN_18068f4f0;
+  UIFunctionTable7e0 = FUN_18068f4f0;
   if (bVar6) {
     _DAT_180d4a7e0 = FUN_18068f680;
   }
