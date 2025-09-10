@@ -11371,7 +11371,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：CleanupResourceA0
  */
-#define CleanupResourceA0 CleanupResourceA0
+#define CleanupResourceA0 FUN_18089b52a
 
 /**
  * @brief 资源处理函数A0
