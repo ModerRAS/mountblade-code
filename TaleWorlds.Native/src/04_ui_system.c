@@ -119165,44 +119165,44 @@ void InitializeUIRenderingBuffer(void)
 void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,int bufferSize,uint resultPointer)
 
 {
-  uint result;
+  uint operationResult;
   uint iterationCount;
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
   uint iterationCounter;
-  short ContextSecondValue;
+  short contextSecondaryValue;
   uint eventStatus;
   int processedCount;
-  int ProcessingResult1;
+  int comparisonResult1;
   uint *renderDataPointer;
-  byte isCharacterMatch3;
-  uint *resultPointer4;
-  int ProcessingResult5;
-  short *psVar16;
-  int processingResult7;
-  uint result8;
-  int processingResult;
-  ulonglong iterationCounter;
-  int uiValidationResult1;
-  UIByte aiterationCount2 [16];
-  UIByte aiterationCount3 [16];
-  UIByte aiterationCount4 [16];
-  UIByte aiterationCount5 [16];
-  UIByte aiterationCount6 [16];
-  UIByte aiterationCount7 [16];
-  UIByte aiterationCount8 [16];
+  byte isCharacterMatch;
+  uint *secondaryResultPointer;
+  int sizeDifference;
+  short *tempPointer16;
+  int tempResult7;
+  uint tempResult8;
+  int mainProcessingResult;
+  ulonglong resultCounter;
+  int validationResult;
+  UIByte simdBuffer2 [16];
+  UIByte simdBuffer3 [16];
+  UIByte simdBuffer4 [16];
+  UIByte simdBuffer5 [16];
+  UIByte simdBuffer6 [16];
+  UIByte simdBuffer7 [16];
+  UIByte simdBuffer8 [16];
   
-  iterationCounter = (ulonglong)resultPointer;
-  processingResult = 0;
-  ProcessingResult1 = 0;
-  ProcessingResult5 = bufferSize - targetBuffer;
-  uiValidationResult1 = 0;
+  resultCounter = (ulonglong)resultPointer;
+  mainProcessingResult = 0;
+  comparisonResult1 = 0;
+  sizeDifference = bufferSize - targetBuffer;
+  validationResult = 0;
   do {
-    result8 = 0;
+    tempResult8 = 0;
     eventStatus = 0;
-    processingResult7 = 0;
+    tempResult7 = 0;
     renderDataPointer = dataSource;
     if (0 < (int)resultPointer) {
       do {
@@ -119210,19 +119210,19 @@ void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,
         if ((int)eventStatus < 1) {
           eventStatus = -eventStatus;
         }
-        processedCount = processingResult7;
-        if ((int)eventStatus <= (int)result8) {
-          processedCount = ProcessingResult1;
-          eventStatus = result8;
+        processedCount = tempResult7;
+        if ((int)eventStatus <= (int)tempResult8) {
+          processedCount = comparisonResult1;
+          eventStatus = tempResult8;
         }
-        ProcessingResult1 = processedCount;
-        processingResult7 = processingResult7 + 1;
+        comparisonResult1 = processedCount;
+        tempResult7 = tempResult7 + 1;
         renderDataPointer = renderDataPointer + 1;
-        result8 = eventStatus;
-      } while (processingResult7 < (int)resultPointer);
+        tempResult8 = eventStatus;
+      } while (tempResult7 < (int)resultPointer);
     }
-    isCharacterMatch3 = (byte)ProcessingResult5;
-    if (ProcessingResult5 == 1) {
+    isCharacterMatch = (byte)sizeDifference;
+    if (sizeDifference == 1) {
       processingResult7 = ((int)eventStatus >> 1) + (eventStatus & 1);
     }
     else {
