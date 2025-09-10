@@ -43747,7 +43747,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   aiterationCounter = vpshufb_avx2(aTotalResult,UIEventStatusVector);
   aeventProcessingCounter = vpshufb_avx2(aTotalResult,UIProcessingCounterVector);
   aeventStatus = vpshufb_avx2(aTotalResult,UIEventCounterVector);
-  aTotalResult = vpshufb_avx2(aTotalResult,_DAT_1809470a0);
+  aTotalResult = vpshufb_avx2(aTotalResult,UITotalResultVector);
   aiterationCount7._0_16_ = ZEXT116(0) * aiterationCount2 + ZEXT116(1) * *uiContext;
   aiterationCount7._16_16_ = ZEXT116(1) * aiterationCount2;
   aiterationCount2 = *(UIByte (*) [16])(*uiContext + dataSource * 5);

@@ -7569,7 +7569,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180894dd0
  */
-#define ProcessSystemRequestWithValidation FUN_180894dd0
+#define ProcessSystemRequestWithValidation ProcessSystemRequestWithSecurityValidation
 
 /**
  * @brief 验证数据F0
@@ -7578,7 +7578,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180895ef0
  */
-#define ValidateSystemDataIntegrity FUN_180895ef0
+#define ValidateSystemDataIntegrity ValidateSystemDataWithSecurityCheck
 
 /**
  * @brief 处理数据并验证完整性
@@ -7709,7 +7709,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180894a07
  */
-#define ExecuteSecurityValidationOperation FUN_180894a07
+#define ExecuteSecurityValidationOperation ExecuteSecurityValidationWithIntegrityCheck
 
 /**
  * @brief 安全检查包装函数
@@ -7718,7 +7718,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180894ad2
  */
-#define ExecuteSecurityCheckWrapper FUN_180894ad2
+#define ExecuteSecurityCheckWrapper ExecuteSecurityCheckWithValidationWrapper
 
 // 安全检查包装函数B
 // 功能：包装安全检查函数，执行系统状态验证和安全性检查
