@@ -3206,7 +3206,7 @@
 #define SystemValidationDataOffset120 0x120                  // 系统验证数据偏移量120
 
 // 系统上下文指针相关偏移量常量
-#define systemContextPointerOffset90 0x90                    // 系统上下文指针偏移量90
+#define systemContextPointerOffset90 0x90                    // 异常处理器指针偏移量 - 用于存储异常处理函数指针的偏移位置
 #define systemContextPointerOffset900 0x900                  // 系统上下文指针偏移量900
 
 // 异常数据指针相关常量
