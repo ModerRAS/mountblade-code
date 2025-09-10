@@ -1770,7 +1770,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationAndUtf8Management FUN_180188910 // 处理系统内存分配和UTF-8管理
 #define ProcessSystemMemoryAllocation FUN_18018a130              // 处理系统内存分配
 #define ProcessSystemMemoryValidation FUN_18018a1c0              // 处理系统内存验证
-#define ProcessSystemValidationRoutine FUN_180189990              // 处理系统验证例程
+#define ProcessSystemValidationRoutine ExecuteSystemValidationAndExceptionHandling              // 处理系统验证例程
 #define AllocateSystemMemoryBlock FUN_180067110                 // 分配系统内存块
 #define ProcessSystemDataValidation FUN_180189aa0                 // 处理系统数据验证
 #define ProcessSystemMemoryCleanup FUN_180189900                 // 处理系统内存清理
@@ -2087,7 +2087,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define InitializeSystemData FUN_1800da9b0
 
 // 高频出现的FUN_函数语义化宏定义
-#define GetSystemDataPointer FUN_180189990            // 获取系统数据指针（出现9次）
+#define GetSystemDataPointer ExecuteSystemValidationAndExceptionHandling            // 获取系统数据指针（出现9次）
 #define GetSystemMemoryHandle FUN_180188490            // 获取系统内存句柄（出现11次）
 #define ProcessSystemFunctionCall FUN_18022f080        // 处理系统函数调用（出现6次）
 #define ProcessSystemDataOperation FUN_180204a00      // 处理系统数据操作（出现5次）
@@ -4655,7 +4655,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessCharacterEncodingWithValidation FUN_1801884d0     // 处理带验证的字符编码
 #define ProcessSystemMemoryBlockAllocation FUN_180067110          // 处理系统内存块分配
 #define ProcessSystemCharacterStatusUpdate FUN_1801899b0         // 处理系统字符状态更新
-#define ProcessSystemCharacterStatus FUN_180189990              // 处理系统字符状态
+#define ProcessSystemCharacterStatus ExecuteSystemValidationAndExceptionHandling              // 处理系统字符状态
 #define ProcessSystemMemoryAllocationEx FUN_18018a000            // 处理系统内存分配扩展
 #define CalculateCharacterCodePoint FUN_180188490                // 计算字符代码点
 #define ProcessSystemMemoryCleanup FUN_180189900                 // 处理系统内存清理
@@ -13899,9 +13899,9 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * 
  * 该函数检查系统处理状态
  * 
- * @note 原始函数名：FUN_180189990
+ * @note 原始函数名：ExecuteSystemValidationAndExceptionHandling
  */
-#define CheckSystemProcessingStatus FUN_180189990
+#define CheckSystemProcessingStatus ExecuteSystemValidationAndExceptionHandling
 
 /**
  * @brief 分配和初始化字符代码缓冲区
@@ -226816,7 +226816,7 @@ uint32_t * ReallocateCharacterStatusBufferAndInsertElement(long long *CharacterS
   BufferStartAddress = *CharacterStatusBuffer;
   StringOffset = (CharacterStatusBuffer[1] - BufferStartAddress) / 0x28;
   if (StringOffset == 0x666666666666666) {
-    FUN_180189990();
+    ExecuteSystemValidationAndExceptionHandling();
     FunctionPointer = (code *)swi(3);
     StringProcessingStatus = (uint32_t *)(*FunctionPointer)();
     return StringProcessingStatus;
@@ -226929,7 +226929,7 @@ long long ExpandCharacterStatusBufferAndInsertStructElement(long long *Character
   OldBufferStart = *CharacterStatusBuffer;
   AllocatedMemorySizeSize = (CharacterStatusBuffer[1] - OldBufferStart) / 0x28;
   if (AllocatedMemorySizeSize == 0x666666666666666) {
-    FUN_180189990();
+    ExecuteSystemValidationAndExceptionHandling();
     SystemValidationFunction = (code *)swi(3);
     OldBufferStart = (*SystemValidationFunction)();
     return OldBufferStart;
@@ -227155,7 +227155,7 @@ void ExpandCharacterStatusBufferAndInsert64BitElement(long long *CharacterStatus
   aStackProcessingConfigurationFlag[0] = DefaultValue;
   if (CurrentCapacity < NewSize) {
     if (0x1fffffffffffffff < NewSize) {
-      FUN_180189990();
+      ExecuteSystemValidationAndExceptionHandling();
       ValidationStatus = (code *)swi(3);
       (*ValidationStatus)();
       return;
@@ -227236,7 +227236,7 @@ void ReallocateCharacterStatusBufferAndCopy32BitData(long long *CharacterStatusB
   }
   if (0x3fffffffffffffff < RequiredElementCount) {
 LAB_180189786:
-    FUN_180189990();
+    ExecuteSystemValidationAndExceptionHandling();
     ValidationStatus = (code *)swi(3);
     (*ValidationStatus)();
     return;
@@ -227368,7 +227368,16 @@ void FreeCharacterStatusBufferArray(long long *BufferArrayStart, long long *Buff
 
 
 
-89990(voidvoid FUN_180189990(void
+/**
+ * @brief 执行系统验证和异常处理
+ * 
+ * 该函数负责执行系统级别的验证操作和异常处理。
+ * 当系统遇到严重错误或需要强制验证时调用此函数。
+ * 
+ * @note 原始函数名：ExecuteSystemValidationAndExceptionHandling
+ * @warning 此函数不会返回，会触发系统异常处理
+ */
+void ExecuteSystemValidationAndExceptionHandling(void)
 {
   code *ValidationStatus;
   
@@ -259335,7 +259344,7 @@ long long CalculateStringHashAndFindMemoryLocation(long long ContextHandle,long 
   OperationResult = (unsigned long long)(int)*(void *)(ContextHandle + 0x18);
   if (OperationResult != 0) {
     if (0x1fffffffffffffff < OperationResult) {
-      FUN_180189990();
+      ExecuteSystemValidationAndExceptionHandling();
       FunctionPointer = (code *)swi(3);
       (*FunctionPointer)();
       return;
@@ -265052,7 +265061,7 @@ long long FUN_180218920(long long *ContextHandle,uint64_t *ContextHandleSize,uin
   EncodingConversionResult = (long long)OperationBufferSize - MemoryBoundaryEnd >> 3;
   MemoryBlockIndex = ContextHandle[1] - MemoryBoundaryEnd >> 3;
   if (MemoryBlockIndex == 0x1fffffffffffffff) {
-    FUN_180189990();
+    ExecuteSystemValidationAndExceptionHandling();
     SystemValidationFunction = (code *)swi(3);
     MemoryBoundaryEnd = (*SystemValidationFunction)();
     return MemoryBoundaryEnd;
