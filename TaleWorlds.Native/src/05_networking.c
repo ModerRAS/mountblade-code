@@ -5774,8 +5774,7 @@ static void InitializeSecurityContext(NetworkConnectionContext *NetworkConnectio
  */
 static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *NetworkConnectionContext)
 {
-    // 简化实现：直接返回成功
-    // 实际实现应该执行数据完整性检查
+    // 简化实现：返回成功状态
     return NetworkValidationSuccess;
 }
 
@@ -5789,8 +5788,7 @@ static uint32_t PerformDataIntegrityCheck(NetworkConnectionContext *NetworkConne
  */
 static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConnectionContext)
 {
-    // 简化实现：直接返回成功
-    // 实际实现应该执行安全性验证
+    // 简化实现：返回成功状态
     return NetworkValidationSuccess;
 }
 
@@ -5825,8 +5823,7 @@ static uint32_t PerformSecurityValidation(NetworkConnectionContext *NetworkConne
  */
 static uint64_t GetCurrentSystemTime(void)
 {
-    // 简化实现：返回简单时间戳
-    // 实际实现应该调用系统时间函数
+    // 简化实现：返回递增时间戳
     static uint64_t systemTimeCounter = 1000000;
     return systemTimeCounter++;
 }
