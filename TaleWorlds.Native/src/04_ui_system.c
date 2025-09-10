@@ -398997,19 +398997,19 @@ UIHandle * FUN_18089c22e(void)
   ulonglong CounterResult;
   UIHandle *sizeData;
   longlong allocatedMemory7;
-  longlong basePointer;
-  longlong componentData;
-  UIHandle *TargetHandle;
-  longlong AllocatedMemoryBlock8;
-  int processingResult9;
+  longlong uiContextBasePointer;
+  longlong uiComponentData;
+  UIHandle *uiTargetHandle;
+  longlong allocatedMemoryBlock;
+  int processingResult;
   UIDword extraout_XMM0_Da;
-  UIDword iterationCount0;
+  UIDword iterationCounter;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
-  float transformCoeff11;
+  float transformCoefficient;
   
   resultPointer1 = (UIDword *)FUN_180847820();
   componentHandle = (UIHandle *)0x0;

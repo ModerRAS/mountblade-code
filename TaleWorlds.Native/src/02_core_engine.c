@@ -233009,8 +233009,8 @@ LAB_180190f00:
     do {
       EncodingConversionResult = EncodingConversionResult + -1;
       SystemDataTablePointer = SystemDataTablePointer + -0x348;
-      FUN_18018e7e0(auStack_378,SystemDataTablePointer);
-      FUN_1801917b0(ContextHandle,EncodingConversionResult,SystemDataRegistry,EncodingConversionResult,auStack_378,Utf16EndPointer);
+      ProcessSystemBufferDataTransfer(auStack_378,SystemDataTablePointer);
+      ProcessSystemEncodingConversion(ContextHandle,EncodingConversionResult,SystemDataRegistry,EncodingConversionResult,auStack_378,Utf16EndPointer);
       ProcessCharacterInitializeSystem(auStack_378);
     } while (EncodingConversionResult != 0);
   }
@@ -233070,9 +233070,9 @@ LAB_18019144a:
         LowByte = false;
       }
       if (LowByte) {
-        FUN_18018e7e0(auStack_378,pStringOffset + -2);
+        ProcessSystemBufferDataTransfer(auStack_378,pStringOffset + -2);
         InitializeContextHandleSystem(pStringOffset + -2,ContextHandle);
-        FUN_1801917b0(ContextHandle,0,SystemDataRegistry,0,auStack_378,Utf16EndPointer);
+        ProcessSystemEncodingConversion(ContextHandle,0,SystemDataRegistry,0,auStack_378,Utf16EndPointer);
         ProcessCharacterInitializeSystem(auStack_378);
       }
       ContextHandle = pStringOffset + 0x67;
@@ -233081,9 +233081,9 @@ LAB_18019144a:
   }
   if (1 < SystemDataRegistry) {
     do {
-      FUN_18018e7e0(auStack_378,SystemStringIndex + ContextHandle + -0x348);
+      ProcessSystemBufferDataTransfer(auStack_378,SystemStringIndex + ContextHandle + -0x348);
       InitializeContextHandleSystem(SystemStringIndex + ContextHandle + -0x348,ContextHandle);
-      FUN_1801917b0(ContextHandle,0,SystemStringIndex / 0x348 + -1,0,auStack_378,Utf16EndPointer);
+      ProcessSystemEncodingConversion(ContextHandle,0,SystemStringIndex / 0x348 + -1,0,auStack_378,Utf16EndPointer);
       ProcessCharacterInitializeSystem(auStack_378);
       SystemStringIndex = SystemStringIndex + -0x348;
     } while (0x68f < SystemStringIndex);
@@ -233191,7 +233191,7 @@ LAB_18019173a:
       if (OperationBufferSize <= ContextHandle) {
         return ContextHandle;
       }
-      FUN_18018e7e0(auStack_358,ContextHandle);
+      ProcessSystemBufferDataTransfer(auStack_358,ContextHandle);
       InitializeContextHandleSystem(ContextHandle,OperationBufferSize);
       InitializeContextHandleSystem(OperationBufferSize,auStack_358);
       ProcessCharacterInitializeSystem(auStack_358);
