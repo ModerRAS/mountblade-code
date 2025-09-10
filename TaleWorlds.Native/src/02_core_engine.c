@@ -223367,7 +223367,6 @@ void ManageSystemContextAndMemoryAllocation(uint64_t ContextHandle,uint64_t *Con
 
 
 
-// 函数: void FUN_180186a90
 /**
  * @brief 系统栈数据清理器
  * 
@@ -223381,10 +223380,10 @@ void ManageSystemContextAndMemoryAllocation(uint64_t ContextHandle,uint64_t *Con
  * 
  * @return void
  * 
- * @note 原始函数名：FUN_180186a90
+ * @note 已完成语义化重命名
  * @warning 这是一个简化的栈清理函数，确保在调用前上下文句柄有效
  */
-void FUN_180186a90(long long ContextHandle)
+void CleanupSystemStackData(long long ContextHandle)
 {
   ProcessSystemStackData(ContextHandle + 0x20);
   ProcessSystemStackData(ContextHandle);

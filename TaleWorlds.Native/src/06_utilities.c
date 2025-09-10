@@ -118,6 +118,7 @@
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
+#define ExceptionHandlerCleanupOffset88 0x58                   // 异常处理器清理偏移量88 - 用于异常处理器清理操作
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
 #define MemoryManagementFlagMask 0xff000000                   // 内存管理标志掩码 - 内存管理操作的标志掩码
 
@@ -16014,32 +16015,35 @@ uint8_t SystemMemoryManagementAreaA8;
 // 系统内存管理区A9
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaA9;
-uint8_t SystemStatusByteA0;
-uint8_t SystemStatusByteA1;
-uint8_t SystemStatusByteA2;
-uint8_t SystemStatusByteA3;
-uint8_t SystemStatusByteA4;
-uint8_t SystemStatusByteA5;
-uint8_t SystemStatusByteA6;
-uint8_t SystemStatusByteA7;
-uint8_t SystemStatusByteA8;
-uint8_t SystemStatusByteA9;
-uint8_t SystemStatusByteA10;
-uint8_t SystemStatusByteA11;
-uint8_t SystemStatusByteA12;
-uint8_t SystemStatusByteA13;
-uint8_t SystemStatusByteA14;
-uint8_t ExceptionHandlerStatusByteA0;
-uint8_t ExceptionHandlerStatusByteA1;
-uint8_t SystemStatusBufferA;
-uint8_t SystemStatusBufferB;
-uint8_t SystemStatusBufferC;
-uint8_t SystemStatusBufferD;
-uint8_t SystemStatusBufferE;
-uint8_t SystemStatusBufferF;
-uint8_t SystemStatusBufferG;
-uint8_t SystemStatusBufferH;
-uint8_t SystemStatusBufferI;
+// 系统状态字节序列 - 用于存储系统运行时的各种状态信息
+uint8_t SystemStatusBytePrimary;
+uint8_t SystemStatusByteSecondary;
+uint8_t SystemStatusByteTertiary;
+uint8_t SystemStatusByteQuaternary;
+uint8_t SystemStatusByteQuinary;
+uint8_t SystemStatusByteSenary;
+uint8_t SystemStatusByteSeptenary;
+uint8_t SystemStatusByteOctonary;
+uint8_t SystemStatusByteNonary;
+uint8_t SystemStatusByteDenary;
+uint8_t SystemStatusByteUndenary;
+uint8_t SystemStatusByteDuodenary;
+uint8_t SystemStatusByteTerdenary;
+uint8_t SystemStatusByteQuattuordenary;
+uint8_t SystemStatusByteQuindenary;
+// 异常处理状态字节序列 - 用于存储异常处理器的状态信息
+uint8_t ExceptionHandlerStatusBytePrimary;
+uint8_t ExceptionHandlerStatusByteSecondary;
+// 系统状态缓冲区序列 - 用于临时存储系统状态数据的缓冲区
+uint8_t SystemStatusBufferPrimary;
+uint8_t SystemStatusBufferSecondary;
+uint8_t SystemStatusBufferTertiary;
+uint8_t SystemStatusBufferQuaternary;
+uint8_t SystemStatusBufferQuinary;
+uint8_t SystemStatusBufferSenary;
+uint8_t SystemStatusBufferSeptenary;
+uint8_t SystemStatusBufferOctonary;
+uint8_t SystemStatusBufferNonary;
 uint8_t ExceptionHandlerDataA0;
 uint8_t ExceptionHandlerDataA1;
 uint8_t ExceptionHandlerDataA2;
@@ -115963,24 +115967,46 @@ void ResetExceptionHandlerToDefaultAtOffset158B(DataBuffer operationBase, int64_
 
 
 
-void CleanupExceptionHandlers18090fac0(DataBuffer exceptionContext,int64_t systemContext)
+/**
+ * @brief 清理异常处理器和系统资源
+ * 
+ * 该函数负责清理异常处理器和系统资源，确保系统在异常处理后能够正确恢复。
+ * 它会调用异常处理器的清理函数，重置异常处理器状态，并清理相关资源。
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区，包含异常处理的相关信息
+ * @param systemContext 系统上下文数据，用于系统级操作
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会执行以下操作：
+ *       1. 获取异常上下文指针
+ *       2. 调用现有异常处理器的清理函数
+ *       3. 重置异常处理器为临时处理器
+ *       4. 终止系统执行并清理资源（如果需要）
+ *       5. 重置异常处理器状态为默认值
+ *       6. 调用数据异常处理器的清理函数
+ * 
+ * @warning 此函数会修改异常处理器的状态，确保在适当的时候调用
+ * @see TerminateSystemExecutionAndCleanupResources, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
+void CleanupExceptionHandlersAndResources(DataBuffer exceptionContext, int64_t systemContext)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionContextPointer;
   
-  exceptionContext = *(int64_t *)(dataBuffer + SystemValidationDataOffset120);
-  if (*(int64_t **)(exceptionHandlerContext + 0x58) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x58) + SystemFloatDataOffset38))();
+  exceptionContextPointer = *(int64_t *)(exceptionContext + SystemValidationDataOffset120);
+  if (*(int64_t **)(exceptionContextPointer + ExceptionHandlerCleanupOffset88) != (int64_t *)NULL) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionContextPointer + ExceptionHandlerCleanupOffset88) + SystemFloatDataOffset38))();
   }
-  *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset30) != 0) {
+  *(DataBuffer *)(exceptionContextPointer + SystemParameterValidationOffset28) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerContextOffset30) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset30) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset40) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + SystemParameterValidationOffset28) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) + SystemFloatDataOffset38))();
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerContextOffset30) = NULL;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerContextOffset40) = 0;
+  *(DataBuffer *)(exceptionContextPointer + SystemParameterValidationOffset28) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t **)(exceptionContextPointer + ExceptionHandlerContextDataOffset) != (int64_t *)NULL) {
+    (**(FunctionPointer**)(**(int64_t **)(exceptionContextPointer + ExceptionHandlerContextDataOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
