@@ -15037,21 +15037,21 @@ uint8_t ExceptionHandlerDataA60;
 uint8_t ExceptionHandlerDataA61;
 uint8_t ExceptionHandlerDataA62;
 uint8_t ExceptionHandlerDataA63;
-uint8_t ExceptionHandlerDataA;
-uint8_t ExceptionHandlerDataB;
-uint8_t ExceptionHandlerDataC;
-uint8_t ExceptionHandlerDataD;
-uint8_t ExceptionHandlerDataE;
-uint8_t ExceptionHandlerDataF;
-uint8_t ExceptionHandlerDataG;
-uint8_t ExceptionHandlerDataH;
-uint8_t ExceptionHandlerDataI;
-uint8_t ExceptionHandlerDataJ;
-uint8_t ExceptionHandlerDataK;
-uint8_t ExceptionHandlerDataL;
-uint8_t ExceptionHandlerDataM;
-uint8_t ExceptionHandlerDataN;
-uint8_t ExceptionHandlerDataO;
+uint8_t ExceptionHandlerDataAlpha;          // 异常处理器数据Alpha - 第一个异常处理数据
+uint8_t ExceptionHandlerDataBravo;          // 异常处理器数据Bravo - 第二个异常处理数据
+uint8_t ExceptionHandlerDataCharlie;        // 异常处理器数据Charlie - 第三个异常处理数据
+uint8_t ExceptionHandlerDataDelta;          // 异常处理器数据Delta - 第四个异常处理数据
+uint8_t ExceptionHandlerDataEcho;           // 异常处理器数据Echo - 第五个异常处理数据
+uint8_t ExceptionHandlerDataFoxtrot;        // 异常处理器数据Foxtrot - 第六个异常处理数据
+uint8_t ExceptionHandlerDataGolf;           // 异常处理器数据Golf - 第七个异常处理数据
+uint8_t ExceptionHandlerDataHotel;          // 异常处理器数据Hotel - 第八个异常处理数据
+uint8_t ExceptionHandlerDataIndia;          // 异常处理器数据India - 第九个异常处理数据
+uint8_t ExceptionHandlerDataJuliet;         // 异常处理器数据Juliet - 第十个异常处理数据
+uint8_t ExceptionHandlerDataKilo;           // 异常处理器数据Kilo - 第十一个异常处理数据
+uint8_t ExceptionHandlerDataLima;           // 异常处理器数据Lima - 第十二个异常处理数据
+uint8_t ExceptionHandlerDataMike;           // 异常处理器数据Mike - 第十三个异常处理数据
+uint8_t ExceptionHandlerDataNovember;       // 异常处理器数据November - 第十四个异常处理数据
+uint8_t ExceptionHandlerDataOscar;          // 异常处理器数据Oscar - 第十五个异常处理数据
 uint8_t ExceptionHandlerDataPrimary;           // 异常处理器数据Primary - 主要异常处理数据
 uint8_t ExceptionHandlerDataSecondary;         // 异常处理器数据Secondary - 次要异常处理数据  
 uint8_t ExceptionHandlerDataTertiary;          // 异常处理器数据Tertiary - 第三异常处理数据
