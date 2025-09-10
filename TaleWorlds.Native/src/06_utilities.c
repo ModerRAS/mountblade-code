@@ -2601,6 +2601,18 @@
 // 系统管理相关偏移量常量
 #define SystemManagementOffset98 0x98
 
+// 异常处理器指针相关偏移量常量
+#define ExceptionHandlerPointerOffset 0x48                    // 异常处理器指针偏移量
+#define ExceptionHandlerPointerOffset4 0x4                    // 异常处理器指针偏移量4
+#define ExceptionHandlerPointerOffsetE 0xe                    // 异常处理器指针偏移量E
+#define ExceptionHandlerPointerOffset18 0x18                  // 异常处理器指针偏移量18
+#define ExceptionHandlerPointerOffset20 0x20                 // 异常处理器指针偏移量20
+#define MemoryRegionMask 0xffffffffffff0000                   // 内存区域掩码
+#define ExceptionMemoryRegionOffset 0x1000                   // 异常内存区域偏移量
+#define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数
+#define ExceptionMemoryRegionOffset70 0x70                   // 异常内存区域偏移量70
+#define SystemCleanupFlagAlternative 0x80000000               // 系统清理标志备选方案
+
 // 系统数据传输处理函数
 /**
  * @brief 系统数据传输处理器
@@ -45188,7 +45200,7 @@ void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwi
 
 
 /**
- * 异常展开处理函数A0 - 处理异常展开和清理操作
+ * @brief 异常展开处理函数A0 - 处理异常展开和清理操作
  * 
  * 此函数处理异常展开操作，管理异常链表和资源清理：
  * 1. 从指定位置获取异常处理指针
@@ -45200,6 +45212,10 @@ void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwi
  * @param exceptionContext 异常上下文，包含异常处理信息
  * @param unwindParam 展开参数，用于控制展开过程
  * @return 无返回值
+ * 
+ * @note 这是异常处理系统的核心函数，负责异常展开时的资源管理
+ * @warning 调用者需要确保参数的有效性
+ * @see HandleExceptionE0, ManageMemory, ExceptionList
  */
 void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 
@@ -45215,7 +45231,7 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
   }
   memoryRegion = (uint64_t)exceptionHandler & MemoryRegionMask;
   if (memoryRegion != 0) {
-    handlerAddress = memoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandler - memoryRegion >> MemoryBlockShift) * ExceptionMemoryBlockMultiplier;
+    handlerAddress = memoryRegion + ExceptionMemoryRegionOffset + ((int64_t)exceptionHandler - memoryRegion >> BitShift16Bits) * ExceptionMemoryBlockMultiplier;
     handlerAddress = handlerAddress - (uint64_t)*(uint *)(handlerAddress + ExceptionHandlerPointerOffset4);
     if ((*(void ***)(memoryRegion + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(handlerAddress + ExceptionHandlerPointerOffsetE) == '\0')) {
       *exceptionHandler = *(DataBuffer *)(handlerAddress + ExceptionHandlerPointerOffset20);
@@ -45301,15 +45317,6 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext, int64_t unwindParam)
 
 /**
  * @brief 设置异常上下文并解锁互斥锁
- * @details 设置全局异常上下文指针，然后解锁指定的互斥锁
- * 
- * @param operationBase 异常处理上下文（未使用）
- * @param dataBuffer 包含异常上下文指针的数据结构
- * 
- * @return 无返回值
- */
-/**
- * @brief 设置异常上下文并解锁互斥锁
  * 
  * 该函数用于设置全局异常上下文指针，并解锁系统互斥锁
  * 主要用于异常处理过程中的资源管理和状态同步
@@ -45339,19 +45346,6 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
 
 
 
-/**
- * @brief 验证异常数据指针并处理相关操作
- * 
- * 该函数用于验证异常数据指针的有效性，如果指针有效则执行相应的异常处理操作
- * 主要用于异常处理过程中的数据验证和资源管理
- * 
- * @param exceptionContext 异常处理上下文（当前未使用）
- * @param contextData 包含异常数据指针的上下文结构
- * 
- * @note 该函数从上下文数据中提取异常数据指针并进行验证
- * @note 如果数据指针无效，函数会直接返回
- * @note 验证通过后会更新指针链表并管理引用计数
- */
 /**
  * @brief 验证异常数据指针并处理相关操作
  * 
