@@ -9979,6 +9979,9 @@ void ProcessUIUpdates(void)
   char *stringBuffer;
   char **bufferPointer;
   
+  stringBuffer = (char *)(stackPointer + -0x59);
+  bufferPointer = (char **)(stackPointer + -0x69);
+  
   stringLength = 0xffffffffffffffff;
   do {
     stringLength = stringLength + 1;
