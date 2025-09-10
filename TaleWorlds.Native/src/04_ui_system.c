@@ -121116,7 +121116,7 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
     } while ((longlong)handleValue < 8);
     if (7 < (int)validationIndex) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),contextHandleHandle,&UNK_180957080,0xa3,1);
+      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),contextHandleHandle,&UIContextHandleData080,0xa3,1);
     }
     creationResult = FUN_180741c20();
     if ((int)creationResult == 0) {
@@ -121185,7 +121185,7 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
     } while ((longlong)loopCounter < 8);
     if (7 < (int)maxProcessingCount) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),iterationCount,&UNK_180957080,0xa3,1);
+      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),iterationCount,&UIContextHandleData080,0xa3,1);
     }
     processStatus = FUN_180741c20();
     if ((int)processStatus == 0) {
