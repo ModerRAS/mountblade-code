@@ -6272,7 +6272,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089dfe4
  */
-#define ValidateSystemReadiness FUN_18089dfe4
+#define ValidateSystemReadiness CheckSystemReadinessStatus
 
 /**
  * @brief 执行数据同步A1
