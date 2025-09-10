@@ -200119,7 +200119,7 @@ ProcessCharacterEncodingAndValidation(long long SystemContextHandle,uint64_t *Co
           *(uint32_t *)(OperationBufferSize + 2) = 0x1a;
           return OperationBufferSize;
         }
-        ProcessSystemCharacterEncodingAndDataManagement(ContextHandle,&StackTempPointer);
+        ProcessSystemCharacterEncodingAndDataManagement(SystemContextHandle,&StackTempPointer);
         CoreEngineFinalizeSystemEvent(&pCalculationFunctionAddress,Utf8SourcePointer);
         ProcessSystemCalculationFunctionAddress(&EncodingBuffer);
         pCalculationFunctionAddress = (void *)&SystemNullTemplate;
