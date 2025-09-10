@@ -197,6 +197,13 @@
 #define SystemDataOffsetPrimaryConfig 0x1049
 #define SystemDataOffsetSecondaryConfig 0x1013
 #define SystemDataOffsetTertiaryConfig 0x1043
+
+// 异常处理回调偏移量常量
+#define ExceptionCallbackOffset68 0x68                     // 异常回调偏移量68 - 用于异常处理回调的偏移位置
+#define ExceptionCallbackOffset70 0x70                     // 异常回调偏移量70 - 用于异常处理回调的偏移位置
+#define ExceptionCallbackOffset118 0x118                   // 异常回调偏移量118 - 用于异常处理回调的偏移位置
+#define ExceptionCallbackOffset150 0x150                   // 异常回调偏移量150 - 用于异常处理回调的偏移位置
+#define ExceptionCallbackOffset1a0 0x1a0                   // 异常回调偏移量1a0 - 用于异常处理回调的偏移位置
 #define SystemDataOffsetConfigTypeB 0x103b
 #define SystemDataOffsetConfigTypeD 0x103d
 #define SystemDataOffsetConfigType5 0x1035
@@ -39605,7 +39612,7 @@ uint64_t ValidateSystemResourceStatus(void)
     else {
       validationResult = validationStatusCode;
       if (*(int *)(resourceBufferContext[1] + SystemDataSecondaryOffset18) == 0) {
-        validationResult = ProcessSystemDataWithValidation(*resourceBufferContext,systemOperationContext + 0x70);
+        validationResult = ProcessSystemDataWithValidation(*resourceBufferContext,systemOperationContext + ExceptionCallbackOffset70);
       }
     }
     if ((int)validationResult != 0) {
