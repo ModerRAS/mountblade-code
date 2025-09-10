@@ -110,6 +110,17 @@
 
 // 系统配置偏移量常量
 #define SystemConfigTimeoutOffset 400                        // 系统配置超时偏移量
+
+// 数据包处理偏移量常量
+#define DataPacketHeaderOffset 0x18                           // 数据包头偏移量
+#define DataPacketFunctionPointerOffset 0x1a                  // 数据包函数指针偏移量
+#define DataPacketPayloadOffset 0x14                          // 数据包负载偏移量
+#define DataPacketErrorHandlerOffset 4                        // 数据包错误处理器偏移量
+#define DataPacketHeaderFieldOffset 0x12                      // 数据包头字段偏移量
+
+// 内存配置偏移量常量
+#define MemoryContextFunctionPointerOffset 0x22f8             // 内存上下文函数指针偏移量
+#define MemoryContextDataTemplateOffset 0x22a0               // 内存上下文数据模板偏移量
 #define SystemEventTemplateBaseOffset 0x16c8                 // 系统事件模板基础偏移量
 #define SystemEventTemplateOffset1 0x1b88                    // 系统事件模板偏移量1
 #define SystemEventTemplateOffset2 -0x14                     // 系统事件模板偏移量2
@@ -26128,7 +26139,7 @@ uint32_t SystemShutdownAndCleanup(void
   if (CleanupContext != (long long ****)0x0) {
     (*(void *)(*CleanupContext)[SystemContextOperationOffset5])(CleanupContext);
   }
-  SystemHandle = *(uint64_t **)(TimeoutValue + 400);
+  SystemHandle = *(uint64_t **)(TimeoutValue + SystemConfigTimeoutOffset);
   FunctionPointer = *(void **)*SystemHandle;
   PrimaryStackContext = &SecondaryStackContext;
   SecondaryStackContext = (long long ***)CleanupContext;
@@ -26141,7 +26152,7 @@ uint32_t SystemShutdownAndCleanup(void
   if (ThreadContext != (long long ***)0x0) {
     (*(void *)(*ThreadContext)[SystemContextOperationOffset5])(ThreadContext);
   }
-  SystemHandle = *(uint64_t **)(TimeoutValue + 400);
+  SystemHandle = *(uint64_t **)(TimeoutValue + SystemConfigTimeoutOffset);
   FunctionPointer = *(void **)*SystemHandle;
   PrimaryStackContext = (long long ****)&TertiaryStackContext;
   TertiaryStackContext = (long long **)ThreadContext;
