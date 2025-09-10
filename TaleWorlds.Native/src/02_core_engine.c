@@ -27204,7 +27204,7 @@ void CoreEngineMemoryConfigure(uint64_t MemoryConfigHandle,uint32_t MemoryConfig
   
   MemoryContext = CoreEngineMemoryContext;
   if ((*(long long *)(CoreEngineMemoryContext + CoreEngineMemoryContextOffset) != 0) &&
-     (ConfigStackDataBuffer[0] = MemoryConfigParam, OperationResult = (**(code **)(CoreEngineMemoryContext + 0x22f8))(ConfigStackBuffer),
+     (ConfigStackDataBuffer[0] = MemoryConfigParam, OperationResult = (**(code **)(CoreEngineMemoryContext + SystemMemoryContextFunctionPointerOffset22f8))(ConfigStackBuffer),
      MemoryConfigParam = ConfigStackDataBuffer[0], OperationResult == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       DataTemplate = &CoreEngineDataTemplate;

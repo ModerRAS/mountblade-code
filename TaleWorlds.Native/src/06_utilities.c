@@ -1281,6 +1281,7 @@
 #define StackFrameContextNegativeOffset54 -0x54
 #define StackFrameContextNegativeOffset19 -0x19
 #define StackFrameContextNegativeOffset15 -0x15
+#define StackFrameContextNegativeOffset13 -0x13
 #define StackFrameContextNegativeOffset11 -0x11
 #define StackFrameContextNegativeOffsetD -0xd
 #define StackFrameContextNegativeOffset10 -0x10
@@ -38488,11 +38489,11 @@ uint64_t * ValidateSystemDataProcessing(void)
       if ((int)exceptionBuffer3 != 0) {
         return exceptionBuffer3;
       }
-      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x13,2);
+      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + StackFrameContextNegativeOffset13,2);
       if ((int)exceptionBuffer3 != 0) {
         return exceptionBuffer3;
       }
-      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + -0x11,8);
+      exceptionBuffer3 = (DataBuffer *)OperateDataO0(systemDataBuffer,StackFrameContext + StackFrameContextNegativeOffset11,8);
       OperationResultPrimary = floatResultA;
     }
     else {
