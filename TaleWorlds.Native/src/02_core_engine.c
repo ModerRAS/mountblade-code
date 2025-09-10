@@ -2178,7 +2178,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemMemoryAllocationEx FUN_1802161d0             // 处理系统内存分配扩展
 #define ProcessSystemMemoryAllocationVariantB FUN_180216210      // 处理系统内存分配变体B
 #define GetSystemErrorCodeEx FUN_18021aef5                       // 获取系统错误代码扩展
-#define IdentifySystemIdentifierByPatternVariantO FUN_180225667
+#define IdentifySystemIdentifierByPatternVariantO FUN_180225667  // 识别系统标识符模式O (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7  // 识别系统标识符模式P (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7  // 识别系统标识符模式Q (字符串模式匹配和标识符识别)
 #define IdentifySystemIdentifierByPatternVariantR FUN_180225727  // 识别系统标识符模式R (字符串模式匹配和标识符识别)
