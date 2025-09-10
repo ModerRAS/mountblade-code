@@ -30047,12 +30047,19 @@ MemoryCheckpoint:
  * @brief 数据块验证函数A0
  * @details 验证数据块的完整性和有效性，执行边界检查和大小验证
  * 
- * 参数:
- *   operationBase - 数据块句柄
- *   dataBuffer - 验证参数
+ * 该函数负责验证数据块的完整性和有效性，包括：
+ * - 执行数据完整性验证
+ * - 检查数据边界和大小
+ * - 验证内存访问权限
+ * - 处理验证失败的情况
  * 
- * 返回值:
- *   无 - 验证结果通过内部机制处理
+ * @param DataBlockContext 数据块上下文，包含要验证的数据块信息
+ * @param ValidationBuffer 验证缓冲区，包含验证参数和配置
+ * 
+ * @return 无返回值，验证结果通过内部机制处理
+ * 
+ * @note 该函数在验证失败时会提前返回，成功时会更新相关状态
+ * @note 原始函数名：FUN_1808a5a90
  */
 void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 
@@ -70011,7 +70018,16 @@ void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ProcessExceptionRecoveryAtOffsetA10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常恢复操作
+ * 
+ * 该函数负责在指定偏移量处处理异常恢复操作，调用数据缓冲区中的回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常恢复信息
+ * @note 原始函数名：Unwind_180906a10
+ */
+void HandleExceptionRecoveryAtOffsetA10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + DataBufferOffset48) != (int64_t *)0x0) {
@@ -70022,6 +70038,15 @@ void ProcessExceptionRecoveryAtOffsetA10(DataBuffer operationBase,int64_t dataBu
 
 
 
+/**
+ * @brief 处理异常状态
+ * 
+ * 该函数负责处理异常状态，在指定偏移量处调用异常上下文回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常状态信息
+ * @note 原始函数名：Unwind_180906a20
+ */
 void HandleExceptionStateAtOffsetA20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -70033,6 +70058,15 @@ void HandleExceptionStateAtOffsetA20(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 清理异常资源
+ * 
+ * 该函数负责清理异常处理过程中使用的资源，调用数据处理偏移量处的回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常资源信息
+ * @note 原始函数名：Unwind_180906a30
+ */
 void CleanupExceptionResourcesAtOffsetA30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -70044,6 +70078,15 @@ void CleanupExceptionResourcesAtOffsetA30(DataBuffer operationBase,int64_t dataB
 
 
 
+/**
+ * @brief 重置异常系统
+ * 
+ * 该函数负责重置异常处理系统，初始化系统资源并调用系统上下文回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常系统信息
+ * @note 原始函数名：Unwind_180906a40
+ */
 void ResetExceptionSystemAtOffsetA40(DataBuffer operationBase,int64_t dataBuffer)
 
 {

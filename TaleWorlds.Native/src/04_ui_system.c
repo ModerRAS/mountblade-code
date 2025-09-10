@@ -113583,34 +113583,49 @@ void ValidateUILayoutDataAndFormatting(UIDword *uiContext,int *dataSource,int ta
 
 
  void FUN_18072f7ec(longlong uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_18072f7ec(longlong uiContext,UIHandle dataSource,int targetBuffer)
+/**
+ * @brief 处理UI组件数据计算和更新
+ * 
+ * 该函数负责处理UI组件的数据计算和更新操作，包括：
+ * - 组件数据的计算和验证
+ * - 上下文数据的处理和更新
+ * - 事件代码的处理
+ * - 循环迭代和数据处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072f7ec
+ */
+void ProcessUIComponentDataCalculation(longlong uiContext,UIHandle dataSource,int targetBuffer)
 
 {
-  int *pprocessingResult;
-  int uiValidationResult;
-  ulonglong eventCodeType;
+  int *processingResultPtr;
+  int validationResult;
+  ulonglong eventCode;
   longlong componentData;
-  longlong contextDataHandle;
-  longlong eventDataIndex;
-  int *ptrLocalInt6;
+  longlong contextHandle;
+  longlong eventIndex;
+  int *dataPointer;
   
-  ptrLocalInt6 = (int *)(uiContext + 8);
-  eventCodeType = (ulonglong)(targetBuffer - 1);
-  eventDataIndex = 1;
+  dataPointer = (int *)(uiContext + 8);
+  eventCode = (ulonglong)(targetBuffer - 1);
+  eventIndex = 1;
   do {
-    uiValidationResult = *(int *)(componentData + eventDataIndex * 8);
-    *ptrLocalInt6 = ptrLocalInt6[-2] * 2 - (int)(((longlong)ptrLocalInt6[-1] * (longlong)uiValidationResult >> 0xf) + 1 >> 1);
-    for (contextDataHandle = eventDataIndex; 1 < contextDataHandle; contextDataHandle = contextDataHandle + -1) {
-      pprocessingResult = (int *)(uiContext + contextDataHandle * 4);
-      *pprocessingResult = *pprocessingResult + (*(int *)(uiBufferData + -8 + contextDataHandle * 4) -
-                          (int)(((longlong)*(int *)(uiBufferData + -4 + contextDataHandle * 4) * (longlong)uiValidationResult >>
+    validationResult = *(int *)(componentData + eventIndex * 8);
+    *dataPointer = dataPointer[-2] * 2 - (int)(((longlong)dataPointer[-1] * (longlong)validationResult >> 0xf) + 1 >> 1);
+    for (contextHandle = eventIndex; 1 < contextHandle; contextHandle = contextHandle + -1) {
+      processingResultPtr = (int *)(uiContext + contextHandle * 4);
+      *processingResultPtr = *processingResultPtr + (*(int *)(uiBufferData + -8 + contextHandle * 4) -
+                          (int)(((longlong)*(int *)(uiBufferData + -4 + contextHandle * 4) * (longlong)validationResult >>
                                 0xf) + 1 >> 1));
     }
-    *(int *)(uiBufferData + 4) = *(int *)(uiBufferData + 4) - uiValidationResult;
-    eventDataIndex = eventDataIndex + 1;
-    ptrLocalInt6 = ptrLocalInt6 + 1;
-    eventCodeType = eventCodeType - 1;
-  } while (eventCodeType != 0);
+    *(int *)(uiBufferData + 4) = *(int *)(uiBufferData + 4) - validationResult;
+    eventIndex = eventIndex + 1;
+    dataPointer = dataPointer + 1;
+    eventCode = eventCode - 1;
+  } while (eventCode != 0);
   return;
 }
 
