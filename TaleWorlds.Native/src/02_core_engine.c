@@ -260556,13 +260556,13 @@ void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uin
       StringProcessingStatus = SystemCharacterStatusBufferPointer;
     }
     AllocatedMemorySize = strstr(StringProcessingStatus,&SystemUnknownProcessingStatusFlagH);
-    if (AllocatedMemorySize != 0) goto LAB_180213f5f;
+    if (AllocatedMemorySize != 0) goto PROCESS_STRING_TEMPLATE_FOUND;
     StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPointer != NULL) {
       StringProcessingStatus = SystemCharacterStatusBufferPointer;
     }
     AllocatedMemorySize = strstr(StringProcessingStatus,&SystemStringTemplateDataSecondary);
-    if (AllocatedMemorySize != 0) goto LAB_180213f5f;
+    if (AllocatedMemorySize != 0) goto PROCESS_STRING_TEMPLATE_FOUND;
   }
   else {
 PROCESS_STRING_TEMPLATE_FOUND:
@@ -260578,28 +260578,28 @@ PROCESS_STRING_TEMPLATE_FOUND:
   TemporaryBuffer = *(uint64_t **)(ContextHandle + 0x380);
   if (TemporaryBuffer < *(uint64_t **)(ContextHandle + 0x388)) {
     *(uint64_t **)(ContextHandle + 0x380) = TemporaryBuffer + 1;
-    *TemporaryBuffer = uStack_298;
-    goto LAB_180214064;
+    *TemporaryBuffer = SystemProcessingCounter;
+    goto FUNCTION_EXIT_CLEANUP;
   }
   StringProcessingStatus = *(uint64_t **)(ContextHandle + 0x378);
   AllocatedMemorySize = (long long)TemporaryBuffer - (long long)StringProcessingStatus >> 3;
   if (AllocatedMemorySize == 0) {
     AllocatedMemorySize = 1;
-LAB_180213fe6:
+ALLOCATE_MEMORY_BUFFER:
     SecondaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 8,*(uint8_t *)(ContextHandle + 0x390));
     TemporaryBuffer = *(uint64_t **)(ContextHandle + 0x380);
     StringProcessingStatus = *(uint64_t **)(ContextHandle + 0x378);
   }
   else {
     AllocatedMemorySize = AllocatedMemorySize * 2;
-    if (AllocatedMemorySize != 0) goto LAB_180213fe6;
+    if (AllocatedMemorySize != 0) goto ALLOCATE_MEMORY_BUFFER;
     SecondaryProcessingStatusFlag = NULL;
   }
   if (StringProcessingStatus != TemporaryBuffer) {
                     // WARNING: Subroutine does not return
     memmove(SecondaryProcessingStatusFlag,StringProcessingStatus,(long long)TemporaryBuffer - (long long)StringProcessingStatus);
   }
-  *SecondaryProcessingStatusFlag = uStack_298;
+  *SecondaryProcessingStatusFlag = SystemProcessingCounter;
   if (*(long long *)(ContextHandle + 0x378) != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
@@ -261127,20 +261127,21 @@ uint64_t ExecuteSystemContextFloatingPointCalculationAndMatrixTransform(uint64_t
 
 uint64_t FUN_180214b09(float *ContextHandle,float *ContextHandleSize
 {
-  float *pSystemContextPrimaryFloat;
-  int LockOperationResult;
-  long long SearchStartIndex;
-  uint MemoryAddressMaskPointer;
-  int *ProcessingResult;
-  unsigned long long CalculatedCodePoint;
-  int ValidationResult;
-  int SystemRegisterR11D;
-  float FloatOffsetValue;
-  float ProcessedFloatValue8;
-  float NormalizedParameterValue;
-  float PrimaryFloatValue;
-  float FloatXMM5;
-  float SecondaryFloatValue;
+  // 变量语义化定义
+  float *pSystemContextPrimaryFloat;                       // 系统上下文主浮点指针
+  int LockOperationResult;                                 // 锁操作结果
+  long long SearchStartIndex;                              // 搜索开始索引
+  uint MemoryAddressMaskPointer;                           // 内存地址掩码指针
+  int *ProcessingResult;                                   // 处理结果指针
+  unsigned long long CalculatedCodePoint;                  // 计算的代码点
+  int ValidationResult;                                    // 验证结果
+  int SystemRegisterR11D;                                  // 系统寄存器R11D
+  float FloatOffsetValue;                                  // 浮点偏移值
+  float ProcessedFloatValue8;                               // 处理的浮点值8
+  float NormalizedParameterValue;                          // 归一化参数值
+  float PrimaryFloatValue;                                  // 主浮点值
+  float FloatXMM5;                                         // 浮点XMM5寄存器值
+  float SecondaryFloatValue;                               // 次要浮点值
   
   LockOperationResult = *ProcessingResult;
   SecondaryFloatValue = 1.0;
@@ -293732,6 +293733,40 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180213e10
  */
 #define ProcessSystemEncodingAndMemoryOperations FUN_180213e10
+
+/**
+ * @brief 处理浮点数据归一化和系统配置
+ * 
+ * 该函数负责处理浮点数据的归一化操作和系统配置管理，包括：
+ * - 处理浮点上下文句柄和数据大小
+ * - 执行浮点数据的归一化和缩放
+ * - 管理系统配置和寄存器状态
+ * - 处理浮点数据的验证和错误处理
+ * 
+ * @param ContextHandle 浮点上下文句柄，包含浮点数据指针
+ * @param ContextHandleSize 上下文大小指针，用于数据大小管理
+ * @return uint64_t 返回处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180214b09
+ */
+#define ProcessFloatDataNormalizationAndSystemConfiguration FUN_180214b09
+
+/**
+ * @brief 处理浮点数据转换和内存管理
+ * 
+ * 该函数负责处理浮点数据的转换操作和内存管理，包括：
+ * - 处理浮点上下文句柄和数据大小
+ * - 执行浮点数据的转换和计算
+ * - 管理内存分配和数据缓冲区
+ * - 处理浮点数据的验证和错误处理
+ * 
+ * @param ContextHandle 浮点上下文句柄，包含浮点数据指针
+ * @param ContextHandleSize 上下文大小指针，用于数据大小管理
+ * @return uint64_t 返回处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180214b21
+ */
+#define ProcessFloatDataConversionAndMemoryManagement FUN_180214b21
 
 /**
  * @brief 核心引擎系统状态监控函数
