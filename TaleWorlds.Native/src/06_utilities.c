@@ -156,33 +156,33 @@
 #define ExceptionHandlerContextOffset610 0x610
 
 // 资源表索引常量
-#define ResourceTableIndex1049 0x1049
-#define ResourceTableIndex1013 0x1013
-#define ResourceTableIndex1043 0x1043
-#define ResourceTableIndex103b 0x103b
-#define ResourceTableIndex103d 0x103d
-#define ResourceTableIndex1035 0x1035
-#define ResourceTableIndex1037 0x1037
-#define ResourceTableIndex1031 0x1031
-#define ResourceTableIndex103f 0x103f
-#define ResourceTableIndexffa 0xffa
-#define ResourceTableIndexff9 0xff9
+#define ResourceTableIndexPrimaryResource 0x1049
+#define ResourceTableIndexSecondaryResource 0x1013
+#define ResourceTableIndexTertiaryResource 0x1043
+#define ResourceTableIndexResourceTypeB 0x103b
+#define ResourceTableIndexResourceTypeD 0x103d
+#define ResourceTableIndexResourceType5 0x1035
+#define ResourceTableIndexResourceType7 0x1037
+#define ResourceTableIndexResourceType1 0x1031
+#define ResourceTableIndexResourceTypeF 0x103f
+#define ResourceTableIndexResourceEndMarkerA 0xffa
+#define ResourceTableIndexResourceEndMarkerB 0xff9
 
 // 系统数据偏移量常量
-#define SystemDataOffset1049 0x1049
-#define SystemDataOffset1013 0x1013
-#define SystemDataOffset1043 0x1043
-#define SystemDataOffset103b 0x103b
-#define SystemDataOffset103d 0x103d
-#define SystemDataOffset1035 0x1035
-#define SystemDataOffset1037 0x1037
-#define SystemDataOffset102f 0x102f
-#define SystemDataOffset1031 0x1031
-#define SystemDataOffsetffa 0xffa
-#define SystemDataOffsetff9 0xff9
-#define SystemDataOffset1041 0x1041
-#define SystemDataOffset101b 0x101b
-#define SystemDataOffsetffd 0xffd
+#define SystemDataOffsetPrimaryConfig 0x1049
+#define SystemDataOffsetSecondaryConfig 0x1013
+#define SystemDataOffsetTertiaryConfig 0x1043
+#define SystemDataOffsetConfigTypeB 0x103b
+#define SystemDataOffsetConfigTypeD 0x103d
+#define SystemDataOffsetConfigType5 0x1035
+#define SystemDataOffsetConfigType7 0x1037
+#define SystemDataOffsetConfigTypeF 0x102f
+#define SystemDataOffsetConfigType1 0x1031
+#define SystemDataOffsetEndMarkerA 0xffa
+#define SystemDataOffsetEndMarkerB 0xff9
+#define SystemDataOffsetExtendedConfig 0x1041
+#define SystemDataOffsetAlternateConfig 0x101b
+#define SystemDataOffsetSpecialConfig 0xffd
 
 // 资源处理步长常量
 #define ResourceProcessingStep 0x40

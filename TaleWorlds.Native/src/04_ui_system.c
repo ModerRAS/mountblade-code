@@ -113404,7 +113404,27 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
 
 
  void FUN_18072fba0(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize)
-void FUN_18072fba0(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize)
+/**
+ * @brief UI渲染表面处理
+ * 
+ * 该函数负责处理UI系统中的表面渲染操作。
+ * 主要功能：
+ * 1. 处理UI表面的渲染数据
+ * 2. 执行渲染缓冲区操作
+ * 3. 支持加密渲染数据
+ * 4. 管理渲染资源和内存
+ * 
+ * @param uiContext UI上下文指针，包含渲染的状态信息
+ * @param dataSource 数据源指针，包含渲染所需的原始数据
+ * @param targetBuffer 目标缓冲区指针，用于存储渲染结果
+ * @param bufferSize 缓冲区句柄，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072fba0
+ * @warning 该函数不返回，最终调用ProcessUIBufferOperation
+ * @warning 涉及加密数据处理，需要注意安全性
+ * @see ProcessUIBufferOperation, ProcessUIRenderContext
+ */
+void ProcessUIRenderSurface(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize)
 
 {
   ulonglong result;

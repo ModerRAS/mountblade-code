@@ -85,6 +85,13 @@
 #define SystemDataTableOffset 0x168                          // 系统数据表偏移量
 #define SystemStackRegisterOffset 0x140                      // 系统栈寄存器偏移量
 
+// 系统操作常量
+#define SystemOperationSuccess 0                             // 系统操作成功
+#define SystemCharacterStatusBaseAddress 0x180c038d0          // 系统字符状态基地址
+#define SystemEventTemplateSize 0x18                         // 系统事件模板大小
+#define MemoryAlignmentSize 8                                // 内存对齐大小
+#define MemoryAllocationMask 0xfffffffffffffffe              // 内存分配掩码
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
@@ -234,6 +241,15 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * @note 原始函数名：FUN_180058830
  */
 #define ProcessSystemStatus FUN_180058830
+
+/**
+ * @brief 字符状态缓冲区处理函数
+ * 
+ * 处理字符状态缓冲区，进行系统字符编码和状态管理
+ * 
+ * @note 原始函数名：FUN_1800c2ab0
+ */
+#define ProcessCharacterStatusBuffer FUN_1800c2ab0
 
 /**
  * @brief 获取整数值指针
