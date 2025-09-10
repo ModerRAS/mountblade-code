@@ -30559,8 +30559,8 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                   *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1165C),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
             if ((int)operationResult == 0) {
               operationResult = *(DataWord *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
-              operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryRegionOffset + 4),
-                                    *(DataWord *)(memoryRegionOffset + 8),*(DataWord *)(memoryRegionOffset + DataBufferOffsetC),operationResult,
+              operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryRegionOffset + DataProcessingSecondaryOffset),
+                                    *(DataWord *)(memoryRegionOffset + DataProcessingTertiaryOffset),*(DataWord *)(memoryRegionOffset + DataProcessingQuaternaryOffset),operationResult,
                                     dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
               if ((((int)operationResult == 0) &&
                   (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA8,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataBufferOffset1E0),
