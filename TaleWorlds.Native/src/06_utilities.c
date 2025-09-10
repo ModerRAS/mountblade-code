@@ -20617,12 +20617,12 @@ SystemCleanupLabel:
 void ValidateUtilityConfiguration(int configId,int validationFlags)
 
 {
-  int systemValue;
-  int adjustedValue;
+  int baseSystemValue;
+  int calculatedBufferSize;
   int64_t registerContext;
   int64_t systemContext;
-  int operationResult;
-  DataBuffer systemParameter;
+  int validationStatus;
+  DataBuffer configurationParameter;
   
   operationResult = configId + 1;
   if (systemValue - validationFlags < operationResult) {

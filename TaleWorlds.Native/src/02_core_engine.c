@@ -260355,20 +260355,20 @@ SkipEventProcessing:
 uint64_t ProcessSystemContextValidationAndEncoding(long long SystemContextHandle, long long BufferOperationSize
 {
   uint Utf16Char;
-  int LockOperationResult;
+  int MemoryAllocationStatus;
   uint32_t *SystemEventTemplatePointer;
-  uint32_t *MemoryAddressMaskPointer;
+  uint32_t *MemoryBufferPointer;
   uint64_t CalculatedCodePoint;
-  void *SecondaryProcessingStatusFlag;
+  void *ProcessingStatusFlag;
   uint64_t SystemRegisterFlag;
   uint64_t SystemChecksum;
   
   SystemChecksum = 0xfffffffffffffffe;
-  if (*(char *)(ContextHandle + 0x210) != '\0') {
+  if (*(char *)(SystemContextHandle + 0x210) != '\0') {
     return 0;
   }
-  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213b20;
-  SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x16,0x13);
+  if (*(int *)(SystemConfigData + 0x9a0) == 0) goto SkipContextValidation;
+  SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager, 0x16, 0x13);
   *(uint8_t *)SystemEventTemplatePointer = 0;
   Utf16Char = GetMemoryAllocationInfo(SystemEventTemplatePointer);
   *SystemEventTemplatePointer = 0x61657263;
@@ -260377,47 +260377,45 @@ uint64_t ProcessSystemContextValidationAndEncoding(long long SystemContextHandle
   SystemEventTemplatePointer[3] = 0x655f746f;
   SystemEventTemplatePointer[4] = 0x746e6576;
   *(uint16_t *)(SystemEventTemplatePointer + 5) = 0x20;
-  LockOperationResult = *(int *)(OperationBufferSize + 0x10);
-  if (0 < LockOperationResult) {
-    if ((LockOperationResult != -0x15) && (Utf16Char < LockOperationResult + 0x16U)) {
-      SystemEventTemplatePointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventTemplatePointer,LockOperationResult + 0x16U,0x10,0x13);
+  MemoryAllocationStatus = *(int *)(BufferOperationSize + 0x10);
+  if (0 < MemoryAllocationStatus) {
+    if ((MemoryAllocationStatus != -0x15) && (Utf16Char < MemoryAllocationStatus + 0x16U)) {
+      SystemEventTemplatePointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager, SystemEventTemplatePointer, MemoryAllocationStatus + 0x16U, 0x10, 0x13);
       GetMemoryAllocationInfo(SystemEventTemplatePointer);
-      LockOperationResult = *(int *)(OperationBufferSize + 0x10);
+      MemoryAllocationStatus = *(int *)(BufferOperationSize + 0x10);
     }
-                    // WARNING: Subroutine does not return
-    memcpy((uint8_t *)((long long)SystemEventTemplatePointer + 0x15),*(void *)(OperationBufferSize + 8),
-           (long long)(LockOperationResult + 1));
+    memcpy((uint8_t *)((long long)SystemEventTemplatePointer + 0x15), *(void *)(BufferOperationSize + 8),
+           (long long)(MemoryAllocationStatus + 1));
   }
   if (SystemEventTemplatePointer == (uint32_t *)0x0) {
-    SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x17,0x13);
+    SystemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager, 0x17, 0x13);
     *(uint8_t *)SystemEventTemplatePointer = 0;
-LAB_180213aaa:
+MemoryAllocationRetry:
     GetMemoryAllocationInfo(SystemEventTemplatePointer);
   }
   else if (Utf16Char < 0x17) {
-    SystemEventTemplatePointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventTemplatePointer,0x17,0x10,0x13);
-    goto LAB_180213aaa;
+    SystemEventTemplatePointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager, SystemEventTemplatePointer, 0x17, 0x10, 0x13);
+    goto MemoryAllocationRetry;
   }
   *(uint16_t *)((long long)SystemEventTemplatePointer + 0x15) = 10;
-  pMemoryAddressMaskPointer = (uint32_t *)&CoreEngineDataTemplate;
+  MemoryBufferPointer = (uint32_t *)&CoreEngineDataTemplate;
   if (SystemEventTemplatePointer != (uint32_t *)0x0) {
-    pMemoryAddressMaskPointer = SystemEventTemplatePointer;
+    MemoryBufferPointer = SystemEventTemplatePointer;
   }
-  ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,pMemoryAddressMaskPointer);
+  ValidateSystemConfiguration(SystemConfigHandle, 0, 0x1000000000000, 3, MemoryBufferPointer);
   if (SystemEventTemplatePointer != (uint32_t *)0x0) {
-                    // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
   }
-LAB_180213b20:
-  CalculatedCodePoint = FUN_180213440(ContextHandle,OperationBufferSize,0);
-  LockOperationResult = FUN_180840490(CalculatedCodePoint,&SystemRegisterFlag);
-  SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
-  if (*(void **)(OperationBufferSize + 8) != NULL) {
-    SecondaryProcessingStatusFlag = *(void **)(OperationBufferSize + 8);
+SkipContextValidation:
+  CalculatedCodePoint = ProcessUtf8CharacterEncoding(SystemContextHandle, BufferOperationSize, 0);
+  MemoryAllocationStatus = FUN_180840490(CalculatedCodePoint, &SystemRegisterFlag);
+  ProcessingStatusFlag = &CoreEngineDataTemplate;
+  if (*(void **)(BufferOperationSize + 8) != NULL) {
+    ProcessingStatusFlag = *(void **)(BufferOperationSize + 8);
   }
-  ProcessCoreEngineDataAndTemplate(LockOperationResult,SecondaryProcessingStatusFlag);
-  if (LockOperationResult != 0) {
-    ValidateSystemConfiguration(SystemConfigHandle,0,0,3,&SystemConfigurationTemplatePrimary,SystemRegisterFlag,SystemChecksum);
+  ProcessCoreEngineDataAndTemplate(MemoryAllocationStatus, ProcessingStatusFlag);
+  if (MemoryAllocationStatus != 0) {
+    ValidateSystemConfiguration(SystemConfigHandle, 0, 0, 3, &SystemConfigurationTemplatePrimary, SystemRegisterFlag, SystemChecksum);
     return 0;
   }
   return SystemRegisterFlag;
