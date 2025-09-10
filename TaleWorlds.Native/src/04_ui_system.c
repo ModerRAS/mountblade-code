@@ -1572,7 +1572,7 @@ typedef enum {
 #define TemporaryFloatValue TransformResult
 #define localChar9 SystemStatus
 #define AccumulatedFloat AnimationTime
-#define transformCoeff11 AnimationDelta
+#define transformCoefficient AnimationDelta
 #define transformCoeff16 MinimumBoundsValue
 #define transformCoeff18 MaximumBoundsValue
 #define transformCoeff19 CurrentRotationValue
@@ -2143,7 +2143,7 @@ typedef enum {
 #define transformCoeff8 UITransformCoefficient8
 #define transformCoeff9 UITransformCoefficient9
 #define transformCoeff10 UITransformCoefficient10
-#define transformCoeff11 UITransformCoefficient11
+#define transformCoefficient UITransformCoefficient11
 #define transformCoeff12 UITransformCoefficient12
 #define transformCoeff13 UITransformCoefficient13
 #define transformCoeff14 UITransformCoefficient14
@@ -15461,7 +15461,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       if ((!IsGeometryValid) ||
          ((FloatValue2 = *(float *)(componentIndex + 4 + allocatedMemory7 * 8), baseValue = *(float *)(componentIndex + allocatedMemory7 * 8),
           FloatValue2 = (FloatValue2 - *(float *)(componentIndex + 4 + (longlong)(processingResult8 % ProcessingResult2) * 8))                    (AccumulatedFloat - baseValue) -
-                   (transformCoeff11 - FloatValue2) * (baseValue - *(float *)(componentIndex + (longlong)(processingResult8 % ProcessingResult2) * 8))
+                   (transformCoefficient - FloatValue2) * (baseValue - *(float *)(componentIndex + (longlong)(processingResult8 % ProcessingResult2) * 8))
           , FloatValue2 <= preservedXMM6 && (FloatValue2 < preservedXMM6)))) {
         IsGeometryValid = false;
       }
@@ -15474,26 +15474,26 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   if (IsGeometryValid) {
     if (*(char *)(uiContextBasePointer + 0x48) == '\0') {
       if ((preservedXMM6 < unmodifiedXMM9_Da * unmodifiedXMM8_Da) ||
-         ((transformCoeff11 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < transformCoeff11 && (transformCoeff11 < 1e-05)))) {
+         ((transformCoefficient = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < transformCoefficient && (transformCoefficient < 1e-05)))) {
         contextValue = CONCAT44(fStack0000000000000034,fStack0000000000000030);
         if (ABS(unmodifiedXMM8_Da) < ABS(unmodifiedXMM9_Da)) {
           contextValue = CONCAT44(fStack0000000000000044,fStack0000000000000040);
         }
       }
       else if (unmodifiedXMM8_Da <= unmodifiedXMM9_Da) {
-        transformCoeff11 = unmodifiedXMM9_Da / (unmodifiedXMM9_Da - unmodifiedXMM8_Da);
+        transformCoefficient = unmodifiedXMM9_Da / (unmodifiedXMM9_Da - unmodifiedXMM8_Da);
         uiContextBasePointer[0x40] =
-             (fStack0000000000000040 - fStack0000000000000030) * transformCoeff11 + fStack0000000000000030;
+             (fStack0000000000000040 - fStack0000000000000030) * transformCoefficient + fStack0000000000000030;
         uiContextBasePointer[0x41] =
-             (fStack0000000000000044 - fStack0000000000000034) * transformCoeff11 + fStack0000000000000034;
+             (fStack0000000000000044 - fStack0000000000000034) * transformCoefficient + fStack0000000000000034;
         contextValue = *(UIHandle *)(uiContextBasePointer + 0x40);
       }
       else {
         uiContextBasePointer[0x40] =
-             (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / transformCoeff11) +
+             (fStack0000000000000030 - fStack0000000000000040) * (unmodifiedXMM8_Da / transformCoefficient) +
              fStack0000000000000040;
         uiContextBasePointer[0x41] =
-             (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / transformCoeff11) +
+             (fStack0000000000000034 - fStack0000000000000044) * (unmodifiedXMM8_Da / transformCoefficient) +
              fStack0000000000000044;
         contextValue = *(UIHandle *)(uiContextBasePointer + 0x40);
       }
@@ -15510,7 +15510,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   else if (unmodifiedXMM13_Da * unmodifiedXMM13_Da <= unmodifiedXMM10_Da) {
     return 0;
   }
-  transformCoeff11 = uiContextBasePointer[-7];
+  transformCoefficient = uiContextBasePointer[-7];
   AccumulatedFloat = uiContextBasePointer[-6];
   FloatValue2 = uiContextBasePointer[-5];
   baseValue = uiContextBasePointer[-3];
@@ -15521,7 +15521,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   TemporaryFloatValue = uiContextBasePointer[3];
   *preservedRegister13 = unmodifiedXMM12_Da * unmodifiedXMM15_Da + uiContextBasePointer[-8] * unmodifiedXMM14_Da +
                uiContextBasePointer[-4] * 0.0 + *uiContextBasePointer;
-  preservedRegister13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + transformCoeff11 * unmodifiedXMM14_Da + baseValue * 0.0 + LocalFloatValue6;
+  preservedRegister13[1] = unmodifiedXMM12_Db * unmodifiedXMM15_Da + transformCoefficient * unmodifiedXMM14_Da + baseValue * 0.0 + LocalFloatValue6;
   preservedRegister13[2] = unmodifiedXMM12_Dc * unmodifiedXMM15_Da + AccumulatedFloat * unmodifiedXMM14_Da + TransformCoefficient3 * 0.0 + ResultFloatValue;
   preservedRegister13[3] = unmodifiedXMM12_Dd * unmodifiedXMM15_Da + FloatValue2 * unmodifiedXMM14_Da + TransformCoefficient4 * 0.0 + TemporaryFloatValue;
   return 1;
@@ -16581,7 +16581,7 @@ LAB_180659b1a:
       stackUInt180 = 0x180659ea7;
       contextDataHandle = GetUIComponentHandle(*(UIHandle *)(contextOffset + 8));
       CharacterDataOffset = 0x14;
-      if (0.0 <= (transformCoeff11 - ABS(finalResult)) * vectorComponentX) {
+      if (0.0 <= (transformCoefficient - ABS(finalResult)) * vectorComponentX) {
         CharacterDataOffset = 0x18;
       }
       transformCoeff15 = *(float *)(CharacterDataOffset + contextDataHandle);
@@ -16602,7 +16602,7 @@ LAB_180659b1a:
   }
   uiContext[0x13] = transformCoeff15;
   vectorComponentX = finalResult;
-  accumulatedFloatValue = transformCoeff11;
+  accumulatedFloatValue = transformCoefficient;
   if ((baseValue3 != 0.0) || (transformCoeff14 != 0.0)) {
     if (0.0 <= finalResult * baseValue3) {
       if (ABS(finalResult) < ABS(baseValue3)) {
@@ -16612,13 +16612,13 @@ LAB_180659b1a:
     else {
       vectorComponentX = finalResult + baseValue3;
     }
-    if (0.0 <= transformCoeff14 * transformCoeff11) {
-      if (ABS(transformCoeff11) < ABS(transformCoeff14)) {
+    if (0.0 <= transformCoeff14 * transformCoefficient) {
+      if (ABS(transformCoefficient) < ABS(transformCoeff14)) {
         accumulatedFloatValue = transformCoeff14;
       }
     }
     else {
-      accumulatedFloatValue = transformCoeff11 + transformCoeff14;
+      accumulatedFloatValue = transformCoefficient + transformCoeff14;
     }
   }
   stackUInt180 = 0x18065a04d;
@@ -16656,7 +16656,7 @@ LAB_180659b1a:
     }
   }
   uiContext[0x15] = AccumulatedFloat;
-  if ((((transformCoeff11 <= -0.1) || (contextFlag == '\0')) || (resultPointer != '\0')) || (transformCoeff14 <= -0.1)) {
+  if ((((transformCoefficient <= -0.1) || (contextFlag == '\0')) || (resultPointer != '\0')) || (transformCoeff14 <= -0.1)) {
 LAB_18065a17c:
     if ((uiContext[0x11] <= 0.0) || (1.0 <= uiContext[0x11])) {
       uiContext[0x11] = 0.0;
@@ -16665,7 +16665,7 @@ LAB_18065a17c:
     }
   }
   else {
-    transformCoeff14 = transformCoeff11 * transformCoeff11 + transformCoeff11 * transformCoeff11;
+    transformCoeff14 = transformCoefficient * transformCoefficient + transformCoefficient * transformCoefficient;
     transformCoeff14 = transformCoeff14 + transformCoeff14;
     if (transformCoeff14 <= 1.0) {
       transformCoeff14 = 1.0;
@@ -16792,25 +16792,25 @@ LAB_18065a2e9:
   do {
     transformCoeff15 = *(float *)(((longlong)afStack_6260 - (longlong)uiContext) + (longlong)pResultFloatValue);
     finalResult = transformCoeff15 - pResultFloatValue[-10];
-    transformCoeff11 = ABS(finalResult);
-    if (0.001 <= transformCoeff11) {
+    transformCoefficient = ABS(finalResult);
+    if (0.001 <= transformCoefficient) {
       if (finalResult < 0.0) {
         vectorComponentX = -1.0;
       }
       else {
         vectorComponentX = 1.0;
       }
-      if (0.05 <= transformCoeff11) {
-        if (0.5 <= transformCoeff11) {
-          transformCoeff11 = 0.5;
+      if (0.05 <= transformCoefficient) {
+        if (0.5 <= transformCoefficient) {
+          transformCoefficient = 0.5;
         }
       }
       else {
-        transformCoeff11 = 0.05;
+        transformCoefficient = 0.05;
       }
-      transformCoeff11 = transformCoeff11 * vectorComponentX * fStack_144 * 6.0;
-      if (transformCoeff11 * vectorComponentX <= vectorComponentX * finalResult) {
-        transformCoeff15 = pResultFloatValue[-10] + transformCoeff11;
+      transformCoefficient = transformCoefficient * vectorComponentX * fStack_144 * 6.0;
+      if (transformCoefficient * vectorComponentX <= vectorComponentX * finalResult) {
+        transformCoeff15 = pResultFloatValue[-10] + transformCoefficient;
       }
     }
     pResultFloatValue[-10] = transformCoeff15;
@@ -16837,10 +16837,10 @@ LAB_18065a5be:
     }
 LAB_18065a5d3:
     finalResult = *(float *)((longlong)afStack_6260 + (4 - (longlong)uiContext) + (longlong)pResultFloatValue);
-    transformCoeff11 = finalResult - pResultFloatValue[-9];
-    vectorComponentX = ABS(transformCoeff11);
+    transformCoefficient = finalResult - pResultFloatValue[-9];
+    vectorComponentX = ABS(transformCoefficient);
     if (0.001 <= vectorComponentX) {
-      if (transformCoeff11 < 0.0) {
+      if (transformCoefficient < 0.0) {
         baseValue5 = -1.0;
       }
       else {
@@ -16855,7 +16855,7 @@ LAB_18065a5d3:
         vectorComponentX = 0.05;
       }
       vectorComponentX = vectorComponentX * baseValue5 * fStack_144 * 6.0;
-      if (vectorComponentX * baseValue5 <= baseValue5 * transformCoeff11) {
+      if (vectorComponentX * baseValue5 <= baseValue5 * transformCoefficient) {
         finalResult = pResultFloatValue[-9] + vectorComponentX;
       }
     }
@@ -16864,14 +16864,14 @@ LAB_18065a5d3:
     pResultFloatValue[1] = finalResult;
     if (2 < ProcessingResult1) {
       if (ProcessingResult1 < 7) {
-        transformCoeff11 = 1.0 - baseValue3;
+        transformCoefficient = 1.0 - baseValue3;
       }
       else {
-        transformCoeff11 = baseValue3;
+        transformCoefficient = baseValue3;
         if (ProcessingResult1 == 7) {
           if (*(char *)((longlong)uiContext + 0x5d) != '\0') {
 LAB_18065a686:
-            transformCoeff11 = 0.0;
+            transformCoefficient = 0.0;
           }
         }
         else {
@@ -16879,12 +16879,12 @@ LAB_18065a686:
           if (*(char *)((longlong)uiContext + 0x5d) == '\0') goto LAB_18065a686;
         }
       }
-      finalResult = transformCoeff11 * finalResult;
+      finalResult = transformCoefficient * finalResult;
       pResultFloatValue[1] = finalResult;
     }
 LAB_18065a69c:
-    transformCoeff11 = *(float *)((longlong)afStack_6260 + (8 - (longlong)uiContext) + (longlong)pResultFloatValue);
-    vectorComponentX = transformCoeff11 - pResultFloatValue[-8];
+    transformCoefficient = *(float *)((longlong)afStack_6260 + (8 - (longlong)uiContext) + (longlong)pResultFloatValue);
+    vectorComponentX = transformCoefficient - pResultFloatValue[-8];
     baseValue5 = ABS(vectorComponentX);
     if (0.001 <= baseValue5) {
       if (vectorComponentX < 0.0) {
@@ -16903,12 +16903,12 @@ LAB_18065a69c:
       }
       baseValue5 = baseValue5 * AccumulatedFloat * fStack_144 * 6.0;
       if (baseValue5 * AccumulatedFloat <= AccumulatedFloat * vectorComponentX) {
-        transformCoeff11 = pResultFloatValue[-8] + baseValue5;
+        transformCoefficient = pResultFloatValue[-8] + baseValue5;
       }
     }
     ProcessingResult1 = localInt5 + 2;
-    pResultFloatValue[-8] = transformCoeff11;
-    pResultFloatValue[2] = transformCoeff11;
+    pResultFloatValue[-8] = transformCoefficient;
+    pResultFloatValue[2] = transformCoefficient;
     if (2 < ProcessingResult1) {
       if (ProcessingResult1 < 7) {
         vectorComponentX = 1.0 - baseValue3;
@@ -16926,12 +16926,12 @@ LAB_18065a74f:
           if (*(char *)((longlong)uiContext + 0x5d) == '\0') goto LAB_18065a74f;
         }
       }
-      transformCoeff11 = vectorComponentX * transformCoeff11;
-      pResultFloatValue[2] = transformCoeff11;
+      transformCoefficient = vectorComponentX * transformCoefficient;
+      pResultFloatValue[2] = transformCoefficient;
     }
 LAB_18065a765:
     localInt5 = localInt5 + 3;
-    transformCoeff14 = transformCoeff14 + transformCoeff15 + finalResult + transformCoeff11;
+    transformCoeff14 = transformCoeff14 + transformCoeff15 + finalResult + transformCoefficient;
     pResultFloatValue = pResultFloatValue + 3;
     if (9 < localInt5) {
       transformCoeff15 = uiContext[0x1854];
@@ -16966,16 +16966,16 @@ LAB_18065a765:
       stackUInt140 = CONCAT44(transformCoeff14,transformCoeff15);
       if (ABS(transformCoeff15 * uiContext[0x185e] + transformCoeff14 * uiContext[0x185f]) <= 0.999) {
         finalResult = uiContext[0x1855] - uiContext[0x1856];
-        transformCoeff11 = (((uiContext[0x1858] + uiContext[0x1857] + uiContext[0x185b]) - uiContext[0x1859]) -
+        transformCoefficient = (((uiContext[0x1858] + uiContext[0x1857] + uiContext[0x185b]) - uiContext[0x1859]) -
                  uiContext[0x185a]) - uiContext[0x185c];
-        transformCoeff15 = finalResult * finalResult + transformCoeff11 * transformCoeff11;
+        transformCoeff15 = finalResult * finalResult + transformCoefficient * transformCoefficient;
         transformCoeff15 = (float)(transformCoeff15 <= 1.1754944e-38) * 1.1754944e-38 + transformCoeff15;
         aiterationCount2 = rsqrtss(ZEXT416((uint)transformCoeff15),ZEXT416((uint)transformCoeff15));
         baseValue3 = aiterationCount2._0_4_;
         transformCoeff14 = fStack_144 * 8.0;
         transformCoeff15 = baseValue3 * 0.5 * (3.0 - transformCoeff15 * baseValue3 * baseValue3);
         stackUInt140 = CONCAT44(transformCoeff15 * finalResult * transformCoeff14 + (1.0 - transformCoeff14) * uiContext[0x185f],
-                              transformCoeff15 * transformCoeff11 * transformCoeff14 + (1.0 - transformCoeff14) * uiContext[0x185e]);
+                              transformCoeff15 * transformCoefficient * transformCoeff14 + (1.0 - transformCoeff14) * uiContext[0x185e]);
         *(UIHandle *)(uiContext + 0x185e) = stackUInt140;
         transformCoeff15 = uiContext[0x185f];
         baseValue3 = uiContext[0x185e];
@@ -17041,7 +17041,7 @@ LAB_18065a765:
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIByte aiterationCount2 [16];
   float transformCoeff13;
   float transformCoeff14;
@@ -17611,9 +17611,9 @@ LAB_18065a5d3:
     FloatValue2 = vectorComponentX - transformCoeffPointer[-9];
     accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
-      transformCoeff11 = unmodifiedXMM8_Da;
+      transformCoefficient = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
-        transformCoeff11 = -1.0;
+        transformCoefficient = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= accumulatedFloatValue) {
@@ -17623,8 +17623,8 @@ LAB_18065a5d3:
       else {
         AccumulatedFloat = 0.05;
       }
-      AccumulatedFloat = AccumulatedFloat * transformCoeff11 * fStack0000000000000034 * 6.0;
-      if (AccumulatedFloat * transformCoeff11 <= transformCoeff11 * FloatValue2) {
+      AccumulatedFloat = AccumulatedFloat * transformCoefficient * fStack0000000000000034 * 6.0;
+      if (AccumulatedFloat * transformCoefficient <= transformCoefficient * FloatValue2) {
         vectorComponentX = transformCoeffPointer[-9] + AccumulatedFloat;
       }
     }
@@ -17654,23 +17654,23 @@ LAB_18065a67b:
 LAB_18065a69c:
     FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)eventHandle) + (longlong)transformCoeffPointer);
     AccumulatedFloat = FloatValue2 - transformCoeffPointer[-8];
-    transformCoeff11 = ABS(AccumulatedFloat);
-    if (0.001 <= transformCoeff11) {
+    transformCoefficient = ABS(AccumulatedFloat);
+    if (0.001 <= transformCoefficient) {
       transformCoeff14 = unmodifiedXMM8_Da;
       if (AccumulatedFloat < preservedXMM6) {
         transformCoeff14 = -1.0;
       }
-      if (0.05 <= transformCoeff11) {
-        if (0.5 <= transformCoeff11) {
-          transformCoeff11 = 0.5;
+      if (0.05 <= transformCoefficient) {
+        if (0.5 <= transformCoefficient) {
+          transformCoefficient = 0.5;
         }
       }
       else {
-        transformCoeff11 = 0.05;
+        transformCoefficient = 0.05;
       }
-      transformCoeff11 = transformCoeff11 * transformCoeff14 * fStack0000000000000034 * 6.0;
-      if (transformCoeff11 * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
-        FloatValue2 = transformCoeffPointer[-8] + transformCoeff11;
+      transformCoefficient = transformCoefficient * transformCoeff14 * fStack0000000000000034 * 6.0;
+      if (transformCoefficient * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
+        FloatValue2 = transformCoeffPointer[-8] + transformCoefficient;
       }
     }
     localInt9 = uiCompareResult + 2;
@@ -18375,9 +18375,9 @@ LAB_18065a5d3:
     FloatValue2 = vectorComponentX - transformCoeffPointer[-9];
     accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
-      transformCoeff11 = unmodifiedXMM8_Da;
+      transformCoefficient = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
-        transformCoeff11 = -1.0;
+        transformCoefficient = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= accumulatedFloatValue) {
@@ -18387,8 +18387,8 @@ LAB_18065a5d3:
       else {
         AccumulatedFloat = 0.05;
       }
-      AccumulatedFloat = AccumulatedFloat * transformCoeff11 * fStack0000000000000034 * 6.0;
-      if (AccumulatedFloat * transformCoeff11 <= transformCoeff11 * FloatValue2) {
+      AccumulatedFloat = AccumulatedFloat * transformCoefficient * fStack0000000000000034 * 6.0;
+      if (AccumulatedFloat * transformCoefficient <= transformCoefficient * FloatValue2) {
         vectorComponentX = transformCoeffPointer[-9] + AccumulatedFloat;
       }
     }
@@ -18418,23 +18418,23 @@ LAB_18065a67b:
 LAB_18065a69c:
     FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)eventHandle) + (longlong)transformCoeffPointer);
     AccumulatedFloat = FloatValue2 - transformCoeffPointer[-8];
-    transformCoeff11 = ABS(AccumulatedFloat);
-    if (0.001 <= transformCoeff11) {
+    transformCoefficient = ABS(AccumulatedFloat);
+    if (0.001 <= transformCoefficient) {
       transformCoeff14 = unmodifiedXMM8_Da;
       if (AccumulatedFloat < preservedXMM6) {
         transformCoeff14 = -1.0;
       }
-      if (0.05 <= transformCoeff11) {
-        if (0.5 <= transformCoeff11) {
-          transformCoeff11 = 0.5;
+      if (0.05 <= transformCoefficient) {
+        if (0.5 <= transformCoefficient) {
+          transformCoefficient = 0.5;
         }
       }
       else {
-        transformCoeff11 = 0.05;
+        transformCoefficient = 0.05;
       }
-      transformCoeff11 = transformCoeff11 * transformCoeff14 * fStack0000000000000034 * 6.0;
-      if (transformCoeff11 * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
-        FloatValue2 = transformCoeffPointer[-8] + transformCoeff11;
+      transformCoefficient = transformCoefficient * transformCoeff14 * fStack0000000000000034 * 6.0;
+      if (transformCoefficient * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
+        FloatValue2 = transformCoeffPointer[-8] + transformCoefficient;
       }
     }
     localInt9 = uiCompareResult + 2;
@@ -18585,7 +18585,7 @@ void RenderUIElement(UIHandle uiContext,uint dataSource,uint targetBuffer,UIHand
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIByte aiterationCount2 [16];
   float transformCoeff13;
   float transformCoeff14;
@@ -19055,9 +19055,9 @@ LAB_18065a5d3:
     FloatValue2 = transformCoeff13 - transformCoeffPointer[-9];
     accumulatedFloatValue = ABS(FloatValue2);
     if (0.001 <= AccumulatedFloat) {
-      transformCoeff11 = unmodifiedXMM8_Da;
+      transformCoefficient = unmodifiedXMM8_Da;
       if (FloatValue2 < preservedXMM6) {
-        transformCoeff11 = -1.0;
+        transformCoefficient = -1.0;
       }
       if (0.05 <= accumulatedFloatValue) {
         if (0.5 <= accumulatedFloatValue) {
@@ -19067,8 +19067,8 @@ LAB_18065a5d3:
       else {
         AccumulatedFloat = 0.05;
       }
-      AccumulatedFloat = AccumulatedFloat * transformCoeff11 * param_6._4_4_ * 6.0;
-      if (AccumulatedFloat * transformCoeff11 <= transformCoeff11 * FloatValue2) {
+      AccumulatedFloat = AccumulatedFloat * transformCoefficient * param_6._4_4_ * 6.0;
+      if (AccumulatedFloat * transformCoefficient <= transformCoefficient * FloatValue2) {
         transformCoeff13 = transformCoeffPointer[-9] + AccumulatedFloat;
       }
     }
@@ -19098,23 +19098,23 @@ LAB_18065a67b:
 LAB_18065a69c:
     FloatValue2 = *(float *)((longlong)afStack_60e8 + (8 - (longlong)eventHandle) + (longlong)transformCoeffPointer);
     AccumulatedFloat = FloatValue2 - transformCoeffPointer[-8];
-    transformCoeff11 = ABS(AccumulatedFloat);
-    if (0.001 <= transformCoeff11) {
+    transformCoefficient = ABS(AccumulatedFloat);
+    if (0.001 <= transformCoefficient) {
       transformCoeff14 = unmodifiedXMM8_Da;
       if (AccumulatedFloat < preservedXMM6) {
         transformCoeff14 = -1.0;
       }
-      if (0.05 <= transformCoeff11) {
-        if (0.5 <= transformCoeff11) {
-          transformCoeff11 = 0.5;
+      if (0.05 <= transformCoefficient) {
+        if (0.5 <= transformCoefficient) {
+          transformCoefficient = 0.5;
         }
       }
       else {
-        transformCoeff11 = 0.05;
+        transformCoefficient = 0.05;
       }
-      transformCoeff11 = transformCoeff11 * transformCoeff14 * param_6._4_4_ * 6.0;
-      if (transformCoeff11 * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
-        FloatValue2 = transformCoeffPointer[-8] + transformCoeff11;
+      transformCoefficient = transformCoefficient * transformCoeff14 * param_6._4_4_ * 6.0;
+      if (transformCoefficient * transformCoeff14 <= transformCoeff14 * AccumulatedFloat) {
+        FloatValue2 = transformCoeffPointer[-8] + transformCoefficient;
       }
     }
     loopCounter = localInt9 + 2;
@@ -23006,7 +23006,7 @@ void TriggerUIUpdateCallback(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIByte in_XMM2 [16];
   float transformCoeff12;
   float transformCoeff13;
@@ -23036,11 +23036,11 @@ void TriggerUIUpdateCallback(void)
           AccumulatedFloat = bufferPointer[2];
           transformCoeff1 = bufferPointer[3];
           FloatValue2 = transformCoeff1 * transformCoeff1 + transformCoeff12 * transformCoeff12;
-          transformCoeff11 = AccumulatedFloat * AccumulatedFloat + baseValue5 * baseValue5;
+          transformCoefficient = AccumulatedFloat * AccumulatedFloat + baseValue5 * baseValue5;
           transformCoeff13 = FloatValue2 + baseValue5 * baseValue5 + AccumulatedFloat * AccumulatedFloat;
-          transformCoeff14 = transformCoeff11 + transformCoeff12 * transformCoeff12 + transformCoeff1 * transformCoeff1;
-          aprocessingStatus._4_4_ = FloatValue2 + transformCoeff11 + 1.1754944e-38;
-          aprocessingStatus._0_4_ = transformCoeff11 + FloatValue2 + 1.1754944e-38;
+          transformCoeff14 = transformCoefficient + transformCoeff12 * transformCoeff12 + transformCoeff1 * transformCoeff1;
+          aprocessingStatus._4_4_ = FloatValue2 + transformCoefficient + 1.1754944e-38;
+          aprocessingStatus._0_4_ = transformCoefficient + FloatValue2 + 1.1754944e-38;
           aprocessingStatus._8_4_ = transformCoeff13 + 1.1754944e-38;
           aprocessingStatus._12_4_ = transformCoeff14 + 1.1754944e-38;
           in_XMM2 = rsqrtps(in_XMM2,aprocessingStatus);
@@ -23049,8 +23049,8 @@ void TriggerUIUpdateCallback(void)
           finalResult = in_XMM2._8_4_;
           FloatValue1 = in_XMM2._12_4_;
           bufferPointer = (float *)(uiContextBasePointer + 0x780 + (longlong)validationFlag * 0x10);
-          *bufferPointer = (3.0 - vectorComponentX * vectorComponentX * (transformCoeff11 + FloatValue2)) * vectorComponentX * 0.5 * transformCoeff12;
-          bufferPointer[1] = (3.0 - baseValue6 * baseValue6 * (FloatValue2 + transformCoeff11)) * baseValue6 * 0.5 * baseValue5;
+          *bufferPointer = (3.0 - vectorComponentX * vectorComponentX * (transformCoefficient + FloatValue2)) * vectorComponentX * 0.5 * transformCoeff12;
+          bufferPointer[1] = (3.0 - baseValue6 * baseValue6 * (FloatValue2 + transformCoefficient)) * baseValue6 * 0.5 * baseValue5;
           bufferPointer[2] = (3.0 - finalResult * finalResult * transformCoeff13) * finalResult * 0.5 * AccumulatedFloat;
           bufferPointer[3] = (3.0 - FloatValue1 * FloatValue1 * transformCoeff14) * FloatValue1 * 0.5 * transformCoeff1;
           localChar11 = *(char *)(uiContextBasePointer + 4000);
@@ -23072,10 +23072,10 @@ void TriggerUIUpdateCallback(void)
           transformCoeff1 = BaseValuePointer[2];
           AccumulatedFloat = *(float *)((longlong)(char)EventprocessingStatus * 0x1b0 + 0x38 +
                              *(longlong *)(componentData + 0x140));
-          transformCoeff11 = (baseValue5 * *BaseValuePointer + transformCoeff12 * BaseValuePointer[1]) * bufferPointer[0x16];
+          transformCoefficient = (baseValue5 * *BaseValuePointer + transformCoeff12 * BaseValuePointer[1]) * bufferPointer[0x16];
           FloatValue2 = baseValue5 * BaseValuePointer[1] - transformCoeff12 * *BaseValuePointer;
-          bufferPointer[-1] = (baseValue5 * transformCoeff11 - transformCoeff12 * FloatValue2) * unmodifiedXMM10_Da + bufferPointer[-1];
-          *bufferPointer = (baseValue5 * FloatValue2 + transformCoeff12 * transformCoeff11) * unmodifiedXMM10_Da + *bufferPointer;
+          bufferPointer[-1] = (baseValue5 * transformCoefficient - transformCoeff12 * FloatValue2) * unmodifiedXMM10_Da + bufferPointer[-1];
+          *bufferPointer = (baseValue5 * FloatValue2 + transformCoeff12 * transformCoefficient) * unmodifiedXMM10_Da + *bufferPointer;
           bufferPointer[1] = ((transformCoeff1 - AccumulatedFloat) * (bufferPointer[0x16] + 1.0) * 0.5 + AccumulatedFloat) * unmodifiedXMM10_Da +
                       bufferPointer[1];
         }
@@ -23112,11 +23112,11 @@ void TriggerUIUpdateCallback(void)
         bufferPointer = (float *)(contextHandle + (bufferValue + 0x82) * 0x10);
         transformCoeff1 = bufferPointer[1];
         FloatValue2 = bufferPointer[2];
-        transformCoeff11 = bufferPointer[3];
+        transformCoefficient = bufferPointer[3];
         vectorComponentX = *bufferPointer * transformCoeff12;
         baseValue6 = transformCoeff1 * baseValue5;
         finalResult = FloatValue2 * AccumulatedFloat;
-        FloatValue1 = transformCoeff11 * fStack000000000000003c;
+        FloatValue1 = transformCoefficient * fStack000000000000003c;
         transformCoeff13 = FloatValue1 + vectorComponentX;
         transformCoeff14 = finalResult + baseValue6;
         aloopCounter._4_4_ = transformCoeff13 + transformCoeff14;
@@ -23134,7 +23134,7 @@ void TriggerUIUpdateCallback(void)
         *pTransformCoefficient2 = *bufferPointer + transformCoeff15 * transformCoeff12;
         pTransformCoefficient2[1] = transformCoeff1 + transformCoeff15 * baseValue5;
         pTransformCoefficient2[2] = FloatValue2 + transformCoeff15 * AccumulatedFloat;
-        pTransformCoefficient2[3] = transformCoeff11 + transformCoeff15 * fStack000000000000003c;
+        pTransformCoefficient2[3] = transformCoefficient + transformCoeff15 * fStack000000000000003c;
         *(ulonglong *)(contextHandle + 0x800) =
              *(ulonglong *)(contextHandle + 0x800) |
              *(ulonglong *)(bufferValue * 0x1b0 + 0xe8 + *(longlong *)(componentData + 0x140));
@@ -28376,7 +28376,7 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   UIByte astackUInt248 [32];
@@ -28677,12 +28677,12 @@ void UIProcessComponentTransformation(longlong uiContext,longlong dataSource,lon
         FloatValue1 = baseValue3 * AccumulatedFloat;
         finalResult = (fStack_1e8 + fStack_1f8) * 0.5 - fStack_1c8;
         transformCoeff13 = (fStack_1e4 + fStack_1f4) * 0.5 - fStack_1c4;
-        transformCoeff11 = (fStack_1e0 + fStack_1f0) * 0.5 - fStack_118;
-        vectorComponentX = FloatValue1 * transformCoeff13 + FloatValue2 * finalResult + transformCoeff11 * baseValue3 * fStack_200;
+        transformCoefficient = (fStack_1e0 + fStack_1f0) * 0.5 - fStack_118;
+        vectorComponentX = FloatValue1 * transformCoeff13 + FloatValue2 * finalResult + transformCoefficient * baseValue3 * fStack_200;
         finalResult = finalResult - vectorComponentX * FloatValue2;
         transformCoeff13 = transformCoeff13 - vectorComponentX * FloatValue1;
-        transformCoeff11 = transformCoeff11 - vectorComponentX * baseValue3 * fStack_200;
-        vectorComponentX = transformCoeff13 * transformCoeff13 + finalResult * finalResult + transformCoeff11 * transformCoeff11;
+        transformCoefficient = transformCoefficient - vectorComponentX * baseValue3 * fStack_200;
+        vectorComponentX = transformCoeff13 * transformCoeff13 + finalResult * finalResult + transformCoefficient * transformCoefficient;
         aCounterResult = rsqrtss(ZEXT416((uint)vectorComponentX),ZEXT416((uint)vectorComponentX));
         baseValue3 = aCounterResult._0_4_;
         baseValue3 = baseValue3 * 0.5 * ((float)g_uiAnimationSpeedFactor - vectorComponentX * baseValue3 * baseValue3);
@@ -28943,7 +28943,7 @@ LAB_18066a567:
   UIDword result9;
   UIByte acontextValue [16];
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -75827,11 +75827,11 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
   longlong allocatedMemoryBlock;
   short *psVar19;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   
   AccumulatedFloat = 1e-15;
   allocatedMemory7 = 0xd;
-  transformCoeff11 = 1e-15;
+  transformCoefficient = 1e-15;
   allocatedMemoryBlock = (longlong)bufferSize;
   psVar19 = *(short **)(uiContext + 0x20);
   do {
@@ -75857,7 +75857,7 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
           BaseValuePointer2 = BaseValuePointer2 + 4;
           AccumulatedFloat = AccumulatedFloat + ABS(transformCoeff1) + ABS(baseValue) + ABS(TransformCoefficient3) + ABS(TransformCoefficient2) +
                    ABS(LocalFloatValue6) + ABS(TransformCoefficient4) + ABS(TemporaryFloatValue) + ABS(ResultFloatValue);
-          transformCoeff11 = transformCoeff11 + ABS(baseValue - transformCoeff1) + ABS(transformCoeff1 + baseValue) +
+          transformCoefficient = transformCoefficient + ABS(baseValue - transformCoeff1) + ABS(transformCoeff1 + baseValue) +
                    ABS(TransformCoefficient2 - TransformCoefficient3) + ABS(TransformCoefficient3 + TransformCoefficient2) + ABS(TransformCoefficient4 - LocalFloatValue6) + ABS(LocalFloatValue6 + TransformCoefficient4)
                    + ABS(ResultFloatValue - TemporaryFloatValue) + ABS(TemporaryFloatValue + ResultFloatValue);
           AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
@@ -75871,7 +75871,7 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
           transformCoeff1 = BaseValuePointer2[allocatedMemoryBlock];
           BaseValuePointer2 = BaseValuePointer2 + 1;
           AccumulatedFloat = AccumulatedFloat + ABS(transformCoeff1) + ABS(baseValue);
-          transformCoeff11 = transformCoeff11 + ABS(baseValue - transformCoeff1) + ABS(transformCoeff1 + baseValue);
+          transformCoefficient = transformCoefficient + ABS(baseValue - transformCoeff1) + ABS(transformCoeff1 + baseValue);
           allocatedMemory4 = allocatedMemory4 + -1;
         } while (allocatedMemory4 != 0);
       }
@@ -75883,7 +75883,7 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
   if (1 < targetBuffer) {
     processedCount = 0xd;
   }
-  return (float)ProcessingResult5 * AccumulatedFloat < (float)(processedCount + ProcessingResult5) * transformCoeff11 * 0.707107;
+  return (float)ProcessingResult5 * AccumulatedFloat < (float)(processedCount + ProcessingResult5) * transformCoefficient * 0.707107;
 }
 
 
@@ -81928,13 +81928,13 @@ LAB_1807100a5:
           while ((localInt7 = processingResult8, processingResult8 = ProcessingResult2, processingResult8 < dataSource &&
                  (0.0 <= transformCoeff14 * bufferPointer[sourceDataInt]))) {
             transformCoeff13 = ABS(bufferPointer[sourceDataInt]);
-            transformCoeff11 = AccumulatedFloat;
+            transformCoefficient = AccumulatedFloat;
             if (AccumulatedFloat < transformCoeff13) {
-              transformCoeff11 = transformCoeff13;
+              transformCoefficient = transformCoeff13;
             }
             sourceDataInt = sourceDataInt + targetBuffer;
             isCharacterMatch = transformCoeff13 <= AccumulatedFloat;
-            AccumulatedFloat = transformCoeff11;
+            AccumulatedFloat = transformCoefficient;
             ProcessingResult2 = processingResult8 + 1;
             if (isCharacterMatch) {
               processingResult8 = localInt7;
@@ -81946,10 +81946,10 @@ LAB_1807100a5:
           else {
             isCharacterMatch = true;
           }
-          transformCoeff11 = (AccumulatedFloat - 1.0) / (AccumulatedFloat * AccumulatedFloat);
-          AccumulatedFloat = transformCoeff11 * 1.0000002;
+          transformCoefficient = (AccumulatedFloat - 1.0) / (AccumulatedFloat * AccumulatedFloat);
+          AccumulatedFloat = transformCoefficient * 1.0000002;
           if (0.0 < transformCoeff14) {
-            AccumulatedFloat = transformCoeff11 * -1.0000002;
+            AccumulatedFloat = transformCoefficient * -1.0000002;
           }
           if (processingResult6 < processingResult8) {
             if (3 < processingResult8 - processingResult6) {
@@ -81982,7 +81982,7 @@ LAB_1807100a5:
           }
           if ((isCharacterMatch) && (1 < localInt7)) {
             transformCoeff14 = transformCoeff12 - *bufferPointer;
-            transformCoeff11 = transformCoeff14 / (float)localInt7;
+            transformCoefficient = transformCoeff14 / (float)localInt7;
             if (ProcessingResult5 < localInt7) {
               if (3 < localInt7 - ProcessingResult5) {
                 contextOffset = (longlong)((ProcessingResult5 + 2) * targetBuffer);
@@ -81994,7 +81994,7 @@ LAB_1807100a5:
                 result7 = (ulonglong)result1;
                 ProcessingResult5 = ProcessingResult5 + result1 * 4;
                 do {
-                  transformCoeff13 = (transformCoeff14 - transformCoeff11) + BaseValuePointer0[contextOffset];
+                  transformCoeff13 = (transformCoeff14 - transformCoefficient) + BaseValuePointer0[contextOffset];
                   if (1.0 <= transformCoeff13) {
                     transformCoeff13 = 1.0;
                   }
@@ -82002,7 +82002,7 @@ LAB_1807100a5:
                     transformCoeff13 = -1.0;
                   }
                   BaseValuePointer0[contextOffset] = transformCoeff13;
-                  transformCoeff14 = (transformCoeff14 - transformCoeff11) - transformCoeff11;
+                  transformCoeff14 = (transformCoeff14 - transformCoefficient) - transformCoefficient;
                   transformCoeff13 = transformCoeff14 + BaseValuePointer0[allocatedMemory3];
                   if (1.0 <= transformCoeff13) {
                     transformCoeff13 = 1.0;
@@ -82011,7 +82011,7 @@ LAB_1807100a5:
                     transformCoeff13 = -1.0;
                   }
                   BaseValuePointer0[allocatedMemory3] = transformCoeff13;
-                  transformCoeff14 = transformCoeff14 - transformCoeff11;
+                  transformCoeff14 = transformCoeff14 - transformCoefficient;
                   transformCoeff13 = transformCoeff14 + *BaseValuePointer0;
                   if (1.0 <= transformCoeff13) {
                     transformCoeff13 = 1.0;
@@ -82020,7 +82020,7 @@ LAB_1807100a5:
                     transformCoeff13 = -1.0;
                   }
                   *BaseValuePointer0 = transformCoeff13;
-                  transformCoeff14 = transformCoeff14 - transformCoeff11;
+                  transformCoeff14 = transformCoeff14 - transformCoefficient;
                   transformCoeff13 = transformCoeff14 + BaseValuePointer0[allocatedMemory4];
                   if (1.0 <= transformCoeff13) {
                     transformCoeff13 = 1.0;
@@ -82037,7 +82037,7 @@ LAB_1807100a5:
                 BaseValuePointer0 = bufferPointer + ProcessingResult5 * targetBuffer;
                 contextOffset = (longlong)(localInt7 - ProcessingResult5);
                 do {
-                  transformCoeff14 = transformCoeff14 - transformCoeff11;
+                  transformCoeff14 = transformCoeff14 - transformCoefficient;
                   transformCoeff13 = transformCoeff14 + *BaseValuePointer0;
                   if (1.0 <= transformCoeff13) {
                     transformCoeff13 = 1.0;
@@ -82112,7 +82112,7 @@ void NormalizeUIFloatData(UIHandle uiContext, uint dataSource, int targetBuffer)
   int preservedRegister13D;
   int uiValidationResult0;
   longlong eventHandle;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -82162,19 +82162,19 @@ void NormalizeUIFloatData(UIHandle uiContext, uint dataSource, int targetBuffer)
           if (transformCoeff13 < -2.0) {
             transformCoeff13 = -2.0;
           }
-          transformCoeff11 = baseValuePtr0[-1];
-          if (2.0 <= transformCoeff11) {
-            transformCoeff11 = 2.0;
+          transformCoefficient = baseValuePtr0[-1];
+          if (2.0 <= transformCoefficient) {
+            transformCoefficient = 2.0;
           }
           baseValuePtr0[-2] = transformCoeff13;
-          if (transformCoeff11 < -2.0) {
-            transformCoeff11 = -2.0;
+          if (transformCoefficient < -2.0) {
+            transformCoefficient = -2.0;
           }
           transformCoeff13 = *baseValuePtr0;
           if (2.0 <= transformCoeff13) {
             transformCoeff13 = 2.0;
           }
-          baseValuePtr0[-1] = transformCoeff11;
+          baseValuePtr0[-1] = transformCoefficient;
           if (transformCoeff13 < -2.0) {
             transformCoeff13 = -2.0;
           }
@@ -82221,30 +82221,30 @@ void NormalizeUIFloatData(UIHandle uiContext, uint dataSource, int targetBuffer)
         processingResult3 = uiValidationResult0 * 2;
         do {
           tempInt = uiValidationResult0 * -2 + processingResult3;
-          transformCoeff11 = baseValuePtr0[tempInt] * transformCoeff13;
-          if (0.0 <= transformCoeff11) goto LAB_18070ff9b;
-          baseValuePtr0[tempInt] = (transformCoeff11 + 1.0) * baseValuePtr0[tempInt];
-          transformCoeff11 = baseValuePtr0[processingResult3 - uiValidationResult0] * transformCoeff13;
-          if (0.0 <= transformCoeff11) goto LAB_18070ff9b;
-          baseValuePtr0[processingResult3 - uiValidationResult0] = (transformCoeff11 + 1.0) * baseValuePtr0[processingResult3 - uiValidationResult0];
-          transformCoeff11 = baseValuePtr0[processingResult3] * transformCoeff13;
-          if (0.0 <= transformCoeff11) goto LAB_18070ff9b;
-          baseValuePtr0[processingResult3] = (transformCoeff11 + 1.0) * baseValuePtr0[processingResult3];
+          transformCoefficient = baseValuePtr0[tempInt] * transformCoeff13;
+          if (0.0 <= transformCoefficient) goto LAB_18070ff9b;
+          baseValuePtr0[tempInt] = (transformCoefficient + 1.0) * baseValuePtr0[tempInt];
+          transformCoefficient = baseValuePtr0[processingResult3 - uiValidationResult0] * transformCoeff13;
+          if (0.0 <= transformCoefficient) goto LAB_18070ff9b;
+          baseValuePtr0[processingResult3 - uiValidationResult0] = (transformCoefficient + 1.0) * baseValuePtr0[processingResult3 - uiValidationResult0];
+          transformCoefficient = baseValuePtr0[processingResult3] * transformCoeff13;
+          if (0.0 <= transformCoefficient) goto LAB_18070ff9b;
+          baseValuePtr0[processingResult3] = (transformCoefficient + 1.0) * baseValuePtr0[processingResult3];
           tempInt = processingResult3 + uiValidationResult0;
-          transformCoeff11 = baseValuePtr0[tempInt] * transformCoeff13;
-          if (0.0 <= transformCoeff11) goto LAB_18070ff9b;
+          transformCoefficient = baseValuePtr0[tempInt] * transformCoeff13;
+          if (0.0 <= transformCoefficient) goto LAB_18070ff9b;
           localInt7 = localInt7 + 4;
           processingResult3 = processingResult3 + uiValidationResult0 * 4;
-          baseValuePtr0[tempInt] = (transformCoeff11 + 1.0) * baseValuePtr0[tempInt];
+          baseValuePtr0[tempInt] = (transformCoefficient + 1.0) * baseValuePtr0[tempInt];
         } while (localInt7 < preservedRegister13D + -3);
       }
       if (localInt7 < preservedRegister13D) {
         processingResult3 = localInt7 * uiValidationResult0;
         do {
-          transformCoeff11 = baseValuePtr0[processingResult3] * transformCoeff13;
-          if (0.0 <= transformCoeff11) break;
+          transformCoefficient = baseValuePtr0[processingResult3] * transformCoeff13;
+          if (0.0 <= transformCoefficient) break;
           localInt7 = localInt7 + 1;
-          baseValuePtr0[processingResult3] = (transformCoeff11 + 1.0) * baseValuePtr0[processingResult3];
+          baseValuePtr0[processingResult3] = (transformCoefficient + 1.0) * baseValuePtr0[processingResult3];
           processingResult3 = processingResult3 + uiValidationResult0;
         } while (localInt7 < preservedRegister13D);
       }
@@ -82289,12 +82289,12 @@ LAB_18070ff9b:
         }
 LAB_1807100a5:
         if (ProcessingResult3 == preservedRegister13D) {
-          transformCoeff11 = 0.0;
+          transformCoefficient = 0.0;
           break;
         }
         sourceDataInt = ProcessingResult3 * uiValidationResult0;
         transformCoeff15 = BaseValuePointer0[sourceDataInt];
-        transformCoeff11 = ABS(transformCoeff15);
+        transformCoefficient = ABS(transformCoeff15);
         processingResult8 = ProcessingResult3;
         processingResult6 = ProcessingResult3;
         if (0 < ProcessingResult3) {
@@ -82308,13 +82308,13 @@ LAB_1807100a5:
         while ((localInt8 = processingResult8, processingResult8 = ProcessingResult3, processingResult8 < preservedRegister13D &&
                (0.0 <= transformCoeff15 * BaseValuePointer0[sourceDataInt]))) {
           transformCoeff14 = ABS(BaseValuePointer0[sourceDataInt]);
-          transformCoeff12 = transformCoeff11;
-          if (transformCoeff11 < transformCoeff14) {
+          transformCoeff12 = transformCoefficient;
+          if (transformCoefficient < transformCoeff14) {
             transformCoeff12 = transformCoeff14;
           }
           sourceDataInt = sourceDataInt + uiValidationResult0;
-          isCharacterMatch = transformCoeff14 <= transformCoeff11;
-          transformCoeff11 = transformCoeff12;
+          isCharacterMatch = transformCoeff14 <= transformCoefficient;
+          transformCoefficient = transformCoeff12;
           ProcessingResult3 = processingResult8 + 1;
           if (isCharacterMatch) {
             processingResult8 = localInt8;
@@ -82326,10 +82326,10 @@ LAB_1807100a5:
         else {
           isCharacterMatch = true;
         }
-        transformCoeff12 = (transformCoeff11 - 1.0) / (transformCoeff11 * transformCoeff11);
-        transformCoeff11 = transformCoeff12 * 1.0000002;
+        transformCoeff12 = (transformCoefficient - 1.0) / (transformCoefficient * transformCoefficient);
+        transformCoefficient = transformCoeff12 * 1.0000002;
         if (0.0 < transformCoeff15) {
-          transformCoeff11 = transformCoeff12 * -1.0000002;
+          transformCoefficient = transformCoeff12 * -1.0000002;
         }
         if (processingResult6 < processingResult8) {
           if (3 < processingResult8 - processingResult6) {
@@ -82342,10 +82342,10 @@ LAB_1807100a5:
             result7 = (ulonglong)maxProcessingCount;
             processingResult6 = processingResult6 + maxProcessingCount * 4;
             do {
-              BaseValuePointer2[AllocatedMemoryBlock1] = (BaseValuePointer2[AllocatedMemoryBlock1] * transformCoeff11 + 1.0) * BaseValuePointer2[AllocatedMemoryBlock1];
-              BaseValuePointer2[allocatedMemory4] = (BaseValuePointer2[allocatedMemory4] * transformCoeff11 + 1.0) * BaseValuePointer2[allocatedMemory4];
-              *BaseValuePointer2 = (transformCoeff11 * *BaseValuePointer2 + 1.0) * *BaseValuePointer2;
-              BaseValuePointer2[allocatedMemory5] = (BaseValuePointer2[allocatedMemory5] * transformCoeff11 + 1.0) * BaseValuePointer2[allocatedMemory5];
+              BaseValuePointer2[AllocatedMemoryBlock1] = (BaseValuePointer2[AllocatedMemoryBlock1] * transformCoefficient + 1.0) * BaseValuePointer2[AllocatedMemoryBlock1];
+              BaseValuePointer2[allocatedMemory4] = (BaseValuePointer2[allocatedMemory4] * transformCoefficient + 1.0) * BaseValuePointer2[allocatedMemory4];
+              *BaseValuePointer2 = (transformCoefficient * *BaseValuePointer2 + 1.0) * *BaseValuePointer2;
+              BaseValuePointer2[allocatedMemory5] = (BaseValuePointer2[allocatedMemory5] * transformCoefficient + 1.0) * BaseValuePointer2[allocatedMemory5];
               BaseValuePointer2 = BaseValuePointer2 + uiValidationResult0 * 4;
               result7 = result7 - 1;
             } while (result7 != 0);
@@ -82354,7 +82354,7 @@ LAB_1807100a5:
             BaseValuePointer2 = BaseValuePointer0 + processingResult6 * uiValidationResult0;
             AllocatedMemoryBlock1 = (longlong)(processingResult8 - processingResult6);
             do {
-              *BaseValuePointer2 = (*BaseValuePointer2 * transformCoeff11 + 1.0) * *BaseValuePointer2;
+              *BaseValuePointer2 = (*BaseValuePointer2 * transformCoefficient + 1.0) * *BaseValuePointer2;
               BaseValuePointer2 = BaseValuePointer2 + eventHandle;
               AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
             } while (AllocatedMemoryBlock1 != 0);
@@ -82434,7 +82434,7 @@ LAB_1807100a5:
         }
         localInt7 = processingResult8;
       } while (processingResult8 != preservedRegister13D);
-      *stackParam000000c8 = transformCoeff11;
+      *stackParam000000c8 = transformCoefficient;
       register10 = stackParam000000c8 + 1;
       CharacterDataOffset = CharacterDataOffset + -1;
       stackParam000000c8 = register10;
@@ -84924,7 +84924,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -84957,7 +84957,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     finalResult = *(float *)(dataSource + (longlong)(int)(1 - result1) * 4);
     transformCoeff16 = param_6 * *(float *)(&TransformMatrixX + localLong7 * 0xc);
     transformCoeff17 = param_6 * *(float *)(&TransformMatrixY + localLong7 * 0xc);
-    transformCoeff11 = param_7 * *(float *)(&TransformMatrixX + allocatedMemory3 * 0xc);
+    transformCoefficient = param_7 * *(float *)(&TransformMatrixX + allocatedMemory3 * 0xc);
     transformCoeff12 = param_7 * *(float *)(&TransformMatrixY + allocatedMemory3 * 0xc);
     transformCoeff13 = param_7 * *(float *)(&TransformMatrixZ + allocatedMemory3 * 0xc);
     localLong7 = 0;
@@ -84992,7 +84992,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         *(float *)((longlong)pTemporaryFloatValue + allocatedMemory3 + uiContext) =
              vectorComponentX * transformCoeff16 * pTemporaryFloatValue[2] + pTemporaryFloatValue[eventDataIndex + 2] +
              (pTemporaryFloatValue[1] + pTemporaryFloatValue[3]) * vectorComponentX * transformCoeff17 + (*pTemporaryFloatValue + pTemporaryFloatValue[4]) * vectorComponentX * FloatValue2 +
-             finalResult * transformCoeff11 * baseValue6 + finalResult * transformCoeff12 * (baseValue5 + AccumulatedFloat) +
+             finalResult * transformCoefficient * baseValue6 + finalResult * transformCoeff12 * (baseValue5 + AccumulatedFloat) +
              (transformCoeff15 + transformCoeff14) * finalResult * transformCoeff13;
         finalResult = *(float *)((longlong)pTemporaryFloatValue + componentIndex + uiContext0);
         FloatValue1 = pTemporaryFloatValue[allocatedMemory0 + 5];
@@ -85001,7 +85001,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         *(float *)((longlong)pTemporaryFloatValue + componentIndex + uiContext) =
              vectorComponentX * transformCoeff16 * pTemporaryFloatValue[3] + pTemporaryFloatValue[eventDataIndex + 3] +
              (pTemporaryFloatValue[4] + pTemporaryFloatValue[2]) * vectorComponentX * transformCoeff17 + (pTemporaryFloatValue[1] + pTemporaryFloatValue[5]) * vectorComponentX * FloatValue2 +
-             finalResult * transformCoeff11 * AccumulatedFloat + finalResult * transformCoeff12 * (baseValue6 + transformCoeff15) +
+             finalResult * transformCoefficient * AccumulatedFloat + finalResult * transformCoeff12 * (baseValue6 + transformCoeff15) +
              (FloatValue1 + baseValue5) * finalResult * transformCoeff13;
         finalResult = *(float *)((longlong)pTemporaryFloatValue + stringCompareIndex + uiContext0);
         vectorComponentX = pTemporaryFloatValue[allocatedMemory0 + 6];
@@ -85010,7 +85010,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         *(float *)((longlong)pTemporaryFloatValue + stringCompareIndex + uiContext) =
              baseValue5 * transformCoeff16 * pTemporaryFloatValue[4] + pTemporaryFloatValue[eventDataIndex + 4] +
              (pTemporaryFloatValue[5] + pTemporaryFloatValue[3]) * baseValue5 * transformCoeff17 + (pTemporaryFloatValue[6] + pTemporaryFloatValue[2]) * baseValue5 * FloatValue2 +
-             finalResult * transformCoeff11 * transformCoeff15 + finalResult * transformCoeff12 * (AccumulatedFloat + FloatValue1) +
+             finalResult * transformCoefficient * transformCoeff15 + finalResult * transformCoeff12 * (AccumulatedFloat + FloatValue1) +
              (vectorComponentX + baseValue6) * finalResult * transformCoeff13;
         baseValue5 = *(float *)((longlong)pTemporaryFloatValue + contextDataHandle + uiContext0);
         finalResult = pTemporaryFloatValue[allocatedMemory0 + 7];
@@ -85019,7 +85019,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         *(float *)((longlong)pTemporaryFloatValue + contextDataHandle + uiContext) =
              baseValue6 * transformCoeff16 * pTemporaryFloatValue[5] + pTemporaryFloatValue[eventDataIndex + 5] +
              (pTemporaryFloatValue[6] + pTemporaryFloatValue[4]) * baseValue6 * transformCoeff17 + (pTemporaryFloatValue[7] + pTemporaryFloatValue[3]) * baseValue6 * FloatValue2 +
-             baseValue5 * transformCoeff11 * FloatValue1 + baseValue5 * transformCoeff12 * (transformCoeff15 + vectorComponentX) +
+             baseValue5 * transformCoefficient * FloatValue1 + baseValue5 * transformCoeff12 * (transformCoeff15 + vectorComponentX) +
              (finalResult + AccumulatedFloat) * baseValue5 * transformCoeff13;
         pTemporaryFloatValue = pTemporaryFloatValue + 4;
         contextDataHandle = contextDataHandle + -1;
@@ -85046,7 +85046,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
         *(float *)(localLong7 + uiContext + 4 + (longlong)pTemporaryFloatValue) =
              baseValue6 * transformCoeff16 * pTemporaryFloatValue[1] + pTemporaryFloatValue[componentIndex + 1] +
              (pTemporaryFloatValue[2] + *pTemporaryFloatValue) * baseValue6 * transformCoeff17 + (pTemporaryFloatValue[3] + pTemporaryFloatValue[-1]) * baseValue6 * FloatValue2 +
-             FloatValue1 * transformCoeff11 * vectorComponentX + FloatValue1 * transformCoeff12 * (AccumulatedFloat + finalResult) +
+             FloatValue1 * transformCoefficient * vectorComponentX + FloatValue1 * transformCoeff12 * (AccumulatedFloat + finalResult) +
              (baseValue5 + transformCoeff15) * FloatValue1 * transformCoeff13;
         pTemporaryFloatValue = pTemporaryFloatValue + 1;
         stringCompareIndex = stringCompareIndex + -1;
@@ -85064,7 +85064,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     }
     else {
       ProcessUIDataRegisterOperation(uiContext + (longlong)localInt9 * 4,dataSource + (longlong)localInt9 * 4,bufferValue,
-                    resultPointer - localInt9,transformCoeff11,transformCoeff12,transformCoeff13);
+                    resultPointer - localInt9,transformCoefficient,transformCoeff12,transformCoeff13);
     }
   }
   return;
@@ -85100,7 +85100,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -85158,7 +85158,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     baseValue3 = baseValue6;
     vectorComponentX = baseValue2;
     finalResult = baseValue5;
-    transformCoeff11 = transformCoeff12;
+    transformCoefficient = transformCoeff12;
     do {
       baseValue5 = *(float *)((longlong)pResultFloatValue + contextDataHandle + stackParam000001e8);
       transformCoeff12 = pResultFloatValue[CharacterDataOffset + 4];
@@ -85168,7 +85168,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
            baseValue2 * transformCoeff13 * pResultFloatValue[2] + pResultFloatValue[eventDataIndex + 2] +
            (pResultFloatValue[1] + pResultFloatValue[3]) * baseValue2 * transformCoeff14 +
            (*pResultFloatValue + pResultFloatValue[4]) * baseValue2 * fStack00000000000001c8 + baseValue5 * FloatValue1 * vectorComponentX +
-           baseValue5 * FloatValue2 * (baseValue3 + finalResult) + (transformCoeff12 + transformCoeff11) * baseValue5 * AccumulatedFloat;
+           baseValue5 * FloatValue2 * (baseValue3 + finalResult) + (transformCoeff12 + transformCoefficient) * baseValue5 * AccumulatedFloat;
       baseValue5 = *(float *)((longlong)pResultFloatValue + allocatedMemory + stackParam000001e8);
       baseValue6 = pResultFloatValue[CharacterDataOffset + 5];
       baseValue5 = baseValue5 * baseValue5;
@@ -85201,7 +85201,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
       baseValue3 = baseValue6;
       vectorComponentX = baseValue2;
       finalResult = baseValue5;
-      transformCoeff11 = transformCoeff12;
+      transformCoefficient = transformCoeff12;
     } while (contextDataHandle != 0);
     dataPointer = (ulonglong)(int)uStack0000000000000044;
     register10 = stackParam000001a8;
@@ -85298,7 +85298,7 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -85356,7 +85356,7 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
     baseValue3 = baseValue6;
     vectorComponentX = baseValue2;
     finalResult = baseValue5;
-    transformCoeff11 = transformCoeff12;
+    transformCoefficient = transformCoeff12;
     do {
       baseValue5 = *(float *)((longlong)pResultFloatValue + contextDataHandle + stackParam000001e8);
       transformCoeff12 = pResultFloatValue[CharacterDataOffset + 4];
@@ -85366,7 +85366,7 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
            baseValue2 * transformCoeff13 * pResultFloatValue[2] + pResultFloatValue[eventDataIndex + 2] +
            (pResultFloatValue[1] + pResultFloatValue[3]) * baseValue2 * transformCoeff14 +
            (*pResultFloatValue + pResultFloatValue[4]) * baseValue2 * fStack00000000000001c8 + baseValue5 * FloatValue1 * vectorComponentX +
-           baseValue5 * FloatValue2 * (baseValue3 + finalResult) + (transformCoeff12 + transformCoeff11) * baseValue5 * AccumulatedFloat;
+           baseValue5 * FloatValue2 * (baseValue3 + finalResult) + (transformCoeff12 + transformCoefficient) * baseValue5 * AccumulatedFloat;
       baseValue5 = *(float *)((longlong)pResultFloatValue + allocatedMemory + stackParam000001e8);
       baseValue6 = pResultFloatValue[CharacterDataOffset + 5];
       baseValue5 = baseValue5 * baseValue5;
@@ -85399,7 +85399,7 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
       baseValue3 = baseValue6;
       vectorComponentX = baseValue2;
       finalResult = baseValue5;
-      transformCoeff11 = transformCoeff12;
+      transformCoefficient = transformCoeff12;
     } while (contextDataHandle != 0);
     dataPointer = (ulonglong)(int)uStack0000000000000044;
     register10 = stackParam000001a8;
@@ -86173,7 +86173,7 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
   float transformCoeff9;
   float sourceValue0;
   float transformCoeff10;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -86187,18 +86187,18 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
   do {
     resultValue = transformCoeff10;
     TemporaryFloatValue9 = *(float *)(uiContext + -4 + (longlong)transformCoeffPointer);
-    transformCoeffPointer[-1] = resultValue * transformCoeff11 + TemporaryFloatValue9 + transformCoeff9 * transformCoeff12 +
+    transformCoeffPointer[-1] = resultValue * transformCoefficient + TemporaryFloatValue9 + transformCoeff9 * transformCoeff12 +
                  transformCoeff7 * transformCoeff13 + transformCoeff8 * transformCoeff14 +
                  transformCoeff6 * transformCoeff15;
     TemporaryFloatValue8 = *(float *)(uiContext + (longlong)transformCoeffPointer);
-    *transformCoeffPointer = TemporaryFloatValue9 * transformCoeff11 + TemporaryFloatValue8 + resultValue * transformCoeff12 +
+    *transformCoeffPointer = TemporaryFloatValue9 * transformCoefficient + TemporaryFloatValue8 + resultValue * transformCoeff12 +
               transformCoeff9 * transformCoeff13 + transformCoeff7 * transformCoeff14 +
               transformCoeff8 * transformCoeff15;
     sourceValue0 = *(float *)(uiContext + 4 + (longlong)transformCoeffPointer);
-    transformCoeffPointer[1] = TemporaryFloatValue8 * transformCoeff11 + sourceValue0 + TemporaryFloatValue9 * transformCoeff12 + resultValue * transformCoeff13 +
+    transformCoeffPointer[1] = TemporaryFloatValue8 * transformCoefficient + sourceValue0 + TemporaryFloatValue9 * transformCoeff12 + resultValue * transformCoeff13 +
                 transformCoeff9 * transformCoeff14 + transformCoeff7 * transformCoeff15;
     transformCoeff10 = *(float *)(uiContext + 8 + (longlong)transformCoeffPointer);
-    transformCoeffPointer[2] = sourceValue0 * transformCoeff11 + transformCoeff10 + TemporaryFloatValue8 * transformCoeff12 +
+    transformCoeffPointer[2] = sourceValue0 * transformCoefficient + transformCoeff10 + TemporaryFloatValue8 * transformCoeff12 +
                 TemporaryFloatValue9 * transformCoeff13 + resultValue * transformCoeff14 + transformCoeff9 * transformCoeff15;
     transformCoeffPointer = transformCoeffPointer + 4;
     iterationCounter = iterationCounter - 1;
@@ -86219,7 +86219,7 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
       resultValue = TemporaryFloatValue9;
       TemporaryFloatValue9 = baseValue;
       transformCoeff10 = *(float *)((longlong)transformCoeffPointer + (tempRegister10 - uiContextBasePointer));
-      *transformCoeffPointer = sourceValue0 * transformCoeff11 + transformCoeff10 + TemporaryFloatValue8 * transformCoeff12 +
+      *transformCoeffPointer = sourceValue0 * transformCoefficient + transformCoeff10 + TemporaryFloatValue8 * transformCoeff12 +
                 TemporaryFloatValue9 * transformCoeff13 + resultValue * transformCoeff14 + TemporaryFloatValue6 * transformCoeff15;
       transformCoeffPointer = transformCoeffPointer + 1;
       iterationCounter = iterationCounter - 1;
@@ -87903,7 +87903,7 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
   float FloatValue1;
   double ExponentialDecayFactor1;
   double ExponentialDecayFactor2;
-  float transformCoeff11;
+  float transformCoefficient;
   UIByte in_XMM1 [16];
   UIByte aiterationCount2 [16];
   int stackInte8;
@@ -87929,39 +87929,39 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
       do {
         IsEventProcessingActive = false;
         CharacterDataOffset = (longlong)(*(int *)(uiBufferData + 8) * ProcessingResult5 + param_7);
-        transformCoeff11 = *(float *)(uiContext0 + CharacterDataOffset * 4);
+        transformCoefficient = *(float *)(uiContext0 + CharacterDataOffset * 4);
         FloatValue1 = *(float *)(uiContext1 + CharacterDataOffset * 4);
         finalResult = FloatValue1;
         if (resultPointer == 1) {
           localLong7 = (longlong)(*(int *)(uiBufferData + 8) + param_7);
           baseValue = *(float *)(uiContext0 + localLong7 * 4);
           finalResult = *(float *)(uiContext1 + localLong7 * 4);
-          if (baseValue <= transformCoeff11) {
-            baseValue = transformCoeff11;
+          if (baseValue <= transformCoefficient) {
+            baseValue = transformCoefficient;
           }
-          transformCoeff11 = baseValue;
+          transformCoefficient = baseValue;
           if (finalResult <= FloatValue1) {
             finalResult = FloatValue1;
           }
         }
-        if (transformCoeff11 <= finalResult) {
-          finalResult = transformCoeff11;
+        if (transformCoefficient <= finalResult) {
+          finalResult = transformCoefficient;
         }
         finalResult = *(float *)(param_9 + CharacterDataOffset * 4) - finalResult;
         if (finalResult <= 0.0) {
           interpolationResult = 0.0;
         }
         ExponentialDecayFactor2 = (double)exp((double)-finalResult * 0.6931471805599453);
-        transformCoeff11 = (float)ExponentialDecayFactor2 + (float)ExponentialDecayFactor2;
+        transformCoefficient = (float)ExponentialDecayFactor2 + (float)ExponentialDecayFactor2;
         if (bufferSize == 3) {
-          transformCoeff11 = transformCoeff11 * 1.4142135;
+          transformCoefficient = transformCoefficient * 1.4142135;
         }
-        if ((float)ExponentialDecayFactor1 * 0.5 <= transformCoeff11) {
-          transformCoeff11 = (float)ExponentialDecayFactor1 * 0.5;
+        if ((float)ExponentialDecayFactor1 * 0.5 <= transformCoefficient) {
+          transformCoefficient = (float)ExponentialDecayFactor1 * 0.5;
         }
         ProcessingResult1 = 0;
-        transformCoeff11 = transformCoeff11 * (1.0 / (float)aiterationCount2._0_8_);
-        in_XMM1 = ZEXT416((uint)transformCoeff11);
+        transformCoefficient = transformCoefficient * (1.0 / (float)aiterationCount2._0_8_);
+        in_XMM1 = ZEXT416((uint)transformCoefficient);
         CharacterDataOffset = dataSource + ((longlong)
                            ((int)*(short *)(allocatedMemory3 + *(longlong *)(uiBufferData + 0x20)) <<
                            (IsValidationComplete & 0x1f)) + (longlong)processingResult4) * 4;
@@ -87973,9 +87973,9 @@ void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targe
               if (0 < (int)dataPointer) {
                 do {
                   uiContext3 = uiContext3 * 0x19660d + 0x3c6ef35f;
-                  FloatValue1 = transformCoeff11;
+                  FloatValue1 = transformCoefficient;
                   if ((uiContext3 >> 0xf & 1) == 0) {
-                    FloatValue1 = -transformCoeff11;
+                    FloatValue1 = -transformCoefficient;
                   }
                   sourceDataInt = localInt8 << (IsValidationComplete & 0x1f);
                   localInt8 = localInt8 + 1;
@@ -89231,11 +89231,11 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
   
   bufferSize4 = (longlong)(int)param_6;
   TransformCoefficient2 = *(float *)(bufferSize + (longlong)resultPointer * 4);
-  transformCoeff11 = *(float *)(bufferSize + (longlong)(*(int *)(uiBufferData + 8) + resultPointer) * 4);
+  transformCoefficient = *(float *)(bufferSize + (longlong)(*(int *)(uiBufferData + 8) + resultPointer) * 4);
   result7 = 0;
   TotalResult = 0;
-  AccumulatedFloat = 1.0 / (SQRT(TransformCoefficient2 * TransformCoefficient2 + 1e-15 + transformCoeff11 * transformCoeff11) + 1e-15);
-  transformCoeff11 = AccumulatedFloat * transformCoeff11;
+  AccumulatedFloat = 1.0 / (SQRT(TransformCoefficient2 * TransformCoefficient2 + 1e-15 + transformCoefficient * transformCoefficient) + 1e-15);
+  transformCoefficient = AccumulatedFloat * transformCoefficient;
   AccumulatedFloat = AccumulatedFloat * TransformCoefficient2;
   if ((0 < (int)param_6) && (0xf < param_6)) {
     bufferValue = param_6 & 0x8000000f;
@@ -89258,31 +89258,31 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
       ResultFloatValue = BaseValuePointer[1];
       TemporaryFloatValue = BaseValuePointer[2];
       LocalFloatValue9 = BaseValuePointer[3];
-      baseScaleFactor[-4] = *TransformCoefficient1 * transformCoeff11 + baseScaleFactor[-4] * AccumulatedFloat;
-      baseScaleFactor[-3] = TransformCoefficient2 * transformCoeff11 + baseScaleFactor[-3] * AccumulatedFloat;
-      baseScaleFactor[-2] = TransformCoefficient3 * transformCoeff11 + baseScaleFactor[-2] * AccumulatedFloat;
-      baseScaleFactor[-1] = TransformCoefficient4 * transformCoeff11 + baseScaleFactor[-1] * AccumulatedFloat;
+      baseScaleFactor[-4] = *TransformCoefficient1 * transformCoefficient + baseScaleFactor[-4] * AccumulatedFloat;
+      baseScaleFactor[-3] = TransformCoefficient2 * transformCoefficient + baseScaleFactor[-3] * AccumulatedFloat;
+      baseScaleFactor[-2] = TransformCoefficient3 * transformCoefficient + baseScaleFactor[-2] * AccumulatedFloat;
+      baseScaleFactor[-1] = TransformCoefficient4 * transformCoefficient + baseScaleFactor[-1] * AccumulatedFloat;
       BaseValuePointer = (float *)(allocatedMemory3 + 0x10 + (longlong)baseScaleFactor);
       TransformCoefficient2 = *BaseValuePointer;
       TransformCoefficient3 = BaseValuePointer[1];
       TransformCoefficient4 = BaseValuePointer[2];
       baseValue0 = BaseValuePointer[3];
-      *baseScaleFactor = LocalFloatValue6 * transformCoeff11 + *baseScaleFactor * AccumulatedFloat;
-      baseScaleFactor[1] = ResultFloatValue * transformCoeff11 + baseScaleFactor[1] * AccumulatedFloat;
-      baseScaleFactor[2] = TemporaryFloatValue * transformCoeff11 + baseScaleFactor[2] * AccumulatedFloat;
-      baseScaleFactor[3] = LocalFloatValue9 * transformCoeff11 + baseScaleFactor[3] * AccumulatedFloat;
-      baseScaleFactor[4] = TransformCoefficient2 * transformCoeff11 + baseScaleFactor[4] * AccumulatedFloat;
-      baseScaleFactor[5] = TransformCoefficient3 * transformCoeff11 + baseScaleFactor[5] * AccumulatedFloat;
-      baseScaleFactor[6] = TransformCoefficient4 * transformCoeff11 + baseScaleFactor[6] * AccumulatedFloat;
-      baseScaleFactor[7] = baseValue0 * transformCoeff11 + baseScaleFactor[7] * AccumulatedFloat;
+      *baseScaleFactor = LocalFloatValue6 * transformCoefficient + *baseScaleFactor * AccumulatedFloat;
+      baseScaleFactor[1] = ResultFloatValue * transformCoefficient + baseScaleFactor[1] * AccumulatedFloat;
+      baseScaleFactor[2] = TemporaryFloatValue * transformCoefficient + baseScaleFactor[2] * AccumulatedFloat;
+      baseScaleFactor[3] = LocalFloatValue9 * transformCoefficient + baseScaleFactor[3] * AccumulatedFloat;
+      baseScaleFactor[4] = TransformCoefficient2 * transformCoefficient + baseScaleFactor[4] * AccumulatedFloat;
+      baseScaleFactor[5] = TransformCoefficient3 * transformCoefficient + baseScaleFactor[5] * AccumulatedFloat;
+      baseScaleFactor[6] = TransformCoefficient4 * transformCoefficient + baseScaleFactor[6] * AccumulatedFloat;
+      baseScaleFactor[7] = baseValue0 * transformCoefficient + baseScaleFactor[7] * AccumulatedFloat;
       BaseValuePointer = (float *)(allocatedMemory3 + 0x20 + (longlong)baseScaleFactor);
       TransformCoefficient2 = BaseValuePointer[1];
       TransformCoefficient3 = BaseValuePointer[2];
       TransformCoefficient4 = BaseValuePointer[3];
-      baseScaleFactor[8] = *BaseValuePointer * transformCoeff11 + baseScaleFactor[8] * AccumulatedFloat;
-      baseScaleFactor[9] = TransformCoefficient2 * transformCoeff11 + baseScaleFactor[9] * AccumulatedFloat;
-      baseScaleFactor[10] = TransformCoefficient3 * transformCoeff11 + baseScaleFactor[10] * AccumulatedFloat;
-      baseScaleFactor[0xb] = TransformCoefficient4 * transformCoeff11 + baseScaleFactor[0xb] * AccumulatedFloat;
+      baseScaleFactor[8] = *BaseValuePointer * transformCoefficient + baseScaleFactor[8] * AccumulatedFloat;
+      baseScaleFactor[9] = TransformCoefficient2 * transformCoefficient + baseScaleFactor[9] * AccumulatedFloat;
+      baseScaleFactor[10] = TransformCoefficient3 * transformCoefficient + baseScaleFactor[10] * AccumulatedFloat;
+      baseScaleFactor[0xb] = TransformCoefficient4 * transformCoefficient + baseScaleFactor[0xb] * AccumulatedFloat;
       baseScaleFactor = baseScaleFactor + 0x10;
     } while ((longlong)result9 < (longlong)(int)(param_6 - bufferValue));
   }
@@ -89295,12 +89295,12 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
       allocatedMemory3 = allocatedMemory3 + allocatedMemory5 * 4;
       do {
         TransformCoefficient2 = *(float *)(allocatedMemoryBlock + (longlong)baseScaleFactor);
-        baseScaleFactor[-1] = transformCoeff11 * *(float *)(allocatedMemoryBlock + -4 + (longlong)baseScaleFactor) + AccumulatedFloat * baseScaleFactor[-1];
+        baseScaleFactor[-1] = transformCoefficient * *(float *)(allocatedMemoryBlock + -4 + (longlong)baseScaleFactor) + AccumulatedFloat * baseScaleFactor[-1];
         TransformCoefficient3 = *(float *)(allocatedMemoryBlock + 4 + (longlong)baseScaleFactor);
-        *baseScaleFactor = transformCoeff11 * TransformCoefficient2 + AccumulatedFloat * *baseScaleFactor;
+        *baseScaleFactor = transformCoefficient * TransformCoefficient2 + AccumulatedFloat * *baseScaleFactor;
         TransformCoefficient2 = *(float *)(allocatedMemoryBlock + 8 + (longlong)baseScaleFactor);
-        baseScaleFactor[1] = transformCoeff11 * TransformCoefficient3 + AccumulatedFloat * baseScaleFactor[1];
-        baseScaleFactor[2] = transformCoeff11 * TransformCoefficient2 + AccumulatedFloat * baseScaleFactor[2];
+        baseScaleFactor[1] = transformCoefficient * TransformCoefficient3 + AccumulatedFloat * baseScaleFactor[1];
+        baseScaleFactor[2] = transformCoefficient * TransformCoefficient2 + AccumulatedFloat * baseScaleFactor[2];
         baseScaleFactor = baseScaleFactor + 4;
         allocatedMemory5 = allocatedMemory5 + -1;
       } while (allocatedMemory5 != 0);
@@ -89309,7 +89309,7 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
       baseScaleFactor = (float *)(dataSource + allocatedMemory3 * 4);
       allocatedMemory4 = allocatedMemory4 - allocatedMemory3;
       do {
-        *baseScaleFactor = transformCoeff11 * *(float *)((targetBuffer - dataSource) + (longlong)baseScaleFactor) + AccumulatedFloat * *baseScaleFactor;
+        *baseScaleFactor = transformCoefficient * *(float *)((targetBuffer - dataSource) + (longlong)baseScaleFactor) + AccumulatedFloat * *baseScaleFactor;
         baseScaleFactor = baseScaleFactor + 1;
         allocatedMemory4 = allocatedMemory4 + -1;
       } while (allocatedMemory4 != 0);
@@ -89950,7 +89950,7 @@ uint ProcessUIFloatDataTransformationAndScaling(int *uiContext,float *dataSource
   int processingResult8;
   ulonglong result9;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIHandle iterationCount2;
   UIHandle iterationCount3;
   UIDword *piterationCount4;
@@ -89973,7 +89973,7 @@ uint ProcessUIFloatDataTransformationAndScaling(int *uiContext,float *dataSource
     ProcessUIEventDataCompression(uiContext,&stackInt78,dataSource,targetBuffer,bufferSize,&resultPointer,param_6,param_6,param_8,1,
                   piterationCount4);
     iterationCount5 = (UIDword)((ulonglong)piterationCount4 >> 0x20);
-    transformCoeff11 = (float)stackInt74 * 3.0517578e-05;
+    transformCoefficient = (float)stackInt74 * 3.0517578e-05;
     AccumulatedFloat = (float)stackInt70 * 3.0517578e-05;
     if (bufferSize == 2) {
       localInt8 = 0;
@@ -90005,8 +90005,8 @@ uint ProcessUIFloatDataTransformationAndScaling(int *uiContext,float *dataSource
       *baseScaleFactor = (float)-processingResult8 * bufferPointer[1];
       baseScaleFactor[1] = (float)processingResult8 * *bufferPointer;
       if (uiContext[1] != 0) {
-        *dataSource = transformCoeff11 * *dataSource;
-        dataSource[1] = transformCoeff11 * dataSource[1];
+        *dataSource = transformCoefficient * *dataSource;
+        dataSource[1] = transformCoefficient * dataSource[1];
         baseValue = *targetBuffer;
         *targetBuffer = AccumulatedFloat * baseValue;
         targetBuffer[1] = AccumulatedFloat * targetBuffer[1];
@@ -90066,7 +90066,7 @@ uint ProcessUIFloatDataTransformationAndScaling(int *uiContext,float *dataSource
     componentIndex = 0;
     if (uiContext[1] != 0) {
       if (bufferSize != 2) {
-        ProcessUIDataWriteOperation(dataSource,targetBuffer,transformCoeff11,bufferSize,uiContext[0xf]);
+        ProcessUIDataWriteOperation(dataSource,targetBuffer,transformCoefficient,bufferSize,uiContext[0xf]);
       }
       if (stackInt78 != 0) {
         contextValue = 0;
@@ -91772,7 +91772,7 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
   uint result7;
   longlong allocatedMemory9;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -91785,14 +91785,14 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
   afStack_48[0] = 0.0;
   ProcessUIRenderBuffer(dataSource,uiContext,dataSource,bufferSize,afStackX_18,afStack_48);
   AccumulatedFloat = targetBuffer * targetBuffer + afStack_48[0];
-  transformCoeff11 = afStackX_18[0] * targetBuffer + afStackX_18[0] * targetBuffer;
-  transformCoeff12 = AccumulatedFloat - transformCoeff11;
-  transformCoeff11 = transformCoeff11 + AccumulatedFloat;
-  if ((0.0006 <= transformCoeff11) && (0.0006 <= transformCoeff12)) {
+  transformCoefficient = afStackX_18[0] * targetBuffer + afStackX_18[0] * targetBuffer;
+  transformCoeff12 = AccumulatedFloat - transformCoefficient;
+  transformCoefficient = transformCoefficient + AccumulatedFloat;
+  if ((0.0006 <= transformCoefficient) && (0.0006 <= transformCoeff12)) {
     componentIndex = 0;
     result7 = 0;
     transformCoeff12 = 1.0 / SQRT(transformCoeff12);
-    AccumulatedFloat = 1.0 / SQRT(transformCoeff11);
+    AccumulatedFloat = 1.0 / SQRT(transformCoefficient);
     if ((0 < (int)bufferSize) && (7 < bufferSize)) {
       bufferValue = bufferSize & 0x80000007;
       if ((int)bufferValue < 0) {
@@ -91802,7 +91802,7 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
       baseScaleFactor = (float *)(dataSource + 0x10);
       result8 = componentIndex;
       do {
-        transformCoeff11 = baseScaleFactor[-4];
+        transformCoefficient = baseScaleFactor[-4];
         transformCoeff13 = baseScaleFactor[-3];
         transformCoeff14 = baseScaleFactor[-2];
         transformCoeff1 = baseScaleFactor[-1];
@@ -91814,7 +91814,7 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
         TransformCoefficient3 = BaseValuePointer[1];
         TransformCoefficient4 = BaseValuePointer[2];
         LocalFloatValue6 = BaseValuePointer[3];
-        baseScaleFactor[-4] = (TransformCoefficient2 * targetBuffer + transformCoeff11) * AccumulatedFloat;
+        baseScaleFactor[-4] = (TransformCoefficient2 * targetBuffer + transformCoefficient) * AccumulatedFloat;
         baseScaleFactor[-3] = (TransformCoefficient3 * targetBuffer + transformCoeff13) * AccumulatedFloat;
         baseScaleFactor[-2] = (TransformCoefficient4 * targetBuffer + transformCoeff14) * AccumulatedFloat;
         baseScaleFactor[-1] = (LocalFloatValue6 * targetBuffer + transformCoeff1) * AccumulatedFloat;
@@ -91823,21 +91823,21 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
         LocalFloatValue9 = baseScaleFactor[2];
         baseValue0 = baseScaleFactor[3];
         BaseValuePointer = (float *)(allocatedMemory3 + -0x10 + (longlong)baseScaleFactor);
-        *BaseValuePointer = (TransformCoefficient2 * targetBuffer - transformCoeff11) * transformCoeff12;
+        *BaseValuePointer = (TransformCoefficient2 * targetBuffer - transformCoefficient) * transformCoeff12;
         BaseValuePointer[1] = (TransformCoefficient3 * targetBuffer - transformCoeff13) * transformCoeff12;
         BaseValuePointer[2] = (TransformCoefficient4 * targetBuffer - transformCoeff14) * transformCoeff12;
         BaseValuePointer[3] = (LocalFloatValue6 * targetBuffer - transformCoeff1) * transformCoeff12;
         BaseValuePointer = (float *)(allocatedMemory3 + (longlong)baseScaleFactor);
-        transformCoeff11 = *BaseValuePointer;
+        transformCoefficient = *BaseValuePointer;
         transformCoeff13 = BaseValuePointer[1];
         transformCoeff14 = BaseValuePointer[2];
         transformCoeff1 = BaseValuePointer[3];
-        *baseScaleFactor = (targetBuffer * transformCoeff11 + ResultFloatValue) * AccumulatedFloat;
+        *baseScaleFactor = (targetBuffer * transformCoefficient + ResultFloatValue) * AccumulatedFloat;
         baseScaleFactor[1] = (targetBuffer * transformCoeff13 + TemporaryFloatValue) * AccumulatedFloat;
         baseScaleFactor[2] = (targetBuffer * transformCoeff14 + LocalFloatValue9) * AccumulatedFloat;
         baseScaleFactor[3] = (targetBuffer * transformCoeff1 + baseValue0) * AccumulatedFloat;
         BaseValuePointer = (float *)(allocatedMemory3 + (longlong)baseScaleFactor);
-        *BaseValuePointer = (targetBuffer * transformCoeff11 - ResultFloatValue) * transformCoeff12;
+        *BaseValuePointer = (targetBuffer * transformCoefficient - ResultFloatValue) * transformCoeff12;
         BaseValuePointer[1] = (targetBuffer * transformCoeff13 - TemporaryFloatValue) * transformCoeff12;
         BaseValuePointer[2] = (targetBuffer * transformCoeff14 - LocalFloatValue9) * transformCoeff12;
         BaseValuePointer[3] = (targetBuffer * transformCoeff1 - baseValue0) * transformCoeff12;
@@ -91852,22 +91852,22 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
         allocatedMemory5 = ((allocatedMemory6 - allocatedMemory3) - 4U >> 2) + 1;
         allocatedMemory3 = allocatedMemory3 + allocatedMemory5 * 4;
         do {
-          transformCoeff11 = baseScaleFactor[-1];
+          transformCoefficient = baseScaleFactor[-1];
           transformCoeff13 = targetBuffer * *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor);
           transformCoeff14 = targetBuffer * *(float *)(allocatedMemory9 + (longlong)baseScaleFactor);
-          *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoeff11) * transformCoeff12;
-          baseScaleFactor[-1] = (transformCoeff11 + transformCoeff13) * AccumulatedFloat;
-          transformCoeff11 = *baseScaleFactor;
+          *(float *)(allocatedMemory9 + -4 + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoefficient) * transformCoeff12;
+          baseScaleFactor[-1] = (transformCoefficient + transformCoeff13) * AccumulatedFloat;
+          transformCoefficient = *baseScaleFactor;
           transformCoeff13 = targetBuffer * *(float *)(allocatedMemory9 + 4 + (longlong)baseScaleFactor);
-          *(float *)(allocatedMemory9 + (longlong)baseScaleFactor) = (transformCoeff14 - transformCoeff11) * transformCoeff12;
-          *baseScaleFactor = (transformCoeff11 + transformCoeff14) * AccumulatedFloat;
-          transformCoeff11 = baseScaleFactor[1];
+          *(float *)(allocatedMemory9 + (longlong)baseScaleFactor) = (transformCoeff14 - transformCoefficient) * transformCoeff12;
+          *baseScaleFactor = (transformCoefficient + transformCoeff14) * AccumulatedFloat;
+          transformCoefficient = baseScaleFactor[1];
           transformCoeff14 = targetBuffer * *(float *)(allocatedMemory9 + 8 + (longlong)baseScaleFactor);
-          *(float *)(allocatedMemory9 + 4 + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoeff11) * transformCoeff12;
-          baseScaleFactor[1] = (transformCoeff11 + transformCoeff13) * AccumulatedFloat;
-          transformCoeff11 = baseScaleFactor[2];
-          *(float *)(allocatedMemory9 + 8 + (longlong)baseScaleFactor) = (transformCoeff14 - transformCoeff11) * transformCoeff12;
-          baseScaleFactor[2] = (transformCoeff11 + transformCoeff14) * AccumulatedFloat;
+          *(float *)(allocatedMemory9 + 4 + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoefficient) * transformCoeff12;
+          baseScaleFactor[1] = (transformCoefficient + transformCoeff13) * AccumulatedFloat;
+          transformCoefficient = baseScaleFactor[2];
+          *(float *)(allocatedMemory9 + 8 + (longlong)baseScaleFactor) = (transformCoeff14 - transformCoefficient) * transformCoeff12;
+          baseScaleFactor[2] = (transformCoefficient + transformCoeff14) * AccumulatedFloat;
           baseScaleFactor = baseScaleFactor + 4;
           allocatedMemory5 = allocatedMemory5 + -1;
         } while (allocatedMemory5 != 0);
@@ -91876,10 +91876,10 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
         baseScaleFactor = (float *)(dataSource + allocatedMemory3 * 4);
         allocatedMemory6 = allocatedMemory6 - allocatedMemory3;
         do {
-          transformCoeff11 = *baseScaleFactor;
+          transformCoefficient = *baseScaleFactor;
           transformCoeff13 = targetBuffer * *(float *)((uiContext - dataSource) + (longlong)baseScaleFactor);
-          *(float *)((uiContext - dataSource) + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoeff11) * transformCoeff12;
-          *baseScaleFactor = (transformCoeff11 + transformCoeff13) * AccumulatedFloat;
+          *(float *)((uiContext - dataSource) + (longlong)baseScaleFactor) = (transformCoeff13 - transformCoefficient) * transformCoeff12;
+          *baseScaleFactor = (transformCoefficient + transformCoeff13) * AccumulatedFloat;
           baseScaleFactor = baseScaleFactor + 1;
           allocatedMemory6 = allocatedMemory6 + -1;
         } while (allocatedMemory6 != 0);
@@ -92227,20 +92227,20 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
       do {
         transformCoeff1 = remainingScaleFactor[-1];
         AccumulatedFloat = *(float *)(contextDifference + -4 + (longlong)remainingScaleFactor) * 0.70710677;
-        transformCoeff11 = *(float *)(contextDifference + (longlong)remainingScaleFactor) * 0.70710677;
+        transformCoefficient = *(float *)(contextDifference + (longlong)remainingScaleFactor) * 0.70710677;
         remainingScaleFactor[-1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
         transformCoeff12 = *remainingScaleFactor;
         *(float *)(contextDifference + -4 + (longlong)remainingScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
         AccumulatedFloat = *(float *)(contextDifference + 4 + (longlong)remainingScaleFactor) * 0.70710677;
-        *remainingScaleFactor = transformCoeff12 * 0.70710677 - transformCoeff11;
+        *remainingScaleFactor = transformCoeff12 * 0.70710677 - transformCoefficient;
         transformCoeff1 = remainingScaleFactor[1];
-        *(float *)(contextDifference + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
-        transformCoeff11 = *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) * 0.70710677;
+        *(float *)(contextDifference + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoefficient;
+        transformCoefficient = *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) * 0.70710677;
         remainingScaleFactor[1] = transformCoeff1 * 0.70710677 - AccumulatedFloat;
         transformCoeff12 = remainingScaleFactor[2];
         *(float *)(contextDifference + 4 + (longlong)remainingScaleFactor) = transformCoeff1 * 0.70710677 + AccumulatedFloat;
-        remainingScaleFactor[2] = transformCoeff12 * 0.70710677 - transformCoeff11;
-        *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoeff11;
+        remainingScaleFactor[2] = transformCoeff12 * 0.70710677 - transformCoefficient;
+        *(float *)(contextDifference + 8 + (longlong)remainingScaleFactor) = transformCoeff12 * 0.70710677 + transformCoefficient;
         remainingScaleFactor = remainingScaleFactor + 4;
         remainingGroupsCount = remainingGroupsCount + -1;
       } while (remainingGroupsCount != 0);
@@ -92720,7 +92720,7 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
   float sourceValue;
   float targetValue;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   int errorCount;
   float transformVectorArray [38];
   
@@ -92735,11 +92735,11 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
   }
   TransformCoefficient3 = uiContext4;
   if (enableTransform == 0) {
-    transformCoeff11 = *(float *)(&RenderFloatDataY + (longlong)uiContext2 * 4);
+    transformCoefficient = *(float *)(&RenderFloatDataY + (longlong)uiContext2 * 4);
     AccumulatedFloat = *(float *)(&RenderFloatDataX + (longlong)uiContext2 * 4);
   }
   else {
-    transformCoeff11 = 0.1499939;
+    transformCoefficient = 0.1499939;
   }
   enableTransform = uiContext5;
   processingResult = 0;
@@ -92842,7 +92842,7 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
         loopCounter = processingResult + 1;
         *(float *)(resultPointer + (longlong)(processingResult * *(int *)(uiBufferData + 8) + dataSourceIndex) * 4) =
              baseValue + sourceValue * AccumulatedFloat + maxValue;
-        *transformVector = (baseValue + maxValue) - maxValue * transformCoeff11;
+        *transformVector = (baseValue + maxValue) - maxValue * transformCoefficient;
         transformVector = transformVector + 1;
         processingResult = loopCounter;
       } while (loopCounter < uiContext1);
@@ -95550,7 +95550,7 @@ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targ
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -95688,7 +95688,7 @@ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targ
           bufferPointer = bufferPointer + dataSource * 6;
           FloatValue1 = pLocalFloatValue6[allocatedMemory4 * -2 + 1];
           finalResult = pLocalFloatValue6[eventDataIndex * 2] * finalResult - pLocalFloatValue6[eventDataIndex * 2 + 1] * *pTransformCoefficient2;
-          transformCoeff11 = pLocalFloatValue6[eventDataIndex * 2 + 1] * baseValue6 + pLocalFloatValue6[eventDataIndex * 2] * *TransformCoefficient1;
+          transformCoefficient = pLocalFloatValue6[eventDataIndex * 2 + 1] * baseValue6 + pLocalFloatValue6[eventDataIndex * 2] * *TransformCoefficient1;
           transformCoeff13 = *pTemporaryFloatValue - transformCoeff14;
           transformCoeff14 = transformCoeff14 + *pTemporaryFloatValue;
           FloatValue2 = finalResult + transformCoeff15;
@@ -95696,8 +95696,8 @@ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targ
           transformCoeff15 = transformCoeff15 - finalResult;
           *pTemporaryFloatValue = transformCoeff14;
           pLocalFloatValue6[allocatedMemory4 * -2 + 1] = FloatValue1 + transformCoeff12;
-          baseValue6 = transformCoeff11 + transformCoeff16;
-          transformCoeff16 = transformCoeff16 - transformCoeff11;
+          baseValue6 = transformCoefficient + transformCoeff16;
+          transformCoeff16 = transformCoeff16 - transformCoefficient;
           *pLocalFloatValue6 = transformCoeff14 - FloatValue2;
           pLocalFloatValue6[1] = pLocalFloatValue6[allocatedMemory4 * -2 + 1] - baseValue6;
           finalResult = *pTemporaryFloatValue;
@@ -95767,7 +95767,7 @@ void ProcessUIEventDataUpdate(longlong uiContext,UIHandle dataSource,longlong ta
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -95809,7 +95809,7 @@ void ProcessUIEventDataUpdate(longlong uiContext,UIHandle dataSource,longlong ta
         TransformCoefficient3 = pResultFloatValue[allocatedMemory3 * -2 + 1];
         FloatValue1 = pResultFloatValue[contextDataHandle * 2] * FloatValue1 - pResultFloatValue[contextDataHandle * 2 + 1] * *pTransformCoefficient2;
         FloatValue2 = pResultFloatValue[contextDataHandle * 2 + 1] * baseValue5 + pResultFloatValue[contextDataHandle * 2] * *TransformCoefficient1;
-        transformCoeff11 = *pTemporaryFloatValue - transformCoeff12;
+        transformCoefficient = *pTemporaryFloatValue - transformCoeff12;
         transformCoeff12 = transformCoeff12 + *pTemporaryFloatValue;
         baseValue6 = FloatValue1 + transformCoeff13;
         finalResult = TransformCoefficient3 - AccumulatedFloat;
@@ -95823,10 +95823,10 @@ void ProcessUIEventDataUpdate(longlong uiContext,UIHandle dataSource,longlong ta
         FloatValue1 = *pTemporaryFloatValue;
         pResultFloatValue[allocatedMemory3 * -2 + 1] = baseValue5 + pResultFloatValue[allocatedMemory3 * -2 + 1];
         *pTemporaryFloatValue = baseValue6 + FloatValue1;
-        pResultFloatValue[AllocatedMemoryBlock1 * 2] = transformCoeff11 + transformCoeff14;
+        pResultFloatValue[AllocatedMemoryBlock1 * 2] = transformCoefficient + transformCoeff14;
         pTemporaryFloatValue = pTemporaryFloatValue + 2;
         pResultFloatValue[AllocatedMemoryBlock1 * 2 + 1] = finalResult - transformCoeff13;
-        pResultFloatValue[contextDataHandle * 2] = transformCoeff11 - transformCoeff14;
+        pResultFloatValue[contextDataHandle * 2] = transformCoefficient - transformCoeff14;
         pResultFloatValue[contextDataHandle * 2 + 1] = finalResult + transformCoeff13;
         pResultFloatValue = pResultFloatValue + 2;
         allocatedMemory4 = allocatedMemory4 + -1;
@@ -95919,7 +95919,7 @@ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,lo
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -95964,14 +95964,14 @@ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,lo
           FloatValue1 = *baseScaleFactor;
           TransformCoefficient23 = baseScaleFactor[CharacterDataOffset * 2 + -1] * *BaseValuePointer6 - baseScaleFactor[CharacterDataOffset * 2] * BaseValuePointer6[1];
           TransformCoefficient21 = *positionData * *BaseValuePointer2 - baseScaleFactor[localLong7 * 2] * positionData[1];
-          transformCoeff11 = positionData[1] * *BaseValuePointer2 + baseScaleFactor[localLong7 * 2] * *positionData;
+          transformCoefficient = positionData[1] * *BaseValuePointer2 + baseScaleFactor[localLong7 * 2] * *positionData;
           FloatValue2 = baseScaleFactor[contextOffset * 2] * *BaseValuePointer7 + baseScaleFactor[contextOffset * 2 + -1] * BaseValuePointer7[1];
           transformCoeff18 = baseScaleFactor[contextOffset * 2 + -1] * *BaseValuePointer7 - baseScaleFactor[contextOffset * 2] * BaseValuePointer7[1];
           transformCoeff17 = FloatValue2 + transformCoeff13;
           transformCoeff13 = transformCoeff13 - FloatValue2;
           transformCoeff19 = transformCoeff18 + transformCoeff15;
-          transformCoeff16 = transformCoeff11 + TransformCoefficient22;
-          TransformCoefficient22 = TransformCoefficient22 - transformCoeff11;
+          transformCoeff16 = transformCoefficient + TransformCoefficient22;
+          TransformCoefficient22 = TransformCoefficient22 - transformCoefficient;
           transformCoeff14 = TransformCoefficient21 + TransformCoefficient23;
           *baseScaleFactor = transformCoeff16 + transformCoeff17 + FloatValue1;
           baseScaleFactor[-1] = transformCoeff19 + transformCoeff14 + TransformCoefficient20;
@@ -95981,21 +95981,21 @@ void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,lo
           BaseValuePointer6 = BaseValuePointer6 + dataSource * 4;
           positionData = positionData + dataSource * 6;
           BaseValuePointer7 = BaseValuePointer7 + dataSource * 8;
-          transformCoeff11 = transformCoeff1 * transformCoeff13 + TransformCoefficient3 * TransformCoefficient22;
+          transformCoefficient = transformCoeff1 * transformCoeff13 + TransformCoefficient3 * TransformCoefficient22;
           FloatValue2 = (TransformCoefficient21 - TransformCoefficient23) * TransformCoefficient3 + (transformCoeff18 - transformCoeff15) * transformCoeff1;
-          baseScaleFactor[contextDataHandle * 2 + -1] = transformCoeff12 - transformCoeff11;
+          baseScaleFactor[contextDataHandle * 2 + -1] = transformCoeff12 - transformCoefficient;
           baseScaleFactor[contextDataHandle * 2] = AccumulatedFloat - FloatValue2;
           baseScaleFactor[contextOffset * 2] = AccumulatedFloat + FloatValue2;
-          baseScaleFactor[contextOffset * 2 + -1] = transformCoeff12 + transformCoeff11;
+          baseScaleFactor[contextOffset * 2 + -1] = transformCoeff12 + transformCoefficient;
           TransformCoefficient20 = transformCoeff19 * TransformCoefficient2 + baseValue * transformCoeff14 + TransformCoefficient20;
-          transformCoeff11 = (transformCoeff15 - transformCoeff18) * TransformCoefficient3 - (TransformCoefficient23 - TransformCoefficient21) * transformCoeff1;
+          transformCoefficient = (transformCoeff15 - transformCoeff18) * TransformCoefficient3 - (TransformCoefficient23 - TransformCoefficient21) * transformCoeff1;
           FloatValue1 = TransformCoefficient2 * transformCoeff17 + baseValue * transformCoeff16 + FloatValue1;
           FloatValue2 = transformCoeff1 * TransformCoefficient22 - transformCoeff13 * TransformCoefficient3;
-          baseScaleFactor[CharacterDataOffset * 2] = transformCoeff11 + FloatValue1;
+          baseScaleFactor[CharacterDataOffset * 2] = transformCoefficient + FloatValue1;
           baseScaleFactor[CharacterDataOffset * 2 + -1] = FloatValue2 + TransformCoefficient20;
           *BaseValuePointer2 = TransformCoefficient20 - FloatValue2;
           BaseValuePointer2 = BaseValuePointer2 + 2;
-          baseScaleFactor[localLong7 * 2] = FloatValue1 - transformCoeff11;
+          baseScaleFactor[localLong7 * 2] = FloatValue1 - transformCoefficient;
           baseScaleFactor = baseScaleFactor + 2;
           stackUInt128 = stackUInt128 - 1;
         } while (stackUInt128 != 0);
@@ -96063,7 +96063,7 @@ void ProcessUITransformMatrix(UIHandle uiContext,longlong dataSource,UIHandle ta
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -96110,13 +96110,13 @@ void ProcessUITransformMatrix(UIHandle uiContext,longlong dataSource,UIHandle ta
         transformCoeff12 = vectorComponentX + FloatValue1;
         FloatValue1 = FloatValue1 - vectorComponentX;
         transformCoeff14 = transformCoeff13 + AccumulatedFloat;
-        transformCoeff11 = baseValue6 + transformCoeff17;
+        transformCoefficient = baseValue6 + transformCoeff17;
         transformCoeff17 = transformCoeff17 - baseValue6;
         FloatValue2 = transformCoeff16 + transformCoeff18;
-        *pTransformCoefficient3 = transformCoeff11 + transformCoeff12 + baseValue3;
+        *pTransformCoefficient3 = transformCoefficient + transformCoeff12 + baseValue3;
         pTransformCoefficient3[-1] = transformCoeff14 + FloatValue2 + transformCoeff15;
         finalResult = stackParam00000150 * FloatValue2 + transformCoeff14 * unmodifiedretaddr + transformCoeff15;
-        baseValue5 = stackParam00000150 * transformCoeff11 + unmodifiedretaddr * transformCoeff12 + baseValue3;
+        baseValue5 = stackParam00000150 * transformCoefficient + unmodifiedretaddr * transformCoeff12 + baseValue3;
         register10 = register10 + dataSource * 2;
         baseScaleFactor = baseScaleFactor + dataSource * 4;
         BaseValuePointer0 = BaseValuePointer0 + dataSource * 6;
@@ -96129,7 +96129,7 @@ void ProcessUITransformMatrix(UIHandle uiContext,longlong dataSource,UIHandle ta
         pTransformCoefficient3[allocatedMemory * 2 + -1] = finalResult + baseValue6;
         transformCoeff15 = transformCoeff14 * stackParam00000150 + unmodifiedretaddr * FloatValue2 + transformCoeff15;
         baseValue6 = (AccumulatedFloat - transformCoeff13) * stackParam00000140 - (transformCoeff18 - transformCoeff16) * unmodifiedretaddr_00;
-        baseValue3 = stackParam00000150 * transformCoeff12 + unmodifiedretaddr * transformCoeff11 + baseValue3;
+        baseValue3 = stackParam00000150 * transformCoeff12 + unmodifiedretaddr * transformCoefficient + baseValue3;
         vectorComponentX = unmodifiedretaddr_00 * transformCoeff17 - FloatValue1 * stackParam00000140;
         pTransformCoefficient3[componentIndex * 2] = baseValue6 + baseValue3;
         pTransformCoefficient3[componentIndex * 2 + -1] = vectorComponentX + transformCoeff15;
@@ -96413,7 +96413,7 @@ void ProcessUITransformData(float uiContext, UIHandle dataSource, UIHandle targe
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   longlong lStack0000000000000040;
   ulonglong stackParam00000068;
@@ -96451,15 +96451,15 @@ void ProcessUITransformData(float uiContext, UIHandle dataSource, UIHandle targe
             BaseValuePointer = BaseValuePointer2 + 1;
             FloatValue1 = *pLocalFloatValue6;
             BaseValuePointer2 = BaseValuePointer2 + CharacterDataOffset * 2;
-            transformCoeff11 = finalResult * transformCoeffPointer[localLong7 * 2 + 1] + *BaseValuePointer * transformCoeffPointer[localLong7 * 2];
+            transformCoefficient = finalResult * transformCoeffPointer[localLong7 * 2 + 1] + *BaseValuePointer * transformCoeffPointer[localLong7 * 2];
             TransformCoefficient1 = pLocalFloatValue6 + 1;
             pLocalFloatValue6 = pLocalFloatValue6 + CharacterDataOffset * 4;
             transformCoeff12 = finalResult * transformCoeffPointer[localLong7 * 2] - *BaseValuePointer * transformCoeffPointer[localLong7 * 2 + 1];
             FloatValue2 = FloatValue1 * transformCoeffPointer[contextOffset * 2] - *TransformCoefficient1 * transformCoeffPointer[contextOffset * 2 + 1];
             AccumulatedFloat = transformCoeffPointer[contextOffset * 2 + 1] * FloatValue1 + *TransformCoefficient1 * transformCoeffPointer[contextOffset * 2];
             FloatValue1 = FloatValue2 + transformCoeff12;
-            finalResult = AccumulatedFloat + transformCoeff11;
-            uiContext = (transformCoeff11 - AccumulatedFloat) * TransformCoefficient2;
+            finalResult = AccumulatedFloat + transformCoefficient;
+            uiContext = (transformCoefficient - AccumulatedFloat) * TransformCoefficient2;
             FloatValue2 = (transformCoeff12 - FloatValue2) * TransformCoefficient2;
             transformCoeffPointer[localLong7 * 2] = *transformCoeffPointer - FloatValue1 * 0.5;
             transformCoeffPointer[localLong7 * 2 + 1] = transformCoeffPointer[1] - finalResult * 0.5;
@@ -96837,7 +96837,7 @@ void ProcessUITransformCoefficients(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   byte stackParam00000030;
   float *stackParam00000038;
@@ -96876,15 +96876,15 @@ void ProcessUITransformCoefficients(void)
             BaseValuePointer = BaseValuePointer2 + 1;
             TransformCoefficient1 = pLocalFloatValue6 + 1;
             BaseValuePointer2 = BaseValuePointer2 + CharacterDataOffset * 2;
-            transformCoeff11 = finalResult * transformCoeffPointer[localLong7 * 2 + 1] + *BaseValuePointer * transformCoeffPointer[localLong7 * 2];
+            transformCoefficient = finalResult * transformCoeffPointer[localLong7 * 2 + 1] + *BaseValuePointer * transformCoeffPointer[localLong7 * 2];
             FloatValue1 = *pLocalFloatValue6;
             pLocalFloatValue6 = pLocalFloatValue6 + CharacterDataOffset * 4;
             transformCoeff12 = finalResult * transformCoeffPointer[localLong7 * 2] - *BaseValuePointer * transformCoeffPointer[localLong7 * 2 + 1];
             FloatValue2 = FloatValue1 * transformCoeffPointer[contextOffset * 2] - *TransformCoefficient1 * transformCoeffPointer[contextOffset * 2 + 1];
             AccumulatedFloat = *TransformCoefficient1 * transformCoeffPointer[contextOffset * 2] + transformCoeffPointer[contextOffset * 2 + 1] * FloatValue1;
             finalResult = FloatValue2 + transformCoeff12;
-            FloatValue1 = AccumulatedFloat + transformCoeff11;
-            AccumulatedFloat = (transformCoeff11 - AccumulatedFloat) * TransformCoefficient2;
+            FloatValue1 = AccumulatedFloat + transformCoefficient;
+            AccumulatedFloat = (transformCoefficient - AccumulatedFloat) * TransformCoefficient2;
             FloatValue2 = (transformCoeff12 - FloatValue2) * TransformCoefficient2;
             transformCoeffPointer[localLong7 * 2] = *transformCoeffPointer - finalResult * 0.5;
             transformCoeffPointer[localLong7 * 2 + 1] = transformCoeffPointer[1] - FloatValue1 * 0.5;
@@ -97931,7 +97931,7 @@ void InitializeUIRenderingSystem(void)
   int uiValidationResult0;
   longlong eventHandle;
   longlong preservedRegister15;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -97961,7 +97961,7 @@ void InitializeUIRenderingSystem(void)
       allocatedMemory9 = (longlong)(int)TotalResult;
       register9 = register9 + 1;
       if ((0 < (int)TotalResult) && (7 < TotalResult)) {
-        transformCoeff11 = 0.0;
+        transformCoefficient = 0.0;
         transformCoeff12 = 0.0;
         transformCoeff13 = 0.0;
         transformCoeff14 = 0.0;
@@ -97985,7 +97985,7 @@ void InitializeUIRenderingSystem(void)
           BaseValuePointer0 = register9 + 6;
           baseScaleFactor = register9 + 7;
           register9 = register9 + 8;
-          transformCoeff11 = transformCoeff11 + *TransformCoefficient1 * TransformCoefficient4;
+          transformCoefficient = transformCoefficient + *TransformCoefficient1 * TransformCoefficient4;
           transformCoeff12 = transformCoeff12 + TransformCoefficient1[1] * *pLocalFloatValue6;
           transformCoeff13 = transformCoeff13 + TransformCoefficient1[2] * *pResultFloatValue;
           transformCoeff14 = transformCoeff14 + TransformCoefficient1[3] * *pTemporaryFloatValue;
@@ -97999,7 +97999,7 @@ void InitializeUIRenderingSystem(void)
           transformCoeff18 = transformCoeff18 + afStackX_8[allocatedMemory4] * *BaseValuePointer0;
           transformCoeff19 = transformCoeff19 + afStackX_8[allocatedMemory5] * *baseScaleFactor;
         } while (allocatedMemory7 < (int)(TotalResult - result8));
-        transformCoeff15 = transformCoeff15 + transformCoeff13 + transformCoeff18 + transformCoeff11 + transformCoeff16 + transformCoeff14 + transformCoeff19 + transformCoeff12 + transformCoeff17;
+        transformCoeff15 = transformCoeff15 + transformCoeff13 + transformCoeff18 + transformCoefficient + transformCoeff16 + transformCoeff14 + transformCoeff19 + transformCoeff12 + transformCoeff17;
       }
       if (allocatedMemory7 < allocatedMemory9) {
         contextRegister = allocatedMemory9 - allocatedMemory7;
@@ -98009,28 +98009,28 @@ void InitializeUIRenderingSystem(void)
             allocatedMemory2 = allocatedMemory7 + -1;
             BaseValuePointer = register9 + 1;
             allocatedMemory3 = allocatedMemory7 + -2;
-            transformCoeff11 = *register9;
+            transformCoefficient = *register9;
             allocatedMemory4 = allocatedMemory7 + 1;
             TransformCoefficient1 = register9 + 3;
             pResultFloatValue = afStackX_8 + allocatedMemory7;
             pLocalFloatValue6 = register9 + 2;
             allocatedMemory7 = allocatedMemory7 + 4;
             register9 = register9 + 4;
-            transformCoeff15 = afStackX_8[allocatedMemory2] * *BaseValuePointer + afStackX_8[allocatedMemory3] * transformCoeff11 + transformCoeff15 +
+            transformCoeff15 = afStackX_8[allocatedMemory2] * *BaseValuePointer + afStackX_8[allocatedMemory3] * transformCoefficient + transformCoeff15 +
                      *pResultFloatValue * *pLocalFloatValue6 + afStackX_8[allocatedMemory4] * *TransformCoefficient1;
           } while (allocatedMemory7 < (longlong)contextRegister);
         }
         for (; allocatedMemory7 < allocatedMemory9; allocatedMemory7 = allocatedMemory7 + 1) {
-          transformCoeff11 = *register9;
+          transformCoefficient = *register9;
           register9 = register9 + 1;
-          transformCoeff15 = transformCoeff15 + afStackX_8[allocatedMemory7 + -2] * transformCoeff11;
+          transformCoeff15 = transformCoeff15 + afStackX_8[allocatedMemory7 + -2] * transformCoefficient;
         }
       }
-      transformCoeff11 = preservedXMM6;
-      if ((transformCoeff15 < unmodifiedXMM8_Da) && (transformCoeff11 = preservedXMM7, unmodifiedXMM9_Da < transformCoeff15)) {
-        transformCoeff11 = preservedXMM6;
+      transformCoefficient = preservedXMM6;
+      if ((transformCoeff15 < unmodifiedXMM8_Da) && (transformCoefficient = preservedXMM7, unmodifiedXMM9_Da < transformCoeff15)) {
+        transformCoefficient = preservedXMM6;
         if (transformCoeff15 < unmodifiedXMM10_Da) {
-          transformCoeff11 = preservedXMM7;
+          transformCoefficient = preservedXMM7;
         }
         transformCoeff12 = (float)((uint)transformCoeff15 & unmodifiedXMM11_Da) * unmodifiedXMM12_Da + unmodifiedXMM13_Da;
         TemporalDoubleValue = (double)transformCoeff12;
@@ -98045,10 +98045,10 @@ void InitializeUIRenderingSystem(void)
         contextRegister = (ulonglong)(int)TemporalDoubleValue;
         transformCoeff12 = *(float *)(preservedRegister15 + contextRegister * 4);
         transformCoeff15 = (float)((uint)transformCoeff15 & unmodifiedXMM11_Da) - (float)(int)TemporalDoubleValue * unmodifiedXMM14_Da;
-        transformCoeff11 = ((preservedXMM6 - transformCoeff12 * transformCoeff12) * transformCoeff15 * (preservedXMM6 - transformCoeff12 * transformCoeff15) +
-                 transformCoeff12) * transformCoeff11;
+        transformCoefficient = ((preservedXMM6 - transformCoeff12 * transformCoeff12) * transformCoeff15 * (preservedXMM6 - transformCoeff12 * transformCoeff15) +
+                 transformCoeff12) * transformCoefficient;
       }
-      *componentData = transformCoeff11;
+      *componentData = transformCoefficient;
       uiValidationResult0 = uiValidationResult0 + 1;
       componentData = componentData + 1;
     } while (uiValidationResult0 < *(int *)(eventHandle + 8));
@@ -98102,7 +98102,7 @@ void ProcessUIDataConversionFunction(void)
   longlong eventHandle;
   longlong preservedRegister15;
   float accumulatedValue;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -98130,7 +98130,7 @@ void ProcessUIDataConversionFunction(void)
     register9Pointer = register9Pointer + 1;
     if ((0 < (int)conversionTotalResult) && (7 < conversionTotalResult)) {
       accumulatedValue = 0.0;
-      transformCoeff11 = 0.0;
+      transformCoefficient = 0.0;
       transformCoeff12 = 0.0;
       transformCoeff13 = 0.0;
       transformCoeff15 = 0.0;
@@ -98154,7 +98154,7 @@ void ProcessUIDataConversionFunction(void)
         baseScaleFactor = register9 + 7;
         register9 = register9 + 8;
         AccumulatedFloat = AccumulatedFloat + *TransformCoefficient1 * TransformCoefficient4;
-        transformCoeff11 = transformCoeff11 + TransformCoefficient1[1] * *pLocalFloatValue6;
+        transformCoefficient = transformCoefficient + TransformCoefficient1[1] * *pLocalFloatValue6;
         transformCoeff12 = transformCoeff12 + TransformCoefficient1[2] * *pResultFloatValue;
         transformCoeff13 = transformCoeff13 + TransformCoefficient1[3] * *pTemporaryFloatValue;
         allocatedMemory2 = allocatedMemory7 + 2;
@@ -98167,7 +98167,7 @@ void ProcessUIDataConversionFunction(void)
         transformCoeff17 = transformCoeff17 + afStackX_8[allocatedMemory4] * *BaseValuePointer0;
         transformCoeff18 = transformCoeff18 + afStackX_8[allocatedMemory5] * *baseScaleFactor;
       } while (allocatedMemory7 < (int)(TotalResult - result8));
-      transformCoeff14 = transformCoeff14 + transformCoeff12 + transformCoeff17 + AccumulatedFloat + transformCoeff15 + transformCoeff13 + transformCoeff18 + transformCoeff11 + transformCoeff16;
+      transformCoeff14 = transformCoeff14 + transformCoeff12 + transformCoeff17 + AccumulatedFloat + transformCoeff15 + transformCoeff13 + transformCoeff18 + transformCoefficient + transformCoeff16;
     }
     if (allocatedMemory7 < allocatedMemory9) {
       contextRegister = allocatedMemory9 - allocatedMemory7;
@@ -98200,9 +98200,9 @@ void ProcessUIDataConversionFunction(void)
       if (transformCoeff14 < unmodifiedXMM10_Da) {
         AccumulatedFloat = preservedXMM7;
       }
-      transformCoeff11 = (float)((uint)transformCoeff14 & unmodifiedXMM11_Da) * unmodifiedXMM12_Da + unmodifiedXMM13_Da;
-      TemporalDoubleValue = (double)transformCoeff11;
-      allocatedMemory7 = (longlong)transformCoeff11;
+      transformCoefficient = (float)((uint)transformCoeff14 & unmodifiedXMM11_Da) * unmodifiedXMM12_Da + unmodifiedXMM13_Da;
+      TemporalDoubleValue = (double)transformCoefficient;
+      allocatedMemory7 = (longlong)transformCoefficient;
       if ((allocatedMemory7 != uiContextBasePointer) && ((double)allocatedMemory7 != TemporalDoubleValue)) {
         aeventCodeType._8_4_ = SUB84(TemporalDoubleValue,0);
         aeventCodeType._0_8_ = TemporalDoubleValue;
@@ -98211,10 +98211,10 @@ void ProcessUIDataConversionFunction(void)
         TemporalDoubleValue = (double)(longlong)(allocatedMemory7 - (ulonglong)(TotalResult & 1));
       }
       contextRegister = (ulonglong)(int)TemporalDoubleValue;
-      transformCoeff11 = *(float *)(preservedRegister15 + contextRegister * 4);
+      transformCoefficient = *(float *)(preservedRegister15 + contextRegister * 4);
       transformCoeff14 = (float)((uint)transformCoeff14 & unmodifiedXMM11_Da) - (float)(int)TemporalDoubleValue * unmodifiedXMM14_Da;
-      AccumulatedFloat = ((preservedXMM6 - transformCoeff11 * transformCoeff11) * transformCoeff14 * (preservedXMM6 - transformCoeff11 * transformCoeff14) +
-               transformCoeff11) * AccumulatedFloat;
+      AccumulatedFloat = ((preservedXMM6 - transformCoefficient * transformCoefficient) * transformCoeff14 * (preservedXMM6 - transformCoefficient * transformCoeff14) +
+               transformCoefficient) * AccumulatedFloat;
     }
     *componentData = AccumulatedFloat;
     register10D = register10D + 1;
@@ -98318,7 +98318,7 @@ void ProcessUIDataTransformAndCalculation(void)
   float floatValue1;
   float floatValue2;
   float accumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float preservedXMM6;
   float preservedXMM7;
@@ -98331,7 +98331,7 @@ void ProcessUIDataTransformAndCalculation(void)
     if ((0 < (int)RegisterPointerD) && (7 < RegisterPointerD)) {
       floatValue2 = 0.0;
       accumulatedFloat = 0.0;
-      transformCoeff11 = 0.0;
+      transformCoefficient = 0.0;
       transformCoeff12 = 0.0;
       baseValue5 = 0.0;
       baseValue6 = 0.0;
@@ -98349,7 +98349,7 @@ void ProcessUIDataTransformAndCalculation(void)
         TransformCoefficient1 = pResultFloatValue + -4;
         FloatValue2 = FloatValue2 + pResultFloatValue[2] * *transformCoeffPointer;
         AccumulatedFloat = AccumulatedFloat + pResultFloatValue[1] * transformCoeffPointer[1];
-        transformCoeff11 = transformCoeff11 + *pResultFloatValue * transformCoeffPointer[2];
+        transformCoefficient = transformCoefficient + *pResultFloatValue * transformCoeffPointer[2];
         transformCoeff12 = transformCoeff12 + pResultFloatValue[-1] * transformCoeffPointer[3];
         transformCoeffPointer = pResultFloatValue + -2;
         pResultFloatValue = pResultFloatValue + -8;
@@ -98360,7 +98360,7 @@ void ProcessUIDataTransformAndCalculation(void)
         finalResult = finalResult + *TransformCoefficient1 * pLocalFloatValue6[2];
         FloatValue1 = FloatValue1 + *pvectorComponentX * pLocalFloatValue6[3];
       } while (CharacterDataOffset < (int)(RegisterPointerD - dataPointer));
-      baseValue5 = transformCoeff11 + finalResult + FloatValue2 + baseValue5 + transformCoeff12 + FloatValue1 + AccumulatedFloat + baseValue6;
+      baseValue5 = transformCoefficient + finalResult + FloatValue2 + baseValue5 + transformCoeff12 + FloatValue1 + AccumulatedFloat + baseValue6;
     }
     if (CharacterDataOffset < allocatedMemory3) {
       if (3 < allocatedMemory3 - CharacterDataOffset) {
@@ -117486,7 +117486,7 @@ void ProcessUIComponentDataCalculationAndTransformation(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   UIHandle iterationCount4;
@@ -117593,13 +117593,13 @@ void ProcessUIComponentDataCalculationAndTransformation(void)
             AccumulatedFloat = pTransformCoefficient34[-1];
             *(double *)(uiContextBasePointer + 0x278 + loopCounter1 * 8) =
                  *(double *)(uiContextBasePointer + 0x278 + loopCounter1 * 8) - (double)(FloatValue2 * baseValue5);
-            transformCoeff11 = *pTransformCoefficient39;
+            transformCoefficient = *pTransformCoefficient39;
             ScalingFactorValue6 = *(double *)(&stack0x00000060 + loopCounter1 * 8);
             *(double *)(uiContextBasePointer + 0x1c0 + loopCounter1 * 8) =
                  *(double *)(uiContextBasePointer + 0x1c0 + loopCounter1 * 8) - (double)(vectorComponentX * AccumulatedFloat);
             transformCoeff12 = pTransformCoefficient34[-2];
             *(double *)(uiContextBasePointer + 0x280 + loopCounter1 * 8) =
-                 *(double *)(uiContextBasePointer + 0x280 + loopCounter1 * 8) - (double)(transformCoeff11 * baseValue5);
+                 *(double *)(uiContextBasePointer + 0x280 + loopCounter1 * 8) - (double)(transformCoefficient * baseValue5);
             transformCoeff13 = pTransformCoefficient39[1];
             *(double *)(uiContextBasePointer + 0x1c8 + loopCounter1 * 8) =
                  *(double *)(uiContextBasePointer + 0x1c8 + loopCounter1 * 8) - (double)(vectorComponentX * transformCoeff12);
@@ -117613,7 +117613,7 @@ void ProcessUIComponentDataCalculationAndTransformation(void)
                      (double)AccumulatedFloat * ScalingFactorValue6 +
                      (double)transformCoeff12 * *(double *)(&stack0x00000068 + contextDataHandle5);
             ScalingFactorValue0 = ScalingFactorValue0 + (double)finalResult * ScalingFactorValue4 + (double)FloatValue2 * ScalingFactorValue1 +
-                     (double)transformCoeff11 * ScalingFactorValue6 +
+                     (double)transformCoefficient * ScalingFactorValue6 +
                      (double)transformCoeff13 * *(double *)(&stack0x00000068 + contextDataHandle5);
           } while ((longlong)loopCounter1 < (longlong)(loopCounter4 - 3));
         }
@@ -144860,7 +144860,7 @@ void FUN_18074dfc0(longlong *uiContext,int dataSource,char targetBuffer)
   UIDword result8;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -145188,9 +145188,9 @@ LAB_18074e6e3:
             fStack_e10 = transformCoeff12;
           }
           transformCoeff13 = 0.0;
-          transformCoeff11 = SQRT(AccumulatedFloat * AccumulatedFloat + transformCoeff14 * transformCoeff14 + transformCoeff12 * transformCoeff12);
-          if (0.0 < transformCoeff11) {
-            transformCoeff13 = (AccumulatedFloat * FloatValue2 + transformCoeff14 * transformCoeff16 + transformCoeff12 * transformCoeff15) / transformCoeff11;
+          transformCoefficient = SQRT(AccumulatedFloat * AccumulatedFloat + transformCoeff14 * transformCoeff14 + transformCoeff12 * transformCoeff12);
+          if (0.0 < transformCoefficient) {
+            transformCoeff13 = (AccumulatedFloat * FloatValue2 + transformCoeff14 * transformCoeff16 + transformCoeff12 * transformCoeff15) / transformCoefficient;
           }
           *(float *)((longlong)uiContext + 0x7c) =
                (afStack_e08[0] * 340.0 - transformCoeff13 * afStack_e30[0]) / (afStack_e08[0] * 340.0);
@@ -145240,7 +145240,7 @@ void FUN_18074e00f(void)
   UIDword result8;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -145554,9 +145554,9 @@ LAB_18074e6e3:
             stackParam00000068 = baseValue6;
           }
           transformCoeff12 = 0.0;
-          transformCoeff11 = SQRT(AccumulatedFloat * AccumulatedFloat + transformCoeff13 * transformCoeff13 + baseValue6 * baseValue6);
-          if (0.0 < transformCoeff11) {
-            transformCoeff12 = (AccumulatedFloat * FloatValue2 + transformCoeff13 * transformCoeff15 + baseValue6 * transformCoeff14) / transformCoeff11;
+          transformCoefficient = SQRT(AccumulatedFloat * AccumulatedFloat + transformCoeff13 * transformCoeff13 + baseValue6 * baseValue6);
+          if (0.0 < transformCoefficient) {
+            transformCoeff12 = (AccumulatedFloat * FloatValue2 + transformCoeff13 * transformCoeff15 + baseValue6 * transformCoeff14) / transformCoefficient;
           }
           *(float *)((longlong)contextHandle + 0x7c) =
                (stackParam00000070 * 340.0 - transformCoeff12 * stackParam00000048) /
@@ -145608,7 +145608,7 @@ void FUN_18074e3aa(float uiContext)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float preservedXMM6;
   float preservedXMM7;
   float transformCoeff12;
@@ -145654,13 +145654,13 @@ LAB_18074f826:
       do {
         CharacterDataOffset = *(longlong *)(contextHandle + 8);
         if ((contextValue >> 0x12 & 1) == 0) {
-          transformCoeff11 = *(float *)(contextHandle + 0x84) - *(float *)(CharacterDataOffset + 0x11084 + allocatedMemory0);
+          transformCoefficient = *(float *)(contextHandle + 0x84) - *(float *)(CharacterDataOffset + 0x11084 + allocatedMemory0);
           AccumulatedFloat = *(float *)(contextHandle + 0x80) - *(float *)(CharacterDataOffset + 0x11080 + allocatedMemory0);
           transformCoeff12 = *(float *)(contextHandle + 0x88) - *(float *)(CharacterDataOffset + 0x11088 + allocatedMemory0);
         }
         else {
           _fStack0000000000000078 = *(UIHandle *)(contextHandle + 0x80);
-          transformCoeff11 = (float)((ulonglong)_fStack0000000000000078 >> 0x20);
+          transformCoefficient = (float)((ulonglong)_fStack0000000000000078 >> 0x20);
           *(UIDword *)(uiContextBasePointer + -0x80) = *(UIDword *)(contextHandle + 0x88);
           transformCoeff12 = *(float *)(uiContextBasePointer + -0x80);
           AccumulatedFloat = fStack0000000000000078;
@@ -145668,7 +145668,7 @@ LAB_18074f826:
         if ((*(byte *)(CharacterDataOffset + 0x78) & 4) != 0) {
           transformCoeff12 = -transformCoeff12;
         }
-        FloatValue1 = SQRT(transformCoeff11 * transformCoeff11 + AccumulatedFloat * AccumulatedFloat + transformCoeff12 * transformCoeff12);
+        FloatValue1 = SQRT(transformCoefficient * transformCoefficient + AccumulatedFloat * AccumulatedFloat + transformCoeff12 * transformCoeff12);
         if (FloatValue1 < transformCoeff13) {
           *(float *)(contextHandle + 0x98) = FloatValue1;
           if (*(longlong *)(CharacterDataOffset + 0x11410) == 0) {
@@ -145766,7 +145766,7 @@ LAB_18074e6e3:
               if ((isCharacterMatch & 4) != 0) {
                 baseValue6 = -baseValue6;
               }
-              transformCoeff12 = -(FloatValue1 * transformCoeff11 * *(float *)(uiContextBasePointer + -0x6c) +
+              transformCoeff12 = -(FloatValue1 * transformCoefficient * *(float *)(uiContextBasePointer + -0x6c) +
                          FloatValue1 * AccumulatedFloat * *(float *)(uiContextBasePointer + -0x70) + FloatValue1 * transformCoeff12 * baseValue6)
               ;
               if (-1.0 <= transformCoeff12) {
@@ -145799,7 +145799,7 @@ LAB_18074e6e3:
             baseValue5 = *(float *)(contextHandle + 0x90) - *(float *)(CharacterDataOffset + 0x1109c + allocatedMemory0);
             FloatValue1 = *(float *)(contextHandle + 0x8c) - *(float *)(CharacterDataOffset + 0x11098 + allocatedMemory0);
             transformCoeff12 = *(float *)(contextHandle + 0x94) - *(float *)(CharacterDataOffset + 0x110a0 + allocatedMemory0);
-            transformCoeff11 = *(float *)(contextHandle + 0x80) - *(float *)(CharacterDataOffset + 0x11080 + allocatedMemory0);
+            transformCoefficient = *(float *)(contextHandle + 0x80) - *(float *)(CharacterDataOffset + 0x11080 + allocatedMemory0);
             AccumulatedFloat = *(float *)(contextHandle + 0x88) - *(float *)(CharacterDataOffset + 0x11088 + allocatedMemory0);
             baseValue6 = *(float *)(contextHandle + 0x84) - *(float *)(CharacterDataOffset + 0x11084 + allocatedMemory0);
           }
@@ -145810,15 +145810,15 @@ LAB_18074e6e3:
             _fStack0000000000000060 = *(UIHandle *)(contextHandle + 0x80);
             baseValue6 = (float)((ulonglong)_fStack0000000000000060 >> 0x20);
             AccumulatedFloat = *(float *)(contextHandle + 0x88);
-            transformCoeff11 = fStack0000000000000060;
+            transformCoefficient = fStack0000000000000060;
             FloatValue1 = fStack0000000000000050;
             stackParam00000058 = transformCoeff12;
             stackParam00000068 = AccumulatedFloat;
           }
-          finalResult = SQRT(baseValue6 * baseValue6 + transformCoeff11 * transformCoeff11 + AccumulatedFloat * AccumulatedFloat);
+          finalResult = SQRT(baseValue6 * baseValue6 + transformCoefficient * transformCoefficient + AccumulatedFloat * AccumulatedFloat);
           FloatValue2 = preservedXMM7;
           if (preservedXMM7 < finalResult) {
-            FloatValue2 = (baseValue6 * baseValue5 + transformCoeff11 * FloatValue1 + AccumulatedFloat * transformCoeff12) / finalResult;
+            FloatValue2 = (baseValue6 * baseValue5 + transformCoefficient * FloatValue1 + AccumulatedFloat * transformCoeff12) / finalResult;
           }
           *(float *)(contextHandle + 0x7c) =
                (stackParam00000070 * 340.0 - FloatValue2 * fStack0000000000000048) /
@@ -158012,7 +158012,7 @@ UIHandle FUN_18075a7bb(void)
   float preservedXMM7;
   float unmodifiedXMM8_Da;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float unmodifiedXMM9_Da;
   float unmodifiedXMM10_Da;
   float transformCoeff12;
@@ -158088,19 +158088,19 @@ LAB_18075ce56:
       break;
     case 2:
       transformCoeffPointer = (float *)uiContextBasePointer[0x45];
-      transformCoeff11 = unmodifiedXMM8_Da * unmodifiedXMM8_Da * 0.5;
+      transformCoefficient = unmodifiedXMM8_Da * unmodifiedXMM8_Da * 0.5;
       AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3f);
-      *transformCoeffPointer = SQRT(preservedXMM7 * preservedXMM7 + transformCoeff11 +
+      *transformCoeffPointer = SQRT(preservedXMM7 * preservedXMM7 + transformCoefficient +
                      *(float *)(uiContextBasePointer + 0x3e) * *(float *)(uiContextBasePointer + 0x3e) * 0.25);
       transformCoeffPointer[1] = fStack000000000000002c;
       transformCoeffPointer[2] = fStack0000000000000028;
-      transformCoeffPointer[3] = SQRT(unmodifiedXMM9_Da * unmodifiedXMM9_Da + transformCoeff11 + AccumulatedFloat * AccumulatedFloat * 0.25);
+      transformCoeffPointer[3] = SQRT(unmodifiedXMM9_Da * unmodifiedXMM9_Da + transformCoefficient + AccumulatedFloat * AccumulatedFloat * 0.25);
       *eventHandle = 2;
       break;
     case 4:
       transformCoeffPointer = (float *)uiContextBasePointer[0x45];
       AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-      transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+      transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
       *transformCoeffPointer = preservedXMM7;
       transformCoeffPointer[1] = fStack000000000000002c;
       transformCoeffPointer[2] = AccumulatedFloat * 0.5;
@@ -158108,32 +158108,32 @@ LAB_18075ce56:
       transformCoeffPointer[4] = fStack0000000000000028;
       transformCoeffPointer[5] = unmodifiedXMM9_Da;
       transformCoeffPointer[6] = fStack000000000000002c;
-      transformCoeffPointer[7] = transformCoeff11 * 0.5;
+      transformCoeffPointer[7] = transformCoefficient * 0.5;
       *eventHandle = 4;
       break;
     case 6:
       AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3f);
       transformCoeffPointer = (float *)uiContextBasePointer[0x45];
-      transformCoeff11 = unmodifiedXMM8_Da * 0.5;
+      transformCoefficient = unmodifiedXMM8_Da * 0.5;
       transformCoeff13 = unmodifiedXMM10_Da * 0.5;
       FloatValue2 = *(float *)(uiContextBasePointer + 0x3e) * 0.5;
       if (sourceDataInt == 2) {
         *transformCoeffPointer = preservedXMM7;
-        transformCoeffPointer[1] = transformCoeff11;
+        transformCoeffPointer[1] = transformCoefficient;
         transformCoeffPointer[2] = fStack000000000000002c;
         transformCoeffPointer[3] = FloatValue2;
-        FloatValue1 = transformCoeff11;
+        FloatValue1 = transformCoefficient;
         transformCoeff12 = transformCoeff13;
         LocalFloatValue6 = fStack000000000000002c;
         AccumulatedFloat = AccumulatedFloat * 0.5;
         FloatValue2 = fStack000000000000002c;
-        transformCoeff11 = unmodifiedXMM9_Da;
+        transformCoefficient = unmodifiedXMM9_Da;
         fStack0000000000000028 = fStack000000000000002c;
       }
       else {
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
-        transformCoeffPointer[2] = transformCoeff11;
+        transformCoeffPointer[2] = transformCoefficient;
         transformCoeffPointer[3] = transformCoeff13;
         FloatValue1 = unmodifiedXMM9_Da;
         transformCoeff12 = AccumulatedFloat * 0.5;
@@ -158145,7 +158145,7 @@ LAB_18075ce56:
       transformCoeffPointer[5] = transformCoeff13;
       transformCoeffPointer[6] = fStack0000000000000028;
       transformCoeffPointer[7] = FloatValue1;
-      transformCoeffPointer[8] = transformCoeff11;
+      transformCoeffPointer[8] = transformCoefficient;
       transformCoeffPointer[9] = LocalFloatValue6;
       transformCoeffPointer[10] = AccumulatedFloat;
       transformCoeffPointer[0xb] = transformCoeff12;
@@ -158154,7 +158154,7 @@ LAB_18075ce56:
     case 8:
       transformCoeffPointer = (float *)uiContextBasePointer[0x45];
       AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-      transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+      transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
       FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
       transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
       *transformCoeffPointer = preservedXMM7;
@@ -158170,7 +158170,7 @@ LAB_18075ce56:
       transformCoeffPointer[10] = unmodifiedXMM8_Da * 0.5;
       transformCoeffPointer[0xb] = unmodifiedXMM10_Da * 0.5;
       transformCoeffPointer[0xc] = fStack000000000000002c;
-      transformCoeffPointer[0xd] = transformCoeff11 * 0.5;
+      transformCoeffPointer[0xd] = transformCoefficient * 0.5;
       transformCoeffPointer[0xe] = fStack000000000000002c;
       transformCoeffPointer[0xf] = transformCoeff13 * 0.75;
       *eventHandle = 8;
@@ -158178,7 +158178,7 @@ LAB_18075ce56:
     case 0xc:
       transformCoeffPointer = (float *)uiContextBasePointer[0x45];
       AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-      transformCoeff11 = *(float *)(uiContextBasePointer + 0x40);
+      transformCoefficient = *(float *)(uiContextBasePointer + 0x40);
       FloatValue2 = *(float *)(uiContextBasePointer + 0x3f);
       transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
       *transformCoeffPointer = preservedXMM7;
@@ -158187,7 +158187,7 @@ LAB_18075ce56:
       transformCoeffPointer[3] = unmodifiedXMM10_Da * 0.5;
       transformCoeffPointer[4] = AccumulatedFloat * 0.5;
       transformCoeffPointer[5] = fStack000000000000002c;
-      transformCoeffPointer[6] = transformCoeff11 * 0.75;
+      transformCoeffPointer[6] = transformCoefficient * 0.75;
       transformCoeffPointer[7] = fStack000000000000002c;
       transformCoeffPointer[8] = 0.0;
       transformCoeffPointer[9] = 0.0;
@@ -158219,11 +158219,11 @@ LAB_18075ce56:
         *eventHandle = 1;
         break;
       case 2:
-        transformCoeff11 = unmodifiedXMM8_Da * unmodifiedXMM8_Da * 0.5;
+        transformCoefficient = unmodifiedXMM8_Da * unmodifiedXMM8_Da * 0.5;
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e) * *(float *)(uiContextBasePointer + 0x3e) * 0.25;
-        *(float *)(uiContextBasePointer + 0x46) = SQRT(preservedXMM7 * preservedXMM7 + transformCoeff11 + AccumulatedFloat);
+        *(float *)(uiContextBasePointer + 0x46) = SQRT(preservedXMM7 * preservedXMM7 + transformCoefficient + AccumulatedFloat);
         *(float *)((longlong)uiContextBasePointer + 0x234) =
-             SQRT(unmodifiedXMM9_Da * unmodifiedXMM9_Da + transformCoeff11 + AccumulatedFloat);
+             SQRT(unmodifiedXMM9_Da * unmodifiedXMM9_Da + transformCoefficient + AccumulatedFloat);
         *(UIHandle *)uiContextBasePointer[0x45] = uiContextBasePointer[0x46];
         *eventHandle = 2;
         break;
@@ -158250,7 +158250,7 @@ LAB_18075ce56:
       case 8:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *transformCoeffPointer = preservedXMM7;
@@ -158258,7 +158258,7 @@ LAB_18075ce56:
         transformCoeffPointer[2] = unmodifiedXMM8_Da;
         transformCoeffPointer[3] = unmodifiedXMM10_Da;
         transformCoeffPointer[4] = AccumulatedFloat;
-        transformCoeffPointer[5] = transformCoeff11;
+        transformCoeffPointer[5] = transformCoefficient;
         transformCoeffPointer[6] = FloatValue2;
         transformCoeffPointer[7] = transformCoeff13;
         *eventHandle = 8;
@@ -158266,7 +158266,7 @@ LAB_18075ce56:
       case 0xc:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *transformCoeffPointer = preservedXMM7;
@@ -158274,7 +158274,7 @@ LAB_18075ce56:
         transformCoeffPointer[2] = unmodifiedXMM8_Da;
         transformCoeffPointer[3] = unmodifiedXMM10_Da;
         transformCoeffPointer[4] = AccumulatedFloat;
-        transformCoeffPointer[5] = transformCoeff11;
+        transformCoeffPointer[5] = transformCoefficient;
         transformCoeffPointer[6] = FloatValue2;
         transformCoeffPointer[7] = transformCoeff13;
         transformCoeffPointer[8] = 0.0;
@@ -158299,18 +158299,18 @@ LAB_18075ce56:
       switch(ProcessingResult2) {
       case 1:
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         *transformCoeffPointer = preservedXMM7 + unmodifiedXMM8_Da;
         transformCoeffPointer[1] = unmodifiedXMM9_Da + unmodifiedXMM8_Da;
         transformCoeffPointer[2] = AccumulatedFloat;
-        transformCoeffPointer[3] = transformCoeff11;
+        transformCoeffPointer[3] = transformCoefficient;
         *eventHandle = 1;
         break;
       case 2:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
         transformCoeffPointer[2] = fStack0000000000000028;
@@ -158318,13 +158318,13 @@ LAB_18075ce56:
         transformCoeffPointer[4] = AccumulatedFloat;
         transformCoeffPointer[5] = fStack000000000000002c;
         transformCoeffPointer[6] = fStack0000000000000028;
-        transformCoeffPointer[7] = transformCoeff11;
+        transformCoeffPointer[7] = transformCoefficient;
         *eventHandle = 2;
         break;
       case 4:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
         transformCoeffPointer[2] = fStack0000000000000028;
@@ -158340,7 +158340,7 @@ LAB_18075ce56:
         transformCoeffPointer[0xc] = fStack0000000000000028;
         transformCoeffPointer[0xd] = fStack000000000000002c;
         transformCoeffPointer[0xe] = fStack0000000000000028;
-        transformCoeffPointer[0xf] = transformCoeff11 * 0.5;
+        transformCoeffPointer[0xf] = transformCoefficient * 0.5;
         *eventHandle = 4;
         break;
       case 6:
@@ -158348,7 +158348,7 @@ LAB_18075ce56:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         transformCoeff13 = unmodifiedXMM10_Da * 0.25;
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         if (sourceDataInt == 2) {
           *transformCoeffPointer = preservedXMM7;
           transformCoeffPointer[1] = FloatValue2;
@@ -158372,7 +158372,7 @@ LAB_18075ce56:
           transformCoeffPointer[0x13] = fStack0000000000000028;
           transformCoeffPointer[0x14] = fStack000000000000002c;
           transformCoeffPointer[0x15] = fStack0000000000000028;
-          transformCoeffPointer[0x16] = transformCoeff11;
+          transformCoeffPointer[0x16] = transformCoefficient;
           transformCoeffPointer[0x17] = transformCoeff13;
           *eventHandle = 6;
         }
@@ -158400,7 +158400,7 @@ LAB_18075ce56:
           transformCoeffPointer[0x14] = fStack0000000000000028;
           transformCoeffPointer[0x15] = transformCoeff13;
           transformCoeffPointer[0x16] = fStack000000000000002c;
-          transformCoeffPointer[0x17] = transformCoeff11;
+          transformCoeffPointer[0x17] = transformCoefficient;
           *eventHandle = 6;
         }
         break;
@@ -158408,7 +158408,7 @@ LAB_18075ce56:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         transformCoeff12 = unmodifiedXMM10_Da * 0.25;
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x40);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x41);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x41);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x3e);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
@@ -158426,7 +158426,7 @@ LAB_18075ce56:
         transformCoeffPointer[0xc] = fStack000000000000002c;
         transformCoeffPointer[0xd] = fStack0000000000000028;
         transformCoeffPointer[0xe] = fStack000000000000002c;
-        transformCoeffPointer[0xf] = transformCoeff11 * 0.5;
+        transformCoeffPointer[0xf] = transformCoefficient * 0.5;
         transformCoeffPointer[0x10] = fStack000000000000002c;
         transformCoeffPointer[0x11] = fStack0000000000000028;
         transformCoeffPointer[0x12] = fStack000000000000002c;
@@ -158449,14 +158449,14 @@ LAB_18075ce56:
         transformCoeffPointer[0x1c] = LocalFloatValue6;
         transformCoeffPointer[0x1d] = transformCoeff13;
         transformCoeffPointer[0x1e] = FloatValue1;
-        transformCoeffPointer[0x1f] = transformCoeff11 * 0.5;
+        transformCoeffPointer[0x1f] = transformCoefficient * 0.5;
         *eventHandle = 8;
         break;
       case 0xc:
         componentHandle = (UIHandle *)uiContextBasePointer[0x45];
         FloatValue2 = unmodifiedXMM10_Da * 0.25;
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x40);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x41);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x41);
         *(UIDword *)(uiContextBasePointer + -0xe) = *(UIDword *)(uiContextBasePointer + 0x3e);
         uiContextBasePointer[-0xc] = 0;
         uiContextBasePointer[-0xb] = 0;
@@ -158474,7 +158474,7 @@ LAB_18075ce56:
         *(float *)(uiContextBasePointer + -8) = fStack000000000000002c;
         *(float *)(uiContextBasePointer + -7) = fStack000000000000002c;
         *(float *)(uiContextBasePointer + -0xd) = AccumulatedFloat * 0.5;
-        *(float *)((longlong)uiContextBasePointer + -0x34) = transformCoeff11 * 0.5;
+        *(float *)((longlong)uiContextBasePointer + -0x34) = transformCoefficient * 0.5;
         *componentHandle = CONCAT44(fStack000000000000002c,preservedXMM7);
         componentHandle[1] = CONCAT44(FloatValue2,unmodifiedXMM8_Da * 0.5);
         componentHandle[2] = uiTargetHandle;
@@ -158484,7 +158484,7 @@ LAB_18075ce56:
         componentHandle[6] = CONCAT44(unmodifiedXMM9_Da,fStack000000000000002c);
         componentHandle[7] = CONCAT44(FloatValue2,unmodifiedXMM8_Da * 0.5);
         componentHandle[8] = uiTargetHandle;
-        componentHandle[9] = CONCAT44(transformCoeff11 * 0.5,fStack000000000000002c);
+        componentHandle[9] = CONCAT44(transformCoefficient * 0.5,fStack000000000000002c);
         componentHandle[10] = 0;
         componentHandle[0xb] = 0;
         componentHandle[0xc] = stackParam00000080;
@@ -158518,12 +158518,12 @@ MemoryInitRoutine:
       case 1:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = unmodifiedXMM9_Da;
         transformCoeffPointer[2] = unmodifiedXMM8_Da;
         transformCoeffPointer[3] = AccumulatedFloat;
-        transformCoeffPointer[4] = transformCoeff11;
+        transformCoeffPointer[4] = transformCoefficient;
         *eventHandle = 1;
         break;
       case 2:
@@ -158544,7 +158544,7 @@ MemoryInitRoutine:
       case 4:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
         transformCoeffPointer[2] = fStack0000000000000028;
@@ -158564,7 +158564,7 @@ MemoryInitRoutine:
         transformCoeffPointer[0x10] = fStack0000000000000028;
         transformCoeffPointer[0x11] = fStack000000000000002c;
         transformCoeffPointer[0x12] = fStack0000000000000028;
-        transformCoeffPointer[0x13] = transformCoeff11;
+        transformCoeffPointer[0x13] = transformCoefficient;
         *eventHandle = 4;
         break;
       case 6:
@@ -158640,7 +158640,7 @@ MemoryInitRoutine:
       case 8:
         componentHandle = (UIHandle *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x40);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x41);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x41);
         *(UIDword *)(uiContextBasePointer + -0xe) = *(UIDword *)(uiContextBasePointer + 0x3e);
         uiContextBasePointer[-0x10] = 0;
         uiContextBasePointer[-0xf] = 0;
@@ -158648,7 +158648,7 @@ MemoryInitRoutine:
         uiContextBasePointer[-0xb] = 0;
         *(float *)(uiContextBasePointer + -0xd) = AccumulatedFloat * 0.5;
         *(UIDword *)((longlong)uiContextBasePointer + -0x4c) = *(UIDword *)(uiContextBasePointer + 0x3f);
-        *(float *)((longlong)uiContextBasePointer + -0x44) = transformCoeff11 * 0.5;
+        *(float *)((longlong)uiContextBasePointer + -0x44) = transformCoefficient * 0.5;
         *(float *)((longlong)uiContextBasePointer + -0x6c) = fStack000000000000002c;
         *(float *)((longlong)uiContextBasePointer + -100) = fStack000000000000002c;
         *(float *)(uiContextBasePointer + -10) = fStack000000000000002c;
@@ -158660,7 +158660,7 @@ MemoryInitRoutine:
         componentHandle[4] = CONCAT44(unmodifiedXMM9_Da,fStack0000000000000028);
         componentHandle[5] = uiTargetHandle;
         componentHandle[6] = uiTargetHandle;
-        componentHandle[7] = CONCAT44(transformCoeff11 * 0.5,fStack000000000000002c);
+        componentHandle[7] = CONCAT44(transformCoefficient * 0.5,fStack000000000000002c);
         componentHandle[8] = uiTargetHandle;
         componentHandle[9] = CONCAT44(fStack000000000000002c,unmodifiedXMM8_Da);
         componentHandle[10] = 0;
@@ -158678,7 +158678,7 @@ MemoryInitRoutine:
       case 0xc:
         componentHandle = (UIHandle *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x40);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x41);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x41);
         uiContextBasePointer[-0xe] = 0;
         uiContextBasePointer[-0xd] = 0;
         uiContextBasePointer[-0xc] = 0;
@@ -158695,7 +158695,7 @@ MemoryInitRoutine:
         uiContextBasePointer[1] = 0;
         *(float *)(uiContextBasePointer + -0xf) = unmodifiedXMM8_Da;
         *(float *)(uiContextBasePointer + -7) = AccumulatedFloat * 0.5;
-        *(float *)((longlong)uiContextBasePointer + -4) = transformCoeff11 * 0.5;
+        *(float *)((longlong)uiContextBasePointer + -4) = transformCoefficient * 0.5;
         uiContextBasePointer[-0x10] = uiTargetHandle;
         *(float *)((longlong)uiContextBasePointer + -0x74) = fStack000000000000002c;
         *(float *)((longlong)uiContextBasePointer + -0x3c) = fStack000000000000002c;
@@ -158711,7 +158711,7 @@ MemoryInitRoutine:
         componentHandle[6] = CONCAT44(unmodifiedXMM9_Da,fStack000000000000002c);
         componentHandle[7] = uiTargetHandle;
         componentHandle[8] = uiTargetHandle;
-        componentHandle[9] = CONCAT44(transformCoeff11 * 0.5,fStack000000000000002c);
+        componentHandle[9] = CONCAT44(transformCoefficient * 0.5,fStack000000000000002c);
         componentHandle[10] = 0;
         componentHandle[0xb] = 0;
         componentHandle[0xc] = stackParam00000080;
@@ -158760,7 +158760,7 @@ MemoryInitRoutine:
       case 2:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
         transformCoeffPointer[2] = fStack0000000000000028;
@@ -158772,13 +158772,13 @@ MemoryInitRoutine:
         transformCoeffPointer[8] = AccumulatedFloat;
         transformCoeffPointer[9] = fStack000000000000002c;
         transformCoeffPointer[10] = fStack0000000000000028;
-        transformCoeffPointer[0xb] = transformCoeff11;
+        transformCoeffPointer[0xb] = transformCoefficient;
         *eventHandle = 2;
         break;
       case 4:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *transformCoeffPointer = preservedXMM7;
         transformCoeffPointer[1] = fStack000000000000002c;
         transformCoeffPointer[2] = fStack0000000000000028;
@@ -158802,14 +158802,14 @@ MemoryInitRoutine:
         transformCoeffPointer[0x14] = fStack0000000000000028;
         transformCoeffPointer[0x15] = fStack000000000000002c;
         transformCoeffPointer[0x16] = fStack0000000000000028;
-        transformCoeffPointer[0x17] = transformCoeff11;
+        transformCoeffPointer[0x17] = transformCoefficient;
         *eventHandle = 4;
         break;
       case 6:
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3f);
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         if (sourceDataInt == 2) {
-          transformCoeff11 = *(float *)(uiContextBasePointer + 0x3e);
+          transformCoefficient = *(float *)(uiContextBasePointer + 0x3e);
           *transformCoeffPointer = preservedXMM7;
           transformCoeffPointer[1] = fStack000000000000002c;
           transformCoeffPointer[2] = fStack0000000000000028;
@@ -158847,7 +158847,7 @@ MemoryInitRoutine:
           transformCoeffPointer[0x18] = FloatValue1;
           transformCoeffPointer[0x19] = transformCoeff12;
           transformCoeffPointer[0x1a] = ResultFloatValue;
-          transformCoeffPointer[0x1b] = transformCoeff11;
+          transformCoeffPointer[0x1b] = transformCoefficient;
           transformCoeffPointer[0x1c] = 0.0;
           transformCoeffPointer[0x1d] = 0.0;
           transformCoeffPointer[0x1e] = 0.0;
@@ -158859,7 +158859,7 @@ MemoryInitRoutine:
           *eventHandle = 6;
         }
         else {
-          transformCoeff11 = *(float *)(uiContextBasePointer + 0x3e);
+          transformCoefficient = *(float *)(uiContextBasePointer + 0x3e);
           *(UIHandle *)((longlong)uiContextBasePointer + -100) = uiTargetHandle;
           *transformCoeffPointer = preservedXMM7;
           transformCoeffPointer[1] = fStack000000000000002c;
@@ -158897,7 +158897,7 @@ MemoryInitRoutine:
           transformCoeffPointer[0x19] = 0.0;
           transformCoeffPointer[0x1a] = 0.0;
           transformCoeffPointer[0x1b] = 0.0;
-          transformCoeffPointer[0x1c] = transformCoeff11;
+          transformCoeffPointer[0x1c] = transformCoefficient;
           transformCoeffPointer[0x1d] = FloatValue2;
           transformCoeffPointer[0x1e] = transformCoeff13;
           transformCoeffPointer[0x1f] = LocalFloatValue6;
@@ -158911,7 +158911,7 @@ MemoryInitRoutine:
       case 8:
         componentHandle = (UIHandle *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x40);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x41);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x41);
         uiContextBasePointer[-0xe] = 0;
         uiContextBasePointer[-0xd] = 0;
         *(UIDword *)(uiContextBasePointer + -10) = *(UIDword *)(uiContextBasePointer + 0x3e);
@@ -158922,7 +158922,7 @@ MemoryInitRoutine:
         *(float *)((longlong)uiContextBasePointer + -0x74) = unmodifiedXMM10_Da;
         *(float *)(uiContextBasePointer + -9) = AccumulatedFloat * 0.5;
         *(UIDword *)((longlong)uiContextBasePointer + -0x2c) = *(UIDword *)(uiContextBasePointer + 0x3f);
-        *(float *)((longlong)uiContextBasePointer + -0x24) = transformCoeff11 * 0.5;
+        *(float *)((longlong)uiContextBasePointer + -0x24) = transformCoefficient * 0.5;
         uiContextBasePointer[-0x10] = uiTargetHandle;
         *(float *)(uiContextBasePointer + -0xf) = fStack000000000000002c;
         *(float *)((longlong)uiContextBasePointer + -0x4c) = fStack000000000000002c;
@@ -158936,7 +158936,7 @@ MemoryInitRoutine:
         componentHandle[4] = CONCAT44(unmodifiedXMM9_Da,fStack0000000000000028);
         componentHandle[5] = uiTargetHandle;
         componentHandle[6] = uiTargetHandle;
-        componentHandle[7] = CONCAT44(transformCoeff11 * 0.5,fStack000000000000002c);
+        componentHandle[7] = CONCAT44(transformCoefficient * 0.5,fStack000000000000002c);
         componentHandle[8] = uiTargetHandle;
         componentHandle[9] = CONCAT44(fStack000000000000002c,unmodifiedXMM8_Da);
         componentHandle[10] = 0;
@@ -159058,7 +159058,7 @@ MemoryInitRoutine:
       case 1:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *transformCoeffPointer = preservedXMM7;
@@ -159066,7 +159066,7 @@ MemoryInitRoutine:
         transformCoeffPointer[2] = unmodifiedXMM8_Da;
         transformCoeffPointer[3] = unmodifiedXMM10_Da;
         transformCoeffPointer[4] = AccumulatedFloat;
-        transformCoeffPointer[5] = transformCoeff11;
+        transformCoeffPointer[5] = transformCoefficient;
         transformCoeffPointer[6] = FloatValue2;
         transformCoeffPointer[7] = transformCoeff13;
         *eventHandle = 1;
@@ -159074,7 +159074,7 @@ MemoryInitRoutine:
       case 2:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x40);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x40);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x3f);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *transformCoeffPointer = preservedXMM7;
@@ -159089,7 +159089,7 @@ MemoryInitRoutine:
         transformCoeffPointer[9] = fStack000000000000002c;
         transformCoeffPointer[10] = fStack0000000000000028;
         transformCoeffPointer[0xb] = FloatValue2;
-        transformCoeffPointer[0xc] = transformCoeff11;
+        transformCoeffPointer[0xc] = transformCoefficient;
         transformCoeffPointer[0xd] = fStack000000000000002c;
         transformCoeffPointer[0xe] = fStack0000000000000028;
         transformCoeffPointer[0xf] = transformCoeff13;
@@ -159098,7 +159098,7 @@ MemoryInitRoutine:
       case 4:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *(UIHandle *)((longlong)uiContextBasePointer + -0x74) = uiTargetHandle;
@@ -159130,15 +159130,15 @@ MemoryInitRoutine:
         transformCoeffPointer[0x14] = fStack0000000000000028;
         transformCoeffPointer[0x15] = fStack000000000000002c;
         transformCoeffPointer[0x16] = fStack0000000000000028;
-        transformCoeffPointer[0x17] = transformCoeff11 * 0.5;
-        transformCoeff11 = *(float *)(uiContextBasePointer + -0xe);
+        transformCoeffPointer[0x17] = transformCoefficient * 0.5;
+        transformCoefficient = *(float *)(uiContextBasePointer + -0xe);
         transformCoeff12 = *(float *)((longlong)uiContextBasePointer + -0x6c);
         ResultFloatValue = *(float *)(uiContextBasePointer + -0xd);
         transformCoeffPointer[0x18] = AccumulatedFloat;
         transformCoeffPointer[0x19] = LocalFloatValue6;
         transformCoeffPointer[0x1a] = FloatValue2 * 0.5;
         transformCoeffPointer[0x1b] = FloatValue1;
-        transformCoeffPointer[0x1c] = transformCoeff11;
+        transformCoeffPointer[0x1c] = transformCoefficient;
         transformCoeffPointer[0x1d] = transformCoeff12;
         transformCoeffPointer[0x1e] = ResultFloatValue;
         transformCoeffPointer[0x1f] = transformCoeff13 * 0.5;
@@ -159410,7 +159410,7 @@ MemoryInitRoutine:
       switch(ProcessingResult2) {
       case 1:
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3f);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3e);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3e);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x40);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
@@ -159418,7 +159418,7 @@ MemoryInitRoutine:
         transformCoeffPointer[1] = unmodifiedXMM9_Da;
         transformCoeffPointer[2] = unmodifiedXMM8_Da;
         transformCoeffPointer[3] = unmodifiedXMM10_Da;
-        transformCoeffPointer[4] = transformCoeff11;
+        transformCoeffPointer[4] = transformCoefficient;
         transformCoeffPointer[5] = AccumulatedFloat;
         transformCoeffPointer[6] = FloatValue2;
         transformCoeffPointer[7] = transformCoeff13;
@@ -159431,7 +159431,7 @@ MemoryInitRoutine:
       case 2:
         transformCoeffPointer = (float *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x40);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x40);
         FloatValue2 = *(float *)(uiContextBasePointer + 0x3f);
         transformCoeff13 = *(float *)(uiContextBasePointer + 0x41);
         *transformCoeffPointer = preservedXMM7;
@@ -159446,7 +159446,7 @@ MemoryInitRoutine:
         transformCoeffPointer[9] = fStack000000000000002c;
         transformCoeffPointer[10] = fStack0000000000000028;
         transformCoeffPointer[0xb] = FloatValue2;
-        transformCoeffPointer[0xc] = transformCoeff11;
+        transformCoeffPointer[0xc] = transformCoefficient;
         transformCoeffPointer[0xd] = fStack000000000000002c;
         transformCoeffPointer[0xe] = fStack0000000000000028;
         transformCoeffPointer[0xf] = transformCoeff13;
@@ -159463,7 +159463,7 @@ MemoryInitRoutine:
       case 4:
         componentHandle = (UIHandle *)uiContextBasePointer[0x45];
         AccumulatedFloat = *(float *)(uiContextBasePointer + 0x3e);
-        transformCoeff11 = *(float *)(uiContextBasePointer + 0x3f);
+        transformCoefficient = *(float *)(uiContextBasePointer + 0x3f);
         *(float *)(uiContextBasePointer + -0xf) = *(float *)(uiContextBasePointer + 0x40) * 0.5;
         uiContextBasePointer[-0x10] = uiTargetHandle;
         *(UIHandle *)((longlong)uiContextBasePointer + -0x74) = uiTargetHandle;
@@ -159488,7 +159488,7 @@ MemoryInitRoutine:
         componentHandle[8] = uiTargetHandle;
         componentHandle[9] = CONCAT44(fStack000000000000002c,AccumulatedFloat * 0.5);
         componentHandle[10] = CONCAT44(fStack000000000000002c,fStack0000000000000028);
-        componentHandle[0xb] = CONCAT44(transformCoeff11 * 0.5,fStack0000000000000028);
+        componentHandle[0xb] = CONCAT44(transformCoefficient * 0.5,fStack0000000000000028);
         componentHandle[0xc] = stackParam00000080;
         componentHandle[0xd] = stackParam00000088;
         componentHandle[0xe] = stackParam00000090;
@@ -189087,7 +189087,7 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
   int processingResult8;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   
   localInt5 = *uiContext1;
@@ -189130,12 +189130,12 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
         processedCount = 0;
         transformCoeff12 = (float)TotalResult * 0.00048828125;
         if (3 < uiContext2) {
-          transformCoeff11 = 1.0 - transformCoeff12;
+          transformCoefficient = 1.0 - transformCoeff12;
           eventCode = (uiContext2 - 4U >> 2) + 1;
           eventStatus = (ulonglong)eventCodeType;
           processedCount = eventCodeType * 4;
           do {
-            FloatValue2 = ((float)(int)*pContextSecondValue * transformCoeff11 + (float)(int)*psVar13 * transformCoeff12) * 3.051851e-05;
+            FloatValue2 = ((float)(int)*pContextSecondValue * transformCoefficient + (float)(int)*psVar13 * transformCoeff12) * 3.051851e-05;
             AccumulatedFloat = FloatValue2 * uiContext0 + *pvectorComponentX;
             *positionData = FloatValue2 * param_8 + *pvectorComponentX * param_9;
             if (AccumulatedFloat <= 1.0) {
@@ -189150,7 +189150,7 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
               iterationCount = 0x7fff;
             }
             *ptrLocal6 = iterationCount;
-            FloatValue2 = ((float)(int)pContextSecondValue[1] * transformCoeff11 + (float)(int)psVar13[1] * transformCoeff12)                      3.051851e-05;
+            FloatValue2 = ((float)(int)pContextSecondValue[1] * transformCoefficient + (float)(int)psVar13[1] * transformCoeff12)                      3.051851e-05;
             AccumulatedFloat = FloatValue2 * uiContext0 + pvectorComponentX[1];
             positionData[1] = FloatValue2 * param_8 + pvectorComponentX[1] * param_9;
             if (AccumulatedFloat <= 1.0) {
@@ -189165,7 +189165,7 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
               iterationCount = 0x7fff;
             }
             ptrLocal6[1] = iterationCount;
-            FloatValue2 = ((float)(int)pContextSecondValue[2] * transformCoeff11 + (float)(int)psVar13[2] * transformCoeff12)                      3.051851e-05;
+            FloatValue2 = ((float)(int)pContextSecondValue[2] * transformCoefficient + (float)(int)psVar13[2] * transformCoeff12)                      3.051851e-05;
             AccumulatedFloat = FloatValue2 * uiContext0 + pvectorComponentX[2];
             positionData[2] = FloatValue2 * param_8 + pvectorComponentX[2] * param_9;
             if (AccumulatedFloat <= 1.0) {
@@ -189180,7 +189180,7 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
               iterationCount = 0x7fff;
             }
             ptrLocal6[2] = iterationCount;
-            FloatValue2 = ((float)(int)pContextSecondValue[3] * transformCoeff11 + (float)(int)psVar13[3] * transformCoeff12)                      3.051851e-05;
+            FloatValue2 = ((float)(int)pContextSecondValue[3] * transformCoefficient + (float)(int)psVar13[3] * transformCoeff12)                      3.051851e-05;
             AccumulatedFloat = FloatValue2 * uiContext0 + pvectorComponentX[3];
             positionData[3] = FloatValue2 * param_8 + pvectorComponentX[3] * param_9;
             if (AccumulatedFloat <= 1.0) {
@@ -189206,9 +189206,9 @@ ProcessUIVectorTransformationAndInterpolation(UIHandle uiContext,longlong *dataS
         if (processedCount < uiContext2) {
           eventStatus = (ulonglong)(uint)(uiContext2 - processedCount);
           do {
-            transformCoeff11 = ((float)(int)*pContextSecondValue * (1.0 - transformCoeff12) + (float)(int)*psVar13 * transformCoeff12)                      3.051851e-05;
-            FloatValue2 = transformCoeff11 * uiContext0 + *pvectorComponentX;
-            *positionData = transformCoeff11 * param_8 + *pvectorComponentX * param_9;
+            transformCoefficient = ((float)(int)*pContextSecondValue * (1.0 - transformCoeff12) + (float)(int)*psVar13 * transformCoeff12)                      3.051851e-05;
+            FloatValue2 = transformCoefficient * uiContext0 + *pvectorComponentX;
+            *positionData = transformCoefficient * param_8 + *pvectorComponentX * param_9;
             if (FloatValue2 <= 1.0) {
               if (-1.0 <= FloatValue2) {
                 iterationCount = (UIWord)(int)(FloatValue2 * 32767.0);
@@ -191044,7 +191044,7 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
   uint result8;
   float FloatValue2;
   UIByte aiterationCounter [16];
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff13;
   float transformCoeff14;
   UIByte aiterationCount2 [16];
@@ -191170,7 +191170,7 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
         transformCoeff17 = 0.0;
         TransformCoefficient22 = 0.0;
         FloatValue2 = 0.0;
-        transformCoeff11 = 0.0;
+        transformCoefficient = 0.0;
         TransformCoefficient21 = aiterationCount2._0_4_;
         transformCoeff13 = aiterationCount2._4_4_;
         transformCoeff14 = aiterationCount2._8_4_;
@@ -191214,8 +191214,8 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
                                  TransformCoefficient22) & result1 | ~result1 & (uint)TransformCoefficient22);
           FloatValue2 = (float)((uint)((float)(processingResult4 + 2) * (float)unmodifiedEBX * 0.5 * transformCoeff14 * TransformCoefficient2 +
                                  FloatValue2) & dataPointer | ~dataPointer & (uint)FloatValue2);
-          transformCoeff11 = (float)((uint)((float)(processingResult4 + 3) * (float)unmodifiedEBX * 0.5 * transformCoeff15 * TransformCoefficient3 +
-                                 transformCoeff11) & result8 | ~result8 & (uint)transformCoeff11);
+          transformCoefficient = (float)((uint)((float)(processingResult4 + 3) * (float)unmodifiedEBX * 0.5 * transformCoeff15 * TransformCoefficient3 +
+                                 transformCoefficient) & result8 | ~result8 & (uint)transformCoefficient);
           transformCoeff16 = (float)((uint)(baseValue + transformCoeff16) & contextValue | ~contextValue & (uint)transformCoeff16);
           transformCoeff18 = (float)((uint)(transformCoeff1 + transformCoeff18) & result1 | ~result1 & (uint)transformCoeff18);
           transformCoeff19 = (float)((uint)(TransformCoefficient2 + transformCoeff19) & dataPointer | ~dataPointer & (uint)transformCoeff19);
@@ -191239,7 +191239,7 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
           processingResult4 = processingResult7;
         } while (processingResult7 < (int)(CounterResult - TotalResult));
         TransformCoefficient21 = transformCoeff19 + TransformCoefficient29 + transformCoeff16 + TransformCoefficient27 + TransformCoefficient20 + TransformCoefficient30 + transformCoeff18 + transformMatrix28;
-        transformCoeff17 = FloatValue2 + TransformCoefficient25 + transformCoeff17 + TransformCoefficient23 + transformCoeff11 + TransformCoefficient26 + TransformCoefficient22 + transformMatrix24;
+        transformCoeff17 = FloatValue2 + TransformCoefficient25 + transformCoeff17 + TransformCoefficient23 + transformCoefficient + TransformCoefficient26 + TransformCoefficient22 + transformMatrix24;
       }
       if (processingResult7 < (int)CounterResult) {
         if (3 < (int)(CounterResult - processingResult7)) {
@@ -191248,25 +191248,25 @@ UIHandle FUN_1807792a3(longlong uiContext,UIHandle dataSource,uint targetBuffer,
           BaseValuePointer2 = stackParam00000100 + (longlong)processingResult7 + 2;
           FloatValue2 = (float)(int)CounterResult;
           do {
-            transformCoeff11 = BaseValuePointer2[-2];
-            if (0.0001 < transformCoeff11) {
-              TransformCoefficient21 = TransformCoefficient21 + transformCoeff11;
-              transformCoeff17 = transformCoeff17 + ((TransformCoefficient22 * 0.5 * (float)processingResult7) / FloatValue2) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[-2];
+            if (0.0001 < transformCoefficient) {
+              TransformCoefficient21 = TransformCoefficient21 + transformCoefficient;
+              transformCoeff17 = transformCoeff17 + ((TransformCoefficient22 * 0.5 * (float)processingResult7) / FloatValue2) * transformCoefficient;
             }
-            transformCoeff11 = BaseValuePointer2[-1];
-            if (0.0001 < transformCoeff11) {
-              TransformCoefficient21 = TransformCoefficient21 + transformCoeff11;
-              transformCoeff17 = transformCoeff17 + (((float)(processingResult4 + -1) * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[-1];
+            if (0.0001 < transformCoefficient) {
+              TransformCoefficient21 = TransformCoefficient21 + transformCoefficient;
+              transformCoeff17 = transformCoeff17 + (((float)(processingResult4 + -1) * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoefficient;
             }
-            transformCoeff11 = *BaseValuePointer2;
-            if (0.0001 < transformCoeff11) {
-              TransformCoefficient21 = TransformCoefficient21 + transformCoeff11;
-              transformCoeff17 = transformCoeff17 + (((float)processingResult4 * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoeff11;
+            transformCoefficient = *BaseValuePointer2;
+            if (0.0001 < transformCoefficient) {
+              TransformCoefficient21 = TransformCoefficient21 + transformCoefficient;
+              transformCoeff17 = transformCoeff17 + (((float)processingResult4 * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoefficient;
             }
-            transformCoeff11 = BaseValuePointer2[1];
-            if (0.0001 < transformCoeff11) {
-              TransformCoefficient21 = TransformCoefficient21 + transformCoeff11;
-              transformCoeff17 = transformCoeff17 + (((float)(processingResult4 + 1) * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[1];
+            if (0.0001 < transformCoefficient) {
+              TransformCoefficient21 = TransformCoefficient21 + transformCoefficient;
+              transformCoeff17 = transformCoeff17 + (((float)(processingResult4 + 1) * TransformCoefficient22 * 0.5) / FloatValue2) * transformCoefficient;
             }
             BaseValuePointer2 = BaseValuePointer2 + 4;
             processingResult7 = processingResult7 + 4;
@@ -191328,7 +191328,7 @@ UIHandle FUN_18077932f(void)
   float FloatValue1;
   float FloatValue2;
   UIByte aiterationCounter [16];
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff14;
   float transformCoeff15;
@@ -191440,7 +191440,7 @@ UIHandle FUN_18077932f(void)
         FloatValue2 = 0.0;
         FloatValue1 = 0.0;
         TransformCoefficient22 = 0.0;
-        transformCoeff11 = 0.0;
+        transformCoefficient = 0.0;
         transformCoeff12 = aiterationCount3._0_4_;
         transformCoeff14 = aiterationCount3._4_4_;
         transformCoeff15 = aiterationCount3._8_4_;
@@ -191484,8 +191484,8 @@ UIHandle FUN_18077932f(void)
                                  + FloatValue1) & dataPointer | ~dataPointer & (uint)FloatValue1);
           TransformCoefficient22 = (float)((uint)((float)(ProcessingResult3 + 2) * (float)unmodifiedXMM12_Dc * 0.5 * transformCoeff15 * TransformCoefficient2
                                  + TransformCoefficient22) & eventStatus | ~eventStatus & (uint)TransformCoefficient22);
-          transformCoeff11 = (float)((uint)((float)(ProcessingResult3 + 3) * (float)unmodifiedXMM12_Dd * 0.5 * transformCoeff16 * TransformCoefficient3
-                                 + transformCoeff11) & result7 | ~result7 & (uint)transformCoeff11);
+          transformCoefficient = (float)((uint)((float)(ProcessingResult3 + 3) * (float)unmodifiedXMM12_Dd * 0.5 * transformCoeff16 * TransformCoefficient3
+                                 + transformCoefficient) & result7 | ~result7 & (uint)transformCoefficient);
           transformCoeff17 = (float)((uint)(baseValue + transformCoeff17) & componentIndex | ~componentIndex & (uint)transformCoeff17);
           transformCoeff18 = (float)((uint)(transformCoeff1 + transformCoeff18) & dataPointer | ~dataPointer & (uint)transformCoeff18);
           transformCoeff19 = (float)((uint)(TransformCoefficient2 + transformCoeff19) & eventStatus | ~eventStatus & (uint)transformCoeff19);
@@ -191509,7 +191509,7 @@ UIHandle FUN_18077932f(void)
           ProcessingResult3 = ProcessingResult1;
         } while (ProcessingResult1 < (int)(CounterResult - TotalResult));
         preservedXMM6 = transformCoeff19 + transformMatrix28 + transformCoeff17 + TransformCoefficient26 + TransformCoefficient20 + TransformCoefficient29 + transformCoeff18 + TransformCoefficient27;
-        FloatValue2 = TransformCoefficient22 + transformMatrix24 + FloatValue2 + TransformCoefficient21 + transformCoeff11 + TransformCoefficient25 + FloatValue1 + TransformCoefficient23;
+        FloatValue2 = TransformCoefficient22 + transformMatrix24 + FloatValue2 + TransformCoefficient21 + transformCoefficient + TransformCoefficient25 + FloatValue1 + TransformCoefficient23;
       }
       if (ProcessingResult1 < (int)CounterResult) {
         if (3 < (int)(CounterResult - ProcessingResult1)) {
@@ -191518,25 +191518,25 @@ UIHandle FUN_18077932f(void)
           BaseValuePointer2 = stackParam00000100 + (longlong)ProcessingResult1 + 2;
           TransformCoefficient22 = (float)(int)CounterResult;
           do {
-            transformCoeff11 = BaseValuePointer2[-2];
-            if (0.0001 < transformCoeff11) {
-              preservedXMM6 = preservedXMM6 + transformCoeff11;
-              FloatValue2 = FloatValue2 + ((FloatValue1 * 0.5 * (float)ProcessingResult1) / TransformCoefficient22) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[-2];
+            if (0.0001 < transformCoefficient) {
+              preservedXMM6 = preservedXMM6 + transformCoefficient;
+              FloatValue2 = FloatValue2 + ((FloatValue1 * 0.5 * (float)ProcessingResult1) / TransformCoefficient22) * transformCoefficient;
             }
-            transformCoeff11 = BaseValuePointer2[-1];
-            if (0.0001 < transformCoeff11) {
-              preservedXMM6 = preservedXMM6 + transformCoeff11;
-              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + -1) * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[-1];
+            if (0.0001 < transformCoefficient) {
+              preservedXMM6 = preservedXMM6 + transformCoefficient;
+              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + -1) * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoefficient;
             }
-            transformCoeff11 = *BaseValuePointer2;
-            if (0.0001 < transformCoeff11) {
-              preservedXMM6 = preservedXMM6 + transformCoeff11;
-              FloatValue2 = FloatValue2 + (((float)ProcessingResult3 * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoeff11;
+            transformCoefficient = *BaseValuePointer2;
+            if (0.0001 < transformCoefficient) {
+              preservedXMM6 = preservedXMM6 + transformCoefficient;
+              FloatValue2 = FloatValue2 + (((float)ProcessingResult3 * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoefficient;
             }
-            transformCoeff11 = BaseValuePointer2[1];
-            if (0.0001 < transformCoeff11) {
-              preservedXMM6 = preservedXMM6 + transformCoeff11;
-              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + 1) * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoeff11;
+            transformCoefficient = BaseValuePointer2[1];
+            if (0.0001 < transformCoefficient) {
+              preservedXMM6 = preservedXMM6 + transformCoefficient;
+              FloatValue2 = FloatValue2 + (((float)(ProcessingResult3 + 1) * FloatValue1 * 0.5) / TransformCoefficient22) * transformCoefficient;
             }
             BaseValuePointer2 = BaseValuePointer2 + 4;
             ProcessingResult1 = ProcessingResult1 + 4;
@@ -191595,7 +191595,7 @@ UIHandle FUN_1807793f0(void)
   float FloatValue1;
   UIByte aresult9 [16];
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff13;
   float transformCoeff14;
   UIByte aiterationCount2 [16];
@@ -191675,7 +191675,7 @@ UIHandle FUN_1807793f0(void)
         TransformCoefficient20 = 0.0;
         TransformCoefficient22 = 0.0;
         AccumulatedFloat = 0.0;
-        transformCoeff11 = aiterationCount2._0_4_;
+        transformCoefficient = aiterationCount2._0_4_;
         transformCoeff13 = aiterationCount2._4_4_;
         transformCoeff14 = aiterationCount2._8_4_;
         transformCoeff15 = aiterationCount2._12_4_;
@@ -191691,7 +191691,7 @@ UIHandle FUN_1807793f0(void)
         transformCoeff17 = 0.0;
         transformCoeff18 = 0.0;
         transformCoeff19 = 0.0;
-        transformCoeff11 = (transformCoeff11 + transformCoeff11) - transformCoeff11 * transformCoeff11 * aresult9._0_4_;
+        transformCoefficient = (transformCoefficient + transformCoefficient) - transformCoefficient * transformCoefficient * aresult9._0_4_;
         transformCoeff13 = (transformCoeff13 + transformCoeff13) - transformCoeff13 * transformCoeff13 * aresult9._4_4_;
         transformCoeff14 = (transformCoeff14 + transformCoeff14) - transformCoeff14 * transformCoeff14 * aresult9._8_4_;
         transformCoeff15 = (transformCoeff15 + transformCoeff15) - transformCoeff15 * transformCoeff15 * aresult9._12_4_;
@@ -191712,7 +191712,7 @@ UIHandle FUN_1807793f0(void)
           ResultFloatValue = BaseValuePointer2[6];
           TemporaryFloatValue = BaseValuePointer2[7];
           BaseValuePointer2 = BaseValuePointer2 + 8;
-          FloatValue1 = (float)((uint)((float)processingResult4 * (float)unmodifiedXMM12_Da * 0.5 * transformCoeff11 * baseValue +
+          FloatValue1 = (float)((uint)((float)processingResult4 * (float)unmodifiedXMM12_Da * 0.5 * transformCoefficient * baseValue +
                                  FloatValue1) & contextValue | ~contextValue & (uint)FloatValue1);
           TransformCoefficient20 = (float)((uint)((float)(processingResult4 + 1) * (float)unmodifiedXMM12_Db * 0.5 * transformCoeff13 * transformCoeff1
                                  + TransformCoefficient20) & dataPointer | ~dataPointer & (uint)TransformCoefficient20);
@@ -191728,7 +191728,7 @@ UIHandle FUN_1807793f0(void)
           dataPointer = -(uint)(0.0001 < LocalFloatValue6);
           eventStatus = -(uint)(0.0001 < ResultFloatValue);
           result7 = -(uint)(0.0001 < TemporaryFloatValue);
-          TransformCoefficient21 = (float)((uint)((float)(processingResult4 + 4) * (float)unmodifiedXMM12_Da * 0.5 * transformCoeff11 * TransformCoefficient4
+          TransformCoefficient21 = (float)((uint)((float)(processingResult4 + 4) * (float)unmodifiedXMM12_Da * 0.5 * transformCoefficient * TransformCoefficient4
                                  + TransformCoefficient21) & contextValue | ~contextValue & (uint)TransformCoefficient21);
           TransformCoefficient23 = (float)((uint)((float)(processingResult4 + 5) * (float)unmodifiedXMM12_Db * 0.5 * transformCoeff13 * LocalFloatValue6
                                  + TransformCoefficient23) & dataPointer | ~dataPointer & (uint)TransformCoefficient23);
@@ -193350,7 +193350,7 @@ FUN_18077a750(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   int processingResult8;
   longlong allocatedMemory9;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   int iStackX_8;
   uint uStackX_20;
@@ -193389,11 +193389,11 @@ FUN_18077a750(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
     if (((AccumulatedFloat != transformCoeff12) || (*(float *)(uiContext + 0x8268) != *(float *)(uiContext + 0x21c))) ||
        (*(float *)(uiContext + 0x826c) != *(float *)(uiContext + 0x228))) {
       *(float *)(uiContext + 0x21c) = *(float *)(uiContext + 0x8268);
-      transformCoeff11 = *(float *)(uiContext + 0x8268) * 0.01;
+      transformCoefficient = *(float *)(uiContext + 0x8268) * 0.01;
       *(float *)(uiContext + 0x218) = transformCoeff12;
       *(float *)(uiContext + 0x228) = *(float *)(uiContext + 0x826c);
-      *(float *)(uiContext + 0x220) = transformCoeff11;
-      *(float *)(uiContext + 0x224) = 1.0 - transformCoeff11;
+      *(float *)(uiContext + 0x220) = transformCoefficient;
+      *(float *)(uiContext + 0x224) = 1.0 - transformCoefficient;
       if ((transformCoeff12 != AccumulatedFloat) &&
          (AccumulatedFloat = (float)*(int *)(uiBufferData + 0x25c) * transformCoeff12 * 0.04 * transformCoeff12 * 0.5,
          *(float *)(uiContext + 0x254) = AccumulatedFloat, AccumulatedFloat < 4.0)) {
@@ -194406,7 +194406,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -194676,7 +194676,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         transformCoeff18 = fStack_e0 + *(float *)(dataSource + (ulonglong)(eventCodeType + 1) * 4);
         AccumulatedFloat = *(float *)(uiContext + 0x42c);
         vectorComponentX = fStack_e0 + *(float *)(dataSource + (ulonglong)eventCodeType * 4);
-        transformCoeff11 = 1.0 / *(float *)(uiContext + 0x424);
+        transformCoefficient = 1.0 / *(float *)(uiContext + 0x424);
         transformCoeff15 = fStack_e0 + *(float *)(dataSource + (ulonglong)(eventCodeType + 2) * 4);
         transformMatrix24 = fStack_e0 + *(float *)(dataSource + (ulonglong)(eventCodeType + 3) * 4);
         TransformCoefficient23 = fStack_e0 + *(float *)(dataSource + (ulonglong)(eventCodeType + 4) * 4);
@@ -194685,28 +194685,28 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         transformCoeff1 = *(float *)(uiContext + 0x22c);
         transformCoeff13 = (((*(float *)(uiContext + 0x224) * transformCoeff17 + baseValue * vectorComponentX +
                    baseValue6 * *(float *)(uiContext + 0x2a4)) - *(float *)(uiContext + 0x324) * baseValue5) -
-                 AccumulatedFloat * *(float *)(uiContext + 0x3a4)) * transformCoeff11;
+                 AccumulatedFloat * *(float *)(uiContext + 0x3a4)) * transformCoefficient;
         transformCoeff12 = (((*(float *)(uiContext + 0x228) * transformCoeff17 + baseValue * transformCoeff18 +
                    baseValue6 * *(float *)(uiContext + 0x2a8)) - *(float *)(uiContext + 0x328) * baseValue5) -
-                 AccumulatedFloat * *(float *)(uiContext + 0x3a8)) * transformCoeff11;
+                 AccumulatedFloat * *(float *)(uiContext + 0x3a8)) * transformCoefficient;
         transformCoeff14 = *(float *)(uiContext + 0x230);
         TransformCoefficient22 = *(float *)(uiContext + 0x234);
         TransformCoefficient20 = (((transformCoeff1 * transformCoeff17 + baseValue * transformCoeff15 + baseValue6 * *(float *)(uiContext + 0x2ac)) -
-                  *(float *)(uiContext + 0x32c) * baseValue5) - AccumulatedFloat * *(float *)(uiContext + 0x3ac))                  transformCoeff11;
+                  *(float *)(uiContext + 0x32c) * baseValue5) - AccumulatedFloat * *(float *)(uiContext + 0x3ac))                  transformCoefficient;
         AccumulatedFloat = (((transformCoeff14 * transformCoeff17 + baseValue * transformMatrix24 + baseValue6 * *(float *)(uiContext + 0x2b0)) -
-                  *(float *)(uiContext + 0x330) * baseValue5) - AccumulatedFloat * *(float *)(uiContext + 0x3b0))                  transformCoeff11;
+                  *(float *)(uiContext + 0x330) * baseValue5) - AccumulatedFloat * *(float *)(uiContext + 0x3b0))                  transformCoefficient;
         baseValue5 = (((TransformCoefficient22 * transformCoeff17 + baseValue * TransformCoefficient23 + baseValue6 * *(float *)(uiContext + 0x2b4)) -
                   *(float *)(uiContext + 0x334) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * *(float *)(uiContext + 0x3b4)) * transformCoeff11;
+                 *(float *)(uiContext + 0x42c) * *(float *)(uiContext + 0x3b4)) * transformCoefficient;
         baseValue6 = *(float *)(uiContext + 0x2b8);
         *(float *)(uiContext + 0x2b8) = *(float *)(uiContext + 0x238);
         *(float *)(uiContext + 0x2a8) = *(float *)(uiContext + 0x228);
         *(UIDword *)(uiBufferData + 0x2a4) = *(UIDword *)(uiBufferData + 0x224);
         *(float *)(uiContext + 0x224) = vectorComponentX;
-        transformCoeff11 = (((*(float *)(uiContext + 0x238) * transformCoeff17 + *(float *)(uiContext + 0x430) * baseValue3 +
+        transformCoefficient = (((*(float *)(uiContext + 0x238) * transformCoeff17 + *(float *)(uiContext + 0x430) * baseValue3 +
                    *(float *)(uiContext + 0x438) * baseValue6) -
                   *(float *)(uiContext + 0x338) * *(float *)(uiContext + 0x428)) -
-                 *(float *)(uiContext + 0x42c) * *(float *)(uiContext + 0x3b8)) * transformCoeff11;
+                 *(float *)(uiContext + 0x42c) * *(float *)(uiContext + 0x3b8)) * transformCoefficient;
         *(float *)(uiContext + 0x228) = transformCoeff18;
         *(float *)(uiContext + 0x22c) = transformCoeff15;
         *(float *)(uiContext + 0x230) = transformMatrix24;
@@ -194729,14 +194729,14 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x330) = AccumulatedFloat;
         *(float *)(uiContext + 0x3b4) = *(float *)(uiContext + 0x334);
         *(float *)(uiContext + 0x334) = baseValue5;
-        *(float *)(uiContext + 0x338) = transformCoeff11;
+        *(float *)(uiContext + 0x338) = transformCoefficient;
         _DAT_180be2198 = fStack_e0;
         *(float *)(targetBuffer + (ulonglong)eventCodeType * 4) = transformCoeff13;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 1) * 4) = transformCoeff12;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 2) * 4) = TransformCoefficient20;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 3) * 4) = AccumulatedFloat;
         *(float *)(targetBuffer + (ulonglong)(eventCodeType + 4) * 4) = baseValue5;
-        *(float *)(targetBuffer + (ulonglong)(eventCodeType + 5) * 4) = transformCoeff11;
+        *(float *)(targetBuffer + (ulonglong)(eventCodeType + 5) * 4) = transformCoefficient;
       } while (bufferValue < bufferSize);
     }
   }
@@ -194755,7 +194755,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         transformCoeff19 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 2) * 4);
         transformCoeff16 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 3) * 4);
         vectorComponentX = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 4) * 4);
-        transformCoeff11 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 5) * 4);
+        transformCoefficient = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 5) * 4);
         transformCoeff12 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 6) * 4);
         transformCoeff13 = _DAT_180be2198 + *(float *)(dataSource + (ulonglong)(eventCodeType + 7) * 4);
         transformCoeff18 = 1.0 / *(float *)(uiContext + 0x424);
@@ -194776,7 +194776,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         baseValue3 = *(float *)(uiContext + 0x23c);
         transformCoeff18 = (((transformMatrix24 * baseValue6 + transformCoeff17 * vectorComponentX + baseValue5 * *(float *)(uiContext + 0x2b4)) -
                   *(float *)(uiContext + 0x334) * AccumulatedFloat) - baseValue * *(float *)(uiContext + 0x3b4))                  transformCoeff18;
-        AccumulatedFloat = (((TransformCoefficient23 * baseValue6 + transformCoeff17 * transformCoeff11 +
+        AccumulatedFloat = (((TransformCoefficient23 * baseValue6 + transformCoeff17 * transformCoefficient +
                    *(float *)(uiContext + 0x438) * *(float *)(uiContext + 0x2b8)) -
                   *(float *)(uiContext + 0x338) * *(float *)(uiContext + 0x428)) -
                  *(float *)(uiContext + 0x42c) * *(float *)(uiContext + 0x3b8)) /
@@ -194799,7 +194799,7 @@ ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBu
         *(float *)(uiContext + 0x22c) = transformCoeff19;
         *(float *)(uiContext + 0x230) = transformCoeff16;
         *(float *)(uiContext + 0x234) = vectorComponentX;
-        *(float *)(uiContext + 0x238) = transformCoeff11;
+        *(float *)(uiContext + 0x238) = transformCoefficient;
         *(float *)(uiContext + 0x23c) = transformCoeff12;
         *(float *)(uiContext + 0x240) = transformCoeff13;
         *(UIDword *)(uiBufferData + 0x3a4) = *(UIDword *)(uiBufferData + 0x324);
@@ -194964,7 +194964,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -195214,7 +195214,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         FloatValue2 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)eventProcessingCounter * 4);
         transformCoeff1 = *(float *)(componentData + 0x22c);
         transformCoeff14 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 2) * 4);
-        transformCoeff11 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 3) * 4);
+        transformCoefficient = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 3) * 4);
         baseValue0 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 4) * 4);
         vectorComponentX = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 5) * 4);
         baseValue6 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventProcessingCounter + 6) * 4);
@@ -195232,7 +195232,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         baseValue3 = (((transformCoeff1 * transformCoeff15 + transformCoeff12 * transformCoeff14 + baseValue5 * *(float *)(componentData + 0x2ac)) -
                   *(float *)(componentData + 0x32c) * AccumulatedFloat) - baseValue * *(float *)(componentData + 0x3ac))                  transformCoeff13;
         transformCoeff19 = *(float *)(componentData + 0x238);
-        transformCoeff16 = (((FloatValue1 * transformCoeff15 + transformCoeff12 * transformCoeff11 + baseValue5 * *(float *)(componentData + 0x2b0)) -
+        transformCoeff16 = (((FloatValue1 * transformCoeff15 + transformCoeff12 * transformCoefficient + baseValue5 * *(float *)(componentData + 0x2b0)) -
                   transformCoeff18 * AccumulatedFloat) - baseValue * *(float *)(componentData + 0x3b0)) * transformCoeff13;
         LocalFloatValue9 = *(float *)(componentData + 0x23c);
         transformCoeff13 = (((TransformCoefficient20 * transformCoeff15 + transformCoeff12 * baseValue0 + baseValue5 * *(float *)(componentData + 0x2b4)) -
@@ -195258,7 +195258,7 @@ UIHandle FUN_18077b7d0(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         *(UIDword *)(componentData + 0x2a8) = *(UIDword *)(componentData + 0x228);
         *(float *)(componentData + 0x228) = transformCoeff17;
         *(float *)(componentData + 0x22c) = transformCoeff14;
-        *(float *)(componentData + 0x230) = transformCoeff11;
+        *(float *)(componentData + 0x230) = transformCoefficient;
         *(float *)(componentData + 0x234) = baseValue0;
         *(float *)(componentData + 0x238) = vectorComponentX;
         *(float *)(componentData + 0x23c) = baseValue6;
@@ -195418,7 +195418,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -195448,7 +195448,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         baseValue6 = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 6) * 4);
         finalResult = _DAT_180be2198 + *(float *)(uiContextBasePointer + (ulonglong)(eventStatus + 7) * 4);
         FloatValue2 = 1.0 / *(float *)(componentData + 0x424);
-        transformCoeff11 = (((transformCoeff15 * FloatValue1 + *(float *)(componentData + 0x224) * transformCoeff14 +
+        transformCoefficient = (((transformCoeff15 * FloatValue1 + *(float *)(componentData + 0x224) * transformCoeff14 +
                    transformCoeff16 * *(float *)(componentData + 0x2a4)) - *(float *)(componentData + 0x324) * transformCoeff18)
                  - baseValue * *(float *)(componentData + 0x3a4)) * FloatValue2;
         transformCoeff12 = (((*(float *)(componentData + 0x228) * transformCoeff14 + transformCoeff15 * TransformCoefficient20 +
@@ -195502,7 +195502,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(componentData + 0x2ac) = transformCoeff1;
         *(float *)(componentData + 0x2b0) = TransformCoefficient2;
         *(float *)(componentData + 0x2b4) = TransformCoefficient4;
-        *(float *)(componentData + 0x324) = transformCoeff11;
+        *(float *)(componentData + 0x324) = transformCoefficient;
         *(float *)(componentData + 0x328) = transformCoeff12;
         *(float *)(componentData + 0x32c) = transformCoeff13;
         *(float *)(componentData + 0x3b0) = TransformCoefficient3;
@@ -195513,7 +195513,7 @@ UIHandle FUN_18077c38b(longlong uiContext)
         *(float *)(componentData + 0x3bc) = *(float *)(componentData + 0x33c);
         *(float *)(componentData + 0x33c) = transformCoeff16;
         *(float *)(componentData + 0x340) = transformCoeff14;
-        *(float *)(eventHandle + (ulonglong)eventStatus * 4) = transformCoeff11;
+        *(float *)(eventHandle + (ulonglong)eventStatus * 4) = transformCoefficient;
         *(float *)(eventHandle + (ulonglong)(eventStatus + 1) * 4) = transformCoeff12;
         *(float *)(eventHandle + (ulonglong)(eventStatus + 2) * 4) = transformCoeff13;
         *(float *)(eventHandle + (ulonglong)(eventStatus + 3) * 4) = AccumulatedFloat;
@@ -195816,7 +195816,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -195903,7 +195903,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       baseValue1 = *(float *)(uiContext + 0x224);
       baseValue3 = *(float *)(uiContext + 0x228);
       AccumulatedFloat = *(float *)(uiContext + 0x29c);
-      transformCoeff11 = *(float *)(uiContext + 0x2a0);
+      transformCoefficient = *(float *)(uiContext + 0x2a0);
       transformCoeff13 = *(float *)(uiContext + 0x2a4);
       transformCoeff14 = *(float *)(uiContext + 0x2a8);
       transformCoeff15 = *(float *)(uiContext + 0x2ac);
@@ -195924,12 +195924,12 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           FloatValue2 = pTransformCoefficient2[-2];
           baseValue6 = pTransformCoefficient2[-1];
           AccumulatedFloat = ((FloatValue2 + AccumulatedFloat + _DAT_180be2288) - vectorComponentX) * baseValue5;
-          transformCoeff11 = ((baseValue6 + transformCoeff11 + _DAT_180be2288) - fStackX_10) * baseValue5;
+          transformCoefficient = ((baseValue6 + transformCoefficient + _DAT_180be2288) - fStackX_10) * baseValue5;
           finalResult = pTransformCoefficient2[3];
           baseValue2 = pTransformCoefficient2[2];
           transformCoeff13 = ((baseValue1 + transformCoeff13 + _DAT_180be2288) - baseValue0) * baseValue5;
           *(float *)((longlong)targetBuffer + (-8 - (longlong)dataSource) + (longlong)pTransformCoefficient2) = AccumulatedFloat;
-          pTransformCoefficient3[-1] = transformCoeff11;
+          pTransformCoefficient3[-1] = transformCoefficient;
           pTransformCoefficient2 = pTransformCoefficient2 + 6;
           transformCoeff14 = ((baseValue3 + transformCoeff14 + _DAT_180be2288) - transformCoeff12) * baseValue5;
           *pTransformCoefficient3 = transformCoeff13;
@@ -195959,7 +195959,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x22c) = baseValue2;
       *(float *)(uiContext + 0x230) = finalResult;
       *(float *)(uiContext + 0x29c) = AccumulatedFloat;
-      *(float *)(uiContext + 0x2a0) = transformCoeff11;
+      *(float *)(uiContext + 0x2a0) = transformCoefficient;
       *(float *)(uiContext + 0x2a4) = transformCoeff13;
       *(float *)(uiContext + 0x2a8) = transformCoeff14;
       *(float *)(uiContext + 0x2ac) = transformCoeff15;
@@ -195973,7 +195973,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       baseValue1 = *(float *)(uiContext + 0x21c);
       baseValue3 = *(float *)(uiContext + 0x220);
       AccumulatedFloat = *(float *)(uiContext + 0x224);
-      transformCoeff11 = *(float *)(uiContext + 0x29c);
+      transformCoefficient = *(float *)(uiContext + 0x29c);
       transformCoeff13 = *(float *)(uiContext + 0x2a0);
       transformCoeff14 = *(float *)(uiContext + 0x2a4);
       transformCoeff15 = *(float *)(uiContext + 0x2a8);
@@ -196001,7 +196001,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           finalResult = pTransformCoefficient2[3];
           baseValue6 = pTransformCoefficient2[1];
           transformCoeff13 = ((baseValue3 + transformCoeff13 + _DAT_180be2288) - baseValue5) * baseValue;
-          transformCoeff11 = ((transformCoeff11 + baseValue1 + _DAT_180be2288) - vectorComponentX) * baseValue;
+          transformCoefficient = ((transformCoefficient + baseValue1 + _DAT_180be2288) - vectorComponentX) * baseValue;
           transformCoeff14 = ((AccumulatedFloat + transformCoeff14 + _DAT_180be2288) - FloatValue1) * baseValue;
           FloatValue2 = pTransformCoefficient2[4];
           transformCoeff15 = ((baseValue6 + transformCoeff15 + _DAT_180be2288) - fStack_cc) * baseValue;
@@ -196009,7 +196009,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
           baseValue0 = ((finalResult + baseValue0 + _DAT_180be2288) - fStack_d4) * baseValue;
           fStackX_10 = ((FloatValue2 + fStackX_10 + _DAT_180be2288) - fStack_c8) * baseValue;
           transformCoeff1 = pTransformCoefficient2[5];
-          *(float *)((longlong)pTransformCoefficient2 + (longlong)targetBuffer + (-8 - (longlong)dataSource)) = transformCoeff11;
+          *(float *)((longlong)pTransformCoefficient2 + (longlong)targetBuffer + (-8 - (longlong)dataSource)) = transformCoefficient;
           pTransformCoefficient3[-1] = transformCoeff13;
           pTransformCoefficient2 = pTransformCoefficient2 + 8;
           *pTransformCoefficient3 = transformCoeff14;
@@ -196042,7 +196042,7 @@ UIHandle FUN_18077d4a0(longlong uiContext,float *dataSource,float *targetBuffer,
       *(float *)(uiContext + 0x22c) = baseValue2;
       *(float *)(uiContext + 0x230) = finalResult;
       *(float *)(uiContext + 0x234) = FloatValue2;
-      *(float *)(uiContext + 0x29c) = transformCoeff11;
+      *(float *)(uiContext + 0x29c) = transformCoefficient;
       *(float *)(uiContext + 0x2a0) = transformCoeff13;
       *(float *)(uiContext + 0x2a4) = transformCoeff14;
       *(float *)(uiContext + 0x2a8) = transformCoeff15;
@@ -196119,7 +196119,7 @@ UIHandle FUN_18077d60f(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -196170,7 +196170,7 @@ UIHandle FUN_18077d60f(void)
     baseValue0 = *(float *)(contextHandle + 0x228);
     FloatValue1 = *(float *)(contextHandle + 0x29c);
     FloatValue2 = *(float *)(contextHandle + 0x2a0);
-    transformCoeff11 = *(float *)(contextHandle + 0x2a4);
+    transformCoefficient = *(float *)(contextHandle + 0x2a4);
     transformCoeff12 = *(float *)(contextHandle + 0x2a8);
     transformCoeff13 = *(float *)(contextHandle + 0x2ac);
     transformCoeff14 = *(float *)(contextHandle + 0x2b0);
@@ -196193,12 +196193,12 @@ UIHandle FUN_18077d60f(void)
         FloatValue2 = ((vectorComponentX + FloatValue2 + _DAT_180be2288) - fStack0000000000000108) * baseValue3;
         baseValue5 = pTransformCoefficient2[3];
         baseValue2 = pTransformCoefficient2[2];
-        transformCoeff11 = ((LocalFloatValue9 + transformCoeff11 + _DAT_180be2288) - TemporaryFloatValue) * baseValue3;
+        transformCoefficient = ((LocalFloatValue9 + transformCoefficient + _DAT_180be2288) - TemporaryFloatValue) * baseValue3;
         *(float *)((longlong)uiTargetHandle + (-8 - (longlong)uiContextBasePointer) + (longlong)pTransformCoefficient2) = FloatValue1;
         pTransformCoefficient3[-1] = FloatValue2;
         pTransformCoefficient2 = pTransformCoefficient2 + 6;
         transformCoeff12 = ((baseValue0 + transformCoeff12 + _DAT_180be2288) - AccumulatedFloat) * baseValue3;
-        *pTransformCoefficient3 = transformCoeff11;
+        *pTransformCoefficient3 = transformCoefficient;
         transformCoeff13 = baseValue2 + transformCoeff13 + _DAT_180be2288;
         pTransformCoefficient3[1] = transformCoeff12;
         transformCoeff14 = baseValue5 + transformCoeff14 + _DAT_180be2288;
@@ -196225,7 +196225,7 @@ UIHandle FUN_18077d60f(void)
     *(float *)(contextHandle + 0x230) = baseValue5;
     *(float *)(contextHandle + 0x29c) = FloatValue1;
     *(float *)(contextHandle + 0x2a0) = FloatValue2;
-    *(float *)(contextHandle + 0x2a4) = transformCoeff11;
+    *(float *)(contextHandle + 0x2a4) = transformCoefficient;
     *(float *)(contextHandle + 0x2a8) = transformCoeff12;
     *(float *)(contextHandle + 0x2ac) = transformCoeff13;
     *(float *)(contextHandle + 0x2b0) = transformCoeff14;
@@ -196239,7 +196239,7 @@ UIHandle FUN_18077d60f(void)
     baseValue0 = *(float *)(contextHandle + 0x220);
     FloatValue1 = *(float *)(contextHandle + 0x224);
     FloatValue2 = *(float *)(contextHandle + 0x29c);
-    transformCoeff11 = *(float *)(contextHandle + 0x2a0);
+    transformCoefficient = *(float *)(contextHandle + 0x2a0);
     transformCoeff12 = *(float *)(contextHandle + 0x2a4);
     transformCoeff13 = *(float *)(contextHandle + 0x2a8);
     transformCoeff14 = *(float *)(contextHandle + 0x2ac);
@@ -196265,7 +196265,7 @@ UIHandle FUN_18077d60f(void)
         baseValue2 = pTransformCoefficient2[2];
         baseValue5 = pTransformCoefficient2[3];
         vectorComponentX = pTransformCoefficient2[1];
-        transformCoeff11 = ((baseValue0 + transformCoeff11 + _DAT_180be2288) - baseValue3) * baseValue;
+        transformCoefficient = ((baseValue0 + transformCoefficient + _DAT_180be2288) - baseValue3) * baseValue;
         FloatValue2 = ((FloatValue2 + LocalFloatValue9 + _DAT_180be2288) - baseValue1) * baseValue;
         transformCoeff12 = ((FloatValue1 + transformCoeff12 + _DAT_180be2288) - baseValue6) * baseValue;
         finalResult = pTransformCoefficient2[4];
@@ -196276,7 +196276,7 @@ UIHandle FUN_18077d60f(void)
              ((finalResult + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * baseValue;
         transformCoeff1 = pTransformCoefficient2[5];
         *(float *)((longlong)pTransformCoefficient2 + (longlong)uiTargetHandle + (-8 - (longlong)uiContextBasePointer)) = FloatValue2;
-        pTransformCoefficient3[-1] = transformCoeff11;
+        pTransformCoefficient3[-1] = transformCoefficient;
         pTransformCoefficient2 = pTransformCoefficient2 + 8;
         *pTransformCoefficient3 = transformCoeff12;
         pTransformCoefficient3[1] = transformCoeff13;
@@ -196308,7 +196308,7 @@ UIHandle FUN_18077d60f(void)
     *(float *)(contextHandle + 0x230) = baseValue5;
     *(float *)(contextHandle + 0x234) = finalResult;
     *(float *)(contextHandle + 0x29c) = FloatValue2;
-    *(float *)(contextHandle + 0x2a0) = transformCoeff11;
+    *(float *)(contextHandle + 0x2a0) = transformCoefficient;
     *(float *)(contextHandle + 0x2a4) = transformCoeff12;
     *(float *)(contextHandle + 0x2a8) = transformCoeff13;
     *(float *)(contextHandle + 0x2ac) = transformCoeff14;
@@ -196382,7 +196382,7 @@ UIHandle FUN_18077d6ff(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -196403,7 +196403,7 @@ UIHandle FUN_18077d6ff(void)
     baseValue0 = *(float *)(contextHandle + 0x228);
     FloatValue1 = *(float *)(contextHandle + 0x29c);
     FloatValue2 = *(float *)(contextHandle + 0x2a0);
-    transformCoeff11 = *(float *)(contextHandle + 0x2a4);
+    transformCoefficient = *(float *)(contextHandle + 0x2a4);
     transformCoeff12 = *(float *)(contextHandle + 0x2a8);
     transformCoeff13 = *(float *)(contextHandle + 0x2ac);
     transformCoeff14 = *(float *)(contextHandle + 0x2b0);
@@ -196426,12 +196426,12 @@ UIHandle FUN_18077d6ff(void)
         FloatValue2 = ((baseValue5 + FloatValue2 + _DAT_180be2288) - fStack0000000000000108) * vectorComponentX;
         baseValue2 = pTransformCoefficient2[3];
         baseValue3 = pTransformCoefficient2[2];
-        transformCoeff11 = ((LocalFloatValue9 + transformCoeff11 + _DAT_180be2288) - TemporaryFloatValue) * vectorComponentX;
+        transformCoefficient = ((LocalFloatValue9 + transformCoefficient + _DAT_180be2288) - TemporaryFloatValue) * vectorComponentX;
         *(float *)((uiTargetHandle - (longlong)uiContextBasePointer) + -8 + (longlong)pTransformCoefficient2) = FloatValue1;
         pTransformCoefficient3[-1] = FloatValue2;
         pTransformCoefficient2 = pTransformCoefficient2 + 6;
         transformCoeff12 = ((baseValue0 + transformCoeff12 + _DAT_180be2288) - AccumulatedFloat) * vectorComponentX;
-        *pTransformCoefficient3 = transformCoeff11;
+        *pTransformCoefficient3 = transformCoefficient;
         transformCoeff13 = baseValue3 + transformCoeff13 + _DAT_180be2288;
         pTransformCoefficient3[1] = transformCoeff12;
         transformCoeff14 = baseValue2 + transformCoeff14 + _DAT_180be2288;
@@ -196458,7 +196458,7 @@ UIHandle FUN_18077d6ff(void)
     *(float *)(contextHandle + 0x230) = baseValue2;
     *(float *)(contextHandle + 0x29c) = FloatValue1;
     *(float *)(contextHandle + 0x2a0) = FloatValue2;
-    *(float *)(contextHandle + 0x2a4) = transformCoeff11;
+    *(float *)(contextHandle + 0x2a4) = transformCoefficient;
     *(float *)(contextHandle + 0x2a8) = transformCoeff12;
     *(float *)(contextHandle + 0x2ac) = transformCoeff13;
     *(float *)(contextHandle + 0x2b0) = transformCoeff14;
@@ -196472,7 +196472,7 @@ UIHandle FUN_18077d6ff(void)
     baseValue0 = *(float *)(contextHandle + 0x220);
     FloatValue1 = *(float *)(contextHandle + 0x224);
     FloatValue2 = *(float *)(contextHandle + 0x29c);
-    transformCoeff11 = *(float *)(contextHandle + 0x2a0);
+    transformCoefficient = *(float *)(contextHandle + 0x2a0);
     transformCoeff12 = *(float *)(contextHandle + 0x2a4);
     transformCoeff13 = *(float *)(contextHandle + 0x2a8);
     transformCoeff14 = *(float *)(contextHandle + 0x2ac);
@@ -196498,7 +196498,7 @@ UIHandle FUN_18077d6ff(void)
         baseValue3 = pTransformCoefficient2[2];
         baseValue2 = pTransformCoefficient2[3];
         baseValue5 = pTransformCoefficient2[1];
-        transformCoeff11 = ((baseValue0 + transformCoeff11 + _DAT_180be2288) - vectorComponentX) * baseValue;
+        transformCoefficient = ((baseValue0 + transformCoefficient + _DAT_180be2288) - vectorComponentX) * baseValue;
         FloatValue2 = ((FloatValue2 + LocalFloatValue9 + _DAT_180be2288) - baseValue1) * baseValue;
         transformCoeff12 = ((FloatValue1 + transformCoeff12 + _DAT_180be2288) - baseValue6) * baseValue;
         finalResult = pTransformCoefficient2[4];
@@ -196509,7 +196509,7 @@ UIHandle FUN_18077d6ff(void)
              ((finalResult + fStack0000000000000108 + _DAT_180be2288) - fStack0000000000000030) * baseValue;
         transformCoeff1 = pTransformCoefficient2[5];
         *(float *)((longlong)pTransformCoefficient2 + (uiTargetHandle - (longlong)uiContextBasePointer) + -8) = FloatValue2;
-        pTransformCoefficient3[-1] = transformCoeff11;
+        pTransformCoefficient3[-1] = transformCoefficient;
         pTransformCoefficient2 = pTransformCoefficient2 + 8;
         *pTransformCoefficient3 = transformCoeff12;
         pTransformCoefficient3[1] = transformCoeff13;
@@ -196541,7 +196541,7 @@ UIHandle FUN_18077d6ff(void)
     *(float *)(contextHandle + 0x230) = baseValue2;
     *(float *)(contextHandle + 0x234) = finalResult;
     *(float *)(contextHandle + 0x29c) = FloatValue2;
-    *(float *)(contextHandle + 0x2a0) = transformCoeff11;
+    *(float *)(contextHandle + 0x2a0) = transformCoefficient;
     *(float *)(contextHandle + 0x2a4) = transformCoeff12;
     *(float *)(contextHandle + 0x2a8) = transformCoeff13;
     *(float *)(contextHandle + 0x2ac) = transformCoeff14;
@@ -197744,7 +197744,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
   longlong allocatedMemoryBlock;
   float FloatValue2;
   UIDword iterationCounter;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -197838,22 +197838,22 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
       if (contextOffset < 0) {
         transformCoeff17 = transformCoeff17 + 1.8446744e+19;
       }
-      transformCoeff11 = (float)powf(1.0 - FloatValue2);
+      transformCoefficient = (float)powf(1.0 - FloatValue2);
       dataPointer = contextValue;
       if (3 < allocatedMemoryBlock) {
         BaseValuePointer6 = (float *)(uiContext + 0x2b0);
         contextOffset = (allocatedMemoryBlock - 4U >> 2) + 1;
         dataPointer = contextOffset * 4;
-        transformCoeff16 = transformCoeff17 * FloatValue2 * transformCoeff11;
+        transformCoeff16 = transformCoeff17 * FloatValue2 * transformCoefficient;
         do {
-          BaseValuePointer6[-0x21] = transformCoeff11 * BaseValuePointer6[-0x21] + transformCoeff16 * BaseValuePointer6[-1];
-          BaseValuePointer6[-1] = transformCoeff11 * BaseValuePointer6[-1];
-          BaseValuePointer6[-0x20] = transformCoeff16 * *BaseValuePointer6 + transformCoeff11 * BaseValuePointer6[-0x20];
-          *BaseValuePointer6 = transformCoeff11 * *BaseValuePointer6;
-          BaseValuePointer6[-0x1f] = transformCoeff11 * BaseValuePointer6[-0x1f] + transformCoeff16 * BaseValuePointer6[1];
-          BaseValuePointer6[1] = transformCoeff11 * BaseValuePointer6[1];
-          BaseValuePointer6[-0x1e] = transformCoeff11 * BaseValuePointer6[-0x1e] + transformCoeff16 * BaseValuePointer6[2];
-          BaseValuePointer6[2] = transformCoeff11 * BaseValuePointer6[2];
+          BaseValuePointer6[-0x21] = transformCoefficient * BaseValuePointer6[-0x21] + transformCoeff16 * BaseValuePointer6[-1];
+          BaseValuePointer6[-1] = transformCoefficient * BaseValuePointer6[-1];
+          BaseValuePointer6[-0x20] = transformCoeff16 * *BaseValuePointer6 + transformCoefficient * BaseValuePointer6[-0x20];
+          *BaseValuePointer6 = transformCoefficient * *BaseValuePointer6;
+          BaseValuePointer6[-0x1f] = transformCoefficient * BaseValuePointer6[-0x1f] + transformCoeff16 * BaseValuePointer6[1];
+          BaseValuePointer6[1] = transformCoefficient * BaseValuePointer6[1];
+          BaseValuePointer6[-0x1e] = transformCoefficient * BaseValuePointer6[-0x1e] + transformCoeff16 * BaseValuePointer6[2];
+          BaseValuePointer6[2] = transformCoefficient * BaseValuePointer6[2];
           BaseValuePointer6 = BaseValuePointer6 + 4;
           contextOffset = contextOffset + -1;
         } while (contextOffset != 0);
@@ -197862,8 +197862,8 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
         BaseValuePointer6 = (float *)(uiContext + 0x2ac + dataPointer * 4);
         contextOffset = allocatedMemoryBlock - dataPointer;
         do {
-          BaseValuePointer6[-0x20] = transformCoeff11 * BaseValuePointer6[-0x20] + transformCoeff17 * FloatValue2 * transformCoeff11 * *BaseValuePointer6;
-          *BaseValuePointer6 = transformCoeff11 * *BaseValuePointer6;
+          BaseValuePointer6[-0x20] = transformCoefficient * BaseValuePointer6[-0x20] + transformCoeff17 * FloatValue2 * transformCoefficient * *BaseValuePointer6;
+          *BaseValuePointer6 = transformCoefficient * *BaseValuePointer6;
           BaseValuePointer6 = BaseValuePointer6 + 1;
           contextOffset = contextOffset + -1;
         } while (contextOffset != 0);
@@ -197932,7 +197932,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
         do {
           FloatValue2 = 0.0;
           transformCoeff17 = 0.0;
-          transformCoeff11 = 0.0;
+          transformCoefficient = 0.0;
           transformCoeff16 = 0.0;
           iterationCounter = (int)dataPointer * resultPointer;
           afStack_108[0] = 0.0;
@@ -197960,7 +197960,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
                 CounterResult = (ulonglong)componentIndex;
                 FloatValue2 = FloatValue2 + *pTransformCoefficient2 * *pTransformCoefficient2;
                 transformCoeff17 = transformCoeff17 + pTransformCoefficient2[1] * pTransformCoefficient2[1];
-                transformCoeff11 = transformCoeff11 + pTransformCoefficient2[2] * pTransformCoefficient2[2];
+                transformCoefficient = transformCoefficient + pTransformCoefficient2[2] * pTransformCoefficient2[2];
                 transformCoeff16 = transformCoeff16 + pTransformCoefficient2[3] * pTransformCoefficient2[3];
                 pTransformCoefficient2 = BaseValuePointer6 + result1 + 4;
                 result1 = result1 + 8;
@@ -197969,7 +197969,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
                 transformCoeff14 = transformCoeff14 + pTransformCoefficient2[2] * pTransformCoefficient2[2];
                 transformCoeff15 = transformCoeff15 + pTransformCoefficient2[3] * pTransformCoefficient2[3];
               } while ((int)componentIndex < (int)(resultPointer - iterationCounter));
-              afStack_108[0] = transformCoeff11 + transformCoeff14 + FloatValue2 + transformCoeff12 + transformCoeff16 + transformCoeff15 + transformCoeff17 + transformCoeff13
+              afStack_108[0] = transformCoefficient + transformCoeff14 + FloatValue2 + transformCoeff12 + transformCoeff16 + transformCoeff15 + transformCoeff17 + transformCoeff13
               ;
             }
             FloatValue2 = afStack_108[0];
@@ -197986,14 +197986,14 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
           }
           transformCoeff17 = *(float *)(uiContext + 0x22c);
           if (FloatValue2 <= transformCoeff17) {
-            transformCoeff11 = *(float *)(uiContext + 0x338);
+            transformCoefficient = *(float *)(uiContext + 0x338);
           }
           else {
-            transformCoeff11 = *(float *)(uiContext + 0x330);
+            transformCoefficient = *(float *)(uiContext + 0x330);
           }
-          FloatValue2 = (FloatValue2 - *(float *)(uiContext + 0x2ac)) * transformCoeff11 + *(float *)(uiContext + 0x2ac);
+          FloatValue2 = (FloatValue2 - *(float *)(uiContext + 0x2ac)) * transformCoefficient + *(float *)(uiContext + 0x2ac);
           *(float *)(uiContext + 0x2ac) = FloatValue2;
-          transformCoeff17 = (FloatValue2 - transformCoeff17) * transformCoeff11 + transformCoeff17;
+          transformCoeff17 = (FloatValue2 - transformCoeff17) * transformCoefficient + transformCoeff17;
           *(float *)(uiContext + 0x22c) = transformCoeff17;
           FloatValue2 = *(float *)(uiContext + 0x340);
           if (*(float *)(uiContext + 0x21c) <= transformCoeff17 && transformCoeff17 != *(float *)(uiContext + 0x21c)) {
@@ -198014,7 +198014,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
             do {
               pTransformCoefficient3 = (float *)(contextOffset + -0x10 + (longlong)BaseValuePointer6);
               transformCoeff17 = pTransformCoefficient3[1];
-              transformCoeff11 = pTransformCoefficient3[2];
+              transformCoefficient = pTransformCoefficient3[2];
               transformCoeff16 = pTransformCoefficient3[3];
               result1 = result1 + 0x10;
               pTransformCoefficient2 = (float *)(contextOffset + (longlong)BaseValuePointer6);
@@ -198025,11 +198025,11 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
               pTransformCoefficient2 = BaseValuePointer6 + 0x10;
               BaseValuePointer6[-4] = *pTransformCoefficient3 * FloatValue2;
               BaseValuePointer6[-3] = transformCoeff17 * FloatValue2;
-              BaseValuePointer6[-2] = transformCoeff11 * FloatValue2;
+              BaseValuePointer6[-2] = transformCoefficient * FloatValue2;
               BaseValuePointer6[-1] = transformCoeff16 * FloatValue2;
               pTransformCoefficient3 = (float *)(contextOffset + -0x30 + (longlong)pTransformCoefficient2);
               transformCoeff17 = *pTransformCoefficient3;
-              transformCoeff11 = pTransformCoefficient3[1];
+              transformCoefficient = pTransformCoefficient3[1];
               transformCoeff16 = pTransformCoefficient3[2];
               TransformCoefficient4 = pTransformCoefficient3[3];
               *BaseValuePointer6 = transformCoeff12 * FloatValue2;
@@ -198042,7 +198042,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
               transformCoeff14 = pTransformCoefficient3[2];
               transformCoeff15 = pTransformCoefficient3[3];
               BaseValuePointer6[4] = transformCoeff17 * FloatValue2;
-              BaseValuePointer6[5] = transformCoeff11 * FloatValue2;
+              BaseValuePointer6[5] = transformCoefficient * FloatValue2;
               BaseValuePointer6[6] = transformCoeff16 * FloatValue2;
               BaseValuePointer6[7] = TransformCoefficient4 * FloatValue2;
               BaseValuePointer6[8] = transformCoeff12 * FloatValue2;
@@ -198101,14 +198101,14 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
             transformCoeff17 = *BaseValuePointer6;
             FloatValue2 = FloatValue2 * FloatValue2;
             if (FloatValue2 <= transformCoeff17) {
-              transformCoeff11 = *(float *)(uiContext + 0x338);
+              transformCoefficient = *(float *)(uiContext + 0x338);
             }
             else {
-              transformCoeff11 = *(float *)(uiContext + 0x330);
+              transformCoefficient = *(float *)(uiContext + 0x330);
             }
-            FloatValue2 = (FloatValue2 - BaseValuePointer6[0x20]) * transformCoeff11 + BaseValuePointer6[0x20];
+            FloatValue2 = (FloatValue2 - BaseValuePointer6[0x20]) * transformCoefficient + BaseValuePointer6[0x20];
             BaseValuePointer6[0x20] = FloatValue2;
-            transformCoeff17 = (FloatValue2 - transformCoeff17) * transformCoeff11 + transformCoeff17;
+            transformCoeff17 = (FloatValue2 - transformCoeff17) * transformCoefficient + transformCoeff17;
             *BaseValuePointer6 = transformCoeff17;
             FloatValue2 = *(float *)(uiContext + 0x340);
             if (*(float *)(uiContext + 0x21c) <= transformCoeff17 && transformCoeff17 != *(float *)(uiContext + 0x21c)) {
@@ -201323,7 +201323,7 @@ void FUN_180784d10(longlong uiContext,int *dataSource,byte targetBuffer,char buf
   byte isCharacterMatch8;
   byte isCharacterMatch9;
   float *pAccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIDword iterationCount2;
   float transformCoeff13;
   float transformCoeff14;
@@ -201537,17 +201537,17 @@ LAB_180784edc:
       else {
         func_0x00018074a3d0(*(UIHandle *)(uiContext + 0xa8),processingResult4,&pstackUInt310);
         if ((float)(int)pstackUInt310[1] <= 1.0) {
-          transformCoeff11 = 1.0;
+          transformCoefficient = 1.0;
         }
         else {
           func_0x00018074a3d0(*(UIHandle *)(uiContext + 0xa8),*(UIDword *)(uiBufferData + 0x24c),
                               &pstackUInt310);
-          transformCoeff11 = SQRT((float)(int)pstackUInt310[1]);
+          transformCoefficient = SQRT((float)(int)pstackUInt310[1]);
         }
         FUN_1807d47c0(*(UIDword *)(uiBufferData + 0x244),1,0xc,afStack_308 + 8);
         func_0x00018074a3d0(*(UIHandle *)(uiContext + 0xa8),*(UIDword *)(uiBufferData + 0x24c),
                             &pstackUInt310);
-        func_0x0001807d64c0(pstackUInt310,1.0 / transformCoeff11,0x3f800000);
+        func_0x0001807d64c0(pstackUInt310,1.0 / transformCoefficient,0x3f800000);
       }
     }
     else if (*pprocessingResult == 1) {
@@ -201576,9 +201576,9 @@ LAB_180784edc:
       FUN_1807d47c0(0xc,0xc,0xc);
       if (0.0 < *(float *)(uiContext + 0x2b8)) {
         if (*(int *)(uiBufferData + 0x2c8) == 1) {
-          transformCoeff11 = (float)FUN_180782f30(uiContext,*(UIDword *)(uiBufferData + 0x2d8));
+          transformCoefficient = (float)FUN_180782f30(uiContext,*(UIDword *)(uiBufferData + 0x2d8));
           iterationCount2 = func_0x000180782f80(uiContext,*(UIDword *)(uiBufferData + 0x2dc));
-          fStack_320 = transformCoeff11 * *(float *)(uiContext + 0x2b8);
+          fStack_320 = transformCoefficient * *(float *)(uiContext + 0x2b8);
           stackUInt340 = *(UIDword *)(uiBufferData + 0x298);
           stackUInt330 = 0;
           pfStack_338 = (float *)CONCAT44(pfStack_338._4_4_,*(UIDword *)(uiBufferData + 0x29c));
@@ -201589,7 +201589,7 @@ LAB_180784edc:
           FUN_180784b00(uiContext,*(UIHandle *)(uiContext + 600),afStack_308 + 8);
         }
         else {
-          transformCoeff11 = 0.0;
+          transformCoefficient = 0.0;
           afStack_308[0] = 0.0;
           afStack_308[1] = 0.0;
           transformCoeff14 = 0.0;
@@ -201613,13 +201613,13 @@ LAB_180784edc:
                   transformCoeff15 = transformCoeff13;
                 }
                 transformCoeff14 = transformCoeff14 + transformCoeff15;
-                transformCoeff11 = transformCoeff11 + transformCoeff15 * transformCoeff17;
+                transformCoefficient = transformCoefficient + transformCoeff15 * transformCoeff17;
               }
               processingResult4 = processingResult4 + 1;
               resultPointer5 = resultPointer5 + 5;
               BaseValuePointer3 = BaseValuePointer3 + 1;
             } while (processingResult4 < *(int *)(uiBufferData + 0x2c8));
-            if (transformCoeff11 != 0.0) {
+            if (transformCoefficient != 0.0) {
               if (0 < *(int *)(uiBufferData + 0x2c8)) {
                 BaseValuePointer0 = afStack_308;
                 BaseValuePointer3 = (float *)(uiContext + 0x2d4);
@@ -201672,7 +201672,7 @@ LAB_180784edc:
                   result7 = (ulonglong)iterationCounter;
                   if (0 < (int)iterationCounter) {
                     do {
-                      *BaseValuePointer0 = (transformCoeff11 / SQRT(transformCoeff14)) * transformCoeff13 * *BaseValuePointer0;
+                      *BaseValuePointer0 = (transformCoefficient / SQRT(transformCoeff14)) * transformCoeff13 * *BaseValuePointer0;
                       result7 = result7 - 1;
                       BaseValuePointer0 = BaseValuePointer0 + 1;
                     } while (result7 != 0);
@@ -201699,17 +201699,17 @@ LAB_180784edc:
           IsValidationComplete = true;
         }
         if ((!bVar4) || (0.0 <= *(float *)(uiContext + 0x2a0))) {
-          transformCoeff11 = 0.0;
+          transformCoefficient = 0.0;
         }
         else {
-          transformCoeff11 = -*(float *)(uiContext + 0x2a0);
+          transformCoefficient = -*(float *)(uiContext + 0x2a0);
         }
         if ((!IsValidationComplete) || (transformCoeff14 = *(float *)(uiContext + 0x2a0), transformCoeff14 <= 0.0)) {
           transformCoeff14 = 0.0;
         }
         transformCoeff13 = 1.0 - *(float *)(uiContext + 0x2b8);
         transformCoeff17 = (1.0 - transformCoeff14) * transformCoeff13;
-        transformCoeff15 = (1.0 - transformCoeff11) * transformCoeff13;
+        transformCoeff15 = (1.0 - transformCoefficient) * transformCoeff13;
         if (transformCoeff17 != 0.0) {
           stackUInt340 = *(UIDword *)(uiBufferData + 0x298);
           stackUInt330 = *(UIDword *)(uiBufferData + 0x294);
@@ -201732,13 +201732,13 @@ LAB_180784edc:
           fStack_320 = transformCoeff13 * transformCoeff14;
           FUN_180784b00(uiContext,*(UIHandle *)(uiContext + 0x268),afStack_308 + 8);
         }
-        if ((transformCoeff13 * transformCoeff11 != 0.0) && (bVar4)) {
+        if ((transformCoeff13 * transformCoefficient != 0.0) && (bVar4)) {
           fStack_358 = *(float *)(uiContext + 0x28c);
           pfStack_338 = afStack_308 + 8;
           stackUInt330 = 0;
           stackUInt340 = 0xc;
           stackUInt350 = (float *)((ulonglong)stackUInt350 & 0xffffffff00000000);
-          fStack_348 = transformCoeff13 * transformCoeff11;
+          fStack_348 = transformCoeff13 * transformCoefficient;
           FUN_1807d6d40(*(UIHandle *)(uiContext + 0x270),*(UIHandle *)(uiContext + 600),
                         *(UIDword *)(uiBufferData + 0x284),*(UIDword *)(uiBufferData + 0x288));
         }
@@ -201806,7 +201806,7 @@ void FUN_180784ebd(UIHandle uiContext,ulonglong dataSource,char targetBuffer)
   UIHandle extraout_XMM0_Qb_01;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   UIDword iterationCount2;
   UIDword stackUInt32_68;
   UIHandle stackParam00000070;
@@ -201972,12 +201972,12 @@ LAB_180784edc:
                 aresult8._0_8_ = FUN_180782f30(aresult8._0_8_,*renderDataPointer);
                 aresult8._8_8_ = extraout_XMM0_Qb_00;
                 *BaseValuePointer0 = (float)aresult8._0_8_ * baseValue6;
-                transformCoeff11 = 1.0 - AccumulatedFloat;
+                transformCoefficient = 1.0 - AccumulatedFloat;
                 if (baseValue6 <= 1.0 - AccumulatedFloat) {
-                  transformCoeff11 = baseValue6;
+                  transformCoefficient = baseValue6;
                 }
-                AccumulatedFloat = AccumulatedFloat + transformCoeff11;
-                FloatValue2 = FloatValue2 + transformCoeff11 * (float)aresult8._0_8_;
+                AccumulatedFloat = AccumulatedFloat + transformCoefficient;
+                FloatValue2 = FloatValue2 + transformCoefficient * (float)aresult8._0_8_;
               }
               ProcessingResult1 = ProcessingResult1 + 1;
               renderDataPointer = renderDataPointer + 5;
@@ -219035,7 +219035,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -219231,13 +219231,13 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           baseValue0 = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue3 + AccumulatedFloat * baseValue + finalResult * vectorComponentX;
           FloatValue1 = (_DAT_180be2df8 + TransformCoefficient1[1]) * baseValue3 + fStack_c4 * baseValue + FloatValue2 * vectorComponentX;
           transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[2]) * baseValue3 + fStack_d0 * baseValue + LocalFloatValue9 * vectorComponentX;
-          transformCoeff11 = (_DAT_180be2df8 + TransformCoefficient1[3]) * baseValue3 + fStack_cc * baseValue + fStack_bc * vectorComponentX;
+          transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[3]) * baseValue3 + fStack_cc * baseValue + fStack_bc * vectorComponentX;
           transformCoeff14 = (_DAT_180be2df8 + TransformCoefficient1[4]) * baseValue3 + fStack_d4 * baseValue + fStack_b8 * vectorComponentX;
           baseValue3 = (_DAT_180be2df8 + TransformCoefficient1[5]) * baseValue3 + fStack_c8 * baseValue + fStack_b4 * vectorComponentX;
           _DAT_180be2df8 = -_DAT_180be2df8;
           pTransformCoefficient2[1] = FloatValue1;
           pTransformCoefficient2[2] = transformCoeff12;
-          pTransformCoefficient2[3] = transformCoeff11;
+          pTransformCoefficient2[3] = transformCoefficient;
           pTransformCoefficient2[4] = transformCoeff14;
           pTransformCoefficient2[5] = baseValue3;
           *(float *)((longlong)targetBuffer + (-8 - (longlong)dataSource) + (longlong)TransformCoefficient1) = baseValue2;
@@ -219256,7 +219256,7 @@ UIHandle FUN_180794140(longlong uiContext,float *dataSource,float *targetBuffer,
           baseValue1 = transformCoeff13;
           finalResult = AccumulatedFloat;
           fStack_d0 = transformCoeff12;
-          fStack_cc = transformCoeff11;
+          fStack_cc = transformCoefficient;
           fStack_c8 = baseValue3;
         } while (maxProcessingCount != 0);
       }
@@ -219346,7 +219346,7 @@ UIHandle FUN_1807942ce(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float fStackX_24;
@@ -219372,14 +219372,14 @@ UIHandle FUN_1807942ce(void)
         baseValue3 = TemporaryFloatValue;
         transformCoeff12 = AccumulatedFloat;
         TemporaryFloatValue = *(float *)(contextHandle + 0x324);
-        transformCoeff11 = *(float *)(contextHandle + 800);
+        transformCoefficient = *(float *)(contextHandle + 800);
         finalResult = *(float *)(contextHandle + 0x328);
         ResultFloatValue = _DAT_180be2df8 + uiContextBasePointer[1];
-        AccumulatedFloat = (_DAT_180be2df8 + *uiContextBasePointer) * transformCoeff11 + TemporaryFloatValue * transformCoeff12 + finalResult * transformCoeff13;
+        AccumulatedFloat = (_DAT_180be2df8 + *uiContextBasePointer) * transformCoefficient + TemporaryFloatValue * transformCoeff12 + finalResult * transformCoeff13;
         uiContextBasePointer = uiContextBasePointer + 2;
         _DAT_180be2df8 = -_DAT_180be2df8;
         *uiTargetHandle = AccumulatedFloat;
-        TemporaryFloatValue = ResultFloatValue * transformCoeff11 + TemporaryFloatValue * baseValue3 + finalResult * baseValue5;
+        TemporaryFloatValue = ResultFloatValue * transformCoefficient + TemporaryFloatValue * baseValue3 + finalResult * baseValue5;
         uiTargetHandle[1] = TemporaryFloatValue;
         uiTargetHandle = uiTargetHandle + 2;
         unmodifiedESI = unmodifiedESI + -1;
@@ -219400,7 +219400,7 @@ UIHandle FUN_1807942ce(void)
     fStack0000000000000028 = *(float *)(contextHandle + 0x24c);
     transformCoeff12 = *(float *)(contextHandle + 0x220);
     baseValue3 = *(float *)(contextHandle + 0x224);
-    transformCoeff11 = *(float *)(contextHandle + 0x228);
+    transformCoefficient = *(float *)(contextHandle + 0x228);
     finalResult = *(float *)(contextHandle + 0x22c);
     ResultFloatValue = *(float *)(contextHandle + 0x230);
     baseValue6 = *(float *)(contextHandle + 0x238);
@@ -219419,7 +219419,7 @@ UIHandle FUN_1807942ce(void)
         TemporaryFloatValue = baseValue2;
         transformCoeff13 = baseValue6;
         AccumulatedFloat = ResultFloatValue;
-        finalResult = transformCoeff11;
+        finalResult = transformCoefficient;
         baseValue3 = transformCoeff12;
         baseValue0 = *(float *)(contextHandle + 0x324);
         baseValue = *(float *)(contextHandle + 800);
@@ -219427,13 +219427,13 @@ UIHandle FUN_1807942ce(void)
         baseValue1 = _DAT_180be2df8 + TransformCoefficient1[2];
         transformCoeff12 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + baseValue0 * baseValue3 + baseValue2 * LocalFloatValue9;
         baseValue5 = _DAT_180be2df8 + TransformCoefficient1[1];
-        transformCoeff11 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + baseValue0 * finalResult + baseValue2 * vectorComponentX;
+        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + baseValue0 * finalResult + baseValue2 * vectorComponentX;
         ResultFloatValue = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue + baseValue0 * AccumulatedFloat +
                 baseValue2 * fStack0000000000000034;
         LocalFloatValue9 = _DAT_180be2df8 + TransformCoefficient1[3];
         _DAT_180be2df8 = -_DAT_180be2df8;
         baseValue6 = baseValue5 * baseValue + baseValue0 * transformCoeff13 + baseValue2 * fStack0000000000000030;
-        pTransformCoefficient2[-1] = transformCoeff11;
+        pTransformCoefficient2[-1] = transformCoefficient;
         baseValue5 = baseValue2 * fStack0000000000000108;
         baseValue2 = baseValue1 * baseValue + baseValue0 * TemporaryFloatValue + baseValue2 * fStack000000000000002c;
         fStack0000000000000108 = fStack0000000000000028;
@@ -219455,7 +219455,7 @@ UIHandle FUN_1807942ce(void)
     }
     *(float *)(contextHandle + 0x220) = transformCoeff12;
     *(float *)(contextHandle + 0x224) = baseValue3;
-    *(float *)(contextHandle + 0x228) = transformCoeff11;
+    *(float *)(contextHandle + 0x228) = transformCoefficient;
     *(float *)(contextHandle + 0x22c) = finalResult;
     *(float *)(contextHandle + 0x230) = ResultFloatValue;
     *(float *)(contextHandle + 0x234) = AccumulatedFloat;
@@ -219474,7 +219474,7 @@ UIHandle FUN_1807942ce(void)
     transformCoeff12 = *(float *)(contextHandle + 0x250);
     fStackX_24 = *(float *)(contextHandle + 0x254);
     baseValue3 = *(float *)(contextHandle + 0x224);
-    transformCoeff11 = *(float *)(contextHandle + 0x22c);
+    transformCoefficient = *(float *)(contextHandle + 0x22c);
     finalResult = *(float *)(contextHandle + 0x234);
     fStack0000000000000034 = *(float *)(contextHandle + 0x23c);
     fStack000000000000003c = *(float *)(contextHandle + 0x24c);
@@ -219488,20 +219488,20 @@ UIHandle FUN_1807942ce(void)
       TransformCoefficient1 = uiContextBasePointer + 2;
       baseValue6 = fStack0000000000000034;
       baseValue2 = baseValue3;
-      LocalFloatValue9 = transformCoeff11;
+      LocalFloatValue9 = transformCoefficient;
       vectorComponentX = finalResult;
       fStack0000000000000040 = fStackX_24;
       do {
         fStack0000000000000034 = baseValue5;
         fStackX_24 = transformCoeff12;
         finalResult = TemporaryFloatValue;
-        transformCoeff11 = transformCoeff13;
+        transformCoefficient = transformCoeff13;
         baseValue3 = AccumulatedFloat;
         baseValue0 = *(float *)(contextHandle + 800);
         baseValue = *(float *)(contextHandle + 0x324);
         baseValue1 = *(float *)(contextHandle + 0x328);
         AccumulatedFloat = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue0 + baseValue3 * baseValue + baseValue2 * baseValue1;
-        transformCoeff13 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue0 + transformCoeff11 * baseValue + LocalFloatValue9 * baseValue1;
+        transformCoeff13 = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue0 + transformCoefficient * baseValue + LocalFloatValue9 * baseValue1;
         TemporaryFloatValue = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue0 + finalResult * baseValue + vectorComponentX * baseValue1;
         baseValue5 = (_DAT_180be2df8 + TransformCoefficient1[1]) * baseValue0 + fStack0000000000000034 * baseValue +
                  baseValue6 * baseValue1;
@@ -219531,7 +219531,7 @@ UIHandle FUN_1807942ce(void)
         baseValue6 = fStack0000000000000034;
         ResultFloatValue = fStack0000000000000028;
         baseValue2 = baseValue3;
-        LocalFloatValue9 = transformCoeff11;
+        LocalFloatValue9 = transformCoefficient;
         vectorComponentX = finalResult;
         fStack0000000000000028 = FloatValue2;
         fStack000000000000002c = FloatValue1;
@@ -219545,7 +219545,7 @@ UIHandle FUN_1807942ce(void)
     *(float *)(contextHandle + 0x220) = AccumulatedFloat;
     *(float *)(contextHandle + 0x224) = baseValue3;
     *(float *)(contextHandle + 0x228) = transformCoeff13;
-    *(float *)(contextHandle + 0x22c) = transformCoeff11;
+    *(float *)(contextHandle + 0x22c) = transformCoefficient;
     *(float *)(contextHandle + 0x230) = TemporaryFloatValue;
     *(float *)(contextHandle + 0x234) = finalResult;
     *(float *)(contextHandle + 0x238) = baseValue5;
@@ -219622,7 +219622,7 @@ UIHandle FUN_1807943f6(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float fStackX_24;
@@ -219642,7 +219642,7 @@ UIHandle FUN_1807943f6(void)
     FloatValue2 = *(float *)(contextHandle + 0x244);
     baseValue3 = *(float *)(contextHandle + 0x248);
     fStack0000000000000028 = *(float *)(contextHandle + 0x24c);
-    transformCoeff11 = *(float *)(contextHandle + 0x220);
+    transformCoefficient = *(float *)(contextHandle + 0x220);
     baseValue1 = *(float *)(contextHandle + 0x224);
     AccumulatedFloat = *(float *)(contextHandle + 0x228);
     baseValue5 = *(float *)(contextHandle + 0x22c);
@@ -219664,12 +219664,12 @@ UIHandle FUN_1807943f6(void)
         transformCoeff12 = vectorComponentX;
         transformCoeff13 = finalResult;
         baseValue5 = AccumulatedFloat;
-        baseValue1 = transformCoeff11;
+        baseValue1 = transformCoefficient;
         TemporaryFloatValue = *(float *)(contextHandle + 0x324);
         baseValue = *(float *)(contextHandle + 800);
         baseValue0 = *(float *)(contextHandle + 0x328);
         LocalFloatValue9 = _DAT_180be2df8 + TransformCoefficient1[2];
-        transformCoeff11 = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + TemporaryFloatValue * baseValue1 + baseValue0 * ResultFloatValue;
+        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[-2]) * baseValue + TemporaryFloatValue * baseValue1 + baseValue0 * ResultFloatValue;
         baseValue3 = _DAT_180be2df8 + TransformCoefficient1[1];
         AccumulatedFloat = (_DAT_180be2df8 + TransformCoefficient1[-1]) * baseValue + TemporaryFloatValue * baseValue5 + baseValue0 * baseValue2;
         finalResult = (_DAT_180be2df8 + *TransformCoefficient1) * baseValue + TemporaryFloatValue * transformCoeff13 +
@@ -219684,7 +219684,7 @@ UIHandle FUN_1807943f6(void)
         *pTransformCoefficient2 = finalResult;
         pTransformCoefficient2[1] = vectorComponentX;
         pTransformCoefficient2[2] = baseValue0;
-        *(float *)((uiTargetHandle - (longlong)uiContextBasePointer) + -8 + (longlong)TransformCoefficient1) = transformCoeff11;
+        *(float *)((uiTargetHandle - (longlong)uiContextBasePointer) + -8 + (longlong)TransformCoefficient1) = transformCoefficient;
         baseValue3 = ResultFloatValue * baseValue + TemporaryFloatValue * fStack0000000000000028 + baseValue3;
         pTransformCoefficient2[3] = baseValue3;
         pTransformCoefficient2 = pTransformCoefficient2 + 6;
@@ -219697,7 +219697,7 @@ UIHandle FUN_1807943f6(void)
         fStack0000000000000034 = transformCoeff13;
       } while (unmodifiedESI != 0);
     }
-    *(float *)(contextHandle + 0x220) = transformCoeff11;
+    *(float *)(contextHandle + 0x220) = transformCoefficient;
     *(float *)(contextHandle + 0x224) = baseValue1;
     *(float *)(contextHandle + 0x228) = AccumulatedFloat;
     *(float *)(contextHandle + 0x22c) = baseValue5;
@@ -219715,7 +219715,7 @@ UIHandle FUN_1807943f6(void)
     transformCoeff12 = *(float *)(contextHandle + 0x228);
     FloatValue2 = *(float *)(contextHandle + 0x230);
     baseValue3 = *(float *)(contextHandle + 0x238);
-    transformCoeff11 = *(float *)(contextHandle + 0x250);
+    transformCoefficient = *(float *)(contextHandle + 0x250);
     fStackX_24 = *(float *)(contextHandle + 0x254);
     baseValue1 = *(float *)(contextHandle + 0x224);
     AccumulatedFloat = *(float *)(contextHandle + 0x22c);
@@ -219737,7 +219737,7 @@ UIHandle FUN_1807943f6(void)
       fStack0000000000000040 = fStackX_24;
       do {
         fStack0000000000000034 = baseValue3;
-        fStackX_24 = transformCoeff11;
+        fStackX_24 = transformCoefficient;
         baseValue5 = FloatValue2;
         AccumulatedFloat = transformCoeff12;
         baseValue1 = transformCoeff13;
@@ -219753,7 +219753,7 @@ UIHandle FUN_1807943f6(void)
                  finalResult * LocalFloatValue9;
         baseValue6 = (_DAT_180be2df8 + TransformCoefficient1[3]) * TemporaryFloatValue + fStack000000000000002c * baseValue +
                  fStack000000000000003c * LocalFloatValue9;
-        transformCoeff11 = (_DAT_180be2df8 + TransformCoefficient1[4]) * TemporaryFloatValue + fStackX_24 * baseValue +
+        transformCoefficient = (_DAT_180be2df8 + TransformCoefficient1[4]) * TemporaryFloatValue + fStackX_24 * baseValue +
                  fStack0000000000000040 * LocalFloatValue9;
         TemporaryFloatValue = (_DAT_180be2df8 + TransformCoefficient1[5]) * TemporaryFloatValue + fStack0000000000000030 * baseValue +
                 fStack0000000000000044 * LocalFloatValue9;
@@ -219761,7 +219761,7 @@ UIHandle FUN_1807943f6(void)
         pTransformCoefficient2[1] = baseValue3;
         pTransformCoefficient2[2] = FloatValue1;
         pTransformCoefficient2[3] = baseValue6;
-        pTransformCoefficient2[4] = transformCoeff11;
+        pTransformCoefficient2[4] = transformCoefficient;
         pTransformCoefficient2[5] = TemporaryFloatValue;
         *(float *)((uiTargetHandle - (longlong)uiContextBasePointer) + -8 + (longlong)TransformCoefficient1) = transformCoeff13;
         TransformCoefficient1 = TransformCoefficient1 + 8;
@@ -219794,7 +219794,7 @@ UIHandle FUN_1807943f6(void)
     *(float *)(contextHandle + 0x234) = baseValue5;
     *(float *)(contextHandle + 0x238) = baseValue3;
     *(float *)(contextHandle + 0x244) = finalResult;
-    *(float *)(contextHandle + 0x250) = transformCoeff11;
+    *(float *)(contextHandle + 0x250) = transformCoefficient;
     *(float *)(contextHandle + 0x254) = fStackX_24;
     *(float *)(contextHandle + 600) = fStack0000000000000030;
     *(float *)(contextHandle + 0x25c) = fStack0000000000000044;
@@ -221717,7 +221717,7 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -221836,33 +221836,33 @@ void FUN_180797280(longlong uiContext,uint *dataSource,float *targetBuffer,float
       eventStatus = result1;
       do {
         AccumulatedFloat = *(float *)((longlong)afStack_b8 + eventProcessingCounter + 4);
-        transformCoeff11 = *(float *)((longlong)afStack_b8 + eventProcessingCounter + 8);
+        transformCoefficient = *(float *)((longlong)afStack_b8 + eventProcessingCounter + 8);
         transformCoeff12 = *(float *)((longlong)afStack_b8 + eventProcessingCounter + 0xc);
         iterationCounter = (int)eventStatus + 4;
         eventStatus = (ulonglong)iterationCounter;
         contextValue = -(uint)(*(float *)((longlong)afStack_b8 + eventProcessingCounter) < transformCoeff14);
         componentIndex = -(uint)(AccumulatedFloat < transformCoeff14);
-        CounterResult = -(uint)(transformCoeff11 < transformCoeff14);
+        CounterResult = -(uint)(transformCoefficient < transformCoeff14);
         TotalResult = -(uint)(transformCoeff12 < transformCoeff14);
         transformCoeff13 = (float)((uint)(1.0 - (*(float *)((longlong)afStack_b8 + eventProcessingCounter) - transformCoeff15)                                       ((FloatValue2 + FloatValue2) - FloatValue2 * FloatValue2 * (transformCoeff14 - transformCoeff15))) &
                          contextValue | ~contextValue & *(uint *)((longlong)afStack_d8 + eventProcessingCounter));
         transformCoeff16 = (float)((uint)(1.0 - (AccumulatedFloat - transformCoeff15)                                       ((finalResult + finalResult) - finalResult * finalResult * (transformCoeff14 - transformCoeff15))) &
                          componentIndex | ~componentIndex & *(uint *)((longlong)afStack_d8 + eventProcessingCounter + 4));
-        transformCoeff17 = (float)((uint)(1.0 - (transformCoeff11 - transformCoeff15)                                       ((transformCoeff19 + transformCoeff19) - transformCoeff19 * transformCoeff19 * (transformCoeff14 - transformCoeff15))) &
+        transformCoeff17 = (float)((uint)(1.0 - (transformCoefficient - transformCoeff15)                                       ((transformCoeff19 + transformCoeff19) - transformCoeff19 * transformCoeff19 * (transformCoeff14 - transformCoeff15))) &
                          CounterResult | ~CounterResult & *(uint *)((longlong)afStack_d8 + eventProcessingCounter + 8));
         transformCoeff18 = (float)((uint)(1.0 - (transformCoeff12 - transformCoeff15)                                       ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (transformCoeff14 - transformCoeff15))) &
                          TotalResult | ~TotalResult & *(uint *)((longlong)afStack_d8 + eventProcessingCounter + 0xc));
         AccumulatedFloat = (float)(((uint)(transformCoeff13 * transformCoeff13) & contextValue | ~contextValue & (uint)transformCoeff13) & contextValue);
-        transformCoeff11 = (float)(((uint)(transformCoeff16 * transformCoeff16) & componentIndex | ~componentIndex & (uint)transformCoeff16) & componentIndex);
+        transformCoefficient = (float)(((uint)(transformCoeff16 * transformCoeff16) & componentIndex | ~componentIndex & (uint)transformCoeff16) & componentIndex);
         transformCoeff12 = (float)(((uint)(transformCoeff17 * transformCoeff17) & CounterResult | ~CounterResult & (uint)transformCoeff17) & CounterResult);
         transformCoeff13 = (float)(((uint)(transformCoeff18 * transformCoeff18) & TotalResult | ~TotalResult & (uint)transformCoeff18) & TotalResult);
         *(float *)((longlong)afStack_d8 + eventProcessingCounter) = AccumulatedFloat;
-        *(float *)((longlong)afStack_d8 + eventProcessingCounter + 4) = transformCoeff11;
+        *(float *)((longlong)afStack_d8 + eventProcessingCounter + 4) = transformCoefficient;
         *(float *)((longlong)afStack_d8 + eventProcessingCounter + 8) = transformCoeff12;
         *(float *)((longlong)afStack_d8 + eventProcessingCounter + 0xc) = transformCoeff13;
         eventProcessingCounter = eventProcessingCounter + 0x10;
         TransformCoefficient22 = TransformCoefficient22 + AccumulatedFloat;
-        TransformCoefficient23 = TransformCoefficient23 + transformCoeff11;
+        TransformCoefficient23 = TransformCoefficient23 + transformCoefficient;
         transformMatrix24 = transformMatrix24 + transformCoeff12;
         TransformCoefficient25 = TransformCoefficient25 + transformCoeff13;
       } while ((int)iterationCounter < (int)(eventCodeType - loopCounter));
@@ -222043,7 +222043,7 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -222164,25 +222164,25 @@ void FUN_18079732a(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,fl
       ptrLocal3 = (uint *)(&stack0x00000000 + maxProcessingCount);
       AccumulatedFloat = (float)((uint)(1.0 - (*(float *)((longlong)transformCoeffArray + maxProcessingCount) - in_XMM4_Da)                                     ((baseValue6 + baseValue6) - baseValue6 * baseValue6 * (transformCoeff17 - in_XMM4_Da))) &
                        bufferValue | ~bufferValue & *ptrLocal3);
-      transformCoeff11 = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((finalResult + finalResult) - finalResult * finalResult * (transformCoeff17 - in_XMM4_Da))) &
+      transformCoefficient = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((finalResult + finalResult) - finalResult * finalResult * (transformCoeff17 - in_XMM4_Da))) &
                        contextValue | ~contextValue & ptrLocal3[1]);
       transformCoeff12 = (float)((uint)(1.0 - (*(float *)(&stack0x00000028 + maxProcessingCount) - in_XMM4_Da)                                     ((transformCoeff14 + transformCoeff14) - transformCoeff14 * transformCoeff14 * (transformCoeff17 - in_XMM4_Da))) &
                        componentIndex | ~componentIndex & ptrLocal3[2]);
       transformCoeff13 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + maxProcessingCount) - in_XMM4_Da)                                     ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (transformCoeff17 - in_XMM4_Da))) &
                        CounterResult | ~CounterResult & ptrLocal3[3]);
       FloatValue2 = (float)(((uint)(AccumulatedFloat * AccumulatedFloat) & bufferValue | ~bufferValue & (uint)AccumulatedFloat) & bufferValue);
-      AccumulatedFloat = (float)(((uint)(transformCoeff11 * transformCoeff11) & contextValue | ~contextValue & (uint)transformCoeff11) & contextValue);
-      transformCoeff11 = (float)(((uint)(transformCoeff12 * transformCoeff12) & componentIndex | ~componentIndex & (uint)transformCoeff12) & componentIndex);
+      AccumulatedFloat = (float)(((uint)(transformCoefficient * transformCoefficient) & contextValue | ~contextValue & (uint)transformCoefficient) & contextValue);
+      transformCoefficient = (float)(((uint)(transformCoeff12 * transformCoeff12) & componentIndex | ~componentIndex & (uint)transformCoeff12) & componentIndex);
       transformCoeff12 = (float)(((uint)(transformCoeff13 * transformCoeff13) & CounterResult | ~CounterResult & (uint)transformCoeff13) & CounterResult);
       bufferPointer = (float *)(&stack0x00000000 + maxProcessingCount);
       *bufferPointer = FloatValue2;
       bufferPointer[1] = AccumulatedFloat;
-      bufferPointer[2] = transformCoeff11;
+      bufferPointer[2] = transformCoefficient;
       bufferPointer[3] = transformCoeff12;
       maxProcessingCount = maxProcessingCount + 0x10;
       transformCoeff18 = transformCoeff18 + FloatValue2;
       transformCoeff19 = transformCoeff19 + AccumulatedFloat;
-      TransformCoefficient20 = TransformCoefficient20 + transformCoeff11;
+      TransformCoefficient20 = TransformCoefficient20 + transformCoefficient;
       TransformCoefficient21 = TransformCoefficient21 + transformCoeff12;
     } while ((int)loopCounter < (int)(result1 - processingStatus));
     aiterationCount6._0_4_ = TransformCoefficient20 + transformCoeff18;
@@ -222363,7 +222363,7 @@ void FUN_180797358(longlong uiContext,UIHandle dataSource,float *targetBuffer,fl
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -222483,25 +222483,25 @@ void FUN_180797358(longlong uiContext,UIHandle dataSource,float *targetBuffer,fl
       ptrLocal3 = (uint *)((longlong)transformCoeffArray + (loopCounter - 0x20));
       AccumulatedFloat = (float)((uint)(1.0 - (*(float *)((longlong)transformCoeffArray + loopCounter) - in_XMM4_Da)                                     ((transformCoeff14 + transformCoeff14) - transformCoeff14 * transformCoeff14 * (transformCoeff17 - in_XMM4_Da))) &
                        result1 | ~result1 & *ptrLocal3);
-      transformCoeff11 = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((baseValue6 + baseValue6) - baseValue6 * baseValue6 * (transformCoeff17 - in_XMM4_Da))) &
+      transformCoefficient = (float)((uint)(1.0 - (FloatValue2 - in_XMM4_Da)                                     ((baseValue6 + baseValue6) - baseValue6 * baseValue6 * (transformCoeff17 - in_XMM4_Da))) &
                        bufferValue | ~bufferValue & ptrLocal3[1]);
       transformCoeff12 = (float)((uint)(1.0 - (*(float *)(&stack0x00000028 + loopCounter) - in_XMM4_Da)                                     ((finalResult + finalResult) - finalResult * finalResult * (transformCoeff17 - in_XMM4_Da))) &
                        contextValue | ~contextValue & ptrLocal3[2]);
       transformCoeff13 = (float)((uint)(1.0 - (*(float *)(&stack0x0000002c + loopCounter) - in_XMM4_Da)                                     ((FloatValue1 + FloatValue1) - FloatValue1 * FloatValue1 * (transformCoeff17 - in_XMM4_Da))) &
                        componentIndex | ~componentIndex & ptrLocal3[3]);
       FloatValue2 = (float)(((uint)(AccumulatedFloat * AccumulatedFloat) & result1 | ~result1 & (uint)AccumulatedFloat) & result1);
-      AccumulatedFloat = (float)(((uint)(transformCoeff11 * transformCoeff11) & bufferValue | ~bufferValue & (uint)transformCoeff11) & bufferValue);
-      transformCoeff11 = (float)(((uint)(transformCoeff12 * transformCoeff12) & contextValue | ~contextValue & (uint)transformCoeff12) & contextValue);
+      AccumulatedFloat = (float)(((uint)(transformCoefficient * transformCoefficient) & bufferValue | ~bufferValue & (uint)transformCoefficient) & bufferValue);
+      transformCoefficient = (float)(((uint)(transformCoeff12 * transformCoeff12) & contextValue | ~contextValue & (uint)transformCoeff12) & contextValue);
       transformCoeff12 = (float)(((uint)(transformCoeff13 * transformCoeff13) & componentIndex | ~componentIndex & (uint)transformCoeff13) & componentIndex);
       pResultFloatValue = (float *)((longlong)transformCoeffArray + (loopCounter - 0x20));
       *pResultFloatValue = FloatValue2;
       pResultFloatValue[1] = AccumulatedFloat;
-      pResultFloatValue[2] = transformCoeff11;
+      pResultFloatValue[2] = transformCoefficient;
       pResultFloatValue[3] = transformCoeff12;
       loopCounter = loopCounter + 0x10;
       transformCoeff18 = transformCoeff18 + FloatValue2;
       transformCoeff19 = transformCoeff19 + AccumulatedFloat;
-      TransformCoefficient20 = TransformCoefficient20 + transformCoeff11;
+      TransformCoefficient20 = TransformCoefficient20 + transformCoefficient;
       TransformCoefficient21 = TransformCoefficient21 + transformCoeff12;
     } while ((int)baseValue5 < (int)(eventStatus - processingStatus));
     aiterationCount6._0_4_ = TransformCoefficient20 + transformCoeff18;
@@ -222673,7 +222673,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
   UIByte aresult9 [16];
   float preservedXMM6;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float unmodifiedXMM8_Da;
@@ -222694,7 +222694,7 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
     eventCode = (eventCodeType - 1 | 0xfffffffc) + 1;
   }
   AccumulatedFloat = 0.0;
-  transformCoeff11 = 0.0;
+  transformCoefficient = 0.0;
   transformCoeff12 = 0.0;
   transformCoeff13 = 0.0;
   aresult9._4_4_ = unmodifiedXMM10_Db - unmodifiedXMM9_Db;
@@ -222738,11 +222738,11 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
     transformCoeffPointer[3] = baseValue5;
     contextDataHandle = contextDataHandle + 0x10;
     AccumulatedFloat = AccumulatedFloat + baseValue2;
-    transformCoeff11 = transformCoeff11 + baseValue3;
+    transformCoefficient = transformCoefficient + baseValue3;
     transformCoeff12 = transformCoeff12 + vectorComponentX;
     transformCoeff13 = transformCoeff13 + baseValue5;
   } while (uiContext < (int)(unmodifiedEBX - eventCodeType));
-  FloatValue1 = transformCoeff12 + AccumulatedFloat + transformCoeff13 + transformCoeff11;
+  FloatValue1 = transformCoeff12 + AccumulatedFloat + transformCoeff13 + transformCoefficient;
   contextDataHandle = (longlong)uiContext;
   if (contextDataHandle < register10) {
     if (3 < register10 - contextDataHandle) {
@@ -222766,13 +222766,13 @@ void FUN_18079750c(int uiContext,UIHandle dataSource,float *targetBuffer,float *
           AccumulatedFloat = AccumulatedFloat * AccumulatedFloat;
         }
         afStackX_8[contextDataHandle] = AccumulatedFloat;
-        transformCoeff11 = unmodifiedXMM8_Da;
+        transformCoefficient = unmodifiedXMM8_Da;
         if (*(float *)(&stack0x0000002c + contextDataHandle * 4) < preservedXMM6) {
-          transformCoeff11 = 1.0 - (*(float *)(&stack0x0000002c + contextDataHandle * 4) - in_XMM4_Da) / baseValue6;
-          transformCoeff11 = transformCoeff11 * transformCoeff11;
+          transformCoefficient = 1.0 - (*(float *)(&stack0x0000002c + contextDataHandle * 4) - in_XMM4_Da) / baseValue6;
+          transformCoefficient = transformCoefficient * transformCoefficient;
         }
-        afStackX_8[contextDataHandle + 1] = transformCoeff11;
-        FloatValue1 = FloatValue1 + baseValue0 + baseValue1 + AccumulatedFloat + transformCoeff11;
+        afStackX_8[contextDataHandle + 1] = transformCoefficient;
+        FloatValue1 = FloatValue1 + baseValue0 + baseValue1 + AccumulatedFloat + transformCoefficient;
         contextDataHandle = contextDataHandle + 4;
       } while (contextDataHandle < register10 + -3);
     }
@@ -224606,7 +224606,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -224809,11 +224809,11 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
                    fStack_e4 * TransformCoefficient2) * TransformCoefficient21;
           transformCoeff16 = (((finalResult * TransformCoefficient3 + fStack_13c * TransformCoefficient4 + fStack_110 * LocalFloatValue6) - fStack_124 * baseValue
                     ) - fStack_e8 * TransformCoefficient2) * TransformCoefficient21;
-          transformCoeff11 = (((transformCoeff14 * TransformCoefficient3 + fStack_138 * TransformCoefficient4 + fStack_148 * LocalFloatValue6) - fStack_120 * baseValue
+          transformCoefficient = (((transformCoeff14 * TransformCoefficient3 + fStack_138 * TransformCoefficient4 + fStack_148 * LocalFloatValue6) - fStack_120 * baseValue
                     ) - fStack_ec * TransformCoefficient2) * TransformCoefficient21;
           FloatValue1 = (((FloatValue2 * TransformCoefficient3 + fStack_134 * TransformCoefficient4 + fStack_100 * LocalFloatValue6) - fStack_11c * baseValue
                     ) - fStack_f0 * TransformCoefficient2) * TransformCoefficient21;
-          *baseScaleFactor = transformCoeff11;
+          *baseScaleFactor = transformCoefficient;
           baseValue6 = (((transformCoeff13 * TransformCoefficient3 + fStack_130 * TransformCoefficient4 + fStack_104 * LocalFloatValue6) - fStack_118 * baseValue
                     ) - fStack_f4 * TransformCoefficient2) * TransformCoefficient21;
           *(float *)((longlong)targetBuffer + (-8 - (longlong)dataSource) + (longlong)bufferPointer) = TransformCoefficient20;
@@ -224846,7 +224846,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           fStack_12c = transformCoeff15;
           fStack_128 = TransformCoefficient20;
           fStack_124 = transformCoeff16;
-          fStack_120 = transformCoeff11;
+          fStack_120 = transformCoefficient;
           fStack_11c = FloatValue1;
           fStack_118 = baseValue6;
           fStack_114 = baseValue5;
@@ -224937,7 +224937,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           transformCoeff16 = (((baseValue5 * TransformCoefficient3 + fStack_130 * TransformCoefficient4 + fStack_e8 * LocalFloatValue6) - fStack_100 * baseValue)
                    - fStack_bc * TransformCoefficient2) * TransformCoefficient21;
           fStack_fc = fStack_11c;
-          transformCoeff11 = (((baseValue6 * TransformCoefficient3 + fStack_134 * TransformCoefficient4 + fStack_e4 * LocalFloatValue6) - fStack_148 * baseValue)
+          transformCoefficient = (((baseValue6 * TransformCoefficient3 + fStack_134 * TransformCoefficient4 + fStack_e4 * LocalFloatValue6) - fStack_148 * baseValue)
                    - fStack_110 * TransformCoefficient2) * TransformCoefficient21;
           fStack_f8 = fStack_120;
           fStack_f4 = fStack_124;
@@ -224956,7 +224956,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           baseScaleFactor[1] = transformCoeff17;
           baseScaleFactor[2] = transformCoeff12;
           baseScaleFactor[3] = TransformCoefficient20;
-          baseScaleFactor[5] = transformCoeff11;
+          baseScaleFactor[5] = transformCoefficient;
           baseScaleFactor = baseScaleFactor + 8;
           fStack_cc = fStack_140;
           fStack_c8 = fStack_dc;
@@ -224965,7 +224965,7 @@ UIHandle FUN_180799810(longlong uiContext,float *dataSource,float *targetBuffer,
           fStack_bc = fStack_100;
           bufferSize = bufferSize - 1;
           vectorComponentX = fStack_118;
-          fStack_148 = transformCoeff11;
+          fStack_148 = transformCoefficient;
           fStack_140 = transformCoeff18;
           fStack_13c = transformCoeff19;
           fStack_138 = FloatValue1;
@@ -225086,7 +225086,7 @@ UIHandle FUN_18079983c(longlong uiContext)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -225345,11 +225345,11 @@ UIHandle FUN_18079983c(longlong uiContext)
                   fStack0000000000000040 * baseValue) - fStack0000000000000084 * transformCoeff1) * TransformCoefficient21;
         transformCoeff16 = (((finalResult * TransformCoefficient3 + fStack000000000000002c * TransformCoefficient4 + fStack0000000000000058 * LocalFloatValue6
                    ) - fStack0000000000000044 * baseValue) - fStack0000000000000080 * transformCoeff1) * TransformCoefficient21;
-        transformCoeff11 = (((transformCoeff14 * TransformCoefficient3 + fStack0000000000000030 * TransformCoefficient4 + fStackX_20 * LocalFloatValue6) -
+        transformCoefficient = (((transformCoeff14 * TransformCoefficient3 + fStack0000000000000030 * TransformCoefficient4 + fStackX_20 * LocalFloatValue6) -
                   fStack0000000000000048 * baseValue) - fStack000000000000007c * transformCoeff1) * TransformCoefficient21;
         FloatValue1 = (((FloatValue2 * TransformCoefficient3 + fStack0000000000000034 * TransformCoefficient4 + fStack0000000000000068 * LocalFloatValue6
                    ) - fStack000000000000004c * baseValue) - fStack0000000000000078 * transformCoeff1) * TransformCoefficient21;
-        *baseScaleFactor = transformCoeff11;
+        *baseScaleFactor = transformCoefficient;
         baseValue6 = (((transformCoeff13 * TransformCoefficient3 + fStack0000000000000038 * TransformCoefficient4 + fStack0000000000000064 * LocalFloatValue6
                    ) - fStack0000000000000050 * baseValue) - fStack0000000000000074 * transformCoeff1) * TransformCoefficient21;
         *(float *)((longlong)uiTargetHandle + (-8 - (longlong)componentData) + (longlong)bufferPointer) = TransformCoefficient20;
@@ -225382,7 +225382,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         fStack000000000000003c = transformCoeff15;
         fStack0000000000000040 = TransformCoefficient20;
         fStack0000000000000044 = transformCoeff16;
-        fStack0000000000000048 = transformCoeff11;
+        fStack0000000000000048 = transformCoefficient;
         fStack000000000000004c = FloatValue1;
         fStack0000000000000050 = baseValue6;
         fStack0000000000000054 = baseValue5;
@@ -225473,7 +225473,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         transformCoeff16 = (((baseValue5 * TransformCoefficient3 + fStack0000000000000038 * TransformCoefficient4 + fStack0000000000000080 * LocalFloatValue6
                    ) - fStack0000000000000068 * baseValue) - fStack00000000000000ac * transformCoeff1) * TransformCoefficient21;
         fStack000000000000006c = fStack000000000000004c;
-        transformCoeff11 = (((baseValue6 * TransformCoefficient3 + fStack0000000000000034 * TransformCoefficient4 + fStack0000000000000084 * LocalFloatValue6
+        transformCoefficient = (((baseValue6 * TransformCoefficient3 + fStack0000000000000034 * TransformCoefficient4 + fStack0000000000000084 * LocalFloatValue6
                    ) - fStackX_20 * baseValue) - fStack0000000000000058 * transformCoeff1) * TransformCoefficient21;
         fStack0000000000000070 = fStack0000000000000048;
         fStack0000000000000074 = fStack0000000000000044;
@@ -225492,7 +225492,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         baseScaleFactor[1] = transformCoeff17;
         baseScaleFactor[2] = transformCoeff12;
         baseScaleFactor[3] = TransformCoefficient20;
-        baseScaleFactor[5] = transformCoeff11;
+        baseScaleFactor[5] = transformCoefficient;
         baseScaleFactor = baseScaleFactor + 8;
         fStack000000000000009c = fStack0000000000000028;
         fStack00000000000000a0 = fStack000000000000008c;
@@ -225501,7 +225501,7 @@ UIHandle FUN_18079983c(longlong uiContext)
         fStack00000000000000ac = fStack0000000000000068;
         unmodifiedEBP = unmodifiedEBP - 1;
         vectorComponentX = fStack0000000000000050;
-        fStackX_20 = transformCoeff11;
+        fStackX_20 = transformCoefficient;
         fStack0000000000000028 = transformCoeff18;
         fStack000000000000002c = transformCoeff19;
         fStack0000000000000030 = FloatValue1;
@@ -225620,7 +225620,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float preservedXMM7;
   float transformCoeff13;
@@ -225933,7 +225933,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         transformCoeff12 = (((FloatValue1 * preservedXMM7 + fStack0000000000000048 * unmodifiedXMM8_Da +
                    fStack0000000000000070 * unmodifiedXMM9_Da) - fStack0000000000000028 * unmodifiedXMM14_Da
                   ) - fStack000000000000009c * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
-        transformCoeff11 = (((baseValue3 * preservedXMM7 + fStack0000000000000044 * unmodifiedXMM8_Da +
+        transformCoefficient = (((baseValue3 * preservedXMM7 + fStack0000000000000044 * unmodifiedXMM8_Da +
                    fStack0000000000000074 * unmodifiedXMM9_Da) - fStack000000000000008c * unmodifiedXMM14_Da
                   ) - fStack00000000000000a0 * unmodifiedXMM15_Da) * unmodifiedXMM13_Da;
         baseValue6 = (((finalResult * preservedXMM7 + fStack0000000000000040 * unmodifiedXMM8_Da +
@@ -225963,7 +225963,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         *(float *)((longlong)pTransformCoefficient2 + (longlong)uiTargetHandle + (-8 - (longlong)componentData)) = baseValue2;
         pTransformCoefficient2 = pTransformCoefficient2 + 8;
         *transformCoeffPointer = transformCoeff12;
-        transformCoeffPointer[1] = transformCoeff11;
+        transformCoeffPointer[1] = transformCoefficient;
         transformCoeffPointer[2] = baseValue6;
         transformCoeffPointer[3] = transformCoeff14;
         transformCoeffPointer[5] = baseValue5;
@@ -225990,7 +225990,7 @@ UIHandle FUN_180799935(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000060 = baseValue6;
         fStack0000000000000064 = transformCoeff14;
         fStack0000000000000068 = AccumulatedFloat;
-        fStack000000000000008c = transformCoeff11;
+        fStack000000000000008c = transformCoefficient;
       } while (unmodifiedEBP != 0);
     }
     *(float *)(contextHandle + 0x234) = fStack000000000000006c;
@@ -226095,7 +226095,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
   float FloatValue2;
   float AccumulatedFloat;
   float preservedXMM7;
-  float transformCoeff11;
+  float transformCoefficient;
   float unmodifiedXMM8_Da;
   float unmodifiedXMM9_Da;
   float transformCoeff12;
@@ -226352,7 +226352,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         baseValue0 = (((baseValue2 * fStackX_24 + fStack0000000000000050 * fStack000000000000005c +
                    LocalFloatValue6 * stackParam00000178) - fStack0000000000000030 * stackParam00000088) -
                  fStack0000000000000094 * fStack0000000000000054) * stackParam00000090;
-        transformCoeff11 = (((ResultFloatValue * fStackX_24 + fStack000000000000004c * fStack000000000000005c +
+        transformCoefficient = (((ResultFloatValue * fStackX_24 + fStack000000000000004c * fStack000000000000005c +
                    fStack000000000000006c * stackParam00000178) -
                   fStack000000000000002c * stackParam00000088) -
                  fStack0000000000000098 * fStack0000000000000054) * stackParam00000090;
@@ -226388,7 +226388,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         fStack0000000000000084 = fStack0000000000000034;
         fStack0000000000000094 = fStack0000000000000030;
         fStack0000000000000098 = fStack000000000000002c;
-        pTransformCoefficient2[-1] = transformCoeff11;
+        pTransformCoefficient2[-1] = transformCoefficient;
         pTransformCoefficient2[4] = FloatValue1;
         fStack0000000000000058 = fStackX_20;
         *(float *)((longlong)BaseValuePointer + (longlong)uiTargetHandle + (-8 - (longlong)componentData)) = baseValue0;
@@ -226408,7 +226408,7 @@ UIHandle FUN_180799b79(UIHandle uiContext,UIHandle dataSource,ulonglong targetBu
         LocalFloatValue6 = fStack0000000000000050;
         fStackX_20 = baseValue3;
         fStack0000000000000028 = AccumulatedFloat;
-        fStack000000000000002c = transformCoeff11;
+        fStack000000000000002c = transformCoefficient;
         fStack0000000000000030 = baseValue0;
         fStack0000000000000034 = LocalFloatValue9;
         fStack0000000000000038 = TemporaryFloatValue;
@@ -226850,7 +226850,7 @@ void ProcessUITransformAndBufferData(float *uiContext,float *dataSource,int targ
         allocatedMemory4 = (allocatedMemory2 - 4U >> 2) + 1;
         BaseValuePointer3 = param_6 + 0x11;
         baseValue6 = transformCoeff14 + TransformCoefficient2;
-        FloatValue1 = transformCoeff11 + TransformCoefficient3;
+        FloatValue1 = transformCoefficient + TransformCoefficient3;
         allocatedMemory5 = allocatedMemory4 * 4;
         AccumulatedFloat = transformCoeff13 + baseValue0;
         finalResult = transformCoeff16 + baseValue;
@@ -226887,7 +226887,7 @@ void ProcessUITransformAndBufferData(float *uiContext,float *dataSource,int targ
         do {
           FloatValue1 = *uiContext;
           uiContext = uiContext + 1;
-          AccumulatedFloat = (transformCoeff11 + TransformCoefficient3) * FloatValue1 + *BaseValuePointer3;
+          AccumulatedFloat = (transformCoefficient + TransformCoefficient3) * FloatValue1 + *BaseValuePointer3;
           *BaseValuePointer3 = ((transformCoeff13 + baseValue0) * FloatValue1 - (transformCoeff15 + transformCoeff1) * AccumulatedFloat) + BaseValuePointer3[1];
           BaseValuePointer3[1] = (transformCoeff14 + TransformCoefficient2) * FloatValue1 - (transformCoeff16 + baseValue) * AccumulatedFloat;
           BaseValuePointer3 = BaseValuePointer3 + 8;
@@ -226896,7 +226896,7 @@ void ProcessUITransformAndBufferData(float *uiContext,float *dataSource,int targ
           allocatedMemory5 = allocatedMemory5 + -1;
         } while (allocatedMemory5 != 0);
       }
-      transformCoeff11 = transformCoeff11 + TransformCoefficient4;
+      transformCoefficient = transformCoefficient + TransformCoefficient4;
       transformCoeff13 = transformCoeff13 + LocalFloatValue6;
       transformCoeff14 = transformCoeff14 + ResultFloatValue;
       transformCoeff15 = transformCoeff15 + TemporaryFloatValue;
@@ -227067,7 +227067,7 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -227093,7 +227093,7 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
   AllocatedMemoryBlock1 = (longlong)(int)param_7;
   if (param_7 == 1.4013e-45) {
     baseValue5 = param_6[3];
-    transformCoeff11 = *param_6;
+    transformCoefficient = *param_6;
     transformCoeff17 = param_6[1];
     AccumulatedFloat = param_6[2];
     if (targetBuffer != 0) {
@@ -227107,9 +227107,9 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         FloatValue1 = transformCoeff15 + TransformCoefficient3;
         transformCoeff14 = transformCoeff14 + TemporaryFloatValue;
         transformCoeff15 = transformCoeff15 + LocalFloatValue9;
-        FloatValue2 = (transformCoeff12 + baseValue) * baseValue5 + transformCoeff11;
+        FloatValue2 = (transformCoeff12 + baseValue) * baseValue5 + transformCoefficient;
         AccumulatedFloat = (transformCoeff12 + baseValue) * FloatValue2 + AccumulatedFloat;
-        transformCoeff11 = ((transformCoeff13 + transformCoeff1) * baseValue5 - FloatValue1 * FloatValue2) + transformCoeff17;
+        transformCoefficient = ((transformCoeff13 + transformCoeff1) * baseValue5 - FloatValue1 * FloatValue2) + transformCoeff17;
         transformCoeff17 = baseValue6 * baseValue5 - finalResult * FloatValue2;
         *(float *)(AllocatedMemoryBlock1 + (longlong)uiContext) = AccumulatedFloat;
         uiContext = uiContext + 1;
@@ -227121,7 +227121,7 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         param_7 = baseValue5;
       } while (targetBuffer != 0);
     }
-    *param_6 = transformCoeff11;
+    *param_6 = transformCoefficient;
     param_6[1] = transformCoeff17;
     param_6[2] = AccumulatedFloat;
     param_6[3] = baseValue5;
@@ -227133,7 +227133,7 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         baseValue5 = transformCoeff12 + baseValue;
         allocatedMemory4 = (AllocatedMemoryBlock1 - 4U >> 2) + 1;
         BaseValuePointer2 = param_6 + 10;
-        transformCoeff11 = transformCoeff13 + transformCoeff1;
+        transformCoefficient = transformCoeff13 + transformCoeff1;
         transformCoeff17 = transformCoeff15 + TransformCoefficient3;
         allocatedMemory3 = allocatedMemory4 * 4;
         AccumulatedFloat = transformCoeff14 + TransformCoefficient2;
@@ -227141,35 +227141,35 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
         do {
           finalResult = *uiContext;
           FloatValue1 = baseValue5 * finalResult + BaseValuePointer2[-10];
-          BaseValuePointer2[-10] = (transformCoeff11 * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[-9];
+          BaseValuePointer2[-10] = (transformCoefficient * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[-9];
           BaseValuePointer2[-9] = AccumulatedFloat * finalResult - baseValue6 * FloatValue1;
           finalResult = baseValue5 * FloatValue1 + BaseValuePointer2[-8];
-          BaseValuePointer2[-8] = (transformCoeff11 * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[-7];
+          BaseValuePointer2[-8] = (transformCoefficient * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[-7];
           BaseValuePointer2[-7] = AccumulatedFloat * FloatValue1 - baseValue6 * finalResult;
           *dataSource = finalResult;
           finalResult = uiContext[1];
           FloatValue1 = baseValue5 * finalResult + BaseValuePointer2[-2];
-          BaseValuePointer2[-2] = (transformCoeff11 * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[-1];
+          BaseValuePointer2[-2] = (transformCoefficient * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[-1];
           BaseValuePointer2[-1] = AccumulatedFloat * finalResult - baseValue6 * FloatValue1;
           finalResult = baseValue5 * FloatValue1 + *BaseValuePointer2;
-          *BaseValuePointer2 = (transformCoeff11 * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[1];
+          *BaseValuePointer2 = (transformCoefficient * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[1];
           BaseValuePointer2[1] = AccumulatedFloat * FloatValue1 - baseValue6 * finalResult;
           dataSource[1] = finalResult;
           finalResult = uiContext[2];
           FloatValue1 = baseValue5 * finalResult + BaseValuePointer2[6];
-          BaseValuePointer2[6] = (transformCoeff11 * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[7];
+          BaseValuePointer2[6] = (transformCoefficient * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[7];
           BaseValuePointer2[7] = AccumulatedFloat * finalResult - baseValue6 * FloatValue1;
           finalResult = baseValue5 * FloatValue1 + BaseValuePointer2[8];
-          BaseValuePointer2[8] = (transformCoeff11 * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[9];
+          BaseValuePointer2[8] = (transformCoefficient * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[9];
           BaseValuePointer2[9] = AccumulatedFloat * FloatValue1 - baseValue6 * finalResult;
           dataSource[2] = finalResult;
           finalResult = uiContext[3];
           uiContext = uiContext + 4;
           FloatValue1 = baseValue5 * finalResult + BaseValuePointer2[0xe];
-          BaseValuePointer2[0xe] = (transformCoeff11 * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[0xf];
+          BaseValuePointer2[0xe] = (transformCoefficient * finalResult - transformCoeff17 * FloatValue1) + BaseValuePointer2[0xf];
           BaseValuePointer2[0xf] = AccumulatedFloat * finalResult - baseValue6 * FloatValue1;
           finalResult = baseValue5 * FloatValue1 + BaseValuePointer2[0x10];
-          BaseValuePointer2[0x10] = (transformCoeff11 * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[0x11];
+          BaseValuePointer2[0x10] = (transformCoefficient * FloatValue1 - transformCoeff17 * finalResult) + BaseValuePointer2[0x11];
           BaseValuePointer2[0x11] = AccumulatedFloat * FloatValue1 - baseValue6 * finalResult;
           BaseValuePointer2 = BaseValuePointer2 + 0x20;
           dataSource[3] = finalResult;
@@ -227185,12 +227185,12 @@ void FUN_18079bc20(float *uiContext,float *dataSource,int targetBuffer,float *bu
           uiContext = uiContext + 1;
           transformCoeff17 = (transformCoeff12 + baseValue) * baseValue5 + BaseValuePointer2[-2];
           BaseValuePointer2[-2] = ((transformCoeff13 + transformCoeff1) * baseValue5 - (transformCoeff15 + TransformCoefficient3) * transformCoeff17) + BaseValuePointer2[-1];
-          transformCoeff11 = (transformCoeff12 + baseValue) * transformCoeff17 + *BaseValuePointer2;
+          transformCoefficient = (transformCoeff12 + baseValue) * transformCoeff17 + *BaseValuePointer2;
           BaseValuePointer2[-1] = (transformCoeff14 + TransformCoefficient2) * baseValue5 - (transformCoeff16 + TransformCoefficient4) * transformCoeff17;
-          *BaseValuePointer2 = ((transformCoeff13 + transformCoeff1) * transformCoeff17 - (transformCoeff15 + TransformCoefficient3) * transformCoeff11) + BaseValuePointer2[1];
-          BaseValuePointer2[1] = (transformCoeff14 + TransformCoefficient2) * transformCoeff17 - (transformCoeff16 + TransformCoefficient4) * transformCoeff11;
+          *BaseValuePointer2 = ((transformCoeff13 + transformCoeff1) * transformCoeff17 - (transformCoeff15 + TransformCoefficient3) * transformCoefficient) + BaseValuePointer2[1];
+          BaseValuePointer2[1] = (transformCoeff14 + TransformCoefficient2) * transformCoeff17 - (transformCoeff16 + TransformCoefficient4) * transformCoefficient;
           BaseValuePointer2 = BaseValuePointer2 + 8;
-          *dataSource = transformCoeff11;
+          *dataSource = transformCoefficient;
           dataSource = dataSource + 1;
           allocatedMemory3 = allocatedMemory3 + -1;
         } while (allocatedMemory3 != 0);
@@ -227382,7 +227382,7 @@ void FUN_18079c2e0(float *uiContext,float *dataSource,int targetBuffer,float *bu
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -227428,25 +227428,25 @@ void FUN_18079c2e0(float *uiContext,float *dataSource,int targetBuffer,float *bu
         AccumulatedFloat = transformCoeff18 + transformCoeff1;
         FloatValue2 = fStackX_18 + TransformCoefficient4;
         transformCoeff18 = transformCoeff18 + TemporaryFloatValue;
-        transformCoeff11 = TransformCoefficient20 + TransformCoefficient3;
+        transformCoefficient = TransformCoefficient20 + TransformCoefficient3;
         TransformCoefficient20 = TransformCoefficient20 + LocalFloatValue9;
         transformCoeff12 = transformCoeff15 + baseValue;
         finalResult = transformCoeff12 * baseValue6 + transformCoeff14;
-        transformCoeff14 = (AccumulatedFloat * baseValue6 - transformCoeff11 * finalResult) + baseValue5;
+        transformCoeff14 = (AccumulatedFloat * baseValue6 - transformCoefficient * finalResult) + baseValue5;
         FloatValue1 = transformCoeff19 + TransformCoefficient2;
         transformCoeff19 = transformCoeff19 + LocalFloatValue6;
         baseValue5 = FloatValue1 * baseValue6 - FloatValue2 * finalResult;
         baseValue6 = transformCoeff12 * finalResult + transformCoeff16;
-        transformCoeff16 = (AccumulatedFloat * finalResult - transformCoeff11 * baseValue6) + param_7;
+        transformCoeff16 = (AccumulatedFloat * finalResult - transformCoefficient * baseValue6) + param_7;
         param_7 = FloatValue1 * finalResult - FloatValue2 * baseValue6;
         finalResult = transformCoeff12 * baseValue6 + transformCoeff17;
         transformCoeff13 = transformCoeff12 * finalResult + transformCoeff13;
-        transformCoeff17 = (AccumulatedFloat * baseValue6 - transformCoeff11 * finalResult) + resultPointer._0_4_;
+        transformCoeff17 = (AccumulatedFloat * baseValue6 - transformCoefficient * finalResult) + resultPointer._0_4_;
         resultPointer._0_4_ = FloatValue1 * baseValue6 - FloatValue2 * finalResult;
         *(float *)(AllocatedMemoryBlock1 + (longlong)uiContext) = transformCoeff13;
         uiContext = uiContext + 1;
         baseValue6 = FloatValue1 * finalResult - FloatValue2 * transformCoeff13;
-        transformCoeff13 = (AccumulatedFloat * finalResult - transformCoeff11 * transformCoeff13) + fStack_d0;
+        transformCoeff13 = (AccumulatedFloat * finalResult - transformCoefficient * transformCoeff13) + fStack_d0;
         fStackX_18 = fStackX_18 + baseValue0;
         targetBuffer = targetBuffer + -1;
         transformCoeff15 = transformCoeff15 + ResultFloatValue;
@@ -230364,7 +230364,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -230380,15 +230380,15 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
     do {
       baseValue2 = transformCoeffPointer[localLong7] + *transformCoeffPointer;
       FloatValue2 = *transformCoeffPointer - transformCoeffPointer[localLong7];
-      transformCoeff11 = transformCoeffPointer[localLong7 * -2] + transformCoeffPointer[-localLong7];
+      transformCoefficient = transformCoeffPointer[localLong7 * -2] + transformCoeffPointer[-localLong7];
       transformCoeff15 = transformCoeffPointer[localLong7 * -2] - transformCoeffPointer[-localLong7];
       baseValue6 = transformCoeffPointer[1 - localLong7] + transformCoeffPointer[localLong7 * -2 + 1];
       transformCoeff13 = transformCoeffPointer[localLong7 * -2 + 1] - transformCoeffPointer[1 - localLong7];
       baseValue1 = transformCoeffPointer[localLong7 + 1] + transformCoeffPointer[1];
       baseValue3 = transformCoeffPointer[1] - transformCoeffPointer[localLong7 + 1];
-      transformCoeffPointer[localLong7 * -2] = baseValue2 + transformCoeff11;
+      transformCoeffPointer[localLong7 * -2] = baseValue2 + transformCoefficient;
       transformCoeffPointer[localLong7 * -2 + 1] = baseValue1 + baseValue6;
-      *transformCoeffPointer = transformCoeff11 - baseValue2;
+      *transformCoeffPointer = transformCoefficient - baseValue2;
       transformCoeffPointer[1] = baseValue6 - baseValue1;
       transformCoeffPointer[-localLong7] = transformCoeff15 - baseValue3;
       transformCoeffPointer[1 - localLong7] = FloatValue2 + transformCoeff13;
@@ -230406,16 +230406,16 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       baseValue6 = transformCoeffPointer[localLong7] + *transformCoeffPointer;
       baseValue3 = *transformCoeffPointer - transformCoeffPointer[localLong7];
       FloatValue2 = transformCoeffPointer[1 - localLong7] + transformCoeffPointer[localLong7 * -2 + 1];
-      transformCoeff11 = transformCoeffPointer[localLong7 * -2] + transformCoeffPointer[-localLong7];
+      transformCoefficient = transformCoeffPointer[localLong7 * -2] + transformCoeffPointer[-localLong7];
       transformCoeff16 = transformCoeffPointer[localLong7 * -2] - transformCoeffPointer[-localLong7];
       transformCoeff15 = transformCoeffPointer[localLong7 * -2 + 1] - transformCoeffPointer[1 - localLong7];
       baseValue2 = transformCoeffPointer[localLong7 + 1] + transformCoeffPointer[1];
       transformCoeff13 = transformCoeffPointer[1] - transformCoeffPointer[localLong7 + 1];
-      transformCoeffPointer[localLong7 * -2] = baseValue6 + transformCoeff11;
+      transformCoeffPointer[localLong7 * -2] = baseValue6 + transformCoefficient;
       transformCoeffPointer[localLong7 * -2 + 1] = baseValue2 + FloatValue2;
       *transformCoeffPointer = baseValue2 - FloatValue2;
       baseValue2 = transformCoeff16 - transformCoeff13;
-      transformCoeffPointer[1] = transformCoeff11 - baseValue6;
+      transformCoeffPointer[1] = transformCoefficient - baseValue6;
       transformCoeff13 = transformCoeff13 + transformCoeff16;
       baseValue6 = baseValue3 - transformCoeff15;
       baseValue3 = baseValue3 + transformCoeff15;
@@ -230441,7 +230441,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       baseValue3 = transformCoeffPointer[3];
       baseValue6 = *pTemporaryFloatValue;
       FloatValue2 = (baseValue1 + baseValue1) * baseValue2 - baseValue3;
-      transformCoeff11 = baseValue2 - (baseValue1 + baseValue1) * baseValue3;
+      transformCoefficient = baseValue2 - (baseValue1 + baseValue1) * baseValue3;
       if (processedCount < sourceDataInt) {
         pTransformCoefficient2 = (float *)(dataSource + (contextDataHandle + localLong7 * 2) * 4);
         result = (ulonglong)(((sourceDataInt - processedCount) - 1U >> 1) + 1);
@@ -230466,8 +230466,8 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           pTransformCoefficient2[1] = baseValue6 * baseValue5 + baseValue1 * FloatValue1;
           pTransformCoefficient2[-localLong7] = baseValue2 * transformCoeff13 - baseValue3 * transformCoeff16;
           pTransformCoefficient2[1 - localLong7] = baseValue3 * transformCoeff13 + baseValue2 * transformCoeff16;
-          pTransformCoefficient2[localLong7] = transformCoeff11 * transformCoeff12 - FloatValue2 * transformCoeff17;
-          pTransformCoefficient2[localLong7 + 1] = transformCoeff11 * transformCoeff17 + FloatValue2 * transformCoeff12;
+          pTransformCoefficient2[localLong7] = transformCoefficient * transformCoeff12 - FloatValue2 * transformCoeff17;
+          pTransformCoefficient2[localLong7 + 1] = transformCoefficient * transformCoeff17 + FloatValue2 * transformCoeff12;
           pTransformCoefficient2 = pTransformCoefficient2 + 2;
           result = result - 1;
         } while (result != 0);
@@ -230476,7 +230476,7 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
       baseValue3 = transformCoeffPointer[5];
       processedCount = targetBuffer * 3 + sourceDataInt;
       FloatValue2 = (baseValue6 + baseValue6) * baseValue2 - baseValue3;
-      transformCoeff11 = baseValue2 - (baseValue6 + baseValue6) * baseValue3;
+      transformCoefficient = baseValue2 - (baseValue6 + baseValue6) * baseValue3;
       if (processedCount < sourceDataInt + localInt9) {
         pTransformCoefficient2 = (float *)(dataSource + (localInt9 + contextDataHandle + localLong7 * 2) * 4);
         result = (ulonglong)((((sourceDataInt + localInt9) - processedCount) - 1U >> 1) + 1);
@@ -230501,8 +230501,8 @@ void FUN_18079fa70(longlong uiContext,longlong dataSource,int targetBuffer)
           pTransformCoefficient2[1] = baseValue6 * FloatValue1 - baseValue1 * baseValue5;
           pTransformCoefficient2[-localLong7] = baseValue2 * transformCoeff13 - baseValue3 * transformCoeff16;
           pTransformCoefficient2[1 - localLong7] = baseValue3 * transformCoeff13 + baseValue2 * transformCoeff16;
-          pTransformCoefficient2[localLong7] = transformCoeff11 * transformCoeff12 - FloatValue2 * transformCoeff17;
-          pTransformCoefficient2[localLong7 + 1] = transformCoeff11 * transformCoeff17 + FloatValue2 * transformCoeff12;
+          pTransformCoefficient2[localLong7] = transformCoefficient * transformCoeff12 - FloatValue2 * transformCoeff17;
+          pTransformCoefficient2[localLong7 + 1] = transformCoefficient * transformCoeff17 + FloatValue2 * transformCoeff12;
           pTransformCoefficient2 = pTransformCoefficient2 + 2;
           result = result - 1;
         } while (result != 0);
@@ -230547,7 +230547,7 @@ void FUN_18079fd23(int uiContext)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -230574,7 +230574,7 @@ void FUN_18079fd23(int uiContext)
         baseValue3 = pLocalFloatValue6[register10] + *pLocalFloatValue6;
         FloatValue2 = *pLocalFloatValue6 - pLocalFloatValue6[register10];
         finalResult = pLocalFloatValue6[register10 * -2] + pLocalFloatValue6[-register10];
-        transformCoeff11 = pLocalFloatValue6[register10 * -2] - pLocalFloatValue6[-register10];
+        transformCoefficient = pLocalFloatValue6[register10 * -2] - pLocalFloatValue6[-register10];
         baseValue2 = pLocalFloatValue6[register10 + 1] + pLocalFloatValue6[1];
         baseValue5 = pLocalFloatValue6[register10 * -2 + 1] + pLocalFloatValue6[1 - register10];
         transformCoeff12 = pLocalFloatValue6[register10 * -2 + 1] - pLocalFloatValue6[1 - register10];
@@ -230585,8 +230585,8 @@ void FUN_18079fd23(int uiContext)
         pLocalFloatValue6[register10 * -2] = baseValue3 + finalResult;
         transformCoeff12 = transformCoeff12 - FloatValue2;
         pLocalFloatValue6[register10 * -2 + 1] = baseValue2 + baseValue5;
-        baseValue2 = transformCoeff11 - AccumulatedFloat;
-        AccumulatedFloat = AccumulatedFloat + transformCoeff11;
+        baseValue2 = transformCoefficient - AccumulatedFloat;
+        AccumulatedFloat = AccumulatedFloat + transformCoefficient;
         *pLocalFloatValue6 = TransformCoefficient3 * FloatValue1 - baseValue * baseValue6;
         pLocalFloatValue6[1] = TransformCoefficient3 * baseValue6 + baseValue * FloatValue1;
         pLocalFloatValue6[-register10] = transformCoeff1 * baseValue2 - TransformCoefficient2 * vectorComponentX;
@@ -230611,7 +230611,7 @@ void FUN_18079fd23(int uiContext)
         baseValue3 = *pLocalFloatValue6 + pLocalFloatValue6[register10];
         baseValue2 = pLocalFloatValue6[1] + pLocalFloatValue6[register10 + 1];
         finalResult = pLocalFloatValue6[register10 * -2] + pLocalFloatValue6[-register10];
-        transformCoeff11 = pLocalFloatValue6[register10 * -2] - pLocalFloatValue6[-register10];
+        transformCoefficient = pLocalFloatValue6[register10 * -2] - pLocalFloatValue6[-register10];
         FloatValue2 = *pLocalFloatValue6 - pLocalFloatValue6[register10];
         AccumulatedFloat = pLocalFloatValue6[1] - pLocalFloatValue6[register10 + 1];
         baseValue5 = pLocalFloatValue6[register10 * -2 + 1] + pLocalFloatValue6[1 - register10];
@@ -230622,8 +230622,8 @@ void FUN_18079fd23(int uiContext)
         pLocalFloatValue6[register10 * -2] = baseValue3 + finalResult;
         transformCoeff12 = transformCoeff12 - FloatValue2;
         pLocalFloatValue6[register10 * -2 + 1] = baseValue2 + baseValue5;
-        baseValue2 = transformCoeff11 - AccumulatedFloat;
-        AccumulatedFloat = AccumulatedFloat + transformCoeff11;
+        baseValue2 = transformCoefficient - AccumulatedFloat;
+        AccumulatedFloat = AccumulatedFloat + transformCoefficient;
         *pLocalFloatValue6 = -(baseValue * FloatValue1) - TransformCoefficient3 * baseValue6;
         pLocalFloatValue6[1] = TransformCoefficient3 * FloatValue1 - baseValue * baseValue6;
         pLocalFloatValue6[-register10] = transformCoeff1 * baseValue2 - TransformCoefficient2 * vectorComponentX;
@@ -248302,7 +248302,7 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -248354,48 +248354,48 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   baseValue5 = TransformCoefficient4 + FloatValue1;
   FloatValue1 = (TransformCoefficient4 - FloatValue1) - FloatValue1;
   TransformCoefficient4 = ((AccumulatedFloat + baseValue) - finalResult) * _DAT_180c42388;
-  transformCoeff11 = (AccumulatedFloat - baseValue) * _DAT_180c423cc;
+  transformCoefficient = (AccumulatedFloat - baseValue) * _DAT_180c423cc;
   baseValue2 = FloatValue1 - TransformCoefficient4;
   baseValue3 = (baseValue + finalResult) * _DAT_180c423d0;
   FloatValue2 = (AccumulatedFloat + finalResult) * _DAT_180c423c8;
   TransformCoefficient4 = FloatValue1 + TransformCoefficient4 + TransformCoefficient4;
   baseValue = (baseValue5 - FloatValue2) - baseValue3;
-  FloatValue1 = baseValue5 + (baseValue3 - transformCoeff11);
+  FloatValue1 = baseValue5 + (baseValue3 - transformCoefficient);
   transformCoeff14 = transformCoeff14 * _DAT_180c418dc;
-  FloatValue2 = FloatValue2 + baseValue5 + transformCoeff11;
+  FloatValue2 = FloatValue2 + baseValue5 + transformCoefficient;
   AccumulatedFloat = (transformCoeff12 + TemporaryFloatValue) * _DAT_180c423d8;
-  transformCoeff11 = (TemporaryFloatValue - ResultFloatValue) * _DAT_180c423dc;
-  baseValue3 = transformCoeff11 + AccumulatedFloat + transformCoeff14;
+  transformCoefficient = (TemporaryFloatValue - ResultFloatValue) * _DAT_180c423dc;
+  baseValue3 = transformCoefficient + AccumulatedFloat + transformCoeff14;
   finalResult = FloatValue2 + baseValue3;
   FloatValue2 = FloatValue2 - baseValue3;
   baseValue5 = (ResultFloatValue + transformCoeff12) * _DAT_180c423e0;
   AccumulatedFloat = AccumulatedFloat + (baseValue5 - transformCoeff14);
   baseValue3 = FloatValue1 + AccumulatedFloat;
   vectorComponentX = vectorComponentX * _DAT_180c42388;
-  transformCoeff11 = transformCoeff11 - (transformCoeff14 + baseValue5);
+  transformCoefficient = transformCoefficient - (transformCoeff14 + baseValue5);
   LocalFloatValue6 = LocalFloatValue6 * _DAT_180c418dc;
   baseValue5 = ((ResultFloatValue + TemporaryFloatValue) - transformCoeff12) * _DAT_180c418dc;
   FloatValue1 = FloatValue1 - AccumulatedFloat;
   transformCoeff14 = baseValue2 - baseValue5;
   baseValue5 = baseValue5 + baseValue2;
-  ResultFloatValue = baseValue - transformCoeff11;
-  baseValue = baseValue + transformCoeff11;
+  ResultFloatValue = baseValue - transformCoefficient;
+  baseValue = baseValue + transformCoefficient;
   TemporaryFloatValue = ((baseValue1 + baseValue6) - baseValue0) * _DAT_180c42388;
   transformCoeff12 = transformCoeff1 + vectorComponentX;
   vectorComponentX = (transformCoeff1 - vectorComponentX) - vectorComponentX;
   AccumulatedFloat = vectorComponentX - TemporaryFloatValue;
-  transformCoeff11 = (baseValue1 + baseValue0) * _DAT_180c423c8;
+  transformCoefficient = (baseValue1 + baseValue0) * _DAT_180c423c8;
   baseValue1 = (baseValue1 - baseValue6) * _DAT_180c423cc;
   vectorComponentX = (vectorComponentX + TemporaryFloatValue + TemporaryFloatValue) * _DAT_180c423a0;
-  transformCoeff13 = transformCoeff11 + transformCoeff12 + baseValue1;
+  transformCoeff13 = transformCoefficient + transformCoeff12 + baseValue1;
   transformCoeff1 = (baseValue0 + baseValue6) * _DAT_180c423d0;
-  baseValue2 = (transformCoeff12 - transformCoeff11) - transformCoeff1;
+  baseValue2 = (transformCoeff12 - transformCoefficient) - transformCoeff1;
   transformCoeff12 = transformCoeff12 + (transformCoeff1 - baseValue1);
   TemporaryFloatValue = (TransformCoefficient3 - TransformCoefficient2) * _DAT_180c423dc;
   baseValue0 = (TransformCoefficient3 + LocalFloatValue9) * _DAT_180c423d8;
   transformCoeff1 = TemporaryFloatValue + baseValue0 + LocalFloatValue6;
   baseValue1 = (transformCoeff13 - transformCoeff1) * _DAT_180c423b0;
-  transformCoeff11 = (transformCoeff13 + transformCoeff1) * _DAT_180c42390;
+  transformCoefficient = (transformCoeff13 + transformCoeff1) * _DAT_180c42390;
   transformCoeff1 = (LocalFloatValue9 + TransformCoefficient2) * _DAT_180c423e0;
   baseValue0 = baseValue0 + (transformCoeff1 - LocalFloatValue6);
   TemporaryFloatValue = TemporaryFloatValue - (LocalFloatValue6 + transformCoeff1);
@@ -248403,9 +248403,9 @@ void FUN_1808124d0(float *uiContext,float *dataSource,float *targetBuffer,float 
   LocalFloatValue9 = (transformCoeff12 + baseValue0) * _DAT_180c4239c;
   baseValue6 = (transformCoeff12 - baseValue0) * _DAT_180c423a4;
   transformCoeff1 = (AccumulatedFloat - TransformCoefficient2) * _DAT_180c42394;
-  TransformCoefficient3 = transformCoeff11 + finalResult;
+  TransformCoefficient3 = transformCoefficient + finalResult;
   LocalFloatValue6 = (TransformCoefficient2 + AccumulatedFloat) * _DAT_180c423ac;
-  finalResult = finalResult - transformCoeff11;
+  finalResult = finalResult - transformCoefficient;
   TransformCoefficient2 = (baseValue2 + TemporaryFloatValue) * _DAT_180c42398;
   baseValue0 = (baseValue2 - TemporaryFloatValue) * _DAT_180c423a8;
   targetBuffer[9] = TransformCoefficient3 * bufferSize[0x1b];
@@ -249210,7 +249210,7 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -249266,7 +249266,7 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   TransformCoefficient32 = (targetBuffer[0xd] - targetBuffer[0x12]) * _DAT_180be5740[0xd];
   TransformCoefficient22 = (targetBuffer[0xe] - targetBuffer[0x11]) * _DAT_180be5740[0xe];
   baseValue2 = (targetBuffer[0xb] - targetBuffer[0x14]) * _DAT_180be5740[0xb];
-  transformCoeff11 = targetBuffer[0xc] + targetBuffer[0x13];
+  transformCoefficient = targetBuffer[0xc] + targetBuffer[0x13];
   baseValue3 = (targetBuffer[0xc] - targetBuffer[0x13]) * _DAT_180be5740[0xc];
   vectorComponentX = targetBuffer[0xf] + targetBuffer[0x10];
   transformCoeff18 = (targetBuffer[0xf] - targetBuffer[0x10]) * _DAT_180be5740[0xf];
@@ -249276,15 +249276,15 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   vectorComponentX = FloatValue2 + transformCoeff1;
   transformCoeff16 = (transformCoeff1 - FloatValue2) * _DAT_180be5748[1];
   transformCoeff13 = (transformCoeff12 - AccumulatedFloat) * _DAT_180be5748[2];
-  FloatValue2 = transformCoeff11 + TransformCoefficient3;
-  transformCoeff12 = (TransformCoefficient3 - transformCoeff11) * _DAT_180be5748[3];
+  FloatValue2 = transformCoefficient + TransformCoefficient3;
+  transformCoeff12 = (TransformCoefficient3 - transformCoefficient) * _DAT_180be5748[3];
   TransformCoefficient3 = TransformCoefficient20 + transformCoeff19;
   transformCoeff19 = (transformCoeff19 - TransformCoefficient20) * _DAT_180be5748[4];
   TransformCoefficient31 = transformCoeff14 + TransformCoefficient25;
   AccumulatedFloat = (transformCoeff14 - TransformCoefficient25) * _DAT_180be5748[5];
   TransformCoefficient21 = scaleFactor35 + transformCoeff15;
   transformCoeff14 = LocalFloatValue9 + TemporaryFloatValue;
-  transformCoeff11 = (transformCoeff15 - scaleFactor35) * _DAT_180be5748[6];
+  transformCoefficient = (transformCoeff15 - scaleFactor35) * _DAT_180be5748[6];
   scaleFactor35 = transformCoeff18 + baseValue;
   TransformCoefficient36 = (TemporaryFloatValue - LocalFloatValue9) * _DAT_180be5748[7];
   TransformCoefficient26 = (baseValue - transformCoeff18) * *_DAT_180be5748;
@@ -249316,8 +249316,8 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   vectorComponentX = _DAT_180be5750[3];
   baseValue6 = (transformCoeff17 - TransformCoefficient36) * baseValue;
   TransformCoefficient36 = (FloatValue2 - TransformCoefficient3) * vectorComponentX;
-  scaleFactor37 = transformCoeff11 + transformCoeff16;
-  transformCoeff14 = (transformCoeff16 - transformCoeff11) * transformCoeff1;
+  scaleFactor37 = transformCoefficient + transformCoeff16;
+  transformCoeff14 = (transformCoeff16 - transformCoefficient) * transformCoeff1;
   transformCoeff17 = AccumulatedFloat + transformCoeff13;
   TransformCoefficient29 = (transformCoeff13 - AccumulatedFloat) * TransformCoefficient2;
   finalResult = transformCoeff19 + transformCoeff12;
@@ -249327,7 +249327,7 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   TransformCoefficient34 = (scaleFactor35 - baseValue1) * baseValue;
   scaleFactor35 = (transformCoeff15 - baseValue3) * transformCoeff1;
   TransformCoefficient32 = TransformCoefficient22 + transformCoeff18;
-  transformCoeff11 = (transformCoeff18 - TransformCoefficient22) * TransformCoefficient2;
+  transformCoefficient = (transformCoeff18 - TransformCoefficient22) * TransformCoefficient2;
   baseValue1 = transformMatrix24 + TransformCoefficient33;
   transformCoeff19 = TemporaryFloatValue + TransformCoefficient26;
   TransformCoefficient33 = (TransformCoefficient33 - transformMatrix24) * vectorComponentX;
@@ -249362,8 +249362,8 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   baseValue1 = (AccumulatedFloat - TransformCoefficient32) * FloatValue2;
   TransformCoefficient22 = TransformCoefficient33 + TransformCoefficient34;
   transformCoeff14 = (TransformCoefficient34 - TransformCoefficient33) * TransformCoefficient3;
-  TransformCoefficient27 = transformCoeff11 + scaleFactor35;
-  TransformCoefficient29 = (scaleFactor35 - transformCoeff11) * FloatValue2;
+  TransformCoefficient27 = transformCoefficient + scaleFactor35;
+  TransformCoefficient29 = (scaleFactor35 - transformCoefficient) * FloatValue2;
   TransformCoefficient25 = transformCoeff19 + transformCoeff16;
   transformMatrix28 = baseValue3 + transformCoeff12;
   TransformCoefficient30 = (transformCoeff19 - transformCoeff16) * TransformCoefficient3;
@@ -249382,11 +249382,11 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   AccumulatedFloat = (ResultFloatValue - baseValue5) * baseValue;
   TransformCoefficient31 = baseValue5 + ResultFloatValue + AccumulatedFloat;
   baseValue5 = (transformCoeff17 - TransformCoefficient21) * baseValue;
-  transformCoeff11 = (finalResult - baseValue6) * baseValue;
+  transformCoefficient = (finalResult - baseValue6) * baseValue;
   transformCoeff17 = TransformCoefficient21 + transformCoeff17 + baseValue5;
   TransformCoefficient21 = finalResult + baseValue6 + transformCoeff17;
-  transformCoeff17 = transformCoeff17 + transformCoeff11;
-  transformCoeff11 = transformCoeff11 + baseValue5;
+  transformCoeff17 = transformCoeff17 + transformCoefficient;
+  transformCoefficient = transformCoefficient + baseValue5;
   baseValue6 = (transformCoeff14 - TransformCoefficient29) * baseValue;
   transformCoeff14 = transformCoeff14 + TransformCoefficient29 + baseValue6;
   LocalFloatValue6 = (TransformCoefficient20 - baseValue2) * baseValue;
@@ -249422,8 +249422,8 @@ void FUN_180814240(float *uiContext,float *dataSource,float *targetBuffer)
   uiContext[0xe0] = TransformCoefficient23 + FloatValue1 + TransformCoefficient21;
   uiContext[0x60] = TransformCoefficient31 + transformCoeff17;
   uiContext[0x20] = transformCoeff17 + TransformCoefficient2;
-  dataSource[0x20] = TransformCoefficient2 + transformCoeff11;
-  dataSource[0x60] = transformCoeff11 + AccumulatedFloat;
+  dataSource[0x20] = TransformCoefficient2 + transformCoefficient;
+  dataSource[0x60] = transformCoefficient + AccumulatedFloat;
   dataSource[0xe0] = baseValue5;
   dataSource[0xa0] = AccumulatedFloat + baseValue5;
   uiContext[0xf0] = baseValue2 + TransformCoefficient20 + TransformCoefficient3;
@@ -259386,7 +259386,7 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
   ulonglong result8;
   longlong allocatedMemory9;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -259427,7 +259427,7 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         transformCoeff16 = (float)(int)*(char *)(targetBuffer + -1 + (result8 >> 0x20)) * 0.0078125;
         TransformCoefficient20 = (float)(int)*(char *)((result8 >> 0x20) + targetBuffer) * 0.0078125;
         transformMatrix28 = (float)(int)*(char *)((ulonglong)(localInt7 + 1) + targetBuffer) * 0.0078125;
-        transformCoeff11 = (float)(result8 & 0xffffffff) * 2.3283064e-10;
+        transformCoefficient = (float)(result8 & 0xffffffff) * 2.3283064e-10;
         transformCoeff12 = (float)(int)*(char *)((ulonglong)(localInt7 + 2) + targetBuffer) * 0.00390625;
         result8 = *param_6 + result8;
         *resultPointer = result8;
@@ -259457,8 +259457,8 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
                     (((transformCoeff19 - AccumulatedFloat) * 3.0 - transformCoeff15) * 0.5 + TransformCoefficient29) * TransformCoefficient23) * TransformCoefficient23 +
                    (AccumulatedFloat - transformCoeff15) * 0.5) * TransformCoefficient23 + transformCoeff19;
         uiContext[1] = ((((transformMatrix28 + transformMatrix28 + transformCoeff16) - (TransformCoefficient20 * 2.5 + transformCoeff12)) +
-                      (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + transformCoeff12) * transformCoeff11) * transformCoeff11 +
-                     (transformMatrix28 - transformCoeff16) * 0.5) * transformCoeff11 + TransformCoefficient20;
+                      (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + transformCoeff12) * transformCoefficient) * transformCoefficient +
+                     (transformMatrix28 - transformCoeff16) * 0.5) * transformCoefficient + TransformCoefficient20;
         uiContext[3] = ((((transformCoeff18 + transformCoeff18 + TransformCoefficient22) - (TransformCoefficient25 * 2.5 + transformCoeff13)) +
                       (((TransformCoefficient25 - transformCoeff18) * 3.0 - TransformCoefficient22) * 0.5 + transformCoeff13) * TransformCoefficient26) * TransformCoefficient26 +
                      (transformCoeff18 - TransformCoefficient22) * 0.5) * TransformCoefficient26 + TransformCoefficient25;
@@ -259571,7 +259571,7 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         transformCoeff16 = (float)(int)*(short *)(targetBuffer + -2 + (result8 >> 0x20) * 2) * 3.0517578e-05;
         TransformCoefficient20 = (float)(int)*(short *)(targetBuffer + (result8 >> 0x20) * 2) * 3.0517578e-05;
         transformMatrix28 = (float)(int)*(short *)(targetBuffer + (ulonglong)(localInt7 + 1) * 2) * 3.0517578e-05;
-        transformCoeff11 = (float)(result8 & 0xffffffff) * 2.3283064e-10;
+        transformCoefficient = (float)(result8 & 0xffffffff) * 2.3283064e-10;
         transformCoeff12 = (float)(int)*(short *)(targetBuffer + (ulonglong)(localInt7 + 2) * 2) * 1.5258789e-05;
         result8 = result8 + *param_6;
         *resultPointer = result8;
@@ -259601,8 +259601,8 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
                     (((transformCoeff19 - AccumulatedFloat) * 3.0 - transformCoeff15) * 0.5 + TransformCoefficient29) * TransformCoefficient23) * TransformCoefficient23 +
                    (AccumulatedFloat - transformCoeff15) * 0.5) * TransformCoefficient23 + transformCoeff19;
         uiContext[1] = ((((transformMatrix28 + transformMatrix28 + transformCoeff16) - (TransformCoefficient20 * 2.5 + transformCoeff12)) +
-                      (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + transformCoeff12) * transformCoeff11) * transformCoeff11 +
-                     (transformMatrix28 - transformCoeff16) * 0.5) * transformCoeff11 + TransformCoefficient20;
+                      (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + transformCoeff12) * transformCoefficient) * transformCoefficient +
+                     (transformMatrix28 - transformCoeff16) * 0.5) * transformCoefficient + TransformCoefficient20;
         uiContext[3] = ((((transformCoeff18 + transformCoeff18 + TransformCoefficient22) - (TransformCoefficient25 * 2.5 + transformCoeff13)) +
                       (((TransformCoefficient25 - transformCoeff18) * 3.0 - TransformCoefficient22) * 0.5 + transformCoeff13) * TransformCoefficient26) * TransformCoefficient26 +
                      (transformCoeff18 - TransformCoefficient22) * 0.5) * TransformCoefficient26 + TransformCoefficient25;
@@ -259781,7 +259781,7 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         *resultPointer = result8;
         TransformCoefficient20 = (float)localInt7 * 4.656613e-10;
         transformCoeff16 = (float)localInt8 * 4.656613e-10;
-        transformCoeff11 = (float)(uint)result7 * 2.3283064e-10;
+        transformCoefficient = (float)(uint)result7 * 2.3283064e-10;
         TransformCoefficient29 = (float)localInt9 * 2.3283064e-10;
         transformCoeff17 = (float)*(int *)(targetBuffer + -4 + (result8 >> 0x20) * 4) * 4.656613e-10;
         localInt7 = (int)(result8 >> 0x20);
@@ -259812,8 +259812,8 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         AccumulatedFloat = (float)localInt9 * 2.3283064e-10;
         TransformCoefficient23 = (float)localInt8 * 4.656613e-10;
         *uiContext = ((((transformMatrix28 + transformMatrix28 + transformCoeff16) - (TransformCoefficient20 * 2.5 + TransformCoefficient29)) +
-                    (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + TransformCoefficient29) * transformCoeff11) * transformCoeff11 +
-                   (transformMatrix28 - transformCoeff16) * 0.5) * transformCoeff11 + TransformCoefficient20;
+                    (((TransformCoefficient20 - transformMatrix28) * 3.0 - transformCoeff16) * 0.5 + TransformCoefficient29) * transformCoefficient) * transformCoefficient +
+                   (transformMatrix28 - transformCoeff16) * 0.5) * transformCoefficient + TransformCoefficient20;
         uiContext[1] = ((((transformCoeff14 + transformCoeff14 + transformCoeff17) - (TransformCoefficient21 * 2.5 + transformCoeff12)) +
                       (((TransformCoefficient21 - transformCoeff14) * 3.0 - transformCoeff17) * 0.5 + transformCoeff12) * transformMatrix24) * transformMatrix24 +
                      (transformCoeff14 - transformCoeff17) * 0.5) * transformMatrix24 + TransformCoefficient21;
@@ -259930,7 +259930,7 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         transformCoeff14 = *(float *)(targetBuffer + (ulonglong)(localInt7 + 1) * 4);
         transformCoeff15 = *(float *)(targetBuffer + (result7 >> 0x20) * 4);
         TransformCoefficient25 = (float)(result7 & 0xffffffff) * 2.3283064e-10;
-        transformCoeff11 = *(float *)(targetBuffer + (ulonglong)(localInt7 + 2) * 4) * 0.5;
+        transformCoefficient = *(float *)(targetBuffer + (ulonglong)(localInt7 + 2) * 4) * 0.5;
         *resultPointer = result8;
         TransformCoefficient26 = (float)(result8 & 0xffffffff) * 2.3283064e-10;
         transformCoeff16 = *(float *)(targetBuffer + -4 + (result8 >> 0x20) * 4);
@@ -259950,8 +259950,8 @@ void FUN_18081f420(float *uiContext,uint dataSource,longlong targetBuffer,int bu
         *uiContext = ((((transformCoeff12 + transformCoeff12 + transformCoeff13) - (TransformCoefficient29 * 2.5 + AccumulatedFloat)) +
                     (((TransformCoefficient29 - transformCoeff12) * 3.0 - transformCoeff13) * 0.5 + AccumulatedFloat) * transformMatrix24) * transformMatrix24 +
                    (transformCoeff12 - transformCoeff13) * 0.5) * transformMatrix24 + TransformCoefficient29;
-        uiContext[1] = ((((transformCoeff14 + transformCoeff14 + transformMatrix28) - (transformCoeff15 * 2.5 + transformCoeff11)) +
-                      (((transformCoeff15 - transformCoeff14) * 3.0 - transformMatrix28) * 0.5 + transformCoeff11) * TransformCoefficient25) * TransformCoefficient25 +
+        uiContext[1] = ((((transformCoeff14 + transformCoeff14 + transformMatrix28) - (transformCoeff15 * 2.5 + transformCoefficient)) +
+                      (((transformCoeff15 - transformCoeff14) * 3.0 - transformMatrix28) * 0.5 + transformCoefficient) * TransformCoefficient25) * TransformCoefficient25 +
                      (transformCoeff14 - transformMatrix28) * 0.5) * TransformCoefficient25 + transformCoeff15;
         uiContext[2] = ((((transformCoeff18 + transformCoeff18 + transformCoeff16) - (transformCoeff19 * 0.5 + transformCoeff17 * 2.5)) +
                       (((transformCoeff17 - transformCoeff18) * 3.0 - transformCoeff16) + transformCoeff19) * 0.5 * TransformCoefficient26) * TransformCoefficient26 +
@@ -260140,7 +260140,7 @@ void FUN_1808208ba(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -260192,7 +260192,7 @@ void FUN_1808208ba(void)
       transformCoeff15 = (float)(int)*(short *)(RegisterPointer + -2 + (dataPointer >> 0x20) * 2) * 3.0517578e-05;
       sVar1 = *(short *)(RegisterPointer + (ulonglong)(localInt8 + 2) * 2);
       transformCoeff19 = (float)(int)*(short *)(RegisterPointer + (dataPointer >> 0x20) * 2) * 3.0517578e-05;
-      transformCoeff11 = (float)(int)*(short *)(RegisterPointer + (ulonglong)(localInt8 + 1) * 2) * 3.0517578e-05;
+      transformCoefficient = (float)(int)*(short *)(RegisterPointer + (ulonglong)(localInt8 + 1) * 2) * 3.0517578e-05;
       *stackParam000000f0 = *stackParam000000f8 + dataPointer;
       contextHandle[2] = ((((finalResult + finalResult + AccumulatedFloat) - (transformCoeff14 * 2.5 + vectorComponentX)) +
                       (((transformCoeff14 - finalResult) * 3.0 - AccumulatedFloat) * 0.5 + vectorComponentX) * transformCoeff18) * transformCoeff18 +
@@ -260204,9 +260204,9 @@ void FUN_1808208ba(void)
       contextHandle[1] = ((((baseValue6 + baseValue6 + FloatValue2) - (transformCoeff13 * 2.5 + baseValue3)) +
                       (((transformCoeff13 - baseValue6) * 3.0 - FloatValue2) * 0.5 + baseValue3) * transformCoeff17) * transformCoeff17 +
                      (baseValue6 - FloatValue2) * 0.5) * transformCoeff17 + transformCoeff13;
-      contextHandle[3] = ((((transformCoeff11 + transformCoeff11 + transformCoeff15) - (transformCoeff19 * 2.5 + vectorComponentX)) +
-                      (((transformCoeff19 - transformCoeff11) * 3.0 - transformCoeff15) * 0.5 + vectorComponentX) * TransformCoefficient20) * TransformCoefficient20 +
-                     (transformCoeff11 - transformCoeff15) * 0.5) * TransformCoefficient20 + transformCoeff19;
+      contextHandle[3] = ((((transformCoefficient + transformCoefficient + transformCoeff15) - (transformCoeff19 * 2.5 + vectorComponentX)) +
+                      (((transformCoeff19 - transformCoefficient) * 3.0 - transformCoeff15) * 0.5 + vectorComponentX) * TransformCoefficient20) * TransformCoefficient20 +
+                     (transformCoefficient - transformCoeff15) * 0.5) * TransformCoefficient20 + transformCoeff19;
       contextHandle = contextHandle + 4;
     }
     for (maxProcessingCount = unmodifiedEBP & 3; maxProcessingCount != 0; maxProcessingCount = maxProcessingCount - 1) {
@@ -268349,7 +268349,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -268519,7 +268519,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pTransformCoefficient30 = pTransformCoefficient32 + (sourceDataInt7 + -0x200);
             FloatValue2 = *pTransformCoefficient30;
             AccumulatedFloat = pTransformCoefficient30[1];
-            transformCoeff11 = pTransformCoefficient30[3];
+            transformCoefficient = pTransformCoefficient30[3];
             BaseValuePointer = pTransformCoefficient32 + sourceDataInt7;
             transformCoeff12 = *BaseValuePointer;
             transformCoeff13 = BaseValuePointer[1];
@@ -268554,7 +268554,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             aloopCounter8._12_4_ = TransformCoefficient1[2] * ResultFloatValue + pLocalFloatValue6[1] * vectorComponentX;
             pTransformCoefficient30 = dataSource + sourceDataInt9;
             *pTransformCoefficient30 = pTransformCoefficient31[3] * TemporaryFloatValue + *pTransformCoefficient2 * baseValue3;
-            pTransformCoefficient30[1] = transformCoeff11 * TemporaryFloatValue + TransformCoefficient20 * baseValue3;
+            pTransformCoefficient30[1] = transformCoefficient * TemporaryFloatValue + TransformCoefficient20 * baseValue3;
             pTransformCoefficient30[2] = transformCoeff14 * TemporaryFloatValue + TransformCoefficient23 * baseValue3;
             pTransformCoefficient30[3] = transformCoeff17 * TemporaryFloatValue + TransformCoefficient26 * baseValue3;
             *(UIByte (*) [16])(dataSource + (longlong)sourceDataInt9 + loopCounter6) = aloopCounter8;
@@ -268587,11 +268587,11 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             sourceDataInt3 = sourceDataInt3 + 0x400;
             pTransformCoefficient30 = pTransformCoefficient36 + eventDataIndex4;
             AccumulatedFloat = pTransformCoefficient30[1];
-            transformCoeff11 = pTransformCoefficient30[2];
+            transformCoefficient = pTransformCoefficient30[2];
             transformCoeff12 = pTransformCoefficient30[3];
             dataSource[uiCompareResult9] = pTransformCoefficient31[3] * TemporaryFloatValue + *pTransformCoefficient30 * baseValue3;
             dataSource[(longlong)uiCompareResult9 + loopCounter6] = FloatValue2 * ResultFloatValue + AccumulatedFloat * vectorComponentX;
-            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = FloatValue1 * baseValue0 + transformCoeff11 * baseValue5;
+            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = FloatValue1 * baseValue0 + transformCoefficient * baseValue5;
             dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult1] = finalResult * LocalFloatValue9 + transformCoeff12 * baseValue6;
             processingStatus4 = processingStatus4 - 1;
             uiCompareResult9 = uiCompareResult9 + 1;
@@ -268652,7 +268652,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pTransformCoefficient30 = pTransformCoefficient32 + (sourceDataInt9 + -0x200);
             FloatValue2 = *pTransformCoefficient30;
             AccumulatedFloat = pTransformCoefficient30[2];
-            transformCoeff11 = pTransformCoefficient30[3];
+            transformCoefficient = pTransformCoefficient30[3];
             BaseValuePointer = pTransformCoefficient32 + sourceDataInt9;
             transformCoeff12 = *BaseValuePointer;
             transformCoeff13 = BaseValuePointer[2];
@@ -268699,7 +268699,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             pTransformCoefficient31[3] = transformCoeff16 * baseValue0 - TransformCoefficient27 * baseValue5;
             pTransformCoefficient31 = dataSource + (longlong)sourceDataInt3 + (longlong)ProcessingResult1;
             *pTransformCoefficient31 = FloatValue1 * LocalFloatValue9 - transformCoeff18 * baseValue6;
-            pTransformCoefficient31[1] = transformCoeff11 * LocalFloatValue9 - TransformCoefficient23 * baseValue6;
+            pTransformCoefficient31[1] = transformCoefficient * LocalFloatValue9 - TransformCoefficient23 * baseValue6;
             pTransformCoefficient31[2] = transformCoeff14 * LocalFloatValue9 - TransformCoefficient20 * baseValue6;
             pTransformCoefficient31[3] = transformCoeff17 * LocalFloatValue9 - TransformCoefficient26 * baseValue6;
             localInt51 = localInt51 + -1;
@@ -268721,11 +268721,11 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
             localInt51 = localInt51 + 0x200;
             pTransformCoefficient30 = pTransformCoefficient32 + eventDataIndex4;
             AccumulatedFloat = pTransformCoefficient30[1];
-            transformCoeff11 = pTransformCoefficient30[2];
+            transformCoefficient = pTransformCoefficient30[2];
             transformCoeff12 = pTransformCoefficient30[3];
             dataSource[uiCompareResult9] = *pTransformCoefficient30 * TemporaryFloatValue - pTransformCoefficient31[3] * baseValue3;
             dataSource[(longlong)uiCompareResult9 + loopCounter6] = AccumulatedFloat * ResultFloatValue - FloatValue2 * vectorComponentX;
-            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = transformCoeff11 * baseValue0 - FloatValue1 * baseValue5;
+            dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult2] = transformCoefficient * baseValue0 - FloatValue1 * baseValue5;
             dataSource[(longlong)uiCompareResult9 + (longlong)ProcessingResult1] = transformCoeff12 * LocalFloatValue9 - finalResult * baseValue6;
             processingStatus4 = processingStatus4 - 1;
             uiCompareResult9 = uiCompareResult9 + 1;
@@ -268902,7 +268902,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     FloatValue1 = pTransformCoefficient32[-3];
     FloatValue2 = pTransformCoefficient32[-2];
     AccumulatedFloat = targetBuffer[-4];
-    transformCoeff11 = targetBuffer[-3];
+    transformCoefficient = targetBuffer[-3];
     transformCoeff12 = targetBuffer[-2];
     transformCoeff13 = pTransformCoefficient30[-4];
     transformCoeff14 = pTransformCoefficient30[-3];
@@ -268917,8 +268917,8 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
                   pTransformCoefficient32[-1] * targetBuffer[-1] + baseValue3 * LocalFloatValue9);
     dataSource[4] = FloatValue2 * transformCoeff12 + vectorComponentX * baseValue0;
     dataSource[5] = transformCoeff15 * transformCoeff12 + transformCoeff17 * baseValue0;
-    dataSource[4] = FloatValue1 * transformCoeff11 + baseValue5 * ResultFloatValue;
-    dataSource[5] = transformCoeff14 * transformCoeff11 + transformCoeff18 * ResultFloatValue;
+    dataSource[4] = FloatValue1 * transformCoefficient + baseValue5 * ResultFloatValue;
+    dataSource[5] = transformCoeff14 * transformCoefficient + transformCoeff18 * ResultFloatValue;
     dataSource[6] = finalResult * AccumulatedFloat + baseValue6 * TemporaryFloatValue;
     dataSource[7] = transformCoeff13 * AccumulatedFloat + transformCoeff19 * TemporaryFloatValue;
     dataSource = dataSource + 8;
@@ -268955,7 +268955,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     FloatValue1 = pTransformCoefficient36[-3];
     FloatValue2 = pTransformCoefficient36[-2];
     AccumulatedFloat = pTransformCoefficient31[-4];
-    transformCoeff11 = pTransformCoefficient31[-3];
+    transformCoefficient = pTransformCoefficient31[-3];
     transformCoeff12 = pTransformCoefficient31[-2];
     transformCoeff13 = targetBuffer[-4];
     transformCoeff14 = targetBuffer[-3];
@@ -268971,7 +268971,7 @@ void FUN_18082b380(longlong uiContext,float *dataSource,float *targetBuffer,floa
     dataSource[4] = vectorComponentX * transformCoeff15 - FloatValue2 * baseValue0;
     dataSource[5] = transformCoeff17 * transformCoeff15 - transformCoeff12 * baseValue0;
     dataSource[4] = baseValue5 * transformCoeff14 - FloatValue1 * ResultFloatValue;
-    dataSource[5] = transformCoeff18 * transformCoeff14 - transformCoeff11 * ResultFloatValue;
+    dataSource[5] = transformCoeff18 * transformCoeff14 - transformCoefficient * ResultFloatValue;
     dataSource[6] = baseValue6 * transformCoeff13 - finalResult * TemporaryFloatValue;
     dataSource[7] = transformCoeff19 * transformCoeff13 - AccumulatedFloat * TemporaryFloatValue;
     dataSource = dataSource + 8;
@@ -269059,7 +269059,7 @@ void FUN_18082b45b(void)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -269235,7 +269235,7 @@ void FUN_18082b45b(void)
           FloatValue2 = pTransformCoefficient34[3];
           pTransformCoefficient34 = register9 + localInt54;
           AccumulatedFloat = *pTransformCoefficient34;
-          transformCoeff11 = pTransformCoefficient34[1];
+          transformCoefficient = pTransformCoefficient34[1];
           transformCoeff12 = pTransformCoefficient34[2];
           transformCoeff13 = pTransformCoefficient34[3];
           sourceDataInt9 = localInt54 + 0x200;
@@ -269280,7 +269280,7 @@ void FUN_18082b45b(void)
           pscaleFactor37 = RegisterPointer + (longlong)localInt8 + (longlong)localInt52;
           *pscaleFactor37 = vectorComponentX * TransformCoefficient2 + transformCoeff19 * baseValue1;
           pscaleFactor37[1] = finalResult * TransformCoefficient2 + TransformCoefficient23 * baseValue1;
-          pscaleFactor37[2] = transformCoeff11 * TransformCoefficient2 + TransformCoefficient27 * baseValue1;
+          pscaleFactor37[2] = transformCoefficient * TransformCoefficient2 + TransformCoefficient27 * baseValue1;
           pscaleFactor37[3] = transformCoeff15 * TransformCoefficient2 + TransformCoefficient31 * baseValue1;
           pscaleFactor37 = RegisterPointer + (longlong)localInt52 + (longlong)localInt7;
           *pscaleFactor37 = baseValue3 * LocalFloatValue6 + TransformCoefficient20 * baseValue2;
@@ -269374,7 +269374,7 @@ void FUN_18082b45b(void)
           FloatValue2 = pTransformCoefficient34[3];
           pTransformCoefficient34 = register9 + localInt50;
           AccumulatedFloat = *pTransformCoefficient34;
-          transformCoeff11 = pTransformCoefficient34[1];
+          transformCoefficient = pTransformCoefficient34[1];
           transformCoeff12 = pTransformCoefficient34[2];
           transformCoeff13 = pTransformCoefficient34[3];
           sourceDataInt9 = localInt50 + 0x200;
@@ -269415,7 +269415,7 @@ void FUN_18082b45b(void)
           pscaleFactor37 = RegisterPointer + (longlong)localInt52 + eventHandle;
           *pscaleFactor37 = baseValue3 * TransformCoefficient3 - TransformCoefficient20 * baseValue0;
           pscaleFactor37[1] = finalResult * TransformCoefficient3 - TransformCoefficient27 * baseValue0;
-          pscaleFactor37[2] = transformCoeff11 * TransformCoefficient3 - TransformCoefficient23 * baseValue0;
+          pscaleFactor37[2] = transformCoefficient * TransformCoefficient3 - TransformCoefficient23 * baseValue0;
           pscaleFactor37[3] = transformCoeff15 * TransformCoefficient3 - TransformCoefficient31 * baseValue0;
           pscaleFactor37 = RegisterPointer + (longlong)localInt52 + (longlong)localInt8;
           *pscaleFactor37 = vectorComponentX * TransformCoefficient2 - transformCoeff19 * baseValue1;
@@ -269616,7 +269616,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -269701,7 +269701,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           FloatValue1 = *pTransformCoefficient33;
           FloatValue2 = pTransformCoefficient33[1];
           AccumulatedFloat = pTransformCoefficient33[2];
-          transformCoeff11 = pTransformCoefficient33[3];
+          transformCoefficient = pTransformCoefficient33[3];
           sourceDataInt6 = localInt54 + 0x200;
           localInt54 = localInt54 + 0x800;
           pTransformCoefficient33 = bufferSize + sourceDataInt6;
@@ -269734,7 +269734,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           TransformCoefficient1 = RegisterPointer + localInt52;
           *TransformCoefficient1 = pscaleFactor35[3] * LocalFloatValue6 + *pTransformCoefficient33 * ResultFloatValue;
           TransformCoefficient1[1] = finalResult * LocalFloatValue6 + transformCoeff19 * ResultFloatValue;
-          TransformCoefficient1[2] = transformCoeff11 * LocalFloatValue6 + TransformCoefficient23 * ResultFloatValue;
+          TransformCoefficient1[2] = transformCoefficient * LocalFloatValue6 + TransformCoefficient23 * ResultFloatValue;
           TransformCoefficient1[3] = transformCoeff15 * LocalFloatValue6 + TransformCoefficient27 * ResultFloatValue;
           pscaleFactor35 = RegisterPointer + localInt52 + targetBuffer;
           *pscaleFactor35 = baseValue3 * TransformCoefficient4 + transformCoeff16 * TemporaryFloatValue;
@@ -269846,7 +269846,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           FloatValue1 = *pTransformCoefficient33;
           FloatValue2 = pTransformCoefficient33[1];
           AccumulatedFloat = pTransformCoefficient33[2];
-          transformCoeff11 = pTransformCoefficient33[3];
+          transformCoefficient = pTransformCoefficient33[3];
           sourceDataInt8 = localInt54 + 0x200;
           localInt54 = localInt54 + 0x800;
           pTransformCoefficient33 = bufferSize + sourceDataInt8;
@@ -269895,7 +269895,7 @@ void FUN_18082b693(int uiContext,UIHandle dataSource,longlong targetBuffer,float
           pscaleFactor35 = RegisterPointer + localInt52 + contextDataHandle1;
           *pscaleFactor35 = baseValue3 * TransformCoefficient2 - transformCoeff16 * baseValue0;
           pscaleFactor35[1] = finalResult * TransformCoefficient2 - TransformCoefficient23 * baseValue0;
-          pscaleFactor35[2] = transformCoeff11 * TransformCoefficient2 - transformCoeff19 * baseValue0;
+          pscaleFactor35[2] = transformCoefficient * TransformCoefficient2 - transformCoeff19 * baseValue0;
           pscaleFactor35[3] = transformCoeff15 * TransformCoefficient2 - TransformCoefficient27 * baseValue0;
           sourceDataInt9 = sourceDataInt9 + -1;
           preservedRegister13D = stackParam00000110;
@@ -270286,7 +270286,7 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -270346,13 +270346,13 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     FloatValue1 = resultPointer[-3];
     FloatValue2 = resultPointer[-2];
     AccumulatedFloat = resultPointer[-1];
-    transformCoeff11 = *param_7;
+    transformCoefficient = *param_7;
     transformCoeff12 = param_7[1];
     transformCoeff13 = param_7[2];
     transformCoeff14 = param_7[3];
     param_7 = param_7 + 4;
     *uiContext = bufferSize[-1] * baseValue6 + LocalFloatValue6 * transformCoeff1;
-    uiContext[1] = AccumulatedFloat * baseValue6 + transformCoeff11 * transformCoeff1;
+    uiContext[1] = AccumulatedFloat * baseValue6 + transformCoefficient * transformCoeff1;
     uiContext[2] = baseValue2 * baseValue5 + ResultFloatValue * TransformCoefficient2;
     uiContext[3] = FloatValue2 * baseValue5 + transformCoeff12 * TransformCoefficient2;
     uiContext[4] = baseValue1 * vectorComponentX + TemporaryFloatValue * TransformCoefficient3;
@@ -270400,13 +270400,13 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
     FloatValue1 = dataSource[-3];
     FloatValue2 = dataSource[-2];
     AccumulatedFloat = dataSource[-1];
-    transformCoeff11 = *resultPointer;
+    transformCoefficient = *resultPointer;
     transformCoeff12 = resultPointer[1];
     transformCoeff13 = resultPointer[2];
     transformCoeff14 = resultPointer[3];
     resultPointer = resultPointer + 4;
     *uiContext = LocalFloatValue6 * AccumulatedFloat - param_6[-1] * transformCoeff1;
-    uiContext[1] = transformCoeff11 * AccumulatedFloat - baseValue6 * transformCoeff1;
+    uiContext[1] = transformCoefficient * AccumulatedFloat - baseValue6 * transformCoeff1;
     uiContext[2] = ResultFloatValue * FloatValue2 - baseValue2 * TransformCoefficient2;
     uiContext[3] = transformCoeff12 * FloatValue2 - baseValue5 * TransformCoefficient2;
     uiContext[4] = TemporaryFloatValue * FloatValue1 - baseValue1 * TransformCoefficient3;
@@ -270739,7 +270739,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aprocessingStatus1._12_4_ = FloatValue1 * TransformCoefficient14[3] + maxProcessingCount._12_4_;
           aprocessingStatus1._16_4_ = FloatValue2 * TransformCoefficient14[4] + maxProcessingCount._16_4_;
           aprocessingStatus1._20_4_ = AccumulatedFloat * TransformCoefficient14[5] + maxProcessingCount._20_4_;
-          aprocessingStatus1._24_4_ = transformCoeff11 * TransformCoefficient14[6] + maxProcessingCount._24_4_;
+          aprocessingStatus1._24_4_ = transformCoefficient * TransformCoefficient14[6] + maxProcessingCount._24_4_;
           aprocessingStatus1._28_4_ = TransformCoefficient14[7] + maxProcessingCount._28_4_;
           TransformCoefficient14 = pTransformCoefficient23 + (uiCompareResult6 + -0x400);
           TransformCoefficient16 = pTransformCoefficient23 + uiCompareResult6;
@@ -270749,7 +270749,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aeventCodeType7._12_4_ = FloatValue1 * TransformCoefficient14[3] + aiterationCounter._12_4_;
           aeventCodeType7._16_4_ = FloatValue2 * TransformCoefficient14[4] + aiterationCounter._16_4_;
           aeventCodeType7._20_4_ = AccumulatedFloat * TransformCoefficient14[5] + aiterationCounter._20_4_;
-          aeventCodeType7._24_4_ = transformCoeff11 * TransformCoefficient14[6] + aiterationCounter._24_4_;
+          aeventCodeType7._24_4_ = transformCoefficient * TransformCoefficient14[6] + aiterationCounter._24_4_;
           aeventCodeType7._28_4_ = TransformCoefficient14[7] + aiterationCounter._28_4_;
           processingResult = uiCompareResult6 + 0x400;
           uiCompareResult6 = uiCompareResult6 + 0x1000;
@@ -270759,7 +270759,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aeventCodeType9._12_4_ = FloatValue1 * TransformCoefficient16[3] + aeventProcessingCounter._12_4_;
           aeventCodeType9._16_4_ = FloatValue2 * TransformCoefficient16[4] + aeventProcessingCounter._16_4_;
           aeventCodeType9._20_4_ = AccumulatedFloat * TransformCoefficient16[5] + aeventProcessingCounter._20_4_;
-          aeventCodeType9._24_4_ = transformCoeff11 * TransformCoefficient16[6] + aeventProcessingCounter._24_4_;
+          aeventCodeType9._24_4_ = transformCoefficient * TransformCoefficient16[6] + aeventProcessingCounter._24_4_;
           aeventCodeType9._28_4_ = TransformCoefficient16[7] + aeventProcessingCounter._28_4_;
           maxProcessingCount = vshufps_avx(aprocessingStatus1,aeventCodeType7,0x44);
           TransformCoefficient14 = pTransformCoefficient23 + processingResult;
@@ -270769,7 +270769,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aeventCodeType8._12_4_ = FloatValue1 * TransformCoefficient14[3] + aeventStatus._12_4_;
           aeventCodeType8._16_4_ = FloatValue2 * TransformCoefficient14[4] + aeventStatus._16_4_;
           aeventCodeType8._20_4_ = AccumulatedFloat * TransformCoefficient14[5] + aeventStatus._20_4_;
-          aeventCodeType8._24_4_ = transformCoeff11 * TransformCoefficient14[6] + aeventStatus._24_4_;
+          aeventCodeType8._24_4_ = transformCoefficient * TransformCoefficient14[6] + aeventStatus._24_4_;
           aeventCodeType8._28_4_ = in_ZMM4._28_4_ + aeventStatus._28_4_;
           aiterationCounter = vshufps_avx(aprocessingStatus1,aeventCodeType7,0xee);
           in_ZMM4 = ZEXT3264(aiterationCounter);
@@ -270836,7 +270836,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
       FloatValue1 = bufferSize[3];
       FloatValue2 = bufferSize[4];
       AccumulatedFloat = bufferSize[5];
-      transformCoeff11 = bufferSize[6];
+      transformCoefficient = bufferSize[6];
       targetBuffer = targetBuffer + -0x20;
       pTransformCoefficient23 = pTransformCoefficient23 + -8;
       if (uiValidationResult9 != 0) {
@@ -270902,7 +270902,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aprocessingStatus2._16_4_ = maxProcessingCount._16_4_ * FloatValue2;
           aprocessingStatus2._20_4_ = maxProcessingCount._20_4_ * AccumulatedFloat;
           aprocessingStatus2._28_36_ = in_ZMM5._28_36_;
-          aprocessingStatus2._24_4_ = maxProcessingCount._24_4_ * transformCoeff11;
+          aprocessingStatus2._24_4_ = maxProcessingCount._24_4_ * transformCoefficient;
           maxProcessingCount = vpermps_avx2(aprocessingStatus,*(UIByte (*) [32])(pTransformCoefficient23 + (uiCompareResult6 + -0x400)));
           aresult1._4_4_ = maxProcessingCount._4_4_ * baseValue6;
           aresult1._0_4_ = maxProcessingCount._0_4_ * TransformCoefficient2;
@@ -270910,7 +270910,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           aresult1._12_4_ = maxProcessingCount._12_4_ * FloatValue1;
           aresult1._16_4_ = maxProcessingCount._16_4_ * FloatValue2;
           aresult1._20_4_ = maxProcessingCount._20_4_ * AccumulatedFloat;
-          aresult1._24_4_ = maxProcessingCount._24_4_ * transformCoeff11;
+          aresult1._24_4_ = maxProcessingCount._24_4_ * transformCoefficient;
           aresult1._28_4_ = TransformCoefficient14[7];
           maxProcessingCount = vpermps_avx2(aprocessingStatus,*(UIByte (*) [32])(pTransformCoefficient23 + uiCompareResult6));
           bufferValue._4_4_ = maxProcessingCount._4_4_ * baseValue6;
@@ -270919,7 +270919,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           bufferValue._12_4_ = maxProcessingCount._12_4_ * FloatValue1;
           bufferValue._16_4_ = maxProcessingCount._16_4_ * FloatValue2;
           bufferValue._20_4_ = maxProcessingCount._20_4_ * AccumulatedFloat;
-          bufferValue._24_4_ = maxProcessingCount._24_4_ * transformCoeff11;
+          bufferValue._24_4_ = maxProcessingCount._24_4_ * transformCoefficient;
           bufferValue._28_4_ = SUB324(*(UIByte (*) [32])(pTransformCoefficient23 + uiCompareResult6),0x1c);
           aiterationCounter = vsubps_avx(aprocessingStatus3._0_32_,aprocessingStatus2._0_32_);
           aeventStatus = vsubps_avx(aprocessingStatus5._0_32_,bufferValue);
@@ -270932,7 +270932,7 @@ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlon
           acontextValue._12_4_ = aeventProcessingCounter._12_4_ * FloatValue1;
           acontextValue._16_4_ = aeventProcessingCounter._16_4_ * FloatValue2;
           acontextValue._20_4_ = aeventProcessingCounter._20_4_ * AccumulatedFloat;
-          acontextValue._24_4_ = aeventProcessingCounter._24_4_ * transformCoeff11;
+          acontextValue._24_4_ = aeventProcessingCounter._24_4_ * transformCoefficient;
           acontextValue._28_4_ = maxProcessingCount._28_4_;
           aeventCodeType7 = vsubps_avx(aprocessingStatus7._0_32_,acontextValue);
           aeventProcessingCounter = vsubps_avx(aprocessingStatus4._0_32_,aresult1);
@@ -271143,7 +271143,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   int bufferSize;
@@ -271280,7 +271280,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
     FloatValue1 = contextHandle[1];
     FloatValue2 = contextHandle[2];
     AccumulatedFloat = contextHandle[3];
-    transformCoeff11 = contextHandle[4];
+    transformCoefficient = contextHandle[4];
     transformCoeff12 = contextHandle[5];
     transformCoeff13 = contextHandle[6];
     uiTargetHandle = uiTargetHandle + -0x20;
@@ -271349,7 +271349,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         aprocessingStatus5._4_4_ = FloatValue1 * TransformCoefficient17[1] + aeventProcessingCounter._4_4_;
         aprocessingStatus5._8_4_ = FloatValue2 * TransformCoefficient17[2] + aeventProcessingCounter._8_4_;
         aprocessingStatus5._12_4_ = AccumulatedFloat * TransformCoefficient17[3] + aeventProcessingCounter._12_4_;
-        aprocessingStatus5._16_4_ = transformCoeff11 * TransformCoefficient17[4] + aeventProcessingCounter._16_4_;
+        aprocessingStatus5._16_4_ = transformCoefficient * TransformCoefficient17[4] + aeventProcessingCounter._16_4_;
         aprocessingStatus5._20_4_ = transformCoeff12 * TransformCoefficient17[5] + aeventProcessingCounter._20_4_;
         aprocessingStatus5._24_4_ = transformCoeff13 * TransformCoefficient17[6] + aeventProcessingCounter._24_4_;
         aprocessingStatus5._28_4_ = TransformCoefficient17[7] + aeventProcessingCounter._28_4_;
@@ -271359,7 +271359,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         aprocessingStatus1._4_4_ = FloatValue1 * TransformCoefficient17[1] + aeventStatus._4_4_;
         aprocessingStatus1._8_4_ = FloatValue2 * TransformCoefficient17[2] + aeventStatus._8_4_;
         aprocessingStatus1._12_4_ = AccumulatedFloat * TransformCoefficient17[3] + aeventStatus._12_4_;
-        aprocessingStatus1._16_4_ = transformCoeff11 * TransformCoefficient17[4] + aeventStatus._16_4_;
+        aprocessingStatus1._16_4_ = transformCoefficient * TransformCoefficient17[4] + aeventStatus._16_4_;
         aprocessingStatus1._20_4_ = transformCoeff12 * TransformCoefficient17[5] + aeventStatus._20_4_;
         aprocessingStatus1._24_4_ = transformCoeff13 * TransformCoefficient17[6] + aeventStatus._24_4_;
         aprocessingStatus1._28_4_ = TransformCoefficient17[7] + aeventStatus._28_4_;
@@ -271369,7 +271369,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         aprocessingStatus3._4_4_ = FloatValue1 * pTransformCoefficient2[1] + adataPointer._4_4_;
         aprocessingStatus3._8_4_ = FloatValue2 * pTransformCoefficient2[2] + adataPointer._8_4_;
         aprocessingStatus3._12_4_ = AccumulatedFloat * pTransformCoefficient2[3] + adataPointer._12_4_;
-        aprocessingStatus3._16_4_ = transformCoeff11 * pTransformCoefficient2[4] + adataPointer._16_4_;
+        aprocessingStatus3._16_4_ = transformCoefficient * pTransformCoefficient2[4] + adataPointer._16_4_;
         aprocessingStatus3._20_4_ = transformCoeff12 * pTransformCoefficient2[5] + adataPointer._20_4_;
         aprocessingStatus3._24_4_ = transformCoeff13 * pTransformCoefficient2[6] + adataPointer._24_4_;
         aprocessingStatus3._28_4_ = pTransformCoefficient2[7] + adataPointer._28_4_;
@@ -271379,7 +271379,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         aprocessingStatus2._4_4_ = FloatValue1 * TransformCoefficient17[1] + aresult1._4_4_;
         aprocessingStatus2._8_4_ = FloatValue2 * TransformCoefficient17[2] + aresult1._8_4_;
         aprocessingStatus2._12_4_ = AccumulatedFloat * TransformCoefficient17[3] + aresult1._12_4_;
-        aprocessingStatus2._16_4_ = transformCoeff11 * TransformCoefficient17[4] + aresult1._16_4_;
+        aprocessingStatus2._16_4_ = transformCoefficient * TransformCoefficient17[4] + aresult1._16_4_;
         aprocessingStatus2._20_4_ = transformCoeff12 * TransformCoefficient17[5] + aresult1._20_4_;
         aprocessingStatus2._24_4_ = transformCoeff13 * TransformCoefficient17[6] + aresult1._24_4_;
         aprocessingStatus2._28_4_ = in_ZMM4._28_4_ + aresult1._28_4_;
@@ -271444,7 +271444,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
     FloatValue1 = contextHandle[1];
     FloatValue2 = contextHandle[2];
     AccumulatedFloat = contextHandle[3];
-    transformCoeff11 = contextHandle[4];
+    transformCoefficient = contextHandle[4];
     transformCoeff12 = contextHandle[5];
     transformCoeff13 = contextHandle[6];
     uiTargetHandle = uiTargetHandle + -0x20;
@@ -271516,7 +271516,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         acomponentStatus6._4_4_ = aeventProcessingCounter._4_4_ * FloatValue1;
         acomponentStatus6._8_4_ = aeventProcessingCounter._8_4_ * FloatValue2;
         acomponentStatus6._12_4_ = aeventProcessingCounter._12_4_ * AccumulatedFloat;
-        acomponentStatus6._16_4_ = aeventProcessingCounter._16_4_ * transformCoeff11;
+        acomponentStatus6._16_4_ = aeventProcessingCounter._16_4_ * transformCoefficient;
         acomponentStatus6._20_4_ = aeventProcessingCounter._20_4_ * transformCoeff12;
         acomponentStatus6._28_36_ = in_ZMM5._28_36_;
         acomponentStatus6._24_4_ = aeventProcessingCounter._24_4_ * transformCoeff13;
@@ -271525,7 +271525,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         acontextValue._0_4_ = aeventProcessingCounter._0_4_ * TransformCoefficient4;
         acontextValue._8_4_ = aeventProcessingCounter._8_4_ * FloatValue2;
         acontextValue._12_4_ = aeventProcessingCounter._12_4_ * AccumulatedFloat;
-        acontextValue._16_4_ = aeventProcessingCounter._16_4_ * transformCoeff11;
+        acontextValue._16_4_ = aeventProcessingCounter._16_4_ * transformCoefficient;
         acontextValue._20_4_ = aeventProcessingCounter._20_4_ * transformCoeff12;
         acontextValue._24_4_ = aeventProcessingCounter._24_4_ * transformCoeff13;
         acontextValue._28_4_ = TransformCoefficient17[7];
@@ -271534,7 +271534,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         acomponentIndex._0_4_ = aeventProcessingCounter._0_4_ * TransformCoefficient4;
         acomponentIndex._8_4_ = aeventProcessingCounter._8_4_ * FloatValue2;
         acomponentIndex._12_4_ = aeventProcessingCounter._12_4_ * AccumulatedFloat;
-        acomponentIndex._16_4_ = aeventProcessingCounter._16_4_ * transformCoeff11;
+        acomponentIndex._16_4_ = aeventProcessingCounter._16_4_ * transformCoefficient;
         acomponentIndex._20_4_ = aeventProcessingCounter._20_4_ * transformCoeff12;
         acomponentIndex._24_4_ = aeventProcessingCounter._24_4_ * transformCoeff13;
         acomponentIndex._28_4_ = SUB324(*(UIByte (*) [32])(register10 + uiCompareResult9),0x1c);
@@ -271547,7 +271547,7 @@ void FUN_18082c579(UIHandle uiContext,int dataSource,UIHandle targetBuffer,float
         aCounterResult._0_4_ = adataPointer._0_4_ * TransformCoefficient4;
         aCounterResult._8_4_ = adataPointer._8_4_ * FloatValue2;
         aCounterResult._12_4_ = adataPointer._12_4_ * AccumulatedFloat;
-        aCounterResult._16_4_ = adataPointer._16_4_ * transformCoeff11;
+        aCounterResult._16_4_ = adataPointer._16_4_ * transformCoefficient;
         aCounterResult._20_4_ = adataPointer._20_4_ * transformCoeff12;
         aCounterResult._24_4_ = adataPointer._24_4_ * transformCoeff13;
         aCounterResult._28_4_ = aeventProcessingCounter._28_4_;
@@ -271749,7 +271749,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
   UIByte aresult8 [32];
   int processingResult;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -271811,7 +271811,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
     in_ZMM9 = ZEXT3264(aiterationCounter);
     LocalFloatValue6 = *contextHandle;
     AccumulatedFloat = contextHandle[1];
-    transformCoeff11 = contextHandle[2];
+    transformCoefficient = contextHandle[2];
     transformCoeff12 = contextHandle[3];
     transformCoeff13 = contextHandle[4];
     transformCoeff14 = contextHandle[5];
@@ -271880,7 +271880,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         TransformCoefficient19 = register10 + (uiCompareResult9 + -0x800);
         aprocessingStatus5._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + aeventStatus._0_4_;
         aprocessingStatus5._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + aeventStatus._4_4_;
-        aprocessingStatus5._8_4_ = transformCoeff11 * TransformCoefficient19[2] + aeventStatus._8_4_;
+        aprocessingStatus5._8_4_ = transformCoefficient * TransformCoefficient19[2] + aeventStatus._8_4_;
         aprocessingStatus5._12_4_ = transformCoeff12 * TransformCoefficient19[3] + aeventStatus._12_4_;
         aprocessingStatus5._16_4_ = transformCoeff13 * TransformCoefficient19[4] + aeventStatus._16_4_;
         aprocessingStatus5._20_4_ = transformCoeff14 * TransformCoefficient19[5] + aeventStatus._20_4_;
@@ -271890,7 +271890,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         pTransformCoefficient2 = register10 + uiCompareResult9;
         aprocessingStatus1._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + adataPointer._0_4_;
         aprocessingStatus1._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + adataPointer._4_4_;
-        aprocessingStatus1._8_4_ = transformCoeff11 * TransformCoefficient19[2] + adataPointer._8_4_;
+        aprocessingStatus1._8_4_ = transformCoefficient * TransformCoefficient19[2] + adataPointer._8_4_;
         aprocessingStatus1._12_4_ = transformCoeff12 * TransformCoefficient19[3] + adataPointer._12_4_;
         aprocessingStatus1._16_4_ = transformCoeff13 * TransformCoefficient19[4] + adataPointer._16_4_;
         aprocessingStatus1._20_4_ = transformCoeff14 * TransformCoefficient19[5] + adataPointer._20_4_;
@@ -271900,7 +271900,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         uiCompareResult9 = uiCompareResult9 + 0x1000;
         aprocessingStatus3._0_4_ = LocalFloatValue6 * *pTransformCoefficient2 + aresult1._0_4_;
         aprocessingStatus3._4_4_ = AccumulatedFloat * pTransformCoefficient2[1] + aresult1._4_4_;
-        aprocessingStatus3._8_4_ = transformCoeff11 * pTransformCoefficient2[2] + aresult1._8_4_;
+        aprocessingStatus3._8_4_ = transformCoefficient * pTransformCoefficient2[2] + aresult1._8_4_;
         aprocessingStatus3._12_4_ = transformCoeff12 * pTransformCoefficient2[3] + aresult1._12_4_;
         aprocessingStatus3._16_4_ = transformCoeff13 * pTransformCoefficient2[4] + aresult1._16_4_;
         aprocessingStatus3._20_4_ = transformCoeff14 * pTransformCoefficient2[5] + aresult1._20_4_;
@@ -271910,7 +271910,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         TransformCoefficient19 = register10 + processingResult;
         aprocessingStatus2._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + bufferValue._0_4_;
         aprocessingStatus2._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + bufferValue._4_4_;
-        aprocessingStatus2._8_4_ = transformCoeff11 * TransformCoefficient19[2] + bufferValue._8_4_;
+        aprocessingStatus2._8_4_ = transformCoefficient * TransformCoefficient19[2] + bufferValue._8_4_;
         aprocessingStatus2._12_4_ = transformCoeff12 * TransformCoefficient19[3] + bufferValue._12_4_;
         aprocessingStatus2._16_4_ = transformCoeff13 * TransformCoefficient19[4] + bufferValue._16_4_;
         aprocessingStatus2._20_4_ = transformCoeff14 * TransformCoefficient19[5] + bufferValue._20_4_;
@@ -271980,7 +271980,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
     aiterationCounter = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(uiTargetHandle + -0x20));
     LocalFloatValue6 = *contextHandle;
     AccumulatedFloat = contextHandle[1];
-    transformCoeff11 = contextHandle[2];
+    transformCoefficient = contextHandle[2];
     transformCoeff12 = contextHandle[3];
     transformCoeff13 = contextHandle[4];
     transformCoeff14 = contextHandle[5];
@@ -272052,7 +272052,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + (sourceDataInt0 + -0x800)));
         acomponentStatus6._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
         acomponentStatus6._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
-        acomponentStatus6._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        acomponentStatus6._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         acomponentStatus6._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         acomponentStatus6._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         acomponentStatus6._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272061,7 +272061,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + (sourceDataInt0 + -0x400)));
         acomponentIndex._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
         acomponentIndex._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
-        acomponentIndex._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        acomponentIndex._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         acomponentIndex._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         acomponentIndex._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         acomponentIndex._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272070,7 +272070,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + sourceDataInt0));
         aCounterResult._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
         aCounterResult._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
-        aCounterResult._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        aCounterResult._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         aCounterResult._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         aCounterResult._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         aCounterResult._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272083,7 +272083,7 @@ void FUN_18082c7d5(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aresult1 = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + uiValidationResult));
         aTotalResult._4_4_ = aresult1._4_4_ * AccumulatedFloat;
         aTotalResult._0_4_ = aresult1._0_4_ * LocalFloatValue6;
-        aTotalResult._8_4_ = aresult1._8_4_ * transformCoeff11;
+        aTotalResult._8_4_ = aresult1._8_4_ * transformCoefficient;
         aTotalResult._12_4_ = aresult1._12_4_ * transformCoeff12;
         aTotalResult._16_4_ = aresult1._16_4_ * transformCoeff13;
         aTotalResult._20_4_ = aresult1._20_4_ * transformCoeff14;
@@ -272287,7 +272287,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
   UIByte aresult8 [32];
   int processingResult;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -272349,7 +272349,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
     in_ZMM9 = ZEXT3264(aiterationCounter);
     LocalFloatValue6 = *contextHandle;
     AccumulatedFloat = contextHandle[1];
-    transformCoeff11 = contextHandle[2];
+    transformCoefficient = contextHandle[2];
     transformCoeff12 = contextHandle[3];
     transformCoeff13 = contextHandle[4];
     transformCoeff14 = contextHandle[5];
@@ -272418,7 +272418,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         TransformCoefficient19 = register10 + (uiCompareResult9 + -0x800);
         aprocessingStatus5._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + aeventStatus._0_4_;
         aprocessingStatus5._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + aeventStatus._4_4_;
-        aprocessingStatus5._8_4_ = transformCoeff11 * TransformCoefficient19[2] + aeventStatus._8_4_;
+        aprocessingStatus5._8_4_ = transformCoefficient * TransformCoefficient19[2] + aeventStatus._8_4_;
         aprocessingStatus5._12_4_ = transformCoeff12 * TransformCoefficient19[3] + aeventStatus._12_4_;
         aprocessingStatus5._16_4_ = transformCoeff13 * TransformCoefficient19[4] + aeventStatus._16_4_;
         aprocessingStatus5._20_4_ = transformCoeff14 * TransformCoefficient19[5] + aeventStatus._20_4_;
@@ -272428,7 +272428,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         pTransformCoefficient2 = register10 + uiCompareResult9;
         aprocessingStatus1._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + adataPointer._0_4_;
         aprocessingStatus1._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + adataPointer._4_4_;
-        aprocessingStatus1._8_4_ = transformCoeff11 * TransformCoefficient19[2] + adataPointer._8_4_;
+        aprocessingStatus1._8_4_ = transformCoefficient * TransformCoefficient19[2] + adataPointer._8_4_;
         aprocessingStatus1._12_4_ = transformCoeff12 * TransformCoefficient19[3] + adataPointer._12_4_;
         aprocessingStatus1._16_4_ = transformCoeff13 * TransformCoefficient19[4] + adataPointer._16_4_;
         aprocessingStatus1._20_4_ = transformCoeff14 * TransformCoefficient19[5] + adataPointer._20_4_;
@@ -272438,7 +272438,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         uiCompareResult9 = uiCompareResult9 + 0x1000;
         aprocessingStatus3._0_4_ = LocalFloatValue6 * *pTransformCoefficient2 + aresult1._0_4_;
         aprocessingStatus3._4_4_ = AccumulatedFloat * pTransformCoefficient2[1] + aresult1._4_4_;
-        aprocessingStatus3._8_4_ = transformCoeff11 * pTransformCoefficient2[2] + aresult1._8_4_;
+        aprocessingStatus3._8_4_ = transformCoefficient * pTransformCoefficient2[2] + aresult1._8_4_;
         aprocessingStatus3._12_4_ = transformCoeff12 * pTransformCoefficient2[3] + aresult1._12_4_;
         aprocessingStatus3._16_4_ = transformCoeff13 * pTransformCoefficient2[4] + aresult1._16_4_;
         aprocessingStatus3._20_4_ = transformCoeff14 * pTransformCoefficient2[5] + aresult1._20_4_;
@@ -272448,7 +272448,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         TransformCoefficient19 = register10 + processingResult;
         aprocessingStatus2._0_4_ = LocalFloatValue6 * *TransformCoefficient19 + bufferValue._0_4_;
         aprocessingStatus2._4_4_ = AccumulatedFloat * TransformCoefficient19[1] + bufferValue._4_4_;
-        aprocessingStatus2._8_4_ = transformCoeff11 * TransformCoefficient19[2] + bufferValue._8_4_;
+        aprocessingStatus2._8_4_ = transformCoefficient * TransformCoefficient19[2] + bufferValue._8_4_;
         aprocessingStatus2._12_4_ = transformCoeff12 * TransformCoefficient19[3] + bufferValue._12_4_;
         aprocessingStatus2._16_4_ = transformCoeff13 * TransformCoefficient19[4] + bufferValue._16_4_;
         aprocessingStatus2._20_4_ = transformCoeff14 * TransformCoefficient19[5] + bufferValue._20_4_;
@@ -272518,7 +272518,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
     aiterationCounter = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(uiTargetHandle + -0x20));
     LocalFloatValue6 = *contextHandle;
     AccumulatedFloat = contextHandle[1];
-    transformCoeff11 = contextHandle[2];
+    transformCoefficient = contextHandle[2];
     transformCoeff12 = contextHandle[3];
     transformCoeff13 = contextHandle[4];
     transformCoeff14 = contextHandle[5];
@@ -272590,7 +272590,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + (sourceDataInt0 + -0x800)));
         acomponentStatus6._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
         acomponentStatus6._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
-        acomponentStatus6._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        acomponentStatus6._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         acomponentStatus6._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         acomponentStatus6._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         acomponentStatus6._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272599,7 +272599,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + (sourceDataInt0 + -0x400)));
         acomponentIndex._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
         acomponentIndex._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
-        acomponentIndex._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        acomponentIndex._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         acomponentIndex._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         acomponentIndex._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         acomponentIndex._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272608,7 +272608,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aeventStatus = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + sourceDataInt0));
         aCounterResult._4_4_ = aeventStatus._4_4_ * AccumulatedFloat;
         aCounterResult._0_4_ = aeventStatus._0_4_ * LocalFloatValue6;
-        aCounterResult._8_4_ = aeventStatus._8_4_ * transformCoeff11;
+        aCounterResult._8_4_ = aeventStatus._8_4_ * transformCoefficient;
         aCounterResult._12_4_ = aeventStatus._12_4_ * transformCoeff12;
         aCounterResult._16_4_ = aeventStatus._16_4_ * transformCoeff13;
         aCounterResult._20_4_ = aeventStatus._20_4_ * transformCoeff14;
@@ -272621,7 +272621,7 @@ void FUN_18082c7de(UIHandle uiContext,int dataSource,int targetBuffer,uint *buff
         aresult1 = vpermps_avx2(aeventProcessingCounter,*(UIByte (*) [32])(register10 + uiValidationResult));
         aTotalResult._4_4_ = aresult1._4_4_ * AccumulatedFloat;
         aTotalResult._0_4_ = aresult1._0_4_ * LocalFloatValue6;
-        aTotalResult._8_4_ = aresult1._8_4_ * transformCoeff11;
+        aTotalResult._8_4_ = aresult1._8_4_ * transformCoefficient;
         aTotalResult._12_4_ = aresult1._12_4_ * transformCoeff12;
         aTotalResult._16_4_ = aresult1._16_4_ * transformCoeff13;
         aTotalResult._20_4_ = aresult1._20_4_ * transformCoeff14;
@@ -272820,7 +272820,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   int bufferSize;
   int uiValidationResult3;
@@ -272875,7 +272875,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
     FloatValue1 = contextHandle[2];
     FloatValue2 = contextHandle[3];
     AccumulatedFloat = contextHandle[4];
-    transformCoeff11 = contextHandle[5];
+    transformCoefficient = contextHandle[5];
     transformCoeff12 = contextHandle[6];
     uiTargetHandle = uiTargetHandle + -0x20;
     register10 = register10 + -8;
@@ -272947,7 +272947,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aeventCodeType5._8_4_ = aresult1._8_4_ * FloatValue1;
         aeventCodeType5._12_4_ = aresult1._12_4_ * FloatValue2;
         aeventCodeType5._16_4_ = aresult1._16_4_ * AccumulatedFloat;
-        aeventCodeType5._20_4_ = aresult1._20_4_ * transformCoeff11;
+        aeventCodeType5._20_4_ = aresult1._20_4_ * transformCoefficient;
         aeventCodeType5._28_36_ = in_ZMM5._28_36_;
         aeventCodeType5._24_4_ = aresult1._24_4_ * transformCoeff12;
         aresult1 = vpermps_avx2(aprocessingStatus0,*(UIByte (*) [32])(register10 + (uiCompareResult3 + -0x400)));
@@ -272956,7 +272956,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         acomponentIndex._8_4_ = aresult1._8_4_ * FloatValue1;
         acomponentIndex._12_4_ = aresult1._12_4_ * FloatValue2;
         acomponentIndex._16_4_ = aresult1._16_4_ * AccumulatedFloat;
-        acomponentIndex._20_4_ = aresult1._20_4_ * transformCoeff11;
+        acomponentIndex._20_4_ = aresult1._20_4_ * transformCoefficient;
         acomponentIndex._24_4_ = aresult1._24_4_ * transformCoeff12;
         acomponentIndex._28_4_ = TransformCoefficient16[7];
         aresult1 = vpermps_avx2(aprocessingStatus0,*(UIByte (*) [32])(register10 + uiCompareResult3));
@@ -272965,7 +272965,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         bufferValue._8_4_ = aresult1._8_4_ * FloatValue1;
         bufferValue._12_4_ = aresult1._12_4_ * FloatValue2;
         bufferValue._16_4_ = aresult1._16_4_ * AccumulatedFloat;
-        bufferValue._20_4_ = aresult1._20_4_ * transformCoeff11;
+        bufferValue._20_4_ = aresult1._20_4_ * transformCoefficient;
         bufferValue._24_4_ = aresult1._24_4_ * transformCoeff12;
         bufferValue._28_4_ = SUB324(*(UIByte (*) [32])(register10 + uiCompareResult3),0x1c);
         aiterationCounter = vsubps_avx(aeventCodeType6._0_32_,aeventCodeType5._0_32_);
@@ -272978,7 +272978,7 @@ void FUN_18082cb48(UIHandle uiContext,int dataSource,int targetBuffer,longlong b
         aeventStatus._8_4_ = bufferValue._8_4_ * FloatValue1;
         aeventStatus._12_4_ = bufferValue._12_4_ * FloatValue2;
         aeventStatus._16_4_ = bufferValue._16_4_ * AccumulatedFloat;
-        aeventStatus._20_4_ = bufferValue._20_4_ * transformCoeff11;
+        aeventStatus._20_4_ = bufferValue._20_4_ * transformCoefficient;
         aeventStatus._24_4_ = bufferValue._24_4_ * transformCoeff12;
         aeventStatus._28_4_ = aresult1._28_4_;
         aeventStatus = vsubps_avx(aeventCodeType9._0_32_,aeventStatus);
@@ -281473,7 +281473,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -281588,7 +281588,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount8 * 4);
       FloatValue2 = *pTransformCoefficient3;
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       pTransformCoefficient3 = (float *)(targetBuffer + 0x20 + iterationCount8 * 4);
       transformCoeff13 = *pTransformCoefficient3;
@@ -281603,7 +281603,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[5] = (vectorComponentX - LocalFloatValue9) * TransformCoefficient22 + LocalFloatValue9;
       uiContext[6] = (TransformCoefficient36 - FloatValue2) * TransformCoefficient23 + FloatValue2;
       uiContext[7] = (FloatValue1 - AccumulatedFloat) * TransformCoefficient23 + AccumulatedFloat;
-      uiContext[8] = transformCoeff11 + (transformCoeff13 - transformCoeff11) * TransformCoefficient23;
+      uiContext[8] = transformCoefficient + (transformCoeff13 - transformCoefficient) * TransformCoefficient23;
       uiContext[9] = transformCoeff12 + (transformCoeff14 - transformCoeff12) * TransformCoefficient23;
       uiContext[10] = baseValue5 + (transformCoeff15 - baseValue5) * TransformCoefficient23;
       uiContext[0xb] = baseValue6 + (transformCoeff16 - baseValue6) * TransformCoefficient23;
@@ -281630,7 +281630,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       pTransformCoefficient3 = (float *)(targetBuffer + 0x10 + iterationCount8 * 4);
       FloatValue2 = *pTransformCoefficient3;
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       pTransformCoefficient3 = (float *)(targetBuffer + 0x20 + iterationCount8 * 4);
       transformCoeff13 = *pTransformCoefficient3;
@@ -281643,7 +281643,7 @@ void FUN_180833610(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       uiContext[0xf] = (baseValue2 - ResultFloatValue) * transformMatrix24 + ResultFloatValue;
       uiContext[0x10] = (baseValue3 - TemporaryFloatValue) * transformMatrix24 + TemporaryFloatValue;
       uiContext[0x11] = (vectorComponentX - LocalFloatValue9) * transformMatrix24 + LocalFloatValue9;
-      uiContext[0x12] = (transformCoeff11 - baseValue5) * TransformCoefficient25 + baseValue5;
+      uiContext[0x12] = (transformCoefficient - baseValue5) * TransformCoefficient25 + baseValue5;
       uiContext[0x13] = (transformCoeff12 - baseValue6) * TransformCoefficient25 + baseValue6;
       uiContext[0x14] = TransformCoefficient36 + (transformCoeff13 - TransformCoefficient36) * TransformCoefficient25;
       uiContext[0x15] = FloatValue1 + (transformCoeff14 - FloatValue1) * TransformCoefficient25;
@@ -281721,7 +281721,7 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   int uiValidationResult3;
   ulonglong iterationCount4;
@@ -281783,11 +281783,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       transformMatrix24 = (float)(eventCodeType0 >> 1) * 4.656613e-10;
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       *uiContext = (*pTransformCoefficient2 - *TransformCoefficient1) * TransformCoefficient21 + *pTransformCoefficient3;
       uiContext[1] = (baseValue0 - baseValue3) * TransformCoefficient22 + AccumulatedFloat;
-      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoeff11;
+      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoefficient;
       uiContext[3] = (baseValue2 - baseValue5) * transformMatrix24 + transformCoeff12;
       uiContext[4] = (baseValue6 - LocalFloatValue6) * TransformCoefficient21 + LocalFloatValue6;
       uiContext[5] = (finalResult - ResultFloatValue) * TransformCoefficient22 + ResultFloatValue;
@@ -281855,11 +281855,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       transformMatrix24 = (float)(eventCodeType0 >> 1) * 4.656613e-10;
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       *uiContext = (*pTransformCoefficient2 - *TransformCoefficient1) * TransformCoefficient21 + *pTransformCoefficient3;
       uiContext[1] = (baseValue0 - baseValue3) * TransformCoefficient21 + AccumulatedFloat;
-      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient21 + transformCoeff11;
+      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient21 + transformCoefficient;
       uiContext[3] = (baseValue2 - baseValue5) * TransformCoefficient21 + transformCoeff12;
       uiContext[4] = (baseValue6 - LocalFloatValue6) * TransformCoefficient21 + LocalFloatValue6;
       uiContext[5] = (finalResult - ResultFloatValue) * TransformCoefficient21 + ResultFloatValue;
@@ -281886,11 +281886,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       FloatValue2 = pTransformCoefficient3[3];
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       uiContext[8] = (*pTransformCoefficient2 - *TransformCoefficient1) * TransformCoefficient22 + *pTransformCoefficient3;
       uiContext[9] = (baseValue0 - baseValue3) * TransformCoefficient22 + AccumulatedFloat;
-      uiContext[10] = (baseValue1 - vectorComponentX) * TransformCoefficient22 + transformCoeff11;
+      uiContext[10] = (baseValue1 - vectorComponentX) * TransformCoefficient22 + transformCoefficient;
       uiContext[0xb] = (baseValue2 - baseValue5) * TransformCoefficient22 + transformCoeff12;
       uiContext[0xc] = (baseValue6 - LocalFloatValue6) * TransformCoefficient22 + LocalFloatValue6;
       uiContext[0xd] = (finalResult - ResultFloatValue) * TransformCoefficient22 + ResultFloatValue;
@@ -281917,11 +281917,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       FloatValue2 = pTransformCoefficient3[3];
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       uiContext[0x10] = (*pTransformCoefficient2 - *TransformCoefficient1) * TransformCoefficient23 + *pTransformCoefficient3;
       uiContext[0x11] = (baseValue0 - baseValue3) * TransformCoefficient23 + AccumulatedFloat;
-      uiContext[0x12] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoeff11;
+      uiContext[0x12] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoefficient;
       uiContext[0x13] = (baseValue2 - baseValue5) * TransformCoefficient23 + transformCoeff12;
       uiContext[0x14] = (baseValue6 - LocalFloatValue6) * TransformCoefficient23 + LocalFloatValue6;
       uiContext[0x15] = (finalResult - ResultFloatValue) * TransformCoefficient23 + ResultFloatValue;
@@ -281948,11 +281948,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       FloatValue2 = pTransformCoefficient3[3];
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       uiContext[0x18] = (*pTransformCoefficient2 - *TransformCoefficient1) * transformMatrix24 + *pTransformCoefficient3;
       uiContext[0x19] = (baseValue0 - baseValue3) * transformMatrix24 + AccumulatedFloat;
-      uiContext[0x1a] = (baseValue1 - vectorComponentX) * transformMatrix24 + transformCoeff11;
+      uiContext[0x1a] = (baseValue1 - vectorComponentX) * transformMatrix24 + transformCoefficient;
       uiContext[0x1b] = (baseValue2 - baseValue5) * transformMatrix24 + transformCoeff12;
       uiContext[0x1c] = (baseValue6 - LocalFloatValue6) * transformMatrix24 + LocalFloatValue6;
       uiContext[0x1d] = (finalResult - ResultFloatValue) * transformMatrix24 + ResultFloatValue;
@@ -282000,11 +282000,11 @@ void FUN_180833b60(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       transformMatrix24 = (float)(eventCodeType0 >> 1) * 4.656613e-10;
       pTransformCoefficient3 = (float *)(targetBuffer + iterationCount4 * 4);
       AccumulatedFloat = pTransformCoefficient3[1];
-      transformCoeff11 = pTransformCoefficient3[2];
+      transformCoefficient = pTransformCoefficient3[2];
       transformCoeff12 = pTransformCoefficient3[3];
       *uiContext = (*pTransformCoefficient2 - *TransformCoefficient1) * TransformCoefficient21 + *pTransformCoefficient3;
       uiContext[1] = (baseValue0 - baseValue3) * TransformCoefficient22 + AccumulatedFloat;
-      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoeff11;
+      uiContext[2] = (baseValue1 - vectorComponentX) * TransformCoefficient23 + transformCoefficient;
       uiContext[3] = (baseValue2 - baseValue5) * transformMatrix24 + transformCoeff12;
       uiContext[4] = (baseValue6 - LocalFloatValue6) * TransformCoefficient21 + LocalFloatValue6;
       uiContext[5] = (finalResult - ResultFloatValue) * TransformCoefficient22 + ResultFloatValue;
@@ -282168,7 +282168,7 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
   int processingResult8;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   int uiValidationResult4;
   UIByte aiterationCount3 [16];
@@ -282248,7 +282248,7 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       baseValue0 = BaseValuePointer[3];
       FloatValue2 = (float)(TotalResult >> 1) * 4.656613e-10;
       AccumulatedFloat = (float)(iterationCount7 >> 1) * 4.656613e-10;
-      transformCoeff11 = (float)(iterationCount8 >> 1) * 4.656613e-10;
+      transformCoefficient = (float)(iterationCount8 >> 1) * 4.656613e-10;
       transformCoeff12 = (float)(iterationCount9 >> 1) * 4.656613e-10;
       TransformCoefficient1 = (float *)(targetBuffer + CounterResult * 4);
       baseValue1 = TransformCoefficient1[1];
@@ -282288,10 +282288,10 @@ void FUN_1808341a0(float *uiContext,uint dataSource,longlong targetBuffer,uint *
       baseValue1 = TransformCoefficient1[1];
       baseValue2 = TransformCoefficient1[2];
       TransformCoefficient23 = TransformCoefficient1[3];
-      uiContext[8] = (*pTransformCoefficient3 - *BaseValuePointer) * transformCoeff11 + *TransformCoefficient1;
-      uiContext[9] = (TransformCoefficient4 - TemporaryFloatValue) * transformCoeff11 + baseValue1;
-      uiContext[10] = (LocalFloatValue6 - LocalFloatValue9) * transformCoeff11 + baseValue2;
-      uiContext[0xb] = (ResultFloatValue - baseValue0) * transformCoeff11 + TransformCoefficient23;
+      uiContext[8] = (*pTransformCoefficient3 - *BaseValuePointer) * transformCoefficient + *TransformCoefficient1;
+      uiContext[9] = (TransformCoefficient4 - TemporaryFloatValue) * transformCoefficient + baseValue1;
+      uiContext[10] = (LocalFloatValue6 - LocalFloatValue9) * transformCoefficient + baseValue2;
+      uiContext[0xb] = (ResultFloatValue - baseValue0) * transformCoefficient + TransformCoefficient23;
       CounterResult = (ulonglong)(uint)(layoutCompareResult << 2);
       pTransformCoefficient3 = (float *)(targetBuffer + 0x10 + CounterResult * 4);
       TransformCoefficient4 = pTransformCoefficient3[1];
@@ -287289,7 +287289,7 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -287405,7 +287405,7 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
           FloatValue1 = dataSource[8];
           FloatValue2 = dataSource[9];
           AccumulatedFloat = dataSource[10];
-          transformCoeff11 = dataSource[0xb];
+          transformCoefficient = dataSource[0xb];
           transformCoeff12 = dataSource[0xc];
           transformCoeff13 = dataSource[0xd];
           transformCoeff14 = dataSource[0xe];
@@ -287446,7 +287446,7 @@ UIHandle FUN_1808391a0(UIByte (*uiContext) [16],float *dataSource,UIHandle targe
           dataSource[8] = (float)aeventCodeType5._8_4_ * LocalFloatValue6 + transformCoeff1 + FloatValue1;
           dataSource[9] = (float)aeventCodeType8._8_4_ * ResultFloatValue + TransformCoefficient2 + FloatValue2;
           dataSource[10] = (float)acomponentStatus6._8_4_ * TemporaryFloatValue + TransformCoefficient3 + AccumulatedFloat;
-          dataSource[0xb] = (float)aprocessingStatus3._8_4_ * LocalFloatValue9 + TransformCoefficient4 + transformCoeff11;
+          dataSource[0xb] = (float)aprocessingStatus3._8_4_ * LocalFloatValue9 + TransformCoefficient4 + transformCoefficient;
           dataSource[0xc] = (float)aeventCodeType5._12_4_ * LocalFloatValue6 + transformCoeff1 + transformCoeff12;
           dataSource[0xd] = (float)aeventCodeType8._12_4_ * ResultFloatValue + TransformCoefficient2 + transformCoeff13;
           dataSource[0xe] = (float)acomponentStatus6._12_4_ * TemporaryFloatValue + TransformCoefficient3 + transformCoeff14;
@@ -288973,7 +288973,7 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   
@@ -288997,15 +288997,15 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
     pLocalFloatValue6 = pResultFloatValue + 3;
     pResultFloatValue = pResultFloatValue + 4;
     AccumulatedFloat = *BaseValuePointer * 1.0;
-    transformCoeff11 = BaseValuePointer[1] * -1.0;
+    transformCoefficient = BaseValuePointer[1] * -1.0;
     transformCoeff12 = *TransformCoefficient1 * 1.0;
     transformCoeff13 = TransformCoefficient1[1] * -1.0;
     baseValue2 = AccumulatedFloat + baseValue6;
-    baseValue3 = transformCoeff11 + finalResult;
+    baseValue3 = transformCoefficient + finalResult;
     vectorComponentX = transformCoeff12 + FloatValue1;
     baseValue5 = transformCoeff13 + FloatValue2;
     AccumulatedFloat = (baseValue6 - AccumulatedFloat) * 0.5;
-    transformCoeff11 = (finalResult - transformCoeff11) * 0.5;
+    transformCoefficient = (finalResult - transformCoefficient) * 0.5;
     transformCoeff12 = (FloatValue1 - transformCoeff12) * 0.5;
     transformCoeff13 = (FloatValue2 - transformCoeff13) * 0.5;
     baseValue6 = baseValue3 * TransformCoefficient2 * -1.0 + *pTransformCoefficient3 * baseValue2;
@@ -289013,14 +289013,14 @@ void FUN_18083a420(longlong uiContext,longlong dataSource,int targetBuffer,longl
     FloatValue1 = baseValue5 * *transformCoeffPointer * -1.0 + *pLocalFloatValue6 * vectorComponentX;
     FloatValue2 = baseValue5 * *pLocalFloatValue6 * 1.0 + *transformCoeffPointer * vectorComponentX;
     BaseValuePointer = (float *)(allocatedMemory0 + (longlong)pProcessingResult1);
-    *BaseValuePointer = finalResult + transformCoeff11;
+    *BaseValuePointer = finalResult + transformCoefficient;
     BaseValuePointer[1] = baseValue6 + AccumulatedFloat;
     BaseValuePointer[2] = FloatValue2 + transformCoeff13;
     BaseValuePointer[3] = FloatValue1 + transformCoeff12;
     pProcessingResult1 = pProcessingResult1 + 4;
     *bufferPointer = (transformCoeff13 - FloatValue2) * 1.0;
     pTemporaryFloatValue[-3] = (transformCoeff12 - FloatValue1) * -1.0;
-    pTemporaryFloatValue[-2] = (transformCoeff11 - finalResult) * 1.0;
+    pTemporaryFloatValue[-2] = (transformCoefficient - finalResult) * 1.0;
     pTemporaryFloatValue[-1] = (AccumulatedFloat - baseValue6) * -1.0;
     pTemporaryFloatValue = bufferPointer;
   } while ((float *)(allocatedMemory0 + (longlong)pProcessingResult1) < bufferPointer);
@@ -289054,7 +289054,7 @@ void FUN_18083a510(float *uiContext)
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   float transformCoeff14;
@@ -289079,7 +289079,7 @@ void FUN_18083a510(float *uiContext)
   baseValue5 = uiContext[8] - uiContext[0x18];
   finalResult = uiContext[9] - uiContext[0x19];
   FloatValue2 = uiContext[10] - uiContext[0x1a];
-  transformCoeff11 = uiContext[0xb] - uiContext[0x1b];
+  transformCoefficient = uiContext[0xb] - uiContext[0x1b];
   uiContext[0x18] = uiContext[0x18] + uiContext[8];
   uiContext[0x19] = uiContext[0x19] + uiContext[9];
   uiContext[0x1a] = uiContext[0x1a] + uiContext[10];
@@ -289102,8 +289102,8 @@ void FUN_18083a510(float *uiContext)
   uiContext[7] = (baseValue - TransformCoefficient2) * -1.0 + baseValue3 * 0.0;
   uiContext[8] = (baseValue5 * 0.0 + baseValue5) * -0.38268343 + finalResult * 0.9238795;
   uiContext[9] = (finalResult * 0.0 + finalResult) * -0.38268343 + baseValue5 * -0.9238795;
-  uiContext[10] = (transformCoeff11 * -1.0 + FloatValue2) * -0.70710677 + FloatValue2 * 0.0;
-  uiContext[0xb] = (FloatValue2 * 1.0 + transformCoeff11) * -0.70710677 + transformCoeff11 * 0.0;
+  uiContext[10] = (transformCoefficient * -1.0 + FloatValue2) * -0.70710677 + FloatValue2 * 0.0;
+  uiContext[0xb] = (FloatValue2 * 1.0 + transformCoefficient) * -0.70710677 + transformCoefficient * 0.0;
   uiContext[0xc] = transformCoeff13 * -0.9238795 + transformCoeff14 * 0.38268343;
   uiContext[0xd] = transformCoeff13 * -0.38268343 + transformCoeff14 * -0.9238795;
   uiContext[0xe] = (uiContext[0xe] - TransformCoefficient4) * -1.0 + transformCoeff13 * 0.0;
@@ -289122,7 +289122,7 @@ void FUN_18083a510(float *uiContext)
   baseValue5 = uiContext[0xf] - uiContext[7];
   finalResult = uiContext[0xc] + uiContext[4];
   FloatValue2 = uiContext[0xd] + uiContext[5];
-  transformCoeff11 = uiContext[0xe] + uiContext[6];
+  transformCoefficient = uiContext[0xe] + uiContext[6];
   transformCoeff13 = uiContext[0xf] + uiContext[7];
   transformCoeff14 = ((TransformCoefficient2 - LocalFloatValue9) * -1.0 + (transformCoeff1 - baseValue)) * 0.70710677;
   LocalFloatValue6 = ((baseValue - transformCoeff1) * 1.0 + (LocalFloatValue9 - TransformCoefficient2)) * 0.70710677;
@@ -289130,11 +289130,11 @@ void FUN_18083a510(float *uiContext)
   TemporaryFloatValue = ((TransformCoefficient4 - baseValue1) * 0.0 + (baseValue1 - TransformCoefficient4)) * 1.0;
   baseValue6 = finalResult + baseValue + transformCoeff1;
   FloatValue1 = FloatValue2 + TransformCoefficient2 + LocalFloatValue9;
-  AccumulatedFloat = transformCoeff11 + TransformCoefficient3 + baseValue0;
+  AccumulatedFloat = transformCoefficient + TransformCoefficient3 + baseValue0;
   transformCoeff12 = transformCoeff13 + TransformCoefficient4 + baseValue1;
   finalResult = finalResult - (baseValue + transformCoeff1);
   FloatValue2 = FloatValue2 - (TransformCoefficient2 + LocalFloatValue9);
-  transformCoeff11 = transformCoeff11 - (TransformCoefficient3 + baseValue0);
+  transformCoefficient = transformCoefficient - (TransformCoefficient3 + baseValue0);
   transformCoeff13 = transformCoeff13 - (TransformCoefficient4 + baseValue1);
   baseValue = (baseValue3 * -1.0 + baseValue2) * 0.70710677;
   TransformCoefficient2 = (baseValue2 * 1.0 + baseValue3) * 0.70710677;
@@ -289156,9 +289156,9 @@ void FUN_18083a510(float *uiContext)
   uiContext[5] = LocalFloatValue9 * -1.0 + baseValue1;
   uiContext[6] = transformCoeff1 * 1.0 + baseValue0;
   uiContext[7] = LocalFloatValue9 * 1.0 + baseValue1;
-  uiContext[8] = FloatValue2 * 1.0 + transformCoeff11;
+  uiContext[8] = FloatValue2 * 1.0 + transformCoefficient;
   uiContext[9] = finalResult * -1.0 + transformCoeff13;
-  uiContext[10] = FloatValue2 * -1.0 + transformCoeff11;
+  uiContext[10] = FloatValue2 * -1.0 + transformCoefficient;
   uiContext[0xb] = finalResult * 1.0 + transformCoeff13;
   uiContext[0xc] = baseValue6 * -1.0 + AccumulatedFloat;
   uiContext[0xd] = FloatValue1 * -1.0 + transformCoeff12;
@@ -289178,7 +289178,7 @@ void FUN_18083a510(float *uiContext)
   baseValue5 = uiContext[0x1f] - uiContext[0x17];
   finalResult = uiContext[0x1c] + uiContext[0x14];
   FloatValue2 = uiContext[0x1d] + uiContext[0x15];
-  transformCoeff11 = uiContext[0x1e] + uiContext[0x16];
+  transformCoefficient = uiContext[0x1e] + uiContext[0x16];
   transformCoeff13 = uiContext[0x1f] + uiContext[0x17];
   transformCoeff14 = (baseValue3 * -1.0 + baseValue2) * 0.70710677;
   LocalFloatValue6 = (baseValue2 * 1.0 + baseValue3) * 0.70710677;
@@ -289198,11 +289198,11 @@ void FUN_18083a510(float *uiContext)
   TemporaryFloatValue = TemporaryFloatValue + AccumulatedFloat;
   baseValue6 = finalResult + transformCoeff1 + baseValue;
   FloatValue1 = FloatValue2 + LocalFloatValue9 + TransformCoefficient2;
-  AccumulatedFloat = transformCoeff11 + baseValue0 + TransformCoefficient3;
+  AccumulatedFloat = transformCoefficient + baseValue0 + TransformCoefficient3;
   transformCoeff12 = transformCoeff13 + baseValue1 + TransformCoefficient4;
   finalResult = finalResult - (transformCoeff1 + baseValue);
   FloatValue2 = FloatValue2 - (LocalFloatValue9 + TransformCoefficient2);
-  transformCoeff11 = transformCoeff11 - (baseValue0 + TransformCoefficient3);
+  transformCoefficient = transformCoefficient - (baseValue0 + TransformCoefficient3);
   transformCoeff13 = transformCoeff13 - (baseValue1 + TransformCoefficient4);
   uiContext[0x10] = baseValue3 * 1.0 + vectorComponentX;
   uiContext[0x11] = baseValue2 * -1.0 + baseValue5;
@@ -289212,9 +289212,9 @@ void FUN_18083a510(float *uiContext)
   uiContext[0x15] = LocalFloatValue6 * -1.0 + TemporaryFloatValue;
   uiContext[0x16] = transformCoeff14 * 1.0 + ResultFloatValue;
   uiContext[0x17] = LocalFloatValue6 * 1.0 + TemporaryFloatValue;
-  uiContext[0x18] = FloatValue2 * 1.0 + transformCoeff11;
+  uiContext[0x18] = FloatValue2 * 1.0 + transformCoefficient;
   uiContext[0x19] = finalResult * -1.0 + transformCoeff13;
-  uiContext[0x1a] = FloatValue2 * -1.0 + transformCoeff11;
+  uiContext[0x1a] = FloatValue2 * -1.0 + transformCoefficient;
   uiContext[0x1b] = finalResult * 1.0 + transformCoeff13;
   uiContext[0x1c] = baseValue6 * -1.0 + AccumulatedFloat;
   uiContext[0x1d] = FloatValue1 * -1.0 + transformCoeff12;
@@ -289250,7 +289250,7 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
   float FloatValue1;
   float FloatValue2;
   float AccumulatedFloat;
-  float transformCoeff11;
+  float transformCoefficient;
   float transformCoeff12;
   float transformCoeff13;
   
@@ -289274,7 +289274,7 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
     FloatValue1 = pvectorComponentX[2] - transformCoeff1;
     FloatValue2 = pvectorComponentX[3] - TransformCoefficient2;
     AccumulatedFloat = pvectorComponentX[4] - TransformCoefficient3;
-    transformCoeff11 = pvectorComponentX[5] - TransformCoefficient4;
+    transformCoefficient = pvectorComponentX[5] - TransformCoefficient4;
     transformCoeff12 = pvectorComponentX[6] - LocalFloatValue6;
     transformCoeff13 = pvectorComponentX[7] - ResultFloatValue;
     *pvectorComponentX = *BaseValuePointer0 + *pvectorComponentX;
@@ -289300,8 +289300,8 @@ void FUN_18083a850(longlong uiContext,float *dataSource,int targetBuffer,int buf
     BaseValuePointer0[2] = FloatValue1 * baseValue * 1.0 + FloatValue2 * TransformCoefficient2;
     BaseValuePointer0[3] = FloatValue1 * TransformCoefficient2 * -1.0 + FloatValue2 * baseValue;
     BaseValuePointer0 = BaseValuePointer0 + -8;
-    *positionData = AccumulatedFloat * ResultFloatValue * 1.0 + transformCoeff11 * TemporaryFloatValue;
-    positionData[1] = AccumulatedFloat * TemporaryFloatValue * -1.0 + transformCoeff11 * ResultFloatValue;
+    *positionData = AccumulatedFloat * ResultFloatValue * 1.0 + transformCoefficient * TemporaryFloatValue;
+    positionData[1] = AccumulatedFloat * TemporaryFloatValue * -1.0 + transformCoefficient * ResultFloatValue;
     positionData[2] = transformCoeff12 * transformCoeff1 * 1.0 + transformCoeff13 * TransformCoefficient3;
     positionData[3] = transformCoeff12 * TransformCoefficient3 * -1.0 + transformCoeff13 * transformCoeff1;
     positionData = positionData + -8;
@@ -398755,7 +398755,7 @@ UIHandle * FUN_18089c1fb(void)
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
-  float transformCoeff11;
+  float transformCoefficient;
   
   if (*(int *)(contextRegister + 0x18) != 0) {
     return (UIHandle *)0x1c;
@@ -398804,7 +398804,7 @@ UIHandle * FUN_18089c1fb(void)
   }
   if (0x81 < *(uint *)(uiTargetHandle + 8)) {
     resultPointer1 = (UIHandle *)FUN_1808a79f0(iterationCounter,componentData + 0x58);
-    transformCoeff11 = extraout_XMM0_Da_00;
+    transformCoefficient = extraout_XMM0_Da_00;
     if ((int)resultPointer1 != 0) {
       return resultPointer1;
     }
@@ -398870,7 +398870,7 @@ LAB_18089c40a:
       return componentHandle;
     }
     processingResult = *(int *)(uiContextBasePointer + -0x21);
-    transformCoeff11 = extraout_XMM0_Da_03;
+    transformCoefficient = extraout_XMM0_Da_03;
     if (processingResult == 0) {
       componentHandle = *(UIHandle **)(uiContextBasePointer + -0x29);
     }
@@ -398881,7 +398881,7 @@ LAB_18089c40a:
         componentHandle = (UIHandle *)(ulonglong)eventStatus;
         if (eventStatus != 0) goto LAB_18089c40a;
         processingResult = *(int *)(uiContextBasePointer + -0x21);
-        transformCoeff11 = extraout_XMM0_Da_04;
+        transformCoefficient = extraout_XMM0_Da_04;
       }
       componentHandle = *(UIHandle **)(uiContextBasePointer + -0x29);
       for (sizeData = componentHandle; (componentHandle <= sizeData && (sizeData < componentHandle + (longlong)processingResult * 3));
@@ -398895,8 +398895,8 @@ LAB_18089c40a:
         *componentHandle = *sizeData;
         componentHandle[1] = result;
         *(UIDword *)(componentHandle + 2) = *(UIDword *)(sizeData + 2);
-        transformCoeff11 = *(float *)((longlong)sizeData + 0x14) + *(float *)(sizeData + 2);
-        *(float *)((longlong)componentHandle + 0x14) = transformCoeff11;
+        transformCoefficient = *(float *)((longlong)sizeData + 0x14) + *(float *)(sizeData + 2);
+        *(float *)((longlong)componentHandle + 0x14) = transformCoefficient;
         *(UIByte *)(componentHandle + 3) = 1;
         processingResult = *(int *)(uiContextBasePointer + -0x21);
         componentHandle = *(UIHandle **)(uiContextBasePointer + -0x29);
@@ -398924,11 +398924,11 @@ LAB_18089c40a:
         allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)componentHandle;
         do {
           pvectorComponentX = (float *)FUN_180847820();
-          transformCoeff11 = *pvectorComponentX;
+          transformCoefficient = *pvectorComponentX;
           TransformCoefficient4 = pvectorComponentX[1];
           LocalFloatValue6 = pvectorComponentX[2];
           ResultFloatValue = pvectorComponentX[3];
-          *(float *)(allocatedMemory7 + -0x14) = transformCoeff11;
+          *(float *)(allocatedMemory7 + -0x14) = transformCoefficient;
           *(float *)(allocatedMemory7 + -0x10) = TransformCoefficient4;
           *(float *)(allocatedMemory7 + -0xc) = LocalFloatValue6;
           *(float *)(allocatedMemory7 + -8) = ResultFloatValue;
@@ -398944,12 +398944,12 @@ LAB_18089c40a:
       eventStatus = -eventStatus;
     }
     if (eventStatus != 0) {
-      transformCoeff11 = (float)FUN_1808aef40(uiContextBasePointer + -0x29,0);
+      transformCoefficient = (float)FUN_1808aef40(uiContextBasePointer + -0x29,0);
     }
   }
   else {
     resultPointer1 = (UIHandle *)FUN_1808a5780(iterationCounter,componentData + 0x48);
-    transformCoeff11 = extraout_XMM0_Da_02;
+    transformCoefficient = extraout_XMM0_Da_02;
     if ((int)resultPointer1 != 0) {
       return resultPointer1;
     }
@@ -398959,18 +398959,18 @@ LAB_18089c586:
       (*(ulonglong *)(componentData + 0x48) <= CounterResult &&
       (CounterResult < (longlong)*(int *)(componentData + 0x50) * 0x1c + *(ulonglong *)(componentData + 0x48)));
       CounterResult = CounterResult + 0x1c) {
-    transformCoeff11 = (float)FUN_1807d3e20(componentData + 0x58);
+    transformCoefficient = (float)FUN_1807d3e20(componentData + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(uiTargetHandle + 8)) && (eventProcessingCounter = 0x1c, *(int *)(uiTargetHandle[1] + 0x18) == 0)) {
     eventProcessingCounter = FUN_1808aed00(*uiTargetHandle,componentData + 0x68,4);
-    transformCoeff11 = extraout_XMM0_Da_01;
+    transformCoefficient = extraout_XMM0_Da_01;
   }
   if (eventProcessingCounter != 0) {
     return (UIHandle *)(ulonglong)eventProcessingCounter;
   }
                      WARNING: Subroutine does not return
-  FUN_1808ddf80(transformCoeff11,uiContextBasePointer + -9);
+  FUN_1808ddf80(transformCoefficient,uiContextBasePointer + -9);
 }
 
 
@@ -399117,7 +399117,7 @@ LAB_18089c40a:
       return renderDataPointer;
     }
     processingResult = *(int *)(uiContextBasePointer + -0x21);
-    transformCoeff11 = extraout_XMM0_Da_03;
+    transformCoefficient = extraout_XMM0_Da_03;
     if (processingResult == 0) {
       renderDataPointer = *(UIHandle **)(uiContextBasePointer + -0x29);
     }
@@ -399128,7 +399128,7 @@ LAB_18089c40a:
         renderDataPointer = (UIHandle *)(ulonglong)eventStatus;
         if (eventStatus != 0) goto LAB_18089c40a;
         processingResult = *(int *)(uiContextBasePointer + -0x21);
-        transformCoeff11 = extraout_XMM0_Da_04;
+        transformCoefficient = extraout_XMM0_Da_04;
       }
       renderDataPointer = *(UIHandle **)(uiContextBasePointer + -0x29);
       for (sizeData = renderDataPointer; (renderDataPointer <= sizeData && (sizeData < renderDataPointer + (longlong)processingResult * 3));
@@ -399142,8 +399142,8 @@ LAB_18089c40a:
         *renderDataPointer = *sizeData;
         renderDataPointer[1] = result;
         *(UIDword *)(renderDataPointer + 2) = *(UIDword *)(sizeData + 2);
-        transformCoeff11 = *(float *)((longlong)sizeData + 0x14) + *(float *)(sizeData + 2);
-        *(float *)((longlong)renderDataPointer + 0x14) = transformCoeff11;
+        transformCoefficient = *(float *)((longlong)sizeData + 0x14) + *(float *)(sizeData + 2);
+        *(float *)((longlong)renderDataPointer + 0x14) = transformCoefficient;
         *(UIByte *)(renderDataPointer + 3) = 1;
         processingResult = *(int *)(uiContextBasePointer + -0x21);
         renderDataPointer = *(UIHandle **)(uiContextBasePointer + -0x29);
@@ -399171,11 +399171,11 @@ LAB_18089c40a:
         allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)renderDataPointer;
         do {
           pvectorComponentX = (float *)FUN_180847820();
-          transformCoeff11 = *pvectorComponentX;
+          transformCoefficient = *pvectorComponentX;
           TransformCoefficient4 = pvectorComponentX[1];
           LocalFloatValue6 = pvectorComponentX[2];
           ResultFloatValue = pvectorComponentX[3];
-          *(float *)(allocatedMemory7 + -0x14) = transformCoeff11;
+          *(float *)(allocatedMemory7 + -0x14) = transformCoefficient;
           *(float *)(allocatedMemory7 + -0x10) = TransformCoefficient4;
           *(float *)(allocatedMemory7 + -0xc) = LocalFloatValue6;
           *(float *)(allocatedMemory7 + -8) = ResultFloatValue;
@@ -399191,12 +399191,12 @@ LAB_18089c40a:
       eventStatus = -eventStatus;
     }
     if (eventStatus != 0) {
-      transformCoeff11 = (float)FUN_1808aef40(uiContextBasePointer + -0x29,0);
+      transformCoefficient = (float)FUN_1808aef40(uiContextBasePointer + -0x29,0);
     }
   }
   else {
     componentHandle = (UIHandle *)FUN_1808a5780(iterationCounter,componentData + 0x48);
-    transformCoeff11 = extraout_XMM0_Da_02;
+    transformCoefficient = extraout_XMM0_Da_02;
     if ((int)componentHandle != 0) {
       return componentHandle;
     }
@@ -399206,18 +399206,18 @@ LAB_18089c586:
       (*(ulonglong *)(componentData + 0x48) <= CounterResult &&
       (CounterResult < (longlong)*(int *)(componentData + 0x50) * 0x1c + *(ulonglong *)(componentData + 0x48)));
       CounterResult = CounterResult + 0x1c) {
-    transformCoeff11 = (float)FUN_1807d3e20(componentData + 0x58);
+    transformCoefficient = (float)FUN_1807d3e20(componentData + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(uiTargetHandle + 8)) && (eventProcessingCounter = 0x1c, *(int *)(uiTargetHandle[1] + 0x18) == 0)) {
     eventProcessingCounter = FUN_1808aed00(*uiTargetHandle,componentData + 0x68,4);
-    transformCoeff11 = extraout_XMM0_Da_01;
+    transformCoefficient = extraout_XMM0_Da_01;
   }
   if (eventProcessingCounter != 0) {
     return (UIHandle *)(ulonglong)eventProcessingCounter;
   }
                      WARNING: Subroutine does not return
-  FUN_1808ddf80(transformCoeff11,uiContextBasePointer + -9);
+  FUN_1808ddf80(transformCoefficient,uiContextBasePointer + -9);
 }
 
 

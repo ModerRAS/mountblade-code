@@ -23003,15 +23003,11 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int isDataOffset1cInfinity;
   int isDataOffset18Infinity;
   int isDataOffset2cInfinity;
+  int isDataOffset28Infinity;
   int64_t targetDataBuffer;
   int64_t systemContextArray [2];
   uint colorData;
   float vectorYFloatComponent;
-  int isDataOffset18Infinity;
-  int isDataOffset2cInfinity;
-  int isDataOffset1cInfinity;
-  int isDataOffset20Infinity;
-  int isDataOffset28Infinity;
   int isVectorComponentXInfinity;
   int isVectorComponentYInfinity;
   int isVectorComponentZInfinity;
@@ -37675,9 +37671,20 @@ ValidationLabelD:
 /**
  * @brief 系统数据验证处理函数
  * 
- * 该函数用于处理系统数据的验证操作，包括内存分配、数据处理和安全性检查
+ * 该函数用于处理系统数据的验证操作，包括内存分配、数据处理和安全性检查。
+ * 主要功能包括：
+ * - 验证系统输入累加器的状态
+ * - 处理数据块操作和内存管理
+ * - 执行安全检查和异常处理
+ * - 管理系统上下文和资源指针
+ * - 处理浮点数坐标数据
+ * - 执行系统状态检查和验证
+ * 
+ * @return uint64_t* 返回处理后的数据缓冲区指针，失败时返回错误码
  * 
  * @note 原始函数名：FUN_18089c1fb
+ * @see CheckSystemStatusA0, ProcessDataBlocksA1, ExecuteSystemResourceOperation
+ * @see ValidateDataSecurityA1, ReleaseSystemMemoryA0
  */
 uint64_t * ValidateSystemDataProcessing(void)
 
