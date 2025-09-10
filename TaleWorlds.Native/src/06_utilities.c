@@ -6128,13 +6128,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExecuteDataIntegrityValidation FUN_18089b460
 
 /**
- * @brief 清理数据资源A0
+ * @brief 清理系统数据资源
  * 
- * 该函数负责清理数据资源，释放占用的内存和资源
+ * 该函数负责清理数据资源，释放占用的内存和系统资源，
+ * 包括内存块释放、句柄清理和资源回收。
  * 
  * @note 原始函数名：FUN_18089b52a
  */
-#define CleanupDataResourcesA0 FUN_18089b52a
+#define CleanupSystemDataResources FUN_18089b52a
 
 /**
  * @brief 重置数据处理器A1
@@ -20395,7 +20396,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset),&validationData);
   if ((int)result == 0) {
-    *(DataWord *)(MergeHighLowWords(tempValue,systemDataBuffer) + DataStorageBufferOffset) = *(DataWord *)(dataContext + DataProcessingContextOffset);
+    *(DataWord *)(MergeHighLowWords(TemporaryValidationValue,systemDataBuffer) + DataStorageBufferOffset) = *(DataWord *)(dataContext + DataProcessingContextOffset);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
   }
   return result;
@@ -22296,7 +22297,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t systemCon
   float currentValue;
   float rangeMinValue;
   float rangeMaxValue;
-  DataWord tempValue;
+  DataWord TemporaryRangeValue;
   uint64_t loopCounter;
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(ArrayDescriptor + ExceptionHandlerCallbackOffset),&contextBuffer);
@@ -80178,6 +80179,16 @@ void CleanupSystemMutexA(void)
 
 
 
+/**
+ * @brief 清理系统互斥锁B
+ * 
+ * 该函数负责清理指定的系统互斥锁资源，调用内部互斥锁销毁函数
+ * 释放特定互斥锁对象占用的系统资源。
+ * 
+ * @note 原始函数名：Unwind_1809089d0
+ * @note 这是一个系统清理函数，用于释放指定互斥锁资源
+ * @see SystemMutexObjectAddress
+ */
 void CleanupSystemMutexB(void)
 
 {
