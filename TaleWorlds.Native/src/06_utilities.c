@@ -3343,6 +3343,10 @@
 #define DataProcessingOffset6 0x6                    // 数据处理偏移量6
 #define DataProcessingOffset8 0x8                    // 数据处理偏移量8
 
+// 位操作常量
+#define BitShift31Bits 0x1f                          // 31位位移
+#define NullPointer 0x0                              // 空指针
+
 // 数据类型定义
 typedef uint32_t DataWord;                  // 数据字类型 - 32位无符号整数，用于系统数据交换
 typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无符号整数，用于数据缓冲区操作
@@ -16661,9 +16665,9 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporarySystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
   if (initializationStatus == 0) {
-    validationContext = (int64_t *)0x0;
+    validationContext = (int64_t *)NullPointer;
     moduleDataContext = validationContext;
-    baseValidationContext = (int64_t *)0x0;
+    baseValidationContext = (int64_t *)NullPointer;
     if (temporarySystemStackContext != 0) {
       moduleDataContext = (int64_t *)(temporarySystemStackContext + -8);
     }
@@ -21338,7 +21342,7 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   if (status != 0) {
     return;
   }
-  currentSize = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> 0x1f;
+  currentSize = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> BitShift31Bits;
   capacity = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ currentSize) - currentSize;
   status = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
   if (capacity < status) {
@@ -21413,7 +21417,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
   if (operationResult != 0) {
     return;
   }
-  allocationCount = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> 0x1f;
+  allocationCount = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> BitShift31Bits;
   allocationCount = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ allocationCount) - allocationCount;
   requiredCapacity = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
   if (allocationCount < requiredCapacity) {
@@ -21487,7 +21491,7 @@ void ResetUtilitySystemToInitialState(void)
   if (systemInitializationStatus != 0) {
     return;
   }
-  operationFlags = (int)*(uint *)(registerContext + RegisterContextOperationFlagsOffset) >> 0x1f;
+  operationFlags = (int)*(uint *)(registerContext + RegisterContextOperationFlagsOffset) >> BitShift31Bits;
   memoryAllocationResult = (*(uint *)(registerContext + RegisterContextOperationFlagsOffset) ^ operationFlags) - operationFlags;
   systemInitializationStatus = *(int *)(registerContext + RegisterContextValidationStatusOffset) + ValidationIncrementStep;
   if (memoryAllocationResult < systemInitializationStatus) {
@@ -32037,8 +32041,8 @@ SecurityCheckpointA:
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
-        dataContext = 0x14;
-        stackIndexBuffer[0] = stackIndexBuffer[0] + -0x14;
+        dataContext = StackFrameOffsetNegative14;
+        stackIndexBuffer[0] = stackIndexBuffer[0] + StackFrameOffsetNegative14;
         break;
       case 0x20:
         systemDataBuffer = ValidateDataWithSecurityCheckA2(dataBuffer,validationStatusPointer + 1);
@@ -32049,8 +32053,8 @@ SecurityCheckpointA:
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
-        dataContext = 0xc;
-        stackIndexBuffer[0] = stackIndexBuffer[0] + -0xc;
+        dataContext = StackFrameOffsetNegativeC;
+        stackIndexBuffer[0] = stackIndexBuffer[0] + StackFrameOffsetNegativeC;
       }
       validationStatusPointer = (uint *)((int64_t)validationStatusPointer + dataContext);
     }
