@@ -70734,7 +70734,7 @@ void ProcessDataStructureMemoryReorganization(long long *ContextHandle,uint64_t 
   unsigned long long ValidationResult;
   uint32_t *ConfigurationString;
   uint32_t *CharacterStatusBuffer5;
-  long long lStackX_10;
+  long long SystemHandleValue;
   long long alStackX_18 [2];
   
   AllocatedMemorySize = *Utf8SourcePointer;

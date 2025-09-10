@@ -123325,19 +123325,19 @@ void ProcessUIContextDataValidation(UIHandle uiContext, UIDword dataSource, UIHa
                                    UIHandle resultPointer, UIHandle param_6, UIHandle param_7)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
+  int dataProcessingStatus;
+  int validationStatus;
+  int comparisonStatus;
   UIHandle contextHandle;
-  UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
-  UIHandle preservedRegister12;
-  UIHandle preservedRegister13;
+  UIHandle baseContextPointer;
+  longlong registerPointer;
+  UIHandle savedRegister12;
+  UIHandle savedRegister13;
   UIHandle eventHandle;
-  UIHandle preservedRegister15;
-  ulonglong stackParam00000140;
-  UIHandle stackParam000001c0;
-  UIHandle stackParam000001c8;
+  UIHandle savedRegister15;
+  ulonglong stackOffset140;
+  UIHandle stackOffset1c0;
+  UIHandle stackOffset1c8;
   
   *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
   *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
