@@ -4876,13 +4876,13 @@ void* UIGestureCoordinates;
 #define UIGlobalOperationProcessorTypeY _DAT_180d4a8a8
 
 // UI系统组件数据指针宏定义
-#define UIComponentDataPointerE60 UNK_180956e60
-#define UIComponentDataPointerF30 UNK_180956f30
-#define UIComponentDataPointerF6E UNK_180956f6e
-#define UIComponentDataPointerDF8 UNK_180956df8
-#define UIComponentDataPointerDE8 UNK_180956de8
-#define UIComponentHandleData860 UNK_180954860
-#define UIComponentHandleData890 UNK_180954890
+#define UIComponentDataPointerE60 (void*)0x180956e60
+#define UIComponentDataPointerF30 (void*)0x180956f30
+#define UIComponentDataPointerF6E (void*)0x180956f6e
+#define UIComponentDataPointerDF8 (void*)0x180956df8
+#define UIComponentDataPointerDE8 (void*)0x180956de8
+#define UIComponentHandleData860 (void*)0x180954860
+#define UIComponentHandleData890 (void*)0x180954890
 
 // UI系统函数指针表宏定义
 #define UIFunctionPointerCF0 UNK_180741cf0

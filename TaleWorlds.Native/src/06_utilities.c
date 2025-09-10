@@ -100075,6 +100075,13 @@ void InitializeExceptionHandlerCE50(DataBuffer operationBase, int64_t dataBuffer
 
 
 
+// 系统异常处理器重置相关常量
+#define SystemExceptionHandlerResetOffset 0x3e8                  // 系统异常处理器重置偏移量 (1000)
+#define SystemExceptionHandlerTemporaryOffset 0x3b8               // 系统异常处理器临时偏移量
+#define SystemExceptionHandlerStatusOffset 0x3c0                 // 系统异常处理器状态偏移量
+#define SystemExceptionHandlerControlOffset 0x3d0                // 系统异常处理器控制偏移量
+#define SystemExceptionHandlerBufferOffset 0x3b0                 // 系统异常处理器缓冲区偏移量
+
 /**
  * @brief 系统异常处理器重置函数CE60
  * 
@@ -100089,21 +100096,20 @@ void InitializeExceptionHandlerCE50(DataBuffer operationBase, int64_t dataBuffer
  * @param dataBuffer 数据缓冲区
  * @note 原始函数名：Unwind_18090ce60
  */
-void ResetSystemExceptionHandlerCE60(DataBuffer operationBase,int64_t dataBuffer)
-
+void ResetSystemExceptionHandlerCE60(DataBuffer operationBase, int64_t dataBuffer)
 {
-  if (*(int64_t **)(dataBuffer + 1000) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 1000) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + SystemExceptionHandlerResetOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemExceptionHandlerResetOffset) + SystemFloatDataOffset38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x3b8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + SystemDataRecordOffset3c0) != 0) {
+  *(DataBuffer *)(dataBuffer + SystemExceptionHandlerTemporaryOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + SystemExceptionHandlerStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + SystemDataRecordOffset3c0) = 0;
-  *(DataWord *)(dataBuffer + 0x3d0) = 0;
-  *(DataBuffer *)(dataBuffer + 0x3b8) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(dataBuffer + 0x3b0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x3b0) + SystemFloatDataOffset38))();
+  *(DataBuffer *)(dataBuffer + SystemExceptionHandlerStatusOffset) = 0;
+  *(DataWord *)(dataBuffer + SystemExceptionHandlerControlOffset) = 0;
+  *(DataBuffer *)(dataBuffer + SystemExceptionHandlerTemporaryOffset) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t **)(dataBuffer + SystemExceptionHandlerBufferOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemExceptionHandlerBufferOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
