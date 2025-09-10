@@ -117,6 +117,8 @@ typedef enum {
 #define UI_COMPONENT_DATA_OFFSET_9C 0x9c        // UI组件数据偏移量9C
 #define UI_COMPONENT_DATA_OFFSET_A0 0xa0        // UI组件数据偏移量A0
 #define UI_COMPONENT_DATA_OFFSET_A4 0xa4        // UI组件数据偏移量A4
+#define UI_COMPONENT_DATA_OFFSET_121C 0x121c    // UI组件数据偏移量121C - 事件数据存储
+#define UI_COMPONENT_DATA_OFFSET_13EC 0x13ec    // UI组件数据偏移量13EC - 缓冲区数据存储
 
 // UI系统缓冲区偏移量常量
 #define UI_BUFFER_DATA_OFFSET_50 0x50           // UI缓冲区数据偏移量50
@@ -115437,8 +115439,8 @@ void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle
     memcpy(dataSource,dataSource + 0x20,(longlong)loopCounter * 2);
   }
   ProcessUIComponentOperation(&stack0x00000080);
-  ExecuteUIBufferDataOperation(dataSource,&stack0x00000080,*(UIDword *)(uiBufferData + 0x121c),
-                *(UIDword *)(uiBufferData + 0x13ec),loopCounter);
+  ExecuteUIBufferDataOperation(dataSource,&stack0x00000080,*(UIDword *)(uiBufferData + UI_COMPONENT_DATA_OFFSET_121C),
+                *(UIDword *)(uiBufferData + UI_COMPONENT_DATA_OFFSET_13EC),loopCounter);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
 }
@@ -115590,8 +115592,8 @@ void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlo
     memcpy(iterationCount,basePointer + 0x20,(longlong)uiValidationResult1 * 2);
   }
   iterationCount = ProcessUIComponentOperation(&stack0x00000080);
-  ExecuteUIBufferDataOperation(iterationCount,&stack0x00000080,*(UIDword *)(contextHandle + 0x121c),
-                *(UIDword *)(contextHandle + 0x13ec),uiValidationResult1);
+  ExecuteUIBufferDataOperation(iterationCount,&stack0x00000080,*(UIDword *)(contextHandle + UI_COMPONENT_DATA_OFFSET_121C),
+                *(UIDword *)(contextHandle + UI_COMPONENT_DATA_OFFSET_13EC),uiValidationResult1);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(maxAllocations ^ (ulonglong)&stack0x00000000);
 }
