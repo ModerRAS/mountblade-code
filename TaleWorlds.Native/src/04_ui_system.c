@@ -399084,19 +399084,19 @@ LAB_18089c40a:
         eventStatus = eventProcessingCounter;
       }
       else {
-        componentHandle = *(UIHandle **)(basePointer + -0x29);
+        componentHandle = *(UIHandle **)(uiContextBasePointer + -0x29);
       }
-      if (processingResult9 < 0) {
-        AllocatedMemoryBlock8 = (longlong)-processingResult9;
-        if (processingResult9 < 0) {
-          allocatedMemory7 = (longlong)processingResult9 * 0x18 + 0x14 + (longlong)componentHandle;
+      if (processingResult < 0) {
+        allocatedMemoryBlock = (longlong)-processingResult;
+        if (processingResult < 0) {
+          allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)componentHandle;
           do {
             resultPointer1 = (UIDword *)FUN_180847820();
-            iterationCount0 = resultPointer1[1];
+            iterationCounter = resultPointer1[1];
             iterationCount = resultPointer1[2];
             eventCode = resultPointer1[3];
             *(UIDword *)(allocatedMemory7 + -0x14) = *resultPointer1;
-            *(UIDword *)(allocatedMemory7 + -0x10) = iterationCount0;
+            *(UIDword *)(allocatedMemory7 + -0x10) = iterationCounter;
             *(UIDword *)(allocatedMemory7 + -0xc) = iterationCount;
             *(UIDword *)(allocatedMemory7 + -8) = eventCodeType;
             *(UIHandle *)(allocatedMemory7 + -4) = 0;
