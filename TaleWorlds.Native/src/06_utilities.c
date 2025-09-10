@@ -130097,7 +130097,7 @@ void HandleExceptionContextReferenceCountDecrement(DataBuffer systemContextBase,
 {
   int64_t exceptionContext;
   
-  exceptionContext = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset58);
+  exceptionContext = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset48);
   if (exceptionContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;

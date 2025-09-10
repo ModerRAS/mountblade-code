@@ -13568,30 +13568,30 @@ void CopyUIBufferData(longlong uiContext,UIHandle dataSource,UIHandle targetBuff
 {
   ulonglong result;
   UIHandle iterationCount;
-  undefined *pstackUInt30;
-  longlong stackLong28;
-  uint stackUInt20;
-  UIDword stackUInt14;
+  UIDataBuffer *pDataBuffer30;
+  longlong sourceAddress28;
+  uint bufferSize20;
+  UIDword bufferFlags14;
   
   iterationCount = 0xfffffffffffffffe;
-  InitializeUIDataBuffer(&pstackUInt30);
-  result = (ulonglong)stackUInt20;
-  if (stackLong28 != 0) {
+  InitializeUIDataBuffer(&pDataBuffer30);
+  result = (ulonglong)bufferSize20;
+  if (sourceAddress28 != 0) {
     AllocateUIBuffer(uiContext + 0x10,result);
   }
-  if (stackUInt20 != 0) {
+  if (bufferSize20 != 0) {
                      WARNING: Subroutine does not return
-    memcpy(*(UIHandle *)(uiContext + 0x18),stackLong28,result,bufferSize,iterationCount);
+    memcpy(*(UIHandle *)(uiContext + 0x18),sourceAddress28,result,bufferSize,iterationCount);
   }
   *(UIDword *)(uiBufferData + 0x20) = 0;
   if (*(longlong *)(uiBufferData + 0x18) != 0) {
     *(UIByte *)(result + *(longlong *)(uiBufferData + 0x18)) = 0;
   }
-  *(UIDword *)(uiBufferData + 0x2c) = stackUInt14;
-  pstackUInt30 = &PrimaryUIBuffer;
-  if (stackLong28 != 0) {
+  *(UIDword *)(uiBufferData + 0x2c) = bufferFlags14;
+  pDataBuffer30 = &PrimaryUIBuffer;
+  if (sourceAddress28 != 0) {
                      WARNING: Subroutine does not return
-    DestroyUIComponent(stackLong28,stackLong28);
+    DestroyUIComponent(sourceAddress28,sourceAddress28);
   }
   return;
 }
