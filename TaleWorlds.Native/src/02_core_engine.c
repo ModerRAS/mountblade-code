@@ -30027,8 +30027,9 @@ void CoreEngineInitializeSystemDataStructures(void
     if (StringLength != 0) {
       __Throw_C_error_std__YAXH_Z(StringLength);
     }
+}
 
- void CoreEngineInitializeSecondaryModules(long long SystemContext/**
+/**
  * @brief 初始化系统线程数据和缓冲区
  * 
  * 该函数负责初始化系统线程数据和缓冲区，包括：
@@ -30045,7 +30046,7 @@ void CoreEngineInitializeSystemDataStructures(void
  * @note 涉及多个系统组件的初始化
  * @note 会检查线程状态并执行相应的初始化操作
  */
-void CoreEngineInitializeSystemThreadDataAndBuffers(long long ContextHandle
+void CoreEngineInitializeSystemThreadDataAndBuffers(long long ContextHandle)
 {
   long long *ContextHandle;
   void *SystemContext;
