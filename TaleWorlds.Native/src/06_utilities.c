@@ -27537,7 +27537,7 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
 // 功能：处理复杂的数据缓冲区，包括多种数据类型的验证和转换
 #define ProcessComplexDataBufferWithValidation FUN_180896c60
 
-void ProcessComplexDataBufferWithValidation(DataBuffer systemHandle, int64_t dataContext, uint operationFlags, char validationType)
+void ProcessComplexDataBufferWithValidation(DataBuffer systemHandle, int64_t dataContextParam, DataWord* operationFlagA, DataWord operationFlagB, char validationType)
 
 {
   int64_t exceptionContext;
