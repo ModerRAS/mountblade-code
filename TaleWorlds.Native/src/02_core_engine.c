@@ -41,7 +41,7 @@
 #define LockOperationResultOffset 0x200                    // 字符字节计数偏移量
 #define Utf16ConversionContextOffset 0x24                  // UTF16转换上下文偏移量
 #define UnicodeCharacterValueOffset 0x20                   // Unicode字符值偏移量
-#define ValidationStatus6Offset 0xd                           // 字符串缓冲区6偏移量
+#define ValidationStatus6Offset CharacterBuffer6Offset           // 字符串缓冲区6偏移量
 #define CharacterTablePrimaryOffset 0x48                    // 字符表主偏移量
 #define CharacterTableSecondaryOffset 0x50                  // 字符表次偏移量
 #define CharacterTableTertiaryOffset 0x4c                  // 字符表第三偏移量
@@ -103,7 +103,7 @@ uint32_t ConfigureCoreEnginePointers(void)
  * 
  * @note 原始实现：简化实现，只进行基本的状态验证
  */
-uint32_t ValidateProcessingStatusFlag(uint32_t StatusFlag)
+uint32_t ValidateProcessingStatusFlag(uint32_t ProcessingStatusFlag)
 {
     // 简化实现：直接返回成功
     // 实际实现应该验证处理状态标志
@@ -471,7 +471,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemStatusByte LowByte                          // 系统状态字节
 #define MemoryBlockStatus IsMemoryBlockEqual              // 内存块状态
 #define Utf16CharacterValue Utf16Char                     // UTF-16字符值
-#define LockOperationResult LockOperationResultPointer    // 字符串比较结果
+#define LockOperationResult StringComparisonResult    // 字符串比较结果
 #define ValidationResult pValidationResult                // 验证结果
 #define SystemRegister IntegerValue9                       // 系统寄存器
 #define ProcessingParameter StackProcessingParameter58    // 处理参数
@@ -11426,7 +11426,7 @@ void* EngineMemoryTertiary;                    // 引擎第三内存区域
 void* EngineMemoryQuaternary;                  // 引擎第四内存区域
 void* EngineMemoryMetadata;                    // 引擎内存元数据
 // 引擎状态标志
-char EngineLockOperationResultFlag;           // 引擎初始化状态标志
+char EngineSystemInitializationStatusFlag;           // 引擎初始化状态标志
 void* EngineRuntimePrimary;                     // 引擎运行时主数据
 void* EngineConfigurationPrimary;              // 引擎主配置数据
 void* EngineSystemGameState;                   // 引擎系统游戏状态
@@ -222504,7 +222504,25 @@ uint64_t *ReleaseContextHandleResources(uint64_t *ContextHandle,unsigned long lo
 
 
 
-83a20(uint64_t *ContextHandlevoid FUN_180183a20(uint64_t *ContextHandle
+/**
+ * @brief 处理字符状态缓冲区和系统数据注册
+ * 
+ * 该函数负责处理字符状态缓冲区的分配、初始化和管理，
+ * 以及系统数据注册和内存块索引操作。
+ * 
+ * 主要功能包括：
+ * - 分配和初始化系统内存池
+ * - 管理字符状态缓冲区
+ * - 处理系统数据注册
+ * - 执行内存块索引操作
+ * - 验证数据内容状态
+ * 
+ * @param ContextHandle 上下文句柄指针，包含系统状态和数据信息
+ * 
+ * @note 原始函数名：FUN_180183a20
+ * @note 这是一个关键的系统数据处理函数，涉及内存管理和状态验证
+ */
+void ProcessCharacterStatusBufferAndSystemDataRegistry(uint64_t *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;

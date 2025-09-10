@@ -103504,7 +103504,7 @@ void ProcessUIAdvancedTransform(longlong uiContext, longlong dataSource, longlon
   uStack0000000000000034 = 0;
   localInt5 = *(int *)(componentData + 0x11dc);
   processingResult = (*(int *)(componentData + 0x11f8) + localInt5 * -3) / 2;
-  FUN_18072b830(preservedRegister13[0xaf] * 0.01,lStack0000000000000038,1,processingResult);
+  ProcessUIMatrixTransformation(preservedRegister13[0xaf] * 0.01,lStack0000000000000038,1,processingResult);
                      WARNING: Subroutine does not return
   memcpy(&stack0x00000130 + (longlong)processingResult * 4,lStack0000000000000038 + (longlong)processingResult * 4,
          (longlong)(localInt5 * 3) << 2);
@@ -104296,7 +104296,7 @@ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle ta
     pstackUInt878 = (UIByte *)CONCAT44(pstackUInt878._4_4_,*(UIDword *)(uiBufferData + 0x11e0));
     pstackUInt880 = (UIByte *)CONCAT44(pstackUInt880._4_4_,*(UIDword *)(uiBufferData + 0x11e8));
     pfStack_888 = afStack_858;
-    FUN_18072eb00(astackUInt668,bufferSize + (longlong)stackInt870 * -4,dataSource + 0x90,dataSource + 0xe4);
+    ProcessUIEventBufferManagement(astackUInt668,bufferSize + (longlong)stackInt870 * -4,dataSource + 0x90,dataSource + 0xe4);
     if (*(int *)(uiBufferData + 0x1234) == 0) {
       dVar1 = (double)pow(0,SUB84((double)(*(float *)(dataSource + 0x2c4) * 0.33333334),0));
       TemporaryFloatValue = ((float)dVar1 * 0.0001) / (*(float *)(dataSource + 700) * 0.75 + 0.25);
@@ -104304,12 +104304,12 @@ void ProcessUIComponentBuffer(longlong uiContext,longlong dataSource,UIHandle ta
     else {
       TemporaryFloatValue = 0.01;
     }
-    FUN_18072e720(uiContext,&stackUInt68,astackUInt668,TemporaryFloatValue);
-    FUN_180726fd0(uiContext,dataSource + 0x10,&stackUInt68,uiContext + 0x1190);
+    ProcessUIGraphicsParameters(uiContext,&stackUInt68,astackUInt668,TemporaryFloatValue);
+    ProcessUIRenderContext(uiContext,dataSource + 0x10,&stackUInt68,uiContext + 0x1190);
     pstackUInt878 = (UIByte *)CONCAT44(pstackUInt878._4_4_,*(UIDword *)(uiBufferData + 0x121c));
     pstackUInt880 = (UIByte *)CONCAT44(pstackUInt880._4_4_,*(UIDword *)(uiBufferData + 0x11e0));
     pfStack_888 = (float *)CONCAT44(pfStack_888._4_4_,*(UIDword *)(uiBufferData + 0x11e8));
-    FUN_18072ec50(dataSource + 0x2c8,astackUInt668,dataSource + 0x10,dataSource);
+    ProcessUIComponentLayout(dataSource + 0x2c8,astackUInt668,dataSource + 0x10,dataSource);
     *(UIDword *)(uiBufferData + 0x1190) = stackUInt68;
     *(UIDword *)(uiBufferData + 0x1194) = stackUInt64;
     *(UIDword *)(uiBufferData + 0x1198) = stackUInt60;

@@ -326,6 +326,11 @@
 #define SystemStatusSecondaryFlagMask 0x2                     // 系统状态次要标志掩码
 #define SystemStatusSecondaryFlagClearMask 0xfffffffd        // 系统状态次要标志清除掩码
 
+// 系统管理偏移量常量
+#define SystemManagementOffset98 0x98                        // 系统管理偏移量98
+#define SystemManagementOffset78 0x78                        // 系统管理偏移量78
+#define SystemManagementOffset70 0x70                        // 系统管理偏移量70
+
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffset170 0x170
 #define ExceptionHandlerContextOffset190 0x190
@@ -6033,22 +6038,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateDataStreamIntegrity FUN_18089a6e8
 
 /**
- * @brief 处理数据转换A0
+ * @brief 转换数据流格式
  * 
- * 该函数负责处理数据转换，将数据从一种格式转换为另一种格式
+ * 该函数负责处理数据转换，将数据从一种格式转换为另一种格式，
+ * 支持多种数据格式的相互转换，包括二进制、文本和结构化数据。
  * 
  * @note 原始函数名：FUN_18089a7e0
  */
-#define ProcessDataConversionA0 FUN_18089a7e0
+#define ConvertDataStreamFormat FUN_18089a7e0
 
 /**
- * @brief 执行数据同步A0
+ * @brief 同步系统数据
  * 
- * 该函数负责执行数据同步操作，确保数据的一致性
+ * 该函数负责执行数据同步操作，确保数据的一致性和完整性，
+ * 支持多线程环境下的数据同步，防止数据竞争和不一致问题。
  * 
  * @note 原始函数名：FUN_18089a880
  */
-#define ExecuteDataSynchronizationA0 FUN_18089a880
+#define SynchronizeSystemData FUN_18089a880
 
 /**
  * @brief 验证数据同步A0
@@ -13697,19 +13704,16 @@ void* SystemDataBufferSystemQuaternaryContext;
 void* UtilitySystemValidationPointersystemContext;
 
 // 函数: void InitializeUtilitySystemBuffers();
-#define InitializeUtilitySystemBuffers FUN_180942810
-void InitializeUtilitySystemBuffers;          // 初始化工具系统缓冲区
+void InitializeUtilitySystemBuffers(void);          // 初始化工具系统缓冲区
 void* UtilitySystemConfigBufferA;
 uint8_t UtilitySystemStatusFlagA;
 
 // 函数: void ConfigureUtilitySystemBufferA();
-#define ConfigureUtilitySystemBufferA FUN_180942890
-void ConfigureUtilitySystemPrimaryBuffer;     // 配置工具系统主缓冲区
+void ConfigureUtilitySystemPrimaryBuffer(void);     // 配置工具系统主缓冲区
 void* UtilitySystemConfigBufferB;
 
 // 函数: void ConfigureUtilitySystemBufferB();
-#define ConfigureUtilitySystemBufferB FUN_1809428e0
-void ConfigureUtilitySystemSecondaryBuffer;   // 配置工具系统次缓冲区
+void ConfigureUtilitySystemSecondaryBuffer(void);   // 配置工具系统次缓冲区
 void* UtilitySystemConfigBufferC;
 
 /**
