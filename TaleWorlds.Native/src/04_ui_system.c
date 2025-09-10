@@ -270414,7 +270414,32 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI向量变换操作
+ * 
+ * 该函数负责处理UI系统中的向量变换操作，主要功能包括：
+ * - 使用AVX2指令集进行SIMD向量运算
+ * - 处理不同大小的向量数据（1, 2, 4字节对齐）
+ * - 执行浮点数矩阵变换和数据重组
+ * - 支持多种变换模式和操作掩码
+ * - 进行内存对齐检查和优化
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param transformMode 变换模式
+ * @param vectorSize 向量大小
+ * @param operationMask 操作掩码
+ * @param alignmentFlags 对齐标志
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * 
+ * @note 原始函数名：FUN_18082c450
+ * @note 这是一个高度优化的SIMD函数，使用AVX2指令集
+ */
+void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
                   int transformMode,uint vectorSize,uint operationMask,uint alignmentFlags,uint uiContext0,uint uiContext1)
 
 {
