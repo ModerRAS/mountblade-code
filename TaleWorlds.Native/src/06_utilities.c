@@ -15527,7 +15527,22 @@ void* UtilitySystemConfigBufferTertiary;
  * @warning 缓冲区配置失败可能导致系统性能下降或内存泄漏
  * @see ProcessUtilitySystemData, ValidateUtilitySystemData
  */
-void ConfigureUtilitySystemBufferC(void);           // 配置工具系统缓冲区C
+/**
+ * @brief 配置工具系统缓冲区C
+ * 
+ * 初始化和配置工具系统的第三个缓冲区，负责管理特定类型的数据存储。
+ * 该函数执行以下操作：
+ * 1. 分配缓冲区内存空间
+ * 2. 设置缓冲区大小和对齐方式
+ * 3. 初始化缓冲区管理结构
+ * 4. 配置缓冲区访问权限
+ * 5. 建立缓冲区与其他系统组件的连接
+ * 
+ * @note 原始函数名: FUN_180942930
+ * @warning 缓冲区配置失败可能导致系统不稳定
+ * @see ProcessUtilitySystemData, ValidateUtilitySystemData
+ */
+void ConfigureUtilitySystemBufferC(void);
 
 /**
  * @brief 处理工具系统数据
