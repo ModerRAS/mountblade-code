@@ -123657,14 +123657,27 @@ void ProcessUIDataTransfer(void)
 
 
 
- void FUN_18073979d(void)
-
+ /**
+ * @brief 处理UI组件更新操作
+ * 
+ * 该函数负责处理UI系统中的组件更新操作，包括：
+ * - 释放不再需要的内存资源
+ * - 执行渲染任务以更新UI组件的显示
+ * - 确保组件更新过程的流畅性和稳定性
+ * 
+ * 该函数是UI组件更新流程的核心函数，确保UI组件能够及时响应用户操作和状态变化。
+ * 
+ * @note 原始函数名：FUN_18073979d
+ */
+void HandleUIComponentUpdate(void)
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
+  // 释放不再需要的内存资源
   ReleaseUIMemoryResource();
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  
+  // 执行渲染任务更新UI组件
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&UIStackBuffer00);
 }
 
 
@@ -123673,7 +123686,6 @@ void ProcessUIDataTransfer(void)
 
 
  void FUN_1807397c0(UIHandle uiContext,UIHandle dataSource)
-void FUN_1807397c0(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
