@@ -288526,7 +288526,23 @@ long long ProcessMemoryPoolAllocationAndCharacterBuffer(long long ContextHandle,
 
 
 
-long long FUN_18022ef2c(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符状态缓冲区和数据节点操作
+ * 
+ * 该函数负责处理字符状态缓冲区和数据节点操作，主要功能包括：
+ * - 设置字符状态缓冲区和数据节点指针
+ * - 处理系统事件模板和字符串复制
+ * - 执行缓冲区状态计算和返回
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作对象
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针，包含字符数据
+ * @return long long 返回处理后的缓冲区状态
+ * 
+ * @note 原始函数名：FUN_18022ef2c
+ */
+#define ProcessCharacterStatusBufferAndDataNode FUN_18022ef2c
+long long ProcessCharacterStatusBufferAndDataNode(long long ContextHandle,uint64_t OperationBufferSize,long long Utf8SourcePointer
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
