@@ -4562,8 +4562,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @return 验证状态，成功返回0，失败返回错误码
  * 
+ /**
+ * @brief 系统数据处理和验证函数
+ * 
+ * 处理系统数据的验证、转换和传输操作，确保数据的完整性和安全性。
+ * 该函数负责验证输入数据的有效性，执行必要的数据转换操作，
+ * 并将处理后的数据传输到指定的目标位置。
+ * 
+ * @param inputData 输入数据缓冲区指针
+ * @param outputData 输出数据缓冲区指针
+ * @param dataSize 数据大小
+ * @param validationFlags 验证标志位
+ * @return 处理结果状态码，成功返回0，失败返回错误码
+ * 
  * @note 原始函数名：FUN_18004b790
+ * @note 这是系统数据处理的核心函数
  */
+#define ProcessAndValidateSystemData FUN_18004b790
 #define ValidateSystemDataBufferAndCheckIntegrity ValidateSystemDataBufferA0
 
 /**
@@ -4574,8 +4589,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @return 操作状态，成功返回0，失败返回错误码
  * 
+ /**
+ * @brief 系统数据加密函数
+ * 
+ * 对系统数据进行加密处理，确保数据的安全性和机密性。
+ * 该函数使用指定的加密算法和密钥对数据进行加密操作，
+ * 防止未授权访问和数据泄露。
+ * 
+ * @param dataToEncrypt 待加密的数据指针
+ * @param encryptedData 加密后的数据输出指针
+ * @param dataSize 数据大小
+ * @param encryptionKey 加密密钥
+ * @return 加密结果状态码，成功返回0，失败返回错误码
+ * 
  * @note 原始函数名：FUN_18064e900
+ * @note 这是系统数据安全保护的重要函数
  */
+#define EncryptSystemData FUN_18064e900
 #define ReleaseSystemDataPointerAndMemory ReleaseSystemDataPointerA0
 
 /**
