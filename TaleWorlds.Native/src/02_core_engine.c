@@ -222015,7 +222015,20 @@ void TerminateSystemProcess(void)
 
 
 
-83450(long long ContextHandlevoid FUN_180183450(long long ContextHandle
+/**
+ * @brief 处理系统上下文重置
+ * 
+ * 该函数负责重置系统上下文，清理相关资源并恢复初始状态。
+ * 主要功能包括：
+ * - 重置上下文指针和状态
+ * - 清理事件处理相关资源
+ * - 重置线程本地存储模板
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * 
+ * @note 原始函数名：FUN_180183450
+ */
+void ProcessSystemContextReset(long long ContextHandle)
 {
   *(void *)(ContextHandle + 0x10) = &SystemNullTemplate;
   if (*(long long *)(ContextHandle + 0x18) != 0) {
@@ -222106,7 +222119,24 @@ uint64_t* ConvertUtf8ToUtf16Encoding(long long ContextHandle,uint64_t *ContextHa
 
 
 
-8352a(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18018352a(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，主要功能包括：
+ * - 处理引擎数据传输和缓冲区管理
+ * - 分配内存并初始化处理状态标志
+ * - 管理Unicode代码点和字符转换
+ * - 处理系统上下文和数据节点
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18018352a
+ */
+#define ProcessUtf8ToUtf16CharacterConversion FUN_18018352a
+void ProcessUtf8ToUtf16CharacterConversion(uint64_t ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   uint32_t *PrimaryProcessingStatusFlag;
