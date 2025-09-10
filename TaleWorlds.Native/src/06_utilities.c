@@ -40008,7 +40008,7 @@ uint64_t ProcessFloatDataValidation(float inputValue)
   float validationFloatValue;
   float accumulatedFloatValue;
   float processedFloatValue;
-  float ValidationFloatValue3;
+  float finalValidationFloatResult;
   DataWord transformedFloatValue;
   DataWord secondaryFloatResultA;
   DataWord systemDataBuffer4;
@@ -46306,17 +46306,6 @@ void SetDefaultExceptionHandlerB(DataBuffer exceptionContext, int64_t handlerPos
 
 
 
-/**
- * @brief 清理异常状态标志
- * 
- * 该函数负责清理异常状态标志，当检测到特定的状态标志时，
- * 清除该标志并调用相应的清理函数。
- * 
- * @param cleanupContext 清理上下文参数
- * @param statePointer 状态指针，包含需要清理的状态标志
- * 
- * @note 原始函数名：Unwind_180902220
- */
 /**
  * @brief 清理异常状态标志
  * 
