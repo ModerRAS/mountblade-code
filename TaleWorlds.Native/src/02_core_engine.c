@@ -67204,7 +67204,7 @@ void InitializeSystemStatusAndMemory(void
   long long DataBufferPointer;
   uint32_t BufferProcessingFlags;
   unsigned long long CoreEngineUnsignedValue318;
-  long long lStack_310;
+  long long StackOffset310;
   void *CharacterStatusBufferPointer308;
   void *LocalProcessingStatusFlag0;
   uint32_t SystemInitializationFlags;
