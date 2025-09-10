@@ -124515,7 +124515,7 @@ void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
     FUN_18074ba80(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809573d8);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextEventHandler);
   }
 LAB_18073ab4a:
   if (RenderContextSize != 0) {
@@ -124556,7 +124556,7 @@ void FUN_18073ab80(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,UI
     CopyUIDataBuffer(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957300);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextResourceManager);
   }
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt188);
@@ -124631,7 +124631,7 @@ void FUN_18073acc0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     FUN_18074be30(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809575b0);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextGraphicsRenderer);
   }
 FUN_18073adad:
   if (stackLong148 != 0) {
@@ -124675,7 +124675,7 @@ void FUN_18073acdd(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     FUN_18074be30(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809575b0,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextGraphicsRenderer,&stack0x00000040);
   }
 FUN_18073adad:
   if (lStack0000000000000030 != 0) {
