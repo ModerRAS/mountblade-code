@@ -231875,13 +231875,13 @@ LAB_18018e486:
         SystemPrimaryReturnCode = (int)CharacterStatusBuffer + 1;
         CharacterStatusBuffer = (unsigned long long *)(unsigned long long)SystemPrimaryReturnCode;
       }
-      FUN_180190c90(pDataProcessingFlags,StringProcessingStatus,(long long)(int)(SystemPrimaryReturnCode - 1) * 2);
+      ProcessSystemCharacterEncodingAndDataValidation(pDataProcessingFlags,StringProcessingStatus,(long long)(int)(SystemPrimaryReturnCode - 1) * 2);
       if (SystemContextValue < 0x1d) {
-        FUN_180190a20(SystemCharacterStatusBuffer,StringProcessingStatus);
+        ProcessSystemCharacterEncodingAndStatusManagement(SystemCharacterStatusBuffer,StringProcessingStatus);
       }
       else {
         CharacterStatusBuffer = SystemCharacterStatusBuffer + 0x1c;
-        FUN_180190a20(SystemCharacterStatusBuffer,CharacterStatusBuffer);
+        ProcessSystemCharacterEncodingAndStatusManagement(SystemCharacterStatusBuffer,CharacterStatusBuffer);
         if (CharacterStatusBuffer != StringProcessingStatus) {
           ConfigurationString = SystemCharacterStatusBuffer + 0x1b;
           do {
@@ -231913,7 +231913,7 @@ LAB_18018e486:
     }
   }
   SystemDataTablePointer = lStack_138;
-  FUN_18018e7e0(OperationBufferSize,(long long)*(int *)((long long)SystemCharacterStatusBuffer + 4) * 0x348 +
+  ProcessCharacterEncodingAndSystemBufferConfiguration(OperationBufferSize,(long long)*(int *)((long long)SystemCharacterStatusBuffer + 4) * 0x348 +
                         *(long long *)(CoreEngineSystemTimer + 0x3a0));
   TemporaryFlag = 1;
   aCoreEngineSignedValueE8[0] = 3;
