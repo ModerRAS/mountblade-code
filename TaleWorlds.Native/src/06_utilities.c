@@ -48863,6 +48863,16 @@ void CleanupExceptionStack(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理调用栈
+ * 
+ * 该函数负责清理调用栈，将异常处理器设置为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含调用栈信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupCallStack(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -48872,6 +48882,16 @@ void CleanupCallStack(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理帧上下文
+ * 
+ * 该函数负责清理帧上下文信息
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含帧上下文信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupFrameContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
