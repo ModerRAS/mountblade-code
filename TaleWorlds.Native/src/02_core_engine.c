@@ -7118,7 +7118,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param allocationSize 请求分配的内存大小
  * @return 检查结果状态码
  */
-#define CheckSystemAllocatedMemorySize ValidateCoreEngineAllocatedMemorySize
+#define CheckSystemMemoryAllocationSize ValidateCoreEngineAllocatedMemorySize
 
 /**
  * @brief 检查系统操作状态
@@ -10325,7 +10325,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ConfigureIntegerDataTexture FUN_18011bba1
 #define ProcessIntegerDataTexture FUN_18011bc70
 #define ConfigureSystemDataTable FUN_18012ddc0
-#define CheckSystemAllocatedMemorySize ValidateCoreEngineAllocatedMemorySize
+#define CheckSystemMemoryAllocationSize ValidateCoreEngineAllocatedMemorySize
 #define AccessSystemContext FUN_180126de0
 #define InitializeSystemModule FUN_180131810
 #define AllocateSystemBuffer AllocateSystemDataTable
@@ -31340,7 +31340,7 @@ uint64_t CoreEngineProcessSystemEventsAndCompareStrings(void *UnusedParam1,void 
   uint64_t *ProcessingStatusFlag2;
   uint64_t StackProcessingSize;
   uint32_t StackProcessingFlags;
-  unsigned long long SystemAllocatedMemorySize;
+  unsigned long long SystemMemoryAllocationSize;
   
   ProcessingStatusFlag1 = NULL;
   ProcessingStatusFlag2 = NULL;
@@ -31384,15 +31384,15 @@ EventProcessingStart:
     }
     StackPointer = StackPointer & 0xffffffff;
   }
-  SystemAllocatedMemorySize = ProcessedBytes;
+  SystemMemoryAllocationSize = ProcessedBytes;
   BufferOffset = ProcessedBytes;
   if (BufferSize != 0) {
     do {
       if ((byte)(CharBuffer[BufferOffset] + 0xbf) < 0x1a) {
         CharBuffer[BufferOffset] = CharBuffer[BufferOffset] + ' ';
       }
-      CharacterTablePointer = (int)SystemAllocatedMemorySize + 1;
-      SystemAllocatedMemorySize = (unsigned long long)LoopCounter;
+      CharacterTablePointer = (int)SystemMemoryAllocationSize + 1;
+      SystemMemoryAllocationSize = (unsigned long long)LoopCounter;
       BufferOffset = BufferOffset + 1;
     } while (LoopCounter < BufferSize);
   }
@@ -56908,7 +56908,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
   float CalculatedDistance;
   float *DataBlockPointer;
   uint SystemDataNode;
-  unsigned long long SystemAllocatedMemorySize;
+  unsigned long long SystemMemoryAllocationSize;
   bool ComparisonResult;
   float MaximumDistance;
   float BoundaryMinX;
@@ -65963,10 +65963,10 @@ void InitializeSystemDataStructureProcessor(uint64_t *ContextHandle,uint64_t *Co
   uint32_t StackAllocationSize;
   uint32_t TimeoutCounter;
   uint32_t SystemDataOffset;
-  unsigned long long SystemAllocatedMemorySize;
+  unsigned long long SystemMemoryAllocationSize;
   
   SystemContextFlag = 0xfffffffffffffffe;
-  SystemAllocatedMemorySize = EncodingDecodingKey ^ (unsigned long long)StackDataBuffer158;
+  SystemMemoryAllocationSize = EncodingDecodingKey ^ (unsigned long long)StackDataBuffer158;
   ContextHandleData = (long long *)0x0;
   *ContextHandle = 0;
   CoreEngineProcessingStatusFlag = &SystemNullTemplate;
@@ -104330,7 +104330,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *ContextHandle, 
   float StackValueE0;
   float StackValueDc;
   
-  SystemAllocatedMemorySize = SystemConfigurationHandle;
+  SystemMemoryAllocationSize = SystemConfigurationHandle;
   MemoryAllocationSlot8 = (uint32_t)((unsigned long long)StackProcessingParameterHigh >> 0x20);
   MemoryPoolIndex = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
   *(uint8_t *)(MemoryPoolIndex + 0xb1) = 1;
@@ -128904,7 +128904,7 @@ uint64_t ExecuteMemoryBufferCommands(long long ContextHandle,uint64_t OperationB
       (*(char *)(AllocatedMemorySize + 0xb5) == '\0')))) {
     if (*(char *)(SystemConfigurationHandle + 0x410) != '\0') {
       if (*(long long *)(SystemConfigurationHandle + 0x1b08) == 0) {
-        if ((AllocatedMemorySize != 0) && (AllocatedMemorySize = CheckSystemAllocatedMemorySize(), AllocatedMemorySize == 0)) {
+        if ((AllocatedMemorySize != 0) && (AllocatedMemorySize = CheckSystemMemoryAllocationSize(), AllocatedMemorySize == 0)) {
           *(void *)(SystemDataTablePointer + 0x1c98) = 0;
           *(uint8_t *)(SystemDataTablePointer + 0x1d09) = 0;
           *(uint32_t *)(SystemDataTablePointer + 0x1ca0) = 0;
@@ -128937,7 +128937,7 @@ uint64_t ExecuteMemoryBufferCommands(long long ContextHandle,uint64_t OperationB
       }
     }
     if (*(char *)(SystemDataTablePointer + 0x411) != '\0') {
-      AllocatedMemorySize = CheckSystemAllocatedMemorySize();
+      AllocatedMemorySize = CheckSystemMemoryAllocationSize();
       MemoryBlockIndex = SystemConfigurationHandle;
       StringComparisonByte2 = AllocatedMemorySize == 0;
       EncodingValidationResult = *(int *)(SystemDataTablePointer + 0x1aa0) + -1;
@@ -202173,7 +202173,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t ContextHand
   code *CharacterValidatorFunction;
   char SystemStatusFlag;
   int EncodingValidationResult;
-  long long SystemAllocatedMemorySize;
+  long long SystemMemoryAllocationSize;
   uint32_t *SecondaryProcessingStatus;
   uint64_t SystemDataChecksum;
   uint32_t SystemProcessingStatus;
@@ -221202,50 +221202,67 @@ LAB_18018054e:
 
 
 
-805d0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801805d0(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统字符编码转换和内存管理
+ * 
+ * 该函数负责处理系统字符编码转换、内存分配和文件操作。
+ * 主要功能包括：
+ * - 执行系统事件处理
+ * - 设置字符状态缓冲区和编码标识
+ * - 处理系统配置数据和优先级
+ * - 管理文件句柄和引用计数
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801805d0
+ */
+void ProcessSystemCharacterEncodingAndMemoryManagement(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint32_t *CharacterStatusBuffer;
   void *PrimaryProcessingStatusFlag;
   int MemoryComparisonResult;
   long long SystemDataRegistry;
   uint64_t SystemPriorityLevel;
-  long long lStack_38;
+  long long FileHandle;
   uint8_t ProcessingFlags;
-  void *pStackValidationFlag28;
-  void *pProcessingCounter;
-  uint uStack_18;
+  void *SystemEventPointer;
+  void *MemoryAllocationPointer;
+  uint DataLength;
   
-  CoreEngineExecuteSystemEvent(&pStackValidationFlag28,ContextHandle + 0x270,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  InputDataLength = uStack_18 + 0x11;
-  CoreEngineProcessSystemEvent(&pStackValidationFlag28,InputDataLength);
-  CharacterStatusBuffer = (uint32_t *)(pProcessingCounter + uStack_18);
+  CoreEngineExecuteSystemEvent(&SystemEventPointer,ContextHandle + 0x270,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  InputDataLength = DataLength + 0x11;
+  CoreEngineProcessSystemEvent(&SystemEventPointer,InputDataLength);
+  CharacterStatusBuffer = (uint32_t *)(MemoryAllocationPointer + DataLength);
   *CharacterStatusBuffer = 0x69676e65;
   CharacterStatusBuffer[1] = 0x6d5f656e;
   CharacterStatusBuffer[2] = 0x6c75646f;
   CharacterStatusBuffer[3] = 0x6e692e65;
   *(uint16_t *)(CharacterStatusBuffer + 4) = 0x69;
   PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
-  if (pProcessingCounter != NULL) {
-    PrimaryProcessingStatusFlag = pProcessingCounter;
+  if (MemoryAllocationPointer != NULL) {
+    PrimaryProcessingStatusFlag = MemoryAllocationPointer;
   }
   SystemPriorityLevel = 0;
   ProcessingFlags = 0;
-  uStack_18 = InputDataLength;
+  DataLength = InputDataLength;
   InitializeSystemStatusContext(&SystemPriorityLevel,PrimaryProcessingStatusFlag,&SystemEngineStatusPrimary);
-  SystemDataRegistry = lStack_38;
-  if (lStack_38 == 0) {
+  SystemDataRegistry = FileHandle;
+  if (FileHandle == 0) {
     PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
-    if (pProcessingCounter != NULL) {
-      PrimaryProcessingStatusFlag = pProcessingCounter;
+    if (MemoryAllocationPointer != NULL) {
+      PrimaryProcessingStatusFlag = MemoryAllocationPointer;
     }
     ProcessSystemEventQueueData(&SystemCharacterStatusBufferPrimary,PrimaryProcessingStatusFlag);
   }
   else {
     ProcessSystemConfigurationData(SystemConfigData,&SystemPriorityLevel);
-    SystemDataRegistry = lStack_38;
-    if (lStack_38 != 0) {
-      fclose(lStack_38);
-      lStack_38 = 0;
+    SystemDataRegistry = FileHandle;
+    if (FileHandle != 0) {
+      fclose(FileHandle);
+      FileHandle = 0;
       LOCK();
       EngineReferenceCounter = EngineReferenceCounter + -1;
       UNLOCK();
@@ -221254,13 +221271,13 @@ LAB_18018054e:
   }
   if (SystemDataRegistry != 0) {
     fclose(SystemDataRegistry);
-    lStack_38 = 0;
+    FileHandle = 0;
     LOCK();
     EngineReferenceCounter = EngineReferenceCounter + -1;
     UNLOCK();
   }
-  pStackValidationFlag28 = &SystemNullTemplate;
-  if (pProcessingCounter != NULL) {
+  SystemEventPointer = &SystemNullTemplate;
+  if (MemoryAllocationPointer != NULL) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
   }
