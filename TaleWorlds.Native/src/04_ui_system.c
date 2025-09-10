@@ -4885,9 +4885,9 @@ void* UIGestureCoordinates;
 #define UIComponentHandleData890 (void*)0x180954890
 
 // UI系统函数指针表宏定义
-#define UIFunctionPointerCF0 UNK_180741cf0
-#define UIContextData080 UNK_180957080
-#define UIContextData488 UNK_180957488
+#define UIFunctionPointerCF0 (void*)0x180741cf0
+#define UIContextData080 (void*)0x180957080
+#define UIContextData488 (void*)0x180957488
 #define UIContextData458 UNK_180957458
 #define UIContextData2A8 UNK_1809572a8
 #define UIContextData470 UNK_180957470
