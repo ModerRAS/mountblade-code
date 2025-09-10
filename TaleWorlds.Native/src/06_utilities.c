@@ -30080,7 +30080,7 @@ CalculationCheckpoint:
     }
   }
 MemoryCheckpoint:
-    ReleaseResourceA1(contextProcessingBuffer + 1);
+    ReleaseResourceA1(contextProcessingBuffer + ContextResourceReleaseOffset);
 }
 
 
@@ -30208,7 +30208,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   DataWord SystemResetFlagLocal3;
   uint64_t securityCheckValue;
   
-  *(ByteFlag *)(DataDescriptor + 4) = 1;
+  *(ByteFlag *)(DataDescriptor + OperationBaseStatusFlagOffset) = 1;
   operationResult = InitializeDataStructureA0(*(DataBuffer *)(DataDescriptor[1] + RegisterContextDataOffset),&validationStackBuffer);
   if ((((int)operationResult == 0) && (operationResult = ProcessDataBufferA0(validationStackBuffer,temporaryStackArray,0), (int)operationResult == 0)) &&
      (operationResult = (**(FunctionPointer**)(*DataDescriptor + ExceptionHandlerCallbackOffset))(DataDescriptor), (int)operationResult == 0)) {
