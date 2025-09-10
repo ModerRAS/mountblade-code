@@ -140071,36 +140071,301 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define DecrementSystemResourceCounterAndExecuteFunctionA2 Unwind_18090ca90
 
-// 异常处理器设置函数系列
+/**
+ * @brief 在偏移量300设置默认异常处理器
+ * 
+ * 在系统异常处理表的指定偏移量位置设置默认异常处理器。
+ * 用于配置系统的默认异常处理行为。
+ * 
+ * @param handlerFunction 异常处理函数指针
+ * @param exceptionType 异常类型
+ * @return int 设置结果状态码
+ */
 #define SetDefaultExceptionHandlerAtOffset300 Unwind_18090c110
+
+/**
+ * @brief 在偏移量3C0设置默认异常处理器
+ * 
+ * 在系统异常处理表的指定偏移量位置设置默认异常处理器。
+ * 用于配置系统的默认异常处理行为。
+ * 
+ * @param handlerFunction 异常处理函数指针
+ * @param exceptionType 异常类型
+ * @return int 设置结果状态码
+ */
 #define SetDefaultExceptionHandlerAtOffset3C0 Unwind_18090c120
+
+/**
+ * @brief 异常处理器处理和系统终止器
+ * 
+ * 处理异常处理器的清理工作，并在必要时终止系统运行。
+ * 确保系统在异常情况下能够安全关闭。
+ * 
+ * @param terminationFlag 终止标志位
+ * @param cleanupMode 清理模式
+ * @return int 处理结果状态码
+ */
 #define ProcessExceptionHandlersAndTerminateSystem Unwind_18090c130
+
+/**
+ * @brief 内存资源清理处理器
+ * 
+ * 执行内存资源的清理操作，释放分配的内存块。
+ * 确保内存资源的正确回收和系统内存的有效管理。
+ * 
+ * @param memoryBlock 内存块指针
+ * @param cleanupFlags 清理标志位
+ * @return int 清理结果状态码
+ */
 #define ProcessMemoryResourceCleanup Unwind_18090c140
 
-// 异常处理器回调函数系列 - 基于不同偏移量的异常上下文调用
+/**
+ * @brief 在偏移量3B8执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3B8 Unwind_18090b310
+
+/**
+ * @brief 在偏移量3C0执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3C0 Unwind_18090b330
+
+/**
+ * @brief 在偏移量3C8执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3C8 Unwind_18090b350
+
+/**
+ * @brief 在偏移量3D0执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3D0 Unwind_18090b370
+
+/**
+ * @brief 在偏移量3D8执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3D8 Unwind_18090b390
+
+/**
+ * @brief 在偏移量3E0执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3E0 Unwind_18090b3b0
+
+/**
+ * @brief 在偏移量3E8执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3E8 Unwind_18090b3d0
+
+/**
+ * @brief 在偏移量3F0执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3F0 Unwind_18090b3f0
+
+/**
+ * @brief 在偏移量3F8执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset3F8 Unwind_18090b410
+
+/**
+ * @brief 在偏移量400执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset400 Unwind_18090b430
+
+/**
+ * @brief 在偏移量408执行异常处理器回调
+ * 
+ * 在系统异常处理上下文的指定偏移量位置执行异常处理器回调函数。
+ * 用于处理特定类型的异常事件。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackData 回调数据指针
+ * @return int 回调执行结果状态码
+ */
 #define ExecuteExceptionHandlerCallbackAtOffset408 Unwind_18090b450
 
-// 系统资源表清理和异常处理函数
+/**
+ * @brief 系统资源表清理和异常处理器
+ * 
+ * 执行系统资源表的清理操作，并处理清理过程中可能出现的异常。
+ * 确保系统资源的正确释放和异常的安全处理。
+ * 
+ * @param resourceTablePointer 资源表指针
+ * @param cleanupFlags 清理标志位
+ * @param exceptionHandler 异常处理器指针
+ * @return int 清理和处理结果状态码
+ */
 #define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0
+
+/**
+ * @brief 异常处理器上下文清理处理器
+ * 
+ * 执行异常处理器上下文的清理操作，释放异常处理相关的资源。
+ * 确保异常处理上下文的正确清理和资源的回收。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param cleanupMode 清理模式
+ * @return int 清理结果状态码
+ */
 #define ProcessExceptionHandlerContextCleanup Unwind_180911e00
+
+/**
+ * @brief 异常处理器上下文清理处理器变体
+ * 
+ * 执行异常处理器上下文的清理操作的变体版本，支持不同的清理策略。
+ * 确保异常处理上下文的正确清理和资源的回收。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param cleanupMode 清理模式
+ * @param variantFlags 变体标志位
+ * @return int 清理结果状态码
+ */
 #define ProcessExceptionHandlerContextCleanupVariant Unwind_180911e20
 
-// 内存管理和异常处理函数
+/**
+ * @brief 内存资源引用计数管理器
+ * 
+ * 管理内存资源的引用计数，在计数器归零时自动释放资源。
+ * 用于内存资源的生命周期管理和自动回收。
+ * 
+ * @param memoryResourcePointer 内存资源指针
+ * @param operationType 操作类型（增加/减少引用计数）
+ * @param cleanupCallback 清理回调函数指针
+ * @return int 操作结果状态码
+ */
 #define ManageMemoryResourceReferenceCount Unwind_18090ef60
+
+/**
+ * @brief 异常处理器上下文调用器
+ * 
+ * 调用异常处理器上下文，执行异常处理的相关操作。
+ * 用于在异常发生时执行相应的处理逻辑。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param handlerFunction 处理器函数指针
+ * @param contextData 上下文数据指针
+ * @return int 调用结果状态码
+ */
 #define InvokeExceptionHandlerContext Unwind_18090ef70
+
+/**
+ * @brief 异常处理器回调调用器
+ * 
+ * 调用异常处理器回调函数，执行异常处理的回调操作。
+ * 用于在异常处理过程中调用用户定义的回调函数。
+ * 
+ * @param callbackFunction 回调函数指针
+ * @param exceptionData 异常数据指针
+ * @param userContext 用户上下文指针
+ * @return int 调用结果状态码
+ */
 #define InvokeExceptionHandlerCallback Unwind_18090ef80
+
+/**
+ * @brief 系统内存操作执行器
+ * 
+ * 执行系统内存操作，包括内存分配、释放、拷贝等操作。
+ * 用于系统内存的统一管理和操作。
+ * 
+ * @param operationType 操作类型
+ * @param memoryAddress 内存地址
+ * @param dataSize 数据大小
+ * @param operationFlags 操作标志位
+ * @return int 操作结果状态码
+ */
 #define ExecuteSystemMemoryOperation Unwind_18090ef90
+
+/**
+ * @brief 带标志的数据缓冲区处理器
+ * 
+ * 根据指定的标志位处理数据缓冲区，支持多种数据处理模式。
+ * 用于数据缓冲区的灵活处理和转换。
+ * 
+ * @param dataBuffer 数据缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param processingFlags 处理标志位
+ * @return int 处理结果状态码
+ */
 #define ProcessDataBufferWithFlags Unwind_18090efc0
+
+/**
+ * @brief 异常上下文资源管理器
+ * 
+ * 管理异常上下文相关的资源，包括内存分配、释放和清理操作。
+ * 确保异常上下文资源的正确管理和回收。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param resourceType 资源类型
+ * @param managementMode 管理模式
+ * @return int 管理结果状态码
+ */
 #define ManageExceptionContextResources Unwind_18090efe0
 
 // 内存资源引用计数清理函数系列
