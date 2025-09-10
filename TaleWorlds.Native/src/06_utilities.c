@@ -7722,7 +7722,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 安全检查包装函数B
 // 功能：包装安全检查函数，执行系统状态验证和安全性检查
-#define ExecuteSecurityCheckWrapperB FUN_180894bf5
+#define ExecuteSecurityCheckWrapperB ExecuteSecurityCheckWithSecondaryWrapper
 
 /**
  * @brief 安全检查执行函数
@@ -7733,7 +7733,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 系统安全检查核心函数
  * @note 这是系统安全机制的重要组成部分
  */
-#define ExecuteSecurityCheck FUN_180895b89
+#define ExecuteSecurityCheck ExecuteSecurityCheckWithFullValidation
 
 
 
