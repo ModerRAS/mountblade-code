@@ -217,6 +217,7 @@ typedef enum {
 // 新增的FUN_函数语义化定义
 #define ProcessUINumericDataCalculation FUN_18072ab70     // UI数值数据处理计算
 #define ProcessUIParameterValidation FUN_18072ad20         // UI参数验证处理
+#define ProcessUIContextDataTransformation FUN_180734467  // UI上下文数据转换处理
 #define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
 #define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
@@ -116749,7 +116750,7 @@ void ProcessUIContextDataTransformation(UIHandle uiContext, UIHandle dataSource,
   contextDataHandle = eventHandle - (longlong)targetBuffer;
   do {
     comparisonResult = ((int)*(short *)(&stack0x00000030 + memoryOffset + (longlong)targetBuffer) << 0xe) / (int)*targetBuffer +
-            (uint)*dataRegisterPtr * 0x80;
+            (uint)*dataPointer * 0x80;
     if (comparisonResult < 0x8000) {
       iterationCount = (short)comparisonResult;
       if (comparisonResult < 0) {

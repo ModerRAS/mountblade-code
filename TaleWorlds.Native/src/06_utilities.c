@@ -28059,7 +28059,7 @@ DataBuffer * InitializeDataBlockPointerA0(DataBuffer *dataBlockPointer,uint64_t 
 {
   *dataBlockPointer = &DataBlockPointerTableA0;
   if ((initializationFlags & 1) != 0) {
-    free(dataBlockPointer,0x28);
+    free(dataBlockPointer,DataBlockMemorySizeA0);
   }
   return dataBlockPointer;
 }
