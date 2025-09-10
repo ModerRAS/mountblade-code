@@ -574,7 +574,7 @@
 // 异常上下文数据偏移量常量
 #define ExceptionContextDataOffset88 0x88
 #define ExceptionContextDataSecondaryOffset6D4 0x6d4
-#define DataBufferOffset48 0x48
+#define DataBufferOffset48 0x48                    // 数据缓冲区偏移量48 - 用于数据缓冲区操作的偏移位置
 #define DataBufferOffsetPrimary 0x44
 #define ExceptionHandlerContextOffset48 0x48
 #define ExceptionHandlerContextOffsetD0 0xd0
@@ -4932,7 +4932,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
+#define ProcessMemoryOperationA0 FUN_180074a80
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0
@@ -5527,7 +5527,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808af280
  */
-#define ValidateSystemContextA0 ValidateSystemContextA0
+#define ValidateSystemContextA0 FUN_180090b80
 
 /**
  * @brief 数据数组处理函数B0
@@ -5923,7 +5923,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：ExecuteDataValidationOperation
  */
-#define ValidateDataBlockStatusA0 ValidateDataBlockStatusA0
+#define ValidateDataBlockStatusA0 FUN_180899220
 
 /**
  * @brief 验证数据块状态A1
@@ -11389,7 +11389,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @note 原始函数名：ProcessMemoryOperationA0
  */
-#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
+#define ProcessMemoryOperationA0 FUN_180074a80
 
 /**
  * @brief 内存操作处理函数A1
@@ -12035,7 +12035,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define ExecuteMemoryAllocationB0 FUN_1808fc5ac
+#define ExecuteMemoryAllocationB0 ExecuteMemoryAllocationWithValidation
 
 // 栈变量语义化宏定义
 #define StackFloatRegisterA StackFloatRegisterValueA    // 栈浮点寄存器A
@@ -132778,7 +132778,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统上下文验证函数A0
 // 功能：验证系统上下文的有效性和完整性
 // 系统上下文验证函数
-#define ValidateSystemContextA0 ValidateSystemContextA0
+#define ValidateSystemContextA0 FUN_180090b80
 
 // 数据数组处理函数A0
 // 功能：处理和操作数据数组，包括数据的读取、写入、验证和转换
@@ -132830,7 +132830,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
+#define ProcessMemoryOperationA0 FUN_180074a80
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0
