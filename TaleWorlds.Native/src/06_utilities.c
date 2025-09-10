@@ -44964,11 +44964,11 @@ void ExceptionUnwindHandler3(DataBuffer exceptionContext, int64_t unwindContext)
  * @warning 异常数据表的顺序很重要，错误的顺序可能导致异常处理失败
  */
 /**
- * @brief 异常展开处理器A0
+ * @brief 异常展开处理器主函数
  * @param exceptionContext 异常上下文
  * @param unwindParam 展开参数
  */
-void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
+void ExceptionUnwindHandlerPrimary(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
   DataBuffer *exceptionChainPointer;
@@ -45057,9 +45057,8 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
 
 
 
-// 函数: void ExceptionUnwindHandlerA4(DataBuffer operationBase,int64_t dataBuffer)
 /**
- * @brief 异常展开处理函数A4
+ * @brief 异常展开处理函数 - 互斥体解锁
  * 
  * 该函数用于处理异常展开过程中的数据保存和互斥体解锁操作
  * 确保在异常发生时系统能够正确释放资源并恢复状态
@@ -45070,7 +45069,7 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
  * @note 该函数从展开参数中提取异常上下文指针并解锁系统互斥体
  * @warning 如果互斥体解锁失败，会抛出C标准错误
  */
-void ExceptionUnwindHandlerA4(DataBuffer exceptionContext, int64_t unwindParam)
+void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
   int mutexUnlockResult;
@@ -80918,18 +80917,19 @@ void CleanupSystemAndManageResources(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-// 函数: void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
-// 
-// 异常资源清理函数A2
-// 清理异常处理过程中的资源，包括内存释放、句柄清理等操作
-// 
-// 参数:
-//   exceptionContext - 异常上下文信息
-//   unwindInfo - 展开信息结构体
-// 
-// 返回值:
-//   void - 无返回值
-void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
+/**
+ * @brief 异常资源清理函数
+ * 
+ * 清理异常处理过程中的资源，包括内存释放、句柄清理等操作
+ * 
+ * @param exceptionContext 异常上下文信息
+ * @param unwindInfo 展开信息结构体
+ * 
+ * @return void - 无返回值
+ * 
+ * @note 该函数负责在异常处理完成后清理相关资源
+ */
+void CleanupExceptionResourcesSecondary(DataBuffer exceptionContext,int64_t unwindInfo)
 
 {
   int64_t *memoryResourcePointer;
