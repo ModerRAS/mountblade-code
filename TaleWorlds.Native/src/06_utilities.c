@@ -99,6 +99,22 @@
 #define MemoryCleanupFlag 0x4                                    // 内存清理标志 - 标识内存释放操作
 #define SystemStateUpdateFlag 0x4                                // 系统状态更新标志 - 标识系统状态更新操作
 
+// 异常状态标志位常量
+#define ExceptionStatusFlag1 0x1                                // 异常状态标志位1
+#define ExceptionStatusFlag2 0x2                                // 异常状态标志位2
+#define ExceptionStatusFlagMask1 0xfffffffe                     // 异常状态标志位1掩码
+#define ExceptionStatusFlagMask2 0xfffffffd                     // 异常状态标志位2掩码
+
+// 异常处理器偏移量常量
+#define TemporaryExceptionHandlerOffset68 0x68                  // 临时异常处理器偏移量68
+#define TemporaryExceptionHandlerOffset70 0x70                  // 临时异常处理器偏移量70
+
+// 系统数据参数偏移量常量
+#define SystemDataParameterOffset20 0x20                       // 系统数据参数偏移量20
+#define SystemDataParameterOffset48 0x48                       // 系统数据参数偏移量48
+#define SystemDataParameterOffset58 0x58                       // 系统数据参数偏移量58
+#define SystemDataParameterOffset30 0x30                       // 系统数据参数偏移量30
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误
@@ -5043,7 +5059,24 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 内存访问处理器 - 处理内存访问操作
 
 // 系统数据处理函数 - 处理系统数据的各种操作
-#define FUN_180085530 ProcessSystemDataOperations
+#define FUN_180062300 ProcessSystemDataTransferWithValidation
+#define FUN_180069530 ValidateSystemMemoryAndIntegrity
+#define FUN_180074a80 InitializeSystemDataValidation
+#define FUN_18064e900 ProcessSystemSecurityCheck
+#define FUN_18007f840 ManageSystemResourcePool
+#define FUN_18007f6a0 HandleSystemExceptionRecovery
+#define FUN_18013ea00 ValidateSystemConfiguration
+#define FUN_1808fc5ac ProcessSystemDataOperations
+#define FUN_1808fc51c ValidateSystemMemoryAccess
+#define FUN_1808fc914 CheckSystemResourceAvailability
+#define FUN_18004b790 InitializeSystemMemoryManager
+#define FUN_180080060 ValidateSystemSecurityParameters
+#define FUN_1800809a0 ProcessSystemDataBuffer
+#define FUN_180080870 HandleSystemResourceAllocation
+#define FUN_1808fc074 ProcessSystemThreadOperations
+#define FUN_1803f33b0 ValidateSystemPerformanceMetrics
+#define FUN_180089640 HandleSystemCleanupOperations
+#define FUN_1800ba100 ProcessSystemConfigurationUpdate
 
 // 系统验证函数 - 验证系统的各个方面
 #define ValidateSystemComponentsAndState ValidateSystemComponentsAndState
@@ -9350,7 +9383,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：设置全局数据指针A31到指定地址，用于系统数据管理
 #define SetGlobalDataPointerA31 ConfigureGlobalDataPointerAtOffset31
 
-// 原始函数名：FUN_180897d20 - 数据块处理函数A0
+#define FUN_180897d20 ProcessDataBlockOperations
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
 #define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
@@ -45768,12 +45801,12 @@ void CleanupExceptionData(DataBuffer ExceptionContext, int64_t ExceptionStatusDa
 
 {
   // 检查标志位0x01是否被设置
-  if ((*(uint *)(ExceptionStatusData + SystemDataParameterOffset20) & 1) != 0) {
+  if ((*(uint *)(ExceptionStatusData + SystemDataParameterOffset20) & ExceptionStatusFlag1) != 0) {
     // 清除标志位0x01
-    *(uint *)(ExceptionStatusData + SystemDataParameterOffset20) = *(uint *)(ExceptionStatusData + SystemDataParameterOffset20) & 0xfffffffe;
+    *(uint *)(ExceptionStatusData + SystemDataParameterOffset20) = *(uint *)(ExceptionStatusData + SystemDataParameterOffset20) & ExceptionStatusFlagMask1;
     
     // 调用清理函数处理资源
-    CleanupResourceHandler(*(DataBuffer *)(ExceptionStatusData + 0x48));
+    CleanupResourceHandler(*(DataBuffer *)(ExceptionStatusData + SystemDataParameterOffset48));
   }
   return;
 }
@@ -45798,9 +45831,9 @@ void UnwindExceptionHandling010(DataBuffer exceptionContext,int64_t unwindParam)
   DataBuffer *memoryResourcePointer;
   
   statusFlags = (uint32_t *)(unwindParam + SystemDataParameterOffset20);
-  if ((*statusFlags & 1) != 0) {
-    *statusFlags = *statusFlags & 0xfffffffe;
-    memoryResourcePointer = *(DataBuffer **)(unwindParam + 0x58);
+  if ((*statusFlags & ExceptionStatusFlag1) != 0) {
+    *statusFlags = *statusFlags & ExceptionStatusFlagMask1;
+    memoryResourcePointer = *(DataBuffer **)(unwindParam + SystemDataParameterOffset58);
     CleanupResourceHandler(*memoryResourcePointer);
   }
   return;
@@ -45826,9 +45859,9 @@ void UnwindExceptionHandling040(DataBuffer exceptionContext,int64_t unwindParam)
   void *resourceData;
   
   statusFlags = (uint32_t *)(unwindParam + SystemDataParameterOffset20);
-  if ((*statusFlags & 2) != 0) {
-    *statusFlags = *statusFlags & 0xfffffffd;
-    resourceData = (void *)(unwindParam + 0x30);
+  if ((*statusFlags & ExceptionStatusFlag2) != 0) {
+    *statusFlags = *statusFlags & ExceptionStatusFlagMask2;
+    resourceData = (void *)(unwindParam + SystemDataParameterOffset30);
     CleanupResourceHandler(resourceData);
   }
   return;
