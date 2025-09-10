@@ -9993,7 +9993,7 @@ void ProcessUIUpdates(void)
   if (stringLength != 0) {
     do {
       upperCaseChar = toupper((int)*(char *)(stackPointer + -9 + charIndex));
-      *(UIByte *)(stackPointer + -0x59 + charIndex) = upperCaseChar;
+      *(UIByte *)(stringBuffer + charIndex) = upperCaseChar;
       charIndex = charIndex + 1;
     } while (charIndex < stringLength);
   }
@@ -10003,45 +10003,45 @@ void ProcessUIUpdates(void)
     (*errorHandler)();
     return;
   }
-  *(UIByte *)(stackPointer + -0x59 + stringLength) = 0;
-  if (*(char *)(stackPointer + -0x59) == '\0') {
+  *(UIByte *)(stringBuffer + stringLength) = 0;
+  if (*stringBuffer == '\0') {
 LAB_UIStringCacheFound:
     *resultPointer = 1;
   }
   else {
-    cacheSearchResult = strstr(&UIStringCache,stackPointer + -0x59);
+    cacheSearchResult = strstr(&UIStringCache,stringBuffer);
     if (cacheSearchResult != 0) goto LAB_UIStringCacheFound;
-    cacheSearchResult = strstr(&DefaultUIStringCache,stackPointer + -0x59);
+    cacheSearchResult = strstr(&DefaultUIStringCache,stringBuffer);
     if (cacheSearchResult == 0) {
-      *(longlong *)(stackPointer + -0x69) = stackPointer + -0x59;
-      parsedNumericValue = strtol(stackPointer + -0x59,stackPointer + -0x69,10);
-      unitSuffixPointer = *(char **)(stackPointer + -0x69);
+      *bufferPointer = stringBuffer;
+      parsedNumericValue = strtol(stringBuffer,bufferPointer,10);
+      unitSuffixPointer = *bufferPointer;
       if (resultPointer[2] == 8) {
         unitConversionChar = *unitSuffixPointer;
         if (unitConversionChar == 'K') {
           unitSuffixPointer = unitSuffixPointer + 1;
-          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
+          *bufferPointer = unitSuffixPointer;
         }
         else if (unitConversionChar == 'M') {
           parsedNumericValue = parsedNumericValue << 10;
           unitSuffixPointer = unitSuffixPointer + 1;
-          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
+          *bufferPointer = unitSuffixPointer;
         }
         else if (unitConversionChar == 'G') {
           parsedNumericValue = parsedNumericValue << 0x14;
           unitSuffixPointer = unitSuffixPointer + 1;
-          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
+          *bufferPointer = unitSuffixPointer;
         }
         else {
           parsedNumericValue = (int)((longlong)parsedNumericValue + 0x3ffU >> 10);
         }
         if (*unitSuffixPointer == 'B') {
           unitSuffixPointer = unitSuffixPointer + 1;
-          *(char **)(stackPointer + -0x69) = unitSuffixPointer;
+          *bufferPointer = unitSuffixPointer;
         }
       }
       if (*unitSuffixPointer != '\0') {
-        ValidateUIData(&UIValidationData,*(UIHandle *)(resultPointer + 4),stackPointer + -0x59);
+        ValidateUIData(&UIValidationData,*(UIHandle *)(resultPointer + 4),stringBuffer);
         resultPointer[1] = 1;
         goto LAB_UIRenderTaskExecution;
       }

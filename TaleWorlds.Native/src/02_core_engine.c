@@ -242548,25 +242548,32 @@ LAB_18019d905:
  */
 unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t ContextHandle,long long OperationBufferSize)
 {
+  // 系统字符处理变量
   uint32_t Utf16Char;
+  
+  // 缓冲区分配和状态管理变量
   long long ****pppBufferAllocationStatus;
   long long ***ppMemoryBlockIndex;
   long long ***ppSystemContextPtr;
-  code *pSystemContextValidationFlag;
-  char CharacterInputDataLength;
-  int ProcessIterationCount;
-  long long secondaryLoopCounter;
-  uint64_t SystemMemoryAllocationResult;
-  long long EncodingConversionResult;
-  long long *ContextHandle1;
-  unsigned long long SystemStatusCode;
-  long long *****in_RCX;
-  long long ****pppContextHandle3;
-  uint Utf16Char4;
-  unsigned long long Utf16ConversionContext;
-  unsigned long long SystemPrimaryReturnCode;
+  code *SystemContextValidationFlag;
+  char InputCharacterDataLength;
+  int SystemProcessingIterationCount;
+  long long SecondarySystemLoopCounter;
+  uint64_t SystemMemoryAllocationStatus;
+  long long SystemEncodingConversionResult;
+  long long *PrimaryContextHandle;
+  unsigned long long SystemOperationStatusCode;
+  
+  // 系统上下文和寄存器管理变量
+  long long *****SystemContextRegisterPointer;
+  long long ****SystemContextHandlePointer3;
+  uint SecondaryUtf16Character;
+  unsigned long long Utf16ConversionContextData;
+  unsigned long long SystemPrimaryReturnStatus;
   long long *****ppppContextHandle7;
   long long ***ppSystemContextRegister;
+  
+  // 系统栈和临时存储变量
   long long alStackX_10 [2];
   long long ****pppPerformanceCounterPointer;
   long long ***ppplStack_b8;
@@ -242574,45 +242581,47 @@ unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t 
   long long ***ppSystemContextPointerA8;
   long long **pCoreEngineSignedValueA0;
   long long **pSystemStackPointer;
-  long long ****ppppSystemTemporaryValue90;
-  long long lStack_88;
+  long long ****SystemTemporaryRegister90;
+  long long SystemStackRegister88;
   long long ***ppplStack_80;
   long long *pCoreEngineSignedValue78;
-  uint64_t StackProcessingVariable70;
+  uint64_t SystemProcessingVariable70;
   long long *SystemMemoryPointer68;
-  uint64_t StackProcessingUnsignedValue60;
-  uint64_t BufferOffset;
-  void *SystemValidationPointer;
-  void *ContextDataPointer;
-  uint64_t SystemPriorityLevel;
+  uint64_t SystemProcessingValue60;
   
-  SystemPriorityLevel = 0xfffffffffffffffe;
-  EncodingConversionResult = *(long long *)(*(long long *)(OperationBufferSize + 0x3580) + 0x530);
+  // 数据偏移和验证变量
+  uint64_t SystemDataBufferOffset;
+  void *SystemContextValidationPointer;
+  void *SystemContextDataPointer;
+  uint64_t SystemPriorityLevelValue;
+  
+  SystemPriorityLevelValue = 0xfffffffffffffffe;
+  SystemEncodingConversionResult = *(long long *)(*(long long *)(OperationBufferSize + 0x3580) + 0x530);
   alStackX_10[0] = OperationBufferSize;
-  if (EncodingConversionResult != 0) {
-    SystemDataTablePointer = *(long long *)(EncodingConversionResult + 0x58) - *(long long *)(EncodingConversionResult + 0x50) >> 3;
+  if (SystemEncodingConversionResult != 0) {
+    SystemDataTablePointer = *(long long *)(SystemEncodingConversionResult + 0x58) - *(long long *)(SystemEncodingConversionResult + 0x50) >> 3;
     if (SystemDataTablePointer != 0) {
-      if (in_RCX[8] != (long long ****)0x0) {
-        FUN_180080810(*(long long *)(*(long long *)(EncodingConversionResult + 0x50) + -8 + SystemDataTablePointer * 8) + 0x168);
+      if (SystemContextRegisterPointer[8] != (long long ****)0x0) {
+        FUN_180080810(*(long long *)(*(long long *)(SystemEncodingConversionResult + 0x50) + -8 + SystemDataTablePointer * 8) + 0x168);
       }
-      EncodingConversionResult = alStackX_10[0];
-      if (*(char *)(in_RCX + 3) == '\0') {
+      SystemEncodingConversionResult = alStackX_10[0];
+      if (*(char *)(SystemContextRegisterPointer + 3) == '\0') {
         ContextHandle = 0x3f800000;
       }
       else {
-        ContextHandle = powf(0x40000000,*(uint32_t *)((long long)in_RCX + 0x2c));
+        ContextHandle = powf(0x40000000,*(uint32_t *)((long long)SystemContextRegisterPointer + 0x2c));
       }
-      *(uint32_t *)(EncodingConversionResult + 0x11cec) = ContextHandle;
+      *(uint32_t *)(SystemEncodingConversionResult + 0x11cec) = ContextHandle;
     }
   }
-  EncodingConversionResult = alStackX_10[0];
-  *(uint8_t *)(alStackX_10[0] + 0x12c09) = *(uint8_t *)(in_RCX + 3);
-  pppContextHandle3 = in_RCX[0x77];
-  if (pppContextHandle3 != (long long ****)0x0) {
-    ppSystemContextPointerA8 = (long long ***)pppContextHandle3;
-    ContextHandle = (*(code *)(*pppContextHandle3)[5])(pppContextHandle3);
-    ppSystemContextPointerA8 = *(long long ****)(EncodingConversionResult + 0x124b0);
-    *(long long *****)(EncodingConversionResult + 0x124b0) = pppContextHandle3;
+  SystemEncodingConversionResult = alStackX_10[0];
+  *(uint8_t *)(alStackX_10[0] + 0x12c09) = *(uint8_t *)(SystemContextRegisterPointer + 3);
+  SystemContextHandlePointer3 = SystemContextRegisterPointer[0x77];
+  if (SystemContextHandlePointer3 != (long long ****)0x0) {
+    ppSystemContextPointerA8 = (long long ***)SystemContextHandlePointer3;
+    ContextHandle = (*(code *)(*SystemContextHandlePointer3)[5])(SystemContextHandlePointer3);
+    ppSystemContextPointerA8 = *(long long ****)(SystemEncodingConversionResult + 0x124b0);
+    *(long long *****)(SystemEncodingConversionResult + 0x124b0) = SystemContextHandlePointer3;
     if (ppSystemContextPointerA8 != (long long ***)0x0) {
       ContextHandle = (**(code **)((long long)*ppSystemContextPointerA8 + 0x38))();
     }
