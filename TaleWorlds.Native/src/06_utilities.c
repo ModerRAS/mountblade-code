@@ -7747,6 +7747,36 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 默认异常处理器设置函数宏定义
 
+#define ConfigureModuleExceptionHandler0 FUN_180942060
+#define ConfigureModuleExceptionHandler1 FUN_180942080
+#define ConfigureModuleExceptionHandler2 FUN_1809420a0
+#define ConfigureModuleExceptionHandler3 FUN_1809420c0
+#define SetDefaultExceptionHandlerA9 FUN_1809420e0
+#define SetDefaultExceptionHandlerA5 FUN_180942100
+#define SetDefaultExceptionHandlerA10 FUN_180942120
+#define SetDefaultExceptionHandlerA11 FUN_180942140
+#define SetDefaultExceptionHandlerA12 FUN_180942160
+#define SetDefaultExceptionHandlerA13 FUN_180942180
+#define SetDefaultExceptionHandlerA14 FUN_1809421a0
+#define SetDefaultExceptionHandlerA15 FUN_1809421c0
+#define SetDefaultExceptionHandlerA16 FUN_1809421e0
+#define SetDefaultExceptionHandlerA17 FUN_180942200
+#define SetDefaultExceptionHandlerA18 FUN_180942220
+#define SetDefaultExceptionHandlerA19 FUN_180942240
+#define SetDefaultExceptionHandlerA20 FUN_180942260
+#define SetDefaultExceptionHandlerA21 FUN_180942280
+#define SetDefaultExceptionHandlerA22 FUN_1809422a0
+#define SetDefaultExceptionHandlerA23 FUN_1809422c0
+#define SetDefaultExceptionHandlerA24 FUN_1809422e0
+#define SetDefaultExceptionHandlerA25 FUN_180942300
+#define SetDefaultExceptionHandlerA26 FUN_180942320
+#define SetDefaultExceptionHandlerA27 FUN_180942340
+#define SetDefaultExceptionHandlerA28 FUN_180942360
+#define SetDefaultExceptionHandlerA29 FUN_180942380
+#define SetDefaultExceptionHandlerA30 FUN_1809423a0
+#define SetDefaultExceptionHandlerA31 FUN_1809423c0
+#define SetDefaultExceptionHandlerA32 FUN_1809423e0
+
 /**
  * @brief 模块0异常处理器配置函数
  * 
@@ -7754,7 +7784,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942060
  */
-#define ConfigureModuleExceptionHandler0 ConfigureModuleExceptionHandlerForModule0
+#define ConfigureModuleExceptionHandlerForModule0 ConfigureModuleExceptionHandler0
 
 /**
  * @brief 模块1异常处理器配置函数
