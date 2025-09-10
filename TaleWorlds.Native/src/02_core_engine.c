@@ -79791,7 +79791,7 @@ void CopyCoreEngineDataStructure(long long ContextHandle, long long OperationBuf
   uint32_t SystemProcessedCharacter;
   uint32_t SystemSystemStatusCode;
   uint32_t SystemQuaternaryStatusCode;
-  uint32_t SecondaryOperationResult;
+  uint32_t SecondaryCalculationResult;
   uint32_t TertiaryOperationResult;
   uint32_t MainCalculationResult;
   
