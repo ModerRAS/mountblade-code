@@ -119223,10 +119223,10 @@ void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,
     }
     isCharacterMatch = (byte)sizeDifference;
     if (sizeDifference == 1) {
-      processingResult7 = ((int)eventStatus >> 1) + (eventStatus & 1);
+      tempResult7 = ((int)eventStatus >> 1) + (eventStatus & 1);
     }
     else {
-      processingResult7 = ((int)eventStatus >> (isCharacterMatch3 - 1 & 0x1f)) + 1 >> 1;
+      tempResult7 = ((int)eventStatus >> (isCharacterMatch - 1 & 0x1f)) + 1 >> 1;
     }
     if (processingResult7 < 0x8000) break;
     processedCount = 0x27ffe;
