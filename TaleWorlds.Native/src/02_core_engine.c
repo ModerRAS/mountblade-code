@@ -223081,7 +223081,23 @@ void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationB
 
 
 
-845b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801845b0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存和字符表管理
+ * 
+ * 该函数负责处理系统内存管理和字符表操作，包括：
+ * - 管理字符表指针和系统上下文
+ * - 处理内存块的分配和释放
+ * - 维护字符表数据的完整性
+ * - 处理UTF8到UTF16的字符编码转换
+ * 
+ * @param ContextHandle 系统句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_1801845b0
+ */
+void ProcessSystemMemoryWithCharacterTable(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   long long *BufferAllocationStatus;
@@ -223095,9 +223111,9 @@ void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationB
   MemoryBlockIndex = LoopCounter;
   if (*(char *)((long long)SystemContextPtr + SystemNodeStatusOffset) == '\0') {
     do {
-      ProcessSystemMemory(ContextHandle,SystemContextPtr[2],Utf8SourcePointer,Utf16EndPointer,CalculatedCodePoint);
+      ProcessSystemMemory(ContextHandle, SystemContextPtr[2], Utf8SourcePointer, Utf16EndPointer, CalculatedCodePoint);
       BufferAllocationStatus = (long long *)*SystemContextPtr;
-      free(SystemContextPtr,0x28);
+      free(SystemContextPtr, 0x28);
       SystemContextPtr = BufferAllocationStatus;
     } while (*(char *)((long long)BufferAllocationStatus + SystemNodeStatusOffset) == '\0');
     MemoryBlockIndex = *ContextHandle;
@@ -223106,28 +223122,44 @@ void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationB
   *(long long *)*ContextHandle = LoopCounter;
   *(long long *)(*ContextHandle + 0x10) = LoopCounter;
   ContextHandle[1] = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(*ContextHandle,0x28);
+  // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+  // WARNING: Treating indirect jump as call
+  free(*ContextHandle, 0x28);
   return;
 }
 
 
 
 
-84660(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180184660(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存和线程本地存储管理
+ * 
+ * 该函数负责处理系统内存管理和线程本地存储操作，包括：
+ * - 管理字符表指针和线程本地存储
+ * - 分配系统内存并处理字符编码转换
+ * - 维护系统句柄和内存块的完整性
+ * - 清理和释放系统资源
+ * 
+ * @param ContextHandle 系统句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180184660
+ */
+void ProcessSystemMemoryWithThreadLocalStorage(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long MainCalculationResult;
   
   CharacterTablePointer = *ContextHandle;
-  AllocateSystemMemoryEx(ContextHandle,*(void *)(ThreadLocalStorageData + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  AllocateSystemMemoryEx(ContextHandle, *(void *)(ThreadLocalStorageData + 8), Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
   *(long long *)(*ContextHandle + 8) = LoopCounter;
   *(long long *)*ContextHandle = LoopCounter;
   *(long long *)(*ContextHandle + 0x10) = LoopCounter;
   ContextHandle[1] = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(*ContextHandle,0x60);
+  // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+  // WARNING: Treating indirect jump as call
+  free(*ContextHandle, 0x60);
   return;
 }
 
