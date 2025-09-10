@@ -10024,18 +10024,10 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
 
 
 
- 计算UI变换矩阵
+ /**
+ * @brief 计算UI变换矩阵
  * 
  * 该函数根据输入的变换参数计算UI元素的变换矩阵
-  outputMatrix 输出矩阵指针
- *  transformMatrix 变换矩阵指针
- *  scaleValue 缩放值
- *  rotationValue 旋转值
-  /**
- * @brief 计算UI矩阵变换
- * 
- * 计算UI元素的矩阵变换，包括旋转、缩放和平移操作。
- * 此函数用于处理UI元素的变换矩阵计算。
  * 
  * @param outputMatrix 输出矩阵指针
  * @param transformMatrix 变换矩阵指针
@@ -10045,49 +10037,47 @@ bool CheckUIGeometry(float *uiContext,float *dataSource,float *targetBuffer,floa
  * 
  * @note 原始函数名：CalculateUIMatrix
  */
-bool CalculateUIMatrix(float *outputMatrix,float *transformMatrix,float scaleValue,float rotationValue)
-
+bool CalculateUIMatrix(float *outputMatrix, float *transformMatrix, float scaleValue, float rotationValue)
 {
-  float sourceMatrixValue1;
-  float sourceMatrixValue2;
-  float sourceMatrixValue3;
-  float rotationMatrixValue1;
-  float rotationMatrixValue2;
-  float rotationMatrixValue3;
+  float sourceMatrixX;
+  float sourceMatrixY;
+  float sourceMatrixZ;
+  float rotationMatrixX;
+  float rotationMatrixY;
+  float rotationMatrixZ;
   float *rotationMatrixPtr;
   float *translationMatrixPtr;
   float scaleFactor;
   float rotationFactor;
   float crossProductResult;
-  float translationValue1;
-  float translationValue2;
-  float translationValue3;
-  float translationValue4;
-  float translationValue5;
-  float translationValue6;
-  float translationValue7;
-  float translationValue8;
-  float translationValue9;
-  float translationValue10;
-  float translationValue11;
+  float translationX;
+  float translationY;
+  float translationZ;
+  float transformX;
+  float transformY;
+  float transformZ;
+  float matrixX;
+  float matrixY;
+  float matrixZ;
+  float matrixW;
   
-  float determinant = translationValue3 * transformMatrix[1] + translationValue2 * *transformMatrix + translationValue1 * transformMatrix[2];
+  float determinant = translationZ * transformMatrix[1] + translationY * *transformMatrix + translationX * transformMatrix[2];
   scaleFactor = 1.0 / scaleValue;
-  sourceMatrixValue1 = transformMatrix[4];
-  crossProductResult = translationValue8 * rotationMatrixPtr[1] + rotationFactor * *rotationMatrixPtr + translationValue10 * rotationMatrixPtr[2];
-  translationValue4 = translationValue9 * translationMatrixPtr[1] + translationValue11 * *translationMatrixPtr + translationValue7 * translationMatrixPtr[2];
-  sourceMatrixValue2 = transformMatrix[5];
-  sourceMatrixValue3 = transformMatrix[6];
-  rotationMatrixValue1 = rotationMatrixPtr[4];
-  rotationMatrixValue2 = transformMatrix[4];
-  rotationMatrixValue3 = rotationMatrixPtr[4];
-  *outputMatrix = ((translationValue6 * translationValue9 - transformMatrix[5] * translationValue7) * crossProductResult +
-                   determinant * translationValue4 +
-                  (transformMatrix[5] * translationValue10 - transformMatrix[6] * translationValue8) * translationValue4) * scaleFactor;
-  outputMatrix[1] = ((sourceMatrixValue1 * translationValue7 - sourceMatrixValue3 * translationValue11) * crossProductResult + determinant * translationValue5 +
-                    (sourceMatrixValue3 * rotationMatrixValue1 - rotationMatrixValue2 * translationValue10) * translationValue4) * scaleFactor;
-  outputMatrix[2] = ((sourceMatrixValue2 * translationValue11 - rotationMatrixValue2 * translationValue9) * crossProductResult + determinant * translationValue6 +
-                    (rotationMatrixValue2 * translationValue8 - sourceMatrixValue2 * rotationMatrixValue3) * translationValue4) * scaleFactor;
+  sourceMatrixX = transformMatrix[4];
+  crossProductResult = matrixZ * rotationMatrixPtr[1] + rotationFactor * *rotationMatrixPtr + matrixW * rotationMatrixPtr[2];
+  transformX = matrixY * translationMatrixPtr[1] + matrixW * *translationMatrixPtr + matrixX * translationMatrixPtr[2];
+  sourceMatrixY = transformMatrix[5];
+  sourceMatrixZ = transformMatrix[6];
+  rotationMatrixX = rotationMatrixPtr[4];
+  rotationMatrixY = transformMatrix[4];
+  rotationMatrixZ = rotationMatrixPtr[4];
+  *outputMatrix = ((transformZ * matrixY - transformMatrix[5] * matrixX) * crossProductResult +
+                   determinant * transformX +
+                  (transformMatrix[5] * matrixW - transformMatrix[6] * matrixZ) * transformX) * scaleFactor;
+  outputMatrix[1] = ((sourceMatrixX * matrixX - sourceMatrixZ * matrixW) * crossProductResult + determinant * transformY +
+                    (sourceMatrixZ * rotationMatrixX - rotationMatrixY * matrixW) * transformX) * scaleFactor;
+  outputMatrix[2] = ((sourceMatrixY * matrixW - rotationMatrixY * matrixY) * crossProductResult + determinant * transformZ +
+                    (rotationMatrixY * matrixZ - sourceMatrixY * rotationMatrixZ) * transformX) * scaleFactor;
   outputMatrix[3] = 3.4028235e+38;
   return true;
 }
@@ -10095,7 +10085,15 @@ bool CalculateUIMatrix(float *outputMatrix,float *transformMatrix,float scaleVal
 
 
 
- void ProcessUIMessages(void)
+ /**
+ * @brief 处理UI消息
+ * 
+ * 处理UI系统中的各种消息，包括用户输入、系统事件等
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：ProcessUIMessages
+ */
 void ProcessUIMessages(void)
 
 {

@@ -51,6 +51,13 @@
 #define SystemExceptionInitializerA0BaseAddress 0x180d497e0    // 系统异常初始化器A0基地址 - 异常初始化器A0的基地址
 #define SystemExceptionInitializerB0BaseAddress 0x180d498a0    // 系统异常初始化器B0基地址 - 异常初始化器B0的基地址
 
+// 浮点数数据偏移量常量
+#define FloatingPointSecondaryDataOffset 4                    // 浮点数辅助数据偏移量 - 用于存储浮点数的辅助数据
+#define SystemValidationQueryOffset 0x18                       // 系统验证查询偏移量 - 用于系统验证查询操作
+#define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
+#define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
+#define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
+
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
@@ -22182,7 +22189,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t ContextPointer, int64_t 
         MaxRangeValue = InputFloatValue;
       }
       *(float *)(ContextPointer + FloatingPointDataOffset20) = MaxRangeValue;
-      *(float *)(systemContextValue + 4) = MaxRangeValue;
+      *(float *)(systemContextValue + FloatingPointSecondaryDataOffset) = MaxRangeValue;
         UpdateSystemFloatingPointValue(*(DataBuffer *)(SystemDataPointer + SystemResourceOffset98),ContextPointer);
     }
   }
@@ -22273,7 +22280,7 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
                 if ((*(float *)(ValuePointer + DataValidationTertiaryOffset) <= InputValue) &&
                    (InputValue < *(float *)(ValuePointer + DataValidationQuaternaryOffset) || InputValue == *(float *)(ValuePointer + DataValidationQuaternaryOffset))) {
                     ValidationStatus = *(DataBuffer *)(ContextHandle + systemContextStatusOffset98);
-                    *(float *)(ContextBuffer + 4) = InputValue;
+                    *(float *)(ContextBuffer + ContextBufferFloatDataOffset) = InputValue;
                     // 执行系统上下文操作
                     ExecutesystemContextOperation(ValidationStatus, DataHandle);
                 }
@@ -22319,7 +22326,7 @@ DataBuffer QuerySystemStatusE0(void)
     if ((*(float *)(dataContext + DataValidationTertiaryOffset) <= inputValue) &&
        (inputValue < *(float *)(dataContext + DataValidationQuaternaryOffset) || inputValue == *(float *)(dataContext + DataValidationQuaternaryOffset))) {
       validationStatus = *(DataBuffer *)(StackFrameContext + systemContextStatusOffset98);
-      *(float *)(DataProcessingOffset + 4) = inputValue;
+      *(float *)(DataProcessingOffset + DataProcessingFloatDataOffset) = inputValue;
         CleanupSystemEventA0(validationStatus);
     }
     validationStatus = 0x1c;
@@ -22353,7 +22360,7 @@ DataBuffer InitializeSystemE0(void)
     if ((*(float *)(dataContext + DataValidationTertiaryOffset) <= inputValue) &&
        (inputValue < *(float *)(dataContext + DataValidationQuaternaryOffset) || inputValue == *(float *)(dataContext + DataValidationQuaternaryOffset))) {
       validationStatus = *(DataBuffer *)(StackFrameContext + systemContextStatusOffset98);
-      *(float *)(DataProcessingOffset + 4) = inputValue;
+      *(float *)(DataProcessingOffset + DataProcessingFloatDataOffset) = inputValue;
         CleanupSystemEventA0(validationStatus);
     }
     validationStatus = 0x1c;
@@ -22382,7 +22389,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
     if ((*(float *)(contextHandle + ValidationStatusOffset38) <= floatValue) &&
        (floatValue < *(float *)(contextHandle + ValidationStatusOffset3c) || floatValue == *(float *)(contextHandle + ValidationStatusOffset3c))) {
       validationResult = *(DataBuffer *)(basePointer + SystemManagementOffset98);
-      *(float *)(stackPointer + 4) = floatValue;
+      *(float *)(stackPointer + StackParameterDataOffset) = floatValue;
         CleanupSystemEventA0(validationResult);
     }
     validationResult = 0x1c;
@@ -22654,7 +22661,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
       calculatedFloatValue = inputFloatValue;
     }
     *(float *)(resourceDescriptor + SystemDataParameterOffset20) = calculatedFloatValue;
-    *(float *)(dataStructurePointer + 4) = calculatedFloatValue;
+    *(float *)(dataStructurePointer + DataStructureFloatDataOffset) = calculatedFloatValue;
     validationStatus = ValidateAndProcessSystemResourceA0(dataStructurePointer,DataStructureHandle + DataStructureHandleOffset1C);
     if ((int)validationStatus != 0) {
       return validationStatus;
