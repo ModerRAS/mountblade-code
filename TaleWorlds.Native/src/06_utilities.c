@@ -13038,6 +13038,10 @@ ExceptionHandler* SecurityExceptionHandlerPtr;         // 安全异常处理器�
 
 // 系统函数表指针变量声明
 SystemFunctionTable* SystemFunctionTablePtr;       // 系统函数表指针
+
+// 系统资源管理器相关变量声明
+int64_t* SystemResourceIteratorTablePtr;         // 系统资源迭代器表指针
+int64_t* SystemResourceManagementPtr;             // 系统资源管理指针
 // 异常处理器指针变量声明（续）
 ExceptionHandler* ThreadExceptionHandlerPtr;           // 线程异常处理器指针
 ExceptionHandler* ProcessExceptionHandlerPtr;          // 进程异常处理器指针
