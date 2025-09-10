@@ -137,8 +137,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 连接上下文配置常量
 #define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
 
-// 网络连接池大小常量
-#define NetworkConnectionPoolSize 16                           // 网络连接池大小
+// 网络连接重置值常量
 #define NetworkConnectionPoolResetValue 0                      // 网络连接池重置值
 
 // 安全验证数据索引常量

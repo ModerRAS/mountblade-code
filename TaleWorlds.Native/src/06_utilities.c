@@ -130092,7 +130092,7 @@ void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer systemCo
  * @warning 此函数调用不返回，会直接进入异常处理流程
  * @see HandleSystemException
  */
-void HandleExceptionContextReferenceCountDecrement(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextReferenceCountDecrement(DataBuffer systemContextBase,int64_t exceptionDataBuffer,DataBuffer cleanupFlagA,DataBuffer cleanupFlagB)
 
 {
   int64_t exceptionContext;
