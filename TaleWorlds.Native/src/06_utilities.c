@@ -126566,7 +126566,7 @@ void CleanupExceptionAtOffset2360(DataBuffer exceptionContext,int64_t contextPoi
 
 
 
-void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionContextCleanupAndHandlerSetup760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -126758,7 +126758,7 @@ void Unwind_ExceptionContextCleanupD(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessSystemCleanupAndHandlerSetup800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
