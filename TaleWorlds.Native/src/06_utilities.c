@@ -318,6 +318,12 @@
 #define StackFrameContextOffsetD0 0xd0
 #define StackFrameContextOffsetD4 0xd4
 
+// 栈帧状态标志偏移量常量
+#define StackFrameStatusFlagsOffset 0x30                    // 栈帧状态标志偏移量
+#define StackFrameResourcePointerOffset 0x40                 // 栈帧资源指针偏移量
+#define SystemStatusFlagMask 0x1                             // 系统状态标志掩码
+#define SystemStatusFlagClearMask 0xfffffffe                 // 系统状态标志清除掩码
+
 // 异常处理器上下文偏移量常量
 #define ExceptionHandlerContextOffset170 0x170
 #define ExceptionHandlerContextOffset190 0x190
@@ -80010,9 +80016,9 @@ void SetValidationContextA1(DataBuffer exceptionContext, int64_t stackFrame)
 void ClearSystemStatusFlagA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if ((*(uint *)(stackFrame + 0x30) & 1) != 0) {
-    *(uint *)(stackFrame + 0x30) = *(uint *)(stackFrame + 0x30) & 0xfffffffe;
-    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + 0x40));
+  if ((*(uint *)(stackFrame + StackFrameStatusFlagsOffset) & SystemStatusFlagMask) != 0) {
+    *(uint *)(stackFrame + StackFrameStatusFlagsOffset) = *(uint *)(stackFrame + StackFrameStatusFlagsOffset) & SystemStatusFlagClearMask;
+    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + StackFrameResourcePointerOffset));
   }
   return;
 }
@@ -80032,9 +80038,9 @@ void ClearSystemStatusFlagA0(DataBuffer exceptionContext, int64_t stackFrame)
 void ClearSystemStatusFlagA1(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if ((*(uint *)(stackFrame + 0x30) & 2) != 0) {
-    *(uint *)(stackFrame + 0x30) = *(uint *)(stackFrame + 0x30) & 0xfffffffd;
-    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + 0x40));
+  if ((*(uint *)(stackFrame + StackFrameStatusFlagsOffset) & SystemStatusSecondaryFlagMask) != 0) {
+    *(uint *)(stackFrame + StackFrameStatusFlagsOffset) = *(uint *)(stackFrame + StackFrameStatusFlagsOffset) & SystemStatusSecondaryFlagClearMask;
+    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + StackFrameResourcePointerOffset));
   }
   return;
 }
