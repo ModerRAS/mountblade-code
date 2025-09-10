@@ -110505,7 +110505,7 @@ void ProcessUITransformDataWithCoefficients(float *UIContext,int DataSource,int 
 
 
 
- void FUN_18072d1d8(void)
+ void ExecuteUIRenderTaskWrapperD1(void)
 /**
  * @brief UI渲染任务执行器D1
  * 
@@ -110527,7 +110527,7 @@ void ExecuteUIRenderTaskWrapperD1(void)
 
 
 
- void FUN_18072d226(void)
+ void ExecuteUIRenderTaskWrapperD2(void)
 /**
  * @brief UI渲染任务执行器D2
  * 
@@ -110557,7 +110557,7 @@ void ExecuteUIRenderTaskWrapperD2(void)
 
 
 
- void FUN_18072d250(void)
+ void HandleUIErrorAndSystemCall(void)
 /**
  * @brief UI错误处理器和系统调用包装器
  * 
@@ -110852,7 +110852,7 @@ void ProcessUIExtendedDataTransformAndMatrixCalculation(longlong uiContext, floa
 
 
 
- void FUN_18072d609(float *uiContext,float *dataSource)
+ void ProcessUIComponentDataCalculation(float *uiContext,float *dataSource)
 /**
  * @brief UI组件数据计算处理
  * 

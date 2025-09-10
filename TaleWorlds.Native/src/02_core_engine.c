@@ -108,6 +108,7 @@
 // 异常处理和错误管理函数
 #define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
 #define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
+#define InitializeSystemMemoryStack FUN_180628a40                // 初始化系统内存栈
 
 /**
  * @brief 配置核心引擎指针
@@ -232557,7 +232558,7 @@ LAB_18018f515:
         memcpy(pStackData668,acStack_b8,ArrayIndex);
       }
       iStack_660 = 0;
-      FUN_180628a40(&puStack_670);
+      InitializeSystemMemoryStack(&puStack_670);
       if (iStack_660 != 0) {
         MemoryBoundaryEnd = BufferAllocate(MemoryPoolManager,0x40,*(uint8_t *)(OperationBufferSize + 0x28));
         CoreEngineExecuteSystemEvent(MemoryBoundaryEnd + 0x20,&puStack_670);
@@ -245973,7 +245974,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
     (**(code **)(*(long long *)(AllocatedMemorySize + 0x40) + 0x10))(AllocatedMemorySize + 0x40,PrimaryProcessingStatusFlag8);
     ppBufferInitializationFlag = apProcessingCounter;
     apProcessingCounter[0] = &ThreadLocalStorageTemplate;
-    FUN_180628a40(AllocatedMemorySize + 0x40);
+    InitializeSystemMemoryStack(AllocatedMemorySize + 0x40);
     *(uint32_t *)(AllocatedMemorySize + 0xd0) = 0x7f7fffff;
     *(uint32_t *)(AllocatedMemorySize + 200) = 0x7f7fffff;
     *(uint32_t *)(AllocatedMemorySize + 0xd4) = 0x800000;
@@ -256283,7 +256284,7 @@ void FinalizeSystemCharacterHandler(uint64_t ContextHandle,long long OperationBu
         memcpy(pbStack_4d8,acStack_d8,LockOperationResult2);
       }
       iStack_4d0 = 0;
-      FUN_180628a40(&puStack_4e0);
+      InitializeSystemMemoryStack(&puStack_4e0);
       ContextHandleTablePointer = (long long *)BufferAllocate(MemoryPoolManager,0x40,(uint8_t)uStack_460);
       MemoryBlockListHead = ContextHandleTablePointer + 4;
       CoreEngineExecuteSystemEvent(MemoryBlockListHead,&puStack_4e0);
@@ -284243,7 +284244,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint32_t *ContextHandle, long l
   *(uint **)(OperationBufferSize + 8) = CharacterStatusBuffer;
   puStack_4f0 = ContextHandle;
   if (UnicodeCodePoint != 0) {
-    FUN_180045f60(&puStack_468,CharacterStatusBuffer,UnicodeCodePoint);
+    ProcessUnicodeCharacter(&puStack_468,CharacterStatusBuffer,UnicodeCodePoint);
     *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
   ContextHandle8 = (long long *)0x180bf7cf0;
@@ -284331,7 +284332,7 @@ LAB_180228e3e:
       CharacterStatusBuffer = *(uint **)(OperationBufferSize + 8) + 1;
       *(uint **)(OperationBufferSize + 8) = CharacterStatusBuffer;
       if (MemoryAddressMaskPointer != 0) {
-        FUN_180045f60(&puStack_468,CharacterStatusBuffer,MemoryAddressMaskPointer);
+        ProcessUnicodeCharacter(&puStack_468,CharacterStatusBuffer,MemoryAddressMaskPointer);
         *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)MemoryAddressMaskPointer;
       }
       BufferIndex = 0;
@@ -284670,7 +284671,7 @@ uint8_t * InitializeContextHandleStructure(uint8_t *ContextHandle)
   CharacterStatusBuffer = *(uint **)(OperationBufferSize + 8) + 1;
   *(uint **)(OperationBufferSize + 8) = CharacterStatusBuffer;
   if (UnicodeCodePoint != 0) {
-    FUN_180045f60(&puStack_448,CharacterStatusBuffer,UnicodeCodePoint);
+    ProcessUnicodeCharacter(&puStack_448,CharacterStatusBuffer,UnicodeCodePoint);
     *(long long *)(OperationBufferSize + 8) = *(long long *)(OperationBufferSize + 8) + (unsigned long long)UnicodeCodePoint;
   }
   SystemDataTablePointer = (long long *)0x180bf7e60;
