@@ -185,6 +185,13 @@
 #define ProcessSystemEncodingConversion FUN_1801917b0              // 处理系统编码转换
 #define ProcessSystemConfigurationData FUN_1802759e0               // 处理系统配置数据
 
+// 高频系统处理函数
+#define ProcessSystemBufferOperation FUN_180204980                  // 处理系统缓冲区操作
+#define CopySystemData FUN_18012ddc0                                // 复制系统数据
+#define ManageSystemMemoryPool FUN_180627ce0                        // 管理系统内存池
+#define ProcessFloatingPointData FUN_18009d8a0                     // 处理浮点数据
+#define ProcessSystemEventQueue FUN_180846210                      // 处理系统事件队列
+
 /**
  * @brief 配置核心引擎指针
  * 
