@@ -14067,18 +14067,18 @@ void* SystemDataBufferValidationQuaternaryContext;
 void* UtilitySystemValidationPointerSecurityContext;
 
 // 函数: void* ValidateUtilitySystemState;
-#define ValidateUtilitySystemState FUN_1809427f0
-void* ValidateUtilitySystemState;
+#define ValidateUtilitySystemState ValidateUtilitySystemStateFunction
+void* ValidateUtilitySystemStateFunction;
 void* SystemDataBufferSystemPrimaryContext;
 void* SystemDataBufferSystemSecondaryContext;
 void* SystemDataBufferSystemTertiaryContext;
 void* SystemDataBufferSystemQuaternaryContext;
-void* UtilitySystemValidationPointersystemContext;
+void* UtilitySystemValidationPointerSystemContext;
 
 // 函数: void InitializeUtilitySystemBuffers();
 void InitializeUtilitySystemBuffers(void);          // 初始化工具系统缓冲区
-void* UtilitySystemConfigBufferA;
-uint8_t UtilitySystemStatusFlagA;
+void* UtilitySystemConfigBufferPrimary;
+uint8_t UtilitySystemStatusFlagPrimary;
 
 // 函数: void ConfigureUtilitySystemBufferA();
 void ConfigureUtilitySystemPrimaryBuffer(void);     // 配置工具系统主缓冲区

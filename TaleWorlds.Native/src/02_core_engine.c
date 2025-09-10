@@ -29913,7 +29913,7 @@ void CoreEngineInitializeSystemDataStructures(void
   uint64_t bufferOffset;
   unsigned long long systemStatus;
   
-  SystemDataTablePointer = SystemDataTabled0;
+  SystemDataTablePointer = CoreEngineSystemDataTable;
   MemoryBoundaryEnd = CoreEngineSystemContext;
   if (CoreEngineThreadStatus != '\0') {
     CoreEngineHandleThreadStatusCheck();
@@ -215267,8 +215267,8 @@ void ProcessSystemCharacterStatusBufferAndEventTemplateOperations(void)
  * - 验证系统上下文状态
  * - 执行内存分配和释放操作
  * 
- * @param ContextHandle 字符代码参数
- * @param OperationBufferSize 系统缓冲区大小
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
  * @param Utf8SourcePointer UTF-8源指针
  * @param Utf16EndPointer UTF-16结束指针
  * 
@@ -215277,79 +215277,79 @@ void ProcessSystemCharacterStatusBufferAndEventTemplateOperations(void)
  * @note 原始函数名：FUN_180177c00
  */
 #define ProcessMemoryBoundaryAndSystemContextValidation FUN_180177c00
-long long ProcessMemoryBoundaryAndSystemContextValidation(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+long long ProcessMemoryBoundaryAndSystemContextValidation(long long ContextHandle,long long OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  char ValidationStatus;
-  char SystemCheckResult;
-  long long *MemoryBlockIndex;
-  long long SystemDataRegistry;
-  char *pSystemContextValidationFlag;
-  long long *MemoryBoundaryPointer;
-  bool BooleanValidationFlag7;
-  uint32_t ProcessingStatusFlag;
-  uint64_t SystemMemoryAllocationResult;
-  void *ContextDataPointer;
-  char *ProgramCounterPointer;
-  int iStack_38;
+  char MemoryValidationStatus;
+  char SystemContextCheckResult;
+  long long *MemoryBoundaryIterator;
+  long long SystemDataRegistryEntry;
+  char *ContextValidationPointer;
+  long long *MemoryBoundaryStartPointer;
+  bool SystemContextIsNull;
+  uint32_t DataProcessingStatus;
+  uint64_t MemoryAllocationResult;
+  void *SystemContextData;
+  char *ProgramCounter;
+  int StringCompareLength;
   unsigned long long ProcessingFlags;
   
-  SystemMemoryAllocationResult = 0xfffffffffffffffe;
-  MemoryBoundaryPointer = *(long long **)(ContextHandle + 0xc0);
-  MemoryBlockIndex = *(long long **)(ContextHandle + 200);
+  MemoryAllocationResult = 0xfffffffffffffffe;
+  MemoryBoundaryStartPointer = *(long long **)(ContextHandle + 0xc0);
+  MemoryBoundaryIterator = *(long long **)(ContextHandle + 200);
   do {
-    if (MemoryBoundaryPointer == MemoryBlockIndex) {
+    if (MemoryBoundaryStartPointer == MemoryBoundaryIterator) {
       return 0;
     }
-    ProcessingStatusFlag = 0;
-    SystemDataRegistry = *MemoryBoundaryPointer;
-    ContextDataPointer = &SystemNullTemplate;
+    DataProcessingStatus = 0;
+    SystemDataRegistryEntry = *MemoryBoundaryStartPointer;
+    SystemContextData = &SystemNullTemplate;
     ProcessingFlags = 0;
-    ProgramCounterPointer = (char *)0x0;
-    iStack_38 = 0;
-    CoreEngineProcessSystemEvent(&ContextDataPointer,*(uint32_t *)(SystemDataRegistry + 0xb8));
-    if (*(int *)(SystemDataRegistry + 0xb8) != 0) {
+    ProgramCounter = (char *)0x0;
+    StringCompareLength = 0;
+    CoreEngineProcessSystemEvent(&SystemContextData,*(uint32_t *)(SystemDataRegistryEntry + 0xb8));
+    if (*(int *)(SystemDataRegistryEntry + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(ProgramCounterPointer,*(void *)(SystemDataRegistry + 0xb0),*(int *)(SystemDataRegistry + 0xb8) + 1,Utf16EndPointer,ProcessingStatusFlag,SystemMemoryAllocationResult
+      memcpy(ProgramCounter,*(void *)(SystemDataRegistryEntry + 0xb0),*(int *)(SystemDataRegistryEntry + 0xb8) + 1,Utf16EndPointer,DataProcessingStatus,MemoryAllocationResult
             );
     }
-    if (*(long long *)(SystemDataRegistry + 0xb0) != 0) {
-      iStack_38 = 0;
-      if (ProgramCounterPointer != (char *)0x0) {
-        *ProgramCounterPointer = '\0';
+    if (*(long long *)(SystemDataRegistryEntry + 0xb0) != 0) {
+      StringCompareLength = 0;
+      if (ProgramCounter != (char *)0x0) {
+        *ProgramCounter = '\0';
       }
       ProcessingFlags = ProcessingFlags & 0xffffffff;
     }
-    if (iStack_38 == *(int *)(OperationBufferSize + 0x10)) {
-      if (iStack_38 == 0) {
+    if (StringCompareLength == *(int *)(OperationBufferSize + 0x10)) {
+      if (StringCompareLength == 0) {
 LAB_180177d1e:
         if (*(int *)(OperationBufferSize + 0x10) != 0) goto LAB_180177d26;
-        isSystemContextNull = true;
+        SystemContextIsNull = true;
       }
       else {
-        pSystemContextValidationFlag = ProgramCounterPointer;
+        ContextValidationPointer = ProgramCounter;
         do {
-          ValidationStatus = *pSystemContextValidationFlag;
-          SystemCheckResult = pSystemContextValidationFlag[*(long long *)(OperationBufferSize + 8) - (long long)ProgramCounterPointer];
-          if (ValidationStatus != SystemCheckResult) break;
-          pSystemContextValidationFlag = pSystemContextValidationFlag + 1;
-        } while (SystemCheckResult != '\0');
-        isSystemContextNull = ValidationStatus == SystemCheckResult;
+          MemoryValidationStatus = *ContextValidationPointer;
+          SystemContextCheckResult = ContextValidationPointer[*(long long *)(OperationBufferSize + 8) - (long long)ProgramCounter];
+          if (MemoryValidationStatus != SystemContextCheckResult) break;
+          ContextValidationPointer = ContextValidationPointer + 1;
+        } while (SystemContextCheckResult != '\0');
+        SystemContextIsNull = MemoryValidationStatus == SystemContextCheckResult;
       }
     }
     else {
-      if (iStack_38 == 0) goto LAB_180177d1e;
+      if (StringCompareLength == 0) goto LAB_180177d1e;
 LAB_180177d26:
-      isSystemContextNull = false;
+      SystemContextIsNull = false;
     }
-    ContextDataPointer = &SystemNullTemplate;
-    if (ProgramCounterPointer != (char *)0x0) {
+    SystemContextData = &SystemNullTemplate;
+    if (ProgramCounter != (char *)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemEventHandling();
     }
-    if (isSystemContextNull) {
-      return SystemDataRegistry;
+    if (SystemContextIsNull) {
+      return SystemDataRegistryEntry;
     }
-    MemoryBoundaryPointer = MemoryBoundaryPointer + 1;
+    MemoryBoundaryStartPointer = MemoryBoundaryStartPointer + 1;
   } while( true );
 }
 
