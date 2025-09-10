@@ -20426,31 +20426,31 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_1807d1650 - 数据处理函数DN0
 // 功能：处理数据并转换
-#define ProcessDataConversionDN0 FUN_1807d1650
+#define ProcessDataConversionDN0 ConvertAndProcessSystemData
 
 // 原始函数名：FUN_180892120 - 双重验证函数DO0
 // 功能：双重验证系统状态
-#define DoubleValidateSystemDO0 FUN_180892120
+#define DoubleValidateSystemDO0 PerformDoubleSystemValidation
 
 // 原始函数名：FUN_180893420 - 验证函数DP0
 // 功能：验证系统配置
-#define ValidateSystemConfigDP0 FUN_180893420
+#define ValidateSystemConfigDP0 ValidateSystemConfiguration
 
 // 原始函数名：FUN_1808920e0 - 操作执行函数DQ0
 // 功能：执行系统操作
-#define ExecuteSystemOperationDQ0 FUN_1808920e0
+#define ExecuteSystemOperationDQ0 ExecuteSystemOperations
 
 // 原始函数名：FUN_180891d40 - 数据验证函数DR0
 // 功能：验证数据完整性
-#define ValidateDataIntegrityDR0 FUN_180891d40
+#define ValidateDataIntegrityDR0 ValidateDataIntegrity
 
 // 原始函数名：FUN_180891cf0 - 数据处理函数DS0
 // 功能：处理系统数据
-#define ProcessSystemDataDS0 FUN_180891cf0
+#define ProcessSystemDataDS0 ProcessSystemData
 
 // 原始函数名：FUN_180891ca0 - 状态检查函数DT0
 // 功能：检查系统状态
-#define CheckSystemStatusDT0 FUN_180891ca0
+#define CheckSystemStatusDT0 CheckSystemStatus
 
 // 原始函数名：FUN_180891de0 - 事件处理函数DU0
 // 功能：处理系统事件
