@@ -11945,7 +11945,7 @@ ExceptionHandler* SystemTemporaryExceptionHandlerPtr;     // 系统临时异常�
  * 
  * @note 原始函数名：ResetUtilityPointers3
  */
-void ResetUtilityPointers3(void);
+void ResetUtilityCleanupPointers(void);
 
 /**
  * @brief 工具清理指针
@@ -11963,7 +11963,7 @@ uint32_t CleanupStatusIndicator;
  * 
  * @note 原始函数名：ResetUtilityPointers4
  */
-void ResetUtilityPointers4(void);
+void ResetUtilityReleasePointers(void);
 
 /**
  * @brief 工具释放指针
@@ -12402,7 +12402,7 @@ uint32_t UtilityEventDataTertiary;
  * 
  * @note 原始函数名：UtilityHandleEventSecond
  */
-void UtilityHandleEventSecond(void);
+void HandleUtilitySystemSecondaryEvent(void);
 // 工具系统事件处理相关变量
 uint32_t EventStatus;
 void* SystemPointerSecondary;
@@ -12419,7 +12419,7 @@ int32_t EventError;
  * 
  * @note 原始函数名：UtilityProcessMemoryBlock
  */
-void UtilityProcessMemoryBlock(void);
+void ProcessUtilityMemoryBlockOperations(void);
 // 工具系统内存处理相关变量
 void* MemoryPointerPrimary;
 uint32_t MemoryDataPrimary;
@@ -12437,7 +12437,7 @@ uint32_t MemoryDataQuaternary;
  * 
  * @note 原始函数名：UtilityValidateMemoryAccess
  */
-bool UtilityValidateMemoryAccess(void);
+bool ValidateUtilityMemoryAccessPermissions(void);
 // 工具系统内存验证相关变量
 void *UtilityMemoryPointerSecondary;
 int32_t UtilityMemoryValidatePrimary;
@@ -12738,17 +12738,17 @@ uint8_t UtilityProcessDataPrimaryConfig;
 uint8_t UtilityProcessDataPrimaryStatus;
 uint8_t UtilityProcessDataPrimaryPointer;
 
-// 函数: uint8_t UtilityProcessDataFirst(void)
-// 
-// 处理工具数据First
-// 执行第一组工具数据的处理操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 处理结果状态
-uint8_t UtilityProcessDataFirst(void);
+/**
+ * @brief 处理工具系统第一组数据
+ * 
+ * 执行第一组工具数据的处理操作，包括数据的验证、转换和输出。
+ * 这是工具系统数据处理流程的第一阶段，负责初始化数据处理流程。
+ * 
+ * @return uint8_t 处理结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：UtilityProcessDataFirst
+ */
+uint8_t ProcessUtilitySystemPrimaryData(void);
 // 工具系统处理数据1相关变量
 uint8_t UtilityProcessPrimaryStatus;
 uint8_t UtilityProcessPrimaryContext;
@@ -12756,29 +12756,29 @@ uint8_t UtilityProcessPrimaryBuffer;
 uint8_t UtilityProcessPrimaryResult;
 uint8_t UtilitySystemPrimaryData;
 
-// 函数: uint8_t UtilityProcessDataSecond(void)
-// 
-// 处理工具数据Second
-// 执行第二组工具数据的处理操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 处理结果状态
-uint8_t UtilityProcessDataSecond(void);
+/**
+ * @brief 处理工具系统第二组数据
+ * 
+ * 执行第二组工具数据的处理操作，包括数据的验证、转换和输出。
+ * 这是工具系统数据处理流程的第二阶段，负责处理中间数据。
+ * 
+ * @return uint8_t 处理结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：UtilityProcessDataSecond
+ */
+uint8_t ProcessUtilitySystemSecondaryData(void);
 
-// 函数: uint8_t UtilityProcessDataThird(void)
-// 
-// 处理工具数据Third
-// 执行第三组工具数据的处理操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 处理结果状态
-uint8_t UtilityProcessDataThird(void);
+/**
+ * @brief 处理工具系统第三组数据
+ * 
+ * 执行第三组工具数据的处理操作，包括数据的验证、转换和输出。
+ * 这是工具系统数据处理流程的第三阶段，负责完成最终数据处理。
+ * 
+ * @return uint8_t 处理结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：UtilityProcessDataThird
+ */
+uint8_t ProcessUtilitySystemTertiaryData(void);
 // 工具系统处理数据变量
 uint8_t UtilityProcessSecondaryStatus;
 uint8_t UtilityProcessSecondaryContext;
@@ -12787,17 +12787,17 @@ uint8_t UtilityProcessSecondaryResult;
 uint8_t UtilityProcessSecondaryPointer;
 int UtilityDataProcessingErrorCode;          // 工具系统数据处理错误代码
 
-// 函数: uint8_t UtilityCreateMemoryHeap(void);
-// 
-// 创建内存堆
-// 初始化和配置内存堆结构
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 创建结果状态
-uint8_t UtilityCreateMemoryHeap(void);
+/**
+ * @brief 创建工具系统内存堆
+ * 
+ * 初始化和配置工具系统的内存堆结构，为后续的内存分配操作做准备。
+ * 该函数负责设置内存堆的基本参数，包括堆大小、对齐方式和初始状态。
+ * 
+ * @return uint8_t 创建结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：UtilityCreateMemoryHeap
+ */
+uint8_t CreateUtilitySystemMemoryHeap(void);
 // 工具系统内存堆数据
 uint8_t UtilityHeapPrimaryData;
 uint8_t UtilityHeapSecondaryData;
@@ -12806,17 +12806,17 @@ uint8_t UtilityHeapPrimaryPointer;
 uint8_t UtilityHeapQuaternaryData;
 uint8_t UtilityHeapQuinaryData;
 
-// 函数: uint8_t UtilityDestroyMemoryHeap(void);
-// 
-// 销毁内存堆
-// 清理和释放内存堆资源
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 销毁结果状态
-uint8_t UtilityDestroyMemoryHeap(void);
+/**
+ * @brief 销毁工具系统内存堆
+ * 
+ * 清理和释放工具系统的内存堆资源，确保所有分配的内存都被正确释放。
+ * 该函数负责内存堆的清理工作，包括释放所有已分配的内存块和重置堆状态。
+ * 
+ * @return uint8_t 销毁结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：UtilityDestroyMemoryHeap
+ */
+uint8_t DestroyUtilitySystemMemoryHeap(void);
 // 工具系统销毁堆数据
 uint8_t UtilityDestroyHeapPrimaryData;
 uint8_t UtilityDestroyHeapSecondaryData;
