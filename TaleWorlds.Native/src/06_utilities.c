@@ -17607,7 +17607,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
 DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
 
 {
-  uint *memoryFlagPtr;
+  uint *systemStateFlagsPtr;
   int64_t memoryRegionBlock;
   uint64_t memoryUpdateStatus;
   int64_t *memoryRegionIterator;
