@@ -111976,46 +111976,60 @@ void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64
 
 
 
- void FUN_18072e5f4(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
-void FUN_18072e5f4(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
+ /**
+ * @brief 处理UI变换数据缩放操作
+ * 
+ * 该函数负责处理UI变换数据的缩放操作，包括：
+ * - 批量缩放变换系数
+ * - 数据边界检查和处理
+ * - 内存对齐操作
+ * - 循环优化处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区缩放因子
+ * 
+ * @note 原始函数名：FUN_18072e5f4
+ */
+void ProcessUITransformDataScaling(UIHandle uiContext, UIHandle dataSource, float targetBuffer)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
+  float *baseValuePointer;
+  float *transformCoefficientPtr;
   longlong stringCompareIndex;
   longlong contextDataHandle;
   int unmodifiedEBX;
-  longlong TargetHandle;
+  longlong targetHandle;
   longlong eventDataIndex;
-  longlong contextDataHandle;
+  longlong contextDataOffset;
   longlong register10;
-  longlong RegisterPointer;
+  longlong registerPointer;
   
   contextDataHandle = (longlong)unmodifiedEBX;
-  if (contextDataHandle < TargetHandle) {
-    if (3 < TargetHandle - contextDataHandle) {
+  if (contextDataHandle < targetHandle) {
+    if (3 < targetHandle - contextDataHandle) {
       stringCompareIndex = contextDataHandle * 4;
-      contextDataHandle = register10 - RegisterPointer;
-      eventDataIndex = ((TargetHandle - contextDataHandle) - 4U >> 2) + 1;
-      contextDataHandle = contextDataHandle + eventDataIndex * 4;
-      TransformCoefficient1 = (float *)(RegisterPointer + 4 + stringCompareIndex);
+      contextDataOffset = register10 - registerPointer;
+      eventDataIndex = ((targetHandle - contextDataOffset) - 4U >> 2) + 1;
+      contextDataOffset = contextDataOffset + eventDataIndex * 4;
+      transformCoefficientPtr = (float *)(registerPointer + 4 + stringCompareIndex);
       do {
-        BaseValuePointer = TransformCoefficient1 + 4;
-        TransformCoefficient1[-1] = targetBuffer * *(float *)(contextDataHandle + -0x14 + (longlong)BaseValuePointer);
-        *TransformCoefficient1 = targetBuffer * *(float *)(contextDataHandle + -0x10 + (longlong)BaseValuePointer);
-        TransformCoefficient1[1] = targetBuffer * *(float *)(contextDataHandle + -0xc + (longlong)BaseValuePointer);
-        TransformCoefficient1[2] = targetBuffer * *(float *)(contextDataHandle + -8 + (longlong)BaseValuePointer);
+        baseValuePointer = transformCoefficientPtr + 4;
+        transformCoefficientPtr[-1] = targetBuffer * *(float *)(contextDataOffset + -0x14 + (longlong)baseValuePointer);
+        *transformCoefficientPtr = targetBuffer * *(float *)(contextDataOffset + -0x10 + (longlong)baseValuePointer);
+        transformCoefficientPtr[1] = targetBuffer * *(float *)(contextDataOffset + -0xc + (longlong)baseValuePointer);
+        transformCoefficientPtr[2] = targetBuffer * *(float *)(contextDataOffset + -8 + (longlong)baseValuePointer);
         eventDataIndex = eventDataIndex + -1;
-        TransformCoefficient1 = BaseValuePointer;
+        transformCoefficientPtr = baseValuePointer;
       } while (eventDataIndex != 0);
     }
-    if (contextDataHandle < TargetHandle) {
-      stringCompareIndex = TargetHandle - contextDataHandle;
-      TransformCoefficient1 = (float *)(RegisterPointer + contextDataHandle * 4);
+    if (contextDataHandle < targetHandle) {
+      stringCompareIndex = targetHandle - contextDataHandle;
+      transformCoefficientPtr = (float *)(registerPointer + contextDataHandle * 4);
       do {
-        *TransformCoefficient1 = targetBuffer * *(float *)((register10 - RegisterPointer) + -4 + (longlong)(TransformCoefficient1 + 1));
+        *transformCoefficientPtr = targetBuffer * *(float *)((register10 - registerPointer) + -4 + (longlong)(transformCoefficientPtr + 1));
         stringCompareIndex = stringCompareIndex + -1;
-        TransformCoefficient1 = TransformCoefficient1 + 1;
+        transformCoefficientPtr = transformCoefficientPtr + 1;
       } while (stringCompareIndex != 0);
     }
   }
@@ -112420,8 +112434,18 @@ void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong t
 
 
 
- void FUN_18072e9ce(void)
-void FUN_18072e9ce(void)
+ /**
+ * @brief 处理UI组件批量变换操作
+ * 
+ * 该函数负责处理UI组件的批量变换操作，包括：
+ * - 组件数据的批量处理和验证
+ * - 变换系数的计算和应用
+ * - 内存管理和状态更新
+ * - 循环处理多个组件
+ * 
+ * @note 原始函数名：FUN_18072e9ce
+ */
+void ProcessUIComponentBatchTransform(void)
 
 {
   longlong contextRegister;
@@ -112429,15 +112453,15 @@ void FUN_18072e9ce(void)
   longlong allocatedMemory;
   longlong basePointer;
   UIHandle componentData;
-  float *TargetHandle;
-  longlong RegisterPointer;
+  float *targetTransformData;
+  longlong registerPointer;
   UIHandle preservedRegister12;
   longlong componentIndex;
   longlong preservedRegister13;
   UIHandle eventHandle;
   longlong preservedRegister15;
-  double CalculationResultValue;
-  float TransformCoefficient3;
+  double calculationResult;
+  float transformCoefficient;
   UIDword unmodifiedXMM8_Da;
   UIDword unmodifiedXMM8_Db;
   UIDword unmodifiedXMM8_Dc;
