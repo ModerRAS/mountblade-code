@@ -406028,6 +406028,11 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define blendOffset UIImageBlendOffset              // UI图像混合偏移量：用于图像混合操作的偏移量
 #define blendFactor UIImageBlendFactor              // UI图像混合因子：用于图像混合的权重因子
 #define SystemStatusFlag UISystemStatusFlag        // UI系统状态标志：表示UI系统的当前状态
+#define blendTargetMemory UIImageBlendTargetMemory // UI图像混合目标内存：用于存储混合结果的内存地址
+#define GlobalColorBlendFactor UIGlobalColorBlendFactor // UI全局颜色混合因子：用于控制颜色混合的全局权重因子
+#define colorChannel3 UITertiaryColorVector        // UI第三级颜色向量：用于存储第三个颜色通道的向量数据
+#define colorChannel4 UIQuaternaryColorVector      // UI第四级颜色向量：用于存储第四个颜色通道的向量数据
+#define primaryColorChannel UIPrimaryColorVector  // UI主颜色向量：用于存储主要颜色通道的向量数据
 
 
 
