@@ -241,6 +241,13 @@
 #define FloatOneValue 0x3f800000                           // 浮点数1.0的十六进制表示
 #define ByteMask 0xffffff00                                // 字节掩码，用于保留高3字节
 
+// 内存操作掩码常量
+#define MemoryOperationMask 0xfbffffff                       // 内存操作掩码，用于清除特定位
+#define MemoryRegionMask 0xffffc000                         // 内存区域掩码，用于地址对齐
+#define MemoryRegionFlag 0x4000                             // 内存区域标志
+#define MemoryRegionDataMask 0x7fff                         // 内存区域数据掩码
+#define ValidationStatusMask 0xffff7fff                     // 验证状态掩码
+
 // 扩展异常处理器偏移量常量
 #define ExtendedExceptionHandlerSlotOffset 0xd8              // 扩展异常处理器槽位偏移量
 #define ExtendedExceptionHandlerTempSlotOffset 0x110          // 扩展异常处理器临时槽位偏移量
@@ -27211,7 +27218,7 @@ ProcessCompleteLabel:
     *(DataWord *)(operationBase + systemContextPointerOffset90) = SystemCleanupFlag;
     *(DataWord *)(operationBase + OperationBaseOffset94) = 0;
   }
-  *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) & 0xfbffffff;
+  *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) & MemoryOperationMask;
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6c);
 ResourceCleanupLabel:
   if ((securityCheckResult >> BitShift25 & 1) != 0) {
@@ -32126,7 +32133,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                   else {
                     validationOutcome = 4;
                     stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,
-                                         (validationStatus & 0xffffc000 | 0x4000) * 2 | validationStatus & 0x7fff);
+                                         (validationStatus & MemoryRegionMask | MemoryRegionFlag) * 2 | validationStatus & MemoryRegionDataMask);
                   }
                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,validationOutcome);
@@ -32296,7 +32303,7 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
               }
               else {
                 statusCounter = 4;
-                *(uint *)(StackFrameContext + ArrayDataOffset) = (memoryRegionBase & 0xffffc000 | 0x4000) * 2 | memoryRegionBase & 0x7fff;
+                *(uint *)(StackFrameContext + ArrayDataOffset) = (memoryRegionBase & MemoryRegionMask | MemoryRegionFlag) * 2 | memoryRegionBase & MemoryRegionDataMask;
               }
               operationResult = (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,StackFrameContext + ArrayDataOffset,statusCounter);
               if (operationResult != 0) {
@@ -32393,7 +32400,7 @@ void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
         }
         else {
           securityCheckResult = 4;
-          *(uint *)(StackFrameContext + ArrayDataOffset) = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
+          *(uint *)(StackFrameContext + ArrayDataOffset) = (systemDataBuffer & MemoryRegionMask | MemoryRegionFlag) * 2 | systemDataBuffer & MemoryRegionDataMask;
         }
         operationStatus = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,securityCheckResult);
         if (operationStatus != 0) {
@@ -32844,7 +32851,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         }
         else {
           memoryRegionBase = 4;
-          stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,(systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff);
+          stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,(systemDataBuffer & MemoryRegionMask | MemoryRegionFlag) * 2 | systemDataBuffer & MemoryRegionDataMask);
         }
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,memoryRegionBase);
@@ -32988,7 +32995,7 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   }
   else {
     operationResult = 4;
-    *(uint *)(stackFrameContext + ArrayDataOffset) = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
+    *(uint *)(stackFrameContext + ArrayDataOffset) = (systemDataBuffer & MemoryRegionMask | MemoryRegionFlag) * 2 | systemDataBuffer & MemoryRegionDataMask;
   }
   iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,stackFrameContext + ArrayDataOffset,operationResult);
   if (iterationCount == 0) {
@@ -33439,11 +33446,11 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
   
   rawDataValue = *operationData;
   if (rawDataValue + DataContextOffset4000 < DataContextOffset8000) {
-    processedSystemData = CONCAT22(processedSystemData._2_2_,(short)rawDataValue) & 0xffff7fff;
+    processedSystemData = CONCAT22(processedSystemData._2_2_,(short)rawDataValue) & ValidationStatusMask;
     processingMode = 2;
   }
   else {
-    processedData = (rawDataValue & 0xffffc000 | 0x4000) * 2 | rawDataValue & 0x7fff;
+    processedData = (rawDataValue & MemoryRegionMask | MemoryRegionFlag) * 2 | rawDataValue & MemoryRegionDataMask;
     processingMode = 4;
   }
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationHandle + 8))
