@@ -79061,7 +79061,7 @@ SystemMemoryRelease:
     *(uint8_t *)(StringOffset + 0x18) = 0;
     *(void *)(StringOffset + 0x20) = 0;
   }
-LAB_180097ca1:
+SystemExceptionHandler:
   CoreEngineProcessStateUpdate(Utf8SourcePointer);
   CoreEngineProcessSystemEventAndCleanupResources(Utf8SourcePointer);
   *(int *)(StringOffset + 0x178) = *(int *)(StringOffset + 0x178) + 1;
