@@ -4824,31 +4824,31 @@ void* UIGestureCoordinates;
 #define UIFunctionResultTableDebug (void*)0x1809535b8             // UI函数结果表 - 调试处理
 #define UIComparisonTableEntry (void*)0x1809543d8                  // UI比较表条目
 #define UIComponentDataTable (void*)0x180954320                   // UI组件数据表
-#define UIValidationFlagTable UNK_1809543c2                  // UI验证标志表
-#define UIComponentStateTable UNK_1809535b0                  // UI组件状态表
+#define UIValidationFlagTable (void*)0x1809543c2                  // UI验证标志表
+#define UIComponentStateTable (void*)0x1809535b0                  // UI组件状态表
 
  // UI系统验证数据表美化
-#define UIValidationDataTableInput UNK_180954770     // UI验证数据表输入 - 存储输入验证数据
-#define UIValidationDataTableState UNK_1809536c0     // UI验证数据表状态 - 存储状态验证数据
-#define UIValidationDataTableSecurity UNK_180953704   // UI验证数据表安全 - 存储安全验证数据
+#define UIValidationDataTableInput (void*)0x180954770     // UI验证数据表输入 - 存储输入验证数据
+#define UIValidationDataTableState (void*)0x1809536c0     // UI验证数据表状态 - 存储状态验证数据
+#define UIValidationDataTableSecurity (void*)0x180953704   // UI验证数据表安全 - 存储安全验证数据
 
  // UI系统数据表美化
-#define UIDataTableGlobal UNK_180956f72     // UI全局数据表 - 存储全局UI数据
-#define UIDataTableComponent UNK_18097edf8   // UI组件数据表 - 存储组件相关数据
-#define UIDataTableEvent UNK_180980dc0       // UI事件数据表 - 存储事件相关数据
-#define UIDataTableResource UNK_180981620    // UI资源数据表 - 存储资源相关数据
+#define UIDataTableGlobal (void*)0x180956f72     // UI全局数据表 - 存储全局UI数据
+#define UIDataTableComponent (void*)0x18097edf8   // UI组件数据表 - 存储组件相关数据
+#define UIDataTableEvent (void*)0x180980dc0       // UI事件数据表 - 存储事件相关数据
+#define UIDataTableResource (void*)0x180981620    // UI资源数据表 - 存储资源相关数据
 
  // UI系统渲染缓冲区指针宏定义
-#define UIComponentDataBufferPointer UNK_18097f660        // UI组件数据缓冲区指针
-#define UIEventHandlingBufferPointer UNK_18097f960         // UI事件处理缓冲区指针
-#define UIRenderBufferPointerA UNK_18097fda8               // UI渲染缓冲区指针A
-#define UIRenderBufferPointerB UNK_18097fdc0               // UI渲染缓冲区指针B
-#define UIRenderBufferPointerC UNK_18097fd98               // UI渲染缓冲区指针C
-#define UIRenderBufferPointerD UNK_18097fd88               // UI渲染缓冲区指针D
-#define UIRenderBufferPointerE UNK_18097fd78               // UI渲染缓冲区指针E
- #define UIRenderBufferPointerF UNK_18097fd68               // UI渲染缓冲区指针F
-#define UIRenderBufferPointerG UNK_18097fd58               // UI渲染缓冲区指针G
- #define UIRenderBufferPointerH UNK_18097fd48               // UI渲染缓冲区指针H
+#define UIComponentDataBufferPointer (void*)0x18097f660        // UI组件数据缓冲区指针
+#define UIEventHandlingBufferPointer (void*)0x18097f960         // UI事件处理缓冲区指针
+#define UIRenderBufferPointerA (void*)0x18097fda8               // UI渲染缓冲区指针A
+#define UIRenderBufferPointerB (void*)0x18097fdc0               // UI渲染缓冲区指针B
+#define UIRenderBufferPointerC (void*)0x18097fd98               // UI渲染缓冲区指针C
+#define UIRenderBufferPointerD (void*)0x18097fd88               // UI渲染缓冲区指针D
+#define UIRenderBufferPointerE (void*)0x18097fd78               // UI渲染缓冲区指针E
+#define UIRenderBufferPointerF (void*)0x18097fd68               // UI渲染缓冲区指针F
+#define UIRenderBufferPointerG (void*)0x18097fd58               // UI渲染缓冲区指针G
+#define UIRenderBufferPointerH (void*)0x18097fd48               // UI渲染缓冲区指针H
 
 // UI系统全局处理器指针宏定义
 #define UIGlobalDataTransformationProcessor _DAT_180d4a788

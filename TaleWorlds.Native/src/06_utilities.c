@@ -99992,6 +99992,13 @@ void InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+// 异常处理器初始化相关常量
+#define ExceptionHandlerValidationOffset 0x8                    // 异常处理器验证偏移量
+#define ExceptionHandlerSystemFunctionOffset 0x600               // 异常处理器系统函数偏移量
+#define ExceptionHandlerStatusOffset 0x260                      // 异常处理器状态偏移量
+#define ExceptionHandlerControlOffset 0x270                     // 异常处理器控制偏移量
+#define ExceptionHandlerDataBufferOffset 0x250                  // 异常处理器数据缓冲区偏移量
+
 /**
  * @brief 异常处理器初始化函数CE40
  * 
@@ -100007,26 +100014,31 @@ void InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_InitializeExceptionHandlerCE40
  * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
  */
-void InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
-
+void InitializeExceptionHandlerCE40(DataBuffer operationBase, int64_t dataBuffer)
 {
-  if (*(int64_t **)(dataBuffer + ValidationResultOffset8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ValidationResultOffset8) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerValidationOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerValidationOffset) + SystemFloatDataOffset38))();
   }
-  *(DataBuffer *)(dataBuffer + systemContextFunctionPointerOffset600) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x260) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerSystemFunctionOffset) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionHandlerStatusOffset) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x260) = 0;
-  *(DataWord *)(dataBuffer + 0x270) = 0;
-  *(DataBuffer *)(dataBuffer + systemContextFunctionPointerOffset600) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(dataBuffer + ExceptionDataBufferOffset250) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionDataBufferOffset250) + SystemFloatDataOffset38))();
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerStatusOffset) = 0;
+  *(DataWord *)(dataBuffer + ExceptionHandlerControlOffset) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerSystemFunctionOffset) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
 
 
+
+// 异常处理器CE50相关常量
+#define ExceptionHandlerCE50DataPointerOffset 0x0                // 异常处理器CE50数据指针偏移量
+#define ExceptionHandlerCE50TemporaryHandlerOffset 0x2b8          // 异常处理器CE50临时处理器偏移量
+#define ExceptionHandlerCE50ValidationOffset 0x2d0                 // 异常处理器CE50验证偏移量
+#define ExceptionHandlerCE50DataBufferOffset 0x2b0                // 异常处理器CE50数据缓冲区偏移量
 
 /**
  * @brief 异常处理器初始化函数CE50
@@ -100043,21 +100055,20 @@ void InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_InitializeExceptionHandlerCE50
  * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
  */
-void InitializeExceptionHandlerCE50(DataBuffer operationBase,int64_t dataBuffer)
-
+void InitializeExceptionHandlerCE50(DataBuffer operationBase, int64_t dataBuffer)
 {
-  if (*(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerCE50DataPointerOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerCE50DataPointerOffset) + SystemFloatDataOffset38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x2b8) = &SystemTemporaryExceptionHandler;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerCE50TemporaryHandlerOffset) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + ValidationDataOffset0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(dataBuffer + ValidationDataOffset0) = 0;
-  *(DataWord *)(dataBuffer + 0x2d0) = 0;
-  *(DataBuffer *)(dataBuffer + 0x2b8) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t **)(dataBuffer + 0x2b0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x2b0) + SystemFloatDataOffset38))();
+  *(DataWord *)(dataBuffer + ExceptionHandlerCE50ValidationOffset) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerCE50TemporaryHandlerOffset) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerCE50DataBufferOffset) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerCE50DataBufferOffset) + SystemFloatDataOffset38))();
   }
   return;
 }
