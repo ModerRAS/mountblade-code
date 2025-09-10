@@ -123530,47 +123530,63 @@ CleanupAndRender:
 
 
  void FUN_18073965d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_18073965d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIHandle param_6,UIHandle param_7)
-
+/**
+ * @brief 带上下文管理的UI数据处理和渲染函数
+ * 
+ * 该函数处理带有完整上下文管理的UI数据操作，包括：
+ * - 初始化上下文参数和寄存器状态
+ * - 执行数据验证和处理操作
+ * - 管理事件句柄和资源状态
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于管理UI状态
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小句柄，指定处理缓冲区的大小
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param memoryCleanupFlag 内存清理标志，用于资源管理
+ * @param param_7 参数7，用于上下文数据处理
+ * 
+ * @note 原始函数名：FUN_18073965d
+ */
+void ProcessUIDataWithContextManagement(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize,
+                                        UIHandle resultPointer, UIHandle memoryCleanupFlag, UIHandle contextDataParam)
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
   UIHandle contextHandle;
-  UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  UIHandle contextBasePointer;
+  longlong registerPointer;
   UIHandle eventHandle;
   UIHandle preservedRegister15;
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister15;
-  param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = contextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  *(UIHandle *)(registerPointer + -0x30) = preservedRegister15;
+  memoryCleanupFlag = 0;
+  processingResult = InitializeUIProcessingContext(uiContext, &contextDataParam, &memoryCleanupFlag);
   if (processingResult == 0) {
-    processingResult = func_0x0001807460a0(param_7,dataSource,targetBuffer,bufferSize);
-    if (processingResult == 0) goto FUN_180739773;
+    processingResult = TransferUIDataWithValidation(contextDataParam, dataSource, targetBuffer, bufferSize);
+    if (processingResult == 0) goto CleanupAndRender;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bac0(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataStream(&stack0x00000040, 0x100, dataSource);
+    uiCompareResult = CompareUIDataBuffer(&stack0x00000040 + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bac0(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ValidateUIDataStream(&stack0x00000040 + uiValidationResult, 0x100 - uiValidationResult, targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bac0(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextValidationData,&stack0x00000040);
+    uiCompareResult = CompareUIDataBuffer(&stack0x00000040 + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    ValidateUIDataStream(&stack0x00000040 + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), bufferSize);
+    ExecuteUIContextDataOperation(processingResult, 1, uiContext, &UIContextValidationData, &stack0x00000040);
   }
-FUN_180739773:
-  if (param_6 != 0) {
+CleanupAndRender:
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
