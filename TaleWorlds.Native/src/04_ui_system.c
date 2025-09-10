@@ -150,12 +150,14 @@ typedef enum {
 
 // UI系统上下文偏移量常量
 #define UI_CONTEXT_CLEANUP_HANDLER_OFFSET 0x368  // UI上下文清理处理器偏移量 - 存储UI清理函数指针的偏移量
+#define UI_CONTEXT_STATE_OFFSET 0x168             // UI上下文状态偏移量 - 存储UI上下文状态的偏移量
 
 // UI系统全局数据偏移量常量
 #define UI_GLOBAL_RESOURCE_HANDLE_OFFSET 0x1a0   // UI全局资源句柄偏移量 - 存储全局资源句柄的偏移量
 
 // UI系统资源管理常量
 #define UI_RESOURCE_RELEASE_OPCODE 0x76f          // UI资源释放操作码 - 用于资源释放操作的标识符
+#define UI_RESOURCE_CLEANUP_OPCODE 0x56           // UI资源清理操作码 - 用于资源清理操作的标识符
 
 // UI系统初始化标志
 
@@ -206400,10 +206402,10 @@ UIHandle FUN_180788e60(longlong uiContext,longlong dataSource)
 void CleanupUIContext(void *UIContext)
 
 {
-  if (*(void **)(UIContext + 0x368) != (void *)0x0) {
-    (**(void **)(UIContext + 0x368))(UIContext + 8);
+  if (*(void **)(UIContext + UI_CONTEXT_CLEANUP_HANDLER_OFFSET) != (void *)0x0) {
+    (**(void **)(UIContext + UI_CONTEXT_CLEANUP_HANDLER_OFFSET))(UIContext + 8);
   }
-  ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + 0x1a0), UIContext, &SystemeventHandlerData, 0x56, 1);
+  ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + UI_GLOBAL_RESOURCE_HANDLE_OFFSET), UIContext, &SystemeventHandlerData, UI_RESOURCE_CLEANUP_OPCODE, 1);
 }
 
 
