@@ -150106,8 +150106,19 @@ void CleanupUIResourcesAndResetHandles(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180755270(longlong *uiContext)
-void FUN_180755270(longlong *uiContext)
+ /**
+ * @brief 根据UI上下文清理资源并重置上下文
+ * 
+ * 该函数根据提供的UI上下文清理相关资源并重置上下文状态，包括：
+ * - 释放上下文相关的UI资源
+ * - 清理上下文状态
+ * - 重置上下文句柄链表
+ * 
+ * @param uiContext UI上下文指针，包含需要清理的上下文信息
+ * 
+ * @note 原始函数名：FUN_180755270
+ */
+void CleanupUIContextResourcesAndResetContext(longlong *uiContext)
 
 {
   if (uiContext[0xc] != 0) {

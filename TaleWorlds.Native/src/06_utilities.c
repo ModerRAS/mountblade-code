@@ -23337,20 +23337,41 @@ DataBuffer ValidateAndProcessFloatingPointValue(int64_t dataContext,int64_t oper
 
 
 
-// 数据同步处理函数A0
+/**
+ * @brief 处理数据同步操作A0
+ * 
+ * 该函数负责处理系统数据的同步操作，确保数据在不同组件间的一致性。
+ * 它会验证数据的有效性，检查数值范围，并执行相应的同步处理。
+ * 
+ * @param systemHandle 系统句柄，用于访问系统资源和上下文
+ * @param dataHandle 数据句柄，包含要同步的数据信息
+ * @return uint64_t 返回操作结果状态码
+ * 
+ * @details 具体功能包括：
+ * - 通过系统数据传输处理获取同步数据
+ * - 验证数据的有效性和完整性
+ * - 检查数值是否在指定的最小值和最大值范围内
+ * - 执行范围验证操作
+ * - 清理系统事件和资源
+ * - 返回同步操作的结果状态
+ * 
+ * @note 原始函数名：FUN_180893d8f
+ * @warning 数据同步操作需要确保线程安全和数据一致性
+ * @see ProcessSystemDataTransferA0, GetOperationRangeDataA0, ValidateOperationRangeA0
+ */
 uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 
 {
-  float inputValue;
-  uint64_t operationResult;
-  int64_t memoryBlockOffset;
-  int64_t registerContext;
-  int64_t systemContext;
-  float rangeMin;
-  float rangeMax;
-  uint32_t operationRangeBuffer;
-  uint32_t stackBuffer;
-  uint32_t stackDataBuffer;
+  float inputValue;              // 输入浮点数值
+  uint64_t operationResult;      // 操作结果
+  int64_t memoryBlockOffset;     // 内存块偏移量
+  int64_t registerContext;       // 寄存器上下文
+  int64_t systemContext;         // 系统上下文
+  float rangeMin;                // 范围最小值
+  float rangeMax;                // 范围最大值
+  uint32_t operationRangeBuffer; // 操作范围缓冲区
+  uint32_t stackBuffer;          // 栈缓冲区
+  uint32_t stackDataBuffer;      // 栈数据缓冲区
   
   stackBuffer = 0;
   operationResult = ProcessSystemDataTransferA0(systemHandle + SystemOperationContextOffset60,dataHandle,&stackDataBuffer);
