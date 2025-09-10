@@ -233,6 +233,7 @@ typedef enum {
 #define ProcessUIContextDataTransformation FUN_180734467  // UI上下文数据转换处理
 #define CalculateUIMetricValue FUN_18072b3a0            // UI度量值计算
 #define ProcessUIDataSortingAndInsertion FUN_180734a30   // UI数据排序和插入处理
+#define ProcessUIDataValidationAndBufferManagement FUN_180734dc1 // UI数据验证和缓冲区管理
 #define ProcessUIMatrixTransformation FUN_18072b830       // UI矩阵变换处理
 #define ProcessUIResourceAllocation FUN_18072e9a0        // UI资源分配处理
 #define InitializeUISystemMemoryAndEventValidation FUN_18072c44d // UI系统内存和事件验证初始化
@@ -117350,8 +117351,23 @@ void CalculateUIDataTransformValue(UIHandle uiContext,UIHandle dataSource,UIHand
 
 
 
- void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI数据验证和缓冲区管理
+ * 
+ * 该函数负责处理UI数据的验证操作和缓冲区管理，包括：
+ * - 保存和恢复寄存器状态
+ * - 验证数据源和目标缓冲区
+ * - 调用UI度量值计算函数
+ * - 清理和初始化内存区域
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return void 无返回值
+ */
+void ProcessUIDataValidationAndBufferManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   longlong basePointer;
