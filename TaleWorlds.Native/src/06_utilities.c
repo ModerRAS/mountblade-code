@@ -59,6 +59,8 @@
 #define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
 #define StackBufferFloatDataOffset 4                          // 栈缓冲区浮点数据偏移量 - 用于存储栈缓冲区中的浮点数据
 #define DataBufferParameterDataOffset 4                       // 数据缓冲区参数数据偏移量 - 用于存储数据缓冲区中的参数数据
+#define HashChainDataOffset 4                                 // 哈希链数据偏移量 - 用于存储哈希链中的数据
+#define SecurityCheckResultDataOffset 4                       // 安全检查结果数据偏移量 - 用于存储安全检查结果的数据
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -26342,7 +26344,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
     }
     else {
       hashChainPointer = (uint *)((int64_t)operationResult * DataBufferHashEntrySize + operationBase[2]);
-      *(uint *)(operationBase + 4) = hashChainPointer[1];
+      *(uint *)(operationBase + HashChainDataOffset) = hashChainPointer[1];
       hashChainPointer[1] = SystemCleanupFlag;
       *hashChainPointer = *dataTableBuffer;
       *(DataBuffer *)(hashChainPointer + 2) = *operationFlagA;
