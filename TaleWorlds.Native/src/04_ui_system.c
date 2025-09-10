@@ -582,7 +582,7 @@ typedef enum {
 #define ProcessUIRenderDataUpdate UpdateUIRenderData
 
 // UI系统函数宏定义 - 数据验证和清理
-#define FUN_180787e70 ProcessUIComponentDataValidationAndResourceCleanup
+#define ProcessUIComponentDataValidationAndResourceCleanup FUN_180787e70  // 处理UI组件数据验证和资源清理 - 验证数据并清理资源
 #define ProcessUIComponentUpdate UpdateUIComponentData
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
