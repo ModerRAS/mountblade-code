@@ -30989,7 +30989,7 @@ MemoryCheckpoint:
  * @note 该函数在验证失败时会提前返回，成功时会更新相关状态
  * @note 原始函数名：FUN_1808a5a90
  */
-void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
+void ValidateDataBlockPrimary(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 
 {
   int inputParameterCount;
