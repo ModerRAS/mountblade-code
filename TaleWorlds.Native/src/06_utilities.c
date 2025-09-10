@@ -47231,7 +47231,7 @@ void ExceptionRecoveryHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & 1) != 0) {
-    *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) = *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & 0xfffffffe;
+    *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) = *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & SystemStatusFlagClearMask;
     CleanupResourceHandler(dataBuffer + DataBufferOffset30);
   }
   return;
@@ -63554,7 +63554,7 @@ void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & 1) != 0) {
-    *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) = *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & 0xfffffffe;
+    *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) = *(uint *)(exceptionDataBuffer + ExceptionHandlerContextOffset50) & SystemStatusFlagClearMask;
     ValidateSystemA0(dataBuffer + DataBufferOffsetD0);
   }
   return;

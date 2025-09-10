@@ -92794,6 +92794,8 @@ LAB_1801055b6:
  * - 配置渲染缓存和优化选项
  * 
  * @param ContextHandle 目标数据结构指针，包含渲染系统的配置信息
+ * @param RenderCompletionCallback 渲染完成回调函数指针
+ * @param RenderConfigurationData 渲染配置数据缓冲区指针
  */
 void CoreEngineInitializeRenderingSystem(long long ContextHandle, code *RenderCompletionCallback, uint8_t *RenderConfigurationData
 {
