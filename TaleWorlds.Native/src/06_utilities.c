@@ -12376,7 +12376,7 @@ void* UtilityProcessConfigurationPrimary;
 void* UtilityProcessConfigurationSecondary;
 void* UtilityProcessConfigurationTertiary;
 void* UtilityProcessConfigurationQuaternary;
-void* UtilityProcessUnknownDataPrimary;
+void* UtilityProcessReservedDataPrimary;  // 工具进程保留数据主指针 - 用于系统内部保留数据操作
 
 // 函数: uint32_t UtilityProcessDataTenth(void);
 uint32_t UtilityProcessInputData;
@@ -90028,6 +90028,28 @@ void ExceptionHandlerC7(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器C8 - 内存资源管理和引用计数处理
+ * 
+ * 该函数是异常处理系统中的关键组件，负责在异常发生时管理内存资源
+ * 和处理引用计数。主要功能包括：
+ * - 从异常上下文中提取内存块偏移量
+ * - 验证内存资源指针的有效性
+ * - 计算内存区域基地址并进行边界检查
+ * - 管理内存资源的引用计数
+ * - 在引用计数归零时触发异常处理
+ * - 处理内存资源的释放和清理
+ * 
+ * @param operationBase 操作基础数据缓冲区，包含系统操作所需的基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理的上下文信息
+ * 
+ * @note 此函数是异常处理展开（Unwind）机制的一部分
+ * @note 函数名中的C8表示其在异常处理表中的位置和类型
+ * @note 该函数在系统异常恢复过程中自动调用
+ * 
+ * @warning 此函数操作敏感的内存管理结构，修改时需要特别小心
+ * @see HandleExceptionE0, ManageMemory, CalculateSystemValue
+ */
 void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
