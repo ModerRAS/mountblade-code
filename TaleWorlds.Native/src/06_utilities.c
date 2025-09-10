@@ -36032,7 +36032,7 @@ ValidationLabelB:
     if ((int)dataFlags < 0) {
       if (0 < resourceValidationStatus) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)stackDataBuffer.lowWord) && (stackDataPointer != (DataBuffer *)0x0)) {
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),stackDataPointer,&SystemMemoryPoolB,MemoryReleaseBufferSize,MemoryAllocationUnitSize);
       }
       stackDataPointer = (DataBuffer *)0x0;
       stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
