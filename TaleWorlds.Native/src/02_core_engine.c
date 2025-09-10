@@ -43589,7 +43589,7 @@ void ManageBufferIndexllocation(long long *ContextHandle
   EngineContextValue = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + SystemEngineContextOffset - 8);
   SystemStackRegisterFlagB0 = 1;
   LocalStackValueC0 = EngineContextValue;
-  (**(code **)(MemoryBlockIndex + SystemMemoryPoolBlockSize))(&EngineContextValue,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
+  (**(code **)(MemoryBlockIndex + SystemMemoryPoolBlockSize))(&EngineContextValue,*(long long *)(MemoryBlockIndex + SystemEngineContextOffset) + 8);
   if (((char)SystemStackRegisterFlagB0 == '\0') && (EngineContextValue != 0)) {
                     // WARNING: Subroutine does not return
     ProcessSystemEventHandling();
@@ -51293,7 +51293,7 @@ long long * ProcessCoreEngineDataStructureAndContext(long long *ContextHandle,lo
   OperationResult = *(uint32_t *)((long long)ContextHandle + 0x19c);
   MemoryBlockIndex = *ContextHandleSize;
   *(long long *)(MemoryBlockIndex + 0x160) = ContextHandle[0x2c];
-  *(long long *)(MemoryBlockIndex + 0x168) = SystemStringIndex;
+  *(long long *)(MemoryBlockIndex + SystemDataTableOffset) = SystemStringIndex;
   *(long long *)(MemoryBlockIndex + 0x170) = SystemContextValue;
   *(long long *)(MemoryBlockIndex + 0x178) = SystemDataTablePointer;
   *(int *)(MemoryBlockIndex + SystemMemoryPoolBlockSize) = (int)LoopIndex;
