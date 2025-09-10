@@ -41,6 +41,14 @@
 #define fVar8 FloatParameter8                        // 浮点参数8 - 函数参数传递
 #define fVar9 FloatParameter9                        // 浮点参数9 - 函数参数传递
 #define fVar10 FloatParameter10                      // 浮点参数10 - 函数参数传递
+#define fVar11 FloatParameter11                      // 浮点参数11 - 函数参数传递
+#define fVar12 FloatParameter12                      // 浮点参数12 - 函数参数传递
+#define fVar13 FloatParameter13                      // 浮点参数13 - 函数参数传递
+#define fVar14 FloatParameter14                      // 浮点参数14 - 函数参数传递
+#define fVar15 FloatParameter15                      // 浮点参数15 - 函数参数传递
+#define fVar16 FloatParameter16                      // 浮点参数16 - 函数参数传递
+#define fVar17 FloatParameter17                      // 浮点参数17 - 函数参数传递
+#define fVar18 FloatParameter18                      // 浮点参数18 - 函数参数传递
 
 // 长整型变量语义化定义
 #define lVar1 LongParameter1                         // 长整型参数1 - 函数参数传递
