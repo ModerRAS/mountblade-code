@@ -125486,7 +125486,7 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     FUN_18074bd40(astackUInt158 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),param_6);
     pstackUInt178 = astackUInt158;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957358);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutEngine);
   }
 FUN_18073b7af:
   if (AnimationStateValue != 0) {
@@ -125549,7 +125549,7 @@ void FUN_18073b60d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
     FUN_18074bd40(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),stackParam000001c8);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_180957358,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextLayoutEngine,&stack0x00000040);
   }
 FUN_18073b7af:
   if (param_6 != 0) {
