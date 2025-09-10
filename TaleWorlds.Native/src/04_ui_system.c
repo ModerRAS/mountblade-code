@@ -165238,7 +165238,7 @@ LAB_180761fe9:
                   loopCounter = *(int *)(contextHandle + 0x14c);
                   if ((iterationCount0 != eventProcessingCounter) || (loopCounter != localInt7)) {
                     if ((loopCounter == 0) && (loopCounter = iStack000000000000004c, 0 < (int)iterationCount0)) {
-                      loopCounter = func_0x000180746b50(iterationCount0);
+                      uiLoopCounter = func_0x000180746b50(iterationCount0);
                     }
                     eventStatus = func_0x0001807462a0(loopCounter);
                     if (eventStatus != 0) {
@@ -165984,7 +165984,7 @@ LAB_180761fe9:
                 loopCounter = *(int *)(contextHandle + 0x14c);
                 if ((result8 != loopCounter) || (loopCounter != sourceDataInt)) {
                   if ((loopCounter == 0) && (loopCounter = iStack000000000000004c, 0 < (int)result8)) {
-                    loopCounter = func_0x000180746b50(result8);
+                    uiLoopCounter = func_0x000180746b50(result8);
                   }
                   iterationCounter = func_0x0001807462a0(loopCounter);
                   if (iterationCounter != 0) {
@@ -200040,7 +200040,7 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
   
   if (dataSource == 1) {
     if (*(short *)(uiContext + 0x118) != 0) {
-      loopCounter = func_0x000180746b50(*(short *)(uiContext + 0x118));
+      uiLoopCounter = func_0x000180746b50(*(short *)(uiContext + 0x118));
       *(int *)(uiBufferData + 0x250) = loopCounter;
       if (loopCounter == 1) {
         *(UIDword *)(uiBufferData + 0x250) = *(UIDword *)(*(longlong *)(uiBufferData + 0xa8) + 0x1193c);
@@ -200048,12 +200048,12 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
     }
     if ((*(int *)(uiBufferData + 0x24c) != *(int *)(uiBufferData + 0x250)) ||
        (*(char *)(uiContext + 0x221) != '\0')) {
-      iterationCounter = FUN_180784d10(uiContext,uiContext + 0x278,1);
+      resultHandle = FUN_180784d10(uiContext,uiContext + 0x278,1);
       if ((int)iterationCounter != 0) {
         return iterationCounter;
       }
       if (*(char *)(uiContext + 0x221) != (char)iterationCounter) {
-        iterationCounter = FUN_180765990(*(UIHandle *)(uiContext + 0x218),0,1);
+        resultHandle = FUN_180765990(*(UIHandle *)(uiContext + 0x218),0,1);
         if ((int)iterationCounter != 0) {
           return iterationCounter;
         }
@@ -200064,19 +200064,19 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
   }
   else if (dataSource == 2) {
     if (*(short *)(uiContext + 0x118) != 0) {
-      loopCounter = func_0x000180746b50(*(short *)(uiContext + 0x118));
+      uiLoopCounter = func_0x000180746b50(*(short *)(uiContext + 0x118));
       *(int *)(uiBufferData + 0x250) = loopCounter;
       if (loopCounter == 1) {
         *(UIDword *)(uiBufferData + 0x250) = *(UIDword *)(*(longlong *)(uiBufferData + 0xa8) + 0x1193c);
       }
     }
-    iterationCounter = FUN_180784d10(uiContext,targetBuffer + 0x10,1);
+    resultHandle = FUN_180784d10(uiContext,targetBuffer + 0x10,1);
     if ((int)iterationCounter != 0) {
       return iterationCounter;
     }
   }
   else if ((dataSource == 0x40) && (*(char *)(uiContext + 0x220) != '\0')) {
-    iterationCounter = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x104,1);
+    resultHandle = FUN_180743700(*(UIHandle *)(uiContext + 0xa8),&puStackX_20,0x104,1);
     if ((int)iterationCounter != 0) {
       return iterationCounter;
     }
