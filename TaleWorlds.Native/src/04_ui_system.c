@@ -113404,29 +113404,40 @@ void ExecuteUIBufferDataOperation(UIByte *uiContext, longlong dataSource, uint t
 
 
  void FUN_18072f60f(void)
-void FUN_18072f60f(void)
+/**
+ * @brief 处理UI系统事件状态更新
+ * 
+ * 该函数负责处理UI系统的事件状态更新和数据处理，包括：
+ * - 事件状态检查和更新
+ * - 数据缓冲区处理
+ * - 循环计数和迭代处理
+ * - SIMD向量操作处理
+ * 
+ * @note 原始函数名：FUN_18072f60f
+ */
+void ProcessUIEventStateUpdate(void)
 
 {
-  uint result;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  UIHandle *bufferPtr;
+  uint processingResult;
+  int validationResult;
+  longlong dataIndex;
+  UIHandle *bufferPointer;
   uint loopCounter;
-  int *ptrLocalInt6;
-  int unmodifiedEBX;
-  uint unmodifiedESI;
-  UIDword unmodified00000034;
-  UIByte *TargetHandle;
-  uint iterationCounter;
-  UIHandle eventProcessingCounter;
-  UIByte aeventStatus [16];
-  UIByte adataPointer [16];
-  UIByte in_XMM1 [16];
-  UIByte aresult1 [16];
-  UIByte bufferValue [16];
-  UIByte acontextValue [16];
-  UIByte acomponentIndex [16];
-  ulonglong stackParam00000100;
+  int *dataPtr;
+  int baseRegisterValue;
+  uint sourceIndex;
+  UIDword dataValue;
+  UIByte *targetHandle;
+  uint iterationCount;
+  UIHandle eventCounter;
+  UIByte eventStatus [16];
+  UIByte dataBuffer [16];
+  UIByte simdRegister1 [16];
+  UIByte resultBuffer [16];
+  UIByte tempBuffer [16];
+  UIByte contextValue [16];
+  UIByte componentIndex [16];
+  ulonglong stackParameter;
   
   iterationCounter = unmodifiedEBX + 4;
   result = unmodifiedEBX + 1;
