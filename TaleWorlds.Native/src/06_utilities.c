@@ -37179,7 +37179,7 @@ uint64_t * ValidateSystemDataProcessing(void)
     return exceptionBuffer3;
   }
   if (0x81 < *(uint *)(DestinationContext + 8)) {
-    exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(operationResult0,systemContext + 0x58);
+    exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(operationResult0,systemContext + ExceptionCleanupOffset58);
     calculatedFloatValue = calculatedFloatValue;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
@@ -37333,7 +37333,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
-    calculatedFloatValue = (float)GetsystemContextValue(systemContext + 0x58);
+    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
@@ -37435,7 +37435,7 @@ DataBuffer * ProcessSystemDataValidation(void)
     return resultPointer;
   }
   if (0x81 < *(uint *)(inputParameter + 8)) {
-    contextPointer = (DataBuffer *)ProcessSystemDataA0(systemStatus,systemContext + 0x58);
+    contextPointer = (DataBuffer *)ProcessSystemDataA0(systemStatus,systemContext + ExceptionCleanupOffset58);
     calculatedFloatValue = calculatedFloatValue;
     if ((int)contextPointer != 0) {
       return contextPointer;
@@ -37589,7 +37589,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer5 &&
       (systemDataBuffer5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemDataBuffer5 = systemDataBuffer5 + 0x1c) {
-    calculatedFloatValue = (float)GetsystemContextValue(systemContext + 0x58);
+    calculatedFloatValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) && (securityCheckResult = 0x1c, *(int *)(DestinationContext[1] + SystemDataSecondaryOffset18) == 0)) {
@@ -37675,7 +37675,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
-    operationResult = ValidateDataProcessingA0(systemContext,systemContextData + 0x58);
+    operationResult = ValidateDataProcessingA0(systemContext,systemContextData + ExceptionCleanupOffset58);
     processedResultFloatValue = calculationResultFloatValue;
     if ((int)operationResult != 0) {
       return operationResult;
@@ -37830,7 +37830,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemMemoryBuffer &&
       (systemMemoryBuffer < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemMemoryBuffer = systemMemoryBuffer + 0x1c) {
-    calculatedResultValue = (float)GetsystemContextValue(systemContext + 0x58);
+    calculatedResultValue = (float)GetsystemContextValue(systemContext + ExceptionCleanupOffset58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) &&
@@ -120407,7 +120407,22 @@ void ResetExceptionHandlersAtOffsetA20(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器A0 - 处理系统临时异常和资源清理
+ * 
+ * 该函数负责处理系统级别的异常，包括异常上下文管理、
+ * 资源清理和异常处理器的重置操作。此函数在系统遇到
+ * 临时异常时被调用，确保系统资源得到正确清理。
+ * 
+ * @param operationBase 操作基址，用于系统操作的基础地址
+ * @param dataBuffer 数据缓冲区，包含异常处理所需的数据
+ * @param operationFlagA 操作标志A，控制异常处理的行为
+ * @param operationFlagB 操作标志B，控制异常处理的附加行为
+ * 
+ * @note 原始函数名：Unwind_180910a40
+ * @note 该函数主要用于系统异常处理和资源管理
+ */
+void SystemExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -120435,7 +120450,22 @@ void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器A1 - 处理系统临时异常和资源清理
+ * 
+ * 该函数负责处理系统级别的异常，包括异常上下文管理、
+ * 资源清理和异常处理器的重置操作。此函数在系统遇到
+ * 临时异常时被调用，确保系统资源得到正确清理。
+ * 
+ * @param operationBase 操作基址，用于系统操作的基础地址
+ * @param dataBuffer 数据缓冲区，包含异常处理所需的数据
+ * @param operationFlagA 操作标志A，控制异常处理的行为
+ * @param operationFlagB 操作标志B，控制异常处理的附加行为
+ * 
+ * @note 原始函数名：Unwind_180910a60
+ * @note 该函数主要用于系统异常处理和资源管理
+ */
+void SystemExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -120463,7 +120493,22 @@ void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器A2 - 处理系统临时异常和资源清理
+ * 
+ * 该函数负责处理系统级别的异常，包括异常上下文管理、
+ * 资源清理和异常处理器的重置操作。此函数在系统遇到
+ * 临时异常时被调用，确保系统资源得到正确清理。
+ * 
+ * @param operationBase 操作基址，用于系统操作的基础地址
+ * @param dataBuffer 数据缓冲区，包含异常处理所需的数据
+ * @param operationFlagA 操作标志A，控制异常处理的行为
+ * @param operationFlagB 操作标志B，控制异常处理的附加行为
+ * 
+ * @note 原始函数名：Unwind_180910a80
+ * @note 该函数主要用于系统异常处理和资源管理
+ */
+void SystemExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
