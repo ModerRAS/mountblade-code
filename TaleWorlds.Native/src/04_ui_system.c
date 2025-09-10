@@ -398977,26 +398977,37 @@ LAB_18089c300:
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle * FUN_18089c22e(void)
+/**
+ * @brief UI系统事件处理函数
+ * 
+ * 处理UI系统中的各种事件，包括组件创建、销毁、状态更新等操作。
+ * 该函数是UI系统核心的事件处理器，负责协调UI组件的生命周期管理。
+ * 
+ * @return UIHandle* 返回处理结果或UI组件句柄
+ * 
+ * @note 原始函数名：FUN_18089c22e
+ * @note 这是一个简化实现，实际实现更复杂
+ */
+UIHandle * ProcessUISystemEvents(void)
 
 {
-  UIHandle result;
-  UIDword iterationCount;
-  UIDword eventCodeType;
-  UIDword processingStatus;
-  float TransformCoefficient4;
-  float LocalFloatValue6;
-  float ResultFloatValue;
-  uint eventProcessingCounter;
-  uint eventStatus;
-  uint dataPointer;
-  UIDword *resultPointer1;
-  UIHandle *renderDataPointer;
-  UIHandle *componentHandle;
-  float *pvectorComponentX;
-  ulonglong CounterResult;
-  UIHandle *sizeData;
-  longlong allocatedMemory7;
+  UIHandle uiResult;
+  UIDword uiIterationCount;
+  UIDword uiEventCodeType;
+  UIDword uiProcessingStatus;
+  float uiTransformCoefficient;
+  float uiLocalFloatValue;
+  float uiResultFloatValue;
+  uint uiEventProcessingCounter;
+  uint uiEventStatus;
+  uint uiDataPointer;
+  UIDword *uiResultPointer;
+  UIHandle *uiRenderDataPointer;
+  UIHandle *uiComponentHandle;
+  float *uiVectorComponentX;
+  ulonglong uiCounterResult;
+  UIHandle *uiSizeData;
+  longlong uiAllocatedMemory;
   longlong uiContextBasePointer;
   longlong uiComponentData;
   UIHandle *uiuiTargetHandle;
