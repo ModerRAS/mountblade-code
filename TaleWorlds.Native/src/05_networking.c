@@ -824,21 +824,36 @@ uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int
 /**
  * @brief 处理网络协议栈数据
  * 
- * 处理网络协议栈中的数据，进行协议解析和数据处理操作
+ * 处理网络协议栈中的数据，进行协议解析和数据处理操作。该函数负责解析
+ * 网络协议栈的原始数据，提取有效信息，并进行相应的处理操作。
+ * 
+ * 功能说明：
+ * 1. 验证输入参数的有效性，包括协议栈缓冲区和上下文数据
+ * 2. 检查协议栈缓冲区是否包含有效数据
+ * 3. 验证网络上下文数据的完整性
+ * 4. 执行协议解析和数据处理操作
+ * 5. 返回处理结果状态码
+ * 
+ * 安全考虑：
+ * - 对输入参数进行严格验证，防止空指针和无效数据
+ * - 采用防御性编程，确保数据处理的稳定性
+ * - 返回详细的状态码，便于错误诊断和处理
  * 
  * @param NetworkProtocolStackBuffer 网络协议栈缓冲区指针，指向待处理的网络协议数据
  * @param NetworkContextData 网络上下文数据，包含网络连接的上下文信息
  * @return uint32_t 处理结果句柄，0表示处理成功，其他值表示处理失败的具体错误码
  * 
- * @retval 0 处理成功
- * @retval 0x1 网络协议栈缓冲区无效
+ * @retval 0 处理成功，协议栈数据已正确处理
+ * @retval 0x1 网络协议栈缓冲区无效或为空
  * @retval 0x2 网络上下文数据无效
- * @retval 0x3 协议解析失败
- * @retval 0x4 数据处理失败
+ * @retval 0x3 协议解析失败，数据格式不正确
+ * @retval 0x4 数据处理失败，内部处理错误
  * 
  * @note 此函数会处理网络协议栈的原始数据，调用者需要确保数据格式正确
  * @warning 如果数据格式不正确，可能会导致处理失败或系统异常
- * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity, HandleNetworkDataPacket
+ * 
+ * 原始实现：简化实现，只进行基本的参数验证和状态检查
  */
 uint32_t HandleNetworkProtocolStackData(int64_t *NetworkProtocolStackBuffer, int64_t NetworkContextData)
 {
