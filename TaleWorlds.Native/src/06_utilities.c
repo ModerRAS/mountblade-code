@@ -36504,11 +36504,11 @@ void ValidateContextStatus(void)
   int64_t *contextRegister;
   int64_t destinationRegister;
   char stackValidationFlag;
-  DataBuffer tempStackValue;
+  DataBuffer temporaryStackValue;
   uint bufferSize;
   
   exceptionContext = (int64_t *)*contextRegister;
-  tempStackValue = _bufferSize;
+  temporaryStackValue = _bufferSize;
   if (*exceptionContextPointer == 0) {
     operationResult = ValidationErrorCode;
   }
@@ -38038,17 +38038,17 @@ ValidationLabelB:
       }
       for (; (resourceValidationStatus = (int)systemStackDataBuffer, systemStackDataPointer <= ploopCounter &&
              (ploopCounter < systemStackDataPointer + (int64_t)resourceValidationStatus * 3)); ploopCounter = ploopCounter + 3) {
-        tempDataPointer = (DataBuffer *)0x0;
-        dataFlags = ValidateDataSecurityA1(operationBase + OperationBaseOffset48,&tempDataPointer);
+        validatedDataPointer = (DataBuffer *)0x0;
+        dataFlags = ValidateDataSecurityA1(operationBase + OperationBaseOffset48,&validatedDataPointer);
         validationOutcome = (uint64_t)dataFlags;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
         systemDataBuffer = ploopCounter[1];
-        *tempDataPointer = *ploopCounter;
-        tempDataPointer[1] = systemDataBuffer;
-        *(DataWord *)(tempDataPointer + 2) = *(DataWord *)(ploopCounter + 2);
-        *(float *)((int64_t)tempDataPointer + DataBufferOffset14) =
+        *validatedDataPointer = *ploopCounter;
+        validatedDataPointer[1] = systemDataBuffer;
+        *(DataWord *)(validatedDataPointer + 2) = *(DataWord *)(ploopCounter + 2);
+        *(float *)((int64_t)validatedDataPointer + DataBufferOffset14) =
              *(float *)((int64_t)ploopCounter + DataBufferOffset14) + *(float *)(ploopCounter + 2);
-        *(ByteFlag *)(tempDataPointer + 3) = 1;
+        *(ByteFlag *)(validatedDataPointer + 3) = 1;
       }
     }
     dataFlags = systemStackDataBuffer.lowWord;
@@ -38670,7 +38670,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   DataWord *validationDataPtr;
   float *floatDataPtr;
   DataBuffer *dataBufferPtr;
-  DataBuffer *tempDataPtr;
+  DataBuffer *temporaryDataBuffer;
   int64_t validationLoopCounter;
   int64_t stackFramePtr;
   int64_t systemContextData;
@@ -38682,10 +38682,10 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   bool validationComplete;
   bool securityValidationPassed;
   float calculationResultFloatValue;    // 计算结果浮点值
-  float temporaryFloatValueA;                  // 临时浮点值A
-  float temporaryFloatValueB;                  // 临时浮点值B
-  float temporaryFloatValueC;                  // 临时浮点值C
-  float temporaryFloatValueD;                  // 临时浮点值D
+  float tempFloatValueA;                         // 临时浮点值A
+  float tempFloatValueB;                         // 临时浮点值B  
+  float tempFloatValueC;                         // 临时浮点值C
+  float tempFloatValueD;                         // 临时浮点值D
   float processedResultFloatValue;        // 处理结果浮点值
   
   // 新增的语义化变量，用于替换原始的Ghidra生成变量名

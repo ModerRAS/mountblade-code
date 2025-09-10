@@ -201069,7 +201069,14 @@ void FUN_1807837e9(void)
 
 
 
-undefined * FUN_180783810(void)
+/**
+ * @brief 获取UI系统数据指针
+ * 
+ * 获取UI系统数据的指针，如果数据未初始化则进行初始化
+ * 
+ * @return void* UI系统数据指针
+ */
+void * GetUISystemDataPointer(void)
 
 {
   if (DAT_180c10880 == '\0') {
@@ -201082,8 +201089,16 @@ undefined * FUN_180783810(void)
 
 
 
- void FUN_180783823(UIHandle uiContext,UIHandle dataSource)
-void FUN_180783823(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 初始化UI系统数据内存
+ * 
+ * 初始化UI系统数据的内存区域，使用数据源进行内存设置
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ */
+void InitializeUISystemDataMemory(UIHandle uiContext,UIHandle dataSource)
+void InitializeUISystemDataMemory(UIHandle uiContext,UIHandle dataSource)
 
 {
                      WARNING: Subroutine does not return
@@ -201092,7 +201107,14 @@ void FUN_180783823(UIHandle uiContext,UIHandle dataSource)
 
 
 
-undefined * FUN_1807842e5(void)
+/**
+ * @brief 获取UI系统配置数据指针
+ * 
+ * 获取UI系统配置数据的指针
+ * 
+ * @return void* UI系统配置数据指针
+ */
+void * GetUISystemConfigDataPointer(void)
 
 {
   return &DAT_180c10890;
