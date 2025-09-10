@@ -105611,7 +105611,23 @@ LAB_180727edb:
 
 
 
-float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bufferSize)
+/**
+ * @brief UI上下文数据插值处理器
+ * 
+ * 该函数处理UI系统中的上下文数据插值计算，用于在UI动画和过渡效果中
+ * 计算中间值。支持多种数据类型的插值运算。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小指针
+ * @return float 插值计算结果
+ * 
+ * @note 原始函数名：FUN_180727db6
+ * @warning 插值计算需要考虑数值精度和溢出问题
+ * @see UIGlobalDataRegistry, UIContextDataPointer
+ */
+float ProcessUIContextDataInterpolation(int uiContext, ulonglong dataSource, uint targetBuffer, int *bufferSize)
 
 {
   longlong contextOffset;

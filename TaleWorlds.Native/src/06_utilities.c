@@ -2743,6 +2743,7 @@
 
 // 线程本地存储相关偏移量常量
 #define ThreadLocalStorageOffset17c 0x17c                     // 线程本地存储偏移量17c
+#define ThreadLocalStorageResetOffset30 0x30                  // 线程本地存储重置偏移量30
 
 // 异常状态数据相关偏移量常量
 #define ExceptionStatusDataOffset48 0x48                     // 异常状态数据偏移量48
@@ -133780,7 +133781,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_2a4 - 栈数据字AN
 // 功能：存储数据处理过程中的临时数据字
-#define DataProcessingTempDataAN uStack_2a4
+#define DataProcessingTemporaryDataAN uStack_2a4
 
 // 验证上下文缓冲区
 // 功能：存储验证过程中的上下文数据

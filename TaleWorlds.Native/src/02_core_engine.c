@@ -2309,7 +2309,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define CameraManagerStatusFlag CameraSystemManagerStatusFlag   // 相机管理器状态标志
 #define SystemNodeStatusFlag SystemComponentNodeStatusFlag           // 系统节点状态标志
 #define ValidationStatusFlag ValidationStatusFlag      // 验证状态标志
-#define ConfigStatusFlag ConfigStatusFlag             // 配置状态标志
+#define ConfigStatusFlag SystemConfigStatusFlag             // 配置状态标志
 #define DataStatusFlag DataStatusFlag                 // 数据状态标志
 #define StateStatusFlag StateStatusFlag               // 状态标志
 
