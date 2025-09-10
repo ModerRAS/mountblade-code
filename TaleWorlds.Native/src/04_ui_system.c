@@ -115844,61 +115844,76 @@ void FUN_180733b18(void)
 
 
 
- void FUN_180733ba0(longlong uiContext,longlong dataSource,short *targetBuffer,int bufferSize,int resultPointer)
-void FUN_180733ba0(longlong uiContext,longlong dataSource,short *targetBuffer,int bufferSize,int resultPointer)
-
+ /**
+ * @brief 处理UI组件数据与短整型缓冲区
+ * 
+ * 该函数负责处理UI组件数据与短整型缓冲区的交互操作，包括：
+ * - 数据源的索引和边界检查
+ * - 缓冲区数据的加权计算和处理
+ * - 循环迭代和数据处理
+ * - 结果的存储和内存清理
+ * 
+ * 该函数主要用于UI组件数据的批量处理和转换，确保数据在缓冲区中的正确性。
+ * 
+ * @param uiContext UI上下文指针，用于存储处理结果
+ * @param dataSource 数据源指针，包含原始数据
+ * @param targetBuffer 目标缓冲区指针，用于处理过程中的临时数据
+ * @param bufferSize 缓冲区大小，限制处理范围
+ * @param resultPointer 结果指针，指示处理起始位置
+ * 
+ * @note 原始函数名：FUN_180733ba0
+ */
+void ProcessUIComponentDataWithShortBuffer(longlong uiContext, longlong dataSource, short *targetBuffer, int bufferSize, int resultPointer)
 {
-  short *psVar1;
-  longlong componentIndex;
-  UIWord eventCodeType;
+  short *tempDataPointer;
+  longlong processingIndex;
+  UIWord eventCode;
   ulonglong processingStatus;
-  longlong eventDataIndex;
-  longlong contextDataHandle;
+  longlong dataIndex;
+  longlong remainingCount;
   ulonglong iterationCounter;
-  short *pContextSecondValue;
-  int localInt9;
-  short *psVar10;
+  short *contextDataPointer;
+  int calculationResult;
+  short *sourceDataPointer;
   
-  eventDataIndex = (longlong)resultPointer;
-  if (eventDataIndex < bufferSize) {
-    psVar10 = (short *)(dataSource + (eventDataIndex + -6) * 2);
-    contextDataHandle = bufferSize - eventDataIndex;
+  dataIndex = (longlong)resultPointer;
+  if (dataIndex < bufferSize) {
+    sourceDataPointer = (short *)(dataSource + (dataIndex + -6) * 2);
+    remainingCount = bufferSize - dataIndex;
     do {
       iterationCounter = 6;
-      localInt9 = (int)psVar10[4] * (int)targetBuffer[1] + (int)psVar10[3] * (int)targetBuffer[2] +
-              (int)psVar10[2] * (int)targetBuffer[3] + (int)targetBuffer[5] * (int)*psVar10 +
-              (int)psVar10[1] * (int)targetBuffer[4] + (int)*targetBuffer * (int)psVar10[5];
-      if (6 < eventDataIndex) {
-        pContextSecondValue = psVar10 + -1;
+      calculationResult = (int)sourceDataPointer[4] * (int)targetBuffer[1] + (int)sourceDataPointer[3] * (int)targetBuffer[2] +
+              (int)sourceDataPointer[2] * (int)targetBuffer[3] + (int)targetBuffer[5] * (int)*sourceDataPointer +
+              (int)sourceDataPointer[1] * (int)targetBuffer[4] + (int)*targetBuffer * (int)sourceDataPointer[5];
+      if (6 < dataIndex) {
+        contextDataPointer = sourceDataPointer + -1;
         do {
-          psVar1 = targetBuffer + iterationCounter;
-          processStatus = ~iterationCounter;
-          componentIndex = iterationCounter + 1;
+          tempDataPointer = targetBuffer + iterationCounter;
+          processingStatus = ~iterationCounter;
+          processingIndex = iterationCounter + 1;
           iterationCounter = iterationCounter + 2;
-          localInt9 = localInt9 + (int)*psVar1 * (int)*pContextSecondValue +
-                  (int)psVar10[processingStatus + 5] * (int)targetBuffer[componentIndex];
-          pContextSecondValue = pContextSecondValue + -2;
-        } while ((longlong)iterationCounter < eventDataIndex);
+          calculationResult = calculationResult + (int)*tempDataPointer * (int)*contextDataPointer +
+                  (int)sourceDataPointer[processingStatus + 5] * (int)targetBuffer[processingIndex];
+          contextDataPointer = contextDataPointer + -2;
+        } while ((longlong)iterationCounter < dataIndex);
       }
-      localInt9 = (psVar10[6] * 0x1000 - localInt9 >> 0xb) + 1 >> 1;
-      if (localInt9 < 0x8000) {
-        eventCode = (UIWord)localInt9;
-        if (localInt9 < -0x8000) {
+      calculationResult = (sourceDataPointer[6] * 0x1000 - calculationResult >> 0xb) + 1 >> 1;
+      if (calculationResult < 0x8000) {
+        eventCode = (UIWord)calculationResult;
+        if (calculationResult < -0x8000) {
           eventCode = 0x8000;
         }
       }
       else {
         eventCode = 0x7fff;
       }
-      *(UIWord *)((longlong)psVar10 + (uiContext - dataSource) + 0xc) = eventCodeType;
-      psVar10 = psVar10 + 1;
-      contextDataHandle = contextDataHandle + -1;
-    } while (contextDataHandle != 0);
+      *(UIWord *)((longlong)sourceDataPointer + (uiContext - dataSource) + 0xc) = eventCode;
+      sourceDataPointer = sourceDataPointer + 1;
+      remainingCount = remainingCount + -1;
+    } while (remainingCount != 0);
   }
-                     WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
-                     WARNING: Subroutine does not return
-                     WARNING: Treating indirect jump as call
-  memset(uiContext,0,eventDataIndex * 2);
+  
+  memset(uiContext, 0, dataIndex * 2);
   return;
 }
 

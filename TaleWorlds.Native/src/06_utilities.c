@@ -8456,20 +8456,66 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define ProcessMemoryCopyA0 FUN_1808935c0
 
-// 原始函数名：FUN_1802c24b0 - 数据缓冲区验证处理函数
-// 功能：处理数据缓冲区验证操作，确保数据完整性和安全性
+/**
+ * @brief 数据缓冲区验证处理函数
+ * 
+ * 处理数据缓冲区验证操作，确保数据完整性和安全性。
+ * 该函数负责检查数据缓冲区的边界、完整性和安全性，
+ * 防止缓冲区溢出和数据损坏。
+ * 
+ * @param bufferPointer 数据缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param validationType 验证类型
+ * @return 验证结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_1802c24b0
+ * @note 这是数据安全验证的重要函数
+ */
 #define ValidateDataBufferSecurity FUN_1802c24b0
 
-// 原始函数名：HandleSystemException - 异常处理函数
-// 功能：处理系统异常和清理操作
+/**
+ * @brief 系统异常处理函数
+ * 
+ * 处理系统异常和清理操作，确保系统在异常情况下能够正常恢复。
+ * 该函数负责捕获异常、分析异常原因并执行相应的恢复操作。
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文指针
+ * @return 处理结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180059ba0
+ * @note 这是系统异常处理的核心函数
+ */
 #define HandleSystemException FUN_180059ba0
 
-// 原始函数名：FUN_1800f8930 - 系统偏移计算函数
-// 功能：计算和验证系统偏移量
+/**
+ * @brief 系统偏移计算函数
+ * 
+ * 计算和验证系统偏移量，确保内存访问的正确性和安全性。
+ * 该函数负责计算内存地址的偏移量，并验证偏移量的有效性。
+ * 
+ * @param baseAddress 基地址
+ * @param offset 偏移量
+ * @param validationFlags 验证标志位
+ * @return 计算结果地址，失败返回NULL
+ * 
+ * @note 原始函数名：FUN_1800f8930
+ * @note 这是内存地址计算的重要函数
+ */
 #define CalculateSystemOffset FUN_1800f8930
 
-// 原始函数名：CheckSystemStatus - 系统状态检查函数
-// 功能：检查系统状态和标志位
+/**
+ * @brief 系统状态检查函数
+ * 
+ * 检查系统状态和标志位，监控系统的运行健康状况。
+ * 该函数负责检查系统的各种状态标志，确保系统正常运行。
+ * 
+ * @param statusCheckFlags 状态检查标志位
+ * @return 系统状态码，0表示正常，非0表示异常
+ * 
+ * @note 原始函数名：FUN_1807d3e20
+ * @note 这是系统状态监控的核心函数
+ */
 #define CheckSystemStatus CheckSystemStatusAndHealth
 
 // 系统命令执行函数 - 系统命令执行函数
@@ -8512,9 +8558,21 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define ProcessEventA0 FUN_180893e30
 
-// 原始函数名：FUN_180893e69 - 状态更新函数A0
-// 功能：更新系统状态
-// 注意：此函数在前面已经定义过
+/**
+ * @brief 状态更新函数A0
+ * 
+ * 更新系统状态，包括运行状态、错误状态和配置状态。
+ * 该函数负责管理系统状态的变更，确保状态的一致性和可靠性。
+ * 
+ * @param newState 新的状态值
+ * @param stateFlags 状态标志位
+ * @return 更新结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180893e69
+ * @note 这是系统状态管理的核心函数
+ * @note 注意：此函数在前面已经定义过
+ */
+#define UpdateSystemStatusA0 FUN_180893e69
 
 /**
  * @brief 配置加载函数A0
