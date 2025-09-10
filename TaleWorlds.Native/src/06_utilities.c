@@ -6088,40 +6088,44 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CleanupDataCacheResources FUN_18089ac64
 
 /**
- * @brief 重置数据缓存A0
+ * @brief 重置数据缓存状态
  * 
- * 该函数负责重置数据缓存，将缓存恢复到初始状态
+ * 该函数负责重置数据缓存，将缓存恢复到初始状态，
+ * 清除所有缓存数据并重新初始化缓存结构。
  * 
  * @note 原始函数名：FUN_18089ace4
  */
-#define ResetDataCacheA0 FUN_18089ace4
+#define ResetDataCacheState FUN_18089ace4
 
 /**
- * @brief 执行数据验证A1
+ * @brief 执行高级数据验证
  * 
- * 该函数负责执行数据的验证操作，确保数据的有效性
+ * 该函数负责执行数据的验证操作，确保数据的有效性和完整性，
+ * 包括格式检查、边界验证和逻辑一致性验证。
  * 
  * @note 原始函数名：FUN_180899d90
  */
-#define ExecuteDataValidationA1 FUN_180899d90
+#define ExecuteAdvancedDataValidation FUN_180899d90
 
 /**
- * @brief 处理二进制数据A0
+ * @brief 处理二进制数据流
  * 
- * 该函数负责处理二进制数据，包括数据的解析和验证
+ * 该函数负责处理二进制数据，包括数据的解析、验证和转换，
+ * 支持多种二进制格式的处理和数据结构操作。
  * 
  * @note 原始函数名：FUN_18089a8b4
  */
-#define ProcessBinaryDataA0 FUN_18089a8b4
+#define ProcessBinaryDataStream FUN_18089a8b4
 
 /**
- * @brief 执行高级数据验证A0
+ * @brief 执行数据完整性验证
  * 
- * 该函数负责执行高级数据验证，包括复杂的数据结构验证
+ * 该函数负责执行高级数据验证，包括复杂的数据结构验证、
+ * 数据完整性检查和业务逻辑验证。
  * 
  * @note 原始函数名：FUN_18089b460
  */
-#define ExecuteAdvancedDataValidationA0 FUN_18089b460
+#define ExecuteDataIntegrityValidation FUN_18089b460
 
 /**
  * @brief 清理数据资源A0
