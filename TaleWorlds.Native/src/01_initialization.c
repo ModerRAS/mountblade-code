@@ -20488,7 +20488,7 @@ void InitializeSystemThreadManager(void)
  * 
  * @return uint32_t 返回初始化状态码，成功返回0，失败返回非零值
  * 
- * @note 原始函数名：FUN_18006c070 - Ghidra逆向生成的函数名已语义化
+ * @note 系统初始化函数，已完成语义化美化
  */
 uint32_t FinalSystemInitialization(void)
 {
@@ -49916,7 +49916,7 @@ void ConfigureSystemProcessingBuffer(void* *SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源管理器指针，包含资源池和系统状态信息
  * 
- * @note 原始函数名：FUN_18006c070 - Ghidra逆向生成的函数名已语义化
+ * @note 系统资源处理函数，已完成语义化美化
  * @note 该函数处理大量的堆栈变量和内存管理操作
  * @note 资源处理包括哈希表操作、内存分配器管理和节点队列维护
  */
