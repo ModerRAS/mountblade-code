@@ -2853,7 +2853,12 @@
 #define ExceptionHandlerContextOffset1118 0x1118             // 异常处理上下文偏移量1118
 #define ExceptionHandlerContextOffset1120 0x1120             // 异常处理上下文偏移量1120
 #define ExceptionHandlerContextOffset11a0 0x11a0             // 异常处理上下文偏移量11a0
+#define ExceptionHandlerContextOffset1188 0x1188             // 异常处理上下文偏移量1188
+#define ExceptionHandlerContextOffset1190 0x1190             // 异常处理上下文偏移量1190
+#define ExceptionHandlerContextOffset11a0 0x11a0             // 异常处理上下文偏移量11a0
 #define ExceptionHandlerContextOffset11a8 0x11a8             // 异常处理上下文偏移量11a8
+#define ExceptionHandlerContextOffset11b0 0x11b0             // 异常处理上下文偏移量11b0
+#define ExceptionHandlerContextOffset11c0 0x11c0             // 异常处理上下文偏移量11c0
 #define ExceptionHandlerContextOffset1160 0x1160             // 异常处理上下文偏移量1160
 #define ExceptionHandlerContextOffset1170 0x1170             // 异常处理上下文偏移量1170
 #define ExceptionHandlerContextOffset11d0 0x11d0             // 异常处理上下文偏移量11d0
@@ -4595,8 +4600,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数会安全地释放所有分配的内存，并重置指针状态。
  * 
  * @return 操作状态，成功返回0，失败返回错误码
- * 
- /**
+ */
+
+/**
  * @brief 系统数据加密函数
  * 
  * 对系统数据进行加密处理，确保数据的安全性和机密性。
