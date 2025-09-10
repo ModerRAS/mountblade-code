@@ -56879,7 +56879,7 @@ void HandleExceptionWithFlagsQuaternary(DataBuffer operationBase,int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180903d90
  */
-void HandleExceptionWithFlagsE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsQuinary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
