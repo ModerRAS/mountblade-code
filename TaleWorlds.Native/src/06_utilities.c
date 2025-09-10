@@ -18133,6 +18133,18 @@ DataBuffer ConditionalResourceRelease(char releaseFlag)
  * @warning 不要删除此函数，它可能被系统其他部分引用
  * @note 原始函数名：SystemPrimaryNoOperation
  */
+/**
+ * @brief 执行系统主要无操作函数
+ * 
+ * 这是一个占位符函数，不执行任何实际操作。在系统初始化和维护期间，
+ * 该函数作为默认的操作处理器，确保系统在不需要执行具体操作时
+ * 能够保持稳定运行。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数主要用于系统框架的完整性，确保所有函数指针都有有效的目标
+ * @note 原始函数名：PerformSystemPrimaryNoOperation
+ */
 void PerformSystemPrimaryNoOperation(void)
 
 {
@@ -33002,6 +33014,23 @@ DataBuffer ValidateAndExecuteOperations(int64_t *contextHandle,DataWord *dataBuf
 
 
 
+/**
+ * @brief 多次尝试处理数据操作
+ * 
+ * 该函数通过多次尝试来处理数据操作，确保数据的完整性和正确性。
+ * 它会按照不同的偏移量和数据大小进行多次操作，直到所有操作都成功。
+ * 这种多次尝试机制可以提高数据处理的可靠性和容错性。
+ * 
+ * @param contextHandle 上下文句柄指针，包含数据操作的上下文信息
+ * @param dataOffset 数据偏移量，指定要处理的数据在内存中的位置
+ * 
+ * @return DataBuffer 操作结果状态码：
+ *         - 成功时返回0
+ *         - 失败时返回相应的错误代码
+ * 
+ * @note 该函数采用渐进式处理策略，依次处理不同大小的数据块
+ * @note 原始函数名：ProcessDataWithMultipleAttempts
+ */
 DataBuffer ProcessDataWithMultipleAttempts(DataBuffer *contextHandle,int64_t dataOffset)
 
 {
