@@ -297,6 +297,29 @@
 #define ValidationStatus SystemValidationStatus              // 验证状态
 #define BufferStatus SystemBufferStatus                      // 缓冲区状态
 #define SearchStartIndex SystemSearchStartIndex              // 搜索起始索引
+
+// 线程本地存储偏移量常量
+#define ThreadLocalStorageStatusOffset2290 0x2290             // 线程本地存储状态偏移量2290
+#define ThreadLocalStorageStatusOffset22d8 0x22d8             // 线程本地存储状态偏移量22d8
+
+// 系统清理上下文偏移量常量
+#define CleanupContextSecondaryOffset42687 0x42687           // 清理上下文辅助偏移量42687
+#define CleanupContextSecondaryOffset4267c 0x4267c           // 清理上下文辅助偏移量4267c
+#define CleanupContextSecondaryOffset40070 0x40070           // 清理上下文辅助偏移量40070
+
+// 系统内存上下文偏移量常量
+#define SystemMemoryContextFunctionPointerOffset22f8 0x22f8  // 系统内存上下文函数指针偏移量22f8
+#define SystemMemoryContextDataTemplateOffset22a0 0x22a0    // 系统内存上下文数据模板偏移量22a0
+
+// 系统句柄偏移量常量
+#define SystemHandleUnicodeIncrementOffset10 0x10            // 系统句柄Unicode增量偏移量10
+
+// 系统资源块大小常量
+#define SystemResourceBlockSize 0x100                        // 系统资源块大小
+
+// 系统上下文验证偏移量常量
+#define SystemContextValidationOffset178 0x178               // 系统上下文验证偏移量178
+#define SystemContextValidationOffset18c 0x18c               // 系统上下文验证偏移量18c
 #define MemoryAddressMaskPointer SystemMemoryAddressMaskPointer  // 内存地址掩码指针
 #define SystemArrayBuffer368 SystemProcessingBuffer368       // 系统数组缓冲区368
 
