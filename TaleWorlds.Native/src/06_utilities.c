@@ -4806,6 +4806,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 // 系统数据加密函数
 #define EncryptSystemData EncryptSystemData
+#define FUN_18064e900 EncryptSystemData
 #define ReleaseSystemDataPointerAndMemory ReleaseSystemDataPointerA0
 
 /**
@@ -4930,6 +4931,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180080060
  */
+#define FUN_180080060 TerminateSystemProcessesAndResources
 #define TerminateSystemProcesses TerminateSystemProcessesAndResources
 
 /**
@@ -28380,7 +28382,11 @@ SecurityValidationLabel:
         EncryptionPointer = &DataEncryptionTable;
         EncryptionData = MergeHighLowWords(EncryptionData.HighPart, operationFlagA);
         arrayIndex = ValidateDataIntegrityA0(operationBase,&EncryptionPointer);
-        if (arrayIndex != 0) GOTO_SecurityCheckFailed;
+        if (arrayIndex != 0) {
+            // 数组索引验证失败，执行安全检查
+            ExecuteSystemSecurityCheck;
+            return;
+        }
         allocatedMemoryBlock = allocatedMemoryBlock + 1;
       } while (allocatedMemoryBlock < operationStatus);
     }
