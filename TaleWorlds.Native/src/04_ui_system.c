@@ -109316,25 +109316,25 @@ void FUN_18072c44d(void)
       pUILocalIntPointer = pUILocalIntPointer + 1;
       *(UIWord *)(uiBasePointer + 0xae0 + (longlong)uiValidationResult * 2) = 1;
       uiMaxProcessingCount = uiMaxProcessingCount - 1;
-    } while (maxProcessingCount != 0);
+    } while (uiMaxProcessingCount != 0);
   }
-  sVar9 = *(short *)(BasePointer + 0xc04);
-  allocatedMemory0 = 0x83;
-  contextOffset = 0x83;
-  psVar5 = (short *)(BasePointer + 0xc04);
+  uiShortValue9 = *(short *)(uiBasePointer + 0xc04);
+  uiAllocatedMemory0 = 0x83;
+  uiContextOffset = 0x83;
+  pUIShortPointer5 = (short *)(uiBasePointer + 0xc04);
   do {
-    psVar7 = psVar5 + -1;
-    sVar1 = psVar5[-2] + sVar9;
-    sVar9 = *psVar7;
-    *psVar5 = sVar1 + *psVar7;
-    contextOffset = contextOffset + -1;
-    psVar5 = psVar7;
-  } while (contextOffset != 0);
-  ptrLocalInt4 = (int *)(BasePointer + -0x10);
+    pUIShortPointer7 = pUIShortPointer5 + -1;
+    uiShortValue1 = pUIShortPointer5[-2] + uiShortValue9;
+    uiShortValue9 = *pUIShortPointer7;
+    *pUIShortPointer5 = uiShortValue1 + *pUIShortPointer7;
+    uiContextOffset = uiContextOffset + -1;
+    pUIShortPointer5 = pUIShortPointer7;
+  } while (uiContextOffset != 0);
+  pUILocalIntPointer = (int *)(uiBasePointer + -0x10);
   uiCompareResult = 0x10;
   uiValidationResult = 0x10;
-  psVar5 = (short *)(BasePointer + 0xb02);
-  iStack0000000000000040 = eventHandle;
+  pUIShortPointer5 = (short *)(uiBasePointer + 0xb02);
+  uiStackParameter40 = uiEventHandle;
   do {
     if ((short)eventHandle < *psVar5) {
       iStack0000000000000040 = iStack0000000000000040 + 1;
