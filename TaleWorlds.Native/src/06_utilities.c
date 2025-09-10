@@ -4776,6 +4776,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 // 系统数据处理和验证函数
 #define ProcessAndValidateSystemData ProcessAndValidateSystemData
+#define FUN_18004b790 ProcessAndValidateSystemData
 #define ValidateSystemDataBufferAndCheckIntegrity ValidateSystemDataBufferA0
 
 /**
@@ -16466,6 +16467,7 @@ void ProcessResourceCleanup(void)
  * @since 系统版本 1.0
  * @security_level 高
  */
+
 /**
  * @brief 执行系统关闭操作
  * 
