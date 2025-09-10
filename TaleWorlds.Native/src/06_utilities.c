@@ -5261,7 +5261,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180080870
  */
-#define FUN_180080870 ResetSystemStateAndConfiguration
 #define ResetSystemState ResetSystemStateAndConfiguration
 
 /**
@@ -125628,7 +125627,31 @@ void CleanupExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer,DataB
 
 
 
-void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理上下文重置器（偏移量0x1f70-0x1f18）
+ * 
+ * 该函数负责重置异常处理上下文中的关键状态字段，确保异常处理系统
+ * 在处理完成后能够恢复到正确的初始状态。它清理多个异常处理相关的
+ * 状态字段并设置默认的异常处理器。
+ * 
+ * 处理的字段包括：
+ * - 异常处理器指针（偏移量0x1f70）
+ * - 异常状态标志（偏移量0x1f20）
+ * - 异常数据字段（偏移量0x1f50）
+ * - 辅助异常处理器（偏移量0x1f38）
+ * - 次级异常处理器（偏移量0x1f20）
+ * - 次级数据字段（偏移量0x1f30）
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给异常处理器）
+ * 
+ * @note 原始函数名：Unwind_180911620
+ * @warning 此函数在异常处理关键路径上执行，必须确保原子性
+ * @see ResetExceptionContextAtOffset1C60, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
+ */
+void ResetExceptionContextAtOffset1F70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
