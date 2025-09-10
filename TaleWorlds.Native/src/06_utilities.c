@@ -6187,13 +6187,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ManageDataBufferPool FUN_18089d484
 
 /**
- * @brief 验证数据完整性A1
+ * @brief 验证数据一致性
  * 
- * 该函数负责验证数据的完整性，确保数据没有被损坏或篡改
+ * 该函数负责验证数据的完整性和一致性，确保数据没有被损坏或篡改，
+ * 包括校验和验证、签名验证和一致性检查。
  * 
  * @note 原始函数名：FUN_18089d490
  */
-#define ValidateDataIntegrityA1 FUN_18089d490
+#define VerifyDataConsistency FUN_18089d490
 
 /**
  * @brief 执行系统检查A1
