@@ -109336,20 +109336,20 @@ void FUN_18072c44d(void)
   pUIShortPointer5 = (short *)(uiBasePointer + 0xb02);
   uiStackParameter40 = uiEventHandle;
   do {
-    if ((short)eventHandle < *psVar5) {
-      iStack0000000000000040 = iStack0000000000000040 + 1;
-      *ptrLocalInt4 = uiValidationResult;
-      ptrLocalInt4 = ptrLocalInt4 + 1;
+    if ((short)uiEventHandle < *pUIShortPointer5) {
+      uiStackParameter40 = uiStackParameter40 + 1;
+      *pUILocalIntPointer = uiValidationResult;
+      pUILocalIntPointer = pUILocalIntPointer + 1;
     }
     uiValidationResult = uiValidationResult + 1;
-    psVar5 = psVar5 + 1;
+    pUIShortPointer5 = pUIShortPointer5 + 1;
   } while (uiValidationResult < 0x90);
-  sVar9 = *(short *)(BasePointer + 0xc00);
-  psVar5 = (short *)(BasePointer + 0xc00);
+  uiShortValue9 = *(short *)(uiBasePointer + 0xc00);
+  pUIShortPointer5 = (short *)(uiBasePointer + 0xc00);
   do {
-    psVar7 = psVar5 + -1;
-    sVar1 = psVar5[1] + *psVar7 + sVar9;
-    sVar9 = *psVar7;
+    pUIShortPointer7 = pUIShortPointer5 + -1;
+    uiShortValue1 = pUIShortPointer5[1] + *pUIShortPointer7 + uiShortValue9;
+    uiShortValue9 = *pUIShortPointer7;
     psVar5[2] = psVar5[2] + sVar1;
     allocatedMemory0 = allocatedMemory0 + -1;
     psVar5 = psVar7;
