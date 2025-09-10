@@ -248,6 +248,12 @@
 #define MemoryRegionDataMask 0x7fff                         // 内存区域数据掩码
 #define ValidationStatusMask 0xffff7fff                     // 验证状态掩码
 
+// 数组索引常量
+#define PrimarySystemContextIndex 0                          // 主系统上下文数组索引
+#define PrimaryComponentValidationIndex 0                     // 主组件验证数组索引
+#define PrimaryLocalResourceBufferIndex 0                    // 主本地资源缓冲区索引
+#define PrimaryMemoryRegionBufferIndex 0                     // 主内存区域缓冲区索引
+
 // 扩展异常处理器偏移量常量
 #define ExtendedExceptionHandlerSlotOffset 0xd8              // 扩展异常处理器槽位偏移量
 #define ExtendedExceptionHandlerTempSlotOffset 0x110          // 扩展异常处理器临时槽位偏移量
@@ -15850,7 +15856,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), systemContextArray);
   
   // 验证操作结果并处理数据
-  if ((OperationStatus == SystemSuccessStatus) && (*(int64_t *)(systemContextArray[0] + systemContextOffset) != 0)) {
+  if ((OperationStatus == SystemSuccessStatus) && (*(int64_t *)(systemContextArray[PrimarySystemContextIndex] + systemContextOffset) != 0)) {
     // 初始化数据处理缓冲区和标志
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedResourceCount = 0;
