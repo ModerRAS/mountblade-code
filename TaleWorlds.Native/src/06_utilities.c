@@ -34976,14 +34976,14 @@ uint64_t ProcessUtilityDataValidation(void)
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa4);
+  validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextValidationOffsetA4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
   if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
     return ResourceInvalidErrorCode;
   }
-  validationStatus = OperateDataO0(*registerContext,systemContext + 0xb0,4);
+  validationStatus = OperateDataO0(*registerContext,systemContext + SystemContextValidationOffsetB0,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
