@@ -104382,7 +104382,7 @@ void ProcessUIRenderData(longlong uiContext,longlong dataSource,UIHandle targetB
     }
     eventProcessingCounter = ProcessUIEventUpdate(eventProcessingCounter,&stack0x00000840,&stack0x00000240,baseValue0);
     ProcessUIDataTransfer(eventProcessingCounter,dataSource + 0x10,&stack0x00000840,componentData + 0x1190);
-    FUN_18072ec50(dataSource + 0x2c8,&stack0x00000240,dataSource + 0x10,dataSource,
+    ProcessUIComponentUpdate(dataSource + 0x2c8,&stack0x00000240,dataSource + 0x10,dataSource,
                   CONCAT44(result1,*(UIDword *)(componentData + 0x11e8)));
     *(UIDword *)(componentData + 0x1190) = stackParam00000840;
     *(UIDword *)(componentData + 0x1194) = stackParam00000844;
