@@ -237713,40 +237713,67 @@ uint64_t * ProcessContextHandle(long long ContextHandle)
 
 
 
-uint64_t * FUN_1801951e0(uint64_t ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 系统数据节点初始化函数
+ * 
+ * 该函数负责初始化系统数据节点，包括：
+ * - 设置字符代码指针为系统数据节点模板
+ * - 初始化UTF-16字符为默认值
+ * - 执行系统初始化操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return uint64_t* 返回操作缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_1801951e0
+ */
+uint64_t * InitializeSystemDataNode(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
-  long long *ContextHandle;
+  long long *DataNodePointer;
   
-  ContextHandle = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0,0xfffffffffffffffe);
-  *ContextHandle = (long long)&DataNodeTemplateA;
-  *ContextHandle = (long long)&DataNodeTemplateB;
-  *(uint32_t *)(ContextHandle + 1) = 0;
-  *ContextHandle = (long long)&SystemDataNodeTemplateSecondary;
-  ContextHandle[2] = 0;
-  *(uint32_t *)(ContextHandle + 3) = 0;
-  ContextHandle[4] = 0;
-  *ContextHandle = (long long)&SystemDataNodeTemplateTertiary;
-  ContextHandle[0xd] = 0;
-  ContextHandle[5] = 0x3f800000;
-  ContextHandle[6] = 0;
-  ContextHandle[7] = 0x3f80000000000000;
-  ContextHandle[8] = 0;
-  *(uint32_t *)(ContextHandle + 9) = 0;
-  *(uint32_t *)((long long)ContextHandle + 0x4c) = 0;
-  *(uint32_t *)(ContextHandle + 10) = 0x3f800000;
-  *(uint32_t *)((long long)ContextHandle + 0x54) = 0;
-  *(uint32_t *)(ContextHandle + 0xb) = 0;
-  *(uint32_t *)((long long)ContextHandle + 0x5c) = 0;
-  *(uint32_t *)(ContextHandle + 0xc) = 0;
-  *(uint32_t *)((long long)ContextHandle + 100) = 0x3f800000;
-  *ContextHandleSize = ContextHandle;
-  (**(code **)(*ContextHandle + 0x28))();
+  DataNodePointer = (long long *)MemoryAllocate(MemoryPoolManager, 0x70, 8, 3, 0, 0xfffffffffffffffe);
+  *DataNodePointer = (long long)&DataNodeTemplateA;
+  *DataNodePointer = (long long)&DataNodeTemplateB;
+  *(uint32_t *)(DataNodePointer + 1) = 0;
+  *DataNodePointer = (long long)&SystemDataNodeTemplateSecondary;
+  DataNodePointer[2] = 0;
+  *(uint32_t *)(DataNodePointer + 3) = 0;
+  DataNodePointer[4] = 0;
+  *DataNodePointer = (long long)&SystemDataNodeTemplateTertiary;
+  DataNodePointer[0xd] = 0;
+  DataNodePointer[5] = 0x3f800000;
+  DataNodePointer[6] = 0;
+  DataNodePointer[7] = 0x3f80000000000000;
+  DataNodePointer[8] = 0;
+  *(uint32_t *)(DataNodePointer + 9) = 0;
+  *(uint32_t *)((long long)DataNodePointer + 0x4c) = 0;
+  *(uint32_t *)(DataNodePointer + 10) = 0x3f800000;
+  *(uint32_t *)((long long)DataNodePointer + 0x54) = 0;
+  *(uint32_t *)(DataNodePointer + 0xb) = 0;
+  *(uint32_t *)((long long)DataNodePointer + 0x5c) = 0;
+  *(uint32_t *)(DataNodePointer + 0xc) = 0;
+  *(uint32_t *)((long long)DataNodePointer + 100) = 0x3f800000;
+  *ContextHandleSize = DataNodePointer;
+  (**(code **)(*DataNodePointer + 0x28))();
   return OperationBufferSize;
 }
 
 
 
-uint64_t * FUN_1801952b0(uint64_t ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 重置系统数据节点函数
+ * 
+ * 该函数负责重置系统数据节点，包括：
+ * - 清零上下文句柄大小
+ * - 重置操作缓冲区
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return uint64_t* 返回重置后的操作缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_1801952b0
+ */
+uint64_t * ResetSystemDataNode(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
   *ContextHandleSize = 0;
   OperationBufferSize[1] = 0;
