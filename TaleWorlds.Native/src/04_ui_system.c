@@ -119516,8 +119516,7 @@ void FUN_180736a70(uint *uiContext,uint *dataSource,int targetBuffer,int bufferS
 
 
 
- void FUN_180736b7a(void)
-void FUN_180736b7a(void)
+ void ReleaseUIResources(void)
 
 {
   uint result;
