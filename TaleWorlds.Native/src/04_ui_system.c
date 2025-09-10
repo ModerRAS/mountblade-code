@@ -114137,29 +114137,29 @@ LAB_180730534:
       *(int *)(param_6 + (longlong)*(int *)(uiBufferData + 0x10ec) * 4) = processingResult6 * 2;
       *(int *)(uiBufferData + 0x10f0) = *(int *)(uiBufferData + 0x10f0) + 1;
       *(int *)(uiBufferData + 0x10ec) = *(int *)(uiBufferData + 0x10ec) + 1;
-      localChar5 = *pcStackX_20;
-      pcStackX_20 = pcStackX_20 + 1;
-      *(int *)(uiBufferData + 0x10f4) = *(int *)(uiBufferData + 0x10f4) + (int)localChar5;
-      stackLong78 = stackLong78 + -1;
-      ProcessingResult2 = *(int *)(uiBufferData + 0x10f4);
-    } while (stackLong78 != 0);
+      localCharFlag = *stackParameter20;
+      stackParameter20 = stackParameter20 + 1;
+      *(int *)(uiBufferData + 0x10f4) = *(int *)(uiBufferData + 0x10f4) + (int)localCharFlag;
+      stackParameter78 = stackParameter78 + -1;
+      calculationResult2 = *(int *)(uiBufferData + 0x10f4);
+    } while (stackParameter78 != 0);
   }
-  allocatedMemory4 = (longlong)uiContext7;
-  bufferPtr = (UIHandle *)(uiContext + 0xf00 + allocatedMemory4 * 4);
-  maxProcessingCount = bufferPtr[1];
-  *(UIHandle *)(uiContext + 0xf00) = *bufferPtr;
+  memoryAllocation4 = (longlong)uiContext7;
+  bufferDataPtr = (UIHandle *)(uiContext + 0xf00 + memoryAllocation4 * 4);
+  maxProcessingCount = bufferDataPtr[1];
+  *(UIHandle *)(uiContext + 0xf00) = *bufferDataPtr;
   *(UIHandle *)(uiContext + 0xf08) = maxProcessingCount;
-  bufferPtr = (UIHandle *)(uiContext + 0xf10 + allocatedMemory4 * 4);
-  maxProcessingCount = bufferPtr[1];
-  *(UIHandle *)(uiContext + 0xf10) = *bufferPtr;
+  bufferDataPtr = (UIHandle *)(uiContext + 0xf10 + memoryAllocation4 * 4);
+  maxProcessingCount = bufferDataPtr[1];
+  *(UIHandle *)(uiContext + 0xf10) = *bufferDataPtr;
   *(UIHandle *)(uiContext + 0xf18) = maxProcessingCount;
-  bufferPtr = (UIHandle *)(uiContext + 0xf20 + allocatedMemory4 * 4);
-  maxProcessingCount = bufferPtr[1];
-  *(UIHandle *)(uiContext + 0xf20) = *bufferPtr;
+  bufferDataPtr = (UIHandle *)(uiContext + 0xf20 + memoryAllocation4 * 4);
+  maxProcessingCount = bufferDataPtr[1];
+  *(UIHandle *)(uiContext + 0xf20) = *bufferDataPtr;
   *(UIHandle *)(uiContext + 0xf28) = maxProcessingCount;
-  bufferPtr = (UIHandle *)(uiContext + 0xf30 + allocatedMemory4 * 4);
-  maxProcessingCount = bufferPtr[1];
-  *(UIHandle *)(uiContext + 0xf30) = *bufferPtr;
+  bufferDataPtr = (UIHandle *)(uiContext + 0xf30 + memoryAllocation4 * 4);
+  maxProcessingCount = bufferDataPtr[1];
+  *(UIHandle *)(uiContext + 0xf30) = *bufferDataPtr;
   *(UIHandle *)(uiContext + 0xf38) = maxProcessingCount;
   return;
 }
@@ -114167,54 +114167,69 @@ LAB_180730534:
 
 
 
- void FUN_1807300e4(int uiContext,int dataSource,longlong targetBuffer,int *bufferSize)
-void FUN_1807300e4(int uiContext,int dataSource,longlong targetBuffer,int *bufferSize)
+ /**
+ * @brief 处理UI事件缓冲区传输
+ * 
+ * 该函数负责处理UI事件缓冲区的数据传输，包括：
+ * - 事件数据传输和处理
+ * - 缓冲区管理
+ * - 数据验证和转换
+ * - 状态更新
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_1807300e4
+ */
+void ProcessUIEventBufferTransfer(int uiContext,int dataSource,longlong targetBuffer,int *bufferSize)
 
 {
-  int *pprocessingResult;
-  int *puiValidationResult;
-  short *pContextFirstValue;
-  UIHandle *bufferPtr;
-  char localChar5;
+  int *processingResultPtr;
+  int *validationResultPtr;
+  short *contextFirstValuePtr;
+  UIHandle *bufferDataPtr;
+  char localCharFlag;
   UIHandle maxProcessingCount;
-  short in_AX;
+  short registerAX;
   UIWord iterationCounter;
-  int localInt8;
-  longlong CharacterDataOffset;
+  int localIntValue;
+  longlong characterDataOffset;
   int processedCount;
-  int ProcessingResult1;
-  int ProcessingResult2;
+  int calculationResult1;
+  int calculationResult2;
   int unmodifiedEBP;
-  int ProcessingResult3;
-  short sVar14;
-  int ProcessingResult5;
-  longlong allocatedMemory6;
+  int calculationResult3;
+  short shortValue14;
+  int calculationResult5;
+  longlong memoryAllocation6;
   longlong register10;
-  short sVar17;
+  short shortValue17;
   int processingResult8;
-  longlong RegisterPointer;
+  longlong registerPointer;
   longlong preservedRegister12;
   int preservedRegister13D;
-  int processingResult9;
+  int validationResult9;
   int *preservedRegister15;
-  int *piStackX_8;
-  longlong lStackX_10;
-  int *piStackX_18;
-  int stackParam00000098;
+  int *stackParameter8;
+  longlong stackParameter10;
+  int *stackParameter18;
+  int stackParameter98;
   int *maxAllocations;
-  char *stackParam000000a8;
-  UIWord *stackParam000000b0;
-  longlong stackParam000000b8;
+  char *stackParameterA8;
+  UIWord *stackParameterB0;
+  longlong stackParameterB8;
   short *maxIterations;
-  short *stackParam000000c8;
-  short *stackParam000000d0;
-  int stackParam000000d8;
-  int stackParam000000e0;
-  short stackParam000000e8;
-  int stackParam00000100;
-  int stackParam00000108;
-  int stackParam00000110;
-  int stackParam00000120;
+  short *stackParameterC8;
+  short *stackParameterD0;
+  int stackParameterD8;
+  int stackParameterE0;
+  short stackParameterE8;
+  int stackParameter100;
+  int stackParameter108;
+  int stackParameter110;
+  int stackParameter120;
   
   lStackX_10 = targetBuffer;
   do {
