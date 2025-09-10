@@ -112188,34 +112188,51 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
 
 
 
- void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDword bufferSize)
-void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDword bufferSize)
+ /**
+ * @brief UI数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，主要功能包括：
+ * - 管理UI数据缓冲区的内存分配和释放
+ * - 处理UI数据的转换和格式化
+ * - 执行UI渲染操作和数据传输
+ * - 管理UI上下文和事件处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18072e750
+ */
+void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer,UIDword bufferSize)
 
 {
   int processingResult;
-  double dVar2;
-  int uiCompareResult;
-  longlong TargetHandle;
-  longlong RegisterPointer;
-  int sourceDataInt;
+  double tempDoubleValue;
+  int uiComparisonResult;
+  longlong targetHandle;
+  longlong registerPointer;
+  int sourceDataValue;
   UIHandle eventHandle;
   UIHandle preservedRegister15;
-  float TransformCoefficient4;
-  float LocalFloatValue6;
-  double dVar7;
-  float TemporaryFloatValue;
+  float transformCoefficient;
+  float localFloatValue6;
+  double tempDoubleValue7;
+  float temporaryFloatValue;
   UIDword preservedXMM6;
   UIDword unmodifiedXMM6_Db;
   UIDword unmodifiedXMM6_Dc;
   UIDword unmodifiedXMM6_Dd;
   UIDword unmodifiedXMM8_Da;
-  float LocalFloatValue9;
+  float localFloatValue9;
   UIDword unmodifiedXMM8_Db;
   UIDword unmodifiedXMM8_Dc;
   UIDword unmodifiedXMM8_Dd;
   UIDword dataPointer;
-  int iStack0000000000000028;
-  ulonglong stackParam000006d0;
+  int stackParameter28;
+  ulonglong stackParameter6d0;
   
   *(UIHandle *)(RegisterPointer + -0x38) = eventHandle;
   sourceDataInt = *(int *)(uiBufferData + 0x11e8);
