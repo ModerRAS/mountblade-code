@@ -123589,22 +123589,40 @@ CleanupAndRender:
 
 
 
- void FUN_1807396c5(void)
-
+ /**
+ * @brief 处理UI资源释放操作
+ * 
+ * 该函数负责处理UI系统中的资源释放操作，包括：
+ * - 验证和处理UI缓冲区数据
+ * - 执行多轮数据验证和比较操作
+ * - 清理和释放UI资源
+ * - 执行最终的上下文数据操作
+ * 
+ * 该函数确保UI资源被正确释放，避免内存泄漏。
+ * 
+ * @note 原始函数名：FUN_1807396c5
+ */
+void HandleUIResourceRelease(void)
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextOperationId;
   
-  processingResult = FUN_18074bac0(&stack0x00000040,0x100);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  // 第一轮数据处理和验证
+  processingResult = ValidateUIDataChunk(&UIProcessingBuffer40, 0x100);
+  uiValidationResult = ValidateUIBufferData(&UIProcessingBuffer40 + processingResult, 0x100 - processingResult, &UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bac0(&stack0x00000040 + processingResult,0x100 - processingResult);
+  
+  // 第二轮数据处理和验证
+  uiValidationResult = ValidateUIDataChunk(&UIProcessingBuffer40 + processingResult, 0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074bac0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
-                     WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  
+  // 第三轮数据处理和验证
+  uiValidationResult = ValidateUIBufferData(&UIProcessingBuffer40 + processingResult, 0x100 - processingResult, &UIBufferControlData);
+  
+  // 最终数据处理和资源释放
+  ValidateUIDataChunk(&UIProcessingBuffer40 + (processingResult + uiValidationResult), 0x100 - (processingResult + uiValidationResult));
+  ExecuteUIContextDataOperation(contextOperationId, 1);
 }
 
 
