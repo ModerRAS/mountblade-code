@@ -124030,14 +124030,25 @@ void CleanupUIResources(void)
 
 
  void FUN_180739b61(void)
-void FUN_180739b61(void)
+/**
+ * @brief 释放UI内存资源并执行渲染任务
+ * 
+ * 该函数用于释放UI系统中的内存资源，并执行相关的渲染任务。
+ * 这是一个清理函数，确保UI系统资源的正确释放。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180739b61
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 
 {
-  ulonglong stackParam00000140;
+  ulonglong encryptedDataKey;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)&SystemDataBuffer);
 }
 
 
@@ -124046,40 +124057,55 @@ void FUN_180739b61(void)
 
 
  void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_180739b90(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
+/**
+ * @brief 处理UI数据与Long缓冲区
+ * 
+ * 该函数处理UI数据与Long缓冲区的交互，包括数据验证、复制和内存管理。
+ * 它支持加密数据处理，并在完成时执行渲染任务。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180739b90
+ * @note 该函数不返回，执行完毕后会跳转到渲染任务
+ */
+void ProcessUIDataWithLongBuffer(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong resourceHandle;
+  UIHandle processedContext;
+  UIByte dataTransferBuffer [256];
+  ulonglong encryptedDataKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  encryptedDataKey = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
+  resourceHandle = 0;
+  processingResult = ProcessUIContextData(uiContext,&processedContext,&resourceHandle);
   if (processingResult == 0) {
-    processingResult = FUN_180746390(stackUInt140,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180739c7d;
+    processingResult = ProcessUIDataWithLongValidation(processedContext,dataSource,targetBuffer);
+    if (processingResult == 0) goto CleanupUIDataResources;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b800(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataWithEncryption(dataTransferBuffer,0x100,dataSource);
+    uiCompareResult = CompareUIDataBuffers(dataTransferBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    CopyUIDataBuffer(dataTransferBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataBufferPointer = dataTransferBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextMemoryAllocator);
   }
-FUN_180739c7d:
-  if (stackLong148 != 0) {
+CleanupUIDataResources:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
