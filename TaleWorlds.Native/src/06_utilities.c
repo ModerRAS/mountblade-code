@@ -10535,16 +10535,16 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionDataTable2Address 0x180a21690
 
 // C++标准库函数宏定义
-// 错误处理函数
-// 功能：抛出C标准错误并处理错误码
+// 错误处理函数 - 抛出C标准错误并处理错误码
+// 用于在系统遇到严重错误时抛出异常并进行错误处理
 #define ThrowCErrorAndHandleCode __Throw_C_error_std__YAXH_Z
 
-// 异常状态检查函数
-// 功能：检查当前是否有未捕获的异常
+// 异常状态检查函数 - 检查当前是否有未捕获的异常
+// 用于异常处理系统中检测是否有未处理的异常状态
 #define CheckUncaughtException _uncaught_exception_std__YA_NXZ
 
-// 流缓冲区锁定函数
-// 功能：锁定标准库流缓冲区以确保线程安全
+// 流缓冲区锁定函数 - 锁定标准库流缓冲区以确保线程安全
+// 用于多线程环境中保护标准库流操作的线程安全
 #define LockStreamBuffer __1_Lockit_std__QEAA_XZ
 
 // 基本流缓冲区析构函数
