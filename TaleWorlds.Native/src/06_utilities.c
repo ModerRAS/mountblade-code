@@ -130057,10 +130057,22 @@ void ProcessUtilitySystemEvent(DataBuffer eventTypeHandle,int64_t eventDataConte
 
 
 
-// 函数: void HandleUtilitySystemRequest(DataBuffer operationBase,int64_t dataBuffer)
-// 功能：处理工具系统请求，执行相应的系统操作
-// 参数：operationBase-请求类型，dataBuffer-请求数据上下文
-// 返回值：无
+/**
+ * @brief 处理工具系统请求
+ * 
+ * 该函数负责处理来自工具系统的各种请求，根据请求数据上下文中的
+ * 条件来执行相应的系统操作。它是请求-响应模式的核心处理函数。
+ * 
+ * @param operationBase 操作基础数据，包含请求的基本信息
+ * @param dataBuffer 请求数据上下文，包含请求相关的数据和参数
+ * @return void 无返回值
+ * 
+ * @note 该函数通过检查MemoryPointerOffset位置的字符来决定是否执行验证操作
+ * @note 如果条件满足，会调用ValidateDataWithParams进行多参数数据验证
+ * @note 该函数使用多个预定义的偏移量来访问数据缓冲区中的不同参数
+ * @warning 请求数据上下文必须正确初始化，否则可能导致系统异常
+ * @see ValidateDataWithParams, ProcessUtilitySystemEvent
+ */
 void HandleUtilitySystemRequest(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -130073,10 +130085,23 @@ void HandleUtilitySystemRequest(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 函数: DataWord InitializeDataStructureA0(DataBuffer operationBase,int64_t dataBuffer)
-// 功能：初始化数据结构并设置指针，包含验证逻辑
-// 参数：operationBase-数据值，dataBuffer-目标结构指针
-// 返回值：成功返回0，失败终止程序
+/**
+ * @brief 初始化数据结构A0
+ * 
+ * 该函数负责初始化数据结构并设置相关指针，包含完整性验证逻辑。
+ * 它会在数据结构中设置多个指针，并通过魔数验证确保数据的完整性。
+ * 
+ * @param operationBase 操作基础数据，包含初始化所需的数据值
+ * @param dataBuffer 目标结构指针，指向要初始化的数据结构
+ * @return DataWord 初始化结果：
+ *         - 0: 初始化成功
+ *         - 程序终止: 验证失败时调用terminate()
+ * 
+ * @note 该函数会在多个位置设置相同的操作基础数据
+ * @note 使用魔数(-0x1f928c9d)进行数据完整性验证
+ * @warning 如果验证失败，程序会调用terminate()终止执行
+ * @see terminate, ValidateDataWithParams
+ */
 DataWord InitializeDataStructureA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -130093,8 +130118,22 @@ DataWord InitializeDataStructureA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// 函数: void ConditionalExecuteFunctionA0(DataBuffer operationBase,int64_t dataBuffer)
-// 功能：根据条件执行特定的函数调用
+/**
+ * @brief 条件执行函数A0
+ * 
+ * 该函数根据特定条件执行相应的函数调用。它检查数据缓冲区中的
+ * 特定位置，如果条件满足，则调用数据验证函数进行多参数验证。
+ * 
+ * @param operationBase 操作基础数据，包含执行操作的基本信息
+ * @param dataBuffer 数据缓冲区指针，包含条件判断和验证所需的参数
+ * @return void 无返回值
+ * 
+ * @note 该函数通过检查MemoryPointerOffset位置的字符是否为'\0'来决定执行路径
+ * @note 如果条件满足，会调用ValidateDataWithParams进行四参数数据验证
+ * @note 该函数使用多个预定义的偏移量来访问数据缓冲区中的不同参数
+ * @warning 数据缓冲区必须正确初始化，否则可能导致未定义行为
+ * @see ValidateDataWithParams, ProcessUtilitySystemEvent
+ */
 void ConditionalExecuteFunctionA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
