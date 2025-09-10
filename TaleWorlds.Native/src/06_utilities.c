@@ -7373,7 +7373,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892bd0
  */
-#define ProcessComplexDataStructureA0 FUN_180892bd0
+#define ProcessComplexDataStructureA0 ProcessComplexDataStructureWithValidation
 
 /**
  * @brief 处理浮点数数组A0
@@ -7382,7 +7382,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892cc0
  */
-#define ProcessFloatingPointArrayA0 FUN_180892cc0
+#define ProcessFloatingPointArrayA0 ProcessFloatingPointArrayWithValidation
 
 // Unwind_函数宏定义扩展 (18090a8c0-18090a940系列)
 
