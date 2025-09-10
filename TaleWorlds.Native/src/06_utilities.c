@@ -119906,10 +119906,6 @@ void ResetExceptionHandlersAtOffset9c0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-// 原始函数名：Unwind_1809109e0 - 异常处理器重置函数9e0
-#define ResetExceptionHandlersAtOffset9e0 Unwind_1809109e0
-
 /**
  * @brief 重置异常处理器和系统状态（第三组）
  * 
