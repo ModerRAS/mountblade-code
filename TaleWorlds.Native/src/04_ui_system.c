@@ -110719,66 +110719,80 @@ void ProcessUIDataTransformAndMatrixCalculation(UIHandle uiContext, float *dataS
 
 
 
- void FUN_18072d5e0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_18072d5e0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-
+ /**
+ * @brief 处理UI扩展数据变换和矩阵运算
+ * 
+ * 该函数负责处理UI扩展数据的变换操作和矩阵运算，主要功能包括：
+ * - 执行更复杂的浮点数据矩阵变换计算
+ * - 处理多组数据的并行变换操作
+ * - 支持不同大小的数据块处理
+ * - 计算多个变换结果并存储到目标缓冲区
+ * 
+ * @param uiContext UI上下文句柄，包含UI状态信息
+ * @param dataSource 数据源数组，包含变换所需的浮点数据
+ * @param targetBuffer 目标缓冲区，用于存储变换结果
+ * @param bufferSize 缓冲区大小，控制处理的范围
+ * 
+ * @note 原始函数名：FUN_18072d5e0
+ */
+void ProcessUIExtendedDataTransformAndMatrixCalculation(longlong uiContext, float *dataSource, longlong targetBuffer, int bufferSize)
 {
-  float *BaseValuePointer;
+  float *baseValuePointer;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  longlong contextDataHandle;
-  longlong eventDataIndex;
+  longlong iterationCount;
+  longlong processedDataSize;
+  longlong totalDataSize;
   
-  eventDataIndex = (longlong)bufferSize;
-  if (0xc < eventDataIndex) {
-    contextDataHandle = 0xc;
-    if (0xf < eventDataIndex) {
-      BaseValuePointer = (float *)(targetBuffer + 0x24);
+  totalDataSize = (longlong)bufferSize;
+  if (0xc < totalDataSize) {
+    processedDataSize = 0xc;
+    if (0xf < totalDataSize) {
+      baseValuePointer = (float *)(targetBuffer + 0x24);
       componentIndex = uiContext - targetBuffer;
-      stringCompareIndex = (eventDataIndex - 0x10U >> 2) + 1;
-      contextDataHandle = stringCompareIndex * 4 + 0xc;
+      iterationCount = (totalDataSize - 0x10U >> 2) + 1;
+      processedDataSize = iterationCount * 4 + 0xc;
       do {
-        *(float *)((longlong)BaseValuePointer + componentIndex + 0xc) =
-             BaseValuePointer[3] -
-             (*dataSource * BaseValuePointer[2] + BaseValuePointer[1] * dataSource[1] + *BaseValuePointer * dataSource[2] +
-              dataSource[3] * BaseValuePointer[-1] + dataSource[4] * BaseValuePointer[-2] + dataSource[5] * BaseValuePointer[-3] +
-              dataSource[6] * BaseValuePointer[-4] + dataSource[7] * BaseValuePointer[-5] + dataSource[8] * BaseValuePointer[-6] +
-              dataSource[9] * BaseValuePointer[-7] + dataSource[10] * BaseValuePointer[-8] + BaseValuePointer[-9] * dataSource[0xb]);
-        *(float *)((longlong)BaseValuePointer + componentIndex + 0x10) =
-             BaseValuePointer[4] -
-             (*dataSource * BaseValuePointer[3] + BaseValuePointer[2] * dataSource[1] + dataSource[2] * BaseValuePointer[1] +
-              *BaseValuePointer * dataSource[3] + dataSource[4] * BaseValuePointer[-1] + dataSource[5] * BaseValuePointer[-2] +
-              dataSource[6] * BaseValuePointer[-3] + dataSource[7] * BaseValuePointer[-4] + dataSource[8] * BaseValuePointer[-5] +
-              dataSource[9] * BaseValuePointer[-6] + dataSource[10] * BaseValuePointer[-7] + dataSource[0xb] * BaseValuePointer[-8]);
-        *(float *)((longlong)BaseValuePointer + componentIndex + 0x14) =
-             BaseValuePointer[5] -
-             (*dataSource * BaseValuePointer[4] + BaseValuePointer[3] * dataSource[1] + dataSource[2] * BaseValuePointer[2] +
-              dataSource[3] * BaseValuePointer[1] + *BaseValuePointer * dataSource[4] + dataSource[5] * BaseValuePointer[-1] +
-              dataSource[6] * BaseValuePointer[-2] + dataSource[7] * BaseValuePointer[-3] + dataSource[8] * BaseValuePointer[-4] +
-              dataSource[9] * BaseValuePointer[-5] + dataSource[10] * BaseValuePointer[-6] + dataSource[0xb] * BaseValuePointer[-7]);
-        *(float *)((longlong)BaseValuePointer + componentIndex + 0x18) =
-             BaseValuePointer[6] -
-             (*dataSource * BaseValuePointer[5] + BaseValuePointer[4] * dataSource[1] + dataSource[2] * BaseValuePointer[3] +
-              dataSource[3] * BaseValuePointer[2] + dataSource[4] * BaseValuePointer[1] + *BaseValuePointer * dataSource[5] +
-              dataSource[6] * BaseValuePointer[-1] + dataSource[7] * BaseValuePointer[-2] + dataSource[8] * BaseValuePointer[-3] +
-              dataSource[9] * BaseValuePointer[-4] + dataSource[10] * BaseValuePointer[-5] + dataSource[0xb] * BaseValuePointer[-6]);
-        BaseValuePointer = BaseValuePointer + 4;
-        stringCompareIndex = stringCompareIndex + -1;
-      } while (stringCompareIndex != 0);
+        *(float *)((longlong)baseValuePointer + componentIndex + 0xc) =
+             baseValuePointer[3] -
+             (*dataSource * baseValuePointer[2] + baseValuePointer[1] * dataSource[1] + *baseValuePointer * dataSource[2] +
+              dataSource[3] * baseValuePointer[-1] + dataSource[4] * baseValuePointer[-2] + dataSource[5] * baseValuePointer[-3] +
+              dataSource[6] * baseValuePointer[-4] + dataSource[7] * baseValuePointer[-5] + dataSource[8] * baseValuePointer[-6] +
+              dataSource[9] * baseValuePointer[-7] + dataSource[10] * baseValuePointer[-8] + baseValuePointer[-9] * dataSource[0xb]);
+        *(float *)((longlong)baseValuePointer + componentIndex + 0x10) =
+             baseValuePointer[4] -
+             (*dataSource * baseValuePointer[3] + baseValuePointer[2] * dataSource[1] + dataSource[2] * baseValuePointer[1] +
+              *baseValuePointer * dataSource[3] + dataSource[4] * baseValuePointer[-1] + dataSource[5] * baseValuePointer[-2] +
+              dataSource[6] * baseValuePointer[-3] + dataSource[7] * baseValuePointer[-4] + dataSource[8] * baseValuePointer[-5] +
+              dataSource[9] * baseValuePointer[-6] + dataSource[10] * baseValuePointer[-7] + dataSource[0xb] * baseValuePointer[-8]);
+        *(float *)((longlong)baseValuePointer + componentIndex + 0x14) =
+             baseValuePointer[5] -
+             (*dataSource * baseValuePointer[4] + baseValuePointer[3] * dataSource[1] + dataSource[2] * baseValuePointer[2] +
+              dataSource[3] * baseValuePointer[1] + *baseValuePointer * dataSource[4] + dataSource[5] * baseValuePointer[-1] +
+              dataSource[6] * baseValuePointer[-2] + dataSource[7] * baseValuePointer[-3] + dataSource[8] * baseValuePointer[-4] +
+              dataSource[9] * baseValuePointer[-5] + dataSource[10] * baseValuePointer[-6] + dataSource[0xb] * baseValuePointer[-7]);
+        *(float *)((longlong)baseValuePointer + componentIndex + 0x18) =
+             baseValuePointer[6] -
+             (*dataSource * baseValuePointer[5] + baseValuePointer[4] * dataSource[1] + dataSource[2] * baseValuePointer[3] +
+              dataSource[3] * baseValuePointer[2] + dataSource[4] * baseValuePointer[1] + *baseValuePointer * dataSource[5] +
+              dataSource[6] * baseValuePointer[-1] + dataSource[7] * baseValuePointer[-2] + dataSource[8] * baseValuePointer[-3] +
+              dataSource[9] * baseValuePointer[-4] + dataSource[10] * baseValuePointer[-5] + dataSource[0xb] * baseValuePointer[-6]);
+        baseValuePointer = baseValuePointer + 4;
+        iterationCount = iterationCount + -1;
+      } while (iterationCount != 0);
     }
-    if (contextDataHandle < eventDataIndex) {
-      BaseValuePointer = (float *)(targetBuffer + -0xc + contextDataHandle * 4);
-      eventDataIndex = eventDataIndex - contextDataHandle;
+    if (processedDataSize < totalDataSize) {
+      baseValuePointer = (float *)(targetBuffer + -0xc + processedDataSize * 4);
+      totalDataSize = totalDataSize - processedDataSize;
       do {
-        *(float *)((longlong)BaseValuePointer + (uiContext - targetBuffer) + 0xc) =
-             BaseValuePointer[3] -
-             (BaseValuePointer[2] * *dataSource + BaseValuePointer[1] * dataSource[1] + *BaseValuePointer * dataSource[2] +
-              BaseValuePointer[-1] * dataSource[3] + BaseValuePointer[-2] * dataSource[4] + BaseValuePointer[-3] * dataSource[5] +
-              BaseValuePointer[-4] * dataSource[6] + BaseValuePointer[-5] * dataSource[7] + BaseValuePointer[-6] * dataSource[8] +
-              BaseValuePointer[-7] * dataSource[9] + BaseValuePointer[-8] * dataSource[10] + BaseValuePointer[-9] * dataSource[0xb]);
-        BaseValuePointer = BaseValuePointer + 1;
-        eventDataIndex = eventDataIndex + -1;
-      } while (eventDataIndex != 0);
+        *(float *)((longlong)baseValuePointer + (uiContext - targetBuffer) + 0xc) =
+             baseValuePointer[3] -
+             (baseValuePointer[2] * *dataSource + baseValuePointer[1] * dataSource[1] + *baseValuePointer * dataSource[2] +
+              baseValuePointer[-1] * dataSource[3] + baseValuePointer[-2] * dataSource[4] + baseValuePointer[-3] * dataSource[5] +
+              baseValuePointer[-4] * dataSource[6] + baseValuePointer[-5] * dataSource[7] + baseValuePointer[-6] * dataSource[8] +
+              baseValuePointer[-7] * dataSource[9] + baseValuePointer[-8] * dataSource[10] + baseValuePointer[-9] * dataSource[0xb]);
+        baseValuePointer = baseValuePointer + 1;
+        totalDataSize = totalDataSize + -1;
+      } while (totalDataSize != 0);
     }
   }
   return;

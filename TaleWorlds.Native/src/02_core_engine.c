@@ -66491,17 +66491,17 @@ void SystemStatusMemoryManager(uint64_t ContextHandle,uint8_t OperationBufferSiz
   void *SystemCharacterStatusBufferPointer;
   uint32_t SystemConfigurationMode;
   unsigned long long SystemProcessingStatusB;
-  uint32_t uStack_270;
-  long long lStack_268;
-  long long lStack_258;
+  uint32_t UnsignedStackValue270;
+  long long StackOffset268;
+  long long StackOffset258;
   void *pBufferValidationStatus;
-  long long lStack_248;
+  long long StackOffset248;
   uint32_t SystemUintBuffer240;
   unsigned long long SystemUintBuffer238;
   uint64_t DataProcessingStatus;
-  uint64_t uStack_1e0;
+  uint64_t UnsignedStackValue1e0;
   uint64_t SystemStackData;
-  uint32_t uStack_1d0;
+  uint32_t UnsignedStackValue1d0;
   uint64_t SystemValue1a8;
   unsigned long long SystemStackFlag;
   
