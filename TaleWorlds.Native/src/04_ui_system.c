@@ -109249,7 +109249,7 @@ void ProcessUIRenderDataProcessor(UIHandle uiContext,UIHandle dataSource,int tar
   param_6 = (longlong)bufferSize * 4;
   do {
     positionValue = baseAddress + (longlong)(*pDataPointer + targetBuffer) * -4;
-    calculatedDouble = (double)FUN_18072b3a0(positionValue,bufferSize);
+    calculatedDouble = (double)CalculateUIMetricValue(positionValue,bufferSize);
     dataChar = *pDataPointer;
     indexCounter = 1;
     calculatedDouble = calculatedDouble + 0.001;
@@ -110067,7 +110067,7 @@ void FUN_18072cc1b(void)
         pstackUInt32_70 = &UIComponentHandleF38;
         allocatedMemory9 = 0xc;
       }
-      dVar28 = (double)FUN_18072b3a0(*(longlong *)(basePointer + -0x60) +
+      dVar28 = (double)CalculateUIMetricValue(*(longlong *)(basePointer + -0x60) +
                                      (longlong)(iStack000000000000004c * 0x14) * 4,
                                      iStack0000000000000054 * *(int *)(basePointer + 0x2cb0));
       if (processingResult6 <= localInt7) {
@@ -111838,10 +111838,10 @@ void ProcessUIValueCalculationInternal(longlong uiContext,UIHandle dataSource,lo
       stackUInt738 = *(UIDword *)(uiBufferData + 0x121c);
       FUN_18072e450(astackUInt6a8,astackUInt728,targetBuffer,localInt5 * 2);
       processingResult = *(int *)(uiBufferData + 0x121c);
-      CalculationResultValue = (double)FUN_18072b3a0(astackUInt6a8 +
+      CalculationResultValue = (double)CalculateUIMetricValue(astackUInt6a8 +
                                     ((longlong)*(int *)(uiBufferData + 0x121c) + (longlong)localInt5) * 4,
                                     localInt5 - *(int *)(uiBufferData + 0x121c));
-      dVar2 = (double)FUN_18072b3a0(astackUInt6a8 + (longlong)processingResult * 4,localInt5 - processingResult);
+      dVar2 = (double)CalculateUIMetricValue(astackUInt6a8 + (longlong)processingResult * 4,localInt5 - processingResult);
       TemporaryFloatValue = (float)(CalculationResultValue + dVar2);
       if (LocalFloatValue6 <= TemporaryFloatValue) {
         if (ResultFloatValue < TemporaryFloatValue) break;
@@ -111925,10 +111925,10 @@ void FUN_18072e750(longlong uiContext,int dataSource,longlong targetBuffer,UIDwo
       FUN_18072e450(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataInt * 2,
                     *(UIDword *)(TargetHandle + 0x121c));
       processingResult = *(int *)(TargetHandle + 0x121c);
-      dVar2 = (double)FUN_18072b3a0(&stack0x000000b0 +
+      dVar2 = (double)CalculateUIMetricValue(&stack0x000000b0 +
                                     ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)sourceDataInt) * 4,
                                     sourceDataInt - *(int *)(TargetHandle + 0x121c));
-      dVar7 = (double)FUN_18072b3a0(&stack0x000000b0 + (longlong)processingResult * 4,sourceDataInt - processingResult);
+      dVar7 = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,sourceDataInt - processingResult);
       TransformCoefficient4 = SUB84(dVar7,0);
       TemporaryFloatValue = (float)(dVar2 + dVar7);
       if (LocalFloatValue9 <= TemporaryFloatValue) {
@@ -111985,9 +111985,9 @@ void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
                   *(UIDword *)(TargetHandle + 0x13ec),eventProcessingCounter);
     FUN_18072e450(&stack0x000000b0,&stack0x00000030);
     processingResult = *(int *)(TargetHandle + 0x121c);
-    ScalingFactorValue = (double)FUN_18072b3a0(&stack0x000000b0 +
+    ScalingFactorValue = (double)CalculateUIMetricValue(&stack0x000000b0 +
                                   ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)eventHandle)                                   4,eventHandle - *(int *)(TargetHandle + 0x121c));
-    TemporalDoubleValue = (double)FUN_18072b3a0(&stack0x000000b0 + (longlong)processingResult * 4,eventHandle - processingResult);
+    TemporalDoubleValue = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,eventHandle - processingResult);
     TransformCoefficient4 = (float)(ScalingFactorValue + TemporalDoubleValue);
     if (ResultFloatValue <= TransformCoefficient4) {
       if (TransformCoefficient2 < TransformCoefficient4) break;
@@ -112073,7 +112073,7 @@ void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong t
       allocatedMemory = targetBuffer + (longlong)(*(int *)(bufferSize + componentIndex * 4) + 2) * -4;
       FUN_180736450(allocatedMemory,resultPointer,5,uiContext);
       FUN_180736990(allocatedMemory,targetBuffer,resultPointer,5,dataSource);
-      CalculationResultValue = (double)FUN_18072b3a0(targetBuffer,resultPointer + 5);
+      CalculationResultValue = (double)CalculateUIMetricValue(targetBuffer,resultPointer + 5);
       TransformCoefficient3 = (uiContext[0x18] + *uiContext) * 0.015 + 1.0;
       if (TransformCoefficient3 <= (float)CalculationResultValue) {
         TransformCoefficient3 = (float)CalculationResultValue;
@@ -112130,7 +112130,7 @@ void FUN_18072e9ce(void)
     allocatedMemory = basePointer + (longlong)(*(int *)(contextRegister + componentIndex * 4) + 2) * -4;
     FUN_180736450(allocatedMemory,stackParam000000b0,5,TargetHandle);
     FUN_180736990(allocatedMemory,basePointer,stackParam000000b0,5,preservedRegister15);
-    CalculationResultValue = (double)FUN_18072b3a0(basePointer,stackParam000000b0 + 5);
+    CalculationResultValue = (double)CalculateUIMetricValue(basePointer,stackParam000000b0 + 5);
     TransformCoefficient3 = (TargetHandle[0x18] + *TargetHandle) * 0.015 + 1.0;
     if (TransformCoefficient3 <= (float)CalculationResultValue) {
       TransformCoefficient3 = (float)CalculationResultValue;
@@ -112371,19 +112371,19 @@ void ProcessUIComponentUpdateInternal(float *uiContext,longlong dataSource,longl
   stackLong368 = targetBuffer;
   FUN_18072e450(astackUInt358,targetBuffer,dataSource,uiCompareResult);
   transformCoeff1 = *bufferSize;
-  TemporalDoubleValue = (double)FUN_18072b3a0(resultPointer,resultPointer);
+  TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer,resultPointer);
   *uiContext = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
   transformCoeff1 = bufferSize[1];
-  TemporalDoubleValue = (double)FUN_18072b3a0(resultPointer + (longlong)(param_7 + resultPointer) * 4,resultPointer);
+  TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer + (longlong)(param_7 + resultPointer) * 4,resultPointer);
   uiContext[1] = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
   if (param_6 == 4) {
     stackInt378 = param_7;
     FUN_18072e450(astackUInt358,stackLong368 + 0x40,(longlong)uiCompareResult * 4 + dataSource,uiCompareResult);
     transformCoeff1 = bufferSize[2];
-    TemporalDoubleValue = (double)FUN_18072b3a0(resultPointer,resultPointer);
+    TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer,resultPointer);
     uiContext[2] = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
     transformCoeff1 = bufferSize[3];
-    TemporalDoubleValue = (double)FUN_18072b3a0(resultPointer + (longlong)(param_7 + resultPointer) * 4,resultPointer);
+    TemporalDoubleValue = (double)CalculateUIMetricValue(resultPointer + (longlong)(param_7 + resultPointer) * 4,resultPointer);
     uiContext[3] = (float)(TemporalDoubleValue * (double)(transformCoeff1 * transformCoeff1));
   }
                      WARNING: Subroutine does not return
@@ -116378,7 +116378,7 @@ void FUN_180734d70(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackUInt4f0 = uiContext;
   stackInt4dc = bufferSize;
   stackUInt4d8 = dataSource;
-  FUN_18072b3a0(dataSource,bufferSize * resultPointer);
+  CalculateUIMetricValue(dataSource,bufferSize * resultPointer);
                      WARNING: Subroutine does not return
   memset(astackUInt268,0,0xc0);
 }
@@ -116412,7 +116412,7 @@ void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   StackData1 = uiContext;
   iStack000000000000003c = bufferSize;
   StackData4 = dataSource;
-  FUN_18072b3a0(dataSource,bufferSize * RegisterValue);
+  CalculateUIMetricValue(dataSource,bufferSize * RegisterValue);
                      WARNING: Subroutine does not return
   memset(basePointer + 0x1b0,0,0xc0);
 }
@@ -117152,7 +117152,7 @@ LAB_180735ce2:
           loopCounter4 = (ulonglong)RegisterValue;
           contextDataHandle6 = inputString;
           do {
-            dVar59 = (double)FUN_18072b3a0(contextDataHandle6,eventHandle);
+            dVar59 = (double)CalculateUIMetricValue(contextDataHandle6,eventHandle);
             contextDataHandle6 = contextDataHandle6 + (longlong)iStack000000000000003c * 4;
             unmodifiedXMM14_Qa = unmodifiedXMM14_Qa - dVar59;
             loopCounter4 = loopCounter4 - 1;
@@ -117418,7 +117418,7 @@ void FUN_180735d0e(void)
     if (0 < (int)RegisterValue) {
       iterationCount3 = (ulonglong)RegisterValue;
       do {
-        dVar24 = (double)FUN_18072b3a0(inputString,eventHandle);
+        dVar24 = (double)CalculateUIMetricValue(inputString,eventHandle);
         inputString = inputString + (longlong)stackParam00000038._4_4_ * 4;
         unmodifiedXMM14_Qa = unmodifiedXMM14_Qa - dVar24;
         iterationCount3 = iterationCount3 - 1;
@@ -117551,7 +117551,7 @@ void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,
   if (0 < (int)RegisterValue) {
     result9 = (ulonglong)RegisterValue;
     do {
-      dVar20 = (double)FUN_18072b3a0(param_8,eventHandle);
+      dVar20 = (double)CalculateUIMetricValue(param_8,eventHandle);
       param_8 = param_8 + (longlong)param_7._4_4_ * 4;
       unmodifiedXMM14_Qa = unmodifiedXMM14_Qa - dVar20;
       result9 = result9 - 1;
@@ -117850,7 +117850,7 @@ void FUN_180736450(longlong uiContext,int dataSource,uint targetBuffer,float *bu
   allocatedMemory3 = (longlong)(int)targetBuffer;
   allocatedMemory7 = (longlong)dataSource;
   allocatedMemory = uiContext + (longlong)(int)(targetBuffer - 1) * 4;
-  dVar22 = (double)FUN_18072b3a0(allocatedMemory,dataSource);
+  dVar22 = (double)CalculateUIMetricValue(allocatedMemory,dataSource);
   ProcessingResult1 = 1;
   *bufferSize = (float)dVar22;
   if (1 < (int)targetBuffer) {
