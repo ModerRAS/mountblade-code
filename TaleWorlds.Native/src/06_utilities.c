@@ -4987,7 +4987,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define FUN_18007f840 ManageSystemContextLifecycle
+#define ManageSystemContextLifecycle ManageSystemContextLifecycle
 
 /**
  * @brief 数据类型安全转换器
@@ -4997,7 +4997,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define FUN_18007f6a0 ConvertDataTypesSafely
+#define ConvertDataTypesSafely ConvertDataTypesSafely
 
 /**
  * @brief 系统内存分配管理器
@@ -5007,7 +5007,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18013ea00
  */
-#define FUN_18013ea00 ManageSystemMemoryAllocation
+#define ManageSystemMemoryAllocation ManageSystemMemoryAllocation
 
 /**
  * @brief 系统健康状态检查器
@@ -5017,7 +5017,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define FUN_1808fc5ac CheckSystemHealthAndStatus
+#define CheckSystemHealthAndStatus CheckSystemHealthAndStatus
 
 /**
  * @brief 系统参数配置器
@@ -5027,7 +5027,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc51c
  */
-#define FUN_1808fc51c ConfigureSystemParametersAndSettings
+#define ConfigureSystemParametersAndSettings ConfigureSystemParametersAndSettings
 
 /**
  * @brief 系统数据验证器
