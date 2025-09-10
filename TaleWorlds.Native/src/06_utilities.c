@@ -61,6 +61,7 @@
 #define DataBufferParameterDataOffset 4                       // 数据缓冲区参数数据偏移量 - 用于存储数据缓冲区中的参数数据
 #define HashChainDataOffset 4                                 // 哈希链数据偏移量 - 用于存储哈希链中的数据
 #define SecurityCheckResultDataOffset 4                       // 安全检查结果数据偏移量 - 用于存储安全检查结果的数据
+#define DataBufferDataHandleOffset 4                          // 数据缓冲区数据句柄偏移量 - 用于存储数据缓冲区中的数据句柄
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -27363,7 +27364,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
     dataBuffer[3] = 1;
     adjustedSize = *(int64_t *)(*(int64_t *)(resourceContext + 8) + systemContextPointerOffset90);
     dataHandle = AcquireSystemDataHandle(*(DataBuffer *)(adjustedSize + SystemDataHandleSecondaryOffset),*(DataWord *)(adjustedSize + SystemDataResourceIndexOffset));
-    *(DataBuffer *)(dataBuffer + 4) = dataHandle;
+    *(DataBuffer *)(dataBuffer + DataBufferDataHandleOffset) = dataHandle;
       memcpy(dataBuffer + 6,dataSource,(int64_t)dataSize);
   }
   return 0;
