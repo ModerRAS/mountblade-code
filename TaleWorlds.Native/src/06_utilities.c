@@ -133233,11 +133233,11 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 栈数据缓冲区H
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferH StackDataBufferI
+#define StackDataBufferH TemporaryDataBufferH
 
 // 栈数据缓冲区I
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferI StackDataBufferI
+#define StackDataBufferI TemporaryDataBufferI
 
 // 栈数据缓冲区J
 // 功能：存储系统配置数据的栈变量
