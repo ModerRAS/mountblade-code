@@ -77007,14 +77007,25 @@ void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBu
 /**
  * @brief 异常处理器回调执行函数A80
  * 
- * 该函数执行异常处理回调，检查并调用位于特定偏移量的函数指针。
- * 主要用于异常处理过程中的回调执行和资源清理。
+ * 该函数执行异常处理回调，通过调用ProcessExceptionData函数处理异常数据。
+ * 主要用于异常处理过程中的回调执行和资源清理，位于0xe80和0xf80偏移处。
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * 功能说明：
+ * 1. 从数据缓冲区的0xf80偏移处获取异常数据
+ * 2. 调用ProcessExceptionData函数处理异常数据
+ * 3. 传递操作标志和系统清理标志
+ * 
+ * 执行流程：
+ * - 数据提取 → 异常处理 → 资源清理
+ * 
+ * @param operationBase 操作基址，包含异常处理的上下文信息
+ * @param dataBuffer 数据缓冲区，包含异常处理的相关数据
+ * @param operationFlagA 操作标志A，用于控制异常处理的行为
+ * @param operationFlagB 操作标志B，用于控制异常处理的行为
+ * 
  * @note 原始函数名：Unwind_180907a80
+ * @warning 此函数涉及异常处理机制，修改时需要谨慎
+ * @see ProcessExceptionData, SystemCleanupFlagAlternative
  */
 #define ExecuteExceptionHandlerCallbacksA80 Unwind_180907a80
 void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
