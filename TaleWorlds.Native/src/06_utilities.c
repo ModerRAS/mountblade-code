@@ -2847,6 +2847,13 @@
 #define ExceptionHandlerContextOffset10f0 0x10f0             // 异常处理上下文偏移量10f0
 #define ExceptionHandlerContextOffset1100 0x1100             // 异常处理上下文偏移量1100
 #define ExceptionHandlerContextOffset1130 0x1130             // 异常处理上下文偏移量1130
+#define ExceptionHandlerContextOffset1138 0x1138             // 异常处理上下文偏移量1138
+#define ExceptionHandlerContextOffset1140 0x1140             // 异常处理上下文偏移量1140
+#define ExceptionHandlerContextOffset1150 0x1150             // 异常处理上下文偏移量1150
+#define ExceptionHandlerContextOffset1118 0x1118             // 异常处理上下文偏移量1118
+#define ExceptionHandlerContextOffset1120 0x1120             // 异常处理上下文偏移量1120
+#define ExceptionHandlerContextOffset11a0 0x11a0             // 异常处理上下文偏移量11a0
+#define ExceptionHandlerContextOffset11a8 0x11a8             // 异常处理上下文偏移量11a8
 #define ExceptionHandlerContextOffset1160 0x1160             // 异常处理上下文偏移量1160
 #define ExceptionHandlerContextOffset1170 0x1170             // 异常处理上下文偏移量1170
 #define ExceptionHandlerContextOffset11d0 0x11d0             // 异常处理上下文偏移量11d0
@@ -119968,9 +119975,7 @@ void ResetExceptionHandlersAtOffset9a0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-// 原始函数名：Unwind_1809109c0 - 异常处理器重置函数9c0
-#define ResetExceptionHandlersAtOffset9c0 Unwind_1809109c0
+void ResetExceptionHandlersAtOffset9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 /**
  * @brief 重置异常处理器和系统状态（第二组）
@@ -119995,23 +120000,23 @@ void ResetExceptionHandlersAtOffset9c0(DataBuffer operationBase,int64_t dataBuff
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1170) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1170))(exceptionHandlerContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset1170) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset1170))(exceptionHandlerContext + ExceptionHandlerContextOffset1160,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1140) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1138) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset1140) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1140) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1150) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1118) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1120) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1140) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset1150) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1138) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1118) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset1120) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1120) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1130) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1118) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1120) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset1130) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffset1118) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -120062,9 +120067,7 @@ void ResetExceptionHandlersAtOffset9e0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-// 原始函数名：Unwind_180910a00 - 异常处理器重置函数a00
-#define ResetExceptionHandlersAtOffsetA00 Unwind_180910a00
+void ResetExceptionHandlersAtOffsetA00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 /**
  * @brief 重置异常处理器和系统状态（第四组）
@@ -120111,9 +120114,7 @@ void ResetExceptionHandlersAtOffsetA00(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-// 原始函数名：Unwind_180910a20 - 异常处理器重置函数a20
-#define ResetExceptionHandlersAtOffsetA20 Unwind_180910a20
+void ResetExceptionHandlersAtOffsetA20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 /**
  * @brief 重置异常处理器和系统状态（第五组）
