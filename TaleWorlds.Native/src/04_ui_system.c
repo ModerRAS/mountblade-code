@@ -112234,42 +112234,42 @@ void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer
   int stackParameter28;
   ulonglong stackParameter6d0;
   
-  *(UIHandle *)(RegisterPointer + -0x38) = eventHandle;
-  sourceDataInt = *(int *)(uiBufferData + 0x11e8);
-  *(UIHandle *)(RegisterPointer + -0x40) = preservedRegister15;
-  sourceDataInt = sourceDataInt + dataSource;
-  *(UIDword *)(RegisterPointer + -0x58) = preservedXMM6;
-  *(UIDword *)(RegisterPointer + -0x54) = unmodifiedXMM6_Db;
-  *(UIDword *)(RegisterPointer + -0x50) = unmodifiedXMM6_Dc;
-  *(UIDword *)(RegisterPointer + -0x4c) = unmodifiedXMM6_Dd;
+  *(UIHandle *)(registerPointer + -0x38) = eventHandle;
+  sourceDataValue = *(int *)(uiBufferData + 0x11e8);
+  *(UIHandle *)(registerPointer + -0x40) = preservedRegister15;
+  sourceDataValue = sourceDataValue + dataSource;
+  *(UIDword *)(registerPointer + -0x58) = preservedXMM6;
+  *(UIDword *)(registerPointer + -0x54) = unmodifiedXMM6_Db;
+  *(UIDword *)(registerPointer + -0x50) = unmodifiedXMM6_Dc;
+  *(UIDword *)(registerPointer + -0x4c) = unmodifiedXMM6_Dd;
   *(UIByte *)(uiContext + 0x12a7) = 4;
-  *(UIDword *)(RegisterPointer + -0x78) = unmodifiedXMM8_Da;
-  *(UIDword *)(RegisterPointer + -0x74) = unmodifiedXMM8_Db;
-  *(UIDword *)(RegisterPointer + -0x70) = unmodifiedXMM8_Dc;
-  *(UIDword *)(RegisterPointer + -0x6c) = unmodifiedXMM8_Dd;
-  iStack0000000000000028 = dataSource;
-  TransformCoefficient4 = (float)CalculateUIDataTransformValue(&stack0x00000070,targetBuffer,bufferSize,sourceDataInt);
-  if (((*(int *)(TargetHandle + 0x1214) != 0) && (*(int *)(TargetHandle + 0x1234) == 0)) &&
-     (*(int *)(TargetHandle + 0x11e0) == 4)) {
-    iStack0000000000000028 = *(int *)(TargetHandle + 0x121c);
-    LocalFloatValue6 = (float)CalculateUIDataTransformValue(&stack0x00000030,targetBuffer + (longlong)(sourceDataInt * 2) * 4,bufferSize,sourceDataInt,
+  *(UIDword *)(registerPointer + -0x78) = unmodifiedXMM8_Da;
+  *(UIDword *)(registerPointer + -0x74) = unmodifiedXMM8_Db;
+  *(UIDword *)(registerPointer + -0x70) = unmodifiedXMM8_Dc;
+  *(UIDword *)(registerPointer + -0x6c) = unmodifiedXMM8_Dd;
+  stackParameter28 = dataSource;
+  transformCoefficient = (float)CalculateUIDataTransformValue(&stack0x00000070,targetBuffer,bufferSize,sourceDataValue);
+  if (((*(int *)(targetHandle + 0x1214) != 0) && (*(int *)(targetHandle + 0x1234) == 0)) &&
+     (*(int *)(targetHandle + 0x11e0) == 4)) {
+    stackParameter28 = *(int *)(targetHandle + 0x121c);
+    localFloatValue6 = (float)CalculateUIDataTransformValue(&stack0x00000030,targetBuffer + (longlong)(sourceDataValue * 2) * 4,bufferSize,sourceDataValue,
                                  2);
-    LocalFloatValue9 = TransformCoefficient4 - LocalFloatValue6;
-    ExecuteUIRenderingOperation(LocalFloatValue6,&stack0x00000030,*(UIDword *)(TargetHandle + 0x121c));
-    uiCompareResult = 3;
-    LocalFloatValue6 = 3.4028235e+38;
+    localFloatValue9 = transformCoefficient - localFloatValue6;
+    ExecuteUIRenderingOperation(localFloatValue6,&stack0x00000030,*(UIDword *)(targetHandle + 0x121c));
+    uiComparisonResult = 3;
+    localFloatValue6 = 3.4028235e+38;
     do {
-      dataPointer = *(UIDword *)(TargetHandle + 0x121c);
-      ProcessUIComponentOperation(&stack0x000006b0,TargetHandle + 0x1190);
-      FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(TargetHandle + 0x121c),
-                    *(UIDword *)(TargetHandle + 0x13ec),dataPointer);
-      ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataInt * 2,
-                    *(UIDword *)(TargetHandle + 0x121c));
-      processingResult = *(int *)(TargetHandle + 0x121c);
-      dVar2 = (double)CalculateUIMetricValue(&stack0x000000b0 +
-                                    ((longlong)*(int *)(TargetHandle + 0x121c) + (longlong)sourceDataInt) * 4,
-                                    sourceDataInt - *(int *)(TargetHandle + 0x121c));
-      dVar7 = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,sourceDataInt - processingResult);
+      dataPointer = *(UIDword *)(targetHandle + 0x121c);
+      ProcessUIComponentOperation(&stack0x000006b0,targetHandle + 0x1190);
+      FUN_180726a70(&stack0x00000030,&stack0x000006b0,*(UIDword *)(targetHandle + 0x121c),
+                    *(UIDword *)(targetHandle + 0x13ec),dataPointer);
+      ProcessUIDataWithParameters(&stack0x000000b0,&stack0x00000030,targetBuffer,sourceDataValue * 2,
+                    *(UIDword *)(targetHandle + 0x121c));
+      processingResult = *(int *)(targetHandle + 0x121c);
+      tempDoubleValue = (double)CalculateUIMetricValue(&stack0x000000b0 +
+                                    ((longlong)*(int *)(targetHandle + 0x121c) + (longlong)sourceDataValue) * 4,
+                                    sourceDataValue - *(int *)(targetHandle + 0x121c));
+      tempDoubleValue7 = (double)CalculateUIMetricValue(&stack0x000000b0 + (longlong)processingResult * 4,sourceDataValue - processingResult);
       TransformCoefficient4 = SUB84(dVar7,0);
       TemporaryFloatValue = (float)(dVar2 + dVar7);
       if (LocalFloatValue9 <= TemporaryFloatValue) {
