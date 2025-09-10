@@ -5778,6 +5778,7 @@ void* UIGestureCoordinates;
 #define ExecuteUIRenderingOperation FUN_180726a00               // 执行UI渲染操作
 #define ProcessUIComponentData FUN_180736450                    // 处理UI组件数据
 #define ValidateUIComponentState FUN_180736990                   // 验证UI组件状态
+#define ProcessUIDataWithValidation FUN_18072f370                // 处理带验证的UI数据
 
 // UI系统组件操作函数
 
@@ -112573,7 +112574,7 @@ void FUN_18072edd0(short *uiContext,UIHandle dataSource,int targetBuffer)
   stackIntfc = targetBuffer;
   psStack_e0 = uiContext;
   stackUIntd0 = dataSource;
-  FUN_18072f370(dataSource,astackIntb8,astackInt80,processingResult7);
+  ProcessUIDataWithValidation(dataSource,astackIntb8,astackInt80,processingResult7);
   ptrLocalInt9 = astackIntb8;
   iterationCount = func_0x00018072f2c0(astackIntb8,0x2000,processingResult7);
   CounterResult = 0;
@@ -112654,7 +112655,7 @@ LAB_18072eeb7:
           goto LAB_18072f294;
         }
         func_0x000180736a10(stackUIntd0,stackIntfc,0x10000 - (1 << ((byte)stackInt100 & 0x1f)));
-        FUN_18072f370(stackUIntd0,astackIntb8,astackInt80,processingResult7);
+        ProcessUIDataWithValidation(stackUIntd0,astackIntb8,astackInt80,processingResult7);
         ptrLocalInt9 = astackIntb8;
         iterationCount = func_0x00018072f2c0(astackIntb8,0x2000,processingResult7);
         eventProcessingCounter = (ulonglong)iterationCount;
@@ -112761,8 +112762,8 @@ LAB_18072f294:
 
 
 
- void FUN_18072f370(longlong uiContext,int *dataSource,int *targetBuffer,int bufferSize)
-void FUN_18072f370(longlong uiContext,int *dataSource,int *targetBuffer,int bufferSize)
+ void ProcessUIDataWithValidation(longlong uiContext,int *dataSource,int *targetBuffer,int bufferSize)
+void ProcessUIDataWithValidation(longlong uiContext,int *dataSource,int *targetBuffer,int bufferSize)
 
 {
   int *pprocessingResult;
