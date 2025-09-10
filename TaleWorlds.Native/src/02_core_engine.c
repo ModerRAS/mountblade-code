@@ -225135,7 +225135,19 @@ void ProcessSystemMemoryBufferAndUtfConversion(long long ContextHandle,uint64_t 
 
 
 
-86880(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointervoid FUN_180186880(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 管理系统上下文和内存分配
+ * 
+ * 该函数负责管理系统上下文的创建、配置和内存分配操作。
+ * 主要用于初始化系统上下文和分配所需的内存资源。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param ContextHandleSize 上下文大小指针，用于返回上下文大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_180186880
+ */
+void ManageSystemContextAndMemoryAllocation(uint64_t ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer)
 {
   long long *ContextHandle;
   long long BufferStatus;
