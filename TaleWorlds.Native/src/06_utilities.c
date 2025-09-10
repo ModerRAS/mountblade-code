@@ -11714,11 +11714,19 @@ uint32_t UtilityOutputModuleSecondaryConfig;
 UtilityResource* SystemUtilityResourcePtr;
 
 /**
- * @brief 重置工具模块指针组1
+ * @brief 重置系统异常处理器指针
  * 
- * 重置工具模块中的第一组指针，清理内存和资源引用
+ * 重置系统中所有异常处理相关的指针，清理内存和资源引用。
+ * 该函数负责：
+ * - 清理异常处理器指针数组
+ * - 重置异常处理上下文数据
+ * - 释放异常处理相关的内存资源
+ * - 重置异常处理状态标志
+ * - 恢复默认异常处理配置
  * 
  * @note 原始函数名：ResetUtilityPointers1
+ * @warning 调用此函数会清除所有当前的异常处理配置
+ * @see ResetSystemResourceManagerPointers, InitializeUtilityModule
  */
 void ResetSystemExceptionHandlerPointers(void);
 
@@ -13695,9 +13703,6 @@ void ConfigureUtilitySystemSecondaryBuffer;   // 配置工具系统次缓冲区
 void* UtilitySystemConfigBufferC;
 
 /**
- * @brief 配置工具系统缓冲区C
- * 
- /**
  * @brief 配置工具系统缓冲区C
  * 
  * 配置工具系统的第三个缓冲区，设置缓冲区参数和内存分配。
