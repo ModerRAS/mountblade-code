@@ -226587,7 +226587,14 @@ void ProcessSystemStackDataGeneral(uint64_t ContextHandle,long long OperationBuf
 
 
 
-88490(voidvoid FUN_180188490(void
+/**
+ * @brief 初始化字符表指针
+ * 
+ * 初始化字符表指针并设置循环计数器的值
+ * 
+ * @note 原始函数名：FUN_180188490
+ */
+void InitializeCharacterTablePointer(void)
 {
   long long MainCalculationResult;
   
@@ -226641,7 +226648,14 @@ void RecursiveProcessSystemContextAndMemoryAllocation(uint64_t ContextHandle,lon
 
 
 
-88560(voidvoid FUN_180188560(void
+/**
+ * @brief 初始化字符表指针（变体）
+ * 
+ * 初始化字符表指针并设置循环计数器的值（使用0x28大小参数）
+ * 
+ * @note 原始函数名：FUN_180188560
+ */
+void InitializeCharacterTablePointerVariant(void)
 {
   long long MainCalculationResult;
   
@@ -294213,45 +294227,15 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 /**
  * @brief 核心引擎系统状态监控函数
  * 
- * 该函数负责监控核心引擎系统的运行状态，包括内存使用、CPU占用、
- * 网络连接状态等关键指标。通过定期检查系统状态，确保引擎运行
- * 在正常的工作范围内，及时发现和处理潜在的问题。
+ * 监控核心引擎系统的运行状态，包括内存使用、CPU占用、网络连接状态等关键指标。
  * 
- * @details 函数主要功能：
- * 1. 检查系统内存使用情况，包括已用内存、可用内存、内存碎片等
- * 2. 监控CPU使用率，确保系统负载在合理范围内
- * 3. 检查网络连接状态，验证数据传输的稳定性
- * 4. 验证系统线程的运行状态，确保所有关键线程正常工作
- * 5. 检查系统资源分配情况，包括文件句柄、网络套接字等
- * 6. 监控系统错误日志，及时发现和处理异常情况
- * 7. 更新系统状态报告，供其他模块查询和使用
+ * @param systemStatusMonitor 系统状态监控器指针
+ * @param monitoringInterval 监控间隔时间（毫秒）
+ * @param statusFlags 状态标志位，指定需要监控的项目
  * 
- * @param SystemStatusMonitor 系统状态监控器指针，包含监控配置和状态信息
- * @param MonitoringInterval 监控间隔时间（毫秒），指定状态检查的频率
- * @param StatusFlags 状态标志位，指定需要监控的具体项目
+ * @return int 监控结果状态码：0=正常，-1=异常
  * 
- * @return int 返回监控结果状态码：
- *         - 0: 监控成功，系统状态正常
- *         - -1: 系统内存使用异常
- *         - -2: CPU使用率过高
- *         - -3: 网络连接异常
- *         - -4: 系统线程异常
- *         - -5: 资源分配异常
- *         - -6: 系统错误日志中发现异常
- * 
- * @note 该函数是引擎健康监控系统的核心组件
- * @note 监控结果会被记录到系统日志中，供后续分析使用
- * @note 在检测到异常状态时，函数会触发相应的报警机制
- * @warning 调用此函数需要确保系统监控器已正确初始化
- * @warning 过于频繁的监控可能会影响系统性能
- * 
- * @see InitializeSystemMonitor 初始化系统监控器
- * @see GetSystemStatusReport 获取系统状态报告
- * @see HandleSystemAlert 处理系统报警
- * 
- * @version 1.0
- * @date 2025-09-10
- * @author Ghidra逆向工程 + 语义化美化
+ * @note 原始函数名：FUN_1803a6d01
  */
 int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint32_t monitoringInterval, uint32_t statusFlags)
 {
@@ -294351,27 +294335,27 @@ int MonitorCoreEngineSystemStatus(SystemStatusMonitor *systemStatusMonitor, uint
     }
     
     // 计算系统整体健康状态
-    OverallSystemHealth = CalculateSystemHealthStatus(MemoryUsageStatus, CpuUsageRate, 
-                                                     NetworkConnectionStatus, SystemThreadStatus,
-                                                     ResourceAllocationStatus, SystemErrorLogStatus);
+    overallSystemHealth = CalculateSystemHealthStatus(memoryUsageStatus, cpuUsageRate, 
+                                                     networkConnectionStatus, systemThreadStatus,
+                                                     resourceAllocationStatus, systemErrorLogStatus);
     
     // 更新系统监控器状态
-    UpdateSystemMonitorStatus(SystemStatusMonitor, OverallSystemHealth, SystemAlertFlags, CriticalAlertCount);
+    UpdateSystemMonitorStatus(systemStatusMonitor, overallSystemHealth, systemAlertFlags, criticalAlertCount);
     
     // 获取监控结束时间
-    MonitoringEndTime = GetCurrentSystemTime();
-    ElapsedMonitoringTime = (uint32_t)(MonitoringEndTime - MonitoringStartTime);
+    monitoringEndTime = GetCurrentSystemTime();
+    elapsedMonitoringTime = (uint32_t)(monitoringEndTime - monitoringStartTime);
     
     // 记录监控结果到系统日志
-    LogMonitoringResult(SystemStatusMonitor, ElapsedMonitoringTime, OverallSystemHealth, SystemAlertFlags);
+    LogMonitoringResult(systemStatusMonitor, elapsedMonitoringTime, overallSystemHealth, systemAlertFlags);
     
     // 如果存在严重报警，触发报警机制
-    if (CriticalAlertCount > 0) {
-        TriggerSystemAlert(SystemStatusMonitor, SystemAlertFlags, CriticalAlertCount);
+    if (criticalAlertCount > 0) {
+        TriggerSystemAlert(systemStatusMonitor, systemAlertFlags, criticalAlertCount);
     }
     
     // 返回监控结果
-    if (CriticalAlertCount == 0) {
+    if (criticalAlertCount == 0) {
         return 0; // 监控成功，系统状态正常
     } else {
         return -1; // 系统存在异常状态
