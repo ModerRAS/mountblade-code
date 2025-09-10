@@ -118166,36 +118166,49 @@ LAB_180735ce2:
 
 
 
- void FUN_180735d0e(void)
-void FUN_180735d0e(void)
+ /**
+ * @brief UI系统数据处理器
+ * 
+ * 该函数负责处理UI系统中的复杂数据操作。
+ * 主要功能：
+ * 1. 处理UI组件的内存分配和管理
+ * 2. 执行数据迭代和计算操作
+ * 3. 管理事件处理和状态更新
+ * 4. 处理浮点数数据和组件索引
+ * 
+ * @note 原始函数名：FUN_180735d0e
+ * @warning 该函数涉及复杂的内存操作，需要注意资源管理
+ * @see ProcessUIDataEncoding, ValidateUIComponentData
+ */
+void ProcessUIDataOperations(void)
 
 {
-  longlong allocatedMemory;
-  uint *piterationCount;
-  double *pCalculationResultValue;
-  UIHandle processingStatus;
-  UIHandle loopCounter;
-  UIHandle maxProcessingCount;
-  UIByte aiterationCounter [16];
-  UIByte aeventProcessingCounter [16];
-  uint eventStatus;
-  uint dataPointer;
-  uint result1;
+  longlong memoryAllocationHandle;
+  uint *iterationCounterPtr;
+  double *calculationResultPtr;
+  UIHandle operationStatus;
+  UIHandle processingLoopCounter;
+  UIHandle maxOperationCount;
+  UIByte iterationCounterBuffer [16];
+  UIByte eventCounterBuffer [16];
+  uint eventProcessingStatus;
+  uint dataBufferPointer;
+  uint firstOperationResult;
   uint bufferValue;
   uint contextValue;
-  uint componentIndex;
-  uint CounterResult;
-  uint TotalResult;
-  UIHandle *resultPointer7;
-  float *pFloatValue1;
-  uint result9;
-  longlong componentIndex0;
-  longlong componentIndex1;
-  longlong basePointer;
-  uint iterationCount2;
-  ulonglong iterationCount3;
-  int register9D;
-  ulonglong register10;
+  uint componentProcessingIndex;
+  uint counterOperationResult;
+  uint totalOperationResult;
+  UIHandle *resultDataPointer;
+  float *floatValuePointer;
+  uint secondaryResult;
+  longlong primaryComponentIndex;
+  longlong secondaryComponentIndex;
+  longlong systemBasePointer;
+  uint secondaryIterationCount;
+  ulonglong tertiaryIterationCount;
+  int registerValue9D;
+  ulonglong registerValue10;
   uint RegisterValue;
   uint eventHandle;
   double dVar24;
