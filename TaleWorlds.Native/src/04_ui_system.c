@@ -109875,7 +109875,15 @@ FinalizeLayoutOptimization:
  * @note 原始函数名：FUN_18072cc1b
  * @details 涉及复杂的浮点数计算和字符数据处理
  */
-void FUN_18072cc1b(void)
+/**
+ * @brief UI变换系数处理器CC1B
+ * 
+ * 处理UI变换系数的计算和优化，包括对数运算和组件数据处理
+ * 
+ * @note 原始函数名：FUN_18072cc1b
+ * @see ProcessUITransformDataWithCoefficients
+ */
+void ProcessUITransformCoefficientsAndOptimization(void)
 
 {
   float *BaseValuePointer;
