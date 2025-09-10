@@ -5110,6 +5110,145 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
 
 /**
+ * @brief 异常处理器清理函数 - 地址18090fac0
+ * 
+ * 该函数负责清理异常处理器，重置异常处理状态，并恢复默认异常处理器。
+ * 它会检查异常处理上下文，释放相关资源，并确保系统能够正常处理后续异常。
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param systemContext 系统上下文数据
+ * 
+ * @note 原始函数名：CleanupExceptionHandlers18090fac0
+ */
+#define CleanupExceptionHandlers18090fac0 CleanupExceptionHandlersAndResetContext
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910e00
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910e00
+ */
+#define ProcessExceptionCleanupAtOffset180910e00 ProcessExceptionCleanupAtOffsetE00
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910e20
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910e20
+ */
+#define ProcessExceptionCleanupAtOffset180910e20 ProcessExceptionCleanupAtOffsetE20
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910e40
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910e40
+ */
+#define ProcessExceptionCleanupAtOffset180910e40 ProcessExceptionCleanupAtOffsetE40
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910e60
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910e60
+ */
+#define ProcessExceptionCleanupAtOffset180910e60 ProcessExceptionCleanupAtOffsetE60
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910e80
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910e80
+ */
+#define ProcessExceptionCleanupAtOffset180910e80 ProcessExceptionCleanupAtOffsetE80
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910ea0
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志B
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910ea0
+ */
+#define ProcessExceptionCleanupAtOffset180910ea0 ProcessExceptionCleanupAtOffsetEA0
+
+/**
+ * @brief 异常清理处理函数 - 偏移量180910ec0
+ * 
+ * 该函数负责在指定偏移量处执行异常清理操作，处理异常相关的资源和状态。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：ProcessExceptionCleanupAtOffset180910ec0
+ */
+#define ProcessExceptionCleanupAtOffset180910ec0 ProcessExceptionCleanupAtOffsetEC0
+
+/**
+ * @brief 系统展开处理函数 - 地址180910f80
+ * 
+ * 该函数负责执行系统展开操作，处理异常展开和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910f80
+ */
+#define Unwind_180910f80 ProcessSystemUnwindAndCleanupAtOffsetF80
+
+/**
+ * @brief 系统展开处理函数 - 地址180910fa0
+ * 
+ * 该函数负责执行系统展开操作，处理异常展开和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910fa0
+ */
+#define Unwind_180910fa0 ProcessSystemUnwindAndCleanupAtOffsetFA0
+
+/**
  * @brief 系统参数和配置验证函数
  * 
  * 验证系统参数和配置的有效性，确保系统设置在安全范围内
@@ -12230,7 +12369,58 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * @see ProcessResourceCleanup, ValidateSystemParameters
  */
-void InitializeUtilityModule(void);
+void InitializeUtilityModule(void)
+{
+    // 系统初始化状态变量
+    uint32_t SystemInitializationStatus;
+    uint32_t ResourceConfigurationStatus;
+    uint32_t MemoryManagementStatus;
+    uint32_t ExceptionHandlerStatus;
+    
+    // 初始化系统工具模块的内存结构
+    SystemInitializationStatus = InitializeSystemMemoryStructure();
+    if (SystemInitializationStatus != 0) {
+        // 初始化失败，记录错误状态
+        UtilitySystemPrimaryStatusIndicator = 0x1;
+        return;
+    }
+    
+    // 设置初始配置参数
+    ResourceConfigurationStatus = ConfigureSystemParameters();
+    if (ResourceConfigurationStatus != 0) {
+        // 配置失败，记录错误状态
+        UtilitySystemPrimaryStatusIndicator = 0x2;
+        return;
+    }
+    
+    // 初始化资源指针和内存管理器
+    MemoryManagementStatus = InitializeMemoryManager();
+    if (MemoryManagementStatus != 0) {
+        // 内存管理器初始化失败
+        UtilitySystemPrimaryStatusIndicator = 0x3;
+        return;
+    }
+    
+    // 配置异常处理机制
+    ExceptionHandlerStatus = ConfigureExceptionHandler();
+    if (ExceptionHandlerStatus != 0) {
+        // 异常处理配置失败
+        UtilitySystemPrimaryStatusIndicator = 0x4;
+        return;
+    }
+    
+    // 验证系统状态
+    if (ValidateSystemState() != 0) {
+        // 系统状态验证失败
+        UtilitySystemPrimaryStatusIndicator = 0x5;
+        return;
+    }
+    
+    // 所有初始化步骤成功完成
+    UtilitySystemPrimaryStatusIndicator = 0x0;
+    
+    return;
+}
 
 // Unwind函数宏定义 - 异常处理和资源清理函数系列
 
@@ -37716,10 +37906,10 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   bool validationComplete;
   bool securityValidationPassed;
   float calculationResultFloatValue;    // 计算结果浮点值
-  float tempFloatValue1;                  // 临时浮点值1
-  float tempFloatValue2;                  // 临时浮点值2
-  float tempFloatValue3;                  // 临时浮点值3
-  float tempFloatValue4;                  // 临时浮点值4
+  float temporaryFloatValueA;                  // 临时浮点值A
+  float temporaryFloatValueB;                  // 临时浮点值B
+  float temporaryFloatValueC;                  // 临时浮点值C
+  float temporaryFloatValueD;                  // 临时浮点值D
   float processedResultFloatValue;        // 处理结果浮点值
   
   // 新增的语义化变量，用于替换原始的Ghidra生成变量名
@@ -37732,15 +37922,15 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer systemContext)
   float systemDataBuffer;      // 系统数据缓冲区，替换系统相关变量
   float statusCounter;         // 状态计数器，替换状态相关变量
   float loopCounter;           // 循环计数器，替换循环相关变量
-  float inputParameter8;       // 输入参数8，替换参数相关变量
+  float inputParameterSecondary;       // 输入参数Secondary，替换参数相关变量
   float systemMemoryBuffer;     // 系统数据缓冲区1，替换系统相关变量
   float operationBase;         // 操作基数，替换操作相关变量
-  float StackFrameContext;     // 栈帧指针，替换栈相关变量
-  float FloatRegisterR12;          // 寄存器R12，替换寄存器相关变量
-  float exceptionDataBuffer4;  // 异常数据缓冲区4，替换异常相关变量
-  float exceptionHandlerContext7; // 异常处理上下文7，替换异常处理相关变量
-  float exceptionHandlerContext6; // 异常处理上下文6，替换异常处理相关变量
-  float exceptionDataBuffer;  // 异常数据缓冲区2，替换异常相关变量
+  float stackFrameContext;     // 栈帧指针，替换栈相关变量
+  float registerR12Value;          // 寄存器R12值，替换寄存器相关变量
+  float exceptionDataBufferD;  // 异常数据缓冲区D，替换异常相关变量
+  float exceptionHandlerContextG; // 异常处理上下文G，替换异常处理相关变量
+  float exceptionHandlerContextF; // 异常处理上下文F，替换异常处理相关变量
+  float exceptionDataBufferB;  // 异常数据缓冲区B，替换异常相关变量
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
@@ -133396,7 +133586,42 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
  * 
  * @note 原始函数名：FUN_18088c740
  */
-void *AllocateBufferEN0(void *bufferParams, size_t allocationSize);
+void *AllocateBufferEN0(void *bufferParams, size_t allocationSize)
+{
+    // 缓冲区分配相关变量
+    void *allocatedBuffer;
+    uint32_t allocationStatus;
+    uint32_t validationFlags;
+    
+    // 验证输入参数
+    if (bufferParams == NULL || allocationSize == 0) {
+        return NULL;
+    }
+    
+    // 验证分配大小是否在安全范围内
+    if (allocationSize > MaxSafeBufferSize) {
+        return NULL;
+    }
+    
+    // 执行缓冲区分配
+    allocatedBuffer = AllocateSystemMemoryA0(allocationSize);
+    if (allocatedBuffer == NULL) {
+        return NULL;
+    }
+    
+    // 验证分配的缓冲区
+    validationFlags = ValidateMemoryBuffer(allocatedBuffer, allocationSize);
+    if (validationFlags != 0) {
+        // 验证失败，释放内存
+        ReleaseMemoryResourceA1(allocatedBuffer);
+        return NULL;
+    }
+    
+    // 初始化缓冲区内容
+    InitializeBufferContent(allocatedBuffer, allocationSize);
+    
+    return allocatedBuffer;
+}
 
 // 原始函数名：FUN_18088c790 - 资源清理函数EO0
 // 功能：清理资源EO0，释放资源占用
