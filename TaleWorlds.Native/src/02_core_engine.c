@@ -222616,14 +222616,32 @@ void ProcessCharacterStatusBufferAndSystemDataRegistry(uint64_t *ContextHandle)
 
 
 
-83de0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180183de0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 释放上下文句柄资源
+ * 
+ * 该函数负责释放和清理上下文句柄相关的资源，包括内存释放和句柄重置。
+ * 主要功能包括：
+ * - 从上下文句柄数组中获取指定的上下文句柄
+ * - 调用上下文句柄的清理函数进行资源释放
+ * - 重置上下文句柄数组中的对应位置
+ * 
+ * @param ContextHandle 上下文句柄数组指针
+ * @param OperationBufferSize 操作缓冲区大小（未使用）
+ * @param Utf8SourcePointer UTF-8源数据指针（未使用）
+ * @param Utf16EndPointer UTF-16结束指针（未使用）
+ * 
+ * @note 原始函数名：FUN_180183de0
+ * @warning 该函数会直接修改上下文句柄数组，调用前需要确保句柄有效
+ */
+#define ReleaseContextHandleResource FUN_180183de0
+void ReleaseContextHandleResource(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *ContextHandle;
+  long long *ResourceContextHandle;
   
-  ContextHandle = (long long *)ContextHandle[7];
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x20))(ContextHandle,ContextHandle != ContextHandle,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-    ContextHandle[7] = 0;
+  ResourceContextHandle = (long long *)ContextHandle[7];
+  if (ResourceContextHandle != (long long *)0x0) {
+    (**(code **)(*ResourceContextHandle + 0x20))(ResourceContextHandle,ResourceContextHandle != ResourceContextHandle,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    ResourceContextHandle[7] = 0;
   }
   return;
 }
