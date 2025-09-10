@@ -150048,21 +150048,21 @@ void InitializeUIResourceManagerAndMemoryAllocator(void)
       *(UIDword *)(stringCompareIndex + 0x218) = 0x3f800000;
       *(UIDword *)(stringCompareIndex + 0x21c) = 0x3f800000;
       *(UIDword *)(stringCompareIndex + 0x1e8) = 0;
-      *(longlong *)register10[1] = *register10;
-      *(longlong *)(*register10 + 8) = register10[1];
-      register10[1] = (longlong)register10;
-      *register10 = (longlong)register10;
-      register10 = colorBufferPointer;
-    } while (colorBufferPointer != RegisterPointer);
+      *(longlong *)resourceListPointer[1] = *resourceListPointer;
+      *(longlong *)(*resourceListPointer + 8) = resourceListPointer[1];
+      resourceListPointer[1] = (longlong)resourceListPointer;
+      *resourceListPointer = (longlong)resourceListPointer;
+      resourceListPointer = colorBufferPointer;
+    } while (colorBufferPointer != endResourcePointer);
   }
   CleanupUIContextState(*(UIHandle *)(_DAT_180be12f0 + 0x120));
-  pallocatedMemory = (longlong *)(TargetHandle + 0x28);
-  colorBufferPointer = (longlong *)*pallocatedMemory;
-  while (colorBufferPointer != pallocatedMemory) {
-    (**(code **)(**(longlong **)(*pallocatedMemory + 0x10) + 0xd8))
-              (*(longlong **)(*pallocatedMemory + 0x10),
+  allocatedMemoryPointer = (longlong *)(targetHandle + 0x28);
+  colorBufferPointer = (longlong *)*allocatedMemoryPointer;
+  while (colorBufferPointer != allocatedMemoryPointer) {
+    (**(code **)(**(longlong **)(*allocatedMemoryPointer + 0x10) + 0xd8))
+              (*(longlong **)(*allocatedMemoryPointer + 0x10),
                *(UIHandle *)(*(longlong *)(uiContext + 0x18) + 0x11720));
-    colorBufferPointer = (longlong *)*pallocatedMemory;
+    colorBufferPointer = (longlong *)*allocatedMemoryPointer;
   }
                      WARNING: Subroutine does not return
   ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
@@ -150073,21 +150073,30 @@ void InitializeUIResourceManagerAndMemoryAllocator(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807551c2(void)
-void FUN_1807551c2(void)
+ /**
+ * @brief 清理UI资源并重置句柄
+ * 
+ * 该函数负责清理UI系统资源并重置相关句柄，包括：
+ * - 释放UI资源
+ * - 清理上下文状态
+ * - 重置句柄链表
+ * 
+ * @note 原始函数名：FUN_1807551c2
+ */
+void CleanupUIResourcesAndResetHandles(void)
 
 {
-  longlong *TargetHandle;
+  longlong *targetHandle;
   
-  if (TargetHandle[0xc] != 0) {
+  if (targetHandle[0xc] != 0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),TargetHandle[0xc],&UNK_1809586e0,0xb7,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),targetHandle[0xc],&UNK_1809586e0,0xb7,1);
   }
   CleanupUIContextState(*(UIHandle *)(_DAT_180be12f0 + 0x120));
-  *(longlong *)TargetHandle[1] = *TargetHandle;
-  *(longlong *)(*TargetHandle + 8) = TargetHandle[1];
-  TargetHandle[1] = (longlong)TargetHandle;
-  *TargetHandle = (longlong)TargetHandle;
+  *(longlong *)targetHandle[1] = *targetHandle;
+  *(longlong *)(*targetHandle + 8) = targetHandle[1];
+  targetHandle[1] = (longlong)targetHandle;
+  *targetHandle = (longlong)targetHandle;
                      WARNING: Subroutine does not return
   ProcessUIMemoryAllocation(*(UIHandle *)(_DAT_180be12f0 + 0x120));
 }

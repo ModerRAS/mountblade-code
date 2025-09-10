@@ -23278,15 +23278,36 @@ DataBuffer ReturnComponentValidationError(void)
 // 数据指针缓冲区处理函数 - 处理数据指针和缓冲区操作
 #define ProcessDataPointerAndBufferOperations FUN_180897520
 
+/**
+ * @brief 验证并处理浮点数值
+ * 
+ * 该函数负责验证浮点数的有效性，并在指定范围内进行数值处理。
+ * 它会检查浮点数是否为无穷大值，然后验证数值是否在有效范围内。
+ * 
+ * @param dataContext 数据上下文指针，包含要验证的浮点数数据
+ * @param operationContext 操作上下文指针，包含操作参数和范围信息
+ * @return DataBuffer 返回处理结果数据缓冲区
+ * 
+ * @details 具体功能包括：
+ * - 检查浮点数是否为无穷大值
+ * - 通过系统数据传输处理获取上下文信息
+ * - 验证数据的有效性和完整性
+ * - 检查数值是否在指定的最小值和最大值范围内
+ * - 返回验证结果或相应的错误代码
+ * 
+ * @note 原始函数名：FUN_180893d50
+ * @warning 浮点数操作需要考虑精度损失和溢出问题
+ * @see ProcessSystemDataTransferA0, GetOperationRangeDataA0
+ */
 DataBuffer ValidateAndProcessFloatingPointValue(int64_t dataContext,int64_t operationContext)
 
 {
-  float inputValue;
-  uint64_t operationResult;
-  int64_t rangeData;
-  float minValue;
-  float maxValue;
-  DataWord systemContextBuffer [2];
+  float inputValue;                    // 输入浮点数值
+  uint64_t operationResult;            // 操作结果
+  int64_t rangeData;                   // 范围数据指针
+  float minValue;                      // 最小值
+  float maxValue;                      // 最大值
+  DataWord systemContextBuffer [2];    // 系统上下文缓冲区
   
   if ((*(uint *)(dataContext + SystemDataSecondaryOffset18) & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
@@ -131495,7 +131516,6 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer resourcePo
 #define ProcessDataByCondition ProcessSystemDataBasedOnConditionFlags
 
 // 系统安全和验证相关宏定义
-#define ReturnErrorCode31 FUN_180893a63
 #define ValidateAndProcessFloatValue FUN_180893d50
 #define ExecuteSystemValidationA0 FUN_180894c70
 #define ProcessComplexDataStructureA0 FUN_180896c60

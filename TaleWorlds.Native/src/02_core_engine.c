@@ -220176,6 +220176,17 @@ void InitializeSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, ui
 
 
 
+/**
+ * @brief 处理上下文缓冲区分配
+ * 
+ * 该函数负责分配和管理系统上下文缓冲区，包括内存分配、
+ * 上下文句柄设置和系统模板初始化。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定需要分配的内存大小
+ * 
+ * @note 原始函数名：FUN_18017da50
+ */
 void ProcessContextBufferAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
@@ -220233,6 +220244,17 @@ void ProcessContextBufferAllocation(uint64_t ContextHandle,uint64_t OperationBuf
 
 
 
+/**
+ * @brief 处理系统上下文验证
+ * 
+ * 该函数负责验证系统上下文的有效性，确保上下文数据的完整性
+ * 和正确性，为后续操作提供安全保障。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定验证操作的缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18017dbd0
+ */
 void ProcessSystemContextValidation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
@@ -220274,6 +220296,17 @@ void ProcessSystemContextValidation(uint64_t ContextHandle,uint64_t OperationBuf
 
 
 
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 该函数负责系统内存的分配和管理，确保内存资源的有效利用
+ * 和正确的内存访问控制。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，指定需要分配的内存大小
+ * 
+ * @note 原始函数名：FUN_18017dd10
+ */
 void ProcessSystemMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
@@ -220378,7 +220411,7 @@ void ProcessSystemResourceCleanup(uint64_t ContextHandle,uint64_t OperationBuffe
 
 
 
-7ee80(long long *ContextHandlevoid FUN_18017ee80(long long *ContextHandle
+void ProcessSystemContextData(long long *ContextHandle)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
