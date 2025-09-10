@@ -135028,7 +135028,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget)
  * 
  * @note 原始函数名：FUN_1807d3e20
  */
-#define InitializeSystemComponentA0 InitializeSystemComponentWithValidation
+#define InitializeSystemComponentA0 FUN_1807d3e20
 
 // 系统数据验证基础错误信息常量
 #define SystemDataValidationErrorBase SystemDataValidationErrorMessage
