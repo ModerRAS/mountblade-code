@@ -113647,8 +113647,7 @@ void ValidateUILayoutDataAndFormatting(UIDword *uiContext,int *dataSource,int ta
 
 
 
- void FUN_18072f7ec(longlong uiContext,UIHandle dataSource,int targetBuffer)
-/**
+ /**
  * @brief 处理UI组件数据计算和更新
  * 
  * 该函数负责处理UI组件的数据计算和更新操作，包括：
