@@ -4799,34 +4799,105 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DataProcessingSecurityCheckValue 2                         // 数据处理安全检查值
 
 // FUN_函数批量美化定义 - 第一批：核心系统函数
-// 系统数据传输处理器 - 处理系统数据的传输和验证
+
+/**
+ * @brief 系统数据传输处理器
+ * 
+ * 处理系统数据的传输和验证，确保数据在系统组件间的安全传递。
+ * 该函数负责数据完整性检查、错误检测和传输控制。
+ * 
+ * @note 原始函数名：FUN_180062300
+ */
 #define FUN_180062300 ProcessSystemDataTransferAndValidation
 
-// 系统处理函数 - 处理系统操作和任务
+/**
+ * @brief 系统操作和任务处理器
+ * 
+ * 处理系统操作和任务的执行，包括任务调度、资源分配和状态监控。
+ * 该函数是系统核心功能的重要组成部分。
+ * 
+ * @note 原始函数名：FUN_180069530
+ */
 #define FUN_180069530 ProcessSystemOperationsAndTasks
 
-// 系统数据处理器 - 处理系统数据的读取和写入
+/**
+ * @brief 系统数据读写处理器
+ * 
+ * 处理系统数据的读取和写入操作，包括文件I/O、内存访问和数据同步。
+ * 该函数确保数据操作的安全性和一致性。
+ * 
+ * @note 原始函数名：FUN_180074a80
+ */
 #define FUN_180074a80 ProcessSystemDataReadWrite
 
-// 系统数据加密器 - 加密系统数据以确保安全性  
+/**
+ * @brief 系统数据加密器
+ * 
+ * 加密系统数据以确保安全性，防止未授权访问和数据泄露。
+ * 该函数使用加密算法对敏感数据进行保护。
+ * 
+ * @note 原始函数名：FUN_18064e900
+ */
 #define FUN_18064e900 EncryptSystemDataForSecurity
 
-// 系统上下文处理器 - 处理系统上下文的生命周期管理
+/**
+ * @brief 系统上下文生命周期管理器
+ * 
+ * 处理系统上下文的生命周期管理，包括上下文的创建、维护和销毁。
+ * 该函数确保系统上下文的正确状态转换。
+ * 
+ * @note 原始函数名：FUN_18007f840
+ */
 #define FUN_18007f840 ManageSystemContextLifecycle
 
-// 数据类型转换器 - 在不同数据类型之间进行安全转换
+/**
+ * @brief 数据类型安全转换器
+ * 
+ * 在不同数据类型之间进行安全转换，防止类型转换错误和数据丢失。
+ * 该函数确保数据类型转换的安全性和准确性。
+ * 
+ * @note 原始函数名：FUN_18007f6a0
+ */
 #define FUN_18007f6a0 ConvertDataTypesSafely
 
-// 系统内存管理器 - 管理系统内存的分配和释放
+/**
+ * @brief 系统内存分配管理器
+ * 
+ * 管理系统内存的分配和释放，包括内存池管理、垃圾回收和内存优化。
+ * 该函数确保系统内存的高效使用。
+ * 
+ * @note 原始函数名：FUN_18013ea00
+ */
 #define FUN_18013ea00 ManageSystemMemoryAllocation
 
-// 系统状态检查器 - 检查系统状态和健康状态
+/**
+ * @brief 系统健康状态检查器
+ * 
+ * 检查系统状态和健康状态，包括性能监控、错误检测和状态报告。
+ * 该函数提供系统运行状态的关键信息。
+ * 
+ * @note 原始函数名：FUN_1808fc5ac
+ */
 #define FUN_1808fc5ac CheckSystemHealthAndStatus
 
-// 系统参数配置器 - 配置系统参数和设置
+/**
+ * @brief 系统参数配置器
+ * 
+ * 配置系统参数和设置，包括系统初始化、参数调整和配置管理。
+ * 该函数确保系统配置的正确性和一致性。
+ * 
+ * @note 原始函数名：FUN_1808fc51c
+ */
 #define FUN_1808fc51c ConfigureSystemParametersAndSettings
 
-// 系统数据验证器 - 验证系统数据的有效性
+/**
+ * @brief 系统数据验证器
+ * 
+ * 验证系统数据的有效性，包括数据完整性检查、格式验证和合规性检查。
+ * 该函数确保系统数据的正确性和可靠性。
+ * 
+ * @note 原始函数名：FUN_1808fc914
+ */
 #define FUN_1808fc914 ValidateSystemDataAndParameters
 
 // 系统状态验证器 - 验证系统状态的正确性
@@ -4907,8 +4978,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 这是系统数据安全保护的重要函数
  */
 // 系统数据加密函数
-#define EncryptSystemData EncryptSystemData
-#define FUN_18064e900 EncryptSystemData
+#define EncryptSystemData EncryptSystemDataForSecurity
 #define ReleaseSystemDataPointerAndMemory ReleaseSystemDataPointerA0
 
 /**
@@ -45061,7 +45131,7 @@ void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 void SetExceptionHandlerPointer(DataBuffer exceptionContext, int64_t handlerPointer)
 
 {
-  **(DataBuffer **)(handlerPointer + 0x48) = &ExceptionDataTable6;
+  **(DataBuffer **)(handlerPointer + ExceptionCleanupOffset48) = &ExceptionDataTable6;
   return;
 }
 
@@ -45107,7 +45177,7 @@ void ExceptionUnwindHandlerMutexUnlock(DataBuffer exceptionContext, int64_t unwi
 {
   int mutexUnlockResult;
   
-  ExceptionContextPtr = *(DataBuffer *)(unwindParam + 0x40);
+  ExceptionContextPtr = *(DataBuffer *)(unwindParam + ExceptionHandlerContextOffset40);
   mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);

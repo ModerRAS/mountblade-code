@@ -406023,6 +406023,12 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统颜色处理常量
 #define DataBitmask UIColorChannelBitmask           // UI颜色通道位掩码：用于限制颜色值到0-255范围
 
+// UI系统变量语义化定义
+#define alignedBufferSize UIAlignedBufferSize        // UI对齐缓冲区大小：用于内存对齐的缓冲区大小
+#define blendOffset UIImageBlendOffset              // UI图像混合偏移量：用于图像混合操作的偏移量
+#define blendFactor UIImageBlendFactor              // UI图像混合因子：用于图像混合的权重因子
+#define SystemStatusFlag UISystemStatusFlag        // UI系统状态标志：表示UI系统的当前状态
+
 
 
 

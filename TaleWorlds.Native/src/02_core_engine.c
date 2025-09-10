@@ -6253,6 +6253,8 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemVectorCalculation FUN_1800df980           // 处理系统向量计算
 #define ProcessSystemDataAccess FUN_180080810                   // 处理系统数据访问
 #define ProcessSystemDataProcessing FUN_180083b20              // 处理系统数据处理
+#define ProcessSystemBufferAllocation FUN_180094e80            // 处理系统缓冲区分配
+#define ProcessSystemContextHandleEx FUN_1800763c0             // 处理系统上下文句柄扩展
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
