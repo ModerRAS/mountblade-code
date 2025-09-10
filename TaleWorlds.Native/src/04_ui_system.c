@@ -112443,7 +112443,7 @@ void ProcessUIComponentRenderTransform(UIHandle uiContext, UIHandle dataSource, 
 
 
 
- void FUN_18072e943(void)
+ void ResetUIRenderState(void)
 /**
  * @brief 重置UI渲染状态
  * 
@@ -112473,7 +112473,7 @@ void ResetUIRenderState(void)
 
 
 
- void FUN_18072e96d(void)
+ void ClearUIRenderCache(void)
 /**
  * @brief 清理UI渲染缓存
  * 
