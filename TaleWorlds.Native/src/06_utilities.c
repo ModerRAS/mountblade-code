@@ -4348,28 +4348,28 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：func_0x00018074be80
  * 功能：使用AES算法加密敏感数据
  */
-#define EncryptSensitiveDataWithAES PerformAESEncryption
+#define EncryptSensitiveDataWithAES EncryptSensitiveDataWithAES
 
 /**
  * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
  * 功能：验证数据的完整性和有效性
  */
-#define ValidateDataIntegrity PerformDataIntegrityCheck
+#define ValidateDataIntegrity ValidateDataIntegrity
 
 /**
  * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
  * 功能：为系统分配内存池
  */
-#define AllocateSystemMemoryPool CreateSystemMemoryPool
+#define AllocateSystemMemoryPool AllocateSystemMemoryPool
 
 /**
  * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
  * 功能：初始化系统内存池
  */
-#define InitializeSystemMemoryPool SetupSystemMemoryPool
+#define InitializeSystemMemoryPool InitializeSystemMemoryPool
 
 /**
  * @brief 数据处理函数
