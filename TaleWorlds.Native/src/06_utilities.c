@@ -56940,7 +56940,7 @@ void HandleExceptionWithFlagsQuinary(DataBuffer operationBase,int64_t dataBuffer
  * 
  * @note 原始函数名：Unwind_180903db0
  */
-void HandleExceptionWithFlagsE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsSenary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -57001,7 +57001,7 @@ void HandleExceptionWithFlagsE6(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @note 原始函数名：Unwind_180903dd0
  */
-void HandleExceptionWithFlagsE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsSeptenary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
