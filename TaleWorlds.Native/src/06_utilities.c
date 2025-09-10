@@ -20624,19 +20624,19 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
   int validationStatus;
   DataBuffer configurationParameter;
   
-  operationResult = configId + 1;
-  if (systemValue - validationFlags < operationResult) {
-    adjustedValue = (int)((float)(systemValue - validationFlags) * 1.5);
-    if (operationResult <= adjustedValue) {
-      operationResult = adjustedValue;
+  validationStatus = configId + 1;
+  if (baseSystemValue - validationFlags < validationStatus) {
+    calculatedBufferSize = (int)((float)(baseSystemValue - validationFlags) * 1.5);
+    if (validationStatus <= calculatedBufferSize) {
+      validationStatus = calculatedBufferSize;
     }
-    if (operationResult < 8) {
-      operationResult = 8;
+    if (validationStatus < 8) {
+      validationStatus = 8;
     }
-    if (operationResult < configId) goto ErrorHandlingLabel;
-    if (operationResult != 0) {
-      if (MaximumMemoryBufferSize < operationResult * 8 - 1U) goto ErrorHandlingLabel;
-      systemContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),operationResult * 8,&SystemMemoryPoolB,
+    if (validationStatus < configId) goto ErrorHandlingLabel;
+    if (validationStatus != 0) {
+      if (MaximumMemoryBufferSize < validationStatus * 8 - 1U) goto ErrorHandlingLabel;
+      systemContext = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),validationStatus * 8,&SystemMemoryPoolB,
                                 MemoryAllocationFlagsF4);
       if (systemContext == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + RegisterContextDataSizeOffset) != 0) {
@@ -20649,10 +20649,10 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
                     &SystemMemoryPoolB,MemoryAllocationSize100,MemoryAllocationFlag1);
     }
     *(int64_t *)(registerContext + RegisterContextDataPointerOffset) = systemContext;
-    *(int *)(registerContext + RegisterContextCountOffset) = operationResult;
+    *(int *)(registerContext + RegisterContextCountOffset) = validationStatus;
   }
   *(DataBuffer *)(*(int64_t *)(registerContext + RegisterContextDataPointerOffset) + (int64_t)*(int *)(registerContext + RegisterContextDataSizeOffset) * 8) =
-       systemParameter;
+       configurationParameter;
   *(int *)(registerContext + RegisterContextDataSizeOffset) = *(int *)(registerContext + RegisterContextDataSizeOffset) + 1;
 SystemCleanupLabel:
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
