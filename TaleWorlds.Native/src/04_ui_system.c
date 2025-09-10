@@ -120919,48 +120919,68 @@ void SortUIContextDataByValue(longlong uiContext,int dataSource)
 
 
 
- void FUN_180737ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_180737ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-                  int param_6)
+ /**
+ * @brief UI事件处理和缓冲区操作函数
+ * 
+ * 该函数负责处理UI事件并执行缓冲区操作，包括：
+ * - 遍历和处理UI事件数据
+ * - 计算事件编码和处理状态
+ * - 更新缓冲区数据并统计处理结果
+ * - 支持批量事件处理和状态验证
+ * 
+ * @param uiContext UI上下文句柄，用于管理UI状态
+ * @param dataSource 数据源指针，提供事件数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制处理的数据量
+ * @param resultPointer 结果指针，用于存储处理统计信息
+ * @param eventCount 事件数量，指定要处理的事件总数
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180737ca0
+ * @note 此函数主要用于UI事件系统的批量处理和状态更新
+ */
+void ProcessUIEventBufferData(longlong uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize, int resultPointer,
+                  int eventCount)
 
 {
-  uint result;
+  uint eventResult;
   uint iterationCount;
   uint eventCodeType;
   uint processingStatus;
   int localValidationResult;
-  byte *pbVar6;
+  byte *bufferSizeFlag;
   ulonglong iterationCounter;
   longlong contextOffset;
-  int localInt9;
+  int eventProcessingValue;
   int processedCount;
-  short *peventIndex;
+  short *eventIndexPointer;
   ulonglong bufferValue;
   
   if (0 < resultPointer) {
     contextOffset = 0;
-    bufferValue = (ulonglong)param_6;
+    bufferValue = (ulonglong)eventCount;
     dataSource = dataSource - bufferSize;
     do {
       processedCount = 0;
       uiElementIndex = 0;
       if (-1 < (longlong)(bufferValue - 2)) {
         iterationCounter = bufferValue >> 1;
-        pBufferSizeFlag = (byte *)((bufferValue - 2) + targetBuffer);
-        peventIndex = (short *)(bufferSize + (bufferValue - 1) * 2);
+        bufferSizeFlag = (byte *)((bufferValue - 2) + targetBuffer);
+        eventIndexPointer = (short *)(bufferSize + (bufferValue - 1) * 2);
         do {
-          localInt9 = (int)(short)(*(short *)(dataSource + (longlong)peventIndex) + (ushort)pbVar6[1] * -0x80)
-                  * (int)*peventIndex;
-          result = localInt9 - (localValidationResult >> 1);
-          eventCode = (int)result >> 0x1f;
-          localValidationResult = (int)(short)(*(short *)(dataSource + 2 + (longlong)(peventIndex + -2)) +
-                              (ushort)*pbVar6 * -0x80) * (int)peventIndex[-1];
-          iterationCount = localValidationResult - (localInt9 >> 1);
+          eventProcessingValue = (int)(short)(*(short *)(dataSource + (longlong)eventIndexPointer) + (ushort)bufferSizeFlag[1] * -0x80)
+                  * (int)*eventIndexPointer;
+          eventResult = eventProcessingValue - (localValidationResult >> 1);
+          eventCode = (int)eventResult >> 0x1f;
+          localValidationResult = (int)(short)(*(short *)(dataSource + 2 + (longlong)(eventIndexPointer + -2)) +
+                              (ushort)*bufferSizeFlag * -0x80) * (int)eventIndexPointer[-1];
+          iterationCount = localValidationResult - (eventProcessingValue >> 1);
           processStatus = (int)iterationCount >> 0x1f;
-          processedCount = processedCount + ((result ^ eventCodeType) - eventCodeType) + ((iterationCount ^ processingStatus) - processingStatus);
+          processedCount = processedCount + ((eventResult ^ eventCodeType) - eventCodeType) + ((iterationCount ^ processingStatus) - processingStatus);
           iterationCounter = iterationCounter - 1;
-          pBufferSizeFlag = pbVar6 + -2;
-          peventIndex = peventIndex + -2;
+          bufferSizeFlag = bufferSizeFlag + -2;
+          eventIndexPointer = eventIndexPointer + -2;
         } while (iterationCounter != 0);
       }
       *(int *)(uiBufferData + contextOffset * 4) = processedCount;
@@ -120976,64 +120996,82 @@ void FUN_180737ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,
 
 
 
- void FUN_180737ccf(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180737ccf(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+ /**
+ * @brief UI组件数据处理和事件管理函数
+ * 
+ * 该函数负责处理UI组件数据并管理事件系统，包括：
+ * - 初始化UI组件句柄和上下文数据
+ * - 处理事件编码和状态验证
+ * - 批量处理事件数据并统计结果
+ * - 更新UI组件状态和缓冲区数据
+ * 
+ * @param uiContext UI上下文句柄，用于管理UI状态
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制处理的数据量
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180737ccf
+ * @note 此函数主要用于UI组件的数据处理和事件系统管理
+ */
+void ProcessUIComponentDataAndEvents(longlong uiContext, longlong dataSource, UIHandle targetBuffer, longlong bufferSize)
 
 {
-  uint result;
+  uint eventResult;
   uint iterationCount;
   uint eventCodeType;
   uint processingStatus;
   int localValidationResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  byte *pbVar6;
+  byte *bufferSizeFlag;
   UIHandle componentData;
   ulonglong iterationCounter;
   UIHandle uiTargetHandle;
   longlong contextOffset;
-  int localInt9;
+  int eventProcessingValue;
   int processedCount;
-  longlong register10;
-  longlong RegisterPointer;
-  short *peventIndex;
+  longlong eventDataSource;
+  longlong contextRegisterPointer;
+  short *eventIndexPointer;
   UIHandle preservedRegister12;
   ulonglong bufferValue;
   longlong eventHandle;
   longlong preservedRegister15;
   longlong inputString;
-  int stackParam00000060;
-  int stackParam00000068;
+  int uiContextParameter;
+  int eventCountParameter;
   
-  *(UIHandle *)(RegisterPointer + 0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x20) = componentData;
-  *(UIHandle *)(RegisterPointer + -0x28) = uiTargetHandle;
+  *(UIHandle *)(contextRegisterPointer + 0x10) = contextHandle;
+  *(UIHandle *)(contextRegisterPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(contextRegisterPointer + -0x20) = componentData;
+  *(UIHandle *)(contextRegisterPointer + -0x28) = uiTargetHandle;
   contextOffset = 0;
-  *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister12;
-  bufferValue = (ulonglong)stackParam00000068;
-  bufferSize = register10 - bufferSize;
+  *(UIHandle *)(contextRegisterPointer + -0x30) = preservedRegister12;
+  bufferValue = (ulonglong)eventCountParameter;
+  bufferSize = eventDataSource - bufferSize;
   do {
     processedCount = 0;
     uiElementIndex = 0;
     if (-1 < (longlong)(bufferValue - 2)) {
       iterationCounter = bufferValue >> 1;
-      pBufferSizeFlag = (byte *)((bufferValue - 2) + preservedRegister15);
-      peventIndex = (short *)(eventHandle + (bufferValue - 1) * 2);
+      bufferSizeFlag = (byte *)((bufferValue - 2) + preservedRegister15);
+      eventIndexPointer = (short *)(eventHandle + (bufferValue - 1) * 2);
       do {
-        localInt9 = (int)(short)(*(short *)(bufferSize + (longlong)peventIndex) + (ushort)pbVar6[1] * -0x80)                 (int)*peventIndex;
-        result = localInt9 - (localValidationResult >> 1);
-        eventCode = (int)result >> 0x1f;
-        localValidationResult = (int)(short)(*(short *)(bufferSize + 2 + (longlong)(peventIndex + -2)) +
-                            (ushort)*pbVar6 * -0x80) * (int)peventIndex[-1];
-        iterationCount = localValidationResult - (localInt9 >> 1);
+        eventProcessingValue = (int)(short)(*(short *)(bufferSize + (longlong)eventIndexPointer) + (ushort)bufferSizeFlag[1] * -0x80) * (int)*eventIndexPointer;
+        eventResult = eventProcessingValue - (localValidationResult >> 1);
+        eventCode = (int)eventResult >> 0x1f;
+        localValidationResult = (int)(short)(*(short *)(bufferSize + 2 + (longlong)(eventIndexPointer + -2)) +
+                            (ushort)*bufferSizeFlag * -0x80) * (int)eventIndexPointer[-1];
+        iterationCount = localValidationResult - (eventProcessingValue >> 1);
         processStatus = (int)iterationCount >> 0x1f;
-        processedCount = processedCount + ((result ^ eventCodeType) - eventCodeType) + ((iterationCount ^ processingStatus) - processingStatus);
+        processedCount = processedCount + ((eventResult ^ eventCodeType) - eventCodeType) + ((iterationCount ^ processingStatus) - processingStatus);
         iterationCounter = iterationCounter - 1;
-        pBufferSizeFlag = pbVar6 + -2;
-        peventIndex = peventIndex + -2;
+        bufferSizeFlag = bufferSizeFlag + -2;
+        eventIndexPointer = eventIndexPointer + -2;
       } while (iterationCounter != 0);
-      uiContext = (longlong)stackParam00000060;
+      uiContext = (longlong)uiContextParameter;
       dataSource = inputString;
     }
     *(int *)(dataSource + contextOffset * 4) = processedCount;
@@ -121048,9 +121086,18 @@ void FUN_180737ccf(longlong uiContext,longlong dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_180737de4(void)
-void FUN_180737de4(void)
-
+ /**
+ * @brief UI系统空返回函数
+ * 
+ * 该函数是一个简单的空返回函数，用于UI系统的默认返回操作。
+ * 不执行任何操作，直接返回。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180737de4
+ * @note 这是一个简单的返回函数，不执行任何操作
+ */
+void UIReturnEmptyFunction2(void)
 {
   return;
 }
@@ -121060,57 +121107,81 @@ void FUN_180737de4(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180737df0(char *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,longlong resultPointer
-void FUN_180737df0(char *uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,longlong resultPointer
-                  ,longlong param_6,short param_7,short param_8,short param_9,short uiContext0)
+ /**
+ * @brief UI字符串处理和数据验证函数
+ * 
+ * 该函数负责处理UI字符串数据并进行验证，包括：
+ * - 字符串比较和匹配验证
+ * - 数据编码转换和处理
+ * - 事件状态验证和统计
+ * - 组件索引和上下文管理
+ * 
+ * @param uiContext UI上下文字符串指针
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制处理的数据量
+ * @param resultPointer 结果指针，用于存储处理统计信息
+ * @param encryptionKey 加密密钥，用于数据加密处理
+ * @param contextValue1 上下文值1，用于状态验证
+ * @param contextValue2 上下文值2，用于状态验证
+ * @param contextValue3 上下文值3，用于状态验证
+ * @param contextValue4 上下文值4，用于状态验证
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180737df0
+ * @note 此函数主要用于UI字符串处理和数据验证操作
+ */
+void ProcessUIStringDataAndValidation(char *uiContext, longlong dataSource, longlong targetBuffer, longlong bufferSize, longlong resultPointer
+                  , longlong encryptionKey, short contextValue1, short contextValue2, short contextValue3, short contextValue4)
 
 {
-  byte isCharacterMatch;
-  int uiValidationResult;
-  int uiCompareResult;
-  int sourceDataInt;
-  int localValidationResult;
-  uint maxProcessingCount;
-  uint iterationCounter;
-  uint eventProcessingCounter;
-  uint eventStatus;
-  int processedCount;
+  byte CharacterMatchFlag;
+  int UIValidationResult;
+  int UICompareResult;
+  int SourceDataInt;
+  int LocalValidationResult;
+  uint MaxProcessingCount;
+  uint IterationCounter;
+  uint EventProcessingCounter;
+  uint EventStatus;
+  int ProcessedCount;
   int ProcessingResult1;
   int ProcessingResult2;
   int ProcessingResult3;
-  uint componentIndex;
+  uint ComponentIndex;
   uint CounterResult;
   uint TotalResult;
-  UIDword result7;
-  UIDword result8;
-  UIDword result9;
-  int uiValidationResult0;
-  uint iterationCount1;
-  uint iterationCount2;
-  longlong componentIndex3;
-  short sVar24;
-  ushort iterationCount5;
-  short sVar26;
-  uint iterationCount7;
-  longlong componentIndex8;
-  longlong componentIndex9;
+  UIDword ValidationResult7;
+  UIDword ValidationResult8;
+  UIDword ValidationResult9;
+  int UIValidationResult0;
+  uint IterationCount1;
+  uint IterationCount2;
+  longlong ComponentIndex3;
+  short ContextValue24;
+  ushort IterationCount5;
+  short ContextValue26;
+  uint IterationCount7;
+  longlong ComponentIndex8;
+  longlong ComponentIndex9;
   short ContextFirstValue0;
-  longlong stringCompareIndex1;
+  longlong StringCompareIndex1;
   short ContextFirstValue2;
-  uint eventCodeType3;
+  uint EventCodeType3;
   short ContextFirstValue4;
-  ushort eventCodeType5;
-  int uiCompareResult6;
-  int uiCompareResult7;
-  uint eventCodeType8;
-  uint eventCodeType9;
-  longlong contextDataHandle0;
-  char *plocalChar41;
-  UIByte astackUInt208 [32];
-  uint stackUInt1e8;
-  uint stackUInt1e4;
-  uint stackUInt1e0;
-  int stackInt1dc;
+  ushort EventCodeType5;
+  int UICompareResult6;
+  int UICompareResult7;
+  uint EventCodeType8;
+  uint EventCodeType9;
+  longlong ContextDataHandle0;
+  char *LocalCharacterPointer41;
+  UIByte ValidationBuffer208 [32];
+  uint StackValidationResult1e8;
+  uint StackValidationResult1e4;
+  uint StackValidationResult1e0;
+  int StackValidationResult1dc;
   int stackInt1d8;
   uint stackUInt1d4;
   uint stackUInt1d0;
