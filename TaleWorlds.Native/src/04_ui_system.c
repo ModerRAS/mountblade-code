@@ -404809,8 +404809,14 @@ void FUN_18089ee87(void)
 
 
 
- void FUN_18089eef2(void)
-void FUN_18089eef2(void)
+ /**
+ * 处理UI验证错误恢复
+ * 调用UI验证错误处理和恢复函数，处理UI系统中的验证错误
+ * 
+ * @return 无返回值
+ */
+void HandleUIValidationRecovery(void)
+void HandleUIValidationRecovery(void)
 
 {
                      WARNING: Subroutine does not return
@@ -404820,8 +404826,14 @@ void FUN_18089eef2(void)
 
 
 
- void FUN_18089ef24(void)
-void FUN_18089ef24(void)
+ /**
+ * UI系统空操作函数
+ * 提供一个空的UI系统操作函数，用于占位或默认处理
+ * 
+ * @return 无返回值
+ */
+void UINullOperation(void)
+void UINullOperation(void)
 
 {
   return;
@@ -404829,7 +404841,15 @@ void FUN_18089ef24(void)
 
 
 
-UIHandle FUN_18089ef40(longlong uiContext,longlong *dataSource)
+/**
+ * 获取UI上下文数据源句柄
+ * 根据UI上下文和数据源信息，获取对应的UI句柄
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针数组
+ * @return UI句柄，成功返回有效句柄，失败返回0x1c
+ */
+UIHandle GetUIContextDataSourceHandle(longlong uiContext,longlong *dataSource)
 
 {
   UIHandle result;
