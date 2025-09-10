@@ -136190,11 +136190,11 @@ ProcessUIBufferDataOperation(longlong uiContext,UIHandle dataSource,UIHandle tar
           }
         }
       }
-      return result;
+      return operationResult;
     }
-    return 0x44;
+    return UIOperationFailed;
   }
-  return 0x1f;
+  return UIInvalidParameter;
 }
 
 

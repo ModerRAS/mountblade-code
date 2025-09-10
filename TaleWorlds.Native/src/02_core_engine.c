@@ -248574,23 +248574,38 @@ LAB_1802042b6:
 
 
 
-uint64_t * FUN_180204420(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换和内存分配
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、字符状态管理和系统数据处理。
+ * 函数根据输入参数执行不同的处理路径，包括字符表操作、内存分配和状态管理。
+ * 
+ * @param ContextHandle 上下文句柄，用于管理系统资源和状态
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的UTF-8字符串
+ * @return uint64_t* 返回处理结果指针，包含转换后的数据或状态信息
+ * 
+ * @note 原始函数名：FUN_180204420
+ * @warning 该函数涉及底层内存操作，调用时需确保参数有效性
+ * @see ProcessSystemBufferOperation, ProcessCharacterEncodingAndMemoryAllocation
+ */
+uint64_t * ProcessUtf8ToUtf16EncodingAndMemoryAllocation(uint64_t *ContextHandle, uint64_t *ContextHandleSize, uint64_t *Utf8SourcePointer)
 {
   int LockResult;
-  int LockOperationResult;
+  int LockOperationStatus;
   bool IsHighByteSet;
-  uint64_t MemoryAddressMaskPointer;
+  uint64_t MemoryAddressMask;
   uint64_t CalculatedCodePoint;
-  uint64_t OperationResult;
-  void *PreviousNode;
-  void *NextNode;
-  uint64_t *TemporaryBuffer;
+  uint64_t EncodingOperationResult;
+  void *PreviousCharacterNode;
+  void *NextCharacterNode;
+  uint64_t *TemporaryCharacterBuffer;
   uint64_t *CharacterStatusBuffer;
   uint64_t *SystemCharacterStatusBuffer;
-  uint64_t *CharacterStatusBuffer2;
-  long long OperationResult13;
-  long long LoopIndex;
-  uint64_t *CharacterStatusBuffer5;
+  uint64_t *SecondaryCharacterBuffer;
+  long long EncodingResult;
+  long long CharacterLoopIndex;
+  uint64_t *FifthCharacterBuffer;
   
   CharacterStatusBuffer = OperationBufferSize + ((long long)Utf8SourcePointer - (long long)OperationBufferSize >> SystemEventContextShiftCount) * 2;
   SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - (long long)OperationBufferSize) >> 4;

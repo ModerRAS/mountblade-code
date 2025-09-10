@@ -30402,11 +30402,11 @@ void ProcessDataTypes(void)
   DataWord dataWordInputValueExtended;   // 扩展的数据字输入值 - 扩展的数据字输入值
   DataWord dataWordInputValueExtendedSecondary; // 次要扩展数据字输入值 - 第二个扩展数据字输入值
   
-  memoryResourcePointer2 = (DataBuffer *)(systemContext + SystemContextDataOffset8);
+  MemoryResourcePointer = (DataBuffer *)(systemContext + SystemContextDataOffset8);
   StackFloatRegisterA = dataPointerD;
-  StackPointerRegisterA = memoryResourcePointer2;
-  exceptionContext5 = (*(code *)*systemInputAccumulator)(memoryResourcePointer2);
-  resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionContext5 + ExceptionHandlerContext5OffsetD0),&validationBuffer);
+  StackPointerRegisterA = MemoryResourcePointer;
+  ExceptionContext = (*(code *)*systemInputAccumulator)(MemoryResourcePointer);
+  resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(ExceptionContext + ExceptionHandlerContext5OffsetD0),&validationBuffer);
   if (resourceValidationStatus == 0) {
     systemErrorHandlingBuffer = &DataValidationErrorBase;
     *(DataWord *)(StackFrameContext + -0xf) = SystemOperationResult;
