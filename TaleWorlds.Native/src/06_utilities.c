@@ -27558,6 +27558,7 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   DataBuffer QuaternaryMemoryOperationBuffer;
   DataBuffer QuinaryMemoryOperationBuffer;
   DataBuffer SenaryMemoryOperationBuffer;
+  DataBuffer MemoryBufferA;
   DataBuffer memoryOperationBufferG;
   DataWord memoryOperationBufferH;
   uint memoryOperationBufferI;
@@ -27574,6 +27575,8 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   DataWord validationFlagA;
   uint validationFlagB;
   DataWord validationFlagC;
+  uint ValidationOffsetA;
+  DataWord ValidationDataA;
   ByteFlag DataBufferA [StandardDataBufferSize];
   uint64_t colorProcessingData;
   
