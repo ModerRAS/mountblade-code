@@ -347,6 +347,13 @@ typedef enum {
 #define UIContextDataHandlerC80 (void*)0x18095ac80          // UI上下文数据处理器C80 - 数据处理句柄
 #define UIContextResourceManager430 (void*)0x18095b430     // UI上下文资源管理器430 - 资源管理操作
 #define UIContextDataValidatorD90 (void*)0x180958d90        // UI上下文数据验证器D90 - 数据验证功能
+
+// UI系统函数指针语义化定义
+#define UIEventDispatchFunction (*_DAT_180d4a958)            // UI事件调度函数指针
+#define UIMemoryAllocatorFunction (*_DAT_180c0c6d0)          // UI内存分配器函数指针
+#define UIResourceHandlerFunction (*_DAT_180c0d100)           // UI资源处理函数指针
+#define UITransformFunction (*_DAT_180c0e170)                // UI变换函数指针
+#define UIRenderFunction (*_DAT_180c108d0)                    // UI渲染函数指针
 #define UIContextDataBufferCD0 (void*)0x180984cd0          // UI上下文数据缓冲区CD0 - 临时数据存储
 #define UIContextDataHandlerD40 (void*)0x18095ad40          // UI上下文数据处理器D40 - 数据处理操作
 #define UIContextDataControllerD60 (void*)0x18097ed60       // UI上下文数据控制器D60 - 数据控制功能
@@ -123361,63 +123368,82 @@ FUN_1807395df:
 
 
 
- void FUN_1807394c5(void)
-void FUN_1807394c5(void)
-
+ /**
+ * @brief UI数据处理和验证操作函数
+ * 
+ * 该函数执行UI数据的批量处理和验证操作，包括：
+ * - 多次数据验证和处理循环
+ * - 缓冲区数据处理
+ * - 上下文数据操作执行
+ * 
+ * @note 原始函数名：FUN_1807394c5
+ */
+void ProcessUIDataBatchValidation(void)
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword ebxRegisterValue;
+  UIDword esiRegisterValue;
   
-  processingResult = func_0x00018074b7d0(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  processingResult = ValidateUIDataStream(&stack0x00000040,0x100,ebxRegisterValue);
+  uiValidationResult = CompareUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bd40(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ProcessUIDataValidation(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  uiValidationResult = CompareUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bd40(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ProcessUIDataValidation(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  uiValidationResult = CompareUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074bd40(&stack0x00000040 + processingResult,0x100 - processingResult);
+  uiValidationResult = ProcessUIDataValidation(&stack0x00000040 + processingResult,0x100 - processingResult);
   processingResult = processingResult + uiValidationResult;
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074bd40(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
-                     WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  uiValidationResult = CompareUIDataBuffer(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  ProcessUIDataValidation(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  ExecuteUIContextDataOperation(esiRegisterValue,1);
 }
 
 
 
 
- void FUN_1807395df(void)
-void FUN_1807395df(void)
-
+ /**
+ * @brief UI内存清理和渲染任务执行函数
+ * 
+ * 该函数负责清理UI内存资源并执行渲染任务：
+ * - 根据条件清理UI内存资源
+ * - 执行渲染任务操作
+ * 
+ * @note 原始函数名：FUN_1807395df
+ */
+void CleanupUIMemoryAndExecuteRender(void)
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryCleanupFlag;
+  ulonglong renderTaskParameter;
   
-  if (stackParam00000030 != 0) {
+  if (memoryCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_180739619(void)
-void FUN_180739619(void)
-
+ /**
+ * @brief UI内存资源释放和渲染任务执行函数
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务：
+ * - 释放UI内存资源
+ * - 执行渲染任务操作
+ * 
+ * @note 原始函数名：FUN_180739619
+ */
+void ReleaseUIMemoryAndExecuteRender(void)
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -123445,44 +123471,57 @@ void FUN_180739619(void)
  * @note 该函数包含资源管理逻辑，会自动处理内存分配和释放
  * @warning 函数可能不会返回（包含不返回的子函数调用）
  */
-void FUN_180739640(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-
+/**
+ * @brief 带加密验证的UI数据处理和渲染函数
+ * 
+ * 该函数处理UI系统中的数据传输和渲染操作，包括：
+ * - 初始化加密密钥和处理参数
+ * - 执行数据验证和处理操作
+ * - 根据系统状态执行不同的数据传输路径
+ * - 清理资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于管理UI状态和资源
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理结果
+ * @param bufferSize 缓冲区大小句柄，指定处理缓冲区的大小
+ * 
+ * @note 原始函数名：FUN_180739640
+ */
+void ProcessUIDataWithEncryptionAndRender(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 {
-  int processingResult;              // 处理结果状态码
-  int uiValidationResult;            // UI验证结果
-  int uiCompareResult;              // UI比较结果
-  UIByte UIDataEncryptionBuffer [32];    // UI数据加密缓冲区 - 用于存储加密处理的数据
-  UIByte *UIDataBufferPointer;          // UI数据缓冲区指针 - 指向当前处理的数据位置
-  longlong UIMemoryResourceHandle;       // UI内存资源句柄 - 用于管理UI内存资源
-  UIHandle UITemporaryHandle;            // UI临时句柄 - 用于存储临时UI对象
-  UIByte UIProcessingBuffer [256];       // UI处理缓冲区 - 用于存储UI处理过程中的数据
-  ulonglong UIEncryptionKey;             // UI加密密钥 - 用于数据加密和解密操作
+  int processingResult;
+  int uiValidationResult;
+  int uiCompareResult;
+  UIByte dataEncryptionBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong memoryResourceHandle;
+  UIHandle temporaryHandle;
+  UIByte processingBuffer[256];
+  ulonglong encryptionKey;
   
-  UIEncryptionKey = XorEncryptionKey ^ (ulonglong)UIDataEncryptionBuffer;
-  UIMemoryResourceHandle = 0;
-  processingResult = FUN_180749e60(uiContext,&UITemporaryHandle,&UIMemoryResourceHandle);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)dataEncryptionBuffer;
+  memoryResourceHandle = 0;
+  processingResult = InitializeUIProcessingContext(uiContext, &temporaryHandle, &memoryResourceHandle);
   if (processingResult == 0) {
-    processingResult = func_0x0001807460a0(UITemporaryHandle,dataSource,targetBuffer,bufferSize);
-    if (processingResult == 0) goto FUN_180739773;
+    processingResult = TransferUIDataWithValidation(temporaryHandle, dataSource, targetBuffer, bufferSize);
+    if (processingResult == 0) goto CleanupAndRender;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074bac0(UIProcessingBuffer,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataStream(processingBuffer, 0x100, dataSource);
+    uiCompareResult = CompareUIDataBuffer(processingBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bac0(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
+    uiCompareResult = ValidateUIDataStream(processingBuffer + uiValidationResult, 0x100 - uiValidationResult, targetBuffer);
     uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(UIProcessingBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bac0(UIProcessingBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
-    UIDataBufferPointer = UIProcessingBuffer;
-                     WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextHandleData320);
+    uiCompareResult = CompareUIDataBuffer(processingBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    ValidateUIDataStream(processingBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), bufferSize);
+    dataBufferPointer = processingBuffer;
+    ExecuteUIContextDataOperation(processingResult, 1, uiContext, &UIContextHandleData320);
   }
-FUN_180739773:
-  if (UIMemoryResourceHandle != 0) {
+CleanupAndRender:
+  if (memoryResourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(UIEncryptionKey ^ (ulonglong)UIDataEncryptionBuffer);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)dataEncryptionBuffer);
 }
 
 
