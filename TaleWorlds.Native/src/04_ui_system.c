@@ -110677,26 +110677,39 @@ void ProcessUIMatrixDataTransformation(float *uiContext,float *dataSource)
 
 
 
- void FUN_18072d517(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18072d517(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-
+ /**
+ * @brief 处理UI数据变换和矩阵运算
+ * 
+ * 该函数负责处理UI数据的变换操作和矩阵运算，主要功能包括：
+ * - 执行浮点数据的矩阵变换计算
+ * - 处理UI上下文和数据源之间的数据转换
+ * - 计算变换后的数据值并存储到目标缓冲区
+ * 
+ * @param uiContext UI上下文句柄，包含UI状态信息
+ * @param dataSource 数据源数组，包含变换所需的浮点数据
+ * @param targetBuffer 目标缓冲区，用于存储变换结果
+ * @param bufferSize 缓冲区大小，控制处理的范围
+ * 
+ * @note 原始函数名：FUN_18072d517
+ */
+void ProcessUIDataTransformAndMatrixCalculation(UIHandle uiContext, float *dataSource, UIHandle targetBuffer, longlong bufferSize)
 {
-  float *BaseValuePointer;
+  float *baseValuePointer;
   longlong contextHandle;
-  longlong register10;
-  longlong RegisterPointer;
+  longlong maxBufferSize;
+  longlong registerPointer;
   
-  if (bufferSize < register10) {
-    BaseValuePointer = (float *)(contextHandle + -0xc + bufferSize * 4);
-    bufferSize = register10 - bufferSize;
+  if (bufferSize < maxBufferSize) {
+    baseValuePointer = (float *)(contextHandle + -0xc + bufferSize * 4);
+    bufferSize = maxBufferSize - bufferSize;
     do {
-      *(float *)((RegisterPointer - contextHandle) + 0xc + (longlong)BaseValuePointer) =
-           BaseValuePointer[3] -
-           (BaseValuePointer[2] * *dataSource + BaseValuePointer[1] * dataSource[1] + *BaseValuePointer * dataSource[2] +
-            BaseValuePointer[-1] * dataSource[3] + BaseValuePointer[-2] * dataSource[4] + BaseValuePointer[-3] * dataSource[5] +
-            BaseValuePointer[-4] * dataSource[6] + BaseValuePointer[-5] * dataSource[7] + BaseValuePointer[-6] * dataSource[8] +
-           BaseValuePointer[-7] * dataSource[9]);
-      BaseValuePointer = BaseValuePointer + 1;
+      *(float *)((registerPointer - contextHandle) + 0xc + (longlong)baseValuePointer) =
+           baseValuePointer[3] -
+           (baseValuePointer[2] * *dataSource + baseValuePointer[1] * dataSource[1] + *baseValuePointer * dataSource[2] +
+            baseValuePointer[-1] * dataSource[3] + baseValuePointer[-2] * dataSource[4] + baseValuePointer[-3] * dataSource[5] +
+            baseValuePointer[-4] * dataSource[6] + baseValuePointer[-5] * dataSource[7] + baseValuePointer[-6] * dataSource[8] +
+           baseValuePointer[-7] * dataSource[9]);
+      baseValuePointer = baseValuePointer + 1;
       bufferSize = bufferSize + -1;
     } while (bufferSize != 0);
   }

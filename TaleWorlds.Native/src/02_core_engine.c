@@ -808,7 +808,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemFlagF SystemFlagF                                 // 系统标志F
 
 // 系统栈变量语义化映射
-#define SystemStackUnsigned110 uStack_110                  // 系统栈无符号110
+#define SystemStackUnsigned110 UnsignedStackValue110                  // 系统栈无符号110
 #define SystemStackArray158 auStack_158                     // 系统栈数组158
 #define SystemStackUnsigned158 uStack_158                   // 系统栈无符号158
 #define SystemStackByte25c uStack_25c                       // 系统栈字节25c
@@ -58249,12 +58249,12 @@ SystemEventProcessing:
   if (((*(long long *)(*DataBuffer1E0 + StackOffset170 + 8) - (long long)ReferenceCountPointer3 ^
        (long long)LockOperationResultPointer0 - (long long)ReferenceCountPointer4) & 0xfffffffffffffffcU) != 0) {
     *(int **)(*DataBuffer1E0 + StackOffset170) = ReferenceCountPointer4;
-    StackProcessingVariable = *(int **)(*DataBuffer1E0 + lStack_170 + 8);
-    *(int **)(*DataBuffer1E0 + lStack_170 + 8) = LockOperationResultPointer0;
-    SystemStackPointer190 = *(int **)(pStackDataBuffer1e0[1] + lStack_170);
-    *(int **)(pStackDataBuffer1e0[1] + lStack_170) = ReferenceCountPointer5;
-    ProcessingStatus = *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8);
-    *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8) = 3;
+    StackProcessingVariable = *(int **)(*DataBuffer1E0 + StackOffset170 + 8);
+    *(int **)(*DataBuffer1E0 + StackOffset170 + 8) = LockOperationResultPointer0;
+    SystemStackPointer190 = *(int **)(pStackDataBuffer1e0[1] + StackOffset170);
+    *(int **)(pStackDataBuffer1e0[1] + StackOffset170) = ReferenceCountPointer5;
+    ProcessingStatus = *(uint32_t *)(pStackDataBuffer1e0[1] + StackOffset170 + 8);
+    *(uint32_t *)(pStackDataBuffer1e0[1] + StackOffset170 + 8) = 3;
     SystemUnsignedValue1A0 = ReferenceCountPointer3;
     if (SystemMemoryPointer168 < pLocalDataStructure160) {
       MemoryAddressMaskPointer1 = (long long)LockOperationResultPointer6 - (long long)ReferenceCountPointer6;
@@ -58281,9 +58281,9 @@ SystemEventProcessing:
       LockOperationResultPointer6 = ReferenceCountPointer210;
       ReferenceCountPointer6 = ReferenceCountPointer218;
     }
-    BufferStatus3 = lStack_1d0;
+    BufferStatus3 = StackOffset1d0;
     LockOperationResult7 = *ReferenceCountPointer;
-    MemoryBlockIndex1 = lStack_1d0 * 0x5c;
+    MemoryBlockIndex1 = StackOffset1d0 * 0x5c;
     BufferStatus1 = *(long long *)(ContextHandle + 0x68);
     ProcessingCounter = *(void *)(MemoryBlockIndex1 + BufferStatus1);
     SystemFlagA = ((void *)(MemoryBlockIndex1 + BufferStatus1))[1];
@@ -66390,7 +66390,7 @@ CharacterDataAllocationLAB180087f16:
                     // WARNING: Subroutine does not return
         ProcessSystemEventHandling();
       }
-      uStack_110 = uStack_110 & 0xffffffff00000000;
+      UnsignedStackValue110 = UnsignedStackValue110 & 0xffffffff00000000;
     }
     else {
       SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
@@ -66410,7 +66410,7 @@ CharacterDataAllocationLAB180087f16:
                     // WARNING: Subroutine does not return
         ProcessSystemEventHandling();
       }
-      uStack_110 = uStack_110 & 0xffffffff00000000;
+      UnsignedStackValue110 = UnsignedStackValue110 & 0xffffffff00000000;
     }
   }
   pDataProcessingFlags = (uint8_t *)0x0;
@@ -74333,7 +74333,7 @@ void ProcessFloatDataStructureWithSync(float *ContextHandle,uint64_t OperationBu
       TemporaryFlag = 0;
       BufferInitializationFlag = 0;
       uStack_124 = 0;
-      uStack_110 = 0;
+      UnsignedStackValue110 = 0;
       ProcessSystemResourceAllocation(*(void *)(ContextHandle + MemoryBoundaryEnd * 2 + 0x42),OperationBufferSize,&ProcessingCounter,0,&uStack_178);
       (**(code **)(**(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2) + 0x1c8)                (*(long long **)(ContextHandle + MemoryBoundaryEnd * 2 + 2),OperationBufferSize,0,&ProcessingCounter,&uStack_178);
     }
@@ -79569,7 +79569,7 @@ void InitializeCoreEngineDataStructure(long long *ContextHandle,int OperationBuf
   CalculatedCodePoint = ProcessSystemDataValidationAndReturn(*(void *)(MemoryBlockIndex + 0xa0),&StackValidationData,&iStack_140,&iStack_13c);
   ProcessSystemDataBufferAndCopy(CalculatedCodePoint,aplStack_120,StackValidationData,iStack_140 * iStack_13c);
   SystemDataTablePointer = aplStack_120[0];
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_104 = 0;
   uStack_fc = 0;
   SystemFlagB = 1;
@@ -79721,7 +79721,7 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   plStack_c0 = (long long *)0x0;
   pSystemTemporaryRegister118 = SystemRegisterPointerX10;
   StackProcessingUnsignedValue108 = CONCAT26(StackProcessingUnsignedValueaa,CONCAT24(StackProcessingUnsignedValueac,SystemStackRegisterFlagB0));
-  uStack_110 = MemoryOffsetValue;
+  UnsignedStackValue110 = MemoryOffsetValue;
   SystemFlagA = 2;
   SystemFlagG = 0;
   uStack_cc = 0;
@@ -79741,8 +79741,8 @@ void ProcessSystemMemoryAllocation(long long ContextHandle
   CharacterTablePointer = SystemRegisterPointerX10[0x2b7];
   pPerformanceCounterPointer = &SystemContextPointerA8;
   SystemContextPointerA8 = pSystemTemporaryRegister118;
-  CoreEngineUnsignedValueA0 = (uint32_t)uStack_110;
-  uStack_9c = uStack_110.HighPart;
+  CoreEngineUnsignedValueA0 = (uint32_t)UnsignedStackValue110;
+  uStack_9c = UnsignedStackValue110.HighPart;
   SystemOperationFlag98 = (uint32_t)ProcessingCounter;
   SystemUnsignedValue94 = ProcessingCounter.HighPart;
   SystemOperation90 = SystemFlagA;
@@ -91459,7 +91459,7 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t ContextHandle,char Op
   uStack_210 = uStack_210 & 0xffffffff00000000;
   pOperationStatus = &ThreadLocalStorageTemplate;
   uStack_118 = 0;
-  uStack_110 = 0;
+  UnsignedStackValue110 = 0;
   ProcessingCounter = 0;
   SystemFlagA = 3;
   pCoreEngineUnsignedValue208 = &SystemNullTemplate;
@@ -106044,7 +106044,7 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
   *(uint32_t *)(SystemConfigurationHandle + 0x1be0) = 0;
   *(uint8_t *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0xb1) = 1;
   SystemConfigurationIterator = *(long long *)(AllocatedMemorySize + 0x1af8);
-  uStack_110 = OperationBufferSize;
+  UnsignedStackValue110 = OperationBufferSize;
   pcStack_e8 = ContextHandle;
   if (*(char *)(SystemConfigurationIterator + 0xb4) == '\0') {
     MatchCounter = ValidateSystemDataAndProcessOperation(ContextHandle,0,
@@ -106180,26 +106180,26 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
       OperationStatus = ProcessingStatusFlag;
       ProcessDataStructureAndValidate(MemoryAllocationHandle,ProcessingStatusFlag,*(uint32_t *)(AllocatedMemorySize + 0x1664));
       CharacterTablePointer = SystemConfigurationHandle;
-      if ((uStack_110 != (float *)0x0) && (MemoryAllocationOffset == 0)) {
+      if ((UnsignedStackValue110 != (float *)0x0) && (MemoryAllocationOffset == 0)) {
         DataProcessingFlags = 0;
         fStack_134 = CalculatedDistance + *(float *)(AllocatedMemorySize + 0x165c);
         fStack_130 = FloatOffsetValue + *(float *)(AllocatedMemorySize + 0x1660);
-        pContextSecondaryFloat1 = uStack_110;
-        if (uStack_110 != (float *)0xffffffffffffffff) {
+        pContextSecondaryFloat1 = UnsignedStackValue110;
+        if (UnsignedStackValue110 != (float *)0xffffffffffffffff) {
           while (*(char *)pContextSecondaryFloat1 != '\0') {
             if (((*(char *)pContextSecondaryFloat1 == '#') && (*(char *)((long long)pContextSecondaryFloat1 + 1) == '#')) ||
                (pContextSecondaryFloat1 = (float *)((long long)pContextSecondaryFloat1 + 1), pContextSecondaryFloat1 == (float *)0xffffffffffffffff)            break;
           }
         }
-        if ((int)pContextSecondaryFloat1 != (int)uStack_110) {
+        if ((int)pContextSecondaryFloat1 != (int)UnsignedStackValue110) {
           pcStack_148 = (char *)&DataProcessingFlags;
           SystemStatusValue = 0;
           pcStack_150 = (char *)0x0;
           pfStack_158 = pContextSecondaryFloat1;
           ValidateSystemDataStructure(*(void *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x2e8),&fStack_134,
-                        &fStack_100,uStack_110);
+                        &fStack_100,UnsignedStackValue110);
           if (*(char *)(CharacterTablePointer + 0x2e38) != '\0') {
-            ProcessSystemConfigurationAndTarget(&fStack_134,uStack_110,pContextSecondaryFloat1);
+            ProcessSystemConfigurationAndTarget(&fStack_134,UnsignedStackValue110,pContextSecondaryFloat1);
           }
         }
       }
@@ -106311,16 +106311,16 @@ void ProcessFloatDataInputAndSystemConfiguration(char *ContextHandle,float *Cont
         pcStack_150 = (char *)&SystemFlagB;
         pcStack_148 = (char *)CONCAT44(pcStack_148.HighPart,1);
         pfStack_158 = &fStack_108;
-        uStack_110 = (float *)CONCAT44(NormalizedParameterValue,CalculatedDistance);
-        ConvertSystemData(&fStack_128,&uStack_110,&pcStack_e8,SystemConfigurationIterator + 0xd4);
+        UnsignedStackValue110 = (float *)CONCAT44(NormalizedParameterValue,CalculatedDistance);
+        ConvertSystemData(&fStack_128,&UnsignedStackValue110,&pcStack_e8,SystemConfigurationIterator + 0xd4);
         SystemConfigurationIterator = SystemConfigurationHandle;
         *(unsigned long long *)(SystemConfigurationHandle + 0x1bf4) = CONCAT44(fStack_124,fStack_128);
         *(void *)(SystemConfigurationIterator + 0x1bfc) = 0;
         *(uint32_t *)(SystemConfigurationIterator + 0x1bd0) = 1;
         *(uint8_t *)(SystemConfigurationIterator + 0x1c14) = 1;
       }
-      uStack_110 = (float *)CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1630),*(uint32_t *)(AllocatedMemorySize + 0x165c                                    );
-      ValidateSystemDataEx(1,&uStack_110);
+      UnsignedStackValue110 = (float *)CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1630),*(uint32_t *)(AllocatedMemorySize + 0x165c                                    );
+      ValidateSystemDataEx(1,&UnsignedStackValue110);
       ValidationStatus0 = InitializeSystemCharacterStatusBuffer(&CharacterProcessingByte,0,0x4000143);
       UpdateSystemStatusEx(1);
       if (ValidationStatus0 == '\0') {
@@ -111846,7 +111846,7 @@ LAB_180117d84:
         uStack_13c = AdditionalParameter1;
         TemporaryFlag = 0;
         uStack_118 = 0;
-        uStack_110 = 0;
+        UnsignedStackValue110 = 0;
         iStack_11c = (int)ContextPrimaryFloat9 + 1;
         if ((int)ContextPrimaryFloat9 + 1 <= Utf8SourcePointer) {
           iStack_11c = Utf8SourcePointer;
@@ -116183,7 +116183,7 @@ void ProcessSystemConfigurationHandle(uint64_t ContextHandle,char *ContextHandle
       fStack_14c = *(float *)(SystemContextValue + 0x1744) * *(float *)(SystemContextValue + 0x1628);
       SystemChecksum = ValidateSystemData(&fStack_158);
       TimeDifferenceInSeconds3 = (double)CONCAT44(MemoryAllocationBase,*(uint32_t *)(CharacterTablePointer + 0x1664));
-      uStack_110 = UnicodeCodePoint;
+      UnsignedStackValue110 = UnicodeCodePoint;
       ProcessSystemDataConcatenation(ProcessedCharacter,CONCAT44(fStack_104,fStack_108),SystemChecksum,1,TimeDifferenceInSeconds3);
       SystemContextValue = SystemConfigurationHandle;
       if (0 < AdditionalParameter1) {
@@ -136430,7 +136430,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *ContextHandle,long long
   uint DataProcessingFlags;
   float fStack_118;
   float fStack_114;
-  uint32_t uStack_110;
+  uint32_t UnsignedStackValue110;
   float fStack_10c;
   float fStack_108;
   float fStack_104;
@@ -137673,7 +137673,7 @@ LAB_18012b82d:
       SystemContextValue = SystemMemoryContext[0x5d];
       fStack_118 = *(float *)(SystemConfigurationHandle + 0x1718);
       fStack_114 = *(float *)(SystemConfigurationHandle + 0x171c);
-      uStack_110 = *(uint32_t *)(SystemConfigurationHandle + 0x1720);
+      UnsignedStackValue110 = *(uint32_t *)(SystemConfigurationHandle + 0x1720);
       fStack_10c = *(float *)(SystemConfigurationHandle + 0x1724) * *(float *)(SystemConfigurationHandle + 0x1628);
       SystemMemoryAllocationResult = ValidateSystemData(&fStack_118);
       pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,ScalingFactor);
@@ -213529,7 +213529,7 @@ void ProcessCharacterEncodingAndBufferSize(long long ContextHandle, long long Op
   uint32_t uStack_124;
   uint32_t DataProcessingFlags;
   long long *pSystemTemporaryRegister118;
-  uint32_t uStack_110;
+  uint32_t UnsignedStackValue110;
   uint8_t uStack_10c;
   uint64_t ProcessingCounter;
   long long *plStack_100;
@@ -219633,14 +219633,14 @@ void ProcessSystemBufferAllocationAndMemoryBlockManagement(uint64_t ContextHandl
   ContextHandleTablePointer[0x20] = 0;
   *(uint8_t *)(ContextHandleTablePointer + 0x22) = 0;
   pBufferInitializationFlag = &SystemNullTemplate;
-  uStack_110 = 0;
+  UnsignedStackValue110 = 0;
   pDataProcessingFlags = NULL;
   uStack_118 = 0;
   SecondaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
   *(uint8_t *)SecondaryProcessingStatusFlag = 0;
   pDataProcessingFlags = SecondaryProcessingStatusFlag;
   MemoryAddressMaskPointer = GetMemoryAllocationInfo(SecondaryProcessingStatusFlag);
-  uStack_110 = CONCAT44(uStack_110.HighPart,MemoryAddressMaskPointer);
+  UnsignedStackValue110 = CONCAT44(UnsignedStackValue110.HighPart,MemoryAddressMaskPointer);
   *SecondaryProcessingStatusFlag = 0x6e6f74656c656b53;
   *(uint32_t *)(SecondaryProcessingStatusFlag + 1) = 0x6d614e20;
   *(uint16_t *)((long long)SecondaryProcessingStatusFlag + 0xc) = 0x65;
@@ -221590,7 +221590,7 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
   do {
     CharacterTablePointer = *ContextHandlePointer;
     pBufferInitializationFlag = &SystemNullTemplate;
-    uStack_110 = 0;
+    UnsignedStackValue110 = 0;
     pDataProcessingFlags = NULL;
     uStack_118 = 0;
     if (CharacterTablePointer != 0) {
@@ -221609,7 +221609,7 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
         *ContextHandlePointer = 0;
         pDataProcessingFlags = (void *)ContextHandleTablePointer;
         UnicodeCodePoint = GetMemoryAllocationInfo(ContextHandleTablePointer);
-        uStack_110 = CONCAT44(uStack_110.HighPart,UnicodeCodePoint);
+        UnsignedStackValue110 = CONCAT44(UnsignedStackValue110.HighPart,UnicodeCodePoint);
                     // WARNING: Subroutine does not return
         memcpy(ContextHandleTablePointer,LoopCounter,IntegerValue9);
       }
@@ -221626,7 +221626,7 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
     }
     *(int *)(SecondaryProcessingStatusFlag + 8) = IntegerValue;
     pDataProcessingFlags = NULL;
-    uStack_110 = uStack_110 & 0xffffffff00000000;
+    UnsignedStackValue110 = UnsignedStackValue110 & 0xffffffff00000000;
     pBufferInitializationFlag = &ThreadLocalStorageTemplate;
     CharacterTablePointer = CharacterTablePointer + 1;
     ContextHandleTablePointer = ContextHandleTablePointer + 1;
@@ -221639,14 +221639,14 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
   *(uint8_t *)(pMemoryAddressMaskPointer + 0x29) = 0;
   *(uint16_t *)(pMemoryAddressMaskPointer + 0x11) = 0;
   pBufferInitializationFlag = &SystemNullTemplate;
-  uStack_110 = 0;
+  UnsignedStackValue110 = 0;
   pDataProcessingFlags = NULL;
   uStack_118 = 0;
   StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
   *(uint8_t *)StringProcessingStatus = 0;
   pDataProcessingFlags = StringProcessingStatus;
   UnicodeCodePoint = GetMemoryAllocationInfo(StringProcessingStatus);
-  uStack_110 = CONCAT44(uStack_110.HighPart,UnicodeCodePoint);
+  UnsignedStackValue110 = CONCAT44(UnsignedStackValue110.HighPart,UnicodeCodePoint);
   *StringProcessingStatus = 0x615020746e657645;
   *(uint16_t *)(StringProcessingStatus + 1) = 0x6874;
   *(uint8_t *)((long long)StringProcessingStatus + 10) = 0;
@@ -242472,7 +242472,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
   uint32_t BufferInitializationFlag;
   uint64_t DataProcessingFlags;
   uint64_t SystemStackOffset118;
-  uint32_t uStack_110;
+  uint32_t UnsignedStackValue110;
   uint16_t uStack_10c;
   uint64_t ProcessingCounter;
   uint64_t SystemFlagA;
@@ -242621,7 +242621,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
         }
       }
       uStack_118 = 0;
-      uStack_110 = 0xffffffff;
+      UnsignedStackValue110 = 0xffffffff;
       uStack_10c = 0xff00;
       ProcessingCounter = 0;
       SystemFlagA = 0xffffffffffffffff;
@@ -244831,7 +244831,7 @@ void NormalizeSystemCharacterData(long long ContextHandle,float *ContextHandleSi
             fStack_270 = ContextSecondaryFloat7;
             uStack_26c = MemoryAllocationOffset;
             uStack_118 = EventValidationStatus;
-            uStack_110 = SystemConfigurationMode;
+            UnsignedStackValue110 = SystemConfigurationMode;
             fStack_108 = ContextSecondaryFloat5;
             fStack_104 = ContextSecondaryFloat6;
             fStack_100 = ContextSecondaryFloat7;
@@ -262733,7 +262733,7 @@ LAB_18021541f:
     ProcessSystemEventHandling();
   }
   lStack_120 = 0;
-  uStack_110 = 0;
+  UnsignedStackValue110 = 0;
   pBufferInitializationFlag = &ThreadLocalStorageTemplate;
   pProcessingCounter = &SystemNullTemplate;
   if (lStack_100 != 0) {
@@ -268403,7 +268403,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uint32_t BufferInitializationFlag;
   uint64_t DataProcessingFlags;
   uint8_t uStack_118;
-  uint32_t uStack_110;
+  uint32_t UnsignedStackValue110;
   long long *plStack_108;
   long long *plStack_100;
   long long *PreviousContextPointer;
@@ -268425,7 +268425,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 9;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268450,7 +268450,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 0xd;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268475,7 +268475,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x14;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate2);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268500,7 +268500,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 0x1c;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate2);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268525,7 +268525,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x10;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate3);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268550,7 +268550,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 10;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate3);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268575,7 +268575,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0xf;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate4);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268600,7 +268600,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 0xb;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate4);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268625,7 +268625,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0xe;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate5);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268650,7 +268650,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 9;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate5);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268675,7 +268675,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x16;
   strcpy_s(aSystemFlagG,0x40,&SystemFlagTemplate6);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268700,7 +268700,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aStackProcessingVariable70[0] = 0;
   StackProcessingValue78 = 0x14;
   strcpy_s(aStackProcessingVariable70,0x40,&SystemVariableTemplate6);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268725,7 +268725,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x1a;
   strcpy_s(aSystemFlagG,0x40,&SystemInitializationString);
-  uStack_110 = 1;
+  UnsignedStackValue110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
   BufferInitializationFlag = 1;
@@ -268768,7 +268768,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   long long SearchStartIndex;
   uint32_t TemporaryFlag;
   uint32_t DataProcessingFlags;
-  uint32_t uStack_110;
+  uint32_t UnsignedStackValue110;
   uint32_t SystemFlagA;
   uint32_t OperationStatus;
   uint32_t SystemFlagE;
@@ -268806,7 +268806,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x70) = IntegerValue;
   MemoryBlockIndex = (long long)LockOperationResult + 1;
   *(int *)(ContextHandle + 0x80) = IntegerValue;
-  uStack_110 = CONCAT31(uStack_110._1_3_,1);
+  UnsignedStackValue110 = CONCAT31(UnsignedStackValue110._1_3_,1);
   *(uint32_t *)(ContextHandle + 0xb0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x128 + MemoryBlockIndex * 0xc) = 0x800000002;
   SystemStackRegisterFlagB0 = CONCAT31(SystemStackRegisterFlagB0._1_3_,1);
@@ -268817,7 +268817,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   SystemFlagE = CONCAT31(SystemFlagE._1_3_,1);
   CoreEngineUnsignedValueA0 = CoreEngineUnsignedValueA0 & 0xffffff00;
   OperationStatus = CONCAT31(OperationStatus._1_3_,1);
-  *(uint32_t *)(ContextHandle + 0x130 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x130 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0xe8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x228) = *(long long *)(ContextHandle + 0x228) + 8;
   *(uint32_t *)(ContextHandle + 0x1e8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x74);
@@ -268860,7 +268860,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x240) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x270 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x2e8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x2f0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x2f0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x2a8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 1000) = *(long long *)(ContextHandle + 1000) + 8;
   *(uint32_t *)(ContextHandle + 0x3a8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x234);
@@ -268915,7 +268915,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x400) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x430 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x4a8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x4b0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x4b0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x468 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x5a8) = *(long long *)(ContextHandle + 0x5a8) + 8;
   *(uint32_t *)(ContextHandle + 0x568 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x3f4);
@@ -268976,7 +268976,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x1580) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x15b0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x1628 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x1630 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x1630 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x15e8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x1728) = *(long long *)(ContextHandle + 0x1728) + 8;
   *(uint32_t *)(ContextHandle + 0x16e8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x1574);
@@ -269037,7 +269037,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x5c0) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x5f0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x668 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x670 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x670 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x628 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x768) = *(long long *)(ContextHandle + 0x768) + 8;
   *(uint32_t *)(ContextHandle + 0x728 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x5b4);
@@ -269118,7 +269118,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x1740) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 6000 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x17e8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x17f0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x17f0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x17a8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x18e8) = *(long long *)(ContextHandle + 0x18e8) + 8;
   *(uint32_t *)(ContextHandle + 0x18a8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x1734);
@@ -269188,7 +269188,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x940) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x970 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x9e8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x9f0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x9f0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x9a8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0xae8) = *(long long *)(ContextHandle + 0xae8) + 8;
   *(uint32_t *)(ContextHandle + 0xaa8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x934);
@@ -269242,7 +269242,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0xb00) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0xb30 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0xba8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0xbb0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0xbb0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0xb68 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0xca8) = *(long long *)(ContextHandle + 0xca8) + 8;
   *(uint32_t *)(ContextHandle + 0xc68 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0xaf4);
@@ -269307,7 +269307,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0xcc0) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0xcf0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0xd68 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0xd70 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0xd70 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0xd28 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0xe68) = *(long long *)(ContextHandle + 0xe68) + 8;
   *(uint32_t *)(ContextHandle + 0xe28 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0xcb4);
@@ -269379,7 +269379,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x1900) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x1930 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x19a8 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x19b0 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x19b0 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x1968 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x1aa8) = *(long long *)(ContextHandle + 0x1aa8) + 8;
   *(uint32_t *)(ContextHandle + 0x1a68 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x18f4);
@@ -269451,7 +269451,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0xe80) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0xeb0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0xf28 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0xf30 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0xf30 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0xee8 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x1028) = *(long long *)(ContextHandle + 0x1028) + 8;
   *(uint32_t *)(ContextHandle + 0xfe8 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0xe74);
@@ -269543,7 +269543,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x1ac0) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x1af0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x1b68 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x1b70 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x1b70 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x1b28 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x1c68) = *(long long *)(ContextHandle + 0x1c68) + 8;
   *(uint32_t *)(ContextHandle + 0x1c28 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x1ab4);
@@ -269644,7 +269644,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   *(int *)(ContextHandle + 0x13c0) = LockOperationResult;
   *(uint32_t *)(ContextHandle + 0x13f0 + MemoryBlockIndex * 4) = 2;
   *(void *)(ContextHandle + 0x1468 + MemoryBlockIndex * 0xc) = 0x800000002;
-  *(uint32_t *)(ContextHandle + 0x1470 + MemoryBlockIndex * 0xc) = uStack_110;
+  *(uint32_t *)(ContextHandle + 0x1470 + MemoryBlockIndex * 0xc) = UnsignedStackValue110;
   *(uint32_t *)(ContextHandle + 0x1428 + MemoryBlockIndex * 4) = 8;
   *(long long *)(ContextHandle + 0x1568) = *(long long *)(ContextHandle + 0x1568) + 8;
   *(uint32_t *)(ContextHandle + 0x1528 + MemoryBlockIndex * 4) = *(uint32_t *)(ContextHandle + 0x13b4);
@@ -282283,7 +282283,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
       MatrixTransformMultiplier10 = DataContentStatus.HighPart;
       MatrixTransformMultiplier11 = (float)SystemUnsignedValue160;
       do {
-        uStack_110 = *(uint64_t **)(LockOperationResultPointer9 + 0x2a);
+        UnsignedStackValue110 = *(uint64_t **)(LockOperationResultPointer9 + 0x2a);
         SystemFlagA = *(unsigned long long *)(LockOperationResultPointer9 + 0x2e);
         OperationStatus = *(void *)(LockOperationResultPointer9 + 0x32);
         SystemFlagE = *(void *)(LockOperationResultPointer9 + 0x36);
@@ -282336,11 +282336,11 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
           MatrixTransformMultiplier1 = (float)ErrorCode * MatrixTransformMultiplier1;
           MatrixTransformMultiplier2 = (float)ErrorCode * MatrixTransformMultiplier2;
           uStack_118 = (void *                       CONCAT44((float)uStack_118 * CalculatedDistance + uStack_118.HighPart * ProcessedFloatValue8 +
-                                (float)uStack_110 * PrimaryFloatValue,
+                                (float)UnsignedStackValue110 * PrimaryFloatValue,
                                 (float)uStack_118 * MatrixTransformMultiplier + uStack_118.HighPart * FloatOffsetValue +
-                                (float)uStack_110 * NormalizedParameterValue);
-          uStack_110 = (void *                       CONCAT44(MatrixTransformMultiplier8 + MatrixTransformMultiplier17 + (float)uStack_110 * SystemContextPrimaryFloat2,
-                                MatrixTransformMultiplier7 + MatrixTransformMultiplier13 + (float)uStack_110 * SecondaryFloatValue);
+                                (float)UnsignedStackValue110 * NormalizedParameterValue);
+          UnsignedStackValue110 = (void *                       CONCAT44(MatrixTransformMultiplier8 + MatrixTransformMultiplier17 + (float)UnsignedStackValue110 * SystemContextPrimaryFloat2,
+                                MatrixTransformMultiplier7 + MatrixTransformMultiplier13 + (float)UnsignedStackValue110 * SecondaryFloatValue);
           ProcessingCounter = CONCAT44((float)ProcessingCounter * CalculatedDistance + ProcessingCounter.HighPart * ProcessedFloatValue8 +
                                 (float)SystemFlagA * PrimaryFloatValue,
                                 (float)ProcessingCounter * MatrixTransformMultiplier + ProcessingCounter.HighPart * FloatOffsetValue +
@@ -282438,7 +282438,7 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
            *(uint8_t *)(lStack_188 + *(long long *)(lStack_170 + 0x20));
       BufferStatus3 = *(long long *)(ContextHandle + 0x140);
       uStack_118 = &SystemValidationStatus;
-      uStack_110 = &SystemFlagA;
+      UnsignedStackValue110 = &SystemFlagA;
       SystemFlagA = SystemFlagA & 0xffffffffffffff00;
       ProcessingCounter = CONCAT44((int)((unsigned long long)ProcessingCounter >> 0x20),
                             *(uint32_t *)(lStack_188 + 0x18 + *(long long *)(lStack_170 + 0x20)));
@@ -282451,8 +282451,8 @@ uint64_t * FUN_180227230(uint64_t ContextHandle,long long OperationBufferSize
       BufferStatus3 = *(long long *)(BufferStatus3 + 0x180 + UnicodeCodePoint7);
       *(float *)(BufferStatus3 + 0x10) = (float)ProcessingCounter;
       SystemEventTemplatePointer2 = (void *)&CoreEngineDataTemplate;
-      if (uStack_110 != NULL) {
-        SystemEventTemplatePointer2 = uStack_110;
+      if (UnsignedStackValue110 != NULL) {
+        SystemEventTemplatePointer2 = UnsignedStackValue110;
       }
       strcpy_s(*(void *)(BufferStatus3 + 8),0x40,SystemEventTemplatePointer2);
       uStack_118 = &ThreadLocalStorageTemplate;
@@ -282618,7 +282618,7 @@ LAB_180227e59:
         MatrixTransformMultiplier11 = *(float *)(UnicodeCodePoint5 + 0x58 + BufferStatus3);
         uStack_118 = (void *                     CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + MatrixTransformMultiplier10 * CalculatedDistance + MatrixTransformMultiplier11 * PrimaryFloatValue,
                               FilterInputValue9 * FloatOffsetValue + MatrixTransformMultiplier10 * MatrixTransformMultiplier + MatrixTransformMultiplier11 * NormalizedParameterValue);
-        uStack_110 = (void *                     CONCAT44(FilterInputValue9 * MatrixTransformMultiplier0 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2,
+        UnsignedStackValue110 = (void *                     CONCAT44(FilterInputValue9 * MatrixTransformMultiplier0 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2,
                               FilterInputValue9 * MatrixTransformMultiplier16 + MatrixTransformMultiplier10 * MatrixTransformMultiplier1 + MatrixTransformMultiplier11 * SecondaryFloatValue);
         FilterInputValue9 = *(float *)(UnicodeCodePoint5 + 100 + BufferStatus3);
         MatrixTransformMultiplier10 = *(float *)(UnicodeCodePoint5 + 0x60 + BufferStatus3);
