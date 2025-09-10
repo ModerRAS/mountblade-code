@@ -93,6 +93,18 @@
 #define ContextResourceReleaseOffset 1                          // 上下文资源释放偏移量 - 用于上下文资源释放操作的偏移量
 #define DataValidationParameterSize 4                           // 数据验证参数大小 - 用于数据验证操作的参数大小
 
+// 内存操作标志常量
+#define MemoryAllocationFlag 0x1                                 // 内存分配标志 - 标识内存分配操作
+#define MemoryProcessingFlag 0x2                                 // 内存处理标志 - 标识内存数据处理操作
+#define MemoryCleanupFlag 0x4                                    // 内存清理标志 - 标识内存释放操作
+
+// 错误代码常量
+#define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
+#define MemoryAllocationError -2                                  // 内存分配失败错误
+#define MemoryValidationError -3                                  // 内存验证失败错误
+#define MemoryProcessingError -4                                  // 内存处理失败错误
+#define OperationSuccessCode 0                                     // 操作成功代码
+
 // 数据验证常量
 #define DataValidationMask 0xffffff                            // 数据验证掩码 - 用于数据地址验证的掩码
 #define DataBufferValidationSize 0x5a                         // 数据缓冲区验证大小 - 用于验证数据缓冲区大小的阈值
@@ -139995,7 +140007,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
     
     // 参数验证
     if (BufferSize == 0 || BufferSize > MaxSafeBufferSize) {
-        return -1; // 无效缓冲区大小
+        return InvalidBufferSizeError; // 无效缓冲区大小
     }
     
     // 根据操作标志执行相应的内存管理操作
@@ -140003,18 +140015,18 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         // 内存分配模式
         ValidatedMemoryPointer = AllocateSystemMemoryA0(BufferSize);
         if (ValidatedMemoryPointer == NULL) {
-            return -2; // 内存分配失败
+            return MemoryAllocationError; // 内存分配失败
         }
         
         // 验证内存边界
         ValidationResult = ValidateMemoryBoundary(ValidatedMemoryPointer, BufferSize);
         if (ValidationResult != 0) {
             ReleaseMemoryResourceA1(ValidatedMemoryPointer);
-            return -3; // 内存验证失败
+            return MemoryValidationError; // 内存验证失败
         }
         
         // 设置内存状态标志
-        MemoryStatusFlags |= 0x1; // 标记为已分配
+        MemoryStatusFlags |= MemoryAllocationFlag; // 标记为已分配
         AllocatedBufferSize = BufferSize;
     }
     
@@ -140033,7 +140045,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
                 if (ValidatedMemoryPointer != NULL) {
                     ReleaseMemoryResourceA1(ValidatedMemoryPointer);
                 }
-                return -4; // 内存处理失败
+                return MemoryProcessingError; // 内存处理失败
             }
         }
     }
@@ -140044,9 +140056,9 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
         if (ValidatedMemoryPointer != NULL) {
             ReleaseMemoryResourceA1(ValidatedMemoryPointer);
             ValidatedMemoryPointer = NULL;
-            MemoryStatusFlags &= ~0x1; // 清除分配标志
+            MemoryStatusFlags &= ~MemoryAllocationFlag; // 清除分配标志
         }
     }
     
-    return 0; // 操作成功
+    return OperationSuccessCode; // 操作成功
 }
