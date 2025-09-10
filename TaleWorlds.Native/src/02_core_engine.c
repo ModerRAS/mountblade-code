@@ -233794,7 +233794,7 @@ LAB_18019144a:
 
 
 
-unsigned long long FUN_180191560(unsigned long long ContextHandle,unsigned long long OperationBufferSize,long long Utf8SourcePointer
+unsigned long long ValidateUtf8DataIntegrity(unsigned long long ContextHandle,unsigned long long OperationBufferSize,long long Utf8SourcePointer
 {
   byte *CurrentBytePointer;
   long long BufferStatus;
@@ -233926,7 +233926,7 @@ LAB_18019165c:
 
 
 
-long long FUN_1801917b0(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
+long long ProcessCharacterEncodingConversion(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer,
                       long long AdditionalParameter1
 {
   byte *CurrentBytePointer;
@@ -234801,7 +234801,7 @@ LAB_180193a50:
 
 
 
-uint64_t * FUN_180193ac0(uint64_t *ContextHandle,long long OperationBufferSize
+uint64_t * ProcessStringComparisonOperation(uint64_t *ContextHandle,long long OperationBufferSize
 {
   byte StringComparisonByte;
   bool HighByte;
