@@ -224627,7 +224627,23 @@ void ProcessShortIntegerContextHandle(int ContextHandle, uint16_t *ContextHandle
 
 
 
-85cf0(uint64_t ContextHandle,long long OperationBufferSizevoid FUN_180185cf0(uint64_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理UTF-16字符编码和系统缓冲区状态
+ * 
+ * 该函数负责处理UTF-16字符编码和系统缓冲区状态，主要功能包括：
+ * - 处理UTF-16字符转换和编码
+ * - 管理系统缓冲区状态和内存地址
+ * - 执行字符串搜索和比较操作
+ * - 处理系统事件模板和内存指针
+ * - 管理系统状态和标志位
+ * 
+ * @param ContextHandle 上下文句柄，用于标识系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，用于指定缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180185cf0
+ */
+#define ProcessUtf16CharacterEncodingAndSystemBufferStatus FUN_180185cf0
+void ProcessUtf16CharacterEncodingAndSystemBufferStatus(uint64_t ContextHandle,long long OperationBufferSize)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
