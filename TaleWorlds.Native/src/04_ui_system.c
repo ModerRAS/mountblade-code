@@ -270539,24 +270539,24 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
         }
         dataSource = dataSource + (int)(vectorSize * 8);
         vectorProcessingCount = vectorProcessingCount + -1;
-      } while (uiValidationResult2 != 0);
+      } while (vectorProcessingCount != 0);
     }
-    uiValidationResult2 = param_7 * 8;
-    for (param_8 = param_8 & 7; param_8 != 0; param_8 = param_8 - 1) {
+    vectorProcessingCount = vectorSize * 8;
+    for (operationMask = operationMask & 7; operationMask != 0; operationMask = operationMask - 1) {
                      WARNING: Read-only address (ram,0x000180980640) is written
-      TransformCoefficient15 = TransformCoefficient15 + -1;
-      TransformCoefficient14 = TransformCoefficient15;
-      eventCodeType1 = param_7;
-      if (param_7 != 0) {
+      sourceDataPtr = sourceDataPtr + -1;
+      targetTransformPtr = sourceDataPtr;
+      transformOperationType = vectorSize;
+      if (vectorSize != 0) {
         do {
-          *dataSource = *TransformCoefficient14;
+          *dataSource = *targetTransformPtr;
           dataSource = dataSource + 1;
-          eventCodeType1 = eventCodeType1 - 1;
-          TransformCoefficient14 = TransformCoefficient14 + 0x200;
-        } while (eventCodeType1 != 0);
+          transformOperationType = transformOperationType - 1;
+          targetTransformPtr = targetTransformPtr + 0x200;
+        } while (transformOperationType != 0);
       }
     }
-    aprocessStatus = _DAT_180980640;
+    processingStatusVector = _DAT_180980640;
                      WARNING: Read-only address (ram,0x000180980640) is written
     for (uiValidationResult8 = (int)param_9 >> 3; uiValidationResult8 != 0; uiValidationResult8 = uiValidationResult8 + -1) {
       aloopCounter = *(UIByte (*) [32])(targetBuffer + -0x20);
