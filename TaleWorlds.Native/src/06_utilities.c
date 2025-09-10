@@ -84900,16 +84900,16 @@ void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffe
   DataBuffer *memoryRegionBase;
   
   memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + -0xa0);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + MemoryRegionNegativeOffsetA0);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryRegionOffset + -0x20) != 0) && (**(int64_t **)(memoryRegionOffset + -0x88) == memoryRegionOffset + -0x30)) {
-    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + -0x10);
-    dataContext = *(int64_t *)(memoryRegionOffset + -0x18);
-    **(int64_t **)(memoryRegionOffset + -0x88) = dataContext;
-    **(int64_t **)(memoryRegionOffset + -0x68) = dataContext;
-    **(int **)(memoryRegionOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + MemoryRegionNegativeOffset20) != 0) && (**(int64_t **)(memoryRegionOffset + MemoryRegionNegativeOffset88) == memoryRegionOffset + MemoryRegionNegativeOffset30)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + MemoryRegionNegativeOffset10);
+    dataContext = *(int64_t *)(memoryRegionOffset + MemoryRegionNegativeOffset18);
+    **(int64_t **)(memoryRegionOffset + MemoryRegionNegativeOffset88) = dataContext;
+    **(int64_t **)(memoryRegionOffset + MemoryRegionNegativeOffset68) = dataContext;
+    **(int **)(memoryRegionOffset + MemoryRegionNegativeOffset50) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryRegionOffset + -0x24) != '\0') {
+  if (*(char *)(memoryRegionOffset + MemoryRegionNegativeOffset24) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
