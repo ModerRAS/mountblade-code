@@ -119878,20 +119878,20 @@ void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *t
                                         int uiContext1,int uiContext2)
 
 {
-  byte isCharacterMatch;
-  char localChar2;
-  char localChar3;
-  char localChar4;
-  char localChar5;
+  byte characterMatchFlag;
+  char transformChar1;
+  char transformChar2;
+  char transformChar3;
+  char transformChar4;
   int loopCounter;
-  int localInt7;
-  int localInt8;
-  int localInt9;
-  int processedCount;
-  short eventIndex;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  char *plocalChar14;
+  int transformOffset1;
+  int transformOffset2;
+  int transformOffset3;
+  int transformOffset4;
+  short transformIndex;
+  int calculationResult1;
+  int calculationResult2;
+  char *charPointer;
   
   loopCounter = *param_6;
   localInt7 = param_6[1];
