@@ -19985,19 +19985,19 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
   DataBuffer vectorRegister;
   uint floatValidationMaskResult;
   
-  FloatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&StackTempValue);
-  if ((int)FloatValidationResult != 0) {
-    return FloatValidationResult;
+  floatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
+  if ((int)floatValidationResult != 0) {
+    return floatValidationResult;
   }
-  dataContextPointer = *(int64_t *)(StackTempValue + systemContextOffset);
+  dataContextPointer = *(int64_t *)(stackTempValue + systemContextOffset);
   if (dataContextPointer != 0) {
-    FloatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
-    for (FloatDataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
-        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= FloatDataIterator &&
-        (FloatDataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); FloatDataIterator = FloatDataIterator + 1) {
-      FloatValidationResult = ProcessFloatingPointDataValidationA0(*FloatDataIterator,FloatProcessingValue,0);
-      if ((int)FloatValidationResult != 0) {
-        return FloatValidationResult;
+    floatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
+    for (floatDataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
+        (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= floatDataIterator &&
+        (floatDataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); floatDataIterator = floatDataIterator + 1) {
+      floatValidationResult = ProcessFloatingPointDataValidationA0(*floatDataIterator,floatProcessingValue,0);
+      if ((int)floatValidationResult != 0) {
+        return floatValidationResult;
       }
     }
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||

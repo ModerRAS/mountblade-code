@@ -864,6 +864,7 @@ typedef enum {
 #define FUN_1807395df CleanupUIAnimationStateAndExecuteRenderTask    // 清理UI动画状态并执行渲染任务 - 在动画状态非零时释放UI内存资源，然后执行渲染任务
 #define ValidateUIContextDataAndIntegrity ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
 #define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
+#define FUN_1808a2740 ProcessUIComponentDataValidation              // 处理UI组件数据验证 - 验证UI组件数据的完整性和安全性
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
 #define FUN_18071ace8 UIResetOperationFunction                     // UI重置操作函数 - 执行UI重置操作
 #define FUN_180721810 ProcessUIDataTransformOperation              // 处理UI数据变换操作 - 处理UI数据的变换操作
