@@ -222842,7 +222842,18 @@ LAB_180184089:
 
 
 
-84270(voidvoid FUN_180184270(void
+/**
+ * @brief 系统栈清理函数
+ * 
+ * 该函数负责清理系统栈数据，释放临时资源，确保系统栈的完整性。
+ * 主要功能包括：
+ * - 清理系统栈数据
+ * - 释放临时资源
+ * - 维护系统栈的完整性
+ * 
+ * @note 原始函数名：FUN_180184270
+ */
+void ProcessSystemStackCleanup(void)
 {
   ProcessSystemStackData();
   return;
@@ -226314,10 +226325,16 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 
 
 
-88180(uint64_t *ContextHandlevoid FUN_180188180(uint64_t *ContextHandle
+/**
+ * @brief 释放系统上下文内存
+ * 
+ * 释放系统上下文相关的内存资源，清理内存分配
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @return 无
+ */
+void FreeSystemContextMemory(uint64_t *ContextHandle)
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
   free(*ContextHandle,0x28);
   return;
 }
