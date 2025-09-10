@@ -114487,9 +114487,9 @@ void ProcessUIContextDataBufferOperations(UIHandle uiContext,UIHandle dataSource
 
 
  void FUN_180730750(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
-void FUN_180730750(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
-                  longlong resultPointer,longlong param_6,int param_7,short param_8,longlong param_9,
-                  longlong uiContext0,int uiContext1)
+void ProcessUIDataBufferWithValidation(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
+                                        longlong resultPointer,longlong param_6,int param_7,short param_8,longlong param_9,
+                                        longlong uiContext0,int uiContext1)
 
 {
   short sVar1;

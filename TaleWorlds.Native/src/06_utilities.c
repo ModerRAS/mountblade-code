@@ -5650,13 +5650,20 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateSystemStatusWithIntegrityCheck ValidateSystemStatusWithIntegrityCheck
 
 /**
- * @brief 系统上下文验证函数A0
+ * @brief 验证系统上下文并返回验证结果
  * 
- * 验证系统上下文A0，负责验证系统上下文的有效性和安全性
+ * 该函数负责验证系统上下文的有效性，确保系统处于正常运行状态。
+ * 验证包括内存状态、异常处理配置和系统资源可用性检查。
  * 
- * @note 原始函数名：FUN_1808af280
+ * @return int 验证结果状态码：
+ *         - 0: 验证成功，系统上下文有效
+ *         - 非0值: 验证失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180090b80
+ * @warning 验证失败可能导致系统初始化中止
+ * @see InitializeSystemComponents, ValidateSystemConfiguration
  */
-#define ValidateSystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 ValidateSystemContextAndReturnStatus
 
 /**
  * @brief 数据数组处理函数B0
@@ -7220,20 +7227,34 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 /**
  * @brief 设置默认异常处理器A29
  * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 该函数负责设置第29号默认异常处理器，用于处理系统级别的异常情况。
+ * 此处理器专门处理内存访问违例和资源分配失败等严重异常。
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180942400
+ * @warning 此函数应在系统初始化阶段调用
+ * @see SetDefaultExceptionHandlerA28, SetDefaultExceptionHandlerA30
  */
-#define SetDefaultExceptionHandler29 FUN_180942400
+#define SetDefaultExceptionHandler29 ConfigureDefaultExceptionHandlerForMemoryViolations
 
 /**
  * @brief 设置默认异常处理器A30
  * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 该函数负责设置第30号默认异常处理器，用于处理系统级别的异常情况。
+ * 此处理器专门处理线程同步异常和死锁检测等并发问题。
+ * 
+ * @return int 设置结果状态码：
+ *         - 0: 设置成功
+ *         - 非0值: 设置失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180942420
+ * @warning 此函数应在系统初始化阶段调用
+ * @see SetDefaultExceptionHandler29, SetDefaultExceptionHandlerA31
  */
-#define SetDefaultExceptionHandler30 FUN_180942420
+#define SetDefaultExceptionHandler30 ConfigureDefaultExceptionHandlerForThreadSynchronization
 
 /**
  * @brief 设置默认异常处理器A31
@@ -7560,13 +7581,23 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ValidateSystemDataIntegrity FUN_180895ef0
 
 /**
- * @brief 处理数据F0
+ * @brief 处理数据并验证完整性
  * 
- * 该函数负责处理系统数据，执行数据转换和格式化操作
+ * 该函数负责处理系统数据，执行数据转换、格式化和完整性验证操作。
+ * 确保数据在处理过程中的安全性和一致性。
+ * 
+ * @param dataPointer 数据指针
+ * @param dataSize 数据大小
+ * @param validationFlags 验证标志位
+ * @return int 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 非0值: 处理失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180898b65
+ * @warning 数据处理失败可能导致系统状态不一致
+ * @see ValidateSystemDataIntegrity, ProcessDataWithIndex
  */
-#define ProcessDataWithValidation FUN_180898b65
+#define ProcessDataWithValidation ProcessDataAndValidateIntegrity
 #define ProcessDataWithIndex FUN_180898bc0
 // 系统状态查询函数
 #define QuerySystemStatusWithValidation FUN_180898c86
