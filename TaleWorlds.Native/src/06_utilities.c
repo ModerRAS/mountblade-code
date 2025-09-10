@@ -3171,6 +3171,13 @@
 #define StackFrameContextOffsetNegative29 -0x29               // 栈帧上下文负偏移量29 - 用于异常缓冲区指针存储
 #define StackFrameContextOffsetNegative1D -0x1d               // 栈帧上下文负偏移量1D - 用于状态计数器存储
 
+// 异常处理上下文相关偏移量常量
+#define ExceptionHandlerContextOffsetNegative14 -0x14        // 异常处理上下文负偏移量14 - 用于浮点数验证值存储
+#define ExceptionHandlerContextOffsetNegative10 -0x10         // 异常处理上下文负偏移量10 - 用于第二个浮点数验证值存储
+#define ExceptionHandlerContextOffsetNegativeC -0xc           // 异常处理上下文负偏移量C - 用于第三个浮点数验证值存储
+#define ExceptionHandlerContextOffsetNegative8 -0x8           // 异常处理上下文负偏移量8 - 用于第四个浮点数验证值存储
+#define ExceptionHandlerContextOffsetNegative4 -0x4           // 异常处理上下文负偏移量4 - 用于数据缓冲区指针存储
+
 // 数据缓冲区相关偏移量常量
 #define DataBufferSizeOffset8 0x8                          // 数据缓冲区大小偏移量8
 #define DataBufferMaxSize8A 0x8a                            // 数据缓冲区最大大小8A
@@ -37836,8 +37843,8 @@ ValidationLabelB:
         *exceptionBuffer3 = *exceptionBuffer6;
         exceptionBuffer3[1] = systemDataBuffer;
         *(DataWord *)(exceptionBuffer3 + 2) = *(DataWord *)(exceptionBuffer6 + 2);
-        calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + 0x14) + *(float *)(exceptionBuffer6 + 2);
-        *(float *)((int64_t)exceptionBuffer3 + 0x14) = calculatedFloatValue;
+        calculatedFloatValue = *(float *)((int64_t)exceptionBuffer6 + DataBufferOffset14) + *(float *)(exceptionBuffer6 + 2);
+        *(float *)((int64_t)exceptionBuffer3 + DataBufferOffset14) = calculatedFloatValue;
         *(ByteFlag *)(exceptionBuffer3 + 3) = 1;
         inputParameter9 = *(int *)(StackFrameContext + StackFrameContextOffsetNegative21);
         exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + StackFrameContextOffsetNegative29);
