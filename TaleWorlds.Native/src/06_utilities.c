@@ -2092,6 +2092,7 @@
 #define MemoryReferenceCleanupOffset1F0 0x1f0
 #define MemoryReferenceCleanupOffset210 0x210
 #define ResourceCleanupOffset250 0x250
+#define ResourceCleanupOffset370 0x370
 #define MemoryReferenceCleanupOffset490 0x490
 #define MemoryReferenceCleanupOffset2F0 0x2f0
 
@@ -6821,7 +6822,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942160
  */
-#define SetDefaultExceptionHandlerA8 FUN_180942160
+#define SetDefaultExceptionHandlerA8 ConfigureDefaultExceptionHandlerA8
 
 /**
  * @brief 设置默认异常处理器A9

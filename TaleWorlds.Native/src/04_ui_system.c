@@ -5777,6 +5777,7 @@ void* UIGestureCoordinates;
 #define ProcessUIDataWithParameters FUN_18072e450              // 处理带参数的UI数据
 #define ExecuteUIRenderingOperation FUN_180726a00               // 执行UI渲染操作
 #define ProcessUIComponentData FUN_180736450                    // 处理UI组件数据
+#define ValidateUIComponentState FUN_180736990                   // 验证UI组件状态
 
 // UI系统组件操作函数
 
@@ -110813,7 +110814,24 @@ void ProcessUIExtendedDataTransformAndMatrixCalculation(longlong uiContext, floa
 
 
  void FUN_18072d609(float *uiContext,float *dataSource)
-void FUN_18072d609(float *uiContext,float *dataSource)
+/**
+ * @brief UI组件数据计算处理
+ * 
+ * 该函数负责处理UI组件的数据计算，包括浮点数运算和矩阵变换。
+ * 主要功能：
+ * 1. 计算UI组件的位置和变换数据
+ * 2. 处理浮点数数组的运算
+ * 3. 执行矩阵变换和插值计算
+ * 4. 更新UI组件的上下文数据
+ * 
+ * @param uiContext UI上下文指针，包含组件的状态和变换信息
+ * @param dataSource 数据源指针，包含计算所需的原始数据
+ * 
+ * @note 原始函数名：FUN_18072d609
+ * @warning 该函数涉及大量的浮点数运算，需要注意数值精度
+ * @see ProcessUIComponentTransform, ProcessUIMatrixTransformation
+ */
+void ProcessUIComponentDataCalculation(float *uiContext,float *dataSource)
 
 {
   float *BaseValuePointer;
@@ -112187,7 +112205,7 @@ void ProcessUIDataTransformation(float *uiContext,longlong dataSource,longlong t
     do {
       allocatedMemory = targetBuffer + (longlong)(*(int *)(bufferSize + componentIndex * 4) + 2) * -4;
       ProcessUIComponentData(allocatedMemory,resultPointer,5,uiContext);
-      FUN_180736990(allocatedMemory,targetBuffer,resultPointer,5,dataSource);
+      ValidateUIComponentState(allocatedMemory,targetBuffer,resultPointer,5,dataSource);
       CalculationResultValue = (double)CalculateUIMetricValue(targetBuffer,resultPointer + 5);
       TransformCoefficient3 = (uiContext[0x18] + *uiContext) * 0.015 + 1.0;
       if (TransformCoefficient3 <= (float)CalculationResultValue) {
@@ -112244,7 +112262,7 @@ void FUN_18072e9ce(void)
   do {
     allocatedMemory = basePointer + (longlong)(*(int *)(contextRegister + componentIndex * 4) + 2) * -4;
     ProcessUIComponentData(allocatedMemory,stackParam000000b0,5,TargetHandle);
-    FUN_180736990(allocatedMemory,basePointer,stackParam000000b0,5,preservedRegister15);
+    ValidateUIComponentState(allocatedMemory,basePointer,stackParam000000b0,5,preservedRegister15);
     CalculationResultValue = (double)CalculateUIMetricValue(basePointer,stackParam000000b0 + 5);
     TransformCoefficient3 = (TargetHandle[0x18] + *TargetHandle) * 0.015 + 1.0;
     if (TransformCoefficient3 <= (float)CalculationResultValue) {
@@ -118129,8 +118147,8 @@ void ProcessUIComponentData(longlong uiContext,int dataSource,uint targetBuffer,
 
 
 
- void FUN_180736990(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,
-void FUN_180736990(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,
+ void ValidateUIComponentState(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,
+void ValidateUIComponentState(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,int bufferSize,
                   longlong resultPointer)
 
 {
