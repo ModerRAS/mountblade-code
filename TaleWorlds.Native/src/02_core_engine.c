@@ -260531,7 +260531,7 @@ void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uin
   if (SystemCharacterStatusBufferPointer != NULL) {
     StringProcessingStatus = SystemCharacterStatusBufferPointer;
   }
-  LockOperationResult = FUN_180848090(*(void *)(ContextHandle + 0x368),StringProcessingStatus,0,&uStack_298);
+  LockOperationResult = FUN_180848090(*(void *)(ContextHandle + 0x368),StringProcessingStatus,0,&SystemProcessingCounter);
   StringProcessingStatus = &CoreEngineDataTemplate;
   if (SystemCharacterStatusBufferPointer != NULL) {
     StringProcessingStatus = SystemCharacterStatusBufferPointer;
@@ -260565,8 +260565,8 @@ void ProcessCoreEngineSystemEventAndMemoryAllocation(long long ContextHandle,uin
     if (AllocatedMemorySize != 0) goto LAB_180213f5f;
   }
   else {
-LAB_180213f5f:
-    UnicodeCodePoint = FUN_1808482f0(uStack_298);
+PROCESS_STRING_TEMPLATE_FOUND:
+    UnicodeCodePoint = FUN_1808482f0(SystemProcessingCounter);
     StringProcessingStatus = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPointer != NULL) {
       StringProcessingStatus = SystemCharacterStatusBufferPointer;
