@@ -225144,25 +225144,25 @@ void FreeSystemContextMemory(uint64_t *ContextHandle)
 
 
 
-881a0(long long ContextHandle,long long *ContextHandleSizevoid FUN_1801881a0(long long ContextHandle,long long *ContextHandleSize
+void ProcessContextHandleMemoryPoolManagement(long long ContextHandle, long long *ContextHandleSize)
 {
-  long long *ContextHandle;
+  long long *MemoryContextHandle;
   uint64_t MemoryPoolIndex;
   
-  ContextHandle = (long long *)OperationBufferSize[7];
-  if (ContextHandle != (long long *)0x0) {
-    if (ContextHandle == OperationBufferSize) {
-      MemoryPoolIndex = (**(code **)(*ContextHandle + 8))(ContextHandle,ContextHandle);
-      *(void *)(ContextHandle + 0x38) = MemoryPoolIndex;
-      ContextHandle = (long long *)OperationBufferSize[7];
-      if (ContextHandle != (long long *)0x0) {
-        (**(code **)(*ContextHandle + 0x20))(ContextHandle,ContextHandle != OperationBufferSize);
+  MemoryContextHandle = (long long *)OperationBufferSize[7];
+  if (MemoryContextHandle != (long long *)0x0) {
+    if (MemoryContextHandle == OperationBufferSize) {
+      MemoryPoolIndex = (**(code **)(*MemoryContextHandle + 8))(MemoryContextHandle, MemoryContextHandle);
+      *(void *)(MemoryContextHandle + 0x38) = MemoryPoolIndex;
+      MemoryContextHandle = (long long *)OperationBufferSize[7];
+      if (MemoryContextHandle != (long long *)0x0) {
+        (**(code **)(*MemoryContextHandle + 0x20))(MemoryContextHandle, MemoryContextHandle != OperationBufferSize);
         OperationBufferSize[7] = 0;
         return;
       }
     }
     else {
-      *(long long **)(ContextHandle + 0x38) = ContextHandle;
+      *(long long **)(MemoryContextHandle + 0x38) = MemoryContextHandle;
       OperationBufferSize[7] = 0;
     }
   }
