@@ -35967,7 +35967,7 @@ ValidateDataWithDirectAllocation:
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
         else {
           operationResult = ValidationErrorCode;
@@ -35977,7 +35977,7 @@ ValidateDataWithDirectAllocation:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetC0,4);
           }
           else {
             operationResult = ValidationErrorCode;
@@ -35987,7 +35987,7 @@ ValidateDataWithDirectAllocation:
           operationResult = validationOutcome;
           if (0x47 < *(uint *)(registerContext + 8)) {
             if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa0);
+              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetA0);
             }
             else {
               operationResult = ValidationErrorCode;
@@ -35996,7 +35996,7 @@ ValidateDataWithDirectAllocation:
           if ((int)operationResult == 0) {
             if (0x4f < *(uint *)(registerContext + 8)) {
               if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xac);
+                validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetAc);
                 validationOutcome = (uint64_t)validationStatus;
               }
               else {
@@ -36120,7 +36120,7 @@ DataProcessSectionA:
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
         else {
           operationResult = ValidationErrorCode;
@@ -36130,7 +36130,7 @@ DataProcessSectionA:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetC0,4);
           }
           else {
             operationResult = ValidationErrorCode;
@@ -36140,7 +36140,7 @@ DataProcessSectionA:
           operationResult = validationOutcome;
           if (0x47 < *(uint *)(registerContext + 8)) {
             if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa0);
+              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetA0);
             }
             else {
               operationResult = ValidationErrorCode;
@@ -36149,7 +36149,7 @@ DataProcessSectionA:
           if ((int)operationResult == 0) {
             if (0x4f < *(uint *)(registerContext + 8)) {
               if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xac);
+                validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetAc);
                 validationOutcome = (uint64_t)validationStatus;
               }
               else {
@@ -36269,7 +36269,7 @@ DataProcessLabelA:
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-          operationResult = OperateDataO0(*registerContext,systemContext + 0xbc,4);
+          operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetBc,4);
         }
         else {
           operationResult = ValidationErrorCode;
@@ -36279,7 +36279,7 @@ DataProcessLabelA:
         operationResult = validationOutcome;
         if (0x46 < *(uint *)(registerContext + 8)) {
           if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-            operationResult = OperateDataO0(*registerContext,systemContext + 0xc0,4);
+            operationResult = OperateDataO0(*registerContext,systemContext + SystemContextDataOffsetC0,4);
           }
           else {
             operationResult = ValidationErrorCode;
@@ -36289,7 +36289,7 @@ DataProcessLabelA:
           operationResult = validationOutcome;
           if (0x47 < *(uint *)(registerContext + 8)) {
             if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xa0);
+              operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetA0);
             }
             else {
               operationResult = ValidationErrorCode;
@@ -36298,7 +36298,7 @@ DataProcessLabelA:
           if ((int)operationResult == 0) {
             if (0x4f < *(uint *)(registerContext + 8)) {
               if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-                memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xac);
+                memoryRegionBase = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + SystemContextDataOffsetAc);
                 validationOutcome = (uint64_t)memoryRegionBase;
               }
               else {
