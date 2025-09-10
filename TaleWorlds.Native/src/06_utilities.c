@@ -29086,7 +29086,7 @@ ProcessDataSecurityValidation:
 
 void ProcessDataTypes(void)
 {
-  float inputValue1;                     // 输入值1 - 用于存储输入的浮点数值
+  float InputValue1;                     // 输入值1 - 用于存储输入的浮点数值
   int64_t dataContext;                   // 数据上下文 - 指向数据上下文的指针
   int64_t memoryBlockOffset;             // 内存块偏移量 - 用于内存块操作的偏移量
   DataBuffer *memoryRegionBase;          // 内存区域基础指针 - 指向内存区域的指针
