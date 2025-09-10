@@ -125428,7 +125428,7 @@ LAB_18073b573:
     pstackUInt138 = astackUInt118;
     astackUInt118[0] = 0;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UNK_1809570e8);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextInputManager);
   }
 LAB_18073b5be:
   if (RenderContextSize != 0) {
@@ -302068,7 +302068,7 @@ void FUN_180849360(ulonglong uiContext)
     pstackUInt148 = astackUInt118;
     astackUInt118[0] = 0;
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,0xb,uiContext,&UNK_1809570e8);
+    ExecuteUIContextDataOperation(processingResult,0xb,uiContext,&UIContextInputManager);
   }
 LAB_180849462:
                      WARNING: Subroutine does not return
