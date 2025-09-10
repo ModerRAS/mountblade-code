@@ -240371,7 +240371,7 @@ LAB_18019a44a:
   pplStack_290 = pContextHandle3;
   (*(code *)(*pContextHandle3)[5])(pContextHandle3);
   ContextHandleData = ContextHandle + 0x6c;
-  FUN_1800b88d0(ContextHandleData,&pplStack_290);
+  ProcessSystemContextData(ContextHandleData,&pplStack_290);
   if (pplStack_290 != (long long **)0x0) {
     (*(code *)(*pplStack_290)[7])();
   }
@@ -240388,12 +240388,12 @@ LAB_18019a44a:
     pContextHandle3[0x19] = OperationBufferSize;
     ppSystemEventFlag8 = pContextHandle3;
     (*(code *)(*pContextHandle3)[5])(pContextHandle3);
-    FUN_1800b88d0(ContextHandleData,&ppSystemEventFlag8);
+    ProcessSystemContextData(ContextHandleData,&ppSystemEventFlag8);
     if (ppSystemEventFlag8 != (long long **)0x0) {
       (*(code *)(*ppSystemEventFlag8)[7])();
     }
   }
-  FUN_18005e250(TimeoutValueStorage,*ContextHandle4,ContextHandle[0x6d] - *ContextHandle4 >> 3);
+  ProcessSystemTimeout(TimeoutValueStorage,*ContextHandle4,ContextHandle[0x6d] - *ContextHandle4 >> 3);
   if (((cStack_308 != '\0') && (*(char *)((long long)ContextHandle + 0x60b91) != '\0')) &&
      (1 < (int)ContextHandle[0x4f8])) {
     *(uint32_t *)(OperationBufferSize[0x6b0] + 0x5b0) = *(uint32_t *)((long long)ContextHandle + 0x27bc);
