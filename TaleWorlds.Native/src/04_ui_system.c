@@ -111892,14 +111892,14 @@ void ProcessUISystemDataConversion(int64_t UiContext, uint32_t DataSource, int64
   
   FinalResult = (float)((uint64_t)BufferSize >> 0x20);
   BaseValue6 = (float)BufferSize;
-  if (((ulonglong)(register10 + uiContext * 4) < (ulonglong)(RegisterPointer + targetBuffer * 4)) ||
-     ((ulonglong)(RegisterPointer + uiContext * 4) < (ulonglong)(register10 + targetBuffer * 4))) {
-    dataSource = dataSource & 0x8000000f;
-    if ((int)dataSource < 0) {
-      dataSource = (dataSource - 1 | 0xfffffff0) + 1;
+  if (((uint64_t)(Register10 + UiContext * 4) < (uint64_t)(RegisterPointer + TargetBuffer * 4)) ||
+     ((uint64_t)(RegisterPointer + UiContext * 4) < (uint64_t)(Register10 + TargetBuffer * 4))) {
+    DataSource = DataSource & 0x8000000f;
+    if ((int)DataSource < 0) {
+      DataSource = (DataSource - 1 | 0xfffffff0) + 1;
     }
-    allocatedMemory2 = register10 - RegisterPointer;
-    baseScaleFactor = (float *)(RegisterPointer + 0x10 + targetBuffer * 4);
+    MemoryBlock2 = Register10 - RegisterPointer;
+    ScaleFactorPointer = (float *)(RegisterPointer + 0x10 + TargetBuffer * 4);
     do {
       TransformCoefficient1 = (float *)(allocatedMemory2 + -0x10 + (longlong)baseScaleFactor);
       TransformCoefficient2 = TransformCoefficient1[1];
