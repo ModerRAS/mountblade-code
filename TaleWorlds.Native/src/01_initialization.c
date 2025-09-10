@@ -20477,6 +20477,19 @@ void InitializeSystemThreadManager(void)
  * 
  * @return 初始化结果状态码，0表示成功，非0表示失败
  */
+/**
+ * @brief 执行系统最终初始化
+ * 
+ * 该函数负责执行TaleWorlds引擎的最终初始化过程，包括：
+ * - 系统核心管理器的初始化和配置
+ * - 内存管理器的设置和分配
+ * - 系统控制器的激活和验证
+ * - 系统组件的最终启动和验证
+ * 
+ * @return uint32_t 返回初始化状态码，成功返回0，失败返回非零值
+ * 
+ * @note 原始函数名：FUN_18006c070 - Ghidra逆向生成的函数名已语义化
+ */
 uint32_t FinalSystemInitialization(void)
 {
   // 系统接口指针，用于指向系统接口对象
