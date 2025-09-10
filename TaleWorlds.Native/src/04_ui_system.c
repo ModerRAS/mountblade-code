@@ -152996,8 +152996,22 @@ UIHandle FUN_180757cc0(longlong *uiContext,byte dataSource)
  WARNING: Removing unreachable block (ram,0x000180757d46)
 
 UIHandle
-FUN_180757cec(uint uiContext,byte dataSource,longlong targetBuffer,UIHandle bufferSize,UIHandle resultPointer,
-             char param_6)
+/**
+ * @brief 处理UI系统数据转换和验证
+ * 
+ * 执行UI系统中的数据转换操作，包括数据验证、格式转换和结果处理。
+ * 该函数处理不同类型的数据转换，并确保数据的正确性和完整性。
+ * 
+ * @param uiContext UI上下文标识符
+ * @param dataSource 数据源（字节类型）
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6，控制转换模式
+ * @return 处理状态码，0表示成功，非0表示失败
+ */
+UIHandle ProcessUIDataConversionAndValidation(uint uiContext,byte dataSource,longlong targetBuffer,UIHandle bufferSize,UIHandle resultPointer,
+                                            char param_6)
 
 {
   uint bufferSize;
