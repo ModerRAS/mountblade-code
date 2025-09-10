@@ -631,6 +631,7 @@ typedef enum {
 #define FUN_18072eaed ClearUIComponentState
 #define FUN_18072eb00 ProcessUIBufferAllocationInternal
 #define FUN_18072f881 InitializeUISystemState
+#define FUN_18072f7ab ExecuteUIRenderingTask
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
@@ -112539,51 +112540,51 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
                   int param_6,int param_7,int param_8)
 
 {
-  float *BaseValuePointer;
+  float *baseValuePointer;
   float transformCoeff1;
-  float TransformCoefficient2;
-  float TransformCoefficient3;
-  float TransformCoefficient4;
-  float LocalFloatValue6;
-  float ResultFloatValue;
-  float *pTemporaryFloatValue;
+  float transformCoeff2;
+  float transformCoeff3;
+  float transformCoeff4;
+  float localFloatValue6;
+  float resultFloatValue;
+  float *temporaryFloatPointer;
   float *bufferPointer;
-  longlong allocatedMemory0;
-  ulonglong result1;
+  longlong allocatedMemory;
+  ulonglong resultCounter;
   uint bufferValue;
-  float *BaseValuePointer3;
+  float *baseValuePointer3;
   float vectorComponentX;
   
-  allocatedMemory0 = (longlong)param_7;
-  if (0 < allocatedMemory0) {
+  allocatedMemory = (longlong)param_7;
+  if (0 < allocatedMemory) {
     bufferPointer = (float *)(targetBuffer + 8);
     bufferValue = param_8 + param_6;
     bufferSize = bufferSize - (longlong)resultPointer;
     do {
       transformCoeff1 = *resultPointer;
-      TransformCoefficient2 = bufferPointer[-2];
-      TransformCoefficient3 = bufferPointer[-1];
-      TransformCoefficient4 = *bufferPointer;
-      LocalFloatValue6 = bufferPointer[1];
-      ResultFloatValue = bufferPointer[2];
-      BaseValuePointer3 = (float *)(dataSource + (longlong)*(int *)((longlong)resultPointer + bufferSize) * -4);
+      transformCoeff2 = bufferPointer[-2];
+      transformCoeff3 = bufferPointer[-1];
+      transformCoeff4 = *bufferPointer;
+      localFloatValue6 = bufferPointer[1];
+      resultFloatValue = bufferPointer[2];
+      baseValuePointer3 = (float *)(dataSource + (longlong)*(int *)((longlong)resultPointer + bufferSize) * -4);
       if (0 < (int)bufferValue) {
-        result1 = (ulonglong)bufferValue;
-        pTemporaryFloatValue = uiContext;
+        resultCounter = (ulonglong)bufferValue;
+        temporaryFloatPointer = uiContext;
         do {
-          vectorComponentX = *(float *)((dataSource - (longlong)uiContext) + (longlong)pTemporaryFloatValue);
-          *pTemporaryFloatValue = vectorComponentX;
-          vectorComponentX = vectorComponentX - TransformCoefficient2 * BaseValuePointer3[2];
-          *pTemporaryFloatValue = vectorComponentX;
-          vectorComponentX = vectorComponentX - TransformCoefficient3 * BaseValuePointer3[1];
-          *pTemporaryFloatValue = vectorComponentX;
-          vectorComponentX = vectorComponentX - TransformCoefficient4 * *BaseValuePointer3;
-          *pTemporaryFloatValue = vectorComponentX;
-          vectorComponentX = vectorComponentX - LocalFloatValue6 * BaseValuePointer3[-1];
-          *pTemporaryFloatValue = vectorComponentX;
-          BaseValuePointer = BaseValuePointer3 + -2;
-          BaseValuePointer3 = BaseValuePointer3 + 1;
-          *pTemporaryFloatValue = (vectorComponentX - ResultFloatValue * *BaseValuePointer) * transformCoeff1;
+          vectorComponentX = *(float *)((dataSource - (longlong)uiContext) + (longlong)temporaryFloatPointer);
+          *temporaryFloatPointer = vectorComponentX;
+          vectorComponentX = vectorComponentX - transformCoeff2 * baseValuePointer3[2];
+          *temporaryFloatPointer = vectorComponentX;
+          vectorComponentX = vectorComponentX - transformCoeff3 * baseValuePointer3[1];
+          *temporaryFloatPointer = vectorComponentX;
+          vectorComponentX = vectorComponentX - transformCoeff4 * *baseValuePointer3;
+          *temporaryFloatPointer = vectorComponentX;
+          vectorComponentX = vectorComponentX - localFloatValue6 * baseValuePointer3[-1];
+          *temporaryFloatPointer = vectorComponentX;
+          baseValuePointer = baseValuePointer3 + -2;
+          baseValuePointer3 = baseValuePointer3 + 1;
+          *temporaryFloatPointer = (vectorComponentX - resultFloatValue * *baseValuePointer) * transformCoeff1;
           pTemporaryFloatValue = pTemporaryFloatValue + 1;
           result1 = result1 - 1;
         } while (result1 != 0);
@@ -113312,14 +113313,21 @@ void FUN_18072f60f(void)
 
 
 
- void FUN_18072f7ab(void)
-void FUN_18072f7ab(void)
+ /**
+ * @brief 执行UI渲染任务
+ * 
+ * 该函数负责执行UI渲染任务，调用渲染系统进行UI元素的渲染操作。
+ * 这是一个不返回的函数，会直接调用渲染任务并结束当前执行流程。
+ * 
+ * @note 原始函数名：FUN_18072f7ab
+ */
+void ExecuteUIRenderingTask(void)
 
 {
-  ulonglong stackParam00000100;
+  ulonglong taskParameter;
   
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000100 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务，该函数不会返回
+  ExecuteUIRenderTask(taskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
