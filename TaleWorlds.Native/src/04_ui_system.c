@@ -111701,8 +111701,24 @@ void ProcessUIDataBufferCopyInternal(longlong uiContext,longlong dataSource,floa
 
 
 
- void FUN_18072e4b4(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
-void FUN_18072e4b4(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
+ /**
+ * @brief UI数据缓冲区转换处理器
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区转换操作，包括：
+ * - 数据格式转换和标准化
+ * - 浮点数据批量处理
+ * - 内存数据块操作
+ * - 缓冲区边界检查
+ * 
+ * @param UiContext UI上下文指针，包含UI系统的状态信息
+ * @param DataSource 数据源指针，提供输入数据
+ * @param TargetBuffer 目标缓冲区，存储处理后的数据
+ * @param BufferSize 缓冲区大小，指定处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072e4b4
+ * @warning 函数执行大量内存操作，需要确保参数有效性
+ */
+void ProcessUIDataBufferTransformation(int64_t UiContext, int64_t DataSource, float TargetBuffer, uint32_t BufferSize)
 
 {
   float *BaseValuePointer;
@@ -111714,32 +111730,32 @@ void FUN_18072e4b4(longlong uiContext,longlong dataSource,float targetBuffer,uin
   float ResultFloatValue;
   float TemporaryFloatValue;
   float LocalFloatValue9;
-  float baseValue0;
-  longlong AllocatedMemoryBlock1;
-  float *BaseValuePointer2;
-  uint contextValue;
-  longlong allocatedMemory4;
-  int ProcessingResult5;
-  longlong allocatedMemory6;
-  longlong allocatedMemory7;
-  longlong AllocatedMemoryBlock8;
+  float BaseValue0;
+  int64_t DataOffset;
+  float *DestinationPointer;
+  uint32_t AlignmentValue;
+  int64_t SourceDataOffset;
+  int ProcessedBytes;
+  int64_t TargetBufferSize;
+  int64_t LoopCounter;
+  int64_t MemoryDifference;
   
-  ProcessingResult5 = 0;
-  allocatedMemory6 = (longlong)(int)bufferSize;
-  if ((bufferSize & 0xfffc) != 0) {
-    AllocatedMemoryBlock8 = dataSource - uiContext;
-    AllocatedMemoryBlock1 = ((ulonglong)(bufferSize & 0xfffc) - 1 >> 2) + 1;
-    ProcessingResult5 = (int)AllocatedMemoryBlock1 * 4;
-    BaseValuePointer2 = (float *)(uiContext + 4);
+  ProcessedBytes = 0;
+  TargetBufferSize = (int64_t)BufferSize;
+  if ((BufferSize & 0xfffc) != 0) {
+    MemoryDifference = DataSource - UiContext;
+    DataOffset = ((uint64_t)(BufferSize & 0xfffc) - 1 >> 2) + 1;
+    ProcessedBytes = (int)DataOffset * 4;
+    DestinationPointer = (float *)(UiContext + 4);
     do {
-      BaseValuePointer = BaseValuePointer2 + 4;
-      BaseValuePointer2[-1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x14 + (longlong)BaseValuePointer);
-      *BaseValuePointer2 = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0x10 + (longlong)BaseValuePointer);
-      BaseValuePointer2[1] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -0xc + (longlong)BaseValuePointer);
-      BaseValuePointer2[2] = targetBuffer * *(float *)(AllocatedMemoryBlock8 + -8 + (longlong)BaseValuePointer);
-      AllocatedMemoryBlock1 = AllocatedMemoryBlock1 + -1;
-      BaseValuePointer2 = BaseValuePointer;
-    } while (AllocatedMemoryBlock1 != 0);
+      BaseValuePointer = DestinationPointer + 4;
+      DestinationPointer[-1] = TargetBuffer * *(float *)(MemoryDifference + -0x14 + (int64_t)BaseValuePointer);
+      *DestinationPointer = TargetBuffer * *(float *)(MemoryDifference + -0x10 + (int64_t)BaseValuePointer);
+      DestinationPointer[1] = TargetBuffer * *(float *)(MemoryDifference + -0xc + (int64_t)BaseValuePointer);
+      DestinationPointer[2] = TargetBuffer * *(float *)(MemoryDifference + -8 + (int64_t)BaseValuePointer);
+      DataOffset = DataOffset + -1;
+      DestinationPointer = BaseValuePointer;
+    } while (DataOffset != 0);
   }
   if ((ProcessingResult5 < (int)bufferSize) && (0xf < bufferSize - ProcessingResult5)) {
     AllocatedMemoryBlock1 = (longlong)ProcessingResult5;

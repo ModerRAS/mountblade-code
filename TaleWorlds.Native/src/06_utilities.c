@@ -49045,6 +49045,16 @@ void CleanupStackMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理缓冲区内存
+ * 
+ * 该函数负责清理缓冲区内存，初始化系统组件
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含缓冲区内存信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupBufferMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49054,6 +49064,16 @@ void CleanupBufferMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理数组内存
+ * 
+ * 该函数负责清理数组内存，初始化系统组件
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含数组内存信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupArrayMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
