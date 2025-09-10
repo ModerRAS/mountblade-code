@@ -225436,14 +225436,14 @@ void EncodeSystemCharacterData(uint64_t ContextHandle,uint64_t *ContextHandleSiz
   }
   *Utf8SourcePointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aProcessingCounter);
+  CoreEngineExecuteUtilityFunction(UtilityFunctionAddress ^ (unsigned long long)ProcessingCounter);
 }
 
 
 
 
 
-86ca0(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointervoid FUN_180186ca0(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointer
+void ProcessSystemCharacterEncodingSecondary(uint64_t ContextHandle,long long OperationBufferSize,unsigned long long Utf8SourcePointer
 {
   long long *ContextHandle;
   long long BufferStatus;

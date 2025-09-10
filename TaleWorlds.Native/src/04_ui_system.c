@@ -270401,9 +270401,8 @@ void FUN_18082c150(float *uiContext,float *dataSource,float *targetBuffer,float 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
-void FUN_18082c450(longlong uiContext,float *dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
-                  int param_6,uint param_7,uint param_8,uint param_9,uint uiContext0,uint uiContext1)
+ void ProcessUIVectorTransformations(longlong uiContext,float *dataSource,longlong targetBuffer,float *bufferSize,int resultPointer,
+                  int transformMode,uint vectorSize,uint operationMask,uint alignmentFlags,uint uiContext0,uint uiContext1)
 
 {
   int processingResult;
