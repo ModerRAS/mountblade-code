@@ -6812,7 +6812,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942140
  */
-#define SetDefaultExceptionHandlerA7 FUN_180942140
+#define SetDefaultExceptionHandlerA7 ConfigureDefaultExceptionHandlerA7
 
 /**
  * @brief 设置默认异常处理器A8
