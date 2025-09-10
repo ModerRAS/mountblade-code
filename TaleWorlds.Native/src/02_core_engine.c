@@ -227124,7 +227124,21 @@ void ProcessUtf16CharacterConversionTertiary(uint64_t ContextHandle, uint32_t *C
 
 
 
-89f70(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180189f70(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-16字符转换（第四配置）
+ * 
+ * 该函数处理UTF-16字符的转换和系统配置：
+ * - 解析UTF-16字符并处理
+ * - 使用第四配置参数进行系统配置
+ * - 管理栈处理配置标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180189f70
+ */
+void ProcessUtf16CharacterConversionQuaternary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
@@ -227139,7 +227153,21 @@ void ProcessUtf16CharacterConversionTertiary(uint64_t ContextHandle, uint32_t *C
 
 
 
-89fa0(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180189fa0(uint64_t ContextHandle,uint32_t *ContextHandleSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-16字符转换（第五配置）
+ * 
+ * 该函数处理UTF-16字符的转换和系统配置：
+ * - 解析UTF-16字符并处理
+ * - 使用第五配置参数进行系统配置
+ * - 管理栈处理配置标志
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180189fa0
+ */
+void ProcessUtf16CharacterConversionQuinary(uint64_t ContextHandle, uint32_t *ContextHandleSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t ReservedStackSpace;
   uint64_t uStackX_20;
