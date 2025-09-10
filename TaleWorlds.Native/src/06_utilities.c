@@ -49398,6 +49398,19 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置默认异常处理器B到指定位置。
+ * 它会将SystemDefaultExceptionHandlerB的地址存储到数据缓冲区的特定偏移量处。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于存储异常处理器地址
+ * 
+ * @note 原始函数名：Unwind_180906020
+ * @note 这是一个异常处理器配置函数，用于设置默认的异常处理机制
+ * @see SystemDefaultExceptionHandlerB, ResetExceptionHandlerCleanup
+ */
 void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49675,6 +49688,22 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理内存块
+ * 
+ * 该函数负责清理内存块资源，释放相关内存并处理引用计数。
+ * 它会验证内存资源指针的有效性，然后根据内存区域的不同状态
+ * 执行相应的清理操作。如果内存资源属于异常列表，会进行特殊的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要清理的内存块信息
+ * 
+ * @note 原始函数名：Unwind_180906040
+ * @note 这是一个内存管理函数，用于安全地释放和清理内存块资源
+ * @note 函数会处理内存引用计数，确保资源被正确释放
+ * @warning 错误的内存操作可能导致系统不稳定
+ * @see ManageMemory, HandleExceptionE0, MemoryRegionMask
+ */
 void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49683,25 +49712,36 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
+  // 获取内存资源指针
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
-    return;
+    return; // 内存资源指针无效，直接返回
   }
+  
+  // 计算内存区域基地址
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
+    // 计算内存区域偏移量
     memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
     memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    
+    // 检查是否为异常列表中的内存区域
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针链表
       *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      
+      // 减少资源引用计数
       resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
+        // 引用计数归零，处理异常情况
         HandleExceptionE0();
         return;
       }
     }
     else {
+      // 非异常列表内存，调用内存管理函数进行清理
       ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
