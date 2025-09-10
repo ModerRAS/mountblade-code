@@ -234855,7 +234855,7 @@ uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *Context
         }
         if (0 < *(int *)(SystemDataRegistry + 0x208)) {
           *(float *)(CharacterTablePointer + 0x2dc) = (float)Utf16EndPointer;
-          FUN_180075ff0(CharacterTablePointer);
+          InitializeSystemContextHandle(CharacterTablePointer);
           MemoryBlockListHead = plStack_88;
         }
         SystemChecksum = (int)ProcessingStatusFlag + 1;
@@ -235124,7 +235124,7 @@ LAB_1801945bb:
       (**(code **)(**(long long **)(BufferStatus + 0x40) + 0x38))();
     }
     if (*(long long *)(BufferStatus + 0x20) != 0) break;
-    FUN_180057830(BufferStatus);
+    ProcessSystemMemoryBlockRelease(BufferStatus);
     BufferStatus = BufferStatus + 0x48;
   }
     ProcessSystemEventHandling();
@@ -235210,7 +235210,7 @@ LAB_1801945bb:
       if (*(long long *)(AllocatedMemorySize + 0x20) != 0) {
           ProcessSystemEventHandling();
       }
-      FUN_180057830(AllocatedMemorySize);
+      ProcessSystemMemoryBlockRelease(AllocatedMemorySize);
       AllocatedMemorySize = AllocatedMemorySize + 0x48;
     } while (AllocatedMemorySize != EncodingConversionResult);
     ContextHandle[3] = ContextHandle[2];
@@ -235239,7 +235239,7 @@ LAB_1801945bb:
       (**(code **)(**(long long **)(BufferStatus + 0x40) + 0x38))();
     }
     if (*(long long *)(BufferStatus + 0x20) != 0) break;
-    FUN_180057830(BufferStatus);
+    ProcessSystemMemoryBlockRelease(BufferStatus);
     BufferStatus = BufferStatus + 0x48;
   }
     ProcessSystemEventHandling();
@@ -236803,7 +236803,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
   SecondaryProcessingStatusFlag[3] = 0x3f800000;
   *SecondaryProcessingStatusFlag = 0x3f800000;
   ContextHandle[0x103e] = SecondaryProcessingStatusFlag;
-  FUN_180049550(ContextHandle + 0x4cf,0);
+  ConfigureSystemContextHandle(ContextHandle + 0x4cf,0);
   *(uint32_t *)(ContextHandle + 0x76) = 0;
   *(uint32_t *)((long long)ContextHandle + 0x3b4) = 0xffffffff;
   *(uint8_t *)(ContextHandle + 0xc0e7) = 0;
@@ -236893,7 +236893,7 @@ uint64_t * InitializeSystemContext(uint64_t *ContextHandle,long long OperationBu
     SystemMemoryAllocationResult = SystemMemoryAllocationResult + 1;
     SystemCharacterStatusBuffer = SystemCharacterStatusBuffer + 4;
   } while (SystemMemoryAllocationResult < 0x20);
-  FUN_18005d580(&SystemCleanupFlagF);
+  ProcessSystemCleanupFlag(&SystemCleanupFlagF);
   CalculatedCodePoint = MemoryAllocate(MemoryPoolManager,0x2f0,0x10,3);
   CalculatedCodePoint = ProcessSystemDataConversion(CalculatedCodePoint,4);
   StoreSystemMemoryStatus(ContextHandle + 0x12,CalculatedCodePoint);
@@ -237023,7 +237023,7 @@ uint64_t ProcessSystemBufferRelease(uint64_t ContextHandle,unsigned long long Op
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  FUN_1800e7d00(ContextHandle + 0x1218);
+  ProcessSystemDataTemplateInitialization(ContextHandle + 0x1218);
   InitializeSystemMemoryBlock(ContextHandle,0x908,2,FUN_1800e7d00,Utf16Char);
   return;
 }
@@ -237783,7 +237783,7 @@ LAB_18019797c:
     }
   }
   ContextHandle[0x66c] = 0;
-  FUN_180057830();
+  ProcessSystemMemoryBlockRelease();
   _Mtx_destroy_in_situ();
   FUN_1801b9920(ContextHandle + 0xc190);
   if ((long long *)ContextHandle[0xc18f] != (long long *)0x0) {
@@ -237837,10 +237837,10 @@ LAB_18019797c:
   ContextHandle[0x103b] = 0;
   *(uint32_t *)(ContextHandle + 0x103d) = 0;
   ContextHandle[0x103a] = &ThreadLocalStorageTemplate;
-  FUN_180057830();
+  ProcessSystemMemoryBlockRelease();
   ExecuteSystemCleanupRoutine();
-  FUN_180057830();
-  FUN_180057830();
+  ProcessSystemMemoryBlockRelease();
+  ProcessSystemMemoryBlockRelease();
   if (ContextHandle[0x1023] != 0) {
       ProcessSystemEventHandling();
   }
@@ -237860,10 +237860,10 @@ LAB_18019797c:
   if (ContextHandle[0xb65] != 0) {
       ProcessSystemEventHandling();
   }
-  FUN_1800e7c40(ContextHandle + 0xb5b);
-  FUN_1800e7d00(ContextHandle + 0xa3a);
+  ProcessSystemDataTemplate(ContextHandle + 0xb5b);
+  ProcessSystemDataTemplateInitialization(ContextHandle + 0xa3a);
   InitializeSystemMemoryBlock(ContextHandle + 0x7f7,0x908,2,FUN_1800e7d00);
-  FUN_1800e7c40(ContextHandle + 0x7ed);
+  ProcessSystemDataTemplate(ContextHandle + 0x7ed);
   ContextHandle[0x7da] = &SystemNullTemplate;
   if (ContextHandle[0x7db] != 0) {
       ProcessSystemEventHandling();
@@ -237981,7 +237981,7 @@ LAB_18019797c:
   if ((long long *)ContextHandle[0x71] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[0x71] + 0x38))();
   }
-  FUN_180057830();
+  ProcessSystemMemoryBlockRelease();
   if ((long long *)ContextHandle[100] != (long long *)0x0) {
     (**(code **)(*(long long *)ContextHandle[100] + 0x38))();
   }
@@ -238680,7 +238680,7 @@ void ProcessSystemDataEncodingAndConversion(long long ContextHandle, uint64_t Op
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))(plStack_c0);
   }
-  FUN_1800b87c0(&plStack_b8,&plStack_c0);
+  ProcessSystemStackData(&plStack_b8,&plStack_c0);
   if (plStack_c0 != (long long *)0x0) {
     (**(code **)(*plStack_c0 + 0x38))();
   }
@@ -240192,7 +240192,7 @@ LAB_18019a44a:
         LOCK();
         *(uint8_t *)(SystemEventTemplatePointer + 2) = 0;
         UNLOCK();
-        FUN_180049550(SystemEventTemplatePointer + 4,0);
+        ConfigureSystemContextHandle(SystemEventTemplatePointer + 4,0);
       }
       else {
         (**(code **)((void *)*SystemEventTemplatePointer + 0x78))();
@@ -256012,7 +256012,7 @@ LAB_18020c9db:
             } while ((long long)OperationResult < (long long)InputDataLength);
           }
           FUN_1800b8500(ContextHandle);
-          FUN_180057830(ContextHandle);
+          ProcessSystemMemoryBlockRelease(ContextHandle);
           *PrimaryProcessingStatusFlag = &SystemNullTemplate;
           if (PrimaryProcessingStatusFlag[1] != 0) {
               ProcessSystemEventHandling();

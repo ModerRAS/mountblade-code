@@ -114502,8 +114502,7 @@ void ProcessUIContextDataBufferOperations(UIHandle uiContext,UIHandle dataSource
 
 
 
- void FUN_180730750(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
-void ProcessUIDataBufferWithValidation(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
+ void ProcessUIDataBufferWithValidation(longlong uiContext,longlong dataSource,short *targetBuffer,UIDword *bufferSize,
                                         longlong resultPointer,longlong param_6,int param_7,short param_8,longlong param_9,
                                         longlong uiContext0,int uiContext1)
 
@@ -114802,8 +114801,7 @@ void ProcessUIDwordBufferTransfer(UIHandle uiContext,UIHandle dataSource,UIDword
 
 
 
- void FUN_1807326d0(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
-void ProcessUIComplexDataTransfer(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
+ void ProcessUIComplexDataTransfer(longlong uiContext,longlong dataSource,longlong targetBuffer,short *bufferSize,
                                     UIDword *resultPointer,longlong param_6,longlong param_7,int param_8,int param_9,
                                     short uiContext0,longlong uiContext1,longlong uiContext2,int uiContext3,int uiContext4)
 
@@ -117139,8 +117137,27 @@ void ProcessUIDataWithWordBuffer(int *uiContext,UIWord *dataSource,longlong targ
 
 
 
- void FUN_180734a30(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
-void FUN_180734a30(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
+ /**
+ * @brief UI组件数据与UInt缓冲区处理
+ * 
+ * 该函数处理UI组件数据与UInt类型的缓冲区之间的交互。
+ * 主要功能：
+ * 1. 处理UI组件数据的排序和插入
+ * 2. 管理缓冲区数据的事件处理
+ * 3. 执行浮点数值的比较和排序
+ * 4. 支持批量数据处理和优化
+ * 
+ * @param uiContext UI上下文指针，包含组件的状态信息
+ * @param dataSource 数据源指针，包含要处理的原始数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_180734a30
+ * @note 该函数涉及复杂的浮点数比较和数据排序操作
+ * @warning 处理大量数据时需要注意性能优化
+ * @see ProcessUIDataSortingAndInsertion, ProcessUIDataWithUIntTarget
+ */
+void ProcessUIComponentDataWithUIntBuffer(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
 
 {
   float baseValue;

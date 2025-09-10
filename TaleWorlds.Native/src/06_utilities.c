@@ -3463,6 +3463,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
 #define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
 #define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
+#define MODULE_CONFIG_OFFSET_1 0x10             // 模块配置偏移量1 (保持兼容性)
+#define MODULE_CONFIG_OFFSET_2 0x18             // 模块配置偏移量2 (保持兼容性)
+#define MODULE_DATA_OFFSET_1 0x8                // 模块数据偏移量1 (保持兼容性)
+#define MODULE_DATA_OFFSET_2 0x90               // 模块数据偏移量2 (保持兼容性)
+#define MODULE_DATA_OFFSET_3 0x10               // 模块数据偏移量3 (保持兼容性)
 
 // 全局数据指针偏移量常量
 #define GlobalDataPointerA35ConfigOffset 0x10   // 全局数据指针A35配置偏移量
@@ -16996,9 +17001,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
  * 
  * 函数执行详细流程：
  * 1. **系统配置查询阶段**：
- *    - 查询系统配置数据（MODULE_CONFIG_OFFSET_1）
+ *    - 查询系统配置数据（MODULE_SECONDARY_CONFIG_OFFSET）
  *    - 验证配置数据的有效性
- *    - 查询第二阶段的系统配置数据（MODULE_CONFIG_OFFSET_2）
+ *    - 查询第二阶段的系统配置数据（MODULE_PRIMARY_CONFIG_OFFSET）
  * 
  * 2. **消息处理阶段**：
  *    - 处理游戏消息和事件（ProcessGameMessage）
@@ -17066,7 +17071,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
   int32_t moduleInitializationStatus;          // 模块初始化状态
   uint32_t gameMessageProcessingStatus;        // 游戏消息处理状态
   
-  moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporarySystemStackContext);
+  moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_SECONDARY_CONFIG_OFFSET),&temporarySystemStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
   if (initializationStatus == 0) {
     validationContext = (int64_t *)NullPointer;
@@ -17075,7 +17080,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
     if (temporarySystemStackContext != 0) {
       moduleDataContext = (int64_t *)(temporarySystemStackContext + -8);
     }
-    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporarySystemStackContext);
+    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_PRIMARY_CONFIG_OFFSET),&temporarySystemStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
       stackMemoryContext = 0;
