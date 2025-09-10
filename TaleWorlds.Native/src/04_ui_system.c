@@ -121187,7 +121187,7 @@ UIHandle FUN_1807388f6(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
                      WARNING: Subroutine does not return
       FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),iterationCount,&UIContextHandleData080,0xa3,1);
     }
-    processStatus = FUN_180741c20();
+    processStatus = ManageUIState();
     if ((int)processStatus == 0) {
       *(ulonglong *)((longlong)(int)maxProcessingCount * 8 + 0x160 + _DAT_180be12f0) = iterationCount;
       *(uint *)(iterationCount + 0x116b8) = maxProcessingCount;
