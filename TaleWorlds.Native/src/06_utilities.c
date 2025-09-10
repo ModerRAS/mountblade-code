@@ -263,6 +263,16 @@
 #define TemporaryExceptionHandlerOffset68 0x68               // 临时异常处理器偏移量68 - 用于存储第六组临时异常处理器指针
 #define SystemStatusValidationOffset70 0x70                  // 系统状态验证偏移量70 - 用于验证第六组系统状态的偏移位置
 #define SystemStatusWordOffset80 0x80                        // 系统状态字偏移量80 - 用于存储第六组系统状态字的偏移位置
+
+// 异常清理函数偏移量常量
+#define ExceptionCleanupCallbackOffset2280 0x2280            // 异常清理回调偏移量2280 - 用于存储异常清理回调函数指针
+#define ExceptionCleanupParameterOffset2270 0x2270           // 异常清理参数偏移量2270 - 用于传递给异常清理回调函数的参数
+#define ExceptionCleanupTempHandlerOffset2248 0x2248         // 异常清理临时处理器偏移量2248 - 用于存储临时异常处理器指针
+#define ExceptionCleanupStatusOffset2250 0x2250               // 异常清理状态偏移量2250 - 用于验证异常清理状态的偏移位置
+#define ExceptionCleanupStatusWordOffset2260 0x2260          // 异常清理状态字偏移量2260 - 用于存储异常清理状态字的偏移位置
+#define ExceptionCleanupTempHandlerOffset2228 0x2228         // 异常清理临时处理器偏移量2228 - 用于存储第二组临时异常处理器指针
+#define ExceptionCleanupSecondaryStatusOffset2230 0x2230      // 异常清理辅助状态偏移量2230 - 用于验证第二组异常清理状态的偏移位置
+#define ExceptionCleanupSecondaryStatusWordOffset2240 0x2240 // 异常清理辅助状态字偏移量2240 - 用于存储第二组异常清理状态字的偏移位置
 #define ExceptionHandlerContextCallbackOffset 0x1b8
 #define ExceptionHandlerContextFunctionOffsetPrimary 0x38
 #define ExceptionHandlerContextOffsetPrimary 0x40
