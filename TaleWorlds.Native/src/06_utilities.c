@@ -255,6 +255,16 @@
 #define PointerValidationOffset58 0x58                           // 指针验证偏移量58 - 用于指针验证的偏移位置
 #define PointerCheckIndex3 3                                    // 指针检查索引3 - 用于指针状态检查的索引位置
 
+// === 内存管理偏移常量
+#define MemoryRegionNegativeOffsetA0 -0xa0                       // 内存区域负偏移量A0 - 用于内存区域计算
+#define MemoryRegionNegativeOffset20 -0x20                       // 内存区域负偏移量20 - 用于内存区域计算
+#define MemoryRegionNegativeOffset88 -0x88                       // 内存区域负偏移量88 - 用于内存区域计算
+#define MemoryRegionNegativeOffset30 -0x30                       // 内存区域负偏移量30 - 用于内存区域计算
+#define MemoryRegionNegativeOffset10 -0x10                        // 内存区域负偏移量10 - 用于内存区域计算
+#define MemoryRegionNegativeOffset18 -0x18                        // 内存区域负偏移量18 - 用于内存区域计算
+#define MemoryRegionNegativeOffset50 -0x50                        // 内存区域负偏移量50 - 用于内存区域计算
+#define MemoryRegionNegativeOffset24 -0x24                        // 内存区域负偏移量24 - 用于内存区域计算
+
 // 异常上下文处理器偏移量常量
 #define ExceptionHandlerCallbackOffset1FE0 0x1fe0          // 异常处理器回调偏移量1FE0 - 用于存储异常处理器回调函数指针
 #define ExceptionHandlerParameterOffset1FD0 0x1fd0           // 异常处理器参数偏移量1FD0 - 用于传递给异常处理器回调函数的参数
