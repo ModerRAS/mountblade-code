@@ -80084,10 +80084,10 @@ void ExecuteSystemValidationAndCleanupA0(DataBuffer exceptionContext, int64_t st
   if (*(int64_t **)(stackFrame + SystemManagementOffset98) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(stackFrame + SystemManagementOffset98) + SystemFloatDataOffset38))();
   }
-  if (*(int64_t **)(stackFrame + 0x78) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x78) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(stackFrame + SystemManagementOffset78) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + SystemManagementOffset78) + SystemFloatDataOffset38))();
   }
-  exceptionContextPointer = *(int64_t **)(stackFrame + 0x70);
+  exceptionContextPointer = *(int64_t **)(stackFrame + SystemManagementOffset70);
   if (exceptionContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }

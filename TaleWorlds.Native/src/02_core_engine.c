@@ -620,8 +620,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemControlFlag ControlFlag120                   // 系统控制标志120
 #define SystemValidationFlag ValidationFlag119             // 系统验证标志119
 #define StackProcessingFlagX StackFlagX10                  // 栈处理标志X10
-#define CurrentSystemCharacter6 ValidationStatus6         // 当前系统字符6
-#define CurrentSystemCharacter4 ValidationStatus4         // 当前系统字符4
+#define CurrentSystemCharacter6 SystemCharacterValidationStatus6         // 当前系统字符6
+#define CurrentSystemCharacter4 SystemCharacterValidationStatus4         // 当前系统字符4
 #define CharacterProcessingStatus2 CharacterStatus2       // 字符处理状态2
 
 // 缺失的系统状态变量语义化宏定义
@@ -635,7 +635,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define SystemMemoryFlagG SystemMemoryFlag7                // 系统内存标志7
 #define SystemMemoryFlagH SystemMemoryFlag8                // 系统内存标志8
 #define SystemPriorityLevel SystemThreadPriority           // 系统线程优先级
-#define NullPointerValueB MemoryBlockValidationStatus       // 空指针值B（内存块验证状态）
+#define NullPointerValueB SystemMemoryBlockValidationStatus       // 空指针值B（内存块验证状态）
 #define MemoryAddressMaskPointer MemoryAllocationMask      // 内存地址掩码指针（内存分配掩码）
 #define MemoryPoolIndex MemoryAllocationCounter       // 内存分配索引（内存分配计数器）
 #define OperationStatus CharacterProcessingStatus           // 操作状态（字符处理状态）
@@ -887,7 +887,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 
 // 核心引擎数据处理变量语义化宏定义
 #define BufferInitializationPointerArray apBufferInitializationFlag // 缓冲区初始化指针数组
-#define ProcessingStatusFlagPointer9 PrimaryProcessingStatusFlag9  // 处理状态标志指针9
+#define ProcessingStatusFlagPointer9 SystemProcessingStatusFlagPointer9  // 处理状态标志指针9
 #define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
 #define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
 #define SystemTemporaryRegister118 SystemTemporaryRegister118          // 系统临时寄存器118
