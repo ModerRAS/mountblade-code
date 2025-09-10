@@ -120051,6 +120051,19 @@ void CleanupExceptionMemoryBlocksA61(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 初始化异常处理器A8
+ * 
+ * 该函数负责初始化异常处理器A8，设置异常处理上下文中的处理器指针
+ * 和状态标志。它会清理旧的异常处理器并设置新的临时异常处理器。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910930
+ */
 void InitializeExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -120079,6 +120092,20 @@ void InitializeExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
+/**
+ * @brief 初始化异常处理器A9
+ * 
+ * 该函数负责初始化异常处理器A9，设置异常处理上下文中的处理器指针
+ * 和状态标志。它会清理旧的异常处理器并设置新的临时异常处理器。
+ * 这是A9版本的异常处理器初始化函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910940
+ */
 void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -120107,6 +120134,20 @@ void InitializeExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
+/**
+ * @brief 初始化异常处理器A10
+ * 
+ * 该函数负责初始化异常处理器A10，设置异常处理上下文中的处理器指针
+ * 和状态标志。它会清理旧的异常处理器并设置新的临时异常处理器。
+ * 这是A10版本的异常处理器初始化函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910950
+ */
 void InitializeExceptionHandlerA10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
