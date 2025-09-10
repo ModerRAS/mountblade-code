@@ -116134,114 +116134,114 @@ LAB_180733ebd:
           validationResult = uiContext[calculatedOffset];
           processingStatus = (uint)(((int)eventStatus * memoryAllocation >> 0x1e) + 1 >> 1);
           calculationResult2 = validationResult - processingStatus;
-          if (uiCompareResult == 1) {
-            if (ProcessingResult2 < 0) {
-              if ((int)(processingStatus & ~result) < 0) {
+          if (uiComparisonResult == 1) {
+            if (calculationResult2 < 0) {
+              if ((int)(processingStatus & ~validationResult) < 0) {
                 processedCount = 0x7fffffff;
               }
               else {
-                processedCount = result - processingStatus;
+                processedCount = validationResult - processingStatus;
               }
             }
             else {
-              processedCount = ProcessingResult2;
-              if ((int)(result & ~processingStatus) < 0) {
+              processedCount = calculationResult2;
+              if ((int)(validationResult & ~processingStatus) < 0) {
                 processedCount = -0x80000000;
               }
             }
-            if (ProcessingResult2 < 0) {
-              if ((int)(processingStatus & ~result) < 0) {
-                ProcessingResult2 = 0x7fffffff;
+            if (calculationResult2 < 0) {
+              if ((int)(processingStatus & ~validationResult) < 0) {
+                calculationResult2 = 0x7fffffff;
               }
               else {
-                ProcessingResult2 = result - processingStatus;
+                calculationResult2 = validationResult - processingStatus;
               }
             }
-            else if ((int)(result & ~processingStatus) < 0) {
-              ProcessingResult2 = 0;
+            else if ((int)(validationResult & ~processingStatus) < 0) {
+              calculationResult2 = 0;
             }
-            eventDataIndex = (ulonglong)(ProcessingResult2 * ProcessingResult1 & 1) + ((longlong)processedCount * (longlong)ProcessingResult1 >> 1);
+            event dataIndex = (ulonglong)(calculationResult2 * calculationResult1 & 1) + ((longlong)processedCount * (longlong)calculationResult1 >> 1);
           }
           else {
-            if (ProcessingResult2 < 0) {
-              processStatus = processingStatus & ~result;
+            if (calculationResult2 < 0) {
+              processingStatus = processingStatus & ~validationResult;
               processedCount = 0x7fffffff;
             }
             else {
               processedCount = -0x80000000;
-              processStatus = result & ~processingStatus;
+              processingStatus = validationResult & ~processingStatus;
             }
             if ((int)processingStatus < 0) {
-              ProcessingResult2 = processedCount;
+              calculationResult2 = processedCount;
             }
-            eventDataIndex = ((longlong)ProcessingResult2 * (longlong)ProcessingResult1 >> ((char)uiCompareResult - 1U & 0x3f)) + 1 >> 1;
+            event dataIndex = ((longlong)calculationResult2 * (longlong)calculationResult1 >> ((char)uiComparisonResult - 1U & 0x3f)) + 1 >> 1;
           }
-          if (0xffffffff < eventDataIndex + 0x80000000U) goto LAB_18073414c;
-          uiContext[localLong7] = (int)eventDataIndex;
-          result = (uint)(((int)result * allocatedMemory4 >> 0x1e) + 1 >> 1);
-          ProcessingResult2 = eventStatus - result;
-          if (uiCompareResult == 1) {
-            if (ProcessingResult2 < 0) {
-              if ((int)(result & ~eventStatus) < 0) {
+          if (0xffffffff < event dataIndex + 0x80000000U) goto LAB_18073414c;
+          uiContext[calculatedOffset] = (int)event dataIndex;
+          validationResult = (uint)(((int)validationResult * memoryAllocation >> 0x1e) + 1 >> 1);
+          calculationResult2 = eventStatus - validationResult;
+          if (uiComparisonResult == 1) {
+            if (calculationResult2 < 0) {
+              if ((int)(validationResult & ~eventStatus) < 0) {
                 processedCount = 0x7fffffff;
               }
               else {
-                processedCount = eventStatus - result;
+                processedCount = eventStatus - validationResult;
               }
             }
             else {
-              processedCount = ProcessingResult2;
-              if ((int)(eventStatus & ~result) < 0) {
+              processedCount = calculationResult2;
+              if ((int)(eventStatus & ~validationResult) < 0) {
                 processedCount = -0x80000000;
               }
             }
-            if (ProcessingResult2 < 0) {
-              if ((int)(~eventStatus & result) < 0) {
-                ProcessingResult2 = 0x7fffffff;
+            if (calculationResult2 < 0) {
+              if ((int)(~eventStatus & validationResult) < 0) {
+                calculationResult2 = 0x7fffffff;
               }
               else {
-                ProcessingResult2 = eventStatus - result;
+                calculationResult2 = eventStatus - validationResult;
               }
             }
-            else if ((int)(eventStatus & ~result) < 0) {
-              ProcessingResult2 = 0;
+            else if ((int)(eventStatus & ~validationResult) < 0) {
+              calculationResult2 = 0;
             }
-            eventDataIndex = (ulonglong)(ProcessingResult2 * ProcessingResult1 & 1) + ((longlong)processedCount * (longlong)ProcessingResult1 >> 1);
+            event dataIndex = (ulonglong)(calculationResult2 * calculationResult1 & 1) + ((longlong)processedCount * (longlong)calculationResult1 >> 1);
           }
           else {
-            if (ProcessingResult2 < 0) {
+            if (calculationResult2 < 0) {
               processedCount = 0x7fffffff;
-              eventStatus = result & ~eventStatus;
+              eventStatus = validationResult & ~eventStatus;
             }
             else {
               processedCount = -0x80000000;
-              eventStatus = eventStatus & ~result;
+              eventStatus = eventStatus & ~validationResult;
             }
             if ((int)eventStatus < 0) {
-              ProcessingResult2 = processedCount;
+              calculationResult2 = processedCount;
             }
-            eventDataIndex = ((longlong)ProcessingResult2 * (longlong)ProcessingResult1 >> ((char)uiCompareResult - 1U & 0x3f)) + 1 >> 1;
+            event dataIndex = ((longlong)calculationResult2 * (longlong)calculationResult1 >> ((char)uiComparisonResult - 1U & 0x3f)) + 1 >> 1;
           }
-          if (0xffffffff < eventDataIndex + 0x80000000U) goto LAB_18073414c;
-          *ptrLocal8 = (uint)eventDataIndex;
-          localLong7 = localLong7 + 1;
-        } while (localLong7 < iStackX_18 >> 1);
+          if (0xffffffff < event dataIndex + 0x80000000U) goto LAB_18073414c;
+          *componentHandlePtr = (uint)event dataIndex;
+          calculatedOffset = calculatedOffset + 1;
+        } while (calculatedOffset < stackVar18 >> 1);
       }
-      iStackX_18 = iStackX_18 + -1;
-      iStackX_10 = iStackX_10 + -1;
-      componentHandle = componentHandle + -1;
-    } while (0 < iStackX_10);
+      stackVar18 = stackVar18 + -1;
+      stackVar10 = stackVar10 + -1;
+      currentComponent = currentComponent + -1;
+    } while (0 < stackVar10);
   }
-  if ((0x1ffdf3c < uiContext[iStackX_10] + 0xffef9eU) ||
-     (ProcessingResult5 = (int)((ulonglong)
+  if ((0x1ffdf3c < uiContext[stackVar10] + 0xffef9eU) ||
+     (validationThreshold = (int)((ulonglong)
                      ((longlong)
                       (0x40000000 -
                       (int)((ulonglong)((longlong)(*uiContext * -0x80) * (longlong)(*uiContext * -0x80))
-                           >> 0x20)) * (longlong)ProcessingResult5) >> 0x20) * 4, ProcessingResult5 < 0x1a36e)) {
+                           >> 0x20)) * (longlong)validationThreshold) >> 0x20) * 4, validationThreshold < 0x1a36e)) {
 LAB_18073414c:
-    ProcessingResult5 = 0;
+    validationThreshold = 0;
   }
-  return ProcessingResult5;
+  return validationThreshold;
 }
 
 

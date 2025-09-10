@@ -2047,6 +2047,15 @@
 #define RegisterContextSenaryOffset 0x30
 #define RegisterContextSeptenaryOffset 0x38
 
+// 系统上下文数据偏移常量
+#define SystemContextDataOffsetB4 0xb4                        // 系统上下文数据偏移量B4
+#define SystemContextDataOffsetBc 0xbc                        // 系统上下文数据偏移量Bc
+#define SystemContextDataOffsetC0 0xc0                        // 系统上下文数据偏移量C0
+#define SystemContextDataOffsetA0 0xa0                        // 系统上下文数据偏移量A0
+#define SystemContextDataOffsetAc 0xac                        // 系统上下文数据偏移量Ac
+#define SystemContextDataOffset9C 0x9c                        // 系统上下文数据偏移量9c
+#define SystemContextOffset30 0x30                             // 系统上下文偏移量30
+
 // 系统栈帧偏移常量
 #define StackFrameContextOffsetC4 0xc4
 #define StackFrameContextOffsetB0 0xb0
