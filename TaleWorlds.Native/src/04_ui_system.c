@@ -122424,15 +122424,25 @@ void CleanupUIResourcesAndExecuteRender(void)
 
 
 
- void FUN_180738fe1(void)
-void FUN_180738fe1(void)
-
+ /**
+ * @brief UI系统资源清理和渲染任务执行函数
+ * 
+ * 该函数负责释放UI内存资源并执行渲染任务。
+ * 首先调用ReleaseUIMemoryResource()释放UI内存资源，
+ * 然后执行UI渲染任务。注意：此函数不会返回。
+ * 
+ * @return 无返回值（函数不返回）
+ * 
+ * @note 原始函数名：FUN_180738fe1
+ * @note 此函数执行后不会返回，用于UI系统的最终清理操作
+ */
+void CleanupUIResourcesAndExecuteRenderTask(void)
 {
-  ulonglong stackParam00000140;
+  ulonglong renderTaskParameter;
   
   ReleaseUIMemoryResource();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
