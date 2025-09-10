@@ -13622,31 +13622,31 @@ uint8_t SystemInputFunctionPointer;
 uint8_t SystemOutputFunctionPointer;
 uint8_t SystemDebugFunctionPointer;
 uint8_t SystemLogFunctionPointer;
-uint8_t UtilitySystemConfigFunctionPointer;
-uint8_t UtilitySystemResourceFunctionPointer;
-uint8_t UtilitySystemCleanupFunctionPointer;
+uint8_t SystemConfigFunctionPointer;
+uint8_t SystemResourceFunctionPointer;
+uint8_t SystemCleanupFunctionPointer;
 // 工具系统配置区域 - 系统配置数据和扩展功能指针
-uint8_t UtilitySystemPrimaryConfigData;
-uint8_t UtilitySystemValidationFunctionPointer;
-uint8_t UtilitySystemSecondaryConfigData;
-uint8_t UtilitySystemInitializationFunctionPointer;
+uint8_t SystemPrimaryConfigData;
+uint8_t SystemValidationFunctionPointer;
+uint8_t SystemSecondaryConfigData;
+uint8_t SystemInitializationFunctionPointer;
 // 工具系统数据区域 - 系统核心数据缓冲区
-uint8_t UtilitySystemStatusData;
-uint8_t UtilitySystemMemoryData;
-uint8_t UtilitySystemProcessData;
-uint8_t UtilitySystemSecurityData;
-uint8_t UtilitySystemNetworkData;
-uint8_t UtilitySystemFileData;
-uint8_t UtilitySystemThreadData;
-uint8_t UtilitySystemEventData;
-uint8_t UtilitySystemTimerData;
-uint8_t UtilitySystemInputData;
-uint8_t UtilitySystemOutputData;
-uint8_t UtilitySystemDebugData;
-uint8_t UtilitySystemLogData;
-uint8_t UtilitySystemConfigData;
-uint8_t UtilitySystemResourceData;
-uint8_t UtilitySystemCleanupData;
+uint8_t SystemStatusData;
+uint8_t SystemMemoryData;
+uint8_t SystemProcessData;
+uint8_t SystemSecurityData;
+uint8_t SystemNetworkData;
+uint8_t SystemFileData;
+uint8_t SystemThreadData;
+uint8_t SystemEventData;
+uint8_t SystemTimerData;
+uint8_t SystemInputData;
+uint8_t SystemOutputData;
+uint8_t SystemDebugData;
+uint8_t SystemLogData;
+uint8_t SystemConfigData;
+uint8_t SystemResourceData;
+uint8_t SystemCleanupData;
 uint8_t UtilitySystemValidationData;
 uint8_t UtilitySystemInitializationData;
 uint8_t UtilitySystemOperationData;
@@ -137083,7 +137083,7 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ClearSystemConfigurationFlagsA0 Unwind_180907d40
 #define ResetSystemConfigurationStateA0 Unwind_180907d50
 #define UpdateSystemConfigurationDataA0 Unwind_180907d80
-#define ValidateSystemConfigurationA0 Unwind_180907db0
+#define ValidateSystemConfigurationA0Unwind Unwind_180907db0
 #define ProcessSystemConfigurationA0 Unwind_180907dc0
 #define CleanupSystemConfigurationA0 Unwind_180907dd0
 #define ResetSystemConfigurationPointersA0 Unwind_180907e00
