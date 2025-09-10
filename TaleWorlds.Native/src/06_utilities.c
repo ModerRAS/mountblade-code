@@ -2513,6 +2513,17 @@
 #define OperationBaseOffsetB0 0xb0
 #define OperationBaseOffset98 0x98
 
+// 内存操作标志常量
+#define MemoryOperationAllocateFlag 0x1                    // 内存分配标志
+#define MemoryOperationProcessFlag 0x2                     // 内存处理标志  
+#define MemoryOperationReleaseFlag 0x4                     // 内存释放标志
+
+// 错误代码常量
+#define MemoryErrorCodeInvalidSize -1                      // 无效缓冲区大小错误码
+#define MemoryErrorCodeAllocationFailed -2                 // 内存分配失败错误码
+#define MemoryErrorCodeValidationFailed -3                 // 内存验证失败错误码
+#define MemoryErrorCodeProcessingFailed -4                 // 内存处理失败错误码
+
 // 系统恢复操作偏移量常量
 #define SystemRecoveryContextOffset 0x50                // 系统恢复上下文偏移量
 #define SystemUpdateContextOffset 0x58                  // 系统更新上下文偏移量
@@ -7845,7 +7856,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089df40
  * @note 这是系统安全架构的关键组件
  */
-#define ExecuteSystemSecurityCheck FUN_18089df40
+// 系统安全检查执行函数
+#define ExecuteSystemSecurityCheck ExecuteSystemSecurityCheck
 
 /**
  * @brief 验证并执行操作函数
