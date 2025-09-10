@@ -5168,6 +5168,8 @@ void* UIGestureCoordinates;
 #define UIExternalDataFD0A0 UNK_1809fd0a0
 
 // UI系统上下文处理数据宏定义
+#define UIContextHandleDataE60 UNK_180956e60
+#define UIContextHandleDataF30 UNK_180956f30
 #define UIContextHandleData080 UNK_180957080
 #define UIContextHandleData488 UNK_180957488
 #define UIContextHandleData458 UNK_180957458
@@ -113911,8 +113913,7 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072fba0(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize)
-/**
+ /**
  * @brief UI渲染表面处理
  * 
  * 该函数负责处理UI系统中的表面渲染操作。
@@ -116523,9 +116524,9 @@ void ProcessUIDataAndValidation(short uiContext,char dataSource,int *targetBuffe
   
   eventProcessingCounter = (ulonglong)resultPointer;
   if (bufferSize == 8) {
-    ptrLocal6 = &UNK_180956e60;
+    ptrLocal6 = &UIContextHandleDataE60;
     if (resultPointer != 4) {
-      ptrLocal6 = &UNK_180956f30;
+      ptrLocal6 = &UIContextHandleDataF30;
     }
     CharacterDataOffset = 0xb;
     if (resultPointer != 4) {
