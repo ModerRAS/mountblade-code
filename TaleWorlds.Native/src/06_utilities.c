@@ -50193,20 +50193,43 @@ void CleanupMutexLock(DataBuffer operationBase, int64_t dataBuffer, DataBuffer o
  * @note 原始函数名可能是类似Unwind_开头的函数
  * @warning 如果异常数据缓冲区状态不正确，会终止系统执行
  */
-void CleanupExceptionStack(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 清理异常栈
+ * 
+ * 该函数负责清理异常栈，包括：
+ * - 设置临时异常处理器
+ * - 验证异常数据缓冲区状态
+ * - 重置异常处理器为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常栈信息
+ * 
+ * @note 原始函数名：Unwind_180906090
+ * @warning 如果异常数据缓冲区状态不正确，会终止系统执行
+ */
+void CleanupExceptionStack(DataBuffer operationBase, int64_t dataBuffer)
 {
-  DataBuffer *exceptionDataBuffer;
-  
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
-  *exceptionDataBuffer = &SystemTemporaryExceptionHandler;
-  if (exceptionDataBuffer[1] != 0) {
-      TerminateSystemExecutionAndCleanupResources();
-  }
-  exceptionDataBuffer[1] = 0;
-  *(DataWord *)(exceptionDataBuffer + 3) = 0;
-  *exceptionDataBuffer = &SystemDefaultExceptionHandlerB;
-  return;
+    DataBuffer *exceptionDataBuffer;     // 异常数据缓冲区指针
+    
+    // 获取异常数据缓冲区指针
+    exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
+    
+    // 设置临时异常处理器
+    *exceptionDataBuffer = &SystemTemporaryExceptionHandler;
+    
+    // 检查异常数据缓冲区状态
+    if (exceptionDataBuffer[1] != 0) {
+        TerminateSystemExecutionAndCleanupResources();
+    }
+    
+    // 重置异常数据缓冲区
+    exceptionDataBuffer[1] = 0;
+    *(DataWord *)(exceptionDataBuffer + 3) = 0;
+    
+    // 设置默认异常处理器
+    *exceptionDataBuffer = &SystemDefaultExceptionHandlerB;
+    
+    return;
 }
 
 
