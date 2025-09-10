@@ -373,8 +373,52 @@
 #define SystemCleanupExtendedFlag 0xffc00000                   // 系统清理扩展标志
 #define SystemCleanupBasicFlag 0x8                            // 系统清理基本标志
 
+// 默认异常处理器指针偏移量常量
+#define DefaultExceptionHandlerBOffset540 0x540                 // 默认异常处理器B偏移量540
+#define DefaultExceptionHandlerBOffset528 0x528                 // 默认异常处理器B偏移量528
+#define DefaultExceptionHandlerBOffset520 0x520                 // 默认异常处理器B偏移量520
+
+// 数据缓冲区偏移量常量
+#define DataBufferOffset1d0 0x1d0                              // 数据缓冲区偏移量1d0
+#define DataBufferOffset200 0x200                              // 数据缓冲区偏移量200
+
+// 系统默认异常处理器地址常量
+#define SystemDefaultExceptionHandlerBOffset0x540 0x540          // 系统默认异常处理器B偏移量0x540
+
+// 系统资源管理器偏移量常量
+#define SystemResourceIteratorTableOffset1cd8 0x1cd8            // 系统资源迭代器表偏移量1cd8
+#define SystemResourcePointerOffset12e3 0x12e3                  // 系统资源指针偏移量12e3
+#define SystemResourcePointerOffset12dd 0x12dd                 // 系统资源指针偏移量12dd
+
+// 异常上下文状态偏移量常量
+#define ExceptionContextStatusOffset68 0x68                    // 异常上下文状态偏移量68
+#define ResourceManagementOffset80b0 0x80b0                    // 资源管理偏移量80b0
+#define ResourceManagementOffset8088 0x8088                    // 资源管理偏移量8088
+#define MemoryBlockOffset200 0x200                             // 内存块偏移量200
+#define MemoryBlockOffsetD0 0xd0                                // 内存块偏移量D0
+#define ResourceValidationFlagOffset60 0x60                     // 资源验证标志偏移量60
+
+// 系统资源基地址常量
+#define SystemResourceBaseOffset7F20 0x7f20                     // 系统资源基地址偏移量7F20
+
+// 异常处理器指针偏移量常量
+#define ExceptionHandlerPointerOffset7F0 0x7f0                 // 异常处理器指针偏移量7F0
+#define ExceptionHandlerContextOffset1f0 0x1f0                  // 异常上下文偏移量1f0
+
+// 系统数据参数偏移量常量
+#define SystemDataParameterOffset20 0x20                        // 系统数据参数偏移量20
+#define SystemDataParameterOffset28 0x28                        // 系统数据参数偏移量28
+
+// 内存指针偏移量常量
+#define MemoryPointerOffset0 0x0                                // 内存指针偏移量0
+#define SystemFloatDataOffset38 0x38                            // 系统浮点数据偏移量38
+#define FloatValueOffset0 0x0                                   // 浮点数值偏移量0
+
 // 异常列表偏移量常量
 #define ExceptionListStartOffset 0x10                          // 异常列表起始偏移量
+#define ExceptionHandlerPointerOffset530 0x530                  // 异常处理器指针偏移量530
+#define ExceptionHandlerPointerOffset550 0x550                  // 异常处理器指针偏移量550
+#define SystemCleanupFlagAlternative 0x4                        // 系统清理标志备选值
 
 // 内存异常检查偏移量常量
 #define MemoryExceptionCheckOffset 0xe                       // 内存异常检查偏移量
@@ -10709,6 +10753,8 @@ uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 #define DataBufferOffset470 0x470                            // 数据缓冲区偏移量470
 #define DataBufferOffset4b0 0x4b0                            // 数据缓冲区偏移量4b0
 #define DataBufferOffset540 0x540                            // 数据缓冲区偏移量540
+#define ExceptionHandlerContextOffset540 0x540                 // 异常上下文偏移量540
+#define ExtendedHandlerContextOffset540 0x540                  // 扩展异常上下文偏移量540
 #define DataBufferOffset570 0x570                            // 数据缓冲区偏移量570
 #define DataBufferOffset5d0 0x5d0                            // 数据缓冲区偏移量5d0
 #define DataBufferOffset610 0x610                            // 数据缓冲区偏移量610
@@ -54132,8 +54178,8 @@ void InitializeMemoryPoolExceptionHandler(DataBuffer exceptionContext,int64_t me
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPointerOffset530) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x540) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x528) = &SystemDefaultExceptionHandlerB;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextOffset540) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + DefaultExceptionHandlerBOffset528) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -54601,8 +54647,8 @@ void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(extendedHandlerContext + 0x530) = 0;
-  *(DataWord *)(extendedHandlerContext + 0x540) = 0;
-  *(DataBuffer *)(extendedHandlerContext + 0x528) = &SystemDefaultExceptionHandlerB;
+  *(DataWord *)(extendedHandlerContext + ExtendedHandlerContextOffset540) = 0;
+  *(DataBuffer *)(extendedHandlerContext + DefaultExceptionHandlerBOffset528) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -56627,7 +56673,7 @@ void HandleExceptionWithFlagsE5(DataBuffer operationBase,int64_t dataBuffer,Data
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x550) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x550))(exceptionHandlerContext + 0x540,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerPointerOffset550))(exceptionHandlerContext + ExceptionHandlerContextOffset540,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x528) != 0) {
@@ -58608,7 +58654,7 @@ void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffe
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x550) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x550))(exceptionHandlerContext + 0x540,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerPointerOffset550))(exceptionHandlerContext + ExceptionHandlerContextOffset540,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &SystemTemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x528) != 0) {
@@ -100538,7 +100584,7 @@ void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,
 void SetSystemDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x540) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DefaultExceptionHandlerBOffset540) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
