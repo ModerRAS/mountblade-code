@@ -10099,28 +10099,28 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define InitializeRenderMaterials FUN_18011c060
 #define ConfigureRenderLights FUN_18011c080
 #define SetupRenderCameras FUN_18011c0a0
-#define InitializeRenderEffects(FUN_1800c0c0) InitializeRenderEffects
-#define ConfigureRenderMeshes(FUN_1800c0e0) ConfigureRenderMeshes
-#define SetupRenderAnimations(FUN_1800c100) SetupRenderAnimations
-#define InitializeRenderPhysics(FUN_1800c120) InitializeRenderPhysics
-#define ConfigureRenderAudio(FUN_1800c140) ConfigureRenderAudio
-#define SetupRenderUI(FUN_1800c160) SetupRenderUI
-#define InitializeRenderNetwork(FUN_1800c180) InitializeRenderNetwork
-#define ConfigureRenderInput(FUN_1800c1a0) ConfigureRenderInput
-#define SetupRenderDebug(FUN_1800c1c0) SetupRenderDebug
-#define InitializeRenderProfile(FUN_1800c1e0) InitializeRenderProfile
-#define ConfigureRenderStats(FUN_1800c200) ConfigureRenderStats
-#define SetupRenderOptimization(FUN_1800c220) SetupRenderOptimization
-#define InitializeRenderCache(FUN_1800c240) InitializeRenderCache
-#define ConfigureRenderStreaming(FUN_1800c260) ConfigureRenderStreaming
-#define SetupRenderCompression(FUN_1800c280) SetupRenderCompression
-#define InitializeRenderValidation(FUN_1800c2a0) InitializeRenderValidation
-#define ConfigureRenderSecurity(FUN_1800c2c0) ConfigureRenderSecurity
-#define SetupRenderMonitoring(FUN_1800c2e0) SetupRenderMonitoring
+#define InitializeRenderEffects FUN_1800c0c0
+#define ConfigureRenderMeshes FUN_1800c0e0
+#define SetupRenderAnimations FUN_1800c100
+#define InitializeRenderPhysics FUN_1800c120
+#define ConfigureRenderAudio FUN_1800c140
+#define SetupRenderUI FUN_1800c160
+#define InitializeRenderNetwork FUN_1800c180
+#define ConfigureRenderInput FUN_1800c1a0
+#define SetupRenderDebug FUN_1800c1c0
+#define InitializeRenderProfile FUN_1800c1e0
+#define ConfigureRenderStats FUN_1800c200
+#define SetupRenderOptimization FUN_1800c220
+#define InitializeRenderCache FUN_1800c240
+#define ConfigureRenderStreaming FUN_1800c260
+#define SetupRenderCompression FUN_1800c280
+#define InitializeRenderValidation FUN_1800c2a0
+#define ConfigureRenderSecurity FUN_1800c2c0
+#define SetupRenderMonitoring FUN_1800c2e0
 
 // 系统内存管理函数
-#define InitializeSystemMemory(FUN_18012d6a0) InitializeSystemMemory
-#define FinalizeMemoryOperation(FUN_18012d640) FinalizeMemoryOperation
+#define InitializeSystemMemory FUN_18012d6a0
+#define FinalizeMemoryOperation FUN_18012d640
 
 // 系统配置验证函数
 
@@ -99485,24 +99485,27 @@ void ProcessSystemEventQueueData(uint64_t ContextHandle,uint64_t OperationBuffer
  * @note 原始函数名：FUN_180043f040
  * @note 函数名显示有重复，可能是Ghidra逆向工程的结果
  */
-void ProcessDataStructureAndStack(uint64_t ContextHandle,uint64_t OperationBufferSize
+void ProcessDataStructureAndStack(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   long long MainCalculationResult;
   long long SystemConfigurationStatus;
   int MemoryComparisonResult;
+  int InputDataLength;
+  long long CharacterTablePointer;
+  int LoopCounter = 0;
   
   SystemConfigurationStatus = SystemConfigurationHandle;
-  *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
+  *(uint8_t *)(*(long long *)(SystemConfigurationStatus + 0x1af8) + 0xb1) = 1;
   if (*(char *)(*(long long *)(SystemConfigurationStatus + 0x1af8) + 0xb4) == '\0') {
     CharacterTablePointer = SystemConfigurationStatus + 0x3054;
-    InputDataLength = ValidateSystemAndInitialize(LoopCounter,0xc01,ContextHandle,OperationBufferSize);
+    InputDataLength = ValidateSystemAndInitialize(LoopCounter, 0xc01, ContextHandle, OperationBufferSize);
     if (CharacterTablePointer != 0) {
       if ((InputDataLength == -1) || (0xc00 < InputDataLength)) {
         InputDataLength = 0xc00;
       }
       *(uint8_t *)(InputDataLength + CharacterTablePointer) = 0;
     }
-    ProcessSystemContextAndStatus(LoopCounter,SystemConfigurationStatus + 0x3054 + (long long)InputDataLength);
+    ProcessSystemContextAndStatus(LoopCounter, SystemConfigurationStatus + 0x3054 + (long long)InputDataLength);
   }
   return;
 }
@@ -213985,8 +213988,8 @@ long long ProcessMemoryBoundaryAndSystemContextValidation(long long ContextHandl
     }
     if (StringCompareLength == *(int *)(OperationBufferSize + 0x10)) {
       if (StringCompareLength == 0) {
-LAB_180177d1e:
-        if (*(int *)(OperationBufferSize + 0x10) != 0) goto LAB_180177d26;
+ValidateEmptyString:
+        if (*(int *)(OperationBufferSize + 0x10) != 0) goto SetContextNotNull;
         SystemContextIsNull = true;
       }
       else {
@@ -214001,8 +214004,8 @@ LAB_180177d1e:
       }
     }
     else {
-      if (StringCompareLength == 0) goto LAB_180177d1e;
-LAB_180177d26:
+      if (StringCompareLength == 0) goto ValidateEmptyString;
+SetContextNotNull:
       SystemContextIsNull = false;
     }
     SystemContextData = &SystemNullTemplate;
