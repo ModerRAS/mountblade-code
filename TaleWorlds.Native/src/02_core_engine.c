@@ -223029,9 +223029,25 @@ LAB_180184411:
 
 
 
+/**
+ * @brief 处理系统内存和句柄管理
+ * 
+ * 该函数负责处理系统内存管理和句柄操作，包括：
+ * - 管理内存块列表的分配和释放
+ * - 处理UTF8到UTF16的字符编码转换
+ * - 维护系统句柄的完整性
+ * - 清理和释放系统资源
+ * 
+ * @param ContextHandle 系统句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 原始函数名：FUN_180184500
+ */
 void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long *ContextHandle;
+  long long *ContextHandlePtr;
   long long BufferStatus;
   long long *MemoryBlockIndex;
   long long SystemDataRegistry;
@@ -223039,26 +223055,26 @@ void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationB
   uint64_t OperationResult;
   
   OperationResult = 0xfffffffffffffffe;
-  ContextHandle = (long long *)(ContextHandle + 8);
-  BufferStatus = *ContextHandle;
+  ContextHandlePtr = (long long *)(ContextHandle + 8);
+  BufferStatus = *ContextHandlePtr;
   SystemDataRegistry = BufferStatus;
   MemoryBlockListHead = *(long long **)(BufferStatus + 8);
   if (*(char *)((long long)*(long long **)(BufferStatus + 8) + SystemNodeStatusOffset) == '\0') {
     do {
-      ProcessSystemMemory(ContextHandle,MemoryBlockListHead[2],Utf8SourcePointer,Utf16EndPointer,OperationResult);
+      ProcessSystemMemory(ContextHandlePtr, MemoryBlockListHead[2], Utf8SourcePointer, Utf16EndPointer, OperationResult);
       MemoryBlockIndex = (long long *)*MemoryBlockListHead;
-      free(MemoryBlockListHead,0x28);
+      free(MemoryBlockListHead, 0x28);
       MemoryBlockListHead = MemoryBlockIndex;
     } while (*(char *)((long long)MemoryBlockIndex + SystemNodeStatusOffset) == '\0');
-    SystemDataRegistry = *ContextHandle;
+    SystemDataRegistry = *ContextHandlePtr;
   }
   *(long long *)(SystemDataRegistry + 8) = BufferStatus;
-  *(long long *)*ContextHandle = BufferStatus;
-  *(long long *)(*ContextHandle + 0x10) = BufferStatus;
-  *(void *)(ContextHandle + 0x10) = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(*ContextHandle,0x28);
+  *(long long *)*ContextHandlePtr = BufferStatus;
+  *(long long *)(*ContextHandlePtr + 0x10) = BufferStatus;
+  *(void *)(ContextHandlePtr + 0x10) = 0;
+  // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+  // WARNING: Treating indirect jump as call
+  free(*ContextHandlePtr, 0x28);
   return;
 }
 
