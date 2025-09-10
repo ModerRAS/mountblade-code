@@ -162656,10 +162656,22 @@ UIDword FUN_18075eb70(longlong uiContext,int *dataSource,char targetBuffer,char 
 
 
 
-UIDword FUN_18075ec10(longlong uiContext,int *dataSource,char targetBuffer,char bufferSize)
+/**
+ * @brief 处理UI事件迭代
+ * 
+ * 处理UI系统中的事件迭代，包括数据源验证、内存操作验证和迭代计数
+ * 支持不同类型的事件处理和缓冲区管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针，用于存储事件数据
+ * @param targetBuffer 目标缓冲区标志
+ * @param bufferSize 缓冲区大小标志
+ * @return UIDword 返回迭代计数值
+ */
+UIDword ProcessUIEvent(longlong uiContext, int *dataSource, char targetBuffer, char bufferSize)
 
 {
-  short sVar1;
+  short contextOffset;
   UIDword iterationCount;
   
   if (dataSource == (int *)0x0) {
@@ -162667,19 +162679,19 @@ UIDword FUN_18075ec10(longlong uiContext,int *dataSource,char targetBuffer,char 
   }
   else {
     if (bufferSize != '\0') {
-      ValidateUIMemoryOperation(*(UIHandle *)(uiContext + 0xa8),1);
-      func_0x000180743c20(*(UIHandle *)(uiContext + 0xa8),1);
+      ValidateUIMemoryOperation(*(UIHandle *)(uiContext + 0xa8), 1);
+      func_0x000180743c20(*(UIHandle *)(uiContext + 0xa8), 1);
     }
     if (targetBuffer == '\0') {
-      sVar1 = *(short *)(uiContext + 0x1aa);
+      contextOffset = *(short *)(uiContext + 0x1aa);
     }
     else {
-      sVar1 = *(short *)(uiContext + 0x1ae);
+      contextOffset = *(short *)(uiContext + 0x1ae);
     }
-    *dataSource = (int)sVar1;
+    *dataSource = (int)contextOffset;
     if (bufferSize != '\0') {
                      WARNING: Subroutine does not return
-      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8),1);
+      ProcessUISystemCleanup(*(UIHandle *)(uiContext + 0xa8), 1);
     }
     iterationCount = 0;
   }
@@ -162688,8 +162700,22 @@ UIDword FUN_18075ec10(longlong uiContext,int *dataSource,char targetBuffer,char 
 
 
 
+/**
+ * @brief 处理UI上下文数据分配和缓冲区管理
+ * 
+ * 处理UI系统中的上下文数据分配、缓冲区管理和内存操作
+ * 包括数据源验证、内存分配、缓冲区大小计算等操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源值
+ * @param targetBuffer 目标缓冲区值
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param param_6 附加参数指针
+ * @return UIHandle 返回处理后的UI句柄
+ */
 UIHandle
-FUN_18075ece0(longlong uiContext,uint dataSource,int targetBuffer,uint *bufferSize,int *resultPointer,
+ProcessUIContextDataAllocation(longlong uiContext, uint dataSource, int targetBuffer, uint *bufferSize, int *resultPointer,
              UIDword *param_6)
 
 {

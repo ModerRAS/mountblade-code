@@ -243595,43 +243595,55 @@ LAB_18019e833:
 
 
 
-long long * FUN_18019eb80(long long ContextHandle,long long *ContextHandleSize
+/**
+ * @brief 处理系统内存处理
+ * 
+ * 执行系统内存的分配、处理和优化操作
+ * 管理内存缓冲区和数据结构
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_18019eb80
+ */
+long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *ContextHandleSize
 {
-  int LockResult;
-  long long *BufferAllocationState;
-  uint64_t UnicodeCodePoint;
-  uint64_t MemoryAddressMaskPointer;
-  uint64_t CalculatedCodePoint;
-  char CharacterInputDataLength;
-  uint64_t SystemChecksum;
-  long long *SystemDataTablePointer;
-  uint64_t *TemporaryBuffer;
-  uint64_t *CharacterStatusBuffer;
-  long long *ContextHandle1;
-  long long SystemContextValue;
-  int IntegerValue;
-  long long LoopIndex;
-  long long **pConversionContext;
-  uint SystemPrimaryReturnCode;
-  long long SystemConfigurationIterator;
-  int SystemStatusValue;
-  int IntegerValue9;
-  int LockOperationResult0;
-  float ContextSecondaryFloat1;
-  uint8_t aMemoryAllocationOffset [16];
-  uint8_t aInputDataLength [16];
-  float ContextSecondaryFloat4;
-  float ContextSecondaryFloat5;
-  float ContextSecondaryFloat6;
-  float ContextSecondaryFloat7;
-  float ContextSecondaryFloat8;
-  float ContextSecondaryFloat9;
-  float FilterInputValue0;
-  float FilterInputValue1;
-  float FilterInputValue2;
-  float ScalingFactor;
-  float FilterInputValue4;
-  uint64_t *SystemEventTemplatePointer5;
+  int MemoryLockResult;
+  long long *MemoryBufferState;
+  uint64_t UnicodeCharacterCode;
+  uint64_t AddressMaskPointer;
+  uint64_t ProcessedCodePoint;
+  char InputDataLength;
+  uint64_t MemoryValidationChecksum;
+  long long *SystemDataTable;
+  uint64_t *TemporaryMemoryBuffer;
+  uint64_t *CharacterProcessingBuffer;
+  long long *AlternateContextHandle;
+  long long SystemContextData;
+  int ProcessingValue;
+  long long MemoryLoopIndex;
+  long long **DataConversionContext;
+  uint SystemStatusCode;
+  long long ConfigurationIterator;
+  int SystemStateValue;
+  int RangeMinimum;
+  int RangeMaximum;
+  float ContextFloatValue1;
+  uint8_t MemoryAllocationOffset [16];
+  uint8_t DataInputBuffer [16];
+  float ContextFloatValue4;
+  float ContextFloatValue5;
+  float ContextFloatValue6;
+  float ContextFloatValue7;
+  float ContextFloatValue8;
+  float ContextFloatValue9;
+  float InputFilterValue0;
+  float InputFilterValue1;
+  float InputFilterValue2;
+  float MemoryScaleFactor;
+  float InputFilterValue4;
+  uint64_t *SystemEventTemplate;
   uint64_t uStack_358;
   uint64_t uStack_350;
   float fStack_348;
