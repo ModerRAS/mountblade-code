@@ -30686,7 +30686,7 @@ void ExecuteNoOperation(void)
  * @note 函数执行过程中会进行栈保护检查
  * @note 通过安全检查机制处理最终结果
  */
-void ProcessFloatingPointDataA1(int64_t *dataContext)
+void ProcessFloatingPointDataSecondary(int64_t *dataContext)
 
 {
   float inputFloatValue;
@@ -32090,7 +32090,7 @@ void ProcessMultiSegmentDataPrimary(DataBuffer systemContext,int64_t DataBuffer)
  * 
  * @note 原始函数名：Unwind_18090f9a0
  */
-void ProcessDataBlockOperationA0(DataBuffer systemContext,int64_t dataBufferPtr)
+void ProcessDataBlockOperationPrimary(DataBuffer systemContext,int64_t dataBufferPtr)
 {
   int ValidationResult;           // 验证结果
   
