@@ -38385,7 +38385,7 @@ ValidationLabelC:
     InitializeSystemComponentA0(operationBase + OperationBaseOffset58);
   }
 ValidationLabelD:
-  if ((0x70 < *(uint *)(dataBuffer + 8)) && (operationResult = ValidationErrorCode, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
+  if ((SystemDataBufferMinimumSize < *(uint *)(dataBuffer + SystemDataSizeOffset)) && (operationResult = ValidationErrorCode, *(int *)(dataBuffer[SystemDataBufferArrayIndex] + SystemDataSecondaryOffset18) == 0)) {
     operationResult = OperateDataO0(*dataBuffer,operationBase + OperationBaseOffset68,4);
   }
   if (operationResult != 0) {
