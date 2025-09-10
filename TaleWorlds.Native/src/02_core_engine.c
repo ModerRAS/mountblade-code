@@ -6249,6 +6249,8 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemDataManager FUN_1800b8500                  // 处理系统数据管理器
 #define ProcessSystemEncodingConversion FUN_1800dae20            // 处理系统编码转换
 #define ProcessSystemStatusFlag FUN_180084ea0                  // 处理系统状态标志
+#define ProcessSystemCharacterDataValidation FUN_1800d6260      // 处理系统字符数据验证
+#define ProcessSystemVectorCalculation FUN_1800df980           // 处理系统向量计算
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
@@ -241440,9 +241442,9 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
         MemoryAddressMaskPointer = *(void *)(*(long long *)(ContextHandle + 0x398) + 0x1b8);
         Utf16Char = *(uint *)(EncodingConversionResult + 0x314);
         *(uint *)(EncodingConversionResult + 0x314) = Utf16Char & *(uint *)(OperationBufferSize + 0x1c4);
-        CharacterDataValidationResult = FUN_1800d6260(ProcessingStatusFlag,OperationBufferSize,EncodingConversionResult,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
+        CharacterDataValidationResult = ProcessSystemCharacterDataValidation(ProcessingStatusFlag,OperationBufferSize,EncodingConversionResult,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
         if (CharacterDataValidationResult == '\0') {
-          FUN_1800df980(VectorCalculationResult,EncodingConversionResult,OperationBufferSize);
+          ProcessSystemVectorCalculation(VectorCalculationResult,EncodingConversionResult,OperationBufferSize);
           *(long long *)(OperationBufferSize + 0x34e0) = EncodingConversionResult;
         }
         else {
@@ -241462,9 +241464,9 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
         MemoryAddressMaskPointer = *(void *)(*(long long *)(ContextHandle + 0x3a0) + 0x1b8);
         Utf16Char = *(uint *)(SystemStringIndex + 0x314);
         *(uint *)(SystemStringIndex + 0x314) = Utf16Char & *(uint *)(OperationBufferSize + 0x1c4);
-        CharacterDataValidationResult = FUN_1800d6260(ProcessingStatusFlag,OperationBufferSize,SystemStringIndex,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
+        CharacterDataValidationResult = ProcessSystemCharacterDataValidation(ProcessingStatusFlag,OperationBufferSize,SystemStringIndex,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
         if (CharacterDataValidationResult == '\0') {
-          FUN_1800df980(VectorCalculationResult_00,SystemStringIndex,OperationBufferSize);
+          ProcessSystemVectorCalculation(VectorCalculationResult_00,SystemStringIndex,OperationBufferSize);
           *(long long *)(OperationBufferSize + 0x34d8) = SystemStringIndex;
         }
         else {

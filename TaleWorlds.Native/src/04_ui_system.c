@@ -106717,7 +106717,19 @@ void ProcessUIResourceManagement(longlong uiContext,UIHandle dataSource,UIHandle
 
 
 
- void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI动画帧
+ * 
+ * 该函数负责处理UI动画的帧更新，包括边界计算、位运算和动画参数处理。
+ * 主要用于UI元素的动画效果计算和更新。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，提供动画数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * 
+ * @note 原始函数名包含地址编码，已进行语义化处理
+ * @note 函数处理动画边界计算和位运算操作
+ */
 void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBuffer)
 
 {
@@ -106729,8 +106741,8 @@ void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBu
   longlong contextDataHandle;
   uint iterationCounter;
   int localInt8;
-  int aiStackX_8 [2];
-  int aiStackX_20 [2];
+  int animationBoundsX [2];
+  int animationBoundsY [2];
   
   if (*(int *)(uiBufferData + 0x1058) != 0) {
     ProcessUIBufferOperations(uiContext + 0x10a0,uiContext + 0x10a4,dataSource,targetBuffer);
@@ -106738,17 +106750,17 @@ void ProcessUIAnimationFrame(longlong uiContext,longlong dataSource,int targetBu
     return;
   }
   if (*(int *)(uiBufferData + 0x1094) != 0) {
-    ProcessUIBufferOperations(aiStackX_8,aiStackX_20,dataSource,targetBuffer);
+    ProcessUIBufferOperations(animationBoundsX,animationBoundsY,dataSource,targetBuffer);
     uiCompareResult = *(int *)(uiBufferData + 0x10a4);
-    if (uiCompareResult < aiStackX_20[0]) {
+    if (uiCompareResult < animationBoundsY[0]) {
       *(int *)(uiBufferData + 0x10a0) =
-           *(int *)(uiBufferData + 0x10a0) >> ((char)aiStackX_20[0] - (char)uiCompareResult & 0x1fU);
+           *(int *)(uiBufferData + 0x10a0) >> ((char)animationBoundsY[0] - (char)uiCompareResult & 0x1fU);
     }
-    else if (aiStackX_20[0] < uiCompareResult) {
-      aiStackX_8[0] = aiStackX_8[0] >> ((char)uiCompareResult - (char)aiStackX_20[0] & 0x1fU);
+    else if (animationBoundsY[0] < uiCompareResult) {
+      animationBoundsX[0] = animationBoundsX[0] >> ((char)uiCompareResult - (char)animationBoundsY[0] & 0x1fU);
     }
     iterationCount = *(uint *)(uiContext + 0x10a0);
-    if ((int)iterationCount < aiStackX_8[0]) {
+    if ((int)iterationCount < animationBoundsX[0]) {
       if (iterationCount == 0) {
         uiCompareResult = 0x20;
       }
@@ -139380,7 +139392,14 @@ UIHandle FUN_180748401(void)
 
 
  void FUN_1807484eb(void)
-void FUN_1807484eb(void)
+/**
+ * @brief 重置UI渲染状态
+ * 
+ * 重置UI渲染的状态到初始值，确保渲染系统处于正确的状态
+ * 
+ * @note 这是一个空函数实现，可能用于占位或未来扩展
+ */
+void ResetUIRenderingState(void)
 
 {
   return;
