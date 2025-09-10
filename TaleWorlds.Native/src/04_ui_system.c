@@ -39929,8 +39929,8 @@ void ProcessUIPixelBlock(longlong uiContext,longlong dataSource)
   UIDword UIStackOffset10;
   UIDword UIStackOffset14;
   UIDword bufferValidationFlag;
-  UIDword uStackX_1c;
-  ulonglong uStackX_20;
+  UIDword UIStackDataBuffer1C;
+  ulonglong UIStackDataBuffer20;
   longlong UIStackParameter90;
   uint UIStackParameter98;
   int maxAllocations;
