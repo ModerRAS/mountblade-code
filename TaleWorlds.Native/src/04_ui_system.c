@@ -123800,8 +123800,25 @@ void ProcessUIContextWithStateManager(UIHandle uiContext,UIHandle dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739950(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180739950(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI上下文并管理事件调度
+ * 
+ * 该函数负责处理UI上下文并管理事件调度，包括：
+ * - 初始化UI渲染上下文
+ * - 验证数据源和目标缓冲区的有效性
+ * - 处理事件调度操作
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180739950
+ * @note 这是一个处理UI上下文事件调度的关键函数
+ */
+void ProcessUIContextWithEventDispatcher(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
