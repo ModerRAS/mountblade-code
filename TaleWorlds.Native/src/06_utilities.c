@@ -4962,6 +4962,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f840
  */
+#define FUN_18007f840 ProcessSystemDataAndValidation
 #define ProcessAndValidateSystemData ProcessSystemDataAndValidation
 
 /**
@@ -4979,6 +4980,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18007f6a0
  * @warning 资源操作失败可能会导致系统不稳定，需要妥善处理错误情况
  */
+#define FUN_18007f6a0 ProcessSystemResourcesAndMemory
 #define ManageSystemResources ProcessSystemResourcesAndMemory
 
 /**
@@ -19704,7 +19706,7 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure, int64_t exceptionHandler
   DataBuffer validationResult;
   int *dataElementContext;
   DataWord *validationFlagPointer;
-  int elementIndex;
+  int ElementIndex;           // 元素索引
   
   // 数据结构偏移量常量
   const int DataElementCountOffset = ExceptionHandlerCallbackOffset;
@@ -19757,7 +19759,7 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure, int64_t exceptionHandler
 void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPointer)
 {
   int64_t *dataNodePointer;
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t *previousNodePointer;
   int64_t *nextNodePointer;
   int64_t *currentNodePointer;
@@ -21793,7 +21795,7 @@ void ManageUtilitySystemConnections(int64_t connectionManager,int64_t connection
 void UtilityValidateSystemState(void)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t stackFrameContext;
   int64_t systemContext;
   DataBuffer systemParameter;
@@ -23913,7 +23915,7 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
 void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operationHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   DataBuffer validationData;
   
   validationResult = ValidateContextData(operationHandle,contextHandle + ComponentHandleOffset,&validationData);
@@ -23947,7 +23949,7 @@ void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operatio
 void ProcessExtendedContextValidation(int64_t contextHandle,int64_t operationHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t extendedContext;
   
   validationResult = ValidateExtendedContext(operationHandle,contextHandle + ComponentHandleOffset,&extendedContext);
@@ -23967,7 +23969,7 @@ void ProcessExtendedContextValidation(int64_t contextHandle,int64_t operationHan
 void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operationHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   DataBuffer validationData;
   
   validationResult = ValidateAlternativeContext(operationHandle,contextHandle + ComponentHandleOffset,&validationData);
@@ -24193,7 +24195,7 @@ DataBuffer ReturnFixedErrorCode(void)
 void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t ComponentDataBuffer;
   
   validationResult = ExecuteSystemValidationA0(operationHandle,contextHandle + ComponentHandleOffset);
@@ -25441,7 +25443,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
 void ExecuteSecurityValidationOperation(uint64_t securityContext)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t systemHandler;
   int64_t securityContextHandle;
   int64_t *resultPointer;
@@ -25572,7 +25574,7 @@ void TerminateSystemB(void)
 void ExecuteSecurityCheckWrapper(void)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int64_t contextRegister;
   int64_t *targetPointer;
   int64_t stateValue;
@@ -25621,7 +25623,7 @@ void ValidateAndCleanupSystemResources(int64_t systemContext,DataBuffer resource
 void ValidateSystemStateAndExecute(void)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   validationResult = ValidateNetworkConnectionA0();
   if (validationResult == 0) {
@@ -25669,7 +25671,7 @@ void NoOperationA(void)
 void ValidateResourceAndProcess(int64_t resourceHandle, DataBuffer contextHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + ComponentHandleOffset);
   if ((((validationResult == 0) && 
@@ -25699,7 +25701,7 @@ void ValidateResourceAndProcess(int64_t resourceHandle, DataBuffer contextHandle
 void ExecuteSystemValidationAndInitialization(void)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   validationResult = ValidateNetworkConnectionA0();
   if (validationResult == 0) {
@@ -25744,7 +25746,7 @@ void NoOperationB(void)
 void ValidateContextAndProcess(int64_t contextHandle, DataBuffer validationData)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
@@ -26721,7 +26723,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   int *resultPointer;
   int64_t contextData;
   bool isValid;
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   if (((!zeroFlag) && (*(int *)(operationBase + OperationBaseFlagsOffset78) != 0)) &&
      (arrayIndex = *(int *)(*(int64_t *)(inputRegisterR10 + InputRegisterR10_Offset70) +
@@ -27136,7 +27138,7 @@ void NoOperationC(void)
 DataWord ValidateAndProcessSystemData(DataBuffer systemHandle)
 
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   DataWord resultBuffer [6];
   
   resultBuffer[0] = 0;
@@ -29175,7 +29177,7 @@ void ProcessDataTypes(void)
   DataWord loopCounter;                  // 循环计数器 - 用于控制循环执行
   DataWord systemMemoryBuffer;           // 系统内存缓冲区 - 系统内存缓冲区
   char statusChar;                       // 状态字符 - 用于存储状态信息
-  int validationResult;                  // 验证结果整数值 - 存储验证的整型结果
+  int ValidationResult;           // 验证结果                  // 验证结果整数值 - 存储验证的整型结果
   uint systemDataBufferSize;             // 系统数据缓冲区大小 - 系统数据缓冲区的大小
   DataBuffer *systemInputAccumulator;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
   int64_t ExceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
@@ -29960,7 +29962,7 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
 {
   int64_t resourceEntry;
   int64_t bufferPointer;
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int processCount;
   int maxIterations;
   int currentIteration;
@@ -30635,7 +30637,7 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 
 {
   int inputParameterCount;
-  int validationResult;
+  int ValidationResult;           // 验证结果
   int operationStatus;
   int arrayIndex;
   int iterationCount;
@@ -31711,7 +31713,7 @@ void ProcessMultiSegmentDataA0(DataBuffer systemContext,int64_t DataBuffer)
  */
 void ProcessDataBlockOperationA0(DataBuffer systemContext,int64_t dataBufferPtr)
 {
-  int validationResult;
+  int ValidationResult;           // 验证结果
   
   validationResult = ValidateSystemDataD0();
   if (validationResult == 0) {
@@ -35073,7 +35075,7 @@ uint64_t ProcessDataStream(void)
 uint64_t ValidateAndProcessDataElement(void)
 
 {
-  uint validationResult;
+  uint ValidationResult;           // 验证结果
   uint64_t operationResult;
   DataBuffer *dataBuffer;
   int64_t contextPointer;
