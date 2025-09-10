@@ -10649,9 +10649,9 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：清理系统资源和状态
 #define CleanupSystemResourcesA2 FUN_18005d580
 
-// 系统验证函数A0
-// 功能：验证系统配置和状态
-#define ValidateSystemConfigurationA0 FUN_180090b80
+// 系统验证函数A0（第二替代版本）
+// 功能：验证系统配置和状态，提供第二替代验证方法
+#define ValidateSystemConfigurationA0Secondary FUN_180090b80
 
 // 数据配置表A5
 // 功能：存储系统数据配置的第五级配置表和参数
@@ -13597,31 +13597,31 @@ uint8_t SystemMemoryManagementSenaryCache;
 uint8_t SystemMemoryManagementSeptenaryCache;
 uint8_t SystemMemoryManagementOctonaryCache;
 uint8_t SystemMemoryManagementNonaryCache;
-uint8_t UtilityMemoryManagementDenaryCache;
-uint8_t UtilityMemoryManagementUndenaryCache;
-uint8_t UtilityMemoryManagementDuodenaryCache;
-uint8_t UtilityMemoryManagementTridenaryCache;
-uint8_t UtilityMemoryManagementQuattuordenaryCache;
+uint8_t SystemMemoryManagementDenaryCache;
+uint8_t SystemMemoryManagementUndenaryCache;
+uint8_t SystemMemoryManagementDuodenaryCache;
+uint8_t SystemMemoryManagementTridenaryCache;
+uint8_t SystemMemoryManagementQuattuordenaryCache;
 // 工具系统内存管理数据块 - 配置和状态数据
-uint8_t UtilityMemoryManagementPrimaryConfig;
-uint8_t UtilityMemoryManagementSecondaryConfig;
-uint8_t UtilityMemoryManagementTertiaryConfig;
-uint8_t UtilityMemoryManagementQuaternaryConfig;
-uint8_t UtilityMemoryManagementStatusFlag;
+uint8_t SystemMemoryManagementPrimaryConfig;
+uint8_t SystemMemoryManagementSecondaryConfig;
+uint8_t SystemMemoryManagementTertiaryConfig;
+uint8_t SystemMemoryManagementQuaternaryConfig;
+uint8_t SystemMemoryManagementStatusFlag;
 // 工具系统功能指针 - 系统核心功能指针
-uint8_t UtilitySystemGlobalStatusPointer;
-uint8_t UtilitySystemMemoryFunctionPointer;
-uint8_t UtilitySystemProcessFunctionPointer;
-uint8_t UtilitySystemSecurityFunctionPointer;
-uint8_t UtilitySystemNetworkFunctionPointer;
-uint8_t UtilitySystemFileFunctionPointer;
-uint8_t UtilitySystemThreadFunctionPointer;
-uint8_t UtilitySystemEventFunctionPointer;
-uint8_t UtilitySystemTimerFunctionPointer;
-uint8_t UtilitySystemInputFunctionPointer;
-uint8_t UtilitySystemOutputFunctionPointer;
-uint8_t UtilitySystemDebugFunctionPointer;
-uint8_t UtilitySystemLogFunctionPointer;
+uint8_t SystemGlobalStatusPointer;
+uint8_t SystemMemoryFunctionPointer;
+uint8_t SystemProcessFunctionPointer;
+uint8_t SystemSecurityFunctionPointer;
+uint8_t SystemNetworkFunctionPointer;
+uint8_t SystemFileFunctionPointer;
+uint8_t SystemThreadFunctionPointer;
+uint8_t SystemEventFunctionPointer;
+uint8_t SystemTimerFunctionPointer;
+uint8_t SystemInputFunctionPointer;
+uint8_t SystemOutputFunctionPointer;
+uint8_t SystemDebugFunctionPointer;
+uint8_t SystemLogFunctionPointer;
 uint8_t UtilitySystemConfigFunctionPointer;
 uint8_t UtilitySystemResourceFunctionPointer;
 uint8_t UtilitySystemCleanupFunctionPointer;
@@ -37962,31 +37962,31 @@ ValidationLabelB:
             ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(StackFrameContext + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer **)(StackFrameContext + -0x29) = FloatRegisterR12;
+        *(DataBuffer **)(StackFrameContext + -0x29) = registerR12Value;
         *(uint *)(StackFrameContext + -0x1d) = securityCheckResult;
-        exceptionDataBuffer4 = FloatRegisterR12;
+        exceptionDataBufferD = registerR12Value;
         statusCounter = securityCheckResult;
       }
       else {
-        exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
+        exceptionDataBufferD = *(DataBuffer **)(StackFrameContext + -0x29);
       }
-      if (inputParameter8 < 0) {
-        exceptionHandlerContext7 = (int64_t)-inputParameter8;
-        if (inputParameter8 < 0) {
-          exceptionHandlerContext6 = (int64_t)inputParameter8 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBuffer4;
+      if (inputParameterSecondary < 0) {
+        exceptionHandlerContextG = (int64_t)-inputParameterSecondary;
+        if (inputParameterSecondary < 0) {
+          exceptionHandlerContextF = (int64_t)inputParameterSecondary * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBufferD;
           do {
             exceptionDataBuffer = (DataWord *)ExecuteSystemResourceOperation();
             systemDataBuffer = exceptionDataBuffer[1];
             operationResult = exceptionDataBuffer[2];
             validationStatus = exceptionDataBuffer[3];
-            *(DataWord *)(exceptionHandlerContext6 + -0x14) = *exceptionDataBuffer;
-            *(DataWord *)(exceptionHandlerContext6 + -0x10) = systemDataBuffer;
-            *(DataWord *)(exceptionHandlerContext6 + -0xc) = operationResult;
-            *(DataWord *)(exceptionHandlerContext6 + -8) = validationStatus;
-            *(DataBuffer **)(exceptionHandlerContext6 + -4) = FloatRegisterR12;
-            exceptionHandlerContext7 = exceptionHandlerContext7 + -1;
-            exceptionHandlerContext6 = exceptionHandlerContext6 + SystemDataSecondaryOffset18;
-          } while (exceptionHandlerContext7 != 0);
+            *(DataWord *)(exceptionHandlerContextF + -0x14) = *exceptionDataBuffer;
+            *(DataWord *)(exceptionHandlerContextF + -0x10) = systemDataBuffer;
+            *(DataWord *)(exceptionHandlerContextF + -0xc) = operationResult;
+            *(DataWord *)(exceptionHandlerContextF + -8) = validationStatus;
+            *(DataBuffer **)(exceptionHandlerContextF + -4) = registerR12Value;
+            exceptionHandlerContextG = exceptionHandlerContextG + -1;
+            exceptionHandlerContextF = exceptionHandlerContextF + SystemDataSecondaryOffset18;
+          } while (exceptionHandlerContextG != 0);
           statusCounter = *(uint *)(StackFrameContext + -0x1d);
         }
       }

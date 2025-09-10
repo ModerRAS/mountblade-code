@@ -153,6 +153,7 @@
 #define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
 #define ProcessSystemMemoryBufferAndUtfConversion FUN_180186800 // 处理系统内存缓冲区和UTF转换
 #define ManageSystemContextAndMemoryAllocation FUN_180186880     // 管理系统上下文和内存分配
+#define CleanupSystemStackData FUN_180186a90                     // 清理系统栈数据
 #define InitializeSystemMemoryStack FUN_180628a40                // 初始化系统内存栈
 #define ProcessSystemBufferStatus FUN_18018be60                   // 处理系统缓冲区状态
 #define ValidateInputDataLength FUN_180639de0                      // 验证输入数据长度
@@ -225220,7 +225221,24 @@ void ProcessContextHandleSizeAndSystemBufferStatus(uint64_t ContextHandle,uint64
 
 
 
-86a90(long long ContextHandlevoid FUN_180186a90(long long ContextHandle
+// 函数: void FUN_180186a90
+/**
+ * @brief 系统栈数据清理器
+ * 
+ * 该函数负责清理系统栈数据，确保系统资源的正确释放和内存管理。
+ * 主要功能包括：
+ * - 清理上下文相关的栈数据
+ * - 释放系统资源
+ * - 确保内存管理的完整性
+ * 
+ * @param ContextHandle 上下文句柄，用于标识要清理的栈数据
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180186a90
+ * @warning 这是一个简化的栈清理函数，确保在调用前上下文句柄有效
+ */
+void FUN_180186a90(long long ContextHandle)
 {
   ProcessSystemStackData(ContextHandle + 0x20);
   ProcessSystemStackData(ContextHandle);
