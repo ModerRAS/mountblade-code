@@ -17786,7 +17786,7 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
       adjustedResourcePointer = 0;
     }
     else {
-      adjustedresourcePointer = resourceInfo[0] + resourcePointerAdjustment;
+      adjustedResourcePointer = resourceInfo[0] + resourcePointerAdjustment;
     }
     
     // 初始化上下文数据
