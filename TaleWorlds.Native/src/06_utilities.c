@@ -97,6 +97,7 @@
 #define MemoryAllocationFlag 0x1                                 // 内存分配标志 - 标识内存分配操作
 #define MemoryProcessingFlag 0x2                                 // 内存处理标志 - 标识内存数据处理操作
 #define MemoryCleanupFlag 0x4                                    // 内存清理标志 - 标识内存释放操作
+#define SystemStateUpdateFlag 0x4                                // 系统状态更新标志 - 标识系统状态更新操作
 
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
@@ -18797,7 +18798,7 @@ DataBuffer ValidateUtilitySystemState(void)
   int *systemOperationPointer;
   int64_t systemBasePointer;
   DataWord *dataValidationContext;
-  uint systemStatusCounter;
+  uint systemHealthStatusIndicator;
   uint64_t adjustedParameterValue;
   int64_t systemDataProcessingBuffer;
   uint64_t iterationCounter;
@@ -18806,7 +18807,7 @@ DataBuffer ValidateUtilitySystemState(void)
   uint64_t systemMemoryContext;
   uint64_t parameterAccumulator;
   int *dataOperationContext;
-  int64_t localDataStorage;
+  int64_t memoryValidationResult;
   int memoryRegionBase;
   
   iterationCounter = 0;
@@ -18820,7 +18821,7 @@ DataBuffer ValidateUtilitySystemState(void)
   if (0 < *(int *)(StackFrameContext + ArrayCountOffset)) {
     do {
       if ((*dataOperationContext != MemoryValidationConstantA) || (dataOperationContext[1] != MemoryValidationConstantB)) {
-        localDataStorage = 0;
+        memoryValidationResult = 0;
         memoryValidationStatus = ValidateMemoryAddressA0(systemMemoryContext,(int *)(StackFrameContext + ArrayDataOffset) + (int64_t)(int)dataAddressContext * 2,
                               &systemDataProcessingBuffer);
         if ((int)memoryValidationStatus != 0) {
