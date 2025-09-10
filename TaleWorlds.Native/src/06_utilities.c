@@ -150,6 +150,10 @@
 #define SystemDataBufferMinimumSize 0x70                         // 系统数据缓冲区最小尺寸
 #define SystemDataSizeOffset 8                                   // 系统数据大小偏移量
 #define SystemDataBufferArrayIndex 1                             // 系统数据缓冲区数组索引
+#define StatusCounterMaximumValue 0x6d                           // 状态计数器最大值
+#define SystemDataBufferSizeMaximum 0x81                          // 系统数据缓冲区最大尺寸
+#define SystemDataBufferArrayIndex2 2                            // 系统数据缓冲区数组索引2
+#define SystemDataBufferArrayIndex3 3                            // 系统数据缓冲区数组索引3
 
 // 系统内存管理常量
 #define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48
@@ -38458,15 +38462,15 @@ uint64_t * ValidateSystemDataProcessing(void)
   }
   exceptionDataBuffer = (DataWord *)ExecuteSystemResourceOperation();
   exceptionDataBuffer1 = (DataBuffer *)0x0;
-  statusCounter = *(uint *)(DestinationContext + 8);
+  statusCounter = *(uint *)(DestinationContext + SystemDataSizeOffset);
   operationResultInitial = *exceptionDataBuffer;
-  operationResult = exceptionDataBuffer[1];
-  validationStatus = exceptionDataBuffer[2];
-  memoryRegionBase = exceptionDataBuffer[3];
-  *(DataWord *)(StackFrameContext + -0x19) = operationResultInitial;
-  *(DataWord *)(StackFrameContext + -0x15) = operationResult;
-  *(DataWord *)(StackFrameContext + -0x11) = validationStatus;
-  *(DataWord *)(StackFrameContext + -0xd) = memoryRegionBase;
+  operationResult = exceptionDataBuffer[SystemDataBufferArrayIndex];
+  validationStatus = exceptionDataBuffer[SystemDataBufferArrayIndex2];
+  memoryRegionBase = exceptionDataBuffer[SystemDataBufferArrayIndex3];
+  *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset19) = operationResultInitial;
+  *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset15) = operationResult;
+  *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffset11) = validationStatus;
+  *(DataWord *)(StackFrameContext + StackFrameContextNegativeOffsetD) = memoryRegionBase;
   securityCheckResult = 0;
   exceptionBuffer3 = exceptionDataBuffer1;
   if (statusCounter < 0x6d) {

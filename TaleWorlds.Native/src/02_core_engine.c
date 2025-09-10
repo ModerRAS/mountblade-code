@@ -79129,7 +79129,7 @@ uint64_t FindAndCompareSystemDataNodes(long long *ContextHandle,int OperationBuf
   PrimaryProcessingStatusFlag = MemoryMaskPointer;
   ComparisonResultPointer = CharacterStatusBuffer;
   if (MemoryMaskPointer == NULL) {
-LAB_180098929:
+SystemStateUpdateComplete:
     ComparisonResultPointer = CharacterStatusBuffer;
   }
   else {
@@ -79155,10 +79155,10 @@ LAB_180098929:
         MemoryMaskPointer = (void *)MemoryMaskPointer[1];
       }
     } while (MemoryMaskPointer != NULL);
-    if ((PrimaryProcessingStatusFlag != CharacterStatusBuffer) && (*(int *)(PrimaryProcessingStatusFlag + 4) <= OperationBufferSize)) goto LAB_180098960;
+    if ((PrimaryProcessingStatusFlag != CharacterStatusBuffer) && (*(int *)(PrimaryProcessingStatusFlag + 4) <= OperationBufferSize)) goto MemoryComparisonComplete;
   }
   PrimaryProcessingStatusFlag = CharacterStatusBuffer;
-LAB_180098960:
+MemoryComparisonComplete:
   return CONCAT71((int7)((unsigned long long)PrimaryProcessingStatusFlag >> 8),
                   *(float *)((long long)ComparisonResultPointer + 0x24) < *(float *)((long long)PrimaryProcessingStatusFlag + 0x24));
 }

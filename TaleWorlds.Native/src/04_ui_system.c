@@ -123994,19 +123994,30 @@ CleanupUIResources:
 
 
 
- void FUN_180739ac7(void)
-void FUN_180739ac7(void)
+ /**
+ * @brief UI系统资源清理函数
+ * 
+ * 该函数负责清理UI系统中的资源，包括：
+ * - 清理UI缓冲区数据
+ * - 释放UI相关的内存资源
+ * - 重置UI上下文状态
+ * - 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_180739ac7
+ * @see ExecuteUIContextDataOperation, CleanupUIResources
+ */
+void CleanupUIBufferResources(void)
 
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextData;
   
-  processingResult = FUN_18074ba80(&stack0x00000040,0x100);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  processingResult = ProcessUIBufferData(&stack0x00000040,0x100);
+  uiValidationResult = ValidateUIBufferData(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  FinalizeUIBufferData(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(contextData,1);
 }
 
 
