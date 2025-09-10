@@ -48903,6 +48903,16 @@ void CleanupFrameContext(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理局部变量
+ * 
+ * 该函数负责清理局部变量，将异常处理器设置为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含局部变量信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupLocalVariables(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -48912,6 +48922,21 @@ void CleanupLocalVariables(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理临时存储
+ * 
+ * 该函数负责清理临时存储，管理引用计数和内存释放：
+ * - 从数据缓冲区中获取内存资源指针
+ * - 验证内存区域的有效性
+ * - 管理引用计数，必要时执行清理操作
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含临时存储信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ * @warning 该函数直接操作内存，需要确保输入参数的有效性
+ */
 void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -48984,6 +49009,20 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理栈内存
+ * 
+ * 该函数负责清理栈内存，包括：
+ * - 遍历栈帧并调用清理函数
+ * - 处理异常上下文
+ * - 在必要时终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含栈内存信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ * @warning 如果数据上下文指针为空，会终止系统执行
+ */
 void CleanupStackMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {

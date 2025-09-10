@@ -111486,8 +111486,22 @@ void TransformUIDataWithMatrix(float *uiContext,float *dataSource)
 
 
 
- void FUN_18072e3a7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18072e3a7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+ /**
+ * @brief 处理UI缓冲区数据的高级矩阵变换
+ * 
+ * 该函数对UI缓冲区数据执行高级矩阵变换操作，用于复杂的UI渲染和动画效果。
+ * 主要处理8x8矩阵变换，支持批量数据处理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针，包含变换矩阵参数
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18072e3a7
+ * @note 该函数是UI渲染管线的重要组成部分
+ */
+void ProcessUIBufferAdvancedTransform(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIBufferAdvancedTransform(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float *BaseValuePointer;

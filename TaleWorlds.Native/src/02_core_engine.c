@@ -92,6 +92,19 @@
 #define MemoryAlignmentSize 8                                // 内存对齐大小
 #define MemoryAllocationMask 0xfffffffffffffffe              // 内存分配掩码
 
+// 系统处理状态偏移量常量
+#define SystemProcessingStatusOffset1 0x1b88                 // 系统处理状态偏移量1
+#define SystemProcessingStatusOffset2 0x1b80                 // 系统处理状态偏移量2
+#define SystemProcessingStatusMultiplier 0x14                 // 系统处理状态乘数
+
+// 系统事件模板偏移量常量
+#define SystemEventTemplateBaseOffset 0x16c8                 // 系统事件模板基础偏移量
+#define SystemEventTemplateOffset1 0x1b88                    // 系统事件模板偏移量1
+#define SystemEventTemplateOffset2 -0x14                     // 系统事件模板偏移量2
+#define SystemEventTemplateOffset3 0x1b80                    // 系统事件模板偏移量3
+#define SystemEventTemplateMultiplier 0x14                    // 系统事件模板乘数
+#define SystemEventTemplateDataSize 0x10                     // 系统事件模板数据大小
+
 // 系统偏移量常量
 #define SystemCallbackFunctionOffset 0xa8                    // 系统回调函数偏移量
 #define SystemContextDataOffset 0x98                         // 系统上下文数据偏移量
@@ -206151,7 +206164,7 @@ void ProcessSystemConfigurationAndStringMatching(void)
       MemoryPoolIndex = PrimaryProcessingStatusFlag[1];
       SystemEventTemplatePointer = (void *)(SystemContext + SystemEventTemplateBaseOffset +
                (long long)*(int *)(*(long long *)(SystemContext + SystemEventTemplateOffset1) + SystemEventTemplateOffset2 +
-                       (long long)*(int *)(SystemContext + SystemEventTemplateOffset3) * SystemEventTemplateMultiplier) * SystemEventTemplateSize);
+                       (long long)*(int *)(SystemContext + SystemEventTemplateOffset3) * SystemEventTemplateMultiplier) * SystemEventTemplateDataSize);
       *SystemEventTemplatePointer = *PrimaryProcessingStatusFlag;
       SystemEventTemplatePointer[1] = MemoryPoolIndex;
       *(int *)(SystemContext + 0x1b80) = *(int *)(SystemContext + 0x1b80) + -1;
@@ -236474,7 +236487,21 @@ uint64_t ProcessDataStructureValidation(long long *ContextHandle,uint64_t Operat
 
 
 
-uint64_t * FUN_1801940f0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief UTF-8到UTF-16编码转换处理器
+ * 
+ * 该函数负责将UTF-8编码的字符串转换为UTF-16编码格式，
+ * 处理内存分配、字符映射和编码转换逻辑。
+ * 
+ * @param ContextHandle 上下文句柄，用于管理转换状态
+ * @param ContextHandleSize 上下文大小指针，返回转换后的数据大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针，用于标识转换范围
+ * @return uint64_t* 转换后的UTF-16数据缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1801940f0
+ */
+uint64_t * ConvertUtf8ToUtf16Encoding(long long ContextHandle, uint64_t *ContextHandleSize, long long *Utf8SourcePointer, int Utf16EndPointer)
 {
   long long MainCalculationResult;
   void *SystemContext;
