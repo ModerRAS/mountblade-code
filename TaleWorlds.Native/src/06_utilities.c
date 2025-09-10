@@ -10019,15 +10019,15 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18085dbf0 - 清理内存
 // 功能：清理内存块和重置内存状态
-#define CleanupMemory FUN_18085dbf0
+#define CleanupMemory CleanupMemoryBlockAndResetState
 
 // 原始函数名：FUN_180896880 - 资源状态重置函数
 // 功能：重置指定资源句柄的状态
-#define ResetResourceState FUN_180896880
+#define ResetResourceState ResetResourceHandleState
 
 // 原始函数名：FUN_1808968a0 - 资源数据处理函数
 // 功能：处理指定资源上下文中的数据
-#define ProcessResourceData FUN_1808968a0
+#define ProcessResourceData ProcessResourceContextData
 
 // 原始函数名：FUN_180896a30 - 字符串数据处理函数
 // 功能：处理字符串数据，包括解析和转换操作

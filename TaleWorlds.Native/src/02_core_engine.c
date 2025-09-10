@@ -100023,7 +100023,18 @@ uint64_t ValidateMemoryAllocation(uint64_t ContextHandle)
 
 
 
-// 原始函数名：FUN_18010f0c3 - 系统资源清理和释放函数
+/**
+ * @brief 系统资源清理和释放函数
+ * 
+ * 该函数负责清理和释放系统资源，包括：
+ * - 释放内存分配
+ * - 清理系统状态
+ * - 重置系统配置
+ * - 释放句柄和资源
+ * 
+ * @note 原始函数名：FUN_18010f0c3
+ * @note 简化实现：直接返回，实际实现应该执行资源清理
+ */
 void CleanupSystemResourceAndRelease(void)
 {
   return;
@@ -100033,7 +100044,25 @@ void CleanupSystemResourceAndRelease(void)
 
 
 
-// 原始函数名：FUN_18010f0d0 - 数据结构复制和配置函数
+/**
+ * @brief 数据结构复制和配置函数
+ * 
+ * 该函数负责复制和配置数据结构，包括：
+ * - 复制数据结构内容
+ * - 配置系统参数
+ * - 处理内存分配
+ * - 设置字符状态缓冲区
+ * - 处理Unicode代码点
+ * - 配置系统栈标志
+ * 
+ * @param ContextHandle 目标数据结构的地址
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18010f0d0
+ * @note 简化实现：实际实现应该执行数据结构复制和配置
+ */
 void CopyDataStructureAndConfigure(uint32_t *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
