@@ -236,6 +236,18 @@
 #define CalculateFloatingPointData FUN_18009d8a0                     // 计算浮点数据
 #define HandleSystemEventQueue FUN_180846210                      // 处理系统事件队列
 
+// 字符编码和窗口处理函数
+#define ProcessWindowMessageAndCharacterTable FUN_180170da0    // 处理窗口消息和字符表
+#define ReleaseWindowContextHandle FUN_180170e20                  // 释放窗口上下文句柄
+#define InitializeWindowContext FUN_180171101                     // 初始化窗口上下文
+#define ConvertContextHandleToUtf FUN_180177c00                  // 转换上下文句柄到UTF
+#define GetContextHandleWithUtfConversion FUN_18017b070           // 获取上下文句柄并进行UTF转换
+#define GetContextHandleSize FUN_18017b240                        // 获取上下文句柄大小
+#define SetContextHandleSize FUN_18017b259                        // 设置上下文句柄大小
+#define ResetContextHandleState FUN_18017b28d                     // 重置上下文句柄状态
+#define ValidateContextHandle FUN_18017b2ed                      // 验证上下文句柄
+#define ProcessContextHandleWithUtf FUN_18017b400                 // 处理上下文句柄和UTF转换
+
 /**
  * @brief 配置核心引擎指针
  * 
