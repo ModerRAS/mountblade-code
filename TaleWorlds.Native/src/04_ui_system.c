@@ -396243,7 +396243,7 @@ UIHandle FUN_18089abe0(longlong uiContext,UIHandle *dataSource)
        (result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt58,0,0x42464542), (int)result == 0)) &&
       (result = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)result == 0)) &&
      ((0x5a < *(uint *)(dataSource + 8) ||
-      (result = FUN_1808afc70(dataSource,uiContext + 0x44), (int)result == 0)))) {
+      (result = ProcessUIComponentRenderingAndDisplay(dataSource,uiContext + 0x44), (int)result == 0)))) {
     if (*(int *)(dataSource[1] + 0x18) == 0) {
       result = FUN_1808a2890(*dataSource,uiContext + 0x60,0x25);
       if ((int)result == 0) {
@@ -396515,7 +396515,7 @@ LAB_18089af81:
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_1808afc70();
+  processStatus = ProcessUIComponentRenderingAndDisplay();
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
@@ -401534,7 +401534,7 @@ ulonglong ValidateUIEventData(longlong uiContext, UIHandle *dataSource)
        (iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x42464550), (int)iterationCount != 0)) ||
       (iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)iterationCount != 0)) ||
      ((*(uint *)(dataSource + 8) < 0x5b &&
-      (iterationCount = FUN_1808afc70(dataSource,uiContext + 0x44), (int)iterationCount != 0)))) {
+      (iterationCount = ProcessUIComponentRenderingAndDisplay(dataSource,uiContext + 0x44), (int)iterationCount != 0)))) {
     return iterationCount;
   }
   if (*(int *)(dataSource[1] + 0x18) != 0) {
@@ -401987,7 +401987,7 @@ UIHandle ValidateUISystemData(longlong uiContext, UIHandle *dataSource)
       return 0x1c;
     }
     validationResult = FUN_180899090(*dataSource,uiContext + 0x10);
-    if (((int)validationResult == 0) && (validationResult = FUN_1808afc70(dataSource,uiContext + 8), (int)validationResult == 0)) {
+    if (((int)validationResult == 0) && (validationResult = ProcessUIComponentRenderingAndDisplay(dataSource,uiContext + 8), (int)validationResult == 0)) {
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
@@ -402559,7 +402559,7 @@ UIHandle FUN_18089df40(longlong uiContext,UIHandle *dataSource)
        (iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x42464553), (int)iterationCount == 0)) &&
       (iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)iterationCount == 0)) &&
      ((0x5a < *(uint *)(dataSource + 8) ||
-      (iterationCount = FUN_1808afc70(dataSource,uiContext + 0x44), (int)iterationCount == 0)))) {
+      (iterationCount = ProcessUIComponentRenderingAndDisplay(dataSource,uiContext + 0x44), (int)iterationCount == 0)))) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -402745,7 +402745,7 @@ UIHandle FUN_18089e0d0(longlong uiContext,UIHandle *dataSource)
     result = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x6c);
     if (((int)result == 0) && (result = ProcessUIComponentEventDispatch(dataSource,uiContext + 0x48,0), (int)result == 0)) {
       if ((*(int *)(dataSource + 8) - 0x4aU < 0x11) &&
-         (result = FUN_1808afc70(dataSource,uiContext + 0x44), (int)result != 0)) {
+         (result = ProcessUIComponentRenderingAndDisplay(dataSource,uiContext + 0x44), (int)result != 0)) {
         return result;
       }
       if ((0x52 < *(uint *)(dataSource + 8)) &&
@@ -406002,7 +406002,7 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define ValidateUIContextDataAndIntegrity ValidateUIContextDataAndIntegrity
 #define ProcessUIComponentDataSourceAndContext ProcessUIComponentDataSourceAndContext        // 处理UI组件数据源和上下文 - 处理数据源与UI上下文的的交互
 #define ProcessUIComponentEventDispatch ProcessUIComponentEventDispatch                  // 处理UI组件事件调度 - 处理UI组件的事件分发和调度
-#define FUN_1808afc70 ProcessUIComponentRenderingAndDisplay           // 处理UI组件渲染和显示 - 处理UI组件的渲染操作
+#define ProcessUIComponentRenderingAndDisplay ProcessUIComponentRenderingAndDisplay           // 处理UI组件渲染和显示 - 处理UI组件的渲染操作
 // UI系统组件状态更新函数
 #define FUN_1808995c0 ValidateUIComponentRecomponentData              // 验证UI组件重组件数据 - 验证UI组件重组建时的数据
 // UI系统验证错误处理和恢复函数
