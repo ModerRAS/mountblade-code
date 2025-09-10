@@ -323,6 +323,28 @@ typedef enum {
 #define UIEventDataProcessorA20 (void*)0x18095ad20           // UI事件数据处理器A20
 #define UIEventCleanupHandler3B0 (void*)0x1807863b0          // UI事件清理处理器3B0
 
+// UI上下文数据操作变量定义
+#define UIContextDataOperationB90 (void*)0x180985b90        // UI上下文数据操作B90 - 字符串处理和上下文操作
+#define UIContextDataProcessorD50 (void*)0x180984d50         // UI上下文数据处理器D50 - 数据处理和转换
+#define UIContextDataBuffer180 (void*)0x180958180           // UI上下文数据缓冲区180 - 上下文数据存储
+#define UIContextDataValidator3D0 (void*)0x1809583d0         // UI上下文数据验证器3D0 - 数据验证操作
+#define UIContextDataController000 (void*)0x180958000       // UI上下文数据控制器000 - 基础数据控制
+#define UIContextDataHandlerC80 (void*)0x18095ac80          // UI上下文数据处理器C80 - 数据处理句柄
+#define UIContextResourceManager430 (void*)0x18095b430     // UI上下文资源管理器430 - 资源管理操作
+#define UIContextDataValidatorD90 (void*)0x180958d90        // UI上下文数据验证器D90 - 数据验证功能
+#define UIContextDataBufferCD0 (void*)0x180984cd0          // UI上下文数据缓冲区CD0 - 临时数据存储
+#define UIContextDataHandlerD40 (void*)0x18095ad40          // UI上下文数据处理器D40 - 数据处理操作
+#define UIContextDataControllerD60 (void*)0x18097ed60       // UI上下文数据控制器D60 - 数据控制功能
+#define UIContextDataProcessorC60 (void*)0x18097ec60        // UI上下文数据处理器C60 - 数据处理操作
+#define UIContextResourceManager780 (void*)0x18095b780     // UI上下文资源管理器780 - 资源分配管理
+#define UIContextDataValidatorEF0 (void*)0x180984ef0        // UI上下文数据验证器EF0 - 数据验证操作
+#define UIContextDataProcessorE40 (void*)0x18097ee40        // UI上下文数据处理器E40 - 数据处理功能
+#define UIContextDataBufferB50 (void*)0x180984b50          // UI上下文数据缓冲区B50 - 缓冲区数据存储
+#define UIContextRenderData0A0 (void*)0x1809fd0a0          // UI上下文渲染数据0A0 - 渲染数据存储
+#define UIContextDataControllerE20 (void*)0x18097fe20      // UI上下文数据控制器E20 - 数据控制功能
+#define UIContextDataProcessor0C0 (void*)0x1809590c0        // UI上下文数据处理器0C0 - 数据处理操作
+#define UIContextResourceManager500 (void*)0x18095b500     // UI上下文资源管理器500 - 资源管理操作
+
 // UI系统全局变量语义化定义
 #define uiBufferData GlobalUIBufferData                  // UI缓冲区数据全局变量
 #define uiContext GlobalUIContext                        // UI上下文全局变量
