@@ -70099,6 +70099,15 @@ void ResetExceptionSystemAtOffsetA40(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 完成异常清理操作
+ * 
+ * 该函数负责完成异常处理的最终清理工作，调用异常上下文中的回调函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常清理信息
+ * @note 原始函数名：Unwind_180906a50
+ */
 void FinalizeExceptionCleanupAtOffsetA50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
