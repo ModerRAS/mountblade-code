@@ -239128,7 +239128,7 @@ TextureProcessingLoop:
      ((eventDataIndex = dataSource[1], *(int *)(eventDataIndex + 0x1d8) == 0 ||
       (*(int *)(eventDataIndex + 0x1f0) == *(int *)(eventDataIndex + 500))))) {
     pstackUInt78 = &stackUInt64;
-    uiCompareResult = FUN_180825560(uiContext,*(UIHandle *)(eventDataIndex + 0x78),&stackUInt68,abStack_50);
+    uiCompareResult = DecodeUIEventEncoding(uiContext, *(UIHandle *)(eventDataIndex + 0x78), &stackUInt68, abStack_50);
     if (uiCompareResult == 0) goto LAB_180808dec;
     eventDataIndex = dataSource[1];
     if (stackUInt68 == 0xffffffff) goto LAB_180808af0;
@@ -263856,23 +263856,23 @@ UIHandle
 static int DecodeUIEventEncoding(UIHandle uiContext, UIHandle dataSource, uint *targetBuffer, longlong bufferSize, uint *resultPointer)
 
 {
-  int processingResult;
-  int uiValidationResult;
+  int decodeResult;
+  int validationStatus;
   UIHandle eventCodeType;
-  uint processingStatus;
-  uint astackUInt28 [4];
+  uint encodedValue;
+  uint tempBuffer [4];
   
-  processingResult = FUN_180824d50(uiContext,dataSource,astackUInt28,8);
-  if (processingResult == 0) {
+  decodeResult = FUN_180824d50(uiContext, dataSource, tempBuffer, 8);
+  if (decodeResult == 0) {
 LAB_18082567c:
-    eventCode = 0;
+    eventCodeType = 0;
   }
   else {
     if (bufferSize != 0) {
-      *(char *)((ulonglong)*resultPointer + bufferSize) = (char)astackUInt28[0];
+      *(char *)((ulonglong)*resultPointer + bufferSize) = (char)tempBuffer[0];
       *resultPointer = *resultPointer + 1;
     }
-    processStatus = astackUInt28[0];
+    encodedValue = tempBuffer[0];
     if ((char)astackUInt28[0] < '\0') {
       if (((astackUInt28[0] & 0xc0) == 0) || ((astackUInt28[0] & 0x20) != 0)) {
         if (((astackUInt28[0] & 0xe0) == 0) || ((astackUInt28[0] & 0x10) != 0)) {
