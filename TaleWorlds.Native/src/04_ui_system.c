@@ -625,6 +625,9 @@ typedef enum {
 #define FUN_180786250 ProcessUIContextMemoryRelease
 #define FUN_180786262 ProcessUIContextDataSourceValidation
 
+// UI系统函数宏定义 - 变换数据处理
+#define FUN_18072e5f4 ProcessUITransformDataScaling
+
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
 #define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
@@ -112469,28 +112472,28 @@ void ProcessUIComponentBatchTransform(void)
   longlong stackParam000000a8;
   int stackParam000000b0;
   
-  *(UIHandle *)(RegisterPointer + 8) = contextHandle;
-  *(UIHandle *)(RegisterPointer + 0x10) = componentData;
-  *(UIHandle *)(RegisterPointer + 0x18) = preservedRegister12;
+  *(UIHandle *)(registerPointer + 8) = contextHandle;
+  *(UIHandle *)(registerPointer + 0x10) = componentData;
+  *(UIHandle *)(registerPointer + 0x18) = preservedRegister12;
   componentIndex = 0;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  *(UIDword *)(RegisterPointer + -0x58) = unmodifiedXMM8_Da;
-  *(UIDword *)(RegisterPointer + -0x54) = unmodifiedXMM8_Db;
-  *(UIDword *)(RegisterPointer + -0x50) = unmodifiedXMM8_Dc;
-  *(UIDword *)(RegisterPointer + -0x4c) = unmodifiedXMM8_Dd;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  *(UIDword *)(registerPointer + -0x58) = unmodifiedXMM8_Da;
+  *(UIDword *)(registerPointer + -0x54) = unmodifiedXMM8_Db;
+  *(UIDword *)(registerPointer + -0x50) = unmodifiedXMM8_Dc;
+  *(UIDword *)(registerPointer + -0x4c) = unmodifiedXMM8_Dd;
   do {
     allocatedMemory = basePointer + (longlong)(*(int *)(contextRegister + componentIndex * 4) + 2) * -4;
-    ProcessUIComponentData(allocatedMemory,stackParam000000b0,5,TargetHandle);
-    ValidateUIComponentState(allocatedMemory,basePointer,stackParam000000b0,5,preservedRegister15);
-    CalculationResultValue = (double)CalculateUIMetricValue(basePointer,stackParam000000b0 + 5);
-    TransformCoefficient3 = (TargetHandle[0x18] + *TargetHandle) * 0.015 + 1.0;
-    if (TransformCoefficient3 <= (float)CalculationResultValue) {
-      TransformCoefficient3 = (float)CalculationResultValue;
+    ProcessUIComponentData(allocatedMemory, stackParam000000b0, 5, targetTransformData);
+    ValidateUIComponentState(allocatedMemory, basePointer, stackParam000000b0, 5, preservedRegister15);
+    calculationResult = (double)CalculateUIMetricValue(basePointer, stackParam000000b0 + 5);
+    transformCoefficient = (targetTransformData[0x18] + *targetTransformData) * 0.015 + 1.0;
+    if (transformCoefficient <= (float)calculationResult) {
+      transformCoefficient = (float)calculationResult;
     }
-    func_0x000180736310(TargetHandle,1.0 / TransformCoefficient3,0x19);
-    func_0x000180736310(preservedRegister15,1.0 / TransformCoefficient3,5);
+    func_0x000180736310(targetTransformData, 1.0 / transformCoefficient, 0x19);
+    func_0x000180736310(preservedRegister15, 1.0 / transformCoefficient, 5);
     basePointer = basePointer + (longlong)stackParam000000b0 * 4;
-    TargetHandle = TargetHandle + 0x19;
+    targetTransformData = targetTransformData + 0x19;
     preservedRegister15 = preservedRegister15 + 0x14;
     componentIndex = componentIndex + 1;
     contextRegister = stackParam000000a8;

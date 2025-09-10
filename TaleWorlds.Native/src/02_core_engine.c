@@ -225687,29 +225687,52 @@ LAB_18018764a:
 
 
 
-878a0(long long *ContextHandlevoid FUN_1801878a0(long long *ContextHandle
+/**
+ * @brief 清理字符表指针和缓冲区数据
+ * 
+ * 该函数负责清理字符表指针和相关的缓冲区数据，包括：
+ * - 处理系统栈数据
+ * - 遍历和清理字符表
+ * - 释放相关内存资源
+ * - 重置上下文句柄
+ * 
+ * @param ContextHandle 上下文句柄指针，包含字符表和缓冲区信息
+ * 
+ * @note 原始函数名：FUN_1801878a0
+ */
+void CleanupCharacterTableAndBuffer(long long *ContextHandle)
 {
-  long long MainCalculationResult;
-  long long BufferStatus;
+  long long CharacterTablePointer;
+  long long MemoryBufferStatus;
   
+  // 处理系统栈数据
   ProcessSystemStackData(ContextHandle + 3);
+  
+  // 获取字符表指针
   CharacterTablePointer = *ContextHandle;
   if (CharacterTablePointer != 0) {
-    BufferStatus = ContextHandle[1];
-    if (CharacterTablePointer != BufferStatus) {
+    MemoryBufferStatus = ContextHandle[1];
+    if (CharacterTablePointer != MemoryBufferStatus) {
+      // 遍历字符表并处理每个条目
       do {
         ProcessSystemStringIndexAndCharacterTableOperation(CharacterTablePointer);
         CharacterTablePointer = CharacterTablePointer + 0x40;
-      } while (CharacterTablePointer != BufferStatus);
+      } while (CharacterTablePointer != MemoryBufferStatus);
       CharacterTablePointer = *ContextHandle;
     }
-    BufferStatus = LoopCounter;
+    
+    // 验证内存边界并释放缓冲区
+    MemoryBufferStatus = LoopCounter;
     if ((0xfff < (ContextHandle[2] - LoopCounter & 0xffffffffffffffc0U)) &&
-       (BufferStatus = *(long long *)(CharacterTablePointer + -8), 0x1f < (CharacterTablePointer - BufferStatus) - 8U)) {
-                    // WARNING: Subroutine does not return
+       (MemoryBufferStatus = *(long long *)(CharacterTablePointer + -8), 0x1f < (CharacterTablePointer - MemoryBufferStatus) - 8U)) {
+      // 内存边界验证失败，触发无效参数异常
       _invalid_parameter_noinfo_noreturn();
     }
-    free(BufferStatus);
+    
+    // 释放内存缓冲区
+    free(MemoryBufferStatus);
+    
+    // 重置上下文句柄
     *ContextHandle = 0;
     ContextHandle[1] = 0;
     ContextHandle[2] = 0;
@@ -225720,20 +225743,48 @@ LAB_18018764a:
 
 
 
-87950(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemStringIndexAndCharacterTableOperation(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统字符串索引和字符表操作
+ * 
+ * 该函数负责处理系统字符串索引和字符表的相关操作，包括：
+ * - 计算上下文句柄的偏移位置
+ * - 处理内存管理和数据操作
+ * - 执行系统内存扩展操作
+ * - 更新字符表指针和数据
+ * - 清理内存和栈数据
+ * 
+ * @param ContextHandle 上下文句柄，用于标识操作的上下文
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187950
+ */
+void ProcessSystemStringIndexAndCharacterTableOperation(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  long long *ContextHandle;
+  long long *SystemContextPointer;
   long long BufferStatus;
   
-  ContextHandle = (long long *)(ContextHandle + 0x30);
-  BufferStatus = *ContextHandle;
-  ProcessSystemMemoryEx2(ContextHandle,*(void *)(BufferStatus + 8),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  *(long long *)(*ContextHandle + 8) = BufferStatus;
-  *(long long *)*ContextHandle = BufferStatus;
-  *(long long *)(*ContextHandle + 0x10) = BufferStatus;
-  *(void *)(ContextHandle + 0x38) = 0;
-  free(*ContextHandle,0x60);
-  ProcessSystemStackData(ContextHandle);
+  // 计算系统上下文指针的偏移位置
+  SystemContextPointer = (long long *)(ContextHandle + 0x30);
+  BufferStatus = *SystemContextPointer;
+  
+  // 执行系统内存扩展操作
+  ProcessSystemMemoryEx2(SystemContextPointer, *(void *)(BufferStatus + 8), Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
+  
+  // 更新字符表指针和数据
+  *(long long *)(*SystemContextPointer + 8) = BufferStatus;
+  *(long long *)*SystemContextPointer = BufferStatus;
+  *(long long *)(*SystemContextPointer + 0x10) = BufferStatus;
+  
+  // 清理上下文数据
+  *(void *)(SystemContextPointer + 0x38) = 0;
+  
+  // 释放内存资源
+  free(*SystemContextPointer, 0x60);
+  
+  // 处理系统栈数据
+  ProcessSystemStackData(SystemContextPointer);
   return;
 }
 
@@ -294876,6 +294927,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 
 // 原始函数名：FUN_180187c00 - UTF-8数据同步函数
 #define SynchronizeUtf8Data FUN_180187c00
+
+// 原始函数名：FUN_1801878a0 - 字符表清理函数
+#define CleanupCharacterTableAndBuffer FUN_1801878a0
 
 /**
  * @brief 处理系统编码缓冲区和内存分配
