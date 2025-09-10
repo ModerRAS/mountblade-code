@@ -116613,7 +116613,7 @@ void ProcessUICharacterDataConversion(longlong uiContext, char *dataSource, long
       pisCharacterMatch0 = pisCharacterMatch0 + 1;
     } while (localInt8 < eventIndex);
   }
-  FUN_1807376c0(uiContext,*(UIHandle *)(targetBuffer + 0x40),(int)eventIndex);
+  ProcessUIDataWithShortParameters(uiContext,*(UIHandle *)(targetBuffer + 0x40),(int)eventIndex);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInta8);
 }
