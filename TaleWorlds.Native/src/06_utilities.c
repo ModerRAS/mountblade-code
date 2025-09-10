@@ -57062,7 +57062,7 @@ void HandleExceptionWithFlagsSeptenary(DataBuffer operationBase,int64_t dataBuff
  * 
  * @note 原始函数名：Unwind_180903df0
  */
-void HandleExceptionWithFlagsE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionWithFlagsOctonary(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
