@@ -31300,7 +31300,7 @@ void InitializeCPUFunctionPointers(void)
     }
     _UIThreadLockCriticalSection = componentIndex;
     UNLOCK();
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       DeleteCriticalSection(stringCompareIndex);
       free(stringCompareIndex);
     }
