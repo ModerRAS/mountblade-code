@@ -28042,7 +28042,7 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
   int allocatedMemoryBlock;
   ByteFlag PrimaryEncryptionKeyBuffer [32];
   DataWord SystemConfigurationData;
-  float rgbColorData [3];
+  float RgbColorData [3];
   uint8_t *securityValidationContext;
   int cleanupStepIndex;
   DataBuffer PrimaryMemoryBuffer;
@@ -69038,21 +69038,21 @@ void CleanupExceptionContext(DataBuffer operationBase,int64_t dataBuffer)
       }
       return;
     }
-    if (*(int64_t *)((int64_t)dataContext + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)exceptionDataContext + 0x12) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)((int64_t)dataContext + 0x12) = 0;
-    if (*(int64_t *)((int64_t)dataContext + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)dataContext + 0x1a) = 0;
-    if (*dataContext != 0) {
+    *(DataBuffer *)((int64_t)exceptionDataContext + 0x12) = 0;
+    if (*(int64_t *)((int64_t)exceptionDataContext + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)exceptionDataContext + 0x1a) = 0;
+    if (*exceptionDataContext != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *dataContext = 0;
-    if (dataContext[1] != 0) {
+    *exceptionDataContext = 0;
+    if (exceptionDataContext[1] != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    dataContext[1] = 0;
-    dataContext = (int64_t *)((int64_t)dataContext + 0x24);
+    exceptionDataContext[1] = 0;
+    exceptionDataContext = (int64_t *)((int64_t)exceptionDataContext + 0x24);
   }
     TerminateSystemExecutionAndCleanupResources();
 }
@@ -115056,7 +115056,7 @@ void ExecuteExceptionHandlerWithContextOffset30(DataBuffer operationBase,int64_t
 {
   int64_t *exceptionContextPointer;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x30);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + ExceptionHandlerContextSystemDataOffset30);
   if (exceptionContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
