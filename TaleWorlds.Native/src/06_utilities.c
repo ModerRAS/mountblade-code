@@ -49097,6 +49097,16 @@ void CleanupVectorMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理字符串内存
+ * 
+ * 该函数负责清理字符串内存，调用异常处理函数进行清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含字符串内存信息
+ * 
+ * @note 原始函数名可能是类似Unwind_开头的函数
+ */
 void CleanupStringMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
