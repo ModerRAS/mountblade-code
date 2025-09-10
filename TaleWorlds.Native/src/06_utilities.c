@@ -32005,7 +32005,7 @@ DataBuffer ProcessDataBlockOperationA0(DataBuffer *systemContext,int64_t DataBuf
 
 
 
-DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuffer)
+DataBuffer ProcessDataBlockOperationSecondary(int64_t *systemContext,DataWord *dataBuffer)
 
 {
   int64_t exceptionContext;
@@ -32043,7 +32043,7 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
  * 返回值:
  *   无 - 处理结果通过返回值机制传递
  */
-void ProcessMultiSegmentDataA0(DataBuffer systemContext,int64_t DataBuffer)
+void ProcessMultiSegmentDataPrimary(DataBuffer systemContext,int64_t DataBuffer)
 
 {
   int OperationResult;
