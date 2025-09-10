@@ -31034,17 +31034,17 @@ DataBuffer ValidateDataBlockStatusA0(int64_t *DataOperationContext,DataWord *dat
  * 
  * @note 原始函数名：FUN_180898d79
  */
-DataBuffer ValidateDataBlockStatusA1(int64_t *operationBase,DataWord *dataBuffer)
+DataBuffer ValidateDataBlockStatusA1(int64_t *DataOperationContext,DataWord *dataBuffer)
 
 {
   DataBuffer validationResult;
   DataWord parameterBuffer [8];
   
-  if (*(int *)(operationBase[1] + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(DataOperationContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
-  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
+  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*DataOperationContext + OperationBaseOffset8))(*(DataBuffer **)(*DataOperationContext + OperationBaseOffset8),parameterBuffer,4);
   return validationResult;
 }
 
@@ -31334,34 +31334,35 @@ DataBuffer InitializeSystemComponentD0(DataBuffer *SystemComponentPtr,int64_t In
  * @warning 如果验证失败，函数会返回相应的错误码
  * @see ProcessMemoryAllocationA0, ValidateDataAndReturnStatusO3
  */
-DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
+DataBuffer ValidateDataSequenceA0(int64_t *DataSequenceContext,uint *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
   uint allocationParameterBuffer [2];
   unsigned int stackDataArray [4];
   unsigned int validationParameterBuffer [4];
+  int64_t *DataSequencePointer;
   
-  if (*(int *)(operationBase[1] + SystemDataSecondaryOffset18) != 0) {
+  if (*(int *)(DataSequenceContext[1] + SystemDataSecondaryOffset18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  operationBase = (int64_t *)*operationBase;
-  if (*operationBase == 0) {
+  DataSequencePointer = (int64_t *)*DataSequenceContext;
+  if (*DataSequencePointer == 0) {
     systemDataBuffer = 0x1c;
   }
   else {
-    if (operationBase[2] != 0) {
+    if (DataSequencePointer[2] != 0) {
       allocationParameterBuffer[0] = 0;
-      systemDataBuffer = ProcessMemoryAllocationA0(*operationBase,allocationParameterBuffer);
+      systemDataBuffer = ProcessMemoryAllocationA0(*DataSequencePointer,allocationParameterBuffer);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }
-      if ((uint64_t)operationBase[2] < (uint64_t)allocationParameterBuffer[0] + 4) {
+      if ((uint64_t)DataSequencePointer[2] < (uint64_t)allocationParameterBuffer[0] + 4) {
         systemDataBuffer = 0x11;
         goto ProcessCheckpointDataValidation;
       }
     }
-    systemDataBuffer = ValidateDataAndReturnStatusO3(*operationBase,validationParameterBuffer,1,4,0);
+    systemDataBuffer = ValidateDataAndReturnStatusO3(*DataSequencePointer,validationParameterBuffer,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)systemDataBuffer == 0) {
@@ -31369,7 +31370,7 @@ ValidationCheckpointB:
     if (2 < validationParameterBuffer[0]) {
       return 0xd;
     }
-    systemDataBuffer = OperateDataO0(operationBase,dataBuffer + 1,4);
+    systemDataBuffer = OperateDataO0(DataSequencePointer,dataBuffer + 1,4);
   }
   return systemDataBuffer;
 }
@@ -31644,7 +31645,7 @@ ValidationStatusCheckpoint:
  * @param dataBuffer 数据缓冲区指针，包含待处理的数据
  * @return DataBuffer 处理结果状态码，0表示成功，非0表示错误
  */
-DataBuffer ProcessComplexDataStructureA0(int64_t *operationBase,int64_t *dataBuffer)
+DataBuffer ProcessComplexDataStructureA0(int64_t *DataStructureContext,int64_t *dataBuffer)
 
 {
   DataBuffer processingStatus;
@@ -31654,22 +31655,22 @@ DataBuffer ProcessComplexDataStructureA0(int64_t *operationBase,int64_t *dataBuf
   
   operationIndex = 0;
   processingIndexBuffer[0] = 0;
-  if (*operationBase == 0) {
+  if (*DataStructureContext == 0) {
     processingStatus = 0x1c;
   }
   else {
-    if (operationBase[2] != 0) {
+    if (DataStructureContext[2] != 0) {
       stackUIntBuffer[0] = 0;
-      processingStatus = AllocateMemory(*operationBase,stackUIntBuffer);
+      processingStatus = AllocateMemory(*DataStructureContext,stackUIntBuffer);
       if ((int)processingStatus != 0) {
         return processingStatus;
       }
-      if ((uint64_t)operationBase[2] < (uint64_t)stackUIntBuffer[0] + 4) {
+      if ((uint64_t)DataStructureContext[2] < (uint64_t)stackUIntBuffer[0] + 4) {
         processingStatus = 0x11;
         goto DataProcessingCheckpoint;
       }
     }
-    processingStatus = ValidateDataAndReturnStatusO3(*operationBase,processingIndexBuffer,1,4,0);
+    processingStatus = ValidateDataAndReturnStatusO3(*DataStructureContext,processingIndexBuffer,1,4,0);
   }
 SystemValidationCheckpoint:
   if ((int)processingStatus == 0) {
@@ -31680,7 +31681,7 @@ SystemValidationCheckpoint:
     if ((int)processingStatus == 0) {
       if (0 < processingIndexBuffer[0]) {
         do {
-          processingStatus = ProcessMultiSegmentDataA0(operationBase,*dataBuffer + (int64_t)operationIndex * 0x14);
+          processingStatus = ProcessMultiSegmentDataA0(DataStructureContext,*dataBuffer + (int64_t)operationIndex * 0x14);
           if ((int)processingStatus != 0) {
             return processingStatus;
           }
