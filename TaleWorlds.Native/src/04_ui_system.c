@@ -121831,7 +121831,7 @@ void ProcessUIDataWithEncryption(UIHandle uiContext, UIHandle dataSource, UIHand
     CopyUIDataBuffer(validationBuffer + (encryptionValidationResult + bufferCompareResult),0x100 - (encryptionValidationResult + bufferCompareResult),targetBuffer);
     bufferPointer = validationBuffer;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(dataOperationResult,1,uiContext,&UNK_180957488);
+    FUN_180749ef0(dataOperationResult,1,uiContext,&UIContextHandleData488);
   }
 ExecuteCleanupAndRenderTask:
   if (resourceCleanupFlag != 0) {
@@ -121889,7 +121889,7 @@ void ProcessUIContextAndBufferData(UIHandle uiContext, UIHandle dataSource, UIHa
     bufferCompareResult = FUN_18074b880(&stack0x00000040 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
     CopyUIDataBuffer(&stack0x00000040 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    FUN_180749ef0(contextOperationResult,1,uiContext,&UNK_180957488,&stack0x00000040);
+    FUN_180749ef0(contextOperationResult,1,uiContext,&UIContextHandleData488,&stack0x00000040);
   }
 ExecuteCleanupAndRenderTask:
   if (resourceCleanupFlag != 0) {
@@ -122024,7 +122024,7 @@ void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle data
     CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
     pstackUInt158 = astackUInt138;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957458);
+    FUN_180749ef0(processingResult,1,uiContext,&UIContextHandleData458);
   }
 /**
  * @brief 释放UI内存资源
@@ -122586,7 +122586,7 @@ void FUN_180739350(UIHandle uiContext,UIHandle dataSource)
     CopyUIDataBuffer(astackUInt118,0x100,dataSource);
     pstackUInt138 = astackUInt118;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957538);
+    FUN_180749ef0(processingResult,1,uiContext,&UIContextHandleData538);
   }
 LAB_1807393ea:
   if (RenderContextSize != 0) {
@@ -122644,7 +122644,7 @@ void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     FUN_18074bd40(astackUInt158 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),param_6);
     pstackUInt178 = astackUInt158;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957378);
+    FUN_180749ef0(processingResult,1,uiContext,&UIContextHandleData378);
   }
 CleanupUIAnimationStateAndExecuteRenderTask:
   if (AnimationStateValue != 0) {
@@ -122815,7 +122815,7 @@ void FUN_180739640(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
     FUN_18074bac0(stackArray148 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),bufferSize);
     pstackUInt168 = stackArray148;
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957320);
+    FUN_180749ef0(processingResult,1,uiContext,&UIContextHandleData320);
   }
 FUN_180739773:
   if (stackLong158 != 0) {
