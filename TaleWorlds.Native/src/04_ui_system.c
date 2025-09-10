@@ -111039,8 +111039,25 @@ void FUN_18072d9e0(longlong uiContext,float *dataSource,longlong targetBuffer,in
 
 
 
- void FUN_18072da09(float *uiContext,float *dataSource)
-void FUN_18072da09(float *uiContext,float *dataSource)
+ void ProcessUIMatrixTransformationAdvanced(float *uiContext,float *dataSource)
+/**
+ * @brief 处理UI矩阵变换（高级版本）
+ * 
+ * 该函数负责处理UI组件的高级矩阵变换，包括4x4矩阵运算和复杂的向量变换。
+ * 主要功能：
+ * 1. 执行4x4矩阵乘法运算
+ * 2. 处理UI组件的位置、旋转和缩放变换
+ * 3. 计算变换后的顶点坐标
+ * 4. 更新UI上下文中的变换数据
+ * 
+ * @param uiContext UI上下文指针，包含组件的变换信息
+ * @param dataSource 数据源指针，包含矩阵变换的原始数据
+ * 
+ * @note 原始函数名：FUN_18072da09
+ * @warning 该函数涉及大量的浮点数运算，需要注意数值精度
+ * @see ProcessUIComponentDataCalculation, ProcessUIContextDataWithMatrixTransform
+ */
+void ProcessUIMatrixTransformationAdvanced(float *uiContext,float *dataSource)
 
 {
   float *BaseValuePointer;
