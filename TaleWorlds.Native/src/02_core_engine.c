@@ -247441,18 +247441,28 @@ LAB_18020393c:
 
 
 
-uint64_t * FUN_180203aa0(uint64_t *ContextHandle,long long OperationBufferSize
+/**
+ * 处理字符串编码转换和上下文验证
+ * 
+ * 该函数负责处理字符串的编码转换，包括UTF-8到UTF-16的转换，
+ * 以及相关的上下文验证和内存管理操作。
+ * 
+ * @param ContextHandle 上下文句柄，用于标识处理的数据上下文
+ * @param OperationBufferSize 操作缓冲区大小，包含处理所需的状态信息
+ * @return uint64_t* 返回处理后的64位无符号整数指针
+ */
+uint64_t * ProcessStringEncodingAndContextValidation(uint64_t *ContextHandle,long long OperationBufferSize)
 {
-  byte StringComparisonByte;
-  bool HighByte;
-  byte *LowBytePointer;
+  byte CharacterComparisonByte;
+  bool IsHighByteSet;
+  byte *SourceBytePointer;
   long long *EngineContext;
-  uint CalculatedCodePoint;
-  int ValidationResult;
+  uint UnicodeCodePoint;
+  int EncodingValidationResult;
   void *PreviousNode;
   void *NextNode;
-  uint64_t *TemporaryBuffer;
-  long long EncodingConversionResult;
+  uint64_t *ContextBuffer;
+  long long StringOffsetDifference;
   uint8_t SystemRegisterFlagBuffer [8];
   
   StringProcessingStatus = (void *)ContextHandle[2];

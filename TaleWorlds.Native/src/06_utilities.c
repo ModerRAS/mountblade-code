@@ -49926,49 +49926,55 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
  * @warning 错误的内存操作可能导致系统不稳定
  * @see ManageMemory, HandleExceptionE0, MemoryRegionMask
  */
-void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
-
+void CleanupMemoryBlock(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryRegionOffset;
-  uint64_t memoryRegionBase;
-  
-  // 获取内存资源指针
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
-  if (memoryResourcePointer == (DataBuffer *)0x0) {
-    return; // 内存资源指针无效，直接返回
-  }
-  
-  // 计算内存区域基地址
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
-  if (memoryRegionBase != 0) {
-    // 计算内存区域偏移量
-    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    int *resourceReferenceCount;          // 资源引用计数指针
+    DataBuffer *memoryResourcePointer;     // 内存资源指针
+    int64_t memoryRegionOffset;           // 内存区域偏移量
+    uint64_t memoryRegionBase;            // 内存区域基地址
     
-    // 检查是否为异常列表中的内存区域
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
-      // 更新内存资源指针链表
-      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
-      
-      // 减少资源引用计数
-      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
-      *resourceReferenceCount = *resourceReferenceCount + -1;
-      if (*resourceReferenceCount == 0) {
-        // 引用计数归零，处理异常情况
-        HandleExceptionE0();
-        return;
-      }
+    // 获取内存资源指针
+    memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
+    if (memoryResourcePointer == (DataBuffer *)0x0) {
+        return; // 内存资源指针无效，直接返回
     }
-    else {
-      // 非异常列表内存，调用内存管理函数进行清理
-      ManageMemory(memoryRegionBase,SetBitFlag(MemoryManagementFlagMask,*(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+    
+    // 计算内存区域基地址
+    memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
+    if (memoryRegionBase != 0) {
+        // 计算内存区域偏移量
+        memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + 
+                          ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * 
+                          MemoryBlockMultiplier;
+        memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+        
+        // 检查是否为异常列表中的内存区域
+        if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && 
+            (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+            // 更新内存资源指针链表
+            *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+            *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+            
+            // 减少资源引用计数
+            resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
+            *resourceReferenceCount = *resourceReferenceCount + -1;
+            if (*resourceReferenceCount == 0) {
+                // 引用计数归零，处理异常情况
+                HandleExceptionE0();
+                return;
+            }
+        }
+        else {
+            // 非异常列表内存，调用内存管理函数进行清理
+            ManageMemory(memoryRegionBase, 
+                        SetBitFlag(MemoryManagementFlagMask, 
+                                  *(void ***)(memoryRegionBase + MemoryPointerTableOffset70) == &ExceptionList),
+                        memoryResourcePointer, 
+                        memoryRegionBase, 
+                        SystemCleanupFlagAlternative);
+        }
     }
-  }
-  return;
+    return;
 }
 
 
@@ -49987,16 +49993,36 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名可能是类似Unwind_开头的函数
  * @warning 该函数会直接销毁线程同步对象，需要确保线程已正确终止
  */
-void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 清理线程资源
+ * 
+ * 该函数负责清理线程相关的资源，包括：
+ * - 设置异常数据表
+ * - 销毁互斥锁和条件变量
+ * - 重置异常处理表
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含线程资源信息
+ * 
+ * @note 原始函数名：Unwind_180906050
+ * @warning 该函数会直接销毁线程同步对象，需要确保线程已正确终止
+ */
+void CleanupThreadResource(DataBuffer operationBase, int64_t dataBuffer)
 {
-  DataBuffer *exceptionDataBuffer;
-  
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
-  *exceptionDataBuffer = &ExceptionDataTable5;
-  _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &ExceptionHandleTableA2;
+    DataBuffer *exceptionDataBuffer;     // 异常数据缓冲区指针
+    
+    // 获取异常数据缓冲区指针
+    exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
+    
+    // 设置异常数据表
+    *exceptionDataBuffer = &ExceptionDataTable5;
+    
+    // 销毁互斥锁和条件变量
+    _Mtx_destroy_in_situ();
+    _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
+    
+    // 重置异常处理表
+    *exceptionDataBuffer = &ExceptionHandleTableA2;
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
   return;
