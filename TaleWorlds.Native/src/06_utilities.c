@@ -148,6 +148,24 @@
 // 系统数据大小常量
 #define SystemDataSizeThreshold 0x34                             // 系统数据大小阈值
 
+// 数据验证阈值常量
+#define DataValidationThreshold55 0x55                           // 数据验证阈值55 - 用于数据大小验证
+#define DataValidationThreshold6A 0x6a                           // 数据验证阈值6A - 用于数据大小验证
+#define DataValidationThreshold81 0x81                           // 数据验证阈值81 - 用于数据大小验证
+#define DataValidationThreshold8A 0x8a                           // 数据验证阈值8A - 用于数据大小验证
+#define DataValidationThreshold8E 0x8e                           // 数据验证阈值8E - 用于数据大小验证
+
+// 系统配置常量
+#define SystemConfigurationOffsetD8 0xd8                         // 系统配置偏移量D8 - 用于系统配置数据访问
+#define SystemConfigurationOffset1C 0x1c                         // 系统配置偏移量1C - 用于系统配置数据访问
+
+// 内存管理常量
+#define MemoryBufferSize112 0x70                                 // 内存缓冲区大小112 - 用于内存分配验证
+#define MemoryAllocationStep28 0x1c                             // 内存分配步长28 - 用于内存分配计算
+
+// 错误代码常量
+#define SecurityValidationFlag0x1C 0x1c                         // 安全验证标志0x1C - 用于安全验证操作
+
 // 错误代码常量
 #define InvalidBufferSizeError -1                                 // 无效缓冲区大小错误
 #define MemoryAllocationError -2                                  // 内存分配失败错误

@@ -31370,9 +31370,9 @@ void InitializeCPUFunctionPointers(void)
   LOCK();
   processingResult = _UIThreadLockReferenceCount + -1;
   UNLOCK();
-  UIBoolVar4 = _UIThreadLockReferenceCount == 1;
+  isThreadLockReferenceCountOne = _UIThreadLockReferenceCount == 1;
   _UIThreadLockReferenceCount = processingResult;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     DeleteCriticalSection(_UIThreadLockCriticalSection);
     free(_UIThreadLockCriticalSection);
     _UIThreadLockCriticalSection = 0;
@@ -31644,31 +31644,31 @@ void InitializeUIRenderingFunctions(void)
     UIShaderProcessorPointer = (UIFunctionPtr *)&UIShaderProcessorFallbackImplementation;
   }
   UIAnimationProcessorPointer = (UIFunctionPtr *)&UIAnimationProcessorFallbackImplementation;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIAnimationProcessorPointer = InitializeUIAnimationProcessor;
   }
   UILayoutProcessorPointer = (UIFunctionPtr *)&UILayoutProcessorFallbackImplementation;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UILayoutProcessorPointer = InitializeUILayoutProcessor;
   }
   UIInputProcessorPointer = (UIFunctionPtr *)&UIInputProcessorFallbackImplementation;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIInputProcessorPointer = InitializeUIInputProcessor;
   }
   UIEventProcessorPointer = (UIFunctionPtr *)&UIEventProcessorFallbackImplementation;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIEventProcessorPointer = InitializeUIEventProcessor;
   }
   UISpareProcessorPointer1 = (UIFunctionPtr *)&UISystemNullHandlerFunction;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpareProcessorPointer1 = InitializeUISpareProcessorOne;
   }
   UISpareProcessorPointer2 = (UIFunctionPtr *)&UISystemEmptyProcessorFunction;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpareProcessorPointer2 = InitializeUISpareProcessorTwo;
   }
   UISpareProcessorPointer3 = (UIFunctionPtr *)&UISystemIdleProcessorFunction;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpareProcessorPointer3 = InitializeUISpareProcessorThree;
   }
   UISpecialFunctionProcessorPointer1 = CalculateImageBlockAbsoluteDifferenceAdvanced;
@@ -31680,23 +31680,23 @@ void InitializeUIRenderingFunctions(void)
     UISpecialFunctionProcessorPointer2 = (UIFunctionPtr *)&UISystemSpecialFunction2;
   }
   UISpecialFunctionProcessorPointer3 = (UIFunctionPtr *)&UISystemSpecialFunction3;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpecialFunctionProcessorPointer3 = CalculateImagePixelMaximum;
   }
   UISpecialFunctionProcessorPointer4 = (UIFunctionPtr *)&UISystemSpecialFunction4;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpecialFunctionProcessorPointer4 = CalculateImagePixelMedian;
   }
   UISpecialFunctionProcessorPointer5 = (UIFunctionPtr *)&UISystemSpecialFunction5;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpecialFunctionProcessorPointer5 = CalculateImagePixelSum;
   }
   UISpecialFunctionProcessorPointer6 = (UIFunctionPtr *)&UISystemSpecialFunction6;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpecialFunctionProcessorPointer6 = CalculateImagePixelMinimum;
   }
   UISpecialFunctionProcessorPointer7 = (UIFunctionPtr *)&UISystemSpecialFunction7;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UISpecialFunctionProcessorPointer7 = CalculateImagePixelLocalVariance;
   }
   UIExtendedFunctionProcessorPointer1 = CalculateImagePixelAverageAdvanced;
@@ -31739,7 +31739,7 @@ void InitializeUIRenderingFunctions(void)
   if (useFallbackImplementation) {
     UIFunctionTablePointer5 = ProcessUIBasicData10;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTablePointer5 = ProcessUISpecialData;
   }
   UIFunctionTablePointer6 = ProcessUIBasicData11;
@@ -31762,7 +31762,7 @@ void InitializeUIRenderingFunctions(void)
   if (useFallbackImplementation) {
     UIGlobalDataConversionProcessor = ProcessUIDataEncoding;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIGlobalDataConversionProcessor = ProcessUIDataFallback;
   }
   UIGlobalResourceValidationProcessor = ValidateUIResourceIntegrity;
@@ -31797,7 +31797,7 @@ void InitializeUIRenderingFunctions(void)
   if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataSpecialOperation;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataFallbackOperation;
   }
   UIEventDispatchProcessor = FUN_18068f150;
@@ -31820,7 +31820,7 @@ void InitializeUIRenderingFunctions(void)
   if (useFallbackImplementation) {
     UIFunctionTable7b0 = FUN_18068f9a0;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTable7b0 = FUN_180695750;
   }
   UIFunctionTable778 = FUN_18068fb30;
@@ -31836,23 +31836,23 @@ void InitializeUIRenderingFunctions(void)
     UIFunctionTable708 = FUN_18068fd60;
   }
   UIFunctionTable958 = FUN_18068fdd0;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTable958 = FUN_180695820;
   }
   UIFunctionTable928 = FUN_18068fe10;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTable928 = FUN_180695870;
   }
   UIFunctionTable910 = FUN_18068ff60;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTable910 = FUN_1806958c0;
   }
   UIFunctionTable8c0 = FUN_180690200;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIFunctionTable8c0 = FUN_180695990;
   }
   UIRenderStateTable8A8 = FUN_1806903c0;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     UIRenderStateTable8A8 = FUN_180695ac0;
   }
   return;
@@ -70250,12 +70250,12 @@ LAB_18069b66c:
     LOCK();
     TargetBufferFlag = _DAT_180c0c210 != 0;
     componentIndex = stringCompareIndex;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       componentIndex = _DAT_180c0c210;
     }
     _DAT_180c0c210 = componentIndex;
     UNLOCK();
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       DeleteCriticalSection(stringCompareIndex);
       free(stringCompareIndex);
     }
@@ -70270,7 +70270,7 @@ LAB_18069b66c:
     UNLOCK();
     TargetBufferFlag = _DAT_180c0c218 == 1;
     _DAT_180c0c218 = processingResult;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       DeleteCriticalSection(_DAT_180c0c210);
       free(_DAT_180c0c210);
       _DAT_180c0c210 = 0;
@@ -70307,7 +70307,7 @@ void InitializeUICriticalSectionResource(void)
   }
   g_UICriticalSectionInstance = criticalSectionIndex;
   UNLOCK();
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     DeleteCriticalSection(stringCompareIndex);
     free(stringCompareIndex);
   }
@@ -70322,7 +70322,7 @@ void InitializeUICriticalSectionResource(void)
   UNLOCK();
   TargetBufferFlag = _DAT_180c0c218 == 1;
   _DAT_180c0c218 = processingResult;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     DeleteCriticalSection(_DAT_180c0c210);
     free(_DAT_180c0c210);
     _DAT_180c0c210 = 0;
@@ -123701,36 +123701,53 @@ void HandleUIComponentUpdate(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807397c0(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI上下文并验证数据源
+ * 
+ * 该函数负责处理UI上下文并验证数据源的有效性，包括：
+ * - 初始化UI渲染上下文
+ * - 验证数据源的有效性
+ * - 处理数据复制和上下文操作
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1807397c0
+ * @note 这是一个处理UI上下文验证的关键函数
+ */
+void ProcessUIContextWithValidation(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  longlong RenderContextSize;
-  UIHandle stackUInt120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte contextBuffer [32];
+  UIByte *dataSourcePointer;
+  longlong renderContextSize;
+  UIHandle renderHandle;
+  UIByte dataCopyBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  RenderContextSize = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
+  encryptionKey = XorEncryptionKey ^ (ulonglong)contextBuffer;
+  renderContextSize = 0;
+  processingResult = InitializeUIRenderContext(uiContext,&renderHandle,&renderContextSize);
   if (processingResult == 0) {
-    processingResult = FUN_1807460d0(stackUInt120,dataSource);
+    processingResult = ValidateUIDataSource(renderHandle,dataSource);
     if (processingResult == 0) goto LAB_18073985a;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    CopyUIDataBuffer(dataCopyBuffer,0x100,dataSource);
+    dataSourcePointer = dataCopyBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextProcessingFlags);
   }
 LAB_18073985a:
-  if (RenderContextSize != 0) {
+  if (renderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)contextBuffer);
 }
 
 
@@ -123738,27 +123755,44 @@ LAB_18073985a:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739890(UIHandle uiContext,UIHandle dataSource)
+ /**
+ * @brief 处理UI上下文并管理状态
+ * 
+ * 该函数负责处理UI上下文并管理状态，包括：
+ * - 初始化UI渲染上下文
+ * - 验证数据源的有效性
+ * - 处理状态管理操作
+ * - 执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180739890
+ * @note 这是一个处理UI上下文状态管理的关键函数
+ */
+void ProcessUIContextWithStateManager(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
-  UIByte astackUInt158 [32];
-  UIByte *pstackUInt138;
-  UIHandle astackUInt128 [2];
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  UIByte contextBuffer [32];
+  UIByte *dataSourcePointer;
+  UIHandle contextHandles [2];
+  UIByte dataCopyBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  processingResult = FUN_180749e60(uiContext,astackUInt128,0);
-  if (((processingResult != 0) || (processingResult = FUN_180746180(astackUInt128[0],dataSource), processingResult != 0)) &&
-     ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    CopyUIDataBuffer(astackUInt118,0x100,dataSource);
-    pstackUInt138 = astackUInt118;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)contextBuffer;
+  processingResult = InitializeUIRenderContext(uiContext,contextHandles,0);
+  if (((processingResult != 0) || (processingResult = ValidateUIContextData(contextHandles[0],dataSource), processingResult != 0)) &&
+     ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
+    CopyUIDataBuffer(dataCopyBuffer,0x100,dataSource);
+    dataSourcePointer = dataCopyBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextStateManager);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt158);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)contextBuffer);
 }
 
 
@@ -156486,7 +156520,7 @@ ulonglong FUN_180759d80(longlong uiContext,longlong dataSource,longlong *targetB
     *(ulonglong *)(uiContext + 0x70) = eventStatus;
     *(UIDword *)(*(longlong *)(*(longlong *)(uiBufferData + 0xa8) + 0x107b8) + 0x30) = 1;
     if ((localChar6 != '\0') && (allocatedMemory != 0)) {
-      if (UIBoolVar4) {
+      if (isThreadLockReferenceCountOne) {
                      WARNING: Subroutine does not return
         ProcessUISystemCleanup(allocatedMemory,3);
       }
@@ -182014,7 +182048,7 @@ int FUN_18076f111(longlong uiContext,ulonglong dataSource,UIHandle targetBuffer,
         }
         componentData = colorBufferPointer;
       } while (colorBufferPointer != uiMemoryPointer);
-      if (UIBoolVar4) {
+      if (isThreadLockReferenceCountOne) {
         *(UIDword *)(uiBufferData + 0x298) = 1;
       }
     }
@@ -197655,7 +197689,7 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
       *(float *)(uiContext + 0x21c) = baseValue5;
     }
     TargetBufferFlag = *(float *)(uiContext + 0x280) != *(float *)(uiContext + 0x220);
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       *(float *)(uiContext + 0x220) = *(float *)(uiContext + 0x280);
       uStackX_10 = 1;
     }
@@ -204481,7 +204515,7 @@ int FUN_180786a50(longlong uiContext,ulonglong dataSource,int targetBuffer)
   contextDataHandle = 0;
   stackUInt48 = 0;
   eventStatus = dataSource;
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     contextDataHandle = FUN_180741e10(stringCompareIndex + 0x10bd0,aiStackX_8[0] * targetBuffer * 4 + 0x20,&UIDefaultDataBuffer,0,0,
                           stackParamffffffffffffff90 & 0xffffff00,1);
     eventStatus = contextDataHandle + 0x1fU & 0xffffffffffffffe0;
@@ -323960,7 +323994,7 @@ LAB_18085a6b0:
 LAB_18085a6ac:
     IsValidationComplete = true;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     allocatedMemory7 = *(longlong *)(uiContextBasePointer + 0x57);
     if (IsValidationComplete) goto LAB_18085a8c1;
     loopCounter = FUN_18085ab70(allocatedMemory7);
@@ -369161,7 +369195,7 @@ LAB_1808820fa:
     uiCompareResult = unmodifiedEBX + 1;
     TargetBufferFlag = unmodifiedEBX != -1;
     unmodifiedEBX = 0;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       unmodifiedEBX = uiCompareResult;
     }
     if (unmodifiedEBX != (int)eventHandle[1]) {
@@ -369391,7 +369425,7 @@ LAB_18088229d:
     uiCompareResult = unmodifiedEBX + 1;
     TargetBufferFlag = unmodifiedEBX != -1;
     unmodifiedEBX = 0;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       unmodifiedEBX = uiCompareResult;
     }
     if (unmodifiedEBX != (int)eventHandle[1]) {
@@ -388282,7 +388316,7 @@ void FUN_180892e50(longlong uiContext,UIHandle dataSource)
   if (processingResult == 0) {
     TargetBufferFlag = astackLong58[0] == 0;
     astackLong58[0] = astackLong58[0] + -8;
-    if (UIBoolVar4) {
+    if (isThreadLockReferenceCountOne) {
       astackLong58[0] = 0;
     }
     componentIndex = (longlong)*(int *)(uiBufferData + 0x18);
@@ -402218,7 +402252,7 @@ LAB_18089d034:
 LAB_18089d06e:
     return (ulonglong)eventCodeType;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     *(UIDword *)(uiBufferData + 0x10) = 3;
   }
 LAB_18089d07f:
@@ -402338,7 +402372,7 @@ LAB_18089d034:
 LAB_18089d06e:
     return (ulonglong)eventCodeType;
   }
-  if (UIBoolVar4) {
+  if (isThreadLockReferenceCountOne) {
     *(UIDword *)(eventHandle + 0x10) = 3;
   }
 LAB_18089d07f:

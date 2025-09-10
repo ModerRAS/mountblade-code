@@ -30764,26 +30764,26 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void)
   long long MemoryAllocationResult;
   long long BufferStatus;
   long long StackBaseAddressPointer;
-  long long PatternIndexPointer;
-  long long *DestinationPointer;
+  long long DataPatternIndexPointer;
+  long long *MemoryDestinationPointer;
   long long DataArraySize;
   
-  if (ArraySize == 0) {
+  if (DataArraySize == 0) {
     BufferStatus = 0;
   }
   else {
-    BufferStatus = BufferAllocate(MemoryPoolManager,ArraySize * 4,(char)DestinationPointer[3]);
+    BufferStatus = BufferAllocate(MemoryPoolManager,DataArraySize * 4,(char)MemoryDestinationPointer[3]);
   }
   if (PatternIndexPointer != StackBaseAddressPointer) {
       memmove(BufferStatus);
   }
-  if (*DestinationPointer != 0) {
+  if (*MemoryDestinationPointer != 0) {
       ProcessSystemEventHandling();
   }
-  CharacterTablePointer = BufferStatus + ArraySize * 4;
-  *DestinationPointer = BufferStatus;
-  DestinationPointer[1] = LoopCounter;
-  DestinationPointer[2] = LoopCounter;
+  CharacterTablePointer = BufferStatus + DataArraySize * 4;
+  *MemoryDestinationPointer = BufferStatus;
+  MemoryDestinationPointer[1] = LoopCounter;
+  MemoryDestinationPointer[2] = LoopCounter;
   return;
 }
 
@@ -30807,16 +30807,16 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void)
 void CoreEngineProcessDataBlockShift(long long ContextHandle)
 {
   long long ShiftOperationResult;
-  long long BufferStatus;
+  long long DataBufferStatus;
   unsigned long long UnicodeCodePoint;
   long long StackFrameAddressPointer;
   long long DataSourcePointer;
   long long DataDestinationPointer;
-  unsigned long long MaxCharacterCount;
+  unsigned long long MaximumCharacterCount;
   
   BufferStatus = *(long long *)(DataDestinationPointer + 8);
   UnicodeCodePoint = BufferStatus - ContextHandle >> 2;
-  if (UnicodeCodePoint < MaxCharacterCount) {
+  if (UnicodeCodePoint < MaximumCharacterCount) {
     CharacterTablePointer = UnicodeCodePoint * 4 + DataSourcePointer;
     if (DataSourcePointer != CharacterTablePointer) {
         memmove();
