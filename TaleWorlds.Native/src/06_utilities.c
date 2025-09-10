@@ -3337,6 +3337,12 @@
 #define OperationBaseOffset14 0x14                 // 操作基址偏移量14
 #define OperationBaseOffset4C 0x4c                  // 操作基址偏移量4C
 
+// 数据处理大小常量
+#define DataProcessingOffset2 0x2                    // 数据处理偏移量2
+#define DataProcessingOffset4 0x4                    // 数据处理偏移量4
+#define DataProcessingOffset6 0x6                    // 数据处理偏移量6
+#define DataProcessingOffset8 0x8                    // 数据处理偏移量8
+
 // 数据类型定义
 typedef uint32_t DataWord;                  // 数据字类型 - 32位无符号整数，用于系统数据交换
 typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无符号整数，用于数据缓冲区操作
@@ -31922,12 +31928,12 @@ DataBuffer ValidateAndExecuteOperations(int64_t *contextHandle,DataWord *dataBuf
   }
   firstDataChunk[0] = *dataBuffer;
   exceptionContext = *contextHandle;
-  functionPointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-  operationResult = (**(FunctionPointer**)*functionPointer)(functionPointer,firstDataChunk,4);
+  functionPointer = *(DataBuffer **)(exceptionHandlerContext + DataProcessingOffset8);
+  operationResult = (**(FunctionPointer**)*functionPointer)(functionPointer,firstDataChunk,ArrayElementSize16);
   if ((int)operationResult == 0) {
     secondDataChunk[0] = dataBuffer[1];
-    functionPointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-    operationResult = (**(FunctionPointer**)*functionPointer)(functionPointer,secondDataChunk,4);
+    functionPointer = *(DataBuffer **)(exceptionHandlerContext + DataProcessingOffset8);
+    operationResult = (**(FunctionPointer**)*functionPointer)(functionPointer,secondDataChunk,ArrayElementSize16);
   }
   return operationResult;
 }
@@ -31944,9 +31950,9 @@ DataBuffer ProcessDataWithMultipleAttempts(DataBuffer *contextHandle,int64_t dat
     return ResourceInvalidErrorCode;
   }
   contextValue = *contextHandle;
-  operationResult = OperateDataO0(contextValue,dataOffset,4);
+  operationResult = OperateDataO0(contextValue,dataOffset,ArrayElementSize16);
   if ((int)operationResult == 0) {
-    operationResult = OperateDataO0(contextValue,dataOffset + 4,2);
+    operationResult = OperateDataO0(contextValue,dataOffset + DataProcessingOffset4,DataProcessingOffset2);
     if ((int)operationResult == 0) {
       operationResult = OperateDataO0(contextValue,dataOffset + 6,2);
       if ((int)operationResult == 0) {
