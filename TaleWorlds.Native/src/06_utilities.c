@@ -65846,7 +65846,7 @@ void SetExceptionHandlerAtOffset60(DataBuffer systemContext,int64_t contextData)
  * 
  * @note 此函数用于数据预处理和状态标记
  * @warning 掩码值限制为5位(MemoryOffsetValidationThreshold)，确保数据结构正确
- * @see FUN_180069530, ProcessDataBuffer
+ * @see ProcessSystemDataBuffer, ProcessDataBuffer
  */
 void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
 
