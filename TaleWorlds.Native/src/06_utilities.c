@@ -5923,6 +5923,25 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：ExecuteDataValidationOperation
  */
+/**
+ * @brief 验证数据块状态A0
+ * 
+ * 该函数负责验证数据块的状态，确保数据块的完整性和有效性。
+ * 它是数据管理系统的重要组成部分，确保数据在传输和存储过程中的安全性。
+ * 
+ * 主要功能包括：
+ * 1. 验证数据块的完整性校验和
+ * 2. 检查数据块的有效性标志
+ * 3. 确认数据块的访问权限
+ * 4. 监控数据块的状态变化
+ * 
+ * @return 验证结果状态码：
+ *         - 0: 验证成功，数据块状态正常
+ *         - 非0值: 验证失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180899220
+ * @see ValidateDataBlockStatusA1, ProcessDataBlockOperationA0
+ */
 #define ValidateDataBlockStatusA0 FUN_180899220
 
 /**
@@ -5937,9 +5956,22 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 /**
  * @brief 处理数据块操作A0
  * 
- * 该函数负责处理数据块的各种操作，包括读取和写入
+ * 该函数负责处理数据块的各种操作，包括数据的读取、写入、验证和管理。
+ * 它是数据处理系统的核心函数，确保数据操作的安全性和有效性。
  * 
- * @note 原始函数名：ValidateDataStructureA1
+ * 主要功能包括：
+ * 1. 执行数据块的读取操作
+ * 2. 处理数据块的写入请求
+ * 3. 验证数据块的完整性
+ * 4. 管理数据块的访问权限
+ * 5. 监控数据操作的状态
+ * 
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 操作失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_18089923e
+ * @see ValidateDataBlockStatusA0, ProcessDataBlockOperationA1
  */
 #define ProcessDataBlockOperationA0 FUN_18089923e
 
@@ -15097,18 +15129,18 @@ uint8_t SecurityValidationFlagInfiniteSupreme;    // 安全验证标志InfiniteS
 uint8_t SecurityValidationFlagPerpetualSupreme;   // 安全验证标志PerpetualSupreme - 永久最高安全验证标志
 uint8_t SecurityValidationFlagEternalSupreme;    // 安全验证标志EternalSupreme - 永恒最高安全验证标志
 uint8_t SecurityValidationFlagEndlessSupreme;    // 安全验证标志EndlessSupreme - 无尽最高安全验证标志
-uint8_t SecurityValidationFlagA41;    // 系统安全验证标志A41
-uint8_t SecurityValidationFlagA42;    // 系统安全验证标志A42
-uint8_t SecurityValidationFlagA43;    // 系统安全验证标志A43
-uint8_t SecurityValidationFlagA44;    // 系统安全验证标志A44
-uint8_t SecurityValidationFlagA45;    // 系统安全验证标志A45
-uint8_t SecurityValidationFlagA46;    // 系统安全验证标志A46
-uint8_t SecurityValidationFlagA47;    // 系统安全验证标志A47
-uint8_t SecurityValidationFlagA48;    // 系统安全验证标志A48
-uint8_t SecurityValidationFlagA49;    // 系统安全验证标志A49
-uint8_t SecurityValidationFlagA50;    // 系统安全验证标志A50
-uint8_t SecurityValidationFlagA51;    // 系统安全验证标志b30
-uint8_t SecurityValidationFlagA52;    // 系统安全验证标志b48
+uint8_t SecurityValidationFlagInfiniteUltimate;    // 安全验证标志InfiniteUltimate - 无限终极安全验证标志
+uint8_t SecurityValidationFlagPerpetualUltimate;   // 安全验证标志PerpetualUltimate - 永久终极安全验证标志
+uint8_t SecurityValidationFlagEternalUltimate;    // 安全验证标志EternalUltimate - 永恒终极安全验证标志
+uint8_t SecurityValidationFlagEndlessUltimate;    // 安全验证标志EndlessUltimate - 无尽终极安全验证标志
+uint8_t SecurityValidationFlagInfiniteFinal;    // 安全验证标志InfiniteFinal - 无限最终安全验证标志
+uint8_t SecurityValidationFlagPerpetualFinal;   // 安全验证标志PerpetualFinal - 永久最终安全验证标志
+uint8_t SecurityValidationFlagEternalFinal;    // 安全验证标志EternalFinal - 永恒最终安全验证标志
+uint8_t SecurityValidationFlagEndlessFinal;    // 安全验证标志EndlessFinal - 无尽最终安全验证标志
+uint8_t SecurityValidationFlagInfiniteOmega;    // 安全验证标志InfiniteOmega - 无限终极安全验证标志
+uint8_t SecurityValidationFlagPerpetualOmega;   // 安全验证标志PerpetualOmega - 永久终极安全验证标志
+uint8_t SecurityValidationFlagEternalOmega;    // 安全验证标志EternalOmega - 永恒终极安全验证标志
+uint8_t SecurityValidationFlagEndlessOmega;    // 安全验证标志EndlessOmega - 无尽终极安全验证标志
 uint8_t SecurityValidationFlagA53;    // 系统安全验证标志b68
 uint8_t SecurityValidationFlagA54;    // 系统安全验证标志b78
 uint8_t SecurityValidationFlagA55;    // 系统安全验证标志b88
