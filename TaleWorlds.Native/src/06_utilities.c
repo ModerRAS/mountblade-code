@@ -8621,7 +8621,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：ValidateDataProcessingA0 - 数据验证处理函数A0
 // 功能：验证数据完整性和处理状态
-#define ValidateDataProcessingA0 ValidateDataProcessingA0
+#define ValidateDataProcessingA0 FUN_1808995c0
 
 /**
  * @brief 数据标志处理函数A0
@@ -8752,15 +8752,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：InitializeDataStructureA0 - 数据初始化函数A0
 // 功能：初始化数据结构和缓冲区
-#define InitializeDataStructureA0 InitializeDataStructureA0
+#define InitializeDataStructureA0 FUN_180899790
 
 // 原始函数名：ValidateDataSecurityA0 - 数据验证函数A2
 // 功能：验证数据完整性和安全性
-#define ValidateDataSecurityA0 ValidateDataSecurityA0
+#define ValidateDataSecurityA0 FUN_180899799
 
 // 原始函数名：ProcessDataWithSecurityA0 - 数据处理函数A3
 // 功能：处理数据并返回处理结果
-#define ProcessDataWithSecurityA0 ProcessDataWithSecurityA0
+#define ProcessDataWithSecurityA0 FUN_1808997b0
 
 // 原始函数名：ValidateDataStructureA1 - 数据验证函数A3
 // 功能：验证数据完整性和状态
@@ -19780,7 +19780,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：CleanupSystemResourcesA0 - 系统清理函数A0
 // 功能：清理系统资源和内存
-#define CleanupSystemResourcesA0 CleanupSystemResourcesA0
+#define CleanupSystemResourcesA0 FUN_1800809a0
 
 
 /**
