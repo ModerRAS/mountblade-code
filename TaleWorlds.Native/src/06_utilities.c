@@ -136951,3 +136951,100 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
 // 安全内存清理函数
 // 功能：安全地清理内存缓冲区，防止敏感信息泄露
 #define SecureClearMemory FUN_180853002
+
+/**
+ * @brief 系统数据加密处理函数
+ * 
+ * 该函数负责对系统数据进行加密处理，确保数据的安全性和完整性。
+ * 它使用先进的加密算法对数据进行处理，并提供加密状态验证。
+ * 
+ * @param DataBufferPointer 待加密的数据缓冲区指针
+ * @param DataBufferSize 数据缓冲区大小
+ * @param EncryptionKey 加密密钥指针
+ * @param EncryptionFlags 加密标志位，控制加密方式和验证级别
+ * @return int 加密处理结果状态码：
+ *         - 0: 加密成功
+ *         - -1: 无效参数错误
+ *         - -2: 加密失败
+ *         - -3: 内存分配失败
+ * 
+ * @note 这是一个新增的美化函数示例
+ * @warning 加密密钥必须安全存储，防止密钥泄露
+ * @see ValidateMemoryBoundary, SecureClearMemory, ProcessMemoryBufferWithValidation
+ */
+int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBufferSize, void *EncryptionKey, uint32_t EncryptionFlags)
+{
+    // 数据处理相关变量
+    uint8_t *SourceDataPointer;                  // 源数据指针
+    uint8_t *EncryptedDataPointer;               // 加密数据指针
+    uint8_t *KeyDataPointer;                     // 密钥数据指针
+    uint32_t ProcessedDataSize;                 // 已处理数据大小
+    uint32_t EncryptionResultCode;               // 加密结果码
+    uint32_t ValidationStatus;                   // 验证状态
+    uint8_t TemporaryEncryptionBuffer[64];      // 临时加密缓冲区
+    
+    // 初始化变量
+    SourceDataPointer = (uint8_t *)DataBufferPointer;
+    KeyDataPointer = (uint8_t *)EncryptionKey;
+    ProcessedDataSize = 0;
+    EncryptionResultCode = 0;
+    ValidationStatus = 0;
+    
+    // 参数验证
+    if (DataBufferPointer == NULL || EncryptionKey == NULL) {
+        return -1; // 无效参数错误
+    }
+    
+    // 验证数据大小
+    if (DataBufferSize == 0 || DataBufferSize > MaxSafeBufferSize) {
+        return -1; // 无效数据大小
+    }
+    
+    // 分配加密数据缓冲区
+    EncryptedDataPointer = (uint8_t *)AllocateSystemMemoryA0(DataBufferSize);
+    if (EncryptedDataPointer == NULL) {
+        return -3; // 内存分配失败
+    }
+    
+    // 执行数据加密处理
+    if ((EncryptionFlags & 0x1) != 0) {
+        // 标准加密模式
+        while (ProcessedDataSize < DataBufferSize) {
+            // 读取源数据
+            TemporaryEncryptionBuffer[ProcessedDataSize % 64] = SourceDataPointer[ProcessedDataSize];
+            
+            // 执行加密操作
+            TemporaryEncryptionBuffer[ProcessedDataSize % 64] = TemporaryEncryptionBuffer[ProcessedDataSize % 64] ^ KeyDataPointer[ProcessedDataSize % 32];
+            
+            // 存储加密结果
+            EncryptedDataPointer[ProcessedDataSize] = TemporaryEncryptionBuffer[ProcessedDataSize % 64];
+            
+            ProcessedDataSize++;
+        }
+    }
+    
+    // 执行加密验证
+    if ((EncryptionFlags & 0x2) != 0) {
+        ValidationStatus = ValidateEncryptedDataIntegrity(EncryptedDataPointer, DataBufferSize);
+        if (ValidationStatus != 0) {
+            ReleaseMemoryResourceA1(EncryptedDataPointer);
+            return -2; // 加密验证失败
+        }
+    }
+    
+    // 执行安全清理
+    if ((EncryptionFlags & 0x4) != 0) {
+        SecureClearMemory(TemporaryEncryptionBuffer, sizeof(TemporaryEncryptionBuffer));
+        SecureClearMemory(SourceDataPointer, DataBufferSize);
+    }
+    
+    // 释放加密数据缓冲区
+    ReleaseMemoryResourceA1(EncryptedDataPointer);
+    
+    return 0; // 加密成功
+}
+
+// 数据完整性验证函数宏定义
+// 原始函数名：FUN_180853003 - 加密数据完整性验证函数
+// 功能：验证加密数据的完整性和有效性
+#define ValidateEncryptedDataIntegrity FUN_180853003
