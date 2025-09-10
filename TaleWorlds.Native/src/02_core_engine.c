@@ -220176,7 +220176,7 @@ void InitializeSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, ui
 
 
 
-void FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize)
+void ProcessContextBufferAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
   long long *BufferAllocationStatus;
@@ -220233,7 +220233,7 @@ void FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize)
 
 
 
-7dbd0(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017dbd0(uint64_t ContextHandle,uint64_t OperationBufferSize
+void ProcessSystemContextValidation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   void *SystemContext;
@@ -220274,7 +220274,7 @@ void FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize)
 
 
 
-7dd10(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017dd10(uint64_t ContextHandle,uint64_t OperationBufferSize
+void ProcessSystemMemoryAllocation(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   void *SystemContext;
@@ -220322,7 +220322,7 @@ void FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize)
 
 
 
-7dd60(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017dd60(uint64_t ContextHandle,uint64_t OperationBufferSize
+void ProcessSystemResourceCleanup(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
   uint32_t MemoryAllocationIndex;

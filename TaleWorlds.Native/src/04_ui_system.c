@@ -150034,15 +150034,15 @@ void InitializeUIResourceManagerAndMemoryAllocator(void)
   longlong *resourceListPointer;
   longlong *endResourcePointer;
   
-  if (register10 != RegisterPointer) {
+  if (resourceListPointer != endResourcePointer) {
     do {
-      colorBufferPointer = (longlong *)*register10;
-      stringCompareIndex = register10[2];
-      pallocatedMemory = (longlong *)(stringCompareIndex + 0x1b0);
-      **(longlong **)(stringCompareIndex + 0x1b8) = *pallocatedMemory;
-      *(UIHandle *)(*pallocatedMemory + 8) = *(UIHandle *)(stringCompareIndex + 0x1b8);
-      *(longlong **)(stringCompareIndex + 0x1b8) = pallocatedMemory;
-      *pallocatedMemory = (longlong)pallocatedMemory;
+      colorBufferPointer = (longlong *)*resourceListPointer;
+      stringCompareIndex = resourceListPointer[2];
+      allocatedMemoryPointer = (longlong *)(stringCompareIndex + 0x1b0);
+      **(longlong **)(stringCompareIndex + 0x1b8) = *allocatedMemoryPointer;
+      *(UIHandle *)(*allocatedMemoryPointer + 8) = *(UIHandle *)(stringCompareIndex + 0x1b8);
+      *(longlong **)(stringCompareIndex + 0x1b8) = allocatedMemoryPointer;
+      *allocatedMemoryPointer = (longlong)allocatedMemoryPointer;
       *(UIDword *)(stringCompareIndex + 0x1c8) = 0xffffffff;
       *(UIHandle *)(stringCompareIndex + 0x1c0) = 0;
       *(UIDword *)(stringCompareIndex + 0x218) = 0x3f800000;
