@@ -686,6 +686,7 @@
 #define DataBufferOffsetA8 0xa8                           // 数据缓冲区偏移量A8
 #define DataBufferOffsetD0 0xd0                           // 数据缓冲区偏移量D0
 #define DataBufferOffsetD8 0xd8                           // 数据缓冲区偏移量D8
+#define DataBufferOffsetE8 0xe8                           // 数据缓冲区偏移量E8
 #define ExceptionRecoveryHandlerOffsetC0 0xc0
 #define ExceptionRecoveryHandlerOffsetD8 0xd8
 #define ExceptionRecoveryHandlerOffsetE8 0xe8
@@ -9270,8 +9271,8 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SetGlobalDataPointerA26 ConfigureGlobalDataPointerA26
 
 // 原始函数名：FUN_1809422e0 - 全局指针设置函数A27
-// 功能：设置全局数据指针A27到指定地址
-#define SetGlobalDataPointerA27 FUN_1809422e0
+// 功能：设置全局数据指针A27到指定地址，用于系统数据管理
+#define SetGlobalDataPointerA27 ConfigureGlobalDataPointerAtOffset27
 
 // 原始函数名：FUN_180942300 - 全局指针设置函数A28
 // 功能：设置全局数据指针A28到指定地址
@@ -69795,10 +69796,10 @@ void ExecuteExceptionCallbackChain(DataBuffer operationBase,int64_t dataBuffer,D
   
   validationStatus = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferOffsetE8);
-  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xe0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
+  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetE0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
-  if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffsetE0) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();
@@ -71422,8 +71423,8 @@ void ProcessDataBufferOffset40(DataBuffer operationBase,int64_t dataBuffer)
 void InvokeExtendedDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0xe0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xe0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + DataBufferOffsetE0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + DataBufferOffsetE0) + SystemFloatDataOffset38))();
   }
   return;
 }
