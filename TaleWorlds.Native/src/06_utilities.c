@@ -57,6 +57,7 @@
 #define ContextBufferFloatDataOffset 4                         // 上下文缓冲区浮点数据偏移量 - 用于存储上下文缓冲区中的浮点数据
 #define DataProcessingFloatDataOffset 4                       // 数据处理浮点数据偏移量 - 用于存储数据处理过程中的浮点数据
 #define DataStructureFloatDataOffset 4                        // 数据结构浮点数据偏移量 - 用于存储数据结构中的浮点数据
+#define StackBufferFloatDataOffset 4                          // 栈缓冲区浮点数据偏移量 - 用于存储栈缓冲区中的浮点数据
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -23267,7 +23268,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
     rangeValue = inputValue;
   }
   *(float *)(allocationContext + AllocationContextValueOffset14) = rangeValue;
-  *(float *)(CONCAT44(stackBufferHighValue,stackBufferLowValue) + 4) = rangeValue;
+  *(float *)(CONCAT44(stackBufferHighValue,stackBufferLowValue) + StackBufferFloatDataOffset) = rangeValue;
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + systemContextOffset98),allocationContext);
 }
 
