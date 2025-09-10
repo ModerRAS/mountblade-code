@@ -123953,7 +123953,7 @@ CleanupUIResources:
 
 
  void FUN_180739a6d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180739a6d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+void ProcessUIDataFinalExWithValidation(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
@@ -123961,34 +123961,34 @@ void FUN_180739a6d(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
   int uiCompareResult;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
-  longlong RegisterPointer;
+  longlong registerPointer;
   UIHandle eventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  longlong resourceHandle;
+  UIHandle processedContext;
+  ulonglong encryptedDataKey;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = eventHandle;
-  lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = uiContextBasePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  resourceHandle = 0;
+  processingResult = ProcessUIContextData(uiContext,&processedContext,&resourceHandle);
   if (processingResult == 0) {
-    processingResult = func_0x000180746360(stackParam00000038,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180739b3f;
+    processingResult = ProcessUIDataWithValidation(processedContext,dataSource,targetBuffer);
+    if (processingResult == 0) goto CleanupUIResources;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074ba80(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataBuffer(&DataTransferBuffer,0x100,dataSource);
+    uiCompareResult = CompareUIDataBuffers(&DataTransferBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    TransferUIDataToTargetBuffer(&DataTransferBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextResourceHandler,&stack0x00000040);
+    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextResourceHandler,&DataTransferBuffer);
   }
-FUN_180739b3f:
-  if (lStack0000000000000030 != 0) {
+CleanupUIResources:
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)&SystemDataBuffer);
 }
 
 
@@ -124013,17 +124013,17 @@ void FUN_180739ac7(void)
 
 
  void FUN_180739b3f(void)
-void FUN_180739b3f(void)
+void CleanupUIResources(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong resourceHandle;
+  ulonglong encryptedDataKey;
   
-  if (stackParam00000030 != 0) {
+  if (resourceHandle != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptedDataKey ^ (ulonglong)&SystemDataBuffer);
 }
 
 
@@ -193856,7 +193856,22 @@ undefined UNK_180986248;
  */
 #define UILayoutManager UNK_18098624c
 undefined UNK_18098624c;
+/**
+ * @brief UI系统主题管理器指针
+ * 
+ * 管理UI系统的主题和样式
+ * 处理颜色、字体和视觉效果
+ */
+#define UIThemeManager UNK_180986250
 undefined UNK_180986250;
+
+/**
+ * @brief UI系统动画控制器指针
+ * 
+ * 控制UI元素的动画和过渡效果
+ * 管理动画的状态和时间轴
+ */
+#define UIAnimationController UNK_180986268
 undefined UNK_180986268;
 undefined DAT_180c4eaa0;
 undefined DAT_180c4eaa4;

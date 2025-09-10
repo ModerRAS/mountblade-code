@@ -254,6 +254,16 @@
 #define RecoverSystemFromException FUN_18018a9a0    // 从系统异常中恢复
 #define HandleMemoryOverflowException FUN_180188610       // 处理内存溢出异常
 #define ConvertMemoryBufferToUtf FUN_180186800 // 转换内存缓冲区到UTF格式
+#define ProcessWindowMessageAndCharacterEncoding FUN_180170da0 // 处理窗口消息和字符编码转换
+#define InitializeWindowContext FUN_180170e20 // 初始化窗口上下文
+#define ValidateWindowContext FUN_180171101 // 验证窗口上下文
+#define ProcessCharacterEncodingWithLength FUN_180177c00 // 处理带长度的字符编码
+#define AllocateWindowContextBuffer FUN_18017b070 // 分配窗口上下文缓冲区
+#define ResizeWindowContextBuffer FUN_18017b240 // 调整窗口上下文缓冲区大小
+#define UpdateWindowContextHandle FUN_18017b259 // 更新窗口上下文句柄
+#define CleanupWindowContextResources FUN_18017b28d // 清理窗口上下文资源
+#define ResetWindowContextState FUN_18017b2ed // 重置窗口上下文状态
+#define ProcessWindowContextWithEncoding FUN_18017b400 // 处理带编码的窗口上下文
 #define AllocateSystemContextAndMemory FUN_180186880     // 分配系统上下文和内存
 #define ClearSystemStackData FUN_180186a90                     // 清理系统栈数据
 #define SetupSystemMemoryStack FUN_180628a40                // 设置系统内存栈
