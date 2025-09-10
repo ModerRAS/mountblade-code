@@ -199996,15 +199996,15 @@ long long * ProcessCharacterEncodingAndMemoryManagement(long long ContextHandle,
           MemoryPoolIndex = MemoryPoolIndex + 1;
         } while (CalculatedCodePoint < SystemStackFlag);
       }
-      StringProcessingStatus = &CoreEngineDataTemplate;
+      StringProcessingResult = &CoreEngineDataTemplate;
       if (*(void **)(Utf8SourcePointer + 8) != NULL) {
-        StringProcessingStatus = *(void **)(Utf8SourcePointer + 8);
+        StringProcessingResult = *(void **)(Utf8SourcePointer + 8);
       }
       MemoryAddressMaskPointer = &CoreEngineDataTemplate;
       if (SystemValidationPointer != (uint8_t *)0x0) {
         MemoryAddressMaskPointer = SystemValidationPointer;
       }
-      BufferStatus = strstr(MemoryAddressMaskPointer,StringProcessingStatus,MemoryPoolIndex,SystemValidationPointer,ValidationResult,Utf16Char4);
+      BufferStatus = strstr(MemoryAddressMaskPointer,StringProcessingResult,MemoryPoolIndex,SystemValidationPointer,ValidationResult,Utf16Char4);
       if (BufferStatus != 0) {
         pStringOffset = (long long *)OperationBufferSize[1];
         if (pStringOffset < (long long *)OperationBufferSize[2]) {
