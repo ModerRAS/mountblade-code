@@ -27075,16 +27075,16 @@ void CoreEngineCleanupSystemContext(long long SystemContext
 {
   int LockResult;
   
-  LockResult = _Mtx_lock(ContextHandle + 0x48);
+  LockResult = _Mtx_lock(ContextHandle + ThreadLockContextOffset);
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  *(uint8_t *)(ContextHandle + 0x98) = 1;
+  *(uint8_t *)(ContextHandle + SystemStatusFlagOffset) = 1;
   LockResult = _Cnd_broadcast(ContextHandle);
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  LockResult = _Mtx_unlock(ContextHandle + 0x48);
+  LockResult = _Mtx_unlock(ContextHandle + ThreadLockContextOffset);
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
@@ -282055,6 +282055,23 @@ LAB_1802260bd:
 
 // 系统错误消息格式化处理器
 #define FormatSystemErrorMessage FUN_180226240
+
+/**
+ * @brief 系统错误消息格式化处理器
+ * 
+ * 该函数负责格式化系统错误消息，处理错误码转换和字符串清理。
+ * 主要功能包括：
+ * - 格式化Windows系统错误消息
+ * - 清理消息字符串中的换行符
+ * - 分配和管理消息缓冲区
+ * - 处理Unicode字符转换
+ * 
+ * @param ContextHandle 上下文句柄，包含错误码和缓冲区信息
+ * 
+ * @return long long 返回格式化后的消息缓冲区指针，失败时返回0
+ * 
+ * @note 原始函数名：FUN_180226240
+ */
 long long FormatSystemErrorMessage(long long ContextHandle
 {
   long long *ContextPointer;

@@ -130115,9 +130115,9 @@ void InitializeUtilityModule(void)
 
 
 /**
- * @brief 重置工具指针组1
+ * @brief 重置系统异常处理器指针
  * 
- * 该函数负责重置工具系统的第一组指针，将其指向默认的异常处理器。
+ * 该函数负责重置系统的异常处理器指针，将其指向默认的异常处理器。
  * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
  * 
  * @note 原始函数名：ResetUtilityPointers1
@@ -130125,8 +130125,9 @@ void InitializeUtilityModule(void)
 void ResetSystemExceptionHandlerPointers(void)
 
 {
-  UtilitySystemPointer1 = &DefaultExceptionHandler;
-  return;
+    // 将系统异常处理器指针重置为默认异常处理器
+    UtilitySystemPointer1 = &DefaultExceptionHandler;
+    return;
 }
 
 
