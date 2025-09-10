@@ -700,25 +700,25 @@ typedef enum {
 #define ProcessUIDataBufferCopy CopyUIDataBuffer
 
 // UI系统函数宏定义 - 上下文清理和验证
-#define FUN_1807864f0 CleanupUIContextWithMemoryRelease
-#define FUN_180760790 ProcessUIComponentDataSourceAndValidation
-#define FUN_180760c90 ProcessUIComponentResourceAllocation
-#define FUN_180749940 ValidateUIComponentHandleWithBounds
-#define FUN_180744ae0 ProcessUIComponentHandleWithEventDispatch
-#define FUN_180786104 SetupUIContexteventHandle
-#define FUN_1807861b0 InitializeUIContextDataBuffer
-#define FUN_180786250 ProcessUIContextMemoryRelease
-#define FUN_180786262 ProcessUIContextDataSourceValidation
+#define CleanupUIContextWithMemoryRelease FUN_1807864f0                // 清理UI上下文并释放内存 - 释放UI上下文占用的内存资源
+#define ProcessUIComponentDataSourceAndValidation FUN_180760790        // 处理UI组件数据源和验证 - 验证UI组件数据源的有效性
+#define ProcessUIComponentResourceAllocation FUN_180760c90            // 处理UI组件资源分配 - 为UI组件分配必要的资源
+#define ValidateUIComponentHandleWithBounds FUN_180749940             // 验证UI组件句柄和边界 - 检查UI组件句柄的有效性和边界范围
+#define ProcessUIComponentHandleWithEventDispatch FUN_180744ae0      // 处理UI组件句柄和事件调度 - 管理UI组件句柄并调度相关事件
+#define SetupUIContextEventHandle FUN_180786104                      // 设置UI上下文事件句柄 - 配置UI上下文的事件处理句柄
+#define InitializeUIContextDataBuffer FUN_1807861b0                  // 初始化UI上下文数据缓冲区 - 为UI上下文初始化数据缓冲区
+#define ProcessUIContextMemoryRelease FUN_180786250                 // 处理UI上下文内存释放 - 释放UI上下文占用的内存资源
+#define ProcessUIContextDataSourceValidation FUN_180786262           // 处理UI上下文数据源验证 - 验证UI上下文数据源的有效性
 
 // UI系统函数宏定义 - 变换数据处理
-#define FUN_18072e5f4 ProcessUITransformDataScaling
-#define FUN_18072e9ce ProcessUIComponentBatchTransform
-#define FUN_18072e943 ResetUIRenderState
-#define FUN_18072e96d ClearUIRenderCache
-#define FUN_18072eaed ClearUIComponentState
-#define FUN_18072eb00 ProcessUIBufferAllocationInternal
-#define FUN_18072f881 InitializeUISystemState
-#define FUN_18072f7ab ExecuteUIRenderingTask
+#define ProcessUITransformDataScaling FUN_18072e5f4                  // 处理UI变换数据缩放 - 对UI变换数据进行缩放操作
+#define ProcessUIComponentBatchTransform FUN_18072e9ce              // 处理UI组件批量变换 - 批量处理UI组件的变换操作
+#define ResetUIRenderState FUN_18072e943                             // 重置UI渲染状态 - 将UI渲染状态重置为初始状态
+#define ClearUIRenderCache FUN_18072e96d                             // 清理UI渲染缓存 - 清除UI渲染过程中的缓存数据
+#define ClearUIComponentState FUN_18072eaed                          // 清理UI组件状态 - 清除UI组件的状态信息
+#define ProcessUIBufferAllocationInternal FUN_18072eb00              // 处理UI缓冲区内部分配 - 在内部处理UI缓冲区的分配操作
+#define InitializeUISystemState FUN_18072f881                        // 初始化UI系统状态 - 设置UI系统的初始状态
+#define ExecuteUIRenderingTask FUN_18072f7ab                         // 执行UI渲染任务 - 执行UI相关的渲染任务
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UISystemGlobalDataRegistry
