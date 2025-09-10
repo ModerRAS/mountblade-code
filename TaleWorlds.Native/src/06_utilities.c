@@ -28619,9 +28619,9 @@ void ProcessComplexDataBufferWithValidation(DataBuffer operationBase, DataBuffer
     operationStatus = *(int *)(dataBuffer + OperationStatusOffset);
     if (operationStatus == 0) {
       exceptionContextPointer = &DataValidationFlagTable;
-      ValidationFlagA = 0;
+      ValidationFlag = 0;
       ValidationOffset = 0;
-      ValidationDataA = operationFlagA;
+      ValidationData = operationFlagA;
       InitializeMemory(DataBufferA,*(DataBuffer *)(dataBuffer + MemoryBlockSizeOffset),0x200);
       DataFlagsPointer = exceptionContextPointer;
 SecurityValidationLabel:
