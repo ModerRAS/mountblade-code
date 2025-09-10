@@ -121156,40 +121156,53 @@ void FUN_18073911f(void)
 
 
  void FUN_180739140(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-void FUN_180739140(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-
+/**
+ * @brief UI数据缓冲区处理器
+ * 
+ * 处理UI系统中的数据缓冲区操作，包括数据验证、比较和复制操作
+ * 该函数负责：
+ * - 初始化加密缓冲区和处理参数
+ * - 执行数据验证和处理操作
+ * - 根据系统状态执行不同的数据传输路径
+ * - 清理资源并执行渲染任务
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI操作的上下文环境
+ * @param dataSource 数据源句柄，包含要处理的数据
+ * @param targetBuffer 目标缓冲区句柄，用于存储处理后的数据
+ * 
+ * @note 原始函数名：FUN_180739140
+ */
+void ProcessUIDataBuffer(UIHandle uiContext, UIDword dataSource, UIHandle targetBuffer)
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionBuffer[32];
+  UIByte *dataBufferPointer;
+  longlong resourceCleanupFlag;
+  UIHandle resourceHandle;
+  UIByte dataProcessingBuffer[256];
+  ulonglong renderTaskParameter;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  stackLong148 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt140,&stackLong148);
+  renderTaskParameter = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  resourceCleanupFlag = 0;
+  processingResult = InitializeUIProcessingContext(uiContext, &resourceHandle, &resourceCleanupFlag);
   if (processingResult == 0) {
-    processingResult = FUN_180745760(stackUInt140,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_18073922d;
+    processingResult = ProcessUIDataTransfer(resourceHandle, dataSource, targetBuffer);
+    if (processingResult == 0) goto RenderTaskExecution;
   }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b7d0(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
-                     WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957470);
+  if ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0) {
+    uiValidationResult = ValidateUIDataStream(dataProcessingBuffer, 0x100, dataSource);
+    uiCompareResult = CompareUIDataBuffer(dataProcessingBuffer + uiValidationResult, 0x100 - uiValidationResult, &UIBufferControlData);
+    CopyUIDataBuffer(dataProcessingBuffer + (uiValidationResult + uiCompareResult), 0x100 - (uiValidationResult + uiCompareResult), targetBuffer);
+    dataBufferPointer = dataProcessingBuffer;
+    ExecuteUIDataTransfer(processingResult, 1, uiContext, &UIComponentParameterB20, dataProcessingBuffer);
   }
-FUN_18073922d:
-  if (stackLong148 != 0) {
+RenderTaskExecution:
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)encryptionBuffer);
 }
 
 
