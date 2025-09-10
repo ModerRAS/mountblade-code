@@ -61159,7 +61159,7 @@ void CleanupResourceA0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupResourceB0Wrapper(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CleanupResourceA0(dataBuffer + 0xb0);
+  CleanupResourceA0(dataBuffer + DataBufferOffsetB0);
   return;
 }
 
@@ -61191,7 +61191,7 @@ void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ExceptionHandlerContextOffset50) & 1) != 0) {
     *(uint *)(dataBuffer + ExceptionHandlerContextOffset50) = *(uint *)(dataBuffer + ExceptionHandlerContextOffset50) & 0xfffffffe;
-    ValidateSystemA0(dataBuffer + 0xd0);
+    ValidateSystemA0(dataBuffer + DataBufferOffsetD0);
   }
   return;
 }
@@ -61229,9 +61229,9 @@ void SetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 void CloseFileResource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t *)(dataBuffer + 0xf0) != 0) {
+  if (*(int64_t *)(dataBuffer + DataBufferOffsetF0) != 0) {
     fclose();
-    *(DataBuffer *)(dataBuffer + 0xf0) = 0;
+    *(DataBuffer *)(dataBuffer + DataBufferOffsetF0) = 0;
     LOCK();
     ResourceCounter = ResourceCounter + -1;
     UNLOCK();
