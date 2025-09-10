@@ -119145,8 +119145,24 @@ void InitializeUIRenderingBuffer(void)
 
 
 
- void FUN_180736a70(uint *uiContext,uint *dataSource,int targetBuffer,int bufferSize,uint resultPointer)
-void FUN_180736a70(uint *uiContext,uint *dataSource,int targetBuffer,int bufferSize,uint resultPointer)
+ /**
+ * @brief 处理UI上下文数据复制和缓冲区管理
+ * 
+ * 该函数负责处理UI系统中的上下文数据复制操作，包括：
+ * - 数据源和目标缓冲区之间的数据传输
+ * - 缓冲区大小验证和管理
+ * - 结果指针的位置计算和更新
+ * - 上下文数据的完整性检查
+ * 
+ * @param uiContext UI上下文指针数组，包含UI系统状态信息
+ * @param dataSource 数据源指针数组，提供要复制的数据
+ * @param targetBuffer 目标缓冲区，存储复制后的数据
+ * @param bufferSize 缓冲区大小，限制数据复制的范围
+ * @param resultPointer 结果指针，用于存储操作结果
+ * 
+ * @note 该函数确保数据在UI系统各组件间安全传输
+ */
+void ProcessUIContextDataCopy(uint *uiContext,uint *dataSource,int targetBuffer,int bufferSize,uint resultPointer)
 
 {
   uint result;
