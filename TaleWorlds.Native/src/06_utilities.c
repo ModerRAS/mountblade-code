@@ -83008,12 +83008,13 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
  * @param dataBuffer 数据缓冲区指针，包含系统操作上下文信息
  * 
  * @note 原始函数名：Unwind_180908df0
+ * @note 这是一个系统状态恢复函数，用于异常处理后的系统重置
  */
-void ResetSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
-
+void ResetSystemOperationsB0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset110) = &SystemDefaultExceptionHandlerB;
-  return;
+    // 重置异常处理器为默认处理器B
+    **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset110) = &SystemDefaultExceptionHandlerB;
+    return;
 }
 
 
