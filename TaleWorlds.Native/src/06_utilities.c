@@ -128,6 +128,7 @@
 #define DataStructureTableElementSize 0x10                   // 数据结构表元素大小 - 数据结构表元素的大小
 #define DataStructureSecondaryOffset18 0x12                  // 数据结构辅助偏移量18 - 数据结构的辅助偏移位置
 #define DataStructureTableOffset8 0x8                        // 数据结构表偏移量8 - 数据结构表的偏移位置
+#define BitShift16Bits 0x10                                  // 16位位移计数 - 用于16位位移操作的计数
 #define BitShift32Bits 0x20                                  // 32位位移计数 - 用于32位位移操作的计数
 #define DestinationContextProcessorOffset 0x60                // 目标上下文处理器偏移量 - 目标上下文处理器的偏移位置
 #define DestinationContextMemoryOffset 0x40                  // 目标上下文内存偏移量 - 目标上下文内存的偏移位置
