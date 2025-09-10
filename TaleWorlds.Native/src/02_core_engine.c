@@ -237378,7 +237378,18 @@ LAB_180194fa5:
 
 
 
-uint64_t * FUN_180195000(uint64_t ContextHandle,uint64_t *ContextHandleSize
+/**
+ * @brief 上下文句柄大小管理器
+ * 
+ * 该函数负责管理上下文句柄的大小和内存分配
+ * 
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文大小指针
+ * @return uint64_t* 操作结果指针
+ * 
+ * @note 原始函数名：FUN_180195000
+ */
+uint64_t * ManageContextHandleSize(uint64_t ContextHandle, uint64_t *ContextHandleSize)
 {
   long long *ContextHandle;
   
@@ -237412,7 +237423,17 @@ uint64_t * FUN_180195000(uint64_t ContextHandle,uint64_t *ContextHandleSize
 
 
 
-uint64_t * FUN_1801950d0(long long ContextHandle
+/**
+ * @brief 上下文句柄处理器
+ * 
+ * 该函数负责处理上下文句柄的相关操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @return uint64_t* 操作结果指针
+ * 
+ * @note 原始函数名：FUN_1801950d0
+ */
+uint64_t * ProcessContextHandle(long long ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t *pSystemRegisterFlag;
