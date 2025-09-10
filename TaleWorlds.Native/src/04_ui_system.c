@@ -112703,8 +112703,8 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
       resultPointer = resultPointer + 1;
       bufferPointer = bufferPointer + 5;
       uiContext = uiContext + (int)bufferValue;
-      allocatedMemory0 = allocatedMemory0 + -1;
-    } while (allocatedMemory0 != 0);
+      allocatedMemory = allocatedMemory + -1;
+    } while (allocatedMemory != 0);
   }
   return;
 }
@@ -112725,7 +112725,6 @@ void ProcessUIBufferAllocationInternal(float *uiContext,longlong dataSource,long
  * 
  * @note 原始函数名：FUN_18072eb2e
  */
-void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
 void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
 
 {

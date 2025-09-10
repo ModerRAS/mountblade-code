@@ -11324,11 +11324,11 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_1808afc70 - 内存管理函数A0
 // 功能：管理系统内存
-#define ManageSystemMemoryA0 FUN_1808afc70
+#define ManageSystemMemoryA0 ManageSystemMemoryFunction
 
 // 原始函数名：FUN_1808a5d60 - 内存分配函数A0
 // 功能：分配系统内存
-#define AllocateSystemMemoryA0 FUN_1808a5d60
+#define AllocateSystemMemoryA0 AllocateSystemMemoryFunction
 
 // 原始函数名：FUN_18089bd70 - 数据处理函数A6
 // 功能：处理数据操作
@@ -11426,7 +11426,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180907c80 - 内存资源释放函数A1
 // 功能：释放内存资源
-#define ReleaseMemoryResourceA1 FUN_180907c80
+#define ReleaseMemoryResourceA1 ReleaseMemoryResourceFunction
 
 // 原始函数名：FUN_180853000 - 内存边界验证函数
 // 功能：验证内存边界
@@ -11438,11 +11438,11 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_180853002 - 安全内存清理函数
 // 功能：安全清理内存
-#define SecureClearMemory FUN_180853002
+#define SecureClearMemory SecureClearMemoryFunction
 
 // 原始函数名：FUN_180853003 - 加密数据完整性验证函数
 // 功能：验证加密数据完整性
-#define ValidateEncryptedDataIntegrity FUN_180853003
+#define ValidateEncryptedDataIntegrity ValidateEncryptedDataIntegrityFunction
 
 // 系统缓冲区配置常量
 // 功能：定义系统缓冲区的配置地址
@@ -137584,7 +137584,7 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
 
 // 内存边界验证函数
 // 功能：验证内存缓冲区的边界和完整性，确保内存访问的安全性
-#define ValidateMemoryBoundary FUN_180853000
+#define ValidateMemoryBoundary ValidateMemoryBoundaryFunction
 
 
 /**

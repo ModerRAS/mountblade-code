@@ -74118,7 +74118,7 @@ void CleanupSystemContextData(long long *ContextHandle
   uint64_t MemoryPoolIndex;
   
   MemoryPoolIndex = 0xfffffffffffffffe;
-  ContextHandle[0x1a5] = *(long long *)(&DataTable180C8ED30 + (long long)(int)ContextHandle[0x1a6] * 8) + -100000;
+  ContextHandle[0x1a5] = *(long long *)(&SystemCharacterEncodingDataTable + (long long)(int)ContextHandle[0x1a6] * 8) + -100000;
   ResetBufferAllocationStatus(ContextHandle, 0, 0, 0);
   *(uint32_t *)(ContextHandle + 0x1a7) = 0;
   ContextHandle = (long long *)ContextHandle[0x1a4];
@@ -74469,7 +74469,7 @@ void InitializeDataStructureConfiguration(long long ContextHandle,uint64_t Opera
   
   MemoryAddressMaskPointer = 0xfffffffffffffffe;
   *(void *)(ContextHandle + 0xd28) =
-       *(void *)(&DataTable180C8ED30 + (long long)*(int *)(ContextHandle + 0xd30) * 8);
+       *(void *)(&SystemCharacterEncodingDataTable + (long long)*(int *)(ContextHandle + 0xd30) * 8);
   BufferAllocationStatus = *(long long **)(ContextHandle + 0xd20);
   *(void *)(ContextHandle + 0xd20) = 0;
   if (BufferAllocationStatus != (long long *)0x0) {
@@ -74710,7 +74710,7 @@ void CoreEngineUpdateSystemStatus(void
     SystemEventPointer = &ThreadLocalStorageTemplate;
     (**(code **)(**(long long **)(MemoryBoundaryEnd + 0x1698) + 0x60))();
 SystemTerminationLabel:
-    (**(code **)(*DataTable180C86878 + 0x10))();
+    (**(code **)(*SystemFunctionDispatchTable + 0x10))();
   }
   else {
 SystemExitLabel:
@@ -240801,7 +240801,7 @@ void ConfigureSystemContext(long long ContextHandle,float OperationBufferSize,ch
   }
   *(float *)(ContextHandle + 0x60) = SystemContextPrimaryFloat2 / (float)(int)SystemMemoryAllocationResult;
   if (*(char *)(ContextHandle + 0x5ba0) == '\0') {
-    SystemContextPrimaryFloat2 = (float)(*(long long *)(&DataTable180C8ED30 + (long long)*(int *)(ContextHandle + 0x5b98) * 8) %
+    SystemContextPrimaryFloat2 = (float)(*(long long *)(&SystemCharacterEncodingDataTable + (long long)*(int *)(ContextHandle + 0x5b98) * 8) %
                     1000000000) * 1e-05;
   }
   else {
