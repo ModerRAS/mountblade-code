@@ -78,7 +78,7 @@
 #define DestinationContextStatusOffset 0x7c                 // 目标上下文状态偏移量 - 目标上下文状态的偏移位置
 #define MemoryResourcePointerOffsetTertiary 0x130            // 内存资源指针第三偏移量 - 内存资源指针的第三偏移位置
 #define MemoryResourcePointerOffsetAlternate 0x118           // 内存资源指针交替偏移量 - 内存资源指针的交替偏移位置
-#define SystemConfigurationOffsetD8 0xd8                     // 系统配置偏移量D8 - 系统配置的偏移位置D8
+#define SystemConfigurationOffsetSecondary 0xd8                     // 系统配置偏移量Secondary - 系统配置的偏移位置Secondary
 #define SystemValidationOffsetF8 0xf8                          // 系统验证偏移量F8 - 系统验证的偏移位置F8
 #define SystemDataStreamOffsetE8 0xe8                          // 系统数据流偏移量E8 - 系统数据流的偏移位置E8
 #define ExceptionHandlerContextPointerRangeEnd 0x100          // 异常处理上下文指针范围结束 - 异常处理上下文指针的范围结束位置
