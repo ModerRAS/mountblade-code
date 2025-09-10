@@ -30655,7 +30655,7 @@ void ProcessFloatingPointData(float inputValue)
   float *dataPointer;
   int64_t contextBase;
   float systemValue;
-  int64_t tempRegister;
+  int64_t temporaryRegister;
   int64_t dataBase;
   float floatResultA;
   DataWord calculatedFloatValue;

@@ -201122,8 +201122,21 @@ void * GetUISystemConfigDataPointer(void)
 
 
 
+/**
+ * @brief 处理UI数据验证和转换
+ * 
+ * 处理UI系统中的数据验证和转换操作，包括多种数据格式的处理和验证
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（处理模式）
+ * @return UIHandle 处理结果句柄
+ */
 UIHandle
-FUN_180784300(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,int param_6
+ProcessUIDataValidationAndConversion(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,int param_6
              )
 
 {
@@ -201131,9 +201144,9 @@ FUN_180784300(longlong uiContext,int dataSource,longlong targetBuffer,longlong b
   UIDword iterationCount;
   longlong stringCompareIndex;
   uint processingStatus;
-  int localValidationResult;
+  int validationStatus;
   UIHandle maxProcessingCount;
-  int localInt7;
+  int processData;
   uint eventProcessingCounter;
   UIByte eventStatus;
   
