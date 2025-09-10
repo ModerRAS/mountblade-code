@@ -238,6 +238,39 @@ typedef enum {
 #define ProcessUIEventHandling FUN_18072d1d8             // UI事件处理函数
 #define ProcessUIStateManagement FUN_18072d226           // UI状态管理函数
 
+// UI事件处理相关函数
+#define ProcessUIEventDispatch FUN_18072edd0               // UI事件调度处理函数
+#define ResetUIEventSystem FUN_18072f60f                    // 重置UI事件系统
+#define ProcessUIEventWithValidation FUN_18072f7ec          // 处理UI事件与验证
+#define ProcessUIEventWithContext FUN_180730040             // 处理带上下文的UI事件
+#define ProcessUIEventBufferTransfer FUN_1807300e4         // 处理UI事件缓冲区传输
+#define ProcessUIEventWithTarget FUN_1807306f5             // 处理带目标的UI事件
+#define ProcessUIEventWithParameters FUN_180730750         // 处理带参数的UI事件
+#define ProcessUIEventRendering FUN_180730e60              // 处理UI事件渲染
+#define ProcessUIEventWithDwordBuffer FUN_1807319b0         // 处理UI事件与Dword缓冲区
+#define ProcessUIEventWithShortBuffer FUN_1807326d0        // 处理UI事件与Short缓冲区
+#define ProcessUIEventNavigation FUN_180733080             // 处理UI事件导航
+#define ProcessUIEventWithBuffer FUN_1807330b2             // 处理UI事件与缓冲区
+#define ProcessUIEventWithSize FUN_18073319f               // 处理UI事件与大小
+#define ProcessUIEventWithShortSize FUN_1807332e3          // 处理UI事件与Short大小
+
+// UI数据处理相关函数
+#define ProcessUIDataWithWordBuffer FUN_180733a10          // 处理UI数据与Word缓冲区
+#define ResetUIDataProcessing FUN_180733b18                // 重置UI数据处理
+#define ProcessUIDataWithShortBuffer FUN_180733ba0          // 处理UI数据与Short缓冲区
+#define ProcessUIDataWithContext FUN_180733bc4             // 处理UI数据与上下文
+#define CleanupUIDataProcessing FUN_180733cdf               // 清理UI数据处理
+#define ProcessUIDataWithCharBuffer FUN_180734390            // 处理UI数据与Char缓冲区
+#define ProcessUIDataWithHandle FUN_1807343b8              // 处理UI数据与句柄
+#define ProcessUIDataWithShortSize FUN_180734467            // 处理UI数据与Short大小
+#define ProcessUIDataWithIntBuffer FUN_180734750             // 处理UI数据与Int缓冲区
+#define ReleaseUIDataMemory FUN_180734778                   // 释放UI数据内存
+#define FreeUIDataResources FUN_18073481b                  // 释放UI数据资源
+#define ProcessUIDataWithUIntBuffer FUN_180734830            // 处理UI数据与UInt缓冲区
+#define ProcessUIDataWithUIntTarget FUN_180734a30            // 处理UI数据与UInt目标
+#define ProcessUIDataWithIntSize FUN_180734dc1              // 处理UI数据与Int大小
+#define FinalizeUIDataProcessing FUN_180734f59             // 完成UI数据处理
+
 // 额外的UNK变量定义
 #define UIEventDataProcessorA8 (void*)0x18095ad08            // UI事件数据处理器A8
 #define UIEventCallbackHandler2A0 (void*)0x1807872a0          // UI事件回调处理器2A0
