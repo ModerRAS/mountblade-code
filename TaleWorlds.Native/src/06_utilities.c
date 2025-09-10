@@ -19737,7 +19737,7 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer, int64_t contextPo
       }
       
       previousNodePointer = dataNodePointer + 2;
-      if (dataNodePointer == (int64_t *)0x0) {
+      if (dataNodePointer == (int64_t *)NullPointer) {
         previousNodePointer = (int64_t *)&DefaultDataNodePointer;
       }
       dataNodePointer = nextNodePointer;
