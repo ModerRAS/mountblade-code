@@ -1585,8 +1585,8 @@
 #define DataOperationOffsetD 0xd                              // 数据操作偏移量D
 
 // 系统上下文偏移量常量
-#define systemContextDataOffset24 0x24                        // 系统上下文数据偏移量24
-#define systemContextDataOffset48 0x48                        // 系统上下文数据偏移量48
+#define SystemContextDataOffset24 0x24                        // 系统上下文数据偏移量24
+#define SystemContextDataOffset48 0x48                        // 系统上下文数据偏移量48
 
 // 异常上下文偏移量常量
 #define ExceptionContextDataOffset6D4 0x6d4                    // 异常上下文数据偏移量6D4
@@ -1923,8 +1923,8 @@
 #define ExceptionHandlerA0_CleanupOffsetF08 0xf08            // 清理偏移量F08
 #define SystemOperationRequestOffset 0x2c
 #define SystemOperationContextOffset 0x4c
-#define SystemDataHandleOffset 0x14
-#define systemContextDataOffset 0x50
+#define SystemDataHandleFieldOffset 0x14
+#define SystemContextPrimaryDataOffset 0x50
 #define SystemSecondaryDataOffset 0x44
 
 // 数据处理偏移量常量
@@ -3055,7 +3055,7 @@
 
 // 系统上下文相关偏移量常量
 #define SystemContextOffset58 0x58                           // 系统上下文偏移量58
-#define SystemContextOffset90 0x90                           // 系统上下文偏移量90
+#define SystemContextSecondaryDataOffset 0x90                           // 系统上下文辅助数据偏移量
 
 // 负偏移量常量定义
 #define OutputStreamNegativeOffset -0x98                     // 输出流负偏移量 - 用于输出流资源的访问
@@ -19999,7 +19999,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
  * @warning 权限检查必须在安全的环境中进行
  * @see ProcessDataRequest, InitializeContextA0
  */
-int CheckUtilityPermissionG0(uint32_t permissionFlags)
+int CheckUtilitySystemPermission(uint32_t permissionFlags)
 {
     int SystemRegisterStatus;
     int PermissionCheckResult;
@@ -20044,7 +20044,7 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
  * 
  * @note 原始函数名：GetUtilityStatusSuccess
  */
-DataBuffer GetUtilityStatusSuccess(void)
+DataBuffer GetUtilitySuccessStatus(void)
 
 {
   return OperationSuccessCode;
@@ -20061,7 +20061,7 @@ DataBuffer GetUtilityStatusSuccess(void)
  * 
  * @note 原始函数名：GetUtilityStatusError
  */
-DataBuffer GetUtilityStatusError(void)
+DataBuffer GetUtilityErrorStatus(void)
 
 {
   return ComponentDataValidationFailure;
@@ -20098,25 +20098,25 @@ DataBuffer GetUtilityStatusError(void)
  * @warning 如果验证失败，函数会提前返回而不执行数据处理
  * @warning 数据处理的具体行为取决于dataContext+0x50处的处理器选择标志
  */
-void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
+void ValidateAndProcessUtilitySystemData(int64_t dataContext,int64_t systemContext)
 
 {
   int DataValidationResult;           // 数据验证结果
   
   DataValidationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + systemContextValidationOffset),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset),
-                        dataContext + SystemDataHandleOffset,dataContext + SystemOperationDataOffset,dataContext + SystemOperationRequestOffset,dataContext + SystemTertiaryDataOffset);
+                        dataContext + SystemDataHandleFieldOffset,dataContext + SystemOperationDataOffset,dataContext + SystemOperationRequestOffset,dataContext + SystemTertiaryDataOffset);
   if ((DataValidationResult == 0) &&
      (DataValidationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset) * DataProcessingMultiplier +
-                                  *(int64_t *)(systemContext + systemContextOffset90) + systemContextOffset554,dataContext + SystemDataHandleOffset), DataValidationResult == 0)
+                                  *(int64_t *)(systemContext + SystemContextSecondaryDataOffset) + systemContextOffset554,dataContext + SystemDataHandleFieldOffset), DataValidationResult == 0)
      ) {
-    if ((*(char *)(dataContext + systemContextDataOffset) != '\0') &&
+    if ((*(char *)(dataContext + SystemContextPrimaryDataOffset) != '\0') &&
        (DataValidationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset) * DataProcessingMultiplier +
-                                    *(int64_t *)(systemContext + systemContextOffset90) + systemContextOffset554,dataContext + SystemSecondaryDataOffset),
+                                    *(int64_t *)(systemContext + SystemContextSecondaryDataOffset) + systemContextOffset554,dataContext + SystemSecondaryDataOffset),
        dataValidationResult != 0)) {
       return;
     }
     ProcessDataAndExecute((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset) * DataProcessingMultiplier +
-                        *(int64_t *)(systemContext + systemContextOffset90) + systemContextOffset554,*(ByteFlag *)(dataContext + systemContextDataOffset));
+                        *(int64_t *)(systemContext + SystemContextSecondaryDataOffset) + systemContextOffset554,*(ByteFlag *)(dataContext + SystemContextPrimaryDataOffset));
   }
   return;
 }
@@ -20146,7 +20146,7 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
  * @warning 只有在验证通过后才会执行清理操作
  * @warning 清理操作可能会释放系统资源，确保在适当的时机调用
  */
-void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
+void ExecuteUtilitySystemCleanupOperation(int64_t systemHandle, int64_t cleanupContext)
 
 {
   int CleanupStatus;           // 清理状态
@@ -20512,7 +20512,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 
 // 原始函数名：FUN_1808913ff - 工具权限检查函数G0
 // 功能：检查工具系统权限
-#define CheckUtilityPermissionG0 FUN_1808913ff
+#define CheckUtilitySystemPermission FUN_1808913ff
 
 // 原始函数名：FUN_180891492 - 工具资源获取函数H0
 // 功能：获取工具系统资源
@@ -50022,11 +50022,11 @@ void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名可能是类似Unwind_开头的函数
  * @warning 该函数会销毁线程同步对象，需要确保线程已正确终止
  */
-void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
-  char characterFlag;
+  char characterProcessingFlag;
   DataBuffer validationStatus;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
