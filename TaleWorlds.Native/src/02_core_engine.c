@@ -163,6 +163,8 @@
 #define ProcessSystemCharacterEncodingSecondary FUN_180207e00      // 处理系统字符编码次函数
 #define ProcessSystemEncodingDataSecondary FUN_180211f70          // 处理系统编码数据次函数
 #define ProcessSystemMemoryManagement FUN_180738730              // 处理系统内存管理
+#define CalculateCharacterEncodingValue FUN_180641cd0              // 计算字符编码值
+#define ProcessCharacterTableOperation FUN_180226430              // 处理字符表操作
 
 /**
  * @brief 配置核心引擎指针
@@ -269111,7 +269113,7 @@ ProcessCharacterEncodingWithBufferValidation(uint64_t *ContextHandle,long long *
     MemoryBlockIndex = (**(code **)((void *)*ContextHandle + 8))(ContextHandle);
   }
   *ContextHandleSize = MemoryBlockIndex;
-  IntegerValue = FUN_180641cd0(Utf8SourcePointer,AdditionalParameter1,Utf16EndPointer & 0xffffffff,AdditionalParameter2,MemoryAddressMaskPointer,CalculatedCodePoint);
+  IntegerValue = CalculateCharacterEncodingValue(Utf8SourcePointer,AdditionalParameter1,Utf16EndPointer & 0xffffffff,AdditionalParameter2,MemoryAddressMaskPointer,CalculatedCodePoint);
   if (IntegerValue < 0) {
     OperationBufferSize[1] = 0;
     *(uint8_t *)(OperationBufferSize + 3) = 1;
@@ -269134,7 +269136,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   _Mtx_init_in_situ(ContextHandle + 4,2,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   CharacterTablePointer = 0x10;
   do {
-    FUN_180226430();
+    ProcessCharacterTableOperation();
     CharacterTablePointer = CharacterTablePointer + -1;
   } while (CharacterTablePointer != 0);
   ContextHandle[0x38e] = 0;

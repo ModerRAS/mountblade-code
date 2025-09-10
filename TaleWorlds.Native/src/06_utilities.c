@@ -4999,6 +4999,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18013ea00
  * @warning 清理操作失败可能会导致内存泄漏，需要确保所有资源都被正确释放
  */
+#define FUN_18013ea00 CleanupDataBufferAndMemory
 #define CleanupDataBufferAndReleaseMemory CleanupDataBufferAndMemory
 
 /**
@@ -5009,6 +5010,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
+#define FUN_1808fc5ac CheckSystemStatusAndHealth
 #define CheckSystemStatusAndCleanupResources CheckSystemStatusAndHealth
 
 /**
@@ -5025,6 +5027,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_1808fc51c
  * @warning 确保传入的参数有效，否则可能导致未定义行为
  */
+#define FUN_1808fc51c ExecuteUtilityOperationWithParameters
 #define ExecuteUtilityOperationWithParams ExecuteUtilityOperationWithParameters
 
 /**
