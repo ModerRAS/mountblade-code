@@ -120025,12 +120025,12 @@ void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
   
   memoryRegionOffset = *(int64_t *)(exceptionDataBuffer + ExceptionHandlerContextOffset60);
   exceptionContext = memoryRegionOffset + ResourceManagementOffset1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4) + -0xb0 + exceptionContext) =
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryRegionOffset + ExtendedExceptionHandlerDataOffset) + 4) + -TertiaryExceptionHandlerParameterOffsetB0 + exceptionContext) =
        &SystemExecutionBuffer;
-  operationResult = *(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4);
-  *(int *)((int64_t)operationResult + -0xb4 + exceptionContext) = operationResult + -0xb0;
-  ExecuteSystemCoreCommand(memoryRegionOffset + 0x138);
-  DestroyBasicIstream(memoryRegionOffset + 0x140);
+  operationResult = *(int *)(*(int64_t *)(memoryRegionOffset + ExtendedExceptionHandlerDataOffset) + 4);
+  *(int *)((int64_t)operationResult + -SystemContextValidationOffsetB4 + exceptionContext) = operationResult + -TertiaryExceptionHandlerParameterOffsetB0;
+  ExecuteSystemCoreCommand(memoryRegionOffset + ResourceIteratorNextOffset);
+  DestroyBasicIstream(memoryRegionOffset + ExceptionHandlerPointerOffset140);
                              DestroyBasicIos(exceptionContext);
   return;
 }

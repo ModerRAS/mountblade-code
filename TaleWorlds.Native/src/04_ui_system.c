@@ -122261,7 +122261,7 @@ void CleanupUIResourcesAndExecuteRenderTask(void)
 
 
 
- void FUN_180738d67(void)
+ void ReleaseUIResourcesAndExecuteRender(void)
 /**
  * @brief 释放UI内存资源并执行渲染任务
  * 
@@ -122475,7 +122475,7 @@ void ReleaseUIMemoryAndExecuteRender(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180738ed0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 /**
  * @brief 处理UI数据加密和内存管理
  * 
