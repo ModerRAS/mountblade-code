@@ -120715,53 +120715,53 @@ void InitializeUIDataBufferAndSort(longlong uiContext,longlong dataSource,int ta
 
 
 
- void FUN_180737b3f(void)
-void FUN_180737b3f(void)
+ void ProcessUIEventSortingAndInsertion(void)
+void ProcessUIEventSortingAndInsertion(void)
 
 {
-  int processingResult;
-  UIDword *piterationCount;
-  int uiCompareResult;
-  int sourceDataInt;
-  int localInt5;
-  ulonglong contextHandle;
-  longlong uiContextBasePointer;
-  longlong componentData;
-  int *ptrLocalInt6;
-  longlong localLong7;
-  int RegisterPointerD;
-  uint eventProcessingCounter;
+  int insertionResult;
+  UIDword *sortIterator;
+  int comparisonResult;
+  int sourceDataValue;
+  int insertionPosition;
+  ulonglong eventCount;
+  longlong eventContextBase;
+  longlong componentDataSource;
+  int *targetPointer;
+  longlong iterationOffset;
+  int registerDataD;
+  uint processedEvents;
   ulonglong eventStatus;
-  int RegisterValue;
+  int registerValue;
   longlong eventHandle;
   
-  ptrLocalInt6 = (int *)(eventHandle + 4);
+  targetPointer = (int *)(eventHandle + 4);
   do {
-    localInt5 = *ptrLocalInt6;
-    uiCompareResult = RegisterPointerD + -1;
-    localLong7 = uiContextBasePointer;
-    if (-1 < uiCompareResult) {
-      piterationCount = (UIDword *)((componentData - eventHandle) + (longlong)ptrLocalInt6);
+    insertionPosition = *targetPointer;
+    comparisonResult = registerDataD + -1;
+    iterationOffset = eventContextBase;
+    if (-1 < comparisonResult) {
+      sortIterator = (UIDword *)((componentDataSource - eventHandle) + (longlong)targetPointer);
       do {
-        sourceDataInt = *(int *)((eventHandle - componentData) + -4 + (longlong)piterationCount);
-        if (sourceDataInt <= localInt5) break;
-        *(int *)((eventHandle - componentData) + (longlong)piterationCount) = sourceDataInt;
-        localLong7 = localLong7 + -1;
-        *piterationCount = piterationCount[-1];
-        piterationCount = piterationCount + -1;
-        uiCompareResult = uiCompareResult + -1;
-      } while (-1 < uiCompareResult);
+        sourceDataValue = *(int *)((eventHandle - componentDataSource) + -4 + (longlong)sortIterator);
+        if (sourceDataValue <= insertionPosition) break;
+        *(int *)((eventHandle - componentDataSource) + (longlong)sortIterator) = sourceDataValue;
+        iterationOffset = iterationOffset + -1;
+        *sortIterator = sortIterator[-1];
+        sortIterator = sortIterator + -1;
+        comparisonResult = comparisonResult + -1;
+      } while (-1 < comparisonResult);
     }
-    *(int *)(eventHandle + 4 + localLong7 * 4) = localInt5;
-    ptrLocalInt6 = ptrLocalInt6 + 1;
-    *(int *)(componentData + 4 + localLong7 * 4) = RegisterPointerD;
-    uiContextBasePointer = uiContextBasePointer + 1;
-    RegisterPointerD = RegisterPointerD + 1;
-    localInt5 = (int)contextHandle;
-  } while (RegisterPointerD < localInt5);
-  eventStatus = contextHandle & 0xffffffff;
-  if (localInt5 < RegisterValue) {
-    ptrLocalInt6 = (int *)(eventHandle + contextHandle * 4);
+    *(int *)(eventHandle + 4 + iterationOffset * 4) = insertionPosition;
+    targetPointer = targetPointer + 1;
+    *(int *)(componentDataSource + 4 + iterationOffset * 4) = registerDataD;
+    eventContextBase = eventContextBase + 1;
+    registerDataD = registerDataD + 1;
+    insertionPosition = (int)eventCount;
+  } while (registerDataD < insertionPosition);
+  eventStatus = eventCount & 0xffffffff;
+  if (insertionPosition < registerValue) {
+    targetPointer = (int *)(eventHandle + eventCount * 4);
     do {
       uiCompareResult = *ptrLocalInt6;
       if (uiCompareResult < *(int *)(eventHandle + -4 + contextHandle * 4)) {
