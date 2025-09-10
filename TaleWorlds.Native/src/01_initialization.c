@@ -72920,3 +72920,58 @@ int InitializeAndManageSystemResources(void* systemBuffer, void* resourceHandle,
     return 0; // 成功
 }
 
+/**
+ * @brief 初始化系统网络配置
+ * 
+ * 初始化系统的网络配置，包括网络接口、协议栈、连接池等
+ * 
+ * @param NetworkConfig 网络配置结构体指针
+ * @param ConfigSize 配置结构体大小
+ * @return int 初始化结果：
+ *         0: 成功
+ *         -1: 无效参数
+ *         -2: 网络接口初始化失败
+ *         -3: 协议栈初始化失败
+ *         -4: 连接池初始化失败
+ * 
+ * @note 原始实现：简化实现，只进行基本的网络配置初始化
+ * @see InitializeSystemInterface, InitializeProtocolStack, InitializeConnectionPool
+ */
+int InitializeSystemNetworkConfiguration(void *NetworkConfig, uint32_t ConfigSize)
+{
+    // 参数验证
+    if (NetworkConfig == NULL || ConfigSize < sizeof(SystemNetworkConfig)) {
+        return -1; // 无效参数
+    }
+    
+    // 网络配置相关变量
+    SystemNetworkConfig *Config = (SystemNetworkConfig *)NetworkConfig;
+    uint32_t InterfaceStatus;
+    uint32_t ProtocolStatus;
+    uint32_t PoolStatus;
+    
+    // 初始化网络接口
+    InterfaceStatus = InitializeSystemInterface(&Config->InterfaceConfig);
+    if (InterfaceStatus != 0) {
+        return -2; // 网络接口初始化失败
+    }
+    
+    // 初始化协议栈
+    ProtocolStatus = InitializeProtocolStack(&Config->ProtocolConfig);
+    if (ProtocolStatus != 0) {
+        return -3; // 协议栈初始化失败
+    }
+    
+    // 初始化连接池
+    PoolStatus = InitializeConnectionPool(&Config->PoolConfig);
+    if (PoolStatus != 0) {
+        return -4; // 连接池初始化失败
+    }
+    
+    // 设置网络配置状态
+    Config->ConfigStatus = SystemNetworkConfigActive;
+    Config->InitializationTime = GetSystemTimestamp();
+    
+    return 0; // 成功
+}
+
