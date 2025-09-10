@@ -235,41 +235,41 @@
 #define DataBufferSecondaryOffset 0x260
 
 // 内存块大小常量
-#define MemoryBlockSizeD0 0xd0                              // 内存块大小D0
+#define MemoryBlockSizeDefault 0xd0                           // 默认内存块大小
 
 // 异常处理器回调偏移量常量
-#define ExceptionHandlerCallbackOffset56 0x56                // 异常处理器回调偏移量56
+#define ExceptionHandlerCallbackDataOffset 0x56               // 异常处理器回调数据偏移量
 
 // 系统清理标志常量
-#define SystemCleanupFlagffc00000 0xffc00000                 // 系统清理标志ffc00000
-#define SystemCleanupFlagAlternative 0x8                      // 替代系统清理标志
+#define SystemCleanupExtendedFlag 0xffc00000                   // 系统清理扩展标志
+#define SystemCleanupBasicFlag 0x8                            // 系统清理基本标志
 
 // 异常列表偏移量常量
-#define ExceptionListOffset 0x10                              // 异常列表偏移量
+#define ExceptionListStartOffset 0x10                          // 异常列表起始偏移量
 
 // 内存异常检查偏移量常量
 #define MemoryExceptionCheckOffset 0xe                       // 内存异常检查偏移量
 
 // 内存数据偏移量常量
-#define MemoryDataOffset 0x20                                 // 内存数据偏移量
-#define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
-#define SystemDataSecondaryOffset18 0x18                      // 系统数据次要偏移量18
+#define MemoryDataStartOffset 0x20                             // 内存数据起始偏移量
+#define SystemDataParameterOffset 0x20                         // 系统数据参数偏移量
+#define SystemDataSecondaryOffset 0x18                         // 系统数据次要偏移量
 
 // 内存引用偏移量常量
-#define MemoryReferenceOffset 0x18                            // 内存引用偏移量
+#define MemoryReferenceCountOffset 0x18                        // 内存引用计数偏移量
 
 // 内存偏移调整常量
-#define MemoryOffsetAdjustment 4                              // 内存偏移调整值
+#define MemoryOffsetAlignment 4                                // 内存偏移对齐值
 
 // 内存基础偏移量常量
-#define MemoryBaseOffset 0x80                                 // 内存基础偏移量
+#define MemoryBlockStartOffset 0x80                            // 内存块起始偏移量
 
 // 内存块乘数常量
-#define MemoryBlockMultiplier 0x50                            // 内存块乘数
+#define MemoryBlockSizeMultiplier 0x50                         // 内存块大小乘数
 
 // 资源管理偏移量常量
-#define ResourceManagementOffset80 0x80                       // 资源管理偏移量80
-#define ResourceSecondaryDataOffset 0x120                     // 资源次要数据偏移量
+#define ResourceManagementDataOffset 0x80                     // 资源管理数据偏移量
+#define ResourceSecondaryMemoryOffset 0x120                   // 资源次要内存偏移量
 
 // 系统上下文缓冲区偏移量常量
 #define systemContextBufferOffset 0x8                         // 系统上下文缓冲区偏移量
