@@ -112864,8 +112864,19 @@ void ProcessUIEventConversionInternal(UIHandle uiContext,float *dataSource,UIHan
 
 
 
- void FUN_18072ec44(void)
-void FUN_18072ec44(void)
+ /**
+ * @brief UI事件系统空操作函数
+ * 
+ * 该函数是一个空操作函数，主要用于UI事件系统中的占位或作为默认的空实现。
+ * 在UI事件系统中，某些情况下可能需要提供一个空的函数指针，
+ * 此函数就用于满足这种需求。
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18072ec44
+ * @note 这是一个空实现函数，不执行任何操作
+ */
+void UIEventSystemEmptyOperation(void)
 
 {
   return;
