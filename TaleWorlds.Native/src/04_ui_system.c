@@ -119922,26 +119922,26 @@ void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *t
                       (int)transformChar2 * resultPointer[4] * 2 + resultPointer[3] * (int)transformChar1 * 2)                      (longlong)charPointer[-3]) >> 0x10) +
                (int)((ulonglong)
                      ((longlong)
-                      ((int)localChar4 * resultPointer[6] +
-                      localInt7 * -0x100 + (int)localChar5 * resultPointer[7] * 2 + (int)localChar3 * resultPointer[9] * 2 +
-                      (int)localChar2 * resultPointer[8] * 2) * (longlong)localChar4) >> 0x10) +
+                      ((int)transformChar3 * resultPointer[6] +
+                      transformOffset1 * -0x100 + (int)transformChar4 * resultPointer[7] * 2 + (int)transformChar2 * resultPointer[9] * 2 +
+                      (int)transformChar1 * resultPointer[8] * 2) * (longlong)transformChar3) >> 0x10) +
                (int)((ulonglong)
                      ((longlong)
-                      ((int)localChar5 * resultPointer[0xc] +
-                      localInt8 * -0x100 + (int)localChar2 * resultPointer[0xd] * 2 + (int)localChar3 * resultPointer[0xe] * 2
-                      ) * (longlong)localChar5) >> 0x10) + 0x8021 +
+                      ((int)transformChar4 * resultPointer[0xc] +
+                      transformOffset2 * -0x100 + (int)transformChar1 * resultPointer[0xd] * 2 + (int)transformChar2 * resultPointer[0xe] * 2
+                      ) * (longlong)transformChar4) >> 0x10) + 0x8021 +
                (int)((ulonglong)
                      ((longlong)
-                      (resultPointer[0x12] * (int)localChar2 + localInt9 * -0x100 + (int)localChar3 * resultPointer[0x13] * 2)
-                     * (longlong)localChar2) >> 0x10);
-      if (-1 < ProcessingResult3) {
-        if (ProcessingResult2 < 1) {
-          ProcessingResult2 = 0;
+                      (resultPointer[0x12] * (int)transformChar1 + transformOffset3 * -0x100 + (int)transformChar2 * resultPointer[0x13] * 2)
+                     * (longlong)transformChar1) >> 0x10);
+      if (-1 < calculationResult2) {
+        if (calculationResult1 < 1) {
+          calculationResult1 = 0;
         }
-        ProcessingResult3 = ProcessingResult2 * 0x800 + ProcessingResult3;
-        eventIndex = GetUIProcessingValue(ProcessingResult3);
-        ProcessingResult2 = (int)(short)(eventIndex + -0x780) * (int)uiContext0 + (uint)*param_9 * 4;
-        if (ProcessingResult2 <= *targetBuffer) {
+        calculationResult2 = calculationResult1 * 0x800 + calculationResult2;
+        transformIndex = GetUIProcessingValue(calculationResult2);
+        calculationResult1 = (int)(short)(transformIndex + -0x780) * (int)uiContext0 + (uint)*param_9 * 4;
+        if (calculationResult1 <= *targetBuffer) {
           *targetBuffer = ProcessingResult2;
           *dataSource = ProcessingResult3;
           *uiContext = (char)(int)param_6;
