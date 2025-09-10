@@ -31615,7 +31615,7 @@ void InitializeUIRenderingFunctions(void)
     UIPixelProcessorPointer = (UIFunctionPtr *)&UIPixelProcessorAlternativeFallbackImplementation;
   }
   UIImageProcessorPointer = InitializeUIImageProcessor;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIImageProcessorPointer = (UIFunctionPtr *)&UIImageProcessorFallbackImplementation;
   }
   if (IsValidationComplete) {
@@ -31625,7 +31625,7 @@ void InitializeUIRenderingFunctions(void)
   if (EventprocessingStatus) {
     UIColorProcessorPointer = (UIFunctionPtr *)&UIColorProcessorFallbackImplementation;
   }
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIColorProcessorPointer = (UIFunctionPtr *)&UIColorProcessorAlternativeFallbackImplementation;
   }
   UITextureProcessorPointer = InitializeUITextureProcessor;
@@ -31636,7 +31636,7 @@ void InitializeUIRenderingFunctions(void)
   if (EventprocessingStatus) {
     UIFontRendererPointer = (UIFunctionPtr *)&UIFontRendererFallbackImplementation;
   }
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFontRendererPointer = (UIFunctionPtr *)&UIFontRendererAlternativeFallbackImplementation;
   }
   UIShaderProcessorPointer = InitializeUIShaderProcessor;
@@ -31716,123 +31716,123 @@ void InitializeUIRenderingFunctions(void)
     UIExtendedFunctionProcessorPointer4 = (UIFunctionPtr *)&UIUnknownFunctionTable14;
   }
   UIExtendedFunctionProcessorPointer5 = CalculateImagePixelMinimumAdvanced;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIExtendedFunctionProcessorPointer5 = CalculateImagePixelSumAdvanced;
   }
   UIFunctionTablePointer1 = ProcessUIBasicData1;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer1 = ProcessUIBasicData2;
   }
   UIFunctionTablePointer2 = ProcessUIBasicData3;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer2 = ProcessUIBasicData4;
   }
   UIFunctionTablePointer3 = ProcessUIBasicData5;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer3 = ProcessUIBasicData6;
   }
   UIFunctionTablePointer4 = ProcessUIBasicData7;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer4 = ProcessUIBasicData8;
   }
   UIFunctionTablePointer5 = ProcessUIBasicData9;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer5 = ProcessUIBasicData10;
   }
   if (UIBoolVar4) {
     UIFunctionTablePointer5 = ProcessUISpecialData;
   }
   UIFunctionTablePointer6 = ProcessUIBasicData11;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer6 = ProcessUIBasicData12;
   }
   UIFunctionTablePointer7 = ProcessUIBasicData13;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTablePointer7 = ProcessUIBasicData14;
   }
   UITextureProcessorPointer = ProcessUITextureData;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UITextureProcessorPointer = ProcessUITextureDataOptimized;
   }
   UIGlobalStatusFlag1 = ProcessUIAdvancedData;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalDataTransformationProcessor = ProcessUIDataTransformation;
   }
   UIGlobalDataConversionProcessor = ProcessUIDataConversion;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalDataConversionProcessor = ProcessUIDataEncoding;
   }
   if (UIBoolVar4) {
     UIGlobalDataConversionProcessor = ProcessUIDataFallback;
   }
   UIGlobalResourceValidationProcessor = ValidateUIResourceIntegrity;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalResourceValidationProcessor = ProcessUIDataOperationType1;
   }
   UIGlobalOperationProcessorType2 = ProcessUIDataOperationType2;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorType2 = ProcessUIDataOperationTypeA;
   }
   UIGlobalOperationProcessorTypeB = ProcessUIDataOperationTypeB;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeB = ProcessUIDataOperationTypeC;
   }
   UIGlobalOperationProcessorTypeD = ProcessUIDataOperationTypeD;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeD = ProcessUIDataOperationTypeE;
   }
   UIGlobalOperationProcessorTypeF = ProcessUIDataOperationTypeF;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeF = ProcessUIDataOperationTypeG;
   }
   UIGlobalOperationProcessorTypeH = ProcessUIDataOperationTypeH;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeH = ProcessUIDataOperationTypeI;
   }
   UIGlobalOperationProcessorTypeJ = ProcessUIDataOperationTypeJ;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeJ = ProcessUIDataOperationTypeK;
   }
   UIGlobalOperationProcessorTypeL = ProcessUIDataOperationTypeL;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataSpecialOperation;
   }
   if (UIBoolVar4) {
     UIGlobalOperationProcessorTypeL = ProcessUIDataFallbackOperation;
   }
   UIEventDispatchProcessor = FUN_18068f150;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable898 = FUN_18068f240;
   }
   UIFunctionTable858 = FUN_18068f330;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable858 = FUN_18068f3a0;
   }
   UIFunctionTable820 = FUN_18068f410;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable820 = FUN_18068f480;
   }
   UIFunctionTable7e0 = FUN_18068f4f0;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable7e0 = FUN_18068f680;
   }
   UIFunctionTable7b0 = FUN_18068f810;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable7b0 = FUN_18068f9a0;
   }
   if (UIBoolVar4) {
     UIFunctionTable7b0 = FUN_180695750;
   }
   UIFunctionTable778 = FUN_18068fb30;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable778 = FUN_18068fba0;
   }
   UIFunctionTable750 = FUN_18068fc10;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable750 = FUN_18068fc80;
   }
   UIFunctionTable708 = FUN_18068fcf0;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     UIFunctionTable708 = FUN_18068fd60;
   }
   UIFunctionTable958 = FUN_18068fdd0;
@@ -68606,7 +68606,7 @@ uint ProcessUIDataValidation(longlong uiContext,uint dataSource,UIDword *targetB
   ulonglong processingStatus;
   uint loopCounter;
   uint maxProcessingCount;
-  bool bVar7;
+  bool useAlternativeImplementation;
   
   maxProcessingCount = 0;
   uiValidationResult = ValidateUIResourceData(uiContext,0x80);
@@ -73775,7 +73775,7 @@ int DecodeUICharacterData(longlong uiContext, longlong dataSource)
   ulonglong eventCodeType;
   ulonglong processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   
   localChar2 = '\0';
   do {
@@ -73787,7 +73787,7 @@ int DecodeUICharacterData(longlong uiContext, longlong dataSource)
     processStatus = *(ulonglong *)(uiContext + 0x10);
     eventCode = (ulonglong)loopCounter << 0x38;
     BufferSizeFlag = eventCodeType <= processingStatus;
-    if (bVar6) {
+    if (useFallbackImplementation) {
       loopCounter = *(int *)(uiBufferData + 0x1c) - loopCounter;
       processStatus = processingStatus - eventCodeType;
     }
@@ -73956,7 +73956,7 @@ void InitializeUISystem(void)
   ulonglong eventCodeType;
   ulonglong processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   
   localChar2 = '\0';
   do {
@@ -73968,7 +73968,7 @@ void InitializeUISystem(void)
     processStatus = *(ulonglong *)(uiContext + 0x10);
     eventCode = (ulonglong)loopCounter << 0x38;
     BufferSizeFlag = eventCodeType <= processingStatus;
-    if (bVar6) {
+    if (useFallbackImplementation) {
       loopCounter = *(int *)(uiBufferData + 0x1c) - loopCounter;
       processStatus = processingStatus - eventCodeType;
     }
@@ -93613,7 +93613,7 @@ void UINoOperationHandler(void)
 // UI系统数据操作函数语义化定义
 #define ProcessUIDataSource FUN_180739350                  // 处理UI数据源
 #define ProcessUIDataWithParameters FUN_180739420          // 处理带参数的UI数据
-#define ProcessUIDataWithExtendedParameters FUN_18073943d // 处理带扩展参数的UI数据
+#define ProcessUIContextDataValidation FUN_18073943d // 处理UI上下文数据的验证和处理
 #define HandleUIDataCleanup FUN_1807394c5                 // 处理UI数据清理
 #define ProcessUIDataValidation FUN_1807395df             // 处理UI数据验证
 #define HandleUIStateManagement FUN_180739619              // 处理UI状态管理
@@ -123339,43 +123339,43 @@ void ProcessUIContextDataValidation(UIHandle uiContext, UIDword dataSource, UIHa
   UIHandle stackOffset1c0;
   UIHandle stackOffset1c8;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = contextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = uiContextBasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = preservedRegister12;
-  *(UIHandle *)(RegisterPointer + -0x30) = preservedRegister13;
-  *(UIHandle *)(RegisterPointer + -0x38) = eventHandle;
-  *(UIHandle *)(RegisterPointer + -0x40) = preservedRegister15;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = baseContextPointer;
+  *(UIHandle *)(registerPointer + -0x28) = savedRegister12;
+  *(UIHandle *)(registerPointer + -0x30) = savedRegister13;
+  *(UIHandle *)(registerPointer + -0x38) = eventHandle;
+  *(UIHandle *)(registerPointer + -0x40) = savedRegister15;
   param_6 = 0;
-  processingResult = FUN_180749e60(uiContext,&param_7,&param_6);
-  if (processingResult == 0) {
-    processingResult = func_0x000180745fd0(param_7,dataSource,targetBuffer,bufferSize,stackParam000001c0);
-    if (processingResult == 0) goto FUN_1807395df;
+  dataProcessingStatus = ValidateUIContext(uiContext, &param_7, &param_6);
+  if (dataProcessingStatus == 0) {
+    dataProcessingStatus = ProcessUIDataTransfer(param_7, dataSource, targetBuffer, bufferSize, stackOffset1c0);
+    if (dataProcessingStatus == 0) goto CleanupAndExit;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = func_0x00018074b7d0(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bd40(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,targetBuffer);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bd40(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,bufferSize);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074bd40(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,stackParam000001c0);
-    uiValidationResult = uiValidationResult + uiCompareResult;
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074bd40(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),stackParam000001c8);
+    validationStatus = ValidateUIDataStream(&stack0x00000040, 0x100, dataSource);
+    comparisonStatus = CompareUIDataBuffer(&stack0x00000040 + validationStatus, 0x100 - validationStatus, &UIBufferControlData);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = ProcessUIDataValidation(&stack0x00000040 + validationStatus, 0x100 - validationStatus, targetBuffer);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = CompareUIDataBuffer(&stack0x00000040 + validationStatus, 0x100 - validationStatus, &UIBufferControlData);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = ProcessUIDataValidation(&stack0x00000040 + validationStatus, 0x100 - validationStatus, bufferSize);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = CompareUIDataBuffer(&stack0x00000040 + validationStatus, 0x100 - validationStatus, &UIBufferControlData);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = ProcessUIDataValidation(&stack0x00000040 + validationStatus, 0x100 - validationStatus, stackOffset1c0);
+    validationStatus = validationStatus + comparisonStatus;
+    comparisonStatus = CompareUIDataBuffer(&stack0x00000040 + validationStatus, 0x100 - validationStatus, &UIBufferControlData);
+    ProcessUIDataValidation(&stack0x00000040 + (validationStatus + comparisonStatus), 0x100 - (validationStatus + comparisonStatus), stackOffset1c8);
                      WARNING: Subroutine does not return
-    ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextOperationTable,&stack0x00000040);
+    ExecuteUIContextDataOperation(dataProcessingStatus, 1, uiContext, &UIContextOperationTable, &stack0x00000040);
   }
-FUN_1807395df:
+CleanupAndExit:
   if (param_6 != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(stackOffset140 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -145252,7 +145252,7 @@ ulonglong FUN_18074d860(longlong *uiContext,longlong dataSource,int targetBuffer
   ulonglong processingStatus;
   int localValidationResult;
   longlong contextDataHandle;
-  bool bVar7;
+  bool useAlternativeImplementation;
   int aiStackX_18 [2];
   int aiStackX_20 [2];
   longlong stackLong38;
@@ -155159,7 +155159,7 @@ UIHandle FUN_180758800(longlong *uiContext,longlong dataSource,longlong targetBu
   UIHandle eventCodeType;
   longlong contextDataHandle;
   longlong eventDataIndex;
-  bool bVar6;
+  bool useFallbackImplementation;
   char acStackX_20 [8];
   UIByte astackUInt48 [8];
   UIHandle stackUInt40;
@@ -167926,7 +167926,7 @@ void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int 
   UIHandle processingStatus;
   UIHandle loopCounter;
   UIHandle maxProcessingCount;
-  bool bVar7;
+  bool useAlternativeImplementation;
   int localInt8;
   longlong CharacterDataOffset;
   uint *componentTransformData;
@@ -181884,7 +181884,7 @@ int FUN_18076f100(longlong uiContext,ulonglong dataSource,ulonglong targetBuffer
   longlong *pstringCompareIndex;
   longlong contextDataHandle;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   int localInt7;
   longlong *pcontextOffset;
   
@@ -182194,7 +182194,7 @@ int FUN_18076f660(longlong uiContext)
   longlong *pstringCompareIndex;
   ulonglong processingStatus;
   ulonglong *componentContextPtr;
-  bool bVar6;
+  bool useFallbackImplementation;
   uint iterationCounter;
   int localInt8;
   longlong *pCharacterDataOffset;
@@ -182278,7 +182278,7 @@ int FUN_18076f660(longlong uiContext)
   }
   *(int *)(uiBufferData + 0x29c) = localInt8;
   *(UIDword *)(uiBufferData + 0x298) = 0;
-  if (bVar6) {
+  if (useFallbackImplementation) {
     if (localInt8 == 0) {
       *(UIDword *)(*(longlong *)(uiBufferData + 0x218) + 0x70) = 0;
       *(float *)(*(longlong *)(uiBufferData + 0x218) + 0x74) = FloatValue2;
@@ -184129,7 +184129,7 @@ ulonglong FUN_18077073a(longlong uiContext)
   UIDword processingStatus;
   UIDword loopCounter;
   UIHandle maxProcessingCount;
-  bool bVar7;
+  bool useAlternativeImplementation;
   int bufferSize;
   uint eventProcessingCounter;
   int localInt9;
@@ -184953,7 +184953,7 @@ int FUN_1807716e0(longlong uiContext,UIHandle **dataSource,UIHandle *targetBuffe
   UIDword processingStatus;
   UIDword loopCounter;
   UIHandle maxProcessingCount;
-  bool bVar7;
+  bool useAlternativeImplementation;
   int localInt8;
   ulonglong eventStatus;
   longlong allocatedMemory0;
@@ -197607,7 +197607,7 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
   bool ProcessingFlag;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   UIDword iterationCounter;
   ulonglong eventProcessingCounter;
   char *plocalChar9;
@@ -197701,7 +197701,7 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
         iterationCounter = 0xffffffff;
       }
       *(UIDword *)(uiBufferData + 0x270) = iterationCounter;
-      if (bVar6) {
+      if (useFallbackImplementation) {
         *(UIHandle *)(uiContext + 600) = 0;
         if (*(longlong *)(uiBufferData + 0x230) != 0) {
                      WARNING: Subroutine does not return
@@ -211378,7 +211378,7 @@ UIHandle FUN_18078baf0(longlong uiContext,UIDword dataSource)
   longlong stringCompareIndex;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   char validationFlag;
   int localInt8;
   ulonglong eventStatus;
@@ -211522,7 +211522,7 @@ LAB_18078bd92:
         }
         if (stackLongc8 != 0) {
 LAB_18078bec8:
-          if (bVar6) {
+          if (useFallbackImplementation) {
             FUN_1807560f0(pAllocatedMemoryBlock1,astackUInt80);
             func_0x000180756200(pAllocatedMemoryBlock1,&stackLong98);
             func_0x0001807561d0(pAllocatedMemoryBlock1,&stackLong90);
@@ -213775,7 +213775,7 @@ void FUN_18078e1b5(longlong uiContext,UIHandle dataSource,uint targetBuffer,UIDw
   UIDword eventCodeType;
   UIDword processingStatus;
   UIHandle loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   int localInt8;
   uint eventStatus;
@@ -233607,7 +233607,7 @@ void FUN_1808025c0(longlong uiContext,int dataSource,UIHandle targetBuffer,int *
   int *puiCompareResult;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   int localInt7;
   uint eventProcessingCounter;
   UIHandle dataPointer;
@@ -233865,7 +233865,7 @@ void FUN_180802653(void)
   int *puiCompareResult;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   int bufferSize;
   int localInt7;
   uint eventProcessingCounter;
@@ -291699,8 +291699,8 @@ void FUN_18083b5a0(UIByte (*uiContext) [64],UIByte (*dataSource) [64],int target
   bool ProcessingFlag;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
-  bool bVar7;
+  bool useFallbackImplementation;
+  bool useAlternativeImplementation;
   bool EventprocessingStatus;
   byte bVar9;
   bool isCharacterMatch0;
@@ -308066,7 +308066,7 @@ UIHandle FUN_18084d93b(UIHandle uiContext,int dataSource)
   double *preservedRegister13;
   int eventHandle;
   longlong preservedRegister15;
-  bool bVar6;
+  bool useFallbackImplementation;
   double dVar7;
   UIByte stackBuffer [8];
   
@@ -308090,11 +308090,11 @@ UIHandle FUN_18084d93b(UIHandle uiContext,int dataSource)
       iterationCount = unmodifiedEBP - eventCodeType;
       BufferSizeFlag = eventCodeType < unmodifiedEBP;
       result = unmodifiedEBP;
-      if (bVar6) {
+      if (useFallbackImplementation) {
         result = eventCodeType;
       }
       unmodifiedEBP = 0;
-      if (bVar6) {
+      if (useFallbackImplementation) {
         unmodifiedEBP = iterationCount;
       }
       dVar7 = dVar7 + (double)result                       (((double)*(float *)(bufferPtr + 0x1c) * (double)*(int *)(bufferPtr + 0x10)) /
@@ -313214,7 +313214,7 @@ UIHandle FUN_180851740(longlong uiContext)
   UIHandle processingStatus;
   longlong eventDataIndex;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   
   eventDataIndex = *(longlong *)(*(longlong *)(uiBufferData + 8) + 0x28);
   BufferSizeStatus = eventDataIndex == 0;
@@ -341190,7 +341190,7 @@ FUN_1808690e0(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -341258,7 +341258,7 @@ FUN_180869270(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -341326,7 +341326,7 @@ FUN_180869400(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -341394,7 +341394,7 @@ FUN_180869590(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -341462,7 +341462,7 @@ FUN_180869720(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -341530,7 +341530,7 @@ FUN_1808698b0(code *uiContext,longlong *dataSource,longlong targetBuffer,UIHandl
   int sourceDataInt;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt40;
   int astackInt38 [4];
   
@@ -361596,7 +361596,7 @@ longlong FUN_18087aba0(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -361638,7 +361638,7 @@ longlong FUN_18087aba0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087ac5f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -362427,7 +362427,7 @@ longlong FUN_18087b310(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -362469,7 +362469,7 @@ longlong FUN_18087b310(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087b3cf:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -362562,7 +362562,7 @@ longlong FUN_18087b420(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -362604,7 +362604,7 @@ longlong FUN_18087b420(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087b4df:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -362944,7 +362944,7 @@ longlong FUN_18087b750(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -362986,7 +362986,7 @@ longlong FUN_18087b750(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087b80f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -363311,7 +363311,7 @@ longlong FUN_18087ba80(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -363353,7 +363353,7 @@ longlong FUN_18087ba80(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087bb3f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -363678,7 +363678,7 @@ longlong FUN_18087bdd0(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -363720,7 +363720,7 @@ longlong FUN_18087bdd0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087be8f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -363929,7 +363929,7 @@ longlong FUN_18087bff0(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -363971,7 +363971,7 @@ longlong FUN_18087bff0(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087c0af:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -364180,7 +364180,7 @@ longlong FUN_18087c250(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -364222,7 +364222,7 @@ longlong FUN_18087c250(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087c30f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -364315,7 +364315,7 @@ longlong FUN_18087c360(longlong uiContext,uint *dataSource,char targetBuffer)
   uint eventCodeType;
   uint processingStatus;
   uint loopCounter;
-  bool bVar6;
+  bool useFallbackImplementation;
   longlong localLong7;
   longlong contextOffset;
   longlong *pCharacterDataOffset;
@@ -364357,7 +364357,7 @@ longlong FUN_18087c360(longlong uiContext,uint *dataSource,char targetBuffer)
   }
   AllocatedMemoryBlock1 = 0;
 LAB_18087c41f:
-  if (bVar6) {
+  if (useFallbackImplementation) {
                      WARNING: Subroutine does not return
     ProcessUIMemoryAllocation(allocatedMemory);
   }
@@ -369127,7 +369127,7 @@ int FUN_180882160(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
   longlong contextDataHandle;
   int localValidationResult;
   int loopCounter;
-  bool bVar7;
+  bool useAlternativeImplementation;
   UIHandle stackUInt50;
   int astackInt48 [4];
   
@@ -369206,7 +369206,7 @@ int FUN_18088217c(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
   UIHandle uiTargetHandle;
   UIHandle preservedRegister13;
   longlong preservedRegister15;
-  bool bVar6;
+  bool useFallbackImplementation;
   UIHandle stackParam00000098;
   UIHandle maxAllocations;
   UIHandle stackParam000000b0;
@@ -369243,7 +369243,7 @@ int FUN_18088217c(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,U
       localValidationResult = sourceDataInt + 1;
       BufferSizeFlag = sourceDataInt != -1;
       sourceDataInt = 0;
-      if (bVar6) {
+      if (useFallbackImplementation) {
         sourceDataInt = localValidationResult;
       }
       if (sourceDataInt != *(int *)(uiBufferData + 0x8a0)) {
@@ -383629,7 +383629,7 @@ int FUN_18088fb40(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
   int uiCompareResult;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   
   *(int *)(uiBufferData + 0x98) = *(int *)(uiBufferData + 0x98) + 1;
   *(int *)(uiBufferData + 0x1d0) = *(int *)(uiBufferData + 0x1d0) + 1;
@@ -383732,7 +383732,7 @@ int FUN_18088fb47(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
   int uiCompareResult;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   
   *(int *)(uiBufferData + 0x98) = *(int *)(uiBufferData + 0x98) + 1;
   *(int *)(uiBufferData + 0x1d0) = *(int *)(uiBufferData + 0x1d0) + 1;
@@ -383837,7 +383837,7 @@ int FUN_18088fb75(longlong uiContext,UIHandle dataSource)
   int uiCompareResult;
   bool bVar4;
   bool IsValidationComplete;
-  bool bVar6;
+  bool useFallbackImplementation;
   
   isCharacterMatch = false;
   TargetBufferFlag = false;
@@ -404412,7 +404412,7 @@ ulonglong ProcessUIContextDataValidationAndEventHandling(longlong uiContext, lon
   ulonglong processingStatus;
   ulonglong loopCounter;
   UIDword maxProcessingCount;
-  bool bVar7;
+  bool useAlternativeImplementation;
   bool EventprocessingStatus;
   bool bVar9;
   uint bufferValidation [2];
@@ -404723,8 +404723,8 @@ ulonglong FUN_18089e87d(void)
   longlong *uiTargetHandle;
   int RegisterValue;
   longlong preservedRegister15;
-  bool bVar6;
-  bool bVar7;
+  bool useFallbackImplementation;
+  bool useAlternativeImplementation;
   bool EventprocessingStatus;
   
   if (*(int *)(contextRegister + 0x18) != 0) {
@@ -405031,8 +405031,8 @@ ulonglong FUN_18089e9af(UIHandle uiContext,UIHandle dataSource,ulonglong targetB
   longlong *uiTargetHandle;
   UIDword RegisterValue;
   longlong preservedRegister15;
-  bool bVar6;
-  bool bVar7;
+  bool useFallbackImplementation;
+  bool useAlternativeImplementation;
   bool EventprocessingStatus;
   
   loopCounter = 0x1c;
