@@ -5049,13 +5049,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FUN_180085530 ProcessSystemDataOperations
 
 // 系统验证函数 - 验证系统的各个方面
-#define FUN_180089640 ValidateSystemComponentsAndState
+#define ValidateSystemComponentsAndState ValidateSystemComponentsAndState
 
 // 系统值计算函数 - 计算系统的关键数值
-#define FUN_1800ba100 CalculateSystemKeyValues
+#define CalculateSystemKeyValues CalculateSystemKeyValues
 
 // 系统参数验证函数 - 验证系统参数和配置
-#define FUN_180047e40 ValidateSystemParametersAndConfig
+#define ValidateSystemParametersAndConfig ValidateSystemParametersAndConfig
 
 // 系统资源管理器变量名美化定义
 #define SystemResourceIteratorTable SystemResourceIteratorTablePtr
