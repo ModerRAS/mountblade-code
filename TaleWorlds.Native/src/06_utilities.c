@@ -44549,7 +44549,7 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 {
   DataBuffer *exceptionChainPointer;
   
-  exceptionChainPointer = *(DataBuffer **)(unwindParam + 0x48);
+  exceptionChainPointer = *(DataBuffer **)(unwindParam + ExceptionCleanupOffset48);
   *exceptionChainPointer = &ExceptionDataTable1;
   *exceptionChainPointer = &ExceptionDataTable2;
   *exceptionChainPointer = &ExceptionDataTable3;
