@@ -235412,7 +235412,21 @@ LAB_180193b87:
 
 
 
-long long FUN_180193b4a(void
+/**
+ * @brief 处理字符串比较和内存块索引操作
+ * 
+ * 该函数负责处理字符串比较操作和内存块索引管理。
+ * 主要功能包括：
+ * - 执行字符串字节比较操作
+ * - 处理高字节指针和内存地址掩码
+ * - 管理内存块索引和系统上下文
+ * - 返回处理结果的内存地址
+ * 
+ * @return long long 处理结果的内存地址偏移量
+ * 
+ * @note 原始函数名：FUN_180193b4a
+ */
+long long ProcessStringComparisonAndMemoryIndex(void)
 {
   byte StringComparisonByte;
   byte *HighBytePointer;
