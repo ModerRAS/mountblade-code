@@ -5192,6 +5192,26 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数必须在系统启动早期调用，确保内存管理子系统正常工作
  * @see ExecuteMemoryOperationAndValidation, CreateExceptionDataBuffer
  */
+/**
+ * @brief 初始化系统内存池A0
+ * 
+ * 该函数负责初始化系统的内存池，为系统运行提供必要的内存管理基础。
+ * 它是系统初始化过程中的关键函数，确保内存资源得到合理的分配和管理。
+ * 
+ * 主要功能包括：
+ * 1. 初始化系统内存池结构
+ * 2. 配置内存分配策略
+ * 3. 设置内存池大小和参数
+ * 4. 建立内存管理机制
+ * 5. 验证内存池初始化状态
+ * 
+ * @return 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 非0值: 初始化失败，具体错误代码
+ * 
+ * @note 原始函数名：FUN_180046860
+ * @see InitializeSystemComponents, ValidateSystemContextA0
+ */
 #define InitializeSystemMemoryPoolA0 FUN_180046860
 
 /**
@@ -5978,9 +5998,22 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 /**
  * @brief 处理数据块操作A1
  * 
- * 该函数负责处理数据块的各种操作，包括读取和写入
+ * 该函数负责处理数据块的各种操作，包括数据的读取、写入、验证和管理。
+ * 它是数据处理系统的辅助函数，为ProcessDataBlockOperationA0提供补充功能。
+ * 
+ * 主要功能包括：
+ * 1. 执行数据块的高级读取操作
+ * 2. 处理数据块的批量写入请求
+ * 3. 验证复杂数据块结构
+ * 4. 管理数据块的并发访问
+ * 5. 优化数据操作性能
+ * 
+ * @return 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 非0值: 操作失败，具体错误代码
  * 
  * @note 原始函数名：FUN_180898f40
+ * @see ProcessDataBlockOperationA0, ValidateDataBlockStatusA1
  */
 #define ProcessDataBlockOperationA1 ProcessDataBlockOperationFunction
 
