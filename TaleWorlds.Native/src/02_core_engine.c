@@ -2136,6 +2136,40 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemCharacterEncodingAndMemoryManagement FUN_18017dd10     // 处理系统字符编码和内存管理
 #define ProcessSystemCharacterEncodingAndResourceAllocation FUN_18017dd60    // 处理系统字符编码和资源分配
 
+// 系统内存分配和初始化函数
+#define InitializeSystemMemoryAndContext FUN_18013f220    // 初始化系统内存和上下文
+#define ProcessSystemMemoryAllocationAndContext FUN_1801940f0  // 处理系统内存分配和上下文
+#define UpdateSystemContextHandle FUN_180194530           // 更新系统上下文句柄
+#define ProcessSystemContextHandleData FUN_180194350     // 处理系统上下文句柄数据
+#define ReleaseSystemContextHandle FUN_180194370          // 释放系统上下文句柄
+#define ConfigureSystemContextHandle FUN_1801944b0        // 配置系统上下文句柄
+#define InitializeSystemContextAndMemory FUN_180194530    // 初始化系统上下文和内存
+#define ProcessSystemContextValidation FUN_1801946c0      // 处理系统上下文验证
+#define SetupSystemContextData FUN_1801946e0              // 设置系统上下文数据
+#define ProcessSystemContextAllocation FUN_1801948b0      // 处理系统上下文分配
+#define ValidateSystemContextData FUN_180194a50          // 验证系统上下文数据
+
+// 系统初始化和配置函数
+#define InitializeSystemConfiguration FUN_1800b9f60      // 初始化系统配置
+#define ProcessSystemWindowUpdate FUN_1801ba580          // 处理系统窗口更新
+#define ReleaseSystemResources FUN_1801c2640              // 释放系统资源
+#define ProcessSystemMemoryIteration FUN_180195450        // 处理系统内存迭代
+#define ProcessSystemResourceRelease FUN_180195464        // 处理系统资源释放
+#define ProcessSystemMemoryCleanup FUN_180195484          // 处理系统内存清理
+#define ProcessSystemMemoryFree FUN_1801954a7             // 处理系统内存释放
+#define ProcessSystemMemoryDeallocate FUN_1801954c7        // 处理系统内存释放
+
+// 系统组件初始化函数
+#define InitializeSystemComponent FUN_18024f160           // 初始化系统组件
+#define InitializeSystemGraphics FUN_18038a910           // 初始化系统图形
+#define InitializeSystemAudio FUN_180397660              // 初始化系统音频
+#define InitializeSystemFileSystem FUN_1802e5470         // 初始化系统文件系统
+#define InitializeSystemRenderer FUN_1801b8150            // 初始化系统渲染器
+#define InitializeSystemInput FUN_180397bc0               // 初始化系统输入
+#define InitializeSystemNetwork FUN_1803996b0             // 初始化系统网络
+#define InitializeSystemThreading FUN_1801b6020           // 初始化系统线程
+#define InitializeSystemMemoryPool FUN_180275090           // 初始化系统内存池
+
 #define ProcessSystemMemoryManagement FUN_18015c0a0          // 处理系统内存管理
 #define ProcessSystemResourceCleanupAndMemoryDeallocation FUN_18014f059  // 处理系统资源清理和内存释放
 #define ProcessSystemMemoryAllocationEx FUN_18015c190         // 处理系统内存分配扩展

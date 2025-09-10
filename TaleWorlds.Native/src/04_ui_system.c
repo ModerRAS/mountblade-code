@@ -122760,8 +122760,7 @@ void CleanupUIResourcesAndExecuteRenderTask(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739010(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-/**
+ /**
  * @brief UI数据处理和渲染任务执行函数
  * 
  * 该函数负责处理UI数据并执行渲染任务，包括：
@@ -122949,8 +122948,7 @@ void ReleaseUIResourcesAndExecuteRender(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180739140(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer)
-/**
+ /**
  * @brief UI数据缓冲区处理器
  * 
  * 处理UI系统中的数据缓冲区操作，包括数据验证、比较和复制操作
