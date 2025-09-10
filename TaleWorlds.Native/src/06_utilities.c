@@ -19971,19 +19971,19 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint FloatProcessingFlags;
-  uint SystemOperationStatus;
-  uint64_t FloatValidationResult;
-  DataBuffer *FloatDataArrayPointer;
-  DataBuffer *FloatDataIterator;
-  int FloatIntegerConversionResult;
-  float FloatProcessingValue;
-  ByteFlag VectorRegisterData [16];
-  int64_t StackTempValue;
-  uint FloatDataProcessingFlags;
-  uint FloatProcessingFlagBitShift;
-  DataBuffer VectorRegister;
-  uint FloatValidationMaskResult;
+  uint floatProcessingFlags;
+  uint systemOperationStatusCode;
+  uint64_t floatValidationResult;
+  DataBuffer *floatDataArrayPointer;
+  DataBuffer *floatDataIterator;
+  int floatIntegerConversionResult;
+  float floatProcessingValue;
+  ByteFlag vectorRegisterData [16];
+  int64_t stackTempValue;
+  uint floatDataProcessingFlags;
+  uint floatProcessingFlagBitShift;
+  DataBuffer vectorRegister;
+  uint floatValidationMaskResult;
   
   FloatValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&StackTempValue);
   if ((int)FloatValidationResult != 0) {
