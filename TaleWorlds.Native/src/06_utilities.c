@@ -31954,9 +31954,9 @@ DataBuffer ProcessDataWithMultipleAttempts(DataBuffer *contextHandle,int64_t dat
   if ((int)operationResult == 0) {
     operationResult = OperateDataO0(contextValue,dataOffset + DataProcessingOffset4,DataProcessingOffset2);
     if ((int)operationResult == 0) {
-      operationResult = OperateDataO0(contextValue,dataOffset + 6,2);
+      operationResult = OperateDataO0(contextValue,dataOffset + DataProcessingOffset6,DataProcessingOffset2);
       if ((int)operationResult == 0) {
-        operationResult = OperateDataO0(contextValue,dataOffset + 8,8);
+        operationResult = OperateDataO0(contextValue,dataOffset + DataProcessingOffset8,ArrayElementSize32);
       }
     }
   }
