@@ -38503,7 +38503,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   if ((int)exceptionBuffer3 != 0) {
     return exceptionBuffer3;
   }
-  if (0x81 < *(uint *)(DestinationContext + 8)) {
+  if (SystemDataBufferSizeMaximum < *(uint *)(DestinationContext + SystemDataSizeOffset)) {
     exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(OperationResultPrimary,systemContext + ExceptionCleanupOffset58);
     calculatedFloatValue = calculatedFloatValue;
     if ((int)exceptionDataBuffer1 != 0) {

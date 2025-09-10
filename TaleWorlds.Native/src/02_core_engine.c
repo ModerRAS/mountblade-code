@@ -80609,10 +80609,10 @@ SystemValidationStart:
         ContextHandleTablePointer = (void *)ContextHandleTablePointer[1];
       }
     } while (ContextHandleTablePointer != NULL);
-    if ((StringProcessingStatus == SystemCharacterStatusPointer) || (AdditionalParameter1 < *(int *)(StringProcessingStatus + 4))) goto LAB_18009a8ab;
+    if ((StringProcessingStatus == SystemCharacterStatusPointer) || (AdditionalParameter1 < *(int *)(StringProcessingStatus + 4))) goto SystemValidationStart;
   }
   SystemContextPrimaryFloat8 = *(float *)((long long)StringProcessingStatus + 0x24);
-LAB_18009a8d1:
+MemoryValidationComplete:
   Utf16EndPointer[8] = (long long)(double)SystemContextPrimaryFloat8;
   SystemCharacterStatusPointer = (void *)OperationBufferSize[1];
   do {
