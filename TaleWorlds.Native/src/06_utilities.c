@@ -129843,7 +129843,7 @@ void HandleExceptionContextAtSecondaryDataOffset(DataBuffer operationBase,int64_
  * @note 原始函数名：Unwind_180912420
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset200_28(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtValidationOffset(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -129907,7 +129907,7 @@ void HandleValidationResultOffsetExceptionContext(DataBuffer operationBase,int64
  * @note 原始函数名：Unwind_180912440
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset60_48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtExceptionOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -129939,7 +129939,7 @@ void HandleExceptionContextAtOffset60_48(DataBuffer operationBase,int64_t dataBu
  * @note 原始函数名：Unwind_180912450
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset60_58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtExceptionOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -129971,7 +129971,7 @@ void HandleExceptionContextAtOffset60_58(DataBuffer operationBase,int64_t dataBu
  * @note 原始函数名：Unwind_180912460
  * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void HandleExceptionContextAtOffset60_68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtExceptionOffset68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;

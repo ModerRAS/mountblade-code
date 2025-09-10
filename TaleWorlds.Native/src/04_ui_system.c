@@ -123196,8 +123196,23 @@ LAB_1807393ea:
 
 
  void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-                  UIHandle resultPointer,UIHandle param_6)
+/**
+ * @brief 处理UI动画状态和数据缓冲区操作
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * 
+ * 该函数负责处理UI动画状态和数据缓冲区操作，包括：
+ * - 初始化动画状态
+ * - 处理数据缓冲区
+ * - 执行验证操作
+ * - 清理资源并执行渲染
+ */
+void ProcessUIAnimationStateAndBufferOperation(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
+                                              UIHandle resultPointer,UIHandle param_6)
 
 {
   int processingResult;

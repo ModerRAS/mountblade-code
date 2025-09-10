@@ -1077,6 +1077,30 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 // 系统数据结构语义化宏定义
 #define SystemMemoryBuffer SystemDataMemory                       // 系统内存缓冲区 - 系统数据内存
 
+// ProcessSystemContextConversionAndEncodingValidation函数变量语义化定义
+#define SystemContextValidationFlag pSystemContextValidationFlag      // 系统上下文验证标志
+#define InputCharacterDataLength CharacterInputDataLength           // 输入字符数据长度
+#define SystemProcessingIterationCount ProcessIterationCount         // 系统处理迭代计数
+#define SecondarySystemLoopCounter secondaryLoopCounter             // 次要系统循环计数器
+#define SystemMemoryAllocationStatus SystemMemoryAllocationResult   // 系统内存分配状态
+#define SystemEncodingConversionResult EncodingConversionResult      // 系统编码转换结果
+#define PrimaryContextHandle ContextHandle1                          // 主上下文句柄
+#define SystemOperationStatusCode SystemStatusCode                   // 系统操作状态码
+#define SystemContextRegisterPointer in_RCX                          // 系统上下文寄存器指针
+#define SystemContextHandlePointer3 pppContextHandle3               // 系统上下文句柄指针3
+#define SecondaryUtf16Character Utf16Char4                           // 次要UTF16字符
+#define Utf16ConversionContextData Utf16ConversionContext           // UTF16转换上下文数据
+#define SystemPrimaryReturnStatus SystemPrimaryReturnCode           // 系统主要返回状态
+#define SystemTemporaryRegister90 ppppSystemTemporaryValue90      // 系统临时寄存器90
+#define SystemStackRegister88 lStack_88                            // 系统栈寄存器88
+#define SystemProcessingVariable70 StackProcessingVariable70        // 系统处理变量70
+#define SystemMemoryPointer68 SystemMemoryPointer68                 // 系统内存指针68
+#define SystemProcessingValue60 StackProcessingUnsignedValue60      // 系统处理值60
+#define SystemDataBufferOffset BufferOffset                         // 系统数据缓冲区偏移量
+#define SystemContextValidationPointer SystemValidationPointer     // 系统上下文验证指针
+#define SystemContextDataPointer ContextDataPointer                 // 系统上下文数据指针
+#define SystemPriorityLevelValue SystemPriorityLevel               // 系统优先级值
+
 // 新增的系统栈变量语义化定义 - 基于实际代码分析
 #define SystemSecurityValidationBuffer RenderConfigurationData318  // 系统安全验证缓冲区
 #define SystemStackUnsigned270 uStack_270                          // 系统栈无符号270
@@ -242506,7 +242530,23 @@ LAB_18019d905:
 
 
 
-unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t ContextHandle,long long OperationBufferSize
+/**
+ * @brief 处理系统上下文转换和编码验证
+ * 
+ * 该函数负责处理系统上下文的转换操作和编码验证，主要功能包括：
+ * - 管理系统上下文的转换和内存分配
+ * - 执行编码验证和字符处理
+ * - 处理缓冲区分配状态和系统事件
+ * - 验证系统数据的完整性和安全性
+ * 
+ * @param ContextHandle 系统上下文句柄，用于标识要处理的系统上下文
+ * @param OperationBufferSize 操作缓冲区大小，用于内存分配和数据处理
+ * 
+ * @return unsigned long long 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18019da10
+ */
+unsigned long long ProcessSystemContextConversionAndEncodingValidation(uint32_t ContextHandle,long long OperationBufferSize)
 {
   uint32_t Utf16Char;
   long long ****pppBufferAllocationStatus;
