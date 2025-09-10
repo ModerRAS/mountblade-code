@@ -31572,15 +31572,15 @@ void ProcessFloatingPointDataSecondary(int64_t *dataContext)
         do {
           do {
             exceptionContext5 = (int64_t)(int)StackFloatArrayE[0] * 0x20;
-            SystemCleanupFlagLocal2 = AllBitsSet;
+            SystemCleanupFlagLocal = AllBitsSet;
             systemExceptionHandlerArray[0] = (int64_t *)CONCAT44(systemExceptionHandlerArray[0]._4_4_,SystemCleanupFlag);
             stackExceptionContext = *(int64_t **)(exceptionContextPointer6[2] + SystemDataSecondaryOffset18 + exceptionContext5);
             StackLongIntegerC = exceptionContext5;
-            ProcessDataConversionDN0(stackExceptionContext,&SystemCleanupFlagLocal2,exceptionHandlerArray);
+            ProcessDataConversionDN0(stackExceptionContext,&SystemCleanupFlagLocal,exceptionHandlerArray);
             exceptionContextPointer4 = stackExceptionContext;
             if ((int)exceptionHandlerArray[0] != -1) {
               iterationCount = (int)exceptionHandlerArray[0];
-              allocatedMemoryBlock = (int)SystemCleanupFlagLocal2;
+              allocatedMemoryBlock = (int)SystemCleanupFlagLocal;
               do {
                 do {
                   exceptionContext5 = *(int64_t *)(exceptionContextPointer4[2] + 8 + (int64_t)iterationCount * ArrayElementSize16);
@@ -31770,7 +31770,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
   DataBuffer validationStackBuffer;
   int64_t temporaryStackArray [2];
   uint8_t *SecurityValidationPointer;
-  DataWord SystemResetFlagLocal3;
+  DataWord SystemResetFlagLocal;
   uint64_t securityCheckValue;
   
   *(ByteFlag *)(DataDescriptor + OperationBaseStatusFlagOffset) = 1;
@@ -31782,7 +31782,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
     memoryRegionBase = validationStatus - exceptionContext;
     if (((ValidationType != '\0') || (exceptionContext == 0)) || (47999 < memoryRegionBase)) {
       DataDescriptor[2] = validationStatus;
-      SystemResetFlagLocal3 = 0;
+      SystemResetFlagLocal = 0;
       securityCheckValue = 0;
       if (exceptionContext != 0) {
         securityCheckValue = memoryRegionBase;

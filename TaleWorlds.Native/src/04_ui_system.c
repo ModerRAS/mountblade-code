@@ -175062,7 +175062,15 @@ LAB_18076b2a9:
 
 
 
- void FUN_18076b390(void)
+ /**
+ * @brief 处理UI输入事件验证
+ * 
+ * 该函数是UI输入事件验证的主要入口点，负责调用底层数据缓冲区操作函数
+ * 来处理和验证用户输入事件。这是UI事件处理系统的核心组件之一。
+ * 
+ * @note 原始函数名：FUN_18076b390
+ * @note 这是一个简化的包装器函数，实际处理逻辑在ProcessUIDataBufferOperation中
+ */
 void FUN_18076b390(void)
 
 {
@@ -175072,6 +175080,20 @@ void FUN_18076b390(void)
 
 
 
+/**
+ * @brief 验证UI字符串处理
+ * 
+ * 该函数处理和验证UI系统中的字符串数据。它遍历字符串直到遇到空字符或达到目标缓冲区限制，
+ * 然后调用底层验证函数完成字符串处理操作。
+ * 
+ * @param uiContext UI上下文指针，指向要处理的字符串数据
+ * @param dataSource 数据源句柄，用于数据源标识和管理
+ * @param targetBuffer 目标缓冲区，用于控制处理长度
+ * @return char* 返回处理后的UI上下文指针
+ * 
+ * @note 原始函数名：FUN_18076b3b0
+ * @note 该函数主要用于UI系统中的字符串验证和长度控制
+ */
 char * FUN_18076b3b0(char *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
@@ -175117,6 +175139,20 @@ longlong GetUIStringCompareIndex(char *uiContext)
 
 
 
+/**
+ * @brief 编码UI字符数据
+ * 
+ * 该函数将字符数据进行编码处理，支持ASCII和UTF-8编码格式。对于小于0x80的字符使用单字节编码，
+ * 对于大于等于0x80的字符使用双字节UTF-8编码格式。编码后的数据用于UI系统的字符处理和显示。
+ * 
+ * @param uiContext UI上下文指针，用于存储编码后的数据
+ * @param dataSource 数据源，用于控制编码长度限制
+ * @param targetBuffer 目标缓冲区指针，指向要编码的字符数据
+ * @return longlong 返回UI上下文指针
+ * 
+ * @note 原始函数名：FUN_18076b5b0
+ * @note 该函数实现了UTF-8编码算法，支持多字节字符的编码处理
+ */
 longlong FUN_18076b5b0(longlong uiContext,int dataSource,byte *targetBuffer)
 
 {
@@ -406677,6 +406713,9 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_1807c41d0 CalculateUILayoutMetrics          // 计算UI布局度量 - 计算UI组件的布局度量信息
 #define FUN_18082d7f0 RenderUIComponentToBuffer         // 渲染UI组件到缓冲区 - 将UI组件渲染到指定的缓冲区
 #define FUN_18076b390 ProcessUIInputEventValidation     // 处理UI输入事件验证 - 验证和处理用户输入事件
+#define FUN_18076b930 ProcessUIDataBufferOperation      // 处理UI数据缓冲区操作 - 执行UI数据缓冲区的各种操作
+#define FUN_18076b3b0 ValidateUIStringProcessing       // 验证UI字符串处理 - 处理和验证UI系统中的字符串数据
+#define FUN_18076b5b0 EncodeUICharacterData             // 编码UI字符数据 - 将字符数据进行编码处理
 
 
 

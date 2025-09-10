@@ -227646,7 +227646,22 @@ LAB_18018a53f:
 
 
 
-8a610(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointervoid FUN_18018a610(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 初始化字符表指针和线程本地存储数据
+ * 
+ * 该函数负责初始化字符表指针和线程本地存储数据，主要功能包括：
+ * - 获取字符表指针并重置相关字段
+ * - 从UTF-8源指针复制数据到线程本地存储
+ * - 初始化线程本地存储的相关字段
+ * 
+ * @param ContextHandle 上下文句柄，用于系统资源管理
+ * @param OperationBufferSize 操作缓冲区大小，用于内存管理
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的数据
+ * 
+ * @note 原始函数名：FUN_18018a610
+ */
+#define InitializeCharacterTableAndThreadLocalStorage FUN_18018a610
+void InitializeCharacterTableAndThreadLocalStorage(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer)
 {
   long long MainCalculationResult;
   
@@ -227880,7 +227895,20 @@ void CleanupSystemStackData(uint64_t ContextHandle,long long OperationBufferSize
 
 
 
-8a9f0(uint64_t *ContextHandlevoid FUN_18018a9f0(uint64_t *ContextHandle
+/**
+ * @brief 初始化字符状态缓冲区
+ * 
+ * 该函数负责初始化字符状态缓冲区，主要功能包括：
+ * - 分配系统内存块用于字符状态存储
+ * - 将上下文句柄的值复制到缓冲区的不同位置
+ * - 设置字符状态的初始值
+ * 
+ * @param ContextHandle 上下文句柄指针，包含需要复制的字符状态信息
+ * 
+ * @note 原始函数名：FUN_18018a9f0
+ */
+#define InitializeCharacterStatusBuffer FUN_18018a9f0
+void InitializeCharacterStatusBuffer(uint64_t *ContextHandle)
 {
   uint64_t *CharacterStatusBuffer;
   
@@ -228585,7 +228613,23 @@ uint64_t * InitializeSystemProcessingStatus(uint64_t ContextHandle,long long Ope
 
 
 
-8b590(long long ContextHandlevoid FUN_18018b590(long long ContextHandle
+/**
+ * @brief 处理系统内存块和浮点数计算
+ * 
+ * 该函数负责处理系统内存块的管理和浮点数计算，主要功能包括：
+ * - 处理内存块索引和地址掩码
+ * - 执行字符串处理状态检查
+ * - 处理系统事件和内存清理
+ * - 计算浮点数值的倒数
+ * - 分配系统校验和内存
+ * - 执行系统内存边界操作
+ * 
+ * @param ContextHandle 上下文句柄，包含系统内存块信息
+ * 
+ * @note 原始函数名：FUN_18018b590
+ */
+#define ProcessSystemMemoryBlockAndFloatingPointCalculations FUN_18018b590
+void ProcessSystemMemoryBlockAndFloatingPointCalculations(long long ContextHandle)
 {
   int LockResult;
   int LockOperationResult;
