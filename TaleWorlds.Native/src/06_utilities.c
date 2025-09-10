@@ -4943,7 +4943,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
  * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
-#define InitializeSystemDataBuffer FUN_1800a19c0
+#define InitializeSystemDataBuffer InitializeSystemDataBuffer
 
 /**
  * @brief 系统命令执行函数
@@ -4966,7 +4966,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统命令执行可能影响系统稳定性，需要谨慎使用
  * @see ProcessSystemOperations, ValidateSystemParametersAndConfiguration
  */
-#define ExecuteSystemCoreCommand FUN_18009fb60
+#define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 /**
  * @brief 系统操作处理函数
