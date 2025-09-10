@@ -223029,7 +223029,7 @@ LAB_180184411:
 
 
 
-84500(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180184500(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemMemoryWithHandles(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   long long BufferStatus;
