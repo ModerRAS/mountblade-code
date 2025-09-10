@@ -4750,6 +4750,55 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证系统数据的完整性和安全性
 #define ProcessSystemDataValidation ValidateSystemDataAndIntegrity
 
+// FUN_函数批量美化定义 - 第一批：核心系统函数
+// 系统数据传输处理器 - 处理系统数据的传输和验证
+#define FUN_180062300 ProcessSystemDataTransferAndValidation
+
+// 系统处理函数 - 处理系统操作和任务
+#define FUN_180069530 ProcessSystemOperationsAndTasks
+
+// 系统数据处理器 - 处理系统数据的读取和写入
+#define FUN_180074a80 ProcessSystemDataReadWrite
+
+// 系统数据加密器 - 加密系统数据以确保安全性  
+#define FUN_18064e900 EncryptSystemDataForSecurity
+
+// 系统上下文处理器 - 处理系统上下文的生命周期管理
+#define FUN_18007f840 ManageSystemContextLifecycle
+
+// 数据类型转换器 - 在不同数据类型之间进行安全转换
+#define FUN_18007f6a0 ConvertDataTypesSafely
+
+// 系统内存管理器 - 管理系统内存的分配和释放
+#define FUN_18013ea00 ManageSystemMemoryAllocation
+
+// 系统状态检查器 - 检查系统状态和健康状态
+#define FUN_1808fc5ac CheckSystemHealthAndStatus
+
+// 系统参数配置器 - 配置系统参数和设置
+#define FUN_1808fc51c ConfigureSystemParametersAndSettings
+
+// 系统数据验证器 - 验证系统数据的有效性
+#define FUN_1808fc914 ValidateSystemDataAndParameters
+
+// 系统状态验证器 - 验证系统状态的正确性
+#define FUN_1808fc074 ValidateSystemStateAndResources
+
+// 内存访问处理器 - 处理内存访问操作
+#define FUN_1803f33b0 ProcessMemoryAccessOperations
+
+// 系统数据处理函数 - 处理系统数据的各种操作
+#define FUN_180085530 ProcessSystemDataOperations
+
+// 系统验证函数 - 验证系统的各个方面
+#define FUN_180089640 ValidateSystemComponentsAndState
+
+// 系统值计算函数 - 计算系统的关键数值
+#define FUN_1800ba100 CalculateSystemKeyValues
+
+// 系统参数验证函数 - 验证系统参数和配置
+#define FUN_180047e40 ValidateSystemParametersAndConfig
+
 /**
  * @brief 系统数据缓冲区验证函数
  * 
@@ -21698,7 +21747,7 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
 {
   int processStatus;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t memoryResourcePointer;
   uint signExtendedValue;
   int64_t eventHandle;
@@ -21710,11 +21759,11 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     return;
   }
   memoryResourcePointer = 0;
-  memoryBlockOffset = systemHandle + EVENT_HANDLER_OFFSET;
+  memoryRegionOffset = systemHandle + EVENT_HANDLER_OFFSET;
   if (systemHandle == 0) {
-    memoryBlockOffset = memoryResourcePointer;
+    memoryRegionOffset = memoryResourcePointer;
   }
-  operationResult = ValidateAndProcessSystemResourceA0(memoryBlockOffset,systemContext + DATA_PROCESSING_CONTEXT_OFFSET);
+  operationResult = ValidateAndProcessSystemResourceA0(memoryRegionOffset,systemContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if (operationResult != 0) {
     return;
   }
@@ -23281,11 +23330,11 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     }
     ResourceTraversalIndex = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
     MemoryAllocationOffset = *(int64_t *)(ResourceTraversalIndex + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
-    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
+    if ((*(SystemByteType *)(memoryRegionOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
       inputValue = *(float *)(dataBuffer + FloatValueOffset);
-      resultValue = *(float *)(memoryBlockOffset + SystemFloatDataOffset38);
-      if ((*(float *)(memoryBlockOffset + SystemFloatDataOffset38) <= inputValue) &&
-         (resultValue = *(float *)(memoryBlockOffset + FloatDataValidationOffset3C), inputValue <= *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
+      resultValue = *(float *)(memoryRegionOffset + SystemFloatDataOffset38);
+      if ((*(float *)(memoryRegionOffset + SystemFloatDataOffset38) <= inputValue) &&
+         (resultValue = *(float *)(memoryRegionOffset + FloatDataValidationOffset3C), inputValue <= *(float *)(memoryRegionOffset + FloatDataValidationOffset3C))) {
         resultValue = inputValue;
       }
       *(float *)(dataBuffer + FloatValueOffset) = resultValue;
@@ -23318,7 +23367,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
 {
   float inputValue;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer validationResult;
   int64_t arrayIndex;
   int64_t systemContext;
@@ -23345,15 +23394,15 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
     }
     arrayIndex = (int64_t)operationResultBuffer[0];
     systemContext = *(int64_t *)(systemContext + SystemDataParameterOffset20);
-    memoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + arrayIndex * SystemDataRecordMultiplier18);
-    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
-      validationResult = ProcessDataValidationA0(memoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
+    memoryRegionOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + arrayIndex * SystemDataRecordMultiplier18);
+    if ((*(SystemByteType *)(memoryRegionOffset + SystemDataValidationOffset34) & FloatingPointValidationMask11) == 0) {
+      validationResult = ProcessDataValidationA0(memoryRegionOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
       if ((int)validationResult != 0) {
         return validationResult;
       }
       inputValue = *(float *)(dataParameter + SystemDataSecondaryOffset18);
-      if ((*(float *)(memoryBlockOffset + SystemFloatDataOffset38) <= inputValue) &&
-         (inputValue < *(float *)(memoryBlockOffset + FloatDataValidationOffset3C) || inputValue == *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
+      if ((*(float *)(memoryRegionOffset + SystemFloatDataOffset38) <= inputValue) &&
+         (inputValue < *(float *)(memoryRegionOffset + FloatDataValidationOffset3C) || inputValue == *(float *)(memoryRegionOffset + FloatDataValidationOffset3C))) {
         dataContext = *(int64_t *)(dataParameter + systemContextPointerOffset90);
         *(float *)(systemContext + 4 + arrayIndex * SystemDataRecordMultiplier) = inputValue;
         *(DataBuffer *)(dataParameter + SystemDataParameterOffset20) = *(DataBuffer *)(dataContext + (int64_t)operationResultBuffer[0] * 8);
@@ -23836,19 +23885,19 @@ RangeValidationSuccess:
     return operationResult;
   }
   if (LocalStackOffset == 0) {
-    memoryBlockOffset = 0;
+    memoryRegionOffset = 0;
   }
   else {
-    memoryBlockOffset = LocalStackOffset + -8;
+    memoryRegionOffset = LocalStackOffset + -8;
   }
-  *(DataWord *)(memoryBlockOffset + DataOperationOffsetA4 + (int64_t)*(int *)(operationBase + SystemDataSecondaryOffset18) * 4) =
+  *(DataWord *)(memoryRegionOffset + DataOperationOffsetA4 + (int64_t)*(int *)(operationBase + SystemDataSecondaryOffset18) * 4) =
        *(DataWord *)(resourceDescriptor + resourceDescriptorValidationOffset);
-  memoryBlockOffset = *(int64_t *)(dataBuffer + SystemManagementOffset98);
-  if ((*(int *)(memoryBlockOffset + SystemConfigPrimaryOffset) != 0) || (*(int *)(memoryBlockOffset + SystemConfigSecondaryOffset) != 0)) {
+  memoryRegionOffset = *(int64_t *)(dataBuffer + SystemManagementOffset98);
+  if ((*(int *)(memoryRegionOffset + SystemConfigPrimaryOffset) != 0) || (*(int *)(memoryRegionOffset + SystemConfigSecondaryOffset) != 0)) {
     LocalStackOffset = 0;
     InitializesystemContextA0(&LocalStackOffset);
-    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(memoryBlockOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
-      operationResult = ProcessSystemDataEC0(memoryBlockOffset,operationBase);
+    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(memoryRegionOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
+      operationResult = ProcessSystemDataEC0(memoryRegionOffset,operationBase);
       if ((int)operationResult == 0) {
         return 0;
       }
@@ -23856,7 +23905,7 @@ RangeValidationSuccess:
     }
   }
   *(uint *)(operationBase + OperationBaseOffset8) = *(int *)(operationBase + OperationBaseOffset8) + DataAlignmentValue & SecurityAlignmentMask;
-  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(memoryBlockOffset + SystemConfigTertiaryOffset));
+  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(memoryRegionOffset + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
   }
@@ -24638,7 +24687,7 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 {
   float inputValue;              // 输入浮点数值
   uint64_t operationResult;      // 操作结果
-  int64_t memoryBlockOffset;     // 内存块偏移量
+  int64_t memoryRegionOffset;     // 内存块偏移量
   int64_t registerContext;       // 寄存器上下文
   int64_t systemContext;         // 系统上下文
   float rangeMin;                // 范围最小值
@@ -24650,14 +24699,14 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
   stackBuffer = 0;
   operationResult = ProcessSystemDataTransferA0(systemHandle + SystemOperationContextOffset60,dataHandle,&stackDataBuffer);
   if ((int)operationResult == 0) {
-    memoryBlockOffset = GetOperationRangeDataA0(systemHandle + SystemOperationContextOffset60,stackBuffer);
-    if ((*(uint *)(memoryBlockOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
+    memoryRegionOffset = GetOperationRangeDataA0(systemHandle + SystemOperationContextOffset60,stackBuffer);
+    if ((*(uint *)(memoryRegionOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
     inputValue = *(float *)(registerContext + SystemDataSecondaryOffset18);
-    rangeMin = *(float *)(memoryBlockOffset + SystemFloatDataOffset38);
+    rangeMin = *(float *)(memoryRegionOffset + SystemFloatDataOffset38);
     if ((rangeMin <= inputValue) &&
-       (rangeMax = *(float *)(memoryBlockOffset + SystemDataRecordOffset3c), inputValue <= rangeMax)) {
+       (rangeMax = *(float *)(memoryRegionOffset + SystemDataRecordOffset3c), inputValue <= rangeMax)) {
       rangeMax = inputValue;
     }
     *(float *)(registerContext + SystemDataSecondaryOffset18) = rangeMax;
@@ -25008,7 +25057,7 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
 {
   float comparisonValue;
   DataBuffer operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   ByteFlag stackBuffer [8];
   DataWord operationFlags [2];
@@ -25016,15 +25065,15 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
   operationFlags[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(operationContext,systemContext + SystemDataParameterOffset20,operationBuffer);
   if ((int)operationResult == 0) {
-    memoryBlockOffset = GetOperationRangeDataA0(operationContext + systemContextOperationOffset60,operationBuffer[0]);
-    if ((*(uint *)(memoryBlockOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
+    memoryRegionOffset = GetOperationRangeDataA0(operationContext + systemContextOperationOffset60,operationBuffer[0]);
+    if ((*(uint *)(memoryRegionOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
-    operationResult = ProcessDataValidationA0(memoryBlockOffset,operationBase + systemContextDataOffsetA0,operationBase + ExceptionHandlerCallbackOffset);
+    operationResult = ProcessDataValidationA0(memoryRegionOffset,operationBase + systemContextDataOffsetA0,operationBase + ExceptionHandlerCallbackOffset);
     if ((int)operationResult == 0) {
       comparisonValue = *(float *)(operationBase + ExceptionHandlerCallbackOffset);
-      if ((comparisonValue < *(float *)(memoryBlockOffset + SystemFloatDataOffset38)) ||
-         (*(float *)(memoryBlockOffset + SystemDataRecordOffset3c) <= comparisonValue && comparisonValue != *(float *)(memoryBlockOffset + SystemDataRecordOffset3c))) {
+      if ((comparisonValue < *(float *)(memoryRegionOffset + SystemFloatDataOffset38)) ||
+         (*(float *)(memoryRegionOffset + SystemDataRecordOffset3c) <= comparisonValue && comparisonValue != *(float *)(memoryRegionOffset + SystemDataRecordOffset3c))) {
         operationResult = ValidationErrorCode;
       }
       else {
@@ -25485,7 +25534,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
 {
   int64_t *exceptionContextPointer;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   ByteFlag encryptionKeyBuffer [32];
   uint colorComponentAlpha;
   uint colorComponentRedHigh;
@@ -25512,8 +25561,8 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
     redGreenComponents = dataBuffer[1];
     blueAlphaComponents = dataBuffer[2];
     colorPackedData = dataBuffer[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionContextPointer + FunctionPointerTableOffset))(exceptionContextPointer,&colorDataWord,1);
-    if (memoryBlockOffset == 0) {
+    memoryRegionOffset = (**(FunctionPointer**)(*exceptionContextPointer + FunctionPointerTableOffset))(exceptionContextPointer,&colorDataWord,1);
+    if (memoryRegionOffset == 0) {
       colorComponentRedHighByte = blueAlphaComponents >> 0x18;
       colorComponentAlphaHighByte = colorPackedData >> 0x18;
       colorComponentRedHigh = redGreenComponents >> 0x10;
@@ -25526,9 +25575,9 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       colorComponentAlpha = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,colorDataWord);
     }
-    if (((*(SystemByteType *)(memoryBlockOffset + DataValidationOffsetC4) & 1) != 0) &&
-       ((systemContext = *(int64_t *)(memoryBlockOffset + systemContextOffset68), systemContext != 0 ||
-        (operationResult = ProcessSystemConfigurationA0(operationBase,memoryBlockOffset,&systemContext), operationResult == 0)))) {
+    if (((*(SystemByteType *)(memoryRegionOffset + DataValidationOffsetC4) & 1) != 0) &&
+       ((systemContext = *(int64_t *)(memoryRegionOffset + systemContextOffset68), systemContext != 0 ||
+        (operationResult = ProcessSystemConfigurationA0(operationBase,memoryRegionOffset,&systemContext), operationResult == 0)))) {
       *operationFlagA = systemContext;
     }
   }
@@ -25589,7 +25638,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
 {
   int64_t *exceptionContextPointer;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   ByteFlag securityValidationBuffer[32];
   
   // 颜色分量变量
@@ -25632,8 +25681,8 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
     inputRedComponent = operationFlags[1];
     inputGreenComponent = operationFlags[2];
     inputBlueComponent = operationFlags[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionContextPointer + FunctionPointerSecondaryOffset))(exceptionContextPointer, &inputDataWord, 1);
-    if (memoryBlockOffset == 0) {
+    memoryRegionOffset = (**(FunctionPointer**)(*exceptionContextPointer + FunctionPointerSecondaryOffset))(exceptionContextPointer, &inputDataWord, 1);
+    if (memoryRegionOffset == 0) {
       // 颜色分量提取和处理
       stackRedComponentHigh = inputGreenComponent >> 0x18;
       blueAlphaComponents = inputBlueComponent >> 0x18;
@@ -25649,9 +25698,9 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
       // 初始化系统缓冲区
       InitializeSystemBufferA0(systemBufferA, MemoryBlockSizeAdjustment, &SystemBufferConfiguration, inputDataWord);
     }
-    if ((**(int **)(memoryBlockOffset + ResourceValidationOffset) != 0) ||
+    if ((**(int **)(memoryRegionOffset + ResourceValidationOffset) != 0) ||
        (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(operationContext + SystemDataSecondaryOffset18)), operationResult == 0)) {
-      *resultPointer = memoryBlockOffset;
+      *resultPointer = memoryRegionOffset;
     }
   }
   // 执行安全检查
@@ -25718,7 +25767,7 @@ void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, i
 {
   int64_t *exceptionContextPtr;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   ByteFlag encryptionKeyBuffer [32];
   uint colorAlphaLow;
   uint colorRedHigh;
@@ -25745,8 +25794,8 @@ void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, i
     redGreenComponents = dataBuffer[1];
     blueAlphaComponents = dataBuffer[2];
     colorPackedData = dataBuffer[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionContextPtr + FunctionPointerTableOffset2f8))(exceptionContextPtr,&colorDataWord,1);
-    if (memoryBlockOffset == 0) {
+    memoryRegionOffset = (**(FunctionPointer**)(*exceptionContextPtr + FunctionPointerTableOffset2f8))(exceptionContextPtr,&colorDataWord,1);
+    if (memoryRegionOffset == 0) {
       blueComponent = blueAlphaComponents >> 0x18;
       alphaComponent = colorPackedData >> 0x18;
       redGreenHigh = redGreenComponents >> 0x10;
@@ -25759,8 +25808,8 @@ void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, i
       redGreenLow = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,MemoryBlockSizeAdjustment,&SystemBufferConfiguration,colorDataWord);
     }
-    systemContext = *(int64_t *)(memoryBlockOffset + systemContextOffset48);
-    if ((systemContext != 0) || (operationResult = ProcesssystemContextA0(operationBase,memoryBlockOffset,&systemContext), operationResult == 0)) {
+    systemContext = *(int64_t *)(memoryRegionOffset + systemContextOffset48);
+    if ((systemContext != 0) || (operationResult = ProcesssystemContextA0(operationBase,memoryRegionOffset,&systemContext), operationResult == 0)) {
       *operationFlagA = systemContext;
     }
   }
@@ -29092,7 +29141,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
 {
   float inputValue;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t calculatedIndex;
   char statusFlag;
   int iterationCount;
@@ -29189,13 +29238,13 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
           do {
             // 获取数据指针和内存块偏移量
             dataPointer = *(int64_t *)(dataContext + SystemDataParameterOffset20);
-            memoryBlockOffset = *(int64_t *)(exceptionHandlerContext4 + ExceptionHandlerContext4Offset10 + dataPointer);
+            memoryRegionOffset = *(int64_t *)(exceptionHandlerContext4 + ExceptionHandlerContext4Offset10 + dataPointer);
             calculatedIndex = *(int64_t *)(exceptionHandlerContext4 + 8 + dataPointer);
             // 检查系统状态
-            statusFlag = CheckSystemStatus(memoryBlockOffset,1);
+            statusFlag = CheckSystemStatus(memoryRegionOffset,1);
             exceptionBuffer6 = TemporaryPointerBufferB;
             // 验证浮点数比较结果
-            if ((statusFlag == '\0') && (*(float *)(memoryBlockOffset + MemoryBlockOffset4C) != *(float *)(calculatedIndex + SystemParameterValidationOffset28))) {
+            if ((statusFlag == '\0') && (*(float *)(memoryRegionOffset + MemoryBlockOffset4C) != *(float *)(calculatedIndex + SystemParameterValidationOffset28))) {
               // 执行安全验证数据操作
               SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
@@ -29206,11 +29255,11 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
               TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + systemContextPointerOffset90) + dataProcessingBuffer * 8);
               TemporaryByteFlagA = 0;
               // 根据内存块偏移量选择异常数据缓冲区
-              if (*(int *)(memoryBlockOffset + MemoryBlockSizeSecondary) < 1) {
+              if (*(int *)(memoryRegionOffset + MemoryBlockSizeSecondary) < 1) {
                 exceptionDataBuffer = &SystemResourceDataBuffer;
               }
               else {
-                exceptionDataBuffer = *(uint8_t **)(memoryBlockOffset + MemoryBlockSizeStep);
+                exceptionDataBuffer = *(uint8_t **)(memoryRegionOffset + MemoryBlockSizeStep);
               }
               // 初始化内存并验证数据完整性
               InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer,0x80);
@@ -29393,7 +29442,7 @@ void ProcessDataTypes(void)
 {
   float InputValue1;                     // 输入值1 - 用于存储输入的浮点数值
   int64_t dataContext;                   // 数据上下文 - 指向数据上下文的指针
-  int64_t memoryBlockOffset;             // 内存块偏移量 - 用于内存块操作的偏移量
+  int64_t memoryRegionOffset;             // 内存块偏移量 - 用于内存块操作的偏移量
   DataBuffer *memoryRegionBase;          // 内存区域基础指针 - 指向内存区域的指针
   DataWord operationResult;              // 操作结果 - 存储操作的结果状态
   DataWord dataFlags;                    // 数据标志 - 用于存储数据的标志位
@@ -29470,10 +29519,10 @@ void ProcessDataTypes(void)
         do {
           exceptionHandlerContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
           dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
-          memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
+          memoryRegionOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
           charSystemStatus = CheckSystemStatus(dataContext,1);
           memoryResourcePointer2 = StackPointerRegisterA;
-          if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
+          if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryRegionOffset + SystemParameterValidationOffset28))) {
             operationResult4 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
             StackFrameContext[-4] = &SystemMemoryInitializationReference;
             *(DataWord *)(StackFrameContext + -2) = SystemOperationResult;
@@ -29655,7 +29704,7 @@ SystemDataValidationCheckpoint:
 {
   float inputDataType1;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   DataWord operationResult;
   DataWord dataFlags;
@@ -29716,10 +29765,10 @@ SystemDataValidationCheckpoint:
     do {
       exceptionHandlerContext5 = *(int64_t *)(contextPointer + SystemDataParameterOffset20);
       dataContext = *(int64_t *)(operationResult0 + OperationResult0Offset10 + exceptionHandlerContext5);
-      memoryBlockOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
+      memoryRegionOffset = *(int64_t *)(operationResult0 + 8 + exceptionHandlerContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);
       FloatRegisterR12 = StackMemoryBasePointer;
-      if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryBlockOffset + SystemParameterValidationOffset28))) {
+      if ((charSystemStatus == '\0') && (*(float *)(dataContext + SystemDataValidationOffset4C) != *(float *)(memoryRegionOffset + SystemParameterValidationOffset28))) {
         operationResult3 = *(DataWord *)(operationResult0 + 4 + exceptionHandlerContext5);
         StackFrameContext[-4] = &SystemMemoryInitializationReference;
         *(DataWord *)(StackFrameContext + -2) = SystemOperationResult;
@@ -30373,7 +30422,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
 {
   int64_t exceptionContext;
   DataBuffer operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataWord memoryRegionBase;
   DataWord operationResult;
   DataWord dataFlags;
@@ -30392,8 +30441,8 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   operationResult = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
   if ((int)operationResult == 0) {
     exceptionContext = *(int64_t *)(operationBase[1] + OperationBaseConfigOffset);
-    memoryBlockOffset = GetSystemCalculatedOffsetA0();
-    if (memoryBlockOffset == 0) {
+    memoryRegionOffset = GetSystemCalculatedOffsetA0();
+    if (memoryRegionOffset == 0) {
       operationResult = ValidationErrorCode;
     }
     else {
@@ -30428,9 +30477,9 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                   *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11654),*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11658),
                                   *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1165C),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
             if ((int)operationResult == 0) {
-              operationResult = *(DataWord *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-              operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryBlockOffset + 4),
-                                    *(DataWord *)(memoryBlockOffset + 8),*(DataWord *)(memoryBlockOffset + DataBufferOffsetC),operationResult,
+              operationResult = *(DataWord *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+              operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryRegionOffset + 4),
+                                    *(DataWord *)(memoryRegionOffset + 8),*(DataWord *)(memoryRegionOffset + DataBufferOffsetC),operationResult,
                                     dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
               if ((((int)operationResult == 0) &&
                   (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA8,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataBufferOffset1E0),
@@ -31444,7 +31493,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   uint memoryRegionAddress;
   ByteFlag *memoryResultPointer;
   ByteFlag *memoryFlagsPointer;
-  uint memoryBlockOffset;
+  uint memoryRegionOffset;
   int memoryAllocationSize;
   int64_t systemStackPointer;
   ByteFlag *systemContext;
@@ -31467,13 +31516,13 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
         primaryMemoryParameter = memoryOperationResult;
         while (0 < primaryMemoryParameter) {
           memoryOperationStatus = primaryMemoryParameter;
-          if ((int)(memoryAllocationSize - memoryBlockOffset) <= primaryMemoryParameter) {
-            memoryOperationStatus = memoryAllocationSize - memoryBlockOffset;
+          if ((int)(memoryAllocationSize - memoryRegionOffset) <= primaryMemoryParameter) {
+            memoryOperationStatus = memoryAllocationSize - memoryRegionOffset;
           }
           primaryMemoryParameter = primaryMemoryParameter - memoryOperationStatus;
           if (memoryOperationStatus != 0) {
-            memoryOperationResult = systemContext + (int)memoryBlockOffset;
-            memoryBlockOffset = memoryBlockOffset + memoryOperationStatus;
+            memoryOperationResult = systemContext + (int)memoryRegionOffset;
+            memoryRegionOffset = memoryRegionOffset + memoryOperationStatus;
             do {
               dataTransferBuffer = *dataBufferPointer;
               dataBufferPointer = dataBufferPointer + -1;
@@ -31482,7 +31531,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
               memoryOperationStatus = memoryOperationStatus + -1;
             } while (memoryOperationStatus != 0);
           }
-          memoryBlockOffset = memoryBlockOffset & (int)(memoryBlockOffset - memoryAllocationSize) >> 0x1f;
+          memoryRegionOffset = memoryRegionOffset & (int)(memoryRegionOffset - memoryAllocationSize) >> 0x1f;
         }
       }
       memoryContextIndex = memoryContextIndex + memoryOperationResult;
@@ -31506,7 +31555,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       *memoryOperationResult = (char)memoryDataValue;
     }
     else {
-      memoryFlagsPointer = systemContext + (int)memoryBlockOffset;
+      memoryFlagsPointer = systemContext + (int)memoryRegionOffset;
       dataBufferPointer = memoryFlagsPointer + -1;
       memoryOperationResult = systemContext;
       if (systemContext < dataBufferPointer) {
@@ -31518,7 +31567,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
           dataBufferPointer = dataBufferPointer + -1;
         } while (memoryOperationResult < dataBufferPointer);
       }
-      dataBufferPointer = memoryFlagsPointer + (int64_t)(int)(memoryAllocationSize - memoryBlockOffset) + -1;
+      dataBufferPointer = memoryFlagsPointer + (int64_t)(int)(memoryAllocationSize - memoryRegionOffset) + -1;
       if (memoryFlagsPointer < dataBufferPointer) {
         do {
           dataTransferBuffer = *memoryFlagsPointer;
@@ -45172,7 +45221,7 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
 {
   int *referenceCount;
   DataBuffer *dataPointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t baseAddress;
   
   // 获取异常数据指针
@@ -45184,17 +45233,17 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
   // 计算基地址和偏移量
   baseAddress = (uint64_t)dataPointer & MemoryRegionMask;
   if (baseAddress != 0) {
-    memoryBlockOffset = baseAddress + ResourceManagementOffset80 + ((int64_t)dataPointer - baseAddress >> 0x10) * MemoryBlockSize50;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = baseAddress + ResourceManagementOffset80 + ((int64_t)dataPointer - baseAddress >> 0x10) * MemoryBlockSize50;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查是否为异常列表且状态标志为0
-    if ((*(void ***)(baseAddress + ExceptionHandlerContextOffset70) == &ExceptionList) && (*(char *)(memoryBlockOffset + SystemStatusFlagE) == '\0')) {
+    if ((*(void ***)(baseAddress + ExceptionHandlerContextOffset70) == &ExceptionList) && (*(char *)(memoryRegionOffset + SystemStatusFlagE) == '\0')) {
       // 更新指针链表
-      *dataPointer = *(DataBuffer *)(memoryBlockOffset + SystemDataParameterOffset20);
-      *(DataBuffer **)(memoryBlockOffset + SystemDataParameterOffset20) = dataPointer;
+      *dataPointer = *(DataBuffer *)(memoryRegionOffset + SystemDataParameterOffset20);
+      *(DataBuffer **)(memoryRegionOffset + SystemDataParameterOffset20) = dataPointer;
       
       // 减少引用计数
-      referenceCount = (int *)(memoryBlockOffset + SystemDataSecondaryOffset18);
+      referenceCount = (int *)(memoryRegionOffset + SystemDataSecondaryOffset18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
         HandleExceptionE0();
@@ -46172,7 +46221,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(resourceManager + MemoryResourceOffset48);
@@ -46181,12 +46230,12 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -46646,7 +46695,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset120);
@@ -46655,12 +46704,12 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -47900,7 +47949,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + SystemDataSecondaryOffset18);
@@ -47909,12 +47958,12 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -47963,7 +48012,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + SystemManagementOffset98);
@@ -47972,12 +48021,12 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -48075,7 +48124,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(systemContext + DataProcessingOffset70) + 0x68);
@@ -48084,12 +48133,12 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -48122,7 +48171,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(systemContext + DataProcessingOffset70) + 0x88);
@@ -48131,12 +48180,12 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -48369,12 +48418,12 @@ void ExceptionCleanupHandlerValidationContext(DataBuffer operationBase,int64_t d
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x70);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x78);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    ProcessMemoryOffsetA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    ProcessMemoryOffsetA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -48579,12 +48628,12 @@ void ExceptionCleanupHandlerValidationContext2(DataBuffer operationBase,int64_t 
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    ProcessMemoryOffsetA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    ProcessMemoryOffsetA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -48610,13 +48659,13 @@ void ExceptionCleanupHandlerMemoryContext(DataBuffer operationBase,int64_t dataB
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataProcessingOffset70);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataProcessingOffset70);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -48630,10 +48679,10 @@ void ExceptionCleanupHandlerMemoryContext(DataBuffer operationBase,int64_t dataB
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -48657,13 +48706,13 @@ void ExceptionCleanupHandlerMemoryContext2(DataBuffer operationBase,int64_t data
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -48677,10 +48726,10 @@ void ExceptionCleanupHandlerMemoryContext2(DataBuffer operationBase,int64_t data
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -48704,13 +48753,13 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -48724,10 +48773,10 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -48774,7 +48823,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + DataProcessingOffset30);
@@ -48783,12 +48832,12 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49295,7 +49344,7 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 0x48);
@@ -49304,12 +49353,12 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49406,7 +49455,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(contextOffset + systemContextPointerOffset90) + 0x48);
@@ -49415,12 +49464,12 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49452,7 +49501,7 @@ void CleanupresourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(contextOffset + SystemManagementOffset98);
@@ -49461,12 +49510,12 @@ void CleanupresourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49500,7 +49549,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(ExceptionContext + SystemManagementOffset98);
@@ -49509,12 +49558,12 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49572,7 +49621,7 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
@@ -49581,12 +49630,12 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49608,7 +49657,7 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
@@ -49617,12 +49666,12 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49876,7 +49925,7 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + MemoryPointerOffset);
@@ -49885,12 +49934,12 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -49912,7 +49961,7 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + MemoryPointerOffset);
@@ -49921,12 +49970,12 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -50259,7 +50308,7 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x48);
@@ -50268,12 +50317,12 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -50295,7 +50344,7 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset58);
@@ -50304,12 +50353,12 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -50331,7 +50380,7 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset58);
@@ -50340,12 +50389,12 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -50428,7 +50477,7 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t *memoryRegionBase;
   DataBuffer *operationResult;
   uint64_t dataFlags;
@@ -50442,12 +50491,12 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)memoryResourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
-      memoryBlockOffset = dataFlags + ResourceManagementOffset80 + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * 0x50;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = dataFlags + ResourceManagementOffset80 + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * 0x50;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + 0xe) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -50483,7 +50532,7 @@ void CleanupExceptionHandlerReferences(DataBuffer operationBase,int64_t dataBuff
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
   uint64_t *validationStatusPointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *operationResultPointer;
   uint64_t memoryFlags;
   
@@ -50496,12 +50545,12 @@ void CleanupExceptionHandlerReferences(DataBuffer operationBase,int64_t dataBuff
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     memoryFlags = (uint64_t)memoryResourcePointer & SystemCleanupFlagffc00000;
     if (memoryFlags != 0) {
-      memoryBlockOffset = memoryFlags + ResourceManagementOffset80 + ((int64_t)memoryResourcePointer - memoryFlags >> 0x10) * 0x50;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryFlags + 0x70) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryFlags + ResourceManagementOffset80 + ((int64_t)memoryResourcePointer - memoryFlags >> 0x10) * 0x50;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryFlags + 0x70) == &ExceptionList) && (*(char *)(memoryRegionOffset + 0xe) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -50692,7 +50741,7 @@ void CleanupResourceReference(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;          // 资源引用计数指针
   DataBuffer *memoryResourcePointer;     // 内存资源指针
-  int64_t memoryBlockOffset;             // 内存块偏移量
+  int64_t memoryRegionOffset;             // 内存块偏移量
   uint64_t memoryRegionBase;            // 内存区域基址
   
   // 从数据缓冲区获取内存资源指针
@@ -50705,17 +50754,17 @@ void CleanupResourceReference(DataBuffer operationBase, int64_t dataBuffer)
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查异常处理列表和安全标志
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新资源指针链表
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
       
       // 减少资源引用计数
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         // 引用计数为0时触发异常处理
@@ -51202,7 +51251,7 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + SystemDataParameterOffset20);
@@ -51211,12 +51260,12 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51238,7 +51287,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset88);
@@ -51247,12 +51296,12 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51306,7 +51355,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + SystemDataParameterOffset20);
@@ -51315,12 +51364,12 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51416,7 +51465,7 @@ void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset48) + SystemDataParameterOffset20);
@@ -51425,12 +51474,12 @@ void CleanupExceptionTableWithMemoryManagement(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51452,12 +51501,12 @@ void CleanupMemoryPool1a0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemParameterValidationOffset28);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x548) {
-    ValidateSystemDataAndExecute(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x548) {
+    ValidateSystemDataAndExecute(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -51472,12 +51521,12 @@ void CleanupSystemMemoryBufferA(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + DataBufferOffset48);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x548) {
-    ValidateSystemDataAndExecute(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x548) {
+    ValidateSystemDataAndExecute(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -51526,7 +51575,7 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20);
@@ -51535,12 +51584,12 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51562,7 +51611,7 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset48);
@@ -51571,12 +51620,12 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -51598,12 +51647,12 @@ void CleanupSystemMemoryDataResource(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x548) {
-    ValidateSystemDataAndExecute(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x548) {
+    ValidateSystemDataAndExecute(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -51857,7 +51906,7 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20);
@@ -51866,12 +51915,12 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52134,12 +52183,12 @@ void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextDa
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(contextData + ExceptionContextDataOffset);
   exceptionContext = dataContext[ExceptionContextSecondaryIndex];
-  for (memoryBlockOffset = dataContext[ExceptionContextPrimaryIndex]; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + MemoryBlockSizeStep) {
-    ValidateExceptionContext(memoryBlockOffset);
+  for (memoryRegionOffset = dataContext[ExceptionContextPrimaryIndex]; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + MemoryBlockSizeStep) {
+    ValidateExceptionContext(memoryRegionOffset);
   }
   if (dataContext[ExceptionContextPrimaryIndex] == 0) {
     return;
@@ -52285,7 +52334,7 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataSecondaryOffset18);
@@ -52294,12 +52343,12 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52331,7 +52380,7 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset18);
@@ -52340,12 +52389,12 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52377,7 +52426,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset18);
@@ -52386,12 +52435,12 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52423,7 +52472,7 @@ void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset60);
@@ -52432,12 +52481,12 @@ void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> ExceptionCleanupDataShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + ExceptionCleanupReferenceDecrement;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52469,21 +52518,21 @@ void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   CleanupSystemDataA0();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -52517,21 +52566,21 @@ void ManageResourceReferenceCountWithExceptionHandling(DataBuffer operationBase,
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   CleanupSystemDataA0();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -52636,7 +52685,7 @@ void CleanupSystemResourcePointerWithMemoryManagement(DataBuffer operationBase, 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x300);
@@ -52645,12 +52694,12 @@ void CleanupSystemResourcePointerWithMemoryManagement(DataBuffer operationBase, 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -52706,21 +52755,21 @@ void CleanupSystemDataWithMemoryManagement(DataBuffer operationBase, int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataProcessingOffset70);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataProcessingOffset70);
   CleanupSystemDataA0();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + SystemDataValidationOffset340)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourceSecondaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + SystemDataValidationOffset340)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourceSecondaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -52905,21 +52954,21 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
+  memoryRegionOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
   CleanupSystemDataA0();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -52953,21 +53002,21 @@ void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
+  memoryRegionOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
   CleanupSystemDataA0();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -59317,7 +59366,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x10400);
@@ -59326,12 +59375,12 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -60345,7 +60394,7 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemParameterValidationOffset28);
@@ -60354,12 +60403,12 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -60395,7 +60444,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x48);
@@ -60404,12 +60453,12 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -60699,7 +60748,7 @@ void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t d
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 8);
@@ -60708,12 +60757,12 @@ void CleanupResourceReferenceCountAtOffset9D0(DataBuffer operationBase,int64_t d
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -60746,7 +60795,7 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + SystemParameterValidationOffset28);
@@ -60755,12 +60804,12 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -60794,7 +60843,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + MemoryResourcePointerTableOffset);
@@ -60803,12 +60852,12 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -61127,7 +61176,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataProcessingOffset70);
@@ -61136,12 +61185,12 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -61182,7 +61231,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataProcessingOffset70);
@@ -61191,12 +61240,12 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -61468,7 +61517,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
 {
   uint64_t systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t calculatedIndex;
   uint64_t operationResult;
   uint64_t dataFlags;
@@ -61477,7 +61526,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
   
   systemDataBuffer = *(uint64_t *)(dataBuffer + MemoryPointerOffset);
   dataContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0);
-  memoryBlockOffset = *(int64_t *)(dataContext + SystemDataOffset40);
+  memoryRegionOffset = *(int64_t *)(dataContext + SystemDataOffset40);
   *(DataBuffer *)(dataContext + DataOperationOffset70) = *(DataBuffer *)(dataBuffer + DataBufferOffset30);
   *(DataBuffer *)(dataContext + ContextLoopCounterOffset60) = *(DataBuffer *)(dataBuffer + DataBufferOffsetB8);
   memoryOffset = *(int64_t *)(dataBuffer + ValidationResultOffset);
@@ -61505,7 +61554,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
       } while (dataFlags != securityCheckResult);
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = dataFlags;
     }
-    if (memoryOffset == memoryBlockOffset) break;
+    if (memoryOffset == memoryRegionOffset) break;
     memoryOffset = *(int64_t *)(memoryOffset + 0x100);
     operationResult = dataFlags;
   }
@@ -61519,7 +61568,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   int64_t memoryPointer;
@@ -61561,14 +61610,14 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
   if (dataContext != 0) {
     while( true ) {
       *(uint64_t *)(dataBuffer + MemoryPointerOffset) = securityCheckResult + SystemDataParameterOffset20;
-      memoryBlockOffset = *(int64_t **)(exceptionHandlerContext + 0x60);
+      memoryRegionOffset = *(int64_t **)(exceptionHandlerContext + 0x60);
       *(DataBuffer *)
        (*(int64_t *)
-         (memoryBlockOffset[3] +
-         (((securityCheckResult + SystemDataParameterOffset20 & SystemCleanupFlagffffffe0) - **(int64_t **)(memoryBlockOffset[3] + memoryBlockOffset[1] * 8) >> 5) +
-          memoryBlockOffset[1] & *memoryBlockOffset - 1U) * 8) + 8) = 0;
-      memoryBlockOffset = *(int64_t **)(exceptionHandlerContext + 0x60);
-      memoryBlockOffset[1] = memoryBlockOffset[1] - 1U & *memoryBlockOffset - 1U;
+         (memoryRegionOffset[3] +
+         (((securityCheckResult + SystemDataParameterOffset20 & SystemCleanupFlagffffffe0) - **(int64_t **)(memoryRegionOffset[3] + memoryRegionOffset[1] * 8) >> 5) +
+          memoryRegionOffset[1] & *memoryRegionOffset - 1U) * 8) + 8) = 0;
+      memoryRegionOffset = *(int64_t **)(exceptionHandlerContext + 0x60);
+      memoryRegionOffset[1] = memoryRegionOffset[1] - 1U & *memoryRegionOffset - 1U;
       dataPointer = *(int64_t *)(dataPointer + 0x100);
       if (dataPointer == 0) break;
       securityCheckResult = *(uint64_t *)(dataBuffer + MemoryPointerOffset);
@@ -61899,7 +61948,7 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffsetC0);
@@ -61908,12 +61957,12 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -62063,7 +62112,7 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + systemContextPointerOffset90);
@@ -62072,12 +62121,12 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -62263,7 +62312,7 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryPointerOffset);
@@ -62272,12 +62321,12 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -62468,7 +62517,7 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
@@ -62477,12 +62526,12 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -62538,7 +62587,7 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemManagementOffset98);
@@ -62547,12 +62596,12 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -63111,7 +63160,7 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + resourcePointerStartOffset);
@@ -63120,12 +63169,12 @@ void CleanupSystemResourcesA2(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & SystemMemoryCleanupMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -63196,7 +63245,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset108);
@@ -63205,12 +63254,12 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -63276,7 +63325,7 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryBlockSizeOffset);
@@ -63285,12 +63334,12 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -63559,7 +63608,7 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + MemoryPointerOffset);
@@ -63568,12 +63617,12 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -64129,7 +64178,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x213438);
@@ -64138,12 +64187,12 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -64223,7 +64272,7 @@ void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset30);
@@ -64232,12 +64281,12 @@ void ManagePrimaryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -64268,7 +64317,7 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset30);
@@ -64277,12 +64326,12 @@ void ManageSecondaryResourceReferenceCount(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -64788,7 +64837,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   int64_t *contextPointer;
   DataBuffer *operationResult;
   int iterationCount;
@@ -64853,9 +64902,9 @@ ProcessCheckpointValidationData3:
   }
   exceptionContextPointer = operationResult + systemContextProcessingOffset;
   ValidateProcessingA0(exceptionContextPointer);
-  memoryBlockOffset = operationResult + SystemMemoryBlockOffset;
+  memoryRegionOffset = operationResult + SystemMemoryBlockOffset;
   contextPointer = (int64_t *)operationResult[systemContextArrayOffset];
-  dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+  dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   if (dataProcessingBuffer != contextPointer) {
     do {
       if ((int64_t *)*dataProcessingBuffer != (int64_t *)0x0) {
@@ -64863,7 +64912,7 @@ ProcessCheckpointValidationData3:
       }
       dataProcessingBuffer = dataProcessingBuffer + 1;
     } while (dataProcessingBuffer != contextPointer);
-    dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+    dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   }
   operationResult[systemContextArrayOffset] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
@@ -64879,8 +64928,8 @@ ProcessCheckpointValidationData3:
   if ((int64_t *)operationResult[SystemCleanupOffset] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)operationResult[SystemCleanupOffset] + SystemFunctionCallbackOffset))();
   }
-  systemContextPointer = memoryBlockOffset;
-  ManageMemoryA0(memoryBlockOffset);
+  systemContextPointer = memoryRegionOffset;
+  ManageMemoryA0(memoryRegionOffset);
   systemContextPointer = operationResult + DataConfigurationOffset;
   CleanupResourcesA0();
   systemContextPointer = operationResult + 0x24;
@@ -65204,7 +65253,7 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + SystemDataBufferPointerOffset);
@@ -65213,12 +65262,12 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -65250,18 +65299,18 @@ void ExecuteDataValidationAndProcessingB(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + SystemContextDataOffset2E0);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemParameterValidationOffset28) {
-    *(DataBuffer *)(memoryBlockOffset + 8) = &SystemTemporaryExceptionHandler;
-    if (*(int64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset) != 0) {
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemParameterValidationOffset28) {
+    *(DataBuffer *)(memoryRegionOffset + 8) = &SystemTemporaryExceptionHandler;
+    if (*(int64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)(memoryBlockOffset + ExceptionHandlerCallbackOffset) = 0;
-    *(DataWord *)(memoryBlockOffset + SystemDataParameterOffset20) = 0;
-    *(DataBuffer *)(memoryBlockOffset + 8) = &SystemDefaultExceptionHandlerB;
+    *(DataBuffer *)(memoryRegionOffset + ExceptionHandlerCallbackOffset) = 0;
+    *(DataWord *)(memoryRegionOffset + SystemDataParameterOffset20) = 0;
+    *(DataBuffer *)(memoryRegionOffset + 8) = &SystemDefaultExceptionHandlerB;
   }
   if (*dataContext != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -65345,18 +65394,18 @@ void CleanupExceptionHandling8C0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + SystemDataBufferPointerOffset);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemParameterValidationOffset28) {
-    *(DataBuffer *)(memoryBlockOffset + 8) = &SystemTemporaryExceptionHandler;
-    if (*(int64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset) != 0) {
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemParameterValidationOffset28) {
+    *(DataBuffer *)(memoryRegionOffset + 8) = &SystemTemporaryExceptionHandler;
+    if (*(int64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)(memoryBlockOffset + ExceptionHandlerCallbackOffset) = 0;
-    *(DataWord *)(memoryBlockOffset + SystemDataParameterOffset20) = 0;
-    *(DataBuffer *)(memoryBlockOffset + 8) = &SystemDefaultExceptionHandlerB;
+    *(DataBuffer *)(memoryRegionOffset + ExceptionHandlerCallbackOffset) = 0;
+    *(DataWord *)(memoryRegionOffset + SystemDataParameterOffset20) = 0;
+    *(DataBuffer *)(memoryRegionOffset + 8) = &SystemDefaultExceptionHandlerB;
   }
   if (*dataContext != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -65609,7 +65658,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   int64_t *contextPointer;
   DataBuffer *operationResult;
   int iterationCount;
@@ -65674,9 +65723,9 @@ ProcessCheckpointValidationData3:
   }
   exceptionContextPointer = operationResult + 6;
   ValidateProcessingA0(exceptionContextPointer);
-  memoryBlockOffset = operationResult + 0x2d;
+  memoryRegionOffset = operationResult + 0x2d;
   contextPointer = (int64_t *)operationResult[OperationResultIndex2E];
-  dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+  dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   if (dataProcessingBuffer != contextPointer) {
     do {
       if ((int64_t *)*dataProcessingBuffer != (int64_t *)0x0) {
@@ -65684,7 +65733,7 @@ ProcessCheckpointValidationData3:
       }
       dataProcessingBuffer = dataProcessingBuffer + 1;
     } while (dataProcessingBuffer != contextPointer);
-    dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+    dataProcessingBuffer = (int64_t *)*memoryRegionOffset;
   }
   operationResult[OperationResultIndex2E] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
@@ -65700,8 +65749,8 @@ ProcessCheckpointValidationData3:
   if ((int64_t *)operationResult[OperationResultIndex3D] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)operationResult[OperationResultIndex3D] + SystemFloatDataOffset38))();
   }
-  systemContextPointer = memoryBlockOffset;
-  ManageMemoryA0(memoryBlockOffset);
+  systemContextPointer = memoryRegionOffset;
+  ManageMemoryA0(memoryRegionOffset);
   systemContextPointer = operationResult + SystemParameterValidationOffset28;
   CleanupResourcesA0();
   systemContextPointer = operationResult + 0x24;
@@ -66308,13 +66357,13 @@ void ExecuteExceptionHandlerCallbackB70(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + SystemDataValidationOffset340);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourceSecondaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + SystemDataValidationOffset340);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourceSecondaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66326,10 +66375,10 @@ void ExecuteExceptionHandlerCallbackB70(DataBuffer operationBase,int64_t dataBuf
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + SystemDataValidationOffset340);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + SystemDataValidationOffset340);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataValidationOffset348) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourceSecondaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataValidationOffset348) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourceSecondaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66459,13 +66508,13 @@ void UnwindCleanupPointerArray(DataBuffer exceptionContext,int64_t unwindContext
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(unwindContext + SystemFloatDataOffset38);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(unwindContext + SystemFloatDataOffset38);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66477,10 +66526,10 @@ void UnwindCleanupPointerArray(DataBuffer exceptionContext,int64_t unwindContext
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66505,13 +66554,13 @@ void ExecuteExceptionHandlerCallbackC20(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(unwindContext + SystemFloatDataOffset38);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(unwindContext + SystemFloatDataOffset38);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66523,10 +66572,10 @@ void ExecuteExceptionHandlerCallbackC20(DataBuffer operationBase,int64_t dataBuf
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66552,13 +66601,13 @@ void CleanupExceptionHandlingResourcesC30(DataBuffer operationBase,int64_t dataB
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66570,10 +66619,10 @@ void CleanupExceptionHandlingResourcesC30(DataBuffer operationBase,int64_t dataB
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66599,13 +66648,13 @@ void CleanupExceptionHandlersInResourceTable(DataBuffer operationBase,int64_t da
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66617,10 +66666,10 @@ void CleanupExceptionHandlersInResourceTable(DataBuffer operationBase,int64_t da
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66723,13 +66772,13 @@ void CleanupExceptionHandlersInExtendedTable(DataBuffer operationBase,int64_t da
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + SystemDataValidationOffset340);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourceSecondaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + SystemDataValidationOffset340);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourceSecondaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66741,10 +66790,10 @@ void CleanupExceptionHandlersInExtendedTable(DataBuffer operationBase,int64_t da
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + SystemDataValidationOffset340);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + SystemDataValidationOffset340);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataValidationOffset348) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourceSecondaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataValidationOffset348) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourceSecondaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66768,13 +66817,13 @@ void CleanupExceptionHandlerResources(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66786,10 +66835,10 @@ void CleanupExceptionHandlerResources(DataBuffer operationBase,int64_t dataBuffe
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -66823,13 +66872,13 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
 {
   int64_t exceptionContext;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(unwindContext + 0x48);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(unwindContext + 0x48);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -66841,10 +66890,10 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -67299,11 +67348,11 @@ void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
 
 {
   uint32_t maskValue;
-  uint64_t memoryBlockOffset;
+  uint64_t memoryRegionOffset;
   
   maskValue = *(uint *)(processData + 0x30) & MemoryOffsetValidationThreshold;
-  memoryBlockOffset = (uint64_t)maskValue * SystemResourceManagerMultiplier + *(int64_t *)(processData + SystemParameterValidationOffset28);
-  ProcessSystemConfigurationA0(memoryBlockOffset);
+  memoryRegionOffset = (uint64_t)maskValue * SystemResourceManagerMultiplier + *(int64_t *)(processData + SystemParameterValidationOffset28);
+  ProcessSystemConfigurationA0(memoryRegionOffset);
   *(ByteFlag *)((*(int64_t *)(processData + SystemParameterValidationOffset28) - (uint64_t)maskValue) + SystemResourceFlagOffset) = 1;
   return;
 }
@@ -67381,7 +67430,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
 {
   int64_t *exceptionContextPointer;
   int *operationResult;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   int arrayIndex;
   int64_t resourceIterator;
   int64_t memoryPointer;
@@ -67389,16 +67438,16 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
   int64_t dataProcessingBuffer;
   bool isPointerMatch;
   
-  memoryBlockOffset = (int64_t *)(dataBuffer + ValidationResultOffset);
-  ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + DataBufferOffset30) & MemoryOffsetValidationThreshold) * SystemResourceManagerMultiplier + *memoryBlockOffset);
+  memoryRegionOffset = (int64_t *)(dataBuffer + ValidationResultOffset);
+  ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + DataBufferOffset30) & MemoryOffsetValidationThreshold) * SystemResourceManagerMultiplier + *memoryRegionOffset);
   LOCK();
-  exceptionContextPointer = (int64_t *)(*memoryBlockOffset + ExceptionContextPointerOffset);
+  exceptionContextPointer = (int64_t *)(*memoryRegionOffset + ExceptionContextPointerOffset);
   resourceIterator = *exceptionContextPointer;
   *exceptionContextPointer = *exceptionContextPointer + 1;
   UNLOCK();
   if (resourceIterator == MemoryOffsetValidationThreshold) {
     *(DataBuffer *)(*(int64_t *)(dataBuffer + SystemFloatDataOffset38) + 8) = 0;
-    resourceIterator = *memoryBlockOffset;
+    resourceIterator = *memoryRegionOffset;
     memoryPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
     LOCK();
     operationResult = (int *)(resourceIterator + 0x3530);
@@ -67609,12 +67658,12 @@ void ProcessUnwindDataValidation(DataBuffer exceptionContext, int64_t exceptionH
 {
   int64_t contextIterator;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + ExceptionDataListOffset);
   contextIterator = *(int64_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + ExceptionDataEndOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != contextIterator; memoryBlockOffset = memoryBlockOffset + ResourceQueueStepSize) {
-    ProcessSystemConfigurationA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != contextIterator; memoryRegionOffset = memoryRegionOffset + ResourceQueueStepSize) {
+    ProcessSystemConfigurationA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -67639,12 +67688,12 @@ void ValidateUnwindMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(memoryContext + MemoryRegionDataOffset);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + ResourceQueueStepSize) {
-    ProcessSystemConfigurationA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + ResourceQueueStepSize) {
+    ProcessSystemConfigurationA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -68020,12 +68069,12 @@ void ProcessSystemConfigurationIteration(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + SystemDataRecordOffset3c8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x3d0);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != contextIterator; memoryBlockOffset = memoryBlockOffset + 0x1a8) {
-    ProcessSystemConfigurationA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != contextIterator; memoryRegionOffset = memoryRegionOffset + 0x1a8) {
+    ProcessSystemConfigurationA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -68546,7 +68595,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffsetA8) + ResourceManagementOffset1d8);
@@ -68555,12 +68604,12 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -68594,7 +68643,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetB0);
@@ -68603,12 +68652,12 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -68641,7 +68690,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetB0);
@@ -68650,12 +68699,12 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -68811,7 +68860,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ResourceManagementOffset1d8);
@@ -68820,12 +68869,12 @@ void CleanupSystemResourceE0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -69263,7 +69312,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffsetE0);
@@ -69272,12 +69321,12 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -69457,33 +69506,33 @@ void ValidateAndCleanupExceptionContext(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + MemoryPointerOffset);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  memoryBlockOffset = (int64_t *)*dataContext;
+  memoryRegionOffset = (int64_t *)*dataContext;
   while( true ) {
-    if (memoryBlockOffset == exceptionContextPointer) {
+    if (memoryRegionOffset == exceptionContextPointer) {
       if (*dataContext != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x12) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x12) = 0;
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x1a) = 0;
-    if (*memoryBlockOffset != 0) {
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x12) = 0;
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x1a) = 0;
+    if (*memoryRegionOffset != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *memoryBlockOffset = 0;
-    if (memoryBlockOffset[1] != 0) {
+    *memoryRegionOffset = 0;
+    if (memoryRegionOffset[1] != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    memoryBlockOffset[1] = 0;
-    memoryBlockOffset = (int64_t *)((int64_t)memoryBlockOffset + 0x24);
+    memoryRegionOffset[1] = 0;
+    memoryRegionOffset = (int64_t *)((int64_t)memoryRegionOffset + 0x24);
   }
     TerminateSystemExecutionAndCleanupResources();
 }
@@ -69508,33 +69557,33 @@ void CleanupExceptionHandlerContext4D0(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemParameterValidationOffset28);
-  memoryBlockOffset = (int64_t *)*dataContext;
+  memoryRegionOffset = (int64_t *)*dataContext;
   while( true ) {
-    if (memoryBlockOffset == exceptionContextPointer) {
+    if (memoryRegionOffset == exceptionContextPointer) {
       if (*dataContext != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x12) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x12) = 0;
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x1a) = 0;
-    if (*memoryBlockOffset != 0) {
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x12) = 0;
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x1a) = 0;
+    if (*memoryRegionOffset != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *memoryBlockOffset = 0;
-    if (memoryBlockOffset[1] != 0) {
+    *memoryRegionOffset = 0;
+    if (memoryRegionOffset[1] != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    memoryBlockOffset[1] = 0;
-    memoryBlockOffset = (int64_t *)((int64_t)memoryBlockOffset + 0x24);
+    memoryRegionOffset[1] = 0;
+    memoryRegionOffset = (int64_t *)((int64_t)memoryRegionOffset + 0x24);
   }
     TerminateSystemExecutionAndCleanupResources();
 }
@@ -69623,33 +69672,33 @@ void CleanupExceptionHandlerContext500(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + DataBufferOffset48);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  memoryBlockOffset = (int64_t *)*dataContext;
+  memoryRegionOffset = (int64_t *)*dataContext;
   while( true ) {
-    if (memoryBlockOffset == exceptionContextPointer) {
+    if (memoryRegionOffset == exceptionContextPointer) {
       if (*dataContext != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x12) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x12) = 0;
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x1a) = 0;
-    if (*memoryBlockOffset != 0) {
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x12) = 0;
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x1a) = 0;
+    if (*memoryRegionOffset != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *memoryBlockOffset = 0;
-    if (memoryBlockOffset[1] != 0) {
+    *memoryRegionOffset = 0;
+    if (memoryRegionOffset[1] != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    memoryBlockOffset[1] = 0;
-    memoryBlockOffset = (int64_t *)((int64_t)memoryBlockOffset + 0x24);
+    memoryRegionOffset[1] = 0;
+    memoryRegionOffset = (int64_t *)((int64_t)memoryRegionOffset + 0x24);
   }
     TerminateSystemExecutionAndCleanupResources();
 }
@@ -69676,33 +69725,33 @@ void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  memoryBlockOffset = (int64_t *)*dataContext;
+  memoryRegionOffset = (int64_t *)*dataContext;
   while( true ) {
-    if (memoryBlockOffset == exceptionContextPointer) {
+    if (memoryRegionOffset == exceptionContextPointer) {
       if (*dataContext != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x12) != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x12) = 0;
-    if (*(int64_t *)((int64_t)memoryBlockOffset + 0x1a) != 0) break;
-    *(DataBuffer *)((int64_t)memoryBlockOffset + 0x1a) = 0;
-    if (*memoryBlockOffset != 0) {
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x12) = 0;
+    if (*(int64_t *)((int64_t)memoryRegionOffset + 0x1a) != 0) break;
+    *(DataBuffer *)((int64_t)memoryRegionOffset + 0x1a) = 0;
+    if (*memoryRegionOffset != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    *memoryBlockOffset = 0;
-    if (memoryBlockOffset[1] != 0) {
+    *memoryRegionOffset = 0;
+    if (memoryRegionOffset[1] != 0) {
         TerminateSystemExecutionAndCleanupResources();
     }
-    memoryBlockOffset[1] = 0;
-    memoryBlockOffset = (int64_t *)((int64_t)memoryBlockOffset + 0x24);
+    memoryRegionOffset[1] = 0;
+    memoryRegionOffset = (int64_t *)((int64_t)memoryRegionOffset + 0x24);
   }
     TerminateSystemExecutionAndCleanupResources();
 }
@@ -71353,7 +71402,7 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset88);
@@ -71362,12 +71411,12 @@ void ManageResourceReferenceCountAtOffset88(DataBuffer operationBase,int64_t dat
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -71549,7 +71598,7 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(cleanupContext + 0x58);
@@ -71558,12 +71607,12 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -71595,7 +71644,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(cleanupContext + 0x58);
@@ -71604,12 +71653,12 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -71857,7 +71906,7 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xa8);
@@ -71866,12 +71915,12 @@ void CleanupResourceReferenceCountAtOffset6C80(DataBuffer operationBase, int64_t
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -71908,7 +71957,7 @@ void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
@@ -71917,12 +71966,12 @@ void CleanupResourceReferenceCountAtOffset6C90(DataBuffer operationBase, int64_t
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -71959,7 +72008,7 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset88);
@@ -71968,12 +72017,12 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72043,7 +72092,7 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset118);
@@ -72052,12 +72101,12 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72093,7 +72142,7 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset118);
@@ -72102,12 +72151,12 @@ void CleanupExceptionResourceReferenceCountAtOffset118(DataBuffer operationBase,
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72177,7 +72226,7 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetF8);
@@ -72186,12 +72235,12 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72225,7 +72274,7 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset260);
@@ -72234,12 +72283,12 @@ void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72273,7 +72322,7 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset260);
@@ -72282,12 +72331,12 @@ void DecrementResourceReferenceCountAtOffset260Duplicate(DataBuffer operationBas
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72353,7 +72402,7 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetD8);
@@ -72362,12 +72411,12 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72550,7 +72599,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
@@ -72559,12 +72608,12 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72601,7 +72650,7 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset88);
@@ -72610,12 +72659,12 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72651,7 +72700,7 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   // 获取内存资源指针
@@ -72664,15 +72713,15 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查异常列表和内存状态
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72710,7 +72759,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferSystemOffset268);
@@ -72719,12 +72768,12 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -72810,7 +72859,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
@@ -72819,12 +72868,12 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -74718,7 +74767,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
@@ -74727,12 +74776,12 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -74767,7 +74816,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset48);
@@ -74776,12 +74825,12 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -74816,7 +74865,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset48);
@@ -74825,12 +74874,12 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -75177,7 +75226,7 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset50);
@@ -75186,12 +75235,12 @@ void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -75233,7 +75282,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset50);
@@ -75242,12 +75291,12 @@ void CleanupResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -75279,7 +75328,7 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
@@ -75288,12 +75337,12 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -75884,16 +75933,16 @@ void ProcessSystemResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset50);
   *memoryResourcePointer = &SystemresourcePointerA;
   exceptionDataBuffer = (DataBuffer *)memoryResourcePointer[MemoryResourcePointerIndex11];
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    memoryBlockOffset = __RTCastToVoid(exceptionDataBuffer);
+    memoryRegionOffset = __RTCastToVoid(exceptionDataBuffer);
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
-    if (memoryBlockOffset != 0) {
-        TerminateSystemE0(memoryBlockOffset);
+    if (memoryRegionOffset != 0) {
+        TerminateSystemE0(memoryRegionOffset);
     }
   }
   memoryResourcePointer[MemoryResourcePointerIndex11] = 0;
@@ -75953,16 +76002,16 @@ void ProcessSystemResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
   *memoryResourcePointer = &SystemresourcePointerA;
   exceptionDataBuffer = (DataBuffer *)memoryResourcePointer[MemoryResourcePointerIndex11];
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    memoryBlockOffset = __RTCastToVoid(exceptionDataBuffer);
+    memoryRegionOffset = __RTCastToVoid(exceptionDataBuffer);
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
-    if (memoryBlockOffset != 0) {
-        TerminateSystemE0(memoryBlockOffset);
+    if (memoryRegionOffset != 0) {
+        TerminateSystemE0(memoryRegionOffset);
     }
   }
   memoryResourcePointer[MemoryResourcePointerIndex11] = 0;
@@ -76194,12 +76243,12 @@ void ProcessSystemStatusUpdateA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x60) {
-    UpdateSystemStatusA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x60) {
+    UpdateSystemStatusA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -76362,7 +76411,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x110);
@@ -76371,12 +76420,12 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -76409,12 +76458,12 @@ void ProcessSystemStatusUpdateA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ValidationResultOffset);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x60) {
-    UpdateSystemStatusA0(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x60) {
+    UpdateSystemStatusA0(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -76868,25 +76917,25 @@ void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
-  *(uint8_t **)(memoryBlockOffset + 0xd8) = &SystemDefaultExceptionHandlerB;
-  if (*(int64_t *)(memoryBlockOffset + 0xa8) != 0) {
+  memoryRegionOffset = *(int64_t *)(contextOffset + ResourceManagementOffset80);
+  *(uint8_t **)(memoryRegionOffset + 0xd8) = &SystemDefaultExceptionHandlerB;
+  if (*(int64_t *)(memoryRegionOffset + 0xa8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  CalculateSystemValue(memoryBlockOffset + 0x78);
-  if ((1 < *(uint64_t *)(memoryBlockOffset + 0x88)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + ResourceManagementOffset80), memoryResourcePointer != (DataBuffer *)0x0)) {
+  CalculateSystemValue(memoryRegionOffset + 0x78);
+  if ((1 < *(uint64_t *)(memoryRegionOffset + 0x88)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + ResourceManagementOffset80), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -76910,7 +76959,7 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + SystemDataSecondaryOffset180);
@@ -76919,12 +76968,12 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -76977,7 +77026,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset130);
@@ -76986,12 +77035,12 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -77105,7 +77154,7 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset130);
@@ -77114,12 +77163,12 @@ void ManageResourceReferenceCountA50(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -77153,7 +77202,7 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset130);
@@ -77162,12 +77211,12 @@ void ManageResourceReferenceCountA60(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -77787,7 +77836,7 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryOperationOffset);
@@ -77796,12 +77845,12 @@ void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t d
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -77920,7 +77969,7 @@ void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryOperationOffset);
@@ -77929,12 +77978,12 @@ void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -77967,7 +78016,7 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryOperationOffset);
@@ -77976,12 +78025,12 @@ void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78271,7 +78320,7 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset168);
@@ -78280,12 +78329,12 @@ void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78601,7 +78650,7 @@ void ProcessReferenceCountAndresourcePointers(DataBuffer operationBase,int64_t d
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ValidationResultOffset);
@@ -78610,12 +78659,12 @@ void ProcessReferenceCountAndresourcePointers(DataBuffer operationBase,int64_t d
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78647,7 +78696,7 @@ void ProcessReferenceCountAndresourcePointersOffset38(DataBuffer operationBase,i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -78656,12 +78705,12 @@ void ProcessReferenceCountAndresourcePointersOffset38(DataBuffer operationBase,i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78693,7 +78742,7 @@ void ProcessReferenceCountAndresourcePointersOffset60(DataBuffer operationBase,i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset60);
@@ -78702,12 +78751,12 @@ void ProcessReferenceCountAndresourcePointersOffset60(DataBuffer operationBase,i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78739,7 +78788,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V2(DataBuffer operationBase
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -78748,12 +78797,12 @@ void ProcessReferenceCountAndresourcePointersOffset38V2(DataBuffer operationBase
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -78785,7 +78834,7 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -78794,12 +78843,12 @@ void ProcessReferenceCountAndresourcePointersOffset38V3(DataBuffer operationBase
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -79169,7 +79218,7 @@ void CleanupresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset48);
@@ -79178,12 +79227,12 @@ void CleanupresourcePointer(DataBuffer operationBase, int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -79272,12 +79321,12 @@ void HandleExceptionWithContextA3(DataBuffer ContextParameter, int64_t systemCon
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -80667,7 +80716,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + ExceptionHandlerCallbackOffset);
@@ -80676,12 +80725,12 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -80983,13 +81032,13 @@ void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset60);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -81099,7 +81148,7 @@ void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
@@ -81108,12 +81157,12 @@ void ManageSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81287,7 +81336,7 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
@@ -81296,12 +81345,12 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81336,7 +81385,7 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
@@ -81345,12 +81394,12 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81440,7 +81489,7 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset160);
@@ -81449,12 +81498,12 @@ void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81910,7 +81959,7 @@ void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1a0);
@@ -81919,12 +81968,12 @@ void CleanupMemoryResourceReference(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81953,7 +82002,7 @@ void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset160);
@@ -81962,12 +82011,12 @@ void ReleaseMemoryResourceReferenceA(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -81996,7 +82045,7 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset120);
@@ -82005,12 +82054,12 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82046,7 +82095,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1a0);
@@ -82055,12 +82104,12 @@ void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82096,7 +82145,7 @@ void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1a0);
@@ -82105,12 +82154,12 @@ void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82144,7 +82193,7 @@ void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset160);
@@ -82153,12 +82202,12 @@ void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82192,7 +82241,7 @@ void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset120);
@@ -82201,12 +82250,12 @@ void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82240,7 +82289,7 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -82249,12 +82298,12 @@ void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82306,7 +82355,7 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x48);
@@ -82315,12 +82364,12 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82354,7 +82403,7 @@ void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -82363,12 +82412,12 @@ void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82402,7 +82451,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -82411,12 +82460,12 @@ void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -82517,7 +82566,7 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset30) + 0x48);
@@ -82526,12 +82575,12 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83318,7 +83367,7 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108) + 0x48);
@@ -83327,12 +83376,12 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83390,7 +83439,7 @@ void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase, int
 {
     int *resourceReferenceCount;          // 资源引用计数指针
     DataBuffer *memoryResourcePointer;     // 内存资源指针
-    int64_t memoryBlockOffset;            // 内存块偏移量
+    int64_t memoryRegionOffset;            // 内存块偏移量
     uint64_t memoryRegionBase;            // 内存区域基地址
     
     // 获取内存资源指针
@@ -83403,19 +83452,19 @@ void UpdateSystemConfigurationWithMemoryManagement(DataBuffer operationBase, int
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
         // 计算内存块偏移量
-        memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + 
+        memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + 
                           ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-        memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+        memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
         
         // 检查内存块状态并处理引用计数
         if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && 
-            (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+            (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
             // 更新内存资源指针
-            *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-            *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+            *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+            *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
             
             // 递减引用计数
-            resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+            resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
             *resourceReferenceCount = *resourceReferenceCount + -1;
             if (*resourceReferenceCount == 0) {
                 HandleExceptionE0();
@@ -83455,7 +83504,7 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerContextOffsetA0);
@@ -83464,12 +83513,12 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83543,7 +83592,7 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataParameterOffset20);
@@ -83552,12 +83601,12 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83579,7 +83628,7 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -83588,12 +83637,12 @@ void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83627,7 +83676,7 @@ void CleanupSystemResourcesWithValidation(DataBuffer operationBase, int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -83636,12 +83685,12 @@ void CleanupSystemResourcesWithValidation(DataBuffer operationBase, int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -83954,20 +84003,20 @@ void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffe
 {
   DataBuffer systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = (DataBuffer *)(memoryBlockOffset + -0xa0);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + -0xa0);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryBlockOffset + -0x20) != 0) && (**(int64_t **)(memoryBlockOffset + -0x88) == memoryBlockOffset + -0x30)) {
-    systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + -0x10);
-    dataContext = *(int64_t *)(memoryBlockOffset + -0x18);
-    **(int64_t **)(memoryBlockOffset + -0x88) = dataContext;
-    **(int64_t **)(memoryBlockOffset + -0x68) = dataContext;
-    **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + -0x20) != 0) && (**(int64_t **)(memoryRegionOffset + -0x88) == memoryRegionOffset + -0x30)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + -0x10);
+    dataContext = *(int64_t *)(memoryRegionOffset + -0x18);
+    **(int64_t **)(memoryRegionOffset + -0x88) = dataContext;
+    **(int64_t **)(memoryRegionOffset + -0x68) = dataContext;
+    **(int **)(memoryRegionOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
+  if (*(char *)(memoryRegionOffset + -0x24) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
@@ -84276,7 +84325,7 @@ void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int6
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x48);
@@ -84285,12 +84334,12 @@ void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int6
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -84397,7 +84446,7 @@ void ExecuteSystemOptimizationA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;           // 资源引用计数指针
   DataBuffer *memoryResourcePointer;     // 内存资源指针
-  int64_t memoryBlockOffset;              // 内存块偏移量
+  int64_t memoryRegionOffset;              // 内存块偏移量
   uint64_t memoryRegionBase;              // 内存区域基址
   
   // 获取内存资源指针
@@ -84410,17 +84459,17 @@ void ExecuteSystemOptimizationA0(DataBuffer operationBase, int64_t dataBuffer)
   memoryRegionBase = (uint64_t)memoryResourcePointer & ResourceCleanupAlignment;
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查内存块状态
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
       
       // 管理引用计数
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -84876,7 +84925,7 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;               // 资源引用计数指针
   DataBuffer *memoryResourcePointer;         // 内存资源指针
-  int64_t memoryBlockOffset;                 // 内存块偏移量
+  int64_t memoryRegionOffset;                 // 内存块偏移量
   uint64_t *memoryRegionBase;                // 内存区域基址
   uint64_t operationResult;                  // 操作结果
   uint64_t dataFlags;                        // 数据标志位
@@ -84896,15 +84945,15 @@ void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t 
     dataFlags = (uint64_t)memoryResourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       // 计算内存块偏移量
-      memoryBlockOffset = dataFlags + MemoryBaseOffset + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+      memoryRegionOffset = dataFlags + MemoryBaseOffset + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
       
       // 检查异常列表和内存状态
-      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
         // 更新内存资源指针和引用计数
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -85340,16 +85389,16 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
 {
   int64_t *exceptionContextPointer;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + systemContextPointerOffset90);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + systemContextPointerOffset90);
   dataFlags = 0;
-  exceptionContextPointer = (int64_t *)(memoryBlockOffset + ResourceManagementOffset8090);
+  exceptionContextPointer = (int64_t *)(memoryRegionOffset + ResourceManagementOffset8090);
   calculatedIndex = *exceptionContextPointer;
-  if (*(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) - calculatedIndex >> 3 != 0) {
+  if (*(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) - calculatedIndex >> 3 != 0) {
     do {
       memoryResourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (memoryResourcePointer != (DataBuffer *)0x0) {
@@ -85379,28 +85428,28 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
       *(DataBuffer *)(dataFlags * 8 + *exceptionContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *exceptionContextPointer;
-    } while (dataFlags < (uint64_t)(*(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(*(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) - calculatedIndex >> 3));
   }
-  *(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) = calculatedIndex;
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0x8218);
+  *(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) = calculatedIndex;
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0x8218);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
-    ValidateAndProcessData(memoryBlockOffset + 0x8208,*memoryResourcePointer);
+    ValidateAndProcessData(memoryRegionOffset + 0x8208,*memoryResourcePointer);
     memoryResourcePointer[4] = &SystemDefaultExceptionHandlerB;
       TerminateSystemE0(memoryResourcePointer);
   }
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x81d8,*(DataBuffer *)(memoryBlockOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x81a8,*(DataBuffer *)(memoryBlockOffset + 0x81b8));
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x8178,*(DataBuffer *)(memoryBlockOffset + 0x8188));
-  ExecuteMemoryOperation(memoryBlockOffset + ResourceManagementOffset80d8,0x20,5,InitializeSystemMemoryA0);
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x81d8,*(DataBuffer *)(memoryRegionOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x81a8,*(DataBuffer *)(memoryRegionOffset + 0x81b8));
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x8178,*(DataBuffer *)(memoryRegionOffset + 0x8188));
+  ExecuteMemoryOperation(memoryRegionOffset + ResourceManagementOffset80d8,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionContextPointer != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  ExecuteMemoryOperation(memoryBlockOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
-  calculatedIndex = *(int64_t *)(memoryBlockOffset + 0x7fd0);
-  for (resourceIterator = *(int64_t *)(memoryBlockOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  ExecuteMemoryOperation(memoryRegionOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
+  calculatedIndex = *(int64_t *)(memoryRegionOffset + 0x7fd0);
+  for (resourceIterator = *(int64_t *)(memoryRegionOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
   }
-  if (*(int64_t *)(memoryBlockOffset + 0x7fc8) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0x7fc8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -86362,7 +86411,7 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetD8);
@@ -86371,12 +86420,12 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -86413,7 +86462,7 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetD8);
@@ -86422,12 +86471,12 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -86462,7 +86511,7 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffsetB8) + 8);
@@ -86471,12 +86520,12 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -86513,7 +86562,7 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetB8);
@@ -86522,12 +86571,12 @@ void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -86565,7 +86614,7 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetB8);
@@ -86574,12 +86623,12 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -86706,16 +86755,16 @@ void ProcessExceptionContextCleanupA1(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t *exceptionContextPointer;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   dataFlags = 0;
-  exceptionContextPointer = (int64_t *)(memoryBlockOffset + ResourceManagementOffset8090);
+  exceptionContextPointer = (int64_t *)(memoryRegionOffset + ResourceManagementOffset8090);
   calculatedIndex = *exceptionContextPointer;
-  if (*(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) - calculatedIndex >> 3 != 0) {
+  if (*(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) - calculatedIndex >> 3 != 0) {
     do {
       memoryResourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (memoryResourcePointer != (DataBuffer *)0x0) {
@@ -86745,28 +86794,28 @@ void ProcessExceptionContextCleanupA1(DataBuffer operationBase,int64_t dataBuffe
       *(DataBuffer *)(dataFlags * 8 + *exceptionContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *exceptionContextPointer;
-    } while (dataFlags < (uint64_t)(*(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(*(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) - calculatedIndex >> 3));
   }
-  *(int64_t *)(memoryBlockOffset + ResourceManagementOffset8098) = calculatedIndex;
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0x8218);
+  *(int64_t *)(memoryRegionOffset + ResourceManagementOffset8098) = calculatedIndex;
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0x8218);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
-    ValidateAndProcessData(memoryBlockOffset + 0x8208,*memoryResourcePointer);
+    ValidateAndProcessData(memoryRegionOffset + 0x8208,*memoryResourcePointer);
     memoryResourcePointer[4] = &SystemDefaultExceptionHandlerB;
       TerminateSystemE0(memoryResourcePointer);
   }
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x81d8,*(DataBuffer *)(memoryBlockOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x81a8,*(DataBuffer *)(memoryBlockOffset + 0x81b8));
-  ProcessSystemParametersWithValidation(memoryBlockOffset + 0x8178,*(DataBuffer *)(memoryBlockOffset + 0x8188));
-  ExecuteMemoryOperation(memoryBlockOffset + ResourceManagementOffset80d8,0x20,5,InitializeSystemMemoryA0);
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x81d8,*(DataBuffer *)(memoryRegionOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x81a8,*(DataBuffer *)(memoryRegionOffset + 0x81b8));
+  ProcessSystemParametersWithValidation(memoryRegionOffset + 0x8178,*(DataBuffer *)(memoryRegionOffset + 0x8188));
+  ExecuteMemoryOperation(memoryRegionOffset + ResourceManagementOffset80d8,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionContextPointer != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  ExecuteMemoryOperation(memoryBlockOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
-  calculatedIndex = *(int64_t *)(memoryBlockOffset + 0x7fd0);
-  for (resourceIterator = *(int64_t *)(memoryBlockOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  ExecuteMemoryOperation(memoryRegionOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
+  calculatedIndex = *(int64_t *)(memoryRegionOffset + 0x7fd0);
+  for (resourceIterator = *(int64_t *)(memoryRegionOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
   }
-  if (*(int64_t *)(memoryBlockOffset + 0x7fc8) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0x7fc8) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -87309,7 +87358,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x68);
@@ -87318,12 +87367,12 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -87706,7 +87755,7 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -87715,12 +87764,12 @@ void ProcessResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -87818,7 +87867,7 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -87827,12 +87876,12 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -87865,7 +87914,7 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + SystemFloatDataOffset38);
@@ -87874,12 +87923,12 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -88641,13 +88690,13 @@ void CleanupExceptionHandlerChain6C0(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6c0);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6c8);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -88674,13 +88723,13 @@ void CleanupExceptionHandlerChain6E0(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6e0);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6e8);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -88707,13 +88756,13 @@ void CleanupExceptionHandlerChain700(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x700);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x708);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -88740,13 +88789,13 @@ void CleanupExceptionHandlerChain720(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x720);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x728);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -88993,25 +89042,25 @@ void CleanupMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataB
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
-  if (*(int64_t *)(memoryBlockOffset + 0xae0) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0xae0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0xac0);
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0xac0);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -89525,13 +89574,13 @@ void IterateExceptionContextHandlersA0(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x580);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x588);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -89576,13 +89625,13 @@ void ExecuteMemoryReadOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x6c0);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x6c8);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -89608,13 +89657,13 @@ void ExecuteMemoryValidationOperationA2(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x6e0);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x6e8);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -89640,13 +89689,13 @@ void ExecuteMemoryCleanupOperationA3(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x700);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x708);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -89672,13 +89721,13 @@ void ExecuteMemoryInitializationOperationA4(DataBuffer operationBase,int64_t dat
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x720);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x728);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -89927,25 +89976,25 @@ void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
   UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
-  if (*(int64_t *)(memoryBlockOffset + 0xae0) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0xae0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0xac0);
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0xac0);
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -90279,7 +90328,7 @@ void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
@@ -90288,12 +90337,12 @@ void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -90324,7 +90373,7 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataContextOffset68) + SystemDataParameterOffset20);
@@ -90333,12 +90382,12 @@ void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -90625,7 +90674,7 @@ void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
@@ -90634,12 +90683,12 @@ void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -90691,7 +90740,7 @@ void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40);
@@ -90700,12 +90749,12 @@ void ReleaseMemoryResourceWithReferenceCounting(DataBuffer operationBase,int64_t
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -91041,7 +91090,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   // 获取内存资源指针
@@ -91054,15 +91103,15 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查异常列表和内存状态
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       
       // 检查引用计数是否为零
@@ -91087,7 +91136,7 @@ void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 8);
@@ -91096,12 +91145,12 @@ void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -91123,13 +91172,13 @@ void ProcessExceptionContextWithMemoryManagement(DataBuffer operationBase,int64_
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + SystemParameterValidationOffset28);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + 0x30);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -91401,13 +91450,13 @@ void ExceptionHandlerC6(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -91423,21 +91472,21 @@ void ExceptionHandlerC7(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   CalculateSystemValue();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -91483,21 +91532,21 @@ void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   CalculateSystemValue();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -91538,21 +91587,21 @@ void ReleaseMemoryResourceAndManageReferenceCountA(DataBuffer operationBase, int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   CalculateSystemValue();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -91594,21 +91643,21 @@ void ReleaseMemoryResourceAndManageReferenceCountB(DataBuffer operationBase, int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
   CalculateSystemValue();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -91650,21 +91699,21 @@ void ReleaseMemoryResourceAndManageReferenceCountC(DataBuffer operationBase, int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
   CalculateSystemValue();
-  if ((1 < *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset)) &&
-     (memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
+  if ((1 < *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset)) &&
+     (memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + MemoryResourcePrimaryOffset), memoryResourcePointer != (DataBuffer *)0x0)) {
     memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
     if (memoryRegionBase != 0) {
-      memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-      memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-        *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-        *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-        resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+      memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+      if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+        *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+        *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+        resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
           HandleExceptionE0();
@@ -92861,14 +92910,14 @@ void CleanupExceptionContextMemoryResources(DataBuffer operationBase,int64_t dat
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
   // 获取内存块偏移量和内存区域基础地址
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + 0x2a8);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + 0x2b0);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + 0x2a8);
   operationResult = 0;
   
   // 遍历内存区域，清理异常上下文资源
@@ -92887,12 +92936,12 @@ void CleanupExceptionContextMemoryResources(DataBuffer operationBase,int64_t dat
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + 0x2b0);
   }
   
   // 重置内存块状态并验证系统状态
-  *(DataBuffer *)(memoryBlockOffset + 0x2b8) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + 0x2a8) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + 0x2b8) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + 0x2a8) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -93903,13 +93952,13 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -93923,10 +93972,10 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -93951,13 +94000,13 @@ void CleanupMemoryResourceCallbackB0(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -93971,10 +94020,10 @@ void CleanupMemoryResourceCallbackB0(DataBuffer operationBase,int64_t dataBuffer
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -94038,13 +94087,13 @@ void CleanupExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -94058,10 +94107,10 @@ void CleanupExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -94086,13 +94135,13 @@ void CleanupExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -94106,10 +94155,10 @@ void CleanupExceptionHandlerContextC(DataBuffer operationBase,int64_t dataBuffer
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -94639,13 +94688,13 @@ void ExecuteExceptionHandlerCallbackB7(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + 0x2a8);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + 0x2b0);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + 0x2a8);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -94659,10 +94708,10 @@ void ExecuteExceptionHandlerCallbackB7(DataBuffer operationBase,int64_t dataBuff
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + 0x2b0);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + 0x2b0);
   }
-  *(DataBuffer *)(memoryBlockOffset + 0x2b8) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + 0x2a8) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + 0x2b8) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + 0x2a8) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -95443,13 +95492,13 @@ void CleanupExceptionContextAtOffset10(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -95463,10 +95512,10 @@ void CleanupExceptionContextAtOffset10(DataBuffer operationBase,int64_t dataBuff
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -95479,13 +95528,13 @@ void CleanupExceptionContextAtOffset20(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t exceptionContext;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   uint64_t operationResult;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
-  memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
-  exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataBufferOffset48);
+  memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
+  exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset);
   operationResult = 0;
   if (memoryRegionBase != 0) {
     do {
@@ -95499,10 +95548,10 @@ void CleanupExceptionContextAtOffset20(DataBuffer operationBase,int64_t dataBuff
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
     } while (operationResult < memoryRegionBase);
-    memoryRegionBase = *(uint64_t *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+    memoryRegionBase = *(uint64_t *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   }
-  *(DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18) = 0;
-  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryBlockOffset + MemoryResourcePrimaryOffset) != 0)) {
+  *(DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18) = 0;
+  if ((1 < memoryRegionBase) && (*(int64_t *)(memoryRegionOffset + MemoryResourcePrimaryOffset) != 0)) {
       TerminateSystemExecutionAndCleanupResources();
   }
   return;
@@ -95989,13 +96038,13 @@ void ProcessExceptionContextAtOffset80(DataBuffer operationBase,int64_t dataBuff
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ResourceManagementOffset80);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0x88);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -96084,13 +96133,13 @@ void CleanupExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ValidationResultOffset);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -96423,7 +96472,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset50);
@@ -96432,12 +96481,12 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -96732,7 +96781,7 @@ void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 8);
@@ -96741,12 +96790,12 @@ void ExceptionContextHandler1c0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -96900,20 +96949,20 @@ void ValidateExceptionHandlerC240(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = (DataBuffer *)(memoryBlockOffset + -0xa0);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + -0xa0);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryBlockOffset + -0x20) != 0) && (**(int64_t **)(memoryBlockOffset + -0x88) == memoryBlockOffset + -0x30)) {
-    systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + -0x10);
-    dataContext = *(int64_t *)(memoryBlockOffset + -0x18);
-    **(int64_t **)(memoryBlockOffset + -0x88) = dataContext;
-    **(int64_t **)(memoryBlockOffset + -0x68) = dataContext;
-    **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + -0x20) != 0) && (**(int64_t **)(memoryRegionOffset + -0x88) == memoryRegionOffset + -0x30)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + -0x10);
+    dataContext = *(int64_t *)(memoryRegionOffset + -0x18);
+    **(int64_t **)(memoryRegionOffset + -0x88) = dataContext;
+    **(int64_t **)(memoryRegionOffset + -0x68) = dataContext;
+    **(int **)(memoryRegionOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
+  if (*(char *)(memoryRegionOffset + -0x24) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
@@ -96945,7 +96994,7 @@ void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetE8);
@@ -96954,12 +97003,12 @@ void ExecuteExceptionHandlerC280(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -97017,7 +97066,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetE8);
@@ -97026,12 +97075,12 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -97053,7 +97102,7 @@ void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetE8);
@@ -97062,12 +97111,12 @@ void ReleaseMemoryResourceWithValidation(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -97239,20 +97288,20 @@ void ResetMemoryRegionBaseAddress(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = (DataBuffer *)(memoryBlockOffset + SystemDataSecondaryOffset18);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + SystemDataSecondaryOffset18);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryBlockOffset + SystemManagementOffset98) != 0) && (**(int64_t **)(memoryBlockOffset + 0x30) == memoryBlockOffset + 0x88)) {
-    systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + 0xa8);
-    dataContext = *(int64_t *)(memoryBlockOffset + 0xa0);
-    **(int64_t **)(memoryBlockOffset + 0x30) = dataContext;
-    **(int64_t **)(memoryBlockOffset + MemoryBlockSizeStep) = dataContext;
-    **(int **)(memoryBlockOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + SystemManagementOffset98) != 0) && (**(int64_t **)(memoryRegionOffset + 0x30) == memoryRegionOffset + 0x88)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + 0xa8);
+    dataContext = *(int64_t *)(memoryRegionOffset + 0xa0);
+    **(int64_t **)(memoryRegionOffset + 0x30) = dataContext;
+    **(int64_t **)(memoryRegionOffset + MemoryBlockSizeStep) = dataContext;
+    **(int **)(memoryRegionOffset + 0x68) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryBlockOffset + 0x94) != '\0') {
+  if (*(char *)(memoryRegionOffset + 0x94) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
   DestroyBasicStreambuf(memoryRegionBase);
@@ -97291,7 +97340,7 @@ void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ResourceManagementOffset1d8);
@@ -97300,12 +97349,12 @@ void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -97388,7 +97437,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   // 获取内存资源指针
@@ -97401,15 +97450,15 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryBlockShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查内存区域是否有效且未处于异常状态
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和引用计数
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       
       // 如果引用计数降为0，调用异常处理函数
@@ -97595,7 +97644,7 @@ void ConfigureExceptionHandlerC490(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -97610,9 +97659,9 @@ void ConfigureExceptionHandlerC490(DataBuffer operationBase,int64_t dataBuffer)
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -97855,7 +97904,7 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB8);
@@ -97864,12 +97913,12 @@ void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -97899,7 +97948,7 @@ void ManageResourceContextI0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -97914,9 +97963,9 @@ void ManageResourceContextI0(DataBuffer operationBase,int64_t dataBuffer)
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -97951,7 +98000,7 @@ void ManageResourceContextJ0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -97966,9 +98015,9 @@ void ManageResourceContextJ0(DataBuffer operationBase,int64_t dataBuffer)
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98065,7 +98114,7 @@ void ValidateExceptionHandlerConfigurationC590(DataBuffer operationBase,int64_t 
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -98080,9 +98129,9 @@ void ValidateExceptionHandlerConfigurationC590(DataBuffer operationBase,int64_t 
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98165,7 +98214,7 @@ void ConfigureExceptionHandlerContextC5C0(DataBuffer operationBase,int64_t dataB
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -98180,9 +98229,9 @@ void ConfigureExceptionHandlerContextC5C0(DataBuffer operationBase,int64_t dataB
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98223,7 +98272,7 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -98238,9 +98287,9 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98300,7 +98349,7 @@ void ConfigureExceptionContextParameters(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -98315,9 +98364,9 @@ void ConfigureExceptionContextParameters(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98357,7 +98406,7 @@ void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -98372,9 +98421,9 @@ void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98413,7 +98462,7 @@ void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataB
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB8);
@@ -98422,12 +98471,12 @@ void ValidateExceptionHandlerStateAndData(DataBuffer operationBase,int64_t dataB
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -98461,7 +98510,7 @@ void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB8);
@@ -98470,12 +98519,12 @@ void CleanupExceptionResourcesAndReleaseMemory(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -99605,7 +99654,7 @@ void ProcessExceptionContextAndResourceCleanup(DataBuffer operationBase,int64_t 
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -99620,9 +99669,9 @@ void ProcessExceptionContextAndResourceCleanup(DataBuffer operationBase,int64_t 
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99684,7 +99733,7 @@ void ManageExceptionContextResourcesCA40(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -99699,9 +99748,9 @@ void ManageExceptionContextResourcesCA40(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80B0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99791,7 +99840,7 @@ void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -99806,9 +99855,9 @@ void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99886,7 +99935,7 @@ void ProcessExceptionContextResourceRelease(DataBuffer operationBase, int64_t da
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -99901,9 +99950,9 @@ void ProcessExceptionContextResourceRelease(DataBuffer operationBase, int64_t da
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99983,7 +100032,7 @@ void ProcessExceptionContextResourceReleaseAD0(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -99998,9 +100047,9 @@ void ProcessExceptionContextResourceReleaseAD0(DataBuffer operationBase, int64_t
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100085,7 +100134,7 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100100,9 +100149,9 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100168,7 +100217,7 @@ void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100183,9 +100232,9 @@ void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100249,7 +100298,7 @@ void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_
 {
   int64_t exceptionContext;
   int validationStatus;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100264,9 +100313,9 @@ void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      validationStatus = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      validationStatus = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < validationStatus) {
         resourceIterator = (int64_t)validationStatus;
         do {
@@ -100328,7 +100377,7 @@ void ProcessExceptionContextResourceReleaseB60(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100343,9 +100392,9 @@ void ProcessExceptionContextResourceReleaseB60(DataBuffer operationBase, int64_t
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100412,7 +100461,7 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100427,9 +100476,9 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100549,7 +100598,7 @@ void ProcessExceptionContextResourceReleaseBD0(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100564,9 +100613,9 @@ void ProcessExceptionContextResourceReleaseBD0(DataBuffer operationBase, int64_t
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100646,7 +100695,7 @@ void ResetExceptionHandlerAndManageSystemResources(DataBuffer operationBase, int
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100661,9 +100710,9 @@ void ResetExceptionHandlerAndManageSystemResources(DataBuffer operationBase, int
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + MemoryBlockDataOffset200 + resourceIterator + ResourceManagementOffset7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockDataOffsetD0 + resourceIterator + ResourceManagementOffset7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockDataOffset200 + resourceIterator + ResourceManagementOffset7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + MemoryBlockDataOffsetD0 + resourceIterator + ResourceManagementOffset7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100953,7 +101002,7 @@ void CleanupExceptionResourcesE0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -100971,10 +101020,10 @@ void CleanupExceptionResourcesE0(DataBuffer operationBase, int64_t dataBuffer)
         *(int64_t *)(resourceIterator + ResourceStatusArrayOffset + 
                (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * ResourceContextSize;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + ResourceHandlerContextOffset + 
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceContextIndexOffset) * ResourceContextSize;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + ResourceHandlerContextOffset + 
                                  resourceIterator + ResourceContextBaseOffset);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + ResourceValidationOffset + 
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + ResourceValidationOffset + 
                           resourceIterator + ResourceContextBaseOffset) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
@@ -102126,7 +102175,7 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB0);
@@ -102135,12 +102184,12 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102172,7 +102221,7 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xd0);
@@ -102181,12 +102230,12 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102218,7 +102267,7 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xf0);
@@ -102227,12 +102276,12 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102264,7 +102313,7 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset110);
@@ -102273,12 +102322,12 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102410,7 +102459,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceHandlerContextOffset);
@@ -102419,12 +102468,12 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102456,7 +102505,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset190);
@@ -102465,12 +102514,12 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102503,7 +102552,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset1D0);
@@ -102512,12 +102561,12 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102550,7 +102599,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset1F0);
@@ -102559,12 +102608,12 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102586,7 +102635,7 @@ void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset210);
@@ -102595,12 +102644,12 @@ void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102639,7 +102688,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset250);
@@ -102648,12 +102697,12 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102693,7 +102742,7 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x390);
@@ -102702,12 +102751,12 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102738,7 +102787,7 @@ void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x3b0);
@@ -102747,12 +102796,12 @@ void ManageResourceReferenceCountAtOffset3B0(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102793,7 +102842,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset490);
@@ -102802,12 +102851,12 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102848,7 +102897,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
@@ -102857,12 +102906,12 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102903,7 +102952,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
@@ -102912,12 +102961,12 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -102958,7 +103007,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x330);
@@ -102967,12 +103016,12 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103013,7 +103062,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
@@ -103022,12 +103071,12 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103068,7 +103117,7 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x470);
@@ -103077,12 +103126,12 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103128,7 +103177,7 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
@@ -103137,12 +103186,12 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103193,7 +103242,7 @@ void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x270);
@@ -103202,12 +103251,12 @@ void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103240,7 +103289,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
@@ -103249,12 +103298,12 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103287,7 +103336,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2b0);
@@ -103296,12 +103345,12 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103334,7 +103383,7 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2d0);
@@ -103343,12 +103392,12 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103402,7 +103451,7 @@ void ManageResourceReferenceCountA3(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB0);
@@ -103411,12 +103460,12 @@ void ManageResourceReferenceCountA3(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103449,7 +103498,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffsetB0);
@@ -103458,12 +103507,12 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103496,7 +103545,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xd0);
@@ -103505,12 +103554,12 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103543,7 +103592,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xd0);
@@ -103552,12 +103601,12 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103590,7 +103639,7 @@ void ManageResourceReferenceCountC2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xf0);
@@ -103599,12 +103648,12 @@ void ManageResourceReferenceCountC2(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103637,7 +103686,7 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xf0);
@@ -103646,12 +103695,12 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103684,7 +103733,7 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset110);
@@ -103693,12 +103742,12 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103731,7 +103780,7 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset110);
@@ -103740,12 +103789,12 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103778,7 +103827,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset150);
@@ -103787,12 +103836,12 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103825,7 +103874,7 @@ void ManageResourceReferenceCountD0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset150);
@@ -103834,12 +103883,12 @@ void ManageResourceReferenceCountD0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103872,7 +103921,7 @@ void ManageResourceReferenceCountD1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset170);
@@ -103881,12 +103930,12 @@ void ManageResourceReferenceCountD1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103919,7 +103968,7 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset170);
@@ -103928,12 +103977,12 @@ void ManageResourceReferenceCountD2(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -103967,7 +104016,7 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset190);
@@ -103976,12 +104025,12 @@ void CleanupMemoryResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104015,7 +104064,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1B0);
@@ -104024,12 +104073,12 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104065,7 +104114,7 @@ void ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   // 从异常上下文中获取内存资源指针
@@ -104081,17 +104130,17 @@ void ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
   
   if (memoryRegionBase != 0) {
     // 计算内存块偏移量
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
     
     // 检查是否属于异常列表且异常检查通过
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
       // 更新内存资源指针和数据
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
       
       // 减少资源引用计数
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount - 1;
       
       // 如果引用计数为0，处理异常
@@ -104146,7 +104195,7 @@ void ProcessExceptionContextAndManageMemoryReferences(DataBuffer operationBase,i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset1b0);
@@ -104155,12 +104204,12 @@ void ProcessExceptionContextAndManageMemoryReferences(DataBuffer operationBase,i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104200,7 +104249,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset1d0);
@@ -104209,12 +104258,12 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104251,7 +104300,7 @@ void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1D0);
@@ -104260,12 +104309,12 @@ void ReleaseMemoryResourceD2B0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104302,7 +104351,7 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1F0);
@@ -104311,12 +104360,12 @@ void ReleaseMemoryResourceD2C0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104353,7 +104402,7 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset1F0);
@@ -104362,12 +104411,12 @@ void ReleaseMemoryResourceAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104404,7 +104453,7 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffset210);
@@ -104413,12 +104462,12 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104457,7 +104506,7 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset210);
@@ -104466,12 +104515,12 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104509,7 +104558,7 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset250);
@@ -104518,12 +104567,12 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104561,7 +104610,7 @@ void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset250);
@@ -104570,12 +104619,12 @@ void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104726,7 +104775,7 @@ void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x390);
@@ -104735,12 +104784,12 @@ void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104778,7 +104827,7 @@ void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x390);
@@ -104787,12 +104836,12 @@ void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104830,7 +104879,7 @@ void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x3b0);
@@ -104839,12 +104888,12 @@ void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104882,7 +104931,7 @@ void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x3b0);
@@ -104891,12 +104940,12 @@ void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104934,7 +104983,7 @@ void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x490);
@@ -104943,12 +104992,12 @@ void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -104986,7 +105035,7 @@ void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x490);
@@ -104995,12 +105044,12 @@ void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105038,7 +105087,7 @@ void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
@@ -105047,12 +105096,12 @@ void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105090,7 +105139,7 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset2F0);
@@ -105099,12 +105148,12 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105142,7 +105191,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
@@ -105151,12 +105200,12 @@ void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105194,7 +105243,7 @@ void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,in
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset310);
@@ -105203,12 +105252,12 @@ void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,in
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105239,7 +105288,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceReferenceManagerOffset330);
@@ -105248,12 +105297,12 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105284,7 +105333,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceReferenceManagerOffset330);
@@ -105293,12 +105342,12 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105338,7 +105387,7 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
@@ -105347,12 +105396,12 @@ void ManageResourceReferenceCountAtOffset350(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105383,7 +105432,7 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x350);
@@ -105392,12 +105441,12 @@ void ManageResourceReferenceCountAtOffset350Duplicate(DataBuffer operationBase,i
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105428,7 +105477,7 @@ void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x470);
@@ -105437,12 +105486,12 @@ void ManageResourceReferenceCountAtOffset470(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105474,7 +105523,7 @@ void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x470);
@@ -105483,12 +105532,12 @@ void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105520,7 +105569,7 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
@@ -105529,12 +105578,12 @@ void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105572,7 +105621,7 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset370);
@@ -105581,12 +105630,12 @@ void ManageMemoryResourceReferenceCount470(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105624,7 +105673,7 @@ void ManageMemoryResourceReferenceCount480(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x270);
@@ -105633,12 +105682,12 @@ void ManageMemoryResourceReferenceCount480(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105676,7 +105725,7 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x270);
@@ -105685,12 +105734,12 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105712,7 +105761,7 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
@@ -105721,12 +105770,12 @@ void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105748,7 +105797,7 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x290);
@@ -105757,12 +105806,12 @@ void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105793,7 +105842,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2b0);
@@ -105802,12 +105851,12 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105829,7 +105878,7 @@ void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2b0);
@@ -105838,12 +105887,12 @@ void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105881,7 +105930,7 @@ void ManageMemoryResourceReferenceCount4E0(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2d0);
@@ -105890,12 +105939,12 @@ void ManageMemoryResourceReferenceCount4E0(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -105933,7 +105982,7 @@ void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x2d0);
@@ -105942,12 +105991,12 @@ void ManageMemoryResourceReferenceCountD4F0(DataBuffer operationBase,int64_t dat
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -106507,13 +106556,13 @@ void ProcessExceptionHandlerContextLoopD650(DataBuffer operationBase,int64_t dat
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x40);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x48);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -106850,35 +106899,35 @@ void ExecuteExceptionContextCleanupAndMemoryManagement(DataBuffer operationBase,
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  if (*(int64_t **)(memoryBlockOffset + 0x14d0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14d0) + SystemFloatDataOffset38))();
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  if (*(int64_t **)(memoryRegionOffset + 0x14d0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14d0) + SystemFloatDataOffset38))();
   }
-  if (*(int64_t **)(memoryBlockOffset + 0x14c8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14c8) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(memoryRegionOffset + 0x14c8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14c8) + SystemFloatDataOffset38))();
   }
-  if (*(int64_t **)(memoryBlockOffset + 0x14c0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14c0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(memoryRegionOffset + 0x14c0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14c0) + SystemFloatDataOffset38))();
   }
   ExecuteSystemCleanup();
-  if (*(int64_t *)(memoryBlockOffset + 0x1480) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0x1480) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0x1460);
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0x1460);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -107867,7 +107916,7 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0xe0) + SystemDataParameterOffset20);
@@ -107876,12 +107925,12 @@ void CleanupMemoryResourceReferenceCountAtOffset2F0(DataBuffer operationBase,int
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -107920,13 +107969,13 @@ void TerminateSystemE0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0xe0) + 0x40);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0xe0) + 0x48);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -108241,35 +108290,35 @@ void ManageExceptionHandlerResourcesE000(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + 0xe0);
-  if (*(int64_t **)(memoryBlockOffset + 0x14d0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14d0) + SystemFloatDataOffset38))();
+  memoryRegionOffset = *(int64_t *)(dataBuffer + 0xe0);
+  if (*(int64_t **)(memoryRegionOffset + 0x14d0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14d0) + SystemFloatDataOffset38))();
   }
-  if (*(int64_t **)(memoryBlockOffset + 0x14c8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14c8) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(memoryRegionOffset + 0x14c8) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14c8) + SystemFloatDataOffset38))();
   }
-  if (*(int64_t **)(memoryBlockOffset + 0x14c0) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 0x14c0) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(memoryRegionOffset + 0x14c0) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 0x14c0) + SystemFloatDataOffset38))();
   }
   ExecuteSystemCleanup();
-  if (*(int64_t *)(memoryBlockOffset + 0x1480) != 0) {
+  if (*(int64_t *)(memoryRegionOffset + 0x1480) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  memoryResourcePointer = *(DataBuffer **)(memoryBlockOffset + 0x1460);
+  memoryResourcePointer = *(DataBuffer **)(memoryRegionOffset + 0x1460);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -108856,7 +108905,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetE8);
@@ -108865,12 +108914,12 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -108906,7 +108955,7 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffsetE8);
@@ -108915,12 +108964,12 @@ void ReleaseMemoryResourceE3D0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -108955,13 +109004,13 @@ void CleanupExceptionHandlerChainE3E0(DataBuffer operationBase,int64_t dataBuffe
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + DataBufferOffsetE8);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -109509,7 +109558,7 @@ void ManageSystemResourcesAndHandleExceptions(DataBuffer operationBase,int64_t d
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109524,9 +109573,9 @@ void ManageSystemResourcesAndHandleExceptions(DataBuffer operationBase,int64_t d
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109597,7 +109646,7 @@ void ManageExceptionContextResourcesE7A0(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109612,9 +109661,9 @@ void ManageExceptionContextResourcesE7A0(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109657,7 +109706,7 @@ void ManageExceptionContextResourcesE7B0(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109672,9 +109721,9 @@ void ManageExceptionContextResourcesE7B0(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109717,7 +109766,7 @@ void ManageExceptionContextResourcesE7C0(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109732,9 +109781,9 @@ void ManageExceptionContextResourcesE7C0(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109777,7 +109826,7 @@ void ManageExceptionContextResourcesE7D0(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109792,9 +109841,9 @@ void ManageExceptionContextResourcesE7D0(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109834,7 +109883,7 @@ void ValidateSystemResourcesAndHandleExceptionsE7E0(DataBuffer operationBase,int
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109849,9 +109898,9 @@ void ValidateSystemResourcesAndHandleExceptionsE7E0(DataBuffer operationBase,int
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109891,7 +109940,7 @@ void ValidateSystemResourcesAndHandleExceptionsE7F0(DataBuffer operationBase,int
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109906,9 +109955,9 @@ void ValidateSystemResourcesAndHandleExceptionsE7F0(DataBuffer operationBase,int
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109951,7 +110000,7 @@ void ManageExceptionHandlerResourcesE800(DataBuffer operationBase,int64_t dataBu
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -109966,9 +110015,9 @@ void ManageExceptionHandlerResourcesE800(DataBuffer operationBase,int64_t dataBu
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110027,7 +110076,7 @@ void ManageSystemResourcesAndHandleExceptionsE820(DataBuffer operationBase,int64
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -110042,9 +110091,9 @@ void ManageSystemResourcesAndHandleExceptionsE820(DataBuffer operationBase,int64
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110103,7 +110152,7 @@ void ValidateSystemResourcesAndHandleExceptionsE840(DataBuffer operationBase,int
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -110118,9 +110167,9 @@ void ValidateSystemResourcesAndHandleExceptionsE840(DataBuffer operationBase,int
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110179,7 +110228,7 @@ void ValidateSystemResourcesAndHandleExceptionsE860(DataBuffer operationBase,int
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -110194,9 +110243,9 @@ void ValidateSystemResourcesAndHandleExceptionsE860(DataBuffer operationBase,int
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110960,7 +111009,7 @@ void ProcessComplexExceptionCleanup(DataBuffer operationBase, int64_t dataBuffer
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   int64_t resourceIterator;
   
@@ -110975,9 +111024,9 @@ void ProcessComplexExceptionCleanup(DataBuffer operationBase, int64_t dataBuffer
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
-      memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -112330,7 +112379,7 @@ void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset88) + 8);
@@ -112339,12 +112388,12 @@ void ManageMemoryResourceReferenceCountEEB0(DataBuffer operationBase,int64_t dat
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -112395,7 +112444,7 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset88) + 0x2d0);
@@ -112404,12 +112453,12 @@ void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -112465,7 +112514,7 @@ void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset48) + ResourceManagementOffset1d8);
@@ -112474,12 +112523,12 @@ void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -112535,7 +112584,7 @@ void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerCallbackOffset);
@@ -112544,12 +112593,12 @@ void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -112586,7 +112635,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + ExceptionHandlerCallbackOffset);
@@ -112595,12 +112644,12 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -112737,25 +112786,25 @@ void ResetExceptionHandlerStateA(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t calculatedIndex;
   int64_t *presourceIterator;
   
   exceptionContext = *(int64_t *)(dataBuffer + DataProcessingOffset70);
   dataContext = (int64_t *)(exceptionHandlerContext + 0x300);
-  memoryBlockOffset = *(int64_t *)(exceptionHandlerContext + 0x310);
+  memoryRegionOffset = *(int64_t *)(exceptionHandlerContext + 0x310);
   calculatedIndex = *(int64_t *)(exceptionHandlerContext + SystemContextDataOffset800);
   presourceIterator = *(int64_t **)(exceptionHandlerContext + 0x328);
-  if (memoryBlockOffset != *(int64_t *)(exceptionHandlerContext + 0x330)) {
+  if (memoryRegionOffset != *(int64_t *)(exceptionHandlerContext + 0x330)) {
     do {
-      ProcessDataBufferA4(memoryBlockOffset);
-      memoryBlockOffset = memoryBlockOffset + 0x78;
-      if (memoryBlockOffset == calculatedIndex) {
+      ProcessDataBufferA4(memoryRegionOffset);
+      memoryRegionOffset = memoryRegionOffset + 0x78;
+      if (memoryRegionOffset == calculatedIndex) {
         presourceIterator = presourceIterator + 1;
-        memoryBlockOffset = *presourceIterator;
-        calculatedIndex = memoryBlockOffset + 0x1e0;
+        memoryRegionOffset = *presourceIterator;
+        calculatedIndex = memoryRegionOffset + 0x1e0;
       }
-    } while (memoryBlockOffset != *(int64_t *)(exceptionHandlerContext + 0x330));
+    } while (memoryRegionOffset != *(int64_t *)(exceptionHandlerContext + 0x330));
   }
   if (*dataContext != 0) {
     presourceIterator = *(int64_t **)(exceptionHandlerContext + 0x328);
@@ -112805,22 +112854,22 @@ void CleanupExceptionContextHandlers(DataBuffer operationBase, int64_t dataBuffe
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x358);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x360);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 4) {
-    if ((int64_t *)memoryBlockOffset[3] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[3] + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 4) {
+    if ((int64_t *)memoryRegionOffset[3] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[3] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[2] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[2] + SystemFloatDataOffset38))();
+    if ((int64_t *)memoryRegionOffset[2] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[2] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[1] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[1] + SystemFloatDataOffset38))();
+    if ((int64_t *)memoryRegionOffset[1] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[1] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -112893,30 +112942,30 @@ void ProcessExceptionContextData(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   
   exceptionContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
   dataContext = exceptionContextPointer[2];
-  memoryBlockOffset = exceptionContextPointer[4];
+  memoryRegionOffset = exceptionContextPointer[4];
   contextPointer = (int64_t *)exceptionContextPointer[5];
   if (dataContext != exceptionContextPointer[6]) {
     do {
       ProcessDataBufferA4(dataContext);
       dataContext = dataContext + 0x78;
-      if (dataContext == memoryBlockOffset) {
+      if (dataContext == memoryRegionOffset) {
         contextPointer = contextPointer + 1;
         dataContext = *contextPointer;
-        memoryBlockOffset = dataContext + 0x1e0;
+        memoryRegionOffset = dataContext + 0x1e0;
       }
     } while (dataContext != exceptionContextPointer[6]);
   }
   if (*exceptionContextPointer != 0) {
     contextPointer = (int64_t *)exceptionContextPointer[5];
     while (contextPointer < (int64_t *)(exceptionContextPointer[9] + 8)) {
-      memoryBlockOffset = *contextPointer;
+      memoryRegionOffset = *contextPointer;
       contextPointer = contextPointer + 1;
-      if (memoryBlockOffset != 0) {
+      if (memoryRegionOffset != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
     }
@@ -112941,20 +112990,20 @@ void CleanupExceptionHandlerMemoryBlockAtOffset78(DataBuffer operationBase,int64
 {
   int64_t *exceptionContextPointer;
   int64_t dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   exceptionContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
   dataContext = *exceptionContextPointer;
   if (dataContext != 0) {
-    memoryBlockOffset = (int64_t *)exceptionContextPointer[5];
-    if (memoryBlockOffset < (int64_t *)(exceptionContextPointer[9] + 8)) {
+    memoryRegionOffset = (int64_t *)exceptionContextPointer[5];
+    if (memoryRegionOffset < (int64_t *)(exceptionContextPointer[9] + 8)) {
       do {
-        dataContext = *memoryBlockOffset;
-        memoryBlockOffset = memoryBlockOffset + 1;
+        dataContext = *memoryRegionOffset;
+        memoryRegionOffset = memoryRegionOffset + 1;
         if (dataContext != 0) {
             TerminateSystemExecutionAndCleanupResources();
         }
-      } while (memoryBlockOffset < (int64_t *)(exceptionContextPointer[9] + 8));
+      } while (memoryRegionOffset < (int64_t *)(exceptionContextPointer[9] + 8));
       dataContext = *exceptionContextPointer;
     }
     if (dataContext != 0) {
@@ -112978,22 +113027,22 @@ void ExecuteMultipleExceptionHandlerCallbacksAtOffset78(DataBuffer operationBase
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
   exceptionContextPointer = (int64_t *)dataContext[1];
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 4) {
-    if ((int64_t *)memoryBlockOffset[3] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[3] + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 4) {
+    if ((int64_t *)memoryRegionOffset[3] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[3] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[2] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[2] + SystemFloatDataOffset38))();
+    if ((int64_t *)memoryRegionOffset[2] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[2] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)memoryBlockOffset[1] != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)memoryBlockOffset[1] + SystemFloatDataOffset38))();
+    if ((int64_t *)memoryRegionOffset[1] != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)memoryRegionOffset[1] + SystemFloatDataOffset38))();
     }
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -113130,30 +113179,30 @@ void ProcessMemoryBlocksInExceptionHandler(DataBuffer operationBase,int64_t data
 {
   int64_t *exceptionContextPointer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t *contextPointer;
   
   exceptionContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   dataContext = exceptionContextPointer[2];
-  memoryBlockOffset = exceptionContextPointer[4];
+  memoryRegionOffset = exceptionContextPointer[4];
   contextPointer = (int64_t *)exceptionContextPointer[5];
   if (dataContext != exceptionContextPointer[6]) {
     do {
       ProcessDataBufferA4(dataContext);
       dataContext = dataContext + 0x78;
-      if (dataContext == memoryBlockOffset) {
+      if (dataContext == memoryRegionOffset) {
         contextPointer = contextPointer + 1;
         dataContext = *contextPointer;
-        memoryBlockOffset = dataContext + 0x1e0;
+        memoryRegionOffset = dataContext + 0x1e0;
       }
     } while (dataContext != exceptionContextPointer[6]);
   }
   if (*exceptionContextPointer != 0) {
     contextPointer = (int64_t *)exceptionContextPointer[5];
     while (contextPointer < (int64_t *)(exceptionContextPointer[9] + 8)) {
-      memoryBlockOffset = *contextPointer;
+      memoryRegionOffset = *contextPointer;
       contextPointer = contextPointer + 1;
-      if (memoryBlockOffset != 0) {
+      if (memoryRegionOffset != 0) {
           TerminateSystemExecutionAndCleanupResources();
       }
     }
@@ -113621,7 +113670,7 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + MemoryResourcePointerOffsetTertiary);
@@ -113630,12 +113679,12 @@ void CleanupMemoryResourceWithReferenceCount(DataBuffer operationBase,int64_t da
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113657,7 +113706,7 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + ExceptionHandlerPointerOffset150);
@@ -113666,12 +113715,12 @@ void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113726,7 +113775,7 @@ void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0xc0);
@@ -113735,12 +113784,12 @@ void HandleMemoryResourceException(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113774,7 +113823,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0xe0);
@@ -113783,12 +113832,12 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase, int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113822,7 +113871,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x100);
@@ -113831,12 +113880,12 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113870,7 +113919,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x120);
@@ -113879,12 +113928,12 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase, int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113918,7 +113967,7 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x140);
@@ -113927,12 +113976,12 @@ void CleanupExceptionResourceChain(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -113966,7 +114015,7 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerPointerOffset160);
@@ -113975,12 +114024,12 @@ void ProcessExceptionMemoryCleanup(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -114014,11 +114063,11 @@ void ProcessExceptionContextAndSystemUpdateAtOffset2d0(DataBuffer operationBase,
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset180);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + SystemDataSecondaryOffset188);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + OperationBaseSecondaryOffset) {
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + OperationBaseSecondaryOffset) {
     UpdateSystemStatusA3();
   }
   if (*dataContext == 0) {
@@ -114047,7 +114096,7 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerPointerOffsetQuaternary);
@@ -114056,12 +114105,12 @@ void FinalizeExceptionResourceHandling(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -114104,13 +114153,13 @@ void ProcessExceptionContextIterationAtOffset330(DataBuffer operationBase,int64_
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + MemoryResourcePointerOffsetQuinary);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffset218);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -114126,13 +114175,13 @@ void ReleaseExceptionResources(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x230);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x238);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -114651,11 +114700,11 @@ void UpdateSystemStatusInMemoryLoop(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x30) {
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x30) {
     UpdateSystemStatusA3();
   }
   if (*dataContext == 0) {
@@ -114925,11 +114974,11 @@ void ProcessExceptionContextAndCleanupAtOffset7e0(DataBuffer operationBase,int64
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x30) {
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x30) {
     UpdateSystemStatusA3();
   }
   if (*dataContext == 0) {
@@ -116769,12 +116818,12 @@ void ProcessSystemMemoryBlockOperations(DataBuffer operationBase, int64_t dataBu
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117106,12 +117155,12 @@ void ProcessSystemOperationsIteratively(DataBuffer operationBase, int64_t dataBu
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + 0x158);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117137,7 +117186,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + 0x158);
@@ -117146,12 +117195,12 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -117227,12 +117276,12 @@ void ProcessExceptionContextSystemOperationsE0(DataBuffer operationBase, int64_t
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerContextCallbackOffset8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117258,12 +117307,12 @@ void ProcessDataBufferSystemOperationsF0(DataBuffer operationBase, int64_t dataB
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset60);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117314,12 +117363,12 @@ void ProcessSystemOperationLoopA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117345,12 +117394,12 @@ void ProcessSystemOperationLoopA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset68);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -117375,13 +117424,13 @@ void CleanupExceptionMemoryBlocksA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionContextPointer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   exceptionContextPointer = (int64_t *)(*(int64_t *)(dataBuffer + DataContextOffset68) + SystemParameterValidationOffset28);
   dataContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataContextOffset68) + 0x30);
-  for (memoryBlockOffset = *exceptionContextPointer; memoryBlockOffset != dataContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = *exceptionContextPointer; memoryRegionOffset != dataContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    if (*(int64_t **)(memoryRegionOffset + 8) != (int64_t *)0x0) {
+      (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 8) + SystemFloatDataOffset38))();
     }
   }
   if (*exceptionContextPointer == 0) {
@@ -117407,13 +117456,13 @@ void CleanupExceptionMemoryBlocksA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerCallbackOffset);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    if (*(int64_t **)(memoryRegionOffset + 8) != (int64_t *)0x0) {
+      (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 8) + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -117439,13 +117488,13 @@ void CleanupExceptionMemoryBlocksA2(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    if (*(int64_t **)(memoryRegionOffset + 8) != (int64_t *)0x0) {
+      (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 8) + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -117666,15 +117715,15 @@ void TraverseMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase,int64_t da
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   FunctionPointer** callbackPointer;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8);
   exceptionContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerCallbackOffset);
   
   // 遍历内存块链表并执行回调函数
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    callbackPointer = *(FunctionPointer***)(memoryBlockOffset + 8);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    callbackPointer = *(FunctionPointer***)(memoryRegionOffset + 8);
     if (callbackPointer != (FunctionPointer**)0x0) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
@@ -117708,15 +117757,15 @@ void TraverseDataContextMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   FunctionPointer** callbackPointer;
   
   dataContext = *(int64_t **)(dataBuffer + SystemStatusCheckOffset48);
   exceptionContext = dataContext[1];
   
   // 遍历内存块链表并执行回调函数
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    callbackPointer = *(FunctionPointer***)(memoryBlockOffset + 8);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    callbackPointer = *(FunctionPointer***)(memoryRegionOffset + 8);
     if (callbackPointer != (FunctionPointer**)0x0) {
       (**(callbackPointer + SystemFloatDataOffset38))();
     }
@@ -117787,13 +117836,13 @@ void ExecuteExceptionHandlerChainTraversal(DataBuffer operationBase,int64_t data
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + SystemDataSecondaryOffset18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + SystemDataSecondaryOffset18) {
+    if (*(int64_t **)(memoryRegionOffset + 8) != (int64_t *)0x0) {
+      (**(FunctionPointer**)(**(int64_t **)(memoryRegionOffset + 8) + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -117893,12 +117942,12 @@ void ProcessSystemOperationsInExceptionHandlerLoop(DataBuffer operationBase,int6
 {
   int64_t exceptionContext;
   int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
   dataContext = *(int64_t **)(dataBuffer + ExceptionHandlerContextOffset40);
   exceptionContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  for (memoryRegionOffset = *dataContext; memoryRegionOffset != exceptionHandlerContext; memoryRegionOffset = memoryRegionOffset + 0x128) {
+    ProcessSystemOperationsA1(memoryRegionOffset);
   }
   if (*dataContext == 0) {
     return;
@@ -118521,7 +118570,7 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset150);
@@ -118530,12 +118579,12 @@ void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -118604,7 +118653,7 @@ void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuff
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xa8);
@@ -118613,12 +118662,12 @@ void CleanupMemoryResourceAtOffset1B80(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -118651,7 +118700,7 @@ void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = (DataBuffer *)**(uint64_t **)(dataBuffer + DataBufferOffset150);
@@ -118660,12 +118709,12 @@ void ReleaseMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -118778,7 +118827,7 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + DataBufferOffset48) + 8);
@@ -118787,12 +118836,12 @@ void ReleaseSystemMemoryResourceReferenceCount(DataBuffer operationBase,int64_t 
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -118986,16 +119035,16 @@ void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
-  exceptionContext = memoryBlockOffset + ResourceManagementOffset1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4) + -0xb0 + exceptionHandlerContext) =
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
+  exceptionContext = memoryRegionOffset + ResourceManagementOffset1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4) + -0xb0 + exceptionHandlerContext) =
        &SystemExecutionBuffer;
-  operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
+  operationResult = *(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
-  ExecuteSystemCoreCommand(memoryBlockOffset + 0x138);
-  DestroyBasicIstream(memoryBlockOffset + 0x140);
+  ExecuteSystemCoreCommand(memoryRegionOffset + 0x138);
+  DestroyBasicIstream(memoryRegionOffset + 0x140);
                              DestroyBasicIos(exceptionHandlerContext);
   return;
 }
@@ -119095,13 +119144,13 @@ void ProcessExceptionContextAtOffset1C00(DataBuffer operationBase,int64_t dataBu
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x268);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x270);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -119127,7 +119176,7 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x338);
@@ -119136,12 +119185,12 @@ void ProcessMemoryResourceAtOffset1C80(DataBuffer operationBase,int64_t dataBuff
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119173,7 +119222,7 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x358);
@@ -119182,12 +119231,12 @@ void ManageMemoryResourceAtOffset1D00(DataBuffer operationBase,int64_t dataBuffe
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119269,20 +119318,20 @@ void ManageMemoryRegionAndCleanupStreambufAtOffset580(DataBuffer operationBase,i
 {
   DataBuffer systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + DataContextOffset68);
-  memoryRegionBase = (DataBuffer *)(memoryBlockOffset + ExceptionHandlerCallbackOffset);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + DataContextOffset68);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + ExceptionHandlerCallbackOffset);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryBlockOffset + systemContextPointerOffset90) != 0) && (**(int64_t **)(memoryBlockOffset + SystemParameterValidationOffset28) == memoryBlockOffset + ResourceManagementOffset80)) {
-    systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + 0xa0);
-    dataContext = *(int64_t *)(memoryBlockOffset + SystemManagementOffset98);
-    **(int64_t **)(memoryBlockOffset + SystemParameterValidationOffset28) = dataContext;
-    **(int64_t **)(memoryBlockOffset + 0x48) = dataContext;
-    **(int **)(memoryBlockOffset + 0x60) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + systemContextPointerOffset90) != 0) && (**(int64_t **)(memoryRegionOffset + SystemParameterValidationOffset28) == memoryRegionOffset + ResourceManagementOffset80)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + 0xa0);
+    dataContext = *(int64_t *)(memoryRegionOffset + SystemManagementOffset98);
+    **(int64_t **)(memoryRegionOffset + SystemParameterValidationOffset28) = dataContext;
+    **(int64_t **)(memoryRegionOffset + 0x48) = dataContext;
+    **(int **)(memoryRegionOffset + 0x60) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryBlockOffset + 0x8c) != '\0') {
+  if (*(char *)(memoryRegionOffset + 0x8c) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
@@ -119332,16 +119381,16 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionContext;
   int operationResult;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  exceptionContext = memoryBlockOffset + ResourceManagementOffset1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4) + -0xb0 + exceptionHandlerContext) =
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  exceptionContext = memoryRegionOffset + ResourceManagementOffset1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4) + -0xb0 + exceptionHandlerContext) =
        &SystemExecutionBuffer;
-  operationResult = *(int *)(*(int64_t *)(memoryBlockOffset + 0x128) + 4);
+  operationResult = *(int *)(*(int64_t *)(memoryRegionOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
-  ExecuteSystemCoreCommand(memoryBlockOffset + 0x138);
-  DestroyBasicIstream(memoryBlockOffset + 0x140);
+  ExecuteSystemCoreCommand(memoryRegionOffset + 0x138);
+  DestroyBasicIstream(memoryRegionOffset + 0x140);
                              DestroyBasicIos(exceptionHandlerContext);
   return;
 }
@@ -119445,13 +119494,13 @@ void CleanupExceptionContextHandlersAtOffset620(DataBuffer operationBase,int64_t
 {
   int64_t *exceptionContextPointer;
   int64_t *dataContext;
-  int64_t *memoryBlockOffset;
+  int64_t *memoryRegionOffset;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x268);
   exceptionContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x270);
-  for (memoryBlockOffset = (int64_t *)*dataContext; memoryBlockOffset != exceptionContextPointer; memoryBlockOffset = memoryBlockOffset + 1) {
-    if ((int64_t *)*memoryBlockOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*memoryBlockOffset + SystemFloatDataOffset38))();
+  for (memoryRegionOffset = (int64_t *)*dataContext; memoryRegionOffset != exceptionContextPointer; memoryRegionOffset = memoryRegionOffset + 1) {
+    if ((int64_t *)*memoryRegionOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*memoryRegionOffset + SystemFloatDataOffset38))();
     }
   }
   if (*dataContext == 0) {
@@ -119467,7 +119516,7 @@ void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x338);
@@ -119476,12 +119525,12 @@ void ManageMemoryResourceAtOffset640(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119503,7 +119552,7 @@ void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x358);
@@ -119512,12 +119561,12 @@ void ManageMemoryResourceAtOffset660(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119548,20 +119597,20 @@ void ProcessDataBufferAndMemoryRegionAtOffset6a0(DataBuffer operationBase,int64_
 {
   DataBuffer systemDataBuffer;
   int64_t dataContext;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   DataBuffer *memoryRegionBase;
   
-  memoryBlockOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
-  memoryRegionBase = (DataBuffer *)(memoryBlockOffset + -0xa0);
+  memoryRegionOffset = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
+  memoryRegionBase = (DataBuffer *)(memoryRegionOffset + -0xa0);
   *memoryRegionBase = &SystemMemoryBaseAddress;
-  if ((*(int64_t *)(memoryBlockOffset + -0x20) != 0) && (**(int64_t **)(memoryBlockOffset + -0x88) == memoryBlockOffset + -0x30)) {
-    systemDataBuffer = *(DataBuffer *)(memoryBlockOffset + -0x10);
-    dataContext = *(int64_t *)(memoryBlockOffset + -0x18);
-    **(int64_t **)(memoryBlockOffset + -0x88) = dataContext;
-    **(int64_t **)(memoryBlockOffset + -0x68) = dataContext;
-    **(int **)(memoryBlockOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
+  if ((*(int64_t *)(memoryRegionOffset + -0x20) != 0) && (**(int64_t **)(memoryRegionOffset + -0x88) == memoryRegionOffset + -0x30)) {
+    systemDataBuffer = *(DataBuffer *)(memoryRegionOffset + -0x10);
+    dataContext = *(int64_t *)(memoryRegionOffset + -0x18);
+    **(int64_t **)(memoryRegionOffset + -0x88) = dataContext;
+    **(int64_t **)(memoryRegionOffset + -0x68) = dataContext;
+    **(int **)(memoryRegionOffset + -0x50) = (int)systemDataBuffer - (int)dataContext;
   }
-  if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
+  if (*(char *)(memoryRegionOffset + -0x24) != '\0') {
     InitializeSystemDataBuffer(memoryRegionBase);
   }
                                 DestroyBasicStreambuf(memoryRegionBase);
@@ -119626,7 +119675,7 @@ void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
@@ -119635,12 +119684,12 @@ void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119729,7 +119778,7 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset78);
@@ -119738,12 +119787,12 @@ void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119813,7 +119862,7 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
@@ -119822,12 +119871,12 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119861,7 +119910,7 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
@@ -119870,12 +119919,12 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -119909,7 +119958,7 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerContextCallbackOffset8);
@@ -119918,12 +119967,12 @@ void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t data
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -125813,7 +125862,7 @@ void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuf
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryPointerOffset);
@@ -125822,12 +125871,12 @@ void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuf
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
@@ -126718,7 +126767,7 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
 {
   int *resourceReferenceCount;
   int resourceIndex;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   int64_t resourceTableBase;
   uint64_t loopCounter;
   uint dataFlags;
@@ -126732,36 +126781,36 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
     do {
       resourceIndex = *(int *)(*(int64_t *)(resourceTableBase + 0x1e78) + 8 + resourceIndex);
       if ((resourceIndex != -1) &&
-         (memoryBlockOffset = *(int64_t *)((int64_t)resourceIndex * 0x60 + *(int64_t *)(resourceTableBase + 0x1e68) + 8),
-         memoryBlockOffset != 0)) {
+         (memoryRegionOffset = *(int64_t *)((int64_t)resourceIndex * 0x60 + *(int64_t *)(resourceTableBase + 0x1e68) + 8),
+         memoryRegionOffset != 0)) {
         if (ExceptionContextPtr != 0) {
           *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
         }
-          HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+          HandleSystemException(memoryRegionOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       }
       dataFlags = (int)validationOutcome + 1;
       resourceIndex = resourceIndex + 0x10;
       validationOutcome = (uint64_t)dataFlags;
     } while ((int)dataFlags < *resourceReferenceCount);
   }
-  memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e78);
-  if (memoryBlockOffset != 0) {
+  memoryRegionOffset = *(int64_t *)(resourceTableBase + 0x1e78);
+  if (memoryRegionOffset != 0) {
     resourceReferenceCount[0] = 0;
     resourceReferenceCount[1] = 0;
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
-      HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+      HandleSystemException(memoryRegionOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
-  memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e68);
-  if (memoryBlockOffset == 0) {
+  memoryRegionOffset = *(int64_t *)(resourceTableBase + 0x1e68);
+  if (memoryRegionOffset == 0) {
     *(DataWord *)(resourceTableBase + 0x1e80) = 0;
-    memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e78);
-    if (memoryBlockOffset != 0) {
+    memoryRegionOffset = *(int64_t *)(resourceTableBase + 0x1e78);
+    if (memoryRegionOffset != 0) {
       if (ExceptionContextPtr != 0) {
         *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
       }
-        HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+        HandleSystemException(memoryRegionOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
     }
     resourceTableBase = *(int64_t *)(resourceTableBase + 0x1e68);
     if (resourceTableBase == 0) {
@@ -126776,7 +126825,7 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
   if (ExceptionContextPtr != 0) {
     *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
   }
-    HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+    HandleSystemException(memoryRegionOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
 }
 
 
@@ -129798,7 +129847,7 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
 {
   int *resourceReferenceCount;
   DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
+  int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + MemoryResourcePointerOffset360);
@@ -129807,12 +129856,12 @@ void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBu
   }
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
-    memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
-    memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
-      *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
-      resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
+    memoryRegionOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> MemoryRegionAlignmentShift) * MemoryBlockMultiplier;
+    memoryRegionOffset = memoryRegionOffset - (uint64_t)*(uint *)(memoryRegionOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryRegionOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *memoryResourcePointer = *(DataBuffer *)(memoryRegionOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryRegionOffset + MemoryDataOffset) = memoryResourcePointer;
+      resourceReferenceCount = (int *)(memoryRegionOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
