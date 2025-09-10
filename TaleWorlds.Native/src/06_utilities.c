@@ -8477,8 +8477,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExecuteSystemCoreCommand ExecuteSystemCoreCommand
 
 
-// 原始函数名：FUN_180893d8f - 数据同步处理函数A0
-// 功能：处理数据同步操作
+/**
+ * @brief 数据同步处理函数A0
+ * 
+ * 处理数据同步操作，确保数据在不同系统组件之间的一致性。
+ * 该函数负责协调数据的同步更新，防止数据冲突和不一致。
+ * 
+ * @param syncData 同步数据指针
+ * @param syncType 同步类型
+ * @return 同步结果状态码，成功返回0，失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180893d8f
+ * @note 这是数据同步处理的核心函数
+ */
 #define ProcessDataSynchronizationA0 FUN_180893d8f
 
 /**
