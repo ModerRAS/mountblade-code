@@ -9442,11 +9442,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：ValidateDataSecurityA0 - 数据验证函数A2
 // 功能：验证数据完整性和安全性
-#define ValidateDataSecurityA0 FUN_180899799
+#define ValidateDataSecurityA0 ValidateDataWithSecurityCheck
 
 // 原始函数名：ProcessDataWithSecurityA0 - 数据处理函数A3
 // 功能：处理数据并返回处理结果
-#define ProcessDataWithSecurityA0 FUN_1808997b0
+#define ProcessDataWithSecurityA0 ProcessDataWithSecurityValidation
 
 // 原始函数名：ValidateDataStructureA1 - 数据验证函数A3
 // 功能：验证数据完整性和状态
@@ -16094,7 +16094,7 @@ void* SystemStatusPointerA0;
 
 // 系统数据处理函数A0
 // 功能：处理系统数据操作
-#define ProcessSystemDataA0 FUN_1809430e0
+#define ProcessSystemDataA0 ProcessSystemDataWithValidation
 void* SystemDataProcessingFunction;
 // 系统标志变量A0
 // 功能：存储系统状态标志
@@ -122177,7 +122177,22 @@ void ResetExceptionHandlersAtOffsetF40(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器B0 - 处理系统临时异常和资源清理
+ * 
+ * 该函数负责处理系统级别的异常，包括异常上下文管理、
+ * 资源清理和异常处理器的重置操作。此函数在系统遇到
+ * 临时异常时被调用，确保系统资源得到正确清理。
+ * 
+ * @param operationBase 操作基址，用于系统操作的基础地址
+ * @param dataBuffer 数据缓冲区，包含异常处理所需的数据
+ * @param operationFlagA 操作标志A，控制异常处理的行为
+ * @param operationFlagB 操作标志B，控制异常处理的附加行为
+ * 
+ * @note 原始函数名：Unwind_180910f60
+ * @note 该函数主要用于系统异常处理和资源管理
+ */
+void SystemExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
