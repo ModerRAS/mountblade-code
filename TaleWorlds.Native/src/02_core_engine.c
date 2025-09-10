@@ -227210,7 +227210,18 @@ void ProcessUtf16CharacterConversionSenary(uint64_t ContextHandle, uint32_t *Con
 
 
 
-8a010(long long *ContextHandlevoid FUN_18018a010(long long *ContextHandle
+/**
+ * @brief 处理系统字符串索引和字符表操作
+ * 
+ * 该函数处理系统字符串索引和字符表操作：
+ * - 获取字符表指针
+ * - 遍历缓冲区状态
+ * - 处理字符串索引和字符表操作
+ * 
+ * @param ContextHandle 上下文句柄
+ * @note 原始函数名：FUN_18018a010
+ */
+void ProcessSystemStringIndexAndCharacterTableOperationEx(long long *ContextHandle)
 {
   long long MainCalculationResult;
   long long BufferStatus;
