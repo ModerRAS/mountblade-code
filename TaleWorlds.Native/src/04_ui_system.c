@@ -148,6 +148,15 @@ typedef enum {
 #define UI_MAXIMUM_LENGTH 0xffffffffffffffff    // UI最大长度
 #define UI_STRING_LENGTH_MAX 0xffffffffffffffff // UI字符串最大长度
 
+// UI系统上下文偏移量常量
+#define UI_CONTEXT_CLEANUP_HANDLER_OFFSET 0x368  // UI上下文清理处理器偏移量 - 存储UI清理函数指针的偏移量
+
+// UI系统全局数据偏移量常量
+#define UI_GLOBAL_RESOURCE_HANDLE_OFFSET 0x1a0   // UI全局资源句柄偏移量 - 存储全局资源句柄的偏移量
+
+// UI系统资源管理常量
+#define UI_RESOURCE_RELEASE_OPCODE 0x76f          // UI资源释放操作码 - 用于资源释放操作的标识符
+
 // UI系统初始化标志
 
 // UI系统变量语义化定义
@@ -206418,7 +206427,7 @@ UIHandle ValidateAndReleaseUIRecomponentData(void **UIContextPointer)
 
 {
   if (*UIContextPointer != 0) {
-    ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + 0x1a0), *UIContextPointer, &SystemeventHandlerData, 0x76f, 1);
+    ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + UI_GLOBAL_RESOURCE_HANDLE_OFFSET), *UIContextPointer, &SystemeventHandlerData, UI_RESOURCE_RELEASE_OPCODE, 1);
   }
   return 0;
 }
