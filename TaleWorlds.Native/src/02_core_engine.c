@@ -1741,6 +1741,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define ProcessSystemCharacterEncodingAndDataValidation FUN_180190c90 // 处理系统字符编码和数据验证
 #define ProcessSystemCharacterEncodingAndStatusManagement FUN_180190a20 // 处理系统字符编码和状态管理
 #define ProcessSystemCharacterEncodingAndBufferOperations FUN_180190e30 // 处理系统字符编码和缓冲区操作
+#define ProcessSystemCharacterEncodingAndMemoryValidation FUN_1801912b0 // 处理系统字符编码和内存验证
 
 // 系统内存管理函数
 #define ProcessSystemMemoryAllocationAndDataStructureManagement FUN_18018e7f0 // 处理系统内存分配和数据结构管理
