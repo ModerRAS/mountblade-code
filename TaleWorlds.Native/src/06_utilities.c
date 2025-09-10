@@ -135007,10 +135007,19 @@ void CleanupThreadMutex(void)
 
 
 
-// 函数: void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
-// 功能：处理工具系统数据，执行数据操作和清理
-// 参数：systemHandle - 系统句柄，dataPointer - 数据指针，operationType - 操作类型，flags - 标志位
-// 返回值：无
+/**
+ * @brief 处理工具系统数据
+ * 
+ * 处理工具系统的数据操作，包括数据清理和资源释放。
+ * 该函数负责管理系统数据的生命周期，确保数据被正确处理和清理。
+ * 
+ * @param SystemHandle 系统句柄，用于标识系统实例
+ * @param DataPointer 数据指针，指向要处理的数据
+ * @param OperationType 操作类型，指定要执行的操作
+ * @param Flags 标志位，控制操作的具体行为
+ * 
+ * @note 此函数会调用系统数据处理器和资源释放函数
+ */
 void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 
 {
@@ -135029,9 +135038,15 @@ void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,Dat
 
 
 
-// 函数: void ResetThreadLocalStorage(void)
-// 功能：重置线程本地存储，清理线程相关数据
-// 返回值：无
+/**
+ * @brief 重置线程本地存储
+ * 
+ * 重置线程本地存储（TLS）数据，清理线程相关的状态信息。
+ * 该函数会设置临时异常处理器，清理线程上下文，并恢复默认异常处理器。
+ * 
+ * @note 此函数会检查线程上下文状态，如果发现异常会终止系统执行
+ * @warning 如果线程上下文状态异常，会调用系统终止函数
+ */
 void ResetThreadLocalStorage(void)
 
 {
