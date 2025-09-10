@@ -140410,3 +140410,170 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
  * @note 原始函数名：FUN_180058db0
  */
 #define CheckSystemStateA1 FUN_180058db0
+
+// =============================================================================
+// 系统核心函数补充定义
+// =============================================================================
+
+/**
+ * @brief 系统内存分配函数A0
+ * 
+ * 分配系统内存，支持多种分配策略和内存类型
+ * 执行内存边界检查和安全性验证
+ * 
+ * @param AllocationSize 分配大小
+ * @param MemoryType 内存类型
+ * @param AllocationFlags 分配标志位
+ * @return void* 分配的内存指针或NULL
+ * 
+ * @note 原始函数名：FUN_180089640
+ */
+#define AllocateSystemMemoryWithValidation FUN_180089640
+
+/**
+ * @brief 系统内存释放函数A0
+ * 
+ * 释放系统内存，执行内存清理和资源回收
+ * 包含内存完整性检查和泄漏检测
+ * 
+ * @param MemoryPointer 内存指针
+ * @param ReleaseFlags 释放标志位
+ * @return int 释放结果状态码
+ * 
+ * @note 原始函数名：FUN_180085530
+ */
+#define ReleaseSystemMemoryWithValidation FUN_180085530
+
+/**
+ * @brief 系统数据验证函数A0
+ * 
+ * 验证系统数据的完整性和有效性
+ * 执行多层数据检查和格式验证
+ * 
+ * @param DataBuffer 数据缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @param ValidationType 验证类型
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_1800ba100
+ */
+#define ValidateSystemDataStructureA0 FUN_1800ba100
+
+/**
+ * @brief 系统异常处理函数A0
+ * 
+ * 处理系统异常，执行异常恢复和错误处理
+ * 包括异常日志记录和状态恢复
+ * 
+ * @param ExceptionCode 异常代码
+ * @param ExceptionContext 异常上下文
+ * @param HandlerFlags 处理器标志位
+ * @return int 异常处理结果
+ * 
+ * @note 原始函数名：FUN_180090b80
+ */
+#define HandleSystemExceptionA0 FUN_180090b80
+
+/**
+ * @brief 系统资源清理函数A0
+ * 
+ * 清理系统资源，执行资源释放和内存回收
+ * 确保系统资源的正确释放和系统稳定性
+ * 
+ * @param ResourceHandle 资源句柄
+ * @param CleanupFlags 清理标志位
+ * @return int 清理结果状态码
+ * 
+ * @note 原始函数名：FUN_180057010
+ */
+#define CleanupSystemResourcesA0 FUN_180057010
+
+/**
+ * @brief 系统配置验证函数A0
+ * 
+ * 验证系统配置的正确性和有效性
+ * 执行配置参数检查和系统兼容性验证
+ * 
+ * @param ConfigBuffer 配置缓冲区指针
+ * @param ConfigSize 配置大小
+ * @param ValidationFlags 验证标志位
+ * @return int 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_1800a19c0
+ */
+#define ValidateSystemConfigurationA0 FUN_1800a19c0
+
+/**
+ * @brief 系统状态监控函数A0
+ * 
+ * 监控系统状态，收集系统性能数据
+ * 执行健康检查和性能分析
+ * 
+ * @param MonitorFlags 监控标志位
+ * @param StatusBuffer 状态缓冲区指针
+ * @param BufferSize 缓冲区大小
+ * @return int 监控结果状态码
+ * 
+ * @note 原始函数名：FUN_18009fb60
+ */
+#define MonitorSystemStatusA0 FUN_18009fb60
+
+/**
+ * @brief 系统初始化函数A0
+ * 
+ * 执行系统初始化，建立系统环境和基础服务
+ * 包括核心组件初始化和系统参数设置
+ * 
+ * @param InitParams 初始化参数指针
+ * @param InitFlags 初始化标志位
+ * @return int 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_1800ad6f0
+ */
+#define InitializeSystemEnvironmentA0 FUN_1800ad6f0
+
+/**
+ * @brief 系统数据加密函数A0
+ * 
+ * 执行系统数据加密，保护敏感信息安全
+ * 使用多种加密算法和密钥管理策略
+ * 
+ * @param DataSource 数据源指针
+ * @param DataSize 数据大小
+ * @param EncryptionKey 加密密钥指针
+ * @param EncryptFlags 加密标志位
+ * @return int 加密结果状态码
+ * 
+ * @note 原始函数名：FUN_1800f74f0
+ */
+#define EncryptSystemDataA0 FUN_1800f74f0
+
+/**
+ * @brief 系统线程管理函数A0
+ * 
+ * 管理系统线程，执行线程创建和调度
+ * 包括线程池管理和线程同步
+ * 
+ * @param ThreadParams 线程参数指针
+ * @param ThreadCount 线程数量
+ * @param ManagementFlags 管理标志位
+ * @return int 线程管理结果
+ * 
+ * @note 原始函数名：FUN_18005d560
+ */
+#define ManageSystemThreadsA0 FUN_18005d560
+
+/**
+ * @brief 系统日志记录函数A0
+ * 
+ * 记录系统日志，保存系统运行信息
+ * 支持多种日志级别和输出格式
+ * 
+ * @param LogMessage 日志消息指针
+ * @param LogLevel 日志级别
+ * @param LogFlags 日志标志位
+ * @return int 日志记录结果
+ * 
+ * @note 原始函数名：FUN_1808a5780
+ */
+#define LogSystemMessageA0 FUN_1808a5780
