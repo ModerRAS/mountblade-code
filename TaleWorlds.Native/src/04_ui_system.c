@@ -104022,7 +104022,7 @@ void ProcessUIAnimationUpdate(void)
   int RegisterValue;
   float *preservedRegister13;
   bool in_ZF;
-  double dVar5;
+  double transformFactor;
   float LocalFloatValue6;
   float preservedXMM6;
   uint preservedXMM7;
@@ -123824,25 +123824,25 @@ void ProcessUIContextWithEventDispatcher(UIHandle uiContext,UIHandle dataSource,
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  UIHandle stackArray148 [2];
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte contextBuffer [32];
+  UIByte *dataBufferPointer;
+  UIHandle contextHandles [2];
+  UIByte dataBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
-  processingResult = FUN_180749e60(uiContext,stackArray148,0);
-  if (((processingResult != 0) || (processingResult = FUN_180746320(stackArray148[0],dataSource,targetBuffer), processingResult != 0)) &&
-     ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    uiValidationResult = FUN_18074b930(astackUInt138,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(astackUInt138 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    FUN_18074b930(astackUInt138 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
-    pstackUInt158 = astackUInt138;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)contextBuffer;
+  processingResult = InitializeUIRenderContext(uiContext,contextHandles,0);
+  if (((processingResult != 0) || (processingResult = ValidateUIBufferData(contextHandles[0],dataSource,targetBuffer), processingResult != 0)) &&
+     ((*(byte *)(GlobalUIResourceManagerF0 + 0x10) & 0x80) != 0)) {
+    uiValidationResult = CopyUIDataToBuffer(dataBuffer,0x100,dataSource);
+    uiCompareResult = CompareUIDataWithBuffer(dataBuffer + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
+    CopyUIDataToBuffer(dataBuffer + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataBufferPointer = dataBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(processingResult,1,uiContext,&UIContextEventDispatcher);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt178);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)contextBuffer);
 }
 
 
