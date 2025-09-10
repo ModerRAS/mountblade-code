@@ -206149,9 +206149,9 @@ void ProcessSystemConfigurationAndStringMatching(void)
       PrimaryProcessingStatusFlag = (void *)(*(long long *)(SystemContext + SystemProcessingStatusOffset1) + 
                (long long)*(int *)(SystemContext + SystemProcessingStatusOffset2) * SystemProcessingStatusMultiplier);
       MemoryPoolIndex = PrimaryProcessingStatusFlag[1];
-      SystemEventTemplatePointer = (void *               (SystemContext + 0x16c8 +
-               (long long               *(int *)(*(long long *)(SystemContext + 0x1b88) + -0x14 +
-                       (long long)*(int *)(SystemContext + 0x1b80) * 0x14) * 0x10);
+      SystemEventTemplatePointer = (void *)(SystemContext + SystemEventTemplateBaseOffset +
+               (long long)*(int *)(*(long long *)(SystemContext + SystemEventTemplateOffset1) + SystemEventTemplateOffset2 +
+                       (long long)*(int *)(SystemContext + SystemEventTemplateOffset3) * SystemEventTemplateMultiplier) * SystemEventTemplateSize);
       *SystemEventTemplatePointer = *PrimaryProcessingStatusFlag;
       SystemEventTemplatePointer[1] = MemoryPoolIndex;
       *(int *)(SystemContext + 0x1b80) = *(int *)(SystemContext + 0x1b80) + -1;
