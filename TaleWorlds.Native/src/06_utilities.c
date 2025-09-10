@@ -3017,6 +3017,16 @@
 #define SystemContextOffset58 0x58                           // 系统上下文偏移量58
 #define SystemContextOffset90 0x90                           // 系统上下文偏移量90
 
+// 负偏移量常量定义
+#define OutputStreamNegativeOffset -0x98                     // 输出流负偏移量 - 用于输出流资源的访问
+#define ExceptionDataTableNegativeOffset -0x186a0            // 异常数据表负偏移量 - 用于异常数据表的访问
+#define StreamBufferNegativeOffsetA -0xa8                     // 流缓冲区负偏移量A - 用于流缓冲区的访问
+#define StreamBufferNegativeOffsetB -0xb8                     // 流缓冲区负偏移量B - 用于流缓冲区的访问
+#define MemoryRegionNegativeOffset -0xb0                      // 内存区域负偏移量 - 用于内存区域的访问
+
+// 系统表配置常量
+#define SystemTableIndexMultiplier 8                           // 系统表索引乘数 - 用于系统表索引计算
+
 // 执行上下文相关偏移量常量
 #define ExecutionContextOffset2e0 0x2e0                      // 执行上下文偏移量2e0
 
@@ -10888,15 +10898,15 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 
 // 原始函数名：FUN_18089b460 - 系统数据验证函数A0
 // 功能：验证系统数据并返回验证结果
-#define ValidateSystemDataA0 FUN_18089b460
+#define ValidateSystemDataA0 ValidateSystemDataAndContext
 
 // 原始函数名：FUN_18089b52a - 系统资源释放函数A0
 // 功能：释放系统资源并返回释放结果
-#define ReleaseSystemResourcesA0 FUN_18089b52a
+#define ReleaseSystemResourcesA0 ReleaseSystemResourcesAndMemory
 
 // 原始函数名：FUN_18089b540 - 系统内存管理函数A0
 // 功能：管理系统内存并返回管理结果
-#define ManageSystemMemoryA0 FUN_18089b540
+#define ManageSystemMemoryA0 ManageSystemMemoryAndResources
 #define CleanupFileHandleA0 Unwind_180905000
 
 // 原始函数名：Unwind_180905010 - 异常处理初始化函数A0
