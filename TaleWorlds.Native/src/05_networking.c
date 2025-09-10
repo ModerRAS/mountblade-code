@@ -4495,6 +4495,37 @@ uint64_t GenerateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t
  * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果，至少SecurityValidationBufferSize字节
  * @see NetworkConnectionIdentifierMaskValue, NetworkStatusActive, NetworkValidationSuccess
  */
+/**
+ * @brief 处理网络连接请求
+ * 
+ * 该函数负责处理传入的网络连接请求，执行连接初始化、安全验证和上下文设置。
+ * 它是网络连接建立过程中的核心函数，确保连接请求的合法性和安全性。
+ * 
+ * @details 处理流程包括：
+ * - 初始化连接上下文数据结构
+ * - 从请求数据中提取连接标识符
+ * - 执行安全验证和合规性检查
+ * - 设置连接状态和处理参数
+ * - 配置处理模式和验证标志
+ * - 返回配置完成的连接上下文
+ * 
+ * @param ConnectionTable 网络连接表句柄，用于管理和查找连接信息
+ * @param RequestData 请求数据，包含连接请求的相关参数和信息
+ * @param SecurityValidationData 安全验证数据指针，用于存储验证结果
+ * @param FinalizeValue 最终化值，用于连接完成后的处理
+ * @param ProcessingFlags 处理标志位，控制连接处理的行为和选项
+ * @param ValidationFlags 验证标志位，控制安全验证的类型和严格程度
+ * @param ProcessingMode 处理模式，指定数据处理的方式和算法
+ * 
+ * @return void* 返回连接上下文数据指针，包含连接的所有配置信息
+ * 
+ * @retval 非NULL指针 连接处理成功，返回有效的连接上下文
+ * @retval NULL 连接处理失败（虽然当前实现总是返回有效指针）
+ * 
+ * @note 此函数使用静态缓冲区存储连接上下文数据，调用者应及时复制所需数据
+ * @warning 连接标识符的提取依赖于请求数据的格式，确保RequestData格式正确
+ * @see ValidateNetworkConnectionData, AuthenticateConnectionSecurity, InitializeNetworkConnectionPool
+ */
 void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
