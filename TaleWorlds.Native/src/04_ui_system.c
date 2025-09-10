@@ -162723,29 +162723,29 @@ ProcessUIContextDataAllocation(longlong uiContext, uint dataSource, int targetBu
   int uiValidationResult;
   longlong stringCompareIndex;
   UIDword processingStatus;
-  uint auStackX_8 [2];
-  uint auStackX_10 [2];
-  int iStackX_18;
+  uint dataArray8 [2];
+  uint dataArray10 [2];
+  int bufferTarget;
   UIDword stackBuffer [2];
-  UIDword astackUInt88 [2];
-  UIDword stackUInt80;
-  UIDword stackUInt7c;
-  uint *pstackUInt78;
-  UIDword *pstackUInt70;
-  UIHandle stackUInt68;
-  int stackInt60;
-  UIDword stackUInt5c;
-  UIDword stackUInt58;
-  UIDword stackUInt54;
-  uint *pstackUInt50;
-  UIDword *pstackUInt48;
-  UIHandle stackUInt40;
-  int stackInt38;
-  UIDword stackUInt34;
+  UIDword arrayData88 [2];
+  UIDword memoryOffset80;
+  UIDword memoryOffset7c;
+  uint *pointerData78;
+  UIDword *pointerData70;
+  UIHandle handleData68;
+  int intData60;
+  UIDword dataValue5c;
+  UIDword dataValue58;
+  UIDword dataValue54;
+  uint *pointerData50;
+  UIDword *pointerData48;
+  UIHandle handleData40;
+  int intData38;
+  UIDword dataValue34;
   
   dataSourceArray[0] = dataSource;
-  iStackX_18 = targetBuffer;
-  if (((dataSource == 0) && (auStackX_10[0] = dataSource, iStackX_18 = targetBuffer, targetBuffer == 0)) &&
+  bufferTarget = targetBuffer;
+  if (((dataSource == 0) && (dataArray10[0] = dataSource, bufferTarget = targetBuffer, targetBuffer == 0)) &&
      ((stringCompareIndex = *(longlong *)(uiBufferData + 0xe8), stringCompareIndex == 0 ||
       (((*(int *)(stringCompareIndex + 0x28) != 0 || (*(longlong *)(stringCompareIndex + 0x48) != 0)) ||
        (auStackX_10[0] = dataSource, iStackX_18 = targetBuffer, *(int *)(uiBufferData + 0x100) == 0x3e9)))))) {

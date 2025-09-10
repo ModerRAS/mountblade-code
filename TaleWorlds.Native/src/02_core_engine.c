@@ -243755,23 +243755,23 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
   long long *pCoreEngineSignedValueE8;
   
   SystemProcessFlagB = 0xfffffffffffffffe;
-  SystemChecksum = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
-  SystemDataTablePointer = (long long *)FUN_180275090(SystemChecksum);
-  (**(code **)(*SystemDataTablePointer + 0x100))(SystemDataTablePointer,0);
-  LoopIndex = *ContextHandleSize;
-  SystemConfigurationIterator = OperationBufferSize[1] - LoopIndex >> 3;
-  if (SystemConfigurationIterator != 0) {
-    IntegerValue9 = -10000;
-    IntegerValue8 = 10000;
-    BufferAllocationState = *(long long **)(*(long long *)(ContextHandle + 0x60b80) + 0x40);
-    SystemContextValue = *BufferAllocationState;
-    ContextHandle1 = BufferAllocationState;
-    if (SystemContextValue == 0) {
-      ContextHandle1 = BufferAllocationState + 1;
-      SystemContextValue = *ContextHandle1;
-      while (SystemContextValue == 0) {
-        ContextHandle1 = ContextHandle1 + 1;
-        SystemContextValue = *ContextHandle1;
+  MemoryValidationChecksum = MemoryAllocate(MemoryPoolManager,0x3d0,8,3);
+  SystemDataTable = (long long *)FUN_180275090(MemoryValidationChecksum);
+  (**(code **)(*SystemDataTable + 0x100))(SystemDataTable,0);
+  MemoryLoopIndex = *ContextHandleSize;
+  ConfigurationIterator = OperationBufferSize[1] - MemoryLoopIndex >> 3;
+  if (ConfigurationIterator != 0) {
+    RangeMinimum = -10000;
+    RangeMaximum = 10000;
+    MemoryBufferState = *(long long **)(*(long long *)(ContextHandle + 0x60b80) + 0x40);
+    SystemContextData = *MemoryBufferState;
+    AlternateContextHandle = MemoryBufferState;
+    if (SystemContextData == 0) {
+      AlternateContextHandle = MemoryBufferState + 1;
+      SystemContextData = *AlternateContextHandle;
+      while (SystemContextData == 0) {
+        AlternateContextHandle = AlternateContextHandle + 1;
+        SystemContextData = *AlternateContextHandle;
       }
     }
     while (SystemContextValue != BufferAllocationState[*(long long *)(*(long long *)(ContextHandle + 0x60b80) + 0x48)]) {
