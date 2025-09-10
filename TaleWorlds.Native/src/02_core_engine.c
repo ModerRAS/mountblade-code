@@ -222808,7 +222808,14 @@ LAB_180184089:
 
 
 
-84120(uint64_t ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer,long long *Utf16EndPointervoid FUN_180184120(uint64_t ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * 处理UTF-8到UTF-16字符编码转换
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void Utf8ToUtf16EncodingConverter(uint64_t ContextHandle, int OperationBufferSize, long long *Utf8SourcePointer, long long *Utf16EndPointer)
 {
   long long *ContextHandle;
   code *SystemValidationFunction;
@@ -222930,7 +222937,13 @@ void ProcessAsyncCallback(uint32_t ContextHandle, long long *ContextHandleSize, 
 
 
 
-84320(int ContextHandle,long long OperationBufferSize,long long Utf8SourcePointervoid FUN_180184320(int ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+/**
+ * 处理字符数据缓冲区
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ */
+void ProcessCharacterDataBuffer(int ContextHandle, long long OperationBufferSize, long long *Utf8SourcePointer)
 {
   int *ReferenceCountPointer;
   char SystemCheckResult;
@@ -223483,7 +223496,13 @@ LAB_180184aa5:
 
 
 
-84c20(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointervoid FUN_180184c20(long long ContextHandle,long long *ContextHandleSize,uint64_t Utf8SourcePointer
+/**
+ * 处理系统上下文句柄大小
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ */
+void ProcessSystemContextHandleSize(long long ContextHandle, long long *ContextHandleSize, uint64_t Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
@@ -223549,7 +223568,14 @@ LAB_180184d09:
 
 
 
-84da0(uint64_t ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer,long long *Utf16EndPointervoid FUN_180184da0(uint64_t ContextHandle,int OperationBufferSize,long long *Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * 处理双指针字符编码转换
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessDualPointerCharacterEncoding(uint64_t ContextHandle, int OperationBufferSize, long long *Utf8SourcePointer, long long *Utf16EndPointer)
 {
   long long *ContextHandle;
   code *SystemValidationFunction;
@@ -223683,7 +223709,14 @@ LAB_180184d09:
 
 
 
-85040(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180185040(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理双上下文字符编码
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessDualContextCharacterEncoding(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
@@ -223722,7 +223755,14 @@ LAB_180184d09:
 
 
 
-85120(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180185120(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理混合类型上下文句柄
+ * @param ContextHandle 上下文句柄
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessMixedTypeContextHandle(long long ContextHandle, uint64_t *ContextHandleSize, long long *Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   char ValidationStatus;
   void *SystemContext;
