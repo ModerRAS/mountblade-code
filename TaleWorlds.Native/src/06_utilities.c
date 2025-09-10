@@ -7747,7 +7747,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180942440
  * @note 这是数据完整性和安全性的重要保障
  */
-#define ValidateUtilityData FUN_180942440
+#define ValidateUtilityData ValidateUtilityDataWithSecurityCheck
 
 /**
  * @brief 数据压缩函数
@@ -7758,7 +7758,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180942460
  * @note 用于优化数据存储和传输效率
  */
-#define CompressUtilityData FUN_180942460
+#define CompressUtilityData CompressUtilityDataWithValidation
 
 /**
  * @brief 数据解压缩函数
@@ -7769,7 +7769,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180942480
  * @note 用于恢复压缩后的系统数据
  */
-#define DecompressUtilityData FUN_180942480
+#define DecompressUtilityData DecompressUtilityDataWithValidation
 
 /**
  * @brief 数据加密函数
