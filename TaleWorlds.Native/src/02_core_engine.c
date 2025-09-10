@@ -80,6 +80,10 @@
 #define SystemContextOffset 0x180                             // 系统上下文偏移量
 #define SystemMemoryValidationAddress 0x180c84871            // 系统内存验证地址
 #define SystemSecondaryValidationAddress 0x180c82847          // 系统次要验证地址
+#define SystemEngineContextOffset 0x1f8                      // 系统引擎上下文偏移量
+#define SystemValidationFunctionOffset 0x178                 // 系统验证函数偏移量
+#define SystemDataTableOffset 0x168                          // 系统数据表偏移量
+#define SystemStackRegisterOffset 0x140                      // 系统栈寄存器偏移量
 
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
@@ -43581,8 +43585,8 @@ void ManageBufferIndexllocation(long long *ContextHandle
   }
   SystemOperationType = 3;
   MemoryBlockIndex = ContextHandle[1];
-  MemoryOffsetValue = *(void *)(MemoryBlockIndex + 0x140);
-  EngineContextValue = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
+  MemoryOffsetValue = *(void *)(MemoryBlockIndex + SystemStackRegisterOffset);
+  EngineContextValue = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + SystemEngineContextOffset - 8);
   SystemStackRegisterFlagB0 = 1;
   LocalStackValueC0 = EngineContextValue;
   (**(code **)(MemoryBlockIndex + SystemMemoryPoolBlockSize))(&EngineContextValue,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
