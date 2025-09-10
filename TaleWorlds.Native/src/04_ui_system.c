@@ -101012,27 +101012,27 @@ UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource,
                           0x10) +
                    (int)((ulonglong)((longlong)targetBuffer[componentIndex + -1] * (longlong)transformMatrixPointer[9]) >> 0x10)
                 >> 5) + 1 >> 1;
-        if (loopCounter < 0x8000) {
-          loopCounter = (UIWord)loopCounter;
-          if (loopCounter < -0x8000) {
-            loopCounter = 0x8000;
+        if (calculatedResult < 0x8000) {
+          calculatedResult = (UIWord)calculatedResult;
+          if (calculatedResult < -0x8000) {
+            calculatedResult = 0x8000;
           }
         }
         else {
-          loopCounter = 0x7fff;
+          calculatedResult = 0x7fff;
         }
-        sourceDataInt = sourceDataInt + param_7;
-        *uiContext = loopCounter;
+        sourceDataInt = sourceDataInt + stepValue;
+        *uiContext = calculatedResult;
         uiContext = uiContext + 1;
-      } while (sourceDataInt < param_6);
+      } while (sourceDataInt < iterationCount);
     }
   }
   else if (bufferSize == 0x18) {
     sourceDataInt = 0;
-    if (0 < param_6) {
+    if (0 < iterationCount) {
       do {
-        puiCompareResult = (int *)(((longlong)sourceDataInt >> 0x10) * 4 + dataSource);
-        loopCounter = ((int)((ulonglong)((longlong)(puiCompareResult[0xc] + puiCompareResult[0xb]) * (longlong)targetBuffer[0xb])
+        transformMatrixPointer = (int *)(((longlong)sourceDataInt >> 0x10) * 4 + dataSource);
+        calculatedResult = ((int)((ulonglong)((longlong)(transformMatrixPointer[0xc] + transformMatrixPointer[0xb]) * (longlong)targetBuffer[0xb])
                       >> 0x10) +
                  (int)((ulonglong)((longlong)(puiCompareResult[0xe] + puiCompareResult[9]) * (longlong)targetBuffer[9]) >>
                       0x10) +
