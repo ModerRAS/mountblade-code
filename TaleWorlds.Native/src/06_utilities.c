@@ -12933,6 +12933,9 @@ uint32_t DataBufferSizeCounter;              // 数据缓冲区大小计数器
 DataBuffer* DataBufferEndAddressPtr;               // 数据缓冲区结束地址
 DataBuffer* DataBufferCleanupPtr;           // 数据缓冲区清理指针
 
+// 系统保留数据缓冲区变量声明
+DataBuffer SystemReservedDataBuffer;          // 系统保留数据缓冲区 - 用于异常处理时的数据保留操作
+
 // 默认异常处理器指针变量声明
 ExceptionHandler* SystemDefaultExceptionHandlerBPtr;     // 系统默认异常处理器B指针
 ExceptionHandler* SystemDefaultExceptionHandlerB;              // 系统默认异常处理器B
@@ -17793,7 +17796,7 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
     contextData[0] = 0;
     
     // 验证资源访问权限
-    validationStatus = ValidateResourceAccess(adjustedresourcePointer, resourceDescriptor + resourceDescriptorPrimaryOffset, contextData);
+    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + resourceDescriptorPrimaryOffset, contextData);
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
         if (*(int64_t *)(contextData[0] + PointerDataOffset) == 0) {
@@ -17815,7 +17818,7 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
 
 // 原始函数名：FUN_180890830 - 资源指针访问验证函数
 // 功能：验证资源描述符中的指针访问权限，确保安全访问
-#define ValidateresourcePointerAccess FUN_180890830
+#define ValidateResourcePointerAccess FUN_180890830
 
 DataBuffer ValidateresourcePointerAccess(int64_t resourceDescriptor)
 
@@ -64646,12 +64649,12 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
  * @note 函数名中的A表示其在异常处理表中的位置
  * 
  * @warning 此函数操作敏感的异常处理结构，修改时需要特别小心
- * @see SetSystemReservedDataBufferPointer, SystemUnknownDataBuffer
+ * @see SetSystemReservedDataBufferPointer, SystemReservedDataBuffer
  */
 void SetSystemReservedDataBufferPointerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40) = &SystemUnknownDataBuffer;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset40) = &SystemReservedDataBuffer;
   return;
 }
 
@@ -64671,7 +64674,7 @@ void SetSystemReservedDataBufferPointerA(DataBuffer operationBase,int64_t dataBu
  * @note 函数名中的B表示其在异常处理表中的位置
  * 
  * @warning 此函数操作敏感的异常处理结构，修改时需要特别小心
- * @see SetSystemReservedDataBufferPointerA, SystemUnknownDataBuffer
+ * @see SetSystemReservedDataBufferPointerA, SystemReservedDataBuffer
  */
 void SetSystemReservedDataBufferPointerB(DataBuffer operationBase,int64_t dataBuffer)
 

@@ -146,6 +146,14 @@
 #define MemoryAddressMaskPointer SystemMemoryAddressMaskPointer  // 内存地址掩码指针
 #define SystemArrayBuffer368 SystemProcessingBuffer368       // 系统数组缓冲区368
 
+// 字符表操作偏移量常量
+#define CharacterTableContextOffset 0x20                    // 字符表上下文偏移量
+#define CharacterDataFieldOffset 0x18                       // 字符数据字段偏移量
+#define CharacterTableSizeOffset 0x30                       // 字符表大小偏移量
+#define CharacterTableSecondarySizeOffset 0x34               // 字符表次大小偏移量
+#define CharacterTableTertiarySizeOffset 0x38                // 字符表第三大小偏移量
+#define CharacterTableDataOffset 0x38                        // 字符表数据偏移量
+
 // 系统初始化和配置函数语义化定义
 
 // 异常处理和错误管理函数
@@ -218256,16 +218264,17 @@ long long * ProcessContextHandleBufferAndDataManagement(long long *ContextHandle
  * @note 原始函数名：FUN_18017b259
  */
 #define ProcessSystemDataAndMemoryBoundaryManagement FUN_18017b259
-void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long long *ContextHandleSize
+void ProcessSystemDataAndMemoryBoundaryManagement(long long ContextHandle,long long *ContextHandleSize)
 {
-  long long MainCalculationResult;
+  long long CharacterTablePointer;
   long long BufferStatus;
   long long ProcessingResult;
-  long long SearchStartIndex;
-  long long *SystemContext;
+  long long SystemContext;
+  long long *ContextDataPointer;
   unsigned long long MemoryOffsetValue;
   unsigned long long CalculatedCodePoint;
   long long MemoryBoundaryEnd;
+  long long MemoryBlockIndex;
   
   CharacterTablePointer = *ContextHandleSize;
   BufferStatus = OperationBufferSize[1];
@@ -267572,11 +267581,32 @@ long long ValidateUtf8CharacterData(long long ContextHandle,uint64_t OperationBu
 
 
 
-long long FUN_180219e30(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 批量执行系统事件处理器
+#define ExecuteSystemEventsBatch FUN_180219e30
+
+/**
+ * @brief 批量执行系统事件处理器
+ * 
+ * 该函数负责批量处理系统事件，通过循环执行事件处理和内存操作。
+ * 主要功能包括：
+ * - 遍历上下文句柄范围
+ * - 执行系统事件处理
+ * - 更新字符表指针
+ * - 管理线程本地存储数据
+ * 
+ * @param ContextHandle 上下文句柄，标识处理的起始位置
+ * @param OperationBufferSize 操作缓冲区大小，标识处理的结束位置
+ * @param Utf8SourcePointer UTF8源指针，用于数据处理
+ * 
+ * @return long long 返回更新后的UTF8源指针位置
+ * 
+ * @note 原始函数名：FUN_180219e30
+ */
+long long ExecuteSystemEventsBatch(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
-  long long MainCalculationResult;
+  long long MemoryBlockIndex;
   long long BufferStatus;
-  long long SearchStartIndex;
+  long long CharacterTablePointer;
   
   if (ContextHandle != OperationBufferSize) {
     MemoryBlockIndex = ContextHandle - Utf8SourcePointer;
