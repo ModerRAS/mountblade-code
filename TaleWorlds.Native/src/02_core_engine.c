@@ -220176,7 +220176,7 @@ void InitializeSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, ui
 
 
 
-7da50(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize
+void FUN_18017da50(uint64_t ContextHandle,uint64_t OperationBufferSize)
 {
   long long *ContextHandle;
   long long *BufferAllocationStatus;
