@@ -121735,32 +121735,45 @@ void SystemNullOperation(void) {
  * 该函数负责扩展UTF-8缓冲区大小，使用左移2位（*4）计算大小。
  * 如果当前缓冲区大小小于请求大小，则重新分配内存。
  * 
- * @param ContextHandle 系统上下文指针
- * @param OperationBufferSize 请求的UTF-8缓冲区大小
+ * @param SystemContextHandle 系统上下文句柄指针
+ * @param RequestedBufferSize 请求的缓冲区大小
  * @return void
  * 
  * @note 函数会复制现有数据到新分配的内存中
  * @note 使用SystemCallMemoryAccess进行内存分配
- * @note 内存块大小为OperationBufferSize << 2字节（即*4）
+ * @note 内存块大小为RequestedBufferSize << 2字节（即*4）
  */
-void ExpandUtf8BufferShift2(int *ContextHandle,int OperationBufferSize) {
-  uint64_t NewMemoryBuffer;
-  int CurrentBufferSize;
-  void *CurrentBufferPointer;
+void ExpandUtf8BufferShift2(int *SystemContextHandle, int RequestedBufferSize) {
+  uint64_t NewBufferAddress;          // 新分配的缓冲区地址
+  int CurrentBufferSize;              // 当前缓冲区大小
+  void *ExistingBufferPointer;        // 现有缓冲区指针
   
-  CurrentBufferSize = ContextHandle[1];
-  if (CurrentBufferSize < OperationBufferSize) {
+  // 获取当前缓冲区大小
+  CurrentBufferSize = SystemContextHandle[1];
+  
+  // 检查是否需要扩展缓冲区
+  if (CurrentBufferSize < RequestedBufferSize) {
+    // 更新系统配置计数器（如果配置句柄有效）
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    NewMemoryBuffer = SystemCallMemoryAccess((long long)OperationBufferSize << 2,SystemMemoryPoolBase);
-    CurrentBufferPointer = *(void **)(ContextHandle + 2);
-    if (CurrentBufferPointer != NULL) {
-      memcpy(NewMemoryBuffer,CurrentBufferPointer,(long long)CurrentBufferSize << 2);
+    
+    // 分配新的内存缓冲区（大小为请求大小*4）
+    NewBufferAddress = SystemCallMemoryAccess((long long)RequestedBufferSize << 2, SystemMemoryPoolBase);
+    
+    // 获取现有缓冲区指针
+    ExistingBufferPointer = *(void **)(SystemContextHandle + 2);
+    
+    // 如果现有缓冲区存在，复制数据到新缓冲区
+    if (ExistingBufferPointer != NULL) {
+      memcpy(NewBufferAddress, ExistingBufferPointer, (long long)CurrentBufferSize << 2);
     }
-    *(void **)(ContextHandle + 2) = NewMemoryBuffer;
-    ContextHandle[1] = OperationBufferSize;
+    
+    // 更新系统上下文中的缓冲区指针和大小
+    *(void **)(SystemContextHandle + 2) = NewBufferAddress;
+    SystemContextHandle[1] = RequestedBufferSize;
   }
+  
   return;
 }
 
@@ -222278,7 +222291,24 @@ void ProcessSystemCharacterTableAndPointerManagement(void)
 
 
 
-83920(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180183920(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理上下文句柄和UTF编码转换
+ * 
+ * 该函数负责处理上下文句柄和UTF编码转换，主要功能包括：
+ * - 获取和管理上下文句柄
+ * - 执行UTF-8到UTF-16的编码转换
+ * - 处理系统回调函数调用
+ * - 清理和重置上下文句柄状态
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180183920
+ */
+#define ProcessContextHandleAndUtfEncodingConversion FUN_180183920
+void ProcessContextHandleAndUtfEncodingConversion(long long *ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *ContextHandle;
   
