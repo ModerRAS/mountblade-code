@@ -200188,7 +200188,7 @@ void ProcessUIComponentInitializationAndValidation(longlong uiContext)
   ulonglong uiXorKey;
   
   uiXorKey = XorEncryptionKey ^ (ulonglong)uiEncryptionBuffer;
-  uiValidationResult = FUN_18078a0c0(*(longlong *)(uiBufferData + 0xa8) + 0x720,uiContext + 0x218,1);
+  uiValidationStatus = FUN_18078a0c0(*(longlong *)(uiBufferData + 0xa8) + 0x720,uiContext + 0x218,1);
   if (uiValidationResult == 0) {
     FUN_180765990(*(UIHandle *)(uiContext + 0x218),1);
     uiValidationResult = func_0x00018074a3d0(*(longlong *)(uiBufferData + 0xa8),
