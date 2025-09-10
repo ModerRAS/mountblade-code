@@ -860,9 +860,9 @@ typedef enum {
 
 // UI系统额外函数美化定义
 #define FUN_18089e811 UIEmptyOperationFunction                      // UI空操作函数 - 执行空操作的函数
-#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式 - 验证UI数据的签名和格式
+#define ValidateUIDataSignatureAndFormat ValidateUIDataSignatureAndFormat             // 验证UI数据签名和格式 - 验证UI数据的签名和格式
 #define FUN_1807395df CleanupUIAnimationStateAndExecuteRenderTask    // 清理UI动画状态并执行渲染任务 - 在动画状态非零时释放UI内存资源，然后执行渲染任务
-#define FUN_180899360 ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
+#define ValidateUIContextDataAndIntegrity ValidateUIContextDataAndIntegrity           // 验证UI上下文数据和完整性 - 验证UI上下文的数据和完整性
 #define FUN_1808ad130 ProcessUIDataValidationAndVerification       // 处理UI数据验证和核实 - 处理UI数据的验证和核实
 #define FUN_18071ab41 UIInitializeOperationFunction                // UI初始化操作函数 - 执行UI初始化操作
 #define FUN_18071ace8 UIResetOperationFunction                     // UI重置操作函数 - 执行UI重置操作
@@ -11434,22 +11434,22 @@ LAB_UIContextInitialize:
         elementCount = elementCount - 1;
       } while (elementCount != 0);
       elementCounter = 0;
-      sourceDataBlock = resultPointer1;
-      currentMemoryBlock = resultPointer1;
+      sourceDataBlock = uiResultPointer;
+      currentMemoryBlock = uiResultPointer;
       dataPointer1 = resultPointer2;
     }
-    for (; newMemoryBlock = resultPointer2, dataPointer2 = resultPointer1, sourceDataBlock != resultPointer2; sourceDataBlock = sourceDataBlock + 4)
+    for (; newMemoryBlock = resultPointer2, dataPointer2 = uiResultPointer, sourceDataBlock != resultPointer2; sourceDataBlock = sourceDataBlock + 4)
     {
-      resultPointer1 = currentMemoryBlock;
+      uiResultPointer = currentMemoryBlock;
       resultPointer2 = dataPointer1;
       (**(code **)*sourceDataBlock)(sourceDataBlock,0);
-      currentMemoryBlock = resultPointer1;
+      currentMemoryBlock = uiResultPointer;
       dataPointer1 = resultPointer2;
       resultPointer2 = newMemoryBlock;
-      resultPointer1 = dataPointer2;
+      uiResultPointer = dataPointer2;
     }
-    if (resultPointer1 != (UIHandle *)0x0) {
-      resultPointer1 = currentMemoryBlock;
+    if (uiResultPointer != (UIHandle *)0x0) {
+      uiResultPointer = currentMemoryBlock;
       resultPointer2 = dataPointer1;
                      WARNING: Subroutine does not return
       DestroyUIComponent(dataPointer2);
@@ -32633,7 +32633,7 @@ validation_error_handler:
   longlong contextOffset;
   char *plocalChar9;
   longlong allocatedMemory0;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   longlong lStackX_20;
   UIHandle stackParamffffffffffffff88;
   longlong allocatedMemory2;
@@ -32670,7 +32670,7 @@ validation_error_handler:
       eventDataIndex = *(longlong *)(dataSource + 0xf18);
       plocalChar9 = (char *)(dataSource + 0x7c0);
       contextDataHandle = (longlong)*(int *)(dataSource + 0xe80);
-      resultPointer1 = (UIHandle *)(dataSource + 0x860);
+      uiResultPointer = (UIHandle *)(dataSource + 0x860);
       maxProcessingCount = 0;
       contextOffset = *(longlong *)(dataSource + 0xea8) - contextDataHandle;
       allocatedMemory0 = 0xc;
@@ -32679,9 +32679,9 @@ validation_error_handler:
       lStackX_20 = 0;
       *(UIDword *)(contextOffset + 0x10 + contextDataHandle * 0xc) = *(UIDword *)(eventDataIndex + 0x10);
       do {
-        eventDataIndex = *(longlong *)(dataSource + 0xea8) + (longlong)*(int *)(resultPointer1 + 4);
+        eventDataIndex = *(longlong *)(dataSource + 0xea8) + (longlong)*(int *)(uiResultPointer + 4);
         if (((int)maxProcessingCount < 4) && (*(int *)(uiBufferData + 0x2be0) != 0)) {
-          contextDataHandle = *(longlong *)(dataSource + 0xf18) + (longlong)*(int *)(resultPointer1 + 4);
+          contextDataHandle = *(longlong *)(dataSource + 0xf18) + (longlong)*(int *)(uiResultPointer + 4);
         }
         else {
           contextDataHandle = eventDataIndex - uiCompareResult;
@@ -32708,19 +32708,19 @@ validation_error_handler:
         if (*plocalChar9 != '\0') {
           if (*plocalChar9 < '\x02') {
             contextValue = CONCAT44(componentIndex,uiCompareResult);
-            ProcessUIComponentRenderTask1((int)*(short *)*resultPointer1 * (int)*(short *)(dataSource + 0x7e0),eventDataIndex,
+            ProcessUIComponentRenderTask1((int)*(short *)*uiResultPointer * (int)*(short *)(dataSource + 0x7e0),eventDataIndex,
                                 uiCompareResult,eventDataIndex,contextValue);
             componentIndex = (UIDword)((ulonglong)contextValue >> 0x20);
-            *(UIDword *)*resultPointer1 = 0;
+            *(UIDword *)*uiResultPointer = 0;
           }
           else {
-            ProcessUIComponentRenderTask2(*resultPointer1,dataSource + 0x7e0,eventDataIndex,uiCompareResult);
+            ProcessUIComponentRenderTask2(*uiResultPointer,dataSource + 0x7e0,eventDataIndex,uiCompareResult);
           }
         }
         maxProcessingCount = maxProcessingCount + 1;
         lStackX_20 = lStackX_20 + 1;
         allocatedMemory0 = allocatedMemory0 + 4;
-        resultPointer1 = resultPointer1 + 7;
+        uiResultPointer = uiResultPointer + 7;
         plocalChar9 = plocalChar9 + 1;
       } while ((int)maxProcessingCount < 0x10);
     }
@@ -32738,20 +32738,20 @@ validation_error_handler:
     if (localChar1 != '\x04') {
       eventDataIndex = dataSource + 0x7e0;
       if (localChar1 != '\t') {
-        resultPointer1 = (UIHandle *)(dataSource + 0xda0);
+        uiResultPointer = (UIHandle *)(dataSource + 0xda0);
         if (*(char *)(dataSource + 0x7d8) < '\x02') {
-          **(short **)(dataSource + 0xda8) = *(short *)(dataSource + 0x820) * *(short *)*resultPointer1;
+          **(short **)(dataSource + 0xda8) = *(short *)(dataSource + 0x820) * *(short *)*uiResultPointer;
           func_0x00018069cbb0(*(UIHandle *)(dataSource + 0xda8),dataSource + 0x180);
-          *(UIDword *)*resultPointer1 = 0;
+          *(UIDword *)*uiResultPointer = 0;
         }
         else {
-          func_0x00018069c8f0(resultPointer1,dataSource + 0x820);
+          func_0x00018069c8f0(uiResultPointer,dataSource + 0x820);
           ProcessUIComponentRenderTask3(*(UIHandle *)(dataSource + 0xda8),dataSource + 0x180);
-          resultPointer1 = (UIHandle *)*resultPointer1;
-          *resultPointer1 = 0;
-          resultPointer1[1] = 0;
-          resultPointer1[2] = 0;
-          resultPointer1[3] = 0;
+          uiResultPointer = (UIHandle *)*uiResultPointer;
+          *uiResultPointer = 0;
+          uiResultPointer[1] = 0;
+          uiResultPointer[2] = 0;
+          uiResultPointer[3] = 0;
         }
         eventDataIndex = dataSource + 0x800;
       }
@@ -59740,13 +59740,13 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   UIByte adataPointer9 [15];
   UIDword result10;
   UIDword result11;
-  UIHandle *resultPointer12;
-  UIHandle *resultPointer13;
-  UIHandle *resultPointer14;
-  UIHandle *resultPointer15;
+  UIHandle *uiResultPointer2;
+  UIHandle *uiResultPointer3;
+  UIHandle *uiResultPointer4;
+  UIHandle *uiResultPointer5;
   longlong AllocatedMemoryBlock16;
-  UIHandle *resultPointer17;
-  UIHandle *resultPointer18;
+  UIHandle *uiResultPointer7;
+  UIHandle *uiResultPointer8;
   byte isCharacterMatch19;
   byte isCharacterMatch25;
   ushort bufferValue0;
@@ -60109,30 +60109,30 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   resultPointer = (UIHandle *)((longlong)dataSource + (longlong)uiContext);
   AllocatedMemoryBlock16 = (longlong)(dataSource * 5);
   piterationCount = (UIHandle *)((longlong)(dataSource * 4) + (longlong)uiContext);
-  resultPointer18 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 4));
+  uiResultPointer8 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 4));
   maxProcessingCount = *(UIHandle *)((longlong)uiContext - AllocatedMemoryBlock16);
   ptrLocal3 = (UIHandle *)((longlong)(dataSource * 3) + (longlong)uiContext);
-  iterationCounter = *resultPointer18;
-  resultPointer17 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 3));
+  iterationCounter = *uiResultPointer8;
+  uiResultPointer7 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 3));
   eventProcessingCounter = *ptrLocal3;
   aeventCodeType63._8_8_ = eventProcessingCounter;
   aeventCodeType63._0_8_ = iterationCounter;
   eventStatus = *piterationCount;
   aprocessingStatus07._8_8_ = eventStatus;
   aprocessingStatus07._0_8_ = maxProcessingCount;
-  dataPointer = *resultPointer17;
+  dataPointer = *uiResultPointer7;
   bufferPtr = (UIHandle *)((longlong)(dataSource * 2) + (longlong)uiContext);
   result1 = *bufferPtr;
   aeventCodeType74._8_8_ = result1;
   aeventCodeType74._0_8_ = dataPointer;
-  resultPointer12 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 2));
-  resultPointer13 = (UIHandle *)((longlong)uiContext - (longlong)dataSource);
-  bufferValue = *resultPointer12;
+  uiResultPointer2 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 2));
+  uiResultPointer3 = (UIHandle *)((longlong)uiContext - (longlong)dataSource);
+  bufferValue = *uiResultPointer2;
   aresult76 = psubusb(aeventCodeType63,aeventCodeType74);
   contextValue = *resultPointer;
   aprocessingStatus16._8_8_ = contextValue;
   aprocessingStatus16._0_8_ = bufferValue;
-  componentIndex = *resultPointer13;
+  componentIndex = *uiResultPointer3;
   CounterResult = *uiContext;
   aeventCodeType79._8_8_ = CounterResult;
   aeventCodeType79._0_8_ = componentIndex;
@@ -60562,7 +60562,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aprocessingStatus04[0xe] = -(aprocessingStatus02[0xe] == '\0');
   aprocessingStatus04[0xf] = -(aprocessingStatus02[0xf] == '\0');
   aprocessingStatus04 = aprocessingStatus04 & aeventCodeType00;
-  resultPointer14 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 6));
+  uiResultPointer4 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 6));
   IsMatchFound1 = (byte)((ulonglong)maxProcessingCount >> 0x38);
   eventCodeType50 = (ushort)IsMatchFound1;
   aiterationCounter4[0xd] = 0;
@@ -60594,7 +60594,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aresult9[0] = (char)((ulonglong)maxProcessingCount >> 8);
   eventCodeType48 = (ushort)(byte)maxProcessingCount;
   aiterationCount98 = psubusb(aprocessingStatus07,aeventCodeType79);
-  maxProcessingCount = *resultPointer14;
+  maxProcessingCount = *uiResultPointer4;
   TotalResult = *(UIHandle *)(AllocatedMemoryBlock16 + (longlong)uiContext);
   aeventCodeType75._8_8_ = TotalResult;
   aeventCodeType75._0_8_ = maxProcessingCount;
@@ -60660,8 +60660,8 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aiterationCount5._1_13_ = SUB1613(aiterationCount6 << 0x20,3);
   aiterationCount5[0] = (char)((ulonglong)maxProcessingCount >> 8);
   eventCodeType20 = (ushort)(byte)maxProcessingCount;
-  resultPointer15 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 7));
-  maxProcessingCount = *resultPointer15;
+  uiResultPointer5 = (UIHandle *)((longlong)uiContext - (longlong)(dataSource * 7));
+  maxProcessingCount = *uiResultPointer5;
   componentIndex = *componentContextPtr;
   aeventCodeType01._8_8_ = componentIndex;
   aeventCodeType01._0_8_ = maxProcessingCount;
@@ -61484,7 +61484,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aiterationCount28[0xe] = (componentIndex3 != 0) * (componentIndex3 < 0x100) * (char)componentIndex3 - (0xff < componentIndex3);
   aiterationCount28[0xf] = (result70 != 0) * (result70 < 0x100) * (char)result70 - (0xff < result70);
   aprocessingStatus02 = aiterationCount28 & aiterationCount89 | ~aiterationCount89 & aeventCodeType01;
-  *resultPointer15 = aprocessingStatus02._0_8_;
+  *uiResultPointer5 = aprocessingStatus02._0_8_;
   *componentContextPtr = aprocessingStatus02._8_8_;
   aeventCodeType46[1] = (eventCodeType48 != 0) * (eventCodeType48 < 0x100) * (char)eventCodeType48 - (0xff < eventCodeType48);
   aeventCodeType46[0] = (eventCodeType72 != 0) * (eventCodeType72 < 0x100) * (char)eventCodeType72 - (0xff < eventCodeType72);
@@ -61504,12 +61504,12 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aeventCodeType46[0xf] = (eventCodeType71 != 0) * (eventCodeType71 < 0x100) * (char)eventCodeType71 - (0xff < eventCodeType71);
   aresult76 = aeventCodeType46 & aiterationCount89 | ~aiterationCount89 & aeventCodeType75;
   aprocessingStatus02 = aiterationCount52 & aiterationCount89 | ~aiterationCount89 & aprocessingStatus07;
-  *resultPointer14 = aresult76._0_8_;
+  *uiResultPointer4 = aresult76._0_8_;
   *(longlong *)(AllocatedMemoryBlock16 + (longlong)uiContext) = aresult76._8_8_;
   aresult76 = aiterationCount69 & aiterationCount89 | ~aiterationCount89 & aeventCodeType63;
   *(UIHandle *)((longlong)uiContext - AllocatedMemoryBlock16) = aprocessingStatus02._0_8_;
   *piterationCount = aprocessingStatus02._8_8_;
-  *resultPointer18 = aresult76._0_8_;
+  *uiResultPointer8 = aresult76._0_8_;
   *ptrLocal3 = aresult76._8_8_;
   bufferValue3 = (ushort)(iterationCount71 * 2 + stackUInt268 + (sVar297 - result72)) >> 3;
   contextValue1 = (ushort)(sVar212 + stackUInt266 + (ContextFirstValue05 - sVar183)) >> 3;
@@ -61576,7 +61576,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aiterationCount29[0xe] = (CounterResult7 != 0) * (CounterResult7 < 0x100) * (char)CounterResult7 - (0xff < CounterResult7);
   aiterationCount29[0xf] = (iterationCount10 != 0) * (iterationCount10 < 0x100) * (char)iterationCount10 - (0xff < iterationCount10);
   aprocessingStatus02 = ~aiterationCount89 & (aiterationCount29 & aiterationCount85 | ~aiterationCount85 & aeventCodeType74) | aeventCodeType65 & aiterationCount89;
-  *resultPointer17 = aprocessingStatus02._0_8_;
+  *uiResultPointer7 = aprocessingStatus02._0_8_;
   *bufferPtr = aprocessingStatus02._8_8_;
   aprocessingStatus02 = psubsw(ZEXT816(0),~aiterationCount87 & bufferValue4);
   bufferValue4 = packsswb(~aiterationCount87 & bufferValue4,aprocessingStatus02);
@@ -61615,7 +61615,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aiterationCount87[0xd] = (CounterResult4 != 0) * (CounterResult4 < 0x100) * (char)CounterResult4 - (0xff < CounterResult4);
   aiterationCount87[0xe] = (TotalResult1 != 0) * (TotalResult1 < 0x100) * (char)TotalResult1 - (0xff < TotalResult1);
   aiterationCount87[0xf] = (TotalResult7 != 0) * (TotalResult7 < 0x100) * (char)TotalResult7 - (0xff < TotalResult7);
-  *resultPointer12 = bufferValue4._0_8_;
+  *uiResultPointer2 = bufferValue4._0_8_;
   *resultPointer = bufferValue4._8_8_;
   aiterationCount98[1] = (result85 != 0) * (result85 < 0x100) * (char)result85 - (0xff < result85);
   aiterationCount98[0] = (result73 != 0) * (result73 < 0x100) * (char)result73 - (0xff < result73);
@@ -61634,7 +61634,7 @@ ulonglong ProcessUIContextDataOperation(UIByte (*uiContext) [16],int dataSource,
   aiterationCount98[0xe] = (TotalResult0 != 0) * (TotalResult0 < 0x100) * (char)TotalResult0 - (0xff < TotalResult0);
   aiterationCount98[0xf] = (TotalResult6 != 0) * (TotalResult6 < 0x100) * (char)TotalResult6 - (0xff < TotalResult6);
   bufferValue4 = ~aiterationCount89 & (aiterationCount87 & aiterationCount85 | ~aiterationCount85 & aiterationCount21) | aiterationCount98 & aiterationCount89;
-  *resultPointer13 = bufferValue4._0_8_;
+  *uiResultPointer3 = bufferValue4._0_8_;
   *uiContext = bufferValue4._8_8_;
   return;
 }
@@ -64693,7 +64693,7 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
   int localInt8;
   longlong CharacterDataOffset;
   byte *pisCharacterMatch0;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   UIByte acontextValue [16];
   int processingResult4;
@@ -64716,18 +64716,18 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
     processingResult7 = 0;
     allocatedMemory2 = 4;
     componentContextPtr = uiContext;
-    resultPointer1 = pbufferValidation;
+    uiResultPointer = pbufferValidation;
     do {
       iterationCount = 0;
       if (1 < processingResult) {
         iterationCount = 4;
         aresult8 = pmovzxbd(in_XMM2,ZEXT416(*componentContextPtr));
-        acontextValue = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*resultPointer1));
+        acontextValue = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*uiResultPointer));
         in_XMM2._0_4_ = aresult8._0_4_ - acontextValue._0_4_;
         in_XMM2._4_4_ = aresult8._4_4_ - acontextValue._4_4_;
         in_XMM2._8_4_ = aresult8._8_4_ - acontextValue._8_4_;
         in_XMM2._12_4_ = aresult8._12_4_ - acontextValue._12_4_;
-        acontextValue = pabsd(ZEXT416(*resultPointer1),in_XMM2);
+        acontextValue = pabsd(ZEXT416(*uiResultPointer),in_XMM2);
         processingResult4 = acontextValue._0_4_ + processingResult4;
         ProcessingResult5 = acontextValue._4_4_ + ProcessingResult5;
         processingResult6 = acontextValue._8_4_ + processingResult6;
@@ -64737,15 +64737,15 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
       localInt7 = 0;
       if (iterationCount < 4) {
         if (1 < (longlong)(4 - iterationCount)) {
-          pisCharacterMatch0 = (byte *)(iterationCount + (longlong)resultPointer1);
+          pisCharacterMatch0 = (byte *)(iterationCount + (longlong)uiResultPointer);
           CharacterDataOffset = (2 - iterationCount >> 1) + 1;
           iterationCount = iterationCount + CharacterDataOffset * 2;
           do {
-            eventCode = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)resultPointer1] - (uint)*pisCharacterMatch0) >>
+            eventCode = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)uiResultPointer] - (uint)*pisCharacterMatch0) >>
                     0x1f;
-            localInt8 = localInt8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)resultPointer1] - (uint)*pisCharacterMatch0 ^
+            localInt8 = localInt8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)uiResultPointer] - (uint)*pisCharacterMatch0 ^
                              eventCodeType) - eventCodeType);
-            eventCode = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)resultPointer1) + -1] -
+            eventCode = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)uiResultPointer) + -1] -
                     (uint)pisCharacterMatch0[1];
             processStatus = (int)eventCodeType >> 0x1f;
             localInt7 = localInt7 + ((eventCodeType ^ processingStatus) - processingStatus);
@@ -64755,14 +64755,14 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
         }
         if ((longlong)iterationCount < 4) {
           eventCode = (uint)*(byte *)(iterationCount + (longlong)componentContextPtr) -
-                  (uint)*(byte *)(iterationCount + (longlong)resultPointer1);
+                  (uint)*(byte *)(iterationCount + (longlong)uiResultPointer);
           processStatus = (int)eventCodeType >> 0x1f;
           loopCounter = loopCounter + ((eventCodeType ^ processingStatus) - processingStatus);
         }
         loopCounter = loopCounter + localInt7 + localInt8;
       }
       componentContextPtr = (uint *)((longlong)componentContextPtr + (longlong)dataSource);
-      resultPointer1 = (uint *)((longlong)resultPointer1 + (longlong)bufferSize);
+      uiResultPointer = (uint *)((longlong)uiResultPointer + (longlong)bufferSize);
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
     *resultPointer = processingResult4 + processingResult6 + ProcessingResult5 + processingResult7 + loopCounter;
@@ -64830,12 +64830,12 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
       if (1 < processingResult) {
         iterationCount = 4;
         aresult8 = pmovzxbd(in_XMM2,ZEXT416(*componentContextPtr));
-        acontextValue = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*resultPointer1));
+        acontextValue = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*uiResultPointer));
         in_XMM2._0_4_ = aresult8._0_4_ - acontextValue._0_4_;
         in_XMM2._4_4_ = aresult8._4_4_ - acontextValue._4_4_;
         in_XMM2._8_4_ = aresult8._8_4_ - acontextValue._8_4_;
         in_XMM2._12_4_ = aresult8._12_4_ - acontextValue._12_4_;
-        acontextValue = pabsd(ZEXT416(*resultPointer1),in_XMM2);
+        acontextValue = pabsd(ZEXT416(*uiResultPointer),in_XMM2);
         processingResult4 = acontextValue._0_4_ + processingResult4;
         ProcessingResult5 = acontextValue._4_4_ + ProcessingResult5;
         processingResult6 = acontextValue._8_4_ + processingResult6;
@@ -64845,15 +64845,15 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
       localInt7 = 0;
       if (iterationCount < 4) {
         if (1 < (longlong)(4 - iterationCount)) {
-          pisCharacterMatch0 = (byte *)(iterationCount + (longlong)resultPointer1);
+          pisCharacterMatch0 = (byte *)(iterationCount + (longlong)uiResultPointer);
           CharacterDataOffset = (2 - iterationCount >> 1) + 1;
           iterationCount = iterationCount + CharacterDataOffset * 2;
           do {
-            eventCode = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)resultPointer1] - (uint)*pisCharacterMatch0) >>
+            eventCode = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)uiResultPointer] - (uint)*pisCharacterMatch0) >>
                     0x1f;
-            localInt8 = localInt8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)resultPointer1] - (uint)*pisCharacterMatch0 ^
+            localInt8 = localInt8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)uiResultPointer] - (uint)*pisCharacterMatch0 ^
                              eventCodeType) - eventCodeType);
-            eventCode = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)resultPointer1) + -1] -
+            eventCode = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)uiResultPointer) + -1] -
                     (uint)pisCharacterMatch0[1];
             processStatus = (int)eventCodeType >> 0x1f;
             localInt7 = localInt7 + ((eventCodeType ^ processingStatus) - processingStatus);
@@ -64863,14 +64863,14 @@ void ProcessUIPixels(longlong uiContext,int dataSource,longlong targetBuffer,int
         }
         if ((longlong)iterationCount < 4) {
           eventCode = (uint)*(byte *)(iterationCount + (longlong)componentContextPtr) -
-                  (uint)*(byte *)(iterationCount + (longlong)resultPointer1);
+                  (uint)*(byte *)(iterationCount + (longlong)uiResultPointer);
           processStatus = (int)eventCodeType >> 0x1f;
           loopCounter = loopCounter + ((eventCodeType ^ processingStatus) - processingStatus);
         }
         loopCounter = loopCounter + localInt7 + localInt8;
       }
       componentContextPtr = (uint *)((longlong)componentContextPtr + (longlong)dataSource);
-      resultPointer1 = (uint *)((longlong)resultPointer1 + (longlong)bufferSize);
+      uiResultPointer = (uint *)((longlong)uiResultPointer + (longlong)bufferSize);
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
     *resultPointer = processingResult4 + processingResult6 + ProcessingResult5 + processingResult7 + loopCounter;
@@ -66590,7 +66590,7 @@ void ProcessUIFilterOperation(void)
   longlong contextOffset;
   int localInt9;
   int processedCount;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   longlong allocatedMemory2;
   
   if (*(int *)(uiBufferData + 0x1924) != *(int *)(uiBufferData + 0x1928)) {
@@ -66598,7 +66598,7 @@ void ProcessUIFilterOperation(void)
     *(UIDword *)(uiBufferData + 0x1924) = *(UIDword *)(uiBufferData + 0x1928);
   }
   localLong7 = 0;
-  resultPointer1 = (UIByte *)(uiContext + 0x1857);
+  uiResultPointer = (UIByte *)(uiContext + 0x1857);
   componentContextPtr = (UIByte *)(uiContext + 0x1850);
   allocatedMemory2 = 4;
   processedCount = 0x3f;
@@ -66642,7 +66642,7 @@ void ProcessUIFilterOperation(void)
     }
     ptrLocal6[1] = iterationCount;
     contextOffset = 1;
-    bufferPtr = resultPointer1;
+    bufferPtr = uiResultPointer;
     do {
       processingResult = *(char *)(dataSource + 0xf75 + contextOffset) + localInt9;
       uiCompareResult = *(char *)(dataSource + 0xf7e) + processingResult;
@@ -66684,7 +66684,7 @@ void ProcessUIFilterOperation(void)
     componentContextPtr = componentContextPtr + 0x10;
     localLong7 = localLong7 + 1;
     ptrLocal6 = ptrLocal6 + 0x10;
-    resultPointer1 = resultPointer1 + 0x10;
+    uiResultPointer = uiResultPointer + 0x10;
     allocatedMemory2 = allocatedMemory2 + -1;
   } while (allocatedMemory2 != 0);
   return;
@@ -72698,30 +72698,30 @@ void UpdateUIRenderContext(longlong uiContext)
                   ptrLocal9 = (UIDword *)(eventDataIndex + stackLong90);
                   resultPointer5 = (UIDword *)(eventDataIndex + stackLong98);
                   eventDataIndex = (longlong)((uiCompareResult * *(int *)(uiBufferData + 0xa94) + localInt8) * 4);
-                  resultPointer1 = (UIDword *)(allocatedMemory0 + eventDataIndex);
+                  uiResultPointer = (UIDword *)(allocatedMemory0 + eventDataIndex);
                   componentHandle = (UIDword *)(contextDataHandle + eventDataIndex);
                   func_0x00018001cc90((*(int *)(contextDataHandle + 0x10) * uiCompareResult + localInt8) * 8 + stackLonga0,
                                       *(int *)(contextDataHandle + 0x10),
                                       (*(int *)(uiBufferData + 0xa80) * uiCompareResult + localInt8) * 8 + stackLong88);
-                  *resultPointer1 = *resultPointer5;
+                  *uiResultPointer = *resultPointer5;
                   *componentHandle = *ptrLocal9;
-                  resultPointer1 = (UIDword *)((longlong)resultPointer1 + (longlong)*(int *)(uiBufferData + 0xa94));
+                  uiResultPointer = (UIDword *)((longlong)uiResultPointer + (longlong)*(int *)(uiBufferData + 0xa94));
                   componentHandle = (UIDword *)((longlong)componentHandle + (longlong)*(int *)(uiBufferData + 0xa94));
                   resultPointer5 = (UIDword *)((longlong)resultPointer5 + (longlong)*(int *)(stackLong80 + 0x24))
                   ;
                   ptrLocal9 = (UIDword *)((longlong)ptrLocal9 + (longlong)*(int *)(stackLong80 + 0x24));
-                  *resultPointer1 = *resultPointer5;
+                  *uiResultPointer = *resultPointer5;
                   *componentHandle = *ptrLocal9;
-                  resultPointer1 = (UIDword *)((longlong)resultPointer1 + (longlong)*(int *)(uiBufferData + 0xa94));
+                  uiResultPointer = (UIDword *)((longlong)uiResultPointer + (longlong)*(int *)(uiBufferData + 0xa94));
                   componentHandle = (UIDword *)((longlong)componentHandle + (longlong)*(int *)(uiBufferData + 0xa94));
                   resultPointer5 = (UIDword *)((longlong)resultPointer5 + (longlong)*(int *)(stackLong80 + 0x24))
                   ;
                   ptrLocal9 = (UIDword *)((longlong)ptrLocal9 + (longlong)*(int *)(stackLong80 + 0x24));
-                  *resultPointer1 = *resultPointer5;
+                  *uiResultPointer = *resultPointer5;
                   *componentHandle = *ptrLocal9;
                   processingResult = *(int *)(stackLong80 + 0x24);
                   uiValidationResult = *(int *)(uiBufferData + 0xa94);
-                  *(UIDword *)((longlong)uiValidationResult + (longlong)resultPointer1) =
+                  *(UIDword *)((longlong)uiValidationResult + (longlong)uiResultPointer) =
                        *(UIDword *)((longlong)processingResult + (longlong)resultPointer5);
                   *(UIDword *)((longlong)componentHandle + (longlong)uiValidationResult) =
                        *(UIDword *)((longlong)ptrLocal9 + (longlong)processingResult);
@@ -88341,7 +88341,7 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
   int localInt8;
   int localInt9;
   int processedCount;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   uint bufferValue;
   ulonglong contextValue;
   longlong allocatedMemory4;
@@ -88414,29 +88414,29 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
               if ((int)bufferValue < 0) {
                 bufferValue = (bufferValue - 1 | 0xfffffff0) + 1;
               }
-              resultPointer1 = (uint *)(bufferSize + 0x20);
+              uiResultPointer = (uint *)(bufferSize + 0x20);
               TotalResult = contextValue;
               do {
                 iterationCounter = (int)TotalResult + 0x10;
                 TotalResult = (ulonglong)iterationCounter;
                 contextValue = contextValue + 0x10;
-                resultPointer1[-8] = resultPointer1[-8] ^ 0x80000000;
-                resultPointer1[-7] = resultPointer1[-7] ^ 0x80000000;
-                resultPointer1[-6] = resultPointer1[-6] ^ 0x80000000;
-                resultPointer1[-5] = resultPointer1[-5] ^ 0x80000000;
-                resultPointer1[-4] = resultPointer1[-4] ^ 0x80000000;
-                resultPointer1[-3] = resultPointer1[-3] ^ 0x80000000;
-                resultPointer1[-2] = resultPointer1[-2] ^ 0x80000000;
-                resultPointer1[-1] = resultPointer1[-1] ^ 0x80000000;
-                *resultPointer1 = *resultPointer1 ^ 0x80000000;
-                resultPointer1[1] = resultPointer1[1] ^ 0x80000000;
-                resultPointer1[2] = resultPointer1[2] ^ 0x80000000;
-                resultPointer1[3] = resultPointer1[3] ^ 0x80000000;
-                resultPointer1[4] = resultPointer1[4] ^ 0x80000000;
-                resultPointer1[5] = resultPointer1[5] ^ 0x80000000;
-                resultPointer1[6] = resultPointer1[6] ^ 0x80000000;
-                resultPointer1[7] = resultPointer1[7] ^ 0x80000000;
-                resultPointer1 = resultPointer1 + 0x10;
+                uiResultPointer[-8] = uiResultPointer[-8] ^ 0x80000000;
+                uiResultPointer[-7] = uiResultPointer[-7] ^ 0x80000000;
+                uiResultPointer[-6] = uiResultPointer[-6] ^ 0x80000000;
+                uiResultPointer[-5] = uiResultPointer[-5] ^ 0x80000000;
+                uiResultPointer[-4] = uiResultPointer[-4] ^ 0x80000000;
+                uiResultPointer[-3] = uiResultPointer[-3] ^ 0x80000000;
+                uiResultPointer[-2] = uiResultPointer[-2] ^ 0x80000000;
+                uiResultPointer[-1] = uiResultPointer[-1] ^ 0x80000000;
+                *uiResultPointer = *uiResultPointer ^ 0x80000000;
+                uiResultPointer[1] = uiResultPointer[1] ^ 0x80000000;
+                uiResultPointer[2] = uiResultPointer[2] ^ 0x80000000;
+                uiResultPointer[3] = uiResultPointer[3] ^ 0x80000000;
+                uiResultPointer[4] = uiResultPointer[4] ^ 0x80000000;
+                uiResultPointer[5] = uiResultPointer[5] ^ 0x80000000;
+                uiResultPointer[6] = uiResultPointer[6] ^ 0x80000000;
+                uiResultPointer[7] = uiResultPointer[7] ^ 0x80000000;
+                uiResultPointer = uiResultPointer + 0x10;
               } while ((longlong)contextValue < (longlong)(int)(resultPointer - bufferValue));
             }
             if ((int)iterationCounter < (int)resultPointer) {
@@ -88445,23 +88445,23 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
                 bufferValue = ((resultPointer - iterationCounter) - 4 >> 2) + 1;
                 contextValue = (ulonglong)bufferValue;
                 iterationCounter = iterationCounter + bufferValue * 4;
-                resultPointer1 = (uint *)(bufferSize + (allocatedMemory4 + 2) * 4);
+                uiResultPointer = (uint *)(bufferSize + (allocatedMemory4 + 2) * 4);
                 do {
-                  resultPointer1[-2] = resultPointer1[-2] ^ 0x80000000;
-                  resultPointer1[-1] = resultPointer1[-1] ^ 0x80000000;
-                  *resultPointer1 = *resultPointer1 ^ 0x80000000;
-                  resultPointer1[1] = resultPointer1[1] ^ 0x80000000;
+                  uiResultPointer[-2] = uiResultPointer[-2] ^ 0x80000000;
+                  uiResultPointer[-1] = uiResultPointer[-1] ^ 0x80000000;
+                  *uiResultPointer = *uiResultPointer ^ 0x80000000;
+                  uiResultPointer[1] = uiResultPointer[1] ^ 0x80000000;
                   contextValue = contextValue - 1;
-                  resultPointer1 = resultPointer1 + 4;
+                  uiResultPointer = uiResultPointer + 4;
                 } while (contextValue != 0);
               }
               if ((int)iterationCounter < (int)resultPointer) {
                 allocatedMemory4 = (longlong)(int)(resultPointer - iterationCounter);
-                resultPointer1 = (uint *)(bufferSize + (longlong)(int)iterationCounter * 4);
+                uiResultPointer = (uint *)(bufferSize + (longlong)(int)iterationCounter * 4);
                 do {
-                  *resultPointer1 = *resultPointer1 ^ 0x80000000;
+                  *uiResultPointer = *uiResultPointer ^ 0x80000000;
                   allocatedMemory4 = allocatedMemory4 + -1;
-                  resultPointer1 = resultPointer1 + 1;
+                  uiResultPointer = uiResultPointer + 1;
                 } while (allocatedMemory4 != 0);
               }
             }
@@ -99775,7 +99775,7 @@ void ProcessUIBufferData(short *uiContext,UIDword *dataSource,UIDword *targetBuf
   uint eventProcessingCounter;
   longlong characterDataOffset;
   int processedCount;
-  ulonglong *resultPointer1;
+  ulonglong *uiResultPointer;
   int processingResult2;
   longlong allocatedMemory3;
   short contextFourthValue;
@@ -99880,12 +99880,12 @@ void ProcessUIBufferData(short *uiContext,UIDword *dataSource,UIDword *targetBuf
       if ((int)eventProcessingCounter < 0) {
         eventProcessingCounter = (eventProcessingCounter - 1 | 0xfffffffc) + 1;
       }
-      resultPointer1 = (ulonglong *)((longlong)targetBuffer + 2U);
+      uiResultPointer = (ulonglong *)((longlong)targetBuffer + 2U);
       processedCount = ProcessingResult2;
       do {
-        result = *(ulonglong *)(((longlong)dataSource - (longlong)targetBuffer) + (longlong)resultPointer1);
+        result = *(ulonglong *)(((longlong)dataSource - (longlong)targetBuffer) + (longlong)uiResultPointer);
         processedCount = processedCount + 4;
-        iterationCount = *resultPointer1;
+        iterationCount = *uiResultPointer;
         iterationCount4 = (UIWord)(result >> 0x30);
         aiterationCount7._8_4_ = 0;
         aiterationCount7._0_8_ = result;
@@ -99935,10 +99935,10 @@ void ProcessUIBufferData(short *uiContext,UIDword *dataSource,UIDword *targetBuf
         aiterationCount8._12_4_ = (aiterationCount6._12_4_ >> 0x10) - (aiterationCount2._12_4_ >> 0x10);
         aiterationCount1 = packssdw(aiterationCount1,aiterationCount1);
         aiterationCount9 = packssdw(aiterationCount8,aiterationCount8);
-        *(longlong *)(((longlong)dataSource - (longlong)targetBuffer) + -8 + (longlong)(resultPointer1 + 1)) =
+        *(longlong *)(((longlong)dataSource - (longlong)targetBuffer) + -8 + (longlong)(uiResultPointer + 1)) =
              aiterationCount1._0_8_;
-        *resultPointer1 = aiterationCount9._0_8_;
-        resultPointer1 = resultPointer1 + 1;
+        *uiResultPointer = aiterationCount9._0_8_;
+        uiResultPointer = uiResultPointer + 1;
       } while (componentIndex0 < (int)(param_6 - eventProcessingCounter));
     }
   }
@@ -100693,7 +100693,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
   ulonglong eventProcessingCounter;
   longlong characterDataOffset;
   ulonglong resultValue0;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   uint finalcontextValue;
   ulonglong componentIndex;
@@ -100745,11 +100745,11 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
     } while (eventProcessingCounter != 0);
   }
   if (0 < (int)contextValue) {
-    resultPointer1 = astackUIntf8;
+    uiResultPointer = astackUIntf8;
     eventProcessingCounter = componentIndex;
     do {
       resultPointer = (UIHandle *)(dataSource + (longlong)((int)(short)eventProcessingCounter << 4) * 2);
-      if ((int)*resultPointer1 < 1) {
+      if ((int)*uiResultPointer < 1) {
         *resultPointer = 0;
         resultPointer[1] = 0;
         resultPointer[2] = 0;
@@ -100760,7 +100760,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
       }
       loopCounter = (int)eventProcessingCounter + 1;
       eventProcessingCounter = (ulonglong)loopCounter;
-      resultPointer1 = resultPointer1 + 1;
+      uiResultPointer = uiResultPointer + 1;
     } while ((int)loopCounter < (int)contextValue);
     if (0 < (int)contextValue) {
       allocatedMemory2 = 0;
@@ -105178,7 +105178,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
   dataIndex = 2;
   resultBuffer = contextBuffer;
   do {
-    componentContextPtr = resultPointer1;
+    componentContextPtr = uiResultPointer;
     pResultFloatValue = pLocalFloatValue6;
     allocatedMemory0 = (longlong)uiCompareResult;
     if (0 < (longlong)uiCompareResult) {
@@ -105189,7 +105189,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
         pResultFloatValue = pResultFloatValue + 1;
       } while (allocatedMemory0 != 0);
     }
-    resultPointer1 = resultPointer1 + 0x10;
+    uiResultPointer = uiResultPointer + 0x10;
     pLocalFloatValue6 = pLocalFloatValue6 + 0x10;
     CharacterDataOffset = CharacterDataOffset + -1;
   } while (CharacterDataOffset != 0);
@@ -119318,7 +119318,7 @@ void FUN_180736a9b(uint *uiContext,UIHandle dataSource,int targetBuffer)
   uint *ptrLocal8;
   byte bVar9;
   uint dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   UIHandle contextHandle;
   uint unmodifiedEBP;
   int unmodifiedESI;
@@ -119432,21 +119432,21 @@ void FUN_180736a9b(uint *uiContext,UIHandle dataSource,int targetBuffer)
         aiterationCount5._12_4_ = -(uint)(unmodifiedESI - targetBuffer == 1);
         aiterationCount4 = ZEXT416(1);
         ptrLocal8 = uiContext;
-        resultPointer1 = eventHandle;
+        uiResultPointer = eventHandle;
         do {
-          iterationCounter = *resultPointer1;
-          dataPointer = resultPointer1[1];
-          TotalResult = resultPointer1[2];
-          result = resultPointer1[3];
+          iterationCounter = *uiResultPointer;
+          dataPointer = uiResultPointer[1];
+          TotalResult = uiResultPointer[2];
+          result = uiResultPointer[3];
           unmodifiedEBP = unmodifiedEBP + 8;
           aiterationCount2._0_4_ = (iterationCounter & 1) + ((int)iterationCounter >> aiterationCount4);
           aiterationCount2._4_4_ = (dataPointer & 1) + ((int)dataPointer >> aiterationCount4);
           aiterationCount2._8_4_ = (TotalResult & 1) + ((int)TotalResult >> aiterationCount4);
           aiterationCount2._12_4_ = (result & 1) + ((int)result >> aiterationCount4);
-          iterationCount = resultPointer1[4];
-          eventCode = resultPointer1[5];
-          processStatus = resultPointer1[6];
-          loopCounter = resultPointer1[7];
+          iterationCount = uiResultPointer[4];
+          eventCode = uiResultPointer[5];
+          processStatus = uiResultPointer[6];
+          loopCounter = uiResultPointer[7];
           aiterationCounter._0_4_ = ((int)iterationCounter >> aiterationCount6) + 1 >> aiterationCount4;
           aiterationCounter._4_4_ = ((int)dataPointer >> aiterationCount6) + 1 >> aiterationCount4;
           aiterationCounter._8_4_ = ((int)TotalResult >> aiterationCount6) + 1 >> aiterationCount4;
@@ -119466,7 +119466,7 @@ void FUN_180736a9b(uint *uiContext,UIHandle dataSource,int targetBuffer)
           aiterationCounter = pshufhw(aiterationCount3 & aiterationCount5,aiterationCounter,0xd8);
           *(ulonglong *)(ptrLocal8 + 2) = CONCAT44(aiterationCounter._8_4_,aiterationCounter._0_4_);
           ptrLocal8 = ptrLocal8 + 4;
-          resultPointer1 = resultPointer1 + 8;
+          uiResultPointer = uiResultPointer + 8;
         } while ((int)unmodifiedEBP < (int)(contextValue - result9));
       }
     }
@@ -164648,7 +164648,7 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
   uint eventProcessingCounter;
   longlong CharacterDataOffset;
   UIHandle dataPointer;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   longlong allocatedMemory2;
   UIDword *componentHandle;
   UIHandle *resultPointer4;
@@ -164783,23 +164783,23 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
                 &stackUInt4b4);
   IsEventProcessingActive3 = stackInt4e8 == 0;
   cStack_528 = stackInt4e8 == 0xb;
-  resultPointer1 = *(UIDword **)(uiContext + 0x210);
-  if (resultPointer1 != (UIDword *)0x0) {
+  uiResultPointer = *(UIDword **)(uiContext + 0x210);
+  if (uiResultPointer != (UIDword *)0x0) {
     allocatedMemory2 = *(longlong *)(uiBufferData + 0xa8);
     IsEventProcessingActive4 = allocatedMemory2 != 0;
     if (IsEventProcessingActive4) {
       func_0x000180743c20(allocatedMemory2,7);
-      resultPointer1 = *(UIDword **)(uiContext + 0x210);
+      uiResultPointer = *(UIDword **)(uiContext + 0x210);
     }
-    if ((resultPointer1 == (UIDword *)0x0) ||
-       (pstackUInt548 = resultPointer1, *(char *)((longlong)resultPointer1 + 0x212) == '\0')) {
+    if ((uiResultPointer == (UIDword *)0x0) ||
+       (pstackUInt548 = uiResultPointer, *(char *)((longlong)uiResultPointer + 0x212) == '\0')) {
       pstackUInt548 = componentHandle;
     }
-    resultPointer1 = componentHandle;
+    uiResultPointer = componentHandle;
     if (*(longlong *)(uiBufferData + 0x138) != 0) {
-      resultPointer1 = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
+      uiResultPointer = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
     }
-    uiCompareResult = ProcessUIEventDispatch(uiContext,resultPointer1,dataSource,*(UIDword *)(uiBufferData + 0x148));
+    uiCompareResult = ProcessUIEventDispatch(uiContext,uiResultPointer,dataSource,*(UIDword *)(uiBufferData + 0x148));
     if (uiCompareResult != 0) {
       if ((IsEventProcessingActive4) && (allocatedMemory2 != 0)) {
                      WARNING: Subroutine does not return
@@ -164815,7 +164815,7 @@ void FUN_180760d50(longlong uiContext,uint dataSource,int targetBuffer)
   localChar19 = cStack_528;
   if ((dataSource == 0) || ((*(uint *)(uiContext + 100) & 0x10001) != 0)) {
 LAB_180761b18:
-    resultPointer1 = (UIDword *)0x0;
+    uiResultPointer = (UIDword *)0x0;
     if ((localChar19 != '\0') &&
        (resultPointer4 = *(UIHandle **)(uiContext + 0x138), resultPointer4 != (UIHandle *)0x0)) {
       if (0 < *(int *)(resultPointer4 + 1)) {
@@ -164846,12 +164846,12 @@ LAB_180761b18:
       }
       if ((allocatedMemory2 == 0) ||
          (pstackUInt548 = (UIDword *)(allocatedMemory2 + 0x214), *(char *)(allocatedMemory2 + 0x426) == '\0')) {
-        pstackUInt548 = resultPointer1;
+        pstackUInt548 = uiResultPointer;
       }
       if (*(longlong *)(uiBufferData + 0x138) != 0) {
-        resultPointer1 = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
+        uiResultPointer = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
       }
-      uiCompareResult = ProcessUIEventDispatch(uiContext,resultPointer1,dataSource,*(UIDword *)(uiBufferData + 0x148));
+      uiCompareResult = ProcessUIEventDispatch(uiContext,uiResultPointer,dataSource,*(UIDword *)(uiBufferData + 0x148));
       if (uiCompareResult != 0) {
         if ((IsEventProcessingActive3) && (CharacterDataOffset != 0)) {
                      WARNING: Subroutine does not return
@@ -165392,15 +165392,15 @@ LAB_180761496:
                             *(UIDword *)(uiBufferData + 0x148),*(UIDword *)(uiBufferData + 0x14c));
       resultPointer4 = pstackUInt4d8;
       if (uiCompareResult == 0) {
-        resultPointer1 = componentHandle;
+        uiResultPointer = componentHandle;
         if (*(longlong *)(uiBufferData + 0x138) != 0) {
-          resultPointer1 = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
+          uiResultPointer = *(UIDword **)(*(longlong *)(uiBufferData + 0x138) + 0x10);
         }
         if (pstackUInt4d8 != (UIHandle *)0x0) {
           componentHandle = (UIDword *)pstackUInt4d8[2];
         }
                      WARNING: Subroutine does not return
-        memcpy(componentHandle,resultPointer1,(ulonglong)(*(int *)(uiBufferData + 0x148) * dataSource) << 2);
+        memcpy(componentHandle,uiResultPointer,(ulonglong)(*(int *)(uiBufferData + 0x148) * dataSource) << 2);
       }
     }
     if (resultPointer4 != (UIHandle *)0x0) {
@@ -167141,7 +167141,7 @@ void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int 
   int localInt8;
   longlong CharacterDataOffset;
   uint *componentTransformData;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   int ProcessingResult2;
   int *pProcessingResult3;
   UIByte astackUInt2e8 [32];
@@ -167237,59 +167237,59 @@ void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int 
         CharacterDataOffset = 3;
         puiValidationResult = astackInt238;
         do {
-          resultPointer1 = targetBuffer;
+          uiResultPointer = targetBuffer;
           pProcessingResult3 = puiValidationResult;
-          eventCode = resultPointer1[1];
-          processStatus = resultPointer1[2];
-          loopCounter = resultPointer1[3];
-          *(UIHandle *)pProcessingResult3 = *resultPointer1;
+          eventCode = uiResultPointer[1];
+          processStatus = uiResultPointer[2];
+          loopCounter = uiResultPointer[3];
+          *(UIHandle *)pProcessingResult3 = *uiResultPointer;
           *(UIHandle *)(pProcessingResult3 + 2) = eventCodeType;
-          eventCode = resultPointer1[4];
-          maxProcessingCount = resultPointer1[5];
+          eventCode = uiResultPointer[4];
+          maxProcessingCount = uiResultPointer[5];
           *(UIHandle *)(pProcessingResult3 + 4) = processingStatus;
           *(UIHandle *)(pProcessingResult3 + 6) = loopCounter;
-          processStatus = resultPointer1[6];
-          loopCounter = resultPointer1[7];
+          processStatus = uiResultPointer[6];
+          loopCounter = uiResultPointer[7];
           *(UIHandle *)(pProcessingResult3 + 8) = eventCodeType;
           *(UIHandle *)(pProcessingResult3 + 10) = maxProcessingCount;
-          eventCode = resultPointer1[8];
-          maxProcessingCount = resultPointer1[9];
+          eventCode = uiResultPointer[8];
+          maxProcessingCount = uiResultPointer[9];
           *(UIHandle *)(pProcessingResult3 + 0xc) = processingStatus;
           *(UIHandle *)(pProcessingResult3 + 0xe) = loopCounter;
-          processStatus = resultPointer1[10];
-          loopCounter = resultPointer1[0xb];
+          processStatus = uiResultPointer[10];
+          loopCounter = uiResultPointer[0xb];
           *(UIHandle *)(pProcessingResult3 + 0x10) = eventCodeType;
           *(UIHandle *)(pProcessingResult3 + 0x12) = maxProcessingCount;
-          eventCode = resultPointer1[0xc];
-          maxProcessingCount = resultPointer1[0xd];
+          eventCode = uiResultPointer[0xc];
+          maxProcessingCount = uiResultPointer[0xd];
           *(UIHandle *)(pProcessingResult3 + 0x14) = processingStatus;
           *(UIHandle *)(pProcessingResult3 + 0x16) = loopCounter;
-          processStatus = resultPointer1[0xe];
-          loopCounter = resultPointer1[0xf];
+          processStatus = uiResultPointer[0xe];
+          loopCounter = uiResultPointer[0xf];
           *(UIHandle *)(pProcessingResult3 + 0x18) = eventCodeType;
           *(UIHandle *)(pProcessingResult3 + 0x1a) = maxProcessingCount;
           *(UIHandle *)(pProcessingResult3 + 0x1c) = processingStatus;
           *(UIHandle *)(pProcessingResult3 + 0x1e) = loopCounter;
           CharacterDataOffset = CharacterDataOffset + -1;
           puiValidationResult = pProcessingResult3 + 0x20;
-          targetBuffer = resultPointer1 + 0x10;
+          targetBuffer = uiResultPointer + 0x10;
         } while (CharacterDataOffset != 0);
-        eventCode = resultPointer1[0x11];
-        ProcessingResult2 = *(int *)(resultPointer1 + 0x1a);
-        processStatus = resultPointer1[0x12];
-        loopCounter = resultPointer1[0x13];
-        *(UIHandle *)(pProcessingResult3 + 0x20) = resultPointer1[0x10];
+        eventCode = uiResultPointer[0x11];
+        ProcessingResult2 = *(int *)(uiResultPointer + 0x1a);
+        processStatus = uiResultPointer[0x12];
+        loopCounter = uiResultPointer[0x13];
+        *(UIHandle *)(pProcessingResult3 + 0x20) = uiResultPointer[0x10];
         *(UIHandle *)(pProcessingResult3 + 0x22) = eventCodeType;
-        eventCode = resultPointer1[0x14];
-        maxProcessingCount = resultPointer1[0x15];
+        eventCode = uiResultPointer[0x14];
+        maxProcessingCount = uiResultPointer[0x15];
         *(UIHandle *)(pProcessingResult3 + 0x24) = processingStatus;
         *(UIHandle *)(pProcessingResult3 + 0x26) = loopCounter;
-        processStatus = resultPointer1[0x16];
-        loopCounter = resultPointer1[0x17];
+        processStatus = uiResultPointer[0x16];
+        loopCounter = uiResultPointer[0x17];
         *(UIHandle *)(pProcessingResult3 + 0x28) = eventCodeType;
         *(UIHandle *)(pProcessingResult3 + 0x2a) = maxProcessingCount;
-        eventCode = resultPointer1[0x18];
-        maxProcessingCount = resultPointer1[0x19];
+        eventCode = uiResultPointer[0x18];
+        maxProcessingCount = uiResultPointer[0x19];
         *(UIHandle *)(pProcessingResult3 + 0x2c) = processingStatus;
         *(UIHandle *)(pProcessingResult3 + 0x2e) = loopCounter;
         *(UIHandle *)(pProcessingResult3 + 0x30) = eventCodeType;
@@ -167329,15 +167329,15 @@ void FUN_180762660(longlong uiContext,int dataSource,UIHandle *targetBuffer,int 
       stackUInt2b8 = 1;
       stackUInt2c0 = 0;
       stackUInt2c8 = 0;
-      resultPointer1 = (UIHandle *)
+      uiResultPointer = (UIHandle *)
                 FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x18,&UNK_1809589a0,0x1288);
-      if (resultPointer1 != (UIHandle *)0x0) {
-        *(UIDword *)(resultPointer1 + 1) = (UIDword)stackUInt2a8;
-        *(UIDword *)((longlong)resultPointer1 + 0xc) = stackUInt2a8._4_4_;
-        *(int *)(resultPointer1 + 2) = stackInt2a0;
-        *(int *)((longlong)resultPointer1 + 0x14) = stackInt29c;
-        *resultPointer1 = *(UIHandle *)(uiContext + 0x200);
-        *(UIHandle **)(uiContext + 0x200) = resultPointer1;
+      if (uiResultPointer != (UIHandle *)0x0) {
+        *(UIDword *)(uiResultPointer + 1) = (UIDword)stackUInt2a8;
+        *(UIDword *)((longlong)uiResultPointer + 0xc) = stackUInt2a8._4_4_;
+        *(int *)(uiResultPointer + 2) = stackInt2a0;
+        *(int *)((longlong)uiResultPointer + 0x14) = stackInt29c;
+        *uiResultPointer = *(UIHandle *)(uiContext + 0x200);
+        *(UIHandle **)(uiContext + 0x200) = uiResultPointer;
       }
     }
   }
@@ -175964,7 +175964,7 @@ void FUN_18076c370(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,u
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -176074,17 +176074,17 @@ LAB_18076c495:
   bufferSize = bufferSize + (dataPointer & 0xfffffffffffffffc);
   if (dataPointer >> 3 < 0x20) {
     ptrLocal3 = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(dataPointer >> 3);
-    if (ptrLocal3 == resultPointer1) {
+    if (ptrLocal3 == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((ptrLocal3 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= ptrLocal3)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(ptrLocal3 + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = ptrLocal3;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(ptrLocal3 + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = ptrLocal3;
     }
   }
   else {
@@ -176167,16 +176167,16 @@ LAB_18076c6e6:
   if (bufferSize >> 3 < 0x20) {
     maxProcessingCount = (uint)(bufferSize >> 3);
     ptrLocal3 = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = ptrLocal3;
+    uiResultPointer = ptrLocal3;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(ptrLocal3 + 4)) {
-      resultPointer1 = *(uint **)(ptrLocal3 + 4);
+      uiResultPointer = *(uint **)(ptrLocal3 + 4);
     }
     *(ulonglong *)(ptrLocal3 + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = ptrLocal3;
     return;
   }
@@ -176262,7 +176262,7 @@ void FUN_18076c414(UIHandle uiContext,ulonglong dataSource,uint *targetBuffer,ul
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -176304,17 +176304,17 @@ void FUN_18076c414(UIHandle uiContext,ulonglong dataSource,uint *targetBuffer,ul
   bufferSize = bufferSize + (dataPointer & 0xfffffffffffffffc);
   if (dataPointer >> 3 < 0x20) {
     piterationCount = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(dataPointer >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((piterationCount == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= piterationCount)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
   }
   else {
@@ -176397,16 +176397,16 @@ LAB_18076c6e6:
   if (bufferSize >> 3 < 0x20) {
     maxProcessingCount = (uint)(bufferSize >> 3);
     piterationCount = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return;
   }
@@ -176492,7 +176492,7 @@ void FUN_18076c476(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,u
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -176556,17 +176556,17 @@ void FUN_18076c476(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,u
   bufferSize = bufferSize + (dataPointer & 0xfffffffffffffffc);
   if (dataPointer >> 3 < 0x20) {
     piterationCount = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(dataPointer >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((piterationCount == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= piterationCount)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
   }
   else {
@@ -176649,16 +176649,16 @@ LAB_18076c6e6:
   if (bufferSize >> 3 < 0x20) {
     maxProcessingCount = (uint)(bufferSize >> 3);
     piterationCount = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return;
   }
@@ -176744,7 +176744,7 @@ void FUN_18076c4de(UIHandle uiContext,ulonglong dataSource,uint *targetBuffer,ul
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -176793,17 +176793,17 @@ void FUN_18076c4de(UIHandle uiContext,ulonglong dataSource,uint *targetBuffer,ul
   bufferSize = bufferSize + (dataPointer & 0xfffffffffffffffc);
   if (dataPointer >> 3 < 0x20) {
     piterationCount = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(dataPointer >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((piterationCount == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= piterationCount)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
   }
   else {
@@ -176886,16 +176886,16 @@ LAB_18076c6e6:
   if (bufferSize >> 3 < 0x20) {
     maxProcessingCount = (uint)(bufferSize >> 3);
     piterationCount = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return;
   }
@@ -176981,7 +176981,7 @@ void FUN_18076c518(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,l
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -177000,17 +177000,17 @@ void FUN_18076c518(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,l
   componentIndex = bufferSize + (uiContext & 0xfffffffffffffffc);
   if (uiContext >> 3 < 0x20) {
     piterationCount = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(uiContext >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((piterationCount == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= piterationCount)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
     goto LAB_18076c6a3;
   }
@@ -177090,16 +177090,16 @@ LAB_18076c6a3:
   if (componentIndex >> 3 < 0x20) {
     maxProcessingCount = (uint)(componentIndex >> 3);
     piterationCount = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return;
   }
@@ -177185,7 +177185,7 @@ void FUN_18076c54c(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,l
   uint eventProcessingCounter;
   uint eventStatus;
   ulonglong dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -177196,17 +177196,17 @@ void FUN_18076c54c(ulonglong uiContext,ulonglong dataSource,uint *targetBuffer,l
   componentIndex = bufferSize + (uiContext & 0xfffffffffffffffc);
   if (uiContext >> 3 < 0x20) {
     piterationCount = *(uint **)(RegisterPointer + 0x10);
-    resultPointer1 = *(uint **)(RegisterPointer + 0x18);
+    uiResultPointer = *(uint **)(RegisterPointer + 0x18);
     maxProcessingCount = (uint)(uiContext >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *targetBuffer = *targetBuffer & ~(1 << (maxProcessingCount & 0x1f));
     }
     else if (((piterationCount == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2) ||
              (*(uint **)(targetBuffer + 6) <= piterationCount)) &&
-            ((resultPointer1 == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
-             (*(uint **)(targetBuffer + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2 ||
+             (*(uint **)(targetBuffer + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
     goto LAB_18076c6a3;
   }
@@ -177286,16 +177286,16 @@ LAB_18076c6a3:
   if (componentIndex >> 3 < 0x20) {
     maxProcessingCount = (uint)(componentIndex >> 3);
     piterationCount = targetBuffer + ((ulonglong)(maxProcessingCount * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*targetBuffer >> (maxProcessingCount & 0x1f) & 1) == 0) {
       *targetBuffer = *targetBuffer | 1 << (maxProcessingCount & 0x1f);
     }
     else if (*(uint **)(targetBuffer + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return;
   }
@@ -178436,7 +178436,7 @@ longlong FUN_18076cd07(UIHandle uiContext,ulonglong dataSource,ulonglong targetB
   longlong contextOffset;
   uint eventStatus;
   uint dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -178449,17 +178449,17 @@ longlong FUN_18076cd07(UIHandle uiContext,ulonglong dataSource,ulonglong targetB
   
   if (componentData >> 3 < 0x20) {
     piterationCount = *(uint **)(targetBuffer + 0x10);
-    resultPointer1 = *(uint **)(targetBuffer + 0x18);
+    uiResultPointer = *(uint **)(targetBuffer + 0x18);
     iterationCounter = (uint)(componentData >> 3);
-    if (piterationCount == resultPointer1) {
+    if (piterationCount == uiResultPointer) {
       *register10 = *register10 & ~(1 << (iterationCounter & 0x1f));
     }
     else if (((piterationCount == register10 + ((ulonglong)(iterationCounter * 2) + 8) * 2) ||
              (*(uint **)(register10 + 6) <= piterationCount)) &&
-            ((resultPointer1 == register10 + ((ulonglong)(iterationCounter * 2) + 8) * 2 ||
-             (*(uint **)(register10 + 6) <= resultPointer1)))) {
-      *(uint **)(piterationCount + 6) = resultPointer1;
-      *(uint **)(resultPointer1 + 4) = piterationCount;
+            ((uiResultPointer == register10 + ((ulonglong)(iterationCounter * 2) + 8) * 2 ||
+             (*(uint **)(register10 + 6) <= uiResultPointer)))) {
+      *(uint **)(piterationCount + 6) = uiResultPointer;
+      *(uint **)(uiResultPointer + 4) = piterationCount;
     }
     goto FUN_18076ce64;
   }
@@ -178538,16 +178538,16 @@ FUN_18076ce64:
   if (CounterResult >> 3 < 0x20) {
     iterationCounter = (uint)(CounterResult >> 3);
     piterationCount = register10 + ((ulonglong)(iterationCounter * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*register10 >> (iterationCounter & 0x1f) & 1) == 0) {
       *register10 = *register10 | 1 << (iterationCounter & 0x1f);
     }
     else if (*(uint **)(register10 + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return eventHandle + 0x10;
   }
@@ -178633,7 +178633,7 @@ longlong FUN_18076cd6e(ulonglong uiContext,ulonglong dataSource,ulonglong target
   longlong contextOffset;
   uint eventStatus;
   uint dataPointer;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   longlong allocatedMemory2;
   longlong *uiMemoryPointer3;
   longlong uiContextBasePointer;
@@ -178718,16 +178718,16 @@ LAB_18076ce5f:
   if (CounterResult >> 3 < 0x20) {
     iterationCounter = (uint)(CounterResult >> 3);
     piterationCount = register10 + ((ulonglong)(iterationCounter * 2) + 8) * 2;
-    resultPointer1 = piterationCount;
+    uiResultPointer = piterationCount;
     if ((*register10 >> (iterationCounter & 0x1f) & 1) == 0) {
       *register10 = *register10 | 1 << (iterationCounter & 0x1f);
     }
     else if (*(uint **)(register10 + 6) <= *(uint **)(piterationCount + 4)) {
-      resultPointer1 = *(uint **)(piterationCount + 4);
+      uiResultPointer = *(uint **)(piterationCount + 4);
     }
     *(ulonglong *)(piterationCount + 4) = dataSource;
-    *(ulonglong *)(resultPointer1 + 6) = dataSource;
-    *(uint **)(dataSource + 0x10) = resultPointer1;
+    *(ulonglong *)(uiResultPointer + 6) = dataSource;
+    *(uint **)(dataSource + 0x10) = uiResultPointer;
     *(uint **)(dataSource + 0x18) = piterationCount;
     return eventHandle + 0x10;
   }
@@ -179060,7 +179060,7 @@ longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
   ulonglong *ptrLocal8;
   int localInt9;
   ulonglong *componentTransformData;
-  ulonglong *resultPointer1;
+  ulonglong *uiResultPointer;
   
   ptrLocal8 = (ulonglong *)0x0;
   uiMemoryPointer = (longlong *)(uiContext + 0x388);
@@ -179077,7 +179077,7 @@ longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
     *(UIHandle *)(uiContext + 0x390) = 0x1000;
     *(UIHandle *)(uiContext + 0x398) = 0x1000;
   }
-  resultPointer1 = ptrLocal8;
+  uiResultPointer = ptrLocal8;
   if ((*(byte *)(uiContext + 0x360) & 4) == 0) {
     iterationCount = *(ulonglong *)(uiContext + 0x28);
     piterationCounter = ptrLocal8;
@@ -179100,7 +179100,7 @@ longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
           componentContextPtr = (ulonglong *)
                    ((longlong)componentContextPtr + ((*(longlong *)(uiBufferData + 0x390) + iterationCount & ~eventCodeType) - iterationCount));
         }
-        resultPointer1 = componentTransformData;
+        uiResultPointer = componentTransformData;
         if (componentContextPtr < (ulonglong *)0x7fffffffffffffff) {
           localInt9 = (int)componentContextPtr;
           eventCode = (**(code **)(uiContext + 0x3b8))((ulonglong)componentContextPtr & 0xffffffff);
@@ -179116,7 +179116,7 @@ LAB_18076d25f:
     componentContextPtr = (ulonglong *)
              (dataSource + 0x51 + (*(longlong *)(uiBufferData + 0x398) - *(longlong *)(uiBufferData + 0x10)) &
              ~(*(longlong *)(uiBufferData + 0x398) - 1U));
-    resultPointer1 = componentTransformData;
+    uiResultPointer = componentTransformData;
     if ((ulonglong *)0x7ffffffffffffffe < componentContextPtr) goto LAB_18076d25f;
     localInt9 = (int)componentContextPtr;
     iterationCount = (**(code **)(uiContext + 0x3b8))((ulonglong)componentContextPtr & 0xffffffff);
@@ -179130,7 +179130,7 @@ LAB_18076d1cc:
     }
 LAB_18076d1d9:
     iterationCount = eventCodeType;
-    resultPointer1 = componentTransformData;
+    uiResultPointer = componentTransformData;
     if (iterationCount == 0xffffffffffffffff) goto LAB_18076d25f;
     if ((componentContextPtr < (ulonglong *)(dataSource + 0x51)) &&
        (eventCode = dataSource + 0x51 + (*(longlong *)(uiBufferData + 0x398) - (longlong)componentContextPtr) &
@@ -179148,7 +179148,7 @@ LAB_18076d266:
     contextDataHandle = (*(ulonglong *)(uiContext + 0x390) - dataSource % *(ulonglong *)(uiContext + 0x390)) + dataSource;
     eventCode = ~(*(longlong *)(uiBufferData + 0x398) - 1U) & *(longlong *)(uiBufferData + 0x398) + 0x51 + contextDataHandle;
     iterationCount = maxProcessingCount;
-    componentContextPtr = resultPointer1;
+    componentContextPtr = uiResultPointer;
     if (eventCodeType < 0x7fffffffffffffff) {
       maxProcessingCount = (**(code **)(uiContext + 0x3b8))(eventCodeType,*(UIHandle *)(uiContext + 0x3c0));
       eventCode = (**(code **)(uiContext + 0x3b8))(0,*(UIHandle *)(uiContext + 0x3c0));
@@ -181510,7 +181510,7 @@ int FUN_18076f670(longlong uiContext)
   longlong *pcontextOffset;
   ulonglong eventStatus;
   ulonglong dataPointer;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   longlong allocatedMemory2;
   UIHandle contextHandle;
   ulonglong contextValue;
@@ -181547,7 +181547,7 @@ int FUN_18076f670(longlong uiContext)
   finalResult = 1.0;
   localInt7 = 0;
   if (((longlong *)*uiMemoryPointer != uiMemoryPointer) || (*(longlong **)(uiContext + 0x240) != uiMemoryPointer)) {
-    resultPointer1 = (UIDword *)(uiContext + 0x260);
+    uiResultPointer = (UIDword *)(uiContext + 0x260);
     globalDataPointer = (longlong *)*uiMemoryPointer;
     CounterResult = contextValue;
     do {
@@ -181593,11 +181593,11 @@ int FUN_18076f670(longlong uiContext)
       }
       else {
         CounterResult = (ulonglong)((int)CounterResult + 1);
-        *(longlong *)(resultPointer1 + -2) = globalDataPointer[3];
+        *(longlong *)(uiResultPointer + -2) = globalDataPointer[3];
         contextValue = contextValue + 1;
         fStack0000000000000070 = (float)globalDataPointer[2];
-        *resultPointer1 = fStack0000000000000070;
-        resultPointer1 = resultPointer1 + 4;
+        *uiResultPointer = fStack0000000000000070;
+        uiResultPointer = uiResultPointer + 4;
       }
       localInt7 = (int)CounterResult;
     } while ((colorBufferPointer != uiMemoryPointer) && (globalDataPointer = colorBufferPointer, (longlong)contextValue < 4));
@@ -181627,12 +181627,12 @@ int FUN_18076f670(longlong uiContext)
   }
   allocatedMemory2 = (longlong)localInt7;
   if (allocatedMemory2 < 4) {
-    resultPointer1 = (UIDword *)((allocatedMemory2 + 0x26) * 0x10 + uiContext);
+    uiResultPointer = (UIDword *)((allocatedMemory2 + 0x26) * 0x10 + uiContext);
     allocatedMemory2 = 4 - allocatedMemory2;
     do {
-      *(UIHandle *)(resultPointer1 + -2) = 0;
-      *resultPointer1 = 0;
-      resultPointer1 = resultPointer1 + 4;
+      *(UIHandle *)(uiResultPointer + -2) = 0;
+      *uiResultPointer = 0;
+      uiResultPointer = uiResultPointer + 4;
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
   }
@@ -181676,7 +181676,7 @@ int FUN_18076f67e(float uiContext)
   longlong *pcontextOffset;
   ulonglong eventStatus;
   ulonglong dataPointer;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   longlong allocatedMemory2;
   longlong contextHandle;
   ulonglong contextValue;
@@ -181794,12 +181794,12 @@ int FUN_18076f67e(float uiContext)
   }
   allocatedMemory2 = (longlong)localInt7;
   if (allocatedMemory2 < 4) {
-    resultPointer1 = (UIDword *)((allocatedMemory2 + 0x26) * 0x10 + contextHandle);
+    uiResultPointer = (UIDword *)((allocatedMemory2 + 0x26) * 0x10 + contextHandle);
     allocatedMemory2 = 4 - allocatedMemory2;
     do {
-      *(UIHandle *)(resultPointer1 + -2) = 0;
-      *resultPointer1 = 0;
-      resultPointer1 = resultPointer1 + 4;
+      *(UIHandle *)(uiResultPointer + -2) = 0;
+      *uiResultPointer = 0;
+      uiResultPointer = uiResultPointer + 4;
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
   }
@@ -196772,7 +196772,7 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
   ulonglong eventProcessingCounter;
   char *plocalChar9;
   int *pprocessedCount;
-  ulonglong *resultPointer1;
+  ulonglong *uiResultPointer;
   int ProcessingResult2;
   float baseValue3;
   float vectorComponentX;
@@ -196810,28 +196810,28 @@ UIHandle FUN_18077e250(longlong uiContext,int dataSource)
     }
     ProcessingResult2 = 0;
     plocalChar9 = (char *)&dataSourceParameter;
-    resultPointer1 = (ulonglong *)(uiContext + 0x230);
+    uiResultPointer = (ulonglong *)(uiContext + 0x230);
     pprocessedCount = (int *)(uiContext + 0x260);
     do {
-      if ((*plocalChar9 != '\0') || (*resultPointer1 == 0)) {
+      if ((*plocalChar9 != '\0') || (*uiResultPointer == 0)) {
         *pprocessedCount = (int)((float)processingResult * (float)pprocessedCount[-0x10]) / 1000;
-        if (resultPointer1[2] != 0) {
+        if (uiResultPointer[2] != 0) {
                      WARNING: Subroutine does not return
-          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1[2],&UNK_18095a310,0x1eb,1);
+          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer[2],&UNK_18095a310,0x1eb,1);
         }
         pprocessedCount[-4] = *pprocessedCount * 4;
         eventProcessingCounter = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*pprocessedCount * 4 + 0x80,
                               &UNK_18095a310,0x1f2,0);
-        resultPointer1[2] = eventProcessingCounter;
+        uiResultPointer[2] = eventProcessingCounter;
         if (eventProcessingCounter == 0) {
           return 0x26;
         }
         BufferSizeFlag = true;
-        *resultPointer1 = eventProcessingCounter + 0x7f & 0xffffffffffffff80;
+        *uiResultPointer = eventProcessingCounter + 0x7f & 0xffffffffffffff80;
       }
       ProcessingResult2 = ProcessingResult2 + 1;
       pprocessedCount = pprocessedCount + 1;
-      resultPointer1 = resultPointer1 + 1;
+      uiResultPointer = uiResultPointer + 1;
       plocalChar9 = plocalChar9 + 1;
     } while (ProcessingResult2 < 2);
     if ((IsValidationComplete || (bVar4 || (ProcessingFlag || IsEventProcessingActive))) || (bVar6)) {
@@ -197233,7 +197233,7 @@ FUN_18077e8d8(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longl
   ulonglong eventProcessingCounter;
   float *bufferPointer;
   float *BaseValuePointer0;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   int ProcessingResult2;
   uint preservedRegister13D;
   longlong eventHandle;
@@ -197247,14 +197247,14 @@ FUN_18077e8d8(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longl
   contextDataHandle = (longlong)allocationFlags;
   ProcessingResult2 = 0;
   if (0 < allocationFlags) {
-    resultPointer1 = (uint *)(contextHandle + 600);
+    uiResultPointer = (uint *)(contextHandle + 600);
     uiMemoryPointer3 = (longlong *)(contextHandle + 0x230);
     do {
       bufferPointer = (float *)(dataSource + (longlong)ProcessingResult2 * 4);
       BaseValuePointer0 = (float *)(bufferSize + (longlong)ProcessingResult2 * 4);
       if (preservedRegister13D != 0) {
-        eventProcessingCounter = (ulonglong)*resultPointer1;
-        iterationCounter = resultPointer1[2];
+        eventProcessingCounter = (ulonglong)*uiResultPointer;
+        iterationCounter = uiResultPointer[2];
         maxProcessingCount = preservedRegister13D;
         do {
           transformCoeffPointer = (float *)(*uiMemoryPointer3 + eventProcessingCounter * 4);
@@ -197304,11 +197304,11 @@ FUN_18077e8d8(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longl
             *transformCoeffPointer = *(float *)(contextHandle + 0x21c) * *transformCoeffPointer + baseValue;
             transformCoeffPointer = transformCoeffPointer + 1;
           }
-          *resultPointer1 = *resultPointer1 + iterationCount;
-          eventProcessingCounter = (ulonglong)*resultPointer1;
-          iterationCounter = resultPointer1[2];
-          if (iterationCounter <= *resultPointer1) {
-            *resultPointer1 = 0;
+          *uiResultPointer = *uiResultPointer + iterationCount;
+          eventProcessingCounter = (ulonglong)*uiResultPointer;
+          iterationCounter = uiResultPointer[2];
+          if (iterationCounter <= *uiResultPointer) {
+            *uiResultPointer = 0;
             eventProcessingCounter = 0;
           }
           maxProcessingCount = maxProcessingCount - iterationCount;
@@ -197317,7 +197317,7 @@ FUN_18077e8d8(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,longl
       }
       ProcessingResult2 = ProcessingResult2 + 1;
       uiMemoryPointer3 = uiMemoryPointer3 + 1;
-      resultPointer1 = resultPointer1 + 1;
+      uiResultPointer = uiResultPointer + 1;
       contextDataHandle = contextDataHandle + -1;
       bufferSize = param_6;
     } while (contextDataHandle != 0);
@@ -208127,7 +208127,7 @@ UIDword FUN_180789e60(UIHandle *uiContext)
   uint eventProcessingCounter;
   ulonglong eventStatus;
   uint dataPointer;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   uint bufferValue;
   uint contextValue;
   ulonglong componentIndex;
@@ -208173,34 +208173,34 @@ UIDword FUN_180789e60(UIHandle *uiContext)
       lStackX_8 = 0;
       componentIndex = eventStatus;
       do {
-        resultPointer1 = (UIHandle *)
+        uiResultPointer = (UIHandle *)
                   ((ulonglong)((int)eventStatus * bufferValue) + (ulonglong)loopCounter + (ulonglong)contextValue +
                    (ulonglong)eventProcessingCounter + (longlong)componentData);
-        *(UIHandle **)(lStackX_8 + componentData[6]) = resultPointer1;
+        *(UIHandle **)(lStackX_8 + componentData[6]) = uiResultPointer;
         pcontextDataHandle = (longlong *)(componentData[5] + componentIndex);
         pcontextDataHandle[1] = uiContext[7];
         *pcontextDataHandle = (longlong)(uiContext + 6);
         uiContext[7] = pcontextDataHandle;
         *(longlong **)pcontextDataHandle[1] = pcontextDataHandle;
-        *(UIHandle **)(componentData[5] + 0x10 + componentIndex) = resultPointer1;
-        resultPointer = resultPointer1 + 1;
-        resultPointer1[2] = resultPointer;
+        *(UIHandle **)(componentData[5] + 0x10 + componentIndex) = uiResultPointer;
+        resultPointer = uiResultPointer + 1;
+        uiResultPointer[2] = resultPointer;
         *resultPointer = resultPointer;
-        resultPointer1[3] = 0;
-        resultPointer = resultPointer1 + 4;
-        resultPointer1[5] = resultPointer;
+        uiResultPointer[3] = 0;
+        resultPointer = uiResultPointer + 4;
+        uiResultPointer[5] = resultPointer;
         *resultPointer = resultPointer;
-        resultPointer1[6] = 0;
-        resultPointer1[8] = 0;
-        *(UIDword *)(resultPointer1 + 7) = 0;
-        resultPointer1[10] = 0;
-        *(UIDword *)(resultPointer1 + 9) = 0;
-        resultPointer1[0x14] = 0;
-        *(UIDword *)(resultPointer1 + 0x13) = 0;
-        *resultPointer1 = 0;
-        resultPointer1[0xb] = 0;
-        resultPointer1[0xc] = 0;
-        func_0x000180763630(resultPointer1,*uiContext,0x3f800000);
+        uiResultPointer[6] = 0;
+        uiResultPointer[8] = 0;
+        *(UIDword *)(uiResultPointer + 7) = 0;
+        uiResultPointer[10] = 0;
+        *(UIDword *)(uiResultPointer + 9) = 0;
+        uiResultPointer[0x14] = 0;
+        *(UIDword *)(uiResultPointer + 0x13) = 0;
+        *uiResultPointer = 0;
+        uiResultPointer[0xb] = 0;
+        uiResultPointer[0xc] = 0;
+        func_0x000180763630(uiResultPointer,*uiContext,0x3f800000);
         eventCode = (int)eventStatus + 1;
         eventStatus = (ulonglong)eventCodeType;
         lStackX_8 = lStackX_8 + 8;
@@ -216374,7 +216374,7 @@ void FUN_180791210(UIHandle *uiContext,longlong dataSource,int targetBuffer,int 
   UIHandle *ptrLocal8;
   int localInt9;
   ulonglong dataPointer;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   uint bufferValue;
   UIHandle *componentHandle;
   int *processingStatusPointer;
@@ -216429,13 +216429,13 @@ LAB_1807912bc:
   }
   uiValidationResult = (**(code **)*uiContext)(uiContext);
   if (uiValidationResult == 0x29) {
-    resultPointer1 = (UIHandle *)0x0;
+    uiResultPointer = (UIHandle *)0x0;
     astackInt80[0] = *(int *)(uiBufferData + 2);
     uiValidationResult = *(int *)(uiContext[1] + 0x11664) + -1;
     stackInta4 = astackInt80[0] << 4;
     astackInt80[3] = astackInt80[0] * 4;
     stackInt68 = stackInta4;
-    ptrLocal8 = resultPointer1;
+    ptrLocal8 = uiResultPointer;
     localInt7 = resultPointer;
     if (uiValidationResult == 0) {
       astackInt80[1] = 3;
@@ -216464,20 +216464,20 @@ LAB_1807912bc:
     eventDataIndex = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(int *)(uiBufferData + 3) * bufferValue * 8
                           ,&UNK_18095b780,0x11f);
     uiContext[7] = eventDataIndex;
-    if ((eventDataIndex != 0) && (ptrLocal8 = resultPointer1, 0 < *(int *)(uiBufferData + 3))) {
+    if ((eventDataIndex != 0) && (ptrLocal8 = uiResultPointer, 0 < *(int *)(uiBufferData + 3))) {
       do {
         stackUInta8 = 0;
         localInt7 = (int)ptrLocal8;
         if (0 < *(int *)((longlong)uiContext + 0x1c)) {
           processingStatusPointer = astackInt80;
-          ptrLocal8 = resultPointer1;
-          componentHandle = resultPointer1;
+          ptrLocal8 = uiResultPointer;
+          componentHandle = uiResultPointer;
           do {
             localInt9 = (int)ptrLocal8;
             if (localInt9 < uiValidationResult) {
               uiValidationResult = localInt9;
             }
-            ptrLocal8 = resultPointer1;
+            ptrLocal8 = uiResultPointer;
             if ((uiValidationResult == 0) || (processingStatusPointer[2] == 0)) {
               stackInte8 = 0;
               ptrLocal6 = (UIHandle *)
@@ -241636,7 +241636,7 @@ int FUN_18080bff0(longlong *uiContext,longlong dataSource,int targetBuffer)
   UIDword eventProcessingCounter;
   UIDword *ptrLocal9;
   UIDword dataPointer;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   UIDword bufferValue;
   UIDword *componentHandle;
   UIDword componentIndex;
@@ -241665,14 +241665,14 @@ int FUN_18080bff0(longlong *uiContext,longlong dataSource,int targetBuffer)
       }
       resultPointer5 = &stackUInt40;
       componentHandle = &stackUInt3c;
-      resultPointer1 = auStackX_8;
+      uiResultPointer = auStackX_8;
       ptrLocal9 = stackBuffer;
       piterationCounter = &stackUInt48;
-      FUN_18080c4a0(uiContext,uiCompareResult,uiCompareResult + loopCounter,&stackUInt44,piterationCounter,ptrLocal9,resultPointer1,componentHandle,resultPointer5,
+      FUN_18080c4a0(uiContext,uiCompareResult,uiCompareResult + loopCounter,&stackUInt44,piterationCounter,ptrLocal9,uiResultPointer,componentHandle,resultPointer5,
                     pprocessingResult7,pprocessingResult);
       eventProcessingCounter = (UIDword)((ulonglong)piterationCounter >> 0x20);
       dataPointer = (UIDword)((ulonglong)ptrLocal9 >> 0x20);
-      bufferValue = (UIDword)((ulonglong)resultPointer1 >> 0x20);
+      bufferValue = (UIDword)((ulonglong)uiResultPointer >> 0x20);
       componentIndex = (UIDword)((ulonglong)componentHandle >> 0x20);
       TotalResult = (UIDword)((ulonglong)resultPointer5 >> 0x20);
       result8 = (UIDword)((ulonglong)pprocessingResult7 >> 0x20);
@@ -243492,7 +243492,7 @@ void FUN_18080db06(UIHandle uiContext,int *dataSource,longlong targetBuffer,long
   longlong contextRegister;
   UIDword *ptrLocal9;
   float *BaseValuePointer0;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   UIHandle contextHandle;
   ulonglong bufferValue;
   int ProcessingResult3;
@@ -243700,9 +243700,9 @@ void FUN_18080db06(UIHandle uiContext,int *dataSource,longlong targetBuffer,long
   lStack0000000000000038 = allocatedMemory5;
   if (lStack0000000000000038 < 0x20) {
     allocatedMemory5 = 0x20 - lStack0000000000000038;
-    resultPointer1 = (UIDword *)(lStack0000000000000048 + 0x80 + lStack0000000000000038 * 4);
+    uiResultPointer = (UIDword *)(lStack0000000000000048 + 0x80 + lStack0000000000000038 * 4);
     do {
-      ptrLocal9 = resultPointer1;
+      ptrLocal9 = uiResultPointer;
       allocatedMemory9 = lStack0000000000000050;
       if (0 < lStack0000000000000050) {
         do {
@@ -243714,7 +243714,7 @@ void FUN_18080db06(UIHandle uiContext,int *dataSource,longlong targetBuffer,long
           ptrLocal9 = ptrLocal9 + 0x80;
         } while (allocatedMemory9 != 0);
       }
-      resultPointer1 = resultPointer1 + 1;
+      uiResultPointer = uiResultPointer + 1;
       allocatedMemory5 = allocatedMemory5 + -1;
     } while (allocatedMemory5 != 0);
   }
@@ -247123,7 +247123,7 @@ UIHandle FUN_180810c50(longlong uiContext,UIDword *dataSource,int targetBuffer,i
   int localInt8;
   UIHandle eventStatus;
   longlong allocatedMemory0;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   uint *renderDataPointer;
   longlong allocatedMemory3;
   longlong allocatedMemory4;
@@ -247139,13 +247139,13 @@ UIHandle FUN_180810c50(longlong uiContext,UIDword *dataSource,int targetBuffer,i
   loopCounter = func_0x000180815b30(uiContext,eventStatus);
   dataSource[1] = loopCounter;
   if (0 < targetBuffer) {
-    resultPointer1 = dataSource + 0x20;
+    uiResultPointer = dataSource + 0x20;
     allocatedMemory4 = allocatedMemory0;
     do {
-      resultPointer1[-0x1e] = 0xffffffff;
+      uiResultPointer[-0x1e] = 0xffffffff;
       loopCounter = func_0x000180815b30(uiContext,4);
-      *resultPointer1 = loopCounter;
-      resultPointer1 = resultPointer1 + 0x3c;
+      *uiResultPointer = loopCounter;
+      uiResultPointer = uiResultPointer + 0x3c;
       allocatedMemory4 = allocatedMemory4 + -1;
     } while (allocatedMemory4 != 0);
   }
@@ -254158,7 +254158,7 @@ ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIByte *targ
   int *ptrLocalInt8;
   longlong CharacterDataOffset;
   UIByte *componentTransformData;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   longlong allocatedMemory2;
   longlong allocatedMemory3;
   UIByte *pbufferValidation;
@@ -254167,7 +254167,7 @@ ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIByte *targ
   UIByte astackUInt58 [48];
   UIByte *ptrLocal6;
   
-  resultPointer1 = (UIByte *)0x0;
+  uiResultPointer = (UIByte *)0x0;
   pbufferValidation = targetBuffer;
 LAB_1808199b3:
   if ((*(int *)(dataSource + 0x80) != 3) || (loopCounter = FUN_18081a600(uiContext,dataSource), -1 < (int)loopCounter))
@@ -254193,7 +254193,7 @@ LAB_1808199b3:
         if (uiValidationResult == -0x8b) {
           return 0xffffff75;
         }
-        pbufferValidation = resultPointer1;
+        pbufferValidation = uiResultPointer;
         if (uiValidationResult == 0) {
           uiValidationResult = FUN_180831150(dataSource + 0x210,0);
           if (uiValidationResult == 0) {
@@ -254209,20 +254209,20 @@ LAB_1808199b3:
               }
               uiValidationResult = FUN_180831150(dataSource + 0x210,0);
               allocatedMemory3 = (longlong)uiCompareResult;
-              ptrLocal6 = resultPointer1;
+              ptrLocal6 = uiResultPointer;
               if (-1 < (longlong)componentTransformData) {
                 ptrLocal6 = componentTransformData;
               }
               allocatedMemory2 = (longlong)ptrLocal6 - (longlong)uiValidationResult;
-              ptrLocal6 = resultPointer1;
-              componentTransformData = resultPointer1;
+              ptrLocal6 = uiResultPointer;
+              componentTransformData = uiResultPointer;
               if (1 < allocatedMemory3) {
                 componentData = (longlong *)(*(longlong *)(dataSource + 0x60) + 0x18);
                 CharacterDataOffset = (allocatedMemory3 - 2U >> 1) + 1;
                 ptrLocal6 = (UIByte *)(CharacterDataOffset * 2);
                 do {
                   componentTransformData = componentTransformData + componentData[-2];
-                  resultPointer1 = resultPointer1 + *componentData;
+                  uiResultPointer = uiResultPointer + *componentData;
                   componentData = componentData + 4;
                   CharacterDataOffset = CharacterDataOffset + -1;
                 } while (CharacterDataOffset != 0);
@@ -254231,7 +254231,7 @@ LAB_1808199b3:
                 allocatedMemory2 = allocatedMemory2 + *(longlong *)
                                    (*(longlong *)(dataSource + 0x60) + 8 + (longlong)ptrLocal6 * 0x10);
               }
-              *(UIByte **)(dataSource + 0x78) = resultPointer1 + (longlong)componentTransformData + allocatedMemory2;
+              *(UIByte **)(dataSource + 0x78) = uiResultPointer + (longlong)componentTransformData + allocatedMemory2;
             }
             return 1;
           }
@@ -254291,7 +254291,7 @@ LayoutCalculationHandler:
   processStatus = 0;
   if (0 < (int)result) {
     ptrLocalInt8 = *(int **)(dataSource + 0x58);
-    ptrLocal6 = resultPointer1;
+    ptrLocal6 = uiResultPointer;
     do {
       processStatus = (uint)ptrLocal6;
       if (*ptrLocalInt8 == uiCompareResult) break;
@@ -262821,7 +262821,7 @@ UIHandle FUN_1808245aa(void)
   float TemporaryFloatValue;
   float LocalFloatValue9;
   longlong allocatedMemory0;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   UIHandle bufferValue;
   float *BaseValuePointer3;
   uint *resultPointer4;
@@ -262842,14 +262842,14 @@ UIHandle FUN_1808245aa(void)
   *(uint *)(allocatedMemory + -0x1c + allocatedMemory0 * 8) = *(uint *)(allocatedMemory + 0x24) ^ 0x80000000;
   ProcessingResult5 = (ProcessingResult5 >> 2) + -1;
   if (ProcessingResult5 != 0) {
-    resultPointer1 = (uint *)(allocatedMemory + 0x34);
+    uiResultPointer = (uint *)(allocatedMemory + 0x34);
     do {
-      resultPointer4[-6] = resultPointer1[-2] ^ 0x80000000;
-      resultPointer4[-8] = *resultPointer1 ^ 0x80000000;
-      resultPointer4[-10] = resultPointer1[2] ^ 0x80000000;
-      resultPointer4[-0xc] = resultPointer1[4] ^ 0x80000000;
+      resultPointer4[-6] = uiResultPointer[-2] ^ 0x80000000;
+      resultPointer4[-8] = *uiResultPointer ^ 0x80000000;
+      resultPointer4[-10] = uiResultPointer[2] ^ 0x80000000;
+      resultPointer4[-0xc] = uiResultPointer[4] ^ 0x80000000;
       ProcessingResult5 = ProcessingResult5 + -1;
-      resultPointer1 = resultPointer1 + 8;
+      uiResultPointer = uiResultPointer + 8;
       resultPointer4 = resultPointer4 + -8;
     } while (ProcessingResult5 != 0);
   }
@@ -263483,7 +263483,7 @@ UIHandle FUN_18082487b(void)
   float TemporaryFloatValue;
   float LocalFloatValue9;
   longlong allocatedMemory0;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   UIHandle bufferValue;
   float *BaseValuePointer3;
   uint *resultPointer4;
@@ -263504,14 +263504,14 @@ UIHandle FUN_18082487b(void)
   *(uint *)(allocatedMemory + -0x1c + allocatedMemory0 * 8) = *(uint *)(allocatedMemory + 0x24) ^ 0x80000000;
   ProcessingResult5 = (ProcessingResult5 >> 2) + -1;
   if (ProcessingResult5 != 0) {
-    resultPointer1 = (uint *)(allocatedMemory + 0x34);
+    uiResultPointer = (uint *)(allocatedMemory + 0x34);
     do {
-      resultPointer4[-6] = resultPointer1[-2] ^ 0x80000000;
-      resultPointer4[-8] = *resultPointer1 ^ 0x80000000;
-      resultPointer4[-10] = resultPointer1[2] ^ 0x80000000;
-      resultPointer4[-0xc] = resultPointer1[4] ^ 0x80000000;
+      resultPointer4[-6] = uiResultPointer[-2] ^ 0x80000000;
+      resultPointer4[-8] = *uiResultPointer ^ 0x80000000;
+      resultPointer4[-10] = uiResultPointer[2] ^ 0x80000000;
+      resultPointer4[-0xc] = uiResultPointer[4] ^ 0x80000000;
       ProcessingResult5 = ProcessingResult5 + -1;
-      resultPointer1 = resultPointer1 + 8;
+      uiResultPointer = uiResultPointer + 8;
       resultPointer4 = resultPointer4 + -8;
     } while (ProcessingResult5 != 0);
   }
@@ -301512,7 +301512,7 @@ void FUN_180848e82(void)
   char *contextHandle;
   longlong uiContextBasePointer;
   UIByte *componentTransformData;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   longlong allocatedMemory2;
   UIHandle *preservedRegister15;
   
@@ -301555,7 +301555,7 @@ FUN_180848ff1:
     *(UIWord *)(uiContextBasePointer + -0x33) = maxProcessingCount;
     maxProcessingCount = func_0x00018076b320(uiContextBasePointer + 0x13);
     *(char *)(uiContextBasePointer + -0x30) = (char)maxProcessingCount;
-    resultPointer1 = (UIByte *)(uiContextBasePointer + -0x2a);
+    uiResultPointer = (UIByte *)(uiContextBasePointer + -0x2a);
     *(char *)(uiContextBasePointer + -0x31) = (char)((ushort)maxProcessingCount >> 8);
     componentTransformData = (UIByte *)(uiContextBasePointer + 0x22);
     localInt7 = 5;
@@ -301563,10 +301563,10 @@ FUN_180848ff1:
     do {
       loopCounter = func_0x00018076b320(allocatedMemory2);
       allocatedMemory2 = allocatedMemory2 + -2;
-      *resultPointer1 = loopCounter;
+      *uiResultPointer = loopCounter;
       localInt7 = localInt7 + -1;
       *componentTransformData = 0;
-      resultPointer1 = resultPointer1 + -1;
+      uiResultPointer = uiResultPointer + -1;
       componentTransformData = componentTransformData + -2;
     } while (-1 < localInt7);
     eventProcessingCounter = *(UIDword *)(uiContextBasePointer + -0x35);
@@ -306246,7 +306246,7 @@ UIHandle FUN_18084d140(longlong uiContext,uint dataSource,int *targetBuffer,uint
   uint eventProcessingCounter;
   UIByte *ptrLocal9;
   UIByte *componentTransformData;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   int ProcessingResult2;
   int ProcessingResult3;
   UIByte astackUInt48 [16];
@@ -306265,43 +306265,43 @@ UIHandle FUN_18084d140(longlong uiContext,uint dataSource,int *targetBuffer,uint
   stackUInt2c = 0x42f00000;
   stackUInt30 = *ptrLocal6;
   ptrLocal9 = ptrLocal3;
-  resultPointer1 = componentTransformData;
+  uiResultPointer = componentTransformData;
   while (((piterationCounter = ptrLocal9, ptrLocal9 = componentTransformData, ptrLocal3 <= piterationCounter &&
           (piterationCounter < ptrLocal3 + (longlong)*(int *)(uiBufferData + 0x90) * 0x20)) &&
          (ptrLocal9 = piterationCounter, *(uint *)(piterationCounter + 0x18) <= dataSource))) {
-    resultPointer1 = piterationCounter;
+    uiResultPointer = piterationCounter;
     ptrLocal9 = piterationCounter + 0x20;
   }
-  if (resultPointer1 == (UIByte *)0x0) {
+  if (uiResultPointer == (UIByte *)0x0) {
     TargetBufferFlag = false;
-    resultPointer1 = ptrLocal9;
+    uiResultPointer = ptrLocal9;
     if (*(int *)(uiBufferData + 0x90) != 0) goto LAB_18084d224;
   }
   else {
     TargetBufferFlag = true;
 LAB_18084d224:
-    if (resultPointer1 != (UIByte *)0x0) goto LAB_18084d22e;
+    if (uiResultPointer != (UIByte *)0x0) goto LAB_18084d22e;
   }
-  resultPointer1 = astackUInt48;
+  uiResultPointer = astackUInt48;
 LAB_18084d22e:
-  baseValue = *(float *)(resultPointer1 + 0x1c);
+  baseValue = *(float *)(uiResultPointer + 0x1c);
   if (baseValue == 0.0) {
-    if ((dataSource != *(uint *)(resultPointer1 + 0x18)) && (ptrLocal9 != (UIByte *)0x0)) {
+    if ((dataSource != *(uint *)(uiResultPointer + 0x18)) && (ptrLocal9 != (UIByte *)0x0)) {
       *bufferSize = *(uint *)(ptrLocal9 + 0x18);
       return 0;
     }
     *bufferSize = dataSource;
     return 0;
   }
-  if (((0.0 < baseValue) && (*(int *)(resultPointer1 + 0x10) != 0)) &&
-     ((ProcessingResult3 = *(int *)(resultPointer1 + 0x14), ProcessingResult3 != 0 && (ProcessingResult3 < 0x11)))) {
+  if (((0.0 < baseValue) && (*(int *)(uiResultPointer + 0x10) != 0)) &&
+     ((ProcessingResult3 = *(int *)(uiResultPointer + 0x14), ProcessingResult3 != 0 && (ProcessingResult3 < 0x11)))) {
     ProcessingResult2 = targetBuffer[1];
     if (*targetBuffer == 1) {
-      ProcessingResult2 = ProcessingResult2 * ((*(int *)(resultPointer1 + 0x10) * 8) / ProcessingResult3);
+      ProcessingResult2 = ProcessingResult2 * ((*(int *)(uiResultPointer + 0x10) * 8) / ProcessingResult3);
     }
     baseValue = (1.44e+06 / baseValue) * (float)ProcessingResult2;
     if ((bVar4) || (*(int *)(uiBufferData + 0x90) == 0)) {
-      iterationCount = *(uint *)(resultPointer1 + 0x18);
+      iterationCount = *(uint *)(uiResultPointer + 0x18);
       ProcessingResult3 = (int)((float)(dataSource - iterationCount) / baseValue);
       do {
         eventProcessingCounter = (uint)((float)ProcessingResult3 * baseValue + 0.5);
@@ -306316,10 +306316,10 @@ LAB_18084d22e:
       }
     }
     else {
-      if (resultPointer1 != ptrLocal9) {
+      if (uiResultPointer != ptrLocal9) {
         return 0x1c;
       }
-      iterationCount = *(uint *)(resultPointer1 + 0x18);
+      iterationCount = *(uint *)(uiResultPointer + 0x18);
       ProcessingResult3 = (int)((float)(iterationCount - dataSource) / baseValue);
       eventProcessingCounter = iterationCount;
       while (loopCounter = eventProcessingCounter, eventProcessingCounter = (uint)((float)ProcessingResult3 * baseValue + 0.5), eventProcessingCounter <= iterationCount) {
@@ -313042,7 +313042,7 @@ void FUN_180852090(UIHandle *uiContext,UIHandle *dataSource)
   UIHandle *ptrLocal8;
   UIHandle *ptrLocal9;
   int processedCount;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   UIHandle *renderDataPointer;
   longlong *uiMemoryPointer3;
   ulonglong componentIndex;
@@ -313110,7 +313110,7 @@ void FUN_180852090(UIHandle *uiContext,UIHandle *dataSource)
     localInt5 = FUN_1808b2f30(uiContext,0);
     if ((localInt5 != 0) || (localInt5 = FUN_1808b2f30(uiContext,1), localInt5 != 0)) goto FUN_180852aaa;
     localInt5 = FUN_180744d60(uiContext + 0x1f);
-    resultPointer1 = (UIHandle *)0x0;
+    uiResultPointer = (UIHandle *)0x0;
     if (localInt5 == 0) {
       contextDataHandle = (**(code **)*uiContext)(uiContext);
       if (*(int *)(contextDataHandle + 0xcc) != 0x7fffffff) {
@@ -313204,7 +313204,7 @@ joined_r0x0001808523af:
         localInt5 = *(int *)(uiContext[8] + 0x40);
         if (0 < localInt5) {
           localLong7 = *(longlong *)(uiContext[8] + 0x38);
-          piterationCounter = resultPointer1;
+          piterationCounter = uiResultPointer;
           do {
             processingResult8 = (int)piterationCounter;
             if ((*(longlong *)(localLong7 + (longlong)processingResult8 * 0x10) == *(longlong *)(contextDataHandle + 0x10)) &&
@@ -313219,17 +313219,17 @@ joined_r0x0001808523af:
     goto FUN_180852aaa;
   }
 LAB_180852a22:
-  for (resultPointer1 = (UIHandle *)uiContext[0x10];
-      ((UIHandle *)uiContext[0x10] <= resultPointer1 &&
-      (resultPointer1 < (UIHandle *)uiContext[0x10] + *(int *)(uiBufferData + 0x11))); resultPointer1 = resultPointer1 + 1) {
-    localInt5 = FUN_1808b50d0(*resultPointer1,dataSource);
+  for (uiResultPointer = (UIHandle *)uiContext[0x10];
+      ((UIHandle *)uiContext[0x10] <= uiResultPointer &&
+      (uiResultPointer < (UIHandle *)uiContext[0x10] + *(int *)(uiBufferData + 0x11))); uiResultPointer = uiResultPointer + 1) {
+    localInt5 = FUN_1808b50d0(*uiResultPointer,dataSource);
     if (localInt5 != 0) goto FUN_180852aaa;
   }
-  resultPointer1 = (UIHandle *)uiContext[0x12];
-  while ((((UIHandle *)uiContext[0x12] <= resultPointer1 &&
-          (resultPointer1 < (UIHandle *)uiContext[0x12] + *(int *)(uiBufferData + 0x13))) &&
-         (localInt5 = FUN_1808b50d0(*resultPointer1,dataSource), localInt5 == 0))) {
-    resultPointer1 = resultPointer1 + 1;
+  uiResultPointer = (UIHandle *)uiContext[0x12];
+  while ((((UIHandle *)uiContext[0x12] <= uiResultPointer &&
+          (uiResultPointer < (UIHandle *)uiContext[0x12] + *(int *)(uiBufferData + 0x13))) &&
+         (localInt5 = FUN_1808b50d0(*uiResultPointer,dataSource), localInt5 == 0))) {
+    uiResultPointer = uiResultPointer + 1;
   }
 FUN_180852aaa:
                      WARNING: Subroutine does not return
@@ -313307,7 +313307,7 @@ LAB_180852518:
           localInt5 = FUN_180747f10(&stackUInt2c8,processingResult8);
           if (localInt5 != 0) goto LAB_180852943;
           CounterResult = stackUInt2c0 >> 0x20;
-          resultPointer1 = stackUInt2c8;
+          uiResultPointer = stackUInt2c8;
           processingResult6 = (int)stackUInt2c0;
         }
         localInt5 = (int)iterationCount3;
@@ -313318,7 +313318,7 @@ LAB_180852518:
         result9 = (ulonglong)result7;
         stackUInt2c0 = CONCAT44(stackUInt2c0._4_4_,result7);
         stackLong2a0 = stackLong2a0 + 8;
-        resultPointer1[processingResult6] = *(UIHandle *)(stackLong2a8 + (longlong)localInt5 * 8);
+        uiResultPointer[processingResult6] = *(UIHandle *)(stackLong2a8 + (longlong)localInt5 * 8);
       } while ((int)iterationCount2 < *(int *)(uiBufferData + 0x11));
     }
     iterationCount3 = 0;
@@ -313378,14 +313378,14 @@ LAB_1808526bf:
           localInt5 = FUN_180747f10(&stackUInt2c8,processingResult8);
           if (localInt5 != 0) goto LAB_180852943;
           CounterResult = stackUInt2c0 >> 0x20;
-          resultPointer1 = stackUInt2c8;
+          uiResultPointer = stackUInt2c8;
           processingResult6 = (int)stackUInt2c0;
         }
         iterationCount3 = iterationCount3 + 8;
         result7 = (int)result9 + 1;
         componentIndex = (ulonglong)(processingResult6 + 1U);
         stackUInt2c0 = CONCAT44(stackUInt2c0._4_4_,processingResult6 + 1U);
-        resultPointer1[processingResult6] = *(UIHandle *)(stackLong2a8 + (longlong)(int)result9 * 8);
+        uiResultPointer[processingResult6] = *(UIHandle *)(stackLong2a8 + (longlong)(int)result9 * 8);
         result9 = (ulonglong)result7;
       } while ((int)result7 < *(int *)(uiBufferData + 0x13));
     }
@@ -313420,15 +313420,15 @@ LAB_1808526bf:
         if (localInt5 == 0) {
           localInt5 = (int)stackUInt2c0;
           processingResult8 = 0;
-          resultPointer1 = stackUInt2c8;
+          uiResultPointer = stackUInt2c8;
           if (0 < (int)stackUInt2c0) {
             do {
-              processedCount = FUN_1808b4f00(*resultPointer1);
+              processedCount = FUN_1808b4f00(*uiResultPointer);
               if ((processedCount != 0) ||
-                 (processedCount = FUN_1808b4c80(uiContext[7] + 0x388,*resultPointer1), processedCount != 0))
+                 (processedCount = FUN_1808b4c80(uiContext[7] + 0x388,*uiResultPointer), processedCount != 0))
               goto LAB_180852943;
               processingResult8 = processingResult8 + 1;
-              resultPointer1 = resultPointer1 + 1;
+              uiResultPointer = uiResultPointer + 1;
             } while (processingResult8 < localInt5);
           }
           localInt5 = FUN_18084ead0(uiContext,CONCAT31((uint3)(*(uint *)(uiContext + 0x18) >> 9),
@@ -313498,7 +313498,7 @@ void FUN_18085219c(void)
   int localInt8;
   ulonglong eventStatus;
   UIHandle *componentTransformData;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   longlong *uiMemoryPointer2;
   ulonglong contextValue;
   ulonglong componentIndex;
@@ -313610,17 +313610,17 @@ LAB_180852302:
     sVar2 = func_0x00018084c3d0(contextDataHandle);
     if ((sVar2 != 4) || (uiCompareResult = FUN_18084edf0(), uiCompareResult == 0)) {
       componentContextPtr = preservedRegister15 + 0x16;
-      resultPointer1 = (UIHandle *)*componentContextPtr;
+      uiResultPointer = (UIHandle *)*componentContextPtr;
 joined_r0x0001808523af:
       do {
-        if (resultPointer1 == componentContextPtr) {
+        if (uiResultPointer == componentContextPtr) {
           contextDataHandle = preservedRegister15[8];
-          resultPointer1 = *(UIHandle **)(contextDataHandle + 0x38);
+          uiResultPointer = *(UIHandle **)(contextDataHandle + 0x38);
           goto LAB_18085243e;
         }
-        piterationCounter = (UIHandle *)resultPointer1[2];
-        if (resultPointer1 != componentContextPtr) {
-          resultPointer1 = (UIHandle *)*resultPointer1;
+        piterationCounter = (UIHandle *)uiResultPointer[2];
+        if (uiResultPointer != componentContextPtr) {
+          uiResultPointer = (UIHandle *)*uiResultPointer;
         }
         contextDataHandle = (**(code **)*piterationCounter)(piterationCounter);
         uiCompareResult = *(int *)(preservedRegister15[8] + 0x40);
@@ -313642,11 +313642,11 @@ joined_r0x0001808523af:
   }
   goto LAB_180852a22;
 LAB_18085243e:
-  if ((resultPointer1 < *(UIHandle **)(contextDataHandle + 0x38)) ||
-     (*(UIHandle **)(contextDataHandle + 0x38) + (longlong)*(int *)(contextDataHandle + 0x40) * 2 <= resultPointer1))
+  if ((uiResultPointer < *(UIHandle **)(contextDataHandle + 0x38)) ||
+     (*(UIHandle **)(contextDataHandle + 0x38) + (longlong)*(int *)(contextDataHandle + 0x40) * 2 <= uiResultPointer))
   goto LAB_180852518;
-  stackParam00000070 = (UIHandle *)*resultPointer1;
-  _iStack0000000000000078 = resultPointer1[1];
+  stackParam00000070 = (UIHandle *)*uiResultPointer;
+  _iStack0000000000000078 = uiResultPointer[1];
   piterationCounter = (UIHandle *)*componentContextPtr;
   if (piterationCounter != componentContextPtr) {
     while ((contextDataHandle = (*(UIFunctionPtr *)**(UIHandle **)piterationCounter[2])(),
@@ -313670,7 +313670,7 @@ LAB_1808524b7:
        ((*(longlong *)(uiContextBasePointer + -0x80) != 0 && (uiCompareResult = FUN_1808c2ec0(), uiCompareResult != 0))))
     goto LAB_180852a9a;
   }
-  resultPointer1 = resultPointer1 + 2;
+  uiResultPointer = uiResultPointer + 2;
   goto LAB_18085243e;
 LAB_180852518:
   localChar1 = FUN_180853040(preservedRegister15 + 0x10,preservedRegister15[8] + 0x80);
@@ -320710,7 +320710,7 @@ ulonglong FUN_180857e50(longlong uiContext,uint *dataSource,int targetBuffer,uin
   int localInt8;
   UIHandle eventStatus;
   ulonglong dataPointer;
-  ulonglong *resultPointer1;
+  ulonglong *uiResultPointer;
   ulonglong bufferValue;
   longlong allocatedMemory3;
   UIDword *resultPointer4;
@@ -320936,13 +320936,13 @@ LAB_1808580a0:
               stackUInt158 = *(uint *)(uiContext + 0x154);
             }
             FUN_1808577c0(uiContext + 0x90,stackLongf8,&stackUInt158);
-            resultPointer1 = (ulonglong *)
+            uiResultPointer = (ulonglong *)
                       FUN_180855fc0(uiContext + 0x90,astackUInt50,*(longlong *)(uiBufferData + 0x140) + 0x10)
             ;
-            stackUInt120 = *resultPointer1;
-            stackUInt118 = (uint)resultPointer1[1];
-            stackUInt114 = *(UIDword *)((longlong)resultPointer1 + 0xc);
-            pstackLong110 = (longlong *)resultPointer1[2];
+            stackUInt120 = *uiResultPointer;
+            stackUInt118 = (uint)uiResultPointer[1];
+            stackUInt114 = *(UIDword *)((longlong)uiResultPointer + 0xc);
+            pstackLong110 = (longlong *)uiResultPointer[2];
           }
           else if (stackUInt150 == 4) {
             loopCounter = (uint)stackUInt128;
@@ -323356,7 +323356,7 @@ ulonglong FUN_18085aca0(longlong uiContext)
   uint eventProcessingCounter;
   int localInt9;
   UIHandle dataPointer;
-  ulonglong *resultPointer1;
+  ulonglong *uiResultPointer;
   longlong allocatedMemory2;
   UIDword *componentHandle;
   longlong allocatedMemory4;
@@ -323533,17 +323533,17 @@ LAB_1808580a0:
       if (*(longlong *)(uiBufferData + 0x140) == 0) break;
       if (((longlong *)*uiMemoryPointer7 == uiMemoryPointer7) && ((longlong *)uiMemoryPointer7[1] == uiMemoryPointer7)) {
         stackUInt150 = *(uint *)(uiContext + 0x34);
-        resultPointer1 = *(ulonglong **)(uiContext + 0x38);
+        uiResultPointer = *(ulonglong **)(uiContext + 0x38);
       }
       else {
         stackUInt150 = *(uint *)(*(longlong *)(uiBufferData + 0x78) + 0x1c);
-        resultPointer1 = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
+        uiResultPointer = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
       }
-      if (resultPointer1 != (ulonglong *)0x0) {
-        *(int *)(resultPointer1 + 2) = (int)resultPointer1[2] + 1;
+      if (uiResultPointer != (ulonglong *)0x0) {
+        *(int *)(uiResultPointer + 2) = (int)uiResultPointer[2] + 1;
       }
-      pstackUInt130 = resultPointer1;
-      if ((1 < stackUInt150 - 4) || (resultPointer1 == (ulonglong *)0x0)) {
+      pstackUInt130 = uiResultPointer;
+      if ((1 < stackUInt150 - 4) || (uiResultPointer == (ulonglong *)0x0)) {
         result9 = 0x1c;
         goto LAB_180859163;
       }
@@ -323553,7 +323553,7 @@ LAB_1808580a0:
       if ((iterationCounter <= *(uint *)(uiContext + 0x148)) && ((*(byte *)(uiContext + 0x128) & 2) == 0)) {
         maxProcessingCount = FUN_18085c620(uiContext,iterationCount6);
         result9 = (ulonglong)maxProcessingCount;
-        resultPointer1 = pstackUInt130;
+        uiResultPointer = pstackUInt130;
         if (maxProcessingCount != 0) goto LAB_180859163;
       }
       maxProcessingCount = *(uint *)(uiContext + 0x148);
@@ -323576,13 +323576,13 @@ LAB_1808580a0:
               stackUInt158 = *(uint *)(uiContext + 0x154);
             }
             FUN_1808577c0(uiContext + 0x90,stackLongf8,&stackUInt158);
-            resultPointer1 = (ulonglong *)
+            uiResultPointer = (ulonglong *)
                       FUN_180855fc0(uiContext + 0x90,astackUInt50,*(longlong *)(uiBufferData + 0x140) + 0x10)
             ;
-            stackUInt120 = *resultPointer1;
-            stackUInt118 = (uint)resultPointer1[1];
-            stackUInt114 = *(UIDword *)((longlong)resultPointer1 + 0xc);
-            pstackUInt110 = (ulonglong *)resultPointer1[2];
+            stackUInt120 = *uiResultPointer;
+            stackUInt118 = (uint)uiResultPointer[1];
+            stackUInt114 = *(UIDword *)((longlong)uiResultPointer + 0xc);
+            pstackUInt110 = (ulonglong *)uiResultPointer[2];
           }
           else if (stackUInt150 == 4) {
             maxProcessingCount = (uint)stackUInt128;
@@ -323624,7 +323624,7 @@ LAB_1808580a0:
           stackUInt168 = 1;
         }
       }
-      resultPointer1 = pstackUInt130;
+      uiResultPointer = pstackUInt130;
       iterationCounter = iterationCounter;
       if (maxProcessingCount < iterationCount1) {
         iterationCounter = iterationCount1 - maxProcessingCount;
@@ -323702,15 +323702,15 @@ LAB_1808580a0:
       *(UIDword *)(uiBufferData + 0xc) = 2;
       if ((uint)pstackUInt148[0x14] <= *(uint *)(uiContext + 0x148)) {
         if ((*(byte *)(uiContext + 0x128) & 2) == 0) {
-          eventProcessingCounter = FUN_18085c620(uiContext,iterationCount6,resultPointer1 + 1);
+          eventProcessingCounter = FUN_18085c620(uiContext,iterationCount6,uiResultPointer + 1);
           result9 = (ulonglong)eventProcessingCounter;
           if (eventProcessingCounter != 0) goto LAB_180859163;
         }
         if ((*(uint *)(uiContext + 0x128) & 4) == 0) {
-          *(UIDword *)(uiBufferData + 0x158) = *(UIDword *)((longlong)resultPointer1 + 0xc);
+          *(UIDword *)(uiBufferData + 0x158) = *(UIDword *)((longlong)uiResultPointer + 0xc);
           *(uint *)(uiContext + 0x150) = *(int *)(uiBufferData + 0x148) - iterationCount1;
         }
-        result9 = (ulonglong)(uint)((int)pstackUInt148[0x14] - (int)resultPointer1[1]);
+        result9 = (ulonglong)(uint)((int)pstackUInt148[0x14] - (int)uiResultPointer[1]);
         eventProcessingCounter = *(uint *)(*(longlong *)(uiBufferData + 0x168) + 0x774);
         if (eventProcessingCounter != 48000) {
           result9 = (eventProcessingCounter * result9) / 48000;
@@ -323731,14 +323731,14 @@ LAB_1808580a0:
         result9 = (ulonglong)iterationCounter;
         if (iterationCounter != 0) {
 LAB_180859163:
-          if (resultPointer1 == (ulonglong *)0x0) {
+          if (uiResultPointer == (ulonglong *)0x0) {
             return result9;
           }
-          piterationCount = resultPointer1 + 2;
+          piterationCount = uiResultPointer + 2;
           *(int *)piterationCount = (int)*piterationCount + -1;
           if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+            FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
           }
           return result9;
         }
@@ -323752,11 +323752,11 @@ LAB_180859163:
         result9 = (ulonglong)iterationCounter;
         if (iterationCounter != 0) goto LAB_180859163;
       }
-      piterationCount = resultPointer1 + 2;
+      piterationCount = uiResultPointer + 2;
       *(int *)piterationCount = (int)*piterationCount + -1;
       if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+        FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
       }
 LAB_180858c20:
       uiMemoryPointer7 = (longlong *)(uiContext + 0x70);
@@ -323791,16 +323791,16 @@ LAB_180858c20:
       return result9;
     }
     stackUInt168 = 0;
-    resultPointer1 = (ulonglong *)(*(longlong *)(uiBufferData + 0x110) + 0x58);
-    pstackUInt148 = (ulonglong *)*resultPointer1;
-    pstackUInt130 = resultPointer1;
+    uiResultPointer = (ulonglong *)(*(longlong *)(uiBufferData + 0x110) + 0x58);
+    pstackUInt148 = (ulonglong *)*uiResultPointer;
+    pstackUInt130 = uiResultPointer;
     iterationCount5 = 0;
-    if (pstackUInt148 != resultPointer1) {
+    if (pstackUInt148 != uiResultPointer) {
       while (iterationCount5 = stackUInt168, (uint)pstackUInt148[2] <= iterationCounter) {
         if (((0 < *(int *)(uiBufferData + 300)) && (maxProcessingCount <= (uint)pstackUInt148[2])) &&
            (((int)pstackUInt148[4] == 0 ||
             (localChar5 = FUN_1808b0820(pstackUInt148 + 3,*(UIHandle *)(uiContext + 0x160)),
-            resultPointer1 = pstackUInt130, localChar5 != '\0')))) {
+            uiResultPointer = pstackUInt130, localChar5 != '\0')))) {
           if ((uint)pstackUInt148[2] == iterationCounter) {
             stackUInt168 = stackUInt168 + 1;
           }
@@ -323812,8 +323812,8 @@ LAB_180858c20:
           }
         }
         iterationCount5 = stackUInt168;
-        if ((pstackUInt148 == resultPointer1) ||
-           (pstackUInt148 = (ulonglong *)*pstackUInt148, pstackUInt148 == resultPointer1)) break;
+        if ((pstackUInt148 == uiResultPointer) ||
+           (pstackUInt148 = (ulonglong *)*pstackUInt148, pstackUInt148 == uiResultPointer)) break;
       }
     }
     allocatedMemory4 = stackLonga0;
@@ -323909,10 +323909,10 @@ LAB_180858c20:
           if (pstackUInt148 == (ulonglong *)0x0) {
             return 0x1c;
           }
-          resultPointer1 = pstackUInt148 + 2;
-          *(int *)resultPointer1 = (int)*resultPointer1 + -1;
-          localInt9 = (int)*resultPointer1;
-          resultPointer1 = pstackUInt148;
+          uiResultPointer = pstackUInt148 + 2;
+          *(int *)uiResultPointer = (int)*uiResultPointer + -1;
+          localInt9 = (int)*uiResultPointer;
+          uiResultPointer = pstackUInt148;
           goto joined_r0x0001808591a3;
         }
         *(UIByte *)(uiContext + 0x13c) = 0;
@@ -323920,7 +323920,7 @@ LAB_180858c20:
         componentHandle = (UIDword *)FUN_18084da10();
         stackParamfffffffffffffe78 = &pstackUInt130;
         iterationCounter = FUN_18085c4b0(uiContext,allocatedMemory4,*componentHandle,iterationCounter,stackParamfffffffffffffe78);
-        resultPointer1 = pstackUInt130;
+        uiResultPointer = pstackUInt130;
         result9 = (ulonglong)iterationCounter;
         if (iterationCounter == 0) {
           stackUInt118 = iterationCount1;
@@ -323932,19 +323932,19 @@ LAB_180858c20:
           stackUInt120 = iterationCount6;
           iterationCounter = FUN_180859210(uiContext + 0x70,&stackUInt120);
           result9 = (ulonglong)iterationCounter;
-          if (resultPointer1 != (ulonglong *)0x0) {
-            piterationCount = resultPointer1 + 2;
+          if (uiResultPointer != (ulonglong *)0x0) {
+            piterationCount = uiResultPointer + 2;
             *(int *)piterationCount = (int)*piterationCount + -1;
             if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
             }
           }
         }
         if (pstackUInt148 != (ulonglong *)0x0) {
-          resultPointer1 = pstackUInt148 + 2;
-          *(int *)resultPointer1 = (int)*resultPointer1 + -1;
-          if ((int)*resultPointer1 == 0) {
+          uiResultPointer = pstackUInt148 + 2;
+          *(int *)uiResultPointer = (int)*uiResultPointer + -1;
+          if ((int)*uiResultPointer == 0) {
                      WARNING: Subroutine does not return
             FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pstackUInt148,&UNK_180984d50,0x76,1)
             ;
@@ -324031,21 +324031,21 @@ LAB_180858c20:
         uiMemoryPointer7 = (longlong *)(uiContext + 0x70);
         if (((longlong *)*uiMemoryPointer7 == uiMemoryPointer7) && (*(longlong **)(uiContext + 0x78) == uiMemoryPointer7)) {
           TotalResult = *(ulonglong *)(uiContext + 0x28);
-          resultPointer1 = *(ulonglong **)(uiContext + 0x38);
+          uiResultPointer = *(ulonglong **)(uiContext + 0x38);
         }
         else {
           TotalResult = *(ulonglong *)(*(longlong *)(uiBufferData + 0x78) + 0x10);
-          resultPointer1 = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
+          uiResultPointer = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
         }
-        if (resultPointer1 != (ulonglong *)0x0) {
-          *(int *)(resultPointer1 + 2) = (int)resultPointer1[2] + 1;
+        if (uiResultPointer != (ulonglong *)0x0) {
+          *(int *)(uiResultPointer + 2) = (int)uiResultPointer[2] + 1;
         }
         if (iterationCount6 < TotalResult) {
 LAB_1808591d6:
-          if (resultPointer1 == (ulonglong *)0x0) {
+          if (uiResultPointer == (ulonglong *)0x0) {
             return 0x1c;
           }
-          piterationCount = resultPointer1 + 2;
+          piterationCount = uiResultPointer + 2;
           *(int *)piterationCount = (int)*piterationCount + -1;
           localInt9 = (int)*piterationCount;
 joined_r0x0001808591a3:
@@ -324053,7 +324053,7 @@ joined_r0x0001808591a3:
             return 0x1c;
           }
                      WARNING: Subroutine does not return
-          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
         }
         *(UIByte *)(uiContext + 0x13c) = 0;
         stackUInt114 = 2;
@@ -324068,23 +324068,23 @@ joined_r0x0001808591a3:
           stackUInt118 = eventProcessingCounter;
           iterationCount7 = FUN_180859210(uiMemoryPointer7,&stackUInt120);
           if (iterationCount7 != 0) goto LAB_180858e04;
-          if (resultPointer1 != (ulonglong *)0x0) {
-            piterationCount = resultPointer1 + 2;
+          if (uiResultPointer != (ulonglong *)0x0) {
+            piterationCount = uiResultPointer + 2;
             *(int *)piterationCount = (int)*piterationCount + -1;
             if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
             }
           }
         }
         else {
 LAB_180858e04:
-          if (resultPointer1 != (ulonglong *)0x0) {
-            piterationCount = resultPointer1 + 2;
+          if (uiResultPointer != (ulonglong *)0x0) {
+            piterationCount = uiResultPointer + 2;
             *(int *)piterationCount = (int)*piterationCount + -1;
             if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+              FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
             }
           }
           if (iterationCount7 != 0) {
@@ -324186,14 +324186,14 @@ LAB_180858e04:
       uiMemoryPointer7 = (longlong *)(uiContext + 0x70);
       if (((longlong *)*uiMemoryPointer7 == uiMemoryPointer7) && (*(longlong **)(uiContext + 0x78) == uiMemoryPointer7)) {
         TotalResult = *(ulonglong *)(uiContext + 0x28);
-        resultPointer1 = *(ulonglong **)(uiContext + 0x38);
+        uiResultPointer = *(ulonglong **)(uiContext + 0x38);
       }
       else {
         TotalResult = *(ulonglong *)(*(longlong *)(uiBufferData + 0x78) + 0x10);
-        resultPointer1 = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
+        uiResultPointer = *(ulonglong **)(*(longlong *)(uiBufferData + 0x78) + 0x20);
       }
-      if (resultPointer1 != (ulonglong *)0x0) {
-        *(int *)(resultPointer1 + 2) = (int)resultPointer1[2] + 1;
+      if (uiResultPointer != (ulonglong *)0x0) {
+        *(int *)(uiResultPointer + 2) = (int)uiResultPointer[2] + 1;
       }
       if (result9 < TotalResult) goto LAB_1808591d6;
       *(UIByte *)(uiContext + 0x13c) = 1;
@@ -324202,12 +324202,12 @@ LAB_180858e04:
       stackUInt120 = result9;
       stackUInt118 = iterationCounter;
       iterationCounter = FUN_180859210(uiContext + 0x70,&stackUInt120);
-      if (resultPointer1 != (ulonglong *)0x0) {
-        piterationCount = resultPointer1 + 2;
+      if (uiResultPointer != (ulonglong *)0x0) {
+        piterationCount = uiResultPointer + 2;
         *(int *)piterationCount = (int)*piterationCount + -1;
         if ((int)*piterationCount == 0) {
                      WARNING: Subroutine does not return
-          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),resultPointer1,&UNK_180984d50,0x76,1);
+          FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiResultPointer,&UNK_180984d50,0x76,1);
         }
       }
       uiMemoryPointer7 = pstackLongb8;
@@ -325051,7 +325051,7 @@ FUN_18085bc30(longlong uiContext,uint dataSource,char targetBuffer,char bufferSi
   UIHandle eventProcessingCounter;
   int *ptrLocalInt9;
   uint *componentTransformData;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   ulonglong bufferValue;
   uint contextValue;
   longlong allocatedMemory4;
@@ -325330,12 +325330,12 @@ FUN_18085bc30(longlong uiContext,uint dataSource,char targetBuffer,char bufferSi
     if ((int)eventProcessingCounter != 0) {
       return eventProcessingCounter;
     }
-    resultPointer1 = (UIDword *)FUN_18084da10();
+    uiResultPointer = (UIDword *)FUN_18084da10();
     eventProcessingCounter = 1;
     if (cStackX_18 != '\0') {
       eventProcessingCounter = 4;
     }
-    eventProcessingCounter = FUN_180857e50(uiContext,auStackX_10,eventProcessingCounter,*resultPointer1);
+    eventProcessingCounter = FUN_180857e50(uiContext,auStackX_10,eventProcessingCounter,*uiResultPointer);
     if ((int)eventProcessingCounter != 0) {
       return eventProcessingCounter;
     }
@@ -325702,7 +325702,7 @@ void FUN_18085ca30(longlong uiContext,ulonglong dataSource)
   int localInt8;
   int localInt9;
   uint dataPointer;
-  UIDword *resultPointer1;
+  UIDword *uiResultPointer;
   uint *renderDataPointer;
   UIHandle contextValue;
   longlong allocatedMemory4;
@@ -325759,8 +325759,8 @@ void FUN_18085ca30(longlong uiContext,ulonglong dataSource)
       }
     }
     if (1 < localInt8 - 4U) goto LAB_18085d424;
-    resultPointer1 = (UIDword *)FUN_18084da10();
-    *(UIDword *)(uiBufferData + 0x148) = *resultPointer1;
+    uiResultPointer = (UIDword *)FUN_18084da10();
+    *(UIDword *)(uiBufferData + 0x148) = *uiResultPointer;
     if (((longlong *)*uiMemoryPointer == uiMemoryPointer) && (*(longlong **)(uiContext + 0x78) == uiMemoryPointer)) {
       eventCode = *(UIDword *)(uiBufferData + 0x30);
       allocatedMemory4 = *(longlong *)(uiBufferData + 0x38);
@@ -325970,8 +325970,8 @@ LAB_18085ceec:
   }
   if ((*(ulonglong *)(uiContext + 0x40) != 0) && (*(ulonglong *)(uiContext + 0x40) <= dataSource)) {
     pppstackUInt88 = (UIHandle ****)0x0;
-    resultPointer1 = (UIDword *)FUN_18084da10();
-    stackUInt80 = *resultPointer1;
+    uiResultPointer = (UIDword *)FUN_18084da10();
+    stackUInt80 = *uiResultPointer;
     stackUInt7c = 0;
     stackUInt78 = 0;
     stackUInt74 = 0;
@@ -325998,9 +325998,9 @@ LAB_18085ceec:
     *(ulonglong *)(uiContext + 0x68) = (ulonglong)stackUInt74 << 0x20;
   }
   *(UIDword *)(uiBufferData + 0x20) = *(UIDword *)(uiBufferData + 0x30);
-  resultPointer1 = (UIDword *)FUN_18084da10();
+  uiResultPointer = (UIDword *)FUN_18084da10();
   iterationCount2 = *(ulonglong *)(uiContext + 0x28);
-  *(UIDword *)(uiBufferData + 0x24) = *resultPointer1;
+  *(UIDword *)(uiBufferData + 0x24) = *uiResultPointer;
   localInt9 = *(int *)(uiBufferData + 0x34);
   if (dataSource < iterationCount2) {
     if (localInt9 - 4U < 2) {
@@ -328760,7 +328760,7 @@ UIHandle FUN_18085fc0e(void)
   int localInt8;
   uint eventStatus;
   int processedCount;
-  undefined *resultPointer1;
+  undefined *uiResultPointer;
   UIHandle contextHandle;
   UIHandle uiContextBasePointer;
   longlong componentData;
@@ -328810,12 +328810,12 @@ UIHandle FUN_18085fc0e(void)
     *(UIHandle *)(contextDataHandle + allocatedMemory2) = *preservedRegister12;
     ((UIHandle *)(contextDataHandle + allocatedMemory2))[1] = iterationCounter;
     if (*(int *)(preservedRegister15 + 1) < 1) {
-      resultPointer1 = &UIDefaultDataBuffer;
+      uiResultPointer = &UIDefaultDataBuffer;
     }
     else {
-      resultPointer1 = (undefined *)*preservedRegister15;
+      uiResultPointer = (undefined *)*preservedRegister15;
     }
-    iterationCounter = FUN_18084e110(contextDataHandle + 0x10 + allocatedMemory2,resultPointer1);
+    iterationCounter = FUN_18084e110(contextDataHandle + 0x10 + allocatedMemory2,uiResultPointer);
     if ((int)iterationCounter != 0) {
       return iterationCounter;
     }
@@ -330216,7 +330216,7 @@ void FUN_180860737(void)
   longlong contextOffset;
   UIHandle eventStatus;
   UIHandle dataPointer;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   longlong *uiMemoryPointer2;
   UIHandle *componentHandle;
   longlong allocatedMemory4;
@@ -330576,12 +330576,12 @@ LAB_180860f7b:
                     processingResult6 = 0;
                     allocatedMemory4 = 0;
                     if (0 < localInt5) {
-                      resultPointer1 = (UIHandle *)*piterationCount4;
+                      uiResultPointer = (UIHandle *)*piterationCount4;
                       do {
-                        if ((longlong *)*resultPointer1 == colorBufferPointer0) break;
+                        if ((longlong *)*uiResultPointer == colorBufferPointer0) break;
                         processingResult6 = processingResult6 + 1;
                         allocatedMemory4 = allocatedMemory4 + 1;
-                        resultPointer1 = resultPointer1 + 1;
+                        uiResultPointer = uiResultPointer + 1;
                       } while (allocatedMemory4 < localInt5);
                     }
                     iterationCount = *piterationCount4;
@@ -330640,12 +330640,12 @@ LAB_180860f7b:
                     processingResult6 = 0;
                     allocatedMemory4 = 0;
                     if (0 < localInt5) {
-                      resultPointer1 = (UIHandle *)*resultPointer;
+                      uiResultPointer = (UIHandle *)*resultPointer;
                       do {
-                        if ((longlong *)*resultPointer1 == colorBufferPointer0) break;
+                        if ((longlong *)*uiResultPointer == colorBufferPointer0) break;
                         processingResult6 = processingResult6 + 1;
                         allocatedMemory4 = allocatedMemory4 + 1;
-                        resultPointer1 = resultPointer1 + 1;
+                        uiResultPointer = uiResultPointer + 1;
                       } while (allocatedMemory4 < localInt5);
                     }
                     iterationCount = *resultPointer;
@@ -336193,7 +336193,7 @@ UIHandle FUN_1808650a0(longlong uiContext,byte dataSource)
   UIHandle eventProcessingCounter;
   uint eventStatus;
   longlong *uiMemoryPointer0;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   ulonglong bufferValue;
   longlong *uiMemoryPointer3;
   longlong lStackX_8;
@@ -336295,10 +336295,10 @@ UIHandle FUN_1808650a0(longlong uiContext,byte dataSource)
   }
   localLong7 = (*(UIFunctionPtr *)**(UIHandle **)(uiContext + 8))(uiContext + 8);
   if ((*(uint *)(localLong7 + 0xf8) >> 4 & 1) != 0) {
-    resultPointer1 = (UIHandle *)(uiContext + 0x490);
-    piterationCount = (UIHandle *)*resultPointer1;
+    uiResultPointer = (UIHandle *)(uiContext + 0x490);
+    piterationCount = (UIHandle *)*uiResultPointer;
     bufferPtr = piterationCount;
-    while (bufferPtr != resultPointer1) {
+    while (bufferPtr != uiResultPointer) {
       if ((*(byte *)((longlong)piterationCount + 0x1c) & 1) != 0) {
         if (*(int *)(piterationCount[2] + 0xd0) != 0) {
           *(uint *)((longlong)piterationCount + 0x1c) = *(uint *)((longlong)piterationCount + 0x1c) | 0x20;
@@ -336311,7 +336311,7 @@ UIHandle FUN_1808650a0(longlong uiContext,byte dataSource)
                (-(uint)(localChar5 != '\0') & 0x40 | *(uint *)((longlong)piterationCount + 0x1c)) & ~eventStatus;
         }
       }
-      if (piterationCount != resultPointer1) {
+      if (piterationCount != uiResultPointer) {
         piterationCount = (UIHandle *)*piterationCount;
         bufferPtr = piterationCount;
       }
@@ -336339,11 +336339,11 @@ UIHandle FUN_1808650a0(longlong uiContext,byte dataSource)
   if ((int)eventProcessingCounter != 0) {
     return eventProcessingCounter;
   }
-  for (resultPointer1 = *(UIHandle **)(uiContext + 0x4c0);
-      (*(UIHandle **)(uiContext + 0x4c0) <= resultPointer1 &&
-      (resultPointer1 < *(UIHandle **)(uiContext + 0x4c0) + *(int *)(uiBufferData + 0x4c8)));
-      resultPointer1 = resultPointer1 + 1) {
-    eventProcessingCounter = FUN_1808b42b0(*resultPointer1);
+  for (uiResultPointer = *(UIHandle **)(uiContext + 0x4c0);
+      (*(UIHandle **)(uiContext + 0x4c0) <= uiResultPointer &&
+      (uiResultPointer < *(UIHandle **)(uiContext + 0x4c0) + *(int *)(uiBufferData + 0x4c8)));
+      uiResultPointer = uiResultPointer + 1) {
+    eventProcessingCounter = FUN_1808b42b0(*uiResultPointer);
     if ((int)eventProcessingCounter != 0) {
       return eventProcessingCounter;
     }
@@ -336356,9 +336356,9 @@ UIHandle FUN_1808650a0(longlong uiContext,byte dataSource)
       maxProcessingCount = FUN_1808605e0(uiContext);
       *(UIDword *)(localLong7 + 0x80) = maxProcessingCount;
     }
-    resultPointer1 = *(UIHandle **)(uiContext + 0x480);
-    if ((resultPointer1 != (UIHandle *)0x0) &&
-       (eventProcessingCounter = (**(code **)*resultPointer1)(resultPointer1,uiContext,(uint)dataSource * 8 + 8,0), (int)eventProcessingCounter != 0)) {
+    uiResultPointer = *(UIHandle **)(uiContext + 0x480);
+    if ((uiResultPointer != (UIHandle *)0x0) &&
+       (eventProcessingCounter = (**(code **)*uiResultPointer)(uiResultPointer,uiContext,(uint)dataSource * 8 + 8,0), (int)eventProcessingCounter != 0)) {
       return eventProcessingCounter;
     }
     return 0;
@@ -356098,7 +356098,7 @@ void FUN_180876428(void)
   longlong contextOffset;
   longlong CharacterDataOffset;
   longlong *uiMemoryPointer0;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   ulonglong *uiContextBasePointer;
   UIHandle *componentData;
   ulonglong uiTargetHandle;
@@ -356195,16 +356195,16 @@ void FUN_180876428(void)
      localInt5 != 0)) goto LAB_180876d05;
   _iStack0000000000000050 = *(UIHandle **)(eventHandle + 800);
   stackParam00000048 = (longlong *)&UNK_180985c10;
-  resultPointer1 = _iStack0000000000000050;
+  uiResultPointer = _iStack0000000000000050;
   if (preservedRegister13B != '\0') {
-    resultPointer1 = &stack0x00000048;
+    uiResultPointer = &stack0x00000048;
   }
   contextOffset = *(longlong *)(eventHandle + 0xa0);
   _iStack0000000000000058 = componentData;
   if (contextOffset != 0) {
     CounterResult = CleanupUIContextState(contextOffset);
   }
-  localInt5 = FUN_1808787d0(CounterResult,eventHandle + 0x898,eventHandle + 0x4a8,eventHandle + 0x4d8,resultPointer1);
+  localInt5 = FUN_1808787d0(CounterResult,eventHandle + 0x898,eventHandle + 0x4a8,eventHandle + 0x4d8,uiResultPointer);
   if (localInt5 != 0) {
     if (contextOffset != 0) {
                      WARNING: Subroutine does not return
@@ -376555,7 +376555,7 @@ UIDword FUN_180889ce0(longlong uiContext)
   int localInt8;
   int localInt9;
   int processedCount;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   bool isCharacterMatch2;
   longlong stackLong78;
   int stackInt70;
@@ -376582,12 +376582,12 @@ UIDword FUN_180889ce0(longlong uiContext)
     do {
       do {
         contextDataHandle = *(longlong *)(pstackLong68[2] + 0x18 + (longlong)processedCount * 0x20);
-        for (resultPointer1 = *(UIHandle **)(contextDataHandle + 0x288);
-            (*(UIHandle **)(contextDataHandle + 0x288) <= resultPointer1 &&
-            (resultPointer1 < (UIHandle *)
+        for (uiResultPointer = *(UIHandle **)(contextDataHandle + 0x288);
+            (*(UIHandle **)(contextDataHandle + 0x288) <= uiResultPointer &&
+            (uiResultPointer < (UIHandle *)
                        ((longlong)*(UIHandle **)(contextDataHandle + 0x288) +
                        (longlong)*(int *)(contextDataHandle + 0x290) * 0x14)));
-            resultPointer1 = (UIHandle *)((longlong)resultPointer1 + 0x14)) {
+            uiResultPointer = (UIHandle *)((longlong)uiResultPointer + 0x14)) {
           localInt7 = stackInt70 + 1;
           sourceDataInt = localInt8;
           if (localInt8 < 0) {
@@ -376613,12 +376613,12 @@ UIDword FUN_180889ce0(longlong uiContext)
           }
           else {
 LAB_180889e09:
-            eventCode = resultPointer1[1];
+            eventCode = uiResultPointer[1];
             resultPointer = (UIHandle *)(stackLong78 + (longlong)stackInt70 * 0x14);
-            *resultPointer = *resultPointer1;
+            *resultPointer = *uiResultPointer;
             resultPointer[1] = eventCodeType;
             *(UIDword *)(stackLong78 + 0x10 + (longlong)stackInt70 * 0x14) =
-                 *(UIDword *)(resultPointer1 + 2);
+                 *(UIDword *)(uiResultPointer + 2);
             stackInt70 = stackInt70 + 1;
           }
           localInt8 = stackInt6c;
@@ -376648,9 +376648,9 @@ LAB_180889e8c:
     } while (processedCount != -1);
   }
   if (allocatedMemoryPtr == 0) {
-    resultPointer1 = (UIHandle *)FUN_180847820();
-    pstackLong68 = (longlong *)*resultPointer1;
-    stackUInt60 = resultPointer1[1];
+    uiResultPointer = (UIHandle *)FUN_180847820();
+    pstackLong68 = (longlong *)*uiResultPointer;
+    stackUInt60 = uiResultPointer[1];
     loopCounter = FUN_180866f50(*(UIHandle *)(uiContext + 0x80),&pstackLong68,&stackLong78);
     FUN_180840100(&stackLong78);
     return loopCounter;
@@ -380947,7 +380947,7 @@ UIHandle FUN_18088e780(longlong *uiContext,int dataSource)
   UIHandle eventProcessingCounter;
   UIHandle *ptrLocal9;
   longlong allocatedMemory0;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   longlong allocatedMemory2;
   
   if (dataSource < (int)uiContext[1]) {
@@ -380964,26 +380964,26 @@ UIHandle FUN_18088e780(longlong *uiContext,int dataSource)
         allocatedMemory0 = (longlong)sourceDataInt;
         if ((sourceDataInt != 0) && (0 < sourceDataInt)) {
           allocatedMemory2 = *uiContext - (longlong)ptrLocal9;
-          resultPointer1 = ptrLocal9;
+          uiResultPointer = ptrLocal9;
           do {
-            eventProcessingCounter = ((UIHandle *)(allocatedMemory2 + (longlong)resultPointer1))[1];
-            resultPointer = resultPointer1 + 6;
-            *resultPointer1 = *(UIHandle *)(allocatedMemory2 + (longlong)resultPointer1);
-            resultPointer1[1] = eventProcessingCounter;
+            eventProcessingCounter = ((UIHandle *)(allocatedMemory2 + (longlong)uiResultPointer))[1];
+            resultPointer = uiResultPointer + 6;
+            *uiResultPointer = *(UIHandle *)(allocatedMemory2 + (longlong)uiResultPointer);
+            uiResultPointer[1] = eventProcessingCounter;
             piterationCount = (UIHandle *)(allocatedMemory2 + -0x20 + (longlong)resultPointer);
             eventProcessingCounter = piterationCount[1];
-            resultPointer1[2] = *piterationCount;
-            resultPointer1[3] = eventProcessingCounter;
+            uiResultPointer[2] = *piterationCount;
+            uiResultPointer[3] = eventProcessingCounter;
             ptrLocal3 = (UIDword *)(allocatedMemory2 + -0x10 + (longlong)resultPointer);
             loopCounter = ptrLocal3[1];
             maxProcessingCount = ptrLocal3[2];
             iterationCounter = ptrLocal3[3];
-            *(UIDword *)(resultPointer1 + 4) = *ptrLocal3;
-            *(UIDword *)((longlong)resultPointer1 + 0x24) = loopCounter;
-            *(UIDword *)(resultPointer1 + 5) = maxProcessingCount;
-            *(UIDword *)((longlong)resultPointer1 + 0x2c) = iterationCounter;
+            *(UIDword *)(uiResultPointer + 4) = *ptrLocal3;
+            *(UIDword *)((longlong)uiResultPointer + 0x24) = loopCounter;
+            *(UIDword *)(uiResultPointer + 5) = maxProcessingCount;
+            *(UIDword *)((longlong)uiResultPointer + 0x2c) = iterationCounter;
             allocatedMemory0 = allocatedMemory0 + -1;
-            resultPointer1 = resultPointer;
+            uiResultPointer = resultPointer;
           } while (allocatedMemory0 != 0);
         }
         goto LAB_18088e847;
@@ -381018,7 +381018,7 @@ UIHandle FUN_18088e7a4(UIHandle uiContext,int dataSource)
   UIHandle eventProcessingCounter;
   UIHandle *ptrLocal9;
   longlong allocatedMemory0;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   longlong *contextHandle;
   int allocationFlags;
   longlong allocatedMemory2;
@@ -381043,26 +381043,26 @@ LAB_18088e847:
       allocatedMemory0 = (longlong)sourceDataInt;
       if ((sourceDataInt != 0) && (0 < sourceDataInt)) {
         allocatedMemory2 = *contextHandle - (longlong)ptrLocal9;
-        resultPointer1 = ptrLocal9;
+        uiResultPointer = ptrLocal9;
         do {
-          eventProcessingCounter = ((UIHandle *)(allocatedMemory2 + (longlong)resultPointer1))[1];
-          resultPointer = resultPointer1 + 6;
-          *resultPointer1 = *(UIHandle *)(allocatedMemory2 + (longlong)resultPointer1);
-          resultPointer1[1] = eventProcessingCounter;
+          eventProcessingCounter = ((UIHandle *)(allocatedMemory2 + (longlong)uiResultPointer))[1];
+          resultPointer = uiResultPointer + 6;
+          *uiResultPointer = *(UIHandle *)(allocatedMemory2 + (longlong)uiResultPointer);
+          uiResultPointer[1] = eventProcessingCounter;
           piterationCount = (UIHandle *)(allocatedMemory2 + -0x20 + (longlong)resultPointer);
           eventProcessingCounter = piterationCount[1];
-          resultPointer1[2] = *piterationCount;
-          resultPointer1[3] = eventProcessingCounter;
+          uiResultPointer[2] = *piterationCount;
+          uiResultPointer[3] = eventProcessingCounter;
           ptrLocal3 = (UIDword *)(allocatedMemory2 + -0x10 + (longlong)resultPointer);
           loopCounter = ptrLocal3[1];
           maxProcessingCount = ptrLocal3[2];
           iterationCounter = ptrLocal3[3];
-          *(UIDword *)(resultPointer1 + 4) = *ptrLocal3;
-          *(UIDword *)((longlong)resultPointer1 + 0x24) = loopCounter;
-          *(UIDword *)(resultPointer1 + 5) = maxProcessingCount;
-          *(UIDword *)((longlong)resultPointer1 + 0x2c) = iterationCounter;
+          *(UIDword *)(uiResultPointer + 4) = *ptrLocal3;
+          *(UIDword *)((longlong)uiResultPointer + 0x24) = loopCounter;
+          *(UIDword *)(uiResultPointer + 5) = maxProcessingCount;
+          *(UIDword *)((longlong)uiResultPointer + 0x2c) = iterationCounter;
           allocatedMemory0 = allocatedMemory0 + -1;
-          resultPointer1 = resultPointer;
+          uiResultPointer = resultPointer;
         } while (allocatedMemory0 != 0);
       }
       goto LAB_18088e847;
@@ -393163,32 +393163,32 @@ UIHandle FUN_1808988b0(longlong *uiContext,char *dataSource,UIHandle *targetBuff
   uint eventProcessingCounter;
   char *plocalChar9;
   int processedCount;
-  uint *resultPointer1;
+  uint *uiResultPointer;
   
-  resultPointer1 = (uint *)*uiContext;
-  if (((resultPointer1 != (uint *)0x0) && (uiContext[4] != 0)) && (uiContext[2] != 0)) {
+  uiResultPointer = (uint *)*uiContext;
+  if (((uiResultPointer != (uint *)0x0) && (uiContext[4] != 0)) && (uiContext[2] != 0)) {
     processedCount = 0;
     localChar5 = *dataSource;
     while (localChar5 != '\0') {
-      ProcessingFlag = *(byte *)((longlong)resultPointer1 + 7);
+      ProcessingFlag = *(byte *)((longlong)uiResultPointer + 7);
       if (ProcessingFlag == 0) {
         return 0x4a;
       }
       localChar5 = func_0x00018076b8a0(localChar5);
-      resultPointer1 = (uint *)(*uiContext + (ulonglong)(resultPointer1[1] & 0xffffff) * 8);
+      uiResultPointer = (uint *)(*uiContext + (ulonglong)(uiResultPointer[1] & 0xffffff) * 8);
       localInt7 = 0;
       if (ProcessingFlag == 0) {
         return 0x4a;
       }
-      while (*(char *)((longlong)resultPointer1 + 3) != localChar5) {
+      while (*(char *)((longlong)uiResultPointer + 3) != localChar5) {
         localInt7 = localInt7 + 1;
-        resultPointer1 = resultPointer1 + 2;
+        uiResultPointer = uiResultPointer + 2;
         if ((int)(uint)ProcessingFlag <= localInt7) {
           return 0x4a;
         }
       }
       dataSource = dataSource + 1;
-      plocalChar9 = (char *)(uiContext[4] + 1 + (ulonglong)(*resultPointer1 & 0xffffff));
+      plocalChar9 = (char *)(uiContext[4] + 1 + (ulonglong)(*uiResultPointer & 0xffffff));
       localChar5 = *dataSource;
       while (localChar5 != '\0') {
         if (*plocalChar9 == '\0') goto LAB_1808989b1;
@@ -393206,21 +393206,21 @@ UIHandle FUN_1808988b0(longlong *uiContext,char *dataSource,UIHandle *targetBuff
 LAB_1808989b1:
       localChar5 = *dataSource;
     }
-    ProcessingFlag = *(byte *)((longlong)resultPointer1 + 7);
+    ProcessingFlag = *(byte *)((longlong)uiResultPointer + 7);
     if (ProcessingFlag != 0) {
-      resultPointer1 = (uint *)(*uiContext + (ulonglong)(resultPointer1[1] & 0xffffff) * 8);
+      uiResultPointer = (uint *)(*uiContext + (ulonglong)(uiResultPointer[1] & 0xffffff) * 8);
       if (ProcessingFlag != 0) {
         do {
-          if (*(char *)((longlong)resultPointer1 + 3) == '\0') goto LAB_1808989f7;
+          if (*(char *)((longlong)uiResultPointer + 3) == '\0') goto LAB_1808989f7;
           processedCount = processedCount + 1;
-          resultPointer1 = resultPointer1 + 2;
+          uiResultPointer = uiResultPointer + 2;
         } while (processedCount < (int)(uint)ProcessingFlag);
       }
       return 0x4a;
     }
 LAB_1808989f7:
-    eventProcessingCounter = resultPointer1[1] & 0xffffff;
-    if (((char)(resultPointer1[1] >> 0x18) == '\0') && ((int)eventProcessingCounter < (int)uiContext[3])) {
+    eventProcessingCounter = uiResultPointer[1] & 0xffffff;
+    if (((char)(uiResultPointer[1] >> 0x18) == '\0') && ((int)eventProcessingCounter < (int)uiContext[3])) {
       piterationCount = (UIHandle *)(uiContext[2] + (ulonglong)eventProcessingCounter * 0x10);
       processStatus = piterationCount[1];
       *targetBuffer = *piterationCount;
@@ -393307,7 +393307,7 @@ FUN_180898b40(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIByte *b
   int localInt8;
   int localInt9;
   UIByte *componentTransformData;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   uint bufferValue;
   longlong allocatedMemory3;
   UIByte *resultPointer4;
@@ -393379,8 +393379,8 @@ FUN_180898b40(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIByte *b
         TotalResult = 0;
       }
       else {
-        resultPointer1 = bufferSize + (int)bufferValue;
-        resultPointer4 = resultPointer1 + -1;
+        uiResultPointer = bufferSize + (int)bufferValue;
+        resultPointer4 = uiResultPointer + -1;
         componentTransformData = bufferSize;
         if (bufferSize < resultPointer4) {
           do {
@@ -393391,15 +393391,15 @@ FUN_180898b40(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIByte *b
             resultPointer4 = resultPointer4 + -1;
           } while (componentTransformData < resultPointer4);
         }
-        resultPointer4 = resultPointer1 + (longlong)(int)(resultPointer - bufferValue) + -1;
-        if (resultPointer1 < resultPointer4) {
+        resultPointer4 = uiResultPointer + (longlong)(int)(resultPointer - bufferValue) + -1;
+        if (uiResultPointer < resultPointer4) {
           do {
-            iterationCount = *resultPointer1;
-            *resultPointer1 = *resultPointer4;
-            resultPointer1 = resultPointer1 + 1;
+            iterationCount = *uiResultPointer;
+            *uiResultPointer = *resultPointer4;
+            uiResultPointer = uiResultPointer + 1;
             *resultPointer4 = iterationCount;
             resultPointer4 = resultPointer4 + -1;
-          } while (resultPointer1 < resultPointer4);
+          } while (uiResultPointer < resultPointer4);
         }
         bufferSize[(longlong)resultPointer + -1] = 0;
         TotalResult = 0x41;
@@ -393428,7 +393428,7 @@ UIDword FUN_180898b65(UIHandle uiContext,int dataSource,UIDword *targetBuffer)
   int localInt8;
   int localInt9;
   UIByte *componentTransformData;
-  UIByte *resultPointer1;
+  UIByte *uiResultPointer;
   uint bufferValue;
   int ProcessingResult3;
   longlong uiContextBasePointer;
@@ -393505,8 +393505,8 @@ UIDword FUN_180898b65(UIHandle uiContext,int dataSource,UIDword *targetBuffer)
       result7 = 0;
     }
     else {
-      resultPointer1 = componentData + (int)bufferValue;
-      resultPointer5 = resultPointer1 + -1;
+      uiResultPointer = componentData + (int)bufferValue;
+      resultPointer5 = uiResultPointer + -1;
       componentTransformData = componentData;
       if (componentData < resultPointer5) {
         do {
@@ -393517,15 +393517,15 @@ UIDword FUN_180898b65(UIHandle uiContext,int dataSource,UIDword *targetBuffer)
           resultPointer5 = resultPointer5 + -1;
         } while (componentTransformData < resultPointer5);
       }
-      resultPointer5 = resultPointer1 + (longlong)(int)(ProcessingResult3 - bufferValue) + -1;
-      if (resultPointer1 < resultPointer5) {
+      resultPointer5 = uiResultPointer + (longlong)(int)(ProcessingResult3 - bufferValue) + -1;
+      if (uiResultPointer < resultPointer5) {
         do {
-          iterationCount = *resultPointer1;
-          *resultPointer1 = *resultPointer5;
-          resultPointer1 = resultPointer1 + 1;
+          iterationCount = *uiResultPointer;
+          *uiResultPointer = *resultPointer5;
+          uiResultPointer = uiResultPointer + 1;
           *resultPointer5 = iterationCount;
           resultPointer5 = resultPointer5 + -1;
-        } while (resultPointer1 < resultPointer5);
+        } while (uiResultPointer < resultPointer5);
       }
       componentData[uiContextBasePointer + -1] = 0;
       result7 = 0x41;
@@ -394210,7 +394210,7 @@ UIHandle FUN_1808992f0(longlong *uiContext,UIDword *dataSource)
 
 
 
-UIHandle FUN_180899360(UIHandle *uiContext,longlong dataSource)
+UIHandle ValidateUIContextDataAndIntegrity(UIHandle *uiContext,longlong dataSource)
 
 {
   UIHandle result;
@@ -396238,10 +396238,10 @@ UIHandle FUN_18089abe0(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt58 [32];
   UIByte astackUInt38 [48];
   
-  result = FUN_1808ddc20(dataSource,astackUInt38,1,0x46464542);
+  result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt38,1,0x46464542);
   if (((((int)result == 0) &&
-       (result = FUN_1808ddc20(dataSource,astackUInt58,0,0x42464542), (int)result == 0)) &&
-      (result = FUN_180899360(dataSource,uiContext + 0x10), (int)result == 0)) &&
+       (result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt58,0,0x42464542), (int)result == 0)) &&
+      (result = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)result == 0)) &&
      ((0x5a < *(uint *)(dataSource + 8) ||
       (result = FUN_1808afc70(dataSource,uiContext + 0x44), (int)result == 0)))) {
     if (*(int *)(dataSource[1] + 0x18) == 0) {
@@ -396251,7 +396251,7 @@ UIHandle FUN_18089abe0(longlong uiContext,UIHandle *dataSource)
           result = 0;
         }
         else if (*(int *)(dataSource[1] + 0x18) == 0) {
-          result = FUN_1808a2e00(*dataSource,uiContext + 0x40);
+          result = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x40);
         }
         else {
           result = 0x1c;
@@ -396286,7 +396286,7 @@ UIHandle FUN_18089ac64(void)
         result = 0;
       }
       else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-        result = FUN_1808a2e00(*contextHandle,uiTargetHandle + 0x40);
+        result = ProcessUIComponentDataSourceAndContext(*contextHandle,uiTargetHandle + 0x40);
       }
       else {
         result = 0x1c;
@@ -396318,7 +396318,7 @@ void FUN_18089ac96(void)
     processingResult = 0;
   }
   else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-    processingResult = FUN_1808a2e00(*contextHandle,uiTargetHandle + 0x40);
+    processingResult = ProcessUIComponentDataSourceAndContext(*contextHandle,uiTargetHandle + 0x40);
   }
   else {
     processingResult = 0x1c;
@@ -396435,9 +396435,9 @@ void FUN_18089ae50(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,U
   UIByte astackUInt78 [64];
   UIByte astackUInt38 [32];
   
-  processingResult = FUN_1808ddc20(dataSource,astackUInt38,1,targetBuffer);
-  if (((processingResult == 0) && (processingResult = FUN_1808ddc20(dataSource,astackUInt78,0,bufferSize), processingResult == 0)) &&
-     (processingResult = FUN_180899360(dataSource,uiContext + 0x10), processingResult == 0)) {
+  processingResult = ValidateUIDataSignatureAndFormat(dataSource,astackUInt38,1,targetBuffer);
+  if (((processingResult == 0) && (processingResult = ValidateUIDataSignatureAndFormat(dataSource,astackUInt78,0,bufferSize), processingResult == 0)) &&
+     (processingResult = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), processingResult == 0)) {
     if ((resultPointer != '\0') && (processingResult = FUN_18089d490(uiContext + 0x48,dataSource), processingResult != 0)) {
       return;
     }
@@ -396519,11 +396519,11 @@ LAB_18089af81:
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_1808a5d60();
+  processStatus = ProcessUIComponentEventDispatch();
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_1808a5d60();
+  processStatus = ProcessUIComponentEventDispatch();
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
@@ -396696,9 +396696,9 @@ ulonglong FUN_18089b2a0(longlong uiContext,UIHandle *dataSource)
   stackUInt34 = piterationCount[1];
   stackUInt30 = piterationCount[2];
   stackUInt2c = piterationCount[3];
-  eventCode = FUN_1808ddc20(dataSource,astackUInt28,0,0x4c525443);
-  if ((((int)eventCode == 0) && (eventCode = FUN_180899360(dataSource,uiContext + 0x10), (int)eventCode == 0)) &&
-     (eventCode = FUN_180899360(dataSource,uiContext + 0x20), (int)eventCode == 0)) {
+  eventCode = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,0,0x4c525443);
+  if ((((int)eventCode == 0) && (eventCode = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)eventCode == 0)) &&
+     (eventCode = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x20), (int)eventCode == 0)) {
     processStatus = 0x1c;
     if (*(uint *)(dataSource + 8) < 0x5a) {
       if (*(int *)(dataSource[1] + 0x18) == 0) {
@@ -396884,7 +396884,7 @@ void FUN_18089b400(longlong uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt28 [32];
   
-  processingResult = FUN_1808ddc20(dataSource,astackUInt28,0,0x4f525443);
+  processingResult = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,0,0x4f525443);
   if (processingResult == 0) {
     processingResult = FUN_1808a79f0(dataSource,uiContext + 8);
     if (processingResult == 0) {
@@ -397279,11 +397279,11 @@ UIHandle FUN_18089b630(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt68 [32];
   UIByte astackUInt48 [32];
   
-  result = FUN_1808ddc20(dataSource,astackUInt48,1,0x54495645);
+  result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,1,0x54495645);
   if (((((int)result == 0) &&
-       (result = FUN_1808ddc20(dataSource,astackUInt68,0,0x42495645), (int)result == 0)) &&
-      (result = FUN_180899360(dataSource,uiContext + 0x10), (int)result == 0)) &&
-     (result = FUN_180899360(dataSource,uiContext + 0xd8), (int)result == 0)) {
+       (result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt68,0,0x42495645), (int)result == 0)) &&
+      (result = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)result == 0)) &&
+     (result = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0xd8), (int)result == 0)) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -397389,11 +397389,11 @@ ulonglong FUN_18089b7d0(longlong uiContext,longlong *dataSource)
   uint stackBuffer [2];
   UIByte astackUInt48 [32];
   
-  loopCounter = FUN_1808ddc20(dataSource,astackUInt48,0,0x54534e49);
+  loopCounter = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x54534e49);
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
-  loopCounter = FUN_180899360(dataSource,uiContext + 0x60);
+  loopCounter = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x60);
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
@@ -398022,8 +398022,8 @@ void FUN_18089bc10(longlong uiContext,UIHandle *dataSource)
   uint stackBuffer [2];
   UIByte astackUInt48 [32];
   
-  sourceDataInt = FUN_1808ddc20(dataSource,astackUInt48,0,0x2050414d);
-  if ((sourceDataInt == 0) && (sourceDataInt = FUN_180899360(dataSource,uiContext + 0x10), sourceDataInt == 0)) {
+  sourceDataInt = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x2050414d);
+  if ((sourceDataInt == 0) && (sourceDataInt = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), sourceDataInt == 0)) {
     stackBuffer[0] = 0;
     sourceDataInt = FUN_1808afe30(*dataSource,stackBuffer);
     eventCode = stackBuffer[0];
@@ -398512,15 +398512,15 @@ ulonglong FUN_18089c190(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt68 [32];
   UIByte astackUInt48 [32];
   
-  iterationCounter = FUN_1808ddc20(dataSource,astackUInt48,1,0x4f4c4d50);
+  iterationCounter = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,1,0x4f4c4d50);
   if ((int)iterationCounter != 0) {
     return iterationCounter;
   }
-  iterationCounter = FUN_1808ddc20(dataSource,astackUInt68,0,0x424c4d50);
+  iterationCounter = ValidateUIDataSignatureAndFormat(dataSource,astackUInt68,0,0x424c4d50);
   if ((int)iterationCounter != 0) {
     return iterationCounter;
   }
-  iterationCounter = FUN_180899360(dataSource,uiContext + 0x10);
+  iterationCounter = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10);
   if ((int)iterationCounter != 0) {
     return iterationCounter;
   }
@@ -398736,7 +398736,7 @@ UIHandle * FUN_18089c1fb(void)
   uint eventStatus;
   uint dataPointer;
   longlong contextRegister;
-  UIHandle *resultPointer1;
+  UIHandle *uiResultPointer;
   UIDword *renderDataPointer;
   UIHandle *componentHandle;
   float *pvectorComponentX;
@@ -398760,12 +398760,12 @@ UIHandle * FUN_18089c1fb(void)
   if (*(int *)(contextRegister + 0x18) != 0) {
     return (UIHandle *)0x1c;
   }
-  resultPointer1 = (UIHandle *)FUN_180899090(*uiTargetHandle,componentData + 0x38);
-  if ((int)resultPointer1 != 0) {
-    return resultPointer1;
+  uiResultPointer = (UIHandle *)FUN_180899090(*uiTargetHandle,componentData + 0x38);
+  if ((int)uiResultPointer != 0) {
+    return uiResultPointer;
   }
   renderDataPointer = (UIDword *)FUN_180847820();
-  resultPointer1 = (UIHandle *)0x0;
+  uiResultPointer = (UIHandle *)0x0;
   eventStatus = *(uint *)(uiTargetHandle + 8);
   iterationCounter = *renderDataPointer;
   iterationCount = renderDataPointer[1];
@@ -398776,7 +398776,7 @@ UIHandle * FUN_18089c1fb(void)
   *(UIDword *)(uiContextBasePointer + -0x11) = eventCodeType;
   *(UIDword *)(uiContextBasePointer + -0xd) = processingStatus;
   eventProcessingCounter = 0;
-  componentHandle = resultPointer1;
+  componentHandle = uiResultPointer;
   if (eventStatus < 0x6d) {
     if (*(int *)(uiTargetHandle[1] + 0x18) == 0) {
       result = *uiTargetHandle;
@@ -398803,10 +398803,10 @@ UIHandle * FUN_18089c1fb(void)
     return componentHandle;
   }
   if (0x81 < *(uint *)(uiTargetHandle + 8)) {
-    resultPointer1 = (UIHandle *)FUN_1808a79f0(iterationCounter,componentData + 0x58);
+    uiResultPointer = (UIHandle *)FUN_1808a79f0(iterationCounter,componentData + 0x58);
     transformCoefficient = extraout_XMM0_Da_00;
-    if ((int)resultPointer1 != 0) {
-      return resultPointer1;
+    if ((int)uiResultPointer != 0) {
+      return uiResultPointer;
     }
     goto LAB_18089c300;
   }
@@ -398837,12 +398837,12 @@ LAB_18089c40a:
         eventStatus = eventProcessingCounter;
       }
       else {
-        resultPointer1 = *(UIHandle **)(uiContextBasePointer + -0x29);
+        uiResultPointer = *(UIHandle **)(uiContextBasePointer + -0x29);
       }
       if (processingResult < 0) {
         allocatedMemoryBlock = (longlong)-processingResult;
         if (processingResult < 0) {
-          allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)resultPointer1;
+          allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)uiResultPointer;
           do {
             renderDataPointer = (UIDword *)FUN_180847820();
             iterationCounter = renderDataPointer[1];
@@ -398915,7 +398915,7 @@ LAB_18089c40a:
       }
       *(UIHandle *)(uiContextBasePointer + -0x29) = 0;
       *(UIDword *)(uiContextBasePointer + -0x1d) = 0;
-      componentHandle = resultPointer1;
+      componentHandle = uiResultPointer;
       eventStatus = eventProcessingCounter;
     }
     if (processingResult < 0) {
@@ -398948,10 +398948,10 @@ LAB_18089c40a:
     }
   }
   else {
-    resultPointer1 = (UIHandle *)FUN_1808a5780(iterationCounter,componentData + 0x48);
+    uiResultPointer = (UIHandle *)FUN_1808a5780(iterationCounter,componentData + 0x48);
     transformCoefficient = extraout_XMM0_Da_02;
-    if ((int)resultPointer1 != 0) {
-      return resultPointer1;
+    if ((int)uiResultPointer != 0) {
+      return uiResultPointer;
     }
   }
 LAB_18089c586:
@@ -399022,13 +399022,13 @@ UIHandle * ProcessUISystemEvents(void)
   float extraout_XMM0_Da_04;
   float transformCoefficient;
   
-  resultPointer1 = (UIDword *)FUN_180847820();
+  uiResultPointer = (UIDword *)FUN_180847820();
   componentHandle = (UIHandle *)0x0;
   eventStatus = *(uint *)(uiuiTargetHandle + 8);
-  iterationCounter = *resultPointer1;
-  iterationCount = resultPointer1[1];
-  eventCode = resultPointer1[2];
-  processStatus = resultPointer1[3];
+  iterationCounter = *uiResultPointer;
+  iterationCount = uiResultPointer[1];
+  eventCode = uiResultPointer[2];
+  processStatus = uiResultPointer[3];
   *(UIDword *)(uiContextBasePointer + -0x19) = iterationCounter;
   *(UIDword *)(uiContextBasePointer + -0x15) = iterationCount;
   *(UIDword *)(uiContextBasePointer + -0x11) = eventCodeType;
@@ -399102,11 +399102,11 @@ LAB_18089c40a:
         if (processingResult < 0) {
           allocatedMemory7 = (longlong)processingResult * 0x18 + 0x14 + (longlong)componentHandle;
           do {
-            resultPointer1 = (UIDword *)FUN_180847820();
-            iterationCounter = resultPointer1[1];
-            iterationCount = resultPointer1[2];
-            eventCode = resultPointer1[3];
-            *(UIDword *)(allocatedMemory7 + -0x14) = *resultPointer1;
+            uiResultPointer = (UIDword *)FUN_180847820();
+            iterationCounter = uiResultPointer[1];
+            iterationCount = uiResultPointer[2];
+            eventCode = uiResultPointer[3];
+            *(UIDword *)(allocatedMemory7 + -0x14) = *uiResultPointer;
             *(UIDword *)(allocatedMemory7 + -0x10) = iterationCounter;
             *(UIDword *)(allocatedMemory7 + -0xc) = iterationCount;
             *(UIDword *)(allocatedMemory7 + -8) = eventCodeType;
@@ -399496,15 +399496,15 @@ ulonglong FUN_18089c630(longlong uiContext,longlong *dataSource)
   ulonglong maxProcessingCount;
   
   loopCounter = 1;
-  eventCode = FUN_1808ddc20(dataSource,astackUInt60,1,0x4d524150);
+  eventCode = ValidateUIDataSignatureAndFormat(dataSource,astackUInt60,1,0x4d524150);
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
-  eventCode = FUN_1808ddc20(dataSource,astackUInt80,0,0x424d5250);
+  eventCode = ValidateUIDataSignatureAndFormat(dataSource,astackUInt80,0,0x424d5250);
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
-  eventCode = FUN_180899360(dataSource,uiContext + 0x10);
+  eventCode = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10);
   if ((int)eventCodeType != 0) {
     return eventCodeType;
   }
@@ -400990,7 +400990,7 @@ ulonglong ProcessUIEventCodeType(longlong uiContext,longlong *dataSource)
   uint stackBufferData [2];
   UIByte eventValidationBuffer [32];
   
-  eventCodeResult = FUN_1808ddc20(dataSource,eventValidationBuffer,0,0x46454d50);
+  eventCodeResult = ValidateUIDataSignatureAndFormat(dataSource,eventValidationBuffer,0,0x46454d50);
   if ((int)eventCodeResult != 0) {
     return eventCodeResult;
   }
@@ -401046,7 +401046,7 @@ LAB_18089cd76:
     validationIterations = 0;
   }
   else if (*(int *)(dataSource[1] + 0x18) == 0) {
-    validationIterations = FUN_1808a2e00(*dataSource,uiContext + 0x5c);
+    validationIterations = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x5c);
   }
   if (validationIterations == 0) {
                      WARNING: Subroutine does not return
@@ -401121,7 +401121,7 @@ LAB_18089cd76:
     iterationCount = 0;
   }
   else if (*(int *)(componentData[1] + 0x18) == 0) {
-    iterationCount = FUN_1808a2e00(*componentData,uiContextBasePointer + 0x5c);
+    iterationCount = ProcessUIComponentDataSourceAndContext(*componentData,uiContextBasePointer + 0x5c);
   }
   if (iterationCount != 0) {
     return (ulonglong)iterationCount;
@@ -401169,7 +401169,7 @@ ulonglong FUN_18089ce30(longlong uiContext,longlong *dataSource)
   uint stackBuffer [2];
   UIByte astackUInt48 [32];
   
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt48,0,0x54534c50);
+  iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x54534c50);
   if ((int)iterationCount != 0) {
     return iterationCount;
   }
@@ -401529,10 +401529,10 @@ ulonglong ValidateUIEventData(longlong uiContext, UIHandle *dataSource)
   UIByte astackUInt48 [32];
   UIByte astackUInt28 [32];
   
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt28,1,0x46464550);
+  iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,1,0x46464550);
   if (((((int)iterationCount != 0) ||
-       (iterationCount = FUN_1808ddc20(dataSource,astackUInt48,0,0x42464550), (int)iterationCount != 0)) ||
-      (iterationCount = FUN_180899360(dataSource,uiContext + 0x10), (int)iterationCount != 0)) ||
+       (iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x42464550), (int)iterationCount != 0)) ||
+      (iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)iterationCount != 0)) ||
      ((*(uint *)(dataSource + 8) < 0x5b &&
       (iterationCount = FUN_1808afc70(dataSource,uiContext + 0x44), (int)iterationCount != 0)))) {
     return iterationCount;
@@ -401560,7 +401560,7 @@ ulonglong ValidateUIEventData(longlong uiContext, UIHandle *dataSource)
       iterationCount = 0;
     }
     else if (*(int *)(dataSource[1] + 0x18) == 0) {
-      result = FUN_1808a2e00(*dataSource,uiContext + 0x40);
+      result = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x40);
       iterationCount = (ulonglong)result;
     }
     if ((int)iterationCount == 0) {
@@ -401614,7 +401614,7 @@ ulonglong InitializeUIResourceManager(void)
       eventCode = 0;
     }
     else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-      result = FUN_1808a2e00(*contextHandle,componentData + 0x40);
+      result = ProcessUIComponentDataSourceAndContext(*contextHandle,componentData + 0x40);
       eventCode = (ulonglong)result;
     }
     if ((int)eventCode == 0) {
@@ -401664,7 +401664,7 @@ ulonglong InitializeUIResourceManagerAlternative(void)
       eventCode = 0;
     }
     else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-      result = FUN_1808a2e00(*contextHandle,componentData + 0x40);
+      result = ProcessUIComponentDataSourceAndContext(*contextHandle,componentData + 0x40);
       eventCode = (ulonglong)result;
     }
     if ((int)eventCode == 0) {
@@ -401735,7 +401735,7 @@ UIHandle ProcessUIComponentData(UIHandle uiContext, longlong *dataSource)
   UIByte operationBuffer1 [32];
   UIByte operationBuffer2 [32];
   
-  processingResult = FUN_1808ddc20(dataSource,operationBuffer2,1,0x53505250);
+  processingResult = ValidateUIDataSignatureAndFormat(dataSource,operationBuffer2,1,0x53505250);
   if ((int)processingResult != 0) {
     return processingResult;
   }
@@ -401750,7 +401750,7 @@ LAB_18089d455:
     return processingResult;
   }
   if (validationBuffer[0] < 1) goto LAB_18089d455;
-  processingResult = FUN_1808ddc20(dataSource,operationBuffer1,0,0x504f5250);
+  processingResult = ValidateUIDataSignatureAndFormat(dataSource,operationBuffer1,0,0x504f5250);
   if ((int)processingResult != 0) {
     return processingResult;
   }
@@ -401794,7 +401794,7 @@ LAB_18089d378:
         if ((int)processingResult != 0) {
           return processingResult;
         }
-        processingResult = FUN_180899360(dataSource,componentProcessingIndex + 0x30);
+        processingResult = ValidateUIContextDataAndIntegrity(dataSource,componentProcessingIndex + 0x30);
         if ((int)processingResult != 0) {
           return processingResult;
         }
@@ -401802,7 +401802,7 @@ LAB_18089d378:
         if ((int)processingResult != 0) {
           return processingResult;
         }
-        processingResult = FUN_1808a5d60(dataSource,componentProcessingIndex + 0x10,0);
+        processingResult = ProcessUIComponentEventDispatch(dataSource,componentProcessingIndex + 0x10,0);
         if ((int)processingResult == 0) {
           *(UIDword *)(componentProcessingIndex + 0x44) = 0xffffffff;
           goto LAB_18089d435;
@@ -401857,7 +401857,7 @@ LAB_18089d455:
     return initializationResult;
   }
   if (validationCounter < 1) goto LAB_18089d455;
-  initializationResult = FUN_1808ddc20();
+  initializationResult = ValidateUIDataSignatureAndFormat();
   if ((int)initializationResult != 0) {
     return initializationResult;
   }
@@ -401901,7 +401901,7 @@ LAB_18089d378:
         if ((int)initializationResult != 0) {
           return initializationResult;
         }
-        initializationResult = FUN_180899360();
+        initializationResult = ValidateUIContextDataAndIntegrity();
         if ((int)initializationResult != 0) {
           return initializationResult;
         }
@@ -401909,7 +401909,7 @@ LAB_18089d378:
         if ((int)initializationResult != 0) {
           return initializationResult;
         }
-        initializationResult = FUN_1808a5d60();
+        initializationResult = ProcessUIComponentEventDispatch();
         if ((int)initializationResult == 0) {
           *(UIDword *)(componentProcessingIndex + 0x44) = 0xffffffff;
           goto LAB_18089d435;
@@ -402011,9 +402011,9 @@ void FUN_18089d520(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt48 [32];
   UIByte astackUInt28 [32];
   
-  processingResult = FUN_1808ddc20(dataSource,astackUInt28,1,0x4a4f5250);
-  if (((processingResult == 0) && (processingResult = FUN_1808ddc20(dataSource,astackUInt48,0,0x494b4e42), processingResult == 0)) &&
-     (processingResult = FUN_180899360(dataSource,uiContext + 0x10), processingResult == 0)) {
+  processingResult = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,1,0x4a4f5250);
+  if (((processingResult == 0) && (processingResult = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x494b4e42), processingResult == 0)) &&
+     (processingResult = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), processingResult == 0)) {
     if (*(uint *)(dataSource + 8) < 0x37) {
       processingResult = 0;
     }
@@ -402070,9 +402070,9 @@ void FUN_18089d557(UIDword uiContext)
   longlong uiTargetHandle;
   UIDword extraout_XMM0_Da;
   
-  processingResult = FUN_1808ddc20(uiContext,&stack0x00000030,0);
+  processingResult = ValidateUIDataSignatureAndFormat(uiContext,&stack0x00000030,0);
   if (processingResult == 0) {
-    processingResult = FUN_180899360(extraout_XMM0_Da,uiTargetHandle + 0x10);
+    processingResult = ValidateUIContextDataAndIntegrity(extraout_XMM0_Da,uiTargetHandle + 0x10);
     if (processingResult == 0) {
       if (*(uint *)(contextHandle + 8) < 0x37) {
         processingResult = 0;
@@ -402143,10 +402143,10 @@ ulonglong FUN_18089dcf0(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt58 [32];
   UIByte astackUInt38 [32];
   
-  eventCode = FUN_1808ddc20(dataSource,astackUInt38,1,0x54495053);
+  eventCode = ValidateUIDataSignatureAndFormat(dataSource,astackUInt38,1,0x54495053);
   if ((((int)eventCode == 0) &&
-      (eventCode = FUN_1808ddc20(dataSource,astackUInt58,0,0x42495053), (int)eventCode == 0)) &&
-     (eventCode = FUN_180899360(dataSource,uiContext + 0x10), (int)eventCode == 0)) {
+      (eventCode = ValidateUIDataSignatureAndFormat(dataSource,astackUInt58,0,0x42495053), (int)eventCode == 0)) &&
+     (eventCode = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)eventCode == 0)) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -402554,10 +402554,10 @@ UIHandle FUN_18089df40(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt48 [32];
   UIByte astackUInt28 [32];
   
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt28,1,0x46464553);
+  iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,1,0x46464553);
   if (((((int)iterationCount == 0) &&
-       (iterationCount = FUN_1808ddc20(dataSource,astackUInt48,0,0x42464553), (int)iterationCount == 0)) &&
-      (iterationCount = FUN_180899360(dataSource,uiContext + 0x10), (int)iterationCount == 0)) &&
+       (iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x42464553), (int)iterationCount == 0)) &&
+      (iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)iterationCount == 0)) &&
      ((0x5a < *(uint *)(dataSource + 8) ||
       (iterationCount = FUN_1808afc70(dataSource,uiContext + 0x44), (int)iterationCount == 0)))) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
@@ -402579,7 +402579,7 @@ UIHandle FUN_18089df40(longlong uiContext,UIHandle *dataSource)
           iterationCount = 0;
         }
         else if (*(int *)(dataSource[1] + 0x18) == 0) {
-          iterationCount = FUN_1808a2e00(*dataSource,uiContext + 0x40);
+          iterationCount = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x40);
         }
         else {
           iterationCount = 0x1c;
@@ -402624,7 +402624,7 @@ UIHandle FUN_18089dfc1(void)
         iterationCount = 0;
       }
       else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-        iterationCount = FUN_1808a2e00(*contextHandle,uiTargetHandle + 0x40);
+        iterationCount = ProcessUIComponentDataSourceAndContext(*contextHandle,uiTargetHandle + 0x40);
       }
       else {
         iterationCount = 0x1c;
@@ -402669,7 +402669,7 @@ UIHandle FUN_18089dfe4(void)
         iterationCount = 0;
       }
       else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-        iterationCount = FUN_1808a2e00(*contextHandle,uiTargetHandle + 0x40);
+        iterationCount = ProcessUIComponentDataSourceAndContext(*contextHandle,uiTargetHandle + 0x40);
       }
       else {
         iterationCount = 0x1c;
@@ -402701,7 +402701,7 @@ UIHandle FUN_18089e043(void)
       result = 0;
     }
     else if (*(int *)(contextHandle[1] + 0x18) == 0) {
-      result = FUN_1808a2e00(*contextHandle,uiTargetHandle + 0x40);
+      result = ProcessUIComponentDataSourceAndContext(*contextHandle,uiTargetHandle + 0x40);
     }
     else {
       result = 0x1c;
@@ -402734,22 +402734,22 @@ UIHandle FUN_18089e0d0(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt28 [32];
   
   if ((0x87 < *(uint *)(dataSource + 8)) &&
-     (result = FUN_1808ddc20(dataSource,astackUInt28,1,0x46464353), (int)result != 0)) {
+     (result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,1,0x46464353), (int)result != 0)) {
     return result;
   }
-  result = FUN_1808ddc20(dataSource,astackUInt48,0,0x46454353);
-  if (((int)result == 0) && (result = FUN_180899360(dataSource,uiContext + 0x10), (int)result == 0)) {
+  result = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x46454353);
+  if (((int)result == 0) && (result = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)result == 0)) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
-    result = FUN_1808a2e00(*dataSource,uiContext + 0x6c);
-    if (((int)result == 0) && (result = FUN_1808a5d60(dataSource,uiContext + 0x48,0), (int)result == 0)) {
+    result = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x6c);
+    if (((int)result == 0) && (result = ProcessUIComponentEventDispatch(dataSource,uiContext + 0x48,0), (int)result == 0)) {
       if ((*(int *)(dataSource + 8) - 0x4aU < 0x11) &&
          (result = FUN_1808afc70(dataSource,uiContext + 0x44), (int)result != 0)) {
         return result;
       }
       if ((0x52 < *(uint *)(dataSource + 8)) &&
-         (result = FUN_1808a5d60(dataSource,uiContext + 0x58,0), (int)result != 0)) {
+         (result = ProcessUIComponentEventDispatch(dataSource,uiContext + 0x58,0), (int)result != 0)) {
         return result;
       }
       if (*(uint *)(dataSource + 8) < 0x88) {
@@ -402795,7 +402795,7 @@ ulonglong FUN_18089e230(longlong uiContext,longlong *dataSource)
   if ((int)iterationCount != 0) {
     return iterationCount;
   }
-  iterationCount = FUN_180899360(dataSource,uiContext + 0x10);
+  iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10);
   if ((int)iterationCount != 0) {
     return iterationCount;
   }
@@ -402840,7 +402840,7 @@ ulonglong FUN_18089e230(longlong uiContext,longlong *dataSource)
   if (*(int *)(dataSource[1] + 0x18) != 0) {
     return 0x1c;
   }
-  eventCode = FUN_1808a2e00(*dataSource,uiContext + 0x48);
+  eventCode = ProcessUIComponentDataSourceAndContext(*dataSource,uiContext + 0x48);
   if (eventCodeType != 0) {
     return (ulonglong)eventCodeType;
   }
@@ -402944,7 +402944,7 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
   }
-  processStatus = FUN_1808a2e00(*contextHandle,componentData + 0x48);
+  processStatus = ProcessUIComponentDataSourceAndContext(*contextHandle,componentData + 0x48);
   if (processingStatus != 0) {
     return (ulonglong)processingStatus;
   }
@@ -403044,7 +403044,7 @@ ulonglong FUN_18089e2be(void)
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
   }
-  processStatus = FUN_1808a2e00(*contextHandle,componentData + 0x48);
+  processStatus = ProcessUIComponentDataSourceAndContext(*contextHandle,componentData + 0x48);
   if (processingStatus != 0) {
     return (ulonglong)processingStatus;
   }
@@ -403140,7 +403140,7 @@ ulonglong FUN_18089e2e8(void)
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
   }
-  processStatus = FUN_1808a2e00(*contextHandle,componentData + 0x48);
+  processStatus = ProcessUIComponentDataSourceAndContext(*contextHandle,componentData + 0x48);
   if (processingStatus != 0) {
     return (ulonglong)processingStatus;
   }
@@ -403219,10 +403219,10 @@ ulonglong FUN_18089e4f0(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt58 [32];
   UIByte astackUInt38 [32];
   
-  processStatus = FUN_1808ddc20(dataSource,astackUInt38,1,0x4e4c4d54);
+  processStatus = ValidateUIDataSignatureAndFormat(dataSource,astackUInt38,1,0x4e4c4d54);
   if ((((int)processStatus == 0) &&
-      (processStatus = FUN_1808ddc20(dataSource,astackUInt58,0,0x424e4c54), (int)processStatus == 0)) &&
-     (processStatus = FUN_180899360(dataSource,uiContext + 0x10), (int)processStatus == 0)) {
+      (processStatus = ValidateUIDataSignatureAndFormat(dataSource,astackUInt58,0,0x424e4c54), (int)processStatus == 0)) &&
+     (processStatus = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)processStatus == 0)) {
     componentContextPtr = (UIDword *)FUN_180847820();
     processStatus = 0;
     stackUInt78 = *componentContextPtr;
@@ -403539,11 +403539,11 @@ ulonglong ProcessUIContextDataValidationAndEventHandling(longlong uiContext, lon
   UIByte astackUInt58 [32];
   
   maxProcessingCount = 1;
-  processStatus = FUN_1808ddc20(dataSource,astackUInt58,1,0x4e415254);
+  processStatus = ValidateUIDataSignatureAndFormat(dataSource,astackUInt58,1,0x4e415254);
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_1808ddc20(dataSource,astackUInt78,0,0x424e5254);
+  processStatus = ValidateUIDataSignatureAndFormat(dataSource,astackUInt78,0,0x424e5254);
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
@@ -403568,7 +403568,7 @@ ulonglong ProcessUIContextDataValidationAndEventHandling(longlong uiContext, lon
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_180899360(dataSource,uiContext + 0x20);
+  processStatus = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x20);
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
@@ -403863,7 +403863,7 @@ ulonglong FUN_18089e87d(void)
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
-  processStatus = FUN_180899360();
+  processStatus = ValidateUIContextDataAndIntegrity();
   if ((int)processingStatus != 0) {
     return processingStatus;
   }
@@ -404454,10 +404454,10 @@ UIHandle FUN_18089ede0(longlong uiContext,UIHandle *dataSource)
   UIByte astackUInt48 [32];
   UIByte astackUInt28 [32];
   
-  iterationCount = FUN_1808ddc20(dataSource,astackUInt28,1,0x54494157);
+  iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt28,1,0x54494157);
   if (((((int)iterationCount == 0) &&
-       (iterationCount = FUN_1808ddc20(dataSource,astackUInt48,0,0x42494157), (int)iterationCount == 0)) &&
-      (iterationCount = FUN_180899360(dataSource,uiContext + 0x10), (int)iterationCount == 0)) &&
+       (iterationCount = ValidateUIDataSignatureAndFormat(dataSource,astackUInt48,0,0x42494157), (int)iterationCount == 0)) &&
+      (iterationCount = ValidateUIContextDataAndIntegrity(dataSource,uiContext + 0x10), (int)iterationCount == 0)) &&
      ((0x45 < *(uint *)(dataSource + 8) ||
       (iterationCount = FUN_1808a2d50(dataSource,uiContext + 0xd8), (int)iterationCount == 0)))) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
@@ -405997,11 +405997,11 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 // UI系统字符串处理和验证函数
 #define ProcessUIStringValidation ValidateUIStringFormat
 // UI系统数据签名和格式验证函数
-#define FUN_1808ddc20 ValidateUIDataSignatureAndFormat
+#define ValidateUIDataSignatureAndFormat ValidateUIDataSignatureAndFormat
 // UI系统上下文数据和完整性验证函数
-#define FUN_180899360 ValidateUIContextDataAndIntegrity
-#define FUN_1808a2e00 ProcessUIComponentDataSourceAndContext        // 处理UI组件数据源和上下文 - 处理数据源与UI上下文的的交互
-#define FUN_1808a5d60 ProcessUIComponentEventDispatch                  // 处理UI组件事件调度 - 处理UI组件的事件分发和调度
+#define ValidateUIContextDataAndIntegrity ValidateUIContextDataAndIntegrity
+#define ProcessUIComponentDataSourceAndContext ProcessUIComponentDataSourceAndContext        // 处理UI组件数据源和上下文 - 处理数据源与UI上下文的的交互
+#define ProcessUIComponentEventDispatch ProcessUIComponentEventDispatch                  // 处理UI组件事件调度 - 处理UI组件的事件分发和调度
 #define FUN_1808afc70 ProcessUIComponentRenderingAndDisplay           // 处理UI组件渲染和显示 - 处理UI组件的渲染操作
 // UI系统组件状态更新函数
 #define FUN_1808995c0 ValidateUIComponentRecomponentData              // 验证UI组件重组件数据 - 验证UI组件重组建时的数据
