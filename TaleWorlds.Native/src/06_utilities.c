@@ -12444,7 +12444,7 @@ void InitializeUtilityModule(void)
     SystemInitializationStatus = InitializeSystemMemoryStructure();
     if (SystemInitializationStatus != 0) {
         // 初始化失败，记录错误状态
-        UtilitySystemPrimaryStatusIndicator = 0x1;
+        UtilitySystemInitializationStatus = 0x1;
         return;
     }
     
@@ -12452,7 +12452,7 @@ void InitializeUtilityModule(void)
     ResourceConfigurationStatus = ConfigureSystemParameters();
     if (ResourceConfigurationStatus != 0) {
         // 配置失败，记录错误状态
-        UtilitySystemPrimaryStatusIndicator = 0x2;
+        UtilitySystemInitializationStatus = 0x2;
         return;
     }
     
@@ -12460,7 +12460,7 @@ void InitializeUtilityModule(void)
     MemoryManagementStatus = InitializeMemoryManager();
     if (MemoryManagementStatus != 0) {
         // 内存管理器初始化失败
-        UtilitySystemPrimaryStatusIndicator = 0x3;
+        UtilitySystemInitializationStatus = 0x3;
         return;
     }
     
@@ -12468,19 +12468,19 @@ void InitializeUtilityModule(void)
     ExceptionHandlerStatus = ConfigureExceptionHandler();
     if (ExceptionHandlerStatus != 0) {
         // 异常处理配置失败
-        UtilitySystemPrimaryStatusIndicator = 0x4;
+        UtilitySystemInitializationStatus = 0x4;
         return;
     }
     
     // 验证系统状态
     if (ValidateSystemState() != 0) {
         // 系统状态验证失败
-        UtilitySystemPrimaryStatusIndicator = 0x5;
+        UtilitySystemInitializationStatus = 0x5;
         return;
     }
     
     // 所有初始化步骤成功完成
-    UtilitySystemPrimaryStatusIndicator = 0x0;
+    UtilitySystemInitializationStatus = 0x0;
     
     return;
 }
@@ -12919,9 +12919,17 @@ uint32_t UtilityTertiaryResetValue;
 uint32_t UtilityQuaternaryResetValue;
 
 /**
- * @brief 工具系统状态指示器
+ * @brief 工具系统初始化状态
+ * 
+ * 存储工具系统初始化过程中的状态码：
+ * - 0x0: 初始化成功
+ * - 0x1: 内存结构初始化失败
+ * - 0x2: 系统参数配置失败
+ * - 0x3: 内存管理器初始化失败
+ * - 0x4: 异常处理配置失败
+ * - 0x5: 系统状态验证失败
  */
-uint32_t UtilitySystemPrimaryStatusIndicator;
+uint32_t UtilitySystemInitializationStatus;
 
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
