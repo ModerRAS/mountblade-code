@@ -228,34 +228,34 @@
 #define ResourceTableIndexPrimaryResource 0x1049
 #define ResourceTableIndexSecondaryResource 0x1013
 #define ResourceTableIndexTertiaryResource 0x1043
-#define ResourceTableIndexResourceTypeB 0x103b
-#define ResourceTableIndexResourceTypeD 0x103d
-#define ResourceTableIndexResourceType5 0x1035
-#define ResourceTableIndexResourceType7 0x1037
-#define ResourceTableIndexResourceType1 0x1031
-#define ResourceTableIndexResourceTypeF 0x103f
-#define ResourceTableIndexResourceEndMarkerA 0xffa
-#define ResourceTableIndexResourceEndMarkerB 0xff9
+#define ResourceTableIndexSystemMemoryResource 0x103b
+#define ResourceTableIndexGraphicsResource 0x103d
+#define ResourceTableIndexAudioResource 0x1035
+#define ResourceTableIndexInputResource 0x1037
+#define ResourceTableIndexNetworkResource 0x1031
+#define ResourceTableIndexFileResource 0x103f
+#define ResourceTableIndexEndMarkerPrimary 0xffa
+#define ResourceTableIndexEndMarkerSecondary 0xff9
 
 // 系统数据偏移量常量
-#define SystemDataOffsetPrimaryConfig 0x1049
-#define SystemDataOffsetSecondaryConfig 0x1013
-#define SystemDataOffsetTertiaryConfig 0x1043
+#define SystemDataOffsetEngineConfig 0x1049
+#define SystemDataOffsetRenderConfig 0x1013
+#define SystemDataOffsetAudioConfig 0x1043
 
 // 异常处理回调偏移量常量
-#define ExceptionCallbackOffset68 0x68                     // 异常回调偏移量68 - 用于异常处理回调的偏移位置
-#define ExceptionCallbackOffset70 0x70                     // 异常回调偏移量70 - 用于异常处理回调的偏移位置
-#define ExceptionCallbackOffset118 0x118                   // 异常回调偏移量118 - 用于异常处理回调的偏移位置
-#define ExceptionCallbackOffset150 0x150                   // 异常回调偏移量150 - 用于异常处理回调的偏移位置
-#define ExceptionCallbackOffset1a0 0x1a0                   // 异常回调偏移量1a0 - 用于异常处理回调的偏移位置
-#define SystemDataOffsetConfigTypeB 0x103b
-#define SystemDataOffsetConfigTypeD 0x103d
-#define SystemDataOffsetConfigType5 0x1035
-#define SystemDataOffsetConfigType7 0x1037
-#define SystemDataOffsetConfigTypeF 0x102f
-#define SystemDataOffsetConfigType1 0x1031
-#define SystemDataOffsetEndMarkerA 0xffa
-#define SystemDataOffsetEndMarkerB 0xff9
+#define ExceptionCallbackOffsetPrimaryHandler 0x68                     // 主异常处理器回调偏移量
+#define ExceptionCallbackOffsetSecondaryHandler 0x70                     // 辅助异常处理器回调偏移量
+#define ExceptionCallbackOffsetMemoryHandler 0x118                   // 内存异常处理器回调偏移量
+#define ExceptionCallbackOffsetSystemHandler 0x150                   // 系统异常处理器回调偏移量
+#define ExceptionCallbackOffsetResourceHandler 0x1a0                   // 资源异常处理器回调偏移量
+#define SystemDataOffsetPhysicsConfig 0x103b
+#define SystemDataOffsetNetworkConfig 0x103d
+#define SystemDataOffsetInputConfig 0x1035
+#define SystemDataOffsetUIConfig 0x1037
+#define SystemDataOffsetShaderConfig 0x102f
+#define SystemDataOffsetDatabaseConfig 0x1031
+#define SystemDataOffsetEndMarkerPrimary 0xffa
+#define SystemDataOffsetEndMarkerSecondary 0xff9
 #define SystemDataOffsetExtendedConfig 0x1041
 #define SystemDataOffsetAlternateConfig 0x101b
 #define SystemDataOffsetSpecialConfig 0xffd
@@ -264,11 +264,11 @@
 #define ResourceProcessingStep 0x40
 
 // 系统浮点数据偏移量常量
-#define SystemFloatDataOffset38 0x38
+#define SystemFloatDataOffsetVector 0x38
 
 // 异常数据上下文偏移量常量
 #define ExceptionDataContextOffset 0x70                    // 异常数据上下文偏移量
-#define SystemStatusFlagOffsetSecondary 0xd1                       // 系统状态标志偏移量Secondary
+#define SystemStatusFlagOffsetThread 0xd1                       // 线程状态标志偏移量
 
 // 异常处理器槽位偏移量常量
 #define PrimaryExceptionHandlerSlotOffset 0x20               // 主异常处理器槽位偏移量
@@ -2058,6 +2058,8 @@
 #define SystemContextDataOffsetAc 0xac                        // 系统上下文数据偏移量Ac
 #define SystemContextDataOffset9C 0x9c                        // 系统上下文数据偏移量9c
 #define SystemContextOffset30 0x30                             // 系统上下文偏移量30
+#define SystemContextDataOffset54 0x54                        // 系统上下文数据偏移量54
+#define SystemContextDataOffset48 0x48                        // 系统上下文数据偏移量48
 
 // 系统栈帧偏移常量
 #define StackFrameContextOffsetC4 0xc4
@@ -37269,9 +37271,9 @@ ValidationLabelB:
       exceptionBuffer3 = *(DataBuffer **)(StackFrameContext + -0x29);
     }
     else {
-      statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = CheckSystemStatusA0(systemContext + 0x48,inputParameter9);
+      statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
+      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameter9) {
+        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
         exceptionBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(StackFrameContext + -0x21);
@@ -37341,7 +37343,7 @@ ValidationLabelB:
     }
   }
   else {
-    exceptionDataBuffer1 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + 0x48);
+    exceptionDataBuffer1 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + SystemContextDataOffset48);
     calculatedFloatValue = interpolatedFloatValue;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
@@ -37525,9 +37527,9 @@ ValidationProcessingLabel:
       exceptionDataBuffer = *(DataBuffer **)(StackFrameContext + -0x29);
     }
     else {
-      statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = CheckSystemStatusA0(systemContext + 0x48,inputParameter9);
+      statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
+      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameter9) {
+        statusCounter = CheckSystemStatusA0(systemContext + SystemContextDataOffset48,inputParameter9);
         exceptionDataBuffer = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(StackFrameContext + -0x21);
@@ -37597,7 +37599,7 @@ ValidationProcessingLabel:
     }
   }
   else {
-    exceptionBuffer3 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + 0x48);
+    exceptionBuffer3 = (DataBuffer *)CreateExceptionDataBuffer(operationResult0,systemContext + SystemContextDataOffset48);
     calculatedFloatValue = interpolatedFloatValue;
     if ((int)exceptionBuffer3 != 0) {
       return exceptionBuffer3;
@@ -37766,8 +37768,8 @@ ValidationLabelB:
       exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
     }
     else {
-      statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter8) {
+      statusCounter = (int)*(uint *)(systemContext + SystemContextDataOffset54) >> 0x1f;
+      if ((int)((*(uint *)(systemContext + SystemContextDataOffset54) ^ statusCounter) - statusCounter) < inputParameter8) {
         statusCounter = ValidateSystemParametersA0(systemContext + 0x48,inputParameter8);
         systemMemoryBuffer = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
