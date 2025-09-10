@@ -210027,7 +210027,7 @@ LAB_1801732b6:
 LAB_1801732bb:
   DefWindowProcW(OperationBufferSize,StackValidationParameter,Utf16EndPointer,AdditionalParameter1);
 LAB_1801732ce:
-    CoreEngineExecuteUtilityFunction(BufferOffset ^ (unsigned long long)auStack_8d8);
+    CoreEngineExecuteUtilityFunction(BufferOffset ^ (unsigned long long)StackDataBuffer);
 }
 
 
