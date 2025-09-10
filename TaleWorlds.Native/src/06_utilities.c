@@ -3467,6 +3467,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
 #define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
 #define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
+#define MODULE_CONFIG_OFFSET_1 0x10             // 模块配置偏移量1
+#define MODULE_CONFIG_OFFSET_2 0x18             // 模块配置偏移量2
+#define MODULE_DATA_OFFSET_1 0x8                // 模块数据偏移量1
+#define MODULE_DATA_OFFSET_2 0x90               // 模块数据偏移量2
+#define MODULE_DATA_OFFSET_3 0x10               // 模块数据偏移量3
 
 // 全局数据指针偏移量常量
 #define GlobalDataPointerA35ConfigOffset 0x10   // 全局数据指针A35配置偏移量
@@ -16055,54 +16060,55 @@ uint8_t SystemStatusBufferSenary;
 uint8_t SystemStatusBufferSeptenary;
 uint8_t SystemStatusBufferOctonary;
 uint8_t SystemStatusBufferNonary;
-uint8_t ExceptionHandlerDataA0;
-uint8_t ExceptionHandlerDataA1;
-uint8_t ExceptionHandlerDataA2;
-uint8_t ExceptionHandlerDataA3;
-uint8_t ExceptionHandlerDataA4;
-uint8_t ExceptionHandlerDataA5;
-uint8_t ExceptionHandlerDataA6;
-uint8_t ExceptionHandlerDataA7;
-uint8_t ExceptionHandlerDataA8;
-uint8_t ExceptionHandlerDataA9;
-uint8_t ExceptionHandlerDataA10;
-uint8_t ExceptionHandlerDataA11;
-uint8_t ExceptionHandlerDataA12;
-uint8_t ExceptionHandlerDataA13;
-uint8_t ExceptionHandlerDataA14;
-uint8_t ExceptionHandlerDataA15;
-uint8_t ExceptionHandlerDataA16;
-uint8_t ExceptionHandlerDataA17;
-uint8_t ExceptionHandlerDataA18;
-uint8_t SystemStatusDataA;
-uint8_t ExceptionHandlerDataA19;
-uint8_t ExceptionHandlerDataA20;
-uint8_t ExceptionHandlerDataA21;
-uint8_t ExceptionHandlerDataA22;
-uint8_t ExceptionHandlerDataA23;
-uint8_t ExceptionHandlerDataA24;
-uint8_t ExceptionHandlerDataA25;
-uint8_t ExceptionHandlerDataA26;
-uint8_t ExceptionHandlerDataA27;
-uint8_t ExceptionHandlerDataA28;
-uint8_t ExceptionHandlerDataA29;
-uint8_t ExceptionHandlerDataA30;
-uint8_t ExceptionHandlerDataA31;
-uint8_t ExceptionHandlerDataA32;
-uint8_t ExceptionHandlerDataA33;
-uint8_t ExceptionHandlerDataA34;
-uint8_t ExceptionHandlerDataA35;
-uint8_t ExceptionHandlerDataA36;
-uint8_t ExceptionHandlerDataA37;
-uint8_t ExceptionHandlerDataA38;
-uint8_t ExceptionHandlerDataA39;
-uint8_t ExceptionHandlerDataA40;
-uint8_t ExceptionHandlerDataA41;
-uint8_t ExceptionHandlerDataA42;
-uint8_t ExceptionHandlerDataA43;
-uint8_t ExceptionHandlerDataA44;
-uint8_t ExceptionHandlerDataA45;
-uint8_t ExceptionHandlerDataA46;
+// 异常处理数据序列 - 用于存储异常处理过程中的相关数据
+uint8_t ExceptionHandlerDataPrimary;
+uint8_t ExceptionHandlerDataSecondary;
+uint8_t ExceptionHandlerDataTertiary;
+uint8_t ExceptionHandlerDataQuaternary;
+uint8_t ExceptionHandlerDataQuinary;
+uint8_t ExceptionHandlerDataSenary;
+uint8_t ExceptionHandlerDataSeptenary;
+uint8_t ExceptionHandlerDataOctonary;
+uint8_t ExceptionHandlerDataNonary;
+uint8_t ExceptionHandlerDataDenary;
+uint8_t ExceptionHandlerDataUndenary;
+uint8_t ExceptionHandlerDataDuodenary;
+uint8_t ExceptionHandlerDataTerdenary;
+uint8_t ExceptionHandlerDataQuattuordenary;
+uint8_t ExceptionHandlerDataQuindenary;
+uint8_t ExceptionHandlerDataSexdenary;
+uint8_t ExceptionHandlerDataSeptendenary;
+uint8_t ExceptionHandlerDataOctodenary;
+uint8_t ExceptionHandlerDataNovendenary;
+// 系统状态数据变量 - 用于存储系统运行状态信息
+uint8_t SystemStatusDataPrimary;
+uint8_t ExceptionHandlerDataVigesimal;
+uint8_t ExceptionHandlerDataUnvigesimal;
+uint8_t ExceptionHandlerDataDuovigesimal;
+uint8_t ExceptionHandlerDataTrevigesimal;
+uint8_t ExceptionHandlerDataQuattuorvigesimal;
+uint8_t ExceptionHandlerDataQuinvigesimal;
+uint8_t ExceptionHandlerDataSexvigesimal;
+uint8_t ExceptionHandlerDataSeptenvigesimal;
+uint8_t ExceptionHandlerDataOctovigesimal;
+uint8_t ExceptionHandlerDataNovemvigesimal;
+uint8_t ExceptionHandlerDataTrigesimal;
+uint8_t ExceptionHandlerDataUntrigesimal;
+uint8_t ExceptionHandlerDataDuotrigesimal;
+uint8_t ExceptionHandlerDataTrigesimalTertiary;
+uint8_t ExceptionHandlerDataTrigesimalQuaternary;
+uint8_t ExceptionHandlerDataTrigesimalQuinary;
+uint8_t ExceptionHandlerDataTrigesimalSenary;
+uint8_t ExceptionHandlerDataTrigesimalSeptenary;
+uint8_t ExceptionHandlerDataTrigesimalOctonary;
+uint8_t ExceptionHandlerDataTrigesimalNonary;
+uint8_t ExceptionHandlerDataTrigesimalDenary;
+uint8_t ExceptionHandlerDataTrigesimalUndenary;
+uint8_t ExceptionHandlerDataTrigesimalDuodenary;
+uint8_t ExceptionHandlerDataTrigesimalTerdenary;
+uint8_t ExceptionHandlerDataTrigesimalQuattuordenary;
+uint8_t ExceptionHandlerDataTrigesimalQuindenary;
+uint8_t ExceptionHandlerDataTrigesimalSexdenary;
 uint8_t ExceptionHandlerDataA47;
 uint8_t ExceptionHandlerDataA48;
 uint8_t ExceptionHandlerDataA49;
@@ -16924,7 +16930,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     return systemContextValidationFailure;
   }
   componentDataContext = *(int64_t *)(systemContextHandle + COMPONENT_DATA_OFFSET);
-  if (systemContextHandle == 0) {
+  if (componentDataContext == 0) {
     return ComponentDataValidationFailure;
   }
   if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
