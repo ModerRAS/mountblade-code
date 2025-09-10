@@ -6255,6 +6255,15 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemDataProcessing FUN_180083b20              // 处理系统数据处理
 #define ProcessSystemBufferAllocation FUN_180094e80            // 处理系统缓冲区分配
 #define ProcessSystemContextHandleEx FUN_1800763c0             // 处理系统上下文句柄扩展
+#define ProcessSystemMemoryStatus FUN_1800b0a10                // 处理系统内存状态
+#define ProcessSystemUnicodeData FUN_1800aded0                 // 处理系统Unicode数据
+#define ProcessSystemDataEx FUN_1800b2a30                      // 处理系统数据扩展
+#define ProcessSystemDataValidationEx FUN_1800adb30            // 处理系统数据验证扩展
+#define ProcessSystemMessage FUN_1800634b0                    // 处理系统消息
+#define ProcessSystemMemoryAllocationEx FUN_180057170          // 处理系统内存分配扩展
+#define ProcessSystemStringData FUN_1800b8370                 // 处理系统字符串数据
+#define ProcessSystemDataBuffer FUN_1800be9a0                  // 处理系统数据缓冲区
+#define ProcessSystemCharacterDataEx FUN_1800c1420             // 处理系统字符数据扩展
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
@@ -249158,7 +249167,7 @@ uint64_t *ProcessCharacterEncodingAndMemoryAllocation(long long ContextHandle,ui
       MemoryPoolIndex = FUN_180206330(Utf8SourcePointer);
       FUN_180225e50(MemoryPoolIndex);
     }
-    FUN_1800b0a10();
+    ProcessSystemMemoryStatus();
     *ContextHandleSize = 0;
     *(uint32_t *)(OperationBufferSize + 1) = 0xffffffff;
     *(int *)((long long)OperationBufferSize + 0xc) = Utf8SourcePointer;
@@ -250283,7 +250292,7 @@ uint64_t * FUN_1802064e0(long long ContextHandle,uint64_t *ContextHandleSize,uin
   ProcessingStatusFlag = 1;
   OperationResult = *(uint32_t *)*ContextHandleSize;
   UnicodeCodePoint = FUN_1802063e0(Utf16EndPointer);
-  ContextHandleTablePointer = (void *           FUN_1800b0a10(&SystemUnknownProcessingStatusFlagB,&pSystemTemporaryValue50,*(uint32_t *)(ContextHandle + 0x298),
+  ContextHandleTablePointer = (void *           ProcessSystemMemoryStatus(&SystemUnknownProcessingStatusFlagB,&pSystemTemporaryValue50,*(uint32_t *)(ContextHandle + 0x298),
                          &SystemUnknownProcessingStatusFlagB + (long long)Utf16EndPointer * 0x98,SystemChecksum | 4,0,MemoryPoolIndex,UnicodeCodePoint,OperationResult,0,0
                          ,1,ProcessingStatusFlag);
   Utf16Char = *ContextHandlePointer;
@@ -267074,7 +267083,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_100 = *(long long **)(ContextHandle + 0x1c70);
@@ -267099,7 +267108,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_100 = *(long long **)(ContextHandle + 0x1cb8);
@@ -267124,7 +267133,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   PreviousContextPointer = *(long long **)(ContextHandle + 0x1c78);
@@ -267149,7 +267158,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1cb0);
@@ -267174,7 +267183,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1c80);
@@ -267199,7 +267208,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1c88);
@@ -267224,7 +267233,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1c90);
@@ -267249,7 +267258,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1ca0);
@@ -267274,7 +267283,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1c98);
@@ -267299,7 +267308,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1ca8);
@@ -267324,7 +267333,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1cc8);
@@ -267349,7 +267358,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1cc0);
@@ -267374,7 +267383,7 @@ InitializeContextHandleTableWithMutex(uint64_t *ContextHandle,uint64_t Operation
   uStack_138 = 0;
   SystemStatusValue = 3;
   CoreEngineUnsignedValue = 0x220;
-  PrimaryProcessingStatusFlag = (void *)FUN_1800b0a10();
+  PrimaryProcessingStatusFlag = (void *)ProcessSystemMemoryStatus();
   Utf16Char = *PrimaryProcessingStatusFlag;
   *PrimaryProcessingStatusFlag = 0;
   plStack_108 = *(long long **)(ContextHandle + 0x1cd0);
