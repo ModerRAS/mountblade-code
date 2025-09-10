@@ -668,6 +668,18 @@
 #define ExceptionRecoveryHandlerOffset90 0x90
 #define ExceptionRecoveryHandlerOffset148 0x148
 #define ExceptionRecoveryHandlerOffsetB0 0xb0
+
+// 资源清理偏移量常量
+#define ResourceCleanupOffset438 0x438                    // 资源清理偏移量438
+#define ResourceCleanupOffset2A8 0x2a8                    // 资源清理偏移量2A8
+#define ResourceCleanupOffset890 0x890                    // 资源清理偏移量890
+#define ResourceCleanupOffset2E0 0x2e0                    // 资源清理偏移量2E0
+#define ResourceCleanupOffset930 0x930                    // 资源清理偏移量930
+
+// 系统内存管理常量
+#define ResourceManagementOffset80 0x80                   // 资源管理偏移量80
+#define MemoryBlockMultiplier50 0x50                      // 内存块乘数50
+#define MemoryExceptionCheckOffsetE 0xe                   // 内存异常检查偏移量E
 #define ExceptionRecoveryHandlerOffsetC0 0xc0
 #define ExceptionRecoveryHandlerOffsetD8 0xd8
 #define ExceptionRecoveryHandlerOffsetE8 0xe8
