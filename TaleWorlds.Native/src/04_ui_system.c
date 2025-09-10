@@ -111380,16 +111380,16 @@ void FUN_18072e450(UIHandle uiContext)
     allocatedMemory = FUN_18072df00();
   }
   else if (stackParam00000028 == 8) {
-    allocatedMemory = FUN_18072e160();
+    allocatedMemory = ProcessUIDataBuffer8Bytes();
   }
   else if (stackParam00000028 == 10) {
-    allocatedMemory = FUN_18072d260();
+    allocatedMemory = ProcessUIDataBuffer10Bytes();
   }
   else if (stackParam00000028 == 0xc) {
-    allocatedMemory = FUN_18072d5e0();
+    allocatedMemory = ProcessUIDataBuffer12Bytes();
   }
   else if (stackParam00000028 == 0x10) {
-    allocatedMemory = FUN_18072d9e0();
+    allocatedMemory = ProcessUIDataBuffer16Bytes();
   }
                      WARNING: Could not recover jumptable at 0x0001808ffc3b. Too many branches
                      WARNING: Subroutine does not return

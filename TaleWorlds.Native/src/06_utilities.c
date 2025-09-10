@@ -6173,7 +6173,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089b460
  */
-#define ExecuteDataIntegrityValidation FUN_18089b460
+#define ExecuteDataIntegrityValidation ExecuteDataIntegrityValidationCheck
 
 /**
  * @brief 清理系统数据资源
@@ -6183,7 +6183,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089b52a
  */
-#define CleanupSystemDataResources FUN_18089b52a
+#define CleanupSystemDataResources CleanupSystemDataResourcesAndMemory
 
 /**
  * @brief 重置数据处理器A1
@@ -6192,7 +6192,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089b540
  */
-#define ResetDataProcessorA1 FUN_18089b540
+#define ResetDataProcessorA1 ResetDataProcessorStateA1
 
 /**
  * @brief 批量处理数据序列
@@ -6202,7 +6202,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089bd70
  */
-#define ProcessDataSequenceBatch FUN_18089bd70
+#define ProcessDataSequenceBatch ProcessDataSequenceBatchOperation
 
 /**
  * @brief 验证数据格式规范
@@ -6212,7 +6212,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089d250
  */
-#define ValidateDataFormatSpecification FUN_18089d250
+#define ValidateDataFormatSpecification ValidateDataFormatSpecificationCheck
 
 /**
  * @brief 获取系统健康状态
@@ -6222,7 +6222,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089d281
  */
-#define GetSystemHealthStatus FUN_18089d281
+#define GetSystemHealthStatus GetSystemHealthStatusReport
 
 /**
  * @brief 管理数据缓冲池
@@ -6232,7 +6232,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089d484
  */
-#define ManageDataBufferPool FUN_18089d484
+#define ManageDataBufferPool ManageDataBufferPoolOperations
 
 /**
  * @brief 验证数据一致性
@@ -6242,7 +6242,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089d490
  */
-#define VerifyDataConsistency FUN_18089d490
+#define VerifyDataConsistency VerifyDataConsistencyCheck
 
 /**
  * @brief 验证系统组件
@@ -6252,7 +6252,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089df40
  */
-#define ValidateSystemComponents FUN_18089df40
+#define ValidateSystemComponents ValidateSystemComponentsIntegrity
 
 /**
  * @brief 返回标准状态码
@@ -6262,7 +6262,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089dfc1
  */
-#define ReturnStandardStatusCode FUN_18089dfc1
+#define ReturnStandardStatusCode ReturnStandardSystemStatusCode
 
 /**
  * @brief 验证系统就绪状态
