@@ -37536,7 +37536,7 @@ ValidationLabelC:
   for (validationOutcome = *(uint64_t *)(operationBase + SystemContextDataBufferOffset48);
       (*(uint64_t *)(operationBase + SystemContextDataBufferOffset48) <= validationOutcome &&
       (validationOutcome < (int64_t)*(int *)(operationBase + SystemContextDataSizeOffset50) * 0x1c + *(uint64_t *)(operationBase + SystemContextDataBufferOffset48)));
-      validationOutcome = validationOutcome + 0x1c) {
+      validationOutcome = validationOutcome + ProcessingResultIncrementOffset1C) {
     InitializeSystemComponentA0(operationBase + OperationBaseOffset58);
   }
 ValidationLabelD:
