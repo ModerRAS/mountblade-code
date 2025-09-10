@@ -116723,7 +116723,7 @@ void ProcessUITextEncodingAndEventGeneration(UIHandle uiContext, UIHandle dataSo
       characterMatchPtr = characterMatchPtr + 1;
     } while (iterationCounter < *(short *)(targetBuffer + 2));
   }
-  FUN_1807376c0();
+  ProcessUIDataWithShortParameters();
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(renderParameter ^ (ulonglong)&stack0x00000000);
 }
@@ -118897,7 +118897,7 @@ void ProcessUIComponentData(longlong uiContext,int dataSource,uint targetBuffer,
     BaseValuePointer0 = bufferSize + allocatedMemory3;
     contextOffset = (uiContext - allocatedMemory) + -8;
     do {
-      dVar22 = (double)FUN_180734500(allocatedMemory,uiContext,dataSource);
+      dVar22 = (double)ProcessUIResourceCalculation(allocatedMemory,uiContext,dataSource);
       ProcessingResult1 = 1;
       componentIndex0 = 1;
       *BaseValuePointer0 = (float)dVar22;
@@ -118990,7 +118990,7 @@ void ValidateUIComponentState(longlong uiContext,UIHandle dataSource,UIDword tar
     allocatedMemory = 0;
     uiContext = uiContext + (longlong)(bufferSize + -1) * 4;
     do {
-      dVar2 = (double)FUN_180734500(uiContext,dataSource,targetBuffer);
+      dVar2 = (double)ProcessUIResourceCalculation(uiContext,dataSource,targetBuffer);
       uiContext = uiContext + -4;
       *(float *)(resultPointer + allocatedMemory * 4) = (float)dVar2;
       allocatedMemory = allocatedMemory + 1;
@@ -119013,7 +119013,7 @@ void FUN_1807369a3(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,i
   allocatedMemory = 0;
   uiContext = uiContext + (longlong)(bufferSize + -1) * 4;
   do {
-    dVar2 = (double)FUN_180734500(uiContext,dataSource,targetBuffer);
+    dVar2 = (double)ProcessUIResourceCalculation(uiContext,dataSource,targetBuffer);
     uiContext = uiContext + -4;
     *(float *)(stackParam00000060 + allocatedMemory * 4) = (float)dVar2;
     allocatedMemory = allocatedMemory + 1;
