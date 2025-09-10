@@ -17776,14 +17776,14 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
   uint64_t validationStatus;
   int64_t contextData[2];
   int64_t resourceInfo[2];
-  int64_t adjustedresourcePointer;
+  int64_t adjustedResourcePointer;
   
   // 查询系统数据以获取资源信息
   validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ExceptionHandlerCallbackOffset), resourceInfo);
   if ((int)validationStatus == 0) {
     // 调整资源指针
     if (resourceInfo[0] == 0) {
-      adjustedresourcePointer = 0;
+      adjustedResourcePointer = 0;
     }
     else {
       adjustedresourcePointer = resourceInfo[0] + resourcePointerAdjustment;
@@ -138029,7 +138029,7 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_180909540
  */
-#define InitializeSystemComponents FUN_18007f840AndSetState
+#define InitializeSystemComponents InitializeSystemComponentsAndSetState
 
 /**
  * @brief 系统启动函数
