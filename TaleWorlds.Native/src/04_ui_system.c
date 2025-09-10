@@ -124212,18 +124212,29 @@ void ProcessUIDataBuffer(void)
 
 
 
- void FUN_180739c7d(void)
-void FUN_180739c7d(void)
+ /**
+ * @brief UI系统资源清理和渲染任务执行函数
+ * 
+ * 该函数负责清理UI系统资源并执行渲染任务，包括：
+ * - 检查内存资源状态
+ * - 释放UI内存资源
+ * - 执行UI渲染任务
+ * - 处理加密密钥解密
+ * 
+ * @note 原始函数名：FUN_180739c7d
+ * @see ReleaseUIMemoryResource, ExecuteUIRenderTask
+ */
+void CleanupUIAndExecuteRender(void)
 
 {
-  longlong stackParam00000030;
-  ulonglong stackParam00000140;
+  longlong memoryResourceFlag;
+  ulonglong encryptionKey;
   
-  if (stackParam00000030 != 0) {
+  if (memoryResourceFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)&stack0x00000000);
 }
 
 

@@ -1009,8 +1009,8 @@
 #define ExceptionContextStatusOffset680 0x680
 #define ExceptionHandlerStateOffset808 0x808
 #define ExceptionHandlerContextOffset800 0x800
-#define systemContextPointerOffset900 0x900
-#define SystemManagementOffset980 0x980
+#define SystemContextPointerOffsetPrimaryConfig 0x900
+#define SystemManagementOffsetExceptionHandlerConfig 0x980
 #define ExceptionHandlerContextOffset100 0x100
 #define ExceptionHandlerContextOffsetF0 0xf0
 #define ExceptionHandlerContextOffset110 0x110
@@ -1481,6 +1481,7 @@
 
 // 系统栈帧相关偏移量常量
 #define StackFramePointerOffset8 0x8
+#define StackFrameNegativeOffset8 -8                           // 系统栈帧负偏移量8
 
 // 数据结构偏移量常量
 #define DataStructureHandleOffset1C 0x1c
@@ -17933,7 +17934,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
     moduleDataContext = validationContext;
     baseValidationContext = (int64_t *)NullPointer;
     if (temporarySystemStackContext != 0) {
-      moduleDataContext = (int64_t *)(temporarySystemStackContext + -8);
+      moduleDataContext = (int64_t *)(temporarySystemStackContext + StackFrameNegativeOffset8);
     }
     systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_PRIMARY_CONFIG_OFFSET),&temporarySystemStackContext);
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
