@@ -110435,7 +110435,16 @@ void ProcessUITransformDataWithCoefficients(float *UIContext,int DataSource,int 
 
 
  void FUN_18072d1d8(void)
-void FUN_18072d1d8(void)
+/**
+ * @brief UI渲染任务执行器D1
+ * 
+ * 执行UI渲染任务的包装器函数，负责调用核心渲染任务
+ * 
+ * @note 原始函数名：FUN_18072d1d8
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ExecuteUIRenderTaskWrapperD1(void)
 
 {
   longlong basePointer;
@@ -110448,7 +110457,16 @@ void FUN_18072d1d8(void)
 
 
  void FUN_18072d226(void)
-void FUN_18072d226(void)
+/**
+ * @brief UI渲染任务执行器D2
+ * 
+ * 执行UI渲染任务的包装器函数，负责初始化UI句柄和事件处理
+ * 
+ * @note 原始函数名：FUN_18072d226
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void ExecuteUIRenderTaskWrapperD2(void)
 
 {
   UIHandle *resultPointer;
@@ -110469,7 +110487,16 @@ void FUN_18072d226(void)
 
 
  void FUN_18072d250(void)
-void FUN_18072d250(void)
+/**
+ * @brief UI错误处理器和系统调用包装器
+ * 
+ * 处理UI系统错误并执行系统调用，用于错误恢复和系统交互
+ * 
+ * @note 原始函数名：FUN_18072d250
+ * @warning 该函数涉及系统调用，需要谨慎处理
+ * @see TriggerUIErrorHandler
+ */
+void HandleUIErrorAndSystemCall(void)
 
 {
   code *plocalChar1;

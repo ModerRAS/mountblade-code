@@ -82,6 +82,9 @@
 
 // 系统初始化和配置函数语义化定义
 
+// 异常处理和错误管理函数
+#define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
+
 /**
  * @brief 配置核心引擎指针
  * 
@@ -228456,7 +228459,7 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *ContextHandle
         }
       }
     }
-    ContextHandleTablePointer = (void *)FUN_18018b160(ContextHandle,EncodingProcessingBuffer,0,Utf16EndPointer,AdditionalParameter1);
+    ContextHandleTablePointer = (void *)ProcessContextHandleWithMemoryBoundaryValidation(ContextHandle,EncodingProcessingBuffer,0,Utf16EndPointer,AdditionalParameter1);
     *ContextHandleSize = *ContextHandleTablePointer;
   }
   return OperationBufferSize;
@@ -228488,7 +228491,7 @@ ProcessCharacterStatusManagementForUtf8ToUtf16Conversion(long long *ContextHandl
   
   SystemContextTemplatePointer = (void *)*ContextHandle;
   if (*(char *)((long long)OperationBufferSize + SystemNodeStatusOffset) == '\0') {
-    CharacterStatusBuffer = (void *)FUN_18018b2e0(ContextHandle,OperationBufferSize + 4,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    CharacterStatusBuffer = (void *)ProcessCharacterEncodingBufferAllocationAndDataManagement(ContextHandle,OperationBufferSize + 4,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     CharacterStatusBuffer[1] = Utf8SourcePointer;
     *(uint8_t *)(CharacterStatusBuffer + 3) = *(uint8_t *)(OperationBufferSize + 3);
     if (*(char *)((long long)SystemContextTemplatePointer + SystemNodeStatusOffset) != '\0') {
@@ -228605,7 +228608,7 @@ void *ProcessCharacterEncodingMemoryAllocationAndStatusManagement(long long *Con
   long long *SystemDataTablePointer;
   
   if (0x2aaaaaaaaaaaaa8 < (unsigned long long)ContextHandle[1]) {
-    FUN_18018a9a0(0x2aaaaaaaaaaaaa9,AdditionalParameter2);
+    HandleSystemExceptionAndErrorRecovery(0x2aaaaaaaaaaaaa9,AdditionalParameter2);
     __Xlength_error_std__YAXPEBD_Z(&ErrorStringTemplate);
     FunctionPointer = (code *)swi(3);
     pMemoryAddressMaskPointer = (void *)(*FunctionPointer)();
