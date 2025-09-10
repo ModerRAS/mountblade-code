@@ -505,6 +505,47 @@
 #define ObjectDestructorCallbackOffset 0xc8
 
 // 异常恢复处理器偏移量常量
+#define ExceptionRecoveryHandlerOffset508 0x508
+
+// 异常处理器状态重置偏移量常量
+#define ExceptionHandlerResetOffset1940 0x1940
+#define ExceptionHandlerResetOffset1950 0x1950
+#define ExceptionHandlerResetOffset1918 0x1918
+#define ExceptionHandlerResetOffset1920 0x1920
+#define ExceptionHandlerResetOffset1930 0x1930
+#define ExceptionHandlerResetOffset1900 0x1900
+#define ExceptionHandlerResetOffset1910 0x1910
+#define ExceptionHandlerResetOffset18f8 0x18f8
+
+// 异常处理器状态重置偏移量常量 (19c0系列)
+#define ExceptionHandlerResetOffset19b0 0x19b0
+#define ExceptionHandlerResetOffset19c0 0x19c0
+#define ExceptionHandlerResetOffset1988 0x1988
+#define ExceptionHandlerResetOffset1990 0x1990
+#define ExceptionHandlerResetOffset19a0 0x19a0
+#define ExceptionHandlerResetOffset1968 0x1968
+#define ExceptionHandlerResetOffset1970 0x1970
+#define ExceptionHandlerResetOffset1980 0x1980
+
+// 异常处理器状态重置偏移量常量 (1a30系列)
+#define ExceptionHandlerResetOffset1a30 0x1a30
+#define ExceptionHandlerResetOffset1a20 0x1a20
+#define ExceptionHandlerResetOffset19f8 0x19f8
+#define ExceptionHandlerResetOffset1a00 0x1a00
+#define ExceptionHandlerResetOffset1a10 0x1a10
+#define ExceptionHandlerResetOffset19d8 0x19d8
+#define ExceptionHandlerResetOffset19e0 0x19e0
+#define ExceptionHandlerResetOffset19f0 0x19f0
+
+// 异常处理器状态重置偏移量常量 (1aa0系列)
+#define ExceptionHandlerResetOffset1aa0 0x1aa0
+#define ExceptionHandlerResetOffset1a90 0x1a90
+#define ExceptionHandlerResetOffset1ab0 0x1ab0
+#define ExceptionHandlerResetOffset1a98 0x1a98
+#define ExceptionHandlerResetOffset1aa8 0x1aa8
+#define ExceptionHandlerResetOffset1a58 0x1a58
+#define ExceptionHandlerResetOffset1a68 0x1a68
+#define ExceptionHandlerResetOffset1a78 0x1a78
 #define ExceptionRecoveryHandlerOffset78 0x78
 #define ExceptionRecoveryHandlerOffset80 0x80
 #define ExceptionRecoveryHandlerOffset90 0x90
@@ -4440,7 +4481,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18004b790
  */
-#define ValidateSystemDataBufferAndCheckIntegrity CheckSystemDataBufferIntegrity
+#define ValidateSystemDataBufferAndCheckIntegrity ValidateSystemDataBufferA0
 
 /**
  * @brief 系统数据指针清理函数
@@ -4452,7 +4493,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define CleanupSystemDataPointerAndReleaseMemory ReleaseSystemDataPointerAndMemory
+#define CleanupSystemDataPointerAndReleaseMemory CleanupSystemDataPointerA0
 
 /**
  * @brief 系统上下文处理函数
@@ -4466,7 +4507,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f840
  */
-#define ProcesssystemContextAndValidateState ValidatesystemContextAndState
+#define ProcesssystemContextAndValidateState ProcessSystemContextA0
 
 /**
  * @brief 数据类型转换函数
@@ -4481,7 +4522,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18007f6a0
  */
-#define ConvertDataTypeWithValidation ConvertAndValidateDataType
+#define ConvertDataTypeWithValidation ConvertDataTypeA0
 
 /**
  * @brief 系统内存管理函数
@@ -4496,7 +4537,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18013ea00
  */
-#define ManageSystemMemory ManageSystemMemoryAndResources
+#define ManageSystemMemory ManageSystemMemoryA0
 
 /**
  * @brief 系统内存管理函数
@@ -4927,12 +4968,12 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents FUN_18007f840
+#define InitializeSystemComponents InitializeSystemComponentsA0
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 FUN_180074a80
+#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0
@@ -5962,7 +6003,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_180899220
  * @see ValidateDataBlockStatusA1, ProcessDataBlockOperationA0
  */
-#define ValidateDataBlockStatusA0 FUN_180899220
+#define ValidateDataBlockStatusA0 ValidateDataBlockStatusA0
 
 /**
  * @brief 验证数据块状态A1
@@ -5993,7 +6034,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089923e
  * @see ValidateDataBlockStatusA0, ProcessDataBlockOperationA1
  */
-#define ProcessDataBlockOperationA0 FUN_18089923e
+#define ProcessDataBlockOperationA0 ProcessDataBlockOperationA0
 
 /**
  * @brief 处理数据块操作A1
@@ -7144,7 +7185,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892880
  */
-#define ValidateAndProcessFloatingPointNumber1 FUN_180892880
+#define ValidateAndProcessFloatingPointNumber1 ValidateAndProcessFloatingPointNumber1
 
 /**
  * @brief 查询系统状态A0
@@ -7153,7 +7194,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808928d3
  */
-#define QuerySystemStatus0 FUN_1808928d3
+#define QuerySystemStatus0 QuerySystemStatus0
 
 /**
  * @brief 获取系统配置A0
@@ -7162,7 +7203,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808928f1
  */
-#define GetSystemConfiguration0 FUN_1808928f1
+#define GetSystemConfiguration0 GetSystemConfiguration0
 
 /**
  * @brief 验证系统参数A0
@@ -7171,7 +7212,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892909
  */
-#define ValidateSystemParameter0 FUN_180892909
+#define ValidateSystemParameter0 ValidateSystemParameter0
 
 /**
  * @brief 设置系统参数A0
@@ -7180,7 +7221,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180892920
  */
-#define SetSystemParameter0 FUN_180892920
+#define SetSystemParameter0 SetSystemParameter0
 
 /**
  * @brief 检查系统初始化状态A0
@@ -18817,37 +18858,55 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
  * @note 函数内部会访问系统注册表和资源指针进行权限验证
  * @warning 确保传入的权限标志有效，否则可能导致未定义行为
  */
+/**
+ * @brief 检查工具权限G0
+ * 
+ * 验证系统工具的访问权限，根据权限标志执行相应的权限检查。
+ * 该函数负责：
+ * 1. 检查系统寄存器状态
+ * 2. 根据权限标志设置操作模式
+ * 3. 处理数据请求
+ * 4. 初始化上下文（如果需要）
+ * 
+ * @param permissionFlags 权限标志位，用于指定要检查的权限类型
+ * @return int 权限检查结果，0表示权限验证成功
+ * 
+ * @note 原始函数名：FUN_18007f840
+ * @warning 权限检查必须在安全的环境中进行
+ * @see ProcessDataRequest, InitializeContextA0
+ */
 int CheckUtilityPermissionG0(uint32_t permissionFlags)
-
 {
-  int systemRegisterValue;
-  int operationResult;
-  int64_t memoryResourcePointer;
-  int64_t contextPointer;
-  DataWord operationMode;
-  int64_t systemContextBuffer;
-  DataWord parameterBuffer;
-  
-  memoryResourcePointer = 0;
-  if (systemRegisterValue == 0) {
-    systemContextBuffer = *(int64_t *)(contextPointer + ExceptionHandlerCallbackOffset);
-    operationMode = 1;
-    memoryResourcePointer = systemContextBuffer;
-  }
-  else {
-    systemContextBuffer = *(int64_t *)(contextPointer + ExceptionHandlerCallbackOffset);
-    operationMode = 2;
-  }
-  parameterBuffer = permissionFlags;
-  operationResult = ProcessDataRequest();
-  if (operationResult == 0) {
-    operationResult = 0;
-  }
-  else if (memoryResourcePointer != 0) {
-    InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memoryResourcePointer,&SystemMemoryPoolB,MemoryOperationModeE9,operationMode);
-    return operationResult;
-  }
-  return operationResult;
+    int SystemRegisterStatus;
+    int PermissionCheckResult;
+    int64_t MemoryResourceHandle;
+    int64_t SystemContextPointer;
+    DataWord OperationMode;
+    int64_t ContextBuffer;
+    DataWord PermissionParameter;
+    
+    MemoryResourceHandle = 0;
+    if (SystemRegisterStatus == 0) {
+        ContextBuffer = *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset);
+        OperationMode = 1;
+        MemoryResourceHandle = ContextBuffer;
+    }
+    else {
+        ContextBuffer = *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset);
+        OperationMode = 2;
+    }
+    
+    PermissionParameter = permissionFlags;
+    PermissionCheckResult = ProcessDataRequest();
+    if (PermissionCheckResult == 0) {
+        PermissionCheckResult = 0;
+    }
+    else if (MemoryResourceHandle != 0) {
+        InitializeContextA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0), MemoryResourceHandle, &SystemMemoryPoolB, MemoryOperationModeE9, OperationMode);
+        return PermissionCheckResult;
+    }
+    
+    return PermissionCheckResult;
 }
 
 
@@ -120017,23 +120076,23 @@ void ResetExceptionHandlerStateOffset1950(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1950) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1950))(exceptionHandlerContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerResetOffset1950) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerResetOffset1950))(exceptionHandlerContext + ExceptionHandlerResetOffset1940,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1920) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1918) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerResetOffset1920) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1920) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1930) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + SystemDataSecondaryOffset18f8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1900) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1920) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerResetOffset1930) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1918) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset18f8) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerResetOffset1900) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1900) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1910) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + SystemDataSecondaryOffset18f8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1900) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerResetOffset1910) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset18f8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -120057,23 +120116,23 @@ void ResetExceptionHandlerStateOffset19c0(DataBuffer operationBase,int64_t dataB
   int64_t exceptionContext;
   
   exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x19c0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x19c0))(exceptionHandlerContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerResetOffset19c0) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerResetOffset19c0))(exceptionHandlerContext + ExceptionHandlerResetOffset19b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1990) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1988) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerResetOffset1990) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1990) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x19a0) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1968) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1970) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1990) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerResetOffset19a0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1988) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1968) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerResetOffset1970) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1970) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1980) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1968) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1970) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerResetOffset1980) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerResetOffset1968) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -133031,12 +133090,12 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
 // 系统组件初始化函数
-#define InitializeSystemComponents FUN_18007f840
+#define InitializeSystemComponents InitializeSystemComponentsA0
 
 // 内存操作处理函数
 // 功能：处理内存操作，包括内存分配、释放和访问控制
 // 内存操作处理函数
-#define ProcessMemoryOperationA0 FUN_180074a80
+#define ProcessMemoryOperationA0 ProcessMemoryOperationA0
 
 // Unwind函数宏定义 - 异常处理清理函数
 #define UnwindCleanupContextA0 CleanupsystemContextA0

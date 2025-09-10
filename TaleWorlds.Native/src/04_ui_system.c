@@ -110932,8 +110932,8 @@ void ProcessUIComponentDataCalculation(float *uiContext,float *dataSource)
 
 
 
- void FUN_18072d907(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18072d907(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIBufferDataWithValidation(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIBufferDataWithValidation(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float *BaseValuePointer;
@@ -110961,8 +110961,8 @@ void FUN_18072d907(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,lo
 
 
 
- void FUN_18072d9e0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_18072d9e0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+ void ProcessUIContextDataWithMatrixTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
+void ProcessUIContextDataWithMatrixTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize)
 
 {
   float *BaseValuePointer;
@@ -111326,8 +111326,8 @@ void ProcessUIComponentTransformOptimized(float *uiContext,float *dataSource)
 
 
 
- void FUN_18072e0d7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_18072e0d7(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIBufferDataWithSimpleTransform(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIBufferDataWithSimpleTransform(UIHandle uiContext,float *dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   float *BaseValuePointer;
