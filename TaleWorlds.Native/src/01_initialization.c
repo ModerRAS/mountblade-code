@@ -198,6 +198,38 @@
 #define SystemDataBufferCapacityDefault     0x8  // 系统数据缓冲区默认容量
 #define SystemMessageConfigBufferCapacity   0xa  // 系统消息配置缓冲区容量
 
+// 网络配置状态常量
+#define SystemNetworkConfigActive          0x01  // 网络配置活动状态
+#define SystemNetworkConfigInactive        0x00  // 网络配置非活动状态
+
+/**
+ * @brief 系统网络配置结构体
+ * 
+ * 包含系统网络配置的所有必要信息，用于初始化网络子系统
+ */
+typedef struct {
+    uint32_t ConfigStatus;                      // 配置状态
+    uint64_t InitializationTime;                 // 初始化时间戳
+    struct {
+        uint32_t InterfaceType;                 // 接口类型
+        uint32_t InterfaceFlags;                 // 接口标志
+        uint32_t InterfaceSpeed;                 // 接口速度
+        uint32_t InterfaceStatus;                // 接口状态
+    } InterfaceConfig;                           // 网络接口配置
+    struct {
+        uint32_t ProtocolType;                   // 协议类型
+        uint32_t ProtocolVersion;                // 协议版本
+        uint32_t ProtocolFlags;                  // 协议标志
+        uint32_t ProtocolStatus;                 // 协议状态
+    } ProtocolConfig;                            // 协议栈配置
+    struct {
+        uint32_t PoolSize;                       // 连接池大小
+        uint32_t PoolFlags;                      // 连接池标志
+        uint32_t PoolStatus;                     // 连接池状态
+        uint32_t MaxConnections;                 // 最大连接数
+    } PoolConfig;                               // 连接池配置
+} SystemNetworkConfig;
+
 // 兼容性常量定义
 #define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   SystemStringBufferCapacityDefault
 #define SYSTEM_STRING_BUFFER_SIZE_SHORT     SystemStringBufferCapacityShort
@@ -802,6 +834,10 @@
  * @return 无返回值
  */
 void HandleSystemMemoryPage(long long memoryPagePointer);
+uint32_t InitializeSystemInterface(void* InterfaceConfig);
+uint32_t InitializeProtocolStack(void* ProtocolConfig);
+uint32_t InitializeConnectionPool(void* PoolConfig);
+uint64_t GetSystemTimestamp(void);
 
 /**
  * @brief 释放系统资源

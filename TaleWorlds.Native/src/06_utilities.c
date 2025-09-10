@@ -77040,12 +77040,24 @@ void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBu
 /**
  * @brief 资源引用计数管理函数A90
  * 
- * 该函数管理资源的引用计数，处理内存地址计算和资源释放。
- * 主要用于异常处理过程中的资源生命周期管理。
+ * 该函数管理资源的引用计数，处理异常上下文和系统状态验证。
+ * 主要用于异常处理过程中的资源生命周期管理和状态维护。
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
+ * 功能说明：
+ * 1. 从数据缓冲区获取异常上下文
+ * 2. 设置临时异常处理器到指定位置
+ * 3. 检查系统参数验证状态，如果异常则终止系统执行
+ * 4. 清理系统状态标志并设置默认异常处理器B
+ * 
+ * 执行流程：
+ * - 上下文获取 → 处理器设置 → 状态验证 → 系统清理
+ * 
+ * @param operationBase 操作基址，包含资源管理的上下文信息
+ * @param dataBuffer 数据缓冲区，包含资源管理的相关数据
+ * 
  * @note 原始函数名：Unwind_180907a90
+ * @warning 此函数涉及系统资源管理，修改时需要谨慎
+ * @see TerminateSystemExecutionAndCleanupResources, SystemDefaultExceptionHandlerB
  */
 #define ManageResourceReferenceCountA90 Unwind_180907a90
 void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer)
@@ -77069,12 +77081,23 @@ void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer
 /**
  * @brief 异常上下文管理函数AA0
  * 
- * 该函数管理异常上下文，处理异常相关的数据结构和状态。
- * 主要用于异常处理过程中的上下文管理和状态维护。
+ * 该函数管理异常上下文，在指定位置设置默认异常处理器B。
+ * 主要用于异常处理过程中的上下文管理和状态维护，位于0x178偏移处。
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
+ * 功能说明：
+ * 1. 获取数据缓冲区中0x178偏移处的双重指针
+ * 2. 将默认异常处理器B设置到指定位置
+ * 3. 确保异常处理器的正确初始化
+ * 
+ * 执行流程：
+ * - 指针获取 → 处理器设置 → 状态确认
+ * 
+ * @param operationBase 操作基址，包含异常上下文的管理信息
+ * @param dataBuffer 数据缓冲区，包含异常上下文的相关数据
+ * 
  * @note 原始函数名：Unwind_180907aa0
+ * @warning 此函数涉及异常上下文管理，修改时需要谨慎
+ * @see SystemDefaultExceptionHandlerB
  */
 #define ManageExceptionContextAA0 Unwind_180907aa0
 void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
@@ -77089,14 +77112,25 @@ void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常处理器回调执行函数AB0
  * 
- * 该函数执行异常处理回调，处理异常相关的数据结构和状态。
+ * 该函数执行异常处理回调，调用位于0x1c0偏移处的函数指针。
  * 主要用于异常处理过程中的回调执行和资源清理。
  * 
- * @param operationBase 操作基址
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * 功能说明：
+ * 1. 检查数据缓冲区中0x1c0偏移处的函数指针是否有效
+ * 2. 如果函数指针存在，则调用该函数指针
+ * 3. 传递异常处理所需的参数和标志
+ * 
+ * 执行流程：
+ * - 指针验证 → 函数调用 → 参数传递
+ * 
+ * @param operationBase 操作基址，包含异常处理的上下文信息
+ * @param dataBuffer 数据缓冲区，包含异常处理的相关数据
+ * @param operationFlagA 操作标志A，用于控制异常处理的行为
+ * @param operationFlagB 操作标志B，用于控制异常处理的行为
+ * 
  * @note 原始函数名：Unwind_180907ab0
+ * @warning 此函数涉及异常处理回调机制，修改时需要谨慎
+ * @see SystemCleanupFlagAlternative
  */
 #define ExecuteExceptionHandlerCallbacksAB0 Unwind_180907ab0
 void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -77137,14 +77171,25 @@ void ExecuteExceptionHandlerCallbacksAC0(DataBuffer operationBase,int64_t dataBu
 /**
  * @brief 执行异常处理器回调AD0
  * 
- * 该函数用于执行异常处理器回调，调用指定位置的异常处理函数
+ * 该函数执行异常处理器回调，调用位于0x1f0偏移处的异常处理函数。
+ * 主要用于异常处理过程中的回调执行和资源管理。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * 功能说明：
+ * 1. 检查数据缓冲区中MemoryPointerOffset0偏移处的函数指针是否有效
+ * 2. 如果函数指针存在，则调用该函数指针
+ * 3. 传递异常处理所需的参数和标志
+ * 
+ * 执行流程：
+ * - 指针验证 → 函数调用 → 参数传递
+ * 
+ * @param operationBase 操作基础数据缓冲区，包含异常处理的上下文信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理的相关数据
+ * @param operationFlagA 操作标志A，用于控制异常处理的行为
+ * @param operationFlagB 操作标志B，用于控制异常处理的行为
  * 
  * @note 原始函数名：Unwind_180907ad0
+ * @warning 此函数涉及异常处理回调机制，修改时需要谨慎
+ * @see SystemCleanupFlagAlternative
  */
 void ExecuteExceptionHandlerCallbackAD0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -77160,12 +77205,23 @@ void ExecuteExceptionHandlerCallbackAD0(DataBuffer operationBase,int64_t dataBuf
 /**
  * @brief 设置默认异常处理器AE0
  * 
- * 该函数用于设置默认异常处理器到指定位置
+ * 该函数设置默认异常处理器到指定位置，位于FloatValueOffset0偏移处。
+ * 主要用于异常处理器的初始化和配置。
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区指针
+ * 功能说明：
+ * 1. 获取数据缓冲区中FloatValueOffset0偏移处的双重指针
+ * 2. 将默认异常处理器B设置到指定位置
+ * 3. 确保异常处理器的正确初始化
+ * 
+ * 执行流程：
+ * - 指针获取 → 处理器设置 → 状态确认
+ * 
+ * @param operationBase 操作基础数据缓冲区，包含异常处理的上下文信息
+ * @param dataBuffer 数据缓冲区指针，包含异常处理的相关数据
  * 
  * @note 原始函数名：Unwind_180907ae0
+ * @warning 此函数涉及异常处理器设置，修改时需要谨慎
+ * @see SystemDefaultExceptionHandlerB
  */
 void SetDefaultExceptionHandlerAE0(DataBuffer operationBase,int64_t dataBuffer)
 
