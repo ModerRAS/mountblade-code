@@ -80108,8 +80108,8 @@ void ExecuteSystemValidationAndCleanupA0(DataBuffer exceptionContext, int64_t st
 void ExecuteSystemResourceCleanupA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if (*(int64_t **)(stackFrame + 0x78) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(stackFrame + 0x78) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(stackFrame + SystemManagementOffset78) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(stackFrame + SystemManagementOffset78) + SystemFloatDataOffset38))();
   }
   return;
 }
