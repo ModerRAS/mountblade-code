@@ -11848,8 +11848,8 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define ManageSystemMemoryA0 ManageSystemMemoryFunction
 
 // 原始函数名：FUN_1808a5d60 - 内存分配函数A0
-// 功能：分配系统内存
-#define AllocateSystemMemoryA0 AllocateSystemMemoryFunction
+// 功能：分配系统内存并进行安全验证
+#define AllocateSystemMemoryA0 AllocateSystemMemoryWithValidation
 
 // 原始函数名：FUN_18089bd70 - 数据处理函数A6
 // 功能：处理数据操作
@@ -11946,12 +11946,12 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define AllocateSystemDataA0 FUN_1807703c0
 
 // 原始函数名：FUN_180907c80 - 内存资源释放函数A1
-// 功能：释放内存资源
-#define ReleaseMemoryResourceA1 ReleaseMemoryResourceFunction
+// 功能：释放内存资源并进行安全清理
+#define ReleaseMemoryResourceA1 ReleaseMemoryResourceWithCleanup
 
 // 原始函数名：FUN_180853000 - 内存边界验证函数
-// 功能：验证内存边界
-#define ValidateMemoryBoundary FUN_180853000
+// 功能：验证内存边界并进行安全检查
+#define ValidateMemoryBoundary ValidateMemoryBoundaryWithSecurityCheck
 
 // 原始函数名：FUN_180853001 - 数据字节验证函数
 // 功能：验证数据字节
@@ -46138,13 +46138,25 @@ void ExceptionRecoveryHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常恢复函数B2
  * 
- * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
- * 在异常上下文的0x148偏移处设置默认异常处理器B的指针
+ * 该函数负责执行异常恢复操作，在指定位置设置默认异常处理器B。
+ * 这是一个简化的异常恢复函数，专注于处理器的正确设置。
  * 
- * @param operationBase 异常上下文指针
- * @param dataBuffer 资源管理器指针
+ * 功能说明：
+ * 1. 在异常上下文的0x148偏移处设置默认异常处理器B的指针
+ * 2. 通过双重指针间接访问，确保处理器指针的正确设置
+ * 3. 为后续异常处理提供正确的处理器入口点
+ * 
+ * 设计考虑：
+ * - 使用双重指针访问确保内存安全性
+ * - 固定偏移量访问保证异常处理结构的一致性
+ * - 简化的操作流程提高异常恢复的可靠性
+ * 
+ * @param operationBase 异常上下文指针，包含异常处理的上下文信息
+ * @param dataBuffer 资源管理器指针，包含异常处理器的存储位置信息
  * 
  * @note 原始函数名：Unwind_180902460
+ * @warning 此函数涉及系统核心异常处理机制，确保偏移量的正确性
+ * @see SystemDefaultExceptionHandlerB, ExceptionRecoveryHandlerB1
  */
 void ExceptionRecoveryHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -46158,13 +46170,25 @@ void ExceptionRecoveryHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常恢复函数B3
  * 
- * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
- * 在异常上下文的0xd0偏移处设置默认异常处理器B的指针
+ * 该函数负责执行异常恢复操作，在栈帧上下文的指定位置设置默认异常处理器B。
+ * 这是一个专门用于栈帧上下文异常处理器设置的函数。
  * 
- * @param operationBase 异常上下文指针
- * @param dataBuffer 资源管理器指针
+ * 功能说明：
+ * 1. 在栈帧上下文的0xd0偏移处设置默认异常处理器B的指针
+ * 2. 使用uint8_t类型的双重指针确保处理器指针的正确类型转换
+ * 3. 为栈帧相关的异常处理提供正确的处理器入口点
+ * 
+ * 技术细节：
+ * - 操作位置：栈帧上下文的0xd0偏移处
+ * - 处理器类型：默认异常处理器B（SystemDefaultExceptionHandlerB）
+ * - 指针类型：uint8_t双重指针，支持字节级别的精确控制
+ * 
+ * @param operationBase 异常上下文指针，包含异常处理的上下文信息
+ * @param dataBuffer 资源管理器指针，指向栈帧上下文结构
  * 
  * @note 原始函数名：Unwind_180902470
+ * @warning 此函数专门用于栈帧上下文的异常处理器设置
+ * @see SystemDefaultExceptionHandlerB, StackFrameContextOffsetD0
  */
 void ExceptionRecoveryHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -46178,13 +46202,27 @@ void ExceptionRecoveryHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常恢复函数B4
  * 
- * 该函数负责执行异常恢复操作，处理系统异常状态
- * 检查并清理异常状态标志，调用相关的资源清理函数
+ * 该函数负责执行异常恢复操作，通过检查和清理异常状态标志来处理系统异常状态。
+ * 这是一个基于状态标志的异常恢复函数，实现了条件化的资源清理机制。
  * 
- * @param operationBase 异常上下文指针
- * @param dataBuffer 资源管理器指针
+ * 功能说明：
+ * 1. 检查异常上下文0x50偏移处的状态标志位（第0位）
+ * 2. 如果标志位被设置（值为1），则执行以下操作：
+ *   a. 清除该标志位（使用掩码0xfffffffe）
+ *   b. 调用资源清理函数处理0x30偏移处的资源
+ * 3. 如果标志位未被设置，则直接返回，不执行任何操作
+ * 
+ * 技术实现：
+ * - 状态检查：使用位操作检查特定标志位
+ * - 状态清理：使用位掩码清除特定标志位
+ * - 资源清理：调用CleanupResourceHandler进行资源释放
+ * 
+ * @param operationBase 异常上下文指针，包含异常处理的上下文信息
+ * @param dataBuffer 资源管理器指针，包含异常状态和资源信息
  * 
  * @note 原始函数名：Unwind_180902480
+ * @warning 此函数涉及系统核心异常处理机制，确保位操作的正确性
+ * @see CleanupResourceHandler, ExceptionHandlerContextOffset50
  */
 void ExceptionRecoveryHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -46201,13 +46239,26 @@ void ExceptionRecoveryHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 异常恢复函数B5
  * 
- * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
- * 在异常上下文的0x58偏移处设置默认异常处理器B的指针
+ * 该函数负责执行异常恢复操作，在异常资源的指定位置设置默认异常处理器B。
+ * 这是一个专门用于异常资源处理器设置的函数。
  * 
- * @param operationBase 异常上下文指针
- * @param dataBuffer 资源管理器指针
+ * 功能说明：
+ * 1. 在异常资源指针的0xa8偏移处设置默认异常处理器B的指针
+ * 2. 使用uint8_t类型的双重指针确保处理器指针的正确类型转换
+ * 3. 为异常资源相关的异常处理提供正确的处理器入口点
+ * 
+ * 技术细节：
+ * - 操作位置：异常资源指针的0xa8偏移处
+ * - 处理器类型：默认异常处理器B（SystemDefaultExceptionHandlerB）
+ * - 指针类型：uint8_t双重指针，支持字节级别的精确控制
+ * - 资源定位：通过ExceptionresourcePointerOffsetA8定位资源指针
+ * 
+ * @param operationBase 异常上下文指针，包含异常处理的上下文信息
+ * @param dataBuffer 资源管理器指针，指向异常资源结构
  * 
  * @note 原始函数名：Unwind_1809024b0
+ * @warning 此函数专门用于异常资源的异常处理器设置
+ * @see SystemDefaultExceptionHandlerB, ExceptionresourcePointerOffsetA8
  */
 void ExceptionRecoveryHandlerB5(DataBuffer operationBase,int64_t dataBuffer)
 
