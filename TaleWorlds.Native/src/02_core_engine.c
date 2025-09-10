@@ -2113,7 +2113,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * 
  * @note 原始函数名：FUN_18015c0a0
  */
-// 缺失的FUN_函数语义化宏定义
+
+// 系统内存管理相关FUN_函数语义化宏定义
 #define ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation FUN_1801676b0  // 处理UTF-8到UTF-16的字符编码转换和内存分配
 #define ProcessSystemConfigurationAndStringMatching FUN_18016cacd            // 处理系统配置和字符串匹配操作
 #define ProcessSystemCharacterEncodingAndMemoryManagement FUN_180170da0      // 处理系统字符编码和内存管理
@@ -67022,8 +67023,8 @@ void InitializeSystemStatusAndMemory(void
   void *ContextHandle;
   long long DataBufferPointer;
   uint32_t BufferProcessingFlags;
-  unsigned long long CoreEngineUnsignedValue318;
-  long long StackOffset310;
+  unsigned long long CoreEngineSystemValue;
+  long long StackMemoryOffset310;
   void *CharacterStatusBufferPointer308;
   void *LocalProcessingStatusFlag0;
   uint32_t SystemInitializationFlags;
