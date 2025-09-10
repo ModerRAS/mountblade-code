@@ -71831,7 +71831,7 @@ void* ProcessAudioSignal(void)
       audioSignal19 = audioCoefficientArray.PrimaryCoefficient;
       audioSignal21 = audioCoefficientArray.LowPart;
       audioSignal22 = audioCoefficientArray.SecondaryCoefficient;
-      audioSignal23 = audioCoefficientArray._12_4_;
+      audioSignal23 = audioCoefficientArray.TertiaryCoefficient;
       audioSignal30 = 0.0;
       audioSignal32 = 0.0;
       audioSignal33 = 0.0;
