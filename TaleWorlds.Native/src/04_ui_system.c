@@ -300011,69 +300011,84 @@ void FUN_180845cfc(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180845d20(UIHandle uiContext,UIDword *dataSource,ulonglong *targetBuffer)
-void FUN_180845d20(UIHandle uiContext,UIDword *dataSource,ulonglong *targetBuffer)
+ /**
+ * 处理UI数据验证和处理
+ * 
+ * 该函数负责处理UI系统中的数据验证和处理操作，包括：
+ * - 数据源验证和初始化
+ * - 缓冲区分配和管理
+ * - 数据加密处理
+ * - 上下文操作执行
+ * - 组件状态验证
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180845d20
+ */
+void ProcessUIDataValidationAndHandling(UIHandle uiContext,UIDword *dataSource,ulonglong *targetBuffer)
 
 {
-  UIDword result;
-  UIDword iterationCount;
-  UIDword eventCodeType;
-  int sourceDataInt;
-  int localValidationResult;
-  UIByte astackUInt188 [32];
-  UIByte *pstackUInt168;
-  longlong astackLong158 [2];
-  UIHandle *apstackUInt148 [2];
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIDword operationResult;
+  UIDword processingIterations;
+  UIDword eventType;
+  int dataProcessingStatus;
+  int validationResult;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong contextData [2];
+  UIHandle *componentHandleArray [2];
+  UIByte processingBuffer [256];
+  ulonglong encryptionKey;
   
-  stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt188;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if ((targetBuffer == (ulonglong *)0x0) || (*targetBuffer = 0, dataSource == (UIDword *)0x0)) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                      WARNING: Subroutine does not return
-      ExecuteUIRenderTask(stackUInt38 ^ (ulonglong)astackUInt188);
+      ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
     }
-    sourceDataInt = FUN_18074bc50(astackUInt138,0x100,dataSource);
-    localValidationResult = FUN_18074b880(astackUInt138 + sourceDataInt,0x100 - sourceDataInt,&UIBufferControlData);
-    CopyUIDataBuffer(astackUInt138 + (sourceDataInt + localValidationResult),0x100 - (sourceDataInt + localValidationResult),targetBuffer);
-    pstackUInt168 = astackUInt138;
+    dataProcessingStatus = FUN_18074bc50(processingBuffer,0x100,dataSource);
+    validationResult = FUN_18074b880(processingBuffer + dataProcessingStatus,0x100 - dataProcessingStatus,&UIBufferControlData);
+    CopyUIDataBuffer(processingBuffer + (dataProcessingStatus + validationResult),0x100 - (dataProcessingStatus + validationResult),targetBuffer);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(0x1f,0xb,uiContext,&UNK_180981d40);
   }
-  astackLong158[1] = 0;
-  sourceDataInt = func_0x00018088c590(uiContext,astackLong158);
-  if (sourceDataInt == 0) {
-    if ((*(uint *)(astackLong158[0] + 0x24) >> 1 & 1) == 0) goto LAB_180845d97;
-    localValidationResult = FUN_18088c740(astackLong158 + 1);
-    if (localValidationResult == 0) goto LAB_180845e35;
+  contextData[1] = 0;
+  dataProcessingStatus = func_0x00018088c590(uiContext,contextData);
+  if (dataProcessingStatus == 0) {
+    if ((*(uint *)(contextData[0] + 0x24) >> 1 & 1) == 0) goto ExitValidationHandling;
+    validationResult = FUN_18088c740(contextData + 1);
+    if (validationResult == 0) goto SetValidationResult;
   }
   else {
-LAB_180845e35:
-    localValidationResult = sourceDataInt;
+SetValidationResult:
+    validationResult = dataProcessingStatus;
   }
-  if ((localValidationResult == 0) &&
-     (sourceDataInt = FUN_18088dec0(*(UIHandle *)(astackLong158[0] + 0x98),apstackUInt148,0x28), sourceDataInt == 0))
+  if ((validationResult == 0) &&
+     (dataProcessingStatus = FUN_18088dec0(*(UIHandle *)(contextData[0] + 0x98),componentHandleArray,0x28), dataProcessingStatus == 0))
   {
-    *apstackUInt148[0] = &UNK_180981cd8;
-    *(UIDword *)(apstackUInt148[0] + 4) = 0;
-    *(UIDword *)(apstackUInt148[0] + 1) = 0x28;
-    result = dataSource[1];
-    iterationCount = dataSource[2];
-    eventCode = dataSource[3];
-    *(UIDword *)(apstackUInt148[0] + 2) = *dataSource;
-    *(UIDword *)((longlong)apstackUInt148[0] + 0x14) = result;
-    *(UIDword *)(apstackUInt148[0] + 3) = iterationCount;
-    *(UIDword *)((longlong)apstackUInt148[0] + 0x1c) = eventCodeType;
-    sourceDataInt = func_0x00018088e0d0(*(UIHandle *)(astackLong158[0] + 0x98),apstackUInt148[0]);
-    if (sourceDataInt == 0) {
-      *targetBuffer = (ulonglong)*(uint *)(apstackUInt148[0] + 4);
+    *componentHandleArray[0] = &UNK_180981cd8;
+    *(UIDword *)(componentHandleArray[0] + 4) = 0;
+    *(UIDword *)(componentHandleArray[0] + 1) = 0x28;
+    operationResult = dataSource[1];
+    processingIterations = dataSource[2];
+    eventType = dataSource[3];
+    *(UIDword *)(componentHandleArray[0] + 2) = *dataSource;
+    *(UIDword *)((longlong)componentHandleArray[0] + 0x14) = operationResult;
+    *(UIDword *)(componentHandleArray[0] + 3) = processingIterations;
+    *(UIDword *)((longlong)componentHandleArray[0] + 0x1c) = eventType;
+    dataProcessingStatus = func_0x00018088e0d0(*(UIHandle *)(contextData[0] + 0x98),componentHandleArray[0]);
+    if (dataProcessingStatus == 0) {
+      *targetBuffer = (ulonglong)*(uint *)(componentHandleArray[0] + 4);
                      WARNING: Subroutine does not return
-      FUN_18088c790(astackLong158 + 1);
+      FUN_18088c790(contextData + 1);
     }
   }
-LAB_180845d97:
+ExitValidationHandling:
                      WARNING: Subroutine does not return
-  FUN_18088c790(astackLong158 + 1);
+  FUN_18088c790(contextData + 1);
 }
 
 
@@ -300081,21 +300096,34 @@ LAB_180845d97:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
-void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
+ /**
+ * 处理UI组件状态和渲染数据
+ * 
+ * 该函数负责处理UI组件的状态管理和渲染数据处理，包括：
+ * - 组件状态查询和更新
+ * - 渲染数据对齐和大小计算
+ * - 数据缓冲区管理
+ * - 加密处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * 
+ * @note 原始函数名：FUN_180845ef0
+ */
+void ProcessUIComponentStateAndRenderingData(ulonglong uiContext,uint *dataSource)
 
 {
-  int processingResult;
-  longlong componentIndex;
-  uint *uiStatusPointer;
-  UIByte astackUInt168 [32];
-  UIByte *pstackUInt148;
-  UIHandle stackUInt138;
-  longlong RenderDataAlignment;
-  longlong RenderContextSize;
-  longlong stackLong120;
-  UIByte astackUInt118 [256];
-  ulonglong stackUInt18;
+  int operationStatus;
+  longlong componentIdentifier;
+  uint *statusPointer;
+  UIByte encryptionBuffer [32];
+  UIByte *dataBufferPointer;
+  UIHandle componentHandle;
+  longlong renderDataOffset;
+  longlong renderContextSize;
+  longlong contextBuffer;
+  UIByte processingBuffer [256];
+  ulonglong encryptionValue;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   if (dataSource == (uint *)0x0) {
