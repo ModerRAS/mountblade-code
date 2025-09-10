@@ -427,6 +427,10 @@
 // 内存异常检查偏移量常量
 #define MemoryExceptionCheckOffset 0xe                       // 内存异常检查偏移量
 
+// 位运算常量
+#define SignBitShift31 0x1f                                   // 符号位右移31位
+#define FloatInvalidTypeMask 0x1d                            // 浮点数无效类型掩码
+
 // 内存数据偏移量常量
 #define MemoryDataStartOffset 0x20                             // 内存数据起始偏移量
 #define SystemDataParameterOffset 0x20                         // 系统数据参数偏移量
@@ -26681,7 +26685,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   
   // 重置组件状态标志
   *(DataWord *)(componentContext + 1) = 0;
-  dataCounter = (dataCounter ^ (int)dataCounter >> 0x1f) - ((int)dataCounter >> 0x1f);
+  dataCounter = (dataCounter ^ (int)dataCounter >> SignBitShift31) - ((int)dataCounter >> SignBitShift31);
   
   // 检查数据计数器状态
   if ((int)dataCounter < 1) {
