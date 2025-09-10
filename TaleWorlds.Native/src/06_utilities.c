@@ -123855,7 +123855,20 @@ void ProcessSystemUnwindAndCleanupAtOffset260(DataBuffer operationBase, int64_t 
 
 
 
-void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统展开和清理操作（偏移量280）
+ * 
+ * 该函数处理系统在偏移量280处的展开和清理操作。它负责异常上下文的处理，
+ * 包括设置异常处理器、管理系统执行状态和清理资源。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911280
+ */
+void ProcessSystemUnwindAndCleanupAtOffset280(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
