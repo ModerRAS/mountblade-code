@@ -6133,7 +6133,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ac64
  */
-#define CleanupDataCacheResources FUN_18089ac64
+#define CleanupDataCacheResources CleanupDataCacheAndReleaseResources
 
 /**
  * @brief 重置数据缓存状态
@@ -6390,6 +6390,42 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 原始函数名：FUN_18089ffe0
  */
 #define CleanupDataCache FUN_18089ffe0
+
+/**
+ * @brief 执行基础数据验证
+ * 
+ * 该函数负责执行基础数据验证操作，确保数据的基本有效性
+ * 
+ * @note 原始函数名：FUN_18073b5f0
+ */
+#define ValidateBasicData FUN_18073b5f0
+
+/**
+ * @brief 执行清理操作验证
+ * 
+ * 该函数负责验证清理操作的有效性，确保清理操作正确执行
+ * 
+ * @note 原始函数名：FUN_18073b810
+ */
+#define ValidateCleanupOperation FUN_18073b810
+
+/**
+ * @brief 执行单个元素验证
+ * 
+ * 该函数负责验证单个数据元素的有效性
+ * 
+ * @note 原始函数名：FUN_1808678e0
+ */
+#define ValidateSingleElement FUN_1808678e0
+
+/**
+ * @brief 执行回调处理
+ * 
+ * 该函数负责执行实际的回调处理操作
+ * 
+ * @note 原始函数名：FUN_18006a050
+ */
+#define ExecuteCallbackProcessing FUN_18006a050
 
 // 异常处理函数宏定义 (U系列 - Unwind函数)
 
@@ -18693,7 +18729,7 @@ DataBuffer GetUtilityStatusError(void)
  * 
  * @return void 无返回值
  * 
- * @note 函数内部使用FUN_18073b5f0进行基础数据验证
+ * @note 函数内部使用ValidateBasicData进行基础数据验证
  * @note 使用ValidateDataAndReturnA0和ValidateDataAndReturnA1进行深度验证
  * @note 使用ProcessDataAndExecute执行最终的数据处理操作
  * 
@@ -18742,7 +18778,7 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
  * 
  * @return void 无返回值
  * 
- * @note 函数使用FUN_18073b810进行清理操作验证
+ * @note 函数使用ValidateCleanupOperation进行清理操作验证
  * @note 使用ExecuteCleanupOperation执行实际的清理工作
  * 
  * @warning 只有在验证通过后才会执行清理操作
@@ -18782,7 +18818,7 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
  *                    - 其他值: 验证失败的错误代码
  * 
  * @note 函数会遍历所有数据元素进行验证
- * @note 使用FUN_1808678e0进行单个元素的验证
+ * @note 使用ValidateSingleElement进行单个元素的验证
  * @note 使用全局常量SystemValidationBaseConstantA0和SystemValidationBaseConstantA1作为验证基准
  * 
  * @warning 如果数据元素数量为0，函数会直接返回0
