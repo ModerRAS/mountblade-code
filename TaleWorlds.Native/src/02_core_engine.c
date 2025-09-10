@@ -2332,6 +2332,12 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define AllocateSystemMemoryEx FUN_180193bc0                       // 分配系统内存扩展
 #define ProcessSystemKeyData FUN_180631000                         // 处理系统密钥数据
 #define GetSystemDataRegistry FUN_180085e10                       // 获取系统数据注册表
+#define GetSystemContextPointer FUN_18013f220                  // 获取系统上下文指针
+#define ProcessSystemEventHandling FUN_1801c2640                // 处理系统事件处理
+#define ProcessSystemCleanupOperations FUN_1801b8150          // 处理系统清理操作
+#define ProcessSystemMemoryOperations FUN_180197a20            // 处理系统内存操作
+#define ProcessSystemResourceManagement FUN_1802eeba0         // 处理系统资源管理
+#define ProcessSystemMemoryAllocation FUN_1803005b0           // 处理系统内存分配
 #define CalculateUnicodeCodePointEx FUN_1802d1460                  // 计算Unicode代码点扩展
 #define ProcessSystemStringTemplate FUN_180095000                 // 处理系统字符串模板
 #define ProcessSystemDataConversion FUN_1802e6b00                  // 处理系统数据转换
