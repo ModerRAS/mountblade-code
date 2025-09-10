@@ -221522,15 +221522,30 @@ void InitializeSystemMemoryAddressMaskAndBuffer(uint64_t ContextHandle, uint64_t
 
 
 
-80980(uint64_t ContextHandle,uint64_t OperationBufferSizevoid FUN_180180980(uint64_t ContextHandle,uint64_t OperationBufferSize
+/**
+ * @brief 处理系统内存分配和事件模板
+ * 
+ * 该函数负责处理系统内存分配、事件模板创建和缓冲区管理。
+ * 主要功能包括：
+ * - 分配主内存缓冲区和事件模板
+ * - 处理系统状态和缓冲区大小
+ * - 设置系统事件模板指针
+ * - 管理内存分配信息
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180180980
+ */
+void ProcessSystemMemoryAllocationAndEventTemplate(uint64_t ContextHandle, uint64_t OperationBufferSize)
 {
   uint32_t Utf16Char;
   void *SystemContext;
   uint64_t *SystemEventTemplatePointer;
-  void *pSystemPriorityLevel;
-  uint64_t *pFunctionAddress;
+  void *SystemPriorityLevelPointer;
+  uint64_t *FunctionAddressPointer;
   uint32_t ProcessingFlags;
-  uint64_t SystemStackOffset28;
+  uint64_t SystemValidationData;
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
   SystemEventTemplatePointer = PrimaryProcessingStatusFlag;
