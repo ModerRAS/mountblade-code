@@ -199884,6 +199884,20 @@ LAB_180161e6a:
 
 
 
+/**
+ * @brief 字符编码转换函数
+ * 
+ * 该函数负责处理字符编码转换操作，包括：
+ * - 字符串处理和编码转换
+ * - 内存分配和缓冲区管理
+ * - 系统上下文操作
+ * 
+ * @param ContextHandle 上下文句柄，用于系统上下文操作
+ * @param OperationBufferSize 操作缓冲区大小，用于数据操作
+ * 
+ * @note 此函数涉及复杂的字符编码处理和内存管理
+ * @note 用于系统字符串处理和编码转换
+ */
 void ConvertCharacterEncoding(long long ContextHandle,long long OperationBufferSize)
 {
   long long *ContextHandle;
@@ -200054,6 +200068,22 @@ LAB_180162130:
 
 
 
+/**
+ * @brief 多字节字符处理函数
+ * 
+ * 该函数负责处理多字节字符的转换和编码操作，包括：
+ * - UTF-8到UTF-16的字符转换
+ * - 多字节字符的处理和验证
+ * - 字符编码和内存管理
+ * 
+ * @param ContextHandle 上下文句柄，用于系统上下文操作
+ * @param OperationBufferSize 操作缓冲区大小，用于数据操作
+ * @param Utf8SourcePointer UTF-8源指针，指向源数据
+ * @param Utf16EndPointer UTF-16结束指针，标识数据结束位置
+ * 
+ * @note 此函数涉及复杂的多字节字符处理
+ * @note 用于系统字符编码转换和处理
+ */
 void ProcessMultiByteCharacter(long long ContextHandle,long long OperationBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
@@ -200111,7 +200141,7 @@ LAB_18016236a:
     SystemStackFlag = SystemStackFlag & 0xffffffff00000000;
     EncodingBuffer = &ThreadLocalStorageTemplate;
     if (*(int *)(ContextHandle + 0x20) == 0) {
-      CoreEngineProcessSystemEvent(&pCalculationFunctionAddress,StackProcessingVariable70 + 1);
+      CoreEngineProcessSystemEvent(&CalculationFunctionPointer,StackProcessingVariable70 + 1);
       *(uint8_t *)((unsigned long long)StackProcessingVariable70 + CoreEngineSignedValue78) = 0x2e;
       *(uint8_t *)((unsigned long long)(StackProcessingVariable70 + 1) + CoreEngineSignedValue78) = 0;
       StackProcessingVariable70 = StackProcessingVariable70 + 1;
@@ -200123,7 +200153,7 @@ LAB_18016236a:
     CoreEngineExecuteSystemEvent();
   }
   else {
-    ProcessSystemCharacterStatusBuffer(OperationBufferSize,&pCalculationFunctionAddress);
+    ProcessSystemCharacterStatusBuffer(OperationBufferSize,&CalculationFunctionPointer);
   }
 LAB_180162395:
   BufferStatus = *(long long *)(ContextHandle + 0x28);
