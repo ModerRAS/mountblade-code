@@ -98,6 +98,34 @@
 #define SystemProcessingStatusMultiplier 0x14                 // 系统处理状态乘数
 
 // 系统事件模板偏移量常量
+#define SystemEventTemplateOffset1 0x1b88                    // 系统事件模板偏移量1
+#define SystemEventTemplateOffset2 0x1b80                    // 系统事件模板偏移量2
+#define SystemEventTemplateMultiplier 0x14                    // 系统事件模板乘数
+
+// 系统内存和上下文偏移量常量
+#define SystemContextMemoryOffset 0x10                       // 系统上下文内存偏移量
+#define SystemContextSecondaryOffset 0xb8                     // 系统上下文辅助偏移量
+#define SystemContextExtendedOffset 0x1f8                     // 系统上下文扩展偏移量
+#define SystemMemoryAllocationOffset 0x540                   // 系统内存分配偏移量
+#define SystemContextCounterOffset 0x1dd0                     // 系统上下文计数器偏移量
+#define SystemContextSecondaryStatusOffset 0x1dd4            // 系统上下文辅助状态偏移量
+#define SystemContextExtendedDataOffset 0x1e00               // 系统上下文扩展数据偏移量
+#define SystemContextMemoryAddressOffset 0x1e08              // 系统上下文内存地址偏移量
+#define SystemContextProcessingCounterOffset 0x1e10          // 系统上下文处理计数器偏移量
+#define SystemContextProcessingStatusOffset 0x1e14           // 系统上下文处理状态偏移量
+#define SystemContextSecondaryBooleanFlagOffset 0x1e18       // 系统上下文辅助布尔标志偏移量
+#define SystemContextDataPointerOffset 0x1e20                // 系统上下文数据指针偏移量
+#define SystemContextOperationModeOffset 0x1e30              // 系统上下文操作模式偏移量
+#define SystemContextValidationOffset3 0x1e38                // 系统上下文验证偏移量3
+#define SystemContextBooleanFlagOffset 0x1e40                 // 系统上下文布尔标志偏移量
+
+// 系统事件和上下文偏移量常量
+#define SystemEventContextPrimaryOffset 0x890                 // 系统事件上下文主偏移量
+#define SystemEventContextSecondaryOffset 0x888               // 系统事件上下文辅助偏移量
+#define SystemEventContextShiftCount 5                       // 系统事件上下文位移计数
+
+// 系统数据表偏移量常量
+#define SystemDataTableMemoryOffset 0x7ab8                    // 系统数据表内存偏移量
 
 // 内存分配器偏移量常量
 #define MemoryAllocatorLibraryHandleOffset 0xb                // 内存分配器库句柄偏移量
