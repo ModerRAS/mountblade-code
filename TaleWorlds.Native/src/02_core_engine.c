@@ -224086,30 +224086,30 @@ void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *Con
   uint64_t MemoryAddressMaskPointer;
   uint8_t aSystemFlagB [32];
   uint32_t SystemFlagF;
-  long long *pSystemTemporaryValueD0;
-  uint64_t *SystemCharacterStatusBufferPointer;
-  uint8_t CoreEngineValueC0;
-  uint64_t MemoryOffsetValue;
-  long long *SystemContextPointerB0;
-  long long lStack_a8;
-  long long aStackLongValue [7];
-  long long *plStack_60;
-  uint64_t BufferOffset;
-  unsigned long long SystemStackFlag;
+  long long *SystemTemporaryValuePointer;
+  uint64_t *CharacterStatusBufferPointer;
+  uint8_t CoreEngineStatusByte;
+  uint64_t MemoryOffsetMask;
+  long long *SystemContextPointer;
+  long long MemoryBlockHandle;
+  long long StackValueArray [7];
+  long long *StackPointer60;
+  uint64_t DataBufferOffset;
+  unsigned long long SystemStackEncryptionFlag;
   
-  MemoryOffsetValue = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)aSystemFlagB;
-  SystemFlagF = 0;
-  SystemCharacterStatusBufferPointer = OperationBufferSize;
+  MemoryOffsetMask = 0xfffffffffffffffe;
+  SystemStackEncryptionFlag = EncodingDecodingKey ^ (unsigned long long)SystemFlagBuffer;
+  SystemProcessingFlag = 0;
+  CharacterStatusBufferPointer = OperationBufferSize;
   if (0xf < (unsigned long long)OperationBufferSize[3]) {
-    SystemCharacterStatusBufferPointer = (void *)*ContextHandleSize;
+    CharacterStatusBufferPointer = (void *)*ContextHandleSize;
   }
-  CoreEngineValueC0 = *(uint8_t *)(OperationBufferSize + 4);
-  SystemContextPointerB0 = Utf8SourcePointer;
+  CoreEngineStatusByte = *(uint8_t *)(OperationBufferSize + 4);
+  SystemContextPointer = Utf8SourcePointer;
   MemoryBlockIndex = AllocateSystemMemoryPool(0x48);
-  plStack_60 = (long long *)0x0;
+  StackPointer60 = (long long *)0x0;
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
-  lStack_a8 = MemoryBlockIndex;
+  MemoryBlockHandle = MemoryBlockIndex;
   if (CharacterStatusBuffer != NULL) {
     plStack_60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,aStackLongValue);
   }
