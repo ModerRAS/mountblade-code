@@ -17084,7 +17084,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleDataParam)
     moduleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (moduleInitializationStatus == 0) {
       stackMemoryContext = 0;
-      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleDataParam + MODULE_DATA_OFFSET_1),*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_DATA_OFFSET_3,
+      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleDataParam + MODULE_DATA_OFFSET_1),*(int64_t *)(temporarySystemStackContext + systemContextOffset) + MODULE_TERTIARY_DATA_OFFSET,
                             &stackMemoryContext);
       if (gameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(moduleDataContext);

@@ -6239,6 +6239,9 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemDataTemplate FUN_1800e7c40                   // 处理系统数据模板
 #define ProcessSystemDataTemplateInitialization FUN_1800e7d00     // 处理系统数据模板�化
 #define ProcessSystemStackData FUN_1800b87c0                     // 处理系统栈数据
+#define ProcessSystemMemoryBlockAllocation FUN_1800584e0         // 处理系统内存块分配
+#define ProcessSystemDataConversion FUN_180094c20                // 处理系统数据转换
+#define ProcessSystemMemoryPoolIndex FUN_1800e2bf0               // 处理系统内存池索引
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
