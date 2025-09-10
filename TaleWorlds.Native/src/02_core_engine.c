@@ -209286,22 +209286,22 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long ContextHandle)
     CoreEngineLoopCounter = *(uint32_t *)(ContextHandle + WindowOperationParam4Offset);
     StackParameter2 = *(uint32_t *)(ContextHandle + WindowOperationParam3Offset);
     InputDataLength = ClipCursor(&StackParameter1);
-    *(bool *)(ContextHandle + 0x30) = InputDataLength != 0;
+    *(bool *)(ContextHandle + WindowOperationParam1Offset) = InputDataLength != 0;
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 9:
-    MemoryPoolIndex = ProcessSystemMemoryAllocation(*(void *)(ContextHandle + 0x20),*(uint32_t *)(ContextHandle + 0x30));
-    *(uint8_t *)(*(long long )(ContextHandle + 0x20) + 0x168) = MemoryPoolIndex;
+    MemoryPoolIndex = ProcessSystemMemoryAllocation(*(void *)(ContextHandle + WindowOperationPrimaryContextOffset),*(uint32_t *)(ContextHandle + WindowOperationParam1Offset));
+    *(uint8_t *)(*(long long )(ContextHandle + WindowOperationPrimaryContextOffset) + 0x168) = MemoryPoolIndex;
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 10:
-    ProcessSystemWindowParameter(*(void *)(ContextHandle + 0x20),*(uint8_t *)(ContextHandle + 0x30),
-                  *(uint32_t *)(ContextHandle + 0x34));
+    ProcessSystemWindowParameter(*(void *)(ContextHandle + WindowOperationPrimaryContextOffset),*(uint8_t *)(ContextHandle + WindowOperationParam1Offset),
+                  *(uint32_t *)(ContextHandle + WindowOperationParam2Offset));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 0xb:
-    SystemDataRegistry = *(long long *)(ContextHandle + 0x20);
-    switch(*(uint32_t *)(ContextHandle + 0x30)) {
+    SystemDataRegistry = *(long long *)(ContextHandle + WindowOperationPrimaryContextOffset);
+    switch(*(uint32_t *)(ContextHandle + WindowOperationParam1Offset)) {
     case 1:
       CalculatedCodePoint = LoadCursorFromFileA();
       *(void *)(SystemDataRegistry + 0x40) = CalculatedCodePoint;
