@@ -1856,6 +1856,44 @@ typedef enum {
 #define SetupUIRenderContext FUN_18071ffc5
 #define ConfigureUIRenderPipeline FUN_1807201ce
 #define ValidateUIRenderResources FUN_18072081d
+
+// UI系统事件处理函数
+#define ProcessUIEventDispatch FUN_18072edd0
+#define ProcessUIEventBufferWithValidation FUN_18072f4d0
+#define ProcessUIEventSystemReset FUN_18072f60f
+#define ProcessUIEventSystemValidation FUN_18072f7ab
+#define ProcessUIEventSystemWithParameters FUN_18072f7ec
+#define ProcessUIEventSystemState FUN_18072f881
+#define ProcessUITextDataEncoding FUN_18072f890
+#define ProcessUIRenderSurface FUN_18072fba0
+#define ProcessUIRenderWithParameters FUN_180730040
+#define ProcessUIEventSystemExtended FUN_1807300e4
+#define ProcessUIRenderWithContext FUN_1807306f5
+#define ProcessUIRenderWithDimensions FUN_180730750
+#define ProcessUIInterfaceRenderingSystem FUN_180730e60
+#define ProcessUIRenderWithDwordBuffer FUN_1807319b0
+#define ProcessUIRenderWithShortBuffer FUN_1807326d0
+#define ProcessUINavigationSystemWithHandles FUN_180733080
+#define ProcessUINavigationSystemWithBuffer FUN_1807330b2
+#define ProcessUINavigationSystemWithShortSize FUN_18073319f
+#define ProcessUINavigationSystemWithContext FUN_1807332e3
+#define ProcessUIComponentDataProcessing FUN_180733a10
+#define ProcessUIComponentSystemReset FUN_180733b18
+#define ProcessUIComponentDataWithShortBuffer FUN_180733ba0
+#define ProcessUIComponentDataSource FUN_180733bc4
+#define ProcessUIComponentValidation FUN_180733cdf
+#define ProcessUIComponentWithIntDataSource FUN_180733d70
+#define ProcessUIResourceValidationWithData FUN_180734390
+#define ProcessUIComponentHandleValidation FUN_1807343b8
+#define ProcessUIComponentDataWithShortBufferAndValidation FUN_180734467
+#define ProcessUIResourceCalculation FUN_180734500
+#define ProcessUIComponentDataWithIntBuffer FUN_180734750
+#define ProcessUIComponentSystemCleanup FUN_180734778
+#define ProcessUIComponentMemoryRelease FUN_18073481b
+#define ProcessUIComponentDataWithWordBuffer FUN_180734830
+#define ProcessUIComponentDataWithUIntBuffer FUN_180734a30
+#define ProcessUIComponentHandleValidationWithBuffer FUN_180734dc1
+#define ProcessUIComponentSystemFinalize FUN_180734f59
 #define ProcessUIRenderBufferOperation FUN_180720e10
 #define CleanupUIRenderState FUN_1807213f0
 #define ResetUIRenderContext FUN_180721540
@@ -113225,7 +113263,31 @@ void FUN_18072f881(void)
 
 
  void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *bufferSize,int *resultPointer,
-void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *bufferSize,int *resultPointer,
+/**
+ * @brief UI文本数据编码处理
+ * 
+ * 该函数负责处理UI系统中的文本数据编码和转换。
+ * 主要功能：
+ * 1. 处理文本数据的编码转换
+ * 2. 执行字符串的格式化和验证
+ * 3. 处理文本缓冲区的读写操作
+ * 4. 支持多种字符编码格式
+ * 
+ * @param uiContext UI上下文指针，包含文本处理的状态信息
+ * @param dataSource 数据源指针，包含待处理的文本数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，动态调整缓冲区大小
+ * @param resultPointer 结果指针，返回处理结果的状态信息
+ * @param param_6 附加参数6，用于扩展功能
+ * @param param_7 附加参数7，用于扩展功能
+ * @param param_8 附加参数8，用于扩展功能
+ * @param param_9 附加参数9，用于扩展功能
+ * 
+ * @note 原始函数名：FUN_18072f890
+ * @warning 该函数涉及复杂的文本编码处理，需要注意字符集兼容性
+ * @see ProcessUICharacterEncoding, ProcessUIEventData
+ */
+void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuffer,int *bufferSize,int *resultPointer,
                   longlong param_6,longlong param_7,UIDword param_8,uint param_9)
 
 {

@@ -218,6 +218,24 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define GetAllocatedMemorySizeInfo FUN_18005c2a0
 
 /**
+ * @brief Unicode字符处理函数
+ * 
+ * 处理Unicode字符代码点，进行字符编码转换和处理
+ * 
+ * @note 原始函数名：FUN_180045f60
+ */
+#define ProcessUnicodeCharacter FUN_180045f60
+
+/**
+ * @brief 系统状态处理函数
+ * 
+ * 处理系统状态标志和内存池块大小指针
+ * 
+ * @note 原始函数名：FUN_180058830
+ */
+#define ProcessSystemStatus FUN_180058830
+
+/**
  * @brief 获取整数值指针
  * 
  * 获取指定整数值的指针，用于数据的间接访问
@@ -258393,14 +258411,30 @@ void ProcessContextHandleAndUtf8BufferTraversal(uint ContextHandle,int Operation
 
 
 
-long long FUN_18020dd10(long long *ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer
+/**
+ * @brief 处理系统上下文和UTF8源数据操作
+ * 
+ * 该函数负责处理系统上下文和UTF8源数据的各种操作，包括：
+ * - 处理不同类型的UTF8源数据请求
+ * - 管理系统事件模板和内存池分配
+ * - 执行系统事件处理和上下文管理
+ * - 处理字符状态缓冲区和内存索引
+ * 
+ * @param ContextHandle 系统上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF8源数据指针，用于指定操作类型
+ * @return long long 操作结果，根据操作类型返回不同的值
+ * 
+ * @note 原始函数名：FUN_18020dd10
+ */
+long long ProcessSystemContextAndUtf8SourceOperations(long long *ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryPoolIndex;
   uint64_t *SystemEventTemplatePointer;
   
   if (Utf8SourcePointer == 3) {
-    return 0x180c038d0;
+    return SystemCharacterStatusBaseAddress;
   }
   if (Utf8SourcePointer == 4) {
     return *ContextHandle;
@@ -258413,22 +258447,22 @@ long long FUN_18020dd10(long long *ContextHandle,long long *ContextHandleSize,in
   }
   else {
     if (Utf8SourcePointer == 1) {
-      SystemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags,0xfffffffffffffffe);
+      SystemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,SystemEventTemplateSize,MemoryAlignmentSize,MemoryAllocationFlags,MemoryAllocationMask);
       CharacterStatusBuffer = (void *)*ContextHandleSize;
       MemoryPoolIndex = CharacterStatusBuffer[1];
       *SystemEventTemplatePointer = *CharacterStatusBuffer;
       SystemEventTemplatePointer[1] = MemoryPoolIndex;
       SystemEventTemplatePointer[2] = CharacterStatusBuffer[2];
       *ContextHandle = (long long)SystemEventTemplatePointer;
-      return 0;
+      return SystemOperationSuccess;
     }
     if (Utf8SourcePointer == 2) {
       *ContextHandle = *ContextHandleSize;
       *ContextHandleSize = 0;
-      return 0;
+      return SystemOperationSuccess;
     }
   }
-  return 0;
+  return SystemOperationSuccess;
 }
 
 
