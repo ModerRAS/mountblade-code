@@ -4897,7 +4897,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 上下文验证失败可能导致系统行为异常
  * @see ValidateSystemParametersAndConfiguration, ProcessSystemDataA0
  */
-#define ValidateSystemContextA0 FUN_180090b80
+#define ValidateSystemContextA0 ValidateSystemContextA0
 
 /**
  * @brief 数据数组处理函数A0
@@ -120044,6 +120044,9 @@ void ResetExceptionHandlersAndSystemStateGroupSix(DataBuffer operationBase, int6
 }
 
 
+
+// 原始函数名：Unwind_180910aa0 - 异常处理器重置函数aa0
+#define ResetExceptionHandlersAndSystemStateGroupSix Unwind_180910aa0
 
 // 原始函数名：Unwind_180910ac0 - 异常处理器重置函数ac0
 #define ResetExceptionHandlersAtOffsetAc0 Unwind_180910ac0
