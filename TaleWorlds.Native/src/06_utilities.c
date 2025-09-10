@@ -132451,7 +132451,7 @@ void CleanupThreadMutex(void)
 
 // 函数: void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 // 功能：处理工具系统数据，执行数据操作和清理
-// 参数：systemHandle-系统句柄，dataPointer-数据指针，operationType-操作类型，flags-标志位
+// 参数：systemHandle - 系统句柄，dataPointer - 数据指针，operationType - 操作类型，flags - 标志位
 // 返回值：无
 void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 
