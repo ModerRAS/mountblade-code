@@ -209047,6 +209047,22 @@ void ProcessReferenceCountAndSystemContextManagement(long long ContextHandle)
 
 
 
+// 字符编码状态和窗口管理常量
+#define WindowManagementContextOffset 0xc0                   // 窗口管理上下文偏移量
+#define WindowHandleOffset 0x8                               // 窗口句柄偏移量
+#define CharacterStateIndexOffset 0x13c                      // 字符状态索引偏移量
+#define CharacterStatusBufferPrimaryOffset 0xac               // 字符状态缓冲区主偏移量
+#define CharacterStatusBufferSecondaryOffset 0xbc             // 字符状态缓冲区次偏移量
+#define CharacterStatusBufferTertiaryOffset 0xcc             // 字符状态缓冲区第三偏移量
+#define CharacterStatusBufferQuaternaryOffset 0xdc            // 字符状态缓冲区第四偏移量
+#define CharacterStatusBufferFinalOffset 0xec                 // 字符状态缓冲区最终偏移量
+#define CharacterStatusEntrySize 0x48                        // 字符状态条目大小
+#define CharacterStatusFlagMask 0x1                          // 字符状态标志掩码
+
+// 窗口操作模式常量
+#define WindowOperationShowMode 0x5                          // 窗口显示模式
+#define WindowOperationHideMode 0x0                          // 窗口隐藏模式
+
 /**
  * @brief 处理字符编码状态和窗口管理
  * 
@@ -209084,8 +209100,8 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long ContextHandle)
   unsigned long long EncodedOperationKey;             // 编码操作密钥
   
   ProcessingFlags = 0x180170e65;
-  ProcessSystemWindowAndUIInitialization(*(void *)(ContextHandle + 0xc0));
-  MemoryBlockIndex = *(long long *)(ContextHandle + 0xc0);
+  ProcessSystemWindowAndUIInitialization(*(void *)(ContextHandle + WindowManagementContextOffset));
+  MemoryBlockIndex = *(long long *)(ContextHandle + WindowManagementContextOffset);
   EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   WindowPositionX = 0;
   WindowPositionY = 0;
@@ -209099,10 +209115,10 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long ContextHandle)
   SystemPriorityLevel = 0;
   FunctionAddress = 0;
   SystemDataRegistry = GetFocus();
-  WindowWidth = CONCAT31(WindowWidth._1_3_,*(long long *)(MemoryBlockIndex + 8) == SystemDataRegistry);
+  WindowWidth = CONCAT31(WindowWidth._1_3_,*(long long *)(MemoryBlockIndex + WindowHandleOffset) == SystemDataRegistry);
   SystemDataRegistry = WindowFromPoint(CONCAT44(WindowHeight,ScreenCoordinateX));
-  ScreenCoordinateY = CONCAT31(ScreenCoordinateY._1_3_,SystemDataRegistry == *(long long *)(MemoryBlockIndex + 8));
-  GetWindowRect(*(long long *)(MemoryBlockIndex + 8),&BufferOffset);
+  ScreenCoordinateY = CONCAT31(ScreenCoordinateY._1_3_,SystemDataRegistry == *(long long *)(MemoryBlockIndex + WindowHandleOffset));
+  GetWindowRect(*(long long *)(MemoryBlockIndex + WindowHandleOffset),&BufferOffset);
   SystemDataRegistry = GetConsoleWindow();
   if (SystemDataRegistry != 0) {
     GetWindowRect(SystemDataRegistry,&SystemStackFlag);
@@ -209111,28 +209127,28 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long ContextHandle)
   StackParameter2 = WindowPositionX.HighPart;
   ProcessingCounter = (uint32_t)WindowPositionY;
   StackParameter4 = WindowPositionY.HighPart;
-  MapWindowPoints(*(void *)(MemoryBlockIndex + 8),0,&StackParameter1,2);
+  MapWindowPoints(*(void *)(MemoryBlockIndex + WindowHandleOffset),0,&StackParameter1,2);
   FunctionAddress = CONCAT44(StackParameter2,StackParameter1);
-  GetClientRect(*(void *)(MemoryBlockIndex + 8),&WindowPositionX);
+  GetClientRect(*(void *)(MemoryBlockIndex + WindowHandleOffset),&WindowPositionX);
   GetCursorPos(&ScreenCoordinateX);
-  CalculatedCodePoint = (unsigned long long)(*(int *)(MemoryBlockIndex + 0x13c) - 1U & 1);
-  CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xac + CalculatedCodePoint * 0x48);
+  CalculatedCodePoint = (unsigned long long)(*(int *)(MemoryBlockIndex + CharacterStateIndexOffset) - 1U & CharacterStatusFlagMask);
+  CharacterStatusBuffer = (void *)(MemoryBlockIndex + CharacterStatusBufferPrimaryOffset + CalculatedCodePoint * CharacterStatusEntrySize);
   *CharacterStatusBuffer = WindowPositionX;
   CharacterStatusBuffer[1] = WindowPositionY;
-  CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xbc + CalculatedCodePoint * 0x48);
+  CharacterStatusBuffer = (void *)(MemoryBlockIndex + CharacterStatusBufferSecondaryOffset + CalculatedCodePoint * CharacterStatusEntrySize);
   *CharacterStatusBuffer = CONCAT44(ScreenCoordinateX,WindowWidth);
   CharacterStatusBuffer[1] = CONCAT44(ScreenCoordinateY,WindowHeight);
-  CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xcc + CalculatedCodePoint * 0x48);
+  CharacterStatusBuffer = (void *)(MemoryBlockIndex + CharacterStatusBufferTertiaryOffset + CalculatedCodePoint * CharacterStatusEntrySize);
   *CharacterStatusBuffer = BufferOffset;
   CharacterStatusBuffer[1] = SystemKeyPointer;
-  PrimaryProcessingStatusFlag = (uint32_t *)(MemoryBlockIndex + 0xdc + CalculatedCodePoint * 0x48);
+  PrimaryProcessingStatusFlag = (uint32_t *)(MemoryBlockIndex + CharacterStatusBufferQuaternaryOffset + CalculatedCodePoint * CharacterStatusEntrySize);
   *PrimaryProcessingStatusFlag = (uint32_t)SystemStackFlag;
   PrimaryProcessingStatusFlag[1] = SystemStackFlag.HighPart;
   PrimaryProcessingStatusFlag[2] = (uint32_t)SystemPriorityLevel;
   PrimaryProcessingStatusFlag[3] = SystemPriorityLevel.HighPart;
-  *(void *)(MemoryBlockIndex + 0xec + CalculatedCodePoint * 0x48) = FunctionAddress;
+  *(void *)(MemoryBlockIndex + CharacterStatusBufferFinalOffset + CalculatedCodePoint * CharacterStatusEntrySize) = FunctionAddress;
   LOCK();
-  *(int *)(MemoryBlockIndex + 0x13c) = *(int *)(MemoryBlockIndex + 0x13c) + 1;
+  *(int *)(MemoryBlockIndex + CharacterStateIndexOffset) = *(int *)(MemoryBlockIndex + CharacterStateIndexOffset) + 1;
   UNLOCK();
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemOperationBuffer);
@@ -209141,6 +209157,18 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long ContextHandle)
 
 
 
+
+// 字符编码状态和窗口操作常量
+#define WindowOperationModeOffset 0x28                       // 窗口操作模式偏移量
+#define WindowOperationPrimaryContextOffset 0x20            // 窗口操作主上下文偏移量
+#define WindowOperationSecondaryContextOffset 0x30           // 窗口操作次上下文偏移量
+#define WindowOperationSecondaryDataOffset 0x148            // 窗口操作次数据偏移量
+
+// 窗口操作模式枚举
+#define WindowOperationModePrimary 0                         // 主要窗口操作模式
+#define WindowOperationModeSecondary 1                       // 次要窗口操作模式
+#define WindowOperationModeShow 2                            // 显示窗口操作模式
+#define WindowOperationModeHide 3                            // 隐藏窗口操作模式
 
 /**
  * @brief 处理字符编码状态和窗口操作
@@ -209171,21 +209199,21 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long ContextHandle)
   unsigned long long EncodedOperationKey;               // 编码操作密钥
   
   EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemValidationBuffer;
-  switch(*(uint32_t *)(ContextHandle + 0x28)) {
-  case 0:
-    ProcessSystemWindowOperation(*(void *)(ContextHandle + 0x20),*(void *)(ContextHandle + 0x30));
+  switch(*(uint32_t *)(ContextHandle + WindowOperationModeOffset)) {
+  case WindowOperationModePrimary:
+    ProcessSystemWindowOperation(*(void *)(ContextHandle + WindowOperationPrimaryContextOffset),*(void *)(ContextHandle + WindowOperationSecondaryContextOffset));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 1:
-    ProcessSystemWindowSecondaryOperation(*(long long *)(ContextHandle + 0x20),*(long long *)(ContextHandle + 0x20) + 0x148);
+  case WindowOperationModeSecondary:
+    ProcessSystemWindowSecondaryOperation(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset),*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowOperationSecondaryDataOffset);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 2:
-    ShowWindow(*(void *)(*(long long *)(ContextHandle + 0x20) + 8),5);
+  case WindowOperationModeShow:
+    ShowWindow(*(void *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset),WindowOperationShowMode);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
-  case 3:
-    ShowWindow(*(void *)(*(long long *)(ContextHandle + 0x20) + 8),0);
+  case WindowOperationModeHide:
+    ShowWindow(*(void *)(*(long long *)(ContextHandle + WindowOperationPrimaryContextOffset) + WindowHandleOffset),WindowOperationHideMode);
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 4:
