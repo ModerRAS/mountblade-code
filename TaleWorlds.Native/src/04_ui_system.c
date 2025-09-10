@@ -1868,7 +1868,15 @@ typedef enum {
 #define ProcessUIComponent func_0x0001807673f0
 
 // UI系统函数宏定义 - 数据处理和验证
-#define func_0x000180705150 ProcessUIXOROperation              // 处理UI异或操作
+#define func_0x00018005d390 FreeUIMemoryAllocation                // 释放UI内存分配
+#define func_0x00018066c060 CompareUIStringsWithPrefix           // 比较带前缀的UI字符串
+#define func_0x00018066c000 CompareUIStringsWithComponent        // 比较UI组件字符串
+#define func_0x00018004b9a0 GetUIGlobalSystemPointer              // 获取UI全局系统指针
+#define func_0x00018069c2d0 InitializeUIRenderingSystem           // 初始化UI渲染系统
+#define func_0x00018066ecc0 ProcessUIDataConversion               // 处理UI数据转换
+#define func_0x00018069d1c0 CleanupUIDataSource                   // 清理UI数据源
+#define func_0x00018069ba40 ProcessUIContextValidation            // 处理UI上下文验证
+#define func_0x000180705150 ProcessUIXOROperation                  // 处理UI异或操作
 #define func_0x00018071c070 ProcessUIDataSourceCount            // 处理UI数据源计数
 #define func_0x00018070f7d0 ProcessUIDataSourceWithLimit        // 处理带限制的UI数据源
 #define func_0x00018070f790 ProcessUIComponentIndexData         // 处理UI组件索引数据
