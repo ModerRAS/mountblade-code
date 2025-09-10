@@ -80077,7 +80077,7 @@ void ExecuteSystemValidationAndCleanupA0(DataBuffer exceptionContext, int64_t st
 {
   int64_t *exceptionContextPointer;
   
-  if (*(int64_t *)(stackFrame + 0x70) != 0) {
+  if (*(int64_t *)(stackFrame + SystemManagementOffset70) != 0) {
     ExecuteSystemValidationRoutine();
   }
   ProcessSystemDataBuffer(stackFrame + ResourceManagementOffset80);
