@@ -16668,8 +16668,9 @@ DataBuffer ConditionalResourceRelease(char releaseFlag)
  * 
  * @note 此函数通常用于系统初始化阶段的占位符
  * @warning 不要删除此函数，它可能被系统其他部分引用
+ * @note 原始函数名：SystemPrimaryNoOperation
  */
-void SystemPrimaryNoOperation(void)
+void PerformSystemPrimaryNoOperation(void)
 
 {
   return;
@@ -16934,7 +16935,20 @@ DataWord GetSystemStatus(void)
  * @since 系统版本 1.0
  * @security_level 高
  */
-void EmergencyShutdown(void)
+/**
+ * @brief 紧急关闭系统
+ * 
+ * 该函数负责在紧急情况下关闭系统，释放所有资源。
+ * 这是一个关键的系统安全函数，确保在异常情况下能够安全地关闭系统。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于处理系统异常情况，确保资源被正确释放
+ * @warning 此函数应该在系统出现严重错误时调用
+ * @security_level 高
+ * @note 原始函数名：EmergencyShutdown
+ */
+void PerformEmergencyShutdown(void)
 
 {
     ReleaseResource();
@@ -16953,8 +16967,9 @@ void EmergencyShutdown(void)
  * 
  * @note 此函数主要用于系统初始化过程中的占位
  * @warning 调用此函数不会产生任何效果
+ * @note 原始函数名：PerformNoOperation
  */
-void PerformNoOperation(void)
+void ExecuteSystemNoOperation(void)
 
 {
   return;
