@@ -399031,16 +399031,16 @@ UIHandle * FUN_18089c22e(void)
       if ((int)renderDataPointer != 0) {
         return renderDataPointer;
       }
-      renderDataPointer = (UIHandle *)FUN_1808aed00(result,basePointer + -0x15,2);
+      renderDataPointer = (UIHandle *)FUN_1808aed00(result,uiContextBasePointer + -0x15,2);
       if ((int)renderDataPointer != 0) {
         return renderDataPointer;
       }
-      renderDataPointer = (UIHandle *)FUN_1808aed00(result,basePointer + -0x13,2);
+      renderDataPointer = (UIHandle *)FUN_1808aed00(result,uiContextBasePointer + -0x13,2);
       if ((int)renderDataPointer != 0) {
         return renderDataPointer;
       }
-      renderDataPointer = (UIHandle *)FUN_1808aed00(result,basePointer + -0x11,8);
-      iterationCount0 = extraout_XMM0_Da;
+      renderDataPointer = (UIHandle *)FUN_1808aed00(result,uiContextBasePointer + -0x11,8);
+      iterationCounter = extraout_XMM0_Da;
     }
     else {
       renderDataPointer = (UIHandle *)0x1c;
@@ -399049,8 +399049,8 @@ UIHandle * FUN_18089c22e(void)
   if ((int)renderDataPointer != 0) {
     return renderDataPointer;
   }
-  if (0x81 < *(uint *)(TargetHandle + 8)) {
-    componentHandle = (UIHandle *)FUN_1808a79f0(iterationCount0,componentData + 0x58);
+  if (0x81 < *(uint *)(uiTargetHandle + 8)) {
+    componentHandle = (UIHandle *)FUN_1808a79f0(iterationCounter,uiComponentData + 0x58);
     transformCoeff11 = extraout_XMM0_Da_00;
     if ((int)componentHandle != 0) {
       return componentHandle;
