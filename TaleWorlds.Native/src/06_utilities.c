@@ -498,6 +498,7 @@
 #define SystemDataParameterOffsetPrimary 0x20
 #define ValidationResultOffset0 0x0
 #define MemoryPointerOffset0 0x0
+#define MemoryPointerOffset8 0x8
 #define ResourceManagementOffset1D8 0x1d8
 
 // 对象和资源管理偏移量常量

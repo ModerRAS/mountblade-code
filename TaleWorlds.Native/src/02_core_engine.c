@@ -225757,6 +225757,23 @@ void ProcessCharacterTablePointerAndMemoryRelease(long long *ContextHandle,uint6
 
 // 函数: void FUN_180187aa0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
+ * @brief 处理上下文句柄和数据缓冲区管理操作
+ * 
+ * 该函数负责处理上下文句柄、操作缓冲区大小和数据缓冲区管理操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存管理
+ * - 管理数据缓冲区的分配和释放
+ * - 验证数据缓冲区的有效性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187aa0
+ */
+#define ProcessContextHandleAndDataBufferManagement FUN_180187aa0
+/**
  * @brief 处理字符代码和Unicode码点计算
  * 
  * 该函数负责处理字符代码和Unicode码点计算，主要功能包括：
@@ -225801,6 +225818,23 @@ void ProcessContextHandleAndUnicodeCalculation(long long *ContextHandle,uint64_t
 
 
 // 函数: void FUN_180187b40(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理上下文句柄和系统缓冲区操作
+ * 
+ * 该函数负责处理上下文句柄、操作缓冲区大小和系统缓冲区操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存管理
+ * - 管理系统缓冲区的分配和释放
+ * - 验证数据缓冲区的有效性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187b40
+ */
+#define ProcessContextHandleAndSystemBufferOperations FUN_180187b40
 /**
  * @brief 处理字符表和Unicode码点的高级计算
  * 
