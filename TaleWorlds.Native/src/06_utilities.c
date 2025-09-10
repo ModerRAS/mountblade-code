@@ -5152,6 +5152,20 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define FUN_180089640 HandleSystemCleanupOperations
 #define FUN_1800ba100 ProcessSystemConfigurationUpdate
 
+// 工具系统函数宏定义
+#define ConfigureUtilitySystemBufferC FUN_180942930
+#define ProcessUtilitySystemData FUN_180942a20
+#define ValidateUtilitySystemData FUN_1809429f0
+#define ConfigureUtilitySystemCallbacks FUN_180942a60
+#define SetupUtilitySystemConfiguration FUN_180942a80
+#define InitializeUtilitySystemResourceA FUN_180942fa0
+#define ConfigureUtilitySystemSecurityA FUN_180942fc0
+#define DestroyMutexC FUN_180943070
+#define InitializeThreadLocalStorageA5 FUN_180943140
+#define InitializeThreadLocalStorageA6 FUN_180943160
+#define InitializeThreadLocalStorageA7 FUN_180943180
+#define InitializeThreadLocalStorageA8 FUN_1809431a0
+
 // 系统验证函数 - 验证系统的各个方面
 #define ValidateSystemComponentsAndState ValidateSystemComponentsAndState
 
@@ -9509,19 +9523,19 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180899040 - 数据验证处理函数A0
 // 功能：验证并处理数据，包含多个验证阶段
-#define ValidateAndProcessDataA0 FUN_180899040
+#define ValidateAndProcessDataA0 ProcessMultiStageDataValidation
 
 // 原始函数名：FUN_180899090 - 数据处理函数A1
 // 功能：处理数据块，支持多种数据格式
-#define ProcessDataBlocksA1 FUN_180899090
+#define ProcessDataBlocksA1 ProcessMultiFormatDataBlocks
 
 // 原始函数名：FUN_180899100 - 数据验证函数A1
 // 功能：验证数据并执行相应的操作
-#define ValidateAndExecuteOperationsA1 FUN_180899100
+#define ValidateAndExecuteOperationsA1 ValidateDataAndExecuteOperations
 
 // 原始函数名：FUN_180942380 - 全局指针设置函数A32
 // 功能：设置全局数据指针A32到指定地址
-#define SetGlobalDataPointerA32 FUN_180942380
+#define SetGlobalDataPointerA32 ConfigureGlobalDataPointerAtOffset32
 
 // 新增的偏移量宏定义
 #define MemoryResourceOffset48 0x48                    // 内存资源偏移量48
@@ -9539,15 +9553,15 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_1809423a0 - 全局指针设置函数A33
 // 功能：设置全局数据指针A33到指定地址
-#define SetGlobalDataPointerA33 FUN_1809423a0
+#define SetGlobalDataPointerA33 ConfigureGlobalDataPointerAtOffset33
 
 // 原始函数名：FUN_1809423c0 - 全局指针设置函数A34
 // 功能：设置全局数据指针A34到指定地址
-#define SetGlobalDataPointerA34 FUN_1809423c0
+#define SetGlobalDataPointerA34 ConfigureGlobalDataPointerAtOffset34
 
 // 原始函数名：FUN_1809423e0 - 全局指针设置函数A35
 // 功能：设置全局数据指针A35到指定地址
-#define SetGlobalDataPointerA35 FUN_1809423e0
+#define SetGlobalDataPointerA35 ConfigureGlobalDataPointerAtOffset35
 
 // 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
@@ -9704,32 +9718,32 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 // 原始函数名：FUN_180942460 - 数据压缩函数A1
 // 功能：压缩数据并返回压缩结果
-#define CompressDataAndReturnResult FUN_180942460
+#define CompressDataAndReturnResult ProcessDataCompression
 
 // 原始函数名：FUN_180942480 - 数据解压缩函数A1
 // 功能：解压缩数据并返回解压缩结果
-#define DecompressDataAndReturnResult FUN_180942480
+#define DecompressDataAndReturnResult ProcessDataDecompression
 
 // 原始函数名：FUN_1809424a0 - 数据加密函数A1
 // 功能：加密数据并返回加密结果
-#define EncryptDataAndReturnResult FUN_1809424a0
+#define EncryptDataAndReturnResult ProcessDataEncryption
 
 // 系统配置函数B系列语义化宏定义
 // 原始函数名：FUN_180941820 - 系统配置加载函数B1
 // 功能：加载系统配置B1并返回加载结果
-#define LoadSystemConfigurationB1 FUN_180941820
+#define LoadSystemConfigurationB1 LoadSystemConfigurationAndSettings
 
 // 原始函数名：FUN_180941840 - 系统配置验证函数B2
 // 功能：验证系统配置B2并返回验证结果
-#define ValidateSystemConfigurationB2 FUN_180941840
+#define ValidateSystemConfigurationB2 ValidateSystemConfigurationAndSettings
 
 // 原始函数名：FUN_180941860 - 系统配置保存函数B3
 // 功能：保存系统配置B3并返回保存结果
-#define SaveSystemConfigurationB3 FUN_180941860
+#define SaveSystemConfigurationB3 SaveSystemConfigurationAndSettings
 
 // 原始函数名：FUN_180941880 - 系统配置重置函数B4
 // 功能：重置系统配置B4并返回重置结果
-#define ResetSystemConfigurationB4 FUN_180941880
+#define ResetSystemConfigurationB4 ResetSystemConfigurationAndSettings
 
 // 原始函数名：FUN_1809418a0 - 系统状态监控函数B5
 // 功能：监控系统状态并返回监控结果
