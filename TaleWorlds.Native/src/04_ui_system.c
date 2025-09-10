@@ -342,6 +342,7 @@ typedef enum {
 #define GetUIWordDataPointer FUN_1807238f3                  // 获取UI字数据指针
 #define CalculateUIComponentSimilarityScore FUN_18072390f     // 计算UI组件相似度加权得分
 #define ProcessUIIntegerDataCalculation FUN_180723b20        // 处理UI整数数据计算
+#define ExecuteUIResourceCleanupAndRender FUN_1807395df        // 执行UI资源清理和渲染
 #define ProcessUIIntegerParameterValidation FUN_180723b34    // 处理UI整数参数验证
 #define ProcessUIFloatDataTransfer FUN_180724090             // 处理UI浮点数据传输
 #define ExecuteUIBufferDataOperation FUN_18072f4d0       // 执行UI缓冲区数据操作
@@ -118824,8 +118825,14 @@ void FUN_18073619d(UIHandle uiContext,uint dataSource,ulonglong targetBuffer)
 
 
 
- void FUN_1807362fc(void)
-void FUN_1807362fc(void)
+ /**
+ * @brief 重置UI组件状态
+ * 
+ * 重置UI组件的状态到初始值，清除所有临时状态和数据
+ * 
+ * @note 这是一个空函数实现，可能用于占位或未来扩展
+ */
+void ResetUIComponentState(void)
 
 {
   return;
@@ -119049,8 +119056,14 @@ void FUN_1807369a3(longlong uiContext,UIHandle dataSource,UIDword targetBuffer,i
 
 
 
- void FUN_180736a0e(void)
-void FUN_180736a0e(void)
+ /**
+ * @brief 初始化UI渲染缓冲区
+ * 
+ * 初始化UI系统所需的渲染缓冲区，为后续的UI渲染操作做准备
+ * 
+ * @note 这是一个空函数实现，可能用于占位或未来扩展
+ */
+void InitializeUIRenderingBuffer(void)
 
 {
   return;

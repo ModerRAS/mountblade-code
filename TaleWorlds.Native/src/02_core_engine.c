@@ -6242,6 +6242,13 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemMemoryBlockAllocation FUN_1800584e0         // 处理系统内存块分配
 #define ProcessSystemDataConversion FUN_180094c20                // 处理系统数据转换
 #define ProcessSystemMemoryPoolIndex FUN_1800e2bf0               // 处理系统内存池索引
+#define ProcessSystemContextData FUN_1800b88d0                  // 处理系统上下文数据
+#define ProcessSystemTimeout FUN_18005e250                      // 处理系统超时
+#define ProcessSystemMemoryManager FUN_1800be440                // 处理系统内存管理器
+#define ProcessSystemContextHandle FUN_1800496b0                // 处理系统上下文句柄
+#define ProcessSystemDataManager FUN_1800b8500                  // 处理系统数据管理器
+#define ProcessSystemEncodingConversion FUN_1800dae20            // 处理系统编码转换
+#define ProcessSystemStatusFlag FUN_180084ea0                  // 处理系统状态标志
 
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
@@ -150038,10 +150045,10 @@ void ProcessSystemMemoryCleanup(void)
   uint8_t MemoryPoolIndex;
   long long StackFrameAddressPointer;
   long long PatternMatchStatus;
-  long long RegisterR13Value;
-  uint NullPointerD;
-  float AuxiliaryFloat13;
-  long long SystemParameter2;
+  long long SystemResourceHandle;
+  uint SystemConfigurationFlag;
+  float CalculatedFloatValue;
+  long long SystemContextParameter;
   
   *(uint8_t *)(SystemParameter2 + 0xb1) = 0;
   *(short *)(SystemParameter2 + 0xb8) = *(short *)(SystemParameter2 + 0xb8) + 1;
@@ -240454,7 +240461,7 @@ LAB_18019a44a:
   if (6 < MatchCounter) {
     FUN_18031a470(ContextHandle + 0xc182);
   }
-  ContextHandleData = (long long *)FUN_1800be440();
+  ContextHandleData = (long long *)ProcessSystemMemoryManager();
   if (ContextHandleData != (long long *)0x0) {
     plStack_230 = ContextHandleData;
     (**(code **)(*ContextHandle4 + 0x28))(ContextHandleData);
@@ -240950,7 +240957,7 @@ LAB_18019a44a:
             ContextHandle7 = *(long long **)(*ContextHandle4 + InputDataLength * 8);
             pSystemContextValidationFlag = *(code **)(*ContextHandle7 + 0x80);
             if (pSystemContextValidationFlag == (code *)&SystemValidationFunctionB) {
-              FUN_1800496b0(ContextHandle7 + 4);
+              ProcessSystemContextHandle(ContextHandle7 + 4);
             }
             else {
               (*pSystemContextValidationFlag)();
@@ -240962,7 +240969,7 @@ LAB_18019a44a:
         MemoryBufferC = *ContextHandle4;
       } while (InputDataLength < (unsigned long long)(BufferIndex - MemoryBufferC >> 3));
     } while (IsSystemContextValidationResult);
-    FUN_1800b8500(ContextHandleData);
+    ProcessSystemDataManager(ContextHandleData);
     ContextHandle = plStack_1d8;
   }
   *(uint8_t *)(ContextHandle + 2) = 1;
@@ -241378,7 +241385,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
       ProcessingStatusFlag = *(void *)(ContextHandle + 0x3eac);
       *(void *)(StringOffset + 0x248) = *(void *)(ContextHandle + 0x3ea4);
       *(void *)(StringOffset + 0x250) = ProcessingStatusFlag;
-      EncodingConversionResult = FUN_1800dae20();
+      EncodingConversionResult = ProcessSystemEncodingConversion();
       StringOffset = *(long long *)(ContextHandle + 0x398);
       SystemContextValue = *(long long *)(StringOffset + 0x1b8);
       CharacterDataValidationResult = *(char *)(SystemContextValue + 0x38c);
@@ -241398,7 +241405,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
       SystemContextValue = BufferAllocationStatus[0x54];
       *(long long *)(StringOffset + 0x2b8) = BufferAllocationStatus[0x53];
       *(long long *)(StringOffset + 0x2c0) = SystemContextValue;
-      SystemStringIndex = FUN_1800dae20();
+      SystemStringIndex = ProcessSystemEncodingConversion();
       StringOffset = *(long long *)(ContextHandle + 0x3a0);
       SystemContextValue = *(long long *)(StringOffset + 0x1b8);
       CharacterDataValidationResult = *(char *)(SystemContextValue + 0x38c);
@@ -241422,7 +241429,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
         StringOffset = *(long long *)(ContextHandle + 0x398);
         if (*(char *)(StringOffset + 0xf9) == '\0') {
           ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xc0,8,9);
-          ProcessingStatusFlag = FUN_180084ea0(ProcessingStatusFlag);
+          ProcessingStatusFlag = ProcessSystemStatusFlag(ProcessingStatusFlag);
           *(void *)(StringOffset + 0x1d8) = ProcessingStatusFlag;
           LOCK();
           *(uint8_t *)(StringOffset + 0xf9) = 1;
@@ -241444,7 +241451,7 @@ long long * ProcessContextHandleBufferAllocationAndCleanup(long long *ContextHan
         StringOffset = *(long long *)(ContextHandle + 0x3a0);
         if (*(char *)(StringOffset + 0xf9) == '\0') {
           ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xc0,8,9);
-          ProcessingStatusFlag = FUN_180084ea0(ProcessingStatusFlag);
+          ProcessingStatusFlag = ProcessSystemStatusFlag(ProcessingStatusFlag);
           *(void *)(StringOffset + 0x1d8) = ProcessingStatusFlag;
           LOCK();
           *(uint8_t *)(StringOffset + 0xf9) = 1;
@@ -242413,8 +242420,8 @@ LAB_18019e833:
                      *(uint32_t *)(*(long long *)(BufferStatus1 + 0x2148) + 0x3054);
                 FUN_180379810(BufferStatus1);
                 FUN_1803769d0(BufferStatus1);
-                FUN_1800b8500(*(long long *)(BufferStatus + 0x448) + 0x21e0);
-                FUN_1800b8500(BufferStatus + 0x81b0);
+                ProcessSystemDataManager(*(long long *)(BufferStatus + 0x448) + 0x21e0);
+                ProcessSystemDataManager(BufferStatus + 0x81b0);
               }
               if (SystemValidationStatusSecondary == '\0') {
                 FUN_1801aedf0(BufferStatus);
@@ -256014,7 +256021,7 @@ LAB_18020c9db:
               OperationResult = OperationResult + 1;
             } while ((long long)OperationResult < (long long)InputDataLength);
           }
-          FUN_1800b8500(ContextHandle);
+          ProcessSystemDataManager(ContextHandle);
           ProcessSystemMemoryBlockRelease(ContextHandle);
           *PrimaryProcessingStatusFlag = &SystemNullTemplate;
           if (PrimaryProcessingStatusFlag[1] != 0) {
