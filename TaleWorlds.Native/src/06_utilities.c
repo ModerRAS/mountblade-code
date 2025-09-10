@@ -4989,7 +4989,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 系统操作可能影响系统整体性能和稳定性
  * @see ExecuteSystemCoreCommand, UpdateSystemStatusAndStateFlags
  */
-#define ProcessSystemOperations FUN_1800ad6f0
+#define ProcessSystemOperations ProcessSystemOperations
 
 /**
  * @brief 验证和处理数据函数
@@ -4998,7 +4998,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800f74f0
  */
-#define ValidateAndProcessData FUN_1800f74f0
+#define ValidateAndProcessData ValidateAndProcessData
 
 /**
  * @brief 验证和执行操作函数A1
@@ -5007,7 +5007,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18005d560
  */
-#define ValidateAndExecuteOperationsA1 FUN_18005d560
+#define ValidateAndExecuteOperationsA1 ValidateAndExecuteOperationsA1
 
 // 系统组件初始化函数
 // 功能：初始化系统组件，设置组件的初始状态和参数
@@ -5360,7 +5360,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数用于系统监控和性能分析
  * @see GetSystemContextAndState
  */
-#define CalculateSystemMetricsAndValues FUN_18062b420
+#define CalculateSystemMetricsAndValues CalculateSystemMetricsAndValues
 
 /**
  * @brief 系统上下文值获取函数
@@ -5379,7 +5379,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @note 此函数用于系统监控和状态检查
  * @see CalculateSystemMetricsAndValues
  */
-#define GetSystemContextAndState FUN_1807d3e20
+#define GetSystemContextAndState GetSystemContextAndState
 
 // 异常处理器设置函数组 - 6B0-6E0系列
 // 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
@@ -7020,7 +7020,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942180
  */
-#define SetDefaultExceptionHandlerA9 FUN_180942180
+#define SetDefaultExceptionHandlerA9 SetDefaultExceptionHandlerA9
 
 /**
  * @brief 设置默认异常处理器A10
@@ -7029,7 +7029,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809421a0
  */
-#define SetDefaultExceptionHandlerA10 FUN_1809421a0
+#define SetDefaultExceptionHandlerA10 SetDefaultExceptionHandlerA10
 
 /**
  * @brief 设置默认异常处理器A11
