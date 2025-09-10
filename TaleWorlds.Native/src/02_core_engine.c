@@ -228835,7 +228835,7 @@ CharacterComparisonComplete:
   StringProcessingStatus = StringProcessingStatus;
   if ((char)MemoryPoolIndex != '\0') {
     if (StringProcessingStatus == *(uint64_t **)*SystemContextRegister) {
-      StringProcessingStatus = (void *)FUN_18018aa30(SystemContextRegister,&SystemContextRegister,1,StringProcessingStatus);
+      StringProcessingStatus = (void *)ProcessUtf8CharacterEncodingAndInputBuffer(SystemContextRegister,&SystemContextRegister,1,StringProcessingStatus);
       *ContextHandleSize = *StringProcessingStatus;
       *(uint8_t *)(OperationBufferSize + 1) = 1;
       return OperationBufferSize;
@@ -228894,7 +228894,7 @@ MemoryCleanupAndReturn:
     }
   }
   else if (-1 < ValidationResult) goto MemoryCleanupAndReturn;
-  StringProcessingStatus = (void *)FUN_18018aa30(SystemContextRegister,StackProcessingBuffer,MemoryPoolIndex,StringProcessingStatus);
+  StringProcessingStatus = (void *)ProcessUtf8CharacterEncodingAndInputBuffer(SystemContextRegister,StackProcessingBuffer,MemoryPoolIndex,StringProcessingStatus);
   *ContextHandleSize = *StringProcessingStatus;
   *(uint8_t *)(OperationBufferSize + 1) = 1;
   return OperationBufferSize;

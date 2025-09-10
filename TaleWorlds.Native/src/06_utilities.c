@@ -131422,7 +131422,7 @@ void ResetThreadLocalStorage(void)
       TerminateSystemExecutionAndCleanupResources();
   }
   *(DataBuffer *)(ThreadContext + SystemDataParameterOffset20) = 0;
-  *(DataWord *)(ThreadContext + 0x30) = 0;
+  *(DataWord *)(ThreadContext + ThreadLocalStorageResetOffset30) = 0;
   *(DataBuffer *)(ThreadContext + SystemDataSecondaryOffset18) = &SystemDefaultExceptionHandlerB;
   return;
 }
