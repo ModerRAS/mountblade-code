@@ -30529,8 +30529,8 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
     else {
       operationResult = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,&DataProcessingConfigurationTableA1);
       if ((int)operationResult == 0) {
-        memoryRegionBase = 0x14;
-        operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA0,2,2,0x14);
+        memoryRegionBase = DataProcessingStandardSize;
+        operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA0,DataProcessingSecurityCheckValue,DataProcessingSecurityCheckValue,DataProcessingStandardSize);
         if (((((int)operationResult == 0) &&
              (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA1,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset116BC)),
              (int)operationResult == 0)) &&
