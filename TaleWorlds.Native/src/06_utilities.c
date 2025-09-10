@@ -991,14 +991,14 @@
 #define ExceptionContextPointerOffsetQuinary 0xd0
 #define ExceptionContextPointerOffsetSenary 0xe0
 #define ExceptionContextPointerOffsetSeptenary 0xf0
-#define ExceptionContextPointerOffset880 0x880
-#define ExceptionContextPointerOffset888 0x888
-#define ExceptionContextPointerOffsetA00 0xa00
-#define ExceptionContextPointerOffsetA08 0xa08
-#define ExceptionContextPointerOffsetB00 0xb00
-#define ExceptionContextPointerOffsetB08 0xb08
-#define ExceptionContextPointerOffsetC00 0xc00
-#define ExceptionContextPointerOffsetE08 0xe08
+#define ExceptionContextPointerOffsetExtendedA 0x880
+#define ExceptionContextPointerOffsetExtendedB 0x888
+#define ExceptionContextPointerOffsetSystemA 0xa00
+#define ExceptionContextPointerOffsetSystemB 0xa08
+#define ExceptionContextPointerOffsetResourceA 0xb00
+#define ExceptionContextPointerOffsetResourceB 0xb08
+#define ExceptionContextPointerOffsetMemoryA 0xc00
+#define ExceptionContextPointerOffsetMemoryB 0xe08
 #define ExceptionContextPointerOffsetF00 0xf00
 #define ExceptionContextPointerOffsetF08 0xf08
 
