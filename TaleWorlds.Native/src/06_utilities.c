@@ -65,6 +65,7 @@
 #define ResourceIteratorValidationOffset 0x141             // 资源迭代器验证偏移量 - 资源迭代器验证的偏移位置
 #define ResourceIteratorNextOffset 0x138                   // 资源迭代器下一个偏移量 - 资源迭代器下一个元素的偏移位置
 #define ExceptionDataBufferOffset 0x210                     // 异常数据缓冲区偏移量 - 异常处理数据的存储位置
+#define ExceptionDataBufferOffset2F0 0x2f0                   // 异常数据缓冲区偏移量2F0 - 用于内存资源引用计数管理
 #define ResourcePointerStartOffset 0x208                     // 资源指针起始偏移量 - 资源指针的起始位置
 #define ResourcePointerStep 4                                // 资源指针步长 - 资源指针遍历时的步长
 #define ExceptionHandlerContextOffset 0x1800                 // 异常处理上下文偏移量 - 异常处理上下文的存储位置
@@ -105097,9 +105098,10 @@ void ReleaseMemoryResourceAtOffset210(DataBuffer operationBase,int64_t dataBuffe
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含内存资源信息
  * 
- * @note 原始函数名：Unwind_18090d2f0
- * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
- * @note 与ManageMemoryResourceReferenceCount300函数相似，但使用不同的偏移量（0x210）
+ * @note 原始函数名：Unwind_18090d300
+ * @note 从数据缓冲区的0x2f0偏移量获取内存资源指针
+ * @note 使用MemoryRegionMask (0xffc00000) 进行内存区域计算
+ * @note 当引用计数归零时调用HandleExceptionE0()处理异常
  */
 void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -105109,7 +105111,8 @@ void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t data
   int64_t memoryRegionOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset210);
+  // 从数据缓冲区的0x2f0偏移量获取内存资源指针
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffset2F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
