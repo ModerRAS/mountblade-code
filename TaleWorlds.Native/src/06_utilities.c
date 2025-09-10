@@ -4818,6 +4818,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统参数验证函数 - 验证系统参数和配置
 #define FUN_180047e40 ValidateSystemParametersAndConfig
 
+// 系统资源管理器变量名美化定义
+#define SystemResourceIteratorTable SystemResourceIteratorTablePtr
+#define SystemresourcePointer SystemResourceManagementPtr
+#define SystemResourceBaseOffset7F20 SystemResourceBaseOffset
+
 /**
  * @brief 系统数据缓冲区验证函数
  * 
