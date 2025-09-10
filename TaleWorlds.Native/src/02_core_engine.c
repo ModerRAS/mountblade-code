@@ -227289,7 +227289,20 @@ void ProcessUtf8ToUtf16ConversionMemoryRelease(uint64_t ContextHandle,char Opera
 
 
 
-8a130(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointervoid FUN_18018a130(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer
+/**
+ * @brief 处理UTF-8到UTF-16编码转换的缓冲区操作
+ * 
+ * 该函数负责处理UTF-8到UTF-16编码转换过程中的缓冲区操作，
+ * 包括数据复制、状态设置和缓冲区清理等工作。
+ * 
+ * @param ContextHandle 字符代码，用于标识转换上下文
+ * @param OperationBufferSize 操作缓冲区大小，用于转换过程
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的数据
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018a130
+ */
+void ProcessUtf8ToUtf16BufferOperation(uint64_t ContextHandle,uint64_t OperationBufferSize,uint64_t *Utf8SourcePointer)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
