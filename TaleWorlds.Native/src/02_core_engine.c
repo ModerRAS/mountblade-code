@@ -223996,7 +223996,7 @@ LAB_1801852f0:
 
 
 
-853d0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801853d0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_1801853d0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
@@ -225640,6 +225640,23 @@ LAB_18018764a:
 
 // 函数: void FUN_1801879d0(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 /**
+ * @brief 处理上下文句柄和UTF转换操作
+ * 
+ * 该函数负责处理上下文句柄、操作缓冲区大小和UTF转换操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存管理
+ * - 管理UTF-8到UTF-16的转换操作
+ * - 验证数据缓冲区的有效性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801879d0
+ */
+#define ProcessContextHandleAndUtfConversion FUN_1801879d0
+/**
  * @brief 处理系统字符代码和内存释放操作
  * 
  * 该函数负责处理系统字符代码和内存释放操作，主要功能包括：
@@ -225677,6 +225694,23 @@ void ProcessSystemContextHandleAndMemoryRelease(long long *ContextHandle,uint64_
 
 
 // 函数: void FUN_180187a30(long long *ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理上下文句柄和字符编码转换操作
+ * 
+ * 该函数负责处理上下文句柄、操作缓冲区大小和字符编码转换操作。
+ * 主要功能包括：
+ * - 处理上下文句柄的内存管理
+ * - 管理字符编码转换操作
+ * - 验证数据缓冲区的有效性
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187a30
+ */
+#define ProcessContextHandleAndCharacterEncodingConversion FUN_180187a30
 /**
  * @brief 处理字符表指针和内存释放操作
  * 
