@@ -104465,9 +104465,9 @@ void ProcessUIRenderTaskInitialization(UIDword uiContext)
   UIDword renderParamBuffer7;
   ulonglong renderTaskHandle;
   
-  initializationResult = FUN_18072e720(uiContext,&renderParamBuffer1,&renderParamBuffer2,0x3c23d70a);
-  FUN_180726fd0(initializationResult,preservedRegister15 + 0x10,&renderParamBuffer1,rendercomponentData + 0x1190);
-  FUN_18072ec50(preservedRegister15 + 0x2c8,&renderParamBuffer2,preservedRegister15 + 0x10);
+  initializationResult = ProcessUIGraphicsParameters(uiContext,&renderParamBuffer1,&renderParamBuffer2,0x3c23d70a);
+  ProcessUIRenderContext(initializationResult,preservedRegister15 + 0x10,&renderParamBuffer1,rendercomponentData + 0x1190);
+  ProcessUIComponentLayout(preservedRegister15 + 0x2c8,&renderParamBuffer2,preservedRegister15 + 0x10);
   *(UIDword *)(rendercomponentData + 0x1190) = renderParamBuffer1;
   *(UIDword *)(rendercomponentData + 0x1194) = renderParamBuffer2;
   *(UIDword *)(rendercomponentData + 0x1198) = renderParamBuffer3;
@@ -104959,7 +104959,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
     pstackUInt4a8 = astackUInt400;
     stackUInt4b8 = stackUInt450;
     stackUInt4e0 = 0x180726f33;
-    FUN_18072fba0(uiContext,stackUInt448,targetBuffer,astackUInt2d8);
+    ProcessUISurfaceRendering(uiContext,stackUInt448,targetBuffer,astackUInt2d8);
   }
   else {
     stackLong478 = dataSource + 0xe4;
@@ -104971,7 +104971,7 @@ void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targ
     pstackUInt4a8 = astackUInt400;
     stackUInt4b8 = stackUInt450;
     stackUInt4e0 = 0x180726fa9;
-    FUN_180730e60(uiContext,stackUInt448,targetBuffer,astackUInt2d8);
+    ProcessUIInterfaceRendering(uiContext,stackUInt448,targetBuffer,astackUInt2d8);
   }
                      WARNING: Subroutine does not return
   stackUInt4e0 = 0x180726fb8;
@@ -105011,7 +105011,7 @@ void ProcessUIElementIndex(longlong uiContext,float *dataSource)
   ulonglong encryptionKey;
   
   encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
-  FUN_180733080(uiContext,contextArray1);
+  ProcessUINavigationSystem(uiContext,contextArray1);
   elementCount = 0;
   if (0 < *(int *)(uiBufferData + 0x121c)) {
     contextDataPtr = contextArray1;

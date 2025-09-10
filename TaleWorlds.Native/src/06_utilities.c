@@ -20387,7 +20387,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 {
   DataBuffer result;
   uint validationData;
-  DataWord tempValue;
+  DataWord TemporaryValidationValue;
   
   validationData = *(uint *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
   if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
@@ -80151,7 +80151,7 @@ void ExecuteValidationContextCleanupA0(DataBuffer exceptionContext, int64_t stac
 {
   int64_t *exceptionContextPointer;
   
-  exceptionContextPointer = *(int64_t **)(*(int64_t *)(stackFrame + SystemDataParameterOffset20) + 0x60);
+  exceptionContextPointer = *(int64_t **)(*(int64_t *)(stackFrame + SystemDataParameterOffset20) + ExceptionHandlerContextOffset60);
   if (exceptionContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -80160,6 +80160,15 @@ void ExecuteValidationContextCleanupA0(DataBuffer exceptionContext, int64_t stac
 
 
 
+/**
+ * @brief 清理系统互斥锁A
+ * 
+ * 该函数负责清理系统互斥锁资源，调用内部互斥锁销毁函数
+ * 释放互斥锁占用的系统资源。
+ * 
+ * @note 原始函数名：Unwind_1809089c0
+ * @note 这是一个系统清理函数，用于释放互斥锁资源
+ */
 void CleanupSystemMutexA(void)
 
 {

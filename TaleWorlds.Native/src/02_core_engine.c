@@ -654,7 +654,7 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define CalculatedDistance SystemCalculatedDistance         // 计算距离（系统计算距离）
 #define LoopCounter SystemLoopCounter                      // 循环计数器（系统循环计数器）
 #define StackProcessingParameter3 StackProcessingParam3    // 栈处理参数3（栈处理参数3）
-#define ValidationStatus DistanceValidationStatus          // 验证状态（距离验证状态）
+#define ValidationStatus SystemDistanceValidationStatus          // 验证状态（距离验证状态）
 #define RemainingSpace SystemRemainingSpace                 // 剩余空间（系统剩余空间）
 #define uStackX_20 StackParameterX20                       // 栈参数X20（栈参数X20）
 #define SystemContext SystemContextPointer                 // 系统上下文（系统上下文指针）
@@ -252423,7 +252423,24 @@ LAB_1802078c3:
 
 
 
-long long FUN_180207bb0(long long *ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer
+/**
+ * @brief 处理UTF-8源指针和上下文操作
+ * 
+ * 该函数根据UTF-8源指针的不同值执行不同的操作：
+ * - 值为3：返回固定地址0x180c03890
+ * - 值为4：返回上下文句柄的值
+ * - 值为0：如果上下文句柄不为0，则处理系统事件
+ * - 值为1：分配内存并复制系统事件模板数据
+ * - 值为2：设置上下文句柄并清空上下文大小
+ * 
+ * @param ContextHandle 上下文句柄指针
+ * @param ContextHandleSize 上下文句柄大小指针
+ * @param Utf8SourcePointer UTF-8源指针（操作类型标识符）
+ * @return long long 操作结果或状态码
+ * 
+ * @note 原始函数名：FUN_180207bb0
+ */
+long long ProcessUtf8SourcePointerAndContext(long long *ContextHandle,long long *ContextHandleSize,int Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryPoolIndex;
