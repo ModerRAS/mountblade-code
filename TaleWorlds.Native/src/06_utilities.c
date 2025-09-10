@@ -5043,7 +5043,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 内存访问处理器 - 处理内存访问操作
 
 // 系统数据处理函数 - 处理系统数据的各种操作
-#define ProcessSystemDataOperations ProcessSystemDataOperations
+#define FUN_180085530 ProcessSystemDataOperations
 
 // 系统验证函数 - 验证系统的各个方面
 #define ValidateSystemComponentsAndState ValidateSystemComponentsAndState
