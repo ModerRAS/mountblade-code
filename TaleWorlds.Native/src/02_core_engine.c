@@ -27213,10 +27213,10 @@ void CoreEngineMemoryConfigure(uint64_t MemoryConfigHandle,uint32_t MemoryConfig
       }
       CoreEngineInitializeMemoryBuffer(&SystemCharacterStatusBuffer,DataTemplate);
     }
-    *(uint32_t *)(ThreadLocalStorageData + 0x2290) = *(uint32_t *)(ThreadLocalStorageData + 0x22d8);
+    *(uint32_t *)(ThreadLocalStorageData + ThreadLocalStorageStatusOffset2290) = *(uint32_t *)(ThreadLocalStorageData + ThreadLocalStorageStatusOffset22d8);
     return;
   }
-  *(uint32_t *)(ThreadLocalStorageData + 0x2290) = MemoryConfigParam;
+  *(uint32_t *)(ThreadLocalStorageData + ThreadLocalStorageStatusOffset2290) = MemoryConfigParam;
   return;
 }
 
