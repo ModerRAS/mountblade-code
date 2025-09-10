@@ -9728,33 +9728,14 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 // 功能：查询系统状态并返回状态信息
 #define QuerySystemStateA0 FUN_18089a51d
 
-// 原始函数名：FUN_18089a690 - 系统参数验证函数A0
-// 功能：验证系统参数并返回验证结果
-#define ValidateSystemParametersA0 FUN_18089a690
+// 注意：FUN_18089a690 已在前面定义为 ProcessDataStreamEx
+// 注意：FUN_18089a6e8 已在前面定义为 ValidateDataStreamIntegrity  
+// 注意：FUN_18089a7e0 已在前面定义为 ConvertDataStreamFormat
 
-// 原始函数名：FUN_18089a6e8 - 系统配置更新函数A0
-// 功能：更新系统配置并返回更新结果
-#define UpdateSystemConfigurationA0 FUN_18089a6e8
-
-// 原始函数名：FUN_18089a7e0 - 系统数据同步函数A0
-// 功能：同步系统数据并返回同步结果
-#define SynchronizeSystemDataA0 FUN_18089a7e0
-
-// 原始函数名：FUN_18089a880 - 系统资源管理函数A0
-// 功能：管理系统资源并返回管理结果
-#define ManageSystemResourcesA0 FUN_18089a880
-
-// 原始函数名：FUN_18089a8b4 - 系统初始化函数A0
-// 功能：初始化系统并返回初始化结果
-#define InitializeSystemComponentsA0 FUN_18089a8b4
-
-// 原始函数名：FUN_18089a9dd - 系统清理函数A0
-// 功能：清理系统并返回清理结果
-#define CleanupSystemA0 FUN_18089a9dd
-
-// 原始函数名：FUN_18089abe0 - 系统监控函数A0
-// 功能：监控系统状态并返回监控结果
-#define MonitorSystemA0 FUN_18089abe0
+// 注意：FUN_18089a880 已在前面定义为 SynchronizeSystemData
+// 注意：FUN_18089a8b4 已在前面定义为 ProcessBinaryDataStream
+// 注意：FUN_18089a9dd 已在前面定义为 ValidateDataSynchronizationStatus
+// 注意：FUN_18089abe0 已在前面定义为 ManageDataCachePool
 
 // 错误处理函数语义化宏定义
 // 原始函数名：FUN_180890fe2 - 错误处理函数D

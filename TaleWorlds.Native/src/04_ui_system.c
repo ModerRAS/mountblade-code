@@ -657,6 +657,7 @@ typedef enum {
 #define _DAT_180d4a708 UIFunctionTable708                 // UI函数表708 - 存储UI函数指针
 #define _DAT_180d4a958 UIFunctionTable958                 // UI函数表958 - 存储UI函数指针
 #define _DAT_180d4a928 UIFunctionTable928                 // UI函数表928 - 存储UI函数指针
+#define _DAT_180d4a910 UIFunctionTable910                 // UI函数表910 - 存储UI函数指针
 #define _DAT_180d4a720 UIAnimationProcessorPointer       // UI动画处理器指针 - 处理UI动画
 #define _DAT_180d4a6e8 UILayoutProcessorPointer          // UI布局处理器指针 - 处理UI布局
 #define _DAT_180d4a6c8 UIInputProcessorPointer           // UI输入处理器指针 - 处理UI输入
