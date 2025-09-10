@@ -260252,7 +260252,21 @@ SkipMemoryAllocation:
 
 
 
-long long FUN_180213700(long long ContextHandle,int OperationBufferSize,char Utf8SourcePointer
+/**
+ * @brief 处理系统事件和字符编码转换
+ * 
+ * 该函数负责处理系统事件的初始化、内存分配和字符编码转换。
+ * 函数首先检查系统配置状态，然后为系统事件分配内存缓冲区，
+ * 处理字符状态更新，最后执行编码转换和数据处理。
+ * 
+ * @param SystemContextHandle 系统上下文句柄，用于访问系统资源
+ * @param BufferOperationSize 缓冲区操作大小，控制内存分配的大小
+ * @param Utf8SourceChar UTF8源字符，需要转换的字符数据
+ * @return long long 返回处理结果的句柄或状态码
+ * 
+ * @note 原始函数名：FUN_180213700 - Ghidra逆向生成的函数名已语义化
+ */
+long long ProcessSystemEventAndCharacterEncoding(long long SystemContextHandle, int BufferOperationSize, char Utf8SourceChar
 {
   uint Utf16Char;
   uint32_t MemoryAllocationIndex;
