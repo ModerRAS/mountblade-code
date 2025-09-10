@@ -405834,9 +405834,8 @@ uint64_t ProcessUIEventValidation(void* eventHandler, uint64_t eventData)
 #define FUN_1808a8120 ProcessUIComponentLayoutCalculation             // 处理UI组件布局计算 - 处理UI组件的布局计算
 #define FUN_1808a7c90 ProcessUIComponentDataValidationAndSecurity    // 处理UI组件数据验证和安全 - 处理UI组件数据的验证和安全检查
 #define FUN_1808de000 ProcessUIStringDataCleanupAndValidation        // 处理UI字符串数据清理和验证 - 处理UI字符串数据的清理和验证
-#define ProcessUIStatusCodeReturn FUN_18089f112
-#define ProcessUIColorValidation FUN_180769ed0
-#define ProcessUIColorBuffer func_0x00018076a7d0
+#define FUN_180769ed0 ProcessUIColorDataValidationAndConversion     // 处理UI颜色数据验证和转换 - 处理UI颜色数据的验证和转换
+#define FUN_18076a7d0 ProcessUIColorBufferDataProcessing             // 处理UI颜色缓冲区数据处理 - 处理UI颜色缓冲区的数据操作
 
 // 注意：以下寄存器变量已经在文件前面定义过了，这里删除重复定义
 // UI系统寄存器变量美化
