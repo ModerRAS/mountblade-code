@@ -2653,7 +2653,8 @@
 #define ExceptionMemoryRegionOffset 0x1000                   // 异常内存区域偏移量
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数
 #define ExceptionMemoryRegionOffset70 0x70                   // 异常内存区域偏移量70
-#define SystemCleanupFlagAlternative 0x80000000               // 系统清理标志备选方案
+#define SystemCleanupFlagAlternative 0x80000000               // 系统清理标志备选方案 - 用于资源清理和内存管理的标准标志值
+#define StandardResourceCleanupFlag 0x80000000                  // 标准资源清理标志 - 统一用于所有资源清理操作的标志值
 
 // 系统数据传输处理函数
 /**
@@ -4743,6 +4744,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define StateFlagBit2 2                                      // 状态标志位2
 #define StateFlag2ClearMask 0xfffffffd                       // 状态标志2清除掩码
 #define ResourceCleanupOffset78 0x78                         // 资源清理偏移量78
+#define StateFlagBit3 4                                      // 状态标志位3
+#define StateFlag3ClearMask 0xfffffffb                       // 状态标志3清除掩码
+#define ExceptionCallbackOffset118 0x118                     // 异常回调偏移量118
 
 // 异常处理器函数指针偏移量常量
 #define ExceptionHandlerFunctionPointerOffset1220 0x1220    // 异常处理器函数指针偏移量1220
@@ -9281,32 +9285,32 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SetGlobalDataPointerA27 ConfigureGlobalDataPointerAtOffset27
 
 // 原始函数名：FUN_180942300 - 全局指针设置函数A28
-// 功能：设置全局数据指针A28到指定地址
-#define SetGlobalDataPointerA28 FUN_180942300
+// 功能：设置全局数据指针A28到指定地址，用于系统数据管理
+#define SetGlobalDataPointerA28 ConfigureGlobalDataPointerAtOffset28
 
 // 原始函数名：FUN_180942320 - 全局指针设置函数A29
-// 功能：设置全局数据指针A29到指定地址
-#define SetGlobalDataPointerA29 FUN_180942320
+// 功能：设置全局数据指针A29到指定地址，用于系统数据管理
+#define SetGlobalDataPointerA29 ConfigureGlobalDataPointerAtOffset29
 
 // 原始函数名：FUN_180942340 - 全局指针设置函数A30
-// 功能：设置全局数据指针A30到指定地址
-#define SetGlobalDataPointerA30 FUN_180942340
+// 功能：设置全局数据指针A30到指定地址，用于系统数据管理
+#define SetGlobalDataPointerA30 ConfigureGlobalDataPointerAtOffset30
 
 // 原始函数名：FUN_180942360 - 全局指针设置函数A31
-// 功能：设置全局数据指针A31到指定地址
-#define SetGlobalDataPointerA31 FUN_180942360
+// 功能：设置全局数据指针A31到指定地址，用于系统数据管理
+#define SetGlobalDataPointerA31 ConfigureGlobalDataPointerAtOffset31
 
 // 原始函数名：FUN_180897d20 - 数据块处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
 #define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
-// 功能：验证数据结构并执行相关操作
-#define ValidateDataStructureA0 FUN_180897d90
+// 功能：验证数据结构并执行相关操作，确保数据完整性
+#define ValidateDataStructureA0 ValidateDataStructureWithIntegrityCheck
 
 // 原始函数名：FUN_180898040 - 浮点数据处理函数A1
-// 功能：处理复杂的浮点数据计算和转换
-#define ProcessFloatingPointDataA1 FUN_180898040
+// 功能：处理复杂的浮点数据计算和转换，支持多种数值格式
+#define ProcessFloatingPointDataA1 ProcessComplexFloatingPointCalculations
 
 // 原始函数名：FUN_1808986b0 - 数据块验证函数A0
 // 功能：验证数据块的完整性和有效性
@@ -46313,11 +46317,24 @@ void SetDefaultExceptionHandlerB(DataBuffer exceptionContext, int64_t handlerPos
  * 
  * @note 原始函数名：Unwind_180902220
  */
+/**
+ * @brief 清理异常状态标志
+ * 
+ * 该函数检查异常状态指针的第3位标志，如果被设置则清除该标志
+ * 并执行状态清理操作。这是一个用于异常状态管理的工具函数。
+ * 
+ * @param cleanupContext 清理上下文（未使用，保留用于接口一致性）
+ * @param statePointer 状态指针，包含异常状态信息
+ * 
+ * @note 该函数使用位掩码操作来清除特定的异常状态标志
+ * @note 状态标志清除后，会自动调用相关的状态清理函数
+ * @note 原始函数名：Unwind_180902220
+ */
 void CleanupExceptionStateFlags(DataBuffer cleanupContext, int64_t statePointer)
 
 {
-  if ((*(uint *)(statePointer + 0x30) & 4) != 0) {
-    *(uint *)(statePointer + 0x30) = *(uint *)(statePointer + 0x30) & 0xfffffffb;
+  if ((*(uint *)(statePointer + ObjectStateFlagsOffset30) & StateFlagBit3) != 0) {
+    *(uint *)(statePointer + ObjectStateFlagsOffset30) = *(uint *)(statePointer + ObjectStateFlagsOffset30) & StateFlag3ClearMask;
     ExecuteStateCleanup(statePointer + ExceptionCallbackOffset118);
   }
   return;
@@ -46615,7 +46632,7 @@ void ProcessResourceCleanupChain(DataBuffer exceptionContext, int64_t resourceMa
   DataBuffer *currentResource;
   DataBuffer cleanupFlag;
   
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   resourceListEnd = *(DataBuffer **)(resourceManager + ResourceListEndOffset);
   for (currentResource = *(DataBuffer **)(resourceManager + ResourceListStartOffset); currentResource != resourceListEnd; currentResource = currentResource + resourcePointerStepSize) {
     (**(FunctionPointer**)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
@@ -46648,7 +46665,7 @@ void ProcessResourceCleanupChainAlt(DataBuffer exceptionContext, int64_t resourc
   DataBuffer *currentResource;
   DataBuffer cleanupFlag;
   
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   resourceListEnd = *(DataBuffer **)(resourceManager + ResourceListEndOffset);
   for (currentResource = *(DataBuffer **)(resourceManager + ResourceListStartOffset); currentResource != resourceListEnd; currentResource = currentResource + resourcePointerStepSize) {
     (**(FunctionPointer**)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
@@ -51257,7 +51274,7 @@ void ExecuteResourceCleanupChain(DataBuffer exceptionContext, int64_t unwindCont
   DataBuffer cleanupFlag;
   
   cleanupChainStart = (int64_t *)(*(int64_t *)(unwindContext + 0x40) + 0x888);
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   cleanupChainEnd = *(DataBuffer **)(*(int64_t *)(unwindContext + 0x40) + 0x890);
   for (currentCleanupEntry = (DataBuffer *)*cleanupChainStart; currentCleanupEntry != cleanupChainEnd; currentCleanupEntry = currentCleanupEntry + 4) {
     (**(FunctionPointer**)*currentCleanupEntry)(currentCleanupEntry, 0, cleanupParam1, cleanupParam2, cleanupFlag);
@@ -51299,7 +51316,7 @@ void ExecuteMemoryCleanupChain(DataBuffer exceptionContext, int64_t unwindContex
   DataBuffer cleanupFlag;
   
   memoryChainStart = (int64_t *)(*(int64_t *)(unwindContext + 0x40) + 0x8a8);
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   memoryChainEnd = *(DataBuffer **)(*(int64_t *)(unwindContext + 0x40) + 0x8b0);
   for (currentMemoryEntry = (DataBuffer *)*memoryChainStart; currentMemoryEntry != memoryChainEnd; currentMemoryEntry = currentMemoryEntry + 4) {
     (**(FunctionPointer**)*currentMemoryEntry)(currentMemoryEntry, 0, cleanupParam1, cleanupParam2, cleanupFlag);
@@ -81393,7 +81410,7 @@ void CleanupExceptionResourcesSecondary(DataBuffer exceptionContext,int64_t unwi
   DataBuffer cleanupFlag;
   
   contextBase = *(int64_t *)(unwindInfo + 0x50);
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   *(int64_t *)(contextBase + 0x15d8) =
        *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * SystemTableIndexMultiplier) + ExceptionDataTableNegativeOffset;
   ValidateSystemContextA0((int64_t *)(contextBase + 0x8b0));
@@ -132732,7 +132749,7 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
   DataBuffer cleanupFlag;
   
   resourceListEnd = SystemResourceListEndTable;
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   currentResource = SystemResourceCurrentTable;
   if (SystemResourceCurrentTable != SystemResourceListEndTable) {
     do {
@@ -132776,7 +132793,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
   DataBuffer cleanupFlag;
   
   resourceListEnd = SystemResourceListEndTableA1;
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   currentResource = SystemResourceCurrentTableA1;
   if (SystemResourceCurrentTableA1 != SystemResourceListEndTableA1) {
     do {
@@ -132821,7 +132838,7 @@ void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuff
   DataBuffer cleanupFlag;
   
   resourceListEnd = SystemResourceListEndTableA2;
-  cleanupFlag = SystemCleanupFlagAlternative;
+  cleanupFlag = StandardResourceCleanupFlag;
   currentResource = SystemResourceCurrentTableA2;
   if (SystemResourceCurrentTableA2 != SystemResourceListEndTableA2) {
     do {
