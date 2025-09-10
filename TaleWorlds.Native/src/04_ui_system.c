@@ -149819,8 +149819,22 @@ void FUN_180753e40(void)
 
 
 UIHandle
-FUN_180754080(longlong uiContext,longlong dataSource,UIDword targetBuffer,UIDword bufferSize,
-             UIDword resultPointer,char param_6)
+/**
+ * @brief 处理UI系统数据缓冲区操作
+ * 
+ * 执行UI系统中的数据缓冲区操作，包括数据验证、处理和结果返回。
+ * 该函数根据不同的参数条件，调用相应的处理函数来完成数据操作。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6，控制处理流程
+ * @return 处理状态码，0表示成功，非0表示失败
+ */
+UIStatus ProcessUIDataBufferOperation(longlong uiContext,longlong dataSource,UIDword targetBuffer,UIDword bufferSize,
+                                     UIDword resultPointer,char param_6)
 
 {
   UIHandle result;
@@ -152726,8 +152740,22 @@ void FUN_1807577e0(void)
 
 
 UIHandle
-FUN_180757a30(longlong *uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
-             UIDword resultPointer,char param_6)
+/**
+ * @brief 处理UI系统上下文数据操作
+ * 
+ * 基于UI上下文处理数据操作，包括数据验证、缓冲区管理和结果处理。
+ * 该函数会检查上下文的有效性，并根据不同的参数执行相应的操作。
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6，控制处理流程
+ * @return 处理状态码，0表示成功，非0表示失败
+ */
+UIHandle ProcessUIContextDataOperation(longlong *uiContext,UIHandle dataSource,UIDword targetBuffer,UIDword bufferSize,
+                                      UIDword resultPointer,char param_6)
 
 {
   UIDword result;
