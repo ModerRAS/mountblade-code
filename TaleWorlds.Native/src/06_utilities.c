@@ -6123,7 +6123,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089abe0
  */
-#define ManageDataCachePool FUN_18089abe0
+#define ManageDataCachePool ManageDataCachePoolAndResources
 
 /**
  * @brief 清理数据缓存资源
