@@ -12017,7 +12017,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
  * 
  * @note 原始函数名：FUN_180296b70
  */
-#define InitializeSystemB0 FUN_180296b70
+#define InitializeSystemB0 InitializeSystemModuleB0
 
 /**
  * @brief 重置系统B0
@@ -12026,7 +12026,7 @@ SystemCalculationBase* SystemCalculationBaseAddressPtr;    // 系统计算基础
  * 
  * @note 原始函数名：FUN_180291610
  */
-#define ResetSystemB0 FUN_180291610
+#define ResetSystemB0 ResetSystemModuleB0
 
 /**
  * @brief 执行内存分配操作B0
