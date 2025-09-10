@@ -67965,7 +67965,7 @@ void CleanupSystemStatusG0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + ExceptionHandlerContextOffset40) & 1) != 0) {
     *(uint *)(dataBuffer + ExceptionHandlerContextOffset40) = *(uint *)(dataBuffer + ExceptionHandlerContextOffset40) & 0xfffffffe;
-    CleanupResourceHandler(dataBuffer + 0xa8);
+    CleanupResourceHandler(dataBuffer + DataBufferOffsetA8);
   }
   return;
 }
