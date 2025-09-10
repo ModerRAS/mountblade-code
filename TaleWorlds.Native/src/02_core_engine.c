@@ -247889,16 +247889,16 @@ uint64_t * FUN_180204420(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uin
   CharacterStatusBuffer = OperationBufferSize + ((long long)Utf8SourcePointer - (long long)OperationBufferSize >> 5) * 2;
   SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - (long long)OperationBufferSize) >> 4;
   if (SystemDataTablePointer < 0x29) {
-    FUN_180204980(OperationBufferSize,CharacterStatusBuffer,Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize,CharacterStatusBuffer,Utf8SourcePointer + -2);
   }
   else {
     LoopIndex = SystemDataTablePointer + 1 >> 3;
     SystemDataTablePointer = LoopIndex * 0x10;
-    FUN_180204980(OperationBufferSize,OperationBufferSize + LoopIndex * 2,OperationBufferSize + LoopIndex * 4);
-    FUN_180204980((long long)CharacterStatusBuffer - SystemDataTablePointer,CharacterStatusBuffer,SystemDataTablePointer + (long long)CharacterStatusBuffer);
+    ProcessSystemBufferOperation(OperationBufferSize,OperationBufferSize + LoopIndex * 2,OperationBufferSize + LoopIndex * 4);
+    ProcessSystemBufferOperation((long long)CharacterStatusBuffer - SystemDataTablePointer,CharacterStatusBuffer,SystemDataTablePointer + (long long)CharacterStatusBuffer);
     SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - SystemDataTablePointer);
-    FUN_180204980(Utf8SourcePointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8SourcePointer + -2);
-    FUN_180204980(OperationBufferSize + LoopIndex * 2,CharacterStatusBuffer,SystemDataTablePointer);
+    ProcessSystemBufferOperation(Utf8SourcePointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize + LoopIndex * 2,CharacterStatusBuffer,SystemDataTablePointer);
   }
   StringProcessingStatus = CharacterStatusBuffer + 2;
   if (OperationBufferSize < CharacterStatusBuffer) {
@@ -248103,16 +248103,16 @@ uint64_t * FUN_180204430(uint64_t *ContextHandle,uint64_t *ContextHandleSize,uin
   CharacterStatusBuffer = OperationBufferSize + (SystemRegisterR10 - (long long)OperationBufferSize >> 5) * 2;
   SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - (long long)OperationBufferSize) >> 4;
   if (SystemDataTablePointer < 0x29) {
-    FUN_180204980(OperationBufferSize,CharacterStatusBuffer,Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize,CharacterStatusBuffer,Utf8SourcePointer + -2);
   }
   else {
     LoopIndex = SystemDataTablePointer + 1 >> 3;
     SystemDataTablePointer = LoopIndex * 0x10;
-    FUN_180204980(OperationBufferSize,OperationBufferSize + LoopIndex * 2,OperationBufferSize + LoopIndex * 4);
-    FUN_180204980((long long)CharacterStatusBuffer - SystemDataTablePointer,CharacterStatusBuffer,SystemDataTablePointer + (long long)CharacterStatusBuffer);
+    ProcessSystemBufferOperation(OperationBufferSize,OperationBufferSize + LoopIndex * 2,OperationBufferSize + LoopIndex * 4);
+    ProcessSystemBufferOperation((long long)CharacterStatusBuffer - SystemDataTablePointer,CharacterStatusBuffer,SystemDataTablePointer + (long long)CharacterStatusBuffer);
     SystemDataTablePointer = (long long)Utf8SourcePointer + (-0x10 - SystemDataTablePointer);
-    FUN_180204980(Utf8SourcePointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8SourcePointer + -2);
-    FUN_180204980(OperationBufferSize + LoopIndex * 2,CharacterStatusBuffer,SystemDataTablePointer);
+    ProcessSystemBufferOperation(Utf8SourcePointer + LoopIndex * -4 + -2,SystemDataTablePointer,Utf8SourcePointer + -2);
+    ProcessSystemBufferOperation(OperationBufferSize + LoopIndex * 2,CharacterStatusBuffer,SystemDataTablePointer);
   }
   StringProcessingStatus = CharacterStatusBuffer + 2;
   if (OperationBufferSize < CharacterStatusBuffer) {
@@ -248322,11 +248322,11 @@ joined_r0x0001802045de:
   SystemDataTablePointer = SystemRegisterR11 >> 3;
   LoopIndex = SystemDataTablePointer * 0x10;
   CharacterTablePointer = LoopIndex + OperationBufferSize;
-  FUN_180204980(ContextHandle,LoopCounter,SystemDataTablePointer * 0x20 + OperationBufferSize);
-  FUN_180204980((long long)SystemRegisterR10 - LoopIndex,SystemRegisterR10,LoopIndex + (long long)SystemRegisterR10);
+  ProcessSystemBufferOperation(ContextHandle,LoopCounter,SystemDataTablePointer * 0x20 + OperationBufferSize);
+  ProcessSystemBufferOperation((long long)SystemRegisterR10 - LoopIndex,SystemRegisterR10,LoopIndex + (long long)SystemRegisterR10);
   LoopIndex = (long long)PatternIndex + (-0x10 - LoopIndex);
-  FUN_180204980(PatternIndex + SystemDataTablePointer * -4 + -2,LoopIndex,PatternIndex + -2);
-  FUN_180204980(LoopCounter,SystemRegisterR10,LoopIndex);
+  ProcessSystemBufferOperation(PatternIndex + SystemDataTablePointer * -4 + -2,LoopIndex,PatternIndex + -2);
+  ProcessSystemBufferOperation(LoopCounter,SystemRegisterR10,LoopIndex);
   TemporaryBuffer = SystemRegisterR10 + 2;
   if (StackFrameAddressPointer < SystemRegisterR10) {
     while( true ) {
@@ -248528,7 +248528,7 @@ joined_r0x0001802045de:
   uint64_t *CharacterStatusBuffer2;
   uint64_t *NullPointerValue;
   
-  FUN_180204980(ContextHandle,OperationBufferSize,Utf8SourcePointer + -0x10);
+  ProcessSystemBufferOperation(ContextHandle,OperationBufferSize,Utf8SourcePointer + -0x10);
   StringProcessingStatus = SystemRegisterR10 + 2;
   if (StackFrameAddressPointer < SystemRegisterR10) {
     while( true ) {
@@ -261227,7 +261227,7 @@ long long *ConvertUtf8ToUtf16Character(long long ContextHandle,long long *Contex
     TemporaryFlag = CONCAT44(TemporaryFlag.HighPart,Utf16Char);
     *SecondaryProcessingStatusFlag = 0x2220656e656353;
     uStack_138 = 7;
-    SystemChecksum = FUN_180627ce0(&CoreEngineValue148,StackValidationData,AdditionalParameter1 + 0x4d8);
+    SystemChecksum = ManageSystemMemoryPool(&CoreEngineValue148,StackValidationData,AdditionalParameter1 + 0x4d8);
     pDataContentStatus = &SystemNullTemplate;
     StackProcessingUnsignedValue150 = 0;
     PrimaryStackPointer60 = NULL;
@@ -261251,8 +261251,8 @@ long long *ConvertUtf8ToUtf16Character(long long ContextHandle,long long *Contex
     *(uint16_t *)((long long)SecondaryProcessingStatusFlag + 0x34) = 0x2220;
     *(uint8_t *)((long long)SecondaryProcessingStatusFlag + 0x36) = 0;
     uStack_158 = 0x36;
-    SystemChecksum = FUN_180627ce0(SystemChecksum,&SystemEventDispatcher,&pDataContentStatus);
-    AllocatedMemorySize = FUN_180627ce0(SystemChecksum,&SystemCharacterStatusBufferPointer,Utf8SourcePointer + 2);
+    SystemChecksum = ManageSystemMemoryPool(SystemChecksum,&SystemEventDispatcher,&pDataContentStatus);
+    AllocatedMemorySize = ManageSystemMemoryPool(SystemChecksum,&SystemCharacterStatusBufferPointer,Utf8SourcePointer + 2);
     StringProcessingStatus = (uint8_t *)0x0;
     ProcessedCharacter = 0;
     MemoryAddressMaskPointer = *(uint *)(AllocatedMemorySize + 0x10);
@@ -261377,7 +261377,7 @@ LAB_1802158f5:
   uStack_170 = CONCAT44(uStack_170.HighPart,Utf16Char);
   *SecondaryProcessingStatusFlag = 0x2220656e656353;
   uStack_178 = 7;
-  SystemChecksum = FUN_180627ce0(&StackSystemContextSecondary,SystemProcessFlagBuffer,AdditionalParameter1 + 0x4d8);
+  SystemChecksum = ManageSystemMemoryPool(&StackSystemContextSecondary,SystemProcessFlagBuffer,AdditionalParameter1 + 0x4d8);
   pSystemValue1a8 = &SystemNullTemplate;
   StackMemoryStatus = 0;
   ProcessingBufferPointer = NULL;
@@ -261401,8 +261401,8 @@ LAB_1802158f5:
   *(uint16_t *)((long long)SecondaryProcessingStatusFlag + 0x34) = 0x2220;
   *(uint8_t *)((long long)SecondaryProcessingStatusFlag + 0x36) = 0;
   StackProcessingVariable = 0x36;
-  SystemChecksum = FUN_180627ce0(SystemChecksum,&pProcessingCounter,&pSystemValue1a8);
-  AllocatedMemorySize = FUN_180627ce0(SystemChecksum,&pBufferInitializationFlag,Utf8SourcePointer + 2);
+  SystemChecksum = ManageSystemMemoryPool(SystemChecksum,&pProcessingCounter,&pSystemValue1a8);
+  AllocatedMemorySize = ManageSystemMemoryPool(SystemChecksum,&pBufferInitializationFlag,Utf8SourcePointer + 2);
   StringProcessingStatus = (uint8_t *)0x0;
   ProcessedCharacter = 0;
   MemoryAddressMaskPointer = *(uint *)(AllocatedMemorySize + 0x10);
@@ -266169,7 +266169,7 @@ code*** GetSystemDataStructureHandle(void
     *(uint16_t *)((long long)SystemEventTemplatePointer + 0xc) = 0x7362;
     *(uint8_t *)((long long)SystemEventTemplatePointer + 0xe) = 0;
     SystemProcessFlagB = 0xe;
-    FUN_180627ce0(BufferStatus,SystemOperation90,&pProcessingCounter);
+    ManageSystemMemoryPool(BufferStatus,SystemOperation90,&pProcessingCounter);
     pProcessingCounter = &SystemNullTemplate;
       CoreEngineFreeSystemMemory(SystemEventTemplatePointer);
   }
