@@ -112293,24 +112293,39 @@ void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer
 
 
 
- void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18072e7bf(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief 处理UI组件渲染变换
+ * 
+ * 该函数负责处理UI组件的渲染变换操作，包括：
+ * - 计算变换系数和缩放因子
+ * - 处理UI组件的操作和渲染
+ * - 管理事件处理和状态更新
+ * - 执行渲染任务和操作
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * @note 原始函数名：FUN_18072e7bf
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ */
+void ProcessUIComponentRenderTransform(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
   int processingResult;
   int uiValidationResult;
-  longlong TargetHandle;
+  longlong targetHandle;
   int eventHandle;
   longlong preservedRegister15;
-  float TransformCoefficient2;
-  double TemporalDoubleValue;
-  float TransformCoefficient4;
-  double ScalingFactorValue;
+  float transformCoefficient1;
+  double temporalDoubleValue;
+  float transformCoefficient2;
+  double scalingFactorValue;
   float unmodifiedXMM8_Da;
-  float ResultFloatValue;
+  float resultFloatValue;
   UIDword eventProcessingCounter;
-  UIDword StackData1;
-  ulonglong stackParam000006d0;
+  UIDword stackData1;
+  ulonglong stackParameter6d0;
   
   StackData1 = *(UIDword *)(TargetHandle + 0x121c);
   TransformCoefficient2 = (float)CalculateUIDataTransformValue(&stack0x00000030,preservedRegister15 + (longlong)(eventHandle * 2) * 4,targetBuffer,
@@ -400176,12 +400191,12 @@ LAB_18089cd76:
     } while (dataValidationInt < (int)bufferValidationData[0]);
   }
   if (*(uint *)(dataSource + 8) < 0x6e) {
-    iterationCount = 0;
+    validationIterations = 0;
   }
   else if (*(int *)(dataSource[1] + 0x18) == 0) {
-    iterationCount = FUN_1808a2e00(*dataSource,uiContext + 0x5c);
+    validationIterations = FUN_1808a2e00(*dataSource,uiContext + 0x5c);
   }
-  if (iterationCount == 0) {
+  if (validationIterations == 0) {
                      WARNING: Subroutine does not return
     FUN_1808ddf80(dataSource,astackUInt38);
   }
