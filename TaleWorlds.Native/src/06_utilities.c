@@ -128877,7 +128877,7 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlerWithReferenceCount(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -130471,7 +130471,7 @@ void HandleExceptionContextAtOffset50VariantD(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180912550(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateAndCheckExceptionHandlerCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset68),**(ByteFlag **)(exceptionDataBuffer + ExceptionHandlerContextOffset60),
@@ -130482,7 +130482,7 @@ void Unwind_180912550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionContextWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;

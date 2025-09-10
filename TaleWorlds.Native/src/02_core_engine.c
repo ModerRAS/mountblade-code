@@ -242295,15 +242295,15 @@ long long * BatchProcessBufferCleanupAndCopy(long long *ContextHandle,long long 
     (**(code **)(*BufferCleanupState + 0x38))();
   }
   CurrentContextHandle = (long long *)OperationBufferSize[2];
-  if (ContextHandle != (long long *)0x0) {
-    (**(code **)(*ContextHandle + 0x28))(ContextHandle);
+  if (CurrentContextHandle != (long long *)0x0) {
+    (**(code **)(*CurrentContextHandle + 0x28))(CurrentContextHandle);
   }
-  BufferAllocationState = (long long *)ContextHandle[2];
-  ContextHandle[2] = (long long)ContextHandle;
-  if (BufferAllocationState != (long long *)0x0) {
-    (**(code **)(*BufferAllocationState + 0x38))();
+  BufferCleanupState = (long long *)CurrentContextHandle[2];
+  CurrentContextHandle[2] = (long long)CurrentContextHandle;
+  if (BufferCleanupState != (long long *)0x0) {
+    (**(code **)(*BufferCleanupState + 0x38))();
   }
-  ContextHandle = (long long *)OperationBufferSize[3];
+  CurrentContextHandle = (long long *)OperationBufferSize[3];
   if (ContextHandle != (long long *)0x0) {
     (**(code **)(*ContextHandle + 0x28))(ContextHandle);
   }
