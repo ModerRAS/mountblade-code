@@ -200132,9 +200132,9 @@ UIHandle ProcessUIEventHandlingAndStateManagement(longlong uiContext, int dataSo
     processStatus = *(UIDword *)(uiBufferData + 0x470);
     eventLoopCounter = *(UIDword *)(uiBufferData + 0x474);
     *(UIDword *)(eventDataBuffer + 0xf0) = *(UIDword *)(uiBufferData + 0x468);
-    *(UIDword *)(eventDataBuffer + 0xf4) = eventCodeType;
-    *(UIDword *)(eventDataBuffer + 0xf8) = processingStatus;
-    *(UIDword *)(eventDataBuffer + 0xfc) = loopCounter;
+    *(UIDword *)(eventDataBuffer + 0xf4) = eventCode;
+    *(UIDword *)(eventDataBuffer + 0xf8) = processStatus;
+    *(UIDword *)(eventDataBuffer + 0xfc) = eventLoopCounter;
     *(UIDword *)(eventDataBuffer + 0x100) = *(UIDword *)(uiBufferData + 0x478);
     func_0x000180743b40(*(UIHandle *)(uiContext + 0xa8),eventDataBuffer,1);
     componentHandle = *(longlong *)(uiBufferData + 0xa8);
@@ -263873,48 +263873,48 @@ LAB_18082567c:
       *resultPointer = *resultPointer + 1;
     }
     encodedValue = tempBuffer[0];
-    if ((char)astackUInt28[0] < '\0') {
-      if (((astackUInt28[0] & 0xc0) == 0) || ((astackUInt28[0] & 0x20) != 0)) {
-        if (((astackUInt28[0] & 0xe0) == 0) || ((astackUInt28[0] & 0x10) != 0)) {
-          if (((astackUInt28[0] & 0xf0) == 0) || ((astackUInt28[0] & 8) != 0)) {
-            if (((astackUInt28[0] & 0xf8) == 0) || ((astackUInt28[0] & 4) != 0)) {
-              if (((astackUInt28[0] & 0xfc) == 0) || ((astackUInt28[0] & 2) != 0)) {
+    if ((char)tempBuffer[0] < '\0') {
+      if (((tempBuffer[0] & 0xc0) == 0) || ((tempBuffer[0] & 0x20) != 0)) {
+        if (((tempBuffer[0] & 0xe0) == 0) || ((tempBuffer[0] & 0x10) != 0)) {
+          if (((tempBuffer[0] & 0xf0) == 0) || ((tempBuffer[0] & 8) != 0)) {
+            if (((tempBuffer[0] & 0xf8) == 0) || ((tempBuffer[0] & 4) != 0)) {
+              if (((tempBuffer[0] & 0xfc) == 0) || ((tempBuffer[0] & 2) != 0)) {
 LAB_18082566e:
                 *targetBuffer = 0xffffffff;
                 return 1;
               }
-              processStatus = astackUInt28[0] & 1;
-              processingResult = 5;
+              encodedValue = tempBuffer[0] & 1;
+              decodeResult = 5;
             }
             else {
-              processStatus = astackUInt28[0] & 3;
-              processingResult = 4;
+              encodedValue = tempBuffer[0] & 3;
+              decodeResult = 4;
             }
           }
           else {
-            processStatus = astackUInt28[0] & 7;
-            processingResult = 3;
+            encodedValue = tempBuffer[0] & 7;
+            decodeResult = 3;
           }
         }
         else {
-          processStatus = astackUInt28[0] & 0xf;
-          processingResult = 2;
+          encodedValue = tempBuffer[0] & 0xf;
+          decodeResult = 2;
         }
       }
       else {
-        processStatus = astackUInt28[0] & 0x1f;
-        processingResult = 1;
+        encodedValue = tempBuffer[0] & 0x1f;
+        decodeResult = 1;
       }
       do {
-        uiValidationResult = FUN_180824d50(uiContext,dataSource,astackUInt28,8);
-        if (uiValidationResult == 0) goto LAB_18082567c;
+        validationStatus = FUN_180824d50(uiContext, dataSource, tempBuffer, 8);
+        if (validationStatus == 0) goto LAB_18082567c;
         if (bufferSize != 0) {
-          *(byte *)((ulonglong)*resultPointer + bufferSize) = (byte)astackUInt28[0];
+          *(byte *)((ulonglong)*resultPointer + bufferSize) = (byte)tempBuffer[0];
           *resultPointer = *resultPointer + 1;
         }
-        if (((byte)astackUInt28[0] & 0xc0) != 0x80) goto LAB_18082566e;
-        processStatus = astackUInt28[0] & 0x3f | processingStatus << 6;
-        processingResult = processingResult + -1;
+        if (((byte)tempBuffer[0] & 0xc0) != 0x80) goto LAB_18082566e;
+        encodedValue = tempBuffer[0] & 0x3f | encodedValue << 6;
+        decodeResult = decodeResult - 1;
       } while (processingResult != 0);
     }
     *targetBuffer = processingStatus;
