@@ -960,24 +960,24 @@
 #define ResourceManagementOffsetPrimary 0x80
 
 // 异常处理器相关偏移量常量
-#define ExceptionHandlerOffset1620 0x1620
-#define ExceptionHandlerOffset1608 0x1608
-#define ExceptionHandlerOffset15e8 0x15e8
-#define ExceptionHandlerOffset15f0 0x15f0
-#define ExceptionHandlerOffset1600 0x1600
-#define ExceptionHandlerOffset16b0 0x16b0
-#define ExceptionHandlerOffset16a0 0x16a0
-#define ExceptionHandlerOffset1678 0x1678
-#define ExceptionHandlerOffset1680 0x1680
-#define ExceptionHandlerOffset1690 0x1690
-#define ExceptionHandlerOffset1658 0x1658
-#define ExceptionHandlerOffset1660 0x1660
-#define ExceptionHandlerOffset1670 0x1670
-#define ExceptionHandlerOffset1720 0x1720
-#define ExceptionHandlerOffset1710 0x1710
-#define ExceptionHandlerOffset930 0x930
-#define ExceptionHandlerOffset318 0x318
-#define ExceptionHandlerOffset238 0x238
+#define ExceptionHandlerOffsetPrimaryHandler 0x1620
+#define ExceptionHandlerOffsetSecondaryHandler 0x1608
+#define ExceptionHandlerOffsetTertiaryHandler 0x15e8
+#define ExceptionHandlerOffsetQuaternaryHandler 0x15f0
+#define ExceptionHandlerOffsetQuinaryHandler 0x1600
+#define ExceptionHandlerOffsetExtendedHandlerA 0x16b0
+#define ExceptionHandlerOffsetExtendedHandlerB 0x16a0
+#define ExceptionHandlerOffsetCleanupHandlerA 0x1678
+#define ExceptionHandlerOffsetCleanupHandlerB 0x1680
+#define ExceptionHandlerOffsetCleanupHandlerC 0x1690
+#define ExceptionHandlerOffsetResourceHandlerA 0x1658
+#define ExceptionHandlerOffsetResourceHandlerB 0x1660
+#define ExceptionHandlerOffsetResourceHandlerC 0x1670
+#define ExceptionHandlerOffsetSystemHandlerA 0x1720
+#define ExceptionHandlerOffsetSystemHandlerB 0x1710
+#define ExceptionHandlerOffsetMemoryHandler 0x930
+#define ExceptionHandlerOffsetThreadHandler 0x318
+#define ExceptionHandlerOffsetProcessHandler 0x238
 
 // 内存对齐相关常量
 #define MemoryAlignmentValue 4                    // 内存对齐值

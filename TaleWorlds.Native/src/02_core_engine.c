@@ -92,6 +92,12 @@
 #define MemoryAlignmentSize 8                                // 内存对齐大小
 #define MemoryAllocationMask 0xfffffffffffffffe              // 内存分配掩码
 
+// 系统偏移量常量
+#define SystemCallbackFunctionOffset 0xa8                    // 系统回调函数偏移量
+#define SystemContextDataOffset 0x98                         // 系统上下文数据偏移量
+#define SystemOperationFlagMask 1                            // 系统操作标志掩码
+#define SystemMemoryBlockSize 0xb8                           // 系统内存块大小
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
@@ -260048,14 +260054,31 @@ uint64_t * FUN_180211930(uint64_t *ContextHandle
 
 
 
-long long FUN_1802119c0(long long ContextHandle,uint OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统上下文和UTF8/UTF16编码操作
+ * 
+ * 该函数负责处理系统上下文和UTF8/UTF16编码的各种操作，包括：
+ * - 执行上下文相关的回调函数
+ * - 处理系统上下文的初始化和清理
+ * - 管理内存分配和释放
+ * - 处理UTF8和UTF16编码的转换
+ * 
+ * @param ContextHandle 系统上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return long long 操作结果
+ * 
+ * @note 原始函数名：FUN_1802119c0
+ */
+long long ProcessSystemContextAndEncodingOperations(long long ContextHandle,uint OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  if (*(code **)(ContextHandle + 0xa8) != (code *)0x0) {
-    (**(code **)(ContextHandle + 0xa8))(ContextHandle + 0x98,0,0,Utf16EndPointer,0xfffffffffffffffe);
+  if (*(code **)(ContextHandle + SystemCallbackFunctionOffset) != (code *)0x0) {
+    (**(code **)(ContextHandle + SystemCallbackFunctionOffset))(ContextHandle + SystemContextDataOffset,0,0,Utf16EndPointer,MemoryAllocationMask);
   }
-  FUN_180320050(ContextHandle);
-  if ((OperationBufferSize & 1) != 0) {
-    free(ContextHandle,0xb8);
+  ProcessSystemContextInitialization(ContextHandle);
+  if ((OperationBufferSize & SystemOperationFlagMask) != 0) {
+    free(ContextHandle,SystemMemoryBlockSize);
   }
   return ContextHandle;
 }
