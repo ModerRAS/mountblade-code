@@ -30461,8 +30461,8 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     nodeDescriptorArray = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
     while (currentNodeIndex = (uint)nodeDescriptorArray, currentNodeIndex != 0xffffff) {
       dataBufferValue = *(uint *)(*dataContext + (uint64_t)currentNodeIndex * 8);
-      if ((dataBufferValue & 0xffffff) != 0xffffff) {
-        stringDataAddress = (uint64_t)(dataBufferValue & 0xffffff) + dataContext[4];
+      if ((dataBufferValue & DataValidationMask) != 0xffffff) {
+        stringDataAddress = (uint64_t)(dataBufferValue & DataValidationMask) + dataContext[4];
         stringDataLength = GetStringLength(stringDataAddress);
         if (bufferSize != 0) {
           stringDataPointer = (ByteFlag *)((stringDataLength + -1) + stringDataAddress);
@@ -30594,8 +30594,8 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   memoryRegionBase = *(uint3 *)((int64_t)dataBuffer * 3 + systemContext[6]);
   while (validationOutcome = (uint)memoryRegionBase, validationOutcome != 0xffffff) {
     validationStatus = *(uint *)(*systemContext + (uint64_t)validationOutcome * 8);
-    if ((validationStatus & 0xffffff) != 0xffffff) {
-      exceptionHandlerContext4 = (uint64_t)(validationStatus & 0xffffff) + systemContext[4];
+    if ((validationStatus & DataValidationMask) != 0xffffff) {
+      exceptionHandlerContext4 = (uint64_t)(validationStatus & DataValidationMask) + systemContext[4];
       calculatedSize = ValidateSystemDataIntegrityB0(exceptionHandlerContext4);
       if (resourceValidationStatus != 0) {
         exceptionDataBuffer5 = (ByteFlag *)((calculatedSize + -1) + exceptionHandlerContext4);

@@ -98,6 +98,10 @@
 #define SystemProcessingStatusMultiplier 0x14                 // 系统处理状态乘数
 
 // 系统事件模板偏移量常量
+
+// 内存分配器偏移量常量
+#define MemoryAllocatorLibraryHandleOffset 0xb                // 内存分配器库句柄偏移量
+#define MemoryAllocatorFunctionPointerOffset 0xc              // 内存分配器函数指针偏移量
 #define SystemEventTemplateBaseOffset 0x16c8                 // 系统事件模板基础偏移量
 #define SystemEventTemplateOffset1 0x1b88                    // 系统事件模板偏移量1
 #define SystemEventTemplateOffset2 -0x14                     // 系统事件模板偏移量2
@@ -25893,8 +25897,8 @@ void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerP
   StackPointer = MemoryAllocatorPointer;
   StackDoublePointer = ErrorHandlerPointer;
   _Mtx_init_in_situ(ErrorHandlerPointer,2);
-  MemoryAllocatorPointer[0xb] = 0;
-  MemoryAllocatorPointer[0xc] = 0;
+  MemoryAllocatorPointer[MemoryAllocatorLibraryHandleOffset] = 0;
+  MemoryAllocatorPointer[MemoryAllocatorFunctionPointerOffset] = 0;
   *(uint16_t *)MemoryAllocatorPointer = 0;
   MemoryAllocator = MemoryAllocatorPointer;
   if ((char)*MemoryAllocatorPointer != '\0') goto CheckMemoryAllocator;
@@ -25910,10 +25914,10 @@ void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerP
     SystemStatusContext = ThreadLocalStorageProcessingStatusFlag;
   }
   SymSetSearchPath(SymbolProcessingHandle,SymbolSearchPath);
-  OperationResult = MemoryAllocatorPointer[0xb];
+  OperationResult = MemoryAllocatorPointer[MemoryAllocatorLibraryHandleOffset];
   if (OperationResult == 0) {
     OperationResult = LoadLibraryA(&SystemLibraryName);
-    MemoryAllocatorPointer[0xb] = OperationResult;
+    MemoryAllocatorPointer[MemoryAllocatorLibraryHandleOffset] = OperationResult;
     if (OperationResult != 0) goto SystemLibraryLoadSuccess;
     ThreadLocalStorageErrorHandler = &SystemNullTemplate;
     if (ThreadLocalStorageProcessingStatusFlag != NULL) {
