@@ -84,6 +84,7 @@
 
 // 异常处理和错误管理函数
 #define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
+#define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
 
 /**
  * @brief 配置核心引擎指针
@@ -227930,7 +227931,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterPrimary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterPrimary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -227945,7 +227946,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSecondary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSecondary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -227960,7 +227961,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterTertiary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterTertiary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -227975,7 +227976,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuaternary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuaternary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -227990,7 +227991,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuinary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterQuinary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -228005,7 +228006,7 @@ long long * AllocateAndInitializeContextHandleBuffer(long long *ContextHandle,lo
   
   StackProcessingConfigurationFlag = ProcessUtf16Character(*ContextHandleSize);
   uStackX_20 = Utf16EndPointer;
-  FUN_180061f80(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSenary,&StackProcessingConfigurationFlag);
+  ProcessSystemConfigurationWithParameters(SystemConfigHandle,0,0xffffffff00000000,0xd,&SystemConfigurationParameterSenary,&StackProcessingConfigurationFlag);
   return;
 }
 
@@ -228919,7 +228920,7 @@ ProcessCharacterMemoryAllocationAndBufferManagement(long long *ContextHandle,uin
   long long *SystemDataTablePointer;
   
   if (0x666666666666664 < (unsigned long long)ContextHandle[1]) {
-    FUN_180188610(0x666666666666665,AdditionalParameter2);
+    HandleSystemMemoryOverflowException(0x666666666666665,AdditionalParameter2);
     __Xlength_error_std__YAXPEBD_Z(&ErrorStringTemplate);
     FunctionPointer = (code *)swi(3);
     pMemoryAddressMaskPointer = (void *)(*FunctionPointer)();

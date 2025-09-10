@@ -110593,8 +110593,17 @@ void ProcessUIDataTransformAndMatrixOperation(longlong uiContext, float *dataSou
 
 
 
- void FUN_18072d289(float *uiContext,float *dataSource)
-void FUN_18072d289(float *uiContext,float *dataSource)
+ /**
+ * @brief UI矩阵数据变换处理器D289
+ * 
+ * 执行UI数据的矩阵变换运算，涉及复杂的浮点数计算和矩阵乘法
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源数组
+ * @note 原始函数名：FUN_18072d289
+ * @see ProcessUIDataTransformAndMatrixOperation
+ */
+void ProcessUIMatrixDataTransformation(float *uiContext,float *dataSource)
 
 {
   float *BaseValuePointer;
@@ -114955,8 +114964,16 @@ void FUN_1807332e3(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,
 
 
 
- void FUN_18073337d(void)
-void FUN_18073337d(void)
+ /**
+ * @brief UI渲染任务初始化器337D
+ * 
+ * 初始化UI渲染任务并执行渲染操作
+ * 
+ * @note 原始函数名：FUN_18073337d
+ * @warning 该函数不返回，最终调用ExecuteUIRenderTask
+ * @see ExecuteUIRenderTask
+ */
+void InitializeUIRenderTaskAndExecute(void)
 
 {
   ulonglong maxAllocations;
@@ -114972,8 +114989,17 @@ void FUN_18073337d(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807333f0(longlong uiContext)
-void FUN_1807333f0(longlong uiContext)
+ /**
+ * @brief UI上下文渲染更新器33F0
+ * 
+ * 更新UI上下文并触发渲染更新操作
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名：FUN_1807333f0
+ * @warning 该函数不返回，最终调用ProcessUIRenderingUpdate
+ * @see ProcessUIRenderingUpdate
+ */
+void UpdateUIContextAndTriggerRendering(longlong uiContext)
 
 {
   UIByte astackUInta8 [8];
@@ -115656,8 +115682,19 @@ int ValidateUIComponentContextAndState(ulonglong *uiContext,uint dataSource)
 
 
 
- void FUN_1807342b0(short uiContext,char dataSource,int *targetBuffer,int bufferSize,uint resultPointer)
-void FUN_1807342b0(short uiContext,char dataSource,int *targetBuffer,int bufferSize,uint resultPointer)
+ /**
+ * @brief UI数据处理和验证器2B0
+ * 
+ * 处理UI数据并进行验证操作，涉及多种数据类型的处理
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源字符
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @note 原始函数名：FUN_1807342b0
+ */
+void ProcessUIDataAndValidation(short uiContext,char dataSource,int *targetBuffer,int bufferSize,uint resultPointer)
 
 {
   int processingResult;
