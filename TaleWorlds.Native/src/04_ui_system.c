@@ -285,8 +285,8 @@ typedef enum {
 #define ProcessUICoefficientCalculation FUN_18072bbae        // UI系数计算处理
 #define ProcessUISurfaceRendering FUN_18072bbd0              // UI表面渲染处理
 #define ProcessUIInterfaceRendering FUN_18072bf1a             // UI界面渲染处理
-#define UIComponentFunctionTableAC0 UNK_180958ac0         // UI组件函数表AC0
-#define UIComponentValidationTableA8 UNK_1809536a8         // UI组件验证表A8
+#define UIComponentFunctionTableAC0 (void*)0x180958ac0         // UI组件函数表AC0
+#define UIComponentValidationTableA8 (void*)0x1809536a8         // UI组件验证表A8
 #define UI_INITIALIZATION_FLAG 0xfffffffffffffffe // UI初始化标志
 #define UI_COMPONENT_STATE_FLAG 0xfffffffffffffffe // UI组件状态标志
 #define UI_MEMORY_ALIGNMENT_FLAG 0xfffffffffffffffe // UI内存对齐标志
@@ -3107,7 +3107,7 @@ typedef enum {
 #define FUN_180769ed0 ProcessUIComponentDataTransferAndValidation
 #define func_0x00018076a7d0 ValidateUIComponentIndexWithBounds
 #define FUN_180742250 AllocateUIMemoryResourcesWithPool
-#define UIResourceAllocationBufferCD0 UNK_180984cd0         // UI资源分配缓冲区CD0
+#define UIResourceAllocationBufferCD0 (void*)0x180984cd0         // UI资源分配缓冲区CD0
 #define LAB_18089eb22 UIComponentDataTransferCompleteLabel
 #define LAB_18089eb3c UIEventValidationSuccessLabel
 #define FUN_180721f12 ValidateUIFloatParameterWithRangeCheck
@@ -4810,20 +4810,20 @@ void* UIGestureCoordinates;
 #define UICoordinateDataTable3D UICoordinateDataTable3D
 
  // UI系统函数结果表语义化定义
-#define UIFunctionResultTableTransform UNK_1809535ec        // UI函数结果表 - 变换操作
-#define UIFunctionResultTableColor UNK_1809535e8             // UI函数结果表 - 颜色处理
-#define UIFunctionResultTableShader UNK_180954788             // UI函数结果表 - 着色器处理
-#define UIFunctionResultTableTexture UNK_1809535d8            // UI函数结果表 - 纹理处理
-#define UIFunctionResultTableViewport UNK_1809535cc           // UI函数结果表 - 视口处理
-#define UIFunctionResultTableLighting UNK_180953640          // UI函数结果表 - 光照处理
-#define UIFunctionResultTableAnimation UNK_1809547d8         // UI函数结果表 - 动画处理
-#define UIFunctionResultTableEvent UNK_1809547b8             // UI函数结果表 - 事件处理
-#define UIFunctionResultTableInput UNK_180954840             // UI函数结果表 - 输入处理
-#define UIFunctionResultTableLayout UNK_180954848             // UI函数结果表 - 布局处理
-#define UIFunctionResultTableState UNK_1809535d4             // UI函数结果表 - 状态处理
-#define UIFunctionResultTableDebug UNK_1809535b8             // UI函数结果表 - 调试处理
-#define UIComparisonTableEntry UNK_1809543d8                  // UI比较表条目
-#define UIComponentDataTable UNK_180954320                   // UI组件数据表
+#define UIFunctionResultTableTransform (void*)0x1809535ec        // UI函数结果表 - 变换操作
+#define UIFunctionResultTableColor (void*)0x1809535e8             // UI函数结果表 - 颜色处理
+#define UIFunctionResultTableShader (void*)0x180954788             // UI函数结果表 - 着色器处理
+#define UIFunctionResultTableTexture (void*)0x1809535d8            // UI函数结果表 - 纹理处理
+#define UIFunctionResultTableViewport (void*)0x1809535cc           // UI函数结果表 - 视口处理
+#define UIFunctionResultTableLighting (void*)0x180953640          // UI函数结果表 - 光照处理
+#define UIFunctionResultTableAnimation (void*)0x1809547d8         // UI函数结果表 - 动画处理
+#define UIFunctionResultTableEvent (void*)0x1809547b8             // UI函数结果表 - 事件处理
+#define UIFunctionResultTableInput (void*)0x180954840             // UI函数结果表 - 输入处理
+#define UIFunctionResultTableLayout (void*)0x180954848             // UI函数结果表 - 布局处理
+#define UIFunctionResultTableState (void*)0x1809535d4             // UI函数结果表 - 状态处理
+#define UIFunctionResultTableDebug (void*)0x1809535b8             // UI函数结果表 - 调试处理
+#define UIComparisonTableEntry (void*)0x1809543d8                  // UI比较表条目
+#define UIComponentDataTable (void*)0x180954320                   // UI组件数据表
 #define UIValidationFlagTable UNK_1809543c2                  // UI验证标志表
 #define UIComponentStateTable UNK_1809535b0                  // UI组件状态表
 
