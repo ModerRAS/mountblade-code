@@ -137527,13 +137527,6 @@ int ProcessMemoryBufferWithValidation(void *MemoryBufferPointer, uint32_t Buffer
 // 功能：验证内存缓冲区的边界和完整性，确保内存访问的安全性
 #define ValidateMemoryBoundary FUN_180853000
 
-// 数据字节验证函数  
-// 功能：验证单个数据字节的有效性，检查数据是否符合预期格式
-#define ValidateDataByte FUN_180853001
-
-// 安全内存清理函数
-// 功能：安全地清理内存缓冲区，防止敏感信息泄露
-#define SecureClearMemory FUN_180853002
 
 /**
  * @brief 系统数据加密处理函数
