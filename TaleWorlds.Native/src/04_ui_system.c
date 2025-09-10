@@ -162748,7 +162748,7 @@ ProcessUIContextDataAllocation(longlong uiContext, uint dataSource, int targetBu
   if (((dataSource == 0) && (dataArray10[0] = dataSource, bufferTarget = targetBuffer, targetBuffer == 0)) &&
      ((stringCompareIndex = *(longlong *)(uiBufferData + 0xe8), stringCompareIndex == 0 ||
       (((*(int *)(stringCompareIndex + 0x28) != 0 || (*(longlong *)(stringCompareIndex + 0x48) != 0)) ||
-       (auStackX_10[0] = dataSource, iStackX_18 = targetBuffer, *(int *)(uiBufferData + 0x100) == 0x3e9)))))) {
+       (dataArray10[0] = dataSource, bufferTarget = targetBuffer, *(int *)(uiBufferData + 0x100) == 0x3e9)))))) {
     if (*(ushort *)(uiContext + 0x118) == 0) {
       if (*(longlong *)(uiBufferData + 0x138) == 0) {
         if ((int)*(short *)(uiContext + 0x1a8) - (int)*(short *)(uiContext + 0x1b0) < 2) {

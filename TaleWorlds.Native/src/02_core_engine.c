@@ -243774,28 +243774,28 @@ long long * ProcessSystemMemoryProcessing(long long ContextHandle,long long *Con
         SystemContextData = *AlternateContextHandle;
       }
     }
-    while (SystemContextValue != BufferAllocationState[*(long long *)(*(long long *)(ContextHandle + 0x60b80) + 0x48)]) {
-      if (*(long long *)(SystemContextValue + 8) != 0) {
-        ContextSecondaryFloat4 = *(float *)(*(long long *)(SystemContextValue + 8) + 0x7c);
-        if ((float)IntegerValue9 < ContextSecondaryFloat4) {
-          IntegerValue9 = (int)ContextSecondaryFloat4;
+    while (SystemContextData != MemoryBufferState[*(long long *)(*(long long *)(ContextHandle + 0x60b80) + 0x48)]) {
+      if (*(long long *)(SystemContextData + 8) != 0) {
+        ContextFloatValue4 = *(float *)(*(long long *)(SystemContextData + 8) + 0x7c);
+        if ((float)RangeMinimum < ContextFloatValue4) {
+          RangeMinimum = (int)ContextFloatValue4;
         }
-        if (ContextSecondaryFloat4 < (float)IntegerValue8) {
-          IntegerValue8 = (int)ContextSecondaryFloat4;
+        if (ContextFloatValue4 < (float)RangeMaximum) {
+          RangeMaximum = (int)ContextFloatValue4;
         }
       }
-      SystemContextValue = *(long long *)(SystemContextValue + 0x10);
-      while (SystemContextValue == 0) {
-        ContextHandle1 = ContextHandle1 + 1;
-        SystemContextValue = *ContextHandle1;
+      SystemContextData = *(long long *)(SystemContextData + 0x10);
+      while (SystemContextData == 0) {
+        AlternateContextHandle = AlternateContextHandle + 1;
+        SystemContextData = *AlternateContextHandle;
       }
     }
-    IntegerValue9 = IntegerValue9 + 5;
-    IntegerValue8 = IntegerValue8 + -5;
+    RangeMinimum = RangeMinimum + 5;
+    RangeMaximum = RangeMaximum + -5;
     iStack_2f4 = 0;
-    iStack_2c0 = IntegerValue8;
-    iStack_2bc = IntegerValue9;
-    if (SystemConfigurationIterator != 1) {
+    iStack_2c0 = RangeMaximum;
+    iStack_2bc = RangeMinimum;
+    if (ConfigurationIterator != 1) {
       uStack_1fc = 0x7f7fffff;
       uStack_1dc = 0x7f7fffff;
       uStack_21c = 0x7f7fffff;
