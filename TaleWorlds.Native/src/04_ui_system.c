@@ -5212,6 +5212,27 @@ void* UIGestureCoordinates;
 #define UIComponentDataF48 UNK_180957F48
 #define UIComponentDataF38 UNK_180957F38
 #define UIComponentDataFE8 UNK_180957FE8
+#define UIComponentHandleA240 UNK_18094a240                // UI组件句柄A240 - 组件句柄管理器
+#define UIComponentContextCF0 UNK_180741cf0                // UI组件上下文CF0 - 存储UI组件的上下文数据
+#define UIComponentOperationF868 UNK_18020f868            // UI组件操作F868 - 用于组件操作的函数指针或数据
+#define UIComponentState640 UNK_180770640                  // UI组件状态640 - 存储组件的状态信息
+#define UIComponentResourceD90 UNK_180785d90              // UI组件资源D90 - 存储组件的资源引用
+#define UIComponentMemory2A0 UNK_1807872a0                // UI组件内存2A0 - 用于组件内存管理的地址
+#define UIComponentBuffer0A0 UNK_1807880a0                // UI组件缓冲区0A0 - 组件数据缓冲区
+#define UIComponentHandlerE70 UNK_18079ce70              // UI组件处理器E70 - 组件事件处理器
+#define UIComponentValidationF70 UNK_18079cf70             // UI组件验证F70 - 组件数据验证器
+#define UIComponentRendererC70 UNK_180801c70              // UI组件渲染器C70 - 组件渲染器
+#define UIComponentManagerCA0 UNK_180801ca0               // UI组件管理器CA0 - 组件生命周期管理器
+#define UIComponentEvent714 UNK_180807714                // UI组件事件714 - 组件事件队列
+#define UIComponentCallback190 UNK_18080b190              // UI组件回调190 - 组件回调函数表
+#define UIComponentLayout720 UNK_180839720               // UI组件布局720 - 组件布局管理器
+#define UIComponentStyleD30 UNK_180839d30                 // UI组件样式D30 - 组件样式数据
+#define UIComponentTheme4F0 UNK_18083c4f0                 // UI组件主题4F0 - 组件主题配置
+#define UIComponentFactory3A0 UNK_1808633a0               // UI组件工厂3A0 - 组件创建工厂
+#define UIComponentRegistry400 UNK_180863400              // UI组件注册表400 - 组件类型注册表
+#define UIComponentCacheE4C UNK_180873e4c                 // UI组件缓存E4C - 组件缓存管理器
+#define UIComponentPoolE54 UNK_180873e54                  // UI组件池E54 - 组件对象池
+#define UIComponentContextE5C UNK_180873e5c               // UI组件上下文E5C - 组件上下文管理器
 
 // UI系统句柄表宏定义
 #define UIHandleTableF6E UNK_180956F6E

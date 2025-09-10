@@ -4750,10 +4750,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 内存初始化函数
- * @note 原始函数名：func_0x00018076b450
+ * @note 原始函数名：FUN_180047e40
  * 功能：初始化系统内存池
  */
-#define InitializeSystemMemoryPool InitializeSystemMemoryPool
+#define InitializeSystemMemoryPool FUN_180047e40
 
 /**
  * @brief 数据处理函数
@@ -5532,7 +5532,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * @warning 缓冲区初始化失败可能导致内存泄漏或访问冲突
  * @see ProcessDataArrayWithValidation, ProcessSystemDataA0
  */
-#define InitializeSystemDataBuffer InitializeSystemDataBuffer
+#define InitializeSystemDataBuffer FUN_1800a19c0
 
 /**
  * @brief 系统命令执行函数
