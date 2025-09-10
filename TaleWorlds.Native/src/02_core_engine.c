@@ -36777,7 +36777,7 @@ void ProcessContextHandle(long long *ContextHandle
   *(uint32_t *)(EncodingConversionResult + 0x1e0) = *(uint32_t *)(CoreEngineMemoryContext + 0x1d50);
   *(uint32_t *)(EncodingConversionResult + 0x1e4) = SystemChecksum;
   SystemStatus30 = 0x180059066;
-  (**(code **)(**(long long **)(*ContextHandle + 0x2b0) + SystemMemoryFunctionOffsetF8))();
+  (**(code **)(**(long long **)(*ContextHandle + SystemContextHandleOffset2B0) + SystemMemoryFunctionOffsetF8))();
   SystemStatus298 = 0xfffffffffffffffe;
   MemoryAddress38 = EncodingDecodingKey ^ (unsigned long long)SystemStackDataBuffer3b8;
   OperationResult378 = 0;
