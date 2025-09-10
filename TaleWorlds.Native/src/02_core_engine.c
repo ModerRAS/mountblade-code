@@ -240014,7 +240014,7 @@ LAB_18019a44a:
       *(uint32_t *)(CharacterStatusBuffer + 4) = SystemStackFlag;
     }
     else {
-      FUN_1800584e0(AllocatedMemorySize,&EnginePointerBuffer);
+      ProcessSystemMemoryBlockAllocation(AllocatedMemorySize,&EnginePointerBuffer);
     }
     EnginePointerBuffer = &SystemNullTemplate;
     if (lStack_60 != 0) {

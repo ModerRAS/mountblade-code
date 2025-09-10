@@ -118451,8 +118451,7 @@ void ProcessUIDataOperations(void)
 
 
 
- void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIByte *bufferSize,
-void FUN_180735d37(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIByte *bufferSize,
+ void ProcessUIWithByteParameters(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIByte *bufferSize,
                   UIHandle resultPointer,UIHandle param_6,UIHandle param_7,longlong param_8)
 
 {
