@@ -405301,8 +405301,14 @@ void CheckUISystemStatus(void)
 
 
 
- void FUN_18089f47c(void)
-void FUN_18089f47c(void)
+ /**
+ * UI系统初始化检查函数
+ * 检查UI系统的初始化状态，确保系统已正确初始化
+ * 
+ * @return 无返回值
+ */
+void CheckUIInitializationStatus(void)
+void CheckUIInitializationStatus(void)
 
 {
   return;
@@ -405310,8 +405316,19 @@ void FUN_18089f47c(void)
 
 
 
-ulonglong FUN_18089f530(longlong uiContext,UIHandle *dataSource,UIDword targetBuffer,UIDword bufferSize,
-                       char resultPointer)
+/**
+ * 处理UI上下文数据验证和迭代
+ * 验证UI上下文中的数据有效性，并进行迭代处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄数组
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理结果的迭代计数值
+ */
+ulonglong ProcessUIContextDataValidationAndIteration(longlong uiContext,UIHandle *dataSource,UIDword targetBuffer,UIDword bufferSize,
+                                                      char resultPointer)
 
 {
   uint result;
