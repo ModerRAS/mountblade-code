@@ -224111,12 +224111,12 @@ void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *Con
   CharacterStatusBuffer = (void *)Utf8SourcePointer[7];
   MemoryBlockHandle = MemoryBlockIndex;
   if (CharacterStatusBuffer != NULL) {
-    plStack_60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,aStackLongValue);
+    StackPointer60 = (long long *)(**(code **)*CharacterStatusBuffer)(CharacterStatusBuffer,StackValueArray);
   }
-  SystemFlagF = 3;
+  SystemProcessingFlag = 3;
   *(void *)(MemoryBlockIndex + 0x38) = 0;
-  pSystemTemporaryValueD0 = (long long *)MemoryBlockIndex;
-  BufferOffset = Utf16EndPointer;
+  SystemTemporaryValuePointer = (long long *)MemoryBlockIndex;
+  DataBufferOffset = Utf16EndPointer;
   if (plStack_60 != (long long *)0x0) {
     if (plStack_60 == aStackLongValue) {
       MemoryAddressMaskPointer = (**(code **)(*plStack_60 + 8))(plStack_60,MemoryBlockIndex);
