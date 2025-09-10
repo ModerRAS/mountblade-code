@@ -24677,16 +24677,27 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
  * @param UnusedParameter4 未使用的参数4
  * @return void** 返回设置后的数据缓冲区引用
  * 
+ /**
+ * @brief 设置数据缓冲区模板
+ * 
+ * 初始化系统数据缓冲区的模板配置，包括输入和输出缓冲区模板。
+ * 根据初始化标志决定是否释放缓冲区资源。
+ * 
+ * @param dataBufferReference 数据缓冲区引用指针
+ * @param initializationFlags 初始化标志位
+ * @param unusedParameter3 未使用参数3
+ * @param unusedParameter4 未使用参数4
+ * @return void** 返回数据缓冲区引用指针
+ * 
  * @note 这是数据缓冲区管理系统的重要函数，用于初始化数据缓冲区模板
  */
-void* *
-SetupDataBufferTemplates(void** dataBufferReference, unsigned long long initializationFlags, void* unusedParameter3, void* unusedParameter4)
+void** SetupDataBufferTemplates(void** dataBufferReference, uint64_t initializationFlags, void* unusedParameter3, void* unusedParameter4)
 
 {
   *dataBufferReference = &SystemDataBufferInputTemplate;
   *dataBufferReference = &SystemDataBufferOutputTemplate;
-  if ((initializationFlags & 1) != 0) {
-    free(dataBufferReference, 0x10, ReservedParameter3, ReservedParameter4, InvalidHandleValue);
+  if ((initializationFlags & SystemInitializationFlagMask) != 0) {
+    free(dataBufferReference, SystemStandardAllocationSize, ReservedParameter3, ReservedParameter4, InvalidHandleValue);
   }
   return dataBufferReference;
 }
