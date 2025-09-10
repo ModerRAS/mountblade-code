@@ -91,6 +91,28 @@
 #define SecondaryProcessingStatusOffset 0x370
 #define MemoryBlockValidationOffset 0x328
 
+// 核心引擎高级函数语义化宏定义
+#define FUN_18016cff0 ProcessMemoryBlockAndStackValue                    // 处理内存块和栈值
+#define FUN_18016d400 ProcessCharacterEncodingAndBufferCleanup           // 处理字符编码和缓冲区清理
+#define FUN_180169f60 AllocateSystemEventTemplate                         // 分配系统事件模板
+#define FUN_180629c00 InitializeSystemBuffer                             // 初始化系统缓冲区
+#define FUN_18016afc0 ProcessContextHandleFinalization                    // 处理上下文句柄最终化
+#define FUN_18022ebe0 InitializeCharacterTransformationData              // 初始化字符转换数据
+#define FUN_18022b980 ManageContextHandleMemory                          // 管理上下文句柄内存
+#define FUN_18022b9c0 InitializeContextHandleSystemConfiguration         // 初始化上下文句柄系统配置
+#define FUN_18022ba00 InitializeSystemMemoryCallbackConfiguration        // 初始化系统内存回调配置
+#define FUN_18022ba40 PerformSystemInitialization                        // 执行系统初始化
+#define FUN_1801166f0 ValidateSystemBufferAndProcessData                 // 验证系统缓冲区并处理数据
+#define FUN_180320050 ExecuteSystemMemoryCleanup                          // 执行系统内存清理
+#define FUN_1801601c0 ProcessContextHandleTableOperation                 // 处理上下文句柄表操作
+#define FUN_18015c190 ConvertUtf16ToUtf8Encoding                         // 转换UTF-16到UTF-8编码
+#define FUN_1801601a0 InitializeContextHandleData                        // 初始化上下文句柄数据
+#define FUN_180160341 ValidateAndConvertContextHandleData                 // 验证并转换上下文句柄数据
+#define FUN_1801605f0 ExecuteContextHandleDataProcessing                 // 执行上下文句柄数据处理
+#define FUN_1801605c8 CleanupContextHandleData                           // 清理上下文句柄数据
+#define FUN_18016060f ProcessFloatContextHandleConversion                // 处理浮点上下文句柄转换
+#define FUN_180160af0 ProcessContextHandleAdvancedOperation              // 处理上下文句柄高级操作
+
 // 系统参数语义化宏定义
 #define SystemParameter1 FirstSystemParameter              // 系统参数1
 #define SystemParameter2 SecondSystemParameter             // 系统参数2
