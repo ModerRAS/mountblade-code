@@ -119894,10 +119894,10 @@ void ProcessUIContextDataTransformation(UIByte *uiContext,int *dataSource,int *t
   char *charPointer;
   
   loopCounter = *param_6;
-  localInt7 = param_6[1];
-  localInt8 = param_6[2];
-  localInt9 = param_6[3];
-  processedCount = param_6[4];
+  transformOffset1 = param_6[1];
+  transformOffset2 = param_6[2];
+  transformOffset3 = param_6[3];
+  transformOffset4 = param_6[4];
   *targetBuffer = 0x7fffffff;
   *dataSource = 0x7fffffff;
   *uiContext = 0;
