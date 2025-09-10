@@ -28269,7 +28269,7 @@ void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
   inputParameter = (**(FunctionPointer**)(*DestinationContext + 8))();
   if (((inputParameter == 0) && (systemStatus == '\0')) &&
      (inputParameter = (**(FunctionPointer**)(*DestinationContext + SystemDataSecondaryOffset18))(), inputParameter == 0)) {
-    *(ByteFlag *)(DestinationContext + 4) = 0;
+    *(ByteFlag *)(DestinationContext + OperationBaseStatusFlagOffset) = 0;
   }
     ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
@@ -28288,7 +28288,7 @@ void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
   uint64_t stackMemoryAddress;
   
   if ((systemStatus == '\0') && (systemValidationResult = (**(FunctionPointer**)(*DestinationContext + SystemDataSecondaryOffset18))(), systemValidationResult == 0)) {
-    *(ByteFlag *)(DestinationContext + 4) = 0;
+    *(ByteFlag *)(DestinationContext + OperationBaseStatusFlagOffset) = 0;
   }
     ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
