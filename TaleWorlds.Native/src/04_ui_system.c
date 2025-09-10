@@ -120596,21 +120596,21 @@ void ProcessUIComponentEventAndDataValidation(short *uiContext,short *dataSource
 
 
 
- void FUN_180737a50(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
-void FUN_180737a50(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
+ void InitializeUIDataBufferAndSort(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
+void InitializeUIDataBufferAndSort(longlong uiContext,longlong dataSource,int targetBuffer,uint bufferSize)
 
 {
-  int processingResult;
-  uint iterationCount;
-  UIDword *ptrLocal3;
-  int *ptrLocalInt4;
-  int localInt5;
-  int loopCounter;
-  longlong localLong7;
-  ulonglong eventProcessingCounter;
-  ulonglong eventStatus;
-  longlong allocatedMemory0;
-  int ProcessingResult1;
+  int sortCompareResult;
+  uint blockProcessCount;
+  UIDword *dataPointer;
+  int *bufferPointer;
+  int insertPosition;
+  int currentIndex;
+  longlong bufferSizeLong;
+  ulonglong processedItemCount;
+  ulonglong currentOffset;
+  longlong searchStartIndex;
+  int processingValue;
   
   eventProcessingCounter = 0;
   localLong7 = (longlong)(int)bufferSize;
