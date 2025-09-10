@@ -6362,7 +6362,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089fc50
  */
-#define ExecuteDataCleanup FUN_18089fc50
+#define ExecuteDataCleanup PerformDataCleanupAndReleaseResources
 
 /**
  * @brief 初始化数据处理器A1
@@ -6371,7 +6371,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089fd30
  */
-#define InitializeDataProcessor FUN_18089fd30
+#define InitializeDataProcessor SetupDataProcessorInitialization
 
 /**
  * @brief 处理数据缓存A1
@@ -6380,7 +6380,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089fed0
  */
-#define ProcessDataCache FUN_18089fed0
+#define ProcessDataCache HandleDataCacheOperations
 
 /**
  * @brief 清理数据缓存A1
@@ -6389,7 +6389,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18089ffe0
  */
-#define CleanupDataCache FUN_18089ffe0
+#define CleanupDataCache ClearDataCacheAndReleaseMemory
 
 /**
  * @brief 执行基础数据验证
@@ -6398,7 +6398,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18073b5f0
  */
-#define ValidateBasicData FUN_18073b5f0
+#define ValidateBasicData PerformBasicDataValidation
 
 /**
  * @brief 执行清理操作验证
@@ -6407,7 +6407,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18073b810
  */
-#define ValidateCleanupOperation FUN_18073b810
+#define ValidateCleanupOperation CheckCleanupOperationValidity
 
 /**
  * @brief 执行单个元素验证
@@ -6416,7 +6416,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1808678e0
  */
-#define ValidateSingleElement FUN_1808678e0
+#define ValidateSingleElement VerifySingleElementIntegrity
 
 /**
  * @brief 执行回调处理
@@ -6425,7 +6425,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_18006a050
  */
-#define ExecuteCallbackProcessing FUN_18006a050
+#define ExecuteCallbackProcessing ProcessCallbackFunctions
 
 // 异常处理函数宏定义 (U系列 - Unwind函数)
 
@@ -6785,7 +6785,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1809420e0
  */
-#define SetDefaultExceptionHandlerA9 FUN_1809420e0
+#define SetDefaultExceptionHandlerA9 ConfigureDefaultExceptionHandlerA9
 
 /**
  * @brief 设置默认异常处理器A5
@@ -6794,7 +6794,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180942100
  */
-#define SetDefaultExceptionHandlerA5 FUN_180942100
+#define SetDefaultExceptionHandlerA5 ConfigureDefaultExceptionHandlerA5
 
 /**
  * @brief 设置默认异常处理器A6
