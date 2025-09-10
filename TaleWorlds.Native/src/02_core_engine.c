@@ -6230,6 +6230,15 @@ const void* const MessageBoxTemplateB24 = (void*)0x180a00340;
 #define ProcessSystemMemoryAllocationAndProcessEx FUN_18013ea70
 #define CleanupSystemResourcesEx FUN_18013ea00
 
+// 系统初始化函数
+#define InitializeSystemContextHandle FUN_180075ff0                // 初始化系统上下文句柄
+#define ProcessSystemMemoryBlockRelease FUN_180057830             // 处理系统内存块释放
+#define InitializeSystemMatrix FUN_1800b9f60                      // 初始化系统矩阵
+#define ConfigureSystemContextHandle FUN_180049550                // 配置系统上下文句柄
+#define ProcessSystemCleanupFlag FUN_18005d580                    // 处理系统清理标志
+#define ProcessSystemDataTemplate FUN_1800e7c40                   // 处理系统数据模板
+#define ProcessSystemDataTemplateInitialization FUN_1800e7d00     // 处理系统数据模板初始化
+
 // 系统内存管理函数
 #define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
 #define ExecuteSystemMemoryManagementAndConfiguration FUN_18013e340
