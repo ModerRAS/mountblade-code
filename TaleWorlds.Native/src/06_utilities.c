@@ -97668,8 +97668,8 @@ void ConfigureExceptionHandlerC490(DataBuffer operationBase,int64_t dataBuffer)
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -97972,8 +97972,8 @@ void ManageResourceContextI0(DataBuffer operationBase,int64_t dataBuffer)
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98024,8 +98024,8 @@ void ManageResourceContextJ0(DataBuffer operationBase,int64_t dataBuffer)
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98138,8 +98138,8 @@ void ValidateExceptionHandlerConfigurationC590(DataBuffer operationBase,int64_t 
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98238,8 +98238,8 @@ void ConfigureExceptionHandlerContextC5C0(DataBuffer operationBase,int64_t dataB
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98296,8 +98296,8 @@ void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffe
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98373,8 +98373,8 @@ void ConfigureExceptionContextParameters(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -98430,8 +98430,8 @@ void SetupExceptionHandlerAndInitializeResources(DataBuffer operationBase,int64_
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99678,8 +99678,8 @@ void ProcessExceptionContextAndResourceCleanup(DataBuffer operationBase,int64_t 
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99864,8 +99864,8 @@ void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -99959,8 +99959,8 @@ void ProcessExceptionContextResourceRelease(DataBuffer operationBase, int64_t da
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100229,9 +100229,9 @@ void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x310)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
-    if ((*(char *)(SystemresourcePointer + 0x12e3) != '\0') || (*(char *)(SystemresourcePointer + 0x12dd) != '\0')
+  if (0 < *(int *)(dataBuffer + ResourceCounterOffset310)) {
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + ResourceIteratorTableOffset1CD8);
+    if ((*(char *)(SystemresourcePointer + ResourceValidationOffset12E3) != '\0') || (*(char *)(SystemresourcePointer + ResourceValidationOffset12DD) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
       exceptionContext = *contextPointer;
@@ -100241,8 +100241,8 @@ void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100322,8 +100322,8 @@ void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      validationStatus = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      validationStatus = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < validationStatus) {
         resourceIterator = (int64_t)validationStatus;
         do {
@@ -100401,8 +100401,8 @@ void ProcessExceptionContextResourceReleaseB60(DataBuffer operationBase, int64_t
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100485,8 +100485,8 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -100622,8 +100622,8 @@ void ProcessExceptionContextResourceReleaseBD0(DataBuffer operationBase, int64_t
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109582,8 +109582,8 @@ void ManageSystemResourcesAndHandleExceptions(DataBuffer operationBase,int64_t d
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109670,8 +109670,8 @@ void ManageExceptionContextResourcesE7A0(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109730,8 +109730,8 @@ void ManageExceptionContextResourcesE7B0(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109790,8 +109790,8 @@ void ManageExceptionContextResourcesE7C0(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109850,8 +109850,8 @@ void ManageExceptionContextResourcesE7D0(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109907,8 +109907,8 @@ void ValidateSystemResourcesAndHandleExceptionsE7E0(DataBuffer operationBase,int
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -109964,8 +109964,8 @@ void ValidateSystemResourcesAndHandleExceptionsE7F0(DataBuffer operationBase,int
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110024,8 +110024,8 @@ void ManageExceptionHandlerResourcesE800(DataBuffer operationBase,int64_t dataBu
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110100,8 +110100,8 @@ void ManageSystemResourcesAndHandleExceptionsE820(DataBuffer operationBase,int64
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110176,8 +110176,8 @@ void ValidateSystemResourcesAndHandleExceptionsE840(DataBuffer operationBase,int
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -110252,8 +110252,8 @@ void ValidateSystemResourcesAndHandleExceptionsE860(DataBuffer operationBase,int
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
@@ -111033,8 +111033,8 @@ void ProcessComplexExceptionCleanup(DataBuffer operationBase, int64_t dataBuffer
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryRegionOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionContext = *(int64_t *)(memoryRegionOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionContext = *(int64_t *)(memoryRegionOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryRegionOffset + 0xd0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
