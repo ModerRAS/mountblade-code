@@ -114003,46 +114003,46 @@ void ProcessUIEventWithContextData(longlong uiContext,int dataSource,int *target
                + (uiContext8 >> 1);
       if (2 < memoryAllocation4) {
         do {
-          ProcessingResult3 = *(int *)(uiBufferData + 0x107c + allocatedMemory7 * 4);
-          *(int *)(uiBufferData + 0x107c + allocatedMemory7 * 4) = processingResult9;
-          BufferCapacityValue = param_9[allocatedMemory7 + -1];
-          CharacterDataOffset = (longlong)processingResult9;
-          processingResult9 = *(int *)(uiBufferData + 0x1080 + allocatedMemory7 * 4);
-          *(int *)(uiBufferData + 0x1080 + allocatedMemory7 * 4) = ProcessingResult3;
-          pContextFirstValue = param_9 + allocatedMemory7;
-          allocatedMemory7 = allocatedMemory7 + 2;
-          processingResult6 = processingResult6 + (int)((ulonglong)(BufferCapacityValue * CharacterDataOffset) >> 0x10) +
-                   (int)((ulonglong)((longlong)*pContextFirstValue * (longlong)ProcessingResult3) >> 0x10);
-        } while (allocatedMemory7 < allocatedMemory4);
+          calculationResult3 = *(int *)(uiBufferData + 0x107c + memoryAllocation7 * 4);
+          *(int *)(uiBufferData + 0x107c + memoryAllocation7 * 4) = validationResult9;
+          bufferCapacityValue = param_9[memoryAllocation7 + -1];
+          characterDataOffset = (longlong)validationResult9;
+          validationResult9 = *(int *)(uiBufferData + 0x1080 + memoryAllocation7 * 4);
+          *(int *)(uiBufferData + 0x1080 + memoryAllocation7 * 4) = calculationResult3;
+          contextFirstValuePtr = param_9 + memoryAllocation7;
+          memoryAllocation7 = memoryAllocation7 + 2;
+          processingResult = processingResult + (int)((ulonglong)(bufferCapacityValue * characterDataOffset) >> 0x10) +
+                   (int)((ulonglong)((longlong)*contextFirstValuePtr * (longlong)calculationResult3) >> 0x10);
+        } while (memoryAllocation7 < memoryAllocation4);
       }
-      *(int *)(uiBufferData + 0x107c + allocatedMemory4 * 4) = processingResult9;
-      processingResult9 = (int)((ulonglong)((longlong)*(int *)(uiBufferData + 0x10e0) * (longlong)uiContext2) >> 0x10)
-               + (int)((ulonglong)((longlong)param_9[allocatedMemory4 + -1] * (longlong)processingResult9) >> 0x10) * 2 +
-               processingResult6 * 2;
-      ProcessingResult3 = (int)((ulonglong)
+      *(int *)(uiBufferData + 0x107c + memoryAllocation4 * 4) = validationResult9;
+      validationResult9 = (int)((ulonglong)((longlong)*(int *)(uiBufferData + 0x10e0) * (longlong)uiContext2) >> 0x10)
+               + (int)((ulonglong)((longlong)param_9[memoryAllocation4 + -1] * (longlong)validationResult9) >> 0x10) * 2 +
+               processingResult * 2;
+      calculationResult3 = (int)((ulonglong)
                      ((longlong)*(int *)(uiBufferData + 0x4fc + (longlong)*(int *)(uiBufferData + 0x10f0) * 4)
                      * (longlong)(short)uiContext3) >> 0x10) +
                (int)((ulonglong)
                      ((longlong)*(int *)(uiBufferData + 0x10e0) * ((longlong)uiContext3 >> 0x10)) >> 0x10);
-      processingResult6 = (ProcessingResult2 * 4 - ProcessingResult3) - processingResult9;
+      processingResult = (calculationResult2 * 4 - calculationResult3) - validationResult9;
       if (uiContext0 < 1) {
-        processingResult6 = processingResult6 >> 1;
+        processingResult = processingResult >> 1;
       }
       else {
-        pprocessingResult = pstackInt80 + -1;
-        puiValidationResult = pstackInt80 + -2;
-        processedCount = *pstackInt80;
-        pstackInt80 = pstackInt80 + 1;
-        processingResult6 = (processingResult6 * 2 -
-                 ((int)((ulonglong)((longlong)(*puiValidationResult + processedCount) * (longlong)(short)uiContext1) >>
+        processingResultPtr = stackParameter80 + -1;
+        validationResultPtr = stackParameter80 + -2;
+        processedCount = *stackParameter80;
+        stackParameter80 = stackParameter80 + 1;
+        processingResult = (processingResult * 2 -
+                 ((int)((ulonglong)((longlong)(*validationResultPtr + processedCount) * (longlong)(short)uiContext1) >>
                        0x10) * 2 +
-                 (int)((ulonglong)((longlong)*pprocessingResult * ((longlong)uiContext1 >> 0x10)) >> 0x10) * 2))
-                 + uiValidationResult0 >> 2;
+                 (int)((ulonglong)((longlong)*processingResultPtr * ((longlong)uiContext1 >> 0x10)) >> 0x10) * 2))
+                 + eventValidationResult >> 2;
       }
-      processingResult6 = processingResult6 + 1 >> 1;
-      processedCount = *piStackX_18 - processingResult6;
+      processingResult = processingResult + 1 >> 1;
+      processedCount = *stackParameter18 - processingResult;
       if (*(int *)(uiBufferData + 0x10f4) < 0) {
-        processedCount = processingResult6 - *piStackX_18;
+        processedCount = processingResult - *stackParameter18;
       }
       if (processedCount < 0x7801) {
         if (processedCount < -0x7c00) {
