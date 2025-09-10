@@ -210073,13 +210073,13 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   AvailableSpace = GetMouseMovePointsEx(0x18,SystemStackPointer + 0x160,SystemStackPointer + 0x180,0x40,1);
   if ((1 < AvailableSpace) && (0 < AvailableSpace + -1)) {
     ValidationResultPointer = (int *)(SystemStackPointer + 0x19c);
-    SystemStackInteger92 = (int)((unsigned long long)UnicodeCodePoint >> 0x20);
+    UnicodeCodePointHigh = (int)((unsigned long long)UnicodeCodePoint >> 0x20);
     StringLength = CalculatedResult;
     SystemOperationResult = CalculatedResult;
     do {
       if (((uint)ValidationResultPointer[-5] < *(uint *)(DataPatternIndex + 0xa0)) ||
          (((ValidationResultPointer[-5] == *(uint *)(DataPatternIndex + 0xa0) && (ValidationResultPointer[-7] == (int)UnicodeCodePoint)) &&
-          (ValidationResultPointer[-6] == SystemStackInteger92)))) break;
+          (ValidationResultPointer[-6] == UnicodeCodePointHigh)))) break;
       StringLength = StringLength + 1;
       CalculatedResult = CalculatedResult + (ValidationResultPointer[-7] - ValidationResultPointer[-1]);
       CharacterReferencePointer = ValidationResultPointer + -6;
