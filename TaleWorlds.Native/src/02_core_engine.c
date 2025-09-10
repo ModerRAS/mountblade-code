@@ -206322,7 +206322,7 @@ void InitializeSystemEncodingValidator(void)
   uint64_t RegisterR13Value;                            // R13寄存器值
   
   *(bool *)RegisterR13Value =
-       *(long long *)(SystemContext + 0x1c98) == *(long long *)(*(long long *)(SystemContext + 0x1af8) + 0x3a8  ;
+       *(long long *)(SystemContext + 0x1c98) == *(long long *)(*(long long *)(SystemContext + 0x1af8) + 0x3a8);
   *(uint8_t *)(*(long long *)(SystemContext + 0x1af8) + 0xb1) = 1;
   BufferStatus = *(long long *)(SystemContext + 0x1af8);
   IntegerValue = *(int *)(BufferStatus + 0x1b8);
@@ -232800,7 +232800,7 @@ LAB_18018f515:
   *(uint16_t *)(ContextHandleTablePointer + 8) = 0x7478;
   *(uint8_t *)((long long)ContextHandleTablePointer + 0x42) = 0;
   SystemDataValue10 = 0x42;
-  FUN_1800c4720(alStack_618);
+  ProcessSystemCharacterEncodingValidationEx(alStack_618);
   MemoryBoundaryEnd = ProcessMemoryAllocation(apSystemStateFlag,&puStack_650);
   SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(MemoryBoundaryEnd + 8) != NULL) {
@@ -233222,7 +233222,7 @@ uint64_t * ProcessUtf8ToUtf16Conversion(long long *ContextHandle,long long Opera
   EncodingConversionResult = SystemDataTablePointer;
 joined_r0x0001801906da:
   for (; StringProcessingStatus != SecondaryProcessingStatusFlag; StringProcessingStatus = StringProcessingStatus + 0x69) {
-    FUN_18018e7e0(SystemDataTablePointer,StringProcessingStatus);
+    ProcessCharacterEncodingAndSystemBufferConfiguration(SystemDataTablePointer,StringProcessingStatus);
     SystemDataTablePointer = SystemDataTablePointer + 0x348;
   }
   FUN_18018e7e0(SystemDataTablePointer,OperationBufferSize);
@@ -267851,7 +267851,7 @@ uint64_t FUN_18021a590(uint64_t ContextHandle,unsigned long long OperationBuffer
   FUN_180217c40(ContextHandle + 0x260);
   FUN_1801596c0();
   ProcessMemoryAllocation(aStackCharacterValueA58,auStack_c48);
-  FUN_1800c4720(alStack_c18);
+  ProcessSystemCharacterEncodingValidationEx(alStack_c18);
   TemporaryBuffer = &CoreEngineDataTemplate;
   if (pStackCharacterValueA50 != NULL) {
     TemporaryBuffer = pStackCharacterValueA50;

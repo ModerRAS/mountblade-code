@@ -113775,7 +113775,7 @@ void ProcessUITextDataEncoding(short *uiContext,char *dataSource,char *targetBuf
       uiCompareResult = 0;
       do {
         uiValidationResult = func_0x00018070b9e0(0x1855 - loopCounter);
-        FUN_180736dc0(componentContextPtr,&stackInt80,&stackInt7c,&stackInt94,contextDataHandle,contextOffset,stackUInt50,stackUInt58,
+        ProcessUIDataWithByteParameters(componentContextPtr,&stackInt80,&stackInt7c,&stackInt94,contextDataHandle,contextOffset,stackUInt50,stackUInt58,
                       stackUInt60,param_8,uiValidationResult + -0x33,stackInt84);
         localInt9 = localInt9 + stackInt80;
         if (localInt9 < 0) {
