@@ -76,6 +76,24 @@
 #define LargeBufferSize 0x47                                    // 大缓冲区大小 - 用于验证缓冲区的大小区分
 #define MaximumBufferSize 0x4f                                 // 最大缓冲区大小 - 用于验证缓冲区的最大大小
 
+#define ExceptionHandlerCleanupOffsetF08 0xf08          // 异常处理器清理偏移量F08 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetF10 0xf10           // 异常处理器状态偏移量F10 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffsetF20 0xf20               // 异常处理器数据偏移量F20 - 用于异常处理器数据存储
+#define ExceptionHandlerCleanupOffsetEe8 0xee8          // 异常处理器清理偏移量Ee8 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetEf0 0xef0           // 异常处理器状态偏移量Ef0 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffsetF00 0xf00               // 异常处理器数据偏移量F00 - 用于异常处理器数据存储
+#define ExceptionHandlerFunctionOffsetF40 0xf40          // 异常处理器函数偏移量F40 - 用于异常处理器函数指针
+#define ExceptionHandlerParameterOffsetF30 0xf30         // 异常处理器参数偏移量F30 - 用于异常处理器参数存储
+#define ExceptionHandlerCleanupOffsetF78 0xf78          // 异常处理器清理偏移量F78 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetF80 0xf80           // 异常处理器状态偏移量F80 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffsetF90 0xf90               // 异常处理器数据偏移量F90 - 用于异常处理器数据存储
+#define ExceptionHandlerCleanupOffsetF58 0xf58          // 异常处理器清理偏移量F58 - 用于异常处理器清理操作
+#define ExceptionHandlerStatusOffsetF60 0xf60           // 异常处理器状态偏移量F60 - 用于异常处理器状态检查
+#define ExceptionHandlerDataOffsetF70 0xf70               // 异常处理器数据偏移量F70 - 用于异常处理器数据存储
+#define ExceptionHandlerFunctionOffsetFb0 0xfb0          // 异常处理器函数偏移量Fb0 - 用于异常处理器函数指针
+#define ExceptionHandlerParameterOffsetFa0 0xfa0         // 异常处理器参数偏移量Fa0 - 用于异常处理器参数存储
+#define ExceptionHandlerParameterOffset4000 4000         // 异常处理器参数偏移量4000 - 用于异常处理器参数存储
+
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
