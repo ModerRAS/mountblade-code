@@ -123304,8 +123304,7 @@ CleanupUIAnimationStateAndExecuteRenderTask:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18073943d(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize,
-/**
+ /**
  * @brief UI上下文数据处理和验证函数
  * 
  * 该函数处理UI上下文数据的验证、比较和操作，包括：
