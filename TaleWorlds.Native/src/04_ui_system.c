@@ -119941,8 +119941,19 @@ void FUN_180736dc0(UIByte *uiContext,int *dataSource,int *targetBuffer,uint *buf
 
 
 
- void FUN_180736e4a(int uiContext,int dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180736e4a(int uiContext,int dataSource,longlong targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI上下文数据转换
+ * 
+ * 该函数处理UI上下文数据的转换，包括字符匹配、数据处理和缓冲区操作。
+ * 主要用于UI系统中的数据转换和缓冲区管理。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ */
+void ProcessUIContextDataTransform(int uiContext,int dataSource,longlong targetBuffer,int bufferSize)
+void ProcessUIContextDataTransform(int uiContext,int dataSource,longlong targetBuffer,int bufferSize)
 
 {
   byte isCharacterMatch;
