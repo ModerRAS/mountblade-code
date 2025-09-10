@@ -2301,8 +2301,8 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
 #define InitializeSystemResourceHandler FUN_180653ef0        // 初始化系统资源处理器
 #define NetworkConnectionStatusFlag NetworkSystemConnectionStatusFlag // 网络连接状态标志
 #define NetworkConnectionPoolStatusFlag NetworkSystemConnectionPoolStatusFlag // 网络连接池状态标志
-#define AudioManagerStatusFlag AudioManagerStatusFlag   // 音频管理器状态标志
-#define InputManagerStatusFlag InputManagerStatusFlag   // 输入管理器状态标志
+#define AudioManagerStatusFlag AudioSystemManagerStatusFlag   // 音频管理器状态标志
+#define InputManagerStatusFlag InputSystemManagerStatusFlag   // 输入管理器状态标志
 #define PhysicsManagerNodeStatusFlag PhysicsManagerNodeStatusFlag // 物理管理器节点状态标志
 #define NetworkManagerStatusFlag NetworkManagerStatusFlag // 网络管理器状态标志
 #define SceneManagerStatusFlag SceneManagerStatusFlag   // 场景管理器状态标志
