@@ -1,43 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 02_core_engine.c
- * @brief TaleWorlds引擎核心模块
- * 
- * 本文件包含TaleWorlds引擎的核心功能实现，负责系统初始化、内存管理、
- * 字符处理、数据验证、系统配置等基础功能。作为引擎的核心组件，
- * 提供了整个系统运行所需的基础设施和服务。
- * 
- * @section 主要功能模块
- * - 系统初始化和配置管理
- * - 内存管理和资源分配
- * - 字符编码处理和验证
- * - 数据结构管理和操作
- * - 系统状态监控和错误处理
- * - 核心算法和计算功能
- * - 网络通信和IO操作
- * - 系统安全和权限管理
- * 
- * @section 关键数据结构
- * - SystemContext: 系统上下文结构，包含系统运行状态
- * - MemoryBlock: 内存块管理结构，用于内存分配和释放
- * - CharacterTable: 字符表结构，用于字符编码处理
- * - SystemConfiguration: 系统配置结构，存储系统参数
- * - ValidationContext: 验证上下文结构，用于数据验证
- * 
- * @section 核心算法
- * - 字符编码转换算法
- * - 内存分配和回收算法
- * - 数据验证和完整性检查算法
- * - 系统性能优化算法
- * - 网络通信协议处理算法
- * 
- * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
- *       替换为具有语义的名称，提高了代码的可读性和维护性。
- * 
- * @version 2.0
- * @date 2025-09-09
- */
+// TaleWorlds引擎核心模块
+// 包含系统初始化、内存管理、字符处理、数据验证等核心功能
 
 // C++标准库函数语义化宏定义
 #define DestroyBasicStreambuf __0__basic_streambuf_DU__char_traits_D_std___std__IEAA_XZ
