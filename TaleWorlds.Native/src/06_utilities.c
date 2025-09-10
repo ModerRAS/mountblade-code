@@ -65,6 +65,7 @@
 #define OperationBaseStatusFlagOffset 4                        // 操作基础状态标志偏移量 - 用于存储操作基础的状态标志
 #define ValidationFloatValueSecondaryOffset 1                   // 验证浮点值辅助偏移量 - 用于存储验证浮点值的辅助数据
 #define ContextResourceReleaseOffset 1                          // 上下文资源释放偏移量 - 用于上下文资源释放操作的偏移量
+#define DataValidationParameterSize 4                           // 数据验证参数大小 - 用于数据验证操作的参数大小
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
