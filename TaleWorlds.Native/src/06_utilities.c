@@ -35943,7 +35943,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     }
     goto ProcessCheckpointCalculationResult;
   }
-  if (*(uint *)(dataBuffer + 8) < 0x6a) {
+  if (*(uint *)(dataBuffer + 8) < DataValidationThreshold6A) {
     systemStackDataPointer = (DataBuffer *)0x0;
     systemStackDataBuffer = 0;
     dataFlags = ProcessDataFlagsA0(dataBuffer,&systemStackDataPointer,0);
