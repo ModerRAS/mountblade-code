@@ -31414,7 +31414,7 @@ void InitializeUIRenderingFunctions(void)
   if (UIBoolVar4) {
     UIFunctionTable958 = FUN_180695820;
   }
-  _DAT_180d4a928 = FUN_18068fe10;
+  UIFunctionTable928 = FUN_18068fe10;
   if (UIBoolVar4) {
     _DAT_180d4a928 = FUN_180695870;
   }
