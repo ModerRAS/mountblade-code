@@ -113889,89 +113889,119 @@ void ProcessUIRenderSurface(longlong uiContext,longlong dataSource,longlong targ
 
 
 
- void FUN_180730040(longlong uiContext,int dataSource,int *targetBuffer,char *bufferSize,UIWord *resultPointer,
-void FUN_180730040(longlong uiContext,int dataSource,int *targetBuffer,char *bufferSize,UIWord *resultPointer,
-                  longlong param_6,short *param_7,short *param_8,short *param_9,int uiContext0,
-                  int uiContext1,short uiContext2,int uiContext3,int uiContext4,int uiContext5,int uiContext6,
-                  int uiContext7,int uiContext8,int uiContext9)
+ /**
+ * @brief 处理UI事件与上下文数据
+ * 
+ * 该函数负责处理UI事件和上下文数据，包括：
+ * - 事件数据处理和验证
+ * - 上下文参数计算
+ * - 缓冲区管理
+ * - 数据转换和处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果数据指针
+ * @param param_6 扩展参数6
+ * @param param_7 扩展参数7
+ * @param param_8 扩展参数8
+ * @param param_9 扩展参数9
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * @param uiContext2 UI上下文参数2
+ * @param uiContext3 UI上下文参数3
+ * @param uiContext4 UI上下文参数4
+ * @param uiContext5 UI上下文参数5
+ * @param uiContext6 UI上下文参数6
+ * @param uiContext7 UI上下文参数7
+ * @param uiContext8 UI上下文参数8
+ * @param uiContext9 UI上下文参数9
+ * 
+ * @note 原始函数名：FUN_180730040
+ */
+void ProcessUIEventWithContextData(longlong uiContext,int dataSource,int *targetBuffer,char *bufferSize,UIWord *resultPointer,
+                                   longlong param_6,short *param_7,short *param_8,short *param_9,int uiContext0,
+                                   int uiContext1,short uiContext2,int uiContext3,int uiContext4,int uiContext5,int uiContext6,
+                                   int uiContext7,int uiContext8,int uiContext9)
 
 {
-  int *pprocessingResult;
-  int *puiValidationResult;
-  short *pContextFirstValue;
-  UIHandle *bufferPtr;
-  char localChar5;
+  int *processingResultPtr;
+  int *validationResultPtr;
+  short *contextFirstValuePtr;
+  UIHandle *bufferDataPtr;
+  char localCharFlag;
   UIHandle maxProcessingCount;
   UIWord iterationCounter;
-  int localInt8;
-  longlong CharacterDataOffset;
+  int localIntValue;
+  longlong characterDataOffset;
   int processedCount;
-  int ProcessingResult1;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  longlong allocatedMemory4;
-  short BufferCapacityValue;
-  int processingResult6;
-  longlong allocatedMemory7;
-  short sVar18;
-  int processingResult9;
-  int uiValidationResult0;
-  int *puiValidationResult1;
-  int *piStackX_18;
-  char *pcStackX_20;
-  int *pstackInt80;
-  longlong stackLong78;
-  int *pstackInt70;
+  int calculationResult1;
+  int calculationResult2;
+  int calculationResult3;
+  longlong memoryAllocation4;
+  short bufferCapacityValue;
+  int processingResult;
+  longlong memoryAllocation7;
+  short shortValue18;
+  int validationResult9;
+  int eventValidationResult;
+  int *validationResultPtr1;
+  int *stackParameter18;
+  char *stackParameter20;
+  int *stackParameter80;
+  longlong stackParameter78;
+  int *stackParameter70;
   
-  stackLong78 = (longlong)uiContext7;
-  allocatedMemory4 = (longlong)uiContext8;
-  puiValidationResult1 = (int *)(uiContext + 0xf3c);
-  pstackInt80 = (int *)(uiContext +
+  stackParameter78 = (longlong)uiContext7;
+  memoryAllocation4 = (longlong)uiContext8;
+  validationResultPtr1 = (int *)(uiContext + 0xf3c);
+  stackParameter80 = (int *)(uiContext +
                       ((longlong)((*(int *)(uiBufferData + 0x10f0) - uiContext0) + 1) + 0x140) * 4);
-  pstackInt70 = (int *)(param_6 + (longlong)((*(int *)(uiBufferData + 0x10ec) - uiContext0) + 2) * 4);
-  if (0 < stackLong78) {
-    ProcessingResult2 = *(int *)(uiBufferData + 0x10f4);
-    piStackX_18 = targetBuffer;
-    pcStackX_20 = bufferSize;
+  stackParameter70 = (int *)(param_6 + (longlong)((*(int *)(uiBufferData + 0x10ec) - uiContext0) + 2) * 4);
+  if (0 < stackParameter78) {
+    calculationResult2 = *(int *)(uiBufferData + 0x10f4);
+    stackParameter18 = targetBuffer;
+    stackParameter20 = bufferSize;
     do {
-      *(int *)(uiBufferData + 0x10f4) = ProcessingResult2 * 0xbb38435 + 0x3619636b;
-      ProcessingResult2 = (int)((ulonglong)((longlong)*param_7 * (longlong)*puiValidationResult1) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-2] * (longlong)param_7[2]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-4] * (longlong)param_7[4]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-6] * (longlong)param_7[6]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-9] * (longlong)param_7[9]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-8] * (longlong)param_7[8]) >> 0x10) +
+      *(int *)(uiBufferData + 0x10f4) = calculationResult2 * 0xbb38435 + 0x3619636b;
+      calculationResult2 = (int)((ulonglong)((longlong)*param_7 * (longlong)*validationResultPtr1) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-2] * (longlong)param_7[2]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-4] * (longlong)param_7[4]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-6] * (longlong)param_7[6]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-9] * (longlong)param_7[9]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-8] * (longlong)param_7[8]) >> 0x10) +
                (uiContext9 >> 1) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-7] * (longlong)param_7[7]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-5] * (longlong)param_7[5]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-3] * (longlong)param_7[3]) >> 0x10) +
-               (int)((ulonglong)((longlong)puiValidationResult1[-1] * (longlong)param_7[1]) >> 0x10);
+               (int)((ulonglong)((longlong)validationResultPtr1[-7] * (longlong)param_7[7]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-5] * (longlong)param_7[5]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-3] * (longlong)param_7[3]) >> 0x10) +
+               (int)((ulonglong)((longlong)validationResultPtr1[-1] * (longlong)param_7[1]) >> 0x10);
       if (uiContext9 == 0x10) {
-        ProcessingResult2 = (int)((ulonglong)((longlong)puiValidationResult1[-0xb] * (longlong)param_7[0xb]) >> 0x10) +
-                 (int)((ulonglong)((longlong)puiValidationResult1[-0xd] * (longlong)param_7[0xd]) >> 0x10) +
-                 (int)((ulonglong)((longlong)puiValidationResult1[-0xf] * (longlong)param_7[0xf]) >> 0x10) +
-                 ProcessingResult2 + (int)((ulonglong)((longlong)puiValidationResult1[-0xe] * (longlong)param_7[0xe]) >>
+        calculationResult2 = (int)((ulonglong)((longlong)validationResultPtr1[-0xb] * (longlong)param_7[0xb]) >> 0x10) +
+                 (int)((ulonglong)((longlong)validationResultPtr1[-0xd] * (longlong)param_7[0xd]) >> 0x10) +
+                 (int)((ulonglong)((longlong)validationResultPtr1[-0xf] * (longlong)param_7[0xf]) >> 0x10) +
+                 calculationResult2 + (int)((ulonglong)((longlong)validationResultPtr1[-0xe] * (longlong)param_7[0xe]) >>
                                0x10) +
-                 (int)((ulonglong)((longlong)puiValidationResult1[-0xc] * (longlong)param_7[0xc]) >> 0x10) +
-                 (int)((ulonglong)((longlong)puiValidationResult1[-10] * (longlong)param_7[10]) >> 0x10);
+                 (int)((ulonglong)((longlong)validationResultPtr1[-0xc] * (longlong)param_7[0xc]) >> 0x10) +
+                 (int)((ulonglong)((longlong)validationResultPtr1[-10] * (longlong)param_7[10]) >> 0x10);
       }
       if (dataSource == 2) {
-        uiValidationResult0 = (int)((ulonglong)((longlong)*pstackInt70 * (longlong)*param_8) >> 0x10) + 2 +
-                 (int)((ulonglong)((longlong)pstackInt70[-4] * (longlong)param_8[4]) >> 0x10) +
-                 (int)((ulonglong)((longlong)pstackInt70[-3] * (longlong)param_8[3]) >> 0x10) +
-                 (int)((ulonglong)((longlong)pstackInt70[-2] * (longlong)param_8[2]) >> 0x10) +
-                 (int)((ulonglong)((longlong)pstackInt70[-1] * (longlong)param_8[1]) >> 0x10);
-        pstackInt70 = pstackInt70 + 1;
+        eventValidationResult = (int)((ulonglong)((longlong)*stackParameter70 * (longlong)*param_8) >> 0x10) + 2 +
+                 (int)((ulonglong)((longlong)stackParameter70[-4] * (longlong)param_8[4]) >> 0x10) +
+                 (int)((ulonglong)((longlong)stackParameter70[-3] * (longlong)param_8[3]) >> 0x10) +
+                 (int)((ulonglong)((longlong)stackParameter70[-2] * (longlong)param_8[2]) >> 0x10) +
+                 (int)((ulonglong)((longlong)stackParameter70[-1] * (longlong)param_8[1]) >> 0x10);
+        stackParameter70 = stackParameter70 + 1;
       }
       else {
-        uiValidationResult0 = 0;
+        eventValidationResult = 0;
       }
-      allocatedMemory7 = 2;
-      processingResult9 = *(int *)(uiBufferData + 0x1080);
+      memoryAllocation7 = 2;
+      validationResult9 = *(int *)(uiBufferData + 0x1080);
       *(int *)(uiBufferData + 0x1080) = *(int *)(uiBufferData + 0x10e4);
-      processingResult6 = (int)((ulonglong)((longlong)*param_9 * (longlong)*(int *)(uiBufferData + 0x10e4)) >> 0x10)
+      processingResult = (int)((ulonglong)((longlong)*param_9 * (longlong)*(int *)(uiBufferData + 0x10e4)) >> 0x10)
                + (uiContext8 >> 1);
-      if (2 < allocatedMemory4) {
+      if (2 < memoryAllocation4) {
         do {
           ProcessingResult3 = *(int *)(uiBufferData + 0x107c + allocatedMemory7 * 4);
           *(int *)(uiBufferData + 0x107c + allocatedMemory7 * 4) = processingResult9;

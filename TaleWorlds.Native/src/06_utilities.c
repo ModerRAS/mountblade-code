@@ -27017,7 +27017,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               StackValidationPointer = &SystemValidationDataTableA3;
               StackBufferData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackBufferOffset = 0;
-              StackBufferFlag = 0x3f800000;
+              StackBufferFlag = FloatOneValue;
               ValidateDataIntegrityA1(&StackValidationPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackDataPointer = &SystemValidationDataTableA4;
               StackProcessingData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
@@ -27027,7 +27027,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               StackEventPointer = &SystemValidationDataTableA5;
               StackEventData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackEventOffset = 0;
-              StackEventFlag = StackEventFlag & 0xffffff00;
+              StackEventFlag = StackEventFlag & ByteMask;
               ProcessDataSetFlagA0(&StackEventPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackSystemPointer = &SystemValidationDataTableA6;
               StackSystemData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
@@ -27043,7 +27043,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               StackSecurityPointer = &SystemValidationDataTableA7;
               StackSecurityData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackSecurityOffset = 0;
-              StackSecurityFlag = 0x3f800000;
+              StackSecurityFlag = FloatOneValue;
               ValidateSystemA0(&StackSecurityPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionContextPointer = systemContextPointer;
             }
@@ -29969,7 +29969,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             SystemInputFloatValueA = StackFloatArrayE[0];
             SystemResetFlagLocal = 0;
             StackPointerVariableE = &ValidationContextBuffer;
-            ExceptionContextProcessorA = ExceptionContextProcessorA & 0xffffff00;
+            ExceptionContextProcessorA = ExceptionContextProcessorA & ByteMask;
             if (*(int *)(exceptionHandlerContext1 + DataContextOffset58) < 1) {
               exceptionDataBuffer = &SystemResourceDataBuffer;
             }
