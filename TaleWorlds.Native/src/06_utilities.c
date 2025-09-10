@@ -40048,44 +40048,44 @@ DataBuffer ValidateDataIntegrityA1(int64_t operationBase,DataBuffer *dataBuffer)
 void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
 
 {
-  int securityValidationResult;
+  int securityCheckResult;
   ByteFlag portControlBuffer [32];
   ByteFlag stackValidationBuffer [32];
   
-  securityValidationResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,0x4a4f5250);
-  if (((securityValidationResult == 0) && (securityValidationResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,0x494b4e42), securityValidationResult == 0)) &&
-     (securityValidationResult = ValidatePortControlRequest(SecurityBuffer,DataContext + ExceptionHandlerCallbackOffset), securityValidationResult == 0)) {
+  securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,stackValidationBuffer,1,0x4a4f5250);
+  if (((securityCheckResult == 0) && (securityCheckResult = ExecuteSecurityValidation(SecurityBuffer,portControlBuffer,0,0x494b4e42), securityCheckResult == 0)) &&
+     (securityCheckResult = ValidatePortControlRequest(SecurityBuffer,DataContext + ExceptionHandlerCallbackOffset), securityCheckResult == 0)) {
     if (*(uint *)(SecurityBuffer + 8) < 0x37) {
-      securityValidationResult = 0;
+      securityCheckResult = 0;
     }
     else if (*(int *)(SecurityBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-      securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset210,8);
+      securityCheckResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset210,8);
     }
     else {
-      securityValidationResult = 0x1c;
+      securityCheckResult = 0x1c;
     }
-    if (securityValidationResult == 0) {
+    if (securityCheckResult == 0) {
       *(DataWord *)(DataContext + 0x218) = *(DataWord *)(SecurityBuffer + 8);
       if (*(uint *)(SecurityBuffer + 8) < 0x41) {
-        securityValidationResult = 0;
+        securityCheckResult = 0;
       }
       else if (*(int *)(SecurityBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-        securityValidationResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset2f4,4);
+        securityCheckResult = OperateDataO0(*SecurityBuffer,DataContext + OperationBaseOffset2f4,4);
       }
       else {
-        securityValidationResult = 0x1c;
+        securityCheckResult = 0x1c;
       }
-      if (securityValidationResult == 0) {
+      if (securityCheckResult == 0) {
         if (*(uint *)(dataBuffer + 8) < 0x4d) {
-          securityValidationResult = 0;
+          securityCheckResult = 0;
         }
         else if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
-          securityValidationResult = OperateDataO0(*dataBuffer,operationBase + OperationBaseOffset21c,4);
+          securityCheckResult = OperateDataO0(*dataBuffer,operationBase + OperationBaseOffset21c,4);
         }
         else {
-          securityValidationResult = 0x1c;
+          securityCheckResult = 0x1c;
         }
-        if (securityValidationResult == 0) {
+        if (securityCheckResult == 0) {
           *(DataWord *)(DataContext + SystemDataParameterOffset200) = *(DataWord *)(DataContext + ExceptionHandlerCallbackOffset);
           *(DataWord *)(DataContext + SystemDataParameterOffset204) = *(DataWord *)(DataContext + 0x14);
           *(DataWord *)(DataContext + SystemDataParameterOffset208) = *(DataWord *)(DataContext + SystemDataSecondaryOffset18);
