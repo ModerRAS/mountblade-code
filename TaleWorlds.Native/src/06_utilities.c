@@ -130135,9 +130135,9 @@ void ResetSystemExceptionHandlerPointers(void)
 
 
 /**
- * @brief 重置工具指针组2
+ * @brief 重置系统资源管理器指针
  * 
- * 该函数负责重置工具系统的第二组指针，将其指向默认的异常处理器。
+ * 该函数负责重置系统的资源管理器指针，将其指向默认的异常处理器。
  * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
  * 
  * @note 原始函数名：ResetUtilityPointers2
@@ -130145,8 +130145,9 @@ void ResetSystemExceptionHandlerPointers(void)
 void ResetSystemResourceManagerPointers(void)
 
 {
-  UtilitySystemPointer2 = &DefaultExceptionHandler;
-  return;
+    // 将系统资源管理器指针重置为默认异常处理器
+    UtilitySystemPointer2 = &DefaultExceptionHandler;
+    return;
 }
 
 
@@ -130154,9 +130155,9 @@ void ResetSystemResourceManagerPointers(void)
 
 
 /**
- * @brief 重置工具指针组3
+ * @brief 重置系统内存管理器指针
  * 
- * 该函数负责重置工具系统的第三组指针，将其指向默认的异常处理器。
+ * 该函数负责重置系统的内存管理器指针，将其指向默认的异常处理器。
  * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
  * 
  * @note 原始函数名：ResetUtilityPointers3
@@ -130164,8 +130165,9 @@ void ResetSystemResourceManagerPointers(void)
 void ResetSystemMemoryManagerPointers(void)
 
 {
-  UtilitySystemPointer3 = &DefaultExceptionHandler;
-  return;
+    // 将系统内存管理器指针重置为默认异常处理器
+    UtilitySystemPointer3 = &DefaultExceptionHandler;
+    return;
 }
 
 

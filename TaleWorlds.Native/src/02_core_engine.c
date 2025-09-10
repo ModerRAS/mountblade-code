@@ -282072,7 +282072,7 @@ LAB_1802260bd:
  * 
  * @note 原始函数名：FUN_180226240
  */
-long long FormatSystemErrorMessage(long long ContextHandle
+long long FormatSystemErrorMessage(long long ContextHandle)
 {
   long long *ContextPointer;
   long long MessageBufferStatus;
@@ -282127,7 +282127,22 @@ long long FormatSystemErrorMessage(long long ContextHandle
 
 
 
-26360(uint64_t *ContextHandlevoid FUN_180226360(uint64_t *ContextHandle
+/**
+ * @brief 上下文句柄状态设置函数
+ * 
+ * 该函数负责设置上下文句柄的状态，并执行相关的清理操作。
+ * 主要功能包括：
+ * - 设置系统状态标志
+ * - 执行上下文相关的回调函数
+ * - 释放本地内存资源
+ * 
+ * @param ContextHandle 上下文句柄指针，包含状态和回调信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180226360
+ */
+void SetContextHandleStatus(uint64_t *ContextHandle)
 {
   *ContextHandle = &SystemStatusFlag13640;
   if ((long long *)ContextHandle[2] != (long long *)0x0) {
@@ -286248,7 +286263,9 @@ void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *ContextHan
 
 
 
-long long FUN_18022a540(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
+// 批量数据处理处理器
+#define ProcessDataBatch FUN_18022a540
+long long ProcessDataBatch(long long ContextHandle,long long OperationBufferSize,long long Utf8SourcePointer
 {
   if (ContextHandle != OperationBufferSize) {
     do {
