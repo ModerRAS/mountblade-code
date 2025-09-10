@@ -124182,20 +124182,31 @@ CleanupAndExit:
 
 
 
- void FUN_180739c05(void)
-void FUN_180739c05(void)
+ /**
+ * @brief UI系统数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，包括：
+ * - 初始化UI数据缓冲区
+ * - 验证缓冲区数据的完整性
+ * - 复制缓冲区数据
+ * - 执行UI上下文数据操作
+ * 
+ * @note 原始函数名：FUN_180739c05
+ * @see InitializeUIBuffer, ValidateUIBufferData, CopyUIDataBuffer, ExecuteUIContextDataOperation
+ */
+void ProcessUIDataBuffer(void)
 
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedEBX;
-  UIDword unmodifiedESI;
+  UIDword bufferHandle;
+  UIDword contextHandle;
   
-  processingResult = func_0x00018074b800(&stack0x00000040,0x100,unmodifiedEBX);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
+  processingResult = InitializeUIBuffer(&stack0x00000040,0x100,bufferHandle);
+  uiValidationResult = ValidateUIBufferData(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
   CopyUIDataBuffer(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(contextHandle,1);
 }
 
 

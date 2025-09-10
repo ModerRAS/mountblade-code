@@ -154,6 +154,7 @@
 #define SystemDataBufferSizeMaximum 0x81                          // 系统数据缓冲区最大尺寸
 #define SystemDataBufferArrayIndex2 2                            // 系统数据缓冲区数组索引2
 #define SystemDataBufferArrayIndex3 3                            // 系统数据缓冲区数组索引3
+#define SystemDataSizeThreshold6A 0x6a                           // 系统数据大小阈值6A
 
 // 系统内存管理常量
 #define SystemMemoryRegionOffset48 0x48                         // 系统内存区域偏移量48
