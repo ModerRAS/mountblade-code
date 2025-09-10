@@ -120826,33 +120826,33 @@ void ProcessUIComponentDataSorting(void)
   int maxIterations;
   longlong eventHandle;
   
-  eventProcessingCounter = contextHandle & 0xffffffff;
-  if ((int)contextHandle < RegisterValue) {
-    ptrLocalInt5 = (int *)(eventHandle + contextHandle * 4);
+  processedCounter = componentCount & 0xffffffff;
+  if ((int)componentCount < maxIterations) {
+    dataPointer = (int *)(eventHandle + componentCount * 4);
     do {
-      processingResult = *ptrLocalInt5;
-      if (processingResult < *(int *)(eventHandle + -4 + contextHandle * 4)) {
-        sourceDataInt = (int)contextHandle + -2;
-        contextDataHandle = contextHandle - 2;
-        if (-1 < sourceDataInt) {
-          uiStatusPointer = (UIDword *)(componentData + 4 + contextDataHandle * 4);
+      sortResult = *dataPointer;
+      if (sortResult < *(int *)(eventHandle + -4 + componentCount * 4)) {
+        dataIndex = (int)componentCount + -2;
+        contextOffset = componentCount - 2;
+        if (-1 < dataIndex) {
+          statusIterator = (UIDword *)(componentDataSource + 4 + contextOffset * 4);
           do {
-            uiValidationResult = *(int *)((longlong)uiStatusPointer + (eventHandle - componentData) + -4);
-            if (uiValidationResult <= processingResult) break;
-            *(int *)((longlong)uiStatusPointer + (eventHandle - componentData)) = uiValidationResult;
-            contextDataHandle = contextDataHandle + -1;
-            *uiStatusPointer = uiStatusPointer[-1];
-            uiStatusPointer = uiStatusPointer + -1;
-            sourceDataInt = sourceDataInt + -1;
-          } while (-1 < sourceDataInt);
+            validationValue = *(int *)((longlong)statusIterator + (eventHandle - componentDataSource) + -4);
+            if (validationValue <= sortResult) break;
+            *(int *)((longlong)statusIterator + (eventHandle - componentDataSource)) = validationValue;
+            contextOffset = contextOffset + -1;
+            *statusIterator = statusIterator[-1];
+            statusIterator = statusIterator + -1;
+            dataIndex = dataIndex + -1;
+          } while (-1 < dataIndex);
         }
-        *(int *)(eventHandle + 4 + contextDataHandle * 4) = processingResult;
-        *(int *)(componentData + 4 + contextDataHandle * 4) = (int)eventProcessingCounter;
+        *(int *)(eventHandle + 4 + contextOffset * 4) = sortResult;
+        *(int *)(componentDataSource + 4 + contextOffset * 4) = (int)processedCounter;
       }
-      iterationCounter = (int)eventProcessingCounter + 1;
-      eventProcessingCounter = (ulonglong)iterationCounter;
-      ptrLocalInt5 = ptrLocalInt5 + 1;
-    } while ((int)iterationCounter < RegisterValue);
+      iterationIndex = (int)processedCounter + 1;
+      processedCounter = (ulonglong)iterationIndex;
+      dataPointer = dataPointer + 1;
+    } while ((int)iterationIndex < maxIterations);
   }
   return;
 }
