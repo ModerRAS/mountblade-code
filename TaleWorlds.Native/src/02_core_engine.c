@@ -224556,7 +224556,14 @@ void ProcessShortIntegerContextHandle(int ContextHandle, uint16_t *ContextHandle
 
 
 
-86360(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180186360(long long ContextHandle,uint64_t OperationBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理无符号双指针编码
+ * @param ContextHandle 上下文句柄
+ * @param OperationBufferSize 操作缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessUnsignedDualPointerEncoding(long long ContextHandle, uint64_t OperationBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   unsigned long long Utf16Char;
   long long *BufferAllocationStatus;

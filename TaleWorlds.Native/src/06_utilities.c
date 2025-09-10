@@ -1179,6 +1179,18 @@
 // 系统数据结构偏移量常量
 #define SystemDataSizeOffset48 0x48
 #define SystemDataPointerOffset40 0x40
+
+// 系统上下文偏移量常量
+#define SystemContextValidationOffset84 0x84
+#define SystemContextValidationOffset94 0x94
+#define SystemContextValidationOffset9C 0x9c
+#define SystemContextValidationOffsetA0 0xa0
+#define SystemContextValidationOffsetA4 0xa4
+#define SystemContextValidationOffsetA8 0xa8
+#define SystemContextValidationOffsetB0 0xb0
+#define SystemContextValidationOffsetB4 0xb4
+#define SystemContextValidationOffsetBC 0xbc
+#define SystemContextValidationOffsetC0 0xc0
 #define systemContextIndexOffset10 0x10
 #define SystemDataSecondaryOffset18 0x18
 
