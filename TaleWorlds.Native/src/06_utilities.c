@@ -62,6 +62,7 @@
 #define HashChainDataOffset 4                                 // 哈希链数据偏移量 - 用于存储哈希链中的数据
 #define SecurityCheckResultDataOffset 4                       // 安全检查结果数据偏移量 - 用于存储安全检查结果的数据
 #define DataBufferDataHandleOffset 4                          // 数据缓冲区数据句柄偏移量 - 用于存储数据缓冲区中的数据句柄
+#define OperationBaseStatusFlagOffset 4                        // 操作基础状态标志偏移量 - 用于存储操作基础的状态标志
 
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
@@ -28242,7 +28243,7 @@ void ProcessDataPointerOperations(int64_t *dataPointer, int64_t *resultPointer)
     operationResult = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,DataBufferB);
     if ((operationResult == 0) &&
        (((char)exceptionContext == '\0' && (operationResult = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase), operationResult == 0)))) {
-      *(ByteFlag *)(operationBase + 4) = 0;
+      *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 0;
     }
   }
     ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)SecondaryEncryptionKeyBuffer);
@@ -29492,7 +29493,7 @@ OperationFailedLabel:
           if ((char)dataContext == '\0') {
             operationStatus = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase);
             if (operationStatus != 0) goto ProcessCheckpointResourceValidation;
-            *(ByteFlag *)(operationBase + 4) = 0;
+            *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 0;
           }
           iterationCount = iterationCount + 1;
           operationStatus = PerformSystemValidationCheck(*(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextOffsetD0));
@@ -29915,7 +29916,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           if ((char)exceptionHandlerContext5 == '\0') {
             iterationCount = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase);
             if (iterationCount != 0) goto BufferValidationCheckpoint;
-            *(ByteFlag *)(operationBase + 4) = 0;
+            *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 0;
           }
           exceptionContextPointer4 = (int64_t *)((int64_t)exceptionContextPointer4 + 1);
           exceptionContextPointer0 = exceptionContextPointer0 + 6;
@@ -29973,7 +29974,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             if ((char)exceptionHandlerContext1 == '\0') {
               allocatedMemoryBlock = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase);
               if (allocatedMemoryBlock != 0) goto BufferValidationCheckpoint;
-              *(ByteFlag *)(operationBase + 4) = 0;
+              *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 0;
             }
           }
           systemDataBuffer7 = (int)exceptionContextPointer4 + 1;
@@ -30059,7 +30060,7 @@ CalculationCheckpoint:
       (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,&DataBufferA1);
       iterationCount = (**(FunctionPointer**)(*operationBase + SystemDataSecondaryOffset18))(operationBase);
       if (iterationCount == 0) {
-        *(ByteFlag *)(operationBase + 4) = 0;
+        *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 0;
       }
     }
   }
