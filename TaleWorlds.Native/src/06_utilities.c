@@ -34386,7 +34386,7 @@ DataBuffer ProcessDataConversionPrimary(int64_t operationBase,DataBuffer *dataBu
 
 
 
-uint64_t ExecuteDataSynchronizationA0(int64_t operationBase,DataBuffer *dataBuffer)
+uint64_t ExecuteDataSynchronizationPrimary(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
   uint64_t systemDataBuffer;
