@@ -116745,15 +116745,15 @@ void ProcessUIContextDataTransformation(UIHandle uiContext, UIHandle dataSource,
   UIWord preservedRegisterValue;
   ulonglong stackParameter;
   
-  allocatedMemory = -(longlong)targetBuffer;
+  memoryOffset = -(longlong)targetBuffer;
   contextDataHandle = eventHandle - (longlong)targetBuffer;
   do {
-    uiCompareResult = ((int)*(short *)(&stack0x00000030 + allocatedMemory + (longlong)targetBuffer) << 0xe) / (int)*targetBuffer +
-            (uint)*register10 * 0x80;
-    if (uiCompareResult < 0x8000) {
-      iterationCount = (short)uiCompareResult;
-      if (uiCompareResult < 0) {
-        iterationCount = preservedRegister15W;
+    comparisonResult = ((int)*(short *)(&stack0x00000030 + memoryOffset + (longlong)targetBuffer) << 0xe) / (int)*targetBuffer +
+            (uint)*dataRegisterPtr * 0x80;
+    if (comparisonResult < 0x8000) {
+      iterationCount = (short)comparisonResult;
+      if (comparisonResult < 0) {
+        iterationCount = preservedRegisterValue;
       }
     }
     else {
@@ -116762,41 +116762,58 @@ void ProcessUIContextDataTransformation(UIHandle uiContext, UIHandle dataSource,
     *(UIWord *)(contextDataHandle + (longlong)targetBuffer) = iterationCount;
     bufferSize = bufferSize + 1;
     targetBuffer = targetBuffer + 1;
-    register10 = register10 + 1;
+    dataRegisterPtr = dataRegisterPtr + 1;
   } while (bufferSize < *(short *)(componentData + 2));
   FUN_1807376c0();
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000070 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(stackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
-double FUN_180734500(longlong uiContext,longlong dataSource,int targetBuffer)
+/**
+ * @brief UI浮点数变换和数据计算函数
+ * 
+ * 该函数负责处理UI系统中的浮点数变换和数据计算，主要功能包括：
+ * - 浮点数数据的变换和计算
+ * - 多项式系数的处理
+ * - 数据累加和结果计算
+ * - 内存数据的浮点运算
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * @return double 计算结果的双精度浮点数值
+ * 
+ * @note 原始函数名：FUN_180734500
+ */
+double ProcessUIFloatTransformAndCalculation(longlong uiContext, longlong dataSource, int targetBuffer)
 
 {
-  float *BaseValuePointer;
-  float *TransformCoefficient1;
-  float *pTransformCoefficient2;
-  float *pTransformCoefficient3;
-  float *transformCoeffPointer;
-  float *pLocalFloatValue6;
-  float *pResultFloatValue;
-  float TemporaryFloatValue;
+  float *baseValuePtr;
+  float *transformCoeff1;
+  float *transformCoeff2;
+  float *transformCoeff3;
+  float *transformCoeffPtr;
+  float *localFloatValue6;
+  float *resultFloatValue;
+  float temporaryFloatValue;
   UIHandle eventStatus;
   UIHandle dataPointer;
-  longlong AllocatedMemoryBlock1;
-  float *BaseValuePointer2;
+  longlong memoryBlock1;
+  float *baseValuePtr2;
   uint contextValue;
   UIHandle *resultPointer4;
-  int ProcessingResult5;
+  int processingResult;
   longlong allocatedMemory6;
   longlong allocatedMemory7;
-  longlong AllocatedMemoryBlock8;
-  double dVar19;
-  double dVar20;
-  double dVar21;
-  double dVar22;
-  double dVar23;
+  longlong memoryBlock8;
+  double calculatedResult;
+  double tempDouble1;
+  double tempDouble2;
+  double tempDouble3;
+  double tempDouble4;
+  double accumulatedResult;
   
   ProcessingResult5 = 0;
   dVar21 = 0.0;

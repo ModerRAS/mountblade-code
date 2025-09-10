@@ -8143,6 +8143,12 @@ const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
  */
 #define ProcessUtf8SystemComplete FUN_18013b88a
 
+// 系统数据传输和初始化函数语义化映射
+#define ProcessSystemDataTransfer FUN_180057e90
+#define InitializeCoreEngineSystemEventHandler FUN_180057ec0
+#define ProcessSystemEventInitialization FUN_180057ee0
+#define ProcessSystemResourceManagement FUN_180057f10
+
 /**
  * @brief 处理UTF-8数据处理
  * 

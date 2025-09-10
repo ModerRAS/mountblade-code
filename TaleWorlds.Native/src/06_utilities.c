@@ -8070,7 +8070,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数负责处理数据缓冲区，包括数据读取、写入、转换等操作，
  * 并对缓冲区数据的完整性进行验证，返回成功处理的字节数。
  * 
- * @param bufferPointer 缓冲区指针
+ * @param dataProcessingBuffer 缓冲区指针
  * @param bufferSize 缓冲区大小
  * @param operationType 操作类型（读取/写入/转换）
  * @return size_t 成功处理的字节数：
@@ -8822,7 +8822,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 该函数负责检查数据缓冲区的边界、完整性和安全性，
  * 防止缓冲区溢出和数据损坏。
  * 
- * @param bufferPointer 数据缓冲区指针
+ * @param dataProcessingBuffer 数据缓冲区指针
  * @param bufferSize 缓冲区大小
  * @param validationType 验证类型
  * @return 验证结果状态码，成功返回0，失败返回错误码
@@ -11673,7 +11673,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * 该函数用于处理系统缓冲区的数据，包括读写操作和数据验证
  * 
- * @param bufferPointer 缓冲区指针
+ * @param dataProcessingBuffer 缓冲区指针
  * @param operationType 操作类型
  * @param dataSize 数据大小
  * @return 处理结果状态码
@@ -11685,7 +11685,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * 该函数用于处理系统缓冲区数据的替代版本，提供不同的处理逻辑
  * 
- * @param bufferPointer 缓冲区指针
+ * @param dataProcessingBuffer 缓冲区指针
  * @param operationType 操作类型
  * @param dataSize 数据大小
  * @return 处理结果状态码
@@ -11697,7 +11697,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
  * 
  * 该函数用于初始化系统缓冲区，设置缓冲区的基本参数和状态
  * 
- * @param bufferPointer 缓冲区指针
+ * @param dataProcessingBuffer 缓冲区指针
  * @param bufferSize 缓冲区大小
  * @param initializationFlags 初始化标志
  * @return 初始化结果状态码
@@ -12198,7 +12198,7 @@ extern SystemResourceTable* PrimarySystemResourceTablePtr;
 #define normalizedValue2 normalizedComponentY    // 标准化分量Y
 #define normalizedValue3 normalizedComponentZ    // 标准化分量Z
 #define loopCounter iterationCounter    // 迭代计数器
-#define dataPointer dataBufferPointer    // 数据缓冲区指针
+#define dataPointer processingDataPointer    // 处理数据指针
 #define resultPointer resultBufferPointer    // 结果缓冲区指针
 #define contextPointer contextDataPointer    // 上下文数据指针
 #define floatArrayPointer floatBufferArrayPointer    // 浮点缓冲区数组指针
@@ -26371,7 +26371,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
   int *statusPointer;
   int configurationValue;
   uint64_t processingCounter;
-  uint64_t bufferPointer;
+  uint64_t dataProcessingBuffer;
   
   configurationValue = *(int *)((int64_t)systemContext + systemContextDataOffset24);
   if (configurationValue == -1) {
@@ -26745,7 +26745,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     if (*(int64_t *)(DestinationContext + DestinationContextDataOffsetC0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
       operationStatus = (**(FunctionPointer**)(DestinationContext + DestinationContextOffsetC0))
-                        (dataFlags,basePointer,*(DataWord *)(bufferPointer + SystemDataSecondaryOffset18),
+                        (dataFlags,basePointer,*(DataWord *)(dataProcessingBuffer + SystemDataSecondaryOffset18),
                          *(DataBuffer *)(DestinationContext + DestinationContextBufferOffsetB8));
       operationFlagA = ProcessedFloatValue;
       if (operationStatus != 0) goto ValidationSuccessLabel;
@@ -26755,7 +26755,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
        (((*(uint *)(DestinationContext + DestinationContextFlagsOffset6C) >> BitShift25 & 1) != 0 && (arrayProcessingIndex == *(int *)(DestinationContext + DestinationContextIndexOffsetB0)))))
     {
 MemoryDataCopyLabel:
-        memcpy(StackFrameContext + StackFrameContextNegativeOffset10,bufferPointer,(int64_t)*(int *)(bufferPointer + systemContextOffset));
+        memcpy(StackFrameContext + StackFrameContextNegativeOffset10,dataProcessingBuffer,(int64_t)*(int *)(dataProcessingBuffer + systemContextOffset));
     }
   }
   else {
@@ -26778,7 +26778,7 @@ MemoryDataCopyLabel:
     }
     else {
       if ((characterFlag != '\x02') || ((*(SystemByteType *)(operationBase + OperationBaseOffset6c) & 4) != 0)) goto MemoryDataCopyLabel;
-      DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(bufferPointer + SystemDataParameterOffset20);
+      DataProcessingOffset.DataProcessingOffsetField = *(DataWord *)(dataProcessingBuffer + SystemDataParameterOffset20);
       arrayProcessingIndex = ValidateAndProcessDataFlags(operationBase,basePointer,(int64_t)&dataProcessingBuffer + DataBufferParameterDataOffset);
       if (arrayProcessingIndex != 0) goto ValidationSuccessLabel;
       arrayProcessingIndex = QueryAndRetrieveSystemDataA0(DataProcessingOffset.DataProcessingOffsetField,StackFrameContext + DataProcessingBufferOffsetNegative78);
@@ -27374,11 +27374,11 @@ DataWord ValidateAndProcessSystemData(DataBuffer systemHandle)
 
 
 
-// 函数: DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
+// 函数: DataBuffer ReallocateAndCopyDataBuffer(int64_t *dataProcessingBuffer,int bufferSize)
 // 功能：重新分配数据缓冲区并复制原有数据到新缓冲区
-// 参数：bufferPointer - 缓冲区指针，bufferSize - 缓冲区大小
+// 参数：dataProcessingBuffer - 缓冲区指针，bufferSize - 缓冲区大小
 // 返回值：成功返回0，失败返回错误代码（0x1c或0x26）
-DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
+DataBuffer ReallocateAndCopyDataBuffer(int64_t *dataProcessingBuffer,int bufferSize)
 
 {
   int itemCount;
@@ -27387,7 +27387,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
   int64_t itemsToCopy;
   DataBuffer *destinationPointer;
   
-  if (bufferSize < (int)bufferPointer[1]) {
+  if (bufferSize < (int)dataProcessingBuffer[1]) {
     return ResourceInvalidErrorCode;
   }
   newBuffer = (DataBuffer *)0x0;
@@ -27397,9 +27397,9 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
                AllocateMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),bufferSize * DataStructureItemSize,&SystemMemoryPoolB,
                              0xf4,0,0,1);
       if (newBuffer != (DataBuffer *)0x0) {
-        itemCount = (int)bufferPointer[1];
+        itemCount = (int)dataProcessingBuffer[1];
         itemsToCopy = (int64_t)itemCount;
-        if ((itemCount != 0) && (sourceBuffer = *bufferPointer, 0 < itemCount)) {
+        if ((itemCount != 0) && (sourceBuffer = *dataProcessingBuffer, 0 < itemCount)) {
           destinationPointer = newBuffer;
           do {
             *destinationPointer = *(DataBuffer *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
@@ -27415,11 +27415,11 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
     return 0x26;
   }
 CalculationLabel:
-  if ((0 < *(int *)((int64_t)bufferPointer + BufferSizeOffsetC)) && (*bufferPointer != 0)) {
-      FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
+  if ((0 < *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC)) && (*dataProcessingBuffer != 0)) {
+      FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,0x100,1);
   }
-  *bufferPointer = (int64_t)newBuffer;
-  *(int *)((int64_t)bufferPointer + BufferSizeOffsetC) = bufferSize;
+  *dataProcessingBuffer = (int64_t)newBuffer;
+  *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC) = bufferSize;
   return 0;
 }
 
@@ -27448,17 +27448,17 @@ DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
   DataBuffer *newBuffer;      // 新分配的缓冲区
   int64_t itemsToCopy;       // 需要复制的项目数量
   DataBuffer *destinationPointer; // 目标指针
-  int64_t *bufferPointer;     // 缓冲区指针
+  int64_t *dataProcessingBuffer;     // 缓冲区指针
   int bufferSize;             // 缓冲区大小
   
   newBuffer = (DataBuffer *)0x0;
   if (bufferSize == 0) {
 CalculationLabel:
-    if ((0 < *(int *)((int64_t)bufferPointer + BufferSizeOffsetC)) && (*bufferPointer != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
+    if ((0 < *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC)) && (*dataProcessingBuffer != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*dataProcessingBuffer,&SystemMemoryPoolB,0x100,1);
     }
-    *bufferPointer = (int64_t)newBuffer;
-    *(int *)((int64_t)bufferPointer + BufferSizeOffsetC) = bufferSize;
+    *dataProcessingBuffer = (int64_t)newBuffer;
+    *(int *)((int64_t)dataProcessingBuffer + BufferSizeOffsetC) = bufferSize;
     return 0;
   }
   if (memorySize * ArrayElementSize12 - 1U < MaxSafeBufferSize) {
@@ -27466,9 +27466,9 @@ CalculationLabel:
              AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),memorySize * ArrayElementSize12,&SystemMemoryPoolB,0xf4
                            ,0);
     if (newBuffer != (DataBuffer *)0x0) {
-      itemCount = (int)bufferPointer[1];
+      itemCount = (int)dataProcessingBuffer[1];
       itemsToCopy = (int64_t)itemCount;
-      if ((itemCount != 0) && (sourceBuffer = *bufferPointer, 0 < itemCount)) {
+      if ((itemCount != 0) && (sourceBuffer = *dataProcessingBuffer, 0 < itemCount)) {
         destinationPointer = newBuffer;
         do {
           *destinationPointer = *(DataBuffer *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
@@ -27970,7 +27970,7 @@ ResourceCleanupLabel:
       }
       else {
         *(DataBuffer *)(operationBase + OperationBaseOffsetA8) = 0;
-        *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) | 0x6000000;
+        *(uint *)(operationBase + OperationBaseOffset6c) = *(uint *)(operationBase + OperationBaseOffset6c) | SystemOperationFlagMask;
         *(DataBuffer *)(operationBase + SystemManagementOffset98) = 0;
         *(DataBuffer *)(operationBase + OperationBaseOffsetA0) = 0;
       }
@@ -29097,7 +29097,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
   char statusFlag;
   int iterationCount;
   uint validationOutcome;
-  int64_t bufferPointer;
+  int64_t dataProcessingBuffer;
   int64_t dataPointer;
   DataBuffer loopCounter;
   DataBuffer systemMemoryBuffer;
@@ -29156,22 +29156,22 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
   dataContext = *(int64_t *)(dataBuffer + SystemDataBufferOffset80);
   exceptionHandlerContext4 = 0;
   SystemValidationWordA = 0;
-  bufferPointer = dataContext + 8;
+  dataProcessingBuffer = dataContext + 8;
   if (dataContext == 0) {
-    bufferPointer = exceptionHandlerContext4;
+    dataProcessingBuffer = exceptionHandlerContext4;
   }
   ProcessingLongIntegerB = dataBuffer;
   // 验证并处理系统资源
-  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&SystemValidationWordA);
+  iterationCount = ValidateAndProcessSystemResourceA0(dataProcessingBuffer,&SystemValidationWordA);
   if (iterationCount == 0) {
     // 初始化异常缓冲区和资源验证
     exceptionBuffer6 = (DataBuffer *)(dataBuffer + SystemContextDataOffset8);
     SystemResourceValidationWord = 0;
     SystemResourcePointerBuffer = exceptionBuffer6;
     // 执行异常缓冲区操作
-    bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionBuffer6);
+    dataProcessingBuffer = (*(code *)**(DataBuffer **)(dataBuffer + SystemContextDataOffset8))(exceptionBuffer6);
     // 验证系统资源完整性
-    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + BufferPointerOffsetD0),&SystemResourceValidationWord);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(dataProcessingBuffer + BufferPointerOffsetD0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
       // 初始化安全验证相关变量
       SystemSecurityValidationWord = 0;
@@ -29183,7 +29183,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
       if (iterationCount == 0) {
         // 获取堆栈长整数值并初始化缓冲区指针
         StackLongIntegerA = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset28);
-        bufferPointer = exceptionHandlerContext4;
+        dataProcessingBuffer = exceptionHandlerContext4;
         if (0 < StackLongIntegerA) {
           // 开始数据处理循环
           do {
@@ -29203,7 +29203,7 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
               SecurityCheckValue = 0;
               // 执行临时指针缓冲区操作
               dataPointer = (**(FunctionPointer**)*TemporaryPointerBufferB)(TemporaryPointerBufferB);
-              TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + systemContextPointerOffset90) + bufferPointer * 8);
+              TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + systemContextPointerOffset90) + dataProcessingBuffer * 8);
               TemporaryByteFlagA = 0;
               // 根据内存块偏移量选择异常数据缓冲区
               if (*(int *)(memoryBlockOffset + MemoryBlockSizeSecondary) < 1) {
@@ -29218,10 +29218,10 @@ void ConvertAndValidateData(int64_t dataContext, int64_t exceptionHandlerContext
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             // 更新缓冲区指针和异常处理上下文
-            bufferPointer = bufferPointer + 1;
+            dataProcessingBuffer = dataProcessingBuffer + 1;
             exceptionHandlerContext4 = exceptionHandlerContext4 + SystemDataSecondaryOffset18;
             dataBuffer = ProcessingLongIntegerB;
-          } while (bufferPointer < StackLongIntegerA);
+          } while (dataProcessingBuffer < StackLongIntegerA);
         }
         // 获取系统内存缓冲区并执行数据处理操作
         systemMemoryBuffer = *(DataBuffer *)(*(int64_t *)(operationBase + OperationBaseOffset8) + SystemContextDataOffset800);
@@ -30187,7 +30187,7 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
 
 {
   int64_t resourceEntry;
-  int64_t bufferPointer;
+  int64_t dataProcessingBuffer;
   int ValidationResult;           // 验证结果
   int processCount;
   int maxIterations;
@@ -30636,9 +30636,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       operationResult = *(int *)(currentResource + SystemParameterValidationOffset28);
       if (operationResult != 1) {
         stackGuard = stackGuard & ZeroValue;
-        bufferPointer = (int64_t *)&DataValidationBufferA;
+        dataProcessingBuffer = (int64_t *)&DataValidationBufferA;
         systemContextArray[0] = (int64_t *)CONCAT44(systemContextArray[0]._4_4_,operationResult);
-        bufferIndex = ValidateDataIntegrityA0(dataContext,&bufferPointer);
+        bufferIndex = ValidateDataIntegrityA0(dataContext,&dataProcessingBuffer);
         if (bufferIndex != 0) goto DataBufferValidationCheckpoint;
       }
       resourceList = nullPointer;
@@ -33841,7 +33841,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
   ushort operationResultSecondary;
   int64_t memoryPointer;
   int64_t memoryOffset;
-  int64_t bufferPointer;
+  int64_t dataProcessingBuffer;
   int memoryPointerArray [4];
   
   memoryOffset = 0;
@@ -33906,7 +33906,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
             if ((int)memoryRegionBase != 0) {
               return memoryRegionBase;
             }
-            bufferPointer = memoryOffset;
+            dataProcessingBuffer = memoryOffset;
             if (0 < operationResult) {
               do {
                 memoryPointer = *(int64_t *)(dataBuffer + systemContextFunctionPointerOffset600) + memoryOffset;
@@ -33925,9 +33925,9 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                 {
                   return memoryRegionBase;
                 }
-                bufferPointer = bufferPointer + 1;
+                dataProcessingBuffer = dataProcessingBuffer + 1;
                 memoryOffset = memoryOffset + OperationBaseOffset118;
-              } while (bufferPointer < operationResult);
+              } while (dataProcessingBuffer < operationResult);
             }
           }
           if ((((((operationResult & 0x20) == 0) ||
@@ -64793,7 +64793,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *operationResult;
   int iterationCount;
   int *allocatedMemoryBlock;
-  int64_t *bufferPointer;
+  int64_t *dataProcessingBuffer;
   uint statusCounter;
   uint64_t systemMemoryBuffer;
   uint64_t systemHashBuffer;
@@ -64855,17 +64855,17 @@ ProcessCheckpointValidationData3:
   ValidateProcessingA0(exceptionContextPointer);
   memoryBlockOffset = operationResult + SystemMemoryBlockOffset;
   contextPointer = (int64_t *)operationResult[systemContextArrayOffset];
-  bufferPointer = (int64_t *)*memoryBlockOffset;
-  if (bufferPointer != contextPointer) {
+  dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+  if (dataProcessingBuffer != contextPointer) {
     do {
-      if ((int64_t *)*bufferPointer != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*(int64_t *)*bufferPointer + SystemFunctionCallbackOffset))();
+      if ((int64_t *)*dataProcessingBuffer != (int64_t *)0x0) {
+        (**(FunctionPointer**)(*(int64_t *)*dataProcessingBuffer + SystemFunctionCallbackOffset))();
       }
-      bufferPointer = bufferPointer + 1;
-    } while (bufferPointer != contextPointer);
-    bufferPointer = (int64_t *)*memoryBlockOffset;
+      dataProcessingBuffer = dataProcessingBuffer + 1;
+    } while (dataProcessingBuffer != contextPointer);
+    dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
   }
-  operationResult[systemContextArrayOffset] = bufferPointer;
+  operationResult[systemContextArrayOffset] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
   if (iterationCount != 0) {
     __Throw_C_error_std__YAXH_Z(iterationCount);
@@ -65614,7 +65614,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *operationResult;
   int iterationCount;
   int *allocatedMemoryBlock;
-  int64_t *bufferPointer;
+  int64_t *dataProcessingBuffer;
   uint statusCounter;
   uint64_t systemMemoryBuffer;
   uint64_t systemHashBuffer;
@@ -65676,17 +65676,17 @@ ProcessCheckpointValidationData3:
   ValidateProcessingA0(exceptionContextPointer);
   memoryBlockOffset = operationResult + 0x2d;
   contextPointer = (int64_t *)operationResult[OperationResultIndex2E];
-  bufferPointer = (int64_t *)*memoryBlockOffset;
-  if (bufferPointer != contextPointer) {
+  dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
+  if (dataProcessingBuffer != contextPointer) {
     do {
-      if ((int64_t *)*bufferPointer != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*(int64_t *)*bufferPointer + SystemFloatDataOffset38))();
+      if ((int64_t *)*dataProcessingBuffer != (int64_t *)0x0) {
+        (**(FunctionPointer**)(*(int64_t *)*dataProcessingBuffer + SystemFloatDataOffset38))();
       }
-      bufferPointer = bufferPointer + 1;
-    } while (bufferPointer != contextPointer);
-    bufferPointer = (int64_t *)*memoryBlockOffset;
+      dataProcessingBuffer = dataProcessingBuffer + 1;
+    } while (dataProcessingBuffer != contextPointer);
+    dataProcessingBuffer = (int64_t *)*memoryBlockOffset;
   }
-  operationResult[OperationResultIndex2E] = bufferPointer;
+  operationResult[OperationResultIndex2E] = dataProcessingBuffer;
   iterationCount = _Mtx_unlock(dataContext);
   if (iterationCount != 0) {
     __Throw_C_error_std__YAXH_Z(iterationCount);
@@ -67386,7 +67386,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
   int64_t resourceIterator;
   int64_t memoryPointer;
   int64_t memoryOffset;
-  int64_t bufferPointer;
+  int64_t dataProcessingBuffer;
   bool isPointerMatch;
   
   memoryBlockOffset = (int64_t *)(dataBuffer + ValidationResultOffset);
@@ -67406,17 +67406,17 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
     *operationResult = *operationResult + -0x80000000;
     UNLOCK();
     if (arrayIndex == 0) {
-      bufferPointer = *(int64_t *)(memoryPointer + SystemParameterValidationOffset28);
+      dataProcessingBuffer = *(int64_t *)(memoryPointer + SystemParameterValidationOffset28);
       do {
-        *(int64_t *)(resourceIterator + 0x3538) = bufferPointer;
+        *(int64_t *)(resourceIterator + 0x3538) = dataProcessingBuffer;
         *(DataWord *)(resourceIterator + 0x3530) = 1;
         exceptionContextPointer = (int64_t *)(memoryPointer + SystemParameterValidationOffset28);
         LOCK();
         memoryOffset = *exceptionContextPointer;
-        isPointerMatch = bufferPointer == memoryOffset;
+        isPointerMatch = dataProcessingBuffer == memoryOffset;
         if (isPointerMatch) {
           *exceptionContextPointer = resourceIterator;
-          memoryOffset = bufferPointer;
+          memoryOffset = dataProcessingBuffer;
         }
         UNLOCK();
         if (isPointerMatch) {
@@ -67427,7 +67427,7 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
         arrayIndex = *operationResult;
         *operationResult = *operationResult + 0x7fffffff;
         UNLOCK();
-        bufferPointer = memoryOffset;
+        dataProcessingBuffer = memoryOffset;
       } while (arrayIndex == 1);
     }
   }
@@ -96827,11 +96827,11 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
   DataBuffer streamData;
   int64_t streamHandle;
   int64_t bufferOffset;
-  DataBuffer *bufferPointer;
+  DataBuffer *dataProcessingBuffer;
   
   bufferOffset = *(int64_t *)(bufferContext + 0x70);
-  bufferPointer = (DataBuffer *)(bufferOffset + -0xa0);
-  *bufferPointer = &DefaultStreamBufferHandler;
+  dataProcessingBuffer = (DataBuffer *)(bufferOffset + -0xa0);
+  *dataProcessingBuffer = &DefaultStreamBufferHandler;
   if ((*(int64_t *)(bufferOffset + -0x20) != 0) && (**(int64_t **)(bufferOffset + -0x88) == bufferOffset + -0x30)) {
     streamData = *(DataBuffer *)(bufferOffset + -0x10);
     streamHandle = *(int64_t *)(bufferOffset + -0x18);
@@ -96840,9 +96840,9 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
     **(int **)(bufferOffset + -0x50) = (int)streamData - (int)streamHandle;
   }
   if (*(char *)(bufferOffset + -0x24) != '\0') {
-    CleanupStreamBuffer(bufferPointer);
+    CleanupStreamBuffer(dataProcessingBuffer);
   }
-                                DestroyBasicStreamBuffer(bufferPointer);
+                                DestroyBasicStreamBuffer(dataProcessingBuffer);
   return;
 }
 
