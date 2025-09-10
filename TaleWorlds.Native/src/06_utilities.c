@@ -139999,7 +139999,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
     }
     
     // 根据操作标志执行相应的内存管理操作
-    if ((OperationFlags & 0x1) != 0) {
+    if ((OperationFlags & MemoryAllocationFlag) != 0) {
         // 内存分配模式
         ValidatedMemoryPointer = AllocateSystemMemoryA0(BufferSize);
         if (ValidatedMemoryPointer == NULL) {
@@ -140019,7 +140019,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
     }
     
     // 执行内存数据处理
-    if ((OperationFlags & 0x2) != 0) {
+    if ((OperationFlags & MemoryProcessingFlag) != 0) {
         // 内存数据处理模式
         if (ValidatedMemoryPointer != NULL) {
             OperationResultCode = ProcessMemoryBufferWithValidation(
@@ -140039,7 +140039,7 @@ int ManageSystemMemoryBuffer(void *MemoryBufferPointer, uint32_t BufferSize, uin
     }
     
     // 执行内存清理操作
-    if ((OperationFlags & 0x4) != 0) {
+    if ((OperationFlags & MemoryCleanupFlag) != 0) {
         // 内存释放模式
         if (ValidatedMemoryPointer != NULL) {
             ReleaseMemoryResourceA1(ValidatedMemoryPointer);
