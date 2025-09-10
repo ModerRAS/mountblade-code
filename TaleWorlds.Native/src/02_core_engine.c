@@ -109,6 +109,9 @@
 #define HandleSystemExceptionAndErrorRecovery FUN_18018a9a0    // 处理系统异常和错误恢复
 #define HandleSystemMemoryOverflowException FUN_180188610       // 处理系统内存溢出异常
 #define InitializeSystemMemoryStack FUN_180628a40                // 初始化系统内存栈
+#define ProcessSystemBufferStatus FUN_18018be60                   // 处理系统缓冲区状态
+#define ValidateInputDataLength FUN_180639de0                      // 验证输入数据长度
+#define ProcessMemoryPoolBlockSize FUN_180058830                    // 处理内存池块大小
 
 /**
  * @brief 配置核心引擎指针
@@ -248,6 +251,18 @@ uint32_t ProcessCoreEngineSystemContext(void *SystemContext)
  * @note 原始函数名：FUN_180058830
  */
 #define ProcessSystemStatus FUN_180058830
+
+/**
+ * @brief 系统条件初始化函数
+ * 
+ * 初始化系统条件变量，用于多线程同步操作
+ * 
+ * @param conditionPointer 条件变量指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180046190
+ */
+#define InitializeSystemCondition FUN_180046190
 
 /**
  * @brief 字符状态缓冲区处理函数
@@ -224063,7 +224078,7 @@ LAB_1801852f0:
  * @note 异步操作：函数会调用NVGSDK_Highlights_CloseGroupAsync进行异步操作
  * @note 安全性：函数包含多层验证和错误处理机制
  */
-void FUN_1801853d0(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemContextAndUtf8SourceData(long long ContextHandle,uint64_t *ContextHandleSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
@@ -229780,7 +229795,7 @@ uint64_t * InitializeSystemProcessingStatus(uint64_t ContextHandle,long long Ope
     (**(code **)(*ContextHandle + 0x38))();
   }
   ContextHandle = *(long long **)(ContextHandle + 0xb0);
-  FUN_18018be60(SystemBufferStatusB,alStack_30);
+  ProcessSystemBufferStatus(SystemBufferStatusB,alStack_30);
   (**(code **)(*ContextHandle + 0x28))(ContextHandle);
   BufferAllocationStatus = *(long long **)(alStack_30[0] + 0x10);
   *(long long **)(alStack_30[0] + 0x10) = ContextHandle;
@@ -229967,7 +229982,7 @@ LAB_18018baff:
   OperationBufferSize[1] = OperationBufferSize[1] + 4;
   do {
     if (*LockOperationResultPointer == *(int *)(ContextHandle + 8)) {
-      FUN_180639de0(OperationBufferSize,*(void *)((long long)InputDataLength * 0x10 + 0x180bf6740));
+      ValidateInputDataLength(OperationBufferSize,*(void *)((long long)InputDataLength * 0x10 + 0x180bf6740));
       break;
     }
     InputDataLength = InputDataLength + 1;
@@ -259618,7 +259633,7 @@ LAB_18020f126:
   plStack_d8 = BufferAllocationStatus;
   (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
   (*ValidationStatus)(ContextHandle,&plStack_d8);
-  FUN_180046190(alStack_b8);
+  InitializeSystemCondition(alStack_b8);
   (**(code **)(*BufferAllocationStatus + 0x38))(BufferAllocationStatus);
   ppSystemTemporaryValueD0 = (long long **)PerformanceCounterArray;
   _Mtx_destroy_in_situ(CoreEngineAddressStack70);
