@@ -137044,7 +137044,22 @@ int EncryptSystemDataWithValidation(void *DataBufferPointer, uint32_t DataBuffer
     return 0; // 加密成功
 }
 
-// 数据完整性验证函数宏定义
-// 原始函数名：FUN_180853003 - 加密数据完整性验证函数
-// 功能：验证加密数据的完整性和有效性
+/**
+ * @brief 验证加密数据完整性
+ * 
+ * 验证加密数据的完整性和有效性，确保数据在加密过程中没有被篡改
+ * 该函数负责：
+ * 1. 检查加密数据的数字签名
+ * 2. 验证数据完整性校验和
+ * 3. 确认加密算法的正确性
+ * 4. 返回验证结果状态
+ * 
+ * @param EncryptedDataPointer 加密数据指针
+ * @param DataBufferSize 数据缓冲区大小
+ * @param ValidationFlags 验证标志位
+ * @return int 验证结果状态码，0表示成功
+ * 
+ * @note 原始函数名：FUN_180853003
+ * @warning 加密数据验证必须在安全的环境中进行
+ */
 #define ValidateEncryptedDataIntegrity FUN_180853003
