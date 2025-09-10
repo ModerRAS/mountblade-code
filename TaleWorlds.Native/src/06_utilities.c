@@ -498,7 +498,6 @@
 #define SystemDataParameterOffsetPrimary 0x20
 #define ValidationResultOffset0 0x0
 #define MemoryPointerOffset0 0x0
-#define MemoryPointerOffset8 0x8
 #define ResourceManagementOffset1D8 0x1d8
 
 // 对象和资源管理偏移量常量
@@ -21653,49 +21652,49 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int isVectorComponentZInfinity;
   
   targetDataBuffer = 0;
-  isVectorOffset18Infinity = 0;
-  isVectorOffset2cInfinity = isVectorOffset18Infinity;
+  isDataOffset18Infinity = 0;
+  isDataOffset2cInfinity = isDataOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset2cInfinity = FloatInfinityValidationResult;
+    isDataOffset2cInfinity = FloatInfinityValidationResult;
   }
-  isVectorOffset1cInfinity = isVectorOffset18Infinity;
+  isDataOffset1cInfinity = isDataOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset1cInfinity = FloatInfinityValidationResult;
+    isDataOffset1cInfinity = FloatInfinityValidationResult;
   }
-  isVectorOffset20Infinity = isVectorOffset18Infinity;
+  isDataOffset20Infinity = isDataOffset18Infinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset20Infinity = FloatInfinityValidationResult;
+    isDataOffset20Infinity = FloatInfinityValidationResult;
   }
-  if ((isVectorOffset2cInfinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isDataOffset2cInfinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   isVectorComponentZInfinity = 0;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset28Infinity = FloatInfinityValidationResult;
+    isDataOffset28Infinity = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset1cInfinity = FloatInfinityValidationResult;
+    isDataOffset1cInfinity = FloatInfinityValidationResult;
   }
   isVectorComponentYInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset20Infinity = FloatInfinityValidationResult;
+    isDataOffset20Infinity = FloatInfinityValidationResult;
   }
-  if ((isVectorOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
+  if ((isDataOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorComponentYInfinity != 0) {
     return ComponentDataValidationFailure;
   }
-  isVectorOffset28Infinity = isVectorComponentZInfinity;
+  isDataOffset28Infinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentAdditionalOffset38) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset28Infinity = FloatInfinityValidationResult;
+    isDataOffset28Infinity = FloatInfinityValidationResult;
   }
   isVectorComponentXInfinity = isVectorComponentZInfinity;
   if ((*(uint *)(dataPtr + VectorComponentYOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset1cInfinity = FloatInfinityValidationResult;
+    isDataOffset1cInfinity = FloatInfinityValidationResult;
   }
   if (((uint)*(float *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
-    isVectorOffset2cInfinity = FloatInfinityValidationResult;
+    isDataOffset2cInfinity = FloatInfinityValidationResult;
   }
-  if ((isVectorOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isVectorOffset2cInfinity != 0) {
+  if ((isDataOffset28Infinity != 0 || isVectorComponentXInfinity != 0) || isDataOffset2cInfinity != 0) {
     return ComponentDataValidationFailure;
   }
   vectorZComponent = *(float *)(dataPtr + VectorComponentZOffset);
