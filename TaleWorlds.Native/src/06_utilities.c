@@ -15077,26 +15077,26 @@ uint8_t SecurityValidationFlagComplete;    // 安全验证标志Complete - 完�
 uint8_t SecurityValidationFlagTotal;       // 安全验证标志Total - 全面安全验证标志
 uint8_t SecurityValidationFlagFinal;       // 安全验证标志Final - 最终安全验证标志
 uint8_t SecurityValidationFlagUltimate;    // 安全验证标志Ultimate - 终极安全验证标志
-uint8_t SecurityValidationFlagA21;    // 系统安全验证标志A21
-uint8_t SecurityValidationFlagA22;    // 系统安全验证标志A22
-uint8_t SecurityValidationFlagA23;    // 系统安全验证标志A23
-uint8_t SecurityValidationFlagA24;    // 系统安全验证标志A24
-uint8_t SecurityValidationFlagA25;    // 系统安全验证标志A25
-uint8_t SecurityValidationFlagA26;    // 系统安全验证标志A26
-uint8_t SecurityValidationFlagA27;    // 系统安全验证标志A27
-uint8_t SecurityValidationFlagA28;    // 系统安全验证标志A28
-uint8_t SecurityValidationFlagA29;    // 系统安全验证标志A29
-uint8_t SecurityValidationFlagA30;    // 系统安全验证标志A30
-uint8_t SecurityValidationFlagA31;    // 系统安全验证标志A31
-uint8_t SecurityValidationFlagA32;    // 系统安全验证标志A32
-uint8_t SecurityValidationFlagA33;    // 系统安全验证标志A33
-uint8_t SecurityValidationFlagA34;    // 系统安全验证标志A34
-uint8_t SecurityValidationFlagA35;    // 系统安全验证标志A35
-uint8_t SecurityValidationFlagA36;    // 系统安全验证标志A36
-uint8_t SecurityValidationFlagA37;    // 系统安全验证标志A37
-uint8_t SecurityValidationFlagA38;    // 系统安全验证标志A38
-uint8_t SecurityValidationFlagA39;    // 系统安全验证标志A39
-uint8_t SecurityValidationFlagA40;    // 系统安全验证标志A40
+uint8_t SecurityValidationFlagInfinite;    // 安全验证标志Infinite - 无限安全验证标志
+uint8_t SecurityValidationFlagPerpetual;   // 安全验证标志Perpetual - 永久安全验证标志
+uint8_t SecurityValidationFlagEternal;    // 安全验证标志Eternal - 永恒安全验证标志
+uint8_t SecurityValidationFlagEndless;    // 安全验证标志Endless - 无尽安全验证标志
+uint8_t SecurityValidationFlagInfinitePlus;    // 安全验证标志InfinitePlus - 无限增强安全验证标志
+uint8_t SecurityValidationFlagPerpetualPlus;   // 安全验证标志PerpetualPlus - 永久增强安全验证标志
+uint8_t SecurityValidationFlagEternalPlus;    // 安全验证标志EternalPlus - 永恒增强安全验证标志
+uint8_t SecurityValidationFlagEndlessPlus;    // 安全验证标志EndlessPlus - 无尽增强安全验证标志
+uint8_t SecurityValidationFlagInfiniteMax;    // 安全验证标志InfiniteMax - 无限最大安全验证标志
+uint8_t SecurityValidationFlagPerpetualMax;   // 安全验证标志PerpetualMax - 永久最大安全验证标志
+uint8_t SecurityValidationFlagEternalMax;    // 安全验证标志EternalMax - 永恒最大安全验证标志
+uint8_t SecurityValidationFlagEndlessMax;    // 安全验证标志EndlessMax - 无尽最大安全验证标志
+uint8_t SecurityValidationFlagInfiniteUltra;    // 安全验证标志InfiniteUltra - 无限超极安全验证标志
+uint8_t SecurityValidationFlagPerpetualUltra;   // 安全验证标志PerpetualUltra - 永久超极安全验证标志
+uint8_t SecurityValidationFlagEternalUltra;    // 安全验证标志EternalUltra - 永恒超极安全验证标志
+uint8_t SecurityValidationFlagEndlessUltra;    // 安全验证标志EndlessUltra - 无尽超极安全验证标志
+uint8_t SecurityValidationFlagInfiniteSupreme;    // 安全验证标志InfiniteSupreme - 无限最高安全验证标志
+uint8_t SecurityValidationFlagPerpetualSupreme;   // 安全验证标志PerpetualSupreme - 永久最高安全验证标志
+uint8_t SecurityValidationFlagEternalSupreme;    // 安全验证标志EternalSupreme - 永恒最高安全验证标志
+uint8_t SecurityValidationFlagEndlessSupreme;    // 安全验证标志EndlessSupreme - 无尽最高安全验证标志
 uint8_t SecurityValidationFlagA41;    // 系统安全验证标志A41
 uint8_t SecurityValidationFlagA42;    // 系统安全验证标志A42
 uint8_t SecurityValidationFlagA43;    // 系统安全验证标志A43
