@@ -229066,7 +229066,7 @@ ProcessContextHandleWithMemoryBoundaryValidation(long long *ContextHandle,uint64
   }
   if (LowByte) {
     if (PrimaryProcessingStatusFlag == (void *)*CharacterStatusBuffer) {
-      CharacterStatusBuffer = (void *)FUN_18018af30(ContextHandle,SystemRegisterFlagBuffer,1);
+      CharacterStatusBuffer = (void *)ProcessContextHandleBufferManagementAndDataValidation(ContextHandle,SystemRegisterFlagBuffer,1);
       *ContextHandleSize = *CharacterStatusBuffer;
       *(uint8_t *)(OperationBufferSize + 1) = 1;
       return OperationBufferSize;

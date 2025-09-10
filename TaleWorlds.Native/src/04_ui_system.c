@@ -105652,6 +105652,20 @@ float ProcessUIContextDataInterpolation(int uiContext, ulonglong dataSource, uin
   float weightValue2;
   float interpolationResult;
   
+  // 临时变量
+  longlong eventDataIndex;
+  longlong *globalDataPointer;
+  uint iterationCounter;
+  int eventStatus;
+  int eventCodeType;
+  short sVar2;
+  int localInt8;
+  void *allocatedMemory;
+  int sourceDataInt;
+  float finalResult;
+  float baseValue5;
+  float baseValue6;
+  
   contextValue = (ulonglong)uiContext;
   dataValue = dataSource & 0xffffffff;
   sourceDataValue = (int)dataValue;

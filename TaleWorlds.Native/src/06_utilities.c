@@ -119517,7 +119517,26 @@ void ResetExceptionHandlerContextLayer3(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置异常处理器和系统状态（第四组）
+ * 
+ * 该函数负责重置第四组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x40偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910ba0
+ * @note 这是一个异常处理和系统清理函数，处理0x40偏移的异常处理器
+ */
+#define ResetExceptionHandlersAtOffsetBa0 Unwind_180910ba0
+
+void ResetExceptionHandlersAtOffsetBa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
@@ -119545,7 +119564,26 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置异常处理器和系统状态（第五组）
+ * 
+ * 该函数负责重置第五组异常处理器和系统状态，包括：
+ * - 重置异常处理器指针（0x1870偏移）
+ * - 清理异常上下文状态
+ * - 重置系统标志位
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910bc0
+ * @note 这是一个异常处理和系统清理函数，处理0x1870偏移的异常处理器
+ */
+#define ResetExceptionHandlersAtOffsetBc0 Unwind_180910bc0
+
+void ResetExceptionHandlersAtOffsetBc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionContext;
