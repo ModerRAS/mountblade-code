@@ -67,6 +67,15 @@
 #define ContextResourceReleaseOffset 1                          // 上下文资源释放偏移量 - 用于上下文资源释放操作的偏移量
 #define DataValidationParameterSize 4                           // 数据验证参数大小 - 用于数据验证操作的参数大小
 
+// 数据验证常量
+#define DataValidationMask 0xffffff                            // 数据验证掩码 - 用于数据地址验证的掩码
+#define DataBufferValidationSize 0x5a                         // 数据缓冲区验证大小 - 用于验证数据缓冲区大小的阈值
+#define InputValidationValue 0x12                              // 输入验证值 - 用于输入验证的特定值
+#define MinimumBufferSize 0x34                                 // 最小缓冲区大小 - 用于验证缓冲区的最小大小
+#define MediumBufferSize 0x46                                   // 中等缓冲区大小 - 用于验证缓冲区的中等大小
+#define LargeBufferSize 0x47                                    // 大缓冲区大小 - 用于验证缓冲区的大小区分
+#define MaximumBufferSize 0x4f                                 // 最大缓冲区大小 - 用于验证缓冲区的最大大小
+
 // 异常处理资源管理常量
 #define ExceptionResourcePointerOffsetSecondary 0xa8          // 异常资源指针辅助偏移量 - 异常资源指针的辅助位置
 #define ExceptionMemoryBlockMultiplier 0x50                   // 异常内存块乘数 - 异常内存块大小计算的乘数
@@ -33862,7 +33871,7 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
   if (((((int)systemDataBuffer == 0) &&
        (systemDataBuffer = ValidatePortControlRequest(dataBuffer,acolorDataWord,0,0x42464542), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)systemDataBuffer == 0)) &&
-     ((0x5a < *(uint *)(dataBuffer + 8) ||
+     ((DataBufferValidationSize < *(uint *)(dataBuffer + 8) ||
       (systemDataBuffer = ManageSystemMemoryA0(dataBuffer,operationBase + OperationDataOffset44), (int)systemDataBuffer == 0)))) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = QuerySystemStatusA0(*dataBuffer,operationBase + OperationDataOffset60,0x25);
@@ -34370,7 +34379,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + SystemDataParameterOffset20), (int)validationStatus == 0)) {
     memoryRegionBase = SystemOperationCode0x1c;
-    if (*(uint *)(dataBuffer + 8) < 0x5a) {
+    if (*(uint *)(dataBuffer + 8) < DataBufferValidationSize) {
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
         systemDataBuffer = *dataBuffer;
         validationStatus = OperateDataO0(systemDataBuffer,&firstResourceDataValue,4);
@@ -35300,7 +35309,7 @@ DataProcessLabelA:
           ((dataFlags = OperateDataO0(*dataBuffer,operationBase + SystemContextOffsetB4,4), (int)dataFlags == 0 &&
            (dataFlags = ValidateDataIntegrityA1(operationBase + DataProcessingParameterOffset30,dataBuffer), (int)dataFlags == 0)))))))))) {
       dataFlags = operationResult;
-      if (0x34 < *(uint *)(dataBuffer + 8)) {
+      if (MinimumBufferSize < *(uint *)(dataBuffer + 8)) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
           dataFlags = OperateDataO0(*dataBuffer,operationBase + SystemContextOffsetBC,4);
         }
@@ -35310,7 +35319,7 @@ DataProcessLabelA:
       }
       if ((int)dataFlags == 0) {
         dataFlags = operationResult;
-        if (0x46 < *(uint *)(dataBuffer + 8)) {
+        if (MediumBufferSize < *(uint *)(dataBuffer + 8)) {
           if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
             dataFlags = OperateDataO0(*dataBuffer,operationBase + ExceptionHandlerContextOffsetC0,4);
           }
@@ -35320,7 +35329,7 @@ DataProcessLabelA:
         }
         if ((int)dataFlags == 0) {
           dataFlags = operationResult;
-          if (0x47 < *(uint *)(dataBuffer + 8)) {
+          if (LargeBufferSize < *(uint *)(dataBuffer + 8)) {
             if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
               dataFlags = ValidateDataWithSecurityCheckA2(*dataBuffer,operationBase + SystemContextOffsetA0,4);
             }
@@ -40630,7 +40639,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
   if (((((int)validationStatus == 0) &&
        (validationStatus = ExecuteSecurityValidation(dataBuffer,inputDataBuffer,0,0x42464553), (int)validationStatus == 0)) &&
       (validationStatus = ValidatePortControlRequest(dataBuffer,systemParameter + ExceptionHandlerCallbackOffset), (int)validationStatus == 0)) &&
-     ((0x5a < *(uint *)(dataBuffer + 8) ||
+     ((DataBufferValidationSize < *(uint *)(dataBuffer + 8) ||
       (validationStatus = GetContextData(dataBuffer,systemParameter + 0x44), (int)validationStatus == 0)))) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -42788,7 +42797,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = ProcessDataPointer(*dataBuffer,operationBase + ExceptionHandlerCallbackOffset);
       if (((int)systemDataBuffer == 0) &&
-         ((0x5a < *(uint *)(dataBuffer + 8) ||
+         ((DataBufferValidationSize < *(uint *)(dataBuffer + 8) ||
           (systemDataBuffer = GetSystemSecurityStatus(dataBuffer,operationBase + 0x44), (int)systemDataBuffer == 0)))) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
           switch(*(DataWord *)(operationBase + OperationBaseOffset60)) {
@@ -43332,7 +43341,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
       if (operationResult == 0) {
         memoryRegionBase = SystemOperationCode0x1c;
         operationResult = 0;
-        if ((*(uint *)(dataBuffer + 8) < 0x5a) && (operationResult = ValidationErrorCode, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
+        if ((*(uint *)(dataBuffer + 8) < DataBufferValidationSize) && (operationResult = ValidationErrorCode, *(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0)) {
           acolorDataWord[0] = blueAlphaComponents;
           exceptionContext = *dataBuffer;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
