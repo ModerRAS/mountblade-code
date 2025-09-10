@@ -702,6 +702,7 @@
 #define SystemDataRecordOffset3c0 0x3c0
 #define SystemDataStatusOffset8 0x8
 #define ExceptionHandlerCallbackOffset300 0x300
+#define ExceptionHandlerOffset300 0x300                        // 异常处理器偏移量300 - 异常处理器的存储位置
 #define ExceptionHandlerCallbackOffset2f0 0x2f0
 #define ExceptionHandlerCallbackOffset2d0 0x2d0
 #define ExceptionHandlerCallbackOffset2e0 0x2e0
@@ -100281,7 +100282,7 @@ void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t
 void SetupExceptionHandlerB30(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x6c0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset6C0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
