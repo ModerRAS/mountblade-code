@@ -3447,6 +3447,17 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 系统状态偏移量常量
 #define systemContextStatusOffset98 0x98              // 系统上下文状态偏移量98
 
+// 组件注册系统状态常量
+#define SystemQueryStatus 0x1c                        // 系统查询状态
+#define systemContextValidationFailure 0x1f            // 系统上下文验证失败
+#define ComponentDataValidationFailure 0x1f           // 组件数据验证失败
+#define ComponentInactiveStatus 0                      // 组件非活跃状态
+#define MinimumCapacityThreshold 10                    // 最小容量阈值
+#define ComponentCapacityGrowthFactor 1.5f             // 组件容量增长因子
+#define ArrayElementIncrement 1                       // 数组元素增量
+#define PointerSizeBytes 8                             // 指针大小字节数
+#define PrimaryComponentValidationIndex 0              // 主要组件验证索引
+
 // 模块偏移量常量定义
 #define MODULE_PRIMARY_CONFIG_OFFSET 0x18       // 模块主配置偏移量
 #define MODULE_SECONDARY_CONFIG_OFFSET 0x10     // 模块次配置偏移量
@@ -16963,7 +16974,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = componentValidationDataBuffer;
+        *(int64_t *)(*componentListPointer + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = componentValidationDataBuffer;
         *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
@@ -122260,46 +122271,51 @@ void DualExceptionContextCleanupHandlerE(DataBuffer operationBase,int64_t dataBu
 
 
 /**
- * @brief 在偏移量180910e00处理异常清理
+ * @brief 处理异常清理操作并恢复默认处理器
  * 
- * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 此函数负责在异常处理过程中清理异常上下文资源并恢复默认异常处理器。
  * 它执行以下操作：
  * - 获取异常处理上下文
  * - 调用异常处理回调函数（如果存在）
  * - 设置临时异常处理器
  * - 清理异常状态和资源
  * - 恢复默认异常处理器
+ * - 清理多个异常处理点的状态
  * 
- * @param operationBase 操作基础地址
- * @param dataBuffer 数据缓冲区指针
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param operationBase 操作基础地址，包含系统操作的基础信息
+ * @param dataBuffer 数据缓冲区指针，用于异常处理数据交换
+ * @param operationFlagA 操作标志A，用于控制异常处理的某些行为
+ * @param operationFlagB 操作标志B，用于控制异常处理的某些行为
  * 
- * @note 原始函数名：Unwind_180910e00
+ * @return void 无返回值
+ * 
+ * @note 此函数会修改多个异常处理点的状态，确保系统恢复正常运行
+ * @warning 此函数可能会终止系统执行（如果检测到异常状态）
+ * @see TerminateSystemExecutionAndCleanupResources, SystemTemporaryExceptionHandler, SystemDefaultExceptionHandlerB
  */
-void ProcessExceptionCleanupAtOffset180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionCleanupAndRestoreDefaultHandlers(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  int64_t exceptionContext;
+  int64_t exceptionHandlerContext;
   
-  exceptionContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextDataOffset50) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextDataOffset50))(exceptionHandlerContext + ExceptionHandlerContextDataOffset40,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset80) != (code *)NULL) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset80))(exceptionHandlerContext + ExceptionHandlerContextDataOffset40, NULL, NULL, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset18) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset20) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryOffset24) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextStatusOffset32) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset20) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset30) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset18) = &SystemDefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1ff8) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset00) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextStatusOffset32) = NULL;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextFlagsOffset48) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTemporaryOffset24) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerSecondaryOffset8184) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerPrimaryOffset0) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset00) = 0;
-  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset10) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1ff8) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPrimaryOffset0) = NULL;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerFlagsOffset16) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerSecondaryOffset8184) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
