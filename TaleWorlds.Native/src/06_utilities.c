@@ -93840,7 +93840,7 @@ void CleanupExceptionMemoryResourcesAndCallback(DataBuffer operationBase, int64_
  * @param operationBase 操作基址（DataBuffer类型）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
  * 
- * 原始函数名：Unwind_18090b0b0
+ * @note 原始函数名：Unwind_18090b0b0 - 异常处理回调清理函数B0
  */
 void ValidateSystemStateExceptionAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
@@ -93866,7 +93866,7 @@ void ValidateSystemStateExceptionAndCallback(DataBuffer operationBase, int64_t d
  * @param operationBase 操作基址（DataBuffer类型）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
  * 
- * 原始函数名：Unwind_18090b0d0
+ * @note 原始函数名：Unwind_18090b0d0 - 异常处理回调清理函数D0
  */
 void ReleaseSystemResourcesAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
@@ -93892,7 +93892,7 @@ void ReleaseSystemResourcesAndCallback(DataBuffer operationBase, int64_t dataBuf
  * @param operationBase 操作基址（DataBuffer类型）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
  * 
- * 原始函数名：Unwind_18090b0f0
+ * @note 原始函数名：Unwind_18090b0f0 - 异常处理回调清理函数F0
  */
 void HandleThreadSynchronizationAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
@@ -93918,7 +93918,7 @@ void HandleThreadSynchronizationAndCallback(DataBuffer operationBase, int64_t da
  * @param operationBase 操作基址（DataBuffer类型）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
  * 
- * 原始函数名：Unwind_18090b110
+ * @note 原始函数名：Unwind_18090b110 - 异常处理回调清理函数110
  */
 void CheckDataIntegrityAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
