@@ -5088,7 +5088,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 // 系统数据处理和验证函数
 #define ProcessAndValidateSystemData ProcessAndValidateSystemData
-#define FUN_18004b790 ProcessAndValidateSystemData
 #define ValidateSystemDataBufferAndCheckIntegrity ValidateSystemDataBufferA0
 
 /**
@@ -5242,7 +5241,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_180080060
  */
-#define FUN_180080060 TerminateSystemProcessesAndResources
 #define TerminateSystemProcesses TerminateSystemProcessesAndResources
 
 /**
@@ -5253,7 +5251,6 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  * 
  * @note 原始函数名：FUN_1800809a0
  */
-#define FUN_1800809a0 CleanupSystemMemoryAndData
 #define CleanupSystemResources CleanupSystemMemoryAndData
 
 /**
