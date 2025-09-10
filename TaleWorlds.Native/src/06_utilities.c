@@ -3128,6 +3128,16 @@
 #define MemoryAlignmentSize32 0x20                   // 内存对齐大小32
 #define SystemMemoryManagerOffset1a0 0x1a0           // 系统内存管理器偏移量1a0
 
+// 系统数据次级偏移量常量
+#define SystemDataSecondaryOffset1818 0x1818        // 系统数据次级偏移量1818
+#define SystemDataSecondaryOffset1820 0x1820        // 系统数据次级偏移量1820
+#define SystemDataSecondaryOffset1838 0x1838        // 系统数据次级偏移量1838
+#define SystemDataSecondaryOffset1840 0x1840        // 系统数据次级偏移量1840
+#define SystemDataSecondaryOffset1850 0x1850        // 系统数据次级偏移量1850
+#define SystemDataSecondaryOffset1860 0x1860        // 系统数据次级偏移量1860
+#define SystemDataSecondaryOffset1868 0x1868        // 系统数据次级偏移量1868
+#define SystemDataSecondaryOffset1870 0x1870        // 系统数据次级偏移量1870
+
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98               // 系统管理偏移量98
 #define FloatProcessingBufferSizeOffset 0xb0        // 浮点处理缓冲区大小偏移量
@@ -29949,7 +29959,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             InitializeMemory(&StatusCounterB,exceptionDataBuffer,0x80);
             exceptionHandlerContext1 = operationBase[4];
             if ((char)exceptionHandlerContext1 == '\0') {
-              *(ByteFlag *)(operationBase + 4) = 1;
+              *(ByteFlag *)(operationBase + OperationBaseStatusFlagOffset) = 1;
               allocatedMemoryBlock = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + OperationBaseConfigOffset),aValidationResultData);
               if (((allocatedMemoryBlock != 0) || (allocatedMemoryBlock = ProcessDataBufferA0(aValidationResultData[0],&StackLongIntegerC,0), allocatedMemoryBlock != 0)
                   ) || (allocatedMemoryBlock = (**(FunctionPointer**)(*operationBase + ExceptionHandlerCallbackOffset))(operationBase), allocatedMemoryBlock != 0))
