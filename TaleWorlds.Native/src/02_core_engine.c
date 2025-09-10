@@ -261785,8 +261785,8 @@ MemoryPoolAllocationLabel:
   SystemStackFlag = (unsigned long long)SystemStackFlag.HighPart << 0x20;
   EncodingBuffer = &ThreadLocalStorageTemplate;
 EncodingCompleteLabel:
-  UnicodeCodePoint = FUN_180213700(ContextHandle,OperationBufferSize,0);
-  uint32_t ValidationResult = FUN_180840490(UnicodeCodePoint,&SystemRegisterFlag);
+  UnicodeCodePoint = GetUnicodeCodePointFromContext(ContextHandle,OperationBufferSize,0);
+  uint32_t ValidationResult = ValidateUnicodeCodePoint(UnicodeCodePoint,&SystemRegisterFlag);
   ProcessCoreEngineDataAndTemplate(ValidationResult,&CoreEngineDataTemplate);
   UnicodeCodePoint = SystemRegisterFlag;
   if (LockResult != 0) {

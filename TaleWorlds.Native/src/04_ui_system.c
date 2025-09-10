@@ -43743,8 +43743,8 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   uiIterationCount = vpacksswb_avx(*param_6,*param_6);
   uiTotalResult._16_16_ = uiIterationCount;
   aTotalResult._0_16_ = aiterationCount;
-  aiterationCounter = vpshufb_avx2(aTotalResult,_DAT_180947080);
-  aeventProcessingCounter = vpshufb_avx2(aTotalResult,_DAT_1809470c0);
+  aiterationCounter = vpshufb_avx2(aTotalResult,UIEventStatusVector);
+  aeventProcessingCounter = vpshufb_avx2(aTotalResult,UIProcessingCounterVector);
   aeventStatus = vpshufb_avx2(aTotalResult,_DAT_180947060);
   aTotalResult = vpshufb_avx2(aTotalResult,_DAT_1809470a0);
   aiterationCount7._0_16_ = ZEXT116(0) * aiterationCount2 + ZEXT116(1) * *uiContext;
