@@ -11102,6 +11102,17 @@ void ConfigureSystemTemplate(void* configPointer, int templateFlags, int templat
  * 该函数负责完成系统配置，确保所有配置都正确设置
  * 用于系统配置的最终确认
  */
+/**
+ * @brief 完成系统配置
+ * 
+ * 该函数负责完成系统配置过程，清理和释放系统资源。
+ * 主要功能包括：
+ * - 释放系统配置相关的内存资源
+ * - 重置系统状态标志
+ * - 完成配置流程的收尾工作
+ * 
+ * @note 原始函数名：FinalizeSystemConfiguration
+ */
 void FinalizeSystemConfiguration(void);
 
 /**
@@ -11427,6 +11438,17 @@ float CalculateEngineSecondaryParameter(void);
  * 
  * 该函数负责处理核心引擎的各种事件
  * 包括系统事件、用户事件和内部事件
+ */
+/**
+ * @brief 处理核心引擎事件
+ * 
+ * 该函数负责处理核心引擎的各种事件，包括系统事件、内存事件和状态事件。
+ * 主要功能包括：
+ * - 处理系统核心事件的分发和处理
+ * - 管理事件队列和优先级
+ * - 触发相应的回调函数
+ * 
+ * @note 原始函数名：ProcessCoreEngineEvent
  */
 void ProcessCoreEngineEvent(void);
 

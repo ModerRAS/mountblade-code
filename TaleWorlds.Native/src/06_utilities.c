@@ -127246,7 +127246,7 @@ void Unwind_ExceptionStatusCleanupD3(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180911c00(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContextC00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x10,2,ManageSystemResourcesA0);
