@@ -844,6 +844,8 @@ typedef enum {
 
 #define DAT_1809472f0 UIConfigurationData2F0              // UI配置数据2F0 - 存储UI系统的配置信息
 #define DAT_180956f70 UILookupTableDataF70                // UI查找表数据F70 - 存储UI系统的查找表数据
+#define DAT_180947370 UIVectorMultiplyMask370              // UI向量乘法掩码370 - 用于UI向量计算的乘法掩码
+#define DAT_180947500 UIVectorSecondaryMask500             // UI向量次级掩码500 - 用于UI向量计算的次级掩码
 #define UIComponentInterfaceID UIComponentInterfaceIDB00  // UI组件接口ID B00 - UI组件的接口标识符
 #define UIComponentInterfaceIID UIComponentInterfaceIIDB10 // UI组件接口IID B10 - UI组件的接口实例标识符
 #define DAT_180c0c6e8 UIComponentInstancePtrE8            // UI组件实例指针E8 - 指向UI组件实例的指针
