@@ -233379,7 +233379,7 @@ joined_r0x0001801906da:
       if (SystemDataTablePointer != OperationBufferSize) {
         ContextHandle = ContextHandle + 0x5898;
 LAB_1801908b0:
-        FUN_18018e7e0(SystemArrayBuffer368,SystemDataTablePointer);
+        ProcessCharacterEncodingAndSystemBufferConfiguration(SystemArrayBuffer368,SystemDataTablePointer);
         TemporaryBuffer = (void *)(ContextHandle + 0x10);
         BufferStatus = SystemDataTablePointer;
         do {
