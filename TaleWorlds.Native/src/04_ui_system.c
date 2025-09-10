@@ -101072,7 +101072,7 @@ UIWord ProcessUITransformDataCalculation(UIWord *uiContext, longlong dataSource,
       return uiContext;
     }
   }
-  else if ((bufferSize == 0x24) && (sourceDataInt = 0, 0 < param_6)) {
+  else if ((bufferSize == 0x24) && (sourceDataInt = 0, 0 < iterationCount)) {
     do {
       puiCompareResult = (int *)(((longlong)sourceDataInt >> 0x10) * 4 + dataSource);
       loopCounter = ((int)((ulonglong)((longlong)(puiCompareResult[0x14] + puiCompareResult[0xf]) * (longlong)targetBuffer[0xf]) >>
