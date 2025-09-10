@@ -15056,27 +15056,27 @@ uint8_t ExceptionHandlerDataPrimary;           // 异常处理器数据Primary -
 uint8_t ExceptionHandlerDataSecondary;         // 异常处理器数据Secondary - 次要异常处理数据  
 uint8_t ExceptionHandlerDataTertiary;          // 异常处理器数据Tertiary - 第三异常处理数据
 // 系统安全验证标志位A0 - 用于验证系统安全状态
-uint8_t SystemSecurityValidationFlagA0;     // 系统安全验证标志A0
-uint8_t SystemSecurityValidationFlagA1;     // 系统安全验证标志A1
-uint8_t SystemSecurityValidationFlagA2;     // 系统安全验证标志A2
-uint8_t SystemSecurityValidationFlagA3;     // 系统安全验证标志A3
-uint8_t SystemSecurityValidationFlagA4;     // 系统安全验证标志A4
-uint8_t SystemSecurityValidationFlagA5;     // 系统安全验证标志A5
-uint8_t SystemSecurityValidationFlagA6;     // 系统安全验证标志A6
-uint8_t SystemSecurityValidationFlagA7;     // 系统安全验证标志A7
-uint8_t SystemSecurityValidationFlagA8;     // 系统安全验证标志A8
-uint8_t SystemSecurityValidationFlagA9;     // 系统安全验证标志A9
-uint8_t SecurityValidationFlagA10;    // 系统安全验证标志A10
-uint8_t SecurityValidationFlagA11;    // 系统安全验证标志A11
-uint8_t SecurityValidationFlagA12;    // 系统安全验证标志A12
-uint8_t SecurityValidationFlagA13;    // 系统安全验证标志A13
-uint8_t SecurityValidationFlagA14;    // 系统安全验证标志A14
-uint8_t SecurityValidationFlagA15;    // 系统安全验证标志A15
-uint8_t SecurityValidationFlagA16;    // 系统安全验证标志A16
-uint8_t SecurityValidationFlagA17;    // 系统安全验证标志A17
-uint8_t SecurityValidationFlagA18;    // 系统安全验证标志A18
-uint8_t SecurityValidationFlagA19;    // 系统安全验证标志A19
-uint8_t SecurityValidationFlagA20;    // 系统安全验证标志A20
+uint8_t SystemSecurityValidationFlagBasic;      // 系统安全验证标志Basic - 基础安全验证标志
+uint8_t SystemSecurityValidationFlagAdvanced;   // 系统安全验证标志Advanced - 高级安全验证标志
+uint8_t SystemSecurityValidationFlagCritical;   // 系统安全验证标志Critical - 关键安全验证标志
+uint8_t SystemSecurityValidationFlagEnhanced;   // 系统安全验证标志Enhanced - 增强安全验证标志
+uint8_t SystemSecurityValidationFlagMaximum;    // 系统安全验证标志Maximum - 最大安全验证标志
+uint8_t SystemSecurityValidationFlagPremium;    // 系统安全验证标志Premium - 优质安全验证标志
+uint8_t SystemSecurityValidationFlagUltimate;   // 系统安全验证标志Ultimate - 终极安全验证标志
+uint8_t SystemSecurityValidationFlagExtreme;    // 系统安全验证标志Extreme - 极端安全验证标志
+uint8_t SystemSecurityValidationFlagSupreme;    // 系统安全验证标志Supreme - 最高安全验证标志
+uint8_t SystemSecurityValidationFlagAbsolute;   // 系统安全验证标志Absolute - 绝对安全验证标志
+uint8_t SecurityValidationFlagElite;       // 安全验证标志Elite - 精英安全验证标志
+uint8_t SecurityValidationFlagPrime;       // 安全验证标志Prime - 首要安全验证标志
+uint8_t SecurityValidationFlagCore;        // 安全验证标志Core - 核心安全验证标志
+uint8_t SecurityValidationFlagCentral;     // 安全验证标志Central - 中央安全验证标志
+uint8_t SecurityValidationFlagMaster;      // 安全验证标志Master - 主安全验证标志
+uint8_t SecurityValidationFlagGlobal;      // 安全验证标志Global - 全局安全验证标志
+uint8_t SecurityValidationFlagUniversal;   // 安全验证标志Universal - 通用安全验证标志
+uint8_t SecurityValidationFlagComplete;    // 安全验证标志Complete - 完整安全验证标志
+uint8_t SecurityValidationFlagTotal;       // 安全验证标志Total - 全面安全验证标志
+uint8_t SecurityValidationFlagFinal;       // 安全验证标志Final - 最终安全验证标志
+uint8_t SecurityValidationFlagUltimate;    // 安全验证标志Ultimate - 终极安全验证标志
 uint8_t SecurityValidationFlagA21;    // 系统安全验证标志A21
 uint8_t SecurityValidationFlagA22;    // 系统安全验证标志A22
 uint8_t SecurityValidationFlagA23;    // 系统安全验证标志A23
