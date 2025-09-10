@@ -112276,8 +112276,8 @@ void ProcessUIDataBuffer(longlong uiContext,int dataSource,longlong targetBuffer
         if (localFloatValue6 < temporaryFloatValue) break;
       }
       else {
-        *(char *)(TargetHandle + 0x12a7) = (char)uiCompareResult;
-        LocalFloatValue9 = TemporaryFloatValue;
+        *(char *)(targetHandle + 0x12a7) = (char)uiComparisonResult;
+        localFloatValue9 = temporaryFloatValue;
       }
       uiCompareResult = uiCompareResult + -1;
       LocalFloatValue6 = TemporaryFloatValue;
