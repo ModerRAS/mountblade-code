@@ -4825,8 +4825,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask11 _DAT_1809473e0
 #define UIVectorMultiplyMask12 _DAT_1809473f0
  #define UIVectorMultiplyMask13 _DAT_180947400
- _DAT_180947410 - UI向量乘法掩码14
-#define UIVectorMultiplyMask14 _DAT_180947410
+ #define UIVectorMultiplyMask14 _DAT_180947410
  _DAT_180947420 - UI向量乘法掩码15
 #define UIVectorMultiplyMask15 _DAT_180947420
  _DAT_180947430 - UI向量乘法掩码16
@@ -4849,6 +4848,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask29 _DAT_180947500
 #define UIVectorMultiplyMask30 _DAT_180947510
  #define UIVectorMultiplyMask31 _DAT_180947520
+#define UIComponentIndexVector _DAT_180947040       // UI组件索引向量 - 存储UI组件的索引信息
 #define UIVectorAdditionConstant UIVectorAdditionConstant
 #define UIRenderingConstant2 _DAT_1809480a0
 #define UIRenderingConstant3 _DAT_1809480b0
@@ -43737,7 +43737,7 @@ void ProcessUIRendererData6(longlong uiContext,longlong dataSource,UIByte (*targ
   UIByte tempVector14 [16];
   UIByte tempVector15 [16];
   
-  uiComponentIndex = _DAT_180947040;
+  uiComponentIndex = UIComponentIndexVector;
   uiIterationCount2 = *(UIByte (*) [16])(*uiContext + dataSource);
   uiResult = *(UIByte (*) [16])(*uiContext + dataSource * 2);
   aiterationCount3._0_16_ = ZEXT116(0) * aresult + ZEXT116(1) * aiterationCount2;
@@ -115270,8 +115270,8 @@ void ProcessUIHandleBufferOperation(longlong uiContext,longlong dataSource,UIHan
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807330b2(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
-void FUN_1807330b2(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
+ void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
+void ProcessUIDataHandleTransfer(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 
 {
   uint result;
@@ -115441,8 +115441,8 @@ void FUN_1807330b2(longlong uiContext,longlong dataSource,UIHandle targetBuffer)
 
 
 
- void FUN_18073319f(ulonglong uiContext,longlong dataSource,longlong targetBuffer,short bufferSize)
-void FUN_18073319f(ulonglong uiContext,longlong dataSource,longlong targetBuffer,short bufferSize)
+ void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlong targetBuffer,short bufferSize)
+void ProcessUIShortBufferTransfer(ulonglong uiContext,longlong dataSource,longlong targetBuffer,short bufferSize)
 
 {
   uint in_ECX;
@@ -115594,8 +115594,8 @@ void FUN_18073319f(ulonglong uiContext,longlong dataSource,longlong targetBuffer
 
 
 
- void FUN_1807332e3(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,short bufferSize)
-void FUN_1807332e3(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,short bufferSize)
+ void ProcessUIHandleShortBufferTransfer(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,short bufferSize)
+void ProcessUIHandleShortBufferTransfer(UIHandle uiContext,UIHandle dataSource,longlong targetBuffer,short bufferSize)
 
 {
   longlong allocatedMemory;
@@ -115698,8 +115698,8 @@ void UpdateUIContextAndTriggerRendering(longlong uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180733a10(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
-void FUN_180733a10(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
+ void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
+void ProcessUIWordDataTransfer(longlong uiContext,int *dataSource,longlong targetBuffer,UIWord *bufferSize,int resultPointer)
 
 {
   int processingResult;

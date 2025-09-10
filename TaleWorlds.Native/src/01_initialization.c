@@ -4996,52 +4996,78 @@ void InitializeSystemSecurityManager(void)
 /**
  * @brief 初始化系统性能监控器
  * 
- * 该函数负责初始化系统的性能监控器，设置性能指标的
- * 收集、分析和报告机制，确保系统性能的实时监控
+ * 该函数负责初始化系统的性能监控组件，设置性能数据的收集、分析和报告机制。
+ * 它会初始化性能监控所需的数据结构，设置回调函数，并建立性能指标收集系统。
+ * 
+ * 功能包括：
+ * - 初始化性能监控数据表和哈希表
+ * - 设置系统节点和活动标志
+ * - 配置性能数据收集的回调函数
+ * - 建立性能监控的内存管理结构
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保性能监控系统的正常运行
+ * @note 该函数会分配必要的内存资源并建立性能监控的基础架构
  */
 void InitializeSystemPerformanceMonitor(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int SystemIdentifierCompareResult;
-  int64_t* MemorySystemDataPointer;
-  int64_t SystemCurrentOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* SystemEventCallback;
+  // 性能监控相关变量
+  char NodeActiveFlag;                           // 节点活动标志，用于标识系统节点的激活状态
+  void** SystemDataTable;                       // 系统数据表指针，存储系统核心数据结构
+  int SystemIdentifierCompareResult;            // 系统标识符比较结果，用于节点匹配和查找
+  int64_t* MemorySystemDataPointer;             // 内存系统数据指针，指向系统内存管理数据
+  int64_t SystemCurrentOperationTimestamp;     // 系统当前操作时间戳，用于性能计时
+  void** RootNodeReference;                     // 根节点引用，系统节点树的根节点指针
+  void** CurrentNodePointer;                   // 当前节点指针，用于遍历节点树
+  void** NextNodePointer;                      // 下一节点指针，用于节点遍历和链接
+  void** HashTablePointer;                     // 哈希表指针，用于快速查找和索引
+  void* SystemEventCallback;                   // 系统事件回调指针，处理性能监控事件
   
+  // 获取系统根表和数据结构
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
+  
+  // 检查根节点的活动状态
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 设置系统搜索函数和初始化哈希表
   SystemSearchFunctionPtr = GetSystemSearchFunctionD;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentIndex];
+  
+  // 遍历节点树查找性能监控组件
   while (NodeActiveFlag == '\0') {
+    // 比较系统标识符以查找输入控制器组件
     SystemIdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&SystemDataTemplateInputController,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
+      // 向左子节点遍历
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
     }
     else {
+      // 向右子节点遍历
       NextNodePointer = (void**)*CurrentNodePointer;
     }
     HashTablePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
+  
+  // 检查是否需要创建新的性能监控节点
   if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
+    // 分配内存用于性能监控节点
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
+  
+  // 配置性能监控节点的属性和数据
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
   HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[SystemNodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
+  
   return;
 }
 
@@ -5051,52 +5077,78 @@ void InitializeSystemPerformanceMonitor(void)
 /**
  * @brief 初始化系统调试管理器
  * 
- * 该函数负责初始化系统的调试管理器，设置调试信息的
- * 收集、存储和分析机制，便于系统问题的诊断和解决
+ * 该函数负责初始化系统的调试管理器组件，设置调试信息的收集、存储和分析机制。
+ * 它会初始化调试所需的数据结构，配置调试日志系统，并建立调试信息的管理框架。
+ * 
+ * 功能包括：
+ * - 初始化调试管理器的数据表和节点结构
+ * - 设置系统初始化状态标志
+ * - 配置调试信息的收集和存储机制
+ * - 建立调试回调函数和事件处理
+ * 
+ * @note 这是系统初始化过程中的关键组件，确保调试系统的正常运行
+ * @note 该函数会创建调试管理器的数据结构并配置相关的回调函数
  */
 void InitializeSystemDebugManager(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int SystemIdentifierCompareResult;
-  int64_t* MemorySystemDataPointer;
-  int64_t SystemCurrentOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  uint64_t SystemInitializationStatusFlag;
+  // 调试管理器相关变量
+  char NodeActiveFlag;                           // 节点活动标志，用于标识调试节点的激活状态
+  void** SystemDataTable;                       // 系统数据表指针，存储系统核心数据结构
+  int SystemIdentifierCompareResult;            // 系统标识符比较结果，用于节点匹配和查找
+  int64_t* MemorySystemDataPointer;             // 内存系统数据指针，指向系统内存管理数据
+  int64_t SystemCurrentOperationTimestamp;     // 系统当前操作时间戳，用于调试计时
+  void** RootNodeReference;                     // 根节点引用，系统节点树的根节点指针
+  void** CurrentNodePointer;                   // 当前节点指针，用于遍历节点树
+  void** NextNodePointer;                      // 下一节点指针，用于节点遍历和链接
+  void** HashTablePointer;                     // 哈希表指针，用于快速查找和索引
+  uint64_t SystemInitializationStatusFlag;     // 系统初始化状态标志，用于跟踪初始化进度
   
+  // 获取系统根表和数据结构
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
+  
+  // 检查根节点的活动状态
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 初始化系统状态标志
   SystemInitializationStatusFlag = 0;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentIndex];
+  
+  // 遍历节点树查找配置组件
   while (NodeActiveFlag == '\0') {
+    // 比较系统标识符以查找配置组件
     SystemIdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&SystemDataTemplateConfigurationComponent,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
+      // 向左子节点遍历
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
     }
     else {
+      // 向右子节点遍历
       NextNodePointer = (void**)*CurrentNodePointer;
     }
     HashTablePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
+  
+  // 检查是否需要创建新的调试管理器节点
   if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
+    // 分配内存用于调试管理器节点
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
+  
+  // 配置调试管理器节点的属性和数据
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
   HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
+  
   return;
 }
 
