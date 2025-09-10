@@ -30761,7 +30761,7 @@ void CoreEngineExecuteDataCopyAndMemoryAllocation(long long targetBuffer
  */
 void CoreEngineAllocateMemoryAndCopyDataBlock(void)
 {
-  long long MainCalculationResult;
+  long long MemoryAllocationResult;
   long long BufferStatus;
   long long StackBaseAddressPointer;
   long long PatternIndexPointer;
@@ -30806,7 +30806,7 @@ void CoreEngineAllocateMemoryAndCopyDataBlock(void)
  */
 void CoreEngineProcessDataBlockShift(long long ContextHandle)
 {
-  long long MainCalculationResult;
+  long long ShiftOperationResult;
   long long BufferStatus;
   unsigned long long UnicodeCodePoint;
   long long StackFrameAddressPointer;

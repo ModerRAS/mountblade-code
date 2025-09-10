@@ -123798,18 +123798,29 @@ void FUN_180739950(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
  void FUN_1807399b2(void)
-void FUN_1807399b2(void)
+/**
+ * 处理UI数据缓冲区验证和清理
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区验证和清理操作，包括：
+ * - 缓冲区数据验证
+ * - 数据比较和同步
+ * - 缓冲区清理操作
+ * - 上下文数据操作执行
+ * 
+ * @note 原始函数名：FUN_1807399b2
+ */
+void ProcessUIDataBufferValidationAndCleanup(void)
 
 {
   int processingResult;
   int uiValidationResult;
-  UIDword unmodifiedESI;
+  UIDword contextData;
   
-  processingResult = FUN_18074b930(&stack0x00000040,0x100);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  FUN_18074b930(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  processingResult = ProcessUIDataBufferValidation(&SystemDataBuffer,0x100);
+  uiValidationResult = CompareUIDataWithBuffer(&SystemDataBuffer + processingResult,0x100 - processingResult,&UIBufferControlData);
+  ProcessUIDataBufferValidation(&SystemDataBuffer + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
                      WARNING: Subroutine does not return
-  ExecuteUIContextDataOperation(unmodifiedESI,1);
+  ExecuteUIContextDataOperation(contextData,1);
 }
 
 
@@ -300125,39 +300136,39 @@ void ProcessUIComponentStateAndRenderingData(ulonglong uiContext,uint *dataSourc
   UIByte processingBuffer [256];
   ulonglong encryptionValue;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt168;
+  encryptionValue = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if (dataSource == (uint *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                      WARNING: Subroutine does not return
-      ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt168);
+      ExecuteUIRenderTask(encryptionValue ^ (ulonglong)encryptionBuffer);
     }
-    FUN_18074b930(astackUInt118,0x100,0);
-    pstackUInt148 = astackUInt118;
+    FUN_18074b930(processingBuffer,0x100,0);
+    dataBufferPointer = processingBuffer;
                      WARNING: Subroutine does not return
     ExecuteUIContextDataOperation(0x1f,0xc,uiContext,&UNK_180984790);
   }
   *dataSource = 0;
-  stackUInt138 = 0;
-  RenderDataAlignment = 0;
-  RenderContextSize = 0;
-  processingResult = func_0x00018088c590(0,&RenderDataAlignment);
-  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,RenderDataAlignment), processingResult == 0)) &&
-     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
-    RenderContextSize = *(longlong *)(stackLong120 + 8);
+  componentHandle = 0;
+  renderDataOffset = 0;
+  renderContextSize = 0;
+  operationStatus = func_0x00018088c590(0,&renderDataOffset);
+  if (((operationStatus == 0) && (operationStatus = FUN_18088c740(&componentHandle,renderDataOffset), operationStatus == 0)) &&
+     (operationStatus = func_0x00018088c530(uiContext & 0xffffffff,&contextBuffer), operationStatus == 0)) {
+    renderContextSize = *(longlong *)(contextBuffer + 8);
   }
-  else if (processingResult != 0) {
+  else if (operationStatus != 0) {
                      WARNING: Subroutine does not return
-    FUN_18088c790(&stackUInt138);
+    FUN_18088c790(&componentHandle);
   }
-  componentIndex = FUN_18083fbf0(*(UIHandle *)(RenderDataAlignment + 800),RenderContextSize + 0x30);
-  if (componentIndex != 0) {
-    uiStatusPointer = (uint *)FUN_18084cde0(componentIndex,&stackLong120);
-    *dataSource = *uiStatusPointer / 0x30;
+  componentIdentifier = FUN_18083fbf0(*(UIHandle *)(renderDataOffset + 800),renderContextSize + 0x30);
+  if (componentIdentifier != 0) {
+    statusPointer = (uint *)FUN_18084cde0(componentIdentifier,&contextBuffer);
+    *dataSource = *statusPointer / 0x30;
                      WARNING: Subroutine does not return
-    FUN_18088c790(&stackUInt138);
+    FUN_18088c790(&componentHandle);
   }
                      WARNING: Subroutine does not return
-  FUN_18088c790(&stackUInt138);
+  FUN_18088c790(&componentHandle);
 }
 
 
@@ -300165,17 +300176,31 @@ void ProcessUIComponentStateAndRenderingData(ulonglong uiContext,uint *dataSourc
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180846050(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
-void FUN_180846050(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
+ /**
+ * 获取UI数据源和目标缓冲区信息
+ * 
+ * 该函数负责从UI上下文中获取数据源和目标缓冲区的相关信息，包括：
+ * - 数据源和目标缓冲区的初始化
+ * - 上下文数据查询
+ * - 缓冲区大小和位置信息提取
+ * - 资源管理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针（输出参数）
+ * @param targetBuffer 目标缓冲区指针（输出参数）
+ * 
+ * @note 原始函数名：FUN_180846050
+ */
+void GetUIDataSourceAndTargetBuffer(UIDword uiContext,UIDword *dataSource,UIDword *targetBuffer)
 
 {
-  int processingResult;
-  UIByte astackUInt188 [48];
-  UIHandle stackUInt158;
-  UIHandle stackUInt150;
-  longlong stackLong148;
-  longlong astackLong140 [33];
-  ulonglong stackUInt38;
+  int operationStatus;
+  UIByte encryptionBuffer [48];
+  UIHandle resourceHandle;
+  UIHandle bufferHandle;
+  longlong contextData;
+  longlong contextArray [33];
+  ulonglong encryptionKey;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt188;
   if (dataSource != (UIDword *)0x0) {
